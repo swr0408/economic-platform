@@ -1,71 +1,126 @@
-from pydantic_settings import BaseSettings
-from functools import lru_cache
-from typing import List
+"""
+アプリ全体で共有する設定・定数を定義します。
+"""
 
-class Settings(BaseSettings):
-    # Application
-    APP_NAME: str = "Economic Data Platform"
-    VERSION: str = "2.0.0"
-    DEBUG: bool = False
-    ENVIRONMENT: str = "development"
-    
-    # Server
-    HOST: str = "0.0.0.0"
-    PORT: int = 8000
-    WORKERS: int = 2
-    
-    # Database
-    DATABASE_URL: str
-    DB_ECHO: bool = False
-    DB_POOL_SIZE: int = 20
-    DB_MAX_OVERFLOW: int = 10
-    
-    # Redis
-    REDIS_URL: str
-    REDIS_MAX_CONNECTIONS: int = 50
-    
-    # Celery
-    CELERY_BROKER_URL: str
-    CELERY_RESULT_BACKEND: str
-    
-    # Security
-    SECRET_KEY: str
-    ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-    
-    # CORS
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000"]
-    
-    # External APIs
-    FRED_API_KEY: str = ""
-    BLS_API_KEY: str = ""
-    BEA_API_KEY: str = ""
-    OPENAI_API_KEY: str = ""
-    ANTHROPIC_API_KEY: str = ""
-    TWITTER_BEARER_TOKEN: str = ""
-    ALPHA_VANTAGE_API_KEY: str = ""
-    
-    # Notifications
-    DISCORD_WEBHOOK_URL: str = ""
-    LINE_CHANNEL_ACCESS_TOKEN: str = ""
-    
-    # Rate Limiting
-    RATE_LIMIT_PER_MINUTE: int = 100
-    
-    # Cache
-    CACHE_TTL_SHORT: int = 60           # 1分
-    CACHE_TTL_MEDIUM: int = 3600        # 1時間
-    CACHE_TTL_LONG: int = 86400         # 1日
-    
-    # Monitoring
-    SENTRY_DSN: str = ""
-    
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+from pathlib import Path
+import os
+from typing import Dict, List
 
-@lru_cache()
-def get_settings() -> Settings:
-    return Settings()
+# CORS 許可オリジン
+ALLOWED_ORIGINS: List[str] = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "http://127.0.0.1:3002",
+]
 
-settings = get_settings()
+# Seasonality データディレクトリ
+_root = os.getenv("SEASONALITY_DIR")
+SEASONALITY_DIR: Path = Path(_root) if _root else Path(__file__).parent.parent / "data" / "seasonality"
+
+# Seasonality 画像として扱う拡張子
+IMG_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
+
+# アセットカテゴリ定義（通貨インデックスを追加）
+ASSET_CATEGORIES: Dict[str, Dict] = {
+    "interest_rates": {
+        "name": "金利",
+        "symbols": ["US10Y", "US02Y", "US30Y"],
+    },
+    "equities": {
+        "name": "株式",
+        "symbols": [
+            "S&P500",
+            "ダウ平均",
+            "ドル建て日経平均",
+            "ナスダック100",
+            "ハンセン指数",
+            "ラッセル2000",
+            "日経平均",
+            "VIX",
+            "SOX",
+            "TOPIX",
+        ],
+    },
+    "commodities": {
+        "name": "商品",
+        "symbols": [
+            "AUD建てゴールド",
+            "CAD建てゴールド",
+            "CHF建てゴールド",
+            "EUR建てゴールド",
+            "GBP建てゴールド",
+            "NZD建てゴールド",
+            "シルバー",
+            "ドル建てゴールド",
+            "ブレント原油",
+            "円建てゴールド",
+            "原油",
+            "天然ガス",
+            "銅",
+        ],
+    },
+    "fx": {
+        "name": "為替",
+        "subcategories": {
+            "usd_straight": {
+                "name": "ドルストレート",
+                "symbols": [
+                    "EURUSD",
+                    "GBPUSD",
+                    "AUDUSD",
+                    "NZDUSD",
+                    "USDCAD",
+                    "USDCHF",
+                ],
+            },
+            "cross_yen": {
+                "name": "クロス円",
+                "symbols": [
+                    "USDJPY",
+                    "EURJPY",
+                    "GBPJPY",
+                    "AUDJPY",
+                    "NZDJPY",
+                    "CADJPY",
+                    "CHFJPY",
+                ],
+            },
+            "synthetic": {
+                "name": "合成通貨",
+                "symbols": [
+                    "AUDCAD",
+                    "AUDCHF",
+                    "AUDNZD",
+                    "CADCHF",
+                    "EURAUD",
+                    "EURCAD",
+                    "EURCHF",
+                    "EURGBP",
+                    "EURNZD",
+                    "GBPAUD",
+                    "GBPCAD",
+                    "GBPCHF",
+                    "GBPNZD",
+                    "NZDCAD",
+                    "NZDCHF",
+                ],
+            },
+        },
+    },
+    "currency_index": {
+        "name": "通貨インデックス",
+        "symbols": [
+            "USD_INDEX",
+            "JPY_INDEX",
+            "EUR_INDEX",
+            "GBP_INDEX",
+            "AUD_INDEX",
+            "NZD_INDEX",
+            "CAD_INDEX",
+            "CHF_INDEX",
+        ],
+    },
+}

@@ -1,0 +1,24 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: economic-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.simple
+    container_name: economic-backend
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./data:/app/data:ro
+    environment:
+      - SEASONALITY_DIR=/app/data/seasonality
+    restart: unless-stopped

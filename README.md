@@ -34,9 +34,6 @@ API Docs: http://localhost:8000/docs
 Celery Flower: http://localhost:5555
 
 開発コマンド
-# ログ確認
-docker-compose logs -f backend
-docker-compose logs -f celery-worker
 
 # サービス再起動
 docker-compose restart backend
@@ -46,3 +43,16 @@ docker-compose down
 
 # ボリューム含めて削除（データも削除）
 docker-compose down -v
+
+# 起動
+docker-compose -f docker-compose.simple.yml up -d
+
+# 停止
+docker-compose -f docker-compose.simple.yml down
+
+# 再ビルドして起動
+docker-compose -f docker-compose.simple.yml up --build -d
+
+# ログ確認
+docker logs economic-frontend
+docker logs economic-backend

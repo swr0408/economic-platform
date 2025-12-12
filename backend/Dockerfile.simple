@@ -1,0 +1,22 @@
+FROM python:3.11-slim
+
+WORKDIR /app/backend
+
+# 最小限の依存関係のみインストール
+RUN pip install --no-cache-dir fastapi uvicorn
+
+# アプリケーションコード
+COPY backend/ /app/backend/
+
+# データディレクトリ用
+RUN mkdir -p /app/data
+
+# ポート公開
+EXPOSE 8000
+
+# 環境変数
+ENV PYTHONPATH=/app/backend
+ENV SEASONALITY_DIR=/app/data/seasonality
+
+# デフォルトコマンド
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

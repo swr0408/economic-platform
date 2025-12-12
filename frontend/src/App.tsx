@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainLayout from './components/layout/MainLayout'
 import HomePage from './pages/HomePage'
 import SeasonalityPage from './pages/SeasonalityPage'
+import SymbolDetailPage from './pages/SymbolDetailPage'
 import CountryDataPage from './pages/CountryDataPage'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="seasonality" element={<SeasonalityPage />} />
+          <Route path="seasonality/:symbol" element={<SymbolDetailPage />} />
           <Route path="country-data" element={<CountryDataPage />} />
         </Route>
       </Routes>
