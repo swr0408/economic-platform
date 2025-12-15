@@ -1,62 +1,52 @@
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import event
-from contextlib import asynccontextmanager
-from backend.config import settings
+"""
+データベース接続設定
+PostgreSQL + TimescaleDB
+"""
+import os
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.pool import QueuePool
+from typing import Generator
 
-# SQLAlchemy Engine
-engine = create_async_engine(
-    settings.DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://"),
-    echo=settings.DB_ECHO,
-    pool_size=settings.DB_POOL_SIZE,
-    max_overflow=settings.DB_MAX_OVERFLOW,
-    pool_pre_ping=True,  # 接続確認
-    pool_recycle=3600,   # 1時間で接続リサイクル
+# 環境変数からDB URLを取得
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://economic:economic@localhost:5432/economic_db"
 )
 
-# Session Factory
-async_session_maker = async_sessionmaker(
-    engine,
-    class_=AsyncSession,
-    expire_on_commit=False,
-    autocommit=False,
-    autoflush=False
+# SQLAlchemy Engine（同期版 - シンプル）
+engine = create_engine(
+    DATABASE_URL,
+    poolclass=QueuePool,
+    pool_size=10,
+    max_overflow=20,
+    pool_pre_ping=True,
+    pool_recycle=3600,
 )
 
-# Base Model
+# セッションファクトリ
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# ベースクラス
 Base = declarative_base()
 
-# Dependency
-async def get_db() -> AsyncSession:
-    async with async_session_maker() as session:
-        try:
-            yield session
-            await session.commit()
-        except Exception:
-            await session.rollback()
-            raise
-        finally:
-            await session.close()
 
-# データベース初期化
-async def init_db():
-    async with engine.begin() as conn:
-        # TimescaleDB拡張を有効化
-        await conn.execute("CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;")
-        
-        # テーブル作成
-        await conn.run_sync(Base.metadata.create_all)
-        
-    print("Database initialized successfully!")
-
-# 接続テスト
-async def test_connection():
+def get_db() -> Generator:
+    """データベースセッションを取得（FastAPI Dependency用）"""
+    db = SessionLocal()
     try:
-        async with async_session_maker() as session:
-            result = await session.execute("SELECT version();")
-            version = result.scalar()
-            print(f"Database connected: {version}")
-            return True
+        yield db
+    finally:
+        db.close()
+
+
+def test_connection() -> bool:
+    """データベース接続テスト"""
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        print("Database connection successful!")
+        return True
     except Exception as e:
         print(f"Database connection failed: {e}")
         return False

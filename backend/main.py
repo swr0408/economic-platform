@@ -7,11 +7,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 try:
-    from backend.config import SEASONALITY_DIR, ALLOWED_ORIGINS
+    from backend.config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from backend.routers.seasonality import router as seasonality_router
+    from backend.routers.usa.fed_h15 import router as fed_h15_router
+    from backend.routers.usa.nyfed import router as nyfed_router
+    from backend.routers.usa.fred import router as fred_router
+    from backend.routers.usa.cme_fedwatch import router as cme_fedwatch_router
+    from backend.routers.usa.fomc_projections import router as fomc_projections_router
 except ImportError:
-    from config import SEASONALITY_DIR, ALLOWED_ORIGINS
+    from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
+    from routers.usa.fed_h15 import router as fed_h15_router
+    from routers.usa.nyfed import router as nyfed_router
+    from routers.usa.fred import router as fred_router
+    from routers.usa.cme_fedwatch import router as cme_fedwatch_router
+    from routers.usa.fomc_projections import router as fomc_projections_router
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -32,8 +42,21 @@ if SEASONALITY_DIR.exists():
         name="seasonality",
     )
 
+# 静的ファイル配信（スクリーンショット画像）
+SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
+app.mount(
+    "/static/screenshots",
+    StaticFiles(directory=str(SCREENSHOT_DIR)),
+    name="screenshots",
+)
+
 # ルーター登録
 app.include_router(seasonality_router)
+app.include_router(fed_h15_router)
+app.include_router(nyfed_router)
+app.include_router(fred_router)
+app.include_router(cme_fedwatch_router)
+app.include_router(fomc_projections_router)
 
 
 @app.get("/health")

@@ -19,6 +19,106 @@ services:
       - "8001:8000"
     volumes:
       - ./data:/app/data:ro
+      - screenshots-data:/app/screenshots
     environment:
       - SEASONALITY_DIR=/app/data/seasonality
+      - SCREENSHOT_DIR=/app/screenshots
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://economic:economic@db:5432/economic_db
+      - FRED_API_KEY=${FRED_API_KEY:-}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
     restart: unless-stopped
+
+  db:
+    image: timescale/timescaledb:latest-pg15
+    container_name: economic-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=economic
+      - POSTGRES_PASSWORD=economic
+      - POSTGRES_DB=economic_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./backend/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U economic -d economic_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: economic-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+
+  celery-worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.simple
+    container_name: economic-celery-worker
+    command: celery -A tasks.celery_app worker --loglevel=info -Q economic_data
+    working_dir: /app/backend
+    volumes:
+      - ./data:/app/data:ro
+      - screenshots-data:/app/screenshots
+    environment:
+      - SCREENSHOT_DIR=/app/screenshots
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://economic:economic@db:5432/economic_db
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      backend:
+        condition: service_started
+    restart: unless-stopped
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.simple
+    container_name: economic-celery-beat
+    command: celery -A tasks.celery_app beat --loglevel=info
+    working_dir: /app/backend
+    volumes:
+      - ./data:/app/data:ro
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://economic:economic@db:5432/economic_db
+    depends_on:
+      - redis
+      - celery-worker
+    restart: unless-stopped
+
+  celery-flower:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.simple
+    container_name: economic-celery-flower
+    command: celery -A tasks.celery_app flower --port=5555
+    working_dir: /app/backend
+    ports:
+      - "5555:5555"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  redis-data:
+  screenshots-data:
+  

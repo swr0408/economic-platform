@@ -20,6 +20,10 @@ ALLOWED_ORIGINS: List[str] = [
 _root = os.getenv("SEASONALITY_DIR")
 SEASONALITY_DIR: Path = Path(_root) if _root else Path(__file__).parent.parent / "data" / "seasonality"
 
+# Screenshots データディレクトリ
+_screenshot_root = os.getenv("SCREENSHOT_DIR")
+SCREENSHOT_DIR: Path = Path(_screenshot_root) if _screenshot_root else Path(__file__).parent.parent / "screenshots"
+
 # Seasonality 画像として扱う拡張子
 IMG_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 

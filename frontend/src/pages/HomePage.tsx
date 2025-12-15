@@ -88,7 +88,7 @@ function HomePage() {
             <Paragraph style={{ color: '#666', marginBottom: '24px' }}>
               主要各国の経済データを分析
             </Paragraph>
-            <Button type="primary" onClick={() => navigate('/country-data')}>
+            <Button type="primary" onClick={() => navigate('/country')}>
               分析を開始
             </Button>
           </Card>

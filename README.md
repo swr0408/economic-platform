@@ -53,6 +53,16 @@ docker-compose -f docker-compose.simple.yml down
 # 再ビルドして起動
 docker-compose -f docker-compose.simple.yml up --build -d
 
+# 強制再ビルドして起動
+docker-compose -f docker-compose.simple.yml up -d --build --force-recreate
+
 # ログ確認
 docker logs economic-frontend
 docker logs economic-backend
+
+#root@DESKTOP-HCCRK6V:/mnt/c/Users/owner/Desktop/economic-platform/backendで全ての依存関係を再インストール
+pip install -r requirements.txt
+#確認
+python -c "import fitz; print(f'PyMuPDF: {fitz.version}')"
+python -c "from PIL import Image; print('Pillow: OK')"
+python -c "from apscheduler.schedulers.asyncio import AsyncIOScheduler; print('APScheduler: OK')"

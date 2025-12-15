@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { ConfigProvider } from 'antd'
 import jaJP from 'antd/locale/ja_JP'
 import App from './App'
+import 'flag-icons/css/flag-icons.min.css'
 import './styles/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
