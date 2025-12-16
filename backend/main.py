@@ -14,6 +14,9 @@ try:
     from backend.routers.usa.fred import router as fred_router
     from backend.routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from backend.routers.usa.fomc_projections import router as fomc_projections_router
+    from backend.routers.dashboard import router as dashboard_router
+    from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
+    from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -22,6 +25,9 @@ except ImportError:
     from routers.usa.fred import router as fred_router
     from routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from routers.usa.fomc_projections import router as fomc_projections_router
+    from routers.dashboard import router as dashboard_router
+    from services.usa.fomc_projections_scheduler import fomc_scheduler
+    from services.usa.policy_rate_scheduler import policy_rate_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -57,6 +63,7 @@ app.include_router(nyfed_router)
 app.include_router(fred_router)
 app.include_router(cme_fedwatch_router)
 app.include_router(fomc_projections_router)
+app.include_router(dashboard_router)
 
 
 @app.get("/health")
@@ -76,9 +83,39 @@ async def startup_event():
     """起動時の処理"""
     print(f"SEASONALITY_DIR: {SEASONALITY_DIR}")
     print(f"SEASONALITY_DIR exists: {SEASONALITY_DIR.exists()}")
+
+    # FOMC関連スケジューラーを開始
+    try:
+        fomc_scheduler.start()
+        print("FOMC Projections Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start FOMC Projections Scheduler: {e}")
+
+    try:
+        policy_rate_scheduler.start()
+        print("Policy Rate Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Policy Rate Scheduler: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """シャットダウン時の処理"""
+    try:
+        fomc_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down FOMC Scheduler: {e}")
+
+    try:
+        policy_rate_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Policy Rate Scheduler: {e}")
+
+    print("Economic Platform API shutdown complete")
 
 
 if __name__ == '__main__':

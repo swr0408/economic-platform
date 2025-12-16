@@ -9,14 +9,14 @@ from typing import List, Dict, Any
 import pandas as pd
 import requests
 
-from core.redis_client import redis_client, CACHE_TTL_LONG
+from core.redis_client import redis_client, CACHE_TTL_DAY
 
 
 class NYFedTermPremiumService:
     """NY Fed ACM タームプレミアム データサービス（日次データ、複数シリーズ対応）"""
 
     CACHE_KEY = "usa:term_premium:daily"
-    CACHE_TTL = CACHE_TTL_LONG
+    CACHE_TTL = CACHE_TTL_DAY  # 24時間（毎日更新データ）
 
     def __init__(self):
         # NY Fed ACM Term Premium Excel URL

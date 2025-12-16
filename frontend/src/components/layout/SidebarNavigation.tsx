@@ -50,6 +50,7 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'fed-watch', name: 'Fed Watch' },
           { code: 'term-premium', name: 'タームプレミアム' },
           { code: 'dot-plot', name: 'Dot Plot' },
+          { code: 'fomc-projections', name: 'FOMC経済見通し' },
         ],
       },
       {

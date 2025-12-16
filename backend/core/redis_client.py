@@ -11,9 +11,10 @@ from typing import Optional, Any
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
 # キャッシュTTL設定（秒）
+# 注: 経済指標データはlast_updated判定方式を使用するため、TTLは主にダッシュボードキャッシュ用
 CACHE_TTL_SHORT = 60        # 1分（リアルタイムデータ用）
-CACHE_TTL_MEDIUM = 300      # 5分（ニュース等）
-CACHE_TTL_LONG = 3600       # 1時間（経済指標データ）
+CACHE_TTL_MEDIUM = 300      # 5分（ダッシュボード集約キャッシュ用）
+CACHE_TTL_LONG = 3600       # 1時間（汎用）
 CACHE_TTL_DAY = 86400       # 1日
 
 
@@ -55,13 +56,27 @@ class RedisClient:
             return None
 
     def set(self, key: str, value: Any, expire: int = CACHE_TTL_LONG) -> bool:
-        """キャッシュ保存"""
+        """
+        キャッシュ保存
+
+        Args:
+            key: キャッシュキー
+            value: 保存する値
+            expire: TTL（秒）、0の場合はTTLなし（永続化）
+        """
         try:
-            self.client.set(
-                key,
-                json.dumps(value, default=str),
-                ex=expire
-            )
+            if expire > 0:
+                self.client.set(
+                    key,
+                    json.dumps(value, default=str),
+                    ex=expire
+                )
+            else:
+                # TTLなし（last_updated判定方式用）
+                self.client.set(
+                    key,
+                    json.dumps(value, default=str)
+                )
             return True
         except Exception as e:
             print(f"Redis set error: {e}")

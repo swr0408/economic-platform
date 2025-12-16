@@ -1,20 +1,14 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { Spin, Button, Modal } from 'antd'
 import { ReloadOutlined, ExpandOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 
-interface FedWatchScreenshotResponse {
-  image_url: string | null
-  last_updated: string | null
-  cached: boolean
-  source: string
-  response_time_ms: number
-  error?: string
+// Props型定義
+interface CMEFedWatchChartProps {
+  screenshotUrl: string | null
 }
 
-export default function CMEFedWatchChart() {
-  const [data, setData] = useState<FedWatchScreenshotResponse | null>(null)
-  const [loading, setLoading] = useState(true)
+export default function CMEFedWatchChart({ screenshotUrl }: CMEFedWatchChartProps) {
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageTimestamp, setImageTimestamp] = useState(Date.now())
@@ -24,46 +18,19 @@ export default function CMEFedWatchChart() {
   const [zoomLevel, setZoomLevel] = useState(1)
   const imageRef = useRef<HTMLImageElement>(null)
 
-  const loadScreenshot = async (forceRefresh = false) => {
-    try {
-      const url = forceRefresh
-        ? '/api/fedwatch/screenshot?refresh=true'
-        : '/api/fedwatch/screenshot'
-      const response = await fetch(url)
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      const result: FedWatchScreenshotResponse = await response.json()
-      setData(result)
-
-      if (forceRefresh) {
-        setImageTimestamp(Date.now())
-      }
-
-      if (result.error) {
-        setError(result.error)
-      } else {
-        setError(null)
-      }
-    } catch (err) {
-      console.error('Error loading FedWatch screenshot:', err)
-      setError(err instanceof Error ? err.message : 'Failed to load screenshot')
-    }
-  }
-
-  useEffect(() => {
-    const load = async () => {
-      setLoading(true)
-      await loadScreenshot()
-      setLoading(false)
-    }
-    load()
-  }, [])
-
   const handleRefresh = async () => {
     setRefreshing(true)
-    await loadScreenshot(true)
-    setRefreshing(false)
+    try {
+      // スクリーンショットを強制更新
+      await fetch('/api/fedwatch/screenshot?refresh=true')
+      setImageTimestamp(Date.now())
+      setError(null)
+    } catch (err) {
+      console.error('Error refreshing FedWatch screenshot:', err)
+      setError(err instanceof Error ? err.message : 'Failed to refresh')
+    } finally {
+      setRefreshing(false)
+    }
   }
 
   // モーダルを開く
@@ -93,11 +60,12 @@ export default function CMEFedWatchChart() {
     setZoomLevel(1)
   }
 
-  if (loading) {
+  // データがnullの場合はローディング表示
+  if (screenshotUrl === null) {
     return (
       <div id="fedwatch-chart">
         <ChartContainer
-          title="CME FEDWATCH TOOL"
+          title="Fed Watch"
           showPeriodSelector={false}
           source="CME Group"
         >
@@ -110,7 +78,8 @@ export default function CMEFedWatchChart() {
     )
   }
 
-  const imageUrl = `/api/fedwatch/image?t=${imageTimestamp}`
+  // 画像URLにタイムスタンプを付与（キャッシュ回避用）
+  const imageUrl = `${screenshotUrl}?t=${imageTimestamp}`
 
   return (
     <div id="fedwatch-chart">
@@ -139,7 +108,7 @@ export default function CMEFedWatchChart() {
           </div>
         }
       >
-        {error && !data?.image_url ? (
+        {error ? (
           <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>
             Error: {error}
           </div>
@@ -171,23 +140,6 @@ export default function CMEFedWatchChart() {
                   setError('Screenshot image not available')
                 }}
               />
-            </div>
-
-            {/* メタ情報 */}
-            <div style={{
-              marginTop: 12,
-              fontSize: 11,
-              color: '#999',
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: 8
-            }}>
-              {data?.last_updated && (
-                <span>
-                  Last updated: {new Date(data.last_updated).toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}
-                </span>
-              )}
             </div>
           </div>
         )}
@@ -262,19 +214,9 @@ export default function CMEFedWatchChart() {
           marginTop: 12,
           fontSize: 12,
           color: '#666',
-          display: 'flex',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 8
+          textAlign: 'right',
         }}>
-          {data?.last_updated && (
-            <span>
-              Last updated: {new Date(data.last_updated).toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })}
-            </span>
-          )}
-          <span>
-            Source: CME Group FedWatch Tool
-          </span>
+          Source: CME Group FedWatch Tool
         </div>
       </Modal>
     </div>

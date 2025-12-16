@@ -76,26 +76,28 @@ class FOMCScheduleService:
 
         # FRB公式スケジュール（手動で設定、スクレイピング失敗時のバックアップにも使用）
         # https://www.federalreserve.gov/newsevents/pressreleases/monetary20240809a.htm より
+        # 発表時刻: 夏時間(3-11月) = 日本時間3:00, 冬時間(11-3月) = 日本時間4:00
+        # is_dst: True = 夏時間期間中（日本時間3:00発表）, False = 冬時間期間中（日本時間4:00発表）
         official_schedule = {
             2025: [
-                {"month": 1, "days": "28-29", "has_sep": False},
-                {"month": 3, "days": "18-19", "has_sep": True},    # SEP発表
-                {"month": 5, "days": "6-7", "has_sep": False},
-                {"month": 6, "days": "17-18", "has_sep": True},    # SEP発表
-                {"month": 7, "days": "29-30", "has_sep": False},
-                {"month": 9, "days": "16-17", "has_sep": True},    # SEP発表
-                {"month": 10, "days": "28-29", "has_sep": False},
-                {"month": 12, "days": "9-10", "has_sep": True},    # SEP発表
+                {"month": 1, "days": "28-29", "has_sep": False, "is_dst": False},   # 冬時間 4:00
+                {"month": 3, "days": "18-19", "has_sep": True, "is_dst": True},     # 夏時間 3:00 SEP発表
+                {"month": 5, "days": "6-7", "has_sep": False, "is_dst": True},      # 夏時間 3:00
+                {"month": 6, "days": "17-18", "has_sep": True, "is_dst": True},     # 夏時間 3:00 SEP発表
+                {"month": 7, "days": "29-30", "has_sep": False, "is_dst": True},    # 夏時間 3:00
+                {"month": 9, "days": "16-17", "has_sep": True, "is_dst": True},     # 夏時間 3:00 SEP発表
+                {"month": 10, "days": "28-29", "has_sep": False, "is_dst": True},   # 夏時間 3:00
+                {"month": 12, "days": "9-10", "has_sep": True, "is_dst": False},    # 冬時間 4:00 SEP発表
             ],
             2026: [
-                {"month": 1, "days": "27-28", "has_sep": False},
-                {"month": 3, "days": "17-18", "has_sep": True},    # SEP発表
-                {"month": 4, "days": "28-29", "has_sep": False},
-                {"month": 6, "days": "16-17", "has_sep": True},    # SEP発表
-                {"month": 7, "days": "28-29", "has_sep": False},
-                {"month": 9, "days": "15-16", "has_sep": True},    # SEP発表
-                {"month": 10, "days": "27-28", "has_sep": False},
-                {"month": 12, "days": "8-9", "has_sep": True},     # SEP発表
+                {"month": 1, "days": "27-28", "has_sep": False, "is_dst": False},   # 冬時間 4:00
+                {"month": 3, "days": "17-18", "has_sep": True, "is_dst": False},    # 冬時間 4:00 SEP発表（3月は夏時間開始前）
+                {"month": 4, "days": "28-29", "has_sep": False, "is_dst": True},    # 夏時間 3:00
+                {"month": 6, "days": "16-17", "has_sep": True, "is_dst": True},     # 夏時間 3:00 SEP発表
+                {"month": 7, "days": "28-29", "has_sep": False, "is_dst": True},    # 夏時間 3:00
+                {"month": 9, "days": "15-16", "has_sep": True, "is_dst": True},     # 夏時間 3:00 SEP発表
+                {"month": 10, "days": "27-28", "has_sep": False, "is_dst": True},   # 夏時間 3:00
+                {"month": 12, "days": "8-9", "has_sep": True, "is_dst": False},     # 冬時間 4:00 SEP発表
             ]
         }
 
@@ -107,12 +109,19 @@ class FOMCScheduleService:
 
                 meeting_date = date(year, meeting["month"], second_day)
 
+                # 発表時刻（日本時間）: 夏時間=3:00, 冬時間=4:00
+                is_dst = meeting.get("is_dst", False)
+                announcement_hour_jst = 3 if is_dst else 4
+
                 meetings.append({
                     "date": meeting_date.strftime("%Y%m%d"),
                     "label": f"{year}年{meeting['month']}月{second_day}日",
                     "has_sep": meeting["has_sep"],
                     "month": meeting["month"],
-                    "day": second_day
+                    "day": second_day,
+                    "is_dst": is_dst,
+                    "announcement_hour_jst": announcement_hour_jst,
+                    "announcement_hour_utc": (announcement_hour_jst - 9) % 24  # JST -> UTC (前日の18時 or 19時)
                 })
 
         return meetings
@@ -199,6 +208,45 @@ class FOMCScheduleService:
                 break
 
         return sep_dates
+
+    def get_upcoming_fomc_dates(self, count: int = 8) -> List[Dict[str, str]]:
+        """
+        今後の全FOMC会合日を取得（SEPに限らず全ての会合）
+
+        Args:
+            count: 取得する日付の数
+
+        Returns:
+            FOMC会合日リスト（近い順）
+        """
+        schedule = self.get_schedule()
+        today = date.today()
+
+        fomc_dates = []
+
+        # 全年のスケジュールを結合
+        all_meetings = []
+        for year_str, meetings in schedule.items():
+            all_meetings.extend(meetings)
+
+        # 日付でソート（古い順＝近い順）
+        all_meetings.sort(key=lambda x: x["date"])
+
+        for meeting in all_meetings:
+            meeting_date = datetime.strptime(meeting["date"], "%Y%m%d").date()
+
+            # 今日以降の日付のみ
+            if meeting_date >= today:
+                fomc_dates.append({
+                    "date": meeting["date"],
+                    "label": meeting["label"],
+                    "has_sep": meeting.get("has_sep", False)
+                })
+
+            if len(fomc_dates) >= count:
+                break
+
+        return fomc_dates
 
     def get_schedule(self) -> Dict[str, List[Dict[str, str]]]:
         """

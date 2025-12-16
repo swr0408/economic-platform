@@ -1,14 +1,23 @@
 """
 経済データサービス基底クラス
 全ての国・カテゴリの経済データサービスはこのクラスを継承
+
+キャッシュ更新判定:
+- TTLではなくスケジュール時刻ベースで判定
+- last_updatedがスケジュール時刻より古ければ再取得
 """
 from abc import ABC, abstractmethod
-from datetime import datetime
-from typing import List, Dict, Any, Optional
+from datetime import datetime, time
+from typing import List, Dict, Any, Optional, Tuple
+from zoneinfo import ZoneInfo
 
 from core.database import SessionLocal
-from core.redis_client import redis_client, CACHE_TTL_LONG
+from core.redis_client import redis_client
 from sqlalchemy import text
+
+
+# タイムゾーン
+JST = ZoneInfo("Asia/Tokyo")
 
 
 class BaseEconomicService(ABC):
@@ -21,18 +30,72 @@ class BaseEconomicService(ABC):
 
     継承時に実装が必要なメソッド:
     - _fetch_from_external_api(): 外部APIからデータを取得
-    - _parse_api_response(): APIレスポンスをパース
+
+    オプション（スケジュール時刻ベースの更新判定用）:
+    - get_schedule_time(): スケジュール時刻を返す（デフォルトはNone=常にキャッシュ使用）
     """
 
     # サブクラスで設定
     INDICATOR_CODE: str = ""
     CACHE_KEY_PREFIX: str = ""
-    CACHE_TTL: int = CACHE_TTL_LONG  # デフォルト1時間
 
     @property
     def cache_key(self) -> str:
         """Redisキャッシュキー"""
         return f"{self.CACHE_KEY_PREFIX}:data"
+
+    def get_schedule_time(self) -> Optional[time]:
+        """
+        スケジュール時刻を返す（日本時間）
+        サブクラスでオーバーライドして設定
+
+        Returns:
+            time: 毎日の更新時刻（例: time(6, 0) = 6:00 JST）
+            None: スケジュール判定なし（キャッシュがあれば常に使用）
+        """
+        return None
+
+    def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
+        """
+        キャッシュが古いかどうかを判定
+
+        Args:
+            last_updated: キャッシュの最終更新日時（ISO形式）
+
+        Returns:
+            True: 再取得が必要
+            False: キャッシュを使用可能
+        """
+        if last_updated is None:
+            return True
+
+        schedule_time = self.get_schedule_time()
+        if schedule_time is None:
+            # スケジュール設定なし → キャッシュを使用
+            return False
+
+        try:
+            # last_updatedをパース
+            last_updated_dt = datetime.fromisoformat(last_updated)
+            if last_updated_dt.tzinfo is None:
+                last_updated_dt = last_updated_dt.replace(tzinfo=JST)
+
+            now = datetime.now(JST)
+            today_schedule = datetime.combine(now.date(), schedule_time, tzinfo=JST)
+
+            # 今日のスケジュール時刻を経過しているか
+            if now >= today_schedule:
+                # 今日のスケジュール時刻以降 → last_updatedが今日のスケジュール時刻より前なら再取得
+                return last_updated_dt < today_schedule
+            else:
+                # 今日のスケジュール時刻より前 → 昨日のスケジュール時刻と比較
+                from datetime import timedelta
+                yesterday_schedule = today_schedule - timedelta(days=1)
+                return last_updated_dt < yesterday_schedule
+
+        except Exception as e:
+            print(f"Error parsing last_updated: {e}")
+            return True
 
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
@@ -49,53 +112,59 @@ class BaseEconomicService(ABC):
                 "last_updated": str
             }
         """
-        # 1. Redisキャッシュをチェック（< 20ms目標）
+        # 1. Redisキャッシュをチェック
         if not force_refresh:
             cached_data = redis_client.get(self.cache_key)
             if cached_data:
-                return {
-                    "data": cached_data.get("data", []),
-                    "cached": True,
-                    "source": "redis",
-                    "last_updated": cached_data.get("last_updated")
-                }
+                last_updated = cached_data.get("last_updated")
+
+                # スケジュール時刻ベースで古いかチェック
+                if not self._is_cache_stale(last_updated):
+                    return {
+                        "data": cached_data.get("data", []),
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated
+                    }
+                else:
+                    print(f"Cache is stale for {self.INDICATOR_CODE}, refreshing...")
 
         # 2. DBからデータを取得
         db_data = self._load_from_database()
         if db_data and not force_refresh:
-            # Redisにキャッシュ
+            # Redisにキャッシュ（TTLなし = 永続化、スケジュール判定で管理）
             cache_payload = {
                 "data": db_data,
-                "last_updated": datetime.now().isoformat()
+                "last_updated": datetime.now(JST).isoformat()
             }
-            redis_client.set(self.cache_key, cache_payload, expire=self.CACHE_TTL)
+            redis_client.set(self.cache_key, cache_payload, expire=0)
 
             return {
                 "data": db_data,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now().isoformat()
+                "last_updated": datetime.now(JST).isoformat()
             }
 
-        # 3. 外部APIからデータを取得（キャッシュMISS or 強制更新）
+        # 3. 外部APIからデータを取得（キャッシュMISS or 強制更新 or キャッシュ古い）
         api_data = self._fetch_from_external_api()
 
         if api_data:
             # DBに保存
             self._save_to_database(api_data)
 
-            # Redisにキャッシュ
+            # Redisにキャッシュ（TTLなし）
             cache_payload = {
                 "data": api_data,
-                "last_updated": datetime.now().isoformat()
+                "last_updated": datetime.now(JST).isoformat()
             }
-            redis_client.set(self.cache_key, cache_payload, expire=self.CACHE_TTL)
+            redis_client.set(self.cache_key, cache_payload, expire=0)
 
             return {
                 "data": api_data,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now().isoformat()
+                "last_updated": datetime.now(JST).isoformat()
             }
 
         # 4. API取得失敗 → 古いDBデータを返す
@@ -132,15 +201,18 @@ class BaseEconomicService(ABC):
 
     def get_cache_status(self) -> Dict[str, Any]:
         """キャッシュの状態を取得"""
-        cache_exists = redis_client.exists(self.cache_key)
-        ttl = redis_client.ttl(self.cache_key) if cache_exists else -1
+        cached_data = redis_client.get(self.cache_key)
+        cache_exists = cached_data is not None
+        last_updated = cached_data.get("last_updated") if cached_data else None
+        is_stale = self._is_cache_stale(last_updated) if cache_exists else True
 
         return {
             "indicator_code": self.INDICATOR_CODE,
             "cache_key": self.cache_key,
             "exists": cache_exists,
-            "ttl_seconds": ttl,
-            "ttl_hours": round(ttl / 3600, 2) if ttl > 0 else 0
+            "last_updated": last_updated,
+            "is_stale": is_stale,
+            "schedule_time": str(self.get_schedule_time()) if self.get_schedule_time() else None
         }
 
     def _load_from_database(self) -> List[Dict[str, Any]]:

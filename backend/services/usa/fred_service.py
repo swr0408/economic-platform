@@ -1,6 +1,10 @@
 """
 FRED (Federal Reserve Economic Data) API サービス
-KWタームプレミアム（THREEFYTP10）取得用
+KWタームプレミアム（THREEFYTP10）、政策金利（DFEDTARU）取得用
+
+キャッシュ方式:
+- KWタームプレミアム: TTL（24時間）- 毎日更新
+- 政策金利: last_updated判定（TTLなし）- FOMC発表時のみ更新
 """
 import os
 from datetime import datetime
@@ -8,14 +12,21 @@ from typing import List, Dict, Any, Optional
 
 import requests
 
-from core.redis_client import redis_client, CACHE_TTL_LONG
+from core.redis_client import redis_client, CACHE_TTL_DAY
+
+# シリーズごとのキャッシュTTL設定
+# TTL=0 は last_updated判定方式（TTLなし、永続キャッシュ）
+SERIES_CACHE_TTL = {
+    "DFEDTARU": 0,              # 政策金利: TTLなし（last_updated判定、FOMC発表時のみ更新）
+    "THREEFYTP10": CACHE_TTL_DAY,  # KWタームプレミアム: 24時間
+}
+DEFAULT_CACHE_TTL = CACHE_TTL_DAY
 
 
 class FREDService:
     """FRED API サービス"""
 
     BASE_URL = "https://api.stlouisfed.org/fred"
-    CACHE_TTL = CACHE_TTL_LONG
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
@@ -68,7 +79,9 @@ class FREDService:
                 "data": api_data,
                 "last_updated": datetime.now().isoformat()
             }
-            redis_client.set(cache_key, cache_payload, expire=self.CACHE_TTL)
+            # シリーズごとのTTL設定を取得
+            cache_ttl = SERIES_CACHE_TTL.get(series_id, DEFAULT_CACHE_TTL)
+            redis_client.set(cache_key, cache_payload, expire=cache_ttl)
 
             return {
                 "data": api_data,

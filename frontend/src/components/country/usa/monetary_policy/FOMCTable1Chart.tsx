@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
-import { Spin, Select, Button, Modal } from 'antd'
+import { Spin, Button, Modal, Select } from 'antd'
 import { ExpandOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
-import { fetchFOMCProjectionsFigure2 } from '../../../../utils/usa/monetary_policyApi'
 
 const { Option } = Select
 
@@ -12,7 +11,7 @@ interface SEPDateItem {
   label: string
 }
 
-interface FOMCProjectionsChartProps {
+interface FOMCTable1ChartProps {
   sepDates: SEPDateItem[] | null
 }
 
@@ -24,11 +23,11 @@ const DATE_LABELS: Record<string, string> = {
   '3': '3回前',
 }
 
-export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartProps) {
+export default function FOMCTable1Chart({ sepDates }: FOMCTable1ChartProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [selectedIndex, setSelectedIndex] = useState<string>('0') // 0=最新, 1=前回, 2=前々回, 3=3回前
+  const [selectedIndex, setSelectedIndex] = useState<string>('0')
 
   // 拡大表示用のstate
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -49,7 +48,6 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
       }
 
       try {
-        // 選択されたインデックスに対応する日付を取得
         const index = parseInt(selectedIndex, 10)
         const selectedDateInfo = sepDates[index]
 
@@ -57,19 +55,24 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
           throw new Error('Invalid selection')
         }
 
-        const url = await fetchFOMCProjectionsFigure2(selectedDateInfo.date)
+        // Table1用のAPI呼び出し
+        const response = await fetch(`/api/fomc-projections/table1/${selectedDateInfo.date}`)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        const blob = await response.blob()
+        const url = URL.createObjectURL(blob)
         setImageUrl(url)
       } catch (err) {
-        console.error('Error loading FOMC Projections:', err)
+        console.error('Error loading FOMC Table1:', err)
 
-        // エラーメッセージを解析
         const errorObj = err as Error
         if (errorObj.message && errorObj.message.includes('404')) {
-          setError('選択された日付のドットプロットはまだ公開されていません。')
+          setError('選択された日付のFOMC経済見通しはまだ公開されていません。')
         } else if (errorObj.message) {
           setError(errorObj.message)
         } else {
-          setError('ドットプロットの読み込みに失敗しました')
+          setError('FOMC経済見通しの読み込みに失敗しました')
         }
       } finally {
         setLoading(false)
@@ -117,15 +120,15 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
   // sepDatesがnullの場合はローディング表示
   if (sepDates === null) {
     return (
-      <div id="fomc-projections-chart">
+      <div id="fomc-table1-chart">
         <ChartContainer
-          title="Dot Plot"
+          title="FOMC経済見通し"
           showPeriodSelector={false}
           source="Federal Reserve"
         >
           <div style={{ textAlign: 'center', padding: '60px 0' }}>
             <Spin size="large" />
-            <div style={{ marginTop: 16, color: '#666' }}>ドットプロットを読み込み中...</div>
+            <div style={{ marginTop: 16, color: '#666' }}>FOMC経済見通しを読み込み中...</div>
           </div>
         </ChartContainer>
       </div>
@@ -135,9 +138,9 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
   // sepDatesが空の場合
   if (sepDates.length === 0) {
     return (
-      <div id="fomc-projections-chart">
+      <div id="fomc-table1-chart">
         <ChartContainer
-          title="Dot Plot"
+          title="FOMC経済見通し"
           showPeriodSelector={false}
           source="Federal Reserve"
         >
@@ -150,9 +153,9 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
   }
 
   return (
-    <div id="fomc-projections-chart">
+    <div id="fomc-table1-chart">
       <ChartContainer
-        title="Dot Plot"
+        title="FOMC経済見通し"
         showPeriodSelector={false}
         source="Federal Reserve"
         extra={
@@ -185,7 +188,7 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
         {loading ? (
           <div style={{ textAlign: 'center', padding: '60px 0' }}>
             <Spin size="large" />
-            <div style={{ marginTop: 16, color: '#666' }}>ドットプロットを読み込み中...</div>
+            <div style={{ marginTop: 16, color: '#666' }}>FOMC経済見通しを読み込み中...</div>
           </div>
         ) : error ? (
           <div style={{
@@ -212,7 +215,7 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
               <img
                 ref={imageRef}
                 src={imageUrl}
-                alt="FOMC Economic Projections - Figure 2"
+                alt="FOMC Economic Projections - Table 1"
                 style={{
                   maxWidth: '100%',
                   height: 'auto',
@@ -223,14 +226,14 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
                   target.style.display = 'none'
-                  setError('ドットプロット画像を読み込めませんでした')
+                  setError('FOMC経済見通し画像を読み込めませんでした')
                 }}
               />
             </div>
           </div>
         ) : (
           <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-            ドットプロットが見つかりません
+            FOMC経済見通しが見つかりません
           </div>
         )}
       </ChartContainer>
@@ -239,7 +242,7 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
       <Modal
         title={
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 32 }}>
-            <span>Dot Plot</span>
+            <span>FOMC経済見通し</span>
             <div style={{ display: 'flex', gap: 8 }}>
               <Button
                 icon={<ZoomOutOutlined />}
@@ -288,7 +291,7 @@ export default function FOMCProjectionsChart({ sepDates }: FOMCProjectionsChartP
           {imageUrl && (
             <img
               src={imageUrl}
-              alt="FOMC Economic Projections - Figure 2"
+              alt="FOMC Economic Projections - Table 1"
               style={{
                 transform: `scale(${zoomLevel})`,
                 transformOrigin: 'top left',

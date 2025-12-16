@@ -1,10 +1,19 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { Tooltip } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import { fetchPolicyRate } from '../../../../utils/api'
+
+// Props型定義
+interface PolicyRateItem {
+  date: string
+  rate: number
+}
+
+interface PolicyRateChartProps {
+  data: PolicyRateItem[] | null
+}
 
 interface PolicyRateChartData {
   date: string
@@ -13,40 +22,24 @@ interface PolicyRateChartData {
   [key: string]: string | number | null | undefined
 }
 
-export default function PolicyRateChart() {
-  const [policyRateData, setPolicyRateData] = useState<PolicyRateChartData[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export default function PolicyRateChart({ data }: PolicyRateChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
-  useEffect(() => {
-    const loadPolicyRateData = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        const data = await fetchPolicyRate()
+  // propsのデータをチャート用に変換
+  const policyRateData = useMemo<PolicyRateChartData[]>(() => {
+    if (!data || data.length === 0) return []
 
-        // データを変換
-        const chartData: PolicyRateChartData[] = data.map((item) => ({
-          date: item.date,
-          value: item.rate,
-          rate: item.rate,
-        }))
+    const chartData: PolicyRateChartData[] = data.map((item) => ({
+      date: item.date,
+      value: item.rate,
+      rate: item.rate,
+    }))
 
-        // 日付でソート（古い順）
-        chartData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    // 日付でソート（古い順）
+    chartData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
-        setPolicyRateData(chartData)
-      } catch (err) {
-        console.error('Error loading policy rate data:', err)
-        setError(err instanceof Error ? err.message : 'Failed to load data')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadPolicyRateData()
-  }, [])
+    return chartData
+  }, [data])
 
   const formatPercentage = (value: number) => {
     return `${value.toFixed(2)}%`
@@ -80,21 +73,16 @@ export default function PolicyRateChart() {
     })
   }, [policyRateData, selectedPeriod])
 
-  const hasData = useMemo(() => policyRateData.length > 0, [policyRateData])
+  const hasData = policyRateData.length > 0
 
-  if (loading) {
-    return <LoadingChart title="Federal Funds Target Rate" />
-  }
-
-  if (error) {
-    return (
-      <div style={{ textAlign: 'center', padding: '50px', color: '#ff4d4f' }}>Error: {error}</div>
-    )
+  // データがnullの場合はローディング表示
+  if (data === null) {
+    return <LoadingChart title="政策金利" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="Federal Funds Target Rate" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="政策金利" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>

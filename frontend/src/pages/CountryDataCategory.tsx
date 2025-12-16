@@ -79,8 +79,10 @@ const INDICATORS_BY_COUNTRY_CATEGORY: Record<string, Record<string, Indicator[]>
   usa: {
     policy: [
       { code: 'policy-rate', name: '政策金利' },
-      { code: 'fomc', name: 'FOMC' },
-      { code: 'money-supply', name: 'マネーサプライ' },
+      { code: 'fed-watch', name: 'Fed Watch' },
+      { code: 'term-premium', name: 'タームプレミアム' },
+      { code: 'dot-plot', name: 'Dot Plot' },
+      { code: 'fomc-projections', name: 'FOMC経済見通し' },
     ],
     economy: [
       { code: 'gdp', name: 'GDP' },
@@ -253,18 +255,7 @@ function CountryDataCategory() {
       </div>
 
       {isUSAPolicy ? (
-        <div className="country-chart-stack">
-          {/* 政策金利セクション */}
-          <div id="policy-rate" style={{ scrollMarginTop: 24 }}>
-            <USAPolicyCharts />
-          </div>
-          {/* 他の指標はプレースホルダー */}
-          {indicators
-            .filter((ind) => ind.code !== 'policy-rate')
-            .map((indicator) => (
-              <IndicatorPlaceholder key={indicator.code} indicator={indicator} />
-            ))}
-        </div>
+        <USAPolicyCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

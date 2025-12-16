@@ -1,11 +1,27 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { Tooltip } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import { fetchTermPremium, type TermPremiumData } from '../../../../utils/usa/monetary_policyApi'
-import { fetchKWTermPremium, type FREDSeriesData } from '../../../../utils/usa/fredApi'
+
+// Props型定義
+interface TermPremiumItem {
+  date: string
+  yield_10y: number | null
+  term_premium: number | null
+  expected_rate: number | null
+}
+
+interface KWTermPremiumItem {
+  date: string
+  value: number
+}
+
+interface TermPremiumChartProps {
+  data: TermPremiumItem[] | null
+  kwData: KWTermPremiumItem[] | null
+}
 
 interface TermPremiumChartData {
   date: string
@@ -17,56 +33,39 @@ interface TermPremiumChartData {
   [key: string]: string | number | null | undefined
 }
 
-export default function TermPremiumChart() {
-  const [chartData, setChartData] = useState<TermPremiumChartData[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true)
-      setError(null)
-      try {
-        // 並行してデータを取得
-        const [acmData, kwData] = await Promise.all([
-          fetchTermPremium(),
-          fetchKWTermPremium().catch(() => [] as FREDSeriesData[])  // KWデータがなくても続行
-        ])
+  // propsのデータをチャート用に変換・マージ
+  const chartData = useMemo<TermPremiumChartData[]>(() => {
+    if (!data || data.length === 0) return []
 
-        // KWデータをMapに変換（日付でルックアップ用）
-        const kwDataMap = new Map<string, number>()
-        kwData.forEach((item) => {
-          kwDataMap.set(item.date, item.value)
-        })
-
-        // ACMデータをベースにマージ
-        const mergedData: TermPremiumChartData[] = acmData.map((item: TermPremiumData) => {
-          const kwValue = kwDataMap.get(item.date) ?? null
-          return {
-            date: item.date,
-            value: item.yield_10y ?? 0,
-            yield_10y: item.yield_10y,
-            acm_term_premium: item.term_premium,
-            kw_term_premium: kwValue,
-            expected_rate: item.expected_rate,
-          }
-        })
-
-        // 日付でソート（古い順）
-        mergedData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-
-        setChartData(mergedData)
-      } catch (err) {
-        console.error('Error loading term premium data:', err)
-        setError(err instanceof Error ? err.message : 'Failed to load data')
-      } finally {
-        setLoading(false)
-      }
+    // KWデータをMapに変換（日付でルックアップ用）
+    const kwDataMap = new Map<string, number>()
+    if (kwData) {
+      kwData.forEach((item) => {
+        kwDataMap.set(item.date, item.value)
+      })
     }
 
-    loadData()
-  }, [])
+    // ACMデータをベースにマージ
+    const mergedData: TermPremiumChartData[] = data.map((item) => {
+      const kwValue = kwDataMap.get(item.date) ?? null
+      return {
+        date: item.date,
+        value: item.yield_10y ?? 0,
+        yield_10y: item.yield_10y,
+        acm_term_premium: item.term_premium,
+        kw_term_premium: kwValue,
+        expected_rate: item.expected_rate,
+      }
+    })
+
+    // 日付でソート（古い順）
+    mergedData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+    return mergedData
+  }, [data, kwData])
 
   const formatPercentage = (value: number) => {
     if (value === null || value === undefined) return '-'
@@ -101,7 +100,7 @@ export default function TermPremiumChart() {
     })
   }, [chartData, selectedPeriod])
 
-  const hasData = useMemo(() => chartData.length > 0, [chartData])
+  const hasData = chartData.length > 0
 
   // X軸の表示間隔を動的に計算（データポイント数に基づく）
   const xAxisInterval = useMemo(() => {
@@ -113,19 +112,14 @@ export default function TermPremiumChart() {
     return Math.floor(dataLength / 8)  // それ以上は約8ラベル表示
   }, [filteredData.length])
 
-  if (loading) {
-    return <LoadingChart title="タームプレミアム分解" />
-  }
-
-  if (error) {
-    return (
-      <div style={{ textAlign: 'center', padding: '50px', color: '#ff4d4f' }}>Error: {error}</div>
-    )
+  // データがnullの場合はローディング表示
+  if (data === null) {
+    return <LoadingChart title="タームプレミアム" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="タームプレミアム分解" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="タームプレミアム" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
