@@ -12,6 +12,7 @@ import {
   BarChartOutlined,
 } from '@ant-design/icons'
 import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
+import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
 
 const { Title, Text } = Typography
 
@@ -85,7 +86,7 @@ const INDICATORS_BY_COUNTRY_CATEGORY: Record<string, Record<string, Indicator[]>
       { code: 'fomc-projections', name: 'FOMC経済見通し' },
     ],
     economy: [
-      { code: 'gdp', name: 'GDP' },
+      { code: 'gdp-growth', name: 'GDP成長率（前期比年率）' },
       { code: 'pmi', name: 'PMI' },
       { code: 'trade-balance', name: '貿易収支' },
     ],
@@ -209,8 +210,9 @@ function CountryDataCategory() {
   const category = CATEGORY_INFO[categoryCode]
   const indicators = INDICATORS_BY_COUNTRY_CATEGORY[countryCode]?.[categoryCode] || []
 
-  // USA金融政策の場合はチャートを表示
+  // USA金融政策・経済の場合はチャートを表示
   const isUSAPolicy = countryCode === 'usa' && categoryCode === 'policy'
+  const isUSAEconomy = countryCode === 'usa' && categoryCode === 'economy'
 
   return (
     <div style={{ padding: '24px' }}>
@@ -256,6 +258,8 @@ function CountryDataCategory() {
 
       {isUSAPolicy ? (
         <USAPolicyCharts />
+      ) : isUSAEconomy ? (
+        <USAEconomyCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\Users\\owner\\Desktop\\seasonality-app\" /b)",
+      "Bash(dir \"C:\\Users\\owner\\Desktop\\seasonality-app\\frontend\" /b)",
+      "Bash(mkdir:*)",
+      "Bash(xcopy:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(npx create-vite@latest frontend --template react-ts)",
+      "Bash(dir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(\"backend/venv/Scripts/python.exe\" -m uvicorn:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(python -m uvicorn:*)",
+      "Bash(curl:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker logs:*)",
+      "Bash(docker ps:*)",
+      "Bash(npm run build:*)",
+      "Bash(del /f \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\pages\\IndicatorPage.tsx\")",
+      "Bash(docker exec economic-backend sh -c \"python3 -c \"\"\nimport requests\nimport pandas as pd\nimport io\n\nurl = ''https://www.newyorkfed.org/medialibrary/media/research/data_indicators/ACMTermPremium.xls''\nresponse = requests.get(url, timeout=60)\ndf = pd.read_excel(io.BytesIO(response.content), sheet_name=0, skiprows=7, engine=''xlrd'')\nprint(''Columns:'', df.columns.tolist())\nprint()\nprint(''First 5 rows:'')\nprint(df.head())\n\"\"\")",
+      "Bash(docker exec:*)",
+      "Bash(docker cp:*)",
+      "Bash(docker restart:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cat:*)",
+      "Bash(python:*)",
+      "Bash(docker-compose logs:*)",
+      "Bash(docker-compose exec:*)",
+      "Bash(docker-compose restart:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)"
+    ]
+  }
+}

@@ -59,9 +59,11 @@ const COUNTRIES_DATA: Country[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
-          { code: 'pmi', name: 'PMI' },
-          { code: 'trade-balance', name: '貿易収支' },
+          { code: 'gdp-growth', name: 'GDP成長率' },
+          { code: 'gdp-components-growth', name: 'GDP項目別成長率' },
+          { code: 'gdp-contributions', name: 'GDP寄与度' },
+          { code: 'potential-gdp', name: '潜在成長率' },
+          { code: 'bank-lending', name: '銀行貸し出し態度' },
         ],
       },
       {

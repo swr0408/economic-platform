@@ -64,6 +64,7 @@ class USAPolicyLoader(BaseDashboardLoader):
             "kw_term_premium": None,
             "sep_dates": None,
             "fedwatch_screenshot_url": None,
+            "next_fomc": None,
         }
 
         # 並列でデータを取得
@@ -74,6 +75,7 @@ class USAPolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_kw_term_premium, fred_service): "kw_term_premium",
                 executor.submit(self._get_sep_dates, fomc_schedule_service): "sep_dates",
                 executor.submit(self._get_fedwatch_url): "fedwatch_screenshot_url",
+                executor.submit(self._get_next_fomc, fomc_schedule_service): "next_fomc",
             }
 
             for future in as_completed(futures):
@@ -125,3 +127,25 @@ class USAPolicyLoader(BaseDashboardLoader):
         """FedWatchスクリーンショットのURLを取得"""
         # 静的ファイルとして配信されるURLを返す
         return "/api/fedwatch/image"
+
+    def _get_next_fomc(self, service) -> dict:
+        """次回FOMC会合情報を取得"""
+        try:
+            upcoming = service.get_upcoming_fomc_dates(count=1)
+            if upcoming and len(upcoming) > 0:
+                next_meeting = upcoming[0]
+                # 日付をフォーマット（YYYYMMDD -> YYYY/MM/DD）
+                date_str = next_meeting.get("date", "")
+                if len(date_str) == 8:
+                    formatted_date = f"{date_str[:4]}/{date_str[4:6]}/{date_str[6:8]}"
+                else:
+                    formatted_date = date_str
+                return {
+                    "date": formatted_date,
+                    "label": next_meeting.get("label", ""),
+                    "has_sep": next_meeting.get("has_sep", False),
+                }
+            return None
+        except Exception as e:
+            print(f"Error getting next FOMC: {e}")
+            return None

@@ -7,13 +7,14 @@ from fastapi import HTTPException
 
 from services.dashboard.loaders.base import BaseDashboardLoader
 from services.dashboard.loaders.usa_policy import USAPolicyLoader
+from services.dashboard.loaders.usa_economy import USAEconomyLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
 DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
     # 米国
     ("usa", "policy"): USAPolicyLoader,
-    # ("usa", "economy"): USAEconomyLoader,  # 将来追加
+    ("usa", "economy"): USAEconomyLoader,
     # ("usa", "employment"): USAEmploymentLoader,  # 将来追加
     # ("usa", "inflation"): USAInflationLoader,  # 将来追加
 

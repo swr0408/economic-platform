@@ -1,5 +1,4 @@
 import { Spin, Alert, Button } from 'antd'
-import { ReloadOutlined } from '@ant-design/icons'
 import { useUSAPolicyDashboard } from '../../../hooks/useDashboardData'
 import PolicyRateChart from './monetary_policy/PolicyRateChart'
 import TermPremiumChart from './monetary_policy/TermPremiumChart'
@@ -14,7 +13,7 @@ import FOMCTable1Chart from './monetary_policy/FOMCTable1Chart'
  * これにより7-8リクエスト → 1リクエストに削減し、ページ読み込みを高速化
  */
 export default function USAPolicyCharts() {
-  const { data, isLoading, error, refetch, isFetching } = useUSAPolicyDashboard()
+  const { data, isLoading, error, refetch } = useUSAPolicyDashboard()
 
   // ローディング状態
   if (isLoading) {
@@ -42,45 +41,21 @@ export default function USAPolicyCharts() {
 
   return (
     <div className="country-chart-stack">
-      {/* 最終更新時刻 */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: 16,
-          fontSize: 12,
-          color: '#666',
-        }}
-      >
-        <span>
-          {data?.last_updated && (
-            <>
-              最終更新: {new Date(data.last_updated).toLocaleString('ja-JP')}
-              {data.cached && (
-                <span style={{ marginLeft: 8, color: '#52c41a' }}>(キャッシュ)</span>
-              )}
-            </>
-          )}
-        </span>
-        <Button
-          icon={<ReloadOutlined spin={isFetching} />}
-          size="small"
-          onClick={() => refetch()}
-          disabled={isFetching}
-        >
-          更新
-        </Button>
-      </div>
-
       {/* Federal Funds Target Rate Chart */}
       <div id="policy-rate">
-        <PolicyRateChart data={dashboardData?.policy_rate ?? null} />
+        <PolicyRateChart
+          data={dashboardData?.policy_rate ?? null}
+          nextFomc={dashboardData?.next_fomc ?? null}
+        />
       </div>
 
       {/* CME FedWatch Tool */}
       <div id="fed-watch">
-        <CMEFedWatchChart screenshotUrl={dashboardData?.fedwatch_screenshot_url ?? null} />
+        <CMEFedWatchChart
+          screenshotUrl={dashboardData?.fedwatch_screenshot_url ?? null}
+          lastUpdated={data?.last_updated}
+          cached={data?.cached}
+        />
       </div>
 
       {/* ACM Term Premium Chart */}

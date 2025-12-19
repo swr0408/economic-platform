@@ -1,45 +1,42 @@
 import { useState, useMemo } from 'react'
-import { Tooltip } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 // Props型定義
-interface PolicyRateItem {
-  date: string
-  rate: number
-}
-
-interface NextFomcInfo {
-  date: string
-  label: string
-  has_sep: boolean
-}
-
-interface PolicyRateChartProps {
-  data: PolicyRateItem[] | null
-  nextFomc?: NextFomcInfo | null
-}
-
-interface PolicyRateChartData {
+interface GDPGrowthItem {
   date: string
   value: number
-  rate: number
+}
+
+interface GDPGrowthChartProps {
+  data: GDPGrowthItem[] | null
+  nextRelease?: {
+    date: string
+    title: string
+    estimate_type: string
+    quarter: number
+    year: number
+  } | null
+}
+
+interface GDPChartData {
+  date: string
+  value: number
   [key: string]: string | number | null | undefined
 }
 
-export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps) {
+export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
   // propsのデータをチャート用に変換
-  const policyRateData = useMemo<PolicyRateChartData[]>(() => {
+  const gdpData = useMemo<GDPChartData[]>(() => {
     if (!data || data.length === 0) return []
 
-    const chartData: PolicyRateChartData[] = data.map((item) => ({
+    const chartData: GDPChartData[] = data.map((item) => ({
       date: item.date,
-      value: item.rate,
-      rate: item.rate,
+      value: item.value,
     }))
 
     // 日付でソート（古い順）
@@ -49,19 +46,22 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
   }, [data])
 
   const formatPercentage = (value: number) => {
-    return `${value.toFixed(2)}%`
+    const sign = value >= 0 ? '+' : ''
+    return `${sign}${value.toFixed(1)}%`
   }
 
-  const formatMonthLabel = (dateStr: string): string => {
+  const formatQuarterLabel = (dateStr: string): string => {
     const date = new Date(dateStr)
     if (isNaN(date.getTime())) return dateStr
-    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
+    const year = date.getFullYear()
+    const quarter = Math.floor(date.getMonth() / 3) + 1
+    return `${year}Q${quarter}`
   }
 
   // 期間に基づいてデータをフィルタリング
   const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || policyRateData.length === 0) {
-      return policyRateData
+    if (selectedPeriod === 'all' || gdpData.length === 0) {
+      return gdpData
     }
 
     const cutoffDate = new Date()
@@ -74,25 +74,22 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
     }
 
-    return policyRateData.filter((item) => {
+    return gdpData.filter((item) => {
       const itemDate = new Date(item.date)
       return itemDate >= cutoffDate
     })
-  }, [policyRateData, selectedPeriod])
+  }, [gdpData, selectedPeriod])
 
-  const hasData = policyRateData.length > 0
-
-  // 最新値を取得
-  const latestValue = filteredData.length > 0 ? filteredData[filteredData.length - 1] : null
+  const hasData = gdpData.length > 0
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="政策金利" />
+    return <LoadingChart title="GDP成長率（前期比年率）" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="政策金利" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDP成長率（前期比年率）" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -100,12 +97,15 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
     )
   }
 
+  // 最新値を取得
+  const latestValue = filteredData.length > 0 ? filteredData[filteredData.length - 1] : null
+
   return (
-    <div id="policy-rate-chart">
+    <div id="gdp-growth-chart">
       <ChartContainer
-        title="政策金利"
+        title="GDP成長率（前期比年率）"
         showPeriodSelector={false}
-        dataSource="Federal Reserve"
+        dataSource="BEA / FRED"
       >
         {/* 最新値表示 */}
         {latestValue && (
@@ -121,26 +121,26 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
             }}
           >
             <div>
-              <span style={{ fontSize: 12, color: '#666' }}>現在の金利: </span>
+              <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
               <span
                 style={{
                   fontSize: 18,
                   fontWeight: 'bold',
-                  color: '#1890ff',
+                  color: latestValue.value >= 0 ? '#52c41a' : '#ff4d4f',
                 }}
               >
-                {formatPercentage(latestValue.rate)}
+                {formatPercentage(latestValue.value)}
               </span>
               <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                ({formatMonthLabel(latestValue.date)})
+                ({formatQuarterLabel(latestValue.date)})
               </span>
             </div>
-            {nextFomc && (
+            {nextRelease && (
               <div style={{ fontSize: 11, color: '#666', textAlign: 'right' }}>
-                <div>次回FOMC: {nextFomc.date}</div>
-                {nextFomc.has_sep && (
-                  <div style={{ color: '#1890ff' }}>SEP発表あり</div>
-                )}
+                <div>次回発表: {nextRelease.date}</div>
+                <div style={{ color: '#1890ff' }}>
+                  Q{nextRelease.quarter}/{nextRelease.year} ({nextRelease.estimate_type})
+                </div>
               </div>
             )}
           </div>
@@ -149,25 +149,20 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
         <ZoomableChart
           data={filteredData}
-          dataKey="rate"
+          dataKey="value"
           color="#1890ff"
-          name="政策金利"
+          name="GDP成長率"
           height={450}
           tickFormatter={formatPercentage}
-          xAxisTickFormatter={formatMonthLabel}
+          tooltipFormatter={formatPercentage}
+          tooltipLabelFormatter={formatQuarterLabel}
+          xAxisTickFormatter={formatQuarterLabel}
           enableDynamicTicks={true}
           showZeroLine={true}
           showFiftyLine={false}
           connectNulls={true}
-          hideLegend={false}
-          showDefaultTooltip={false}
-          domain={['dataMin - 0.25', 'dataMax + 0.25']}
-        >
-          <Tooltip
-            labelFormatter={(value: string | number) => formatMonthLabel(String(value))}
-            formatter={(value: number, name: string) => [formatPercentage(value), name]}
-          />
-        </ZoomableChart>
+          hideLegend={true}
+        />
       </ChartContainer>
     </div>
   )

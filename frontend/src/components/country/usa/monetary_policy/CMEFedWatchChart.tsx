@@ -6,12 +6,17 @@ import ChartContainer from '../../../common/ChartContainer'
 // Props型定義
 interface CMEFedWatchChartProps {
   screenshotUrl: string | null
+  lastUpdated?: string | null
+  cached?: boolean
 }
 
-export default function CMEFedWatchChart({ screenshotUrl }: CMEFedWatchChartProps) {
+export default function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }: CMEFedWatchChartProps) {
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageTimestamp, setImageTimestamp] = useState(Date.now())
+  // ローカルで管理する更新時刻（更新ボタン押下時に更新）
+  const [localLastUpdated, setLocalLastUpdated] = useState<string | null>(null)
+  const [localCached, setLocalCached] = useState<boolean | undefined>(cached)
 
   // 拡大表示用のstate
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -24,6 +29,8 @@ export default function CMEFedWatchChart({ screenshotUrl }: CMEFedWatchChartProp
       // スクリーンショットを強制更新
       await fetch('/api/fedwatch/screenshot?refresh=true')
       setImageTimestamp(Date.now())
+      setLocalLastUpdated(new Date().toISOString())
+      setLocalCached(false)
       setError(null)
     } catch (err) {
       console.error('Error refreshing FedWatch screenshot:', err)
@@ -114,6 +121,26 @@ export default function CMEFedWatchChart({ screenshotUrl }: CMEFedWatchChartProp
           </div>
         ) : (
           <div style={{ position: 'relative' }}>
+            {/* 最終更新時刻 */}
+            {(localLastUpdated || lastUpdated) && (
+              <div
+                style={{
+                  marginBottom: 12,
+                  fontSize: 12,
+                  color: '#666',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                <span>
+                  最終更新: {new Date(localLastUpdated || lastUpdated!).toLocaleString('ja-JP')}
+                </span>
+                {(localLastUpdated ? localCached : cached) && (
+                  <span style={{ color: '#52c41a' }}>(キャッシュ)</span>
+                )}
+              </div>
+            )}
             {/* スクリーンショット画像（クリックで拡大） */}
             <div
               style={{

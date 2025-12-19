@@ -44,17 +44,58 @@ docker-compose down
 # ボリューム含めて削除（データも削除）
 docker-compose down -v
 
-# 起動
+# 起動（本番環境）
 docker-compose -f docker-compose.simple.yml up -d
 
-# 停止
+# 停止（本番環境）
 docker-compose -f docker-compose.simple.yml down
 
-# 再ビルドして起動
+# 再ビルドして起動（本番環境）
 docker-compose -f docker-compose.simple.yml up --build -d
 
-# 強制再ビルドして起動
+# 強制再ビルドして起動（本番環境）
 docker-compose -f docker-compose.simple.yml up -d --build --force-recreate
+
+# 起動（開発環境）
+docker-compose up -d
+
+# 停止（開発環境）
+docker-compose down
+
+# 再ビルドして起動（開発環境）
+docker-compose up --build -d
+
+# 強制再ビルドして起動（開発環境）
+docker-compose up -d --build --force-recreate
+
+# ログ確認
+docker-compose logs -f
+
+# 特定サービスのログ
+docker-compose logs -f backend
+docker-compose logs -f frontend
+
+本番→開発への切り替え手順
+# 1. 本番環境を停止
+docker-compose -f docker-compose.simple.yml down
+
+# 2. 開発環境を起動（初回はビルドが必要）
+docker-compose up -d --build
+
+# または強制再ビルド
+docker-compose up -d --build --force-recreate
+
+
+実際の開発環境
+# 開発環境でbackend + キャッシュ + スケジューラを起動
+docker-compose up -d postgres redis backend celery-worker celery-beat
+
+# frontendはホストで実行
+cd frontend
+npm run dev
+
+# キャッシュ削除
+curl -X DELETE http://localhost:8000/api/usa/policy/dashboard/cache
 
 # ログ確認
 docker logs economic-frontend
