@@ -106,6 +106,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
         title="GDP成長率（前期比年率）"
         showPeriodSelector={false}
         dataSource="BEA / FRED"
+        sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product"
       >
         {/* 最新値表示 */}
         {latestValue && (

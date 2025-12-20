@@ -125,6 +125,7 @@ export default function FOMCTable1Chart({ sepDates }: FOMCTable1ChartProps) {
           title="FOMC経済見通し"
           showPeriodSelector={false}
           source="Federal Reserve"
+          sourceUrl="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
         >
           <div style={{ textAlign: 'center', padding: '60px 0' }}>
             <Spin size="large" />
@@ -143,6 +144,7 @@ export default function FOMCTable1Chart({ sepDates }: FOMCTable1ChartProps) {
           title="FOMC経済見通し"
           showPeriodSelector={false}
           source="Federal Reserve"
+          sourceUrl="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
         >
           <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
             SEP日付データが利用できません
@@ -158,6 +160,7 @@ export default function FOMCTable1Chart({ sepDates }: FOMCTable1ChartProps) {
         title="FOMC経済見通し"
         showPeriodSelector={false}
         source="Federal Reserve"
+        sourceUrl="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
         extra={
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 16 }}>
             <Select

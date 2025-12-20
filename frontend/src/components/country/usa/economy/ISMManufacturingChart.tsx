@@ -3,22 +3,25 @@ import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { BankLendingData } from '../../../../hooks/useDashboardData'
+import type { ISMManufacturingData } from '../../../../hooks/useDashboardData'
 
-interface BankLendingChartProps {
-  data: BankLendingData | null
+interface ISMManufacturingChartProps {
+  data: ISMManufacturingData | null
 }
 
-export default function BankLendingChart({ data }: BankLendingChartProps) {
+export default function ISMManufacturingChart({ data }: ISMManufacturingChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
-  // データを日付昇順にソート
+  // データを日付昇順にソートしてDataPoint型に変換
   const chartData = useMemo(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    return [...data.data].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-    )
+    return [...data.data]
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .map((item) => ({
+        date: item.date,
+        value: item.value,
+      }))
   }, [data])
 
   // 期間フィルタリング
@@ -30,8 +33,8 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2000年から
-      cutoffDate.setFullYear(2000, 0, 1)
+      // デフォルトは2020年から
+      cutoffDate.setFullYear(2020, 0, 1)
     } else {
       // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
@@ -47,12 +50,12 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="銀行貸し出し態度（SLOOS）" />
+    return <LoadingChart title="ISM製造業景況指数" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="銀行貸し出し態度（SLOOS）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="ISM製造業景況指数" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -60,26 +63,26 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
     )
   }
 
-  const formatPercentage = (value: number) => {
-    const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(1)}%`
+  const formatValue = (value: number) => {
+    return value.toFixed(1)
   }
 
-  const formatQuarterLabel = (dateStr: string): string => {
+  const formatDateLabel = (dateStr: string): string => {
     const date = new Date(dateStr)
     if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
+    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
+  // グラフの色
+  const CHART_COLOR = '#1890ff' // 青
+
   return (
-    <div id="bank-lending-chart">
+    <div id="ism-manufacturing-chart">
       <ChartContainer
-        title="銀行貸し出し態度"
+        title="ISM製造業景況指数"
         showPeriodSelector={false}
-        dataSource="FRED (Federal Reserve)"
-        sourceUrl="https://www.federalreserve.gov/data/sloos.htm"
+        dataSource="ISM"
+        sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
       >
         {/* 最新値表示 */}
         <div
@@ -101,17 +104,25 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
                   style={{
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: '#8b0000',
+                    color: CHART_COLOR,
                   }}
                 >
-                  {formatPercentage(data.latest.value)}
+                  {formatValue(data.latest.value)}
                 </span>
                 <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                  ({formatQuarterLabel(data.latest.date)})
+                  ({formatDateLabel(data.latest.date)})
                 </span>
               </>
             )}
           </div>
+          {data.next_release && (
+            <div style={{ textAlign: 'right' }}>
+              <span style={{ fontSize: 11, color: '#999' }}>次回発表: </span>
+              <span style={{ fontSize: 12, color: '#666' }}>
+                {data.next_release.date}
+              </span>
+            </div>
+          )}
         </div>
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
@@ -119,16 +130,20 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         <ZoomableChart
           data={filteredData}
           dataKey="value"
-          color="#8b0000"
-          name="銀行貸し出し態度"
+          color={CHART_COLOR}
+          name="ISM製造業PMI"
           height={450}
-          tickFormatter={formatPercentage}
-          tooltipFormatter={formatPercentage}
-          tooltipLabelFormatter={formatQuarterLabel}
-          xAxisTickFormatter={formatQuarterLabel}
+          tickFormatter={formatValue}
+          tooltipFormatter={(value: number) => formatValue(value)}
+          tooltipLabelFormatter={(dateStr: string) => formatDateLabel(dateStr)}
+          xAxisTickFormatter={(dateStr: string) => {
+            const date = new Date(dateStr)
+            return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
+          }}
           enableDynamicTicks={true}
-          showZeroLine={true}
-          showFiftyLine={false}
+          showZeroLine={false}
+          showFiftyLine={true}
+          fiftyLineValue={50}
           connectNulls={true}
           hideLegend={true}
         />

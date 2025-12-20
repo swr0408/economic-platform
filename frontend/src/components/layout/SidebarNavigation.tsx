@@ -64,6 +64,12 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'gdp-contributions', name: 'GDP寄与度' },
           { code: 'potential-gdp', name: '潜在成長率' },
           { code: 'bank-lending', name: '銀行貸し出し態度' },
+          { code: 'fci', name: 'FCI-G（金融情勢指数）' },
+          { code: 'nfci', name: 'NFCI（金融環境指数）' },
+          { code: 'gdpnow', name: 'GDPNow' },
+          { code: 'ism-manufacturing', name: 'ISM製造業景況指数' },
+          { code: 'ism-components', name: 'ISM製造業サブインデックス' },
+          { code: 'order-inventory-balance', name: 'ISM受注在庫バランス' },
         ],
       },
       {

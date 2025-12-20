@@ -106,6 +106,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
         title="政策金利"
         showPeriodSelector={false}
         dataSource="Federal Reserve"
+        sourceUrl="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
       >
         {/* 最新値表示 */}
         {latestValue && (

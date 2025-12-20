@@ -176,7 +176,7 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
 
   return (
     <div id="gdp-contributions-chart">
-      <ChartContainer title="GDP成長率 寄与度" showPeriodSelector={false} dataSource="BEA / FRED">
+      <ChartContainer title="GDP成長率 寄与度" showPeriodSelector={false} dataSource="BEA / FRED" sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product">
         {/* 最新値サマリー */}
         {latestValue && (
           <div

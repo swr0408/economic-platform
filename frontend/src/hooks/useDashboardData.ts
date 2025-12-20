@@ -59,6 +59,11 @@ export interface USAEconomyData {
   gdp_components_growth: GDPComponentsGrowthItem[] | null
   potential_gdp: PotentialGDPData | null
   bank_lending: BankLendingData | null
+  fci: FCIData | null
+  nfci: NFCIData | null
+  gdpnow: GDPNowData | null
+  ism_manufacturing: ISMManufacturingData | null
+  ism_components: ISMComponentsData | null
   next_gdp_release: NextGDPRelease | null
 }
 
@@ -138,6 +143,85 @@ export interface BankLendingNextRelease {
   date: string
   quarter: string
   title: string
+}
+
+// FCI-G（金融情勢指数）データの型
+export interface FCIData {
+  baseline: FCISeriesData
+  oneyear: FCISeriesData
+}
+
+export interface FCISeriesData {
+  data: FCIItem[]
+  latest: FCIItem | null
+}
+
+export interface FCIItem {
+  date: string
+  value: number
+  [key: string]: string | number | null | undefined
+}
+
+// シカゴ連銀金融環境指数（NFCI）データの型
+export interface NFCIData {
+  data: NFCIItem[]
+  latest: NFCIItem | null
+}
+
+export interface NFCIItem {
+  date: string
+  value: number
+}
+
+// GDPNow（リアルタイムGDP予測）データの型
+export interface GDPNowData {
+  data: GDPNowItem[]
+  latest: GDPNowItem | null
+}
+
+export interface GDPNowItem {
+  date: string
+  value: number
+  quarter: string
+  [key: string]: string | number | null | undefined
+}
+
+// ISM製造業景況指数データの型
+export interface ISMManufacturingData {
+  data: ISMManufacturingItem[]
+  latest: ISMManufacturingItem | null
+  next_release: ISMManufacturingNextRelease | null
+}
+
+export interface ISMManufacturingItem {
+  date: string
+  value: number
+  forecast: number | null
+  previous: number | null
+}
+
+export interface ISMManufacturingNextRelease {
+  date: string
+  label: string
+}
+
+// ISM製造業サブインデックスデータの型
+export interface ISMComponentsData {
+  data: ISMComponentsItem[]
+  latest: ISMComponentsItem | null
+  next_release: ISMManufacturingNextRelease | null
+}
+
+export interface ISMComponentsItem {
+  date: string
+  new_orders: number | null
+  production: number | null
+  employment: number | null
+  supplier_deliveries: number | null
+  prices: number | null
+  inventories: number | null
+  order_inventory_balance: number | null
+  order_inventory_balance_3ma: number | null
 }
 
 /**

@@ -5,6 +5,12 @@ import GDPContributionsChart from './economy/GDPContributionsChart'
 import GDPComponentsGrowthChart from './economy/GDPComponentsGrowthChart'
 import PotentialGDPChart from './economy/PotentialGDPChart'
 import BankLendingChart from './economy/BankLendingChart'
+import FCIChart from './economy/FCIChart'
+import NFCIChart from './economy/NFCIChart'
+import GDPNowChart from './economy/GDPNowChart'
+import ISMManufacturingChart from './economy/ISMManufacturingChart'
+import ISMComponentsChart from './economy/ISMComponentsChart'
+import OrderInventoryBalanceChart from './economy/OrderInventoryBalanceChart'
 
 /**
  * 米国経済チャート群
@@ -74,6 +80,48 @@ export default function USAEconomyCharts() {
       <div id="bank-lending">
         <BankLendingChart
           data={dashboardData?.bank_lending ?? null}
+        />
+      </div>
+
+      {/* FCI-G（金融情勢指数）チャート */}
+      <div id="fci">
+        <FCIChart
+          data={dashboardData?.fci ?? null}
+        />
+      </div>
+
+      {/* シカゴ連銀金融環境指数（NFCI）チャート */}
+      <div id="nfci">
+        <NFCIChart
+          data={dashboardData?.nfci ?? null}
+        />
+      </div>
+
+      {/* GDPNow（リアルタイムGDP予測）チャート */}
+      <div id="gdpnow">
+        <GDPNowChart
+          data={dashboardData?.gdpnow ?? null}
+        />
+      </div>
+
+      {/* ISM製造業景況指数チャート */}
+      <div id="ism-manufacturing">
+        <ISMManufacturingChart
+          data={dashboardData?.ism_manufacturing ?? null}
+        />
+      </div>
+
+      {/* ISM製造業サブインデックスチャート */}
+      <div id="ism-components">
+        <ISMComponentsChart
+          data={dashboardData?.ism_components ?? null}
+        />
+      </div>
+
+      {/* ISM製造業受注在庫バランスチャート */}
+      <div id="order-inventory-balance">
+        <OrderInventoryBalanceChart
+          data={dashboardData?.ism_components ?? null}
         />
       </div>
     </div>

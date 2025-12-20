@@ -3,13 +3,13 @@ import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { BankLendingData } from '../../../../hooks/useDashboardData'
+import type { GDPNowData } from '../../../../hooks/useDashboardData'
 
-interface BankLendingChartProps {
-  data: BankLendingData | null
+interface GDPNowChartProps {
+  data: GDPNowData | null
 }
 
-export default function BankLendingChart({ data }: BankLendingChartProps) {
+export default function GDPNowChart({ data }: GDPNowChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
   // データを日付昇順にソート
@@ -30,8 +30,8 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2000年から
-      cutoffDate.setFullYear(2000, 0, 1)
+      // デフォルトは2020年から
+      cutoffDate.setFullYear(2020, 0, 1)
     } else {
       // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
@@ -47,12 +47,12 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="銀行貸し出し態度（SLOOS）" />
+    return <LoadingChart title="GDPNow（リアルタイムGDP予測）" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="銀行貸し出し態度（SLOOS）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPNow（リアルタイムGDP予測）" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -62,24 +62,25 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
 
   const formatPercentage = (value: number) => {
     const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(1)}%`
+    return `${sign}${value.toFixed(2)}%`
   }
 
-  const formatQuarterLabel = (dateStr: string): string => {
+  const formatDateLabel = (dateStr: string): string => {
     const date = new Date(dateStr)
     if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
+    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`
   }
 
+  // グラフの色
+  const CHART_COLOR = '#722ed1' // 紫（GDPNowの特徴的な色）
+
   return (
-    <div id="bank-lending-chart">
+    <div id="gdpnow-chart">
       <ChartContainer
-        title="銀行貸し出し態度"
+        title="GDPNow"
         showPeriodSelector={false}
-        dataSource="FRED (Federal Reserve)"
-        sourceUrl="https://www.federalreserve.gov/data/sloos.htm"
+        dataSource="Atlanta Fed"
+        sourceUrl="https://www.atlantafed.org/cqer/research/gdpnow"
       >
         {/* 最新値表示 */}
         <div
@@ -94,20 +95,20 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
           }}
         >
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+            <span style={{ fontSize: 12, color: '#666' }}>現在の予測: </span>
             {data.latest && (
               <>
                 <span
                   style={{
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: '#8b0000',
+                    color: CHART_COLOR,
                   }}
                 >
                   {formatPercentage(data.latest.value)}
                 </span>
                 <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                  ({formatQuarterLabel(data.latest.date)})
+                  ({data.latest.quarter} / {formatDateLabel(data.latest.date)})
                 </span>
               </>
             )}
@@ -119,13 +120,22 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         <ZoomableChart
           data={filteredData}
           dataKey="value"
-          color="#8b0000"
-          name="銀行貸し出し態度"
+          color={CHART_COLOR}
+          name="GDPNow"
           height={450}
           tickFormatter={formatPercentage}
           tooltipFormatter={formatPercentage}
-          tooltipLabelFormatter={formatQuarterLabel}
-          xAxisTickFormatter={formatQuarterLabel}
+          tooltipLabelFormatter={(dateStr: string) => {
+            const item = filteredData.find(d => d.date === dateStr)
+            if (item) {
+              return `${item.quarter} (${formatDateLabel(dateStr)})`
+            }
+            return formatDateLabel(dateStr)
+          }}
+          xAxisTickFormatter={(dateStr: string) => {
+            const date = new Date(dateStr)
+            return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
+          }}
           enableDynamicTicks={true}
           showZeroLine={true}
           showFiftyLine={false}

@@ -4,44 +4,34 @@ import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+import type { FCIData } from '../../../../hooks/useDashboardData'
 
-// 潜在成長率データの型定義
-interface PotentialGDPItem {
-  date: string
-  value: number
-}
-
-interface PotentialGDPData {
-  real: PotentialGDPItem[]
-  nominal: PotentialGDPItem[]
-}
-
-interface PotentialGDPChartProps {
-  data: PotentialGDPData | null
+interface FCIChartProps {
+  data: FCIData | null
 }
 
 interface ChartDataPoint {
   date: string
   value: number
-  realGDP: number | null
-  nominalGDP: number | null
+  baseline: number | null
+  oneyear: number | null
   [key: string]: string | number | null | undefined
 }
 
-export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
+export default function FCIChart({ data }: FCIChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
-  // 名目・実質データを統合
+  // 両シリーズのデータを統合
   const chartData = useMemo<ChartDataPoint[]>(() => {
     if (!data) return []
 
-    const realData = data.real || []
-    const nominalData = data.nominal || []
+    const baselineData = data.baseline?.data || []
+    const oneyearData = data.oneyear?.data || []
 
     // 全ての日付を収集
     const allDates = new Set<string>()
-    realData.forEach((d) => allDates.add(d.date))
-    nominalData.forEach((d) => allDates.add(d.date))
+    baselineData.forEach((d) => allDates.add(d.date))
+    oneyearData.forEach((d) => allDates.add(d.date))
 
     // 日付でソート
     const sortedDates = Array.from(allDates).sort(
@@ -50,14 +40,14 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
 
     // データをマージ
     return sortedDates.map((date) => {
-      const realPoint = realData.find((d) => d.date === date)
-      const nominalPoint = nominalData.find((d) => d.date === date)
+      const baselinePoint = baselineData.find((d) => d.date === date)
+      const oneyearPoint = oneyearData.find((d) => d.date === date)
 
       return {
         date,
-        value: realPoint?.value ?? 0, // ZoomableChartのdataKey用
-        realGDP: realPoint?.value ?? null,
-        nominalGDP: nominalPoint?.value ?? null,
+        value: baselinePoint?.value ?? 0, // ZoomableChartのdataKey用
+        baseline: baselinePoint?.value ?? null,
+        oneyear: oneyearPoint?.value ?? null,
       }
     })
   }, [data])
@@ -71,8 +61,8 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2000年から
-      cutoffDate.setFullYear(2000, 0, 1)
+      // デフォルトは2010年から
+      cutoffDate.setFullYear(2010, 0, 1)
     } else {
       // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
@@ -88,12 +78,12 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="名目潜在成長率 / 実質潜在成長率" />
+    return <LoadingChart title="FCI-G（金融情勢指数）" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="名目潜在成長率 / 実質潜在成長率" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="FCI-G（金融情勢指数）" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -102,21 +92,18 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
   }
 
   // 最新値を取得
-  const latestReal = data.real?.length > 0 ? data.real[data.real.length - 1] : null
-  const latestNominal = data.nominal?.length > 0 ? data.nominal[data.nominal.length - 1] : null
+  const latestBaseline = data.baseline?.latest
+  const latestOneyear = data.oneyear?.latest
 
-  const formatPercentage = (value: number | null) => {
+  const formatValue = (value: number | null) => {
     if (value === null || value === undefined) return '-'
-    const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(2)}%`
+    return value.toFixed(2)
   }
 
-  const formatQuarterLabel = (dateStr: string): string => {
+  const formatMonthLabel = (dateStr: string): string => {
     const date = new Date(dateStr)
     if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
+    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
   // カスタムツールチップ
@@ -147,10 +134,10 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
         }}
       >
         <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>
-          {formatQuarterLabel(label || '')}
+          {formatMonthLabel(label || '')}
         </div>
         {payload.map((item, index) => {
-          const seriesName = item.dataKey === 'nominalGDP' ? '名目潜在成長率' : '実質潜在成長率'
+          const seriesName = item.dataKey === 'baseline' ? 'Baseline (3-year)' : 'One-year lookback'
           return (
             <div
               key={index}
@@ -176,7 +163,7 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
                 {seriesName}
               </span>
               <span style={{ fontWeight: 500 }}>
-                {formatPercentage(item.value)}
+                {formatValue(item.value)}
               </span>
             </div>
           )
@@ -186,12 +173,12 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
   }
 
   return (
-    <div id="potential-gdp-chart">
+    <div id="fci-chart">
       <ChartContainer
-        title="名目潜在成長率 / 実質潜在成長率"
+        title="FCI-G（金融情勢指数）"
         showPeriodSelector={false}
-        dataSource="FRED (CBO)"
-        sourceUrl="https://www.cbo.gov/taxonomy/term/6/recurring-reports"
+        dataSource="Federal Reserve"
+        sourceUrl="https://www.federalreserve.gov/econres/notes/feds-notes/a-new-index-to-measure-us-financial-conditions-20230630.html"
       >
         {/* 最新値表示 */}
         <div
@@ -204,10 +191,10 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
             borderRadius: 8,
           }}
         >
-          {/* 実質潜在成長率 */}
+          {/* Baseline (3-year) */}
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
-              実質潜在成長率
+              Baseline (3-year)
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
               <span
@@ -217,20 +204,20 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
                   color: '#1890ff',
                 }}
               >
-                {latestReal ? formatPercentage(latestReal.value) : '-'}
+                {latestBaseline ? formatValue(latestBaseline.value) : '-'}
               </span>
-              {latestReal && (
+              {latestBaseline && (
                 <span style={{ fontSize: 11, color: '#999' }}>
-                  ({formatQuarterLabel(latestReal.date)})
+                  ({formatMonthLabel(latestBaseline.date)})
                 </span>
               )}
             </div>
           </div>
 
-          {/* 名目潜在成長率 */}
+          {/* One-year lookback */}
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
-              名目潜在成長率
+              One-year lookback
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
               <span
@@ -240,11 +227,11 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
                   color: '#52c41a',
                 }}
               >
-                {latestNominal ? formatPercentage(latestNominal.value) : '-'}
+                {latestOneyear ? formatValue(latestOneyear.value) : '-'}
               </span>
-              {latestNominal && (
+              {latestOneyear && (
                 <span style={{ fontSize: 11, color: '#999' }}>
-                  ({formatQuarterLabel(latestNominal.date)})
+                  ({formatMonthLabel(latestOneyear.date)})
                 </span>
               )}
             </div>
@@ -255,23 +242,23 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
 
         <ZoomableChart
           data={filteredData}
-          dataKey="realGDP"
+          dataKey="baseline"
           color="#1890ff"
-          name="実質潜在成長率"
+          name="Baseline (3-year)"
           height={450}
-          tickFormatter={(v) => `${v.toFixed(1)}%`}
-          xAxisTickFormatter={formatQuarterLabel}
+          tickFormatter={(v) => v.toFixed(1)}
+          xAxisTickFormatter={formatMonthLabel}
           enableDynamicTicks={true}
-          showZeroLine={false}
+          showZeroLine={true}
           showFiftyLine={false}
           connectNulls={true}
           hideLegend={false}
           showDefaultTooltip={false}
           additionalLines={[
             {
-              dataKey: 'nominalGDP',
+              dataKey: 'oneyear',
               color: '#52c41a',
-              name: '名目潜在成長率',
+              name: 'One-year lookback',
               strokeWidth: 2,
             },
           ]}

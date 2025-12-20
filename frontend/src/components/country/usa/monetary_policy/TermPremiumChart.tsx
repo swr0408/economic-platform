@@ -152,6 +152,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
         title="タームプレミアム"
         showPeriodSelector={false}
         source="NY Fed, FRED"
+        sourceUrl="https://www.newyorkfed.org/research/data_indicators/term-premia-tabs#/interactive"
       >
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
         <ZoomableChart

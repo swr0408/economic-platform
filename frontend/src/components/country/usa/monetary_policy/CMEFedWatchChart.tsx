@@ -75,6 +75,7 @@ export default function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }:
           title="Fed Watch"
           showPeriodSelector={false}
           source="CME Group"
+          sourceUrl="https://www.cmegroup.com/ja/markets/interest-rates/cme-fedwatch-tool.html"
         >
           <div style={{ textAlign: 'center', padding: '60px 0' }}>
             <Spin size="large" />
@@ -94,6 +95,7 @@ export default function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }:
         title="Fed Watch"
         showPeriodSelector={false}
         source="CME Group"
+        sourceUrl="https://www.cmegroup.com/ja/markets/interest-rates/cme-fedwatch-tool.html"
         extra={
           <div style={{ display: 'flex', gap: 8 }}>
             <Button

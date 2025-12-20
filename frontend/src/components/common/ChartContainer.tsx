@@ -9,6 +9,7 @@ interface ChartContainerProps {
   children: React.ReactNode
   loading?: boolean
   dataSource?: string
+  sourceUrl?: string  // 公式サイトへのリンクURL
   onPeriodChange?: (period: PeriodValue) => void
   selectedPeriod?: PeriodValue
   showPeriodSelector?: boolean
@@ -24,6 +25,7 @@ export default function ChartContainer({
   children,
   loading = false,
   dataSource = 'Federal Reserve Economic Data (FRED)',
+  sourceUrl,
   onPeriodChange,
   selectedPeriod,
   showPeriodSelector = true,
@@ -65,14 +67,23 @@ export default function ChartContainer({
       {children}
 
       <div style={{ marginTop: 16, fontSize: '12px', color: '#666' }}>
-        {showDataSource && source && (
+        {showDataSource && (source || dataSource) && (
           <div>
-            <Text type="secondary">Data source: {source}</Text>
-          </div>
-        )}
-        {showDataSource && !source && (
-          <div>
-            <Text type="secondary">Data source: {dataSource}</Text>
+            <Text type="secondary">
+              Data source:{' '}
+              {sourceUrl ? (
+                <a
+                  href={sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1890ff' }}
+                >
+                  {source || dataSource}
+                </a>
+              ) : (
+                source || dataSource
+              )}
+            </Text>
           </div>
         )}
       </div>

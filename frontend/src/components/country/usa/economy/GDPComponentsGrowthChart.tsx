@@ -184,7 +184,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
 
   return (
     <div id="gdp-components-growth-chart">
-      <ChartContainer title="GDP項目別成長率" showPeriodSelector={false} dataSource="BEA">
+      <ChartContainer title="GDP項目別成長率" showPeriodSelector={false} dataSource="BEA" sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product">
         {/* 最新値サマリー */}
         {latestValue && (
           <div

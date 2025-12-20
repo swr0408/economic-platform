@@ -3,13 +3,13 @@ import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { BankLendingData } from '../../../../hooks/useDashboardData'
+import type { NFCIData } from '../../../../hooks/useDashboardData'
 
-interface BankLendingChartProps {
-  data: BankLendingData | null
+interface NFCIChartProps {
+  data: NFCIData | null
 }
 
-export default function BankLendingChart({ data }: BankLendingChartProps) {
+export default function NFCIChart({ data }: NFCIChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
   // データを日付昇順にソート
@@ -30,8 +30,8 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2000年から
-      cutoffDate.setFullYear(2000, 0, 1)
+      // デフォルトは2010年から
+      cutoffDate.setFullYear(2010, 0, 1)
     } else {
       // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
@@ -47,12 +47,12 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="銀行貸し出し態度（SLOOS）" />
+    return <LoadingChart title="シカゴ連銀金融環境指数（NFCI）" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="銀行貸し出し態度（SLOOS）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="シカゴ連銀金融環境指数（NFCI）" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -60,26 +60,27 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
     )
   }
 
-  const formatPercentage = (value: number) => {
+  const formatValue = (value: number) => {
     const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(1)}%`
+    return `${sign}${value.toFixed(2)}`
   }
 
-  const formatQuarterLabel = (dateStr: string): string => {
+  const formatWeekLabel = (dateStr: string): string => {
     const date = new Date(dateStr)
     if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
+    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`
   }
 
+  // グラフの色と統一
+  const CHART_COLOR = '#1890ff'
+
   return (
-    <div id="bank-lending-chart">
+    <div id="nfci-chart">
       <ChartContainer
-        title="銀行貸し出し態度"
+        title="シカゴ連銀金融環境指数（NFCI）"
         showPeriodSelector={false}
-        dataSource="FRED (Federal Reserve)"
-        sourceUrl="https://www.federalreserve.gov/data/sloos.htm"
+        dataSource="FRED (Chicago Fed)"
+        sourceUrl="https://www.chicagofed.org/research/data/nfci/current-data"
       >
         {/* 最新値表示 */}
         <div
@@ -101,16 +102,20 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
                   style={{
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: '#8b0000',
+                    color: CHART_COLOR,
                   }}
                 >
-                  {formatPercentage(data.latest.value)}
+                  {formatValue(data.latest.value)}
                 </span>
                 <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                  ({formatQuarterLabel(data.latest.date)})
+                  ({formatWeekLabel(data.latest.date)})
                 </span>
               </>
             )}
+          </div>
+          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+            <div>正値: 金融引き締め / 負値: 金融緩和</div>
+            <div>毎週水曜日更新</div>
           </div>
         </div>
 
@@ -119,13 +124,16 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         <ZoomableChart
           data={filteredData}
           dataKey="value"
-          color="#8b0000"
-          name="銀行貸し出し態度"
+          color="#1890ff"
+          name="NFCI"
           height={450}
-          tickFormatter={formatPercentage}
-          tooltipFormatter={formatPercentage}
-          tooltipLabelFormatter={formatQuarterLabel}
-          xAxisTickFormatter={formatQuarterLabel}
+          tickFormatter={formatValue}
+          tooltipFormatter={formatValue}
+          tooltipLabelFormatter={formatWeekLabel}
+          xAxisTickFormatter={(dateStr: string) => {
+            const date = new Date(dateStr)
+            return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
+          }}
           enableDynamicTicks={true}
           showZeroLine={true}
           showFiftyLine={false}
