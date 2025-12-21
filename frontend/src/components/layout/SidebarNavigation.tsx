@@ -70,6 +70,8 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'ism-manufacturing', name: 'ISM製造業景況指数' },
           { code: 'ism-components', name: 'ISM製造業サブインデックス' },
           { code: 'order-inventory-balance', name: 'ISM受注在庫バランス' },
+          { code: 'ism-non-manufacturing', name: 'ISM非製造業景況指数' },
+          { code: 'ism-non-manufacturing-components', name: 'ISM非製造業サブインデックス' },
         ],
       },
       {

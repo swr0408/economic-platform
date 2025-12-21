@@ -31,7 +31,10 @@
       "Bash(docker-compose exec:*)",
       "Bash(docker-compose restart:*)",
       "Bash(grep:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(jq:*)",
+      "Bash(python3:*)",
+      "Bash(npm run type-check:*)"
     ]
   }
 }

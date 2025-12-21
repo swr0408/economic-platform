@@ -1,6 +1,7 @@
 """
 米国経済ダッシュボードローダー
-GDP成長率、GDP寄与度、GDP項目別成長率、潜在成長率、銀行貸し出し態度、FCI-G、NFCI、GDPNow、ISM製造業、ISMサブインデックスを一括取得
+GDP成長率、GDP寄与度、GDP項目別成長率、潜在成長率、銀行貸し出し態度、FCI-G、NFCI、GDPNow、
+ISM製造業、ISMサブインデックス、ISM非製造業、ISM非製造業サブインデックスを一括取得
 
 キャッシュ更新判定: last_updated方式（スケジュール時刻ベース）
 """
@@ -26,7 +27,10 @@ class USAEconomyLoader(BaseDashboardLoader):
     - gdpnow: GDPNow（リアルタイムGDP予測）- Atlanta Fed（月6-7回更新）
     - ism_manufacturing: ISM製造業景況指数 - Investing.com（毎月第1営業日）
     - ism_components: ISM製造業サブインデックス - DBnomics（毎月第1営業日）
+    - ism_non_manufacturing: ISM非製造業景況指数 - DBnomics（毎月第3営業日）
+    - ism_non_manufacturing_components: ISM非製造業サブインデックス - DBnomics（毎月第3営業日）
     - next_gdp_release: 次回GDP発表情報
+    - next_ism_non_manufacturing_release: 次回ISM非製造業発表情報
 
     キャッシュ方式: last_updated判定（スケジュール時刻: 22:00 JST = 8:00 ET + 9時間 + バッファ）
     """
@@ -64,6 +68,8 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.gdpnow_service import gdpnow_service
         from services.usa.ism_manufacturing_service import ism_manufacturing_service
         from services.usa.ism_components_service import ism_components_service
+        from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
+        from services.usa.ism_non_manufacturing_components_service import ism_non_manufacturing_components_service
         from services.usa.bea_schedule_service import bea_schedule_service
 
         result = {
@@ -77,7 +83,10 @@ class USAEconomyLoader(BaseDashboardLoader):
             "gdpnow": None,
             "ism_manufacturing": None,
             "ism_components": None,
+            "ism_non_manufacturing": None,
+            "ism_non_manufacturing_components": None,
             "next_gdp_release": None,
+            "next_ism_non_manufacturing_release": None,
         }
 
         # 並列でデータを取得
@@ -93,7 +102,10 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_gdpnow, gdpnow_service): "gdpnow",
                 executor.submit(self._get_ism_manufacturing, ism_manufacturing_service): "ism_manufacturing",
                 executor.submit(self._get_ism_components, ism_components_service): "ism_components",
+                executor.submit(self._get_ism_non_manufacturing, ism_non_manufacturing_service): "ism_non_manufacturing",
+                executor.submit(self._get_ism_non_manufacturing_components, ism_non_manufacturing_components_service): "ism_non_manufacturing_components",
                 executor.submit(self._get_next_gdp_release, bea_schedule_service): "next_gdp_release",
+                executor.submit(self._get_next_ism_non_manufacturing_release, ism_non_manufacturing_service): "next_ism_non_manufacturing_release",
             }
 
             for future in as_completed(futures):
@@ -264,4 +276,47 @@ class USAEconomyLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting ISM Components data: {e}")
+            return None
+
+    def _get_ism_non_manufacturing(self, service) -> Optional[dict]:
+        """ISM非製造業景況指数データを取得"""
+        try:
+            response = service.get_ism_non_manufacturing_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting ISM Non-Manufacturing data: {e}")
+            return None
+
+    def _get_ism_non_manufacturing_components(self, service) -> Optional[dict]:
+        """ISM非製造業サブインデックスデータを取得"""
+        try:
+            response = service.get_ism_non_manufacturing_components_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting ISM Non-Manufacturing Components data: {e}")
+            return None
+
+    def _get_next_ism_non_manufacturing_release(self, service) -> Optional[dict]:
+        """次回ISM非製造業発表情報を取得（Investing.comから都度取得）"""
+        try:
+            # ISM非製造業サービスから次回発表情報を取得
+            return service._get_next_release()
+        except Exception as e:
+            print(f"Error getting next ISM Non-Manufacturing release: {e}")
             return None

@@ -1,22 +1,22 @@
 """
-ISM製造業サブインデックスサービス
-DBnomics APIからISM製造業の構成要素データを取得
+ISM非製造業サブインデックスサービス
+DBnomics APIからISM非製造業の構成要素データを取得
 
 データソース:
 - DBnomics: https://db.nomics.world/ISM
-- 新規受注: ISM/neword/in
-- 生産: ISM/production/in
-- 雇用: ISM/employment/in
-- サプライヤー配送: ISM/supdel/in
-- 価格（仕入価格）: ISM/prices/in
-- 在庫: ISM/inventories/in
+- 新規受注: ISM/nm-neword/in
+- 業況活動: ISM/nm-busact/in
+- 雇用: ISM/nm-employment/in
+- サプライヤー配送: ISM/nm-supdel/in
+- 価格（仕入価格）: ISM/nm-prices/in
+- 在庫: ISM/nm-inventories/in
 
 発表スケジュール:
-- 毎月第1営業日付近（ISM製造業景況指数と同時）
-- ISM製造業景況指数の発表スケジュールを共有
+- 毎月第3営業日付近（ISM非製造業景況指数と同時）
+- ISMスケジュールサービスから次回発表日を取得
 
 キャッシュ方式: last_updated判定方式
-- ISM製造業景況指数の次回発表日で判定
+- ISM非製造業景況指数の次回発表日で判定
 """
 import requests
 from datetime import datetime, timedelta
@@ -32,28 +32,28 @@ JST = ZoneInfo("Asia/Tokyo")
 # DBnomics API設定
 DBNOMICS_BASE_URL = "https://api.db.nomics.world/v22"
 
-# ISMサブインデックスのシリーズコード
-ISM_SERIES = {
-    "new_orders": "ISM/neword/in",
-    "production": "ISM/production/in",
-    "employment": "ISM/employment/in",
-    "supplier_deliveries": "ISM/supdel/in",
-    "prices": "ISM/prices/in",
-    "inventories": "ISM/inventories/in",
+# ISM非製造業サブインデックスのシリーズコード
+ISM_NM_SERIES = {
+    "new_orders": "ISM/nm-neword/in",
+    "business_activity": "ISM/nm-busact/in",
+    "employment": "ISM/nm-employment/in",
+    "supplier_deliveries": "ISM/nm-supdel/in",
+    "prices": "ISM/nm-prices/in",
+    "inventories": "ISM/nm-inventories/in",
 }
 
 
-class ISMComponentsService:
-    """ISM製造業サブインデックスサービス"""
+class ISMNonManufacturingComponentsService:
+    """ISM非製造業サブインデックスサービス"""
 
-    CACHE_KEY = "dbnomics:ism_components"
+    CACHE_KEY = "dbnomics:ism_non_manufacturing_components"
 
-    def get_ism_components_data(
+    def get_ism_non_manufacturing_components_data(
         self,
         force_refresh: bool = False
     ) -> Dict[str, Any]:
         """
-        ISM製造業サブインデックスデータを取得
+        ISM非製造業サブインデックスデータを取得
 
         Args:
             force_refresh: キャッシュを無視して再取得
@@ -64,11 +64,13 @@ class ISMComponentsService:
                     {
                         "date": "YYYY-MM-01",
                         "new_orders": float,
-                        "production": float,
+                        "business_activity": float,
                         "employment": float,
                         "supplier_deliveries": float,
                         "prices": float,
-                        "inventories": float
+                        "inventories": float,
+                        "order_inventory_balance": float,
+                        "order_inventory_balance_3ma": float
                     },
                     ...
                 ],
@@ -83,7 +85,7 @@ class ISMComponentsService:
         if not force_refresh:
             cached_data = redis_client.get(self.CACHE_KEY)
             if cached_data:
-                # last_updated判定: ISM製造業の発表日を過ぎていたらキャッシュ無効
+                # last_updated判定: ISM非製造業の発表日を過ぎていたらキャッシュ無効
                 last_updated_str = cached_data.get("last_updated")
                 next_release = cached_data.get("next_release")
                 if last_updated_str and not self._should_refresh(last_updated_str, next_release):
@@ -108,8 +110,8 @@ class ISMComponentsService:
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
 
-            # ISM製造業景況指数から次回発表日を取得
-            next_release = self._get_ism_next_release()
+            # ISMスケジュールサービスから次回発表日を取得
+            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": fetched_data,
@@ -143,12 +145,12 @@ class ISMComponentsService:
         """
         キャッシュを更新すべきかどうかを判定（期間チェック方式）
 
-        ISM製造業サブインデックスの発表スケジュール:
-        - 発表期間: 毎月1日〜10日（ISM製造業景況指数と同時）
+        ISM非製造業サブインデックスの発表スケジュール:
+        - 発表期間: 毎月3日〜10日（ISM非製造業景況指数と同時）
         - 発表時刻: 23:00 JST（夏時間）/ 0:00 JST（冬時間）
 
         判定ロジック:
-        - 発表期間内（1日〜10日）で、最終更新が今月の発表期間開始より前なら更新必要
+        - 発表期間内（3日〜10日）で、最終更新が今月の発表期間開始より前なら更新必要
 
         Args:
             last_updated_str: 最終更新日時のISO文字列
@@ -165,10 +167,10 @@ class ISMComponentsService:
 
             now = datetime.now(JST)
 
-            # 発表期間: 毎月1日〜10日
-            if 1 <= now.day <= 10:
-                # 今月の発表期間開始日時（1日 0:00 JST）
-                release_window_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+            # 発表期間: 毎月3日〜10日（非製造業は製造業より2日遅い）
+            if 3 <= now.day <= 10:
+                # 今月の発表期間開始日時（3日 0:00 JST）
+                release_window_start = now.replace(day=3, hour=0, minute=0, second=0, microsecond=0)
 
                 # 最終更新が今月の発表期間開始より前なら更新必要
                 if last_updated < release_window_start:
@@ -180,24 +182,31 @@ class ISMComponentsService:
             print(f"Error checking refresh status: {e}")
             return False
 
-    def _get_ism_next_release(self) -> Optional[Dict[str, str]]:
-        """ISM製造業景況指数の次回発表日を取得"""
+    def _get_next_release(self) -> Optional[Dict[str, str]]:
+        """ISM非製造業サービスから次回発表日を取得（Investing.comから都度取得）"""
         try:
-            from services.usa.ism_manufacturing_service import ism_manufacturing_service
-            return ism_manufacturing_service.get_next_release_date()
+            # ISM非製造業サービスと同じ発表日を使用
+            from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
+            next_release = ism_non_manufacturing_service._get_next_release()
+            if next_release:
+                return {
+                    "date": next_release["date"],
+                    "label": f"ISM非製造業サブインデックス"
+                }
+            return None
         except Exception as e:
-            print(f"Error getting ISM next release: {e}")
+            print(f"Error getting ISM Non-Manufacturing next release: {e}")
             return None
 
     def _fetch_from_dbnomics(self) -> Optional[Dict[str, Any]]:
-        """DBnomics APIからISMサブインデックスデータを取得"""
+        """DBnomics APIからISM非製造業サブインデックスデータを取得"""
         try:
-            print("Fetching ISM Components from DBnomics...")
+            print("Fetching ISM Non-Manufacturing Components from DBnomics...")
 
             # 全シリーズを順次取得
             series_data = {}
 
-            for name, series_code in ISM_SERIES.items():
+            for name, series_code in ISM_NM_SERIES.items():
                 try:
                     url = f"{DBNOMICS_BASE_URL}/series/{series_code}?observations=1&format=json"
                     response = requests.get(url, timeout=30)
@@ -221,13 +230,13 @@ class ISMComponentsService:
             combined_data = self._combine_series_data(series_data)
 
             if combined_data:
-                print(f"Combined {len(combined_data)} ISM Components records")
+                print(f"Combined {len(combined_data)} ISM Non-Manufacturing Components records")
                 return {"data": combined_data}
 
             return None
 
         except Exception as e:
-            print(f"Error fetching ISM Components from DBnomics: {e}")
+            print(f"Error fetching ISM Non-Manufacturing Components from DBnomics: {e}")
             import traceback
             traceback.print_exc()
             return None
@@ -304,7 +313,7 @@ class ISMComponentsService:
                     full_data = {
                         "date": data["date"],
                         "new_orders": new_orders,
-                        "production": data.get("production"),
+                        "business_activity": data.get("business_activity"),
                         "employment": data.get("employment"),
                         "supplier_deliveries": data.get("supplier_deliveries"),
                         "prices": data.get("prices"),
@@ -358,4 +367,4 @@ class ISMComponentsService:
 
 
 # シングルトンインスタンス
-ism_components_service = ISMComponentsService()
+ism_non_manufacturing_components_service = ISMNonManufacturingComponentsService()

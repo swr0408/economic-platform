@@ -64,7 +64,10 @@ export interface USAEconomyData {
   gdpnow: GDPNowData | null
   ism_manufacturing: ISMManufacturingData | null
   ism_components: ISMComponentsData | null
+  ism_non_manufacturing: ISMNonManufacturingData | null
+  ism_non_manufacturing_components: ISMNonManufacturingComponentsData | null
   next_gdp_release: NextGDPRelease | null
+  next_ism_non_manufacturing_release: NextISMNonManufacturingRelease | null
 }
 
 export interface GDPGrowthItem {
@@ -222,6 +225,53 @@ export interface ISMComponentsItem {
   inventories: number | null
   order_inventory_balance: number | null
   order_inventory_balance_3ma: number | null
+}
+
+// ISM非製造業景況指数データの型
+export interface ISMNonManufacturingData {
+  data: ISMNonManufacturingItem[]
+  latest: ISMNonManufacturingItem | null
+  next_release: ISMNonManufacturingNextRelease | null
+  last_updated: string | null
+}
+
+export interface ISMNonManufacturingItem {
+  date: string
+  value: number
+}
+
+export interface ISMNonManufacturingNextRelease {
+  date: string
+  label: string
+}
+
+// ISM非製造業サブインデックスデータの型
+export interface ISMNonManufacturingComponentsData {
+  data: ISMNonManufacturingComponentsItem[]
+  latest: ISMNonManufacturingComponentsItem | null
+  next_release: ISMNonManufacturingNextRelease | null
+  last_updated: string | null
+}
+
+export interface ISMNonManufacturingComponentsItem {
+  date: string
+  new_orders: number | null
+  business_activity: number | null
+  employment: number | null
+  supplier_deliveries: number | null
+  prices: number | null
+  inventories: number | null
+  order_inventory_balance: number | null
+  order_inventory_balance_3ma: number | null
+}
+
+// 次回ISM非製造業発表情報の型
+export interface NextISMNonManufacturingRelease {
+  date: string
+  date_str: string
+  title: string
+  target_month: string
+  type: string
 }
 
 /**

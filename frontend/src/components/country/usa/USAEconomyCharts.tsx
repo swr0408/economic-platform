@@ -11,6 +11,8 @@ import GDPNowChart from './economy/GDPNowChart'
 import ISMManufacturingChart from './economy/ISMManufacturingChart'
 import ISMComponentsChart from './economy/ISMComponentsChart'
 import OrderInventoryBalanceChart from './economy/OrderInventoryBalanceChart'
+import ISMNonManufacturingChart from './economy/ISMNonManufacturingChart'
+import ISMNonManufacturingComponentsChart from './economy/ISMNonManufacturingComponentsChart'
 
 /**
  * 米国経済チャート群
@@ -122,6 +124,20 @@ export default function USAEconomyCharts() {
       <div id="order-inventory-balance">
         <OrderInventoryBalanceChart
           data={dashboardData?.ism_components ?? null}
+        />
+      </div>
+
+      {/* ISM非製造業景況指数チャート */}
+      <div id="ism-non-manufacturing">
+        <ISMNonManufacturingChart
+          data={dashboardData?.ism_non_manufacturing ?? null}
+        />
+      </div>
+
+      {/* ISM非製造業サブインデックスチャート */}
+      <div id="ism-non-manufacturing-components">
+        <ISMNonManufacturingComponentsChart
+          data={dashboardData?.ism_non_manufacturing_components ?? null}
         />
       </div>
     </div>

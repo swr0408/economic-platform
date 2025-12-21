@@ -1,24 +1,23 @@
 """
-ISM製造業景況指数サービス
-Investing.comからスクレイピングでISM製造業PMIデータを取得
+ISM非製造業景況指数サービス
+Investing.comからスクレイピングでISM非製造業PMIデータを取得
 
 データソース:
-- Investing.com: https://jp.investing.com/economic-calendar/ism-manufacturing-pmi-173
+- Investing.com: https://jp.investing.com/economic-calendar/ism-non-manufacturing-pmi-176
 
 発表スケジュール:
-- 毎月第1営業日付近（日程は変動）
+- 毎月第3営業日付近（製造業より2日遅い）
 - Investing.comページから次回発表日を取得
 
 キャッシュ方式: last_updated判定方式
 - Investing.comから取得した次回発表日で判定
 - 発表日を過ぎたらキャッシュを無効化して再取得
 """
-import json
 import re
+import calendar
 from datetime import datetime, date, timedelta
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
-from pathlib import Path
 
 from bs4 import BeautifulSoup
 
@@ -30,24 +29,20 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
 # データソースURL
-INVESTING_URL = "https://jp.investing.com/economic-calendar/ism-manufacturing-pmi-173"
-
-# スケジュールファイルパス
-SCHEDULE_DIR = Path(__file__).parent.parent.parent / "schedules"
-SCHEDULE_FILE = SCHEDULE_DIR / "ism_manufacturing_schedule.json"
+INVESTING_URL = "https://jp.investing.com/economic-calendar/ism-non-manufacturing-pmi-176"
 
 
-class ISMManufacturingService:
-    """ISM製造業景況指数サービス"""
+class ISMNonManufacturingService:
+    """ISM非製造業景況指数サービス"""
 
-    CACHE_KEY = "investing:ism_manufacturing"
+    CACHE_KEY = "investing:ism_non_manufacturing"
 
-    def get_ism_manufacturing_data(
+    def get_ism_non_manufacturing_data(
         self,
         force_refresh: bool = False
     ) -> Dict[str, Any]:
         """
-        ISM製造業PMIデータを取得
+        ISM非製造業PMIデータを取得
 
         Args:
             force_refresh: キャッシュを無視して再取得
@@ -124,12 +119,12 @@ class ISMManufacturingService:
         """
         キャッシュを更新すべきかどうかを判定（期間チェック方式）
 
-        ISM製造業景況指数の発表スケジュール:
-        - 発表期間: 毎月1日〜10日（第1営業日付近）
+        ISM非製造業景況指数の発表スケジュール:
+        - 発表期間: 毎月3日〜10日（第3営業日付近）
         - 発表時刻: 23:00 JST（夏時間）/ 0:00 JST（冬時間）
 
         判定ロジック:
-        - 発表期間内（1日〜10日）で、最終更新が今月の発表期間開始より前なら更新必要
+        - 発表期間内（3日〜10日）で、最終更新が今月の発表期間開始より前なら更新必要
 
         Args:
             last_updated_str: 最終更新日時のISO文字列
@@ -146,10 +141,10 @@ class ISMManufacturingService:
 
             now = datetime.now(JST)
 
-            # 発表期間: 毎月1日〜10日
-            if 1 <= now.day <= 10:
-                # 今月の発表期間開始日時（1日 0:00 JST）
-                release_window_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+            # 発表期間: 毎月3日〜10日（非製造業は製造業より2日遅い）
+            if 3 <= now.day <= 10:
+                # 今月の発表期間開始日時（3日 0:00 JST）
+                release_window_start = now.replace(day=3, hour=0, minute=0, second=0, microsecond=0)
 
                 # 最終更新が今月の発表期間開始より前なら更新必要
                 if last_updated < release_window_start:
@@ -161,12 +156,70 @@ class ISMManufacturingService:
             print(f"Error checking refresh status: {e}")
             return False
 
+    def _get_next_release(self) -> Optional[Dict[str, str]]:
+        """次回発表日を取得（キャッシュから、またはビジネスカレンダーから計算）"""
+        try:
+            # キャッシュから取得
+            cached_data = redis_client.get(self.CACHE_KEY)
+            if cached_data and cached_data.get("next_release"):
+                return cached_data.get("next_release")
+            # フォールバック: ビジネスカレンダーから計算
+            return self._calculate_next_release()
+        except Exception as e:
+            print(f"Error getting ISM Non-Manufacturing next release: {e}")
+            return self._calculate_next_release()
+
+    def _calculate_next_release(self) -> Optional[Dict[str, str]]:
+        """ビジネスカレンダーに基づいて次回発表日を計算（第3営業日）"""
+        try:
+            today = date.today()
+
+            # 今月または来月の第3営業日を計算
+            for month_offset in [0, 1]:
+                year = today.year
+                month = today.month + month_offset
+                if month > 12:
+                    year += 1
+                    month = 1
+
+                # 第3営業日を計算
+                business_days = 0
+                day = 1
+                last_day = calendar.monthrange(year, month)[1]
+
+                while day <= last_day:
+                    check_date = date(year, month, day)
+                    if check_date.weekday() < 5:  # 月-金
+                        business_days += 1
+                        if business_days == 3:
+                            # 今日より後の日付なら採用
+                            if check_date > today:
+                                # 対象月は前月
+                                if month == 1:
+                                    target_year = year - 1
+                                    target_month = 12
+                                else:
+                                    target_year = year
+                                    target_month = month - 1
+
+                                return {
+                                    "date": check_date.strftime("%Y-%m-%d"),
+                                    "label": f"ISM非製造業景況指数（{target_year}年{target_month}月分）"
+                                }
+                            break
+                    day += 1
+
+            return None
+        except Exception as e:
+            print(f"Error calculating next release: {e}")
+            return None
+
     def _scrape_investing_data(self) -> Optional[Dict[str, Any]]:
-        """Playwrightを使用してInvesting.comからISM製造業PMIデータをスクレイピング"""
+        """Playwrightを使用してInvesting.comからISM非製造業PMIデータをスクレイピング"""
         try:
             from playwright.sync_api import sync_playwright
 
-            print(f"Scraping ISM Manufacturing PMI from Investing.com...")
+            print("Scraping ISM Non-Manufacturing PMI from Investing.com...")
 
             with sync_playwright() as p:
                 # Chromiumで試行、失敗したらFirefoxにフォールバック
@@ -244,7 +297,7 @@ class ISMManufacturingService:
             print("Playwright not installed")
             return None
         except Exception as e:
-            print(f"Error scraping ISM Manufacturing PMI: {e}")
+            print(f"Error scraping ISM Non-Manufacturing PMI: {e}")
             import traceback
             traceback.print_exc()
             return None
@@ -262,8 +315,8 @@ class ISMManufacturingService:
             # 次回発表日は期間チェック方式のため不要（スクレイピング削減）
             # next_releaseはキャッシュに保存しない
 
-            # 履歴テーブルを取得
-            table = soup.find("table", {"id": "eventHistoryTable173"})
+            # 履歴テーブルを取得（ISM非製造業のテーブルID: eventHistoryTable176）
+            table = soup.find("table", {"id": "eventHistoryTable176"})
             if not table:
                 # 別のセレクタで試す
                 table = soup.find("table", {"class": lambda x: x and "history" in x.lower()})
@@ -282,7 +335,7 @@ class ISMManufacturingService:
 
             if data:
                 result["data"] = data
-                print(f"Scraped {len(data)} ISM Manufacturing PMI records")
+                print(f"Scraped {len(data)} ISM Non-Manufacturing PMI records")
 
             return result
 
@@ -295,9 +348,6 @@ class ISMManufacturingService:
     def _extract_next_release(self, soup: BeautifulSoup) -> Optional[Dict[str, str]]:
         """次回発表日を抽出"""
         try:
-            # 「次回発表」セクションを探す
-            # Investing.comでは通常「次回発表」というラベルの近くに日付がある
-
             # パターン1: 特定のクラスや属性で探す
             next_release_selectors = [
                 '[data-test="next-event-date"]',
@@ -318,7 +368,6 @@ class ISMManufacturingService:
             for text in soup.find_all(string=re.compile(r'次回発表|次回|Next')):
                 parent = text.find_parent()
                 if parent:
-                    # 親要素の近くから日付を探す
                     date_text = parent.get_text(strip=True)
                     parsed = self._parse_next_release_date(date_text)
                     if parsed:
@@ -351,7 +400,7 @@ class ISMManufacturingService:
                 date_str = f"{year:04d}-{month:02d}-{day:02d}"
                 return {
                     "date": date_str,
-                    "label": f"ISM製造業景況指数（{year}年{month}月発表）"
+                    "label": f"ISM非製造業景況指数（{year}年{month}月発表）"
                 }
 
             # パターン: MM/DD/YYYY
@@ -363,7 +412,7 @@ class ISMManufacturingService:
                 date_str = f"{year:04d}-{month:02d}-{day:02d}"
                 return {
                     "date": date_str,
-                    "label": f"ISM製造業景況指数（{year}年{month}月発表）"
+                    "label": f"ISM非製造業景況指数（{year}年{month}月発表）"
                 }
 
             return None
@@ -383,11 +432,6 @@ class ISMManufacturingService:
         取得ロジック（修正値反映のため）:
         - 1行目: 結果列→最新月データ、前回列→前月データ
         - 2行目以降: 前回列→その行の前月データ
-
-        例:
-        1行目(12月発表/11月データ): 結果=48.2(11月), 前回=48.7(10月)
-        2行目(11月発表/10月データ): 前回=49.1(9月)
-        3行目(10月発表/9月データ): 前回=48.7(8月)
         """
         result = []
 
@@ -508,20 +552,6 @@ class ISMManufacturingService:
         except Exception:
             return None
 
-    def _parse_japanese_date(self, date_text: str) -> Optional[str]:
-        """日本語日付をパース（例: "2024年12月02日" → "2024-12-02"）"""
-        try:
-            # パターン: YYYY年MM月DD日
-            match = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", date_text)
-            if match:
-                year = int(match.group(1))
-                month = int(match.group(2))
-                day = int(match.group(3))
-                return f"{year:04d}-{month:02d}-{day:02d}"
-            return None
-        except Exception:
-            return None
-
     def _parse_value(self, text: str) -> Optional[float]:
         """数値テキストをパース"""
         try:
@@ -562,4 +592,4 @@ class ISMManufacturingService:
 
 
 # シングルトンインスタンス
-ism_manufacturing_service = ISMManufacturingService()
+ism_non_manufacturing_service = ISMNonManufacturingService()
