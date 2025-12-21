@@ -72,6 +72,12 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'order-inventory-balance', name: 'ISM受注在庫バランス' },
           { code: 'ism-non-manufacturing', name: 'ISM非製造業景況指数' },
           { code: 'ism-non-manufacturing-components', name: 'ISM非製造業サブインデックス' },
+          { code: 'empire-state', name: 'NY連銀製造業景気指数' },
+          { code: 'philadelphia-fed', name: 'フィラデルフィア連銀製造業景気指数' },
+          { code: 'nfib', name: 'NFIB中小企業楽観指数' },
+          { code: 'nfib-capex', name: 'NFIB設備投資計画' },
+          { code: 'industrial-production', name: '鉱工業生産' },
+          { code: 'capacity-utilization', name: '設備稼働率' },
         ],
       },
       {

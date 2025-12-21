@@ -66,6 +66,12 @@ export interface USAEconomyData {
   ism_components: ISMComponentsData | null
   ism_non_manufacturing: ISMNonManufacturingData | null
   ism_non_manufacturing_components: ISMNonManufacturingComponentsData | null
+  empire_state: EmpireStateData | null
+  philadelphia_fed: PhiladelphiaFedData | null
+  nfib: NFIBData | null
+  nfib_capex: NFIBCapexData | null
+  industrial_production: IndustrialProductionData | null
+  capacity_utilization: CapacityUtilizationData | null
   next_gdp_release: NextGDPRelease | null
   next_ism_non_manufacturing_release: NextISMNonManufacturingRelease | null
 }
@@ -174,6 +180,7 @@ export interface NFCIData {
 export interface NFCIItem {
   date: string
   value: number
+  [key: string]: string | number | null | undefined
 }
 
 // GDPNow（リアルタイムGDP予測）データの型
@@ -272,6 +279,132 @@ export interface NextISMNonManufacturingRelease {
   title: string
   target_month: string
   type: string
+}
+
+// NY連銀製造業景気指数データの型
+export interface EmpireStateData {
+  data: EmpireStateItem[]
+  latest: EmpireStateItem | null
+  next_release: EmpireStateNextRelease | null
+  last_updated: string | null
+}
+
+export interface EmpireStateItem {
+  date: string
+  current: number | null
+  future: number | null
+}
+
+export interface EmpireStateNextRelease {
+  date: string
+  label: string
+}
+
+// フィラデルフィア連銀製造業景気指数データの型
+export interface PhiladelphiaFedData {
+  data: PhiladelphiaFedItem[]
+  latest: PhiladelphiaFedItem | null
+  next_release: PhiladelphiaFedNextRelease | null
+  series_config: Record<string, PhiladelphiaFedSeriesConfig> | null
+  last_updated: string | null
+}
+
+export interface PhiladelphiaFedItem {
+  date: string
+  general_activity_current: number | null
+  general_activity_future: number | null
+  new_orders_current: number | null
+  new_orders_future: number | null
+  prices_paid_current: number | null
+  prices_paid_future: number | null
+  employment_current: number | null
+  employment_future: number | null
+  capex_current: number | null
+  capex_future: number | null
+}
+
+export interface PhiladelphiaFedNextRelease {
+  date: string
+  label: string
+}
+
+export interface PhiladelphiaFedSeriesConfig {
+  name: string
+  color: string
+  group: string
+}
+
+// NFIB中小企業楽観指数データの型
+export interface NFIBData {
+  data: NFIBItem[]
+  latest: NFIBItem | null
+  next_release: NFIBNextRelease | null
+  last_updated: string | null
+}
+
+export interface NFIBItem {
+  date: string
+  value: number
+  [key: string]: string | number | null | undefined
+}
+
+export interface NFIBNextRelease {
+  date: string
+  label: string
+}
+
+// NFIB中小企業設備投資計画データの型
+export interface NFIBCapexData {
+  data: NFIBCapexItem[]
+  latest: NFIBCapexItem | null
+  next_release: NFIBNextRelease | null
+  last_updated: string | null
+}
+
+export interface NFIBCapexItem {
+  date: string
+  value: number
+  [key: string]: string | number | null | undefined
+}
+
+// 鉱工業生産データの型
+export interface IndustrialProductionData {
+  data: IndustrialProductionItem[]
+  latest: IndustrialProductionItem | null
+  next_release: IndustrialProductionNextRelease | null
+  last_updated: string | null
+}
+
+export interface IndustrialProductionItem {
+  date: string
+  value: number
+  mom: number | null  // 前月比
+  yoy: number | null  // 前年比
+  [key: string]: string | number | null | undefined
+}
+
+export interface IndustrialProductionNextRelease {
+  date: string
+  label: string
+}
+
+// 設備稼働率データの型
+export interface CapacityUtilizationData {
+  data: CapacityUtilizationItem[]
+  latest: CapacityUtilizationItem | null
+  next_release: CapacityUtilizationNextRelease | null
+  last_updated: string | null
+}
+
+export interface CapacityUtilizationItem {
+  date: string
+  value: number
+  [key: string]: string | number | null | undefined
+}
+
+export interface CapacityUtilizationNextRelease {
+  date: string
+  label: string
 }
 
 /**

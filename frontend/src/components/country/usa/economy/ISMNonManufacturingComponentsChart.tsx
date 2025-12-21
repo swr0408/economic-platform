@@ -100,22 +100,6 @@ export default function ISMNonManufacturingComponentsChart({ data }: ISMNonManuf
     return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
-  const formatDateTime = (isoString: string | null): string => {
-    if (!isoString) return ''
-    try {
-      const date = new Date(isoString)
-      return date.toLocaleString('ja-JP', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      })
-    } catch {
-      return ''
-    }
-  }
-
   // 凡例クリックで表示/非表示を切り替え
   const handleLegendClick = (dataKey: string) => {
     const key = dataKey as SeriesKey
@@ -145,8 +129,8 @@ export default function ISMNonManufacturingComponentsChart({ data }: ISMNonManuf
       <ChartContainer
         title="ISM非製造業サブインデックス"
         showPeriodSelector={false}
-        dataSource="ISM / DBnomics"
-        sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-report-on-business/"
+        dataSource="ISM"
+        sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
       >
         {/* 最新値表示 */}
         <div
@@ -185,32 +169,6 @@ export default function ISMNonManufacturingComponentsChart({ data }: ISMNonManuf
               </span>
             </div>
           ))}
-        </div>
-
-        {/* 取得日時と次回発表日 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '8px 16px',
-            background: '#fff7e6',
-            borderRadius: 8,
-            borderLeft: '4px solid #faad14',
-          }}
-        >
-          {data.last_updated && (
-            <div style={{ fontSize: 11, color: '#999' }}>
-              取得日時: {formatDateTime(data.last_updated)}
-            </div>
-          )}
-          {data.next_release && (
-            <div style={{ textAlign: 'right' }}>
-              <span style={{ fontSize: 11, color: '#999' }}>次回発表: </span>
-              <span style={{ fontSize: 12, color: '#666' }}>{data.next_release.date}</span>
-            </div>
-          )}
         </div>
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />

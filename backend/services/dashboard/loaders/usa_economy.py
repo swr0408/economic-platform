@@ -1,7 +1,9 @@
 """
 米国経済ダッシュボードローダー
 GDP成長率、GDP寄与度、GDP項目別成長率、潜在成長率、銀行貸し出し態度、FCI-G、NFCI、GDPNow、
-ISM製造業、ISMサブインデックス、ISM非製造業、ISM非製造業サブインデックスを一括取得
+ISM製造業、ISMサブインデックス、ISM非製造業、ISM非製造業サブインデックス、
+NY連銀製造業景気指数、フィラデルフィア連銀製造業景気指数、NFIB中小企業楽観指数、
+NFIB中小企業設備投資計画、鉱工業生産、設備稼働率を一括取得
 
 キャッシュ更新判定: last_updated方式（スケジュール時刻ベース）
 """
@@ -29,6 +31,12 @@ class USAEconomyLoader(BaseDashboardLoader):
     - ism_components: ISM製造業サブインデックス - DBnomics（毎月第1営業日）
     - ism_non_manufacturing: ISM非製造業景況指数 - DBnomics（毎月第3営業日）
     - ism_non_manufacturing_components: ISM非製造業サブインデックス - DBnomics（毎月第3営業日）
+    - empire_state: NY連銀製造業景気指数 - FRED（毎月15日付近）
+    - philadelphia_fed: フィラデルフィア連銀製造業景気指数 - FRED（毎月第3木曜日）
+    - nfib: NFIB中小企業楽観指数 - NFIB PDF（毎月第2火曜日）
+    - nfib_capex: NFIB中小企業設備投資計画 - NFIB PDF（毎月第2火曜日）
+    - industrial_production: 鉱工業生産 - FRED INDPRO（毎月14〜18日頃）
+    - capacity_utilization: 設備稼働率 - FRED TCU（毎月14〜18日頃、鉱工業生産と同時）
     - next_gdp_release: 次回GDP発表情報
     - next_ism_non_manufacturing_release: 次回ISM非製造業発表情報
 
@@ -70,6 +78,11 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.ism_components_service import ism_components_service
         from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
         from services.usa.ism_non_manufacturing_components_service import ism_non_manufacturing_components_service
+        from services.usa.empire_state_service import empire_state_service
+        from services.usa.philadelphia_fed_service import philadelphia_fed_service
+        from services.usa.nfib_service import nfib_service
+        from services.usa.industrial_production_service import industrial_production_service
+        from services.usa.capacity_utilization_service import capacity_utilization_service
         from services.usa.bea_schedule_service import bea_schedule_service
 
         result = {
@@ -85,6 +98,12 @@ class USAEconomyLoader(BaseDashboardLoader):
             "ism_components": None,
             "ism_non_manufacturing": None,
             "ism_non_manufacturing_components": None,
+            "empire_state": None,
+            "philadelphia_fed": None,
+            "nfib": None,
+            "nfib_capex": None,
+            "industrial_production": None,
+            "capacity_utilization": None,
             "next_gdp_release": None,
             "next_ism_non_manufacturing_release": None,
         }
@@ -104,6 +123,12 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_ism_components, ism_components_service): "ism_components",
                 executor.submit(self._get_ism_non_manufacturing, ism_non_manufacturing_service): "ism_non_manufacturing",
                 executor.submit(self._get_ism_non_manufacturing_components, ism_non_manufacturing_components_service): "ism_non_manufacturing_components",
+                executor.submit(self._get_empire_state, empire_state_service): "empire_state",
+                executor.submit(self._get_philadelphia_fed, philadelphia_fed_service): "philadelphia_fed",
+                executor.submit(self._get_nfib, nfib_service): "nfib",
+                executor.submit(self._get_nfib_capex, nfib_service): "nfib_capex",
+                executor.submit(self._get_industrial_production, industrial_production_service): "industrial_production",
+                executor.submit(self._get_capacity_utilization, capacity_utilization_service): "capacity_utilization",
                 executor.submit(self._get_next_gdp_release, bea_schedule_service): "next_gdp_release",
                 executor.submit(self._get_next_ism_non_manufacturing_release, ism_non_manufacturing_service): "next_ism_non_manufacturing_release",
             }
@@ -319,4 +344,107 @@ class USAEconomyLoader(BaseDashboardLoader):
             return service._get_next_release()
         except Exception as e:
             print(f"Error getting next ISM Non-Manufacturing release: {e}")
+            return None
+
+    def _get_empire_state(self, service) -> Optional[dict]:
+        """NY連銀製造業景気指数データを取得"""
+        try:
+            response = service.get_empire_state_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Empire State data: {e}")
+            return None
+
+    def _get_philadelphia_fed(self, service) -> Optional[dict]:
+        """フィラデルフィア連銀製造業景気指数データを取得"""
+        try:
+            response = service.get_philadelphia_fed_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "series_config": response.get("series_config"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Philadelphia Fed data: {e}")
+            return None
+
+    def _get_nfib(self, service) -> Optional[dict]:
+        """NFIB中小企業楽観指数データを取得"""
+        try:
+            response = service.get_nfib_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NFIB data: {e}")
+            return None
+
+    def _get_nfib_capex(self, service) -> Optional[dict]:
+        """NFIB中小企業設備投資計画データを取得"""
+        try:
+            response = service.get_capex_plans_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NFIB CapEx data: {e}")
+            return None
+
+    def _get_industrial_production(self, service) -> Optional[dict]:
+        """鉱工業生産データを取得"""
+        try:
+            response = service.get_industrial_production_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Industrial Production data: {e}")
+            return None
+
+    def _get_capacity_utilization(self, service) -> Optional[dict]:
+        """設備稼働率データを取得"""
+        try:
+            response = service.get_capacity_utilization_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Capacity Utilization data: {e}")
             return None

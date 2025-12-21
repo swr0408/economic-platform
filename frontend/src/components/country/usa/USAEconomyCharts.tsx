@@ -13,6 +13,12 @@ import ISMComponentsChart from './economy/ISMComponentsChart'
 import OrderInventoryBalanceChart from './economy/OrderInventoryBalanceChart'
 import ISMNonManufacturingChart from './economy/ISMNonManufacturingChart'
 import ISMNonManufacturingComponentsChart from './economy/ISMNonManufacturingComponentsChart'
+import EmpireStateChart from './economy/EmpireStateChart'
+import PhiladelphiaFedChart from './economy/PhiladelphiaFedChart'
+import NFIBOptimismChart from './economy/NFIBOptimismChart'
+import NFIBCapexChart from './economy/NFIBCapexChart'
+import IndustrialProductionChart from './economy/IndustrialProductionChart'
+import CapacityUtilizationChart from './economy/CapacityUtilizationChart'
 
 /**
  * 米国経済チャート群
@@ -138,6 +144,48 @@ export default function USAEconomyCharts() {
       <div id="ism-non-manufacturing-components">
         <ISMNonManufacturingComponentsChart
           data={dashboardData?.ism_non_manufacturing_components ?? null}
+        />
+      </div>
+
+      {/* NY連銀製造業景気指数チャート */}
+      <div id="empire-state">
+        <EmpireStateChart
+          data={dashboardData?.empire_state ?? null}
+        />
+      </div>
+
+      {/* フィラデルフィア連銀製造業景気指数チャート */}
+      <div id="philadelphia-fed">
+        <PhiladelphiaFedChart
+          data={dashboardData?.philadelphia_fed ?? null}
+        />
+      </div>
+
+      {/* NFIB中小企業楽観指数チャート */}
+      <div id="nfib">
+        <NFIBOptimismChart
+          data={dashboardData?.nfib ?? null}
+        />
+      </div>
+
+      {/* NFIB中小企業設備投資計画チャート */}
+      <div id="nfib-capex">
+        <NFIBCapexChart
+          data={dashboardData?.nfib_capex ?? null}
+        />
+      </div>
+
+      {/* 鉱工業生産チャート */}
+      <div id="industrial-production">
+        <IndustrialProductionChart
+          data={dashboardData?.industrial_production ?? null}
+        />
+      </div>
+
+      {/* 設備稼働率チャート */}
+      <div id="capacity-utilization">
+        <CapacityUtilizationChart
+          data={dashboardData?.capacity_utilization ?? null}
         />
       </div>
     </div>

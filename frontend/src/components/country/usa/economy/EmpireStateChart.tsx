@@ -13,15 +13,29 @@ import {
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { ISMComponentsData } from '../../../../hooks/useDashboardData'
+import type { EmpireStateData } from '../../../../hooks/useDashboardData'
 
-interface OrderInventoryBalanceChartProps {
-  data: ISMComponentsData | null
+interface EmpireStateChartProps {
+  data: EmpireStateData | null
 }
 
-export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalanceChartProps) {
+// シリーズ設定
+const SERIES_CONFIG = {
+  current: {
+    name: '現況指数',
+    color: '#1890ff',
+    strokeWidth: 2,
+  },
+  future: {
+    name: '期待指数',
+    color: '#fa541c',
+    strokeWidth: 2,
+  },
+}
+
+export default function EmpireStateChart({ data }: EmpireStateChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
-  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set(['balance']))
+  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set(['future']))
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -31,8 +45,8 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
       .map((item) => ({
         date: item.date,
-        balance: item.order_inventory_balance,
-        balance_3ma: item.order_inventory_balance_3ma,
+        current: item.current,
+        future: item.future,
       }))
   }, [data])
 
@@ -45,8 +59,8 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2010年から
-      cutoffDate.setFullYear(2010, 0, 1)
+      // デフォルトは2020年から
+      cutoffDate.setFullYear(2020, 0, 1)
     } else {
       // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
@@ -62,12 +76,12 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="ISM製造業受注在庫バランス" />
+    return <LoadingChart title="NY連銀製造業景気指数" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="ISM製造業受注在庫バランス" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="NY連銀製造業景気指数" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -75,8 +89,8 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
     )
   }
 
-  const formatValue = (value: number | null | undefined) => {
-    if (value === null || value === undefined) return 'N/A'
+  const formatValue = (value: number | null) => {
+    if (value === null) return 'N/A'
     return value.toFixed(1)
   }
 
@@ -101,82 +115,67 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
 
   // 最新値を取得
   const latestData = data.latest
-  const latestBalance = latestData?.order_inventory_balance
-  const latestBalance3MA = latestData?.order_inventory_balance_3ma
+  const latestCurrent = latestData?.current ?? null
+  const latestFuture = latestData?.future ?? null
 
   return (
-    <div id="order-inventory-balance-chart">
+    <div id="empire-state-chart">
       <ChartContainer
-        title="ISM製造業受注在庫バランス"
+        title="NY連銀製造業景気指数"
         showPeriodSelector={false}
-        dataSource="ISM"
-        sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
+        dataSource="Federal Reserve Bank of New York / FRED"
+        sourceUrl="https://www.newyorkfed.org/survey/empire/empiresurvey_overview"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 16,
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
-          <div style={{ flex: '0 0 auto' }}>
-            <span style={{ fontSize: 12, color: '#666' }}>最新: </span>
-            {latestData && (
-              <span style={{ fontSize: 12, color: '#999' }}>
-                ({formatDateLabel(latestData.date)})
-              </span>
-            )}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span
-              style={{
-                width: 12,
-                height: 12,
-                borderRadius: 2,
-                backgroundColor: '#228B22',
-                display: 'inline-block',
-              }}
-            />
-            <span style={{ fontSize: 12, color: '#666' }}>3ヶ月平均:</span>
-            <span style={{ fontSize: 14, fontWeight: 'bold', color: '#228B22' }}>
-              {formatValue(latestBalance3MA)}
-            </span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span
-              style={{
-                width: 12,
-                height: 12,
-                borderRadius: 2,
-                backgroundColor: 'rgba(34, 139, 34, 0.5)',
-                display: 'inline-block',
-              }}
-            />
-            <span style={{ fontSize: 12, color: '#666' }}>当月:</span>
-            <span style={{ fontSize: 14, fontWeight: 'bold', color: 'rgba(34, 139, 34, 0.8)' }}>
-              {formatValue(latestBalance)}
-            </span>
-          </div>
-        </div>
-
-        {/* 次回発表日 */}
-        {data.next_release && (
+        {latestData && (
           <div
             style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
               marginBottom: 12,
-              padding: '8px 16px',
-              background: '#fff7e6',
+              padding: '8px 12px',
+              background: '#f5f5f5',
               borderRadius: 8,
-              borderLeft: '4px solid #faad14',
             }}
           >
-            <span style={{ fontSize: 11, color: '#999' }}>次回発表: </span>
-            <span style={{ fontSize: 12, color: '#666' }}>{data.next_release.date}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+              <div>
+                <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+                <span
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    color: '#1890ff',
+                  }}
+                >
+                  {formatValue(latestCurrent)}
+                </span>
+                <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
+                  ({formatDateLabel(latestData.date)})
+                </span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 2,
+                    backgroundColor: SERIES_CONFIG.future.color,
+                    display: 'inline-block',
+                  }}
+                />
+                <span style={{ fontSize: 11, color: '#666' }}>期待指数:</span>
+                <span style={{ fontSize: 13, fontWeight: 'bold', color: SERIES_CONFIG.future.color }}>
+                  {formatValue(latestFuture)}
+                </span>
+              </div>
+            </div>
+            {data.next_release && (
+              <div style={{ fontSize: 11, color: '#666', textAlign: 'right' }}>
+                <div>次回発表: {data.next_release.date}</div>
+              </div>
+            )}
           </div>
         )}
 
@@ -195,7 +194,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
               interval="preserveStartEnd"
             />
             <YAxis
-              domain={['dataMin - 2', 'dataMax + 2']}
+              domain={['dataMin - 5', 'dataMax + 5']}
               tick={{ fontSize: 11 }}
               tickFormatter={(v) => v.toFixed(0)}
             />
@@ -221,31 +220,30 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
               y={0}
               stroke="#000"
               strokeWidth={1}
-              strokeDasharray="4 4"
             />
 
-            {/* 受注在庫バランス（3ヶ月移動平均） - メインライン */}
+            {/* 現況指数 */}
             <Line
               type="monotone"
-              dataKey="balance_3ma"
-              stroke="#228B22"
-              strokeWidth={2}
+              dataKey="current"
+              stroke={SERIES_CONFIG.current.color}
+              strokeWidth={SERIES_CONFIG.current.strokeWidth}
               dot={false}
-              name="受注在庫バランス（3ヶ月平均）"
-              hide={hiddenSeries.has('balance_3ma')}
+              name={SERIES_CONFIG.current.name}
+              hide={hiddenSeries.has('current')}
               isAnimationActive={false}
               connectNulls={true}
             />
 
-            {/* 受注在庫バランス（当月） - 補助ライン */}
+            {/* 期待指数 */}
             <Line
               type="monotone"
-              dataKey="balance"
-              stroke="rgba(34, 139, 34, 0.5)"
-              strokeWidth={1}
+              dataKey="future"
+              stroke={SERIES_CONFIG.future.color}
+              strokeWidth={SERIES_CONFIG.future.strokeWidth}
               dot={false}
-              name="受注在庫バランス（当月）"
-              hide={hiddenSeries.has('balance')}
+              name={SERIES_CONFIG.future.name}
+              hide={hiddenSeries.has('future')}
               isAnimationActive={false}
               connectNulls={true}
             />

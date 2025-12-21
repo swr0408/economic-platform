@@ -48,6 +48,7 @@ RUN pip install --no-cache-dir \
     lxml \
     playwright \
     PyMuPDF \
+    pdfplumber \
     Pillow \
     APScheduler \
     pytz

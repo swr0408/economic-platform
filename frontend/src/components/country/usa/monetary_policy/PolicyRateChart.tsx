@@ -160,7 +160,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
           showZeroLine={true}
           showFiftyLine={false}
           connectNulls={true}
-          hideLegend={false}
+          hideLegend={true}
           showDefaultTooltip={false}
           domain={['dataMin - 0.25', 'dataMax + 0.25']}
         >

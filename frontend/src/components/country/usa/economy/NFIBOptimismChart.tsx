@@ -3,25 +3,22 @@ import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { ISMNonManufacturingData } from '../../../../hooks/useDashboardData'
+import type { NFIBData } from '../../../../hooks/useDashboardData'
 
-interface ISMNonManufacturingChartProps {
-  data: ISMNonManufacturingData | null
+interface NFIBOptimismChartProps {
+  data: NFIBData | null
 }
 
-export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingChartProps) {
+export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
 
-  // データを日付昇順にソートしてDataPoint型に変換
+  // データを日付昇順にソート
   const chartData = useMemo(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    return [...data.data]
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-      .map((item) => ({
-        date: item.date,
-        value: item.value,
-      }))
+    return [...data.data].sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    )
   }, [data])
 
   // 期間フィルタリング
@@ -33,8 +30,8 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2020年から
-      cutoffDate.setFullYear(2020, 0, 1)
+      // デフォルトは2010年から
+      cutoffDate.setFullYear(2010, 0, 1)
     } else {
       // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
@@ -50,12 +47,12 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
 
   // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="ISM非製造業景況指数" />
+    return <LoadingChart title="NFIB中小企業楽観指数" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="ISM非製造業景況指数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="NFIB中小企業楽観指数" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -73,39 +70,23 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
     return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
-  const formatDateTime = (isoString: string | null): string => {
-    if (!isoString) return ''
-    try {
-      const date = new Date(isoString)
-      return date.toLocaleString('ja-JP', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      })
-    } catch {
-      return ''
-    }
-  }
-
-  // グラフの色（緑系、製造業の青と区別）
-  const CHART_COLOR = '#52c41a'
+  // グラフの色
+  const CHART_COLOR = '#722ed1'
 
   return (
-    <div id="ism-non-manufacturing-chart">
+    <div id="nfib-chart">
       <ChartContainer
-        title="ISM非製造業景況指数"
+        title="NFIB中小企業楽観指数"
         showPeriodSelector={false}
-        dataSource="ISM / DBnomics"
-        sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
+        dataSource="NFIB"
+        sourceUrl="https://www.nfib.com/surveys/small-business-economic-trends/"
       >
         {/* 最新値表示 */}
         <div
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             marginBottom: 12,
             padding: '12px 16px',
             background: '#f5f5f5',
@@ -130,23 +111,13 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
                 </span>
               </>
             )}
-            {data.last_updated && (
-              <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
-                取得日時: {formatDateTime(data.last_updated)}
-              </div>
-            )}
           </div>
-          {data.next_release && (
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: 11, color: '#999' }}>次回発表:</div>
-              <div style={{ fontSize: 12, color: '#666', fontWeight: 500 }}>
-                {data.next_release.date}
-              </div>
-              <div style={{ fontSize: 11, color: '#1890ff' }}>
-                {data.next_release.label}
-              </div>
-            </div>
-          )}
+          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+            {data.next_release && (
+              <div>次回発表: {data.next_release.date}</div>
+            )}
+            <div>毎月第2火曜日発表</div>
+          </div>
         </div>
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
@@ -155,19 +126,18 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
           data={filteredData}
           dataKey="value"
           color={CHART_COLOR}
-          name="ISM非製造業PMI"
+          name="NFIB楽観指数"
           height={450}
           tickFormatter={formatValue}
-          tooltipFormatter={(value: number) => formatValue(value)}
-          tooltipLabelFormatter={(dateStr: string) => formatDateLabel(dateStr)}
+          tooltipFormatter={formatValue}
+          tooltipLabelFormatter={formatDateLabel}
           xAxisTickFormatter={(dateStr: string) => {
             const date = new Date(dateStr)
             return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
           }}
           enableDynamicTicks={true}
           showZeroLine={false}
-          showFiftyLine={true}
-          fiftyLineValue={50}
+          showFiftyLine={false}
           connectNulls={true}
           hideLegend={true}
         />

@@ -120,11 +120,11 @@ class ISMNonManufacturingService:
         キャッシュを更新すべきかどうかを判定（期間チェック方式）
 
         ISM非製造業景況指数の発表スケジュール:
-        - 発表期間: 毎月3日〜10日（第3営業日付近）
+        - 発表期間: 毎月3日〜8日（第3営業日付近）
         - 発表時刻: 23:00 JST（夏時間）/ 0:00 JST（冬時間）
 
         判定ロジック:
-        - 発表期間内（3日〜10日）で、最終更新が今月の発表期間開始より前なら更新必要
+        - 発表期間内（3日〜8日）で、最終更新が今月の発表期間開始より前なら更新必要
 
         Args:
             last_updated_str: 最終更新日時のISO文字列
@@ -141,8 +141,8 @@ class ISMNonManufacturingService:
 
             now = datetime.now(JST)
 
-            # 発表期間: 毎月3日〜10日（非製造業は製造業より2日遅い）
-            if 3 <= now.day <= 10:
+            # 発表期間: 毎月3日〜8日（非製造業は製造業より2日遅い）
+            if 3 <= now.day <= 8:
                 # 今月の発表期間開始日時（3日 0:00 JST）
                 release_window_start = now.replace(day=3, hour=0, minute=0, second=0, microsecond=0)
 
