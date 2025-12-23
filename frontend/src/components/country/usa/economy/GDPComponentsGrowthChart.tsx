@@ -125,13 +125,6 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
   }) => {
     if (!active || !payload || payload.length === 0) return null
 
-    // 日付を四半期形式に変換
-    const formatQuarter = (dateStr: string) => {
-      const d = new Date(dateStr)
-      const q = Math.floor(d.getMonth() / 3) + 1
-      return `${d.getFullYear()}Q${q}`
-    }
-
     return (
       <div
         style={{
@@ -143,7 +136,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
         }}
       >
         <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>
-          {formatQuarter(label || '')}
+          {label}
         </div>
         {payload.map((item, index) => {
           // 輸入は表示時に符号を戻す

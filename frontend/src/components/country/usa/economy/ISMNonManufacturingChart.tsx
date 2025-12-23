@@ -73,22 +73,6 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
     return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
-  const formatDateTime = (isoString: string | null): string => {
-    if (!isoString) return ''
-    try {
-      const date = new Date(isoString)
-      return date.toLocaleString('ja-JP', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      })
-    } catch {
-      return ''
-    }
-  }
-
   // グラフの色（緑系、製造業の青と区別）
   const CHART_COLOR = '#52c41a'
 
@@ -97,7 +81,7 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
       <ChartContainer
         title="ISM非製造業景況指数"
         showPeriodSelector={false}
-        dataSource="ISM / DBnomics"
+        dataSource="ISM"
         sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
       >
         {/* 最新値表示 */}
@@ -130,11 +114,6 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
                 </span>
               </>
             )}
-            {data.last_updated && (
-              <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
-                取得日時: {formatDateTime(data.last_updated)}
-              </div>
-            )}
           </div>
           {data.next_release && (
             <div style={{ textAlign: 'right' }}>
@@ -155,7 +134,7 @@ export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingCh
           data={filteredData}
           dataKey="value"
           color={CHART_COLOR}
-          name="ISM非製造業PMI"
+          name="ISM非製造業景況指数"
           height={450}
           tickFormatter={formatValue}
           tooltipFormatter={(value: number) => formatValue(value)}

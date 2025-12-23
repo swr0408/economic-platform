@@ -6,7 +6,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
   ReferenceLine,
   Bar,
@@ -15,39 +14,43 @@ import {
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { DurableGoodsData } from '../../../../hooks/useDashboardData'
+import type { TotalVehicleSalesData } from '../../../../hooks/useDashboardData'
 
-interface DurableGoodsChartProps {
-  data: DurableGoodsData | null
+interface TotalVehicleSalesChartProps {
+  data: TotalVehicleSalesData | null
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-type DataType = 'total' | 'ex_transport'
+type ViewMode = 'value' | 'yoy' | 'mom_table' | 'mom_chart'
 
 // 月名の定義
 const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 
-export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
+export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartProps) {
+  const [selectedPeriodValue, setSelectedPeriodValue] = useState<number | 'all' | 'default'>('default')
   const [selectedPeriodYoY, setSelectedPeriodYoY] = useState<number | 'all' | 'default'>('default')
   const [selectedPeriodMoM, setSelectedPeriodMoM] = useState<number | 'all' | 'default'>(3)
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
-  const [dataType, setDataType] = useState<DataType>('total')
-  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set())
+  const [viewMode, setViewMode] = useState<ViewMode>('value')
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    return [...data.data].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-    )
+    return [...data.data]
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
   }, [data])
 
   // 期間フィルタリング
   const filteredData = useMemo(() => {
     if (chartData.length === 0) return []
 
-    const selectedPeriod = viewMode === 'mom_chart' ? selectedPeriodMoM : selectedPeriodYoY
+    let selectedPeriod: number | 'all' | 'default'
+    if (viewMode === 'value') {
+      selectedPeriod = selectedPeriodValue
+    } else if (viewMode === 'mom_chart') {
+      selectedPeriod = selectedPeriodMoM
+    } else {
+      selectedPeriod = selectedPeriodYoY
+    }
 
     if (selectedPeriod === 'all') {
       return chartData
@@ -65,7 +68,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
       const itemDate = new Date(item.date)
       return itemDate >= cutoffDate
     })
-  }, [chartData, selectedPeriodYoY, selectedPeriodMoM, viewMode])
+  }, [chartData, selectedPeriodValue, selectedPeriodYoY, selectedPeriodMoM, viewMode])
 
   // テーブル用データ（年別×月別のマトリックス）- 前月比用
   const momTableData = useMemo(() => {
@@ -79,7 +82,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
       years.push(y)
     }
 
-    const monthlyData: Record<number, Record<number, { total: number | null; ex_transport: number | null }>> = {}
+    const monthlyData: Record<number, Record<number, number | null>> = {}
 
     chartData.forEach((item) => {
       const date = new Date(item.date)
@@ -90,10 +93,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         if (!monthlyData[year]) {
           monthlyData[year] = {}
         }
-        monthlyData[year][month] = {
-          total: item.mom,
-          ex_transport: item.ex_transport_mom
-        }
+        monthlyData[year][month] = item.mom
       }
     })
 
@@ -103,12 +103,12 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
   const hasData = chartData.length > 0
 
   if (data === null) {
-    return <LoadingChart title="耐久財受注（Durable Goods Orders）" />
+    return <LoadingChart title="自動車販売台数" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="耐久財受注（Durable Goods Orders）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="自動車販売台数" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -116,10 +116,10 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
     )
   }
 
-  const formatValue = (value: number | null | undefined) => {
+  const formatValue = (value: number | null | undefined, decimals: number = 2) => {
     if (value === null || value === undefined) return 'N/A'
     const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(2)}%`
+    return `${sign}${value.toFixed(decimals)}%`
   }
 
   const formatDateLabel = (dateStr: string): string => {
@@ -128,24 +128,11 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
     return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
-  const handleLegendClick = (dataKey: string) => {
-    setHiddenSeries((prev) => {
-      const next = new Set(prev)
-      if (next.has(dataKey)) {
-        next.delete(dataKey)
-      } else {
-        next.add(dataKey)
-      }
-      return next
-    })
-  }
-
   // グラフの色
   const COLORS = {
-    yoy: '#1890ff',
-    yoy_ex: '#722ed1',
-    mom: '#52c41a',
-    mom_ex: '#13c2c2',
+    value: '#722ed1',
+    yoy: '#52c41a',
+    mom: '#1890ff',
   }
 
   const latest = data.latest
@@ -154,12 +141,25 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
   const ViewModeButtons = () => (
     <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
       <button
+        onClick={() => setViewMode('value')}
+        style={{
+          padding: '6px 12px',
+          border: viewMode === 'value' ? '2px solid #722ed1' : '1px solid #d9d9d9',
+          borderRadius: 4,
+          background: viewMode === 'value' ? '#f9f0ff' : '#fff',
+          cursor: 'pointer',
+          fontWeight: viewMode === 'value' ? 'bold' : 'normal',
+        }}
+      >
+        原数値
+      </button>
+      <button
         onClick={() => setViewMode('yoy')}
         style={{
           padding: '6px 12px',
-          border: viewMode === 'yoy' ? '2px solid #1890ff' : '1px solid #d9d9d9',
+          border: viewMode === 'yoy' ? '2px solid #52c41a' : '1px solid #d9d9d9',
           borderRadius: 4,
-          background: viewMode === 'yoy' ? '#e6f7ff' : '#fff',
+          background: viewMode === 'yoy' ? '#f6ffed' : '#fff',
           cursor: 'pointer',
           fontWeight: viewMode === 'yoy' ? 'bold' : 'normal',
         }}
@@ -170,9 +170,9 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         onClick={() => setViewMode('mom_table')}
         style={{
           padding: '6px 12px',
-          border: viewMode === 'mom_table' ? '2px solid #52c41a' : '1px solid #d9d9d9',
+          border: viewMode === 'mom_table' ? '2px solid #1890ff' : '1px solid #d9d9d9',
           borderRadius: 4,
-          background: viewMode === 'mom_table' ? '#f6ffed' : '#fff',
+          background: viewMode === 'mom_table' ? '#e6f7ff' : '#fff',
           cursor: 'pointer',
           fontWeight: viewMode === 'mom_table' ? 'bold' : 'normal',
         }}
@@ -183,9 +183,9 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         onClick={() => setViewMode('mom_chart')}
         style={{
           padding: '6px 12px',
-          border: viewMode === 'mom_chart' ? '2px solid #52c41a' : '1px solid #d9d9d9',
+          border: viewMode === 'mom_chart' ? '2px solid #1890ff' : '1px solid #d9d9d9',
           borderRadius: 4,
-          background: viewMode === 'mom_chart' ? '#f6ffed' : '#fff',
+          background: viewMode === 'mom_chart' ? '#e6f7ff' : '#fff',
           cursor: 'pointer',
           fontWeight: viewMode === 'mom_chart' ? 'bold' : 'normal',
         }}
@@ -195,64 +195,12 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
     </div>
   )
 
-  // データタイプ切り替えボタン
-  const DataTypeButtons = () => (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-      <button
-        onClick={() => setDataType('total')}
-        style={{
-          padding: '4px 10px',
-          border: dataType === 'total' ? '2px solid #1890ff' : '1px solid #d9d9d9',
-          borderRadius: 4,
-          background: dataType === 'total' ? '#e6f7ff' : '#fff',
-          cursor: 'pointer',
-          fontWeight: dataType === 'total' ? 'bold' : 'normal',
-          fontSize: 12,
-        }}
-      >
-        総合
-      </button>
-      <button
-        onClick={() => setDataType('ex_transport')}
-        style={{
-          padding: '4px 10px',
-          border: dataType === 'ex_transport' ? '2px solid #722ed1' : '1px solid #d9d9d9',
-          borderRadius: 4,
-          background: dataType === 'ex_transport' ? '#f9f0ff' : '#fff',
-          cursor: 'pointer',
-          fontWeight: dataType === 'ex_transport' ? 'bold' : 'normal',
-          fontSize: 12,
-        }}
-      >
-        輸送除外
-      </button>
-    </div>
-  )
-
-  // 表示する値を取得
-  const getLatestValue = () => {
-    if (!latest) return null
-    if (viewMode === 'yoy') {
-      return dataType === 'total' ? latest.yoy : latest.ex_transport_yoy
-    } else {
-      return dataType === 'total' ? latest.mom : latest.ex_transport_mom
-    }
-  }
-
-  // 表示する色を取得
-  const getLatestColor = () => {
-    if (viewMode === 'yoy') {
-      return dataType === 'total' ? COLORS.yoy : COLORS.yoy_ex
-    }
-    return dataType === 'total' ? COLORS.mom : COLORS.mom_ex
-  }
-
   // テーブルセルの背景色を決定（前月比用）
   const getMomCellColor = (value: number | null | undefined) => {
     if (value === null || value === undefined) return 'transparent'
-    if (value > 1) return 'rgba(82, 196, 26, 0.3)'
+    if (value > 2) return 'rgba(82, 196, 26, 0.3)'
     if (value > 0) return 'rgba(82, 196, 26, 0.15)'
-    if (value < -1) return 'rgba(255, 77, 79, 0.3)'
+    if (value < -2) return 'rgba(255, 77, 79, 0.3)'
     if (value < 0) return 'rgba(255, 77, 79, 0.15)'
     return 'transparent'
   }
@@ -260,7 +208,6 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
   // 前月比テーブルコンポーネント
   const MoMTable = () => (
     <div style={{ overflowX: 'auto' }}>
-      <DataTypeButtons />
       <table
         style={{
           width: '100%',
@@ -303,8 +250,8 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
-                const cellData = momTableData.monthlyData[year]?.[month]
-                const value = dataType === 'total' ? cellData?.total : cellData?.ex_transport
+                const value = momTableData.monthlyData[year]?.[month]
+
                 return (
                   <td
                     key={month}
@@ -331,31 +278,31 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
       <div style={{ marginTop: 8, fontSize: 11, color: '#888', display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(82, 196, 26, 0.3)', marginRight: 4 }} />
-          プラス（+1%以上）
+          プラス（+2%以上）
         </span>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(82, 196, 26, 0.15)', marginRight: 4 }} />
-          プラス（0〜+1%）
+          プラス（0〜+2%）
         </span>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(255, 77, 79, 0.15)', marginRight: 4 }} />
-          マイナス（0〜-1%）
+          マイナス（0〜-2%）
         </span>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(255, 77, 79, 0.3)', marginRight: 4 }} />
-          マイナス（-1%以下）
+          マイナス（-2%以下）
         </span>
       </div>
     </div>
   )
 
   return (
-    <div id="durable-goods-chart">
+    <div id="total-vehicle-sales">
       <ChartContainer
-        title="耐久財受注"
+        title="自動車販売台数"
         showPeriodSelector={false}
-        dataSource="FRED (Census Bureau)"
-        sourceUrl="https://www.census.gov/manufacturing/m3/release_schedule.html"
+        dataSource="U.S. Bureau of Economic Analysis"
+        sourceUrl="https://fred.stlouisfed.org/series/TOTALSA"
       >
         {/* 最新値表示 */}
         <div
@@ -367,27 +314,67 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
             padding: '12px 16px',
             background: '#f5f5f5',
             borderRadius: 8,
+            flexWrap: 'wrap',
+            gap: 12,
           }}
         >
-          <div>
-            <span style={{ fontSize: 12, color: '#666' }}>
-              最新値（{dataType === 'total' ? '総合' : '輸送除外'}）:{' '}
-            </span>
-            {latest && (
-              <>
+          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+            {/* 現在値（百万台） */}
+            <div>
+              <span style={{ fontSize: 12, color: '#666' }}>
+                最新値:{' '}
+              </span>
+              {latest && (
                 <span
                   style={{
                     fontSize: 20,
                     fontWeight: 'bold',
-                    color: getLatestColor(),
+                    color: '#333',
                   }}
                 >
-                  {formatValue(getLatestValue())}
+                  {latest.value?.toFixed(2) ?? 'N/A'}M
                 </span>
-                <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                  ({formatDateLabel(latest.date)})
+              )}
+            </div>
+            {/* 前年比 */}
+            {viewMode === 'yoy' && latest?.yoy !== null && latest?.yoy !== undefined && (
+              <div>
+                <span style={{ fontSize: 12, color: '#666' }}>
+                  前年比:{' '}
                 </span>
-              </>
+                <span
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: COLORS.yoy,
+                  }}
+                >
+                  {formatValue(latest.yoy)}
+                </span>
+              </div>
+            )}
+            {/* 前月比 */}
+            {(viewMode === 'mom_table' || viewMode === 'mom_chart') && latest?.mom !== null && latest?.mom !== undefined && (
+              <div>
+                <span style={{ fontSize: 12, color: '#666' }}>
+                  前月比:{' '}
+                </span>
+                <span
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: COLORS.mom,
+                  }}
+                >
+                  {formatValue(latest.mom)}
+                </span>
+              </div>
+            )}
+            {/* 日付 */}
+            {latest && (
+              <span style={{ fontSize: 12, color: '#999', alignSelf: 'center' }}>
+                ({latest.date ? formatDateLabel(latest.date) : ''})
+              </span>
             )}
           </div>
           <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
@@ -398,6 +385,55 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         </div>
 
         <ViewModeButtons />
+
+        {/* 原数値グラフの場合 */}
+        {viewMode === 'value' && (
+          <>
+            <PeriodSelector onPeriodChange={setSelectedPeriodValue} selectedPeriod={selectedPeriodValue} />
+            <ResponsiveContainer width="100%" height={450}>
+              <LineChart
+                data={filteredData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis
+                  dataKey="date"
+                  tickFormatter={formatDateLabel}
+                  tick={{ fontSize: 11 }}
+                  interval="preserveStartEnd"
+                />
+                <YAxis
+                  domain={['dataMin - 2', 'dataMax + 2']}
+                  tick={{ fontSize: 11 }}
+                  tickFormatter={(v) => `${v}M`}
+                />
+                <Tooltip
+                  labelFormatter={formatDateLabel}
+                  formatter={(value, name) => {
+                    const numValue = typeof value === 'number' ? value : null
+                    if (numValue === null) return ['N/A', name]
+                    return [`${numValue.toFixed(2)}M`, name]
+                  }}
+                  contentStyle={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    border: '1px solid #d9d9d9',
+                    borderRadius: 4,
+                  }}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke={COLORS.value}
+                  strokeWidth={2}
+                  dot={false}
+                  name="自動車販売台数"
+                  isAnimationActive={false}
+                  connectNulls={true}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </>
+        )}
 
         {/* 前年比グラフの場合 */}
         {viewMode === 'yoy' && (
@@ -434,10 +470,6 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                     borderRadius: 4,
                   }}
                 />
-                <Legend
-                  onClick={(e) => handleLegendClick(e.dataKey as string)}
-                  wrapperStyle={{ cursor: 'pointer' }}
-                />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1}/>
                 <Line
                   type="monotone"
@@ -445,19 +477,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                   stroke={COLORS.yoy}
                   strokeWidth={2}
                   dot={false}
-                  name="耐久財受注（前年比）"
-                  hide={hiddenSeries.has('yoy')}
-                  isAnimationActive={false}
-                  connectNulls={true}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="ex_transport_yoy"
-                  stroke={COLORS.yoy_ex}
-                  strokeWidth={2}
-                  dot={false}
-                  name="輸送除外（前年比）"
-                  hide={hiddenSeries.has('ex_transport_yoy')}
+                  name="前年比"
                   isAnimationActive={false}
                   connectNulls={true}
                 />
@@ -479,7 +499,6 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         {/* 前月比グラフの場合 */}
         {viewMode === 'mom_chart' && (
           <>
-            <DataTypeButtons />
             <PeriodSelector onPeriodChange={setSelectedPeriodMoM} selectedPeriod={selectedPeriodMoM} />
             <ResponsiveContainer width="100%" height={450}>
               <BarChart
@@ -494,7 +513,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                   interval="preserveStartEnd"
                 />
                 <YAxis
-                  domain={['dataMin - 2', 'dataMax + 2']}
+                  domain={['dataMin - 3', 'dataMax + 3']}
                   tick={{ fontSize: 11 }}
                   tickFormatter={(v) => `${v}%`}
                 />
@@ -512,21 +531,12 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                     borderRadius: 4,
                   }}
                 />
-                <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
-                {dataType === 'total' ? (
-                  <Bar
-                    dataKey="mom"
-                    fill={COLORS.mom}
-                    name="耐久財受注（前月比）"
-                  />
-                ) : (
-                  <Bar
-                    dataKey="ex_transport_mom"
-                    fill={COLORS.mom_ex}
-                    name="輸送除外（前月比）"
-                  />
-                )}
+                <Bar
+                  dataKey="mom"
+                  fill={COLORS.mom}
+                  name="前月比"
+                />
               </BarChart>
             </ResponsiveContainer>
           </>

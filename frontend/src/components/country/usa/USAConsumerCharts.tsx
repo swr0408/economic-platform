@@ -1,6 +1,12 @@
 import { Spin, Alert, Button } from 'antd'
 import { useUSAConsumerDashboard } from '../../../hooks/useDashboardData'
 import RetailSalesChart from './consumer/RetailSalesChart'
+import CartsChart from './consumer/CartsChart'
+import AffinitySpendChart from './consumer/AffinitySpendChart'
+import VisaSpendingChart from './consumer/VisaSpendingChart'
+import TotalVehicleSalesChart from './consumer/TotalVehicleSalesChart'
+import RedbookChart from './consumer/RedbookChart'
+import ConsumerCreditChart from './consumer/ConsumerCreditChart'
 
 /**
  * 米国消費チャート群
@@ -43,6 +49,36 @@ export default function USAConsumerCharts() {
           data={dashboardData?.retail_sales ?? null}
           controlData={dashboardData?.retail_control ?? null}
         />
+      </div>
+
+      {/* シカゴ連銀小売指数（CARTS）チャート */}
+      <div id="carts">
+        <CartsChart data={dashboardData?.carts ?? null} />
+      </div>
+
+      {/* Affinityカード支出チャート */}
+      <div id="affinity-spend">
+        <AffinitySpendChart data={dashboardData?.affinity_spend ?? null} />
+      </div>
+
+      {/* Visa支出モメンタム指数チャート */}
+      <div id="visa-spending">
+        <VisaSpendingChart data={dashboardData?.visa_spending ?? null} />
+      </div>
+
+      {/* 自動車販売台数チャート */}
+      <div id="total-vehicle-sales">
+        <TotalVehicleSalesChart data={dashboardData?.total_vehicle_sales ?? null} />
+      </div>
+
+      {/* Redbook小売売上高指数チャート */}
+      <div id="redbook">
+        <RedbookChart data={dashboardData?.redbook ?? null} />
+      </div>
+
+      {/* クレジットカードローン残高チャート */}
+      <div id="consumer-credit">
+        <ConsumerCreditChart data={dashboardData?.consumer_credit ?? null} />
       </div>
 
     </div>

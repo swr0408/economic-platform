@@ -55,10 +55,16 @@ class USAEconomyLoader(BaseDashboardLoader):
 
     キャッシュ方式: 発表日時ベース判定
     - 各指標の発表日時をチェックし、last_updatedより後に発表があれば再取得
+    - 発表日時を過ぎた指標は個別サービスもforce_refreshで再取得
     """
 
     COUNTRY_CODE = "usa"
     CATEGORY_CODE = "economy"
+
+    def __init__(self):
+        super().__init__()
+        # 発表日時を過ぎた指標のセット（load_all実行時に判定）
+        self._stale_indicators: set = set()
 
     # 発表時刻設定（ET）
     RELEASE_TIMES = {
@@ -108,6 +114,199 @@ class USAEconomyLoader(BaseDashboardLoader):
         release_times.extend(self._get_daily_release_datetimes())
 
         return release_times
+
+    def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
+        """
+        発表日時を過ぎた指標を検出
+
+        ダッシュボードキャッシュのlast_updatedと現在時刻を比較し、
+        その間に発表があった指標を検出する。
+
+        Args:
+            last_updated: ダッシュボードキャッシュのlast_updated（ISO形式）
+
+        Returns:
+            発表日時を過ぎた指標名のセット
+        """
+        stale = set()
+
+        if last_updated is None:
+            # キャッシュがない場合は全指標を更新対象とする
+            return {"all"}
+
+        try:
+            last_updated_dt = datetime.fromisoformat(last_updated)
+            if last_updated_dt.tzinfo is None:
+                last_updated_dt = last_updated_dt.replace(tzinfo=JST)
+
+            now = datetime.now(JST)
+
+            # GDP関連
+            gdp_release = self._get_gdp_release_datetimes()
+            for release_dt in gdp_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("gdp")
+                    print(f"[stale] GDP release detected: {release_dt.isoformat()}")
+                    break
+
+            # ISM製造業
+            ism_mfg_release = self._get_ism_manufacturing_release_datetime()
+            if ism_mfg_release and last_updated_dt < ism_mfg_release <= now:
+                stale.add("ism_manufacturing")
+                print(f"[stale] ISM Manufacturing release detected: {ism_mfg_release.isoformat()}")
+
+            # ISM非製造業
+            ism_non_mfg_release = self._get_ism_non_manufacturing_release_datetime()
+            if ism_non_mfg_release and last_updated_dt < ism_non_mfg_release <= now:
+                stale.add("ism_non_manufacturing")
+                print(f"[stale] ISM Non-Manufacturing release detected: {ism_non_mfg_release.isoformat()}")
+
+            # NY連銀
+            empire_release = self._get_empire_state_release_datetime()
+            if empire_release and last_updated_dt < empire_release <= now:
+                stale.add("empire_state")
+                print(f"[stale] Empire State release detected: {empire_release.isoformat()}")
+
+            # フィラデルフィア連銀
+            philly_release = self._get_philadelphia_fed_release_datetime()
+            if philly_release and last_updated_dt < philly_release <= now:
+                stale.add("philadelphia_fed")
+                print(f"[stale] Philadelphia Fed release detected: {philly_release.isoformat()}")
+
+            # NFIB
+            nfib_release = self._get_nfib_release_datetimes()
+            for release_dt in nfib_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("nfib")
+                    print(f"[stale] NFIB release detected: {release_dt.isoformat()}")
+                    break
+
+            # 鉱工業生産・設備稼働率（同時発表）
+            industrial_release = self._get_industrial_release_datetimes()
+            for release_dt in industrial_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("industrial_production")
+                    stale.add("capacity_utilization")
+                    print(f"[stale] Industrial Production release detected: {release_dt.isoformat()}")
+                    break
+
+            # 耐久財受注
+            durable_release = self._get_durable_goods_release_datetimes()
+            for release_dt in durable_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("durable_goods")
+                    print(f"[stale] Durable Goods release detected: {release_dt.isoformat()}")
+                    break
+
+            # 銀行貸し出し態度（SLOOS）
+            bank_release = self._get_bank_lending_release_datetimes()
+            for release_dt in bank_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("bank_lending")
+                    print(f"[stale] Bank Lending release detected: {release_dt.isoformat()}")
+                    break
+
+            # NFCI
+            nfci_release = self._get_nfci_release_datetimes()
+            for release_dt in nfci_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("nfci")
+                    print(f"[stale] NFCI release detected: {release_dt.isoformat()}")
+                    break
+
+            # FCI-G, GDPNow（日次）
+            fci_gdpnow_release = self._get_fci_gdpnow_release_datetimes()
+            for release_dt in fci_gdpnow_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("fci")
+                    stale.add("gdpnow")
+                    print(f"[stale] FCI/GDPNow update detected: {release_dt.isoformat()}")
+                    break
+
+            # 日次指標（TSA, OpenTable, 航空便）
+            daily_release = self._get_daily_release_datetimes()
+            for release_dt in daily_release:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    stale.add("tsa_checkpoint")
+                    stale.add("opentable")
+                    stale.add("us_flights")
+                    print(f"[stale] Daily indicators update detected: {release_dt.isoformat()}")
+                    break
+
+        except Exception as e:
+            print(f"Error detecting stale indicators: {e}")
+            # エラー時は全指標を更新対象とする
+            return {"all"}
+
+        return stale
+
+    def _get_ism_manufacturing_release_datetime(self) -> Optional[datetime]:
+        """ISM製造業の発表日時を取得"""
+        try:
+            from services.usa.ism_manufacturing_service import ism_manufacturing_service
+            mfg_data = ism_manufacturing_service.get_ism_manufacturing_data()
+            next_release = mfg_data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                return self._make_release_datetime(date_str, "ism_manufacturing")
+        except Exception:
+            pass
+        return None
+
+    def _get_ism_non_manufacturing_release_datetime(self) -> Optional[datetime]:
+        """ISM非製造業の発表日時を取得"""
+        try:
+            from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
+            non_mfg_data = ism_non_manufacturing_service.get_ism_non_manufacturing_data()
+            next_release = non_mfg_data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                return self._make_release_datetime(date_str, "ism_non_manufacturing")
+        except Exception:
+            pass
+        return None
+
+    def _get_empire_state_release_datetime(self) -> Optional[datetime]:
+        """NY連銀の発表日時を取得"""
+        try:
+            from services.usa.empire_state_service import empire_state_service
+            data = empire_state_service.get_empire_state_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                return self._make_release_datetime(date_str, "empire_state")
+        except Exception:
+            pass
+        return None
+
+    def _get_philadelphia_fed_release_datetime(self) -> Optional[datetime]:
+        """フィラデルフィア連銀の発表日時を取得"""
+        try:
+            from services.usa.philadelphia_fed_service import philadelphia_fed_service
+            data = philadelphia_fed_service.get_philadelphia_fed_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                return self._make_release_datetime(date_str, "philadelphia_fed")
+        except Exception:
+            pass
+        return None
+
+    def _should_force_refresh(self, indicator: str) -> bool:
+        """指標が強制更新対象かどうかを判定"""
+        if "all" in self._stale_indicators:
+            return True
+        return indicator in self._stale_indicators
+
+    def _prepare_for_refresh(self, last_updated: Optional[str]) -> None:
+        """
+        データ再取得の前処理
+
+        発表日時を過ぎた指標を検出し、force_refresh対象を設定する。
+        """
+        self._stale_indicators = self._detect_stale_indicators(last_updated)
+        if self._stale_indicators:
+            print(f"Stale indicators detected: {self._stale_indicators}")
 
     def _parse_date_string(self, date_str: str) -> Optional[datetime]:
         """日付文字列をパース（YYYY-MM-DD形式）"""
@@ -502,7 +701,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_gdp_growth_rate(self, service) -> list:
         """GDP成長率データを取得"""
         try:
-            response = service.get_gdp_growth_rate()
+            force_refresh = self._should_force_refresh("gdp")
+            response = service.get_gdp_growth_rate(force_refresh=force_refresh)
             return response.get("data", [])
         except Exception as e:
             print(f"Error getting GDP growth rate: {e}")
@@ -511,7 +711,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_gdp_contributions(self, service) -> Optional[dict]:
         """GDP寄与度データを取得"""
         try:
-            response = service.get_gdp_contributions()
+            force_refresh = self._should_force_refresh("gdp")
+            response = service.get_gdp_contributions(force_refresh=force_refresh)
             return {
                 "data": response.get("data", []),
                 "series_info": response.get("series_info", {})
@@ -523,7 +724,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_gdp_components_growth(self, service) -> Optional[list]:
         """GDP項目別成長率データを取得"""
         try:
-            response = service.get_gdp_components_growth()
+            force_refresh = self._should_force_refresh("gdp")
+            response = service.get_gdp_components_growth(force_refresh=force_refresh)
             data = response.get("data", [])
             # データが空の場合はNoneを返す（フロントでloadingではなく「利用不可」表示になる）
             return data if data else None
@@ -551,7 +753,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_bank_lending(self, service) -> Optional[dict]:
         """銀行貸し出し態度データを取得"""
         try:
-            response = service.get_bank_lending_standards()
+            force_refresh = self._should_force_refresh("bank_lending")
+            response = service.get_bank_lending_standards(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -575,7 +778,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_fci(self, service) -> Optional[dict]:
         """FCI-G（金融情勢指数）データを取得"""
         try:
-            response = service.get_fci_data()
+            force_refresh = self._should_force_refresh("fci")
+            response = service.get_fci_data(force_refresh=force_refresh)
             baseline = response.get("baseline", {})
             oneyear = response.get("oneyear", {})
 
@@ -600,7 +804,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_nfci(self, service) -> Optional[dict]:
         """シカゴ連銀金融環境指数（NFCI）データを取得"""
         try:
-            response = service.get_nfci_data()
+            force_refresh = self._should_force_refresh("nfci")
+            response = service.get_nfci_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -615,7 +820,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_gdpnow(self, service) -> Optional[dict]:
         """GDPNow（リアルタイムGDP予測）データを取得"""
         try:
-            response = service.get_gdpnow_data()
+            force_refresh = self._should_force_refresh("gdpnow")
+            response = service.get_gdpnow_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -630,7 +836,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_ism_manufacturing(self, service) -> Optional[dict]:
         """ISM製造業景況指数データを取得"""
         try:
-            response = service.get_ism_manufacturing_data()
+            force_refresh = self._should_force_refresh("ism_manufacturing")
+            response = service.get_ism_manufacturing_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -646,7 +853,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_ism_components(self, service) -> Optional[dict]:
         """ISM製造業サブインデックスデータを取得"""
         try:
-            response = service.get_ism_components_data()
+            force_refresh = self._should_force_refresh("ism_manufacturing")
+            response = service.get_ism_components_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -662,7 +870,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_ism_non_manufacturing(self, service) -> Optional[dict]:
         """ISM非製造業景況指数データを取得"""
         try:
-            response = service.get_ism_non_manufacturing_data()
+            force_refresh = self._should_force_refresh("ism_non_manufacturing")
+            response = service.get_ism_non_manufacturing_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -679,7 +888,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_ism_non_manufacturing_components(self, service) -> Optional[dict]:
         """ISM非製造業サブインデックスデータを取得"""
         try:
-            response = service.get_ism_non_manufacturing_components_data()
+            force_refresh = self._should_force_refresh("ism_non_manufacturing")
+            response = service.get_ism_non_manufacturing_components_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -705,7 +915,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_empire_state(self, service) -> Optional[dict]:
         """NY連銀製造業景気指数データを取得"""
         try:
-            response = service.get_empire_state_data()
+            force_refresh = self._should_force_refresh("empire_state")
+            response = service.get_empire_state_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -722,7 +933,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_philadelphia_fed(self, service) -> Optional[dict]:
         """フィラデルフィア連銀製造業景気指数データを取得"""
         try:
-            response = service.get_philadelphia_fed_data()
+            force_refresh = self._should_force_refresh("philadelphia_fed")
+            response = service.get_philadelphia_fed_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -740,7 +952,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_nfib(self, service) -> Optional[dict]:
         """NFIB中小企業楽観指数データを取得"""
         try:
-            response = service.get_nfib_data()
+            force_refresh = self._should_force_refresh("nfib")
+            response = service.get_nfib_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -757,7 +970,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_nfib_capex(self, service) -> Optional[dict]:
         """NFIB中小企業設備投資計画データを取得"""
         try:
-            response = service.get_capex_plans_data()
+            force_refresh = self._should_force_refresh("nfib")
+            response = service.get_capex_plans_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -774,7 +988,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_industrial_production(self, service) -> Optional[dict]:
         """鉱工業生産データを取得"""
         try:
-            response = service.get_industrial_production_data()
+            force_refresh = self._should_force_refresh("industrial_production")
+            response = service.get_industrial_production_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -791,7 +1006,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_capacity_utilization(self, service) -> Optional[dict]:
         """設備稼働率データを取得"""
         try:
-            response = service.get_capacity_utilization_data()
+            force_refresh = self._should_force_refresh("capacity_utilization")
+            response = service.get_capacity_utilization_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -808,7 +1024,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_durable_goods(self, service) -> Optional[dict]:
         """耐久財受注データを取得"""
         try:
-            response = service.get_durable_goods_data()
+            force_refresh = self._should_force_refresh("durable_goods")
+            response = service.get_durable_goods_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -825,7 +1042,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_us_flights(self, service) -> Optional[dict]:
         """米国航空機便数データを取得"""
         try:
-            response = service.get_flights_data()
+            force_refresh = self._should_force_refresh("us_flights")
+            response = service.get_flights_data(force_refresh=force_refresh)
             # image_urlがない場合はエラー
             if not response.get("image_url"):
                 return None
@@ -840,9 +1058,10 @@ class USAEconomyLoader(BaseDashboardLoader):
             print(f"Error getting US Flights data: {e}")
             return None
 
-    def _get_tsa_checkpoint(self, service, force_refresh: bool = False) -> Optional[dict]:
+    def _get_tsa_checkpoint(self, service) -> Optional[dict]:
         """TSA旅客数データを取得"""
         try:
+            force_refresh = self._should_force_refresh("tsa_checkpoint")
             response = service.get_tsa_checkpoint_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
@@ -859,7 +1078,8 @@ class USAEconomyLoader(BaseDashboardLoader):
     def _get_opentable(self, service) -> Optional[dict]:
         """OpenTableレストラン予約件数データを取得"""
         try:
-            response = service.get_opentable_data()
+            force_refresh = self._should_force_refresh("opentable")
+            response = service.get_opentable_data(force_refresh=force_refresh)
             return {
                 "image_url": response.get("image_url"),
                 "latest": response.get("latest"),

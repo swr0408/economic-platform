@@ -156,6 +156,7 @@ class BaseDashboardLoader(ABC):
         """
         # 1. キャッシュをチェック
         cached = self.get_cached()
+        last_updated = None
         if cached:
             last_updated = cached.get("last_updated")
 
@@ -166,6 +167,8 @@ class BaseDashboardLoader(ABC):
                 return cached
 
         # 2. キャッシュMISS or キャッシュが古い → データを取得
+        # サブクラスに古くなった指標を通知（オーバーライド可能）
+        self._prepare_for_refresh(last_updated)
         data = self.load_all()
 
         # 3. キャッシュに保存
@@ -176,6 +179,18 @@ class BaseDashboardLoader(ABC):
             "cached": False,
             "last_updated": datetime.now(JST).isoformat(),
         }
+
+    def _prepare_for_refresh(self, last_updated: Optional[str]) -> None:
+        """
+        データ再取得の前処理（サブクラスでオーバーライド可能）
+
+        発表日時を過ぎた指標を検出し、force_refresh対象を設定する等の
+        前処理を行う。
+
+        Args:
+            last_updated: 前回のキャッシュ更新日時（ISO形式）
+        """
+        pass
 
     async def get_data_async(self) -> Dict[str, Any]:
         """

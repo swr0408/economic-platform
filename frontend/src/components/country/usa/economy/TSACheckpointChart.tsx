@@ -136,7 +136,7 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
   return (
     <div id="tsa-checkpoint-chart">
       <ChartContainer
-        title="米航空機旅客者数（TSA Checkpoint）"
+        title="米航空機旅客者数"
         showPeriodSelector={false}
         dataSource="TSA"
         sourceUrl="https://www.tsa.gov/travel/passenger-volumes"

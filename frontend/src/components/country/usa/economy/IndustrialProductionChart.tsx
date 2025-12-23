@@ -309,7 +309,7 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
   return (
     <div id="industrial-production-chart">
       <ChartContainer
-        title="鉱工業生産（Industrial Production）"
+        title="鉱工業生産"
         showPeriodSelector={false}
         dataSource="FRED (FRB)"
         sourceUrl="https://www.federalreserve.gov/releases/G17/default.htm"
@@ -349,7 +349,6 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
             {data.next_release && (
               <div>次回発表: {data.next_release.date}</div>
             )}
-            <div>毎月14〜18日頃 9:15 ET</div>
           </div>
         </div>
 
@@ -413,7 +412,7 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                 <Bar
                   dataKey="mom"
                   fill={COLORS.mom}
-                  name="前月比"
+                  name="鉱工業生産（前月比）"
                   hide={hiddenSeries.has('mom')}
                 />
               </ComposedChart>
@@ -460,7 +459,7 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                   stroke={COLORS.yoy}
                   strokeWidth={2}
                   dot={false}
-                  name="前年比"
+                  name="鉱工業生産（前年比）"
                   hide={hiddenSeries.has('yoy')}
                   isAnimationActive={false}
                   connectNulls={true}

@@ -37,10 +37,16 @@ class USAPolicyLoader(BaseDashboardLoader):
     - タームプレミアム: 毎日6:00 JST頃（NY Fed更新後）
     - FedWatch: 毎日6:00 JST + 手動更新API（/api/fedwatch/refresh）
     - SEP日程: FOMC発表日（has_sep=Trueの会合日）
+    - 発表日時を過ぎた指標は個別サービスもforce_refreshで再取得
     """
 
     COUNTRY_CODE = "usa"
     CATEGORY_CODE = "policy"
+
+    def __init__(self):
+        super().__init__()
+        # 発表日時を過ぎた指標のセット（load_all実行時に判定）
+        self._stale_indicators: set = set()
 
     # FOMC声明発表時刻（ET）
     FOMC_RELEASE_HOUR_ET = 14
@@ -192,6 +198,64 @@ class USAPolicyLoader(BaseDashboardLoader):
             print(f"Error getting SEP release datetime: {e}")
             return None
 
+    def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
+        """
+        発表日時を過ぎた指標を検出
+
+        Args:
+            last_updated: ダッシュボードキャッシュのlast_updated（ISO形式）
+
+        Returns:
+            発表日時を過ぎた指標名のセット
+        """
+        stale = set()
+
+        if last_updated is None:
+            return {"all"}
+
+        try:
+            last_updated_dt = datetime.fromisoformat(last_updated)
+            if last_updated_dt.tzinfo is None:
+                last_updated_dt = last_updated_dt.replace(tzinfo=JST)
+
+            now = datetime.now(JST)
+
+            # FOMC発表（政策金利）
+            fomc_release = self._get_fomc_release_datetime()
+            if fomc_release and last_updated_dt < fomc_release <= now:
+                stale.add("policy_rate")
+                stale.add("sep")
+                print(f"[stale] FOMC release detected: {fomc_release.isoformat()}")
+
+            # 日次更新（タームプレミアム、FedWatch）
+            daily_release = self._get_daily_release_datetime()
+            if daily_release and last_updated_dt < daily_release <= now:
+                stale.add("term_premium")
+                stale.add("kw_term_premium")
+                print(f"[stale] Daily update detected: {daily_release.isoformat()}")
+
+        except Exception as e:
+            print(f"Error detecting stale indicators: {e}")
+            return {"all"}
+
+        return stale
+
+    def _should_force_refresh(self, indicator: str) -> bool:
+        """指標が強制更新対象かどうかを判定"""
+        if "all" in self._stale_indicators:
+            return True
+        return indicator in self._stale_indicators
+
+    def _prepare_for_refresh(self, last_updated: Optional[str]) -> None:
+        """
+        データ再取得の前処理
+
+        発表日時を過ぎた指標を検出し、force_refresh対象を設定する。
+        """
+        self._stale_indicators = self._detect_stale_indicators(last_updated)
+        if self._stale_indicators:
+            print(f"Stale indicators detected: {self._stale_indicators}")
+
     def load_all(self) -> Dict[str, Any]:
         """
         全金融政策データを並列で取得
@@ -244,7 +308,8 @@ class USAPolicyLoader(BaseDashboardLoader):
     def _get_policy_rate(self, service) -> list:
         """政策金利データを取得"""
         try:
-            response = service.get_policy_rate()
+            force_refresh = self._should_force_refresh("policy_rate")
+            response = service.get_policy_rate(force_refresh=force_refresh)
             return response.get("data", [])
         except Exception as e:
             print(f"Error getting policy rate: {e}")
@@ -253,7 +318,8 @@ class USAPolicyLoader(BaseDashboardLoader):
     def _get_term_premium(self, service) -> list:
         """タームプレミアムデータを取得"""
         try:
-            response = service.get_term_premium_data()
+            force_refresh = self._should_force_refresh("term_premium")
+            response = service.get_term_premium_data(force_refresh=force_refresh)
             return response.get("data", [])
         except Exception as e:
             print(f"Error getting term premium: {e}")
@@ -262,7 +328,8 @@ class USAPolicyLoader(BaseDashboardLoader):
     def _get_kw_term_premium(self, service) -> list:
         """KWタームプレミアムデータを取得"""
         try:
-            response = service.get_kw_term_premium()
+            force_refresh = self._should_force_refresh("kw_term_premium")
+            response = service.get_kw_term_premium(force_refresh=force_refresh)
             return response.get("data", [])
         except Exception as e:
             print(f"Error getting KW term premium: {e}")

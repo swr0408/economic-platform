@@ -412,10 +412,10 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
   return (
     <div id="retail-sales">
       <ChartContainer
-        title="小売売上高（Retail Sales）"
+        title="小売売上高"
         showPeriodSelector={false}
         dataSource="FRED (Census Bureau)"
-        sourceUrl="https://www.census.gov/retail/release_schedule.html"
+        sourceUrl="https://www.census.gov/retail/index.html"
       >
         {/* 最新値表示 */}
         <div
@@ -454,7 +454,6 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
             {data.next_release && (
               <div>次回発表: {data.next_release.date}</div>
             )}
-            <div>毎月中旬 8:30 ET</div>
           </div>
         </div>
 
@@ -506,7 +505,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                   stroke={COLORS.yoy}
                   strokeWidth={2}
                   dot={false}
-                  name="小売売上高 前年比"
+                  name="小売売上高（前年比）"
                   hide={hiddenSeries.has('yoy')}
                   isAnimationActive={false}
                   connectNulls={true}
@@ -517,7 +516,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                   stroke={COLORS.yoy_ex}
                   strokeWidth={2}
                   dot={false}
-                  name="自動車除く 前年比"
+                  name="自動車除く（前年比）"
                   hide={hiddenSeries.has('ex_auto_yoy')}
                   isAnimationActive={false}
                   connectNulls={true}
@@ -579,21 +578,21 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                   <Bar
                     dataKey="mom"
                     fill={COLORS.mom}
-                    name="小売売上高 前月比"
+                    name="小売売上高（前月比）"
                   />
                 )}
                 {dataType === 'ex_auto' && (
                   <Bar
                     dataKey="ex_auto_mom"
                     fill={COLORS.mom_ex}
-                    name="自動車除く 前月比"
+                    name="自動車除く（前月比）"
                   />
                 )}
                 {dataType === 'control_group' && (
                   <Bar
                     dataKey="control_group_mom"
                     fill={COLORS.mom_cg}
-                    name="コントロールグループ 前月比"
+                    name="コントロールグループ（前月比）"
                   />
                 )}
               </BarChart>

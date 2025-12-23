@@ -79,7 +79,7 @@ export default function CapacityUtilizationChart({ data }: CapacityUtilizationCh
   return (
     <div id="capacity-utilization-chart">
       <ChartContainer
-        title="設備稼働率（Capacity Utilization）"
+        title="設備稼働率"
         showPeriodSelector={false}
         dataSource="FRED (FRB)"
         sourceUrl="https://www.federalreserve.gov/releases/G17/default.htm"

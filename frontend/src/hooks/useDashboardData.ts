@@ -497,6 +497,148 @@ export interface OpenTableLatest {
 export interface USAConsumerData {
   retail_sales: RetailSalesData | null
   retail_control: RetailControlData | null
+  carts: CartsData | null
+  affinity_spend: AffinitySpendData | null
+  visa_spending: VisaSpendingData | null
+  total_vehicle_sales: TotalVehicleSalesData | null
+  redbook: RedbookData | null
+  consumer_credit: ConsumerCreditData | null
+}
+
+// Redbook小売売上高指数データの型
+export interface RedbookData {
+  data: RedbookItem[]
+  latest: RedbookItem | null
+  next_release: RedbookNextRelease | null
+  last_updated: string | null
+}
+
+export interface RedbookItem {
+  date: string
+  value: number  // 前年比（%）
+}
+
+export interface RedbookNextRelease {
+  date: string
+  label: string
+}
+
+// クレジットカードローン残高データの型（FRB H.8）
+// 週次データを月平均に集計
+export interface ConsumerCreditData {
+  data: ConsumerCreditItem[]
+  latest: ConsumerCreditItem | null
+  next_release: ConsumerCreditNextRelease | null
+  last_updated: string | null
+}
+
+export interface ConsumerCreditItem {
+  date: string         // YYYY-MM-01形式（月次）
+  value: number        // 月平均残高（10億ドル）
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface ConsumerCreditNextRelease {
+  date: string
+  label: string
+}
+
+// Visa支出モメンタム指数データの型
+export interface VisaSpendingData {
+  data: VisaSpendingItem[]
+  latest: VisaSpendingItem | null
+  next_release: VisaSpendingNextRelease | null
+  last_updated: string | null
+}
+
+export interface VisaSpendingItem {
+  date: string
+  value: number        // 指数値
+  mom: number | null   // 前月比（ポイント差）
+  yoy: number | null   // 前年比（ポイント差）
+}
+
+export interface VisaSpendingNextRelease {
+  date: string
+  label: string
+}
+
+// 自動車販売台数データの型
+export interface TotalVehicleSalesData {
+  data: TotalVehicleSalesItem[]
+  latest: TotalVehicleSalesItem | null
+  next_release: TotalVehicleSalesNextRelease | null
+  last_updated: string | null
+}
+
+export interface TotalVehicleSalesItem {
+  date: string
+  value: number        // 販売台数（百万台、季節調整済み年率換算）
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface TotalVehicleSalesNextRelease {
+  date: string
+  label: string
+}
+
+// Affinityカード支出データの型
+export interface AffinitySpendData {
+  data: AffinitySpendItem[]
+  latest: AffinitySpendItem | null
+  last_commit: AffinitySpendLastCommit | null
+  last_updated: string | null
+}
+
+export interface AffinitySpendItem {
+  date: string
+  value: number        // カード支出（2020年1月比、%）
+}
+
+export interface AffinitySpendLastCommit {
+  sha: string
+  date: string
+  message: string
+}
+
+// シカゴ連銀小売指数（CARTS）データの型
+export interface CartsData {
+  weekly: CartsWeeklyData
+  price: CartsPriceData
+  next_release: CartsNextRelease | null
+  last_updated: string | null
+}
+
+export interface CartsWeeklyData {
+  data: CartsWeeklyItem[]
+  latest: CartsWeeklyItem | null
+}
+
+export interface CartsWeeklyItem {
+  date: string
+  nominal: number | null    // 名目値（百万ドル）
+  real: number | null       // 実質値（2017年基準、百万ドル）
+  mom: number | null        // 前週比（%）
+  yoy: number | null        // 前年比（%）
+}
+
+export interface CartsPriceData {
+  data: CartsPriceItem[]
+  latest: CartsPriceItem | null
+}
+
+export interface CartsPriceItem {
+  date: string
+  bea: number | null        // BEA 前年比（%）
+  cpi: number | null        // CPI 前年比（%）
+  carts_nowcast: number | null  // CARTS Nowcast 前年比（%）
+}
+
+export interface CartsNextRelease {
+  date: string
+  label: string
 }
 
 // 小売売上高データの型

@@ -60,7 +60,7 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
   return (
     <div id="opentable-chart">
       <ChartContainer
-        title="レストラン予約件数前年比（OpenTable）"
+        title="レストラン予約件数前年比"
         showPeriodSelector={false}
         dataSource="OpenTable"
         sourceUrl="https://www.opentable.com/state-of-industry"

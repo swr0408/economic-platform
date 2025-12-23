@@ -131,7 +131,7 @@ export default function ISMManufacturingChart({ data }: ISMManufacturingChartPro
           data={filteredData}
           dataKey="value"
           color={CHART_COLOR}
-          name="ISM製造業PMI"
+          name="ISM製造業景況指数"
           height={450}
           tickFormatter={formatValue}
           tooltipFormatter={(value: number) => formatValue(value)}
