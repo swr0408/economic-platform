@@ -187,7 +187,7 @@ class BaseEconomicService(ABC):
 
     def refresh_cache(self) -> bool:
         """
-        キャッシュを強制更新（Celeryタスクから呼び出し用）
+        キャッシュを強制更新（手動更新API用）
 
         Returns:
             成功した場合True

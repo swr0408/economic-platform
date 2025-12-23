@@ -74,77 +74,8 @@ services:
       - economic-network
     restart: unless-stopped
 
-  # Celery Worker
-  celery-worker:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile.simple
-    container_name: economic-platform-celery-worker
-    command: celery -A tasks.celery_app worker --loglevel=info -Q economic_data
-    working_dir: /app/backend
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/economic_platform
-      REDIS_URL: redis://redis:6379/0
-      SCREENSHOT_DIR: /app/screenshots
-      FRED_API_KEY: ${FRED_API_KEY:-}
-      BEA_API_KEY: ${BEA_API_KEY:-}
-      ALPHA_VANTAGE_API_KEY: ${ALPHA_VANTAGE_API_KEY:-}
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-    volumes:
-      - ./backend:/app/backend
-      - ./data:/app/data:ro
-      - screenshots_data:/app/screenshots
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-      backend:
-        condition: service_started
-    networks:
-      - economic-network
-    restart: unless-stopped
-
-  # Celery Beat (スケジューラー)
-  celery-beat:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile.simple
-    container_name: economic-platform-celery-beat
-    command: celery -A tasks.celery_app beat --loglevel=info
-    working_dir: /app/backend
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/economic_platform
-      REDIS_URL: redis://redis:6379/0
-    volumes:
-      - ./backend:/app/backend
-      - ./data:/app/data:ro
-    depends_on:
-      - redis
-      - celery-worker
-    networks:
-      - economic-network
-    restart: unless-stopped
-
-  # Celery Flower (モニタリング)
-  celery-flower:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile.simple
-    container_name: economic-platform-celery-flower
-    command: celery -A tasks.celery_app flower --port=5555
-    working_dir: /app/backend
-    environment:
-      REDIS_URL: redis://redis:6379/0
-    ports:
-      - "5555:5555"
-    depends_on:
-      - redis
-    networks:
-      - economic-network
-    restart: unless-stopped
-
   # Frontend (React + Vite) - 開発用
+  # 使用方法: docker-compose up -d frontend
   frontend:
     build:
       context: ./frontend
@@ -161,6 +92,25 @@ services:
     networks:
       - economic-network
     restart: unless-stopped
+    profiles:
+      - dev
+
+  # Frontend (Nginx) - 本番用
+  # 使用方法: docker-compose --profile prod up -d frontend-prod
+  frontend-prod:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: economic-platform-frontend-prod
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - economic-network
+    restart: unless-stopped
+    profiles:
+      - prod
 
 networks:
   economic-network:

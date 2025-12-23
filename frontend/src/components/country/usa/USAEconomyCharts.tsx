@@ -19,6 +19,10 @@ import NFIBOptimismChart from './economy/NFIBOptimismChart'
 import NFIBCapexChart from './economy/NFIBCapexChart'
 import IndustrialProductionChart from './economy/IndustrialProductionChart'
 import CapacityUtilizationChart from './economy/CapacityUtilizationChart'
+import DurableGoodsChart from './economy/DurableGoodsChart'
+import USFlightsChart from './economy/USFlightsChart'
+import TSACheckpointChart from './economy/TSACheckpointChart'
+import OpenTableChart from './economy/OpenTableChart'
 
 /**
  * 米国経済チャート群
@@ -186,6 +190,34 @@ export default function USAEconomyCharts() {
       <div id="capacity-utilization">
         <CapacityUtilizationChart
           data={dashboardData?.capacity_utilization ?? null}
+        />
+      </div>
+
+      {/* 耐久財受注チャート */}
+      <div id="durable-goods">
+        <DurableGoodsChart
+          data={dashboardData?.durable_goods ?? null}
+        />
+      </div>
+
+      {/* 米国航空機便数チャート */}
+      <div id="us-flights">
+        <USFlightsChart
+          data={dashboardData?.us_flights ?? null}
+        />
+      </div>
+
+      {/* TSA旅客数チャート */}
+      <div id="tsa-checkpoint">
+        <TSACheckpointChart
+          data={dashboardData?.tsa_checkpoint ?? null}
+        />
+      </div>
+
+      {/* OpenTableレストラン予約件数チャート */}
+      <div id="opentable">
+        <OpenTableChart
+          data={dashboardData?.opentable ?? null}
         />
       </div>
     </div>

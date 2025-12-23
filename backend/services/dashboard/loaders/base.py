@@ -2,13 +2,13 @@
 ダッシュボードローダー基底クラス
 各国・カテゴリ別ローダーはこのクラスを継承して実装
 
-キャッシュ更新判定: last_updated判定方式（スケジュール時刻ベース）
+キャッシュ更新判定: 発表日時ベース判定方式
 - ダッシュボードキャッシュはTTLなし（永続化）
-- スケジュール時刻を過ぎたらlast_updatedと比較して再取得判定
+- 各サービスの発表日時をチェックし、last_updatedより後に発表があれば再取得
 - 個別データ（タームプレミアム、FedWatch等）のTTLは各サービスで管理
 """
 from abc import ABC, abstractmethod
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
 import asyncio
@@ -19,6 +19,7 @@ from core.redis_client import redis_client
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
+ET = ZoneInfo("America/New_York")
 
 
 class BaseDashboardLoader(ABC):
@@ -31,9 +32,7 @@ class BaseDashboardLoader(ABC):
 
     継承時に実装が必要:
     - load_all(): 全データを取得して辞書で返す
-
-    オプション（スケジュール時刻ベースの更新判定用）:
-    - get_schedule_time(): スケジュール時刻を返す（デフォルトはNone=キャッシュ常時使用）
+    - get_release_datetimes(): 各指標の発表日時リストを返す（発表日時ベース判定用）
     """
 
     COUNTRY_CODE: str = ""
@@ -47,35 +46,31 @@ class BaseDashboardLoader(ABC):
         """Redisキャッシュキー"""
         return f"{self.COUNTRY_CODE}:{self.CATEGORY_CODE}:dashboard:v1"
 
-    def get_schedule_time(self) -> Optional[time]:
+    def get_release_datetimes(self) -> List[Optional[datetime]]:
         """
-        スケジュール時刻を返す（日本時間）
-        サブクラスでオーバーライドして設定
+        各指標の発表日時リストを返す（サブクラスでオーバーライド）
+
+        各サービスが持つnext_release情報を元に、発表日時のリストを返す。
+        発表日時が不明な指標はNoneを含めてよい。
 
         Returns:
-            time: 毎日の更新時刻（例: time(6, 0) = 6:00 JST）
-            None: スケジュール判定なし（キャッシュがあれば常に使用）
+            List[Optional[datetime]]: 発表日時のリスト（JST）
         """
-        return None
+        return []
 
     def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
         """
-        キャッシュが古いかどうかを判定（last_updated方式）
+        キャッシュが古いかどうかを判定（発表日時ベース方式）
 
         Args:
             last_updated: キャッシュの最終更新日時（ISO形式）
 
         Returns:
-            True: 再取得が必要
+            True: 再取得が必要（発表日時を跨いだ場合）
             False: キャッシュを使用可能
         """
         if last_updated is None:
             return True
-
-        schedule_time = self.get_schedule_time()
-        if schedule_time is None:
-            # スケジュール設定なし → キャッシュを使用
-            return False
 
         try:
             # last_updatedをパース
@@ -84,19 +79,32 @@ class BaseDashboardLoader(ABC):
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
 
             now = datetime.now(JST)
-            today_schedule = datetime.combine(now.date(), schedule_time, tzinfo=JST)
 
-            # 今日のスケジュール時刻を経過しているか
-            if now >= today_schedule:
-                # 今日のスケジュール時刻以降 → last_updatedが今日のスケジュール時刻より前なら再取得
-                return last_updated_dt < today_schedule
-            else:
-                # 今日のスケジュール時刻より前 → 昨日のスケジュール時刻と比較
-                yesterday_schedule = today_schedule - timedelta(days=1)
-                return last_updated_dt < yesterday_schedule
+            # 各指標の発表日時をチェック
+            release_datetimes = self.get_release_datetimes()
+
+            # 発表日時リストが空の場合はキャッシュを使用
+            if not release_datetimes:
+                return False
+
+            for release_dt in release_datetimes:
+                if release_dt is None:
+                    continue
+
+                # タイムゾーンがない場合はJSTとして扱う
+                if release_dt.tzinfo is None:
+                    release_dt = release_dt.replace(tzinfo=JST)
+
+                # last_updated < 発表日時 <= now なら更新が必要
+                # （最終更新後に発表があった場合）
+                if last_updated_dt < release_dt <= now:
+                    print(f"New release detected: {release_dt.isoformat()}")
+                    return True
+
+            return False
 
         except Exception as e:
-            print(f"Error parsing last_updated: {e}")
+            print(f"Error checking cache staleness: {e}")
             return True
 
     @abstractmethod

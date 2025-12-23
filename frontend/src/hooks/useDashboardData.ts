@@ -72,6 +72,10 @@ export interface USAEconomyData {
   nfib_capex: NFIBCapexData | null
   industrial_production: IndustrialProductionData | null
   capacity_utilization: CapacityUtilizationData | null
+  durable_goods: DurableGoodsData | null
+  us_flights: USFlightsData | null
+  tsa_checkpoint: TSACheckpointData | null
+  opentable: OpenTableData | null
   next_gdp_release: NextGDPRelease | null
   next_ism_non_manufacturing_release: NextISMNonManufacturingRelease | null
 }
@@ -407,6 +411,133 @@ export interface CapacityUtilizationNextRelease {
   label: string
 }
 
+// 耐久財受注データの型
+export interface DurableGoodsData {
+  data: DurableGoodsItem[]
+  latest: DurableGoodsItem | null
+  next_release: DurableGoodsNextRelease | null
+  last_updated: string | null
+}
+
+export interface DurableGoodsItem {
+  date: string
+  value: number           // 耐久財新規受注（百万ドル）
+  ex_transport: number | null  // 輸送除外
+  mom: number | null      // 前月比
+  yoy: number | null      // 前年比
+  ex_transport_mom: number | null  // 輸送除外の前月比
+  ex_transport_yoy: number | null  // 輸送除外の前年比
+  [key: string]: string | number | null | undefined
+}
+
+export interface DurableGoodsNextRelease {
+  date: string
+  label: string
+}
+
+// 米国航空機便数データの型
+export interface USFlightsData {
+  image_url: string | null
+  latest: USFlightsLatest | null
+  next_update: USFlightsNextUpdate | null
+  last_updated: string | null
+  source: string | null
+}
+
+export interface USFlightsLatest {
+  date: string
+  description: string
+}
+
+export interface USFlightsNextUpdate {
+  date: string
+  time_jst: string
+  label: string
+}
+
+// TSA Checkpoint旅客数データの型
+export interface TSACheckpointData {
+  data: TSACheckpointItem[]
+  latest: TSACheckpointLatest | null
+  last_updated: string | null
+}
+
+export interface TSACheckpointItem {
+  date: string
+  value: number        // 旅客数
+  ma30: number | null  // 30日移動平均
+}
+
+export interface TSACheckpointLatest {
+  date: string
+  value: number
+  ma30: number | null
+  current_month_avg: number | null  // 当月平均
+  prev_month_avg: number | null     // 前月平均
+  mom_change: number | null         // 前月比
+  mom_pct: number | null            // 前月比（%）
+  yoy_change: number | null         // 前年同月比
+  yoy_pct: number | null            // 前年同月比（%）
+}
+
+// OpenTableレストラン予約件数データの型
+export interface OpenTableData {
+  image_url: string | null    // スクリーンショットURL
+  latest: OpenTableLatest | null
+  last_updated: string | null
+  source: string | null
+}
+
+export interface OpenTableLatest {
+  date: string
+  description: string
+}
+
+// 米国消費データの型
+export interface USAConsumerData {
+  retail_sales: RetailSalesData | null
+  retail_control: RetailControlData | null
+}
+
+// 小売売上高データの型
+export interface RetailSalesData {
+  data: RetailSalesItem[]
+  latest: RetailSalesItem | null
+  next_release: RetailSalesNextRelease | null
+  last_updated: string | null
+}
+
+export interface RetailSalesItem {
+  date: string
+  value: number              // 小売売上高（百万ドル）
+  ex_auto: number | null     // 自動車除く
+  mom: number | null         // 前月比
+  yoy: number | null         // 前年比
+  ex_auto_mom: number | null // 自動車除く前月比
+  ex_auto_yoy: number | null // 自動車除く前年比
+  [key: string]: string | number | null | undefined
+}
+
+export interface RetailSalesNextRelease {
+  date: string
+  label: string
+}
+
+// コントロールグループデータの型（Investing.comから取得）
+export interface RetailControlData {
+  data: RetailControlItem[]
+  latest: RetailControlItem | null
+  last_updated: string | null
+}
+
+export interface RetailControlItem {
+  date: string              // 対象月（YYYY-MM-01形式、小売売上高と同じ）
+  release_date: string      // 発表日
+  mom: number               // 前月比（%）
+  forecast: number | null   // 予想値
+  revised: number | null    // 改定値
+}
+
 /**
  * ダッシュボードデータを取得するAPI関数
  */
@@ -486,4 +617,20 @@ export function useUSAPolicyDashboard(): UseQueryResult<DashboardResponse<USAPol
  */
 export function useUSAEconomyDashboard(): UseQueryResult<DashboardResponse<USAEconomyData>, Error> {
   return useDashboardData<USAEconomyData>('usa', 'economy')
+}
+
+/**
+ * 米国消費ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useUSAConsumerDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.retail_sales) // 小売売上高データ
+ * }
+ * ```
+ */
+export function useUSAConsumerDashboard(): UseQueryResult<DashboardResponse<USAConsumerData>, Error> {
+  return useDashboardData<USAConsumerData>('usa', 'consumer')
 }

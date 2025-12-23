@@ -3,15 +3,24 @@
 GDP成長率、GDP寄与度、GDP項目別成長率、潜在成長率、銀行貸し出し態度、FCI-G、NFCI、GDPNow、
 ISM製造業、ISMサブインデックス、ISM非製造業、ISM非製造業サブインデックス、
 NY連銀製造業景気指数、フィラデルフィア連銀製造業景気指数、NFIB中小企業楽観指数、
-NFIB中小企業設備投資計画、鉱工業生産、設備稼働率を一括取得
+NFIB中小企業設備投資計画、鉱工業生産、設備稼働率、耐久財受注、米国航空機便数、TSA旅客数、
+OpenTableレストラン予約件数を一括取得
 
-キャッシュ更新判定: last_updated方式（スケジュール時刻ベース）
+キャッシュ更新判定: 発表日時ベース方式
+- 各指標の発表日時をチェックし、last_updatedより後に発表があれば再取得
 """
-from typing import Dict, Any, Optional
-from datetime import time
+from typing import Dict, Any, Optional, List
+from datetime import time, datetime, timedelta
+from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from services.dashboard.loaders.base import BaseDashboardLoader
+
+
+# タイムゾーン
+JST = ZoneInfo("Asia/Tokyo")
+ET = ZoneInfo("America/New_York")
+UTC = ZoneInfo("UTC")
 
 
 class USAEconomyLoader(BaseDashboardLoader):
@@ -27,31 +36,366 @@ class USAEconomyLoader(BaseDashboardLoader):
     - fci: FCI-G（金融情勢指数）- Federal Reserve CSV
     - nfci: シカゴ連銀金融環境指数 - FRED NFCI（毎週水曜日更新）
     - gdpnow: GDPNow（リアルタイムGDP予測）- Atlanta Fed（月6-7回更新）
-    - ism_manufacturing: ISM製造業景況指数 - Investing.com（毎月第1営業日）
-    - ism_components: ISM製造業サブインデックス - DBnomics（毎月第1営業日）
-    - ism_non_manufacturing: ISM非製造業景況指数 - DBnomics（毎月第3営業日）
-    - ism_non_manufacturing_components: ISM非製造業サブインデックス - DBnomics（毎月第3営業日）
-    - empire_state: NY連銀製造業景気指数 - FRED（毎月15日付近）
-    - philadelphia_fed: フィラデルフィア連銀製造業景気指数 - FRED（毎月第3木曜日）
-    - nfib: NFIB中小企業楽観指数 - NFIB PDF（毎月第2火曜日）
-    - nfib_capex: NFIB中小企業設備投資計画 - NFIB PDF（毎月第2火曜日）
-    - industrial_production: 鉱工業生産 - FRED INDPRO（毎月14〜18日頃）
-    - capacity_utilization: 設備稼働率 - FRED TCU（毎月14〜18日頃、鉱工業生産と同時）
+    - ism_manufacturing: ISM製造業景況指数 - Investing.com（毎月第1営業日 10:00 ET）
+    - ism_components: ISM製造業サブインデックス - DBnomics（毎月第1営業日 10:00 ET）
+    - ism_non_manufacturing: ISM非製造業景況指数 - DBnomics（毎月第3営業日 10:00 ET）
+    - ism_non_manufacturing_components: ISM非製造業サブインデックス - DBnomics（毎月第3営業日 10:00 ET）
+    - empire_state: NY連銀製造業景気指数 - FRED（毎月15日付近 8:30 ET）
+    - philadelphia_fed: フィラデルフィア連銀製造業景気指数 - FRED（毎月第3木曜日 8:30 ET）
+    - nfib: NFIB中小企業楽観指数 - NFIB PDF（毎月第2火曜日 6:00 ET）
+    - nfib_capex: NFIB中小企業設備投資計画 - NFIB PDF（毎月第2火曜日 6:00 ET）
+    - industrial_production: 鉱工業生産 - FRED INDPRO（毎月14〜18日頃 9:15 ET）
+    - capacity_utilization: 設備稼働率 - FRED TCU（毎月14〜18日頃 9:15 ET、鉱工業生産と同時）
+    - durable_goods: 耐久財受注 - FRED DGORDER, ADXTNO（毎月下旬 8:30 ET）
+    - us_flights: 米国航空機便数 - Airportia スクリーンショット（毎日 UTC 06:00 = JST 15:00）
+    - tsa_checkpoint: TSA旅客数 - TSA公式サイト（毎日 EST 10:00頃）
+    - opentable: OpenTableレストラン予約件数前年比 - OpenTable スクリーンショット（毎日 ET 10:00頃）
     - next_gdp_release: 次回GDP発表情報
     - next_ism_non_manufacturing_release: 次回ISM非製造業発表情報
 
-    キャッシュ方式: last_updated判定（スケジュール時刻: 22:00 JST = 8:00 ET + 9時間 + バッファ）
+    キャッシュ方式: 発表日時ベース判定
+    - 各指標の発表日時をチェックし、last_updatedより後に発表があれば再取得
     """
 
     COUNTRY_CODE = "usa"
     CATEGORY_CODE = "economy"
 
-    def get_schedule_time(self) -> Optional[time]:
+    # 発表時刻設定（ET）
+    RELEASE_TIMES = {
+        # 月次・四半期指標
+        "gdp": {"hour": 8, "minute": 30},              # GDP: 8:30 ET
+        "ism_manufacturing": {"hour": 10, "minute": 0}, # ISM製造業: 10:00 ET
+        "ism_non_manufacturing": {"hour": 10, "minute": 0},  # ISM非製造業: 10:00 ET
+        "empire_state": {"hour": 8, "minute": 30},     # NY連銀: 8:30 ET
+        "philadelphia_fed": {"hour": 8, "minute": 30}, # フィラデルフィア連銀: 8:30 ET
+        "nfib": {"hour": 6, "minute": 0},              # NFIB: 6:00 ET
+        "industrial_production": {"hour": 9, "minute": 15},  # 鉱工業生産: 9:15 ET
+        "durable_goods": {"hour": 8, "minute": 30},    # 耐久財受注: 8:30 ET
+        "bank_lending": {"hour": 14, "minute": 0},     # SLOOS: 14:00 ET（四半期）
+        # 週次指標
+        "nfci": {"hour": 8, "minute": 30},             # NFCI: 8:30 ET（毎週水曜日）
+        # 日次指標
+        "tsa_checkpoint": {"hour": 10, "minute": 0},   # TSA: 10:00 ET
+        "opentable": {"hour": 10, "minute": 0},        # OpenTable: 10:00 ET
+        "us_flights": {"hour": 6, "minute": 0, "tz": "UTC"},  # 航空便: 06:00 UTC
+    }
+
+    # 日次更新指標の更新時刻（JST）
+    DAILY_UPDATE_TIMES = {
+        "fci": {"hour": 6, "minute": 0},      # FCI-G: 6:00 JST（Fed更新後）
+        "gdpnow": {"hour": 6, "minute": 0},   # GDPNow: 6:00 JST（Atlanta Fed更新後）
+    }
+
+    def get_release_datetimes(self) -> List[Optional[datetime]]:
         """
-        スケジュール時刻を返す
-        BEA発表時刻(8:30 ET)の日本時間相当 + バッファ = 22:00 JST
+        各指標の発表日時リストを返す
+
+        各サービスが持つnext_release情報から発表日時を取得し、
+        発表日時リストを返す。
         """
-        return time(22, 0)  # 22:00 JST
+        release_times = []
+
+        # 各サービスから発表日時を取得
+        release_times.extend(self._get_gdp_release_datetimes())
+        release_times.extend(self._get_ism_release_datetimes())
+        release_times.extend(self._get_regional_fed_release_datetimes())
+        release_times.extend(self._get_nfib_release_datetimes())
+        release_times.extend(self._get_industrial_release_datetimes())
+        release_times.extend(self._get_durable_goods_release_datetimes())
+        release_times.extend(self._get_bank_lending_release_datetimes())
+        release_times.extend(self._get_nfci_release_datetimes())
+        release_times.extend(self._get_fci_gdpnow_release_datetimes())
+        release_times.extend(self._get_daily_release_datetimes())
+
+        return release_times
+
+    def _parse_date_string(self, date_str: str) -> Optional[datetime]:
+        """日付文字列をパース（YYYY-MM-DD形式）"""
+        if not date_str:
+            return None
+        try:
+            return datetime.strptime(date_str, "%Y-%m-%d")
+        except ValueError:
+            return None
+
+    def _make_release_datetime(
+        self,
+        date_str: str,
+        indicator: str
+    ) -> Optional[datetime]:
+        """
+        日付文字列と指標名から発表日時（JST）を生成
+
+        Args:
+            date_str: 日付文字列（YYYY-MM-DD）
+            indicator: 指標名（RELEASE_TIMESのキー）
+
+        Returns:
+            発表日時（JST）
+        """
+        base_date = self._parse_date_string(date_str)
+        if not base_date:
+            return None
+
+        time_config = self.RELEASE_TIMES.get(indicator)
+        if not time_config:
+            return None
+
+        # タイムゾーンの決定
+        tz = UTC if time_config.get("tz") == "UTC" else ET
+
+        release_dt = datetime(
+            base_date.year, base_date.month, base_date.day,
+            time_config["hour"], time_config["minute"],
+            tzinfo=tz
+        )
+
+        # JSTに変換
+        return release_dt.astimezone(JST)
+
+    def _get_gdp_release_datetimes(self) -> List[Optional[datetime]]:
+        """GDP発表日時を取得"""
+        try:
+            from services.usa.bea_schedule_service import bea_schedule_service
+
+            next_release = bea_schedule_service.get_next_gdp_release()
+            if not next_release:
+                return []
+
+            date_str = next_release.get("date")
+            release_dt = self._make_release_datetime(date_str, "gdp")
+            return [release_dt] if release_dt else []
+
+        except Exception as e:
+            print(f"Error getting GDP release datetime: {e}")
+            return []
+
+    def _get_ism_release_datetimes(self) -> List[Optional[datetime]]:
+        """ISM製造業・非製造業の発表日時を取得"""
+        release_times = []
+
+        try:
+            # ISM製造業
+            from services.usa.ism_manufacturing_service import ism_manufacturing_service
+            mfg_data = ism_manufacturing_service.get_ism_manufacturing_data()
+            next_release = mfg_data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                release_dt = self._make_release_datetime(date_str, "ism_manufacturing")
+                if release_dt:
+                    release_times.append(release_dt)
+        except Exception as e:
+            print(f"Error getting ISM Manufacturing release datetime: {e}")
+
+        try:
+            # ISM非製造業
+            from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
+            non_mfg_data = ism_non_manufacturing_service.get_ism_non_manufacturing_data()
+            next_release = non_mfg_data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                release_dt = self._make_release_datetime(date_str, "ism_non_manufacturing")
+                if release_dt:
+                    release_times.append(release_dt)
+        except Exception as e:
+            print(f"Error getting ISM Non-Manufacturing release datetime: {e}")
+
+        return release_times
+
+    def _get_regional_fed_release_datetimes(self) -> List[Optional[datetime]]:
+        """地区連銀指標の発表日時を取得"""
+        release_times = []
+
+        try:
+            # NY連銀（Empire State）
+            from services.usa.empire_state_service import empire_state_service
+            data = empire_state_service.get_empire_state_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                release_dt = self._make_release_datetime(date_str, "empire_state")
+                if release_dt:
+                    release_times.append(release_dt)
+        except Exception as e:
+            print(f"Error getting Empire State release datetime: {e}")
+
+        try:
+            # フィラデルフィア連銀
+            from services.usa.philadelphia_fed_service import philadelphia_fed_service
+            data = philadelphia_fed_service.get_philadelphia_fed_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                release_dt = self._make_release_datetime(date_str, "philadelphia_fed")
+                if release_dt:
+                    release_times.append(release_dt)
+        except Exception as e:
+            print(f"Error getting Philadelphia Fed release datetime: {e}")
+
+        return release_times
+
+    def _get_nfib_release_datetimes(self) -> List[Optional[datetime]]:
+        """NFIB発表日時を取得"""
+        try:
+            from services.usa.nfib_service import nfib_service
+            data = nfib_service.get_nfib_data()
+            next_release = data.get("next_release")
+            if not next_release:
+                return []
+
+            date_str = next_release.get("date")
+            release_dt = self._make_release_datetime(date_str, "nfib")
+            return [release_dt] if release_dt else []
+
+        except Exception as e:
+            print(f"Error getting NFIB release datetime: {e}")
+            return []
+
+    def _get_industrial_release_datetimes(self) -> List[Optional[datetime]]:
+        """鉱工業生産・設備稼働率の発表日時を取得（同時発表）"""
+        try:
+            from services.usa.industrial_production_service import industrial_production_service
+            data = industrial_production_service.get_industrial_production_data()
+            next_release = data.get("next_release")
+            if not next_release:
+                return []
+
+            date_str = next_release.get("date")
+            release_dt = self._make_release_datetime(date_str, "industrial_production")
+            return [release_dt] if release_dt else []
+
+        except Exception as e:
+            print(f"Error getting Industrial Production release datetime: {e}")
+            return []
+
+    def _get_durable_goods_release_datetimes(self) -> List[Optional[datetime]]:
+        """耐久財受注の発表日時を取得"""
+        try:
+            from services.usa.durable_goods_service import durable_goods_service
+            data = durable_goods_service.get_durable_goods_data()
+            next_release = data.get("next_release")
+            if not next_release:
+                return []
+
+            date_str = next_release.get("date")
+            release_dt = self._make_release_datetime(date_str, "durable_goods")
+            return [release_dt] if release_dt else []
+
+        except Exception as e:
+            print(f"Error getting Durable Goods release datetime: {e}")
+            return []
+
+    def _get_bank_lending_release_datetimes(self) -> List[Optional[datetime]]:
+        """銀行貸し出し態度（SLOOS）の発表日時を取得（四半期）"""
+        try:
+            from services.usa.bank_lending_service import bank_lending_service
+            data = bank_lending_service.get_bank_lending_standards()
+            next_release = data.get("next_release")
+            if not next_release:
+                return []
+
+            date_str = next_release.get("date")
+            release_dt = self._make_release_datetime(date_str, "bank_lending")
+            return [release_dt] if release_dt else []
+
+        except Exception as e:
+            print(f"Error getting Bank Lending release datetime: {e}")
+            return []
+
+    def _get_nfci_release_datetimes(self) -> List[Optional[datetime]]:
+        """NFCI（シカゴ連銀金融環境指数）の発表日時を取得（毎週水曜日）"""
+        try:
+            from services.usa.nfci_service import nfci_service
+            next_release = nfci_service.get_next_release_date()
+            if not next_release:
+                return []
+
+            date_str = next_release.get("date")
+            release_dt = self._make_release_datetime(date_str, "nfci")
+            return [release_dt] if release_dt else []
+
+        except Exception as e:
+            print(f"Error getting NFCI release datetime: {e}")
+            return []
+
+    def _get_fci_gdpnow_release_datetimes(self) -> List[Optional[datetime]]:
+        """
+        FCI-G、GDPNowの更新日時を取得（毎日6:00 JST）
+
+        これらの指標は不定期更新だが、日次でチェックするため
+        毎日6:00 JSTを更新時刻として返す。
+        """
+        release_times = []
+        now = datetime.now(JST)
+
+        # FCI-G（毎日6:00 JST）
+        fci_time = self.DAILY_UPDATE_TIMES["fci"]
+        fci_today = datetime(
+            now.year, now.month, now.day,
+            fci_time["hour"], fci_time["minute"],
+            tzinfo=JST
+        )
+        if now < fci_today:
+            fci_today = fci_today - timedelta(days=1)
+        release_times.append(fci_today)
+
+        # GDPNow（毎日6:00 JST）
+        gdpnow_time = self.DAILY_UPDATE_TIMES["gdpnow"]
+        gdpnow_today = datetime(
+            now.year, now.month, now.day,
+            gdpnow_time["hour"], gdpnow_time["minute"],
+            tzinfo=JST
+        )
+        if now < gdpnow_today:
+            gdpnow_today = gdpnow_today - timedelta(days=1)
+        release_times.append(gdpnow_today)
+
+        return release_times
+
+    def _get_daily_release_datetimes(self) -> List[Optional[datetime]]:
+        """
+        日次指標（TSA、OpenTable、航空便数）の発表日時を取得
+
+        日次指標は毎日更新されるため、今日または昨日の更新時刻を返す
+        """
+        release_times = []
+        now = datetime.now(JST)
+
+        # TSA旅客数（毎日10:00 ET）
+        tsa_time = self.RELEASE_TIMES["tsa_checkpoint"]
+        tsa_today = datetime(
+            now.year, now.month, now.day,
+            tsa_time["hour"], tsa_time["minute"],
+            tzinfo=ET
+        ).astimezone(JST)
+        # 今日の更新時刻を過ぎていなければ昨日の時刻を使用
+        if now < tsa_today:
+            tsa_today = tsa_today - timedelta(days=1)
+        release_times.append(tsa_today)
+
+        # OpenTable（毎日10:00 ET）
+        opentable_time = self.RELEASE_TIMES["opentable"]
+        opentable_today = datetime(
+            now.year, now.month, now.day,
+            opentable_time["hour"], opentable_time["minute"],
+            tzinfo=ET
+        ).astimezone(JST)
+        if now < opentable_today:
+            opentable_today = opentable_today - timedelta(days=1)
+        release_times.append(opentable_today)
+
+        # 航空便数（毎日06:00 UTC = 15:00 JST）
+        flights_time = self.RELEASE_TIMES["us_flights"]
+        flights_today = datetime(
+            now.year, now.month, now.day,
+            flights_time["hour"], flights_time["minute"],
+            tzinfo=UTC
+        ).astimezone(JST)
+        if now < flights_today:
+            flights_today = flights_today - timedelta(days=1)
+        release_times.append(flights_today)
+
+        return release_times
 
     def load_all(self) -> Dict[str, Any]:
         """
@@ -83,6 +427,10 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.nfib_service import nfib_service
         from services.usa.industrial_production_service import industrial_production_service
         from services.usa.capacity_utilization_service import capacity_utilization_service
+        from services.usa.durable_goods_service import durable_goods_service
+        from services.usa.us_flights_service import us_flights_service
+        from services.usa.tsa_checkpoint_service import tsa_checkpoint_service
+        from services.usa.opentable_service import opentable_service
         from services.usa.bea_schedule_service import bea_schedule_service
 
         result = {
@@ -104,6 +452,10 @@ class USAEconomyLoader(BaseDashboardLoader):
             "nfib_capex": None,
             "industrial_production": None,
             "capacity_utilization": None,
+            "durable_goods": None,
+            "us_flights": None,
+            "tsa_checkpoint": None,
+            "opentable": None,
             "next_gdp_release": None,
             "next_ism_non_manufacturing_release": None,
         }
@@ -129,6 +481,10 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_nfib_capex, nfib_service): "nfib_capex",
                 executor.submit(self._get_industrial_production, industrial_production_service): "industrial_production",
                 executor.submit(self._get_capacity_utilization, capacity_utilization_service): "capacity_utilization",
+                executor.submit(self._get_durable_goods, durable_goods_service): "durable_goods",
+                executor.submit(self._get_us_flights, us_flights_service): "us_flights",
+                executor.submit(self._get_tsa_checkpoint, tsa_checkpoint_service): "tsa_checkpoint",
+                executor.submit(self._get_opentable, opentable_service): "opentable",
                 executor.submit(self._get_next_gdp_release, bea_schedule_service): "next_gdp_release",
                 executor.submit(self._get_next_ism_non_manufacturing_release, ism_non_manufacturing_service): "next_ism_non_manufacturing_release",
             }
@@ -448,3 +804,103 @@ class USAEconomyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting Capacity Utilization data: {e}")
             return None
+
+    def _get_durable_goods(self, service) -> Optional[dict]:
+        """耐久財受注データを取得"""
+        try:
+            response = service.get_durable_goods_data()
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Durable Goods data: {e}")
+            return None
+
+    def _get_us_flights(self, service) -> Optional[dict]:
+        """米国航空機便数データを取得"""
+        try:
+            response = service.get_flights_data()
+            # image_urlがない場合はエラー
+            if not response.get("image_url"):
+                return None
+            return {
+                "image_url": response.get("image_url"),
+                "latest": response.get("latest"),
+                "next_update": response.get("next_update"),
+                "last_updated": response.get("last_updated"),
+                "source": response.get("source")
+            }
+        except Exception as e:
+            print(f"Error getting US Flights data: {e}")
+            return None
+
+    def _get_tsa_checkpoint(self, service, force_refresh: bool = False) -> Optional[dict]:
+        """TSA旅客数データを取得"""
+        try:
+            response = service.get_tsa_checkpoint_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting TSA Checkpoint data: {e}")
+            return None
+
+    def _get_opentable(self, service) -> Optional[dict]:
+        """OpenTableレストラン予約件数データを取得"""
+        try:
+            response = service.get_opentable_data()
+            return {
+                "image_url": response.get("image_url"),
+                "latest": response.get("latest"),
+                "last_updated": response.get("last_updated"),
+                "source": response.get("source")
+            }
+        except Exception as e:
+            print(f"Error getting OpenTable data: {e}")
+            return None
+
+    def invalidate_cache(self) -> bool:
+        """
+        キャッシュを無効化（ダッシュボード + 個別サービス）
+        TSA、OpenTableサービスのキャッシュも一緒に無効化する
+        """
+        from services.usa.tsa_checkpoint_service import tsa_checkpoint_service
+        from services.usa.opentable_service import opentable_service
+        from pathlib import Path
+
+        # TSAサービスのRedisキャッシュを無効化
+        try:
+            tsa_checkpoint_service.invalidate_cache()
+            print("TSA checkpoint Redis cache invalidated")
+        except Exception as e:
+            print(f"Error invalidating TSA cache: {e}")
+
+        # TSAサービスのファイルキャッシュを削除
+        try:
+            cache_file = Path(__file__).parent.parent.parent.parent / "cache" / "usa" / "economy" / "tsa_checkpoint_data.json"
+            if cache_file.exists():
+                cache_file.unlink()
+                print("TSA checkpoint file cache deleted")
+        except Exception as e:
+            print(f"Error deleting TSA file cache: {e}")
+
+        # OpenTableサービスのRedisキャッシュを無効化
+        try:
+            opentable_service.invalidate_cache()
+            print("OpenTable Redis cache invalidated")
+        except Exception as e:
+            print(f"Error invalidating OpenTable cache: {e}")
+
+        # 親クラスのinvalidate_cacheを呼び出し
+        return super().invalidate_cache()

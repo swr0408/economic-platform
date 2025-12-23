@@ -31,7 +31,6 @@ docker-compose exec postgres psql -U postgres -d economic_platform -c "CREATE EX
 Frontend: http://localhost:3000
 Backend API: http://localhost:8000
 API Docs: http://localhost:8000/docs
-Celery Flower: http://localhost:5555
 
 開発コマンド
 
@@ -87,8 +86,8 @@ docker-compose up -d --build --force-recreate
 
 
 実際の開発環境
-# 開発環境でbackend + キャッシュ + スケジューラを起動
-docker-compose up -d postgres redis backend celery-worker celery-beat
+# 開発環境でbackend + キャッシュを起動
+docker-compose up -d postgres redis backend
 
 # frontendはホストで実行
 cd frontend

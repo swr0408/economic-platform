@@ -78,6 +78,10 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'nfib-capex', name: 'NFIB設備投資計画' },
           { code: 'industrial-production', name: '鉱工業生産' },
           { code: 'capacity-utilization', name: '設備稼働率' },
+          { code: 'durable-goods', name: '耐久財受注' },
+          { code: 'us-flights', name: '航空機便数' },
+          { code: 'tsa-checkpoint', name: '航空機旅客者数' },
+          { code: 'opentable', name: 'レストラン予約件数' },
         ],
       },
       {

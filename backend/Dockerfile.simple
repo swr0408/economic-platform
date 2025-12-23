@@ -37,7 +37,6 @@ RUN pip install --no-cache-dir \
     uvicorn \
     pandas \
     requests \
-    celery[redis] \
     redis \
     psycopg2-binary \
     asyncpg \

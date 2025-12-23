@@ -34,7 +34,9 @@
       "Bash(find:*)",
       "Bash(jq:*)",
       "Bash(python3:*)",
-      "Bash(npm run type-check:*)"
+      "Bash(npm run type-check:*)",
+      "Bash(del \"c:\\Users\\owner\\Desktop\\economic-platform\\backend\\cache\\usa\\consumer\\retail_control_cache.json\")",
+      "Bash(powershell.exe:*)"
     ]
   }
 }

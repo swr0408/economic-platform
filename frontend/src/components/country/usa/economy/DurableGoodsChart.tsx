@@ -10,26 +10,28 @@ import {
   ResponsiveContainer,
   ReferenceLine,
   Bar,
-  ComposedChart,
+  BarChart,
 } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { IndustrialProductionData } from '../../../../hooks/useDashboardData'
+import type { DurableGoodsData } from '../../../../hooks/useDashboardData'
 
-interface IndustrialProductionChartProps {
-  data: IndustrialProductionData | null
+interface DurableGoodsChartProps {
+  data: DurableGoodsData | null
 }
 
 type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataType = 'total' | 'ex_transport'
 
 // 月名の定義
 const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 
-export default function IndustrialProductionChart({ data }: IndustrialProductionChartProps) {
+export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
   const [selectedPeriodYoY, setSelectedPeriodYoY] = useState<number | 'all' | 'default'>('default')
-  const [selectedPeriodMoM, setSelectedPeriodMoM] = useState<number | 'all' | 'default'>(3) // 前月比はデフォルト3年
+  const [selectedPeriodMoM, setSelectedPeriodMoM] = useState<number | 'all' | 'default'>(3)
   const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataType, setDataType] = useState<DataType>('total')
   const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set())
 
   // データを日付昇順にソート
@@ -45,7 +47,6 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
   const filteredData = useMemo(() => {
     if (chartData.length === 0) return []
 
-    // 前月比グラフと前年比で別々の期間設定を使用
     const selectedPeriod = viewMode === 'mom_chart' ? selectedPeriodMoM : selectedPeriodYoY
 
     if (selectedPeriod === 'all') {
@@ -55,10 +56,8 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
     const cutoffDate = new Date()
 
     if (selectedPeriod === 'default') {
-      // デフォルトは2010年から
       cutoffDate.setFullYear(2010, 0, 1)
     } else {
-      // 指定年数前から
       cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
     }
 
@@ -72,7 +71,6 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
   const momTableData = useMemo(() => {
     if (chartData.length === 0) return { years: [], monthlyData: {} }
 
-    // 直近10年分のデータを抽出
     const currentYear = new Date().getFullYear()
     const startYear = currentYear - 9
 
@@ -81,18 +79,21 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
       years.push(y)
     }
 
-    const monthlyData: Record<number, Record<number, number | null>> = {}
+    const monthlyData: Record<number, Record<number, { total: number | null; ex_transport: number | null }>> = {}
 
     chartData.forEach((item) => {
       const date = new Date(item.date)
       const year = date.getFullYear()
-      const month = date.getMonth() // 0-11
+      const month = date.getMonth()
 
       if (year >= startYear && year <= currentYear) {
         if (!monthlyData[year]) {
           monthlyData[year] = {}
         }
-        monthlyData[year][month] = item.mom
+        monthlyData[year][month] = {
+          total: item.mom,
+          ex_transport: item.ex_transport_mom
+        }
       }
     })
 
@@ -101,14 +102,13 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
 
   const hasData = chartData.length > 0
 
-  // データがnullの場合はローディング表示
   if (data === null) {
-    return <LoadingChart title="鉱工業生産（Industrial Production）" />
+    return <LoadingChart title="耐久財受注（Durable Goods Orders）" />
   }
 
   if (!hasData) {
     return (
-      <ChartContainer title="鉱工業生産（Industrial Production）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="耐久財受注（Durable Goods Orders）" showPeriodSelector={false} showDataSource={false}>
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -128,7 +128,6 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
     return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
-  // 凡例クリックで表示/非表示を切り替え
   const handleLegendClick = (dataKey: string) => {
     setHiddenSeries((prev) => {
       const next = new Set(prev)
@@ -143,11 +142,12 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
 
   // グラフの色
   const COLORS = {
-    yoy: '#1890ff',  // 前年比: 青
-    mom: '#52c41a',  // 前月比: 緑
+    yoy: '#1890ff',
+    yoy_ex: '#722ed1',
+    mom: '#52c41a',
+    mom_ex: '#13c2c2',
   }
 
-  // 最新値
   const latest = data.latest
 
   // 表示モード切り替えボタン
@@ -195,30 +195,72 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
     </div>
   )
 
+  // データタイプ切り替えボタン
+  const DataTypeButtons = () => (
+    <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+      <button
+        onClick={() => setDataType('total')}
+        style={{
+          padding: '4px 10px',
+          border: dataType === 'total' ? '2px solid #1890ff' : '1px solid #d9d9d9',
+          borderRadius: 4,
+          background: dataType === 'total' ? '#e6f7ff' : '#fff',
+          cursor: 'pointer',
+          fontWeight: dataType === 'total' ? 'bold' : 'normal',
+          fontSize: 12,
+        }}
+      >
+        総合
+      </button>
+      <button
+        onClick={() => setDataType('ex_transport')}
+        style={{
+          padding: '4px 10px',
+          border: dataType === 'ex_transport' ? '2px solid #722ed1' : '1px solid #d9d9d9',
+          borderRadius: 4,
+          background: dataType === 'ex_transport' ? '#f9f0ff' : '#fff',
+          cursor: 'pointer',
+          fontWeight: dataType === 'ex_transport' ? 'bold' : 'normal',
+          fontSize: 12,
+        }}
+      >
+        輸送除外
+      </button>
+    </div>
+  )
+
   // 表示する値を取得
   const getLatestValue = () => {
     if (!latest) return null
-    return viewMode === 'yoy' ? latest.yoy : latest.mom
+    if (viewMode === 'yoy') {
+      return dataType === 'total' ? latest.yoy : latest.ex_transport_yoy
+    } else {
+      return dataType === 'total' ? latest.mom : latest.ex_transport_mom
+    }
   }
 
   // 表示する色を取得
   const getLatestColor = () => {
-    return viewMode === 'yoy' ? COLORS.yoy : COLORS.mom
+    if (viewMode === 'yoy') {
+      return dataType === 'total' ? COLORS.yoy : COLORS.yoy_ex
+    }
+    return dataType === 'total' ? COLORS.mom : COLORS.mom_ex
   }
 
   // テーブルセルの背景色を決定（前月比用）
   const getMomCellColor = (value: number | null | undefined) => {
     if (value === null || value === undefined) return 'transparent'
-    if (value > 0.5) return 'rgba(82, 196, 26, 0.3)'  // 強いプラス: 緑
-    if (value > 0) return 'rgba(82, 196, 26, 0.15)'   // 弱いプラス: 薄緑
-    if (value < -0.5) return 'rgba(255, 77, 79, 0.3)' // 強いマイナス: 赤
-    if (value < 0) return 'rgba(255, 77, 79, 0.15)'   // 弱いマイナス: 薄赤
+    if (value > 1) return 'rgba(82, 196, 26, 0.3)'
+    if (value > 0) return 'rgba(82, 196, 26, 0.15)'
+    if (value < -1) return 'rgba(255, 77, 79, 0.3)'
+    if (value < 0) return 'rgba(255, 77, 79, 0.15)'
     return 'transparent'
   }
 
   // 前月比テーブルコンポーネント
   const MoMTable = () => (
     <div style={{ overflowX: 'auto' }}>
+      <DataTypeButtons />
       <table
         style={{
           width: '100%',
@@ -261,7 +303,8 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
-                const value = momTableData.monthlyData[year]?.[month]
+                const cellData = momTableData.monthlyData[year]?.[month]
+                const value = dataType === 'total' ? cellData?.total : cellData?.ex_transport
                 return (
                   <td
                     key={month}
@@ -288,31 +331,31 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
       <div style={{ marginTop: 8, fontSize: 11, color: '#888', display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(82, 196, 26, 0.3)', marginRight: 4 }} />
-          プラス（+0.5%以上）
+          プラス（+1%以上）
         </span>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(82, 196, 26, 0.15)', marginRight: 4 }} />
-          プラス（0〜+0.5%）
+          プラス（0〜+1%）
         </span>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(255, 77, 79, 0.15)', marginRight: 4 }} />
-          マイナス（0〜-0.5%）
+          マイナス（0〜-1%）
         </span>
         <span>
           <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(255, 77, 79, 0.3)', marginRight: 4 }} />
-          マイナス（-0.5%以下）
+          マイナス（-1%以下）
         </span>
       </div>
     </div>
   )
 
   return (
-    <div id="industrial-production-chart">
+    <div id="durable-goods-chart">
       <ChartContainer
-        title="鉱工業生産（Industrial Production）"
+        title="耐久財受注（Durable Goods Orders）"
         showPeriodSelector={false}
-        dataSource="FRED (FRB)"
-        sourceUrl="https://www.federalreserve.gov/releases/G17/default.htm"
+        dataSource="FRED (Census Bureau)"
+        sourceUrl="https://www.census.gov/manufacturing/m3/release_schedule.html"
       >
         {/* 最新値表示 */}
         <div
@@ -327,7 +370,9 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
           }}
         >
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+            <span style={{ fontSize: 12, color: '#666' }}>
+              最新値（{dataType === 'total' ? '総合' : '輸送除外'}）:{' '}
+            </span>
             {latest && (
               <>
                 <span
@@ -349,33 +394,18 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
             {data.next_release && (
               <div>次回発表: {data.next_release.date}</div>
             )}
-            <div>毎月14〜18日頃 9:15 ET</div>
+            <div>毎月下旬 8:30 ET</div>
           </div>
         </div>
 
         <ViewModeButtons />
 
-        {/* 前年比グラフの場合は期間セレクター表示 */}
+        {/* 前年比グラフの場合 */}
         {viewMode === 'yoy' && (
-          <PeriodSelector onPeriodChange={setSelectedPeriodYoY} selectedPeriod={selectedPeriodYoY} />
-        )}
-        {viewMode === 'mom_table' && (
-          <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
-            ※ 直近10年間の前月比データ（単位: %）
-          </div>
-        )}
-        {viewMode === 'mom_chart' && (
-          <PeriodSelector onPeriodChange={setSelectedPeriodMoM} selectedPeriod={selectedPeriodMoM} />
-        )}
-
-        {/* コンテンツ表示 */}
-        {viewMode === 'mom_table' ? (
-          <MoMTable />
-        ) : (
-          <ResponsiveContainer width="100%" height={450}>
-            {viewMode === 'mom_chart' ? (
-              // 前月比はバーチャート
-              <ComposedChart
+          <>
+            <PeriodSelector onPeriodChange={setSelectedPeriodYoY} selectedPeriod={selectedPeriodYoY} />
+            <ResponsiveContainer width="100%" height={450}>
+              <LineChart
                 data={filteredData}
                 margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
               >
@@ -387,7 +417,7 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                   interval="preserveStartEnd"
                 />
                 <YAxis
-                  domain={['auto', 'auto']}
+                  domain={['dataMin - 5', 'dataMax + 5']}
                   tick={{ fontSize: 11 }}
                   tickFormatter={(v) => `${v}%`}
                 />
@@ -410,16 +440,50 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                   wrapperStyle={{ cursor: 'pointer' }}
                 />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1}/>
-                <Bar
-                  dataKey="mom"
-                  fill={COLORS.mom}
-                  name="前月比"
-                  hide={hiddenSeries.has('mom')}
+                <Line
+                  type="monotone"
+                  dataKey="yoy"
+                  stroke={COLORS.yoy}
+                  strokeWidth={2}
+                  dot={false}
+                  name="耐久財受注 前年比"
+                  hide={hiddenSeries.has('yoy')}
+                  isAnimationActive={false}
+                  connectNulls={true}
                 />
-              </ComposedChart>
-            ) : (
-              // 前年比はラインチャート
-              <LineChart
+                <Line
+                  type="monotone"
+                  dataKey="ex_transport_yoy"
+                  stroke={COLORS.yoy_ex}
+                  strokeWidth={2}
+                  dot={false}
+                  name="輸送除外 前年比"
+                  hide={hiddenSeries.has('ex_transport_yoy')}
+                  isAnimationActive={false}
+                  connectNulls={true}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </>
+        )}
+
+        {/* 前月比テーブルの場合 */}
+        {viewMode === 'mom_table' && (
+          <>
+            <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+              ※ 直近10年間の前月比データ（単位: %）
+            </div>
+            <MoMTable />
+          </>
+        )}
+
+        {/* 前月比グラフの場合 */}
+        {viewMode === 'mom_chart' && (
+          <>
+            <DataTypeButtons />
+            <PeriodSelector onPeriodChange={setSelectedPeriodMoM} selectedPeriod={selectedPeriodMoM} />
+            <ResponsiveContainer width="100%" height={450}>
+              <BarChart
                 data={filteredData}
                 margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
               >
@@ -431,7 +495,7 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                   interval="preserveStartEnd"
                 />
                 <YAxis
-                  domain={['auto', 'auto']}
+                  domain={['dataMin - 2', 'dataMax + 2']}
                   tick={{ fontSize: 11 }}
                   tickFormatter={(v) => `${v}%`}
                 />
@@ -449,25 +513,24 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                     borderRadius: 4,
                   }}
                 />
-                <Legend
-                  onClick={(e) => handleLegendClick(e.dataKey as string)}
-                  wrapperStyle={{ cursor: 'pointer' }}
-                />
+                <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
-                <Line
-                  type="monotone"
-                  dataKey="yoy"
-                  stroke={COLORS.yoy}
-                  strokeWidth={2}
-                  dot={false}
-                  name="前年比"
-                  hide={hiddenSeries.has('yoy')}
-                  isAnimationActive={false}
-                  connectNulls={true}
-                />
-              </LineChart>
-            )}
-          </ResponsiveContainer>
+                {dataType === 'total' ? (
+                  <Bar
+                    dataKey="mom"
+                    fill={COLORS.mom}
+                    name="耐久財受注 前月比"
+                  />
+                ) : (
+                  <Bar
+                    dataKey="ex_transport_mom"
+                    fill={COLORS.mom_ex}
+                    name="輸送除外 前月比"
+                  />
+                )}
+              </BarChart>
+            </ResponsiveContainer>
+          </>
         )}
       </ChartContainer>
     </div>
