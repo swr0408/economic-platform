@@ -1,3 +1,8 @@
+/**
+ * シカゴ連銀金融環境指数（NFCI）チャートコンポーネント
+ *
+ * 共通モジュールを使用してリファクタリング済み
+ */
 import { useState, useMemo } from 'react'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
@@ -5,12 +10,16 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { NFCIData } from '../../../../hooks/useDashboardData'
 
+// 共通モジュールのインポート
+import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
+import { NoDataMessage } from '../common/ChartComponents'
+
 interface NFCIChartProps {
   data: NFCIData | null
 }
 
 export default function NFCIChart({ data }: NFCIChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -22,30 +31,13 @@ export default function NFCIChart({ data }: NFCIChartProps) {
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2010年から
-      cutoffDate.setFullYear(2010, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2010,
+  })
 
   const hasData = chartData.length > 0
 
-  // データがnullの場合はローディング表示
   if (data === null) {
     return <LoadingChart title="シカゴ連銀金融環境指数（NFCI）" />
   }
@@ -53,9 +45,7 @@ export default function NFCIChart({ data }: NFCIChartProps) {
   if (!hasData) {
     return (
       <ChartContainer title="シカゴ連銀金融環境指数（NFCI）" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }

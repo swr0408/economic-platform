@@ -5,6 +5,10 @@ import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatQuarterLabel, type PeriodType } from '../common/useChartData'
+import { NoDataMessage } from '../common/ChartComponents'
+
 // 潜在成長率データの型定義
 interface PotentialGDPItem {
   date: string
@@ -29,7 +33,7 @@ interface ChartDataPoint {
 }
 
 export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // 名目・実質データを統合
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -63,26 +67,10 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2000年から
-      cutoffDate.setFullYear(2000, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2000,
+  })
 
   const hasData = chartData.length > 0
 
@@ -94,9 +82,7 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
   if (!hasData) {
     return (
       <ChartContainer title="名目潜在成長率 / 実質潜在成長率" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -109,14 +95,6 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
     if (value === null || value === undefined) return '-'
     const sign = value >= 0 ? '+' : ''
     return `${sign}${value.toFixed(2)}%`
-  }
-
-  const formatQuarterLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
   }
 
   // カスタムツールチップ
@@ -197,57 +175,39 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
         <div
           style={{
             display: 'flex',
+            alignItems: 'center',
             gap: 16,
             marginBottom: 12,
             padding: '12px 16px',
             background: '#f5f5f5',
             borderRadius: 8,
+            flexWrap: 'wrap',
           }}
         >
-          {/* 実質潜在成長率 */}
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
-              実質潜在成長率
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-              <span
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: '#1890ff',
-                }}
-              >
-                {latestReal ? formatPercentage(latestReal.value) : '-'}
-              </span>
-              {latestReal && (
-                <span style={{ fontSize: 11, color: '#999' }}>
-                  ({formatQuarterLabel(latestReal.date)})
-                </span>
-              )}
-            </div>
-          </div>
-
+          <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
           {/* 名目潜在成長率 */}
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
-              名目潜在成長率
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-              <span
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                  color: '#52c41a',
-                }}
-              >
-                {latestNominal ? formatPercentage(latestNominal.value) : '-'}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 12, color: '#666' }}>名目:</span>
+            <span style={{ fontSize: 16, fontWeight: 'bold', color: '#52c41a' }}>
+              {latestNominal ? formatPercentage(latestNominal.value) : '-'}
+            </span>
+            {latestNominal && (
+              <span style={{ fontSize: 11, color: '#999' }}>
+                ({formatQuarterLabel(latestNominal.date)})
               </span>
-              {latestNominal && (
-                <span style={{ fontSize: 11, color: '#999' }}>
-                  ({formatQuarterLabel(latestNominal.date)})
-                </span>
-              )}
-            </div>
+            )}
+          </div>
+          {/* 実質潜在成長率 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 12, color: '#666' }}>実質:</span>
+            <span style={{ fontSize: 16, fontWeight: 'bold', color: '#1890ff' }}>
+              {latestReal ? formatPercentage(latestReal.value) : '-'}
+            </span>
+            {latestReal && (
+              <span style={{ fontSize: 11, color: '#999' }}>
+                ({formatQuarterLabel(latestReal.date)})
+              </span>
+            )}
           </div>
         </div>
 

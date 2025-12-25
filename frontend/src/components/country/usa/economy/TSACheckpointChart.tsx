@@ -1,18 +1,12 @@
 import { useState, useMemo } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { TSACheckpointData } from '../../../../hooks/useDashboardData'
+
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatDateLabelFull, useHiddenSeries, type PeriodType } from '../common/useChartData'
+import { NoDataMessage, StandardLineChart } from '../common/ChartComponents'
 
 interface TSACheckpointChartProps {
   data: TSACheckpointData | null
@@ -25,8 +19,8 @@ const COLORS = {
 }
 
 export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
-  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set())
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -37,28 +31,11 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
     )
   }, [data])
 
-  // 期間フィルタリング（デフォルトを2年に変更）
-  const filteredData = useMemo(() => {
-    if (chartData.length === 0) return []
-
-    if (selectedPeriod === 'all') {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2年間（2年分データに対応）
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - 2)
-    } else {
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  // 期間フィルタリング（デフォルト2年）
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: new Date().getFullYear() - 2,
+  })
 
   // Y軸のドメインを計算（余白を持たせてスケール調整）
   const yAxisDomain = useMemo(() => {
@@ -83,19 +60,6 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
 
   const hasData = chartData.length > 0
 
-  // レジェンドクリックで系列を非表示
-  const handleLegendClick = (dataKey: string) => {
-    setHiddenSeries((prev) => {
-      const newSet = new Set(prev)
-      if (newSet.has(dataKey)) {
-        newSet.delete(dataKey)
-      } else {
-        newSet.add(dataKey)
-      }
-      return newSet
-    })
-  }
-
   // データがnullの場合はローディング表示
   if (data === null) {
     return <LoadingChart title="米航空機旅客者数（TSA Checkpoint）" />
@@ -104,9 +68,7 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
   if (!hasData) {
     return (
       <ChartContainer title="米航空機旅客者数（TSA Checkpoint）" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -118,16 +80,10 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
   }
 
   // ツールチップ用フォーマット
-  const formatTooltipValue = (value: number | null | undefined): string => {
-    if (value === null || value === undefined) return 'N/A'
-    return `${value.toLocaleString()} 人`
-  }
-
-  // 日付フォーマット
-  const formatDateLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`
+  const formatTooltipValue = (value: unknown, name: string): [string, string] => {
+    const displayName = name === 'value' ? '旅客数' : name === 'ma30' ? '30日移動平均' : name
+    if (value === null || value === undefined || typeof value !== 'number') return ['N/A', displayName]
+    return [`${value.toLocaleString()} 人`, displayName]
   }
 
   // 最新値
@@ -166,10 +122,10 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
                     color: COLORS.value,
                   }}
                 >
-                  {formatTooltipValue(latest.value)}
+                  {latest.value !== null ? `${latest.value.toLocaleString()} 人` : 'N/A'}
                 </span>
                 <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                  ({formatDateLabel(latest.date)})
+                  ({formatDateLabelFull(latest.date)})
                 </span>
               </>
             )}
@@ -208,65 +164,19 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <ResponsiveContainer width="100%" height={450}>
-          <LineChart
-            data={filteredData}
-            margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={{ fontSize: 11 }}
-              interval="preserveStartEnd"
-            />
-            <YAxis
-              tick={{ fontSize: 11 }}
-              tickFormatter={formatValue}
-              domain={yAxisDomain}
-            />
-            <Tooltip
-              labelFormatter={formatDateLabel}
-              formatter={(value: number, name: string) => {
-                const displayName = name === 'value'
-                  ? '旅客数'
-                  : name === 'ma30'
-                  ? '30日移動平均'
-                  : name
-                return [formatTooltipValue(value), displayName]
-              }}
-              contentStyle={{
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1px solid #d9d9d9',
-                borderRadius: 4,
-              }}
-            />
-            <Legend
-              onClick={(e) => handleLegendClick(e.dataKey as string)}
-              wrapperStyle={{ cursor: 'pointer' }}
-            />
-            <Line
-              type="monotone"
-              dataKey="value"
-              stroke={COLORS.value}
-              strokeWidth={1}
-              dot={false}
-              name="旅客数"
-              hide={hiddenSeries.has('value')}
-              connectNulls={true}
-            />
-            <Line
-              type="monotone"
-              dataKey="ma30"
-              stroke={COLORS.ma30}
-              strokeWidth={2}
-              dot={false}
-              name="30日移動平均"
-              hide={hiddenSeries.has('ma30')}
-              connectNulls={true}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <StandardLineChart
+          data={filteredData}
+          lines={[
+            { dataKey: 'value', color: COLORS.value, name: '旅客数', strokeWidth: 1, hide: hiddenSeries.has('value') },
+            { dataKey: 'ma30', color: COLORS.ma30, name: '30日移動平均', strokeWidth: 2, hide: hiddenSeries.has('ma30') },
+          ]}
+          yAxisFormatter={formatValue}
+          yDomain={yAxisDomain}
+          tooltipLabelFormatter={formatDateLabelFull}
+          tooltipFormatter={formatTooltipValue}
+          onLegendClick={handleLegendClick}
+          showZeroLine={false}
+        />
       </ChartContainer>
     </div>
   )

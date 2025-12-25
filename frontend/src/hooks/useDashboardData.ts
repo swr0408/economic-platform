@@ -503,6 +503,197 @@ export interface USAConsumerData {
   total_vehicle_sales: TotalVehicleSalesData | null
   redbook: RedbookData | null
   consumer_credit: ConsumerCreditData | null
+  delinquency_rate: DelinquencyRateData | null
+  cb_consumer_confidence: CBConsumerConfidenceData | null
+  cb_jobs_labor: CBJobsLaborData | null
+  unemployment_rate: UnemploymentRateData | null  // CB雇用機会業況判断チャート用
+  michigan_consumer_sentiment: MichiganConsumerSentimentData | null
+  personal_saving_rate: PersonalSavingRateData | null
+  personal_income: PersonalIncomeData | null
+  disposable_income: DisposableIncomeData | null
+  pce: PCEData | null
+}
+
+// ミシガン大学消費者信頼感指数データの型
+// 毎月第2金曜日（速報版）/ 最終金曜日（確報版） 10:00 ET発表
+export interface MichiganConsumerSentimentData {
+  data: MichiganConsumerSentimentItem[]
+  components: MichiganConsumerSentimentComponentItem[]
+  latest: MichiganConsumerSentimentItem | null
+  latest_components: MichiganConsumerSentimentComponentItem | null
+  next_release: MichiganConsumerSentimentNextRelease | null
+  last_updated: string | null
+}
+
+export interface MichiganConsumerSentimentItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 消費者信頼感指数（ICS_ALL）
+}
+
+export interface MichiganConsumerSentimentComponentItem {
+  date: string         // YYYY-MM-DD形式
+  current: number      // 現況指数（ICC）
+  expected: number | null  // 期待指数（ICE）
+}
+
+export interface MichiganConsumerSentimentNextRelease {
+  date: string
+  label: string
+}
+
+// 家計貯蓄率データの型（FRED PSAVERT）
+// 毎月月末 8:30 ET発表（BEA Personal Income）
+export interface PersonalSavingRateData {
+  data: PersonalSavingRateItem[]
+  latest: PersonalSavingRateItem | null
+  next_release: PersonalSavingRateNextRelease | null
+  last_updated: string | null
+}
+
+export interface PersonalSavingRateItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 貯蓄率（%）
+}
+
+export interface PersonalSavingRateNextRelease {
+  date: string
+  label: string
+}
+
+// 個人所得データの型（FRED PI/RPI）
+// 毎月月末 8:30 ET発表（BEA Personal Income）
+export interface PersonalIncomeData {
+  nominal: PersonalIncomeSeriesData | null
+  real: PersonalIncomeSeriesData | null
+  next_release: PersonalIncomeNextRelease | null
+  last_updated: string | null
+}
+
+export interface PersonalIncomeSeriesData {
+  data: PersonalIncomeItem[]
+  latest: PersonalIncomeItem | null
+}
+
+export interface PersonalIncomeItem {
+  date: string         // YYYY-MM-DD形式
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface PersonalIncomeNextRelease {
+  date: string
+  label: string
+}
+
+// 可処分所得データの型（FRED DSPI/DSPIC96）
+// 毎月月末 8:30 ET発表（BEA Personal Income）
+export interface DisposableIncomeData {
+  nominal: DisposableIncomeSeriesData | null
+  real: DisposableIncomeSeriesData | null
+  next_release: DisposableIncomeNextRelease | null
+  last_updated: string | null
+}
+
+export interface DisposableIncomeSeriesData {
+  data: DisposableIncomeItem[]
+  latest: DisposableIncomeItem | null
+}
+
+export interface DisposableIncomeItem {
+  date: string         // YYYY-MM-DD形式
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface DisposableIncomeNextRelease {
+  date: string
+  label: string
+}
+
+// 個人消費支出データの型（FRED PCE/PCEC96）
+// 毎月月末 8:30 ET発表（BEA Personal Income）
+export interface PCEData {
+  nominal: PCESeriesData | null
+  real: PCESeriesData | null
+  next_release: PCENextRelease | null
+  last_updated: string | null
+}
+
+export interface PCESeriesData {
+  data: PCEItem[]
+  latest: PCEItem | null
+}
+
+export interface PCEItem {
+  date: string         // YYYY-MM-DD形式
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface PCENextRelease {
+  date: string
+  label: string
+}
+
+// CB消費者信頼感指数データの型（Investing.com）
+// 毎月最終火曜日 10:00 ET発表
+export interface CBConsumerConfidenceData {
+  data: CBConsumerConfidenceItem[]
+  latest: CBConsumerConfidenceItem | null
+  next_release: CBConsumerConfidenceNextRelease | null
+  last_updated: string | null
+}
+
+export interface CBConsumerConfidenceItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 消費者信頼感指数
+}
+
+export interface CBConsumerConfidenceNextRelease {
+  date: string
+  label: string
+}
+
+// CB雇用機会業況判断データの型（Conference Board）
+// 毎月最終火曜日 10:00 ET発表（CB消費者信頼感と同時発表）
+export interface CBJobsLaborData {
+  data: CBJobsLaborItem[]
+  latest: CBJobsLaborItem | null
+  next_release: CBJobsLaborNextRelease | null
+  last_updated: string | null
+}
+
+export interface CBJobsLaborItem {
+  date: string         // YYYY-MM形式
+  plentiful: number    // 仕事が「豊富」と回答した割合（%）
+  hard: number         // 仕事が「見つけにくい」と回答した割合（%）
+  differential: number // 差分（Plentiful - Hard）
+}
+
+export interface CBJobsLaborNextRelease {
+  date: string
+  label: string
+}
+
+// クレジットカードローン延滞率データの型（FRB Charge-Off and Delinquency Rates）
+// 四半期データを2月・5月・8月・11月に発表
+export interface DelinquencyRateData {
+  data: DelinquencyRateItem[]
+  latest: DelinquencyRateItem | null
+  next_release: DelinquencyRateNextRelease | null
+  last_updated: string | null
+}
+
+export interface DelinquencyRateItem {
+  date: string         // YYYY-MM-DD形式（四半期末）
+  value: number        // 延滞率（%）
+  qoq: number | null   // 前四半期比（ポイント差）
+  yoy: number | null   // 前年比（ポイント差）
+}
+
+export interface DelinquencyRateNextRelease {
+  date: string
+  label: string
 }
 
 // Redbook小売売上高指数データの型
@@ -698,6 +889,40 @@ async function fetchDashboardData<T>(
 }
 
 /**
+ * 軽量指標のみを取得するAPI関数
+ */
+async function fetchDashboardLightData<T>(
+  country: string,
+  category: string
+): Promise<DashboardResponse<T>> {
+  const response = await fetch(`/api/${country}/${category}/dashboard/light`)
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}))
+    throw new Error(error.detail || `Failed to fetch light dashboard: ${response.status}`)
+  }
+
+  return response.json()
+}
+
+/**
+ * 重い指標のみを取得するAPI関数
+ */
+async function fetchDashboardHeavyData<T>(
+  country: string,
+  category: string
+): Promise<DashboardResponse<T>> {
+  const response = await fetch(`/api/${country}/${category}/dashboard/heavy`)
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}))
+    throw new Error(error.detail || `Failed to fetch heavy dashboard: ${response.status}`)
+  }
+
+  return response.json()
+}
+
+/**
  * 汎用ダッシュボードデータフック
  *
  * @param country - 国コード（例: "usa", "japan"）
@@ -762,6 +987,72 @@ export function useUSAEconomyDashboard(): UseQueryResult<DashboardResponse<USAEc
 }
 
 /**
+ * 米国経済ダッシュボード（プログレッシブレンダリング用）
+ *
+ * 軽量指標を先に取得し、重い指標は遅延ロードする。
+ * 初期表示を高速化するためのフック。
+ *
+ * @example
+ * ```tsx
+ * const { lightData, heavyData, isLightLoading, isHeavyLoading, mergedData } = useUSAEconomyDashboardProgressive()
+ *
+ * // 軽量指標は即座に表示
+ * if (lightData) {
+ *   console.log(lightData.data.gdp_growth_rate)
+ * }
+ *
+ * // 重い指標は遅延ロード
+ * if (heavyData) {
+ *   console.log(heavyData.data.nfib)
+ * }
+ *
+ * // マージされたデータ（両方揃った場合）
+ * if (mergedData) {
+ *   console.log(mergedData.gdp_growth_rate, mergedData.nfib)
+ * }
+ * ```
+ */
+export function useUSAEconomyDashboardProgressive() {
+  // 軽量指標を取得（優先度高）
+  const lightQuery = useQuery({
+    queryKey: ['dashboard', 'usa', 'economy', 'light'],
+    queryFn: () => fetchDashboardLightData<Partial<USAEconomyData>>('usa', 'economy'),
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: false,
+  })
+
+  // 重い指標を取得（軽量指標取得後に開始）
+  const heavyQuery = useQuery({
+    queryKey: ['dashboard', 'usa', 'economy', 'heavy'],
+    queryFn: () => fetchDashboardHeavyData<Partial<USAEconomyData>>('usa', 'economy'),
+    staleTime: 5 * 60 * 1000,
+    refetchOnMount: false,
+    // 軽量指標の取得完了後に開始（オプション：即座に開始したい場合はコメントアウト）
+    // enabled: lightQuery.isSuccess,
+  })
+
+  // データをマージ
+  const mergedData: USAEconomyData | null = lightQuery.data?.data && heavyQuery.data?.data
+    ? { ...lightQuery.data.data, ...heavyQuery.data.data } as USAEconomyData
+    : lightQuery.data?.data
+      ? lightQuery.data.data as USAEconomyData
+      : null
+
+  return {
+    lightData: lightQuery.data,
+    heavyData: heavyQuery.data,
+    isLightLoading: lightQuery.isLoading,
+    isHeavyLoading: heavyQuery.isLoading,
+    isLoading: lightQuery.isLoading, // 軽量指標のローディング状態を主として使用
+    lightError: lightQuery.error,
+    heavyError: heavyQuery.error,
+    mergedData,
+    // 全データが揃ったかどうか
+    isComplete: lightQuery.isSuccess && heavyQuery.isSuccess,
+  }
+}
+
+/**
  * 米国消費ダッシュボード専用フック
  *
  * @example
@@ -775,4 +1066,140 @@ export function useUSAEconomyDashboard(): UseQueryResult<DashboardResponse<USAEc
  */
 export function useUSAConsumerDashboard(): UseQueryResult<DashboardResponse<USAConsumerData>, Error> {
   return useDashboardData<USAConsumerData>('usa', 'consumer')
+}
+
+// =============================================================================
+// 米国雇用データの型
+// =============================================================================
+
+// 失業率データの型（FRED UNRATE / U6RATE）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface UnemploymentRateData {
+  data: UnemploymentRateItem[]
+  latest: UnemploymentRateItem | null
+  next_release: UnemploymentRateNextRelease | null
+  last_updated: string | null
+}
+
+export interface UnemploymentRateItem {
+  date: string         // YYYY-MM-DD形式
+  unrate: number       // 失業率（U-3）%
+  u6rate: number | null  // 広義の失業率（U-6）%
+}
+
+export interface UnemploymentRateNextRelease {
+  date: string
+  label: string
+}
+
+// 失業率内訳データの型（FRED LNS13023653, LNS13025699, LNS13023705, LNS13023557, LNS13023569）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface UnemploymentByReasonData {
+  data: UnemploymentByReasonItem[]
+  latest: UnemploymentByReasonItem | null
+  series_config: Record<string, UnemploymentByReasonSeriesConfig>
+  next_release: UnemploymentByReasonNextRelease | null
+  last_updated: string | null
+}
+
+export interface UnemploymentByReasonItem {
+  date: string         // YYYY-MM-DD形式
+  layoff: number | null         // レイオフ（千人）
+  other_losers: number | null   // レイオフ以外の失業者（千人）
+  leavers: number | null        // 自発的離職者（千人）
+  reentrants: number | null     // 再参入者（千人）
+  new_entrants: number | null   // 新規参入者（千人）
+}
+
+export interface UnemploymentByReasonSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface UnemploymentByReasonNextRelease {
+  date: string
+  label: string
+}
+
+// 非農業部門雇用者数データの型（FRED PAYEMS / CE16OV）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface NonfarmPayrollsData {
+  data: NonfarmPayrollsItem[]
+  latest: NonfarmPayrollsItem | null
+  series_config: Record<string, NonfarmPayrollsSeriesConfig>
+  next_release: NonfarmPayrollsNextRelease | null
+  last_updated: string | null
+}
+
+export interface NonfarmPayrollsItem {
+  date: string         // YYYY-MM-DD形式
+  nonfarm: number | null    // 非農業部門雇用者数（千人）
+  civilian: number | null   // 民間雇用者数（千人）
+}
+
+export interface NonfarmPayrollsSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface NonfarmPayrollsNextRelease {
+  date: string
+  label: string
+}
+
+// フルタイム/パートタイム雇用者数データの型（FRED LNS12500000 / LNS12600000）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface FullPartTimeEmploymentData {
+  data: FullPartTimeEmploymentItem[]
+  latest: FullPartTimeEmploymentItem | null
+  series_config: Record<string, FullPartTimeEmploymentSeriesConfig>
+  next_release: FullPartTimeEmploymentNextRelease | null
+  last_updated: string | null
+}
+
+export interface FullPartTimeEmploymentItem {
+  date: string         // YYYY-MM-DD形式
+  fulltime: number | null    // フルタイム雇用者数（千人）
+  parttime: number | null    // パートタイム雇用者数（千人）
+}
+
+export interface FullPartTimeEmploymentSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface FullPartTimeEmploymentNextRelease {
+  date: string
+  label: string
+}
+
+// 米国雇用ダッシュボードデータの型
+export interface USAEmploymentData {
+  unemployment_rate: UnemploymentRateData | null
+  unemployment_by_reason: UnemploymentByReasonData | null
+  cb_jobs_labor: CBJobsLaborData | null
+  nonfarm_payrolls: NonfarmPayrollsData | null
+  fullpart_time_employment: FullPartTimeEmploymentData | null
+}
+
+/**
+ * 米国雇用ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useUSAEmploymentDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.unemployment_rate) // 失業率データ
+ * }
+ * ```
+ */
+export function useUSAEmploymentDashboard(): UseQueryResult<DashboardResponse<USAEmploymentData>, Error> {
+  return useDashboardData<USAEmploymentData>('usa', 'employment')
 }

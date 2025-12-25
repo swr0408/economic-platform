@@ -14,6 +14,11 @@ import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
+// 共通モジュールのインポート
+import { CARTESIAN_GRID_PROPS, CUSTOM_TOOLTIP_STYLE } from '../common/chartConstants'
+import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
+import { NoDataMessage } from '../common/ChartComponents'
+
 // GDP項目別成長率データの型定義
 interface GDPComponentsGrowthItem {
   date: string
@@ -40,7 +45,7 @@ const COMPONENT_ITEMS = [
 ]
 
 export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // チャート用データを変換（輸入は符号反転）
   const chartData = useMemo(() => {
@@ -59,26 +64,10 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2010年から
-      cutoffDate.setFullYear(2010, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2010,
+  })
 
   const hasData = chartData.length > 0
 
@@ -90,9 +79,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
   if (!hasData) {
     return (
       <ChartContainer title="GDP項目別成長率" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -126,15 +113,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
     if (!active || !payload || payload.length === 0) return null
 
     return (
-      <div
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          border: '1px solid #ddd',
-          borderRadius: 8,
-          padding: '12px 16px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-        }}
-      >
+      <div style={CUSTOM_TOOLTIP_STYLE}>
         <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>
           {label}
         </div>
@@ -236,7 +215,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
             margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
             stackOffset="sign"
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
             <XAxis
               dataKey="quarter"
               stroke="#666"

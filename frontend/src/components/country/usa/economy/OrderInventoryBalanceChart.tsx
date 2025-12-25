@@ -1,27 +1,42 @@
+/**
+ * ISM製造業受注在庫バランスチャートコンポーネント
+ *
+ * 共通モジュールを使用してリファクタリング済み
+ */
 import { useState, useMemo } from 'react'
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-} from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { ISMComponentsData } from '../../../../hooks/useDashboardData'
 
+// 共通モジュールのインポート
+import {
+  usePeriodFiltering,
+  formatDateLabel,
+  useHiddenSeries,
+  createNumberFormatter,
+  type PeriodType,
+} from '../common/useChartData'
+import {
+  NoDataMessage,
+  StandardLineChart,
+} from '../common/ChartComponents'
+
+// =============================================================================
+// 型定義
+// =============================================================================
+
 interface OrderInventoryBalanceChartProps {
   data: ISMComponentsData | null
 }
 
+// =============================================================================
+// メインコンポーネント
+// =============================================================================
+
 export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalanceChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
-  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set(['balance']))
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const { hiddenSeries, handleLegendClick } = useHiddenSeries<string>(['balance'])
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -37,30 +52,13 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2010年から
-      cutoffDate.setFullYear(2010, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2010,
+  })
 
   const hasData = chartData.length > 0
 
-  // データがnullの場合はローディング表示
   if (data === null) {
     return <LoadingChart title="ISM製造業受注在庫バランス" />
   }
@@ -68,9 +66,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
   if (!hasData) {
     return (
       <ChartContainer title="ISM製造業受注在庫バランス" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -78,25 +74,6 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
   const formatValue = (value: number | null | undefined) => {
     if (value === null || value === undefined) return 'N/A'
     return value.toFixed(1)
-  }
-
-  const formatDateLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
-  }
-
-  // 凡例クリックで表示/非表示を切り替え
-  const handleLegendClick = (dataKey: string) => {
-    setHiddenSeries((prev) => {
-      const next = new Set(prev)
-      if (next.has(dataKey)) {
-        next.delete(dataKey)
-      } else {
-        next.add(dataKey)
-      }
-      return next
-    })
   }
 
   // 最新値を取得
@@ -182,75 +159,19 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <ResponsiveContainer width="100%" height={450}>
-          <LineChart
-            data={filteredData}
-            margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={{ fontSize: 11 }}
-              interval="preserveStartEnd"
-            />
-            <YAxis
-              domain={['dataMin - 2', 'dataMax + 2']}
-              tick={{ fontSize: 11 }}
-              tickFormatter={(v) => v.toFixed(0)}
-            />
-            <Tooltip
-              labelFormatter={formatDateLabel}
-              formatter={(value, name) => {
-                const numValue = typeof value === 'number' ? value : null
-                return [numValue !== null ? numValue.toFixed(1) : 'N/A', name]
-              }}
-              contentStyle={{
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1px solid #d9d9d9',
-                borderRadius: 4,
-              }}
-            />
-            <Legend
-              onClick={(e) => handleLegendClick(e.dataKey as string)}
-              wrapperStyle={{ cursor: 'pointer' }}
-            />
-
-            {/* ゼロ線 */}
-            <ReferenceLine
-              y={0}
-              stroke="#000"
-              strokeWidth={1}
-              strokeDasharray="4 4"
-            />
-
-            {/* 受注在庫バランス（3ヶ月移動平均） - メインライン */}
-            <Line
-              type="monotone"
-              dataKey="balance_3ma"
-              stroke="#228B22"
-              strokeWidth={2}
-              dot={false}
-              name="受注在庫バランス（3ヶ月平均）"
-              hide={hiddenSeries.has('balance_3ma')}
-              isAnimationActive={false}
-              connectNulls={true}
-            />
-
-            {/* 受注在庫バランス（当月） - 補助ライン */}
-            <Line
-              type="monotone"
-              dataKey="balance"
-              stroke="rgba(34, 139, 34, 0.5)"
-              strokeWidth={1}
-              dot={false}
-              name="受注在庫バランス（当月）"
-              hide={hiddenSeries.has('balance')}
-              isAnimationActive={false}
-              connectNulls={true}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        <StandardLineChart
+          data={filteredData}
+          lines={[
+            { dataKey: 'balance_3ma', color: '#228B22', name: '受注在庫バランス（3ヶ月平均）', strokeWidth: 2, hide: hiddenSeries.has('balance_3ma') },
+            { dataKey: 'balance', color: 'rgba(34, 139, 34, 0.5)', name: '受注在庫バランス（当月）', strokeWidth: 1, hide: hiddenSeries.has('balance') },
+          ]}
+          yAxisFormatter={(v) => v.toFixed(0)}
+          yDomain={['dataMin - 2', 'dataMax + 2']}
+          tooltipLabelFormatter={formatDateLabel}
+          tooltipFormatter={createNumberFormatter(1)}
+          onLegendClick={handleLegendClick}
+          showZeroLine={true}
+        />
       </ChartContainer>
     </div>
   )

@@ -285,7 +285,7 @@ class USAPolicyLoader(BaseDashboardLoader):
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=5) as executor:
+        with ThreadPoolExecutor(max_workers=6) as executor:
             futures = {
                 executor.submit(self._get_policy_rate, fed_h15_service): "policy_rate",
                 executor.submit(self._get_term_premium, nyfed_term_premium_service): "term_premium",

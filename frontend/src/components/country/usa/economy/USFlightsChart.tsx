@@ -92,11 +92,6 @@ export default function USFlightsChart({ data }: USFlightsChartProps) {
               </span>
             )}
           </div>
-          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
-            {data.next_update && (
-              <div>次回更新: {data.next_update.label}</div>
-            )}
-          </div>
         </div>
 
         <Button

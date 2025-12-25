@@ -14,6 +14,7 @@ import {
 import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
 import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
 import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
+import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
 
 const { Title, Text } = Typography
 
@@ -211,10 +212,11 @@ function CountryDataCategory() {
   const category = CATEGORY_INFO[categoryCode]
   const indicators = INDICATORS_BY_COUNTRY_CATEGORY[countryCode]?.[categoryCode] || []
 
-  // USA金融政策・経済・消費の場合はチャートを表示
+  // USA金融政策・経済・消費・雇用の場合はチャートを表示
   const isUSAPolicy = countryCode === 'usa' && categoryCode === 'policy'
   const isUSAEconomy = countryCode === 'usa' && categoryCode === 'economy'
   const isUSAConsumer = countryCode === 'usa' && categoryCode === 'consumer'
+  const isUSAEmployment = countryCode === 'usa' && categoryCode === 'employment'
 
   return (
     <div style={{ padding: '24px' }}>
@@ -264,6 +266,8 @@ function CountryDataCategory() {
         <USAEconomyCharts />
       ) : isUSAConsumer ? (
         <USAConsumerCharts />
+      ) : isUSAEmployment ? (
+        <USAEmploymentCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

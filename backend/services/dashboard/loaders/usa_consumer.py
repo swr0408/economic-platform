@@ -1,6 +1,6 @@
 """
 米国消費ダッシュボードローダー
-小売売上高 + コントロールグループ + CARTS + Affinity Spend + Visa支出 + 自動車販売台数 + Redbook + クレジットカードローン残高 を一括取得
+小売売上高 + コントロールグループ + CARTS + Affinity Spend + Visa支出 + 自動車販売台数 + Redbook + クレジットカードローン残高 + クレジットカードローン延滞率 + CB消費者信頼感 + CB雇用機会業況判断 + ミシガン消費者信頼感 + 家計貯蓄率 + 個人所得 + 可処分所得 + 個人消費支出 を一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: Census.gov / Chicago Fed / GitHubから自動取得（next_release）
@@ -9,6 +9,11 @@
 - 自動車販売台数: FRED releases/datesから発表日自動取得
 - Redbook: 毎週火曜日 8:55 ET発表
 - クレジットカードローン残高: 毎週金曜日 16:15 ET発表（H.8）
+- クレジットカードローン延滞率: 四半期末60日後発表（2月・5月・8月・11月の15日過ぎ）
+- CB消費者信頼感: 毎月最終火曜日 10:00 ET発表
+- CB雇用機会業況判断: 毎月最終火曜日 10:00 ET発表（CB消費者信頼感と同時発表）
+- ミシガン消費者信頼感: 毎月第2金曜日（速報版）/ 最終金曜日（確報版） 10:00 ET発表
+- 家計貯蓄率/個人所得/可処分所得/個人消費支出: 毎月月末 8:30 ET発表（BEA Personal Income）
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -36,6 +41,14 @@ class USAConsumerLoader(BaseDashboardLoader):
     - total_vehicle_sales: 自動車販売台数 - FRED TOTALSA（毎月更新）
     - redbook: Redbook小売売上高指数 - Investing.com（毎週火曜日 8:55 ET）
     - consumer_credit: クレジットカードローン残高 - FRED CCLACBW027SBOG（毎週金曜日 16:15 ET）
+    - delinquency_rate: クレジットカードローン延滞率 - FRED DRCCLACBS（四半期・2月/5月/8月/11月発表）
+    - cb_consumer_confidence: CB消費者信頼感指数 - Investing.com（毎月最終火曜日 10:00 ET）
+    - cb_jobs_labor: CB雇用機会業況判断 - Conference Board公式ページ（毎月最終火曜日 10:00 ET）
+    - michigan_consumer_sentiment: ミシガン消費者信頼感指数 - ミシガン大学（毎月第2金曜/最終金曜 10:00 ET）
+    - personal_saving_rate: 家計貯蓄率 - FRED PSAVERT（毎月月末 8:30 ET）
+    - personal_income: 個人所得 - FRED PI/RPI（毎月月末 8:30 ET）
+    - disposable_income: 可処分所得 - FRED DSPI/DSPIC96（毎月月末 8:30 ET）
+    - pce: 個人消費支出 - FRED PCE/PCEC96（毎月月末 8:30 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - 小売売上高発表: 毎月中旬 8:30 ET
@@ -45,6 +58,11 @@ class USAConsumerLoader(BaseDashboardLoader):
     - 自動車販売台数: FRED releases/datesから発表日自動取得
     - Redbook: 毎週火曜日 8:55 ET
     - クレジットカードローン残高: 毎週金曜日 16:15 ET
+    - クレジットカードローン延滞率: 2月/5月/8月/11月の15日過ぎに1日1回チェック
+    - CB消費者信頼感: 毎月最終火曜日 10:00 ET
+    - CB雇用機会業況判断: 毎月最終火曜日 10:00 ET（CB消費者信頼感と同時発表）
+    - ミシガン消費者信頼感: 毎月第2金曜日（速報版）/ 最終金曜日（確報版） 10:00 ET
+    - 家計貯蓄率/個人所得/可処分所得/個人消費支出: BEA発表日自動取得、8:30 ET
     - 発表日時を過ぎた指標は個別サービスもforce_refreshで再取得
     """
 
@@ -246,9 +264,89 @@ class USAConsumerLoader(BaseDashboardLoader):
             pass
         return None
 
+    def _get_delinquency_rate_release_datetime(self) -> Optional[datetime]:
+        """クレジットカードローン延滞率の発表日時を取得"""
+        try:
+            from services.usa.delinquency_rate_service import delinquency_rate_service
+            data = delinquency_rate_service.get_delinquency_rate_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                if date_str:
+                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
+                    # 10:00 ET発表
+                    release_et = datetime(
+                        base_date.year, base_date.month, base_date.day,
+                        10, 0, tzinfo=ET
+                    )
+                    return release_et.astimezone(JST)
+        except Exception:
+            pass
+        return None
+
+    def _get_cb_consumer_confidence_release_datetime(self) -> Optional[datetime]:
+        """CB消費者信頼感の発表日時を取得"""
+        try:
+            from services.usa.cb_consumer_confidence_service import cb_consumer_confidence_service
+            data = cb_consumer_confidence_service.get_cb_consumer_confidence_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                if date_str:
+                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
+                    # 10:00 ET発表
+                    release_et = datetime(
+                        base_date.year, base_date.month, base_date.day,
+                        10, 0, tzinfo=ET
+                    )
+                    return release_et.astimezone(JST)
+        except Exception:
+            pass
+        return None
+
+    def _get_michigan_consumer_sentiment_release_datetime(self) -> Optional[datetime]:
+        """ミシガン消費者信頼感の発表日時を取得"""
+        try:
+            from services.usa.michigan_consumer_sentiment_service import michigan_consumer_sentiment_service
+            data = michigan_consumer_sentiment_service.get_michigan_consumer_sentiment_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                if date_str:
+                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
+                    # 10:00 ET発表
+                    release_et = datetime(
+                        base_date.year, base_date.month, base_date.day,
+                        10, 0, tzinfo=ET
+                    )
+                    return release_et.astimezone(JST)
+        except Exception:
+            pass
+        return None
+
+    def _get_personal_saving_rate_release_datetime(self) -> Optional[datetime]:
+        """家計貯蓄率の発表日時を取得"""
+        try:
+            from services.usa.personal_saving_rate_service import personal_saving_rate_service
+            data = personal_saving_rate_service.get_personal_saving_rate_data()
+            next_release = data.get("next_release")
+            if next_release:
+                date_str = next_release.get("date")
+                if date_str:
+                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
+                    # 8:30 ET発表
+                    release_et = datetime(
+                        base_date.year, base_date.month, base_date.day,
+                        8, 30, tzinfo=ET
+                    )
+                    return release_et.astimezone(JST)
+        except Exception:
+            pass
+        return None
+
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
-        発表日時を過ぎた指標を検出
+        発表日時を過ぎた指標を検出（並列実行）
 
         Args:
             last_updated: ダッシュボードキャッシュのlast_updated（ISO形式）
@@ -256,8 +354,6 @@ class USAConsumerLoader(BaseDashboardLoader):
         Returns:
             発表日時を過ぎた指標名のセット
         """
-        stale = set()
-
         if last_updated is None:
             return {"all"}
 
@@ -268,48 +364,88 @@ class USAConsumerLoader(BaseDashboardLoader):
 
             now = datetime.now(JST)
 
+            # 並列で発表日時を取得
+            stale = set()
+            check_results = {}
+
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                futures = {
+                    executor.submit(self._get_retail_sales_release_datetime): "retail",
+                    executor.submit(self._get_carts_release_datetime): "carts",
+                    executor.submit(self._get_visa_spending_release_datetime): "visa_spending",
+                    executor.submit(self._get_vehicle_sales_release_datetime): "total_vehicle_sales",
+                    executor.submit(self._get_redbook_release_datetime): "redbook",
+                    executor.submit(self._get_consumer_credit_release_datetime): "consumer_credit",
+                    executor.submit(self._get_delinquency_rate_release_datetime): "delinquency_rate",
+                    executor.submit(self._get_cb_consumer_confidence_release_datetime): "cb_consumer_confidence",
+                    executor.submit(self._get_michigan_consumer_sentiment_release_datetime): "michigan_consumer_sentiment",
+                    executor.submit(self._get_personal_saving_rate_release_datetime): "bea_personal_income",
+                }
+
+                for future in as_completed(futures):
+                    key = futures[future]
+                    try:
+                        check_results[key] = future.result()
+                    except Exception:
+                        check_results[key] = None
+
+            # 結果を判定
+            def is_stale(release_dt):
+                return release_dt and last_updated_dt < release_dt <= now
+
             # 小売売上高・コントロールグループ（同時発表）
-            retail_release = self._get_retail_sales_release_datetime()
-            if retail_release and last_updated_dt < retail_release <= now:
+            if is_stale(check_results.get("retail")):
                 stale.add("retail_sales")
                 stale.add("retail_control")
-                print(f"[stale] Retail Sales release detected: {retail_release.isoformat()}")
 
             # CARTS
-            carts_release = self._get_carts_release_datetime()
-            if carts_release and last_updated_dt < carts_release <= now:
+            if is_stale(check_results.get("carts")):
                 stale.add("carts")
-                print(f"[stale] CARTS release detected: {carts_release.isoformat()}")
 
             # Visa支出
-            visa_release = self._get_visa_spending_release_datetime()
-            if visa_release and last_updated_dt < visa_release <= now:
+            if is_stale(check_results.get("visa_spending")):
                 stale.add("visa_spending")
-                print(f"[stale] Visa Spending release detected: {visa_release.isoformat()}")
 
             # 自動車販売台数
-            vehicle_release = self._get_vehicle_sales_release_datetime()
-            if vehicle_release and last_updated_dt < vehicle_release <= now:
+            if is_stale(check_results.get("total_vehicle_sales")):
                 stale.add("total_vehicle_sales")
-                print(f"[stale] Vehicle Sales release detected: {vehicle_release.isoformat()}")
 
             # Redbook
-            redbook_release = self._get_redbook_release_datetime()
-            if redbook_release and last_updated_dt < redbook_release <= now:
+            if is_stale(check_results.get("redbook")):
                 stale.add("redbook")
-                print(f"[stale] Redbook release detected: {redbook_release.isoformat()}")
 
             # クレジットカードローン残高
-            credit_release = self._get_consumer_credit_release_datetime()
-            if credit_release and last_updated_dt < credit_release <= now:
+            if is_stale(check_results.get("consumer_credit")):
                 stale.add("consumer_credit")
-                print(f"[stale] Consumer Credit release detected: {credit_release.isoformat()}")
+
+            # クレジットカードローン延滞率
+            if is_stale(check_results.get("delinquency_rate")):
+                stale.add("delinquency_rate")
+
+            # CB消費者信頼感
+            if is_stale(check_results.get("cb_consumer_confidence")):
+                stale.add("cb_consumer_confidence")
+                stale.add("cb_jobs_labor")  # 同時発表
+
+            # ミシガン消費者信頼感
+            if is_stale(check_results.get("michigan_consumer_sentiment")):
+                stale.add("michigan_consumer_sentiment")
+
+            # 家計貯蓄率/個人所得/可処分所得/個人消費支出（毎月月末、同時発表）
+            if is_stale(check_results.get("bea_personal_income")):
+                stale.add("personal_saving_rate")
+                stale.add("personal_income")
+                stale.add("disposable_income")
+                stale.add("pce")
+
+            if stale:
+                print(f"[stale] Detected stale indicators: {stale}")
+
+            return stale
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
             return {"all"}
-
-        return stale
 
     def _should_force_refresh(self, indicator: str) -> bool:
         """指標が強制更新対象かどうかを判定"""
@@ -348,6 +484,15 @@ class USAConsumerLoader(BaseDashboardLoader):
         from services.usa.total_vehicle_sales_service import total_vehicle_sales_service
         from services.usa.redbook_service import redbook_service
         from services.usa.consumer_credit_service import consumer_credit_service
+        from services.usa.delinquency_rate_service import delinquency_rate_service
+        from services.usa.cb_consumer_confidence_service import cb_consumer_confidence_service
+        from services.usa.cb_jobs_labor_differential_service import cb_jobs_labor_differential_service
+        from services.usa.michigan_consumer_sentiment_service import michigan_consumer_sentiment_service
+        from services.usa.personal_saving_rate_service import personal_saving_rate_service
+        from services.usa.personal_income_service import personal_income_service
+        from services.usa.disposable_income_service import disposable_income_service
+        from services.usa.pce_service import pce_service
+        from services.usa.unemployment_rate_service import unemployment_rate_service
 
         result = {
             "retail_sales": None,
@@ -358,10 +503,19 @@ class USAConsumerLoader(BaseDashboardLoader):
             "total_vehicle_sales": None,
             "redbook": None,
             "consumer_credit": None,
+            "delinquency_rate": None,
+            "cb_consumer_confidence": None,
+            "cb_jobs_labor": None,
+            "unemployment_rate": None,
+            "michigan_consumer_sentiment": None,
+            "personal_saving_rate": None,
+            "personal_income": None,
+            "disposable_income": None,
+            "pce": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=9) as executor:
+        with ThreadPoolExecutor(max_workers=18) as executor:
             futures = {
                 executor.submit(self._get_retail_sales, retail_sales_service): "retail_sales",
                 executor.submit(self._get_retail_control, retail_control_service): "retail_control",
@@ -371,6 +525,15 @@ class USAConsumerLoader(BaseDashboardLoader):
                 executor.submit(self._get_total_vehicle_sales, total_vehicle_sales_service): "total_vehicle_sales",
                 executor.submit(self._get_redbook, redbook_service): "redbook",
                 executor.submit(self._get_consumer_credit, consumer_credit_service): "consumer_credit",
+                executor.submit(self._get_delinquency_rate, delinquency_rate_service): "delinquency_rate",
+                executor.submit(self._get_cb_consumer_confidence, cb_consumer_confidence_service): "cb_consumer_confidence",
+                executor.submit(self._get_cb_jobs_labor, cb_jobs_labor_differential_service): "cb_jobs_labor",
+                executor.submit(self._get_unemployment_rate, unemployment_rate_service): "unemployment_rate",
+                executor.submit(self._get_michigan_consumer_sentiment, michigan_consumer_sentiment_service): "michigan_consumer_sentiment",
+                executor.submit(self._get_personal_saving_rate, personal_saving_rate_service): "personal_saving_rate",
+                executor.submit(self._get_personal_income, personal_income_service): "personal_income",
+                executor.submit(self._get_disposable_income, disposable_income_service): "disposable_income",
+                executor.submit(self._get_pce, pce_service): "pce",
             }
 
             for future in as_completed(futures):
@@ -533,6 +696,160 @@ class USAConsumerLoader(BaseDashboardLoader):
             print(f"Error getting Consumer Credit data: {e}")
             return None
 
+    def _get_delinquency_rate(self, service) -> Optional[dict]:
+        """クレジットカードローン延滞率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("delinquency_rate")
+            response = service.get_delinquency_rate_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Delinquency Rate data: {e}")
+            return None
+
+    def _get_cb_consumer_confidence(self, service) -> Optional[dict]:
+        """CB消費者信頼感データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("cb_consumer_confidence")
+            response = service.get_cb_consumer_confidence_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting CB Consumer Confidence data: {e}")
+            return None
+
+    def _get_cb_jobs_labor(self, service) -> Optional[dict]:
+        """CB雇用機会業況判断データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("cb_jobs_labor")
+            response = service.get_jobs_labor_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting CB Jobs Labor data: {e}")
+            return None
+
+    def _get_unemployment_rate(self, service) -> Optional[dict]:
+        """失業率データを取得（CB雇用機会業況判断チャート用）"""
+        try:
+            response = service.get_unemployment_rate_data(force_refresh=False)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Unemployment Rate data: {e}")
+            return None
+
+    def _get_michigan_consumer_sentiment(self, service) -> Optional[dict]:
+        """ミシガン消費者信頼感データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("michigan_consumer_sentiment")
+            response = service.get_michigan_consumer_sentiment_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "components": response.get("components", []),
+                "latest": response.get("latest"),
+                "latest_components": response.get("latest_components"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Michigan Consumer Sentiment data: {e}")
+            return None
+
+    def _get_personal_saving_rate(self, service) -> Optional[dict]:
+        """家計貯蓄率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("personal_saving_rate")
+            response = service.get_personal_saving_rate_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Personal Saving Rate data: {e}")
+            return None
+
+    def _get_personal_income(self, service) -> Optional[dict]:
+        """個人所得データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("personal_income")
+            response = service.get_personal_income_data(force_refresh=force_refresh)
+            return {
+                "nominal": response.get("nominal"),
+                "real": response.get("real"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Personal Income data: {e}")
+            return None
+
+    def _get_disposable_income(self, service) -> Optional[dict]:
+        """可処分所得データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("disposable_income")
+            response = service.get_disposable_income_data(force_refresh=force_refresh)
+            return {
+                "nominal": response.get("nominal"),
+                "real": response.get("real"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Disposable Income data: {e}")
+            return None
+
+    def _get_pce(self, service) -> Optional[dict]:
+        """個人消費支出データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("pce")
+            response = service.get_pce_data(force_refresh=force_refresh)
+            return {
+                "nominal": response.get("nominal"),
+                "real": response.get("real"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting PCE data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -545,62 +862,35 @@ class USAConsumerLoader(BaseDashboardLoader):
         from services.usa.total_vehicle_sales_service import total_vehicle_sales_service
         from services.usa.redbook_service import redbook_service
         from services.usa.consumer_credit_service import consumer_credit_service
+        from services.usa.delinquency_rate_service import delinquency_rate_service
+        from services.usa.cb_consumer_confidence_service import cb_consumer_confidence_service
+        from services.usa.cb_jobs_labor_differential_service import cb_jobs_labor_differential_service
+        from services.usa.michigan_consumer_sentiment_service import michigan_consumer_sentiment_service
+        from services.usa.personal_saving_rate_service import personal_saving_rate_service
+        from services.usa.personal_income_service import personal_income_service
+        from services.usa.disposable_income_service import disposable_income_service
+        from services.usa.pce_service import pce_service
 
-        # 小売売上高サービスのRedisキャッシュを無効化
-        try:
-            retail_sales_service.invalidate_cache()
-            print("Retail Sales Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Retail Sales cache: {e}")
-
-        # コントロールグループサービスのRedisキャッシュを無効化
-        try:
-            retail_control_service.invalidate_cache()
-            print("Retail Control Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Retail Control cache: {e}")
-
-        # CARTSサービスのRedisキャッシュを無効化
-        try:
-            carts_service.invalidate_cache()
-            print("CARTS Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating CARTS cache: {e}")
-
-        # Affinity SpendサービスのRedisキャッシュを無効化
-        try:
-            affinity_spend_service.invalidate_cache()
-            print("Affinity Spend Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Affinity Spend cache: {e}")
-
-        # Visa SpendingサービスのRedisキャッシュを無効化
-        try:
-            visa_spending_service.invalidate_cache()
-            print("Visa Spending Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Visa Spending cache: {e}")
-
-        # Total Vehicle SalesサービスのRedisキャッシュを無効化
-        try:
-            total_vehicle_sales_service.invalidate_cache()
-            print("Total Vehicle Sales Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Total Vehicle Sales cache: {e}")
-
-        # RedbookサービスのRedisキャッシュを無効化
-        try:
-            redbook_service.invalidate_cache()
-            print("Redbook Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Redbook cache: {e}")
-
-        # Consumer CreditサービスのRedisキャッシュを無効化
-        try:
-            consumer_credit_service.invalidate_cache()
-            print("Consumer Credit Redis cache invalidated")
-        except Exception as e:
-            print(f"Error invalidating Consumer Credit cache: {e}")
+        # 全サービスのキャッシュを無効化
+        services = [
+            (retail_sales_service, "Retail Sales"),
+            (retail_control_service, "Retail Control"),
+            (carts_service, "CARTS"),
+            (affinity_spend_service, "Affinity Spend"),
+            (visa_spending_service, "Visa Spending"),
+            (total_vehicle_sales_service, "Total Vehicle Sales"),
+            (redbook_service, "Redbook"),
+            (consumer_credit_service, "Consumer Credit"),
+            (delinquency_rate_service, "Delinquency Rate"),
+            (cb_consumer_confidence_service, "CB Consumer Confidence"),
+            (cb_jobs_labor_differential_service, "CB Jobs Labor Differential"),
+            (michigan_consumer_sentiment_service, "Michigan Consumer Sentiment"),
+            (personal_saving_rate_service, "Personal Saving Rate"),
+            (personal_income_service, "Personal Income"),
+            (disposable_income_service, "Disposable Income"),
+            (pce_service, "PCE"),
+        ]
+        self._invalidate_service_caches(services)
 
         # 親クラスのinvalidate_cacheを呼び出し
         return super().invalidate_cache()

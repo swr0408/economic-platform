@@ -1,9 +1,19 @@
+/**
+ * 政策金利チャートコンポーネント
+ *
+ * 共通モジュールを使用してリファクタリング済み
+ */
 import { useState, useMemo } from 'react'
 import { Tooltip } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
+import { NoDataMessage, SimpleLatestValueBox } from '../common/ChartComponents'
+import { CHART_COLORS } from '../common/chartConstants'
 
 // Props型定義
 interface PolicyRateItem {
@@ -30,7 +40,7 @@ interface PolicyRateChartData {
 }
 
 export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // propsのデータをチャート用に変換
   const policyRateData = useMemo<PolicyRateChartData[]>(() => {
@@ -52,33 +62,11 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
     return `${value.toFixed(2)}%`
   }
 
-  const formatMonthLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
-  }
-
-  // 期間に基づいてデータをフィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || policyRateData.length === 0) {
-      return policyRateData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2020年から
-      cutoffDate.setFullYear(2020, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return policyRateData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [policyRateData, selectedPeriod])
+  // 期間フィルタリング
+  const filteredData = usePeriodFiltering(policyRateData, {
+    selectedPeriod,
+    defaultStartYear: 2020,
+  })
 
   const hasData = policyRateData.length > 0
 
@@ -93,9 +81,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
   if (!hasData) {
     return (
       <ChartContainer title="政策金利" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -109,43 +95,15 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
         sourceUrl="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
       >
         {/* 最新値表示 */}
-        {latestValue && (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 12,
-              padding: '8px 12px',
-              background: '#f5f5f5',
-              borderRadius: 8,
-            }}
-          >
-            <div>
-              <span style={{ fontSize: 12, color: '#666' }}>現在の金利: </span>
-              <span
-                style={{
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: '#1890ff',
-                }}
-              >
-                {formatPercentage(latestValue.rate)}
-              </span>
-              <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                ({formatMonthLabel(latestValue.date)})
-              </span>
-            </div>
-            {nextFomc && (
-              <div style={{ fontSize: 11, color: '#666', textAlign: 'right' }}>
-                <div>次回FOMC: {nextFomc.date}</div>
-                {nextFomc.has_sep && (
-                  <div style={{ color: '#1890ff' }}>SEP発表あり</div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
+        <SimpleLatestValueBox
+          label="現在の金利"
+          value={latestValue?.rate}
+          valueColor={CHART_COLORS.primary}
+          date={latestValue?.date}
+          nextRelease={nextFomc ? { date: nextFomc.date, label: nextFomc.has_sep ? 'SEP発表あり' : undefined } : null}
+          format="percent"
+          decimals={2}
+        />
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
         <ZoomableChart
@@ -155,7 +113,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
           name="政策金利"
           height={450}
           tickFormatter={formatPercentage}
-          xAxisTickFormatter={formatMonthLabel}
+          xAxisTickFormatter={formatDateLabel}
           enableDynamicTicks={true}
           showZeroLine={true}
           showFiftyLine={false}
@@ -165,7 +123,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
           domain={['dataMin - 0.25', 'dataMax + 0.25']}
         >
           <Tooltip
-            labelFormatter={(value: string | number) => formatMonthLabel(String(value))}
+            labelFormatter={(value: string | number) => formatDateLabel(String(value))}
             formatter={(value: number, name: string) => [formatPercentage(value), name]}
           />
         </ZoomableChart>

@@ -113,6 +113,96 @@ async def get_available_dashboard_list():
     }
 
 
+@router.get("/{country}/{category}/dashboard/light")
+async def get_dashboard_light(
+    country: str = Path(..., description="国コード（例: usa, japan）"),
+    category: str = Path(..., description="カテゴリコード（例: policy, economy）"),
+):
+    """
+    軽量指標のみを取得（プログレッシブレンダリング用）
+
+    重い指標（スクリーンショット取得、PDF解析等）を除外し、
+    高速にレスポンスを返す。フロントエンドで先に表示するデータ用。
+
+    Returns:
+        {
+            "data": {...},  # 軽量指標のみ
+            "cached": bool,
+            "last_updated": str,
+            "partial": true,
+            "response_time_ms": float
+        }
+    """
+    start_time = time.time()
+
+    loader = get_dashboard_loader(country, category)
+    result = await loader.get_data_light_async()
+
+    response_time_ms = (time.time() - start_time) * 1000
+
+    return JSONResponse(
+        content={
+            "data": result.get("data", {}),
+            "cached": result.get("cached", False),
+            "last_updated": result.get("last_updated"),
+            "partial": True,
+            "response_time_ms": round(response_time_ms, 2),
+            "country": country,
+            "category": category,
+        },
+        headers={
+            "X-Cache": "HIT" if result.get("cached") else "MISS",
+            "X-Response-Time": f"{response_time_ms:.2f}ms",
+            "X-Partial": "true",
+        }
+    )
+
+
+@router.get("/{country}/{category}/dashboard/heavy")
+async def get_dashboard_heavy(
+    country: str = Path(..., description="国コード（例: usa, japan）"),
+    category: str = Path(..., description="カテゴリコード（例: policy, economy）"),
+):
+    """
+    重い指標のみを取得（プログレッシブレンダリング用）
+
+    スクリーンショット取得、PDF解析等の重い処理を含む指標のみを取得。
+    フロントエンドで遅延ロードするデータ用。
+
+    Returns:
+        {
+            "data": {...},  # 重い指標のみ
+            "cached": bool,
+            "last_updated": str,
+            "partial": true,
+            "response_time_ms": float
+        }
+    """
+    start_time = time.time()
+
+    loader = get_dashboard_loader(country, category)
+    result = await loader.get_data_heavy_async()
+
+    response_time_ms = (time.time() - start_time) * 1000
+
+    return JSONResponse(
+        content={
+            "data": result.get("data", {}),
+            "cached": result.get("cached", False),
+            "last_updated": result.get("last_updated"),
+            "partial": True,
+            "response_time_ms": round(response_time_ms, 2),
+            "country": country,
+            "category": category,
+        },
+        headers={
+            "X-Cache": "HIT" if result.get("cached") else "MISS",
+            "X-Response-Time": f"{response_time_ms:.2f}ms",
+            "X-Partial": "true",
+        }
+    )
+
+
 @router.get("/{country}/{category}/dashboard/status")
 async def get_dashboard_status(
     country: str = Path(..., description="国コード"),

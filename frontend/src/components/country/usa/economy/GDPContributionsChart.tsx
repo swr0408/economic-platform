@@ -15,6 +15,10 @@ import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
+// 共通モジュールのインポート
+import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
+import { NoDataMessage, PercentageTooltip } from '../common/ChartComponents'
+
 // 寄与度データの型定義
 interface GDPContributionItem {
   date: string
@@ -51,7 +55,7 @@ const CONTRIBUTION_ITEMS = [
 ]
 
 export default function GDPContributionsChart({ data }: GDPContributionsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // チャート用データを変換
   const chartData = useMemo(() => {
@@ -66,26 +70,10 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2020年から
-      cutoffDate.setFullYear(2020, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2020,
+  })
 
   const hasData = chartData.length > 0
 
@@ -97,9 +85,7 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
   if (!hasData) {
     return (
       <ChartContainer title="GDP成長率 寄与度" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -107,71 +93,10 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
   // 最新値を取得
   const latestValue = filteredData.length > 0 ? filteredData[filteredData.length - 1] : null
 
-  const formatPercentage = (value: number) => {
+  const formatPercentage = (value: number | null) => {
     if (value === null || value === undefined) return '-'
     const sign = value >= 0 ? '+' : ''
     return `${sign}${value.toFixed(2)}%`
-  }
-
-  // カスタムツールチップ
-  const CustomTooltip = ({
-    active,
-    payload,
-    label,
-  }: {
-    active?: boolean
-    payload?: Array<{
-      name: string
-      value: number
-      color: string
-      dataKey: string
-    }>
-    label?: string
-  }) => {
-    if (!active || !payload || payload.length === 0) return null
-
-    return (
-      <div
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          border: '1px solid #ddd',
-          borderRadius: 8,
-          padding: '12px 16px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-        }}
-      >
-        <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>{label}</div>
-        {payload.map((item, index) => (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: item.value >= 0 ? '#52c41a' : '#ff4d4f' }}>
-              {formatPercentage(item.value)}
-            </span>
-          </div>
-        ))}
-      </div>
-    )
   }
 
   return (
@@ -218,7 +143,7 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
                         color: value !== null && value >= 0 ? '#52c41a' : '#ff4d4f',
                       }}
                     >
-                      {formatPercentage(value || 0)}
+                      {formatPercentage(value)}
                     </div>
                   </div>
                 )
@@ -250,7 +175,7 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
               domain={['auto', 'auto']}
               tickMargin={8}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={<PercentageTooltip />} />
             <Legend
               wrapperStyle={{ paddingTop: 20 }}
               formatter={(value) => <span style={{ fontSize: 12 }}>{value}</span>}

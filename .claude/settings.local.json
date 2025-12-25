@@ -36,7 +36,16 @@
       "Bash(python3:*)",
       "Bash(npm run type-check:*)",
       "Bash(del \"c:\\Users\\owner\\Desktop\\economic-platform\\backend\\cache\\usa\\consumer\\retail_control_cache.json\")",
-      "Bash(powershell.exe:*)"
+      "Bash(powershell.exe:*)",
+      "Bash(python -m py_compile:*)",
+      "Bash(wc:*)",
+      "Bash(xargs:*)",
+      "Bash(ls -la \"C:\\Users\\owner\\Desktop\\economic-platform\\backend\\data\\usa\\consumer\"\" 2>nul || dir \"C:UsersownerDesktopeconomic-platformbackenddatausaconsumer \")",
+      "Bash(python -c:*)",
+      "Bash(powershell -Command \"cd ''C:\\Users\\owner\\Desktop\\economic-platform\\backend''; python -c ''from services.redis_client import redis_client; schedule_key = chr(34) + \"\"cb_jobs_labor_differential:next_release_schedule\"\" + chr(34); result = redis_client.delete(\"\"cb_jobs_labor_differential:next_release_schedule\"\"); print(f\"\"スケジュールキャッシュ削除: {result}\"\"); result2 = redis_client.delete(\"\"cb_jobs_labor_differential:data\"\"); print(f\"\"データキャッシュ削除: {result2}\"\")''\")",
+      "Bash(powershell -Command \"Set-Location ''C:\\Users\\owner\\Desktop\\economic-platform\\backend''; python -c ''from services.redis_client import redis_client; redis_client.delete(\"\"cb_jobs_labor_differential:next_release_schedule\"\"); redis_client.delete(\"\"cb_jobs_labor_differential:data\"\"); print(\"\"Cache cleared\"\")''\")",
+      "Bash(powershell -Command \"Set-Location ''C:\\Users\\owner\\Desktop\\economic-platform\\backend''; python clear_cache.py\")",
+      "Bash(powershell -Command \"Set-Location ''C:\\Users\\owner\\Desktop\\economic-platform\\backend''; $env:PYTHONPATH=''C:\\Users\\owner\\Desktop\\economic-platform\\backend''; python clear_cache.py\")"
     ]
   }
 }

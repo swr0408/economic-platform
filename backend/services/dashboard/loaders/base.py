@@ -201,6 +201,123 @@ class BaseDashboardLoader(ABC):
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(self._executor, self.get_data)
 
+    def get_data_light(self) -> Dict[str, Any]:
+        """
+        軽量指標のみを取得（プログレッシブレンダリング用）
+
+        サブクラスでload_light()が実装されている場合のみ使用可能。
+
+        Returns:
+            {
+                "data": {...},
+                "cached": bool,
+                "last_updated": str,
+                "partial": True
+            }
+        """
+        # サブクラスにload_lightがなければ通常のget_dataを使用
+        if not hasattr(self, 'load_light'):
+            return self.get_data()
+
+        # 1. キャッシュをチェック（軽量指標用）
+        light_cache_key = f"{self.cache_key}:light"
+        cached = redis_client.get(light_cache_key)
+        last_updated = None
+
+        if cached:
+            last_updated = cached.get("last_updated")
+            if not self._is_cache_stale(last_updated):
+                return {
+                    "data": cached.get("data", {}),
+                    "cached": True,
+                    "last_updated": last_updated,
+                    "partial": True,
+                }
+
+        # 2. データを取得
+        self._prepare_for_refresh(last_updated)
+        data = self.load_light()
+
+        # 3. キャッシュに保存
+        cache_payload = {
+            "data": data,
+            "last_updated": datetime.now(JST).isoformat(),
+        }
+        redis_client.set(light_cache_key, cache_payload, expire=0)
+
+        return {
+            "data": data,
+            "cached": False,
+            "last_updated": cache_payload["last_updated"],
+            "partial": True,
+        }
+
+    def get_data_heavy(self) -> Dict[str, Any]:
+        """
+        重い指標のみを取得（プログレッシブレンダリング用）
+
+        サブクラスでload_heavy()が実装されている場合のみ使用可能。
+
+        Returns:
+            {
+                "data": {...},
+                "cached": bool,
+                "last_updated": str,
+                "partial": True
+            }
+        """
+        # サブクラスにload_heavyがなければ空を返す
+        if not hasattr(self, 'load_heavy'):
+            return {
+                "data": {},
+                "cached": False,
+                "last_updated": None,
+                "partial": True,
+            }
+
+        # 1. キャッシュをチェック（重い指標用）
+        heavy_cache_key = f"{self.cache_key}:heavy"
+        cached = redis_client.get(heavy_cache_key)
+        last_updated = None
+
+        if cached:
+            last_updated = cached.get("last_updated")
+            if not self._is_cache_stale(last_updated):
+                return {
+                    "data": cached.get("data", {}),
+                    "cached": True,
+                    "last_updated": last_updated,
+                    "partial": True,
+                }
+
+        # 2. データを取得
+        self._prepare_for_refresh(last_updated)
+        data = self.load_heavy()
+
+        # 3. キャッシュに保存
+        cache_payload = {
+            "data": data,
+            "last_updated": datetime.now(JST).isoformat(),
+        }
+        redis_client.set(heavy_cache_key, cache_payload, expire=0)
+
+        return {
+            "data": data,
+            "cached": False,
+            "last_updated": cache_payload["last_updated"],
+            "partial": True,
+        }
+
+    async def get_data_light_async(self) -> Dict[str, Any]:
+        """軽量指標を非同期で取得"""
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(self._executor, self.get_data_light)
+
+    async def get_data_heavy_async(self) -> Dict[str, Any]:
+        """重い指標を非同期で取得"""
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(self._executor, self.get_data_heavy)
+
     def _safe_get(self, func, default=None) -> Any:
         """
         サービス呼び出しを安全に実行（1つ失敗しても他に影響しない）
@@ -218,3 +335,18 @@ class BaseDashboardLoader(ABC):
         except Exception as e:
             print(f"Error in dashboard loader: {e}")
             return default
+
+    def _invalidate_service_caches(self, services: list) -> None:
+        """
+        複数サービスのキャッシュを一括無効化
+
+        Args:
+            services: (サービスインスタンス, サービス名) のタプルのリスト
+                      例: [(retail_sales_service, "Retail Sales"), ...]
+        """
+        for service, name in services:
+            try:
+                service.invalidate_cache()
+                print(f"{name} Redis cache invalidated")
+            except Exception as e:
+                print(f"Error invalidating {name} cache: {e}")

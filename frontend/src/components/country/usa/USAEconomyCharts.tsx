@@ -1,5 +1,5 @@
 import { Spin, Alert, Button } from 'antd'
-import { useUSAEconomyDashboard } from '../../../hooks/useDashboardData'
+import { useUSAEconomyDashboardProgressive } from '../../../hooks/useDashboardData'
 import GDPGrowthChart from './economy/GDPGrowthChart'
 import GDPContributionsChart from './economy/GDPContributionsChart'
 import GDPComponentsGrowthChart from './economy/GDPComponentsGrowthChart'
@@ -25,27 +25,32 @@ import TSACheckpointChart from './economy/TSACheckpointChart'
 import OpenTableChart from './economy/OpenTableChart'
 
 /**
- * 米国経済チャート群
+ * 米国経済チャート群（プログレッシブレンダリング対応）
  *
- * バッチAPIで全データを一括取得し、各チャートコンポーネントにpropsで渡す
+ * 軽量指標を先に取得して表示し、重い指標は遅延ロードする。
+ * これにより初期表示を高速化。
  */
 export default function USAEconomyCharts() {
-  const { data, isLoading, error, refetch } = useUSAEconomyDashboard()
+  const {
+    mergedData,
+    isLoading,
+    lightError,
+  } = useUSAEconomyDashboardProgressive()
 
-  // ローディング状態
+  // 軽量指標のローディング状態（初期表示）
   if (isLoading) {
     return <EconomyChartsSkeleton />
   }
 
   // エラー状態
-  if (error) {
+  if (lightError) {
     return (
       <Alert
         type="error"
         message="データの取得に失敗しました"
-        description={error.message}
+        description={lightError.message}
         action={
-          <Button size="small" onClick={() => refetch()}>
+          <Button size="small" onClick={() => window.location.reload()}>
             再試行
           </Button>
         }
@@ -54,7 +59,7 @@ export default function USAEconomyCharts() {
     )
   }
 
-  const dashboardData = data?.data
+  const dashboardData = mergedData
 
   return (
     <div className="country-chart-stack">
@@ -165,14 +170,14 @@ export default function USAEconomyCharts() {
         />
       </div>
 
-      {/* NFIB中小企業楽観指数チャート */}
+      {/* NFIB中小企業楽観指数チャート（重い指標：遅延ロード） */}
       <div id="nfib">
         <NFIBOptimismChart
           data={dashboardData?.nfib ?? null}
         />
       </div>
 
-      {/* NFIB中小企業設備投資計画チャート */}
+      {/* NFIB中小企業設備投資計画チャート（重い指標：遅延ロード） */}
       <div id="nfib-capex">
         <NFIBCapexChart
           data={dashboardData?.nfib_capex ?? null}

@@ -1,9 +1,18 @@
+/**
+ * タームプレミアムチャートコンポーネント
+ *
+ * 共通モジュールを使用してリファクタリング済み
+ */
 import { useState, useMemo } from 'react'
 import { Tooltip } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatDateLabelFull, type PeriodType } from '../common/useChartData'
+import { NoDataMessage } from '../common/ChartComponents'
 
 // Props型定義
 interface TermPremiumItem {
@@ -34,7 +43,7 @@ interface TermPremiumChartData {
 }
 
 export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // propsのデータをチャート用に変換・マージ
   const chartData = useMemo<TermPremiumChartData[]>(() => {
@@ -72,33 +81,11 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
     return `${value.toFixed(2)}%`
   }
 
-  const formatDateLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`
-  }
-
-  // 期間に基づいてデータをフィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2020年から
-      cutoffDate.setFullYear(2020, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  // 期間フィルタリング
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2020,
+  })
 
   const hasData = chartData.length > 0
 
@@ -120,9 +107,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
   if (!hasData) {
     return (
       <ChartContainer title="タームプレミアム" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -162,7 +147,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
           name="10年債利回り"
           height={450}
           tickFormatter={formatPercentage}
-          xAxisTickFormatter={formatDateLabel}
+          xAxisTickFormatter={formatDateLabelFull}
           enableDynamicTicks={true}
           showZeroLine={true}
           showFiftyLine={false}
@@ -175,7 +160,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
           xAxisInterval={xAxisInterval}
         >
           <Tooltip
-            labelFormatter={(value: string | number) => formatDateLabel(String(value))}
+            labelFormatter={(value: string | number) => formatDateLabelFull(String(value))}
             formatter={(value: number, name: string) => [formatPercentage(value), name]}
           />
         </ZoomableChart>

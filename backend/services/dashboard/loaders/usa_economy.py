@@ -94,30 +94,41 @@ class USAEconomyLoader(BaseDashboardLoader):
 
     def get_release_datetimes(self) -> List[Optional[datetime]]:
         """
-        各指標の発表日時リストを返す
+        各指標の発表日時リストを返す（並列実行）
 
         各サービスが持つnext_release情報から発表日時を取得し、
         発表日時リストを返す。
         """
         release_times = []
 
-        # 各サービスから発表日時を取得
-        release_times.extend(self._get_gdp_release_datetimes())
-        release_times.extend(self._get_ism_release_datetimes())
-        release_times.extend(self._get_regional_fed_release_datetimes())
-        release_times.extend(self._get_nfib_release_datetimes())
-        release_times.extend(self._get_industrial_release_datetimes())
-        release_times.extend(self._get_durable_goods_release_datetimes())
-        release_times.extend(self._get_bank_lending_release_datetimes())
-        release_times.extend(self._get_nfci_release_datetimes())
-        release_times.extend(self._get_fci_gdpnow_release_datetimes())
-        release_times.extend(self._get_daily_release_datetimes())
+        # 並列で発表日時を取得
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures = [
+                executor.submit(self._get_gdp_release_datetimes),
+                executor.submit(self._get_ism_release_datetimes),
+                executor.submit(self._get_regional_fed_release_datetimes),
+                executor.submit(self._get_nfib_release_datetimes),
+                executor.submit(self._get_industrial_release_datetimes),
+                executor.submit(self._get_durable_goods_release_datetimes),
+                executor.submit(self._get_bank_lending_release_datetimes),
+                executor.submit(self._get_nfci_release_datetimes),
+                executor.submit(self._get_fci_gdpnow_release_datetimes),
+                executor.submit(self._get_daily_release_datetimes),
+            ]
+
+            for future in as_completed(futures):
+                try:
+                    result = future.result()
+                    if result:
+                        release_times.extend(result)
+                except Exception:
+                    pass
 
         return release_times
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
-        発表日時を過ぎた指標を検出
+        発表日時を過ぎた指標を検出（並列実行）
 
         ダッシュボードキャッシュのlast_updatedと現在時刻を比較し、
         その間に発表があった指標を検出する。
@@ -128,8 +139,6 @@ class USAEconomyLoader(BaseDashboardLoader):
         Returns:
             発表日時を過ぎた指標名のセット
         """
-        stale = set()
-
         if last_updated is None:
             # キャッシュがない場合は全指標を更新対象とする
             return {"all"}
@@ -141,104 +150,122 @@ class USAEconomyLoader(BaseDashboardLoader):
 
             now = datetime.now(JST)
 
+            # 並列で発表日時を取得
+            stale = set()
+            check_results = {}
+
+            with ThreadPoolExecutor(max_workers=12) as executor:
+                futures = {
+                    executor.submit(self._get_gdp_release_datetimes): "gdp",
+                    executor.submit(self._get_ism_manufacturing_release_datetime): "ism_manufacturing",
+                    executor.submit(self._get_ism_non_manufacturing_release_datetime): "ism_non_manufacturing",
+                    executor.submit(self._get_empire_state_release_datetime): "empire_state",
+                    executor.submit(self._get_philadelphia_fed_release_datetime): "philadelphia_fed",
+                    executor.submit(self._get_nfib_release_datetimes): "nfib",
+                    executor.submit(self._get_industrial_release_datetimes): "industrial",
+                    executor.submit(self._get_durable_goods_release_datetimes): "durable_goods",
+                    executor.submit(self._get_bank_lending_release_datetimes): "bank_lending",
+                    executor.submit(self._get_nfci_release_datetimes): "nfci",
+                    executor.submit(self._get_fci_gdpnow_release_datetimes): "fci_gdpnow",
+                    executor.submit(self._get_daily_release_datetimes): "daily",
+                }
+
+                for future in as_completed(futures):
+                    key = futures[future]
+                    try:
+                        check_results[key] = future.result()
+                    except Exception:
+                        check_results[key] = None
+
+            # 結果を判定
+            def is_stale(release_dt):
+                return release_dt and last_updated_dt < release_dt <= now
+
             # GDP関連
-            gdp_release = self._get_gdp_release_datetimes()
-            for release_dt in gdp_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            gdp_releases = check_results.get("gdp") or []
+            for release_dt in (gdp_releases if isinstance(gdp_releases, list) else [gdp_releases]):
+                if is_stale(release_dt):
                     stale.add("gdp")
-                    print(f"[stale] GDP release detected: {release_dt.isoformat()}")
                     break
 
             # ISM製造業
-            ism_mfg_release = self._get_ism_manufacturing_release_datetime()
-            if ism_mfg_release and last_updated_dt < ism_mfg_release <= now:
+            if is_stale(check_results.get("ism_manufacturing")):
                 stale.add("ism_manufacturing")
-                print(f"[stale] ISM Manufacturing release detected: {ism_mfg_release.isoformat()}")
 
             # ISM非製造業
-            ism_non_mfg_release = self._get_ism_non_manufacturing_release_datetime()
-            if ism_non_mfg_release and last_updated_dt < ism_non_mfg_release <= now:
+            if is_stale(check_results.get("ism_non_manufacturing")):
                 stale.add("ism_non_manufacturing")
-                print(f"[stale] ISM Non-Manufacturing release detected: {ism_non_mfg_release.isoformat()}")
 
             # NY連銀
-            empire_release = self._get_empire_state_release_datetime()
-            if empire_release and last_updated_dt < empire_release <= now:
+            if is_stale(check_results.get("empire_state")):
                 stale.add("empire_state")
-                print(f"[stale] Empire State release detected: {empire_release.isoformat()}")
 
             # フィラデルフィア連銀
-            philly_release = self._get_philadelphia_fed_release_datetime()
-            if philly_release and last_updated_dt < philly_release <= now:
+            if is_stale(check_results.get("philadelphia_fed")):
                 stale.add("philadelphia_fed")
-                print(f"[stale] Philadelphia Fed release detected: {philly_release.isoformat()}")
 
             # NFIB
-            nfib_release = self._get_nfib_release_datetimes()
-            for release_dt in nfib_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            nfib_releases = check_results.get("nfib") or []
+            for release_dt in (nfib_releases if isinstance(nfib_releases, list) else [nfib_releases]):
+                if is_stale(release_dt):
                     stale.add("nfib")
-                    print(f"[stale] NFIB release detected: {release_dt.isoformat()}")
                     break
 
             # 鉱工業生産・設備稼働率（同時発表）
-            industrial_release = self._get_industrial_release_datetimes()
-            for release_dt in industrial_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            industrial_releases = check_results.get("industrial") or []
+            for release_dt in (industrial_releases if isinstance(industrial_releases, list) else [industrial_releases]):
+                if is_stale(release_dt):
                     stale.add("industrial_production")
                     stale.add("capacity_utilization")
-                    print(f"[stale] Industrial Production release detected: {release_dt.isoformat()}")
                     break
 
             # 耐久財受注
-            durable_release = self._get_durable_goods_release_datetimes()
-            for release_dt in durable_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            durable_releases = check_results.get("durable_goods") or []
+            for release_dt in (durable_releases if isinstance(durable_releases, list) else [durable_releases]):
+                if is_stale(release_dt):
                     stale.add("durable_goods")
-                    print(f"[stale] Durable Goods release detected: {release_dt.isoformat()}")
                     break
 
             # 銀行貸し出し態度（SLOOS）
-            bank_release = self._get_bank_lending_release_datetimes()
-            for release_dt in bank_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            bank_releases = check_results.get("bank_lending") or []
+            for release_dt in (bank_releases if isinstance(bank_releases, list) else [bank_releases]):
+                if is_stale(release_dt):
                     stale.add("bank_lending")
-                    print(f"[stale] Bank Lending release detected: {release_dt.isoformat()}")
                     break
 
             # NFCI
-            nfci_release = self._get_nfci_release_datetimes()
-            for release_dt in nfci_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            nfci_releases = check_results.get("nfci") or []
+            for release_dt in (nfci_releases if isinstance(nfci_releases, list) else [nfci_releases]):
+                if is_stale(release_dt):
                     stale.add("nfci")
-                    print(f"[stale] NFCI release detected: {release_dt.isoformat()}")
                     break
 
             # FCI-G, GDPNow（日次）
-            fci_gdpnow_release = self._get_fci_gdpnow_release_datetimes()
-            for release_dt in fci_gdpnow_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            fci_releases = check_results.get("fci_gdpnow") or []
+            for release_dt in (fci_releases if isinstance(fci_releases, list) else [fci_releases]):
+                if is_stale(release_dt):
                     stale.add("fci")
                     stale.add("gdpnow")
-                    print(f"[stale] FCI/GDPNow update detected: {release_dt.isoformat()}")
                     break
 
             # 日次指標（TSA, OpenTable, 航空便）
-            daily_release = self._get_daily_release_datetimes()
-            for release_dt in daily_release:
-                if release_dt and last_updated_dt < release_dt <= now:
+            daily_releases = check_results.get("daily") or []
+            for release_dt in (daily_releases if isinstance(daily_releases, list) else [daily_releases]):
+                if is_stale(release_dt):
                     stale.add("tsa_checkpoint")
                     stale.add("opentable")
                     stale.add("us_flights")
-                    print(f"[stale] Daily indicators update detected: {release_dt.isoformat()}")
                     break
+
+            if stale:
+                print(f"[stale] Detected stale indicators: {stale}")
+
+            return stale
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
             # エラー時は全指標を更新対象とする
             return {"all"}
-
-        return stale
 
     def _get_ism_manufacturing_release_datetime(self) -> Optional[datetime]:
         """ISM製造業の発表日時を取得"""
@@ -660,7 +687,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        with ThreadPoolExecutor(max_workers=24) as executor:
             futures = {
                 executor.submit(self._get_gdp_growth_rate, gdp_service): "gdp_growth_rate",
                 executor.submit(self._get_gdp_contributions, gdp_contributions_service): "gdp_contributions",
@@ -686,6 +713,143 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_opentable, opentable_service): "opentable",
                 executor.submit(self._get_next_gdp_release, bea_schedule_service): "next_gdp_release",
                 executor.submit(self._get_next_ism_non_manufacturing_release, ism_non_manufacturing_service): "next_ism_non_manufacturing_release",
+            }
+
+            for future in as_completed(futures):
+                key = futures[future]
+                try:
+                    result[key] = future.result()
+                except Exception as e:
+                    print(f"Error fetching {key}: {e}")
+                    result[key] = None
+
+        return result
+
+    # ==========================================================================
+    # 軽量指標のみを取得（高速レスポンス用）
+    # ==========================================================================
+
+    # 重い指標のリスト（スクリーンショット、PDF解析、複雑な外部API）
+    HEAVY_INDICATORS = {"us_flights", "opentable", "nfib", "nfib_capex", "tsa_checkpoint"}
+
+    def load_light(self) -> Dict[str, Any]:
+        """
+        軽量指標のみを並列で取得（高速レスポンス用）
+
+        重い指標（スクリーンショット、PDF解析等）を除外し、
+        FRED/BEA等のAPIキャッシュされたデータのみを取得。
+
+        Returns:
+            軽量指標のデータ辞書
+        """
+        # 遅延インポート（循環参照回避）
+        from services.usa.gdp_service import gdp_service
+        from services.usa.gdp_contributions_service import gdp_contributions_service
+        from services.usa.bea_gdp_components_service import bea_gdp_components_service
+        from services.usa.potential_gdp_service import potential_gdp_service
+        from services.usa.bank_lending_service import bank_lending_service
+        from services.usa.fci_service import fci_service
+        from services.usa.nfci_service import nfci_service
+        from services.usa.gdpnow_service import gdpnow_service
+        from services.usa.ism_manufacturing_service import ism_manufacturing_service
+        from services.usa.ism_components_service import ism_components_service
+        from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
+        from services.usa.ism_non_manufacturing_components_service import ism_non_manufacturing_components_service
+        from services.usa.empire_state_service import empire_state_service
+        from services.usa.philadelphia_fed_service import philadelphia_fed_service
+        from services.usa.industrial_production_service import industrial_production_service
+        from services.usa.capacity_utilization_service import capacity_utilization_service
+        from services.usa.durable_goods_service import durable_goods_service
+        from services.usa.bea_schedule_service import bea_schedule_service
+
+        result = {
+            "gdp_growth_rate": None,
+            "gdp_contributions": None,
+            "gdp_components_growth": None,
+            "potential_gdp": None,
+            "bank_lending": None,
+            "fci": None,
+            "nfci": None,
+            "gdpnow": None,
+            "ism_manufacturing": None,
+            "ism_components": None,
+            "ism_non_manufacturing": None,
+            "ism_non_manufacturing_components": None,
+            "empire_state": None,
+            "philadelphia_fed": None,
+            "industrial_production": None,
+            "capacity_utilization": None,
+            "durable_goods": None,
+            "next_gdp_release": None,
+            "next_ism_non_manufacturing_release": None,
+        }
+
+        # 並列でデータを取得（軽量指標のみ、19個）
+        with ThreadPoolExecutor(max_workers=19) as executor:
+            futures = {
+                executor.submit(self._get_gdp_growth_rate, gdp_service): "gdp_growth_rate",
+                executor.submit(self._get_gdp_contributions, gdp_contributions_service): "gdp_contributions",
+                executor.submit(self._get_gdp_components_growth, bea_gdp_components_service): "gdp_components_growth",
+                executor.submit(self._get_potential_gdp, potential_gdp_service): "potential_gdp",
+                executor.submit(self._get_bank_lending, bank_lending_service): "bank_lending",
+                executor.submit(self._get_fci, fci_service): "fci",
+                executor.submit(self._get_nfci, nfci_service): "nfci",
+                executor.submit(self._get_gdpnow, gdpnow_service): "gdpnow",
+                executor.submit(self._get_ism_manufacturing, ism_manufacturing_service): "ism_manufacturing",
+                executor.submit(self._get_ism_components, ism_components_service): "ism_components",
+                executor.submit(self._get_ism_non_manufacturing, ism_non_manufacturing_service): "ism_non_manufacturing",
+                executor.submit(self._get_ism_non_manufacturing_components, ism_non_manufacturing_components_service): "ism_non_manufacturing_components",
+                executor.submit(self._get_empire_state, empire_state_service): "empire_state",
+                executor.submit(self._get_philadelphia_fed, philadelphia_fed_service): "philadelphia_fed",
+                executor.submit(self._get_industrial_production, industrial_production_service): "industrial_production",
+                executor.submit(self._get_capacity_utilization, capacity_utilization_service): "capacity_utilization",
+                executor.submit(self._get_durable_goods, durable_goods_service): "durable_goods",
+                executor.submit(self._get_next_gdp_release, bea_schedule_service): "next_gdp_release",
+                executor.submit(self._get_next_ism_non_manufacturing_release, ism_non_manufacturing_service): "next_ism_non_manufacturing_release",
+            }
+
+            for future in as_completed(futures):
+                key = futures[future]
+                try:
+                    result[key] = future.result()
+                except Exception as e:
+                    print(f"Error fetching {key}: {e}")
+                    result[key] = None
+
+        return result
+
+    def load_heavy(self) -> Dict[str, Any]:
+        """
+        重い指標のみを並列で取得
+
+        スクリーンショット取得、PDF解析等の重い処理を含む指標のみを取得。
+        フロントエンドで遅延ロードに使用。
+
+        Returns:
+            重い指標のデータ辞書
+        """
+        # 遅延インポート（循環参照回避）
+        from services.usa.nfib_service import nfib_service
+        from services.usa.us_flights_service import us_flights_service
+        from services.usa.tsa_checkpoint_service import tsa_checkpoint_service
+        from services.usa.opentable_service import opentable_service
+
+        result = {
+            "nfib": None,
+            "nfib_capex": None,
+            "us_flights": None,
+            "tsa_checkpoint": None,
+            "opentable": None,
+        }
+
+        # 並列でデータを取得（重い指標のみ、5個）
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {
+                executor.submit(self._get_nfib, nfib_service): "nfib",
+                executor.submit(self._get_nfib_capex, nfib_service): "nfib_capex",
+                executor.submit(self._get_us_flights, us_flights_service): "us_flights",
+                executor.submit(self._get_tsa_checkpoint, tsa_checkpoint_service): "tsa_checkpoint",
+                executor.submit(self._get_opentable, opentable_service): "opentable",
             }
 
             for future in as_completed(futures):

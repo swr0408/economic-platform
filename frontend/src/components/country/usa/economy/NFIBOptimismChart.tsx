@@ -5,12 +5,16 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { NFIBData } from '../../../../hooks/useDashboardData'
 
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
+import { NoDataMessage } from '../common/ChartComponents'
+
 interface NFIBOptimismChartProps {
   data: NFIBData | null
 }
 
 export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -22,26 +26,10 @@ export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2010年から
-      cutoffDate.setFullYear(2010, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2010,
+  })
 
   const hasData = chartData.length > 0
 
@@ -53,21 +41,13 @@ export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
   if (!hasData) {
     return (
       <ChartContainer title="NFIB中小企業楽観指数" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
 
   const formatValue = (value: number) => {
     return value.toFixed(1)
-  }
-
-  const formatDateLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
   }
 
   // グラフの色
@@ -131,10 +111,7 @@ export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
           tickFormatter={formatValue}
           tooltipFormatter={formatValue}
           tooltipLabelFormatter={formatDateLabel}
-          xAxisTickFormatter={(dateStr: string) => {
-            const date = new Date(dateStr)
-            return `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}`
-          }}
+          xAxisTickFormatter={formatDateLabel}
           enableDynamicTicks={true}
           showZeroLine={false}
           showFiftyLine={false}

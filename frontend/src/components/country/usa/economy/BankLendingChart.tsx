@@ -1,3 +1,8 @@
+/**
+ * 銀行貸し出し態度（SLOOS）チャートコンポーネント
+ *
+ * 共通モジュールを使用してリファクタリング済み
+ */
 import { useState, useMemo } from 'react'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
@@ -5,12 +10,16 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { BankLendingData } from '../../../../hooks/useDashboardData'
 
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatQuarterLabel, type PeriodType } from '../common/useChartData'
+import { NoDataMessage, SimpleLatestValueBox } from '../common/ChartComponents'
+
 interface BankLendingChartProps {
   data: BankLendingData | null
 }
 
 export default function BankLendingChart({ data }: BankLendingChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -22,30 +31,13 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
   }, [data])
 
   // 期間フィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || chartData.length === 0) {
-      return chartData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2000年から
-      cutoffDate.setFullYear(2000, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return chartData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [chartData, selectedPeriod])
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod,
+    defaultStartYear: 2000,
+  })
 
   const hasData = chartData.length > 0
 
-  // データがnullの場合はローディング表示
   if (data === null) {
     return <LoadingChart title="銀行貸し出し態度（SLOOS）" />
   }
@@ -53,9 +45,7 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
   if (!hasData) {
     return (
       <ChartContainer title="銀行貸し出し態度（SLOOS）" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
@@ -63,14 +53,6 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
   const formatPercentage = (value: number) => {
     const sign = value >= 0 ? '+' : ''
     return `${sign}${value.toFixed(1)}%`
-  }
-
-  const formatQuarterLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
   }
 
   return (
@@ -82,37 +64,14 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         sourceUrl="https://www.federalreserve.gov/data/sloos.htm"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
-          <div>
-            <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
-            {data.latest && (
-              <>
-                <span
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                    color: '#8b0000',
-                  }}
-                >
-                  {formatPercentage(data.latest.value)}
-                </span>
-                <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
-                  ({formatQuarterLabel(data.latest.date)})
-                </span>
-              </>
-            )}
-          </div>
-        </div>
+        <SimpleLatestValueBox
+          value={data.latest?.value}
+          valueColor="#8b0000"
+          date={data.latest?.date}
+          format="percent"
+          decimals={1}
+          dateFormatter={formatQuarterLabel}
+        />
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 

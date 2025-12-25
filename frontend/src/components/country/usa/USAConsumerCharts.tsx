@@ -1,5 +1,13 @@
-import { Spin, Alert, Button } from 'antd'
+/**
+ * 米国消費チャート群
+ *
+ * バッチAPIで全データを一括取得し、各チャートコンポーネントにpropsで渡す
+ * DashboardContainerを使用してローディング・エラー処理を共通化
+ */
 import { useUSAConsumerDashboard } from '../../../hooks/useDashboardData'
+import { DashboardContainer, ChartWrapper } from './common/DashboardContainer'
+
+// チャートコンポーネント
 import RetailSalesChart from './consumer/RetailSalesChart'
 import CartsChart from './consumer/CartsChart'
 import AffinitySpendChart from './consumer/AffinitySpendChart'
@@ -7,105 +15,81 @@ import VisaSpendingChart from './consumer/VisaSpendingChart'
 import TotalVehicleSalesChart from './consumer/TotalVehicleSalesChart'
 import RedbookChart from './consumer/RedbookChart'
 import ConsumerCreditChart from './consumer/ConsumerCreditChart'
+import DelinquencyRateChart from './consumer/DelinquencyRateChart'
+import CBConsumerConfidenceChart from './consumer/CBConsumerConfidenceChart'
+import MichiganConsumerSentimentChart from './consumer/MichiganConsumerSentimentChart'
+import PersonalSavingRateChart from './consumer/PersonalSavingRateChart'
+import PersonalIncomeChart from './consumer/PersonalIncomeChart'
+import DisposableIncomeChart from './consumer/DisposableIncomeChart'
+import PCEChart from './consumer/PCEChart'
 
-/**
- * 米国消費チャート群
- *
- * バッチAPIで全データを一括取得し、各チャートコンポーネントにpropsで渡す
- */
 export default function USAConsumerCharts() {
-  const { data, isLoading, error, refetch } = useUSAConsumerDashboard()
-
-  // ローディング状態
-  if (isLoading) {
-    return <ConsumerChartsSkeleton />
-  }
-
-  // エラー状態
-  if (error) {
-    return (
-      <Alert
-        type="error"
-        message="データの取得に失敗しました"
-        description={error.message}
-        action={
-          <Button size="small" onClick={() => refetch()}>
-            再試行
-          </Button>
-        }
-        style={{ marginBottom: 24 }}
-      />
-    )
-  }
-
-  const dashboardData = data?.data
+  const queryResult = useUSAConsumerDashboard()
 
   return (
-    <div className="country-chart-stack">
+    <DashboardContainer queryResult={queryResult} categoryName="消費">
+      {(dashboardData) => (
+        <>
+          <ChartWrapper id="retail-sales">
+            <RetailSalesChart
+              data={dashboardData?.retail_sales ?? null}
+              controlData={dashboardData?.retail_control ?? null}
+            />
+          </ChartWrapper>
 
-      {/* 小売売上高チャート */}
-      <div id="retail-sales">
-        <RetailSalesChart
-          data={dashboardData?.retail_sales ?? null}
-          controlData={dashboardData?.retail_control ?? null}
-        />
-      </div>
+          <ChartWrapper id="carts">
+            <CartsChart data={dashboardData?.carts ?? null} />
+          </ChartWrapper>
 
-      {/* シカゴ連銀小売指数（CARTS）チャート */}
-      <div id="carts">
-        <CartsChart data={dashboardData?.carts ?? null} />
-      </div>
+          <ChartWrapper id="affinity-spend">
+            <AffinitySpendChart data={dashboardData?.affinity_spend ?? null} />
+          </ChartWrapper>
 
-      {/* Affinityカード支出チャート */}
-      <div id="affinity-spend">
-        <AffinitySpendChart data={dashboardData?.affinity_spend ?? null} />
-      </div>
+          <ChartWrapper id="visa-spending">
+            <VisaSpendingChart data={dashboardData?.visa_spending ?? null} />
+          </ChartWrapper>
 
-      {/* Visa支出モメンタム指数チャート */}
-      <div id="visa-spending">
-        <VisaSpendingChart data={dashboardData?.visa_spending ?? null} />
-      </div>
+          <ChartWrapper id="total-vehicle-sales">
+            <TotalVehicleSalesChart data={dashboardData?.total_vehicle_sales ?? null} />
+          </ChartWrapper>
 
-      {/* 自動車販売台数チャート */}
-      <div id="total-vehicle-sales">
-        <TotalVehicleSalesChart data={dashboardData?.total_vehicle_sales ?? null} />
-      </div>
+          <ChartWrapper id="redbook">
+            <RedbookChart data={dashboardData?.redbook ?? null} />
+          </ChartWrapper>
 
-      {/* Redbook小売売上高指数チャート */}
-      <div id="redbook">
-        <RedbookChart data={dashboardData?.redbook ?? null} />
-      </div>
+          <ChartWrapper id="consumer-credit">
+            <ConsumerCreditChart data={dashboardData?.consumer_credit ?? null} />
+          </ChartWrapper>
 
-      {/* クレジットカードローン残高チャート */}
-      <div id="consumer-credit">
-        <ConsumerCreditChart data={dashboardData?.consumer_credit ?? null} />
-      </div>
+          <ChartWrapper id="delinquency-rate">
+            <DelinquencyRateChart data={dashboardData?.delinquency_rate ?? null} />
+          </ChartWrapper>
 
-    </div>
-  )
-}
+          <ChartWrapper id="cb-consumer-confidence">
+            <CBConsumerConfidenceChart data={dashboardData?.cb_consumer_confidence ?? null} />
+          </ChartWrapper>
 
-/**
- * スケルトンローダー
- * データ取得中に表示される骨組み
- */
-function ConsumerChartsSkeleton() {
-  return (
-    <div className="country-chart-stack">
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: 400,
-          background: '#fafafa',
-          borderRadius: 12,
-        }}
-      >
-        <Spin size="large" />
-        <div style={{ marginTop: 16, color: '#666' }}>消費データを読み込み中...</div>
-      </div>
-    </div>
+          <ChartWrapper id="michigan-consumer-sentiment">
+            <MichiganConsumerSentimentChart data={dashboardData?.michigan_consumer_sentiment ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="personal-saving-rate">
+            <PersonalSavingRateChart data={dashboardData?.personal_saving_rate ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="personal-income">
+            <PersonalIncomeChart data={dashboardData?.personal_income ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="disposable-income">
+            <DisposableIncomeChart data={dashboardData?.disposable_income ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="pce">
+            <PCEChart data={dashboardData?.pce ?? null} />
+          </ChartWrapper>
+        </>
+      )}
+    </DashboardContainer>
   )
 }

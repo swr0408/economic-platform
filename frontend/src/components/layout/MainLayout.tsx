@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
 import { Layout, Menu } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import {
@@ -12,10 +12,31 @@ import SidebarNavigation from './SidebarNavigation'
 
 const { Header, Content, Sider } = Layout
 
+// サイドバー幅の設定
+const DEFAULT_SIDEBAR_WIDTH = 250
+const MIN_SIDEBAR_WIDTH = 180
+const MAX_SIDEBAR_WIDTH = 400
+const STORAGE_KEY = 'sidebar-width'
+
 function MainLayout() {
   const navigate = useNavigate()
   const location = useLocation()
   const [collapsed, setCollapsed] = useState(false)
+
+  // サイドバー幅をlocalStorageから復元、なければデフォルト
+  const [sidebarWidth, setSidebarWidth] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const width = parseInt(saved, 10)
+      if (!isNaN(width) && width >= MIN_SIDEBAR_WIDTH && width <= MAX_SIDEBAR_WIDTH) {
+        return width
+      }
+    }
+    return DEFAULT_SIDEBAR_WIDTH
+  })
+
+  const [isResizing, setIsResizing] = useState(false)
+  const siderRef = useRef<HTMLDivElement>(null)
 
   const menuItems = [
     {
@@ -44,6 +65,47 @@ function MainLayout() {
   }, [location.pathname])
 
   const showSidebar = location.pathname.startsWith('/country')
+
+  // リサイズハンドラー
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsResizing(true)
+  }, [])
+
+  // マウス移動でサイドバー幅を変更
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing) return
+
+      const newWidth = e.clientX
+      if (newWidth >= MIN_SIDEBAR_WIDTH && newWidth <= MAX_SIDEBAR_WIDTH) {
+        setSidebarWidth(newWidth)
+      }
+    }
+
+    const handleMouseUp = () => {
+      if (isResizing) {
+        setIsResizing(false)
+        // localStorageに保存
+        localStorage.setItem(STORAGE_KEY, sidebarWidth.toString())
+      }
+    }
+
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+      // リサイズ中はテキスト選択を無効化
+      document.body.style.userSelect = 'none'
+      document.body.style.cursor = 'col-resize'
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+      document.body.style.userSelect = ''
+      document.body.style.cursor = ''
+    }
+  }, [isResizing, sidebarWidth])
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -78,44 +140,79 @@ function MainLayout() {
       </Header>
       <Layout>
         {showSidebar && (
-          <Sider
-            width={250}
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(value) => setCollapsed(value)}
-            trigger={null}
+          <div
+            ref={siderRef}
             style={{
-              background: '#fff',
-              borderRight: '1px solid #f0f0f0',
-              position: 'sticky',
-              top: 64,
-              height: 'calc(100vh - 64px)',
-              overflow: 'auto',
+              position: 'relative',
+              display: 'flex',
             }}
           >
-            <div
+            <Sider
+              width={collapsed ? 80 : sidebarWidth}
+              collapsible
+              collapsed={collapsed}
+              onCollapse={(value) => setCollapsed(value)}
+              trigger={null}
               style={{
-                padding: '16px',
-                borderBottom: '1px solid #f0f0f0',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
+                background: '#fff',
+                borderRight: '1px solid #f0f0f0',
+                position: 'sticky',
+                top: 64,
+                height: 'calc(100vh - 64px)',
+                overflow: 'auto',
               }}
             >
-              {!collapsed && (
-                <span style={{ fontWeight: 'bold', color: '#1890ff' }}>
-                  各国データ
-                </span>
-              )}
-              <span
-                onClick={() => setCollapsed(!collapsed)}
-                style={{ cursor: 'pointer', fontSize: '16px' }}
+              <div
+                style={{
+                  padding: '16px',
+                  borderBottom: '1px solid #f0f0f0',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
               >
-                {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              </span>
-            </div>
-            <SidebarNavigation />
-          </Sider>
+                {!collapsed && (
+                  <span style={{ fontWeight: 'bold', color: '#1890ff' }}>
+                    各国データ
+                  </span>
+                )}
+                <span
+                  onClick={() => setCollapsed(!collapsed)}
+                  style={{ cursor: 'pointer', fontSize: '16px' }}
+                >
+                  {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                </span>
+              </div>
+              <SidebarNavigation />
+            </Sider>
+            {/* リサイズハンドル */}
+            {!collapsed && (
+              <div
+                onMouseDown={handleMouseDown}
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  width: 4,
+                  cursor: 'col-resize',
+                  backgroundColor: isResizing ? '#1890ff' : 'transparent',
+                  transition: 'background-color 0.2s',
+                  zIndex: 10,
+                }}
+                onMouseEnter={(e) => {
+                  if (!isResizing) {
+                    e.currentTarget.style.backgroundColor = '#e6f7ff'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isResizing) {
+                    e.currentTarget.style.backgroundColor = 'transparent'
+                  }
+                }}
+              />
+            )}
+          </div>
         )}
         <Content
           style={{

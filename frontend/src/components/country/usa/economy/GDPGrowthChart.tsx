@@ -4,6 +4,10 @@ import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
+// 共通モジュールのインポート
+import { usePeriodFiltering, formatQuarterLabel, useQuarterlyTableData, type PeriodType } from '../common/useChartData'
+import { NoDataMessage } from '../common/ChartComponents'
+
 // Props型定義
 interface GDPGrowthItem {
   date: string
@@ -33,7 +37,7 @@ type ViewMode = 'chart' | 'table'
 const QUARTER_NAMES = ['Q1', 'Q2', 'Q3', 'Q4']
 
 export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
   const [viewMode, setViewMode] = useState<ViewMode>('chart')
 
   // propsのデータをチャート用に変換
@@ -56,66 +60,14 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
     return `${sign}${value.toFixed(1)}%`
   }
 
-  const formatQuarterLabel = (dateStr: string): string => {
-    const date = new Date(dateStr)
-    if (isNaN(date.getTime())) return dateStr
-    const year = date.getFullYear()
-    const quarter = Math.floor(date.getMonth() / 3) + 1
-    return `${year}Q${quarter}`
-  }
-
-  // 期間に基づいてデータをフィルタリング
-  const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all' || gdpData.length === 0) {
-      return gdpData
-    }
-
-    const cutoffDate = new Date()
-
-    if (selectedPeriod === 'default') {
-      // デフォルトは2020年から
-      cutoffDate.setFullYear(2020, 0, 1)
-    } else {
-      // 指定年数前から
-      cutoffDate.setFullYear(cutoffDate.getFullYear() - selectedPeriod)
-    }
-
-    return gdpData.filter((item) => {
-      const itemDate = new Date(item.date)
-      return itemDate >= cutoffDate
-    })
-  }, [gdpData, selectedPeriod])
+  // 期間フィルタリング
+  const filteredData = usePeriodFiltering(gdpData, {
+    selectedPeriod,
+    defaultStartYear: 2020,
+  })
 
   // テーブル用データ（年別×四半期のマトリックス）
-  const tableData = useMemo(() => {
-    if (gdpData.length === 0) return { years: [], quarterlyData: {} }
-
-    // 直近10年分のデータを抽出
-    const currentYear = new Date().getFullYear()
-    const startYear = currentYear - 9
-
-    const years: number[] = []
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y)
-    }
-
-    const quarterlyData: Record<number, Record<number, number | null>> = {}
-
-    gdpData.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const quarter = Math.floor(date.getMonth() / 3) // 0-3
-
-      if (year >= startYear && year <= currentYear) {
-        if (!quarterlyData[year]) {
-          quarterlyData[year] = {}
-        }
-        quarterlyData[year][quarter] = item.value
-      }
-    })
-
-    return { years, quarterlyData }
-  }, [gdpData])
+  const tableData = useQuarterlyTableData(gdpData, (item) => item.value, 10)
 
   const hasData = gdpData.length > 0
 
@@ -127,9 +79,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
   if (!hasData) {
     return (
       <ChartContainer title="GDP成長率（前期比年率）" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
-          データが利用できません
-        </div>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
