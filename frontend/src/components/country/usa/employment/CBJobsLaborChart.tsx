@@ -224,7 +224,7 @@ function LatestValueDisplay({ latest, nextRelease, latestUnemployment }: LatestV
 
 export default function CBJobsLaborChart({ data, unemploymentData }: CBJobsLaborChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const { hiddenSeries, handleLegendClick, isHidden } = useHiddenSeries<'invertedDiff' | 'unemployment'>()
+  const { handleLegendClick, isHidden } = useHiddenSeries<'invertedDiff' | 'unemployment'>()
 
   // CB雇用機会業況判断データをソート
   const sortedCBData = useSortedData(data?.data)

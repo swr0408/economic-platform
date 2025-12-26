@@ -1,14 +1,13 @@
 /**
- * 非農業部門雇用者数チャートコンポーネント
+ * ADP雇用者数チャートコンポーネント
  *
- * FRED データを使用して雇用者数を表示
- * - 非農業部門雇用者数（Total Nonfarm Payrolls: PAYEMS）
- * - 民間雇用者数（Civilian Employment: CE16OV）
+ * FRED ADPMNUSNERSA データを使用してADP雇用者数を表示
  *
  * 表示モード:
  * - 現数値（レベル）
- * - 前月増減幅グラフ
- * - 前月増減幅テーブル
+ * - 前年比グラフ
+ * - 前月比グラフ
+ * - 前月比テーブル
  *
  * 共通コンポーネントを使用
  */
@@ -27,7 +26,7 @@ import {
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { NonfarmPayrollsData } from '../../../../hooks/useDashboardData'
+import type { ADPEmploymentData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
 import {
@@ -44,15 +43,12 @@ import {
   useViewModePeriodManagement,
   formatDateLabel,
   formatDateLabelJP,
-  createUnitFormatter,
-  useHiddenSeries,
 } from '../common/useChartData'
 import {
   LatestValueBox,
   NoDataMessage,
   StandardLineChart,
   ViewModeButtonGroup,
-  DataTypeButtonGroup,
   TableLegend,
 } from '../common/ChartComponents'
 
@@ -60,39 +56,23 @@ import {
 // 型定義
 // =============================================================================
 
-interface NonfarmPayrollsChartProps {
-  data: NonfarmPayrollsData | null
+interface ADPEmploymentChartProps {
+  data: ADPEmploymentData | null
 }
 
-type ViewMode = 'value' | 'change_chart' | 'change_table'
-type DataType = 'nonfarm' | 'civilian'
+type ViewMode = 'value' | 'mom_chart' | 'mom_table'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'change_table', label: '前月増減幅テーブル' },
-  { mode: 'change_chart', label: '前月増減幅グラフ' },
+  { mode: 'mom_table', label: '前月比テーブル' },
+  { mode: 'mom_chart', label: '前月比グラフ' },
 ]
 
-// データタイプ設定
-const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
-  { type: 'nonfarm', label: '非農業部門' },
-  { type: 'civilian', label: '民間雇用者' },
-]
+// カラー設定
+const DEFAULT_COLOR = CHART_COLORS.primary
 
-// カラー設定（サービスから取得したものを優先、フォールバック用）
-const DEFAULT_COLORS = {
-  nonfarm: '#1890ff',
-  civilian: '#52c41a',
-}
-
-// 系列名（日本語）
-const SERIES_NAMES = {
-  nonfarm: '非農業部門雇用者数',
-  civilian: '民間雇用者数',
-}
-
-// 前月増減幅テーブルの凡例
+// 前月比テーブルの凡例（単位：千人）
 const CHANGE_LEGEND = [
   { color: 'rgba(82, 196, 26, 0.3)', label: '+200k以上' },
   { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+200k' },
@@ -130,9 +110,10 @@ interface CustomTooltipProps {
   active?: boolean
   payload?: TooltipPayload[]
   label?: string
+  unit?: string
 }
 
-function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
+function ChangeTooltip({ active, payload, label, unit = 'k' }: CustomTooltipProps) {
   if (!active || !payload || payload.length === 0) return null
 
   return (
@@ -169,7 +150,7 @@ function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
               {item.name}
             </span>
             <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
-              {sign}{value.toLocaleString()}k
+              {sign}{value.toLocaleString()}{unit}
             </span>
           </div>
         )
@@ -182,48 +163,28 @@ function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
 // メインコンポーネント
 // =============================================================================
 
-export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps) {
+export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('value')
-  const [dataType, setDataType] = useState<DataType>('nonfarm')
-  const { handleLegendClick, isHidden } = useHiddenSeries<'nonfarm' | 'civilian' | 'nonfarm_change' | 'civilian_change'>()
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
     value: 'default',
-    change_chart: 3,
-    change_table: 'default',
+    mom_chart: 3,
+    mom_table: 'default',
   })
 
   // データのソート
   const sortedData = useSortedData(data?.data)
 
-  // 前月増減幅を計算
-  const chartData = useMemo(() => {
-    if (sortedData.length === 0) return []
-
-    return sortedData.map((item, index) => {
-      const prevItem = index > 0 ? sortedData[index - 1] : null
-      return {
-        ...item,
-        nonfarm_change: prevItem && item.nonfarm !== null && prevItem.nonfarm !== null
-          ? Math.round(item.nonfarm - prevItem.nonfarm)
-          : null,
-        civilian_change: prevItem && item.civilian !== null && prevItem.civilian !== null
-          ? Math.round(item.civilian - prevItem.civilian)
-          : null,
-      }
-    })
-  }, [sortedData])
-
   // 期間フィルタリング
-  const filteredData = usePeriodFiltering(chartData, {
+  const filteredData = usePeriodFiltering(sortedData, {
     selectedPeriod: currentPeriod,
     defaultStartYear: 2010,
   })
 
   // テーブル用データ（年別×月別のマトリックス）
   const changeTableData = useMemo(() => {
-    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { nonfarm: number | null; civilian: number | null }>> }
+    if (sortedData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, number | null>> }
 
     const currentYear = new Date().getFullYear()
     const startYear = currentYear - 9
@@ -232,9 +193,9 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
       years.push(y)
     }
 
-    const monthlyData: Record<number, Record<number, { nonfarm: number | null; civilian: number | null }>> = {}
+    const monthlyData: Record<number, Record<number, number | null>> = {}
 
-    chartData.forEach((item) => {
+    sortedData.forEach((item) => {
       const date = new Date(item.date)
       const year = date.getFullYear()
       const month = date.getMonth()
@@ -243,27 +204,24 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
         if (!monthlyData[year]) {
           monthlyData[year] = {}
         }
-        monthlyData[year][month] = {
-          nonfarm: item.nonfarm_change,
-          civilian: item.civilian_change,
-        }
+        monthlyData[year][month] = item.mom ?? null
       }
     })
 
     return { years, monthlyData }
-  }, [chartData])
+  }, [sortedData])
 
   const hasData = sortedData.length > 0
 
   // ローディング状態
   if (data === null) {
-    return <LoadingChart title="非農業部門雇用者数" />
+    return <LoadingChart title="ADP雇用者数" />
   }
 
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="非農業部門雇用者数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="ADP雇用者数" showPeriodSelector={false} showDataSource={false}>
         <NoDataMessage />
       </ChartContainer>
     )
@@ -271,54 +229,36 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
 
   const latest = data.latest
   const nextRelease = data.next_release
-  const seriesConfig = data.series_config || {}
-
-  // 色を取得（サービス設定 > デフォルト）
-  const getColor = (key: string): string => {
-    return seriesConfig[key]?.color || DEFAULT_COLORS[key as keyof typeof DEFAULT_COLORS] || '#1890ff'
-  }
-
-  // 最新の前月増減幅を計算
-  const latestChange = chartData.length >= 2 ? chartData[chartData.length - 1] : null
 
   // 最新値の表示用アイテム
   const getLatestItems = () => {
-    if (viewMode === 'value') {
-      return latest ? [
-        { label: SERIES_NAMES.nonfarm, value: latest.nonfarm, color: getColor('nonfarm'), format: 'number' as const, unit: 'k', decimals: 0 },
-        { label: SERIES_NAMES.civilian, value: latest.civilian, color: getColor('civilian'), format: 'number' as const, unit: 'k', decimals: 0 },
-      ] : []
-    } else {
-      // 前月増減幅モード
-      if (!latestChange) return []
-      const nfChange = latestChange.nonfarm_change
-      const cvChange = latestChange.civilian_change
-      return [
-        {
-          label: `${SERIES_NAMES.nonfarm}（増減）`,
-          value: nfChange !== null ? `${nfChange >= 0 ? '+' : ''}${nfChange.toLocaleString()}k` : 'N/A',
-          color: nfChange !== null && nfChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
-        },
-        {
-          label: `${SERIES_NAMES.civilian}（増減）`,
-          value: cvChange !== null ? `${cvChange >= 0 ? '+' : ''}${cvChange.toLocaleString()}k` : 'N/A',
-          color: cvChange !== null && cvChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
-        },
-      ]
+    if (!latest) return []
+
+    switch (viewMode) {
+      case 'value':
+        return [
+          { label: 'ADP雇用者数', value: latest.value, color: DEFAULT_COLOR, format: 'number' as const, unit: 'k', decimals: 0 },
+        ]
+      case 'mom_chart':
+      case 'mom_table':
+        return [
+          {
+            label: 'ADP雇用者数（前月比）',
+            value: latest.mom !== null ? `${latest.mom >= 0 ? '+' : ''}${latest.mom.toLocaleString()}k` : 'N/A',
+            color: latest.mom !== null && latest.mom >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
+          },
+        ]
+      default:
+        return []
     }
   }
 
-  // 前月増減幅テーブルコンポーネント
+  // 前月比テーブルコンポーネント
   const ChangeTable = () => (
     <div style={{ overflowX: 'auto' }}>
       <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
         ※ 直近10年間の前月増減幅データ（単位: 千人）
       </div>
-      <DataTypeButtonGroup
-        options={DATA_TYPE_OPTIONS}
-        currentType={dataType}
-        onChange={setDataType}
-      />
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center' }}>
         <thead>
           <tr style={{ backgroundColor: '#fafafa' }}>
@@ -337,8 +277,7 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
-                const cellData = changeTableData.monthlyData[year]?.[month]
-                const value = dataType === 'nonfarm' ? cellData?.nonfarm : cellData?.civilian
+                const value = changeTableData.monthlyData[year]?.[month]
 
                 return (
                   <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getChangeCellColor(value) }}>
@@ -361,17 +300,17 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
   )
 
   return (
-    <div id="nonfarm-payrolls">
+    <div id="adp-employment">
       <ChartContainer
-        title="非農業部門雇用者数"
+        title="ADP雇用者数"
         showPeriodSelector={false}
-        dataSource="FRED / BLS"
-        sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        dataSource="FRED / ADP"
+        sourceUrl="https://adpemploymentreport.com/"
       >
         {/* 最新値表示 */}
         <LatestValueBox
           items={getLatestItems()}
-          date={latestChange?.date || latest?.date}
+          date={latest?.date}
           nextRelease={nextRelease}
         />
 
@@ -386,36 +325,26 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
               data={filteredData}
               lines={[
                 {
-                  dataKey: 'nonfarm',
-                  color: getColor('nonfarm'),
-                  name: SERIES_NAMES.nonfarm,
-                  hide: isHidden('nonfarm'),
-                },
-                {
-                  dataKey: 'civilian',
-                  color: getColor('civilian'),
-                  name: SERIES_NAMES.civilian,
-                  hide: isHidden('civilian'),
+                  dataKey: 'value',
+                  color: DEFAULT_COLOR,
+                  name: 'ADP雇用者数',
                 },
               ]}
               yAxisFormatter={(v) => `${v.toLocaleString()}`}
               yDomain={['dataMin - 1000', 'dataMax + 1000']}
               tooltipLabelFormatter={formatDateLabelJP}
-              tooltipFormatter={createUnitFormatter('k', 0)}
+              tooltipFormatter={(value: unknown, name: string) => [
+                `${(value as number).toLocaleString()}k`,
+                name,
+              ]}
               showZeroLine={false}
-              onLegendClick={handleLegendClick}
             />
           </>
         )}
 
-        {/* 前月増減幅グラフ */}
-        {viewMode === 'change_chart' && (
+        {/* 前月比グラフ */}
+        {viewMode === 'mom_chart' && (
           <>
-            <DataTypeButtonGroup
-              options={DATA_TYPE_OPTIONS}
-              currentType={dataType}
-              onChange={setDataType}
-            />
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <ResponsiveContainer width="100%" height={450}>
               <ComposedChart data={filteredData} margin={CHART_MARGIN}>
@@ -442,28 +371,18 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
                 <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                {/* 選択されたデータタイプのみ表示 */}
-                {dataType === 'nonfarm' && (
-                  <Bar
-                    dataKey="nonfarm_change"
-                    fill={getColor('nonfarm')}
-                    name={`${SERIES_NAMES.nonfarm}（増減）`}
-                  />
-                )}
-                {dataType === 'civilian' && (
-                  <Bar
-                    dataKey="civilian_change"
-                    fill={getColor('civilian')}
-                    name={`${SERIES_NAMES.civilian}（増減）`}
-                  />
-                )}
+                <Bar
+                  dataKey="mom"
+                  fill={DEFAULT_COLOR}
+                  name="ADP雇用者数（前月比）"
+                />
               </ComposedChart>
             </ResponsiveContainer>
           </>
         )}
 
-        {/* 前月増減幅テーブル */}
-        {viewMode === 'change_table' && <ChangeTable />}
+        {/* 前月比テーブル */}
+        {viewMode === 'mom_table' && <ChangeTable />}
       </ChartContainer>
     </div>
   )

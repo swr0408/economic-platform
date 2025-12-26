@@ -1,17 +1,16 @@
 /**
- * フルタイム/パートタイム雇用者数チャートコンポーネント
+ * 複数の仕事を持つ人 / 経済的理由によるパートタイムチャートコンポーネント
  *
- * FRED データを使用して雇用形態別雇用者数を表示
- * - フルタイム雇用者数（Employed Full Time: LNS12500000）- 左Y軸
- * - パートタイム雇用者数（Employed Part Time: LNS12600000）- 右Y軸
+ * FRED データを使用して表示
+ * - 複数の仕事を持つ人（Multiple Jobholders: LNS12026619）- 左Y軸
+ * - 経済的理由によるパートタイム（Part-Time for Economic Reasons: LNS12032194）- 右Y軸
  *
  * 表示モード:
  * - 現数値（レベル）- 左右Y軸
  * - 前月増減幅グラフ
  * - 前月増減幅テーブル
  *
- * フルタイムとパートタイムはスケールが大きく異なるため
- * 現数値モードでは左右のY軸で表示
+ * スケールが異なるため現数値モードでは左右のY軸で表示
  *
  * 共通コンポーネントを使用
  */
@@ -31,7 +30,7 @@ import {
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { FullPartTimeEmploymentData } from '../../../../hooks/useDashboardData'
+import type { MultipleJobsPartTimeData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
 import {
@@ -62,12 +61,12 @@ import {
 // 型定義
 // =============================================================================
 
-interface FullPartTimeChartProps {
-  data: FullPartTimeEmploymentData | null
+interface MultipleJobsPartTimeChartProps {
+  data: MultipleJobsPartTimeData | null
 }
 
 type ViewMode = 'value' | 'change_chart' | 'change_table'
-type DataType = 'fulltime' | 'parttime'
+type DataType = 'multiple_jobs' | 'parttime_econ'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
@@ -78,28 +77,28 @@ const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
 
 // データタイプ設定
 const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
-  { type: 'fulltime', label: 'フルタイム' },
-  { type: 'parttime', label: 'パートタイム' },
+  { type: 'multiple_jobs', label: '複数の仕事' },
+  { type: 'parttime_econ', label: '経済的理由パートタイム' },
 ]
 
 // カラー設定（サービスから取得したものを優先、フォールバック用）
 const DEFAULT_COLORS = {
-  fulltime: CHART_COLORS.primary,     // 青（左軸）
-  parttime: CHART_COLORS.orange,      // オレンジ（右軸）
+  multiple_jobs: CHART_COLORS.primary,     // 青（左軸）
+  parttime_econ: CHART_COLORS.orange,      // オレンジ（右軸）
 }
 
 // 系列名（日本語）
 const SERIES_NAMES = {
-  fulltime: 'フルタイム',
-  parttime: 'パートタイム',
+  multiple_jobs: '複数の仕事を持つ人',
+  parttime_econ: '経済的理由によるパートタイム',
 }
 
 // 前月増減幅テーブルの凡例
 const CHANGE_LEGEND = [
-  { color: 'rgba(82, 196, 26, 0.3)', label: '+200k以上' },
-  { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+200k' },
-  { color: 'rgba(255, 77, 79, 0.15)', label: '0〜-200k' },
-  { color: 'rgba(255, 77, 79, 0.3)', label: '-200k以下' },
+  { color: 'rgba(82, 196, 26, 0.3)', label: '+100k以上' },
+  { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+100k' },
+  { color: 'rgba(255, 77, 79, 0.15)', label: '0〜-100k' },
+  { color: 'rgba(255, 77, 79, 0.3)', label: '-100k以下' },
 ]
 
 // =============================================================================
@@ -109,10 +108,10 @@ const CHANGE_LEGEND = [
 /** 前月増減幅用のセル背景色を取得 */
 function getChangeCellColor(value: number | null | undefined): string {
   if (value === null || value === undefined) return 'transparent'
-  // 閾値: ±200k
-  if (value > 200) return 'rgba(82, 196, 26, 0.3)'
+  // 閾値: ±100k（この指標は規模が小さめ）
+  if (value > 100) return 'rgba(82, 196, 26, 0.3)'
   if (value > 0) return 'rgba(82, 196, 26, 0.15)'
-  if (value < -200) return 'rgba(255, 77, 79, 0.3)'
+  if (value < -100) return 'rgba(255, 77, 79, 0.3)'
   if (value < 0) return 'rgba(255, 77, 79, 0.15)'
   return 'transparent'
 }
@@ -230,10 +229,10 @@ function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
 // メインコンポーネント
 // =============================================================================
 
-export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
+export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTimeChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('value')
-  const [dataType, setDataType] = useState<DataType>('fulltime')
-  const { handleLegendClick, isHidden } = useHiddenSeries<'fulltime' | 'parttime' | 'fulltime_change' | 'parttime_change'>()
+  const [dataType, setDataType] = useState<DataType>('multiple_jobs')
+  const { handleLegendClick, isHidden } = useHiddenSeries<'multiple_jobs' | 'parttime_econ' | 'multiple_jobs_change' | 'parttime_econ_change'>()
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
@@ -253,11 +252,11 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
       const prevItem = index > 0 ? sortedData[index - 1] : null
       return {
         ...item,
-        fulltime_change: prevItem && item.fulltime !== null && prevItem.fulltime !== null
-          ? Math.round(item.fulltime - prevItem.fulltime)
+        multiple_jobs_change: prevItem && item.multiple_jobs !== null && prevItem.multiple_jobs !== null
+          ? Math.round(item.multiple_jobs - prevItem.multiple_jobs)
           : null,
-        parttime_change: prevItem && item.parttime !== null && prevItem.parttime !== null
-          ? Math.round(item.parttime - prevItem.parttime)
+        parttime_econ_change: prevItem && item.parttime_econ !== null && prevItem.parttime_econ !== null
+          ? Math.round(item.parttime_econ - prevItem.parttime_econ)
           : null,
       }
     })
@@ -271,7 +270,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
 
   // テーブル用データ（年別×月別のマトリックス）
   const changeTableData = useMemo(() => {
-    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { fulltime: number | null; parttime: number | null }>> }
+    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { multiple_jobs: number | null; parttime_econ: number | null }>> }
 
     const currentYear = new Date().getFullYear()
     const startYear = currentYear - 9
@@ -280,7 +279,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
       years.push(y)
     }
 
-    const monthlyData: Record<number, Record<number, { fulltime: number | null; parttime: number | null }>> = {}
+    const monthlyData: Record<number, Record<number, { multiple_jobs: number | null; parttime_econ: number | null }>> = {}
 
     chartData.forEach((item) => {
       const date = new Date(item.date)
@@ -292,8 +291,8 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
           monthlyData[year] = {}
         }
         monthlyData[year][month] = {
-          fulltime: item.fulltime_change,
-          parttime: item.parttime_change,
+          multiple_jobs: item.multiple_jobs_change,
+          parttime_econ: item.parttime_econ_change,
         }
       }
     })
@@ -305,13 +304,13 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
 
   // ローディング状態
   if (data === null) {
-    return <LoadingChart title="フルタイム / パートタイム雇用者数" />
+    return <LoadingChart title="複数の仕事を持つ人 / 経済的理由によるパートタイム" />
   }
 
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="フルタイム / パートタイム雇用者数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="複数の仕事を持つ人 / 経済的理由によるパートタイム" showPeriodSelector={false} showDataSource={false}>
         <NoDataMessage />
       </ChartContainer>
     )
@@ -333,24 +332,24 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
   const getLatestItems = () => {
     if (viewMode === 'value') {
       return latest ? [
-        { label: SERIES_NAMES.fulltime, value: latest.fulltime, color: getColor('fulltime'), format: 'number' as const, unit: 'k', decimals: 0 },
-        { label: SERIES_NAMES.parttime, value: latest.parttime, color: getColor('parttime'), format: 'number' as const, unit: 'k', decimals: 0 },
+        { label: SERIES_NAMES.multiple_jobs, value: latest.multiple_jobs, color: getColor('multiple_jobs'), format: 'number' as const, unit: 'k', decimals: 0 },
+        { label: SERIES_NAMES.parttime_econ, value: latest.parttime_econ, color: getColor('parttime_econ'), format: 'number' as const, unit: 'k', decimals: 0 },
       ] : []
     } else {
       // 前月増減幅モード
       if (!latestChange) return []
-      const ftChange = latestChange.fulltime_change
-      const ptChange = latestChange.parttime_change
+      const mjChange = latestChange.multiple_jobs_change
+      const peChange = latestChange.parttime_econ_change
       return [
         {
-          label: `${SERIES_NAMES.fulltime}（増減）`,
-          value: ftChange !== null ? `${ftChange >= 0 ? '+' : ''}${ftChange.toLocaleString()}k` : 'N/A',
-          color: ftChange !== null && ftChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
+          label: `${SERIES_NAMES.multiple_jobs}（増減）`,
+          value: mjChange !== null ? `${mjChange >= 0 ? '+' : ''}${mjChange.toLocaleString()}k` : 'N/A',
+          color: mjChange !== null && mjChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
         },
         {
-          label: `${SERIES_NAMES.parttime}（増減）`,
-          value: ptChange !== null ? `${ptChange >= 0 ? '+' : ''}${ptChange.toLocaleString()}k` : 'N/A',
-          color: ptChange !== null && ptChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
+          label: `${SERIES_NAMES.parttime_econ}（増減）`,
+          value: peChange !== null ? `${peChange >= 0 ? '+' : ''}${peChange.toLocaleString()}k` : 'N/A',
+          color: peChange !== null && peChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
         },
       ]
     }
@@ -386,7 +385,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
               </td>
               {Array.from({ length: 12 }, (_, month) => {
                 const cellData = changeTableData.monthlyData[year]?.[month]
-                const value = dataType === 'fulltime' ? cellData?.fulltime : cellData?.parttime
+                const value = dataType === 'multiple_jobs' ? cellData?.multiple_jobs : cellData?.parttime_econ
 
                 return (
                   <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getChangeCellColor(value) }}>
@@ -409,9 +408,9 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
   )
 
   return (
-    <div id="fullpart-time">
+    <div id="multiple-jobs-parttime">
       <ChartContainer
-        title="フルタイム / パートタイム雇用者数"
+        title="複数の仕事を持つ人 / 経済的理由によるパートタイム"
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
@@ -439,20 +438,21 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                   tick={AXIS_STYLE.tick}
                   interval={AXIS_STYLE.interval}
                 />
-                {/* 左Y軸: フルタイム（千人単位でそのまま表示） */}
+                {/* 左Y軸: 複数の仕事を持つ人（千人単位でそのまま表示） */}
                 <YAxis
                   yAxisId="left"
-                  domain={['dataMin - 1000', 'dataMax + 1000']}
+                  domain={['dataMin - 500', 'dataMax + 500']}
                   tick={AXIS_STYLE.tick}
                   tickFormatter={(v) => `${v.toLocaleString()}`}
                   label={{
-                    value: 'フルタイム（k）',
+                    value: '複数の仕事を持つ人（k）',
                     angle: -90,
                     position: 'insideLeft',
-                    style: { fontSize: 11, fill: getColor('fulltime') }
+                    dy: 60,
+                    style: { fontSize: 11, fill: getColor('multiple_jobs') }
                   }}
                 />
-                {/* 右Y軸: パートタイム（千人単位でそのまま表示） */}
+                {/* 右Y軸: 経済的理由によるパートタイム（千人単位でそのまま表示） */}
                 <YAxis
                   yAxisId="right"
                   orientation="right"
@@ -460,10 +460,11 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                   tick={AXIS_STYLE.tick}
                   tickFormatter={(v) => `${v.toLocaleString()}`}
                   label={{
-                    value: 'パートタイム（k）',
+                    value: '経済的理由によるパートタイム（k）',
                     angle: 90,
                     position: 'insideRight',
-                    style: { fontSize: 11, fill: getColor('parttime') }
+                    dy: 90,
+                    style: { fontSize: 11, fill: getColor('parttime_econ') }
                   }}
                 />
                 <Tooltip content={<ValueTooltip />} />
@@ -472,30 +473,30 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                   wrapperStyle={{ cursor: 'pointer' }}
                 />
 
-                {/* フルタイム（左軸） */}
+                {/* 複数の仕事を持つ人（左軸） */}
                 <Line
                   yAxisId="left"
                   type="monotone"
-                  dataKey="fulltime"
-                  stroke={getColor('fulltime')}
+                  dataKey="multiple_jobs"
+                  stroke={getColor('multiple_jobs')}
                   strokeWidth={2}
                   dot={false}
-                  name={SERIES_NAMES.fulltime}
-                  hide={isHidden('fulltime')}
+                  name={SERIES_NAMES.multiple_jobs}
+                  hide={isHidden('multiple_jobs')}
                   isAnimationActive={false}
                   connectNulls={true}
                 />
 
-                {/* パートタイム（右軸） */}
+                {/* 経済的理由によるパートタイム（右軸） */}
                 <Line
                   yAxisId="right"
                   type="monotone"
-                  dataKey="parttime"
-                  stroke={getColor('parttime')}
+                  dataKey="parttime_econ"
+                  stroke={getColor('parttime_econ')}
                   strokeWidth={2}
                   dot={false}
-                  name={SERIES_NAMES.parttime}
-                  hide={isHidden('parttime')}
+                  name={SERIES_NAMES.parttime_econ}
+                  hide={isHidden('parttime_econ')}
                   isAnimationActive={false}
                   connectNulls={true}
                 />
@@ -525,7 +526,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                 <YAxis
                   tick={AXIS_STYLE.tick}
                   tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
-                  domain={['dataMin - 100', 'dataMax + 100']}
+                  domain={['dataMin - 50', 'dataMax + 50']}
                   label={{
                     value: '増減（k）',
                     angle: -90,
@@ -539,18 +540,18 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
                 {/* 選択されたデータタイプのみ表示 */}
-                {dataType === 'fulltime' && (
+                {dataType === 'multiple_jobs' && (
                   <Bar
-                    dataKey="fulltime_change"
-                    fill={getColor('fulltime')}
-                    name={`${SERIES_NAMES.fulltime}（増減）`}
+                    dataKey="multiple_jobs_change"
+                    fill={getColor('multiple_jobs')}
+                    name={`${SERIES_NAMES.multiple_jobs}（増減）`}
                   />
                 )}
-                {dataType === 'parttime' && (
+                {dataType === 'parttime_econ' && (
                   <Bar
-                    dataKey="parttime_change"
-                    fill={getColor('parttime')}
-                    name={`${SERIES_NAMES.parttime}（増減）`}
+                    dataKey="parttime_econ_change"
+                    fill={getColor('parttime_econ')}
+                    name={`${SERIES_NAMES.parttime_econ}（増減）`}
                   />
                 )}
               </ComposedChart>

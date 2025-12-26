@@ -485,22 +485,39 @@ class CBJobsLaborDifferentialService:
         """
         次回発表日を計算
 
-        1. キャッシュをチェック
-        2. Investing.comから次回発表日を取得（発表日が過去になった場合のみ）
-        3. フォールバック: 最終火曜日を計算
+        1. キャッシュをチェック（未来の日付があればそのまま返す）
+        2. キャッシュ内の日付が過去でも48時間以内ならスクレイピングしない
+        3. Investing.comから次回発表日を取得
         """
         try:
+            today = date.today()
+
             # キャッシュをチェック
             cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
             if cached:
                 next_date_str = cached.get("next_release_date")
                 if next_date_str:
                     next_date = datetime.strptime(next_date_str, "%Y-%m-%d").date()
-                    if next_date >= date.today():
+                    if next_date >= today:
                         return {
                             "date": next_date_str,
                             "label": cached.get("label", f"CB Consumer Confidence - {next_date_str}")
                         }
+
+                # キャッシュ内の日付が過去 → 再取得が必要かチェック
+                # ただし、48時間以内にスクレイピングしていたら再取得しない（過剰アクセス防止）
+                cached_at = cached.get("cached_at")
+                if cached_at:
+                    try:
+                        cached_dt = datetime.fromisoformat(cached_at)
+                        if cached_dt.tzinfo is None:
+                            cached_dt = cached_dt.replace(tzinfo=JST)
+                        hours_since_cache = (datetime.now(JST) - cached_dt).total_seconds() / 3600
+                        if hours_since_cache < 48:
+                            # 48時間以内にスクレイピング済み → Noneを返す
+                            return None
+                    except Exception:
+                        pass
 
             # Investing.comから取得を試行
             investing_result = self._fetch_next_release_from_investing()
@@ -514,8 +531,14 @@ class CBJobsLaborDifferentialService:
                 redis_client.set(self.SCHEDULE_CACHE_KEY, cache_payload, expire=30 * 24 * 60 * 60)
                 return investing_result
 
-            # Investing.comから取得できなかった場合は空白を返す
-            # ユーザー要望: 取得できていない場合は空白でいい
+            # Investing.comから取得できなかった場合もキャッシュに記録（再スクレイピング防止）
+            cache_payload = {
+                "next_release_date": None,
+                "label": None,
+                "fetch_failed": True,
+                "cached_at": datetime.now(JST).isoformat()
+            }
+            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_payload, expire=30 * 24 * 60 * 60)
             print("次回発表日: Investing.comから取得できませんでした")
             return None
 

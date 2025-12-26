@@ -1,17 +1,14 @@
 /**
- * フルタイム/パートタイム雇用者数チャートコンポーネント
+ * JOLTS求人 / Indeed求人件数チャートコンポーネント
  *
- * FRED データを使用して雇用形態別雇用者数を表示
- * - フルタイム雇用者数（Employed Full Time: LNS12500000）- 左Y軸
- * - パートタイム雇用者数（Employed Part Time: LNS12600000）- 右Y軸
+ * FRED データを使用して表示
+ * - JOLTS求人件数（JTSJOL）- 左Y軸（千人）
+ * - Indeed求人件数指数（IHLIDXUS）- 右Y軸（2020年2月1日=100）
  *
  * 表示モード:
- * - 現数値（レベル）- 左右Y軸
- * - 前月増減幅グラフ
- * - 前月増減幅テーブル
- *
- * フルタイムとパートタイムはスケールが大きく異なるため
- * 現数値モードでは左右のY軸で表示
+ * - 現数値（レベル）- IndeedのスケールをJOLTSに合わせて表示
+ * - JOLTS前月増減幅グラフ（Indeedは追加しない）
+ * - JOLTS前月増減幅テーブル（Indeedは追加しない）
  *
  * 共通コンポーネントを使用
  */
@@ -31,7 +28,7 @@ import {
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
-import type { FullPartTimeEmploymentData } from '../../../../hooks/useDashboardData'
+import type { JoltsIndeedData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
 import {
@@ -54,7 +51,6 @@ import {
   LatestValueBox,
   NoDataMessage,
   ViewModeButtonGroup,
-  DataTypeButtonGroup,
   TableLegend,
 } from '../common/ChartComponents'
 
@@ -62,36 +58,29 @@ import {
 // 型定義
 // =============================================================================
 
-interface FullPartTimeChartProps {
-  data: FullPartTimeEmploymentData | null
+interface JoltsIndeedChartProps {
+  data: JoltsIndeedData | null
 }
 
-type ViewMode = 'value' | 'change_chart' | 'change_table'
-type DataType = 'fulltime' | 'parttime'
+type ViewMode = 'value' | 'jolts_change_chart' | 'jolts_change_table'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'change_table', label: '前月増減幅テーブル' },
-  { mode: 'change_chart', label: '前月増減幅グラフ' },
-]
-
-// データタイプ設定
-const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
-  { type: 'fulltime', label: 'フルタイム' },
-  { type: 'parttime', label: 'パートタイム' },
+  { mode: 'jolts_change_table', label: 'JOLTS前月増減幅テーブル' },
+  { mode: 'jolts_change_chart', label: 'JOLTS前月増減幅グラフ' },
 ]
 
 // カラー設定（サービスから取得したものを優先、フォールバック用）
 const DEFAULT_COLORS = {
-  fulltime: CHART_COLORS.primary,     // 青（左軸）
-  parttime: CHART_COLORS.orange,      // オレンジ（右軸）
+  jolts: CHART_COLORS.primary,     // 青（左軸）
+  indeed: CHART_COLORS.orange,     // オレンジ（右軸）
 }
 
 // 系列名（日本語）
 const SERIES_NAMES = {
-  fulltime: 'フルタイム',
-  parttime: 'パートタイム',
+  jolts: 'JOLTS求人件数',
+  indeed: 'Indeed求人件数指数（1M遅行）',
 }
 
 // 前月増減幅テーブルの凡例
@@ -121,11 +110,21 @@ function getChangeCellColor(value: number | null | undefined): string {
 // カスタムツールチップ
 // =============================================================================
 
+interface ScaledDataItem {
+  date: string
+  jolts: number | null
+  indeed: number | null
+  indeedShifted: number | null  // 1ヶ月シフト後のIndeed値
+  indeedScaled: number | null   // JOLTSスケールに変換後の値
+  jolts_change: number | null   // JOLTS前月増減幅
+}
+
 interface TooltipPayload {
   name: string
   value: number
   color: string
   dataKey: string
+  payload: ScaledDataItem
 }
 
 interface CustomTooltipProps {
@@ -143,8 +142,21 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
         {formatDateLabelJP(label || '')}
       </div>
       {payload.map((item, index) => {
-        // 千人単位でそのまま表示（FREDは千人単位で提供）
-        const valueInThousands = item.value.toLocaleString()
+        // JOLTSは千人単位、Indeedは指数（シフト後の値を使用）
+        const isJolts = item.dataKey === 'jolts'
+        const isIndeed = item.dataKey === 'indeedScaled'
+        let displayValue: string
+        if (isJolts) {
+          displayValue = `${item.value.toLocaleString()}k`
+        } else if (isIndeed) {
+          // indeedScaledの場合はシフト後のindeed値を表示
+          const shiftedIndeed = item.payload?.indeedShifted
+          displayValue = shiftedIndeed !== null && shiftedIndeed !== undefined
+            ? shiftedIndeed.toFixed(1)
+            : '-'
+        } else {
+          displayValue = item.value.toFixed(1)
+        }
         return (
           <div
             key={index}
@@ -171,7 +183,7 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
               {item.name}
             </span>
             <span style={{ fontWeight: 500 }}>
-              {valueInThousands}k
+              {displayValue}
             </span>
           </div>
         )
@@ -230,48 +242,125 @@ function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
 // メインコンポーネント
 // =============================================================================
 
-export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
+export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('value')
-  const [dataType, setDataType] = useState<DataType>('fulltime')
-  const { handleLegendClick, isHidden } = useHiddenSeries<'fulltime' | 'parttime' | 'fulltime_change' | 'parttime_change'>()
+  const { handleLegendClick, isHidden } = useHiddenSeries<'jolts' | 'indeed' | 'jolts_change'>()
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
     value: 'default',
-    change_chart: 3,
-    change_table: 'default',
+    jolts_change_chart: 3,
+    jolts_change_table: 'default',
   })
 
   // データのソート
   const sortedData = useSortedData(data?.data)
 
-  // 前月増減幅を計算
-  const chartData = useMemo(() => {
+  const hasData = sortedData.length > 0
+
+  // 全データに対してIndeedシフトとJOLTS増減幅を計算（期間フィルタ前に計算）
+  const fullChartData = useMemo(() => {
     if (sortedData.length === 0) return []
 
-    return sortedData.map((item, index) => {
-      const prevItem = index > 0 ? sortedData[index - 1] : null
+    // Indeedの値を日付でマップ化（1ヶ月シフト用）
+    const indeedByDate = new Map<string, number | null>()
+    sortedData.forEach(d => {
+      if (d.indeed !== null) {
+        const date = new Date(d.date)
+        date.setMonth(date.getMonth() - 1)
+        const shiftedDate = date.toISOString().slice(0, 10)
+        indeedByDate.set(shiftedDate, d.indeed)
+      }
+    })
+
+    // JOLTSデータのみを抽出して前月値をマップ化（月次データは月の1日で記録）
+    const joltsDataByMonth = new Map<string, number>()
+    sortedData.forEach(d => {
+      if (d.jolts !== null) {
+        // YYYY-MM形式でキー化
+        const monthKey = d.date.slice(0, 7)
+        joltsDataByMonth.set(monthKey, d.jolts)
+      }
+    })
+
+    // シフトしたIndeed値と増減幅を計算
+    return sortedData.map((d) => {
+      const indeedShifted = indeedByDate.get(d.date) ?? null
+
+      // JOLTS増減幅は、JOLTSデータがある場合のみ計算
+      let jolts_change: number | null = null
+      if (d.jolts !== null) {
+        // 前月のJOLTS値を探す
+        const currentDate = new Date(d.date)
+        currentDate.setMonth(currentDate.getMonth() - 1)
+        const prevMonthKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}`
+        const prevJolts = joltsDataByMonth.get(prevMonthKey)
+        if (prevJolts !== undefined) {
+          jolts_change = Math.round(d.jolts - prevJolts)
+        }
+      }
+
       return {
-        ...item,
-        fulltime_change: prevItem && item.fulltime !== null && prevItem.fulltime !== null
-          ? Math.round(item.fulltime - prevItem.fulltime)
-          : null,
-        parttime_change: prevItem && item.parttime !== null && prevItem.parttime !== null
-          ? Math.round(item.parttime - prevItem.parttime)
-          : null,
+        ...d,
+        indeedShifted,
+        jolts_change,
       }
     })
   }, [sortedData])
 
   // 期間フィルタリング
-  const filteredData = usePeriodFiltering(chartData, {
+  const filteredData = usePeriodFiltering(fullChartData, {
     selectedPeriod: currentPeriod,
     defaultStartYear: 2010,
   })
 
-  // テーブル用データ（年別×月別のマトリックス）
+  // JOLTS前月増減幅グラフ用データ（JOLTSデータのみ）
+  const joltsChangeData = useMemo(() => {
+    return filteredData.filter(d => d.jolts !== null)
+  }, [filteredData])
+
+  // スケーリング計算（フィルタ後のデータに対して）
+  const { scaledData, joltsMin, joltsMax, indeedMin, indeedMax } = useMemo(() => {
+    if (filteredData.length === 0) {
+      return { scaledData: [], joltsMin: 0, joltsMax: 0, indeedMin: 0, indeedMax: 0 }
+    }
+
+    // JOLTS・Indeedの最小値・最大値を取得
+    const joltsValues = filteredData.map(d => d.jolts).filter((v): v is number => v !== null)
+    const indeedValues = filteredData.map(d => d.indeedShifted).filter((v): v is number => v !== null)
+
+    if (joltsValues.length === 0) {
+      return { scaledData: filteredData.map(d => ({ ...d, indeedScaled: null })), joltsMin: 0, joltsMax: 0, indeedMin: 0, indeedMax: 0 }
+    }
+
+    const jMin = Math.min(...joltsValues)
+    const jMax = Math.max(...joltsValues)
+    const iMin = indeedValues.length > 0 ? Math.min(...indeedValues) : 0
+    const iMax = indeedValues.length > 0 ? Math.max(...indeedValues) : 0
+
+    // IndeedをJOLTSのスケールに変換
+    const joltsRange = jMax - jMin
+    const indeedRange = iMax - iMin
+
+    const scaled = filteredData.map(d => ({
+      ...d,
+      indeedScaled: d.indeedShifted !== null && indeedRange > 0
+        ? jMin + (d.indeedShifted - iMin) * joltsRange / indeedRange
+        : null,
+    }))
+
+    return {
+      scaledData: scaled,
+      joltsMin: jMin,
+      joltsMax: jMax,
+      indeedMin: iMin,
+      indeedMax: iMax
+    }
+  }, [filteredData])
+
+  // テーブル用データ（年別×月別のマトリックス）- JOLTSデータのみを対象に計算
   const changeTableData = useMemo(() => {
-    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { fulltime: number | null; parttime: number | null }>> }
+    if (fullChartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, number | null>> }
 
     const currentYear = new Date().getFullYear()
     const startYear = currentYear - 9
@@ -280,38 +369,36 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
       years.push(y)
     }
 
-    const monthlyData: Record<number, Record<number, { fulltime: number | null; parttime: number | null }>> = {}
+    const monthlyData: Record<number, Record<number, number | null>> = {}
 
-    chartData.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const month = date.getMonth()
+    // JOLTSデータのみをフィルタリングして処理（日次のIndeedデータを除外）
+    fullChartData
+      .filter(item => item.jolts !== null)
+      .forEach((item) => {
+        const date = new Date(item.date)
+        const year = date.getFullYear()
+        const month = date.getMonth()
 
-      if (year >= startYear && year <= currentYear) {
-        if (!monthlyData[year]) {
-          monthlyData[year] = {}
+        if (year >= startYear && year <= currentYear) {
+          if (!monthlyData[year]) {
+            monthlyData[year] = {}
+          }
+          monthlyData[year][month] = item.jolts_change ?? null
         }
-        monthlyData[year][month] = {
-          fulltime: item.fulltime_change,
-          parttime: item.parttime_change,
-        }
-      }
-    })
+      })
 
     return { years, monthlyData }
-  }, [chartData])
-
-  const hasData = sortedData.length > 0
+  }, [fullChartData])
 
   // ローディング状態
   if (data === null) {
-    return <LoadingChart title="フルタイム / パートタイム雇用者数" />
+    return <LoadingChart title="JOLTS求人 / Indeed求人件数指数" />
   }
 
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="フルタイム / パートタイム雇用者数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="JOLTS求人 / Indeed求人件数指数" showPeriodSelector={false} showDataSource={false}>
         <NoDataMessage />
       </ChartContainer>
     )
@@ -326,47 +413,39 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
     return seriesConfig[key]?.color || DEFAULT_COLORS[key as keyof typeof DEFAULT_COLORS] || '#1890ff'
   }
 
-  // 最新の前月増減幅を計算
-  const latestChange = chartData.length >= 2 ? chartData[chartData.length - 1] : null
+  // 最新のJOLTS前月増減幅（JOLTSデータのみを対象）
+  const latestChange = useMemo(() => {
+    const joltsData = fullChartData.filter(d => d.jolts !== null)
+    return joltsData.length >= 2 ? joltsData[joltsData.length - 1] : null
+  }, [fullChartData])
 
   // 最新値の表示用アイテム
   const getLatestItems = () => {
     if (viewMode === 'value') {
       return latest ? [
-        { label: SERIES_NAMES.fulltime, value: latest.fulltime, color: getColor('fulltime'), format: 'number' as const, unit: 'k', decimals: 0 },
-        { label: SERIES_NAMES.parttime, value: latest.parttime, color: getColor('parttime'), format: 'number' as const, unit: 'k', decimals: 0 },
+        { label: SERIES_NAMES.jolts, value: latest.jolts, color: getColor('jolts'), format: 'number' as const, unit: 'k', decimals: 0 },
+        { label: SERIES_NAMES.indeed, value: latest.indeed, color: getColor('indeed'), format: 'number' as const, unit: '', decimals: 1 },
       ] : []
     } else {
-      // 前月増減幅モード
+      // JOLTS前月増減幅モード
       if (!latestChange) return []
-      const ftChange = latestChange.fulltime_change
-      const ptChange = latestChange.parttime_change
+      const jChange = latestChange.jolts_change
       return [
         {
-          label: `${SERIES_NAMES.fulltime}（増減）`,
-          value: ftChange !== null ? `${ftChange >= 0 ? '+' : ''}${ftChange.toLocaleString()}k` : 'N/A',
-          color: ftChange !== null && ftChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
-        },
-        {
-          label: `${SERIES_NAMES.parttime}（増減）`,
-          value: ptChange !== null ? `${ptChange >= 0 ? '+' : ''}${ptChange.toLocaleString()}k` : 'N/A',
-          color: ptChange !== null && ptChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
+          label: `${SERIES_NAMES.jolts}（増減）`,
+          value: jChange !== null ? `${jChange >= 0 ? '+' : ''}${jChange.toLocaleString()}k` : 'N/A',
+          color: jChange !== null && jChange >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative,
         },
       ]
     }
   }
 
-  // 前月増減幅テーブルコンポーネント
+  // JOLTS前月増減幅テーブルコンポーネント
   const ChangeTable = () => (
     <div style={{ overflowX: 'auto' }}>
       <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
-        ※ 直近10年間の前月増減幅データ（単位: 千人）
+        ※ 直近10年間のJOLTS求人件数 前月増減幅データ（単位: 千人）
       </div>
-      <DataTypeButtonGroup
-        options={DATA_TYPE_OPTIONS}
-        currentType={dataType}
-        onChange={setDataType}
-      />
       <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center' }}>
         <thead>
           <tr style={{ backgroundColor: '#fafafa' }}>
@@ -385,8 +464,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
-                const cellData = changeTableData.monthlyData[year]?.[month]
-                const value = dataType === 'fulltime' ? cellData?.fulltime : cellData?.parttime
+                const value = changeTableData.monthlyData[year]?.[month]
 
                 return (
                   <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getChangeCellColor(value) }}>
@@ -409,12 +487,12 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
   )
 
   return (
-    <div id="fullpart-time">
+    <div id="jolts-indeed">
       <ChartContainer
-        title="フルタイム / パートタイム雇用者数"
+        title="JOLTS求人 / Indeed求人件数指数"
         showPeriodSelector={false}
-        dataSource="FRED / BLS"
-        sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        dataSource="FRED / BLS / Indeed"
+        sourceUrl="https://www.bls.gov/jlt/"
       >
         {/* 最新値表示 */}
         <LatestValueBox
@@ -426,12 +504,13 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
         {/* ビューモード切り替え */}
         <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 現数値グラフ（左右Y軸） */}
+        {/* 現数値グラフ */}
         {viewMode === 'value' && (
           <>
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+            {/* 単一Y軸で両データを表示（IndeedはJOLTSスケールに変換済み） */}
             <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+              <ComposedChart data={scaledData} margin={CHART_MARGIN}>
                 <CartesianGrid {...CARTESIAN_GRID_PROPS} />
                 <XAxis
                   dataKey="date"
@@ -439,31 +518,40 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                   tick={AXIS_STYLE.tick}
                   interval={AXIS_STYLE.interval}
                 />
-                {/* 左Y軸: フルタイム（千人単位でそのまま表示） */}
+                {/* 左Y軸: JOLTS求人件数（千人単位） */}
                 <YAxis
                   yAxisId="left"
-                  domain={['dataMin - 1000', 'dataMax + 1000']}
+                  domain={[joltsMin - 500, joltsMax + 500]}
                   tick={AXIS_STYLE.tick}
                   tickFormatter={(v) => `${v.toLocaleString()}`}
                   label={{
-                    value: 'フルタイム（k）',
+                    value: 'JOLTS求人件数（k）',
                     angle: -90,
                     position: 'insideLeft',
-                    style: { fontSize: 11, fill: getColor('fulltime') }
+                    dy: 50,
+                    style: { fontSize: 11, fill: getColor('jolts') }
                   }}
                 />
-                {/* 右Y軸: パートタイム（千人単位でそのまま表示） */}
+                {/* 右Y軸: Indeed求人件数指数（JOLTSスケールに合わせて表示） */}
                 <YAxis
                   yAxisId="right"
                   orientation="right"
-                  domain={['dataMin - 500', 'dataMax + 500']}
+                  domain={[joltsMin - 500, joltsMax + 500]}
                   tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v.toLocaleString()}`}
+                  tickFormatter={(v) => {
+                    // JOLTSスケールからIndeed指数に逆変換して表示
+                    const joltsRange = joltsMax - joltsMin
+                    const indeedRange = indeedMax - indeedMin
+                    if (joltsRange === 0) return '0'
+                    const indeedValue = indeedMin + (v - joltsMin) * indeedRange / joltsRange
+                    return indeedValue.toFixed(0)
+                  }}
                   label={{
-                    value: 'パートタイム（k）',
+                    value: 'Indeed指数（2020/2=100）',
                     angle: 90,
                     position: 'insideRight',
-                    style: { fontSize: 11, fill: getColor('parttime') }
+                    dy: 70,
+                    style: { fontSize: 11, fill: getColor('indeed') }
                   }}
                 />
                 <Tooltip content={<ValueTooltip />} />
@@ -472,30 +560,30 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                   wrapperStyle={{ cursor: 'pointer' }}
                 />
 
-                {/* フルタイム（左軸） */}
+                {/* JOLTS求人件数（左軸） */}
                 <Line
                   yAxisId="left"
                   type="monotone"
-                  dataKey="fulltime"
-                  stroke={getColor('fulltime')}
+                  dataKey="jolts"
+                  stroke={getColor('jolts')}
                   strokeWidth={2}
                   dot={false}
-                  name={SERIES_NAMES.fulltime}
-                  hide={isHidden('fulltime')}
+                  name={SERIES_NAMES.jolts}
+                  hide={isHidden('jolts')}
                   isAnimationActive={false}
                   connectNulls={true}
                 />
 
-                {/* パートタイム（右軸） */}
+                {/* Indeed求人件数指数（JOLTSスケールに変換したindeedScaledを使用） */}
                 <Line
-                  yAxisId="right"
+                  yAxisId="left"
                   type="monotone"
-                  dataKey="parttime"
-                  stroke={getColor('parttime')}
+                  dataKey="indeedScaled"
+                  stroke={getColor('indeed')}
                   strokeWidth={2}
                   dot={false}
-                  name={SERIES_NAMES.parttime}
-                  hide={isHidden('parttime')}
+                  name={SERIES_NAMES.indeed}
+                  hide={isHidden('indeed')}
                   isAnimationActive={false}
                   connectNulls={true}
                 />
@@ -504,17 +592,12 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
           </>
         )}
 
-        {/* 前月増減幅グラフ */}
-        {viewMode === 'change_chart' && (
+        {/* JOLTS前月増減幅グラフ */}
+        {viewMode === 'jolts_change_chart' && (
           <>
-            <DataTypeButtonGroup
-              options={DATA_TYPE_OPTIONS}
-              currentType={dataType}
-              onChange={setDataType}
-            />
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+              <ComposedChart data={joltsChangeData} margin={CHART_MARGIN}>
                 <CartesianGrid {...CARTESIAN_GRID_PROPS} />
                 <XAxis
                   dataKey="date"
@@ -527,10 +610,10 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                   tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
                   domain={['dataMin - 100', 'dataMax + 100']}
                   label={{
-                    value: '増減（k）',
+                    value: 'JOLTS増減（k）',
                     angle: -90,
                     position: 'insideLeft',
-                    dy: 20,
+                    dy: 30,
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
@@ -538,28 +621,19 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                 <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                {/* 選択されたデータタイプのみ表示 */}
-                {dataType === 'fulltime' && (
-                  <Bar
-                    dataKey="fulltime_change"
-                    fill={getColor('fulltime')}
-                    name={`${SERIES_NAMES.fulltime}（増減）`}
-                  />
-                )}
-                {dataType === 'parttime' && (
-                  <Bar
-                    dataKey="parttime_change"
-                    fill={getColor('parttime')}
-                    name={`${SERIES_NAMES.parttime}（増減）`}
-                  />
-                )}
+                {/* JOLTS求人件数 */}
+                <Bar
+                  dataKey="jolts_change"
+                  fill={getColor('jolts')}
+                  name={`${SERIES_NAMES.jolts}（増減）`}
+                />
               </ComposedChart>
             </ResponsiveContainer>
           </>
         )}
 
-        {/* 前月増減幅テーブル */}
-        {viewMode === 'change_table' && <ChangeTable />}
+        {/* JOLTS前月増減幅テーブル */}
+        {viewMode === 'jolts_change_table' && <ChangeTable />}
       </ChartContainer>
     </div>
   )

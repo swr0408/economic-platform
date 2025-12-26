@@ -14,11 +14,12 @@ Investing.comからコントロールグループの前月比データを取得
 - Investing.comの発表日順（新→旧）とFREDのデータ日付順（新→旧）を位置でマッチ
 - 政府閉鎖等で発表がスキップされた場合でも正確に対応
 
-キャッシュ方式: last_updated判定（小売売上高と連動）
+キャッシュ方式: 発表日時ベース判定方式
+- retail_sales_serviceから次回発表日を取得して判定
 """
 import json
 import os
-from datetime import datetime
+from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
@@ -71,28 +72,32 @@ class RetailControlService:
         if not force_refresh:
             cached_data = redis_client.get(self.CACHE_KEY)
             if cached_data:
-                return {
-                    "data": cached_data.get("data", []),
-                    "latest": cached_data.get("latest"),
-                    "cached": True,
-                    "source": "redis",
-                    "last_updated": cached_data.get("last_updated")
-                }
+                last_updated_str = cached_data.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    return {
+                        "data": cached_data.get("data", []),
+                        "latest": cached_data.get("latest"),
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated_str
+                    }
 
         # ファイルキャッシュチェック
         if not force_refresh:
             file_cache = self._load_file_cache()
             if file_cache:
-                data = file_cache.get("data", [])
-                # Redisにも保存
-                redis_client.set(self.CACHE_KEY, file_cache, expire=0)
-                return {
-                    "data": data,
-                    "latest": file_cache.get("latest"),
-                    "cached": True,
-                    "source": "file",
-                    "last_updated": file_cache.get("last_updated")
-                }
+                last_updated_str = file_cache.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    data = file_cache.get("data", [])
+                    # Redisにも保存
+                    redis_client.set(self.CACHE_KEY, file_cache, expire=0)
+                    return {
+                        "data": data,
+                        "latest": file_cache.get("latest"),
+                        "cached": True,
+                        "source": "file",
+                        "last_updated": last_updated_str
+                    }
 
         # Investing.comから取得
         api_data = self._fetch_from_investing()
@@ -272,6 +277,80 @@ class RetailControlService:
             print(f"Cache saved to {CACHE_FILE}")
         except Exception as e:
             print(f"Failed to save file cache: {e}")
+
+    def _should_refresh(self, last_updated_str: str) -> bool:
+        """
+        キャッシュを更新すべきかどうかを判定
+
+        小売売上高と同時発表のため、retail_sales_serviceから発表日を取得
+
+        判定ロジック:
+        - 次回発表日時（毎月中旬 8:30 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
+        """
+        try:
+            last_updated = datetime.fromisoformat(last_updated_str)
+            if last_updated.tzinfo is None:
+                last_updated = last_updated.replace(tzinfo=JST)
+
+            now = datetime.now(JST)
+
+            # 次回発表日時を取得（retail_sales_serviceを参照）
+            next_release = self._get_next_release()
+
+            if next_release and next_release.get("date"):
+                # 発表日時をパース
+                release_date_str = next_release["date"]
+                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
+
+                # 発表時刻（8:30 ET）をJSTに変換
+                # 夏時間判定
+                is_dst = self._is_dst(now)
+                release_hour = 21 if is_dst else 22  # 8:30 ET → 21:30/22:30 JST
+
+                release_datetime = datetime(
+                    release_date.year, release_date.month, release_date.day,
+                    release_hour, 30, 0, tzinfo=JST
+                )
+
+                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
+                if now >= release_datetime and last_updated < release_datetime:
+                    return True
+
+            return False
+
+        except Exception as e:
+            print(f"Error checking refresh status: {e}")
+            return False
+
+    def _is_dst(self, dt: datetime) -> bool:
+        """米国東部時間が夏時間かどうかを判定"""
+        try:
+            et_time = dt.astimezone(ET)
+            return bool(et_time.dst())
+        except Exception:
+            # 3月第2日曜〜11月第1日曜を夏時間と仮定
+            if dt.month > 3 and dt.month < 11:
+                return True
+            if dt.month == 3:
+                second_sunday = 14 - (date(dt.year, 3, 1).weekday() + 1) % 7
+                return dt.day >= second_sunday
+            if dt.month == 11:
+                first_sunday = 7 - (date(dt.year, 11, 1).weekday() + 1) % 7
+                return dt.day < first_sunday
+            return False
+
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """
+        次回発表日を取得
+
+        retail_sales_serviceから取得（小売売上高と同時発表のため）
+        """
+        try:
+            from services.usa.retail_sales_service import retail_sales_service
+            return retail_sales_service._get_next_release()
+        except Exception as e:
+            print(f"Error getting next release from retail_sales_service: {e}")
+            return None
 
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""

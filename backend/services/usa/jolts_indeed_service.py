@@ -1,19 +1,19 @@
 """
-失業率 / 広義の失業率サービス
-FRED APIからUNRATE & U6RATEデータを取得
+JOLTS求人 / Indeed求人件数サービス
+FRED APIからデータを取得
 
 指標:
-- UNRATE: Unemployment Rate（失業率）
-- U6RATE: Total Unemployed Plus All Persons Marginally Attached to the Labor Force Plus Total Employed Part Time for Economic Reasons（広義の失業率）
+- JTSJOL: JOLTS Job Openings（JOLTS求人件数、千人）
+- IHLIDXUS: Indeed Job Postings Index（Indeed求人件数指数）
 
 データソース:
-- FRED: https://fred.stlouisfed.org/series/UNRATE
-- FRED: https://fred.stlouisfed.org/series/U6RATE
-- Investing.com: https://jp.investing.com/economic-calendar/unemployment-rate-300
+- FRED: https://fred.stlouisfed.org/series/JTSJOL
+- FRED: https://fred.stlouisfed.org/series/IHLIDXUS
+- Investing.com: https://jp.investing.com/economic-calendar/jolts-job-openings-1057
 
 発表スケジュール:
-- BLS Employment Situation（雇用統計）
-- 毎月第1金曜日 8:30 AM ET
+- JOLTS: 毎月上旬（参照月の翌々月初旬）
+- Indeed: 日次更新
 - Investing.comから次回発表日を自動取得（取得失敗時はブランク表示）
 
 キャッシュ方式: 発表日時ベース判定方式
@@ -37,17 +37,17 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
-UNRATE_SERIES_ID = "UNRATE"     # 失業率
-U6RATE_SERIES_ID = "U6RATE"     # 広義の失業率（U-6）
+JOLTS_SERIES_ID = "JTSJOL"       # JOLTS求人件数（千人）
+INDEED_SERIES_ID = "IHLIDXUS"   # Indeed求人件数指数
 
-# Investing.com 失業率 経済カレンダーURL
-INVESTING_UNEMPLOYMENT_URL = "https://jp.investing.com/economic-calendar/unemployment-rate-300"
+# Investing.com JOLTS経済カレンダーURL
+INVESTING_JOLTS_URL = "https://jp.investing.com/economic-calendar/jolts-job-openings-1057"
 
 # キャッシュディレクトリ
 CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
-DATA_CACHE_FILE = CACHE_DIR / "unemployment_rate_cache.json"
-SCHEDULE_CACHE_FILE = CACHE_DIR / "bls_empsit_schedule.json"
+DATA_CACHE_FILE = CACHE_DIR / "jolts_indeed_cache.json"
+SCHEDULE_CACHE_FILE = CACHE_DIR / "jolts_schedule.json"
 
 # 月名マッピング
 MONTH_MAP = {
@@ -59,33 +59,50 @@ MONTH_MAP = {
     'oct': 10, 'nov': 11, 'dec': 12
 }
 
+# 系列設定
+SERIES_CONFIG = {
+    "jolts": {
+        "series_id": JOLTS_SERIES_ID,
+        "name": "JOLTS求人件数",
+        "name_en": "JOLTS Job Openings",
+        "color": "#1890ff"  # 青
+    },
+    "indeed": {
+        "series_id": INDEED_SERIES_ID,
+        "name": "Indeed求人件数指数",
+        "name_en": "Indeed Job Postings Index",
+        "color": "#ff4d4f"  # 赤
+    }
+}
 
-class UnemploymentRateService:
-    """失業率 / 広義の失業率サービス"""
+
+class JoltsIndeedService:
+    """JOLTS求人 / Indeed求人件数サービス"""
 
     BASE_URL = "https://api.stlouisfed.org/fred"
-    DATA_CACHE_KEY = "fred:unemployment_rate:data"
-    SCHEDULE_CACHE_KEY = "bls:empsit:schedule"
+    DATA_CACHE_KEY = "fred:jolts_indeed:data"
+    SCHEDULE_CACHE_KEY = "fred:jolts:schedule"
 
-    # 発表時刻設定（ET）- 8:30 AM ET
-    RELEASE_HOUR_ET = 8
-    RELEASE_MINUTE_ET = 30
+    # 発表時刻設定（ET）- 10:00 AM ET
+    RELEASE_HOUR_ET = 10
+    RELEASE_MINUTE_ET = 0
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
 
-    def get_unemployment_rate_data(
+    def get_jolts_indeed_data(
         self,
         start_date: Optional[str] = None,
         force_refresh: bool = False
     ) -> Dict[str, Any]:
         """
-        失業率データを取得（失業率 + 広義の失業率）
+        JOLTS / Indeed求人データを取得
 
         Returns:
             {
-                "data": [{"date": str, "unrate": float, "u6rate": float}, ...],
+                "data": [{"date": str, "jolts": float, "indeed": float}, ...],
                 "latest": {...},
+                "series_config": {...},
                 "next_release": {"date": str, "label": str} | null,
                 "cached": bool,
                 "source": str,
@@ -102,6 +119,7 @@ class UnemploymentRateService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
+                        "series_config": SERIES_CONFIG,
                         "next_release": next_release,
                         "cached": True,
                         "source": "redis",
@@ -119,6 +137,7 @@ class UnemploymentRateService:
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
+                        "series_config": SERIES_CONFIG,
                         "next_release": next_release,
                         "cached": True,
                         "source": "file",
@@ -130,7 +149,7 @@ class UnemploymentRateService:
         next_release = self._get_next_release()
 
         if api_data:
-            latest = api_data[-1] if api_data else None
+            latest = self._get_latest_values(api_data)
 
             cache_payload = {
                 "data": api_data,
@@ -143,6 +162,7 @@ class UnemploymentRateService:
             return {
                 "data": api_data,
                 "latest": latest,
+                "series_config": SERIES_CONFIG,
                 "next_release": next_release,
                 "cached": False,
                 "source": "api",
@@ -155,6 +175,7 @@ class UnemploymentRateService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
+                "series_config": SERIES_CONFIG,
                 "next_release": next_release,
                 "cached": True,
                 "source": "file (fallback)",
@@ -164,6 +185,7 @@ class UnemploymentRateService:
         return {
             "data": [],
             "latest": None,
+            "series_config": SERIES_CONFIG,
             "next_release": next_release,
             "cached": False,
             "source": "none",
@@ -171,34 +193,61 @@ class UnemploymentRateService:
             "error": "No data available"
         }
 
+    def _get_latest_values(self, data: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """JOLTSとIndeedそれぞれの最新値を取得"""
+        latest = {
+            "date": None,
+            "jolts": None,
+            "jolts_date": None,
+            "indeed": None,
+            "indeed_date": None
+        }
+
+        # 逆順で最新値を探す
+        for item in reversed(data):
+            if latest["jolts"] is None and item.get("jolts") is not None:
+                latest["jolts"] = item["jolts"]
+                latest["jolts_date"] = item["date"]
+            if latest["indeed"] is None and item.get("indeed") is not None:
+                latest["indeed"] = item["indeed"]
+                latest["indeed_date"] = item["date"]
+            if latest["jolts"] is not None and latest["indeed"] is not None:
+                break
+
+        # 全体の日付は最新のものを使用
+        if data:
+            latest["date"] = data[-1]["date"]
+
+        return latest
+
     def _fetch_from_api(self, start_date: Optional[str] = None) -> Optional[List[Dict[str, Any]]]:
-        """FRED APIから失業率データを取得"""
+        """FRED APIからデータを取得"""
         try:
             if not self.api_key:
                 print("FRED_API_KEY not set")
                 return None
 
-            print("Fetching Unemployment Rate from FRED...")
+            print("Fetching JOLTS / Indeed data from FRED...")
 
             if not start_date:
                 start_date = "2000-01-01"
 
-            # 失業率（UNRATE）
-            unrate_raw = self._fetch_series(UNRATE_SERIES_ID, start_date)
-            # 広義の失業率（U6RATE）
-            u6rate_raw = self._fetch_series(U6RATE_SERIES_ID, start_date)
+            # JOLTS求人件数
+            jolts_raw = self._fetch_series(JOLTS_SERIES_ID, start_date)
+            # Indeed求人件数指数
+            indeed_raw = self._fetch_series(INDEED_SERIES_ID, start_date)
 
-            if not unrate_raw:
+            if not jolts_raw and not indeed_raw:
                 return None
 
             # データをマージ
-            merged_data = self._merge_data(unrate_raw, u6rate_raw)
+            merged_data = self._merge_data(jolts_raw, indeed_raw)
 
-            print(f"Fetched {len(merged_data)} Unemployment Rate records")
+            print(f"Fetched {len(merged_data)} JOLTS / Indeed records")
             return merged_data
 
         except Exception as e:
-            print(f"Error fetching Unemployment Rate: {e}")
+            print(f"Error fetching JOLTS / Indeed data: {e}")
             import traceback
             traceback.print_exc()
             return None
@@ -243,21 +292,27 @@ class UnemploymentRateService:
 
     def _merge_data(
         self,
-        unrate_data: List[Dict[str, Any]],
-        u6rate_data: List[Dict[str, Any]]
+        jolts_data: List[Dict[str, Any]],
+        indeed_data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
-        """UNRATE と U6RATE データをマージ"""
-        # U6RATEを日付でインデックス化
-        u6rate_map = {item["date"]: item["value"] for item in u6rate_data}
+        """JOLTSとIndeedのデータをマージ"""
+        # 日付でインデックス化
+        jolts_map = {item["date"]: item["value"] for item in jolts_data}
+        indeed_map = {item["date"]: item["value"] for item in indeed_data}
+
+        # 全日付を収集
+        all_dates = sorted(set(list(jolts_map.keys()) + list(indeed_map.keys())))
 
         result = []
-        for item in unrate_data:
+        for d in all_dates:
             entry = {
-                "date": item["date"],
-                "unrate": item["value"],
-                "u6rate": u6rate_map.get(item["date"])
+                "date": d,
+                "jolts": jolts_map.get(d),
+                "indeed": indeed_map.get(d)
             }
-            result.append(entry)
+            # 少なくとも1つの値がある場合のみ追加
+            if entry["jolts"] is not None or entry["indeed"] is not None:
+                result.append(entry)
 
         return result
 
@@ -308,12 +363,10 @@ class UnemploymentRateService:
                             return release
 
                 # キャッシュ内の日付がすべて過去 → 再取得が必要かチェック
-                # ただし、48時間以内にスクレイピングしていたら再取得しない（過剰アクセス防止）
+                # ただし、1日以内にスクレイピングしていたら再取得しない（過剰アクセス防止）
                 cached_at = cached_schedule.get("cached_at")
                 if cached_at:
                     try:
-                        from zoneinfo import ZoneInfo
-                        JST = ZoneInfo("Asia/Tokyo")
                         cached_dt = datetime.fromisoformat(cached_at)
                         if cached_dt.tzinfo is None:
                             cached_dt = cached_dt.replace(tzinfo=JST)
@@ -355,7 +408,7 @@ class UnemploymentRateService:
                 "Referer": "https://jp.investing.com/economic-calendar/",
             }
 
-            response = requests.get(INVESTING_UNEMPLOYMENT_URL, headers=headers, timeout=30)
+            response = requests.get(INVESTING_JOLTS_URL, headers=headers, timeout=30)
             response.raise_for_status()
 
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -374,20 +427,20 @@ class UnemploymentRateService:
                         day_num = int(match.group(3))
                         release_date = date(year, month, day_num)
                         if release_date >= tomorrow:
-                            print(f"Found next release date from data-event-datetime: {release_date}")
+                            print(f"Found JOLTS next release date from data-event-datetime: {release_date}")
                             return {
                                 "date": release_date.strftime("%Y-%m-%d"),
-                                "label": f"Employment Situation - {release_date.strftime('%Y/%m/%d')} 8:30 ET"
+                                "label": f"JOLTS Job Openings - {release_date.strftime('%Y/%m/%d')} 10:00 ET"
                             }
                     except ValueError:
                         continue
 
             # 次回発表日が見つからない場合はNone（ブランク表示）
-            print("No next release date found in Investing.com page")
+            print("No JOLTS next release date found in Investing.com page")
             return None
 
         except Exception as e:
-            print(f"Error fetching Investing.com schedule: {e}")
+            print(f"Error fetching Investing.com JOLTS schedule: {e}")
             return None
 
     def _get_cached_schedule(self) -> Optional[Dict[str, Any]]:
@@ -434,7 +487,7 @@ class UnemploymentRateService:
             with open(SCHEDULE_CACHE_FILE, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
         except Exception as e:
-            print(f"Failed to save schedule cache: {e}")
+            print(f"Failed to save JOLTS schedule cache: {e}")
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -468,9 +521,9 @@ class UnemploymentRateService:
         cached_data = redis_client.get(self.DATA_CACHE_KEY) if data_exists else None
 
         return {
-            "indicator": "Unemployment Rate",
+            "indicator": "JOLTS / Indeed Job Postings",
             "source": "FRED / BLS",
-            "series_ids": [UNRATE_SERIES_ID, U6RATE_SERIES_ID],
+            "series_ids": [JOLTS_SERIES_ID, INDEED_SERIES_ID],
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
@@ -480,4 +533,4 @@ class UnemploymentRateService:
 
 
 # シングルトンインスタンス
-unemployment_rate_service = UnemploymentRateService()
+jolts_indeed_service = JoltsIndeedService()

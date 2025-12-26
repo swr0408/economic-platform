@@ -113,7 +113,7 @@ export default function UnemploymentByReasonChart({ data }: UnemploymentByReason
         title="失業率内訳"
         showPeriodSelector={false}
         dataSource="FRED / BLS"
-        sourceUrl="https://fred.stlouisfed.org/series/LNS13023653"
+        sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
       >
         {/* 最新値表示 */}
         <LatestValueBox

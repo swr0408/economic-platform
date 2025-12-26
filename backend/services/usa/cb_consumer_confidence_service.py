@@ -77,7 +77,8 @@ class CBConsumerConfidenceService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
+                    # 表示用は最終週のみ（22日以降）
+                    next_release = self._get_next_release(for_display=True)
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
@@ -94,7 +95,8 @@ class CBConsumerConfidenceService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
+                    # 表示用は最終週のみ（22日以降）
+                    next_release = self._get_next_release(for_display=True)
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -110,7 +112,8 @@ class CBConsumerConfidenceService:
 
         # Investing.comからJSONで取得
         api_data = self._fetch_from_investing()
-        next_release = self._get_next_release()
+        # 表示用は最終週のみ（22日以降）
+        next_release = self._get_next_release(for_display=True)
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -253,15 +256,23 @@ class CBConsumerConfidenceService:
             print(f"Error checking refresh status: {e}")
             return False
 
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+    def _get_next_release(self, for_display: bool = False) -> Optional[Dict[str, Any]]:
         """
         次回発表日を計算
 
         CB消費者信頼感は毎月最終火曜日発表
+
+        Args:
+            for_display: 表示用の場合True（最終週22日以降のみ返す）
         """
         try:
             now = datetime.now(ET)
             today = now.date()
+
+            # 表示用の場合、最終週（22日以降）のみ計算
+            # それ以外はNoneを返す（不要な情報を表示しない）
+            if for_display and today.day < 22:
+                return None
 
             # 今月の最終火曜日を計算
             last_tuesday_this_month = self._get_last_tuesday_of_month(today.year, today.month)
@@ -361,7 +372,7 @@ class CBConsumerConfidenceService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "next_release": self._get_next_release(for_display=True),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

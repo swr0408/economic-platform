@@ -1179,6 +1179,212 @@ export interface FullPartTimeEmploymentNextRelease {
   label: string
 }
 
+// 複数の仕事を持つ人 / 経済的理由によるパートタイムデータの型（FRED LNS12026619 / LNS12032194）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface MultipleJobsPartTimeData {
+  data: MultipleJobsPartTimeItem[]
+  latest: MultipleJobsPartTimeItem | null
+  series_config: Record<string, MultipleJobsPartTimeSeriesConfig>
+  next_release: MultipleJobsPartTimeNextRelease | null
+  last_updated: string | null
+}
+
+export interface MultipleJobsPartTimeItem {
+  date: string              // YYYY-MM-DD形式
+  multiple_jobs: number | null    // 複数の仕事を持つ人（千人）
+  parttime_econ: number | null    // 経済的理由によるパートタイム（千人）
+}
+
+export interface MultipleJobsPartTimeSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface MultipleJobsPartTimeNextRelease {
+  date: string
+  label: string
+}
+
+// JOLTS求人 / Indeed求人件数データの型（FRED JTSJOL / IHLIDXUS）
+// JOLTSは毎月上旬 10:00 ET発表
+export interface JoltsIndeedData {
+  data: JoltsIndeedItem[]
+  latest: JoltsIndeedItem | null
+  series_config: Record<string, JoltsIndeedSeriesConfig>
+  next_release: JoltsIndeedNextRelease | null
+  last_updated: string | null
+}
+
+export interface JoltsIndeedItem {
+  date: string              // YYYY-MM-DD形式
+  jolts: number | null      // JOLTS求人件数（千人）
+  indeed: number | null     // Indeed求人件数指数（2020年2月1日=100）
+}
+
+export interface JoltsIndeedSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface JoltsIndeedNextRelease {
+  date: string
+  label: string
+}
+
+// JOLTS採用数 / 解雇数データの型（FRED JTSHIL / JTSLDL）
+// JOLTSは毎月上旬 10:00 ET発表
+export interface JoltsHiresLayoffsData {
+  data: JoltsHiresLayoffsItem[]
+  latest: JoltsHiresLayoffsItem | null
+  series_config: Record<string, JoltsHiresLayoffsSeriesConfig>
+  next_release: JoltsHiresLayoffsNextRelease | null
+  last_updated: string | null
+}
+
+export interface JoltsHiresLayoffsItem {
+  date: string              // YYYY-MM-DD形式
+  hires: number | null      // JOLTS採用数（千人）
+  layoffs: number | null    // JOLTS解雇数（千人）
+}
+
+export interface JoltsHiresLayoffsSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface JoltsHiresLayoffsNextRelease {
+  date: string
+  label: string
+}
+
+// 求人倍率データの型（FRED JTSJOL / UNEMPLOY）
+// JOLTSまたはEmpsit発表時に更新
+export interface JobOpeningsPerUnemployedData {
+  data: JobOpeningsPerUnemployedItem[]
+  latest: JobOpeningsPerUnemployedItem | null
+  next_release: JobOpeningsPerUnemployedNextRelease | null
+  last_updated: string | null
+}
+
+export interface JobOpeningsPerUnemployedItem {
+  date: string              // YYYY-MM-DD形式
+  value: number             // 求人倍率（JOLTS / UNEMPLOY）
+  jolts: number             // JOLTS求人件数（千人）
+  unemployed: number        // 失業者数（千人）
+}
+
+export interface JobOpeningsPerUnemployedNextRelease {
+  jolts: { date: string; label: string } | null
+  empsit: { date: string; label: string } | null
+}
+
+// ADP雇用者数データの型（FRED ADPMNUSNERSA）
+// 毎月第1水曜日 8:15 ET発表
+export interface ADPEmploymentData {
+  data: ADPEmploymentItem[]
+  latest: ADPEmploymentItem | null
+  next_release: ADPEmploymentNextRelease | null
+  last_updated: string | null
+}
+
+export interface ADPEmploymentItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 雇用者数（千人）
+  mom: number | null   // 前月比（千人）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface ADPEmploymentNextRelease {
+  date: string
+  label: string
+}
+
+// NER Pulse（週次雇用変動）データの型
+// 毎週火曜日 8:15 ET発表（月次NER発表週を除く）
+export interface NERPulseData {
+  data: NERPulseItem[]
+  latest: NERPulseItem | null
+  next_release: NERPulseNextRelease | null
+  last_updated: string | null
+}
+
+export interface NERPulseItem {
+  week_ending: string  // YYYY-MM-DD形式
+  change: number       // 週次増減（人）
+}
+
+export interface NERPulseNextRelease {
+  date: string
+  label: string
+}
+
+// 新規失業保険申請件数データの型
+// 毎週木曜日 8:30 ET発表（祝日による例外日あり）
+export interface InitialClaimsData {
+  data: InitialClaimsItem[]
+  latest: InitialClaimsItem | null
+  next_release: InitialClaimsNextRelease | null
+  last_updated: string | null
+}
+
+export interface InitialClaimsItem {
+  date: string         // YYYY-MM-DD形式
+  icsa: number         // 新規申請件数（件）
+  ic4wsa: number | null // 4週移動平均（件）
+}
+
+export interface InitialClaimsNextRelease {
+  date: string
+  label: string
+}
+
+// 継続失業保険申請件数データの型
+// 毎週木曜日 8:30 ET発表（新規失業保険申請件数と同時発表）
+export interface ContinuedClaimsData {
+  data: ContinuedClaimsItem[]
+  latest: ContinuedClaimsItem | null
+  next_release: ContinuedClaimsNextRelease | null
+  last_updated: string | null
+}
+
+export interface ContinuedClaimsItem {
+  date: string         // YYYY-MM-DD形式
+  ccsa: number         // 継続申請件数（件）
+  cc4wsa: number | null // 4週移動平均（件）
+}
+
+export interface ContinuedClaimsNextRelease {
+  date: string
+  label: string
+}
+
+// Challenger人員削減数データの型
+// 毎月第1木曜日 7:30 ET発表
+export interface ChallengerJobCutsData {
+  data: ChallengerJobCutsItem[]
+  latest: ChallengerJobCutsItem | null
+  next_release: ChallengerJobCutsNextRelease | null
+  last_updated: string | null
+}
+
+export interface ChallengerJobCutsItem {
+  date: string         // YYYY-MM-DD形式（発表日）
+  value: number        // 人員削減数（人）
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface ChallengerJobCutsNextRelease {
+  date: string
+  label: string
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
@@ -1186,6 +1392,15 @@ export interface USAEmploymentData {
   cb_jobs_labor: CBJobsLaborData | null
   nonfarm_payrolls: NonfarmPayrollsData | null
   fullpart_time_employment: FullPartTimeEmploymentData | null
+  multiple_jobs_parttime: MultipleJobsPartTimeData | null
+  jolts_indeed: JoltsIndeedData | null
+  jolts_hires_layoffs: JoltsHiresLayoffsData | null
+  job_openings_per_unemployed: JobOpeningsPerUnemployedData | null
+  adp_employment: ADPEmploymentData | null
+  ner_pulse: NERPulseData | null
+  initial_claims: InitialClaimsData | null
+  continued_claims: ContinuedClaimsData | null
+  challenger_job_cuts: ChallengerJobCutsData | null
 }
 
 /**
