@@ -104,7 +104,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
 // =============================================================================
 
 export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(5)
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
 
   // データを日付順にソート
   const sortedData = useSortedData(data?.data || [])

@@ -118,7 +118,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
 // =============================================================================
 
 export default function NFIBCompensationUnemploymentChart({ data }: NFIBCompensationUnemploymentChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(5)
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付順にソート

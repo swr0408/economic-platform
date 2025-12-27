@@ -257,8 +257,8 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    value: 5,
-    yoy_chart: 5,
+    value: 'default',
+    yoy_chart: 'default',
     mom_chart: 3,
     mom_table: 'default',
   })

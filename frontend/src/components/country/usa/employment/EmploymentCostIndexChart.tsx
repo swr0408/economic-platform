@@ -278,7 +278,7 @@ export default function EmploymentCostIndexChart({ data }: EmploymentCostIndexCh
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 5,
+    qoq_chart: 'default',
     qoq_table: 'default',
   })
 
