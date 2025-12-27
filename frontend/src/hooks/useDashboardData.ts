@@ -1385,6 +1385,89 @@ export interface ChallengerJobCutsNextRelease {
   label: string
 }
 
+// 平均時給/自発的離職率データの型（FRED CES0500000003 / JTSQUR）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface AverageHourlyEarningsData {
+  data: AverageHourlyEarningsItem[]
+  latest: AverageHourlyEarningsItem | null
+  next_release: AverageHourlyEarningsNextRelease | null
+  last_updated: string | null
+}
+
+export interface AverageHourlyEarningsItem {
+  date: string         // YYYY-MM-DD形式
+  yoy: number | null   // 前年比（%）
+  mom: number | null   // 前月比（%）
+  quits_rate: number | null  // 自発的離職率（%）
+}
+
+export interface AverageHourlyEarningsNextRelease {
+  date: string
+  label: string
+}
+
+// 労働参加率データの型（FRED CIVPART）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface LaborForceParticipationData {
+  data: LaborForceParticipationItem[]
+  latest: LaborForceParticipationItem | null
+  next_release: LaborForceParticipationNextRelease | null
+  last_updated: string | null
+}
+
+export interface LaborForceParticipationItem {
+  date: string        // YYYY-MM-DD形式
+  value: number | null // 労働参加率（%）
+}
+
+export interface LaborForceParticipationNextRelease {
+  date: string
+  label: string
+}
+
+// ADP賃金上昇率中央値データの型（ADP Pay Insights）
+// 毎月第1水曜日 8:15 ET発表（ADP雇用者数と同時）
+export interface ADPWageGrowthData {
+  data: ADPWageGrowthItem[]
+  latest: ADPWageGrowthItem | null
+  next_release: ADPWageGrowthNextRelease | null
+  last_updated: string | null
+}
+
+export interface ADPWageGrowthItem {
+  date: string          // YYYY-MM-DD形式
+  job_changer: number   // 転職者の賃金上昇率中央値（%）
+  job_stayer: number    // 在職者の賃金上昇率中央値（%）
+}
+
+export interface ADPWageGrowthNextRelease {
+  date: string
+  label: string
+}
+
+// アトランタ連銀賃金トラッカーデータの型（Atlanta Fed）
+// 毎月第2金曜日頃発表
+export interface AtlantaFedWageData {
+  data: AtlantaFedWageItem[]
+  latest: AtlantaFedWageItem | null
+  next_release: AtlantaFedWageNextRelease | null
+  last_updated: string | null
+}
+
+export interface AtlantaFedWageItem {
+  date: string            // YYYY-MM-DD形式
+  overall: number | null  // 全体の賃金上昇率（12ヶ月移動中央値）
+  fulltime: number | null // フルタイム労働者
+  paid_hourly: number | null // 時給労働者
+  job_stayer: number | null  // 在職者
+  job_switcher: number | null // 転職者
+}
+
+export interface AtlantaFedWageNextRelease {
+  date: string
+  label: string
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
@@ -1401,6 +1484,10 @@ export interface USAEmploymentData {
   initial_claims: InitialClaimsData | null
   continued_claims: ContinuedClaimsData | null
   challenger_job_cuts: ChallengerJobCutsData | null
+  average_hourly_earnings: AverageHourlyEarningsData | null
+  labor_force_participation: LaborForceParticipationData | null
+  adp_wage_growth: ADPWageGrowthData | null
+  atlanta_fed_wage: AtlantaFedWageData | null
 }
 
 /**

@@ -1,89 +1,68 @@
 import { Link } from 'react-router-dom'
 import { Card, Row, Col, Typography, Space } from 'antd'
-import {
-  GlobalOutlined,
-  DollarOutlined,
-  BankOutlined,
-  LineChartOutlined,
-  HomeOutlined,
-  TrophyOutlined,
-  CrownOutlined,
-  StarOutlined,
-  FlagOutlined,
-} from '@ant-design/icons'
 
 const { Title, Text } = Typography
 
 type Country = {
   code: string
+  isoCode: string
   name: string
-  flag: string
-  icon: React.ReactNode
   description: string
 }
 
 const COUNTRIES: Country[] = [
   {
     code: 'usa',
+    isoCode: 'us',
     name: 'アメリカ',
-    flag: '🇺🇸',
-    icon: <DollarOutlined style={{ fontSize: 24, color: '#1890ff' }} />,
     description: '世界最大の経済大国',
   },
   {
     code: 'japan',
+    isoCode: 'jp',
     name: '日本',
-    flag: '🇯🇵',
-    icon: <TrophyOutlined style={{ fontSize: 24, color: '#ff4d4f' }} />,
     description: '技術革新と製造業の中心地',
   },
   {
     code: 'eurozone',
+    isoCode: 'eu',
     name: 'ユーロ圏',
-    flag: '🇪🇺',
-    icon: <CrownOutlined style={{ fontSize: 24, color: '#faad14' }} />,
     description: '統合された欧州経済圏',
   },
   {
     code: 'uk',
+    isoCode: 'gb',
     name: 'イギリス',
-    flag: '🇬🇧',
-    icon: <BankOutlined style={{ fontSize: 24, color: '#722ed1' }} />,
     description: '金融サービスの国際的中心地',
   },
   {
     code: 'china',
+    isoCode: 'cn',
     name: '中国',
-    flag: '🇨🇳',
-    icon: <StarOutlined style={{ fontSize: 24, color: '#f5222d' }} />,
     description: '世界第2位の経済大国',
   },
   {
     code: 'australia',
+    isoCode: 'au',
     name: 'オーストラリア',
-    flag: '🇦🇺',
-    icon: <GlobalOutlined style={{ fontSize: 24, color: '#52c41a' }} />,
     description: '資源豊富な先進国',
   },
   {
     code: 'newzealand',
+    isoCode: 'nz',
     name: 'ニュージーランド',
-    flag: '🇳🇿',
-    icon: <LineChartOutlined style={{ fontSize: 24, color: '#13c2c2' }} />,
     description: '農業と観光の島国',
   },
   {
     code: 'canada',
+    isoCode: 'ca',
     name: 'カナダ',
-    flag: '🇨🇦',
-    icon: <HomeOutlined style={{ fontSize: 24, color: '#eb2f96' }} />,
     description: '資源と安定した経済',
   },
   {
     code: 'switzerland',
+    isoCode: 'ch',
     name: 'スイス',
-    flag: '🇨🇭',
-    icon: <FlagOutlined style={{ fontSize: 24, color: '#fa541c' }} />,
     description: '金融と精密産業の中心地',
   },
 ]
@@ -114,9 +93,15 @@ function CountryDataIndex() {
                   body: { padding: 24, textAlign: 'center' },
                 }}
               >
-                <Space direction="vertical" size={16} style={{ width: '100%' }}>
-                  <div style={{ fontSize: 48 }}>{country.flag}</div>
-                  <div>{country.icon}</div>
+                <Space direction="vertical" size={12} style={{ width: '100%' }}>
+                  <span
+                    className={`fi fi-${country.isoCode}`}
+                    style={{
+                      fontSize: 48,
+                      borderRadius: 4,
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    }}
+                  />
                   <div>
                     <Title level={4} style={{ margin: 0, color: '#1a1a1a' }}>
                       {country.name}

@@ -18,16 +18,16 @@ import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
 
 const { Title, Text } = Typography
 
-const COUNTRY_INFO: Record<string, { name: string; flag: string }> = {
-  usa: { name: 'アメリカ', flag: '🇺🇸' },
-  japan: { name: '日本', flag: '🇯🇵' },
-  eurozone: { name: 'ユーロ圏', flag: '🇪🇺' },
-  uk: { name: 'イギリス', flag: '🇬🇧' },
-  china: { name: '中国', flag: '🇨🇳' },
-  australia: { name: 'オーストラリア', flag: '🇦🇺' },
-  newzealand: { name: 'ニュージーランド', flag: '🇳🇿' },
-  canada: { name: 'カナダ', flag: '🇨🇦' },
-  switzerland: { name: 'スイス', flag: '🇨🇭' },
+const COUNTRY_INFO: Record<string, { name: string; isoCode: string }> = {
+  usa: { name: 'アメリカ', isoCode: 'us' },
+  japan: { name: '日本', isoCode: 'jp' },
+  eurozone: { name: 'ユーロ圏', isoCode: 'eu' },
+  uk: { name: 'イギリス', isoCode: 'gb' },
+  china: { name: '中国', isoCode: 'cn' },
+  australia: { name: 'オーストラリア', isoCode: 'au' },
+  newzealand: { name: 'ニュージーランド', isoCode: 'nz' },
+  canada: { name: 'カナダ', isoCode: 'ca' },
+  switzerland: { name: 'スイス', isoCode: 'ch' },
 }
 
 type Indicator = {
@@ -233,7 +233,14 @@ function CountryDataCategory() {
 
       <div style={{ marginBottom: 32 }}>
         <Space size={16} align="center">
-          <div style={{ fontSize: 48 }}>{country.flag}</div>
+          <span
+            className={`fi fi-${country.isoCode}`}
+            style={{
+              fontSize: 48,
+              borderRadius: 4,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            }}
+          />
           <div
             style={{
               color: category.color,

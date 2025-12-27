@@ -65,52 +65,52 @@ const DATA_CATEGORIES: DataCategory[] = [
   },
 ]
 
-const COUNTRY_INFO: Record<string, { name: string; flag: string; description: string }> = {
+const COUNTRY_INFO: Record<string, { name: string; isoCode: string; description: string }> = {
   usa: {
     name: 'アメリカ',
-    flag: '🇺🇸',
+    isoCode: 'us',
     description: '世界最大の経済大国。ドルは基軸通貨として国際金融システムの中心的役割を担う。',
   },
   japan: {
     name: '日本',
-    flag: '🇯🇵',
+    isoCode: 'jp',
     description:
       '世界第3位の経済大国。製造業と技術革新で知られ、アジア経済の重要な牽引役。',
   },
   eurozone: {
     name: 'ユーロ圏',
-    flag: '🇪🇺',
+    isoCode: 'eu',
     description: '19か国で構成される統一通貨圏。世界第2位の経済規模を持つ統合経済圏。',
   },
   uk: {
     name: 'イギリス',
-    flag: '🇬🇧',
+    isoCode: 'gb',
     description:
       'ロンドンは世界有数の金融センター。Brexit後も重要な経済・金融の拠点。',
   },
   china: {
     name: '中国',
-    flag: '🇨🇳',
+    isoCode: 'cn',
     description: '世界第2位の経済大国。製造業の中心地として「世界の工場」と呼ばれる。',
   },
   australia: {
     name: 'オーストラリア',
-    flag: '🇦🇺',
+    isoCode: 'au',
     description: '資源豊富な先進国。鉄鉱石や石炭などの資源輸出国として重要な地位。',
   },
   newzealand: {
     name: 'ニュージーランド',
-    flag: '🇳🇿',
+    isoCode: 'nz',
     description: '農業と観光が主要産業。安定した民主主義と経済運営で知られる。',
   },
   canada: {
     name: 'カナダ',
-    flag: '🇨🇦',
+    isoCode: 'ca',
     description: '豊富な天然資源を持つ先進国。石油・鉱物資源の主要輸出国。',
   },
   switzerland: {
     name: 'スイス',
-    flag: '🇨🇭',
+    isoCode: 'ch',
     description: '国際金融の中心地。銀行業と精密機械工業で世界的に有名。',
   },
 }
@@ -146,7 +146,14 @@ function CountryDetail() {
 
       <div style={{ marginBottom: 32 }}>
         <Space size={16} align="center">
-          <div style={{ fontSize: 56 }}>{country.flag}</div>
+          <span
+            className={`fi fi-${country.isoCode}`}
+            style={{
+              fontSize: 56,
+              borderRadius: 4,
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            }}
+          />
           <div>
             <Title level={2} style={{ margin: 0 }}>
               {country.name}のデータ

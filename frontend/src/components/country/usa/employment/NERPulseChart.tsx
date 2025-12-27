@@ -228,7 +228,7 @@ export default function NERPulseChart({ data }: NERPulseChartProps) {
             <Bar
               dataKey="change"
               fill={CHART_COLOR}
-              name="週次増減"
+              name="NER Pulse"
             />
           </ComposedChart>
         </ResponsiveContainer>

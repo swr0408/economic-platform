@@ -2,7 +2,8 @@
 米国雇用ダッシュボードローダー
 失業率 / 広義の失業率 / 失業率内訳 / CB雇用機会業況判断 / 非農業部門雇用者数 / フルタイム・パートタイム雇用者数 /
 複数の仕事を持つ人 / 経済的理由によるパートタイム / JOLTS求人 / Indeed求人件数 / JOLTS採用数・解雇数 / 求人倍率 /
-ADP雇用者数 / NER Pulse（週次雇用変動）/ 新規失業保険申請件数 / 継続失業保険申請件数 / Challenger人員削減数を一括取得
+ADP雇用者数 / NER Pulse（週次雇用変動）/ 新規失業保険申請件数 / 継続失業保険申請件数 / Challenger人員削減数 /
+平均時給 / 自発的離職率 / 労働参加率 / ADP賃金上昇率 / アトランタ連銀賃金トラッカーを一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: BLSから自動取得（毎月第1金曜日）
@@ -48,6 +49,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - initial_claims: 新規失業保険申請件数 - FRED ICSA/IC4WSA（毎週木曜日 8:30 ET）
     - continued_claims: 継続失業保険申請件数 - FRED CCSA/CC4WSA（毎週木曜日 8:30 ET）
     - challenger_job_cuts: Challenger人員削減数 - Investing.com（毎月第1木曜日 7:30 ET）
+    - average_hourly_earnings: 平均時給/自発的離職率 - FRED CES0500000003/JTSQUR（毎月第1金曜日 8:30 ET）
+    - labor_force_participation: 労働参加率 - FRED CIVPART（毎月第1金曜日 8:30 ET）
+    - adp_wage_growth: ADP賃金上昇率中央値 - ADP Pay Insights（毎月第1水曜日 8:15 ET）
+    - atlanta_fed_wage: アトランタ連銀賃金トラッカー - Atlanta Fed（毎月第2金曜日頃）
 
     キャッシュ方式: 発表日時ベース判定
     - Employment Situation発表: 毎月第1金曜日 8:30 ET
@@ -459,6 +464,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("fullpart_time_employment")
                 stale.add("multiple_jobs_parttime")
                 stale.add("job_openings_per_unemployed")  # 求人倍率（UNEMPLOY使用）
+                stale.add("average_hourly_earnings")  # 平均時給
+                stale.add("labor_force_participation")  # 労働参加率
                 print(f"[stale] Employment Situation release detected: {empsit_release.isoformat()}")
 
             # CB雇用機会業況判断発表
@@ -475,10 +482,11 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("job_openings_per_unemployed")  # 求人倍率（JTSJOL使用）
                 print(f"[stale] JOLTS release detected: {jolts_release.isoformat()}")
 
-            # ADP雇用者数発表
+            # ADP雇用者数発表（賃金上昇率も同時発表）
             adp_release = self._get_adp_release_datetime()
             if adp_release and last_updated_dt < adp_release <= now:
                 stale.add("adp_employment")
+                stale.add("adp_wage_growth")  # ADP賃金上昇率も同時発表
                 print(f"[stale] ADP release detected: {adp_release.isoformat()}")
 
             # NER Pulse発表
@@ -550,6 +558,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.initial_claims_service import initial_claims_service
         from services.usa.continued_claims_service import continued_claims_service
         from services.usa.challenger_job_cuts_service import challenger_job_cuts_service
+        from services.usa.average_hourly_earnings_service import average_hourly_earnings_service
+        from services.usa.labor_force_participation_service import labor_force_participation_service
+        from services.usa.adp_wage_growth_service import adp_wage_growth_service
+        from services.usa.atlanta_fed_wage_service import atlanta_fed_wage_service
 
         result = {
             "unemployment_rate": None,
@@ -566,10 +578,14 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "initial_claims": None,
             "continued_claims": None,
             "challenger_job_cuts": None,
+            "average_hourly_earnings": None,
+            "labor_force_participation": None,
+            "adp_wage_growth": None,
+            "atlanta_fed_wage": None,
         }
 
-        # 並列でデータを取得（14ワーカー）
-        with ThreadPoolExecutor(max_workers=14) as executor:
+        # 並列でデータを取得（18ワーカー）
+        with ThreadPoolExecutor(max_workers=18) as executor:
             futures = {
                 executor.submit(self._get_unemployment_rate, unemployment_rate_service): "unemployment_rate",
                 executor.submit(self._get_unemployment_by_reason, unemployment_by_reason_service): "unemployment_by_reason",
@@ -585,6 +601,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_initial_claims, initial_claims_service): "initial_claims",
                 executor.submit(self._get_continued_claims, continued_claims_service): "continued_claims",
                 executor.submit(self._get_challenger_job_cuts, challenger_job_cuts_service): "challenger_job_cuts",
+                executor.submit(self._get_average_hourly_earnings, average_hourly_earnings_service): "average_hourly_earnings",
+                executor.submit(self._get_labor_force_participation, labor_force_participation_service): "labor_force_participation",
+                executor.submit(self._get_adp_wage_growth, adp_wage_growth_service): "adp_wage_growth",
+                executor.submit(self._get_atlanta_fed_wage, atlanta_fed_wage_service): "atlanta_fed_wage",
             }
 
             for future in as_completed(futures):
@@ -855,6 +875,78 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Challenger Job Cuts data: {e}")
             return None
 
+    def _get_average_hourly_earnings(self, service) -> Optional[dict]:
+        """平均時給/自発的離職率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("average_hourly_earnings")
+            response = service.get_average_hourly_earnings_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Average Hourly Earnings data: {e}")
+            return None
+
+    def _get_labor_force_participation(self, service) -> Optional[dict]:
+        """労働参加率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("labor_force_participation")
+            response = service.get_labor_force_participation_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Labor Force Participation data: {e}")
+            return None
+
+    def _get_adp_wage_growth(self, service) -> Optional[dict]:
+        """ADP賃金上昇率中央値データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("adp_wage_growth")
+            response = service.get_adp_wage_growth_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting ADP Wage Growth data: {e}")
+            return None
+
+    def _get_atlanta_fed_wage(self, service) -> Optional[dict]:
+        """アトランタ連銀賃金トラッカーデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("atlanta_fed_wage")
+            response = service.get_atlanta_fed_wage_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Atlanta Fed Wage data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -873,6 +965,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.initial_claims_service import initial_claims_service
         from services.usa.continued_claims_service import continued_claims_service
         from services.usa.challenger_job_cuts_service import challenger_job_cuts_service
+        from services.usa.average_hourly_earnings_service import average_hourly_earnings_service
+        from services.usa.labor_force_participation_service import labor_force_participation_service
+        from services.usa.adp_wage_growth_service import adp_wage_growth_service
+        from services.usa.atlanta_fed_wage_service import atlanta_fed_wage_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -890,6 +986,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (initial_claims_service, "Initial Claims"),
             (continued_claims_service, "Continued Claims"),
             (challenger_job_cuts_service, "Challenger Job Cuts"),
+            (average_hourly_earnings_service, "Average Hourly Earnings"),
+            (labor_force_participation_service, "Labor Force Participation"),
+            (adp_wage_growth_service, "ADP Wage Growth"),
+            (atlanta_fed_wage_service, "Atlanta Fed Wage"),
         ]
         self._invalidate_service_caches(services)
 

@@ -126,6 +126,10 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'initial-claims', name: '新規失業保険申請件数' },
           { code: 'continued-claims', name: '継続失業保険申請件数' },
           { code: 'challenger-job-cuts', name: 'Challenger人員削減数' },
+          { code: 'average-hourly-earnings', name: '平均時給 / 自発的離職率' },
+          { code: 'labor-force-participation', name: '労働参加率' },
+          { code: 'adp-wage-growth', name: 'ADP賃金上昇率中央値' },
+          { code: 'atlanta-fed-wage', name: 'アトランタ連銀賃金トラッカー' },
         ],
       },
       {

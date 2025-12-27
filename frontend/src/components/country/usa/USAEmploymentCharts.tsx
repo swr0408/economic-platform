@@ -22,6 +22,10 @@ import NERPulseChart from './employment/NERPulseChart'
 import InitialClaimsChart from './employment/InitialClaimsChart'
 import ContinuedClaimsChart from './employment/ContinuedClaimsChart'
 import ChallengerJobCutsChart from './employment/ChallengerJobCutsChart'
+import AverageHourlyEarningsChart from './employment/AverageHourlyEarningsChart'
+import LaborForceParticipationChart from './employment/LaborForceParticipationChart'
+import ADPWageGrowthChart from './employment/ADPWageGrowthChart'
+import AtlantaFedWageGrowthChart from './employment/AtlantaFedWageGrowthChart'
 
 export default function USAEmploymentCharts() {
   const queryResult = useUSAEmploymentDashboard()
@@ -87,6 +91,22 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="challenger-job-cuts">
             <ChallengerJobCutsChart data={dashboardData?.challenger_job_cuts ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="average-hourly-earnings">
+            <AverageHourlyEarningsChart data={dashboardData?.average_hourly_earnings ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="labor-force-participation">
+            <LaborForceParticipationChart data={dashboardData?.labor_force_participation ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="adp-wage-growth">
+            <ADPWageGrowthChart data={dashboardData?.adp_wage_growth ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="atlanta-fed-wage">
+            <AtlantaFedWageGrowthChart data={dashboardData?.atlanta_fed_wage ?? null} />
           </ChartWrapper>
         </>
       )}
