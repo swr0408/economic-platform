@@ -3,7 +3,7 @@
 失業率 / 広義の失業率 / 失業率内訳 / CB雇用機会業況判断 / 非農業部門雇用者数 / フルタイム・パートタイム雇用者数 /
 複数の仕事を持つ人 / 経済的理由によるパートタイム / JOLTS求人 / Indeed求人件数 / JOLTS採用数・解雇数 / 求人倍率 /
 ADP雇用者数 / NER Pulse（週次雇用変動）/ 新規失業保険申請件数 / 継続失業保険申請件数 / Challenger人員削減数 /
-平均時給 / 自発的離職率 / 労働参加率 / ADP賃金上昇率 / アトランタ連銀賃金トラッカーを一括取得
+平均時給 / 自発的離職率 / 労働参加率 / ADP賃金上昇率 / アトランタ連銀賃金トラッカー / Indeed賃金トラッカー / PCEデフレーター飲食宿泊・娯楽を一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: BLSから自動取得（毎月第1金曜日）
@@ -53,6 +53,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - labor_force_participation: 労働参加率 - FRED CIVPART（毎月第1金曜日 8:30 ET）
     - adp_wage_growth: ADP賃金上昇率中央値 - ADP Pay Insights（毎月第1水曜日 8:15 ET）
     - atlanta_fed_wage: アトランタ連銀賃金トラッカー - Atlanta Fed（毎月第2金曜日頃）
+    - indeed_wage_tracker: Indeed賃金トラッカー - Indeed Hiring Lab（毎月15日以降）
+    - pce_food_recreation: PCEデフレーター飲食宿泊・娯楽 - BEA NIPA T20404（毎月末 8:30 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - Employment Situation発表: 毎月第1金曜日 8:30 ET
@@ -562,6 +564,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.labor_force_participation_service import labor_force_participation_service
         from services.usa.adp_wage_growth_service import adp_wage_growth_service
         from services.usa.atlanta_fed_wage_service import atlanta_fed_wage_service
+        from services.usa.indeed_wage_tracker_service import indeed_wage_tracker_service
+        from services.usa.pce_food_recreation_service import pce_food_recreation_service
 
         result = {
             "unemployment_rate": None,
@@ -582,10 +586,12 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "labor_force_participation": None,
             "adp_wage_growth": None,
             "atlanta_fed_wage": None,
+            "indeed_wage_tracker": None,
+            "pce_food_recreation": None,
         }
 
-        # 並列でデータを取得（18ワーカー）
-        with ThreadPoolExecutor(max_workers=18) as executor:
+        # 並列でデータを取得（20ワーカー）
+        with ThreadPoolExecutor(max_workers=20) as executor:
             futures = {
                 executor.submit(self._get_unemployment_rate, unemployment_rate_service): "unemployment_rate",
                 executor.submit(self._get_unemployment_by_reason, unemployment_by_reason_service): "unemployment_by_reason",
@@ -605,6 +611,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_labor_force_participation, labor_force_participation_service): "labor_force_participation",
                 executor.submit(self._get_adp_wage_growth, adp_wage_growth_service): "adp_wage_growth",
                 executor.submit(self._get_atlanta_fed_wage, atlanta_fed_wage_service): "atlanta_fed_wage",
+                executor.submit(self._get_indeed_wage_tracker, indeed_wage_tracker_service): "indeed_wage_tracker",
+                executor.submit(self._get_pce_food_recreation, pce_food_recreation_service): "pce_food_recreation",
             }
 
             for future in as_completed(futures):
@@ -947,6 +955,42 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Atlanta Fed Wage data: {e}")
             return None
 
+    def _get_indeed_wage_tracker(self, service) -> Optional[dict]:
+        """Indeed賃金トラッカーデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("indeed_wage_tracker")
+            response = service.get_indeed_wage_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Indeed Wage Tracker data: {e}")
+            return None
+
+    def _get_pce_food_recreation(self, service) -> Optional[dict]:
+        """PCEデフレーター飲食宿泊・娯楽データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("pce_food_recreation")
+            response = service.get_pce_food_recreation_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting PCE Food Recreation data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -969,6 +1013,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.labor_force_participation_service import labor_force_participation_service
         from services.usa.adp_wage_growth_service import adp_wage_growth_service
         from services.usa.atlanta_fed_wage_service import atlanta_fed_wage_service
+        from services.usa.indeed_wage_tracker_service import indeed_wage_tracker_service
+        from services.usa.pce_food_recreation_service import pce_food_recreation_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -990,6 +1036,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (labor_force_participation_service, "Labor Force Participation"),
             (adp_wage_growth_service, "ADP Wage Growth"),
             (atlanta_fed_wage_service, "Atlanta Fed Wage"),
+            (indeed_wage_tracker_service, "Indeed Wage Tracker"),
+            (pce_food_recreation_service, "PCE Food Recreation"),
         ]
         self._invalidate_service_caches(services)
 

@@ -1468,6 +1468,47 @@ export interface AtlantaFedWageNextRelease {
   label: string
 }
 
+// Indeed賃金トラッカーデータの型（Indeed Hiring Lab）
+// 毎月15日以降発表
+export interface IndeedWageTrackerData {
+  data: IndeedWageTrackerItem[]
+  latest: IndeedWageTrackerItem | null
+  next_release: IndeedWageTrackerNextRelease | null
+  last_updated: string | null
+}
+
+export interface IndeedWageTrackerItem {
+  date: string            // YYYY-MM-01形式
+  value: number           // 求人掲載賃金の前年同月比成長率（%）
+  ma3: number | null      // 3ヶ月移動平均（%）
+}
+
+export interface IndeedWageTrackerNextRelease {
+  date: string
+  label: string
+}
+
+// PCEデフレーター飲食宿泊・娯楽データの型（BEA NIPA T20404）
+// Personal Income and Outlays（毎月末 8:30 AM ET発表）
+export interface PCEFoodRecreationData {
+  data: PCEFoodRecreationItem[]
+  latest: PCEFoodRecreationItem | null
+  next_release: PCEFoodRecreationNextRelease | null
+  last_updated: string | null
+}
+
+export interface PCEFoodRecreationItem {
+  date: string                      // YYYY-MM-01形式
+  food_services_yoy: number | null  // 飲食宿泊 前年比（%）
+  recreation_yoy: number | null     // 娯楽 前年比（%）
+  avg_hourly_earnings_yoy: number | null  // 平均時給 前年比（%）
+}
+
+export interface PCEFoodRecreationNextRelease {
+  date: string
+  label: string
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
@@ -1488,6 +1529,8 @@ export interface USAEmploymentData {
   labor_force_participation: LaborForceParticipationData | null
   adp_wage_growth: ADPWageGrowthData | null
   atlanta_fed_wage: AtlantaFedWageData | null
+  indeed_wage_tracker: IndeedWageTrackerData | null
+  pce_food_recreation: PCEFoodRecreationData | null
 }
 
 /**

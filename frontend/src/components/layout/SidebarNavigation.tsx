@@ -130,6 +130,8 @@ const COUNTRIES_DATA: Country[] = [
           { code: 'labor-force-participation', name: '労働参加率' },
           { code: 'adp-wage-growth', name: 'ADP賃金上昇率中央値' },
           { code: 'atlanta-fed-wage', name: 'アトランタ連銀賃金トラッカー' },
+          { code: 'indeed-wage-tracker', name: 'Indeed賃金トラッカー' },
+          { code: 'pce-food-recreation', name: 'PCEデフレーター飲食宿泊・娯楽' },
         ],
       },
       {

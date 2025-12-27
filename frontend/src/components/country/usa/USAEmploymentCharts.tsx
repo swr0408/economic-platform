@@ -26,6 +26,8 @@ import AverageHourlyEarningsChart from './employment/AverageHourlyEarningsChart'
 import LaborForceParticipationChart from './employment/LaborForceParticipationChart'
 import ADPWageGrowthChart from './employment/ADPWageGrowthChart'
 import AtlantaFedWageGrowthChart from './employment/AtlantaFedWageGrowthChart'
+import IndeedWageGrowthChart from './employment/IndeedWageGrowthChart'
+import PCEFoodRecreationChart from './employment/PCEFoodRecreationChart'
 
 export default function USAEmploymentCharts() {
   const queryResult = useUSAEmploymentDashboard()
@@ -107,6 +109,14 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="atlanta-fed-wage">
             <AtlantaFedWageGrowthChart data={dashboardData?.atlanta_fed_wage ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="indeed-wage-tracker">
+            <IndeedWageGrowthChart data={dashboardData?.indeed_wage_tracker ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="pce-food-recreation">
+            <PCEFoodRecreationChart data={dashboardData?.pce_food_recreation ?? null} />
           </ChartWrapper>
         </>
       )}
