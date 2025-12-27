@@ -610,7 +610,6 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
                   tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
                   domain={['dataMin - 100', 'dataMax + 100']}
                   label={{
-                    value: 'JOLTS増減（k）',
                     angle: -90,
                     position: 'insideLeft',
                     dy: 30,

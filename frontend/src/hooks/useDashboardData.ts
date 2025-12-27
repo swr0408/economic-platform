@@ -1509,6 +1509,104 @@ export interface PCEFoodRecreationNextRelease {
   label: string
 }
 
+// 雇用コスト指数データの型（FRED ECIALLCIV）
+// 四半期ごと発表（1月、4月、7月、10月）8:30 ET
+export interface EmploymentCostIndexData {
+  data: EmploymentCostIndexItem[]
+  latest: EmploymentCostIndexItem | null
+  next_release: EmploymentCostIndexNextRelease | null
+  last_updated: string | null
+}
+
+export interface EmploymentCostIndexItem {
+  date: string          // YYYY-MM-DD形式（四半期末日）
+  pch: number           // 前期比（%）
+}
+
+export interface EmploymentCostIndexNextRelease {
+  date: string
+  label: string
+}
+
+// 単位労働コスト・労働生産性データの型（FRED PRS85006112/PRS85006092）
+// 四半期ごと発表（2月、3月、5月、6月、8月、9月、11月、12月）8:30 ET
+export interface UnitLaborCostData {
+  data: UnitLaborCostItem[]
+  latest: UnitLaborCostItem | null
+  next_release: UnitLaborCostNextRelease | null
+  last_updated: string | null
+}
+
+export interface UnitLaborCostItem {
+  date: string            // YYYY-MM-DD形式（四半期末日）
+  ulc_pch: number | null  // 単位労働コスト前期比（%）
+  productivity_pch: number | null  // 労働生産性前期比（%）
+}
+
+export interface UnitLaborCostNextRelease {
+  date: string
+  label: string
+}
+
+// NFIB中小企業人件費・雇用計画データの型（NFIB PDF Report）
+// 毎月第2火曜日 6:00 ET発表
+export interface NFIBCompensationData {
+  data: NFIBCompensationItem[]
+  latest: NFIBCompensationItem | null
+  next_release: NFIBCompensationNextRelease | null
+  last_updated: string | null
+}
+
+export interface NFIBCompensationItem {
+  date: string                        // YYYY-MM-DD形式
+  compensation_plans?: number         // 人件費計画（%）
+  hiring_plans?: number               // 雇用計画（%）
+}
+
+export interface NFIBCompensationNextRelease {
+  date: string
+  label: string
+}
+
+// NFIB労働報酬・失業率データの型（NFIB PDF + FRED UNRATE）
+// NFIB: 毎月第2火曜日 6:00 ET発表 / UNRATE: 毎月第1金曜日 8:30 ET発表
+export interface NFIBCompensationUnemploymentData {
+  data: NFIBCompensationUnemploymentItem[]
+  latest: NFIBCompensationUnemploymentItem | null
+  next_release: NFIBCompensationUnemploymentNextRelease | null
+  last_updated: string | null
+}
+
+export interface NFIBCompensationUnemploymentItem {
+  date: string                        // YYYY-MM-DD形式
+  actual_compensation?: number        // 実際の人件費変更（%）
+  unemployment_rate?: number          // 失業率（%）
+}
+
+export interface NFIBCompensationUnemploymentNextRelease {
+  date: string
+  label: string
+}
+
+// 平均残業時間データの型（FRED AWOTMAN）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface OvertimeHoursData {
+  data: OvertimeHoursItem[]
+  latest: OvertimeHoursItem | null
+  next_release: OvertimeHoursNextRelease | null
+  last_updated: string | null
+}
+
+export interface OvertimeHoursItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // 平均週間残業時間（時間）
+}
+
+export interface OvertimeHoursNextRelease {
+  date: string
+  label: string
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
@@ -1531,6 +1629,11 @@ export interface USAEmploymentData {
   atlanta_fed_wage: AtlantaFedWageData | null
   indeed_wage_tracker: IndeedWageTrackerData | null
   pce_food_recreation: PCEFoodRecreationData | null
+  employment_cost_index: EmploymentCostIndexData | null
+  unit_labor_cost: UnitLaborCostData | null
+  nfib_compensation: NFIBCompensationData | null
+  nfib_compensation_unemployment: NFIBCompensationUnemploymentData | null
+  overtime_hours: OvertimeHoursData | null
 }
 
 /**

@@ -353,7 +353,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                   tick={AXIS_STYLE.tick}
                   domain={['dataMin - 0.2', 'dataMax + 0.2']}
                   label={{
-                    value: '前年比（%）',
+                    value: '平均時給（%）',
                     angle: -90,
                     position: 'insideLeft',
                     dy: 30,
@@ -423,7 +423,6 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                   tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}`}
                   domain={['dataMin - 0.2', 'dataMax + 0.2']}
                   label={{
-                    value: '増減（%）',
                     angle: -90,
                     position: 'insideLeft',
                     dy: 20,

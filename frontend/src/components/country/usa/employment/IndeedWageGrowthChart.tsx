@@ -41,7 +41,7 @@ const COLORS = {
 
 // 系列名（日本語）
 const SERIES_NAMES = {
-  value: '原数値',
+  value: 'Indeed賃金トラッカー',
   ma3: '3ヶ月移動平均',
 }
 
@@ -90,7 +90,7 @@ export default function IndeedWageGrowthChart({ data }: IndeedWageGrowthChartPro
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label="原数値"
+          label="Indeed賃金トラッカー"
           value={latest?.value}
           subValue={latest?.ma3}
           subLabel="3ヶ月平均"
@@ -101,6 +101,7 @@ export default function IndeedWageGrowthChart({ data }: IndeedWageGrowthChartPro
           format="number"
           unit="%"
           decimals={2}
+          
         />
 
         {/* 期間セレクター */}

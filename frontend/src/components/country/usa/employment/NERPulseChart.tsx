@@ -201,7 +201,7 @@ export default function NERPulseChart({ data }: NERPulseChartProps) {
         />
 
         {/* 週次増減グラフ */}
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={450}>
           <ComposedChart data={sortedData} margin={CHART_MARGIN}>
             <CartesianGrid {...CARTESIAN_GRID_PROPS} />
             <XAxis
@@ -214,7 +214,6 @@ export default function NERPulseChart({ data }: NERPulseChartProps) {
               tick={AXIS_STYLE.tick}
               tickFormatter={(v) => `${v >= 0 ? '+' : ''}${(v / 1000).toFixed(0)}k`}
               label={{
-                value: '増減',
                 angle: -90,
                 position: 'insideLeft',
                 dy: 20,

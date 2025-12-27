@@ -217,7 +217,6 @@ export default function JobOpeningsPerUnemployedChart({ data }: JobOpeningsPerUn
               tickFormatter={(v) => v.toFixed(1)}
               domain={['dataMin - 0.1', 'dataMax + 0.1']}
               label={{
-                value: '求人倍率',
                 angle: -90,
                 position: 'insideLeft',
                 dy: 30,

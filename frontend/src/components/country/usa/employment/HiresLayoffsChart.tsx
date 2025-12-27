@@ -208,7 +208,6 @@ export default function HiresLayoffsChart({ data }: HiresLayoffsChartProps) {
               tick={AXIS_STYLE.tick}
               tickFormatter={(v) => `${v.toLocaleString()}`}
               label={{
-                value: '千人',
                 angle: -90,
                 position: 'insideLeft',
                 dy: 20,

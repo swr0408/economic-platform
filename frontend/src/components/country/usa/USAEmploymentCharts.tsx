@@ -28,6 +28,11 @@ import ADPWageGrowthChart from './employment/ADPWageGrowthChart'
 import AtlantaFedWageGrowthChart from './employment/AtlantaFedWageGrowthChart'
 import IndeedWageGrowthChart from './employment/IndeedWageGrowthChart'
 import PCEFoodRecreationChart from './employment/PCEFoodRecreationChart'
+import EmploymentCostIndexChart from './employment/EmploymentCostIndexChart'
+import UnitLaborCostChart from './employment/UnitLaborCostChart'
+import NFIBCompensationChart from './employment/NFIBCompensationChart'
+import NFIBCompensationUnemploymentChart from './employment/NFIBCompensationUnemploymentChart'
+import OvertimeHoursChart from './employment/OvertimeHoursChart'
 
 export default function USAEmploymentCharts() {
   const queryResult = useUSAEmploymentDashboard()
@@ -117,6 +122,26 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="pce-food-recreation">
             <PCEFoodRecreationChart data={dashboardData?.pce_food_recreation ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="employment-cost-index">
+            <EmploymentCostIndexChart data={dashboardData?.employment_cost_index ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="unit-labor-cost">
+            <UnitLaborCostChart data={dashboardData?.unit_labor_cost ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="nfib-compensation">
+            <NFIBCompensationChart data={dashboardData?.nfib_compensation ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="nfib-compensation-unemployment">
+            <NFIBCompensationUnemploymentChart data={dashboardData?.nfib_compensation_unemployment ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="overtime-hours">
+            <OvertimeHoursChart data={dashboardData?.overtime_hours ?? null} />
           </ChartWrapper>
         </>
       )}

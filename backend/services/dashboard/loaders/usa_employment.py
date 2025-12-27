@@ -3,7 +3,8 @@
 失業率 / 広義の失業率 / 失業率内訳 / CB雇用機会業況判断 / 非農業部門雇用者数 / フルタイム・パートタイム雇用者数 /
 複数の仕事を持つ人 / 経済的理由によるパートタイム / JOLTS求人 / Indeed求人件数 / JOLTS採用数・解雇数 / 求人倍率 /
 ADP雇用者数 / NER Pulse（週次雇用変動）/ 新規失業保険申請件数 / 継続失業保険申請件数 / Challenger人員削減数 /
-平均時給 / 自発的離職率 / 労働参加率 / ADP賃金上昇率 / アトランタ連銀賃金トラッカー / Indeed賃金トラッカー / PCEデフレーター飲食宿泊・娯楽を一括取得
+平均時給 / 自発的離職率 / 労働参加率 / ADP賃金上昇率 / アトランタ連銀賃金トラッカー / Indeed賃金トラッカー / PCEデフレーター飲食宿泊・娯楽 /
+雇用コスト指数 / 単位労働コスト・労働生産性 / NFIB人件費・雇用計画 / NFIB労働報酬・失業率 / 平均残業時間を一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: BLSから自動取得（毎月第1金曜日）
@@ -15,6 +16,9 @@ ADP雇用者数 / NER Pulse（週次雇用変動）/ 新規失業保険申請件
 - 新規失業保険申請件数: 毎週木曜日 8:30 ET発表（祝日による例外日あり）
 - 継続失業保険申請件数: 毎週木曜日 8:30 ET発表（新規と同時発表）
 - Challenger人員削減数: 毎月第1木曜日 7:30 ET発表
+- 雇用コスト指数: 四半期ごと発表（1月、4月、7月、10月）8:30 ET
+- 単位労働コスト・労働生産性: 四半期ごと発表（2月、3月、5月、6月、8月、9月、11月、12月）8:30 ET
+- NFIB人件費・雇用計画: 毎月第2火曜日 6:00 ET発表
 - 発表日時を過ぎた指標は個別サービスもforce_refreshで再取得
 """
 from typing import Dict, Any, Optional, List
@@ -55,6 +59,11 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - atlanta_fed_wage: アトランタ連銀賃金トラッカー - Atlanta Fed（毎月第2金曜日頃）
     - indeed_wage_tracker: Indeed賃金トラッカー - Indeed Hiring Lab（毎月15日以降）
     - pce_food_recreation: PCEデフレーター飲食宿泊・娯楽 - BEA NIPA T20404（毎月末 8:30 ET）
+    - employment_cost_index: 雇用コスト指数 - FRED ECIALLCIV（四半期ごと 8:30 ET）
+    - unit_labor_cost: 単位労働コスト/労働生産性 - FRED PRS85006112/PRS85006092（四半期ごと 8:30 ET）
+    - nfib_compensation: NFIB人件費・雇用計画 - NFIB PDF（毎月第2火曜日 6:00 ET）
+    - nfib_compensation_unemployment: NFIB労働報酬・失業率 - NFIB PDF + FRED UNRATE（NFIB: 毎月第2火曜日 6:00 ET / UNRATE: 毎月第1金曜日 8:30 ET）
+    - overtime_hours: 平均残業時間 - FRED AWOTMAN（毎月第1金曜日 8:30 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - Employment Situation発表: 毎月第1金曜日 8:30 ET
@@ -65,6 +74,9 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - 新規失業保険申請件数: 毎週木曜日 8:30 ET（祝日による例外日あり）
     - 継続失業保険申請件数: 毎週木曜日 8:30 ET（新規と同時発表）
     - Challenger人員削減数: 毎月第1木曜日 7:30 ET
+    - 雇用コスト指数: 四半期ごと発表（1月、4月、7月、10月）8:30 ET
+    - 単位労働コスト・労働生産性: 四半期ごと発表（2月、3月、5月、6月、8月、9月、11月、12月）8:30 ET
+    - NFIB人件費・雇用計画: 毎月第2火曜日 6:00 ET発表
     - 発表日時を過ぎた指標は個別サービスもforce_refreshで再取得
     """
 
@@ -91,6 +103,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
     INITIAL_CLAIMS_RELEASE_MINUTE_ET = 30
     CHALLENGER_RELEASE_HOUR_ET = 7
     CHALLENGER_RELEASE_MINUTE_ET = 30
+    ECI_RELEASE_HOUR_ET = 8
+    ECI_RELEASE_MINUTE_ET = 30
+    ULC_RELEASE_HOUR_ET = 8
+    ULC_RELEASE_MINUTE_ET = 30
 
     def get_release_datetimes(self) -> List[Optional[datetime]]:
         """
@@ -103,6 +119,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             - ADP雇用者数発表日時（8:15 ET）
             - NER Pulse発表日時（8:15 ET）
             - 新規失業保険申請件数発表日時（8:30 ET）
+            - 雇用コスト指数発表日時（8:30 ET）
         """
         release_times = []
 
@@ -140,6 +157,21 @@ class USAEmploymentLoader(BaseDashboardLoader):
         challenger_release = self._get_challenger_release_datetime()
         if challenger_release:
             release_times.append(challenger_release)
+
+        # 雇用コスト指数発表日時
+        eci_release = self._get_eci_release_datetime()
+        if eci_release:
+            release_times.append(eci_release)
+
+        # 単位労働コスト・労働生産性発表日時
+        ulc_release = self._get_ulc_release_datetime()
+        if ulc_release:
+            release_times.append(ulc_release)
+
+        # NFIB人件費・雇用計画発表日時
+        nfib_release = self._get_nfib_release_datetime()
+        if nfib_release:
+            release_times.append(nfib_release)
 
         return release_times
 
@@ -436,6 +468,134 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Challenger release datetime: {e}")
             return None
 
+    def _get_eci_release_datetime(self) -> Optional[datetime]:
+        """
+        雇用コスト指数の発表日時を取得
+
+        Returns:
+            発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            from services.usa.employment_cost_index_service import employment_cost_index_service
+
+            # サービスからnext_releaseを取得
+            data = employment_cost_index_service.get_employment_cost_index_data()
+            next_release = data.get("next_release")
+
+            if not next_release:
+                return None
+
+            date_str = next_release.get("date")
+            if not date_str:
+                return None
+
+            # YYYY-MM-DD形式をパース
+            try:
+                base_date = datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                return None
+
+            # 発表時刻（8:30 ET）をJSTに変換
+            release_et = datetime(
+                base_date.year, base_date.month, base_date.day,
+                self.ECI_RELEASE_HOUR_ET,
+                self.ECI_RELEASE_MINUTE_ET,
+                tzinfo=ET
+            )
+            release_jst = release_et.astimezone(JST)
+
+            return release_jst
+
+        except Exception as e:
+            print(f"Error getting ECI release datetime: {e}")
+            return None
+
+    def _get_ulc_release_datetime(self) -> Optional[datetime]:
+        """
+        単位労働コスト・労働生産性の発表日時を取得
+
+        Returns:
+            発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            from services.usa.unit_labor_cost_service import unit_labor_cost_service
+
+            # サービスからnext_releaseを取得
+            data = unit_labor_cost_service.get_unit_labor_cost_data()
+            next_release = data.get("next_release")
+
+            if not next_release:
+                return None
+
+            date_str = next_release.get("date")
+            if not date_str:
+                return None
+
+            # YYYY-MM-DD形式をパース
+            try:
+                base_date = datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                return None
+
+            # 発表時刻（8:30 ET）をJSTに変換
+            release_et = datetime(
+                base_date.year, base_date.month, base_date.day,
+                self.ULC_RELEASE_HOUR_ET,
+                self.ULC_RELEASE_MINUTE_ET,
+                tzinfo=ET
+            )
+            release_jst = release_et.astimezone(JST)
+
+            return release_jst
+
+        except Exception as e:
+            print(f"Error getting ULC release datetime: {e}")
+            return None
+
+    def _get_nfib_release_datetime(self) -> Optional[datetime]:
+        """
+        NFIB人件費・雇用計画の発表日時を取得
+
+        NFIB楽観指数と同じ発表日時（毎月第2火曜日 6:00 ET）
+
+        Returns:
+            発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            from services.usa.nfib_service import nfib_service
+
+            # NFIBサービスからnext_releaseを取得
+            data = nfib_service.get_nfib_data()
+            next_release = data.get("next_release")
+
+            if not next_release:
+                return None
+
+            date_str = next_release.get("date")
+            if not date_str:
+                return None
+
+            # YYYY-MM-DD形式をパース
+            try:
+                base_date = datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                return None
+
+            # 発表時刻（6:00 ET = 19:00/20:00 JST）
+            # NFIBは夏時間考慮が必要だが、nfib_service内で処理済み
+            release_et = datetime(
+                base_date.year, base_date.month, base_date.day,
+                6, 0, 0,
+                tzinfo=ET
+            )
+            release_jst = release_et.astimezone(JST)
+
+            return release_jst
+
+        except Exception as e:
+            print(f"Error getting NFIB release datetime: {e}")
+            return None
+
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
         発表日時を過ぎた指標を検出
@@ -457,7 +617,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             now = datetime.now(JST)
             stale = set()
 
-            # Employment Situation発表（失業率・失業率内訳・非農業部門雇用者数・フルタイム/パートタイム・複数の仕事を持つ人/経済的理由によるパートタイム・求人倍率）
+            # Employment Situation発表（失業率・失業率内訳・非農業部門雇用者数・フルタイム/パートタイム・複数の仕事を持つ人/経済的理由によるパートタイム・求人倍率・平均残業時間）
             empsit_release = self._get_empsit_release_datetime()
             if empsit_release and last_updated_dt < empsit_release <= now:
                 stale.add("unemployment_rate")
@@ -468,6 +628,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("job_openings_per_unemployed")  # 求人倍率（UNEMPLOY使用）
                 stale.add("average_hourly_earnings")  # 平均時給
                 stale.add("labor_force_participation")  # 労働参加率
+                stale.add("overtime_hours")  # 平均残業時間
                 print(f"[stale] Employment Situation release detected: {empsit_release.isoformat()}")
 
             # CB雇用機会業況判断発表
@@ -509,6 +670,25 @@ class USAEmploymentLoader(BaseDashboardLoader):
             if challenger_release and last_updated_dt < challenger_release <= now:
                 stale.add("challenger_job_cuts")
                 print(f"[stale] Challenger release detected: {challenger_release.isoformat()}")
+
+            # 雇用コスト指数発表
+            eci_release = self._get_eci_release_datetime()
+            if eci_release and last_updated_dt < eci_release <= now:
+                stale.add("employment_cost_index")
+                print(f"[stale] Employment Cost Index release detected: {eci_release.isoformat()}")
+
+            # 単位労働コスト・労働生産性発表
+            ulc_release = self._get_ulc_release_datetime()
+            if ulc_release and last_updated_dt < ulc_release <= now:
+                stale.add("unit_labor_cost")
+                print(f"[stale] Unit Labor Cost release detected: {ulc_release.isoformat()}")
+
+            # NFIB人件費・雇用計画発表
+            nfib_release = self._get_nfib_release_datetime()
+            if nfib_release and last_updated_dt < nfib_release <= now:
+                stale.add("nfib_compensation")
+                stale.add("nfib_compensation_unemployment")  # NFIB労働報酬・失業率も同時に更新
+                print(f"[stale] NFIB Compensation release detected: {nfib_release.isoformat()}")
 
             return stale
 
@@ -566,6 +746,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.atlanta_fed_wage_service import atlanta_fed_wage_service
         from services.usa.indeed_wage_tracker_service import indeed_wage_tracker_service
         from services.usa.pce_food_recreation_service import pce_food_recreation_service
+        from services.usa.employment_cost_index_service import employment_cost_index_service
+        from services.usa.unit_labor_cost_service import unit_labor_cost_service
+        from services.usa.nfib_service import nfib_service
+        from services.usa.overtime_hours_service import overtime_hours_service
 
         result = {
             "unemployment_rate": None,
@@ -588,10 +772,15 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "atlanta_fed_wage": None,
             "indeed_wage_tracker": None,
             "pce_food_recreation": None,
+            "employment_cost_index": None,
+            "unit_labor_cost": None,
+            "nfib_compensation": None,
+            "nfib_compensation_unemployment": None,
+            "overtime_hours": None,
         }
 
-        # 並列でデータを取得（20ワーカー）
-        with ThreadPoolExecutor(max_workers=20) as executor:
+        # 並列でデータを取得（25ワーカー）
+        with ThreadPoolExecutor(max_workers=25) as executor:
             futures = {
                 executor.submit(self._get_unemployment_rate, unemployment_rate_service): "unemployment_rate",
                 executor.submit(self._get_unemployment_by_reason, unemployment_by_reason_service): "unemployment_by_reason",
@@ -613,6 +802,11 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_atlanta_fed_wage, atlanta_fed_wage_service): "atlanta_fed_wage",
                 executor.submit(self._get_indeed_wage_tracker, indeed_wage_tracker_service): "indeed_wage_tracker",
                 executor.submit(self._get_pce_food_recreation, pce_food_recreation_service): "pce_food_recreation",
+                executor.submit(self._get_employment_cost_index, employment_cost_index_service): "employment_cost_index",
+                executor.submit(self._get_unit_labor_cost, unit_labor_cost_service): "unit_labor_cost",
+                executor.submit(self._get_nfib_compensation, nfib_service): "nfib_compensation",
+                executor.submit(self._get_nfib_compensation_unemployment, nfib_service, unemployment_rate_service): "nfib_compensation_unemployment",
+                executor.submit(self._get_overtime_hours, overtime_hours_service): "overtime_hours",
             }
 
             for future in as_completed(futures):
@@ -991,6 +1185,139 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting PCE Food Recreation data: {e}")
             return None
 
+    def _get_employment_cost_index(self, service) -> Optional[dict]:
+        """雇用コスト指数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("employment_cost_index")
+            response = service.get_employment_cost_index_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Employment Cost Index data: {e}")
+            return None
+
+    def _get_unit_labor_cost(self, service) -> Optional[dict]:
+        """単位労働コスト/労働生産性データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("unit_labor_cost")
+            response = service.get_unit_labor_cost_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Unit Labor Cost data: {e}")
+            return None
+
+    def _get_nfib_compensation(self, service) -> Optional[dict]:
+        """NFIB人件費・雇用計画データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("nfib_compensation")
+            response = service.get_compensation_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NFIB Compensation data: {e}")
+            return None
+
+    def _get_nfib_compensation_unemployment(self, nfib_service, unemployment_service) -> Optional[dict]:
+        """
+        NFIB労働報酬・失業率データを取得
+
+        NFIB Actual Compensation Changes + 失業率(UNRATE)を組み合わせたデータを返す
+        """
+        try:
+            force_refresh = self._should_force_refresh("nfib_compensation_unemployment")
+
+            # NFIB Actual Compensation Changes取得
+            nfib_response = nfib_service.get_actual_compensation_data(force_refresh=force_refresh)
+            nfib_data = nfib_response.get("data", [])
+
+            # 失業率データ取得（UNRATEのみ使用）
+            ur_response = unemployment_service.get_unemployment_rate_data(force_refresh=force_refresh)
+            ur_data = ur_response.get("data", [])
+
+            if not nfib_data and not ur_data:
+                return None
+
+            # データをマージ（日付をキーにして結合）
+            date_map = {}
+
+            # NFIB Actual Compensation
+            for item in nfib_data:
+                date_str = item.get("date")
+                if date_str:
+                    if date_str not in date_map:
+                        date_map[date_str] = {"date": date_str}
+                    date_map[date_str]["actual_compensation"] = item.get("value")
+
+            # 失業率（UNRATE）
+            for item in ur_data:
+                date_str = item.get("date")
+                if date_str:
+                    if date_str not in date_map:
+                        date_map[date_str] = {"date": date_str}
+                    date_map[date_str]["unemployment_rate"] = item.get("unrate")
+
+            # 日付順にソート
+            merged_data = sorted(date_map.values(), key=lambda x: x["date"])
+
+            # 最新値を取得
+            latest = None
+            if merged_data:
+                # 両方のデータがある最新のポイントを探す
+                for item in reversed(merged_data):
+                    if item.get("actual_compensation") is not None:
+                        latest = item
+                        break
+
+            return {
+                "data": merged_data,
+                "latest": latest,
+                "next_release": nfib_response.get("next_release"),
+                "last_updated": nfib_response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NFIB Compensation Unemployment data: {e}")
+            return None
+
+    def _get_overtime_hours(self, service) -> Optional[dict]:
+        """平均残業時間データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("overtime_hours")
+            response = service.get_overtime_hours_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Overtime Hours data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -1015,6 +1342,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.atlanta_fed_wage_service import atlanta_fed_wage_service
         from services.usa.indeed_wage_tracker_service import indeed_wage_tracker_service
         from services.usa.pce_food_recreation_service import pce_food_recreation_service
+        from services.usa.employment_cost_index_service import employment_cost_index_service
+        from services.usa.unit_labor_cost_service import unit_labor_cost_service
+        from services.usa.nfib_service import nfib_service
+        from services.usa.overtime_hours_service import overtime_hours_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -1038,6 +1369,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (atlanta_fed_wage_service, "Atlanta Fed Wage"),
             (indeed_wage_tracker_service, "Indeed Wage Tracker"),
             (pce_food_recreation_service, "PCE Food Recreation"),
+            (employment_cost_index_service, "Employment Cost Index"),
+            (unit_labor_cost_service, "Unit Labor Cost"),
+            (nfib_service, "NFIB Compensation"),
+            (overtime_hours_service, "Overtime Hours"),
         ]
         self._invalidate_service_caches(services)
 

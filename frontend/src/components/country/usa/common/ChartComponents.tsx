@@ -171,8 +171,10 @@ interface LatestValueItem {
 interface LatestValueBoxProps {
   items: LatestValueItem[]
   date?: string
-  nextRelease?: { date: string } | null
+  nextRelease?: { date: string; label?: string } | null
   children?: React.ReactNode
+  /** 日付のフォーマット関数（デフォルト: formatDateLabel） */
+  dateFormatter?: (date: string) => string
 }
 
 function formatItemValue(item: LatestValueItem): string {
@@ -199,6 +201,7 @@ export function LatestValueBox({
   date,
   nextRelease,
   children,
+  dateFormatter = formatDateLabel,
 }: LatestValueBoxProps) {
   return (
     <div style={LATEST_VALUE_BOX_STYLE}>
@@ -222,7 +225,7 @@ export function LatestValueBox({
 
         {date && (
           <span style={{ fontSize: 11, color: '#999' }}>
-            ({formatDateLabel(date)})
+            ({dateFormatter(date)})
           </span>
         )}
 
@@ -231,7 +234,7 @@ export function LatestValueBox({
 
       {nextRelease && (
         <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
-          <div>次回発表: {nextRelease.date}</div>
+          <div>次回発表: {nextRelease.label || nextRelease.date}</div>
         </div>
       )}
     </div>

@@ -46,13 +46,15 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_FILE = CACHE_DIR / "nfib_optimism_cache.json"
 CACHE_FILE_CAPEX = CACHE_DIR / "nfib_capex_cache.json"
+CACHE_FILE_COMPENSATION = CACHE_DIR / "nfib_compensation_cache.json"
 
 
 class NFIBService:
-    """NFIB中小企業楽観指数・設備投資計画サービス"""
+    """NFIB中小企業楽観指数・設備投資計画・人件費雇用計画サービス"""
 
     CACHE_KEY = "nfib:optimism"
     CACHE_KEY_CAPEX = "nfib:capex"
+    CACHE_KEY_COMPENSATION = "nfib:compensation"
 
     def __init__(self):
         """初期化"""
@@ -879,6 +881,476 @@ class NFIBService:
             print(f"CapEx cache saved to {CACHE_FILE_CAPEX}")
         except Exception as e:
             print(f"Failed to save CapEx file cache: {e}")
+
+    # ============================================================
+    # 人件費・雇用計画 (Compensation Plans / Hiring Plans / Actual Compensation Changes)
+    # ============================================================
+
+    def get_compensation_data(
+        self,
+        force_refresh: bool = False
+    ) -> Dict[str, Any]:
+        """
+        NFIB中小企業人件費・雇用計画データを取得
+
+        Args:
+            force_refresh: キャッシュを無視して再取得
+
+        Returns:
+            {
+                "data": [{"date": str, "compensation_plans": float, "hiring_plans": float, "actual_compensation": float}, ...],
+                "latest": {...},
+                "next_release": {"date": "YYYY-MM-DD", "label": str} | null,
+                "cached": bool,
+                "source": str,
+                "last_updated": str
+            }
+        """
+        # Redisキャッシュチェック
+        if not force_refresh:
+            cached_data = redis_client.get(self.CACHE_KEY_COMPENSATION)
+            if cached_data:
+                last_updated_str = cached_data.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    next_release = self._get_next_release()
+                    data = cached_data.get("data", [])
+                    return {
+                        "data": data,
+                        "latest": data[-1] if data else None,
+                        "next_release": next_release,
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated_str
+                    }
+
+        # ファイルキャッシュチェック
+        if not force_refresh:
+            file_cache = self._load_compensation_file_cache()
+            if file_cache:
+                last_updated_str = file_cache.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    data = file_cache.get("data", [])
+                    next_release = self._get_next_release()
+
+                    # Redisにも保存
+                    redis_client.set(self.CACHE_KEY_COMPENSATION, {
+                        "data": data,
+                        "last_updated": last_updated_str
+                    }, expire=0)
+
+                    return {
+                        "data": data,
+                        "latest": data[-1] if data else None,
+                        "next_release": next_release,
+                        "cached": True,
+                        "source": "file",
+                        "last_updated": last_updated_str
+                    }
+
+        # PDFからデータ取得
+        if not HAS_PDFPLUMBER:
+            file_cache = self._load_compensation_file_cache()
+            if file_cache:
+                data = file_cache.get("data", [])
+                return {
+                    "data": data,
+                    "latest": data[-1] if data else None,
+                    "next_release": self._get_next_release(),
+                    "cached": True,
+                    "source": "file (pdfplumber not available)",
+                    "last_updated": file_cache.get("last_updated")
+                }
+            return {
+                "data": [],
+                "latest": None,
+                "next_release": self._get_next_release(),
+                "cached": False,
+                "source": "none",
+                "last_updated": None,
+                "error": "pdfplumber not installed"
+            }
+
+        fetched_result = self._fetch_compensation_from_pdf()
+
+        if fetched_result and fetched_result.get("data"):
+            fetched_data = fetched_result["data"]
+            fetched_data.sort(key=lambda x: x["date"])
+            latest = fetched_data[-1] if fetched_data else None
+            next_release = self._get_next_release()
+
+            cache_payload = {
+                "data": fetched_data,
+                "last_updated": datetime.now(JST).isoformat()
+            }
+            # Redisに保存
+            redis_client.set(self.CACHE_KEY_COMPENSATION, cache_payload, expire=0)
+            # ファイルにも保存
+            self._save_compensation_file_cache(cache_payload)
+
+            return {
+                "data": fetched_data,
+                "latest": latest,
+                "next_release": next_release,
+                "cached": False,
+                "source": "pdf",
+                "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # 取得失敗時はファイルキャッシュから返す
+        file_cache = self._load_compensation_file_cache()
+        if file_cache:
+            data = file_cache.get("data", [])
+            return {
+                "data": data,
+                "latest": data[-1] if data else None,
+                "next_release": self._get_next_release(),
+                "cached": True,
+                "source": "file (fallback)",
+                "last_updated": file_cache.get("last_updated")
+            }
+
+        return {
+            "data": [],
+            "latest": None,
+            "next_release": self._get_next_release(),
+            "cached": False,
+            "source": "none",
+            "last_updated": None,
+            "error": "No data available"
+        }
+
+    def _fetch_compensation_from_pdf(self) -> Optional[Dict[str, Any]]:
+        """NFIBのPDFレポートから人件費・雇用計画データを抽出"""
+        try:
+            print("Fetching NFIB Compensation/Hiring Plans from PDF...")
+
+            # PDFのURLを取得
+            pdf_url = self._extract_pdf_url_from_page()
+            if not pdf_url:
+                print("Could not find PDF URL")
+                return None
+
+            # PDFをダウンロード
+            pdf_content = self._download_pdf(pdf_url)
+            if not pdf_content:
+                print("Could not download PDF")
+                return None
+
+            # 2つのテーブルを抽出
+            compensation_plans = self._extract_compensation_plans_from_pdf(pdf_content)
+            hiring_plans = self._extract_hiring_plans_from_pdf(pdf_content)
+
+            # 時系列データに変換してマージ
+            comp_ts = self._convert_to_timeseries(compensation_plans)
+            hire_ts = self._convert_to_timeseries(hiring_plans)
+
+            # データをマージ
+            merged = self._merge_compensation_data(comp_ts, hire_ts)
+
+            print(f"Fetched {len(merged)} NFIB Compensation records")
+
+            if merged:
+                return {"data": merged}
+
+            return None
+
+        except Exception as e:
+            print(f"Error fetching NFIB Compensation from PDF: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def _extract_compensation_plans_from_pdf(self, pdf_content: bytes) -> List[Dict[str, Any]]:
+        """
+        PDFからCOMPENSATION PLANSテーブルを抽出
+        マーカー: "COMPENSATION PLANS"
+        テーブルインデックス: 1（ページ内2番目のテーブル）
+        値の範囲: -50〜100
+        """
+        return self._extract_table_by_marker(
+            pdf_content,
+            marker="COMPENSATION PLANS",
+            table_index=1,
+            value_range=(-50, 100)
+        )
+
+    def _extract_hiring_plans_from_pdf(self, pdf_content: bytes) -> List[Dict[str, Any]]:
+        """
+        PDFからHIRING PLANSテーブルを抽出
+        マーカー: "HIRING PLANS"
+        テーブルインデックス: 1（ページ内2番目のテーブル）
+        値の範囲: -50〜100
+        """
+        return self._extract_table_by_marker(
+            pdf_content,
+            marker="HIRING PLANS",
+            table_index=1,
+            value_range=(-50, 100)
+        )
+
+    def _merge_compensation_data(
+        self,
+        compensation_plans: List[Dict[str, Any]],
+        hiring_plans: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        """2つのデータソースをマージ"""
+        date_map: Dict[str, Dict[str, Any]] = {}
+
+        # Compensation Plans
+        for item in compensation_plans:
+            date_str = item["date"]
+            if date_str not in date_map:
+                date_map[date_str] = {"date": date_str}
+            date_map[date_str]["compensation_plans"] = item["value"]
+
+        # Hiring Plans
+        for item in hiring_plans:
+            date_str = item["date"]
+            if date_str not in date_map:
+                date_map[date_str] = {"date": date_str}
+            date_map[date_str]["hiring_plans"] = item["value"]
+
+        # 日付順にソート
+        result = sorted(date_map.values(), key=lambda x: x["date"])
+        return result
+
+    def _load_compensation_file_cache(self) -> Optional[Dict[str, Any]]:
+        """人件費・雇用計画のファイルキャッシュを読み込み"""
+        try:
+            if not CACHE_FILE_COMPENSATION.exists():
+                return None
+
+            with open(CACHE_FILE_COMPENSATION, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Failed to load Compensation file cache: {e}")
+            return None
+
+    def _save_compensation_file_cache(self, data: Dict[str, Any]) -> None:
+        """人件費・雇用計画のファイルキャッシュを保存"""
+        try:
+            with open(CACHE_FILE_COMPENSATION, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            print(f"Compensation cache saved to {CACHE_FILE_COMPENSATION}")
+        except Exception as e:
+            print(f"Failed to save Compensation file cache: {e}")
+
+    def invalidate_compensation_cache(self) -> bool:
+        """人件費・雇用計画のキャッシュを無効化"""
+        return redis_client.delete(self.CACHE_KEY_COMPENSATION)
+
+    # ============================================================
+    # 実際の人件費変更（労働報酬/失業率チャート用）
+    # ============================================================
+
+    CACHE_KEY_ACTUAL_COMPENSATION = "nfib:actual_compensation"
+
+    def get_actual_compensation_data(
+        self,
+        force_refresh: bool = False
+    ) -> Dict[str, Any]:
+        """
+        NFIB実際の人件費変更データを取得（労働報酬/失業率チャート用）
+
+        Args:
+            force_refresh: キャッシュを無視して再取得
+
+        Returns:
+            {
+                "data": [{"date": "YYYY-MM-DD", "value": float}, ...],
+                "latest": {"date": "YYYY-MM-DD", "value": float},
+                "next_release": {"date": "YYYY-MM-DD", "label": str} | null,
+                "cached": bool,
+                "source": str,
+                "last_updated": str
+            }
+        """
+        cache_file = CACHE_DIR / "nfib_actual_compensation_cache.json"
+
+        # Redisキャッシュチェック
+        if not force_refresh:
+            cached_data = redis_client.get(self.CACHE_KEY_ACTUAL_COMPENSATION)
+            if cached_data:
+                last_updated_str = cached_data.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    next_release = self._get_next_release()
+                    data = cached_data.get("data", [])
+                    return {
+                        "data": data,
+                        "latest": data[-1] if data else None,
+                        "next_release": next_release,
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated_str
+                    }
+
+        # ファイルキャッシュチェック
+        if not force_refresh:
+            file_cache = self._load_actual_compensation_file_cache(cache_file)
+            if file_cache:
+                last_updated_str = file_cache.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    data = file_cache.get("data", [])
+                    next_release = self._get_next_release()
+
+                    redis_client.set(self.CACHE_KEY_ACTUAL_COMPENSATION, {
+                        "data": data,
+                        "last_updated": last_updated_str
+                    }, expire=0)
+
+                    return {
+                        "data": data,
+                        "latest": data[-1] if data else None,
+                        "next_release": next_release,
+                        "cached": True,
+                        "source": "file",
+                        "last_updated": last_updated_str
+                    }
+
+        # PDFからデータ取得
+        if not HAS_PDFPLUMBER:
+            file_cache = self._load_actual_compensation_file_cache(cache_file)
+            if file_cache:
+                data = file_cache.get("data", [])
+                return {
+                    "data": data,
+                    "latest": data[-1] if data else None,
+                    "next_release": self._get_next_release(),
+                    "cached": True,
+                    "source": "file (pdfplumber not available)",
+                    "last_updated": file_cache.get("last_updated")
+                }
+            return {
+                "data": [],
+                "latest": None,
+                "next_release": self._get_next_release(),
+                "cached": False,
+                "source": "none",
+                "last_updated": None,
+                "error": "pdfplumber not installed"
+            }
+
+        fetched_result = self._fetch_actual_compensation_from_pdf()
+
+        if fetched_result and fetched_result.get("data"):
+            fetched_data = fetched_result["data"]
+            fetched_data.sort(key=lambda x: x["date"])
+            latest = fetched_data[-1] if fetched_data else None
+            next_release = self._get_next_release()
+
+            cache_payload = {
+                "data": fetched_data,
+                "last_updated": datetime.now(JST).isoformat()
+            }
+            redis_client.set(self.CACHE_KEY_ACTUAL_COMPENSATION, cache_payload, expire=0)
+            self._save_actual_compensation_file_cache(cache_file, cache_payload)
+
+            return {
+                "data": fetched_data,
+                "latest": latest,
+                "next_release": next_release,
+                "cached": False,
+                "source": "pdf",
+                "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # 取得失敗時はファイルキャッシュから返す
+        file_cache = self._load_actual_compensation_file_cache(cache_file)
+        if file_cache:
+            data = file_cache.get("data", [])
+            return {
+                "data": data,
+                "latest": data[-1] if data else None,
+                "next_release": self._get_next_release(),
+                "cached": True,
+                "source": "file (fallback)",
+                "last_updated": file_cache.get("last_updated")
+            }
+
+        return {
+            "data": [],
+            "latest": None,
+            "next_release": self._get_next_release(),
+            "cached": False,
+            "source": "none",
+            "last_updated": None,
+            "error": "No data available"
+        }
+
+    def _fetch_actual_compensation_from_pdf(self) -> Optional[Dict[str, Any]]:
+        """NFIBのPDFレポートから実際の人件費変更データを抽出"""
+        try:
+            print("Fetching NFIB Actual Compensation Changes from PDF...")
+
+            # PDFのURLを取得
+            pdf_url = self._extract_pdf_url_from_page()
+            if not pdf_url:
+                print("Could not find PDF URL")
+                return None
+
+            # PDFをダウンロード
+            pdf_content = self._download_pdf(pdf_url)
+            if not pdf_content:
+                print("Could not download PDF")
+                return None
+
+            # Actual Compensation Changesテーブルを抽出
+            actual_compensation = self._extract_actual_compensation_from_pdf(pdf_content)
+
+            # 時系列データに変換
+            timeseries = self._convert_to_timeseries(actual_compensation)
+
+            print(f"Fetched {len(timeseries)} NFIB Actual Compensation records")
+
+            if timeseries:
+                return {"data": timeseries}
+
+            return None
+
+        except Exception as e:
+            print(f"Error fetching NFIB Actual Compensation from PDF: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def _extract_actual_compensation_from_pdf(self, pdf_content: bytes) -> List[Dict[str, Any]]:
+        """
+        PDFからACTUAL COMPENSATION CHANGESテーブルを抽出
+        マーカー: "ACTUAL COMPENSATION CHANGES"
+        テーブルインデックス: 0（ページ内1番目のテーブル）
+        値の範囲: -50〜100
+        """
+        return self._extract_table_by_marker(
+            pdf_content,
+            marker="ACTUAL COMPENSATION CHANGES",
+            table_index=0,
+            value_range=(-50, 100)
+        )
+
+    def _load_actual_compensation_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
+        """実際の人件費変更のファイルキャッシュを読み込み"""
+        try:
+            if not cache_file.exists():
+                return None
+
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Failed to load Actual Compensation file cache: {e}")
+            return None
+
+    def _save_actual_compensation_file_cache(self, cache_file: Path, data: Dict[str, Any]) -> None:
+        """実際の人件費変更のファイルキャッシュを保存"""
+        try:
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            print(f"Actual Compensation cache saved to {cache_file}")
+        except Exception as e:
+            print(f"Failed to save Actual Compensation file cache: {e}")
+
+    def invalidate_actual_compensation_cache(self) -> bool:
+        """実際の人件費変更のキャッシュを無効化"""
+        return redis_client.delete(self.CACHE_KEY_ACTUAL_COMPENSATION)
 
 
 # シングルトンインスタンス
