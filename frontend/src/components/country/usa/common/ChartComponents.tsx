@@ -26,8 +26,10 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
+  TEXT_COLORS,
+  DARK_THEME,
 } from './chartConstants'
-import { formatDateLabel, formatPercent, createPercentFormatter } from './useChartData'
+import { formatDateLabel, formatPercent } from './useChartData'
 
 // =============================================================================
 // ViewModeButton - ビューモード切り替えボタン
@@ -206,11 +208,11 @@ export function LatestValueBox({
   return (
     <div style={LATEST_VALUE_BOX_STYLE}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
+        <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
 
         {items.map((item, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 12, color: '#666' }}>{item.label}:</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{item.label}:</span>
             <span
               style={{
                 fontSize: 16,
@@ -224,7 +226,7 @@ export function LatestValueBox({
         ))}
 
         {date && (
-          <span style={{ fontSize: 11, color: '#999' }}>
+          <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
             ({dateFormatter(date)})
           </span>
         )}
@@ -233,7 +235,7 @@ export function LatestValueBox({
       </div>
 
       {nextRelease && (
-        <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+        <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
           <div>次回発表: {nextRelease.label || nextRelease.date}</div>
         </div>
       )}
@@ -297,7 +299,7 @@ export function SimpleLatestValueBox({
     <div style={LATEST_VALUE_BOX_STYLE}>
       <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
         <div>
-          <span style={{ fontSize: 12, color: '#666' }}>{label}: </span>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{label}: </span>
           <span style={{ fontSize: 20, fontWeight: 'bold', color: valueColor }}>
             {formattedValue}
           </span>
@@ -305,7 +307,7 @@ export function SimpleLatestValueBox({
 
         {formattedSubValue && (
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>{subLabel}: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{subLabel}: </span>
             <span
               style={{
                 fontSize: 20,
@@ -319,17 +321,17 @@ export function SimpleLatestValueBox({
         )}
 
         {date && (
-          <span style={{ fontSize: 12, color: '#999', alignSelf: 'center' }}>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary, alignSelf: 'center' }}>
             ({dateFormatter(date)})
           </span>
         )}
       </div>
 
       {nextRelease && (
-        <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+        <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
           <div>次回発表: {nextRelease.date}</div>
           {nextRelease.label && (
-            <div style={{ fontSize: 11, color: '#1890ff' }}>{nextRelease.label}</div>
+            <div style={{ fontSize: 11, color: DARK_THEME.accent }}>{nextRelease.label}</div>
           )}
         </div>
       )}
@@ -347,7 +349,7 @@ interface NoDataMessageProps {
 
 export function NoDataMessage({ message = 'データが利用できません' }: NoDataMessageProps) {
   return (
-    <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
+    <div style={{ textAlign: 'center', padding: '40px 0', color: TEXT_COLORS.tertiary }}>
       {message}
     </div>
   )
@@ -372,7 +374,7 @@ export function TableLegend({ items }: TableLegendProps) {
       style={{
         marginTop: 8,
         fontSize: 11,
-        color: '#888',
+        color: TEXT_COLORS.tertiary,
         display: 'flex',
         gap: 16,
         flexWrap: 'wrap',
@@ -425,7 +427,7 @@ interface NextReleaseDisplayProps {
 
 const NEXT_RELEASE_STYLE: React.CSSProperties = {
   fontSize: 11,
-  color: '#888',
+  color: TEXT_COLORS.tertiary,
   textAlign: 'right',
 }
 
@@ -449,7 +451,7 @@ export function NextReleaseDisplay({ nextRelease, style }: NextReleaseDisplayPro
  */
 export const ZERO_LINE_PROPS = {
   y: 0,
-  stroke: '#000',
+  stroke: TEXT_COLORS.secondary,
   strokeWidth: 1,
 } as const
 
@@ -459,13 +461,13 @@ export const ZERO_LINE_PROPS = {
  */
 export const FIFTY_LINE_PROPS = {
   y: 50,
-  stroke: '#000',
+  stroke: TEXT_COLORS.secondary,
   strokeWidth: 1,
   label: {
     value: '50',
     position: 'right' as const,
     fontSize: 10,
-    fill: '#666',
+    fill: TEXT_COLORS.secondary,
   },
 } as const
 
@@ -528,17 +530,17 @@ export function LatestValueBoxDual({
   return (
     <div style={LATEST_VALUE_BOX_STYLE}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
+        <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
 
         {/* Primary value */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 12, color: '#666' }}>{primary.label}:</span>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{primary.label}:</span>
           {primary.data && (
             <>
               <span style={{ fontSize: 16, fontWeight: 'bold', color: primary.color }}>
                 {formatPercent(getDisplayValue(primary.data))}
               </span>
-              <span style={{ fontSize: 11, color: '#999' }}>
+              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                 ({formatDateLabel(primary.data.date)})
               </span>
             </>
@@ -547,13 +549,13 @@ export function LatestValueBoxDual({
 
         {/* Secondary value */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 12, color: '#666' }}>{secondary.label}:</span>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{secondary.label}:</span>
           {secondary.data && (
             <>
               <span style={{ fontSize: 16, fontWeight: 'bold', color: secondary.color }}>
                 {formatPercent(getDisplayValue(secondary.data))}
               </span>
-              <span style={{ fontSize: 11, color: '#999' }}>
+              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                 ({formatDateLabel(secondary.data.date)})
               </span>
             </>
@@ -562,7 +564,7 @@ export function LatestValueBoxDual({
       </div>
 
       {nextRelease && (
-        <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+        <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
           次回発表: {nextRelease.date}
         </div>
       )}
@@ -618,16 +620,16 @@ export function LatestValueBoxWithSub({
   return (
     <div style={LATEST_VALUE_BOX_STYLE}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
+        <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
 
         {/* Main value */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 12, color: '#666' }}>{main.label}:</span>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{main.label}:</span>
           <span style={{ fontSize: 16, fontWeight: 'bold', color: main.color }}>
             {formatPercent(getDisplayValue(main.yoyValue, main.momValue))}
           </span>
           {date && (
-            <span style={{ fontSize: 11, color: '#999' }}>
+            <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
               ({formatDateLabel(date)})
             </span>
           )}
@@ -635,7 +637,7 @@ export function LatestValueBoxWithSub({
 
         {/* Sub value */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 12, color: '#666' }}>{sub.label}:</span>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{sub.label}:</span>
           <span style={{ fontSize: 16, fontWeight: 'bold', color: sub.color }}>
             {formatPercent(getDisplayValue(sub.yoyValue, sub.momValue))}
           </span>
@@ -643,7 +645,7 @@ export function LatestValueBoxWithSub({
       </div>
 
       {nextRelease && (
-        <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+        <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
           次回発表: {nextRelease.date}
         </div>
       )}
@@ -684,7 +686,9 @@ interface StandardLineChartProps<T> {
   yAxisFormatter?: (value: number) => string
   /** ツールチップのラベルフォーマッター */
   tooltipLabelFormatter?: (label: string) => string
-  /** ツールチップの値フォーマッター */
+  /** ツールチップの値フォーマッター（文字列を返す関数） */
+  tooltipValueFormatter?: (value: number, dataKey: string) => string
+  /** @deprecated 使用しないでください。tooltipValueFormatterを使用してください */
   tooltipFormatter?: (value: unknown, name: string) => [string, string]
   /** Y軸のドメイン */
   yDomain?: [string | number, string | number]
@@ -720,13 +724,59 @@ export function StandardLineChart<T extends { date: string }>({
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
   tooltipLabelFormatter = formatDateLabel,
-  tooltipFormatter = createPercentFormatter(),
+  tooltipValueFormatter = (v) => `${v.toFixed(2)}%`,
   yDomain = ['auto', 'auto'],
   showZeroLine = true,
   showFiftyLine = false,
   onLegendClick,
   showLegend = true,
 }: StandardLineChartProps<T>) {
+  // カスタムTooltipコンポーネント（数値にチャートの色を使用）
+  const LineChartTooltip = ({ active, payload, label }: {
+    active?: boolean
+    payload?: TooltipPayloadItem[]
+    label?: string
+  }) => {
+    if (!active || !payload || payload.length === 0) return null
+
+    return (
+      <div style={TOOLTIP_STYLE}>
+        <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
+          {tooltipLabelFormatter(label || '')}
+        </div>
+        {payload.map((item, index) => (
+          <div
+            key={index}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 4,
+              fontSize: 13,
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: 10,
+                  height: 10,
+                  borderRadius: 2,
+                  backgroundColor: item.color,
+                  marginRight: 6,
+                }}
+              />
+              {item.name}
+            </span>
+            <span style={{ fontWeight: 500, color: item.color }}>
+              {tooltipValueFormatter(item.value, item.dataKey)}
+            </span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <ResponsiveContainer width="100%" height={height}>
       <LineChart data={data} margin={CHART_MARGIN}>
@@ -742,11 +792,7 @@ export function StandardLineChart<T extends { date: string }>({
           tick={AXIS_STYLE.tick}
           tickFormatter={yAxisFormatter}
         />
-        <Tooltip
-          labelFormatter={tooltipLabelFormatter}
-          formatter={tooltipFormatter}
-          contentStyle={TOOLTIP_STYLE}
-        />
+        <Tooltip content={<LineChartTooltip />} />
         {showLegend && (
           <Legend
             onClick={onLegendClick ? (e) => onLegendClick(e.dataKey as string) : undefined}
@@ -757,13 +803,13 @@ export function StandardLineChart<T extends { date: string }>({
         {showFiftyLine && (
           <ReferenceLine
             y={50}
-            stroke="#000"
+            stroke={TEXT_COLORS.secondary}
             strokeWidth={1}
             label={{
               value: '50',
               position: 'right',
               fontSize: 10,
-              fill: '#666',
+              fill: TEXT_COLORS.secondary,
             }}
           />
         )}
@@ -816,7 +862,9 @@ interface StandardBarChartProps<T> {
   yAxisFormatter?: (value: number) => string
   /** ツールチップのラベルフォーマッター */
   tooltipLabelFormatter?: (label: string) => string
-  /** ツールチップの値フォーマッター */
+  /** ツールチップの値フォーマッター（文字列を返す関数） */
+  tooltipValueFormatter?: (value: number, dataKey: string) => string
+  /** @deprecated 使用しないでください。tooltipValueFormatterを使用してください */
   tooltipFormatter?: (value: unknown, name: string) => [string, string]
   /** Y軸のドメイン */
   yDomain?: [string | number, string | number]
@@ -836,7 +884,7 @@ interface StandardBarChartProps<T> {
  *     { dataKey: 'mom', color: '#52c41a', name: '前月比' },
  *   ]}
  *   yAxisFormatter={(v) => `${v}%`}
- *   tooltipFormatter={createPercentFormatter()}
+ *   tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
  * />
  */
 export function StandardBarChart<T extends { date: string }>({
@@ -846,11 +894,57 @@ export function StandardBarChart<T extends { date: string }>({
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
   tooltipLabelFormatter = formatDateLabel,
-  tooltipFormatter = createPercentFormatter(),
+  tooltipValueFormatter = (v) => `${v.toFixed(2)}%`,
   yDomain = ['auto', 'auto'],
   showZeroLine = true,
   showLegend = true,
 }: StandardBarChartProps<T>) {
+  // カスタムTooltipコンポーネント（数値にチャートの色を使用）
+  const BarChartTooltip = ({ active, payload, label }: {
+    active?: boolean
+    payload?: TooltipPayloadItem[]
+    label?: string
+  }) => {
+    if (!active || !payload || payload.length === 0) return null
+
+    return (
+      <div style={TOOLTIP_STYLE}>
+        <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
+          {tooltipLabelFormatter(label || '')}
+        </div>
+        {payload.map((item, index) => (
+          <div
+            key={index}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 4,
+              fontSize: 13,
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: 10,
+                  height: 10,
+                  borderRadius: 2,
+                  backgroundColor: item.color,
+                  marginRight: 6,
+                }}
+              />
+              {item.name}
+            </span>
+            <span style={{ fontWeight: 500, color: item.color }}>
+              {tooltipValueFormatter(item.value, item.dataKey)}
+            </span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} margin={CHART_MARGIN}>
@@ -866,11 +960,7 @@ export function StandardBarChart<T extends { date: string }>({
           tick={AXIS_STYLE.tick}
           tickFormatter={yAxisFormatter}
         />
-        <Tooltip
-          labelFormatter={tooltipLabelFormatter}
-          formatter={tooltipFormatter}
-          contentStyle={TOOLTIP_STYLE}
-        />
+        <Tooltip content={<BarChartTooltip />} />
         {showLegend && <Legend />}
         {showZeroLine && <ReferenceLine {...ZERO_LINE_PROPS} />}
         {bars.map((bar) => (
@@ -928,7 +1018,7 @@ export function CustomTooltip({
   label,
   labelFormatter = (l) => l,
   valueFormatter = (v) => v.toFixed(2),
-  getValueColor = (v) => (v >= 0 ? '#52c41a' : '#ff4d4f'),
+  getValueColor,
   nameMap,
 }: CustomTooltipProps) {
   if (!active || !payload || payload.length === 0) return null
@@ -936,14 +1026,15 @@ export function CustomTooltip({
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        border: '1px solid #ddd',
+        backgroundColor: DARK_THEME.bgTertiary,
+        border: `1px solid ${DARK_THEME.borderLight}`,
         borderRadius: 8,
         padding: '12px 16px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+        color: DARK_THEME.textPrimary,
       }}
     >
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>
+      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
         {labelFormatter(label || '')}
       </div>
       {payload.map((item, index) => {
@@ -959,7 +1050,7 @@ export function CustomTooltip({
               fontSize: 13,
             }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -972,7 +1063,7 @@ export function CustomTooltip({
               />
               {displayName}
             </span>
-            <span style={{ fontWeight: 500, color: getValueColor(item.value, item.dataKey) }}>
+            <span style={{ fontWeight: 500, color: getValueColor ? getValueColor(item.value, item.dataKey) : item.color }}>
               {valueFormatter(item.value, item.dataKey)}
             </span>
           </div>
@@ -1015,7 +1106,6 @@ export function PercentageTooltip({
       label={label}
       labelFormatter={labelFormatter}
       valueFormatter={formatPercentage}
-      getValueColor={(v) => (v >= 0 ? '#52c41a' : '#ff4d4f')}
       nameMap={nameMap}
     />
   )

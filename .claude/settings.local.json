@@ -69,7 +69,10 @@
       "Bash(docker rm:*)",
       "Bash(docker compose:*)",
       "Bash(if not exist \"c:\\Users\\owner\\Desktop\\economic-platform\\backend\\cache\\usa\\consumer\" mkdir \"c:\\Users\\owner\\Desktop\\economic-platform\\backend\\cache\\usa\\consumer\")",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(if not exist \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\constants\" mkdir \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\constants\")",
+      "Bash(if not exist \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\components\\charts\" mkdir \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\components\\charts\")",
+      "Bash(done)"
     ]
   }
 }

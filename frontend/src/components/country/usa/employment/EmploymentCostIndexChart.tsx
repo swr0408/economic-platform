@@ -36,6 +36,8 @@ import {
   MOM_THRESHOLDS,
   getCellColor,
   getValueColor,
+  DARK_THEME,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -188,7 +190,7 @@ function QuarterlyTable({
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
         {helperText}
       </div>
       <table
@@ -197,14 +199,15 @@ function QuarterlyTable({
           borderCollapse: 'collapse',
           fontSize: 12,
           textAlign: 'center',
+          color: DARK_THEME.textPrimary,
         }}
       >
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
             <th
               style={{
                 padding: '8px 4px',
-                borderBottom: '2px solid #d9d9d9',
+                borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                 fontWeight: 'bold',
               }}
             >
@@ -215,7 +218,7 @@ function QuarterlyTable({
                 key={idx}
                 style={{
                   padding: '8px 4px',
-                  borderBottom: '2px solid #d9d9d9',
+                  borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                   fontWeight: 'bold',
                   minWidth: 80,
                 }}
@@ -231,9 +234,9 @@ function QuarterlyTable({
               <td
                 style={{
                   padding: '6px 4px',
-                  borderBottom: '1px solid #e8e8e8',
+                  borderBottom: `1px solid ${DARK_THEME.border}`,
                   fontWeight: 'bold',
-                  backgroundColor: '#fafafa',
+                  backgroundColor: DARK_THEME.bgTertiary,
                 }}
               >
                 {year}
@@ -249,11 +252,11 @@ function QuarterlyTable({
                     key={quarter}
                     style={{
                       padding: '6px 4px',
-                      borderBottom: '1px solid #e8e8e8',
+                      borderBottom: `1px solid ${DARK_THEME.border}`,
                       backgroundColor: bgColor,
                     }}
                   >
-                    <span style={{ color: value === null ? '#bfbfbf' : textColor }}>
+                    <span style={{ color: value === null ? TEXT_COLORS.quaternary : textColor }}>
                       {displayValue}
                     </span>
                   </td>

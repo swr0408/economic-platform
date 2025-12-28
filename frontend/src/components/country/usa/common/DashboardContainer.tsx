@@ -7,6 +7,7 @@ import React from 'react'
 import { Spin, Alert, Button } from 'antd'
 import { UseQueryResult } from '@tanstack/react-query'
 import type { DashboardResponse } from '../../../../hooks/useDashboardData'
+import { DARK_THEME, TEXT_COLORS } from './chartConstants'
 
 // =============================================================================
 // 型定義
@@ -39,12 +40,12 @@ export function DashboardSkeleton({ message }: DashboardSkeletonProps) {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: 400,
-          background: '#fafafa',
+          background: DARK_THEME.bgSecondary,
           borderRadius: 12,
         }}
       >
         <Spin size="large" />
-        <div style={{ marginTop: 16, color: '#666' }}>{message}</div>
+        <div style={{ marginTop: 16, color: TEXT_COLORS.secondary }}>{message}</div>
       </div>
     </div>
   )

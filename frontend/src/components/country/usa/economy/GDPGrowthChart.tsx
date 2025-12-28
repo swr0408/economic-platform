@@ -7,6 +7,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 // 共通モジュールのインポート
 import { usePeriodFiltering, formatQuarterLabel, useQuarterlyTableData, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
+import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE } from '../common/chartConstants'
 
 // Props型定義
 interface GDPGrowthItem {
@@ -87,30 +88,31 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
   // 最新値を取得
   const latestValue = filteredData.length > 0 ? filteredData[filteredData.length - 1] : null
 
-  // テーブルセルの背景色を決定
+  // テーブルセルの背景色を決定（ダークテーマ用）
   const getCellColor = (value: number | null | undefined) => {
     if (value === null || value === undefined) return 'transparent'
-    if (value > 3) return 'rgba(82, 196, 26, 0.3)'   // 強いプラス: 緑
-    if (value > 1.5) return 'rgba(82, 196, 26, 0.15)' // プラス: 薄緑
-    if (value > 0) return 'rgba(82, 196, 26, 0.05)'   // プラス: 緑
-    if (value < -3) return 'rgba(255, 0, 0, 0.3)'   // マイナス: 赤
-    if (value < -1.5) return 'rgba(255, 0, 0, 0.15)' // マイナス: 薄赤
-    if (value < 0) return 'rgba(255, 0, 0, 0.05)'   // マイナス: 薄赤
+    if (value > 3) return 'rgba(16, 185, 129, 0.55)'   // 強いプラス: 緑
+    if (value > 1.5) return 'rgba(16, 185, 129, 0.35)' // プラス: 薄緑
+    if (value > 0) return 'rgba(16, 185, 129, 0.15)'   // プラス: 緑
+    if (value < -3) return 'rgba(239, 68, 68, 0.55)'   // マイナス: 赤
+    if (value < -1.5) return 'rgba(239, 68, 68, 0.35)' // マイナス: 薄赤
+    if (value < 0) return 'rgba(239, 68, 68, 0.15)'   // マイナス: 薄赤
     return 'transparent'
   }
 
-  // 表示モード切り替えボタン
+  // 表示モード切り替えボタン（ダークテーマ）
   const ViewModeButtons = () => (
     <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
       <button
         onClick={() => setViewMode('chart')}
         style={{
           padding: '6px 12px',
-          border: viewMode === 'chart' ? '2px solid #1890ff' : '1px solid #d9d9d9',
+          border: viewMode === 'chart' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
           borderRadius: 4,
-          background: viewMode === 'chart' ? '#e6f7ff' : '#fff',
+          background: viewMode === 'chart' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
           cursor: 'pointer',
           fontWeight: viewMode === 'chart' ? 'bold' : 'normal',
+          color: viewMode === 'chart' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
         }}
       >
         グラフ
@@ -119,11 +121,12 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
         onClick={() => setViewMode('table')}
         style={{
           padding: '6px 12px',
-          border: viewMode === 'table' ? '2px solid #1890ff' : '1px solid #d9d9d9',
+          border: viewMode === 'table' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
           borderRadius: 4,
-          background: viewMode === 'table' ? '#e6f7ff' : '#fff',
+          background: viewMode === 'table' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
           cursor: 'pointer',
           fontWeight: viewMode === 'table' ? 'bold' : 'normal',
+          color: viewMode === 'table' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
         }}
       >
         テーブル
@@ -131,7 +134,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
     </div>
   )
 
-  // テーブルコンポーネント
+  // テーブルコンポーネント（ダークテーマ）
   const GDPTable = () => (
     <div style={{ overflowX: 'auto' }}>
       <table
@@ -140,11 +143,12 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
           borderCollapse: 'collapse',
           fontSize: 13,
           textAlign: 'center',
+          color: DARK_THEME.textPrimary,
         }}
       >
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
-            <th style={{ padding: '10px 8px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold' }}>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
+            <th style={{ padding: '10px 8px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>
               年
             </th>
             {QUARTER_NAMES.map((quarter, idx) => (
@@ -152,7 +156,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
                 key={idx}
                 style={{
                   padding: '10px 8px',
-                  borderBottom: '2px solid #d9d9d9',
+                  borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                   fontWeight: 'bold',
                   minWidth: 80,
                 }}
@@ -168,9 +172,9 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
               <td
                 style={{
                   padding: '8px',
-                  borderBottom: '1px solid #e8e8e8',
+                  borderBottom: `1px solid ${DARK_THEME.border}`,
                   fontWeight: 'bold',
-                  backgroundColor: '#fafafa',
+                  backgroundColor: DARK_THEME.bgTertiary,
                 }}
               >
                 {year}
@@ -182,16 +186,16 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
                     key={quarter}
                     style={{
                       padding: '8px',
-                      borderBottom: '1px solid #e8e8e8',
+                      borderBottom: `1px solid ${DARK_THEME.border}`,
                       backgroundColor: getCellColor(value),
                     }}
                   >
                     {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? '#389e0d' : '#cf1322' }}>
+                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
                         {value >= 0 ? '+' : ''}{value.toFixed(1)}
                       </span>
                     ) : (
-                      <span style={{ color: '#bfbfbf' }}>-</span>
+                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
                     )}
                   </td>
                 )
@@ -200,21 +204,21 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
           ))}
         </tbody>
       </table>
-      <div style={{ marginTop: 8, fontSize: 11, color: '#888', display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+      <div style={{ marginTop: 8, fontSize: 11, color: TEXT_COLORS.tertiary, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         <span>
-          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(82, 196, 26, 0.3)', marginRight: 4 }} />
+          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(16, 185, 129, 0.55)', marginRight: 4 }} />
           プラス（+2%以上）
         </span>
         <span>
-          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(82, 196, 26, 0.15)', marginRight: 4 }} />
+          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(16, 185, 129, 0.35)', marginRight: 4 }} />
           プラス（0〜+2%）
         </span>
         <span>
-          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(255, 77, 79, 0.15)', marginRight: 4 }} />
+          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(239, 68, 68, 0.35)', marginRight: 4 }} />
           マイナス（0〜-2%）
         </span>
         <span>
-          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(255, 77, 79, 0.3)', marginRight: 4 }} />
+          <span style={{ display: 'inline-block', width: 12, height: 12, backgroundColor: 'rgba(239, 68, 68, 0.55)', marginRight: 4 }} />
           マイナス（-2%以下）
         </span>
       </div>
@@ -229,38 +233,28 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
         dataSource="BEA / FRED"
         sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product"
       >
-        {/* 最新値表示 */}
+        {/* 最新値表示（ダークテーマ） */}
         {latestValue && (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 12,
-              padding: '8px 12px',
-              background: '#f5f5f5',
-              borderRadius: 8,
-            }}
-          >
+          <div style={LATEST_VALUE_BOX_STYLE}>
             <div>
-              <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>最新値: </span>
               <span
                 style={{
                   fontSize: 18,
                   fontWeight: 'bold',
-                  color: latestValue.value >= 0 ? '#52c41a' : '#ff4d4f',
+                  color: latestValue.value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative,
                 }}
               >
                 {formatPercentage(latestValue.value)}
               </span>
-              <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary, marginLeft: 8 }}>
                 ({formatQuarterLabel(latestValue.date)})
               </span>
             </div>
             {nextRelease && (
-              <div style={{ fontSize: 11, color: '#666', textAlign: 'right' }}>
+              <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
                 <div>次回発表: {nextRelease.date}</div>
-                <div style={{ color: '#1890ff' }}>
+                <div style={{ color: DARK_THEME.accent }}>
                   Q{nextRelease.quarter}/{nextRelease.year} ({nextRelease.estimate_type})
                 </div>
               </div>
@@ -274,7 +268,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
           <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
         )}
         {viewMode === 'table' && (
-          <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
             ※ 直近10年間のGDP成長率データ（単位: %）
           </div>
         )}
@@ -285,7 +279,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
           <ZoomableChart
             data={filteredData}
             dataKey="value"
-            color="#1890ff"
+            color={CHART_COLORS.primary}
             name="GDP成長率"
             height={450}
             tickFormatter={formatPercentage}

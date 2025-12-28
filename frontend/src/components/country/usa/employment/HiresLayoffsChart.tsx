@@ -105,7 +105,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
               padding: '4px 12px',
             }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -118,7 +118,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
               />
               {item.name}
             </span>
-            <span style={{ fontWeight: 500 }}>
+            <span style={{ fontWeight: 500, color: item.color }}>
               {displayValue}
             </span>
           </div>

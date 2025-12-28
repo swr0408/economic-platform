@@ -2,7 +2,27 @@
  * チャートコンポーネント共通定数
  *
  * 色、スタイル、設定値を一元管理
+ * EconAlpha ダークテーマ対応
  */
+
+// =============================================================================
+// EconAlpha ダークテーマ カラーパレット
+// =============================================================================
+
+/** ダークテーマ基本色 */
+export const DARK_THEME = {
+  bgPrimary: '#0f172a',
+  bgSecondary: '#1e293b',
+  bgTertiary: '#334155',
+  bgElevated: '#475569',
+  textPrimary: '#f1f5f9',
+  textSecondary: '#94a3b8',
+  textTertiary: '#64748b',
+  border: '#334155',
+  borderLight: '#475569',
+  accent: '#10b981',
+  accentHover: '#34d399',
+} as const
 
 // =============================================================================
 // カラーパレット
@@ -10,80 +30,83 @@
 
 /** 主要カラー */
 export const CHART_COLORS = {
-  // プライマリカラー
-  primary: '#1890ff',
+  // プライマリカラー（アクセント）
+  primary: '#3b82f6',
 
   // プラス/マイナス
-  positive: '#52c41a',
-  negative: '#ff4d4f',
+  positive: '#10b981',
+  negative: '#ef4444',
 
   // セカンダリカラー
-  purple: '#722ed1',
-  cyan: '#13c2c2',
-  magenta: '#eb2f96',
-  orange: '#fa8c16',
-  gold: '#faad14',
+  purple: '#a855f7',
+  cyan: '#06b6d4',
+  magenta: '#ec4899',
+  orange: '#f97316',
+  gold: '#f59e0b',
 
-  // ニュートラル
-  gray: '#8c8c8c',
-  lightGray: '#d9d9d9',
+  // ニュートラル（ダークテーマ用に調整）
+  gray: '#64748b',
+  lightGray: '#475569',
 
-  // 背景色
-  bgLight: '#f5f5f5',
-  bgLighter: '#fafafa',
+  // 背景色（ダークテーマ）
+  bgLight: '#1e293b',
+  bgLighter: '#334155',
 } as const
 
-/** セル背景色（ヒートマップ用） */
+/** セル背景色（ヒートマップ用・ダークテーマで見やすく調整） */
 export const CELL_COLORS = {
-  strongPositive: 'rgba(82, 196, 26, 0.3)',
-  weakPositive: 'rgba(82, 196, 26, 0.15)',
-  weakNegative: 'rgba(255, 77, 79, 0.15)',
-  strongNegative: 'rgba(255, 77, 79, 0.3)',
+  strongPositive: 'rgba(16, 185, 129, 0.55)',
+  weakPositive: 'rgba(16, 185, 129, 0.30)',
+  weakNegative: 'rgba(239, 68, 68, 0.30)',
+  strongNegative: 'rgba(239, 68, 68, 0.55)',
   neutral: 'transparent',
 } as const
 
-/** テキストカラー */
+/** テキストカラー（ダークテーマ用） */
 export const TEXT_COLORS = {
-  primary: '#333',
-  secondary: '#666',
-  tertiary: '#888',
-  quaternary: '#999',
-  muted: '#bfbfbf',
-  positive: '#389e0d',
-  negative: '#cf1322',
+  primary: '#f1f5f9',
+  secondary: '#94a3b8',
+  tertiary: '#64748b',
+  quaternary: '#475569',
+  muted: '#475569',
+  positive: '#10b981',
+  negative: '#ef4444',
 } as const
 
 // =============================================================================
 // レイアウト・スタイル
 // =============================================================================
 
-/** 最新値表示ボックスのスタイル */
+/** 最新値表示ボックスのスタイル（ダークテーマ） */
 export const LATEST_VALUE_BOX_STYLE: React.CSSProperties = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   marginBottom: 12,
   padding: '12px 16px',
-  background: CHART_COLORS.bgLight,
+  background: DARK_THEME.bgSecondary,
   borderRadius: 8,
+  border: `1px solid rgba(16, 185, 129, 0.4)`, // 濃い緑の枠線
   flexWrap: 'wrap',
   gap: 12,
 }
 
-/** ツールチップのスタイル（Recharts標準Tooltip用） */
+/** ツールチップのスタイル（ダークテーマ） */
 export const TOOLTIP_STYLE = {
-  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-  border: '1px solid #d9d9d9',
-  borderRadius: 4,
+  backgroundColor: DARK_THEME.bgTertiary,
+  border: `1px solid ${DARK_THEME.borderLight}`,
+  borderRadius: 8,
+  color: DARK_THEME.textPrimary,
 } as const
 
-/** カスタムツールチップのコンテナスタイル */
+/** カスタムツールチップのコンテナスタイル（ダークテーマ） */
 export const CUSTOM_TOOLTIP_STYLE: React.CSSProperties = {
-  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-  border: '1px solid #ddd',
+  backgroundColor: DARK_THEME.bgTertiary,
+  border: `1px solid ${DARK_THEME.borderLight}`,
   borderRadius: 8,
   padding: '12px 16px',
-  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+  boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+  color: DARK_THEME.textPrimary,
 }
 
 /** チャートマージン */
@@ -94,16 +117,16 @@ export const CHART_MARGIN = {
   bottom: 5,
 } as const
 
-/** 軸のスタイル */
+/** 軸のスタイル（ダークテーマ用に調整） */
 export const AXIS_STYLE = {
-  tick: { fontSize: 11 },
+  tick: { fontSize: 11, fill: '#94a3b8' },
   interval: 'preserveStartEnd' as const,
 }
 
-/** CartesianGrid の共通プロパティ */
+/** CartesianGrid の共通プロパティ（ダークテーマ用） */
 export const CARTESIAN_GRID_PROPS = {
   strokeDasharray: '3 3',
-  stroke: '#f0f0f0',
+  stroke: '#475569',
 } as const
 
 // =============================================================================
@@ -166,7 +189,7 @@ export function getValueColor(value: number | null | undefined): string {
 }
 
 // =============================================================================
-// ビューモードボタン用スタイル
+// ビューモードボタン用スタイル（ダークテーマ）
 // =============================================================================
 
 interface ButtonStyleConfig {
@@ -175,18 +198,18 @@ interface ButtonStyleConfig {
 }
 
 const VIEW_MODE_BUTTON_CONFIGS: Record<string, ButtonStyleConfig> = {
-  value: { color: CHART_COLORS.magenta, bgColor: '#fff0f6' },
-  yoy: { color: CHART_COLORS.positive, bgColor: '#f6ffed' },
-  mom: { color: CHART_COLORS.primary, bgColor: '#e6f7ff' },
-  mom_table: { color: CHART_COLORS.primary, bgColor: '#e6f7ff' },
-  mom_chart: { color: CHART_COLORS.primary, bgColor: '#e6f7ff' },
-  total: { color: CHART_COLORS.positive, bgColor: '#f6ffed' },
-  ex_auto: { color: CHART_COLORS.purple, bgColor: '#f9f0ff' },
-  control_group: { color: CHART_COLORS.cyan, bgColor: '#e6fffb' },
+  value: { color: '#ec4899', bgColor: 'rgba(236, 72, 153, 0.15)' },
+  yoy: { color: '#10b981', bgColor: 'rgba(16, 185, 129, 0.15)' },
+  mom: { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' },
+  mom_table: { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' },
+  mom_chart: { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' },
+  total: { color: '#10b981', bgColor: 'rgba(16, 185, 129, 0.15)' },
+  ex_auto: { color: '#a855f7', bgColor: 'rgba(168, 85, 247, 0.15)' },
+  control_group: { color: '#06b6d4', bgColor: 'rgba(6, 182, 212, 0.15)' },
 }
 
 /**
- * ビューモードボタンのスタイルを取得
+ * ビューモードボタンのスタイルを取得（ダークテーマ）
  */
 export function getViewModeButtonStyle(
   mode: string,
@@ -196,16 +219,17 @@ export function getViewModeButtonStyle(
 
   return {
     padding: '6px 12px',
-    border: isActive ? `2px solid ${config.color}` : '1px solid #d9d9d9',
+    border: isActive ? `2px solid ${config.color}` : `1px solid ${DARK_THEME.border}`,
     borderRadius: 4,
-    background: isActive ? config.bgColor : '#fff',
+    background: isActive ? config.bgColor : DARK_THEME.bgSecondary,
     cursor: 'pointer',
     fontWeight: isActive ? 'bold' : 'normal',
+    color: isActive ? config.color : DARK_THEME.textSecondary,
   }
 }
 
 /**
- * データタイプボタンのスタイルを取得（小さめサイズ）
+ * データタイプボタンのスタイルを取得（小さめサイズ・ダークテーマ）
  */
 export function getDataTypeButtonStyle(
   type: string,
@@ -215,11 +239,12 @@ export function getDataTypeButtonStyle(
 
   return {
     padding: '4px 10px',
-    border: isActive ? `2px solid ${config.color}` : '1px solid #d9d9d9',
+    border: isActive ? `2px solid ${config.color}` : `1px solid ${DARK_THEME.border}`,
     borderRadius: 4,
-    background: isActive ? config.bgColor : '#fff',
+    background: isActive ? config.bgColor : DARK_THEME.bgSecondary,
     cursor: 'pointer',
     fontWeight: isActive ? 'bold' : 'normal',
     fontSize: 12,
+    color: isActive ? config.color : DARK_THEME.textSecondary,
   }
 }

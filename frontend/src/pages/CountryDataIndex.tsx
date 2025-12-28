@@ -6,6 +6,19 @@ import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarW
 
 const { Title, Text } = Typography
 
+// EconAlpha カラーパレット
+const colors = {
+  bgPrimary: '#0f172a',
+  bgSecondary: '#1e293b',
+  bgTertiary: '#334155',
+  accent: '#10b981',
+  accentHover: '#34d399',
+  textPrimary: '#f1f5f9',
+  textSecondary: '#94a3b8',
+  textTertiary: '#64748b',
+  border: '#334155',
+}
+
 type Country = {
   code: string
   isoCode: string
@@ -71,9 +84,9 @@ const COUNTRIES: Country[] = [
 ]
 
 // 右サイドバー（経済カレンダー）のデフォルト幅と範囲
-const CALENDAR_SIDEBAR_DEFAULT_WIDTH = 350
-const CALENDAR_SIDEBAR_MIN_WIDTH = 300
-const CALENDAR_SIDEBAR_MAX_WIDTH = 800
+const CALENDAR_SIDEBAR_DEFAULT_WIDTH = 380
+const CALENDAR_SIDEBAR_MIN_WIDTH = 320
+const CALENDAR_SIDEBAR_MAX_WIDTH = 600
 
 function CountryDataIndex() {
   const [calendarOpen, setCalendarOpen] = useState(true)
@@ -118,55 +131,55 @@ function CountryDataIndex() {
   }, [isResizing])
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', minHeight: 'calc(100vh - 64px)' }}>
       {/* メインコンテンツエリア */}
       <div
         style={{
           flex: 1,
-          padding: '24px',
+          padding: '20px 24px',
           marginRight: calendarOpen ? sidebarWidth : 0,
           transition: 'margin-right 0.3s ease',
         }}
       >
-        <Title level={2} style={{ marginBottom: 8 }}>
+        <Title level={3} style={{ marginBottom: 4, color: colors.textPrimary }}>
           各国データ
         </Title>
-        <Text type="secondary" style={{ fontSize: 16, marginBottom: 32, display: 'block' }}>
+        <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 24, display: 'block' }}>
           主要国の経済指標とデータを国別に閲覧できます
         </Text>
 
-        <Row gutter={[24, 24]} style={{ marginTop: 24 }}>
+        <Row gutter={[16, 16]} style={{ marginTop: 20 }}>
           {COUNTRIES.map((country) => (
             <Col xs={24} sm={12} md={8} lg={6} key={country.code}>
               <Link to={`/country/${country.code}`} style={{ textDecoration: 'none' }}>
                 <Card
                   hoverable
                   style={{
-                    borderRadius: 12,
-                    border: '1px solid #f0f0f0',
+                    borderRadius: 10,
+                    border: `1px solid ${colors.border}`,
+                    background: colors.bgSecondary,
                     height: '100%',
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.2s ease',
                   }}
                   styles={{
-                    body: { padding: 24, textAlign: 'center' },
+                    body: { padding: 20, textAlign: 'center' },
                   }}
                 >
-                  <Space direction="vertical" size={12} style={{ width: '100%' }}>
+                  <Space direction="vertical" size={10} style={{ width: '100%' }}>
                     <span
                       className={`fi fi-${country.isoCode}`}
                       style={{
-                        fontSize: 48,
+                        fontSize: 40,
                         borderRadius: 4,
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
                       }}
                     />
                     <div>
-                      <Title level={4} style={{ margin: 0, color: '#1a1a1a' }}>
+                      <Title level={5} style={{ margin: 0, color: colors.textPrimary }}>
                         {country.name}
                       </Title>
                       <Text
-                        type="secondary"
-                        style={{ fontSize: 14, marginTop: 8, display: 'block' }}
+                        style={{ fontSize: 12, marginTop: 4, display: 'block', color: colors.textSecondary }}
                       >
                         {country.description}
                       </Text>
@@ -202,10 +215,10 @@ function CountryDataIndex() {
             right: 0,
             top: 64,
             width: sidebarWidth,
-            height: 'calc(100vh - 56px)',
-            background: '#fff',
-            borderLeft: '1px solid #f0f0f0',
-            boxShadow: '-2px 0 8px rgba(0,0,0,0.1)',
+            height: 'calc(100vh - 64px)',
+            background: colors.bgSecondary,
+            borderLeft: `1px solid ${colors.border}`,
+            boxShadow: '-4px 0 16px rgba(0,0,0,0.2)',
             overflowY: 'auto',
             zIndex: 100,
           }}
@@ -220,13 +233,13 @@ function CountryDataIndex() {
               width: 8,
               height: '100%',
               cursor: 'col-resize',
-              backgroundColor: isResizing ? '#1890ff' : 'transparent',
+              backgroundColor: isResizing ? colors.accent : 'transparent',
               transition: 'background-color 0.2s',
               zIndex: 101,
             }}
             onMouseEnter={(e) => {
               if (!isResizing) {
-                e.currentTarget.style.backgroundColor = '#e6f7ff'
+                e.currentTarget.style.backgroundColor = colors.bgTertiary
               }
             }}
             onMouseLeave={(e) => {
@@ -235,26 +248,26 @@ function CountryDataIndex() {
               }
             }}
           />
-          <div style={{ padding: '16px' }}>
+          <div style={{ padding: '12px 16px' }}>
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginBottom: 16,
-                paddingBottom: 12,
-                borderBottom: '1px solid #f0f0f0',
+                marginBottom: 12,
+                paddingBottom: 10,
+                borderBottom: `1px solid ${colors.border}`,
               }}
             >
               <Space>
-                <CalendarOutlined style={{ fontSize: 18, color: '#1890ff' }} />
-                <Text strong style={{ fontSize: 16 }}>
+                <CalendarOutlined style={{ fontSize: 16, color: colors.accent }} />
+                <Text strong style={{ fontSize: 14, color: colors.textPrimary }}>
                   経済カレンダー
                 </Text>
               </Space>
               <Button
                 type="text"
-                icon={<MenuFoldOutlined />}
+                icon={<MenuFoldOutlined style={{ color: colors.textSecondary }} />}
                 onClick={() => setCalendarOpen(false)}
                 size="small"
               />
@@ -274,6 +287,8 @@ function CountryDataIndex() {
             right: 16,
             top: 80,
             zIndex: 101,
+            background: colors.accent,
+            borderColor: colors.accent,
           }}
           onClick={() => setCalendarOpen(true)}
         >

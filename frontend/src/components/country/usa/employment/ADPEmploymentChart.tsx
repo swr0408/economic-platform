@@ -36,6 +36,8 @@ import {
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
   TOOLTIP_STYLE,
+  DARK_THEME,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -136,7 +138,7 @@ function ChangeTooltip({ active, payload, label, unit = 'k' }: CustomTooltipProp
               padding: '4px 12px',
             }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -253,18 +255,18 @@ export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
     }
   }
 
-  // 前月比テーブルコンポーネント
+  // 前月比テーブルコンポーネント（ダークテーマ）
   const ChangeTable = () => (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
         ※ 直近10年間の前月増減幅データ（単位: 千人）
       </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
-            <th style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold' }}>年</th>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
+            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
             {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold', minWidth: 55 }}>
+              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
                 {month}
               </th>
             ))}
@@ -273,20 +275,20 @@ export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
         <tbody>
           {changeTableData.years.map((year: number) => (
             <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', fontWeight: 'bold', backgroundColor: '#fafafa' }}>
+              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
                 const value = changeTableData.monthlyData[year]?.[month]
 
                 return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getChangeCellColor(value) }}>
+                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getChangeCellColor(value) }}>
                     {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? '#389e0d' : '#cf1322' }}>
+                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
                         {value >= 0 ? '+' : ''}{value.toLocaleString()}
                       </span>
                     ) : (
-                      <span style={{ color: '#bfbfbf' }}>-</span>
+                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
                     )}
                   </td>
                 )

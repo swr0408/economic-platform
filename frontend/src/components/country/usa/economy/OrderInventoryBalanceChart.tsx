@@ -10,6 +10,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { ISMComponentsData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import {
   usePeriodFiltering,
   formatDateLabel,
@@ -90,21 +91,11 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
         sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 16,
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div style={{ flex: '0 0 auto' }}>
-            <span style={{ fontSize: 12, color: '#666' }}>最新: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>最新: </span>
             {latestData && (
-              <span style={{ fontSize: 12, color: '#999' }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary }}>
                 ({formatDateLabel(latestData.date)})
               </span>
             )}
@@ -119,7 +110,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
                 display: 'inline-block',
               }}
             />
-            <span style={{ fontSize: 12, color: '#666' }}>3ヶ月平均:</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>3ヶ月平均:</span>
             <span style={{ fontSize: 14, fontWeight: 'bold', color: '#228B22' }}>
               {formatValue(latestBalance3MA)}
             </span>
@@ -134,7 +125,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
                 display: 'inline-block',
               }}
             />
-            <span style={{ fontSize: 12, color: '#666' }}>当月:</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>当月:</span>
             <span style={{ fontSize: 14, fontWeight: 'bold', color: 'rgba(34, 139, 34, 0.8)' }}>
               {formatValue(latestBalance)}
             </span>
@@ -152,8 +143,8 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
               borderLeft: '4px solid #faad14',
             }}
           >
-            <span style={{ fontSize: 11, color: '#999' }}>次回発表: </span>
-            <span style={{ fontSize: 12, color: '#666' }}>{data.next_release.date}</span>
+            <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>次回発表: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{data.next_release.date}</span>
           </div>
         )}
 
@@ -163,7 +154,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
           data={filteredData}
           lines={[
             { dataKey: 'balance_3ma', color: '#228B22', name: '受注在庫バランス（3ヶ月平均）', strokeWidth: 2, hide: hiddenSeries.has('balance_3ma') },
-            { dataKey: 'balance', color: 'rgba(34, 139, 34, 0.5)', name: '受注在庫バランス（当月）', strokeWidth: 1, hide: hiddenSeries.has('balance') },
+            { dataKey: 'balance', color: 'rgba(141, 250, 141, 0.5)', name: '受注在庫バランス（当月）', strokeWidth: 1, hide: hiddenSeries.has('balance') },
           ]}
           yAxisFormatter={(v) => v.toFixed(0)}
           yDomain={['dataMin - 2', 'dataMax + 2']}

@@ -4,7 +4,7 @@
  * 年×月のマトリックス形式でデータを表示
  */
 import React from 'react'
-import { MONTH_NAMES, getCellColor, getValueColor, MOM_THRESHOLDS } from './chartConstants'
+import { MONTH_NAMES, getCellColor, getValueColor, MOM_THRESHOLDS, DARK_THEME, TEXT_COLORS } from './chartConstants'
 import { TableLegend, MOM_LEGEND_DEFAULT, MOM_LEGEND_VEHICLE } from './ChartComponents'
 
 // =============================================================================
@@ -87,7 +87,7 @@ export function MonthlyTable<T extends number = number>({
 
   if (data.years.length === 0) {
     return (
-      <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
+      <div style={{ textAlign: 'center', padding: '40px 0', color: TEXT_COLORS.tertiary }}>
         データがありません
       </div>
     )
@@ -96,7 +96,7 @@ export function MonthlyTable<T extends number = number>({
   return (
     <div style={{ overflowX: 'auto' }}>
       {showHelperText && (
-        <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+        <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
           {helperText}
         </div>
       )}
@@ -107,14 +107,15 @@ export function MonthlyTable<T extends number = number>({
           borderCollapse: 'collapse',
           fontSize: 12,
           textAlign: 'center',
+          color: DARK_THEME.textPrimary,
         }}
       >
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
             <th
               style={{
                 padding: '8px 4px',
-                borderBottom: '2px solid #d9d9d9',
+                borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                 fontWeight: 'bold',
               }}
             >
@@ -125,7 +126,7 @@ export function MonthlyTable<T extends number = number>({
                 key={idx}
                 style={{
                   padding: '8px 4px',
-                  borderBottom: '2px solid #d9d9d9',
+                  borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                   fontWeight: 'bold',
                   minWidth: 50,
                 }}
@@ -141,9 +142,9 @@ export function MonthlyTable<T extends number = number>({
               <td
                 style={{
                   padding: '6px 4px',
-                  borderBottom: '1px solid #e8e8e8',
+                  borderBottom: `1px solid ${DARK_THEME.border}`,
                   fontWeight: 'bold',
-                  backgroundColor: '#fafafa',
+                  backgroundColor: DARK_THEME.bgTertiary,
                 }}
               >
                 {year}
@@ -159,11 +160,11 @@ export function MonthlyTable<T extends number = number>({
                     key={month}
                     style={{
                       padding: '6px 4px',
-                      borderBottom: '1px solid #e8e8e8',
+                      borderBottom: `1px solid ${DARK_THEME.border}`,
                       backgroundColor: bgColor,
                     }}
                   >
-                    <span style={{ color: value === null ? '#bfbfbf' : textColor }}>
+                    <span style={{ color: value === null ? TEXT_COLORS.quaternary : textColor }}>
                       {displayValue}
                     </span>
                   </td>
@@ -228,16 +229,16 @@ export function MonthlyTableWithDataTypes<T extends string>({
   const thresholds = thresholdType === 'vehicle' ? MOM_THRESHOLDS.vehicle : MOM_THRESHOLDS.default
   const defaultLegend = thresholdType === 'vehicle' ? MOM_LEGEND_VEHICLE : MOM_LEGEND_DEFAULT
 
-  // データタイプボタン用のスタイル設定
+  // データタイプボタン用のスタイル設定（ダークテーマ）
   const buttonConfigs: Record<string, { color: string; bgColor: string }> = {
-    total: { color: '#52c41a', bgColor: '#f6ffed' },
-    ex_auto: { color: '#722ed1', bgColor: '#f9f0ff' },
-    control_group: { color: '#13c2c2', bgColor: '#e6fffb' },
+    total: { color: '#10b981', bgColor: 'rgba(16, 185, 129, 0.15)' },
+    ex_auto: { color: '#a855f7', bgColor: 'rgba(168, 85, 247, 0.15)' },
+    control_group: { color: '#06b6d4', bgColor: 'rgba(6, 182, 212, 0.15)' },
   }
 
   if (data.years.length === 0) {
     return (
-      <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
+      <div style={{ textAlign: 'center', padding: '40px 0', color: TEXT_COLORS.tertiary }}>
         データがありません
       </div>
     )
@@ -246,7 +247,7 @@ export function MonthlyTableWithDataTypes<T extends string>({
   return (
     <div style={{ overflowX: 'auto' }}>
       {showHelperText && (
-        <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+        <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
           {helperText}
         </div>
       )}
@@ -254,7 +255,7 @@ export function MonthlyTableWithDataTypes<T extends string>({
       <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
         {dataTypes.map(({ type, label }) => {
           const isActive = type === selectedType
-          const config = buttonConfigs[type] || { color: '#1890ff', bgColor: '#e6f7ff' }
+          const config = buttonConfigs[type] || { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' }
 
           return (
             <button
@@ -262,12 +263,13 @@ export function MonthlyTableWithDataTypes<T extends string>({
               onClick={() => onTypeChange(type)}
               style={{
                 padding: '4px 10px',
-                border: isActive ? `2px solid ${config.color}` : '1px solid #d9d9d9',
+                border: isActive ? `2px solid ${config.color}` : `1px solid ${DARK_THEME.border}`,
                 borderRadius: 4,
-                background: isActive ? config.bgColor : '#fff',
+                background: isActive ? config.bgColor : DARK_THEME.bgSecondary,
                 cursor: 'pointer',
                 fontWeight: isActive ? 'bold' : 'normal',
                 fontSize: 12,
+                color: isActive ? config.color : DARK_THEME.textSecondary,
               }}
             >
               {label}
@@ -282,14 +284,15 @@ export function MonthlyTableWithDataTypes<T extends string>({
           borderCollapse: 'collapse',
           fontSize: 12,
           textAlign: 'center',
+          color: DARK_THEME.textPrimary,
         }}
       >
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
             <th
               style={{
                 padding: '8px 4px',
-                borderBottom: '2px solid #d9d9d9',
+                borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                 fontWeight: 'bold',
               }}
             >
@@ -300,7 +303,7 @@ export function MonthlyTableWithDataTypes<T extends string>({
                 key={idx}
                 style={{
                   padding: '8px 4px',
-                  borderBottom: '2px solid #d9d9d9',
+                  borderBottom: `2px solid ${DARK_THEME.borderLight}`,
                   fontWeight: 'bold',
                   minWidth: 50,
                 }}
@@ -316,9 +319,9 @@ export function MonthlyTableWithDataTypes<T extends string>({
               <td
                 style={{
                   padding: '6px 4px',
-                  borderBottom: '1px solid #e8e8e8',
+                  borderBottom: `1px solid ${DARK_THEME.border}`,
                   fontWeight: 'bold',
-                  backgroundColor: '#fafafa',
+                  backgroundColor: DARK_THEME.bgTertiary,
                 }}
               >
                 {year}
@@ -334,7 +337,7 @@ export function MonthlyTableWithDataTypes<T extends string>({
                     key={month}
                     style={{
                       padding: '6px 4px',
-                      borderBottom: '1px solid #e8e8e8',
+                      borderBottom: `1px solid ${DARK_THEME.border}`,
                       backgroundColor: bgColor,
                     }}
                   >
@@ -344,7 +347,7 @@ export function MonthlyTableWithDataTypes<T extends string>({
                         {value.toFixed(decimals)}
                       </span>
                     ) : (
-                      <span style={{ color: '#bfbfbf' }}>-</span>
+                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
                     )}
                   </td>
                 )

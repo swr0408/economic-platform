@@ -11,6 +11,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { NFCIData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
@@ -73,19 +74,9 @@ export default function NFCIChart({ data }: NFCIChartProps) {
         sourceUrl="https://www.chicagofed.org/research/data/nfci/current-data"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>最新値: </span>
             {data.latest && (
               <>
                 <span
@@ -97,13 +88,13 @@ export default function NFCIChart({ data }: NFCIChartProps) {
                 >
                   {formatValue(data.latest.value)}
                 </span>
-                <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary, marginLeft: 8 }}>
                   ({formatWeekLabel(data.latest.date)})
                 </span>
               </>
             )}
           </div>
-          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
             <div>正値: 金融引き締め / 負値: 金融緩和</div>
             <div>毎週水曜日更新</div>
           </div>

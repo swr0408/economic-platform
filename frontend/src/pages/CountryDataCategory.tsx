@@ -18,25 +18,31 @@ import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
 import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
 import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
+import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
 const { Title, Text } = Typography
 
-const COUNTRY_INFO: Record<string, { name: string; isoCode: string }> = {
-  usa: { name: 'アメリカ', isoCode: 'us' },
-  japan: { name: '日本', isoCode: 'jp' },
-  eurozone: { name: 'ユーロ圏', isoCode: 'eu' },
-  uk: { name: 'イギリス', isoCode: 'gb' },
-  china: { name: '中国', isoCode: 'cn' },
-  australia: { name: 'オーストラリア', isoCode: 'au' },
-  newzealand: { name: 'ニュージーランド', isoCode: 'nz' },
-  canada: { name: 'カナダ', isoCode: 'ca' },
-  switzerland: { name: 'スイス', isoCode: 'ch' },
+// EconAlpha ダークテーマカラー
+const colors = {
+  bgPrimary: '#0f172a',
+  bgSecondary: '#1e293b',
+  bgTertiary: '#334155',
+  accent: '#10b981',
+  accentHover: '#34d399',
+  textPrimary: '#f1f5f9',
+  textSecondary: '#94a3b8',
+  textTertiary: '#64748b',
+  border: '#334155',
 }
 
-type Indicator = {
-  code: string
-  name: string
-}
+type Indicator = IndicatorItem
+
+const COUNTRY_INFO: Record<string, { name: string; isoCode: string }> = Object.fromEntries(
+  COUNTRIES_DATA.map((country) => [
+    country.code,
+    { name: country.name, isoCode: country.isoCode },
+  ])
+)
 
 const CATEGORY_INFO: Record<
   string,
@@ -81,69 +87,18 @@ const CATEGORY_INFO: Record<
 }
 
 // 各国・カテゴリごとの経済指標リスト
-const INDICATORS_BY_COUNTRY_CATEGORY: Record<string, Record<string, Indicator[]>> = {
-  usa: {
-    policy: [
-      { code: 'policy-rate', name: '政策金利' },
-      { code: 'fed-watch', name: 'Fed Watch' },
-      { code: 'term-premium', name: 'タームプレミアム' },
-      { code: 'dot-plot', name: 'Dot Plot' },
-      { code: 'fomc-projections', name: 'FOMC経済見通し' },
-    ],
-    economy: [
-      { code: 'gdp-growth', name: 'GDP成長率（前期比年率）' },
-      { code: 'pmi', name: 'PMI' },
-      { code: 'trade-balance', name: '貿易収支' },
-    ],
-    consumer: [
-      { code: 'retail-sales', name: '小売売上高' },
-      { code: 'consumer-confidence', name: '消費者信頼感' },
-      { code: 'personal-income', name: '個人所得' },
-    ],
-    employment: [
-      { code: 'nfp', name: '非農業部門雇用者数' },
-      { code: 'unemployment', name: '失業率' },
-      { code: 'jobless-claims', name: '新規失業保険申請件数' },
-    ],
-    inflation: [
-      { code: 'cpi', name: 'CPI' },
-      { code: 'pce', name: 'PCE' },
-      { code: 'ppi', name: 'PPI' },
-    ],
-    housing: [
-      { code: 'housing-starts', name: '住宅着工件数' },
-      { code: 'existing-home-sales', name: '中古住宅販売' },
-      { code: 'new-home-sales', name: '新築住宅販売' },
-    ],
-  },
-  japan: {
-    policy: [
-      { code: 'policy-rate', name: '政策金利' },
-      { code: 'boj-statement', name: '日銀声明' },
-      { code: 'tankan', name: '短観' },
-    ],
-    economy: [
-      { code: 'gdp', name: 'GDP' },
-      { code: 'pmi', name: 'PMI' },
-      { code: 'trade-balance', name: '貿易収支' },
-    ],
-    consumer: [
-      { code: 'retail-sales', name: '小売売上高' },
-      { code: 'consumer-confidence', name: '消費者信頼感' },
-    ],
-    employment: [
-      { code: 'unemployment', name: '失業率' },
-      { code: 'job-offers', name: '有効求人倍率' },
-    ],
-    inflation: [
-      { code: 'cpi', name: 'CPI' },
-      { code: 'cgpi', name: 'CGPI' },
-    ],
-    housing: [
-      { code: 'housing-starts', name: '住宅着工件数' },
-    ],
-  },
-}
+const INDICATORS_BY_COUNTRY_CATEGORY = COUNTRIES_DATA.reduce<
+  Record<string, Record<string, Indicator[]>>
+>((acc, country) => {
+  acc[country.code] = country.categories.reduce<Record<string, Indicator[]>>(
+    (categoryAcc, category) => {
+      categoryAcc[category.code] = category.indicators
+      return categoryAcc
+    },
+    {}
+  )
+  return acc
+}, {})
 
 // 準備中の指標用プレースホルダー
 function IndicatorPlaceholder({ indicator }: { indicator: Indicator }) {
@@ -407,9 +362,9 @@ function CountryDataCategory() {
             top: 64, // ヘッダーの高さ分オフセット
             width: sidebarWidth,
             height: 'calc(100vh - 56px)',
-            background: '#fff',
-            borderLeft: '1px solid #f0f0f0',
-            boxShadow: '-2px 0 8px rgba(0,0,0,0.1)',
+            background: colors.bgSecondary,
+            borderLeft: `1px solid ${colors.border}`,
+            boxShadow: '-4px 0 16px rgba(0,0,0,0.2)',
             overflowY: 'auto',
             zIndex: 100,
           }}
@@ -424,13 +379,13 @@ function CountryDataCategory() {
               width: 8,
               height: '100%',
               cursor: 'col-resize',
-              backgroundColor: isResizing ? '#1890ff' : 'transparent',
+              backgroundColor: isResizing ? colors.accent : 'transparent',
               transition: 'background-color 0.2s',
               zIndex: 101,
             }}
             onMouseEnter={(e) => {
               if (!isResizing) {
-                e.currentTarget.style.backgroundColor = '#e6f7ff'
+                e.currentTarget.style.backgroundColor = colors.bgTertiary
               }
             }}
             onMouseLeave={(e) => {
@@ -447,18 +402,18 @@ function CountryDataCategory() {
                 justifyContent: 'space-between',
                 marginBottom: 16,
                 paddingBottom: 12,
-                borderBottom: '1px solid #f0f0f0',
+                borderBottom: `1px solid ${colors.border}`,
               }}
             >
               <Space>
-                <CalendarOutlined style={{ fontSize: 18, color: '#1890ff' }} />
-                <Text strong style={{ fontSize: 16 }}>
+                <CalendarOutlined style={{ fontSize: 18, color: colors.accent }} />
+                <Text strong style={{ fontSize: 16, color: colors.textPrimary }}>
                   経済カレンダー
                 </Text>
               </Space>
               <Button
                 type="text"
-                icon={<MenuFoldOutlined />}
+                icon={<MenuFoldOutlined style={{ color: colors.textSecondary }} />}
                 onClick={() => setCalendarOpen(false)}
                 size="small"
               />
@@ -478,6 +433,8 @@ function CountryDataCategory() {
             right: 16,
             top: 80,
             zIndex: 101,
+            background: colors.accent,
+            borderColor: colors.accent,
           }}
           onClick={() => setCalendarOpen(true)}
         >

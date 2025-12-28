@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Space } from 'antd'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import {
   HomeOutlined,
@@ -17,6 +17,18 @@ const DEFAULT_SIDEBAR_WIDTH = 250
 const MIN_SIDEBAR_WIDTH = 180
 const MAX_SIDEBAR_WIDTH = 400
 const STORAGE_KEY = 'sidebar-width'
+
+// EconAlpha カラーパレット
+const colors = {
+  bgPrimary: '#0f172a',
+  bgSecondary: '#1e293b',
+  bgTertiary: '#334155',
+  accent: '#10b981',
+  accentHover: '#34d399',
+  textPrimary: '#f1f5f9',
+  textSecondary: '#94a3b8',
+  border: '#334155',
+}
 
 function MainLayout() {
   const navigate = useNavigate()
@@ -118,21 +130,58 @@ function MainLayout() {
           zIndex: 1000,
           display: 'flex',
           alignItems: 'center',
-          background: '#001529',
+          background: colors.bgPrimary,
           padding: '0 24px',
+          borderBottom: `1px solid ${colors.border}`,
         }}
       >
+        {/* EconAlpha Logo */}
         <div
           style={{
-            color: '#fff',
-            fontSize: '20px',
-            fontWeight: 'bold',
+            display: 'flex',
+            alignItems: 'center',
             marginRight: '48px',
             cursor: 'pointer',
           }}
           onClick={() => navigate('/')}
         >
-          EconomicPlatform
+          <Space size={8} align="center" style={{ display: 'flex', alignItems: 'center' }}>
+            {/* EconAlpha Icon */}
+            <img
+              src="/econAlpha_icon.svg"
+              alt="EconAlpha"
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '8px',
+                display: 'block',
+                verticalAlign: 'middle',
+              }}
+            />
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2, justifyContent: 'center' }}>
+              <span
+                style={{
+                  color: colors.textPrimary,
+                  fontSize: '18px',
+                  fontWeight: 600,
+                  letterSpacing: '0.5px',
+                }}
+              >
+                Econ<span style={{ color: colors.accent }}>Alpha</span>
+              </span>
+              <span
+                style={{
+                  color: colors.textSecondary,
+                  fontSize: '10px',
+                  fontWeight: 400,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Seasonal Analytics
+              </span>
+            </div>
+          </Space>
         </div>
         <Menu
           theme="dark"
@@ -140,7 +189,12 @@ function MainLayout() {
           selectedKeys={[selectedKey]}
           items={menuItems}
           onClick={({ key }) => navigate(key)}
-          style={{ flex: 1, minWidth: 0 }}
+          style={{
+            flex: 1,
+            minWidth: 0,
+            background: 'transparent',
+            borderBottom: 'none',
+          }}
         />
       </Header>
       <Layout style={{ marginTop: 64 }}>
@@ -159,8 +213,8 @@ function MainLayout() {
               onCollapse={(value) => setCollapsed(value)}
               trigger={null}
               style={{
-                background: '#fff',
-                borderRight: '1px solid #f0f0f0',
+                background: colors.bgSecondary,
+                borderRight: `1px solid ${colors.border}`,
                 position: 'sticky',
                 top: 0,
                 height: 'calc(100vh - 64px)',
@@ -169,21 +223,22 @@ function MainLayout() {
             >
               <div
                 style={{
-                  padding: '16px',
-                  borderBottom: '1px solid #f0f0f0',
+                  padding: '12px 16px',
+                  borderBottom: `1px solid ${colors.border}`,
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  background: colors.bgTertiary,
                 }}
               >
                 {!collapsed && (
-                  <span style={{ fontWeight: 'bold', color: '#1890ff' }}>
+                  <span style={{ fontWeight: 600, color: colors.accent, fontSize: '13px' }}>
                     各国データ
                   </span>
                 )}
                 <span
                   onClick={() => setCollapsed(!collapsed)}
-                  style={{ cursor: 'pointer', fontSize: '16px' }}
+                  style={{ cursor: 'pointer', fontSize: '16px', color: colors.textSecondary }}
                 >
                   {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 </span>
@@ -201,13 +256,13 @@ function MainLayout() {
                   bottom: 0,
                   width: 4,
                   cursor: 'col-resize',
-                  backgroundColor: isResizing ? '#1890ff' : 'transparent',
+                  backgroundColor: isResizing ? colors.accent : 'transparent',
                   transition: 'background-color 0.2s',
                   zIndex: 10,
                 }}
                 onMouseEnter={(e) => {
                   if (!isResizing) {
-                    e.currentTarget.style.backgroundColor = '#e6f7ff'
+                    e.currentTarget.style.backgroundColor = colors.bgTertiary
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -221,8 +276,8 @@ function MainLayout() {
         )}
         <Content
           style={{
-            padding: '24px',
-            background: '#f5f5f5',
+            padding: '16px',
+            background: colors.bgPrimary,
             overflow: 'auto',
           }}
         >

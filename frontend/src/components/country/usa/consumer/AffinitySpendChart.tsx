@@ -30,7 +30,7 @@ import {
   useSortedData,
   usePeriodFiltering,
   formatDateLabel,
-  createPercentFormatter,
+  formatDateLabelJP,
   type PeriodType,
 } from '../common/useChartData'
 import { NoDataMessage, SimpleLatestValueBox, ZERO_LINE_PROPS } from '../common/ChartComponents'
@@ -45,6 +45,67 @@ interface AffinitySpendChartProps {
 
 // カラー設定
 const COLOR = '#2f54eb'
+
+// 系列名
+const SERIES_NAME = 'クレジット / デビットカード支出'
+
+// =============================================================================
+// カスタムTooltip
+// =============================================================================
+
+interface TooltipPayload {
+  name: string
+  value: number
+  color: string
+  dataKey: string
+}
+
+interface CustomTooltipProps {
+  active?: boolean
+  payload?: TooltipPayload[]
+  label?: string
+}
+
+function AffinityTooltip({ active, payload, label }: CustomTooltipProps) {
+  if (!active || !payload || payload.length === 0) return null
+
+  const value = payload[0]?.value
+
+  return (
+    <div style={TOOLTIP_STYLE}>
+      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
+        {formatDateLabelJP(label || '')}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 4,
+          fontSize: 13,
+          padding: '4px 12px',
+        }}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+          <span
+            style={{
+              display: 'inline-block',
+              width: 10,
+              height: 10,
+              borderRadius: 2,
+              backgroundColor: COLOR,
+              marginRight: 6,
+            }}
+          />
+          {SERIES_NAME}
+        </span>
+        <span style={{ fontWeight: 500, color: COLOR }}>
+          {value !== null && value !== undefined ? `${value >= 0 ? '+' : ''}${value.toFixed(1)}%` : 'N/A'}
+        </span>
+      </div>
+    </div>
+  )
+}
 
 // =============================================================================
 // メインコンポーネント
@@ -104,11 +165,7 @@ export default function AffinitySpendChart({ data }: AffinitySpendChartProps) {
             <CartesianGrid {...CARTESIAN_GRID_PROPS} />
             <XAxis dataKey="date" tickFormatter={formatDateLabel} tick={AXIS_STYLE.tick} interval={AXIS_STYLE.interval} />
             <YAxis domain={['dataMin - 5', 'dataMax + 5']} tick={AXIS_STYLE.tick} tickFormatter={(v) => `${v}%`} />
-            <Tooltip
-              labelFormatter={formatDateLabel}
-              formatter={createPercentFormatter(1)}
-              contentStyle={TOOLTIP_STYLE}
-            />
+            <Tooltip content={<AffinityTooltip />} />
             <ReferenceLine {...ZERO_LINE_PROPS} />
             <Line type="monotone" dataKey="value" name="クレジット / デビットカードカード支出" stroke={COLOR} strokeWidth={2} dot={false} isAnimationActive={false} connectNulls={true} />
           </LineChart>

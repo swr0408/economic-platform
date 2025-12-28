@@ -66,7 +66,7 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         {/* 最新値表示 */}
         <SimpleLatestValueBox
           value={data.latest?.value}
-          valueColor="#8b0000"
+          valueColor="#b70303"
           date={data.latest?.date}
           format="percent"
           decimals={1}
@@ -78,7 +78,7 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         <ZoomableChart
           data={filteredData}
           dataKey="value"
-          color="#8b0000"
+          color="#b70303"
           name="銀行貸し出し態度"
           height={450}
           tickFormatter={formatPercentage}

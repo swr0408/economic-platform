@@ -41,7 +41,7 @@ const SERIES_CONFIG = {
   prices_paid_future: { name: '支払価格期待', color: '#ffa39e', strokeWidth: 2 },
   employment_current: { name: '雇用', color: '#d46b08', strokeWidth: 2 },
   employment_future: { name: '雇用期待', color: '#ffd591', strokeWidth: 2 },
-  capex_current: { name: '設備投資（ソフトウェア・機械設備）', color: '#531dab', strokeWidth: 2 },
+  capex_current: { name: '設備投資（ソフトウェア・機械設備）', color: '#9346ff', strokeWidth: 2 },
   capex_future: { name: '設備投資期待', color: '#d3adf7', strokeWidth: 2 },
 }
 

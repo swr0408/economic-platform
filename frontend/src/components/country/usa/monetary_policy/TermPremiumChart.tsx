@@ -13,6 +13,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 // 共通モジュールのインポート
 import { usePeriodFiltering, formatDateLabelFull, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
+import { DARK_THEME } from '../common/chartConstants'
 
 // Props型定義
 interface TermPremiumItem {
@@ -160,8 +161,53 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
           xAxisInterval={xAxisInterval}
         >
           <Tooltip
-            labelFormatter={(value: string | number) => formatDateLabelFull(String(value))}
-            formatter={(value: number, name: string) => [formatPercentage(value), name]}
+            content={({ active, payload, label }) => {
+              if (!active || !payload || payload.length === 0) return null
+              return (
+                <div
+                  style={{
+                    backgroundColor: DARK_THEME.bgTertiary,
+                    border: `1px solid ${DARK_THEME.borderLight}`,
+                    borderRadius: 8,
+                    padding: '12px 16px',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
+                    {formatDateLabelFull(String(label))}
+                  </div>
+                  {payload.map((item, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: 4,
+                        fontSize: 13,
+                      }}
+                    >
+                      <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            width: 10,
+                            height: 10,
+                            borderRadius: 2,
+                            backgroundColor: item.color || '#1890ff',
+                            marginRight: 6,
+                          }}
+                        />
+                        {item.name}
+                      </span>
+                      <span style={{ fontWeight: 500, color: item.color || '#1890ff' }}>
+                        {formatPercentage(item.value as number)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )
+            }}
           />
         </ZoomableChart>
       </ChartContainer>

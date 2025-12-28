@@ -5,6 +5,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { TSACheckpointData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, formatDateLabelFull, useHiddenSeries, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, StandardLineChart } from '../common/ChartComponents'
 
@@ -98,21 +99,9 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
         sourceUrl="https://www.tsa.gov/travel/passenger-volumes"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-            flexWrap: 'wrap',
-            gap: 12,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>最新値: </span>
             {latest && (
               <>
                 <span
@@ -124,7 +113,7 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
                 >
                   {latest.value !== null ? `${latest.value.toLocaleString()} 人` : 'N/A'}
                 </span>
-                <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary, marginLeft: 8 }}>
                   ({formatDateLabelFull(latest.date)})
                 </span>
               </>
@@ -133,7 +122,7 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {latest?.mom_pct !== null && latest?.mom_pct !== undefined && (
               <div style={{ fontSize: 12 }}>
-                <span style={{ color: '#666' }}>前月比: </span>
+                <span style={{ color: TEXT_COLORS.secondary }}>前月比: </span>
                 <span
                   style={{
                     fontWeight: 'bold',
@@ -147,7 +136,7 @@ export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
             )}
             {latest?.yoy_pct !== null && latest?.yoy_pct !== undefined && (
               <div style={{ fontSize: 12 }}>
-                <span style={{ color: '#666' }}>前年同月比: </span>
+                <span style={{ color: TEXT_COLORS.secondary }}>前年同月比: </span>
                 <span
                   style={{
                     fontWeight: 'bold',

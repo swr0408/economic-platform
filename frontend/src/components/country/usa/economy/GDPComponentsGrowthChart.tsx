@@ -15,7 +15,7 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
-import { CARTESIAN_GRID_PROPS, CUSTOM_TOOLTIP_STYLE } from '../common/chartConstants'
+import { CARTESIAN_GRID_PROPS, CUSTOM_TOOLTIP_STYLE, LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
@@ -131,7 +131,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
                 fontSize: 13,
               }}
             >
-              <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+              <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
                 <span
                   style={{
                     display: 'inline-block',
@@ -144,7 +144,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
                 />
                 {item.name}
               </span>
-              <span style={{ fontWeight: 500, color: displayValue >= 0 ? '#52c41a' : '#ff4d4f' }}>
+              <span style={{ fontWeight: 500, color: item.color }}>
                 {formatPercentage(displayValue)}
               </span>
             </div>
@@ -159,16 +159,9 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
       <ChartContainer title="GDP項目別成長率" showPeriodSelector={false} dataSource="BEA" sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product">
         {/* 最新値サマリー */}
         {latestValue && (
-          <div
-            style={{
-              marginBottom: 16,
-              padding: '12px 16px',
-              background: '#f5f5f5',
-              borderRadius: 8,
-            }}
-          >
-            <div style={{ marginBottom: 8 }}>
-              <span style={{ fontSize: 14, fontWeight: 500 }}>最新: {latestValue.quarter}</span>
+          <div style={LATEST_VALUE_BOX_STYLE}>
+            <div style={{ marginBottom: 8, width: '100%' }}>
+              <span style={{ fontSize: 14, fontWeight: 500, color: TEXT_COLORS.secondary }}>最新: {latestValue.quarter}</span>
             </div>
             <div
               style={{
@@ -176,6 +169,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
                 gridTemplateColumns: 'repeat(5, 1fr)',
                 gap: 8,
                 fontSize: 12,
+                width: '100%',
               }}
             >
               {COMPONENT_ITEMS.map((item) => {
@@ -186,12 +180,12 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
                     style={{
                       textAlign: 'center',
                       padding: '4px 8px',
-                      background: '#fff',
+                      background: 'rgba(255,255,255,0.05)',
                       borderRadius: 4,
                       borderLeft: `3px solid ${item.color}`,
                     }}
                   >
-                    <div style={{ color: '#666', marginBottom: 2 }}>{item.name}</div>
+                    <div style={{ color: TEXT_COLORS.secondary, marginBottom: 2 }}>{item.name}</div>
                     <div
                       style={{
                         fontWeight: 500,

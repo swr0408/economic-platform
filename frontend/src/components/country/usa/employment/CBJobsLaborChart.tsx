@@ -116,7 +116,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
               padding: '4px 12px',
             }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -131,9 +131,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
             </span>
             <span style={{
               fontWeight: 500,
-              color: item.dataKey === 'invertedDiff'
-                ? (displayValue >= 0 ? CHART_COLORS.positive : CHART_COLORS.negative)
-                : 'inherit'
+              color: item.color
             }}>
               {item.dataKey === 'invertedDiff'
                 ? `${displayValue >= 0 ? '+' : ''}${displayValue.toFixed(1)}`

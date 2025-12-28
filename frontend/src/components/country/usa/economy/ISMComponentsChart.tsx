@@ -18,7 +18,7 @@ const SERIES_CONFIG = {
   production: { name: '生産', color: '#52c41a' },
   employment: { name: '雇用', color: '#faad14' },
   prices: { name: '価格（仕入価格）', color: '#f5222d' },
-  supplier_deliveries: { name: 'サプライヤー配送', color: '#722ed1' },
+  supplier_deliveries: { name: 'サプライヤー配送', color: '#9346ff' },
 } as const
 
 type SeriesKey = keyof typeof SERIES_CONFIG

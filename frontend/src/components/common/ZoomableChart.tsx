@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import {
-  LineChart,
+  ComposedChart,
   Line,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -13,6 +14,17 @@ import {
 } from 'recharts'
 import { dragThrottle } from '../../utils/performance'
 import { formatMonthLabel } from '../../utils/dateFormatters'
+
+// EconAlpha ダークテーマカラー
+const DARK_THEME = {
+  textSecondary: '#94a3b8',
+  gridLine: '#475569',
+  axisLine: '#64748b',
+  referenceLine: '#94a3b8',
+  tooltipBg: '#334155',
+  tooltipBorder: '#475569',
+  chartBg: '#1e293b', // チャートエリア背景色（やや明るめ）
+}
 
 type ActiveLabelEvent =
   | {
@@ -31,7 +43,10 @@ interface AdditionalLine {
   color: string
   name: string
   strokeWidth?: number
-  yAxisId?: 'left' | 'right'
+  yAxisId?: string
+  strokeDasharray?: string
+  type?: 'monotone' | 'linear' | 'step' | 'stepBefore' | 'stepAfter'
+  seriesType?: 'line' | 'bar'
 }
 
 interface ZoomableChartProps {
@@ -64,6 +79,13 @@ interface ZoomableChartProps {
     ticks?: number[]
     tickFormatter?: (value: number) => string
   }
+  rightYAxes?: {
+    id: string
+    domain?: [string | number, string | number]
+    ticks?: number[]
+    tickFormatter?: (value: number) => string
+    color?: string
+  }[]
   xAxisLabel?: string
   yAxisLabel?: string
   xAxisInterval?: number | 'preserveStart' | 'preserveEnd' | 'preserveStartEnd' | 'equidistantPreserveStart'
@@ -104,6 +126,7 @@ export default function ZoomableChart({
   showDefaultTooltip = true,
   onLegendClick,
   rightYAxis,
+  rightYAxes,
   xAxisLabel,
   yAxisLabel,
   xAxisInterval = 'preserveStartEnd',
@@ -189,6 +212,8 @@ export default function ZoomableChart({
 
     // 現在表示されているデータから値を取得（非表示ラインを除外）
     const values: number[] = []
+    const isRightAxis = (axisId?: string) =>
+      typeof axisId === 'string' && axisId.startsWith('right')
 
     currentData.forEach((item) => {
       // メインのデータキーの値（非表示でない場合）
@@ -201,7 +226,7 @@ export default function ZoomableChart({
 
       // 追加ラインの値（非表示でない場合）
       additionalLines.forEach((line) => {
-        if (!hiddenLines.has(line.dataKey) && line.yAxisId !== 'right') {
+        if (!hiddenLines.has(line.dataKey) && !isRightAxis(line.yAxisId)) {
           const lineValue = item[line.dataKey]
           if (typeof lineValue === 'number' && !isNaN(lineValue) && lineValue !== null) {
             values.push(lineValue)
@@ -307,6 +332,8 @@ export default function ZoomableChart({
 
     // 表示中のラインの値を収集
     const values: number[] = []
+    const isRightAxis = (axisId?: string) =>
+      typeof axisId === 'string' && axisId.startsWith('right')
 
     currentData.forEach((item) => {
       // メインのデータキーの値（非表示でない場合）
@@ -319,7 +346,7 @@ export default function ZoomableChart({
 
       // 追加ラインの値（非表示でない場合）
       additionalLines.forEach((line) => {
-        if (!hiddenLines.has(line.dataKey) && line.yAxisId !== 'right') {
+        if (!hiddenLines.has(line.dataKey) && !isRightAxis(line.yAxisId)) {
           const lineValue = item[line.dataKey]
           if (typeof lineValue === 'number' && !isNaN(lineValue) && lineValue !== null) {
             values.push(lineValue)
@@ -346,23 +373,31 @@ export default function ZoomableChart({
 
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <LineChart
+      <ComposedChart
         data={currentData}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         margin={chartMargin}
+        style={{ backgroundColor: DARK_THEME.chartBg }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <defs>
+          <linearGradient id="chartAreaBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={DARK_THEME.chartBg} />
+            <stop offset="100%" stopColor={DARK_THEME.chartBg} />
+          </linearGradient>
+        </defs>
+        <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
         <XAxis
           type="category"
           dataKey="date"
           tickFormatter={xAxisTickFormatter || formatMonthLabel}
-          axisLine={true}
-          tickLine={true}
+          axisLine={{ stroke: DARK_THEME.axisLine }}
+          tickLine={{ stroke: DARK_THEME.axisLine }}
+          tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }}
           tickMargin={16}
           height={60}
-          label={xAxisLabel ? { value: xAxisLabel, position: 'bottom', offset: 10 } : undefined}
+          label={xAxisLabel ? { value: xAxisLabel, position: 'bottom', offset: 10, fill: DARK_THEME.textSecondary } : undefined}
           allowDataOverflow={false}
           interval={xAxisInterval}
         />
@@ -372,41 +407,99 @@ export default function ZoomableChart({
           tickFormatter={tickFormatter}
           ticks={dynamicYAxisTicks}
           interval={dynamicYAxisTicks ? undefined : yAxisInterval}
-          axisLine={true}
-          tickLine={true}
+          axisLine={{ stroke: DARK_THEME.axisLine }}
+          tickLine={{ stroke: DARK_THEME.axisLine }}
+          tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }}
           tickMargin={8}
           allowDataOverflow={true}
           label={
             yAxisLabel
-              ? { value: yAxisLabel, angle: -90, position: 'insideLeft', offset: -12 }
+              ? { value: yAxisLabel, angle: -90, position: 'insideLeft', offset: -12, fill: DARK_THEME.textSecondary }
               : undefined
           }
         />
-        {rightYAxis && (
-          <YAxis
-            yAxisId="right"
-            orientation="right"
-            domain={rightYAxis.domain || ['dataMin', 'dataMax']}
-            ticks={rightYAxis.ticks}
-            tickFormatter={rightYAxis.tickFormatter}
-            axisLine={false}
-            tickLine={false}
-          />
-        )}
+        {(() => {
+          const axes = rightYAxes && rightYAxes.length > 0
+            ? rightYAxes
+            : rightYAxis
+              ? [{ id: 'right', ...rightYAxis }]
+              : []
+
+          return axes.map((axis, index) => (
+            <YAxis
+              key={axis.id}
+              yAxisId={axis.id}
+              orientation="right"
+              domain={axis.domain || ['dataMin', 'dataMax']}
+              ticks={axis.ticks}
+              tickFormatter={axis.tickFormatter}
+              axisLine={index === 0 ? { stroke: DARK_THEME.axisLine } : false}
+              tickLine={index === 0 ? { stroke: DARK_THEME.axisLine } : false}
+              tick={{ fill: axis.color || DARK_THEME.textSecondary, fontSize: 11 }}
+            />
+          ))
+        })()}
         {showDefaultTooltip && (
           <Tooltip
-            labelFormatter={(value) => {
-              if (tooltipLabelFormatter) {
-                return tooltipLabelFormatter(String(value))
-              }
-              return formatMonthLabel(String(value))
-            }}
-            formatter={(value: number | string, seriesName: string) => {
-              const numericValue = typeof value === 'number' ? value : Number(value)
-              const formatted = tooltipFormatter
-                ? tooltipFormatter(numericValue)
-                : `${Math.round(numericValue)}`
-              return [formatted, seriesName]
+            content={({ active, payload, label }) => {
+              if (!active || !payload || payload.length === 0) return null
+
+              const formattedLabel = tooltipLabelFormatter
+                ? tooltipLabelFormatter(String(label))
+                : formatMonthLabel(String(label))
+
+              return (
+                <div
+                  style={{
+                    backgroundColor: DARK_THEME.tooltipBg,
+                    border: `1px solid ${DARK_THEME.tooltipBorder}`,
+                    borderRadius: 8,
+                    padding: '12px 16px',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: '#f1f5f9' }}>
+                    {formattedLabel}
+                  </div>
+                  {payload.map((item, index) => {
+                    const numericValue = typeof item.value === 'number' ? item.value : Number(item.value)
+                    const formatted = tooltipFormatter
+                      ? tooltipFormatter(numericValue)
+                      : `${Math.round(numericValue)}`
+                    const itemColor = item.color || '#f1f5f9'
+
+                    return (
+                      <div
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          marginBottom: 4,
+                          fontSize: 13,
+                        }}
+                      >
+                        <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              width: 10,
+                              height: 10,
+                              borderRadius: 2,
+                              backgroundColor: itemColor,
+                              marginRight: 6,
+                            }}
+                          />
+                          {item.name}
+                        </span>
+                        <span style={{ fontWeight: 500, color: itemColor }}>
+                          {formatted}
+                        </span>
+                      </div>
+                    )
+                  })}
+                </div>
+              )
             }}
           />
         )}
@@ -437,11 +530,11 @@ export default function ZoomableChart({
         )}
 
         {showZeroLine && (
-          <ReferenceLine y={zeroLineValue} stroke="#000" strokeWidth={1.5} yAxisId="left" />
+          <ReferenceLine y={zeroLineValue} stroke={DARK_THEME.referenceLine} strokeWidth={1.5} yAxisId="left" />
         )}
 
         {showFiftyLine && (
-          <ReferenceLine y={fiftyLineValue} stroke="#000" strokeWidth={1.5} yAxisId="left" />
+          <ReferenceLine y={fiftyLineValue} stroke={DARK_THEME.referenceLine} strokeWidth={1.5} yAxisId="left" />
         )}
 
         {!hideMainLine && (
@@ -459,21 +552,39 @@ export default function ZoomableChart({
           />
         )}
 
-        {additionalLines?.map((line, index) => (
-          <Line
-            key={`additional-line-${index}`}
-            type="monotone"
-            dataKey={line.dataKey}
-            stroke={line.color}
-            strokeWidth={line.strokeWidth || 2}
-            dot={false}
-            name={line.name}
-            yAxisId={line.yAxisId || 'left'}
-            connectNulls={connectNulls}
-            hide={hiddenLines.has(line.dataKey)}
-            isAnimationActive={false}
-          />
-        ))}
+        {additionalLines?.map((line, index) => {
+          if (line.seriesType === 'bar') {
+            return (
+              <Bar
+                key={`additional-bar-${index}`}
+                dataKey={line.dataKey}
+                fill={line.color}
+                name={line.name}
+                yAxisId={line.yAxisId || 'left'}
+                hide={hiddenLines.has(line.dataKey)}
+                isAnimationActive={false}
+                barSize={10}
+              />
+            )
+          }
+
+          return (
+            <Line
+              key={`additional-line-${index}`}
+              type={line.type || 'monotone'}
+              dataKey={line.dataKey}
+              stroke={line.color}
+              strokeWidth={line.strokeWidth || 2}
+              strokeDasharray={line.strokeDasharray}
+              dot={false}
+              name={line.name}
+              yAxisId={line.yAxisId || 'left'}
+              connectNulls={connectNulls}
+              hide={hiddenLines.has(line.dataKey)}
+              isAnimationActive={false}
+            />
+          )
+        })}
 
         {refAreaData && (
           <ReferenceArea
@@ -495,7 +606,7 @@ export default function ZoomableChart({
           }
           return child
         })}
-      </LineChart>
+      </ComposedChart>
     </ResponsiveContainer>
   )
 }

@@ -6,6 +6,20 @@ import axios from "axios";
 
 const { Title, Text } = Typography;
 
+// EconAlpha カラーパレット
+const colors = {
+  bgPrimary: '#0f172a',
+  bgSecondary: '#1e293b',
+  bgTertiary: '#334155',
+  accent: '#10b981',
+  accentHover: '#34d399',
+  textPrimary: '#f1f5f9',
+  textSecondary: '#94a3b8',
+  textTertiary: '#64748b',
+  border: '#334155',
+  info: '#3b82f6',
+};
+
 type Item = {
   symbol: string;
   coverUrl?: string;
@@ -64,7 +78,7 @@ export default function SeasonalityPage() {
     return (
       <div style={{ textAlign: "center", padding: "80px 20px" }}>
         <Spin size="large" />
-        <p style={{ marginTop: 16, color: "#666" }}>読み込み中...</p>
+        <p style={{ marginTop: 16, color: colors.textSecondary }}>読み込み中...</p>
       </div>
     );
   }
@@ -104,7 +118,7 @@ export default function SeasonalityPage() {
               count={totalItems}
               style={{
                 marginLeft: 8,
-                backgroundColor: catId === activeCategory ? "#1890ff" : "#d9d9d9",
+                backgroundColor: catId === activeCategory ? colors.accent : colors.bgTertiary,
                 fontSize: 11
               }}
             />
@@ -113,7 +127,7 @@ export default function SeasonalityPage() {
         children: (
           <div style={{ paddingTop: 8 }}>
             {cat.items.length > 0 && (
-              <div style={{ marginBottom: 40 }}>
+              <div style={{ marginBottom: 32 }}>
                 <div className="asset-grid">
                   {cat.items.map((item) => (
                     <SymbolCard key={item.symbol} item={item} activeCategory={catId} />
@@ -126,20 +140,20 @@ export default function SeasonalityPage() {
               if (subcategory.items.length === 0) return null;
 
               return (
-                <div key={subId} style={{ marginBottom: 40 }}>
+                <div key={subId} style={{ marginBottom: 32 }}>
                   <div style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: 20,
-                    paddingBottom: 12,
-                    borderBottom: "2px solid #f0f0f0"
+                    marginBottom: 16,
+                    paddingBottom: 10,
+                    borderBottom: `1px solid ${colors.border}`
                   }}>
-                    <Title level={4} style={{ margin: 0, color: "#1a1a1a" }}>
+                    <Title level={5} style={{ margin: 0, color: colors.textPrimary }}>
                       {subcategory.name}
                     </Title>
                     <Badge
                       count={subcategory.items.length}
-                      style={{ marginLeft: 12, backgroundColor: "#52c41a" }}
+                      style={{ marginLeft: 12, backgroundColor: colors.accent }}
                     />
                   </div>
                   <div className="asset-grid">
@@ -157,12 +171,12 @@ export default function SeasonalityPage() {
     .filter((item): item is NonNullable<typeof item> => item !== null);
 
   return (
-    <div style={{ maxWidth: 1400, margin: "0 auto" }}>
-      <div style={{ marginBottom: 24 }}>
-        <Title level={2} style={{ marginBottom: 8, color: "#1a1a1a" }}>
+    <div style={{ maxWidth: 1400, margin: "0 auto", padding: "4px 8px" }}>
+      <div style={{ marginBottom: 20 }}>
+        <Title level={3} style={{ marginBottom: 4, color: colors.textPrimary }}>
           シーズナリティ分析
         </Title>
-        <Text type="secondary" style={{ fontSize: 15 }}>
+        <Text style={{ fontSize: 13, color: colors.textSecondary }}>
           アセット別の季節性パターンを確認できます
         </Text>
       </div>
@@ -171,10 +185,10 @@ export default function SeasonalityPage() {
         activeKey={activeCategory}
         onChange={handleCategoryChange}
         items={tabItems}
-        size="large"
+        size="middle"
         tabBarStyle={{
-          marginBottom: 24,
-          borderBottom: "1px solid #e8e8e8",
+          marginBottom: 20,
+          borderBottom: `1px solid ${colors.border}`,
         }}
       />
     </div>
@@ -215,22 +229,22 @@ function SymbolCard({ item, activeCategory }: { item: Item; activeCategory: stri
       >
         <div
           style={{
-            background: "#fff",
-            borderRadius: 12,
+            background: colors.bgSecondary,
+            borderRadius: 10,
             overflow: "hidden",
-            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-            transition: "all 0.3s ease",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+            transition: "all 0.2s ease",
             cursor: "pointer",
-            border: "1px solid #e8e8e8",
+            border: `1px solid ${colors.border}`,
           }}
           className="symbol-card"
         >
           {/* 画像エリア */}
           <div
             style={{
-              height: 180,
+              height: 160,
               overflow: "hidden",
-              background: "#fafafa",
+              background: colors.bgTertiary,
               position: "relative",
             }}
           >
@@ -243,7 +257,7 @@ function SymbolCard({ item, activeCategory }: { item: Item; activeCategory: stri
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    background: "#f5f5f5",
+                    background: colors.bgTertiary,
                   }}>
                     <Spin size="small" />
                   </div>
@@ -269,8 +283,8 @@ function SymbolCard({ item, activeCategory }: { item: Item; activeCategory: stri
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: "#bbb",
-                  fontSize: 14,
+                  color: colors.textTertiary,
+                  fontSize: 13,
                 }}
               >
                 {isVisible ? "No Image" : ""}
@@ -279,28 +293,28 @@ function SymbolCard({ item, activeCategory }: { item: Item; activeCategory: stri
           </div>
 
           {/* 情報エリア */}
-          <div style={{ padding: "16px" }}>
+          <div style={{ padding: "12px 14px" }}>
             <div
               style={{
                 fontWeight: 600,
-                fontSize: 16,
-                color: "#1a1a1a",
-                marginBottom: 8,
+                fontSize: 14,
+                color: colors.textPrimary,
+                marginBottom: 6,
               }}
             >
               {item.symbol}
             </div>
 
             {item.counts && (
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <Text type="secondary" style={{ fontSize: 13 }}>
-                  シーズナリティ: <span style={{ color: "#1890ff", fontWeight: 500 }}>{item.counts.seasonality}</span>
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <Text style={{ fontSize: 12, color: colors.textSecondary }}>
+                  シーズナリティ: <span style={{ color: colors.info, fontWeight: 500 }}>{item.counts.seasonality}</span>
                 </Text>
-                <Text type="secondary" style={{ fontSize: 13 }}>
-                  月次: <span style={{ color: "#1890ff", fontWeight: 500 }}>{item.counts.monthly}</span>
+                <Text style={{ fontSize: 12, color: colors.textSecondary }}>
+                  月次: <span style={{ color: colors.info, fontWeight: 500 }}>{item.counts.monthly}</span>
                 </Text>
-                <Text type="secondary" style={{ fontSize: 13 }}>
-                  日次: <span style={{ color: "#52c41a", fontWeight: 500 }}>{item.counts.daily}</span>
+                <Text style={{ fontSize: 12, color: colors.textSecondary }}>
+                  日次: <span style={{ color: colors.accent, fontWeight: 500 }}>{item.counts.daily}</span>
                 </Text>
               </div>
             )}

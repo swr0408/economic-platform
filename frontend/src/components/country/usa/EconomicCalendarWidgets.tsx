@@ -98,13 +98,24 @@ function EconomicCalendarWidgets({ countryCode = 'usa' }: EconomicCalendarWidget
       mode: 'table',
       width: '100%',
       height: `${calculatedHeight}px`,
-      backColor: '1e222d',
+      backColor: '0a0a0a',
       fontColor: 'b2b5be',
       widgetType: 'ECOCAL',
     }
 
     console.log('Initializing FinancialJuice widget with options:', options)
     window.FJWidgets.createWidget(options)
+  }
+
+  // EconAlpha ダークテーマ用カラー（全て黒仕様）
+  const colors = {
+    bgPrimary: '000000',      // 完全黒
+    bgSecondary: '0a0a0a',    // ほぼ黒
+    bgTertiary: '1a1a1a',     // 暗いグレー
+    accent: '10b981',         // #10b981
+    border: '1a1a1a',
+    textPrimary: 'f1f5f9',
+    textSecondary: '94a3b8',
   }
 
   const tabItems = [
@@ -114,32 +125,32 @@ function EconomicCalendarWidgets({ countryCode = 'usa' }: EconomicCalendarWidget
       children: (
         <div>
           <iframe
-            src={`https://sslecal2.investing.com?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&features=datepicker,timezone,timeselector,filters&countries=${investingCountries}&calType=week&timeZone=29&lang=11`}
+            src={`https://sslecal2.investing.com?ecoDayBackground=%23${colors.bgSecondary}&innerBorderColor=%23${colors.bgTertiary}&borderColor=%23${colors.border}&columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&features=datepicker,timezone,timeselector,filters&countries=${investingCountries}&calType=week&timeZone=29&lang=11`}
             width="100%"
             height="calc(100vh - 180px)"
             frameBorder="0"
             allowTransparency={true}
-            style={{ display: 'block', minHeight: 700 }}
+            style={{ display: 'block', minHeight: 700, background: '#000000' }}
             title="Investing.com Economic Calendar"
           />
           <div
             style={{
               padding: '4px 8px',
-              background: '#fafafa',
-              borderTop: '1px solid #f0f0f0',
+              background: '#0a0a0a',
+              borderTop: '1px solid #1a1a1a',
               fontSize: 10,
-              color: '#888',
+              color: '#94a3b8',
             }}
           >
             <a
               href="https://jp.investing.com/"
               rel="nofollow noopener noreferrer"
               target="_blank"
-              style={{ color: '#06529D' }}
+              style={{ color: '#10b981' }}
             >
               Investing.com
             </a>
-            提供
+            {' '}提供
           </div>
         </div>
       ),
@@ -155,7 +166,7 @@ function EconomicCalendarWidgets({ countryCode = 'usa' }: EconomicCalendarWidget
             width: '100%',
             height: 'calc(100vh - 180px)',
             minHeight: 700,
-            background: '#1e222d',
+            background: '#0a0a0a',
           }}
         />
       ),

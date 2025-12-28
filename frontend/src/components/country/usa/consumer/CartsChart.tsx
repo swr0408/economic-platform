@@ -4,24 +4,39 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { CartsData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
-import { CHART_COLORS } from '../common/chartConstants'
+import {
+  CHART_COLORS,
+  TOOLTIP_STYLE,
+  CHART_MARGIN,
+  AXIS_STYLE,
+  CARTESIAN_GRID_PROPS,
+} from '../common/chartConstants'
 import {
   usePeriodFiltering,
   formatDateLabel,
-  createDollarFormatter,
+  formatDateLabelJP,
   useHiddenSeries,
   type PeriodType,
 } from '../common/useChartData'
 import {
   NoDataMessage,
   LatestValueBox,
-  StandardLineChart,
 } from '../common/ChartComponents'
 
 // =============================================================================
@@ -36,6 +51,78 @@ interface CartsChartProps {
 const COLORS = {
   nominal: '#2f54eb',
   real: CHART_COLORS.positive,
+}
+
+// 系列名
+const SERIES_NAMES = {
+  nominal: '名目値',
+  real: '実質値（2017年基準）',
+}
+
+// =============================================================================
+// カスタムTooltip（両方の値を常に表示）
+// =============================================================================
+
+interface DataItem {
+  date: string
+  nominalB: number | null
+  realB: number | null
+}
+
+interface CartsTooltipProps {
+  active?: boolean
+  label?: string
+  data?: DataItem[]
+}
+
+function CartsTooltip({ active, label, data }: CartsTooltipProps) {
+  if (!active || !label) return null
+
+  const dataPoint = data?.find((d: DataItem) => d.date === label)
+  if (!dataPoint) return null
+
+  const items = [
+    { name: SERIES_NAMES.nominal, value: dataPoint.nominalB, color: COLORS.nominal },
+    { name: SERIES_NAMES.real, value: dataPoint.realB, color: COLORS.real },
+  ]
+
+  return (
+    <div style={TOOLTIP_STYLE}>
+      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
+        {formatDateLabelJP(label)}
+      </div>
+      {items.map((item, index) => (
+        <div
+          key={index}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 4,
+            fontSize: 13,
+            padding: '4px 12px',
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                width: 10,
+                height: 10,
+                borderRadius: 2,
+                backgroundColor: item.color,
+                marginRight: 6,
+              }}
+            />
+            {item.name}
+          </span>
+          <span style={{ fontWeight: 500, color: item.color }}>
+            {item.value !== null && item.value !== undefined ? `$${item.value.toFixed(1)}B` : 'N/A'}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 // =============================================================================
@@ -120,19 +207,47 @@ export default function CartsChart({ data }: CartsChartProps) {
         />
 
         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            { dataKey: 'nominalB', color: COLORS.nominal, name: '名目値', hide: hiddenSeries.has('nominalB') },
-            { dataKey: 'realB', color: COLORS.real, name: '実質値（2017年基準）', hide: hiddenSeries.has('realB') },
-          ]}
-          yAxisFormatter={(v) => `$${v}B`}
-          yDomain={['dataMin - 10', 'dataMax + 10']}
-          tooltipLabelFormatter={formatDateLabel}
-          tooltipFormatter={createDollarFormatter(1, 1)}
-          onLegendClick={handleLegendClick}
-          showZeroLine={false}
-        />
+        <ResponsiveContainer width="100%" height={450}>
+          <LineChart data={filteredData} margin={CHART_MARGIN}>
+            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+            <XAxis
+              dataKey="date"
+              tickFormatter={formatDateLabel}
+              tick={AXIS_STYLE.tick}
+              interval={AXIS_STYLE.interval}
+            />
+            <YAxis
+              tickFormatter={(v) => `$${v}B`}
+              tick={AXIS_STYLE.tick}
+              domain={['dataMin - 10', 'dataMax + 10']}
+            />
+            <Tooltip content={<CartsTooltip data={filteredData} />} />
+            <Legend
+              onClick={(e) => handleLegendClick(e.dataKey as string)}
+              wrapperStyle={{ cursor: 'pointer' }}
+            />
+            <Line
+              type="monotone"
+              dataKey="nominalB"
+              name={SERIES_NAMES.nominal}
+              stroke={COLORS.nominal}
+              strokeWidth={2}
+              dot={false}
+              hide={hiddenSeries.has('nominalB')}
+              connectNulls={true}
+            />
+            <Line
+              type="monotone"
+              dataKey="realB"
+              name={SERIES_NAMES.real}
+              stroke={COLORS.real}
+              strokeWidth={2}
+              dot={false}
+              hide={hiddenSeries.has('realB')}
+              connectNulls={true}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </ChartContainer>
     </div>
   )

@@ -35,6 +35,8 @@ import {
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
   TOOLTIP_STYLE,
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -103,8 +105,8 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
             marginBottom: 4,
           }}
         >
-          <span style={{ color: entry.color }}>{entry.name}</span>
-          <span style={{ fontWeight: 'bold' }}>
+          <span style={{ color: '#f1f5f9' }}>{entry.name}</span>
+          <span style={{ fontWeight: 'bold', color: entry.color }}>
             {entry.value != null ? `${entry.value.toFixed(1)}%` : '-'}
           </span>
         </div>
@@ -118,7 +120,7 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
 // =============================================================================
 
 export default function NFIBCompensationUnemploymentChart({ data }: NFIBCompensationUnemploymentChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(5)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付順にソート
@@ -158,22 +160,12 @@ export default function NFIBCompensationUnemploymentChart({ data }: NFIBCompensa
         sourceUrl="https://www.nfib.com/news/monthly_report/sbet/"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
             {latest?.actual_compensation != null && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12, color: '#666' }}>{SERIES_NAMES.actual_compensation}:</span>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{SERIES_NAMES.actual_compensation}:</span>
                 <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.actual_compensation }}>
                   {latest.actual_compensation >= 0 ? '+' : ''}{latest.actual_compensation.toFixed(1)}%
                 </span>
@@ -181,19 +173,19 @@ export default function NFIBCompensationUnemploymentChart({ data }: NFIBCompensa
             )}
             {latest?.unemployment_rate != null && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12, color: '#666' }}>{SERIES_NAMES.unemployment_rate}:</span>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{SERIES_NAMES.unemployment_rate}:</span>
                 <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.unemployment_rate }}>
                   {latest.unemployment_rate.toFixed(1)}%
                 </span>
               </div>
             )}
             {latest?.date && (
-              <span style={{ fontSize: 11, color: '#999' }}>
+              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                 ({formatDateLabel(latest.date)})
               </span>
             )}
           </div>
-          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
             {nextRelease && (
               <div>次回発表: {nextRelease.date}</div>
             )}

@@ -12,6 +12,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { FCIData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS, CUSTOM_TOOLTIP_STYLE } from '../common/chartConstants'
 import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
@@ -111,15 +112,7 @@ export default function FCIChart({ data }: FCIChartProps) {
     if (!active || !payload || payload.length === 0) return null
 
     return (
-      <div
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          border: '1px solid #ddd',
-          borderRadius: 8,
-          padding: '12px 16px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-        }}
-      >
+      <div style={CUSTOM_TOOLTIP_STYLE}>
         <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>
           {formatMonthLabel(label || '')}
         </div>
@@ -136,7 +129,7 @@ export default function FCIChart({ data }: FCIChartProps) {
                 fontSize: 13,
               }}
             >
-              <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+              <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
                 <span
                   style={{
                     display: 'inline-block',
@@ -149,7 +142,7 @@ export default function FCIChart({ data }: FCIChartProps) {
                 />
                 {seriesName}
               </span>
-              <span style={{ fontWeight: 500 }}>
+              <span style={{ fontWeight: 500, color: item.color }}>
                 {formatValue(item.value)}
               </span>
             </div>
@@ -168,19 +161,10 @@ export default function FCIChart({ data }: FCIChartProps) {
         sourceUrl="https://www.federalreserve.gov/econres/notes/feds-notes/a-new-index-to-measure-us-financial-conditions-20230630.html"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            gap: 16,
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           {/* Baseline (3-year) */}
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
+            <div style={{ fontSize: 12, color: TEXT_COLORS.secondary, marginBottom: 4 }}>
               Baseline (3-year)
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
@@ -194,7 +178,7 @@ export default function FCIChart({ data }: FCIChartProps) {
                 {latestBaseline ? formatValue(latestBaseline.value) : '-'}
               </span>
               {latestBaseline && (
-                <span style={{ fontSize: 11, color: '#999' }}>
+                <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                   ({formatMonthLabel(latestBaseline.date)})
                 </span>
               )}
@@ -203,7 +187,7 @@ export default function FCIChart({ data }: FCIChartProps) {
 
           {/* One-year lookback */}
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
+            <div style={{ fontSize: 12, color: TEXT_COLORS.secondary, marginBottom: 4 }}>
               One-year lookback
             </div>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
@@ -217,7 +201,7 @@ export default function FCIChart({ data }: FCIChartProps) {
                 {latestOneyear ? formatValue(latestOneyear.value) : '-'}
               </span>
               {latestOneyear && (
-                <span style={{ fontSize: 11, color: '#999' }}>
+                <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                   ({formatMonthLabel(latestOneyear.date)})
                 </span>
               )}

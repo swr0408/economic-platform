@@ -39,6 +39,8 @@ import {
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
   TOOLTIP_STYLE,
+  DARK_THEME,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -150,7 +152,7 @@ function ChangeTooltip({ active, payload, label, unit = '%' }: CustomTooltipProp
               padding: '4px 12px',
             }}
           >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
               <span
                 style={{
                   display: 'inline-block',
@@ -163,12 +165,77 @@ function ChangeTooltip({ active, payload, label, unit = '%' }: CustomTooltipProp
               />
               {item.name}
             </span>
-            <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
+            <span style={{ fontWeight: 500, color: item.color }}>
               {sign}{value.toFixed(2)}{unit}
             </span>
           </div>
         )
       })}
+    </div>
+  )
+}
+
+// 前年比用カスタムTooltip（両軸チャート用）
+interface DataItem {
+  date: string
+  yoy: number | null
+  mom: number | null
+  quits_rate: number | null
+}
+
+interface YoYTooltipProps {
+  active?: boolean
+  label?: string
+  data?: DataItem[]
+}
+
+function YoYTooltip({ active, label, data }: YoYTooltipProps) {
+  if (!active || !label) return null
+
+  // データポイントを取得
+  const dataPoint = data?.find((d: DataItem) => d.date === label)
+  if (!dataPoint) return null
+
+  const items = [
+    { name: SERIES_NAMES.yoy, value: dataPoint.yoy, color: COLORS.yoy },
+    { name: SERIES_NAMES.quits_rate, value: dataPoint.quits_rate, color: COLORS.quits_rate },
+  ]
+
+  return (
+    <div style={TOOLTIP_STYLE}>
+      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
+        {formatDateLabelJP(label)}
+      </div>
+      {items.map((item, index) => (
+        <div
+          key={index}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 4,
+            fontSize: 13,
+            padding: '4px 12px',
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                width: 10,
+                height: 10,
+                borderRadius: 2,
+                backgroundColor: item.color,
+                marginRight: 6,
+              }}
+            />
+            {item.name}
+          </span>
+          <span style={{ fontWeight: 500, color: item.color }}>
+            {item.value !== null && item.value !== undefined ? `${item.value.toFixed(2)}%` : 'N/A'}
+          </span>
+        </div>
+      ))}
     </div>
   )
 }
@@ -270,18 +337,18 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
     }
   }
 
-  // 前月比テーブルコンポーネント
+  // 前月比テーブルコンポーネント（ダークテーマ）
   const ChangeTable = () => (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
         ※ 直近10年間の前月比データ（単位: %）
       </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
-            <th style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold' }}>年</th>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
+            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
             {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold', minWidth: 55 }}>
+              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
                 {month}
               </th>
             ))}
@@ -290,20 +357,20 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
         <tbody>
           {changeTableData.years.map((year: number) => (
             <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', fontWeight: 'bold', backgroundColor: '#fafafa' }}>
+              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
                 const value = changeTableData.monthlyData[year]?.[month]
 
                 return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getChangeCellColor(value) }}>
+                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getChangeCellColor(value) }}>
                     {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? '#389e0d' : '#cf1322' }}>
+                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
                         {value >= 0 ? '+' : ''}{value.toFixed(2)}
                       </span>
                     ) : (
-                      <span style={{ color: '#bfbfbf' }}>-</span>
+                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
                     )}
                   </td>
                 )
@@ -374,11 +441,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
-                <Tooltip
-                  labelFormatter={formatDateLabelJP}
-                  formatter={(value: number, name: string) => [`${value.toFixed(2)}%`, name]}
-                  contentStyle={TOOLTIP_STYLE}
-                />
+                <Tooltip content={<YoYTooltip data={filteredData} />} />
                 <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
                 <Line
                   yAxisId="left"
@@ -399,6 +462,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                   strokeWidth={2}
                   dot={false}
                   hide={hiddenSeries.has('quits_rate')}
+                  connectNulls={false}
                 />
               </LineChart>
             </ResponsiveContainer>

@@ -37,6 +37,8 @@ import {
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
   TOOLTIP_STYLE,
+  DARK_THEME,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -178,7 +180,7 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
             padding: '4px 12px',
           }}
         >
-          <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+          <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
             <span
               style={{
                 display: 'inline-block',
@@ -191,7 +193,7 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
             />
             {item.name}
           </span>
-          <span style={{ fontWeight: 500 }}>
+          <span style={{ fontWeight: 500, color: item.color }}>
             {item.value.toFixed(3)}k
           </span>
         </div>
@@ -358,18 +360,18 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
     }
   }
 
-  // 前月比テーブルコンポーネント
+  // 前月比テーブルコンポーネント（ダークテーマ）
   const MomTable = () => (
     <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: '#888', marginBottom: 12 }}>
+      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
         ※ 直近10年間の前月比データ（増加はネガティブ・減少はポジティブ）
       </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
-            <th style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold' }}>年</th>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
+            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
             {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold', minWidth: 55 }}>
+              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
                 {month}
               </th>
             ))}
@@ -378,21 +380,21 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
         <tbody>
           {momTableData.years.map((year: number) => (
             <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', fontWeight: 'bold', backgroundColor: '#fafafa' }}>
+              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
                 const value = momTableData.monthlyData[year]?.[month]
 
                 return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getMomCellColor(value) }}>
+                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getMomCellColor(value) }}>
                     {value !== null && value !== undefined ? (
                       // 人員削減数は増加がネガティブ（赤）、減少がポジティブ（緑）
-                      <span style={{ color: value >= 0 ? '#cf1322' : '#389e0d' }}>
+                      <span style={{ color: value >= 0 ? TEXT_COLORS.negative : TEXT_COLORS.positive }}>
                         {value >= 0 ? '+' : ''}{value.toFixed(1)}%
                       </span>
                     ) : (
-                      <span style={{ color: '#bfbfbf' }}>-</span>
+                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
                     )}
                   </td>
                 )

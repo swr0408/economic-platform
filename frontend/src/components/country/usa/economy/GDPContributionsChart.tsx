@@ -16,6 +16,7 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, PercentageTooltip } from '../common/ChartComponents'
 
@@ -104,16 +105,9 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
       <ChartContainer title="GDP成長率 寄与度" showPeriodSelector={false} dataSource="BEA / FRED" sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product">
         {/* 最新値サマリー */}
         {latestValue && (
-          <div
-            style={{
-              marginBottom: 16,
-              padding: '12px 16px',
-              background: '#f5f5f5',
-              borderRadius: 8,
-            }}
-          >
-            <div style={{ marginBottom: 8 }}>
-              <span style={{ fontSize: 14, fontWeight: 500 }}>最新: {latestValue.quarter}</span>
+          <div style={LATEST_VALUE_BOX_STYLE}>
+            <div style={{ marginBottom: 8, width: '100%' }}>
+              <span style={{ fontSize: 14, fontWeight: 500, color: TEXT_COLORS.secondary }}>最新: {latestValue.quarter}</span>
             </div>
             <div
               style={{
@@ -121,6 +115,7 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
                 gridTemplateColumns: 'repeat(5, 1fr)',
                 gap: 8,
                 fontSize: 12,
+                width: '100%',
               }}
             >
               {CONTRIBUTION_ITEMS.map((item) => {
@@ -131,12 +126,12 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
                     style={{
                       textAlign: 'center',
                       padding: '4px 8px',
-                      background: '#fff',
+                      background: 'rgba(255,255,255,0.05)',
                       borderRadius: 4,
                       borderLeft: `3px solid ${item.color}`,
                     }}
                   >
-                    <div style={{ color: '#666', marginBottom: 2 }}>{item.name}</div>
+                    <div style={{ color: TEXT_COLORS.secondary, marginBottom: 2 }}>{item.name}</div>
                     <div
                       style={{
                         fontWeight: 500,

@@ -1,50 +1,106 @@
+/* EconAlpha - Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  /* EconAlpha Color Palette */
+  --ea-bg-primary: #0f172a;
+  --ea-bg-secondary: #1e293b;
+  --ea-bg-tertiary: #334155;
+  --ea-bg-elevated: #475569;
+
+  --ea-text-primary: #f1f5f9;
+  --ea-text-secondary: #94a3b8;
+  --ea-text-tertiary: #64748b;
+
+  --ea-accent: #10b981;
+  --ea-accent-hover: #34d399;
+  --ea-accent-muted: rgba(16, 185, 129, 0.15);
+
+  --ea-gold: #f59e0b;
+  --ea-success: #10b981;
+  --ea-error: #ef4444;
+  --ea-warning: #f59e0b;
+  --ea-info: #3b82f6;
+
+  --ea-border: #334155;
+  --ea-border-light: #475569;
+
+  /* Spacing - compact for pro tools */
+  --ea-spacing-xs: 4px;
+  --ea-spacing-sm: 8px;
+  --ea-spacing-md: 12px;
+  --ea-spacing-lg: 16px;
+  --ea-spacing-xl: 24px;
+
+  /* Border Radius */
+  --ea-radius-sm: 4px;
+  --ea-radius-md: 8px;
+  --ea-radius-lg: 12px;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f5f7fa;
+  font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--ea-bg-primary);
+  color: var(--ea-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
 }
 
-/* Asset Grid */
+/* Numeric Font Feature - for financial data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Asset Grid - tighter spacing for pro look */
 .asset-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
 }
 
 @media (max-width: 768px) {
   .asset-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
   }
 }
 
-/* Symbol Card hover effect */
+/* Symbol Card hover effect - dark theme */
 .symbol-card {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  border: 1px solid var(--ea-border);
 }
 
 .symbol-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
-  border-color: #1890ff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  border-color: var(--ea-accent) !important;
 }
 
-/* Ant Design Card improvements */
+/* Ant Design Dark Theme Overrides */
 .ant-card {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  background: var(--ea-bg-secondary) !important;
+  border-color: var(--ea-border) !important;
 }
 
 .ant-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.ant-card-head {
+  border-bottom-color: var(--ea-border) !important;
 }
 
 /* Tabs improvements */
@@ -53,7 +109,7 @@ body {
 }
 
 .ant-tabs-tab:hover {
-  color: #1890ff;
+  color: var(--ea-accent);
 }
 
 .ant-tabs-tab-active {
@@ -62,12 +118,22 @@ body {
 
 /* Button improvements */
 .ant-btn {
-  border-radius: 6px;
+  border-radius: var(--ea-radius-md);
   transition: all 0.2s ease;
 }
 
 .ant-btn:hover {
   transform: translateY(-1px);
+}
+
+.ant-btn-primary {
+  background: var(--ea-accent) !important;
+  border-color: var(--ea-accent) !important;
+}
+
+.ant-btn-primary:hover {
+  background: var(--ea-accent-hover) !important;
+  border-color: var(--ea-accent-hover) !important;
 }
 
 /* Image preview improvements */
@@ -81,13 +147,14 @@ body {
 }
 
 .ant-breadcrumb a:hover {
-  color: #1890ff;
+  color: var(--ea-accent);
 }
 
 /* Badge styling */
 .ant-badge .ant-badge-count {
   font-size: 11px;
   font-weight: 500;
+  background: var(--ea-accent);
 }
 
 /* Spinner centering */
@@ -95,35 +162,40 @@ body {
   transition: opacity 0.3s ease;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - dark theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--ea-bg-secondary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
+  background: var(--ea-bg-tertiary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+  background: var(--ea-bg-elevated);
 }
 
 /* Selection color */
 ::selection {
-  background-color: #1890ff;
-  color: white;
+  background-color: var(--ea-accent);
+  color: var(--ea-bg-primary);
 }
 
 /* Link styling */
 a {
   text-decoration: none;
+  color: var(--ea-accent);
+}
+
+a:hover {
+  color: var(--ea-accent-hover);
 }
 
 /* Loading animation */
@@ -138,4 +210,124 @@ a {
 
 .fade-in {
   animation: fadeIn 0.3s ease-in;
+}
+
+/* Market Data Display Utilities */
+.positive-value {
+  color: var(--ea-success);
+}
+
+.negative-value {
+  color: var(--ea-error);
+}
+
+.neutral-value {
+  color: var(--ea-text-secondary);
+}
+
+/* Compact Table Styles for Pro Tools */
+.ant-table {
+  font-size: 13px;
+}
+
+.ant-table-thead > tr > th {
+  padding: 8px 12px !important;
+  background: var(--ea-bg-tertiary) !important;
+}
+
+.ant-table-tbody > tr > td {
+  padding: 6px 12px !important;
+}
+
+/* Menu Compact Styles */
+.ant-menu-item {
+  margin-block: 2px !important;
+}
+
+.ant-menu-submenu-title {
+  margin-block: 2px !important;
+}
+
+/* Input Fields */
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+  background: var(--ea-bg-secondary) !important;
+  border-color: var(--ea-border) !important;
+}
+
+.ant-input:focus,
+.ant-input:hover,
+.ant-select-selector:hover,
+.ant-picker:hover {
+  border-color: var(--ea-accent) !important;
+}
+
+/* Tooltip Dark */
+.ant-tooltip-inner {
+  background: var(--ea-bg-tertiary);
+  color: var(--ea-text-primary);
+}
+
+/* Modal Dark */
+.ant-modal-content {
+  background: var(--ea-bg-secondary) !important;
+}
+
+.ant-modal-header {
+  background: var(--ea-bg-secondary) !important;
+  border-bottom-color: var(--ea-border) !important;
+}
+
+.ant-modal-footer {
+  border-top-color: var(--ea-border) !important;
+}
+
+/* Divider */
+.ant-divider {
+  border-color: var(--ea-border);
+}
+
+/* Stat Card Styles */
+.stat-card {
+  background: var(--ea-bg-secondary);
+  border: 1px solid var(--ea-border);
+  border-radius: var(--ea-radius-md);
+  padding: var(--ea-spacing-md);
+}
+
+.stat-card:hover {
+  border-color: var(--ea-accent);
+}
+
+/* Market Ticker Animation */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: ticker-scroll 30s linear infinite;
+}
+
+/* Glow Effect for Accent Elements */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Alpha Symbol Styling */
+.alpha-symbol {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--ea-accent);
 }

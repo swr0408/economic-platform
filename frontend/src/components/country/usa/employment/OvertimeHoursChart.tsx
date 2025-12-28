@@ -31,6 +31,8 @@ import {
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
   TOOLTIP_STYLE,
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -89,8 +91,8 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
             marginBottom: 4,
           }}
         >
-          <span style={{ color: entry.color }}>{entry.name}</span>
-          <span style={{ fontWeight: 'bold' }}>
+          <span style={{ color: '#f1f5f9' }}>{entry.name}</span>
+          <span style={{ fontWeight: 'bold', color: entry.color }}>
             {entry.value != null ? `${entry.value.toFixed(1)}時間` : '-'}
           </span>
         </div>
@@ -143,34 +145,23 @@ export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
         sourceUrl="https://www.bls.gov/ces/"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
             {latest?.value != null && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12, color: '#666' }}></span>
                 <span style={{ fontSize: 16, fontWeight: 'bold', color: LINE_COLOR }}>
                   {latest.value.toFixed(1)}時間/週
                 </span>
               </div>
             )}
             {latest?.date && (
-              <span style={{ fontSize: 11, color: '#999' }}>
+              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                 ({formatDateLabel(latest.date)})
               </span>
             )}
           </div>
-          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
             {nextRelease && (
               <div>次回発表: {nextRelease.date}</div>
             )}

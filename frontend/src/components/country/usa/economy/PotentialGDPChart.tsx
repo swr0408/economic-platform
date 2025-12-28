@@ -6,6 +6,7 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS, CUSTOM_TOOLTIP_STYLE } from '../common/chartConstants'
 import { usePeriodFiltering, formatQuarterLabel, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
@@ -115,15 +116,7 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
     if (!active || !payload || payload.length === 0) return null
 
     return (
-      <div
-        style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
-          border: '1px solid #ddd',
-          borderRadius: 8,
-          padding: '12px 16px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-        }}
-      >
+      <div style={CUSTOM_TOOLTIP_STYLE}>
         <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14 }}>
           {formatQuarterLabel(label || '')}
         </div>
@@ -140,7 +133,7 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
                 fontSize: 13,
               }}
             >
-              <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
+              <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
                 <span
                   style={{
                     display: 'inline-block',
@@ -153,7 +146,7 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
                 />
                 {seriesName}
               </span>
-              <span style={{ fontWeight: 500 }}>
+              <span style={{ fontWeight: 500, color: item.color }}>
                 {formatPercentage(item.value)}
               </span>
             </div>
@@ -172,39 +165,28 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
         sourceUrl="https://www.cbo.gov/taxonomy/term/6/recurring-reports"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 16,
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-            flexWrap: 'wrap',
-          }}
-        >
-          <span style={{ fontSize: 12, color: '#666', fontWeight: 'bold' }}>最新値</span>
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
           {/* 名目潜在成長率 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 12, color: '#666' }}>名目:</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>名目:</span>
             <span style={{ fontSize: 16, fontWeight: 'bold', color: '#52c41a' }}>
               {latestNominal ? formatPercentage(latestNominal.value) : '-'}
             </span>
             {latestNominal && (
-              <span style={{ fontSize: 11, color: '#999' }}>
+              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                 ({formatQuarterLabel(latestNominal.date)})
               </span>
             )}
           </div>
           {/* 実質潜在成長率 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 12, color: '#666' }}>実質:</span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>実質:</span>
             <span style={{ fontSize: 16, fontWeight: 'bold', color: '#1890ff' }}>
               {latestReal ? formatPercentage(latestReal.value) : '-'}
             </span>
             {latestReal && (
-              <span style={{ fontSize: 11, color: '#999' }}>
+              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
                 ({formatQuarterLabel(latestReal.date)})
               </span>
             )}

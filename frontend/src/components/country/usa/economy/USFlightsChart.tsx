@@ -4,6 +4,7 @@ import { ExpandOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/ico
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import type { USFlightsData } from '../../../../hooks/useDashboardData'
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 
 interface USFlightsChartProps {
   data: USFlightsData | null
@@ -67,19 +68,9 @@ export default function USFlightsChart({ data }: USFlightsChartProps) {
 
       >
         {/* ヘッダー情報 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>データ日付: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>データ日付: </span>
             {data.latest && (
               <span
                 style={{

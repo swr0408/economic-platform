@@ -107,7 +107,16 @@ class AverageHourlyEarningsService:
         api_data = self._fetch_from_api(start_date)
 
         if api_data:
-            latest = api_data[-1] if api_data else None
+            # latestはdataとは別のオブジェクトとしてコピー（参照を共有しない）
+            latest = dict(api_data[-1]) if api_data else None
+
+            # quits_rateがnullの場合、最新のquits_rateを持つエントリを探す（latestのみ更新）
+            if latest and latest.get("quits_rate") is None:
+                for entry in reversed(api_data):
+                    if entry.get("quits_rate") is not None:
+                        latest["quits_rate"] = entry.get("quits_rate")
+                        latest["quits_rate_date"] = entry.get("date")
+                        break
 
             cache_payload = {
                 "data": api_data,

@@ -7,6 +7,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { NFIBCapexData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
+import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
@@ -98,19 +99,9 @@ export default function NFIBCapexChart({ data }: NFIBCapexChartProps) {
         sourceUrl="https://www.nfib.com/surveys/small-business-economic-trends/"
       >
         {/* 最新値表示 */}
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 12,
-            padding: '12px 16px',
-            background: '#f5f5f5',
-            borderRadius: 8,
-          }}
-        >
+        <div style={LATEST_VALUE_BOX_STYLE}>
           <div>
-            <span style={{ fontSize: 12, color: '#666' }}>最新値: </span>
+            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>最新値: </span>
             {data.latest && (
               <>
                 <span
@@ -122,13 +113,13 @@ export default function NFIBCapexChart({ data }: NFIBCapexChartProps) {
                 >
                   {formatValue(data.latest.value)}%
                 </span>
-                <span style={{ fontSize: 12, color: '#999', marginLeft: 8 }}>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary, marginLeft: 8 }}>
                   ({formatDateLabel(data.latest.date)})
                 </span>
               </>
             )}
           </div>
-          <div style={{ fontSize: 11, color: '#888', textAlign: 'right' }}>
+          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
             {data.next_release && <div>次回発表: {data.next_release.date}</div>}
             <div>毎月第2火曜日発表</div>
           </div>

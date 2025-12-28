@@ -14,6 +14,8 @@ import {
   CHART_COLORS,
   MONTH_NAMES,
   getCellColor,
+  DARK_THEME,
+  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   usePeriodFiltering,
@@ -162,7 +164,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
 
   const latest = data.latest
 
-  // 前月比テーブルコンポーネント
+  // 前月比テーブルコンポーネント（ダークテーマ）
   const MoMTable = () => (
     <div style={{ overflowX: 'auto' }}>
       <DataTypeButtonGroup
@@ -170,12 +172,12 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
         currentType={dataType}
         onChange={setDataType}
       />
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
         <thead>
-          <tr style={{ backgroundColor: '#fafafa' }}>
-            <th style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold' }}>年</th>
+          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
+            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
             {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: '2px solid #d9d9d9', fontWeight: 'bold', minWidth: 50 }}>
+              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 50 }}>
                 {month}
               </th>
             ))}
@@ -184,7 +186,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
         <tbody>
           {momTableData.years.map((year: number) => (
             <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', fontWeight: 'bold', backgroundColor: '#fafafa' }}>
+              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
                 {year}
               </td>
               {Array.from({ length: 12 }, (_, month) => {
@@ -195,13 +197,13 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                 else value = cellData?.control_group
 
                 return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: '1px solid #e8e8e8', backgroundColor: getCellColor(value) }}>
+                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getCellColor(value) }}>
                     {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? '#389e0d' : '#cf1322' }}>
+                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
                         {value >= 0 ? '+' : ''}{value.toFixed(2)}
                       </span>
                     ) : (
-                      <span style={{ color: '#bfbfbf' }}>-</span>
+                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
                     )}
                   </td>
                 )

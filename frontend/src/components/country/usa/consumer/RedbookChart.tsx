@@ -90,7 +90,7 @@ export default function RedbookChart({ data }: RedbookChartProps) {
         <StandardLineChart
           data={filteredData}
           lines={[
-            { dataKey: 'value', color: CHART_COLORS.primary, name: '前年比' },
+            { dataKey: 'value', color: CHART_COLORS.primary, name: 'レッドブック（前年比）' },
           ]}
           yAxisFormatter={(v) => `${v}%`}
           yDomain={['dataMin - 2', 'dataMax + 2']}

@@ -136,13 +136,12 @@ export default function InitialClaimsChart({ data }: InitialClaimsChartProps) {
           yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
           yDomain={['dataMin - 20000', 'dataMax + 20000']}
           tooltipLabelFormatter={formatDateFullJP}
-          tooltipFormatter={(value: unknown, name: string) => {
-            const v = value as number
+          tooltipValueFormatter={(v, dataKey) => {
             // 4週移動平均は小数点第2位まで表示
-            if (name === '4週移動平均') {
-              return [`${(v / 1000).toFixed(2)}k`, name]
+            if (dataKey === 'ic4wsa') {
+              return `${(v / 1000).toFixed(2)}k`
             }
-            return [`${(v / 1000).toFixed(0)}k`, name]
+            return `${(v / 1000).toFixed(0)}k`
           }}
           showZeroLine={false}
         />
