@@ -28,6 +28,7 @@ import pandas as pd
 import io
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import INDEED_WAGE_CHECKER
 
 
 # タイムゾーン
@@ -51,7 +52,7 @@ class IndeedWageTrackerService:
     MONTHLY_UPDATE_KEY = "indeed:wage_tracker:monthly_updated"
 
     def __init__(self):
-        pass
+        self.schedule_checker = INDEED_WAGE_CHECKER
 
     def get_indeed_wage_data(
         self,
@@ -75,54 +76,43 @@ class IndeedWageTrackerService:
             }
         """
         now = datetime.now(JST)
-        next_release = self._get_next_release()
-
-        # 今月既に更新済みかチェック
-        monthly_updated = self._is_monthly_updated()
 
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str:
-                    # 今月既に更新済みなら、翌月までキャッシュを使用
-                    if monthly_updated and not self._should_refresh_for_new_month(last_updated_str):
-                        return {
-                            "data": cached_data.get("data", []),
-                            "latest": cached_data.get("latest"),
-                            "next_release": next_release,
-                            "cached": True,
-                            "source": "redis",
-                            "last_updated": last_updated_str
-                        }
-                    # まだ今月更新されていないなら、更新チェック
-                    if not monthly_updated and not self._should_check_update():
-                        return {
-                            "data": cached_data.get("data", []),
-                            "latest": cached_data.get("latest"),
-                            "next_release": next_release,
-                            "cached": True,
-                            "source": "redis",
-                            "last_updated": last_updated_str
-                        }
+                latest_data_date = cached_data.get("latest_data_date")
+                if last_updated_str and not self.schedule_checker.should_refresh(
+                    last_updated_str, latest_data_date=latest_data_date
+                ):
+                    return {
+                        "data": cached_data.get("data", []),
+                        "latest": cached_data.get("latest"),
+                        "next_release": None,
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated_str
+                    }
 
         # ファイルキャッシュチェック
         if not force_refresh:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str:
-                    if monthly_updated and not self._should_refresh_for_new_month(last_updated_str):
-                        redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
-                        return {
-                            "data": file_cache.get("data", []),
-                            "latest": file_cache.get("latest"),
-                            "next_release": next_release,
-                            "cached": True,
-                            "source": "file",
-                            "last_updated": last_updated_str
-                        }
+                latest_data_date = file_cache.get("latest_data_date")
+                if last_updated_str and not self.schedule_checker.should_refresh(
+                    last_updated_str, latest_data_date=latest_data_date
+                ):
+                    redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
+                    return {
+                        "data": file_cache.get("data", []),
+                        "latest": file_cache.get("latest"),
+                        "next_release": None,
+                        "cached": True,
+                        "source": "file",
+                        "last_updated": last_updated_str
+                    }
 
         # Indeed から取得
         api_data = self._fetch_from_indeed()
@@ -142,6 +132,7 @@ class IndeedWageTrackerService:
             cache_payload = {
                 "data": api_data,
                 "latest": latest,
+                "latest_data_date": latest.get("date") if latest else None,
                 "last_updated": datetime.now(JST).isoformat()
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
@@ -153,7 +144,7 @@ class IndeedWageTrackerService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -165,7 +156,7 @@ class IndeedWageTrackerService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -174,7 +165,7 @@ class IndeedWageTrackerService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -346,37 +337,6 @@ class IndeedWageTrackerService:
             print(f"Error checking refresh status: {e}")
             return False
 
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得（毎月15日を目安）
-        """
-        try:
-            now = datetime.now(JST)
-
-            # 今月の15日
-            release_day = 15
-
-            if now.day >= release_day:
-                # 今月の15日を過ぎていたら来月の15日
-                if now.month == 12:
-                    next_year = now.year + 1
-                    next_month = 1
-                else:
-                    next_year = now.year
-                    next_month = now.month + 1
-                next_release_date = datetime(next_year, next_month, release_day, tzinfo=JST)
-            else:
-                next_release_date = datetime(now.year, now.month, release_day, tzinfo=JST)
-
-            return {
-                "date": next_release_date.strftime("%Y-%m-%d"),
-                "label": f"Indeed Wage Tracker ({next_release_date.strftime('%Y年%m月')}頃)"
-            }
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
-
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
         try:
@@ -415,7 +375,7 @@ class IndeedWageTrackerService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists(),
             "monthly_updated": self._is_monthly_updated()
         }

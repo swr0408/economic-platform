@@ -22,6 +22,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import VEHICLE_SALES_CHECKER
 
 
 # タイムゾーン
@@ -56,6 +57,7 @@ class TotalVehicleSalesService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = VEHICLE_SALES_CHECKER
 
     def get_total_vehicle_sales_data(
         self,
@@ -73,7 +75,7 @@ class TotalVehicleSalesService:
             {
                 "data": [{"date": "YYYY-MM-DD", "value": float, "mom": float, "yoy": float}, ...],
                 "latest": {...},
-                "next_release": {"date": "YYYY-MM-DD", "label": str} | null,
+                "next_release": None,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
@@ -84,12 +86,11 @@ class TotalVehicleSalesService:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, cached_data):
-                    next_release = self._get_next_release()
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -100,9 +101,8 @@ class TotalVehicleSalesService:
             file_cache = self._load_file_cache(DATA_CACHE_FILE)
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, file_cache):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -110,7 +110,7 @@ class TotalVehicleSalesService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -118,7 +118,6 @@ class TotalVehicleSalesService:
 
         # 外部APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -137,7 +136,7 @@ class TotalVehicleSalesService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -149,7 +148,7 @@ class TotalVehicleSalesService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -158,7 +157,7 @@ class TotalVehicleSalesService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -240,186 +239,11 @@ class TotalVehicleSalesService:
             traceback.print_exc()
             return []
 
-    def _should_refresh(self, last_updated_str: str, cached_data: Dict[str, Any]) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定
-
-        判定ロジック:
-        1. 次回発表日がわかっている場合: 発表日を過ぎたら更新
-        2. 次回発表日が不明の場合:
-           - 最終更新から1ヶ月経過したら、1日1回APIをチェック
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 次回発表情報を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表日を過ぎており、かつ最終更新が発表日より前なら更新が必要
-                release_datetime = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    0, 0, 0, tzinfo=JST
-                )
-
-                if now >= release_datetime and last_updated < release_datetime:
-                    return True
-
-                return False
-
-            else:
-                # 発表日が不明の場合
-
-                # 最終更新からの経過日数
-                days_since_update = (now - last_updated).days
-
-                # 1ヶ月（30日）以上経過していれば更新チェック
-                if days_since_update >= 30:
-                    # 1日以上経過していれば更新
-                    hours_since_update = (now - last_updated).total_seconds() / 3600
-                    if hours_since_update >= 24:
-                        return True
-
-                return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        FRED releases/datesエンドポイントからスケジュールを取得
-        キャッシュがあればそれを使用（6ヶ月間有効）
-        """
-        # Redisキャッシュをチェック
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            cached_at = cached.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    # キャッシュは6ヶ月間有効
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        # 今日以降の発表日を検索
-                        releases = cached.get("releases", [])
-                        next_rel = self._find_next_release_from_list(releases)
-                        if next_rel:
-                            return next_rel
-                except Exception:
-                    pass
-
-        # ファイルキャッシュをチェック
-        schedule_cache = self._load_file_cache(SCHEDULE_CACHE_FILE)
-        if schedule_cache:
-            cached_at = schedule_cache.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        releases = schedule_cache.get("releases", [])
-                        next_rel = self._find_next_release_from_list(releases)
-                        if next_rel:
-                            # Redisにも保存
-                            redis_client.set(self.SCHEDULE_CACHE_KEY, schedule_cache, expire=self.SCHEDULE_CACHE_TTL)
-                            return next_rel
-                except Exception:
-                    pass
-
-        # FRED APIから取得
-        releases = self._fetch_release_schedule()
-        if releases:
-            # キャッシュに保存（6ヶ月間有効）
-            cache_data = {
-                "releases": releases,
-                "cached_at": datetime.now(JST).isoformat()
-            }
-            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_data, expire=self.SCHEDULE_CACHE_TTL)
-            self._save_file_cache(SCHEDULE_CACHE_FILE, cache_data)
-            return self._find_next_release_from_list(releases)
-
-        return None
-
-    def _fetch_release_schedule(self) -> List[Dict[str, Any]]:
-        """
-        FRED APIからリリーススケジュールを取得
-
-        releases/datesエンドポイントを使用
-        """
-        try:
-            if not self.api_key:
-                print("FRED_API_KEY not set")
-                return []
-
-            print(f"Fetching release schedule from FRED (Release ID: {FRED_RELEASE_ID})...")
-
-            # 今日から1年後までのスケジュールを取得
-            today = date.today()
-            end_date = today + timedelta(days=365)
-
-            url = f"{self.BASE_URL}/release/dates"
-            params = {
-                "release_id": FRED_RELEASE_ID,
-                "api_key": self.api_key,
-                "file_type": "json",
-                "realtime_start": today.strftime("%Y-%m-%d"),
-                "realtime_end": end_date.strftime("%Y-%m-%d"),
-                "include_release_dates_with_no_data": "true"
-            }
-
-            response = requests.get(url, params=params, timeout=30)
-            response.raise_for_status()
-            data = response.json()
-
-            releases = []
-            for item in data.get("release_dates", []):
-                release_date = item.get("date")
-                if release_date:
-                    releases.append({
-                        "date": release_date,
-                        "label": f"Total Vehicle Sales - {release_date}"
-                    })
-
-            print(f"Fetched {len(releases)} upcoming release dates")
-            return releases
-
-        except Exception as e:
-            print(f"Error fetching release schedule: {e}")
-            import traceback
-            traceback.print_exc()
-            return []
-
-    def _find_next_release_from_list(self, releases: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-        """リリースリストから次回発表日を検索"""
-        today = date.today()
-
-        for rel in releases:
-            release_date_str = rel.get("date")
-            if release_date_str:
-                try:
-                    release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                    if release_date >= today:
-                        return {
-                            "date": release_date_str,
-                            "label": rel.get("label", f"Total Vehicle Sales - {release_date_str}")
-                        }
-                except ValueError:
-                    continue
-
-        return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -460,7 +284,7 @@ class TotalVehicleSalesService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

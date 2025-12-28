@@ -111,6 +111,11 @@ function MainLayout() {
     <Layout style={{ minHeight: '100vh' }}>
       <Header
         style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
           display: 'flex',
           alignItems: 'center',
           background: '#001529',
@@ -138,7 +143,7 @@ function MainLayout() {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      <Layout>
+      <Layout style={{ marginTop: 64 }}>
         {showSidebar && (
           <div
             ref={siderRef}
@@ -157,7 +162,7 @@ function MainLayout() {
                 background: '#fff',
                 borderRight: '1px solid #f0f0f0',
                 position: 'sticky',
-                top: 64,
+                top: 0,
                 height: 'calc(100vh - 64px)',
                 overflow: 'auto',
               }}

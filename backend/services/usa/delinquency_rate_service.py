@@ -27,6 +27,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import DELINQUENCY_RATE_CHECKER
 
 
 # タイムゾーン
@@ -57,6 +58,7 @@ class DelinquencyRateService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = DELINQUENCY_RATE_CHECKER
 
     def get_delinquency_rate_data(
         self,
@@ -86,11 +88,10 @@ class DelinquencyRateService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -103,7 +104,6 @@ class DelinquencyRateService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -111,7 +111,7 @@ class DelinquencyRateService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -119,7 +119,6 @@ class DelinquencyRateService:
 
         # 外部APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -138,7 +137,7 @@ class DelinquencyRateService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -150,7 +149,7 @@ class DelinquencyRateService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -159,7 +158,7 @@ class DelinquencyRateService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -259,141 +258,9 @@ class DelinquencyRateService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定
-
-        判定ロジック:
-        - 2月・5月・8月・11月の15日以降
-        - 次回発表日時を過ぎており、かつ最終更新が発表日時より前なら更新
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 発表月でない場合はチェック不要
-            if now.month not in self.RELEASE_MONTHS:
-                return False
-
-            # 15日より前は発表されていないのでチェック不要
-            if now.day < 15:
-                return False
-
-            # 次回発表日時を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻（10:00 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            # キャッシュに新しいデータがあるかチェック
-            # FREDから最新の発表日を取得して比較
-            cached_data = redis_client.get(self.DATA_CACHE_KEY)
-            if cached_data:
-                latest_data_date = cached_data.get("latest_data_date")
-                if latest_data_date:
-                    # 今月の発表データがまだキャッシュにない場合
-                    expected_quarter_end = self._get_expected_quarter_end_for_release_month(now.year, now.month)
-                    if expected_quarter_end and latest_data_date < expected_quarter_end:
-                        # 15日以降なのでチェック
-                        return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_expected_quarter_end_for_release_month(self, year: int, release_month: int) -> Optional[str]:
-        """
-        発表月に対応する四半期末を取得
-
-        Args:
-            year: 年
-            release_month: 発表月（2, 5, 8, 11）
-
-        Returns:
-            四半期末の日付（YYYY-MM-DD）
-        """
-        # 2月発表 -> 12月末（前年Q4）
-        # 5月発表 -> 3月末（Q1）
-        # 8月発表 -> 6月末（Q2）
-        # 11月発表 -> 9月末（Q3）
-        quarter_end_map = {
-            2: (year - 1, 12, 31),  # 前年Q4
-            5: (year, 3, 31),       # Q1
-            8: (year, 6, 30),       # Q2
-            11: (year, 9, 30),      # Q3
-        }
-
-        if release_month in quarter_end_map:
-            y, m, d = quarter_end_map[release_month]
-            return f"{y}-{m:02d}-{d:02d}"
-        return None
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を計算
-
-        四半期末60日後に発表（2月・5月・8月・11月の中旬頃）
-        FREDのリリースカレンダーから取得することも可能
-        """
-        try:
-            now = datetime.now(ET)
-            today = now.date()
-
-            # 次の発表月を探す
-            current_month = today.month
-
-            # 発表月と対応する四半期を定義
-            release_info = [
-                (2, "Q4", "前年第4四半期"),   # 2月発表: 前年Q4
-                (5, "Q1", "第1四半期"),       # 5月発表: 当年Q1
-                (8, "Q2", "第2四半期"),       # 8月発表: 当年Q2
-                (11, "Q3", "第3四半期"),      # 11月発表: 当年Q3
-            ]
-
-            # 次の発表月を見つける
-            next_release_year = today.year
-            next_release_month = None
-            quarter_label = ""
-
-            for month, q_code, q_label in release_info:
-                if current_month < month or (current_month == month and today.day < 15):
-                    next_release_month = month
-                    quarter_label = q_label
-                    break
-
-            # 今年の発表がすべて終わっている場合は来年2月
-            if next_release_month is None:
-                next_release_year = today.year + 1
-                next_release_month = 2
-                quarter_label = "第4四半期"
-
-            # 発表日は15日頃と仮定
-            release_day = 15
-
-            return {
-                "date": f"{next_release_year}-{next_release_month:02d}-{release_day:02d}",
-                "label": f"FRB Charge-Off and Delinquency Rates ({quarter_label}) - {next_release_year}/{next_release_month:02d}発表予定"
-            }
-
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -433,7 +300,7 @@ class DelinquencyRateService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import { Card, Typography, Space, Button, Empty } from 'antd'
 import {
@@ -10,11 +10,14 @@ import {
   HomeOutlined,
   ShoppingOutlined,
   BarChartOutlined,
+  CalendarOutlined,
+  MenuFoldOutlined,
 } from '@ant-design/icons'
 import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
 import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
 import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
 import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
+import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 
 const { Title, Text } = Typography
 
@@ -172,9 +175,54 @@ function IndicatorPlaceholder({ indicator }: { indicator: Indicator }) {
   )
 }
 
+// 右サイドバー（経済カレンダー）のデフォルト幅と範囲
+const CALENDAR_SIDEBAR_DEFAULT_WIDTH = 500
+const CALENDAR_SIDEBAR_MIN_WIDTH = 300
+const CALENDAR_SIDEBAR_MAX_WIDTH = 800
+
 function CountryDataCategory() {
   const { countryCode, categoryCode } = useParams()
   const location = useLocation()
+  const [calendarOpen, setCalendarOpen] = useState(true)
+  const [sidebarWidth, setSidebarWidth] = useState(CALENDAR_SIDEBAR_DEFAULT_WIDTH)
+  const [isResizing, setIsResizing] = useState(false)
+
+  // リサイズハンドラー（左サイドバーと同じ方式）
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsResizing(true)
+  }, [])
+
+  // マウス移動でサイドバー幅を変更
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing) return
+      const newWidth = window.innerWidth - e.clientX
+      if (newWidth >= CALENDAR_SIDEBAR_MIN_WIDTH && newWidth <= CALENDAR_SIDEBAR_MAX_WIDTH) {
+        setSidebarWidth(newWidth)
+      }
+    }
+
+    const handleMouseUp = () => {
+      if (isResizing) {
+        setIsResizing(false)
+      }
+    }
+
+    if (isResizing) {
+      document.addEventListener('mousemove', handleMouseMove)
+      document.addEventListener('mouseup', handleMouseUp)
+      document.body.style.userSelect = 'none'
+      document.body.style.cursor = 'col-resize'
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+      document.body.style.userSelect = ''
+      document.body.style.cursor = ''
+    }
+  }, [isResizing])
 
   // ハッシュがある場合はスクロール
   useEffect(() => {
@@ -188,6 +236,9 @@ function CountryDataCategory() {
       }, 100)
     }
   }, [location.hash])
+
+  // 全ての国でカレンダーを表示
+  const showCalendar = !!countryCode && !!COUNTRY_INFO[countryCode]
 
   if (
     !countryCode ||
@@ -218,55 +269,9 @@ function CountryDataCategory() {
   const isUSAConsumer = countryCode === 'usa' && categoryCode === 'consumer'
   const isUSAEmployment = countryCode === 'usa' && categoryCode === 'employment'
 
-  return (
-    <div style={{ padding: '24px' }}>
-      <Space style={{ marginBottom: 24 }} wrap>
-        <Link to="/country">
-          <Button type="default" icon={<ArrowLeftOutlined />}>
-            各国データ一覧
-          </Button>
-        </Link>
-        <Link to={`/country/${countryCode}`}>
-          <Button type="default">{country.name}データ一覧</Button>
-        </Link>
-      </Space>
-
-      <div style={{ marginBottom: 32 }}>
-        <Space size={16} align="center">
-          <span
-            className={`fi fi-${country.isoCode}`}
-            style={{
-              fontSize: 48,
-              borderRadius: 4,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            }}
-          />
-          <div
-            style={{
-              color: category.color,
-              fontSize: 32,
-              background: `${category.color}10`,
-              width: 56,
-              height: 56,
-              borderRadius: 12,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            {category.icon}
-          </div>
-          <div>
-            <Title level={2} style={{ margin: 0 }}>
-              {country.name} - {category.name}
-            </Title>
-            <Text type="secondary" style={{ fontSize: 16 }}>
-              {category.description}
-            </Text>
-          </div>
-        </Space>
-      </div>
-
+  // メインコンテンツ
+  const mainContent = (
+    <>
       {isUSAPolicy ? (
         <USAPolicyCharts />
       ) : isUSAEconomy ? (
@@ -313,6 +318,171 @@ function CountryDataCategory() {
             }
           />
         </Card>
+      )}
+    </>
+  )
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      {/* メインコンテンツエリア */}
+      <div
+        style={{
+          flex: 1,
+          padding: '24px',
+          marginRight: showCalendar && calendarOpen ? sidebarWidth : 0,
+          transition: 'margin-right 0.3s ease',
+        }}
+      >
+        <Space style={{ marginBottom: 24 }} wrap>
+          <Link to="/country">
+            <Button type="default" icon={<ArrowLeftOutlined />}>
+              各国データ一覧
+            </Button>
+          </Link>
+          <Link to={`/country/${countryCode}`}>
+            <Button type="default">{country.name}データ一覧</Button>
+          </Link>
+        </Space>
+
+        <div style={{ marginBottom: 32 }}>
+          <Space size={16} align="center">
+            <span
+              className={`fi fi-${country.isoCode}`}
+              style={{
+                fontSize: 48,
+                borderRadius: 4,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              }}
+            />
+            <div
+              style={{
+                color: category.color,
+                fontSize: 32,
+                background: `${category.color}10`,
+                width: 56,
+                height: 56,
+                borderRadius: 12,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {category.icon}
+            </div>
+            <div>
+              <Title level={2} style={{ margin: 0 }}>
+                {country.name} - {category.name}
+              </Title>
+              <Text type="secondary" style={{ fontSize: 16 }}>
+                {category.description}
+              </Text>
+            </div>
+          </Space>
+        </div>
+
+        {mainContent}
+      </div>
+
+      {/* リサイズ中のオーバーレイ（iframeがマウスイベントを奪うのを防ぐ） */}
+      {isResizing && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 9999,
+            cursor: 'col-resize',
+          }}
+        />
+      )}
+
+      {/* 右サイドバー：経済カレンダー */}
+      {showCalendar && calendarOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            right: 0,
+            top: 64, // ヘッダーの高さ分オフセット
+            width: sidebarWidth,
+            height: 'calc(100vh - 56px)',
+            background: '#fff',
+            borderLeft: '1px solid #f0f0f0',
+            boxShadow: '-2px 0 8px rgba(0,0,0,0.1)',
+            overflowY: 'auto',
+            zIndex: 100,
+          }}
+        >
+          {/* リサイズハンドル */}
+          <div
+            onMouseDown={handleMouseDown}
+            style={{
+              position: 'absolute',
+              left: -3,
+              top: 0,
+              width: 8,
+              height: '100%',
+              cursor: 'col-resize',
+              backgroundColor: isResizing ? '#1890ff' : 'transparent',
+              transition: 'background-color 0.2s',
+              zIndex: 101,
+            }}
+            onMouseEnter={(e) => {
+              if (!isResizing) {
+                e.currentTarget.style.backgroundColor = '#e6f7ff'
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isResizing) {
+                e.currentTarget.style.backgroundColor = 'transparent'
+              }
+            }}
+          />
+          <div style={{ padding: '16px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginBottom: 16,
+                paddingBottom: 12,
+                borderBottom: '1px solid #f0f0f0',
+              }}
+            >
+              <Space>
+                <CalendarOutlined style={{ fontSize: 18, color: '#1890ff' }} />
+                <Text strong style={{ fontSize: 16 }}>
+                  経済カレンダー
+                </Text>
+              </Space>
+              <Button
+                type="text"
+                icon={<MenuFoldOutlined />}
+                onClick={() => setCalendarOpen(false)}
+                size="small"
+              />
+            </div>
+            <EconomicCalendarWidgets countryCode={countryCode} />
+          </div>
+        </div>
+      )}
+
+      {/* カレンダーが閉じている時の開くボタン */}
+      {showCalendar && !calendarOpen && (
+        <Button
+          type="primary"
+          icon={<CalendarOutlined />}
+          style={{
+            position: 'fixed',
+            right: 16,
+            top: 80,
+            zIndex: 101,
+          }}
+          onClick={() => setCalendarOpen(true)}
+        >
+          カレンダー
+        </Button>
       )}
     </div>
   )

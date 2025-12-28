@@ -23,6 +23,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import VISA_SPENDING_CHECKER
 
 
 # タイムゾーン
@@ -60,6 +61,7 @@ class VisaSpendingService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = VISA_SPENDING_CHECKER
 
     def get_visa_spending_data(
         self,
@@ -89,11 +91,10 @@ class VisaSpendingService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str, cached_data):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -106,7 +107,6 @@ class VisaSpendingService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str, file_cache):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -114,7 +114,7 @@ class VisaSpendingService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -122,7 +122,6 @@ class VisaSpendingService:
 
         # 外部APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -141,7 +140,7 @@ class VisaSpendingService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -153,7 +152,7 @@ class VisaSpendingService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -162,7 +161,7 @@ class VisaSpendingService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -246,217 +245,20 @@ class VisaSpendingService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        判定ロジック:
-        1. 次回発表日がわかっている場合: 発表日を過ぎたら更新
-        2. 次回発表日が不明の場合:
-           - 最終更新から1ヶ月経過したら、1日1回APIをチェック
-           - 新しいデータがあれば更新
+        VisaSpendingScheduleChecker を使用:
+        - スケジュールファイルから発表日を取得
+        - 3分方式で更新チェック
+        - 今月のデータ取得済みならスキップ
+        - 未取得なら毎日リトライ
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        # 最新データの日付を取得
+        latest_data_date = cached_data.get("latest_data_date")
 
-            now = datetime.now(JST)
+        return self.schedule_checker.should_refresh(
+            last_updated_str,
+            latest_data_date=latest_data_date
+        )
 
-            # 次回発表情報を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表日を過ぎており、かつ最終更新が発表日より前なら更新が必要
-                release_datetime = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    0, 0, 0, tzinfo=JST
-                )
-
-                if now >= release_datetime and last_updated < release_datetime:
-                    return True
-
-                return False
-
-            else:
-                # 発表日が不明の場合
-
-                # 最終更新からの経過日数
-                days_since_update = (now - last_updated).days
-
-                # 1ヶ月（30日）以上経過していれば更新チェック
-                if days_since_update >= self.NO_DATA_WAIT_PERIOD:
-                    # 1日以上経過していれば更新
-                    hours_since_update = (now - last_updated).total_seconds() / 3600
-                    if hours_since_update >= 24:
-                        return True
-
-                return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        Visaサイトからスクレイピングして取得
-        キャッシュがあればそれを使用（6ヶ月間有効）
-        """
-        # Redisキャッシュをチェック
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            cached_at = cached.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    # キャッシュは6ヶ月間有効
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        release_date_str = cached.get("date")
-                        if release_date_str:
-                            release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                            if release_date >= date.today():
-                                return {
-                                    "date": cached.get("date"),
-                                    "label": cached.get("label")
-                                }
-                except Exception:
-                    pass
-
-        # ファイルキャッシュをチェック
-        schedule_cache = self._load_file_cache(SCHEDULE_CACHE_FILE)
-        if schedule_cache:
-            cached_at = schedule_cache.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        release_date_str = schedule_cache.get("date")
-                        if release_date_str:
-                            release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                            if release_date >= date.today():
-                                # Redisにも保存
-                                redis_client.set(self.SCHEDULE_CACHE_KEY, schedule_cache, expire=self.SCHEDULE_CACHE_TTL)
-                                return {
-                                    "date": schedule_cache.get("date"),
-                                    "label": schedule_cache.get("label")
-                                }
-                except Exception:
-                    pass
-
-        # Visaサイトからスクレイピング
-        scraped = self._scrape_next_release()
-        if scraped:
-            # キャッシュに保存（6ヶ月間有効）
-            cache_data = {
-                **scraped,
-                "cached_at": datetime.now(JST).isoformat()
-            }
-            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_data, expire=self.SCHEDULE_CACHE_TTL)
-            self._save_file_cache(SCHEDULE_CACHE_FILE, cache_data)
-            return scraped
-
-        return None
-
-    def _scrape_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        Visaサイトから次回発表日をスクレイピング
-
-        発表スケジュールが見つからない場合はNoneを返す
-        """
-        try:
-            print("Scraping next Visa SMI release date from Visa website...")
-
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            }
-
-            response = requests.get(VISA_SMI_SCHEDULE_URL, headers=headers, timeout=30)
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, "html.parser")
-
-            # テキスト内容から日付を探す
-            # "North American release date" セクションを探す
-            today = date.today()
-
-            # テーブルを探す
-            tables = soup.find_all("table")
-            for table in tables:
-                rows = table.find_all("tr")
-                for row in rows:
-                    cells = row.find_all(["td", "th"])
-                    for cell in cells:
-                        date_text = cell.get_text(strip=True)
-                        parsed_date = self._parse_date_string(date_text)
-                        if parsed_date and parsed_date >= today:
-                            return {
-                                "date": parsed_date.strftime("%Y-%m-%d"),
-                                "label": f"Visa SMI - {parsed_date.strftime('%b %d, %Y')}"
-                            }
-
-            # テーブルが見つからない場合、リスト要素も確認
-            for li in soup.find_all("li"):
-                date_text = li.get_text(strip=True)
-                parsed_date = self._parse_date_string(date_text)
-                if parsed_date and parsed_date >= today:
-                    return {
-                        "date": parsed_date.strftime("%Y-%m-%d"),
-                        "label": f"Visa SMI - {parsed_date.strftime('%b %d, %Y')}"
-                    }
-
-            print("Could not find next release date on Visa page")
-            return None
-
-        except Exception as e:
-            print(f"Error scraping Visa page: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
-
-    def _parse_date_string(self, date_str: str) -> Optional[date]:
-        """日付文字列をパース"""
-        date_str = date_str.strip()
-        if not date_str or date_str.lower() in ["to be announced", "tba", "-"]:
-            return None
-
-        try:
-            formats = [
-                "%B %d, %Y",     # February 14, 2025
-                "%b %d, %Y",     # Feb 14, 2025
-                "%B %d %Y",      # February 14 2025
-                "%b %d %Y",      # Feb 14 2025
-                "%m/%d/%Y",      # 02/14/2025
-                "%Y-%m-%d",      # 2025-02-14
-                "%d %B %Y",      # 14 February 2025
-                "%d %b %Y",      # 14 Feb 2025
-            ]
-
-            for fmt in formats:
-                try:
-                    return datetime.strptime(date_str, fmt).date()
-                except ValueError:
-                    continue
-
-            # 時刻部分を除去して再試行
-            import re
-            date_str_clean = re.sub(r'\s*\([^)]*\)', '', date_str)
-            date_str_clean = re.sub(r'\s+at\s+\d+.*$', '', date_str_clean)
-            for fmt in formats:
-                try:
-                    return datetime.strptime(date_str_clean.strip(), fmt).date()
-                except ValueError:
-                    continue
-
-        except Exception:
-            pass
-
-        return None
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -496,7 +298,7 @@ class VisaSpendingService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

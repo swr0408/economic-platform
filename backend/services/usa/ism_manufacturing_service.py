@@ -23,6 +23,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import ISM_MANUFACTURING_CHECKER
 
 
 # タイムゾーン
@@ -41,6 +42,9 @@ class ISMManufacturingService:
     """ISM製造業景況指数サービス"""
 
     CACHE_KEY = "investing:ism_manufacturing"
+
+    def __init__(self):
+        self.schedule_checker = ISM_MANUFACTURING_CHECKER
 
     def get_ism_manufacturing_data(
         self,
@@ -68,12 +72,11 @@ class ISMManufacturingService:
             if cached_data:
                 # last_updated判定: 次の発表日を過ぎていたらキャッシュ無効
                 last_updated_str = cached_data.get("last_updated")
-                next_release = cached_data.get("next_release")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self.schedule_checker.should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -84,7 +87,6 @@ class ISMManufacturingService:
 
         if scraped_result and scraped_result.get("data"):
             scraped_data = scraped_result["data"]
-            next_release = scraped_result.get("next_release")
 
             # 日付でソート（昇順）
             scraped_data.sort(key=lambda x: x["date"])
@@ -95,7 +97,7 @@ class ISMManufacturingService:
             cache_payload = {
                 "data": scraped_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "last_updated": datetime.now(JST).isoformat()
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
@@ -104,7 +106,7 @@ class ISMManufacturingService:
             return {
                 "data": scraped_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "scraping",
                 "last_updated": datetime.now(JST).isoformat()
@@ -119,47 +121,6 @@ class ISMManufacturingService:
             "last_updated": None,
             "error": "No data available"
         }
-
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict] = None) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定（期間チェック方式）
-
-        ISM製造業景況指数の発表スケジュール:
-        - 発表期間: 毎月1日〜6日（第1営業日付近）
-        - 発表時刻: 23:00 JST（夏時間）/ 0:00 JST（冬時間）
-
-        判定ロジック:
-        - 発表期間内（1日〜6日）で、最終更新が今月の発表期間開始より前なら更新必要
-
-        Args:
-            last_updated_str: 最終更新日時のISO文字列
-            next_release: 未使用（後方互換性のため残す）
-
-        Returns:
-            True: 更新が必要
-            False: キャッシュ有効
-        """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 発表期間: 毎月1日〜6日
-            if 1 <= now.day <= 6:
-                # 今月の発表期間開始日時（1日 0:00 JST）
-                release_window_start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-
-                # 最終更新が今月の発表期間開始より前なら更新必要
-                if last_updated < release_window_start:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
 
     def _scrape_investing_data(self) -> Optional[Dict[str, Any]]:
         """Playwrightを使用してInvesting.comからISM製造業PMIデータをスクレイピング"""
@@ -557,7 +518,7 @@ class ISMManufacturingService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": cached_data.get("next_release") if cached_data else None
+            "schedule_status": self.schedule_checker.get_status()
         }
 
 

@@ -11,11 +11,11 @@ FRED APIからCES0500000003 & JTSQURデータを取得
 - FRED: https://fred.stlouisfed.org/series/JTSQUR
 
 発表スケジュール:
-- 平均時給: BLS Employment Situation（雇用統計）毎月第1金曜日 8:30 AM ET
-- 自発的離職率: JOLTS（Job Openings and Labor Turnover Survey）毎月上旬 10:00 AM ET
-- 失業率の次回発表日を参照（Employment Situation発表時に両方更新されるため）
+- 平均時給: BLS Employment Situation（雇用統計）毎月1〜15日
+- 発表時刻: 21:30 (夏) / 22:30 (冬) JST
+- 自発的離職率: JOLTS（毎月29日〜翌13日）
 
-キャッシュ方式: 発表日時ベース判定方式
+キャッシュ方式: 発表期間ベース判定方式
 """
 import os
 import json
@@ -27,6 +27,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import UNEMPLOYMENT_RATE_CHECKER
 
 
 # タイムゾーン
@@ -49,12 +50,9 @@ class AverageHourlyEarningsService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:average_hourly_earnings:data"
 
-    # 発表時刻設定（ET）- Employment Situation 8:30 AM ET
-    RELEASE_HOUR_ET = 8
-    RELEASE_MINUTE_ET = 30
-
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = UNEMPLOYMENT_RATE_CHECKER
 
     def get_average_hourly_earnings_data(
         self,
@@ -80,11 +78,10 @@ class AverageHourlyEarningsService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -96,12 +93,11 @@ class AverageHourlyEarningsService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -109,7 +105,6 @@ class AverageHourlyEarningsService:
 
         # FRED APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -125,7 +120,7 @@ class AverageHourlyEarningsService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -137,7 +132,7 @@ class AverageHourlyEarningsService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -146,7 +141,7 @@ class AverageHourlyEarningsService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -302,58 +297,13 @@ class AverageHourlyEarningsService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
         """
-        次回発表日を取得（失業率サービスの次回発表日を参照）
-        平均時給はEmployment Situation（雇用統計）と同時発表
+        キャッシュを更新すべきかどうかを判定（発表期間ベース）
+
+        発表期間: 毎月1〜15日
+        発表時刻: 21:30 (夏) / 22:30 (冬) JST
         """
-        try:
-            # 失業率サービスから次回発表日を取得
-            from services.usa.unemployment_rate_service import unemployment_rate_service
-
-            data = unemployment_rate_service.get_unemployment_rate_data()
-            next_release = data.get("next_release")
-
-            if next_release:
-                return {
-                    "date": next_release.get("date"),
-                    "label": next_release.get("label", "").replace("Employment Situation", "Average Hourly Earnings")
-                }
-
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -392,7 +342,7 @@ class AverageHourlyEarningsService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

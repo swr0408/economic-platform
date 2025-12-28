@@ -24,6 +24,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import CB_CONSUMER_CONFIDENCE_CHECKER
 
 
 # タイムゾーン
@@ -49,7 +50,7 @@ class CBConsumerConfidenceService:
     RELEASE_MINUTE_ET = 0
 
     def __init__(self):
-        pass
+        self.schedule_checker = CB_CONSUMER_CONFIDENCE_CHECKER
 
     def get_cb_consumer_confidence_data(
         self,
@@ -77,12 +78,10 @@ class CBConsumerConfidenceService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    # 表示用は最終週のみ（22日以降）
-                    next_release = self._get_next_release(for_display=True)
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -95,8 +94,6 @@ class CBConsumerConfidenceService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    # 表示用は最終週のみ（22日以降）
-                    next_release = self._get_next_release(for_display=True)
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -104,7 +101,7 @@ class CBConsumerConfidenceService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -112,8 +109,6 @@ class CBConsumerConfidenceService:
 
         # Investing.comからJSONで取得
         api_data = self._fetch_from_investing()
-        # 表示用は最終週のみ（22日以降）
-        next_release = self._get_next_release(for_display=True)
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -132,7 +127,7 @@ class CBConsumerConfidenceService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -144,7 +139,7 @@ class CBConsumerConfidenceService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -153,7 +148,7 @@ class CBConsumerConfidenceService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -223,114 +218,8 @@ class CBConsumerConfidenceService:
         判定ロジック:
         - 次回発表日時（最終火曜日 10:00 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 次回発表日時を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻（10:00 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self, for_display: bool = False) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を計算
-
-        CB消費者信頼感は毎月最終火曜日発表
-
-        Args:
-            for_display: 表示用の場合True（最終週22日以降のみ返す）
-        """
-        try:
-            now = datetime.now(ET)
-            today = now.date()
-
-            # 表示用の場合、最終週（22日以降）のみ計算
-            # それ以外はNoneを返す（不要な情報を表示しない）
-            if for_display and today.day < 22:
-                return None
-
-            # 今月の最終火曜日を計算
-            last_tuesday_this_month = self._get_last_tuesday_of_month(today.year, today.month)
-
-            # 発表時刻
-            release_time = datetime(
-                last_tuesday_this_month.year, last_tuesday_this_month.month, last_tuesday_this_month.day,
-                self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                tzinfo=ET
-            )
-
-            # 今月の発表日時を過ぎていれば来月の最終火曜日
-            if now >= release_time:
-                # 来月を計算
-                if today.month == 12:
-                    next_year = today.year + 1
-                    next_month = 1
-                else:
-                    next_year = today.year
-                    next_month = today.month + 1
-
-                next_release_date = self._get_last_tuesday_of_month(next_year, next_month)
-            else:
-                next_release_date = last_tuesday_this_month
-
-            return {
-                "date": next_release_date.strftime("%Y-%m-%d"),
-                "label": f"CB Consumer Confidence - {next_release_date.strftime('%Y/%m/%d')} (火) 10:00 ET"
-            }
-
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
-
-    def _get_last_tuesday_of_month(self, year: int, month: int) -> date:
-        """
-        指定した年月の最終火曜日を取得
-
-        Args:
-            year: 年
-            month: 月
-
-        Returns:
-            最終火曜日の日付
-        """
-        # 月末を計算
-        if month == 12:
-            next_month = date(year + 1, 1, 1)
-        else:
-            next_month = date(year, month + 1, 1)
-
-        last_day = next_month - timedelta(days=1)
-
-        # 最終火曜日を探す（火曜日=1）
-        days_since_tuesday = (last_day.weekday() - 1) % 7
-        last_tuesday = last_day - timedelta(days=days_since_tuesday)
-
-        return last_tuesday
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -372,7 +261,7 @@ class CBConsumerConfidenceService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(for_display=True),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

@@ -28,6 +28,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import WEEKLY_CLAIMS_CHECKER
 
 
 # タイムゾーン
@@ -68,6 +69,7 @@ class InitialClaimsService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = WEEKLY_CLAIMS_CHECKER
 
     def get_initial_claims_data(
         self,
@@ -81,25 +83,22 @@ class InitialClaimsService:
             {
                 "data": [{"date": str, "icsa": float, "ic4wsa": float}, ...],
                 "latest": {...},
-                "next_release": {"date": str, "label": str} | null,
+                "next_release": None,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
             }
         """
-        # 次回発表日を取得
-        next_release = self._get_next_release()
-
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -110,12 +109,12 @@ class InitialClaimsService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -141,7 +140,7 @@ class InitialClaimsService:
             return {
                 "data": combined_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -153,7 +152,7 @@ class InitialClaimsService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -162,7 +161,7 @@ class InitialClaimsService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -250,94 +249,9 @@ class InitialClaimsService:
 
         return result
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict[str, Any]]) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    print(f"[Initial Claims] Release time passed: {release_jst}, last_updated: {last_updated}")
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        優先順位:
-        1. DOLサイトからスクレイピングした例外日リスト
-        2. 通常スケジュール（毎週木曜日）から計算
-        """
-        try:
-            today = date.today()
-
-            # キャッシュチェック
-            cached_schedule = self._get_cached_schedule()
-            exception_dates = {}
-
-            if cached_schedule:
-                exception_dates = cached_schedule.get("exception_dates", {})
-            else:
-                # DOLからスクレイピング（月1回）
-                exception_dates = self._fetch_exception_dates()
-                if exception_dates:
-                    self._save_schedule_cache({"exception_dates": exception_dates})
-
-            # 今日から4週間先までをチェック
-            for i in range(28):
-                check_date = today + timedelta(days=i)
-
-                # 例外日に該当する場合
-                check_date_str = check_date.strftime("%Y-%m-%d")
-                if check_date_str in exception_dates:
-                    return {
-                        "date": check_date_str,
-                        "label": f"失業保険申請件数 - {check_date.strftime('%Y/%m/%d')} 8:30 ET (例外日)"
-                    }
-
-                # 通常スケジュール（木曜日 = weekday 3）
-                if check_date.weekday() == 3:
-                    # この木曜日が例外日リストにある場合、例外日の方が発表日
-                    # 例外日でこの木曜日がスキップされているかチェック
-                    is_exception_week = False
-                    for exc_date_str in exception_dates.keys():
-                        exc_date = datetime.strptime(exc_date_str, "%Y-%m-%d").date()
-                        # 同じ週かどうかをチェック
-                        if abs((exc_date - check_date).days) <= 3:
-                            is_exception_week = True
-                            break
-
-                    if not is_exception_week:
-                        return {
-                            "date": check_date_str,
-                            "label": f"失業保険申請件数 - {check_date.strftime('%Y/%m/%d')} 8:30 ET"
-                        }
-
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _fetch_exception_dates(self) -> Dict[str, str]:
         """
@@ -477,7 +391,7 @@ class InitialClaimsService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

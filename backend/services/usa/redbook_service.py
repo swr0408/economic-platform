@@ -24,6 +24,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import REDBOOK_CHECKER
 
 
 # タイムゾーン
@@ -49,7 +50,7 @@ class RedbookService:
     RELEASE_MINUTE_ET = 55
 
     def __init__(self):
-        pass
+        self.schedule_checker = REDBOOK_CHECKER
 
     def get_redbook_data(
         self,
@@ -77,11 +78,10 @@ class RedbookService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -94,7 +94,6 @@ class RedbookService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -102,7 +101,7 @@ class RedbookService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -110,7 +109,6 @@ class RedbookService:
 
         # Investing.comからJSONで取得
         api_data = self._fetch_from_investing()
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -129,7 +127,7 @@ class RedbookService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -141,7 +139,7 @@ class RedbookService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -150,7 +148,7 @@ class RedbookService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -214,78 +212,9 @@ class RedbookService:
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
+        """キャッシュを更新すべきかどうかを判定"""
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-        判定ロジック:
-        - 次回発表日時を過ぎており、かつ最終更新が発表日時より前なら更新
-        """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 次回発表日時を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻（8:55 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を計算
-
-        Redbookは毎週火曜日発表なので、次の火曜日を計算
-        """
-        try:
-            now = datetime.now(ET)
-            today = now.date()
-
-            # 今日が火曜日かどうかチェック（0=月曜日, 1=火曜日, ...）
-            days_until_tuesday = (1 - today.weekday()) % 7
-
-            # 今日が火曜日で、発表時刻を過ぎている場合は翌週火曜日
-            if days_until_tuesday == 0:
-                release_time_today = datetime(
-                    now.year, now.month, now.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                if now >= release_time_today:
-                    days_until_tuesday = 7
-
-            next_tuesday = today + timedelta(days=days_until_tuesday)
-
-            return {
-                "date": next_tuesday.strftime("%Y-%m-%d"),
-                "label": f"Redbook - {next_tuesday.strftime('%Y/%m/%d')} (火) 8:55 ET"
-            }
-
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -327,7 +256,7 @@ class RedbookService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

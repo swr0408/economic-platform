@@ -26,6 +26,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import WEEKLY_CLAIMS_CHECKER
 
 
 # タイムゾーン
@@ -54,6 +55,7 @@ class ContinuedClaimsService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = WEEKLY_CLAIMS_CHECKER
 
     def get_continued_claims_data(
         self,
@@ -67,25 +69,22 @@ class ContinuedClaimsService:
             {
                 "data": [{"date": str, "ccsa": float, "cc4wsa": float}, ...],
                 "latest": {...},
-                "next_release": {"date": str, "label": str} | null,
+                "next_release": None,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
             }
         """
-        # 次回発表日を取得（新規失業保険申請件数サービスから取得）
-        next_release = self._get_next_release()
-
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -96,12 +95,12 @@ class ContinuedClaimsService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -127,7 +126,7 @@ class ContinuedClaimsService:
             return {
                 "data": combined_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -139,7 +138,7 @@ class ContinuedClaimsService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -148,7 +147,7 @@ class ContinuedClaimsService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -236,68 +235,9 @@ class ContinuedClaimsService:
 
         return result
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict[str, Any]]) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    print(f"[Continued Claims] Release time passed: {release_jst}, last_updated: {last_updated}")
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得（新規失業保険申請件数サービスと共有）
-        """
-        try:
-            from services.usa.initial_claims_service import initial_claims_service
-            next_release = initial_claims_service._get_next_release()
-
-            # ラベルを継続失業保険申請件数用に変更
-            if next_release:
-                return {
-                    "date": next_release["date"],
-                    "label": next_release["label"].replace("失業保険申請件数", "継続失業保険申請件数")
-                }
-            return None
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            # フォールバック: 通常スケジュールで計算
-            return self._calculate_next_thursday()
-
-    def _calculate_next_thursday(self) -> Optional[Dict[str, Any]]:
-        """次の木曜日を計算"""
-        today = date.today()
-        days_until_thursday = (3 - today.weekday()) % 7
-        if days_until_thursday == 0:
-            # 今日が木曜日なら来週の木曜日
-            days_until_thursday = 7
-        next_thursday = today + timedelta(days=days_until_thursday)
-        return {
-            "date": next_thursday.strftime("%Y-%m-%d"),
-            "label": f"継続失業保険申請件数 - {next_thursday.strftime('%Y/%m/%d')} 8:30 ET"
-        }
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -336,7 +276,7 @@ class ContinuedClaimsService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

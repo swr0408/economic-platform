@@ -25,6 +25,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import REGIONAL_FED_CHECKER
 
 
 # タイムゾーン
@@ -58,6 +59,7 @@ class EmpireStateService:
         """初期化"""
         # スケジュールディレクトリの作成
         SCHEDULE_DIR.mkdir(parents=True, exist_ok=True)
+        self.schedule_checker = REGIONAL_FED_CHECKER
 
     def get_empire_state_data(
         self,
@@ -85,12 +87,10 @@ class EmpireStateService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    # 次回発表日を動的に取得
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -108,9 +108,6 @@ class EmpireStateService:
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
 
-            # 次回発表日を取得
-            next_release = self._get_next_release()
-
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
@@ -122,7 +119,7 @@ class EmpireStateService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "fred",
                 "last_updated": datetime.now(JST).isoformat()
@@ -142,13 +139,6 @@ class EmpireStateService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        Empire State Manufacturing Surveyの発表スケジュール:
-        - 発表日: 毎月15日付近（12日〜18日の範囲）
-        - 発表時刻: 8:30 ET = 22:30 JST（夏時間）/ 23:30 JST（冬時間）
-
-        判定ロジック:
-        - 発表期間内（12日〜18日）で、最終更新が今月の発表期間開始より前なら更新必要
-
         Args:
             last_updated_str: 最終更新日時のISO文字列
 
@@ -156,27 +146,7 @@ class EmpireStateService:
             True: 更新が必要
             False: キャッシュ有効
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 発表期間: 毎月12日〜18日（15日付近）
-            if 12 <= now.day <= 18:
-                # 今月の発表期間開始日時（12日 22:00 JST）
-                release_window_start = now.replace(day=12, hour=22, minute=0, second=0, microsecond=0)
-
-                # 最終更新が今月の発表期間開始より前なら更新必要
-                if last_updated < release_window_start:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _fetch_from_fred(self) -> Optional[Dict[str, Any]]:
         """FREDからEmpire Stateデータを取得"""
@@ -267,46 +237,6 @@ class EmpireStateService:
         except Exception as e:
             print(f"Error combining series data: {e}")
             return []
-
-    def _get_next_release(self) -> Optional[Dict[str, str]]:
-        """
-        次回発表日を取得
-
-        1. スケジュールファイルから取得
-        2. ファイルが古い（6ヶ月以上）場合はNY Fedからスクレイピングして更新
-        """
-        try:
-            schedule = self._load_schedule()
-
-            # スケジュールが古い場合は更新
-            if self._is_schedule_stale(schedule):
-                print("Schedule is stale, updating from NY Fed...")
-                new_schedule = self._scrape_schedule_from_nyfed()
-                if new_schedule and new_schedule.get("releases"):
-                    self._save_schedule(new_schedule)
-                    schedule = new_schedule
-
-            if not schedule or not schedule.get("releases"):
-                return None
-
-            # 現在日時より後の次回発表日を探す
-            now = datetime.now(JST).date()
-            for release in schedule["releases"]:
-                try:
-                    release_date = datetime.strptime(release["date"], "%Y-%m-%d").date()
-                    if release_date >= now:
-                        return {
-                            "date": release["date"],
-                            "label": release.get("label", f"NY連銀製造業景気指数（{release_date.month}月発表）")
-                        }
-                except Exception:
-                    continue
-
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
 
     def _load_schedule(self) -> Optional[Dict[str, Any]]:
         """スケジュールファイルを読み込み"""
@@ -524,7 +454,7 @@ class EmpireStateService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "schedule_updated_at": schedule.get("updated_at") if schedule else None,
             "schedule_source": schedule.get("source") if schedule else None
         }

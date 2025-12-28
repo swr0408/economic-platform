@@ -17,6 +17,7 @@ try:
     from backend.routers.dashboard import router as dashboard_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
+    from backend.scheduler import indicator_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -28,6 +29,7 @@ except ImportError:
     from routers.dashboard import router as dashboard_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
+    from scheduler import indicator_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -78,6 +80,21 @@ async def api_health_check():
     return {"status": "ok", "message": "API is running"}
 
 
+@app.get("/api/scheduler/status")
+async def scheduler_status():
+    """スケジューラーのステータスを取得"""
+    try:
+        return {
+            "status": "ok",
+            "indicator_scheduler": indicator_scheduler.get_status()
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": str(e)
+        }
+
+
 @app.on_event("startup")
 async def startup_event():
     """起動時の処理"""
@@ -97,6 +114,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Policy Rate Scheduler: {e}")
 
+    # 経済指標スケジューラーを開始
+    try:
+        indicator_scheduler.start()
+        print("Economic Indicator Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Economic Indicator Scheduler: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
@@ -114,6 +138,11 @@ async def shutdown_event():
         policy_rate_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Policy Rate Scheduler: {e}")
+
+    try:
+        indicator_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Indicator Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

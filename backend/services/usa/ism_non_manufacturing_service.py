@@ -22,6 +22,7 @@ from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import ISM_NON_MANUFACTURING_CHECKER
 
 
 # タイムゾーン
@@ -37,6 +38,9 @@ class ISMNonManufacturingService:
 
     CACHE_KEY = "investing:ism_non_manufacturing"
 
+    def __init__(self):
+        self.schedule_checker = ISM_NON_MANUFACTURING_CHECKER
+
     def get_ism_non_manufacturing_data(
         self,
         force_refresh: bool = False
@@ -51,7 +55,7 @@ class ISMNonManufacturingService:
             {
                 "data": [{"date": "YYYY-MM-DD", "value": float, "forecast": float|null, "previous": float|null}, ...],
                 "latest": {"date": "YYYY-MM-DD", "value": float, ...},
-                "next_release": {"date": "YYYY-MM-DD", "label": str} | null,
+                "next_release": None,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
@@ -63,12 +67,11 @@ class ISMNonManufacturingService:
             if cached_data:
                 # last_updated判定: 次の発表日を過ぎていたらキャッシュ無効
                 last_updated_str = cached_data.get("last_updated")
-                next_release = cached_data.get("next_release")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -79,7 +82,6 @@ class ISMNonManufacturingService:
 
         if scraped_result and scraped_result.get("data"):
             scraped_data = scraped_result["data"]
-            next_release = scraped_result.get("next_release")
 
             # 日付でソート（昇順）
             scraped_data.sort(key=lambda x: x["date"])
@@ -90,7 +92,7 @@ class ISMNonManufacturingService:
             cache_payload = {
                 "data": scraped_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "last_updated": datetime.now(JST).isoformat()
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
@@ -99,7 +101,7 @@ class ISMNonManufacturingService:
             return {
                 "data": scraped_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "scraping",
                 "last_updated": datetime.now(JST).isoformat()
@@ -115,104 +117,18 @@ class ISMNonManufacturingService:
             "error": "No data available"
         }
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict] = None) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定（期間チェック方式）
 
-        ISM非製造業景況指数の発表スケジュール:
-        - 発表期間: 毎月3日〜8日（第3営業日付近）
-        - 発表時刻: 23:00 JST（夏時間）/ 0:00 JST（冬時間）
-
-        判定ロジック:
-        - 発表期間内（3日〜8日）で、最終更新が今月の発表期間開始より前なら更新必要
-
         Args:
             last_updated_str: 最終更新日時のISO文字列
-            next_release: 未使用（後方互換性のため残す）
 
         Returns:
             True: 更新が必要
             False: キャッシュ有効
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 発表期間: 毎月3日〜8日（非製造業は製造業より2日遅い）
-            if 3 <= now.day <= 8:
-                # 今月の発表期間開始日時（3日 0:00 JST）
-                release_window_start = now.replace(day=3, hour=0, minute=0, second=0, microsecond=0)
-
-                # 最終更新が今月の発表期間開始より前なら更新必要
-                if last_updated < release_window_start:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, str]]:
-        """次回発表日を取得（キャッシュから、またはビジネスカレンダーから計算）"""
-        try:
-            # キャッシュから取得
-            cached_data = redis_client.get(self.CACHE_KEY)
-            if cached_data and cached_data.get("next_release"):
-                return cached_data.get("next_release")
-            # フォールバック: ビジネスカレンダーから計算
-            return self._calculate_next_release()
-        except Exception as e:
-            print(f"Error getting ISM Non-Manufacturing next release: {e}")
-            return self._calculate_next_release()
-
-    def _calculate_next_release(self) -> Optional[Dict[str, str]]:
-        """ビジネスカレンダーに基づいて次回発表日を計算（第3営業日）"""
-        try:
-            today = date.today()
-
-            # 今月または来月の第3営業日を計算
-            for month_offset in [0, 1]:
-                year = today.year
-                month = today.month + month_offset
-                if month > 12:
-                    year += 1
-                    month = 1
-
-                # 第3営業日を計算
-                business_days = 0
-                day = 1
-                last_day = calendar.monthrange(year, month)[1]
-
-                while day <= last_day:
-                    check_date = date(year, month, day)
-                    if check_date.weekday() < 5:  # 月-金
-                        business_days += 1
-                        if business_days == 3:
-                            # 今日より後の日付なら採用
-                            if check_date > today:
-                                # 対象月は前月
-                                if month == 1:
-                                    target_year = year - 1
-                                    target_month = 12
-                                else:
-                                    target_year = year
-                                    target_month = month - 1
-
-                                return {
-                                    "date": check_date.strftime("%Y-%m-%d"),
-                                    "label": f"ISM非製造業景況指数（{target_year}年{target_month}月分）"
-                                }
-                            break
-                    day += 1
-
-            return None
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _scrape_investing_data(self) -> Optional[Dict[str, Any]]:
         """Playwrightを使用してInvesting.comからISM非製造業PMIデータをスクレイピング"""
@@ -587,7 +503,7 @@ class ISMNonManufacturingService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": cached_data.get("next_release") if cached_data else None
+            "schedule_status": self.schedule_checker.get_status()
         }
 
 

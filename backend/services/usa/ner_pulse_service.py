@@ -23,6 +23,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import NER_PULSE_CHECKER
 
 
 # タイムゾーン
@@ -64,7 +65,7 @@ class NERPulseService:
     }
 
     def __init__(self):
-        pass
+        self.schedule_checker = NER_PULSE_CHECKER
 
     def get_ner_pulse_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
@@ -80,19 +81,16 @@ class NERPulseService:
                 "last_updated": str
             }
         """
-        # 次回発表日を計算
-        next_release = self._get_next_release()
-
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -103,12 +101,12 @@ class NERPulseService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -124,8 +122,7 @@ class NERPulseService:
 
             # スクレイピングで取得した次回発表日を優先
             if scraped_next_release:
-                next_release = scraped_next_release
-                self._save_schedule_cache(next_release)
+                self._save_schedule_cache(scraped_next_release)
 
             cache_payload = {
                 "data": scraped_data,
@@ -138,7 +135,7 @@ class NERPulseService:
             return {
                 "data": scraped_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "scrape",
                 "last_updated": datetime.now(JST).isoformat()
@@ -150,7 +147,7 @@ class NERPulseService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -159,7 +156,7 @@ class NERPulseService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -303,116 +300,10 @@ class NERPulseService:
         except Exception:
             return None
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict[str, Any]]) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    print(f"[NER Pulse] Release time passed: {release_jst}, last_updated: {last_updated}")
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        優先順位:
-        1. スクレイピングで取得したキャッシュ（プレスリリースから抽出）
-        2. 自動計算（毎週火曜日、月次NER発表週を除く）
-        """
-        try:
-            today = date.today()
-
-            # 1. キャッシュから取得（スクレイピングで取得した次回発表日）
-            cached_schedule = self._load_schedule_cache()
-            if cached_schedule:
-                date_str = cached_schedule.get("date")
-                if date_str:
-                    try:
-                        release_date = datetime.strptime(date_str, "%Y-%m-%d").date()
-                        # 今日以降の日付であれば有効
-                        if release_date >= today:
-                            print(f"Using cached next release: {date_str}")
-                            return cached_schedule
-                    except ValueError:
-                        pass
-
-            # 2. 自動計算（フォールバック）
-            return self._calculate_next_release()
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
-
-    def _calculate_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を自動計算
-
-        NER Pulseは毎週火曜日 8:15 ET発表
-        ただし、月次NER発表週（第1水曜日を含む週）は除外
-        """
-        try:
-            today = date.today()
-
-            # 今週の火曜日を計算
-            days_since_tuesday = (today.weekday() - 1) % 7  # 火曜日=1
-            this_tuesday = today - timedelta(days=days_since_tuesday)
-
-            # 次の火曜日候補を探す（今日を含む）
-            candidate = this_tuesday
-            if candidate < today:
-                candidate += timedelta(days=7)
-
-            # 4週間先までの火曜日をチェック
-            for _ in range(4):
-                # この週に月次NER発表（第1水曜日）があるかチェック
-                week_wednesday = candidate + timedelta(days=1)  # 火曜日の翌日が水曜日
-
-                # 第1水曜日かどうか
-                if self._is_first_wednesday(week_wednesday):
-                    # 月次NER発表週なのでスキップ
-                    candidate += timedelta(days=7)
-                    continue
-
-                # 有効な発表日
-                return {
-                    "date": candidate.strftime("%Y-%m-%d"),
-                    "label": f"NER Pulse - {candidate.strftime('%Y/%m/%d')} 8:15 ET (計算値)"
-                }
-
-            return None
-
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
-
-    def _is_first_wednesday(self, d: date) -> bool:
-        """その日付が月の第1水曜日かどうかを判定"""
-        if d.weekday() != 2:  # 水曜日=2
-            return False
-        # 1日〜7日の間にあれば第1週
-        return 1 <= d.day <= 7
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -484,7 +375,7 @@ class NERPulseService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

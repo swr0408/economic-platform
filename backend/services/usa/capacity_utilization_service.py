@@ -22,6 +22,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import INDUSTRIAL_PRODUCTION_CHECKER
 
 
 # タイムゾーン
@@ -50,6 +51,7 @@ class CapacityUtilizationService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = INDUSTRIAL_PRODUCTION_CHECKER
 
     def get_capacity_utilization_data(
         self,
@@ -79,11 +81,10 @@ class CapacityUtilizationService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -96,7 +97,6 @@ class CapacityUtilizationService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.CACHE_KEY, {
@@ -108,7 +108,7 @@ class CapacityUtilizationService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -119,7 +119,6 @@ class CapacityUtilizationService:
 
         if api_data:
             latest = api_data[-1] if api_data else None
-            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": api_data,
@@ -134,7 +133,7 @@ class CapacityUtilizationService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -147,7 +146,7 @@ class CapacityUtilizationService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -156,7 +155,7 @@ class CapacityUtilizationService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -223,91 +222,8 @@ class CapacityUtilizationService:
         判定ロジック:
         - 次回発表日時を過ぎており、かつ最終更新がそれより前なら更新が必要
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 次回発表情報を取得
-            next_release = self._get_next_release()
-            if not next_release:
-                # 発表情報がない場合は月1回程度の更新を想定
-                # 最終更新から30日以上経過していれば更新
-                days_since_update = (now - last_updated).days
-                return days_since_update >= 30
-
-            # 発表日時をパース
-            release_date_str = next_release.get("date")
-            if not release_date_str:
-                return False
-
-            release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-            # 夏時間判定
-            is_dst = self._is_dst(now)
-            release_hour = 22 if is_dst else 23  # 9:15 ET → 22:15/23:15 JST
-
-            release_datetime = datetime(
-                release_date.year, release_date.month, release_date.day,
-                release_hour, 15, 0, tzinfo=JST
-            )
-
-            # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-            if now >= release_datetime and last_updated < release_datetime:
-                return True
-
-            # 過去の発表日もチェック（見逃し対策）
-            if release_datetime < now and last_updated < release_datetime:
-                return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _is_dst(self, dt: datetime) -> bool:
-        """米国東部時間が夏時間かどうかを判定"""
-        try:
-            et_time = dt.astimezone(ET)
-            return bool(et_time.dst())
-        except Exception:
-            # 3月第2日曜〜11月第1日曜を夏時間と仮定
-            if dt.month > 3 and dt.month < 11:
-                return True
-            if dt.month == 3:
-                second_sunday = 14 - (date(dt.year, 3, 1).weekday() + 1) % 7
-                return dt.day >= second_sunday
-            if dt.month == 11:
-                first_sunday = 7 - (date(dt.year, 11, 1).weekday() + 1) % 7
-                return dt.day < first_sunday
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        Industrial Productionと同じ発表日なので、
-        INDPROの次回発表日キャッシュを参照
-        """
-        # Industrial Productionの次回発表日キャッシュを参照
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            release_date_str = cached.get("date")
-            if release_date_str:
-                try:
-                    release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                    if release_date >= date.today():
-                        return {
-                            "date": cached.get("date"),
-                            "label": f"Capacity Utilization ({release_date.strftime('%b %d, %Y')})"
-                        }
-                except Exception:
-                    pass
-
-        return None
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -347,7 +263,7 @@ class CapacityUtilizationService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": CACHE_FILE.exists()
         }
 

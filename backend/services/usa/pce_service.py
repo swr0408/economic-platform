@@ -30,6 +30,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import PERSONAL_INCOME_CHECKER
 
 
 # タイムゾーン
@@ -73,6 +74,7 @@ class PCEService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = PERSONAL_INCOME_CHECKER
 
     def get_pce_data(
         self,
@@ -104,11 +106,10 @@ class PCEService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "nominal": cached_data.get("nominal"),
                         "real": cached_data.get("real"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -120,12 +121,11 @@ class PCEService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "nominal": file_cache.get("nominal"),
                         "real": file_cache.get("real"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -133,7 +133,6 @@ class PCEService:
 
         # FRED APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             cache_payload = {
@@ -147,7 +146,7 @@ class PCEService:
             return {
                 "nominal": api_data["nominal"],
                 "real": api_data["real"],
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -159,7 +158,7 @@ class PCEService:
             return {
                 "nominal": file_cache.get("nominal"),
                 "real": file_cache.get("real"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -168,7 +167,7 @@ class PCEService:
         return {
             "nominal": None,
             "real": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -285,138 +284,8 @@ class PCEService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """次回発表日を取得（BEAからスクレイピング）"""
-        try:
-            # キャッシュチェック
-            cached_release = self._get_cached_schedule()
-            if cached_release:
-                release_date = datetime.strptime(cached_release["date"], "%Y-%m-%d").date()
-                if release_date >= date.today():
-                    return cached_release
-
-            # BEAページからスクレイピング
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            }
-
-            response = requests.get(BEA_PERSONAL_INCOME_URL, headers=headers, timeout=30)
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, 'html.parser')
-            text = soup.get_text()
-
-            pattern = r'Next\s+release[:\s]+(\w+)\s+(\d{1,2}),?\s*(\d{4})'
-            match = re.search(pattern, text, re.IGNORECASE)
-
-            if match:
-                month_name = match.group(1).lower()
-                day = int(match.group(2))
-                year = int(match.group(3))
-
-                month_num = MONTH_MAP.get(month_name)
-                if month_num:
-                    release_date = date(year, month_num, day)
-                    result = {
-                        "date": release_date.strftime("%Y-%m-%d"),
-                        "label": f"Personal Income - {release_date.strftime('%Y/%m/%d')} 8:30 ET"
-                    }
-                    self._save_schedule_cache(result)
-                    return result
-
-            return self._calculate_next_release_fallback()
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return self._calculate_next_release_fallback()
-
-    def _calculate_next_release_fallback(self) -> Optional[Dict[str, Any]]:
-        """次回発表日のフォールバック計算"""
-        try:
-            now = datetime.now(ET)
-            today = now.date()
-
-            if today.month == 12:
-                next_month = date(today.year + 1, 1, 1)
-            else:
-                next_month = date(today.year, today.month + 1, 1)
-
-            last_day_of_month = next_month - timedelta(days=1)
-            release_date = last_day_of_month
-            while release_date.weekday() >= 5:
-                release_date -= timedelta(days=1)
-
-            release_et = datetime(
-                release_date.year, release_date.month, release_date.day,
-                self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                tzinfo=ET
-            )
-
-            if now >= release_et:
-                if release_date.month == 12:
-                    next_release_month = date(release_date.year + 1, 2, 1)
-                else:
-                    next_release_month = date(release_date.year, release_date.month + 2, 1)
-
-                last_day = next_release_month - timedelta(days=1)
-                release_date = last_day
-                while release_date.weekday() >= 5:
-                    release_date -= timedelta(days=1)
-
-            return {
-                "date": release_date.strftime("%Y-%m-%d"),
-                "label": f"Personal Income (estimated) - {release_date.strftime('%Y/%m/%d')} 8:30 ET"
-            }
-
-        except Exception as e:
-            print(f"Error calculating fallback next release: {e}")
-            return None
-
-    def _get_cached_schedule(self) -> Optional[Dict[str, Any]]:
-        """キャッシュされた発表スケジュールを取得"""
-        try:
-            if SCHEDULE_CACHE_FILE.exists():
-                with open(SCHEDULE_CACHE_FILE, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-        except Exception:
-            pass
-        return None
-
-    def _save_schedule_cache(self, data: Dict[str, Any]) -> None:
-        """発表スケジュールをキャッシュに保存"""
-        try:
-            with open(SCHEDULE_CACHE_FILE, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-        except Exception as e:
-            print(f"Failed to save schedule cache: {e}")
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -455,7 +324,7 @@ class PCEService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

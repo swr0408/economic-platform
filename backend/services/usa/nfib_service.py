@@ -31,6 +31,7 @@ except ImportError:
     print("Warning: pdfplumber not installed. NFIB PDF extraction disabled.")
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import NFIB_CHECKER
 
 
 # タイムゾーン
@@ -59,6 +60,7 @@ class NFIBService:
     def __init__(self):
         """初期化"""
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        self.schedule_checker = NFIB_CHECKER
 
     def get_nfib_data(
         self,
@@ -86,12 +88,11 @@ class NFIBService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     data = cached_data.get("data", [])
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -104,7 +105,6 @@ class NFIBService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.CACHE_KEY, {
@@ -115,7 +115,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -130,7 +130,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": self._get_next_release(),
+                    "next_release": None,
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -138,7 +138,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -151,7 +151,6 @@ class NFIBService:
             fetched_data = fetched_result["data"]
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
-            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": fetched_data,
@@ -165,7 +164,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -178,7 +177,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -187,7 +186,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -197,92 +196,9 @@ class NFIBService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定
-
-        NFIB発表スケジュール:
-        - 発表日: 毎月第2火曜日
-        - 発表時刻: 6:00 ET = 19:00 JST（夏時間）/ 20:00 JST（冬時間）
-
-        判定ロジック:
-        - 最終更新日以降に発表日が来ていれば更新が必要
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 今月の第2火曜日を計算
-            second_tuesday = self._get_second_tuesday(now.year, now.month)
-
-            if second_tuesday:
-                is_dst = self._is_dst(now)
-                release_hour = 19 if is_dst else 20
-
-                release_datetime = datetime(
-                    now.year, now.month, second_tuesday.day,
-                    release_hour, 0, 0, tzinfo=JST
-                )
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_datetime and last_updated < release_datetime:
-                    return True
-
-            # 先月の第2火曜日もチェック（月初めの場合）
-            if now.month == 1:
-                prev_year = now.year - 1
-                prev_month = 12
-            else:
-                prev_year = now.year
-                prev_month = now.month - 1
-
-            prev_second_tuesday = self._get_second_tuesday(prev_year, prev_month)
-
-            if prev_second_tuesday:
-                # 先月の発表日時を計算（先月の夏時間を判定）
-                prev_release_dt = datetime(
-                    prev_year, prev_month, prev_second_tuesday.day,
-                    12, 0, 0, tzinfo=JST  # 仮の時刻で作成
-                )
-                is_dst_prev = self._is_dst(prev_release_dt)
-                release_hour_prev = 19 if is_dst_prev else 20
-
-                prev_release_datetime = datetime(
-                    prev_year, prev_month, prev_second_tuesday.day,
-                    release_hour_prev, 0, 0, tzinfo=JST
-                )
-
-                # 先月の発表日時より前の更新なら更新が必要
-                if last_updated < prev_release_datetime:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_second_tuesday(self, year: int, month: int) -> Optional[datetime.date]:
-        """指定月の第2火曜日を取得"""
-        cal = monthcalendar(year, month)
-        tuesday_count = 0
-
-        for week in cal:
-            tuesday = week[1]
-            if tuesday != 0:
-                tuesday_count += 1
-                if tuesday_count == 2:
-                    return datetime(year, month, tuesday).date()
-
-        return None
-
-    def _is_dst(self, dt: datetime) -> bool:
-        """指定日時がアメリカ東部夏時間かどうかを判定"""
-        try:
-            et_dt = dt.astimezone(ET)
-            return et_dt.utcoffset().total_seconds() == -4 * 3600
-        except Exception:
-            return True
 
     def _fetch_from_pdf(self) -> Optional[Dict[str, Any]]:
         """NFIBのPDFレポートからデータを抽出"""
@@ -474,48 +390,6 @@ class NFIBService:
 
         return timeseries
 
-    def _get_next_release(self) -> Optional[Dict[str, str]]:
-        """次回発表日を取得"""
-        try:
-            now = datetime.now(JST)
-
-            this_month_tuesday = self._get_second_tuesday(now.year, now.month)
-
-            is_dst = self._is_dst(now)
-            release_hour = 19 if is_dst else 20
-
-            if this_month_tuesday:
-                this_month_release_dt = datetime(
-                    now.year, now.month, this_month_tuesday.day,
-                    release_hour, 0, 0, tzinfo=JST
-                )
-
-                if now < this_month_release_dt:
-                    return {
-                        "date": this_month_tuesday.strftime("%Y-%m-%d"),
-                        "label": f"NFIB中小企業楽観指数（{now.month}月発表）"
-                    }
-
-            if now.month == 12:
-                next_year = now.year + 1
-                next_month = 1
-            else:
-                next_year = now.year
-                next_month = now.month + 1
-
-            next_month_tuesday = self._get_second_tuesday(next_year, next_month)
-
-            if next_month_tuesday:
-                return {
-                    "date": next_month_tuesday.strftime("%Y-%m-%d"),
-                    "label": f"NFIB中小企業楽観指数（{next_month}月発表）"
-                }
-
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -553,7 +427,7 @@ class NFIBService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("data", [])[-1] if cached_data and cached_data.get("data") else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": CACHE_FILE.exists()
         }
 
@@ -587,12 +461,11 @@ class NFIBService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     data = cached_data.get("data", [])
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -605,7 +478,6 @@ class NFIBService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.CACHE_KEY_CAPEX, {
@@ -616,7 +488,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -630,7 +502,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": self._get_next_release(),
+                    "next_release": None,
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -638,7 +510,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -651,7 +523,6 @@ class NFIBService:
             fetched_data = fetched_result["data"]
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
-            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": fetched_data,
@@ -665,7 +536,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -678,7 +549,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -687,7 +558,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -912,12 +783,11 @@ class NFIBService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     data = cached_data.get("data", [])
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -930,7 +800,6 @@ class NFIBService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.CACHE_KEY_COMPENSATION, {
@@ -941,7 +810,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -955,7 +824,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": self._get_next_release(),
+                    "next_release": None,
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -963,7 +832,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -976,7 +845,6 @@ class NFIBService:
             fetched_data = fetched_result["data"]
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
-            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": fetched_data,
@@ -990,7 +858,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -1003,7 +871,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -1012,7 +880,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -1173,12 +1041,11 @@ class NFIBService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     data = cached_data.get("data", [])
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -1191,7 +1058,6 @@ class NFIBService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     redis_client.set(self.CACHE_KEY_ACTUAL_COMPENSATION, {
                         "data": data,
@@ -1201,7 +1067,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -1215,7 +1081,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": self._get_next_release(),
+                    "next_release": None,
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -1223,7 +1089,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -1236,7 +1102,6 @@ class NFIBService:
             fetched_data = fetched_result["data"]
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
-            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": fetched_data,
@@ -1248,7 +1113,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -1261,7 +1126,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -1270,7 +1135,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,

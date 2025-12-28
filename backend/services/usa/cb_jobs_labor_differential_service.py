@@ -32,6 +32,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import CB_CONSUMER_CONFIDENCE_CHECKER
 
 
 # タイムゾーン
@@ -82,7 +83,7 @@ class CBJobsLaborDifferentialService:
     RELEASE_MINUTE_ET = 0
 
     def __init__(self):
-        pass
+        self.schedule_checker = CB_CONSUMER_CONFIDENCE_CHECKER
 
     def get_jobs_labor_data(
         self,
@@ -110,11 +111,10 @@ class CBJobsLaborDifferentialService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -127,7 +127,6 @@ class CBJobsLaborDifferentialService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -135,7 +134,7 @@ class CBJobsLaborDifferentialService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -143,7 +142,6 @@ class CBJobsLaborDifferentialService:
 
         # CSVを読み込み、必要に応じて最新データを取得・追記
         csv_data = self._load_csv_data()
-        next_release = self._get_next_release()
 
         # 発表後なら最新データをスクレイピング
         if self._is_after_release():
@@ -168,7 +166,7 @@ class CBJobsLaborDifferentialService:
             return {
                 "data": csv_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "csv",
                 "last_updated": datetime.now(JST).isoformat()
@@ -177,7 +175,7 @@ class CBJobsLaborDifferentialService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -449,102 +447,10 @@ class CBJobsLaborDifferentialService:
         キャッシュを更新すべきかどうかを判定
 
         判定ロジック:
-        - 次回発表日時（最終火曜日 10:00 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
+        - スケジュールチェッカーを使用してピリオドベースで判定
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 今月の発表日時を計算
-            now_et = datetime.now(ET)
-            today = now_et.date()
-            last_tuesday = self._get_last_tuesday_of_month(today.year, today.month)
-
-            # 発表時刻（10:00 ET）をJSTに変換
-            release_et = datetime(
-                last_tuesday.year, last_tuesday.month, last_tuesday.day,
-                self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                tzinfo=ET
-            )
-            release_jst = release_et.astimezone(JST)
-
-            # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-            if now >= release_jst and last_updated < release_jst:
-                return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を計算
-
-        1. キャッシュをチェック（未来の日付があればそのまま返す）
-        2. キャッシュ内の日付が過去でも48時間以内ならスクレイピングしない
-        3. Investing.comから次回発表日を取得
-        """
-        try:
-            today = date.today()
-
-            # キャッシュをチェック
-            cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-            if cached:
-                next_date_str = cached.get("next_release_date")
-                if next_date_str:
-                    next_date = datetime.strptime(next_date_str, "%Y-%m-%d").date()
-                    if next_date >= today:
-                        return {
-                            "date": next_date_str,
-                            "label": cached.get("label", f"CB Consumer Confidence - {next_date_str}")
-                        }
-
-                # キャッシュ内の日付が過去 → 再取得が必要かチェック
-                # ただし、48時間以内にスクレイピングしていたら再取得しない（過剰アクセス防止）
-                cached_at = cached.get("cached_at")
-                if cached_at:
-                    try:
-                        cached_dt = datetime.fromisoformat(cached_at)
-                        if cached_dt.tzinfo is None:
-                            cached_dt = cached_dt.replace(tzinfo=JST)
-                        hours_since_cache = (datetime.now(JST) - cached_dt).total_seconds() / 3600
-                        if hours_since_cache < 48:
-                            # 48時間以内にスクレイピング済み → Noneを返す
-                            return None
-                    except Exception:
-                        pass
-
-            # Investing.comから取得を試行
-            investing_result = self._fetch_next_release_from_investing()
-            if investing_result:
-                # キャッシュに保存
-                cache_payload = {
-                    "next_release_date": investing_result["date"],
-                    "label": investing_result["label"],
-                    "cached_at": datetime.now(JST).isoformat()
-                }
-                redis_client.set(self.SCHEDULE_CACHE_KEY, cache_payload, expire=30 * 24 * 60 * 60)
-                return investing_result
-
-            # Investing.comから取得できなかった場合もキャッシュに記録（再スクレイピング防止）
-            cache_payload = {
-                "next_release_date": None,
-                "label": None,
-                "fetch_failed": True,
-                "cached_at": datetime.now(JST).isoformat()
-            }
-            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_payload, expire=30 * 24 * 60 * 60)
-            print("次回発表日: Investing.comから取得できませんでした")
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
 
     def _fetch_next_release_from_investing(self) -> Optional[Dict[str, Any]]:
         """Investing.comから次回発表日を取得"""
@@ -676,7 +582,7 @@ class CBJobsLaborDifferentialService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "csv_file_exists": CSV_FILE_PATH.exists(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }

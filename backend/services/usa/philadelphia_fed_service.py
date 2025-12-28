@@ -25,6 +25,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import REGIONAL_FED_CHECKER
 
 
 # タイムゾーン
@@ -80,6 +81,7 @@ class PhiladelphiaFedService:
         """初期化"""
         # スケジュールディレクトリの作成
         SCHEDULE_DIR.mkdir(parents=True, exist_ok=True)
+        self.schedule_checker = REGIONAL_FED_CHECKER
 
     def get_philadelphia_fed_data(
         self,
@@ -108,12 +110,10 @@ class PhiladelphiaFedService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    # 次回発表日を動的に取得
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "series_config": SERIES_CONFIG,
                         "cached": True,
                         "source": "redis",
@@ -132,9 +132,6 @@ class PhiladelphiaFedService:
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
 
-            # 次回発表日を取得
-            next_release = self._get_next_release()
-
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
@@ -146,7 +143,7 @@ class PhiladelphiaFedService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "series_config": SERIES_CONFIG,
                 "cached": False,
                 "source": "fred",
@@ -168,13 +165,6 @@ class PhiladelphiaFedService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        Philadelphia Fed Manufacturing Business Outlook Surveyの発表スケジュール:
-        - 発表日: 毎月第3木曜日
-        - 発表時刻: 8:30 ET = 22:30 JST（夏時間）/ 23:30 JST（冬時間）
-
-        判定ロジック:
-        - 次回発表日のJST 22:00以降で、最終更新がそれより前なら更新必要
-
         Args:
             last_updated_str: 最終更新日時のISO文字列
 
@@ -182,62 +172,7 @@ class PhiladelphiaFedService:
             True: 更新が必要
             False: キャッシュ有効
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 次回発表日を取得
-            next_release = self._get_next_release()
-            if not next_release:
-                # スケジュールがない場合は第3木曜日付近で判定
-                return self._check_third_thursday_refresh(now, last_updated)
-
-            try:
-                release_date = datetime.strptime(next_release["date"], "%Y-%m-%d")
-                # 発表日のJST 22:00
-                release_datetime = release_date.replace(
-                    hour=22, minute=0, second=0, microsecond=0, tzinfo=JST
-                )
-
-                # 発表日時を過ぎていて、最終更新がそれより前なら更新必要
-                if now >= release_datetime and last_updated < release_datetime:
-                    return True
-
-            except Exception:
-                pass
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _check_third_thursday_refresh(self, now: datetime, last_updated: datetime) -> bool:
-        """第3木曜日付近でのキャッシュ更新判定（スケジュールがない場合のフォールバック）"""
-        try:
-            # 今月の第3木曜日を計算
-            first_day = now.replace(day=1)
-            # 最初の木曜日を見つける
-            days_until_thursday = (3 - first_day.weekday()) % 7
-            first_thursday = first_day.replace(day=1 + days_until_thursday)
-            # 第3木曜日
-            third_thursday = first_thursday.replace(day=first_thursday.day + 14)
-
-            # 第3木曜日の前後2日（15日〜21日付近）
-            if abs((now.date() - third_thursday.date()).days) <= 2:
-                release_datetime = third_thursday.replace(
-                    hour=22, minute=0, second=0, microsecond=0
-                )
-                if now >= release_datetime and last_updated < release_datetime:
-                    return True
-
-            return False
-
-        except Exception:
-            return False
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _fetch_from_fred(self) -> Optional[Dict[str, Any]]:
         """FREDからPhiladelphia Fedデータを取得"""
@@ -323,48 +258,6 @@ class PhiladelphiaFedService:
         except Exception as e:
             print(f"Error combining series data: {e}")
             return []
-
-    def _get_next_release(self) -> Optional[Dict[str, str]]:
-        """
-        次回発表日を取得
-
-        1. スケジュールファイルから取得
-        2. ファイルが古い（6ヶ月以上）場合はPhiladelphia Fedからスクレイピングして更新
-        """
-        try:
-            schedule = self._load_schedule()
-
-            # スケジュールが古い場合は更新
-            if self._is_schedule_stale(schedule):
-                print("Schedule is stale, updating from Philadelphia Fed...")
-                new_schedule = self._scrape_schedule_from_philly_fed()
-                if new_schedule and new_schedule.get("releases"):
-                    self._save_schedule(new_schedule)
-                    schedule = new_schedule
-
-            if not schedule or not schedule.get("releases"):
-                # スケジュールがない場合はデフォルトを生成
-                schedule = self._generate_default_schedule()
-                self._save_schedule(schedule)
-
-            # 現在日時より後の次回発表日を探す
-            now = datetime.now(JST).date()
-            for release in schedule["releases"]:
-                try:
-                    release_date = datetime.strptime(release["date"], "%Y-%m-%d").date()
-                    if release_date >= now:
-                        return {
-                            "date": release["date"],
-                            "label": release.get("label", f"フィラデルフィア連銀製造業景気指数（{release_date.month}月発表）")
-                        }
-                except Exception:
-                    continue
-
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
 
     def _load_schedule(self) -> Optional[Dict[str, Any]]:
         """スケジュールファイルを読み込み"""
@@ -621,7 +514,7 @@ class PhiladelphiaFedService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "schedule_updated_at": schedule.get("updated_at") if schedule else None,
             "schedule_source": schedule.get("source") if schedule else None
         }

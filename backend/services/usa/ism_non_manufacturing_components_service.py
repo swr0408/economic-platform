@@ -24,6 +24,7 @@ from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import ISM_NON_MANUFACTURING_CHECKER
 
 
 # タイムゾーン
@@ -47,6 +48,10 @@ class ISMNonManufacturingComponentsService:
     """ISM非製造業サブインデックスサービス"""
 
     CACHE_KEY = "dbnomics:ism_non_manufacturing_components"
+
+    def __init__(self):
+        """初期化"""
+        self.schedule_checker = ISM_NON_MANUFACTURING_CHECKER
 
     def get_ism_non_manufacturing_components_data(
         self,
@@ -87,12 +92,11 @@ class ISMNonManufacturingComponentsService:
             if cached_data:
                 # last_updated判定: ISM非製造業の発表日を過ぎていたらキャッシュ無効
                 last_updated_str = cached_data.get("last_updated")
-                next_release = cached_data.get("next_release")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -110,13 +114,9 @@ class ISMNonManufacturingComponentsService:
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
 
-            # ISMスケジュールサービスから次回発表日を取得
-            next_release = self._get_next_release()
-
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
                 "last_updated": datetime.now(JST).isoformat()
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
@@ -125,7 +125,7 @@ class ISMNonManufacturingComponentsService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "dbnomics",
                 "last_updated": datetime.now(JST).isoformat()
@@ -141,62 +141,18 @@ class ISMNonManufacturingComponentsService:
             "error": "No data available"
         }
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict] = None) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定（期間チェック方式）
 
-        ISM非製造業サブインデックスの発表スケジュール:
-        - 発表期間: 毎月3日〜10日（ISM非製造業景況指数と同時）
-        - 発表時刻: 23:00 JST（夏時間）/ 0:00 JST（冬時間）
-
-        判定ロジック:
-        - 発表期間内（3日〜10日）で、最終更新が今月の発表期間開始より前なら更新必要
-
         Args:
             last_updated_str: 最終更新日時のISO文字列
-            next_release: 未使用（後方互換性のため残す）
 
         Returns:
             True: 更新が必要
             False: キャッシュ有効
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 発表期間: 毎月3日〜10日（非製造業は製造業より2日遅い）
-            if 3 <= now.day <= 10:
-                # 今月の発表期間開始日時（3日 0:00 JST）
-                release_window_start = now.replace(day=3, hour=0, minute=0, second=0, microsecond=0)
-
-                # 最終更新が今月の発表期間開始より前なら更新必要
-                if last_updated < release_window_start:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, str]]:
-        """ISM非製造業サービスから次回発表日を取得（Investing.comから都度取得）"""
-        try:
-            # ISM非製造業サービスと同じ発表日を使用
-            from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
-            next_release = ism_non_manufacturing_service._get_next_release()
-            if next_release:
-                return {
-                    "date": next_release["date"],
-                    "label": f"ISM非製造業サブインデックス"
-                }
-            return None
-        except Exception as e:
-            print(f"Error getting ISM Non-Manufacturing next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _fetch_from_dbnomics(self) -> Optional[Dict[str, Any]]:
         """DBnomics APIからISM非製造業サブインデックスデータを取得"""
@@ -362,7 +318,7 @@ class ISMNonManufacturingComponentsService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": cached_data.get("next_release") if cached_data else None
+            "schedule_status": self.schedule_checker.get_status()
         }
 
 

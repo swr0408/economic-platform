@@ -27,7 +27,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.bea_schedule_service import bea_schedule_service
+from services.usa.release_schedule_utils import PERSONAL_INCOME_CHECKER
 
 
 # タイムゾーン
@@ -51,6 +51,7 @@ class PersonalSavingRateService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = PERSONAL_INCOME_CHECKER
 
     def get_personal_saving_rate_data(
         self,
@@ -80,11 +81,10 @@ class PersonalSavingRateService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -96,15 +96,13 @@ class PersonalSavingRateService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
-
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
 
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -112,7 +110,6 @@ class PersonalSavingRateService:
 
         # FRED APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -131,7 +128,7 @@ class PersonalSavingRateService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -143,7 +140,7 @@ class PersonalSavingRateService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -152,7 +149,7 @@ class PersonalSavingRateService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -258,41 +255,7 @@ class PersonalSavingRateService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_jst = bea_schedule_service.get_personal_income_release_datetime_jst(release_date_str)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """次回発表日を取得（bea_schedule_serviceを使用）"""
-        try:
-            next_release = bea_schedule_service.get_next_personal_income_release()
-            if next_release:
-                target_month = next_release.get("target_month", "")
-                return {
-                    "date": next_release["date"],
-                    "label": f"Personal Income and Outlays ({target_month})"
-                }
-            return None
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -334,7 +297,7 @@ class PersonalSavingRateService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

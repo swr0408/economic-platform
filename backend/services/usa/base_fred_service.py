@@ -3,20 +3,19 @@ FRED APIサービス基底クラス
 
 FRED APIを使用する全サービスの共通処理を提供:
 - Redis/ファイルキャッシュ管理
-- 発表日時ベースのキャッシュ更新判定
+- 期間ベースのキャッシュ更新判定
 - 前月比・前年比の計算
-- リリーススケジュール取得
 
 継承時に設定が必要:
 - SERIES_ID: FREDシリーズID
 - DATA_CACHE_KEY: Redisキャッシュキー
 - DATA_CACHE_FILE: ファイルキャッシュパス
-- 必要に応じて: RELEASE_ID, RELEASE_HOUR_ET, RELEASE_MINUTE_ET
+- schedule_checker: ReleaseScheduleCheckerインスタンス
 """
 import os
 import json
 from abc import ABC, abstractmethod
-from datetime import datetime, date, timedelta
+from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -48,23 +47,13 @@ class BaseFREDService(ABC):
     DATA_CACHE_KEY: str = ""
     DATA_CACHE_FILE: Optional[Path] = None
 
-    # オプション設定
-    RELEASE_ID: Optional[int] = None
-    SCHEDULE_CACHE_KEY: Optional[str] = None
-    SCHEDULE_CACHE_FILE: Optional[Path] = None
-
-    # 発表時刻設定（ETで指定、デフォルト 8:30 ET）
-    RELEASE_HOUR_ET: int = 8
-    RELEASE_MINUTE_ET: int = 30
-
-    # スケジュールキャッシュの有効期間（デフォルト: 180日）
-    SCHEDULE_CACHE_TTL: int = 180 * 24 * 60 * 60
-
     # デフォルトの開始日
     DEFAULT_START_DATE: str = "2000-01-01"
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        # サブクラスでschedule_checkerを設定する必要がある
+        self.schedule_checker = None
 
     # ==========================================================================
     # 公開メソッド
@@ -171,8 +160,6 @@ class BaseFREDService(ABC):
 
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
-        if self.SCHEDULE_CACHE_KEY:
-            redis_client.delete(self.SCHEDULE_CACHE_KEY)
         return redis_client.delete(self.DATA_CACHE_KEY)
 
     def get_cache_status(self) -> Dict[str, Any]:
@@ -187,7 +174,7 @@ class BaseFREDService(ABC):
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status() if self.schedule_checker else None,
             "file_cache_exists": self.DATA_CACHE_FILE.exists() if self.DATA_CACHE_FILE else False
         }
 
@@ -287,50 +274,13 @@ class BaseFREDService(ABC):
 
     def _should_refresh(self, last_updated_str: str, cached_data: Dict[str, Any]) -> bool:
         """
-        キャッシュを更新すべきかどうかを判定
+        キャッシュを更新すべきかどうかを判定（期間ベース）
 
-        サブクラスでカスタマイズが必要な場合はオーバーライド
+        サブクラスでschedule_checkerを設定する必要がある
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-                return False
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        サブクラスでカスタマイズが必要な場合はオーバーライド
-        """
-        if self.RELEASE_ID and self.SCHEDULE_CACHE_KEY:
-            return self._get_next_release_from_fred()
-        return None
+        if self.schedule_checker:
+            return self.schedule_checker.should_refresh(last_updated_str)
+        return False
 
     # ==========================================================================
     # 内部ユーティリティ
@@ -349,7 +299,7 @@ class BaseFREDService(ABC):
         response = {
             "data": data,
             "latest": latest,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": cached,
             "source": source,
             "last_updated": last_updated
@@ -357,121 +307,6 @@ class BaseFREDService(ABC):
         if error:
             response["error"] = error
         return response
-
-    def _get_next_release_from_fred(self) -> Optional[Dict[str, Any]]:
-        """FRED releases/datesから次回発表日を取得"""
-        if not self.RELEASE_ID or not self.SCHEDULE_CACHE_KEY:
-            return None
-
-        # Redisキャッシュをチェック
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            cached_at = cached.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        releases = cached.get("releases", [])
-                        next_rel = self._find_next_release_from_list(releases)
-                        if next_rel:
-                            return next_rel
-                except Exception:
-                    pass
-
-        # ファイルキャッシュをチェック
-        if self.SCHEDULE_CACHE_FILE:
-            schedule_cache = self._load_file_cache(self.SCHEDULE_CACHE_FILE)
-            if schedule_cache:
-                cached_at = schedule_cache.get("cached_at")
-                if cached_at:
-                    try:
-                        cached_dt = datetime.fromisoformat(cached_at)
-                        if cached_dt.tzinfo is None:
-                            cached_dt = cached_dt.replace(tzinfo=JST)
-                        if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                            releases = schedule_cache.get("releases", [])
-                            next_rel = self._find_next_release_from_list(releases)
-                            if next_rel:
-                                redis_client.set(self.SCHEDULE_CACHE_KEY, schedule_cache, expire=self.SCHEDULE_CACHE_TTL)
-                                return next_rel
-                    except Exception:
-                        pass
-
-        # FRED APIから取得
-        releases = self._fetch_release_schedule()
-        if releases:
-            cache_data = {
-                "releases": releases,
-                "cached_at": datetime.now(JST).isoformat()
-            }
-            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_data, expire=self.SCHEDULE_CACHE_TTL)
-            if self.SCHEDULE_CACHE_FILE:
-                self._save_file_cache(self.SCHEDULE_CACHE_FILE, cache_data)
-            return self._find_next_release_from_list(releases)
-
-        return None
-
-    def _fetch_release_schedule(self) -> List[Dict[str, Any]]:
-        """FRED APIからリリーススケジュールを取得"""
-        try:
-            if not self.api_key or not self.RELEASE_ID:
-                return []
-
-            print(f"Fetching release schedule from FRED (Release ID: {self.RELEASE_ID})...")
-
-            today = date.today()
-            end_date = today + timedelta(days=365)
-
-            url = f"{self.BASE_URL}/release/dates"
-            params = {
-                "release_id": self.RELEASE_ID,
-                "api_key": self.api_key,
-                "file_type": "json",
-                "realtime_start": today.strftime("%Y-%m-%d"),
-                "realtime_end": end_date.strftime("%Y-%m-%d"),
-                "include_release_dates_with_no_data": "true"
-            }
-
-            response = requests.get(url, params=params, timeout=30)
-            response.raise_for_status()
-            data = response.json()
-
-            releases = []
-            for item in data.get("release_dates", []):
-                release_date = item.get("date")
-                if release_date:
-                    releases.append({
-                        "date": release_date,
-                        "label": f"{self.SERIES_ID} - {release_date}"
-                    })
-
-            print(f"Fetched {len(releases)} upcoming release dates")
-            return releases
-
-        except Exception as e:
-            print(f"Error fetching release schedule: {e}")
-            return []
-
-    def _find_next_release_from_list(self, releases: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
-        """リリースリストから次回発表日を検索"""
-        today = date.today()
-
-        for rel in releases:
-            release_date_str = rel.get("date")
-            if release_date_str:
-                try:
-                    release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                    if release_date >= today:
-                        return {
-                            "date": release_date_str,
-                            "label": rel.get("label", f"{self.SERIES_ID} - {release_date_str}")
-                        }
-                except ValueError:
-                    continue
-
-        return None
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""

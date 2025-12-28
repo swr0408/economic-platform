@@ -9,17 +9,18 @@ FRED APIからデータを取得
 データソース:
 - FRED: https://fred.stlouisfed.org/series/JTSHIL
 - FRED: https://fred.stlouisfed.org/series/JTSLDL
-- Investing.com: https://jp.investing.com/economic-calendar/jolts-job-openings-1057
 
 発表スケジュール:
-- JOLTS: 毎月上旬（参照月の翌々月初旬）10:00 AM ET
+- JOLTS: 毎月上旬（参照月の翌々月初旬）
+- 発表期間: 毎月29日〜翌月13日（月跨ぎ）
+- 発表時刻: 23:00 (夏) / 0:00 (冬) JST
 - jolts_indeed_serviceと同じスケジュール（JOLTS関連指標）
 
-キャッシュ方式: 発表日時ベース判定方式
+キャッシュ方式: 発表期間ベース判定方式
 """
 import os
 import json
-from datetime import datetime, date
+from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -27,6 +28,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import JOLTS_OPENINGS_CHECKER
 
 
 # タイムゾーン
@@ -65,12 +67,10 @@ class JoltsHiresLayoffsService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:jolts_hires_layoffs:data"
 
-    # 発表時刻設定（ET）- 10:00 AM ET（JOLTSと同じ）
-    RELEASE_HOUR_ET = 10
-    RELEASE_MINUTE_ET = 0
-
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        # JOLTS求人と同じスケジュールを使用
+        self.schedule_checker = JOLTS_OPENINGS_CHECKER
 
     def get_hires_layoffs_data(
         self,
@@ -97,12 +97,11 @@ class JoltsHiresLayoffsService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
                         "series_config": SERIES_CONFIG,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -114,13 +113,12 @@ class JoltsHiresLayoffsService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
                         "series_config": SERIES_CONFIG,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -128,7 +126,6 @@ class JoltsHiresLayoffsService:
 
         # FRED APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -148,7 +145,7 @@ class JoltsHiresLayoffsService:
                 "data": api_data,
                 "latest": latest,
                 "series_config": SERIES_CONFIG,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -161,7 +158,7 @@ class JoltsHiresLayoffsService:
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
                 "series_config": SERIES_CONFIG,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -171,7 +168,7 @@ class JoltsHiresLayoffsService:
             "data": [],
             "latest": None,
             "series_config": SERIES_CONFIG,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -269,54 +266,13 @@ class JoltsHiresLayoffsService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
-        キャッシュを更新すべきかどうかを判定
+        キャッシュを更新すべきかどうかを判定（発表期間ベース）
 
+        発表期間: 毎月29日〜翌月13日（月跨ぎ）
+        発表時刻: 23:00 (夏) / 0:00 (冬) JST
         jolts_indeed_serviceと同じスケジュールを使用
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 次回発表日時を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻（10:00 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        jolts_indeed_serviceから取得（同じJOLTS発表スケジュール）
-        """
-        try:
-            from services.usa.jolts_indeed_service import jolts_indeed_service
-            return jolts_indeed_service._get_next_release()
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -355,7 +311,7 @@ class JoltsHiresLayoffsService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

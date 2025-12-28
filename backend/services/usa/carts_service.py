@@ -29,6 +29,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import CARTS_CHECKER
 
 
 # タイムゾーン
@@ -66,7 +67,7 @@ class CartsService:
     RELEASE_MINUTE_ET = 30
 
     def __init__(self):
-        pass
+        self.schedule_checker = CARTS_CHECKER
 
     def get_carts_data(
         self,
@@ -94,13 +95,10 @@ class CartsService:
         # 価格データを取得
         price_result = self.get_price_data(force_refresh)
 
-        # 次回発表日を取得
-        next_release = self._get_next_release()
-
         return {
             "weekly": weekly_result,
             "price": price_result,
-            "next_release": next_release,
+            "next_release": None,
             "cached": weekly_result.get("cached", False) and price_result.get("cached", False),
             "source": "combined",
             "last_updated": datetime.now(JST).isoformat()
@@ -132,7 +130,7 @@ class CartsService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": self._get_next_release(),
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -150,7 +148,7 @@ class CartsService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": self._get_next_release(),
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -174,7 +172,7 @@ class CartsService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -186,7 +184,7 @@ class CartsService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -195,7 +193,7 @@ class CartsService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -511,228 +509,8 @@ class CartsService:
         判定ロジック:
         - 次回発表日時を過ぎており、かつ最終更新がそれより前なら更新が必要
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 次回発表情報を取得
-            next_release = self._get_next_release()
-            if not next_release:
-                # 発表情報がない場合は7日に1回の更新を想定
-                days_since_update = (now - last_updated).days
-                return days_since_update >= 7
-
-            # 発表日時をパース
-            release_date_str = next_release.get("date")
-            if not release_date_str:
-                return False
-
-            release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-            # 夏時間判定
-            is_dst = self._is_dst(now)
-            release_hour = 21 if is_dst else 22  # 8:30 ET → 21:30/22:30 JST
-
-            release_datetime = datetime(
-                release_date.year, release_date.month, release_date.day,
-                release_hour, 30, 0, tzinfo=JST
-            )
-
-            # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-            if now >= release_datetime and last_updated < release_datetime:
-                return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _is_dst(self, dt: datetime) -> bool:
-        """米国東部時間が夏時間かどうかを判定"""
-        try:
-            et_time = dt.astimezone(ET)
-            return bool(et_time.dst())
-        except Exception:
-            # 3月第2日曜〜11月第1日曜を夏時間と仮定
-            if dt.month > 3 and dt.month < 11:
-                return True
-            if dt.month == 3:
-                second_sunday = 14 - (date(dt.year, 3, 1).weekday() + 1) % 7
-                return dt.day >= second_sunday
-            if dt.month == 11:
-                first_sunday = 7 - (date(dt.year, 11, 1).weekday() + 1) % 7
-                return dt.day < first_sunday
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        Chicago Fed Data Release Calendarからスクレイピングして取得
-        キャッシュがあればそれを使用（1ヶ月間有効）
-        """
-        # Redisキャッシュをチェック
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            cached_at = cached.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    # キャッシュは1ヶ月間有効
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        release_date_str = cached.get("date")
-                        if release_date_str:
-                            release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                            if release_date >= date.today():
-                                return {
-                                    "date": cached.get("date"),
-                                    "label": cached.get("label")
-                                }
-                except Exception:
-                    pass
-
-        # ファイルキャッシュをチェック
-        schedule_cache = self._load_file_cache(SCHEDULE_CACHE_FILE)
-        if schedule_cache:
-            cached_at = schedule_cache.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    if (datetime.now(JST) - cached_dt).total_seconds() < self.SCHEDULE_CACHE_TTL:
-                        release_date_str = schedule_cache.get("date")
-                        if release_date_str:
-                            release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                            if release_date >= date.today():
-                                # Redisにも保存
-                                redis_client.set(self.SCHEDULE_CACHE_KEY, schedule_cache, expire=self.SCHEDULE_CACHE_TTL)
-                                return {
-                                    "date": schedule_cache.get("date"),
-                                    "label": schedule_cache.get("label")
-                                }
-                except Exception:
-                    pass
-
-        # Chicago Fedページからスクレイピング
-        scraped = self._scrape_next_release()
-        if scraped:
-            # キャッシュに保存（1ヶ月間有効）
-            cache_data = {
-                **scraped,
-                "cached_at": datetime.now(JST).isoformat()
-            }
-            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_data, expire=self.SCHEDULE_CACHE_TTL)
-            self._save_file_cache(SCHEDULE_CACHE_FILE, cache_data)
-            return scraped
-
-        return None
-
-    def _scrape_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        Chicago Fed Data Release Calendarから次回CARTS発表日をスクレイピング
-        """
-        try:
-            print("Scraping next CARTS release date from Chicago Fed...")
-
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            }
-
-            response = requests.get(CARTS_SCHEDULE_URL, headers=headers, timeout=30)
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, "html.parser")
-            today = date.today()
-
-            # CARTSテーブルを探す（id="carts-table"）
-            carts_table = soup.find("table", id="carts-table")
-
-            if carts_table:
-                rows = carts_table.find_all("tr")
-                for row in rows:
-                    cells = row.find_all(["td", "th"])
-                    if len(cells) >= 2:
-                        # 1列目: Reference Period, 2列目: Preliminary Release, 3列目: Final Release
-                        # 予備版の日付を優先
-                        for i, cell in enumerate(cells[1:], 1):
-                            date_text = cell.get_text(strip=True)
-                            parsed_date = self._parse_date_string(date_text)
-                            if parsed_date and parsed_date >= today:
-                                reference_period = cells[0].get_text(strip=True)
-                                release_type = "Preliminary" if i == 1 else "Final"
-                                return {
-                                    "date": parsed_date.strftime("%Y-%m-%d"),
-                                    "label": f"CARTS ({reference_period}) {release_type} - {parsed_date.strftime('%b %d, %Y')}"
-                                }
-
-            # テーブルが見つからない場合は一般的なパターンで検索
-            # 「CARTS」を含む行を探す
-            for table in soup.find_all("table"):
-                text = table.get_text()
-                if "CARTS" in text.upper() or "Advance Retail" in text:
-                    rows = table.find_all("tr")
-                    for row in rows:
-                        cells = row.find_all(["td", "th"])
-                        for cell in cells:
-                            date_text = cell.get_text(strip=True)
-                            parsed_date = self._parse_date_string(date_text)
-                            if parsed_date and parsed_date >= today:
-                                return {
-                                    "date": parsed_date.strftime("%Y-%m-%d"),
-                                    "label": f"CARTS - {parsed_date.strftime('%b %d, %Y')}"
-                                }
-
-            print("Could not find next CARTS release date on Chicago Fed page")
-            return None
-
-        except Exception as e:
-            print(f"Error scraping Chicago Fed page: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
-
-    def _parse_date_string(self, date_str: str) -> Optional[date]:
-        """日付文字列をパース"""
-        date_str = date_str.strip()
-        if not date_str or date_str.lower() in ["to be announced", "tba", "-", ""]:
-            return None
-
-        try:
-            formats = [
-                "%B %d, %Y",     # January 02, 2025
-                "%b %d, %Y",     # Jan 02, 2025
-                "%B %d %Y",      # January 02 2025
-                "%b %d %Y",      # Jan 02 2025
-                "%m/%d/%Y",      # 01/02/2025
-                "%Y-%m-%d",      # 2025-01-02
-            ]
-
-            for fmt in formats:
-                try:
-                    return datetime.strptime(date_str, fmt).date()
-                except ValueError:
-                    continue
-
-            # 時刻部分を除去して再試行
-            date_str_clean = re.sub(r'\s*\([^)]*\)', '', date_str)
-            date_str_clean = re.sub(r'\s*at\s+\d+:\d+.*', '', date_str_clean, flags=re.IGNORECASE)
-            for fmt in formats:
-                try:
-                    return datetime.strptime(date_str_clean.strip(), fmt).date()
-                except ValueError:
-                    continue
-
-        except Exception:
-            pass
-
-        return None
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -784,7 +562,7 @@ class CartsService:
                 "data_count": len(price_data.get("data", [])) if price_data else 0,
                 "latest": price_data.get("latest") if price_data else None,
             },
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_weekly_exists": WEEKLY_CACHE_FILE.exists(),
             "file_cache_price_exists": PRICE_CACHE_FILE.exists(),
         }

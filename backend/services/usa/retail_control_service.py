@@ -28,6 +28,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import RETAIL_SALES_CHECKER
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
@@ -51,6 +52,10 @@ class RetailControlService:
     """リテールコントロール（コントロールグループ）サービス"""
 
     CACHE_KEY = "investing:retail_control"
+
+    def __init__(self):
+        """初期化"""
+        self.schedule_checker = RETAIL_SALES_CHECKER
 
     def get_control_group_data(
         self,
@@ -282,75 +287,9 @@ class RetailControlService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        小売売上高と同時発表のため、retail_sales_serviceから発表日を取得
-
-        判定ロジック:
-        - 次回発表日時（毎月中旬 8:30 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
+        ピリオドベースのスケジュールチェッカーを使用
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 次回発表日時を取得（retail_sales_serviceを参照）
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻（8:30 ET）をJSTに変換
-                # 夏時間判定
-                is_dst = self._is_dst(now)
-                release_hour = 21 if is_dst else 22  # 8:30 ET → 21:30/22:30 JST
-
-                release_datetime = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    release_hour, 30, 0, tzinfo=JST
-                )
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_datetime and last_updated < release_datetime:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _is_dst(self, dt: datetime) -> bool:
-        """米国東部時間が夏時間かどうかを判定"""
-        try:
-            et_time = dt.astimezone(ET)
-            return bool(et_time.dst())
-        except Exception:
-            # 3月第2日曜〜11月第1日曜を夏時間と仮定
-            if dt.month > 3 and dt.month < 11:
-                return True
-            if dt.month == 3:
-                second_sunday = 14 - (date(dt.year, 3, 1).weekday() + 1) % 7
-                return dt.day >= second_sunday
-            if dt.month == 11:
-                first_sunday = 7 - (date(dt.year, 11, 1).weekday() + 1) % 7
-                return dt.day < first_sunday
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        retail_sales_serviceから取得（小売売上高と同時発表のため）
-        """
-        try:
-            from services.usa.retail_sales_service import retail_sales_service
-            return retail_sales_service._get_next_release()
-        except Exception as e:
-            print(f"Error getting next release from retail_sales_service: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
@@ -369,7 +308,8 @@ class RetailControlService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "file_cache_exists": CACHE_FILE.exists()
+            "file_cache_exists": CACHE_FILE.exists(),
+            "schedule_status": self.schedule_checker.get_status()
         }
 
 

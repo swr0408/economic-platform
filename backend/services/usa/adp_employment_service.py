@@ -27,6 +27,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import ADP_EMPLOYMENT_CHECKER
 
 
 # タイムゾーン
@@ -59,6 +60,7 @@ class ADPEmploymentService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = ADP_EMPLOYMENT_CHECKER
 
     def get_adp_employment_data(
         self,
@@ -72,25 +74,22 @@ class ADPEmploymentService:
             {
                 "data": [{"date": str, "value": float, "mom": float, "yoy": float}, ...],
                 "latest": {...},
-                "next_release": {"date": str, "label": str} | null,
+                "next_release": None,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
             }
         """
-        # 次回発表日を取得
-        next_release = self._get_next_release()
-
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -101,12 +100,12 @@ class ADPEmploymentService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -131,7 +130,7 @@ class ADPEmploymentService:
             return {
                 "data": processed_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -143,7 +142,7 @@ class ADPEmploymentService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -152,7 +151,7 @@ class ADPEmploymentService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -250,190 +249,9 @@ class ADPEmploymentService:
 
         return result
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict[str, Any]]) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    print(f"[ADP] Release time passed: {release_jst}, last_updated: {last_updated}")
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """次回発表日を取得（ADP公式ページからスクレイピング）"""
-        try:
-            today = date.today()
-
-            # キャッシュチェック
-            cached_schedule = self._get_cached_schedule()
-            if cached_schedule:
-                # 次回発表日を探す（今日以降の日付があればそれを返す）
-                for release in cached_schedule.get("releases", []):
-                    release_date_str = release.get("date")
-                    if release_date_str:
-                        release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                        if release_date >= today:
-                            return release
-
-                # キャッシュ内の日付がすべて過去 → 再取得が必要かチェック
-                # 半年以内にスクレイピングしていたら再取得しない
-                cached_at = cached_schedule.get("cached_at")
-                if cached_at:
-                    try:
-                        cached_dt = datetime.fromisoformat(cached_at)
-                        if cached_dt.tzinfo is None:
-                            cached_dt = cached_dt.replace(tzinfo=JST)
-                        days_since_cache = (datetime.now(JST) - cached_dt).days
-                        if days_since_cache < 180:  # 半年以内
-                            return None
-                    except Exception:
-                        pass
-
-            # ADP公式ページからスクレイピング
-            releases = self._fetch_adp_schedule()
-            if releases:
-                # キャッシュに保存
-                self._save_schedule_cache({"releases": releases})
-                # 次回発表日を返す
-                for release in releases:
-                    release_date_str = release.get("date")
-                    if release_date_str:
-                        release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                        if release_date >= today:
-                            return release
-
-            return None
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
-
-    def _fetch_adp_schedule(self) -> List[Dict[str, Any]]:
-        """
-        ADP公式ページから発表スケジュールを取得
-
-        Calendarタブから一年分のスケジュールを抽出
-        """
-        try:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-                "Accept-Language": "en-US,en;q=0.7",
-            }
-
-            response = requests.get(ADP_CALENDAR_URL, headers=headers, timeout=30)
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, 'html.parser')
-            releases = []
-
-            # 日付パターン（YYYY-MM-DD, MM/DD/YYYY, Month DD, YYYY など）を検索
-            date_patterns = [
-                r'(\d{4})-(\d{2})-(\d{2})',  # YYYY-MM-DD
-                r'(\d{1,2})/(\d{1,2})/(\d{4})',  # MM/DD/YYYY
-            ]
-
-            # ページ内のテキストから日付を抽出
-            text = soup.get_text()
-
-            # 2025年と2026年の日付を探す
-            current_year = datetime.now().year
-            next_year = current_year + 1
-
-            for year in [current_year, next_year]:
-                for month in range(1, 13):
-                    # 月ごとに第1水曜日を計算（デフォルトスケジュール）
-                    first_day = date(year, month, 1)
-                    # 第1水曜日を計算
-                    days_until_wednesday = (2 - first_day.weekday()) % 7
-                    first_wednesday = first_day + timedelta(days=days_until_wednesday)
-
-                    # 過去の日付はスキップ
-                    if first_wednesday >= date.today():
-                        releases.append({
-                            "date": first_wednesday.strftime("%Y-%m-%d"),
-                            "label": f"ADP National Employment Report - {first_wednesday.strftime('%Y/%m/%d')} 8:15 ET"
-                        })
-
-            # 日付順にソート
-            releases.sort(key=lambda x: x["date"])
-
-            print(f"Found {len(releases)} ADP release dates")
-            return releases
-
-        except Exception as e:
-            print(f"Error fetching ADP schedule: {e}")
-            import traceback
-            traceback.print_exc()
-            return []
-
-    def _get_cached_schedule(self) -> Optional[Dict[str, Any]]:
-        """キャッシュされた発表スケジュールを取得"""
-        # Redisチェック
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            cached_at = cached.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if cached_dt.tzinfo is None:
-                        cached_dt = cached_dt.replace(tzinfo=JST)
-                    # 180日間有効（半年）
-                    if (datetime.now(JST) - cached_dt).days < 180:
-                        return cached
-                except Exception:
-                    pass
-
-        # ファイルキャッシュチェック
-        try:
-            if SCHEDULE_CACHE_FILE.exists():
-                with open(SCHEDULE_CACHE_FILE, 'r', encoding='utf-8') as f:
-                    file_cache = json.load(f)
-                    cached_at = file_cache.get("cached_at")
-                    if cached_at:
-                        cached_dt = datetime.fromisoformat(cached_at)
-                        if cached_dt.tzinfo is None:
-                            cached_dt = cached_dt.replace(tzinfo=JST)
-                        if (datetime.now(JST) - cached_dt).days < 180:
-                            redis_client.set(self.SCHEDULE_CACHE_KEY, file_cache, expire=180*24*60*60)
-                            return file_cache
-        except Exception:
-            pass
-
-        return None
-
-    def _save_schedule_cache(self, data: Dict[str, Any]) -> None:
-        """発表スケジュールをキャッシュに保存"""
-        try:
-            data["cached_at"] = datetime.now(JST).isoformat()
-            redis_client.set(self.SCHEDULE_CACHE_KEY, data, expire=180*24*60*60)
-
-            with open(SCHEDULE_CACHE_FILE, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-            print(f"ADP schedule cache saved to {SCHEDULE_CACHE_FILE}")
-        except Exception as e:
-            print(f"Failed to save ADP schedule cache: {e}")
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -473,7 +291,7 @@ class ADPEmploymentService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

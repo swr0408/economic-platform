@@ -11,23 +11,21 @@ Investing.comからChallenger Job Cutsデータを取得
 - 発表元: Challenger, Gray & Christmas
 
 発表スケジュール:
-- Challenger公式カレンダーから取得
-- https://www.challengergray.com/blog/{year}-challenger-report-release-calendar/
-- 7:30 ET（米国東部時間）
+- 発表期間: 毎月1〜31日（毎月第1木曜日頃）
+- 発表時刻: 20:30 (夏) / 21:30 (冬) JST
 
-キャッシュ方式: 発表日時ベース判定方式
+キャッシュ方式: 発表期間ベース判定方式
 """
 import json
-import re
-from datetime import datetime, date, timedelta
+from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import requests
-from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import CHALLENGER_LAYOFFS_CHECKER
 
 
 # タイムゾーン
@@ -37,28 +35,19 @@ ET = ZoneInfo("America/New_York")
 # Investing.com JSONエンドポイント
 INVESTING_CHALLENGER_URL = "https://sbcharts.investing.com/events_charts/us/888.json"
 
-# Challenger公式カレンダーURL
-CHALLENGER_CALENDAR_URL = "https://www.challengergray.com/blog/{year}-challenger-report-release-calendar/"
-
 # キャッシュディレクトリ
 CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "challenger_job_cuts_cache.json"
-SCHEDULE_CACHE_FILE = CACHE_DIR / "challenger_schedule_cache.json"
 
 
 class ChallengerJobCutsService:
     """Challenger人員削減数サービス"""
 
     DATA_CACHE_KEY = "investing:challenger_job_cuts:data"
-    SCHEDULE_CACHE_KEY = "investing:challenger_job_cuts:schedule"
-
-    # 発表時刻設定（ET）- 7:30 ET
-    RELEASE_HOUR_ET = 7
-    RELEASE_MINUTE_ET = 30
 
     def __init__(self):
-        pass
+        self.schedule_checker = CHALLENGER_LAYOFFS_CHECKER
 
     def get_challenger_data(
         self,
@@ -74,25 +63,22 @@ class ChallengerJobCutsService:
             {
                 "data": [{"date": "YYYY-MM-DD", "value": float, "mom": float | null, "yoy": float | null}, ...],
                 "latest": {...},
-                "next_release": {"date": "YYYY-MM-DD", "label": str} | null,
+                "next_release": null,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
             }
         """
-        # 次回発表日を取得
-        next_release = self._get_next_release()
-
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -103,12 +89,12 @@ class ChallengerJobCutsService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -133,7 +119,7 @@ class ChallengerJobCutsService:
             return {
                 "data": processed_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -145,7 +131,7 @@ class ChallengerJobCutsService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -154,7 +140,7 @@ class ChallengerJobCutsService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -309,243 +295,14 @@ class ChallengerJobCutsService:
 
         return result
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict[str, Any]]) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    print(f"[Challenger] Release time passed: {release_jst}, last_updated: {last_updated}")
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """
-        次回発表日を取得（公式カレンダーから）
+        キャッシュを更新すべきかどうかを判定（発表期間ベース）
+
+        発表期間: 毎月1〜31日（毎月第1木曜日頃）
+        発表時刻: 20:30 (夏) / 21:30 (冬) JST
         """
-        try:
-            # まずスケジュールキャッシュを確認
-            schedule = self._get_release_schedule()
-            if not schedule:
-                # フォールバック: 計算方式
-                return self._get_next_release_calculated()
-
-            now = datetime.now(ET)
-            today = now.date()
-
-            # スケジュールから次回発表日を探す
-            for release_date_str in schedule:
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-
-                # 発表時刻を構築
-                release_time = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-
-                # まだ発表時刻を過ぎていない場合
-                if now < release_time:
-                    return {
-                        "date": release_date_str,
-                        "label": f"Challenger Job Cuts - {release_date.strftime('%Y/%m/%d')} (木) 7:30 ET"
-                    }
-
-            # スケジュールに該当がない場合はフォールバック
-            return self._get_next_release_calculated()
-
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return self._get_next_release_calculated()
-
-    def _get_release_schedule(self) -> List[str]:
-        """
-        発表スケジュールを取得（キャッシュ付き）
-        """
-        # Redisキャッシュチェック
-        cached_schedule = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached_schedule:
-            cached_at = cached_schedule.get("cached_at")
-            if cached_at:
-                cached_time = datetime.fromisoformat(cached_at)
-                # 24時間以内ならキャッシュを使用
-                if datetime.now(JST) - cached_time < timedelta(hours=24):
-                    return cached_schedule.get("dates", [])
-
-        # ファイルキャッシュチェック
-        file_cache = self._load_schedule_cache()
-        if file_cache:
-            cached_at = file_cache.get("cached_at")
-            if cached_at:
-                cached_time = datetime.fromisoformat(cached_at)
-                # 24時間以内ならキャッシュを使用
-                if datetime.now(JST) - cached_time < timedelta(hours=24):
-                    redis_client.set(self.SCHEDULE_CACHE_KEY, file_cache, expire=86400)
-                    return file_cache.get("dates", [])
-
-        # 公式サイトからスクレイピング
-        schedule = self._scrape_release_schedule()
-        if schedule:
-            cache_payload = {
-                "dates": schedule,
-                "cached_at": datetime.now(JST).isoformat()
-            }
-            redis_client.set(self.SCHEDULE_CACHE_KEY, cache_payload, expire=86400)
-            self._save_schedule_cache(cache_payload)
-            return schedule
-
-        # スクレイピング失敗時はファイルキャッシュから返す
-        if file_cache:
-            return file_cache.get("dates", [])
-
-        return []
-
-    def _scrape_release_schedule(self) -> List[str]:
-        """
-        Challenger公式サイトから発表スケジュールをスクレイピング
-        """
-        try:
-            now = datetime.now(ET)
-            current_year = now.year
-            all_dates = []
-
-            # 今年と来年のスケジュールを取得
-            for year in [current_year, current_year + 1]:
-                url = CHALLENGER_CALENDAR_URL.format(year=year)
-                print(f"Fetching Challenger schedule from: {url}")
-
-                headers = {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                }
-
-                try:
-                    response = requests.get(url, headers=headers, timeout=15)
-                    if response.status_code == 404:
-                        print(f"Calendar page not found for {year}")
-                        continue
-                    response.raise_for_status()
-
-                    soup = BeautifulSoup(response.text, 'html.parser')
-
-                    # 日付パターンを探す（例: January 9, February 6, etc.）
-                    # ページ内のリスト項目から日付を抽出
-                    text = soup.get_text()
-
-                    # 月名と日付のパターン
-                    month_names = {
-                        'January': 1, 'February': 2, 'March': 3, 'April': 4,
-                        'May': 5, 'June': 6, 'July': 7, 'August': 8,
-                        'September': 9, 'October': 10, 'November': 11, 'December': 12
-                    }
-
-                    # パターン: "Month Day" または "Month Day, Year"
-                    pattern = r'(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:,?\s*(\d{4}))?'
-                    matches = re.findall(pattern, text)
-
-                    for match in matches:
-                        month_name, day, match_year = match
-                        month = month_names[month_name]
-                        day = int(day)
-
-                        # 年が指定されていない場合は対象年を使用
-                        if match_year:
-                            target_year = int(match_year)
-                        else:
-                            target_year = year
-
-                        try:
-                            release_date = date(target_year, month, day)
-                            date_str = release_date.strftime("%Y-%m-%d")
-                            if date_str not in all_dates:
-                                all_dates.append(date_str)
-                        except ValueError:
-                            continue
-
-                except requests.RequestException as e:
-                    print(f"Failed to fetch calendar for {year}: {e}")
-                    continue
-
-            # 日付順にソート
-            all_dates.sort()
-            print(f"Found {len(all_dates)} release dates from Challenger calendar")
-            return all_dates
-
-        except Exception as e:
-            print(f"Error scraping release schedule: {e}")
-            import traceback
-            traceback.print_exc()
-            return []
-
-    def _get_next_release_calculated(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を計算（フォールバック用）
-        第1木曜日ベースの計算
-        """
-        try:
-            now = datetime.now(ET)
-            today = now.date()
-
-            # 今月の第1木曜日を計算
-            first_thursday_this_month = self._get_first_thursday_of_month(today.year, today.month)
-
-            # 発表時刻
-            release_time = datetime(
-                first_thursday_this_month.year, first_thursday_this_month.month, first_thursday_this_month.day,
-                self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                tzinfo=ET
-            )
-
-            # 今月の発表日時を過ぎていれば来月の第1木曜日
-            if now >= release_time:
-                if today.month == 12:
-                    next_year = today.year + 1
-                    next_month = 1
-                else:
-                    next_year = today.year
-                    next_month = today.month + 1
-
-                next_release_date = self._get_first_thursday_of_month(next_year, next_month)
-            else:
-                next_release_date = first_thursday_this_month
-
-            return {
-                "date": next_release_date.strftime("%Y-%m-%d"),
-                "label": f"Challenger Job Cuts - {next_release_date.strftime('%Y/%m/%d')} (木) 7:30 ET (計算値)"
-            }
-
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
-
-    def _get_first_thursday_of_month(self, year: int, month: int) -> date:
-        """
-        指定した年月の第1木曜日を取得
-        """
-        first_day = date(year, month, 1)
-        # 木曜日 = 3
-        days_until_thursday = (3 - first_day.weekday()) % 7
-        first_thursday = first_day + timedelta(days=days_until_thursday)
-        return first_thursday
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -568,30 +325,8 @@ class ChallengerJobCutsService:
         except Exception as e:
             print(f"Failed to save file cache: {e}")
 
-    def _load_schedule_cache(self) -> Optional[Dict[str, Any]]:
-        """スケジュールキャッシュを読み込み"""
-        try:
-            if not SCHEDULE_CACHE_FILE.exists():
-                return None
-            with open(SCHEDULE_CACHE_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Failed to load schedule cache: {e}")
-            return None
-
-    def _save_schedule_cache(self, data: Dict[str, Any]) -> None:
-        """スケジュールキャッシュを保存"""
-        try:
-            CACHE_DIR.mkdir(parents=True, exist_ok=True)
-            with open(SCHEDULE_CACHE_FILE, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-            print(f"Challenger schedule cache saved to {SCHEDULE_CACHE_FILE}")
-        except Exception as e:
-            print(f"Failed to save schedule cache: {e}")
-
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
-        redis_client.delete(self.SCHEDULE_CACHE_KEY)
         return redis_client.delete(self.DATA_CACHE_KEY)
 
     def get_cache_status(self) -> Dict[str, Any]:
@@ -608,7 +343,7 @@ class ChallengerJobCutsService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

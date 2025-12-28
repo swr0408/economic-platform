@@ -67,7 +67,9 @@
       "Bash(lsof:*)",
       "Bash(docker stop:*)",
       "Bash(docker rm:*)",
-      "Bash(docker compose:*)"
+      "Bash(docker compose:*)",
+      "Bash(if not exist \"c:\\Users\\owner\\Desktop\\economic-platform\\backend\\cache\\usa\\consumer\" mkdir \"c:\\Users\\owner\\Desktop\\economic-platform\\backend\\cache\\usa\\consumer\")",
+      "Bash(rm:*)"
     ]
   }
 }

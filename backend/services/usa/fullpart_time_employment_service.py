@@ -26,6 +26,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import UNEMPLOYMENT_RATE_CHECKER
 
 
 # タイムゾーン
@@ -66,6 +67,7 @@ class FullPartTimeEmploymentService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = UNEMPLOYMENT_RATE_CHECKER
 
     def get_fullpart_time_employment_data(
         self,
@@ -86,20 +88,17 @@ class FullPartTimeEmploymentService:
                 "last_updated": str
             }
         """
-        # 次回発表日を失業率サービスから取得（共有）
-        next_release = self._get_next_release()
-
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
                         "series_config": SERIES_CONFIG,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -110,13 +109,13 @@ class FullPartTimeEmploymentService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str, next_release):
+                if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
                         "series_config": SERIES_CONFIG,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -140,7 +139,7 @@ class FullPartTimeEmploymentService:
                 "data": api_data,
                 "latest": latest,
                 "series_config": SERIES_CONFIG,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -153,7 +152,7 @@ class FullPartTimeEmploymentService:
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
                 "series_config": SERIES_CONFIG,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -163,7 +162,7 @@ class FullPartTimeEmploymentService:
             "data": [],
             "latest": None,
             "series_config": SERIES_CONFIG,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -254,45 +253,9 @@ class FullPartTimeEmploymentService:
             print(f"Error fetching FRED series {series_id}: {e}")
             return []
 
-    def _should_refresh(self, last_updated_str: str, next_release: Optional[Dict[str, Any]]) -> bool:
+    def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """次回発表日を失業率サービスから取得（共有）"""
-        try:
-            from services.usa.unemployment_rate_service import unemployment_rate_service
-            # キャッシュから軽量に取得（APIは叩かない）
-            data = unemployment_rate_service.get_unemployment_rate_data()
-            return data.get("next_release")
-        except Exception as e:
-            print(f"Error getting next release from unemployment service: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -331,7 +294,7 @@ class FullPartTimeEmploymentService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

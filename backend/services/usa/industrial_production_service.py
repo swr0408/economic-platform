@@ -24,6 +24,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import INDUSTRIAL_PRODUCTION_CHECKER
 
 
 # タイムゾーン
@@ -55,6 +56,7 @@ class IndustrialProductionService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = INDUSTRIAL_PRODUCTION_CHECKER
 
     def get_industrial_production_data(
         self,
@@ -84,11 +86,10 @@ class IndustrialProductionService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -101,7 +102,6 @@ class IndustrialProductionService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.CACHE_KEY, {
@@ -113,7 +113,7 @@ class IndustrialProductionService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -126,7 +126,6 @@ class IndustrialProductionService:
             # 変化率を計算
             processed_data = self._calculate_changes(api_data)
             latest = processed_data[-1] if processed_data else None
-            next_release = self._get_next_release()
 
             cache_payload = {
                 "data": processed_data,
@@ -141,7 +140,7 @@ class IndustrialProductionService:
             return {
                 "data": processed_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -154,7 +153,7 @@ class IndustrialProductionService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": self._get_next_release(),
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -163,7 +162,7 @@ class IndustrialProductionService:
         return {
             "data": [],
             "latest": None,
-            "next_release": self._get_next_release(),
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -248,184 +247,9 @@ class IndustrialProductionService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
+        """キャッシュを更新すべきかどうかを判定"""
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-        Industrial Production発表スケジュール:
-        - 発表日: 毎月14〜18日頃の9:15 ET
-        - FRB G.17ページから次回発表日を取得して判定
-
-        判定ロジック:
-        - 次回発表日時を過ぎており、かつ最終更新がそれより前なら更新が必要
-        """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 次回発表情報を取得
-            next_release = self._get_next_release()
-            if not next_release:
-                # 発表情報がない場合は月1回程度の更新を想定
-                # 最終更新から30日以上経過していれば更新
-                days_since_update = (now - last_updated).days
-                return days_since_update >= 30
-
-            # 発表日時をパース
-            release_date_str = next_release.get("date")
-            if not release_date_str:
-                return False
-
-            release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-            # 夏時間判定
-            is_dst = self._is_dst(now)
-            release_hour = 22 if is_dst else 23  # 9:15 ET → 22:15/23:15 JST
-
-            release_datetime = datetime(
-                release_date.year, release_date.month, release_date.day,
-                release_hour, 15, 0, tzinfo=JST
-            )
-
-            # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-            if now >= release_datetime and last_updated < release_datetime:
-                return True
-
-            # 過去の発表日もチェック（見逃し対策）
-            # 発表日が過去で、最終更新がそれより古ければ更新が必要
-            if release_datetime < now and last_updated < release_datetime:
-                return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _is_dst(self, dt: datetime) -> bool:
-        """米国東部時間が夏時間かどうかを判定"""
-        try:
-            et_time = dt.astimezone(ET)
-            return bool(et_time.dst())
-        except Exception:
-            # 3月第2日曜〜11月第1日曜を夏時間と仮定
-            if dt.month > 3 and dt.month < 11:
-                return True
-            if dt.month == 3:
-                # 3月第2日曜以降
-                second_sunday = 14 - (date(dt.year, 3, 1).weekday() + 1) % 7
-                return dt.day >= second_sunday
-            if dt.month == 11:
-                # 11月第1日曜より前
-                first_sunday = 7 - (date(dt.year, 11, 1).weekday() + 1) % 7
-                return dt.day < first_sunday
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        FRB G.17ページからスクレイピングして取得
-        キャッシュがあればそれを使用
-        """
-        # Redisキャッシュをチェック
-        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-        if cached:
-            # キャッシュの有効期限チェック（1日）
-            cached_at = cached.get("cached_at")
-            if cached_at:
-                try:
-                    cached_dt = datetime.fromisoformat(cached_at)
-                    if (datetime.now(JST) - cached_dt).total_seconds() < 86400:
-                        release_date_str = cached.get("date")
-                        if release_date_str:
-                            release_date = datetime.strptime(release_date_str, "%Y-%m-%d").date()
-                            if release_date >= date.today():
-                                return {
-                                    "date": cached.get("date"),
-                                    "label": cached.get("label")
-                                }
-                except Exception:
-                    pass
-
-        # FRBページからスクレイピング
-        scraped = self._scrape_next_release()
-        if scraped:
-            # キャッシュに保存
-            redis_client.set(self.SCHEDULE_CACHE_KEY, {
-                **scraped,
-                "cached_at": datetime.now(JST).isoformat()
-            }, expire=86400)  # 1日
-            return scraped
-
-        return None
-
-    def _scrape_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        FRB G.17ページから次回発表日をスクレイピング
-        """
-        try:
-            print("Scraping next Industrial Production release date from FRB...")
-
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            }
-
-            response = requests.get(FRB_G17_URL, headers=headers, timeout=30)
-            response.raise_for_status()
-
-            soup = BeautifulSoup(response.text, "html.parser")
-
-            # ページテキストから次回発表日を探す
-            text = soup.get_text()
-
-            # パターン1: "Next release: Month DD, YYYY"
-            # パターン2: "to be issued at X:XX a.m. EST on Month DD, YYYY"
-            patterns = [
-                r"(?:next release|to be issued)[^0-9]*(?:at\s+\d+:\d+\s*(?:a\.m\.|p\.m\.)\s*(?:EST|EDT)\s+on\s+)?(\w+\s+\d+,?\s+\d{4})",
-                r"(\w+\s+\d+,?\s+\d{4})",
-            ]
-
-            for pattern in patterns:
-                matches = re.findall(pattern, text, re.IGNORECASE)
-                for match in matches:
-                    try:
-                        # 日付をパース
-                        date_str = match.replace(",", "")
-                        parsed = self._parse_date_string(date_str)
-                        if parsed and parsed >= date.today():
-                            return {
-                                "date": parsed.strftime("%Y-%m-%d"),
-                                "label": f"Industrial Production ({parsed.strftime('%b %d, %Y')})"
-                            }
-                    except Exception:
-                        continue
-
-            print("Could not find next release date on FRB page")
-            return None
-
-        except Exception as e:
-            print(f"Error scraping FRB G.17 page: {e}")
-            return None
-
-    def _parse_date_string(self, date_str: str) -> Optional[date]:
-        """日付文字列をパース"""
-        formats = [
-            "%B %d %Y",      # December 23 2025
-            "%b %d %Y",      # Dec 23 2025
-            "%B %d, %Y",     # December 23, 2025
-            "%b %d, %Y",     # Dec 23, 2025
-        ]
-
-        for fmt in formats:
-            try:
-                return datetime.strptime(date_str.strip(), fmt).date()
-            except ValueError:
-                continue
-
-        return None
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -466,7 +290,7 @@ class IndustrialProductionService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": CACHE_FILE.exists()
         }
 

@@ -25,6 +25,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import CONSUMER_CREDIT_CHECKER
 
 
 # タイムゾーン
@@ -52,6 +53,7 @@ class ConsumerCreditService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = CONSUMER_CREDIT_CHECKER
 
     def get_consumer_credit_data(
         self,
@@ -81,11 +83,10 @@ class ConsumerCreditService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -98,7 +99,6 @@ class ConsumerCreditService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     data = file_cache.get("data", [])
-                    next_release = self._get_next_release()
 
                     # Redisにも保存
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
@@ -106,7 +106,7 @@ class ConsumerCreditService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -114,7 +114,6 @@ class ConsumerCreditService:
 
         # 外部APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -133,7 +132,7 @@ class ConsumerCreditService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -145,7 +144,7 @@ class ConsumerCreditService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -154,7 +153,7 @@ class ConsumerCreditService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -286,72 +285,8 @@ class ConsumerCreditService:
         判定ロジック:
         - 次回発表日時（金曜日 16:15 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
+        return self.schedule_checker.should_refresh(last_updated_str)
 
-            now = datetime.now(JST)
-
-            # 次回発表日時を取得
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                # 発表日時をパース
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # 発表時刻（16:15 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                # 発表日時を過ぎており、かつ最終更新が発表日時より前なら更新が必要
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を計算
-
-        H.8は毎週金曜日発表なので、次の金曜日を計算
-        """
-        try:
-            now = datetime.now(ET)
-            today = now.date()
-
-            # 今日が金曜日かどうかチェック（0=月曜日, ..., 4=金曜日）
-            days_until_friday = (4 - today.weekday()) % 7
-
-            # 今日が金曜日で、発表時刻を過ぎている場合は翌週金曜日
-            if days_until_friday == 0:
-                release_time_today = datetime(
-                    now.year, now.month, now.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                if now >= release_time_today:
-                    days_until_friday = 7
-
-            next_friday = today + timedelta(days=days_until_friday)
-
-            return {
-                "date": next_friday.strftime("%Y-%m-%d"),
-                "label": f"H.8 Consumer Credit - {next_friday.strftime('%Y/%m/%d')} (金) 16:15 ET"
-            }
-
-        except Exception as e:
-            print(f"Error calculating next release: {e}")
-            return None
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -391,7 +326,7 @@ class ConsumerCreditService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": self.schedule_checker.get_status(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

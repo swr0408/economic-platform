@@ -12,15 +12,15 @@ FRED APIから求人件数と失業者数を取得し、比率を計算
 - FRED: https://fred.stlouisfed.org/series/UNEMPLOY
 
 発表スケジュール:
-- JOLTS: 毎月上旬（参照月の翌々月初旬）10:00 AM ET
-- 失業率（UNEMPLOY）: 毎月第1金曜日 8:30 AM ET
-- 両方の発表日のうち遅い方で更新判定
+- JOLTS: 毎月29日〜翌月13日、23:00 (夏) / 0:00 (冬) JST
+- 失業率（UNEMPLOY）: 毎月1〜15日、21:30 (夏) / 22:30 (冬) JST
+- 両方のスケジュールで判定
 
-キャッシュ方式: 発表日時ベース判定方式
+キャッシュ方式: 発表期間ベース判定方式
 """
 import os
 import json
-from datetime import datetime, date
+from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -28,6 +28,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import (
+    JOLTS_OPENINGS_CHECKER,
+    UNEMPLOYMENT_RATE_CHECKER,
+)
 
 
 # タイムゾーン
@@ -50,12 +54,10 @@ class JobOpeningsPerUnemployedService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:job_openings_per_unemployed:data"
 
-    # 発表時刻設定（ET）
-    # JOLTS: 10:00 AM ET, Employment Situation: 8:30 AM ET
-    # 両方の発表日のうち遅い方で判定するため、両方の発表日時を取得する必要がある
-
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.jolts_checker = JOLTS_OPENINGS_CHECKER
+        self.unemployment_checker = UNEMPLOYMENT_RATE_CHECKER
 
     def get_job_openings_per_unemployed_data(
         self,
@@ -69,10 +71,7 @@ class JobOpeningsPerUnemployedService:
             {
                 "data": [{"date": str, "value": float, "jolts": float, "unemployed": float}, ...],
                 "latest": {...},
-                "next_release": {
-                    "jolts": {"date": str, "label": str} | null,
-                    "empsit": {"date": str, "label": str} | null
-                },
+                "next_release": null,
                 "cached": bool,
                 "source": str,
                 "last_updated": str
@@ -84,11 +83,10 @@ class JobOpeningsPerUnemployedService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -100,12 +98,11 @@ class JobOpeningsPerUnemployedService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -113,7 +110,6 @@ class JobOpeningsPerUnemployedService:
 
         # FRED APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -132,7 +128,7 @@ class JobOpeningsPerUnemployedService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -144,7 +140,7 @@ class JobOpeningsPerUnemployedService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -153,7 +149,7 @@ class JobOpeningsPerUnemployedService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -253,90 +249,15 @@ class JobOpeningsPerUnemployedService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
-        キャッシュを更新すべきかどうかを判定
+        キャッシュを更新すべきかどうかを判定（発表期間ベース）
 
-        判定ロジック:
-        - JOLTSまたはEmployment Situationの発表日時を過ぎており、
-          かつ最終更新がその発表日時より前なら更新
+        JOLTSまたは失業率のいずれかの発表期間内であれば更新チェック
         """
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 両方の発表日時を取得
-            next_release = self._get_next_release()
-
-            # JOLTS発表日時をチェック
-            jolts_release = next_release.get("jolts")
-            if jolts_release and jolts_release.get("date"):
-                release_date_str = jolts_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # JOLTS発表時刻（10:00 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    10, 0, tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            # Employment Situation発表日時をチェック
-            empsit_release = next_release.get("empsit")
-            if empsit_release and empsit_release.get("date"):
-                release_date_str = empsit_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                # Employment Situation発表時刻（8:30 ET）をJSTに変換
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    8, 30, tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Dict[str, Any]:
-        """
-        次回発表日を取得
-
-        JOLTSとEmployment Situationの両方の発表日を返す
-        """
-        result = {
-            "jolts": None,
-            "empsit": None
-        }
-
-        try:
-            # JOLTSの発表日（jolts_indeed_serviceから取得）
-            from services.usa.jolts_indeed_service import jolts_indeed_service
-            jolts_next = jolts_indeed_service._get_next_release()
-            if jolts_next:
-                result["jolts"] = jolts_next
-        except Exception as e:
-            print(f"Error getting JOLTS next release: {e}")
-
-        try:
-            # Employment Situationの発表日（unemployment_rate_serviceから取得）
-            from services.usa.unemployment_rate_service import unemployment_rate_service
-            empsit_next = unemployment_rate_service._get_next_release()
-            if empsit_next:
-                result["empsit"] = empsit_next
-        except Exception as e:
-            print(f"Error getting Employment Situation next release: {e}")
-
-        return result
+        # いずれかのスケジュールで更新が必要なら更新
+        return (
+            self.jolts_checker.should_refresh(last_updated_str) or
+            self.unemployment_checker.should_refresh(last_updated_str)
+        )
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -375,7 +296,10 @@ class JobOpeningsPerUnemployedService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "next_release": self._get_next_release(),
+            "schedule_status": {
+                "jolts": self.jolts_checker.get_status(),
+                "unemployment": self.unemployment_checker.get_status()
+            },
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

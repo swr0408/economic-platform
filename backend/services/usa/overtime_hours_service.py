@@ -25,6 +25,7 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.release_schedule_utils import UNEMPLOYMENT_RATE_CHECKER
 
 
 # タイムゾーン
@@ -52,6 +53,7 @@ class OvertimeHoursService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+        self.schedule_checker = UNEMPLOYMENT_RATE_CHECKER
 
     def get_overtime_hours_data(
         self,
@@ -77,11 +79,10 @@ class OvertimeHoursService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -93,12 +94,11 @@ class OvertimeHoursService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
-                    next_release = self._get_next_release()
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": next_release,
+                        "next_release": None,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -106,7 +106,6 @@ class OvertimeHoursService:
 
         # FRED APIから取得
         api_data = self._fetch_from_api(start_date)
-        next_release = self._get_next_release()
 
         if api_data:
             latest = api_data[-1] if api_data else None
@@ -122,7 +121,7 @@ class OvertimeHoursService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": next_release,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -134,7 +133,7 @@ class OvertimeHoursService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": next_release,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -143,7 +142,7 @@ class OvertimeHoursService:
         return {
             "data": [],
             "latest": None,
-            "next_release": next_release,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -216,53 +215,7 @@ class OvertimeHoursService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-            next_release = self._get_next_release()
-
-            if next_release and next_release.get("date"):
-                release_date_str = next_release["date"]
-                release_date = datetime.strptime(release_date_str, "%Y-%m-%d")
-
-                release_et = datetime(
-                    release_date.year, release_date.month, release_date.day,
-                    self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
-                    tzinfo=ET
-                )
-                release_jst = release_et.astimezone(JST)
-
-                if now >= release_jst and last_updated < release_jst:
-                    return True
-
-            return False
-
-        except Exception as e:
-            print(f"Error checking refresh status: {e}")
-            return False
-
-    def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """
-        次回発表日を取得
-
-        失業率サービスから取得（同時発表のため）
-        """
-        try:
-            from services.usa.unemployment_rate_service import unemployment_rate_service
-            ur_data = unemployment_rate_service.get_unemployment_rate_data()
-            next_release = ur_data.get("next_release")
-            if next_release:
-                return {
-                    "date": next_release.get("date"),
-                    "label": f"平均残業時間（{next_release.get('label', '').replace('失業率', '').strip()}）" if next_release.get("label") else None
-                }
-            return None
-        except Exception as e:
-            print(f"Error getting next release: {e}")
-            return None
+        return self.schedule_checker.should_refresh(last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -288,6 +241,22 @@ class OvertimeHoursService:
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
         return redis_client.delete(self.DATA_CACHE_KEY)
+
+    def get_cache_status(self) -> Dict[str, Any]:
+        """キャッシュの状態を取得"""
+        data_exists = redis_client.exists(self.DATA_CACHE_KEY)
+        cached_data = redis_client.get(self.DATA_CACHE_KEY) if data_exists else None
+
+        return {
+            "indicator": "Overtime Hours",
+            "source": "FRED / BLS",
+            "series_ids": [AWOTMAN_SERIES_ID],
+            "cache_key": self.DATA_CACHE_KEY,
+            "exists": data_exists,
+            "last_updated": cached_data.get("last_updated") if cached_data else None,
+            "schedule_status": self.schedule_checker.get_status(),
+            "file_cache_exists": DATA_CACHE_FILE.exists()
+        }
 
 
 # シングルトンインスタンス
