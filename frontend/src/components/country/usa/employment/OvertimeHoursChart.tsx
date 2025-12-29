@@ -30,18 +30,16 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
-  LATEST_VALUE_BOX_STYLE,
-  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   formatDateLabel,
-  formatDateLabelJP,
 } from '../common/useChartData'
 import {
   NoDataMessage,
+  ValueTooltip,
+  LatestValueBox,
 } from '../common/ChartComponents'
 
 // =============================================================================
@@ -54,52 +52,6 @@ interface OvertimeHoursChartProps {
 
 // カラー設定
 const LINE_COLOR = '#1890ff'  // 青
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayloadItem {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface TooltipProps {
-  active?: boolean
-  payload?: TooltipPayloadItem[]
-  label?: string
-}
-
-function CustomTooltip({ active, payload, label }: TooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8 }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((entry, index) => (
-        <div
-          key={index}
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: 16,
-            fontSize: 12,
-            marginBottom: 4,
-          }}
-        >
-          <span style={{ color: '#f1f5f9' }}>{entry.name}</span>
-          <span style={{ fontWeight: 'bold', color: entry.color }}>
-            {entry.value != null ? `${entry.value.toFixed(1)}時間` : '-'}
-          </span>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 // =============================================================================
 // メインコンポーネント
@@ -145,29 +97,13 @@ export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
         sourceUrl="https://www.bls.gov/ces/"
       >
         {/* 最新値表示 */}
-        <div style={LATEST_VALUE_BOX_STYLE}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
-            {latest?.value != null && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 16, fontWeight: 'bold', color: LINE_COLOR }}>
-                  {latest.value.toFixed(1)}時間/週
-                </span>
-              </div>
-            )}
-            {latest?.date && (
-              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
-                ({formatDateLabel(latest.date)})
-              </span>
-            )}
-          </div>
-          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
-            {nextRelease && (
-              <div>次回発表: {nextRelease.date}</div>
-            )}
-            <div>毎月第1金曜日発表</div>
-          </div>
-        </div>
+        <LatestValueBox
+          items={latest?.value != null ? [
+            { label: '平均残業時間', value: `${latest.value.toFixed(1)}時間/週`, color: LINE_COLOR }
+          ] : []}
+          date={latest?.date}
+          nextRelease={nextRelease}
+        />
 
         {/* 期間セレクター */}
         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -193,7 +129,7 @@ export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
                 style: { fontSize: 11, fill: '#666' }
               }}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={<ValueTooltip unit="時間" decimals={1} />} />
 
             <Line
               type="monotone"

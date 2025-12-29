@@ -12,26 +12,26 @@ import type { RetailSalesData, RetailControlData } from '../../../../hooks/useDa
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  MONTH_NAMES,
-  getCellColor,
-  DARK_THEME,
-  TEXT_COLORS,
+  STANDARD_VIEW_MODE_OPTIONS,
+  RETAIL_DATA_TYPE_OPTIONS,
+  type StandardViewMode,
+  type RetailDataType,
 } from '../common/chartConstants'
 import {
   usePeriodFiltering,
   useViewModePeriodManagement,
   useHiddenSeries,
+  useMultiValueMonthlyTableData,
 } from '../common/useChartData'
 import {
   ViewModeButtonGroup,
   DataTypeButtonGroup,
   NoDataMessage,
-  TableLegend,
-  MOM_LEGEND_DEFAULT,
   LatestValueBox,
   StandardLineChart,
   StandardBarChart,
 } from '../common/ChartComponents'
+import { MonthlyTableWithDataTypes } from '../common/MonthlyTable'
 
 // =============================================================================
 // 型定義
@@ -41,23 +41,6 @@ interface RetailSalesChartProps {
   data: RetailSalesData | null
   controlData: RetailControlData | null
 }
-
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-type DataType = 'total' | 'ex_auto' | 'control_group'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
-]
-
-// データタイプ設定
-const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
-  { type: 'total', label: '総合' },
-  { type: 'ex_auto', label: '自動車除く' },
-  { type: 'control_group', label: 'コントロールグループ' },
-]
 
 // カラー設定
 const COLORS = {
@@ -74,8 +57,8 @@ const COLORS = {
 // =============================================================================
 
 export default function RetailSalesChart({ data, controlData }: RetailSalesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
-  const [dataType, setDataType] = useState<DataType>('total')
+  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [dataType, setDataType] = useState<RetailDataType>('total')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
@@ -113,38 +96,16 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
     defaultStartYear: 2010,
   })
 
-  // テーブル用データ（年別×月別のマトリックス）
-  const momTableData = useMemo(() => {
-    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { total: number | null; ex_auto: number | null; control_group: number | null }>> }
-
-    const currentYear = new Date().getFullYear()
-    const startYear = currentYear - 9
-    const years: number[] = []
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y)
-    }
-
-    const monthlyData: Record<number, Record<number, { total: number | null; ex_auto: number | null; control_group: number | null }>> = {}
-
-    chartData.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const month = date.getMonth()
-
-      if (year >= startYear && year <= currentYear) {
-        if (!monthlyData[year]) {
-          monthlyData[year] = {}
-        }
-        monthlyData[year][month] = {
-          total: item.mom,
-          ex_auto: item.ex_auto_mom,
-          control_group: item.control_group_mom
-        }
-      }
-    })
-
-    return { years, monthlyData }
-  }, [chartData])
+  // テーブル用データ（共通フックを使用）
+  const momTableData = useMultiValueMonthlyTableData(
+    chartData,
+    {
+      total: (item) => item.mom,
+      ex_auto: (item) => item.ex_auto_mom,
+      control_group: (item) => item.control_group_mom,
+    },
+    10
+  )
 
   const hasData = chartData.length > 0
 
@@ -163,58 +124,6 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
   }
 
   const latest = data.latest
-
-  // 前月比テーブルコンポーネント（ダークテーマ）
-  const MoMTable = () => (
-    <div style={{ overflowX: 'auto' }}>
-      <DataTypeButtonGroup
-        options={DATA_TYPE_OPTIONS}
-        currentType={dataType}
-        onChange={setDataType}
-      />
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
-        <thead>
-          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
-            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
-            {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 50 }}>
-                {month}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {momTableData.years.map((year: number) => (
-            <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
-                {year}
-              </td>
-              {Array.from({ length: 12 }, (_, month) => {
-                const cellData = momTableData.monthlyData[year]?.[month]
-                let value: number | null | undefined
-                if (dataType === 'total') value = cellData?.total
-                else if (dataType === 'ex_auto') value = cellData?.ex_auto
-                else value = cellData?.control_group
-
-                return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getCellColor(value) }}>
-                    {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
-                        {value >= 0 ? '+' : ''}{value.toFixed(2)}
-                      </span>
-                    ) : (
-                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <TableLegend items={MOM_LEGEND_DEFAULT} />
-    </div>
-  )
 
   return (
     <div id="retail-sales">
@@ -252,7 +161,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
           nextRelease={data.next_release}
         />
 
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
         {/* 前年比グラフ */}
         {viewMode === 'yoy' && (
@@ -272,12 +181,19 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
         )}
 
         {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && <MoMTable />}
+        {viewMode === 'mom_table' && (
+          <MonthlyTableWithDataTypes
+            data={momTableData}
+            dataTypes={RETAIL_DATA_TYPE_OPTIONS}
+            selectedType={dataType}
+            onTypeChange={setDataType}
+          />
+        )}
 
         {/* 前月比グラフ */}
         {viewMode === 'mom_chart' && (
           <>
-            <DataTypeButtonGroup options={DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+            <DataTypeButtonGroup options={RETAIL_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardBarChart
               data={filteredData}

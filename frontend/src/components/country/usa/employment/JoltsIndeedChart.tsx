@@ -33,18 +33,18 @@ import type { JoltsIndeedData } from '../../../../hooks/useDashboardData'
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  MONTH_NAMES,
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
   TOOLTIP_STYLE,
-  DARK_THEME,
-  TEXT_COLORS,
+  CHANGE_LEGEND_200K,
+  getChangeCellColor200k,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   useViewModePeriodManagement,
+  useMonthlyTableData,
   formatDateLabel,
   formatDateLabelJP,
   useHiddenSeries,
@@ -53,8 +53,9 @@ import {
   LatestValueBox,
   NoDataMessage,
   ViewModeButtonGroup,
-  TableLegend,
+  ChangeTooltip,
 } from '../common/ChartComponents'
+import { MonthlyTable } from '../common/MonthlyTable'
 
 // =============================================================================
 // 型定義
@@ -85,28 +86,6 @@ const SERIES_NAMES = {
   indeed: 'Indeed求人件数指数（1M遅行）',
 }
 
-// 前月増減幅テーブルの凡例
-const CHANGE_LEGEND = [
-  { color: 'rgba(82, 196, 26, 0.3)', label: '+200k以上' },
-  { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+200k' },
-  { color: 'rgba(255, 77, 79, 0.15)', label: '0〜-200k' },
-  { color: 'rgba(255, 77, 79, 0.3)', label: '-200k以下' },
-]
-
-// =============================================================================
-// ヘルパー関数
-// =============================================================================
-
-/** 前月増減幅用のセル背景色を取得 */
-function getChangeCellColor(value: number | null | undefined): string {
-  if (value === null || value === undefined) return 'transparent'
-  // 閾値: ±200k
-  if (value > 200) return 'rgba(82, 196, 26, 0.3)'
-  if (value > 0) return 'rgba(82, 196, 26, 0.15)'
-  if (value < -200) return 'rgba(255, 77, 79, 0.3)'
-  if (value < 0) return 'rgba(255, 77, 79, 0.15)'
-  return 'transparent'
-}
 
 // =============================================================================
 // カスタムツールチップ
@@ -186,52 +165,6 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
             </span>
             <span style={{ fontWeight: 500, color: item.color }}>
               {displayValue}
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        const value = item.value
-        const sign = value >= 0 ? '+' : ''
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
-              {sign}{value.toLocaleString()}k
             </span>
           </div>
         )
@@ -360,37 +293,16 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
     }
   }, [filteredData])
 
-  // テーブル用データ（年別×月別のマトリックス）- JOLTSデータのみを対象に計算
-  const changeTableData = useMemo(() => {
-    if (fullChartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, number | null>> }
-
-    const currentYear = new Date().getFullYear()
-    const startYear = currentYear - 9
-    const years: number[] = []
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y)
-    }
-
-    const monthlyData: Record<number, Record<number, number | null>> = {}
-
-    // JOLTSデータのみをフィルタリングして処理（日次のIndeedデータを除外）
-    fullChartData
-      .filter(item => item.jolts !== null)
-      .forEach((item) => {
-        const date = new Date(item.date)
-        const year = date.getFullYear()
-        const month = date.getMonth()
-
-        if (year >= startYear && year <= currentYear) {
-          if (!monthlyData[year]) {
-            monthlyData[year] = {}
-          }
-          monthlyData[year][month] = item.jolts_change ?? null
-        }
-      })
-
-    return { years, monthlyData }
+  // テーブル用データ（共通フックを使用）- JOLTSデータのみを対象に計算
+  const joltsOnlyData = useMemo(() => {
+    return fullChartData.filter(item => item.jolts !== null)
   }, [fullChartData])
+
+  const changeTableData = useMonthlyTableData(
+    joltsOnlyData,
+    (item) => item.jolts_change,
+    10
+  )
 
   // ローディング状態
   if (data === null) {
@@ -442,51 +354,6 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
     }
   }
 
-  // JOLTS前月増減幅テーブルコンポーネント（ダークテーマ）
-  const ChangeTable = () => (
-    <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-        ※ 直近10年間のJOLTS求人件数 前月増減幅データ（単位: 千人）
-      </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
-        <thead>
-          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
-            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
-            {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
-                {month}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {changeTableData.years.map((year: number) => (
-            <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
-                {year}
-              </td>
-              {Array.from({ length: 12 }, (_, month) => {
-                const value = changeTableData.monthlyData[year]?.[month]
-
-                return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getChangeCellColor(value) }}>
-                    {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
-                        {value >= 0 ? '+' : ''}{value.toLocaleString()}
-                      </span>
-                    ) : (
-                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <TableLegend items={CHANGE_LEGEND} />
-    </div>
-  )
 
   return (
     <div id="jolts-indeed">
@@ -618,7 +485,7 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
-                <Tooltip content={<ChangeTooltip />} />
+                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
                 <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
@@ -634,7 +501,18 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
         )}
 
         {/* JOLTS前月増減幅テーブル */}
-        {viewMode === 'jolts_change_table' && <ChangeTable />}
+        {viewMode === 'jolts_change_table' && (
+          <MonthlyTable
+            data={changeTableData}
+            formatValue={(value) => {
+              if (value === null) return '-'
+              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+            }}
+            getCellBgColor={getChangeCellColor200k}
+            legendItems={CHANGE_LEGEND_200K}
+            helperText="※ 直近10年間のJOLTS求人件数 前月増減幅データ（単位: 千人）"
+          />
+        )}
       </ChartContainer>
     </div>
   )

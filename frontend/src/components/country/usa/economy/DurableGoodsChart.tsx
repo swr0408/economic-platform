@@ -10,7 +10,13 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { DurableGoodsData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
-import { CHART_COLORS } from '../common/chartConstants'
+import {
+  CHART_COLORS,
+  STANDARD_VIEW_MODE_OPTIONS,
+  DURABLE_GOODS_DATA_TYPE_OPTIONS,
+  type StandardViewMode,
+  type DurableGoodsDataType,
+} from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
@@ -36,25 +42,6 @@ interface DurableGoodsChartProps {
   data: DurableGoodsData | null
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-type DataType = 'total' | 'ex_transport'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
-]
-
-// データタイプ設定（前月比グラフ用）
-const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
-  { type: 'total', label: '総合' },
-  { type: 'ex_transport', label: '輸送除外' },
-]
-
-// テーブル用データタイプ設定
-const TABLE_DATA_TYPES: { type: DataType; label: string }[] = DATA_TYPE_OPTIONS
-
 // カラー設定
 const COLORS = {
   yoy: CHART_COLORS.primary,
@@ -68,8 +55,8 @@ const COLORS = {
 // =============================================================================
 
 export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
-  const [dataType, setDataType] = useState<DataType>('total')
+  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [dataType, setDataType] = useState<DurableGoodsDataType>('total')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
@@ -141,7 +128,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
           nextRelease={data.next_release}
         />
 
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
         {/* 前年比グラフ */}
         {viewMode === 'yoy' && (
@@ -164,7 +151,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         {viewMode === 'mom_table' && (
           <MonthlyTableWithDataTypes
             data={momTableData}
-            dataTypes={TABLE_DATA_TYPES}
+            dataTypes={DURABLE_GOODS_DATA_TYPE_OPTIONS}
             selectedType={dataType}
             onTypeChange={setDataType}
           />
@@ -173,7 +160,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         {/* 前月比グラフ */}
         {viewMode === 'mom_chart' && (
           <>
-            <DataTypeButtonGroup options={DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+            <DataTypeButtonGroup options={DURABLE_GOODS_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardBarChart
               data={filteredData}

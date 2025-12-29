@@ -5,9 +5,9 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
-import { usePeriodFiltering, formatQuarterLabel, useQuarterlyTableData, type PeriodType } from '../common/useChartData'
+import { usePeriodFiltering, formatQuarterLabel, useQuarterlyTableData, formatPercent, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
-import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE } from '../common/chartConstants'
+import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE, QUARTER_NAMES } from '../common/chartConstants'
 
 // Props型定義
 interface GDPGrowthItem {
@@ -34,9 +34,6 @@ interface GDPChartData {
 
 type ViewMode = 'chart' | 'table'
 
-// 四半期名の定義
-const QUARTER_NAMES = ['Q1', 'Q2', 'Q3', 'Q4']
-
 export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
   const [viewMode, setViewMode] = useState<ViewMode>('chart')
@@ -56,10 +53,8 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
     return chartData
   }, [data])
 
-  const formatPercentage = (value: number) => {
-    const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(1)}%`
-  }
+  // formatPercent共通関数を使用（小数点1桁）
+  const formatPercentage = (value: number) => formatPercent(value, 1)
 
   // 期間フィルタリング
   const filteredData = usePeriodFiltering(gdpData, {

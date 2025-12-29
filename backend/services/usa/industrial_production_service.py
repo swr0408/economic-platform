@@ -54,6 +54,13 @@ class IndustrialProductionService:
     RELEASE_TIME_ET = "09:15"  # 発表時刻(ET)
     RELEASE_TIME_JST_HOUR = 23  # 9:15 ET = 23:15 JST（冬時間）/ 22:15 JST（夏時間）
 
+    # 月名のマッピング
+    MONTH_MAP = {
+        "january": 1, "february": 2, "march": 3, "april": 4,
+        "may": 5, "june": 6, "july": 7, "august": 8,
+        "september": 9, "october": 10, "november": 11, "december": 12
+    }
+
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
         self.schedule_checker = INDUSTRIAL_PRODUCTION_CHECKER
@@ -80,6 +87,9 @@ class IndustrialProductionService:
                 "last_updated": str
             }
         """
+        # 次回発表日を取得
+        next_release = self._get_next_release()
+
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.CACHE_KEY)
@@ -89,7 +99,7 @@ class IndustrialProductionService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": next_release,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -113,7 +123,7 @@ class IndustrialProductionService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": next_release,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -140,7 +150,7 @@ class IndustrialProductionService:
             return {
                 "data": processed_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": next_release,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -153,7 +163,7 @@ class IndustrialProductionService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": None,
+                "next_release": next_release,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -162,7 +172,7 @@ class IndustrialProductionService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": next_release,
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -249,6 +259,90 @@ class IndustrialProductionService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
         return self.schedule_checker.should_refresh(last_updated_str)
+
+    def _get_next_release(self) -> Optional[Dict[str, str]]:
+        """
+        FRB G.17ページから次回発表日を取得
+
+        Returns:
+            {"date": "YYYY-MM-DD", "label": "January 16, 2025"} | None
+        """
+        # Redisキャッシュをチェック（24時間有効）
+        cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
+        if cached:
+            cached_date = cached.get("date")
+            if cached_date:
+                # 次回発表日がまだ来ていなければキャッシュを使用
+                try:
+                    release_date = datetime.strptime(cached_date, "%Y-%m-%d").date()
+                    if release_date >= date.today():
+                        return cached
+                except ValueError:
+                    pass
+
+        # FRB G.17ページからスクレイピング
+        try:
+            print(f"Fetching next release date from FRB G.17...")
+            response = requests.get(FRB_G17_URL, timeout=30)
+            response.raise_for_status()
+
+            soup = BeautifulSoup(response.text, 'html.parser')
+
+            # ページ内のテキストから発表日を抽出
+            # 「2025: January 16, February 18, ...」のようなパターンを探す
+            text = soup.get_text()
+
+            # 現在の年と来年の発表日を探す
+            today = date.today()
+            current_year = today.year
+            next_year = current_year + 1
+
+            next_release_date = None
+            next_release_label = None
+
+            for year in [current_year, next_year]:
+                # 「2025: January 16, February 18, ...」のパターンを検索
+                year_pattern = rf"{year}:\s*([A-Za-z]+\s+\d+(?:,\s*[A-Za-z]+\s+\d+)*)"
+                match = re.search(year_pattern, text, re.IGNORECASE)
+
+                if match:
+                    dates_str = match.group(1)
+                    # 「January 16」のようなパターンを抽出
+                    date_pattern = r"([A-Za-z]+)\s+(\d+)"
+                    date_matches = re.findall(date_pattern, dates_str)
+
+                    for month_name, day in date_matches:
+                        month_num = self.MONTH_MAP.get(month_name.lower())
+                        if month_num:
+                            try:
+                                release_date = date(year, month_num, int(day))
+                                # 今日以降の最初の発表日を見つける
+                                if release_date >= today:
+                                    next_release_date = release_date.strftime("%Y-%m-%d")
+                                    next_release_label = f"{month_name} {day}, {year}"
+                                    break
+                            except ValueError:
+                                continue
+
+                    if next_release_date:
+                        break
+
+            if next_release_date:
+                result = {
+                    "date": next_release_date,
+                    "label": next_release_label
+                }
+                # 24時間キャッシュ
+                redis_client.set(self.SCHEDULE_CACHE_KEY, result, expire=86400)
+                print(f"Next Industrial Production release: {next_release_label}")
+                return result
+
+        except Exception as e:
+            print(f"Error fetching next release date: {e}")
+            import traceback
+            traceback.print_exc()
+
+        return None
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:

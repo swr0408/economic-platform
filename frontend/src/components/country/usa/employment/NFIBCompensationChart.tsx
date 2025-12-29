@@ -34,19 +34,17 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
-  LATEST_VALUE_BOX_STYLE,
-  TEXT_COLORS,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   formatDateLabel,
-  formatDateLabelJP,
   useHiddenSeries,
 } from '../common/useChartData'
 import {
   NoDataMessage,
+  ValueTooltip,
+  LatestValueBox,
 } from '../common/ChartComponents'
 
 // =============================================================================
@@ -67,52 +65,6 @@ const COLORS = {
 const SERIES_NAMES = {
   compensation_plans: '人件費計画',
   hiring_plans: '雇用計画',
-}
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayloadItem {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface TooltipProps {
-  active?: boolean
-  payload?: TooltipPayloadItem[]
-  label?: string
-}
-
-function CustomTooltip({ active, payload, label }: TooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8 }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((entry, index) => (
-        <div
-          key={index}
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: 16,
-            fontSize: 12,
-            marginBottom: 4,
-          }}
-        >
-          <span style={{ color: '#f1f5f9' }}>{entry.name}</span>
-          <span style={{ fontWeight: 'bold', color: entry.color }}>
-            {entry.value != null ? `${entry.value.toFixed(1)}%` : '-'}
-          </span>
-        </div>
-      ))}
-    </div>
-  )
 }
 
 // =============================================================================
@@ -160,38 +112,22 @@ export default function NFIBCompensationChart({ data }: NFIBCompensationChartPro
         sourceUrl="https://www.nfib.com/news/monthly_report/sbet/"
       >
         {/* 最新値表示 */}
-        <div style={LATEST_VALUE_BOX_STYLE}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
-            {latest?.compensation_plans != null && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{SERIES_NAMES.compensation_plans}:</span>
-                <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.compensation_plans }}>
-                  {latest.compensation_plans >= 0 ? '+' : ''}{latest.compensation_plans.toFixed(1)}%
-                </span>
-              </div>
-            )}
-            {latest?.hiring_plans != null && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{SERIES_NAMES.hiring_plans}:</span>
-                <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.hiring_plans }}>
-                  {latest.hiring_plans >= 0 ? '+' : ''}{latest.hiring_plans.toFixed(1)}%
-                </span>
-              </div>
-            )}
-            {latest?.date && (
-              <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
-                ({formatDateLabel(latest.date)})
-              </span>
-            )}
-          </div>
-          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
-            {nextRelease && (
-              <div>次回発表: {nextRelease.date}</div>
-            )}
-            <div>毎月第2火曜日発表</div>
-          </div>
-        </div>
+        <LatestValueBox
+          items={[
+            ...(latest?.compensation_plans != null ? [{
+              label: SERIES_NAMES.compensation_plans,
+              value: `${latest.compensation_plans >= 0 ? '+' : ''}${latest.compensation_plans.toFixed(1)}%`,
+              color: COLORS.compensation_plans
+            }] : []),
+            ...(latest?.hiring_plans != null ? [{
+              label: SERIES_NAMES.hiring_plans,
+              value: `${latest.hiring_plans >= 0 ? '+' : ''}${latest.hiring_plans.toFixed(1)}%`,
+              color: COLORS.hiring_plans
+            }] : [])
+          ]}
+          date={latest?.date}
+          nextRelease={nextRelease}
+        />
 
         {/* 期間セレクター */}
         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -217,7 +153,7 @@ export default function NFIBCompensationChart({ data }: NFIBCompensationChartPro
                 style: { fontSize: 11, fill: '#666' }
               }}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={<ValueTooltip unit="%" decimals={1} />} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
             <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 

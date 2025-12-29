@@ -21,6 +21,7 @@ import {
 import {
   useSortedData,
   usePeriodFiltering,
+  formatDateLabelFullJP,
 } from '../common/useChartData'
 import {
   LatestValueBox,
@@ -39,17 +40,6 @@ interface InitialClaimsChartProps {
 // カラー設定
 const ICSA_COLOR = CHART_COLORS.primary       // 新規申請件数
 const IC4WSA_COLOR = CHART_COLORS.orange      // 4週移動平均
-
-// =============================================================================
-// ヘルパー関数
-// =============================================================================
-
-/** 日付をYYYY年MM月DD日形式にフォーマット */
-function formatDateFullJP(dateStr: string): string {
-  const date = new Date(dateStr)
-  if (isNaN(date.getTime())) return dateStr
-  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
-}
 
 // =============================================================================
 // メインコンポーネント
@@ -135,7 +125,7 @@ export default function InitialClaimsChart({ data }: InitialClaimsChartProps) {
           ]}
           yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
           yDomain={['dataMin - 20000', 'dataMax + 20000']}
-          tooltipLabelFormatter={formatDateFullJP}
+          tooltipLabelFormatter={formatDateLabelFullJP}
           tooltipValueFormatter={(v, dataKey) => {
             // 4週移動平均は小数点第2位まで表示
             if (dataKey === 'ic4wsa') {

@@ -16,7 +16,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
 import { CARTESIAN_GRID_PROPS, CUSTOM_TOOLTIP_STYLE, LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
-import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
+import { usePeriodFiltering, formatPercent, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
 // GDP項目別成長率データの型定義
@@ -89,11 +89,6 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
     ? [...data].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]
     : null
 
-  const formatPercentage = (value: number | null) => {
-    if (value === null || value === undefined) return '-'
-    const sign = value >= 0 ? '+' : ''
-    return `${sign}${value.toFixed(2)}%`
-  }
 
   // カスタムツールチップ
   const CustomTooltip = ({
@@ -145,7 +140,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
                 {item.name}
               </span>
               <span style={{ fontWeight: 500, color: item.color }}>
-                {formatPercentage(displayValue)}
+                {formatPercent(displayValue)}
               </span>
             </div>
           )
@@ -192,7 +187,7 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
                         color: value !== null && value >= 0 ? '#52c41a' : '#ff4d4f',
                       }}
                     >
-                      {formatPercentage(value)}
+                      {formatPercent(value)}
                     </div>
                   </div>
                 )

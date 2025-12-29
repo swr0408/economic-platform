@@ -72,7 +72,9 @@
       "Bash(rm:*)",
       "Bash(if not exist \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\constants\" mkdir \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\constants\")",
       "Bash(if not exist \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\components\\charts\" mkdir \"c:\\Users\\owner\\Desktop\\economic-platform\\frontend\\src\\components\\charts\")",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(dir \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\")"
     ]
   }
 }

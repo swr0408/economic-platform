@@ -30,11 +30,15 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
 } from '../common/chartConstants'
+import {
+  formatWeekEnding,
+  formatWeekEndingJP,
+} from '../common/useChartData'
 import {
   LatestValueBox,
   NoDataMessage,
+  ChangeTooltip,
 } from '../common/ChartComponents'
 
 // =============================================================================
@@ -47,98 +51,6 @@ interface NERPulseChartProps {
 
 // カラー設定
 const CHART_COLOR = CHART_COLORS.primary
-
-// =============================================================================
-// ヘルパー関数
-// =============================================================================
-
-/** 日付をフォーマット (YYYY-MM-DD -> MM/DD) */
-function formatWeekEnding(dateStr: string): string {
-  try {
-    const date = new Date(dateStr)
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    return `${month}/${day}`
-  } catch {
-    return dateStr
-  }
-}
-
-/** 日付をフォーマット (YYYY-MM-DD -> YYYY年MM月DD日週) */
-function formatWeekEndingJP(dateStr: string): string {
-  try {
-    const date = new Date(dateStr)
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    return `${year}年${month}月${day}日週`
-  } catch {
-    return dateStr
-  }
-}
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayload {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface CustomTooltipProps {
-  active?: boolean
-  payload?: TooltipPayload[]
-  label?: string
-}
-
-function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatWeekEndingJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        const value = item.value
-        const sign = value >= 0 ? '+' : ''
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
-              {sign}{value.toLocaleString()}
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
 
 // =============================================================================
 // メインコンポーネント
@@ -220,7 +132,7 @@ export default function NERPulseChart({ data }: NERPulseChartProps) {
                 style: { fontSize: 11, fill: '#666' }
               }}
             />
-            <Tooltip content={<ChangeTooltip />} />
+            <Tooltip content={<ChangeTooltip unit="" formatValue={(v) => v.toLocaleString()} labelFormatter={formatWeekEndingJP} />} />
             <Legend />
             <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 

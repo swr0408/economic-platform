@@ -32,18 +32,19 @@ import type { NonfarmPayrollsData } from '../../../../hooks/useDashboardData'
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  MONTH_NAMES,
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
-  DARK_THEME,
-  TEXT_COLORS,
+  VALUE_CHANGE_VIEW_MODE_OPTIONS,
+  type ValueChangeViewMode,
+  CHANGE_LEGEND_200K,
+  getChangeCellColor200k,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   useViewModePeriodManagement,
+  useMultiValueMonthlyTableData,
   formatDateLabel,
   formatDateLabelJP,
   createUnitFormatter,
@@ -55,8 +56,9 @@ import {
   StandardLineChart,
   ViewModeButtonGroup,
   DataTypeButtonGroup,
-  TableLegend,
+  ChangeTooltip,
 } from '../common/ChartComponents'
+import { MonthlyTableWithDataTypes } from '../common/MonthlyTable'
 
 // =============================================================================
 // 型定義
@@ -66,15 +68,7 @@ interface NonfarmPayrollsChartProps {
   data: NonfarmPayrollsData | null
 }
 
-type ViewMode = 'value' | 'change_chart' | 'change_table'
 type DataType = 'nonfarm' | 'civilian'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'value', label: '現数値' },
-  { mode: 'change_table', label: '前月増減幅テーブル' },
-  { mode: 'change_chart', label: '前月増減幅グラフ' },
-]
 
 // データタイプ設定
 const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
@@ -94,98 +88,12 @@ const SERIES_NAMES = {
   civilian: '民間雇用者数',
 }
 
-// 前月増減幅テーブルの凡例
-const CHANGE_LEGEND = [
-  { color: 'rgba(82, 196, 26, 0.3)', label: '+200k以上' },
-  { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+200k' },
-  { color: 'rgba(255, 77, 79, 0.15)', label: '0〜-200k' },
-  { color: 'rgba(255, 77, 79, 0.3)', label: '-200k以下' },
-]
-
-// =============================================================================
-// ヘルパー関数
-// =============================================================================
-
-/** 前月増減幅用のセル背景色を取得 */
-function getChangeCellColor(value: number | null | undefined): string {
-  if (value === null || value === undefined) return 'transparent'
-  // 閾値: ±200k
-  if (value > 200) return 'rgba(82, 196, 26, 0.3)'
-  if (value > 0) return 'rgba(82, 196, 26, 0.15)'
-  if (value < -200) return 'rgba(255, 77, 79, 0.3)'
-  if (value < 0) return 'rgba(255, 77, 79, 0.15)'
-  return 'transparent'
-}
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayload {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface CustomTooltipProps {
-  active?: boolean
-  payload?: TooltipPayload[]
-  label?: string
-}
-
-function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        const value = item.value
-        const sign = value >= 0 ? '+' : ''
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
-              {sign}{value.toLocaleString()}k
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
 // =============================================================================
 // メインコンポーネント
 // =============================================================================
 
 export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [viewMode, setViewMode] = useState<ValueChangeViewMode>('value')
   const [dataType, setDataType] = useState<DataType>('nonfarm')
   const { handleLegendClick, isHidden } = useHiddenSeries<'nonfarm' | 'civilian' | 'nonfarm_change' | 'civilian_change'>()
 
@@ -223,37 +131,15 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
     defaultStartYear: 2010,
   })
 
-  // テーブル用データ（年別×月別のマトリックス）
-  const changeTableData = useMemo(() => {
-    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { nonfarm: number | null; civilian: number | null }>> }
-
-    const currentYear = new Date().getFullYear()
-    const startYear = currentYear - 9
-    const years: number[] = []
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y)
-    }
-
-    const monthlyData: Record<number, Record<number, { nonfarm: number | null; civilian: number | null }>> = {}
-
-    chartData.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const month = date.getMonth()
-
-      if (year >= startYear && year <= currentYear) {
-        if (!monthlyData[year]) {
-          monthlyData[year] = {}
-        }
-        monthlyData[year][month] = {
-          nonfarm: item.nonfarm_change,
-          civilian: item.civilian_change,
-        }
-      }
-    })
-
-    return { years, monthlyData }
-  }, [chartData])
+  // テーブル用データ（共通フックを使用）
+  const changeTableData = useMultiValueMonthlyTableData(
+    chartData,
+    {
+      nonfarm: (item) => item.nonfarm_change,
+      civilian: (item) => item.civilian_change,
+    },
+    10
+  )
 
   const hasData = sortedData.length > 0
 
@@ -310,57 +196,6 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
     }
   }
 
-  // 前月増減幅テーブルコンポーネント
-  const ChangeTable = () => (
-    <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-        ※ 直近10年間の前月増減幅データ（単位: 千人）
-      </div>
-      <DataTypeButtonGroup
-        options={DATA_TYPE_OPTIONS}
-        currentType={dataType}
-        onChange={setDataType}
-      />
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
-        <thead>
-          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
-            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
-            {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
-                {month}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {changeTableData.years.map((year: number) => (
-            <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
-                {year}
-              </td>
-              {Array.from({ length: 12 }, (_, month) => {
-                const cellData = changeTableData.monthlyData[year]?.[month]
-                const value = dataType === 'nonfarm' ? cellData?.nonfarm : cellData?.civilian
-
-                return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getChangeCellColor(value) }}>
-                    {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
-                        {value >= 0 ? '+' : ''}{value.toLocaleString()}
-                      </span>
-                    ) : (
-                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <TableLegend items={CHANGE_LEGEND} />
-    </div>
-  )
 
   return (
     <div id="nonfarm-payrolls">
@@ -378,7 +213,7 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
         />
 
         {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
         {/* 現数値グラフ */}
         {viewMode === 'value' && (
@@ -440,7 +275,7 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
-                <Tooltip content={<ChangeTooltip />} />
+                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
                 <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
@@ -465,7 +300,21 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
         )}
 
         {/* 前月増減幅テーブル */}
-        {viewMode === 'change_table' && <ChangeTable />}
+        {viewMode === 'change_table' && (
+          <MonthlyTableWithDataTypes
+            data={changeTableData}
+            dataTypes={DATA_TYPE_OPTIONS}
+            selectedType={dataType}
+            onTypeChange={setDataType}
+            helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
+            formatValue={(value) => {
+              if (value === null) return '-'
+              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+            }}
+            getCellBgColor={getChangeCellColor200k}
+            legendItems={CHANGE_LEGEND_200K}
+          />
+        )}
       </ChartContainer>
     </div>
   )

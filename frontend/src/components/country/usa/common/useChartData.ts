@@ -148,6 +148,38 @@ export function formatDateLabelFull(dateStr: string): string {
   return `${year}/${month}/${day}`
 }
 
+/**
+ * 日付を YYYY年MM月DD日 形式にフォーマット（日本語フル表記）
+ */
+export function formatDateLabelFullJP(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
+}
+
+/**
+ * 週次日付を MM/DD 形式にフォーマット（週次データX軸用）
+ */
+export function formatWeekEnding(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${month}/${day}`
+}
+
+/**
+ * 週次日付を YYYY年MM月DD日週 形式にフォーマット（週次データツールチップ用）
+ */
+export function formatWeekEndingJP(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${year}年${month}月${day}日週`
+}
+
 // =============================================================================
 // 値フォーマット関数
 // =============================================================================

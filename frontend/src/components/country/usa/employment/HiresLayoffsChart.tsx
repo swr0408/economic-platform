@@ -29,18 +29,17 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   formatDateLabel,
-  formatDateLabelJP,
   useHiddenSeries,
 } from '../common/useChartData'
 import {
   LatestValueBox,
   NoDataMessage,
+  ValueTooltip,
 } from '../common/ChartComponents'
 
 // =============================================================================
@@ -61,71 +60,6 @@ const DEFAULT_COLORS = {
 const SERIES_NAMES = {
   hires: 'JOLTS採用数',
   layoffs: 'JOLTS解雇数',
-}
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayload {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface CustomTooltipProps {
-  active?: boolean
-  payload?: TooltipPayload[]
-  label?: string
-}
-
-function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        // 千人単位
-        const displayValue = item.value !== null && item.value !== undefined
-          ? `${item.value.toLocaleString()}k`
-          : '-'
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: item.color }}>
-              {displayValue}
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
 }
 
 // =============================================================================
@@ -214,7 +148,7 @@ export default function HiresLayoffsChart({ data }: HiresLayoffsChartProps) {
                 style: { fontSize: 11, fill: '#666' }
               }}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={<ValueTooltip unit="k" />} />
             <Legend
               onClick={(e) => handleLegendClick(e.dataKey as string)}
               wrapperStyle={{ cursor: 'pointer' }}

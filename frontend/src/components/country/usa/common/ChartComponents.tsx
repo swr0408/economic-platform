@@ -29,7 +29,7 @@ import {
   TEXT_COLORS,
   DARK_THEME,
 } from './chartConstants'
-import { formatDateLabel, formatPercent } from './useChartData'
+import { formatDateLabel, formatDateLabelJP, formatPercent } from './useChartData'
 
 // =============================================================================
 // ViewModeButton - ビューモード切り替えボタン
@@ -978,7 +978,7 @@ export function StandardBarChart<T extends { date: string }>({
 }
 
 // =============================================================================
-// CustomTooltip - カスタムツールチップ（複数系列対応）
+// 共通ツールチップ型定義
 // =============================================================================
 
 /** カスタムツールチップのpayloadアイテム型 */
@@ -988,6 +988,181 @@ export interface TooltipPayloadItem {
   color: string
   dataKey: string
 }
+
+/** 共通ツールチッププロパティ型（各チャートで使用） */
+export interface CommonTooltipProps {
+  active?: boolean
+  payload?: TooltipPayloadItem[]
+  label?: string
+}
+
+// =============================================================================
+// ChangeTooltip - 増減幅表示用ツールチップ（共通化）
+// =============================================================================
+
+interface ChangeTooltipProps extends CommonTooltipProps {
+  /** 単位（デフォルト: '%'） */
+  unit?: string
+  /** 小数点以下の桁数（デフォルト: 2） */
+  decimals?: number
+  /** 値のフォーマット関数（カスタムフォーマットが必要な場合） */
+  formatValue?: (value: number) => string
+  /** ラベルのフォーマット関数（四半期表示などに使用、デフォルト: formatDateLabelJP） */
+  labelFormatter?: (label: string) => string
+}
+
+/**
+ * 増減幅表示用の共通ツールチップ
+ *
+ * 符号付きの値を表示（正=緑、負=赤）
+ * 前月比、前年比、増減幅の表示に使用
+ *
+ * @example
+ * // パーセント表示（デフォルト）
+ * <Tooltip content={<ChangeTooltip />} />
+ *
+ * // 千人単位表示
+ * <Tooltip content={<ChangeTooltip unit="k" decimals={0} formatValue={(v) => v.toLocaleString()} />} />
+ */
+export function ChangeTooltip({
+  active,
+  payload,
+  label,
+  unit = '%',
+  decimals = 2,
+  formatValue,
+  labelFormatter = formatDateLabelJP,
+}: ChangeTooltipProps) {
+  if (!active || !payload || payload.length === 0) return null
+
+  const format = formatValue || ((v: number) => v.toFixed(decimals))
+
+  return (
+    <div style={TOOLTIP_STYLE}>
+      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
+        {labelFormatter(label || '')}
+      </div>
+      {payload.map((item, index) => {
+        const value = item.value
+        const sign = value >= 0 ? '+' : ''
+        return (
+          <div
+            key={index}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 4,
+              fontSize: 13,
+              padding: '4px 12px',
+            }}
+          >
+            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: 10,
+                  height: 10,
+                  borderRadius: 2,
+                  backgroundColor: item.color,
+                  marginRight: 6,
+                }}
+              />
+              {item.name}
+            </span>
+            <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
+              {sign}{format(value)}{unit}
+            </span>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+// =============================================================================
+// ValueTooltip - 現数値表示用ツールチップ（共通化）
+// =============================================================================
+
+interface ValueTooltipProps extends CommonTooltipProps {
+  /** 単位（デフォルト: ''） */
+  unit?: string
+  /** 小数点以下の桁数（デフォルト: 0） */
+  decimals?: number
+  /** 値のフォーマット関数（カスタムフォーマットが必要な場合） */
+  formatValue?: (value: number) => string
+  /** ラベルのフォーマット関数（デフォルト: formatDateLabelJP） */
+  labelFormatter?: (label: string) => string
+}
+
+/**
+ * 現数値表示用の共通ツールチップ
+ *
+ * 系列の色で値を表示（符号なし）
+ * 雇用者数、指数などの現数値表示に使用
+ *
+ * @example
+ * // 千人単位表示
+ * <Tooltip content={<ValueTooltip unit="k" />} />
+ *
+ * // カスタムフォーマット
+ * <Tooltip content={<ValueTooltip formatValue={(v) => v.toLocaleString()} unit="k" />} />
+ */
+export function ValueTooltip({
+  active,
+  payload,
+  label,
+  unit = '',
+  decimals = 0,
+  formatValue,
+  labelFormatter = formatDateLabelJP,
+}: ValueTooltipProps) {
+  if (!active || !payload || payload.length === 0) return null
+
+  const format = formatValue || ((v: number) => decimals > 0 ? v.toFixed(decimals) : v.toLocaleString())
+
+  return (
+    <div style={TOOLTIP_STYLE}>
+      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
+        {labelFormatter(label || '')}
+      </div>
+      {payload.map((item, index) => (
+        <div
+          key={index}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 4,
+            fontSize: 13,
+            padding: '4px 12px',
+          }}
+        >
+          <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                width: 10,
+                height: 10,
+                borderRadius: 2,
+                backgroundColor: item.color,
+                marginRight: 6,
+              }}
+            />
+            {item.name}
+          </span>
+          <span style={{ fontWeight: 500, color: item.color }}>
+            {format(item.value)}{unit}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// =============================================================================
+// CustomTooltip - カスタムツールチップ（複数系列対応）
+// =============================================================================
 
 /** カスタムツールチップのプロパティ */
 interface CustomTooltipProps {

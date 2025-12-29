@@ -10,7 +10,13 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { PCEData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
-import { CHART_COLORS } from '../common/chartConstants'
+import {
+  CHART_COLORS,
+  STANDARD_VIEW_MODE_OPTIONS,
+  NOMINAL_REAL_DATA_TYPE_OPTIONS,
+  type StandardViewMode,
+  type NominalRealDataType,
+} from '../common/chartConstants'
 import {
   usePeriodFiltering,
   useViewModePeriodManagement,
@@ -37,22 +43,6 @@ interface PCEChartProps {
   data: PCEData | null
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-type DataType = 'nominal' | 'real'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
-]
-
-// データタイプ設定
-const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
-  { type: 'nominal', label: '名目' },
-  { type: 'real', label: '実質' },
-]
-
 // カラー設定
 const COLORS = {
   nominal: CHART_COLORS.magenta,
@@ -64,8 +54,8 @@ const COLORS = {
 // =============================================================================
 
 export default function PCEChart({ data }: PCEChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
-  const [dataType, setDataType] = useState<DataType>('nominal')
+  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [dataType, setDataType] = useState<NominalRealDataType>('nominal')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
@@ -130,7 +120,7 @@ export default function PCEChart({ data }: PCEChartProps) {
           nextRelease={nextRelease}
         />
 
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
         {/* 前年比グラフ */}
         {viewMode === 'yoy' && (
@@ -154,7 +144,7 @@ export default function PCEChart({ data }: PCEChartProps) {
         {viewMode === 'mom_table' && (
           <MonthlyTableWithDataTypes
             data={momTableData}
-            dataTypes={DATA_TYPE_OPTIONS}
+            dataTypes={NOMINAL_REAL_DATA_TYPE_OPTIONS}
             selectedType={dataType}
             onTypeChange={setDataType}
           />
@@ -163,7 +153,7 @@ export default function PCEChart({ data }: PCEChartProps) {
         {/* 前月比グラフ */}
         {viewMode === 'mom_chart' && (
           <>
-            <DataTypeButtonGroup options={DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+            <DataTypeButtonGroup options={NOMINAL_REAL_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardBarChart
               data={filteredData}

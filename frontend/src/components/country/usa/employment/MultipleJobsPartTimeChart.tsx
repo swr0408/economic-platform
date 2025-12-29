@@ -35,20 +35,20 @@ import type { MultipleJobsPartTimeData } from '../../../../hooks/useDashboardDat
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  MONTH_NAMES,
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
-  DARK_THEME,
-  TEXT_COLORS,
+  VALUE_CHANGE_VIEW_MODE_OPTIONS,
+  type ValueChangeViewMode,
+  CHANGE_LEGEND_100K,
+  getChangeCellColor100k,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   useViewModePeriodManagement,
+  useMultiValueMonthlyTableData,
   formatDateLabel,
-  formatDateLabelJP,
   useHiddenSeries,
 } from '../common/useChartData'
 import {
@@ -56,8 +56,10 @@ import {
   NoDataMessage,
   ViewModeButtonGroup,
   DataTypeButtonGroup,
-  TableLegend,
+  ChangeTooltip,
+  ValueTooltip,
 } from '../common/ChartComponents'
+import { MonthlyTableWithDataTypes } from '../common/MonthlyTable'
 
 // =============================================================================
 // 型定義
@@ -67,15 +69,7 @@ interface MultipleJobsPartTimeChartProps {
   data: MultipleJobsPartTimeData | null
 }
 
-type ViewMode = 'value' | 'change_chart' | 'change_table'
 type DataType = 'multiple_jobs' | 'parttime_econ'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'value', label: '現数値' },
-  { mode: 'change_table', label: '前月増減幅テーブル' },
-  { mode: 'change_chart', label: '前月増減幅グラフ' },
-]
 
 // データタイプ設定
 const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
@@ -95,144 +89,13 @@ const SERIES_NAMES = {
   parttime_econ: '経済的理由によるパートタイム',
 }
 
-// 前月増減幅テーブルの凡例
-const CHANGE_LEGEND = [
-  { color: 'rgba(82, 196, 26, 0.3)', label: '+100k以上' },
-  { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+100k' },
-  { color: 'rgba(255, 77, 79, 0.15)', label: '0〜-100k' },
-  { color: 'rgba(255, 77, 79, 0.3)', label: '-100k以下' },
-]
-
-// =============================================================================
-// ヘルパー関数
-// =============================================================================
-
-/** 前月増減幅用のセル背景色を取得 */
-function getChangeCellColor(value: number | null | undefined): string {
-  if (value === null || value === undefined) return 'transparent'
-  // 閾値: ±100k（この指標は規模が小さめ）
-  if (value > 100) return 'rgba(82, 196, 26, 0.3)'
-  if (value > 0) return 'rgba(82, 196, 26, 0.15)'
-  if (value < -100) return 'rgba(255, 77, 79, 0.3)'
-  if (value < 0) return 'rgba(255, 77, 79, 0.15)'
-  return 'transparent'
-}
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayload {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface CustomTooltipProps {
-  active?: boolean
-  payload?: TooltipPayload[]
-  label?: string
-}
-
-function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        // 千人単位でそのまま表示（FREDは千人単位で提供）
-        const valueInThousands = item.value.toLocaleString()
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: item.color }}>
-              {valueInThousands}k
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-function ChangeTooltip({ active, payload, label }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        const value = item.value
-        const sign = value >= 0 ? '+' : ''
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16 }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: value >= 0 ? '#52c41a' : '#ff4d4f' }}>
-              {sign}{value.toLocaleString()}k
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
 
 // =============================================================================
 // メインコンポーネント
 // =============================================================================
 
 export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTimeChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [viewMode, setViewMode] = useState<ValueChangeViewMode>('value')
   const [dataType, setDataType] = useState<DataType>('multiple_jobs')
   const { handleLegendClick, isHidden } = useHiddenSeries<'multiple_jobs' | 'parttime_econ' | 'multiple_jobs_change' | 'parttime_econ_change'>()
 
@@ -270,37 +133,15 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
     defaultStartYear: 2010,
   })
 
-  // テーブル用データ（年別×月別のマトリックス）
-  const changeTableData = useMemo(() => {
-    if (chartData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, { multiple_jobs: number | null; parttime_econ: number | null }>> }
-
-    const currentYear = new Date().getFullYear()
-    const startYear = currentYear - 9
-    const years: number[] = []
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y)
-    }
-
-    const monthlyData: Record<number, Record<number, { multiple_jobs: number | null; parttime_econ: number | null }>> = {}
-
-    chartData.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const month = date.getMonth()
-
-      if (year >= startYear && year <= currentYear) {
-        if (!monthlyData[year]) {
-          monthlyData[year] = {}
-        }
-        monthlyData[year][month] = {
-          multiple_jobs: item.multiple_jobs_change,
-          parttime_econ: item.parttime_econ_change,
-        }
-      }
-    })
-
-    return { years, monthlyData }
-  }, [chartData])
+  // テーブル用データ（共通フックを使用）
+  const changeTableData = useMultiValueMonthlyTableData(
+    chartData,
+    {
+      multiple_jobs: (item) => item.multiple_jobs_change,
+      parttime_econ: (item) => item.parttime_econ_change,
+    },
+    10
+  )
 
   const hasData = sortedData.length > 0
 
@@ -357,58 +198,6 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
     }
   }
 
-  // 前月増減幅テーブルコンポーネント（ダークテーマ）
-  const ChangeTable = () => (
-    <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-        ※ 直近10年間の前月増減幅データ（単位: 千人）
-      </div>
-      <DataTypeButtonGroup
-        options={DATA_TYPE_OPTIONS}
-        currentType={dataType}
-        onChange={setDataType}
-      />
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
-        <thead>
-          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
-            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
-            {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
-                {month}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {changeTableData.years.map((year: number) => (
-            <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
-                {year}
-              </td>
-              {Array.from({ length: 12 }, (_, month) => {
-                const cellData = changeTableData.monthlyData[year]?.[month]
-                const value = dataType === 'multiple_jobs' ? cellData?.multiple_jobs : cellData?.parttime_econ
-
-                return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getChangeCellColor(value) }}>
-                    {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
-                        {value >= 0 ? '+' : ''}{value.toLocaleString()}
-                      </span>
-                    ) : (
-                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <TableLegend items={CHANGE_LEGEND} />
-    </div>
-  )
-
   return (
     <div id="multiple-jobs-parttime">
       <ChartContainer
@@ -425,7 +214,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
         />
 
         {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
         {/* 現数値グラフ（左右Y軸） */}
         {viewMode === 'value' && (
@@ -469,7 +258,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
                     style: { fontSize: 11, fill: getColor('parttime_econ') }
                   }}
                 />
-                <Tooltip content={<ValueTooltip />} />
+                <Tooltip content={<ValueTooltip unit="k" />} />
                 <Legend
                   onClick={(e) => handleLegendClick(e.dataKey as string)}
                   wrapperStyle={{ cursor: 'pointer' }}
@@ -537,7 +326,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
-                <Tooltip content={<ChangeTooltip />} />
+                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
                 <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
@@ -562,7 +351,21 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
         )}
 
         {/* 前月増減幅テーブル */}
-        {viewMode === 'change_table' && <ChangeTable />}
+        {viewMode === 'change_table' && (
+          <MonthlyTableWithDataTypes
+            data={changeTableData}
+            dataTypes={DATA_TYPE_OPTIONS}
+            selectedType={dataType}
+            onTypeChange={setDataType}
+            helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
+            formatValue={(value) => {
+              if (value === null) return '-'
+              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+            }}
+            getCellBgColor={getChangeCellColor100k}
+            legendItems={CHANGE_LEGEND_100K}
+          />
+        )}
       </ChartContainer>
     </div>
   )

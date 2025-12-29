@@ -248,3 +248,141 @@ export function getDataTypeButtonStyle(
     color: isActive ? config.color : DARK_THEME.textSecondary,
   }
 }
+
+// =============================================================================
+// 共通ビューモード・データタイプ設定
+// =============================================================================
+
+/** 標準ビューモードタイプ（前年比/前月比テーブル/前月比グラフ） */
+export type StandardViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+
+/** 標準ビューモード設定（前年比/前月比テーブル/前月比グラフ） */
+export const STANDARD_VIEW_MODE_OPTIONS: { mode: StandardViewMode; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom_table', label: '前月比テーブル' },
+  { mode: 'mom_chart', label: '前月比グラフ' },
+]
+
+/** 名目/実質データタイプ */
+export type NominalRealDataType = 'nominal' | 'real'
+
+/** 名目/実質データタイプ設定 */
+export const NOMINAL_REAL_DATA_TYPE_OPTIONS: { type: NominalRealDataType; label: string }[] = [
+  { type: 'nominal', label: '名目' },
+  { type: 'real', label: '実質' },
+]
+
+/** 小売売上データタイプ */
+export type RetailDataType = 'total' | 'ex_auto' | 'control_group'
+
+/** 小売売上データタイプ設定 */
+export const RETAIL_DATA_TYPE_OPTIONS: { type: RetailDataType; label: string }[] = [
+  { type: 'total', label: '総合' },
+  { type: 'ex_auto', label: '自動車除く' },
+  { type: 'control_group', label: 'コントロールグループ' },
+]
+
+/** 耐久財データタイプ */
+export type DurableGoodsDataType = 'total' | 'ex_transport'
+
+/** 耐久財データタイプ設定 */
+export const DURABLE_GOODS_DATA_TYPE_OPTIONS: { type: DurableGoodsDataType; label: string }[] = [
+  { type: 'total', label: '総合' },
+  { type: 'ex_transport', label: '輸送除く' },
+]
+
+// =============================================================================
+// 現数値/前月増減幅ビューモード（NonfarmPayrollsChart等で使用）
+// =============================================================================
+
+/** 現数値/増減幅ビューモードタイプ */
+export type ValueChangeViewMode = 'value' | 'change_chart' | 'change_table'
+
+/** 現数値/増減幅ビューモード設定 */
+export const VALUE_CHANGE_VIEW_MODE_OPTIONS: { mode: ValueChangeViewMode; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'change_table', label: '前月増減幅テーブル' },
+  { mode: 'change_chart', label: '前月増減幅グラフ' },
+]
+
+// =============================================================================
+// 増減幅テーブル用ヘルパー（共通化）
+// =============================================================================
+
+/** 増減幅閾値プリセット */
+export const CHANGE_THRESHOLDS = {
+  /** 雇用者数（200k千人） */
+  employment_200k: 200,
+  /** 雇用者数（100k千人） */
+  employment_100k: 100,
+  /** 前月比（0.4%） */
+  mom_04: 0.4,
+  /** 前月比（0.5%） */
+  mom_05: 0.5,
+  /** 前月比（1.0%） */
+  mom_10: 1.0,
+} as const
+
+/**
+ * 増減幅テーブル用のセル背景色を取得する関数を生成
+ * @param threshold 閾値（正の値、例: 200, 0.4）
+ */
+export function createChangeCellColorFn(threshold: number): (value: number | null | undefined) => string {
+  return (value: number | null | undefined): string => {
+    if (value === null || value === undefined) return 'transparent'
+    if (value > threshold) return 'rgba(82, 196, 26, 0.3)'
+    if (value > 0) return 'rgba(82, 196, 26, 0.15)'
+    if (value < -threshold) return 'rgba(255, 77, 79, 0.3)'
+    if (value < 0) return 'rgba(255, 77, 79, 0.15)'
+    return 'transparent'
+  }
+}
+
+/**
+ * 増減幅テーブル用の凡例を生成
+ * @param threshold 閾値（正の値）
+ * @param unit 単位（'k' | '%'）
+ */
+export function createChangeLegend(
+  threshold: number,
+  unit: 'k' | '%'
+): { color: string; label: string }[] {
+  const suffix = unit === 'k' ? 'k' : '%'
+  const thresholdStr = unit === 'k' ? threshold.toString() : threshold.toFixed(1)
+  return [
+    { color: 'rgba(82, 196, 26, 0.3)', label: `+${thresholdStr}${suffix}以上` },
+    { color: 'rgba(82, 196, 26, 0.15)', label: `0〜+${thresholdStr}${suffix}` },
+    { color: 'rgba(255, 77, 79, 0.15)', label: `0〜-${thresholdStr}${suffix}` },
+    { color: 'rgba(255, 77, 79, 0.3)', label: `-${thresholdStr}${suffix}以下` },
+  ]
+}
+
+/** 事前定義済み凡例: 雇用者数200k */
+export const CHANGE_LEGEND_200K = createChangeLegend(200, 'k')
+
+/** 事前定義済み凡例: 雇用者数100k */
+export const CHANGE_LEGEND_100K = createChangeLegend(100, 'k')
+
+/** 事前定義済み凡例: 前月比0.4% */
+export const CHANGE_LEGEND_04PCT = createChangeLegend(0.4, '%')
+
+/** 事前定義済み凡例: 前月比0.5% */
+export const CHANGE_LEGEND_05PCT = createChangeLegend(0.5, '%')
+
+/** 事前定義済み凡例: 前月比1.0% */
+export const CHANGE_LEGEND_10PCT = createChangeLegend(1.0, '%')
+
+/** 事前定義済みセル背景色関数: 200k閾値 */
+export const getChangeCellColor200k = createChangeCellColorFn(CHANGE_THRESHOLDS.employment_200k)
+
+/** 事前定義済みセル背景色関数: 100k閾値 */
+export const getChangeCellColor100k = createChangeCellColorFn(CHANGE_THRESHOLDS.employment_100k)
+
+/** 事前定義済みセル背景色関数: 0.4%閾値 */
+export const getChangeCellColor04pct = createChangeCellColorFn(CHANGE_THRESHOLDS.mom_04)
+
+/** 事前定義済みセル背景色関数: 0.5%閾値 */
+export const getChangeCellColor05pct = createChangeCellColorFn(CHANGE_THRESHOLDS.mom_05)
+
+/** 事前定義済みセル背景色関数: 1.0%閾値 */
+export const getChangeCellColor10pct = createChangeCellColorFn(CHANGE_THRESHOLDS.mom_10)

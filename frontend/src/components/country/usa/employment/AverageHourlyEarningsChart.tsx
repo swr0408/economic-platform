@@ -12,7 +12,7 @@
  *
  * 共通コンポーネントを使用
  */
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import {
   ComposedChart,
   LineChart,
@@ -34,28 +34,30 @@ import type { AverageHourlyEarningsData } from '../../../../hooks/useDashboardDa
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  MONTH_NAMES,
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  TOOLTIP_STYLE,
-  DARK_THEME,
-  TEXT_COLORS,
+  STANDARD_VIEW_MODE_OPTIONS,
+  type StandardViewMode,
+  CHANGE_LEGEND_04PCT,
+  getChangeCellColor04pct,
 } from '../common/chartConstants'
 import {
   useSortedData,
   usePeriodFiltering,
   useViewModePeriodManagement,
+  useMonthlyTableData,
   formatDateLabel,
-  formatDateLabelJP,
   useHiddenSeries,
 } from '../common/useChartData'
 import {
   LatestValueBox,
   NoDataMessage,
   ViewModeButtonGroup,
-  TableLegend,
+  ChangeTooltip,
+  ValueTooltip,
 } from '../common/ChartComponents'
+import { MonthlyTable } from '../common/MonthlyTable'
 
 // =============================================================================
 // 型定義
@@ -64,15 +66,6 @@ import {
 interface AverageHourlyEarningsChartProps {
   data: AverageHourlyEarningsData | null
 }
-
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
-]
 
 // カラー設定
 const COLORS = {
@@ -88,164 +81,12 @@ const SERIES_NAMES = {
   quits_rate: '自発的離職率',
 }
 
-// 前月比テーブルの凡例（単位：%）
-const CHANGE_LEGEND = [
-  { color: 'rgba(82, 196, 26, 0.3)', label: '+0.4%以上' },
-  { color: 'rgba(82, 196, 26, 0.15)', label: '0〜+0.4%' },
-  { color: 'rgba(255, 77, 79, 0.15)', label: '0〜-0.4%' },
-  { color: 'rgba(255, 77, 79, 0.3)', label: '-0.4%以下' },
-]
-
-// =============================================================================
-// ヘルパー関数
-// =============================================================================
-
-/** 前月比用のセル背景色を取得 */
-function getChangeCellColor(value: number | null | undefined): string {
-  if (value === null || value === undefined) return 'transparent'
-  // 閾値: ±0.4%
-  if (value > 0.4) return 'rgba(82, 196, 26, 0.3)'
-  if (value > 0) return 'rgba(82, 196, 26, 0.15)'
-  if (value < -0.4) return 'rgba(255, 77, 79, 0.3)'
-  if (value < 0) return 'rgba(255, 77, 79, 0.15)'
-  return 'transparent'
-}
-
-// =============================================================================
-// カスタムツールチップ
-// =============================================================================
-
-interface TooltipPayload {
-  name: string
-  value: number
-  color: string
-  dataKey: string
-}
-
-interface CustomTooltipProps {
-  active?: boolean
-  payload?: TooltipPayload[]
-  label?: string
-  unit?: string
-}
-
-function ChangeTooltip({ active, payload, label, unit = '%' }: CustomTooltipProps) {
-  if (!active || !payload || payload.length === 0) return null
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label || '')}
-      </div>
-      {payload.map((item, index) => {
-        const value = item.value
-        const sign = value >= 0 ? '+' : ''
-        return (
-          <div
-            key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 4,
-              fontSize: 13,
-              padding: '4px 12px',
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: 10,
-                  height: 10,
-                  borderRadius: 2,
-                  backgroundColor: item.color,
-                  marginRight: 6,
-                }}
-              />
-              {item.name}
-            </span>
-            <span style={{ fontWeight: 500, color: item.color }}>
-              {sign}{value.toFixed(2)}{unit}
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-// 前年比用カスタムTooltip（両軸チャート用）
-interface DataItem {
-  date: string
-  yoy: number | null
-  mom: number | null
-  quits_rate: number | null
-}
-
-interface YoYTooltipProps {
-  active?: boolean
-  label?: string
-  data?: DataItem[]
-}
-
-function YoYTooltip({ active, label, data }: YoYTooltipProps) {
-  if (!active || !label) return null
-
-  // データポイントを取得
-  const dataPoint = data?.find((d: DataItem) => d.date === label)
-  if (!dataPoint) return null
-
-  const items = [
-    { name: SERIES_NAMES.yoy, value: dataPoint.yoy, color: COLORS.yoy },
-    { name: SERIES_NAMES.quits_rate, value: dataPoint.quits_rate, color: COLORS.quits_rate },
-  ]
-
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, padding: '8px 12px' }}>
-        {formatDateLabelJP(label)}
-      </div>
-      {items.map((item, index) => (
-        <div
-          key={index}
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 4,
-            fontSize: 13,
-            padding: '4px 12px',
-          }}
-        >
-          <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-            <span
-              style={{
-                display: 'inline-block',
-                width: 10,
-                height: 10,
-                borderRadius: 2,
-                backgroundColor: item.color,
-                marginRight: 6,
-              }}
-            />
-            {item.name}
-          </span>
-          <span style={{ fontWeight: 500, color: item.color }}>
-            {item.value !== null && item.value !== undefined ? `${item.value.toFixed(2)}%` : 'N/A'}
-          </span>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 // =============================================================================
 // メインコンポーネント
 // =============================================================================
 
 export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarningsChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理
@@ -264,34 +105,12 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
     defaultStartYear: 2010,
   })
 
-  // テーブル用データ（年別×月別のマトリックス）
-  const changeTableData = useMemo(() => {
-    if (sortedData.length === 0) return { years: [] as number[], monthlyData: {} as Record<number, Record<number, number | null>> }
-
-    const currentYear = new Date().getFullYear()
-    const startYear = currentYear - 9
-    const years: number[] = []
-    for (let y = startYear; y <= currentYear; y++) {
-      years.push(y)
-    }
-
-    const monthlyData: Record<number, Record<number, number | null>> = {}
-
-    sortedData.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const month = date.getMonth()
-
-      if (year >= startYear && year <= currentYear) {
-        if (!monthlyData[year]) {
-          monthlyData[year] = {}
-        }
-        monthlyData[year][month] = item.mom ?? null
-      }
-    })
-
-    return { years, monthlyData }
-  }, [sortedData])
+  // テーブル用データ（共通フックを使用）
+  const changeTableData = useMonthlyTableData(
+    sortedData,
+    (item) => item.mom,
+    10
+  )
 
 
   const hasData = sortedData.length > 0
@@ -337,52 +156,6 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
     }
   }
 
-  // 前月比テーブルコンポーネント（ダークテーマ）
-  const ChangeTable = () => (
-    <div style={{ overflowX: 'auto' }}>
-      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-        ※ 直近10年間の前月比データ（単位: %）
-      </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12, textAlign: 'center', color: DARK_THEME.textPrimary }}>
-        <thead>
-          <tr style={{ backgroundColor: DARK_THEME.bgTertiary }}>
-            <th style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold' }}>年</th>
-            {MONTH_NAMES.map((month, idx) => (
-              <th key={idx} style={{ padding: '8px 4px', borderBottom: `2px solid ${DARK_THEME.borderLight}`, fontWeight: 'bold', minWidth: 55 }}>
-                {month}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {changeTableData.years.map((year: number) => (
-            <tr key={year}>
-              <td style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, fontWeight: 'bold', backgroundColor: DARK_THEME.bgTertiary }}>
-                {year}
-              </td>
-              {Array.from({ length: 12 }, (_, month) => {
-                const value = changeTableData.monthlyData[year]?.[month]
-
-                return (
-                  <td key={month} style={{ padding: '6px 4px', borderBottom: `1px solid ${DARK_THEME.border}`, backgroundColor: getChangeCellColor(value) }}>
-                    {value !== null && value !== undefined ? (
-                      <span style={{ color: value >= 0 ? TEXT_COLORS.positive : TEXT_COLORS.negative }}>
-                        {value >= 0 ? '+' : ''}{value.toFixed(2)}
-                      </span>
-                    ) : (
-                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
-                    )}
-                  </td>
-                )
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <TableLegend items={CHANGE_LEGEND} />
-    </div>
-  )
-
   return (
     <div id="average-hourly-earnings">
       <ChartContainer
@@ -399,7 +172,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
         />
 
         {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
         {/* 前年比グラフ（YoYモード） */}
         {viewMode === 'yoy' && (
@@ -441,7 +214,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
-                <Tooltip content={<YoYTooltip data={filteredData} />} />
+                <Tooltip content={<ValueTooltip unit="%" decimals={2} />} />
                 <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
                 <Line
                   yAxisId="left"
@@ -493,7 +266,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                     style: { fontSize: 11, fill: '#666' }
                   }}
                 />
-                <Tooltip content={<ChangeTooltip />} />
+                <Tooltip content={<ChangeTooltip unit="%" decimals={2} />} />
                 <Legend />
                 <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
@@ -508,7 +281,14 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
         )}
 
         {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && <ChangeTable />}
+        {viewMode === 'mom_table' && (
+          <MonthlyTable
+            data={changeTableData}
+            getCellBgColor={getChangeCellColor04pct}
+            legendItems={CHANGE_LEGEND_04PCT}
+            helperText="※ 直近10年間の前月比データ（単位: %）"
+          />
+        )}
       </ChartContainer>
     </div>
   )

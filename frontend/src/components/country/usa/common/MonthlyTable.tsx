@@ -213,6 +213,12 @@ interface MonthlyTableWithDataTypesProps<T extends string> {
   showHelperText?: boolean
   /** カスタムヘルパーテキスト */
   helperText?: string
+  /** カスタム値フォーマット関数 */
+  formatValue?: (value: number | null) => string
+  /** カスタムセル背景色関数 */
+  getCellBgColor?: (value: number | null) => string
+  /** カスタム凡例アイテム */
+  legendItems?: { color: string; label: string }[]
 }
 
 export function MonthlyTableWithDataTypes<T extends string>({
@@ -225,9 +231,19 @@ export function MonthlyTableWithDataTypes<T extends string>({
   decimals = 2,
   showHelperText = true,
   helperText = DEFAULT_HELPER_TEXT,
+  formatValue,
+  getCellBgColor,
+  legendItems,
 }: MonthlyTableWithDataTypesProps<T>) {
   const thresholds = thresholdType === 'vehicle' ? MOM_THRESHOLDS.vehicle : MOM_THRESHOLDS.default
   const defaultLegend = thresholdType === 'vehicle' ? MOM_LEGEND_VEHICLE : MOM_LEGEND_DEFAULT
+
+  // カスタムまたはデフォルトの関数
+  const formatFn = formatValue || ((value: number | null) => {
+    if (value === null || value === undefined) return '-'
+    return `${value >= 0 ? '+' : ''}${value.toFixed(decimals)}`
+  })
+  const bgColorFn = getCellBgColor || ((value: number | null) => getCellColor(value, thresholds))
 
   // データタイプボタン用のスタイル設定（ダークテーマ）
   const buttonConfigs: Record<string, { color: string; bgColor: string }> = {
@@ -329,8 +345,9 @@ export function MonthlyTableWithDataTypes<T extends string>({
               {Array.from({ length: 12 }, (_, month) => {
                 const cellData = data.monthlyData[year]?.[month]
                 const value = cellData ? cellData[selectedType] : null
-                const bgColor = getCellColor(value, thresholds)
+                const bgColor = bgColorFn(value)
                 const textColor = getValueColor(value)
+                const displayValue = formatFn(value)
 
                 return (
                   <td
@@ -341,14 +358,9 @@ export function MonthlyTableWithDataTypes<T extends string>({
                       backgroundColor: bgColor,
                     }}
                   >
-                    {value !== null && value !== undefined ? (
-                      <span style={{ color: textColor }}>
-                        {value >= 0 ? '+' : ''}
-                        {value.toFixed(decimals)}
-                      </span>
-                    ) : (
-                      <span style={{ color: TEXT_COLORS.quaternary }}>-</span>
-                    )}
+                    <span style={{ color: value === null ? TEXT_COLORS.quaternary : textColor }}>
+                      {displayValue}
+                    </span>
                   </td>
                 )
               })}
@@ -357,7 +369,7 @@ export function MonthlyTableWithDataTypes<T extends string>({
         </tbody>
       </table>
 
-      {showLegend && <TableLegend items={defaultLegend} />}
+      {showLegend && <TableLegend items={legendItems || defaultLegend} />}
     </div>
   )
 }
