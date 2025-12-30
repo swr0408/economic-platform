@@ -84,6 +84,38 @@ export function getFrequencyLabel(frequency: IndicatorFrequency): string {
   return FREQUENCY_LABELS[frequency];
 }
 
+/**
+ * 頻度の優先順位（数値が小さいほど細かい）
+ * 日次 > 週次 > 月次 > 四半期
+ */
+export const FREQUENCY_PRIORITY: Record<IndicatorFrequency, number> = {
+  daily: 1,
+  weekly: 2,
+  monthly: 3,
+  quarterly: 4,
+  irregular: 3, // 不定期は月次扱い
+};
+
+/**
+ * 最も細かい頻度を取得
+ */
+export function getFinestFrequency(frequencies: IndicatorFrequency[]): IndicatorFrequency {
+  if (frequencies.length === 0) return 'monthly';
+
+  let finest: IndicatorFrequency = frequencies[0];
+  let finestPriority = FREQUENCY_PRIORITY[finest];
+
+  for (const freq of frequencies) {
+    const priority = FREQUENCY_PRIORITY[freq];
+    if (priority < finestPriority) {
+      finest = freq;
+      finestPriority = priority;
+    }
+  }
+
+  return finest;
+}
+
 // =============================================================================
 // カテゴリ定義（階層構造）
 // =============================================================================
@@ -93,6 +125,7 @@ export const INDICATOR_CATEGORIES = {
   employment: '雇用',
   consumer: '消費',
   policy: '金融政策',
+  market: '市場',
 } as const;
 
 export const INDICATOR_SUB_CATEGORIES = {
@@ -111,6 +144,18 @@ export const INDICATOR_SUB_CATEGORIES = {
   // 金融政策
   rates: '金利',
   fed: 'FRB',
+  // 市場
+  forex_usd: 'ドルストレート',
+  forex_jpy: 'クロス円',
+  forex_cross: 'その他クロス',
+  forex_index: '通貨インデックス',
+  index_us: '米国株価指数',
+  index_asia: '日本・アジア株価指数',
+  index_europe: '欧州株価指数',
+  bond: '債券利回り',
+  commodity_metal: '貴金属',
+  commodity_energy: 'エネルギー',
+  calculated: '計算値',
 } as const;
 
 export const INDICATOR_COUNTRIES = {
@@ -583,6 +628,706 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/usa/consumer',
     dataKey: 'michigan_consumer_sentiment',
   },
+
+  // =========================================================================
+  // 市場 - 為替（ドルストレート）
+  // =========================================================================
+  {
+    id: 'usdjpy',
+    name: 'ドル円',
+    nameEn: 'USD/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'usdjpy',
+    valueField: 'close',
+  },
+  {
+    id: 'eurusd',
+    name: 'ユーロドル',
+    nameEn: 'EUR/USD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'eurusd',
+    valueField: 'close',
+  },
+  {
+    id: 'gbpusd',
+    name: 'ポンドドル',
+    nameEn: 'GBP/USD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'gbpusd',
+    valueField: 'close',
+  },
+  {
+    id: 'audusd',
+    name: '豪ドル米ドル',
+    nameEn: 'AUD/USD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'audusd',
+    valueField: 'close',
+  },
+  {
+    id: 'nzdusd',
+    name: 'NZドル米ドル',
+    nameEn: 'NZD/USD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'nzdusd',
+    valueField: 'close',
+  },
+  {
+    id: 'usdcad',
+    name: 'ドルカナダ',
+    nameEn: 'USD/CAD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'usdcad',
+    valueField: 'close',
+  },
+  {
+    id: 'usdchf',
+    name: 'ドルスイス',
+    nameEn: 'USD/CHF',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_usd',
+    apiEndpoint: '/api/market',
+    dataKey: 'usdchf',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 為替（クロス円）
+  // =========================================================================
+  {
+    id: 'eurjpy',
+    name: 'ユーロ円',
+    nameEn: 'EUR/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_jpy',
+    apiEndpoint: '/api/market',
+    dataKey: 'eurjpy',
+    valueField: 'close',
+  },
+  {
+    id: 'gbpjpy',
+    name: 'ポンド円',
+    nameEn: 'GBP/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_jpy',
+    apiEndpoint: '/api/market',
+    dataKey: 'gbpjpy',
+    valueField: 'close',
+  },
+  {
+    id: 'audjpy',
+    name: '豪ドル円',
+    nameEn: 'AUD/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_jpy',
+    apiEndpoint: '/api/market',
+    dataKey: 'audjpy',
+    valueField: 'close',
+  },
+  {
+    id: 'nzdjpy',
+    name: 'NZドル円',
+    nameEn: 'NZD/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_jpy',
+    apiEndpoint: '/api/market',
+    dataKey: 'nzdjpy',
+    valueField: 'close',
+  },
+  {
+    id: 'cadjpy',
+    name: 'カナダ円',
+    nameEn: 'CAD/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_jpy',
+    apiEndpoint: '/api/market',
+    dataKey: 'cadjpy',
+    valueField: 'close',
+  },
+  {
+    id: 'chfjpy',
+    name: 'スイス円',
+    nameEn: 'CHF/JPY',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_jpy',
+    apiEndpoint: '/api/market',
+    dataKey: 'chfjpy',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 為替（その他クロス）
+  // =========================================================================
+  {
+    id: 'eurgbp',
+    name: 'ユーロポンド',
+    nameEn: 'EUR/GBP',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'eurgbp',
+    valueField: 'close',
+  },
+  {
+    id: 'euraud',
+    name: 'ユーロ豪ドル',
+    nameEn: 'EUR/AUD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'euraud',
+    valueField: 'close',
+  },
+  {
+    id: 'eurnzd',
+    name: 'ユーロNZドル',
+    nameEn: 'EUR/NZD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'eurnzd',
+    valueField: 'close',
+  },
+  {
+    id: 'eurcad',
+    name: 'ユーロカナダ',
+    nameEn: 'EUR/CAD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'eurcad',
+    valueField: 'close',
+  },
+  {
+    id: 'eurchf',
+    name: 'ユーロスイス',
+    nameEn: 'EUR/CHF',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'eurchf',
+    valueField: 'close',
+  },
+  {
+    id: 'gbpaud',
+    name: 'ポンド豪ドル',
+    nameEn: 'GBP/AUD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'gbpaud',
+    valueField: 'close',
+  },
+  {
+    id: 'gbpnzd',
+    name: 'ポンドNZドル',
+    nameEn: 'GBP/NZD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'gbpnzd',
+    valueField: 'close',
+  },
+  {
+    id: 'gbpcad',
+    name: 'ポンドカナダ',
+    nameEn: 'GBP/CAD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'gbpcad',
+    valueField: 'close',
+  },
+  {
+    id: 'gbpchf',
+    name: 'ポンドスイス',
+    nameEn: 'GBP/CHF',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'gbpchf',
+    valueField: 'close',
+  },
+  {
+    id: 'audnzd',
+    name: '豪ドルNZドル',
+    nameEn: 'AUD/NZD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'audnzd',
+    valueField: 'close',
+  },
+  {
+    id: 'audcad',
+    name: '豪ドルカナダ',
+    nameEn: 'AUD/CAD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'audcad',
+    valueField: 'close',
+  },
+  {
+    id: 'audchf',
+    name: '豪ドルスイス',
+    nameEn: 'AUD/CHF',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'audchf',
+    valueField: 'close',
+  },
+  {
+    id: 'nzdcad',
+    name: 'NZドルカナダ',
+    nameEn: 'NZD/CAD',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'nzdcad',
+    valueField: 'close',
+  },
+  {
+    id: 'nzdchf',
+    name: 'NZドルスイス',
+    nameEn: 'NZD/CHF',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'nzdchf',
+    valueField: 'close',
+  },
+  {
+    id: 'cadchf',
+    name: 'カナダスイス',
+    nameEn: 'CAD/CHF',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_cross',
+    apiEndpoint: '/api/market',
+    dataKey: 'cadchf',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 通貨インデックス
+  // =========================================================================
+  {
+    id: 'dxy',
+    name: 'ドルインデックス',
+    nameEn: 'USD Index (DXY)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'forex_index',
+    apiEndpoint: '/api/market',
+    dataKey: 'dxy',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 米国株価指数
+  // =========================================================================
+  {
+    id: 'sp500',
+    name: 'S&P500',
+    nameEn: 'S&P 500',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'sp500',
+    valueField: 'close',
+  },
+  {
+    id: 'dow',
+    name: 'ダウ平均',
+    nameEn: 'Dow Jones',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'dow',
+    valueField: 'close',
+  },
+  {
+    id: 'nasdaq100',
+    name: 'ナスダック100',
+    nameEn: 'Nasdaq 100',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'nasdaq100',
+    valueField: 'close',
+  },
+  {
+    id: 'nasdaq',
+    name: 'ナスダック総合',
+    nameEn: 'Nasdaq Composite',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'nasdaq',
+    valueField: 'close',
+  },
+  {
+    id: 'russell2000',
+    name: 'ラッセル2000',
+    nameEn: 'Russell 2000',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'russell2000',
+    valueField: 'close',
+  },
+  {
+    id: 'sox',
+    name: 'フィラデルフィア半導体指数',
+    nameEn: 'SOX (Semiconductor)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'sox',
+    valueField: 'close',
+  },
+  {
+    id: 'vix',
+    name: 'VIX（恐怖指数）',
+    nameEn: 'VIX',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'vix',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 日本・アジア株価指数
+  // =========================================================================
+  {
+    id: 'nikkei225',
+    name: '日経平均',
+    nameEn: 'Nikkei 225',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_asia',
+    apiEndpoint: '/api/market',
+    dataKey: 'nikkei225',
+    valueField: 'close',
+  },
+  {
+    id: 'topix',
+    name: 'TOPIX',
+    nameEn: 'TOPIX',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_asia',
+    apiEndpoint: '/api/market',
+    dataKey: 'topix',
+    valueField: 'close',
+  },
+  {
+    id: 'hangseng',
+    name: 'ハンセン指数',
+    nameEn: 'Hang Seng',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_asia',
+    apiEndpoint: '/api/market',
+    dataKey: 'hangseng',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 欧州株価指数
+  // =========================================================================
+  {
+    id: 'dax',
+    name: 'DAX',
+    nameEn: 'DAX',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_europe',
+    apiEndpoint: '/api/market',
+    dataKey: 'dax',
+    valueField: 'close',
+  },
+  {
+    id: 'ftse100',
+    name: 'FTSE100',
+    nameEn: 'FTSE 100',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_europe',
+    apiEndpoint: '/api/market',
+    dataKey: 'ftse100',
+    valueField: 'close',
+  },
+  {
+    id: 'cac40',
+    name: 'CAC40',
+    nameEn: 'CAC 40',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_europe',
+    apiEndpoint: '/api/market',
+    dataKey: 'cac40',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 債券利回り
+  // =========================================================================
+  {
+    id: 'us02y',
+    name: '米国2年債利回り',
+    nameEn: 'US 2Y Yield',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'bond',
+    apiEndpoint: '/api/market',
+    dataKey: 'us02y',
+    valueField: 'close',
+    unit: '%',
+  },
+  {
+    id: 'us10y',
+    name: '米国10年債利回り',
+    nameEn: 'US 10Y Yield',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'bond',
+    apiEndpoint: '/api/market',
+    dataKey: 'us10y',
+    valueField: 'close',
+    unit: '%',
+  },
+  {
+    id: 'us30y',
+    name: '米国30年債利回り',
+    nameEn: 'US 30Y Yield',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'bond',
+    apiEndpoint: '/api/market',
+    dataKey: 'us30y',
+    valueField: 'close',
+    unit: '%',
+  },
+
+  // =========================================================================
+  // 市場 - 貴金属
+  // =========================================================================
+  {
+    id: 'gold',
+    name: '金（ドル建て）',
+    nameEn: 'Gold (USD)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodity_metal',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold',
+    valueField: 'close',
+  },
+  {
+    id: 'silver',
+    name: '銀（ドル建て）',
+    nameEn: 'Silver (USD)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodity_metal',
+    apiEndpoint: '/api/market',
+    dataKey: 'silver',
+    valueField: 'close',
+  },
+  {
+    id: 'copper',
+    name: '銅',
+    nameEn: 'Copper',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodity_metal',
+    apiEndpoint: '/api/market',
+    dataKey: 'copper',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - エネルギー
+  // =========================================================================
+  {
+    id: 'crude_oil',
+    name: '原油（WTI）',
+    nameEn: 'Crude Oil (WTI)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodity_energy',
+    apiEndpoint: '/api/market',
+    dataKey: 'crude_oil',
+    valueField: 'close',
+  },
+  {
+    id: 'brent_oil',
+    name: '原油（ブレント）',
+    nameEn: 'Brent Crude',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodity_energy',
+    apiEndpoint: '/api/market',
+    dataKey: 'brent_oil',
+    valueField: 'close',
+  },
+  {
+    id: 'natural_gas',
+    name: '天然ガス',
+    nameEn: 'Natural Gas',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodity_energy',
+    apiEndpoint: '/api/market',
+    dataKey: 'natural_gas',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 計算値（株価指数系）
+  // =========================================================================
+  {
+    id: 'nikkei_usd',
+    name: '日経平均（ドル建て）',
+    nameEn: 'Nikkei 225 (USD)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_index',
+    apiEndpoint: '/api/market',
+    dataKey: 'nikkei_usd',
+    valueField: 'close',
+  },
+
+  // =========================================================================
+  // 市場 - 計算値（商品系）
+  // =========================================================================
+  {
+    id: 'gold_jpy',
+    name: '金（円建て）',
+    nameEn: 'Gold (JPY)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_jpy',
+    valueField: 'close',
+  },
+  {
+    id: 'gold_eur',
+    name: '金（ユーロ建て）',
+    nameEn: 'Gold (EUR)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_eur',
+    valueField: 'close',
+  },
+  {
+    id: 'gold_gbp',
+    name: '金（ポンド建て）',
+    nameEn: 'Gold (GBP)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_gbp',
+    valueField: 'close',
+  },
+  {
+    id: 'gold_aud',
+    name: '金（豪ドル建て）',
+    nameEn: 'Gold (AUD)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_aud',
+    valueField: 'close',
+  },
+  {
+    id: 'gold_cad',
+    name: '金（カナダドル建て）',
+    nameEn: 'Gold (CAD)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_cad',
+    valueField: 'close',
+  },
+  {
+    id: 'gold_chf',
+    name: '金（スイスフラン建て）',
+    nameEn: 'Gold (CHF)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_chf',
+    valueField: 'close',
+  },
+  {
+    id: 'gold_nzd',
+    name: '金（NZドル建て）',
+    nameEn: 'Gold (NZD)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'calculated_commodity',
+    apiEndpoint: '/api/market',
+    dataKey: 'gold_nzd',
+    valueField: 'close',
+  },
 ];
 
 // =============================================================================
@@ -631,6 +1376,47 @@ export function getIndicatorsBySubCategory(category: string, country?: Indicator
       grouped[subCategory] = [];
     }
     grouped[subCategory].push(indicator);
+  }
+
+  return grouped;
+}
+
+/** 市場データのみを取得 */
+export function getMarketIndicators(): OverlayIndicator[] {
+  return OVERLAY_INDICATORS.filter(i => i.category === 'market');
+}
+
+/** 市場データをサブカテゴリ別にグループ化 */
+export function getMarketIndicatorsBySubCategory(): Record<string, OverlayIndicator[]> {
+  const grouped: Record<string, OverlayIndicator[]> = {};
+  const indicators = getMarketIndicators();
+
+  for (const indicator of indicators) {
+    const subCategory = indicator.subCategory || 'other';
+    if (!grouped[subCategory]) {
+      grouped[subCategory] = [];
+    }
+    grouped[subCategory].push(indicator);
+  }
+
+  return grouped;
+}
+
+/** 経済指標のみを取得（市場データを除く） */
+export function getEconomicIndicators(): OverlayIndicator[] {
+  return OVERLAY_INDICATORS.filter(i => i.category !== 'market');
+}
+
+/** 経済指標を国別にグループ化（市場データを除く） */
+export function getEconomicIndicatorsByCountry(): Record<string, OverlayIndicator[]> {
+  const grouped: Record<string, OverlayIndicator[]> = {};
+
+  for (const indicator of getEconomicIndicators()) {
+    const country = getIndicatorCountry(indicator);
+    if (!grouped[country]) {
+      grouped[country] = [];
+    }
+    grouped[country].push(indicator);
   }
 
   return grouped;

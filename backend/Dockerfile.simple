@@ -50,7 +50,8 @@ RUN pip install --no-cache-dir \
     pdfplumber \
     Pillow \
     APScheduler \
-    pytz
+    pytz \
+    yfinance
 
 # Playwrightブラウザをインストール（ChromiumとFirefox）
 RUN playwright install chromium firefox

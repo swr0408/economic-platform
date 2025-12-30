@@ -1,6 +1,7 @@
-﻿/**
+/**
  * 比較指標選択ポップオーバー
  * 国 > カテゴリ > 指標 の階層表示 + 検索
+ * 市場タブを国タブと並列に配置
  */
 
 import { useState, useMemo, useEffect } from 'react';
@@ -11,8 +12,10 @@ import {
   INDICATOR_CATEGORIES,
   INDICATOR_COUNTRIES,
   INDICATOR_SUB_CATEGORIES,
-  getIndicatorsByCountry,
+  getEconomicIndicatorsByCountry,
   getIndicatorsBySubCategory,
+  getMarketIndicators,
+  getMarketIndicatorsBySubCategory,
   getFrequencyLabel,
   searchIndicators,
   type OverlayIndicator,
@@ -21,6 +24,39 @@ import {
 const { Text } = Typography;
 const { TabPane } = Tabs;
 const { Panel } = Collapse;
+
+// 市場カテゴリ定義（第2レベルタブ）
+const MARKET_CATEGORIES = {
+  all: '全て',
+  bond: '債券利回り',
+  index: '株価指数',
+  commodity: '商品',
+  forex: '為替',
+} as const;
+
+// 市場カテゴリ配下のサブカテゴリマッピング
+const MARKET_CATEGORY_SUB_CATEGORIES: Record<string, string[]> = {
+  bond: ['bond'],
+  index: ['index_us', 'index_asia', 'index_europe', 'calculated_index'],
+  commodity: ['commodity_metal', 'commodity_energy', 'calculated_commodity'],
+  forex: ['forex_usd', 'forex_jpy', 'forex_cross', 'forex_index'],
+};
+
+// 市場サブカテゴリのラベル
+const MARKET_SUB_CATEGORY_LABELS: Record<string, string> = {
+  forex_usd: 'ドルストレート',
+  forex_jpy: 'クロス円',
+  forex_cross: 'その他クロス',
+  forex_index: '通貨インデックス',
+  index_us: '米国株価指数',
+  index_asia: '日本・アジア',
+  index_europe: '欧州',
+  bond: '債券利回り',
+  commodity_metal: '貴金属',
+  commodity_energy: 'エネルギー',
+  calculated_index: 'ドル建て日経平均',
+  calculated_commodity: '計算値',
+};
 
 // =============================================================================
 // Props
@@ -117,7 +153,7 @@ export function ComparePopover({
 }: ComparePopoverProps) {
   const [open, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCountry, setActiveCountry] = useState<string>('usa');
+  const [activeTopTab, setActiveTopTab] = useState<string>('usa');
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   // 検索結果
@@ -128,19 +164,25 @@ export function ComparePopover({
     return searchIndicators(searchQuery);
   }, [searchQuery]);
 
-  const indicatorsByCountry = useMemo(() => getIndicatorsByCountry(), []);
+  // 経済指標を国別にグループ化（市場データを除く）
+  const indicatorsByCountry = useMemo(() => getEconomicIndicatorsByCountry(), []);
   const countryEntries = useMemo(
     () => Object.entries(indicatorsByCountry).filter(([, indicators]) => indicators.length > 0),
     [indicatorsByCountry]
   );
 
+  // 市場データをサブカテゴリ別にグループ化
+  const marketBySubCategory = useMemo(() => getMarketIndicatorsBySubCategory(), []);
+
   useEffect(() => {
-    if (countryEntries.length === 0) return;
-    if (!countryEntries.some(([key]) => key === activeCountry)) {
-      setActiveCountry(countryEntries[0][0]);
-      setActiveCategory('all');
+    // 初期タブの設定
+    if (activeTopTab !== 'market' && countryEntries.length > 0) {
+      if (!countryEntries.some(([key]) => key === activeTopTab)) {
+        setActiveTopTab(countryEntries[0][0]);
+        setActiveCategory('all');
+      }
     }
-  }, [countryEntries, activeCountry]);
+  }, [countryEntries, activeTopTab]);
 
   const canAddMore = selectedIndicatorIds.length < maxSelections;
 
@@ -203,14 +245,15 @@ export function ComparePopover({
         </div>
       ) : (
         <Tabs
-          activeKey={activeCountry}
+          activeKey={activeTopTab}
           onChange={(key) => {
-            setActiveCountry(key);
+            setActiveTopTab(key);
             setActiveCategory('all');
           }}
           size="small"
           style={{ marginTop: -8 }}
         >
+          {/* 国別タブ（経済指標） */}
           {countryEntries.map(([countryKey, indicators]) => {
             const countryLabel =
               INDICATOR_COUNTRIES[countryKey as keyof typeof INDICATOR_COUNTRIES] || countryKey;
@@ -240,66 +283,160 @@ export function ComparePopover({
                     </div>
                   </TabPane>
 
-                  {Object.entries(INDICATOR_CATEGORIES).map(([categoryKey, categoryLabel]) => {
-                    const subCategoryGroups = getIndicatorsBySubCategory(
-                      categoryKey,
-                      countryKey as keyof typeof INDICATOR_COUNTRIES
-                    );
-                    const subCategoryKeys = Object.keys(subCategoryGroups);
-                    if (subCategoryKeys.length === 0) return null;
+                  {Object.entries(INDICATOR_CATEGORIES)
+                    .filter(([key]) => key !== 'market') // 市場カテゴリを除外
+                    .map(([categoryKey, categoryLabel]) => {
+                      const subCategoryGroups = getIndicatorsBySubCategory(
+                        categoryKey,
+                        countryKey as keyof typeof INDICATOR_COUNTRIES
+                      );
+                      const subCategoryKeys = Object.keys(subCategoryGroups);
+                      if (subCategoryKeys.length === 0) return null;
 
-                    return (
-                      <TabPane tab={categoryLabel} key={categoryKey}>
-                        <div style={{ maxHeight: 300, overflowY: 'auto' }}>
-                          <Collapse
-                            defaultActiveKey={subCategoryKeys}
-                            ghost
-                            size="small"
-                            style={{ backgroundColor: 'transparent' }}
-                          >
-                            {subCategoryKeys.map((subKey) => {
-                              const indicators = subCategoryGroups[subKey];
-                              const subLabel =
-                                INDICATOR_SUB_CATEGORIES[subKey as keyof typeof INDICATOR_SUB_CATEGORIES] ||
-                                subKey;
+                      return (
+                        <TabPane tab={categoryLabel} key={categoryKey}>
+                          <div style={{ maxHeight: 300, overflowY: 'auto' }}>
+                            <Collapse
+                              defaultActiveKey={subCategoryKeys}
+                              ghost
+                              size="small"
+                              style={{ backgroundColor: 'transparent' }}
+                            >
+                              {subCategoryKeys.map((subKey) => {
+                                const subIndicators = subCategoryGroups[subKey];
+                                const subLabel =
+                                  INDICATOR_SUB_CATEGORIES[subKey as keyof typeof INDICATOR_SUB_CATEGORIES] ||
+                                  subKey;
 
-                              return (
-                                <Panel
-                                  header={
-                                    <Text strong style={{ fontSize: 12 }}>
-                                      {subLabel}
-                                      <Text type="secondary" style={{ fontSize: 11, marginLeft: 4 }}>
-                                        ({indicators.length})
+                                return (
+                                  <Panel
+                                    header={
+                                      <Text strong style={{ fontSize: 12 }}>
+                                        {subLabel}
+                                        <Text type="secondary" style={{ fontSize: 11, marginLeft: 4 }}>
+                                          ({subIndicators.length})
+                                        </Text>
                                       </Text>
-                                    </Text>
-                                  }
-                                  key={subKey}
-                                  style={{ padding: 0 }}
-                                >
-                                  <List
-                                    size="small"
-                                    dataSource={indicators}
-                                    renderItem={(indicator) => (
-                                      <IndicatorItem
-                                        indicator={indicator}
-                                        isSelected={selectedIndicatorIds.includes(indicator.id)}
-                                        isMain={indicator.id === mainIndicatorId}
-                                        onSelect={() => handleSelect(indicator)}
-                                      />
-                                    )}
-                                  />
-                                </Panel>
-                              );
-                            })}
-                          </Collapse>
-                        </div>
-                      </TabPane>
-                    );
-                  })}
+                                    }
+                                    key={subKey}
+                                    style={{ padding: 0 }}
+                                  >
+                                    <List
+                                      size="small"
+                                      dataSource={subIndicators}
+                                      renderItem={(indicator) => (
+                                        <IndicatorItem
+                                          indicator={indicator}
+                                          isSelected={selectedIndicatorIds.includes(indicator.id)}
+                                          isMain={indicator.id === mainIndicatorId}
+                                          onSelect={() => handleSelect(indicator)}
+                                        />
+                                      )}
+                                    />
+                                  </Panel>
+                                );
+                              })}
+                            </Collapse>
+                          </div>
+                        </TabPane>
+                      );
+                    })}
                 </Tabs>
               </TabPane>
             );
           })}
+
+          {/* 市場タブ */}
+          <TabPane tab="市場" key="market">
+            <Tabs
+              activeKey={activeCategory}
+              onChange={setActiveCategory}
+              size="small"
+              style={{ marginTop: -8 }}
+            >
+              {/* 全て */}
+              <TabPane tab={MARKET_CATEGORIES.all} key="all">
+                <div style={{ maxHeight: 300, overflowY: 'auto' }}>
+                  <List
+                    size="small"
+                    dataSource={getMarketIndicators()}
+                    renderItem={(indicator) => (
+                      <IndicatorItem
+                        indicator={indicator}
+                        isSelected={selectedIndicatorIds.includes(indicator.id)}
+                        isMain={indicator.id === mainIndicatorId}
+                        onSelect={() => handleSelect(indicator)}
+                      />
+                    )}
+                  />
+                </div>
+              </TabPane>
+
+              {/* 債券利回り、株価指数、商品、為替 */}
+              {Object.entries(MARKET_CATEGORIES)
+                .filter(([key]) => key !== 'all')
+                .map(([categoryKey, categoryLabel]) => {
+                  const subCategoryKeys = MARKET_CATEGORY_SUB_CATEGORIES[categoryKey] || [];
+                  const subCategoryGroups: Record<string, typeof marketBySubCategory[string]> = {};
+
+                  // このカテゴリに属するサブカテゴリをフィルタリング
+                  for (const subKey of subCategoryKeys) {
+                    if (marketBySubCategory[subKey]) {
+                      subCategoryGroups[subKey] = marketBySubCategory[subKey];
+                    }
+                  }
+
+                  const hasData = Object.keys(subCategoryGroups).length > 0;
+                  if (!hasData) return null;
+
+                  return (
+                    <TabPane tab={categoryLabel} key={categoryKey}>
+                      <div style={{ maxHeight: 300, overflowY: 'auto' }}>
+                        <Collapse
+                          defaultActiveKey={subCategoryKeys.slice(0, 3)}
+                          ghost
+                          size="small"
+                          style={{ backgroundColor: 'transparent' }}
+                        >
+                          {Object.keys(subCategoryGroups).map((subKey) => {
+                            const indicators = subCategoryGroups[subKey];
+                            const subLabel = MARKET_SUB_CATEGORY_LABELS[subKey] || subKey;
+
+                            return (
+                              <Panel
+                                header={
+                                  <Text strong style={{ fontSize: 12 }}>
+                                    {subLabel}
+                                    <Text type="secondary" style={{ fontSize: 11, marginLeft: 4 }}>
+                                      ({indicators.length})
+                                    </Text>
+                                  </Text>
+                                }
+                                key={subKey}
+                                style={{ padding: 0 }}
+                              >
+                                <List
+                                  size="small"
+                                  dataSource={indicators}
+                                  renderItem={(indicator) => (
+                                    <IndicatorItem
+                                      indicator={indicator}
+                                      isSelected={selectedIndicatorIds.includes(indicator.id)}
+                                      isMain={indicator.id === mainIndicatorId}
+                                      onSelect={() => handleSelect(indicator)}
+                                    />
+                                  )}
+                                />
+                              </Panel>
+                            );
+                          })}
+                        </Collapse>
+                      </div>
+                    </TabPane>
+                  );
+                })}
+            </Tabs>
+          </TabPane>
         </Tabs>
       )}
     </div>

@@ -15,8 +15,11 @@ try:
     from backend.routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from backend.routers.usa.fomc_projections import router as fomc_projections_router
     from backend.routers.dashboard import router as dashboard_router
+    from backend.routers.market import router as market_router
+    from backend.routers.calendar import router as calendar_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
+    from backend.services.calendar.calendar_scheduler import calendar_scheduler
     from backend.scheduler import indicator_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
@@ -27,8 +30,11 @@ except ImportError:
     from routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from routers.usa.fomc_projections import router as fomc_projections_router
     from routers.dashboard import router as dashboard_router
+    from routers.market import router as market_router
+    from routers.calendar import router as calendar_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
+    from services.calendar.calendar_scheduler import calendar_scheduler
     from scheduler import indicator_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
@@ -66,6 +72,8 @@ app.include_router(fred_router)
 app.include_router(cme_fedwatch_router)
 app.include_router(fomc_projections_router)
 app.include_router(dashboard_router)
+app.include_router(market_router)
+app.include_router(calendar_router)
 
 
 @app.get("/health")
@@ -121,6 +129,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Economic Indicator Scheduler: {e}")
 
+    # 経済カレンダースケジューラーを開始
+    try:
+        calendar_scheduler.start()
+        print("Calendar Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Calendar Scheduler: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
@@ -143,6 +158,11 @@ async def shutdown_event():
         indicator_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Indicator Scheduler: {e}")
+
+    try:
+        calendar_scheduler.stop()
+    except Exception as e:
+        print(f"Warning: Error shutting down Calendar Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

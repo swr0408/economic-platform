@@ -16,9 +16,21 @@ function getIndicatorMapping(indicatorId: string): {
   dataKey: string;
   valueField?: string;
   derived?: DerivedValueConfig;
+  isMarketData?: boolean;
 } | null {
   const indicator = OVERLAY_INDICATORS.find(i => i.id === indicatorId);
   if (!indicator) return null;
+
+  // 市場データ（/api/market）の場合は個別銘柄エンドポイントを使用
+  if (indicator.apiEndpoint === '/api/market') {
+    return {
+      endpoint: `/api/market/${indicator.dataKey}/daily`,
+      dataKey: indicator.dataKey,
+      valueField: indicator.valueField,
+      derived: indicator.derived,
+      isMarketData: true,
+    };
+  }
 
   // apiEndpointを/dashboard形式に変換
   const endpoint = indicator.apiEndpoint + '/dashboard';
@@ -27,6 +39,7 @@ function getIndicatorMapping(indicatorId: string): {
     dataKey: indicator.dataKey,
     valueField: indicator.valueField,
     derived: indicator.derived,
+    isMarketData: false,
   };
 }
 
@@ -80,6 +93,53 @@ function getNestedValue(obj: unknown, path: string): unknown {
   }
 
   return current;
+}
+
+/**
+ * 市場データAPIのレスポンス型
+ */
+interface MarketAPIResponse {
+  data: Array<{
+    date: string;
+    open: number | null;
+    high: number | null;
+    low: number | null;
+    close: number | null;
+    volume?: number;
+  }>;
+  latest: {
+    date: string;
+    close: number;
+  } | null;
+  symbol: Record<string, unknown> | null;
+  cached: boolean;
+  source: string;
+  last_updated: string | null;
+}
+
+/**
+ * 市場データを抽出
+ */
+function extractMarketData(
+  response: MarketAPIResponse,
+  valueField?: string
+): DataPoint[] {
+  if (!response.data || !Array.isArray(response.data)) {
+    console.log('[useOverlayData] No market data in response');
+    return [];
+  }
+
+  const field = valueField || 'close';
+
+  return response.data
+    .filter(item => {
+      const val = item[field as keyof typeof item];
+      return val !== undefined && val !== null && typeof val === 'number';
+    })
+    .map(item => ({
+      date: item.date,
+      value: item[field as keyof typeof item] as number,
+    }));
 }
 
 /**
@@ -192,9 +252,16 @@ export function useOverlayIndicatorData(indicator: OverlayIndicator | null) {
         throw new Error(`API error: ${response.status}`);
       }
 
-      const data = await response.json() as APIResponse;
+      // 市場データの場合は専用の抽出ロジックを使用
+      if (mapping.isMarketData) {
+        const data = await response.json() as MarketAPIResponse;
+        const result = extractMarketData(data, mapping.valueField);
+        console.log('[useOverlayData] Extracted', result.length, 'market data points for', indicator.id);
+        return result;
+      }
 
-      // データ抽出
+      // 通常の指標データ
+      const data = await response.json() as APIResponse;
       const result = extractIndicatorData(data, mapping.dataKey, mapping.valueField, mapping.derived);
       console.log('[useOverlayData] Extracted', result.length, 'points for', indicator.id);
       return result;

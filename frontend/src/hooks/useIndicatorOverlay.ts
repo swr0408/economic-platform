@@ -5,7 +5,7 @@
 
 import { useMemo, useState, useCallback, useEffect } from 'react';
 import {
-  mergeOverlayData,
+  mergeWithFrequencyAwareness,
   type DataPoint,
   type MergedDataPoint,
 } from '../utils/dataAlignment';
@@ -14,6 +14,7 @@ import {
   type OverlayIndicator,
   type OverlaySettings,
   type OverlayConfig,
+  type IndicatorFrequency,
   DEFAULT_OVERLAY_SETTINGS,
   getOverlayColor,
   getFrequencyLabel,
@@ -71,6 +72,9 @@ export interface UseIndicatorOverlayResult {
   // チップ情報
   overlayChips: OverlayChipInfo[];
 
+  // X軸の基準となる頻度（最も細かい頻度）
+  baseFrequency: IndicatorFrequency;
+
   // アクション
   addOverlay: (indicator: OverlayIndicator, data: DataPoint[]) => void;
   removeOverlay: (indicatorId: string) => void;
@@ -87,7 +91,8 @@ export interface UseIndicatorOverlayResult {
 
 export function useIndicatorOverlay(
   mainIndicatorId: string,
-  mainData: DataPoint[]
+  mainData: DataPoint[],
+  mainFrequency: IndicatorFrequency = 'monthly'
 ): UseIndicatorOverlayResult {
   // ==========================================================================
   // 状態管理
@@ -197,27 +202,33 @@ export function useIndicatorOverlay(
   }, []);
 
   // ==========================================================================
-  // データマージ
+  // データマージ（頻度認識）
   // ==========================================================================
 
-  const { mergedData, axisAssignments } = useMemo(() => {
+  const { mergedData, axisAssignments, baseFrequency } = useMemo(() => {
     console.log('[useIndicatorOverlay] Computing mergedData, overlays:', overlays.length, 'mainData:', mainData.length);
     if (overlays.length === 0 || mainData.length === 0) {
       return {
         mergedData: mainData.map(d => ({ date: d.date, value: d.value })),
         axisAssignments: {} as Record<string, string>,
+        baseFrequency: mainFrequency,
       };
     }
 
-    // データをマージ
+    // 頻度認識マージを使用
     const overlayInputs = overlays.map(o => ({
       key: o.config.indicator.id,
       data: o.data,
+      frequency: o.config.indicator.frequency,
     }));
-    console.log('[useIndicatorOverlay] overlayInputs:', overlayInputs.map(i => ({ key: i.key, dataLen: i.data.length })));
+    console.log('[useIndicatorOverlay] overlayInputs:', overlayInputs.map(i => ({ key: i.key, dataLen: i.data.length, freq: i.frequency })));
 
-    const merged = mergeOverlayData(mainData, overlayInputs);
-    console.log('[useIndicatorOverlay] merged data length:', merged.length);
+    const { mergedData: merged, baseFrequency: detectedBaseFreq } = mergeWithFrequencyAwareness(
+      mainData,
+      mainFrequency,
+      overlayInputs
+    );
+    console.log('[useIndicatorOverlay] merged data length:', merged.length, 'baseFrequency:', detectedBaseFreq);
     if (merged.length > 0) {
       console.log('[useIndicatorOverlay] merged sample:', merged[0]);
     }
@@ -229,8 +240,8 @@ export function useIndicatorOverlay(
     }
     console.log('[useIndicatorOverlay] axisAssignments:', assignments);
 
-    return { mergedData: merged, axisAssignments: assignments };
-  }, [mainData, overlays]);
+    return { mergedData: merged, axisAssignments: assignments, baseFrequency: detectedBaseFreq };
+  }, [mainData, mainFrequency, overlays]);
 
   // ==========================================================================
   // Index100変換の適用
@@ -363,6 +374,7 @@ const rightYAxes = useMemo<RightYAxisConfig[] | undefined>(() => {
     additionalLines,
     rightYAxes,
     overlayChips,
+    baseFrequency,
     addOverlay,
     removeOverlay,
     updateOverlaySettings,

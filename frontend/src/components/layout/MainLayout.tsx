@@ -216,7 +216,7 @@ function MainLayout() {
                 background: colors.bgSecondary,
                 borderRight: `1px solid ${colors.border}`,
                 position: 'sticky',
-                top: 0,
+                top: 64,
                 height: 'calc(100vh - 64px)',
                 overflow: 'auto',
               }}

@@ -4,6 +4,7 @@
  * データのソート、期間フィルタリング、日付フォーマットを共通化
  */
 import { useMemo, useState, useCallback } from 'react'
+import type { IndicatorFrequency } from '../../../../constants/overlayConfig'
 
 // =============================================================================
 // 型定義
@@ -178,6 +179,55 @@ export function formatWeekEndingJP(dateStr: string): string {
   const month = date.getMonth() + 1
   const day = date.getDate()
   return `${year}年${month}月${day}日週`
+}
+
+// =============================================================================
+// 頻度に応じたフォーマッター選択
+// =============================================================================
+
+export interface FrequencyFormatterPair {
+  xAxisFormatter: (dateStr: string) => string
+  tooltipFormatter: (dateStr: string) => string
+}
+
+/**
+ * 頻度に応じた日付フォーマッターのペアを返す
+ *
+ * @param frequency - 指標の頻度
+ * @returns X軸用とツールチップ用のフォーマッターペア
+ *
+ * @example
+ * const { xAxisFormatter, tooltipFormatter } = getFrequencyFormatters('daily')
+ */
+export function getFrequencyFormatters(frequency: IndicatorFrequency): FrequencyFormatterPair {
+  switch (frequency) {
+    case 'daily':
+      return {
+        xAxisFormatter: formatDateLabelFull,      // YYYY/MM/DD
+        tooltipFormatter: formatDateLabelFullJP,  // YYYY年MM月DD日
+      }
+    case 'weekly':
+      return {
+        xAxisFormatter: formatDateLabelFull,      // YYYY/MM/DD
+        tooltipFormatter: formatWeekEndingJP,     // YYYY年MM月DD日週
+      }
+    case 'monthly':
+      return {
+        xAxisFormatter: formatDateLabel,          // YYYY/MM
+        tooltipFormatter: formatDateLabelJP,      // YYYY年M月
+      }
+    case 'quarterly':
+      return {
+        xAxisFormatter: formatQuarterLabel,       // YYYY/Q1
+        tooltipFormatter: formatQuarterLabelJP,   // YYYY年Q1
+      }
+    case 'irregular':
+    default:
+      return {
+        xAxisFormatter: formatDateLabel,          // YYYY/MM
+        tooltipFormatter: formatDateLabelJP,      // YYYY年M月
+      }
+  }
 }
 
 // =============================================================================

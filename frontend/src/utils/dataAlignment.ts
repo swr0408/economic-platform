@@ -1,16 +1,23 @@
 /**
  * データ整列ユーティリティ
  * As-of Join（ポインタ法）による高速なデータ結合
+ * 頻度認識マージ対応
  */
+
+import type { IndicatorFrequency } from '../constants/overlayConfig';
 
 export interface DataPoint {
   date: string;
   value: number;
 }
 
+export interface DataPointWithFrequency extends DataPoint {
+  frequency?: IndicatorFrequency;
+}
+
 export interface MergedDataPoint {
   date: string;
-  value: number;
+  value: number | null;
   [key: string]: string | number | null;
 }
 
@@ -178,4 +185,125 @@ export function shouldUseRightAxis(
  */
 export function extractValidValues(values: (number | null)[]): number[] {
   return values.filter((v): v is number => v !== null && !isNaN(v));
+}
+
+/**
+ * 頻度認識マージ: 最も細かい頻度のデータを基準にマージ
+ *
+ * @param mainData メイン指標データ
+ * @param mainFrequency メイン指標の頻度
+ * @param overlays 比較データの配列（キー、データ、頻度のペア）
+ * @returns マージ済みデータと使用された基準頻度
+ */
+export function mergeWithFrequencyAwareness(
+  mainData: DataPoint[],
+  mainFrequency: IndicatorFrequency,
+  overlays: { key: string; data: DataPoint[]; frequency: IndicatorFrequency }[]
+): { mergedData: MergedDataPoint[]; baseFrequency: IndicatorFrequency } {
+  // 頻度の優先順位
+  const FREQ_PRIORITY: Record<IndicatorFrequency, number> = {
+    daily: 1,
+    weekly: 2,
+    monthly: 3,
+    quarterly: 4,
+    irregular: 3,
+  };
+
+  // 最も細かい頻度を特定
+  const allFrequencies = [mainFrequency, ...overlays.map(o => o.frequency)];
+  let finestFreq = mainFrequency;
+  let finestPriority = FREQ_PRIORITY[mainFrequency];
+
+  for (const freq of allFrequencies) {
+    if (FREQ_PRIORITY[freq] < finestPriority) {
+      finestFreq = freq;
+      finestPriority = FREQ_PRIORITY[freq];
+    }
+  }
+
+  // 最も細かい頻度のデータを基準として使用
+  let baseDates: string[];
+  let baseDataMap: Map<string, number>;
+
+  if (finestFreq === mainFrequency) {
+    // メイン指標が最も細かい場合は従来通り
+    const sortedMain = [...mainData].sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    baseDates = sortedMain.map(d => d.date);
+    baseDataMap = new Map(sortedMain.map(d => [d.date, d.value]));
+  } else {
+    // オーバーレイの中で最も細かいデータを基準にする
+    const finestOverlay = overlays.find(o => o.frequency === finestFreq);
+    if (!finestOverlay || finestOverlay.data.length === 0) {
+      // フォールバック: メインデータを使用
+      const sortedMain = [...mainData].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
+      baseDates = sortedMain.map(d => d.date);
+      baseDataMap = new Map(sortedMain.map(d => [d.date, d.value]));
+    } else {
+      // 最も細かいオーバーレイを基準にする
+      const sortedFinest = [...finestOverlay.data].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
+
+      // メインデータの期間に絞る
+      const mainSorted = [...mainData].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
+      const mainStartDate = mainSorted.length > 0 ? mainSorted[0].date : '';
+      const mainEndDate = mainSorted.length > 0 ? mainSorted[mainSorted.length - 1].date : '';
+
+      // 期間フィルタリング
+      const filteredFinest = sortedFinest.filter(d => d.date >= mainStartDate && d.date <= mainEndDate);
+
+      baseDates = filteredFinest.map(d => d.date);
+      baseDataMap = new Map(filteredFinest.map(d => [d.date, d.value]));
+    }
+  }
+
+  if (baseDates.length === 0) {
+    return { mergedData: [], baseFrequency: finestFreq };
+  }
+
+  // メインデータをAs-of Joinでマップ
+  const sortedMain = [...mainData].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
+  const mainValues = finestFreq === mainFrequency
+    ? baseDates.map(d => baseDataMap.get(d) ?? null)
+    : asOfJoin(baseDates, sortedMain);
+
+  // 各オーバーレイをマージ
+  const overlayValues: Record<string, (number | null)[]> = {};
+
+  for (const overlay of overlays) {
+    if (overlay.frequency === finestFreq && overlays.find(o => o.frequency === finestFreq)?.key === overlay.key) {
+      // このオーバーレイが基準の場合、そのまま使用
+      overlayValues[overlay.key] = baseDates.map(d => baseDataMap.get(d) ?? null);
+    } else {
+      // As-of Joinでマップ
+      const sortedOverlay = [...overlay.data].sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      );
+      overlayValues[overlay.key] = asOfJoin(baseDates, sortedOverlay);
+    }
+  }
+
+  // 結果を構築
+  const mergedData = baseDates.map((date, idx) => {
+    const merged: MergedDataPoint = {
+      date,
+      value: mainValues[idx],
+    };
+
+    for (const [key, values] of Object.entries(overlayValues)) {
+      merged[key] = values[idx];
+    }
+
+    return merged;
+  });
+
+  return { mergedData, baseFrequency: finestFreq };
 }

@@ -34,7 +34,7 @@ type ActiveLabelEvent =
 
 interface DataPoint {
   date: string
-  value: number
+  value: number | null
   [key: string]: unknown
 }
 

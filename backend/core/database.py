@@ -3,10 +3,13 @@
 PostgreSQL + TimescaleDB
 """
 import os
+from contextlib import contextmanager
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.pool import QueuePool
 from typing import Generator
+import psycopg2
+from psycopg2.extras import RealDictCursor
 
 # 環境変数からDB URLを取得
 DATABASE_URL = os.getenv(
@@ -50,3 +53,27 @@ def test_connection() -> bool:
     except Exception as e:
         print(f"Database connection failed: {e}")
         return False
+
+
+@contextmanager
+def get_db_connection():
+    """
+    psycopg2の生接続を取得するコンテキストマネージャ
+
+    calendar_repository等で使用
+    """
+    # DATABASE_URLからpsycopg2用のパラメータを解析
+    from urllib.parse import urlparse
+    parsed = urlparse(DATABASE_URL)
+
+    conn = psycopg2.connect(
+        host=parsed.hostname,
+        port=parsed.port or 5432,
+        dbname=parsed.path.lstrip('/'),
+        user=parsed.username,
+        password=parsed.password,
+    )
+    try:
+        yield conn
+    finally:
+        conn.close()

@@ -7,7 +7,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { ISMManufacturingData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
-import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
+import { usePeriodFiltering, getFrequencyFormatters, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, SimpleLatestValueBox } from '../common/ChartComponents'
 
 // オーバーレイ関連
@@ -37,17 +37,21 @@ export default function ISMManufacturingChart({ data }: ISMManufacturingChartPro
       }))
   }, [data])
 
-  // オーバーレイ管理フック
+  // オーバーレイ管理フック（メイン指標は月次）
   const {
     selectedOverlays,
     mergedData,
     additionalLines,
     rightYAxes,
     overlayChips,
+    baseFrequency,
     addOverlay,
     clearAllOverlays,
     hasOverlays,
-  } = useIndicatorOverlay('ism_manufacturing', chartData)
+  } = useIndicatorOverlay('ism_manufacturing', chartData, 'monthly')
+
+  // 頻度に応じたフォーマッターを取得
+  const { xAxisFormatter, tooltipFormatter: tooltipLabelFormatter } = getFrequencyFormatters(baseFrequency)
 
   // 選択中の指標のデータを取得
   const { data: overlayData, isLoading: isLoadingOverlay, indicatorId: fetchedIndicatorId, isSuccess } = useOverlayIndicatorData(pendingIndicator)
@@ -162,8 +166,8 @@ export default function ISMManufacturingChart({ data }: ISMManufacturingChartPro
           height={450}
           tickFormatter={formatValue}
           tooltipFormatter={formatValue}
-          tooltipLabelFormatter={formatDateLabel}
-          xAxisTickFormatter={formatDateLabel}
+          tooltipLabelFormatter={tooltipLabelFormatter}
+          xAxisTickFormatter={xAxisFormatter}
           enableDynamicTicks={true}
           showZeroLine={false}
           showFiftyLine={true}
