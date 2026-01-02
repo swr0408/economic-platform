@@ -51,7 +51,10 @@ RUN pip install --no-cache-dir \
     Pillow \
     APScheduler \
     pytz \
-    yfinance
+    yfinance \
+    httpx \
+    python-dotenv \
+    dukascopy-python
 
 # Playwrightブラウザをインストール（ChromiumとFirefox）
 RUN playwright install chromium firefox

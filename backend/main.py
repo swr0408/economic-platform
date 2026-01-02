@@ -17,6 +17,7 @@ try:
     from backend.routers.dashboard import router as dashboard_router
     from backend.routers.market import router as market_router
     from backend.routers.calendar import router as calendar_router
+    from backend.routers.market_impact import router as market_impact_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -32,6 +33,7 @@ except ImportError:
     from routers.dashboard import router as dashboard_router
     from routers.market import router as market_router
     from routers.calendar import router as calendar_router
+    from routers.market_impact import router as market_impact_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -74,6 +76,7 @@ app.include_router(fomc_projections_router)
 app.include_router(dashboard_router)
 app.include_router(market_router)
 app.include_router(calendar_router)
+app.include_router(market_impact_router)
 
 
 @app.get("/health")

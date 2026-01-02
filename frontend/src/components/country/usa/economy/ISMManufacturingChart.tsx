@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useEffect } from 'react'
-import { Space } from 'antd'
+import { Space, Tabs } from 'antd'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -17,6 +17,9 @@ import { ComparePopover } from '../../../charts/ComparePopover'
 import { OverlayChipList } from '../../../charts/OverlayChip'
 import type { OverlayIndicator } from '../../../../constants/overlayConfig'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 interface ISMManufacturingChartProps {
   data: ISMManufacturingData | null
 }
@@ -24,6 +27,7 @@ interface ISMManufacturingChartProps {
 export default function ISMManufacturingChart({ data }: ISMManufacturingChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
   const [pendingIndicator, setPendingIndicator] = useState<OverlayIndicator | null>(null)
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソートしてDataPoint型に変換
   const chartData = useMemo(() => {
@@ -135,50 +139,73 @@ export default function ISMManufacturingChart({ data }: ISMManufacturingChartPro
           decimals={1}
         />
 
-        {/* 期間セレクタ + 比較ボタン */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-          <Space>
-            <ComparePopover
-              selectedIndicatorIds={selectedOverlays.map(o => o.indicator.id)}
-              mainIndicatorId="ism_manufacturing"
-              onSelect={handleSelectIndicator}
-              maxSelections={3}
-              disabled={isLoadingOverlay}
-            />
-          </Space>
-        </div>
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクタ + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Space>
+                      <ComparePopover
+                        selectedIndicatorIds={selectedOverlays.map(o => o.indicator.id)}
+                        mainIndicatorId="ism_manufacturing"
+                        onSelect={handleSelectIndicator}
+                        maxSelections={3}
+                        disabled={isLoadingOverlay}
+                      />
+                    </Space>
+                  </div>
 
-        {/* オーバーレイチップ */}
-        {hasOverlays && (
-          <OverlayChipList
-            chips={overlayChips}
-            showClearAll={true}
-            onClearAll={clearAllOverlays}
-          />
-        )}
+                  {/* オーバーレイチップ */}
+                  {hasOverlays && (
+                    <OverlayChipList
+                      chips={overlayChips}
+                      showClearAll={true}
+                      onClearAll={clearAllOverlays}
+                    />
+                  )}
 
-        <ZoomableChart
-          data={filteredData}
-          dataKey="value"
-          color={CHART_COLOR}
-          name="ISM製造業景況指数"
-          height={450}
-          tickFormatter={formatValue}
-          tooltipFormatter={formatValue}
-          tooltipLabelFormatter={tooltipLabelFormatter}
-          xAxisTickFormatter={xAxisFormatter}
-          enableDynamicTicks={true}
-          showZeroLine={false}
-          showFiftyLine={true}
-          fiftyLineValue={50}
-          connectNulls={true}
-          hideLegend={!hasOverlays}
-          additionalLines={enhancedAdditionalLines}
-          rightYAxes={rightYAxes?.map((axis) => ({
-            ...axis,
-            tickFormatter: formatValue,
-          }))}
+                  <ZoomableChart
+                    data={filteredData}
+                    dataKey="value"
+                    color={CHART_COLOR}
+                    name="ISM製造業景況指数"
+                    height={450}
+                    tickFormatter={formatValue}
+                    tooltipFormatter={formatValue}
+                    tooltipLabelFormatter={tooltipLabelFormatter}
+                    xAxisTickFormatter={xAxisFormatter}
+                    enableDynamicTicks={true}
+                    showZeroLine={false}
+                    showFiftyLine={true}
+                    fiftyLineValue={50}
+                    connectNulls={true}
+                    hideLegend={!hasOverlays}
+                    additionalLines={enhancedAdditionalLines}
+                    rightYAxes={rightYAxes?.map((axis) => ({
+                      ...axis,
+                      tickFormatter: formatValue,
+                    }))}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="ism_manufacturing" />
+              ),
+            },
+          ]}
         />
       </ChartContainer>
     </div>

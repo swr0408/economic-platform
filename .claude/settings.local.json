@@ -75,7 +75,10 @@
       "Bash(done)",
       "Bash(npx tsc --noEmit)",
       "Bash(dir \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\")",
-      "Bash(psql:*)"
+      "Bash(psql:*)",
+      "Bash(docker-compose ps:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker-compose build:*)"
     ]
   }
 }

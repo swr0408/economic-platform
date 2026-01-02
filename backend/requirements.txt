@@ -46,6 +46,7 @@ playwright==1.41.0
 # Financial Data
 yfinance==0.2.35
 alpha-vantage==2.3.1
+dukascopy-python>=4.0.1
 
 # AI/ML
 openai==1.10.0
