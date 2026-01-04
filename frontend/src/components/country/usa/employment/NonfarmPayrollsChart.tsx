@@ -13,6 +13,9 @@
  * 共通コンポーネントを使用
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Bar,
@@ -95,6 +98,7 @@ const SERIES_NAMES = {
 export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps) {
   const [viewMode, setViewMode] = useState<ValueChangeViewMode>('value')
   const [dataType, setDataType] = useState<DataType>('nonfarm')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'nonfarm' | 'civilian' | 'nonfarm_change' | 'civilian_change'>()
 
   // ビューモード毎の期間管理
@@ -212,109 +216,141 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
           nextRelease={nextRelease}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 現数値グラフ */}
-        {viewMode === 'value' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <StandardLineChart
-              data={filteredData}
-              lines={[
-                {
-                  dataKey: 'nonfarm',
-                  color: getColor('nonfarm'),
-                  name: SERIES_NAMES.nonfarm,
-                  hide: isHidden('nonfarm'),
-                },
-                {
-                  dataKey: 'civilian',
-                  color: getColor('civilian'),
-                  name: SERIES_NAMES.civilian,
-                  hide: isHidden('civilian'),
-                },
-              ]}
-              yAxisFormatter={(v) => `${v.toLocaleString()}`}
-              yDomain={['dataMin - 1000', 'dataMax + 1000']}
-              tooltipLabelFormatter={formatDateLabelJP}
-              tooltipFormatter={createUnitFormatter('k', 0)}
-              showZeroLine={false}
-              onLegendClick={handleLegendClick}
-            />
-          </>
-        )}
+                  {/* 現数値グラフ */}
+                  {viewMode === 'value' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=nonfarm_payrolls', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          {
+                            dataKey: 'nonfarm',
+                            color: getColor('nonfarm'),
+                            name: SERIES_NAMES.nonfarm,
+                            hide: isHidden('nonfarm'),
+                          },
+                          {
+                            dataKey: 'civilian',
+                            color: getColor('civilian'),
+                            name: SERIES_NAMES.civilian,
+                            hide: isHidden('civilian'),
+                          },
+                        ]}
+                        yAxisFormatter={(v) => `${v.toLocaleString()}`}
+                        yDomain={['dataMin - 1000', 'dataMax + 1000']}
+                        tooltipLabelFormatter={formatDateLabelJP}
+                        tooltipFormatter={createUnitFormatter('k', 0)}
+                        showZeroLine={false}
+                        onLegendClick={handleLegendClick}
+                      />
+                    </>
+                  )}
 
-        {/* 前月増減幅グラフ */}
-        {viewMode === 'change_chart' && (
-          <>
-            <DataTypeButtonGroup
-              options={DATA_TYPE_OPTIONS}
-              currentType={dataType}
-              onChange={setDataType}
-            />
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
-                  domain={['dataMin - 100', 'dataMax + 100']}
-                  label={{
-                    value: '増減（k）',
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 20,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 前月増減幅グラフ */}
+                  {viewMode === 'change_chart' && (
+                    <>
+                      <DataTypeButtonGroup
+                        options={DATA_TYPE_OPTIONS}
+                        currentType={dataType}
+                        onChange={setDataType}
+                      />
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
+                            domain={['dataMin - 100', 'dataMax + 100']}
+                            label={{
+                              value: '増減（k）',
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 20,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                {/* 選択されたデータタイプのみ表示 */}
-                {dataType === 'nonfarm' && (
-                  <Bar
-                    dataKey="nonfarm_change"
-                    fill={getColor('nonfarm')}
-                    name={`${SERIES_NAMES.nonfarm}（増減）`}
-                  />
-                )}
-                {dataType === 'civilian' && (
-                  <Bar
-                    dataKey="civilian_change"
-                    fill={getColor('civilian')}
-                    name={`${SERIES_NAMES.civilian}（増減）`}
-                  />
-                )}
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          {/* 選択されたデータタイプのみ表示 */}
+                          {dataType === 'nonfarm' && (
+                            <Bar
+                              dataKey="nonfarm_change"
+                              fill={getColor('nonfarm')}
+                              name={`${SERIES_NAMES.nonfarm}（増減）`}
+                            />
+                          )}
+                          {dataType === 'civilian' && (
+                            <Bar
+                              dataKey="civilian_change"
+                              fill={getColor('civilian')}
+                              name={`${SERIES_NAMES.civilian}（増減）`}
+                            />
+                          )}
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月増減幅テーブル */}
-        {viewMode === 'change_table' && (
-          <MonthlyTableWithDataTypes
-            data={changeTableData}
-            dataTypes={DATA_TYPE_OPTIONS}
-            selectedType={dataType}
-            onTypeChange={setDataType}
-            helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
-            formatValue={(value) => {
-              if (value === null) return '-'
-              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
-            }}
-            getCellBgColor={getChangeCellColor200k}
-            legendItems={CHANGE_LEGEND_200K}
-          />
-        )}
+                  {/* 前月増減幅テーブル */}
+                  {viewMode === 'change_table' && (
+                    <MonthlyTableWithDataTypes
+                      data={changeTableData}
+                      dataTypes={DATA_TYPE_OPTIONS}
+                      selectedType={dataType}
+                      onTypeChange={setDataType}
+                      helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
+                      formatValue={(value) => {
+                        if (value === null) return '-'
+                        return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+                      }}
+                      getCellBgColor={getChangeCellColor200k}
+                      legendItems={CHANGE_LEGEND_200K}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="nonfarm_payrolls" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

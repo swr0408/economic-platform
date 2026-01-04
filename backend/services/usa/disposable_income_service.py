@@ -29,7 +29,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import PERSONAL_INCOME_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -51,10 +54,10 @@ class DisposableIncomeService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:disposable_income:data"
+    ECONALPHA_ID = "disposable_income"  # FMPマッピング用ID
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = PERSONAL_INCOME_CHECKER
 
     def get_disposable_income_data(
         self,
@@ -89,7 +92,7 @@ class DisposableIncomeService:
                     return {
                         "nominal": cached_data.get("nominal"),
                         "real": cached_data.get("real"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('disposable_income'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -105,7 +108,7 @@ class DisposableIncomeService:
                     return {
                         "nominal": file_cache.get("nominal"),
                         "real": file_cache.get("real"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('disposable_income'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -126,7 +129,7 @@ class DisposableIncomeService:
             return {
                 "nominal": api_data["nominal"],
                 "real": api_data["real"],
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('disposable_income'),
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -138,7 +141,7 @@ class DisposableIncomeService:
             return {
                 "nominal": file_cache.get("nominal"),
                 "real": file_cache.get("real"),
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('disposable_income'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -147,7 +150,7 @@ class DisposableIncomeService:
         return {
             "nominal": None,
             "real": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('disposable_income'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -263,8 +266,8 @@ class DisposableIncomeService:
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -303,7 +306,7 @@ class DisposableIncomeService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

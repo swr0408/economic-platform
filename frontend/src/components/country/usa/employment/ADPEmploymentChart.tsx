@@ -12,6 +12,9 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Bar,
@@ -80,6 +83,7 @@ const DEFAULT_COLOR = CHART_COLORS.primary
 
 export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
@@ -161,86 +165,118 @@ export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 現数値グラフ */}
-        {viewMode === 'value' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <StandardLineChart
-              data={filteredData}
-              lines={[
-                {
-                  dataKey: 'value',
-                  color: DEFAULT_COLOR,
-                  name: 'ADP雇用者数',
-                },
-              ]}
-              yAxisFormatter={(v) => `${v.toLocaleString()}`}
-              yDomain={['dataMin - 1000', 'dataMax + 1000']}
-              tooltipLabelFormatter={formatDateLabelJP}
-              tooltipFormatter={(value: unknown, name: string) => [
-                `${(value as number).toLocaleString()}k`,
-                name,
-              ]}
-              showZeroLine={false}
-            />
-          </>
-        )}
+                  {/* 現数値グラフ */}
+                  {viewMode === 'value' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=adp_employment', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          {
+                            dataKey: 'value',
+                            color: DEFAULT_COLOR,
+                            name: 'ADP雇用者数',
+                          },
+                        ]}
+                        yAxisFormatter={(v) => `${v.toLocaleString()}`}
+                        yDomain={['dataMin - 1000', 'dataMax + 1000']}
+                        tooltipLabelFormatter={formatDateLabelJP}
+                        tooltipFormatter={(value: unknown, name: string) => [
+                          `${(value as number).toLocaleString()}k`,
+                          name,
+                        ]}
+                        showZeroLine={false}
+                      />
+                    </>
+                  )}
 
-        {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
-                  domain={['dataMin - 100', 'dataMax + 100']}
-                  label={{
-                    value: '増減（k）',
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 20,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 前月比グラフ */}
+                  {viewMode === 'mom_chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
+                            domain={['dataMin - 100', 'dataMax + 100']}
+                            label={{
+                              value: '増減（k）',
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 20,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                <Bar
-                  dataKey="mom"
-                  fill={DEFAULT_COLOR}
-                  name="ADP雇用者数（前月比）"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          <Bar
+                            dataKey="mom"
+                            fill={DEFAULT_COLOR}
+                            name="ADP雇用者数（前月比）"
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && (
-          <MonthlyTable
-            data={changeTableData}
-            formatValue={(value) => {
-              if (value === null) return '-'
-              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
-            }}
-            getCellBgColor={getChangeCellColor200k}
-            legendItems={CHANGE_LEGEND_200K}
-            helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
-          />
-        )}
+                  {/* 前月比テーブル */}
+                  {viewMode === 'mom_table' && (
+                    <MonthlyTable
+                      data={changeTableData}
+                      formatValue={(value) => {
+                        if (value === null) return '-'
+                        return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+                      }}
+                      getCellBgColor={getChangeCellColor200k}
+                      legendItems={CHANGE_LEGEND_200K}
+                      helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="adp_employment" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

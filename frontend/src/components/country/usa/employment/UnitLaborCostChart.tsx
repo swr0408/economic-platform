@@ -14,6 +14,9 @@
  * 共通コンポーネントを使用
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   BarChart,
   Bar,
@@ -98,6 +101,7 @@ const DATA_TYPE_OPTIONS = [
 export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('qoq_table')
   const [tableType, setTableType] = useState<TableType>('ulc')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理
@@ -201,65 +205,97 @@ export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
           dateFormatter={formatQuarterLabel}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 前期比グラフ（両方棒グラフ） */}
-        {viewMode === 'qoq_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <BarChart data={filteredData} margin={CHART_MARGIN} barCategoryGap="20%">
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatQuarterLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
-                  domain={['dataMin - 1', 'dataMax + 1']}
-                  label={{
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 20,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="%" decimals={1} labelFormatter={formatQuarterLabelJP} />} />
-                <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 前期比グラフ（両方棒グラフ） */}
+                  {viewMode === 'qoq_chart' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=unit_labor_cost', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <ResponsiveContainer width="100%" height={450}>
+                        <BarChart data={filteredData} margin={CHART_MARGIN} barCategoryGap="20%">
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatQuarterLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
+                            domain={['dataMin - 1', 'dataMax + 1']}
+                            label={{
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 20,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="%" decimals={1} labelFormatter={formatQuarterLabelJP} />} />
+                          <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                <Bar
-                  dataKey="ulc_pch"
-                  fill={COLORS.ulc}
-                  name={SERIES_NAMES.ulc}
-                  hide={hiddenSeries.has('ulc_pch')}
-                />
-                <Bar
-                  dataKey="productivity_pch"
-                  fill={COLORS.productivity}
-                  name={SERIES_NAMES.productivity}
-                  hide={hiddenSeries.has('productivity_pch')}
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          <Bar
+                            dataKey="ulc_pch"
+                            fill={COLORS.ulc}
+                            name={SERIES_NAMES.ulc}
+                            hide={hiddenSeries.has('ulc_pch')}
+                          />
+                          <Bar
+                            dataKey="productivity_pch"
+                            fill={COLORS.productivity}
+                            name={SERIES_NAMES.productivity}
+                            hide={hiddenSeries.has('productivity_pch')}
+                          />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前期比テーブル（タブ切り替え） */}
-        {viewMode === 'qoq_table' && (
-          <QuarterlyTableWithDataTypes
-            data={tableData}
-            dataTypes={DATA_TYPE_OPTIONS}
-            selectedType={tableType}
-            onTypeChange={setTableType}
-            getCellBgColor={getChangeCellColor10pct}
-            legendItems={CHANGE_LEGEND_10PCT}
-          />
-        )}
+                  {/* 前期比テーブル（タブ切り替え） */}
+                  {viewMode === 'qoq_table' && (
+                    <QuarterlyTableWithDataTypes
+                      data={tableData}
+                      dataTypes={DATA_TYPE_OPTIONS}
+                      selectedType={tableType}
+                      onTypeChange={setTableType}
+                      getCellBgColor={getChangeCellColor10pct}
+                      legendItems={CHANGE_LEGEND_10PCT}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="unit_labor_cost" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

@@ -101,7 +101,7 @@ export default function IndeedWageGrowthChart({ data }: IndeedWageGrowthChartPro
           format="number"
           unit="%"
           decimals={2}
-          
+
         />
 
         {/* 期間セレクター */}

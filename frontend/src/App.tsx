@@ -6,6 +6,7 @@ import SymbolDetailPage from './pages/SymbolDetailPage'
 import CountryDataIndex from './pages/CountryDataIndex'
 import CountryDetail from './pages/CountryDetail'
 import CountryDataCategory from './pages/CountryDataCategory'
+import ComparePage from './pages/ComparePage'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="country" element={<CountryDataIndex />} />
           <Route path="country/:countryCode" element={<CountryDetail />} />
           <Route path="country/:countryCode/:categoryCode" element={<CountryDataCategory />} />
+          <Route path="compare" element={<ComparePage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -25,6 +27,9 @@ import {
   StandardBarChart,
 } from '../common/ChartComponents'
 import { MonthlyTable } from '../common/MonthlyTable'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // =============================================================================
 // 型定義
@@ -48,6 +53,7 @@ const COLORS = {
 
 export default function IndustrialProductionChart({ data }: IndustrialProductionChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
@@ -102,44 +108,77 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
           format="percent"
         />
 
-        <ViewModeButtonGroup
-          currentMode={viewMode}
-          onChange={(mode) => setViewMode(mode)}
-          options={[
-            { mode: 'yoy', label: '前年比' },
-            { mode: 'mom_table', label: '前月比テーブル' },
-            { mode: 'mom_chart', label: '前月比グラフ' },
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <ViewModeButtonGroup
+                    currentMode={viewMode}
+                    onChange={(mode) => setViewMode(mode)}
+                    options={[
+                      { mode: 'yoy', label: '前年比' },
+                      { mode: 'mom_table', label: '前月比テーブル' },
+                      { mode: 'mom_chart', label: '前月比グラフ' },
+                    ]}
+                  />
+
+                  {/* 期間セレクター */}
+                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <Tooltip title="比較ページを開く">
+                        <Button
+                          icon={<AreaChartOutlined />}
+                          onClick={() => window.open('/compare?s=industrial_production_index', '_blank')}
+                        >
+                          データ比較
+                        </Button>
+                      </Tooltip>
+                    </div>
+                  )}
+
+                  {/* コンテンツ表示 */}
+                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+
+                  {viewMode === 'yoy' && (
+                    <StandardLineChart
+                      data={filteredData}
+                      lines={[
+                        { dataKey: 'yoy', color: COLORS.yoy, name: '鉱工業生産（前年比）', hide: hiddenSeries.has('yoy') },
+                      ]}
+                      yAxisFormatter={(v) => `${v}%`}
+                      onLegendClick={handleLegendClick}
+                    />
+                  )}
+
+                  {viewMode === 'mom_chart' && (
+                    <StandardBarChart
+                      data={filteredData}
+                      bars={[
+                        { dataKey: 'mom', color: COLORS.mom, name: '鉱工業生産（前月比）' },
+                      ]}
+                      yAxisFormatter={(v) => `${v}%`}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="industrial_production_yoy" />
+              ),
+            },
           ]}
         />
-
-        {/* 期間セレクター */}
-        {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
-          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-        )}
-
-        {/* コンテンツ表示 */}
-        {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
-
-        {viewMode === 'yoy' && (
-          <StandardLineChart
-            data={filteredData}
-            lines={[
-              { dataKey: 'yoy', color: COLORS.yoy, name: '鉱工業生産（前年比）', hide: hiddenSeries.has('yoy') },
-            ]}
-            yAxisFormatter={(v) => `${v}%`}
-            onLegendClick={handleLegendClick}
-          />
-        )}
-
-        {viewMode === 'mom_chart' && (
-          <StandardBarChart
-            data={filteredData}
-            bars={[
-              { dataKey: 'mom', color: COLORS.mom, name: '鉱工業生産（前月比）' },
-            ]}
-            yAxisFormatter={(v) => `${v}%`}
-          />
-        )}
       </ChartContainer>
     </div>
   )

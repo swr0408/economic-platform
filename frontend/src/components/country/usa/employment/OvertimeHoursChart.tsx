@@ -11,6 +11,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs } from 'antd'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   LineChart,
   Line,
@@ -59,6 +61,7 @@ const LINE_COLOR = '#1890ff'  // 青
 
 export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付順にソート
   const sortedData = useSortedData(data?.data || [])
@@ -105,42 +108,64 @@ export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
-        {/* 原数値グラフ */}
-        <ResponsiveContainer width="100%" height={450}>
-          <LineChart data={filteredData} margin={CHART_MARGIN}>
-            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={AXIS_STYLE.tick}
-              interval={AXIS_STYLE.interval}
-            />
-            <YAxis
-              tick={AXIS_STYLE.tick}
-              tickFormatter={(v: number) => `${v.toFixed(1)}`}
-              domain={['dataMin - 0.1', 'dataMax + 0.1']}
-              label={{
-                angle: -90,
-                position: 'insideLeft',
-                dy: 50,
-                style: { fontSize: 11, fill: '#666' }
-              }}
-            />
-            <Tooltip content={<ValueTooltip unit="時間" decimals={1} />} />
+                  {/* 原数値グラフ */}
+                  <ResponsiveContainer width="100%" height={450}>
+                    <LineChart data={filteredData} margin={CHART_MARGIN}>
+                      <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={formatDateLabel}
+                        tick={AXIS_STYLE.tick}
+                        interval={AXIS_STYLE.interval}
+                      />
+                      <YAxis
+                        tick={AXIS_STYLE.tick}
+                        tickFormatter={(v: number) => `${v.toFixed(1)}`}
+                        domain={['dataMin - 0.1', 'dataMax + 0.1']}
+                        label={{
+                          angle: -90,
+                          position: 'insideLeft',
+                          dy: 50,
+                          style: { fontSize: 11, fill: '#666' }
+                        }}
+                      />
+                      <Tooltip content={<ValueTooltip unit="時間" decimals={1} />} />
 
-            <Line
-              type="monotone"
-              dataKey="value"
-              stroke={LINE_COLOR}
-              strokeWidth={2}
-              dot={false}
-              name="平均残業時間"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+                      <Line
+                        type="monotone"
+                        dataKey="value"
+                        stroke={LINE_COLOR}
+                        strokeWidth={2}
+                        dot={false}
+                        name="平均残業時間"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="nonfarm_payrolls" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

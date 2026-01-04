@@ -10,6 +10,7 @@ import {
   StockOutlined,
   PercentageOutlined,
   ThunderboltOutlined,
+  AreaChartOutlined,
 } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
@@ -282,6 +283,52 @@ function HomePage() {
                           }}
                         >
                           主要各国の経済指標をリアルタイムで分析
+                        </Text>
+                      </div>
+                    </div>
+                  </Card>
+                </Col>
+
+                {/* データ比較カード */}
+                <Col xs={24} sm={12}>
+                  <Card
+                    hoverable
+                    style={{
+                      background: colors.bgSecondary,
+                      border: `1px solid ${colors.border}`,
+                      height: '100%',
+                    }}
+                    bodyStyle={{ padding: '16px' }}
+                    onClick={() => window.open('/compare', '_blank')}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <div
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          background: 'rgba(245, 158, 11, 0.15)',
+                          borderRadius: '10px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <AreaChartOutlined style={{ fontSize: '22px', color: colors.gold }} />
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
+                          データ比較
+                        </Text>
+                        <Text
+                          style={{
+                            color: colors.textSecondary,
+                            fontSize: '12px',
+                            display: 'block',
+                            marginTop: '4px',
+                          }}
+                        >
+                          複数の経済指標を重ねて相関を分析
                         </Text>
                       </div>
                     </div>

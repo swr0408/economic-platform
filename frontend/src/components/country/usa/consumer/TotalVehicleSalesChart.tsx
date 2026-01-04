@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -27,6 +29,7 @@ import {
   StandardBarChart,
 } from '../common/ChartComponents'
 import { MonthlyTable } from '../common/MonthlyTable'
+
 
 // =============================================================================
 // 型定義
@@ -138,11 +141,21 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
         />
 
         {/* ビューモード切り替え */}
-        <ViewModeButtonGroup
-          options={VIEW_MODE_OPTIONS}
-          currentMode={viewMode}
-          onChange={setViewMode}
-        />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+          <ViewModeButtonGroup
+            options={VIEW_MODE_OPTIONS}
+            currentMode={viewMode}
+            onChange={setViewMode}
+          />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=total_vehicle_sales', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
 
         {/* 原数値グラフ */}
         {viewMode === 'value' && (

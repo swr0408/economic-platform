@@ -4,10 +4,15 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { PersonalSavingRateData } from '../../../../hooks/useDashboardData'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // 共通モジュールのインポート
 import { CHART_COLORS } from '../common/chartConstants'
@@ -46,6 +51,7 @@ const createPercentNoSignFormatter = (decimals: number = 1) => {
 
 export default function PersonalSavingRateChart({ data }: PersonalSavingRateChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート
   const chartData = useSortedData(data?.data)
@@ -92,18 +98,51 @@ export default function PersonalSavingRateChart({ data }: PersonalSavingRateChar
           dateFormatter={formatDateLabelJP}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            { dataKey: 'value', color: CHART_COLORS.primary, name: '家計貯蓄率' },
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=personal_saving_rate', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      { dataKey: 'value', color: CHART_COLORS.primary, name: '家計貯蓄率' },
+                    ]}
+                    yAxisFormatter={(v) => `${v}%`}
+                    yDomain={['dataMin - 1', 'dataMax + 1']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={createPercentNoSignFormatter(1)}
+                    showZeroLine={false}
+                    showLegend={false}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="personal_saving_rate" />
+              ),
+            },
           ]}
-          yAxisFormatter={(v) => `${v}%`}
-          yDomain={['dataMin - 1', 'dataMax + 1']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={createPercentNoSignFormatter(1)}
-          showZeroLine={false}
-          showLegend={false}
         />
       </ChartContainer>
     </div>

@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -9,12 +11,16 @@ import type { CapacityUtilizationData } from '../../../../hooks/useDashboardData
 import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, SimpleLatestValueBox } from '../common/ChartComponents'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 interface CapacityUtilizationChartProps {
   data: CapacityUtilizationData | null
 }
 
 export default function CapacityUtilizationChart({ data }: CapacityUtilizationChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -72,23 +78,56 @@ export default function CapacityUtilizationChart({ data }: CapacityUtilizationCh
           decimals={1}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=capacity_utilization', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-        <ZoomableChart
-          data={filteredData}
-          dataKey="value"
-          color="#1890ff"
-          name="設備稼働率"
-          height={450}
-          tickFormatter={formatValue}
-          tooltipFormatter={formatValue}
-          tooltipLabelFormatter={formatDateLabel}
-          xAxisTickFormatter={formatDateLabel}
-          enableDynamicTicks={true}
-          showZeroLine={false}
-          showFiftyLine={false}
-          connectNulls={true}
-          hideLegend={true}
+                  <ZoomableChart
+                    data={filteredData}
+                    dataKey="value"
+                    color="#1890ff"
+                    name="設備稼働率"
+                    height={450}
+                    tickFormatter={formatValue}
+                    tooltipFormatter={formatValue}
+                    tooltipLabelFormatter={formatDateLabel}
+                    xAxisTickFormatter={formatDateLabel}
+                    enableDynamicTicks={true}
+                    showZeroLine={false}
+                    showFiftyLine={false}
+                    connectNulls={true}
+                    hideLegend={true}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="capacity_utilization" />
+              ),
+            },
+          ]}
         />
       </ChartContainer>
     </div>

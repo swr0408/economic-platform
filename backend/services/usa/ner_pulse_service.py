@@ -23,12 +23,14 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import NER_PULSE_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # キャッシュディレクトリ
 CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
@@ -52,6 +54,7 @@ class NERPulseService:
 
     DATA_CACHE_KEY = "adp:ner_pulse:data"
     SCHEDULE_CACHE_KEY = "adp:ner_pulse:schedule"
+    ECONALPHA_ID = "ner_pulse"  # FMPマッピング用ID
 
     # 発表時刻設定（ET）- 8:15 AM ET
     RELEASE_HOUR_ET = 8
@@ -65,7 +68,7 @@ class NERPulseService:
     }
 
     def __init__(self):
-        self.schedule_checker = NER_PULSE_CHECKER
+        pass
 
     def get_ner_pulse_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
@@ -301,8 +304,12 @@ class NERPulseService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """
+        キャッシュを更新すべきかどうかを判定
+
+        FMPスケジュールベースの3分方式で判定
+        """
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
@@ -375,7 +382,7 @@ class NERPulseService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

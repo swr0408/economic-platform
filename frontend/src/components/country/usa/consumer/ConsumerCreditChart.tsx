@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -26,6 +28,7 @@ import {
   StandardLineChart,
   StandardBarChart,
 } from '../common/ChartComponents'
+
 
 // =============================================================================
 // 型定義
@@ -119,11 +122,21 @@ export default function ConsumerCreditChart({ data }: ConsumerCreditChartProps) 
         />
 
         {/* ビューモード切り替え */}
-        <ViewModeButtonGroup
-          options={VIEW_MODE_OPTIONS}
-          currentMode={viewMode}
-          onChange={setViewMode}
-        />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+          <ViewModeButtonGroup
+            options={VIEW_MODE_OPTIONS}
+            currentMode={viewMode}
+            onChange={setViewMode}
+          />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=consumer_credit', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
 
         {/* 期間セレクター */}
         <PeriodSelector

@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -10,12 +12,16 @@ import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 interface NFIBOptimismChartProps {
   data: NFIBData | null
 }
 
 export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {
@@ -91,23 +97,56 @@ export default function NFIBOptimismChart({ data }: NFIBOptimismChartProps) {
           </div>
         </div>
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=nfib', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-        <ZoomableChart
-          data={filteredData}
-          dataKey="value"
-          color={CHART_COLOR}
-          name="NFIB楽観指数"
-          height={450}
-          tickFormatter={formatValue}
-          tooltipFormatter={formatValue}
-          tooltipLabelFormatter={formatDateLabel}
-          xAxisTickFormatter={formatDateLabel}
-          enableDynamicTicks={true}
-          showZeroLine={false}
-          showFiftyLine={false}
-          connectNulls={true}
-          hideLegend={true}
+                  <ZoomableChart
+                    data={filteredData}
+                    dataKey="value"
+                    color={CHART_COLOR}
+                    name="NFIB楽観指数"
+                    height={450}
+                    tickFormatter={formatValue}
+                    tooltipFormatter={formatValue}
+                    tooltipLabelFormatter={formatDateLabel}
+                    xAxisTickFormatter={formatDateLabel}
+                    enableDynamicTicks={true}
+                    showZeroLine={false}
+                    showFiftyLine={false}
+                    connectNulls={true}
+                    hideLegend={true}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="nfib" />
+              ),
+            },
+          ]}
         />
       </ChartContainer>
     </div>

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Tabs } from 'antd'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -7,6 +8,9 @@ import type { ISMComponentsData } from '../../../../hooks/useDashboardData'
 // 共通モジュールのインポート
 import { usePeriodFiltering, formatDateLabel, useHiddenSeries, createNumberFormatter, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, LatestValueBox, StandardLineChart } from '../common/ChartComponents'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 interface ISMComponentsChartProps {
   data: ISMComponentsData | null
@@ -25,6 +29,7 @@ type SeriesKey = keyof typeof SERIES_CONFIG
 
 export default function ISMComponentsChart({ data }: ISMComponentsChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<SeriesKey>()
 
   // データを日付昇順にソート
@@ -100,17 +105,40 @@ export default function ISMComponentsChart({ data }: ISMComponentsChartProps) {
           />
         )}
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <StandardLineChart
-          data={filteredData}
-          lines={lines}
-          yAxisFormatter={(v) => v.toFixed(0)}
-          yDomain={['dataMin - 5', 'dataMax + 5']}
-          tooltipLabelFormatter={formatDateLabel}
-          tooltipFormatter={createNumberFormatter(1)}
-          onLegendClick={handleLegendClick}
-          showFiftyLine={true}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={lines}
+                    yAxisFormatter={(v) => v.toFixed(0)}
+                    yDomain={['dataMin - 5', 'dataMax + 5']}
+                    tooltipLabelFormatter={formatDateLabel}
+                    tooltipFormatter={createNumberFormatter(1)}
+                    onLegendClick={handleLegendClick}
+                    showFiftyLine={true}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="ism_manufacturing" />
+              ),
+            },
+          ]}
         />
       </ChartContainer>
     </div>

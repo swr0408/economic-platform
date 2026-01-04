@@ -13,10 +13,9 @@ FRED APIからUNRATE & U6RATEデータを取得
 発表スケジュール:
 - BLS Employment Situation（雇用統計）
 - 毎月第1金曜日 8:30 AM ET
-- 発表期間: 毎月1〜15日
 - 発表時刻: 21:30 (夏) / 22:30 (冬) JST
 
-キャッシュ方式: 発表期間ベース判定方式
+キャッシュ方式: FMP 3分方式（発表時刻から3分間は毎分更新チェック）
 """
 import os
 import json
@@ -28,7 +27,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import UNEMPLOYMENT_RATE_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -50,10 +52,10 @@ class UnemploymentRateService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:unemployment_rate:data"
+    ECONALPHA_ID = "unemployment_rate"  # FMPマッピング用ID
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = UNEMPLOYMENT_RATE_CHECKER
 
     def get_unemployment_rate_data(
         self,
@@ -79,10 +81,11 @@ class UnemploymentRateService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
+                    next_release = get_next_release_from_fmp('unemployment_rate')
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": next_release,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -95,10 +98,11 @@ class UnemploymentRateService:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
+                    next_release = get_next_release_from_fmp('unemployment_rate')
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": None,
+                        "next_release": next_release,
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -109,6 +113,7 @@ class UnemploymentRateService:
 
         if api_data:
             latest = api_data[-1] if api_data else None
+            next_release = get_next_release_from_fmp('unemployment_rate')
 
             cache_payload = {
                 "data": api_data,
@@ -121,7 +126,7 @@ class UnemploymentRateService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": next_release,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -130,10 +135,11 @@ class UnemploymentRateService:
         # 取得失敗時はファイルキャッシュから返す
         file_cache = self._load_file_cache()
         if file_cache:
+            next_release = get_next_release_from_fmp('unemployment_rate')
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": None,
+                "next_release": next_release,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -142,7 +148,7 @@ class UnemploymentRateService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('unemployment_rate'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -241,12 +247,12 @@ class UnemploymentRateService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
-        キャッシュを更新すべきかどうかを判定（発表期間ベース）
+        キャッシュを更新すべきかどうかを判定（FMP 3分方式）
 
-        発表期間: 毎月1〜15日
-        発表時刻: 21:30 (夏) / 22:30 (冬) JST
+        FMPのイベントスケジュールに基づいて、発表時刻から3分間は
+        毎分更新チェックを行い、新しいデータを取得する。
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -277,6 +283,7 @@ class UnemploymentRateService:
         """キャッシュの状態を取得"""
         data_exists = redis_client.exists(self.DATA_CACHE_KEY)
         cached_data = redis_client.get(self.DATA_CACHE_KEY) if data_exists else None
+        next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
         return {
             "indicator": "Unemployment Rate",
@@ -285,7 +292,7 @@ class UnemploymentRateService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": next_release,
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

@@ -25,7 +25,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import CHALLENGER_LAYOFFS_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -45,9 +48,10 @@ class ChallengerJobCutsService:
     """Challenger人員削減数サービス"""
 
     DATA_CACHE_KEY = "investing:challenger_job_cuts:data"
+    ECONALPHA_ID = "challenger_job_cuts"  # FMPマッピング用ID
 
     def __init__(self):
-        self.schedule_checker = CHALLENGER_LAYOFFS_CHECKER
+        pass
 
     def get_challenger_data(
         self,
@@ -78,29 +82,37 @@ class ChallengerJobCutsService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": cached_data.get("next_release"),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
                     }
 
-        # ファイルキャッシュチェック
-        if not force_refresh:
-            file_cache = self._load_file_cache()
-            if file_cache:
-                last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
-                    redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
-                    return {
-                        "data": file_cache.get("data", []),
-                        "latest": file_cache.get("latest"),
-                        "next_release": None,
-                        "cached": True,
-                        "source": "file",
-                        "last_updated": last_updated_str
-                    }
+        # 優先順位: 1. DB(FMP蓄積) → 2. Investing.com API（フォールバック）
+        db_result = self._load_from_db()
+        if db_result:
+            # 次回発表日をFMPから取得
+            next_release = self._get_next_release_from_fmp()
 
-        # Investing.comからJSONで取得
+            latest = db_result[-1] if db_result else None
+            cache_payload = {
+                "data": db_result,
+                "latest": latest,
+                "next_release": next_release,
+                "last_updated": datetime.now(JST).isoformat()
+            }
+            redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
+
+            return {
+                "data": db_result,
+                "latest": latest,
+                "next_release": next_release,
+                "cached": False,
+                "source": "database",
+                "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # DBにデータがない場合はInvesting.comから取得（フォールバック）
         api_data = self._fetch_from_investing()
 
         if api_data:
@@ -146,6 +158,101 @@ class ChallengerJobCutsService:
             "last_updated": None,
             "error": "No data available"
         }
+
+    def _load_from_db(self) -> List[Dict[str, Any]]:
+        """DBから履歴データを取得"""
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+            from datetime import timedelta
+
+            with SessionLocal() as session:
+                query = text("""
+                    SELECT datetime_utc, actual, estimate, previous
+                    FROM economic_calendar_events
+                    WHERE country = 'US'
+                      AND event ILIKE '%Challenger Job Cuts%'
+                      AND actual IS NOT NULL
+                    ORDER BY datetime_utc ASC
+                """)
+                rows = session.execute(query).fetchall()
+
+                result = []
+                seen_dates = set()
+
+                for row in rows:
+                    dt_utc, actual, estimate, previous = row
+                    if dt_utc:
+                        # 月初日に正規化
+                        date_str = dt_utc.strftime("%Y-%m-01")
+                        if date_str in seen_dates:
+                            continue
+                        seen_dates.add(date_str)
+
+                        result.append({
+                            "date": date_str,
+                            "value": float(actual) if actual else None,
+                            "mom": None,
+                            "yoy": None,
+                        })
+
+                # 変化率を再計算
+                result = self._calculate_changes(result)
+                print(f"Loaded {len(result)} Challenger Job Cuts records from DB")
+                return result
+
+        except Exception as e:
+            print(f"Error loading from DB: {e}")
+            return []
+
+    def _get_next_release_from_fmp(self) -> Optional[Dict[str, Any]]:
+        """FMP APIから次回発表日を取得"""
+        try:
+            from services.calendar.fmp_service import fmp_service
+            from datetime import date, timedelta
+
+            today = date.today()
+            # FMP APIからイベントを取得
+            events = fmp_service.fetch_calendar(
+                today,
+                today + timedelta(days=60),
+                country="US"
+            )
+
+            # 対象イベントを収集（USのみ）
+            candidates = []
+            for event in events:
+                # USイベントのみ
+                if event.get("country") != "US":
+                    continue
+                event_name = event.get("event", "")
+                # Challenger Job Cutsにマッチするイベントのみ
+                if "challenger job cuts" not in event_name.lower():
+                    continue
+                # 将来のイベント（actual が None）
+                if event.get("actual") is None:
+                    dt_utc, _ = fmp_service.parse_datetime(event.get("date", ""))
+                    if dt_utc and dt_utc.date() >= today:
+                        candidates.append({
+                            "date": dt_utc.strftime("%Y-%m-%d"),
+                            "datetime_utc": dt_utc.isoformat(),
+                            "label": event_name,
+                            "estimate": event.get("estimate"),
+                            "_dt": dt_utc,
+                        })
+
+            # 日付順でソートして最も近いイベントを返す
+            if candidates:
+                candidates.sort(key=lambda x: x["_dt"])
+                result = candidates[0]
+                del result["_dt"]
+                return result
+
+            return None
+
+        except Exception as e:
+            print(f"Error fetching next release from FMP: {e}")
+            return None
 
     def _fetch_from_investing(self) -> List[Dict[str, Any]]:
         """Investing.comからChallenger人員削減数データを取得（JSON API）"""
@@ -296,13 +403,8 @@ class ChallengerJobCutsService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定（発表期間ベース）
-
-        発表期間: 毎月1〜31日（毎月第1木曜日頃）
-        発表時刻: 20:30 (夏) / 21:30 (冬) JST
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -343,7 +445,7 @@ class ChallengerJobCutsService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

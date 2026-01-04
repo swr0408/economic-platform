@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Tabs } from 'antd'
 import { Line } from 'recharts'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
@@ -10,6 +11,9 @@ import type { NFIBCapexData } from '../../../../hooks/useDashboardData'
 import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 interface NFIBCapexChartProps {
   data: NFIBCapexData | null
@@ -45,6 +49,7 @@ const calculate3MA = (data: ChartDataPoint[]): ChartDataPoint[] => {
 
 export default function NFIBCapexChart({ data }: NFIBCapexChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソートして3MA計算
   const chartData = useMemo(() => {
@@ -125,36 +130,59 @@ export default function NFIBCapexChart({ data }: NFIBCapexChartProps) {
           </div>
         </div>
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <ZoomableChart
-          data={filteredData}
-          dataKey="value"
-          color={RAW_COLOR}
-          name="設備投資計画"
-          height={450}
-          tickFormatter={formatValue}
-          tooltipFormatter={formatValue}
-          tooltipLabelFormatter={formatDateLabel}
-          xAxisTickFormatter={formatDateLabel}
-          enableDynamicTicks={true}
-          showZeroLine={false}
-          showFiftyLine={false}
-          connectNulls={true}
-          hideLegend={false}
-          strokeWidth={1.5}
-        >
-          <Line
-            type="monotone"
-            dataKey="capex3MA"
-            stroke={MA_COLOR}
-            name="設備投資計画(3か月平均)"
-            dot={false}
-            strokeWidth={2}
-            yAxisId="left"
-            isAnimationActive={false}
-          />
-        </ZoomableChart>
+                  <ZoomableChart
+                    data={filteredData}
+                    dataKey="value"
+                    color={RAW_COLOR}
+                    name="設備投資計画"
+                    height={450}
+                    tickFormatter={formatValue}
+                    tooltipFormatter={formatValue}
+                    tooltipLabelFormatter={formatDateLabel}
+                    xAxisTickFormatter={formatDateLabel}
+                    enableDynamicTicks={true}
+                    showZeroLine={false}
+                    showFiftyLine={false}
+                    connectNulls={true}
+                    hideLegend={false}
+                    strokeWidth={1.5}
+                  >
+                    <Line
+                      type="monotone"
+                      dataKey="capex3MA"
+                      stroke={MA_COLOR}
+                      name="設備投資計画(3か月平均)"
+                      dot={false}
+                      strokeWidth={2}
+                      yAxisId="left"
+                      isAnimationActive={false}
+                    />
+                  </ZoomableChart>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="nfib" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

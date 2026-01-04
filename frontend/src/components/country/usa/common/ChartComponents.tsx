@@ -10,13 +10,16 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+  Tooltip as RechartsTooltip,
   Legend,
   ResponsiveContainer,
   ReferenceLine,
   Bar,
   BarChart,
 } from 'recharts'
+import { Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import PeriodSelector from '../../../common/PeriodSelector'
 import {
   LATEST_VALUE_BOX_STYLE,
   getViewModeButtonStyle,
@@ -173,7 +176,7 @@ interface LatestValueItem {
 interface LatestValueBoxProps {
   items: LatestValueItem[]
   date?: string
-  nextRelease?: { date: string; label?: string } | null
+  nextRelease?: { date: string; label?: string; time_jst?: string } | null
   children?: React.ReactNode
   /** 日付のフォーマット関数（デフォルト: formatDateLabel） */
   dateFormatter?: (date: string) => string
@@ -255,7 +258,7 @@ interface SimpleLatestValueBoxProps {
   valueColor?: string
   subValueColor?: string
   date?: string
-  nextRelease?: { date: string; label?: string } | null
+  nextRelease?: { date: string; label?: string; time_jst?: string } | null
   format?: 'percent' | 'currency' | 'number' | 'raw'
   unit?: string
   decimals?: number
@@ -329,7 +332,10 @@ export function SimpleLatestValueBox({
 
       {nextRelease && (
         <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
-          <div>次回発表: {nextRelease.date}</div>
+          <div>
+            次回発表: {nextRelease.date}
+            {nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </div>
           {nextRelease.label && (
             <div style={{ fontSize: 11, color: DARK_THEME.accent }}>{nextRelease.label}</div>
           )}
@@ -792,7 +798,7 @@ export function StandardLineChart<T extends { date: string }>({
           tick={AXIS_STYLE.tick}
           tickFormatter={yAxisFormatter}
         />
-        <Tooltip content={<LineChartTooltip />} />
+        <RechartsTooltip content={<LineChartTooltip />} />
         {showLegend && (
           <Legend
             onClick={onLegendClick ? (e) => onLegendClick(e.dataKey as string) : undefined}
@@ -960,7 +966,7 @@ export function StandardBarChart<T extends { date: string }>({
           tick={AXIS_STYLE.tick}
           tickFormatter={yAxisFormatter}
         />
-        <Tooltip content={<BarChartTooltip />} />
+        <RechartsTooltip content={<BarChartTooltip />} />
         {showLegend && <Legend />}
         {showZeroLine && <ReferenceLine {...ZERO_LINE_PROPS} />}
         {bars.map((bar) => (
@@ -1283,5 +1289,88 @@ export function PercentageTooltip({
       valueFormatter={formatPercentage}
       nameMap={nameMap}
     />
+  )
+}
+
+// =============================================================================
+// CompareButton - データ比較ボタン
+// =============================================================================
+
+interface CompareButtonProps {
+  /** 指標ID（overlayConfig.tsのid） */
+  indicatorId: string
+  /** ボタンラベル（デフォルト: 'データ比較'） */
+  label?: string
+}
+
+/**
+ * データ比較ページへのリンクボタン
+ *
+ * @example
+ * <CompareButton indicatorId="ism_manufacturing" />
+ */
+export function CompareButton({ indicatorId, label = 'データ比較' }: CompareButtonProps) {
+  return (
+    <AntTooltip title="比較ページを開く">
+      <Button
+        icon={<AreaChartOutlined />}
+        onClick={() => window.open(`/compare?s=${indicatorId}`, '_blank')}
+      >
+        {label}
+      </Button>
+    </AntTooltip>
+  )
+}
+
+// =============================================================================
+// ChartControlRow - 期間セレクタ + 比較ボタンの行
+// =============================================================================
+
+import type { PeriodType } from './useChartData'
+
+interface ChartControlRowProps {
+  /** 選択中の期間 */
+  selectedPeriod: PeriodType
+  /** 期間変更ハンドラ */
+  onPeriodChange: (period: PeriodType) => void
+  /** 指標ID（比較ボタン用） */
+  indicatorId: string
+  /** 追加のコントロール（左側に配置） */
+  leftControls?: React.ReactNode
+  /** 追加のコントロール（右側に配置、比較ボタンの左） */
+  rightControls?: React.ReactNode
+  /** 比較ボタンを非表示にする */
+  hideCompareButton?: boolean
+}
+
+/**
+ * チャート上部のコントロール行（期間セレクタ + 比較ボタン）
+ *
+ * @example
+ * <ChartControlRow
+ *   selectedPeriod={selectedPeriod}
+ *   onPeriodChange={setSelectedPeriod}
+ *   indicatorId="ism_manufacturing"
+ * />
+ */
+export function ChartControlRow({
+  selectedPeriod,
+  onPeriodChange,
+  indicatorId,
+  leftControls,
+  rightControls,
+  hideCompareButton = false,
+}: ChartControlRowProps) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <PeriodSelector onPeriodChange={onPeriodChange} selectedPeriod={selectedPeriod} />
+        {leftControls}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        {rightControls}
+        {!hideCompareButton && <CompareButton indicatorId={indicatorId} />}
+      </div>
+    </div>
   )
 }

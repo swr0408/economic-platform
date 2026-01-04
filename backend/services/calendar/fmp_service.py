@@ -12,7 +12,7 @@ import json
 import re
 import os
 from datetime import date, datetime, timedelta
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
 import httpx
@@ -56,13 +56,21 @@ class FMPService:
     # API呼び出し
     # =========================================================================
 
-    def fetch_calendar(self, from_date: date, to_date: date) -> list[dict]:
+    def fetch_calendar(
+        self,
+        from_date: date,
+        to_date: date,
+        country: Optional[str] = None,
+        event: Optional[str] = None
+    ) -> list:
         """
         指定期間の経済カレンダーを取得
 
         Args:
             from_date: 開始日
             to_date: 終了日
+            country: 国コード（例: "US"）- 指定すると国でフィルタ
+            event: イベント名（例: "ISM Manufacturing PMI"）- 指定するとイベント名でフィルタ
 
         Returns:
             イベントリスト
@@ -76,7 +84,16 @@ class FMPService:
             "apikey": self.api_key,
         }
 
-        print(f"[FMP] Fetching calendar: {from_date} to {to_date}")
+        # オプションパラメータ
+        if country:
+            params["country"] = country
+        if event:
+            params["event"] = event
+
+        filter_info = ""
+        if country or event:
+            filter_info = f" (country={country}, event={event})"
+        print(f"[FMP] Fetching calendar: {from_date} to {to_date}{filter_info}")
 
         response = self.client.get(FMP_BASE_URL, params=params)
         response.raise_for_status()
@@ -94,7 +111,7 @@ class FMPService:
         start_date: date,
         end_date: date,
         range_days: int = 90
-    ) -> list[dict]:
+    ) -> List[Dict]:
         """
         期間を分割して取得（API制限対策）
 
@@ -129,7 +146,7 @@ class FMPService:
     @staticmethod
     def generate_event_key(
         provider: str,
-        country: str | None,
+        country: Optional[str],
         event: str,
         datetime_raw: str
     ) -> str:
@@ -153,7 +170,7 @@ class FMPService:
         return normalized
 
     @staticmethod
-    def extract_period_info(event: str) -> str | None:
+    def extract_period_info(event: str) -> Optional[str]:
         """
         イベント名から期間情報を抽出
 
@@ -168,7 +185,7 @@ class FMPService:
         return None
 
     @staticmethod
-    def parse_datetime(datetime_str: str) -> tuple[datetime | None, bool]:
+    def parse_datetime(datetime_str: str) -> Tuple[Optional[datetime], bool]:
         """
         日時文字列をパース
 
@@ -226,7 +243,7 @@ class FMPService:
             "raw_json": raw_event,
         }
 
-    def filter_target_countries(self, events: list[dict]) -> list[dict]:
+    def filter_target_countries(self, events: List[Dict]) -> List[Dict]:
         """対象国のイベントのみフィルタ"""
         return [e for e in events if e.get("country") in TARGET_COUNTRIES]
 

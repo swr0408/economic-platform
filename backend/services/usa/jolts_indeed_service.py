@@ -28,7 +28,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import JOLTS_OPENINGS_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -66,10 +69,10 @@ class JoltsIndeedService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:jolts_indeed:data"
+    ECONALPHA_ID = "jolts_openings"  # FMPマッピング用ID
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = JOLTS_OPENINGS_CHECKER
 
     def get_jolts_indeed_data(
         self,
@@ -100,7 +103,7 @@ class JoltsIndeedService:
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
                         "series_config": SERIES_CONFIG,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('jolts_openings'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -117,7 +120,7 @@ class JoltsIndeedService:
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
                         "series_config": SERIES_CONFIG,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('jolts_openings'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -141,7 +144,7 @@ class JoltsIndeedService:
                 "data": api_data,
                 "latest": latest,
                 "series_config": SERIES_CONFIG,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('jolts_openings'),
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -154,7 +157,7 @@ class JoltsIndeedService:
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
                 "series_config": SERIES_CONFIG,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('jolts_openings'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -164,7 +167,7 @@ class JoltsIndeedService:
             "data": [],
             "latest": None,
             "series_config": SERIES_CONFIG,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('jolts_openings'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -295,13 +298,8 @@ class JoltsIndeedService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定（発表期間ベース）
-
-        発表期間: 毎月29日〜翌月13日（月跨ぎ）
-        発表時刻: 23:00 (夏) / 0:00 (冬) JST
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -340,7 +338,7 @@ class JoltsIndeedService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

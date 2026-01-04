@@ -4,11 +4,14 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
-import { Tooltip } from 'recharts'
+import { Tooltip as RechartsTooltip } from 'recharts'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // 共通モジュールのインポート
 import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
@@ -41,6 +44,7 @@ interface PolicyRateChartData {
 
 export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換
   const policyRateData = useMemo<PolicyRateChartData[]>(() => {
@@ -105,73 +109,102 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
           decimals={2}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-        <ZoomableChart
-          data={filteredData}
-          dataKey="rate"
-          color="#1890ff"
-          name="政策金利"
-          height={450}
-          tickFormatter={formatPercentage}
-          xAxisTickFormatter={formatDateLabel}
-          enableDynamicTicks={true}
-          showZeroLine={true}
-          showFiftyLine={false}
-          connectNulls={true}
-          hideLegend={true}
-          showDefaultTooltip={false}
-          domain={['dataMin - 0.25', 'dataMax + 0.25']}
-        >
-          <Tooltip
-            content={({ active, payload, label }) => {
-              if (!active || !payload || payload.length === 0) return null
-              return (
-                <div
-                  style={{
-                    backgroundColor: DARK_THEME.bgTertiary,
-                    border: `1px solid ${DARK_THEME.borderLight}`,
-                    borderRadius: 8,
-                    padding: '12px 16px',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-                  }}
-                >
-                  <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
-                    {formatDateLabel(String(label))}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=policy_rate', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
                   </div>
-                  {payload.map((item, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginBottom: 4,
-                        fontSize: 13,
+                  <ZoomableChart
+                    data={filteredData}
+                    dataKey="rate"
+                    color="#1890ff"
+                    name="政策金利"
+                    height={450}
+                    tickFormatter={formatPercentage}
+                    xAxisTickFormatter={formatDateLabel}
+                    enableDynamicTicks={true}
+                    showZeroLine={true}
+                    showFiftyLine={false}
+                    connectNulls={true}
+                    hideLegend={true}
+                    showDefaultTooltip={false}
+                    domain={['dataMin - 0.25', 'dataMax + 0.25']}
+                  >
+                    <RechartsTooltip
+                      content={({ active, payload, label }) => {
+                        if (!active || !payload || payload.length === 0) return null
+                        return (
+                          <div
+                            style={{
+                              backgroundColor: DARK_THEME.bgTertiary,
+                              border: `1px solid ${DARK_THEME.borderLight}`,
+                              borderRadius: 8,
+                              padding: '12px 16px',
+                              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                            }}
+                          >
+                            <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
+                              {formatDateLabel(String(label))}
+                            </div>
+                            {payload.map((item, index) => (
+                              <div
+                                key={index}
+                                style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                  marginBottom: 4,
+                                  fontSize: 13,
+                                }}
+                              >
+                                <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+                                  <span
+                                    style={{
+                                      display: 'inline-block',
+                                      width: 10,
+                                      height: 10,
+                                      borderRadius: 2,
+                                      backgroundColor: item.color || '#1890ff',
+                                      marginRight: 6,
+                                    }}
+                                  />
+                                  {item.name}
+                                </span>
+                                <span style={{ fontWeight: 500, color: item.color || '#1890ff' }}>
+                                  {formatPercentage(item.value as number)}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )
                       }}
-                    >
-                      <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-                        <span
-                          style={{
-                            display: 'inline-block',
-                            width: 10,
-                            height: 10,
-                            borderRadius: 2,
-                            backgroundColor: item.color || '#1890ff',
-                            marginRight: 6,
-                          }}
-                        />
-                        {item.name}
-                      </span>
-                      <span style={{ fontWeight: 500, color: item.color || '#1890ff' }}>
-                        {formatPercentage(item.value as number)}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )
-            }}
-          />
-        </ZoomableChart>
+                    />
+                  </ZoomableChart>
+                </>
+              ),
+            },
+            {
+              key: 'market_impact',
+              label: 'マーケットインパクト',
+              children: <MarketImpactTab indicatorId="policy_rate" />,
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

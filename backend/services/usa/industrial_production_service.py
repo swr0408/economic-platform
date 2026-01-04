@@ -24,12 +24,14 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import INDUSTRIAL_PRODUCTION_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
 INDPRO_SERIES_ID = "INDPRO"
@@ -49,6 +51,7 @@ class IndustrialProductionService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     CACHE_KEY = "fred:series:indpro"
     SCHEDULE_CACHE_KEY = "indpro:next_release"
+    ECONALPHA_ID = "industrial_production"  # FMPマッピング用ID
 
     # 発表時刻設定
     RELEASE_TIME_ET = "09:15"  # 発表時刻(ET)
@@ -63,7 +66,6 @@ class IndustrialProductionService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = INDUSTRIAL_PRODUCTION_CHECKER
 
     def get_industrial_production_data(
         self,
@@ -257,8 +259,12 @@ class IndustrialProductionService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """
+        キャッシュを更新すべきかどうかを判定
+
+        FMPスケジュールベースの3分方式で判定
+        """
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _get_next_release(self) -> Optional[Dict[str, str]]:
         """
@@ -384,7 +390,7 @@ class IndustrialProductionService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": CACHE_FILE.exists()
         }
 

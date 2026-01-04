@@ -3,7 +3,7 @@
  * 指標IDに基づいて適切なAPIからデータを取得
  */
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueries } from '@tanstack/react-query';
 import { OVERLAY_INDICATORS, type OverlayIndicator, type DerivedValueConfig } from '../constants/overlayConfig';
 import type { DataPoint } from '../utils/dataAlignment';
 
@@ -17,6 +17,7 @@ function getIndicatorMapping(indicatorId: string): {
   valueField?: string;
   derived?: DerivedValueConfig;
   isMarketData?: boolean;
+  isDirectApi?: boolean;  // /dashboardを追加しない個別APIの場合
 } | null {
   const indicator = OVERLAY_INDICATORS.find(i => i.id === indicatorId);
   if (!indicator) return null;
@@ -29,6 +30,29 @@ function getIndicatorMapping(indicatorId: string): {
       valueField: indicator.valueField,
       derived: indicator.derived,
       isMarketData: true,
+      isDirectApi: false,
+    };
+  }
+
+  // 個別API（/dashboardを追加しない）の判定
+  // - /api/nyfed/term-premium
+  // - /api/fed-h15/policy-rate
+  // など、特定のエンドポイントは直接使用
+  const directApiPatterns = [
+    '/api/nyfed/',
+    '/api/fed-h15/',
+    '/api/cme/',
+  ];
+  const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
+
+  if (isDirectApi) {
+    return {
+      endpoint: indicator.apiEndpoint,
+      dataKey: indicator.dataKey,
+      valueField: indicator.valueField,
+      derived: indicator.derived,
+      isMarketData: false,
+      isDirectApi: true,
     };
   }
 
@@ -40,6 +64,7 @@ function getIndicatorMapping(indicatorId: string): {
     valueField: indicator.valueField,
     derived: indicator.derived,
     isMarketData: false,
+    isDirectApi: false,
   };
 }
 
@@ -152,18 +177,34 @@ function extractIndicatorData(
   derived?: DerivedValueConfig
 ): DataPoint[] {
   // dataKeyでデータを取得
-  let indicatorData = response.data[dataKey] as {
-    data?: APIDataItem[];
-    [key: string]: unknown;
-  } | null;
+  const indicatorData = response.data[dataKey] as unknown;
 
   if (!indicatorData) {
     console.log('[useOverlayData] No indicator data for:', dataKey);
     return [];
   }
 
+  // パターン1: 直接配列の場合 (例: gdp_growth_rate: [{date, value}])
+  if (Array.isArray(indicatorData)) {
+    console.log('[useOverlayData] Direct array pattern for:', dataKey, 'length:', indicatorData.length);
+    return (indicatorData as APIDataItem[])
+      .filter(item => {
+        const val = item.value;
+        return val !== undefined && val !== null && typeof val === 'number';
+      })
+      .map(item => ({
+        date: item.date,
+        value: item.value as number,
+      }));
+  }
+
+  const dataObj = indicatorData as {
+    data?: APIDataItem[];
+    [key: string]: unknown;
+  };
+
   if (derived) {
-    const data = indicatorData.data;
+    const data = dataObj.data;
     if (!data || !Array.isArray(data) || data.length === 0) {
       return [];
     }
@@ -190,35 +231,76 @@ function extractIndicatorData(
   // valueFieldにドットが含まれる場合（ネストパス）
   if (valueField && valueField.includes('.')) {
     const parts = valueField.split('.');
-    const nestedKey = parts[0];  // 例: "nominal"
-    const fieldName = parts.slice(1).join('.');  // 例: "mom"
+    const nestedKey = parts[0];  // 例: "baseline" or "nominal"
+    const remainingPath = parts.slice(1).join('.');  // 例: "data" or "mom"
 
-    const nestedData = indicatorData[nestedKey] as { data?: APIDataItem[] } | null;
-    if (nestedData?.data && Array.isArray(nestedData.data)) {
-      return nestedData.data
+    const nestedData = dataObj[nestedKey] as Record<string, unknown> | null;
+    if (!nestedData) {
+      console.log('[useOverlayData] No nested data for:', nestedKey);
+      return [];
+    }
+
+    // パターン3: baseline.data のようなパス (fci.baseline.data)
+    if (remainingPath === 'data') {
+      const dataArray = nestedData.data as APIDataItem[] | undefined;
+      if (dataArray && Array.isArray(dataArray)) {
+        console.log('[useOverlayData] Nested data array pattern for:', dataKey, '.', valueField, 'length:', dataArray.length);
+        return dataArray
+          .filter(item => {
+            const val = item.value;
+            return val !== undefined && val !== null && typeof val === 'number';
+          })
+          .map(item => ({
+            date: item.date,
+            value: item.value as number,
+          }));
+      }
+    }
+
+    // パターン: nominal.mom のような場合（既存ロジック）
+    const nestedDataWithData = nestedData as { data?: APIDataItem[] };
+    if (nestedDataWithData?.data && Array.isArray(nestedDataWithData.data)) {
+      return nestedDataWithData.data
         .filter(item => {
-          const val = getNestedValue(item, fieldName);
+          const val = getNestedValue(item, remainingPath);
           return val !== undefined && val !== null && typeof val === 'number';
         })
         .map(item => ({
           date: item.date,
-          value: getNestedValue(item, fieldName) as number,
+          value: getNestedValue(item, remainingPath) as number,
         }));
     }
     return [];
   }
 
+  // パターン2: valueFieldがサブオブジェクトを指す場合 (例: potential_gdp.real: [{date, value}])
+  if (valueField && !valueField.includes('.')) {
+    const subData = dataObj[valueField];
+    if (Array.isArray(subData)) {
+      console.log('[useOverlayData] Sub-object array pattern for:', dataKey, '.', valueField, 'length:', subData.length);
+      return (subData as APIDataItem[])
+        .filter(item => {
+          const val = item.value;
+          return val !== undefined && val !== null && typeof val === 'number';
+        })
+        .map(item => ({
+          date: item.date,
+          value: item.value as number,
+        }));
+    }
+  }
+
   // dataフィールドがある場合
-  if (indicatorData.data && Array.isArray(indicatorData.data) && indicatorData.data.length > 0) {
+  if (dataObj.data && Array.isArray(dataObj.data) && dataObj.data.length > 0) {
     // 指定されたvalueFieldを使用、なければ自動検出
-    const field = valueField || detectValueField(indicatorData.data[0]);
+    const field = valueField || detectValueField(dataObj.data[0]);
     if (!field) {
       console.log('[useOverlayData] No numeric field found for:', dataKey);
       return [];
     }
     console.log('[useOverlayData] Using value field:', field, 'for dataKey:', dataKey);
 
-    return indicatorData.data
+    return dataObj.data
       .filter((item): item is APIDataItem => {
         const val = item[field];
         return val !== undefined && val !== null && typeof val === 'number';
@@ -229,6 +311,7 @@ function extractIndicatorData(
       }));
   }
 
+  console.log('[useOverlayData] No matching pattern for:', dataKey, 'valueField:', valueField);
   return [];
 }
 
@@ -278,62 +361,117 @@ export function useOverlayIndicatorData(indicator: OverlayIndicator | null) {
 }
 
 /**
- * 複数指標のデータを並列取得
+ * 個別API（nyfed, fed-h15等）のレスポンスからデータを抽出
+ */
+interface DirectApiDataItem {
+  date: string;
+  [key: string]: unknown;
+}
+
+function extractDirectApiData(
+  response: unknown,
+  dataKey: string,
+  valueField?: string
+): DataPoint[] {
+  const data = response as { data?: DirectApiDataItem[]; meta?: unknown };
+
+  if (!data.data || !Array.isArray(data.data)) {
+    console.log('[useOverlayData] No data array in direct API response for:', dataKey);
+    return [];
+  }
+
+  const field = valueField || dataKey;
+
+  return data.data
+    .filter((item) => {
+      const val = item[field];
+      return val !== undefined && val !== null && typeof val === 'number';
+    })
+    .map((item) => ({
+      date: item.date,
+      value: item[field] as number,
+    }));
+}
+
+/**
+ * 単一指標データをフェッチする関数
+ */
+async function fetchSingleIndicatorData(
+  _indicator: OverlayIndicator,
+  mapping: NonNullable<ReturnType<typeof getIndicatorMapping>>
+): Promise<DataPoint[]> {
+  const response = await fetch(`${API_BASE_URL}${mapping.endpoint}`);
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  // 市場データの場合
+  if (mapping.isMarketData) {
+    return extractMarketData(data as MarketAPIResponse, mapping.valueField);
+  }
+  // 個別API（nyfed, fed-h15等）の場合
+  else if (mapping.isDirectApi) {
+    return extractDirectApiData(data, mapping.dataKey, mapping.valueField);
+  }
+  // 通常の指標データ（/dashboard形式）
+  else {
+    return extractIndicatorData(
+      data as APIResponse,
+      mapping.dataKey,
+      mapping.valueField,
+      mapping.derived
+    );
+  }
+}
+
+/**
+ * 複数指標のデータを並列取得（各指標を個別にキャッシュ）
+ *
+ * useQueriesを使用して各指標を個別にキャッシュすることで：
+ * - 新しい指標追加時に既存データは再フェッチしない
+ * - 各指標のローディング状態を個別に管理
+ * - キャッシュ効率が向上
  */
 export function useMultipleOverlayData(indicators: OverlayIndicator[]) {
-  const queries = indicators.map(indicator => {
-    const mapping = getIndicatorMapping(indicator.id);
-    return { indicator, mapping };
+  const queryResults = useQueries({
+    queries: indicators.map(indicator => {
+      const mapping = getIndicatorMapping(indicator.id);
+      return {
+        queryKey: ['overlay-single', indicator.id, mapping?.endpoint],
+        queryFn: async () => {
+          if (!mapping) return [];
+          return fetchSingleIndicatorData(indicator, mapping);
+        },
+        enabled: !!mapping,
+        staleTime: 5 * 60 * 1000,
+        gcTime: 30 * 60 * 1000,
+      };
+    }),
   });
 
-  return useQuery<Record<string, DataPoint[]>, Error>({
-    queryKey: ['overlays', indicators.map(i => i.id).join(',')],
-    queryFn: async () => {
-      const results: Record<string, DataPoint[]> = {};
+  // 結果をRecord形式にまとめる
+  const data: Record<string, DataPoint[]> = {};
+  let isLoading = false;
+  let isError = false;
 
-      // エンドポイントでグループ化
-      const endpointGroups = new Map<string, { indicator: OverlayIndicator; mapping: NonNullable<ReturnType<typeof getIndicatorMapping>> }[]>();
-
-      for (const { indicator, mapping } of queries) {
-        if (!mapping) continue;
-
-        if (!endpointGroups.has(mapping.endpoint)) {
-          endpointGroups.set(mapping.endpoint, []);
-        }
-        endpointGroups.get(mapping.endpoint)!.push({ indicator, mapping });
-      }
-
-      // 各エンドポイントを並列フェッチ
-      const fetchPromises = Array.from(endpointGroups.entries()).map(
-        async ([endpoint, items]) => {
-          try {
-            const response = await fetch(`${API_BASE_URL}${endpoint}`);
-            if (!response.ok) {
-              console.error(`API error for ${endpoint}: ${response.status}`);
-              return;
-            }
-
-            const data = await response.json() as APIResponse;
-
-            for (const { indicator, mapping } of items) {
-              results[indicator.id] = extractIndicatorData(
-                data,
-                mapping.dataKey,
-                mapping.valueField,
-                mapping.derived
-              );
-            }
-          } catch (error) {
-            console.error(`Failed to fetch ${endpoint}:`, error);
-          }
-        }
-      );
-
-      await Promise.all(fetchPromises);
-      return results;
-    },
-    enabled: indicators.length > 0,
-    staleTime: 5 * 60 * 1000,
-    gcTime: 30 * 60 * 1000,
+  queryResults.forEach((result, index) => {
+    const indicator = indicators[index];
+    if (result.data) {
+      data[indicator.id] = result.data;
+    }
+    if (result.isLoading) {
+      isLoading = true;
+    }
+    if (result.isError) {
+      isError = true;
+    }
   });
+
+  return {
+    data: Object.keys(data).length > 0 ? data : undefined,
+    isLoading,
+    isError,
+  };
 }

@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -34,6 +36,9 @@ import {
 } from '../common/ChartComponents'
 import { MonthlyTableWithDataTypes } from '../common/MonthlyTable'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 // =============================================================================
 // 型定義
 // =============================================================================
@@ -57,6 +62,7 @@ const COLORS = {
 export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
   const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
   const [dataType, setDataType] = useState<DurableGoodsDataType>('total')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
@@ -128,52 +134,95 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
           nextRelease={data.next_release}
         />
 
-        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 前年比グラフ */}
-        {viewMode === 'yoy' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <StandardLineChart
-              data={filteredData}
-              lines={[
-                { dataKey: 'yoy', color: COLORS.yoy, name: '耐久財受注（前年比）', hide: hiddenSeries.has('yoy') },
-                { dataKey: 'ex_transport_yoy', color: COLORS.yoy_ex, name: '輸送除外（前年比）', hide: hiddenSeries.has('ex_transport_yoy') },
-              ]}
-              yAxisFormatter={(v) => `${v}%`}
-              yDomain={['dataMin - 5', 'dataMax + 5']}
-              onLegendClick={handleLegendClick}
-            />
-          </>
-        )}
+                  {/* 前年比グラフ */}
+                  {viewMode === 'yoy' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <Tooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=durable_goods_value', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </Tooltip>
+                      </div>
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          { dataKey: 'yoy', color: COLORS.yoy, name: '耐久財受注（前年比）', hide: hiddenSeries.has('yoy') },
+                          { dataKey: 'ex_transport_yoy', color: COLORS.yoy_ex, name: '輸送除外（前年比）', hide: hiddenSeries.has('ex_transport_yoy') },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 5', 'dataMax + 5']}
+                        onLegendClick={handleLegendClick}
+                      />
+                    </>
+                  )}
 
-        {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && (
-          <MonthlyTableWithDataTypes
-            data={momTableData}
-            dataTypes={DURABLE_GOODS_DATA_TYPE_OPTIONS}
-            selectedType={dataType}
-            onTypeChange={setDataType}
-          />
-        )}
+                  {/* 前月比テーブル */}
+                  {viewMode === 'mom_table' && (
+                    <MonthlyTableWithDataTypes
+                      data={momTableData}
+                      dataTypes={DURABLE_GOODS_DATA_TYPE_OPTIONS}
+                      selectedType={dataType}
+                      onTypeChange={setDataType}
+                    />
+                  )}
 
-        {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
-          <>
-            <DataTypeButtonGroup options={DURABLE_GOODS_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <StandardBarChart
-              data={filteredData}
-              bars={[
-                dataType === 'total'
-                  ? { dataKey: 'mom', color: COLORS.mom, name: '耐久財受注（前月比）' }
-                  : { dataKey: 'ex_transport_mom', color: COLORS.mom_ex, name: '輸送除外（前月比）' },
-              ]}
-              yAxisFormatter={(v) => `${v}%`}
-              yDomain={['dataMin - 2', 'dataMax + 2']}
-            />
-          </>
-        )}
+                  {/* 前月比グラフ */}
+                  {viewMode === 'mom_chart' && (
+                    <>
+                      <DataTypeButtonGroup options={DURABLE_GOODS_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <Tooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=durable_goods_value', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </Tooltip>
+                      </div>
+                      <StandardBarChart
+                        data={filteredData}
+                        bars={[
+                          dataType === 'total'
+                            ? { dataKey: 'mom', color: COLORS.mom, name: '耐久財受注（前月比）' }
+                            : { dataKey: 'ex_transport_mom', color: COLORS.mom_ex, name: '輸送除外（前月比）' },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 2', 'dataMax + 2']}
+                      />
+                    </>
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="durable_goods_mom" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

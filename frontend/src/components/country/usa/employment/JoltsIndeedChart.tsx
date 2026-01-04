@@ -13,6 +13,9 @@
  * 共通コンポーネントを使用
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Line,
@@ -179,6 +182,7 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
 
 export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'jolts' | 'indeed' | 'jolts_change'>()
 
   // ビューモード毎の期間管理
@@ -370,149 +374,182 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 現数値グラフ */}
-        {viewMode === 'value' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            {/* 単一Y軸で両データを表示（IndeedはJOLTSスケールに変換済み） */}
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={scaledData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                {/* 左Y軸: JOLTS求人件数（千人単位） */}
-                <YAxis
-                  yAxisId="left"
-                  domain={[joltsMin - 500, joltsMax + 500]}
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v.toLocaleString()}`}
-                  label={{
-                    value: 'JOLTS求人件数（k）',
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 50,
-                    style: { fontSize: 11, fill: getColor('jolts') }
-                  }}
-                />
-                {/* 右Y軸: Indeed求人件数指数（JOLTSスケールに合わせて表示） */}
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  domain={[joltsMin - 500, joltsMax + 500]}
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => {
-                    // JOLTSスケールからIndeed指数に逆変換して表示
-                    const joltsRange = joltsMax - joltsMin
-                    const indeedRange = indeedMax - indeedMin
-                    if (joltsRange === 0) return '0'
-                    const indeedValue = indeedMin + (v - joltsMin) * indeedRange / joltsRange
-                    return indeedValue.toFixed(0)
-                  }}
-                  label={{
-                    value: 'Indeed指数（2020/2=100）',
-                    angle: 90,
-                    position: 'insideRight',
-                    dy: 70,
-                    style: { fontSize: 11, fill: getColor('indeed') }
-                  }}
-                />
-                <Tooltip content={<ValueTooltip />} />
-                <Legend
-                  onClick={(e) => handleLegendClick(e.dataKey as string)}
-                  wrapperStyle={{ cursor: 'pointer' }}
-                />
+                  {/* 現数値グラフ */}
+                  {viewMode === 'value' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=jolts_openings', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      {/* 単一Y軸で両データを表示（IndeedはJOLTSスケールに変換済み） */}
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={scaledData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          {/* 左Y軸: JOLTS求人件数（千人単位） */}
+                          <YAxis
+                            yAxisId="left"
+                            domain={[joltsMin - 500, joltsMax + 500]}
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v.toLocaleString()}`}
+                            label={{
+                              value: 'JOLTS求人件数（k）',
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 50,
+                              style: { fontSize: 11, fill: getColor('jolts') }
+                            }}
+                          />
+                          {/* 右Y軸: Indeed求人件数指数（JOLTSスケールに合わせて表示） */}
+                          <YAxis
+                            yAxisId="right"
+                            orientation="right"
+                            domain={[joltsMin - 500, joltsMax + 500]}
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => {
+                              // JOLTSスケールからIndeed指数に逆変換して表示
+                              const joltsRange = joltsMax - joltsMin
+                              const indeedRange = indeedMax - indeedMin
+                              if (joltsRange === 0) return '0'
+                              const indeedValue = indeedMin + (v - joltsMin) * indeedRange / joltsRange
+                              return indeedValue.toFixed(0)
+                            }}
+                            label={{
+                              value: 'Indeed指数（2020/2=100）',
+                              angle: 90,
+                              position: 'insideRight',
+                              dy: 70,
+                              style: { fontSize: 11, fill: getColor('indeed') }
+                            }}
+                          />
+                          <Tooltip content={<ValueTooltip />} />
+                          <Legend
+                            onClick={(e) => handleLegendClick(e.dataKey as string)}
+                            wrapperStyle={{ cursor: 'pointer' }}
+                          />
 
-                {/* JOLTS求人件数（左軸） */}
-                <Line
-                  yAxisId="left"
-                  type="monotone"
-                  dataKey="jolts"
-                  stroke={getColor('jolts')}
-                  strokeWidth={2}
-                  dot={false}
-                  name={SERIES_NAMES.jolts}
-                  hide={isHidden('jolts')}
-                  isAnimationActive={false}
-                  connectNulls={true}
-                />
+                          {/* JOLTS求人件数（左軸） */}
+                          <Line
+                            yAxisId="left"
+                            type="monotone"
+                            dataKey="jolts"
+                            stroke={getColor('jolts')}
+                            strokeWidth={2}
+                            dot={false}
+                            name={SERIES_NAMES.jolts}
+                            hide={isHidden('jolts')}
+                            isAnimationActive={false}
+                            connectNulls={true}
+                          />
 
-                {/* Indeed求人件数指数（JOLTSスケールに変換したindeedScaledを使用） */}
-                <Line
-                  yAxisId="left"
-                  type="monotone"
-                  dataKey="indeedScaled"
-                  stroke={getColor('indeed')}
-                  strokeWidth={2}
-                  dot={false}
-                  name={SERIES_NAMES.indeed}
-                  hide={isHidden('indeed')}
-                  isAnimationActive={false}
-                  connectNulls={true}
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          {/* Indeed求人件数指数（JOLTSスケールに変換したindeedScaledを使用） */}
+                          <Line
+                            yAxisId="left"
+                            type="monotone"
+                            dataKey="indeedScaled"
+                            stroke={getColor('indeed')}
+                            strokeWidth={2}
+                            dot={false}
+                            name={SERIES_NAMES.indeed}
+                            hide={isHidden('indeed')}
+                            isAnimationActive={false}
+                            connectNulls={true}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* JOLTS前月増減幅グラフ */}
-        {viewMode === 'jolts_change_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={joltsChangeData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
-                  domain={['dataMin - 100', 'dataMax + 100']}
-                  label={{
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 30,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* JOLTS前月増減幅グラフ */}
+                  {viewMode === 'jolts_change_chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={joltsChangeData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
+                            domain={['dataMin - 100', 'dataMax + 100']}
+                            label={{
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 30,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                {/* JOLTS求人件数 */}
-                <Bar
-                  dataKey="jolts_change"
-                  fill={getColor('jolts')}
-                  name={`${SERIES_NAMES.jolts}（増減）`}
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          {/* JOLTS求人件数 */}
+                          <Bar
+                            dataKey="jolts_change"
+                            fill={getColor('jolts')}
+                            name={`${SERIES_NAMES.jolts}（増減）`}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* JOLTS前月増減幅テーブル */}
-        {viewMode === 'jolts_change_table' && (
-          <MonthlyTable
-            data={changeTableData}
-            formatValue={(value) => {
-              if (value === null) return '-'
-              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
-            }}
-            getCellBgColor={getChangeCellColor200k}
-            legendItems={CHANGE_LEGEND_200K}
-            helperText="※ 直近10年間のJOLTS求人件数 前月増減幅データ（単位: 千人）"
-          />
-        )}
+                  {/* JOLTS前月増減幅テーブル */}
+                  {viewMode === 'jolts_change_table' && (
+                    <MonthlyTable
+                      data={changeTableData}
+                      formatValue={(value) => {
+                        if (value === null) return '-'
+                        return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+                      }}
+                      getCellBgColor={getChangeCellColor200k}
+                      legendItems={CHANGE_LEGEND_200K}
+                      helperText="※ 直近10年間のJOLTS求人件数 前月増減幅データ（単位: 千人）"
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="jolts_openings" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

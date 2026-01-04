@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -24,6 +26,9 @@ import {
   StandardLineChart,
 } from '../common/ChartComponents'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 // =============================================================================
 // 型定義
 // =============================================================================
@@ -38,6 +43,7 @@ interface RedbookChartProps {
 
 export default function RedbookChart({ data }: RedbookChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート
   const chartData = useSortedData(data?.data)
@@ -86,17 +92,50 @@ export default function RedbookChart({ data }: RedbookChartProps) {
           />
         )}
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            { dataKey: 'value', color: CHART_COLORS.primary, name: 'レッドブック（前年比）' },
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=redbook', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      { dataKey: 'value', color: CHART_COLORS.primary, name: 'レッドブック（前年比）' },
+                    ]}
+                    yAxisFormatter={(v) => `${v}%`}
+                    yDomain={['dataMin - 2', 'dataMax + 2']}
+                    tooltipLabelFormatter={formatDateLabelFull}
+                    tooltipFormatter={createPercentFormatter(2)}
+                    showLegend={false}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="redbook" />
+              ),
+            },
           ]}
-          yAxisFormatter={(v) => `${v}%`}
-          yDomain={['dataMin - 2', 'dataMax + 2']}
-          tooltipLabelFormatter={formatDateLabelFull}
-          tooltipFormatter={createPercentFormatter(2)}
-          showLegend={false}
         />
       </ChartContainer>
     </div>

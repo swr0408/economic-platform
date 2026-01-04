@@ -3,14 +3,14 @@ FRED APIサービス基底クラス
 
 FRED APIを使用する全サービスの共通処理を提供:
 - Redis/ファイルキャッシュ管理
-- 期間ベースのキャッシュ更新判定
+- FMPスケジュールベースのキャッシュ更新判定
 - 前月比・前年比の計算
 
 継承時に設定が必要:
 - SERIES_ID: FREDシリーズID
 - DATA_CACHE_KEY: Redisキャッシュキー
 - DATA_CACHE_FILE: ファイルキャッシュパス
-- schedule_checker: ReleaseScheduleCheckerインスタンス
+- ECONALPHA_ID: FMPマッピング用指標ID
 """
 import os
 import json
@@ -23,11 +23,14 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 
 class BaseFREDService(ABC):
@@ -46,14 +49,13 @@ class BaseFREDService(ABC):
     SERIES_ID: str = ""
     DATA_CACHE_KEY: str = ""
     DATA_CACHE_FILE: Optional[Path] = None
+    ECONALPHA_ID: str = ""  # FMPマッピング用ID
 
     # デフォルトの開始日
     DEFAULT_START_DATE: str = "2000-01-01"
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        # サブクラスでschedule_checkerを設定する必要がある
-        self.schedule_checker = None
 
     # ==========================================================================
     # 公開メソッド
@@ -174,7 +176,7 @@ class BaseFREDService(ABC):
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status() if self.schedule_checker else None,
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID) if self.ECONALPHA_ID else None,
             "file_cache_exists": self.DATA_CACHE_FILE.exists() if self.DATA_CACHE_FILE else False
         }
 
@@ -274,12 +276,12 @@ class BaseFREDService(ABC):
 
     def _should_refresh(self, last_updated_str: str, cached_data: Dict[str, Any]) -> bool:
         """
-        キャッシュを更新すべきかどうかを判定（期間ベース）
+        キャッシュを更新すべきかどうかを判定
 
-        サブクラスでschedule_checkerを設定する必要がある
+        FMPスケジュールベースの3分方式で判定
         """
-        if self.schedule_checker:
-            return self.schedule_checker.should_refresh(last_updated_str)
+        if self.ECONALPHA_ID:
+            return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
         return False
 
     # ==========================================================================

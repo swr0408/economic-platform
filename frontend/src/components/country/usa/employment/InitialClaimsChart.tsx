@@ -9,6 +9,9 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector, { type PeriodValue } from '../../../common/PeriodSelector'
@@ -47,6 +50,7 @@ const IC4WSA_COLOR = CHART_COLORS.orange      // 4週移動平均
 
 export default function InitialClaimsChart({ data }: InitialClaimsChartProps) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(3)
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート
   const sortedData = useSortedData(data?.data)
@@ -107,33 +111,65 @@ export default function InitialClaimsChart({ data }: InitialClaimsChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* 現数値グラフ */}
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-        <StandardLineChart
-          data={filteredData}
-          lines={[
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
             {
-              dataKey: 'icsa',
-              color: ICSA_COLOR,
-              name: '新規失業保険申請件数',
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 現数値グラフ */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=initial_claims', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'icsa',
+                        color: ICSA_COLOR,
+                        name: '新規失業保険申請件数',
+                      },
+                      {
+                        dataKey: 'ic4wsa',
+                        color: IC4WSA_COLOR,
+                        name: '4週移動平均',
+                      },
+                    ]}
+                    yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
+                    yDomain={['dataMin - 20000', 'dataMax + 20000']}
+                    tooltipLabelFormatter={formatDateLabelFullJP}
+                    tooltipValueFormatter={(v, dataKey) => {
+                      // 4週移動平均は小数点第2位まで表示
+                      if (dataKey === 'ic4wsa') {
+                        return `${(v / 1000).toFixed(2)}k`
+                      }
+                      return `${(v / 1000).toFixed(0)}k`
+                    }}
+                    showZeroLine={false}
+                  />
+                </>
+              ),
             },
             {
-              dataKey: 'ic4wsa',
-              color: IC4WSA_COLOR,
-              name: '4週移動平均',
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="initial_claims" />
+              ),
             },
           ]}
-          yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
-          yDomain={['dataMin - 20000', 'dataMax + 20000']}
-          tooltipLabelFormatter={formatDateLabelFullJP}
-          tooltipValueFormatter={(v, dataKey) => {
-            // 4週移動平均は小数点第2位まで表示
-            if (dataKey === 'ic4wsa') {
-              return `${(v / 1000).toFixed(2)}k`
-            }
-            return `${(v / 1000).toFixed(0)}k`
-          }}
-          showZeroLine={false}
         />
       </ChartContainer>
     </div>

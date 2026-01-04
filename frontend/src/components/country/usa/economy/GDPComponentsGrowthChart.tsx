@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Tabs } from 'antd'
 import {
   ComposedChart,
   Bar,
@@ -18,6 +19,9 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import { CARTESIAN_GRID_PROPS, CUSTOM_TOOLTIP_STYLE, LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, formatPercent, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // GDP項目別成長率データの型定義
 interface GDPComponentsGrowthItem {
@@ -46,6 +50,7 @@ const COMPONENT_ITEMS = [
 
 export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // チャート用データを変換（輸入は符号反転）
   const chartData = useMemo(() => {
@@ -196,48 +201,71 @@ export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthCh
           </div>
         )}
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <ResponsiveContainer width="100%" height={450}>
-          <ComposedChart
-            data={filteredData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-            stackOffset="sign"
-          >
-            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-            <XAxis
-              dataKey="quarter"
-              stroke="#666"
-              fontSize={11}
-              tickMargin={10}
-              interval="preserveStartEnd"
-              angle={-45}
-              textAnchor="end"
-            />
-            <YAxis
-              stroke="#666"
-              fontSize={12}
-              tickFormatter={(v) => `${v}%`}
-              domain={['auto', 'auto']}
-            />
-            <Tooltip content={<CustomTooltip />} />
-            <Legend
-              wrapperStyle={{ paddingTop: 20 }}
-              formatter={(value) => <span style={{ fontSize: 12 }}>{value}</span>}
-            />
-            <ReferenceLine y={0} stroke="#000" strokeWidth={1.5} />
+                  <ResponsiveContainer width="100%" height={450}>
+                    <ComposedChart
+                      data={filteredData}
+                      margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+                      stackOffset="sign"
+                    >
+                      <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                      <XAxis
+                        dataKey="quarter"
+                        stroke="#666"
+                        fontSize={11}
+                        tickMargin={10}
+                        interval="preserveStartEnd"
+                        angle={-45}
+                        textAnchor="end"
+                      />
+                      <YAxis
+                        stroke="#666"
+                        fontSize={12}
+                        tickFormatter={(v) => `${v}%`}
+                        domain={['auto', 'auto']}
+                      />
+                      <Tooltip content={<CustomTooltip />} />
+                      <Legend
+                        wrapperStyle={{ paddingTop: 20 }}
+                        formatter={(value) => <span style={{ fontSize: 12 }}>{value}</span>}
+                      />
+                      <ReferenceLine y={0} stroke="#000" strokeWidth={1.5} />
 
-            {COMPONENT_ITEMS.map((item) => (
-              <Bar
-                key={item.key}
-                dataKey={item.key}
-                name={item.name}
-                stackId="total"
-                fill={item.color}
-              />
-            ))}
-          </ComposedChart>
-        </ResponsiveContainer>
+                      {COMPONENT_ITEMS.map((item) => (
+                        <Bar
+                          key={item.key}
+                          dataKey={item.key}
+                          name={item.name}
+                          stackId="total"
+                          fill={item.color}
+                        />
+                      ))}
+                    </ComposedChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="gdp_growth" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

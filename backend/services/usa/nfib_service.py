@@ -31,7 +31,10 @@ except ImportError:
     print("Warning: pdfplumber not installed. NFIB PDF extraction disabled.")
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import NFIB_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -56,11 +59,11 @@ class NFIBService:
     CACHE_KEY = "nfib:optimism"
     CACHE_KEY_CAPEX = "nfib:capex"
     CACHE_KEY_COMPENSATION = "nfib:compensation"
+    ECONALPHA_ID = "nfib"  # FMPマッピング用ID
 
     def __init__(self):
         """初期化"""
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
-        self.schedule_checker = NFIB_CHECKER
 
     def get_nfib_data(
         self,
@@ -92,7 +95,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -115,7 +118,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -130,7 +133,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": None,
+                    "next_release": get_next_release_from_fmp('nfib'),
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -138,7 +141,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -164,7 +167,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -177,7 +180,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -186,7 +189,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('nfib'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -194,10 +197,8 @@ class NFIBService:
         }
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _fetch_from_pdf(self) -> Optional[Dict[str, Any]]:
@@ -427,7 +428,7 @@ class NFIBService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("data", [])[-1] if cached_data and cached_data.get("data") else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": CACHE_FILE.exists()
         }
 
@@ -465,7 +466,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -488,7 +489,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -502,7 +503,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": None,
+                    "next_release": get_next_release_from_fmp('nfib'),
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -510,7 +511,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -536,7 +537,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -549,7 +550,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -558,7 +559,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('nfib'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -787,7 +788,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -810,7 +811,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -824,7 +825,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": None,
+                    "next_release": get_next_release_from_fmp('nfib'),
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -832,7 +833,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -858,7 +859,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -871,7 +872,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -880,7 +881,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('nfib'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -1045,7 +1046,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -1067,7 +1068,7 @@ class NFIBService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('nfib'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -1081,7 +1082,7 @@ class NFIBService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
-                    "next_release": None,
+                    "next_release": get_next_release_from_fmp('nfib'),
                     "cached": True,
                     "source": "file (pdfplumber not available)",
                     "last_updated": file_cache.get("last_updated")
@@ -1089,7 +1090,7 @@ class NFIBService:
             return {
                 "data": [],
                 "latest": None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "none",
                 "last_updated": None,
@@ -1113,7 +1114,7 @@ class NFIBService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
                 "last_updated": datetime.now(JST).isoformat()
@@ -1126,7 +1127,7 @@ class NFIBService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('nfib'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -1135,7 +1136,7 @@ class NFIBService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('nfib'),
             "cached": False,
             "source": "none",
             "last_updated": None,

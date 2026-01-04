@@ -21,6 +21,10 @@ from zoneinfo import ZoneInfo
 import requests
 
 from core.redis_client import redis_client
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
@@ -40,6 +44,7 @@ class BankLendingService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     CACHE_KEY = "fred:series:bank_lending"
     SCHEDULE_CACHE_KEY = "sloos:schedule"
+    ECONALPHA_ID = "bank_lending"  # FMPマッピング用ID
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
@@ -70,16 +75,18 @@ class BankLendingService:
         if not force_refresh:
             cached_data = redis_client.get(self.CACHE_KEY)
             if cached_data:
-                # 次回発表日を動的に計算
-                next_release = self._get_next_sloos_release()
-                return {
-                    "data": cached_data.get("data", []),
-                    "latest": cached_data.get("latest"),
-                    "next_release": next_release,
-                    "cached": True,
-                    "source": "redis",
-                    "last_updated": cached_data.get("last_updated")
-                }
+                last_updated_str = cached_data.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    # 次回発表日を動的に計算
+                    next_release = self._get_next_sloos_release()
+                    return {
+                        "data": cached_data.get("data", []),
+                        "latest": cached_data.get("latest"),
+                        "next_release": next_release,
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated_str
+                    }
 
         # 外部APIから取得
         api_data = self._fetch_from_api(start_date)
@@ -252,6 +259,10 @@ class BankLendingService:
 
         return schedule
 
+    def _should_refresh(self, last_updated_str: str) -> bool:
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
         return redis_client.delete(self.CACHE_KEY)
@@ -270,7 +281,8 @@ class BankLendingService:
             "ttl_seconds": ttl,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
-            "latest": cached_data.get("latest") if cached_data else None
+            "latest": cached_data.get("latest") if cached_data else None,
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID)
         }
 
     def get_latest_value(self) -> Optional[Dict[str, Any]]:

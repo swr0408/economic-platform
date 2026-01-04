@@ -29,12 +29,14 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import CARTS_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # Chicago Fed CARTS データURL
 CARTS_ZIP_URL = "https://api.data.chicagofed.org/CARTS/carts-dashboard.zip"
@@ -58,6 +60,7 @@ class CartsService:
     WEEKLY_CACHE_KEY = "chicagofed:carts:weekly"
     PRICE_CACHE_KEY = "chicagofed:carts:price"
     SCHEDULE_CACHE_KEY = "chicagofed:carts:schedule"
+    ECONALPHA_ID = "carts"  # FMPマッピング用ID
 
     # スケジュールキャッシュの有効期間（30日 = 1ヶ月）
     SCHEDULE_CACHE_TTL = 30 * 24 * 60 * 60  # 2592000秒
@@ -67,7 +70,7 @@ class CartsService:
     RELEASE_MINUTE_ET = 30
 
     def __init__(self):
-        self.schedule_checker = CARTS_CHECKER
+        pass
 
     def get_carts_data(
         self,
@@ -506,10 +509,9 @@ class CartsService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        判定ロジック:
-        - 次回発表日時を過ぎており、かつ最終更新がそれより前なら更新が必要
+        FMPスケジュールベースの3分方式で判定
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
@@ -562,7 +564,7 @@ class CartsService:
                 "data_count": len(price_data.get("data", [])) if price_data else 0,
                 "latest": price_data.get("latest") if price_data else None,
             },
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_weekly_exists": WEEKLY_CACHE_FILE.exists(),
             "file_cache_price_exists": PRICE_CACHE_FILE.exists(),
         }

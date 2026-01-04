@@ -32,7 +32,10 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import CB_CONSUMER_CONFIDENCE_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -77,13 +80,14 @@ class CBJobsLaborDifferentialService:
 
     DATA_CACHE_KEY = "cb:jobs_labor_differential:data"
     SCHEDULE_CACHE_KEY = "cb:jobs_labor_differential:schedule"
+    ECONALPHA_ID = "cb_jobs_labor"  # FMPマッピング用ID
 
     # 発表時刻設定（ET）- 10:00 ET
     RELEASE_HOUR_ET = 10
     RELEASE_MINUTE_ET = 0
 
     def __init__(self):
-        self.schedule_checker = CB_CONSUMER_CONFIDENCE_CHECKER
+        pass
 
     def get_jobs_labor_data(
         self,
@@ -443,13 +447,8 @@ class CBJobsLaborDifferentialService:
             return csv_data
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
-
-        判定ロジック:
-        - スケジュールチェッカーを使用してピリオドベースで判定
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _fetch_next_release_from_investing(self) -> Optional[Dict[str, Any]]:
@@ -582,7 +581,7 @@ class CBJobsLaborDifferentialService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "csv_file_exists": CSV_FILE_PATH.exists(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }

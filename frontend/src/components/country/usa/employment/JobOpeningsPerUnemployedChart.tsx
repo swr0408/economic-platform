@@ -7,6 +7,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs } from 'antd'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   LineChart,
   Line,
@@ -130,6 +132,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
 
 export default function JobOpeningsPerUnemployedChart({ data }: JobOpeningsPerUnemployedChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート
   const sortedData = useSortedData(data?.data)
@@ -199,46 +202,68 @@ export default function JobOpeningsPerUnemployedChart({ data }: JobOpeningsPerUn
           nextRelease={nextReleaseInfo}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        {/* チャート */}
-        <ResponsiveContainer width="100%" height={450}>
-          <LineChart data={filteredData} margin={CHART_MARGIN}>
-            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={AXIS_STYLE.tick}
-              interval={AXIS_STYLE.interval}
-            />
-            <YAxis
-              tick={AXIS_STYLE.tick}
-              tickFormatter={(v) => v.toFixed(1)}
-              domain={['dataMin - 0.1', 'dataMax + 0.1']}
-              label={{
-                angle: -90,
-                position: 'insideLeft',
-                dy: 30,
-                style: { fontSize: 11, fill: '#666' }
-              }}
-            />
-            <Tooltip content={<CustomTooltip />} />
-            <Legend />
+                  {/* チャート */}
+                  <ResponsiveContainer width="100%" height={450}>
+                    <LineChart data={filteredData} margin={CHART_MARGIN}>
+                      <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={formatDateLabel}
+                        tick={AXIS_STYLE.tick}
+                        interval={AXIS_STYLE.interval}
+                      />
+                      <YAxis
+                        tick={AXIS_STYLE.tick}
+                        tickFormatter={(v) => v.toFixed(1)}
+                        domain={['dataMin - 0.1', 'dataMax + 0.1']}
+                        label={{
+                          angle: -90,
+                          position: 'insideLeft',
+                          dy: 30,
+                          style: { fontSize: 11, fill: '#666' }
+                        }}
+                      />
+                      <Tooltip content={<CustomTooltip />} />
+                      <Legend />
 
-            {/* 求人倍率 */}
-            <Line
-              type="monotone"
-              dataKey="value"
-              stroke={CHART_COLORS.primary}
-              strokeWidth={2}
-              dot={false}
-              name="求人倍率"
-              isAnimationActive={false}
-              connectNulls={true}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+                      {/* 求人倍率 */}
+                      <Line
+                        type="monotone"
+                        dataKey="value"
+                        stroke={CHART_COLORS.primary}
+                        strokeWidth={2}
+                        dot={false}
+                        name="求人倍率"
+                        isAnimationActive={false}
+                        connectNulls={true}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="jolts_openings" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

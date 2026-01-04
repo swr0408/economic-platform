@@ -106,3 +106,9 @@ pip install -r requirements.txt
 python -c "import fitz; print(f'PyMuPDF: {fitz.version}')"
 python -c "from PIL import Image; print('Pillow: OK')"
 python -c "from apscheduler.schedulers.asyncio import AsyncIOScheduler; print('APScheduler: OK')"
+
+# すべてのダッシュボードキャッシュをクリア
+docker exec economic-platform-redis redis-cli KEYS "usa:*:dashboard:*" | xargs -I {} docker exec economic-platform-redis redis-cli DEL {}
+
+# すべてのinvestingキャッシュをクリア
+docker exec economic-platform-redis redis-cli KEYS "investing:*" | xargs -I {} docker exec economic-platform-redis redis-cli DEL {}

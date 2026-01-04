@@ -1,4 +1,6 @@
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -8,6 +10,9 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import { usePeriodFiltering, formatQuarterLabel, useQuarterlyTableData, formatPercent, type PeriodType } from '../common/useChartData'
 import { NoDataMessage } from '../common/ChartComponents'
 import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE, QUARTER_NAMES } from '../common/chartConstants'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // Props型定義
 interface GDPGrowthItem {
@@ -37,6 +42,7 @@ type ViewMode = 'chart' | 'table'
 export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
   const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換
   const gdpData = useMemo<GDPChartData[]>(() => {
@@ -257,37 +263,70 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
           </div>
         )}
 
-        <ViewModeButtons />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <ViewModeButtons />
 
-        {viewMode === 'chart' && (
-          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-        )}
-        {viewMode === 'table' && (
-          <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-            ※ 直近10年間のGDP成長率データ（単位: %）
-          </div>
-        )}
+                  {viewMode === 'chart' && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                      <Tooltip title="比較ページを開く">
+                        <Button
+                          icon={<AreaChartOutlined />}
+                          onClick={() => window.open('/compare?s=gdp_growth', '_blank')}
+                        >
+                          データ比較
+                        </Button>
+                      </Tooltip>
+                    </div>
+                  )}
+                  {viewMode === 'table' && (
+                    <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
+                      ※ 直近10年間のGDP成長率データ（単位: %）
+                    </div>
+                  )}
 
-        {viewMode === 'table' ? (
-          <GDPTable />
-        ) : (
-          <ZoomableChart
-            data={filteredData}
-            dataKey="value"
-            color={CHART_COLORS.primary}
-            name="GDP成長率"
-            height={450}
-            tickFormatter={formatPercentage}
-            tooltipFormatter={formatPercentage}
-            tooltipLabelFormatter={formatQuarterLabel}
-            xAxisTickFormatter={formatQuarterLabel}
-            enableDynamicTicks={true}
-            showZeroLine={true}
-            showFiftyLine={false}
-            connectNulls={true}
-            hideLegend={true}
-          />
-        )}
+                  {viewMode === 'table' ? (
+                    <GDPTable />
+                  ) : (
+                    <ZoomableChart
+                      data={filteredData}
+                      dataKey="value"
+                      color={CHART_COLORS.primary}
+                      name="GDP成長率"
+                      height={450}
+                      tickFormatter={formatPercentage}
+                      tooltipFormatter={formatPercentage}
+                      tooltipLabelFormatter={formatQuarterLabel}
+                      xAxisTickFormatter={formatQuarterLabel}
+                      enableDynamicTicks={true}
+                      showZeroLine={true}
+                      showFiftyLine={false}
+                      connectNulls={true}
+                      hideLegend={true}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="gdp_growth" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

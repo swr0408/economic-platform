@@ -13,6 +13,9 @@
  * 共通コンポーネントを使用
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Bar,
@@ -256,6 +259,7 @@ function PercentTooltip({ active, payload, label }: CustomTooltipProps) {
 
 export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
@@ -422,103 +426,136 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
           nextRelease={nextRelease}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 現数値グラフ */}
-        {viewMode === 'value' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabelTarget}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v.toFixed(0)}k`}
-                  domain={['dataMin - 10', 'dataMax + 10']}
-                />
-                <Tooltip content={<ValueTooltip />} />
-                <Legend />
-                <Bar
-                  dataKey="value"
-                  fill={CHALLENGER_COLOR}
-                  name="人員削減数"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                  {/* 現数値グラフ */}
+                  {viewMode === 'value' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=challenger_job_cuts', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabelTarget}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v.toFixed(0)}k`}
+                            domain={['dataMin - 10', 'dataMax + 10']}
+                          />
+                          <Tooltip content={<ValueTooltip />} />
+                          <Legend />
+                          <Bar
+                            dataKey="value"
+                            fill={CHALLENGER_COLOR}
+                            name="人員削減数"
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前年比グラフ */}
-        {viewMode === 'yoy_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabelTarget}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(0)}%`}
-                  domain={['dataMin - 20', 'dataMax + 20']}
-                />
-                <Tooltip content={<PercentTooltip />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
-                <Bar
-                  dataKey="yoy"
-                  fill={CHALLENGER_COLOR}
-                  name="前年比"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                  {/* 前年比グラフ */}
+                  {viewMode === 'yoy_chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabelTarget}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(0)}%`}
+                            domain={['dataMin - 20', 'dataMax + 20']}
+                          />
+                          <Tooltip content={<PercentTooltip />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                          <Bar
+                            dataKey="yoy"
+                            fill={CHALLENGER_COLOR}
+                            name="前年比"
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabelTarget}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(0)}%`}
-                  domain={['dataMin - 50', 'dataMax + 50']}
-                />
-                <Tooltip content={<PercentTooltip />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
-                <Bar
-                  dataKey="mom"
-                  fill={CHALLENGER_COLOR}
-                  name="前月比"
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                  {/* 前月比グラフ */}
+                  {viewMode === 'mom_chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabelTarget}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(0)}%`}
+                            domain={['dataMin - 50', 'dataMax + 50']}
+                          />
+                          <Tooltip content={<PercentTooltip />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                          <Bar
+                            dataKey="mom"
+                            fill={CHALLENGER_COLOR}
+                            name="前月比"
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && <MomTable />}
+                  {/* 前月比テーブル */}
+                  {viewMode === 'mom_table' && <MomTable />}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="challenger_job_cuts" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

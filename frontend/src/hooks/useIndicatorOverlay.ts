@@ -54,6 +54,14 @@ export interface RightYAxisConfig {
   domain: [number, number];
   ticks?: number[];
   color?: string;
+  tickFormatter?: (value: number) => string;
+  label?: {
+    value?: string;
+    angle?: number;
+    position?: string;
+    style?: Record<string, unknown>;
+    dy?: number;
+  };
 }
 
 export interface UseIndicatorOverlayResult {
@@ -89,9 +97,10 @@ export interface UseIndicatorOverlayResult {
 // メインフック
 // =============================================================================
 
-export function useIndicatorOverlay(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function useIndicatorOverlay<T extends { date: string }>(
   mainIndicatorId: string,
-  mainData: DataPoint[],
+  mainData: T[],
   mainFrequency: IndicatorFrequency = 'monthly'
 ): UseIndicatorOverlayResult {
   // ==========================================================================
@@ -208,8 +217,9 @@ export function useIndicatorOverlay(
   const { mergedData, axisAssignments, baseFrequency } = useMemo(() => {
     console.log('[useIndicatorOverlay] Computing mergedData, overlays:', overlays.length, 'mainData:', mainData.length);
     if (overlays.length === 0 || mainData.length === 0) {
+      // mainDataをそのまま返す（valueプロパティがない場合も考慮）
       return {
-        mergedData: mainData.map(d => ({ date: d.date, value: d.value })),
+        mergedData: mainData.map(d => ({ ...d })) as unknown as MergedDataPoint[],
         axisAssignments: {} as Record<string, string>,
         baseFrequency: mainFrequency,
       };
@@ -305,23 +315,35 @@ const rightYAxes = useMemo<RightYAxisConfig[] | undefined>(() => {
       .map(d => (d as Record<string, unknown>)[indicatorId])
       .filter((v): v is number => typeof v === 'number' && !isNaN(v));
 
-    if (values.length === 0) {
-      axes.push({
-        id: `right-${index + 1}`,
-        domain: [0, 1],
-        color: getOverlayColor(index),
-      });
-      continue;
+    // 値の範囲に応じてフォーマッターを調整
+    let tickFormatter: (v: number) => string;
+    if (values.length > 0) {
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const range = max - min;
+      tickFormatter = (v: number) => {
+        if (range > 100) return v.toLocaleString();
+        if (range > 1) return v.toFixed(1);
+        return v.toFixed(2);
+      };
+    } else {
+      tickFormatter = (v: number) => v.toFixed(1);
     }
 
-    const min = Math.min(...values);
-    const max = Math.max(...values);
-    const padding = (max - min) * 0.1 || 1;
-
+    // domainは 'auto' を使用して可視範囲に自動調整
+    // これにより期間フィルタリング後のデータに合わせてスケールが動的に調整される
     axes.push({
       id: `right-${index + 1}`,
-      domain: [min - padding, max + padding],
+      domain: ['auto', 'auto'] as unknown as [number, number],
       color: getOverlayColor(index),
+      tickFormatter,
+      label: {
+        value: overlay.config.indicator.name,
+        angle: 90,
+        position: 'insideRight',
+        style: { fontSize: 11, fill: getOverlayColor(index) },
+        dy: 50,
+      },
     });
   }
 

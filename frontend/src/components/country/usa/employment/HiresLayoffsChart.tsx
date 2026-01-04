@@ -8,6 +8,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs } from 'antd'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Line,
@@ -68,6 +70,7 @@ const SERIES_NAMES = {
 
 export default function HiresLayoffsChart({ data }: HiresLayoffsChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'hires' | 'layoffs'>()
 
   // データのソート
@@ -125,62 +128,84 @@ export default function HiresLayoffsChart({ data }: HiresLayoffsChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        {/* チャート */}
-        <ResponsiveContainer width="100%" height={450}>
-          <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={AXIS_STYLE.tick}
-              interval={AXIS_STYLE.interval}
-            />
-            <YAxis
-              tick={AXIS_STYLE.tick}
-              tickFormatter={(v) => `${v.toLocaleString()}`}
-              label={{
-                angle: -90,
-                position: 'insideLeft',
-                dy: 20,
-                style: { fontSize: 11, fill: '#666' }
-              }}
-            />
-            <Tooltip content={<ValueTooltip unit="k" />} />
-            <Legend
-              onClick={(e) => handleLegendClick(e.dataKey as string)}
-              wrapperStyle={{ cursor: 'pointer' }}
-            />
+                  {/* チャート */}
+                  <ResponsiveContainer width="100%" height={450}>
+                    <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                      <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={formatDateLabel}
+                        tick={AXIS_STYLE.tick}
+                        interval={AXIS_STYLE.interval}
+                      />
+                      <YAxis
+                        tick={AXIS_STYLE.tick}
+                        tickFormatter={(v) => `${v.toLocaleString()}`}
+                        label={{
+                          angle: -90,
+                          position: 'insideLeft',
+                          dy: 20,
+                          style: { fontSize: 11, fill: '#666' }
+                        }}
+                      />
+                      <Tooltip content={<ValueTooltip unit="k" />} />
+                      <Legend
+                        onClick={(e) => handleLegendClick(e.dataKey as string)}
+                        wrapperStyle={{ cursor: 'pointer' }}
+                      />
 
-            {/* JOLTS採用数 */}
-            <Line
-              type="monotone"
-              dataKey="hires"
-              stroke={getColor('hires')}
-              strokeWidth={2}
-              dot={false}
-              name={SERIES_NAMES.hires}
-              hide={isHidden('hires')}
-              isAnimationActive={false}
-              connectNulls={true}
-            />
+                      {/* JOLTS採用数 */}
+                      <Line
+                        type="monotone"
+                        dataKey="hires"
+                        stroke={getColor('hires')}
+                        strokeWidth={2}
+                        dot={false}
+                        name={SERIES_NAMES.hires}
+                        hide={isHidden('hires')}
+                        isAnimationActive={false}
+                        connectNulls={true}
+                      />
 
-            {/* JOLTS解雇数 */}
-            <Line
-              type="monotone"
-              dataKey="layoffs"
-              stroke={getColor('layoffs')}
-              strokeWidth={2}
-              dot={false}
-              name={SERIES_NAMES.layoffs}
-              hide={isHidden('layoffs')}
-              isAnimationActive={false}
-              connectNulls={true}
-            />
-          </ComposedChart>
-        </ResponsiveContainer>
+                      {/* JOLTS解雇数 */}
+                      <Line
+                        type="monotone"
+                        dataKey="layoffs"
+                        stroke={getColor('layoffs')}
+                        strokeWidth={2}
+                        dot={false}
+                        name={SERIES_NAMES.layoffs}
+                        hide={isHidden('layoffs')}
+                        isAnimationActive={false}
+                        connectNulls={true}
+                      />
+                    </ComposedChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="jolts_openings" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

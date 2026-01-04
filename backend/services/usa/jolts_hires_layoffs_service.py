@@ -28,12 +28,14 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import JOLTS_OPENINGS_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
 HIRES_SERIES_ID = "JTSHIL"      # JOLTS採用数（千人）
@@ -66,11 +68,10 @@ class JoltsHiresLayoffsService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:jolts_hires_layoffs:data"
+    ECONALPHA_ID = "jolts_openings"  # FMPマッピング用ID（JOLTS求人と同じスケジュール）
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        # JOLTS求人と同じスケジュールを使用
-        self.schedule_checker = JOLTS_OPENINGS_CHECKER
 
     def get_hires_layoffs_data(
         self,
@@ -265,14 +266,8 @@ class JoltsHiresLayoffsService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定（発表期間ベース）
-
-        発表期間: 毎月29日〜翌月13日（月跨ぎ）
-        発表時刻: 23:00 (夏) / 0:00 (冬) JST
-        jolts_indeed_serviceと同じスケジュールを使用
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -311,7 +306,7 @@ class JoltsHiresLayoffsService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

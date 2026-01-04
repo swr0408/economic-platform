@@ -22,12 +22,14 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import VEHICLE_SALES_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
 TOTALSA_SERIES_ID = "TOTALSA"
@@ -48,6 +50,7 @@ class TotalVehicleSalesService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:series:total_vehicle_sales"
     SCHEDULE_CACHE_KEY = "fred:release:93:schedule"
+    ECONALPHA_ID = "total_vehicle_sales"  # FMPマッピング用ID
 
     # スケジュールキャッシュの有効期間（180日 = 約6ヶ月）
     SCHEDULE_CACHE_TTL = 180 * 24 * 60 * 60  # 15552000秒
@@ -57,7 +60,6 @@ class TotalVehicleSalesService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = VEHICLE_SALES_CHECKER
 
     def get_total_vehicle_sales_data(
         self,
@@ -242,8 +244,10 @@ class TotalVehicleSalesService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定
+
+        FMPスケジュールベースの3分方式で判定
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -284,7 +288,7 @@ class TotalVehicleSalesService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

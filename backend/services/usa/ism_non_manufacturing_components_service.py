@@ -24,7 +24,10 @@ from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import ISM_NON_MANUFACTURING_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -48,10 +51,11 @@ class ISMNonManufacturingComponentsService:
     """ISM非製造業サブインデックスサービス"""
 
     CACHE_KEY = "dbnomics:ism_non_manufacturing_components"
+    ECONALPHA_ID = "ism_non_manufacturing"  # FMPマッピング用ID
 
     def __init__(self):
         """初期化"""
-        self.schedule_checker = ISM_NON_MANUFACTURING_CHECKER
+        pass
 
     def get_ism_non_manufacturing_components_data(
         self,
@@ -143,16 +147,11 @@ class ISMNonManufacturingComponentsService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
-        キャッシュを更新すべきかどうかを判定（期間チェック方式）
+        キャッシュを更新すべきかどうかを判定
 
-        Args:
-            last_updated_str: 最終更新日時のISO文字列
-
-        Returns:
-            True: 更新が必要
-            False: キャッシュ有効
+        FMPスケジュールベースの3分方式で判定
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _fetch_from_dbnomics(self) -> Optional[Dict[str, Any]]:
         """DBnomics APIからISM非製造業サブインデックスデータを取得"""
@@ -318,7 +317,7 @@ class ISMNonManufacturingComponentsService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status()
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID)
         }
 
 

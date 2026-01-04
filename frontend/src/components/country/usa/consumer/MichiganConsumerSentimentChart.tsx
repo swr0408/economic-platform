@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -23,6 +25,9 @@ import {
   LatestValueBox,
   StandardLineChart,
 } from '../common/ChartComponents'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // =============================================================================
 // 型定義
@@ -53,6 +58,7 @@ const COLORS = {
 
 export default function MichiganConsumerSentimentChart({ data }: MichiganConsumerSentimentChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // 指数データと構成要素データをマージして日付昇順にソート
@@ -136,19 +142,52 @@ export default function MichiganConsumerSentimentChart({ data }: MichiganConsume
           nextRelease={nextRelease}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            { dataKey: 'value', color: COLORS.value, name: 'ミシガン大学消費者信頼感指数', hide: hiddenSeries.has('value') },
-            { dataKey: 'current', color: COLORS.current, name: '現況', hide: hiddenSeries.has('current') },
-            { dataKey: 'expected', color: COLORS.expected, name: '見通し', hide: hiddenSeries.has('expected') },
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=michigan_consumer_sentiment', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      { dataKey: 'value', color: COLORS.value, name: 'ミシガン大学消費者信頼感指数', hide: hiddenSeries.has('value') },
+                      { dataKey: 'current', color: COLORS.current, name: '現況', hide: hiddenSeries.has('current') },
+                      { dataKey: 'expected', color: COLORS.expected, name: '見通し', hide: hiddenSeries.has('expected') },
+                    ]}
+                    yDomain={['dataMin - 5', 'dataMax + 5']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={createNumberFormatter(1)}
+                    onLegendClick={handleLegendClick}
+                    showZeroLine={false}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="michigan_consumer_sentiment" />
+              ),
+            },
           ]}
-          yDomain={['dataMin - 5', 'dataMax + 5']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={createNumberFormatter(1)}
-          onLegendClick={handleLegendClick}
-          showZeroLine={false}
         />
       </ChartContainer>
     </div>

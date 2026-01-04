@@ -27,12 +27,14 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import DELINQUENCY_RATE_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
 SERIES_ID = "DRCCLACBS"
@@ -48,6 +50,7 @@ class DelinquencyRateService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:series:delinquency_rate"
+    ECONALPHA_ID = "delinquency_rate"  # FMPマッピング用ID
 
     # 発表時刻設定（ET）- 10:00 ET
     RELEASE_HOUR_ET = 10
@@ -58,7 +61,6 @@ class DelinquencyRateService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = DELINQUENCY_RATE_CHECKER
 
     def get_delinquency_rate_data(
         self,
@@ -258,8 +260,10 @@ class DelinquencyRateService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定
+
+        FMPスケジュールベースの3分方式で判定
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
@@ -300,7 +304,7 @@ class DelinquencyRateService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

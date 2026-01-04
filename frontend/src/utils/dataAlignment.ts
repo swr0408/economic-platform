@@ -8,7 +8,7 @@ import type { IndicatorFrequency } from '../constants/overlayConfig';
 
 export interface DataPoint {
   date: string;
-  value: number;
+  value: number | null;
 }
 
 export interface DataPointWithFrequency extends DataPoint {
@@ -195,8 +195,9 @@ export function extractValidValues(values: (number | null)[]): number[] {
  * @param overlays 比較データの配列（キー、データ、頻度のペア）
  * @returns マージ済みデータと使用された基準頻度
  */
-export function mergeWithFrequencyAwareness(
-  mainData: DataPoint[],
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mergeWithFrequencyAwareness<T extends { date: string }>(
+  mainData: T[],
   mainFrequency: IndicatorFrequency,
   overlays: { key: string; data: DataPoint[]; frequency: IndicatorFrequency }[]
 ): { mergedData: MergedDataPoint[]; baseFrequency: IndicatorFrequency } {
@@ -223,7 +224,7 @@ export function mergeWithFrequencyAwareness(
 
   // 最も細かい頻度のデータを基準として使用
   let baseDates: string[];
-  let baseDataMap: Map<string, number>;
+  let baseDataMap: Map<string, number | null>;
 
   if (finestFreq === mainFrequency) {
     // メイン指標が最も細かい場合は従来通り
@@ -231,7 +232,7 @@ export function mergeWithFrequencyAwareness(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
     baseDates = sortedMain.map(d => d.date);
-    baseDataMap = new Map(sortedMain.map(d => [d.date, d.value]));
+    baseDataMap = new Map(sortedMain.map(d => [d.date, (d as unknown as DataPoint).value ?? null]));
   } else {
     // オーバーレイの中で最も細かいデータを基準にする
     const finestOverlay = overlays.find(o => o.frequency === finestFreq);
@@ -241,7 +242,7 @@ export function mergeWithFrequencyAwareness(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
       baseDates = sortedMain.map(d => d.date);
-      baseDataMap = new Map(sortedMain.map(d => [d.date, d.value]));
+      baseDataMap = new Map(sortedMain.map(d => [d.date, (d as unknown as DataPoint).value ?? null]));
     } else {
       // 最も細かいオーバーレイを基準にする
       const sortedFinest = [...finestOverlay.data].sort(
@@ -271,19 +272,29 @@ export function mergeWithFrequencyAwareness(
   const sortedMain = [...mainData].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
+  // mainDataをDataPoint[]として扱う（valueプロパティがある場合のみAs-of Join可能）
+  const mainAsDataPoints = sortedMain.map(d => ({
+    date: d.date,
+    value: (d as unknown as DataPoint).value ?? null,
+  }));
   const mainValues = finestFreq === mainFrequency
     ? baseDates.map(d => baseDataMap.get(d) ?? null)
-    : asOfJoin(baseDates, sortedMain);
+    : asOfJoin(baseDates, mainAsDataPoints);
+
+  // 基準として使用されたオーバーレイのキーを特定
+  const baseOverlayKey = finestFreq !== mainFrequency
+    ? overlays.find(o => o.frequency === finestFreq)?.key
+    : null;
 
   // 各オーバーレイをマージ
   const overlayValues: Record<string, (number | null)[]> = {};
 
   for (const overlay of overlays) {
-    if (overlay.frequency === finestFreq && overlays.find(o => o.frequency === finestFreq)?.key === overlay.key) {
-      // このオーバーレイが基準の場合、そのまま使用
+    if (baseOverlayKey && overlay.key === baseOverlayKey) {
+      // このオーバーレイが基準の場合、baseDatesに対応するデータをそのまま使用
       overlayValues[overlay.key] = baseDates.map(d => baseDataMap.get(d) ?? null);
     } else {
-      // As-of Joinでマップ
+      // As-of Joinでマップ（基準でないオーバーレイは常にAs-of Join）
       const sortedOverlay = [...overlay.data].sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
@@ -291,13 +302,31 @@ export function mergeWithFrequencyAwareness(
     }
   }
 
-  // 結果を構築
+  // メインデータを日付でマップ（全プロパティを保持）
+  const mainDataByDate = new Map(
+    sortedMain.map(d => [d.date, d])
+  );
+
+  // 結果を構築（元のデータの全プロパティを保持）
   const mergedData = baseDates.map((date, idx) => {
+    // 元のデータの全プロパティを取得
+    const originalData = mainDataByDate.get(date);
+
     const merged: MergedDataPoint = {
       date,
       value: mainValues[idx],
     };
 
+    // 元のデータがあれば全プロパティをコピー
+    if (originalData) {
+      for (const [key, val] of Object.entries(originalData)) {
+        if (key !== 'date' && key !== 'value' && merged[key] === undefined) {
+          merged[key] = val as string | number | null;
+        }
+      }
+    }
+
+    // オーバーレイの値を追加
     for (const [key, values] of Object.entries(overlayValues)) {
       merged[key] = values[idx];
     }

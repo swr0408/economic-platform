@@ -4,7 +4,9 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
-import { Tooltip } from 'recharts'
+import { Tooltip as RechartsTooltip } from 'recharts'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -209,8 +211,20 @@ export default function FCIChart({ data }: FCIChartProps) {
           </div>
         </div>
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* 期間セレクタ + 比較ボタン（横並び） */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=fci_baseline', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
 
+        {/* チャート */}
         <ZoomableChart
           data={filteredData}
           dataKey="baseline"
@@ -234,7 +248,7 @@ export default function FCIChart({ data }: FCIChartProps) {
             },
           ]}
         >
-          <Tooltip content={<CustomTooltip />} />
+          <RechartsTooltip content={<CustomTooltip />} />
         </ZoomableChart>
       </ChartContainer>
     </div>

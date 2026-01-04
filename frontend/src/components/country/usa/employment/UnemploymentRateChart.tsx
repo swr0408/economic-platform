@@ -5,6 +5,9 @@
  * 共通モジュールを使用
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -45,6 +48,7 @@ const COLORS = {
 
 export default function UnemploymentRateChart({ data }: UnemploymentRateChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データのソート
@@ -98,32 +102,64 @@ export default function UnemploymentRateChart({ data }: UnemploymentRateChartPro
           decimals={1}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-
-        {/* 折れ線グラフ */}
-        <StandardLineChart
-          data={filteredData}
-          lines={[
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
             {
-              dataKey: 'unrate',
-              color: COLORS.unrate,
-              name: '失業率 (U-3)',
-              hide: hiddenSeries.has('unrate'),
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=unemployment_rate', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* 折れ線グラフ */}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'unrate',
+                        color: COLORS.unrate,
+                        name: '失業率 (U-3)',
+                        hide: hiddenSeries.has('unrate'),
+                      },
+                      {
+                        dataKey: 'u6rate',
+                        color: COLORS.u6rate,
+                        name: '広義の失業率 (U-6)',
+                        hide: hiddenSeries.has('u6rate'),
+                      },
+                    ]}
+                    yAxisFormatter={(v) => `${v}%`}
+                    yDomain={['dataMin - 1', 'dataMax + 1']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={createPercentFormatter(1, false)}
+                    showZeroLine={false}
+                    onLegendClick={handleLegendClick}
+                  />
+                </>
+              ),
             },
             {
-              dataKey: 'u6rate',
-              color: COLORS.u6rate,
-              name: '広義の失業率 (U-6)',
-              hide: hiddenSeries.has('u6rate'),
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="unemployment_rate" />
+              ),
             },
           ]}
-          yAxisFormatter={(v) => `${v}%`}
-          yDomain={['dataMin - 1', 'dataMax + 1']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={createPercentFormatter(1, false)}
-          showZeroLine={false}
-          onLegendClick={handleLegendClick}
         />
       </ChartContainer>
     </div>

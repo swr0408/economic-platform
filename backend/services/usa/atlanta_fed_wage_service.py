@@ -31,7 +31,10 @@ import requests
 import pandas as pd
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import ATLANTA_FED_WAGE_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -70,9 +73,10 @@ class AtlantaFedWageService:
     DATA_CACHE_KEY = "atlantafed:wage_growth:data"
     LAST_CHECK_KEY = "atlantafed:wage_growth:last_check"
     MONTHLY_UPDATE_KEY = "atlantafed:wage_growth:monthly_updated"
+    ECONALPHA_ID = "atlanta_fed_wage"  # FMPマッピング用ID
 
     def __init__(self):
-        self.schedule_checker = ATLANTA_FED_WAGE_CHECKER
+        pass
 
     def get_atlanta_fed_wage_data(
         self,
@@ -107,8 +111,8 @@ class AtlantaFedWageService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 latest_data_date = cached_data.get("latest_data_date")
-                if last_updated_str and not self.schedule_checker.should_refresh(
-                    last_updated_str, latest_data_date=latest_data_date
+                if last_updated_str and not should_refresh_by_fmp_schedule(
+                    self.ECONALPHA_ID, last_updated_str
                 ):
                     return {
                         "data": cached_data.get("data", []),
@@ -125,8 +129,8 @@ class AtlantaFedWageService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 latest_data_date = file_cache.get("latest_data_date")
-                if last_updated_str and not self.schedule_checker.should_refresh(
-                    last_updated_str, latest_data_date=latest_data_date
+                if last_updated_str and not should_refresh_by_fmp_schedule(
+                    self.ECONALPHA_ID, last_updated_str
                 ):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {
@@ -426,7 +430,7 @@ class AtlantaFedWageService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

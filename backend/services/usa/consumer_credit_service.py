@@ -25,12 +25,14 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import CONSUMER_CREDIT_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
 SERIES_ID = "CCLACBW027SBOG"
@@ -46,6 +48,7 @@ class ConsumerCreditService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:series:consumer_credit"
+    ECONALPHA_ID = "consumer_credit"  # FMPマッピング用ID
 
     # 発表時刻設定（ET）- 毎週金曜日 16:15 ET
     RELEASE_HOUR_ET = 16
@@ -53,7 +56,6 @@ class ConsumerCreditService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = CONSUMER_CREDIT_CHECKER
 
     def get_consumer_credit_data(
         self,
@@ -282,10 +284,9 @@ class ConsumerCreditService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        判定ロジック:
-        - 次回発表日時（金曜日 16:15 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
+        FMPスケジュールベースの3分方式で判定
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
@@ -326,7 +327,7 @@ class ConsumerCreditService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

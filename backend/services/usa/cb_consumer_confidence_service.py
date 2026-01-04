@@ -24,7 +24,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import CB_CONSUMER_CONFIDENCE_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -44,13 +47,10 @@ class CBConsumerConfidenceService:
     """CB消費者信頼感指数サービス"""
 
     DATA_CACHE_KEY = "investing:cb_consumer_confidence:data"
-
-    # 発表時刻設定（ET）- 10:00 ET
-    RELEASE_HOUR_ET = 10
-    RELEASE_MINUTE_ET = 0
+    ECONALPHA_ID = "cb_consumer_confidence"  # FMPマッピング用ID
 
     def __init__(self):
-        self.schedule_checker = CB_CONSUMER_CONFIDENCE_CHECKER
+        pass
 
     def get_cb_consumer_confidence_data(
         self,
@@ -81,33 +81,37 @@ class CBConsumerConfidenceService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": cached_data.get("next_release"),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
                     }
 
-        # ファイルキャッシュチェック
-        if not force_refresh:
-            file_cache = self._load_file_cache()
-            if file_cache:
-                last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
-                    data = file_cache.get("data", [])
+        # 優先順位: 1. DB(FMP蓄積) → 2. Investing.com API（フォールバック）
+        db_result = self._load_from_db()
+        if db_result:
+            # 次回発表日をFMPから取得
+            next_release = self._get_next_release_from_fmp()
 
-                    # Redisにも保存
-                    redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
+            latest = db_result[-1] if db_result else None
+            cache_payload = {
+                "data": db_result,
+                "latest": latest,
+                "next_release": next_release,
+                "last_updated": datetime.now(JST).isoformat()
+            }
+            redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
 
-                    return {
-                        "data": data,
-                        "latest": file_cache.get("latest"),
-                        "next_release": None,
-                        "cached": True,
-                        "source": "file",
-                        "last_updated": last_updated_str
-                    }
+            return {
+                "data": db_result,
+                "latest": latest,
+                "next_release": next_release,
+                "cached": False,
+                "source": "database",
+                "last_updated": datetime.now(JST).isoformat()
+            }
 
-        # Investing.comからJSONで取得
+        # DBにデータがない場合はInvesting.comから取得（フォールバック）
         api_data = self._fetch_from_investing()
 
         if api_data:
@@ -154,6 +158,140 @@ class CBConsumerConfidenceService:
             "last_updated": None,
             "error": "No data available"
         }
+
+    def _load_from_db(self) -> List[Dict[str, Any]]:
+        """DBから履歴データを取得"""
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            with SessionLocal() as session:
+                query = text("""
+                    SELECT datetime_utc, actual, estimate, previous
+                    FROM economic_calendar_events
+                    WHERE country = 'US'
+                      AND event ILIKE '%CB Consumer Confidence%'
+                      AND actual IS NOT NULL
+                    ORDER BY datetime_utc ASC
+                """)
+                rows = session.execute(query).fetchall()
+
+                result = []
+                seen_dates = set()
+
+                for row in rows:
+                    dt_utc, actual, estimate, previous = row
+                    if dt_utc:
+                        # 月初日に正規化
+                        date_str = dt_utc.strftime("%Y-%m-01")
+                        if date_str in seen_dates:
+                            continue
+                        seen_dates.add(date_str)
+
+                        result.append({
+                            "date": date_str,
+                            "value": float(actual) if actual else None,
+                        })
+
+                print(f"Loaded {len(result)} CB Consumer Confidence records from DB")
+                return result
+
+        except Exception as e:
+            print(f"Error loading from DB: {e}")
+            return []
+
+    def _get_next_release_from_fmp(self) -> Optional[Dict[str, Any]]:
+        """FMP APIから次回発表日を取得、なければスケジュールから計算"""
+        try:
+            from services.calendar.fmp_service import fmp_service
+
+            today = date.today()
+            # FMP APIからイベントを取得
+            events = fmp_service.fetch_calendar(
+                today,
+                today + timedelta(days=60),
+                country="US"
+            )
+
+            # 対象イベントを収集（USのみ、CB Consumer Confidence）
+            candidates = []
+            for event in events:
+                # USイベントのみ
+                if event.get("country") != "US":
+                    continue
+                event_name = event.get("event", "")
+                event_lower = event_name.lower()
+                # CB Consumer Confidence または Consumer Confidence にマッチ
+                if "consumer confidence" not in event_lower and "cb consumer" not in event_lower:
+                    continue
+                # 他の Consumer Confidence を除外（FGV, Michigan, Westpac等）
+                if any(x in event_lower for x in ["fgv", "michigan", "westpac", "anz"]):
+                    continue
+                # 将来のイベント（actual が None）
+                if event.get("actual") is None:
+                    dt_utc, _ = fmp_service.parse_datetime(event.get("date", ""))
+                    if dt_utc and dt_utc.date() >= today:
+                        candidates.append({
+                            "date": dt_utc.strftime("%Y-%m-%d"),
+                            "datetime_utc": dt_utc.isoformat(),
+                            "label": event_name,
+                            "estimate": event.get("estimate"),
+                            "_dt": dt_utc,
+                        })
+
+            # 日付順でソートして最も近いイベントを返す
+            if candidates:
+                candidates.sort(key=lambda x: x["_dt"])
+                result = candidates[0]
+                del result["_dt"]
+                return result
+
+            # FMPにイベントがない場合、スケジュールから計算（毎月最終火曜日 10:00 ET）
+            return self._calculate_next_release_date()
+
+        except Exception as e:
+            print(f"Error fetching next release from FMP: {e}")
+            # エラー時もスケジュールから計算
+            return self._calculate_next_release_date()
+
+    def _calculate_next_release_date(self) -> Optional[Dict[str, Any]]:
+        """CB消費者信頼感指数の次回発表日を計算（毎月最終火曜日 10:00 ET）"""
+        try:
+            import calendar
+
+            today = date.today()
+            # 今月と来月の最終火曜日を計算
+            for month_offset in range(3):
+                year = today.year
+                month = today.month + month_offset
+                if month > 12:
+                    month -= 12
+                    year += 1
+
+                # 月の最終日を取得
+                last_day = calendar.monthrange(year, month)[1]
+                last_date = date(year, month, last_day)
+
+                # 最終火曜日を計算（火曜日 = 1）
+                days_since_tuesday = (last_date.weekday() - 1) % 7
+                last_tuesday = last_date - timedelta(days=days_since_tuesday)
+
+                # 今日以降であれば採用
+                if last_tuesday >= today:
+                    # 10:00 ET = 15:00 UTC
+                    dt_utc = datetime(last_tuesday.year, last_tuesday.month, last_tuesday.day, 15, 0, 0)
+                    return {
+                        "date": last_tuesday.strftime("%Y-%m-%d"),
+                        "datetime_utc": dt_utc.isoformat() + "+00:00",
+                        "label": f"CB Consumer Confidence ({calendar.month_abbr[month]})",
+                        "estimate": None,
+                    }
+
+            return None
+
+        except Exception as e:
+            print(f"Error calculating next release date: {e}")
+            return None
 
     def _fetch_from_investing(self) -> List[Dict[str, Any]]:
         """Investing.comからCB消費者信頼感データを取得（JSON API）"""
@@ -212,13 +350,8 @@ class CBConsumerConfidenceService:
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
-
-        判定ロジック:
-        - 次回発表日時（最終火曜日 10:00 ET）を過ぎており、かつ最終更新が発表日時より前なら更新
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
@@ -261,7 +394,7 @@ class CBConsumerConfidenceService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

@@ -4,7 +4,9 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
-import { Tooltip } from 'recharts'
+import { Tooltip as RechartsTooltip } from 'recharts'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -140,7 +142,20 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
         source="NY Fed, FRED"
         sourceUrl="https://www.newyorkfed.org/research/data_indicators/term-premia-tabs#/interactive"
       >
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* 期間セレクタ + 比較ボタン（横並び） */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=term_premium', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
+
+        {/* チャート */}
         <ZoomableChart
           data={filteredData}
           dataKey="yield_10y"
@@ -160,7 +175,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
           initialHiddenLines={['kw_term_premium']}
           xAxisInterval={xAxisInterval}
         >
-          <Tooltip
+          <RechartsTooltip
             content={({ active, payload, label }) => {
               if (!active || !payload || payload.length === 0) return null
               return (

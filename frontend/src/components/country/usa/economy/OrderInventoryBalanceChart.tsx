@@ -4,6 +4,7 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
+import { Tabs } from 'antd'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -23,6 +24,9 @@ import {
   StandardLineChart,
 } from '../common/ChartComponents'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 // =============================================================================
 // 型定義
 // =============================================================================
@@ -37,6 +41,7 @@ interface OrderInventoryBalanceChartProps {
 
 export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalanceChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<string>(['balance'])
 
   // データを日付昇順にソート
@@ -148,20 +153,43 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
           </div>
         )}
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            { dataKey: 'balance_3ma', color: '#228B22', name: '受注在庫バランス（3ヶ月平均）', strokeWidth: 2, hide: hiddenSeries.has('balance_3ma') },
-            { dataKey: 'balance', color: 'rgba(141, 250, 141, 0.5)', name: '受注在庫バランス（当月）', strokeWidth: 1, hide: hiddenSeries.has('balance') },
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      { dataKey: 'balance_3ma', color: '#228B22', name: '受注在庫バランス（3ヶ月平均）', strokeWidth: 2, hide: hiddenSeries.has('balance_3ma') },
+                      { dataKey: 'balance', color: 'rgba(141, 250, 141, 0.5)', name: '受注在庫バランス（当月）', strokeWidth: 1, hide: hiddenSeries.has('balance') },
+                    ]}
+                    yAxisFormatter={(v) => v.toFixed(0)}
+                    yDomain={['dataMin - 2', 'dataMax + 2']}
+                    tooltipLabelFormatter={formatDateLabel}
+                    tooltipFormatter={createNumberFormatter(1)}
+                    onLegendClick={handleLegendClick}
+                    showZeroLine={true}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="ism_manufacturing" />
+              ),
+            },
           ]}
-          yAxisFormatter={(v) => v.toFixed(0)}
-          yDomain={['dataMin - 2', 'dataMax + 2']}
-          tooltipLabelFormatter={formatDateLabel}
-          tooltipFormatter={createNumberFormatter(1)}
-          onLegendClick={handleLegendClick}
-          showZeroLine={true}
         />
       </ChartContainer>
     </div>

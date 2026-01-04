@@ -13,6 +13,9 @@
  * 共通モジュールを使用
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Line,
@@ -222,6 +225,7 @@ function LatestValueDisplay({ latest, nextRelease, latestUnemployment }: LatestV
 
 export default function CBJobsLaborChart({ data, unemploymentData }: CBJobsLaborChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'invertedDiff' | 'unemployment'>()
 
   // CB雇用機会業況判断データをソート
@@ -291,86 +295,120 @@ export default function CBJobsLaborChart({ data, unemploymentData }: CBJobsLabor
           latestUnemployment={latestUnemployment}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクタ + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <AntTooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=unemployment_rate', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </AntTooltip>
+                  </div>
 
-        <ResponsiveContainer width="100%" height={450}>
-          <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={AXIS_STYLE.tick}
-              interval={AXIS_STYLE.interval}
-            />
-            {/* 左Y軸: 差分（反転）*/}
-            <YAxis
-              yAxisId="left"
-              domain={['auto', 'auto']}
-              tick={AXIS_STYLE.tick}
-              tickFormatter={(v) => `${-v}`}  // 表示時は元の値に戻す
-              label={{
-                value: 'CB雇用機会業況判断',
-                angle: -90,
-                position: 'insideLeft',
-                style: { fontSize: 11, fill: '#666' }
-              }}
-            />
-            {/* 右Y軸: 失業率（あれば） */}
-            {hasUnemployment && (
-              <YAxis
-                yAxisId="right"
-                orientation="right"
-                domain={['auto', 'auto']}
-                tick={AXIS_STYLE.tick}
-                tickFormatter={(v) => `${v}%`}
-                label={{
-                  value: '失業率',
-                  angle: 90,
-                  position: 'insideRight',
-                  style: { fontSize: 11, fill: '#666' }
-                }}
-              />
-            )}
-            <Tooltip content={<CustomTooltip />} />
-            <Legend
-              onClick={(e) => handleLegendClick(e.dataKey as string)}
-              wrapperStyle={{ cursor: 'pointer' }}
-            />
+                  <ResponsiveContainer width="100%" height={450}>
+                    <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                      <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={formatDateLabel}
+                        tick={AXIS_STYLE.tick}
+                        interval={AXIS_STYLE.interval}
+                      />
+                      {/* 左Y軸: 差分（反転）*/}
+                      <YAxis
+                        yAxisId="left"
+                        domain={['auto', 'auto']}
+                        tick={AXIS_STYLE.tick}
+                        tickFormatter={(v) => `${-v}`}  // 表示時は元の値に戻す
+                        label={{
+                          value: 'CB雇用機会業況判断',
+                          angle: -90,
+                          position: 'insideLeft',
+                          style: { fontSize: 11, fill: '#666' }
+                        }}
+                      />
+                      {/* 右Y軸: 失業率（あれば） */}
+                      {hasUnemployment && (
+                        <YAxis
+                          yAxisId="right"
+                          orientation="right"
+                          domain={['auto', 'auto']}
+                          tick={AXIS_STYLE.tick}
+                          tickFormatter={(v) => `${v}%`}
+                          label={{
+                            value: '失業率',
+                            angle: 90,
+                            position: 'insideRight',
+                            style: { fontSize: 11, fill: '#666' }
+                          }}
+                        />
+                      )}
+                      <Tooltip content={<CustomTooltip />} />
+                      <Legend
+                        onClick={(e) => handleLegendClick(e.dataKey as string)}
+                        wrapperStyle={{ cursor: 'pointer' }}
+                      />
 
-            {/* ゼロライン */}
-            <ReferenceLine yAxisId="left" y={0} stroke="#000" strokeWidth={1} />
+                      {/* ゼロライン */}
+                      <ReferenceLine yAxisId="left" y={0} stroke="#000" strokeWidth={1} />
 
-            {/* 差分ライン（反転） */}
-            <Line
-              yAxisId="left"
-              type="monotone"
-              dataKey="invertedDiff"
-              stroke={COLORS.differential}
-              strokeWidth={2}
-              dot={false}
-              name="CB雇用機会業況判断"
-              hide={isHidden('invertedDiff')}
-              isAnimationActive={false}
-              connectNulls={true}
-            />
+                      {/* 差分ライン（反転） */}
+                      <Line
+                        yAxisId="left"
+                        type="monotone"
+                        dataKey="invertedDiff"
+                        stroke={COLORS.differential}
+                        strokeWidth={2}
+                        dot={false}
+                        name="CB雇用機会業況判断"
+                        hide={isHidden('invertedDiff')}
+                        isAnimationActive={false}
+                        connectNulls={true}
+                      />
 
-            {/* 失業率（あれば） */}
-            {hasUnemployment && (
-              <Line
-                yAxisId="right"
-                type="monotone"
-                dataKey="unemployment"
-                stroke={COLORS.unemployment}
-                strokeWidth={2}
-                dot={false}
-                name="失業率"
-                hide={isHidden('unemployment')}
-                isAnimationActive={false}
-                connectNulls={true}
-              />
-            )}
-          </ComposedChart>
-        </ResponsiveContainer>
+                      {/* 失業率（あれば） */}
+                      {hasUnemployment && (
+                        <Line
+                          yAxisId="right"
+                          type="monotone"
+                          dataKey="unemployment"
+                          stroke={COLORS.unemployment}
+                          strokeWidth={2}
+                          dot={false}
+                          name="失業率"
+                          hide={isHidden('unemployment')}
+                          isAnimationActive={false}
+                          connectNulls={true}
+                        />
+                      )}
+                    </ComposedChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="unemployment_rate" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

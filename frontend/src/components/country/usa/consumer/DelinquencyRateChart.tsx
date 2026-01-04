@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState } from 'react'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -24,6 +26,7 @@ import {
   SimpleLatestValueBox,
   StandardLineChart,
 } from '../common/ChartComponents'
+
 
 // =============================================================================
 // 型定義
@@ -83,7 +86,18 @@ export default function DelinquencyRateChart({ data }: DelinquencyRateChartProps
           dateFormatter={formatQuarterLabelJP}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* 時系列チャート */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=delinquency_rate', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
         <StandardLineChart
           data={filteredData}
           lines={[

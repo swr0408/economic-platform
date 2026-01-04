@@ -11,6 +11,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -123,7 +125,17 @@ export default function AtlantaFedWageGrowthChart({ data }: AtlantaFedWageGrowth
         />
 
         {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setPeriod} selectedPeriod={period} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setPeriod} selectedPeriod={period} />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=atlanta_fed_wage', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
 
         {/* 折れ線グラフ */}
         <StandardLineChart

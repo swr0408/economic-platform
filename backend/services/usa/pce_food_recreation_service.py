@@ -28,12 +28,14 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import PERSONAL_INCOME_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # BEA API設定
 BEA_API_BASE = "https://apps.bea.gov/api/data/"
@@ -48,14 +50,10 @@ class PCEFoodRecreationService:
     """PCEデフレーター飲食宿泊・娯楽サービス"""
 
     DATA_CACHE_KEY = "bea:pce_food_recreation:data"
-
-    # 発表時刻設定（ET）- Personal Income 8:30 AM ET
-    RELEASE_HOUR_ET = 8
-    RELEASE_MINUTE_ET = 30
+    ECONALPHA_ID = "pce_mom"  # FMPマッピング用ID（PCEと同じスケジュール）
 
     def __init__(self):
         self.api_key = os.environ.get("BEA_API_KEY", "")
-        self.schedule_checker = PERSONAL_INCOME_CHECKER
 
     def get_pce_food_recreation_data(
         self,
@@ -329,8 +327,8 @@ class PCEFoodRecreationService:
             return data
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -368,7 +366,7 @@ class PCEFoodRecreationService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

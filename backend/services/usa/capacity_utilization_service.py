@@ -22,7 +22,10 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import INDUSTRIAL_PRODUCTION_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -44,14 +47,10 @@ class CapacityUtilizationService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     CACHE_KEY = "fred:series:tcu"
     SCHEDULE_CACHE_KEY = "indpro:next_release"  # Industrial Productionと同じ発表日
-
-    # 発表時刻設定
-    RELEASE_TIME_ET = "09:15"  # 発表時刻(ET)
-    RELEASE_TIME_JST_HOUR = 23  # 9:15 ET = 23:15 JST（冬時間）/ 22:15 JST（夏時間）
+    ECONALPHA_ID = "capacity_utilization"  # FMPマッピング用ID
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = INDUSTRIAL_PRODUCTION_CHECKER
 
     def get_capacity_utilization_data(
         self,
@@ -84,7 +83,7 @@ class CapacityUtilizationService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('capacity_utilization'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -108,7 +107,7 @@ class CapacityUtilizationService:
                     return {
                         "data": data,
                         "latest": data[-1] if data else None,
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('capacity_utilization'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -133,7 +132,7 @@ class CapacityUtilizationService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('capacity_utilization'),
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -146,7 +145,7 @@ class CapacityUtilizationService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('capacity_utilization'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -155,7 +154,7 @@ class CapacityUtilizationService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('capacity_utilization'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -212,17 +211,8 @@ class CapacityUtilizationService:
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
-
-        Capacity Utilization発表スケジュール:
-        - 発表日: 毎月14〜18日頃の9:15 ET（Industrial Productionと同時）
-        - Industrial Productionの次回発表日キャッシュを参照
-
-        判定ロジック:
-        - 次回発表日時を過ぎており、かつ最終更新がそれより前なら更新が必要
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
@@ -263,7 +253,7 @@ class CapacityUtilizationService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": CACHE_FILE.exists()
         }
 

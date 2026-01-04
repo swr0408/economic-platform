@@ -13,6 +13,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs } from 'antd'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   LineChart,
   Line,
@@ -73,6 +75,7 @@ const SERIES_NAMES = {
 
 export default function NFIBCompensationChart({ data }: NFIBCompensationChartProps) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付順にソート
@@ -129,54 +132,76 @@ export default function NFIBCompensationChart({ data }: NFIBCompensationChartPro
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
-        {/* 原数値グラフ */}
-        <ResponsiveContainer width="100%" height={450}>
-          <LineChart data={filteredData} margin={CHART_MARGIN}>
-            <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-            <XAxis
-              dataKey="date"
-              tickFormatter={formatDateLabel}
-              tick={AXIS_STYLE.tick}
-              interval={AXIS_STYLE.interval}
-            />
-            <YAxis
-              tick={AXIS_STYLE.tick}
-              tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(0)}`}
-              domain={['dataMin - 1', 'dataMax + 1']}
-              label={{
-                angle: -90,
-                position: 'insideLeft',
-                dy: 30,
-                style: { fontSize: 11, fill: '#666' }
-              }}
-            />
-            <Tooltip content={<ValueTooltip unit="%" decimals={1} />} />
-            <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
-            <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 原数値グラフ */}
+                  <ResponsiveContainer width="100%" height={450}>
+                    <LineChart data={filteredData} margin={CHART_MARGIN}>
+                      <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={formatDateLabel}
+                        tick={AXIS_STYLE.tick}
+                        interval={AXIS_STYLE.interval}
+                      />
+                      <YAxis
+                        tick={AXIS_STYLE.tick}
+                        tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(0)}`}
+                        domain={['dataMin - 1', 'dataMax + 1']}
+                        label={{
+                          angle: -90,
+                          position: 'insideLeft',
+                          dy: 30,
+                          style: { fontSize: 11, fill: '#666' }
+                        }}
+                      />
+                      <Tooltip content={<ValueTooltip unit="%" decimals={1} />} />
+                      <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
+                      <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-            <Line
-              type="monotone"
-              dataKey="compensation_plans"
-              stroke={COLORS.compensation_plans}
-              strokeWidth={2}
-              dot={false}
-              name={SERIES_NAMES.compensation_plans}
-              hide={hiddenSeries.has('compensation_plans')}
-            />
-            <Line
-              type="monotone"
-              dataKey="hiring_plans"
-              stroke={COLORS.hiring_plans}
-              strokeWidth={2}
-              dot={false}
-              name={SERIES_NAMES.hiring_plans}
-              hide={hiddenSeries.has('hiring_plans')}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+                      <Line
+                        type="monotone"
+                        dataKey="compensation_plans"
+                        stroke={COLORS.compensation_plans}
+                        strokeWidth={2}
+                        dot={false}
+                        name={SERIES_NAMES.compensation_plans}
+                        hide={hiddenSeries.has('compensation_plans')}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="hiring_plans"
+                        stroke={COLORS.hiring_plans}
+                        strokeWidth={2}
+                        dot={false}
+                        name={SERIES_NAMES.hiring_plans}
+                        hide={hiddenSeries.has('hiring_plans')}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="nfib" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

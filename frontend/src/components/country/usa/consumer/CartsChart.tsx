@@ -4,6 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
+import { Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import {
   LineChart,
   Line,
@@ -38,6 +40,7 @@ import {
   NoDataMessage,
   LatestValueBox,
 } from '../common/ChartComponents'
+
 
 // =============================================================================
 // 型定義
@@ -206,7 +209,18 @@ export default function CartsChart({ data }: CartsChartProps) {
           nextRelease={data.next_release}
         />
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* 時系列チャート */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+          <AntTooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s=carts', '_blank')}
+            >
+              データ比較
+            </Button>
+          </AntTooltip>
+        </div>
         <ResponsiveContainer width="100%" height={450}>
           <LineChart data={filteredData} margin={CHART_MARGIN}>
             <CartesianGrid {...CARTESIAN_GRID_PROPS} />

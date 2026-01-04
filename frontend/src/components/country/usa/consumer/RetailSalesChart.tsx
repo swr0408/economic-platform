@@ -4,10 +4,15 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 import type { RetailSalesData, RetailControlData } from '../../../../hooks/useDashboardData'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // 共通モジュールのインポート
 import {
@@ -59,6 +64,7 @@ const COLORS = {
 export default function RetailSalesChart({ data, controlData }: RetailSalesChartProps) {
   const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
   const [dataType, setDataType] = useState<RetailDataType>('total')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
@@ -161,54 +167,87 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
           nextRelease={data.next_release}
         />
 
-        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=retail_sales_value', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-        {/* 前年比グラフ */}
-        {viewMode === 'yoy' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <StandardLineChart
-              data={filteredData}
-              lines={[
-                { dataKey: 'yoy', color: COLORS.yoy, name: '小売売上高（前年比）', hide: hiddenSeries.has('yoy') },
-                { dataKey: 'ex_auto_yoy', color: COLORS.yoy_ex, name: '自動車除く（前年比）', hide: hiddenSeries.has('ex_auto_yoy') },
-              ]}
-              yAxisFormatter={(v) => `${v}%`}
-              yDomain={['dataMin - 3', 'dataMax + 3']}
-              onLegendClick={handleLegendClick}
-            />
-          </>
-        )}
+                  {/* 前年比グラフ */}
+                  {viewMode === 'yoy' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          { dataKey: 'yoy', color: COLORS.yoy, name: '小売売上高（前年比）', hide: hiddenSeries.has('yoy') },
+                          { dataKey: 'ex_auto_yoy', color: COLORS.yoy_ex, name: '自動車除く（前年比）', hide: hiddenSeries.has('ex_auto_yoy') },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 3', 'dataMax + 3']}
+                        onLegendClick={handleLegendClick}
+                      />
+                    </>
+                  )}
 
-        {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && (
-          <MonthlyTableWithDataTypes
-            data={momTableData}
-            dataTypes={RETAIL_DATA_TYPE_OPTIONS}
-            selectedType={dataType}
-            onTypeChange={setDataType}
-          />
-        )}
+                  {/* 前月比テーブル */}
+                  {viewMode === 'mom_table' && (
+                    <MonthlyTableWithDataTypes
+                      data={momTableData}
+                      dataTypes={RETAIL_DATA_TYPE_OPTIONS}
+                      selectedType={dataType}
+                      onTypeChange={setDataType}
+                    />
+                  )}
 
-        {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
-          <>
-            <DataTypeButtonGroup options={RETAIL_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <StandardBarChart
-              data={filteredData}
-              bars={[
-                dataType === 'total'
-                  ? { dataKey: 'mom', color: COLORS.mom, name: '小売売上高（前月比）' }
-                  : dataType === 'ex_auto'
-                  ? { dataKey: 'ex_auto_mom', color: COLORS.mom_ex, name: '自動車除く（前月比）' }
-                  : { dataKey: 'control_group_mom', color: COLORS.mom_cg, name: 'コントロールグループ（前月比）' },
-              ]}
-              yAxisFormatter={(v) => `${v}%`}
-              yDomain={['dataMin - 1', 'dataMax + 1']}
-            />
-          </>
-        )}
+                  {/* 前月比グラフ */}
+                  {viewMode === 'mom_chart' && (
+                    <>
+                      <DataTypeButtonGroup options={RETAIL_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardBarChart
+                        data={filteredData}
+                        bars={[
+                          dataType === 'total'
+                            ? { dataKey: 'mom', color: COLORS.mom, name: '小売売上高（前月比）' }
+                            : dataType === 'ex_auto'
+                            ? { dataKey: 'ex_auto_mom', color: COLORS.mom_ex, name: '自動車除く（前月比）' }
+                            : { dataKey: 'control_group_mom', color: COLORS.mom_cg, name: 'コントロールグループ（前月比）' },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 1', 'dataMax + 1']}
+                      />
+                    </>
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="retail_sales_mom" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

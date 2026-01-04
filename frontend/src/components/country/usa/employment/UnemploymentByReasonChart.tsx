@@ -11,6 +11,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs } from 'antd'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -62,6 +64,7 @@ const SERIES_NAMES = {
 
 export default function UnemploymentByReasonChart({ data }: UnemploymentByReasonChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データのソート
@@ -122,50 +125,72 @@ export default function UnemploymentByReasonChart({ data }: UnemploymentByReason
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        {/* 折れ線グラフ */}
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            {
-              dataKey: 'layoff',
-              color: getColor('layoff'),
-              name: SERIES_NAMES.layoff,
-              hide: hiddenSeries.has('layoff'),
+                  {/* 折れ線グラフ */}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'layoff',
+                        color: getColor('layoff'),
+                        name: SERIES_NAMES.layoff,
+                        hide: hiddenSeries.has('layoff'),
+                      },
+                      {
+                        dataKey: 'other_losers',
+                        color: getColor('other_losers'),
+                        name: SERIES_NAMES.other_losers,
+                        hide: hiddenSeries.has('other_losers'),
+                      },
+                      {
+                        dataKey: 'leavers',
+                        color: getColor('leavers'),
+                        name: SERIES_NAMES.leavers,
+                        hide: hiddenSeries.has('leavers'),
+                      },
+                      {
+                        dataKey: 'reentrants',
+                        color: getColor('reentrants'),
+                        name: SERIES_NAMES.reentrants,
+                        hide: hiddenSeries.has('reentrants'),
+                      },
+                      {
+                        dataKey: 'new_entrants',
+                        color: getColor('new_entrants'),
+                        name: SERIES_NAMES.new_entrants,
+                        hide: hiddenSeries.has('new_entrants'),
+                      },
+                    ]}
+                    yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}M`}
+                    yDomain={['dataMin - 100', 'dataMax + 100']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={createUnitFormatter('k', 0)}
+                    showZeroLine={false}
+                    onLegendClick={handleLegendClick}
+                  />
+                </>
+              ),
             },
             {
-              dataKey: 'other_losers',
-              color: getColor('other_losers'),
-              name: SERIES_NAMES.other_losers,
-              hide: hiddenSeries.has('other_losers'),
-            },
-            {
-              dataKey: 'leavers',
-              color: getColor('leavers'),
-              name: SERIES_NAMES.leavers,
-              hide: hiddenSeries.has('leavers'),
-            },
-            {
-              dataKey: 'reentrants',
-              color: getColor('reentrants'),
-              name: SERIES_NAMES.reentrants,
-              hide: hiddenSeries.has('reentrants'),
-            },
-            {
-              dataKey: 'new_entrants',
-              color: getColor('new_entrants'),
-              name: SERIES_NAMES.new_entrants,
-              hide: hiddenSeries.has('new_entrants'),
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="unemployment_rate" />
+              ),
             },
           ]}
-          yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}M`}
-          yDomain={['dataMin - 100', 'dataMax + 100']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={createUnitFormatter('k', 0)}
-          showZeroLine={false}
-          onLegendClick={handleLegendClick}
         />
       </ChartContainer>
     </div>

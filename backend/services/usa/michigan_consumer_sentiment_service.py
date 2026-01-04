@@ -29,7 +29,10 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import MICHIGAN_CONSUMER_SENTIMENT_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -67,13 +70,10 @@ class MichiganConsumerSentimentService:
     """ミシガン大学消費者信頼感指数サービス"""
 
     DATA_CACHE_KEY = "michigan:consumer_sentiment:data"
-
-    # 発表時刻設定（ET）- 10:00 ET
-    RELEASE_HOUR_ET = 10
-    RELEASE_MINUTE_ET = 0
+    ECONALPHA_ID = "michigan_consumer_sentiment"  # FMPマッピング用ID
 
     def __init__(self):
-        self.schedule_checker = MICHIGAN_CONSUMER_SENTIMENT_CHECKER
+        pass
 
     def get_michigan_consumer_sentiment_data(
         self,
@@ -108,7 +108,7 @@ class MichiganConsumerSentimentService:
                         "components": cached_data.get("components", []),
                         "latest": cached_data.get("latest"),
                         "latest_components": cached_data.get("latest_components"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('michigan_consumer_sentiment'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -128,7 +128,7 @@ class MichiganConsumerSentimentService:
                         "components": file_cache.get("components", []),
                         "latest": file_cache.get("latest"),
                         "latest_components": file_cache.get("latest_components"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('michigan_consumer_sentiment'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -160,7 +160,7 @@ class MichiganConsumerSentimentService:
                 "components": components_data,
                 "latest": latest,
                 "latest_components": latest_components,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('michigan_consumer_sentiment'),
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -174,7 +174,7 @@ class MichiganConsumerSentimentService:
                 "components": file_cache.get("components", []),
                 "latest": file_cache.get("latest"),
                 "latest_components": file_cache.get("latest_components"),
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('michigan_consumer_sentiment'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -185,7 +185,7 @@ class MichiganConsumerSentimentService:
             "components": [],
             "latest": None,
             "latest_components": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('michigan_consumer_sentiment'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -334,13 +334,8 @@ class MichiganConsumerSentimentService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
-
-        判定ロジック:
-        - ピリオドベースのスケジュールチェッカーを使用
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
@@ -383,7 +378,7 @@ class MichiganConsumerSentimentService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

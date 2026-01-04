@@ -23,12 +23,14 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import VISA_SPENDING_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FREDシリーズID
 VISA_SMI_SERIES_ID = "VISASMIHSA"
@@ -49,6 +51,7 @@ class VisaSpendingService:
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:series:visa_spending"
     SCHEDULE_CACHE_KEY = "visa:smi:schedule"
+    ECONALPHA_ID = "visa_spending"  # FMPマッピング用ID
 
     # スケジュールキャッシュの有効期間（180日 = 約6ヶ月）
     SCHEDULE_CACHE_TTL = 180 * 24 * 60 * 60  # 15552000秒
@@ -61,7 +64,6 @@ class VisaSpendingService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = VISA_SPENDING_CHECKER
 
     def get_visa_spending_data(
         self,
@@ -245,19 +247,9 @@ class VisaSpendingService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        VisaSpendingScheduleChecker を使用:
-        - スケジュールファイルから発表日を取得
-        - 3分方式で更新チェック
-        - 今月のデータ取得済みならスキップ
-        - 未取得なら毎日リトライ
+        FMPスケジュールベースの3分方式で判定
         """
-        # 最新データの日付を取得
-        latest_data_date = cached_data.get("latest_data_date")
-
-        return self.schedule_checker.should_refresh(
-            last_updated_str,
-            latest_data_date=latest_data_date
-        )
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
@@ -298,7 +290,7 @@ class VisaSpendingService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

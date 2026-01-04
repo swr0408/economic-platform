@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { Tabs } from 'antd'
 import {
   BarChart,
   Bar,
@@ -19,6 +20,9 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { usePeriodFiltering, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, PercentageTooltip } from '../common/ChartComponents'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 // 寄与度データの型定義
 interface GDPContributionItem {
@@ -57,6 +61,7 @@ const CONTRIBUTION_ITEMS = [
 
 export default function GDPContributionsChart({ data }: GDPContributionsChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // チャート用データを変換
   const chartData = useMemo(() => {
@@ -147,58 +152,81 @@ export default function GDPContributionsChart({ data }: GDPContributionsChartPro
           </div>
         )}
 
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
 
-        <ResponsiveContainer width="100%" height={450}>
-          <BarChart
-            data={filteredData}
-            margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
-            stackOffset="sign"
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="quarter"
-              tickMargin={10}
-              height={60}
-              interval="preserveStartEnd"
-              angle={-45}
-              textAnchor="end"
-              fontSize={11}
-            />
-            <YAxis
-              tickFormatter={(value) => `${value}%`}
-              domain={['auto', 'auto']}
-              tickMargin={8}
-            />
-            <Tooltip content={<PercentageTooltip />} />
-            <Legend
-              wrapperStyle={{ paddingTop: 20 }}
-              formatter={(value) => <span style={{ fontSize: 12 }}>{value}</span>}
-            />
-            <ReferenceLine y={0} stroke="#000" strokeWidth={1.5} />
+                  <ResponsiveContainer width="100%" height={450}>
+                    <BarChart
+                      data={filteredData}
+                      margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+                      stackOffset="sign"
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="quarter"
+                        tickMargin={10}
+                        height={60}
+                        interval="preserveStartEnd"
+                        angle={-45}
+                        textAnchor="end"
+                        fontSize={11}
+                      />
+                      <YAxis
+                        tickFormatter={(value) => `${value}%`}
+                        domain={['auto', 'auto']}
+                        tickMargin={8}
+                      />
+                      <Tooltip content={<PercentageTooltip />} />
+                      <Legend
+                        wrapperStyle={{ paddingTop: 20 }}
+                        formatter={(value) => <span style={{ fontSize: 12 }}>{value}</span>}
+                      />
+                      <ReferenceLine y={0} stroke="#000" strokeWidth={1.5} />
 
-            {CONTRIBUTION_ITEMS.map((item) => (
-              <Bar
-                key={item.key}
-                dataKey={item.key}
-                name={item.name}
-                stackId="contributions"
-                fill={item.color}
-              >
-                {filteredData.map((entry, index) => {
-                  const value = entry[item.key as keyof GDPContributionItem] as number | null
-                  return (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={item.color}
-                      opacity={value !== null ? 1 : 0}
-                    />
-                  )
-                })}
-              </Bar>
-            ))}
-          </BarChart>
-        </ResponsiveContainer>
+                      {CONTRIBUTION_ITEMS.map((item) => (
+                        <Bar
+                          key={item.key}
+                          dataKey={item.key}
+                          name={item.name}
+                          stackId="contributions"
+                          fill={item.color}
+                        >
+                          {filteredData.map((entry, index) => {
+                            const value = entry[item.key as keyof GDPContributionItem] as number | null
+                            return (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={item.color}
+                                opacity={value !== null ? 1 : 0}
+                              />
+                            )
+                          })}
+                        </Bar>
+                      ))}
+                    </BarChart>
+                  </ResponsiveContainer>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="gdp_growth" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

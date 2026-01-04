@@ -9,6 +9,8 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs } from 'antd'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -54,6 +56,7 @@ const SERIES_NAMES = {
 
 export default function PCEFoodRecreationChart({ data }: PCEFoodRecreationChartProps) {
   const [period, setPeriod] = useState<'default' | 'all' | number>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート
   const sortedData = useSortedData(data?.data)
@@ -126,37 +129,59 @@ export default function PCEFoodRecreationChart({ data }: PCEFoodRecreationChartP
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setPeriod} selectedPeriod={period} />
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <PeriodSelector onPeriodChange={setPeriod} selectedPeriod={period} />
 
-        {/* 折れ線グラフ */}
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            {
-              dataKey: 'food_services_yoy',
-              color: COLORS.food_services,
-              name: SERIES_NAMES.food_services,
+                  {/* 折れ線グラフ */}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'food_services_yoy',
+                        color: COLORS.food_services,
+                        name: SERIES_NAMES.food_services,
+                      },
+                      {
+                        dataKey: 'recreation_yoy',
+                        color: COLORS.recreation,
+                        name: SERIES_NAMES.recreation,
+                      },
+                      {
+                        dataKey: 'avg_hourly_earnings_yoy',
+                        color: COLORS.avg_hourly_earnings,
+                        name: SERIES_NAMES.avg_hourly_earnings,
+                      },
+                    ]}
+                    yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+                    yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={(value: unknown, name: string) => [
+                      `${(value as number).toFixed(2)}%`,
+                      name,
+                    ]}
+                    showZeroLine={true}
+                  />
+                </>
+              ),
             },
             {
-              dataKey: 'recreation_yoy',
-              color: COLORS.recreation,
-              name: SERIES_NAMES.recreation,
-            },
-            {
-              dataKey: 'avg_hourly_earnings_yoy',
-              color: COLORS.avg_hourly_earnings,
-              name: SERIES_NAMES.avg_hourly_earnings,
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="pce_mom" />
+              ),
             },
           ]}
-          yAxisFormatter={(v) => `${v.toFixed(1)}%`}
-          yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={(value: unknown, name: string) => [
-            `${(value as number).toFixed(2)}%`,
-            name,
-          ]}
-          showZeroLine={true}
         />
       </ChartContainer>
     </div>

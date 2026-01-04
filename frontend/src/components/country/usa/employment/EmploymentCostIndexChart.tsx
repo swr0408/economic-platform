@@ -9,6 +9,9 @@
  * 共通コンポーネントを使用
  */
 import { useState, useCallback } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Bar,
@@ -82,6 +85,7 @@ const SERIES_NAMES = {
 
 export default function EmploymentCostIndexChart({ data }: EmploymentCostIndexChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('qoq_table')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
@@ -153,49 +157,82 @@ export default function EmploymentCostIndexChart({ data }: EmploymentCostIndexCh
           dateFormatter={formatQuarterLabel}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 前期比グラフ */}
-        {viewMode === 'qoq_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatQuarterLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}`}
-                  domain={['dataMin - 0.2', 'dataMax + 0.2']}
-                  label={{
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 20,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="%" decimals={2} labelFormatter={formatQuarterLabelJP} />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 前期比グラフ */}
+                  {viewMode === 'qoq_chart' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=employment_cost_index', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatQuarterLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}`}
+                            domain={['dataMin - 0.2', 'dataMax + 0.2']}
+                            label={{
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 20,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="%" decimals={2} labelFormatter={formatQuarterLabelJP} />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                <Bar
-                  dataKey="pch"
-                  fill={COLORS.qoq}
-                  name={SERIES_NAMES.qoq}
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          <Bar
+                            dataKey="pch"
+                            fill={COLORS.qoq}
+                            name={SERIES_NAMES.qoq}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前期比テーブル */}
-        {viewMode === 'qoq_table' && <QuarterlyTable data={tableData} legendItems={CHANGE_LEGEND_05PCT} />}
+                  {/* 前期比テーブル */}
+                  {viewMode === 'qoq_table' && <QuarterlyTable data={tableData} legendItems={CHANGE_LEGEND_05PCT} />}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="employment_cost_index" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

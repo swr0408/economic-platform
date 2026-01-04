@@ -16,6 +16,9 @@
  * 共通コンポーネントを使用
  */
 import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   Line,
@@ -98,6 +101,7 @@ const SERIES_NAMES = {
 export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
   const [viewMode, setViewMode] = useState<ValueChangeViewMode>('value')
   const [dataType, setDataType] = useState<DataType>('fulltime')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'fulltime' | 'parttime' | 'fulltime_change' | 'parttime_change'>()
 
   // ビューモード毎の期間管理
@@ -214,157 +218,190 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 現数値グラフ（左右Y軸） */}
-        {viewMode === 'value' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                {/* 左Y軸: フルタイム（千人単位でそのまま表示） */}
-                <YAxis
-                  yAxisId="left"
-                  domain={['dataMin - 1000', 'dataMax + 1000']}
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v.toLocaleString()}`}
-                  label={{
-                    value: 'フルタイム（k）',
-                    angle: -90,
-                    position: 'insideLeft',
-                    style: { fontSize: 11, fill: getColor('fulltime') }
-                  }}
-                />
-                {/* 右Y軸: パートタイム（千人単位でそのまま表示） */}
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  domain={['dataMin - 500', 'dataMax + 500']}
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v.toLocaleString()}`}
-                  label={{
-                    value: 'パートタイム（k）',
-                    angle: 90,
-                    position: 'insideRight',
-                    style: { fontSize: 11, fill: getColor('parttime') }
-                  }}
-                />
-                <Tooltip content={<ValueTooltip unit="k" />} />
-                <Legend
-                  onClick={(e) => handleLegendClick(e.dataKey as string)}
-                  wrapperStyle={{ cursor: 'pointer' }}
-                />
+                  {/* 現数値グラフ（左右Y軸） */}
+                  {viewMode === 'value' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=fulltime_employment', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          {/* 左Y軸: フルタイム（千人単位でそのまま表示） */}
+                          <YAxis
+                            yAxisId="left"
+                            domain={['dataMin - 1000', 'dataMax + 1000']}
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v.toLocaleString()}`}
+                            label={{
+                              value: 'フルタイム（k）',
+                              angle: -90,
+                              position: 'insideLeft',
+                              style: { fontSize: 11, fill: getColor('fulltime') }
+                            }}
+                          />
+                          {/* 右Y軸: パートタイム（千人単位でそのまま表示） */}
+                          <YAxis
+                            yAxisId="right"
+                            orientation="right"
+                            domain={['dataMin - 500', 'dataMax + 500']}
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v.toLocaleString()}`}
+                            label={{
+                              value: 'パートタイム（k）',
+                              angle: 90,
+                              position: 'insideRight',
+                              style: { fontSize: 11, fill: getColor('parttime') }
+                            }}
+                          />
+                          <Tooltip content={<ValueTooltip unit="k" />} />
+                          <Legend
+                            onClick={(e) => handleLegendClick(e.dataKey as string)}
+                            wrapperStyle={{ cursor: 'pointer' }}
+                          />
 
-                {/* フルタイム（左軸） */}
-                <Line
-                  yAxisId="left"
-                  type="monotone"
-                  dataKey="fulltime"
-                  stroke={getColor('fulltime')}
-                  strokeWidth={2}
-                  dot={false}
-                  name={SERIES_NAMES.fulltime}
-                  hide={isHidden('fulltime')}
-                  isAnimationActive={false}
-                  connectNulls={true}
-                />
+                          {/* フルタイム（左軸） */}
+                          <Line
+                            yAxisId="left"
+                            type="monotone"
+                            dataKey="fulltime"
+                            stroke={getColor('fulltime')}
+                            strokeWidth={2}
+                            dot={false}
+                            name={SERIES_NAMES.fulltime}
+                            hide={isHidden('fulltime')}
+                            isAnimationActive={false}
+                            connectNulls={true}
+                          />
 
-                {/* パートタイム（右軸） */}
-                <Line
-                  yAxisId="right"
-                  type="monotone"
-                  dataKey="parttime"
-                  stroke={getColor('parttime')}
-                  strokeWidth={2}
-                  dot={false}
-                  name={SERIES_NAMES.parttime}
-                  hide={isHidden('parttime')}
-                  isAnimationActive={false}
-                  connectNulls={true}
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          {/* パートタイム（右軸） */}
+                          <Line
+                            yAxisId="right"
+                            type="monotone"
+                            dataKey="parttime"
+                            stroke={getColor('parttime')}
+                            strokeWidth={2}
+                            dot={false}
+                            name={SERIES_NAMES.parttime}
+                            hide={isHidden('parttime')}
+                            isAnimationActive={false}
+                            connectNulls={true}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月増減幅グラフ */}
-        {viewMode === 'change_chart' && (
-          <>
-            <DataTypeButtonGroup
-              options={DATA_TYPE_OPTIONS}
-              currentType={dataType}
-              onChange={setDataType}
-            />
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
-                  domain={['dataMin - 100', 'dataMax + 100']}
-                  label={{
-                    value: '増減（k）',
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 20,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 前月増減幅グラフ */}
+                  {viewMode === 'change_chart' && (
+                    <>
+                      <DataTypeButtonGroup
+                        options={DATA_TYPE_OPTIONS}
+                        currentType={dataType}
+                        onChange={setDataType}
+                      />
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toLocaleString()}`}
+                            domain={['dataMin - 100', 'dataMax + 100']}
+                            label={{
+                              value: '増減（k）',
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 20,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="k" formatValue={(v) => v.toLocaleString()} />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                {/* 選択されたデータタイプのみ表示 */}
-                {dataType === 'fulltime' && (
-                  <Bar
-                    dataKey="fulltime_change"
-                    fill={getColor('fulltime')}
-                    name={`${SERIES_NAMES.fulltime}（増減）`}
-                  />
-                )}
-                {dataType === 'parttime' && (
-                  <Bar
-                    dataKey="parttime_change"
-                    fill={getColor('parttime')}
-                    name={`${SERIES_NAMES.parttime}（増減）`}
-                  />
-                )}
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          {/* 選択されたデータタイプのみ表示 */}
+                          {dataType === 'fulltime' && (
+                            <Bar
+                              dataKey="fulltime_change"
+                              fill={getColor('fulltime')}
+                              name={`${SERIES_NAMES.fulltime}（増減）`}
+                            />
+                          )}
+                          {dataType === 'parttime' && (
+                            <Bar
+                              dataKey="parttime_change"
+                              fill={getColor('parttime')}
+                              name={`${SERIES_NAMES.parttime}（増減）`}
+                            />
+                          )}
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月増減幅テーブル */}
-        {viewMode === 'change_table' && (
-          <MonthlyTableWithDataTypes
-            data={changeTableData}
-            dataTypes={DATA_TYPE_OPTIONS}
-            selectedType={dataType}
-            onTypeChange={setDataType}
-            helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
-            formatValue={(value) => {
-              if (value === null) return '-'
-              return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
-            }}
-            getCellBgColor={getChangeCellColor200k}
-            legendItems={CHANGE_LEGEND_200K}
-          />
-        )}
+                  {/* 前月増減幅テーブル */}
+                  {viewMode === 'change_table' && (
+                    <MonthlyTableWithDataTypes
+                      data={changeTableData}
+                      dataTypes={DATA_TYPE_OPTIONS}
+                      selectedType={dataType}
+                      onTypeChange={setDataType}
+                      helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"
+                      formatValue={(value) => {
+                        if (value === null) return '-'
+                        return `${value >= 0 ? '+' : ''}${value.toLocaleString()}`
+                      }}
+                      getCellBgColor={getChangeCellColor200k}
+                      legendItems={CHANGE_LEGEND_200K}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="fulltime_employment" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

@@ -22,6 +22,7 @@ try:
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
     from backend.scheduler import indicator_scheduler
+    from backend.scheduler.fmp_release_scheduler import fmp_release_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -38,6 +39,7 @@ except ImportError:
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
     from scheduler import indicator_scheduler
+    from scheduler.fmp_release_scheduler import fmp_release_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -139,6 +141,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Calendar Scheduler: {e}")
 
+    # FMP発表日ベーススケジューラーを開始
+    try:
+        fmp_release_scheduler.start()
+        print("FMP Release Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start FMP Release Scheduler: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
@@ -166,6 +175,11 @@ async def shutdown_event():
         calendar_scheduler.stop()
     except Exception as e:
         print(f"Warning: Error shutting down Calendar Scheduler: {e}")
+
+    try:
+        fmp_release_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down FMP Release Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

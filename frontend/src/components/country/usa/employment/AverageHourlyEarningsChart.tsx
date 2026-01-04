@@ -13,6 +13,9 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip as AntTooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   ComposedChart,
   LineChart,
@@ -87,6 +90,7 @@ const SERIES_NAMES = {
 
 export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarningsChartProps) {
   const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理
@@ -171,124 +175,157 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
           nextRelease={nextRelease}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* ビューモード切り替え */}
+                  <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-        {/* 前年比グラフ（YoYモード） */}
-        {viewMode === 'yoy' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <LineChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  yAxisId="left"
-                  tickFormatter={(v: number) => `${v.toFixed(1)}%`}
-                  tick={AXIS_STYLE.tick}
-                  domain={['dataMin - 0.2', 'dataMax + 0.2']}
-                  label={{
-                    value: '平均時給（%）',
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 30,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  tickFormatter={(v: number) => `${v.toFixed(1)}%`}
-                  tick={AXIS_STYLE.tick}
-                  domain={['dataMin - 0.05', 'dataMax + 0.05']}
-                  label={{
-                    value: '離職率（%）',
-                    angle: 90,
-                    position: 'insideRight',
-                    dy: 30,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ValueTooltip unit="%" decimals={2} />} />
-                <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
-                <Line
-                  yAxisId="left"
-                  type="monotone"
-                  dataKey="yoy"
-                  name={SERIES_NAMES.yoy}
-                  stroke={COLORS.yoy}
-                  strokeWidth={2}
-                  dot={false}
-                  hide={hiddenSeries.has('yoy')}
-                />
-                <Line
-                  yAxisId="right"
-                  type="monotone"
-                  dataKey="quits_rate"
-                  name={SERIES_NAMES.quits_rate}
-                  stroke={COLORS.quits_rate}
-                  strokeWidth={2}
-                  dot={false}
-                  hide={hiddenSeries.has('quits_rate')}
-                  connectNulls={false}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                  {/* 前年比グラフ（YoYモード） */}
+                  {viewMode === 'yoy' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                        <AntTooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open('/compare?s=average_hourly_earnings_yoy', '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </AntTooltip>
+                      </div>
+                      <ResponsiveContainer width="100%" height={450}>
+                        <LineChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            yAxisId="left"
+                            tickFormatter={(v: number) => `${v.toFixed(1)}%`}
+                            tick={AXIS_STYLE.tick}
+                            domain={['dataMin - 0.2', 'dataMax + 0.2']}
+                            label={{
+                              value: '平均時給（%）',
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 30,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <YAxis
+                            yAxisId="right"
+                            orientation="right"
+                            tickFormatter={(v: number) => `${v.toFixed(1)}%`}
+                            tick={AXIS_STYLE.tick}
+                            domain={['dataMin - 0.05', 'dataMax + 0.05']}
+                            label={{
+                              value: '離職率（%）',
+                              angle: 90,
+                              position: 'insideRight',
+                              dy: 30,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ValueTooltip unit="%" decimals={2} />} />
+                          <Legend onClick={(e) => handleLegendClick(e.dataKey as string)} />
+                          <Line
+                            yAxisId="left"
+                            type="monotone"
+                            dataKey="yoy"
+                            name={SERIES_NAMES.yoy}
+                            stroke={COLORS.yoy}
+                            strokeWidth={2}
+                            dot={false}
+                            hide={hiddenSeries.has('yoy')}
+                          />
+                          <Line
+                            yAxisId="right"
+                            type="monotone"
+                            dataKey="quits_rate"
+                            name={SERIES_NAMES.quits_rate}
+                            stroke={COLORS.quits_rate}
+                            strokeWidth={2}
+                            dot={false}
+                            hide={hiddenSeries.has('quits_rate')}
+                            connectNulls={false}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
-          <>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <ResponsiveContainer width="100%" height={450}>
-              <ComposedChart data={filteredData} margin={CHART_MARGIN}>
-                <CartesianGrid {...CARTESIAN_GRID_PROPS} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={formatDateLabel}
-                  tick={AXIS_STYLE.tick}
-                  interval={AXIS_STYLE.interval}
-                />
-                <YAxis
-                  tick={AXIS_STYLE.tick}
-                  tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}`}
-                  domain={['dataMin - 0.2', 'dataMax + 0.2']}
-                  label={{
-                    angle: -90,
-                    position: 'insideLeft',
-                    dy: 20,
-                    style: { fontSize: 11, fill: '#666' }
-                  }}
-                />
-                <Tooltip content={<ChangeTooltip unit="%" decimals={2} />} />
-                <Legend />
-                <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
+                  {/* 前月比グラフ */}
+                  {viewMode === 'mom_chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v: number) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}`}
+                            domain={['dataMin - 0.2', 'dataMax + 0.2']}
+                            label={{
+                              angle: -90,
+                              position: 'insideLeft',
+                              dy: 20,
+                              style: { fontSize: 11, fill: '#666' }
+                            }}
+                          />
+                          <Tooltip content={<ChangeTooltip unit="%" decimals={2} />} />
+                          <Legend />
+                          <ReferenceLine y={0} stroke="#000" strokeWidth={1} />
 
-                <Bar
-                  dataKey="mom"
-                  fill={COLORS.mom}
-                  name={SERIES_NAMES.mom}
-                />
-              </ComposedChart>
-            </ResponsiveContainer>
-          </>
-        )}
+                          <Bar
+                            dataKey="mom"
+                            fill={COLORS.mom}
+                            name={SERIES_NAMES.mom}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
+                  )}
 
-        {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && (
-          <MonthlyTable
-            data={changeTableData}
-            getCellBgColor={getChangeCellColor04pct}
-            legendItems={CHANGE_LEGEND_04PCT}
-            helperText="※ 直近10年間の前月比データ（単位: %）"
-          />
-        )}
+                  {/* 前月比テーブル */}
+                  {viewMode === 'mom_table' && (
+                    <MonthlyTable
+                      data={changeTableData}
+                      getCellBgColor={getChangeCellColor04pct}
+                      legendItems={CHANGE_LEGEND_04PCT}
+                      helperText="※ 直近10年間の前月比データ（単位: %）"
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="average_hourly_earnings_yoy" />
+              ),
+            },
+          ]}
+        />
       </ChartContainer>
     </div>
   )

@@ -8,6 +8,9 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -52,6 +55,7 @@ const SERIES_NAMES = {
 
 export default function ADPWageGrowthChart({ data }: ADPWageGrowthChartProps) {
   const [period, setPeriod] = useState<'default' | 'all' | number>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データのソート
@@ -107,35 +111,68 @@ export default function ADPWageGrowthChart({ data }: ADPWageGrowthChartProps) {
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setPeriod} selectedPeriod={period} />
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクタ + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setPeriod} selectedPeriod={period} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=adp_employment', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-        {/* 折れ線グラフ */}
-        <StandardLineChart
-          data={filteredData}
-          lines={[
-            {
-              dataKey: 'job_changer',
-              color: COLORS.job_changer,
-              name: SERIES_NAMES.job_changer,
-              hide: hiddenSeries.has('job_changer'),
+                  {/* 折れ線グラフ */}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'job_changer',
+                        color: COLORS.job_changer,
+                        name: SERIES_NAMES.job_changer,
+                        hide: hiddenSeries.has('job_changer'),
+                      },
+                      {
+                        dataKey: 'job_stayer',
+                        color: COLORS.job_stayer,
+                        name: SERIES_NAMES.job_stayer,
+                        hide: hiddenSeries.has('job_stayer'),
+                      },
+                    ]}
+                    yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+                    yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={(value: unknown, name: string) => [
+                      `${(value as number).toFixed(1)}%`,
+                      name,
+                    ]}
+                    showZeroLine={false}
+                    onLegendClick={handleLegendClick}
+                  />
+                </>
+              ),
             },
             {
-              dataKey: 'job_stayer',
-              color: COLORS.job_stayer,
-              name: SERIES_NAMES.job_stayer,
-              hide: hiddenSeries.has('job_stayer'),
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="adp_employment" />
+              ),
             },
           ]}
-          yAxisFormatter={(v) => `${v.toFixed(1)}%`}
-          yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={(value: unknown, name: string) => [
-            `${(value as number).toFixed(1)}%`,
-            name,
-          ]}
-          showZeroLine={false}
-          onLegendClick={handleLegendClick}
         />
       </ChartContainer>
     </div>

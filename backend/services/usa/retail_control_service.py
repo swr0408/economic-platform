@@ -28,11 +28,13 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import RETAIL_SALES_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
-ET = ZoneInfo("America/New_York")
 
 # FRED API設定
 FRED_API_KEY = os.environ.get("FRED_API_KEY", "")
@@ -52,10 +54,11 @@ class RetailControlService:
     """リテールコントロール（コントロールグループ）サービス"""
 
     CACHE_KEY = "investing:retail_control"
+    ECONALPHA_ID = "retail_control"  # FMPマッピング用ID
 
     def __init__(self):
         """初期化"""
-        self.schedule_checker = RETAIL_SALES_CHECKER
+        pass
 
     def get_control_group_data(
         self,
@@ -82,29 +85,37 @@ class RetailControlService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
+                        "next_release": cached_data.get("next_release"),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
                     }
 
-        # ファイルキャッシュチェック
-        if not force_refresh:
-            file_cache = self._load_file_cache()
-            if file_cache:
-                last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
-                    data = file_cache.get("data", [])
-                    # Redisにも保存
-                    redis_client.set(self.CACHE_KEY, file_cache, expire=0)
-                    return {
-                        "data": data,
-                        "latest": file_cache.get("latest"),
-                        "cached": True,
-                        "source": "file",
-                        "last_updated": last_updated_str
-                    }
+        # 優先順位: 1. DB(FMP蓄積) → 2. Investing.com API（フォールバック）
+        db_result = self._load_from_db()
+        if db_result:
+            # 次回発表日をFMPから取得
+            next_release = self._get_next_release_from_fmp()
 
-        # Investing.comから取得
+            latest = db_result[-1] if db_result else None
+            cache_payload = {
+                "data": db_result,
+                "latest": latest,
+                "next_release": next_release,
+                "last_updated": datetime.now(JST).isoformat()
+            }
+            redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
+
+            return {
+                "data": db_result,
+                "latest": latest,
+                "next_release": next_release,
+                "cached": False,
+                "source": "database",
+                "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # DBにデータがない場合はInvesting.comから取得（フォールバック）
         api_data = self._fetch_from_investing()
 
         if api_data:
@@ -114,14 +125,13 @@ class RetailControlService:
                 "latest": latest,
                 "last_updated": datetime.now(JST).isoformat()
             }
-            # TTLなし（last_updated判定方式）
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
-            # ファイルにも保存
             self._save_file_cache(cache_payload)
 
             return {
                 "data": api_data,
                 "latest": latest,
+                "next_release": None,
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -134,6 +144,7 @@ class RetailControlService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
+                "next_release": None,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -142,11 +153,104 @@ class RetailControlService:
         return {
             "data": [],
             "latest": None,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,
             "error": "No data available"
         }
+
+    def _load_from_db(self) -> List[Dict[str, Any]]:
+        """DBから履歴データを取得"""
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            with SessionLocal() as session:
+                query = text("""
+                    SELECT datetime_utc, actual, estimate, previous
+                    FROM economic_calendar_events
+                    WHERE country = 'US'
+                      AND (event ILIKE '%Retail Sales Ex Gas/Autos%' OR event ILIKE '%Retail Control%')
+                      AND actual IS NOT NULL
+                    ORDER BY datetime_utc ASC
+                """)
+                rows = session.execute(query).fetchall()
+
+                result = []
+                seen_dates = set()
+
+                for row in rows:
+                    dt_utc, actual, estimate, previous = row
+                    if dt_utc:
+                        # 月初日に正規化
+                        date_str = dt_utc.strftime("%Y-%m-01")
+                        if date_str in seen_dates:
+                            continue
+                        seen_dates.add(date_str)
+
+                        result.append({
+                            "date": date_str,
+                            "mom": float(actual) if actual else None,
+                            "forecast": float(estimate) if estimate else None,
+                        })
+
+                print(f"Loaded {len(result)} Retail Control records from DB")
+                return result
+
+        except Exception as e:
+            print(f"Error loading from DB: {e}")
+            return []
+
+    def _get_next_release_from_fmp(self) -> Optional[Dict[str, Any]]:
+        """FMP APIから次回発表日を取得"""
+        try:
+            from services.calendar.fmp_service import fmp_service
+            from datetime import timedelta
+
+            today = date.today()
+            # FMP APIからイベントを取得
+            # コントロールグループは Retail Sales と同日発表
+            events = fmp_service.fetch_calendar(
+                today,
+                today + timedelta(days=45),
+                country="US"
+            )
+
+            # 対象イベントを収集（USのみ）
+            candidates = []
+            for event in events:
+                # USイベントのみ
+                if event.get("country") != "US":
+                    continue
+                event_name = event.get("event", "")
+                # Retail Sales Ex Gas/Autos MoM にマッチするイベントのみ
+                if "retail sales ex gas/autos" not in event_name.lower():
+                    continue
+                # 将来のイベント（actual が None）
+                if event.get("actual") is None:
+                    dt_utc, _ = fmp_service.parse_datetime(event.get("date", ""))
+                    if dt_utc and dt_utc.date() >= today:
+                        candidates.append({
+                            "date": dt_utc.strftime("%Y-%m-%d"),
+                            "datetime_utc": dt_utc.isoformat(),
+                            "label": event_name,
+                            "estimate": event.get("estimate"),
+                            "_dt": dt_utc,
+                        })
+
+            # 日付順でソートして最も近いイベントを返す
+            if candidates:
+                candidates.sort(key=lambda x: x["_dt"])
+                result = candidates[0]
+                del result["_dt"]
+                return result
+
+            return None
+
+        except Exception as e:
+            print(f"Error fetching next release from FMP: {e}")
+            return None
 
     def _fetch_from_investing(self) -> List[Dict[str, Any]]:
         """Investing.comからコントロールグループデータを取得"""
@@ -287,9 +391,9 @@ class RetailControlService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        ピリオドベースのスケジュールチェッカーを使用
+        FMPスケジュールベースの3分方式で判定
         """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
@@ -309,7 +413,7 @@ class RetailControlService:
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
             "file_cache_exists": CACHE_FILE.exists(),
-            "schedule_status": self.schedule_checker.get_status()
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID)
         }
 
 

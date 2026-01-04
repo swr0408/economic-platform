@@ -5,6 +5,7 @@ import {
   HomeOutlined,
   LineChartOutlined,
   GlobalOutlined,
+  AreaChartOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
@@ -66,6 +67,11 @@ function MainLayout() {
       icon: <GlobalOutlined />,
       label: '各国データ',
     },
+    {
+      key: '/compare',
+      icon: <AreaChartOutlined />,
+      label: 'データ比較',
+    },
   ]
 
   const selectedKey = useMemo(() => {
@@ -73,6 +79,7 @@ function MainLayout() {
     if (path === '/') return '/'
     if (path.startsWith('/seasonality')) return '/seasonality'
     if (path.startsWith('/country')) return '/country'
+    if (path.startsWith('/compare')) return '/compare'
     return path
   }, [location.pathname])
 

@@ -25,7 +25,10 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import REGIONAL_FED_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -76,12 +79,12 @@ class PhiladelphiaFedService:
 
     CACHE_KEY = "fred:philadelphia_fed"
     SCHEDULE_CACHE_KEY = "schedule:philadelphia_fed"
+    ECONALPHA_ID = "philadelphia_fed"  # FMPマッピング用ID
 
     def __init__(self):
         """初期化"""
         # スケジュールディレクトリの作成
         SCHEDULE_DIR.mkdir(parents=True, exist_ok=True)
-        self.schedule_checker = REGIONAL_FED_CHECKER
 
     def get_philadelphia_fed_data(
         self,
@@ -113,7 +116,7 @@ class PhiladelphiaFedService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('philadelphia_fed'),
                         "series_config": SERIES_CONFIG,
                         "cached": True,
                         "source": "redis",
@@ -143,7 +146,7 @@ class PhiladelphiaFedService:
             return {
                 "data": fetched_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('philadelphia_fed'),
                 "series_config": SERIES_CONFIG,
                 "cached": False,
                 "source": "fred",
@@ -153,7 +156,7 @@ class PhiladelphiaFedService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('philadelphia_fed'),
             "series_config": SERIES_CONFIG,
             "cached": False,
             "source": "none",
@@ -162,17 +165,8 @@ class PhiladelphiaFedService:
         }
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """
-        キャッシュを更新すべきかどうかを判定
-
-        Args:
-            last_updated_str: 最終更新日時のISO文字列
-
-        Returns:
-            True: 更新が必要
-            False: キャッシュ有効
-        """
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _fetch_from_fred(self) -> Optional[Dict[str, Any]]:
         """FREDからPhiladelphia Fedデータを取得"""
@@ -514,7 +508,7 @@ class PhiladelphiaFedService:
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "schedule_updated_at": schedule.get("updated_at") if schedule else None,
             "schedule_source": schedule.get("source") if schedule else None
         }

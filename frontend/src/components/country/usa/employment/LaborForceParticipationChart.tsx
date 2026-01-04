@@ -9,6 +9,9 @@
  * 共通コンポーネントを使用
  */
 import { useState } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -44,6 +47,7 @@ const DEFAULT_COLOR = '#1890ff'
 
 export default function LaborForceParticipationChart({ data }: LaborForceParticipationChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート
   const sortedData = useSortedData(data?.data)
@@ -93,27 +97,60 @@ export default function LaborForceParticipationChart({ data }: LaborForcePartici
           nextRelease={nextRelease}
         />
 
-        {/* 期間セレクター */}
-        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-
-        {/* 水準グラフ */}
-        <StandardLineChart
-          data={filteredData}
-          lines={[
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
             {
-              dataKey: 'value',
-              color: DEFAULT_COLOR,
-              name: '労働参加率',
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=labor_force_participation', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* 水準グラフ */}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'value',
+                        color: DEFAULT_COLOR,
+                        name: '労働参加率',
+                      },
+                    ]}
+                    yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+                    yDomain={['dataMin - 0.3', 'dataMax + 0.3']}
+                    tooltipLabelFormatter={formatDateLabelJP}
+                    tooltipFormatter={(value: unknown, name: string) => [
+                      `${(value as number).toFixed(1)}%`,
+                      name,
+                    ]}
+                    showZeroLine={false}
+                  />
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="labor_force_participation" />
+              ),
             },
           ]}
-          yAxisFormatter={(v) => `${v.toFixed(1)}%`}
-          yDomain={['dataMin - 0.3', 'dataMax + 0.3']}
-          tooltipLabelFormatter={formatDateLabelJP}
-          tooltipFormatter={(value: unknown, name: string) => [
-            `${(value as number).toFixed(1)}%`,
-            name,
-          ]}
-          showZeroLine={false}
         />
       </ChartContainer>
     </div>

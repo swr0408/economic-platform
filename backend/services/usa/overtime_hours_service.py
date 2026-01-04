@@ -25,7 +25,11 @@ from pathlib import Path
 import requests
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import UNEMPLOYMENT_RATE_CHECKER
+
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -46,14 +50,10 @@ class OvertimeHoursService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     DATA_CACHE_KEY = "fred:overtime_hours:data"
-
-    # 発表時刻設定（ET）- 8:30 AM ET（失業率と同時発表）
-    RELEASE_HOUR_ET = 8
-    RELEASE_MINUTE_ET = 30
+    ECONALPHA_ID = "unemployment_rate"  # FMPマッピング用ID（失業率と同じスケジュール）
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
-        self.schedule_checker = UNEMPLOYMENT_RATE_CHECKER
 
     def get_overtime_hours_data(
         self,
@@ -82,7 +82,7 @@ class OvertimeHoursService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('average_weekly_hours'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -98,7 +98,7 @@ class OvertimeHoursService:
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('average_weekly_hours'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -121,7 +121,7 @@ class OvertimeHoursService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('average_weekly_hours'),
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -133,7 +133,7 @@ class OvertimeHoursService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('average_weekly_hours'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -142,7 +142,7 @@ class OvertimeHoursService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('average_weekly_hours'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -214,8 +214,8 @@ class OvertimeHoursService:
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -254,7 +254,7 @@ class OvertimeHoursService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

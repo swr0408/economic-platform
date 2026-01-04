@@ -28,7 +28,10 @@ import requests
 import pandas as pd
 
 from core.redis_client import redis_client
-from services.usa.release_schedule_utils import ADP_EMPLOYMENT_CHECKER
+from services.usa.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -49,13 +52,10 @@ class ADPWageGrowthService:
     """ADP賃金上昇率中央値サービス"""
 
     DATA_CACHE_KEY = "adp:wage_growth:data"
-
-    # 発表時刻設定（ET）- 8:15 AM ET（ADP雇用者数と同じ）
-    RELEASE_HOUR_ET = 8
-    RELEASE_MINUTE_ET = 15
+    ECONALPHA_ID = "adp_employment"  # FMPマッピング用ID（ADP雇用者数と同じスケジュール）
 
     def __init__(self):
-        self.schedule_checker = ADP_EMPLOYMENT_CHECKER
+        pass
 
     def get_adp_wage_growth_data(
         self,
@@ -68,7 +68,7 @@ class ADPWageGrowthService:
             {
                 "data": [{"date": str, "job_changer": float, "job_stayer": float}, ...],
                 "latest": {...},
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('adp_wage_growth'),
                 "cached": bool,
                 "source": str,
                 "last_updated": str
@@ -83,7 +83,7 @@ class ADPWageGrowthService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('adp_wage_growth'),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -99,7 +99,7 @@ class ADPWageGrowthService:
                     return {
                         "data": file_cache.get("data", []),
                         "latest": file_cache.get("latest"),
-                        "next_release": None,
+                        "next_release": get_next_release_from_fmp('adp_wage_growth'),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -122,7 +122,7 @@ class ADPWageGrowthService:
             return {
                 "data": api_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('adp_wage_growth'),
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -134,7 +134,7 @@ class ADPWageGrowthService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("latest"),
-                "next_release": None,
+                "next_release": get_next_release_from_fmp('adp_wage_growth'),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -143,7 +143,7 @@ class ADPWageGrowthService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": get_next_release_from_fmp('adp_wage_growth'),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -247,8 +247,8 @@ class ADPWageGrowthService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return self.schedule_checker.should_refresh(last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""
@@ -286,7 +286,7 @@ class ADPWageGrowthService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "schedule_status": self.schedule_checker.get_status(),
+            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 
