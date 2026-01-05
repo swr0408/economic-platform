@@ -7,10 +7,10 @@ import { QueryClient } from '@tanstack/react-query'
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // 5分間は再取得しない（stale状態にならない）
-      staleTime: 5 * 60 * 1000,
-      // 30分間キャッシュを保持
-      gcTime: 30 * 60 * 1000,
+      // 1日間は再取得しない（stale状態にならない）
+      staleTime: 24 * 60 * 60 * 1000,
+      // 1日間キャッシュを保持
+      gcTime: 24 * 60 * 60 * 1000,
       // エラー時は2回リトライ
       retry: 2,
       // ウィンドウフォーカス時の自動再取得を無効化

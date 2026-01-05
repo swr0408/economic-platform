@@ -34,15 +34,15 @@ class USAConsumerLoader(BaseDashboardLoader):
 
     取得データ:
     - retail_sales: 小売売上高 - FRED RSAFS, RSFSXMV（毎月中旬 8:30 ET）
-    - retail_control: コントロールグループ - Investing.com（毎月中旬 8:30 ET）
+    - retail_control: コントロールグループ - DB/FMP（毎月中旬 8:30 ET）
     - carts: シカゴ連銀小売指数 - Chicago Fed CARTS（毎月第1木曜/第2金曜 8:30 ET）
     - affinity_spend: Affinityカード支出 - Opportunity Insights（不定期、GitHubコミットで判定）
     - visa_spending: Visa支出モメンタム指数 - FRED VISASMIHSA（毎月更新）
     - total_vehicle_sales: 自動車販売台数 - FRED TOTALSA（毎月更新）
-    - redbook: Redbook小売売上高指数 - Investing.com（毎週火曜日 8:55 ET）
+    - redbook: Redbook小売売上高指数 - DB/FMP（毎週火曜日 8:55 ET）
     - consumer_credit: クレジットカードローン残高 - FRED CCLACBW027SBOG（毎週金曜日 16:15 ET）
     - delinquency_rate: クレジットカードローン延滞率 - FRED DRCCLACBS（四半期・2月/5月/8月/11月発表）
-    - cb_consumer_confidence: CB消費者信頼感指数 - Investing.com（毎月最終火曜日 10:00 ET）
+    - cb_consumer_confidence: CB消費者信頼感指数 - DB/FMP（毎月最終火曜日 10:00 ET）
     - cb_jobs_labor: CB雇用機会業況判断 - Conference Board公式ページ（毎月最終火曜日 10:00 ET）
     - michigan_consumer_sentiment: ミシガン消費者信頼感指数 - ミシガン大学（毎月第2金曜/最終金曜 10:00 ET）
     - personal_saving_rate: 家計貯蓄率 - FRED PSAVERT（毎月月末 8:30 ET）
@@ -187,162 +187,75 @@ class USAConsumerLoader(BaseDashboardLoader):
 
     def _get_visa_spending_release_datetime(self) -> Optional[datetime]:
         """Visa支出の発表日時を取得"""
-        try:
-            from services.usa.visa_spending_service import visa_spending_service
-            data = visa_spending_service.get_visa_spending_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # 発表時刻は不明なので8:30 ETと仮定
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        8, 30, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.visa_spending_service import visa_spending_service
+        return self._get_release_datetime_from_service(
+            visa_spending_service.get_visa_spending_data,
+            release_hour_et=8, release_minute_et=30,
+            indicator_name="Visa Spending"
+        )
 
     def _get_vehicle_sales_release_datetime(self) -> Optional[datetime]:
         """自動車販売台数の発表日時を取得"""
-        try:
-            from services.usa.total_vehicle_sales_service import total_vehicle_sales_service
-            data = total_vehicle_sales_service.get_total_vehicle_sales_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        8, 30, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.total_vehicle_sales_service import total_vehicle_sales_service
+        return self._get_release_datetime_from_service(
+            total_vehicle_sales_service.get_total_vehicle_sales_data,
+            release_hour_et=8, release_minute_et=30,
+            indicator_name="Total Vehicle Sales"
+        )
 
     def _get_redbook_release_datetime(self) -> Optional[datetime]:
         """Redbookの発表日時を取得"""
-        try:
-            from services.usa.redbook_service import redbook_service
-            data = redbook_service.get_redbook_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # Redbookは8:55 ET発表
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        8, 55, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.redbook_service import redbook_service
+        return self._get_release_datetime_from_service(
+            redbook_service.get_redbook_data,
+            release_hour_et=8, release_minute_et=55,
+            indicator_name="Redbook"
+        )
 
     def _get_consumer_credit_release_datetime(self) -> Optional[datetime]:
         """クレジットカードローン残高の発表日時を取得"""
-        try:
-            from services.usa.consumer_credit_service import consumer_credit_service
-            data = consumer_credit_service.get_consumer_credit_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # H.8は16:15 ET発表
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        16, 15, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.consumer_credit_service import consumer_credit_service
+        return self._get_release_datetime_from_service(
+            consumer_credit_service.get_consumer_credit_data,
+            release_hour_et=16, release_minute_et=15,
+            indicator_name="Consumer Credit"
+        )
 
     def _get_delinquency_rate_release_datetime(self) -> Optional[datetime]:
         """クレジットカードローン延滞率の発表日時を取得"""
-        try:
-            from services.usa.delinquency_rate_service import delinquency_rate_service
-            data = delinquency_rate_service.get_delinquency_rate_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # 10:00 ET発表
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        10, 0, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.delinquency_rate_service import delinquency_rate_service
+        return self._get_release_datetime_from_service(
+            delinquency_rate_service.get_delinquency_rate_data,
+            release_hour_et=10, release_minute_et=0,
+            indicator_name="Delinquency Rate"
+        )
 
     def _get_cb_consumer_confidence_release_datetime(self) -> Optional[datetime]:
         """CB消費者信頼感の発表日時を取得"""
-        try:
-            from services.usa.cb_consumer_confidence_service import cb_consumer_confidence_service
-            data = cb_consumer_confidence_service.get_cb_consumer_confidence_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # 10:00 ET発表
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        10, 0, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.cb_consumer_confidence_service import cb_consumer_confidence_service
+        return self._get_release_datetime_from_service(
+            cb_consumer_confidence_service.get_cb_consumer_confidence_data,
+            release_hour_et=10, release_minute_et=0,
+            indicator_name="CB Consumer Confidence"
+        )
 
     def _get_michigan_consumer_sentiment_release_datetime(self) -> Optional[datetime]:
         """ミシガン消費者信頼感の発表日時を取得"""
-        try:
-            from services.usa.michigan_consumer_sentiment_service import michigan_consumer_sentiment_service
-            data = michigan_consumer_sentiment_service.get_michigan_consumer_sentiment_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # 10:00 ET発表
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        10, 0, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.michigan_consumer_sentiment_service import michigan_consumer_sentiment_service
+        return self._get_release_datetime_from_service(
+            michigan_consumer_sentiment_service.get_michigan_consumer_sentiment_data,
+            release_hour_et=10, release_minute_et=0,
+            indicator_name="Michigan Consumer Sentiment"
+        )
 
     def _get_personal_saving_rate_release_datetime(self) -> Optional[datetime]:
         """家計貯蓄率の発表日時を取得"""
-        try:
-            from services.usa.personal_saving_rate_service import personal_saving_rate_service
-            data = personal_saving_rate_service.get_personal_saving_rate_data()
-            next_release = data.get("next_release")
-            if next_release:
-                date_str = next_release.get("date")
-                if date_str:
-                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
-                    # 8:30 ET発表
-                    release_et = datetime(
-                        base_date.year, base_date.month, base_date.day,
-                        8, 30, tzinfo=ET
-                    )
-                    return release_et.astimezone(JST)
-        except Exception:
-            pass
-        return None
+        from services.usa.personal_saving_rate_service import personal_saving_rate_service
+        return self._get_release_datetime_from_service(
+            personal_saving_rate_service.get_personal_saving_rate_data,
+            release_hour_et=8, release_minute_et=30,
+            indicator_name="Personal Saving Rate"
+        )
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """

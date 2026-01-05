@@ -8,6 +8,9 @@ import App from './App'
 import 'flag-icons/css/flag-icons.min.css'
 import './styles/index.css'
 
+// Axios グローバル設定をインポート（タイムアウト、インターセプター）
+import './utils/axiosConfig'
+
 // EconAlpha ダークテーマ設定
 const econAlphaTheme = {
   algorithm: theme.darkAlgorithm,

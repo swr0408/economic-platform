@@ -1,7 +1,7 @@
 /**
  * Challenger人員削減数チャートコンポーネント
  *
- * Investing.com から取得したデータを使用して表示
+ * DB/FMP から取得したデータを使用して表示
  * - Challenger Job Cuts: 人員削減発表数
  *
  * 表示モード:

@@ -134,7 +134,7 @@ export default function HistoricalImpactCard({
       const res = await axios.get(`/api/market-impact/releases/${indicatorId}`)
       return res.data as { releases: Release[]; count: number }
     },
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
   })
 
   // 最初の発表を選択
@@ -163,7 +163,7 @@ export default function HistoricalImpactCard({
       }
     },
     enabled: mode === 'single' && !!selectedRelease,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
   })
 
   // 比較用データ
@@ -184,7 +184,7 @@ export default function HistoricalImpactCard({
       }
     },
     enabled: mode === 'compare' && selectedReleases.length > 0,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
   })
 
   // 比較用データをマージ

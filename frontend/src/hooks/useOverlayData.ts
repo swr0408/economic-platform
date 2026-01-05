@@ -350,8 +350,8 @@ export function useOverlayIndicatorData(indicator: OverlayIndicator | null) {
       return result;
     },
     enabled: !!indicator && !!mapping,
-    staleTime: 5 * 60 * 1000,
-    gcTime: 30 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
+    gcTime: 24 * 60 * 60 * 1000, // 1日
   });
 
   return {
@@ -445,8 +445,8 @@ export function useMultipleOverlayData(indicators: OverlayIndicator[]) {
           return fetchSingleIndicatorData(indicator, mapping);
         },
         enabled: !!mapping,
-        staleTime: 5 * 60 * 1000,
-        gcTime: 30 * 60 * 1000,
+        staleTime: 24 * 60 * 60 * 1000, // 1日
+        gcTime: 24 * 60 * 60 * 1000, // 1日
       };
     }),
   });

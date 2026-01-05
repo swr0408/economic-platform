@@ -52,7 +52,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - ner_pulse: NER Pulse（週次雇用変動）- ADP Media Center（毎週火曜日 8:15 ET）
     - initial_claims: 新規失業保険申請件数 - FRED ICSA/IC4WSA（毎週木曜日 8:30 ET）
     - continued_claims: 継続失業保険申請件数 - FRED CCSA/CC4WSA（毎週木曜日 8:30 ET）
-    - challenger_job_cuts: Challenger人員削減数 - Investing.com（毎月第1木曜日 7:30 ET）
+    - challenger_job_cuts: Challenger人員削減数 - DB/FMP（毎月第1木曜日 7:30 ET）
     - average_hourly_earnings: 平均時給/自発的離職率 - FRED CES0500000003/JTSQUR（毎月第1金曜日 8:30 ET）
     - labor_force_participation: 労働参加率 - FRED CIVPART（毎月第1金曜日 8:30 ET）
     - adp_wage_growth: ADP賃金上昇率中央値 - ADP Pay Insights（毎月第1水曜日 8:15 ET）

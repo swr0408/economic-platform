@@ -10,11 +10,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 try:
-    from services.calendar.fmp_service import fmp_service
-    from services.calendar.calendar_repository import calendar_repository
-except ImportError:
     from backend.services.calendar.fmp_service import fmp_service
     from backend.services.calendar.calendar_repository import calendar_repository
+except ImportError:
+    from services.calendar.fmp_service import fmp_service
+    from services.calendar.calendar_repository import calendar_repository
 
 
 JST = ZoneInfo("Asia/Tokyo")

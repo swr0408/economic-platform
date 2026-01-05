@@ -19,11 +19,11 @@ from fastapi import APIRouter, Query, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse
 
 try:
-    from services.calendar.calendar_repository import calendar_repository
-    from services.calendar.calendar_scheduler import calendar_scheduler
-except ImportError:
     from backend.services.calendar.calendar_repository import calendar_repository
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
+except ImportError:
+    from services.calendar.calendar_repository import calendar_repository
+    from services.calendar.calendar_scheduler import calendar_scheduler
 
 
 router = APIRouter(prefix="/api/calendar", tags=["Calendar"])

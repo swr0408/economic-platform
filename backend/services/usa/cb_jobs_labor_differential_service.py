@@ -32,10 +32,6 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 from core.redis_client import redis_client
-from services.usa.fmp_next_release_utils import (
-    get_next_release_from_fmp,
-    should_refresh_by_fmp_schedule,
-)
 
 
 # タイムゾーン
@@ -55,7 +51,6 @@ CSV_FILE_PATH = Path(__file__).parent.parent.parent / "data" / "usa" / "consumer
 CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "cb_jobs_labor_differential_cache.json"
-SCHEDULE_CACHE_FILE = CACHE_DIR / "cb_jobs_labor_schedule_cache.json"
 
 # 正規表現パターン
 RE_SOURCE = re.compile(r"Source:\s*([A-Za-z]+)\s+(\d{4})\s+Consumer Confidence Survey", re.I)
@@ -63,7 +58,6 @@ RE_PLENTIFUL = re.compile(r'(\d+(?:\.\d+)?)\s*%.*?jobs\s+were\s+["""]plentiful',
 RE_PLENTIFUL_ALT = re.compile(r'jobs\s+were\s+["""]plentiful["""].*?(\d+(?:\.\d+)?)\s*%', re.I | re.DOTALL)
 RE_HARD = re.compile(r'(\d+(?:\.\d+)?)\s*%.*?jobs\s+were\s+["""]hard\s+to\s+get', re.I | re.DOTALL)
 RE_HARD_ALT = re.compile(r'jobs\s+were\s+["""]hard\s+to\s+get["""].*?(\d+(?:\.\d+)?)\s*%', re.I | re.DOTALL)
-RE_NEXT_RELEASE = re.compile(r'next\s+release\s+is\s+(\w+),\s+(\w+)\s+(\d+)', re.I)
 
 # 月名マッピング
 MONTH_MAP = {
@@ -71,16 +65,11 @@ MONTH_MAP = {
     "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12
 }
 
-# Investing.com JSONエンドポイント（次回発表日取得用）
-INVESTING_CB_URL = "https://sbcharts.investing.com/events_charts/us/48.json"
-
 
 class CBJobsLaborDifferentialService:
     """CB雇用機会業況判断サービス"""
 
     DATA_CACHE_KEY = "cb:jobs_labor_differential:data"
-    SCHEDULE_CACHE_KEY = "cb:jobs_labor_differential:schedule"
-    ECONALPHA_ID = "cb_jobs_labor"  # FMPマッピング用ID
 
     # 発表時刻設定（ET）- 10:00 ET
     RELEASE_HOUR_ET = 10
@@ -118,7 +107,7 @@ class CBJobsLaborDifferentialService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("latest"),
-                        "next_release": None,
+                        "next_release": self._calculate_next_release(),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -138,7 +127,7 @@ class CBJobsLaborDifferentialService:
                     return {
                         "data": data,
                         "latest": file_cache.get("latest"),
-                        "next_release": None,
+                        "next_release": self._calculate_next_release(),
                         "cached": True,
                         "source": "file",
                         "last_updated": last_updated_str
@@ -170,7 +159,7 @@ class CBJobsLaborDifferentialService:
             return {
                 "data": csv_data,
                 "latest": latest,
-                "next_release": None,
+                "next_release": self._calculate_next_release(),
                 "cached": False,
                 "source": "csv",
                 "last_updated": datetime.now(JST).isoformat()
@@ -179,7 +168,7 @@ class CBJobsLaborDifferentialService:
         return {
             "data": [],
             "latest": None,
-            "next_release": None,
+            "next_release": self._calculate_next_release(),
             "cached": False,
             "source": "none",
             "last_updated": None,
@@ -447,40 +436,41 @@ class CBJobsLaborDifferentialService:
             return csv_data
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        """
+        キャッシュを更新すべきかどうかを判定（発表日時ベース）
 
-
-    def _fetch_next_release_from_investing(self) -> Optional[Dict[str, Any]]:
-        """Investing.comから次回発表日を取得"""
+        毎月最終火曜日 10:00 ETを過ぎていて、かつ最終更新がそれより前なら更新
+        """
         try:
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                "Accept": "application/json",
-                "Referer": "https://jp.investing.com/"
-            }
+            last_updated = datetime.fromisoformat(last_updated_str)
+            if last_updated.tzinfo is None:
+                last_updated = last_updated.replace(tzinfo=JST)
 
-            response = requests.get(INVESTING_CB_URL, headers=headers, timeout=10)
-            response.raise_for_status()
-            data = response.json()
+            now = datetime.now(ET)
+            today = now.date()
 
-            # 次回発表日を取得
-            next_event = data.get("next_event")
-            if next_event:
-                timestamp = next_event.get("timestamp")
-                if timestamp:
-                    dt = datetime.fromtimestamp(timestamp / 1000, tz=ET)
-                    date_str = dt.strftime("%Y-%m-%d")
-                    return {
-                        "date": date_str,
-                        "label": f"CB Consumer Confidence - {date_str} (火) 10:00 ET"
-                    }
+            # 今月の最終火曜日を計算
+            last_tuesday = self._get_last_tuesday_of_month(today.year, today.month)
 
-            return None
+            # 発表時刻（10:00 ET）
+            release_time = datetime(
+                last_tuesday.year, last_tuesday.month, last_tuesday.day,
+                self.RELEASE_HOUR_ET, self.RELEASE_MINUTE_ET,
+                tzinfo=ET
+            )
+
+            # 発表時刻を過ぎている場合
+            if now >= release_time:
+                # 最終更新が発表時刻より前なら更新が必要
+                release_time_jst = release_time.astimezone(JST)
+                if last_updated < release_time_jst:
+                    return True
+
+            return False
 
         except Exception as e:
-            print(f"Error fetching from Investing.com: {e}")
-            return None
+            print(f"Error checking refresh status: {e}")
+            return False
 
     def _calculate_next_release(self) -> Optional[Dict[str, Any]]:
         """
@@ -564,7 +554,6 @@ class CBJobsLaborDifferentialService:
 
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""
-        redis_client.delete(self.SCHEDULE_CACHE_KEY)
         return redis_client.delete(self.DATA_CACHE_KEY)
 
     def get_cache_status(self) -> Dict[str, Any]:
@@ -574,14 +563,14 @@ class CBJobsLaborDifferentialService:
 
         return {
             "indicator": "CB Jobs Labor Differential",
-            "source": "Conference Board",
+            "source": "Conference Board (Scraping)",
             "url": CB_OFFICIAL_URL,
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
             "data_count": len(cached_data.get("data", [])) if cached_data else 0,
             "latest": cached_data.get("latest") if cached_data else None,
-            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
+            "next_release": self._calculate_next_release(),
             "csv_file_exists": CSV_FILE_PATH.exists(),
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }

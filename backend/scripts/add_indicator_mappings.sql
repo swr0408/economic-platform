@@ -3,17 +3,17 @@
 
 -- フルタイム / パートタイム雇用者数（fulltime_employment）
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
-VALUES ('fulltime_employment', 'フルタイム/パートタイム雇用者数', 'US', 'monthly', ARRAY['Nonfarm Payrolls'], TRUE)
+VALUES ('fulltime_employment', 'フルタイム/パートタイム雇用者数', 'US', 'monthly', ARRAY['Non Farm Payrolls', 'Nonfarm Payrolls'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 複数の仕事を持つ人 / 経済的理由によるパートタイム（multiple_jobs）
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
-VALUES ('multiple_jobs', '複数の仕事を持つ人/経済的理由によるパートタイム', 'US', 'monthly', ARRAY['Nonfarm Payrolls'], TRUE)
+VALUES ('multiple_jobs', '複数の仕事を持つ人/経済的理由によるパートタイム', 'US', 'monthly', ARRAY['Non Farm Payrolls', 'Nonfarm Payrolls'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 平均時給（average_hourly_earnings_yoy）
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
-VALUES ('average_hourly_earnings_yoy', '平均時給（前年比）', 'US', 'monthly', ARRAY['Average Hourly Earnings YoY'], TRUE)
+VALUES ('average_hourly_earnings_yoy', '平均時給（前年比）', 'US', 'monthly', ARRAY['Average Hourly Earnings YoY', 'Average Hourly Earnings'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 労働参加率（labor_force_participation）
@@ -31,9 +31,9 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('retail_sales_mom', '小売売上高', 'US', 'monthly', ARRAY['Retail Sales MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
--- 家計貯蓄率（personal_saving_rate）
+-- 家計貯蓄率（personal_saving_rate）→ 個人所得と同時発表
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
-VALUES ('personal_saving_rate', '家計貯蓄率', 'US', 'monthly', ARRAY['Personal Spending MoM'], TRUE)
+VALUES ('personal_saving_rate', '家計貯蓄率', 'US', 'monthly', ARRAY['Personal Income MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 個人所得（personal_income_mom）
@@ -41,14 +41,14 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('personal_income_mom', '個人所得', 'US', 'monthly', ARRAY['Personal Income MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
--- 可処分所得（disposable_income）
+-- 可処分所得（disposable_income）→ 個人所得と同時発表
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
 VALUES ('disposable_income', '可処分所得', 'US', 'monthly', ARRAY['Personal Income MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
--- 個人消費支出 PCE（pce_mom）
+-- 個人消費支出 PCE（pce_mom）→ 個人所得と同時発表
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
-VALUES ('pce_mom', '個人消費支出（PCE）', 'US', 'monthly', ARRAY['Personal Spending MoM', 'Core PCE Price Index MoM'], TRUE)
+VALUES ('pce_mom', '個人消費支出（PCE）', 'US', 'monthly', ARRAY['Personal Income MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 鉱工業生産（industrial_production_yoy）
@@ -124,6 +124,36 @@ ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event
 -- NFIB中小企業楽観指数（nfib）
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
 VALUES ('nfib', 'NFIB中小企業楽観指数', 'US', 'monthly', ARRAY['NFIB Business Optimism Index'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- CB消費者信頼感指数（cb_consumer_confidence）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cb_consumer_confidence', 'CB消費者信頼感指数', 'US', 'monthly', ARRAY['CB Consumer Confidence'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- レッドブック（redbook）- 前年比
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('redbook', 'レッドブック（前年比）', 'US', 'weekly', ARRAY['Redbook YoY', 'Redbook'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- チャレンジャー人員削減数（challenger_job_cuts）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('challenger_job_cuts', 'チャレンジャー人員削減数', 'US', 'monthly', ARRAY['Challenger Job Cuts', 'Challenger Job Cuts YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ISM製造業景況指数（ism_manufacturing）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('ism_manufacturing', 'ISM製造業景況指数', 'US', 'monthly', ARRAY['ISM Manufacturing PMI', 'ISM Manufacturing'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ISM非製造業景況指数（ism_non_manufacturing）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('ism_non_manufacturing', 'ISM非製造業景況指数', 'US', 'monthly', ARRAY['ISM Non-Manufacturing PMI', 'ISM Services PMI', 'ISM Non-Manufacturing'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 政策金利（policy_rate）- FRB
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('policy_rate', '政策金利（FRB）', 'US', 'as_needed', ARRAY['Fed Interest Rate Decision', 'FOMC', 'Federal Funds Rate'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 確認用クエリ

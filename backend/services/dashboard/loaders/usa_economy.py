@@ -36,9 +36,9 @@ class USAEconomyLoader(BaseDashboardLoader):
     - fci: FCI-G（金融情勢指数）- Federal Reserve CSV
     - nfci: シカゴ連銀金融環境指数 - FRED NFCI（毎週水曜日更新）
     - gdpnow: GDPNow（リアルタイムGDP予測）- Atlanta Fed（月6-7回更新）
-    - ism_manufacturing: ISM製造業景況指数 - Investing.com（毎月第1営業日 10:00 ET）
+    - ism_manufacturing: ISM製造業景況指数 - DB/FMP（毎月第1営業日 10:00 ET）
     - ism_components: ISM製造業サブインデックス - DBnomics（毎月第1営業日 10:00 ET）
-    - ism_non_manufacturing: ISM非製造業景況指数 - DBnomics（毎月第3営業日 10:00 ET）
+    - ism_non_manufacturing: ISM非製造業景況指数 - DB/FMP（毎月第3営業日 10:00 ET）
     - ism_non_manufacturing_components: ISM非製造業サブインデックス - DBnomics（毎月第3営業日 10:00 ET）
     - empire_state: NY連銀製造業景気指数 - FRED（毎月15日付近 8:30 ET）
     - philadelphia_fed: フィラデルフィア連銀製造業景気指数 - FRED（毎月第3木曜日 8:30 ET）

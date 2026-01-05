@@ -5,9 +5,9 @@
  * - 単独表示: 1つの発表を選択してチャート表示（1分足ローソク足、5分足ライン）
  * - オーバーレイ比較: 複数の発表を重ねて比較（発表時刻を0点として正規化）
  */
-import { useState, useEffect, useMemo } from 'react'
-import { Select, Spin, Segmented, Space, Tag, Empty, Checkbox, Tabs, Radio, Collapse } from 'antd'
-import { LineChartOutlined, BarChartOutlined } from '@ant-design/icons'
+import { useState, useEffect, useMemo, useRef } from 'react'
+import { Select, Spin, Segmented, Space, Tag, Empty, Checkbox, Tabs, Radio, Collapse, Alert } from 'antd'
+import { LineChartOutlined, BarChartOutlined, LoadingOutlined, ReloadOutlined } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import {
@@ -146,6 +146,10 @@ interface DukascopySymbol {
   sub_category: string
 }
 
+// タイムアウト設定（秒）
+const CHART_REQUEST_TIMEOUT = 30000  // 30秒
+const RELEASES_REQUEST_TIMEOUT = 10000  // 10秒
+
 export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
   const [mode, setMode] = useState<'single' | 'compare'>('single')
   const [selectedRelease, setSelectedRelease] = useState<string | null>(null)
@@ -153,6 +157,10 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
   const [selectedSymbol, setSelectedSymbol] = useState('usdjpy')
   const [interval, setInterval] = useState<'1m' | '5m'>('1m')
   const [symbolCategory, setSymbolCategory] = useState<string>('forex')
+  const [chartError, setChartError] = useState<string | null>(null)
+
+  // AbortController用のref
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   // Dukascopy銘柄一覧を取得（全カテゴリ）
   const { data: symbolsData } = useQuery({
@@ -199,14 +207,27 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
     return symbolsData?.symbols?.find(s => s.id === selectedSymbol)
   }, [symbolsData, selectedSymbol])
 
+  // コンポーネントアンマウント時にリクエストをキャンセル
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort()
+      }
+    }
+  }, [])
+
   // 発表履歴を取得
-  const { data: releasesData, isLoading: isLoadingReleases } = useQuery({
+  const { data: releasesData, isLoading: isLoadingReleases, error: releasesError, refetch: refetchReleases } = useQuery({
     queryKey: ['market-impact-releases', indicatorId],
-    queryFn: async () => {
-      const res = await axios.get(`/api/market-impact/releases/${indicatorId}`)
+    queryFn: async ({ signal }) => {
+      const res = await axios.get(`/api/market-impact/releases/${indicatorId}`, {
+        signal,
+        timeout: RELEASES_REQUEST_TIMEOUT,
+      })
       return res.data as { releases: Release[]; count: number }
     },
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
+    retry: 1, // リトライは1回のみ
   })
 
   // 最初の発表を選択
@@ -223,46 +244,82 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
   }, [selectedRelease, releasesData])
 
   // 単独表示用チャートデータを取得
-  const { data: chartData, isLoading: isLoadingChart } = useQuery({
+  const { data: chartData, isLoading: isLoadingChart, isFetching: isFetchingChart, refetch: refetchChart } = useQuery({
     queryKey: ['market-impact-chart', selectedRelease, selectedSymbol, interval],
-    queryFn: async () => {
+    queryFn: async ({ signal }) => {
       if (!selectedRelease) return null
-      const res = await axios.get('/api/market-impact/chart', {
-        params: {
-          release_datetime: selectedRelease,
-          symbol_id: selectedSymbol,
-          interval,
+      setChartError(null)
+
+      try {
+        const res = await axios.get('/api/market-impact/chart', {
+          params: {
+            release_datetime: selectedRelease,
+            symbol_id: selectedSymbol,
+            interval,
+          },
+          signal,
+          timeout: CHART_REQUEST_TIMEOUT,
+        })
+        return res.data as {
+          data: ChartData[]
+          release_index: number | null
+          count: number
         }
-      })
-      return res.data as {
-        data: ChartData[]
-        release_index: number | null
-        count: number
+      } catch (error: any) {
+        if (axios.isCancel(error)) {
+          throw error // キャンセルの場合は再スロー
+        }
+        if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+          setChartError('データ取得がタイムアウトしました。再試行してください。')
+        } else {
+          setChartError('データ取得に失敗しました。')
+        }
+        throw error
       }
     },
     enabled: mode === 'single' && !!selectedRelease,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
+    retry: 0, // チャートデータはリトライしない（ユーザーに再試行させる）
+    refetchOnWindowFocus: false,
   })
 
   // 比較用データを取得
-  const { data: compareData, isLoading: isLoadingCompare } = useQuery({
+  const { data: compareData, isLoading: isLoadingCompare, isFetching: isFetchingCompare, refetch: refetchCompare } = useQuery({
     queryKey: ['market-impact-compare', selectedReleases, selectedSymbol, interval],
-    queryFn: async () => {
+    queryFn: async ({ signal }) => {
       if (!selectedReleases.length) return null
-      const res = await axios.get('/api/market-impact/compare', {
-        params: {
-          release_datetimes: selectedReleases.join(','),
-          symbol_id: selectedSymbol,
-          interval,
+      setChartError(null)
+
+      try {
+        const res = await axios.get('/api/market-impact/compare', {
+          params: {
+            release_datetimes: selectedReleases.join(','),
+            symbol_id: selectedSymbol,
+            interval,
+          },
+          signal,
+          timeout: CHART_REQUEST_TIMEOUT,
+        })
+        return res.data as {
+          series: CompareSeries[]
+          count: number
         }
-      })
-      return res.data as {
-        series: CompareSeries[]
-        count: number
+      } catch (error: any) {
+        if (axios.isCancel(error)) {
+          throw error
+        }
+        if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+          setChartError('データ取得がタイムアウトしました。再試行してください。')
+        } else {
+          setChartError('データ取得に失敗しました。')
+        }
+        throw error
       }
     },
     enabled: mode === 'compare' && selectedReleases.length > 0,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
+    retry: 0,
+    refetchOnWindowFocus: false,
   })
 
   // 比較用データをマージ
@@ -329,13 +386,54 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
     return releasesData?.releases?.find(r => r.release_datetime === datetime)
   }
 
-  const isLoading = isLoadingReleases || (mode === 'single' ? isLoadingChart : isLoadingCompare)
+  const isLoading = isLoadingReleases || (mode === 'single' ? (isLoadingChart || isFetchingChart) : (isLoadingCompare || isFetchingCompare))
   const xAxisTicks = generateXAxisTicks(interval)
+
+  // リトライハンドラ
+  const handleRetry = () => {
+    setChartError(null)
+    if (mode === 'single') {
+      refetchChart()
+    } else {
+      refetchCompare()
+    }
+  }
 
   if (isLoadingReleases) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: 48 }}>
-        <Spin size="large" />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 48, gap: 16 }}>
+        <Spin indicator={<LoadingOutlined style={{ fontSize: 32 }} spin />} />
+        <span style={{ color: DARK_THEME.textSecondary }}>発表履歴を読み込み中...</span>
+      </div>
+    )
+  }
+
+  if (releasesError) {
+    return (
+      <div style={{ padding: 24 }}>
+        <Alert
+          type="error"
+          message="発表履歴の取得に失敗しました"
+          description="ネットワーク接続を確認して再試行してください"
+          action={
+            <button
+              onClick={() => refetchReleases()}
+              style={{
+                padding: '6px 16px',
+                backgroundColor: DARK_THEME.accent,
+                color: '#fff',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <ReloadOutlined /> 再試行
+            </button>
+          }
+        />
       </div>
     )
   }
@@ -616,6 +714,36 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
         )
       })()}
 
+      {/* エラー表示 */}
+      {chartError && (
+        <Alert
+          type="warning"
+          message={chartError}
+          action={
+            <button
+              onClick={handleRetry}
+              style={{
+                padding: '4px 12px',
+                backgroundColor: DARK_THEME.accent,
+                color: '#fff',
+                border: 'none',
+                borderRadius: 4,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                fontSize: 12,
+              }}
+            >
+              <ReloadOutlined /> 再試行
+            </button>
+          }
+          style={{ marginBottom: 12 }}
+          closable
+          onClose={() => setChartError(null)}
+        />
+      )}
+
       {/* チャート */}
       <div style={{ position: 'relative', minHeight: 400 }}>
         {isLoading && (
@@ -624,14 +752,22 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
               position: 'absolute',
               inset: 0,
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: 'rgba(30, 41, 59, 0.8)',
+              backgroundColor: 'rgba(30, 41, 59, 0.9)',
               borderRadius: 8,
               zIndex: 10,
+              gap: 12,
             }}
           >
-            <Spin size="large" />
+            <Spin indicator={<LoadingOutlined style={{ fontSize: 32 }} spin />} />
+            <span style={{ color: DARK_THEME.textSecondary, fontSize: 13 }}>
+              チャートデータを取得中...
+            </span>
+            <span style={{ color: DARK_THEME.textSecondary, fontSize: 11 }}>
+              初回取得時は時間がかかることがあります
+            </span>
           </div>
         )}
 

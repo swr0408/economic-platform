@@ -635,7 +635,7 @@ export interface PCENextRelease {
   label: string
 }
 
-// CB消費者信頼感指数データの型（Investing.com）
+// CB消費者信頼感指数データの型（DB/FMP）
 // 毎月最終火曜日 10:00 ET発表
 export interface CBConsumerConfidenceData {
   data: CBConsumerConfidenceItem[]
@@ -856,7 +856,7 @@ export interface RetailSalesNextRelease {
   label: string
 }
 
-// コントロールグループデータの型（Investing.comから取得）
+// コントロールグループデータの型（DB/FMP）
 export interface RetailControlData {
   data: RetailControlItem[]
   latest: RetailControlItem | null
@@ -947,7 +947,7 @@ export function useDashboardData<T = Record<string, unknown>>(
     queryKey: ['dashboard', country, category],
     queryFn: () => fetchDashboardData<T>(country, category),
     enabled: options?.enabled ?? true,
-    staleTime: options?.staleTime ?? 5 * 60 * 1000, // 5分
+    staleTime: options?.staleTime ?? 24 * 60 * 60 * 1000, // 1日
     refetchOnMount: options?.refetchOnMount ?? false,
   })
 }
@@ -1017,7 +1017,7 @@ export function useUSAEconomyDashboardProgressive() {
   const lightQuery = useQuery({
     queryKey: ['dashboard', 'usa', 'economy', 'light'],
     queryFn: () => fetchDashboardLightData<Partial<USAEconomyData>>('usa', 'economy'),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
     refetchOnMount: false,
   })
 
@@ -1025,7 +1025,7 @@ export function useUSAEconomyDashboardProgressive() {
   const heavyQuery = useQuery({
     queryKey: ['dashboard', 'usa', 'economy', 'heavy'],
     queryFn: () => fetchDashboardHeavyData<Partial<USAEconomyData>>('usa', 'economy'),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 24 * 60 * 60 * 1000, // 1日
     refetchOnMount: false,
     // 軽量指標の取得完了後に開始（オプション：即座に開始したい場合はコメントアウト）
     // enabled: lightQuery.isSuccess,

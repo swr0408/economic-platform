@@ -293,8 +293,19 @@ async def get_impact_chart(
         end_time=end_time_range,
     )
 
-    # データがない場合はDukascopyから取得を試みる
-    if not data:
+    # 発表時刻のデータが含まれているか確認
+    has_release_data = False
+    if data:
+        for d in data:
+            ts = d.get("timestamp")
+            if isinstance(ts, str):
+                ts = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+            if ts and abs((ts - release_dt).total_seconds()) < (60 if interval == "1m" else 300):
+                has_release_data = True
+                break
+
+    # データがないか、発表時刻のデータがない場合はDukascopyから取得を試みる
+    if not data or not has_release_data:
         # Dukascopyから取得
         fetch_result = dukascopy_service.fetch_around_release_time(
             symbol_id=symbol_id,

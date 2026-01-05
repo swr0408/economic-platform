@@ -23,6 +23,7 @@ try:
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
     from backend.scheduler import indicator_scheduler
     from backend.scheduler.fmp_release_scheduler import fmp_release_scheduler
+    from backend.scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -40,6 +41,7 @@ except ImportError:
     from services.calendar.calendar_scheduler import calendar_scheduler
     from scheduler import indicator_scheduler
     from scheduler.fmp_release_scheduler import fmp_release_scheduler
+    from scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -148,6 +150,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start FMP Release Scheduler: {e}")
 
+    # ダッシュボードキャッシュスケジューラーを開始
+    try:
+        dashboard_cache_scheduler.start()
+        print("Dashboard Cache Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Dashboard Cache Scheduler: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
@@ -180,6 +189,11 @@ async def shutdown_event():
         fmp_release_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down FMP Release Scheduler: {e}")
+
+    try:
+        dashboard_cache_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Dashboard Cache Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

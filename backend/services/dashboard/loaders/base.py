@@ -350,3 +350,66 @@ class BaseDashboardLoader(ABC):
                 print(f"{name} Redis cache invalidated")
             except Exception as e:
                 print(f"Error invalidating {name} cache: {e}")
+
+    def _get_release_datetime_from_service(
+        self,
+        get_data_func,
+        release_hour_et: int = 8,
+        release_minute_et: int = 30,
+        indicator_name: str = "unknown"
+    ) -> Optional[datetime]:
+        """
+        サービスからnext_releaseを取得し、発表日時（JST）を返す
+
+        共通パターン:
+        1. サービスからデータ取得（キャッシュ優先）
+        2. next_release.dateをパース
+        3. 発表時刻（ET）を付与してJSTに変換
+
+        Args:
+            get_data_func: データ取得関数（引数なし、dictを返す）
+            release_hour_et: 発表時刻の時（ET）
+            release_minute_et: 発表時刻の分（ET）
+            indicator_name: エラーログ用の指標名
+
+        Returns:
+            発表日時（JST）、取得できない場合はNone
+
+        使用例:
+            def _get_retail_sales_release_datetime(self) -> Optional[datetime]:
+                from services.usa.retail_sales_service import retail_sales_service
+                return self._get_release_datetime_from_service(
+                    retail_sales_service.get_retail_sales_data,
+                    release_hour_et=8,
+                    release_minute_et=30,
+                    indicator_name="Retail Sales"
+                )
+        """
+        try:
+            data = get_data_func()
+            next_release = data.get("next_release")
+
+            if not next_release:
+                return None
+
+            date_str = next_release.get("date")
+            if not date_str:
+                return None
+
+            # YYYY-MM-DD形式をパース
+            try:
+                base_date = datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                return None
+
+            # 発表時刻（ET）をJSTに変換
+            release_et = datetime(
+                base_date.year, base_date.month, base_date.day,
+                release_hour_et, release_minute_et,
+                tzinfo=ET
+            )
+            return release_et.astimezone(JST)
+
+        except Exception as e:
+            print(f"Error getting {indicator_name} release datetime: {e}")
+            return None

@@ -104,7 +104,12 @@
       "Bash(redis-cli:*)",
       "Bash(source venv/bin/activate)",
       "Bash(/opt/homebrew/bin/psql:*)",
-      "Bash(comm:*)"
+      "Bash(comm:*)",
+      "Bash(powershell -Command \"\\(Get-Content ''backend/services/calendar/calendar_scheduler.py'' -Raw\\) -replace ''try:\\\\r?\\\\n    from services.calendar.fmp_service import fmp_service\\\\r?\\\\n    from services.calendar.calendar_repository import calendar_repository\\\\r?\\\\nexcept ImportError:\\\\r?\\\\n    from backend.services.calendar.fmp_service import fmp_service\\\\r?\\\\n    from backend.services.calendar.calendar_repository import calendar_repository'', ''try:\\\\n    from backend.services.calendar.fmp_service import fmp_service\\\\n    from backend.services.calendar.calendar_repository import calendar_repository\\\\nexcept ImportError:\\\\n    from services.calendar.fmp_service import fmp_service\\\\n    from services.calendar.calendar_repository import calendar_repository'' | Set-Content ''backend/services/calendar/calendar_scheduler.py'' -NoNewline\")",
+      "Bash(timeout 10 bash:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(dir /b \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\*.csv\")",
+      "Bash(test:*)"
     ]
   }
 }

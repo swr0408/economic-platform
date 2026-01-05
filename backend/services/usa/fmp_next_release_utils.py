@@ -31,8 +31,8 @@ from core.redis_client import redis_client
 JST = ZoneInfo("Asia/Tokyo")
 UTC = ZoneInfo("UTC")
 
-# キャッシュTTL（1時間）
-NEXT_RELEASE_CACHE_TTL = 3600
+# キャッシュTTL（1日）
+NEXT_RELEASE_CACHE_TTL = 86400
 
 # 発表後の更新チェック期間（分）
 UPDATE_WINDOW_MINUTES = 3
