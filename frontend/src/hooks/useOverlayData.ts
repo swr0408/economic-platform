@@ -257,10 +257,11 @@ function extractIndicatorData(
       }
     }
 
-    // パターン: nominal.mom のような場合（既存ロジック）
+    // パターン: weekly.nominal のような場合（nested object内のdata配列から特定フィールドを取得）
     const nestedDataWithData = nestedData as { data?: APIDataItem[] };
     if (nestedDataWithData?.data && Array.isArray(nestedDataWithData.data)) {
-      return nestedDataWithData.data
+      console.log('[useOverlayData] Nested data with field pattern for:', dataKey, '.', valueField, 'remainingPath:', remainingPath, 'dataLength:', nestedDataWithData.data.length);
+      const result = nestedDataWithData.data
         .filter(item => {
           const val = getNestedValue(item, remainingPath);
           return val !== undefined && val !== null && typeof val === 'number';
@@ -269,7 +270,10 @@ function extractIndicatorData(
           date: item.date,
           value: getNestedValue(item, remainingPath) as number,
         }));
+      console.log('[useOverlayData] Extracted', result.length, 'points from nested data field pattern');
+      return result;
     }
+    console.log('[useOverlayData] No matching nested pattern for:', dataKey, 'nestedKey:', nestedKey, 'nestedData:', nestedData);
     return [];
   }
 

@@ -102,7 +102,7 @@ class CalendarRepository:
                 columns = [desc[0] for desc in cur.description]
                 return [dict(zip(columns, row)) for row in cur.fetchall()]
 
-    def get_events_by_econalpha_id(
+    def get_events_by_econalpha_id(  # noqa: C901
         self,
         econalpha_id: str,
         from_date: Optional[date] = None,
@@ -141,8 +141,10 @@ class CalendarRepository:
                 if not conditions:
                     return []
 
+                # DISTINCT ON で同一日時の重複を除外（impact順で最も重要なものを優先）
                 query = f"""
-                    SELECT id, provider, country, currency, event, event_period,
+                    SELECT DISTINCT ON (datetime_utc)
+                           id, provider, country, currency, event, event_period,
                            datetime_raw, datetime_utc, has_time, impact,
                            previous, estimate, actual, change, change_pct, unit
                     FROM economic_calendar_events
@@ -156,7 +158,16 @@ class CalendarRepository:
                     query += " AND datetime_utc <= %s"
                     params.append(to_date)
 
-                query += " ORDER BY datetime_utc DESC LIMIT %s"
+                # DISTINCT ON用: datetime_utcが最初、次にimpact優先度
+                # これにより同一日時で最も重要なイベントが選択される
+                query += """ ORDER BY datetime_utc DESC,
+                             CASE impact
+                                 WHEN 'High' THEN 1
+                                 WHEN 'Medium' THEN 2
+                                 WHEN 'Low' THEN 3
+                                 ELSE 4
+                             END ASC
+                             LIMIT %s"""
                 params.append(limit)
 
                 cur.execute(query, params)

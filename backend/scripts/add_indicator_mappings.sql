@@ -156,5 +156,15 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('policy_rate', '政策金利（FRB）', 'US', 'as_needed', ARRAY['Fed Interest Rate Decision', 'FOMC', 'Federal Funds Rate'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- 消費者物価指数 CPI（us_cpi）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('us_cpi', '消費者物価指数（CPI）', 'US', 'monthly', ARRAY['CPI', 'Inflation Rate MoM', 'Inflation Rate YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- コアCPI（us_core_cpi）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('us_core_cpi', 'コアCPI', 'US', 'monthly', ARRAY['Core Inflation Rate MoM', 'Core Inflation Rate YoY', 'Core CPI MoM', 'Core CPI YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;

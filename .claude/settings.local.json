@@ -109,7 +109,8 @@
       "Bash(timeout 10 bash:*)",
       "Bash(python -m json.tool:*)",
       "Bash(dir /b \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\*.csv\")",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(FRED_API_KEY=cbfda818e5ab937d1a79c301acf9e69b python:*)"
     ]
   }
 }

@@ -1651,3 +1651,74 @@ export interface USAEmploymentData {
 export function useUSAEmploymentDashboard(): UseQueryResult<DashboardResponse<USAEmploymentData>, Error> {
   return useDashboardData<USAEmploymentData>('usa', 'employment')
 }
+
+// =============================================================================
+// 米国物価データの型
+// =============================================================================
+
+// CPI（消費者物価指数）データの型（FRED: CPIAUCSL）
+// 毎月10-15日頃 8:30 ET発表
+export interface CPIData {
+  data: CPIItem[]
+  latest: CPIItem | null
+  next_release: CPINextRelease | null
+  last_updated: string | null
+}
+
+export interface CPIItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // YoY（メイン値）
+  yoy: number | null   // 前年比（%）
+  mom: number | null   // 前月比（%）
+  index: number | null // 指数値（FRED原データ）
+}
+
+export interface CPINextRelease {
+  date: string
+  label: string
+}
+
+// コアCPI（食品・エネルギー除く）データの型（FRED: CPILFESL）
+// 毎月10-15日頃 8:30 ET発表（CPIと同時）
+export interface CoreCPIData {
+  data: CoreCPIItem[]
+  latest: CoreCPIItem | null
+  next_release: CoreCPINextRelease | null
+  last_updated: string | null
+}
+
+export interface CoreCPIItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // YoY（メイン値）
+  yoy: number | null   // 前年比（%）
+  mom: number | null   // 前月比（%）
+  index: number | null // 指数値（FRED原データ）
+}
+
+export interface CoreCPINextRelease {
+  date: string
+  label: string
+}
+
+// 米国物価ダッシュボードデータの型
+export interface USAInflationData {
+  cpi: CPIData | null
+  core_cpi: CoreCPIData | null
+}
+
+/**
+ * 米国物価ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useUSAInflationDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.cpi) // CPIデータ
+ *   console.log(data.data.core_cpi) // コアCPIデータ
+ * }
+ * ```
+ */
+export function useUSAInflationDashboard(): UseQueryResult<DashboardResponse<USAInflationData>, Error> {
+  return useDashboardData<USAInflationData>('usa', 'inflation')
+}

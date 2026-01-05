@@ -90,7 +90,7 @@ FMP_INDICATOR_CONFIGS = [
         "fmp_event_pattern": "Retail Sales",
         "service_module": "services.usa.retail_control_service",
         "service_instance": "retail_control_service",
-        "fetch_method": "get_control_group_data",
+        "fetch_method": "get_retail_control_data",
     },
 ]
 

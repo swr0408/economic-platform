@@ -61,6 +61,7 @@ VALUES
     ('us_retail_sales', '', 'US', 'monthly', ARRAY['Retail Sales MoM', 'Retail Sales YoY']),
     ('us_retail_sales_ex_autos', '', 'US', 'monthly', ARRAY['Retail Sales Ex Autos MoM']),
     ('us_retail_sales_ex_gas_autos', '', 'US', 'monthly', ARRAY['Retail Sales Ex Gas/Autos MoM']),
+    ('retail_control', '', 'US', 'monthly', ARRAY['Retail Sales Ex Gas/Autos MoM', 'Retail Control', 'Retail Sales Control Group MoM']),
     ('us_personal_income', '', 'US', 'monthly', ARRAY['Personal Income MoM']),
     ('us_personal_spending', '', 'US', 'monthly', ARRAY['Personal Spending MoM']),
     ('us_real_consumer_spending', '', 'US', 'monthly', ARRAY['Real Consumer Spending', 'Real Consumer Spending QoQ']),

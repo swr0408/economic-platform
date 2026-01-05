@@ -19,10 +19,15 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import pandas as pd
+from dotenv import load_dotenv
 
 # プロジェクトルートをパスに追加
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+# .envファイルを読み込み（プロジェクトルートの親ディレクトリ）
+env_path = project_root.parent / ".env"
+load_dotenv(env_path)
 
 from core.database import get_db_connection
 

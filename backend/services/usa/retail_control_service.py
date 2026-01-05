@@ -7,7 +7,7 @@ DBからコントロールグループの前月比データを取得
 
 データソース:
 - DB: economic_calendar_events（FMP蓄積データ）
-- CSV: 過去データインポート
+- CSV: 過去データインポート（import_csv_to_db.py）
 
 発表スケジュール:
 - 毎月中旬 8:30 ET（小売売上高と同時発表）
@@ -15,7 +15,7 @@ DBからコントロールグループの前月比データを取得
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
-from datetime import datetime, date
+from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -45,7 +45,7 @@ class RetailControlService:
     def __init__(self):
         pass
 
-    def get_control_group_data(
+    def get_retail_control_data(
         self,
         force_refresh: bool = False
     ) -> Dict[str, Any]:
@@ -130,11 +130,16 @@ class RetailControlService:
             from sqlalchemy import text
 
             with SessionLocal() as session:
+                # FMPのイベント名 + CSVインポートのイベント名の両方を検索
                 query = text("""
                     SELECT datetime_utc, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'US'
-                      AND (event ILIKE '%Retail Sales Ex Gas/Autos%' OR event ILIKE '%Retail Control%')
+                      AND (
+                        event ILIKE '%Retail Sales Ex Gas/Autos%'
+                        OR event ILIKE '%Retail Control%'
+                        OR event ILIKE '%Retail Sales Control Group%'
+                      )
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)
@@ -201,7 +206,7 @@ class RetailControlService:
 
         return {
             "indicator": "Retail Control",
-            "source": "Database (FMP)",
+            "source": "Database (FMP + CSV)",
             "cache_key": self.CACHE_KEY,
             "exists": cache_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,

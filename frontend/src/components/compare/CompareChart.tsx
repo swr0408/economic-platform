@@ -170,7 +170,7 @@ export default function CompareChart({
     );
   }
 
-  // データがまだ取得できていない
+  // データ取得失敗（isLoadingがfalseでデータが空）
   if (transformedData.length === 0) {
     return (
       <div
@@ -186,7 +186,7 @@ export default function CompareChart({
         <Empty
           description={
             <span style={{ color: DARK_THEME.textSecondary }}>
-              データを読み込み中...
+              データの読み込みに失敗しました
             </span>
           }
         />
