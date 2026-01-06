@@ -203,6 +203,7 @@ const VIEW_MODE_BUTTON_CONFIGS: Record<string, ButtonStyleConfig> = {
   mom: { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' },
   mom_table: { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' },
   mom_chart: { color: '#3b82f6', bgColor: 'rgba(59, 130, 246, 0.15)' },
+  annualized: { color: '#f97316', bgColor: 'rgba(249, 115, 22, 0.15)' },  // 年率（オレンジ）
   total: { color: '#10b981', bgColor: 'rgba(16, 185, 129, 0.15)' },
   ex_auto: { color: '#a855f7', bgColor: 'rgba(168, 85, 247, 0.15)' },
   control_group: { color: '#06b6d4', bgColor: 'rgba(6, 182, 212, 0.15)' },

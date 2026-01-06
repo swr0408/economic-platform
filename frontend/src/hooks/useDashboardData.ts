@@ -1671,6 +1671,8 @@ export interface CPIItem {
   yoy: number | null   // 前年比（%）
   mom: number | null   // 前月比（%）
   index: number | null // 指数値（FRED原データ）
+  annualized_3m: number | null  // 3か月年率（%）
+  annualized_6m: number | null  // 6か月年率（%）
 }
 
 export interface CPINextRelease {
@@ -1693,6 +1695,8 @@ export interface CoreCPIItem {
   yoy: number | null   // 前年比（%）
   mom: number | null   // 前月比（%）
   index: number | null // 指数値（FRED原データ）
+  annualized_3m: number | null  // 3か月年率（%）
+  annualized_6m: number | null  // 6か月年率（%）
 }
 
 export interface CoreCPINextRelease {
@@ -1700,10 +1704,195 @@ export interface CoreCPINextRelease {
   label: string
 }
 
+// CPI項目別データの型（FRED）
+// 毎月10-15日頃 8:30 ET発表（CPIと同時）
+export interface CPICategoriesData {
+  data: CPICategoriesItem[]
+  latest: CPICategoriesItem | null
+  next_release: CPICategoriesNextRelease | null
+  last_updated: string | null
+}
+
+export interface CPICategoriesItem {
+  date: string           // YYYY-MM-DD形式
+  food: number | null    // 食品（前年比%）
+  energy: number | null  // エネルギー（前年比%）
+  core_goods: number | null     // コア財（前年比%）
+  core_services: number | null  // コアサービス（前年比%）
+  shelter: number | null // 住居費（前年比%）
+}
+
+export interface CPICategoriesNextRelease {
+  date: string
+  label: string
+}
+
+// 住宅関連指標データの型（FRED）
+// Zillow家賃指数、ケースシラー住宅価格指数、家賃CPIの前年比
+export interface HousingIndicatorsData {
+  data: {
+    zillow: HousingIndicatorItem[]
+    case_shiller: HousingIndicatorItem[]
+    rent_cpi: HousingIndicatorItem[]
+  }
+  latest: {
+    zillow: HousingIndicatorItem | null
+    case_shiller: HousingIndicatorItem | null
+    rent_cpi: HousingIndicatorItem | null
+  }
+  last_updated: string | null
+}
+
+export interface HousingIndicatorItem {
+  date: string       // YYYY-MM-DD形式
+  yoy: number        // 前年比（%）
+}
+
+// Zillow家賃指数データの型（Zillow CSV直接取得）
+// 毎月15日前後に更新
+export interface ZillowRentIndexData {
+  data: ZillowRentIndexItem[]
+  latest: ZillowRentIndexItem | null
+  last_updated: string | null
+}
+
+export interface ZillowRentIndexItem {
+  date: string       // YYYY-MM-DD形式
+  yoy: number        // 前年比（%）
+}
+
+// 家賃CPIデータの型（FRED: CUUR0000SAH1）
+// 毎月CPI発表と同時
+export interface RentCPIData {
+  data: RentCPIItem[]
+  latest: RentCPIItem | null
+  last_updated: string | null
+}
+
+export interface RentCPIItem {
+  date: string       // YYYY-MM-DD形式
+  yoy: number        // 前年比（%）
+}
+
+// PCEデフレーターデータの型（FRED: PCEPI）
+// 毎月20-31日頃 8:30 ET発表
+export interface PCEDeflatorNextRelease {
+  date: string
+  label: string
+}
+
+export interface PCEDeflatorData {
+  data: PCEDeflatorItem[]
+  latest: PCEDeflatorItem | null
+  next_release: PCEDeflatorNextRelease | null
+  last_updated: string | null
+}
+
+export interface PCEDeflatorItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // 前年比（%）メイン値
+  yoy: number         // 前年比（%）
+  mom: number | null  // 前月比（%）
+  index: number       // 指数値
+  annualized_3m: number | null  // 3か月年率（%）
+  annualized_6m: number | null  // 6か月年率（%）
+}
+
+// コアPCEデフレーターデータの型（FRED: PCEPILFE）
+// 毎月20-31日頃 8:30 ET発表（PCEと同時）
+export interface CorePCEDeflatorData {
+  data: CorePCEDeflatorItem[]
+  latest: CorePCEDeflatorItem | null
+  next_release: PCEDeflatorNextRelease | null
+  last_updated: string | null
+}
+
+export interface CorePCEDeflatorItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // 前年比（%）メイン値
+  yoy: number         // 前年比（%）
+  mom: number | null  // 前月比（%）
+  index: number       // 指数値
+  annualized_3m: number | null  // 3か月年率（%）
+  annualized_6m: number | null  // 6か月年率（%）
+}
+
+// 生産者物価指数（PPI）データの型（FRED: PPIFIS）
+// 毎月9-17日頃 8:30 ET発表
+export interface PPINextRelease {
+  date: string
+  label: string
+}
+
+export interface PPIData {
+  data: PPIItem[]
+  latest: PPIItem | null
+  next_release: PPINextRelease | null
+  last_updated: string | null
+}
+
+export interface PPIItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // 前年比（%）メイン値
+  yoy: number         // 前年比（%）
+  mom: number | null  // 前月比（%）
+  index: number       // 指数値
+}
+
+// コアPPIデータの型（FRED: PPIFES）
+// 毎月9-17日頃 8:30 ET発表（PPIと同時）
+export interface CorePPIData {
+  data: CorePPIItem[]
+  latest: CorePPIItem | null
+  next_release: PPINextRelease | null
+  last_updated: string | null
+}
+
+export interface CorePPIItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // 前年比（%）メイン値
+  yoy: number         // 前年比（%）
+  mom: number | null  // 前月比（%）
+  index: number       // 指数値
+}
+
+// PPI項目別データの型（BLS API）
+// 毎月9-17日頃 8:30 ET発表（PPIと同時）
+export interface PPICategoriesData {
+  categories: PPICategoryItem[]
+  next_release: PPINextRelease | null
+  last_updated: string | null
+}
+
+export interface PPICategoryItem {
+  key: string            // カテゴリキー（例: "airline_passenger"）
+  series_id: string      // BLSシリーズID（例: "WPSFD42213"）
+  name: string           // 日本語名（例: "航空会社乗客サービス"）
+  name_en: string        // 英語名（例: "Airline Passenger Services"）
+  data: PPICategoryDataPoint[]
+  latest: PPICategoryDataPoint | null
+}
+
+export interface PPICategoryDataPoint {
+  date: string           // YYYY-MM-DD形式
+  value: number          // 指数値
+  yoy: number | null     // 前年比（%）
+  mom: number | null     // 前月比（%）
+}
+
 // 米国物価ダッシュボードデータの型
 export interface USAInflationData {
   cpi: CPIData | null
   core_cpi: CoreCPIData | null
+  cpi_categories: CPICategoriesData | null
+  housing_indicators: HousingIndicatorsData | null
+  zillow_rent_index: ZillowRentIndexData | null
+  rent_cpi: RentCPIData | null
+  pce_deflator: PCEDeflatorData | null
+  core_pce_deflator: CorePCEDeflatorData | null
+  ppi: PPIData | null
+  core_ppi: CorePPIData | null
+  ppi_categories: PPICategoriesData | null
 }
 
 /**

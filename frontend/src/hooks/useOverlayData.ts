@@ -15,6 +15,7 @@ function getIndicatorMapping(indicatorId: string): {
   endpoint: string;
   dataKey: string;
   valueField?: string;
+  nestedKey?: string;  // ppi_categoriesのようにカテゴリ配列からの抽出用
   derived?: DerivedValueConfig;
   isMarketData?: boolean;
   isDirectApi?: boolean;  // /dashboardを追加しない個別APIの場合
@@ -62,6 +63,7 @@ function getIndicatorMapping(indicatorId: string): {
     endpoint,
     dataKey: indicator.dataKey,
     valueField: indicator.valueField,
+    nestedKey: indicator.nestedKey,
     derived: indicator.derived,
     isMarketData: false,
     isDirectApi: false,
@@ -174,13 +176,75 @@ function extractIndicatorData(
   response: APIResponse,
   dataKey: string,
   valueField?: string,
-  derived?: DerivedValueConfig
+  derived?: DerivedValueConfig,
+  nestedKey?: string
 ): DataPoint[] {
   // dataKeyでデータを取得
   const indicatorData = response.data[dataKey] as unknown;
 
   if (!indicatorData) {
     console.log('[useOverlayData] No indicator data for:', dataKey);
+    return [];
+  }
+
+  // パターン: ppi_categories のような categories 配列構造
+  // { categories: [{ key: 'airline_passenger', data: [{date, yoy, mom}] }, ...] }
+  if (nestedKey && dataKey === 'ppi_categories') {
+    const dataObj = indicatorData as { categories?: Array<{ key: string; data: Array<{ date: string; yoy: number | null; mom: number | null }> }> };
+    if (dataObj.categories && Array.isArray(dataObj.categories)) {
+      const category = dataObj.categories.find(cat => cat.key === nestedKey);
+      if (category && category.data) {
+        const field = valueField || 'yoy';
+        console.log('[useOverlayData] PPI categories pattern for:', nestedKey, 'field:', field, 'length:', category.data.length);
+        return category.data
+          .filter(item => {
+            const val = item[field as keyof typeof item];
+            return val !== undefined && val !== null && typeof val === 'number';
+          })
+          .map(item => ({
+            date: item.date,
+            value: item[field as keyof typeof item] as number,
+          }));
+      }
+      console.log('[useOverlayData] Category not found:', nestedKey);
+    }
+    return [];
+  }
+
+  // パターン0: housing_indicators のような特殊構造
+  // { data: { zillow: [{date, yoy}], case_shiller: [{date, yoy}], rent_cpi: [{date, yoy}] } }
+  if (dataKey === 'housing_indicators' && valueField) {
+    const dataObj = indicatorData as { data?: Record<string, Array<{ date: string; yoy: number }>> };
+    if (dataObj.data && typeof dataObj.data === 'object') {
+      const seriesData = dataObj.data[valueField];
+      if (Array.isArray(seriesData)) {
+        console.log('[useOverlayData] Housing indicators pattern for:', dataKey, '.', valueField, 'length:', seriesData.length);
+        return seriesData
+          .filter(item => item.yoy !== undefined && item.yoy !== null && typeof item.yoy === 'number')
+          .map(item => ({
+            date: item.date,
+            value: item.yoy,
+          }));
+      }
+    }
+    console.log('[useOverlayData] No housing indicators data for:', valueField);
+    return [];
+  }
+
+  // パターン0.5: zillow_rent_index / rent_cpi のような構造
+  // { data: [{date, yoy}], latest: {...} }
+  if ((dataKey === 'zillow_rent_index' || dataKey === 'rent_cpi') && valueField === 'yoy') {
+    const dataObj = indicatorData as { data?: Array<{ date: string; yoy: number }> };
+    if (dataObj.data && Array.isArray(dataObj.data)) {
+      console.log('[useOverlayData] Zillow/RentCPI pattern for:', dataKey, 'length:', dataObj.data.length);
+      return dataObj.data
+        .filter(item => item.yoy !== undefined && item.yoy !== null && typeof item.yoy === 'number')
+        .map(item => ({
+          date: item.date,
+          value: item.yoy,
+        }));
+    }
+    console.log('[useOverlayData] No data for:', dataKey);
     return [];
   }
 
@@ -349,7 +413,7 @@ export function useOverlayIndicatorData(indicator: OverlayIndicator | null) {
 
       // 通常の指標データ
       const data = await response.json() as APIResponse;
-      const result = extractIndicatorData(data, mapping.dataKey, mapping.valueField, mapping.derived);
+      const result = extractIndicatorData(data, mapping.dataKey, mapping.valueField, mapping.derived, mapping.nestedKey);
       console.log('[useOverlayData] Extracted', result.length, 'points for', indicator.id);
       return result;
     },
@@ -425,7 +489,8 @@ async function fetchSingleIndicatorData(
       data as APIResponse,
       mapping.dataKey,
       mapping.valueField,
-      mapping.derived
+      mapping.derived,
+      mapping.nestedKey
     );
   }
 }

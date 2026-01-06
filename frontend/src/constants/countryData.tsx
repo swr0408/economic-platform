@@ -140,8 +140,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#ff4d4f',
         indicators: [
           { code: 'cpi', name: 'CPI' },
-          { code: 'pce', name: 'PCE' },
+          { code: 'cpi-categories', name: 'CPI 項目別' },
+          { code: 'pce-deflator', name: 'PCEデフレーター' },
+          { code: 'housing-indicators', name: 'Zillow家賃指数 / ケースシラー住宅価格指数 / 家賃CPI' },
+          { code: 'zillow-rent-cpi', name: 'Zillow家賃指数 / 家賃CPI' },
           { code: 'ppi', name: 'PPI' },
+          { code: 'ppi-categories', name: 'PPI PCE関連項目' },
         ],
       },
       {
