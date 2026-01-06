@@ -1435,6 +1435,23 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
 
   // =========================================================================
+  // 物価 - グローバルサプライチェーン圧力指数
+  // =========================================================================
+  {
+    id: 'us_gscpi',
+    name: 'グローバルサプライチェーン圧力指数',
+    nameEn: 'Global Supply Chain Pressure Index',
+    frequency: 'monthly',
+    country: 'usa',
+    category: 'prices',
+    subCategory: 'supply_chain',
+    apiEndpoint: '/api/usa/inflation',
+    dataKey: 'gscpi',
+    valueField: 'value',
+    unit: 'index',
+  },
+
+  // =========================================================================
   // 物価 - 住宅関連指標
   // =========================================================================
   {

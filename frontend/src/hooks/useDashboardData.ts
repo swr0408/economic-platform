@@ -1880,6 +1880,26 @@ export interface PPICategoryDataPoint {
   mom: number | null     // 前月比（%）
 }
 
+// グローバルサプライチェーン圧力指数（GSCPI）
+// NY連銀のExcelファイルから取得
+// 毎月第4営業日頃 10:00 ET発表
+export interface GSCPIData {
+  data: GSCPIItem[]
+  latest: GSCPIItem | null
+  next_release: GSCPINextRelease | null
+  last_updated: string | null
+}
+
+export interface GSCPIItem {
+  date: string           // YYYY-MM-DD形式
+  value: number          // GSCPI値（0が平均、正の値は圧力上昇）
+}
+
+export interface GSCPINextRelease {
+  date: string
+  time: string
+}
+
 // 米国物価ダッシュボードデータの型
 export interface USAInflationData {
   cpi: CPIData | null
@@ -1893,6 +1913,7 @@ export interface USAInflationData {
   ppi: PPIData | null
   core_ppi: CorePPIData | null
   ppi_categories: PPICategoriesData | null
+  gscpi: GSCPIData | null
 }
 
 /**

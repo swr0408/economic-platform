@@ -213,7 +213,7 @@ export default function HousingIndicatorsChart({ housingData }: HousingIndicator
   // 期間フィルタリング
   const filteredData = usePeriodFiltering(mergedData, {
     selectedPeriod: currentPeriod,
-    defaultStartYear: 2020,
+    defaultStartYear: 2015,
   })
 
   const hasData = mergedData.length > 0

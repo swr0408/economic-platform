@@ -170,7 +170,7 @@ export default function ZillowRentCPIChart({ zillowData, rentCPIData }: ZillowRe
   // 期間フィルタリング
   const filteredData = usePeriodFiltering(mergedData, {
     selectedPeriod: currentPeriod,
-    defaultStartYear: 2020,
+    defaultStartYear: 2016,
   })
 
   const hasData = mergedData.length > 0

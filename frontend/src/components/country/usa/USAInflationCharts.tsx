@@ -15,6 +15,7 @@ import PPIChart from './inflation/PPIChart'
 import PPICategoriesChart from './inflation/PPICategoriesChart'
 import HousingIndicatorsChart from './inflation/HousingIndicatorsChart'
 import ZillowRentCPIChart from './inflation/ZillowRentCPIChart'
+import GSCPIChart from './inflation/GSCPIChart'
 
 export default function USAInflationCharts() {
   const queryResult = useUSAInflationDashboard()
@@ -60,6 +61,11 @@ export default function USAInflationCharts() {
           <ChartWrapper id="ppi-categories">
             <PPICategoriesChart
               categoriesData={dashboardData?.ppi_categories ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="gscpi">
+            <GSCPIChart
+              gscpiData={dashboardData?.gscpi ?? null}
             />
           </ChartWrapper>
         </>

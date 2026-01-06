@@ -1,6 +1,6 @@
 """
 米国物価ダッシュボードローダー
-CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項目別 を一括取得
+CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項目別 + GSCPI を一括取得
 
 データソース:
 - CPI/コアCPI/CPI項目別/住宅関連指標: FRED
@@ -9,6 +9,7 @@ CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項
 - PPI項目別: BLS API
 - Zillow家賃指数: Zillow CSV直接取得
 - 家賃CPI: FRED
+- GSCPI: NY連銀Excelファイル
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: FMPカレンダーから取得
@@ -43,6 +44,7 @@ class USAInflationLoader(BaseDashboardLoader):
     - ppi: 生産者物価指数（PPI）- FRED: PPIFIS（毎月9-17日頃 8:30 ET）
     - core_ppi: コアPPI（食品・エネルギー除く）- FRED: PPIFES（毎月9-17日頃 8:30 ET）
     - ppi_categories: PPI項目別 - BLS API: 航空、ポートフォリオ管理、医療関連など7項目
+    - gscpi: グローバルサプライチェーン圧力指数 - NY連銀Excel（毎月第4営業日頃 10:00 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - CPI発表: 毎月10-15日頃 8:30 ET（CPIとコアCPIは同時発表）
@@ -196,6 +198,7 @@ class USAInflationLoader(BaseDashboardLoader):
         from services.usa.pce_deflator_service import pce_deflator_service
         from services.usa.ppi_service import ppi_service
         from services.usa.ppi_categories_service import ppi_categories_service
+        from services.usa.gscpi_service import gscpi_service
 
         result = {
             "cpi": None,
@@ -209,6 +212,7 @@ class USAInflationLoader(BaseDashboardLoader):
             "ppi": None,
             "core_ppi": None,
             "ppi_categories": None,
+            "gscpi": None,
         }
 
         # 並列でデータを取得
@@ -225,6 +229,7 @@ class USAInflationLoader(BaseDashboardLoader):
                 executor.submit(self._get_ppi, ppi_service): "ppi",
                 executor.submit(self._get_core_ppi, ppi_service): "core_ppi",
                 executor.submit(self._get_ppi_categories, ppi_categories_service): "ppi_categories",
+                executor.submit(self._get_gscpi, gscpi_service): "gscpi",
             }
 
             for future in as_completed(futures):
@@ -426,4 +431,22 @@ class USAInflationLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting PPI categories data: {e}")
+            return None
+
+    def _get_gscpi(self, service) -> Optional[dict]:
+        """GSCPIデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("gscpi")
+            response = service.get_gscpi_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting GSCPI data: {e}")
             return None

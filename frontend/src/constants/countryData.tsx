@@ -146,6 +146,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'zillow-rent-cpi', name: 'Zillow家賃指数 / 家賃CPI' },
           { code: 'ppi', name: 'PPI' },
           { code: 'ppi-categories', name: 'PPI PCE関連項目' },
+          { code: 'gscpi', name: 'GSCPI' },
         ],
       },
       {
