@@ -183,7 +183,14 @@ class FMPIndicatorService:
 
     def _load_from_db(self) -> list[dict]:
         """DBから履歴データを取得"""
+        import re
         result = []
+
+        # 月名から月番号へのマッピング
+        month_map = {
+            'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+            'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
+        }
 
         try:
             with SessionLocal() as session:
@@ -195,6 +202,7 @@ class FMPIndicatorService:
                 query = text(f"""
                     SELECT
                         datetime_utc,
+                        event,
                         event_period,
                         actual,
                         estimate,
@@ -210,15 +218,27 @@ class FMPIndicatorService:
                 rows = session.execute(query, {"country": self.country}).fetchall()
 
                 for row in rows:
-                    dt_utc, period, actual, estimate, previous = row
+                    dt_utc, event, period, actual, estimate, previous = row
 
                     # 日付を文字列に変換
                     if dt_utc:
                         if self.frequency == "weekly":
                             date_str = dt_utc.strftime("%Y-%m-%d")
                         else:
-                            # 月次は月初日に正規化
-                            date_str = dt_utc.strftime("%Y-%m-01")
+                            # 月次はイベント名から対象月を抽出
+                            match = re.search(r'\((\w{3})\)', event) if event else None
+                            if match:
+                                month_abbr = match.group(1).lower()
+                                if month_abbr in month_map:
+                                    target_month = month_map[month_abbr]
+                                    target_year = dt_utc.year
+                                    if target_month > dt_utc.month:
+                                        target_year -= 1
+                                    date_str = f"{target_year}-{target_month:02d}-01"
+                                else:
+                                    date_str = dt_utc.strftime("%Y-%m-01")
+                            else:
+                                date_str = dt_utc.strftime("%Y-%m-01")
                     else:
                         continue
 
@@ -239,8 +259,15 @@ class FMPIndicatorService:
 
     def _fetch_from_fmp(self) -> tuple[list[dict], dict | None]:
         """FMPから最新データを取得"""
+        import re
         result = []
         next_release = None
+
+        # 月名から月番号へのマッピング
+        month_map = {
+            'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+            'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
+        }
 
         try:
             today = date.today()
@@ -277,7 +304,20 @@ class FMPIndicatorService:
                     if self.frequency == "weekly":
                         date_str = dt_utc.strftime("%Y-%m-%d")
                     else:
-                        date_str = dt_utc.strftime("%Y-%m-01")
+                        # 月次はイベント名から対象月を抽出
+                        match = re.search(r'\((\w{3})\)', event_name) if event_name else None
+                        if match:
+                            month_abbr = match.group(1).lower()
+                            if month_abbr in month_map:
+                                target_month = month_map[month_abbr]
+                                target_year = dt_utc.year
+                                if target_month > dt_utc.month:
+                                    target_year -= 1
+                                date_str = f"{target_year}-{target_month:02d}-01"
+                            else:
+                                date_str = dt_utc.strftime("%Y-%m-01")
+                        else:
+                            date_str = dt_utc.strftime("%Y-%m-01")
 
                     result.append({
                         "date": date_str,

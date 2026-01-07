@@ -1,6 +1,6 @@
 """
 米国物価ダッシュボードローダー
-CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項目別 + GSCPI を一括取得
+CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項目別 + GSCPI + Inflation Nowcasting + 輸入輸出物価指数 + シカゴ連銀小売物価指数 + NY連銀インフレ期待 + ミシガン大学インフレ期待 を一括取得
 
 データソース:
 - CPI/コアCPI/CPI項目別/住宅関連指標: FRED
@@ -10,6 +10,11 @@ CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項
 - Zillow家賃指数: Zillow CSV直接取得
 - 家賃CPI: FRED
 - GSCPI: NY連銀Excelファイル
+- Inflation Nowcasting: Cleveland Fed（Seleniumスクレイピング）
+- 輸入物価指数/輸出物価指数: FRED (IR, IQ)
+- シカゴ連銀小売物価指数: Chicago Fed CARTS (ZIP/Excel)
+- NY連銀インフレ期待: NY Fed SCE (Excel)
+- ミシガン大学インフレ期待: University of Michigan CSV
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: FMPカレンダーから取得
@@ -45,6 +50,11 @@ class USAInflationLoader(BaseDashboardLoader):
     - core_ppi: コアPPI（食品・エネルギー除く）- FRED: PPIFES（毎月9-17日頃 8:30 ET）
     - ppi_categories: PPI項目別 - BLS API: 航空、ポートフォリオ管理、医療関連など7項目
     - gscpi: グローバルサプライチェーン圧力指数 - NY連銀Excel（毎月第4営業日頃 10:00 ET）
+    - inflation_nowcasting: インフレーションナウキャスティング - Cleveland Fed（毎営業日 10:00 ET頃）
+    - import_export_price: 輸入物価指数/輸出物価指数（前年比）- FRED: IR, IQ（毎月中旬 8:30 ET頃）
+    - retail_food_services_price: シカゴ連銀小売物価指数（CARTS Fig6）- Chicago Fed（週次更新）
+    - ny_inflation_expectations: NY連銀インフレ期待 - NY Fed SCE Excel（毎月第2月曜日 11:00 ET頃）
+    - michigan_inflation_expectations: ミシガン大学インフレ期待 - University of Michigan CSV（毎月2回発表）
 
     キャッシュ方式: 発表日時ベース判定
     - CPI発表: 毎月10-15日頃 8:30 ET（CPIとコアCPIは同時発表）
@@ -199,6 +209,11 @@ class USAInflationLoader(BaseDashboardLoader):
         from services.usa.ppi_service import ppi_service
         from services.usa.ppi_categories_service import ppi_categories_service
         from services.usa.gscpi_service import gscpi_service
+        from services.usa.inflation_nowcasting_service import inflation_nowcasting_service
+        from services.usa.import_export_price_service import import_export_price_service
+        from services.usa.retail_food_services_price_service import retail_food_services_price_service
+        from services.usa.ny_inflation_expectations_service import ny_inflation_expectations_service
+        from services.usa.michigan_inflation_expectations_service import michigan_inflation_expectations_service
 
         result = {
             "cpi": None,
@@ -213,6 +228,11 @@ class USAInflationLoader(BaseDashboardLoader):
             "core_ppi": None,
             "ppi_categories": None,
             "gscpi": None,
+            "inflation_nowcasting": None,
+            "import_export_price": None,
+            "retail_food_services_price": None,
+            "ny_inflation_expectations": None,
+            "michigan_inflation_expectations": None,
         }
 
         # 並列でデータを取得
@@ -230,6 +250,11 @@ class USAInflationLoader(BaseDashboardLoader):
                 executor.submit(self._get_core_ppi, ppi_service): "core_ppi",
                 executor.submit(self._get_ppi_categories, ppi_categories_service): "ppi_categories",
                 executor.submit(self._get_gscpi, gscpi_service): "gscpi",
+                executor.submit(self._get_inflation_nowcasting, inflation_nowcasting_service): "inflation_nowcasting",
+                executor.submit(self._get_import_export_price, import_export_price_service): "import_export_price",
+                executor.submit(self._get_retail_food_services_price, retail_food_services_price_service): "retail_food_services_price",
+                executor.submit(self._get_ny_inflation_expectations, ny_inflation_expectations_service): "ny_inflation_expectations",
+                executor.submit(self._get_michigan_inflation_expectations, michigan_inflation_expectations_service): "michigan_inflation_expectations",
             }
 
             for future in as_completed(futures):
@@ -449,4 +474,93 @@ class USAInflationLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting GSCPI data: {e}")
+            return None
+
+    def _get_inflation_nowcasting(self, service) -> Optional[dict]:
+        """インフレーションナウキャスティングデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("inflation_nowcasting")
+            response = service.get_inflation_nowcasting_data(force_refresh=force_refresh)
+            monthly_mom = response.get("monthly_mom", [])
+            monthly_yoy = response.get("monthly_yoy", [])
+            if not monthly_mom and not monthly_yoy:
+                return None
+            return {
+                "monthly_mom": monthly_mom,
+                "monthly_yoy": monthly_yoy,
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Inflation Nowcasting data: {e}")
+            return None
+
+    def _get_import_export_price(self, service) -> Optional[dict]:
+        """輸入物価指数/輸出物価指数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("import_export_price")
+            response = service.get_import_export_price_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Import/Export Price data: {e}")
+            return None
+
+    def _get_retail_food_services_price(self, service) -> Optional[dict]:
+        """シカゴ連銀小売物価指数（CARTS Fig6）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("retail_food_services_price")
+            response = service.get_retail_food_services_price_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Retail Food Services Price data: {e}")
+            return None
+
+    def _get_ny_inflation_expectations(self, service) -> Optional[dict]:
+        """NY連銀インフレ期待データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ny_inflation_expectations")
+            response = service.get_inflation_expectations_data(force_refresh=force_refresh)
+            data = response.get("data", {})
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NY Inflation Expectations data: {e}")
+            return None
+
+    def _get_michigan_inflation_expectations(self, service) -> Optional[dict]:
+        """ミシガン大学インフレ期待データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("michigan_inflation_expectations")
+            response = service.get_inflation_expectations_data(force_refresh=force_refresh)
+            data = response.get("data", {})
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Michigan Inflation Expectations data: {e}")
             return None

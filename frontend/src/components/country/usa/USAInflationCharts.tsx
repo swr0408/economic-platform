@@ -16,6 +16,11 @@ import PPICategoriesChart from './inflation/PPICategoriesChart'
 import HousingIndicatorsChart from './inflation/HousingIndicatorsChart'
 import ZillowRentCPIChart from './inflation/ZillowRentCPIChart'
 import GSCPIChart from './inflation/GSCPIChart'
+import InflationNowcastingTable from './inflation/InflationNowcastingTable'
+import ImportExportPriceChart from './inflation/ImportExportPriceChart'
+import RetailFoodServicesPriceChart from './inflation/RetailFoodServicesPriceChart'
+import NYInflationExpectationsChart from './inflation/NYInflationExpectationsChart'
+import MichiganInflationExpectationsChart from './inflation/MichiganInflationExpectationsChart'
 
 export default function USAInflationCharts() {
   const queryResult = useUSAInflationDashboard()
@@ -66,6 +71,31 @@ export default function USAInflationCharts() {
           <ChartWrapper id="gscpi">
             <GSCPIChart
               gscpiData={dashboardData?.gscpi ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="inflation-nowcasting">
+            <InflationNowcastingTable
+              nowcastingData={dashboardData?.inflation_nowcasting ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="import-export-price">
+            <ImportExportPriceChart
+              importExportPriceData={dashboardData?.import_export_price ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="retail-food-services-price">
+            <RetailFoodServicesPriceChart
+              retailFoodServicesPriceData={dashboardData?.retail_food_services_price ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="ny-inflation-expectations">
+            <NYInflationExpectationsChart
+              nyInflationExpectationsData={dashboardData?.ny_inflation_expectations ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="michigan-inflation-expectations">
+            <MichiganInflationExpectationsChart
+              michiganInflationExpectationsData={dashboardData?.michigan_inflation_expectations ?? null}
             />
           </ChartWrapper>
         </>

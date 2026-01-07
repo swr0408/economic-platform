@@ -1900,6 +1900,119 @@ export interface GSCPINextRelease {
   time: string
 }
 
+// インフレーションナウキャスティングデータの型
+// Cleveland FedのInflation Nowcastingデータ（毎営業日10:00 ET頃更新）
+export interface InflationNowcastingData {
+  monthly_mom: InflationNowcastingItem[]
+  monthly_yoy: InflationNowcastingItem[]
+  last_updated: string | null
+}
+
+export interface InflationNowcastingItem {
+  date: string            // "Month Year" 形式（例: "October 2025"）or "YYYY:Q1" 形式
+  cpi: number | null      // CPI予測値
+  core_cpi: number | null // コアCPI予測値
+  pce: number | null      // PCE予測値
+  core_pce: number | null // コアPCE予測値
+}
+
+// 輸入物価指数/輸出物価指数データの型
+// FRED: IR（輸入物価指数）, IQ（輸出物価指数）（毎月中旬 8:30 ET発表）
+export interface ImportExportPriceData {
+  data: ImportExportPriceItem[]
+  latest: ImportExportPriceItem | null
+  next_release: ImportExportPriceNextRelease | null
+  last_updated: string | null
+}
+
+export interface ImportExportPriceItem {
+  date: string              // YYYY-MM-DD形式
+  import_yoy: number | null // 輸入物価指数（前年比%）
+  export_yoy: number | null // 輸出物価指数（前年比%）
+}
+
+export interface ImportExportPriceNextRelease {
+  date: string
+  label: string
+}
+
+// シカゴ連銀小売物価指数（CARTS Fig6）データの型
+// Chicago Fed CARTS Retail & Food Services Prices Ex. Auto（週次更新）
+export interface RetailFoodServicesPriceData {
+  data: RetailFoodServicesPriceItem[]
+  latest: RetailFoodServicesPriceItem | null
+  last_updated: string | null
+}
+
+export interface RetailFoodServicesPriceItem {
+  date: string              // YYYY-MM-DD形式
+  bea: number | null        // BEA（廃止）
+  cpi: number | null        // 商品CPI（自動車除く）
+  carts_nowcast: number | null  // CARTS Nowcast（シカゴ連銀CPI予想）
+}
+
+// NY連銀インフレ期待データの型（NY Fed SCE）
+// 毎月第2月曜日 11:00 ET発表
+export interface NYInflationExpectationsData {
+  data: {
+    one_year: NYInflationExpectationsItem[]
+    three_year: NYInflationExpectationsItem[]
+    five_year: NYInflationExpectationsItem[]
+  }
+  latest: NYInflationExpectationsLatest | null
+  next_release: NYInflationExpectationsNextRelease | null
+  last_updated: string | null
+}
+
+export interface NYInflationExpectationsNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "NY Fed SCE (Jan 2026)"
+}
+
+export interface NYInflationExpectationsItem {
+  date: string    // YYYY-MM-DD形式
+  value: number   // インフレ期待中央値（%）
+}
+
+export interface NYInflationExpectationsLatest {
+  one_year: number   // 1年先インフレ期待（%）
+  three_year: number // 3年先インフレ期待（%）
+  five_year: number  // 5年先インフレ期待（%）
+  date: string       // 最新データの日付
+}
+
+// ミシガン大学インフレ期待データの型（University of Michigan Survey of Consumers）
+// 毎月2回発表（速報値と確報値）
+export interface MichiganInflationExpectationsData {
+  data: {
+    one_year: MichiganInflationExpectationsItem[]
+    five_year: MichiganInflationExpectationsItem[]
+  }
+  latest: MichiganInflationExpectationsLatest | null
+  next_release: MichiganInflationExpectationsNextRelease | null
+  last_updated: string | null
+}
+
+export interface MichiganInflationExpectationsNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "Michigan Consumer Sentiment"
+}
+
+export interface MichiganInflationExpectationsItem {
+  date: string    // YYYY-MM-DD形式
+  value: number   // インフレ期待中央値（%）
+}
+
+export interface MichiganInflationExpectationsLatest {
+  one_year: number   // 1年先インフレ期待（%）
+  five_year: number  // 5年先インフレ期待（%）
+  date: string       // 最新データの日付
+}
+
 // 米国物価ダッシュボードデータの型
 export interface USAInflationData {
   cpi: CPIData | null
@@ -1914,6 +2027,11 @@ export interface USAInflationData {
   core_ppi: CorePPIData | null
   ppi_categories: PPICategoriesData | null
   gscpi: GSCPIData | null
+  inflation_nowcasting: InflationNowcastingData | null
+  import_export_price: ImportExportPriceData | null
+  retail_food_services_price: RetailFoodServicesPriceData | null
+  ny_inflation_expectations: NYInflationExpectationsData | null
+  michigan_inflation_expectations: MichiganInflationExpectationsData | null
 }
 
 /**
@@ -1931,4 +2049,93 @@ export interface USAInflationData {
  */
 export function useUSAInflationDashboard(): UseQueryResult<DashboardResponse<USAInflationData>, Error> {
   return useDashboardData<USAInflationData>('usa', 'inflation')
+}
+
+// =============================================================================
+// 住宅データ型定義
+// =============================================================================
+
+// 30年固定住宅ローン金利データの型（Freddie Mac PMMS）
+// 毎週木曜日 12:00 ET発表
+export interface MortgageRatesData {
+  data: MortgageRatesItem[]
+  latest: MortgageRatesItem | null
+  next_release: MortgageRatesNextRelease | null
+  last_updated: string | null
+}
+
+export interface MortgageRatesItem {
+  date: string    // YYYY-MM-DD形式
+  value: number   // 金利（%）
+}
+
+export interface MortgageRatesNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "Freddie Mac Mortgage Rates (Jan 09)"
+}
+
+// Redfin 全米住宅価格中央値（前年比）データの型
+// 月次（毎月第3金曜日頃）発表
+export interface RedfinMedianPriceData {
+  data: RedfinMedianPriceItem[]
+  latest: RedfinMedianPriceItem | null
+  next_release: RedfinMedianPriceNextRelease | null
+  last_updated: string | null
+}
+
+export interface RedfinMedianPriceItem {
+  date: string    // YYYY-MM-DD形式
+  value: number   // 前年比（%）
+}
+
+export interface RedfinMedianPriceNextRelease {
+  date: string    // YYYY-MM-DD形式
+  label: string   // 例: "Redfin Housing Report (Jan 17)"
+}
+
+// S&P/ケースシラー住宅価格指数データの型
+// 月次（毎月最終火曜日 9:00 ET頃）発表
+export interface CaseShillerData {
+  data: CaseShillerItem[]
+  latest: CaseShillerItem | null
+  next_release: CaseShillerNextRelease | null
+  last_updated: string | null
+}
+
+export interface CaseShillerItem {
+  date: string    // YYYY-MM-DD形式
+  value: number   // インデックス値
+  yoy: number | null  // 前年比（%）
+}
+
+export interface CaseShillerNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "S&P/Case-Shiller Home Price Index (Jan 28)"
+}
+
+// 米国住宅ダッシュボードデータの型
+export interface USAHousingData {
+  mortgage_rates: MortgageRatesData | null
+  redfin_median_price: RedfinMedianPriceData | null
+  case_shiller: CaseShillerData | null
+}
+
+/**
+ * 米国住宅ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useUSAHousingDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.mortgage_rates) // 住宅ローン金利データ
+ * }
+ * ```
+ */
+export function useUSAHousingDashboard(): UseQueryResult<DashboardResponse<USAHousingData>, Error> {
+  return useDashboardData<USAHousingData>('usa', 'housing')
 }

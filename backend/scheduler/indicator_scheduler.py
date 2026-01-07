@@ -232,6 +232,13 @@ class IndicatorScheduler:
                         return release_dt
                 return None
 
+            # 毎営業日パターン（Inflation Nowcasting等）
+            elif status.get("pattern") == "business_day_daily":
+                next_release_str = status.get("next_release")
+                if next_release_str:
+                    return datetime.fromisoformat(next_release_str)
+                return None
+
             # 日付範囲パターン（従来方式）
             elif status.get("pattern") == "date_range":
                 release_time_str = status.get("release_time")
@@ -392,20 +399,123 @@ class IndicatorScheduler:
         )
         print("[Scheduler] Scheduled daily schedule refresh at 00:05 JST")
 
-    async def _refresh_schedules(self):
-        """スケジュールを再計算して更新"""
+    async def _refresh_schedules(self, retry_count: int = 0):
+        """
+        スケジュールを再計算して更新
+
+        Args:
+            retry_count: 現在のリトライ回数
+        """
+        MAX_RETRIES = 3
+        RETRY_DELAY_SECONDS = 60
+
         print("[Scheduler] Refreshing indicator schedules...")
 
-        # 既存のジョブを削除（refresh_schedulesを除く）
-        for job_id in list(self._scheduled_jobs):
-            try:
-                self.scheduler.remove_job(job_id)
-            except Exception:
-                pass
-        self._scheduled_jobs.clear()
+        try:
+            # 既存のジョブを削除（refresh_schedulesを除く）
+            for job_id in list(self._scheduled_jobs):
+                try:
+                    self.scheduler.remove_job(job_id)
+                except Exception:
+                    pass
+            self._scheduled_jobs.clear()
 
-        # 再スケジュール
-        self.schedule_indicator_jobs()
+            # 再スケジュール
+            self.schedule_indicator_jobs()
+            print("[Scheduler] Schedule refresh completed successfully")
+
+        except Exception as e:
+            print(f"[Scheduler] Error during schedule refresh: {e}")
+
+            if retry_count < MAX_RETRIES:
+                print(f"[Scheduler] Retrying in {RETRY_DELAY_SECONDS} seconds... (attempt {retry_count + 1}/{MAX_RETRIES})")
+                await asyncio.sleep(RETRY_DELAY_SECONDS)
+                await self._refresh_schedules(retry_count + 1)
+            else:
+                print(f"[Scheduler] Max retries ({MAX_RETRIES}) reached. Schedule refresh failed.")
+
+    async def _catchup_missed_releases(self):
+        """
+        サーバー起動時に取得漏れを検出して即座にデータを取得
+
+        過去24時間以内に発表があり、キャッシュが発表前の状態の指標を取得。
+        """
+        print("[Scheduler] ========================================")
+        print("[Scheduler] Checking for missed releases...")
+        print("[Scheduler] ========================================")
+
+        enabled_indicators = get_enabled_indicators()
+        checker_groups: Dict[str, List[IndicatorConfig]] = {}
+
+        for config in enabled_indicators:
+            if not config.schedule_checker:
+                continue
+
+            checker_name = config.schedule_checker
+            if checker_name not in checker_groups:
+                checker_groups[checker_name] = []
+            checker_groups[checker_name].append(config)
+
+        missed_indicators = []
+
+        for checker_name, configs in checker_groups.items():
+            try:
+                checker = self._get_schedule_checker(checker_name)
+                if checker is None:
+                    continue
+
+                # 各指標のキャッシュ状態を確認
+                for config in configs:
+                    service = self._get_service_instance(config)
+                    if service is None:
+                        continue
+
+                    # キャッシュステータスを取得
+                    get_cache_status = getattr(service, 'get_cache_status', None)
+                    if get_cache_status is None:
+                        continue
+
+                    try:
+                        cache_status = get_cache_status()
+                        last_updated_str = cache_status.get("last_updated")
+
+                        if last_updated_str:
+                            # should_refreshで更新が必要か判定
+                            should_refresh_method = getattr(checker, 'should_refresh', None)
+                            if should_refresh_method and should_refresh_method(last_updated_str):
+                                missed_indicators.append((config, checker_name))
+                                print(f"[Scheduler] Missed release detected: {config.name}")
+                        else:
+                            # キャッシュがない場合も取得対象
+                            missed_indicators.append((config, checker_name))
+                            print(f"[Scheduler] No cache found: {config.name}")
+
+                    except Exception as e:
+                        print(f"[Scheduler] Error checking cache for {config.name}: {e}")
+
+            except Exception as e:
+                print(f"[Scheduler] Error processing checker {checker_name}: {e}")
+
+        # 取得漏れがあれば即座に取得
+        if missed_indicators:
+            print(f"[Scheduler] Found {len(missed_indicators)} missed indicators. Fetching now...")
+
+            # グループ化して並列取得
+            configs_to_fetch = [config for config, _ in missed_indicators]
+
+            # 最大10指標ずつ並列取得（サーバー負荷軽減）
+            BATCH_SIZE = 10
+            for i in range(0, len(configs_to_fetch), BATCH_SIZE):
+                batch = configs_to_fetch[i:i + BATCH_SIZE]
+                tasks = [self.fetch_indicator_data(config, 1) for config in batch]
+                await asyncio.gather(*tasks, return_exceptions=True)
+
+                if i + BATCH_SIZE < len(configs_to_fetch):
+                    await asyncio.sleep(5)  # バッチ間の待機
+
+            print(f"[Scheduler] Catchup completed for {len(missed_indicators)} indicators")
+        else:
+            print("[Scheduler] No missed releases found")
 
     def start(self):
         """スケジューラーを開始"""
@@ -416,6 +526,9 @@ class IndicatorScheduler:
         self.schedule_indicator_jobs()
         self.schedule_recurring_jobs()
         self.scheduler.start()
+
+        # キャッチアップ処理をバックグラウンドで実行
+        asyncio.create_task(self._catchup_missed_releases())
 
         print("[Scheduler] Scheduler started successfully")
         self._print_status()

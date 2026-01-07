@@ -11,7 +11,7 @@ Chicago Fed APIからCARTSデータを取得
 - 確定版: 毎月第2金曜日 8:30 ET
 - Chicago Fedからスクレイピングして自動取得
 
-キャッシュ方式: 発表日時ベース判定（last_updated判定方式）
+キャッシュ方式: Chicago Fed発表日ベース判定方式（スクレイピング）
 """
 import io
 import os
@@ -29,9 +29,9 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
-from services.usa.fmp_next_release_utils import (
-    get_next_release_from_fmp,
-    should_refresh_by_fmp_schedule,
+from services.usa.chicago_fed_schedule_utils import (
+    get_carts_next_release,
+    should_refresh_by_chicago_fed_schedule,
 )
 
 
@@ -60,14 +60,6 @@ class CartsService:
     WEEKLY_CACHE_KEY = "chicagofed:carts:weekly"
     PRICE_CACHE_KEY = "chicagofed:carts:price"
     SCHEDULE_CACHE_KEY = "chicagofed:carts:schedule"
-    ECONALPHA_ID = "carts"  # FMPマッピング用ID
-
-    # スケジュールキャッシュの有効期間（30日 = 1ヶ月）
-    SCHEDULE_CACHE_TTL = 30 * 24 * 60 * 60  # 2592000秒
-
-    # 発表時刻設定
-    RELEASE_HOUR_ET = 8
-    RELEASE_MINUTE_ET = 30
 
     def __init__(self):
         pass
@@ -421,7 +413,7 @@ class CartsService:
             excel_path = None
             for root, dirs, files in os.walk(temp_dir):
                 for f in files:
-                    if f.lower() == "carts-dashboard-figures.xlsx":
+                    if f.lower() == "carts-dashboard-figures_real.xlsx":
                         excel_path = os.path.join(root, f)
                         break
                 if excel_path:
@@ -509,9 +501,9 @@ class CartsService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        FMPスケジュールベースの3分方式で判定
+        Chicago Fed発表日ベースで判定
         """
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        return should_refresh_by_chicago_fed_schedule(last_updated_str)
 
 
     def _load_file_cache(self, cache_file: Path) -> Optional[Dict[str, Any]]:
@@ -564,7 +556,7 @@ class CartsService:
                 "data_count": len(price_data.get("data", [])) if price_data else 0,
                 "latest": price_data.get("latest") if price_data else None,
             },
-            "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
+            "next_release": get_carts_next_release(),
             "file_cache_weekly_exists": WEEKLY_CACHE_FILE.exists(),
             "file_cache_price_exists": PRICE_CACHE_FILE.exists(),
         }

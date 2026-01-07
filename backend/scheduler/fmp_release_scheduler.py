@@ -92,6 +92,22 @@ FMP_INDICATOR_CONFIGS = [
         "service_instance": "retail_control_service",
         "fetch_method": "get_retail_control_data",
     },
+    {
+        "name_ja": "輸入物価指数/輸出物価指数",
+        "fmp_event": "Import Price Index MoM",
+        "fmp_event_pattern": "Import Price",
+        "service_module": "services.usa.import_export_price_service",
+        "service_instance": "import_export_price_service",
+        "fetch_method": "get_import_export_price_data",
+    },
+    {
+        "name_ja": "銀行貸出態度調査（SLOOS）",
+        "fmp_event": "Loan Officer Survey",
+        "fmp_event_pattern": "Loan Officer",
+        "service_module": "services.usa.bank_lending_service",
+        "service_instance": "bank_lending_service",
+        "fetch_method": "get_bank_lending_standards",
+    },
 ]
 
 

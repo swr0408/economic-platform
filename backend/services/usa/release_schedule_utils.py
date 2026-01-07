@@ -1665,3 +1665,250 @@ VISA_SPENDING_CHECKER = VisaSpendingScheduleChecker(
     release_minute=30,
     release_hour_winter=22,
 )
+
+
+# ============================================================
+# Inflation Nowcasting スケジュールチェッカー（毎営業日）
+# ============================================================
+
+class InflationNowcastingScheduleChecker:
+    """
+    Cleveland Fed Inflation Nowcasting 用スケジュールチェッカー
+
+    毎営業日（月-金）10:00 ETに更新される。
+    発表時刻から3分間は毎分更新チェックを行う（3分方式）。
+    """
+
+    # 発表後の更新チェック期間（分）
+    UPDATE_WINDOW_MINUTES = 3
+
+    def __init__(
+        self,
+        release_hour_summer: int = 23,  # 10:00 ET = 23:00 JST（夏時間）
+        release_minute: int = 0,
+        release_hour_winter: int = 0,    # 10:00 ET = 00:00 JST（翌日、冬時間）
+    ):
+        """
+        Args:
+            release_hour_summer: 夏時間の発表時刻（時、JST）
+            release_minute: 発表時刻（分）
+            release_hour_winter: 冬時間の発表時刻（時、JST）
+        """
+        self.release_hour_summer = release_hour_summer
+        self.release_minute = release_minute
+        self.release_hour_winter = release_hour_winter
+
+    def should_refresh(self, last_updated_str: str) -> bool:
+        """
+        キャッシュを更新すべきかどうかを判定
+
+        判定ロジック（毎営業日 3分方式）:
+        1. 土日はスキップ
+        2. 今日の発表時刻を計算
+        3. 発表時刻から3分以内なら、最終更新が発表時刻より前なら更新
+        4. 発表時刻を3分以上過ぎていて、まだ更新していなければ更新
+
+        Args:
+            last_updated_str: 最終更新日時のISO文字列
+
+        Returns:
+            True: 更新が必要
+            False: キャッシュ有効
+        """
+        try:
+            last_updated = datetime.fromisoformat(last_updated_str)
+            if last_updated.tzinfo is None:
+                last_updated = last_updated.replace(tzinfo=JST)
+
+            now = datetime.now(JST)
+
+            # 営業日チェック（土日はスキップ）
+            # 冬時間では発表が翌日0:00 JSTになるため、金曜深夜は土曜日になっている可能性
+            if not self._is_business_day(now):
+                return False
+
+            # 今日の発表時刻を計算
+            release_time = self._get_today_release_time(now)
+            if release_time is None:
+                return False
+
+            # 発表時刻より前ならスキップ
+            if now < release_time:
+                return False
+
+            # 3分方式での判定
+            update_window_end = release_time + timedelta(minutes=self.UPDATE_WINDOW_MINUTES)
+            in_update_window = now <= update_window_end
+
+            if in_update_window:
+                # 3分以内: 最終更新が発表時刻より前なら更新
+                if last_updated < release_time:
+                    return True
+            else:
+                # 3分経過後: 発表時刻以降に更新していなければ更新
+                if last_updated < release_time:
+                    return True
+
+            return False
+
+        except Exception as e:
+            print(f"Error checking Inflation Nowcasting refresh status: {e}")
+            return False
+
+    def _is_business_day(self, dt: datetime) -> bool:
+        """
+        営業日かどうかを判定（土日を除外）
+
+        冬時間の場合、金曜10:00 ETは土曜00:00 JSTになるため、
+        土曜0-1時台は金曜の発表扱いとする。
+        """
+        weekday = dt.weekday()
+
+        # 土曜日だが、深夜0-1時台の場合は金曜の発表時刻の可能性
+        if weekday == 5 and dt.hour < 2:
+            # 冬時間かどうかチェック
+            if not is_dst(dt):
+                return True  # 金曜の発表扱い
+
+        # 日曜日または土曜日（深夜除く）
+        if weekday >= 5:
+            return False
+
+        return True
+
+    def _get_today_release_time(self, now: datetime) -> Optional[datetime]:
+        """
+        今日の発表時刻を取得
+
+        Args:
+            now: 現在日時
+
+        Returns:
+            発表時刻（JST）
+        """
+        # サマータイム判定
+        is_summer = is_dst(now)
+
+        if is_summer:
+            release_hour = self.release_hour_summer
+            target_date = now.date()
+        else:
+            release_hour = self.release_hour_winter
+            # 冬時間では0:00 JSTになるため、実際の発表日は前日のET
+            # 土曜0:00 JSTは金曜10:00 ETの発表
+            if now.hour < 2:
+                target_date = now.date()  # 前日からの継続
+            else:
+                target_date = now.date()
+
+        return datetime(
+            target_date.year,
+            target_date.month,
+            target_date.day,
+            release_hour,
+            self.release_minute,
+            0,
+            tzinfo=JST
+        )
+
+    def get_status(self) -> dict:
+        """現在のステータスを取得（デバッグ・スケジューラー用）"""
+        now = datetime.now(JST)
+        is_business = self._is_business_day(now)
+        release_time = self._get_today_release_time(now) if is_business else None
+
+        # 次回発表日時を計算（今日が営業日でない場合は次の営業日）
+        next_release = None
+        if release_time:
+            if now < release_time:
+                next_release = release_time
+            else:
+                # 次の営業日の発表時刻
+                next_release = self._get_next_business_day_release(now)
+        else:
+            next_release = self._get_next_business_day_release(now)
+
+        return {
+            "now": now.isoformat(),
+            "pattern": "business_day_daily",
+            "is_dst": is_dst(now),
+            "is_business_day": is_business,
+            "release_time": release_time.isoformat() if release_time else None,
+            "next_release": next_release.isoformat() if next_release else None,
+        }
+
+    def _get_next_business_day_release(self, now: datetime) -> Optional[datetime]:
+        """次の営業日の発表時刻を取得"""
+        check_date = now + timedelta(days=1)
+
+        for _ in range(7):  # 最大7日先までチェック
+            weekday = check_date.weekday()
+            if weekday < 5:  # 月-金
+                is_summer = is_dst(check_date)
+                if is_summer:
+                    release_hour = self.release_hour_summer
+                else:
+                    release_hour = self.release_hour_winter
+
+                return datetime(
+                    check_date.year,
+                    check_date.month,
+                    check_date.day,
+                    release_hour,
+                    self.release_minute,
+                    0,
+                    tzinfo=JST
+                )
+            check_date += timedelta(days=1)
+
+        return None
+
+
+# Inflation Nowcasting用チェッカーインスタンス
+# 10:00 ET = 23:00 JST（夏時間）/ 00:00 JST（冬時間、翌日）
+INFLATION_NOWCASTING_CHECKER = InflationNowcastingScheduleChecker(
+    release_hour_summer=23,
+    release_minute=0,
+    release_hour_winter=0,
+)
+
+# GDPNow用チェッカー（毎営業日、不定期更新のため毎日チェック）
+# 更新は経済指標発表の2-3時間後だが、不定期のため毎日6:00 JSTにチェック
+GDPNOW_CHECKER = InflationNowcastingScheduleChecker(
+    release_hour_summer=6,
+    release_minute=0,
+    release_hour_winter=6,
+)
+
+# NY Fed Term Premium用チェッカー（毎営業日）
+# 日次データ、不定期更新のため毎日6:00 JSTにチェック
+TERM_PREMIUM_CHECKER = InflationNowcastingScheduleChecker(
+    release_hour_summer=6,
+    release_minute=0,
+    release_hour_winter=6,
+)
+
+# FCI-G用チェッカー（月次、不定期のため毎日チェック）
+# 毎日6:00 JSTにチェック
+FCI_CHECKER = InflationNowcastingScheduleChecker(
+    release_hour_summer=6,
+    release_minute=0,
+    release_hour_winter=6,
+)
+
+# Affinity Spend用チェッカー（月1-2回、不定期のため毎日チェック）
+# 毎日6:00 JSTにチェック
+AFFINITY_SPEND_CHECKER = InflationNowcastingScheduleChecker(
+    release_hour_summer=6,
+    release_minute=0,
+    release_hour_winter=6,
+)
+
+# NFCI用チェッカー（毎週水曜日 8:30 ET）
+# 8:30 ET = 21:30 JST（夏時間）/ 22:30 JST（冬時間）
+NFCI_CHECKER = ReleaseScheduleChecker(
+    weekly_day_of_week=2,  # 水曜日 (0=月, 2=水)
+    release_hour_summer=21,
+    release_minute=30,
+    release_hour_winter=22,
+)

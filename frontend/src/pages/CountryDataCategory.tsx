@@ -18,6 +18,7 @@ import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
 import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
 import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
 import USAInflationCharts from '../components/country/usa/USAInflationCharts'
+import USAHousingCharts from '../components/country/usa/USAHousingCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -219,12 +220,13 @@ function CountryDataCategory() {
   const category = CATEGORY_INFO[categoryCode]
   const indicators = INDICATORS_BY_COUNTRY_CATEGORY[countryCode]?.[categoryCode] || []
 
-  // USA金融政策・経済・消費・雇用・物価の場合はチャートを表示
+  // USA金融政策・経済・消費・雇用・物価・住宅の場合はチャートを表示
   const isUSAPolicy = countryCode === 'usa' && categoryCode === 'policy'
   const isUSAEconomy = countryCode === 'usa' && categoryCode === 'economy'
   const isUSAConsumer = countryCode === 'usa' && categoryCode === 'consumer'
   const isUSAEmployment = countryCode === 'usa' && categoryCode === 'employment'
   const isUSAInflation = countryCode === 'usa' && categoryCode === 'inflation'
+  const isUSAHousing = countryCode === 'usa' && categoryCode === 'housing'
 
   // メインコンテンツ
   const mainContent = (
@@ -239,6 +241,8 @@ function CountryDataCategory() {
         <USAEmploymentCharts />
       ) : isUSAInflation ? (
         <USAInflationCharts />
+      ) : isUSAHousing ? (
+        <USAHousingCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

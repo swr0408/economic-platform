@@ -132,10 +132,11 @@ class CBConsumerConfidenceService:
         try:
             from core.database import SessionLocal
             from sqlalchemy import text
+            import re
 
             with SessionLocal() as session:
                 query = text("""
-                    SELECT datetime_utc, actual, estimate, previous
+                    SELECT datetime_utc, event, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'US'
                       AND event ILIKE '%CB Consumer Confidence%'
@@ -147,11 +148,30 @@ class CBConsumerConfidenceService:
                 result = []
                 seen_dates = set()
 
+                # 月名から月番号へのマッピング
+                month_map = {
+                    'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+                    'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
+                }
+
                 for row in rows:
-                    dt_utc, actual, estimate, previous = row
+                    dt_utc, event, actual, estimate, previous = row
                     if dt_utc:
-                        # 月初日に正規化
-                        date_str = dt_utc.strftime("%Y-%m-01")
+                        # イベント名から対象月を抽出（例: "CB Consumer Confidence (Dec)"）
+                        match = re.search(r'\((\w{3})\)', event)
+                        if match:
+                            month_abbr = match.group(1).lower()
+                            if month_abbr in month_map:
+                                target_month = month_map[month_abbr]
+                                target_year = dt_utc.year
+                                if target_month > dt_utc.month:
+                                    target_year -= 1
+                                date_str = f"{target_year}-{target_month:02d}-01"
+                            else:
+                                date_str = dt_utc.strftime("%Y-%m-01")
+                        else:
+                            date_str = dt_utc.strftime("%Y-%m-01")
+
                         if date_str in seen_dates:
                             continue
                         seen_dates.add(date_str)
@@ -166,6 +186,8 @@ class CBConsumerConfidenceService:
 
         except Exception as e:
             print(f"Error loading from DB: {e}")
+            import traceback
+            traceback.print_exc()
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:

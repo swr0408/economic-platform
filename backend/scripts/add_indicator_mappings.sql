@@ -106,6 +106,12 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('michigan_consumer_sentiment', 'ミシガン大学消費者信頼感指数', 'US', 'monthly', ARRAY['Michigan Consumer Sentiment'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- ミシガン大学インフレ期待（michigan_inflation_expectations）
+-- 消費者信頼感と同時発表のため同じイベントパターンを使用
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('michigan_inflation_expectations', 'ミシガン大学インフレ期待', 'US', 'monthly', ARRAY['Michigan Consumer Sentiment', 'Michigan Inflation Expectations'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- JOLTS求人件数（jolts_openings）
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
 VALUES ('jolts_openings', 'JOLTS求人件数', 'US', 'monthly', ARRAY['JOLTs Job Openings'], TRUE)

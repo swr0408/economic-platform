@@ -11,6 +11,7 @@ from services.dashboard.loaders.usa_economy import USAEconomyLoader
 from services.dashboard.loaders.usa_consumer import USAConsumerLoader
 from services.dashboard.loaders.usa_employment import USAEmploymentLoader
 from services.dashboard.loaders.usa_inflation import USAInflationLoader
+from services.dashboard.loaders.usa_housing import USAHousingLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -21,6 +22,7 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
     ("usa", "consumer"): USAConsumerLoader,
     ("usa", "employment"): USAEmploymentLoader,
     ("usa", "inflation"): USAInflationLoader,
+    ("usa", "housing"): USAHousingLoader,
 
     # 日本
     # ("japan", "policy"): JapanPolicyLoader,  # 将来追加

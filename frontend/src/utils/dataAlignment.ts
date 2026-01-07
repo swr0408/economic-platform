@@ -64,6 +64,40 @@ export function asOfJoin(
 }
 
 /**
+ * 月単位の厳密マッチ: 同じ月のデータのみマージ
+ *
+ * 月次データ同士の比較で、日付が異なる場合に前方補完せず、
+ * 同じ月のデータのみをマッチさせる。
+ *
+ * @param baseDates 基準データの日付配列（ソート済み）
+ * @param overlayPoints 比較データ（ソート済み）
+ * @returns 基準日付に対応する比較値の配列（月が一致しない場合はnull）
+ */
+export function monthlyStrictJoin(
+  baseDates: string[],
+  overlayPoints: DataPoint[]
+): (number | null)[] {
+  if (overlayPoints.length === 0) {
+    return baseDates.map(() => null);
+  }
+
+  // オーバーレイデータを年月でマップ化（YYYY-MM形式）
+  const overlayByMonth = new Map<string, number | null>();
+  for (const point of overlayPoints) {
+    // YYYY-MM形式の月キーを取得
+    const monthKey = point.date.slice(0, 7); // "YYYY-MM"
+    // 同じ月に複数データがある場合は最新のものを使用
+    overlayByMonth.set(monthKey, point.value);
+  }
+
+  // 各基準日付に対して、同じ月のオーバーレイ値を取得
+  return baseDates.map(baseDate => {
+    const baseMonthKey = baseDate.slice(0, 7);
+    return overlayByMonth.get(baseMonthKey) ?? null;
+  });
+}
+
+/**
  * 複数の比較データを基準データにマージ
  *
  * @param baseData 基準データ
@@ -294,11 +328,24 @@ export function mergeWithFrequencyAwareness<T extends { date: string }>(
       // このオーバーレイが基準の場合、baseDatesに対応するデータをそのまま使用
       overlayValues[overlay.key] = baseDates.map(d => baseDataMap.get(d) ?? null);
     } else {
-      // As-of Joinでマップ（基準でないオーバーレイは常にAs-of Join）
+      // オーバーレイデータをソート
       const sortedOverlay = [...overlay.data].sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
       );
-      overlayValues[overlay.key] = asOfJoin(baseDates, sortedOverlay);
+
+      // 両方が月次データの場合は厳密マッチ（月単位）を使用
+      // これにより、10月のデータが11月の日付に表示されることを防ぐ
+      const bothMonthly =
+        (finestFreq === 'monthly' || finestFreq === 'irregular') &&
+        (overlay.frequency === 'monthly' || overlay.frequency === 'irregular');
+
+      if (bothMonthly) {
+        // 月単位の厳密マッチ: 同じ月のデータのみマージ
+        overlayValues[overlay.key] = monthlyStrictJoin(baseDates, sortedOverlay);
+      } else {
+        // 頻度が異なる場合はAs-of Join（前方補完）を使用
+        overlayValues[overlay.key] = asOfJoin(baseDates, sortedOverlay);
+      }
     }
   }
 

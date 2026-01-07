@@ -147,6 +147,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ppi', name: 'PPI' },
           { code: 'ppi-categories', name: 'PPI PCE関連項目' },
           { code: 'gscpi', name: 'GSCPI' },
+          { code: 'inflation-nowcasting', name: 'インフレーションナウキャスティング' },
+          { code: 'import-export-price', name: '輸入物価指数 / 輸出物価指数' },
+          { code: 'retail-food-services-price', name: 'シカゴ連銀小売物価指数' },
+          { code: 'ny-inflation-expectations', name: 'NYインフレ期待' },
+          { code: 'michigan-inflation-expectations', name: 'ミシガンインフレ期待' },
+
         ],
       },
       {
@@ -155,6 +161,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <HomeOutlined />,
         color: '#722ed1',
         indicators: [
+          { code: 'mortgage-rates', name: 'フレディ・マック30年固定住宅ローン金利' },
           { code: 'housing-starts', name: '住宅着工件数' },
           { code: 'existing-home-sales', name: '中古住宅販売' },
           { code: 'new-home-sales', name: '新築住宅販売' },

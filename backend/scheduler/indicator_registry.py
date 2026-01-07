@@ -16,6 +16,8 @@ class Category(Enum):
     ECONOMY = "economy"                   # 経済
     CONSUMER = "consumer"                 # 消費
     EMPLOYMENT = "employment"             # 雇用
+    INFLATION = "inflation"               # インフレーション
+    FINANCIAL = "financial"               # 金融
 
 
 @dataclass
@@ -628,6 +630,125 @@ EMPLOYMENT_INDICATORS: List[IndicatorConfig] = [
 
 
 # ============================================================
+# インフレーション関連 (INFLATION)
+# ============================================================
+
+INFLATION_INDICATORS: List[IndicatorConfig] = [
+    # Inflation Nowcasting（毎営業日更新）
+    IndicatorConfig(
+        name="インフレーションナウキャスティング",
+        name_en="Inflation Nowcasting",
+        category=Category.INFLATION,
+        service_module="services.usa.inflation_nowcasting_service",
+        service_class="InflationNowcastingService",
+        service_instance="inflation_nowcasting_service",
+        fetch_method="get_inflation_nowcasting_data",
+        schedule_checker="INFLATION_NOWCASTING_CHECKER",
+        enabled=True,
+    ),
+
+    # Retail Food Services Price（CARTS月2回）
+    IndicatorConfig(
+        name="小売飲食サービス物価指数",
+        name_en="Retail & Food Services Price Index",
+        category=Category.INFLATION,
+        service_module="services.usa.retail_food_services_price_service",
+        service_class="RetailFoodServicesPriceService",
+        service_instance="retail_food_services_price_service",
+        fetch_method="get_retail_food_services_price_data",
+        schedule_checker="CARTS_CHECKER",
+        enabled=True,
+    ),
+]
+
+
+# ============================================================
+# 金融関連 (FINANCIAL)
+# ============================================================
+
+FINANCIAL_INDICATORS: List[IndicatorConfig] = [
+    # GDPNow（毎営業日、不定期更新）
+    IndicatorConfig(
+        name="GDPNow",
+        name_en="Atlanta Fed GDPNow",
+        category=Category.FINANCIAL,
+        service_module="services.usa.gdpnow_service",
+        service_class="GDPNowService",
+        service_instance="gdpnow_service",
+        fetch_method="get_gdpnow_data",
+        schedule_checker="GDPNOW_CHECKER",
+        enabled=True,
+    ),
+
+    # NY Fed Term Premium（毎営業日）
+    IndicatorConfig(
+        name="タームプレミアム",
+        name_en="NY Fed ACM Term Premium",
+        category=Category.FINANCIAL,
+        service_module="services.usa.nyfed_service",
+        service_class="NYFedTermPremiumService",
+        service_instance="nyfed_term_premium_service",
+        fetch_method="get_term_premium_data",
+        schedule_checker="TERM_PREMIUM_CHECKER",
+        enabled=True,
+    ),
+
+    # NFCI（毎週水曜日 8:30 ET）
+    IndicatorConfig(
+        name="シカゴ連銀金融環境指数",
+        name_en="Chicago Fed NFCI",
+        category=Category.FINANCIAL,
+        service_module="services.usa.nfci_service",
+        service_class="NFCIService",
+        service_instance="nfci_service",
+        fetch_method="get_nfci_data",
+        schedule_checker="NFCI_CHECKER",
+        enabled=True,
+    ),
+
+    # FCI-G（月次、不定期）
+    IndicatorConfig(
+        name="FCI-G金融情勢指数",
+        name_en="FRB FCI-G",
+        category=Category.FINANCIAL,
+        service_module="services.usa.fci_service",
+        service_class="FCIService",
+        service_instance="fci_service",
+        fetch_method="get_fci_data",
+        schedule_checker="FCI_CHECKER",
+        enabled=True,
+    ),
+
+    # Affinity Spend（月1-2回、不定期）
+    IndicatorConfig(
+        name="Affinityカード支出",
+        name_en="Affinity Card Spending",
+        category=Category.CONSUMER,
+        service_module="services.usa.affinity_spend_service",
+        service_class="AffinitySpendService",
+        service_instance="affinity_spend_service",
+        fetch_method="get_affinity_spend_data",
+        schedule_checker="AFFINITY_SPEND_CHECKER",
+        enabled=True,
+    ),
+
+    # Bank Lending (SLOOS)（四半期、FMPスケジュール）
+    # 注: FMPスケジューラーで管理されるため、schedule_checkerはNone
+    IndicatorConfig(
+        name="銀行貸出態度調査",
+        name_en="Senior Loan Officer Survey (SLOOS)",
+        category=Category.FINANCIAL,
+        service_module="services.usa.bank_lending_service",
+        service_class="BankLendingService",
+        service_instance="bank_lending_service",
+        fetch_method="get_bank_lending_standards",
+        schedule_checker=None,  # FMPスケジューラーで管理
+        enabled=True,
+    ),
+]
+
+
+# ============================================================
 # 全指標リスト
 # ============================================================
 
@@ -635,7 +756,9 @@ ALL_INDICATORS: List[IndicatorConfig] = (
     MONETARY_POLICY_INDICATORS +
     ECONOMY_INDICATORS +
     CONSUMER_INDICATORS +
-    EMPLOYMENT_INDICATORS
+    EMPLOYMENT_INDICATORS +
+    INFLATION_INDICATORS +
+    FINANCIAL_INDICATORS
 )
 
 

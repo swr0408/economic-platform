@@ -248,6 +248,26 @@ function extractIndicatorData(
     return [];
   }
 
+  // パターン0.6: ny_inflation_expectations / michigan_inflation_expectations のような構造
+  // { data: { one_year: [{date, value}], three_year: [{date, value}], five_year: [{date, value}] }, latest: {...} }
+  if ((dataKey === 'ny_inflation_expectations' || dataKey === 'michigan_inflation_expectations') && valueField) {
+    const dataObj = indicatorData as { data?: Record<string, Array<{ date: string; value: number }>> };
+    if (dataObj.data && typeof dataObj.data === 'object') {
+      const seriesData = dataObj.data[valueField];
+      if (Array.isArray(seriesData)) {
+        console.log('[useOverlayData] Inflation Expectations pattern for:', dataKey, '.', valueField, 'length:', seriesData.length);
+        return seriesData
+          .filter(item => item.value !== undefined && item.value !== null && typeof item.value === 'number')
+          .map(item => ({
+            date: item.date,
+            value: item.value,
+          }));
+      }
+    }
+    console.log('[useOverlayData] No Inflation Expectations data for:', dataKey, '.', valueField);
+    return [];
+  }
+
   // パターン1: 直接配列の場合 (例: gdp_growth_rate: [{date, value}])
   if (Array.isArray(indicatorData)) {
     console.log('[useOverlayData] Direct array pattern for:', dataKey, 'length:', indicatorData.length);
