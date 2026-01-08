@@ -13,6 +13,7 @@ import ISMComponentsChart from './economy/ISMComponentsChart'
 import OrderInventoryBalanceChart from './economy/OrderInventoryBalanceChart'
 import ISMNonManufacturingChart from './economy/ISMNonManufacturingChart'
 import ISMNonManufacturingComponentsChart from './economy/ISMNonManufacturingComponentsChart'
+import SPPMIChart from './economy/SPPMIChart'
 import EmpireStateChart from './economy/EmpireStateChart'
 import PhiladelphiaFedChart from './economy/PhiladelphiaFedChart'
 import NFIBOptimismChart from './economy/NFIBOptimismChart'
@@ -153,6 +154,13 @@ export default function USAEconomyCharts() {
       <div id="ism-non-manufacturing-components">
         <ISMNonManufacturingComponentsChart
           data={dashboardData?.ism_non_manufacturing_components ?? null}
+        />
+      </div>
+
+      {/* S&P Global PMIチャート */}
+      <div id="sp-pmi">
+        <SPPMIChart
+          data={dashboardData?.sp_pmi ?? null}
         />
       </div>
 

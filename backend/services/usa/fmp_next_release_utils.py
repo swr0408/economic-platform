@@ -129,9 +129,12 @@ def get_next_release_from_fmp(
             event_name_lower = event_name.lower()
 
             # パターンマッチング
+            # パターンはSQL LIKE形式（%付き）なので、%を除去してマッチング
             matched = False
             for pattern in patterns:
-                if pattern.lower() in event_name_lower:
+                # SQL LIKE形式の%を除去
+                clean_pattern = pattern.strip('%').lower()
+                if clean_pattern in event_name_lower:
                     matched = True
                     break
 
@@ -252,9 +255,12 @@ def get_last_release_from_fmp(
             event_name = event.get("event", "")
             event_name_lower = event_name.lower()
 
+            # パターンマッチング
+            # パターンはSQL LIKE形式（%付き）なので、%を除去してマッチング
             matched = False
             for pattern in patterns:
-                if pattern.lower() in event_name_lower:
+                clean_pattern = pattern.strip('%').lower()
+                if clean_pattern in event_name_lower:
                     matched = True
                     break
 

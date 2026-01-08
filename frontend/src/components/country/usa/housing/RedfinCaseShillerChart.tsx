@@ -209,7 +209,7 @@ export default function RedfinCaseShillerChart({
   return (
     <div id="redfin-case-shiller">
       <ChartContainer
-        title="住宅価格指数 (前年比)"
+        title="Redfin住宅価格中央値 / ケースシラー住宅価格指数"
         showPeriodSelector={false}
         dataSource="Redfin, FRED"
         sourceUrl="https://www.redfin.com/news/data-center/"
@@ -218,7 +218,7 @@ export default function RedfinCaseShillerChart({
         <LatestValueBox
           items={[
             {
-              label: `Redfin 住宅価格中央値 (YoY)${latestRedfinDate ? ` [${formatDateLabel(latestRedfinDate)}]` : ''}`,
+              label: `Redfin住宅価格中央値 (YoY)${latestRedfinDate ? ` [${formatDateLabel(latestRedfinDate)}]` : ''}`,
               value: latestRedfin,
               color: COLORS.redfin,
               format: 'percent',

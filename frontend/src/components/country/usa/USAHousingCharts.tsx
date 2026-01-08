@@ -10,6 +10,12 @@ import { DashboardContainer, ChartWrapper } from './common/DashboardContainer'
 // チャートコンポーネント
 import MortgageRatesChart from './housing/MortgageRatesChart'
 import RedfinCaseShillerChart from './housing/RedfinCaseShillerChart'
+import NewHomeSalesChart from './housing/NewHomeSalesChart'
+import PendingHomeSalesChart from './housing/PendingHomeSalesChart'
+import ExistingHomeSalesChart from './housing/ExistingHomeSalesChart'
+import NAHBHMIChart from './housing/NAHBHMIChart'
+import HousingStartsPermitsChart from './housing/HousingStartsPermitsChart'
+import RentalVacancyRateChart from './housing/RentalVacancyRateChart'
 
 export default function USAHousingCharts() {
   const queryResult = useUSAHousingDashboard()
@@ -27,6 +33,36 @@ export default function USAHousingCharts() {
             <RedfinCaseShillerChart
               redfinMedianPriceData={dashboardData?.redfin_median_price ?? null}
               caseShillerData={dashboardData?.case_shiller ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="new-home-sales">
+            <NewHomeSalesChart
+              newHomeSalesData={dashboardData?.new_home_sales ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="pending-home-sales">
+            <PendingHomeSalesChart
+              pendingHomeSalesData={dashboardData?.pending_home_sales ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="existing-home-sales">
+            <ExistingHomeSalesChart
+              existingHomeSalesData={dashboardData?.existing_home_sales ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="nahb-hmi">
+            <NAHBHMIChart
+              nahbHMIData={dashboardData?.nahb_hmi ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="housing-starts-permits">
+            <HousingStartsPermitsChart
+              housingStartsPermitsData={dashboardData?.housing_starts_permits ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="rental-vacancy-rate">
+            <RentalVacancyRateChart
+              rentalVacancyRateData={dashboardData?.rental_vacancy_rate ?? null}
             />
           </ChartWrapper>
         </>

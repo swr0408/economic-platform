@@ -211,6 +211,50 @@ function extractIndicatorData(
     return [];
   }
 
+  // パターン: housing_starts_permits のようなネスト構造
+  // { housing_starts: { data: [{date, value, mom, yoy}], latest: {...} }, building_permits: { data: [...], latest: {...} } }
+  if (nestedKey && dataKey === 'housing_starts_permits') {
+    const dataObj = indicatorData as Record<string, { data?: Array<{ date: string; value: number | null; mom: number | null; yoy: number | null }> }>;
+    const nestedData = dataObj[nestedKey];
+    if (nestedData && nestedData.data && Array.isArray(nestedData.data)) {
+      const field = valueField || 'value';
+      console.log('[useOverlayData] Housing starts/permits pattern for:', nestedKey, 'field:', field, 'length:', nestedData.data.length);
+      return nestedData.data
+        .filter(item => {
+          const val = item[field as keyof typeof item];
+          return val !== undefined && val !== null && typeof val === 'number';
+        })
+        .map(item => ({
+          date: item.date,
+          value: item[field as keyof typeof item] as number,
+        }));
+    }
+    console.log('[useOverlayData] Nested data not found:', nestedKey);
+    return [];
+  }
+
+  // パターン: sp_pmi のようなネスト構造（S&P Global PMI）
+  // { manufacturing: { data: [{date, value, forecast, previous}], latest: {...} }, services: {...}, composite: {...} }
+  if (nestedKey && dataKey === 'sp_pmi') {
+    const dataObj = indicatorData as Record<string, { data?: Array<{ date: string; value: number | null; forecast: number | null; previous: number | null }> }>;
+    const nestedData = dataObj[nestedKey];
+    if (nestedData && nestedData.data && Array.isArray(nestedData.data)) {
+      const field = valueField || 'value';
+      console.log('[useOverlayData] S&P PMI pattern for:', nestedKey, 'field:', field, 'length:', nestedData.data.length);
+      return nestedData.data
+        .filter(item => {
+          const val = item[field as keyof typeof item];
+          return val !== undefined && val !== null && typeof val === 'number';
+        })
+        .map(item => ({
+          date: item.date,
+          value: item[field as keyof typeof item] as number,
+        }));
+    }
+    console.log('[useOverlayData] S&P PMI nested data not found:', nestedKey);
+    return [];
+  }
+
   // パターン0: housing_indicators のような特殊構造
   // { data: { zillow: [{date, yoy}], case_shiller: [{date, yoy}], rent_cpi: [{date, yoy}] } }
   if (dataKey === 'housing_indicators' && valueField) {

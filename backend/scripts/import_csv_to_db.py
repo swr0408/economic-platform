@@ -97,6 +97,67 @@ CSV_CONFIGS = [
         "date_format": "monthly",
         "value_type": "percent",
     },
+    {
+        "file": "中古住宅販売保留 （前月比）.csv",
+        "event_name": "Pending Home Sales MoM",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "percent",
+    },
+    {
+        "file": "中古住宅販売保留 （前年比）.csv",
+        "event_name": "Pending Home Sales YoY",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "percent",
+    },
+    {
+        "file": "中古住宅販売戸数.csv",
+        "event_name": "Existing Home Sales",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "million",  # 5.05M形式
+    },
+    # S&P Global PMI
+    {
+        "file": "US S&P製造業PMI.csv",
+        "event_name": "S&P Global Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "High",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    {
+        "file": "US S&PサービスPMI.csv",
+        "event_name": "S&P Global Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "High",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    {
+        "file": "US S&P総合PMI.csv",
+        "event_name": "S&P Global Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "High",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
 ]
 
 
@@ -146,13 +207,16 @@ def parse_date_daily(date_str: str, time_str: str) -> datetime:
 
 
 def parse_value(value_str, value_type: str) -> float:
-    """値をパース（%を除去など）"""
+    """値をパース（%やMを除去など）"""
     if pd.isna(value_str) or value_str == "" or value_str is None:
         return None
 
     value_str = str(value_str).strip()
     if value_type == "percent":
         value_str = value_str.replace("%", "")
+    elif value_type == "million":
+        # 5.05M → 5.05（百万戸単位を数値に変換）
+        value_str = value_str.replace("M", "")
 
     try:
         return float(value_str)
@@ -208,6 +272,12 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
                         dt_utc = parse_date_monthly(date_str, time_str)
                     else:
                         dt_utc = parse_date_daily(date_str, time_str)
+
+                    # 日付オフセットを適用（発表月→データ対象月など）
+                    date_offset = config.get("date_offset_months", 0)
+                    if date_offset != 0:
+                        from dateutil.relativedelta import relativedelta
+                        dt_utc = dt_utc + relativedelta(months=date_offset)
 
                     # 既存チェック
                     if dt_utc.date() in existing_dates:

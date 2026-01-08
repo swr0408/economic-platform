@@ -40,6 +40,7 @@ class USAEconomyLoader(BaseDashboardLoader):
     - ism_components: ISM製造業サブインデックス - DBnomics（毎月第1営業日 10:00 ET）
     - ism_non_manufacturing: ISM非製造業景況指数 - DB/FMP（毎月第3営業日 10:00 ET）
     - ism_non_manufacturing_components: ISM非製造業サブインデックス - DBnomics（毎月第3営業日 10:00 ET）
+    - sp_pmi: S&P Global PMI（製造業/サービス業/総合）- DB/FMP（速報値:毎月第3週、確報値:毎月第1週 9:45 ET）
     - empire_state: NY連銀製造業景気指数 - FRED（毎月15日付近 8:30 ET）
     - philadelphia_fed: フィラデルフィア連銀製造業景気指数 - FRED（毎月第3木曜日 8:30 ET）
     - nfib: NFIB中小企業楽観指数 - NFIB PDF（毎月第2火曜日 6:00 ET）
@@ -72,6 +73,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         "gdp": {"hour": 8, "minute": 30},              # GDP: 8:30 ET
         "ism_manufacturing": {"hour": 10, "minute": 0}, # ISM製造業: 10:00 ET
         "ism_non_manufacturing": {"hour": 10, "minute": 0},  # ISM非製造業: 10:00 ET
+        "sp_pmi": {"hour": 9, "minute": 45},           # S&P PMI: 9:45 ET
         "empire_state": {"hour": 8, "minute": 30},     # NY連銀: 8:30 ET
         "philadelphia_fed": {"hour": 8, "minute": 30}, # フィラデルフィア連銀: 8:30 ET
         "nfib": {"hour": 6, "minute": 0},              # NFIB: 6:00 ET
@@ -648,6 +650,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.ism_components_service import ism_components_service
         from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
         from services.usa.ism_non_manufacturing_components_service import ism_non_manufacturing_components_service
+        from services.usa.sp_pmi_service import sp_pmi_service
         from services.usa.empire_state_service import empire_state_service
         from services.usa.philadelphia_fed_service import philadelphia_fed_service
         from services.usa.nfib_service import nfib_service
@@ -672,6 +675,7 @@ class USAEconomyLoader(BaseDashboardLoader):
             "ism_components": None,
             "ism_non_manufacturing": None,
             "ism_non_manufacturing_components": None,
+            "sp_pmi": None,
             "empire_state": None,
             "philadelphia_fed": None,
             "nfib": None,
@@ -687,7 +691,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=24) as executor:
+        with ThreadPoolExecutor(max_workers=25) as executor:
             futures = {
                 executor.submit(self._get_gdp_growth_rate, gdp_service): "gdp_growth_rate",
                 executor.submit(self._get_gdp_contributions, gdp_contributions_service): "gdp_contributions",
@@ -701,6 +705,7 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_ism_components, ism_components_service): "ism_components",
                 executor.submit(self._get_ism_non_manufacturing, ism_non_manufacturing_service): "ism_non_manufacturing",
                 executor.submit(self._get_ism_non_manufacturing_components, ism_non_manufacturing_components_service): "ism_non_manufacturing_components",
+                executor.submit(self._get_sp_pmi, sp_pmi_service): "sp_pmi",
                 executor.submit(self._get_empire_state, empire_state_service): "empire_state",
                 executor.submit(self._get_philadelphia_fed, philadelphia_fed_service): "philadelphia_fed",
                 executor.submit(self._get_nfib, nfib_service): "nfib",
@@ -755,6 +760,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.ism_components_service import ism_components_service
         from services.usa.ism_non_manufacturing_service import ism_non_manufacturing_service
         from services.usa.ism_non_manufacturing_components_service import ism_non_manufacturing_components_service
+        from services.usa.sp_pmi_service import sp_pmi_service
         from services.usa.empire_state_service import empire_state_service
         from services.usa.philadelphia_fed_service import philadelphia_fed_service
         from services.usa.industrial_production_service import industrial_production_service
@@ -775,6 +781,7 @@ class USAEconomyLoader(BaseDashboardLoader):
             "ism_components": None,
             "ism_non_manufacturing": None,
             "ism_non_manufacturing_components": None,
+            "sp_pmi": None,
             "empire_state": None,
             "philadelphia_fed": None,
             "industrial_production": None,
@@ -784,8 +791,8 @@ class USAEconomyLoader(BaseDashboardLoader):
             "next_ism_non_manufacturing_release": None,
         }
 
-        # 並列でデータを取得（軽量指標のみ、19個）
-        with ThreadPoolExecutor(max_workers=19) as executor:
+        # 並列でデータを取得（軽量指標のみ、20個）
+        with ThreadPoolExecutor(max_workers=20) as executor:
             futures = {
                 executor.submit(self._get_gdp_growth_rate, gdp_service): "gdp_growth_rate",
                 executor.submit(self._get_gdp_contributions, gdp_contributions_service): "gdp_contributions",
@@ -799,6 +806,7 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_ism_components, ism_components_service): "ism_components",
                 executor.submit(self._get_ism_non_manufacturing, ism_non_manufacturing_service): "ism_non_manufacturing",
                 executor.submit(self._get_ism_non_manufacturing_components, ism_non_manufacturing_components_service): "ism_non_manufacturing_components",
+                executor.submit(self._get_sp_pmi, sp_pmi_service): "sp_pmi",
                 executor.submit(self._get_empire_state, empire_state_service): "empire_state",
                 executor.submit(self._get_philadelphia_fed, philadelphia_fed_service): "philadelphia_fed",
                 executor.submit(self._get_industrial_production, industrial_production_service): "industrial_production",
@@ -1074,6 +1082,31 @@ class USAEconomyLoader(BaseDashboardLoader):
             return service._get_next_release()
         except Exception as e:
             print(f"Error getting next ISM Non-Manufacturing release: {e}")
+            return None
+
+    def _get_sp_pmi(self, service) -> Optional[dict]:
+        """S&P Global PMIデータを取得（製造業/サービス業/総合）"""
+        try:
+            force_refresh = self._should_force_refresh("sp_pmi")
+            response = service.get_sp_pmi_data(force_refresh=force_refresh)
+
+            # 3つの系列のいずれかにデータがあれば返す
+            mfg = response.get("manufacturing")
+            svc = response.get("services")
+            cmp = response.get("composite")
+
+            if not (mfg or svc or cmp):
+                return None
+
+            return {
+                "manufacturing": mfg,
+                "services": svc,
+                "composite": cmp,
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting S&P PMI data: {e}")
             return None
 
     def _get_empire_state(self, service) -> Optional[dict]:

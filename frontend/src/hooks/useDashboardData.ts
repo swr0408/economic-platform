@@ -66,6 +66,7 @@ export interface USAEconomyData {
   ism_components: ISMComponentsData | null
   ism_non_manufacturing: ISMNonManufacturingData | null
   ism_non_manufacturing_components: ISMNonManufacturingComponentsData | null
+  sp_pmi: SPPMIData | null
   empire_state: EmpireStateData | null
   philadelphia_fed: PhiladelphiaFedData | null
   nfib: NFIBData | null
@@ -274,6 +275,32 @@ export interface ISMNonManufacturingComponentsItem {
   inventories: number | null
   order_inventory_balance: number | null
   order_inventory_balance_3ma: number | null
+}
+
+// S&P Global PMIデータの型（製造業/サービス業/総合）
+export interface SPPMIData {
+  manufacturing: SPPMISeriesData | null
+  services: SPPMISeriesData | null
+  composite: SPPMISeriesData | null
+  next_release: SPPMINextRelease | null
+  last_updated: string | null
+}
+
+export interface SPPMISeriesData {
+  data: SPPMIItem[]
+  latest: SPPMIItem | null
+}
+
+export interface SPPMIItem {
+  date: string
+  value: number
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface SPPMINextRelease {
+  date: string
+  label?: string
 }
 
 // 次回ISM非製造業発表情報の型
@@ -2117,11 +2144,167 @@ export interface CaseShillerNextRelease {
   label: string          // 例: "S&P/Case-Shiller Home Price Index (Jan 28)"
 }
 
+// 新築住宅販売戸数データの型
+// 月次（毎月下旬 10:00 ET頃）発表
+export interface NewHomeSalesData {
+  data: NewHomeSalesItem[]
+  latest: NewHomeSalesItem | null
+  next_release: NewHomeSalesNextRelease | null
+  last_updated: string | null
+}
+
+export interface NewHomeSalesItem {
+  date: string    // YYYY-MM-DD形式
+  value: number   // 販売戸数（千戸）
+  mom: number | null  // 前月比（%）
+  yoy: number | null  // 前年比（%）
+}
+
+export interface NewHomeSalesNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "New Home Sales (Dec)"
+}
+
+// 中古住宅販売保留データの型
+// 月次（毎月下旬 10:00 ET頃）発表
+export interface PendingHomeSalesData {
+  data: PendingHomeSalesItem[]
+  latest: PendingHomeSalesItem | null
+  next_release: PendingHomeSalesNextRelease | null
+  last_updated: string | null
+}
+
+export interface PendingHomeSalesItem {
+  date: string          // YYYY-MM-DD形式
+  mom: number | null    // 前月比（%）
+  yoy: number | null    // 前年比（%）
+}
+
+export interface PendingHomeSalesNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "Pending Home Sales (Dec)"
+}
+
+// 中古住宅販売戸数データの型
+// 月次（毎月下旬 10:00 ET頃）発表
+export interface ExistingHomeSalesData {
+  data: ExistingHomeSalesItem[]
+  latest: ExistingHomeSalesItem | null
+  next_release: ExistingHomeSalesNextRelease | null
+  last_updated: string | null
+}
+
+export interface ExistingHomeSalesItem {
+  date: string          // YYYY-MM-DD形式
+  value: number | null  // 販売戸数（百万戸・年率換算）
+  mom: number | null    // 前月比（%）
+  yoy: number | null    // 前年比（%）
+}
+
+export interface ExistingHomeSalesNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "Existing Home Sales (Dec)"
+}
+
+// NAHB住宅市場指数データの型
+// 月次（毎月15日-21日頃 10:00 ET）発表
+export interface NAHBHMIData {
+  data: NAHBHMIItem[]
+  latest: NAHBHMIItem | null
+  next_release: NAHBHMINextRelease | null
+  last_updated: string | null
+}
+
+export interface NAHBHMIItem {
+  date: string          // YYYY-MM-DD形式
+  value: number | null  // HMI指数値
+  mom: number | null    // 前月比（ポイント変化）
+  yoy: number | null    // 前年比（ポイント変化）
+}
+
+export interface NAHBHMINextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "NAHB Housing Market Index (Dec)"
+}
+
+// 住宅着工件数・建設許可件数データの型
+// 月次（毎月17-19日頃 8:30 ET）発表
+export interface HousingStartsPermitsData {
+  housing_starts: HousingStartsSeriesData | null
+  building_permits: BuildingPermitsSeriesData | null
+  next_release: HousingStartsNextRelease | null
+  last_updated: string | null
+}
+
+export interface HousingStartsSeriesData {
+  data: HousingStartsItem[]
+  latest: HousingStartsItem | null
+}
+
+export interface BuildingPermitsSeriesData {
+  data: BuildingPermitsItem[]
+  latest: BuildingPermitsItem | null
+}
+
+export interface HousingStartsItem {
+  date: string          // YYYY-MM-DD形式
+  value: number | null  // 住宅着工件数（千戸）
+  mom: number | null    // 前月比（%）
+  yoy: number | null    // 前年比（%）
+}
+
+export interface BuildingPermitsItem {
+  date: string          // YYYY-MM-DD形式
+  value: number | null  // 建設許可件数（千戸）
+  mom: number | null    // 前月比（%）
+  yoy: number | null    // 前年比（%）
+}
+
+export interface HousingStartsNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "Housing Starts (Dec)"
+}
+
+// 賃貸空室率データの型（FRED RRVRUSQ156N）
+// 四半期データ（不定期発表）
+export interface RentalVacancyRateData {
+  data: RentalVacancyRateItem[]
+  latest: RentalVacancyRateItem | null
+  next_release: RentalVacancyRateNextRelease | null
+  last_updated: string | null
+}
+
+export interface RentalVacancyRateItem {
+  date: string          // YYYY-MM-DD形式
+  value: number         // 賃貸空室率（%）
+}
+
+export interface RentalVacancyRateNextRelease {
+  note: string          // 四半期データに関するメモ
+  schedule_url: string  // Census Bureauのスケジュールページ
+}
+
 // 米国住宅ダッシュボードデータの型
 export interface USAHousingData {
   mortgage_rates: MortgageRatesData | null
   redfin_median_price: RedfinMedianPriceData | null
   case_shiller: CaseShillerData | null
+  new_home_sales: NewHomeSalesData | null
+  pending_home_sales: PendingHomeSalesData | null
+  existing_home_sales: ExistingHomeSalesData | null
+  nahb_hmi: NAHBHMIData | null
+  housing_starts_permits: HousingStartsPermitsData | null
+  rental_vacancy_rate: RentalVacancyRateData | null
 }
 
 /**

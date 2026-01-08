@@ -292,6 +292,15 @@ export const DURABLE_GOODS_DATA_TYPE_OPTIONS: { type: DurableGoodsDataType; labe
   { type: 'ex_transport', label: '輸送除く' },
 ]
 
+/** 住宅着工/建設許可データタイプ */
+export type HousingStartsPermitsDataType = 'housing_starts' | 'building_permits'
+
+/** 住宅着工/建設許可データタイプ設定 */
+export const HOUSING_STARTS_PERMITS_DATA_TYPE_OPTIONS: { type: HousingStartsPermitsDataType; label: string }[] = [
+  { type: 'housing_starts', label: '住宅着工' },
+  { type: 'building_permits', label: '建設許可' },
+]
+
 // =============================================================================
 // 現数値/前月増減幅ビューモード（NonfarmPayrollsChart等で使用）
 // =============================================================================
