@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "date": "2024-03-31",
+      "large_manufacturing": 11.1,
+      "large_non_manufacturing": 10.4,
+      "large_manufacturing_revision": 1.0,
+      "large_non_manufacturing_revision": -0.4
+    },
+    {
+      "date": "2025-03-31",
+      "large_manufacturing": 7.6,
+      "large_non_manufacturing": 7.4,
+      "large_manufacturing_revision": 1.0,
+      "large_non_manufacturing_revision": -0.4
+    },
+    {
+      "date": "2026-03-31",
+      "large_manufacturing": 17.5,
+      "large_non_manufacturing": 9.9,
+      "large_manufacturing_revision": 1.0,
+      "large_non_manufacturing_revision": -0.4
+    }
+  ],
+  "data_type": "capital_investment",
+  "name": "設備投資額",
+  "unit": "前年度比%",
+  "last_updated": "2026-01-12T06:38:03.197747",
+  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512c.xlsx",
+  "cached": false,
+  "source": "boj"
+}

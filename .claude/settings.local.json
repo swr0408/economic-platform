@@ -114,7 +114,13 @@
       "Bash(PYTHONPATH=. python:*)",
       "Bash(BLS_API_KEY=f1d7811b1bdd4a09861775f7b97a5beb PYTHONPATH=. python:*)",
       "Bash(FRED_API_KEY=cbfda818e5ab937d1a79c301acf9e69b PYTHONPATH=. python:*)",
-      "Bash(head:*)"
+      "Bash(head:*)",
+      "Bash(1)",
+      "Bash(time curl:*)",
+      "Bash(timeout 90 curl:*)",
+      "Bash(docker compose exec backend python:*)",
+      "Bash(timeout 15 docker compose:*)",
+      "Bash(tail:*)"
     ]
   }
 }

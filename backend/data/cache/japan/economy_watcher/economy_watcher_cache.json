@@ -1,0 +1,4045 @@
+{
+  "current": {
+    "data": [
+      {
+        "date": "2002-01-01",
+        "total": 35.3,
+        "household": 37.0,
+        "corporate": 33.9,
+        "employment": 27.0
+      },
+      {
+        "date": "2002-02-01",
+        "total": 34.7,
+        "household": 35.1,
+        "corporate": 35.7,
+        "employment": 29.6
+      },
+      {
+        "date": "2002-03-01",
+        "total": 41.7,
+        "household": 42.4,
+        "corporate": 41.5,
+        "employment": 37.3
+      },
+      {
+        "date": "2002-04-01",
+        "total": 44.0,
+        "household": 44.0,
+        "corporate": 43.9,
+        "employment": 43.3
+      },
+      {
+        "date": "2002-05-01",
+        "total": 45.2,
+        "household": 44.1,
+        "corporate": 47.7,
+        "employment": 46.8
+      },
+      {
+        "date": "2002-06-01",
+        "total": 42.6,
+        "household": 41.2,
+        "corporate": 45.0,
+        "employment": 47.1
+      },
+      {
+        "date": "2002-07-01",
+        "total": 41.9,
+        "household": 40.7,
+        "corporate": 44.1,
+        "employment": 45.5
+      },
+      {
+        "date": "2002-08-01",
+        "total": 42.3,
+        "household": 41.5,
+        "corporate": 43.3,
+        "employment": 45.1
+      },
+      {
+        "date": "2002-09-01",
+        "total": 41.7,
+        "household": 41.0,
+        "corporate": 42.8,
+        "employment": 43.6
+      },
+      {
+        "date": "2002-10-01",
+        "total": 39.0,
+        "household": 38.2,
+        "corporate": 40.0,
+        "employment": 42.2
+      },
+      {
+        "date": "2002-11-01",
+        "total": 38.3,
+        "household": 37.2,
+        "corporate": 40.7,
+        "employment": 40.3
+      },
+      {
+        "date": "2002-12-01",
+        "total": 38.3,
+        "household": 37.0,
+        "corporate": 41.3,
+        "employment": 41.2
+      },
+      {
+        "date": "2003-01-01",
+        "total": 38.7,
+        "household": 37.7,
+        "corporate": 40.1,
+        "employment": 42.2
+      },
+      {
+        "date": "2003-02-01",
+        "total": 39.7,
+        "household": 38.7,
+        "corporate": 40.6,
+        "employment": 44.8
+      },
+      {
+        "date": "2003-03-01",
+        "total": 38.9,
+        "household": 37.7,
+        "corporate": 39.5,
+        "employment": 45.4
+      },
+      {
+        "date": "2003-04-01",
+        "total": 36.1,
+        "household": 34.6,
+        "corporate": 37.6,
+        "employment": 44.3
+      },
+      {
+        "date": "2003-05-01",
+        "total": 37.3,
+        "household": 36.0,
+        "corporate": 38.7,
+        "employment": 43.1
+      },
+      {
+        "date": "2003-06-01",
+        "total": 41.7,
+        "household": 40.6,
+        "corporate": 42.7,
+        "employment": 46.8
+      },
+      {
+        "date": "2003-07-01",
+        "total": 44.4,
+        "household": 43.1,
+        "corporate": 46.0,
+        "employment": 50.0
+      },
+      {
+        "date": "2003-08-01",
+        "total": 45.3,
+        "household": 43.3,
+        "corporate": 47.6,
+        "employment": 53.0
+      },
+      {
+        "date": "2003-09-01",
+        "total": 47.9,
+        "household": 46.0,
+        "corporate": 50.0,
+        "employment": 56.4
+      },
+      {
+        "date": "2003-10-01",
+        "total": 51.6,
+        "household": 50.3,
+        "corporate": 52.5,
+        "employment": 58.8
+      },
+      {
+        "date": "2003-11-01",
+        "total": 49.9,
+        "household": 47.4,
+        "corporate": 52.3,
+        "employment": 60.9
+      },
+      {
+        "date": "2003-12-01",
+        "total": 50.9,
+        "household": 48.8,
+        "corporate": 52.0,
+        "employment": 62.4
+      },
+      {
+        "date": "2004-01-01",
+        "total": 51.5,
+        "household": 49.4,
+        "corporate": 53.3,
+        "employment": 62.1
+      },
+      {
+        "date": "2004-02-01",
+        "total": 51.4,
+        "household": 49.4,
+        "corporate": 52.4,
+        "employment": 62.3
+      },
+      {
+        "date": "2004-03-01",
+        "total": 51.3,
+        "household": 48.7,
+        "corporate": 53.5,
+        "employment": 63.8
+      },
+      {
+        "date": "2004-04-01",
+        "total": 53.1,
+        "household": 50.8,
+        "corporate": 55.4,
+        "employment": 64.2
+      },
+      {
+        "date": "2004-05-01",
+        "total": 52.0,
+        "household": 49.2,
+        "corporate": 55.1,
+        "employment": 64.5
+      },
+      {
+        "date": "2004-06-01",
+        "total": 51.1,
+        "household": 48.4,
+        "corporate": 53.8,
+        "employment": 63.7
+      },
+      {
+        "date": "2004-07-01",
+        "total": 53.7,
+        "household": 52.0,
+        "corporate": 54.6,
+        "employment": 63.3
+      },
+      {
+        "date": "2004-08-01",
+        "total": 49.7,
+        "household": 47.0,
+        "corporate": 52.0,
+        "employment": 63.3
+      },
+      {
+        "date": "2004-09-01",
+        "total": 46.9,
+        "household": 44.6,
+        "corporate": 49.0,
+        "employment": 57.5
+      },
+      {
+        "date": "2004-10-01",
+        "total": 47.2,
+        "household": 44.8,
+        "corporate": 48.6,
+        "employment": 59.9
+      },
+      {
+        "date": "2004-11-01",
+        "total": 46.7,
+        "household": 44.7,
+        "corporate": 46.8,
+        "employment": 59.6
+      },
+      {
+        "date": "2004-12-01",
+        "total": 45.9,
+        "household": 44.9,
+        "corporate": 44.3,
+        "employment": 56.2
+      },
+      {
+        "date": "2005-01-01",
+        "total": 47.9,
+        "household": 46.9,
+        "corporate": 47.1,
+        "employment": 56.2
+      },
+      {
+        "date": "2005-02-01",
+        "total": 46.7,
+        "household": 45.3,
+        "corporate": 47.1,
+        "employment": 55.5
+      },
+      {
+        "date": "2005-03-01",
+        "total": 47.1,
+        "household": 45.5,
+        "corporate": 48.2,
+        "employment": 55.1
+      },
+      {
+        "date": "2005-04-01",
+        "total": 47.4,
+        "household": 46.5,
+        "corporate": 48.1,
+        "employment": 52.0
+      },
+      {
+        "date": "2005-05-01",
+        "total": 49.5,
+        "household": 48.5,
+        "corporate": 49.7,
+        "employment": 55.9
+      },
+      {
+        "date": "2005-06-01",
+        "total": 50.5,
+        "household": 49.9,
+        "corporate": 48.8,
+        "employment": 58.2
+      },
+      {
+        "date": "2005-07-01",
+        "total": 49.8,
+        "household": 48.8,
+        "corporate": 48.8,
+        "employment": 57.9
+      },
+      {
+        "date": "2005-08-01",
+        "total": 49.7,
+        "household": 48.3,
+        "corporate": 50.5,
+        "employment": 57.3
+      },
+      {
+        "date": "2005-09-01",
+        "total": 51.0,
+        "household": 49.6,
+        "corporate": 51.7,
+        "employment": 58.7
+      },
+      {
+        "date": "2005-10-01",
+        "total": 51.4,
+        "household": 49.5,
+        "corporate": 53.0,
+        "employment": 59.7
+      },
+      {
+        "date": "2005-11-01",
+        "total": 54.5,
+        "household": 52.8,
+        "corporate": 56.0,
+        "employment": 61.7
+      },
+      {
+        "date": "2005-12-01",
+        "total": 57.7,
+        "household": 56.6,
+        "corporate": 57.4,
+        "employment": 64.7
+      },
+      {
+        "date": "2006-01-01",
+        "total": 55.2,
+        "household": 53.4,
+        "corporate": 55.8,
+        "employment": 65.7
+      },
+      {
+        "date": "2006-02-01",
+        "total": 54.9,
+        "household": 53.0,
+        "corporate": 55.9,
+        "employment": 64.0
+      },
+      {
+        "date": "2006-03-01",
+        "total": 54.8,
+        "household": 53.2,
+        "corporate": 55.4,
+        "employment": 64.4
+      },
+      {
+        "date": "2006-04-01",
+        "total": 52.2,
+        "household": 50.5,
+        "corporate": 52.4,
+        "employment": 62.7
+      },
+      {
+        "date": "2006-05-01",
+        "total": 50.6,
+        "household": 49.2,
+        "corporate": 50.4,
+        "employment": 60.0
+      },
+      {
+        "date": "2006-06-01",
+        "total": 48.3,
+        "household": 46.5,
+        "corporate": 48.8,
+        "employment": 58.6
+      },
+      {
+        "date": "2006-07-01",
+        "total": 47.5,
+        "household": 45.7,
+        "corporate": 48.9,
+        "employment": 56.0
+      },
+      {
+        "date": "2006-08-01",
+        "total": 49.4,
+        "household": 48.2,
+        "corporate": 48.8,
+        "employment": 57.7
+      },
+      {
+        "date": "2006-09-01",
+        "total": 50.3,
+        "household": 49.1,
+        "corporate": 50.2,
+        "employment": 57.8
+      },
+      {
+        "date": "2006-10-01",
+        "total": 51.5,
+        "household": 50.2,
+        "corporate": 51.4,
+        "employment": 59.8
+      },
+      {
+        "date": "2006-11-01",
+        "total": 50.5,
+        "household": 49.0,
+        "corporate": 51.4,
+        "employment": 57.5
+      },
+      {
+        "date": "2006-12-01",
+        "total": 51.4,
+        "household": 50.0,
+        "corporate": 52.2,
+        "employment": 58.5
+      },
+      {
+        "date": "2007-01-01",
+        "total": 50.9,
+        "household": 49.3,
+        "corporate": 51.9,
+        "employment": 59.4
+      },
+      {
+        "date": "2007-02-01",
+        "total": 50.8,
+        "household": 49.7,
+        "corporate": 51.0,
+        "employment": 57.8
+      },
+      {
+        "date": "2007-03-01",
+        "total": 48.3,
+        "household": 46.9,
+        "corporate": 49.0,
+        "employment": 55.4
+      },
+      {
+        "date": "2007-04-01",
+        "total": 46.7,
+        "household": 45.3,
+        "corporate": 47.2,
+        "employment": 55.1
+      },
+      {
+        "date": "2007-05-01",
+        "total": 45.5,
+        "household": 44.8,
+        "corporate": 45.0,
+        "employment": 50.2
+      },
+      {
+        "date": "2007-06-01",
+        "total": 45.0,
+        "household": 44.1,
+        "corporate": 45.0,
+        "employment": 51.0
+      },
+      {
+        "date": "2007-07-01",
+        "total": 43.2,
+        "household": 41.5,
+        "corporate": 45.3,
+        "employment": 49.5
+      },
+      {
+        "date": "2007-08-01",
+        "total": 43.0,
+        "household": 42.6,
+        "corporate": 42.5,
+        "employment": 46.3
+      },
+      {
+        "date": "2007-09-01",
+        "total": 42.2,
+        "household": 41.5,
+        "corporate": 42.9,
+        "employment": 45.6
+      },
+      {
+        "date": "2007-10-01",
+        "total": 42.7,
+        "household": 42.7,
+        "corporate": 42.2,
+        "employment": 43.5
+      },
+      {
+        "date": "2007-11-01",
+        "total": 40.6,
+        "household": 40.3,
+        "corporate": 40.2,
+        "employment": 43.9
+      },
+      {
+        "date": "2007-12-01",
+        "total": 39.5,
+        "household": 39.4,
+        "corporate": 38.8,
+        "employment": 42.1
+      },
+      {
+        "date": "2008-01-01",
+        "total": 36.0,
+        "household": 35.6,
+        "corporate": 36.3,
+        "employment": 37.4
+      },
+      {
+        "date": "2008-02-01",
+        "total": 35.3,
+        "household": 35.0,
+        "corporate": 35.5,
+        "employment": 36.7
+      },
+      {
+        "date": "2008-03-01",
+        "total": 34.5,
+        "household": 34.4,
+        "corporate": 34.6,
+        "employment": 34.6
+      },
+      {
+        "date": "2008-04-01",
+        "total": 32.3,
+        "household": 32.2,
+        "corporate": 33.1,
+        "employment": 31.3
+      },
+      {
+        "date": "2008-05-01",
+        "total": 30.3,
+        "household": 30.1,
+        "corporate": 30.9,
+        "employment": 30.7
+      },
+      {
+        "date": "2008-06-01",
+        "total": 27.9,
+        "household": 27.9,
+        "corporate": 29.1,
+        "employment": 25.5
+      },
+      {
+        "date": "2008-07-01",
+        "total": 27.2,
+        "household": 28.7,
+        "corporate": 25.2,
+        "employment": 21.9
+      },
+      {
+        "date": "2008-08-01",
+        "total": 27.3,
+        "household": 27.6,
+        "corporate": 27.8,
+        "employment": 24.2
+      },
+      {
+        "date": "2008-09-01",
+        "total": 27.6,
+        "household": 28.6,
+        "corporate": 26.7,
+        "employment": 23.1
+      },
+      {
+        "date": "2008-10-01",
+        "total": 24.3,
+        "household": 25.1,
+        "corporate": 23.9,
+        "employment": 20.2
+      },
+      {
+        "date": "2008-11-01",
+        "total": 23.5,
+        "household": 24.8,
+        "corporate": 22.3,
+        "employment": 18.4
+      },
+      {
+        "date": "2008-12-01",
+        "total": 19.0,
+        "household": 21.2,
+        "corporate": 15.1,
+        "employment": 13.4
+      },
+      {
+        "date": "2009-01-01",
+        "total": 21.5,
+        "household": 23.6,
+        "corporate": 18.9,
+        "employment": 13.3
+      },
+      {
+        "date": "2009-02-01",
+        "total": 21.1,
+        "household": 23.4,
+        "corporate": 18.1,
+        "employment": 13.2
+      },
+      {
+        "date": "2009-03-01",
+        "total": 25.6,
+        "household": 26.7,
+        "corporate": 25.4,
+        "employment": 18.9
+      },
+      {
+        "date": "2009-04-01",
+        "total": 30.5,
+        "household": 31.6,
+        "corporate": 30.5,
+        "employment": 22.9
+      },
+      {
+        "date": "2009-05-01",
+        "total": 34.5,
+        "household": 34.8,
+        "corporate": 35.7,
+        "employment": 30.5
+      },
+      {
+        "date": "2009-06-01",
+        "total": 40.5,
+        "household": 40.8,
+        "corporate": 40.2,
+        "employment": 38.7
+      },
+      {
+        "date": "2009-07-01",
+        "total": 39.8,
+        "household": 38.9,
+        "corporate": 42.6,
+        "employment": 39.1
+      },
+      {
+        "date": "2009-08-01",
+        "total": 40.7,
+        "household": 39.3,
+        "corporate": 44.1,
+        "employment": 42.0
+      },
+      {
+        "date": "2009-09-01",
+        "total": 43.5,
+        "household": 42.6,
+        "corporate": 46.1,
+        "employment": 44.0
+      },
+      {
+        "date": "2009-10-01",
+        "total": 43.3,
+        "household": 41.1,
+        "corporate": 47.3,
+        "employment": 49.0
+      },
+      {
+        "date": "2009-11-01",
+        "total": 36.8,
+        "household": 34.2,
+        "corporate": 41.2,
+        "employment": 43.9
+      },
+      {
+        "date": "2009-12-01",
+        "total": 38.5,
+        "household": 36.7,
+        "corporate": 40.6,
+        "employment": 45.7
+      },
+      {
+        "date": "2010-01-01",
+        "total": 42.9,
+        "household": 41.8,
+        "corporate": 44.5,
+        "employment": 46.9
+      },
+      {
+        "date": "2010-02-01",
+        "total": 43.4,
+        "household": 42.2,
+        "corporate": 44.8,
+        "employment": 48.5
+      },
+      {
+        "date": "2010-03-01",
+        "total": 44.2,
+        "household": 42.7,
+        "corporate": 46.4,
+        "employment": 49.5
+      },
+      {
+        "date": "2010-04-01",
+        "total": 45.6,
+        "household": 43.7,
+        "corporate": 47.8,
+        "employment": 53.0
+      },
+      {
+        "date": "2010-05-01",
+        "total": 45.3,
+        "household": 43.5,
+        "corporate": 47.3,
+        "employment": 52.6
+      },
+      {
+        "date": "2010-06-01",
+        "total": 45.8,
+        "household": 44.6,
+        "corporate": 45.3,
+        "employment": 55.1
+      },
+      {
+        "date": "2010-07-01",
+        "total": 47.1,
+        "household": 46.9,
+        "corporate": 45.0,
+        "employment": 53.4
+      },
+      {
+        "date": "2010-08-01",
+        "total": 44.5,
+        "household": 44.6,
+        "corporate": 41.5,
+        "employment": 50.1
+      },
+      {
+        "date": "2010-09-01",
+        "total": 42.3,
+        "household": 41.2,
+        "corporate": 42.1,
+        "employment": 50.3
+      },
+      {
+        "date": "2010-10-01",
+        "total": 43.5,
+        "household": 42.5,
+        "corporate": 42.4,
+        "employment": 51.8
+      },
+      {
+        "date": "2010-11-01",
+        "total": 47.0,
+        "household": 45.8,
+        "corporate": 46.5,
+        "employment": 55.3
+      },
+      {
+        "date": "2010-12-01",
+        "total": 47.7,
+        "household": 47.0,
+        "corporate": 46.3,
+        "employment": 55.6
+      },
+      {
+        "date": "2011-01-01",
+        "total": 47.7,
+        "household": 46.1,
+        "corporate": 47.6,
+        "employment": 58.3
+      },
+      {
+        "date": "2011-02-01",
+        "total": 49.1,
+        "household": 48.3,
+        "corporate": 47.4,
+        "employment": 58.5
+      },
+      {
+        "date": "2011-03-01",
+        "total": 24.0,
+        "household": 20.8,
+        "corporate": 28.4,
+        "employment": 34.7
+      },
+      {
+        "date": "2011-04-01",
+        "total": 24.0,
+        "household": 22.4,
+        "corporate": 26.1,
+        "employment": 30.4
+      },
+      {
+        "date": "2011-05-01",
+        "total": 33.4,
+        "household": 33.5,
+        "corporate": 32.7,
+        "employment": 34.4
+      },
+      {
+        "date": "2011-06-01",
+        "total": 48.2,
+        "household": 48.4,
+        "corporate": 45.6,
+        "employment": 52.4
+      },
+      {
+        "date": "2011-07-01",
+        "total": 50.3,
+        "household": 49.5,
+        "corporate": 49.1,
+        "employment": 57.9
+      },
+      {
+        "date": "2011-08-01",
+        "total": 47.4,
+        "household": 45.6,
+        "corporate": 47.9,
+        "employment": 57.9
+      },
+      {
+        "date": "2011-09-01",
+        "total": 47.0,
+        "household": 45.4,
+        "corporate": 46.9,
+        "employment": 58.4
+      },
+      {
+        "date": "2011-10-01",
+        "total": 49.7,
+        "household": 48.5,
+        "corporate": 49.7,
+        "employment": 58.2
+      },
+      {
+        "date": "2011-11-01",
+        "total": 48.6,
+        "household": 47.2,
+        "corporate": 48.9,
+        "employment": 57.5
+      },
+      {
+        "date": "2011-12-01",
+        "total": 49.0,
+        "household": 48.3,
+        "corporate": 46.8,
+        "employment": 58.5
+      },
+      {
+        "date": "2012-01-01",
+        "total": 46.4,
+        "household": 45.7,
+        "corporate": 44.4,
+        "employment": 55.7
+      },
+      {
+        "date": "2012-02-01",
+        "total": 45.9,
+        "household": 44.7,
+        "corporate": 44.8,
+        "employment": 56.4
+      },
+      {
+        "date": "2012-03-01",
+        "total": 47.6,
+        "household": 46.2,
+        "corporate": 48.3,
+        "employment": 54.7
+      },
+      {
+        "date": "2012-04-01",
+        "total": 46.8,
+        "household": 45.8,
+        "corporate": 45.5,
+        "employment": 56.2
+      },
+      {
+        "date": "2012-05-01",
+        "total": 44.9,
+        "household": 43.6,
+        "corporate": 44.7,
+        "employment": 53.3
+      },
+      {
+        "date": "2012-06-01",
+        "total": 42.8,
+        "household": 40.9,
+        "corporate": 43.5,
+        "employment": 53.5
+      },
+      {
+        "date": "2012-07-01",
+        "total": 42.4,
+        "household": 41.1,
+        "corporate": 42.1,
+        "employment": 51.2
+      },
+      {
+        "date": "2012-08-01",
+        "total": 44.3,
+        "household": 43.0,
+        "corporate": 44.3,
+        "employment": 52.7
+      },
+      {
+        "date": "2012-09-01",
+        "total": 43.5,
+        "household": 42.6,
+        "corporate": 42.2,
+        "employment": 51.8
+      },
+      {
+        "date": "2012-10-01",
+        "total": 42.8,
+        "household": 42.5,
+        "corporate": 41.6,
+        "employment": 47.9
+      },
+      {
+        "date": "2012-11-01",
+        "total": 43.3,
+        "household": 42.7,
+        "corporate": 42.7,
+        "employment": 48.8
+      },
+      {
+        "date": "2012-12-01",
+        "total": 47.0,
+        "household": 46.6,
+        "corporate": 46.4,
+        "employment": 50.8
+      },
+      {
+        "date": "2013-01-01",
+        "total": 51.1,
+        "household": 50.3,
+        "corporate": 51.7,
+        "employment": 54.6
+      },
+      {
+        "date": "2013-02-01",
+        "total": 52.6,
+        "household": 51.4,
+        "corporate": 54.3,
+        "employment": 56.8
+      },
+      {
+        "date": "2013-03-01",
+        "total": 53.2,
+        "household": 52.2,
+        "corporate": 53.4,
+        "employment": 59.4
+      },
+      {
+        "date": "2013-04-01",
+        "total": 52.8,
+        "household": 51.5,
+        "corporate": 54.1,
+        "employment": 59.2
+      },
+      {
+        "date": "2013-05-01",
+        "total": 53.7,
+        "household": 52.1,
+        "corporate": 56.0,
+        "employment": 60.0
+      },
+      {
+        "date": "2013-06-01",
+        "total": 52.6,
+        "household": 51.7,
+        "corporate": 52.9,
+        "employment": 58.4
+      },
+      {
+        "date": "2013-07-01",
+        "total": 51.0,
+        "household": 49.3,
+        "corporate": 52.7,
+        "employment": 58.1
+      },
+      {
+        "date": "2013-08-01",
+        "total": 52.1,
+        "household": 50.4,
+        "corporate": 53.9,
+        "employment": 59.2
+      },
+      {
+        "date": "2013-09-01",
+        "total": 54.9,
+        "household": 53.0,
+        "corporate": 57.5,
+        "employment": 61.9
+      },
+      {
+        "date": "2013-10-01",
+        "total": 55.3,
+        "household": 53.0,
+        "corporate": 57.6,
+        "employment": 64.9
+      },
+      {
+        "date": "2013-11-01",
+        "total": 56.4,
+        "household": 54.3,
+        "corporate": 58.5,
+        "employment": 64.9
+      },
+      {
+        "date": "2013-12-01",
+        "total": 56.0,
+        "household": 53.5,
+        "corporate": 60.0,
+        "employment": 63.6
+      },
+      {
+        "date": "2014-01-01",
+        "total": 55.6,
+        "household": 53.5,
+        "corporate": 58.3,
+        "employment": 62.7
+      },
+      {
+        "date": "2014-02-01",
+        "total": 52.3,
+        "household": 49.8,
+        "corporate": 56.1,
+        "employment": 60.6
+      },
+      {
+        "date": "2014-03-01",
+        "total": 54.2,
+        "household": 52.9,
+        "corporate": 55.9,
+        "employment": 59.2
+      },
+      {
+        "date": "2014-04-01",
+        "total": 38.8,
+        "household": 33.7,
+        "corporate": 47.1,
+        "employment": 53.5
+      },
+      {
+        "date": "2014-05-01",
+        "total": 43.5,
+        "household": 40.1,
+        "corporate": 46.9,
+        "employment": 57.9
+      },
+      {
+        "date": "2014-06-01",
+        "total": 47.8,
+        "household": 45.1,
+        "corporate": 50.3,
+        "employment": 59.0
+      },
+      {
+        "date": "2014-07-01",
+        "total": 50.4,
+        "household": 48.5,
+        "corporate": 52.7,
+        "employment": 58.3
+      },
+      {
+        "date": "2014-08-01",
+        "total": 48.5,
+        "household": 47.0,
+        "corporate": 49.6,
+        "employment": 56.0
+      },
+      {
+        "date": "2014-09-01",
+        "total": 49.2,
+        "household": 48.8,
+        "corporate": 49.0,
+        "employment": 53.0
+      },
+      {
+        "date": "2014-10-01",
+        "total": 46.8,
+        "household": 45.5,
+        "corporate": 47.9,
+        "employment": 52.6
+      },
+      {
+        "date": "2014-11-01",
+        "total": 43.6,
+        "household": 41.6,
+        "corporate": 46.4,
+        "employment": 50.2
+      },
+      {
+        "date": "2014-12-01",
+        "total": 44.9,
+        "household": 44.0,
+        "corporate": 45.9,
+        "employment": 48.9
+      },
+      {
+        "date": "2015-01-01",
+        "total": 46.2,
+        "household": 44.8,
+        "corporate": 47.2,
+        "employment": 52.9
+      },
+      {
+        "date": "2015-02-01",
+        "total": 49.8,
+        "household": 48.4,
+        "corporate": 50.4,
+        "employment": 57.5
+      },
+      {
+        "date": "2015-03-01",
+        "total": 49.1,
+        "household": 47.6,
+        "corporate": 50.2,
+        "employment": 56.5
+      },
+      {
+        "date": "2015-04-01",
+        "total": 51.3,
+        "household": 50.3,
+        "corporate": 51.8,
+        "employment": 56.7
+      },
+      {
+        "date": "2015-05-01",
+        "total": 52.3,
+        "household": 52.0,
+        "corporate": 50.8,
+        "employment": 57.7
+      },
+      {
+        "date": "2015-06-01",
+        "total": 51.5,
+        "household": 50.8,
+        "corporate": 51.6,
+        "employment": 56.1
+      },
+      {
+        "date": "2015-07-01",
+        "total": 51.0,
+        "household": 50.0,
+        "corporate": 51.4,
+        "employment": 56.6
+      },
+      {
+        "date": "2015-08-01",
+        "total": 50.3,
+        "household": 49.9,
+        "corporate": 49.3,
+        "employment": 55.8
+      },
+      {
+        "date": "2015-09-01",
+        "total": 49.1,
+        "household": 48.6,
+        "corporate": 48.1,
+        "employment": 54.5
+      },
+      {
+        "date": "2015-10-01",
+        "total": 50.3,
+        "household": 50.6,
+        "corporate": 48.4,
+        "employment": 52.9
+      },
+      {
+        "date": "2015-11-01",
+        "total": 47.1,
+        "household": 45.5,
+        "corporate": 48.0,
+        "employment": 55.5
+      },
+      {
+        "date": "2015-12-01",
+        "total": 47.8,
+        "household": 46.9,
+        "corporate": 47.6,
+        "employment": 54.2
+      },
+      {
+        "date": "2016-01-01",
+        "total": 47.2,
+        "household": 46.7,
+        "corporate": 46.6,
+        "employment": 52.7
+      },
+      {
+        "date": "2016-02-01",
+        "total": 44.5,
+        "household": 43.4,
+        "corporate": 45.4,
+        "employment": 50.3
+      },
+      {
+        "date": "2016-03-01",
+        "total": 43.2,
+        "household": 41.7,
+        "corporate": 45.3,
+        "employment": 48.6
+      },
+      {
+        "date": "2016-04-01",
+        "total": 41.7,
+        "household": 39.8,
+        "corporate": 44.6,
+        "employment": 48.3
+      },
+      {
+        "date": "2016-05-01",
+        "total": 42.5,
+        "household": 40.9,
+        "corporate": 44.1,
+        "employment": 49.3
+      },
+      {
+        "date": "2016-06-01",
+        "total": 42.0,
+        "household": 40.9,
+        "corporate": 42.9,
+        "employment": 47.7
+      },
+      {
+        "date": "2016-07-01",
+        "total": 44.8,
+        "household": 43.9,
+        "corporate": 45.0,
+        "employment": 50.1
+      },
+      {
+        "date": "2016-08-01",
+        "total": 46.6,
+        "household": 45.2,
+        "corporate": 48.0,
+        "employment": 52.5
+      },
+      {
+        "date": "2016-09-01",
+        "total": 45.8,
+        "household": 44.0,
+        "corporate": 47.8,
+        "employment": 53.7
+      },
+      {
+        "date": "2016-10-01",
+        "total": 47.7,
+        "household": 46.0,
+        "corporate": 49.2,
+        "employment": 55.2
+      },
+      {
+        "date": "2016-11-01",
+        "total": 48.7,
+        "household": 47.3,
+        "corporate": 50.6,
+        "employment": 54.2
+      },
+      {
+        "date": "2016-12-01",
+        "total": 49.8,
+        "household": 48.3,
+        "corporate": 51.3,
+        "employment": 56.3
+      },
+      {
+        "date": "2017-01-01",
+        "total": 49.3,
+        "household": 48.1,
+        "corporate": 50.3,
+        "employment": 54.9
+      },
+      {
+        "date": "2017-02-01",
+        "total": 48.8,
+        "household": 47.2,
+        "corporate": 50.8,
+        "employment": 55.3
+      },
+      {
+        "date": "2017-03-01",
+        "total": 48.9,
+        "household": 47.5,
+        "corporate": 50.2,
+        "employment": 55.2
+      },
+      {
+        "date": "2017-04-01",
+        "total": 49.1,
+        "household": 47.5,
+        "corporate": 50.5,
+        "employment": 56.5
+      },
+      {
+        "date": "2017-05-01",
+        "total": 50.1,
+        "household": 48.2,
+        "corporate": 52.7,
+        "employment": 56.3
+      },
+      {
+        "date": "2017-06-01",
+        "total": 50.8,
+        "household": 49.1,
+        "corporate": 53.1,
+        "employment": 57.3
+      },
+      {
+        "date": "2017-07-01",
+        "total": 51.0,
+        "household": 49.6,
+        "corporate": 52.4,
+        "employment": 57.4
+      },
+      {
+        "date": "2017-08-01",
+        "total": 50.3,
+        "household": 48.8,
+        "corporate": 51.7,
+        "employment": 57.2
+      },
+      {
+        "date": "2017-09-01",
+        "total": 50.2,
+        "household": 49.1,
+        "corporate": 50.8,
+        "employment": 55.8
+      },
+      {
+        "date": "2017-10-01",
+        "total": 50.7,
+        "household": 48.4,
+        "corporate": 54.1,
+        "employment": 58.5
+      },
+      {
+        "date": "2017-11-01",
+        "total": 51.8,
+        "household": 50.0,
+        "corporate": 53.7,
+        "employment": 59.2
+      },
+      {
+        "date": "2017-12-01",
+        "total": 52.5,
+        "household": 51.1,
+        "corporate": 54.1,
+        "employment": 58.7
+      },
+      {
+        "date": "2018-01-01",
+        "total": 50.3,
+        "household": 48.3,
+        "corporate": 53.0,
+        "employment": 58.0
+      },
+      {
+        "date": "2018-02-01",
+        "total": 48.9,
+        "household": 47.2,
+        "corporate": 51.2,
+        "employment": 55.8
+      },
+      {
+        "date": "2018-03-01",
+        "total": 50.4,
+        "household": 48.9,
+        "corporate": 52.3,
+        "employment": 55.7
+      },
+      {
+        "date": "2018-04-01",
+        "total": 49.7,
+        "household": 48.1,
+        "corporate": 52.2,
+        "employment": 54.5
+      },
+      {
+        "date": "2018-05-01",
+        "total": 48.0,
+        "household": 45.8,
+        "corporate": 51.4,
+        "employment": 55.2
+      },
+      {
+        "date": "2018-06-01",
+        "total": 49.2,
+        "household": 48.1,
+        "corporate": 50.7,
+        "employment": 53.7
+      },
+      {
+        "date": "2018-07-01",
+        "total": 47.8,
+        "household": 46.4,
+        "corporate": 49.3,
+        "employment": 53.7
+      },
+      {
+        "date": "2018-08-01",
+        "total": 48.8,
+        "household": 47.8,
+        "corporate": 50.1,
+        "employment": 52.4
+      },
+      {
+        "date": "2018-09-01",
+        "total": 47.3,
+        "household": 46.0,
+        "corporate": 48.7,
+        "employment": 52.8
+      },
+      {
+        "date": "2018-10-01",
+        "total": 48.1,
+        "household": 47.6,
+        "corporate": 47.6,
+        "employment": 52.1
+      },
+      {
+        "date": "2018-11-01",
+        "total": 47.7,
+        "household": 47.1,
+        "corporate": 47.1,
+        "employment": 52.8
+      },
+      {
+        "date": "2018-12-01",
+        "total": 46.9,
+        "household": 46.8,
+        "corporate": 45.6,
+        "employment": 50.1
+      },
+      {
+        "date": "2019-01-01",
+        "total": 46.5,
+        "household": 45.6,
+        "corporate": 47.4,
+        "employment": 50.8
+      },
+      {
+        "date": "2019-02-01",
+        "total": 47.5,
+        "household": 46.9,
+        "corporate": 47.6,
+        "employment": 50.7
+      },
+      {
+        "date": "2019-03-01",
+        "total": 45.5,
+        "household": 44.6,
+        "corporate": 46.6,
+        "employment": 48.5
+      },
+      {
+        "date": "2019-04-01",
+        "total": 45.8,
+        "household": 45.1,
+        "corporate": 46.9,
+        "employment": 48.0
+      },
+      {
+        "date": "2019-05-01",
+        "total": 44.6,
+        "household": 44.6,
+        "corporate": 44.3,
+        "employment": 46.0
+      },
+      {
+        "date": "2019-06-01",
+        "total": 44.2,
+        "household": 43.7,
+        "corporate": 44.4,
+        "employment": 46.9
+      },
+      {
+        "date": "2019-07-01",
+        "total": 42.3,
+        "household": 41.7,
+        "corporate": 42.5,
+        "employment": 45.7
+      },
+      {
+        "date": "2019-08-01",
+        "total": 43.4,
+        "household": 43.8,
+        "corporate": 41.3,
+        "employment": 44.6
+      },
+      {
+        "date": "2019-09-01",
+        "total": 45.1,
+        "household": 46.3,
+        "corporate": 42.3,
+        "employment": 42.5
+      },
+      {
+        "date": "2019-10-01",
+        "total": 36.1,
+        "household": 34.6,
+        "corporate": 39.0,
+        "employment": 39.8
+      },
+      {
+        "date": "2019-11-01",
+        "total": 37.8,
+        "household": 37.7,
+        "corporate": 37.8,
+        "employment": 39.2
+      },
+      {
+        "date": "2019-12-01",
+        "total": 39.8,
+        "household": 39.5,
+        "corporate": 40.2,
+        "employment": 41.3
+      },
+      {
+        "date": "2020-01-01",
+        "total": 43.1,
+        "household": 43.3,
+        "corporate": 43.0,
+        "employment": 41.5
+      },
+      {
+        "date": "2020-02-01",
+        "total": 28.4,
+        "household": 26.7,
+        "corporate": 32.1,
+        "employment": 31.2
+      },
+      {
+        "date": "2020-03-01",
+        "total": 14.5,
+        "household": 12.7,
+        "corporate": 20.4,
+        "employment": 13.7
+      },
+      {
+        "date": "2020-04-01",
+        "total": 8.1,
+        "household": 7.1,
+        "corporate": 11.9,
+        "employment": 6.4
+      },
+      {
+        "date": "2020-05-01",
+        "total": 15.6,
+        "household": 15.9,
+        "corporate": 16.1,
+        "employment": 11.9
+      },
+      {
+        "date": "2020-06-01",
+        "total": 38.5,
+        "household": 43.0,
+        "corporate": 30.2,
+        "employment": 26.7
+      },
+      {
+        "date": "2020-07-01",
+        "total": 41.9,
+        "household": 44.7,
+        "corporate": 37.2,
+        "employment": 34.2
+      },
+      {
+        "date": "2020-08-01",
+        "total": 44.3,
+        "household": 46.0,
+        "corporate": 40.8,
+        "employment": 41.2
+      },
+      {
+        "date": "2020-09-01",
+        "total": 48.0,
+        "household": 49.0,
+        "corporate": 45.7,
+        "employment": 45.9
+      },
+      {
+        "date": "2020-10-01",
+        "total": 53.2,
+        "household": 54.2,
+        "corporate": 50.6,
+        "employment": 52.3
+      },
+      {
+        "date": "2020-11-01",
+        "total": 44.8,
+        "household": 44.0,
+        "corporate": 46.3,
+        "employment": 46.4
+      },
+      {
+        "date": "2020-12-01",
+        "total": 36.1,
+        "household": 33.9,
+        "corporate": 41.1,
+        "employment": 40.6
+      },
+      {
+        "date": "2021-01-01",
+        "total": 33.0,
+        "household": 29.7,
+        "corporate": 40.9,
+        "employment": 37.8
+      },
+      {
+        "date": "2021-02-01",
+        "total": 41.7,
+        "household": 39.5,
+        "corporate": 46.0,
+        "employment": 46.6
+      },
+      {
+        "date": "2021-03-01",
+        "total": 48.0,
+        "household": 46.6,
+        "corporate": 50.2,
+        "employment": 52.6
+      },
+      {
+        "date": "2021-04-01",
+        "total": 37.7,
+        "household": 34.1,
+        "corporate": 45.2,
+        "employment": 45.9
+      },
+      {
+        "date": "2021-05-01",
+        "total": 36.4,
+        "household": 32.1,
+        "corporate": 45.1,
+        "employment": 45.9
+      },
+      {
+        "date": "2021-06-01",
+        "total": 45.7,
+        "household": 43.2,
+        "corporate": 50.7,
+        "employment": 51.7
+      },
+      {
+        "date": "2021-07-01",
+        "total": 48.0,
+        "household": 46.9,
+        "corporate": 48.8,
+        "employment": 53.8
+      },
+      {
+        "date": "2021-08-01",
+        "total": 35.2,
+        "household": 31.5,
+        "corporate": 41.3,
+        "employment": 47.4
+      },
+      {
+        "date": "2021-09-01",
+        "total": 42.7,
+        "household": 41.1,
+        "corporate": 44.0,
+        "employment": 50.9
+      },
+      {
+        "date": "2021-10-01",
+        "total": 55.8,
+        "household": 56.2,
+        "corporate": 51.7,
+        "employment": 62.5
+      },
+      {
+        "date": "2021-11-01",
+        "total": 57.6,
+        "household": 57.6,
+        "corporate": 55.0,
+        "employment": 63.3
+      },
+      {
+        "date": "2021-12-01",
+        "total": 58.5,
+        "household": 59.2,
+        "corporate": 53.9,
+        "employment": 63.8
+      },
+      {
+        "date": "2022-01-01",
+        "total": 39.2,
+        "household": 35.9,
+        "corporate": 44.8,
+        "employment": 49.3
+      },
+      {
+        "date": "2022-02-01",
+        "total": 37.4,
+        "household": 33.3,
+        "corporate": 43.3,
+        "employment": 51.8
+      },
+      {
+        "date": "2022-03-01",
+        "total": 46.9,
+        "household": 46.3,
+        "corporate": 45.4,
+        "employment": 54.2
+      },
+      {
+        "date": "2022-04-01",
+        "total": 48.9,
+        "household": 48.5,
+        "corporate": 46.7,
+        "employment": 57.3
+      },
+      {
+        "date": "2022-05-01",
+        "total": 52.4,
+        "household": 52.9,
+        "corporate": 48.6,
+        "employment": 57.7
+      },
+      {
+        "date": "2022-06-01",
+        "total": 52.0,
+        "household": 52.9,
+        "corporate": 46.3,
+        "employment": 57.6
+      },
+      {
+        "date": "2022-07-01",
+        "total": 43.6,
+        "household": 42.2,
+        "corporate": 44.2,
+        "employment": 51.7
+      },
+      {
+        "date": "2022-08-01",
+        "total": 45.7,
+        "household": 44.1,
+        "corporate": 47.3,
+        "employment": 53.2
+      },
+      {
+        "date": "2022-09-01",
+        "total": 49.3,
+        "household": 49.5,
+        "corporate": 46.7,
+        "employment": 53.8
+      },
+      {
+        "date": "2022-10-01",
+        "total": 50.9,
+        "household": 51.8,
+        "corporate": 47.1,
+        "employment": 53.0
+      },
+      {
+        "date": "2022-11-01",
+        "total": 49.4,
+        "household": 49.1,
+        "corporate": 48.4,
+        "employment": 53.3
+      },
+      {
+        "date": "2022-12-01",
+        "total": 49.0,
+        "household": 49.3,
+        "corporate": 46.7,
+        "employment": 51.9
+      },
+      {
+        "date": "2023-01-01",
+        "total": 49.8,
+        "household": 49.9,
+        "corporate": 48.4,
+        "employment": 52.0
+      },
+      {
+        "date": "2023-02-01",
+        "total": 51.8,
+        "household": 52.3,
+        "corporate": 49.7,
+        "employment": 53.2
+      },
+      {
+        "date": "2023-03-01",
+        "total": 52.8,
+        "household": 53.0,
+        "corporate": 51.6,
+        "employment": 54.3
+      },
+      {
+        "date": "2023-04-01",
+        "total": 53.9,
+        "household": 54.2,
+        "corporate": 52.7,
+        "employment": 54.9
+      },
+      {
+        "date": "2023-05-01",
+        "total": 54.2,
+        "household": 54.0,
+        "corporate": 53.6,
+        "employment": 57.1
+      },
+      {
+        "date": "2023-06-01",
+        "total": 53.4,
+        "household": 53.5,
+        "corporate": 52.7,
+        "employment": 54.2
+      },
+      {
+        "date": "2023-07-01",
+        "total": 54.0,
+        "household": 54.2,
+        "corporate": 52.4,
+        "employment": 55.4
+      },
+      {
+        "date": "2023-08-01",
+        "total": 53.6,
+        "household": 54.4,
+        "corporate": 51.2,
+        "employment": 53.6
+      },
+      {
+        "date": "2023-09-01",
+        "total": 50.6,
+        "household": 50.7,
+        "corporate": 50.2,
+        "employment": 51.1
+      },
+      {
+        "date": "2023-10-01",
+        "total": 49.9,
+        "household": 50.1,
+        "corporate": 49.0,
+        "employment": 51.1
+      },
+      {
+        "date": "2023-11-01",
+        "total": 49.8,
+        "household": 50.0,
+        "corporate": 49.1,
+        "employment": 49.9
+      },
+      {
+        "date": "2023-12-01",
+        "total": 51.0,
+        "household": 50.8,
+        "corporate": 51.4,
+        "employment": 51.6
+      },
+      {
+        "date": "2024-01-01",
+        "total": 50.7,
+        "household": 50.0,
+        "corporate": 51.9,
+        "employment": 52.3
+      },
+      {
+        "date": "2024-02-01",
+        "total": 50.9,
+        "household": 50.3,
+        "corporate": 52.6,
+        "employment": 51.9
+      },
+      {
+        "date": "2024-03-01",
+        "total": 49.8,
+        "household": 49.2,
+        "corporate": 50.6,
+        "employment": 52.1
+      },
+      {
+        "date": "2024-04-01",
+        "total": 48.1,
+        "household": 47.4,
+        "corporate": 49.3,
+        "employment": 50.5
+      },
+      {
+        "date": "2024-05-01",
+        "total": 46.4,
+        "household": 45.8,
+        "corporate": 47.9,
+        "employment": 47.8
+      },
+      {
+        "date": "2024-06-01",
+        "total": 47.3,
+        "household": 47.1,
+        "corporate": 47.7,
+        "employment": 47.7
+      },
+      {
+        "date": "2024-07-01",
+        "total": 48.0,
+        "household": 47.7,
+        "corporate": 48.6,
+        "employment": 48.4
+      },
+      {
+        "date": "2024-08-01",
+        "total": 48.9,
+        "household": 48.9,
+        "corporate": 48.4,
+        "employment": 49.5
+      },
+      {
+        "date": "2024-09-01",
+        "total": 48.0,
+        "household": 47.4,
+        "corporate": 49.0,
+        "employment": 49.8
+      },
+      {
+        "date": "2024-10-01",
+        "total": 47.0,
+        "household": 46.1,
+        "corporate": 48.6,
+        "employment": 49.4
+      },
+      {
+        "date": "2024-11-01",
+        "total": 48.6,
+        "household": 48.7,
+        "corporate": 48.2,
+        "employment": 49.0
+      },
+      {
+        "date": "2024-12-01",
+        "total": 49.0,
+        "household": 49.2,
+        "corporate": 48.6,
+        "employment": 48.6
+      },
+      {
+        "date": "2025-01-01",
+        "total": 48.6,
+        "household": 48.6,
+        "corporate": 48.9,
+        "employment": 47.9
+      },
+      {
+        "date": "2025-02-01",
+        "total": 45.6,
+        "household": 44.5,
+        "corporate": 47.4,
+        "employment": 49.9
+      },
+      {
+        "date": "2025-03-01",
+        "total": 45.1,
+        "household": 44.4,
+        "corporate": 46.9,
+        "employment": 46.0
+      },
+      {
+        "date": "2025-04-01",
+        "total": 42.6,
+        "household": 41.6,
+        "corporate": 45.2,
+        "employment": 44.1
+      },
+      {
+        "date": "2025-05-01",
+        "total": 44.4,
+        "household": 44.1,
+        "corporate": 44.2,
+        "employment": 46.6
+      },
+      {
+        "date": "2025-06-01",
+        "total": 45.0,
+        "household": 44.4,
+        "corporate": 46.1,
+        "employment": 46.5
+      },
+      {
+        "date": "2025-07-01",
+        "total": 45.2,
+        "household": 44.8,
+        "corporate": 46.0,
+        "employment": 46.1
+      },
+      {
+        "date": "2025-08-01",
+        "total": 46.7,
+        "household": 46.3,
+        "corporate": 48.5,
+        "employment": 45.8
+      },
+      {
+        "date": "2025-09-01",
+        "total": 47.1,
+        "household": 46.6,
+        "corporate": 48.0,
+        "employment": 48.4
+      },
+      {
+        "date": "2025-10-01",
+        "total": 49.1,
+        "household": 48.7,
+        "corporate": 50.7,
+        "employment": 48.6
+      },
+      {
+        "date": "2025-11-01",
+        "total": 48.7,
+        "household": 48.5,
+        "corporate": 49.5,
+        "employment": 48.1
+      }
+    ],
+    "latest": {
+      "date": "2025-11-01",
+      "total": 48.7,
+      "household": 48.5,
+      "corporate": 49.5,
+      "employment": 48.1
+    }
+  },
+  "outlook": {
+    "data": [
+      {
+        "date": "2002-01-01",
+        "total": 37.7,
+        "household": 39.3,
+        "corporate": 36.4,
+        "employment": 29.4
+      },
+      {
+        "date": "2002-02-01",
+        "total": 38.5,
+        "household": 39.2,
+        "corporate": 39.3,
+        "employment": 32.6
+      },
+      {
+        "date": "2002-03-01",
+        "total": 44.6,
+        "household": 45.3,
+        "corporate": 44.5,
+        "employment": 40.3
+      },
+      {
+        "date": "2002-04-01",
+        "total": 46.8,
+        "household": 46.3,
+        "corporate": 47.8,
+        "employment": 47.6
+      },
+      {
+        "date": "2002-05-01",
+        "total": 48.2,
+        "household": 47.8,
+        "corporate": 49.4,
+        "employment": 48.4
+      },
+      {
+        "date": "2002-06-01",
+        "total": 46.0,
+        "household": 46.1,
+        "corporate": 46.0,
+        "employment": 44.7
+      },
+      {
+        "date": "2002-07-01",
+        "total": 44.0,
+        "household": 43.9,
+        "corporate": 44.4,
+        "employment": 44.1
+      },
+      {
+        "date": "2002-08-01",
+        "total": 44.7,
+        "household": 44.4,
+        "corporate": 44.8,
+        "employment": 47.0
+      },
+      {
+        "date": "2002-09-01",
+        "total": 44.1,
+        "household": 43.9,
+        "corporate": 43.9,
+        "employment": 46.0
+      },
+      {
+        "date": "2002-10-01",
+        "total": 40.2,
+        "household": 39.9,
+        "corporate": 40.5,
+        "employment": 41.6
+      },
+      {
+        "date": "2002-11-01",
+        "total": 40.8,
+        "household": 40.5,
+        "corporate": 40.9,
+        "employment": 42.6
+      },
+      {
+        "date": "2002-12-01",
+        "total": 40.6,
+        "household": 40.3,
+        "corporate": 40.6,
+        "employment": 42.8
+      },
+      {
+        "date": "2003-01-01",
+        "total": 41.2,
+        "household": 41.1,
+        "corporate": 40.7,
+        "employment": 42.9
+      },
+      {
+        "date": "2003-02-01",
+        "total": 40.3,
+        "household": 39.7,
+        "corporate": 40.6,
+        "employment": 43.7
+      },
+      {
+        "date": "2003-03-01",
+        "total": 38.3,
+        "household": 37.7,
+        "corporate": 38.9,
+        "employment": 40.7
+      },
+      {
+        "date": "2003-04-01",
+        "total": 40.3,
+        "household": 39.9,
+        "corporate": 40.1,
+        "employment": 44.0
+      },
+      {
+        "date": "2003-05-01",
+        "total": 41.1,
+        "household": 40.4,
+        "corporate": 41.2,
+        "employment": 45.2
+      },
+      {
+        "date": "2003-06-01",
+        "total": 44.2,
+        "household": 43.5,
+        "corporate": 44.0,
+        "employment": 49.0
+      },
+      {
+        "date": "2003-07-01",
+        "total": 46.1,
+        "household": 45.4,
+        "corporate": 46.1,
+        "employment": 51.0
+      },
+      {
+        "date": "2003-08-01",
+        "total": 47.7,
+        "household": 47.0,
+        "corporate": 48.4,
+        "employment": 50.6
+      },
+      {
+        "date": "2003-09-01",
+        "total": 49.1,
+        "household": 48.2,
+        "corporate": 49.3,
+        "employment": 55.2
+      },
+      {
+        "date": "2003-10-01",
+        "total": 51.5,
+        "household": 50.7,
+        "corporate": 51.6,
+        "employment": 56.8
+      },
+      {
+        "date": "2003-11-01",
+        "total": 51.3,
+        "household": 50.0,
+        "corporate": 51.8,
+        "employment": 58.7
+      },
+      {
+        "date": "2003-12-01",
+        "total": 51.6,
+        "household": 50.4,
+        "corporate": 51.2,
+        "employment": 60.5
+      },
+      {
+        "date": "2004-01-01",
+        "total": 52.1,
+        "household": 50.7,
+        "corporate": 52.1,
+        "employment": 61.2
+      },
+      {
+        "date": "2004-02-01",
+        "total": 52.9,
+        "household": 51.7,
+        "corporate": 52.4,
+        "employment": 62.3
+      },
+      {
+        "date": "2004-03-01",
+        "total": 53.1,
+        "household": 51.4,
+        "corporate": 54.1,
+        "employment": 62.6
+      },
+      {
+        "date": "2004-04-01",
+        "total": 53.8,
+        "household": 52.6,
+        "corporate": 53.4,
+        "employment": 63.0
+      },
+      {
+        "date": "2004-05-01",
+        "total": 53.5,
+        "household": 52.4,
+        "corporate": 52.9,
+        "employment": 62.4
+      },
+      {
+        "date": "2004-06-01",
+        "total": 53.2,
+        "household": 52.5,
+        "corporate": 51.8,
+        "employment": 61.1
+      },
+      {
+        "date": "2004-07-01",
+        "total": 52.8,
+        "household": 51.4,
+        "corporate": 53.2,
+        "employment": 61.3
+      },
+      {
+        "date": "2004-08-01",
+        "total": 50.7,
+        "household": 49.8,
+        "corporate": 49.6,
+        "employment": 59.3
+      },
+      {
+        "date": "2004-09-01",
+        "total": 49.3,
+        "household": 48.5,
+        "corporate": 48.7,
+        "employment": 56.1
+      },
+      {
+        "date": "2004-10-01",
+        "total": 49.1,
+        "household": 48.1,
+        "corporate": 47.7,
+        "employment": 58.6
+      },
+      {
+        "date": "2004-11-01",
+        "total": 48.6,
+        "household": 48.2,
+        "corporate": 46.5,
+        "employment": 55.5
+      },
+      {
+        "date": "2004-12-01",
+        "total": 47.7,
+        "household": 47.5,
+        "corporate": 45.2,
+        "employment": 53.9
+      },
+      {
+        "date": "2005-01-01",
+        "total": 49.0,
+        "household": 48.5,
+        "corporate": 47.3,
+        "employment": 55.0
+      },
+      {
+        "date": "2005-02-01",
+        "total": 49.0,
+        "household": 48.6,
+        "corporate": 48.5,
+        "employment": 52.8
+      },
+      {
+        "date": "2005-03-01",
+        "total": 49.0,
+        "household": 48.7,
+        "corporate": 47.9,
+        "employment": 53.4
+      },
+      {
+        "date": "2005-04-01",
+        "total": 48.7,
+        "household": 48.3,
+        "corporate": 47.8,
+        "employment": 53.9
+      },
+      {
+        "date": "2005-05-01",
+        "total": 50.4,
+        "household": 49.9,
+        "corporate": 49.7,
+        "employment": 55.2
+      },
+      {
+        "date": "2005-06-01",
+        "total": 50.5,
+        "household": 49.7,
+        "corporate": 50.0,
+        "employment": 56.5
+      },
+      {
+        "date": "2005-07-01",
+        "total": 51.5,
+        "household": 50.9,
+        "corporate": 50.8,
+        "employment": 56.9
+      },
+      {
+        "date": "2005-08-01",
+        "total": 51.3,
+        "household": 50.5,
+        "corporate": 50.2,
+        "employment": 58.8
+      },
+      {
+        "date": "2005-09-01",
+        "total": 52.4,
+        "household": 51.7,
+        "corporate": 51.9,
+        "employment": 57.9
+      },
+      {
+        "date": "2005-10-01",
+        "total": 53.8,
+        "household": 53.2,
+        "corporate": 53.5,
+        "employment": 58.0
+      },
+      {
+        "date": "2005-11-01",
+        "total": 55.3,
+        "household": 54.7,
+        "corporate": 55.0,
+        "employment": 59.6
+      },
+      {
+        "date": "2005-12-01",
+        "total": 57.2,
+        "household": 56.7,
+        "corporate": 55.3,
+        "employment": 64.7
+      },
+      {
+        "date": "2006-01-01",
+        "total": 57.2,
+        "household": 56.4,
+        "corporate": 56.3,
+        "employment": 63.9
+      },
+      {
+        "date": "2006-02-01",
+        "total": 55.6,
+        "household": 54.6,
+        "corporate": 55.8,
+        "employment": 61.4
+      },
+      {
+        "date": "2006-03-01",
+        "total": 55.2,
+        "household": 54.7,
+        "corporate": 54.3,
+        "employment": 60.4
+      },
+      {
+        "date": "2006-04-01",
+        "total": 53.3,
+        "household": 53.1,
+        "corporate": 51.6,
+        "employment": 58.4
+      },
+      {
+        "date": "2006-05-01",
+        "total": 52.1,
+        "household": 51.7,
+        "corporate": 51.0,
+        "employment": 57.0
+      },
+      {
+        "date": "2006-06-01",
+        "total": 51.1,
+        "household": 50.8,
+        "corporate": 49.3,
+        "employment": 56.5
+      },
+      {
+        "date": "2006-07-01",
+        "total": 49.3,
+        "household": 48.9,
+        "corporate": 47.5,
+        "employment": 55.6
+      },
+      {
+        "date": "2006-08-01",
+        "total": 51.1,
+        "household": 51.0,
+        "corporate": 48.8,
+        "employment": 56.5
+      },
+      {
+        "date": "2006-09-01",
+        "total": 52.1,
+        "household": 51.8,
+        "corporate": 50.8,
+        "employment": 56.6
+      },
+      {
+        "date": "2006-10-01",
+        "total": 53.1,
+        "household": 52.4,
+        "corporate": 52.5,
+        "employment": 58.7
+      },
+      {
+        "date": "2006-11-01",
+        "total": 52.8,
+        "household": 52.4,
+        "corporate": 51.2,
+        "employment": 58.4
+      },
+      {
+        "date": "2006-12-01",
+        "total": 52.5,
+        "household": 51.9,
+        "corporate": 51.7,
+        "employment": 58.1
+      },
+      {
+        "date": "2007-01-01",
+        "total": 52.0,
+        "household": 51.5,
+        "corporate": 50.9,
+        "employment": 57.6
+      },
+      {
+        "date": "2007-02-01",
+        "total": 51.1,
+        "household": 50.8,
+        "corporate": 49.5,
+        "employment": 56.5
+      },
+      {
+        "date": "2007-03-01",
+        "total": 50.1,
+        "household": 49.9,
+        "corporate": 48.0,
+        "employment": 55.6
+      },
+      {
+        "date": "2007-04-01",
+        "total": 49.9,
+        "household": 49.3,
+        "corporate": 48.7,
+        "employment": 56.1
+      },
+      {
+        "date": "2007-05-01",
+        "total": 47.9,
+        "household": 47.7,
+        "corporate": 46.3,
+        "employment": 52.7
+      },
+      {
+        "date": "2007-06-01",
+        "total": 47.3,
+        "household": 47.1,
+        "corporate": 46.8,
+        "employment": 49.5
+      },
+      {
+        "date": "2007-07-01",
+        "total": 46.1,
+        "household": 45.8,
+        "corporate": 44.8,
+        "employment": 50.6
+      },
+      {
+        "date": "2007-08-01",
+        "total": 46.3,
+        "household": 46.4,
+        "corporate": 45.2,
+        "employment": 48.2
+      },
+      {
+        "date": "2007-09-01",
+        "total": 45.4,
+        "household": 45.2,
+        "corporate": 44.8,
+        "employment": 48.2
+      },
+      {
+        "date": "2007-10-01",
+        "total": 44.1,
+        "household": 43.7,
+        "corporate": 44.0,
+        "employment": 46.6
+      },
+      {
+        "date": "2007-11-01",
+        "total": 42.1,
+        "household": 41.8,
+        "corporate": 41.4,
+        "employment": 45.4
+      },
+      {
+        "date": "2007-12-01",
+        "total": 40.7,
+        "household": 40.4,
+        "corporate": 39.4,
+        "employment": 44.8
+      },
+      {
+        "date": "2008-01-01",
+        "total": 37.2,
+        "household": 36.7,
+        "corporate": 37.2,
+        "employment": 40.3
+      },
+      {
+        "date": "2008-02-01",
+        "total": 38.7,
+        "household": 38.4,
+        "corporate": 38.5,
+        "employment": 41.3
+      },
+      {
+        "date": "2008-03-01",
+        "total": 37.0,
+        "household": 37.1,
+        "corporate": 36.2,
+        "employment": 38.3
+      },
+      {
+        "date": "2008-04-01",
+        "total": 33.7,
+        "household": 33.7,
+        "corporate": 34.0,
+        "employment": 32.7
+      },
+      {
+        "date": "2008-05-01",
+        "total": 32.5,
+        "household": 32.8,
+        "corporate": 31.5,
+        "employment": 32.2
+      },
+      {
+        "date": "2008-06-01",
+        "total": 30.2,
+        "household": 30.3,
+        "corporate": 30.3,
+        "employment": 29.4
+      },
+      {
+        "date": "2008-07-01",
+        "total": 29.9,
+        "household": 30.4,
+        "corporate": 30.2,
+        "employment": 26.0
+      },
+      {
+        "date": "2008-08-01",
+        "total": 32.2,
+        "household": 33.3,
+        "corporate": 30.9,
+        "employment": 28.2
+      },
+      {
+        "date": "2008-09-01",
+        "total": 32.0,
+        "household": 32.6,
+        "corporate": 31.2,
+        "employment": 30.1
+      },
+      {
+        "date": "2008-10-01",
+        "total": 26.8,
+        "household": 28.1,
+        "corporate": 25.7,
+        "employment": 20.7
+      },
+      {
+        "date": "2008-11-01",
+        "total": 28.4,
+        "household": 29.7,
+        "corporate": 26.8,
+        "employment": 23.4
+      },
+      {
+        "date": "2008-12-01",
+        "total": 21.2,
+        "household": 23.2,
+        "corporate": 16.7,
+        "employment": 18.4
+      },
+      {
+        "date": "2009-01-01",
+        "total": 23.6,
+        "household": 25.6,
+        "corporate": 20.4,
+        "employment": 17.9
+      },
+      {
+        "date": "2009-02-01",
+        "total": 25.8,
+        "household": 27.1,
+        "corporate": 24.3,
+        "employment": 20.5
+      },
+      {
+        "date": "2009-03-01",
+        "total": 34.6,
+        "household": 35.0,
+        "corporate": 36.0,
+        "employment": 28.6
+      },
+      {
+        "date": "2009-04-01",
+        "total": 36.5,
+        "household": 37.3,
+        "corporate": 36.2,
+        "employment": 32.0
+      },
+      {
+        "date": "2009-05-01",
+        "total": 40.3,
+        "household": 40.3,
+        "corporate": 41.4,
+        "employment": 37.7
+      },
+      {
+        "date": "2009-06-01",
+        "total": 43.1,
+        "household": 43.3,
+        "corporate": 43.4,
+        "employment": 40.8
+      },
+      {
+        "date": "2009-07-01",
+        "total": 43.8,
+        "household": 43.3,
+        "corporate": 45.6,
+        "employment": 42.9
+      },
+      {
+        "date": "2009-08-01",
+        "total": 44.6,
+        "household": 44.0,
+        "corporate": 45.7,
+        "employment": 46.1
+      },
+      {
+        "date": "2009-09-01",
+        "total": 45.1,
+        "household": 44.6,
+        "corporate": 46.3,
+        "employment": 46.2
+      },
+      {
+        "date": "2009-10-01",
+        "total": 45.1,
+        "household": 44.4,
+        "corporate": 46.6,
+        "employment": 46.8
+      },
+      {
+        "date": "2009-11-01",
+        "total": 38.5,
+        "household": 38.2,
+        "corporate": 38.2,
+        "employment": 40.7
+      },
+      {
+        "date": "2009-12-01",
+        "total": 39.7,
+        "household": 39.2,
+        "corporate": 39.0,
+        "employment": 44.4
+      },
+      {
+        "date": "2010-01-01",
+        "total": 43.1,
+        "household": 42.6,
+        "corporate": 43.4,
+        "employment": 45.6
+      },
+      {
+        "date": "2010-02-01",
+        "total": 43.9,
+        "household": 43.3,
+        "corporate": 44.5,
+        "employment": 45.9
+      },
+      {
+        "date": "2010-03-01",
+        "total": 45.7,
+        "household": 45.1,
+        "corporate": 46.3,
+        "employment": 47.6
+      },
+      {
+        "date": "2010-04-01",
+        "total": 46.2,
+        "household": 45.4,
+        "corporate": 46.7,
+        "employment": 50.7
+      },
+      {
+        "date": "2010-05-01",
+        "total": 45.3,
+        "household": 45.0,
+        "corporate": 44.5,
+        "employment": 49.3
+      },
+      {
+        "date": "2010-06-01",
+        "total": 45.5,
+        "household": 45.4,
+        "corporate": 44.1,
+        "employment": 49.8
+      },
+      {
+        "date": "2010-07-01",
+        "total": 45.5,
+        "household": 45.7,
+        "corporate": 43.5,
+        "employment": 48.5
+      },
+      {
+        "date": "2010-08-01",
+        "total": 41.2,
+        "household": 41.6,
+        "corporate": 38.9,
+        "employment": 44.6
+      },
+      {
+        "date": "2010-09-01",
+        "total": 42.7,
+        "household": 42.4,
+        "corporate": 42.0,
+        "employment": 46.0
+      },
+      {
+        "date": "2010-10-01",
+        "total": 44.0,
+        "household": 44.2,
+        "corporate": 42.7,
+        "employment": 46.1
+      },
+      {
+        "date": "2010-11-01",
+        "total": 45.4,
+        "household": 45.1,
+        "corporate": 43.9,
+        "employment": 50.5
+      },
+      {
+        "date": "2010-12-01",
+        "total": 46.9,
+        "household": 46.5,
+        "corporate": 45.5,
+        "employment": 52.8
+      },
+      {
+        "date": "2011-01-01",
+        "total": 48.0,
+        "household": 47.4,
+        "corporate": 46.6,
+        "employment": 54.6
+      },
+      {
+        "date": "2011-02-01",
+        "total": 45.9,
+        "household": 45.4,
+        "corporate": 44.0,
+        "employment": 53.6
+      },
+      {
+        "date": "2011-03-01",
+        "total": 25.1,
+        "household": 23.9,
+        "corporate": 26.0,
+        "employment": 30.9
+      },
+      {
+        "date": "2011-04-01",
+        "total": 34.6,
+        "household": 34.6,
+        "corporate": 34.2,
+        "employment": 35.7
+      },
+      {
+        "date": "2011-05-01",
+        "total": 41.6,
+        "household": 41.3,
+        "corporate": 40.6,
+        "employment": 45.7
+      },
+      {
+        "date": "2011-06-01",
+        "total": 46.4,
+        "household": 45.6,
+        "corporate": 45.8,
+        "employment": 53.4
+      },
+      {
+        "date": "2011-07-01",
+        "total": 47.6,
+        "household": 46.2,
+        "corporate": 47.8,
+        "employment": 56.1
+      },
+      {
+        "date": "2011-08-01",
+        "total": 48.9,
+        "household": 47.9,
+        "corporate": 48.6,
+        "employment": 55.9
+      },
+      {
+        "date": "2011-09-01",
+        "total": 48.3,
+        "household": 47.7,
+        "corporate": 47.4,
+        "employment": 53.6
+      },
+      {
+        "date": "2011-10-01",
+        "total": 49.1,
+        "household": 48.9,
+        "corporate": 47.1,
+        "employment": 55.2
+      },
+      {
+        "date": "2011-11-01",
+        "total": 48.5,
+        "household": 48.3,
+        "corporate": 46.8,
+        "employment": 53.7
+      },
+      {
+        "date": "2011-12-01",
+        "total": 46.8,
+        "household": 46.4,
+        "corporate": 45.1,
+        "employment": 53.1
+      },
+      {
+        "date": "2012-01-01",
+        "total": 47.2,
+        "household": 46.8,
+        "corporate": 46.5,
+        "employment": 51.3
+      },
+      {
+        "date": "2012-02-01",
+        "total": 48.4,
+        "household": 47.8,
+        "corporate": 47.8,
+        "employment": 53.4
+      },
+      {
+        "date": "2012-03-01",
+        "total": 48.2,
+        "household": 47.2,
+        "corporate": 48.7,
+        "employment": 53.2
+      },
+      {
+        "date": "2012-04-01",
+        "total": 47.3,
+        "household": 46.5,
+        "corporate": 47.0,
+        "employment": 52.8
+      },
+      {
+        "date": "2012-05-01",
+        "total": 45.1,
+        "household": 44.5,
+        "corporate": 45.2,
+        "employment": 48.4
+      },
+      {
+        "date": "2012-06-01",
+        "total": 43.5,
+        "household": 42.6,
+        "corporate": 44.1,
+        "employment": 47.9
+      },
+      {
+        "date": "2012-07-01",
+        "total": 44.4,
+        "household": 44.1,
+        "corporate": 44.0,
+        "employment": 47.2
+      },
+      {
+        "date": "2012-08-01",
+        "total": 45.8,
+        "household": 45.3,
+        "corporate": 45.7,
+        "employment": 48.7
+      },
+      {
+        "date": "2012-09-01",
+        "total": 45.6,
+        "household": 45.9,
+        "corporate": 44.0,
+        "employment": 47.3
+      },
+      {
+        "date": "2012-10-01",
+        "total": 44.7,
+        "household": 44.6,
+        "corporate": 44.0,
+        "employment": 47.3
+      },
+      {
+        "date": "2012-11-01",
+        "total": 45.3,
+        "household": 45.6,
+        "corporate": 44.9,
+        "employment": 44.1
+      },
+      {
+        "date": "2012-12-01",
+        "total": 52.9,
+        "household": 52.4,
+        "corporate": 54.1,
+        "employment": 53.8
+      },
+      {
+        "date": "2013-01-01",
+        "total": 56.1,
+        "household": 55.2,
+        "corporate": 57.5,
+        "employment": 58.6
+      },
+      {
+        "date": "2013-02-01",
+        "total": 55.7,
+        "household": 54.5,
+        "corporate": 57.6,
+        "employment": 58.9
+      },
+      {
+        "date": "2013-03-01",
+        "total": 56.0,
+        "household": 54.9,
+        "corporate": 57.4,
+        "employment": 59.7
+      },
+      {
+        "date": "2013-04-01",
+        "total": 54.7,
+        "household": 53.4,
+        "corporate": 56.7,
+        "employment": 59.2
+      },
+      {
+        "date": "2013-05-01",
+        "total": 53.7,
+        "household": 52.3,
+        "corporate": 55.6,
+        "employment": 58.5
+      },
+      {
+        "date": "2013-06-01",
+        "total": 52.0,
+        "household": 51.2,
+        "corporate": 52.6,
+        "employment": 55.5
+      },
+      {
+        "date": "2013-07-01",
+        "total": 53.5,
+        "household": 52.5,
+        "corporate": 54.9,
+        "employment": 57.3
+      },
+      {
+        "date": "2013-08-01",
+        "total": 53.3,
+        "household": 52.2,
+        "corporate": 54.2,
+        "employment": 58.3
+      },
+      {
+        "date": "2013-09-01",
+        "total": 56.0,
+        "household": 54.5,
+        "corporate": 57.6,
+        "employment": 62.5
+      },
+      {
+        "date": "2013-10-01",
+        "total": 57.1,
+        "household": 56.0,
+        "corporate": 57.5,
+        "employment": 63.1
+      },
+      {
+        "date": "2013-11-01",
+        "total": 57.6,
+        "household": 56.8,
+        "corporate": 57.7,
+        "employment": 62.1
+      },
+      {
+        "date": "2013-12-01",
+        "total": 56.0,
+        "household": 55.1,
+        "corporate": 57.0,
+        "employment": 59.7
+      },
+      {
+        "date": "2014-01-01",
+        "total": 48.3,
+        "household": 46.3,
+        "corporate": 50.7,
+        "employment": 55.8
+      },
+      {
+        "date": "2014-02-01",
+        "total": 37.8,
+        "household": 33.9,
+        "corporate": 43.7,
+        "employment": 50.0
+      },
+      {
+        "date": "2014-03-01",
+        "total": 33.4,
+        "household": 29.4,
+        "corporate": 39.3,
+        "employment": 46.2
+      },
+      {
+        "date": "2014-04-01",
+        "total": 48.1,
+        "household": 47.2,
+        "corporate": 48.7,
+        "employment": 52.7
+      },
+      {
+        "date": "2014-05-01",
+        "total": 51.7,
+        "household": 51.0,
+        "corporate": 51.8,
+        "employment": 56.6
+      },
+      {
+        "date": "2014-06-01",
+        "total": 52.1,
+        "household": 51.3,
+        "corporate": 51.9,
+        "employment": 58.3
+      },
+      {
+        "date": "2014-07-01",
+        "total": 51.6,
+        "household": 50.6,
+        "corporate": 52.1,
+        "employment": 57.2
+      },
+      {
+        "date": "2014-08-01",
+        "total": 52.4,
+        "household": 51.8,
+        "corporate": 52.6,
+        "employment": 56.7
+      },
+      {
+        "date": "2014-09-01",
+        "total": 50.2,
+        "household": 49.3,
+        "corporate": 50.7,
+        "employment": 54.8
+      },
+      {
+        "date": "2014-10-01",
+        "total": 48.4,
+        "household": 47.1,
+        "corporate": 50.3,
+        "employment": 53.0
+      },
+      {
+        "date": "2014-11-01",
+        "total": 46.1,
+        "household": 44.8,
+        "corporate": 47.6,
+        "employment": 50.8
+      },
+      {
+        "date": "2014-12-01",
+        "total": 47.7,
+        "household": 46.6,
+        "corporate": 49.8,
+        "employment": 49.9
+      },
+      {
+        "date": "2015-01-01",
+        "total": 49.2,
+        "household": 47.7,
+        "corporate": 50.5,
+        "employment": 55.7
+      },
+      {
+        "date": "2015-02-01",
+        "total": 51.1,
+        "household": 49.8,
+        "corporate": 52.3,
+        "employment": 57.0
+      },
+      {
+        "date": "2015-03-01",
+        "total": 52.7,
+        "household": 51.7,
+        "corporate": 52.8,
+        "employment": 58.6
+      },
+      {
+        "date": "2015-04-01",
+        "total": 52.9,
+        "household": 52.2,
+        "corporate": 52.6,
+        "employment": 58.6
+      },
+      {
+        "date": "2015-05-01",
+        "total": 53.0,
+        "household": 52.6,
+        "corporate": 52.5,
+        "employment": 56.3
+      },
+      {
+        "date": "2015-06-01",
+        "total": 52.6,
+        "household": 52.1,
+        "corporate": 52.6,
+        "employment": 56.5
+      },
+      {
+        "date": "2015-07-01",
+        "total": 52.3,
+        "household": 52.0,
+        "corporate": 51.5,
+        "employment": 55.8
+      },
+      {
+        "date": "2015-08-01",
+        "total": 49.8,
+        "household": 49.4,
+        "corporate": 49.4,
+        "employment": 54.0
+      },
+      {
+        "date": "2015-09-01",
+        "total": 50.2,
+        "household": 49.9,
+        "corporate": 49.2,
+        "employment": 53.9
+      },
+      {
+        "date": "2015-10-01",
+        "total": 50.3,
+        "household": 50.4,
+        "corporate": 48.8,
+        "employment": 53.2
+      },
+      {
+        "date": "2015-11-01",
+        "total": 49.5,
+        "household": 49.5,
+        "corporate": 48.3,
+        "employment": 52.5
+      },
+      {
+        "date": "2015-12-01",
+        "total": 49.0,
+        "household": 48.6,
+        "corporate": 48.5,
+        "employment": 53.2
+      },
+      {
+        "date": "2016-01-01",
+        "total": 48.5,
+        "household": 48.1,
+        "corporate": 48.0,
+        "employment": 52.8
+      },
+      {
+        "date": "2016-02-01",
+        "total": 46.4,
+        "household": 46.1,
+        "corporate": 46.1,
+        "employment": 49.6
+      },
+      {
+        "date": "2016-03-01",
+        "total": 46.5,
+        "household": 45.6,
+        "corporate": 47.4,
+        "employment": 50.5
+      },
+      {
+        "date": "2016-04-01",
+        "total": 44.8,
+        "household": 44.2,
+        "corporate": 45.3,
+        "employment": 47.7
+      },
+      {
+        "date": "2016-05-01",
+        "total": 46.3,
+        "household": 45.3,
+        "corporate": 47.1,
+        "employment": 50.7
+      },
+      {
+        "date": "2016-06-01",
+        "total": 40.8,
+        "household": 40.7,
+        "corporate": 40.0,
+        "employment": 43.3
+      },
+      {
+        "date": "2016-07-01",
+        "total": 47.7,
+        "household": 47.4,
+        "corporate": 47.5,
+        "employment": 49.5
+      },
+      {
+        "date": "2016-08-01",
+        "total": 48.9,
+        "household": 48.1,
+        "corporate": 49.3,
+        "employment": 53.6
+      },
+      {
+        "date": "2016-09-01",
+        "total": 49.4,
+        "household": 48.5,
+        "corporate": 50.0,
+        "employment": 54.2
+      },
+      {
+        "date": "2016-10-01",
+        "total": 49.4,
+        "household": 48.2,
+        "corporate": 50.4,
+        "employment": 54.8
+      },
+      {
+        "date": "2016-11-01",
+        "total": 49.6,
+        "household": 48.5,
+        "corporate": 50.7,
+        "employment": 54.1
+      },
+      {
+        "date": "2016-12-01",
+        "total": 49.9,
+        "household": 49.1,
+        "corporate": 50.6,
+        "employment": 53.8
+      },
+      {
+        "date": "2017-01-01",
+        "total": 48.6,
+        "household": 48.0,
+        "corporate": 49.4,
+        "employment": 51.0
+      },
+      {
+        "date": "2017-02-01",
+        "total": 49.9,
+        "household": 49.0,
+        "corporate": 50.1,
+        "employment": 54.9
+      },
+      {
+        "date": "2017-03-01",
+        "total": 49.3,
+        "household": 48.6,
+        "corporate": 49.9,
+        "employment": 52.6
+      },
+      {
+        "date": "2017-04-01",
+        "total": 50.2,
+        "household": 49.3,
+        "corporate": 50.7,
+        "employment": 55.1
+      },
+      {
+        "date": "2017-05-01",
+        "total": 51.0,
+        "household": 49.9,
+        "corporate": 52.1,
+        "employment": 55.2
+      },
+      {
+        "date": "2017-06-01",
+        "total": 50.9,
+        "household": 49.9,
+        "corporate": 52.1,
+        "employment": 54.9
+      },
+      {
+        "date": "2017-07-01",
+        "total": 51.4,
+        "household": 50.3,
+        "corporate": 51.8,
+        "employment": 57.4
+      },
+      {
+        "date": "2017-08-01",
+        "total": 51.3,
+        "household": 50.7,
+        "corporate": 52.0,
+        "employment": 54.4
+      },
+      {
+        "date": "2017-09-01",
+        "total": 50.9,
+        "household": 50.1,
+        "corporate": 51.7,
+        "employment": 54.4
+      },
+      {
+        "date": "2017-10-01",
+        "total": 53.6,
+        "household": 52.9,
+        "corporate": 54.7,
+        "employment": 56.0
+      },
+      {
+        "date": "2017-11-01",
+        "total": 51.6,
+        "household": 50.9,
+        "corporate": 51.6,
+        "employment": 56.8
+      },
+      {
+        "date": "2017-12-01",
+        "total": 52.3,
+        "household": 51.7,
+        "corporate": 52.1,
+        "employment": 56.5
+      },
+      {
+        "date": "2018-01-01",
+        "total": 51.7,
+        "household": 51.0,
+        "corporate": 52.3,
+        "employment": 54.6
+      },
+      {
+        "date": "2018-02-01",
+        "total": 50.8,
+        "household": 50.5,
+        "corporate": 50.8,
+        "employment": 52.8
+      },
+      {
+        "date": "2018-03-01",
+        "total": 50.6,
+        "household": 50.1,
+        "corporate": 50.8,
+        "employment": 53.3
+      },
+      {
+        "date": "2018-04-01",
+        "total": 51.2,
+        "household": 50.4,
+        "corporate": 51.4,
+        "employment": 56.3
+      },
+      {
+        "date": "2018-05-01",
+        "total": 50.7,
+        "household": 49.7,
+        "corporate": 51.4,
+        "employment": 55.9
+      },
+      {
+        "date": "2018-06-01",
+        "total": 50.3,
+        "household": 49.7,
+        "corporate": 50.8,
+        "employment": 53.1
+      },
+      {
+        "date": "2018-07-01",
+        "total": 50.1,
+        "household": 49.4,
+        "corporate": 50.3,
+        "employment": 54.1
+      },
+      {
+        "date": "2018-08-01",
+        "total": 51.8,
+        "household": 51.6,
+        "corporate": 51.8,
+        "employment": 52.7
+      },
+      {
+        "date": "2018-09-01",
+        "total": 50.9,
+        "household": 50.5,
+        "corporate": 51.3,
+        "employment": 52.3
+      },
+      {
+        "date": "2018-10-01",
+        "total": 49.1,
+        "household": 49.4,
+        "corporate": 47.4,
+        "employment": 50.8
+      },
+      {
+        "date": "2018-11-01",
+        "total": 49.9,
+        "household": 50.2,
+        "corporate": 48.4,
+        "employment": 51.3
+      },
+      {
+        "date": "2018-12-01",
+        "total": 48.2,
+        "household": 48.6,
+        "corporate": 46.4,
+        "employment": 49.4
+      },
+      {
+        "date": "2019-01-01",
+        "total": 49.0,
+        "household": 49.4,
+        "corporate": 47.0,
+        "employment": 50.7
+      },
+      {
+        "date": "2019-02-01",
+        "total": 48.1,
+        "household": 48.1,
+        "corporate": 47.2,
+        "employment": 49.9
+      },
+      {
+        "date": "2019-03-01",
+        "total": 48.5,
+        "household": 48.7,
+        "corporate": 47.5,
+        "employment": 48.7
+      },
+      {
+        "date": "2019-04-01",
+        "total": 49.0,
+        "household": 49.2,
+        "corporate": 47.7,
+        "employment": 50.0
+      },
+      {
+        "date": "2019-05-01",
+        "total": 46.5,
+        "household": 46.6,
+        "corporate": 45.7,
+        "employment": 47.6
+      },
+      {
+        "date": "2019-06-01",
+        "total": 45.5,
+        "household": 45.7,
+        "corporate": 44.4,
+        "employment": 47.0
+      },
+      {
+        "date": "2019-07-01",
+        "total": 45.1,
+        "household": 44.9,
+        "corporate": 45.2,
+        "employment": 45.9
+      },
+      {
+        "date": "2019-08-01",
+        "total": 40.4,
+        "household": 39.4,
+        "corporate": 42.4,
+        "employment": 43.2
+      },
+      {
+        "date": "2019-09-01",
+        "total": 36.5,
+        "household": 35.4,
+        "corporate": 38.0,
+        "employment": 40.0
+      },
+      {
+        "date": "2019-10-01",
+        "total": 42.6,
+        "household": 43.2,
+        "corporate": 42.4,
+        "employment": 39.0
+      },
+      {
+        "date": "2019-11-01",
+        "total": 45.1,
+        "household": 46.4,
+        "corporate": 43.2,
+        "employment": 40.5
+      },
+      {
+        "date": "2019-12-01",
+        "total": 46.2,
+        "household": 47.1,
+        "corporate": 45.0,
+        "employment": 42.9
+      },
+      {
+        "date": "2020-01-01",
+        "total": 42.3,
+        "household": 42.7,
+        "corporate": 41.9,
+        "employment": 40.7
+      },
+      {
+        "date": "2020-02-01",
+        "total": 24.8,
+        "household": 24.0,
+        "corporate": 25.5,
+        "employment": 28.8
+      },
+      {
+        "date": "2020-03-01",
+        "total": 18.9,
+        "household": 19.3,
+        "corporate": 19.1,
+        "employment": 16.2
+      },
+      {
+        "date": "2020-04-01",
+        "total": 18.1,
+        "household": 19.7,
+        "corporate": 14.9,
+        "employment": 14.6
+      },
+      {
+        "date": "2020-05-01",
+        "total": 37.2,
+        "household": 39.1,
+        "corporate": 32.9,
+        "employment": 33.6
+      },
+      {
+        "date": "2020-06-01",
+        "total": 43.8,
+        "household": 45.2,
+        "corporate": 40.2,
+        "employment": 42.2
+      },
+      {
+        "date": "2020-07-01",
+        "total": 36.5,
+        "household": 36.0,
+        "corporate": 37.8,
+        "employment": 36.4
+      },
+      {
+        "date": "2020-08-01",
+        "total": 42.5,
+        "household": 42.8,
+        "corporate": 42.4,
+        "employment": 40.9
+      },
+      {
+        "date": "2020-09-01",
+        "total": 46.8,
+        "household": 47.1,
+        "corporate": 46.2,
+        "employment": 46.7
+      },
+      {
+        "date": "2020-10-01",
+        "total": 47.3,
+        "household": 47.4,
+        "corporate": 46.6,
+        "employment": 48.5
+      },
+      {
+        "date": "2020-11-01",
+        "total": 36.0,
+        "household": 34.8,
+        "corporate": 39.1,
+        "employment": 37.1
+      },
+      {
+        "date": "2020-12-01",
+        "total": 38.2,
+        "household": 37.6,
+        "corporate": 40.4,
+        "employment": 37.7
+      },
+      {
+        "date": "2021-01-01",
+        "total": 41.2,
+        "household": 40.6,
+        "corporate": 42.9,
+        "employment": 41.3
+      },
+      {
+        "date": "2021-02-01",
+        "total": 51.3,
+        "household": 51.6,
+        "corporate": 51.0,
+        "employment": 50.4
+      },
+      {
+        "date": "2021-03-01",
+        "total": 48.4,
+        "household": 47.8,
+        "corporate": 49.8,
+        "employment": 50.2
+      },
+      {
+        "date": "2021-04-01",
+        "total": 41.8,
+        "household": 40.2,
+        "corporate": 44.9,
+        "employment": 45.6
+      },
+      {
+        "date": "2021-05-01",
+        "total": 46.4,
+        "household": 45.2,
+        "corporate": 48.6,
+        "employment": 49.4
+      },
+      {
+        "date": "2021-06-01",
+        "total": 51.4,
+        "household": 50.8,
+        "corporate": 51.0,
+        "employment": 56.3
+      },
+      {
+        "date": "2021-07-01",
+        "total": 47.9,
+        "household": 46.5,
+        "corporate": 50.1,
+        "employment": 53.1
+      },
+      {
+        "date": "2021-08-01",
+        "total": 43.1,
+        "household": 42.4,
+        "corporate": 45.6,
+        "employment": 42.9
+      },
+      {
+        "date": "2021-09-01",
+        "total": 56.3,
+        "household": 56.6,
+        "corporate": 54.3,
+        "employment": 59.2
+      },
+      {
+        "date": "2021-10-01",
+        "total": 57.5,
+        "household": 57.8,
+        "corporate": 53.6,
+        "employment": 64.1
+      },
+      {
+        "date": "2021-11-01",
+        "total": 55.0,
+        "household": 55.6,
+        "corporate": 51.0,
+        "employment": 59.7
+      },
+      {
+        "date": "2021-12-01",
+        "total": 51.9,
+        "household": 51.6,
+        "corporate": 49.5,
+        "employment": 59.7
+      },
+      {
+        "date": "2022-01-01",
+        "total": 43.6,
+        "household": 42.4,
+        "corporate": 45.4,
+        "employment": 47.7
+      },
+      {
+        "date": "2022-02-01",
+        "total": 44.8,
+        "household": 44.4,
+        "corporate": 44.1,
+        "employment": 48.8
+      },
+      {
+        "date": "2022-03-01",
+        "total": 47.7,
+        "household": 48.3,
+        "corporate": 43.7,
+        "employment": 52.7
+      },
+      {
+        "date": "2022-04-01",
+        "total": 48.0,
+        "household": 48.1,
+        "corporate": 45.6,
+        "employment": 52.9
+      },
+      {
+        "date": "2022-05-01",
+        "total": 50.5,
+        "household": 50.2,
+        "corporate": 49.1,
+        "employment": 55.6
+      },
+      {
+        "date": "2022-06-01",
+        "total": 47.9,
+        "household": 48.5,
+        "corporate": 43.4,
+        "employment": 53.6
+      },
+      {
+        "date": "2022-07-01",
+        "total": 43.2,
+        "household": 42.2,
+        "corporate": 43.7,
+        "employment": 48.5
+      },
+      {
+        "date": "2022-08-01",
+        "total": 48.9,
+        "household": 48.9,
+        "corporate": 47.2,
+        "employment": 52.4
+      },
+      {
+        "date": "2022-09-01",
+        "total": 49.2,
+        "household": 50.0,
+        "corporate": 46.0,
+        "employment": 50.8
+      },
+      {
+        "date": "2022-10-01",
+        "total": 47.9,
+        "household": 48.4,
+        "corporate": 46.2,
+        "employment": 48.5
+      },
+      {
+        "date": "2022-11-01",
+        "total": 47.3,
+        "household": 46.9,
+        "corporate": 47.4,
+        "employment": 49.7
+      },
+      {
+        "date": "2022-12-01",
+        "total": 48.8,
+        "household": 49.2,
+        "corporate": 47.4,
+        "employment": 48.8
+      },
+      {
+        "date": "2023-01-01",
+        "total": 49.2,
+        "household": 49.2,
+        "corporate": 48.9,
+        "employment": 49.8
+      },
+      {
+        "date": "2023-02-01",
+        "total": 50.2,
+        "household": 50.8,
+        "corporate": 47.6,
+        "employment": 52.2
+      },
+      {
+        "date": "2023-03-01",
+        "total": 53.0,
+        "household": 53.3,
+        "corporate": 52.0,
+        "employment": 54.0
+      },
+      {
+        "date": "2023-04-01",
+        "total": 55.0,
+        "household": 55.4,
+        "corporate": 53.1,
+        "employment": 56.8
+      },
+      {
+        "date": "2023-05-01",
+        "total": 53.7,
+        "household": 53.1,
+        "corporate": 53.9,
+        "employment": 57.0
+      },
+      {
+        "date": "2023-06-01",
+        "total": 52.4,
+        "household": 52.0,
+        "corporate": 53.0,
+        "employment": 53.7
+      },
+      {
+        "date": "2023-07-01",
+        "total": 53.4,
+        "household": 53.3,
+        "corporate": 52.8,
+        "employment": 55.9
+      },
+      {
+        "date": "2023-08-01",
+        "total": 51.1,
+        "household": 51.3,
+        "corporate": 50.0,
+        "employment": 52.0
+      },
+      {
+        "date": "2023-09-01",
+        "total": 49.8,
+        "household": 50.0,
+        "corporate": 49.5,
+        "employment": 48.8
+      },
+      {
+        "date": "2023-10-01",
+        "total": 49.9,
+        "household": 49.7,
+        "corporate": 49.9,
+        "employment": 50.6
+      },
+      {
+        "date": "2023-11-01",
+        "total": 50.7,
+        "household": 51.0,
+        "corporate": 49.6,
+        "employment": 51.2
+      },
+      {
+        "date": "2023-12-01",
+        "total": 51.2,
+        "household": 51.1,
+        "corporate": 50.5,
+        "employment": 53.3
+      },
+      {
+        "date": "2024-01-01",
+        "total": 52.1,
+        "household": 51.9,
+        "corporate": 51.8,
+        "employment": 54.0
+      },
+      {
+        "date": "2024-02-01",
+        "total": 51.8,
+        "household": 51.6,
+        "corporate": 51.9,
+        "employment": 52.7
+      },
+      {
+        "date": "2024-03-01",
+        "total": 50.6,
+        "household": 50.8,
+        "corporate": 50.2,
+        "employment": 49.9
+      },
+      {
+        "date": "2024-04-01",
+        "total": 48.8,
+        "household": 48.5,
+        "corporate": 48.1,
+        "employment": 52.1
+      },
+      {
+        "date": "2024-05-01",
+        "total": 46.4,
+        "household": 45.5,
+        "corporate": 47.9,
+        "employment": 49.4
+      },
+      {
+        "date": "2024-06-01",
+        "total": 48.1,
+        "household": 47.7,
+        "corporate": 48.5,
+        "employment": 49.5
+      },
+      {
+        "date": "2024-07-01",
+        "total": 48.8,
+        "household": 48.3,
+        "corporate": 49.7,
+        "employment": 50.5
+      },
+      {
+        "date": "2024-08-01",
+        "total": 50.2,
+        "household": 50.1,
+        "corporate": 50.2,
+        "employment": 50.5
+      },
+      {
+        "date": "2024-09-01",
+        "total": 49.5,
+        "household": 49.2,
+        "corporate": 49.9,
+        "employment": 51.0
+      },
+      {
+        "date": "2024-10-01",
+        "total": 48.7,
+        "household": 48.7,
+        "corporate": 48.3,
+        "employment": 49.8
+      },
+      {
+        "date": "2024-11-01",
+        "total": 49.8,
+        "household": 50.1,
+        "corporate": 48.9,
+        "employment": 50.5
+      },
+      {
+        "date": "2024-12-01",
+        "total": 49.4,
+        "household": 49.5,
+        "corporate": 49.2,
+        "employment": 48.9
+      },
+      {
+        "date": "2025-01-01",
+        "total": 48.0,
+        "household": 48.1,
+        "corporate": 47.6,
+        "employment": 48.6
+      },
+      {
+        "date": "2025-02-01",
+        "total": 46.6,
+        "household": 46.4,
+        "corporate": 45.7,
+        "employment": 50.0
+      },
+      {
+        "date": "2025-03-01",
+        "total": 45.2,
+        "household": 44.6,
+        "corporate": 46.3,
+        "employment": 46.8
+      },
+      {
+        "date": "2025-04-01",
+        "total": 42.7,
+        "household": 42.5,
+        "corporate": 42.2,
+        "employment": 44.8
+      },
+      {
+        "date": "2025-05-01",
+        "total": 44.8,
+        "household": 44.4,
+        "corporate": 45.6,
+        "employment": 45.7
+      },
+      {
+        "date": "2025-06-01",
+        "total": 45.9,
+        "household": 45.8,
+        "corporate": 45.5,
+        "employment": 47.0
+      },
+      {
+        "date": "2025-07-01",
+        "total": 47.3,
+        "household": 47.3,
+        "corporate": 46.0,
+        "employment": 50.2
+      },
+      {
+        "date": "2025-08-01",
+        "total": 47.5,
+        "household": 47.6,
+        "corporate": 47.2,
+        "employment": 47.8
+      },
+      {
+        "date": "2025-09-01",
+        "total": 48.5,
+        "household": 48.5,
+        "corporate": 49.7,
+        "employment": 46.1
+      },
+      {
+        "date": "2025-10-01",
+        "total": 53.1,
+        "household": 53.6,
+        "corporate": 52.4,
+        "employment": 50.7
+      },
+      {
+        "date": "2025-11-01",
+        "total": 50.3,
+        "household": 50.8,
+        "corporate": 49.2,
+        "employment": 48.7
+      }
+    ],
+    "latest": {
+      "date": "2025-11-01",
+      "total": 50.3,
+      "household": 50.8,
+      "corporate": 49.2,
+      "employment": 48.7
+    }
+  },
+  "last_updated": "2026-01-12T14:36:13.659501",
+  "source": "Cabinet Office (内閣府)",
+  "cached": false
+}

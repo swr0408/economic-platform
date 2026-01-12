@@ -18,12 +18,45 @@ try:
     from backend.routers.market import router as market_router
     from backend.routers.calendar import router as calendar_router
     from backend.routers.market_impact import router as market_impact_router
+    from backend.routers.japan.ois_curve import router as japan_ois_curve_router
+    from backend.routers.japan.boj_meeting_expectations import router as japan_boj_expectations_router
+    from backend.routers.japan.boj_outlook import router as japan_boj_outlook_router
+    from backend.routers.japan.quarterly_gdp import router as japan_quarterly_gdp_router
+    from backend.routers.japan.gdp_components import router as japan_gdp_components_router
+    from backend.routers.japan.gdp_deflator import router as japan_gdp_deflator_router
+    from backend.routers.japan.potential_growth import router as japan_potential_growth_router
+    from backend.routers.japan.boj_potential_growth import router as japan_boj_potential_growth_router
+    from backend.routers.japan.boj_lending import router as japan_boj_lending_router
+    from backend.routers.japan.capital_investment import router as japan_capital_investment_router
+    from backend.routers.japan.japan_iip import router as japan_iip_router
+    from backend.routers.japan.japan_capacity_utilization import router as japan_capacity_utilization_router
+    from backend.routers.japan.japan_iip_forecast import router as japan_iip_forecast_router
+    from backend.routers.japan.boj_tankan import router as japan_boj_tankan_router
+    from backend.routers.japan.bsi import router as japan_bsi_router
+    from backend.routers.japan.consumer_sentiment import router as japan_consumer_sentiment_router
+    from backend.routers.japan.boj_cai import router as japan_boj_cai_router
+    from backend.routers.japan.economy_watcher import router as japan_economy_watcher_router
+    from backend.routers.japan.jp_pmi import router as japan_pmi_router
+    from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
+    from backend.routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
+    from backend.routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
+    from backend.routers.eurozone.ecb_macro_projections import router as eurozone_ecb_macro_projections_router
+    from backend.routers.eurozone.ecb_gdp import router as eurozone_ecb_gdp_router
+    from backend.routers.eurozone.ecb_gdp_components import router as eurozone_ecb_gdp_components_router
+    from backend.routers.eurozone.ecb_bls import router as eurozone_ecb_bls_router
+    from backend.routers.eurozone.ecb_production import router as eurozone_ecb_production_router
+    from backend.routers.eurozone.eurostat_esi import router as eurozone_esi_router
+    from backend.routers.eurozone.euro_policy_uncertainty import router as eurozone_policy_uncertainty_router
+    from backend.routers.eurozone.ecb_retail_trade import router as eurozone_ecb_retail_trade_router
+    from backend.routers.eurozone.eu_pmi import router as eurozone_pmi_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
     from backend.scheduler import indicator_scheduler
     from backend.scheduler.fmp_release_scheduler import fmp_release_scheduler
     from backend.scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
+    from backend.scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
+    from backend.scheduler.boj_lending_scheduler import boj_lending_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -36,12 +69,45 @@ except ImportError:
     from routers.market import router as market_router
     from routers.calendar import router as calendar_router
     from routers.market_impact import router as market_impact_router
+    from routers.japan.ois_curve import router as japan_ois_curve_router
+    from routers.japan.boj_meeting_expectations import router as japan_boj_expectations_router
+    from routers.japan.boj_outlook import router as japan_boj_outlook_router
+    from routers.japan.quarterly_gdp import router as japan_quarterly_gdp_router
+    from routers.japan.gdp_components import router as japan_gdp_components_router
+    from routers.japan.gdp_deflator import router as japan_gdp_deflator_router
+    from routers.japan.potential_growth import router as japan_potential_growth_router
+    from routers.japan.boj_potential_growth import router as japan_boj_potential_growth_router
+    from routers.japan.boj_lending import router as japan_boj_lending_router
+    from routers.japan.capital_investment import router as japan_capital_investment_router
+    from routers.japan.japan_iip import router as japan_iip_router
+    from routers.japan.japan_capacity_utilization import router as japan_capacity_utilization_router
+    from routers.japan.japan_iip_forecast import router as japan_iip_forecast_router
+    from routers.japan.boj_tankan import router as japan_boj_tankan_router
+    from routers.japan.bsi import router as japan_bsi_router
+    from routers.japan.consumer_sentiment import router as japan_consumer_sentiment_router
+    from routers.japan.boj_cai import router as japan_boj_cai_router
+    from routers.japan.economy_watcher import router as japan_economy_watcher_router
+    from routers.japan.jp_pmi import router as japan_pmi_router
+    from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
+    from routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
+    from routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
+    from routers.eurozone.ecb_macro_projections import router as eurozone_ecb_macro_projections_router
+    from routers.eurozone.ecb_gdp import router as eurozone_ecb_gdp_router
+    from routers.eurozone.ecb_gdp_components import router as eurozone_ecb_gdp_components_router
+    from routers.eurozone.ecb_bls import router as eurozone_ecb_bls_router
+    from routers.eurozone.ecb_production import router as eurozone_ecb_production_router
+    from routers.eurozone.eurostat_esi import router as eurozone_esi_router
+    from routers.eurozone.euro_policy_uncertainty import router as eurozone_policy_uncertainty_router
+    from routers.eurozone.ecb_retail_trade import router as eurozone_ecb_retail_trade_router
+    from routers.eurozone.eu_pmi import router as eurozone_pmi_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
     from scheduler import indicator_scheduler
     from scheduler.fmp_release_scheduler import fmp_release_scheduler
     from scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
+    from scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
+    from scheduler.boj_lending_scheduler import boj_lending_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -81,6 +147,37 @@ app.include_router(dashboard_router)
 app.include_router(market_router)
 app.include_router(calendar_router)
 app.include_router(market_impact_router)
+app.include_router(japan_ois_curve_router)
+app.include_router(japan_boj_expectations_router)
+app.include_router(japan_boj_outlook_router)
+app.include_router(japan_quarterly_gdp_router)
+app.include_router(japan_gdp_components_router)
+app.include_router(japan_gdp_deflator_router)
+app.include_router(japan_potential_growth_router)
+app.include_router(japan_boj_potential_growth_router)
+app.include_router(japan_boj_lending_router)
+app.include_router(japan_capital_investment_router)
+app.include_router(japan_iip_router)
+app.include_router(japan_capacity_utilization_router)
+app.include_router(japan_iip_forecast_router)
+app.include_router(japan_boj_tankan_router)
+app.include_router(japan_bsi_router)
+app.include_router(japan_consumer_sentiment_router)
+app.include_router(japan_boj_cai_router)
+app.include_router(japan_economy_watcher_router)
+app.include_router(japan_pmi_router)
+app.include_router(eurozone_ecb_rates_router)
+app.include_router(eurozone_eurex_ois_router)
+app.include_router(eurozone_ecb_rate_cuts_screenshot_router)
+app.include_router(eurozone_ecb_macro_projections_router)
+app.include_router(eurozone_ecb_gdp_router)
+app.include_router(eurozone_ecb_gdp_components_router)
+app.include_router(eurozone_ecb_bls_router)
+app.include_router(eurozone_ecb_production_router)
+app.include_router(eurozone_esi_router)
+app.include_router(eurozone_policy_uncertainty_router)
+app.include_router(eurozone_ecb_retail_trade_router)
+app.include_router(eurozone_pmi_router)
 
 
 @app.get("/health")
@@ -157,6 +254,20 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Dashboard Cache Scheduler: {e}")
 
+    # 日本潜在成長率スケジューラーを開始
+    try:
+        japan_potential_growth_scheduler.start()
+        print("Japan Potential Growth Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Japan Potential Growth Scheduler: {e}")
+
+    # 日銀貸出動向スケジューラーを開始
+    try:
+        boj_lending_scheduler.start()
+        print("BOJ Lending Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start BOJ Lending Scheduler: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
@@ -194,6 +305,16 @@ async def shutdown_event():
         dashboard_cache_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Dashboard Cache Scheduler: {e}")
+
+    try:
+        japan_potential_growth_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Japan Potential Growth Scheduler: {e}")
+
+    try:
+        boj_lending_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down BOJ Lending Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

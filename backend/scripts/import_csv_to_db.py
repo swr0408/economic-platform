@@ -158,6 +158,80 @@ CSV_CONFIGS = [
         "date_format": "monthly",
         "value_type": "number",
     },
+    # Japan BOJ Policy Rate
+    {
+        "file": "日銀金利.csv",
+        "event_name": "BoJ Interest Rate Decision",
+        "provider": "CSV_IMPORT",
+        "country": "JP",
+        "currency": "JPY",
+        "impact": "High",
+        "date_format": "boj_date",  # 2010-01-26 形式
+        "value_type": "percent",
+    },
+    # Japan S&P Global PMI
+    {
+        "file": "JP S&P製造業PMI.csv",
+        "event_name": "S&P Global Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "JP",
+        "currency": "JPY",
+        "impact": "High",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    {
+        "file": "JP S&PサービスPMI.csv",
+        "event_name": "S&P Global Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "JP",
+        "currency": "JPY",
+        "impact": "High",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    {
+        "file": "JP S&P総合PMI.csv",
+        "event_name": "S&P Global Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "JP",
+        "currency": "JPY",
+        "impact": "High",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    # Eurozone HCOB PMI (formerly S&P Global PMI)
+    # FMPのユーロ圏データはcountry='EU'で保存されているため、CSVも同様に'EU'で保存
+    {
+        "file": "EU S&P製造業PMI.csv",
+        "event_name": "HCOB Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "EU",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # EUデータはUTC月初で保存
+        "value_type": "number",
+    },
+    {
+        "file": "EU S&PサービスPMI.csv",
+        "event_name": "HCOB Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "EU",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # EUデータはUTC月初で保存
+        "value_type": "number",
+    },
+    {
+        "file": "EU S&P総合PMI.csv",
+        "event_name": "HCOB Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "EU",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # EUデータはUTC月初で保存
+        "value_type": "number",
+    },
 ]
 
 
@@ -180,6 +254,19 @@ def parse_date_monthly(date_str: str, time_str: str) -> datetime:
     # JST で作成し UTC に変換
     dt_jst = datetime(year, month, 1, hour, minute, tzinfo=JST)
     return dt_jst.astimezone(UTC)
+
+
+def parse_date_monthly_utc(date_str: str, time_str: str) -> datetime:
+    """
+    月次データの日付をパース (2010/1 形式)
+    タイムゾーン変換なしでUTC月初12:00として保存（非日本データ用）
+    """
+    year, month = date_str.split("/")
+    year = int(year)
+    month = int(month)
+
+    # UTCの月初12:00として作成（タイムゾーン変換による月ずれを防ぐ）
+    return datetime(year, month, 1, 12, 0, tzinfo=UTC)
 
 
 def parse_date_daily(date_str: str, time_str: str) -> datetime:
@@ -206,6 +293,28 @@ def parse_date_daily(date_str: str, time_str: str) -> datetime:
     return dt_jst.astimezone(UTC)
 
 
+def parse_date_boj(date_str: str, time_str: str) -> datetime:
+    """
+    日銀金利データの日付をパース (2010-01-26 形式)
+    時間は JST として解釈し、UTC に変換
+    """
+    parts = date_str.split("-")
+    year = int(parts[0])
+    month = int(parts[1])
+    day = int(parts[2])
+
+    # 時間をパース（デフォルトは12:00 JST = 日銀発表時刻の中間値）
+    hour, minute = 12, 0
+    if time_str and ":" in time_str:
+        time_parts = time_str.split(":")
+        hour = int(time_parts[0])
+        minute = int(time_parts[1]) if len(time_parts) > 1 else 0
+
+    # JST で作成し UTC に変換
+    dt_jst = datetime(year, month, day, hour, minute, tzinfo=JST)
+    return dt_jst.astimezone(UTC)
+
+
 def parse_value(value_str, value_type: str) -> float:
     """値をパース（%やMを除去など）"""
     if pd.isna(value_str) or value_str == "" or value_str is None:
@@ -224,15 +333,15 @@ def parse_value(value_str, value_type: str) -> float:
         return None
 
 
-def get_existing_dates(conn, event_pattern: str) -> set:
+def get_existing_dates(conn, event_pattern: str, country: str = "US") -> set:
     """既存データの日付を取得"""
     with conn.cursor() as cur:
         cur.execute("""
             SELECT DISTINCT datetime_utc::date
             FROM economic_calendar_events
-            WHERE country = 'US'
+            WHERE country = %s
               AND event ILIKE %s
-        """, (f"%{event_pattern}%",))
+        """, (country, f"%{event_pattern}%",))
         return {row[0] for row in cur.fetchall()}
 
 
@@ -248,13 +357,16 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
     print(f"File: {file_path}")
     print(f"{'='*60}")
 
-    # CSV読み込み
-    df = pd.read_csv(file_path, encoding="utf-8")
+    # CSV読み込み（タブ区切りも自動認識）
+    try:
+        df = pd.read_csv(file_path, encoding="utf-8", sep=None, engine='python')
+    except Exception:
+        df = pd.read_csv(file_path, encoding="utf-8")
     print(f"Total rows in CSV: {len(df)}")
 
     # 既存データの日付を取得
     with get_db_connection() as conn:
-        existing_dates = get_existing_dates(conn, config["event_name"])
+        existing_dates = get_existing_dates(conn, config["event_name"], config["country"])
         print(f"Existing dates in DB: {len(existing_dates)}")
 
         inserted = 0
@@ -265,11 +377,19 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
             for _, row in df.iterrows():
                 try:
                     # 日付をパース
-                    date_str = str(row["公表日"])
+                    # 日銀金利CSVは "公表日時" カラム、他は "公表日" カラム
+                    if "公表日時" in row:
+                        date_str = str(row["公表日時"])
+                    else:
+                        date_str = str(row["公表日"])
                     time_str = str(row["時間"]) if "時間" in row else ""
 
                     if config["date_format"] == "monthly":
                         dt_utc = parse_date_monthly(date_str, time_str)
+                    elif config["date_format"] == "monthly_utc":
+                        dt_utc = parse_date_monthly_utc(date_str, time_str)
+                    elif config["date_format"] == "boj_date":
+                        dt_utc = parse_date_boj(date_str, time_str)
                     else:
                         dt_utc = parse_date_daily(date_str, time_str)
 
@@ -294,13 +414,13 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
                         continue
 
                     # 期間ラベルを生成
-                    if config["date_format"] == "monthly":
+                    if config["date_format"] in ("monthly", "monthly_utc"):
                         period_label = dt_utc.strftime("%b")  # Jan, Feb, etc.
                     else:
                         period_label = None
 
-                    # event_key を生成
-                    event_key = f"{config['event_name']}_{dt_utc.strftime('%Y%m%d')}"
+                    # event_key を生成（国コード含む）
+                    event_key = f"{config['country']}_{config['event_name']}_{dt_utc.strftime('%Y%m%d')}"
 
                     if dry_run:
                         print(f"  [DRY RUN] Would insert: {dt_utc.date()} - {actual}")

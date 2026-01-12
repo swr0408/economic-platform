@@ -186,9 +186,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <BankOutlined />,
         color: '#1890ff',
         indicators: [
-          { code: 'policy-rate', name: '政策金利' },
-          { code: 'boj-statement', name: '日銀声明' },
-          { code: 'tankan', name: '短観' },
+          { code: 'boj-policy-rate-chart', name: '政策金利' },
+          { code: 'ois-curve-chart', name: 'OISカーブ' },
+          { code: 'boj-meeting-expectations', name: '日銀政策金利期待' },
+          { code: 'boj-outlook', name: '経済・物価情勢の展望' },
         ],
       },
       {
@@ -197,9 +198,19 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
+          { code: 'quarterly-gdp', name: 'GDP成長率' },
+          { code: 'gdp-components', name: 'GDP構成要素（前期比）' },
+          { code: 'gdp-deflator', name: 'GDPデフレーター' },
+          { code: 'potential-growth', name: '潜在成長率（内閣府）' },
+          { code: 'boj-potential-growth', name: '潜在成長率（日銀）' },
+          { code: 'boj-lending', name: '貸出動向' },
+          { code: 'capital-investment', name: '設備投資' },
+          { code: 'iip', name: '鉱工業生産' },
+          { code: 'iip-forecast', name: '鉱工業生産予測指数' },
+          { code: 'capacity-utilization', name: '稼働率指数' },
+          { code: 'boj-tankan', name: '日銀短観' },
+          { code: 'bsi', name: '法人企業景気予測調査' },
           { code: 'pmi', name: 'PMI' },
-          { code: 'trade-balance', name: '貿易収支' },
         ],
       },
       {
@@ -208,8 +219,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <ShoppingOutlined />,
         color: '#13c2c2',
         indicators: [
-          { code: 'retail-sales', name: '小売売上高' },
-          { code: 'consumer-confidence', name: '消費者信頼感' },
+          { code: 'consumer-sentiment', name: '消費動向調査（消費者態度指数）' },
+          { code: 'boj-cai', name: '消費活動指数（旅行収支調整前）' },
+          { code: 'economy-watcher', name: '景気ウォッチャー調査' },
         ],
       },
       {
@@ -254,8 +266,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <BankOutlined />,
         color: '#1890ff',
         indicators: [
-          { code: 'policy-rate', name: '政策金利' },
-          { code: 'ecb-statement', name: 'ECB声明' },
+          { code: 'ecb-rates', name: 'ECB預金ファシリティ金利' },
+          { code: 'eurex-ois', name: '3ヶ月ユーロSTR先物カーブ' },
+          { code: 'ecb-rate-cuts', name: 'ECB利上げ・利下げ期待' },
+          { code: 'ecb-macro-projections', name: 'マクロ経済予測' },
         ],
       },
       {
@@ -264,7 +278,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
+          { code: 'ecb-gdp', name: 'GDP' },
+          { code: 'ecb-gdp-components', name: 'GDP構成要素' },
+          { code: 'ecb-bls', name: '銀行貸出調査' },
+          { code: 'ecb-production', name: '鉱工業生産' },
+          { code: 'euro-policy-uncertainty', name: '欧州経済政策不確実性指数' },
+          { code: 'eurostat-esi', name: 'ESI（ユーロ圏・主要国）' },
           { code: 'pmi', name: 'PMI' },
         ],
       },
@@ -274,7 +293,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <ShoppingOutlined />,
         color: '#13c2c2',
         indicators: [
-          { code: 'retail-sales', name: '小売売上高' },
+          { code: 'ecb-retail-trade', name: '小売売上高（ユーロ圏）' },
+          { code: 'eurostat-consumer-confidence', name: '消費者信頼感指数（ユーロ圏）' },
         ],
       },
       {

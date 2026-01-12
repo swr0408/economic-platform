@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "date": "2025-03-31",
+      "large_manufacturing_current": 12.0,
+      "large_manufacturing_outlook": 12.0,
+      "large_non_manufacturing_current": 35.0,
+      "large_non_manufacturing_outlook": 28.0
+    },
+    {
+      "date": "2025-06-30",
+      "large_manufacturing_current": 13.0,
+      "large_manufacturing_outlook": 12.0,
+      "large_non_manufacturing_current": 34.0,
+      "large_non_manufacturing_outlook": 27.0
+    },
+    {
+      "date": "2025-09-30",
+      "large_manufacturing_current": 14.0,
+      "large_manufacturing_outlook": 12.0,
+      "large_non_manufacturing_current": 34.0,
+      "large_non_manufacturing_outlook": 28.0
+    },
+    {
+      "date": "2025-12-31",
+      "large_manufacturing_current": 15.0,
+      "large_manufacturing_outlook": 15.0,
+      "large_non_manufacturing_current": 34.0,
+      "large_non_manufacturing_outlook": 28.0
+    }
+  ],
+  "last_updated": "2026-01-12T15:37:12.421583",
+  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
+  "cached": false,
+  "source": "boj"
+}

@@ -6,6 +6,31 @@
 
 import type { IndicatorFrequency } from '../constants/overlayConfig';
 
+/**
+ * 日付文字列をパースしてDateオブジェクトを返す
+ * 四半期形式（YYYY-Q1〜Q4）にも対応
+ */
+export function parseDate(dateStr: string): Date {
+  // 四半期形式の検出: YYYY-Q1, YYYY-Q2, YYYY-Q3, YYYY-Q4
+  const quarterMatch = dateStr.match(/^(\d{4})-Q([1-4])$/);
+  if (quarterMatch) {
+    const year = parseInt(quarterMatch[1], 10);
+    const quarter = parseInt(quarterMatch[2], 10);
+    // Q1 -> 1月, Q2 -> 4月, Q3 -> 7月, Q4 -> 10月
+    const month = (quarter - 1) * 3;
+    return new Date(year, month, 1);
+  }
+  // 通常の日付形式
+  return new Date(dateStr);
+}
+
+/**
+ * 日付をタイムスタンプに変換（ソート用）
+ */
+export function getDateTimestamp(dateStr: string): number {
+  return parseDate(dateStr).getTime();
+}
+
 export interface DataPoint {
   date: string;
   value: number | null;
@@ -114,7 +139,7 @@ export function mergeOverlayData(
 
   // 基準データをソート
   const sortedBase = [...baseData].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
   );
 
   const baseDates = sortedBase.map(d => d.date);
@@ -125,7 +150,7 @@ export function mergeOverlayData(
   for (const overlay of overlays) {
     // 比較データをソート
     const sortedOverlay = [...overlay.data].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
     );
 
     overlayValues[overlay.key] = asOfJoin(baseDates, sortedOverlay);
@@ -263,7 +288,7 @@ export function mergeWithFrequencyAwareness<T extends { date: string }>(
   if (finestFreq === mainFrequency) {
     // メイン指標が最も細かい場合は従来通り
     const sortedMain = [...mainData].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
     );
     baseDates = sortedMain.map(d => d.date);
     baseDataMap = new Map(sortedMain.map(d => [d.date, (d as unknown as DataPoint).value ?? null]));
@@ -273,19 +298,19 @@ export function mergeWithFrequencyAwareness<T extends { date: string }>(
     if (!finestOverlay || finestOverlay.data.length === 0) {
       // フォールバック: メインデータを使用
       const sortedMain = [...mainData].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
       );
       baseDates = sortedMain.map(d => d.date);
       baseDataMap = new Map(sortedMain.map(d => [d.date, (d as unknown as DataPoint).value ?? null]));
     } else {
       // 最も細かいオーバーレイを基準にする
       const sortedFinest = [...finestOverlay.data].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
       );
 
       // メインデータの期間に絞る
       const mainSorted = [...mainData].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
       );
       const mainStartDate = mainSorted.length > 0 ? mainSorted[0].date : '';
       const mainEndDate = mainSorted.length > 0 ? mainSorted[mainSorted.length - 1].date : '';
@@ -304,7 +329,7 @@ export function mergeWithFrequencyAwareness<T extends { date: string }>(
 
   // メインデータをAs-of Joinでマップ
   const sortedMain = [...mainData].sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
   );
   // mainDataをDataPoint[]として扱う（valueプロパティがある場合のみAs-of Join可能）
   const mainAsDataPoints = sortedMain.map(d => ({
@@ -330,7 +355,7 @@ export function mergeWithFrequencyAwareness<T extends { date: string }>(
     } else {
       // オーバーレイデータをソート
       const sortedOverlay = [...overlay.data].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
       );
 
       // 両方が月次データの場合は厳密マッチ（月単位）を使用

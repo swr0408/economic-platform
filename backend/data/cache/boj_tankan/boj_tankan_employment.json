@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "date": "2025-03-31",
+      "all_industries_current": -28.0,
+      "all_industries_forecast": -30.0,
+      "large_manufacturing_current": -17.0,
+      "large_manufacturing_forecast": -21.0
+    },
+    {
+      "date": "2025-06-30",
+      "all_industries_current": -28.0,
+      "all_industries_forecast": -30.0,
+      "large_manufacturing_current": -18.0,
+      "large_manufacturing_forecast": -22.0
+    },
+    {
+      "date": "2025-09-30",
+      "all_industries_current": -28.0,
+      "all_industries_forecast": -30.0,
+      "large_manufacturing_current": -19.0,
+      "large_manufacturing_forecast": -22.0
+    },
+    {
+      "date": "2025-12-31",
+      "all_industries_current": -28.0,
+      "all_industries_forecast": -30.0,
+      "large_manufacturing_current": -19.0,
+      "large_manufacturing_forecast": -21.0
+    }
+  ],
+  "data_type": "employment",
+  "name": "雇用人員判断指数（DI）",
+  "unit": "%ポイント",
+  "last_updated": "2026-01-12T15:37:24.756027",
+  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
+  "cached": false,
+  "source": "boj"
+}

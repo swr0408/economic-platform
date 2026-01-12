@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "date": "2025-03-31",
+      "all_industries_current": 30.0,
+      "all_industries_forecast": 32.0,
+      "large_manufacturing_current": 28.0,
+      "large_manufacturing_forecast": 30.0
+    },
+    {
+      "date": "2025-06-30",
+      "all_industries_current": 29.0,
+      "all_industries_forecast": 28.0,
+      "large_manufacturing_current": 25.0,
+      "large_manufacturing_forecast": 27.0
+    },
+    {
+      "date": "2025-09-30",
+      "all_industries_current": 26.0,
+      "all_industries_forecast": 29.0,
+      "large_manufacturing_current": 24.0,
+      "large_manufacturing_forecast": 25.0
+    },
+    {
+      "date": "2025-12-31",
+      "all_industries_current": 28.0,
+      "all_industries_forecast": 29.0,
+      "large_manufacturing_current": 25.0,
+      "large_manufacturing_forecast": 26.0
+    }
+  ],
+  "data_type": "selling_price",
+  "name": "販売価格判断指数（DI）",
+  "unit": "%ポイント",
+  "last_updated": "2026-01-12T06:38:53.989256",
+  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
+  "cached": false,
+  "source": "boj"
+}

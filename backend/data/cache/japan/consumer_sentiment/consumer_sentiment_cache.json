@@ -1,0 +1,2807 @@
+{
+  "data": [
+    {
+      "date": "1982-06-01",
+      "cci": 43.6,
+      "livelihood": 43.7,
+      "income": 48.6,
+      "employment": 37.7,
+      "durable_goods": 44.4
+    },
+    {
+      "date": "1982-09-01",
+      "cci": 41.9,
+      "livelihood": 43.6,
+      "income": 47.6,
+      "employment": 32.1,
+      "durable_goods": 44.1
+    },
+    {
+      "date": "1982-12-01",
+      "cci": 41.9,
+      "livelihood": 42.9,
+      "income": 46.6,
+      "employment": 33.8,
+      "durable_goods": 44.4
+    },
+    {
+      "date": "1983-03-01",
+      "cci": 43.3,
+      "livelihood": 43.8,
+      "income": 47.6,
+      "employment": 35.8,
+      "durable_goods": 45.9
+    },
+    {
+      "date": "1983-06-01",
+      "cci": 44.9,
+      "livelihood": 45.2,
+      "income": 48.2,
+      "employment": 39.7,
+      "durable_goods": 46.5
+    },
+    {
+      "date": "1983-09-01",
+      "cci": 45.4,
+      "livelihood": 45.5,
+      "income": 48.7,
+      "employment": 40.3,
+      "durable_goods": 47.2
+    },
+    {
+      "date": "1983-12-01",
+      "cci": 46.6,
+      "livelihood": 46.6,
+      "income": 49.2,
+      "employment": 42.9,
+      "durable_goods": 47.5
+    },
+    {
+      "date": "1984-03-01",
+      "cci": 47.0,
+      "livelihood": 46.9,
+      "income": 49.7,
+      "employment": 43.9,
+      "durable_goods": 47.6
+    },
+    {
+      "date": "1984-06-01",
+      "cci": 47.1,
+      "livelihood": 47.0,
+      "income": 49.6,
+      "employment": 43.8,
+      "durable_goods": 47.8
+    },
+    {
+      "date": "1984-09-01",
+      "cci": 47.6,
+      "livelihood": 47.3,
+      "income": 49.7,
+      "employment": 45.4,
+      "durable_goods": 48.0
+    },
+    {
+      "date": "1984-12-01",
+      "cci": 48.2,
+      "livelihood": 47.5,
+      "income": 50.1,
+      "employment": 46.2,
+      "durable_goods": 48.9
+    },
+    {
+      "date": "1985-03-01",
+      "cci": 48.5,
+      "livelihood": 48.2,
+      "income": 50.2,
+      "employment": 46.5,
+      "durable_goods": 48.9
+    },
+    {
+      "date": "1985-06-01",
+      "cci": 47.8,
+      "livelihood": 47.6,
+      "income": 49.6,
+      "employment": 45.2,
+      "durable_goods": 48.9
+    },
+    {
+      "date": "1985-09-01",
+      "cci": 48.1,
+      "livelihood": 47.8,
+      "income": 49.8,
+      "employment": 45.8,
+      "durable_goods": 48.9
+    },
+    {
+      "date": "1985-12-01",
+      "cci": 47.6,
+      "livelihood": 47.8,
+      "income": 49.8,
+      "employment": 43.9,
+      "durable_goods": 48.8
+    },
+    {
+      "date": "1986-03-01",
+      "cci": 46.8,
+      "livelihood": 46.9,
+      "income": 48.8,
+      "employment": 42.0,
+      "durable_goods": 49.4
+    },
+    {
+      "date": "1986-06-01",
+      "cci": 45.6,
+      "livelihood": 45.8,
+      "income": 48.4,
+      "employment": 39.5,
+      "durable_goods": 48.7
+    },
+    {
+      "date": "1986-09-01",
+      "cci": 43.7,
+      "livelihood": 44.6,
+      "income": 47.2,
+      "employment": 34.9,
+      "durable_goods": 48.1
+    },
+    {
+      "date": "1986-12-01",
+      "cci": 42.3,
+      "livelihood": 43.2,
+      "income": 46.2,
+      "employment": 32.8,
+      "durable_goods": 47.0
+    },
+    {
+      "date": "1987-03-01",
+      "cci": 41.0,
+      "livelihood": 42.6,
+      "income": 45.8,
+      "employment": 29.4,
+      "durable_goods": 46.2
+    },
+    {
+      "date": "1987-06-01",
+      "cci": 44.3,
+      "livelihood": 45.5,
+      "income": 47.8,
+      "employment": 35.2,
+      "durable_goods": 48.8
+    },
+    {
+      "date": "1987-09-01",
+      "cci": 46.9,
+      "livelihood": 47.2,
+      "income": 49.5,
+      "employment": 41.2,
+      "durable_goods": 49.7
+    },
+    {
+      "date": "1987-12-01",
+      "cci": 48.4,
+      "livelihood": 48.2,
+      "income": 49.7,
+      "employment": 45.3,
+      "durable_goods": 50.4
+    },
+    {
+      "date": "1988-03-01",
+      "cci": 49.9,
+      "livelihood": 48.9,
+      "income": 50.3,
+      "employment": 48.4,
+      "durable_goods": 52.1
+    },
+    {
+      "date": "1988-06-01",
+      "cci": 49.8,
+      "livelihood": 48.5,
+      "income": 50.3,
+      "employment": 49.7,
+      "durable_goods": 50.5
+    },
+    {
+      "date": "1988-09-01",
+      "cci": 49.9,
+      "livelihood": 48.2,
+      "income": 50.3,
+      "employment": 50.8,
+      "durable_goods": 50.1
+    },
+    {
+      "date": "1988-12-01",
+      "cci": 50.8,
+      "livelihood": 49.2,
+      "income": 51.2,
+      "employment": 52.0,
+      "durable_goods": 50.7
+    },
+    {
+      "date": "1989-03-01",
+      "cci": 48.7,
+      "livelihood": 45.8,
+      "income": 50.9,
+      "employment": 51.8,
+      "durable_goods": 46.3
+    },
+    {
+      "date": "1989-06-01",
+      "cci": 47.6,
+      "livelihood": 44.6,
+      "income": 49.9,
+      "employment": 50.6,
+      "durable_goods": 45.3
+    },
+    {
+      "date": "1989-09-01",
+      "cci": 49.2,
+      "livelihood": 46.7,
+      "income": 50.5,
+      "employment": 52.3,
+      "durable_goods": 47.1
+    },
+    {
+      "date": "1989-12-01",
+      "cci": 50.7,
+      "livelihood": 48.4,
+      "income": 51.0,
+      "employment": 54.4,
+      "durable_goods": 49.0
+    },
+    {
+      "date": "1990-03-01",
+      "cci": 50.0,
+      "livelihood": 48.2,
+      "income": 51.6,
+      "employment": 52.6,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "1990-06-01",
+      "cci": 49.9,
+      "livelihood": 48.0,
+      "income": 51.3,
+      "employment": 52.6,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "1990-09-01",
+      "cci": 48.6,
+      "livelihood": 46.5,
+      "income": 51.4,
+      "employment": 51.2,
+      "durable_goods": 45.3
+    },
+    {
+      "date": "1990-12-01",
+      "cci": 49.0,
+      "livelihood": 47.3,
+      "income": 51.6,
+      "employment": 50.5,
+      "durable_goods": 46.5
+    },
+    {
+      "date": "1991-03-01",
+      "cci": 49.9,
+      "livelihood": 48.8,
+      "income": 51.5,
+      "employment": 51.1,
+      "durable_goods": 48.2
+    },
+    {
+      "date": "1991-06-01",
+      "cci": 48.7,
+      "livelihood": 48.0,
+      "income": 51.1,
+      "employment": 48.1,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "1991-09-01",
+      "cci": 48.1,
+      "livelihood": 47.5,
+      "income": 50.2,
+      "employment": 46.3,
+      "durable_goods": 48.2
+    },
+    {
+      "date": "1991-12-01",
+      "cci": 46.1,
+      "livelihood": 46.4,
+      "income": 49.7,
+      "employment": 42.2,
+      "durable_goods": 45.9
+    },
+    {
+      "date": "1992-03-01",
+      "cci": 45.2,
+      "livelihood": 45.5,
+      "income": 49.1,
+      "employment": 39.8,
+      "durable_goods": 46.4
+    },
+    {
+      "date": "1992-06-01",
+      "cci": 43.8,
+      "livelihood": 45.3,
+      "income": 48.3,
+      "employment": 35.9,
+      "durable_goods": 45.5
+    },
+    {
+      "date": "1992-09-01",
+      "cci": 41.4,
+      "livelihood": 44.5,
+      "income": 46.8,
+      "employment": 30.1,
+      "durable_goods": 44.3
+    },
+    {
+      "date": "1992-12-01",
+      "cci": 40.1,
+      "livelihood": 43.1,
+      "income": 45.4,
+      "employment": 28.0,
+      "durable_goods": 43.8
+    },
+    {
+      "date": "1993-03-01",
+      "cci": 39.0,
+      "livelihood": 43.0,
+      "income": 44.9,
+      "employment": 24.3,
+      "durable_goods": 43.6
+    },
+    {
+      "date": "1993-06-01",
+      "cci": 42.3,
+      "livelihood": 44.7,
+      "income": 46.3,
+      "employment": 32.0,
+      "durable_goods": 46.1
+    },
+    {
+      "date": "1993-09-01",
+      "cci": 39.5,
+      "livelihood": 42.5,
+      "income": 44.6,
+      "employment": 26.5,
+      "durable_goods": 44.5
+    },
+    {
+      "date": "1993-12-01",
+      "cci": 36.4,
+      "livelihood": 39.8,
+      "income": 42.5,
+      "employment": 20.4,
+      "durable_goods": 42.8
+    },
+    {
+      "date": "1994-03-01",
+      "cci": 41.0,
+      "livelihood": 42.3,
+      "income": 44.5,
+      "employment": 31.5,
+      "durable_goods": 45.6
+    },
+    {
+      "date": "1994-06-01",
+      "cci": 42.8,
+      "livelihood": 44.5,
+      "income": 45.8,
+      "employment": 33.1,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "1994-09-01",
+      "cci": 45.3,
+      "livelihood": 46.3,
+      "income": 47.3,
+      "employment": 37.5,
+      "durable_goods": 50.0
+    },
+    {
+      "date": "1994-12-01",
+      "cci": 46.9,
+      "livelihood": 48.1,
+      "income": 48.1,
+      "employment": 39.5,
+      "durable_goods": 51.9
+    },
+    {
+      "date": "1995-03-01",
+      "cci": 44.8,
+      "livelihood": 46.5,
+      "income": 47.0,
+      "employment": 35.0,
+      "durable_goods": 50.5
+    },
+    {
+      "date": "1995-06-01",
+      "cci": 41.9,
+      "livelihood": 44.5,
+      "income": 45.6,
+      "employment": 29.4,
+      "durable_goods": 48.1
+    },
+    {
+      "date": "1995-09-01",
+      "cci": 41.6,
+      "livelihood": 44.2,
+      "income": 45.1,
+      "employment": 29.9,
+      "durable_goods": 47.2
+    },
+    {
+      "date": "1995-12-01",
+      "cci": 44.0,
+      "livelihood": 45.9,
+      "income": 45.9,
+      "employment": 34.2,
+      "durable_goods": 50.0
+    },
+    {
+      "date": "1996-03-01",
+      "cci": 45.1,
+      "livelihood": 46.2,
+      "income": 46.5,
+      "employment": 37.5,
+      "durable_goods": 50.0
+    },
+    {
+      "date": "1996-06-01",
+      "cci": 46.1,
+      "livelihood": 46.0,
+      "income": 46.6,
+      "employment": 42.1,
+      "durable_goods": 49.5
+    },
+    {
+      "date": "1996-09-01",
+      "cci": 45.2,
+      "livelihood": 45.1,
+      "income": 46.4,
+      "employment": 42.5,
+      "durable_goods": 46.8
+    },
+    {
+      "date": "1996-12-01",
+      "cci": 43.9,
+      "livelihood": 45.2,
+      "income": 46.4,
+      "employment": 40.2,
+      "durable_goods": 43.7
+    },
+    {
+      "date": "1997-03-01",
+      "cci": 38.4,
+      "livelihood": 39.6,
+      "income": 44.4,
+      "employment": 37.5,
+      "durable_goods": 32.0
+    },
+    {
+      "date": "1997-06-01",
+      "cci": 41.9,
+      "livelihood": 42.1,
+      "income": 44.7,
+      "employment": 38.2,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "1997-09-01",
+      "cci": 42.4,
+      "livelihood": 42.4,
+      "income": 45.0,
+      "employment": 37.9,
+      "durable_goods": 44.3
+    },
+    {
+      "date": "1997-12-01",
+      "cci": 36.8,
+      "livelihood": 39.5,
+      "income": 41.9,
+      "employment": 24.1,
+      "durable_goods": 41.6
+    },
+    {
+      "date": "1998-03-01",
+      "cci": 37.3,
+      "livelihood": 39.9,
+      "income": 41.9,
+      "employment": 25.3,
+      "durable_goods": 42.0
+    },
+    {
+      "date": "1998-06-01",
+      "cci": 35.5,
+      "livelihood": 39.1,
+      "income": 40.6,
+      "employment": 21.8,
+      "durable_goods": 40.5
+    },
+    {
+      "date": "1998-09-01",
+      "cci": 34.5,
+      "livelihood": 38.5,
+      "income": 39.4,
+      "employment": 20.8,
+      "durable_goods": 39.1
+    },
+    {
+      "date": "1998-12-01",
+      "cci": 36.6,
+      "livelihood": 39.4,
+      "income": 39.1,
+      "employment": 24.6,
+      "durable_goods": 43.2
+    },
+    {
+      "date": "1999-03-01",
+      "cci": 39.0,
+      "livelihood": 41.6,
+      "income": 40.3,
+      "employment": 28.4,
+      "durable_goods": 45.6
+    },
+    {
+      "date": "1999-06-01",
+      "cci": 38.7,
+      "livelihood": 41.6,
+      "income": 40.5,
+      "employment": 27.4,
+      "durable_goods": 45.1
+    },
+    {
+      "date": "1999-09-01",
+      "cci": 40.1,
+      "livelihood": 42.4,
+      "income": 41.4,
+      "employment": 31.0,
+      "durable_goods": 45.6
+    },
+    {
+      "date": "1999-12-01",
+      "cci": 41.3,
+      "livelihood": 43.3,
+      "income": 41.9,
+      "employment": 33.1,
+      "durable_goods": 46.9
+    },
+    {
+      "date": "2000-03-01",
+      "cci": 42.1,
+      "livelihood": 43.4,
+      "income": 42.3,
+      "employment": 35.1,
+      "durable_goods": 47.5
+    },
+    {
+      "date": "2000-06-01",
+      "cci": 42.9,
+      "livelihood": 43.4,
+      "income": 42.0,
+      "employment": 38.4,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "2000-09-01",
+      "cci": 43.6,
+      "livelihood": 43.8,
+      "income": 42.5,
+      "employment": 40.2,
+      "durable_goods": 47.8
+    },
+    {
+      "date": "2000-12-01",
+      "cci": 43.2,
+      "livelihood": 43.7,
+      "income": 42.2,
+      "employment": 38.2,
+      "durable_goods": 48.6
+    },
+    {
+      "date": "2001-03-01",
+      "cci": 38.8,
+      "livelihood": 41.1,
+      "income": 40.5,
+      "employment": 30.5,
+      "durable_goods": 43.0
+    },
+    {
+      "date": "2001-06-01",
+      "cci": 39.1,
+      "livelihood": 41.2,
+      "income": 40.6,
+      "employment": 30.3,
+      "durable_goods": 44.2
+    },
+    {
+      "date": "2001-09-01",
+      "cci": 34.1,
+      "livelihood": 37.6,
+      "income": 37.3,
+      "employment": 19.9,
+      "durable_goods": 41.6
+    },
+    {
+      "date": "2001-12-01",
+      "cci": 34.1,
+      "livelihood": 37.7,
+      "income": 36.4,
+      "employment": 20.6,
+      "durable_goods": 41.6
+    },
+    {
+      "date": "2002-03-01",
+      "cci": 36.3,
+      "livelihood": 38.8,
+      "income": 37.3,
+      "employment": 25.7,
+      "durable_goods": 43.5
+    },
+    {
+      "date": "2002-06-01",
+      "cci": 38.1,
+      "livelihood": 39.8,
+      "income": 38.2,
+      "employment": 30.0,
+      "durable_goods": 44.2
+    },
+    {
+      "date": "2002-09-01",
+      "cci": 37.2,
+      "livelihood": 39.1,
+      "income": 37.4,
+      "employment": 28.1,
+      "durable_goods": 44.0
+    },
+    {
+      "date": "2002-12-01",
+      "cci": 36.4,
+      "livelihood": 38.4,
+      "income": 36.5,
+      "employment": 27.2,
+      "durable_goods": 43.5
+    },
+    {
+      "date": "2003-03-01",
+      "cci": 34.9,
+      "livelihood": 36.9,
+      "income": 35.8,
+      "employment": 25.1,
+      "durable_goods": 41.6
+    },
+    {
+      "date": "2003-06-01",
+      "cci": 36.0,
+      "livelihood": 37.7,
+      "income": 35.8,
+      "employment": 27.8,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "2003-09-01",
+      "cci": 39.6,
+      "livelihood": 40.2,
+      "income": 38.0,
+      "employment": 35.4,
+      "durable_goods": 44.6
+    },
+    {
+      "date": "2003-12-01",
+      "cci": 40.3,
+      "livelihood": 40.2,
+      "income": 37.6,
+      "employment": 37.8,
+      "durable_goods": 45.5
+    },
+    {
+      "date": "2004-03-01",
+      "cci": 42.8,
+      "livelihood": 42.6,
+      "income": 40.1,
+      "employment": 41.4,
+      "durable_goods": 47.1
+    },
+    {
+      "date": "2004-04-01",
+      "cci": 45.1,
+      "livelihood": 44.2,
+      "income": 42.0,
+      "employment": 45.9,
+      "durable_goods": 48.3
+    },
+    {
+      "date": "2004-05-01",
+      "cci": 47.3,
+      "livelihood": 46.1,
+      "income": 45.1,
+      "employment": 48.3,
+      "durable_goods": 49.5
+    },
+    {
+      "date": "2004-06-01",
+      "cci": 44.3,
+      "livelihood": 43.0,
+      "income": 41.6,
+      "employment": 44.6,
+      "durable_goods": 48.0
+    },
+    {
+      "date": "2004-07-01",
+      "cci": 48.7,
+      "livelihood": 47.0,
+      "income": 46.1,
+      "employment": 50.5,
+      "durable_goods": 51.2
+    },
+    {
+      "date": "2004-08-01",
+      "cci": 49.1,
+      "livelihood": 47.6,
+      "income": 46.5,
+      "employment": 50.7,
+      "durable_goods": 51.7
+    },
+    {
+      "date": "2004-09-01",
+      "cci": 46.2,
+      "livelihood": 44.8,
+      "income": 42.9,
+      "employment": 47.3,
+      "durable_goods": 49.8
+    },
+    {
+      "date": "2004-10-01",
+      "cci": 48.3,
+      "livelihood": 46.9,
+      "income": 46.1,
+      "employment": 49.3,
+      "durable_goods": 50.8
+    },
+    {
+      "date": "2004-11-01",
+      "cci": 48.3,
+      "livelihood": 46.8,
+      "income": 46.3,
+      "employment": 49.5,
+      "durable_goods": 50.5
+    },
+    {
+      "date": "2004-12-01",
+      "cci": 45.0,
+      "livelihood": 43.8,
+      "income": 42.5,
+      "employment": 45.5,
+      "durable_goods": 48.2
+    },
+    {
+      "date": "2005-01-01",
+      "cci": 47.7,
+      "livelihood": 46.6,
+      "income": 46.1,
+      "employment": 48.4,
+      "durable_goods": 49.7
+    },
+    {
+      "date": "2005-02-01",
+      "cci": 47.7,
+      "livelihood": 46.8,
+      "income": 46.0,
+      "employment": 48.2,
+      "durable_goods": 49.8
+    },
+    {
+      "date": "2005-03-01",
+      "cci": 44.7,
+      "livelihood": 43.6,
+      "income": 42.1,
+      "employment": 45.4,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "2005-04-01",
+      "cci": 47.1,
+      "livelihood": 45.8,
+      "income": 45.5,
+      "employment": 48.1,
+      "durable_goods": 48.8
+    },
+    {
+      "date": "2005-05-01",
+      "cci": 47.3,
+      "livelihood": 46.0,
+      "income": 45.7,
+      "employment": 48.4,
+      "durable_goods": 49.1
+    },
+    {
+      "date": "2005-06-01",
+      "cci": 46.1,
+      "livelihood": 44.7,
+      "income": 43.1,
+      "employment": 47.3,
+      "durable_goods": 49.2
+    },
+    {
+      "date": "2005-07-01",
+      "cci": 48.2,
+      "livelihood": 46.8,
+      "income": 45.8,
+      "employment": 50.0,
+      "durable_goods": 50.2
+    },
+    {
+      "date": "2005-08-01",
+      "cci": 48.4,
+      "livelihood": 47.0,
+      "income": 45.8,
+      "employment": 50.4,
+      "durable_goods": 50.3
+    },
+    {
+      "date": "2005-09-01",
+      "cci": 45.6,
+      "livelihood": 43.7,
+      "income": 42.6,
+      "employment": 47.5,
+      "durable_goods": 48.4
+    },
+    {
+      "date": "2005-10-01",
+      "cci": 48.1,
+      "livelihood": 46.5,
+      "income": 45.8,
+      "employment": 50.7,
+      "durable_goods": 49.5
+    },
+    {
+      "date": "2005-11-01",
+      "cci": 48.6,
+      "livelihood": 46.7,
+      "income": 45.8,
+      "employment": 51.2,
+      "durable_goods": 50.5
+    },
+    {
+      "date": "2005-12-01",
+      "cci": 47.4,
+      "livelihood": 45.0,
+      "income": 43.5,
+      "employment": 50.8,
+      "durable_goods": 50.1
+    },
+    {
+      "date": "2006-01-01",
+      "cci": 50.0,
+      "livelihood": 47.3,
+      "income": 46.5,
+      "employment": 54.4,
+      "durable_goods": 51.8
+    },
+    {
+      "date": "2006-02-01",
+      "cci": 50.1,
+      "livelihood": 47.2,
+      "income": 46.6,
+      "employment": 54.8,
+      "durable_goods": 51.7
+    },
+    {
+      "date": "2006-03-01",
+      "cci": 47.7,
+      "livelihood": 45.1,
+      "income": 43.6,
+      "employment": 52.0,
+      "durable_goods": 50.1
+    },
+    {
+      "date": "2006-04-01",
+      "cci": 49.5,
+      "livelihood": 46.7,
+      "income": 46.1,
+      "employment": 54.4,
+      "durable_goods": 50.6
+    },
+    {
+      "date": "2006-05-01",
+      "cci": 48.9,
+      "livelihood": 45.8,
+      "income": 45.6,
+      "employment": 53.7,
+      "durable_goods": 50.4
+    },
+    {
+      "date": "2006-06-01",
+      "cci": 46.6,
+      "livelihood": 44.2,
+      "income": 43.0,
+      "employment": 50.7,
+      "durable_goods": 48.4
+    },
+    {
+      "date": "2006-07-01",
+      "cci": 48.4,
+      "livelihood": 45.7,
+      "income": 45.3,
+      "employment": 52.7,
+      "durable_goods": 49.8
+    },
+    {
+      "date": "2006-08-01",
+      "cci": 47.5,
+      "livelihood": 45.0,
+      "income": 44.7,
+      "employment": 51.9,
+      "durable_goods": 48.3
+    },
+    {
+      "date": "2006-09-01",
+      "cci": 46.0,
+      "livelihood": 43.0,
+      "income": 42.3,
+      "employment": 50.5,
+      "durable_goods": 48.3
+    },
+    {
+      "date": "2006-10-01",
+      "cci": 48.3,
+      "livelihood": 45.6,
+      "income": 44.7,
+      "employment": 52.6,
+      "durable_goods": 50.1
+    },
+    {
+      "date": "2006-11-01",
+      "cci": 49.1,
+      "livelihood": 46.4,
+      "income": 45.3,
+      "employment": 53.4,
+      "durable_goods": 51.2
+    },
+    {
+      "date": "2006-12-01",
+      "cci": 47.0,
+      "livelihood": 44.3,
+      "income": 42.8,
+      "employment": 50.9,
+      "durable_goods": 49.8
+    },
+    {
+      "date": "2007-01-01",
+      "cci": 49.0,
+      "livelihood": 46.3,
+      "income": 45.3,
+      "employment": 53.4,
+      "durable_goods": 50.9
+    },
+    {
+      "date": "2007-02-01",
+      "cci": 49.0,
+      "livelihood": 46.4,
+      "income": 45.4,
+      "employment": 53.3,
+      "durable_goods": 50.7
+    },
+    {
+      "date": "2007-03-01",
+      "cci": 46.7,
+      "livelihood": 44.1,
+      "income": 43.0,
+      "employment": 51.2,
+      "durable_goods": 48.4
+    },
+    {
+      "date": "2007-04-01",
+      "cci": 47.0,
+      "livelihood": 44.6,
+      "income": 43.6,
+      "employment": 51.0,
+      "durable_goods": 48.8
+    },
+    {
+      "date": "2007-05-01",
+      "cci": 46.3,
+      "livelihood": 44.3,
+      "income": 43.3,
+      "employment": 49.8,
+      "durable_goods": 47.7
+    },
+    {
+      "date": "2007-06-01",
+      "cci": 44.3,
+      "livelihood": 41.8,
+      "income": 41.9,
+      "employment": 47.8,
+      "durable_goods": 45.6
+    },
+    {
+      "date": "2007-07-01",
+      "cci": 44.1,
+      "livelihood": 42.1,
+      "income": 41.8,
+      "employment": 46.9,
+      "durable_goods": 45.6
+    },
+    {
+      "date": "2007-08-01",
+      "cci": 43.9,
+      "livelihood": 41.9,
+      "income": 42.2,
+      "employment": 46.3,
+      "durable_goods": 45.0
+    },
+    {
+      "date": "2007-09-01",
+      "cci": 43.5,
+      "livelihood": 41.4,
+      "income": 41.7,
+      "employment": 45.4,
+      "durable_goods": 45.5
+    },
+    {
+      "date": "2007-10-01",
+      "cci": 42.7,
+      "livelihood": 40.9,
+      "income": 41.9,
+      "employment": 44.8,
+      "durable_goods": 43.1
+    },
+    {
+      "date": "2007-11-01",
+      "cci": 40.3,
+      "livelihood": 37.3,
+      "income": 40.9,
+      "employment": 43.5,
+      "durable_goods": 39.5
+    },
+    {
+      "date": "2007-12-01",
+      "cci": 39.2,
+      "livelihood": 35.6,
+      "income": 40.4,
+      "employment": 43.0,
+      "durable_goods": 37.6
+    },
+    {
+      "date": "2008-01-01",
+      "cci": 38.5,
+      "livelihood": 35.7,
+      "income": 40.1,
+      "employment": 41.0,
+      "durable_goods": 37.2
+    },
+    {
+      "date": "2008-02-01",
+      "cci": 37.5,
+      "livelihood": 34.5,
+      "income": 39.5,
+      "employment": 39.7,
+      "durable_goods": 36.2
+    },
+    {
+      "date": "2008-03-01",
+      "cci": 36.9,
+      "livelihood": 34.8,
+      "income": 38.9,
+      "employment": 38.2,
+      "durable_goods": 35.8
+    },
+    {
+      "date": "2008-04-01",
+      "cci": 34.8,
+      "livelihood": 32.7,
+      "income": 37.5,
+      "employment": 35.5,
+      "durable_goods": 33.5
+    },
+    {
+      "date": "2008-05-01",
+      "cci": 33.0,
+      "livelihood": 30.9,
+      "income": 36.1,
+      "employment": 33.4,
+      "durable_goods": 31.4
+    },
+    {
+      "date": "2008-06-01",
+      "cci": 31.8,
+      "livelihood": 29.8,
+      "income": 36.2,
+      "employment": 31.1,
+      "durable_goods": 29.9
+    },
+    {
+      "date": "2008-07-01",
+      "cci": 30.7,
+      "livelihood": 29.0,
+      "income": 36.1,
+      "employment": 29.3,
+      "durable_goods": 28.3
+    },
+    {
+      "date": "2008-08-01",
+      "cci": 29.6,
+      "livelihood": 28.4,
+      "income": 34.7,
+      "employment": 27.0,
+      "durable_goods": 28.2
+    },
+    {
+      "date": "2008-09-01",
+      "cci": 30.7,
+      "livelihood": 29.7,
+      "income": 35.0,
+      "employment": 27.7,
+      "durable_goods": 30.4
+    },
+    {
+      "date": "2008-10-01",
+      "cci": 29.2,
+      "livelihood": 29.4,
+      "income": 34.0,
+      "employment": 23.9,
+      "durable_goods": 29.4
+    },
+    {
+      "date": "2008-11-01",
+      "cci": 28.8,
+      "livelihood": 29.7,
+      "income": 33.6,
+      "employment": 21.6,
+      "durable_goods": 30.3
+    },
+    {
+      "date": "2008-12-01",
+      "cci": 27.6,
+      "livelihood": 29.2,
+      "income": 32.3,
+      "employment": 18.4,
+      "durable_goods": 30.6
+    },
+    {
+      "date": "2009-01-01",
+      "cci": 27.5,
+      "livelihood": 29.8,
+      "income": 32.1,
+      "employment": 16.9,
+      "durable_goods": 31.2
+    },
+    {
+      "date": "2009-02-01",
+      "cci": 27.7,
+      "livelihood": 30.2,
+      "income": 31.7,
+      "employment": 16.5,
+      "durable_goods": 32.4
+    },
+    {
+      "date": "2009-03-01",
+      "cci": 29.4,
+      "livelihood": 31.6,
+      "income": 32.2,
+      "employment": 19.6,
+      "durable_goods": 34.2
+    },
+    {
+      "date": "2009-04-01",
+      "cci": 32.1,
+      "livelihood": 33.6,
+      "income": 33.5,
+      "employment": 23.1,
+      "durable_goods": 38.2
+    },
+    {
+      "date": "2009-05-01",
+      "cci": 34.9,
+      "livelihood": 35.9,
+      "income": 34.9,
+      "employment": 26.4,
+      "durable_goods": 42.2
+    },
+    {
+      "date": "2009-06-01",
+      "cci": 36.5,
+      "livelihood": 36.9,
+      "income": 35.5,
+      "employment": 29.4,
+      "durable_goods": 44.0
+    },
+    {
+      "date": "2009-07-01",
+      "cci": 38.6,
+      "livelihood": 38.9,
+      "income": 36.7,
+      "employment": 32.0,
+      "durable_goods": 46.9
+    },
+    {
+      "date": "2009-08-01",
+      "cci": 39.4,
+      "livelihood": 39.7,
+      "income": 37.7,
+      "employment": 34.3,
+      "durable_goods": 45.7
+    },
+    {
+      "date": "2009-09-01",
+      "cci": 39.8,
+      "livelihood": 39.9,
+      "income": 37.7,
+      "employment": 35.2,
+      "durable_goods": 46.3
+    },
+    {
+      "date": "2009-10-01",
+      "cci": 40.2,
+      "livelihood": 40.7,
+      "income": 38.2,
+      "employment": 35.4,
+      "durable_goods": 46.3
+    },
+    {
+      "date": "2009-11-01",
+      "cci": 40.2,
+      "livelihood": 40.7,
+      "income": 38.0,
+      "employment": 36.0,
+      "durable_goods": 46.1
+    },
+    {
+      "date": "2009-12-01",
+      "cci": 38.9,
+      "livelihood": 38.8,
+      "income": 36.9,
+      "employment": 33.8,
+      "durable_goods": 46.1
+    },
+    {
+      "date": "2010-01-01",
+      "cci": 40.1,
+      "livelihood": 40.3,
+      "income": 38.4,
+      "employment": 35.5,
+      "durable_goods": 46.2
+    },
+    {
+      "date": "2010-02-01",
+      "cci": 40.7,
+      "livelihood": 41.4,
+      "income": 39.4,
+      "employment": 35.5,
+      "durable_goods": 46.4
+    },
+    {
+      "date": "2010-03-01",
+      "cci": 41.4,
+      "livelihood": 41.7,
+      "income": 39.7,
+      "employment": 37.2,
+      "durable_goods": 47.0
+    },
+    {
+      "date": "2010-04-01",
+      "cci": 41.9,
+      "livelihood": 42.4,
+      "income": 40.5,
+      "employment": 38.1,
+      "durable_goods": 46.6
+    },
+    {
+      "date": "2010-05-01",
+      "cci": 42.0,
+      "livelihood": 42.8,
+      "income": 40.8,
+      "employment": 38.6,
+      "durable_goods": 45.6
+    },
+    {
+      "date": "2010-06-01",
+      "cci": 42.3,
+      "livelihood": 43.2,
+      "income": 41.4,
+      "employment": 38.9,
+      "durable_goods": 45.8
+    },
+    {
+      "date": "2010-07-01",
+      "cci": 42.3,
+      "livelihood": 42.7,
+      "income": 41.2,
+      "employment": 39.7,
+      "durable_goods": 45.4
+    },
+    {
+      "date": "2010-08-01",
+      "cci": 41.7,
+      "livelihood": 42.7,
+      "income": 41.0,
+      "employment": 38.4,
+      "durable_goods": 44.6
+    },
+    {
+      "date": "2010-09-01",
+      "cci": 40.7,
+      "livelihood": 41.7,
+      "income": 40.4,
+      "employment": 37.0,
+      "durable_goods": 43.5
+    },
+    {
+      "date": "2010-10-01",
+      "cci": 40.8,
+      "livelihood": 41.7,
+      "income": 40.7,
+      "employment": 37.8,
+      "durable_goods": 43.1
+    },
+    {
+      "date": "2010-11-01",
+      "cci": 41.3,
+      "livelihood": 42.2,
+      "income": 41.0,
+      "employment": 38.7,
+      "durable_goods": 43.1
+    },
+    {
+      "date": "2010-12-01",
+      "cci": 41.5,
+      "livelihood": 42.7,
+      "income": 41.6,
+      "employment": 39.3,
+      "durable_goods": 42.5
+    },
+    {
+      "date": "2011-01-01",
+      "cci": 41.7,
+      "livelihood": 43.0,
+      "income": 41.4,
+      "employment": 40.1,
+      "durable_goods": 42.1
+    },
+    {
+      "date": "2011-02-01",
+      "cci": 41.2,
+      "livelihood": 42.0,
+      "income": 41.1,
+      "employment": 39.4,
+      "durable_goods": 42.3
+    },
+    {
+      "date": "2011-03-01",
+      "cci": 38.5,
+      "livelihood": 38.7,
+      "income": 39.6,
+      "employment": 37.2,
+      "durable_goods": 38.6
+    },
+    {
+      "date": "2011-04-01",
+      "cci": 33.2,
+      "livelihood": 35.0,
+      "income": 37.0,
+      "employment": 27.7,
+      "durable_goods": 33.0
+    },
+    {
+      "date": "2011-05-01",
+      "cci": 34.2,
+      "livelihood": 36.4,
+      "income": 37.3,
+      "employment": 27.4,
+      "durable_goods": 35.6
+    },
+    {
+      "date": "2011-06-01",
+      "cci": 35.2,
+      "livelihood": 37.3,
+      "income": 37.5,
+      "employment": 28.8,
+      "durable_goods": 37.0
+    },
+    {
+      "date": "2011-07-01",
+      "cci": 36.8,
+      "livelihood": 38.6,
+      "income": 38.0,
+      "employment": 31.6,
+      "durable_goods": 39.1
+    },
+    {
+      "date": "2011-08-01",
+      "cci": 36.9,
+      "livelihood": 38.8,
+      "income": 38.5,
+      "employment": 31.3,
+      "durable_goods": 38.9
+    },
+    {
+      "date": "2011-09-01",
+      "cci": 38.2,
+      "livelihood": 39.6,
+      "income": 39.3,
+      "employment": 33.9,
+      "durable_goods": 40.1
+    },
+    {
+      "date": "2011-10-01",
+      "cci": 38.7,
+      "livelihood": 39.8,
+      "income": 39.1,
+      "employment": 35.3,
+      "durable_goods": 40.6
+    },
+    {
+      "date": "2011-11-01",
+      "cci": 38.6,
+      "livelihood": 39.5,
+      "income": 38.8,
+      "employment": 35.5,
+      "durable_goods": 40.7
+    },
+    {
+      "date": "2011-12-01",
+      "cci": 39.2,
+      "livelihood": 39.7,
+      "income": 38.6,
+      "employment": 37.0,
+      "durable_goods": 41.4
+    },
+    {
+      "date": "2012-01-01",
+      "cci": 39.9,
+      "livelihood": 40.7,
+      "income": 39.5,
+      "employment": 37.4,
+      "durable_goods": 42.0
+    },
+    {
+      "date": "2012-02-01",
+      "cci": 39.8,
+      "livelihood": 40.6,
+      "income": 39.0,
+      "employment": 37.5,
+      "durable_goods": 41.9
+    },
+    {
+      "date": "2012-03-01",
+      "cci": 40.0,
+      "livelihood": 40.9,
+      "income": 39.3,
+      "employment": 37.9,
+      "durable_goods": 41.9
+    },
+    {
+      "date": "2012-04-01",
+      "cci": 39.8,
+      "livelihood": 40.4,
+      "income": 39.5,
+      "employment": 37.7,
+      "durable_goods": 41.7
+    },
+    {
+      "date": "2012-05-01",
+      "cci": 40.2,
+      "livelihood": 41.2,
+      "income": 39.9,
+      "employment": 37.7,
+      "durable_goods": 41.8
+    },
+    {
+      "date": "2012-06-01",
+      "cci": 40.0,
+      "livelihood": 41.1,
+      "income": 39.6,
+      "employment": 37.3,
+      "durable_goods": 42.1
+    },
+    {
+      "date": "2012-07-01",
+      "cci": 39.8,
+      "livelihood": 40.5,
+      "income": 39.4,
+      "employment": 37.4,
+      "durable_goods": 41.9
+    },
+    {
+      "date": "2012-08-01",
+      "cci": 40.3,
+      "livelihood": 40.7,
+      "income": 39.6,
+      "employment": 38.2,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "2012-09-01",
+      "cci": 40.2,
+      "livelihood": 40.6,
+      "income": 39.6,
+      "employment": 38.1,
+      "durable_goods": 42.3
+    },
+    {
+      "date": "2012-10-01",
+      "cci": 40.0,
+      "livelihood": 40.3,
+      "income": 39.6,
+      "employment": 38.1,
+      "durable_goods": 42.0
+    },
+    {
+      "date": "2012-11-01",
+      "cci": 40.1,
+      "livelihood": 40.3,
+      "income": 39.7,
+      "employment": 38.4,
+      "durable_goods": 41.9
+    },
+    {
+      "date": "2012-12-01",
+      "cci": 39.9,
+      "livelihood": 39.7,
+      "income": 39.0,
+      "employment": 38.9,
+      "durable_goods": 41.8
+    },
+    {
+      "date": "2013-01-01",
+      "cci": 43.2,
+      "livelihood": 42.6,
+      "income": 40.7,
+      "employment": 44.5,
+      "durable_goods": 44.9
+    },
+    {
+      "date": "2013-02-01",
+      "cci": 44.2,
+      "livelihood": 43.0,
+      "income": 41.6,
+      "employment": 46.7,
+      "durable_goods": 45.4
+    },
+    {
+      "date": "2013-03-01",
+      "cci": 44.8,
+      "livelihood": 43.0,
+      "income": 41.6,
+      "employment": 48.4,
+      "durable_goods": 46.1
+    },
+    {
+      "date": "2013-04-01",
+      "cci": 44.8,
+      "livelihood": 42.8,
+      "income": 41.6,
+      "employment": 48.4,
+      "durable_goods": 46.4
+    },
+    {
+      "date": "2013-05-01",
+      "cci": 45.2,
+      "livelihood": 43.1,
+      "income": 42.0,
+      "employment": 49.3,
+      "durable_goods": 46.3
+    },
+    {
+      "date": "2013-06-01",
+      "cci": 43.7,
+      "livelihood": 41.7,
+      "income": 41.3,
+      "employment": 47.0,
+      "durable_goods": 44.9
+    },
+    {
+      "date": "2013-07-01",
+      "cci": 43.5,
+      "livelihood": 41.2,
+      "income": 41.0,
+      "employment": 47.8,
+      "durable_goods": 43.8
+    },
+    {
+      "date": "2013-08-01",
+      "cci": 42.7,
+      "livelihood": 40.1,
+      "income": 40.3,
+      "employment": 47.2,
+      "durable_goods": 43.3
+    },
+    {
+      "date": "2013-09-01",
+      "cci": 45.6,
+      "livelihood": 42.2,
+      "income": 40.8,
+      "employment": 52.7,
+      "durable_goods": 46.5
+    },
+    {
+      "date": "2013-10-01",
+      "cci": 41.7,
+      "livelihood": 38.0,
+      "income": 38.1,
+      "employment": 47.6,
+      "durable_goods": 43.1
+    },
+    {
+      "date": "2013-11-01",
+      "cci": 42.9,
+      "livelihood": 39.7,
+      "income": 39.4,
+      "employment": 49.2,
+      "durable_goods": 43.4
+    },
+    {
+      "date": "2013-12-01",
+      "cci": 41.6,
+      "livelihood": 38.4,
+      "income": 38.8,
+      "employment": 48.7,
+      "durable_goods": 40.4
+    },
+    {
+      "date": "2014-01-01",
+      "cci": 40.3,
+      "livelihood": 37.3,
+      "income": 38.6,
+      "employment": 48.5,
+      "durable_goods": 36.6
+    },
+    {
+      "date": "2014-02-01",
+      "cci": 38.6,
+      "livelihood": 35.9,
+      "income": 38.2,
+      "employment": 47.0,
+      "durable_goods": 33.1
+    },
+    {
+      "date": "2014-03-01",
+      "cci": 37.2,
+      "livelihood": 35.1,
+      "income": 37.9,
+      "employment": 45.2,
+      "durable_goods": 30.4
+    },
+    {
+      "date": "2014-04-01",
+      "cci": 37.4,
+      "livelihood": 34.7,
+      "income": 37.3,
+      "employment": 44.6,
+      "durable_goods": 32.8
+    },
+    {
+      "date": "2014-05-01",
+      "cci": 39.0,
+      "livelihood": 36.5,
+      "income": 37.4,
+      "employment": 45.8,
+      "durable_goods": 36.3
+    },
+    {
+      "date": "2014-06-01",
+      "cci": 40.4,
+      "livelihood": 37.5,
+      "income": 37.8,
+      "employment": 47.3,
+      "durable_goods": 38.9
+    },
+    {
+      "date": "2014-07-01",
+      "cci": 41.5,
+      "livelihood": 38.4,
+      "income": 39.3,
+      "employment": 48.7,
+      "durable_goods": 39.5
+    },
+    {
+      "date": "2014-08-01",
+      "cci": 40.7,
+      "livelihood": 38.4,
+      "income": 38.6,
+      "employment": 47.4,
+      "durable_goods": 38.5
+    },
+    {
+      "date": "2014-09-01",
+      "cci": 40.1,
+      "livelihood": 37.2,
+      "income": 38.5,
+      "employment": 47.0,
+      "durable_goods": 37.6
+    },
+    {
+      "date": "2014-10-01",
+      "cci": 39.3,
+      "livelihood": 36.7,
+      "income": 38.3,
+      "employment": 45.4,
+      "durable_goods": 36.6
+    },
+    {
+      "date": "2014-11-01",
+      "cci": 38.2,
+      "livelihood": 35.5,
+      "income": 37.4,
+      "employment": 44.1,
+      "durable_goods": 35.9
+    },
+    {
+      "date": "2014-12-01",
+      "cci": 39.0,
+      "livelihood": 36.3,
+      "income": 38.3,
+      "employment": 44.7,
+      "durable_goods": 36.6
+    },
+    {
+      "date": "2015-01-01",
+      "cci": 39.0,
+      "livelihood": 35.9,
+      "income": 38.3,
+      "employment": 44.5,
+      "durable_goods": 37.4
+    },
+    {
+      "date": "2015-02-01",
+      "cci": 40.8,
+      "livelihood": 38.2,
+      "income": 38.7,
+      "employment": 46.3,
+      "durable_goods": 39.8
+    },
+    {
+      "date": "2015-03-01",
+      "cci": 41.3,
+      "livelihood": 38.8,
+      "income": 39.3,
+      "employment": 47.2,
+      "durable_goods": 39.9
+    },
+    {
+      "date": "2015-04-01",
+      "cci": 41.9,
+      "livelihood": 39.2,
+      "income": 39.6,
+      "employment": 48.3,
+      "durable_goods": 40.6
+    },
+    {
+      "date": "2015-05-01",
+      "cci": 41.4,
+      "livelihood": 39.0,
+      "income": 39.7,
+      "employment": 47.1,
+      "durable_goods": 39.8
+    },
+    {
+      "date": "2015-06-01",
+      "cci": 41.6,
+      "livelihood": 39.3,
+      "income": 40.2,
+      "employment": 47.1,
+      "durable_goods": 39.7
+    },
+    {
+      "date": "2015-07-01",
+      "cci": 41.0,
+      "livelihood": 38.6,
+      "income": 40.0,
+      "employment": 46.0,
+      "durable_goods": 39.2
+    },
+    {
+      "date": "2015-08-01",
+      "cci": 41.7,
+      "livelihood": 39.7,
+      "income": 40.1,
+      "employment": 46.6,
+      "durable_goods": 40.3
+    },
+    {
+      "date": "2015-09-01",
+      "cci": 40.9,
+      "livelihood": 38.9,
+      "income": 39.8,
+      "employment": 45.5,
+      "durable_goods": 39.2
+    },
+    {
+      "date": "2015-10-01",
+      "cci": 41.6,
+      "livelihood": 39.6,
+      "income": 40.3,
+      "employment": 46.2,
+      "durable_goods": 40.4
+    },
+    {
+      "date": "2015-11-01",
+      "cci": 42.4,
+      "livelihood": 40.6,
+      "income": 40.7,
+      "employment": 46.7,
+      "durable_goods": 41.6
+    },
+    {
+      "date": "2015-12-01",
+      "cci": 42.3,
+      "livelihood": 40.8,
+      "income": 41.3,
+      "employment": 45.9,
+      "durable_goods": 41.3
+    },
+    {
+      "date": "2016-01-01",
+      "cci": 42.0,
+      "livelihood": 40.5,
+      "income": 40.9,
+      "employment": 44.9,
+      "durable_goods": 41.6
+    },
+    {
+      "date": "2016-02-01",
+      "cci": 40.0,
+      "livelihood": 38.3,
+      "income": 39.7,
+      "employment": 42.0,
+      "durable_goods": 40.0
+    },
+    {
+      "date": "2016-03-01",
+      "cci": 41.2,
+      "livelihood": 40.2,
+      "income": 40.5,
+      "employment": 43.3,
+      "durable_goods": 40.9
+    },
+    {
+      "date": "2016-04-01",
+      "cci": 41.1,
+      "livelihood": 40.2,
+      "income": 40.9,
+      "employment": 42.6,
+      "durable_goods": 40.6
+    },
+    {
+      "date": "2016-05-01",
+      "cci": 41.0,
+      "livelihood": 40.0,
+      "income": 40.8,
+      "employment": 42.8,
+      "durable_goods": 40.5
+    },
+    {
+      "date": "2016-06-01",
+      "cci": 41.9,
+      "livelihood": 40.8,
+      "income": 41.1,
+      "employment": 43.5,
+      "durable_goods": 42.0
+    },
+    {
+      "date": "2016-07-01",
+      "cci": 41.6,
+      "livelihood": 40.9,
+      "income": 40.7,
+      "employment": 43.4,
+      "durable_goods": 41.5
+    },
+    {
+      "date": "2016-08-01",
+      "cci": 42.2,
+      "livelihood": 41.3,
+      "income": 41.2,
+      "employment": 44.6,
+      "durable_goods": 41.8
+    },
+    {
+      "date": "2016-09-01",
+      "cci": 43.1,
+      "livelihood": 41.9,
+      "income": 41.4,
+      "employment": 46.4,
+      "durable_goods": 42.5
+    },
+    {
+      "date": "2016-10-01",
+      "cci": 42.4,
+      "livelihood": 41.2,
+      "income": 41.2,
+      "employment": 45.2,
+      "durable_goods": 42.1
+    },
+    {
+      "date": "2016-11-01",
+      "cci": 40.8,
+      "livelihood": 39.6,
+      "income": 40.1,
+      "employment": 43.0,
+      "durable_goods": 40.6
+    },
+    {
+      "date": "2016-12-01",
+      "cci": 42.7,
+      "livelihood": 41.4,
+      "income": 41.3,
+      "employment": 45.7,
+      "durable_goods": 42.3
+    },
+    {
+      "date": "2017-01-01",
+      "cci": 42.8,
+      "livelihood": 41.5,
+      "income": 41.4,
+      "employment": 45.8,
+      "durable_goods": 42.3
+    },
+    {
+      "date": "2017-02-01",
+      "cci": 42.9,
+      "livelihood": 41.7,
+      "income": 41.2,
+      "employment": 46.2,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "2017-03-01",
+      "cci": 43.8,
+      "livelihood": 42.7,
+      "income": 42.2,
+      "employment": 46.9,
+      "durable_goods": 43.2
+    },
+    {
+      "date": "2017-04-01",
+      "cci": 43.5,
+      "livelihood": 42.0,
+      "income": 41.6,
+      "employment": 47.6,
+      "durable_goods": 42.7
+    },
+    {
+      "date": "2017-05-01",
+      "cci": 43.7,
+      "livelihood": 42.3,
+      "income": 42.1,
+      "employment": 47.9,
+      "durable_goods": 42.5
+    },
+    {
+      "date": "2017-06-01",
+      "cci": 43.3,
+      "livelihood": 41.2,
+      "income": 41.7,
+      "employment": 47.9,
+      "durable_goods": 42.3
+    },
+    {
+      "date": "2017-07-01",
+      "cci": 44.1,
+      "livelihood": 42.4,
+      "income": 41.9,
+      "employment": 48.2,
+      "durable_goods": 43.7
+    },
+    {
+      "date": "2017-08-01",
+      "cci": 43.7,
+      "livelihood": 41.9,
+      "income": 41.7,
+      "employment": 47.7,
+      "durable_goods": 43.3
+    },
+    {
+      "date": "2017-09-01",
+      "cci": 44.1,
+      "livelihood": 42.5,
+      "income": 42.1,
+      "employment": 48.1,
+      "durable_goods": 43.7
+    },
+    {
+      "date": "2017-10-01",
+      "cci": 44.6,
+      "livelihood": 42.9,
+      "income": 42.7,
+      "employment": 48.7,
+      "durable_goods": 43.9
+    },
+    {
+      "date": "2017-11-01",
+      "cci": 44.5,
+      "livelihood": 43.0,
+      "income": 42.4,
+      "employment": 48.8,
+      "durable_goods": 43.7
+    },
+    {
+      "date": "2017-12-01",
+      "cci": 44.3,
+      "livelihood": 42.5,
+      "income": 42.5,
+      "employment": 49.0,
+      "durable_goods": 43.3
+    },
+    {
+      "date": "2018-01-01",
+      "cci": 44.4,
+      "livelihood": 42.2,
+      "income": 42.7,
+      "employment": 49.5,
+      "durable_goods": 43.1
+    },
+    {
+      "date": "2018-02-01",
+      "cci": 44.1,
+      "livelihood": 42.1,
+      "income": 42.9,
+      "employment": 48.7,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "2018-03-01",
+      "cci": 44.1,
+      "livelihood": 42.0,
+      "income": 42.6,
+      "employment": 49.0,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "2018-04-01",
+      "cci": 43.8,
+      "livelihood": 41.7,
+      "income": 42.4,
+      "employment": 47.8,
+      "durable_goods": 43.1
+    },
+    {
+      "date": "2018-05-01",
+      "cci": 44.1,
+      "livelihood": 42.2,
+      "income": 42.3,
+      "employment": 48.6,
+      "durable_goods": 43.4
+    },
+    {
+      "date": "2018-06-01",
+      "cci": 43.7,
+      "livelihood": 41.8,
+      "income": 41.9,
+      "employment": 48.2,
+      "durable_goods": 42.8
+    },
+    {
+      "date": "2018-07-01",
+      "cci": 43.8,
+      "livelihood": 41.7,
+      "income": 42.3,
+      "employment": 48.3,
+      "durable_goods": 42.7
+    },
+    {
+      "date": "2018-08-01",
+      "cci": 43.7,
+      "livelihood": 41.9,
+      "income": 42.0,
+      "employment": 48.1,
+      "durable_goods": 42.9
+    },
+    {
+      "date": "2018-09-01",
+      "cci": 43.5,
+      "livelihood": 41.4,
+      "income": 42.1,
+      "employment": 47.7,
+      "durable_goods": 42.6
+    },
+    {
+      "date": "2018-10-01",
+      "cci": 43.0,
+      "livelihood": 41.3,
+      "income": 41.4,
+      "employment": 46.5,
+      "durable_goods": 42.7
+    },
+    {
+      "date": "2018-11-01",
+      "cci": 42.6,
+      "livelihood": 40.9,
+      "income": 41.3,
+      "employment": 46.1,
+      "durable_goods": 42.1
+    },
+    {
+      "date": "2018-12-01",
+      "cci": 42.5,
+      "livelihood": 40.4,
+      "income": 41.3,
+      "employment": 45.8,
+      "durable_goods": 42.3
+    },
+    {
+      "date": "2019-01-01",
+      "cci": 41.6,
+      "livelihood": 39.8,
+      "income": 41.2,
+      "employment": 44.3,
+      "durable_goods": 40.9
+    },
+    {
+      "date": "2019-02-01",
+      "cci": 41.3,
+      "livelihood": 39.0,
+      "income": 41.1,
+      "employment": 44.8,
+      "durable_goods": 40.1
+    },
+    {
+      "date": "2019-03-01",
+      "cci": 40.2,
+      "livelihood": 37.7,
+      "income": 40.5,
+      "employment": 43.6,
+      "durable_goods": 39.1
+    },
+    {
+      "date": "2019-04-01",
+      "cci": 40.4,
+      "livelihood": 37.7,
+      "income": 40.5,
+      "employment": 44.2,
+      "durable_goods": 39.2
+    },
+    {
+      "date": "2019-05-01",
+      "cci": 39.7,
+      "livelihood": 37.6,
+      "income": 40.2,
+      "employment": 43.6,
+      "durable_goods": 37.5
+    },
+    {
+      "date": "2019-06-01",
+      "cci": 38.5,
+      "livelihood": 36.1,
+      "income": 39.8,
+      "employment": 42.8,
+      "durable_goods": 35.3
+    },
+    {
+      "date": "2019-07-01",
+      "cci": 38.1,
+      "livelihood": 35.9,
+      "income": 39.5,
+      "employment": 43.0,
+      "durable_goods": 33.9
+    },
+    {
+      "date": "2019-08-01",
+      "cci": 37.7,
+      "livelihood": 35.3,
+      "income": 39.8,
+      "employment": 42.9,
+      "durable_goods": 32.6
+    },
+    {
+      "date": "2019-09-01",
+      "cci": 35.7,
+      "livelihood": 33.9,
+      "income": 38.9,
+      "employment": 41.6,
+      "durable_goods": 28.3
+    },
+    {
+      "date": "2019-10-01",
+      "cci": 36.2,
+      "livelihood": 34.5,
+      "income": 38.8,
+      "employment": 40.0,
+      "durable_goods": 31.4
+    },
+    {
+      "date": "2019-11-01",
+      "cci": 38.6,
+      "livelihood": 38.2,
+      "income": 39.7,
+      "employment": 41.1,
+      "durable_goods": 35.3
+    },
+    {
+      "date": "2019-12-01",
+      "cci": 38.9,
+      "livelihood": 38.1,
+      "income": 39.9,
+      "employment": 41.3,
+      "durable_goods": 36.3
+    },
+    {
+      "date": "2020-01-01",
+      "cci": 39.0,
+      "livelihood": 37.7,
+      "income": 39.8,
+      "employment": 41.9,
+      "durable_goods": 36.4
+    },
+    {
+      "date": "2020-02-01",
+      "cci": 38.2,
+      "livelihood": 37.6,
+      "income": 39.8,
+      "employment": 39.6,
+      "durable_goods": 35.9
+    },
+    {
+      "date": "2020-03-01",
+      "cci": 30.8,
+      "livelihood": 30.0,
+      "income": 34.8,
+      "employment": 27.7,
+      "durable_goods": 30.8
+    },
+    {
+      "date": "2020-04-01",
+      "cci": 21.6,
+      "livelihood": 21.7,
+      "income": 26.3,
+      "employment": 14.7,
+      "durable_goods": 23.8
+    },
+    {
+      "date": "2020-05-01",
+      "cci": 24.4,
+      "livelihood": 25.6,
+      "income": 28.3,
+      "employment": 16.9,
+      "durable_goods": 26.8
+    },
+    {
+      "date": "2020-06-01",
+      "cci": 28.1,
+      "livelihood": 30.1,
+      "income": 31.4,
+      "employment": 20.4,
+      "durable_goods": 30.6
+    },
+    {
+      "date": "2020-07-01",
+      "cci": 29.6,
+      "livelihood": 31.7,
+      "income": 32.7,
+      "employment": 22.1,
+      "durable_goods": 32.0
+    },
+    {
+      "date": "2020-08-01",
+      "cci": 29.8,
+      "livelihood": 31.7,
+      "income": 32.9,
+      "employment": 22.0,
+      "durable_goods": 32.4
+    },
+    {
+      "date": "2020-09-01",
+      "cci": 32.6,
+      "livelihood": 34.8,
+      "income": 34.9,
+      "employment": 26.0,
+      "durable_goods": 34.7
+    },
+    {
+      "date": "2020-10-01",
+      "cci": 33.1,
+      "livelihood": 35.8,
+      "income": 35.1,
+      "employment": 26.2,
+      "durable_goods": 35.4
+    },
+    {
+      "date": "2020-11-01",
+      "cci": 33.5,
+      "livelihood": 37.0,
+      "income": 35.3,
+      "employment": 26.3,
+      "durable_goods": 35.4
+    },
+    {
+      "date": "2020-12-01",
+      "cci": 31.7,
+      "livelihood": 34.7,
+      "income": 34.7,
+      "employment": 23.8,
+      "durable_goods": 33.6
+    },
+    {
+      "date": "2021-01-01",
+      "cci": 29.8,
+      "livelihood": 32.4,
+      "income": 33.5,
+      "employment": 21.7,
+      "durable_goods": 31.6
+    },
+    {
+      "date": "2021-02-01",
+      "cci": 33.8,
+      "livelihood": 36.4,
+      "income": 35.5,
+      "employment": 27.7,
+      "durable_goods": 35.5
+    },
+    {
+      "date": "2021-03-01",
+      "cci": 36.0,
+      "livelihood": 37.9,
+      "income": 37.1,
+      "employment": 30.8,
+      "durable_goods": 38.0
+    },
+    {
+      "date": "2021-04-01",
+      "cci": 35.1,
+      "livelihood": 37.1,
+      "income": 36.7,
+      "employment": 29.4,
+      "durable_goods": 37.0
+    },
+    {
+      "date": "2021-05-01",
+      "cci": 34.4,
+      "livelihood": 36.7,
+      "income": 36.6,
+      "employment": 27.9,
+      "durable_goods": 36.4
+    },
+    {
+      "date": "2021-06-01",
+      "cci": 37.1,
+      "livelihood": 38.1,
+      "income": 37.6,
+      "employment": 34.6,
+      "durable_goods": 38.2
+    },
+    {
+      "date": "2021-07-01",
+      "cci": 37.6,
+      "livelihood": 38.7,
+      "income": 37.9,
+      "employment": 35.5,
+      "durable_goods": 38.1
+    },
+    {
+      "date": "2021-08-01",
+      "cci": 37.1,
+      "livelihood": 38.3,
+      "income": 37.8,
+      "employment": 34.2,
+      "durable_goods": 37.9
+    },
+    {
+      "date": "2021-09-01",
+      "cci": 37.8,
+      "livelihood": 39.0,
+      "income": 38.3,
+      "employment": 36.2,
+      "durable_goods": 37.8
+    },
+    {
+      "date": "2021-10-01",
+      "cci": 39.0,
+      "livelihood": 39.2,
+      "income": 39.0,
+      "employment": 39.9,
+      "durable_goods": 37.8
+    },
+    {
+      "date": "2021-11-01",
+      "cci": 39.4,
+      "livelihood": 38.7,
+      "income": 39.3,
+      "employment": 42.6,
+      "durable_goods": 36.9
+    },
+    {
+      "date": "2021-12-01",
+      "cci": 38.8,
+      "livelihood": 38.3,
+      "income": 39.5,
+      "employment": 41.4,
+      "durable_goods": 35.9
+    },
+    {
+      "date": "2022-01-01",
+      "cci": 36.7,
+      "livelihood": 36.9,
+      "income": 38.8,
+      "employment": 37.1,
+      "durable_goods": 33.9
+    },
+    {
+      "date": "2022-02-01",
+      "cci": 35.2,
+      "livelihood": 35.5,
+      "income": 38.1,
+      "employment": 36.1,
+      "durable_goods": 31.2
+    },
+    {
+      "date": "2022-03-01",
+      "cci": 32.3,
+      "livelihood": 30.7,
+      "income": 37.1,
+      "employment": 34.1,
+      "durable_goods": 27.3
+    },
+    {
+      "date": "2022-04-01",
+      "cci": 32.1,
+      "livelihood": 30.3,
+      "income": 36.5,
+      "employment": 34.3,
+      "durable_goods": 27.4
+    },
+    {
+      "date": "2022-05-01",
+      "cci": 33.2,
+      "livelihood": 31.6,
+      "income": 37.5,
+      "employment": 36.5,
+      "durable_goods": 27.3
+    },
+    {
+      "date": "2022-06-01",
+      "cci": 31.8,
+      "livelihood": 29.3,
+      "income": 35.6,
+      "employment": 37.1,
+      "durable_goods": 25.0
+    },
+    {
+      "date": "2022-07-01",
+      "cci": 30.1,
+      "livelihood": 28.0,
+      "income": 34.2,
+      "employment": 34.4,
+      "durable_goods": 23.6
+    },
+    {
+      "date": "2022-08-01",
+      "cci": 32.3,
+      "livelihood": 31.1,
+      "income": 36.0,
+      "employment": 36.4,
+      "durable_goods": 25.8
+    },
+    {
+      "date": "2022-09-01",
+      "cci": 31.0,
+      "livelihood": 29.1,
+      "income": 35.5,
+      "employment": 36.0,
+      "durable_goods": 23.5
+    },
+    {
+      "date": "2022-10-01",
+      "cci": 30.6,
+      "livelihood": 28.0,
+      "income": 35.4,
+      "employment": 35.9,
+      "durable_goods": 23.1
+    },
+    {
+      "date": "2022-11-01",
+      "cci": 29.9,
+      "livelihood": 27.6,
+      "income": 34.6,
+      "employment": 35.1,
+      "durable_goods": 22.2
+    },
+    {
+      "date": "2022-12-01",
+      "cci": 30.9,
+      "livelihood": 27.9,
+      "income": 35.3,
+      "employment": 36.7,
+      "durable_goods": 23.7
+    },
+    {
+      "date": "2023-01-01",
+      "cci": 31.2,
+      "livelihood": 28.4,
+      "income": 35.7,
+      "employment": 37.1,
+      "durable_goods": 23.6
+    },
+    {
+      "date": "2023-02-01",
+      "cci": 31.0,
+      "livelihood": 27.3,
+      "income": 36.0,
+      "employment": 38.0,
+      "durable_goods": 22.8
+    },
+    {
+      "date": "2023-03-01",
+      "cci": 33.7,
+      "livelihood": 30.4,
+      "income": 37.4,
+      "employment": 40.5,
+      "durable_goods": 26.6
+    },
+    {
+      "date": "2023-04-01",
+      "cci": 35.0,
+      "livelihood": 31.8,
+      "income": 37.9,
+      "employment": 41.4,
+      "durable_goods": 28.9
+    },
+    {
+      "date": "2023-05-01",
+      "cci": 36.2,
+      "livelihood": 33.2,
+      "income": 38.3,
+      "employment": 42.9,
+      "durable_goods": 30.3
+    },
+    {
+      "date": "2023-06-01",
+      "cci": 36.4,
+      "livelihood": 33.2,
+      "income": 38.7,
+      "employment": 43.2,
+      "durable_goods": 30.4
+    },
+    {
+      "date": "2023-07-01",
+      "cci": 37.0,
+      "livelihood": 33.9,
+      "income": 39.0,
+      "employment": 44.0,
+      "durable_goods": 31.2
+    },
+    {
+      "date": "2023-08-01",
+      "cci": 36.3,
+      "livelihood": 33.2,
+      "income": 39.1,
+      "employment": 43.1,
+      "durable_goods": 29.9
+    },
+    {
+      "date": "2023-09-01",
+      "cci": 35.5,
+      "livelihood": 32.5,
+      "income": 38.8,
+      "employment": 41.6,
+      "durable_goods": 29.2
+    },
+    {
+      "date": "2023-10-01",
+      "cci": 35.8,
+      "livelihood": 33.5,
+      "income": 39.1,
+      "employment": 40.9,
+      "durable_goods": 29.6
+    },
+    {
+      "date": "2023-11-01",
+      "cci": 36.2,
+      "livelihood": 34.1,
+      "income": 39.0,
+      "employment": 41.7,
+      "durable_goods": 30.1
+    },
+    {
+      "date": "2023-12-01",
+      "cci": 37.0,
+      "livelihood": 35.2,
+      "income": 39.5,
+      "employment": 42.0,
+      "durable_goods": 31.2
+    },
+    {
+      "date": "2024-01-01",
+      "cci": 37.9,
+      "livelihood": 36.3,
+      "income": 39.7,
+      "employment": 43.0,
+      "durable_goods": 32.7
+    },
+    {
+      "date": "2024-02-01",
+      "cci": 38.7,
+      "livelihood": 37.1,
+      "income": 40.7,
+      "employment": 44.0,
+      "durable_goods": 33.0
+    },
+    {
+      "date": "2024-03-01",
+      "cci": 39.5,
+      "livelihood": 37.7,
+      "income": 41.7,
+      "employment": 44.5,
+      "durable_goods": 34.2
+    },
+    {
+      "date": "2024-04-01",
+      "cci": 38.2,
+      "livelihood": 35.9,
+      "income": 41.1,
+      "employment": 43.9,
+      "durable_goods": 31.9
+    },
+    {
+      "date": "2024-05-01",
+      "cci": 36.6,
+      "livelihood": 34.5,
+      "income": 40.2,
+      "employment": 42.3,
+      "durable_goods": 29.2
+    },
+    {
+      "date": "2024-06-01",
+      "cci": 36.7,
+      "livelihood": 34.3,
+      "income": 40.6,
+      "employment": 41.9,
+      "durable_goods": 29.9
+    },
+    {
+      "date": "2024-07-01",
+      "cci": 36.9,
+      "livelihood": 34.7,
+      "income": 40.4,
+      "employment": 42.4,
+      "durable_goods": 30.2
+    },
+    {
+      "date": "2024-08-01",
+      "cci": 36.8,
+      "livelihood": 34.8,
+      "income": 39.8,
+      "employment": 41.9,
+      "durable_goods": 30.7
+    },
+    {
+      "date": "2024-09-01",
+      "cci": 37.0,
+      "livelihood": 34.7,
+      "income": 40.1,
+      "employment": 42.2,
+      "durable_goods": 30.8
+    },
+    {
+      "date": "2024-10-01",
+      "cci": 36.1,
+      "livelihood": 34.0,
+      "income": 39.3,
+      "employment": 41.4,
+      "durable_goods": 29.7
+    },
+    {
+      "date": "2024-11-01",
+      "cci": 36.2,
+      "livelihood": 33.9,
+      "income": 40.0,
+      "employment": 41.1,
+      "durable_goods": 29.7
+    },
+    {
+      "date": "2024-12-01",
+      "cci": 35.9,
+      "livelihood": 33.5,
+      "income": 40.0,
+      "employment": 41.1,
+      "durable_goods": 29.1
+    },
+    {
+      "date": "2025-01-01",
+      "cci": 35.1,
+      "livelihood": 32.0,
+      "income": 39.8,
+      "employment": 41.0,
+      "durable_goods": 27.5
+    },
+    {
+      "date": "2025-02-01",
+      "cci": 34.8,
+      "livelihood": 31.5,
+      "income": 39.5,
+      "employment": 40.9,
+      "durable_goods": 27.1
+    },
+    {
+      "date": "2025-03-01",
+      "cci": 34.1,
+      "livelihood": 30.9,
+      "income": 38.8,
+      "employment": 39.2,
+      "durable_goods": 27.3
+    },
+    {
+      "date": "2025-04-01",
+      "cci": 31.2,
+      "livelihood": 27.3,
+      "income": 37.5,
+      "employment": 35.7,
+      "durable_goods": 24.2
+    },
+    {
+      "date": "2025-05-01",
+      "cci": 32.8,
+      "livelihood": 30.2,
+      "income": 38.3,
+      "employment": 37.3,
+      "durable_goods": 25.4
+    },
+    {
+      "date": "2025-06-01",
+      "cci": 34.5,
+      "livelihood": 32.4,
+      "income": 38.9,
+      "employment": 38.3,
+      "durable_goods": 28.2
+    },
+    {
+      "date": "2025-07-01",
+      "cci": 33.7,
+      "livelihood": 31.4,
+      "income": 38.5,
+      "employment": 37.6,
+      "durable_goods": 27.4
+    },
+    {
+      "date": "2025-08-01",
+      "cci": 34.9,
+      "livelihood": 32.7,
+      "income": 39.4,
+      "employment": 39.3,
+      "durable_goods": 28.0
+    },
+    {
+      "date": "2025-09-01",
+      "cci": 35.3,
+      "livelihood": 33.2,
+      "income": 39.4,
+      "employment": 39.9,
+      "durable_goods": 28.8
+    },
+    {
+      "date": "2025-10-01",
+      "cci": 35.8,
+      "livelihood": 34.3,
+      "income": 40.0,
+      "employment": 40.1,
+      "durable_goods": 28.9
+    },
+    {
+      "date": "2025-11-01",
+      "cci": 37.5,
+      "livelihood": 36.2,
+      "income": 41.0,
+      "employment": 41.7,
+      "durable_goods": 30.9
+    },
+    {
+      "date": "2025-12-01",
+      "cci": 37.2,
+      "livelihood": 35.9,
+      "income": 41.3,
+      "employment": 41.5,
+      "durable_goods": 30.2
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "cci": 37.2,
+    "livelihood": 35.9,
+    "income": 41.3,
+    "employment": 41.5,
+    "durable_goods": 30.2
+  },
+  "last_updated": "2026-01-12T14:08:55.492206",
+  "source": "Cabinet Office, Economic and Social Research Institute (e-Stat)",
+  "cached": false
+}

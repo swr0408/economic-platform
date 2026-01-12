@@ -5,7 +5,7 @@
 
 import { useQuery, useQueries } from '@tanstack/react-query';
 import { OVERLAY_INDICATORS, type OverlayIndicator, type DerivedValueConfig } from '../constants/overlayConfig';
-import type { DataPoint } from '../utils/dataAlignment';
+import { type DataPoint, getDateTimestamp } from '../utils/dataAlignment';
 
 // APIベースURL
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
@@ -38,11 +38,21 @@ function getIndicatorMapping(indicatorId: string): {
   // 個別API（/dashboardを追加しない）の判定
   // - /api/nyfed/term-premium
   // - /api/fed-h15/policy-rate
-  // など、特定のエンドポイントは直接使用
+  // - /api/japan/quarterly-gdp など
+  // 特定のエンドポイントは直接使用
   const directApiPatterns = [
     '/api/nyfed/',
     '/api/fed-h15/',
     '/api/cme/',
+    '/api/japan/quarterly-gdp',
+    '/api/japan/gdp-components',
+    '/api/japan/gdp-deflator',
+    '/api/japan/potential-growth',
+    '/api/japan/boj-',
+    '/api/japan/ois-',
+    '/api/japan/capital-investment',
+    '/api/japan/iip',
+    '/api/japan/capacity-utilization',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -51,6 +61,7 @@ function getIndicatorMapping(indicatorId: string): {
       endpoint: indicator.apiEndpoint,
       dataKey: indicator.dataKey,
       valueField: indicator.valueField,
+      nestedKey: indicator.nestedKey,
       derived: indicator.derived,
       isMarketData: false,
       isDirectApi: true,
@@ -337,7 +348,7 @@ function extractIndicatorData(
       return [];
     }
 
-    const sorted = [...data].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    const sorted = [...data].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
     const points: DataPoint[] = [];
     let prevValue: number | null = null;
 
@@ -503,18 +514,45 @@ interface DirectApiDataItem {
 function extractDirectApiData(
   response: unknown,
   dataKey: string,
-  valueField?: string
+  valueField?: string,
+  nestedKey?: string
 ): DataPoint[] {
-  const data = response as { data?: DirectApiDataItem[]; meta?: unknown };
+  const data = response as Record<string, unknown>;
 
-  if (!data.data || !Array.isArray(data.data)) {
+  // パターン: series 配列構造 (GDP構成要素)
+  // { series: [{ name: '民間最終消費支出', data: [{date, value}] }, ...] }
+  if (dataKey === 'series' && nestedKey) {
+    const seriesArray = data.series as Array<{ name: string; data: Array<{ date: string; value: number }> }> | undefined;
+    if (seriesArray && Array.isArray(seriesArray)) {
+      const series = seriesArray.find(s => s.name === nestedKey);
+      if (series && series.data) {
+        const field = valueField || 'value';
+        console.log('[useOverlayData] Series pattern for:', nestedKey, 'field:', field, 'length:', series.data.length);
+        return series.data
+          .filter(item => {
+            const val = item[field as keyof typeof item];
+            return val !== undefined && val !== null && typeof val === 'number';
+          })
+          .map(item => ({
+            date: item.date,
+            value: item[field as keyof typeof item] as number,
+          }));
+      }
+      console.log('[useOverlayData] Series not found:', nestedKey);
+    }
+    return [];
+  }
+
+  // 通常のdata配列形式
+  const dataArray = data.data as DirectApiDataItem[] | undefined;
+  if (!dataArray || !Array.isArray(dataArray)) {
     console.log('[useOverlayData] No data array in direct API response for:', dataKey);
     return [];
   }
 
   const field = valueField || dataKey;
 
-  return data.data
+  return dataArray
     .filter((item) => {
       const val = item[field];
       return val !== undefined && val !== null && typeof val === 'number';
@@ -545,7 +583,7 @@ async function fetchSingleIndicatorData(
   }
   // 個別API（nyfed, fed-h15等）の場合
   else if (mapping.isDirectApi) {
-    return extractDirectApiData(data, mapping.dataKey, mapping.valueField);
+    return extractDirectApiData(data, mapping.dataKey, mapping.valueField, mapping.nestedKey);
   }
   // 通常の指標データ（/dashboard形式）
   else {

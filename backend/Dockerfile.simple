@@ -29,6 +29,10 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-0 \
     fonts-liberation \
     fonts-noto-cjk \
+    # Tesseract OCR
+    tesseract-ocr \
+    tesseract-ocr-jpn \
+    tesseract-ocr-jpn-vert \
     && rm -rf /var/lib/apt/lists/*
 
 # Python依存関係をインストール
@@ -49,15 +53,24 @@ RUN pip install --no-cache-dir \
     PyMuPDF \
     pdfplumber \
     Pillow \
+    pytesseract \
     APScheduler \
     pytz \
     yfinance \
     httpx \
     python-dotenv \
-    dukascopy-python
+    dukascopy-python \
+    selenium \
+    webdriver-manager
 
 # Playwrightブラウザをインストール（ChromiumとFirefox）
 RUN playwright install chromium firefox
+
+# Selenium用Chromiumとchromedriverをインストール
+RUN apt-get update && apt-get install -y \
+    chromium \
+    chromium-driver \
+    && rm -rf /var/lib/apt/lists/*
 
 # アプリケーションコード
 COPY backend/ /app/backend/

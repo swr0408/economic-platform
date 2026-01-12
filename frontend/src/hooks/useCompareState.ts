@@ -10,6 +10,7 @@ import {
   getIndicatorById,
   OVERLAY_INDICATORS,
 } from '../constants/overlayConfig';
+import { parseDate } from '../utils/dataAlignment';
 
 // =============================================================================
 // 型定義
@@ -56,34 +57,59 @@ const DEFAULT_RANGE: RangeType = '5Y';
 export function useCompareState(): UseCompareStateResult {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // URLからstate復元
-  const initialIndicatorIds = useMemo(() => {
+  // URLからstate復元用のヘルパー関数
+  const getIndicatorIdsFromUrl = useCallback(() => {
     return searchParams.getAll('s').filter(id => {
-      // 指標が存在するか確認
       return OVERLAY_INDICATORS.some(i => i.id === id);
     });
-  }, []);
+  }, [searchParams]);
 
-  const initialRange = useMemo(() => {
+  const getRangeFromUrl = useCallback(() => {
     const rangeParam = searchParams.get('range');
     if (rangeParam && ['1Y', '3Y', '5Y', '10Y', 'Max'].includes(rangeParam)) {
       return rangeParam as RangeType;
     }
     return DEFAULT_RANGE;
-  }, []);
+  }, [searchParams]);
 
-  const initialIndex100 = useMemo(() => {
+  const getIndex100FromUrl = useCallback(() => {
     return searchParams.get('index100') === 'true';
-  }, []);
+  }, [searchParams]);
 
   // State
-  const [selectedIndicatorIds, setSelectedIndicatorIds] = useState<string[]>(initialIndicatorIds);
-  const [range, setRangeState] = useState<RangeType>(initialRange);
-  const [options, setOptionsState] = useState<CompareOptions>({
-    index100: initialIndex100,
-  });
+  const [selectedIndicatorIds, setSelectedIndicatorIds] = useState<string[]>(() => getIndicatorIdsFromUrl());
+  const [range, setRangeState] = useState<RangeType>(() => getRangeFromUrl());
+  const [options, setOptionsState] = useState<CompareOptions>(() => ({
+    index100: getIndex100FromUrl(),
+  }));
 
-  // URL同期
+  // 外部ナビゲーション時にURLパラメータからstateを更新
+  const [isInternalUpdate, setIsInternalUpdate] = useState(false);
+
+  useEffect(() => {
+    // 内部更新の場合はスキップ（無限ループ防止）
+    if (isInternalUpdate) {
+      setIsInternalUpdate(false);
+      return;
+    }
+
+    const urlIndicatorIds = getIndicatorIdsFromUrl();
+    const urlRange = getRangeFromUrl();
+    const urlIndex100 = getIndex100FromUrl();
+
+    // URLと現在のstateが異なる場合のみ更新
+    if (JSON.stringify(urlIndicatorIds) !== JSON.stringify(selectedIndicatorIds)) {
+      setSelectedIndicatorIds(urlIndicatorIds);
+    }
+    if (urlRange !== range) {
+      setRangeState(urlRange);
+    }
+    if (urlIndex100 !== options.index100) {
+      setOptionsState({ index100: urlIndex100 });
+    }
+  }, [searchParams]);
+
+  // URL同期（内部state変更時）
   useEffect(() => {
     const params = new URLSearchParams();
 
@@ -100,7 +126,13 @@ export function useCompareState(): UseCompareStateResult {
       params.set('index100', 'true');
     }
 
-    setSearchParams(params, { replace: true });
+    // 現在のURLパラメータと比較して異なる場合のみ更新
+    const currentParams = searchParams.toString();
+    const newParams = params.toString();
+    if (currentParams !== newParams) {
+      setIsInternalUpdate(true);
+      setSearchParams(params, { replace: true });
+    }
   }, [selectedIndicatorIds, range, options, setSearchParams]);
 
   // 指標追加
@@ -206,7 +238,7 @@ export function filterDataByRange<T extends { date: string }>(
   }
 
   return data.filter(item => {
-    const itemDate = new Date(item.date);
+    const itemDate = parseDate(item.date);
     return itemDate >= startDate;
   });
 }

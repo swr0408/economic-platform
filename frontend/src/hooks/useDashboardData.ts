@@ -2322,3 +2322,448 @@ export interface USAHousingData {
 export function useUSAHousingDashboard(): UseQueryResult<DashboardResponse<USAHousingData>, Error> {
   return useDashboardData<USAHousingData>('usa', 'housing')
 }
+
+// =============================================================================
+// 日本金融政策データの型
+// =============================================================================
+
+// 日銀政策金利データの型
+export interface BOJPolicyRateData {
+  data: BOJPolicyRateItem[]
+  latest: BOJPolicyRateItem | null
+  next_release: BOJPolicyRateNextRelease | null
+}
+
+export interface BOJPolicyRateItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 政策金利（%）
+  forecast: number | null
+  previous: number | null
+}
+
+export interface BOJPolicyRateNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label: string
+  estimate?: number | null
+}
+
+// 日本金融政策ダッシュボードデータの型
+export interface JapanPolicyData {
+  boj_policy_rate: BOJPolicyRateData | null
+}
+
+/**
+ * 日本金融政策ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useJapanPolicyDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.boj_policy_rate) // 日銀政策金利データ
+ * }
+ * ```
+ */
+export function useJapanPolicyDashboard(): UseQueryResult<DashboardResponse<JapanPolicyData>, Error> {
+  return useDashboardData<JapanPolicyData>('japan', 'policy')
+}
+
+// =============================================================================
+// ユーロ圏金融政策データの型
+// =============================================================================
+
+// ECB預金ファシリティ金利データの型
+export interface ECBRatesData {
+  data: ECBRatesItem[]
+  latest: ECBRatesItem | null
+  next_release: ECBRatesNextRelease | null
+}
+
+export interface ECBRatesItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 政策金利（%）
+  deposit_facility?: number  // 預金ファシリティ金利（%）- ECB APIからの値
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface ECBRatesNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+  label: string
+  estimate?: number | null
+}
+
+// Eurex OISデータの型
+export interface EurexOISData {
+  labels: string[]
+  values: number[]
+  contracts: string[]
+  settle_values: number[]
+  previous_values: (number | null)[]
+  last_updated: string
+  source: string
+  current_date: string | null
+  previous_date: string | null
+}
+
+// ECBマクロ経済予測データの型（新API構造）
+export interface ECBProjectionDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface ECBIndicatorData {
+  annual_latest: ECBProjectionDataPoint[]
+  annual_previous: ECBProjectionDataPoint[]
+  quarterly_latest: ECBProjectionDataPoint[]
+  quarterly_previous: ECBProjectionDataPoint[]
+}
+
+export interface ECBMacroProjectionsMetadata {
+  last_updated: string
+  source: string
+  latest_vintage: string
+  previous_vintage: string
+  latest_season_name: string
+  previous_season_name: string
+  error?: string
+}
+
+export interface ECBMacroProjectionsData {
+  indicators: {
+    gdp: ECBIndicatorData
+    unemployment: ECBIndicatorData
+    hicp: ECBIndicatorData
+    core_inflation: ECBIndicatorData
+    core_inflation_tax: ECBIndicatorData
+    foreign_demand: ECBIndicatorData
+    interest_rate: ECBIndicatorData
+    private_consumption: ECBIndicatorData
+    wages: ECBIndicatorData
+  }
+  metadata: ECBMacroProjectionsMetadata
+}
+
+// ユーロ圏金融政策ダッシュボードデータの型
+export interface EurozonePolicyData {
+  ecb_rates: ECBRatesData | null
+  eurex_ois: EurexOISData | null
+  ecb_macro_projections: ECBMacroProjectionsData | null
+}
+
+/**
+ * ユーロ圏金融政策ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useEurozonePolicyDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.ecb_rates) // ECB金利データ
+ *   console.log(data.data.eurex_ois) // Eurex OISデータ
+ * }
+ * ```
+ */
+export function useEurozonePolicyDashboard(): UseQueryResult<DashboardResponse<EurozonePolicyData>, Error> {
+  return useDashboardData<EurozonePolicyData>('eurozone', 'policy')
+}
+
+// ECB GDPデータの型
+export interface ECBGDPDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface ECBGDPMetadata {
+  last_updated: string
+  source: string
+  data_start: string
+  unit_qoq: string
+  unit_yoy: string
+  frequency: string
+}
+
+export interface ECBGDPData {
+  gdp_growth_qoq: ECBGDPDataPoint[]
+  gdp_growth_yoy: ECBGDPDataPoint[]
+  metadata: ECBGDPMetadata
+}
+
+// ECB GDP構成要素データ型
+export interface ECBGDPComponentsDataPoint {
+  date: string
+  value: number
+}
+
+export interface ECBGDPComponentsMetadata {
+  last_updated: string
+  source: string
+  data_start: string
+  unit: string
+  frequency: string
+  components: {
+    private_consumption: string
+    government_consumption: string
+    gross_fixed_capital: string
+    changes_in_inventories: string
+    net_exports: string
+  }
+}
+
+export interface ECBGDPComponentsData {
+  components: {
+    private_consumption: ECBGDPComponentsDataPoint[]
+    government_consumption: ECBGDPComponentsDataPoint[]
+    gross_fixed_capital: ECBGDPComponentsDataPoint[]
+    changes_in_inventories: ECBGDPComponentsDataPoint[]
+    net_exports: ECBGDPComponentsDataPoint[]
+  }
+  metadata: ECBGDPComponentsMetadata
+}
+
+// ECB BLSデータ型
+export interface ECBBLSDataPoint {
+  date: string
+  value: number
+}
+
+export interface ECBBLSMetadata {
+  last_updated: string
+  source: string
+  data_start: string
+  unit: string
+  frequency: string
+  description: {
+    enterprises: string
+    households: string
+  }
+}
+
+export interface ECBBLSData {
+  enterprises: ECBBLSDataPoint[]
+  households: ECBBLSDataPoint[]
+  metadata: ECBBLSMetadata
+}
+
+// ECB鉱工業生産データ型
+export interface ECBProductionDataPoint {
+  date: string
+  value: number
+}
+
+export interface ECBProductionMoMDataPoint {
+  date: string
+  value: number
+  current_index: number
+  previous_index: number
+}
+
+export interface ECBProductionMetadata {
+  last_updated: string
+  source: string
+  data_start: string
+  unit_index: string
+  unit_mom: string
+  unit_yoy: string
+  frequency: string
+  series_unadjusted: string
+  series_wda: string
+}
+
+export interface ECBProductionData {
+  production_wda: ECBProductionDataPoint[]
+  mom_change: ECBProductionMoMDataPoint[]
+  yoy_change: ECBProductionDataPoint[]
+  metadata: ECBProductionMetadata
+}
+
+// Eurostat ESIデータ型
+export interface EurostatESIDataPoint {
+  date: string
+  value: number
+}
+
+export interface EurostatESINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+export interface EurostatESIMetadata {
+  source: string
+  dataset: string
+  indicator: string
+  unit: string
+  frequency: string
+  seasonal_adjustment: string
+  countries: {
+    euro_area: string
+    germany: string
+    france: string
+    italy: string
+  }
+}
+
+export interface EurostatESIData {
+  euro_area: EurostatESIDataPoint[]
+  germany: EurostatESIDataPoint[]
+  france: EurostatESIDataPoint[]
+  italy: EurostatESIDataPoint[]
+  metadata: EurostatESIMetadata
+  next_release?: EurostatESINextRelease | null
+}
+
+// 欧州経済政策不確実性指数データ型
+export interface EuroPolicyUncertaintyDataPoint {
+  date: string
+  value: number
+}
+
+export interface EuroPolicyUncertaintyMetadata {
+  source: string
+  series_id: string
+  indicator: string
+  unit: string
+  frequency: string
+  description: string
+}
+
+export interface EuroPolicyUncertaintyData {
+  data: EuroPolicyUncertaintyDataPoint[]
+  latest: EuroPolicyUncertaintyDataPoint | null
+  metadata: EuroPolicyUncertaintyMetadata
+}
+
+// ECB小売売上高データ型
+export interface ECBRetailTradeDataPoint {
+  date: string
+  value: number
+}
+
+export interface ECBRetailTradeMetadata {
+  source: string
+  dataflow: string
+  indicator: string
+  unit: string
+  adjustment_mom: string
+  adjustment_yoy: string
+}
+
+export interface ECBRetailTradeData {
+  retail_yoy: ECBRetailTradeDataPoint[]
+  retail_mom: ECBRetailTradeDataPoint[]
+  metadata: ECBRetailTradeMetadata
+  next_release?: string | null
+}
+
+// ユーロ圏経済ダッシュボードデータの型
+export interface EurozoneEconomyData {
+  ecb_gdp: ECBGDPData | null
+  ecb_gdp_components: ECBGDPComponentsData | null
+  ecb_bls: ECBBLSData | null
+  ecb_production: ECBProductionData | null
+  eurostat_esi: EurostatESIData | null
+  euro_policy_uncertainty: EuroPolicyUncertaintyData | null
+  eu_pmi: EUPMIData | null
+}
+
+// ユーロ圏 HCOB PMIデータの型（製造業/サービス業/総合）
+export interface EUPMIData {
+  manufacturing: EUPMISeriesData | null
+  services: EUPMISeriesData | null
+  composite: EUPMISeriesData | null
+  next_release: EUPMINextRelease | null
+}
+
+export interface EUPMISeriesData {
+  data: EUPMIItem[]
+  latest: EUPMIItem | null
+}
+
+export interface EUPMIItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface EUPMINextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_cet?: string
+  time_cet?: string
+  label?: string
+  estimate?: number | null
+}
+
+/**
+ * ユーロ圏経済ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useEurozoneEconomyDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.ecb_gdp) // ECB GDPデータ
+ * }
+ * ```
+ */
+export function useEurozoneEconomyDashboard(): UseQueryResult<DashboardResponse<EurozoneEconomyData>, Error> {
+  return useDashboardData<EurozoneEconomyData>('eurozone', 'economy')
+}
+
+// ユーロ圏消費ダッシュボードデータの型
+export interface EurozoneConsumerData {
+  ecb_retail_trade: ECBRetailTradeData | null
+  eurostat_consumer_confidence: EurostatConsumerConfidenceData | null
+}
+
+// Eurostat消費者信頼感データの型
+export interface EurostatConsumerConfidenceData {
+  data: EurostatConsumerConfidenceItem[]
+  latest: EurostatConsumerConfidenceItem | null
+  metadata: Record<string, unknown>
+  next_release: EurostatConsumerConfidenceNextRelease | null
+}
+
+export interface EurostatConsumerConfidenceItem {
+  date: string
+  value: number
+}
+
+export interface EurostatConsumerConfidenceNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+/**
+ * ユーロ圏消費ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useEurozoneConsumerDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.ecb_retail_trade) // ECB小売売上高データ
+ * }
+ * ```
+ */
+export function useEurozoneConsumerDashboard(): UseQueryResult<DashboardResponse<EurozoneConsumerData>, Error> {
+  return useDashboardData<EurozoneConsumerData>('eurozone', 'consumer')
+}

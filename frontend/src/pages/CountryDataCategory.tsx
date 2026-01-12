@@ -19,6 +19,12 @@ import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
 import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
 import USAInflationCharts from '../components/country/usa/USAInflationCharts'
 import USAHousingCharts from '../components/country/usa/USAHousingCharts'
+import JapanPolicyCharts from '../components/country/japan/JapanPolicyCharts'
+import JapanEconomyCharts from '../components/country/japan/JapanEconomyCharts'
+import JapanConsumerCharts from '../components/country/japan/JapanConsumerCharts'
+import EurozonePolicyCharts from '../components/country/eurozone/EurozonePolicyCharts'
+import EurozoneEconomyCharts from '../components/country/eurozone/EurozoneEconomyCharts'
+import EurozoneConsumerCharts from '../components/country/eurozone/EurozoneConsumerCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -227,6 +233,14 @@ function CountryDataCategory() {
   const isUSAEmployment = countryCode === 'usa' && categoryCode === 'employment'
   const isUSAInflation = countryCode === 'usa' && categoryCode === 'inflation'
   const isUSAHousing = countryCode === 'usa' && categoryCode === 'housing'
+  // 日本金融政策・経済・消費の場合はチャートを表示
+  const isJapanPolicy = countryCode === 'japan' && categoryCode === 'policy'
+  const isJapanEconomy = countryCode === 'japan' && categoryCode === 'economy'
+  const isJapanConsumer = countryCode === 'japan' && categoryCode === 'consumer'
+  // ユーロ圏金融政策・経済・消費の場合はチャートを表示
+  const isEurozonePolicy = countryCode === 'eurozone' && categoryCode === 'policy'
+  const isEurozoneEconomy = countryCode === 'eurozone' && categoryCode === 'economy'
+  const isEurozoneConsumer = countryCode === 'eurozone' && categoryCode === 'consumer'
 
   // メインコンテンツ
   const mainContent = (
@@ -243,6 +257,18 @@ function CountryDataCategory() {
         <USAInflationCharts />
       ) : isUSAHousing ? (
         <USAHousingCharts />
+      ) : isJapanPolicy ? (
+        <JapanPolicyCharts />
+      ) : isJapanEconomy ? (
+        <JapanEconomyCharts />
+      ) : isJapanConsumer ? (
+        <JapanConsumerCharts />
+      ) : isEurozonePolicy ? (
+        <EurozonePolicyCharts />
+      ) : isEurozoneEconomy ? (
+        <EurozoneEconomyCharts />
+      ) : isEurozoneConsumer ? (
+        <EurozoneConsumerCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (
