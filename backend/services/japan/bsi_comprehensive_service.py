@@ -31,8 +31,10 @@ from io import BytesIO
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 
 class BSIComprehensiveService:
@@ -40,6 +42,9 @@ class BSIComprehensiveService:
 
     CACHE_KEY_PREFIX = "japan:bsi_comprehensive"
     CACHE_TTL = 60 * 60 * 24 * 7  # 7 days
+
+    # FMP event pattern for next release
+    INDICATOR_ID = "jp_bsi"
 
     # Data source URL
     DATA_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040283549&fileKind=0"
@@ -64,6 +69,14 @@ class BSIComprehensiveService:
     def __init__(self):
         self.cache_dir = Path(__file__).parent.parent.parent / "data" / "cache" / "bsi"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
+
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp(self.INDICATOR_ID)
+        except Exception as e:
+            print(f"Error getting next release for {self.INDICATOR_ID}: {e}")
+            return None
 
     def _get_cache_key(self, sheet_name: str, period_type: str) -> str:
         """Get cache key for specific sheet and period type"""
@@ -242,6 +255,7 @@ class BSIComprehensiveService:
             if cached_data:
                 cached_data["cached"] = True
                 cached_data["source"] = "redis"
+                cached_data["next_release"] = self._get_next_release()
                 return cached_data
 
             file_cached = self._get_file_cache(sheet_name, period_type)
@@ -249,6 +263,7 @@ class BSIComprehensiveService:
                 self._set_to_cache(sheet_name, period_type, file_cached)
                 file_cached["cached"] = True
                 file_cached["source"] = "file"
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
         # Fetch from e-Stat
@@ -266,7 +281,8 @@ class BSIComprehensiveService:
                 "period_type": period_type,
                 "last_updated": datetime.now().isoformat(),
                 "cached": False,
-                "source": "e-stat"
+                "source": "e-stat",
+                "next_release": self._get_next_release()
             }
 
             # Cache the result
@@ -286,6 +302,7 @@ class BSIComprehensiveService:
                 file_cached["cached"] = True
                 file_cached["source"] = "file_fallback"
                 file_cached["error"] = str(e)
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
             return {
@@ -296,7 +313,8 @@ class BSIComprehensiveService:
                 "error": str(e),
                 "last_updated": datetime.now().isoformat(),
                 "cached": False,
-                "source": "error"
+                "source": "error",
+                "next_release": None
             }
 
     def get_chart_data(
@@ -366,7 +384,8 @@ class BSIComprehensiveService:
             },
             "last_updated": raw_data.get("last_updated"),
             "cached": raw_data.get("cached", False),
-            "source": raw_data.get("source", "unknown")
+            "source": raw_data.get("source", "unknown"),
+            "next_release": raw_data.get("next_release")
         }
 
     def get_sheet_info(self) -> Dict[str, Any]:

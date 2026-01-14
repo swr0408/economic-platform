@@ -7,7 +7,7 @@
 - Eurostat Consumer Confidence: FMP発表日時ベース更新（"Consumer Confidence"パターン）
 """
 from typing import Dict, Any, Optional, List
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -60,10 +60,8 @@ class EurozoneConsumerLoader(BaseDashboardLoader):
 
             now = datetime.now(JST)
 
-            # 24時間以上経過していれば更新
-            if (now - last_updated_dt) > timedelta(hours=24):
-                stale.add("ecb_retail_trade")
-                stale.add("eurostat_consumer_confidence")
+            # 発表日時ベースの判定のみ（24時間強制更新は削除）
+            # 各サービスが自身のキャッシュ判定を行う
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")

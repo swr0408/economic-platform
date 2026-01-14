@@ -222,6 +222,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'consumer-sentiment', name: '消費動向調査（消費者態度指数）' },
           { code: 'boj-cai', name: '消費活動指数（旅行収支調整前）' },
           { code: 'economy-watcher', name: '景気ウォッチャー調査' },
+          { code: 'consumption-expenditure', name: '実質消費支出（家計調査）' },
         ],
       },
       {
@@ -230,6 +231,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <TeamOutlined />,
         color: '#faad14',
         indicators: [
+          { code: 'scheduled-wage', name: '所定内給与' },
+          { code: 'scheduled-wage-common', name: '所定内給与（共通事業所）' },
+          { code: 'employment-type', name: '雇用形態別労働者過不足判断D.I.' },
           { code: 'unemployment', name: '失業率' },
           { code: 'job-offers', name: '有効求人倍率' },
         ],
@@ -240,8 +244,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <RiseOutlined />,
         color: '#ff4d4f',
         indicators: [
-          { code: 'cpi', name: 'CPI' },
-          { code: 'cgpi', name: 'CGPI' },
+          { code: 'national-cpi', name: '全国CPI' },
+          { code: 'cpi-categories', name: '全国CPI 10大費目' },
+          { code: 'tokyo-cpi', name: '東京CPI' },
+          { code: 'sppi', name: '企業向けサービス価格指数（SPPI）' },
+          { code: 'cgpi', name: '企業物価指数（CGPI）' },
         ],
       },
       {
@@ -303,7 +310,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <TeamOutlined />,
         color: '#faad14',
         indicators: [
-          { code: 'unemployment', name: '失業率' },
+          { code: 'ecb-unemployment-chart', name: '失業率（ユーロ圏）' },
+          { code: 'ecb-employment', name: '雇用者数変化（ユーロ圏）' },
+          { code: 'ecb-labor-productivity', name: '労働生産性（ユーロ圏）' },
+          { code: 'ecb-unit-labour-cost', name: '労働コスト指数（ユーロ圏）' },
         ],
       },
       {

@@ -53,6 +53,10 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/capital-investment',
     '/api/japan/iip',
     '/api/japan/capacity-utilization',
+    '/api/japan/national-cpi',
+    '/api/japan/tokyo-cpi',
+    '/api/japan/cgpi',
+    '/api/japan/sppi',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -190,8 +194,14 @@ function extractIndicatorData(
   derived?: DerivedValueConfig,
   nestedKey?: string
 ): DataPoint[] {
-  // dataKeyでデータを取得
-  const indicatorData = response.data[dataKey] as unknown;
+  // dataKeyでデータを取得（ドット記法をサポート）
+  let indicatorData: unknown;
+  if (dataKey.includes('.')) {
+    // ドット記法の場合、ネストされたパスを解決
+    indicatorData = getNestedValue(response.data, dataKey);
+  } else {
+    indicatorData = response.data[dataKey] as unknown;
+  }
 
   if (!indicatorData) {
     console.log('[useOverlayData] No indicator data for:', dataKey);

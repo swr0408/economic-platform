@@ -5,6 +5,14 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
+export interface NextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
 export interface BOJTankanDataPoint {
   date: string
   large_manufacturing_current: number | null
@@ -19,6 +27,7 @@ export interface BOJTankanResponse {
   excel_url?: string
   cached: boolean
   source: string
+  next_release?: NextRelease | null
   error?: string
 }
 
@@ -40,6 +49,7 @@ export interface BOJTankanChartResponse {
   last_updated: string
   cached: boolean
   source: string
+  next_release?: NextRelease | null
   error?: string
 }
 

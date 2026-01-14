@@ -19,7 +19,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
 import { formatPercent, type PeriodType } from '../../usa/common/useChartData'
-import { NoDataMessage } from '../../usa/common/ChartComponents'
+import { NoDataMessage, NextReleaseDisplay } from '../../usa/common/ChartComponents'
 import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE, QUARTER_NAMES } from '../../usa/common/chartConstants'
 
 // マーケットインパクト関連
@@ -367,6 +367,7 @@ export default function EuroGDPChart({ data }: EuroGDPChartProps) {
                 ({formatECBQuarterLabel(latestValue.date)})
               </span>
             </div>
+            <NextReleaseDisplay nextRelease={data.next_release} />
           </div>
         )}
 

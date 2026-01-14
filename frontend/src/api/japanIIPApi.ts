@@ -8,6 +8,14 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
+export interface NextRelease {
+  date: string;
+  datetime_utc?: string;
+  datetime_jst?: string;
+  time_jst?: string;
+  label?: string;
+}
+
 export interface JapanIIPDataPoint {
   date: string;           // YYYY-MM-01 format
   item_code: string;      // 品目番号 (1000000000)
@@ -20,6 +28,7 @@ export interface JapanIIPDataPoint {
 export interface JapanIIPResponse {
   data: JapanIIPDataPoint[];
   latest: JapanIIPDataPoint | null;
+  next_release?: NextRelease | null;
   cached: boolean;
   source: string;
   last_updated: string | null;
@@ -38,6 +47,7 @@ export interface JapanIIPYoYDataPoint {
 export interface JapanIIPYoYResponse {
   data: JapanIIPYoYDataPoint[];
   latest: JapanIIPYoYDataPoint | null;
+  next_release?: NextRelease | null;
   cached: boolean;
   source: string;
   last_updated: string | null;

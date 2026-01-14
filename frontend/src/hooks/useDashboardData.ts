@@ -2372,6 +2372,232 @@ export function useJapanPolicyDashboard(): UseQueryResult<DashboardResponse<Japa
 }
 
 // =============================================================================
+// 日本消費データの型
+// =============================================================================
+
+// 消費支出データポイント
+export interface ConsumptionExpenditureItem {
+  date: string         // YYYY-MM-DD形式
+  value: number | null // MoMまたはYoY（%）
+  forecast?: number | null
+  previous?: number | null
+}
+
+// 消費支出系列データ
+export interface ConsumptionExpenditureSeriesData {
+  data: ConsumptionExpenditureItem[]
+  latest: ConsumptionExpenditureItem | null
+}
+
+// 次回発表情報
+export interface ConsumptionExpenditureNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+// 消費支出データ全体
+export interface ConsumptionExpenditureData {
+  mom: ConsumptionExpenditureSeriesData | null
+  yoy: ConsumptionExpenditureSeriesData | null
+  next_release: ConsumptionExpenditureNextRelease | null
+}
+
+// 小売業販売額データポイント
+export interface JapanRetailSalesItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // MoMまたはYoY（%）
+  sales_amount?: number | null // 販売額（10億円）
+  forecast?: number | null
+  previous?: number | null
+}
+
+// 小売業販売額系列データ
+export interface JapanRetailSalesSeriesData {
+  data: JapanRetailSalesItem[]
+  latest: JapanRetailSalesItem | null
+}
+
+// 小売業販売額次回発表情報
+export interface JapanRetailSalesNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label: string
+  estimate?: number | null
+}
+
+// 小売業販売額データ全体
+export interface JapanRetailSalesData {
+  mom: JapanRetailSalesSeriesData | null
+  yoy: JapanRetailSalesSeriesData | null
+  next_release: JapanRetailSalesNextRelease | null
+}
+
+// 日本消費ダッシュボードデータの型
+export interface JapanConsumerData {
+  consumption_expenditure: ConsumptionExpenditureData | null
+  retail_sales: JapanRetailSalesData | null
+}
+
+/**
+ * 日本消費ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useJapanConsumerDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.consumption_expenditure) // 消費支出データ
+ * }
+ * ```
+ */
+export function useJapanConsumerDashboard(): UseQueryResult<DashboardResponse<JapanConsumerData>, Error> {
+  return useDashboardData<JapanConsumerData>('japan', 'consumer')
+}
+
+// =============================================================================
+// 日本雇用データの型
+// =============================================================================
+
+// 所定内給与データポイント
+export interface JapanScheduledWageDataPoint {
+  date: string
+  value: number
+}
+
+// 所定内給与系列データ
+export interface JapanScheduledWageSeriesData {
+  data: JapanScheduledWageDataPoint[]
+  latest: JapanScheduledWageDataPoint | null
+}
+
+// 所定内給与次回発表
+export interface JapanScheduledWageNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label: string
+  estimate?: number | null
+}
+
+// 所定内給与データ全体（e-Stat版）
+export interface JapanScheduledWageData {
+  scheduled_wage: JapanScheduledWageSeriesData | null
+  general: JapanScheduledWageSeriesData | null
+  part_time: JapanScheduledWageSeriesData | null
+  next_release: JapanScheduledWageNextRelease | null
+}
+
+// 所定内給与データ全体（共通事業所版）
+export interface JapanScheduledWageCommonData {
+  scheduled_wage: JapanScheduledWageSeriesData | null
+  general: JapanScheduledWageSeriesData | null
+  part_time: JapanScheduledWageSeriesData | null
+  next_release: JapanScheduledWageNextRelease | null
+  data_type?: 'preliminary' | 'revised' | null  // 速報(p) / 確報(r)
+}
+
+// 雇用形態別労働者過不足判断D.I.データポイント
+export interface JapanEmploymentTypeDataPoint {
+  date: string
+  value: number
+}
+
+// 雇用形態別労働者過不足判断D.I.系列データ
+export interface JapanEmploymentTypeSeriesData {
+  data: JapanEmploymentTypeDataPoint[]
+  latest: JapanEmploymentTypeDataPoint | null
+}
+
+// 雇用形態別労働者過不足判断D.I.データ全体
+export interface JapanEmploymentTypeData {
+  regular_employee: JapanEmploymentTypeSeriesData | null
+  part_time: JapanEmploymentTypeSeriesData | null
+}
+
+// 失業率データポイント
+export interface JapanUnemploymentDataPoint {
+  date: string  // YYYY-MM-DD形式
+  value: number // 失業率（%）
+}
+
+// 失業率系列データ
+export interface JapanUnemploymentSeriesData {
+  data: JapanUnemploymentDataPoint[]
+  latest: JapanUnemploymentDataPoint | null
+}
+
+// 失業率次回発表情報
+export interface JapanUnemploymentNextRelease {
+  date?: string
+  time_jst?: string
+  datetime_jst?: string
+}
+
+// 失業率データ全体
+export interface JapanUnemploymentData {
+  unemployment_rate: JapanUnemploymentSeriesData | null
+  next_release: JapanUnemploymentNextRelease | null
+}
+
+// =============================================================================
+// 日本有効求人倍率データの型
+// =============================================================================
+
+// 有効求人倍率データポイント
+export interface JapanJobOffersRatioDataPoint {
+  date: string  // YYYY-MM-DD形式
+  value: number | null // 有効求人倍率（倍）
+  forecast?: number | null
+  previous?: number | null
+}
+
+// 有効求人倍率次回発表情報
+export interface JapanJobOffersRatioNextRelease {
+  date?: string
+  time_jst?: string
+  datetime_jst?: string
+}
+
+// 有効求人倍率データ全体
+export interface JapanJobOffersRatioData {
+  job_offers_ratio: JapanJobOffersRatioDataPoint[] | null
+  latest: JapanJobOffersRatioDataPoint | null
+  next_release: JapanJobOffersRatioNextRelease | null
+}
+
+// 日本雇用ダッシュボードデータの型
+export interface JapanEmploymentDashboardData {
+  scheduled_wage: JapanScheduledWageData | null
+  scheduled_wage_common: JapanScheduledWageCommonData | null
+  employment_type: JapanEmploymentTypeData | null
+  unemployment: JapanUnemploymentData | null
+  job_offers_ratio: JapanJobOffersRatioData | null
+}
+
+/**
+ * 日本雇用ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useJapanEmploymentDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.scheduled_wage) // 所定内給与データ
+ * }
+ * ```
+ */
+export function useJapanEmploymentDashboard(): UseQueryResult<DashboardResponse<JapanEmploymentDashboardData>, Error> {
+  return useDashboardData<JapanEmploymentDashboardData>('japan', 'employment')
+}
+
+// =============================================================================
 // ユーロ圏金融政策データの型
 // =============================================================================
 
@@ -2491,10 +2717,21 @@ export interface ECBGDPMetadata {
   frequency: string
 }
 
+export interface ECBGDPNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+}
+
 export interface ECBGDPData {
   gdp_growth_qoq: ECBGDPDataPoint[]
   gdp_growth_yoy: ECBGDPDataPoint[]
   metadata: ECBGDPMetadata
+  next_release?: ECBGDPNextRelease | null
 }
 
 // ECB GDP構成要素データ型
@@ -2547,10 +2784,21 @@ export interface ECBBLSMetadata {
   }
 }
 
+export interface ECBBLSNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+}
+
 export interface ECBBLSData {
   enterprises: ECBBLSDataPoint[]
   households: ECBBLSDataPoint[]
   metadata: ECBBLSMetadata
+  next_release?: ECBBLSNextRelease | null
 }
 
 // ECB鉱工業生産データ型
@@ -2578,11 +2826,22 @@ export interface ECBProductionMetadata {
   series_wda: string
 }
 
+export interface ECBProductionNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+}
+
 export interface ECBProductionData {
   production_wda: ECBProductionDataPoint[]
   mom_change: ECBProductionMoMDataPoint[]
   yoy_change: ECBProductionDataPoint[]
   metadata: ECBProductionMetadata
+  next_release?: ECBProductionNextRelease | null
 }
 
 // Eurostat ESIデータ型
@@ -2666,7 +2925,7 @@ export interface ECBRetailTradeData {
   retail_yoy: ECBRetailTradeDataPoint[]
   retail_mom: ECBRetailTradeDataPoint[]
   metadata: ECBRetailTradeMetadata
-  next_release?: string | null
+  next_release?: { date: string; label?: string; time_jst?: string } | null
 }
 
 // ユーロ圏経済ダッシュボードデータの型
@@ -2766,4 +3025,126 @@ export interface EurostatConsumerConfidenceNextRelease {
  */
 export function useEurozoneConsumerDashboard(): UseQueryResult<DashboardResponse<EurozoneConsumerData>, Error> {
   return useDashboardData<EurozoneConsumerData>('eurozone', 'consumer')
+}
+
+// ユーロ圏雇用ダッシュボードデータの型
+export interface EurozoneEmploymentData {
+  ecb_unemployment: ECBUnemploymentData | null
+  ecb_employment: ECBEmploymentData | null
+  ecb_labor_productivity: ECBLaborProductivityData | null
+  ecb_unit_labour_cost: ECBUnitLabourCostData | null
+}
+
+// ECB失業率データの型
+export interface ECBUnemploymentData {
+  unemployment_rate: ECBUnemploymentItem[]
+  metadata: Record<string, unknown>
+  next_release: ECBUnemploymentNextRelease | null
+}
+
+export interface ECBUnemploymentItem {
+  date: string
+  value: number
+}
+
+export interface ECBUnemploymentNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB雇用者数変化データの型
+export interface ECBEmploymentData {
+  employment_qoq: ECBEmploymentItem[]
+  employment_yoy: ECBEmploymentItem[]
+  metadata: Record<string, unknown>
+  next_release: ECBEmploymentNextRelease | null
+}
+
+export interface ECBEmploymentItem {
+  date: string
+  value: number
+}
+
+export interface ECBEmploymentNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB労働生産性データの型
+export interface ECBLaborProductivityData {
+  per_hour: ECBLaborProductivityItem[]
+  per_person: ECBLaborProductivityItem[]
+  per_hour_yoy: ECBLaborProductivityItem[]
+  per_person_yoy: ECBLaborProductivityItem[]
+  metadata: Record<string, unknown>
+  next_release: ECBLaborProductivityNextRelease | null
+}
+
+export interface ECBLaborProductivityItem {
+  date: string
+  value: number
+}
+
+export interface ECBLaborProductivityNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB労働コスト指数データの型
+export interface ECBUnitLabourCostData {
+  unit_labour_cost: ECBUnitLabourCostItem[]
+  unit_labour_cost_yoy: ECBUnitLabourCostItem[]
+  unit_labour_cost_qoq: ECBUnitLabourCostItem[]
+  metadata: Record<string, unknown>
+  next_release: ECBUnitLabourCostNextRelease | null
+}
+
+export interface ECBUnitLabourCostItem {
+  date: string
+  value: number
+}
+
+export interface ECBUnitLabourCostNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+/**
+ * ユーロ圏雇用ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useEurozoneEmploymentDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.ecb_unemployment) // ECB失業率データ
+ * }
+ * ```
+ */
+export function useEurozoneEmploymentDashboard(): UseQueryResult<DashboardResponse<EurozoneEmploymentData>, Error> {
+  return useDashboardData<EurozoneEmploymentData>('eurozone', 'employment')
 }

@@ -140,13 +140,14 @@ export default function ECBRetailTradeChart({ data }: ECBRetailTradeChartProps) 
         title="小売売上高（ユーロ圏）"
         showPeriodSelector={false}
         dataSource="Eurostat"
-        sourceUrl="https://ec.europa.eu/eurostat/databrowser/view/sts_trtu_m/default/table"
+        sourceUrl="https://ec.europa.eu/eurostat/web/main/news/euro-indicators?p_p_id=estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageNumber=1&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_action=search&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageSize=11&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_text=retail+trade&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_collection=CAT_PREREL&p_auth=FdY2UEfx&text=Volume+of+retail+trade"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
           value={viewMode === 'yoy' ? latest?.yoy : latest?.mom}
           valueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
           date={latest?.date}
+          nextRelease={data.next_release}
           format="percent"
         />
 

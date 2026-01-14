@@ -7,12 +7,13 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { Button, Segmented } from 'antd'
-import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import { type PeriodValue } from '../../../common/PeriodSelector'
-import { fetchBSIComprehensiveChart, type SheetName, type PeriodType } from '../../../../utils/japan/bsiApi'
+import { fetchBSIComprehensiveChart, type SheetName, type PeriodType, type NextRelease } from '../../../../utils/japan/bsiApi'
+import { TEXT_COLORS } from '../../usa/common/chartConstants'
 
 interface SheetConfig {
   sheetName: SheetName
@@ -44,6 +45,32 @@ const PERIOD_TYPES: { type: PeriodType; label: string }[] = [
 ]
 
 const DEFAULT_START_DATE = '2010-Q1'
+
+// 次回発表日時のフォーマット
+const formatNextRelease = (nextRelease: NextRelease | null | undefined): string | null => {
+  if (!nextRelease) return null
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+  if (nextRelease.time_jst && nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+  return null
+}
 
 const parseQuarterDate = (dateStr: string): Date | null => {
   try {
@@ -101,6 +128,7 @@ export default function BSIUnifiedChart() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [nextRelease, setNextRelease] = useState<NextRelease | null>(null)
 
   const currentSheet = SHEETS[currentSheetIndex]
   const currentPeriodLabel = PERIOD_TYPES.find((p) => p.type === selectedPeriodType)?.label || '当期'
@@ -124,6 +152,9 @@ export default function BSIUnifiedChart() {
         }))
 
         setRawData(chartData)
+        if (response.next_release) {
+          setNextRelease(response.next_release)
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : 'データの取得に失敗しました')
         console.error('Error loading BSI data:', err)
@@ -168,17 +199,33 @@ export default function BSIUnifiedChart() {
         dataSource="財務省"
         sourceUrl="https://www.mof.go.jp/pri/reference/bos/index.htm"
         extra={
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Button icon={<LeftOutlined />} onClick={handlePrevious} disabled={currentSheetIndex === 0} size="small" />
-            <span style={{ fontSize: '12px', color: '#8c8c8c', minWidth: '40px', textAlign: 'center' }}>
-              {currentSheetIndex + 1}/{SHEETS.length}
-            </span>
-            <Button
-              icon={<RightOutlined />}
-              onClick={handleNext}
-              disabled={currentSheetIndex === SHEETS.length - 1}
-              size="small"
-            />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            {/* ページング */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Button icon={<LeftOutlined />} onClick={handlePrevious} disabled={currentSheetIndex === 0} size="small" />
+              <span style={{ fontSize: '12px', color: '#8c8c8c', minWidth: '40px', textAlign: 'center' }}>
+                {currentSheetIndex + 1}/{SHEETS.length}
+              </span>
+              <Button
+                icon={<RightOutlined />}
+                onClick={handleNext}
+                disabled={currentSheetIndex === SHEETS.length - 1}
+                size="small"
+              />
+            </div>
+            {/* 次回発表 */}
+            {nextRelease && formatNextRelease(nextRelease) && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 12,
+                color: TEXT_COLORS.secondary,
+              }}>
+                <CalendarOutlined />
+                <span>次回発表: {formatNextRelease(nextRelease)}</span>
+              </div>
+            )}
           </div>
         }
       >

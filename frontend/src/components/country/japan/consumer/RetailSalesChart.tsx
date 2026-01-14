@@ -1,0 +1,319 @@
+/**
+ * 小売業販売額チャートコンポーネント（日本）
+ *
+ * データソース: 経済産業省（商業動態統計調査）
+ * - e-Stat Excel + FMP経由でDBに蓄積
+ *
+ * 表示:
+ * - 前年比グラフ
+ * - 前月比テーブル
+ * - 前月比グラフ
+ */
+import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined, CalendarOutlined } from '@ant-design/icons'
+import ChartContainer from '../../../common/ChartContainer'
+import LoadingChart from '../../../common/LoadingChart'
+import PeriodSelector, { type PeriodValue } from '../../../common/PeriodSelector'
+import type { JapanRetailSalesData, JapanRetailSalesNextRelease } from '../../../../hooks/useDashboardData'
+
+// 共通モジュールのインポート
+import {
+  useViewModePeriodManagement,
+  useMonthlyTableData,
+  useHiddenSeries,
+} from '../../usa/common/useChartData'
+import {
+  ViewModeButtonGroup,
+  NoDataMessage,
+  StandardLineChart,
+  StandardBarChart,
+} from '../../usa/common/ChartComponents'
+import {
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
+} from '../../usa/common/chartConstants'
+import { MonthlyTable } from '../../usa/common/MonthlyTable'
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
+// =============================================================================
+// 型定義
+// =============================================================================
+
+interface RetailSalesChartProps {
+  data: JapanRetailSalesData | null
+}
+
+interface ChartDataPoint {
+  date: string
+  yoy: number | null
+  mom: number | null
+}
+
+type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+
+// グラフの色
+const COLORS = {
+  yoy: '#1890ff',
+  mom: '#52c41a',
+}
+
+// =============================================================================
+// ヘルパー関数
+// =============================================================================
+
+// 期間フィルタリング
+const filterByPeriod = (
+  data: ChartDataPoint[],
+  period: PeriodValue,
+  defaultStartYear: number = 2020
+): ChartDataPoint[] => {
+  if (period === 'all') {
+    return data
+  }
+
+  let cutoffDate: Date
+  if (period === 'default') {
+    cutoffDate = new Date(defaultStartYear, 0, 1)
+  } else if (typeof period === 'number') {
+    cutoffDate = new Date()
+    cutoffDate.setFullYear(cutoffDate.getFullYear() - period)
+  } else {
+    cutoffDate = new Date(defaultStartYear, 0, 1)
+  }
+
+  return data.filter(item => {
+    const itemDate = new Date(item.date)
+    return itemDate >= cutoffDate
+  })
+}
+
+// 日付フォーマット関数
+const formatDate = (dateStr: string) => {
+  const date = new Date(dateStr)
+  return `${date.getFullYear()}年${(date.getMonth() + 1).toString().padStart(2, '0')}月`
+}
+
+// 次回発表日時フォーマット関数
+const formatNextRelease = (nextRelease: JapanRetailSalesNextRelease | null | undefined): string | null => {
+  if (!nextRelease) return null
+
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+
+  if (nextRelease.date && nextRelease.time_jst) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+
+  return null
+}
+
+// =============================================================================
+// メインコンポーネント
+// =============================================================================
+
+export default function RetailSalesChart({ data }: RetailSalesChartProps) {
+  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
+  const { hiddenSeries, handleLegendClick } = useHiddenSeries()
+
+  // ビューモード毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+    yoy: 'default',
+    mom_table: 'default',
+    mom_chart: 3,
+  })
+
+  // YoYとMoMデータをマージしてチャートデータに変換
+  const chartData = useMemo<ChartDataPoint[]>(() => {
+    if (!data) return []
+
+    const yoyData = data.yoy?.data || []
+    const momData = data.mom?.data || []
+
+    // 全日付を収集
+    const allDates = new Set<string>()
+    yoyData.forEach((d) => allDates.add(d.date))
+    momData.forEach((d) => allDates.add(d.date))
+
+    // 日付順にソート
+    const sortedDates = Array.from(allDates).sort(
+      (a, b) => new Date(a).getTime() - new Date(b).getTime()
+    )
+
+    // 各日付に対してデータをマージ
+    const yoyMap = new Map(yoyData.map((d) => [d.date, d.value]))
+    const momMap = new Map(momData.map((d) => [d.date, d.value]))
+
+    return sortedDates.map((date) => ({
+      date,
+      yoy: yoyMap.get(date) ?? null,
+      mom: momMap.get(date) ?? null,
+    }))
+  }, [data])
+
+  // 期間フィルタリング
+  const filteredData = useMemo(() => {
+    return filterByPeriod(chartData, currentPeriod, 2020)
+  }, [chartData, currentPeriod])
+
+  // テーブル用データ（年別×月別のマトリックス）
+  const momTableData = useMonthlyTableData(chartData, (item) => item.mom)
+
+  const hasData = chartData.length > 0
+
+  // 最新値を取得
+  const latestYoy = data?.yoy?.latest
+  const latestMom = data?.mom?.latest
+
+  // データがnullの場合はローディング表示
+  if (data === null) {
+    return <LoadingChart title="小売業販売額（商業動態統計）" />
+  }
+
+  if (!hasData) {
+    return (
+      <ChartContainer title="小売業販売額（商業動態統計）" showPeriodSelector={false} showDataSource={false}>
+        <NoDataMessage />
+      </ChartContainer>
+    )
+  }
+
+  return (
+    <div id="retail-sales-chart">
+      <ChartContainer
+        title="小売業販売額（商業動態統計）"
+        showPeriodSelector={false}
+        dataSource="経済産業省"
+        sourceUrl="https://www.meti.go.jp/statistics/tyo/syoudou/"
+      >
+        {/* 最新値表示（統合ボックス） */}
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          {/* 左側: 最新値 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            {(viewMode === 'yoy' ? latestYoy?.date : latestMom?.date) && (
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {formatDate(viewMode === 'yoy' ? latestYoy!.date : latestMom!.date)}
+              </span>
+            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {viewMode === 'yoy' ? '前年比:' : '前月比:'}
+              </span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: viewMode === 'yoy' ? COLORS.yoy : COLORS.mom }}>
+                {(viewMode === 'yoy' ? latestYoy?.value : latestMom?.value)?.toFixed(1) ?? '-'}%
+              </span>
+            </div>
+          </div>
+
+          {/* 右側: 次回発表 */}
+          {data?.next_release && formatNextRelease(data.next_release) && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 12,
+              color: TEXT_COLORS.secondary,
+            }}>
+              <CalendarOutlined />
+              <span>次回発表: {formatNextRelease(data.next_release)}</span>
+            </div>
+          )}
+        </div>
+
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <ViewModeButtonGroup
+                    currentMode={viewMode}
+                    onChange={(mode) => setViewMode(mode as ViewMode)}
+                    options={[
+                      { mode: 'yoy', label: '前年比' },
+                      { mode: 'mom_table', label: '前月比テーブル' },
+                      { mode: 'mom_chart', label: '前月比グラフ' },
+                    ]}
+                  />
+
+                  {/* 期間セレクター */}
+                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <Tooltip title="比較ページを開く">
+                        <Button
+                          icon={<AreaChartOutlined />}
+                          onClick={() => window.open(`/compare?s=${viewMode === 'yoy' ? 'jp_retail_sales_yoy' : 'jp_retail_sales_mom'}`, '_blank')}
+                        >
+                          データ比較
+                        </Button>
+                      </Tooltip>
+                    </div>
+                  )}
+
+                  {/* コンテンツ表示 */}
+                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+
+                  {viewMode === 'yoy' && (
+                    <StandardLineChart
+                      data={filteredData}
+                      lines={[
+                        { dataKey: 'yoy', color: COLORS.yoy, name: '小売業販売額（前年比）', hide: hiddenSeries.has('yoy') },
+                      ]}
+                      yAxisFormatter={(v) => `${v}%`}
+                      yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                      onLegendClick={handleLegendClick}
+                      showZeroLine={true}
+                    />
+                  )}
+
+                  {viewMode === 'mom_chart' && (
+                    <StandardBarChart
+                      data={filteredData}
+                      bars={[
+                        { dataKey: 'mom', color: COLORS.mom, name: '小売業販売額（前月比）' },
+                      ]}
+                      yAxisFormatter={(v) => `${v}%`}
+                      yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="jp_retail_sales_yoy" />
+              ),
+            },
+          ]}
+        />
+      </ChartContainer>
+    </div>
+  )
+}

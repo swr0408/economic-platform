@@ -22,9 +22,12 @@ import USAHousingCharts from '../components/country/usa/USAHousingCharts'
 import JapanPolicyCharts from '../components/country/japan/JapanPolicyCharts'
 import JapanEconomyCharts from '../components/country/japan/JapanEconomyCharts'
 import JapanConsumerCharts from '../components/country/japan/JapanConsumerCharts'
+import JapanEmploymentCharts from '../components/country/japan/JapanEmploymentCharts'
+import JapanInflationCharts from '../components/country/japan/JapanInflationCharts'
 import EurozonePolicyCharts from '../components/country/eurozone/EurozonePolicyCharts'
 import EurozoneEconomyCharts from '../components/country/eurozone/EurozoneEconomyCharts'
 import EurozoneConsumerCharts from '../components/country/eurozone/EurozoneConsumerCharts'
+import EurozoneEmploymentCharts from '../components/country/eurozone/EurozoneEmploymentCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -233,14 +236,17 @@ function CountryDataCategory() {
   const isUSAEmployment = countryCode === 'usa' && categoryCode === 'employment'
   const isUSAInflation = countryCode === 'usa' && categoryCode === 'inflation'
   const isUSAHousing = countryCode === 'usa' && categoryCode === 'housing'
-  // 日本金融政策・経済・消費の場合はチャートを表示
+  // 日本金融政策・経済・消費・雇用・物価の場合はチャートを表示
   const isJapanPolicy = countryCode === 'japan' && categoryCode === 'policy'
   const isJapanEconomy = countryCode === 'japan' && categoryCode === 'economy'
   const isJapanConsumer = countryCode === 'japan' && categoryCode === 'consumer'
-  // ユーロ圏金融政策・経済・消費の場合はチャートを表示
+  const isJapanEmployment = countryCode === 'japan' && categoryCode === 'employment'
+  const isJapanInflation = countryCode === 'japan' && categoryCode === 'inflation'
+  // ユーロ圏金融政策・経済・消費・雇用の場合はチャートを表示
   const isEurozonePolicy = countryCode === 'eurozone' && categoryCode === 'policy'
   const isEurozoneEconomy = countryCode === 'eurozone' && categoryCode === 'economy'
   const isEurozoneConsumer = countryCode === 'eurozone' && categoryCode === 'consumer'
+  const isEurozoneEmployment = countryCode === 'eurozone' && categoryCode === 'employment'
 
   // メインコンテンツ
   const mainContent = (
@@ -263,12 +269,18 @@ function CountryDataCategory() {
         <JapanEconomyCharts />
       ) : isJapanConsumer ? (
         <JapanConsumerCharts />
+      ) : isJapanEmployment ? (
+        <JapanEmploymentCharts />
+      ) : isJapanInflation ? (
+        <JapanInflationCharts />
       ) : isEurozonePolicy ? (
         <EurozonePolicyCharts />
       ) : isEurozoneEconomy ? (
         <EurozoneEconomyCharts />
       ) : isEurozoneConsumer ? (
         <EurozoneConsumerCharts />
+      ) : isEurozoneEmployment ? (
+        <EurozoneEmploymentCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

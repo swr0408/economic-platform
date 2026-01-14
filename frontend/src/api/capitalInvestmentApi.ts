@@ -10,6 +10,14 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
+export interface NextRelease {
+  date: string;
+  datetime_utc?: string;
+  datetime_jst?: string;
+  time_jst?: string;
+  label?: string;
+}
+
 export interface CapitalInvestmentDataPoint {
   date: string; // YYYY-Qn format
   value: number; // 百万円
@@ -21,6 +29,7 @@ export interface CapitalInvestmentDataPoint {
 export interface CapitalInvestmentResponse {
   data: CapitalInvestmentDataPoint[];
   latest: CapitalInvestmentDataPoint | null;
+  next_release?: NextRelease | null;
   cached: boolean;
   source: string;
   last_updated: string | null;

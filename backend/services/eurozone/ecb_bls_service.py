@@ -33,6 +33,10 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from core.redis_client import redis_client
+from services.eurozone.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -57,6 +61,7 @@ class ECBBLSService:
     SERIES_KEY_HOUSEHOLDS = "Q.U2.ALL.O.E.Z.F3.ZZ.D.WFNET"   # 家計向け
 
     DATA_CACHE_KEY = "economy:ecb_bls:data"
+    ECONALPHA_ID = "ecb_bls"
 
     def __init__(self):
         pass
@@ -133,10 +138,12 @@ class ECBBLSService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
+                    next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
                     return {
                         "enterprises": cached_data.get("enterprises", []),
                         "households": cached_data.get("households", []),
                         "metadata": cached_data.get("metadata", {}),
+                        "next_release": next_release,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -150,6 +157,7 @@ class ECBBLSService:
         has_data = len(enterprises_data) > 0 or len(households_data) > 0
 
         if has_data:
+            next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             metadata = {
                 "last_updated": datetime.now(JST).isoformat(),
                 "source": "European Central Bank (ECB) - Bank Lending Survey",
@@ -175,6 +183,7 @@ class ECBBLSService:
                 "enterprises": enterprises_data,
                 "households": households_data,
                 "metadata": metadata,
+                "next_release": next_release,
                 "cached": False,
                 "source": "ecb_api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -183,10 +192,12 @@ class ECBBLSService:
         # ファイルキャッシュフォールバック
         file_cache = self._load_file_cache()
         if file_cache:
+            next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             return {
                 "enterprises": file_cache.get("enterprises", []),
                 "households": file_cache.get("households", []),
                 "metadata": file_cache.get("metadata", {}),
+                "next_release": next_release,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -196,6 +207,7 @@ class ECBBLSService:
             "enterprises": [],
             "households": [],
             "metadata": {},
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,

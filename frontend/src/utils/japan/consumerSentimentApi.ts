@@ -13,9 +13,18 @@ export interface ConsumerSentimentDataPoint {
   durable_goods: number | null // Willingness to buy durable goods (耐久消費財の買い時判断)
 }
 
+export interface NextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
 export interface ConsumerSentimentResponse {
   data: ConsumerSentimentDataPoint[]
   latest?: ConsumerSentimentDataPoint
+  next_release?: NextRelease | null
   last_updated?: string
   source?: string
   cached?: boolean

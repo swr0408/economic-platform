@@ -419,6 +419,31 @@ interface QuarterlyTableDataResult<T> {
 }
 
 /**
+ * 四半期形式の日付（YYYY-QN）をパースしてyearとquarter（0-3）を返す
+ * 通常の日付形式（YYYY-MM-DD）もサポート
+ */
+function parseQuarterlyDate(dateStr: string): { year: number; quarter: number } | null {
+  // YYYY-QN 形式をパース
+  const quarterMatch = dateStr.match(/^(\d{4})-Q([1-4])$/)
+  if (quarterMatch) {
+    const year = parseInt(quarterMatch[1], 10)
+    const quarter = parseInt(quarterMatch[2], 10) - 1 // 0-indexed (Q1=0, Q2=1, Q3=2, Q4=3)
+    return { year, quarter }
+  }
+
+  // 通常の日付形式（YYYY-MM-DD）をパース
+  const date = new Date(dateStr)
+  if (!isNaN(date.getTime())) {
+    return {
+      year: date.getFullYear(),
+      quarter: Math.floor(date.getMonth() / 3)
+    }
+  }
+
+  return null
+}
+
+/**
  * チャートデータから四半期別テーブルデータを生成するHook
  */
 export function useQuarterlyTableData<T extends DateBasedData, V>(
@@ -440,9 +465,10 @@ export function useQuarterlyTableData<T extends DateBasedData, V>(
     const quarterlyData: Record<number, Record<number, V | null>> = {}
 
     data.forEach((item) => {
-      const date = new Date(item.date)
-      const year = date.getFullYear()
-      const quarter = Math.floor(date.getMonth() / 3)
+      const parsed = parseQuarterlyDate(item.date)
+      if (!parsed) return
+
+      const { year, quarter } = parsed
 
       if (year >= startYear && year <= currentYear) {
         if (!quarterlyData[year]) {

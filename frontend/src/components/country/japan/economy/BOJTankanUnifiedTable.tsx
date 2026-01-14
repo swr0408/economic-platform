@@ -12,7 +12,7 @@
 
 import { useEffect, useState, useMemo } from 'react'
 import { Table, Button } from 'antd'
-import { LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
@@ -22,7 +22,10 @@ import {
   fetchBOJTankanData,
   formatQuarterDate as formatQuarterDateDI,
   type BOJTankanDataPoint,
+  type NextRelease,
 } from '../../../../utils/japan/bojTankanApi'
+
+import { TEXT_COLORS } from '../../usa/common/chartConstants'
 
 import {
   fetchBOJTankanComprehensiveTable,
@@ -57,6 +60,32 @@ interface TableRow {
 const INITIAL_ROW_COUNT = 5
 const INCREMENT_COUNT = 10
 
+// 次回発表日時のフォーマット
+const formatNextRelease = (nextRelease: NextRelease | null | undefined): string | null => {
+  if (!nextRelease) return null
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+  if (nextRelease.time_jst && nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+  return null
+}
+
 export default function BOJTankanUnifiedTable() {
   const [currentDataTypeIndex, setCurrentDataTypeIndex] = useState(0)
   const [diData, setDiData] = useState<BOJTankanDataPoint[]>([])
@@ -64,6 +93,7 @@ export default function BOJTankanUnifiedTable() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [visibleRowCount, setVisibleRowCount] = useState(INITIAL_ROW_COUNT)
+  const [nextRelease, setNextRelease] = useState<NextRelease | null>(null)
 
   const currentDataType = DATA_TYPES[currentDataTypeIndex]
 
@@ -79,6 +109,9 @@ export default function BOJTankanUnifiedTable() {
           const response = await fetchBOJTankanData()
           setDiData(response.data)
           setComprehensiveData([])
+          if (response.next_release) {
+            setNextRelease(response.next_release)
+          }
         } else {
           // 包括的データを取得
           const response = await fetchBOJTankanComprehensiveTable(currentDataType.type as DataType)
@@ -325,17 +358,33 @@ export default function BOJTankanUnifiedTable() {
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/statistics/tk/index.htm"
         extra={
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Button icon={<LeftOutlined />} onClick={handlePrevious} disabled={currentDataTypeIndex === 0} size="small" />
-            <span style={{ fontSize: '12px', color: '#8c8c8c', minWidth: '40px', textAlign: 'center' }}>
-              {currentDataTypeIndex + 1}/{DATA_TYPES.length}
-            </span>
-            <Button
-              icon={<RightOutlined />}
-              onClick={handleNext}
-              disabled={currentDataTypeIndex === DATA_TYPES.length - 1}
-              size="small"
-            />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            {/* ページング */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Button icon={<LeftOutlined />} onClick={handlePrevious} disabled={currentDataTypeIndex === 0} size="small" />
+              <span style={{ fontSize: '12px', color: '#8c8c8c', minWidth: '40px', textAlign: 'center' }}>
+                {currentDataTypeIndex + 1}/{DATA_TYPES.length}
+              </span>
+              <Button
+                icon={<RightOutlined />}
+                onClick={handleNext}
+                disabled={currentDataTypeIndex === DATA_TYPES.length - 1}
+                size="small"
+              />
+            </div>
+            {/* 次回発表 */}
+            {nextRelease && formatNextRelease(nextRelease) && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                fontSize: 12,
+                color: TEXT_COLORS.secondary,
+              }}>
+                <CalendarOutlined />
+                <span>次回発表: {formatNextRelease(nextRelease)}</span>
+              </div>
+            )}
           </div>
         }
       >

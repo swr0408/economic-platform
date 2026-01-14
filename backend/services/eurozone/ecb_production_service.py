@@ -26,6 +26,10 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from core.redis_client import redis_client
+from services.eurozone.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -46,6 +50,7 @@ class ECBProductionService:
     DATASET = "sts_inpr_m"
 
     DATA_CACHE_KEY = "economy:ecb_production:data"
+    ECONALPHA_ID = "ecb_production"
 
     def __init__(self):
         pass
@@ -190,11 +195,13 @@ class ECBProductionService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
+                    next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
                     return {
                         "production_wda": cached_data.get("production_wda", []),
                         "mom_change": cached_data.get("mom_change", []),
                         "yoy_change": cached_data.get("yoy_change", []),
                         "metadata": cached_data.get("metadata", {}),
+                        "next_release": next_release,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -212,6 +219,7 @@ class ECBProductionService:
         has_data = len(production_sca) > 0 or len(mom_change) > 0 or len(yoy_change) > 0
 
         if has_data:
+            next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             metadata = {
                 "last_updated": datetime.now(JST).isoformat(),
                 "source": "Eurostat - Short-term business statistics",
@@ -240,6 +248,7 @@ class ECBProductionService:
                 "mom_change": mom_change,
                 "yoy_change": yoy_change,
                 "metadata": metadata,
+                "next_release": next_release,
                 "cached": False,
                 "source": "eurostat_api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -248,11 +257,13 @@ class ECBProductionService:
         # ファイルキャッシュフォールバック
         file_cache = self._load_file_cache()
         if file_cache:
+            next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             return {
                 "production_wda": file_cache.get("production_wda", []),
                 "mom_change": file_cache.get("mom_change", []),
                 "yoy_change": file_cache.get("yoy_change", []),
                 "metadata": file_cache.get("metadata", {}),
+                "next_release": next_release,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -263,6 +274,7 @@ class ECBProductionService:
             "mom_change": [],
             "yoy_change": [],
             "metadata": {},
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,

@@ -2,15 +2,81 @@
 経済カレンダー リポジトリ
 
 PostgreSQLへのCRUD操作を提供
+
+日本CPI分離ロジック:
+    FMPでは全国CPIと東京CPIが両方とも 'CPI' イベントとして登録されている。
+    月内で最初に発表されるCPIは「全国CPI」（18-21日頃、前月データ）、
+    2番目に発表されるCPIは「東京CPI」（24-28日頃、当月データ）として分離する。
 """
 import json
+from collections import defaultdict
 from datetime import date, datetime
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
 try:
     from core.database import get_db_connection
 except ImportError:
     from backend.core.database import get_db_connection
+
+# 日本CPI分離対象の指標ID
+JP_CPI_INDICATORS = ("jp_national_cpi", "jp_tokyo_cpi")
+
+
+def _filter_cpi_events_by_monthly_order(
+    events: List[Dict[str, Any]],
+    econalpha_id: str,
+) -> List[Dict[str, Any]]:
+    """
+    日本CPIイベントを月内発表順序でフィルタ
+
+    FMPでは全国CPIと東京CPIが両方とも 'CPI' として登録されている。
+    - 全国CPI: 毎月18-21日頃に発表（前月データ）→ 月内で最初のCPI
+    - 東京CPI: 毎月24-28日頃に発表（当月データ）→ 月内で2番目のCPI
+
+    Args:
+        events: CPIイベントのリスト
+        econalpha_id: 'jp_national_cpi' または 'jp_tokyo_cpi'
+
+    Returns:
+        フィルタされたイベントリスト
+    """
+    if econalpha_id not in JP_CPI_INDICATORS:
+        return events
+
+    if not events:
+        return events
+
+    # 年-月ごとにグループ化
+    by_month: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    for event in events:
+        dt = event.get("datetime_utc")
+        if dt:
+            if hasattr(dt, "strftime"):
+                key = dt.strftime("%Y-%m")
+            else:
+                key = str(dt)[:7]  # YYYY-MM
+            by_month[key].append(event)
+
+    # 各月で日付順にソートし、全国CPI=1番目、東京CPI=2番目を選択
+    filtered = []
+    for month_key, month_events in by_month.items():
+        sorted_events = sorted(
+            month_events,
+            key=lambda x: x.get("datetime_utc") or datetime.min
+        )
+
+        if econalpha_id == "jp_national_cpi":
+            # 月内で最初のCPIを全国CPIとして選択
+            if len(sorted_events) >= 1:
+                filtered.append(sorted_events[0])
+        elif econalpha_id == "jp_tokyo_cpi":
+            # 月内で2番目のCPIを東京CPIとして選択
+            if len(sorted_events) >= 2:
+                filtered.append(sorted_events[1])
+
+    # 日付降順でソート
+    filtered.sort(key=lambda x: x.get("datetime_utc") or datetime.min, reverse=True)
+    return filtered
 
 
 class CalendarRepository:
@@ -168,11 +234,23 @@ class CalendarRepository:
                                  ELSE 4
                              END ASC
                              LIMIT %s"""
-                params.append(limit)
+
+                # 日本CPI指標の場合はlimitを多めに取得（後でフィルタするため）
+                if econalpha_id in JP_CPI_INDICATORS:
+                    params.append(limit * 2)
+                else:
+                    params.append(limit)
 
                 cur.execute(query, params)
                 columns = [desc[0] for desc in cur.description]
-                return [dict(zip(columns, row)) for row in cur.fetchall()]
+                events = [dict(zip(columns, row)) for row in cur.fetchall()]
+
+                # 日本CPI分離処理（全国CPI vs 東京CPI）
+                if econalpha_id in JP_CPI_INDICATORS:
+                    events = _filter_cpi_events_by_monthly_order(events, econalpha_id)
+                    events = events[:limit]  # limitを適用
+
+                return events
 
     # =========================================================================
     # 同期状態

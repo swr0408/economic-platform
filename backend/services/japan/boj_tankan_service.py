@@ -17,8 +17,10 @@ except ImportError:
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 
 class BOJTankanService:
@@ -26,6 +28,9 @@ class BOJTankanService:
 
     CACHE_KEY = "japan:boj_tankan_di"
     CACHE_TTL = 60 * 60 * 24 * 7  # 7 days (quarterly data)
+
+    # FMP event pattern for next release
+    INDICATOR_ID = "boj_tankan"
 
     # BOJ Excel URL pattern
     BASE_URL = "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/"
@@ -63,6 +68,14 @@ class BOJTankanService:
     def __init__(self):
         self.cache_dir = Path(__file__).parent.parent.parent / "data" / "cache" / "boj_tankan"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
+
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp(self.INDICATOR_ID)
+        except Exception as e:
+            print(f"Error getting next release for {self.INDICATOR_ID}: {e}")
+            return None
 
     def _get_from_cache(self) -> Optional[Dict[str, Any]]:
         """Get data from Redis cache"""
@@ -305,6 +318,7 @@ class BOJTankanService:
             if cached_data:
                 cached_data["cached"] = True
                 cached_data["source"] = "redis"
+                cached_data["next_release"] = self._get_next_release()
                 return cached_data
 
             file_cached = self._get_file_cache()
@@ -312,6 +326,7 @@ class BOJTankanService:
                 self._set_to_cache(file_cached)
                 file_cached["cached"] = True
                 file_cached["source"] = "file"
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
         # Fetch from BOJ
@@ -332,7 +347,8 @@ class BOJTankanService:
                 "last_updated": datetime.now().isoformat(),
                 "excel_url": excel_url,
                 "cached": False,
-                "source": "boj"
+                "source": "boj",
+                "next_release": self._get_next_release()
             }
 
             # Cache the result
@@ -352,6 +368,7 @@ class BOJTankanService:
                 file_cached["cached"] = True
                 file_cached["source"] = "file_fallback"
                 file_cached["error"] = str(e)
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
             return {
@@ -359,7 +376,8 @@ class BOJTankanService:
                 "error": str(e),
                 "last_updated": datetime.now().isoformat(),
                 "cached": False,
-                "source": "error"
+                "source": "error",
+                "next_release": None
             }
 
     def get_tankan_chart_data(self, force_refresh: bool = False) -> Dict[str, Any]:
@@ -399,7 +417,8 @@ class BOJTankanService:
             },
             "last_updated": raw_data.get("last_updated"),
             "cached": raw_data.get("cached", False),
-            "source": raw_data.get("source", "unknown")
+            "source": raw_data.get("source", "unknown"),
+            "next_release": raw_data.get("next_release")
         }
 
     def invalidate_cache(self) -> bool:

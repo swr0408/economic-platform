@@ -12,12 +12,16 @@
  */
 import { useState, useMemo, useEffect } from 'react'
 import { Tabs, Button, Tooltip } from 'antd'
-import { AreaChartOutlined } from '@ant-design/icons'
+import { AreaChartOutlined, CalendarOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector, { type PeriodValue } from '../../../common/PeriodSelector'
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
+import {
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
+} from '../../usa/common/chartConstants'
 import {
   fetchJapanPMIData,
   type JapanPMIResponse,
@@ -104,6 +108,39 @@ const formatDateForDisplay = (dateStr: string): string => {
   const date = parseDate(dateStr)
   if (!date) return dateStr
   return `${date.getFullYear()}年${date.getMonth() + 1}月`
+}
+
+// 次回発表日時フォーマット関数
+const formatNextRelease = (nextRelease: JapanPMIResponse['next_release']): string | null => {
+  if (!nextRelease) return null
+
+  // datetime_jstがある場合はそれを使用
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+
+  // time_jstがある場合
+  if (nextRelease.date && nextRelease.time_jst) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+
+  // dateのみの場合
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+
+  return null
 }
 
 // =============================================================================
@@ -218,85 +255,52 @@ export default function JapanPMIChart() {
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
       >
-        {/* 最新値表示（3系列） */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '16px',
-            alignItems: 'center',
-            padding: '12px 0',
-            borderBottom: '1px solid #f0f0f0',
-            marginBottom: '8px',
-          }}
-        >
-          {/* 製造業PMI */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span
-              style={{
-                width: 12,
-                height: 12,
-                backgroundColor: COLORS.manufacturing,
-                borderRadius: 2,
-              }}
-            />
-            <span style={{ fontSize: 12, color: '#a0a0a0' }}>製造業</span>
-            <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.manufacturing }}>
-              {mfgLatest?.value?.toFixed(1) ?? '-'}
-            </span>
-          </div>
-
-          {/* サービス業PMI */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span
-              style={{
-                width: 12,
-                height: 12,
-                backgroundColor: COLORS.services,
-                borderRadius: 2,
-              }}
-            />
-            <span style={{ fontSize: 12, color: '#a0a0a0' }}>サービス業</span>
-            <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.services }}>
-              {svcLatest?.value?.toFixed(1) ?? '-'}
-            </span>
-          </div>
-
-          {/* 総合PMI */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span
-              style={{
-                width: 12,
-                height: 12,
-                backgroundColor: COLORS.composite,
-                borderRadius: 2,
-              }}
-            />
-            <span style={{ fontSize: 12, color: '#a0a0a0' }}>総合</span>
-            <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.composite }}>
-              {cmpLatest?.value?.toFixed(1) ?? '-'}
-            </span>
-          </div>
-
-          {/* 日付表示 */}
-          <div
-            style={{
-              marginLeft: 'auto',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'flex-end',
-              fontSize: 11,
-              color: '#8c8c8c',
-            }}
-          >
-            {mfgLatest?.date && <div>{formatDateForDisplay(mfgLatest.date)}</div>}
-            {response?.next_release && (
-              <div>
-                次回発表: {response.next_release.date}
-              </div>
+        {/* 最新値表示（統合ボックス） */}
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          {/* 左側: 最新値 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            {/* 日付 */}
+            {mfgLatest?.date && (
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {formatDateForDisplay(mfgLatest.date)}
+              </span>
             )}
+            {/* 製造業PMI */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>製造業:</span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.manufacturing }}>
+                {mfgLatest?.value?.toFixed(1) ?? '-'}
+              </span>
+            </div>
+            {/* サービス業PMI */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>サービス業:</span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.services }}>
+                {svcLatest?.value?.toFixed(1) ?? '-'}
+              </span>
+            </div>
+            {/* 総合PMI */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>総合:</span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.composite }}>
+                {cmpLatest?.value?.toFixed(1) ?? '-'}
+              </span>
+            </div>
           </div>
+
+          {/* 右側: 次回発表 */}
+          {response?.next_release && formatNextRelease(response.next_release) && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 12,
+              color: TEXT_COLORS.secondary,
+            }}>
+              <CalendarOutlined />
+              <span>次回発表: {formatNextRelease(response.next_release)}</span>
+            </div>
+          )}
         </div>
 
         {/* タブ切替 */}

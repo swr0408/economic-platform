@@ -24,8 +24,10 @@ from pathlib import Path
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +42,9 @@ class EconomyWatcherService:
 
     # Cabinet Office Economy Watcher Survey URL
     ECONOMY_WATCHER_URL = "https://www5.cao.go.jp/keizai3/watcher/watcher5.xls"
+
+    # Indicator ID for FMP next release
+    INDICATOR_ID = "jp_economy_watcher"
 
     def __init__(self):
         """Initialize Economy Watcher service"""
@@ -244,6 +249,14 @@ class EconomyWatcherService:
             logger.warning(f"Redis set error: {e}")
         return False
 
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp(self.INDICATOR_ID)
+        except Exception as e:
+            logger.warning(f"Error getting next release for {self.INDICATOR_ID}: {e}")
+            return None
+
     def _get_file_cache(self) -> Optional[Dict[str, Any]]:
         """Get data from file cache"""
         cache_file = self.cache_dir / "economy_watcher_cache.json"
@@ -274,6 +287,7 @@ class EconomyWatcherService:
             if cached_data:
                 cached_data["cached"] = True
                 cached_data["cache_source"] = "redis"
+                cached_data["next_release"] = self._get_next_release()
                 return cached_data
 
             file_cached = self._get_file_cache()
@@ -281,12 +295,14 @@ class EconomyWatcherService:
                 self._set_to_cache(self.CACHE_KEY_CURRENT, file_cached)
                 file_cached["cached"] = True
                 file_cached["cache_source"] = "file"
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
         # Fetch fresh data
         data = self._fetch_economy_watcher_data()
         if data:
             data["cached"] = False
+            data["next_release"] = self._get_next_release()
             self._set_to_cache(self.CACHE_KEY_CURRENT, data)
             self._set_file_cache(data)
             return data
@@ -297,6 +313,7 @@ class EconomyWatcherService:
             file_cached["cached"] = True
             file_cached["cache_source"] = "file_fallback"
             file_cached["error"] = "Failed to fetch fresh data, using cached data"
+            file_cached["next_release"] = self._get_next_release()
             return file_cached
 
         return {
@@ -304,6 +321,7 @@ class EconomyWatcherService:
             "outlook": {"data": [], "latest": None},
             "last_updated": datetime.now().isoformat(),
             "cached": False,
+            "next_release": None,
             "error": "Failed to fetch Japan Economy Watcher data"
         }
 

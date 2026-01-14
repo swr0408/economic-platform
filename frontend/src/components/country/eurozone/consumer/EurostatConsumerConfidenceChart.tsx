@@ -98,13 +98,14 @@ export default function EurostatConsumerConfidenceChart({ data }: EurostatConsum
         title="消費者信頼感指数（ユーロ圏）"
         showPeriodSelector={false}
         dataSource="Eurostat"
-        sourceUrl="https://ec.europa.eu/eurostat/databrowser/view/ei_bsco_m/default/table"
+        sourceUrl="https://economy-finance.ec.europa.eu/economic-forecast-and-surveys/business-and-consumer-surveys/latest-business-and-consumer-surveys_en"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
           value={latest?.value}
           valueColor={COLORS.value}
           date={latest?.date}
+          nextRelease={data.next_release}
           format="number"
         />
 

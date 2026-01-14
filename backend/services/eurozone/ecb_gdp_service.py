@@ -34,6 +34,10 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from core.redis_client import redis_client
+from services.eurozone.fmp_next_release_utils import (
+    get_next_release_from_fmp,
+    should_refresh_by_fmp_schedule,
+)
 
 
 # タイムゾーン
@@ -58,6 +62,7 @@ class ECBGDPService:
     SERIES_KEY_YOY = "Q.Y.I9.W2.S1.S1.B.B1GQ._Z._Z._Z.EUR.LR.GY"
 
     DATA_CACHE_KEY = "economy:ecb_gdp:data"
+    ECONALPHA_ID = "euro_gdp"
 
     def __init__(self):
         pass
@@ -134,10 +139,12 @@ class ECBGDPService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
+                    next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
                     return {
                         "gdp_growth_qoq": cached_data.get("gdp_growth_qoq", []),
                         "gdp_growth_yoy": cached_data.get("gdp_growth_yoy", []),
                         "metadata": cached_data.get("metadata", {}),
+                        "next_release": next_release,
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -148,6 +155,7 @@ class ECBGDPService:
         gdp_growth_yoy = self._fetch_series_data(self.SERIES_KEY_YOY) or []
 
         if gdp_growth_qoq or gdp_growth_yoy:
+            next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             metadata = {
                 "last_updated": datetime.now(JST).isoformat(),
                 "source": "European Central Bank (ECB) - Main National Accounts",
@@ -170,6 +178,7 @@ class ECBGDPService:
                 "gdp_growth_qoq": gdp_growth_qoq,
                 "gdp_growth_yoy": gdp_growth_yoy,
                 "metadata": metadata,
+                "next_release": next_release,
                 "cached": False,
                 "source": "ecb_api",
                 "last_updated": datetime.now(JST).isoformat()
@@ -178,10 +187,12 @@ class ECBGDPService:
         # ファイルキャッシュフォールバック
         file_cache = self._load_file_cache()
         if file_cache:
+            next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             return {
                 "gdp_growth_qoq": file_cache.get("gdp_growth_qoq", []),
                 "gdp_growth_yoy": file_cache.get("gdp_growth_yoy", []),
                 "metadata": file_cache.get("metadata", {}),
+                "next_release": next_release,
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -191,6 +202,7 @@ class ECBGDPService:
             "gdp_growth_qoq": [],
             "gdp_growth_yoy": [],
             "metadata": {},
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,

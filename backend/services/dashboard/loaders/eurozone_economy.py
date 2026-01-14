@@ -12,7 +12,7 @@ ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策�
 - EU PMI: FMP発表日時ベース更新
 """
 from typing import Dict, Any, Optional, List
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -75,15 +75,8 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
 
             now = datetime.now(JST)
 
-            # 24時間以上経過していれば更新
-            if (now - last_updated_dt) > timedelta(hours=24):
-                stale.add("ecb_gdp")
-                stale.add("ecb_gdp_components")
-                stale.add("ecb_bls")
-                stale.add("ecb_production")
-                stale.add("eurostat_esi")
-                stale.add("euro_policy_uncertainty")
-                stale.add("eu_pmi")
+            # 発表日時ベースの判定のみ（24時間強制更新は削除）
+            # 各サービスが自身のキャッシュ判定を行う
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
@@ -169,10 +162,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 "gdp_growth_qoq": response.get("gdp_growth_qoq", []),
                 "gdp_growth_yoy": response.get("gdp_growth_yoy", []),
                 "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
             }
         except Exception as e:
             print(f"Error getting ECB GDP: {e}")
-            return {"gdp_growth_qoq": [], "gdp_growth_yoy": [], "metadata": {}}
+            return {"gdp_growth_qoq": [], "gdp_growth_yoy": [], "metadata": {}, "next_release": None}
 
     def _get_ecb_gdp_components(self, service) -> dict:
         """ECB GDP構成要素データを取得"""
@@ -196,10 +190,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 "enterprises": response.get("enterprises", []),
                 "households": response.get("households", []),
                 "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
             }
         except Exception as e:
             print(f"Error getting ECB BLS: {e}")
-            return {"enterprises": [], "households": [], "metadata": {}}
+            return {"enterprises": [], "households": [], "metadata": {}, "next_release": None}
 
     def _get_ecb_production(self, service) -> dict:
         """ECB鉱工業生産データを取得"""
@@ -211,10 +206,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 "mom_change": response.get("mom_change", []),
                 "yoy_change": response.get("yoy_change", []),
                 "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
             }
         except Exception as e:
             print(f"Error getting ECB Production: {e}")
-            return {"production_wda": [], "mom_change": [], "yoy_change": [], "metadata": {}}
+            return {"production_wda": [], "mom_change": [], "yoy_change": [], "metadata": {}, "next_release": None}
 
     def _get_eurostat_esi(self, service) -> dict:
         """Eurostat ESIデータを取得"""

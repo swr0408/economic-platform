@@ -37,6 +37,13 @@ try:
     from backend.routers.japan.boj_cai import router as japan_boj_cai_router
     from backend.routers.japan.economy_watcher import router as japan_economy_watcher_router
     from backend.routers.japan.jp_pmi import router as japan_pmi_router
+    from backend.routers.japan.retail_sales import router as japan_retail_sales_router
+    from backend.routers.japan.scheduled_wage import router as japan_scheduled_wage_router
+    from backend.routers.japan.national_cpi import router as japan_national_cpi_router
+    from backend.routers.japan.tokyo_cpi import router as japan_tokyo_cpi_router
+    from backend.routers.japan.cpi_categories import router as japan_cpi_categories_router
+    from backend.routers.japan.sppi import router as japan_sppi_router
+    from backend.routers.japan.cgpi import router as japan_cgpi_router
     from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from backend.routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from backend.routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -49,6 +56,8 @@ try:
     from backend.routers.eurozone.euro_policy_uncertainty import router as eurozone_policy_uncertainty_router
     from backend.routers.eurozone.ecb_retail_trade import router as eurozone_ecb_retail_trade_router
     from backend.routers.eurozone.eu_pmi import router as eurozone_pmi_router
+    from backend.routers.eurozone.ecb_labor_productivity import router as eurozone_labor_productivity_router
+    from backend.routers.eurozone.ecb_unit_labour_cost import router as eurozone_unit_labour_cost_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -88,6 +97,13 @@ except ImportError:
     from routers.japan.boj_cai import router as japan_boj_cai_router
     from routers.japan.economy_watcher import router as japan_economy_watcher_router
     from routers.japan.jp_pmi import router as japan_pmi_router
+    from routers.japan.retail_sales import router as japan_retail_sales_router
+    from routers.japan.scheduled_wage import router as japan_scheduled_wage_router
+    from routers.japan.national_cpi import router as japan_national_cpi_router
+    from routers.japan.tokyo_cpi import router as japan_tokyo_cpi_router
+    from routers.japan.cpi_categories import router as japan_cpi_categories_router
+    from routers.japan.sppi import router as japan_sppi_router
+    from routers.japan.cgpi import router as japan_cgpi_router
     from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -100,6 +116,8 @@ except ImportError:
     from routers.eurozone.euro_policy_uncertainty import router as eurozone_policy_uncertainty_router
     from routers.eurozone.ecb_retail_trade import router as eurozone_ecb_retail_trade_router
     from routers.eurozone.eu_pmi import router as eurozone_pmi_router
+    from routers.eurozone.ecb_labor_productivity import router as eurozone_labor_productivity_router
+    from routers.eurozone.ecb_unit_labour_cost import router as eurozone_unit_labour_cost_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -166,6 +184,13 @@ app.include_router(japan_consumer_sentiment_router)
 app.include_router(japan_boj_cai_router)
 app.include_router(japan_economy_watcher_router)
 app.include_router(japan_pmi_router)
+app.include_router(japan_retail_sales_router)
+app.include_router(japan_scheduled_wage_router)
+app.include_router(japan_national_cpi_router)
+app.include_router(japan_tokyo_cpi_router)
+app.include_router(japan_cpi_categories_router)
+app.include_router(japan_sppi_router)
+app.include_router(japan_cgpi_router)
 app.include_router(eurozone_ecb_rates_router)
 app.include_router(eurozone_eurex_ois_router)
 app.include_router(eurozone_ecb_rate_cuts_screenshot_router)
@@ -178,6 +203,8 @@ app.include_router(eurozone_esi_router)
 app.include_router(eurozone_policy_uncertainty_router)
 app.include_router(eurozone_ecb_retail_trade_router)
 app.include_router(eurozone_pmi_router)
+app.include_router(eurozone_labor_productivity_router)
+app.include_router(eurozone_unit_labour_cost_router)
 
 
 @app.get("/health")

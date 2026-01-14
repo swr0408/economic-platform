@@ -13,9 +13,13 @@ from services.dashboard.loaders.usa_employment import USAEmploymentLoader
 from services.dashboard.loaders.usa_inflation import USAInflationLoader
 from services.dashboard.loaders.usa_housing import USAHousingLoader
 from services.dashboard.loaders.japan_policy import JapanPolicyLoader
+from services.dashboard.loaders.japan_consumer import JapanConsumerLoader
+from services.dashboard.loaders.japan_employment import JapanEmploymentLoader
 from services.dashboard.loaders.eurozone_policy import EurozonePolicyLoader
 from services.dashboard.loaders.eurozone_economy import EurozoneEconomyLoader
 from services.dashboard.loaders.eurozone_consumer import EurozoneConsumerLoader
+from services.dashboard.loaders.eurozone_employment import EurozoneEmploymentLoader
+from services.dashboard.loaders.japan_price import JapanPriceLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -30,12 +34,16 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
 
     # 日本
     ("japan", "policy"): JapanPolicyLoader,
+    ("japan", "consumer"): JapanConsumerLoader,
+    ("japan", "employment"): JapanEmploymentLoader,
     # ("japan", "economy"): JapanEconomyLoader,  # 将来追加
 
+    ("japan", "inflation"): JapanPriceLoader,
     # ユーロ圏
     ("eurozone", "policy"): EurozonePolicyLoader,
     ("eurozone", "economy"): EurozoneEconomyLoader,
     ("eurozone", "consumer"): EurozoneConsumerLoader,
+    ("eurozone", "employment"): EurozoneEmploymentLoader,
 
     # 他の国も同様に追加可能
 }

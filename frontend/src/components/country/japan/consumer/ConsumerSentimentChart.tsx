@@ -12,16 +12,20 @@
 
 import { useEffect, useState, useMemo } from 'react'
 import { Tabs, Button, Tooltip } from 'antd'
-import { AreaChartOutlined } from '@ant-design/icons'
+import { AreaChartOutlined, CalendarOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector, { type PeriodValue } from '../../../common/PeriodSelector'
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
-import { SimpleLatestValueBox } from '../../usa/common/ChartComponents'
+import {
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
+} from '../../usa/common/chartConstants'
 import {
   fetchConsumerSentimentData,
   type ConsumerSentimentResponse,
+  type NextRelease,
 } from '../../../../utils/japan/consumerSentimentApi'
 
 interface ConsumerSentimentChartPoint {
@@ -98,6 +102,39 @@ const formatDateForDisplay = (dateStr: string): string => {
   const date = parseDate(dateStr)
   if (!date) return dateStr
   return `${date.getFullYear()}年${date.getMonth() + 1}月`
+}
+
+// 次回発表日時フォーマット関数
+const formatNextRelease = (nextRelease: NextRelease | null | undefined): string | null => {
+  if (!nextRelease) return null
+
+  // datetime_jstがある場合はそれを使用
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+
+  // time_jstがある場合
+  if (nextRelease.date && nextRelease.time_jst) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+
+  // dateのみの場合
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+
+  return null
 }
 
 export default function ConsumerSentimentChart() {
@@ -193,16 +230,39 @@ export default function ConsumerSentimentChart() {
         dataSource="内閣府"
         sourceUrl="https://www.esri.cao.go.jp/jp/stat/shouhi/shouhi.html"
       >
-        {/* 最新値表示 */}
-        <SimpleLatestValueBox
-          label="消費者態度指数"
-          value={latest?.cci}
-          valueColor={COLORS.cci}
-          date={latest?.date}
-          dateFormatter={formatDateForDisplay}
-          format="number"
-          decimals={1}
-        />
+        {/* 最新値表示（統合ボックス） */}
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          {/* 左側: 最新値 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            {/* 日付 */}
+            {latest?.date && (
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {formatDateForDisplay(latest.date)}
+              </span>
+            )}
+            {/* 消費者態度指数 */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>消費者態度指数:</span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.cci }}>
+                {latest?.cci?.toFixed(1) ?? '-'}
+              </span>
+            </div>
+          </div>
+
+          {/* 右側: 次回発表 */}
+          {response?.next_release && formatNextRelease(response.next_release) && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 12,
+              color: TEXT_COLORS.secondary,
+            }}>
+              <CalendarOutlined />
+              <span>次回発表: {formatNextRelease(response.next_release)}</span>
+            </div>
+          )}
+        </div>
 
         {/* タブ切替 */}
         <Tabs

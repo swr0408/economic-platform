@@ -28,10 +28,12 @@ try:
     from backend.core.redis_client import redis_client
     from backend.services.estat_catalog_service import get_estat_catalog_service
     from backend.services.estat_config import get_survey_config
+    from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
 except ImportError:
     from core.redis_client import redis_client
     from services.estat_catalog_service import get_estat_catalog_service
     from services.estat_config import get_survey_config
+    from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 logger = logging.getLogger(__name__)
 
@@ -401,6 +403,14 @@ class ConsumerSentimentService:
             logger.warning(f"File cache write error: {e}")
         return False
 
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp("jp_consumer_sentiment")
+        except Exception as e:
+            logger.warning(f"Error getting next release: {e}")
+            return None
+
     def get_consumer_sentiment_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """Get Japan consumer sentiment data with caching"""
         # Check cache if not forcing refresh
@@ -409,6 +419,7 @@ class ConsumerSentimentService:
             if cached_data:
                 cached_data["cached"] = True
                 cached_data["source"] = "redis"
+                cached_data["next_release"] = self._get_next_release()
                 return cached_data
 
             file_cached = self._get_file_cache()
@@ -416,12 +427,14 @@ class ConsumerSentimentService:
                 self._set_to_cache(file_cached)
                 file_cached["cached"] = True
                 file_cached["source"] = "file"
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
         # Fetch fresh data
         data = self._fetch_consumer_sentiment_data()
         if data:
             data["cached"] = False
+            data["next_release"] = self._get_next_release()
             self._set_to_cache(data)
             self._set_file_cache(data)
             return data
@@ -432,6 +445,7 @@ class ConsumerSentimentService:
             file_cached["cached"] = True
             file_cached["source"] = "file_fallback"
             file_cached["error"] = "Failed to fetch fresh data, using cached data"
+            file_cached["next_release"] = self._get_next_release()
             return file_cached
 
         return {

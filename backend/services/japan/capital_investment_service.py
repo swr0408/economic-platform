@@ -20,6 +20,7 @@ from typing import Any, Dict, List, Optional
 from zoneinfo import ZoneInfo
 
 from core.redis_client import redis_client
+from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 logger = logging.getLogger(__name__)
 
@@ -41,9 +42,20 @@ class CapitalInvestmentService:
 
     DATA_CACHE_KEY = "japan:capital_investment:data"
 
+    # FMP event pattern for next release
+    INDICATOR_ID = "jp_capital_investment"
+
     def __init__(self):
         """Initialize the service"""
         self.api_key = os.getenv('ESTAT_API_KEY')
+
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp(self.INDICATOR_ID)
+        except Exception as e:
+            logger.warning(f"Error getting next release for {self.INDICATOR_ID}: {e}")
+            return None
 
     def _fetch_from_estat(self) -> Optional[Dict[str, Any]]:
         """
@@ -211,6 +223,7 @@ class CapitalInvestmentService:
                 return {
                     "data": data,
                     "latest": data[-1] if data else None,
+                    "next_release": self._get_next_release(),
                     "cached": True,
                     "source": "redis",
                     "last_updated": cached_data.get("last_updated"),
@@ -234,6 +247,7 @@ class CapitalInvestmentService:
                 return {
                     "data": data_with_growth,
                     "latest": data_with_growth[-1] if data_with_growth else None,
+                    "next_release": self._get_next_release(),
                     "cached": False,
                     "source": "e-Stat",
                     "last_updated": datetime.now(JST).isoformat(),
@@ -247,6 +261,7 @@ class CapitalInvestmentService:
             return {
                 "data": data,
                 "latest": data[-1] if data else None,
+                "next_release": self._get_next_release(),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated"),
@@ -256,6 +271,7 @@ class CapitalInvestmentService:
         return {
             "data": [],
             "latest": None,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,

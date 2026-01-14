@@ -9,7 +9,7 @@
  */
 import { useState, useEffect, useMemo } from 'react'
 import { Button, Tooltip } from 'antd'
-import { AreaChartOutlined } from '@ant-design/icons'
+import { AreaChartOutlined, CalendarOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
@@ -21,12 +21,16 @@ import {
 } from '../../usa/common/useChartData'
 import {
   NoDataMessage,
-  SimpleLatestValueBox,
 } from '../../usa/common/ChartComponents'
+import {
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
+} from '../../usa/common/chartConstants'
 
 import {
   fetchCapitalInvestmentData,
   type CapitalInvestmentDataPoint,
+  type NextRelease,
 } from '../../../../api/capitalInvestmentApi'
 
 // チャートデータ型
@@ -114,10 +118,41 @@ const formatQuarterLabel = (dateStr: string): string => {
   }
 }
 
+// 次回発表日時フォーマット関数
+const formatNextRelease = (nextRelease: NextRelease | null | undefined): string | null => {
+  if (!nextRelease) return null
+
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+
+  if (nextRelease.date && nextRelease.time_jst) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+
+  return null
+}
+
 const CapitalInvestmentChart: React.FC = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [rawData, setRawData] = useState<CapitalInvestmentDataPoint[]>([])
+  const [nextRelease, setNextRelease] = useState<NextRelease | null>(null)
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
 
   useEffect(() => {
@@ -131,6 +166,7 @@ const CapitalInvestmentChart: React.FC = () => {
           setError(response.error)
         } else {
           setRawData(response.data)
+          setNextRelease(response.next_release || null)
         }
       } catch (err) {
         console.error('Error fetching Capital Investment data:', err)
@@ -192,16 +228,37 @@ const CapitalInvestmentChart: React.FC = () => {
         dataSource="財務省"
         sourceUrl="https://www.mof.go.jp/pri/reference/ssc/results/data.htm"
       >
-        {/* 最新値表示 */}
-        <SimpleLatestValueBox
-          label="前年比"
-          value={latestYoY?.value}
-          valueColor={COLORS.yoy}
-          date={latestYoY?.originalDate}
-          dateFormatter={formatQuarterLabel}
-          format="percent"
-          decimals={1}
-        />
+        {/* 最新値表示（統合ボックス） */}
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          {/* 左側: 最新値 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            {latestYoY?.originalDate && (
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {formatQuarterLabel(latestYoY.originalDate)}
+              </span>
+            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>前年比:</span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.yoy }}>
+                {latestYoY?.value?.toFixed(1) ?? '-'}%
+              </span>
+            </div>
+          </div>
+
+          {/* 右側: 次回発表 */}
+          {nextRelease && formatNextRelease(nextRelease) && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 12,
+              color: TEXT_COLORS.secondary,
+            }}>
+              <CalendarOutlined />
+              <span>次回発表: {formatNextRelease(nextRelease)}</span>
+            </div>
+          )}
+        </div>
 
         {/* 期間セレクター */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>

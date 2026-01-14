@@ -1,0 +1,157 @@
+{
+  "data": {
+    "current_month": "2025-11-01",
+    "previous_month": "2025-10-01",
+    "categories": [
+      {
+        "code": "0002",
+        "name": "食料",
+        "current": {
+          "index": 128.6,
+          "yoy": 6.1,
+          "contribution": 1.61
+        },
+        "previous": {
+          "index": 128.1,
+          "yoy": 6.4,
+          "contribution": 1.69
+        }
+      },
+      {
+        "code": "0045",
+        "name": "住居",
+        "current": {
+          "index": 104.5,
+          "yoy": 0.9,
+          "contribution": 0.19
+        },
+        "previous": {
+          "index": 104.3,
+          "yoy": 0.9,
+          "contribution": 0.19
+        }
+      },
+      {
+        "code": "0054",
+        "name": "光熱・水道",
+        "current": {
+          "index": 117.9,
+          "yoy": 3.0,
+          "contribution": 0.22
+        },
+        "previous": {
+          "index": 113.5,
+          "yoy": 2.2,
+          "contribution": 0.16
+        }
+      },
+      {
+        "code": "0060",
+        "name": "家具・家事用品",
+        "current": {
+          "index": 122.7,
+          "yoy": 1.8,
+          "contribution": 0.06
+        },
+        "previous": {
+          "index": 123.4,
+          "yoy": 1.8,
+          "contribution": 0.06
+        }
+      },
+      {
+        "code": "0082",
+        "name": "被服及び履物",
+        "current": {
+          "index": 113.3,
+          "yoy": 2.3,
+          "contribution": 0.09
+        },
+        "previous": {
+          "index": 112.8,
+          "yoy": 2.5,
+          "contribution": 0.1
+        }
+      },
+      {
+        "code": "0107",
+        "name": "保健医療",
+        "current": {
+          "index": 104.6,
+          "yoy": 0.8,
+          "contribution": 0.03
+        },
+        "previous": {
+          "index": 104.5,
+          "yoy": 0.8,
+          "contribution": 0.03
+        }
+      },
+      {
+        "code": "0111",
+        "name": "交通・通信",
+        "current": {
+          "index": 101.0,
+          "yoy": 3.3,
+          "contribution": 0.48
+        },
+        "previous": {
+          "index": 101.2,
+          "yoy": 3.6,
+          "contribution": 0.53
+        }
+      },
+      {
+        "code": "0118",
+        "name": "教育",
+        "current": {
+          "index": 95.6,
+          "yoy": -5.6,
+          "contribution": -0.18
+        },
+        "previous": {
+          "index": 95.6,
+          "yoy": -5.6,
+          "contribution": -0.18
+        }
+      },
+      {
+        "code": "0122",
+        "name": "教養娯楽",
+        "current": {
+          "index": 116.8,
+          "yoy": 2.3,
+          "contribution": 0.23
+        },
+        "previous": {
+          "index": 117.2,
+          "yoy": 2.6,
+          "contribution": 0.26
+        }
+      },
+      {
+        "code": "0145",
+        "name": "諸雑費",
+        "current": {
+          "index": 106.1,
+          "yoy": 0.6,
+          "contribution": 0.04
+        },
+        "previous": {
+          "index": 106.2,
+          "yoy": 0.7,
+          "contribution": 0.04
+        }
+      }
+    ]
+  },
+  "next_release": {
+    "date": "2026-01-22",
+    "datetime_utc": "2026-01-22T23:30:00+00:00",
+    "datetime_jst": "2026-01-23T08:30:00+09:00",
+    "time_jst": "08:30",
+    "label": "Inflation Rate YoY (Dec)",
+    "estimate": null
+  },
+  "last_updated": "2026-01-14T20:19:37.573845+09:00"
+}

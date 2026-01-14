@@ -120,7 +120,20 @@
       "Bash(timeout 90 curl:*)",
       "Bash(docker compose exec backend python:*)",
       "Bash(timeout 15 docker compose:*)",
-      "Bash(tail:*)"
+      "Bash(tail:*)",
+      "Bash(chcp:*)",
+      "Bash(timeout 120 docker compose exec backend python:*)",
+      "Bash(timeout 180 curl:*)",
+      "Bash(docker compose logs:*)",
+      "Bash(timeout 60 curl:*)",
+      "Bash(timeout 60 docker compose exec backend python:*)",
+      "Bash(timeout 20 docker compose:*)",
+      "Bash(timeout 30 curl:*)",
+      "Bash(iconv:*)",
+      "Bash(node -e:*)",
+      "Bash(dir \"C:\\\\Users\\\\owner\\\\Desktop\\\\seasonality-app\\\\backend\\\\routers\")",
+      "Bash(dir \"C:\\\\Users\\\\owner\\\\Desktop\\\\seasonality-app\\\\backend\\\\services\")",
+      "Bash(findstr:*)"
     ]
   }
 }

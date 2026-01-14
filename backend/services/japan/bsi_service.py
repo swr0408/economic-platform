@@ -22,8 +22,10 @@ from io import BytesIO
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 
 class BSIService:
@@ -32,12 +34,23 @@ class BSIService:
     CACHE_KEY = "japan:bsi"
     CACHE_TTL = 60 * 60 * 24 * 7  # 7 days (quarterly data)
 
+    # FMP event pattern for next release
+    INDICATOR_ID = "jp_bsi"
+
     # Data source URL
     DATA_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040283549&fileKind=0"
 
     def __init__(self):
         self.cache_dir = Path(__file__).parent.parent.parent / "data" / "cache" / "bsi"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
+
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp(self.INDICATOR_ID)
+        except Exception as e:
+            print(f"Error getting next release for {self.INDICATOR_ID}: {e}")
+            return None
 
     def _get_from_cache(self) -> Optional[Dict[str, Any]]:
         """Get data from Redis cache"""
@@ -186,6 +199,7 @@ class BSIService:
             if cached_data:
                 cached_data["cached"] = True
                 cached_data["source"] = "redis"
+                cached_data["next_release"] = self._get_next_release()
                 return cached_data
 
             file_cached = self._get_file_cache()
@@ -193,6 +207,7 @@ class BSIService:
                 self._set_to_cache(file_cached)
                 file_cached["cached"] = True
                 file_cached["source"] = "file"
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
         # Fetch from e-Stat
@@ -207,7 +222,8 @@ class BSIService:
                 "last_updated": datetime.now().isoformat(),
                 "cached": False,
                 "source": "e-stat",
-                "description": "法人企業景気予測調査 BSI（企業規模別）"
+                "description": "法人企業景気予測調査 BSI（企業規模別）",
+                "next_release": self._get_next_release()
             }
 
             # Cache the result
@@ -227,6 +243,7 @@ class BSIService:
                 file_cached["cached"] = True
                 file_cached["source"] = "file_fallback"
                 file_cached["error"] = str(e)
+                file_cached["next_release"] = self._get_next_release()
                 return file_cached
 
             return {
@@ -234,7 +251,8 @@ class BSIService:
                 "error": str(e),
                 "last_updated": datetime.now().isoformat(),
                 "cached": False,
-                "source": "error"
+                "source": "error",
+                "next_release": None
             }
 
     def get_chart_data(self, force_refresh: bool = False) -> Dict[str, Any]:
@@ -288,7 +306,8 @@ class BSIService:
             },
             "last_updated": raw_data.get("last_updated"),
             "cached": raw_data.get("cached", False),
-            "source": raw_data.get("source", "unknown")
+            "source": raw_data.get("source", "unknown"),
+            "next_release": raw_data.get("next_release")
         }
 
     def get_table_data(self, force_refresh: bool = False) -> Dict[str, Any]:
@@ -323,7 +342,8 @@ class BSIService:
             },
             "last_updated": raw_data.get("last_updated"),
             "cached": raw_data.get("cached", False),
-            "source": raw_data.get("source", "unknown")
+            "source": raw_data.get("source", "unknown"),
+            "next_release": raw_data.get("next_release")
         }
 
     def invalidate_cache(self) -> bool:

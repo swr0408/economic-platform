@@ -22,8 +22,10 @@ from pathlib import Path
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.fmp_next_release_utils import get_next_release_from_fmp
 
 logger = logging.getLogger(__name__)
 
@@ -42,8 +44,19 @@ class JapanIIPService:
 
     DATA_CACHE_KEY = "japan:iip:data"
 
+    # FMP event pattern for next release
+    INDICATOR_ID = "jp_industrial_production"
+
     def __init__(self):
         pass
+
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """Get next release date from FMP"""
+        try:
+            return get_next_release_from_fmp(self.INDICATOR_ID)
+        except Exception as e:
+            logger.warning(f"Error getting next release for {self.INDICATOR_ID}: {e}")
+            return None
 
     def _download_excel_file(self) -> Optional[bytes]:
         """
@@ -292,6 +305,7 @@ class JapanIIPService:
                     return {
                         "data": cached_data.get("data", []),
                         "latest": cached_data.get("data", [{}])[0] if cached_data.get("data") else None,
+                        "next_release": self._get_next_release(),
                         "cached": True,
                         "source": "redis",
                         "last_updated": last_updated_str
@@ -311,6 +325,7 @@ class JapanIIPService:
             return {
                 "data": result["data"],
                 "latest": result["data"][0] if result["data"] else None,
+                "next_release": self._get_next_release(),
                 "cached": False,
                 "source": "meti",
                 "last_updated": result["last_updated"]
@@ -322,6 +337,7 @@ class JapanIIPService:
             return {
                 "data": file_cache.get("data", []),
                 "latest": file_cache.get("data", [{}])[0] if file_cache.get("data") else None,
+                "next_release": self._get_next_release(),
                 "cached": True,
                 "source": "file (fallback)",
                 "last_updated": file_cache.get("last_updated")
@@ -330,6 +346,7 @@ class JapanIIPService:
         return {
             "data": [],
             "latest": None,
+            "next_release": None,
             "cached": False,
             "source": "none",
             "last_updated": None,

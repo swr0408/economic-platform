@@ -13,7 +13,7 @@
  */
 import { useState, useEffect, useMemo } from 'react'
 import { Tabs, Button, Tooltip } from 'antd'
-import { AreaChartOutlined } from '@ant-design/icons'
+import { AreaChartOutlined, CalendarOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector, { type PeriodValue } from '../../../common/PeriodSelector'
@@ -27,10 +27,10 @@ import {
 import {
   ViewModeButtonGroup,
   NoDataMessage,
-  SimpleLatestValueBox,
   StandardLineChart,
   StandardBarChart,
 } from '../../usa/common/ChartComponents'
+import { TEXT_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
 import { MonthlyTable } from '../../usa/common/MonthlyTable'
 
 import {
@@ -39,6 +39,7 @@ import {
   formatIIPDate,
   type JapanIIPDataPoint,
   type JapanIIPYoYDataPoint,
+  type NextRelease,
 } from '../../../../api/japanIIPApi'
 
 // =============================================================================
@@ -57,6 +58,32 @@ type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
 const COLORS = {
   yoy: '#1890ff',
   mom: '#52c41a',
+}
+
+// 次回発表日時のフォーマット
+const formatNextRelease = (nextRelease: NextRelease | null | undefined): string | null => {
+  if (!nextRelease) return null
+  if (nextRelease.datetime_jst) {
+    const dt = new Date(nextRelease.datetime_jst)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    const hours = dt.getHours().toString().padStart(2, '0')
+    const minutes = dt.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${hours}:${minutes}`
+  }
+  if (nextRelease.time_jst && nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day} ${nextRelease.time_jst}`
+  }
+  if (nextRelease.date) {
+    const dt = new Date(nextRelease.date)
+    const month = dt.getMonth() + 1
+    const day = dt.getDate()
+    return `${month}/${day}`
+  }
+  return null
 }
 
 // =============================================================================
@@ -98,6 +125,7 @@ export default function JapanIIPChart() {
   const [error, setError] = useState<string | null>(null)
   const [momData, setMomData] = useState<JapanIIPDataPoint[]>([])
   const [yoyData, setYoyData] = useState<JapanIIPYoYDataPoint[]>([])
+  const [nextRelease, setNextRelease] = useState<NextRelease | null>(null)
 
   const [viewMode, setViewMode] = useState<ViewMode>('yoy')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
@@ -126,6 +154,9 @@ export default function JapanIIPChart() {
           setError(momResponse.error)
         } else {
           setMomData(momResponse.data)
+          if (momResponse.next_release) {
+            setNextRelease(momResponse.next_release)
+          }
         }
 
         if (yoyResponse.error) {
@@ -223,14 +254,39 @@ export default function JapanIIPChart() {
         dataSource="経済産業省"
         sourceUrl="https://www.meti.go.jp/statistics/tyo/iip/"
       >
-        {/* 最新値表示 */}
-        <SimpleLatestValueBox
-          value={viewMode === 'yoy' ? latestYoy?.yoy_change : latestMom?.mom_change}
-          valueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
-          date={viewMode === 'yoy' ? latestYoy?.date : latestMom?.date}
-          dateFormatter={formatIIPDate}
-          format="percent"
-        />
+        {/* 最新値表示（統合ボックス） */}
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          {/* 左側: 最新値 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            {(viewMode === 'yoy' ? latestYoy?.date : latestMom?.date) && (
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {formatIIPDate(viewMode === 'yoy' ? latestYoy!.date : latestMom!.date)}
+              </span>
+            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
+                {viewMode === 'yoy' ? '前年比:' : '前月比:'}
+              </span>
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: viewMode === 'yoy' ? COLORS.yoy : COLORS.mom }}>
+                {(viewMode === 'yoy' ? latestYoy?.yoy_change : latestMom?.mom_change)?.toFixed(1) ?? '-'}%
+              </span>
+            </div>
+          </div>
+
+          {/* 右側: 次回発表 */}
+          {nextRelease && formatNextRelease(nextRelease) && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 12,
+              color: TEXT_COLORS.secondary,
+            }}>
+              <CalendarOutlined />
+              <span>次回発表: {formatNextRelease(nextRelease)}</span>
+            </div>
+          )}
+        </div>
 
         {/* タブ切替 */}
         <Tabs

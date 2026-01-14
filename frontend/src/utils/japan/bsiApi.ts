@@ -5,6 +5,14 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
+export interface NextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
 export type SheetName = 'ref1' | 'ref2' | 'ref3' | 'ref4'
 export type PeriodType = 'actual' | 'forecast1' | 'forecast2'
 
@@ -87,6 +95,7 @@ export interface BSIComprehensiveChartData {
   last_updated: string
   cached: boolean
   source: string
+  next_release?: NextRelease | null
 }
 
 export interface SheetInfo {

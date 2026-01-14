@@ -5,6 +5,14 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
+export interface NextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
 export interface EconomyWatcherDataPoint {
   date: string // YYYY-MM-01 format
   total: number | null // Total DI (合計)
@@ -32,6 +40,7 @@ export interface EconomyWatcherFullResponse {
     data: EconomyWatcherDataPoint[]
     latest?: EconomyWatcherDataPoint
   }
+  next_release?: NextRelease | null
   last_updated: string
   source: string
   cached?: boolean

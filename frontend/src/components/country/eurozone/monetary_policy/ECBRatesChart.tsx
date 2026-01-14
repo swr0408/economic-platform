@@ -95,7 +95,7 @@ export default function ECBRatesChart({ data }: ECBRatesChartProps) {
         title="ECB預金ファシリティ金利"
         showPeriodSelector={false}
         dataSource="European Central Bank"
-        sourceUrl="https://www.ecb.europa.eu/press/pubbydate/html/index.en.html?"
+        sourceUrl="https://www.ecb.europa.eu/press/press_conference/html/index.en.html"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

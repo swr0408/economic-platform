@@ -19,7 +19,7 @@ import ZoomableChart from '../../../common/ZoomableChart'
 import LoadingChart from '../../../common/LoadingChart'
 
 import { type PeriodType } from '../../usa/common/useChartData'
-import { NoDataMessage, ChartControlRow } from '../../usa/common/ChartComponents'
+import { NoDataMessage, ChartControlRow, NextReleaseDisplay } from '../../usa/common/ChartComponents'
 import { TEXT_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
 
 import type { ECBBLSData } from '../../../../hooks/useDashboardData'
@@ -171,6 +171,7 @@ export default function ECBBLSChart({ data }: ECBBLSChartProps) {
                 ({formatECBQuarterLabel(latestData.date)})
               </span>
             </div>
+            <NextReleaseDisplay nextRelease={data.next_release} />
           </div>
         )}
 

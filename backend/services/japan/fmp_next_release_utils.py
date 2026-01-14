@@ -4,12 +4,18 @@ FMP次回発表日取得ユーティリティ（日本向け）
 indicator_event_mappingテーブルのfmp_event_patternsを使用して、
 FMP APIから次回発表日を取得する共通関数を提供。
 
+日本CPI分離ロジック:
+    FMPでは全国CPIと東京CPIが両方とも 'CPI' イベントとして登録されている。
+    月内で最初に発表されるCPIは「全国CPI」（18-21日頃、前月データ）、
+    2番目に発表されるCPIは「東京CPI」（24-28日頃、当月データ）として分離する。
+
 使用方法:
     from services.japan.fmp_next_release_utils import get_next_release_from_fmp, should_refresh_by_fmp_schedule
 
     # 指標IDを指定して次回発表日を取得
     next_release = get_next_release_from_fmp('boj_policy_rate')
 """
+from collections import defaultdict
 from datetime import date, datetime, timedelta
 from typing import Any, Dict, List, Optional
 from zoneinfo import ZoneInfo
@@ -26,6 +32,58 @@ NEXT_RELEASE_CACHE_TTL = 86400
 # 発表後の更新チェック期間（分）
 # 日銀金利決定は11:30～13:00の間に発表されるため、5分おきにチェック
 UPDATE_WINDOW_MINUTES = 5
+
+# 日本CPI分離対象の指標ID
+JP_CPI_INDICATORS = ("jp_national_cpi", "jp_tokyo_cpi")
+
+
+def _filter_cpi_by_monthly_order(
+    events: List[Dict[str, Any]],
+    econalpha_id: str,
+) -> List[Dict[str, Any]]:
+    """
+    日本CPIイベントを月内発表順序でフィルタ
+
+    FMPでは全国CPIと東京CPIが両方とも 'CPI' として登録されている。
+    - 全国CPI: 毎月18-21日頃に発表（前月データ）→ 月内で最初のCPI
+    - 東京CPI: 毎月24-28日頃に発表（当月データ）→ 月内で2番目のCPI
+
+    Args:
+        events: CPIイベントのリスト（各要素に '_dt' キーが必要）
+        econalpha_id: 'jp_national_cpi' または 'jp_tokyo_cpi'
+
+    Returns:
+        フィルタされたイベントリスト
+    """
+    if econalpha_id not in JP_CPI_INDICATORS:
+        return events
+
+    if not events:
+        return events
+
+    # 年-月ごとにグループ化
+    by_month: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    for event in events:
+        dt = event.get("_dt")
+        if dt:
+            key = dt.strftime("%Y-%m")
+            by_month[key].append(event)
+
+    # 各月で日付順にソートし、全国CPI=1番目、東京CPI=2番目を選択
+    filtered = []
+    for month_key, month_events in by_month.items():
+        sorted_events = sorted(month_events, key=lambda x: x["_dt"])
+
+        if econalpha_id == "jp_national_cpi":
+            # 月内で最初のCPIを全国CPIとして選択
+            if len(sorted_events) >= 1:
+                filtered.append(sorted_events[0])
+        elif econalpha_id == "jp_tokyo_cpi":
+            # 月内で2番目のCPIを東京CPIとして選択
+            if len(sorted_events) >= 2:
+                filtered.append(sorted_events[1])
+
+    return filtered
 
 
 def get_fmp_event_patterns(econalpha_id: str) -> Optional[List[str]]:
@@ -139,6 +197,10 @@ def get_next_release_from_fmp(
                     "_dt": dt_utc,
                 })
 
+        # 日本CPI分離処理（全国CPI vs 東京CPI）
+        if econalpha_id in JP_CPI_INDICATORS and candidates:
+            candidates = _filter_cpi_by_monthly_order(candidates, econalpha_id)
+
         # 日付順でソートして最も近いイベントを返す
         if candidates:
             candidates.sort(key=lambda x: x["_dt"])
@@ -226,6 +288,10 @@ def get_last_release_from_fmp(
                     "actual": event.get("actual"),
                     "_dt": dt_utc,
                 })
+
+        # 日本CPI分離処理（全国CPI vs 東京CPI）
+        if econalpha_id in JP_CPI_INDICATORS and candidates:
+            candidates = _filter_cpi_by_monthly_order(candidates, econalpha_id)
 
         if candidates:
             candidates.sort(key=lambda x: x["_dt"], reverse=True)
