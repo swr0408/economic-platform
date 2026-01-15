@@ -59,7 +59,7 @@ class ECBUnitLabourCostService:
     SERIES_KEY = "Q.I9.Y.LCI_T.BTS"
 
     DATA_CACHE_KEY = "eurozone:labour_cost_index:data"
-    ECONALPHA_ID = "ecb_unit_labour_cost"
+    ECONALPHA_ID = "eu_labor_cost_index"  # DBマッピング（indicator_event_mapping）に合わせる
 
     def __init__(self):
         pass

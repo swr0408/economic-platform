@@ -3033,6 +3033,10 @@ export interface EurozoneEmploymentData {
   ecb_employment: ECBEmploymentData | null
   ecb_labor_productivity: ECBLaborProductivityData | null
   ecb_unit_labour_cost: ECBUnitLabourCostData | null
+  eurostat_wages: EurostatWagesData | null
+  ecb_negotiated_wages: ECBNegotiatedWagesData | null
+  indeed_euro_wage: IndeedEuroWageData | null
+  germany_unemployment: GermanyUnemploymentData | null
 }
 
 // ECB失業率データの型
@@ -3133,6 +3137,92 @@ export interface ECBUnitLabourCostNextRelease {
   estimate: number | null
 }
 
+// Eurostat賃金・給与データの型
+export interface EurostatWagesData {
+  data: EurostatWagesItem[]
+  latest: EurostatWagesItem | null
+  metadata: Record<string, unknown>
+  next_release: EurostatWagesNextRelease | null
+}
+
+export interface EurostatWagesItem {
+  date: string
+  value: number
+}
+
+export interface EurostatWagesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB交渉妥結賃金データの型
+export interface ECBNegotiatedWagesData {
+  data: ECBNegotiatedWagesItem[]
+  latest: ECBNegotiatedWagesItem | null
+  metadata: Record<string, unknown>
+  next_release: ECBNegotiatedWagesNextRelease | null
+}
+
+export interface ECBNegotiatedWagesItem {
+  date: string
+  value: number
+}
+
+export interface ECBNegotiatedWagesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// Indeed賃金トラッカー（ユーロ圏）データの型
+export interface IndeedEuroWageData {
+  germany: IndeedEuroWageItem[]
+  france: IndeedEuroWageItem[]
+  euro_area: IndeedEuroWageItem[]
+  latest: IndeedEuroWageItem | null
+  metadata: Record<string, unknown>
+}
+
+export interface IndeedEuroWageItem {
+  date: string
+  value: number
+  ma3: number | null
+}
+
+// ドイツ失業率データの型
+export interface GermanyUnemploymentData {
+  unemployment_rate: GermanyUnemploymentItem[]
+  metadata: Record<string, unknown>
+  next_release: GermanyUnemploymentNextRelease | null
+}
+
+export interface GermanyUnemploymentItem {
+  date: string
+  value: number
+}
+
+export interface GermanyUnemploymentNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
 /**
  * ユーロ圏雇用ダッシュボード専用フック
  *
@@ -3147,4 +3237,166 @@ export interface ECBUnitLabourCostNextRelease {
  */
 export function useEurozoneEmploymentDashboard(): UseQueryResult<DashboardResponse<EurozoneEmploymentData>, Error> {
   return useDashboardData<EurozoneEmploymentData>('eurozone', 'employment')
+}
+
+// ユーロ圏インフレダッシュボードデータの型
+export interface EurozoneInflationData {
+  ecb_hicp: ECBHICPData | null
+  ecb_ppi: ECBPPIData | null
+  ecb_spf: ECBSPFData | null
+  ecb_spf_core: ECBSPFCoreData | null
+  germany_cpi: GermanyCPIData | null
+}
+
+// ECB HICPデータの型
+export interface ECBHICPData {
+  annual_rates: ECBHICPAnnualRates
+  monthly_changes: ECBHICPMonthlyChanges
+  breakdown_annual_rates: ECBHICPBreakdownAnnualRates
+  metadata: Record<string, unknown>
+  next_release: ECBHICPNextRelease | null
+}
+
+export interface ECBHICPAnnualRates {
+  total_hicp: ECBHICPItem[]
+  core_hicp: ECBHICPItem[]
+  core_excl_unprocessed_food: ECBHICPItem[]
+}
+
+export interface ECBHICPMonthlyChanges {
+  total_hicp: ECBHICPItem[]
+  core_hicp: ECBHICPItem[]
+}
+
+export interface ECBHICPBreakdownAnnualRates {
+  goods: ECBHICPItem[]
+  food: ECBHICPItem[]
+  energy: ECBHICPItem[]
+  services: ECBHICPItem[]
+}
+
+export interface ECBHICPItem {
+  date: string
+  value: number | null
+}
+
+export interface ECBHICPNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB PPIデータの型
+export interface ECBPPIData {
+  annual_rates: ECBPPIRates
+  monthly_changes: ECBPPIRates
+  metadata: Record<string, unknown>
+  next_release: ECBPPINextRelease | null
+}
+
+export interface ECBPPIRates {
+  ppi: ECBPPIItem[]
+}
+
+export interface ECBPPIItem {
+  date: string
+  value: number | null
+}
+
+export interface ECBPPINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB SPFデータの型
+export interface ECBSPFData {
+  inflation_expectations: ECBSPFInflationExpectations
+  metadata: Record<string, unknown>
+  next_release: string | null
+}
+
+export interface ECBSPFInflationExpectations {
+  hicp_12m: ECBSPFItem[]
+  hicp_24m: ECBSPFItem[]
+  hicp_lt: ECBSPFItem[]
+}
+
+export interface ECBSPFItem {
+  date: string
+  value: number
+}
+
+// ECB SPF Coreデータの型
+export interface ECBSPFCoreData {
+  inflation_expectations: ECBSPFCoreInflationExpectations
+  metadata: Record<string, unknown>
+  next_release: string | null
+}
+
+export interface ECBSPFCoreInflationExpectations {
+  core_12m: ECBSPFCoreItem[]
+  core_24m: ECBSPFCoreItem[]
+  core_lt: ECBSPFCoreItem[]
+}
+
+export interface ECBSPFCoreItem {
+  date: string
+  value: number
+}
+
+// ドイツCPI/HICPデータの型
+export interface GermanyCPIData {
+  cpi_yoy: GermanyCPIItem[]
+  cpi_mom: GermanyCPIItem[]
+  hicp_yoy: GermanyCPIItem[]
+  hicp_mom: GermanyCPIItem[]
+  metadata: Record<string, unknown>
+  next_release: GermanyCPINextRelease | null
+}
+
+export interface GermanyCPIItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+  period: string | null
+  event: string | null
+}
+
+export interface GermanyCPINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+/**
+ * ユーロ圏インフレダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useEurozoneInflationDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.ecb_hicp) // ECB HICPデータ
+ * }
+ * ```
+ */
+export function useEurozoneInflationDashboard(): UseQueryResult<DashboardResponse<EurozoneInflationData>, Error> {
+  return useDashboardData<EurozoneInflationData>('eurozone', 'inflation')
 }

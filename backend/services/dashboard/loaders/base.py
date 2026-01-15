@@ -143,6 +143,41 @@ class BaseDashboardLoader(ABC):
         """キャッシュを無効化"""
         return redis_client.delete(self.cache_key)
 
+    def get_expected_keys(self) -> List[str]:
+        """
+        期待されるデータキーのリストを返す（サブクラスでオーバーライド）
+
+        新しい指標が追加された場合、キャッシュに含まれていなければ
+        自動的に再取得するために使用。
+
+        Returns:
+            List[str]: 期待されるデータキーのリスト
+        """
+        return []
+
+    def _is_cache_incomplete(self, cached_data: Dict[str, Any]) -> bool:
+        """
+        キャッシュに必要な全キーが含まれているかチェック
+
+        Args:
+            cached_data: キャッシュされたデータ
+
+        Returns:
+            True: 一部のキーが欠けている（再取得が必要）
+            False: 全キーが含まれている
+        """
+        expected_keys = self.get_expected_keys()
+        if not expected_keys:
+            return False
+
+        data = cached_data.get("data", {})
+        for key in expected_keys:
+            if key not in data:
+                print(f"Cache missing key '{key}' for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}")
+                return True
+
+        return False
+
     def get_data(self) -> Dict[str, Any]:
         """
         データを取得（キャッシュ優先、last_updated判定）
@@ -160,8 +195,11 @@ class BaseDashboardLoader(ABC):
         if cached:
             last_updated = cached.get("last_updated")
 
+            # キャッシュに必要なキーが欠けている場合は再取得
+            if self._is_cache_incomplete(cached):
+                print(f"Cache incomplete for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
             # スケジュール時刻でキャッシュの鮮度をチェック
-            if self._is_cache_stale(last_updated):
+            elif self._is_cache_stale(last_updated):
                 print(f"Cache is stale for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
             else:
                 return cached

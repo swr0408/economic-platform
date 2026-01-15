@@ -749,6 +749,78 @@ FINANCIAL_INDICATORS: List[IndicatorConfig] = [
 
 
 # ============================================================
+# 日本指標 (JAPAN)
+# ============================================================
+
+JAPAN_INDICATORS: List[IndicatorConfig] = [
+    # 企業物価指数：飲食料品・農林水産物
+    # 発表期間: 毎月10-18日 8:50 JST
+    IndicatorConfig(
+        name="企業物価指数：飲食料品・農林水産物",
+        name_en="CGPI Food & Agriculture",
+        category=Category.INFLATION,
+        service_module="services.japan.japan_cgpi_food_agriculture_service",
+        service_class="JapanCGPIFoodAgricultureService",
+        service_instance="japan_cgpi_food_agriculture_service",
+        fetch_method="get_data",
+        schedule_checker="JAPAN_CGPI_CHECKER",
+    ),
+
+    # 輸入・輸出物価指数
+    # 発表期間: 毎月10-18日 8:50 JST
+    IndicatorConfig(
+        name="輸入・輸出物価指数",
+        name_en="Import/Export Price Index",
+        category=Category.INFLATION,
+        service_module="services.japan.japan_import_export_price_service",
+        service_class="JapanImportExportPriceService",
+        service_instance="japan_import_export_price_service",
+        fetch_method="get_data",
+        schedule_checker="JAPAN_CGPI_CHECKER",
+    ),
+
+    # 日銀GDPギャップ
+    # 発表期間: 四半期（1/4/7/10月）3-8日 15:00 JST
+    IndicatorConfig(
+        name="日銀GDPギャップ",
+        name_en="BOJ GDP Gap",
+        category=Category.ECONOMY,
+        service_module="services.japan.boj_gdp_gap_service",
+        service_class="BOJGDPGapService",
+        service_instance="boj_gdp_gap_service",
+        fetch_method="get_data",
+        schedule_checker="JAPAN_BOJ_GDP_GAP_CHECKER",
+    ),
+
+    # 内閣府GDPギャップ
+    # 発表期間: 毎月20-28日頃 15:00 JST
+    IndicatorConfig(
+        name="内閣府GDPギャップ",
+        name_en="CAO GDP Gap",
+        category=Category.ECONOMY,
+        service_module="services.japan.japan_gdp_gap_service",
+        service_class="JapanGDPGapService",
+        service_instance="japan_gdp_gap_service",
+        fetch_method="get_data",
+        schedule_checker="JAPAN_CAO_GDP_GAP_CHECKER",
+    ),
+
+    # POS-UVPI（消費者購買単価指数）
+    # 発表: 毎週水曜日 15:15 JST
+    IndicatorConfig(
+        name="POS-UVPI消費者購買単価指数",
+        name_en="POS-UVPI",
+        category=Category.INFLATION,
+        service_module="services.japan.japan_pos_uvpi_service",
+        service_class="JapanPosUvpiService",
+        service_instance="japan_pos_uvpi_service",
+        fetch_method="get_data",
+        schedule_checker="JAPAN_POS_UVPI_CHECKER",
+    ),
+]
+
+
+# ============================================================
 # 全指標リスト
 # ============================================================
 
@@ -758,7 +830,8 @@ ALL_INDICATORS: List[IndicatorConfig] = (
     CONSUMER_INDICATORS +
     EMPLOYMENT_INDICATORS +
     INFLATION_INDICATORS +
-    FINANCIAL_INDICATORS
+    FINANCIAL_INDICATORS +
+    JAPAN_INDICATORS
 )
 
 

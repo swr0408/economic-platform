@@ -249,6 +249,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'tokyo-cpi', name: '東京CPI' },
           { code: 'sppi', name: '企業向けサービス価格指数（SPPI）' },
           { code: 'cgpi', name: '企業物価指数（CGPI）' },
+          { code: 'cgpi-food-agriculture', name: '企業物価指数：飲食料品 / 農林水産物' },
+          { code: 'import-export-price', name: '輸入・輸出物価指数' },
+          { code: 'pos-uvpi', name: 'POS-UVPI（消費者購買単価指数）' },
+          { code: 'gdp-gap', name: 'GDPギャップ（内閣府）' },
+          { code: 'boj-gdp-gap', name: 'GDPギャップ（日銀）' },
         ],
       },
       {
@@ -314,6 +319,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-employment', name: '雇用者数変化（ユーロ圏）' },
           { code: 'ecb-labor-productivity', name: '労働生産性（ユーロ圏）' },
           { code: 'ecb-unit-labour-cost', name: '労働コスト指数（ユーロ圏）' },
+          { code: 'eurostat-wages', name: '賃金上昇率（ユーロ圏）' },
+          { code: 'ecb-negotiated-wages', name: '交渉妥結賃金（ユーロ圏）' },
+          { code: 'indeed-euro-wage', name: 'Indeed賃金トラッカー（ユーロ圏）' },
+          { code: 'germany-unemployment', name: '失業率（ドイツ）' },
         ],
       },
       {
@@ -322,8 +331,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <RiseOutlined />,
         color: '#ff4d4f',
         indicators: [
-          { code: 'hicp', name: 'HICP' },
-          { code: 'ppi', name: 'PPI' },
+          { code: 'ecb-hicp', name: 'HICP（ユーロ圏）' },
+          { code: 'ecb-hicp-breakdown', name: 'HICP 項目別（ユーロ圏）' },
+          { code: 'ecb-ppi', name: 'PPI（ユーロ圏）' },
+          { code: 'ecb-spf', name: 'インフレ期待（ユーロ圏・SPF）' },
+          { code: 'ecb-spf-core', name: 'コアインフレ期待（ユーロ圏・SPF）' },
+          { code: 'germany-cpi', name: 'CPI（ドイツ）' },
         ],
       },
       {

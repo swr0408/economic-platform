@@ -28,6 +28,7 @@ import EurozonePolicyCharts from '../components/country/eurozone/EurozonePolicyC
 import EurozoneEconomyCharts from '../components/country/eurozone/EurozoneEconomyCharts'
 import EurozoneConsumerCharts from '../components/country/eurozone/EurozoneConsumerCharts'
 import EurozoneEmploymentCharts from '../components/country/eurozone/EurozoneEmploymentCharts'
+import EurozoneInflationCharts from '../components/country/eurozone/EurozoneInflationCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -242,11 +243,12 @@ function CountryDataCategory() {
   const isJapanConsumer = countryCode === 'japan' && categoryCode === 'consumer'
   const isJapanEmployment = countryCode === 'japan' && categoryCode === 'employment'
   const isJapanInflation = countryCode === 'japan' && categoryCode === 'inflation'
-  // ユーロ圏金融政策・経済・消費・雇用の場合はチャートを表示
+  // ユーロ圏金融政策・経済・消費・雇用・物価の場合はチャートを表示
   const isEurozonePolicy = countryCode === 'eurozone' && categoryCode === 'policy'
   const isEurozoneEconomy = countryCode === 'eurozone' && categoryCode === 'economy'
   const isEurozoneConsumer = countryCode === 'eurozone' && categoryCode === 'consumer'
   const isEurozoneEmployment = countryCode === 'eurozone' && categoryCode === 'employment'
+  const isEurozoneInflation = countryCode === 'eurozone' && categoryCode === 'inflation'
 
   // メインコンテンツ
   const mainContent = (
@@ -281,6 +283,8 @@ function CountryDataCategory() {
         <EurozoneConsumerCharts />
       ) : isEurozoneEmployment ? (
         <EurozoneEmploymentCharts />
+      ) : isEurozoneInflation ? (
+        <EurozoneInflationCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

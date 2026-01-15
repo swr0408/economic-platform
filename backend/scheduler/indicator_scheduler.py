@@ -98,6 +98,15 @@ class IndicatorScheduler:
             スケジュールチェッカーインスタンス
         """
         try:
+            # 日本指標のチェッカーを先にチェック
+            if checker_name.startswith("JAPAN_"):
+                try:
+                    import backend.services.japan.release_schedule_utils as japan_schedule_utils
+                except ImportError:
+                    import services.japan.release_schedule_utils as japan_schedule_utils
+                return getattr(japan_schedule_utils, checker_name, None)
+
+            # USAおよびその他の指標
             try:
                 from backend.services.usa.release_schedule_utils import (
                     ReleaseScheduleChecker,

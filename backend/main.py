@@ -44,6 +44,11 @@ try:
     from backend.routers.japan.cpi_categories import router as japan_cpi_categories_router
     from backend.routers.japan.sppi import router as japan_sppi_router
     from backend.routers.japan.cgpi import router as japan_cgpi_router
+    from backend.routers.japan.cgpi_food_agriculture import router as japan_cgpi_food_agriculture_router
+    from backend.routers.japan.import_export_price import router as japan_import_export_price_router
+    from backend.routers.japan.pos_uvpi import router as japan_pos_uvpi_router
+    from backend.routers.japan.gdp_gap import router as japan_gdp_gap_router
+    from backend.routers.japan.boj_gdp_gap import router as japan_boj_gdp_gap_router
     from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from backend.routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from backend.routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -58,6 +63,15 @@ try:
     from backend.routers.eurozone.eu_pmi import router as eurozone_pmi_router
     from backend.routers.eurozone.ecb_labor_productivity import router as eurozone_labor_productivity_router
     from backend.routers.eurozone.ecb_unit_labour_cost import router as eurozone_unit_labour_cost_router
+    from backend.routers.eurozone.eurostat_wages import router as eurozone_eurostat_wages_router
+    from backend.routers.eurozone.ecb_negotiated_wages import router as eurozone_ecb_negotiated_wages_router
+    from backend.routers.eurozone.indeed_euro_wage import router as eurozone_indeed_euro_wage_router
+    from backend.routers.eurozone.germany_unemployment import router as eurozone_germany_unemployment_router
+    from backend.routers.eurozone.ecb_hicp import router as eurozone_ecb_hicp_router
+    from backend.routers.eurozone.ecb_ppi import router as eurozone_ecb_ppi_router
+    from backend.routers.eurozone.ecb_spf import router as eurozone_ecb_spf_router
+    from backend.routers.eurozone.ecb_spf_core import router as eurozone_ecb_spf_core_router
+    from backend.routers.eurozone.germany_cpi import router as eurozone_germany_cpi_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -104,6 +118,11 @@ except ImportError:
     from routers.japan.cpi_categories import router as japan_cpi_categories_router
     from routers.japan.sppi import router as japan_sppi_router
     from routers.japan.cgpi import router as japan_cgpi_router
+    from routers.japan.cgpi_food_agriculture import router as japan_cgpi_food_agriculture_router
+    from routers.japan.import_export_price import router as japan_import_export_price_router
+    from routers.japan.pos_uvpi import router as japan_pos_uvpi_router
+    from routers.japan.gdp_gap import router as japan_gdp_gap_router
+    from routers.japan.boj_gdp_gap import router as japan_boj_gdp_gap_router
     from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -118,6 +137,15 @@ except ImportError:
     from routers.eurozone.eu_pmi import router as eurozone_pmi_router
     from routers.eurozone.ecb_labor_productivity import router as eurozone_labor_productivity_router
     from routers.eurozone.ecb_unit_labour_cost import router as eurozone_unit_labour_cost_router
+    from routers.eurozone.eurostat_wages import router as eurozone_eurostat_wages_router
+    from routers.eurozone.ecb_negotiated_wages import router as eurozone_ecb_negotiated_wages_router
+    from routers.eurozone.indeed_euro_wage import router as eurozone_indeed_euro_wage_router
+    from routers.eurozone.germany_unemployment import router as eurozone_germany_unemployment_router
+    from routers.eurozone.ecb_hicp import router as eurozone_ecb_hicp_router
+    from routers.eurozone.ecb_ppi import router as eurozone_ecb_ppi_router
+    from routers.eurozone.ecb_spf import router as eurozone_ecb_spf_router
+    from routers.eurozone.ecb_spf_core import router as eurozone_ecb_spf_core_router
+    from routers.eurozone.germany_cpi import router as eurozone_germany_cpi_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -191,6 +219,11 @@ app.include_router(japan_tokyo_cpi_router)
 app.include_router(japan_cpi_categories_router)
 app.include_router(japan_sppi_router)
 app.include_router(japan_cgpi_router)
+app.include_router(japan_cgpi_food_agriculture_router)
+app.include_router(japan_import_export_price_router)
+app.include_router(japan_pos_uvpi_router)
+app.include_router(japan_gdp_gap_router)
+app.include_router(japan_boj_gdp_gap_router)
 app.include_router(eurozone_ecb_rates_router)
 app.include_router(eurozone_eurex_ois_router)
 app.include_router(eurozone_ecb_rate_cuts_screenshot_router)
@@ -205,6 +238,15 @@ app.include_router(eurozone_ecb_retail_trade_router)
 app.include_router(eurozone_pmi_router)
 app.include_router(eurozone_labor_productivity_router)
 app.include_router(eurozone_unit_labour_cost_router)
+app.include_router(eurozone_eurostat_wages_router)
+app.include_router(eurozone_ecb_negotiated_wages_router)
+app.include_router(eurozone_indeed_euro_wage_router)
+app.include_router(eurozone_germany_unemployment_router)
+app.include_router(eurozone_ecb_hicp_router)
+app.include_router(eurozone_ecb_ppi_router)
+app.include_router(eurozone_ecb_spf_router)
+app.include_router(eurozone_ecb_spf_core_router)
+app.include_router(eurozone_germany_cpi_router)
 
 
 @app.get("/health")

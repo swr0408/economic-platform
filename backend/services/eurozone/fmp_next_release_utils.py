@@ -340,7 +340,8 @@ def invalidate_next_release_cache(econalpha_id: str) -> bool:
 
 def get_next_release_by_pattern(
     event_pattern: str,
-    use_cache: bool = True
+    use_cache: bool = True,
+    country: str = "EU"
 ) -> Optional[Dict[str, Any]]:
     """
     FMPイベントパターンで次回発表日を取得（econalpha_idを経由しない）
@@ -348,11 +349,12 @@ def get_next_release_by_pattern(
     Args:
         event_pattern: イベント名のパターン（例: "Economic Sentiment"）
         use_cache: Redisキャッシュを使用するか
+        country: 国コード（デフォルト: "EU"）
 
     Returns:
         次回発表日情報
     """
-    cache_key = f"fmp:next_release:pattern:{event_pattern.lower().replace(' ', '_')}"
+    cache_key = f"fmp:next_release:pattern:{country}:{event_pattern.lower().replace(' ', '_')}"
 
     if use_cache:
         cached = redis_client.get(cache_key)
@@ -366,14 +368,14 @@ def get_next_release_by_pattern(
         events = fmp_service.fetch_calendar(
             today,
             today + timedelta(days=90),
-            country="EU"
+            country=country
         )
 
         candidates = []
         pattern_lower = event_pattern.lower()
 
         for event in events:
-            if event.get("country") != "EU":
+            if event.get("country") != country:
                 continue
 
             event_name = event.get("event", "")
@@ -412,13 +414,14 @@ def get_next_release_by_pattern(
         return None
 
     except Exception as e:
-        print(f"Error fetching next release by pattern '{event_pattern}': {e}")
+        print(f"Error fetching next release by pattern '{event_pattern}' for country '{country}': {e}")
         return None
 
 
 def should_refresh_by_pattern(
     event_pattern: str,
     last_updated_str: str,
+    country: str = "EU"
 ) -> bool:
     """
     FMPイベントパターンに基づく更新判定（econalpha_idを経由しない）
@@ -426,6 +429,7 @@ def should_refresh_by_pattern(
     Args:
         event_pattern: イベント名のパターン
         last_updated_str: 最終更新日時のISO文字列
+        country: 国コード（デフォルト: "EU"）
 
     Returns:
         True: 更新が必要
@@ -445,14 +449,14 @@ def should_refresh_by_pattern(
             query = text("""
                 SELECT datetime_utc, event, actual
                 FROM economic_calendar_events
-                WHERE country = 'EU'
+                WHERE country = :country
                   AND event ILIKE :pattern
                   AND actual IS NOT NULL
                   AND datetime_utc <= NOW()
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row = session.execute(query, {"pattern": f"%{event_pattern}%"}).fetchone()
+            row = session.execute(query, {"country": country, "pattern": f"%{event_pattern}%"}).fetchone()
 
             if not row:
                 return False
@@ -478,5 +482,5 @@ def should_refresh_by_pattern(
             return False
 
     except Exception as e:
-        print(f"Error checking refresh by pattern '{event_pattern}': {e}")
+        print(f"Error checking refresh by pattern '{event_pattern}' for country '{country}': {e}")
         return False

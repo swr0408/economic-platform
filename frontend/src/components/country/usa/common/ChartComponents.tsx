@@ -674,6 +674,8 @@ interface LineConfig {
   strokeWidth?: number
   /** 破線パターン（例: "5 5"） */
   strokeDasharray?: string
+  /** Y軸ID（'left' または 'right'、デフォルト: 'left'） */
+  yAxisId?: 'left' | 'right'
 }
 
 interface StandardLineChartProps<T> {
@@ -703,6 +705,12 @@ interface StandardLineChartProps<T> {
   onLegendClick?: (dataKey: string) => void
   /** 凡例を表示するか（デフォルト: true） */
   showLegend?: boolean
+  /** 右Y軸を表示するか（デフォルト: false） */
+  showRightYAxis?: boolean
+  /** 右Y軸のフォーマッター */
+  rightYAxisFormatter?: (value: number) => string
+  /** 右Y軸のドメイン */
+  rightYDomain?: [string | number, string | number]
 }
 
 /**
@@ -733,7 +741,12 @@ export function StandardLineChart<T extends { date: string }>({
   showFiftyLine = false,
   onLegendClick,
   showLegend = true,
+  showRightYAxis = false,
+  rightYAxisFormatter,
+  rightYDomain = ['auto', 'auto'],
 }: StandardLineChartProps<T>) {
+  // 右Y軸を使用するlineがあるか確認
+  const hasRightAxisLines = lines.some(line => line.yAxisId === 'right')
   // カスタムTooltipコンポーネント（数値にチャートの色を使用）
   const LineChartTooltip = ({ active, payload, label }: {
     active?: boolean
@@ -780,6 +793,9 @@ export function StandardLineChart<T extends { date: string }>({
     )
   }
 
+  // 右Y軸を表示するか（明示的指定 or lineにyAxisId='right'がある場合）
+  const shouldShowRightYAxis = showRightYAxis || hasRightAxisLines
+
   return (
     <ResponsiveContainer width="100%" height={height}>
       <LineChart data={data} margin={CHART_MARGIN}>
@@ -791,10 +807,20 @@ export function StandardLineChart<T extends { date: string }>({
           interval={AXIS_STYLE.interval}
         />
         <YAxis
+          yAxisId="left"
           domain={yDomain}
           tick={AXIS_STYLE.tick}
           tickFormatter={yAxisFormatter}
         />
+        {shouldShowRightYAxis && (
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            domain={rightYDomain}
+            tick={AXIS_STYLE.tick}
+            tickFormatter={rightYAxisFormatter ?? yAxisFormatter}
+          />
+        )}
         <RechartsTooltip content={<LineChartTooltip />} />
         {showLegend && (
           <Legend
@@ -802,9 +828,10 @@ export function StandardLineChart<T extends { date: string }>({
             wrapperStyle={onLegendClick ? { cursor: 'pointer' } : undefined}
           />
         )}
-        {showZeroLine && <ReferenceLine {...ZERO_LINE_PROPS} />}
+        {showZeroLine && <ReferenceLine yAxisId="left" {...ZERO_LINE_PROPS} />}
         {showFiftyLine && (
           <ReferenceLine
+            yAxisId="left"
             y={50}
             stroke={TEXT_COLORS.secondary}
             strokeWidth={1}
@@ -829,6 +856,7 @@ export function StandardLineChart<T extends { date: string }>({
             hide={line.hide}
             isAnimationActive={false}
             connectNulls={true}
+            yAxisId={line.yAxisId ?? 'left'}
           />
         ))}
       </LineChart>

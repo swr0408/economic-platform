@@ -4,6 +4,10 @@ import ECBUnemploymentChart from './employment/ECBUnemploymentChart'
 import ECBEmploymentChart from './employment/ECBEmploymentChart'
 import ECBLaborProductivityChart from './employment/ECBLaborProductivityChart'
 import ECBUnitLabourCostChart from './employment/ECBUnitLabourCostChart'
+import EurostatWagesChart from './employment/EurostatWagesChart'
+import ECBNegotiatedWagesChart from './employment/ECBNegotiatedWagesChart'
+import IndeedEuroWageChart from './employment/IndeedEuroWageChart'
+import GermanyUnemploymentChart from './employment/GermanyUnemploymentChart'
 
 /**
  * ユーロ圏雇用チャート群
@@ -64,6 +68,34 @@ export default function EurozoneEmploymentCharts() {
       <div id="ecb-unit-labour-cost">
         <ECBUnitLabourCostChart
           data={dashboardData?.ecb_unit_labour_cost ?? null}
+        />
+      </div>
+
+      {/* Eurostat Wages Chart */}
+      <div id="eurostat-wages">
+        <EurostatWagesChart
+          data={dashboardData?.eurostat_wages ?? null}
+        />
+      </div>
+
+      {/* ECB Negotiated Wages Chart */}
+      <div id="ecb-negotiated-wages">
+        <ECBNegotiatedWagesChart
+          data={dashboardData?.ecb_negotiated_wages ?? null}
+        />
+      </div>
+
+      {/* Indeed Euro Wage Chart */}
+      <div id="indeed-euro-wage">
+        <IndeedEuroWageChart
+          data={dashboardData?.indeed_euro_wage ?? null}
+        />
+      </div>
+
+      {/* Germany Unemployment Chart */}
+      <div id="germany-unemployment">
+        <GermanyUnemploymentChart
+          data={dashboardData?.germany_unemployment ?? null}
         />
       </div>
     </div>

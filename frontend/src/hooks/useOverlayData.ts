@@ -48,6 +48,7 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/gdp-components',
     '/api/japan/gdp-deflator',
     '/api/japan/potential-growth',
+    '/api/japan/gdp-gap',
     '/api/japan/boj-',
     '/api/japan/ois-',
     '/api/japan/capital-investment',
@@ -56,7 +57,10 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/national-cpi',
     '/api/japan/tokyo-cpi',
     '/api/japan/cgpi',
+    '/api/japan/cgpi-food-agriculture',
+    '/api/japan/import-export-price',
     '/api/japan/sppi',
+    '/api/japan/pos-uvpi',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -205,6 +209,26 @@ function extractIndicatorData(
 
   if (!indicatorData) {
     console.log('[useOverlayData] No indicator data for:', dataKey);
+    return [];
+  }
+
+  // パターン: nestedKeyがドット記法で指定されている場合（例: annual_rates.total_hicp）
+  // ECB HICPなど: { annual_rates: { total_hicp: [{date, value}], core_hicp: [{date, value}] } }
+  if (nestedKey && nestedKey.includes('.')) {
+    const nestedData = getNestedValue(indicatorData, nestedKey);
+    if (Array.isArray(nestedData)) {
+      console.log('[useOverlayData] Nested key dot notation pattern for:', dataKey, '.', nestedKey, 'length:', nestedData.length);
+      return (nestedData as APIDataItem[])
+        .filter(item => {
+          const val = item.value;
+          return val !== undefined && val !== null && typeof val === 'number';
+        })
+        .map(item => ({
+          date: item.date,
+          value: item.value as number,
+        }));
+    }
+    console.log('[useOverlayData] Nested key dot notation data not found:', dataKey, '.', nestedKey);
     return [];
   }
 

@@ -86,7 +86,7 @@ export default function IndeedWageGrowthChart({ data }: IndeedWageGrowthChartPro
         title="Indeed賃金トラッカー"
         showPeriodSelector={false}
         dataSource="Indeed Hiring Lab"
-        sourceUrl="https://data.indeed.com/#/wages"
+        sourceUrl="https://www.hiringlab.org/jp/"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

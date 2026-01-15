@@ -177,6 +177,8 @@ export function getCellColor(
   if (value > thresholds.weak) return CELL_COLORS.weakPositive
   if (value < -thresholds.strong) return CELL_COLORS.strongNegative
   if (value < -thresholds.weak) return CELL_COLORS.weakNegative
+  // 値が正確に0の場合は薄い背景色を付ける（データ有無を視覚的に区別）
+  if (value === 0) return CELL_COLORS.weakPositive
   return CELL_COLORS.neutral
 }
 
@@ -344,6 +346,8 @@ export function createChangeCellColorFn(threshold: number): (value: number | nul
     if (value > 0) return 'rgba(82, 196, 26, 0.15)'
     if (value < -threshold) return 'rgba(255, 77, 79, 0.3)'
     if (value < 0) return 'rgba(255, 77, 79, 0.15)'
+    // 値が正確に0の場合は薄い背景色を付ける（データ有無を視覚的に区別）
+    if (value === 0) return 'rgba(82, 196, 26, 0.15)'
     return 'transparent'
   }
 }

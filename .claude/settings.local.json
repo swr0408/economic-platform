@@ -133,7 +133,8 @@
       "Bash(node -e:*)",
       "Bash(dir \"C:\\\\Users\\\\owner\\\\Desktop\\\\seasonality-app\\\\backend\\\\routers\")",
       "Bash(dir \"C:\\\\Users\\\\owner\\\\Desktop\\\\seasonality-app\\\\backend\\\\services\")",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(unzip:*)"
     ]
   }
 }
