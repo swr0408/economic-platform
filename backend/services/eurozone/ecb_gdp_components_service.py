@@ -31,6 +31,10 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from core.redis_client import redis_client
+from services.eurozone.fmp_next_release_utils import (
+    get_next_release_by_pattern,
+    should_refresh_by_pattern,
+)
 
 
 # タイムゾーン
@@ -60,6 +64,9 @@ class ECBGDPComponentsService:
     }
 
     DATA_CACHE_KEY = "economy:ecb_gdp_components:data"
+
+    # FMPイベントパターン（次回発表日取得・更新判定用）
+    FMP_EVENT_PATTERN = "GDP Growth Rate"
 
     def __init__(self):
         pass
@@ -206,21 +213,8 @@ class ECBGDPComponentsService:
         }
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 24時間以上経過していれば更新
-            if (now - last_updated) > timedelta(hours=24):
-                return True
-
-            return False
-        except Exception:
-            return True
+        """キャッシュを更新すべきかどうかを判定（FMPパターン方式）"""
+        return should_refresh_by_pattern(self.FMP_EVENT_PATTERN, last_updated_str, "EU")
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""

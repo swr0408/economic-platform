@@ -1,0 +1,1919 @@
+{
+  "data": [
+    {
+      "date": "1997-06-06",
+      "bank_rate": 0.065,
+      "member_votes": {}
+    },
+    {
+      "date": "1997-07-10",
+      "bank_rate": 0.0675,
+      "member_votes": {}
+    },
+    {
+      "date": "1997-08-07",
+      "bank_rate": 0.07,
+      "member_votes": {}
+    },
+    {
+      "date": "1997-09-11",
+      "bank_rate": 0.07,
+      "member_votes": {}
+    },
+    {
+      "date": "1997-10-09",
+      "bank_rate": 0.07,
+      "member_votes": {}
+    },
+    {
+      "date": "1997-11-06",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1997-12-04",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-01-08",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-02-05",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-03-05",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-04-09",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-05-07",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-06-04",
+      "bank_rate": 0.075,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-07-09",
+      "bank_rate": 0.075,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-08-06",
+      "bank_rate": 0.075,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-09-10",
+      "bank_rate": 0.075,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-10-08",
+      "bank_rate": 0.0725,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-11-05",
+      "bank_rate": 0.0675,
+      "member_votes": {}
+    },
+    {
+      "date": "1998-12-10",
+      "bank_rate": 0.0625,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-01-07",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-02-04",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-03-03",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-04-08",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-05-06",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-06-10",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-07-08",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-08-05",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-09-08",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-10-07",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-11-04",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "1999-12-09",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-01-13",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-02-10",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-03-09",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-04-06",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-05-04",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-06-07",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-07-06",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-08-03",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-09-07",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-10-05",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-11-09",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2000-12-07",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-01-11",
+      "bank_rate": 0.06,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-02-08",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-03-08",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-04-05",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-05-10",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-06-06",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-07-05",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-08-02",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-09-06",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-09-18",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-10-04",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-11-08",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2001-12-05",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-01-10",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-02-07",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-03-07",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-04-04",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-05-09",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-06-06",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-07-04",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-08-01",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-09-05",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-10-10",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-11-07",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2002-12-05",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-01-09",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-02-06",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-03-06",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-04-10",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-05-08",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-06-05",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-07-10",
+      "bank_rate": 0.035,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-08-07",
+      "bank_rate": 0.035,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-09-04",
+      "bank_rate": 0.035,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-10-09",
+      "bank_rate": 0.035,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-11-06",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2003-12-04",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-01-08",
+      "bank_rate": 0.0375,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-02-05",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-03-04",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-04-08",
+      "bank_rate": 0.04,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-05-06",
+      "bank_rate": 0.0425,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-06-10",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-07-08",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-08-05",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-09-09",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-10-07",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-11-04",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2004-12-09",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-01-13",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-02-10",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-03-10",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-04-07",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-05-09",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-06-09",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-07-07",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-08-04",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-09-08",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-10-06",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-11-10",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2005-12-08",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-01-12",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-02-09",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-03-09",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-04-06",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-05-04",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-06-08",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-07-06",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-08-03",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-09-07",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-10-05",
+      "bank_rate": 0.0475,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-11-09",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2006-12-07",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-01-11",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-02-08",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-03-08",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-04-05",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-05-10",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-06-07",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-07-05",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-08-02",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-09-06",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-10-04",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-11-08",
+      "bank_rate": 0.0575,
+      "member_votes": {}
+    },
+    {
+      "date": "2007-12-06",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-01-10",
+      "bank_rate": 0.055,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-02-07",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-03-06",
+      "bank_rate": 0.0525,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-04-10",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-05-08",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-06-05",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-07-10",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-08-07",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-09-04",
+      "bank_rate": 0.05,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-10-08",
+      "bank_rate": 0.045,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-11-06",
+      "bank_rate": 0.03,
+      "member_votes": {}
+    },
+    {
+      "date": "2008-12-04",
+      "bank_rate": 0.02,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-01-08",
+      "bank_rate": 0.015,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-02-05",
+      "bank_rate": 0.01,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-03-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-04-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-05-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-06-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-07-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-08-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-09-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-10-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-11-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2009-12-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-01-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-02-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-03-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-04-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-05-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-06-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-07-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-08-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-09-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-10-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-11-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2010-12-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-01-13",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-02-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-03-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-04-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-05-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-06-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-07-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-08-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-09-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-10-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-11-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2011-12-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-01-12",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-02-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-03-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-04-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-05-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-06-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-07-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-08-02",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-09-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-10-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-11-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2012-12-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-01-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-02-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-03-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-04-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-05-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-06-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-07-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-08-01",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-09-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-10-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-11-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2013-12-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-01-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-02-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-03-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-04-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-05-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-06-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-07-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-08-07",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-09-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-10-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-11-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2014-12-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-01-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-02-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-03-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-04-09",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-05-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-06-03",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-07-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-08-06",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-09-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-10-08",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-11-05",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2015-12-10",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-01-14",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-02-04",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-03-17",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-04-14",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-05-12",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-06-16",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-07-14",
+      "bank_rate": 0.005,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-08-04",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-09-15",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-11-03",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2016-12-15",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2017-02-02",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2017-03-16",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2017-05-11",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2017-06-15",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2017-08-03",
+      "bank_rate": 0.0025,
+      "member_votes": {}
+    },
+    {
+      "date": "2017-09-14",
+      "bank_rate": 0.0025,
+      "member_votes": {
+        "Dave Ramsden": 0.0025
+      }
+    },
+    {
+      "date": "2017-11-02",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Dave Ramsden": 0.0025
+      }
+    },
+    {
+      "date": "2017-12-14",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Dave Ramsden": 0.005
+      }
+    },
+    {
+      "date": "2018-02-08",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Dave Ramsden": 0.005
+      }
+    },
+    {
+      "date": "2018-03-22",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Dave Ramsden": 0.005
+      }
+    },
+    {
+      "date": "2018-05-10",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Dave Ramsden": 0.005
+      }
+    },
+    {
+      "date": "2018-06-21",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Dave Ramsden": 0.005
+      }
+    },
+    {
+      "date": "2018-08-02",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2018-09-13",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2018-11-01",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2018-12-20",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-02-07",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-03-21",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-05-02",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-06-20",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-08-01",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-09-19",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-11-07",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2019-12-19",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2020-01-30",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2020-03-11",
+      "bank_rate": 0.0025,
+      "member_votes": {
+        "Dave Ramsden": 0.0025
+      }
+    },
+    {
+      "date": "2020-03-19",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-03-26",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-05-07",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-06-18",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-08-06",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-09-17",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-11-05",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2020-12-17",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-02-04",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-03-18",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-05-06",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-06-24",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-08-05",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-09-23",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Catherine L Mann": 0.001,
+        "Huw Pill": 0.001,
+        "Dave Ramsden": 0.001
+      }
+    },
+    {
+      "date": "2021-11-04",
+      "bank_rate": 0.001,
+      "member_votes": {
+        "Andrew Bailey": 0.001,
+        "Catherine L Mann": 0.001,
+        "Huw Pill": 0.001,
+        "Dave Ramsden": 0.0025
+      }
+    },
+    {
+      "date": "2021-12-16",
+      "bank_rate": 0.0025,
+      "member_votes": {
+        "Andrew Bailey": 0.0025,
+        "Catherine L Mann": 0.0025,
+        "Huw Pill": 0.0025,
+        "Dave Ramsden": 0.0025
+      }
+    },
+    {
+      "date": "2022-02-03",
+      "bank_rate": 0.005,
+      "member_votes": {
+        "Andrew Bailey": 0.005,
+        "Catherine L Mann": 0.0075,
+        "Huw Pill": 0.005,
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2022-03-17",
+      "bank_rate": 0.0075,
+      "member_votes": {
+        "Andrew Bailey": 0.0075,
+        "Catherine L Mann": 0.0075,
+        "Huw Pill": 0.0075,
+        "Dave Ramsden": 0.0075
+      }
+    },
+    {
+      "date": "2022-05-05",
+      "bank_rate": 0.01,
+      "member_votes": {
+        "Andrew Bailey": 0.01,
+        "Catherine L Mann": 0.0125,
+        "Huw Pill": 0.01,
+        "Dave Ramsden": 0.01
+      }
+    },
+    {
+      "date": "2022-06-16",
+      "bank_rate": 0.0125,
+      "member_votes": {
+        "Andrew Bailey": 0.0125,
+        "Catherine L Mann": 0.015,
+        "Huw Pill": 0.0125,
+        "Dave Ramsden": 0.0125
+      }
+    },
+    {
+      "date": "2022-08-04",
+      "bank_rate": 0.0175,
+      "member_votes": {
+        "Andrew Bailey": 0.0175,
+        "Catherine L Mann": 0.0175,
+        "Huw Pill": 0.0175,
+        "Dave Ramsden": 0.0175
+      }
+    },
+    {
+      "date": "2022-09-22",
+      "bank_rate": 0.0225,
+      "member_votes": {
+        "Andrew Bailey": 0.0225,
+        "Swati Dhingra": 0.02,
+        "Catherine L Mann": 0.025,
+        "Huw Pill": 0.0225,
+        "Dave Ramsden": 0.025
+      }
+    },
+    {
+      "date": "2022-11-03",
+      "bank_rate": 0.03,
+      "member_votes": {
+        "Andrew Bailey": 0.03,
+        "Swati Dhingra": 0.0275,
+        "Catherine L Mann": 0.03,
+        "Huw Pill": 0.03,
+        "Dave Ramsden": 0.03
+      }
+    },
+    {
+      "date": "2022-12-15",
+      "bank_rate": 0.035,
+      "member_votes": {
+        "Andrew Bailey": 0.035,
+        "Swati Dhingra": 0.03,
+        "Catherine L Mann": 0.0375,
+        "Huw Pill": 0.035,
+        "Dave Ramsden": 0.035
+      }
+    },
+    {
+      "date": "2023-02-02",
+      "bank_rate": 0.04,
+      "member_votes": {
+        "Andrew Bailey": 0.04,
+        "Swati Dhingra": 0.035,
+        "Catherine L Mann": 0.04,
+        "Huw Pill": 0.04,
+        "Dave Ramsden": 0.04
+      }
+    },
+    {
+      "date": "2023-03-23",
+      "bank_rate": 0.0425,
+      "member_votes": {
+        "Andrew Bailey": 0.0425,
+        "Swati Dhingra": 0.04,
+        "Catherine L Mann": 0.0425,
+        "Huw Pill": 0.0425,
+        "Dave Ramsden": 0.0425
+      }
+    },
+    {
+      "date": "2023-05-11",
+      "bank_rate": 0.045,
+      "member_votes": {
+        "Andrew Bailey": 0.045,
+        "Swati Dhingra": 0.0425,
+        "Catherine L Mann": 0.045,
+        "Huw Pill": 0.045,
+        "Dave Ramsden": 0.045
+      }
+    },
+    {
+      "date": "2023-06-22",
+      "bank_rate": 0.05,
+      "member_votes": {
+        "Andrew Bailey": 0.05,
+        "Swati Dhingra": 0.045,
+        "Catherine L Mann": 0.05,
+        "Huw Pill": 0.05,
+        "Dave Ramsden": 0.05
+      }
+    },
+    {
+      "date": "2023-08-03",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Swati Dhingra": 0.05,
+        "Megan Greene": 0.0525,
+        "Catherine L Mann": 0.055,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.0525
+      }
+    },
+    {
+      "date": "2023-09-21",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Swati Dhingra": 0.0525,
+        "Megan Greene": 0.055,
+        "Catherine L Mann": 0.055,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.0525
+      }
+    },
+    {
+      "date": "2023-11-02",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Sarah Breeden": 0.0525,
+        "Swati Dhingra": 0.0525,
+        "Megan Greene": 0.055,
+        "Catherine L Mann": 0.055,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.0525
+      }
+    },
+    {
+      "date": "2023-12-14",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Sarah Breeden": 0.0525,
+        "Swati Dhingra": 0.0525,
+        "Megan Greene": 0.055,
+        "Catherine L Mann": 0.055,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.0525
+      }
+    },
+    {
+      "date": "2024-02-01",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Sarah Breeden": 0.0525,
+        "Swati Dhingra": 0.05,
+        "Megan Greene": 0.0525,
+        "Catherine L Mann": 0.055,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.0525
+      }
+    },
+    {
+      "date": "2024-03-21",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Sarah Breeden": 0.0525,
+        "Swati Dhingra": 0.05,
+        "Megan Greene": 0.0525,
+        "Catherine L Mann": 0.0525,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.0525
+      }
+    },
+    {
+      "date": "2024-05-09",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Sarah Breeden": 0.0525,
+        "Swati Dhingra": 0.05,
+        "Megan Greene": 0.0525,
+        "Catherine L Mann": 0.0525,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.05
+      }
+    },
+    {
+      "date": "2024-06-20",
+      "bank_rate": 0.0525,
+      "member_votes": {
+        "Andrew Bailey": 0.0525,
+        "Sarah Breeden": 0.0525,
+        "Swati Dhingra": 0.05,
+        "Megan Greene": 0.0525,
+        "Catherine L Mann": 0.0525,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.05
+      }
+    },
+    {
+      "date": "2024-08-01",
+      "bank_rate": 0.05,
+      "member_votes": {
+        "Andrew Bailey": 0.05,
+        "Sarah Breeden": 0.05,
+        "Swati Dhingra": 0.05,
+        "Megan Greene": 0.0525,
+        "Clare Lombardelli": 0.05,
+        "Catherine L Mann": 0.0525,
+        "Huw Pill": 0.0525,
+        "Dave Ramsden": 0.05
+      }
+    },
+    {
+      "date": "2024-09-19",
+      "bank_rate": 0.05,
+      "member_votes": {
+        "Andrew Bailey": 0.05,
+        "Sarah Breeden": 0.05,
+        "Swati Dhingra": 0.0475,
+        "Megan Greene": 0.05,
+        "Clare Lombardelli": 0.05,
+        "Catherine L Mann": 0.05,
+        "Huw Pill": 0.05,
+        "Dave Ramsden": 0.05,
+        "Alan Taylor": 0.05
+      }
+    },
+    {
+      "date": "2024-11-07",
+      "bank_rate": 0.0475,
+      "member_votes": {
+        "Andrew Bailey": 0.0475,
+        "Sarah Breeden": 0.0475,
+        "Swati Dhingra": 0.0475,
+        "Megan Greene": 0.0475,
+        "Clare Lombardelli": 0.0475,
+        "Catherine L Mann": 0.05,
+        "Huw Pill": 0.0475,
+        "Dave Ramsden": 0.0475,
+        "Alan Taylor": 0.0475
+      }
+    },
+    {
+      "date": "2024-12-19",
+      "bank_rate": 0.0475,
+      "member_votes": {
+        "Andrew Bailey": 0.0475,
+        "Sarah Breeden": 0.0475,
+        "Swati Dhingra": 0.045,
+        "Megan Greene": 0.0475,
+        "Clare Lombardelli": 0.0475,
+        "Catherine L Mann": 0.0475,
+        "Huw Pill": 0.0475,
+        "Dave Ramsden": 0.045,
+        "Alan Taylor": 0.045
+      }
+    },
+    {
+      "date": "2025-02-06",
+      "bank_rate": 0.045,
+      "member_votes": {
+        "Andrew Bailey": 0.045,
+        "Sarah Breeden": 0.045,
+        "Swati Dhingra": 0.0425,
+        "Megan Greene": 0.045,
+        "Clare Lombardelli": 0.045,
+        "Catherine L Mann": 0.0425,
+        "Huw Pill": 0.045,
+        "Dave Ramsden": 0.045,
+        "Alan Taylor": 0.045
+      }
+    },
+    {
+      "date": "2025-03-20",
+      "bank_rate": 0.045,
+      "member_votes": {
+        "Andrew Bailey": 0.045,
+        "Sarah Breeden": 0.045,
+        "Swati Dhingra": 0.0425,
+        "Megan Greene": 0.045,
+        "Clare Lombardelli": 0.045,
+        "Catherine L Mann": 0.045,
+        "Huw Pill": 0.045,
+        "Dave Ramsden": 0.045,
+        "Alan Taylor": 0.045
+      }
+    },
+    {
+      "date": "2025-05-08",
+      "bank_rate": 0.0425,
+      "member_votes": {
+        "Andrew Bailey": 0.0425,
+        "Sarah Breeden": 0.0425,
+        "Swati Dhingra": 0.04,
+        "Megan Greene": 0.0425,
+        "Clare Lombardelli": 0.0425,
+        "Catherine L Mann": 0.045,
+        "Huw Pill": 0.045,
+        "Dave Ramsden": 0.0425,
+        "Alan Taylor": 0.04
+      }
+    },
+    {
+      "date": "2025-06-19",
+      "bank_rate": 0.0425,
+      "member_votes": {
+        "Andrew Bailey": 0.0425,
+        "Sarah Breeden": 0.0425,
+        "Swati Dhingra": 0.04,
+        "Megan Greene": 0.0425,
+        "Clare Lombardelli": 0.0425,
+        "Catherine L Mann": 0.0425,
+        "Huw Pill": 0.0425,
+        "Dave Ramsden": 0.04,
+        "Alan Taylor": 0.04
+      }
+    },
+    {
+      "date": "2025-08-07",
+      "bank_rate": 0.04,
+      "member_votes": {
+        "Andrew Bailey": 0.04,
+        "Sarah Breeden": 0.04,
+        "Swati Dhingra": 0.04,
+        "Megan Greene": 0.0425,
+        "Clare Lombardelli": 0.0425,
+        "Catherine L Mann": 0.0425,
+        "Huw Pill": 0.0425,
+        "Dave Ramsden": 0.04,
+        "Alan Taylor": 0.04
+      }
+    },
+    {
+      "date": "2025-09-18",
+      "bank_rate": 0.04,
+      "member_votes": {
+        "Andrew Bailey": 0.04,
+        "Sarah Breeden": 0.04,
+        "Swati Dhingra": 0.0375,
+        "Megan Greene": 0.04,
+        "Clare Lombardelli": 0.04,
+        "Catherine L Mann": 0.04,
+        "Huw Pill": 0.04,
+        "Dave Ramsden": 0.04,
+        "Alan Taylor": 0.0375
+      }
+    },
+    {
+      "date": "2025-11-06",
+      "bank_rate": 0.04,
+      "member_votes": {
+        "Andrew Bailey": 0.04,
+        "Sarah Breeden": 0.0375,
+        "Swati Dhingra": 0.0375,
+        "Megan Greene": 0.04,
+        "Clare Lombardelli": 0.04,
+        "Catherine L Mann": 0.04,
+        "Huw Pill": 0.04,
+        "Dave Ramsden": 0.0375,
+        "Alan Taylor": 0.0375
+      }
+    },
+    {
+      "date": "2025-12-18",
+      "bank_rate": 0.0375,
+      "member_votes": {
+        "Andrew Bailey": 0.0375,
+        "Sarah Breeden": 0.0375,
+        "Swati Dhingra": 0.0375,
+        "Megan Greene": 0.04,
+        "Clare Lombardelli": 0.04,
+        "Catherine L Mann": 0.04,
+        "Huw Pill": 0.04,
+        "Dave Ramsden": 0.0375,
+        "Alan Taylor": 0.0375
+      }
+    }
+  ],
+  "members": [
+    "Andrew Bailey",
+    "Sarah Breeden",
+    "Swati Dhingra",
+    "Megan Greene",
+    "Clare Lombardelli",
+    "Catherine L Mann",
+    "Huw Pill",
+    "Dave Ramsden",
+    "Alan Taylor"
+  ],
+  "latest": {
+    "date": "2025-12-18",
+    "bank_rate": 0.0375
+  },
+  "next_release": {
+    "date": "2026-02-05",
+    "datetime_utc": "2026-02-05T11:00:00+00:00",
+    "datetime_jst": "2026-02-05T20:00:00+09:00",
+    "time_jst": "20:00",
+    "datetime_london": "2026-02-05T11:00:00+00:00",
+    "time_london": "11:00",
+    "label": "BoE Interest Rate Decision",
+    "estimate": 3.75
+  },
+  "last_updated": "2026-01-17T16:31:39.282308+09:00"
+}

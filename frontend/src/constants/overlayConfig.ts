@@ -2518,6 +2518,23 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
 
   // =========================================================================
+  // イギリス金融政策
+  // =========================================================================
+  {
+    id: 'uk_boe_bank_rate',
+    name: 'BOE政策金利（Bank Rate）',
+    nameEn: 'BOE Bank Rate',
+    frequency: 'irregular',
+    country: 'uk',
+    category: 'policy',
+    subCategory: 'interest_rate',
+    apiEndpoint: '/api/uk/boe-bank-rate',
+    dataKey: 'data',
+    valueField: 'value',
+    unit: '%',
+  },
+
+  // =========================================================================
   // 日本経済
   // =========================================================================
   {
@@ -4087,6 +4104,46 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     nestedKey: 'inflation_expectations.core_lt',
     unit: '%',
   },
+  // ユーロ圏 - CES（消費者インフレ期待）
+  {
+    id: 'eurozone_ces_inflation_12m',
+    name: 'インフレ期待（12ヶ月先・CES）',
+    nameEn: 'Consumer Inflation Expectations 12M',
+    frequency: 'monthly',
+    country: 'eurozone',
+    category: 'prices',
+    subCategory: 'inflation',
+    apiEndpoint: '/api/eurozone/inflation',
+    dataKey: 'ecb_inflation_expectations',
+    nestedKey: 'inflation_12m',
+    unit: '%',
+  },
+  {
+    id: 'eurozone_ces_inflation_3y',
+    name: 'インフレ期待（3年先・CES）',
+    nameEn: 'Consumer Inflation Expectations 3Y',
+    frequency: 'monthly',
+    country: 'eurozone',
+    category: 'prices',
+    subCategory: 'inflation',
+    apiEndpoint: '/api/eurozone/inflation',
+    dataKey: 'ecb_inflation_expectations',
+    nestedKey: 'inflation_3y',
+    unit: '%',
+  },
+  {
+    id: 'eurozone_ces_inflation_5y',
+    name: 'インフレ期待（5年先・CES）',
+    nameEn: 'Consumer Inflation Expectations 5Y',
+    frequency: 'monthly',
+    country: 'eurozone',
+    category: 'prices',
+    subCategory: 'inflation',
+    apiEndpoint: '/api/eurozone/inflation',
+    dataKey: 'ecb_inflation_expectations',
+    nestedKey: 'inflation_5y',
+    unit: '%',
+  },
   // ドイツCPI/HICP
   {
     id: 'germany_cpi_yoy',
@@ -4138,6 +4195,33 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/eurozone/inflation',
     dataKey: 'germany_cpi',
     nestedKey: 'hicp_mom',
+    unit: '%',
+  },
+  // ドイツPPI
+  {
+    id: 'germany_ppi_yoy',
+    name: 'PPI（ドイツ・前年比）',
+    nameEn: 'PPI YoY (Germany)',
+    frequency: 'monthly',
+    country: 'eurozone',
+    category: 'prices',
+    subCategory: 'inflation',
+    apiEndpoint: '/api/eurozone/inflation',
+    dataKey: 'germany_ppi',
+    nestedKey: 'ppi_yoy',
+    unit: '%',
+  },
+  {
+    id: 'germany_ppi_mom',
+    name: 'PPI（ドイツ・前月比）',
+    nameEn: 'PPI MoM (Germany)',
+    frequency: 'monthly',
+    country: 'eurozone',
+    category: 'prices',
+    subCategory: 'inflation',
+    apiEndpoint: '/api/eurozone/inflation',
+    dataKey: 'germany_ppi',
+    nestedKey: 'ppi_mom',
     unit: '%',
   },
 ];

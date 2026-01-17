@@ -39,6 +39,9 @@ import {
 } from '../../usa/common/ChartComponents'
 import { MonthlyTableWithDataTypes } from '../../usa/common/MonthlyTable'
 
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
 import type { GermanyCPIData } from '../../../../hooks/useDashboardData'
 
 interface GermanyCPIChartProps {
@@ -311,6 +314,13 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                     </>
                   )}
                 </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="germany_cpi" />
               ),
             },
           ]}

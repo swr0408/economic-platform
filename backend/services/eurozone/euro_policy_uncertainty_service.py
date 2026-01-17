@@ -163,7 +163,10 @@ class EuroPolicyUncertaintyService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定（24時間TTL方式）"""
+        """
+        キャッシュを更新すべきかどうかを判定（毎日更新方式）
+        毎日2:00 JST以降に更新チェック（24時間TTL）
+        """
         try:
             last_updated = datetime.fromisoformat(last_updated_str)
             if last_updated.tzinfo is None:
@@ -173,6 +176,10 @@ class EuroPolicyUncertaintyService:
 
             # 24時間経過していれば更新
             if (now - last_updated) > timedelta(hours=24):
+                return True
+
+            # 日付が変わっており、かつ2:00を過ぎていれば更新
+            if last_updated.date() < now.date() and now.hour >= 2:
                 return True
 
             return False

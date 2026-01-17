@@ -1,0 +1,117 @@
+{
+  "import_prices": {
+    "table_data": [
+      {
+        "quarter": "2026",
+        "latest": 0.1,
+        "previous": 0.1
+      },
+      {
+        "quarter": "2027",
+        "latest": 0.6,
+        "previous": 0.6
+      },
+      {
+        "quarter": "2028",
+        "latest": -0.1,
+        "previous": null
+      }
+    ],
+    "latest_forecast": "November 2025",
+    "previous_forecast": "August 2025"
+  },
+  "energy_prices": {
+    "table_data": [
+      {
+        "quarter": "2026",
+        "latest": 0.2,
+        "previous": 0.1
+      },
+      {
+        "quarter": "2027",
+        "latest": 0.1,
+        "previous": 0.0
+      },
+      {
+        "quarter": "2028",
+        "latest": 0.1,
+        "previous": null
+      }
+    ],
+    "latest_forecast": "November 2025",
+    "previous_forecast": "August 2025"
+  },
+  "chart_data": {
+    "date": [
+      "2019Q1",
+      "2019Q2",
+      "2019Q3",
+      "2019Q4",
+      "2020Q1",
+      "2020Q2",
+      "2020Q3",
+      "2020Q4",
+      "2021Q1",
+      "2021Q2",
+      "2021Q3",
+      "2021Q4",
+      "2022Q1",
+      "2022Q2",
+      "2022Q3",
+      "2022Q4",
+      "2023Q1",
+      "2023Q2",
+      "2023Q3",
+      "2023Q4",
+      "2024Q1",
+      "2024Q2",
+      "2024Q3",
+      "2024Q4",
+      "2025Q1",
+      "2025Q2",
+      "2025Q3(Bankstaffprojections)",
+      "2025Q4(Bankstaffprojections)",
+      "2026Q1(Bankstaffprojections)"
+    ],
+    "series": {
+      "UK import prices": [
+        0.63,
+        1.585,
+        3.08,
+        1.28,
+        1.264,
+        1.0,
+        -2.273,
+        0.449,
+        -1.431,
+        -2.105,
+        0.84,
+        3.452,
+        6.847,
+        11.971,
+        13.815,
+        12.192,
+        12.846,
+        6.54,
+        1.703,
+        0.438,
+        -1.816,
+        -0.206,
+        -0.175,
+        -0.334,
+        1.433,
+        0.818,
+        2.307,
+        1.571,
+        -0.182
+      ]
+    }
+  },
+  "metadata": {
+    "last_updated": "2026-01-17T20:13:31.706262",
+    "source": "Bank of England",
+    "mpr_date": "November 2025",
+    "data_source": "Projections Databank (Sheet 28/29) + MPR Chart Data (Chart 1.2)"
+  },
+  "last_updated": "2026-01-17T20:13:31.706262+09:00"
+}

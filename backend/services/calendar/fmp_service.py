@@ -31,7 +31,8 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
 # 対象国コード
-TARGET_COUNTRIES = {"US", "JP", "EU", "DE", "GB", "CA", "AU", "CN", "CH", "NZ", "FR"}
+# FMP APIは国によってGBではなくUKで返すことがあるため、両方を含める
+TARGET_COUNTRIES = {"US", "JP", "EU", "DE", "GB", "UK", "CA", "AU", "CN", "CH", "NZ", "FR"}
 
 
 class FMPService:

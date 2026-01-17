@@ -5,7 +5,9 @@ import ECBHICPBreakdownChart from './inflation/ECBHICPBreakdownChart'
 import ECBPPIChart from './inflation/ECBPPIChart'
 import ECBSPFChart from './inflation/ECBSPFChart'
 import ECBSPFCoreChart from './inflation/ECBSPFCoreChart'
+import ECBInflationExpectationsChart from './inflation/ECBInflationExpectationsChart'
 import GermanyCPIChart from './inflation/GermanyCPIChart'
+import GermanyPPIChart from './inflation/GermanyPPIChart'
 
 /**
  * ユーロ圏インフレチャート群
@@ -62,6 +64,13 @@ export default function EurozoneInflationCharts() {
         />
       </div>
 
+      {/* ECB Inflation Expectations (CES) Chart */}
+      <div id="ecb-inflation-expectations">
+        <ECBInflationExpectationsChart
+          data={dashboardData?.ecb_inflation_expectations ?? null}
+        />
+      </div>
+
       {/* ECB SPF Chart */}
       <div id="ecb-spf">
         <ECBSPFChart
@@ -80,6 +89,13 @@ export default function EurozoneInflationCharts() {
       <div id="germany-cpi">
         <GermanyCPIChart
           data={dashboardData?.germany_cpi ?? null}
+        />
+      </div>
+
+      {/* Germany PPI Chart */}
+      <div id="germany-ppi">
+        <GermanyPPIChart
+          data={dashboardData?.germany_ppi ?? null}
         />
       </div>
     </div>

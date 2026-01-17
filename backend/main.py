@@ -72,6 +72,17 @@ try:
     from backend.routers.eurozone.ecb_spf import router as eurozone_ecb_spf_router
     from backend.routers.eurozone.ecb_spf_core import router as eurozone_ecb_spf_core_router
     from backend.routers.eurozone.germany_cpi import router as eurozone_germany_cpi_router
+    from backend.routers.eurozone.germany_ppi import router as eurozone_germany_ppi_router
+    from backend.routers.eurozone.ecb_inflation_expectations import router as eurozone_ecb_inflation_expectations_router
+    from backend.routers.uk.boe_bank_rate import router as uk_boe_bank_rate_router
+    from backend.routers.uk.boe_ois_curve import router as uk_boe_ois_curve_router
+    from backend.routers.uk.boe_market_expectations import router as uk_boe_market_expectations_router
+    from backend.routers.uk.boe_cpi_projections import router as uk_boe_cpi_projections_router
+    from backend.routers.uk.boe_gdp_forecast import router as uk_boe_gdp_forecast_router
+    from backend.routers.uk.boe_unemployment_forecast import router as uk_boe_unemployment_forecast_router
+    from backend.routers.uk.boe_inflation_expectations import router as uk_boe_inflation_expectations_router
+    from backend.routers.uk.boe_services_inflation import router as uk_boe_services_inflation_router
+    from backend.routers.uk.boe_import_prices import router as uk_boe_import_prices_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -146,6 +157,18 @@ except ImportError:
     from routers.eurozone.ecb_spf import router as eurozone_ecb_spf_router
     from routers.eurozone.ecb_spf_core import router as eurozone_ecb_spf_core_router
     from routers.eurozone.germany_cpi import router as eurozone_germany_cpi_router
+    from routers.eurozone.germany_ppi import router as eurozone_germany_ppi_router
+    from routers.eurozone.ecb_inflation_expectations import router as eurozone_ecb_inflation_expectations_router
+    from routers.uk.boe_bank_rate import router as uk_boe_bank_rate_router
+    from routers.uk.boe_mpc_voting import router as uk_boe_mpc_voting_router
+    from routers.uk.boe_ois_curve import router as uk_boe_ois_curve_router
+    from routers.uk.boe_market_expectations import router as uk_boe_market_expectations_router
+    from routers.uk.boe_cpi_projections import router as uk_boe_cpi_projections_router
+    from routers.uk.boe_gdp_forecast import router as uk_boe_gdp_forecast_router
+    from routers.uk.boe_unemployment_forecast import router as uk_boe_unemployment_forecast_router
+    from routers.uk.boe_inflation_expectations import router as uk_boe_inflation_expectations_router
+    from routers.uk.boe_services_inflation import router as uk_boe_services_inflation_router
+    from routers.uk.boe_import_prices import router as uk_boe_import_prices_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -247,6 +270,20 @@ app.include_router(eurozone_ecb_ppi_router)
 app.include_router(eurozone_ecb_spf_router)
 app.include_router(eurozone_ecb_spf_core_router)
 app.include_router(eurozone_germany_cpi_router)
+app.include_router(eurozone_germany_ppi_router)
+app.include_router(eurozone_ecb_inflation_expectations_router)
+
+# UK
+app.include_router(uk_boe_bank_rate_router)
+app.include_router(uk_boe_mpc_voting_router)
+app.include_router(uk_boe_ois_curve_router)
+app.include_router(uk_boe_market_expectations_router)
+app.include_router(uk_boe_cpi_projections_router)
+app.include_router(uk_boe_gdp_forecast_router)
+app.include_router(uk_boe_unemployment_forecast_router)
+app.include_router(uk_boe_inflation_expectations_router)
+app.include_router(uk_boe_services_inflation_router)
+app.include_router(uk_boe_import_prices_router)
 
 
 @app.get("/health")

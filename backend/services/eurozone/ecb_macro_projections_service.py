@@ -35,6 +35,10 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from core.redis_client import redis_client
+from services.eurozone.fmp_next_release_utils import (
+    get_next_release_by_pattern,
+    should_refresh_by_pattern,
+)
 
 
 # タイムゾーン
@@ -163,6 +167,10 @@ class ECBMacroProjectionsService:
     MAX_RETRIES = 3
     RETRY_DELAY = 5
     RATE_LIMIT_DELAY = 60
+
+    # FMPイベントパターン（ECB政策金利発表に連動）
+    # 3月・6月・9月・12月の政策金利発表時にMacro Projectionsも更新される
+    FMP_EVENT_PATTERN = "ECB Interest Rate Decision"
 
     def __init__(self):
         pass
@@ -466,51 +474,11 @@ class ECBMacroProjectionsService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        try:
-            last_updated = datetime.fromisoformat(last_updated_str)
-            if last_updated.tzinfo is None:
-                last_updated = last_updated.replace(tzinfo=JST)
-
-            now = datetime.now(JST)
-
-            # 7日以上経過していれば更新
-            if (now - last_updated) > timedelta(days=7):
-                return True
-
-            # 発表月（3,6,9,12月）の場合、発表時間帯をチェック
-            if now.month in [3, 6, 9, 12]:
-                # 夏時間判定
-                march_last = datetime(now.year, 3, 31)
-                while march_last.weekday() != 6:
-                    march_last -= timedelta(days=1)
-
-                october_last = datetime(now.year, 10, 31)
-                while october_last.weekday() != 6:
-                    october_last -= timedelta(days=1)
-
-                march_last = march_last.replace(tzinfo=JST)
-                october_last = october_last.replace(tzinfo=JST)
-
-                is_summer_time = march_last <= now < october_last
-
-                if is_summer_time:
-                    start_hour, start_min = 21, 15
-                    end_hour, end_min = 21, 25
-                else:
-                    start_hour, start_min = 22, 15
-                    end_hour, end_min = 22, 25
-
-                current_time = now.time()
-                start_time = datetime.strptime(f"{start_hour:02d}:{start_min:02d}", "%H:%M").time()
-                end_time = datetime.strptime(f"{end_hour:02d}:{end_min:02d}", "%H:%M").time()
-
-                if start_time <= current_time <= end_time:
-                    return True
-
-            return False
-        except Exception:
-            return True
+        """
+        キャッシュを更新すべきかどうかを判定（FMPパターン方式）
+        ECB政策金利発表（3月・6月・9月・12月）に連動して更新
+        """
+        return should_refresh_by_pattern(self.FMP_EVENT_PATTERN, last_updated_str, "EU")
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""

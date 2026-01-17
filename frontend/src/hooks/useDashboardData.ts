@@ -2685,6 +2685,243 @@ export interface EurozonePolicyData {
   ecb_macro_projections: ECBMacroProjectionsData | null
 }
 
+// BOE Bank Rate データの型
+export interface BOEBankRateData {
+  data: BOEBankRateItem[]
+  latest: BOEBankRateItem | null
+  next_release: BOEBankRateNextRelease | null
+}
+
+export interface BOEBankRateItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 政策金利（%）
+}
+
+export interface BOEBankRateNextRelease {
+  date: string
+  time_jst?: string
+}
+
+// BOE MPC Voting データの型
+export interface BOEMPCVotingRecord {
+  date: string
+  bank_rate: number | null
+  [key: string]: string | number | null | undefined
+}
+
+export interface BOEMPCVotingData {
+  data: BOEMPCVotingRecord[]
+  members: string[]
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE OISカーブデータの型
+export interface BOEOISCurvePoint {
+  date: string
+  data: Record<string, number | null>
+}
+
+export interface BOEOISCurveMetadata {
+  source?: string
+  indicator?: string
+  total_dates?: number
+  date_range?: {
+    start: string
+    end: string
+  }
+}
+
+export interface BOEOISCurveData {
+  current: BOEOISCurvePoint | null
+  previous: BOEOISCurvePoint | null
+  metadata: BOEOISCurveMetadata
+}
+
+// BOE Market Expectations データの型
+export interface BOEMarketExpectationsData {
+  latest: BOEMarketExpectationsPoint | null
+  previous: BOEMarketExpectationsPoint | null
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+export interface BOEMarketExpectationsDataPoint {
+  date: string
+  value: number
+}
+
+export interface BOEMarketExpectationsPoint {
+  date: string
+  forecast_date?: string
+  data: BOEMarketExpectationsDataPoint[]
+}
+
+// BOE CPI Projections データの型
+export interface BOECPIProjectionsData {
+  table_data: BOEProjectionTableRow[]
+  chart_data: Record<string, unknown> | null
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+export interface BOEProjectionTableRow {
+  quarter: string
+  latest: number | null
+  previous: number | null
+}
+
+// BOE GDP Forecast データの型
+export interface BOEGDPForecastData {
+  table_data: BOEForecastTableRow[]
+  chart_data: Record<string, unknown> | null
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+export interface BOEForecastTableRow {
+  quarter: string
+  latest: number | null
+  previous: number | null
+}
+
+// BOE Unemployment Forecast データの型
+export interface BOEUnemploymentForecastData {
+  table_data: BOEForecastTableRow[]
+  chart_data: Record<string, unknown> | null
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE CPI Contributions データの型
+export interface BOECPIContributionsInnerData {
+  date: string[]
+  food: (number | null)[]
+  electricity_gas: (number | null)[]
+  fuels: (number | null)[]
+  other_goods: (number | null)[]
+  services: (number | null)[]
+  cpi: (number | null)[]
+}
+
+export interface BOECPIContributionsData {
+  contributions: {
+    latest_data: {
+      date: string
+      data: BOECPIContributionsInnerData | null
+    }
+  }
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE Wage Growth データの型
+export interface BOEWageGrowthInnerData {
+  date: string[]
+  series: Record<string, (number | null)[]>
+}
+
+export interface BOEWageGrowthData {
+  wage_growth: {
+    data: BOEWageGrowthInnerData | null
+  }
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE Services Inflation データの型
+export interface BOEServicesInflationInnerData {
+  date: string[]
+  series: Record<string, (number | null)[]>
+}
+
+export interface BOEServicesInflationData {
+  services_inflation: {
+    data: BOEServicesInflationInnerData | null
+  }
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE Inflation Expectations データの型
+export interface BOEInflationExpectationsInnerData {
+  date: string[]
+  series: Record<string, (number | null)[]>
+}
+
+export interface BOEInflationExpectationsData {
+  inflation_expectations: {
+    data: BOEInflationExpectationsInnerData | null
+  }
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE Average Weekly Earnings データの型
+export interface BOEAverageWeeklyEarningsDataPoint {
+  quarter: string
+  value: number | null
+}
+
+export interface BOEAverageWeeklyEarningsInnerData {
+  quarters: string[]
+  latest: {
+    date: string
+    data: BOEAverageWeeklyEarningsDataPoint[]
+  } | null
+  previous: {
+    date: string
+    data: BOEAverageWeeklyEarningsDataPoint[]
+  } | null
+}
+
+export interface BOEAverageWeeklyEarningsData {
+  average_weekly_earnings: BOEAverageWeeklyEarningsInnerData | null
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// BOE Unit Wage Costs データの型
+export interface BOEUnitWageCostsDataPoint {
+  quarter: string
+  value: number | null
+}
+
+export interface BOEUnitWageCostsInnerData {
+  quarters: string[]
+  latest: {
+    date: string
+    data: BOEUnitWageCostsDataPoint[]
+  } | null
+  previous: {
+    date: string
+    data: BOEUnitWageCostsDataPoint[]
+  } | null
+}
+
+export interface BOEUnitWageCostsData {
+  unit_wage_costs: BOEUnitWageCostsInnerData | null
+  metadata: Record<string, unknown>
+  next_release: BOEBankRateNextRelease | null
+}
+
+// イギリス金融政策ダッシュボードデータの型（基本仕様・常設のみ）
+// ※ CPI構成項目（boe_cpi_components）は2025年11月以降の拡張データのため除外
+// ※ CPI寄与度（boe_cpi_contributions）は分解粒度が号で変わりやすいため除外
+export interface UKPolicyData {
+  boe_bank_rate: BOEBankRateData | null
+  boe_mpc_voting: BOEMPCVotingData | null
+  boe_ois_curve: BOEOISCurveData | null
+  boe_market_expectations: BOEMarketExpectationsData | null
+  boe_cpi_projections: BOECPIProjectionsData | null
+  boe_gdp_forecast: BOEGDPForecastData | null
+  boe_unemployment_forecast: BOEUnemploymentForecastData | null
+  boe_services_inflation: BOEServicesInflationData | null
+  boe_wage_growth: BOEWageGrowthData | null
+  boe_average_weekly_earnings: BOEAverageWeeklyEarningsData | null
+  boe_unit_wage_costs: BOEUnitWageCostsData | null
+  boe_inflation_expectations: BOEInflationExpectationsData | null
+}
+
 /**
  * ユーロ圏金融政策ダッシュボード専用フック
  *
@@ -2700,6 +2937,14 @@ export interface EurozonePolicyData {
  */
 export function useEurozonePolicyDashboard(): UseQueryResult<DashboardResponse<EurozonePolicyData>, Error> {
   return useDashboardData<EurozonePolicyData>('eurozone', 'policy')
+}
+
+/**
+ * イギリス金融政策ダッシュボード専用フック
+ * BOE政策金利などを取得
+ */
+export function useUKPolicyDashboard(): UseQueryResult<DashboardResponse<UKPolicyData>, Error> {
+  return useDashboardData<UKPolicyData>('uk', 'policy')
 }
 
 // ECB GDPデータの型
@@ -3246,6 +3491,8 @@ export interface EurozoneInflationData {
   ecb_spf: ECBSPFData | null
   ecb_spf_core: ECBSPFCoreData | null
   germany_cpi: GermanyCPIData | null
+  germany_ppi: GermanyPPIData | null
+  ecb_inflation_expectations: ECBInflationExpectationsData | null
 }
 
 // ECB HICPデータの型
@@ -3375,6 +3622,55 @@ export interface GermanyCPIItem {
 }
 
 export interface GermanyCPINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ドイツPPIデータの型
+export interface GermanyPPIData {
+  ppi_yoy: GermanyPPIItem[]
+  ppi_mom: GermanyPPIItem[]
+  metadata: Record<string, unknown>
+  next_release: GermanyPPINextRelease | null
+}
+
+export interface GermanyPPIItem {
+  date: string
+  value: number | null
+}
+
+export interface GermanyPPINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
+// ECB Consumer Expectations Survey インフレ期待データの型
+export interface ECBInflationExpectationsData {
+  inflation_12m: ECBInflationExpectationsItem[]
+  inflation_3y: ECBInflationExpectationsItem[]
+  inflation_5y: ECBInflationExpectationsItem[]
+  metadata: Record<string, unknown>
+  next_release: ECBInflationExpectationsNextRelease | null
+}
+
+export interface ECBInflationExpectationsItem {
+  date: string
+  value: number
+}
+
+export interface ECBInflationExpectationsNextRelease {
   date: string
   datetime_utc: string
   datetime_jst: string

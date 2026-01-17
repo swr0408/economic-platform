@@ -3,7 +3,7 @@
  *
  * ユーロ圏の賃金・給与データを取得するためのAPIクライアント
  */
-import { fetchJson, logApiMeta, type ApiMeta } from '../apiUtils'
+import { fetchJson, logApiMeta } from '../apiUtils'
 
 // 型定義
 export interface EurostatWagesDataPoint {

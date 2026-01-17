@@ -61,6 +61,7 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/import-export-price',
     '/api/japan/sppi',
     '/api/japan/pos-uvpi',
+    '/api/uk/',  // UK API（BOE Bank Rate等）
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -298,6 +299,29 @@ function extractIndicatorData(
     }
     console.log('[useOverlayData] S&P PMI nested data not found:', nestedKey);
     return [];
+  }
+
+  // パターン: 汎用的なnestedKeyパターン（ドット記法でない場合）
+  // ecb_inflation_expectations: { inflation_12m: [{date, value}], inflation_3y: [...] }
+  // germany_cpi: { cpi_yoy: [{date, value}], cpi_mom: [...] }
+  // germany_ppi: { ppi_yoy: [{date, value}], ppi_mom: [...] }
+  if (nestedKey && !nestedKey.includes('.')) {
+    const dataObj = indicatorData as Record<string, unknown>;
+    const nestedData = dataObj[nestedKey];
+    if (Array.isArray(nestedData)) {
+      console.log('[useOverlayData] Generic nested key pattern for:', dataKey, '.', nestedKey, 'length:', nestedData.length);
+      return (nestedData as APIDataItem[])
+        .filter(item => {
+          const val = item.value;
+          return val !== undefined && val !== null && typeof val === 'number';
+        })
+        .map(item => ({
+          date: item.date,
+          value: item.value as number,
+        }));
+    }
+    console.log('[useOverlayData] Generic nested key data not found:', dataKey, '.', nestedKey);
+    // フォールスルー: 他のパターンも試す
   }
 
   // パターン0: housing_indicators のような特殊構造

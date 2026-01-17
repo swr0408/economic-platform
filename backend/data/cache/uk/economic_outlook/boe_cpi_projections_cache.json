@@ -1,0 +1,89 @@
+{
+  "table_data": [
+    {
+      "quarter": "2025Q2",
+      "latest": 3.5,
+      "previous": 3.5
+    },
+    {
+      "quarter": "2025Q3",
+      "latest": 3.8,
+      "previous": 3.8
+    },
+    {
+      "quarter": "2025Q4",
+      "latest": 3.5,
+      "previous": 3.6
+    },
+    {
+      "quarter": "2026Q1",
+      "latest": 3.1,
+      "previous": 3.1
+    },
+    {
+      "quarter": "2026Q2",
+      "latest": 2.9,
+      "previous": 3.0
+    },
+    {
+      "quarter": "2026Q3",
+      "latest": 2.7,
+      "previous": 2.7
+    },
+    {
+      "quarter": "2026Q4",
+      "latest": 2.5,
+      "previous": 2.5
+    },
+    {
+      "quarter": "2027Q1",
+      "latest": 2.2,
+      "previous": 2.3
+    },
+    {
+      "quarter": "2027Q2",
+      "latest": 1.9,
+      "previous": 2.0
+    },
+    {
+      "quarter": "2027Q3",
+      "latest": 2.0,
+      "previous": 2.0
+    },
+    {
+      "quarter": "2027Q4",
+      "latest": 2.0,
+      "previous": 2.0
+    },
+    {
+      "quarter": "2028Q1",
+      "latest": 2.1,
+      "previous": 2.0
+    },
+    {
+      "quarter": "2028Q2",
+      "latest": 2.1,
+      "previous": 2.0
+    },
+    {
+      "quarter": "2028Q3",
+      "latest": 2.1,
+      "previous": 2.0
+    },
+    {
+      "quarter": "2028Q4",
+      "latest": 2.1,
+      "previous": null
+    }
+  ],
+  "chart_data": null,
+  "metadata": {
+    "last_updated": "2026-01-17T16:42:35.644840",
+    "source": "Bank of England",
+    "mpr_date": "November 2025",
+    "latest_forecast": "November 2025",
+    "previous_forecast": "August 2025",
+    "data_source": "Projections Databank"
+  },
+  "last_updated": "2026-01-18T01:42:35.644850+09:00"
+}

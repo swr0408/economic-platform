@@ -334,9 +334,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-hicp', name: 'HICP（ユーロ圏）' },
           { code: 'ecb-hicp-breakdown', name: 'HICP 項目別（ユーロ圏）' },
           { code: 'ecb-ppi', name: 'PPI（ユーロ圏）' },
-          { code: 'ecb-spf', name: 'インフレ期待（ユーロ圏・SPF）' },
-          { code: 'ecb-spf-core', name: 'コアインフレ期待（ユーロ圏・SPF）' },
+          { code: 'ecb-inflation-expectations', name: 'インフレ期待 / CES（ユーロ圏）' },
+          { code: 'ecb-spf', name: 'インフレ期待 / SPF（ユーロ圏）' },
+          { code: 'ecb-spf-core', name: 'コアインフレ期待 / SPF（ユーロ圏）' },
           { code: 'germany-cpi', name: 'CPI（ドイツ）' },
+          { code: 'germany-ppi', name: 'PPI（ドイツ）' },
         ],
       },
       {
@@ -361,8 +363,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <BankOutlined />,
         color: '#1890ff',
         indicators: [
-          { code: 'policy-rate', name: '政策金利' },
-          { code: 'boe-statement', name: 'BOE声明' },
+          { code: 'boe-bank-rate', name: 'BOE政策金利' },
+          { code: 'boe-mpc-voting', name: 'MPC投票履歴' },
+          { code: 'boe-ois-curve', name: 'OISカーブ' },
+          { code: 'boe-economic-outlook', name: 'BOE経済見通し' },
         ],
       },
       {

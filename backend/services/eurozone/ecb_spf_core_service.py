@@ -342,13 +342,24 @@ class ECBSPFCoreService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
+        """
+        キャッシュを更新すべきかどうかを判定
+
+        ロジック:
+        1. 次回発表日が設定されている場合:
+           - 発表日を過ぎていたら2週間毎日チェック（次回発表日の再取得も含む）
+        2. 次回発表日が設定されていない場合:
+           - 発表月（1,4,7,10）は毎日チェック
+        3. それ以外:
+           - 2週間ごとに次回発表日の再取得を試みる
+        """
         try:
             last_updated = datetime.fromisoformat(last_updated_str)
             if last_updated.tzinfo is None:
                 last_updated = last_updated.replace(tzinfo=JST)
 
             now = datetime.now(JST)
+            hours_since_update = (now - last_updated).total_seconds() / 3600
 
             # 次回発表日を取得
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
@@ -360,23 +371,34 @@ class ECBSPFCoreService:
                     if next_release.tzinfo is None:
                         next_release = next_release.replace(tzinfo=CET)
 
-                    # 発表日を過ぎている場合、5日間は毎日チェック
+                    # 発表日を過ぎている場合、2週間は毎日チェック
                     if now > next_release:
                         days_since_release = (now - next_release).days
-                        if days_since_release <= 5:
+                        if days_since_release <= 14:
                             # 1日1回チェック（最終更新から24時間経過）
-                            if (now - last_updated).total_seconds() > 86400:
-                                print(f"[ECBSPF_CORE] Past release date, checking for new data")
+                            if hours_since_update >= 24:
+                                print(f"[ECBSPF_CORE] Past release date ({days_since_release} days), checking for new data and next release")
+                                return True
+                        else:
+                            # 2週間経過後も次回発表日が古いままなら2週間ごとに再取得
+                            if hours_since_update >= 24 * 14:
+                                print("[ECBSPF_CORE] Next release date is stale, refreshing")
                                 return True
                         return False
 
                 except ValueError:
                     pass
 
+            # 次回発表日が設定されていない場合
             # 発表月（1,4,7,10）の場合、1日1回チェック
             if now.month in [1, 4, 7, 10]:
-                if (now - last_updated).total_seconds() > 86400:
-                    print("[ECBSPF_CORE] Release month, daily check")
+                if hours_since_update >= 24:
+                    print("[ECBSPF_CORE] Release month, daily check (no next_release set)")
+                    return True
+            else:
+                # 発表月以外でも2週間ごとに次回発表日を再取得
+                if hours_since_update >= 24 * 14:
+                    print("[ECBSPF_CORE] Periodic check for next release date")
                     return True
 
             return False

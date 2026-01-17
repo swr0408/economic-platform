@@ -8,6 +8,8 @@ HICP（消費者物価調和指数）、PPI（生産者物価指数）、SPF（�
 - ECB SPF: 独自判定方式（ECBサイトから次回発表日を取得）
 - ECB SPF Core: 独自判定方式（ECBサイトから次回発表日を取得）
 - Germany CPI: FMP発表日時ベース更新（"Inflation Rate YoY"パターン）
+- Germany PPI: FMP発表日時ベース更新（"Producer Price Index MoM", "Producer Price Index YoY"パターン）
+- ECB Inflation Expectations: FMP発表日時ベース更新（"Consumer Inflation Expectation"パターン）
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -31,6 +33,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
     - ecb_spf: ECB SPF（インフレ期待）
     - ecb_spf_core: ECB SPF Core（コアインフレ期待）
     - germany_cpi: ドイツCPI/HICP（消費者物価指数）
+    - germany_ppi: ドイツPPI（生産者物価指数）
+    - ecb_inflation_expectations: ECB CES インフレ期待（消費者期待調査）
 
     キャッシュ方式: FMP発表日時ベース判定
     - ECB HICP: FMP発表日時ベース更新
@@ -38,6 +42,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
     - ECB SPF: 独自判定方式
     - ECB SPF Core: 独自判定方式
     - Germany CPI: FMP発表日時ベース更新
+    - Germany PPI: FMP発表日時ベース更新
+    - ECB Inflation Expectations: FMP発表日時ベース更新
     """
 
     COUNTRY_CODE = "eurozone"
@@ -50,6 +56,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
         "ecb_spf",
         "ecb_spf_core",
         "germany_cpi",
+        "germany_ppi",
+        "ecb_inflation_expectations",
     ]
 
     def __init__(self):
@@ -120,6 +128,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
         from services.eurozone.ecb_spf_service import ecb_spf_service
         from services.eurozone.ecb_spf_core_service import ecb_spf_core_service
         from services.eurozone.germany_cpi_service import germany_cpi_service
+        from services.eurozone.germany_ppi_service import germany_ppi_service
+        from services.eurozone.ecb_inflation_expectations_service import ecb_inflation_expectations_service
 
         result = {
             "ecb_hicp": None,
@@ -127,16 +137,20 @@ class EurozoneInflationLoader(BaseDashboardLoader):
             "ecb_spf": None,
             "ecb_spf_core": None,
             "germany_cpi": None,
+            "germany_ppi": None,
+            "ecb_inflation_expectations": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=6) as executor:
+        with ThreadPoolExecutor(max_workers=8) as executor:
             futures = {
                 executor.submit(self._get_ecb_hicp, ecb_hicp_service): "ecb_hicp",
                 executor.submit(self._get_ecb_ppi, ecb_ppi_service): "ecb_ppi",
                 executor.submit(self._get_ecb_spf, ecb_spf_service): "ecb_spf",
                 executor.submit(self._get_ecb_spf_core, ecb_spf_core_service): "ecb_spf_core",
                 executor.submit(self._get_germany_cpi, germany_cpi_service): "germany_cpi",
+                executor.submit(self._get_germany_ppi, germany_ppi_service): "germany_ppi",
+                executor.submit(self._get_ecb_inflation_expectations, ecb_inflation_expectations_service): "ecb_inflation_expectations",
             }
 
             for future in as_completed(futures):
@@ -266,5 +280,64 @@ class EurozoneInflationLoader(BaseDashboardLoader):
                 "cpi_mom": [],
                 "hicp_yoy": [],
                 "hicp_mom": [],
+                "metadata": {},
+            }
+
+    def _get_germany_ppi(self, service) -> dict:
+        """ドイツPPIデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_ppi")
+            response = service.get_germany_ppi_data(force_refresh=force_refresh)
+
+            raw_data = response.get("data", [])
+
+            ppi_yoy = []
+            ppi_mom = []
+
+            for point in raw_data:
+                date = point.get("date")
+                if not date:
+                    continue
+
+                if point.get("ppi_yoy_change") is not None:
+                    ppi_yoy.append({"date": date, "value": point["ppi_yoy_change"]})
+                if point.get("ppi_mom_change") is not None:
+                    ppi_mom.append({"date": date, "value": point["ppi_mom_change"]})
+
+            return {
+                "ppi_yoy": ppi_yoy,
+                "ppi_mom": ppi_mom,
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany PPI: {e}")
+            return {
+                "ppi_yoy": [],
+                "ppi_mom": [],
+                "metadata": {},
+            }
+
+    def _get_ecb_inflation_expectations(self, service) -> dict:
+        """ECB消費者インフレ期待データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_inflation_expectations")
+            response = service.get_inflation_expectations_data(force_refresh=force_refresh)
+
+            data = response.get("data", {})
+
+            return {
+                "inflation_12m": data.get("inflation_12m", []),
+                "inflation_3y": data.get("inflation_3y", []),
+                "inflation_5y": data.get("inflation_5y", []),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB Inflation Expectations: {e}")
+            return {
+                "inflation_12m": [],
+                "inflation_3y": [],
+                "inflation_5y": [],
                 "metadata": {},
             }
