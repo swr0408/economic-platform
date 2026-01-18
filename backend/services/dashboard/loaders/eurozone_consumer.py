@@ -5,6 +5,8 @@
 キャッシュ更新判定: FMP発表日時ベース方式
 - ECB Retail Trade: FMP発表日時ベース更新（"Retail Sales"パターン）
 - Eurostat Consumer Confidence: FMP発表日時ベース更新（"Consumer Confidence"パターン）
+- Germany Retail Sales: FMP発表日時ベース更新（"Retail Sales"パターン）
+- Germany GfK Consumer Confidence: FMP発表日時ベース更新（"Consumer Confidence"パターン）
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -25,10 +27,14 @@ class EurozoneConsumerLoader(BaseDashboardLoader):
     取得データ:
     - ecb_retail_trade: ECB小売売上高（前月比・前年比）
     - eurostat_consumer_confidence: Eurostat消費者信頼感指数
+    - germany_retail_sales: ドイツ小売売上高（前月比・前年比）
+    - germany_consumer_confidence_gfk: ドイツGfK消費者信頼感指数
 
     キャッシュ方式: FMP発表日時ベース判定
     - ECB Retail Trade: FMP発表日時ベース更新
     - Eurostat Consumer Confidence: FMP発表日時ベース更新
+    - Germany Retail Sales: FMP発表日時ベース更新
+    - Germany GfK Consumer Confidence: FMP発表日時ベース更新
     """
 
     COUNTRY_CODE = "eurozone"
@@ -91,22 +97,29 @@ class EurozoneConsumerLoader(BaseDashboardLoader):
             {
                 "ecb_retail_trade": {...},
                 "eurostat_consumer_confidence": {...},
+                "germany_retail_sales": {...},
             }
         """
         # 遅延インポート（循環参照回避）
         from services.eurozone.ecb_retail_trade_service import ecb_retail_trade_service
         from services.eurozone.eurostat_consumer_confidence_service import eurostat_consumer_confidence_service
+        from services.eurozone.germany_retail_sales_service import germany_retail_sales_service
+        from services.eurozone.germany_consumer_confidence_gfk_service import germany_consumer_confidence_gfk_service
 
         result = {
             "ecb_retail_trade": None,
             "eurostat_consumer_confidence": None,
+            "germany_retail_sales": None,
+            "germany_consumer_confidence_gfk": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=3) as executor:
+        with ThreadPoolExecutor(max_workers=5) as executor:
             futures = {
                 executor.submit(self._get_ecb_retail_trade, ecb_retail_trade_service): "ecb_retail_trade",
                 executor.submit(self._get_consumer_confidence, eurostat_consumer_confidence_service): "eurostat_consumer_confidence",
+                executor.submit(self._get_germany_retail_sales, germany_retail_sales_service): "germany_retail_sales",
+                executor.submit(self._get_germany_consumer_confidence_gfk, germany_consumer_confidence_gfk_service): "germany_consumer_confidence_gfk",
             }
 
             for future in as_completed(futures):
@@ -147,4 +160,34 @@ class EurozoneConsumerLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Eurostat Consumer Confidence: {e}")
+            return {"data": [], "latest": None, "metadata": {}}
+
+    def _get_germany_retail_sales(self, service) -> dict:
+        """ドイツ小売売上高データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_retail_sales")
+            response = service.get_germany_retail_sales_data(force_refresh=force_refresh)
+            return {
+                "retail_sales_yoy": response.get("retail_sales_yoy", []),
+                "retail_sales_mom": response.get("retail_sales_mom", []),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany Retail Sales: {e}")
+            return {"retail_sales_yoy": [], "retail_sales_mom": [], "metadata": {}}
+
+    def _get_germany_consumer_confidence_gfk(self, service) -> dict:
+        """ドイツGfK消費者信頼感指数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_consumer_confidence_gfk")
+            response = service.get_germany_consumer_confidence_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany GfK Consumer Confidence: {e}")
             return {"data": [], "latest": None, "metadata": {}}

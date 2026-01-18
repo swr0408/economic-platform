@@ -2,6 +2,8 @@ import { Spin, Alert, Button } from 'antd'
 import { useEurozoneConsumerDashboard } from '../../../hooks/useDashboardData'
 import ECBRetailTradeChart from './consumer/ECBRetailTradeChart'
 import EurostatConsumerConfidenceChart from './consumer/EurostatConsumerConfidenceChart'
+import GermanyRetailSalesChart from './consumer/GermanyRetailSalesChart'
+import GermanyConsumerConfidenceGfKChart from './consumer/GermanyConsumerConfidenceGfKChart'
 
 /**
  * ユーロ圏消費チャート群
@@ -37,18 +39,31 @@ export default function EurozoneConsumerCharts() {
 
   return (
     <div className="country-chart-stack">
-      {/* Eurostat Consumer Confidence Chart */}
-
       {/* ECB Retail Trade Chart */}
       <div id="ecb-retail-trade">
         <ECBRetailTradeChart
           data={dashboardData?.ecb_retail_trade ?? null}
         />
-        
       </div>
+
+      {/* Germany Retail Sales Chart */}
+      <div id="germany-retail-sales">
+        <GermanyRetailSalesChart
+          data={dashboardData?.germany_retail_sales ?? null}
+        />
+      </div>
+
+      {/* Eurostat Consumer Confidence Chart */}
       <div id="eurostat-consumer-confidence">
         <EurostatConsumerConfidenceChart
           data={dashboardData?.eurostat_consumer_confidence ?? null}
+        />
+      </div>
+
+      {/* Germany GfK Consumer Confidence Chart */}
+      <div id="germany-consumer-confidence-gfk">
+        <GermanyConsumerConfidenceGfKChart
+          data={dashboardData?.germany_consumer_confidence_gfk ?? null}
         />
       </div>
     </div>

@@ -98,6 +98,7 @@ interface ZoomableChartProps {
   responsiveMargin?: boolean
   connectNulls?: boolean
   additionalLines?: AdditionalLine[]
+  chartType?: 'line' | 'bar'
 }
 
 export default function ZoomableChart({
@@ -134,6 +135,7 @@ export default function ZoomableChart({
   margin,
   responsiveMargin = false,
   additionalLines = [],
+  chartType = 'line',
 }: ZoomableChartProps) {
   const [refAreaLeft, setRefAreaLeft] = useState<string | null>(null)
   const [refAreaRight, setRefAreaRight] = useState<string | null>(null)
@@ -537,7 +539,7 @@ export default function ZoomableChart({
           <ReferenceLine y={fiftyLineValue} stroke={DARK_THEME.referenceLine} strokeWidth={1.5} yAxisId="left" />
         )}
 
-        {!hideMainLine && (
+        {!hideMainLine && chartType === 'line' && (
           <Line
             type="monotone"
             dataKey={dataKey}
@@ -547,6 +549,17 @@ export default function ZoomableChart({
             name={name || dataKey}
             yAxisId="left"
             connectNulls={connectNulls}
+            hide={hiddenLines.has(dataKey)}
+            isAnimationActive={false}
+          />
+        )}
+
+        {!hideMainLine && chartType === 'bar' && (
+          <Bar
+            dataKey={dataKey}
+            fill={color}
+            name={name || dataKey}
+            yAxisId="left"
             hide={hiddenLines.has(dataKey)}
             isAnimationActive={false}
           />

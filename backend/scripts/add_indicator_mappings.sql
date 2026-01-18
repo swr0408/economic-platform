@@ -172,5 +172,28 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('us_core_cpi', 'コアCPI', 'US', 'monthly', ARRAY['Core Inflation Rate MoM', 'Core Inflation Rate YoY', 'Core CPI MoM', 'Core CPI YoY'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- =============================================================================
+-- ドイツ（DE）指標
+-- =============================================================================
+
+-- ドイツGfK消費者信頼感指数（germany_consumer_confidence_gfk）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('germany_consumer_confidence_gfk', 'ドイツGfK消費者信頼感指数', 'DE', 'monthly', ARRAY['GfK Consumer Confidence', 'Consumer Confidence'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- =============================================================================
+-- イギリス（UK）指標
+-- =============================================================================
+
+-- CBI製造業受注指数（cbi_industrial_trends）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cbi_industrial_trends', 'CBI製造業受注指数', 'UK', 'monthly', ARRAY['CBI Industrial Trends Orders', 'CBI Business Optimism Index'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- UK PMI（製造業・サービス業・総合）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('uk_pmi', 'UK PMI（製造業・サービス業・総合）', 'UK', 'monthly', ARRAY['S&P Global Manufacturing PMI', 'S&P Global Services PMI', 'S&P Global Composite PMI'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;

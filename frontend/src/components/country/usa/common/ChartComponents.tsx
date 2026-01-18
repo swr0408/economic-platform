@@ -837,8 +837,8 @@ export function StandardLineChart<T extends { date: string }>({
             strokeWidth={1}
             label={{
               value: '50',
-              position: 'right',
-              fontSize: 10,
+              position: 'left',
+              fontSize: 11,
               fill: TEXT_COLORS.secondary,
             }}
           />

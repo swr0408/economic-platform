@@ -30,6 +30,7 @@ import EurozoneConsumerCharts from '../components/country/eurozone/EurozoneConsu
 import EurozoneEmploymentCharts from '../components/country/eurozone/EurozoneEmploymentCharts'
 import EurozoneInflationCharts from '../components/country/eurozone/EurozoneInflationCharts'
 import UKPolicyCharts from '../components/country/uk/UKPolicyCharts'
+import UKEconomyCharts from '../components/country/uk/UKEconomyCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -250,8 +251,9 @@ function CountryDataCategory() {
   const isEurozoneConsumer = countryCode === 'eurozone' && categoryCode === 'consumer'
   const isEurozoneEmployment = countryCode === 'eurozone' && categoryCode === 'employment'
   const isEurozoneInflation = countryCode === 'eurozone' && categoryCode === 'inflation'
-  // イギリス金融政策の場合はチャートを表示
+  // イギリス金融政策・経済の場合はチャートを表示
   const isUKPolicy = countryCode === 'uk' && categoryCode === 'policy'
+  const isUKEconomy = countryCode === 'uk' && categoryCode === 'economy'
 
   // メインコンテンツ
   const mainContent = (
@@ -290,6 +292,8 @@ function CountryDataCategory() {
         <EurozoneInflationCharts />
       ) : isUKPolicy ? (
         <UKPolicyCharts />
+      ) : isUKEconomy ? (
+        <UKEconomyCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

@@ -1,0 +1,5929 @@
+{
+  "qoq": [
+    {
+      "date": "1955-06-01",
+      "period": "1955 Q2",
+      "year": 1955,
+      "quarter": 2,
+      "value": 145551.0,
+      "qoq_change": 0.06
+    },
+    {
+      "date": "1955-09-01",
+      "period": "1955 Q3",
+      "year": 1955,
+      "quarter": 3,
+      "value": 147995.0,
+      "qoq_change": 1.68
+    },
+    {
+      "date": "1955-12-01",
+      "period": "1955 Q4",
+      "year": 1955,
+      "quarter": 4,
+      "value": 147119.0,
+      "qoq_change": -0.59
+    },
+    {
+      "date": "1956-03-01",
+      "period": "1956 Q1",
+      "year": 1956,
+      "quarter": 1,
+      "value": 148955.0,
+      "qoq_change": 1.25
+    },
+    {
+      "date": "1956-06-01",
+      "period": "1956 Q2",
+      "year": 1956,
+      "quarter": 2,
+      "value": 148835.0,
+      "qoq_change": -0.08
+    },
+    {
+      "date": "1956-09-01",
+      "period": "1956 Q3",
+      "year": 1956,
+      "quarter": 3,
+      "value": 148665.0,
+      "qoq_change": -0.11
+    },
+    {
+      "date": "1956-12-01",
+      "period": "1956 Q4",
+      "year": 1956,
+      "quarter": 4,
+      "value": 149607.0,
+      "qoq_change": 0.63
+    },
+    {
+      "date": "1957-03-01",
+      "period": "1957 Q1",
+      "year": 1957,
+      "quarter": 1,
+      "value": 152331.0,
+      "qoq_change": 1.82
+    },
+    {
+      "date": "1957-06-01",
+      "period": "1957 Q2",
+      "year": 1957,
+      "quarter": 2,
+      "value": 152285.0,
+      "qoq_change": -0.03
+    },
+    {
+      "date": "1957-09-01",
+      "period": "1957 Q3",
+      "year": 1957,
+      "quarter": 3,
+      "value": 151340.0,
+      "qoq_change": -0.62
+    },
+    {
+      "date": "1957-12-01",
+      "period": "1957 Q4",
+      "year": 1957,
+      "quarter": 4,
+      "value": 151857.0,
+      "qoq_change": 0.34
+    },
+    {
+      "date": "1958-03-01",
+      "period": "1958 Q1",
+      "year": 1958,
+      "quarter": 1,
+      "value": 155117.0,
+      "qoq_change": 2.15
+    },
+    {
+      "date": "1958-06-01",
+      "period": "1958 Q2",
+      "year": 1958,
+      "quarter": 2,
+      "value": 151257.0,
+      "qoq_change": -2.49
+    },
+    {
+      "date": "1958-09-01",
+      "period": "1958 Q3",
+      "year": 1958,
+      "quarter": 3,
+      "value": 154551.0,
+      "qoq_change": 2.18
+    },
+    {
+      "date": "1958-12-01",
+      "period": "1958 Q4",
+      "year": 1958,
+      "quarter": 4,
+      "value": 155042.0,
+      "qoq_change": 0.32
+    },
+    {
+      "date": "1959-03-01",
+      "period": "1959 Q1",
+      "year": 1959,
+      "quarter": 1,
+      "value": 156009.0,
+      "qoq_change": 0.62
+    },
+    {
+      "date": "1959-06-01",
+      "period": "1959 Q2",
+      "year": 1959,
+      "quarter": 2,
+      "value": 158487.0,
+      "qoq_change": 1.59
+    },
+    {
+      "date": "1959-09-01",
+      "period": "1959 Q3",
+      "year": 1959,
+      "quarter": 3,
+      "value": 161850.0,
+      "qoq_change": 2.12
+    },
+    {
+      "date": "1959-12-01",
+      "period": "1959 Q4",
+      "year": 1959,
+      "quarter": 4,
+      "value": 165941.0,
+      "qoq_change": 2.53
+    },
+    {
+      "date": "1960-03-01",
+      "period": "1960 Q1",
+      "year": 1960,
+      "quarter": 1,
+      "value": 170121.0,
+      "qoq_change": 2.52
+    },
+    {
+      "date": "1960-06-01",
+      "period": "1960 Q2",
+      "year": 1960,
+      "quarter": 2,
+      "value": 168948.0,
+      "qoq_change": -0.69
+    },
+    {
+      "date": "1960-09-01",
+      "period": "1960 Q3",
+      "year": 1960,
+      "quarter": 3,
+      "value": 171442.0,
+      "qoq_change": 1.48
+    },
+    {
+      "date": "1960-12-01",
+      "period": "1960 Q4",
+      "year": 1960,
+      "quarter": 4,
+      "value": 172382.0,
+      "qoq_change": 0.55
+    },
+    {
+      "date": "1961-03-01",
+      "period": "1961 Q1",
+      "year": 1961,
+      "quarter": 1,
+      "value": 175276.0,
+      "qoq_change": 1.68
+    },
+    {
+      "date": "1961-06-01",
+      "period": "1961 Q2",
+      "year": 1961,
+      "quarter": 2,
+      "value": 175974.0,
+      "qoq_change": 0.4
+    },
+    {
+      "date": "1961-09-01",
+      "period": "1961 Q3",
+      "year": 1961,
+      "quarter": 3,
+      "value": 175126.0,
+      "qoq_change": -0.48
+    },
+    {
+      "date": "1961-12-01",
+      "period": "1961 Q4",
+      "year": 1961,
+      "quarter": 4,
+      "value": 174768.0,
+      "qoq_change": -0.2
+    },
+    {
+      "date": "1962-03-01",
+      "period": "1962 Q1",
+      "year": 1962,
+      "quarter": 1,
+      "value": 175568.0,
+      "qoq_change": 0.46
+    },
+    {
+      "date": "1962-06-01",
+      "period": "1962 Q2",
+      "year": 1962,
+      "quarter": 2,
+      "value": 177216.0,
+      "qoq_change": 0.94
+    },
+    {
+      "date": "1962-09-01",
+      "period": "1962 Q3",
+      "year": 1962,
+      "quarter": 3,
+      "value": 178265.0,
+      "qoq_change": 0.59
+    },
+    {
+      "date": "1962-12-01",
+      "period": "1962 Q4",
+      "year": 1962,
+      "quarter": 4,
+      "value": 177632.0,
+      "qoq_change": -0.36
+    },
+    {
+      "date": "1963-03-01",
+      "period": "1963 Q1",
+      "year": 1963,
+      "quarter": 1,
+      "value": 178493.0,
+      "qoq_change": 0.48
+    },
+    {
+      "date": "1963-06-01",
+      "period": "1963 Q2",
+      "year": 1963,
+      "quarter": 2,
+      "value": 186171.0,
+      "qoq_change": 4.3
+    },
+    {
+      "date": "1963-09-01",
+      "period": "1963 Q3",
+      "year": 1963,
+      "quarter": 3,
+      "value": 187001.0,
+      "qoq_change": 0.45
+    },
+    {
+      "date": "1963-12-01",
+      "period": "1963 Q4",
+      "year": 1963,
+      "quarter": 4,
+      "value": 191230.0,
+      "qoq_change": 2.26
+    },
+    {
+      "date": "1964-03-01",
+      "period": "1964 Q1",
+      "year": 1964,
+      "quarter": 1,
+      "value": 192542.0,
+      "qoq_change": 0.69
+    },
+    {
+      "date": "1964-06-01",
+      "period": "1964 Q2",
+      "year": 1964,
+      "quarter": 2,
+      "value": 196109.0,
+      "qoq_change": 1.85
+    },
+    {
+      "date": "1964-09-01",
+      "period": "1964 Q3",
+      "year": 1964,
+      "quarter": 3,
+      "value": 196783.0,
+      "qoq_change": 0.34
+    },
+    {
+      "date": "1964-12-01",
+      "period": "1964 Q4",
+      "year": 1964,
+      "quarter": 4,
+      "value": 199854.0,
+      "qoq_change": 1.56
+    },
+    {
+      "date": "1965-03-01",
+      "period": "1965 Q1",
+      "year": 1965,
+      "quarter": 1,
+      "value": 199276.0,
+      "qoq_change": -0.29
+    },
+    {
+      "date": "1965-06-01",
+      "period": "1965 Q2",
+      "year": 1965,
+      "quarter": 2,
+      "value": 199419.0,
+      "qoq_change": 0.07
+    },
+    {
+      "date": "1965-09-01",
+      "period": "1965 Q3",
+      "year": 1965,
+      "quarter": 3,
+      "value": 200957.0,
+      "qoq_change": 0.77
+    },
+    {
+      "date": "1965-12-01",
+      "period": "1965 Q4",
+      "year": 1965,
+      "quarter": 4,
+      "value": 202259.0,
+      "qoq_change": 0.65
+    },
+    {
+      "date": "1966-03-01",
+      "period": "1966 Q1",
+      "year": 1966,
+      "quarter": 1,
+      "value": 202588.0,
+      "qoq_change": 0.16
+    },
+    {
+      "date": "1966-06-01",
+      "period": "1966 Q2",
+      "year": 1966,
+      "quarter": 2,
+      "value": 203766.0,
+      "qoq_change": 0.58
+    },
+    {
+      "date": "1966-09-01",
+      "period": "1966 Q3",
+      "year": 1966,
+      "quarter": 3,
+      "value": 204428.0,
+      "qoq_change": 0.32
+    },
+    {
+      "date": "1966-12-01",
+      "period": "1966 Q4",
+      "year": 1966,
+      "quarter": 4,
+      "value": 203611.0,
+      "qoq_change": -0.4
+    },
+    {
+      "date": "1967-03-01",
+      "period": "1967 Q1",
+      "year": 1967,
+      "quarter": 1,
+      "value": 206330.0,
+      "qoq_change": 1.34
+    },
+    {
+      "date": "1967-06-01",
+      "period": "1967 Q2",
+      "year": 1967,
+      "quarter": 2,
+      "value": 209227.0,
+      "qoq_change": 1.4
+    },
+    {
+      "date": "1967-09-01",
+      "period": "1967 Q3",
+      "year": 1967,
+      "quarter": 3,
+      "value": 210092.0,
+      "qoq_change": 0.41
+    },
+    {
+      "date": "1967-12-01",
+      "period": "1967 Q4",
+      "year": 1967,
+      "quarter": 4,
+      "value": 211166.0,
+      "qoq_change": 0.51
+    },
+    {
+      "date": "1968-03-01",
+      "period": "1968 Q1",
+      "year": 1968,
+      "quarter": 1,
+      "value": 218997.0,
+      "qoq_change": 3.71
+    },
+    {
+      "date": "1968-06-01",
+      "period": "1968 Q2",
+      "year": 1968,
+      "quarter": 2,
+      "value": 218081.0,
+      "qoq_change": -0.42
+    },
+    {
+      "date": "1968-09-01",
+      "period": "1968 Q3",
+      "year": 1968,
+      "quarter": 3,
+      "value": 222325.0,
+      "qoq_change": 1.95
+    },
+    {
+      "date": "1968-12-01",
+      "period": "1968 Q4",
+      "year": 1968,
+      "quarter": 4,
+      "value": 223067.0,
+      "qoq_change": 0.33
+    },
+    {
+      "date": "1969-03-01",
+      "period": "1969 Q1",
+      "year": 1969,
+      "quarter": 1,
+      "value": 222725.0,
+      "qoq_change": -0.15
+    },
+    {
+      "date": "1969-06-01",
+      "period": "1969 Q2",
+      "year": 1969,
+      "quarter": 2,
+      "value": 224353.0,
+      "qoq_change": 0.73
+    },
+    {
+      "date": "1969-09-01",
+      "period": "1969 Q3",
+      "year": 1969,
+      "quarter": 3,
+      "value": 225601.0,
+      "qoq_change": 0.56
+    },
+    {
+      "date": "1969-12-01",
+      "period": "1969 Q4",
+      "year": 1969,
+      "quarter": 4,
+      "value": 226619.0,
+      "qoq_change": 0.45
+    },
+    {
+      "date": "1970-03-01",
+      "period": "1970 Q1",
+      "year": 1970,
+      "quarter": 1,
+      "value": 225223.0,
+      "qoq_change": -0.62
+    },
+    {
+      "date": "1970-06-01",
+      "period": "1970 Q2",
+      "year": 1970,
+      "quarter": 2,
+      "value": 230605.0,
+      "qoq_change": 2.39
+    },
+    {
+      "date": "1970-09-01",
+      "period": "1970 Q3",
+      "year": 1970,
+      "quarter": 3,
+      "value": 232800.0,
+      "qoq_change": 0.95
+    },
+    {
+      "date": "1970-12-01",
+      "period": "1970 Q4",
+      "year": 1970,
+      "quarter": 4,
+      "value": 234954.0,
+      "qoq_change": 0.93
+    },
+    {
+      "date": "1971-03-01",
+      "period": "1971 Q1",
+      "year": 1971,
+      "quarter": 1,
+      "value": 233843.0,
+      "qoq_change": -0.47
+    },
+    {
+      "date": "1971-06-01",
+      "period": "1971 Q2",
+      "year": 1971,
+      "quarter": 2,
+      "value": 238030.0,
+      "qoq_change": 1.79
+    },
+    {
+      "date": "1971-09-01",
+      "period": "1971 Q3",
+      "year": 1971,
+      "quarter": 3,
+      "value": 242078.0,
+      "qoq_change": 1.7
+    },
+    {
+      "date": "1971-12-01",
+      "period": "1971 Q4",
+      "year": 1971,
+      "quarter": 4,
+      "value": 243009.0,
+      "qoq_change": 0.38
+    },
+    {
+      "date": "1972-03-01",
+      "period": "1972 Q1",
+      "year": 1972,
+      "quarter": 1,
+      "value": 243540.0,
+      "qoq_change": 0.22
+    },
+    {
+      "date": "1972-06-01",
+      "period": "1972 Q2",
+      "year": 1972,
+      "quarter": 2,
+      "value": 249966.0,
+      "qoq_change": 2.64
+    },
+    {
+      "date": "1972-09-01",
+      "period": "1972 Q3",
+      "year": 1972,
+      "quarter": 3,
+      "value": 250633.0,
+      "qoq_change": 0.27
+    },
+    {
+      "date": "1972-12-01",
+      "period": "1972 Q4",
+      "year": 1972,
+      "quarter": 4,
+      "value": 254524.0,
+      "qoq_change": 1.55
+    },
+    {
+      "date": "1973-03-01",
+      "period": "1973 Q1",
+      "year": 1973,
+      "quarter": 1,
+      "value": 267015.0,
+      "qoq_change": 4.91
+    },
+    {
+      "date": "1973-06-01",
+      "period": "1973 Q2",
+      "year": 1973,
+      "quarter": 2,
+      "value": 267521.0,
+      "qoq_change": 0.19
+    },
+    {
+      "date": "1973-09-01",
+      "period": "1973 Q3",
+      "year": 1973,
+      "quarter": 3,
+      "value": 265025.0,
+      "qoq_change": -0.93
+    },
+    {
+      "date": "1973-12-01",
+      "period": "1973 Q4",
+      "year": 1973,
+      "quarter": 4,
+      "value": 263989.0,
+      "qoq_change": -0.39
+    },
+    {
+      "date": "1974-03-01",
+      "period": "1974 Q1",
+      "year": 1974,
+      "quarter": 1,
+      "value": 256670.0,
+      "qoq_change": -2.77
+    },
+    {
+      "date": "1974-06-01",
+      "period": "1974 Q2",
+      "year": 1974,
+      "quarter": 2,
+      "value": 260347.0,
+      "qoq_change": 1.43
+    },
+    {
+      "date": "1974-09-01",
+      "period": "1974 Q3",
+      "year": 1974,
+      "quarter": 3,
+      "value": 261890.0,
+      "qoq_change": 0.59
+    },
+    {
+      "date": "1974-12-01",
+      "period": "1974 Q4",
+      "year": 1974,
+      "quarter": 4,
+      "value": 258066.0,
+      "qoq_change": -1.46
+    },
+    {
+      "date": "1975-03-01",
+      "period": "1975 Q1",
+      "year": 1975,
+      "quarter": 1,
+      "value": 258116.0,
+      "qoq_change": 0.02
+    },
+    {
+      "date": "1975-06-01",
+      "period": "1975 Q2",
+      "year": 1975,
+      "quarter": 2,
+      "value": 253935.0,
+      "qoq_change": -1.62
+    },
+    {
+      "date": "1975-09-01",
+      "period": "1975 Q3",
+      "year": 1975,
+      "quarter": 3,
+      "value": 253168.0,
+      "qoq_change": -0.3
+    },
+    {
+      "date": "1975-12-01",
+      "period": "1975 Q4",
+      "year": 1975,
+      "quarter": 4,
+      "value": 255985.0,
+      "qoq_change": 1.11
+    },
+    {
+      "date": "1976-03-01",
+      "period": "1976 Q1",
+      "year": 1976,
+      "quarter": 1,
+      "value": 260268.0,
+      "qoq_change": 1.67
+    },
+    {
+      "date": "1976-06-01",
+      "period": "1976 Q2",
+      "year": 1976,
+      "quarter": 2,
+      "value": 259911.0,
+      "qoq_change": -0.14
+    },
+    {
+      "date": "1976-09-01",
+      "period": "1976 Q3",
+      "year": 1976,
+      "quarter": 3,
+      "value": 263132.0,
+      "qoq_change": 1.24
+    },
+    {
+      "date": "1976-12-01",
+      "period": "1976 Q4",
+      "year": 1976,
+      "quarter": 4,
+      "value": 268662.0,
+      "qoq_change": 2.1
+    },
+    {
+      "date": "1977-03-01",
+      "period": "1977 Q1",
+      "year": 1977,
+      "quarter": 1,
+      "value": 268833.0,
+      "qoq_change": 0.06
+    },
+    {
+      "date": "1977-06-01",
+      "period": "1977 Q2",
+      "year": 1977,
+      "quarter": 2,
+      "value": 266987.0,
+      "qoq_change": -0.69
+    },
+    {
+      "date": "1977-09-01",
+      "period": "1977 Q3",
+      "year": 1977,
+      "quarter": 3,
+      "value": 268717.0,
+      "qoq_change": 0.65
+    },
+    {
+      "date": "1977-12-01",
+      "period": "1977 Q4",
+      "year": 1977,
+      "quarter": 4,
+      "value": 273279.0,
+      "qoq_change": 1.7
+    },
+    {
+      "date": "1978-03-01",
+      "period": "1978 Q1",
+      "year": 1978,
+      "quarter": 1,
+      "value": 275841.0,
+      "qoq_change": 0.94
+    },
+    {
+      "date": "1978-06-01",
+      "period": "1978 Q2",
+      "year": 1978,
+      "quarter": 2,
+      "value": 279001.0,
+      "qoq_change": 1.15
+    },
+    {
+      "date": "1978-09-01",
+      "period": "1978 Q3",
+      "year": 1978,
+      "quarter": 3,
+      "value": 282797.0,
+      "qoq_change": 1.36
+    },
+    {
+      "date": "1978-12-01",
+      "period": "1978 Q4",
+      "year": 1978,
+      "quarter": 4,
+      "value": 285314.0,
+      "qoq_change": 0.89
+    },
+    {
+      "date": "1979-03-01",
+      "period": "1979 Q1",
+      "year": 1979,
+      "quarter": 1,
+      "value": 284457.0,
+      "qoq_change": -0.3
+    },
+    {
+      "date": "1979-06-01",
+      "period": "1979 Q2",
+      "year": 1979,
+      "quarter": 2,
+      "value": 296841.0,
+      "qoq_change": 4.35
+    },
+    {
+      "date": "1979-09-01",
+      "period": "1979 Q3",
+      "year": 1979,
+      "quarter": 3,
+      "value": 290297.0,
+      "qoq_change": -2.2
+    },
+    {
+      "date": "1979-12-01",
+      "period": "1979 Q4",
+      "year": 1979,
+      "quarter": 4,
+      "value": 293265.0,
+      "qoq_change": 1.02
+    },
+    {
+      "date": "1980-03-01",
+      "period": "1980 Q1",
+      "year": 1980,
+      "quarter": 1,
+      "value": 290378.0,
+      "qoq_change": -0.98
+    },
+    {
+      "date": "1980-06-01",
+      "period": "1980 Q2",
+      "year": 1980,
+      "quarter": 2,
+      "value": 284713.0,
+      "qoq_change": -1.95
+    },
+    {
+      "date": "1980-09-01",
+      "period": "1980 Q3",
+      "year": 1980,
+      "quarter": 3,
+      "value": 284402.0,
+      "qoq_change": -0.11
+    },
+    {
+      "date": "1980-12-01",
+      "period": "1980 Q4",
+      "year": 1980,
+      "quarter": 4,
+      "value": 281496.0,
+      "qoq_change": -1.02
+    },
+    {
+      "date": "1981-03-01",
+      "period": "1981 Q1",
+      "year": 1981,
+      "quarter": 1,
+      "value": 281257.0,
+      "qoq_change": -0.08
+    },
+    {
+      "date": "1981-06-01",
+      "period": "1981 Q2",
+      "year": 1981,
+      "quarter": 2,
+      "value": 282155.0,
+      "qoq_change": 0.32
+    },
+    {
+      "date": "1981-09-01",
+      "period": "1981 Q3",
+      "year": 1981,
+      "quarter": 3,
+      "value": 285437.0,
+      "qoq_change": 1.16
+    },
+    {
+      "date": "1981-12-01",
+      "period": "1981 Q4",
+      "year": 1981,
+      "quarter": 4,
+      "value": 285814.0,
+      "qoq_change": 0.13
+    },
+    {
+      "date": "1982-03-01",
+      "period": "1982 Q1",
+      "year": 1982,
+      "quarter": 1,
+      "value": 286275.0,
+      "qoq_change": 0.16
+    },
+    {
+      "date": "1982-06-01",
+      "period": "1982 Q2",
+      "year": 1982,
+      "quarter": 2,
+      "value": 289232.0,
+      "qoq_change": 1.03
+    },
+    {
+      "date": "1982-09-01",
+      "period": "1982 Q3",
+      "year": 1982,
+      "quarter": 3,
+      "value": 289852.0,
+      "qoq_change": 0.21
+    },
+    {
+      "date": "1982-12-01",
+      "period": "1982 Q4",
+      "year": 1982,
+      "quarter": 4,
+      "value": 291832.0,
+      "qoq_change": 0.68
+    },
+    {
+      "date": "1983-03-01",
+      "period": "1983 Q1",
+      "year": 1983,
+      "quarter": 1,
+      "value": 297563.0,
+      "qoq_change": 1.96
+    },
+    {
+      "date": "1983-06-01",
+      "period": "1983 Q2",
+      "year": 1983,
+      "quarter": 2,
+      "value": 299623.0,
+      "qoq_change": 0.69
+    },
+    {
+      "date": "1983-09-01",
+      "period": "1983 Q3",
+      "year": 1983,
+      "quarter": 3,
+      "value": 303085.0,
+      "qoq_change": 1.16
+    },
+    {
+      "date": "1983-12-01",
+      "period": "1983 Q4",
+      "year": 1983,
+      "quarter": 4,
+      "value": 305361.0,
+      "qoq_change": 0.75
+    },
+    {
+      "date": "1984-03-01",
+      "period": "1984 Q1",
+      "year": 1984,
+      "quarter": 1,
+      "value": 307964.0,
+      "qoq_change": 0.85
+    },
+    {
+      "date": "1984-06-01",
+      "period": "1984 Q2",
+      "year": 1984,
+      "quarter": 2,
+      "value": 304892.0,
+      "qoq_change": -1.0
+    },
+    {
+      "date": "1984-09-01",
+      "period": "1984 Q3",
+      "year": 1984,
+      "quarter": 3,
+      "value": 307122.0,
+      "qoq_change": 0.73
+    },
+    {
+      "date": "1984-12-01",
+      "period": "1984 Q4",
+      "year": 1984,
+      "quarter": 4,
+      "value": 312697.0,
+      "qoq_change": 1.82
+    },
+    {
+      "date": "1985-03-01",
+      "period": "1985 Q1",
+      "year": 1985,
+      "quarter": 1,
+      "value": 315753.0,
+      "qoq_change": 0.98
+    },
+    {
+      "date": "1985-06-01",
+      "period": "1985 Q2",
+      "year": 1985,
+      "quarter": 2,
+      "value": 322451.0,
+      "qoq_change": 2.12
+    },
+    {
+      "date": "1985-09-01",
+      "period": "1985 Q3",
+      "year": 1985,
+      "quarter": 3,
+      "value": 322392.0,
+      "qoq_change": -0.02
+    },
+    {
+      "date": "1985-12-01",
+      "period": "1985 Q4",
+      "year": 1985,
+      "quarter": 4,
+      "value": 322604.0,
+      "qoq_change": 0.07
+    },
+    {
+      "date": "1986-03-01",
+      "period": "1986 Q1",
+      "year": 1986,
+      "quarter": 1,
+      "value": 325968.0,
+      "qoq_change": 1.04
+    },
+    {
+      "date": "1986-06-01",
+      "period": "1986 Q2",
+      "year": 1986,
+      "quarter": 2,
+      "value": 328872.0,
+      "qoq_change": 0.89
+    },
+    {
+      "date": "1986-09-01",
+      "period": "1986 Q3",
+      "year": 1986,
+      "quarter": 3,
+      "value": 330966.0,
+      "qoq_change": 0.64
+    },
+    {
+      "date": "1986-12-01",
+      "period": "1986 Q4",
+      "year": 1986,
+      "quarter": 4,
+      "value": 337367.0,
+      "qoq_change": 1.93
+    },
+    {
+      "date": "1987-03-01",
+      "period": "1987 Q1",
+      "year": 1987,
+      "quarter": 1,
+      "value": 339754.0,
+      "qoq_change": 0.71
+    },
+    {
+      "date": "1987-06-01",
+      "period": "1987 Q2",
+      "year": 1987,
+      "quarter": 2,
+      "value": 344795.0,
+      "qoq_change": 1.48
+    },
+    {
+      "date": "1987-09-01",
+      "period": "1987 Q3",
+      "year": 1987,
+      "quarter": 3,
+      "value": 353365.0,
+      "qoq_change": 2.49
+    },
+    {
+      "date": "1987-12-01",
+      "period": "1987 Q4",
+      "year": 1987,
+      "quarter": 4,
+      "value": 357439.0,
+      "qoq_change": 1.15
+    },
+    {
+      "date": "1988-03-01",
+      "period": "1988 Q1",
+      "year": 1988,
+      "quarter": 1,
+      "value": 363267.0,
+      "qoq_change": 1.63
+    },
+    {
+      "date": "1988-06-01",
+      "period": "1988 Q2",
+      "year": 1988,
+      "quarter": 2,
+      "value": 365209.0,
+      "qoq_change": 0.53
+    },
+    {
+      "date": "1988-09-01",
+      "period": "1988 Q3",
+      "year": 1988,
+      "quarter": 3,
+      "value": 369774.0,
+      "qoq_change": 1.25
+    },
+    {
+      "date": "1988-12-01",
+      "period": "1988 Q4",
+      "year": 1988,
+      "quarter": 4,
+      "value": 372752.0,
+      "qoq_change": 0.81
+    },
+    {
+      "date": "1989-03-01",
+      "period": "1989 Q1",
+      "year": 1989,
+      "quarter": 1,
+      "value": 374612.0,
+      "qoq_change": 0.5
+    },
+    {
+      "date": "1989-06-01",
+      "period": "1989 Q2",
+      "year": 1989,
+      "quarter": 2,
+      "value": 376951.0,
+      "qoq_change": 0.62
+    },
+    {
+      "date": "1989-09-01",
+      "period": "1989 Q3",
+      "year": 1989,
+      "quarter": 3,
+      "value": 377573.0,
+      "qoq_change": 0.17
+    },
+    {
+      "date": "1989-12-01",
+      "period": "1989 Q4",
+      "year": 1989,
+      "quarter": 4,
+      "value": 377508.0,
+      "qoq_change": -0.02
+    },
+    {
+      "date": "1990-03-01",
+      "period": "1990 Q1",
+      "year": 1990,
+      "quarter": 1,
+      "value": 379458.0,
+      "qoq_change": 0.52
+    },
+    {
+      "date": "1990-06-01",
+      "period": "1990 Q2",
+      "year": 1990,
+      "quarter": 2,
+      "value": 381997.0,
+      "qoq_change": 0.67
+    },
+    {
+      "date": "1990-09-01",
+      "period": "1990 Q3",
+      "year": 1990,
+      "quarter": 3,
+      "value": 377831.0,
+      "qoq_change": -1.09
+    },
+    {
+      "date": "1990-12-01",
+      "period": "1990 Q4",
+      "year": 1990,
+      "quarter": 4,
+      "value": 375916.0,
+      "qoq_change": -0.51
+    },
+    {
+      "date": "1991-03-01",
+      "period": "1991 Q1",
+      "year": 1991,
+      "quarter": 1,
+      "value": 374060.0,
+      "qoq_change": -0.49
+    },
+    {
+      "date": "1991-06-01",
+      "period": "1991 Q2",
+      "year": 1991,
+      "quarter": 2,
+      "value": 373608.0,
+      "qoq_change": -0.12
+    },
+    {
+      "date": "1991-09-01",
+      "period": "1991 Q3",
+      "year": 1991,
+      "quarter": 3,
+      "value": 372878.0,
+      "qoq_change": -0.2
+    },
+    {
+      "date": "1991-12-01",
+      "period": "1991 Q4",
+      "year": 1991,
+      "quarter": 4,
+      "value": 373357.0,
+      "qoq_change": 0.13
+    },
+    {
+      "date": "1992-03-01",
+      "period": "1992 Q1",
+      "year": 1992,
+      "quarter": 1,
+      "value": 373317.0,
+      "qoq_change": -0.01
+    },
+    {
+      "date": "1992-06-01",
+      "period": "1992 Q2",
+      "year": 1992,
+      "quarter": 2,
+      "value": 372751.0,
+      "qoq_change": -0.15
+    },
+    {
+      "date": "1992-09-01",
+      "period": "1992 Q3",
+      "year": 1992,
+      "quarter": 3,
+      "value": 374537.0,
+      "qoq_change": 0.48
+    },
+    {
+      "date": "1992-12-01",
+      "period": "1992 Q4",
+      "year": 1992,
+      "quarter": 4,
+      "value": 377418.0,
+      "qoq_change": 0.77
+    },
+    {
+      "date": "1993-03-01",
+      "period": "1993 Q1",
+      "year": 1993,
+      "quarter": 1,
+      "value": 379370.0,
+      "qoq_change": 0.52
+    },
+    {
+      "date": "1993-06-01",
+      "period": "1993 Q2",
+      "year": 1993,
+      "quarter": 2,
+      "value": 381045.0,
+      "qoq_change": 0.44
+    },
+    {
+      "date": "1993-09-01",
+      "period": "1993 Q3",
+      "year": 1993,
+      "quarter": 3,
+      "value": 384524.0,
+      "qoq_change": 0.91
+    },
+    {
+      "date": "1993-12-01",
+      "period": "1993 Q4",
+      "year": 1993,
+      "quarter": 4,
+      "value": 387143.0,
+      "qoq_change": 0.68
+    },
+    {
+      "date": "1994-03-01",
+      "period": "1994 Q1",
+      "year": 1994,
+      "quarter": 1,
+      "value": 391026.0,
+      "qoq_change": 1.0
+    },
+    {
+      "date": "1994-06-01",
+      "period": "1994 Q2",
+      "year": 1994,
+      "quarter": 2,
+      "value": 394588.0,
+      "qoq_change": 0.91
+    },
+    {
+      "date": "1994-09-01",
+      "period": "1994 Q3",
+      "year": 1994,
+      "quarter": 3,
+      "value": 398566.0,
+      "qoq_change": 1.01
+    },
+    {
+      "date": "1994-12-01",
+      "period": "1994 Q4",
+      "year": 1994,
+      "quarter": 4,
+      "value": 400279.0,
+      "qoq_change": 0.43
+    },
+    {
+      "date": "1995-03-01",
+      "period": "1995 Q1",
+      "year": 1995,
+      "quarter": 1,
+      "value": 402390.0,
+      "qoq_change": 0.53
+    },
+    {
+      "date": "1995-06-01",
+      "period": "1995 Q2",
+      "year": 1995,
+      "quarter": 2,
+      "value": 403259.0,
+      "qoq_change": 0.22
+    },
+    {
+      "date": "1995-09-01",
+      "period": "1995 Q3",
+      "year": 1995,
+      "quarter": 3,
+      "value": 407795.0,
+      "qoq_change": 1.12
+    },
+    {
+      "date": "1995-12-01",
+      "period": "1995 Q4",
+      "year": 1995,
+      "quarter": 4,
+      "value": 409132.0,
+      "qoq_change": 0.33
+    },
+    {
+      "date": "1996-03-01",
+      "period": "1996 Q1",
+      "year": 1996,
+      "quarter": 1,
+      "value": 412022.0,
+      "qoq_change": 0.71
+    },
+    {
+      "date": "1996-06-01",
+      "period": "1996 Q2",
+      "year": 1996,
+      "quarter": 2,
+      "value": 413325.0,
+      "qoq_change": 0.32
+    },
+    {
+      "date": "1996-09-01",
+      "period": "1996 Q3",
+      "year": 1996,
+      "quarter": 3,
+      "value": 417019.0,
+      "qoq_change": 0.89
+    },
+    {
+      "date": "1996-12-01",
+      "period": "1996 Q4",
+      "year": 1996,
+      "quarter": 4,
+      "value": 422639.0,
+      "qoq_change": 1.35
+    },
+    {
+      "date": "1997-03-01",
+      "period": "1997 Q1",
+      "year": 1997,
+      "quarter": 1,
+      "value": 429418.0,
+      "qoq_change": 1.6
+    },
+    {
+      "date": "1997-06-01",
+      "period": "1997 Q2",
+      "year": 1997,
+      "quarter": 2,
+      "value": 434199.0,
+      "qoq_change": 1.11
+    },
+    {
+      "date": "1997-09-01",
+      "period": "1997 Q3",
+      "year": 1997,
+      "quarter": 3,
+      "value": 438100.0,
+      "qoq_change": 0.9
+    },
+    {
+      "date": "1997-12-01",
+      "period": "1997 Q4",
+      "year": 1997,
+      "quarter": 4,
+      "value": 444540.0,
+      "qoq_change": 1.47
+    },
+    {
+      "date": "1998-03-01",
+      "period": "1998 Q1",
+      "year": 1998,
+      "quarter": 1,
+      "value": 447712.0,
+      "qoq_change": 0.71
+    },
+    {
+      "date": "1998-06-01",
+      "period": "1998 Q2",
+      "year": 1998,
+      "quarter": 2,
+      "value": 450292.0,
+      "qoq_change": 0.58
+    },
+    {
+      "date": "1998-09-01",
+      "period": "1998 Q3",
+      "year": 1998,
+      "quarter": 3,
+      "value": 451005.0,
+      "qoq_change": 0.16
+    },
+    {
+      "date": "1998-12-01",
+      "period": "1998 Q4",
+      "year": 1998,
+      "quarter": 4,
+      "value": 453937.0,
+      "qoq_change": 0.65
+    },
+    {
+      "date": "1999-03-01",
+      "period": "1999 Q1",
+      "year": 1999,
+      "quarter": 1,
+      "value": 457044.0,
+      "qoq_change": 0.68
+    },
+    {
+      "date": "1999-06-01",
+      "period": "1999 Q2",
+      "year": 1999,
+      "quarter": 2,
+      "value": 458710.0,
+      "qoq_change": 0.36
+    },
+    {
+      "date": "1999-09-01",
+      "period": "1999 Q3",
+      "year": 1999,
+      "quarter": 3,
+      "value": 466387.0,
+      "qoq_change": 1.67
+    },
+    {
+      "date": "1999-12-01",
+      "period": "1999 Q4",
+      "year": 1999,
+      "quarter": 4,
+      "value": 473892.0,
+      "qoq_change": 1.61
+    },
+    {
+      "date": "2000-03-01",
+      "period": "2000 Q1",
+      "year": 2000,
+      "quarter": 1,
+      "value": 480212.0,
+      "qoq_change": 1.33
+    },
+    {
+      "date": "2000-06-01",
+      "period": "2000 Q2",
+      "year": 2000,
+      "quarter": 2,
+      "value": 483672.0,
+      "qoq_change": 0.72
+    },
+    {
+      "date": "2000-09-01",
+      "period": "2000 Q3",
+      "year": 2000,
+      "quarter": 3,
+      "value": 486617.0,
+      "qoq_change": 0.61
+    },
+    {
+      "date": "2000-12-01",
+      "period": "2000 Q4",
+      "year": 2000,
+      "quarter": 4,
+      "value": 489506.0,
+      "qoq_change": 0.59
+    },
+    {
+      "date": "2001-03-01",
+      "period": "2001 Q1",
+      "year": 2001,
+      "quarter": 1,
+      "value": 493575.0,
+      "qoq_change": 0.83
+    },
+    {
+      "date": "2001-06-01",
+      "period": "2001 Q2",
+      "year": 2001,
+      "quarter": 2,
+      "value": 495602.0,
+      "qoq_change": 0.41
+    },
+    {
+      "date": "2001-09-01",
+      "period": "2001 Q3",
+      "year": 2001,
+      "quarter": 3,
+      "value": 497938.0,
+      "qoq_change": 0.47
+    },
+    {
+      "date": "2001-12-01",
+      "period": "2001 Q4",
+      "year": 2001,
+      "quarter": 4,
+      "value": 499278.0,
+      "qoq_change": 0.27
+    },
+    {
+      "date": "2002-03-01",
+      "period": "2002 Q1",
+      "year": 2002,
+      "quarter": 1,
+      "value": 500794.0,
+      "qoq_change": 0.3
+    },
+    {
+      "date": "2002-06-01",
+      "period": "2002 Q2",
+      "year": 2002,
+      "quarter": 2,
+      "value": 503433.0,
+      "qoq_change": 0.53
+    },
+    {
+      "date": "2002-09-01",
+      "period": "2002 Q3",
+      "year": 2002,
+      "quarter": 3,
+      "value": 506386.0,
+      "qoq_change": 0.59
+    },
+    {
+      "date": "2002-12-01",
+      "period": "2002 Q4",
+      "year": 2002,
+      "quarter": 4,
+      "value": 509728.0,
+      "qoq_change": 0.66
+    },
+    {
+      "date": "2003-03-01",
+      "period": "2003 Q1",
+      "year": 2003,
+      "quarter": 1,
+      "value": 514031.0,
+      "qoq_change": 0.84
+    },
+    {
+      "date": "2003-06-01",
+      "period": "2003 Q2",
+      "year": 2003,
+      "quarter": 2,
+      "value": 518802.0,
+      "qoq_change": 0.93
+    },
+    {
+      "date": "2003-09-01",
+      "period": "2003 Q3",
+      "year": 2003,
+      "quarter": 3,
+      "value": 524213.0,
+      "qoq_change": 1.04
+    },
+    {
+      "date": "2003-12-01",
+      "period": "2003 Q4",
+      "year": 2003,
+      "quarter": 4,
+      "value": 528320.0,
+      "qoq_change": 0.78
+    },
+    {
+      "date": "2004-03-01",
+      "period": "2004 Q1",
+      "year": 2004,
+      "quarter": 1,
+      "value": 529996.0,
+      "qoq_change": 0.32
+    },
+    {
+      "date": "2004-06-01",
+      "period": "2004 Q2",
+      "year": 2004,
+      "quarter": 2,
+      "value": 532543.0,
+      "qoq_change": 0.48
+    },
+    {
+      "date": "2004-09-01",
+      "period": "2004 Q3",
+      "year": 2004,
+      "quarter": 3,
+      "value": 534447.0,
+      "qoq_change": 0.36
+    },
+    {
+      "date": "2004-12-01",
+      "period": "2004 Q4",
+      "year": 2004,
+      "quarter": 4,
+      "value": 536886.0,
+      "qoq_change": 0.46
+    },
+    {
+      "date": "2005-03-01",
+      "period": "2005 Q1",
+      "year": 2005,
+      "quarter": 1,
+      "value": 541028.0,
+      "qoq_change": 0.77
+    },
+    {
+      "date": "2005-06-01",
+      "period": "2005 Q2",
+      "year": 2005,
+      "quarter": 2,
+      "value": 545530.0,
+      "qoq_change": 0.83
+    },
+    {
+      "date": "2005-09-01",
+      "period": "2005 Q3",
+      "year": 2005,
+      "quarter": 3,
+      "value": 550552.0,
+      "qoq_change": 0.92
+    },
+    {
+      "date": "2005-12-01",
+      "period": "2005 Q4",
+      "year": 2005,
+      "quarter": 4,
+      "value": 556311.0,
+      "qoq_change": 1.05
+    },
+    {
+      "date": "2006-03-01",
+      "period": "2006 Q1",
+      "year": 2006,
+      "quarter": 1,
+      "value": 558314.0,
+      "qoq_change": 0.36
+    },
+    {
+      "date": "2006-06-01",
+      "period": "2006 Q2",
+      "year": 2006,
+      "quarter": 2,
+      "value": 559795.0,
+      "qoq_change": 0.27
+    },
+    {
+      "date": "2006-09-01",
+      "period": "2006 Q3",
+      "year": 2006,
+      "quarter": 3,
+      "value": 560675.0,
+      "qoq_change": 0.16
+    },
+    {
+      "date": "2006-12-01",
+      "period": "2006 Q4",
+      "year": 2006,
+      "quarter": 4,
+      "value": 562669.0,
+      "qoq_change": 0.36
+    },
+    {
+      "date": "2007-03-01",
+      "period": "2007 Q1",
+      "year": 2007,
+      "quarter": 1,
+      "value": 568845.0,
+      "qoq_change": 1.1
+    },
+    {
+      "date": "2007-06-01",
+      "period": "2007 Q2",
+      "year": 2007,
+      "quarter": 2,
+      "value": 574194.0,
+      "qoq_change": 0.94
+    },
+    {
+      "date": "2007-09-01",
+      "period": "2007 Q3",
+      "year": 2007,
+      "quarter": 3,
+      "value": 579605.0,
+      "qoq_change": 0.94
+    },
+    {
+      "date": "2007-12-01",
+      "period": "2007 Q4",
+      "year": 2007,
+      "quarter": 4,
+      "value": 584504.0,
+      "qoq_change": 0.85
+    },
+    {
+      "date": "2008-03-01",
+      "period": "2008 Q1",
+      "year": 2008,
+      "quarter": 1,
+      "value": 586690.0,
+      "qoq_change": 0.37
+    },
+    {
+      "date": "2008-06-01",
+      "period": "2008 Q2",
+      "year": 2008,
+      "quarter": 2,
+      "value": 583541.0,
+      "qoq_change": -0.54
+    },
+    {
+      "date": "2008-09-01",
+      "period": "2008 Q3",
+      "year": 2008,
+      "quarter": 3,
+      "value": 573961.0,
+      "qoq_change": -1.64
+    },
+    {
+      "date": "2008-12-01",
+      "period": "2008 Q4",
+      "year": 2008,
+      "quarter": 4,
+      "value": 561816.0,
+      "qoq_change": -2.12
+    },
+    {
+      "date": "2009-03-01",
+      "period": "2009 Q1",
+      "year": 2009,
+      "quarter": 1,
+      "value": 550451.0,
+      "qoq_change": -2.02
+    },
+    {
+      "date": "2009-06-01",
+      "period": "2009 Q2",
+      "year": 2009,
+      "quarter": 2,
+      "value": 548859.0,
+      "qoq_change": -0.29
+    },
+    {
+      "date": "2009-09-01",
+      "period": "2009 Q3",
+      "year": 2009,
+      "quarter": 3,
+      "value": 549540.0,
+      "qoq_change": 0.12
+    },
+    {
+      "date": "2009-12-01",
+      "period": "2009 Q4",
+      "year": 2009,
+      "quarter": 4,
+      "value": 551372.0,
+      "qoq_change": 0.33
+    },
+    {
+      "date": "2010-03-01",
+      "period": "2010 Q1",
+      "year": 2010,
+      "quarter": 1,
+      "value": 556002.0,
+      "qoq_change": 0.84
+    },
+    {
+      "date": "2010-06-01",
+      "period": "2010 Q2",
+      "year": 2010,
+      "quarter": 2,
+      "value": 562353.0,
+      "qoq_change": 1.14
+    },
+    {
+      "date": "2010-09-01",
+      "period": "2010 Q3",
+      "year": 2010,
+      "quarter": 3,
+      "value": 565659.0,
+      "qoq_change": 0.59
+    },
+    {
+      "date": "2010-12-01",
+      "period": "2010 Q4",
+      "year": 2010,
+      "quarter": 4,
+      "value": 565945.0,
+      "qoq_change": 0.05
+    },
+    {
+      "date": "2011-03-01",
+      "period": "2011 Q1",
+      "year": 2011,
+      "quarter": 1,
+      "value": 566873.0,
+      "qoq_change": 0.16
+    },
+    {
+      "date": "2011-06-01",
+      "period": "2011 Q2",
+      "year": 2011,
+      "quarter": 2,
+      "value": 566601.0,
+      "qoq_change": -0.05
+    },
+    {
+      "date": "2011-09-01",
+      "period": "2011 Q3",
+      "year": 2011,
+      "quarter": 3,
+      "value": 567586.0,
+      "qoq_change": 0.17
+    },
+    {
+      "date": "2011-12-01",
+      "period": "2011 Q4",
+      "year": 2011,
+      "quarter": 4,
+      "value": 568056.0,
+      "qoq_change": 0.08
+    },
+    {
+      "date": "2012-03-01",
+      "period": "2012 Q1",
+      "year": 2012,
+      "quarter": 1,
+      "value": 573416.0,
+      "qoq_change": 0.94
+    },
+    {
+      "date": "2012-06-01",
+      "period": "2012 Q2",
+      "year": 2012,
+      "quarter": 2,
+      "value": 573112.0,
+      "qoq_change": -0.05
+    },
+    {
+      "date": "2012-09-01",
+      "period": "2012 Q3",
+      "year": 2012,
+      "quarter": 3,
+      "value": 579051.0,
+      "qoq_change": 1.04
+    },
+    {
+      "date": "2012-12-01",
+      "period": "2012 Q4",
+      "year": 2012,
+      "quarter": 4,
+      "value": 578215.0,
+      "qoq_change": -0.14
+    },
+    {
+      "date": "2013-03-01",
+      "period": "2013 Q1",
+      "year": 2013,
+      "quarter": 1,
+      "value": 579749.0,
+      "qoq_change": 0.27
+    },
+    {
+      "date": "2013-06-01",
+      "period": "2013 Q2",
+      "year": 2013,
+      "quarter": 2,
+      "value": 583605.0,
+      "qoq_change": 0.67
+    },
+    {
+      "date": "2013-09-01",
+      "period": "2013 Q3",
+      "year": 2013,
+      "quarter": 3,
+      "value": 588076.0,
+      "qoq_change": 0.77
+    },
+    {
+      "date": "2013-12-01",
+      "period": "2013 Q4",
+      "year": 2013,
+      "quarter": 4,
+      "value": 591954.0,
+      "qoq_change": 0.66
+    },
+    {
+      "date": "2014-03-01",
+      "period": "2014 Q1",
+      "year": 2014,
+      "quarter": 1,
+      "value": 596696.0,
+      "qoq_change": 0.8
+    },
+    {
+      "date": "2014-06-01",
+      "period": "2014 Q2",
+      "year": 2014,
+      "quarter": 2,
+      "value": 602310.0,
+      "qoq_change": 0.94
+    },
+    {
+      "date": "2014-09-01",
+      "period": "2014 Q3",
+      "year": 2014,
+      "quarter": 3,
+      "value": 607213.0,
+      "qoq_change": 0.81
+    },
+    {
+      "date": "2014-12-01",
+      "period": "2014 Q4",
+      "year": 2014,
+      "quarter": 4,
+      "value": 611220.0,
+      "qoq_change": 0.66
+    },
+    {
+      "date": "2015-03-01",
+      "period": "2015 Q1",
+      "year": 2015,
+      "quarter": 1,
+      "value": 613076.0,
+      "qoq_change": 0.3
+    },
+    {
+      "date": "2015-06-01",
+      "period": "2015 Q2",
+      "year": 2015,
+      "quarter": 2,
+      "value": 615875.0,
+      "qoq_change": 0.46
+    },
+    {
+      "date": "2015-09-01",
+      "period": "2015 Q3",
+      "year": 2015,
+      "quarter": 3,
+      "value": 618263.0,
+      "qoq_change": 0.39
+    },
+    {
+      "date": "2015-12-01",
+      "period": "2015 Q4",
+      "year": 2015,
+      "quarter": 4,
+      "value": 621968.0,
+      "qoq_change": 0.6
+    },
+    {
+      "date": "2016-03-01",
+      "period": "2016 Q1",
+      "year": 2016,
+      "quarter": 1,
+      "value": 625099.0,
+      "qoq_change": 0.5
+    },
+    {
+      "date": "2016-06-01",
+      "period": "2016 Q2",
+      "year": 2016,
+      "quarter": 2,
+      "value": 629697.0,
+      "qoq_change": 0.74
+    },
+    {
+      "date": "2016-09-01",
+      "period": "2016 Q3",
+      "year": 2016,
+      "quarter": 3,
+      "value": 632477.0,
+      "qoq_change": 0.44
+    },
+    {
+      "date": "2016-12-01",
+      "period": "2016 Q4",
+      "year": 2016,
+      "quarter": 4,
+      "value": 636392.0,
+      "qoq_change": 0.62
+    },
+    {
+      "date": "2017-03-01",
+      "period": "2017 Q1",
+      "year": 2017,
+      "quarter": 1,
+      "value": 642463.0,
+      "qoq_change": 0.95
+    },
+    {
+      "date": "2017-06-01",
+      "period": "2017 Q2",
+      "year": 2017,
+      "quarter": 2,
+      "value": 647944.0,
+      "qoq_change": 0.85
+    },
+    {
+      "date": "2017-09-01",
+      "period": "2017 Q3",
+      "year": 2017,
+      "quarter": 3,
+      "value": 652329.0,
+      "qoq_change": 0.68
+    },
+    {
+      "date": "2017-12-01",
+      "period": "2017 Q4",
+      "year": 2017,
+      "quarter": 4,
+      "value": 657225.0,
+      "qoq_change": 0.75
+    },
+    {
+      "date": "2018-03-01",
+      "period": "2018 Q1",
+      "year": 2018,
+      "quarter": 1,
+      "value": 657741.0,
+      "qoq_change": 0.08
+    },
+    {
+      "date": "2018-06-01",
+      "period": "2018 Q2",
+      "year": 2018,
+      "quarter": 2,
+      "value": 659172.0,
+      "qoq_change": 0.22
+    },
+    {
+      "date": "2018-09-01",
+      "period": "2018 Q3",
+      "year": 2018,
+      "quarter": 3,
+      "value": 661262.0,
+      "qoq_change": 0.32
+    },
+    {
+      "date": "2018-12-01",
+      "period": "2018 Q4",
+      "year": 2018,
+      "quarter": 4,
+      "value": 662120.0,
+      "qoq_change": 0.13
+    },
+    {
+      "date": "2019-03-01",
+      "period": "2019 Q1",
+      "year": 2019,
+      "quarter": 1,
+      "value": 665456.0,
+      "qoq_change": 0.5
+    },
+    {
+      "date": "2019-06-01",
+      "period": "2019 Q2",
+      "year": 2019,
+      "quarter": 2,
+      "value": 666875.0,
+      "qoq_change": 0.21
+    },
+    {
+      "date": "2019-09-01",
+      "period": "2019 Q3",
+      "year": 2019,
+      "quarter": 3,
+      "value": 670547.0,
+      "qoq_change": 0.55
+    },
+    {
+      "date": "2019-12-01",
+      "period": "2019 Q4",
+      "year": 2019,
+      "quarter": 4,
+      "value": 670587.0,
+      "qoq_change": 0.01
+    },
+    {
+      "date": "2020-03-01",
+      "period": "2020 Q1",
+      "year": 2020,
+      "quarter": 1,
+      "value": 652180.0,
+      "qoq_change": -2.74
+    },
+    {
+      "date": "2020-06-01",
+      "period": "2020 Q2",
+      "year": 2020,
+      "quarter": 2,
+      "value": 522356.0,
+      "qoq_change": -19.91
+    },
+    {
+      "date": "2020-09-01",
+      "period": "2020 Q3",
+      "year": 2020,
+      "quarter": 3,
+      "value": 610972.0,
+      "qoq_change": 16.96
+    },
+    {
+      "date": "2020-12-01",
+      "period": "2020 Q4",
+      "year": 2020,
+      "quarter": 4,
+      "value": 619330.0,
+      "qoq_change": 1.37
+    },
+    {
+      "date": "2021-03-01",
+      "period": "2021 Q1",
+      "year": 2021,
+      "quarter": 1,
+      "value": 612665.0,
+      "qoq_change": -1.08
+    },
+    {
+      "date": "2021-06-01",
+      "period": "2021 Q2",
+      "year": 2021,
+      "quarter": 2,
+      "value": 655443.0,
+      "qoq_change": 6.98
+    },
+    {
+      "date": "2021-09-01",
+      "period": "2021 Q3",
+      "year": 2021,
+      "quarter": 3,
+      "value": 666498.0,
+      "qoq_change": 1.69
+    },
+    {
+      "date": "2021-12-01",
+      "period": "2021 Q4",
+      "year": 2021,
+      "quarter": 4,
+      "value": 675680.0,
+      "qoq_change": 1.38
+    },
+    {
+      "date": "2022-03-01",
+      "period": "2022 Q1",
+      "year": 2022,
+      "quarter": 1,
+      "value": 682527.0,
+      "qoq_change": 1.01
+    },
+    {
+      "date": "2022-06-01",
+      "period": "2022 Q2",
+      "year": 2022,
+      "quarter": 2,
+      "value": 686335.0,
+      "qoq_change": 0.56
+    },
+    {
+      "date": "2022-09-01",
+      "period": "2022 Q3",
+      "year": 2022,
+      "quarter": 3,
+      "value": 687029.0,
+      "qoq_change": 0.1
+    },
+    {
+      "date": "2022-12-01",
+      "period": "2022 Q4",
+      "year": 2022,
+      "quarter": 4,
+      "value": 688817.0,
+      "qoq_change": 0.26
+    },
+    {
+      "date": "2023-03-01",
+      "period": "2023 Q1",
+      "year": 2023,
+      "quarter": 1,
+      "value": 689206.0,
+      "qoq_change": 0.06
+    },
+    {
+      "date": "2023-06-01",
+      "period": "2023 Q2",
+      "year": 2023,
+      "quarter": 2,
+      "value": 689491.0,
+      "qoq_change": 0.04
+    },
+    {
+      "date": "2023-09-01",
+      "period": "2023 Q3",
+      "year": 2023,
+      "quarter": 3,
+      "value": 687839.0,
+      "qoq_change": -0.24
+    },
+    {
+      "date": "2023-12-01",
+      "period": "2023 Q4",
+      "year": 2023,
+      "quarter": 4,
+      "value": 685628.0,
+      "qoq_change": -0.32
+    },
+    {
+      "date": "2024-03-01",
+      "period": "2024 Q1",
+      "year": 2024,
+      "quarter": 1,
+      "value": 691198.0,
+      "qoq_change": 0.81
+    },
+    {
+      "date": "2024-06-01",
+      "period": "2024 Q2",
+      "year": 2024,
+      "quarter": 2,
+      "value": 695280.0,
+      "qoq_change": 0.59
+    },
+    {
+      "date": "2024-09-01",
+      "period": "2024 Q3",
+      "year": 2024,
+      "quarter": 3,
+      "value": 696853.0,
+      "qoq_change": 0.23
+    },
+    {
+      "date": "2024-12-01",
+      "period": "2024 Q4",
+      "year": 2024,
+      "quarter": 4,
+      "value": 698780.0,
+      "qoq_change": 0.28
+    },
+    {
+      "date": "2025-03-01",
+      "period": "2025 Q1",
+      "year": 2025,
+      "quarter": 1,
+      "value": 703435.0,
+      "qoq_change": 0.67
+    },
+    {
+      "date": "2025-06-01",
+      "period": "2025 Q2",
+      "year": 2025,
+      "quarter": 2,
+      "value": 704973.0,
+      "qoq_change": 0.22
+    },
+    {
+      "date": "2025-09-01",
+      "period": "2025 Q3",
+      "year": 2025,
+      "quarter": 3,
+      "value": 705603.0,
+      "qoq_change": 0.09
+    }
+  ],
+  "yoy": [
+    {
+      "date": "1956-03-01",
+      "period": "1956 Q1",
+      "value": 148955.0,
+      "yoy_change": 2.4
+    },
+    {
+      "date": "1956-06-01",
+      "period": "1956 Q2",
+      "value": 148835.0,
+      "yoy_change": 2.26
+    },
+    {
+      "date": "1956-09-01",
+      "period": "1956 Q3",
+      "value": 148665.0,
+      "yoy_change": 0.45
+    },
+    {
+      "date": "1956-12-01",
+      "period": "1956 Q4",
+      "value": 149607.0,
+      "yoy_change": 1.69
+    },
+    {
+      "date": "1957-03-01",
+      "period": "1957 Q1",
+      "value": 152331.0,
+      "yoy_change": 2.27
+    },
+    {
+      "date": "1957-06-01",
+      "period": "1957 Q2",
+      "value": 152285.0,
+      "yoy_change": 2.32
+    },
+    {
+      "date": "1957-09-01",
+      "period": "1957 Q3",
+      "value": 151340.0,
+      "yoy_change": 1.8
+    },
+    {
+      "date": "1957-12-01",
+      "period": "1957 Q4",
+      "value": 151857.0,
+      "yoy_change": 1.5
+    },
+    {
+      "date": "1958-03-01",
+      "period": "1958 Q1",
+      "value": 155117.0,
+      "yoy_change": 1.83
+    },
+    {
+      "date": "1958-06-01",
+      "period": "1958 Q2",
+      "value": 151257.0,
+      "yoy_change": -0.68
+    },
+    {
+      "date": "1958-09-01",
+      "period": "1958 Q3",
+      "value": 154551.0,
+      "yoy_change": 2.12
+    },
+    {
+      "date": "1958-12-01",
+      "period": "1958 Q4",
+      "value": 155042.0,
+      "yoy_change": 2.1
+    },
+    {
+      "date": "1959-03-01",
+      "period": "1959 Q1",
+      "value": 156009.0,
+      "yoy_change": 0.58
+    },
+    {
+      "date": "1959-06-01",
+      "period": "1959 Q2",
+      "value": 158487.0,
+      "yoy_change": 4.78
+    },
+    {
+      "date": "1959-09-01",
+      "period": "1959 Q3",
+      "value": 161850.0,
+      "yoy_change": 4.72
+    },
+    {
+      "date": "1959-12-01",
+      "period": "1959 Q4",
+      "value": 165941.0,
+      "yoy_change": 7.03
+    },
+    {
+      "date": "1960-03-01",
+      "period": "1960 Q1",
+      "value": 170121.0,
+      "yoy_change": 9.05
+    },
+    {
+      "date": "1960-06-01",
+      "period": "1960 Q2",
+      "value": 168948.0,
+      "yoy_change": 6.6
+    },
+    {
+      "date": "1960-09-01",
+      "period": "1960 Q3",
+      "value": 171442.0,
+      "yoy_change": 5.93
+    },
+    {
+      "date": "1960-12-01",
+      "period": "1960 Q4",
+      "value": 172382.0,
+      "yoy_change": 3.88
+    },
+    {
+      "date": "1961-03-01",
+      "period": "1961 Q1",
+      "value": 175276.0,
+      "yoy_change": 3.03
+    },
+    {
+      "date": "1961-06-01",
+      "period": "1961 Q2",
+      "value": 175974.0,
+      "yoy_change": 4.16
+    },
+    {
+      "date": "1961-09-01",
+      "period": "1961 Q3",
+      "value": 175126.0,
+      "yoy_change": 2.15
+    },
+    {
+      "date": "1961-12-01",
+      "period": "1961 Q4",
+      "value": 174768.0,
+      "yoy_change": 1.38
+    },
+    {
+      "date": "1962-03-01",
+      "period": "1962 Q1",
+      "value": 175568.0,
+      "yoy_change": 0.17
+    },
+    {
+      "date": "1962-06-01",
+      "period": "1962 Q2",
+      "value": 177216.0,
+      "yoy_change": 0.71
+    },
+    {
+      "date": "1962-09-01",
+      "period": "1962 Q3",
+      "value": 178265.0,
+      "yoy_change": 1.79
+    },
+    {
+      "date": "1962-12-01",
+      "period": "1962 Q4",
+      "value": 177632.0,
+      "yoy_change": 1.64
+    },
+    {
+      "date": "1963-03-01",
+      "period": "1963 Q1",
+      "value": 178493.0,
+      "yoy_change": 1.67
+    },
+    {
+      "date": "1963-06-01",
+      "period": "1963 Q2",
+      "value": 186171.0,
+      "yoy_change": 5.05
+    },
+    {
+      "date": "1963-09-01",
+      "period": "1963 Q3",
+      "value": 187001.0,
+      "yoy_change": 4.9
+    },
+    {
+      "date": "1963-12-01",
+      "period": "1963 Q4",
+      "value": 191230.0,
+      "yoy_change": 7.66
+    },
+    {
+      "date": "1964-03-01",
+      "period": "1964 Q1",
+      "value": 192542.0,
+      "yoy_change": 7.87
+    },
+    {
+      "date": "1964-06-01",
+      "period": "1964 Q2",
+      "value": 196109.0,
+      "yoy_change": 5.34
+    },
+    {
+      "date": "1964-09-01",
+      "period": "1964 Q3",
+      "value": 196783.0,
+      "yoy_change": 5.23
+    },
+    {
+      "date": "1964-12-01",
+      "period": "1964 Q4",
+      "value": 199854.0,
+      "yoy_change": 4.51
+    },
+    {
+      "date": "1965-03-01",
+      "period": "1965 Q1",
+      "value": 199276.0,
+      "yoy_change": 3.5
+    },
+    {
+      "date": "1965-06-01",
+      "period": "1965 Q2",
+      "value": 199419.0,
+      "yoy_change": 1.69
+    },
+    {
+      "date": "1965-09-01",
+      "period": "1965 Q3",
+      "value": 200957.0,
+      "yoy_change": 2.12
+    },
+    {
+      "date": "1965-12-01",
+      "period": "1965 Q4",
+      "value": 202259.0,
+      "yoy_change": 1.2
+    },
+    {
+      "date": "1966-03-01",
+      "period": "1966 Q1",
+      "value": 202588.0,
+      "yoy_change": 1.66
+    },
+    {
+      "date": "1966-06-01",
+      "period": "1966 Q2",
+      "value": 203766.0,
+      "yoy_change": 2.18
+    },
+    {
+      "date": "1966-09-01",
+      "period": "1966 Q3",
+      "value": 204428.0,
+      "yoy_change": 1.73
+    },
+    {
+      "date": "1966-12-01",
+      "period": "1966 Q4",
+      "value": 203611.0,
+      "yoy_change": 0.67
+    },
+    {
+      "date": "1967-03-01",
+      "period": "1967 Q1",
+      "value": 206330.0,
+      "yoy_change": 1.85
+    },
+    {
+      "date": "1967-06-01",
+      "period": "1967 Q2",
+      "value": 209227.0,
+      "yoy_change": 2.68
+    },
+    {
+      "date": "1967-09-01",
+      "period": "1967 Q3",
+      "value": 210092.0,
+      "yoy_change": 2.77
+    },
+    {
+      "date": "1967-12-01",
+      "period": "1967 Q4",
+      "value": 211166.0,
+      "yoy_change": 3.71
+    },
+    {
+      "date": "1968-03-01",
+      "period": "1968 Q1",
+      "value": 218997.0,
+      "yoy_change": 6.14
+    },
+    {
+      "date": "1968-06-01",
+      "period": "1968 Q2",
+      "value": 218081.0,
+      "yoy_change": 4.23
+    },
+    {
+      "date": "1968-09-01",
+      "period": "1968 Q3",
+      "value": 222325.0,
+      "yoy_change": 5.82
+    },
+    {
+      "date": "1968-12-01",
+      "period": "1968 Q4",
+      "value": 223067.0,
+      "yoy_change": 5.64
+    },
+    {
+      "date": "1969-03-01",
+      "period": "1969 Q1",
+      "value": 222725.0,
+      "yoy_change": 1.7
+    },
+    {
+      "date": "1969-06-01",
+      "period": "1969 Q2",
+      "value": 224353.0,
+      "yoy_change": 2.88
+    },
+    {
+      "date": "1969-09-01",
+      "period": "1969 Q3",
+      "value": 225601.0,
+      "yoy_change": 1.47
+    },
+    {
+      "date": "1969-12-01",
+      "period": "1969 Q4",
+      "value": 226619.0,
+      "yoy_change": 1.59
+    },
+    {
+      "date": "1970-03-01",
+      "period": "1970 Q1",
+      "value": 225223.0,
+      "yoy_change": 1.12
+    },
+    {
+      "date": "1970-06-01",
+      "period": "1970 Q2",
+      "value": 230605.0,
+      "yoy_change": 2.79
+    },
+    {
+      "date": "1970-09-01",
+      "period": "1970 Q3",
+      "value": 232800.0,
+      "yoy_change": 3.19
+    },
+    {
+      "date": "1970-12-01",
+      "period": "1970 Q4",
+      "value": 234954.0,
+      "yoy_change": 3.68
+    },
+    {
+      "date": "1971-03-01",
+      "period": "1971 Q1",
+      "value": 233843.0,
+      "yoy_change": 3.83
+    },
+    {
+      "date": "1971-06-01",
+      "period": "1971 Q2",
+      "value": 238030.0,
+      "yoy_change": 3.22
+    },
+    {
+      "date": "1971-09-01",
+      "period": "1971 Q3",
+      "value": 242078.0,
+      "yoy_change": 3.99
+    },
+    {
+      "date": "1971-12-01",
+      "period": "1971 Q4",
+      "value": 243009.0,
+      "yoy_change": 3.43
+    },
+    {
+      "date": "1972-03-01",
+      "period": "1972 Q1",
+      "value": 243540.0,
+      "yoy_change": 4.15
+    },
+    {
+      "date": "1972-06-01",
+      "period": "1972 Q2",
+      "value": 249966.0,
+      "yoy_change": 5.01
+    },
+    {
+      "date": "1972-09-01",
+      "period": "1972 Q3",
+      "value": 250633.0,
+      "yoy_change": 3.53
+    },
+    {
+      "date": "1972-12-01",
+      "period": "1972 Q4",
+      "value": 254524.0,
+      "yoy_change": 4.74
+    },
+    {
+      "date": "1973-03-01",
+      "period": "1973 Q1",
+      "value": 267015.0,
+      "yoy_change": 9.64
+    },
+    {
+      "date": "1973-06-01",
+      "period": "1973 Q2",
+      "value": 267521.0,
+      "yoy_change": 7.02
+    },
+    {
+      "date": "1973-09-01",
+      "period": "1973 Q3",
+      "value": 265025.0,
+      "yoy_change": 5.74
+    },
+    {
+      "date": "1973-12-01",
+      "period": "1973 Q4",
+      "value": 263989.0,
+      "yoy_change": 3.72
+    },
+    {
+      "date": "1974-03-01",
+      "period": "1974 Q1",
+      "value": 256670.0,
+      "yoy_change": -3.87
+    },
+    {
+      "date": "1974-06-01",
+      "period": "1974 Q2",
+      "value": 260347.0,
+      "yoy_change": -2.68
+    },
+    {
+      "date": "1974-09-01",
+      "period": "1974 Q3",
+      "value": 261890.0,
+      "yoy_change": -1.18
+    },
+    {
+      "date": "1974-12-01",
+      "period": "1974 Q4",
+      "value": 258066.0,
+      "yoy_change": -2.24
+    },
+    {
+      "date": "1975-03-01",
+      "period": "1975 Q1",
+      "value": 258116.0,
+      "yoy_change": 0.56
+    },
+    {
+      "date": "1975-06-01",
+      "period": "1975 Q2",
+      "value": 253935.0,
+      "yoy_change": -2.46
+    },
+    {
+      "date": "1975-09-01",
+      "period": "1975 Q3",
+      "value": 253168.0,
+      "yoy_change": -3.33
+    },
+    {
+      "date": "1975-12-01",
+      "period": "1975 Q4",
+      "value": 255985.0,
+      "yoy_change": -0.81
+    },
+    {
+      "date": "1976-03-01",
+      "period": "1976 Q1",
+      "value": 260268.0,
+      "yoy_change": 0.83
+    },
+    {
+      "date": "1976-06-01",
+      "period": "1976 Q2",
+      "value": 259911.0,
+      "yoy_change": 2.35
+    },
+    {
+      "date": "1976-09-01",
+      "period": "1976 Q3",
+      "value": 263132.0,
+      "yoy_change": 3.94
+    },
+    {
+      "date": "1976-12-01",
+      "period": "1976 Q4",
+      "value": 268662.0,
+      "yoy_change": 4.95
+    },
+    {
+      "date": "1977-03-01",
+      "period": "1977 Q1",
+      "value": 268833.0,
+      "yoy_change": 3.29
+    },
+    {
+      "date": "1977-06-01",
+      "period": "1977 Q2",
+      "value": 266987.0,
+      "yoy_change": 2.72
+    },
+    {
+      "date": "1977-09-01",
+      "period": "1977 Q3",
+      "value": 268717.0,
+      "yoy_change": 2.12
+    },
+    {
+      "date": "1977-12-01",
+      "period": "1977 Q4",
+      "value": 273279.0,
+      "yoy_change": 1.72
+    },
+    {
+      "date": "1978-03-01",
+      "period": "1978 Q1",
+      "value": 275841.0,
+      "yoy_change": 2.61
+    },
+    {
+      "date": "1978-06-01",
+      "period": "1978 Q2",
+      "value": 279001.0,
+      "yoy_change": 4.5
+    },
+    {
+      "date": "1978-09-01",
+      "period": "1978 Q3",
+      "value": 282797.0,
+      "yoy_change": 5.24
+    },
+    {
+      "date": "1978-12-01",
+      "period": "1978 Q4",
+      "value": 285314.0,
+      "yoy_change": 4.4
+    },
+    {
+      "date": "1979-03-01",
+      "period": "1979 Q1",
+      "value": 284457.0,
+      "yoy_change": 3.12
+    },
+    {
+      "date": "1979-06-01",
+      "period": "1979 Q2",
+      "value": 296841.0,
+      "yoy_change": 6.39
+    },
+    {
+      "date": "1979-09-01",
+      "period": "1979 Q3",
+      "value": 290297.0,
+      "yoy_change": 2.65
+    },
+    {
+      "date": "1979-12-01",
+      "period": "1979 Q4",
+      "value": 293265.0,
+      "yoy_change": 2.79
+    },
+    {
+      "date": "1980-03-01",
+      "period": "1980 Q1",
+      "value": 290378.0,
+      "yoy_change": 2.08
+    },
+    {
+      "date": "1980-06-01",
+      "period": "1980 Q2",
+      "value": 284713.0,
+      "yoy_change": -4.09
+    },
+    {
+      "date": "1980-09-01",
+      "period": "1980 Q3",
+      "value": 284402.0,
+      "yoy_change": -2.03
+    },
+    {
+      "date": "1980-12-01",
+      "period": "1980 Q4",
+      "value": 281496.0,
+      "yoy_change": -4.01
+    },
+    {
+      "date": "1981-03-01",
+      "period": "1981 Q1",
+      "value": 281257.0,
+      "yoy_change": -3.14
+    },
+    {
+      "date": "1981-06-01",
+      "period": "1981 Q2",
+      "value": 282155.0,
+      "yoy_change": -0.9
+    },
+    {
+      "date": "1981-09-01",
+      "period": "1981 Q3",
+      "value": 285437.0,
+      "yoy_change": 0.36
+    },
+    {
+      "date": "1981-12-01",
+      "period": "1981 Q4",
+      "value": 285814.0,
+      "yoy_change": 1.53
+    },
+    {
+      "date": "1982-03-01",
+      "period": "1982 Q1",
+      "value": 286275.0,
+      "yoy_change": 1.78
+    },
+    {
+      "date": "1982-06-01",
+      "period": "1982 Q2",
+      "value": 289232.0,
+      "yoy_change": 2.51
+    },
+    {
+      "date": "1982-09-01",
+      "period": "1982 Q3",
+      "value": 289852.0,
+      "yoy_change": 1.55
+    },
+    {
+      "date": "1982-12-01",
+      "period": "1982 Q4",
+      "value": 291832.0,
+      "yoy_change": 2.11
+    },
+    {
+      "date": "1983-03-01",
+      "period": "1983 Q1",
+      "value": 297563.0,
+      "yoy_change": 3.94
+    },
+    {
+      "date": "1983-06-01",
+      "period": "1983 Q2",
+      "value": 299623.0,
+      "yoy_change": 3.59
+    },
+    {
+      "date": "1983-09-01",
+      "period": "1983 Q3",
+      "value": 303085.0,
+      "yoy_change": 4.57
+    },
+    {
+      "date": "1983-12-01",
+      "period": "1983 Q4",
+      "value": 305361.0,
+      "yoy_change": 4.64
+    },
+    {
+      "date": "1984-03-01",
+      "period": "1984 Q1",
+      "value": 307964.0,
+      "yoy_change": 3.5
+    },
+    {
+      "date": "1984-06-01",
+      "period": "1984 Q2",
+      "value": 304892.0,
+      "yoy_change": 1.76
+    },
+    {
+      "date": "1984-09-01",
+      "period": "1984 Q3",
+      "value": 307122.0,
+      "yoy_change": 1.33
+    },
+    {
+      "date": "1984-12-01",
+      "period": "1984 Q4",
+      "value": 312697.0,
+      "yoy_change": 2.4
+    },
+    {
+      "date": "1985-03-01",
+      "period": "1985 Q1",
+      "value": 315753.0,
+      "yoy_change": 2.53
+    },
+    {
+      "date": "1985-06-01",
+      "period": "1985 Q2",
+      "value": 322451.0,
+      "yoy_change": 5.76
+    },
+    {
+      "date": "1985-09-01",
+      "period": "1985 Q3",
+      "value": 322392.0,
+      "yoy_change": 4.97
+    },
+    {
+      "date": "1985-12-01",
+      "period": "1985 Q4",
+      "value": 322604.0,
+      "yoy_change": 3.17
+    },
+    {
+      "date": "1986-03-01",
+      "period": "1986 Q1",
+      "value": 325968.0,
+      "yoy_change": 3.24
+    },
+    {
+      "date": "1986-06-01",
+      "period": "1986 Q2",
+      "value": 328872.0,
+      "yoy_change": 1.99
+    },
+    {
+      "date": "1986-09-01",
+      "period": "1986 Q3",
+      "value": 330966.0,
+      "yoy_change": 2.66
+    },
+    {
+      "date": "1986-12-01",
+      "period": "1986 Q4",
+      "value": 337367.0,
+      "yoy_change": 4.58
+    },
+    {
+      "date": "1987-03-01",
+      "period": "1987 Q1",
+      "value": 339754.0,
+      "yoy_change": 4.23
+    },
+    {
+      "date": "1987-06-01",
+      "period": "1987 Q2",
+      "value": 344795.0,
+      "yoy_change": 4.84
+    },
+    {
+      "date": "1987-09-01",
+      "period": "1987 Q3",
+      "value": 353365.0,
+      "yoy_change": 6.77
+    },
+    {
+      "date": "1987-12-01",
+      "period": "1987 Q4",
+      "value": 357439.0,
+      "yoy_change": 5.95
+    },
+    {
+      "date": "1988-03-01",
+      "period": "1988 Q1",
+      "value": 363267.0,
+      "yoy_change": 6.92
+    },
+    {
+      "date": "1988-06-01",
+      "period": "1988 Q2",
+      "value": 365209.0,
+      "yoy_change": 5.92
+    },
+    {
+      "date": "1988-09-01",
+      "period": "1988 Q3",
+      "value": 369774.0,
+      "yoy_change": 4.64
+    },
+    {
+      "date": "1988-12-01",
+      "period": "1988 Q4",
+      "value": 372752.0,
+      "yoy_change": 4.28
+    },
+    {
+      "date": "1989-03-01",
+      "period": "1989 Q1",
+      "value": 374612.0,
+      "yoy_change": 3.12
+    },
+    {
+      "date": "1989-06-01",
+      "period": "1989 Q2",
+      "value": 376951.0,
+      "yoy_change": 3.22
+    },
+    {
+      "date": "1989-09-01",
+      "period": "1989 Q3",
+      "value": 377573.0,
+      "yoy_change": 2.11
+    },
+    {
+      "date": "1989-12-01",
+      "period": "1989 Q4",
+      "value": 377508.0,
+      "yoy_change": 1.28
+    },
+    {
+      "date": "1990-03-01",
+      "period": "1990 Q1",
+      "value": 379458.0,
+      "yoy_change": 1.29
+    },
+    {
+      "date": "1990-06-01",
+      "period": "1990 Q2",
+      "value": 381997.0,
+      "yoy_change": 1.34
+    },
+    {
+      "date": "1990-09-01",
+      "period": "1990 Q3",
+      "value": 377831.0,
+      "yoy_change": 0.07
+    },
+    {
+      "date": "1990-12-01",
+      "period": "1990 Q4",
+      "value": 375916.0,
+      "yoy_change": -0.42
+    },
+    {
+      "date": "1991-03-01",
+      "period": "1991 Q1",
+      "value": 374060.0,
+      "yoy_change": -1.42
+    },
+    {
+      "date": "1991-06-01",
+      "period": "1991 Q2",
+      "value": 373608.0,
+      "yoy_change": -2.2
+    },
+    {
+      "date": "1991-09-01",
+      "period": "1991 Q3",
+      "value": 372878.0,
+      "yoy_change": -1.31
+    },
+    {
+      "date": "1991-12-01",
+      "period": "1991 Q4",
+      "value": 373357.0,
+      "yoy_change": -0.68
+    },
+    {
+      "date": "1992-03-01",
+      "period": "1992 Q1",
+      "value": 373317.0,
+      "yoy_change": -0.2
+    },
+    {
+      "date": "1992-06-01",
+      "period": "1992 Q2",
+      "value": 372751.0,
+      "yoy_change": -0.23
+    },
+    {
+      "date": "1992-09-01",
+      "period": "1992 Q3",
+      "value": 374537.0,
+      "yoy_change": 0.44
+    },
+    {
+      "date": "1992-12-01",
+      "period": "1992 Q4",
+      "value": 377418.0,
+      "yoy_change": 1.09
+    },
+    {
+      "date": "1993-03-01",
+      "period": "1993 Q1",
+      "value": 379370.0,
+      "yoy_change": 1.62
+    },
+    {
+      "date": "1993-06-01",
+      "period": "1993 Q2",
+      "value": 381045.0,
+      "yoy_change": 2.23
+    },
+    {
+      "date": "1993-09-01",
+      "period": "1993 Q3",
+      "value": 384524.0,
+      "yoy_change": 2.67
+    },
+    {
+      "date": "1993-12-01",
+      "period": "1993 Q4",
+      "value": 387143.0,
+      "yoy_change": 2.58
+    },
+    {
+      "date": "1994-03-01",
+      "period": "1994 Q1",
+      "value": 391026.0,
+      "yoy_change": 3.07
+    },
+    {
+      "date": "1994-06-01",
+      "period": "1994 Q2",
+      "value": 394588.0,
+      "yoy_change": 3.55
+    },
+    {
+      "date": "1994-09-01",
+      "period": "1994 Q3",
+      "value": 398566.0,
+      "yoy_change": 3.65
+    },
+    {
+      "date": "1994-12-01",
+      "period": "1994 Q4",
+      "value": 400279.0,
+      "yoy_change": 3.39
+    },
+    {
+      "date": "1995-03-01",
+      "period": "1995 Q1",
+      "value": 402390.0,
+      "yoy_change": 2.91
+    },
+    {
+      "date": "1995-06-01",
+      "period": "1995 Q2",
+      "value": 403259.0,
+      "yoy_change": 2.2
+    },
+    {
+      "date": "1995-09-01",
+      "period": "1995 Q3",
+      "value": 407795.0,
+      "yoy_change": 2.32
+    },
+    {
+      "date": "1995-12-01",
+      "period": "1995 Q4",
+      "value": 409132.0,
+      "yoy_change": 2.21
+    },
+    {
+      "date": "1996-03-01",
+      "period": "1996 Q1",
+      "value": 412022.0,
+      "yoy_change": 2.39
+    },
+    {
+      "date": "1996-06-01",
+      "period": "1996 Q2",
+      "value": 413325.0,
+      "yoy_change": 2.5
+    },
+    {
+      "date": "1996-09-01",
+      "period": "1996 Q3",
+      "value": 417019.0,
+      "yoy_change": 2.26
+    },
+    {
+      "date": "1996-12-01",
+      "period": "1996 Q4",
+      "value": 422639.0,
+      "yoy_change": 3.3
+    },
+    {
+      "date": "1997-03-01",
+      "period": "1997 Q1",
+      "value": 429418.0,
+      "yoy_change": 4.22
+    },
+    {
+      "date": "1997-06-01",
+      "period": "1997 Q2",
+      "value": 434199.0,
+      "yoy_change": 5.05
+    },
+    {
+      "date": "1997-09-01",
+      "period": "1997 Q3",
+      "value": 438100.0,
+      "yoy_change": 5.06
+    },
+    {
+      "date": "1997-12-01",
+      "period": "1997 Q4",
+      "value": 444540.0,
+      "yoy_change": 5.18
+    },
+    {
+      "date": "1998-03-01",
+      "period": "1998 Q1",
+      "value": 447712.0,
+      "yoy_change": 4.26
+    },
+    {
+      "date": "1998-06-01",
+      "period": "1998 Q2",
+      "value": 450292.0,
+      "yoy_change": 3.71
+    },
+    {
+      "date": "1998-09-01",
+      "period": "1998 Q3",
+      "value": 451005.0,
+      "yoy_change": 2.95
+    },
+    {
+      "date": "1998-12-01",
+      "period": "1998 Q4",
+      "value": 453937.0,
+      "yoy_change": 2.11
+    },
+    {
+      "date": "1999-03-01",
+      "period": "1999 Q1",
+      "value": 457044.0,
+      "yoy_change": 2.08
+    },
+    {
+      "date": "1999-06-01",
+      "period": "1999 Q2",
+      "value": 458710.0,
+      "yoy_change": 1.87
+    },
+    {
+      "date": "1999-09-01",
+      "period": "1999 Q3",
+      "value": 466387.0,
+      "yoy_change": 3.41
+    },
+    {
+      "date": "1999-12-01",
+      "period": "1999 Q4",
+      "value": 473892.0,
+      "yoy_change": 4.4
+    },
+    {
+      "date": "2000-03-01",
+      "period": "2000 Q1",
+      "value": 480212.0,
+      "yoy_change": 5.07
+    },
+    {
+      "date": "2000-06-01",
+      "period": "2000 Q2",
+      "value": 483672.0,
+      "yoy_change": 5.44
+    },
+    {
+      "date": "2000-09-01",
+      "period": "2000 Q3",
+      "value": 486617.0,
+      "yoy_change": 4.34
+    },
+    {
+      "date": "2000-12-01",
+      "period": "2000 Q4",
+      "value": 489506.0,
+      "yoy_change": 3.29
+    },
+    {
+      "date": "2001-03-01",
+      "period": "2001 Q1",
+      "value": 493575.0,
+      "yoy_change": 2.78
+    },
+    {
+      "date": "2001-06-01",
+      "period": "2001 Q2",
+      "value": 495602.0,
+      "yoy_change": 2.47
+    },
+    {
+      "date": "2001-09-01",
+      "period": "2001 Q3",
+      "value": 497938.0,
+      "yoy_change": 2.33
+    },
+    {
+      "date": "2001-12-01",
+      "period": "2001 Q4",
+      "value": 499278.0,
+      "yoy_change": 2.0
+    },
+    {
+      "date": "2002-03-01",
+      "period": "2002 Q1",
+      "value": 500794.0,
+      "yoy_change": 1.46
+    },
+    {
+      "date": "2002-06-01",
+      "period": "2002 Q2",
+      "value": 503433.0,
+      "yoy_change": 1.58
+    },
+    {
+      "date": "2002-09-01",
+      "period": "2002 Q3",
+      "value": 506386.0,
+      "yoy_change": 1.7
+    },
+    {
+      "date": "2002-12-01",
+      "period": "2002 Q4",
+      "value": 509728.0,
+      "yoy_change": 2.09
+    },
+    {
+      "date": "2003-03-01",
+      "period": "2003 Q1",
+      "value": 514031.0,
+      "yoy_change": 2.64
+    },
+    {
+      "date": "2003-06-01",
+      "period": "2003 Q2",
+      "value": 518802.0,
+      "yoy_change": 3.05
+    },
+    {
+      "date": "2003-09-01",
+      "period": "2003 Q3",
+      "value": 524213.0,
+      "yoy_change": 3.52
+    },
+    {
+      "date": "2003-12-01",
+      "period": "2003 Q4",
+      "value": 528320.0,
+      "yoy_change": 3.65
+    },
+    {
+      "date": "2004-03-01",
+      "period": "2004 Q1",
+      "value": 529996.0,
+      "yoy_change": 3.11
+    },
+    {
+      "date": "2004-06-01",
+      "period": "2004 Q2",
+      "value": 532543.0,
+      "yoy_change": 2.65
+    },
+    {
+      "date": "2004-09-01",
+      "period": "2004 Q3",
+      "value": 534447.0,
+      "yoy_change": 1.95
+    },
+    {
+      "date": "2004-12-01",
+      "period": "2004 Q4",
+      "value": 536886.0,
+      "yoy_change": 1.62
+    },
+    {
+      "date": "2005-03-01",
+      "period": "2005 Q1",
+      "value": 541028.0,
+      "yoy_change": 2.08
+    },
+    {
+      "date": "2005-06-01",
+      "period": "2005 Q2",
+      "value": 545530.0,
+      "yoy_change": 2.44
+    },
+    {
+      "date": "2005-09-01",
+      "period": "2005 Q3",
+      "value": 550552.0,
+      "yoy_change": 3.01
+    },
+    {
+      "date": "2005-12-01",
+      "period": "2005 Q4",
+      "value": 556311.0,
+      "yoy_change": 3.62
+    },
+    {
+      "date": "2006-03-01",
+      "period": "2006 Q1",
+      "value": 558314.0,
+      "yoy_change": 3.2
+    },
+    {
+      "date": "2006-06-01",
+      "period": "2006 Q2",
+      "value": 559795.0,
+      "yoy_change": 2.61
+    },
+    {
+      "date": "2006-09-01",
+      "period": "2006 Q3",
+      "value": 560675.0,
+      "yoy_change": 1.84
+    },
+    {
+      "date": "2006-12-01",
+      "period": "2006 Q4",
+      "value": 562669.0,
+      "yoy_change": 1.14
+    },
+    {
+      "date": "2007-03-01",
+      "period": "2007 Q1",
+      "value": 568845.0,
+      "yoy_change": 1.89
+    },
+    {
+      "date": "2007-06-01",
+      "period": "2007 Q2",
+      "value": 574194.0,
+      "yoy_change": 2.57
+    },
+    {
+      "date": "2007-09-01",
+      "period": "2007 Q3",
+      "value": 579605.0,
+      "yoy_change": 3.38
+    },
+    {
+      "date": "2007-12-01",
+      "period": "2007 Q4",
+      "value": 584504.0,
+      "yoy_change": 3.88
+    },
+    {
+      "date": "2008-03-01",
+      "period": "2008 Q1",
+      "value": 586690.0,
+      "yoy_change": 3.14
+    },
+    {
+      "date": "2008-06-01",
+      "period": "2008 Q2",
+      "value": 583541.0,
+      "yoy_change": 1.63
+    },
+    {
+      "date": "2008-09-01",
+      "period": "2008 Q3",
+      "value": 573961.0,
+      "yoy_change": -0.97
+    },
+    {
+      "date": "2008-12-01",
+      "period": "2008 Q4",
+      "value": 561816.0,
+      "yoy_change": -3.88
+    },
+    {
+      "date": "2009-03-01",
+      "period": "2009 Q1",
+      "value": 550451.0,
+      "yoy_change": -6.18
+    },
+    {
+      "date": "2009-06-01",
+      "period": "2009 Q2",
+      "value": 548859.0,
+      "yoy_change": -5.94
+    },
+    {
+      "date": "2009-09-01",
+      "period": "2009 Q3",
+      "value": 549540.0,
+      "yoy_change": -4.25
+    },
+    {
+      "date": "2009-12-01",
+      "period": "2009 Q4",
+      "value": 551372.0,
+      "yoy_change": -1.86
+    },
+    {
+      "date": "2010-03-01",
+      "period": "2010 Q1",
+      "value": 556002.0,
+      "yoy_change": 1.01
+    },
+    {
+      "date": "2010-06-01",
+      "period": "2010 Q2",
+      "value": 562353.0,
+      "yoy_change": 2.46
+    },
+    {
+      "date": "2010-09-01",
+      "period": "2010 Q3",
+      "value": 565659.0,
+      "yoy_change": 2.93
+    },
+    {
+      "date": "2010-12-01",
+      "period": "2010 Q4",
+      "value": 565945.0,
+      "yoy_change": 2.64
+    },
+    {
+      "date": "2011-03-01",
+      "period": "2011 Q1",
+      "value": 566873.0,
+      "yoy_change": 1.96
+    },
+    {
+      "date": "2011-06-01",
+      "period": "2011 Q2",
+      "value": 566601.0,
+      "yoy_change": 0.76
+    },
+    {
+      "date": "2011-09-01",
+      "period": "2011 Q3",
+      "value": 567586.0,
+      "yoy_change": 0.34
+    },
+    {
+      "date": "2011-12-01",
+      "period": "2011 Q4",
+      "value": 568056.0,
+      "yoy_change": 0.37
+    },
+    {
+      "date": "2012-03-01",
+      "period": "2012 Q1",
+      "value": 573416.0,
+      "yoy_change": 1.15
+    },
+    {
+      "date": "2012-06-01",
+      "period": "2012 Q2",
+      "value": 573112.0,
+      "yoy_change": 1.15
+    },
+    {
+      "date": "2012-09-01",
+      "period": "2012 Q3",
+      "value": 579051.0,
+      "yoy_change": 2.02
+    },
+    {
+      "date": "2012-12-01",
+      "period": "2012 Q4",
+      "value": 578215.0,
+      "yoy_change": 1.79
+    },
+    {
+      "date": "2013-03-01",
+      "period": "2013 Q1",
+      "value": 579749.0,
+      "yoy_change": 1.1
+    },
+    {
+      "date": "2013-06-01",
+      "period": "2013 Q2",
+      "value": 583605.0,
+      "yoy_change": 1.83
+    },
+    {
+      "date": "2013-09-01",
+      "period": "2013 Q3",
+      "value": 588076.0,
+      "yoy_change": 1.56
+    },
+    {
+      "date": "2013-12-01",
+      "period": "2013 Q4",
+      "value": 591954.0,
+      "yoy_change": 2.38
+    },
+    {
+      "date": "2014-03-01",
+      "period": "2014 Q1",
+      "value": 596696.0,
+      "yoy_change": 2.92
+    },
+    {
+      "date": "2014-06-01",
+      "period": "2014 Q2",
+      "value": 602310.0,
+      "yoy_change": 3.21
+    },
+    {
+      "date": "2014-09-01",
+      "period": "2014 Q3",
+      "value": 607213.0,
+      "yoy_change": 3.25
+    },
+    {
+      "date": "2014-12-01",
+      "period": "2014 Q4",
+      "value": 611220.0,
+      "yoy_change": 3.25
+    },
+    {
+      "date": "2015-03-01",
+      "period": "2015 Q1",
+      "value": 613076.0,
+      "yoy_change": 2.75
+    },
+    {
+      "date": "2015-06-01",
+      "period": "2015 Q2",
+      "value": 615875.0,
+      "yoy_change": 2.25
+    },
+    {
+      "date": "2015-09-01",
+      "period": "2015 Q3",
+      "value": 618263.0,
+      "yoy_change": 1.82
+    },
+    {
+      "date": "2015-12-01",
+      "period": "2015 Q4",
+      "value": 621968.0,
+      "yoy_change": 1.76
+    },
+    {
+      "date": "2016-03-01",
+      "period": "2016 Q1",
+      "value": 625099.0,
+      "yoy_change": 1.96
+    },
+    {
+      "date": "2016-06-01",
+      "period": "2016 Q2",
+      "value": 629697.0,
+      "yoy_change": 2.24
+    },
+    {
+      "date": "2016-09-01",
+      "period": "2016 Q3",
+      "value": 632477.0,
+      "yoy_change": 2.3
+    },
+    {
+      "date": "2016-12-01",
+      "period": "2016 Q4",
+      "value": 636392.0,
+      "yoy_change": 2.32
+    },
+    {
+      "date": "2017-03-01",
+      "period": "2017 Q1",
+      "value": 642463.0,
+      "yoy_change": 2.78
+    },
+    {
+      "date": "2017-06-01",
+      "period": "2017 Q2",
+      "value": 647944.0,
+      "yoy_change": 2.9
+    },
+    {
+      "date": "2017-09-01",
+      "period": "2017 Q3",
+      "value": 652329.0,
+      "yoy_change": 3.14
+    },
+    {
+      "date": "2017-12-01",
+      "period": "2017 Q4",
+      "value": 657225.0,
+      "yoy_change": 3.27
+    },
+    {
+      "date": "2018-03-01",
+      "period": "2018 Q1",
+      "value": 657741.0,
+      "yoy_change": 2.38
+    },
+    {
+      "date": "2018-06-01",
+      "period": "2018 Q2",
+      "value": 659172.0,
+      "yoy_change": 1.73
+    },
+    {
+      "date": "2018-09-01",
+      "period": "2018 Q3",
+      "value": 661262.0,
+      "yoy_change": 1.37
+    },
+    {
+      "date": "2018-12-01",
+      "period": "2018 Q4",
+      "value": 662120.0,
+      "yoy_change": 0.74
+    },
+    {
+      "date": "2019-03-01",
+      "period": "2019 Q1",
+      "value": 665456.0,
+      "yoy_change": 1.17
+    },
+    {
+      "date": "2019-06-01",
+      "period": "2019 Q2",
+      "value": 666875.0,
+      "yoy_change": 1.17
+    },
+    {
+      "date": "2019-09-01",
+      "period": "2019 Q3",
+      "value": 670547.0,
+      "yoy_change": 1.4
+    },
+    {
+      "date": "2019-12-01",
+      "period": "2019 Q4",
+      "value": 670587.0,
+      "yoy_change": 1.28
+    },
+    {
+      "date": "2020-03-01",
+      "period": "2020 Q1",
+      "value": 652180.0,
+      "yoy_change": -2.0
+    },
+    {
+      "date": "2020-06-01",
+      "period": "2020 Q2",
+      "value": 522356.0,
+      "yoy_change": -21.67
+    },
+    {
+      "date": "2020-09-01",
+      "period": "2020 Q3",
+      "value": 610972.0,
+      "yoy_change": -8.88
+    },
+    {
+      "date": "2020-12-01",
+      "period": "2020 Q4",
+      "value": 619330.0,
+      "yoy_change": -7.64
+    },
+    {
+      "date": "2021-03-01",
+      "period": "2021 Q1",
+      "value": 612665.0,
+      "yoy_change": -6.06
+    },
+    {
+      "date": "2021-06-01",
+      "period": "2021 Q2",
+      "value": 655443.0,
+      "yoy_change": 25.48
+    },
+    {
+      "date": "2021-09-01",
+      "period": "2021 Q3",
+      "value": 666498.0,
+      "yoy_change": 9.09
+    },
+    {
+      "date": "2021-12-01",
+      "period": "2021 Q4",
+      "value": 675680.0,
+      "yoy_change": 9.1
+    },
+    {
+      "date": "2022-03-01",
+      "period": "2022 Q1",
+      "value": 682527.0,
+      "yoy_change": 11.4
+    },
+    {
+      "date": "2022-06-01",
+      "period": "2022 Q2",
+      "value": 686335.0,
+      "yoy_change": 4.71
+    },
+    {
+      "date": "2022-09-01",
+      "period": "2022 Q3",
+      "value": 687029.0,
+      "yoy_change": 3.08
+    },
+    {
+      "date": "2022-12-01",
+      "period": "2022 Q4",
+      "value": 688817.0,
+      "yoy_change": 1.94
+    },
+    {
+      "date": "2023-03-01",
+      "period": "2023 Q1",
+      "value": 689206.0,
+      "yoy_change": 0.98
+    },
+    {
+      "date": "2023-06-01",
+      "period": "2023 Q2",
+      "value": 689491.0,
+      "yoy_change": 0.46
+    },
+    {
+      "date": "2023-09-01",
+      "period": "2023 Q3",
+      "value": 687839.0,
+      "yoy_change": 0.12
+    },
+    {
+      "date": "2023-12-01",
+      "period": "2023 Q4",
+      "value": 685628.0,
+      "yoy_change": -0.46
+    },
+    {
+      "date": "2024-03-01",
+      "period": "2024 Q1",
+      "value": 691198.0,
+      "yoy_change": 0.29
+    },
+    {
+      "date": "2024-06-01",
+      "period": "2024 Q2",
+      "value": 695280.0,
+      "yoy_change": 0.84
+    },
+    {
+      "date": "2024-09-01",
+      "period": "2024 Q3",
+      "value": 696853.0,
+      "yoy_change": 1.31
+    },
+    {
+      "date": "2024-12-01",
+      "period": "2024 Q4",
+      "value": 698780.0,
+      "yoy_change": 1.92
+    },
+    {
+      "date": "2025-03-01",
+      "period": "2025 Q1",
+      "value": 703435.0,
+      "yoy_change": 1.77
+    },
+    {
+      "date": "2025-06-01",
+      "period": "2025 Q2",
+      "value": 704973.0,
+      "yoy_change": 1.39
+    },
+    {
+      "date": "2025-09-01",
+      "period": "2025 Q3",
+      "value": 705603.0,
+      "yoy_change": 1.26
+    }
+  ],
+  "quarterly_data": [
+    {
+      "date": "1955-03-01",
+      "value": 145457.0,
+      "period": "1955 Q1",
+      "year": 1955,
+      "quarter": 1
+    },
+    {
+      "date": "1955-06-01",
+      "value": 145551.0,
+      "period": "1955 Q2",
+      "year": 1955,
+      "quarter": 2
+    },
+    {
+      "date": "1955-09-01",
+      "value": 147995.0,
+      "period": "1955 Q3",
+      "year": 1955,
+      "quarter": 3
+    },
+    {
+      "date": "1955-12-01",
+      "value": 147119.0,
+      "period": "1955 Q4",
+      "year": 1955,
+      "quarter": 4
+    },
+    {
+      "date": "1956-03-01",
+      "value": 148955.0,
+      "period": "1956 Q1",
+      "year": 1956,
+      "quarter": 1
+    },
+    {
+      "date": "1956-06-01",
+      "value": 148835.0,
+      "period": "1956 Q2",
+      "year": 1956,
+      "quarter": 2
+    },
+    {
+      "date": "1956-09-01",
+      "value": 148665.0,
+      "period": "1956 Q3",
+      "year": 1956,
+      "quarter": 3
+    },
+    {
+      "date": "1956-12-01",
+      "value": 149607.0,
+      "period": "1956 Q4",
+      "year": 1956,
+      "quarter": 4
+    },
+    {
+      "date": "1957-03-01",
+      "value": 152331.0,
+      "period": "1957 Q1",
+      "year": 1957,
+      "quarter": 1
+    },
+    {
+      "date": "1957-06-01",
+      "value": 152285.0,
+      "period": "1957 Q2",
+      "year": 1957,
+      "quarter": 2
+    },
+    {
+      "date": "1957-09-01",
+      "value": 151340.0,
+      "period": "1957 Q3",
+      "year": 1957,
+      "quarter": 3
+    },
+    {
+      "date": "1957-12-01",
+      "value": 151857.0,
+      "period": "1957 Q4",
+      "year": 1957,
+      "quarter": 4
+    },
+    {
+      "date": "1958-03-01",
+      "value": 155117.0,
+      "period": "1958 Q1",
+      "year": 1958,
+      "quarter": 1
+    },
+    {
+      "date": "1958-06-01",
+      "value": 151257.0,
+      "period": "1958 Q2",
+      "year": 1958,
+      "quarter": 2
+    },
+    {
+      "date": "1958-09-01",
+      "value": 154551.0,
+      "period": "1958 Q3",
+      "year": 1958,
+      "quarter": 3
+    },
+    {
+      "date": "1958-12-01",
+      "value": 155042.0,
+      "period": "1958 Q4",
+      "year": 1958,
+      "quarter": 4
+    },
+    {
+      "date": "1959-03-01",
+      "value": 156009.0,
+      "period": "1959 Q1",
+      "year": 1959,
+      "quarter": 1
+    },
+    {
+      "date": "1959-06-01",
+      "value": 158487.0,
+      "period": "1959 Q2",
+      "year": 1959,
+      "quarter": 2
+    },
+    {
+      "date": "1959-09-01",
+      "value": 161850.0,
+      "period": "1959 Q3",
+      "year": 1959,
+      "quarter": 3
+    },
+    {
+      "date": "1959-12-01",
+      "value": 165941.0,
+      "period": "1959 Q4",
+      "year": 1959,
+      "quarter": 4
+    },
+    {
+      "date": "1960-03-01",
+      "value": 170121.0,
+      "period": "1960 Q1",
+      "year": 1960,
+      "quarter": 1
+    },
+    {
+      "date": "1960-06-01",
+      "value": 168948.0,
+      "period": "1960 Q2",
+      "year": 1960,
+      "quarter": 2
+    },
+    {
+      "date": "1960-09-01",
+      "value": 171442.0,
+      "period": "1960 Q3",
+      "year": 1960,
+      "quarter": 3
+    },
+    {
+      "date": "1960-12-01",
+      "value": 172382.0,
+      "period": "1960 Q4",
+      "year": 1960,
+      "quarter": 4
+    },
+    {
+      "date": "1961-03-01",
+      "value": 175276.0,
+      "period": "1961 Q1",
+      "year": 1961,
+      "quarter": 1
+    },
+    {
+      "date": "1961-06-01",
+      "value": 175974.0,
+      "period": "1961 Q2",
+      "year": 1961,
+      "quarter": 2
+    },
+    {
+      "date": "1961-09-01",
+      "value": 175126.0,
+      "period": "1961 Q3",
+      "year": 1961,
+      "quarter": 3
+    },
+    {
+      "date": "1961-12-01",
+      "value": 174768.0,
+      "period": "1961 Q4",
+      "year": 1961,
+      "quarter": 4
+    },
+    {
+      "date": "1962-03-01",
+      "value": 175568.0,
+      "period": "1962 Q1",
+      "year": 1962,
+      "quarter": 1
+    },
+    {
+      "date": "1962-06-01",
+      "value": 177216.0,
+      "period": "1962 Q2",
+      "year": 1962,
+      "quarter": 2
+    },
+    {
+      "date": "1962-09-01",
+      "value": 178265.0,
+      "period": "1962 Q3",
+      "year": 1962,
+      "quarter": 3
+    },
+    {
+      "date": "1962-12-01",
+      "value": 177632.0,
+      "period": "1962 Q4",
+      "year": 1962,
+      "quarter": 4
+    },
+    {
+      "date": "1963-03-01",
+      "value": 178493.0,
+      "period": "1963 Q1",
+      "year": 1963,
+      "quarter": 1
+    },
+    {
+      "date": "1963-06-01",
+      "value": 186171.0,
+      "period": "1963 Q2",
+      "year": 1963,
+      "quarter": 2
+    },
+    {
+      "date": "1963-09-01",
+      "value": 187001.0,
+      "period": "1963 Q3",
+      "year": 1963,
+      "quarter": 3
+    },
+    {
+      "date": "1963-12-01",
+      "value": 191230.0,
+      "period": "1963 Q4",
+      "year": 1963,
+      "quarter": 4
+    },
+    {
+      "date": "1964-03-01",
+      "value": 192542.0,
+      "period": "1964 Q1",
+      "year": 1964,
+      "quarter": 1
+    },
+    {
+      "date": "1964-06-01",
+      "value": 196109.0,
+      "period": "1964 Q2",
+      "year": 1964,
+      "quarter": 2
+    },
+    {
+      "date": "1964-09-01",
+      "value": 196783.0,
+      "period": "1964 Q3",
+      "year": 1964,
+      "quarter": 3
+    },
+    {
+      "date": "1964-12-01",
+      "value": 199854.0,
+      "period": "1964 Q4",
+      "year": 1964,
+      "quarter": 4
+    },
+    {
+      "date": "1965-03-01",
+      "value": 199276.0,
+      "period": "1965 Q1",
+      "year": 1965,
+      "quarter": 1
+    },
+    {
+      "date": "1965-06-01",
+      "value": 199419.0,
+      "period": "1965 Q2",
+      "year": 1965,
+      "quarter": 2
+    },
+    {
+      "date": "1965-09-01",
+      "value": 200957.0,
+      "period": "1965 Q3",
+      "year": 1965,
+      "quarter": 3
+    },
+    {
+      "date": "1965-12-01",
+      "value": 202259.0,
+      "period": "1965 Q4",
+      "year": 1965,
+      "quarter": 4
+    },
+    {
+      "date": "1966-03-01",
+      "value": 202588.0,
+      "period": "1966 Q1",
+      "year": 1966,
+      "quarter": 1
+    },
+    {
+      "date": "1966-06-01",
+      "value": 203766.0,
+      "period": "1966 Q2",
+      "year": 1966,
+      "quarter": 2
+    },
+    {
+      "date": "1966-09-01",
+      "value": 204428.0,
+      "period": "1966 Q3",
+      "year": 1966,
+      "quarter": 3
+    },
+    {
+      "date": "1966-12-01",
+      "value": 203611.0,
+      "period": "1966 Q4",
+      "year": 1966,
+      "quarter": 4
+    },
+    {
+      "date": "1967-03-01",
+      "value": 206330.0,
+      "period": "1967 Q1",
+      "year": 1967,
+      "quarter": 1
+    },
+    {
+      "date": "1967-06-01",
+      "value": 209227.0,
+      "period": "1967 Q2",
+      "year": 1967,
+      "quarter": 2
+    },
+    {
+      "date": "1967-09-01",
+      "value": 210092.0,
+      "period": "1967 Q3",
+      "year": 1967,
+      "quarter": 3
+    },
+    {
+      "date": "1967-12-01",
+      "value": 211166.0,
+      "period": "1967 Q4",
+      "year": 1967,
+      "quarter": 4
+    },
+    {
+      "date": "1968-03-01",
+      "value": 218997.0,
+      "period": "1968 Q1",
+      "year": 1968,
+      "quarter": 1
+    },
+    {
+      "date": "1968-06-01",
+      "value": 218081.0,
+      "period": "1968 Q2",
+      "year": 1968,
+      "quarter": 2
+    },
+    {
+      "date": "1968-09-01",
+      "value": 222325.0,
+      "period": "1968 Q3",
+      "year": 1968,
+      "quarter": 3
+    },
+    {
+      "date": "1968-12-01",
+      "value": 223067.0,
+      "period": "1968 Q4",
+      "year": 1968,
+      "quarter": 4
+    },
+    {
+      "date": "1969-03-01",
+      "value": 222725.0,
+      "period": "1969 Q1",
+      "year": 1969,
+      "quarter": 1
+    },
+    {
+      "date": "1969-06-01",
+      "value": 224353.0,
+      "period": "1969 Q2",
+      "year": 1969,
+      "quarter": 2
+    },
+    {
+      "date": "1969-09-01",
+      "value": 225601.0,
+      "period": "1969 Q3",
+      "year": 1969,
+      "quarter": 3
+    },
+    {
+      "date": "1969-12-01",
+      "value": 226619.0,
+      "period": "1969 Q4",
+      "year": 1969,
+      "quarter": 4
+    },
+    {
+      "date": "1970-03-01",
+      "value": 225223.0,
+      "period": "1970 Q1",
+      "year": 1970,
+      "quarter": 1
+    },
+    {
+      "date": "1970-06-01",
+      "value": 230605.0,
+      "period": "1970 Q2",
+      "year": 1970,
+      "quarter": 2
+    },
+    {
+      "date": "1970-09-01",
+      "value": 232800.0,
+      "period": "1970 Q3",
+      "year": 1970,
+      "quarter": 3
+    },
+    {
+      "date": "1970-12-01",
+      "value": 234954.0,
+      "period": "1970 Q4",
+      "year": 1970,
+      "quarter": 4
+    },
+    {
+      "date": "1971-03-01",
+      "value": 233843.0,
+      "period": "1971 Q1",
+      "year": 1971,
+      "quarter": 1
+    },
+    {
+      "date": "1971-06-01",
+      "value": 238030.0,
+      "period": "1971 Q2",
+      "year": 1971,
+      "quarter": 2
+    },
+    {
+      "date": "1971-09-01",
+      "value": 242078.0,
+      "period": "1971 Q3",
+      "year": 1971,
+      "quarter": 3
+    },
+    {
+      "date": "1971-12-01",
+      "value": 243009.0,
+      "period": "1971 Q4",
+      "year": 1971,
+      "quarter": 4
+    },
+    {
+      "date": "1972-03-01",
+      "value": 243540.0,
+      "period": "1972 Q1",
+      "year": 1972,
+      "quarter": 1
+    },
+    {
+      "date": "1972-06-01",
+      "value": 249966.0,
+      "period": "1972 Q2",
+      "year": 1972,
+      "quarter": 2
+    },
+    {
+      "date": "1972-09-01",
+      "value": 250633.0,
+      "period": "1972 Q3",
+      "year": 1972,
+      "quarter": 3
+    },
+    {
+      "date": "1972-12-01",
+      "value": 254524.0,
+      "period": "1972 Q4",
+      "year": 1972,
+      "quarter": 4
+    },
+    {
+      "date": "1973-03-01",
+      "value": 267015.0,
+      "period": "1973 Q1",
+      "year": 1973,
+      "quarter": 1
+    },
+    {
+      "date": "1973-06-01",
+      "value": 267521.0,
+      "period": "1973 Q2",
+      "year": 1973,
+      "quarter": 2
+    },
+    {
+      "date": "1973-09-01",
+      "value": 265025.0,
+      "period": "1973 Q3",
+      "year": 1973,
+      "quarter": 3
+    },
+    {
+      "date": "1973-12-01",
+      "value": 263989.0,
+      "period": "1973 Q4",
+      "year": 1973,
+      "quarter": 4
+    },
+    {
+      "date": "1974-03-01",
+      "value": 256670.0,
+      "period": "1974 Q1",
+      "year": 1974,
+      "quarter": 1
+    },
+    {
+      "date": "1974-06-01",
+      "value": 260347.0,
+      "period": "1974 Q2",
+      "year": 1974,
+      "quarter": 2
+    },
+    {
+      "date": "1974-09-01",
+      "value": 261890.0,
+      "period": "1974 Q3",
+      "year": 1974,
+      "quarter": 3
+    },
+    {
+      "date": "1974-12-01",
+      "value": 258066.0,
+      "period": "1974 Q4",
+      "year": 1974,
+      "quarter": 4
+    },
+    {
+      "date": "1975-03-01",
+      "value": 258116.0,
+      "period": "1975 Q1",
+      "year": 1975,
+      "quarter": 1
+    },
+    {
+      "date": "1975-06-01",
+      "value": 253935.0,
+      "period": "1975 Q2",
+      "year": 1975,
+      "quarter": 2
+    },
+    {
+      "date": "1975-09-01",
+      "value": 253168.0,
+      "period": "1975 Q3",
+      "year": 1975,
+      "quarter": 3
+    },
+    {
+      "date": "1975-12-01",
+      "value": 255985.0,
+      "period": "1975 Q4",
+      "year": 1975,
+      "quarter": 4
+    },
+    {
+      "date": "1976-03-01",
+      "value": 260268.0,
+      "period": "1976 Q1",
+      "year": 1976,
+      "quarter": 1
+    },
+    {
+      "date": "1976-06-01",
+      "value": 259911.0,
+      "period": "1976 Q2",
+      "year": 1976,
+      "quarter": 2
+    },
+    {
+      "date": "1976-09-01",
+      "value": 263132.0,
+      "period": "1976 Q3",
+      "year": 1976,
+      "quarter": 3
+    },
+    {
+      "date": "1976-12-01",
+      "value": 268662.0,
+      "period": "1976 Q4",
+      "year": 1976,
+      "quarter": 4
+    },
+    {
+      "date": "1977-03-01",
+      "value": 268833.0,
+      "period": "1977 Q1",
+      "year": 1977,
+      "quarter": 1
+    },
+    {
+      "date": "1977-06-01",
+      "value": 266987.0,
+      "period": "1977 Q2",
+      "year": 1977,
+      "quarter": 2
+    },
+    {
+      "date": "1977-09-01",
+      "value": 268717.0,
+      "period": "1977 Q3",
+      "year": 1977,
+      "quarter": 3
+    },
+    {
+      "date": "1977-12-01",
+      "value": 273279.0,
+      "period": "1977 Q4",
+      "year": 1977,
+      "quarter": 4
+    },
+    {
+      "date": "1978-03-01",
+      "value": 275841.0,
+      "period": "1978 Q1",
+      "year": 1978,
+      "quarter": 1
+    },
+    {
+      "date": "1978-06-01",
+      "value": 279001.0,
+      "period": "1978 Q2",
+      "year": 1978,
+      "quarter": 2
+    },
+    {
+      "date": "1978-09-01",
+      "value": 282797.0,
+      "period": "1978 Q3",
+      "year": 1978,
+      "quarter": 3
+    },
+    {
+      "date": "1978-12-01",
+      "value": 285314.0,
+      "period": "1978 Q4",
+      "year": 1978,
+      "quarter": 4
+    },
+    {
+      "date": "1979-03-01",
+      "value": 284457.0,
+      "period": "1979 Q1",
+      "year": 1979,
+      "quarter": 1
+    },
+    {
+      "date": "1979-06-01",
+      "value": 296841.0,
+      "period": "1979 Q2",
+      "year": 1979,
+      "quarter": 2
+    },
+    {
+      "date": "1979-09-01",
+      "value": 290297.0,
+      "period": "1979 Q3",
+      "year": 1979,
+      "quarter": 3
+    },
+    {
+      "date": "1979-12-01",
+      "value": 293265.0,
+      "period": "1979 Q4",
+      "year": 1979,
+      "quarter": 4
+    },
+    {
+      "date": "1980-03-01",
+      "value": 290378.0,
+      "period": "1980 Q1",
+      "year": 1980,
+      "quarter": 1
+    },
+    {
+      "date": "1980-06-01",
+      "value": 284713.0,
+      "period": "1980 Q2",
+      "year": 1980,
+      "quarter": 2
+    },
+    {
+      "date": "1980-09-01",
+      "value": 284402.0,
+      "period": "1980 Q3",
+      "year": 1980,
+      "quarter": 3
+    },
+    {
+      "date": "1980-12-01",
+      "value": 281496.0,
+      "period": "1980 Q4",
+      "year": 1980,
+      "quarter": 4
+    },
+    {
+      "date": "1981-03-01",
+      "value": 281257.0,
+      "period": "1981 Q1",
+      "year": 1981,
+      "quarter": 1
+    },
+    {
+      "date": "1981-06-01",
+      "value": 282155.0,
+      "period": "1981 Q2",
+      "year": 1981,
+      "quarter": 2
+    },
+    {
+      "date": "1981-09-01",
+      "value": 285437.0,
+      "period": "1981 Q3",
+      "year": 1981,
+      "quarter": 3
+    },
+    {
+      "date": "1981-12-01",
+      "value": 285814.0,
+      "period": "1981 Q4",
+      "year": 1981,
+      "quarter": 4
+    },
+    {
+      "date": "1982-03-01",
+      "value": 286275.0,
+      "period": "1982 Q1",
+      "year": 1982,
+      "quarter": 1
+    },
+    {
+      "date": "1982-06-01",
+      "value": 289232.0,
+      "period": "1982 Q2",
+      "year": 1982,
+      "quarter": 2
+    },
+    {
+      "date": "1982-09-01",
+      "value": 289852.0,
+      "period": "1982 Q3",
+      "year": 1982,
+      "quarter": 3
+    },
+    {
+      "date": "1982-12-01",
+      "value": 291832.0,
+      "period": "1982 Q4",
+      "year": 1982,
+      "quarter": 4
+    },
+    {
+      "date": "1983-03-01",
+      "value": 297563.0,
+      "period": "1983 Q1",
+      "year": 1983,
+      "quarter": 1
+    },
+    {
+      "date": "1983-06-01",
+      "value": 299623.0,
+      "period": "1983 Q2",
+      "year": 1983,
+      "quarter": 2
+    },
+    {
+      "date": "1983-09-01",
+      "value": 303085.0,
+      "period": "1983 Q3",
+      "year": 1983,
+      "quarter": 3
+    },
+    {
+      "date": "1983-12-01",
+      "value": 305361.0,
+      "period": "1983 Q4",
+      "year": 1983,
+      "quarter": 4
+    },
+    {
+      "date": "1984-03-01",
+      "value": 307964.0,
+      "period": "1984 Q1",
+      "year": 1984,
+      "quarter": 1
+    },
+    {
+      "date": "1984-06-01",
+      "value": 304892.0,
+      "period": "1984 Q2",
+      "year": 1984,
+      "quarter": 2
+    },
+    {
+      "date": "1984-09-01",
+      "value": 307122.0,
+      "period": "1984 Q3",
+      "year": 1984,
+      "quarter": 3
+    },
+    {
+      "date": "1984-12-01",
+      "value": 312697.0,
+      "period": "1984 Q4",
+      "year": 1984,
+      "quarter": 4
+    },
+    {
+      "date": "1985-03-01",
+      "value": 315753.0,
+      "period": "1985 Q1",
+      "year": 1985,
+      "quarter": 1
+    },
+    {
+      "date": "1985-06-01",
+      "value": 322451.0,
+      "period": "1985 Q2",
+      "year": 1985,
+      "quarter": 2
+    },
+    {
+      "date": "1985-09-01",
+      "value": 322392.0,
+      "period": "1985 Q3",
+      "year": 1985,
+      "quarter": 3
+    },
+    {
+      "date": "1985-12-01",
+      "value": 322604.0,
+      "period": "1985 Q4",
+      "year": 1985,
+      "quarter": 4
+    },
+    {
+      "date": "1986-03-01",
+      "value": 325968.0,
+      "period": "1986 Q1",
+      "year": 1986,
+      "quarter": 1
+    },
+    {
+      "date": "1986-06-01",
+      "value": 328872.0,
+      "period": "1986 Q2",
+      "year": 1986,
+      "quarter": 2
+    },
+    {
+      "date": "1986-09-01",
+      "value": 330966.0,
+      "period": "1986 Q3",
+      "year": 1986,
+      "quarter": 3
+    },
+    {
+      "date": "1986-12-01",
+      "value": 337367.0,
+      "period": "1986 Q4",
+      "year": 1986,
+      "quarter": 4
+    },
+    {
+      "date": "1987-03-01",
+      "value": 339754.0,
+      "period": "1987 Q1",
+      "year": 1987,
+      "quarter": 1
+    },
+    {
+      "date": "1987-06-01",
+      "value": 344795.0,
+      "period": "1987 Q2",
+      "year": 1987,
+      "quarter": 2
+    },
+    {
+      "date": "1987-09-01",
+      "value": 353365.0,
+      "period": "1987 Q3",
+      "year": 1987,
+      "quarter": 3
+    },
+    {
+      "date": "1987-12-01",
+      "value": 357439.0,
+      "period": "1987 Q4",
+      "year": 1987,
+      "quarter": 4
+    },
+    {
+      "date": "1988-03-01",
+      "value": 363267.0,
+      "period": "1988 Q1",
+      "year": 1988,
+      "quarter": 1
+    },
+    {
+      "date": "1988-06-01",
+      "value": 365209.0,
+      "period": "1988 Q2",
+      "year": 1988,
+      "quarter": 2
+    },
+    {
+      "date": "1988-09-01",
+      "value": 369774.0,
+      "period": "1988 Q3",
+      "year": 1988,
+      "quarter": 3
+    },
+    {
+      "date": "1988-12-01",
+      "value": 372752.0,
+      "period": "1988 Q4",
+      "year": 1988,
+      "quarter": 4
+    },
+    {
+      "date": "1989-03-01",
+      "value": 374612.0,
+      "period": "1989 Q1",
+      "year": 1989,
+      "quarter": 1
+    },
+    {
+      "date": "1989-06-01",
+      "value": 376951.0,
+      "period": "1989 Q2",
+      "year": 1989,
+      "quarter": 2
+    },
+    {
+      "date": "1989-09-01",
+      "value": 377573.0,
+      "period": "1989 Q3",
+      "year": 1989,
+      "quarter": 3
+    },
+    {
+      "date": "1989-12-01",
+      "value": 377508.0,
+      "period": "1989 Q4",
+      "year": 1989,
+      "quarter": 4
+    },
+    {
+      "date": "1990-03-01",
+      "value": 379458.0,
+      "period": "1990 Q1",
+      "year": 1990,
+      "quarter": 1
+    },
+    {
+      "date": "1990-06-01",
+      "value": 381997.0,
+      "period": "1990 Q2",
+      "year": 1990,
+      "quarter": 2
+    },
+    {
+      "date": "1990-09-01",
+      "value": 377831.0,
+      "period": "1990 Q3",
+      "year": 1990,
+      "quarter": 3
+    },
+    {
+      "date": "1990-12-01",
+      "value": 375916.0,
+      "period": "1990 Q4",
+      "year": 1990,
+      "quarter": 4
+    },
+    {
+      "date": "1991-03-01",
+      "value": 374060.0,
+      "period": "1991 Q1",
+      "year": 1991,
+      "quarter": 1
+    },
+    {
+      "date": "1991-06-01",
+      "value": 373608.0,
+      "period": "1991 Q2",
+      "year": 1991,
+      "quarter": 2
+    },
+    {
+      "date": "1991-09-01",
+      "value": 372878.0,
+      "period": "1991 Q3",
+      "year": 1991,
+      "quarter": 3
+    },
+    {
+      "date": "1991-12-01",
+      "value": 373357.0,
+      "period": "1991 Q4",
+      "year": 1991,
+      "quarter": 4
+    },
+    {
+      "date": "1992-03-01",
+      "value": 373317.0,
+      "period": "1992 Q1",
+      "year": 1992,
+      "quarter": 1
+    },
+    {
+      "date": "1992-06-01",
+      "value": 372751.0,
+      "period": "1992 Q2",
+      "year": 1992,
+      "quarter": 2
+    },
+    {
+      "date": "1992-09-01",
+      "value": 374537.0,
+      "period": "1992 Q3",
+      "year": 1992,
+      "quarter": 3
+    },
+    {
+      "date": "1992-12-01",
+      "value": 377418.0,
+      "period": "1992 Q4",
+      "year": 1992,
+      "quarter": 4
+    },
+    {
+      "date": "1993-03-01",
+      "value": 379370.0,
+      "period": "1993 Q1",
+      "year": 1993,
+      "quarter": 1
+    },
+    {
+      "date": "1993-06-01",
+      "value": 381045.0,
+      "period": "1993 Q2",
+      "year": 1993,
+      "quarter": 2
+    },
+    {
+      "date": "1993-09-01",
+      "value": 384524.0,
+      "period": "1993 Q3",
+      "year": 1993,
+      "quarter": 3
+    },
+    {
+      "date": "1993-12-01",
+      "value": 387143.0,
+      "period": "1993 Q4",
+      "year": 1993,
+      "quarter": 4
+    },
+    {
+      "date": "1994-03-01",
+      "value": 391026.0,
+      "period": "1994 Q1",
+      "year": 1994,
+      "quarter": 1
+    },
+    {
+      "date": "1994-06-01",
+      "value": 394588.0,
+      "period": "1994 Q2",
+      "year": 1994,
+      "quarter": 2
+    },
+    {
+      "date": "1994-09-01",
+      "value": 398566.0,
+      "period": "1994 Q3",
+      "year": 1994,
+      "quarter": 3
+    },
+    {
+      "date": "1994-12-01",
+      "value": 400279.0,
+      "period": "1994 Q4",
+      "year": 1994,
+      "quarter": 4
+    },
+    {
+      "date": "1995-03-01",
+      "value": 402390.0,
+      "period": "1995 Q1",
+      "year": 1995,
+      "quarter": 1
+    },
+    {
+      "date": "1995-06-01",
+      "value": 403259.0,
+      "period": "1995 Q2",
+      "year": 1995,
+      "quarter": 2
+    },
+    {
+      "date": "1995-09-01",
+      "value": 407795.0,
+      "period": "1995 Q3",
+      "year": 1995,
+      "quarter": 3
+    },
+    {
+      "date": "1995-12-01",
+      "value": 409132.0,
+      "period": "1995 Q4",
+      "year": 1995,
+      "quarter": 4
+    },
+    {
+      "date": "1996-03-01",
+      "value": 412022.0,
+      "period": "1996 Q1",
+      "year": 1996,
+      "quarter": 1
+    },
+    {
+      "date": "1996-06-01",
+      "value": 413325.0,
+      "period": "1996 Q2",
+      "year": 1996,
+      "quarter": 2
+    },
+    {
+      "date": "1996-09-01",
+      "value": 417019.0,
+      "period": "1996 Q3",
+      "year": 1996,
+      "quarter": 3
+    },
+    {
+      "date": "1996-12-01",
+      "value": 422639.0,
+      "period": "1996 Q4",
+      "year": 1996,
+      "quarter": 4
+    },
+    {
+      "date": "1997-03-01",
+      "value": 429418.0,
+      "period": "1997 Q1",
+      "year": 1997,
+      "quarter": 1
+    },
+    {
+      "date": "1997-06-01",
+      "value": 434199.0,
+      "period": "1997 Q2",
+      "year": 1997,
+      "quarter": 2
+    },
+    {
+      "date": "1997-09-01",
+      "value": 438100.0,
+      "period": "1997 Q3",
+      "year": 1997,
+      "quarter": 3
+    },
+    {
+      "date": "1997-12-01",
+      "value": 444540.0,
+      "period": "1997 Q4",
+      "year": 1997,
+      "quarter": 4
+    },
+    {
+      "date": "1998-03-01",
+      "value": 447712.0,
+      "period": "1998 Q1",
+      "year": 1998,
+      "quarter": 1
+    },
+    {
+      "date": "1998-06-01",
+      "value": 450292.0,
+      "period": "1998 Q2",
+      "year": 1998,
+      "quarter": 2
+    },
+    {
+      "date": "1998-09-01",
+      "value": 451005.0,
+      "period": "1998 Q3",
+      "year": 1998,
+      "quarter": 3
+    },
+    {
+      "date": "1998-12-01",
+      "value": 453937.0,
+      "period": "1998 Q4",
+      "year": 1998,
+      "quarter": 4
+    },
+    {
+      "date": "1999-03-01",
+      "value": 457044.0,
+      "period": "1999 Q1",
+      "year": 1999,
+      "quarter": 1
+    },
+    {
+      "date": "1999-06-01",
+      "value": 458710.0,
+      "period": "1999 Q2",
+      "year": 1999,
+      "quarter": 2
+    },
+    {
+      "date": "1999-09-01",
+      "value": 466387.0,
+      "period": "1999 Q3",
+      "year": 1999,
+      "quarter": 3
+    },
+    {
+      "date": "1999-12-01",
+      "value": 473892.0,
+      "period": "1999 Q4",
+      "year": 1999,
+      "quarter": 4
+    },
+    {
+      "date": "2000-03-01",
+      "value": 480212.0,
+      "period": "2000 Q1",
+      "year": 2000,
+      "quarter": 1
+    },
+    {
+      "date": "2000-06-01",
+      "value": 483672.0,
+      "period": "2000 Q2",
+      "year": 2000,
+      "quarter": 2
+    },
+    {
+      "date": "2000-09-01",
+      "value": 486617.0,
+      "period": "2000 Q3",
+      "year": 2000,
+      "quarter": 3
+    },
+    {
+      "date": "2000-12-01",
+      "value": 489506.0,
+      "period": "2000 Q4",
+      "year": 2000,
+      "quarter": 4
+    },
+    {
+      "date": "2001-03-01",
+      "value": 493575.0,
+      "period": "2001 Q1",
+      "year": 2001,
+      "quarter": 1
+    },
+    {
+      "date": "2001-06-01",
+      "value": 495602.0,
+      "period": "2001 Q2",
+      "year": 2001,
+      "quarter": 2
+    },
+    {
+      "date": "2001-09-01",
+      "value": 497938.0,
+      "period": "2001 Q3",
+      "year": 2001,
+      "quarter": 3
+    },
+    {
+      "date": "2001-12-01",
+      "value": 499278.0,
+      "period": "2001 Q4",
+      "year": 2001,
+      "quarter": 4
+    },
+    {
+      "date": "2002-03-01",
+      "value": 500794.0,
+      "period": "2002 Q1",
+      "year": 2002,
+      "quarter": 1
+    },
+    {
+      "date": "2002-06-01",
+      "value": 503433.0,
+      "period": "2002 Q2",
+      "year": 2002,
+      "quarter": 2
+    },
+    {
+      "date": "2002-09-01",
+      "value": 506386.0,
+      "period": "2002 Q3",
+      "year": 2002,
+      "quarter": 3
+    },
+    {
+      "date": "2002-12-01",
+      "value": 509728.0,
+      "period": "2002 Q4",
+      "year": 2002,
+      "quarter": 4
+    },
+    {
+      "date": "2003-03-01",
+      "value": 514031.0,
+      "period": "2003 Q1",
+      "year": 2003,
+      "quarter": 1
+    },
+    {
+      "date": "2003-06-01",
+      "value": 518802.0,
+      "period": "2003 Q2",
+      "year": 2003,
+      "quarter": 2
+    },
+    {
+      "date": "2003-09-01",
+      "value": 524213.0,
+      "period": "2003 Q3",
+      "year": 2003,
+      "quarter": 3
+    },
+    {
+      "date": "2003-12-01",
+      "value": 528320.0,
+      "period": "2003 Q4",
+      "year": 2003,
+      "quarter": 4
+    },
+    {
+      "date": "2004-03-01",
+      "value": 529996.0,
+      "period": "2004 Q1",
+      "year": 2004,
+      "quarter": 1
+    },
+    {
+      "date": "2004-06-01",
+      "value": 532543.0,
+      "period": "2004 Q2",
+      "year": 2004,
+      "quarter": 2
+    },
+    {
+      "date": "2004-09-01",
+      "value": 534447.0,
+      "period": "2004 Q3",
+      "year": 2004,
+      "quarter": 3
+    },
+    {
+      "date": "2004-12-01",
+      "value": 536886.0,
+      "period": "2004 Q4",
+      "year": 2004,
+      "quarter": 4
+    },
+    {
+      "date": "2005-03-01",
+      "value": 541028.0,
+      "period": "2005 Q1",
+      "year": 2005,
+      "quarter": 1
+    },
+    {
+      "date": "2005-06-01",
+      "value": 545530.0,
+      "period": "2005 Q2",
+      "year": 2005,
+      "quarter": 2
+    },
+    {
+      "date": "2005-09-01",
+      "value": 550552.0,
+      "period": "2005 Q3",
+      "year": 2005,
+      "quarter": 3
+    },
+    {
+      "date": "2005-12-01",
+      "value": 556311.0,
+      "period": "2005 Q4",
+      "year": 2005,
+      "quarter": 4
+    },
+    {
+      "date": "2006-03-01",
+      "value": 558314.0,
+      "period": "2006 Q1",
+      "year": 2006,
+      "quarter": 1
+    },
+    {
+      "date": "2006-06-01",
+      "value": 559795.0,
+      "period": "2006 Q2",
+      "year": 2006,
+      "quarter": 2
+    },
+    {
+      "date": "2006-09-01",
+      "value": 560675.0,
+      "period": "2006 Q3",
+      "year": 2006,
+      "quarter": 3
+    },
+    {
+      "date": "2006-12-01",
+      "value": 562669.0,
+      "period": "2006 Q4",
+      "year": 2006,
+      "quarter": 4
+    },
+    {
+      "date": "2007-03-01",
+      "value": 568845.0,
+      "period": "2007 Q1",
+      "year": 2007,
+      "quarter": 1
+    },
+    {
+      "date": "2007-06-01",
+      "value": 574194.0,
+      "period": "2007 Q2",
+      "year": 2007,
+      "quarter": 2
+    },
+    {
+      "date": "2007-09-01",
+      "value": 579605.0,
+      "period": "2007 Q3",
+      "year": 2007,
+      "quarter": 3
+    },
+    {
+      "date": "2007-12-01",
+      "value": 584504.0,
+      "period": "2007 Q4",
+      "year": 2007,
+      "quarter": 4
+    },
+    {
+      "date": "2008-03-01",
+      "value": 586690.0,
+      "period": "2008 Q1",
+      "year": 2008,
+      "quarter": 1
+    },
+    {
+      "date": "2008-06-01",
+      "value": 583541.0,
+      "period": "2008 Q2",
+      "year": 2008,
+      "quarter": 2
+    },
+    {
+      "date": "2008-09-01",
+      "value": 573961.0,
+      "period": "2008 Q3",
+      "year": 2008,
+      "quarter": 3
+    },
+    {
+      "date": "2008-12-01",
+      "value": 561816.0,
+      "period": "2008 Q4",
+      "year": 2008,
+      "quarter": 4
+    },
+    {
+      "date": "2009-03-01",
+      "value": 550451.0,
+      "period": "2009 Q1",
+      "year": 2009,
+      "quarter": 1
+    },
+    {
+      "date": "2009-06-01",
+      "value": 548859.0,
+      "period": "2009 Q2",
+      "year": 2009,
+      "quarter": 2
+    },
+    {
+      "date": "2009-09-01",
+      "value": 549540.0,
+      "period": "2009 Q3",
+      "year": 2009,
+      "quarter": 3
+    },
+    {
+      "date": "2009-12-01",
+      "value": 551372.0,
+      "period": "2009 Q4",
+      "year": 2009,
+      "quarter": 4
+    },
+    {
+      "date": "2010-03-01",
+      "value": 556002.0,
+      "period": "2010 Q1",
+      "year": 2010,
+      "quarter": 1
+    },
+    {
+      "date": "2010-06-01",
+      "value": 562353.0,
+      "period": "2010 Q2",
+      "year": 2010,
+      "quarter": 2
+    },
+    {
+      "date": "2010-09-01",
+      "value": 565659.0,
+      "period": "2010 Q3",
+      "year": 2010,
+      "quarter": 3
+    },
+    {
+      "date": "2010-12-01",
+      "value": 565945.0,
+      "period": "2010 Q4",
+      "year": 2010,
+      "quarter": 4
+    },
+    {
+      "date": "2011-03-01",
+      "value": 566873.0,
+      "period": "2011 Q1",
+      "year": 2011,
+      "quarter": 1
+    },
+    {
+      "date": "2011-06-01",
+      "value": 566601.0,
+      "period": "2011 Q2",
+      "year": 2011,
+      "quarter": 2
+    },
+    {
+      "date": "2011-09-01",
+      "value": 567586.0,
+      "period": "2011 Q3",
+      "year": 2011,
+      "quarter": 3
+    },
+    {
+      "date": "2011-12-01",
+      "value": 568056.0,
+      "period": "2011 Q4",
+      "year": 2011,
+      "quarter": 4
+    },
+    {
+      "date": "2012-03-01",
+      "value": 573416.0,
+      "period": "2012 Q1",
+      "year": 2012,
+      "quarter": 1
+    },
+    {
+      "date": "2012-06-01",
+      "value": 573112.0,
+      "period": "2012 Q2",
+      "year": 2012,
+      "quarter": 2
+    },
+    {
+      "date": "2012-09-01",
+      "value": 579051.0,
+      "period": "2012 Q3",
+      "year": 2012,
+      "quarter": 3
+    },
+    {
+      "date": "2012-12-01",
+      "value": 578215.0,
+      "period": "2012 Q4",
+      "year": 2012,
+      "quarter": 4
+    },
+    {
+      "date": "2013-03-01",
+      "value": 579749.0,
+      "period": "2013 Q1",
+      "year": 2013,
+      "quarter": 1
+    },
+    {
+      "date": "2013-06-01",
+      "value": 583605.0,
+      "period": "2013 Q2",
+      "year": 2013,
+      "quarter": 2
+    },
+    {
+      "date": "2013-09-01",
+      "value": 588076.0,
+      "period": "2013 Q3",
+      "year": 2013,
+      "quarter": 3
+    },
+    {
+      "date": "2013-12-01",
+      "value": 591954.0,
+      "period": "2013 Q4",
+      "year": 2013,
+      "quarter": 4
+    },
+    {
+      "date": "2014-03-01",
+      "value": 596696.0,
+      "period": "2014 Q1",
+      "year": 2014,
+      "quarter": 1
+    },
+    {
+      "date": "2014-06-01",
+      "value": 602310.0,
+      "period": "2014 Q2",
+      "year": 2014,
+      "quarter": 2
+    },
+    {
+      "date": "2014-09-01",
+      "value": 607213.0,
+      "period": "2014 Q3",
+      "year": 2014,
+      "quarter": 3
+    },
+    {
+      "date": "2014-12-01",
+      "value": 611220.0,
+      "period": "2014 Q4",
+      "year": 2014,
+      "quarter": 4
+    },
+    {
+      "date": "2015-03-01",
+      "value": 613076.0,
+      "period": "2015 Q1",
+      "year": 2015,
+      "quarter": 1
+    },
+    {
+      "date": "2015-06-01",
+      "value": 615875.0,
+      "period": "2015 Q2",
+      "year": 2015,
+      "quarter": 2
+    },
+    {
+      "date": "2015-09-01",
+      "value": 618263.0,
+      "period": "2015 Q3",
+      "year": 2015,
+      "quarter": 3
+    },
+    {
+      "date": "2015-12-01",
+      "value": 621968.0,
+      "period": "2015 Q4",
+      "year": 2015,
+      "quarter": 4
+    },
+    {
+      "date": "2016-03-01",
+      "value": 625099.0,
+      "period": "2016 Q1",
+      "year": 2016,
+      "quarter": 1
+    },
+    {
+      "date": "2016-06-01",
+      "value": 629697.0,
+      "period": "2016 Q2",
+      "year": 2016,
+      "quarter": 2
+    },
+    {
+      "date": "2016-09-01",
+      "value": 632477.0,
+      "period": "2016 Q3",
+      "year": 2016,
+      "quarter": 3
+    },
+    {
+      "date": "2016-12-01",
+      "value": 636392.0,
+      "period": "2016 Q4",
+      "year": 2016,
+      "quarter": 4
+    },
+    {
+      "date": "2017-03-01",
+      "value": 642463.0,
+      "period": "2017 Q1",
+      "year": 2017,
+      "quarter": 1
+    },
+    {
+      "date": "2017-06-01",
+      "value": 647944.0,
+      "period": "2017 Q2",
+      "year": 2017,
+      "quarter": 2
+    },
+    {
+      "date": "2017-09-01",
+      "value": 652329.0,
+      "period": "2017 Q3",
+      "year": 2017,
+      "quarter": 3
+    },
+    {
+      "date": "2017-12-01",
+      "value": 657225.0,
+      "period": "2017 Q4",
+      "year": 2017,
+      "quarter": 4
+    },
+    {
+      "date": "2018-03-01",
+      "value": 657741.0,
+      "period": "2018 Q1",
+      "year": 2018,
+      "quarter": 1
+    },
+    {
+      "date": "2018-06-01",
+      "value": 659172.0,
+      "period": "2018 Q2",
+      "year": 2018,
+      "quarter": 2
+    },
+    {
+      "date": "2018-09-01",
+      "value": 661262.0,
+      "period": "2018 Q3",
+      "year": 2018,
+      "quarter": 3
+    },
+    {
+      "date": "2018-12-01",
+      "value": 662120.0,
+      "period": "2018 Q4",
+      "year": 2018,
+      "quarter": 4
+    },
+    {
+      "date": "2019-03-01",
+      "value": 665456.0,
+      "period": "2019 Q1",
+      "year": 2019,
+      "quarter": 1
+    },
+    {
+      "date": "2019-06-01",
+      "value": 666875.0,
+      "period": "2019 Q2",
+      "year": 2019,
+      "quarter": 2
+    },
+    {
+      "date": "2019-09-01",
+      "value": 670547.0,
+      "period": "2019 Q3",
+      "year": 2019,
+      "quarter": 3
+    },
+    {
+      "date": "2019-12-01",
+      "value": 670587.0,
+      "period": "2019 Q4",
+      "year": 2019,
+      "quarter": 4
+    },
+    {
+      "date": "2020-03-01",
+      "value": 652180.0,
+      "period": "2020 Q1",
+      "year": 2020,
+      "quarter": 1
+    },
+    {
+      "date": "2020-06-01",
+      "value": 522356.0,
+      "period": "2020 Q2",
+      "year": 2020,
+      "quarter": 2
+    },
+    {
+      "date": "2020-09-01",
+      "value": 610972.0,
+      "period": "2020 Q3",
+      "year": 2020,
+      "quarter": 3
+    },
+    {
+      "date": "2020-12-01",
+      "value": 619330.0,
+      "period": "2020 Q4",
+      "year": 2020,
+      "quarter": 4
+    },
+    {
+      "date": "2021-03-01",
+      "value": 612665.0,
+      "period": "2021 Q1",
+      "year": 2021,
+      "quarter": 1
+    },
+    {
+      "date": "2021-06-01",
+      "value": 655443.0,
+      "period": "2021 Q2",
+      "year": 2021,
+      "quarter": 2
+    },
+    {
+      "date": "2021-09-01",
+      "value": 666498.0,
+      "period": "2021 Q3",
+      "year": 2021,
+      "quarter": 3
+    },
+    {
+      "date": "2021-12-01",
+      "value": 675680.0,
+      "period": "2021 Q4",
+      "year": 2021,
+      "quarter": 4
+    },
+    {
+      "date": "2022-03-01",
+      "value": 682527.0,
+      "period": "2022 Q1",
+      "year": 2022,
+      "quarter": 1
+    },
+    {
+      "date": "2022-06-01",
+      "value": 686335.0,
+      "period": "2022 Q2",
+      "year": 2022,
+      "quarter": 2
+    },
+    {
+      "date": "2022-09-01",
+      "value": 687029.0,
+      "period": "2022 Q3",
+      "year": 2022,
+      "quarter": 3
+    },
+    {
+      "date": "2022-12-01",
+      "value": 688817.0,
+      "period": "2022 Q4",
+      "year": 2022,
+      "quarter": 4
+    },
+    {
+      "date": "2023-03-01",
+      "value": 689206.0,
+      "period": "2023 Q1",
+      "year": 2023,
+      "quarter": 1
+    },
+    {
+      "date": "2023-06-01",
+      "value": 689491.0,
+      "period": "2023 Q2",
+      "year": 2023,
+      "quarter": 2
+    },
+    {
+      "date": "2023-09-01",
+      "value": 687839.0,
+      "period": "2023 Q3",
+      "year": 2023,
+      "quarter": 3
+    },
+    {
+      "date": "2023-12-01",
+      "value": 685628.0,
+      "period": "2023 Q4",
+      "year": 2023,
+      "quarter": 4
+    },
+    {
+      "date": "2024-03-01",
+      "value": 691198.0,
+      "period": "2024 Q1",
+      "year": 2024,
+      "quarter": 1
+    },
+    {
+      "date": "2024-06-01",
+      "value": 695280.0,
+      "period": "2024 Q2",
+      "year": 2024,
+      "quarter": 2
+    },
+    {
+      "date": "2024-09-01",
+      "value": 696853.0,
+      "period": "2024 Q3",
+      "year": 2024,
+      "quarter": 3
+    },
+    {
+      "date": "2024-12-01",
+      "value": 698780.0,
+      "period": "2024 Q4",
+      "year": 2024,
+      "quarter": 4
+    },
+    {
+      "date": "2025-03-01",
+      "value": 703435.0,
+      "period": "2025 Q1",
+      "year": 2025,
+      "quarter": 1
+    },
+    {
+      "date": "2025-06-01",
+      "value": 704973.0,
+      "period": "2025 Q2",
+      "year": 2025,
+      "quarter": 2
+    },
+    {
+      "date": "2025-09-01",
+      "value": 705603.0,
+      "period": "2025 Q3",
+      "year": 2025,
+      "quarter": 3
+    }
+  ],
+  "metadata": {
+    "title": "Gross Domestic Product: chained volume measures: Seasonally adjusted £m",
+    "cdid": "ABMI",
+    "unit": "m",
+    "release_date": "22-12-2025",
+    "next_release_ons": "31 March 2026",
+    "source": "Office for National Statistics",
+    "description": "イギリス実質GDP（季節調整済み）"
+  },
+  "last_updated": "2026-01-19T01:42:27.305633+09:00"
+}

@@ -37,6 +37,7 @@ class UKPolicyLoader(BaseDashboardLoader):
     - boe_average_weekly_earnings: 平均週間賃金（AWE）見通し
     - boe_unit_wage_costs: 単位賃金コスト（UWC）見通し
     - boe_inflation_expectations: インフレ期待（家計/企業）
+    - boe_dmp_survey: DMP（意思決定者パネル）サーベイ
 
     ※ CPI構成項目（boe_cpi_components）は2025年11月以降の拡張データのため除外
     ※ CPI寄与度（boe_cpi_contributions）は分解粒度が号で変わりやすいため除外
@@ -61,6 +62,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         "boe_average_weekly_earnings",
         "boe_unit_wage_costs",
         "boe_inflation_expectations",
+        "boe_dmp_survey",
     ]
 
     def __init__(self):
@@ -125,6 +127,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         from services.uk.boe_average_weekly_earnings_service import boe_average_weekly_earnings_service
         from services.uk.boe_unit_wage_costs_service import boe_unit_wage_costs_service
         from services.uk.boe_inflation_expectations_service import boe_inflation_expectations_service
+        from services.uk.boe_dmp_survey_service import boe_dmp_survey_service
 
         result = {
             "boe_bank_rate": None,
@@ -139,10 +142,11 @@ class UKPolicyLoader(BaseDashboardLoader):
             "boe_average_weekly_earnings": None,
             "boe_unit_wage_costs": None,
             "boe_inflation_expectations": None,
+            "boe_dmp_survey": None,
         }
 
         # 並列でデータを取得（基本仕様・常設のみ）
-        with ThreadPoolExecutor(max_workers=12) as executor:
+        with ThreadPoolExecutor(max_workers=13) as executor:
             futures = {
                 executor.submit(self._get_boe_bank_rate, boe_bank_rate_service): "boe_bank_rate",
                 executor.submit(self._get_boe_mpc_voting, boe_mpc_voting_service): "boe_mpc_voting",
@@ -156,6 +160,7 @@ class UKPolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_boe_average_weekly_earnings, boe_average_weekly_earnings_service): "boe_average_weekly_earnings",
                 executor.submit(self._get_boe_unit_wage_costs, boe_unit_wage_costs_service): "boe_unit_wage_costs",
                 executor.submit(self._get_boe_inflation_expectations, boe_inflation_expectations_service): "boe_inflation_expectations",
+                executor.submit(self._get_boe_dmp_survey, boe_dmp_survey_service): "boe_dmp_survey",
             }
 
             for future in as_completed(futures):
@@ -358,3 +363,16 @@ class UKPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting BOE Inflation Expectations: {e}")
             return {"inflation_expectations": {}, "metadata": {}, "next_release": None}
+
+    def _get_boe_dmp_survey(self, service) -> dict:
+        """BOE DMP Surveyデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("boe_dmp_survey")
+            response = service.fetch_data(force_refresh=force_refresh)
+            return {
+                "survey_data": response.get("survey_data", {}),
+                "metadata": response.get("metadata", {}),
+            }
+        except Exception as e:
+            print(f"Error getting BOE DMP Survey: {e}")
+            return {"survey_data": {}, "metadata": {}}

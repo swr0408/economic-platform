@@ -306,7 +306,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#13c2c2',
         indicators: [
           { code: 'ecb-retail-trade', name: '小売売上高（ユーロ圏）' },
+          { code: 'germany-retail-sales', name: '小売売上高（ドイツ）' },
           { code: 'eurostat-consumer-confidence', name: '消費者信頼感指数（ユーロ圏）' },
+          { code: 'germany-consumer-confidence-gfk', name: '消費者信頼感指数（ドイツ・GfK）' },
         ],
       },
       {
@@ -375,7 +377,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
+          { code: 'ons-gdp', name: 'GDP成長率' },
+          { code: 'ons-gva', name: '月間GDP（GVA）' },
+          { code: 'ons-production', name: '鉱工業生産' },
+          { code: 'cbi-industrial-trends', name: 'CBI製造業受注指数' },
           { code: 'pmi', name: 'PMI' },
         ],
       },

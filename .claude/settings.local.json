@@ -148,7 +148,15 @@
       "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend''; npm run build 2>&1 | Select-Object -First 50\")",
       "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend''; npm run build 2>&1 | Select-Object -First 30\")",
       "Bash(ls -1 \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend\\\\src\\\\components\\\\country\\\\uk\\\\monetary_policy\"\" | grep -i \"services|expectations \")",
-      "Bash(redis-cli DEL:*)"
+      "Bash(redis-cli DEL:*)",
+      "Bash(cmd /c \"curl -s http://localhost:8000/api/uk/ons-gva > C:\\\\temp\\\\gva.json\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend'' ; npm run build 2>&1 | Select-Object -First 80\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend'' ; npm run build 2>&1 | Select-Object -Last 20\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend'' ; redis-cli DEL uk:ons_gva:data\")",
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend'' ; npm run build 2>&1 | Select-Object -First 50\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend'' ; npm run build 2>&1 | Select-Object -Last 15\")",
+      "Bash(ls \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\services\\\\eurozone\"\" | grep -i \"consumer|confidence \")"
     ]
   }
 }

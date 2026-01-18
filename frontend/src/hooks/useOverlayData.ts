@@ -61,7 +61,9 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/import-export-price',
     '/api/japan/sppi',
     '/api/japan/pos-uvpi',
-    '/api/uk/',  // UK API（BOE Bank Rate等）
+    // UK個別API（BOE Bank Rate、ONS GDP/GVA/Production等）
+    '/api/uk/boe-',
+    '/api/uk/ons-',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -544,7 +546,15 @@ export function useOverlayIndicatorData(indicator: OverlayIndicator | null) {
         return result;
       }
 
-      // 通常の指標データ
+      // 個別API（nyfed, fed-h15, uk等）の場合は専用の抽出ロジックを使用
+      if (mapping.isDirectApi) {
+        const data = await response.json();
+        const result = extractDirectApiData(data, mapping.dataKey, mapping.valueField, mapping.nestedKey);
+        console.log('[useOverlayData] Extracted', result.length, 'direct API points for', indicator.id);
+        return result;
+      }
+
+      // 通常の指標データ（/dashboard形式）
       const data = await response.json() as APIResponse;
       const result = extractIndicatorData(data, mapping.dataKey, mapping.valueField, mapping.derived, mapping.nestedKey);
       console.log('[useOverlayData] Extracted', result.length, 'points for', indicator.id);
@@ -599,6 +609,23 @@ function extractDirectApiData(
       console.log('[useOverlayData] Series not found:', nestedKey);
     }
     return [];
+  }
+
+  // パターン: トップレベルにdataKeyがある場合（UK GDP等）
+  // { qoq: [{date, qoq_change, ...}], yoy: [{date, yoy_change, ...}] }
+  const topLevelData = data[dataKey] as DirectApiDataItem[] | undefined;
+  if (topLevelData && Array.isArray(topLevelData)) {
+    const field = valueField || 'value';
+    console.log('[useOverlayData] Top-level dataKey pattern for:', dataKey, 'field:', field, 'length:', topLevelData.length);
+    return topLevelData
+      .filter((item) => {
+        const val = item[field];
+        return val !== undefined && val !== null && typeof val === 'number';
+      })
+      .map((item) => ({
+        date: item.date,
+        value: item[field] as number,
+      }));
   }
 
   // 通常のdata配列形式

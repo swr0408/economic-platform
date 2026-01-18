@@ -4,6 +4,7 @@ import BOEBankRateChart from './monetary_policy/BOEBankRateChart'
 import BOEMPCVotingChart from './monetary_policy/BOEMPCVotingChart'
 import BOEOISCurveChart from './monetary_policy/BOEOISCurveChart'
 import BOEEconomicOutlookSection from './monetary_policy/BOEEconomicOutlookSection'
+import BOEDMPSurveySection from './monetary_policy/BOEDMPSurveySection'
 
 /**
  * イギリス金融政策チャート群
@@ -72,6 +73,14 @@ export default function UKPolicyCharts() {
           averageWeeklyEarningsData={dashboardData?.boe_average_weekly_earnings ?? null}
           unitWageCostsData={dashboardData?.boe_unit_wage_costs ?? null}
           inflationExpectationsData={dashboardData?.boe_inflation_expectations ?? null}
+          isLoading={isLoading}
+        />
+      </div>
+
+      {/* BOE DMP Survey Section */}
+      <div id="boe-dmp-survey">
+        <BOEDMPSurveySection
+          data={dashboardData?.boe_dmp_survey ?? null}
           isLoading={isLoading}
         />
       </div>

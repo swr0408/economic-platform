@@ -22,6 +22,7 @@ from services.dashboard.loaders.eurozone_employment import EurozoneEmploymentLoa
 from services.dashboard.loaders.eurozone_inflation import EurozoneInflationLoader
 from services.dashboard.loaders.japan_price import JapanPriceLoader
 from services.dashboard.loaders.uk_policy import UKPolicyLoader
+from services.dashboard.loaders.uk_economy import UKEconomyLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -44,6 +45,7 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
 
     # イギリス
     ("uk", "policy"): UKPolicyLoader,
+    ("uk", "economy"): UKEconomyLoader,
 
     # ユーロ圏
     ("eurozone", "policy"): EurozonePolicyLoader,

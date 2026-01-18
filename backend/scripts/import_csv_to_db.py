@@ -232,6 +232,63 @@ CSV_CONFIGS = [
         "date_format": "monthly_utc",  # EUデータはUTC月初で保存
         "value_type": "number",
     },
+    # Germany GfK Consumer Confidence
+    # 注意: CSVの日付は翌月を指す（例: 2021/1 = 2021年1月分の予測値）
+    # データはそのまま翌月として保存（date_offset_monthsは使用しない）
+    {
+        "file": "ドイツGfk消費者信頼感指数.csv",
+        "event_name": "GfK Consumer Confidence",
+        "provider": "CSV_IMPORT",
+        "country": "DE",
+        "currency": "EUR",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # ドイツデータはUTC月初で保存
+        "value_type": "number",
+    },
+    # UK CBI Industrial Trends Orders
+    {
+        "file": "CBI製造業受注指数.csv",
+        "event_name": "CBI Industrial Trends Orders",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "number",
+    },
+    # UK S&P Global Manufacturing PMI
+    {
+        "file": "UK S&P製造業PMI.csv",
+        "event_name": "S&P Global Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "High",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "number",
+    },
+    # UK S&P Global Services PMI
+    {
+        "file": "UK S&PサービスPMI.csv",
+        "event_name": "S&P Global Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "High",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "number",
+    },
+    # UK S&P Global Composite PMI
+    {
+        "file": "UK S&P総合PMI.csv",
+        "event_name": "S&P Global Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "High",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "number",
+    },
 ]
 
 
@@ -380,9 +437,17 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
                     # 日銀金利CSVは "公表日時" カラム、他は "公表日" カラム
                     if "公表日時" in row:
                         date_str = str(row["公表日時"])
-                    else:
+                    elif "公表日" in row:
                         date_str = str(row["公表日"])
-                    time_str = str(row["時間"]) if "時間" in row else ""
+                    else:
+                        print(f"  Warning: No date column found in row: {row.to_dict()}")
+                        continue
+                    # 時間カラム名のバリエーション対応
+                    time_str = ""
+                    if "時間" in row:
+                        time_str = str(row["時間"])
+                    elif "発表時間" in row:
+                        time_str = str(row["発表時間"])
 
                     if config["date_format"] == "monthly":
                         dt_utc = parse_date_monthly(date_str, time_str)
