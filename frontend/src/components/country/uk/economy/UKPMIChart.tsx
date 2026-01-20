@@ -118,7 +118,7 @@ export default function UKPMIChart({ data }: UKPMIChartProps) {
   return (
     <div id="uk-pmi-chart">
       <ChartContainer
-        title="S&P Global PMI（イギリス）"
+        title="S&P Global PMI"
         showPeriodSelector={false}
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"

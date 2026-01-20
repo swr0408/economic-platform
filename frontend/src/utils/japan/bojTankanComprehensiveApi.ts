@@ -133,7 +133,7 @@ export const formatQuarterDate = (dateStr: string): string => {
     quarter = 4
   }
 
-  return `${year}年Q${quarter}`
+  return `${year}/Q${quarter}`
 }
 
 /**

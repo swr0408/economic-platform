@@ -60,7 +60,7 @@ export function formatReportDate(dateStr: string | null): string {
     const month = date.getMonth() + 1
 
     // Map month to Japanese display (1月, 4月, 7月, 10月)
-    return `${year}年${month}月`
+    return `${year}/${month}`
   } catch {
     return dateStr
   }

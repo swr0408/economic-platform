@@ -2,6 +2,7 @@ import { Spin, Alert, Button } from 'antd'
 import { useEurozoneEconomyDashboard } from '../../../hooks/useDashboardData'
 import EuroGDPChart from './economy/EuroGDPChart'
 import EuroGDPComponentsChart from './economy/EuroGDPComponentsChart'
+import GermanyGDPGrowthChart from './economy/GermanyGDPGrowthChart'
 import ECBBLSChart from './economy/ECBBLSChart'
 import ECBProductionChart from './economy/ECBProductionChart'
 import EurostatESIChart from './economy/EurostatESIChart'
@@ -53,6 +54,13 @@ export default function EurozoneEconomyCharts() {
       <div id="ecb-gdp-components">
         <EuroGDPComponentsChart
           data={dashboardData?.ecb_gdp_components ?? null}
+        />
+      </div>
+
+      {/* Germany GDP Growth Chart */}
+      <div id="germany-gdp-growth">
+        <GermanyGDPGrowthChart
+          data={dashboardData?.germany_gdp_growth ?? null}
         />
       </div>
 

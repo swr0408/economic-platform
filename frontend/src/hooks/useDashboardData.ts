@@ -3198,6 +3198,682 @@ export function useUKEconomyDashboard(): UseQueryResult<DashboardResponse<UKEcon
   return useDashboardData<UKEconomyDashboardData>('uk', 'economy')
 }
 
+// ONS小売売上高データの型
+export interface ONSRetailSalesDataPoint {
+  date: string
+  value: number
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface ONSRetailSalesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSRetailSalesData {
+  mom: ONSRetailSalesDataPoint[]
+  yoy: ONSRetailSalesDataPoint[]
+  core_mom: ONSRetailSalesDataPoint[]
+  core_yoy: ONSRetailSalesDataPoint[]
+  next_release?: ONSRetailSalesNextRelease | null
+}
+
+// BRC小売売上高データの型
+export interface BRCRetailSalesDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface BRCRetailSalesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface BRCRetailSalesData {
+  data: BRCRetailSalesDataPoint[]
+  latest: BRCRetailSalesDataPoint | null
+  next_release?: BRCRetailSalesNextRelease | null
+}
+
+// GfK消費者信頼感指数データの型
+export interface GfKConsumerConfidenceDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface GfKConsumerConfidenceNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface GfKConsumerConfidenceData {
+  data: GfKConsumerConfidenceDataPoint[]
+  latest: GfKConsumerConfidenceDataPoint | null
+  next_release?: GfKConsumerConfidenceNextRelease | null
+}
+
+// UK消費ダッシュボードデータの型
+export interface UKConsumerDashboardData {
+  ons_retail_sales: ONSRetailSalesData | null
+  brc_retail_sales: BRCRetailSalesData | null
+  gfk_consumer_confidence: GfKConsumerConfidenceData | null
+}
+
+/**
+ * イギリス消費ダッシュボード専用フック
+ * ONS小売売上高などを取得
+ */
+export function useUKConsumerDashboard(): UseQueryResult<DashboardResponse<UKConsumerDashboardData>, Error> {
+  return useDashboardData<UKConsumerDashboardData>('uk', 'consumer')
+}
+
+// ONS失業率データの型
+export interface ONSUnemploymentDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface ONSUnemploymentNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSUnemploymentData {
+  data: ONSUnemploymentDataPoint[]
+  latest: ONSUnemploymentDataPoint | null
+  next_release?: ONSUnemploymentNextRelease | null
+}
+
+// ONS失業給付申請件数データの型
+export interface ONSClaimantCountDataPoint {
+  date: string
+  value: number | null
+  mom?: number | null
+  yoy?: number | null
+}
+
+export interface ONSClaimantCountNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSClaimantCountData {
+  data: ONSClaimantCountDataPoint[]
+  latest: ONSClaimantCountDataPoint | null
+  next_release?: ONSClaimantCountNextRelease | null
+}
+
+// ONS平均賃金データの型
+export interface ONSWagesDataPoint {
+  date: string
+  total_pay: number | null
+  regular_pay: number | null
+}
+
+export interface ONSWagesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSWagesMetadata {
+  total_pay_title?: string
+  total_pay_cdid?: string
+  regular_pay_title?: string
+  regular_pay_cdid?: string
+  unit?: string
+  source?: string
+  description?: string
+}
+
+export interface ONSWagesData {
+  data: ONSWagesDataPoint[]
+  latest: ONSWagesDataPoint | null
+  metadata?: ONSWagesMetadata
+  next_release?: ONSWagesNextRelease | null
+}
+
+// ONS雇用者数データの型
+export interface ONSEmploymentDataPoint {
+  date: string
+  value: number | null
+  mom: number | null
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface ONSEmploymentNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSEmploymentMetadata {
+  title?: string
+  cdid?: string
+  unit?: string
+  source?: string
+  description?: string
+}
+
+export interface ONSEmploymentData {
+  data: ONSEmploymentDataPoint[]
+  latest: ONSEmploymentDataPoint | null
+  metadata?: ONSEmploymentMetadata
+  next_release?: ONSEmploymentNextRelease | null
+}
+
+// ONS実質平均賃金データの型
+export interface ONSRealWagesDataPoint {
+  date: string
+  total_pay: number | null
+  regular_pay: number | null
+}
+
+export interface ONSRealWagesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSRealWagesMetadata {
+  total_pay_title?: string
+  total_pay_cdid?: string
+  regular_pay_title?: string
+  regular_pay_cdid?: string
+  unit?: string
+  source?: string
+  description?: string
+}
+
+export interface ONSRealWagesData {
+  data: ONSRealWagesDataPoint[]
+  latest: ONSRealWagesDataPoint | null
+  metadata?: ONSRealWagesMetadata
+  next_release?: ONSRealWagesNextRelease | null
+}
+
+// ONS経済活動率データの型
+export interface ONSEconomicActivityDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface ONSEconomicActivityNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSEconomicActivityMetadata {
+  title?: string
+  cdid?: string
+  unit?: string
+  source?: string
+  description?: string
+}
+
+export interface ONSEconomicActivityData {
+  data: ONSEconomicActivityDataPoint[]
+  latest: ONSEconomicActivityDataPoint | null
+  metadata?: ONSEconomicActivityMetadata
+  next_release?: ONSEconomicActivityNextRelease | null
+}
+
+// Indeed賃金トラッカー（UK）データの型
+export interface IndeedWageTrackerUKDataPoint {
+  date: string
+  value: number | null
+  ma3: number | null
+}
+
+export interface IndeedWageTrackerUKMetadata {
+  source?: string
+  url?: string
+  data_start?: string
+  country?: string
+  country_code?: string
+  unit?: string
+}
+
+export interface IndeedWageTrackerUKData {
+  data: IndeedWageTrackerUKDataPoint[]
+  latest: IndeedWageTrackerUKDataPoint | null
+  metadata?: IndeedWageTrackerUKMetadata
+}
+
+// ONS労働生産性データの型
+export interface ONSProductivityDataPoint {
+  date: string
+  value: number
+  period: string
+}
+
+export interface ONSProductivityYoYDataPoint {
+  date: string
+  period: string
+  value?: number
+  yoy: number
+  is_flash?: boolean  // 速報値フラグ
+}
+
+export interface ONSProductivityQoQDataPoint {
+  date: string
+  period: string
+  value?: number
+  qoq: number
+  is_flash?: boolean  // 速報値フラグ
+}
+
+export interface ONSProductivitySeriesData {
+  data: ONSProductivityDataPoint[]
+  yoy: ONSProductivityYoYDataPoint[]
+  qoq: ONSProductivityQoQDataPoint[]
+  metadata?: {
+    title?: string
+    cdid?: string
+    unit?: string
+    release_date?: string
+    next_release_ons?: string
+  }
+}
+
+export interface ONSProductivityDMWOData {
+  data: ONSProductivityDataPoint[]
+  metadata?: {
+    title?: string
+    cdid?: string
+    unit?: string
+    release_date?: string
+    next_release_ons?: string
+  }
+}
+
+export interface ONSProductivityNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSProductivityMetadata {
+  source?: string
+  description?: string
+  series?: {
+    lzvb?: string
+    a4ym?: string
+    dmwo?: string
+  }
+  has_flash_estimate?: boolean  // 速報値が含まれているかどうか
+}
+
+export interface ONSProductivityData {
+  lzvb: ONSProductivitySeriesData
+  a4ym: ONSProductivitySeriesData
+  dmwo: ONSProductivityDMWOData
+  latest: ONSProductivityYoYDataPoint | null
+  metadata?: ONSProductivityMetadata
+  next_release?: ONSProductivityNextRelease | null
+}
+
+// ONS単位労働コストデータの型
+export interface ONSUnitLabourCostsDataPoint {
+  date: string
+  value: number
+  period: string
+}
+
+export interface ONSUnitLabourCostsSeriesData {
+  data: ONSUnitLabourCostsDataPoint[]
+  metadata?: {
+    title?: string
+    cdid?: string
+    unit?: string
+    release_date?: string
+    next_release_ons?: string
+  }
+}
+
+export interface ONSUnitLabourCostsMetadata {
+  source?: string
+  description?: string
+  series?: {
+    dmwn?: string
+    dmwo?: string
+  }
+}
+
+export interface ONSUnitLabourCostsNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSUnitLabourCostsData {
+  yoy: ONSUnitLabourCostsSeriesData
+  qoq: ONSUnitLabourCostsSeriesData
+  latest: ONSUnitLabourCostsDataPoint | null
+  metadata?: ONSUnitLabourCostsMetadata
+  next_release?: ONSUnitLabourCostsNextRelease | null
+}
+
+// UK雇用ダッシュボードデータの型
+export interface UKEmploymentDashboardData {
+  ons_unemployment: ONSUnemploymentData | null
+  ons_claimant_count: ONSClaimantCountData | null
+  ons_wages: ONSWagesData | null
+  ons_real_wages: ONSRealWagesData | null
+  ons_employment: ONSEmploymentData | null
+  ons_economic_activity: ONSEconomicActivityData | null
+  ons_productivity: ONSProductivityData | null
+  ons_unit_labour_costs: ONSUnitLabourCostsData | null
+  indeed_wage_tracker: IndeedWageTrackerUKData | null
+}
+
+/**
+ * イギリス雇用ダッシュボード専用フック
+ * ONS失業率などを取得
+ */
+export function useUKEmploymentDashboard(): UseQueryResult<DashboardResponse<UKEmploymentDashboardData>, Error> {
+  return useDashboardData<UKEmploymentDashboardData>('uk', 'employment')
+}
+
+// ONS CPI/CPIHデータの型
+export interface ONSCPIHDataPoint {
+  date: string
+  value: number
+}
+
+export interface ONSCPIHSeriesData {
+  data: ONSCPIHDataPoint[]
+  metadata?: {
+    code?: string
+    name?: string
+  }
+}
+
+export interface ONSCPIHMetadata {
+  source?: string
+  dataset?: string
+  description?: string
+}
+
+export interface ONSCPIHNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSCPIHData {
+  series: {
+    cpi_all_yoy?: ONSCPIHSeriesData
+    cpi_core_yoy?: ONSCPIHSeriesData
+    cpi_all_mom?: ONSCPIHSeriesData
+    cpi_core_mom?: ONSCPIHSeriesData
+    cpih_all_yoy?: ONSCPIHSeriesData
+    cpih_core_yoy?: ONSCPIHSeriesData
+    // CPI Components (YoY)
+    energy_yoy?: ONSCPIHSeriesData
+    electricity_yoy?: ONSCPIHSeriesData
+    food_yoy?: ONSCPIHSeriesData
+    services_yoy?: ONSCPIHSeriesData
+    goods_yoy?: ONSCPIHSeriesData
+    rent_yoy?: ONSCPIHSeriesData
+  }
+  latest: ONSCPIHDataPoint | null
+  metadata?: ONSCPIHMetadata
+  next_release?: ONSCPIHNextRelease | null
+}
+
+// ONS PPIデータの型
+export interface ONSPPIDataPoint {
+  date: string
+  value: number
+}
+
+export interface ONSPPISeriesData {
+  data: ONSPPIDataPoint[]
+  metadata?: {
+    code?: string
+    name?: string
+  }
+}
+
+export interface ONSPPIMetadata {
+  source?: string
+  dataset?: string
+  description?: string
+}
+
+export interface ONSPPINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface ONSPPIData {
+  series: {
+    output_yoy?: ONSPPISeriesData
+    output_mom?: ONSPPISeriesData
+    input_yoy?: ONSPPISeriesData
+    input_mom?: ONSPPISeriesData
+  }
+  latest: ONSPPIDataPoint | null
+  metadata?: ONSPPIMetadata
+  next_release?: ONSPPINextRelease | null
+}
+
+// BRC店頭価格指数データの型
+export interface BRCShopPriceDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface BRCShopPriceNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface BRCShopPriceData {
+  data: BRCShopPriceDataPoint[]
+  latest: BRCShopPriceDataPoint | null
+  next_release?: BRCShopPriceNextRelease | null
+}
+
+// BOEインフレ期待調査データの型
+export interface BOEInflationAttitudesDataPoint {
+  date: string
+  value: number
+}
+
+export interface BOEInflationAttitudesSeriesMetadata {
+  name: string
+  name_en: string
+}
+
+export interface BOEInflationAttitudesSeries {
+  data: BOEInflationAttitudesDataPoint[]
+  metadata: BOEInflationAttitudesSeriesMetadata
+}
+
+export interface BOEInflationAttitudesLatest {
+  date: string
+  next_12_months?: number
+  following_12_months?: number
+  five_years?: number
+}
+
+export interface BOEInflationAttitudesNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface BOEInflationAttitudesData {
+  series: {
+    next_12_months?: BOEInflationAttitudesSeries
+    following_12_months?: BOEInflationAttitudesSeries
+    five_years?: BOEInflationAttitudesSeries
+  }
+  latest: BOEInflationAttitudesLatest | null
+  next_release?: BOEInflationAttitudesNextRelease | null
+}
+
+// UK物価ダッシュボードデータの型
+export interface UKInflationDashboardData {
+  ons_cpih: ONSCPIHData | null
+  ons_ppi: ONSPPIData | null
+  brc_shop_price: BRCShopPriceData | null
+  boe_inflation_attitudes: BOEInflationAttitudesData | null
+}
+
+/**
+ * イギリス物価ダッシュボード専用フック
+ * ONS CPI/CPIH/PPIなどを取得
+ */
+export function useUKInflationDashboard(): UseQueryResult<DashboardResponse<UKInflationDashboardData>, Error> {
+  return useDashboardData<UKInflationDashboardData>('uk', 'inflation')
+}
+
+// UK住宅価格指数データの型
+export interface UKHousePriceDataPoint {
+  date: string
+  value: number
+}
+
+export interface UKHousePriceSeriesMetadata {
+  name: string
+  name_en: string
+}
+
+export interface UKHousePriceSeries {
+  data: UKHousePriceDataPoint[]
+  metadata: UKHousePriceSeriesMetadata
+}
+
+export interface UKHousePriceLatest {
+  date: string
+  all?: number
+  detached?: number
+  semi_detached?: number
+  terraced?: number
+  flat?: number
+}
+
+export interface UKHousePriceNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface UKHousePriceData {
+  series: {
+    all?: UKHousePriceSeries
+    detached?: UKHousePriceSeries
+    semi_detached?: UKHousePriceSeries
+    terraced?: UKHousePriceSeries
+    flat?: UKHousePriceSeries
+  }
+  series_mom: {
+    all?: UKHousePriceSeries
+    detached?: UKHousePriceSeries
+    semi_detached?: UKHousePriceSeries
+    terraced?: UKHousePriceSeries
+    flat?: UKHousePriceSeries
+  }
+  latest: UKHousePriceLatest | null
+  next_release?: UKHousePriceNextRelease | null
+}
+
+// RICS住宅価格データの型
+export interface RICSHousePriceDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface RICSHousePriceLatest {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface RICSHousePriceNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface RICSHousePriceData {
+  data: RICSHousePriceDataPoint[]
+  latest: RICSHousePriceLatest | null
+  next_release?: RICSHousePriceNextRelease | null
+}
+
+// UK住宅ダッシュボードデータの型
+export interface UKHousingDashboardData {
+  uk_house_price: UKHousePriceData | null
+  rics_house_price: RICSHousePriceData | null
+}
+
+/**
+ * イギリス住宅ダッシュボード専用フック
+ * UK House Price Indexなどを取得
+ */
+export function useUKHousingDashboard(): UseQueryResult<DashboardResponse<UKHousingDashboardData>, Error> {
+  return useDashboardData<UKHousingDashboardData>('uk', 'housing')
+}
+
 // ECB GDPデータの型
 export interface ECBGDPDataPoint {
   date: string
@@ -3445,6 +4121,31 @@ export interface GermanyRetailSalesData {
   next_release?: { date: string; label?: string; time_jst?: string } | null
 }
 
+// ドイツGDP成長率データの型
+export interface GermanyGDPGrowthData {
+  gdp_growth_qoq: GermanyGDPGrowthItem[]
+  gdp_growth_yoy: GermanyGDPGrowthItem[]
+  metadata: GermanyGDPGrowthMetadata
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface GermanyGDPGrowthItem {
+  date: string
+  value: number
+  forecast?: number | null
+  previous?: number | null
+  source?: string
+}
+
+export interface GermanyGDPGrowthMetadata {
+  source?: string
+  country?: string
+  table?: string
+  description?: string
+  unit?: string
+  adjustment?: string
+}
+
 // ユーロ圏経済ダッシュボードデータの型
 export interface EurozoneEconomyData {
   ecb_gdp: ECBGDPData | null
@@ -3454,6 +4155,7 @@ export interface EurozoneEconomyData {
   eurostat_esi: EurostatESIData | null
   euro_policy_uncertainty: EuroPolicyUncertaintyData | null
   eu_pmi: EUPMIData | null
+  germany_gdp_growth: GermanyGDPGrowthData | null
 }
 
 // ユーロ圏 HCOB PMIデータの型（製造業/サービス業/総合）

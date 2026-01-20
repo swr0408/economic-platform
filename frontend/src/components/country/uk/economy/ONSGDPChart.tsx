@@ -368,7 +368,7 @@ export default function ONSGDPChart({ data }: ONSGDPChartProps) {
   return (
     <div id="ons-gdp-chart">
       <ChartContainer
-        title="GDP成長率（イギリス）"
+        title="GDP成長率"
         showPeriodSelector={false}
         dataSource="Office for National Statistics (ONS)"
         sourceUrl="https://www.ons.gov.uk/economy/grossdomesticproductgdp"

@@ -228,7 +228,7 @@ export function formatQuarterDate(dateStr: string): string {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const quarter = Math.ceil(month / 3)
-    return `${year}年Q${quarter}`
+    return `${year}/Q${quarter}`
   } catch {
     return dateStr
   }

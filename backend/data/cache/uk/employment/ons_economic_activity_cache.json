@@ -1,0 +1,3299 @@
+{
+  "data": [
+    {
+      "date": "1971-02-01",
+      "value": 75.1,
+      "period": "1971 FEB"
+    },
+    {
+      "date": "1971-03-01",
+      "value": 75.0,
+      "period": "1971 MAR"
+    },
+    {
+      "date": "1971-04-01",
+      "value": 75.0,
+      "period": "1971 APR"
+    },
+    {
+      "date": "1971-05-01",
+      "value": 75.1,
+      "period": "1971 MAY"
+    },
+    {
+      "date": "1971-06-01",
+      "value": 75.0,
+      "period": "1971 JUN"
+    },
+    {
+      "date": "1971-07-01",
+      "value": 75.0,
+      "period": "1971 JUL"
+    },
+    {
+      "date": "1971-08-01",
+      "value": 74.9,
+      "period": "1971 AUG"
+    },
+    {
+      "date": "1971-09-01",
+      "value": 74.8,
+      "period": "1971 SEP"
+    },
+    {
+      "date": "1971-10-01",
+      "value": 74.8,
+      "period": "1971 OCT"
+    },
+    {
+      "date": "1971-11-01",
+      "value": 74.8,
+      "period": "1971 NOV"
+    },
+    {
+      "date": "1971-12-01",
+      "value": 74.9,
+      "period": "1971 DEC"
+    },
+    {
+      "date": "1972-01-01",
+      "value": 75.0,
+      "period": "1972 JAN"
+    },
+    {
+      "date": "1972-02-01",
+      "value": 75.2,
+      "period": "1972 FEB"
+    },
+    {
+      "date": "1972-03-01",
+      "value": 75.3,
+      "period": "1972 MAR"
+    },
+    {
+      "date": "1972-04-01",
+      "value": 75.3,
+      "period": "1972 APR"
+    },
+    {
+      "date": "1972-05-01",
+      "value": 75.2,
+      "period": "1972 MAY"
+    },
+    {
+      "date": "1972-06-01",
+      "value": 75.2,
+      "period": "1972 JUN"
+    },
+    {
+      "date": "1972-07-01",
+      "value": 75.1,
+      "period": "1972 JUL"
+    },
+    {
+      "date": "1972-08-01",
+      "value": 75.2,
+      "period": "1972 AUG"
+    },
+    {
+      "date": "1972-09-01",
+      "value": 75.2,
+      "period": "1972 SEP"
+    },
+    {
+      "date": "1972-10-01",
+      "value": 75.3,
+      "period": "1972 OCT"
+    },
+    {
+      "date": "1972-11-01",
+      "value": 75.4,
+      "period": "1972 NOV"
+    },
+    {
+      "date": "1972-12-01",
+      "value": 75.5,
+      "period": "1972 DEC"
+    },
+    {
+      "date": "1973-01-01",
+      "value": 75.6,
+      "period": "1973 JAN"
+    },
+    {
+      "date": "1973-02-01",
+      "value": 75.7,
+      "period": "1973 FEB"
+    },
+    {
+      "date": "1973-03-01",
+      "value": 75.8,
+      "period": "1973 MAR"
+    },
+    {
+      "date": "1973-04-01",
+      "value": 75.9,
+      "period": "1973 APR"
+    },
+    {
+      "date": "1973-05-01",
+      "value": 75.8,
+      "period": "1973 MAY"
+    },
+    {
+      "date": "1973-06-01",
+      "value": 75.7,
+      "period": "1973 JUN"
+    },
+    {
+      "date": "1973-07-01",
+      "value": 75.7,
+      "period": "1973 JUL"
+    },
+    {
+      "date": "1973-08-01",
+      "value": 75.6,
+      "period": "1973 AUG"
+    },
+    {
+      "date": "1973-09-01",
+      "value": 75.6,
+      "period": "1973 SEP"
+    },
+    {
+      "date": "1973-10-01",
+      "value": 75.6,
+      "period": "1973 OCT"
+    },
+    {
+      "date": "1973-11-01",
+      "value": 75.6,
+      "period": "1973 NOV"
+    },
+    {
+      "date": "1973-12-01",
+      "value": 75.6,
+      "period": "1973 DEC"
+    },
+    {
+      "date": "1974-01-01",
+      "value": 75.6,
+      "period": "1974 JAN"
+    },
+    {
+      "date": "1974-02-01",
+      "value": 75.6,
+      "period": "1974 FEB"
+    },
+    {
+      "date": "1974-03-01",
+      "value": 75.7,
+      "period": "1974 MAR"
+    },
+    {
+      "date": "1974-04-01",
+      "value": 75.7,
+      "period": "1974 APR"
+    },
+    {
+      "date": "1974-05-01",
+      "value": 75.7,
+      "period": "1974 MAY"
+    },
+    {
+      "date": "1974-06-01",
+      "value": 75.8,
+      "period": "1974 JUN"
+    },
+    {
+      "date": "1974-07-01",
+      "value": 75.9,
+      "period": "1974 JUL"
+    },
+    {
+      "date": "1974-08-01",
+      "value": 75.9,
+      "period": "1974 AUG"
+    },
+    {
+      "date": "1974-09-01",
+      "value": 76.0,
+      "period": "1974 SEP"
+    },
+    {
+      "date": "1974-10-01",
+      "value": 76.0,
+      "period": "1974 OCT"
+    },
+    {
+      "date": "1974-11-01",
+      "value": 75.9,
+      "period": "1974 NOV"
+    },
+    {
+      "date": "1974-12-01",
+      "value": 75.9,
+      "period": "1974 DEC"
+    },
+    {
+      "date": "1975-01-01",
+      "value": 75.9,
+      "period": "1975 JAN"
+    },
+    {
+      "date": "1975-02-01",
+      "value": 75.9,
+      "period": "1975 FEB"
+    },
+    {
+      "date": "1975-03-01",
+      "value": 75.9,
+      "period": "1975 MAR"
+    },
+    {
+      "date": "1975-04-01",
+      "value": 75.9,
+      "period": "1975 APR"
+    },
+    {
+      "date": "1975-05-01",
+      "value": 76.0,
+      "period": "1975 MAY"
+    },
+    {
+      "date": "1975-06-01",
+      "value": 76.1,
+      "period": "1975 JUN"
+    },
+    {
+      "date": "1975-07-01",
+      "value": 76.1,
+      "period": "1975 JUL"
+    },
+    {
+      "date": "1975-08-01",
+      "value": 76.1,
+      "period": "1975 AUG"
+    },
+    {
+      "date": "1975-09-01",
+      "value": 76.2,
+      "period": "1975 SEP"
+    },
+    {
+      "date": "1975-10-01",
+      "value": 76.2,
+      "period": "1975 OCT"
+    },
+    {
+      "date": "1975-11-01",
+      "value": 76.2,
+      "period": "1975 NOV"
+    },
+    {
+      "date": "1975-12-01",
+      "value": 76.2,
+      "period": "1975 DEC"
+    },
+    {
+      "date": "1976-01-01",
+      "value": 76.2,
+      "period": "1976 JAN"
+    },
+    {
+      "date": "1976-02-01",
+      "value": 76.1,
+      "period": "1976 FEB"
+    },
+    {
+      "date": "1976-03-01",
+      "value": 76.1,
+      "period": "1976 MAR"
+    },
+    {
+      "date": "1976-04-01",
+      "value": 76.1,
+      "period": "1976 APR"
+    },
+    {
+      "date": "1976-05-01",
+      "value": 76.1,
+      "period": "1976 MAY"
+    },
+    {
+      "date": "1976-06-01",
+      "value": 76.1,
+      "period": "1976 JUN"
+    },
+    {
+      "date": "1976-07-01",
+      "value": 76.1,
+      "period": "1976 JUL"
+    },
+    {
+      "date": "1976-08-01",
+      "value": 76.0,
+      "period": "1976 AUG"
+    },
+    {
+      "date": "1976-09-01",
+      "value": 76.0,
+      "period": "1976 SEP"
+    },
+    {
+      "date": "1976-10-01",
+      "value": 76.0,
+      "period": "1976 OCT"
+    },
+    {
+      "date": "1976-11-01",
+      "value": 76.0,
+      "period": "1976 NOV"
+    },
+    {
+      "date": "1976-12-01",
+      "value": 76.0,
+      "period": "1976 DEC"
+    },
+    {
+      "date": "1977-01-01",
+      "value": 76.0,
+      "period": "1977 JAN"
+    },
+    {
+      "date": "1977-02-01",
+      "value": 75.9,
+      "period": "1977 FEB"
+    },
+    {
+      "date": "1977-03-01",
+      "value": 75.9,
+      "period": "1977 MAR"
+    },
+    {
+      "date": "1977-04-01",
+      "value": 75.9,
+      "period": "1977 APR"
+    },
+    {
+      "date": "1977-05-01",
+      "value": 75.9,
+      "period": "1977 MAY"
+    },
+    {
+      "date": "1977-06-01",
+      "value": 75.9,
+      "period": "1977 JUN"
+    },
+    {
+      "date": "1977-07-01",
+      "value": 75.9,
+      "period": "1977 JUL"
+    },
+    {
+      "date": "1977-08-01",
+      "value": 75.9,
+      "period": "1977 AUG"
+    },
+    {
+      "date": "1977-09-01",
+      "value": 75.9,
+      "period": "1977 SEP"
+    },
+    {
+      "date": "1977-10-01",
+      "value": 75.9,
+      "period": "1977 OCT"
+    },
+    {
+      "date": "1977-11-01",
+      "value": 75.9,
+      "period": "1977 NOV"
+    },
+    {
+      "date": "1977-12-01",
+      "value": 75.8,
+      "period": "1977 DEC"
+    },
+    {
+      "date": "1978-01-01",
+      "value": 75.8,
+      "period": "1978 JAN"
+    },
+    {
+      "date": "1978-02-01",
+      "value": 75.8,
+      "period": "1978 FEB"
+    },
+    {
+      "date": "1978-03-01",
+      "value": 75.8,
+      "period": "1978 MAR"
+    },
+    {
+      "date": "1978-04-01",
+      "value": 75.8,
+      "period": "1978 APR"
+    },
+    {
+      "date": "1978-05-01",
+      "value": 75.7,
+      "period": "1978 MAY"
+    },
+    {
+      "date": "1978-06-01",
+      "value": 75.7,
+      "period": "1978 JUN"
+    },
+    {
+      "date": "1978-07-01",
+      "value": 75.7,
+      "period": "1978 JUL"
+    },
+    {
+      "date": "1978-08-01",
+      "value": 75.7,
+      "period": "1978 AUG"
+    },
+    {
+      "date": "1978-09-01",
+      "value": 75.8,
+      "period": "1978 SEP"
+    },
+    {
+      "date": "1978-10-01",
+      "value": 75.8,
+      "period": "1978 OCT"
+    },
+    {
+      "date": "1978-11-01",
+      "value": 75.8,
+      "period": "1978 NOV"
+    },
+    {
+      "date": "1978-12-01",
+      "value": 75.8,
+      "period": "1978 DEC"
+    },
+    {
+      "date": "1979-01-01",
+      "value": 75.8,
+      "period": "1979 JAN"
+    },
+    {
+      "date": "1979-02-01",
+      "value": 75.8,
+      "period": "1979 FEB"
+    },
+    {
+      "date": "1979-03-01",
+      "value": 75.8,
+      "period": "1979 MAR"
+    },
+    {
+      "date": "1979-04-01",
+      "value": 75.8,
+      "period": "1979 APR"
+    },
+    {
+      "date": "1979-05-01",
+      "value": 75.8,
+      "period": "1979 MAY"
+    },
+    {
+      "date": "1979-06-01",
+      "value": 75.8,
+      "period": "1979 JUN"
+    },
+    {
+      "date": "1979-07-01",
+      "value": 75.8,
+      "period": "1979 JUL"
+    },
+    {
+      "date": "1979-08-01",
+      "value": 75.9,
+      "period": "1979 AUG"
+    },
+    {
+      "date": "1979-09-01",
+      "value": 75.9,
+      "period": "1979 SEP"
+    },
+    {
+      "date": "1979-10-01",
+      "value": 75.9,
+      "period": "1979 OCT"
+    },
+    {
+      "date": "1979-11-01",
+      "value": 75.9,
+      "period": "1979 NOV"
+    },
+    {
+      "date": "1979-12-01",
+      "value": 75.9,
+      "period": "1979 DEC"
+    },
+    {
+      "date": "1980-01-01",
+      "value": 76.0,
+      "period": "1980 JAN"
+    },
+    {
+      "date": "1980-02-01",
+      "value": 76.0,
+      "period": "1980 FEB"
+    },
+    {
+      "date": "1980-03-01",
+      "value": 76.0,
+      "period": "1980 MAR"
+    },
+    {
+      "date": "1980-04-01",
+      "value": 76.0,
+      "period": "1980 APR"
+    },
+    {
+      "date": "1980-05-01",
+      "value": 76.1,
+      "period": "1980 MAY"
+    },
+    {
+      "date": "1980-06-01",
+      "value": 76.1,
+      "period": "1980 JUN"
+    },
+    {
+      "date": "1980-07-01",
+      "value": 76.1,
+      "period": "1980 JUL"
+    },
+    {
+      "date": "1980-08-01",
+      "value": 76.1,
+      "period": "1980 AUG"
+    },
+    {
+      "date": "1980-09-01",
+      "value": 76.1,
+      "period": "1980 SEP"
+    },
+    {
+      "date": "1980-10-01",
+      "value": 76.1,
+      "period": "1980 OCT"
+    },
+    {
+      "date": "1980-11-01",
+      "value": 76.1,
+      "period": "1980 NOV"
+    },
+    {
+      "date": "1980-12-01",
+      "value": 76.2,
+      "period": "1980 DEC"
+    },
+    {
+      "date": "1981-01-01",
+      "value": 76.2,
+      "period": "1981 JAN"
+    },
+    {
+      "date": "1981-02-01",
+      "value": 76.2,
+      "period": "1981 FEB"
+    },
+    {
+      "date": "1981-03-01",
+      "value": 76.1,
+      "period": "1981 MAR"
+    },
+    {
+      "date": "1981-04-01",
+      "value": 76.1,
+      "period": "1981 APR"
+    },
+    {
+      "date": "1981-05-01",
+      "value": 76.1,
+      "period": "1981 MAY"
+    },
+    {
+      "date": "1981-06-01",
+      "value": 76.0,
+      "period": "1981 JUN"
+    },
+    {
+      "date": "1981-07-01",
+      "value": 75.9,
+      "period": "1981 JUL"
+    },
+    {
+      "date": "1981-08-01",
+      "value": 75.9,
+      "period": "1981 AUG"
+    },
+    {
+      "date": "1981-09-01",
+      "value": 75.8,
+      "period": "1981 SEP"
+    },
+    {
+      "date": "1981-10-01",
+      "value": 75.7,
+      "period": "1981 OCT"
+    },
+    {
+      "date": "1981-11-01",
+      "value": 75.6,
+      "period": "1981 NOV"
+    },
+    {
+      "date": "1981-12-01",
+      "value": 75.5,
+      "period": "1981 DEC"
+    },
+    {
+      "date": "1982-01-01",
+      "value": 75.4,
+      "period": "1982 JAN"
+    },
+    {
+      "date": "1982-02-01",
+      "value": 75.4,
+      "period": "1982 FEB"
+    },
+    {
+      "date": "1982-03-01",
+      "value": 75.3,
+      "period": "1982 MAR"
+    },
+    {
+      "date": "1982-04-01",
+      "value": 75.2,
+      "period": "1982 APR"
+    },
+    {
+      "date": "1982-05-01",
+      "value": 75.1,
+      "period": "1982 MAY"
+    },
+    {
+      "date": "1982-06-01",
+      "value": 75.0,
+      "period": "1982 JUN"
+    },
+    {
+      "date": "1982-07-01",
+      "value": 74.9,
+      "period": "1982 JUL"
+    },
+    {
+      "date": "1982-08-01",
+      "value": 74.8,
+      "period": "1982 AUG"
+    },
+    {
+      "date": "1982-09-01",
+      "value": 74.7,
+      "period": "1982 SEP"
+    },
+    {
+      "date": "1982-10-01",
+      "value": 74.6,
+      "period": "1982 OCT"
+    },
+    {
+      "date": "1982-11-01",
+      "value": 74.5,
+      "period": "1982 NOV"
+    },
+    {
+      "date": "1982-12-01",
+      "value": 74.3,
+      "period": "1982 DEC"
+    },
+    {
+      "date": "1983-01-01",
+      "value": 74.2,
+      "period": "1983 JAN"
+    },
+    {
+      "date": "1983-02-01",
+      "value": 74.2,
+      "period": "1983 FEB"
+    },
+    {
+      "date": "1983-03-01",
+      "value": 74.1,
+      "period": "1983 MAR"
+    },
+    {
+      "date": "1983-04-01",
+      "value": 74.1,
+      "period": "1983 APR"
+    },
+    {
+      "date": "1983-05-01",
+      "value": 74.1,
+      "period": "1983 MAY"
+    },
+    {
+      "date": "1983-06-01",
+      "value": 74.3,
+      "period": "1983 JUN"
+    },
+    {
+      "date": "1983-07-01",
+      "value": 74.4,
+      "period": "1983 JUL"
+    },
+    {
+      "date": "1983-08-01",
+      "value": 74.6,
+      "period": "1983 AUG"
+    },
+    {
+      "date": "1983-09-01",
+      "value": 74.8,
+      "period": "1983 SEP"
+    },
+    {
+      "date": "1983-10-01",
+      "value": 75.0,
+      "period": "1983 OCT"
+    },
+    {
+      "date": "1983-11-01",
+      "value": 75.1,
+      "period": "1983 NOV"
+    },
+    {
+      "date": "1983-12-01",
+      "value": 75.3,
+      "period": "1983 DEC"
+    },
+    {
+      "date": "1984-01-01",
+      "value": 75.4,
+      "period": "1984 JAN"
+    },
+    {
+      "date": "1984-02-01",
+      "value": 75.5,
+      "period": "1984 FEB"
+    },
+    {
+      "date": "1984-03-01",
+      "value": 75.6,
+      "period": "1984 MAR"
+    },
+    {
+      "date": "1984-04-01",
+      "value": 75.7,
+      "period": "1984 APR"
+    },
+    {
+      "date": "1984-05-01",
+      "value": 75.8,
+      "period": "1984 MAY"
+    },
+    {
+      "date": "1984-06-01",
+      "value": 75.8,
+      "period": "1984 JUN"
+    },
+    {
+      "date": "1984-07-01",
+      "value": 75.8,
+      "period": "1984 JUL"
+    },
+    {
+      "date": "1984-08-01",
+      "value": 75.8,
+      "period": "1984 AUG"
+    },
+    {
+      "date": "1984-09-01",
+      "value": 75.9,
+      "period": "1984 SEP"
+    },
+    {
+      "date": "1984-10-01",
+      "value": 75.9,
+      "period": "1984 OCT"
+    },
+    {
+      "date": "1984-11-01",
+      "value": 76.0,
+      "period": "1984 NOV"
+    },
+    {
+      "date": "1984-12-01",
+      "value": 76.0,
+      "period": "1984 DEC"
+    },
+    {
+      "date": "1985-01-01",
+      "value": 76.0,
+      "period": "1985 JAN"
+    },
+    {
+      "date": "1985-02-01",
+      "value": 76.0,
+      "period": "1985 FEB"
+    },
+    {
+      "date": "1985-03-01",
+      "value": 76.1,
+      "period": "1985 MAR"
+    },
+    {
+      "date": "1985-04-01",
+      "value": 76.1,
+      "period": "1985 APR"
+    },
+    {
+      "date": "1985-05-01",
+      "value": 76.1,
+      "period": "1985 MAY"
+    },
+    {
+      "date": "1985-06-01",
+      "value": 76.1,
+      "period": "1985 JUN"
+    },
+    {
+      "date": "1985-07-01",
+      "value": 76.1,
+      "period": "1985 JUL"
+    },
+    {
+      "date": "1985-08-01",
+      "value": 76.1,
+      "period": "1985 AUG"
+    },
+    {
+      "date": "1985-09-01",
+      "value": 76.2,
+      "period": "1985 SEP"
+    },
+    {
+      "date": "1985-10-01",
+      "value": 76.2,
+      "period": "1985 OCT"
+    },
+    {
+      "date": "1985-11-01",
+      "value": 76.2,
+      "period": "1985 NOV"
+    },
+    {
+      "date": "1985-12-01",
+      "value": 76.2,
+      "period": "1985 DEC"
+    },
+    {
+      "date": "1986-01-01",
+      "value": 76.2,
+      "period": "1986 JAN"
+    },
+    {
+      "date": "1986-02-01",
+      "value": 76.2,
+      "period": "1986 FEB"
+    },
+    {
+      "date": "1986-03-01",
+      "value": 76.3,
+      "period": "1986 MAR"
+    },
+    {
+      "date": "1986-04-01",
+      "value": 76.3,
+      "period": "1986 APR"
+    },
+    {
+      "date": "1986-05-01",
+      "value": 76.3,
+      "period": "1986 MAY"
+    },
+    {
+      "date": "1986-06-01",
+      "value": 76.4,
+      "period": "1986 JUN"
+    },
+    {
+      "date": "1986-07-01",
+      "value": 76.5,
+      "period": "1986 JUL"
+    },
+    {
+      "date": "1986-08-01",
+      "value": 76.5,
+      "period": "1986 AUG"
+    },
+    {
+      "date": "1986-09-01",
+      "value": 76.5,
+      "period": "1986 SEP"
+    },
+    {
+      "date": "1986-10-01",
+      "value": 76.6,
+      "period": "1986 OCT"
+    },
+    {
+      "date": "1986-11-01",
+      "value": 76.6,
+      "period": "1986 NOV"
+    },
+    {
+      "date": "1986-12-01",
+      "value": 76.7,
+      "period": "1986 DEC"
+    },
+    {
+      "date": "1987-01-01",
+      "value": 76.7,
+      "period": "1987 JAN"
+    },
+    {
+      "date": "1987-02-01",
+      "value": 76.6,
+      "period": "1987 FEB"
+    },
+    {
+      "date": "1987-03-01",
+      "value": 76.7,
+      "period": "1987 MAR"
+    },
+    {
+      "date": "1987-04-01",
+      "value": 76.7,
+      "period": "1987 APR"
+    },
+    {
+      "date": "1987-05-01",
+      "value": 76.8,
+      "period": "1987 MAY"
+    },
+    {
+      "date": "1987-06-01",
+      "value": 76.9,
+      "period": "1987 JUN"
+    },
+    {
+      "date": "1987-07-01",
+      "value": 77.0,
+      "period": "1987 JUL"
+    },
+    {
+      "date": "1987-08-01",
+      "value": 77.0,
+      "period": "1987 AUG"
+    },
+    {
+      "date": "1987-09-01",
+      "value": 77.1,
+      "period": "1987 SEP"
+    },
+    {
+      "date": "1987-10-01",
+      "value": 77.1,
+      "period": "1987 OCT"
+    },
+    {
+      "date": "1987-11-01",
+      "value": 77.2,
+      "period": "1987 NOV"
+    },
+    {
+      "date": "1987-12-01",
+      "value": 77.3,
+      "period": "1987 DEC"
+    },
+    {
+      "date": "1988-01-01",
+      "value": 77.3,
+      "period": "1988 JAN"
+    },
+    {
+      "date": "1988-02-01",
+      "value": 77.4,
+      "period": "1988 FEB"
+    },
+    {
+      "date": "1988-03-01",
+      "value": 77.4,
+      "period": "1988 MAR"
+    },
+    {
+      "date": "1988-04-01",
+      "value": 77.4,
+      "period": "1988 APR"
+    },
+    {
+      "date": "1988-05-01",
+      "value": 77.5,
+      "period": "1988 MAY"
+    },
+    {
+      "date": "1988-06-01",
+      "value": 77.5,
+      "period": "1988 JUN"
+    },
+    {
+      "date": "1988-07-01",
+      "value": 77.5,
+      "period": "1988 JUL"
+    },
+    {
+      "date": "1988-08-01",
+      "value": 77.6,
+      "period": "1988 AUG"
+    },
+    {
+      "date": "1988-09-01",
+      "value": 77.7,
+      "period": "1988 SEP"
+    },
+    {
+      "date": "1988-10-01",
+      "value": 77.8,
+      "period": "1988 OCT"
+    },
+    {
+      "date": "1988-11-01",
+      "value": 77.8,
+      "period": "1988 NOV"
+    },
+    {
+      "date": "1988-12-01",
+      "value": 77.9,
+      "period": "1988 DEC"
+    },
+    {
+      "date": "1989-01-01",
+      "value": 77.9,
+      "period": "1989 JAN"
+    },
+    {
+      "date": "1989-02-01",
+      "value": 78.0,
+      "period": "1989 FEB"
+    },
+    {
+      "date": "1989-03-01",
+      "value": 78.1,
+      "period": "1989 MAR"
+    },
+    {
+      "date": "1989-04-01",
+      "value": 78.1,
+      "period": "1989 APR"
+    },
+    {
+      "date": "1989-05-01",
+      "value": 78.1,
+      "period": "1989 MAY"
+    },
+    {
+      "date": "1989-06-01",
+      "value": 78.1,
+      "period": "1989 JUN"
+    },
+    {
+      "date": "1989-07-01",
+      "value": 78.1,
+      "period": "1989 JUL"
+    },
+    {
+      "date": "1989-08-01",
+      "value": 78.1,
+      "period": "1989 AUG"
+    },
+    {
+      "date": "1989-09-01",
+      "value": 78.2,
+      "period": "1989 SEP"
+    },
+    {
+      "date": "1989-10-01",
+      "value": 78.2,
+      "period": "1989 OCT"
+    },
+    {
+      "date": "1989-11-01",
+      "value": 78.3,
+      "period": "1989 NOV"
+    },
+    {
+      "date": "1989-12-01",
+      "value": 78.3,
+      "period": "1989 DEC"
+    },
+    {
+      "date": "1990-01-01",
+      "value": 78.3,
+      "period": "1990 JAN"
+    },
+    {
+      "date": "1990-02-01",
+      "value": 78.2,
+      "period": "1990 FEB"
+    },
+    {
+      "date": "1990-03-01",
+      "value": 78.3,
+      "period": "1990 MAR"
+    },
+    {
+      "date": "1990-04-01",
+      "value": 78.3,
+      "period": "1990 APR"
+    },
+    {
+      "date": "1990-05-01",
+      "value": 78.3,
+      "period": "1990 MAY"
+    },
+    {
+      "date": "1990-06-01",
+      "value": 78.3,
+      "period": "1990 JUN"
+    },
+    {
+      "date": "1990-07-01",
+      "value": 78.3,
+      "period": "1990 JUL"
+    },
+    {
+      "date": "1990-08-01",
+      "value": 78.3,
+      "period": "1990 AUG"
+    },
+    {
+      "date": "1990-09-01",
+      "value": 78.2,
+      "period": "1990 SEP"
+    },
+    {
+      "date": "1990-10-01",
+      "value": 78.2,
+      "period": "1990 OCT"
+    },
+    {
+      "date": "1990-11-01",
+      "value": 78.2,
+      "period": "1990 NOV"
+    },
+    {
+      "date": "1990-12-01",
+      "value": 78.1,
+      "period": "1990 DEC"
+    },
+    {
+      "date": "1991-01-01",
+      "value": 78.0,
+      "period": "1991 JAN"
+    },
+    {
+      "date": "1991-02-01",
+      "value": 78.0,
+      "period": "1991 FEB"
+    },
+    {
+      "date": "1991-03-01",
+      "value": 77.9,
+      "period": "1991 MAR"
+    },
+    {
+      "date": "1991-04-01",
+      "value": 77.9,
+      "period": "1991 APR"
+    },
+    {
+      "date": "1991-05-01",
+      "value": 77.8,
+      "period": "1991 MAY"
+    },
+    {
+      "date": "1991-06-01",
+      "value": 77.7,
+      "period": "1991 JUN"
+    },
+    {
+      "date": "1991-07-01",
+      "value": 77.6,
+      "period": "1991 JUL"
+    },
+    {
+      "date": "1991-08-01",
+      "value": 77.5,
+      "period": "1991 AUG"
+    },
+    {
+      "date": "1991-09-01",
+      "value": 77.4,
+      "period": "1991 SEP"
+    },
+    {
+      "date": "1991-10-01",
+      "value": 77.2,
+      "period": "1991 OCT"
+    },
+    {
+      "date": "1991-11-01",
+      "value": 77.1,
+      "period": "1991 NOV"
+    },
+    {
+      "date": "1991-12-01",
+      "value": 77.0,
+      "period": "1991 DEC"
+    },
+    {
+      "date": "1992-01-01",
+      "value": 77.0,
+      "period": "1992 JAN"
+    },
+    {
+      "date": "1992-02-01",
+      "value": 76.9,
+      "period": "1992 FEB"
+    },
+    {
+      "date": "1992-03-01",
+      "value": 76.9,
+      "period": "1992 MAR"
+    },
+    {
+      "date": "1992-04-01",
+      "value": 76.8,
+      "period": "1992 APR"
+    },
+    {
+      "date": "1992-05-01",
+      "value": 76.7,
+      "period": "1992 MAY"
+    },
+    {
+      "date": "1992-06-01",
+      "value": 76.6,
+      "period": "1992 JUN"
+    },
+    {
+      "date": "1992-07-01",
+      "value": 76.6,
+      "period": "1992 JUL"
+    },
+    {
+      "date": "1992-08-01",
+      "value": 76.6,
+      "period": "1992 AUG"
+    },
+    {
+      "date": "1992-09-01",
+      "value": 76.5,
+      "period": "1992 SEP"
+    },
+    {
+      "date": "1992-10-01",
+      "value": 76.6,
+      "period": "1992 OCT"
+    },
+    {
+      "date": "1992-11-01",
+      "value": 76.5,
+      "period": "1992 NOV"
+    },
+    {
+      "date": "1992-12-01",
+      "value": 76.6,
+      "period": "1992 DEC"
+    },
+    {
+      "date": "1993-01-01",
+      "value": 76.6,
+      "period": "1993 JAN"
+    },
+    {
+      "date": "1993-02-01",
+      "value": 76.6,
+      "period": "1993 FEB"
+    },
+    {
+      "date": "1993-03-01",
+      "value": 76.5,
+      "period": "1993 MAR"
+    },
+    {
+      "date": "1993-04-01",
+      "value": 76.5,
+      "period": "1993 APR"
+    },
+    {
+      "date": "1993-05-01",
+      "value": 76.4,
+      "period": "1993 MAY"
+    },
+    {
+      "date": "1993-06-01",
+      "value": 76.4,
+      "period": "1993 JUN"
+    },
+    {
+      "date": "1993-07-01",
+      "value": 76.3,
+      "period": "1993 JUL"
+    },
+    {
+      "date": "1993-08-01",
+      "value": 76.4,
+      "period": "1993 AUG"
+    },
+    {
+      "date": "1993-09-01",
+      "value": 76.4,
+      "period": "1993 SEP"
+    },
+    {
+      "date": "1993-10-01",
+      "value": 76.4,
+      "period": "1993 OCT"
+    },
+    {
+      "date": "1993-11-01",
+      "value": 76.4,
+      "period": "1993 NOV"
+    },
+    {
+      "date": "1993-12-01",
+      "value": 76.4,
+      "period": "1993 DEC"
+    },
+    {
+      "date": "1994-01-01",
+      "value": 76.4,
+      "period": "1994 JAN"
+    },
+    {
+      "date": "1994-02-01",
+      "value": 76.4,
+      "period": "1994 FEB"
+    },
+    {
+      "date": "1994-03-01",
+      "value": 76.4,
+      "period": "1994 MAR"
+    },
+    {
+      "date": "1994-04-01",
+      "value": 76.3,
+      "period": "1994 APR"
+    },
+    {
+      "date": "1994-05-01",
+      "value": 76.3,
+      "period": "1994 MAY"
+    },
+    {
+      "date": "1994-06-01",
+      "value": 76.4,
+      "period": "1994 JUN"
+    },
+    {
+      "date": "1994-07-01",
+      "value": 76.3,
+      "period": "1994 JUL"
+    },
+    {
+      "date": "1994-08-01",
+      "value": 76.3,
+      "period": "1994 AUG"
+    },
+    {
+      "date": "1994-09-01",
+      "value": 76.1,
+      "period": "1994 SEP"
+    },
+    {
+      "date": "1994-10-01",
+      "value": 76.0,
+      "period": "1994 OCT"
+    },
+    {
+      "date": "1994-11-01",
+      "value": 75.9,
+      "period": "1994 NOV"
+    },
+    {
+      "date": "1994-12-01",
+      "value": 75.8,
+      "period": "1994 DEC"
+    },
+    {
+      "date": "1995-01-01",
+      "value": 75.9,
+      "period": "1995 JAN"
+    },
+    {
+      "date": "1995-02-01",
+      "value": 76.0,
+      "period": "1995 FEB"
+    },
+    {
+      "date": "1995-03-01",
+      "value": 76.1,
+      "period": "1995 MAR"
+    },
+    {
+      "date": "1995-04-01",
+      "value": 76.1,
+      "period": "1995 APR"
+    },
+    {
+      "date": "1995-05-01",
+      "value": 76.1,
+      "period": "1995 MAY"
+    },
+    {
+      "date": "1995-06-01",
+      "value": 76.2,
+      "period": "1995 JUN"
+    },
+    {
+      "date": "1995-07-01",
+      "value": 76.3,
+      "period": "1995 JUL"
+    },
+    {
+      "date": "1995-08-01",
+      "value": 76.3,
+      "period": "1995 AUG"
+    },
+    {
+      "date": "1995-09-01",
+      "value": 76.3,
+      "period": "1995 SEP"
+    },
+    {
+      "date": "1995-10-01",
+      "value": 76.3,
+      "period": "1995 OCT"
+    },
+    {
+      "date": "1995-11-01",
+      "value": 76.3,
+      "period": "1995 NOV"
+    },
+    {
+      "date": "1995-12-01",
+      "value": 76.4,
+      "period": "1995 DEC"
+    },
+    {
+      "date": "1996-01-01",
+      "value": 76.3,
+      "period": "1996 JAN"
+    },
+    {
+      "date": "1996-02-01",
+      "value": 76.2,
+      "period": "1996 FEB"
+    },
+    {
+      "date": "1996-03-01",
+      "value": 76.3,
+      "period": "1996 MAR"
+    },
+    {
+      "date": "1996-04-01",
+      "value": 76.3,
+      "period": "1996 APR"
+    },
+    {
+      "date": "1996-05-01",
+      "value": 76.3,
+      "period": "1996 MAY"
+    },
+    {
+      "date": "1996-06-01",
+      "value": 76.2,
+      "period": "1996 JUN"
+    },
+    {
+      "date": "1996-07-01",
+      "value": 76.2,
+      "period": "1996 JUL"
+    },
+    {
+      "date": "1996-08-01",
+      "value": 76.2,
+      "period": "1996 AUG"
+    },
+    {
+      "date": "1996-09-01",
+      "value": 76.3,
+      "period": "1996 SEP"
+    },
+    {
+      "date": "1996-10-01",
+      "value": 76.4,
+      "period": "1996 OCT"
+    },
+    {
+      "date": "1996-11-01",
+      "value": 76.4,
+      "period": "1996 NOV"
+    },
+    {
+      "date": "1996-12-01",
+      "value": 76.4,
+      "period": "1996 DEC"
+    },
+    {
+      "date": "1997-01-01",
+      "value": 76.4,
+      "period": "1997 JAN"
+    },
+    {
+      "date": "1997-02-01",
+      "value": 76.4,
+      "period": "1997 FEB"
+    },
+    {
+      "date": "1997-03-01",
+      "value": 76.4,
+      "period": "1997 MAR"
+    },
+    {
+      "date": "1997-04-01",
+      "value": 76.4,
+      "period": "1997 APR"
+    },
+    {
+      "date": "1997-05-01",
+      "value": 76.6,
+      "period": "1997 MAY"
+    },
+    {
+      "date": "1997-06-01",
+      "value": 76.6,
+      "period": "1997 JUN"
+    },
+    {
+      "date": "1997-07-01",
+      "value": 76.4,
+      "period": "1997 JUL"
+    },
+    {
+      "date": "1997-08-01",
+      "value": 76.4,
+      "period": "1997 AUG"
+    },
+    {
+      "date": "1997-09-01",
+      "value": 76.3,
+      "period": "1997 SEP"
+    },
+    {
+      "date": "1997-10-01",
+      "value": 76.3,
+      "period": "1997 OCT"
+    },
+    {
+      "date": "1997-11-01",
+      "value": 76.2,
+      "period": "1997 NOV"
+    },
+    {
+      "date": "1997-12-01",
+      "value": 76.1,
+      "period": "1997 DEC"
+    },
+    {
+      "date": "1998-01-01",
+      "value": 76.1,
+      "period": "1998 JAN"
+    },
+    {
+      "date": "1998-02-01",
+      "value": 76.2,
+      "period": "1998 FEB"
+    },
+    {
+      "date": "1998-03-01",
+      "value": 76.2,
+      "period": "1998 MAR"
+    },
+    {
+      "date": "1998-04-01",
+      "value": 76.1,
+      "period": "1998 APR"
+    },
+    {
+      "date": "1998-05-01",
+      "value": 76.1,
+      "period": "1998 MAY"
+    },
+    {
+      "date": "1998-06-01",
+      "value": 76.3,
+      "period": "1998 JUN"
+    },
+    {
+      "date": "1998-07-01",
+      "value": 76.4,
+      "period": "1998 JUL"
+    },
+    {
+      "date": "1998-08-01",
+      "value": 76.4,
+      "period": "1998 AUG"
+    },
+    {
+      "date": "1998-09-01",
+      "value": 76.4,
+      "period": "1998 SEP"
+    },
+    {
+      "date": "1998-10-01",
+      "value": 76.5,
+      "period": "1998 OCT"
+    },
+    {
+      "date": "1998-11-01",
+      "value": 76.5,
+      "period": "1998 NOV"
+    },
+    {
+      "date": "1998-12-01",
+      "value": 76.7,
+      "period": "1998 DEC"
+    },
+    {
+      "date": "1999-01-01",
+      "value": 76.7,
+      "period": "1999 JAN"
+    },
+    {
+      "date": "1999-02-01",
+      "value": 76.6,
+      "period": "1999 FEB"
+    },
+    {
+      "date": "1999-03-01",
+      "value": 76.6,
+      "period": "1999 MAR"
+    },
+    {
+      "date": "1999-04-01",
+      "value": 76.5,
+      "period": "1999 APR"
+    },
+    {
+      "date": "1999-05-01",
+      "value": 76.6,
+      "period": "1999 MAY"
+    },
+    {
+      "date": "1999-06-01",
+      "value": 76.5,
+      "period": "1999 JUN"
+    },
+    {
+      "date": "1999-07-01",
+      "value": 76.6,
+      "period": "1999 JUL"
+    },
+    {
+      "date": "1999-08-01",
+      "value": 76.7,
+      "period": "1999 AUG"
+    },
+    {
+      "date": "1999-09-01",
+      "value": 76.6,
+      "period": "1999 SEP"
+    },
+    {
+      "date": "1999-10-01",
+      "value": 76.7,
+      "period": "1999 OCT"
+    },
+    {
+      "date": "1999-11-01",
+      "value": 76.8,
+      "period": "1999 NOV"
+    },
+    {
+      "date": "1999-12-01",
+      "value": 76.7,
+      "period": "1999 DEC"
+    },
+    {
+      "date": "2000-01-01",
+      "value": 76.7,
+      "period": "2000 JAN"
+    },
+    {
+      "date": "2000-02-01",
+      "value": 76.8,
+      "period": "2000 FEB"
+    },
+    {
+      "date": "2000-03-01",
+      "value": 76.8,
+      "period": "2000 MAR"
+    },
+    {
+      "date": "2000-04-01",
+      "value": 76.8,
+      "period": "2000 APR"
+    },
+    {
+      "date": "2000-05-01",
+      "value": 76.7,
+      "period": "2000 MAY"
+    },
+    {
+      "date": "2000-06-01",
+      "value": 76.7,
+      "period": "2000 JUN"
+    },
+    {
+      "date": "2000-07-01",
+      "value": 76.7,
+      "period": "2000 JUL"
+    },
+    {
+      "date": "2000-08-01",
+      "value": 76.8,
+      "period": "2000 AUG"
+    },
+    {
+      "date": "2000-09-01",
+      "value": 76.7,
+      "period": "2000 SEP"
+    },
+    {
+      "date": "2000-10-01",
+      "value": 76.5,
+      "period": "2000 OCT"
+    },
+    {
+      "date": "2000-11-01",
+      "value": 76.5,
+      "period": "2000 NOV"
+    },
+    {
+      "date": "2000-12-01",
+      "value": 76.7,
+      "period": "2000 DEC"
+    },
+    {
+      "date": "2001-01-01",
+      "value": 76.7,
+      "period": "2001 JAN"
+    },
+    {
+      "date": "2001-02-01",
+      "value": 76.6,
+      "period": "2001 FEB"
+    },
+    {
+      "date": "2001-03-01",
+      "value": 76.6,
+      "period": "2001 MAR"
+    },
+    {
+      "date": "2001-04-01",
+      "value": 76.5,
+      "period": "2001 APR"
+    },
+    {
+      "date": "2001-05-01",
+      "value": 76.6,
+      "period": "2001 MAY"
+    },
+    {
+      "date": "2001-06-01",
+      "value": 76.5,
+      "period": "2001 JUN"
+    },
+    {
+      "date": "2001-07-01",
+      "value": 76.5,
+      "period": "2001 JUL"
+    },
+    {
+      "date": "2001-08-01",
+      "value": 76.5,
+      "period": "2001 AUG"
+    },
+    {
+      "date": "2001-09-01",
+      "value": 76.5,
+      "period": "2001 SEP"
+    },
+    {
+      "date": "2001-10-01",
+      "value": 76.6,
+      "period": "2001 OCT"
+    },
+    {
+      "date": "2001-11-01",
+      "value": 76.6,
+      "period": "2001 NOV"
+    },
+    {
+      "date": "2001-12-01",
+      "value": 76.5,
+      "period": "2001 DEC"
+    },
+    {
+      "date": "2002-01-01",
+      "value": 76.4,
+      "period": "2002 JAN"
+    },
+    {
+      "date": "2002-02-01",
+      "value": 76.4,
+      "period": "2002 FEB"
+    },
+    {
+      "date": "2002-03-01",
+      "value": 76.6,
+      "period": "2002 MAR"
+    },
+    {
+      "date": "2002-04-01",
+      "value": 76.7,
+      "period": "2002 APR"
+    },
+    {
+      "date": "2002-05-01",
+      "value": 76.7,
+      "period": "2002 MAY"
+    },
+    {
+      "date": "2002-06-01",
+      "value": 76.6,
+      "period": "2002 JUN"
+    },
+    {
+      "date": "2002-07-01",
+      "value": 76.7,
+      "period": "2002 JUL"
+    },
+    {
+      "date": "2002-08-01",
+      "value": 76.7,
+      "period": "2002 AUG"
+    },
+    {
+      "date": "2002-09-01",
+      "value": 76.8,
+      "period": "2002 SEP"
+    },
+    {
+      "date": "2002-10-01",
+      "value": 76.8,
+      "period": "2002 OCT"
+    },
+    {
+      "date": "2002-11-01",
+      "value": 76.8,
+      "period": "2002 NOV"
+    },
+    {
+      "date": "2002-12-01",
+      "value": 76.6,
+      "period": "2002 DEC"
+    },
+    {
+      "date": "2003-01-01",
+      "value": 76.6,
+      "period": "2003 JAN"
+    },
+    {
+      "date": "2003-02-01",
+      "value": 76.7,
+      "period": "2003 FEB"
+    },
+    {
+      "date": "2003-03-01",
+      "value": 76.7,
+      "period": "2003 MAR"
+    },
+    {
+      "date": "2003-04-01",
+      "value": 76.7,
+      "period": "2003 APR"
+    },
+    {
+      "date": "2003-05-01",
+      "value": 76.7,
+      "period": "2003 MAY"
+    },
+    {
+      "date": "2003-06-01",
+      "value": 76.8,
+      "period": "2003 JUN"
+    },
+    {
+      "date": "2003-07-01",
+      "value": 76.7,
+      "period": "2003 JUL"
+    },
+    {
+      "date": "2003-08-01",
+      "value": 76.7,
+      "period": "2003 AUG"
+    },
+    {
+      "date": "2003-09-01",
+      "value": 76.7,
+      "period": "2003 SEP"
+    },
+    {
+      "date": "2003-10-01",
+      "value": 76.6,
+      "period": "2003 OCT"
+    },
+    {
+      "date": "2003-11-01",
+      "value": 76.5,
+      "period": "2003 NOV"
+    },
+    {
+      "date": "2003-12-01",
+      "value": 76.7,
+      "period": "2003 DEC"
+    },
+    {
+      "date": "2004-01-01",
+      "value": 76.8,
+      "period": "2004 JAN"
+    },
+    {
+      "date": "2004-02-01",
+      "value": 76.8,
+      "period": "2004 FEB"
+    },
+    {
+      "date": "2004-03-01",
+      "value": 76.7,
+      "period": "2004 MAR"
+    },
+    {
+      "date": "2004-04-01",
+      "value": 76.6,
+      "period": "2004 APR"
+    },
+    {
+      "date": "2004-05-01",
+      "value": 76.6,
+      "period": "2004 MAY"
+    },
+    {
+      "date": "2004-06-01",
+      "value": 76.5,
+      "period": "2004 JUN"
+    },
+    {
+      "date": "2004-07-01",
+      "value": 76.5,
+      "period": "2004 JUL"
+    },
+    {
+      "date": "2004-08-01",
+      "value": 76.5,
+      "period": "2004 AUG"
+    },
+    {
+      "date": "2004-09-01",
+      "value": 76.5,
+      "period": "2004 SEP"
+    },
+    {
+      "date": "2004-10-01",
+      "value": 76.6,
+      "period": "2004 OCT"
+    },
+    {
+      "date": "2004-11-01",
+      "value": 76.7,
+      "period": "2004 NOV"
+    },
+    {
+      "date": "2004-12-01",
+      "value": 76.8,
+      "period": "2004 DEC"
+    },
+    {
+      "date": "2005-01-01",
+      "value": 76.9,
+      "period": "2005 JAN"
+    },
+    {
+      "date": "2005-02-01",
+      "value": 76.7,
+      "period": "2005 FEB"
+    },
+    {
+      "date": "2005-03-01",
+      "value": 76.6,
+      "period": "2005 MAR"
+    },
+    {
+      "date": "2005-04-01",
+      "value": 76.6,
+      "period": "2005 APR"
+    },
+    {
+      "date": "2005-05-01",
+      "value": 76.6,
+      "period": "2005 MAY"
+    },
+    {
+      "date": "2005-06-01",
+      "value": 76.6,
+      "period": "2005 JUN"
+    },
+    {
+      "date": "2005-07-01",
+      "value": 76.7,
+      "period": "2005 JUL"
+    },
+    {
+      "date": "2005-08-01",
+      "value": 76.7,
+      "period": "2005 AUG"
+    },
+    {
+      "date": "2005-09-01",
+      "value": 76.7,
+      "period": "2005 SEP"
+    },
+    {
+      "date": "2005-10-01",
+      "value": 76.7,
+      "period": "2005 OCT"
+    },
+    {
+      "date": "2005-11-01",
+      "value": 76.7,
+      "period": "2005 NOV"
+    },
+    {
+      "date": "2005-12-01",
+      "value": 76.7,
+      "period": "2005 DEC"
+    },
+    {
+      "date": "2006-01-01",
+      "value": 76.8,
+      "period": "2006 JAN"
+    },
+    {
+      "date": "2006-02-01",
+      "value": 77.0,
+      "period": "2006 FEB"
+    },
+    {
+      "date": "2006-03-01",
+      "value": 77.1,
+      "period": "2006 MAR"
+    },
+    {
+      "date": "2006-04-01",
+      "value": 77.0,
+      "period": "2006 APR"
+    },
+    {
+      "date": "2006-05-01",
+      "value": 77.1,
+      "period": "2006 MAY"
+    },
+    {
+      "date": "2006-06-01",
+      "value": 77.2,
+      "period": "2006 JUN"
+    },
+    {
+      "date": "2006-07-01",
+      "value": 77.3,
+      "period": "2006 JUL"
+    },
+    {
+      "date": "2006-08-01",
+      "value": 77.1,
+      "period": "2006 AUG"
+    },
+    {
+      "date": "2006-09-01",
+      "value": 77.1,
+      "period": "2006 SEP"
+    },
+    {
+      "date": "2006-10-01",
+      "value": 77.0,
+      "period": "2006 OCT"
+    },
+    {
+      "date": "2006-11-01",
+      "value": 77.0,
+      "period": "2006 NOV"
+    },
+    {
+      "date": "2006-12-01",
+      "value": 76.9,
+      "period": "2006 DEC"
+    },
+    {
+      "date": "2007-01-01",
+      "value": 76.8,
+      "period": "2007 JAN"
+    },
+    {
+      "date": "2007-02-01",
+      "value": 76.8,
+      "period": "2007 FEB"
+    },
+    {
+      "date": "2007-03-01",
+      "value": 76.8,
+      "period": "2007 MAR"
+    },
+    {
+      "date": "2007-04-01",
+      "value": 76.9,
+      "period": "2007 APR"
+    },
+    {
+      "date": "2007-05-01",
+      "value": 76.8,
+      "period": "2007 MAY"
+    },
+    {
+      "date": "2007-06-01",
+      "value": 76.8,
+      "period": "2007 JUN"
+    },
+    {
+      "date": "2007-07-01",
+      "value": 76.8,
+      "period": "2007 JUL"
+    },
+    {
+      "date": "2007-08-01",
+      "value": 76.8,
+      "period": "2007 AUG"
+    },
+    {
+      "date": "2007-09-01",
+      "value": 76.9,
+      "period": "2007 SEP"
+    },
+    {
+      "date": "2007-10-01",
+      "value": 76.9,
+      "period": "2007 OCT"
+    },
+    {
+      "date": "2007-11-01",
+      "value": 76.9,
+      "period": "2007 NOV"
+    },
+    {
+      "date": "2007-12-01",
+      "value": 77.0,
+      "period": "2007 DEC"
+    },
+    {
+      "date": "2008-01-01",
+      "value": 77.1,
+      "period": "2008 JAN"
+    },
+    {
+      "date": "2008-02-01",
+      "value": 77.0,
+      "period": "2008 FEB"
+    },
+    {
+      "date": "2008-03-01",
+      "value": 77.1,
+      "period": "2008 MAR"
+    },
+    {
+      "date": "2008-04-01",
+      "value": 77.1,
+      "period": "2008 APR"
+    },
+    {
+      "date": "2008-05-01",
+      "value": 77.1,
+      "period": "2008 MAY"
+    },
+    {
+      "date": "2008-06-01",
+      "value": 77.1,
+      "period": "2008 JUN"
+    },
+    {
+      "date": "2008-07-01",
+      "value": 77.0,
+      "period": "2008 JUL"
+    },
+    {
+      "date": "2008-08-01",
+      "value": 77.0,
+      "period": "2008 AUG"
+    },
+    {
+      "date": "2008-09-01",
+      "value": 76.9,
+      "period": "2008 SEP"
+    },
+    {
+      "date": "2008-10-01",
+      "value": 77.1,
+      "period": "2008 OCT"
+    },
+    {
+      "date": "2008-11-01",
+      "value": 77.1,
+      "period": "2008 NOV"
+    },
+    {
+      "date": "2008-12-01",
+      "value": 77.3,
+      "period": "2008 DEC"
+    },
+    {
+      "date": "2009-01-01",
+      "value": 77.2,
+      "period": "2009 JAN"
+    },
+    {
+      "date": "2009-02-01",
+      "value": 77.2,
+      "period": "2009 FEB"
+    },
+    {
+      "date": "2009-03-01",
+      "value": 77.1,
+      "period": "2009 MAR"
+    },
+    {
+      "date": "2009-04-01",
+      "value": 77.0,
+      "period": "2009 APR"
+    },
+    {
+      "date": "2009-05-01",
+      "value": 76.9,
+      "period": "2009 MAY"
+    },
+    {
+      "date": "2009-06-01",
+      "value": 76.7,
+      "period": "2009 JUN"
+    },
+    {
+      "date": "2009-07-01",
+      "value": 76.8,
+      "period": "2009 JUL"
+    },
+    {
+      "date": "2009-08-01",
+      "value": 76.7,
+      "period": "2009 AUG"
+    },
+    {
+      "date": "2009-09-01",
+      "value": 76.7,
+      "period": "2009 SEP"
+    },
+    {
+      "date": "2009-10-01",
+      "value": 76.6,
+      "period": "2009 OCT"
+    },
+    {
+      "date": "2009-11-01",
+      "value": 76.6,
+      "period": "2009 NOV"
+    },
+    {
+      "date": "2009-12-01",
+      "value": 76.4,
+      "period": "2009 DEC"
+    },
+    {
+      "date": "2010-01-01",
+      "value": 76.4,
+      "period": "2010 JAN"
+    },
+    {
+      "date": "2010-02-01",
+      "value": 76.4,
+      "period": "2010 FEB"
+    },
+    {
+      "date": "2010-03-01",
+      "value": 76.4,
+      "period": "2010 MAR"
+    },
+    {
+      "date": "2010-04-01",
+      "value": 76.6,
+      "period": "2010 APR"
+    },
+    {
+      "date": "2010-05-01",
+      "value": 76.5,
+      "period": "2010 MAY"
+    },
+    {
+      "date": "2010-06-01",
+      "value": 76.7,
+      "period": "2010 JUN"
+    },
+    {
+      "date": "2010-07-01",
+      "value": 76.7,
+      "period": "2010 JUL"
+    },
+    {
+      "date": "2010-08-01",
+      "value": 76.8,
+      "period": "2010 AUG"
+    },
+    {
+      "date": "2010-09-01",
+      "value": 76.7,
+      "period": "2010 SEP"
+    },
+    {
+      "date": "2010-10-01",
+      "value": 76.5,
+      "period": "2010 OCT"
+    },
+    {
+      "date": "2010-11-01",
+      "value": 76.5,
+      "period": "2010 NOV"
+    },
+    {
+      "date": "2010-12-01",
+      "value": 76.7,
+      "period": "2010 DEC"
+    },
+    {
+      "date": "2011-01-01",
+      "value": 76.7,
+      "period": "2011 JAN"
+    },
+    {
+      "date": "2011-02-01",
+      "value": 76.6,
+      "period": "2011 FEB"
+    },
+    {
+      "date": "2011-03-01",
+      "value": 76.5,
+      "period": "2011 MAR"
+    },
+    {
+      "date": "2011-04-01",
+      "value": 76.6,
+      "period": "2011 APR"
+    },
+    {
+      "date": "2011-05-01",
+      "value": 76.7,
+      "period": "2011 MAY"
+    },
+    {
+      "date": "2011-06-01",
+      "value": 76.5,
+      "period": "2011 JUN"
+    },
+    {
+      "date": "2011-07-01",
+      "value": 76.6,
+      "period": "2011 JUL"
+    },
+    {
+      "date": "2011-08-01",
+      "value": 76.6,
+      "period": "2011 AUG"
+    },
+    {
+      "date": "2011-09-01",
+      "value": 76.7,
+      "period": "2011 SEP"
+    },
+    {
+      "date": "2011-10-01",
+      "value": 76.8,
+      "period": "2011 OCT"
+    },
+    {
+      "date": "2011-11-01",
+      "value": 76.8,
+      "period": "2011 NOV"
+    },
+    {
+      "date": "2011-12-01",
+      "value": 76.8,
+      "period": "2011 DEC"
+    },
+    {
+      "date": "2012-01-01",
+      "value": 76.8,
+      "period": "2012 JAN"
+    },
+    {
+      "date": "2012-02-01",
+      "value": 76.9,
+      "period": "2012 FEB"
+    },
+    {
+      "date": "2012-03-01",
+      "value": 76.9,
+      "period": "2012 MAR"
+    },
+    {
+      "date": "2012-04-01",
+      "value": 77.0,
+      "period": "2012 APR"
+    },
+    {
+      "date": "2012-05-01",
+      "value": 77.2,
+      "period": "2012 MAY"
+    },
+    {
+      "date": "2012-06-01",
+      "value": 77.4,
+      "period": "2012 JUN"
+    },
+    {
+      "date": "2012-07-01",
+      "value": 77.4,
+      "period": "2012 JUL"
+    },
+    {
+      "date": "2012-08-01",
+      "value": 77.3,
+      "period": "2012 AUG"
+    },
+    {
+      "date": "2012-09-01",
+      "value": 77.3,
+      "period": "2012 SEP"
+    },
+    {
+      "date": "2012-10-01",
+      "value": 77.5,
+      "period": "2012 OCT"
+    },
+    {
+      "date": "2012-11-01",
+      "value": 77.6,
+      "period": "2012 NOV"
+    },
+    {
+      "date": "2012-12-01",
+      "value": 77.6,
+      "period": "2012 DEC"
+    },
+    {
+      "date": "2013-01-01",
+      "value": 77.5,
+      "period": "2013 JAN"
+    },
+    {
+      "date": "2013-02-01",
+      "value": 77.4,
+      "period": "2013 FEB"
+    },
+    {
+      "date": "2013-03-01",
+      "value": 77.4,
+      "period": "2013 MAR"
+    },
+    {
+      "date": "2013-04-01",
+      "value": 77.3,
+      "period": "2013 APR"
+    },
+    {
+      "date": "2013-05-01",
+      "value": 77.5,
+      "period": "2013 MAY"
+    },
+    {
+      "date": "2013-06-01",
+      "value": 77.6,
+      "period": "2013 JUN"
+    },
+    {
+      "date": "2013-07-01",
+      "value": 77.6,
+      "period": "2013 JUL"
+    },
+    {
+      "date": "2013-08-01",
+      "value": 77.7,
+      "period": "2013 AUG"
+    },
+    {
+      "date": "2013-09-01",
+      "value": 77.7,
+      "period": "2013 SEP"
+    },
+    {
+      "date": "2013-10-01",
+      "value": 77.7,
+      "period": "2013 OCT"
+    },
+    {
+      "date": "2013-11-01",
+      "value": 77.7,
+      "period": "2013 NOV"
+    },
+    {
+      "date": "2013-12-01",
+      "value": 77.8,
+      "period": "2013 DEC"
+    },
+    {
+      "date": "2014-01-01",
+      "value": 77.8,
+      "period": "2014 JAN"
+    },
+    {
+      "date": "2014-02-01",
+      "value": 77.8,
+      "period": "2014 FEB"
+    },
+    {
+      "date": "2014-03-01",
+      "value": 77.9,
+      "period": "2014 MAR"
+    },
+    {
+      "date": "2014-04-01",
+      "value": 78.0,
+      "period": "2014 APR"
+    },
+    {
+      "date": "2014-05-01",
+      "value": 77.8,
+      "period": "2014 MAY"
+    },
+    {
+      "date": "2014-06-01",
+      "value": 77.7,
+      "period": "2014 JUN"
+    },
+    {
+      "date": "2014-07-01",
+      "value": 77.8,
+      "period": "2014 JUL"
+    },
+    {
+      "date": "2014-08-01",
+      "value": 77.8,
+      "period": "2014 AUG"
+    },
+    {
+      "date": "2014-09-01",
+      "value": 77.7,
+      "period": "2014 SEP"
+    },
+    {
+      "date": "2014-10-01",
+      "value": 77.6,
+      "period": "2014 OCT"
+    },
+    {
+      "date": "2014-11-01",
+      "value": 77.7,
+      "period": "2014 NOV"
+    },
+    {
+      "date": "2014-12-01",
+      "value": 77.8,
+      "period": "2014 DEC"
+    },
+    {
+      "date": "2015-01-01",
+      "value": 77.9,
+      "period": "2015 JAN"
+    },
+    {
+      "date": "2015-02-01",
+      "value": 77.8,
+      "period": "2015 FEB"
+    },
+    {
+      "date": "2015-03-01",
+      "value": 77.8,
+      "period": "2015 MAR"
+    },
+    {
+      "date": "2015-04-01",
+      "value": 77.8,
+      "period": "2015 APR"
+    },
+    {
+      "date": "2015-05-01",
+      "value": 77.8,
+      "period": "2015 MAY"
+    },
+    {
+      "date": "2015-06-01",
+      "value": 77.8,
+      "period": "2015 JUN"
+    },
+    {
+      "date": "2015-07-01",
+      "value": 77.8,
+      "period": "2015 JUL"
+    },
+    {
+      "date": "2015-08-01",
+      "value": 78.0,
+      "period": "2015 AUG"
+    },
+    {
+      "date": "2015-09-01",
+      "value": 78.1,
+      "period": "2015 SEP"
+    },
+    {
+      "date": "2015-10-01",
+      "value": 78.1,
+      "period": "2015 OCT"
+    },
+    {
+      "date": "2015-11-01",
+      "value": 78.1,
+      "period": "2015 NOV"
+    },
+    {
+      "date": "2015-12-01",
+      "value": 78.1,
+      "period": "2015 DEC"
+    },
+    {
+      "date": "2016-01-01",
+      "value": 78.2,
+      "period": "2016 JAN"
+    },
+    {
+      "date": "2016-02-01",
+      "value": 78.1,
+      "period": "2016 FEB"
+    },
+    {
+      "date": "2016-03-01",
+      "value": 78.1,
+      "period": "2016 MAR"
+    },
+    {
+      "date": "2016-04-01",
+      "value": 78.3,
+      "period": "2016 APR"
+    },
+    {
+      "date": "2016-05-01",
+      "value": 78.3,
+      "period": "2016 MAY"
+    },
+    {
+      "date": "2016-06-01",
+      "value": 78.4,
+      "period": "2016 JUN"
+    },
+    {
+      "date": "2016-07-01",
+      "value": 78.4,
+      "period": "2016 JUL"
+    },
+    {
+      "date": "2016-08-01",
+      "value": 78.3,
+      "period": "2016 AUG"
+    },
+    {
+      "date": "2016-09-01",
+      "value": 78.3,
+      "period": "2016 SEP"
+    },
+    {
+      "date": "2016-10-01",
+      "value": 78.2,
+      "period": "2016 OCT"
+    },
+    {
+      "date": "2016-11-01",
+      "value": 78.3,
+      "period": "2016 NOV"
+    },
+    {
+      "date": "2016-12-01",
+      "value": 78.3,
+      "period": "2016 DEC"
+    },
+    {
+      "date": "2017-01-01",
+      "value": 78.3,
+      "period": "2017 JAN"
+    },
+    {
+      "date": "2017-02-01",
+      "value": 78.4,
+      "period": "2017 FEB"
+    },
+    {
+      "date": "2017-03-01",
+      "value": 78.4,
+      "period": "2017 MAR"
+    },
+    {
+      "date": "2017-04-01",
+      "value": 78.4,
+      "period": "2017 APR"
+    },
+    {
+      "date": "2017-05-01",
+      "value": 78.6,
+      "period": "2017 MAY"
+    },
+    {
+      "date": "2017-06-01",
+      "value": 78.7,
+      "period": "2017 JUN"
+    },
+    {
+      "date": "2017-07-01",
+      "value": 78.5,
+      "period": "2017 JUL"
+    },
+    {
+      "date": "2017-08-01",
+      "value": 78.3,
+      "period": "2017 AUG"
+    },
+    {
+      "date": "2017-09-01",
+      "value": 78.4,
+      "period": "2017 SEP"
+    },
+    {
+      "date": "2017-10-01",
+      "value": 78.7,
+      "period": "2017 OCT"
+    },
+    {
+      "date": "2017-11-01",
+      "value": 78.6,
+      "period": "2017 NOV"
+    },
+    {
+      "date": "2017-12-01",
+      "value": 78.7,
+      "period": "2017 DEC"
+    },
+    {
+      "date": "2018-01-01",
+      "value": 78.7,
+      "period": "2018 JAN"
+    },
+    {
+      "date": "2018-02-01",
+      "value": 78.8,
+      "period": "2018 FEB"
+    },
+    {
+      "date": "2018-03-01",
+      "value": 78.9,
+      "period": "2018 MAR"
+    },
+    {
+      "date": "2018-04-01",
+      "value": 78.9,
+      "period": "2018 APR"
+    },
+    {
+      "date": "2018-05-01",
+      "value": 78.7,
+      "period": "2018 MAY"
+    },
+    {
+      "date": "2018-06-01",
+      "value": 78.6,
+      "period": "2018 JUN"
+    },
+    {
+      "date": "2018-07-01",
+      "value": 78.7,
+      "period": "2018 JUL"
+    },
+    {
+      "date": "2018-08-01",
+      "value": 78.7,
+      "period": "2018 AUG"
+    },
+    {
+      "date": "2018-09-01",
+      "value": 78.9,
+      "period": "2018 SEP"
+    },
+    {
+      "date": "2018-10-01",
+      "value": 78.9,
+      "period": "2018 OCT"
+    },
+    {
+      "date": "2018-11-01",
+      "value": 78.9,
+      "period": "2018 NOV"
+    },
+    {
+      "date": "2018-12-01",
+      "value": 79.1,
+      "period": "2018 DEC"
+    },
+    {
+      "date": "2019-01-01",
+      "value": 79.2,
+      "period": "2019 JAN"
+    },
+    {
+      "date": "2019-02-01",
+      "value": 79.0,
+      "period": "2019 FEB"
+    },
+    {
+      "date": "2019-03-01",
+      "value": 79.1,
+      "period": "2019 MAR"
+    },
+    {
+      "date": "2019-04-01",
+      "value": 79.1,
+      "period": "2019 APR"
+    },
+    {
+      "date": "2019-05-01",
+      "value": 79.3,
+      "period": "2019 MAY"
+    },
+    {
+      "date": "2019-06-01",
+      "value": 79.2,
+      "period": "2019 JUN"
+    },
+    {
+      "date": "2019-07-01",
+      "value": 79.1,
+      "period": "2019 JUL"
+    },
+    {
+      "date": "2019-08-01",
+      "value": 79.2,
+      "period": "2019 AUG"
+    },
+    {
+      "date": "2019-09-01",
+      "value": 79.1,
+      "period": "2019 SEP"
+    },
+    {
+      "date": "2019-10-01",
+      "value": 79.3,
+      "period": "2019 OCT"
+    },
+    {
+      "date": "2019-11-01",
+      "value": 79.4,
+      "period": "2019 NOV"
+    },
+    {
+      "date": "2019-12-01",
+      "value": 79.5,
+      "period": "2019 DEC"
+    },
+    {
+      "date": "2020-01-01",
+      "value": 79.7,
+      "period": "2020 JAN"
+    },
+    {
+      "date": "2020-02-01",
+      "value": 79.3,
+      "period": "2020 FEB"
+    },
+    {
+      "date": "2020-03-01",
+      "value": 79.0,
+      "period": "2020 MAR"
+    },
+    {
+      "date": "2020-04-01",
+      "value": 78.8,
+      "period": "2020 APR"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 78.7,
+      "period": "2020 MAY"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 78.8,
+      "period": "2020 JUN"
+    },
+    {
+      "date": "2020-07-01",
+      "value": 78.7,
+      "period": "2020 JUL"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 78.6,
+      "period": "2020 AUG"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 78.6,
+      "period": "2020 SEP"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 78.7,
+      "period": "2020 OCT"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 78.5,
+      "period": "2020 NOV"
+    },
+    {
+      "date": "2020-12-01",
+      "value": 78.5,
+      "period": "2020 DEC"
+    },
+    {
+      "date": "2021-01-01",
+      "value": 78.5,
+      "period": "2021 JAN"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 78.3,
+      "period": "2021 FEB"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 78.3,
+      "period": "2021 MAR"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 78.3,
+      "period": "2021 APR"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 78.4,
+      "period": "2021 MAY"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 78.5,
+      "period": "2021 JUN"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 78.6,
+      "period": "2021 JUL"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 78.6,
+      "period": "2021 AUG"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 78.4,
+      "period": "2021 SEP"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 78.3,
+      "period": "2021 OCT"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 78.4,
+      "period": "2021 NOV"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 78.3,
+      "period": "2021 DEC"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 78.2,
+      "period": "2022 JAN"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 78.1,
+      "period": "2022 FEB"
+    },
+    {
+      "date": "2022-03-01",
+      "value": 78.2,
+      "period": "2022 MAR"
+    },
+    {
+      "date": "2022-04-01",
+      "value": 78.4,
+      "period": "2022 APR"
+    },
+    {
+      "date": "2022-05-01",
+      "value": 78.1,
+      "period": "2022 MAY"
+    },
+    {
+      "date": "2022-06-01",
+      "value": 77.8,
+      "period": "2022 JUN"
+    },
+    {
+      "date": "2022-07-01",
+      "value": 77.9,
+      "period": "2022 JUL"
+    },
+    {
+      "date": "2022-08-01",
+      "value": 77.9,
+      "period": "2022 AUG"
+    },
+    {
+      "date": "2022-09-01",
+      "value": 78.1,
+      "period": "2022 SEP"
+    },
+    {
+      "date": "2022-10-01",
+      "value": 78.1,
+      "period": "2022 OCT"
+    },
+    {
+      "date": "2022-11-01",
+      "value": 78.3,
+      "period": "2022 NOV"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 78.3,
+      "period": "2022 DEC"
+    },
+    {
+      "date": "2023-01-01",
+      "value": 78.3,
+      "period": "2023 JAN"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 78.5,
+      "period": "2023 FEB"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 78.6,
+      "period": "2023 MAR"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 78.7,
+      "period": "2023 APR"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 78.6,
+      "period": "2023 MAY"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 78.4,
+      "period": "2023 JUN"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 78.1,
+      "period": "2023 JUL"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 78.2,
+      "period": "2023 AUG"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 78.1,
+      "period": "2023 SEP"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 78.0,
+      "period": "2023 OCT"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 77.9,
+      "period": "2023 NOV"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 77.9,
+      "period": "2023 DEC"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 77.9,
+      "period": "2024 JAN"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 77.9,
+      "period": "2024 FEB"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 77.8,
+      "period": "2024 MAR"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 77.9,
+      "period": "2024 APR"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 77.9,
+      "period": "2024 MAY"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 78.1,
+      "period": "2024 JUN"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 78.2,
+      "period": "2024 JUL"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 78.4,
+      "period": "2024 AUG"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 78.3,
+      "period": "2024 SEP"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 78.4,
+      "period": "2024 OCT"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 78.5,
+      "period": "2024 NOV"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 78.5,
+      "period": "2024 DEC"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 78.6,
+      "period": "2025 JAN"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 78.6,
+      "period": "2025 FEB"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 78.7,
+      "period": "2025 MAR"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 79.0,
+      "period": "2025 APR"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 79.0,
+      "period": "2025 MAY"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 78.9,
+      "period": "2025 JUN"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 79.0,
+      "period": "2025 JUL"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 79.0,
+      "period": "2025 AUG"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 79.0,
+      "period": "2025 SEP"
+    }
+  ],
+  "latest": {
+    "date": "2025-09-01",
+    "value": 79.0,
+    "period": "2025 SEP"
+  },
+  "metadata": {
+    "title": "LFS: Economic activity rate: UK: All: Aged 16-64 (%): SA",
+    "cdid": "LF22",
+    "unit": "%",
+    "release_date": "16-12-2025",
+    "next_release_ons": "20 January 2026",
+    "source": "Office for National Statistics",
+    "description": "イギリス経済活動率（16-64歳、季節調整済）"
+  },
+  "last_updated": "2026-01-20T12:22:19.968590+09:00"
+}

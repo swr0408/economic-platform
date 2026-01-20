@@ -391,7 +391,7 @@ export default function ONSProductionChart({ data }: ONSProductionChartProps) {
   return (
     <div id="ons-production-chart">
       <ChartContainer
-        title="鉱工業生産（Production Industries）"
+        title="鉱工業生産"
         showPeriodSelector={false}
         dataSource="Office for National Statistics (ONS)"
         sourceUrl="https://www.ons.gov.uk/economy/economicoutputandproductivity/output"

@@ -61,7 +61,8 @@ RUN pip install --no-cache-dir \
     python-dotenv \
     dukascopy-python \
     selenium \
-    webdriver-manager
+    webdriver-manager \
+    deep-translator
 
 # Playwrightブラウザをインストール（ChromiumとFirefox）
 RUN playwright install chromium firefox

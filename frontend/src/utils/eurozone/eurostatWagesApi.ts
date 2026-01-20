@@ -62,7 +62,7 @@ export const formatWagesDateJP = (dateStr: string): string => {
   const quarter = parseInt(match[2])
   const quarterNames = ['1-3月期', '4-6月期', '7-9月期', '10-12月期']
 
-  return `${year}年${quarterNames[quarter - 1]}`
+  return `${year}/${quarterNames[quarter - 1]}`
 }
 
 /**

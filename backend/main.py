@@ -87,6 +87,7 @@ try:
     from backend.routers.uk.boe_dmp_survey import router as uk_boe_dmp_survey_router
     from backend.routers.uk.ons_gdp import router as uk_ons_gdp_router
     from backend.routers.uk.ons_gva import router as uk_ons_gva_router
+    from backend.routers.uk.brc_commentary import router as uk_brc_commentary_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -178,6 +179,8 @@ except ImportError:
     from routers.uk.ons_gdp import router as uk_ons_gdp_router
     from routers.uk.ons_gva import router as uk_ons_gva_router
     from routers.uk.ons_production import router as uk_ons_production_router
+    from routers.uk.brc_commentary import router as uk_brc_commentary_router
+    from routers.uk.rics_residential_survey import router as uk_rics_residential_survey_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -298,6 +301,8 @@ app.include_router(uk_boe_dmp_survey_router)
 app.include_router(uk_ons_gdp_router)
 app.include_router(uk_ons_gva_router)
 app.include_router(uk_ons_production_router)
+app.include_router(uk_brc_commentary_router)
+app.include_router(uk_rics_residential_survey_router)
 
 
 @app.get("/health")

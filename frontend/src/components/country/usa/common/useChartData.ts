@@ -114,7 +114,7 @@ export function formatDateLabel(dateStr: string): string {
 export function formatDateLabelJP(dateStr: string): string {
   const date = new Date(dateStr)
   if (isNaN(date.getTime())) return dateStr
-  return `${date.getFullYear()}年${date.getMonth() + 1}月`
+  return `${date.getFullYear()}/${date.getMonth() + 1}`
 }
 
 /**
@@ -134,7 +134,7 @@ export function formatQuarterLabelJP(dateStr: string): string {
   const date = new Date(dateStr)
   if (isNaN(date.getTime())) return dateStr
   const quarter = Math.floor(date.getMonth() / 3) + 1
-  return `${date.getFullYear()}年Q${quarter}`
+  return `${date.getFullYear()}/Q${quarter}`
 }
 
 /**

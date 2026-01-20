@@ -63,7 +63,7 @@ export async function fetchBOJGDPGapData(forceRefresh = false): Promise<BOJGDPGa
 export function formatQuarterDate(dateStr: string): string {
   try {
     const [year, quarter] = dateStr.split('-')
-    return `${year}年${quarter}`
+    return `${year}/${quarter}`
   } catch {
     return dateStr
   }

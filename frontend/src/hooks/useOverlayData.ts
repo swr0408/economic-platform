@@ -385,15 +385,17 @@ function extractIndicatorData(
 
   // パターン1: 直接配列の場合 (例: gdp_growth_rate: [{date, value}])
   if (Array.isArray(indicatorData)) {
-    console.log('[useOverlayData] Direct array pattern for:', dataKey, 'length:', indicatorData.length);
+    // valueFieldが指定されている場合はそのフィールドを使用、なければ'value'
+    const field = valueField || 'value';
+    console.log('[useOverlayData] Direct array pattern for:', dataKey, 'valueField:', field, 'length:', indicatorData.length);
     return (indicatorData as APIDataItem[])
       .filter(item => {
-        const val = item.value;
+        const val = item[field];
         return val !== undefined && val !== null && typeof val === 'number';
       })
       .map(item => ({
         date: item.date,
-        value: item.value as number,
+        value: item[field] as number,
       }));
   }
 

@@ -156,7 +156,15 @@
       "Bash(PYTHONIOENCODING=utf-8 python:*)",
       "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend'' ; npm run build 2>&1 | Select-Object -First 50\")",
       "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\frontend'' ; npm run build 2>&1 | Select-Object -Last 15\")",
-      "Bash(ls \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\services\\\\eurozone\"\" | grep -i \"consumer|confidence \")"
+      "Bash(ls \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\services\\\\eurozone\"\" | grep -i \"consumer|confidence \")",
+      "Bash(echo:*)",
+      "Bash(docker start:*)",
+      "Bash(if not exist c:tmp mkdir c:tmp)",
+      "Bash(winpty docker exec economic-platform-backend sh -c \"ls -la /app/data/cache/uk/employment/\")",
+      "Bash(npm run typecheck:*)",
+      "Bash(docker compose restart:*)",
+      "Bash(docker compose up:*)",
+      "Bash(pip show:*)"
     ]
   }
 }

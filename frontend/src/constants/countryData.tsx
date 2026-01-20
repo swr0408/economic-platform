@@ -290,8 +290,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'ecb-gdp', name: 'GDP' },
-          { code: 'ecb-gdp-components', name: 'GDP構成要素' },
+          { code: 'ecb-gdp', name: 'GDP（ユーロ圏）' },
+          { code: 'ecb-gdp-components', name: 'GDP構成要素（ユーロ圏）' },
+          { code: 'germany-gdp-growth', name: 'GDP成長率（ドイツ）' },
           { code: 'ecb-bls', name: '銀行貸出調査' },
           { code: 'ecb-production', name: '鉱工業生産' },
           { code: 'euro-policy-uncertainty', name: '欧州経済政策不確実性指数' },
@@ -390,7 +391,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <ShoppingOutlined />,
         color: '#13c2c2',
         indicators: [
-          { code: 'retail-sales', name: '小売売上高' },
+          { code: 'uk-retail-sales', name: '小売売上高' },
+          { code: 'uk-brc-retail-sales', name: 'BRC小売売上高' },
+          { code: 'uk-gfk-consumer-confidence', name: 'GfK消費者信頼感指数' },
         ],
       },
       {
@@ -399,8 +402,13 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <TeamOutlined />,
         color: '#faad14',
         indicators: [
-          { code: 'unemployment', name: '失業率' },
-          { code: 'claimant-count', name: '失業保険申請件数' },
+          { code: 'uk-unemployment', name: '失業率' },
+          { code: 'uk-claimant-count', name: '失業保険申請件数' },
+          { code: 'uk-wages', name: '平均週給' },
+          { code: 'uk-real-wages', name: '実質平均週給' },
+          { code: 'uk-employment', name: '雇用者数' },
+          { code: 'uk-economic-activity', name: '経済活動率' },
+          { code: 'uk-indeed-wage-tracker', name: 'Indeed賃金トラッカー' },
         ],
       },
       {
@@ -409,8 +417,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <RiseOutlined />,
         color: '#ff4d4f',
         indicators: [
-          { code: 'cpi', name: 'CPI' },
-          { code: 'ppi', name: 'PPI' },
+          { code: 'uk-cpih', name: 'CPI' },
+          { code: 'uk-cpi-components', name: 'CPI 項目別' },
+          { code: 'uk-ppi', name: 'PPI' },
+          { code: 'uk-brc-shop-price', name: 'BRC店頭価格指数' },
+          { code: 'uk-boe-inflation-attitudes', name: 'インフレ期待調査' },
         ],
       },
       {
@@ -419,7 +430,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <HomeOutlined />,
         color: '#722ed1',
         indicators: [
-          { code: 'hpi', name: '住宅価格指数' },
+          { code: 'uk-house-price', name: '国家統計局住宅価格指数' },
+          { code: 'rics-house-price', name: 'RICS住宅価格バランス' },
         ],
       },
     ],

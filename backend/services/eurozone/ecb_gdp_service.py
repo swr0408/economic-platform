@@ -35,6 +35,7 @@ from pathlib import Path
 
 from core.redis_client import redis_client
 from services.eurozone.fmp_next_release_utils import (
+    get_next_release_from_fmp,
     get_next_release_by_pattern,
     should_refresh_by_pattern,
 )

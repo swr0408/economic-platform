@@ -31,6 +31,10 @@ import EurozoneEmploymentCharts from '../components/country/eurozone/EurozoneEmp
 import EurozoneInflationCharts from '../components/country/eurozone/EurozoneInflationCharts'
 import UKPolicyCharts from '../components/country/uk/UKPolicyCharts'
 import UKEconomyCharts from '../components/country/uk/UKEconomyCharts'
+import UKConsumerCharts from '../components/country/uk/UKConsumerCharts'
+import UKEmploymentCharts from '../components/country/uk/UKEmploymentCharts'
+import UKInflationCharts from '../components/country/uk/UKInflationCharts'
+import UKHousingCharts from '../components/country/uk/UKHousingCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -251,9 +255,13 @@ function CountryDataCategory() {
   const isEurozoneConsumer = countryCode === 'eurozone' && categoryCode === 'consumer'
   const isEurozoneEmployment = countryCode === 'eurozone' && categoryCode === 'employment'
   const isEurozoneInflation = countryCode === 'eurozone' && categoryCode === 'inflation'
-  // イギリス金融政策・経済の場合はチャートを表示
+  // イギリス金融政策・経済・消費・雇用・物価・住宅の場合はチャートを表示
   const isUKPolicy = countryCode === 'uk' && categoryCode === 'policy'
   const isUKEconomy = countryCode === 'uk' && categoryCode === 'economy'
+  const isUKConsumer = countryCode === 'uk' && categoryCode === 'consumer'
+  const isUKEmployment = countryCode === 'uk' && categoryCode === 'employment'
+  const isUKInflation = countryCode === 'uk' && categoryCode === 'inflation'
+  const isUKHousing = countryCode === 'uk' && categoryCode === 'housing'
 
   // メインコンテンツ
   const mainContent = (
@@ -294,6 +302,14 @@ function CountryDataCategory() {
         <UKPolicyCharts />
       ) : isUKEconomy ? (
         <UKEconomyCharts />
+      ) : isUKConsumer ? (
+        <UKConsumerCharts />
+      ) : isUKEmployment ? (
+        <UKEmploymentCharts />
+      ) : isUKInflation ? (
+        <UKInflationCharts />
+      ) : isUKHousing ? (
+        <UKHousingCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

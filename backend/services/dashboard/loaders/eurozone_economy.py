@@ -1,6 +1,6 @@
 """
 ユーロ圏経済ダッシュボードローダー
-ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策不確実性指数、PMIなどの経済指標を一括取得
+ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策不確実性指数、PMI、ドイツGDP成長率などの経済指標を一括取得
 
 キャッシュ更新判定: 日次更新方式
 - ECB GDP: 毎日18:00 CET更新
@@ -10,6 +10,7 @@ ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策�
 - Eurostat ESI: FMP発表日時ベース更新
 - Euro Policy Uncertainty: 24時間TTL更新
 - EU PMI: FMP発表日時ベース更新
+- Germany GDP Growth: FMP発表日時ベース更新
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -35,6 +36,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
     - eurostat_esi: Eurostat ESI（ユーロ圏・ドイツ・フランス・イタリア）
     - euro_policy_uncertainty: 欧州経済政策不確実性指数
     - eu_pmi: HCOB PMI（製造業・サービス業・総合）
+    - germany_gdp_growth: ドイツGDP成長率（前期比・前年比）
 
     キャッシュ方式: 日次更新
     - ECB GDP: 毎日18:00 CET更新
@@ -44,6 +46,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
     - Eurostat ESI: FMP発表日時ベース更新
     - Euro Policy Uncertainty: 24時間TTL更新
     - EU PMI: FMP発表日時ベース更新
+    - Germany GDP Growth: FMP発表日時ベース更新
     """
 
     COUNTRY_CODE = "eurozone"
@@ -120,6 +123,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         from services.eurozone.eurostat_esi_service import eurostat_esi_service
         from services.eurozone.euro_policy_uncertainty_service import euro_policy_uncertainty_service
         from services.eurozone.eu_pmi_service import eu_pmi_service
+        from services.eurozone.germany_gdp_growth_service import germany_gdp_growth_service
 
         result = {
             "ecb_gdp": None,
@@ -129,6 +133,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
             "eurostat_esi": None,
             "euro_policy_uncertainty": None,
             "eu_pmi": None,
+            "germany_gdp_growth": None,
         }
 
         # 並列でデータを取得
@@ -141,6 +146,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_eurostat_esi, eurostat_esi_service): "eurostat_esi",
                 executor.submit(self._get_euro_policy_uncertainty, euro_policy_uncertainty_service): "euro_policy_uncertainty",
                 executor.submit(self._get_eu_pmi, eu_pmi_service): "eu_pmi",
+                executor.submit(self._get_germany_gdp_growth, germany_gdp_growth_service): "germany_gdp_growth",
             }
 
             for future in as_completed(futures):
@@ -257,3 +263,18 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting EU PMI: {e}")
             return {"manufacturing": None, "services": None, "composite": None, "next_release": None}
+
+    def _get_germany_gdp_growth(self, service) -> dict:
+        """ドイツGDP成長率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_gdp_growth")
+            response = service.get_germany_gdp_growth_data(force_refresh=force_refresh)
+            return {
+                "gdp_growth_qoq": response.get("gdp_growth_qoq", []),
+                "gdp_growth_yoy": response.get("gdp_growth_yoy", []),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany GDP Growth: {e}")
+            return {"gdp_growth_qoq": [], "gdp_growth_yoy": [], "metadata": {}, "next_release": None}

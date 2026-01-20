@@ -20,7 +20,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 // 共通モジュールのインポート
 import { type PeriodType } from '../../usa/common/useChartData'
 import { NoDataMessage, NextReleaseDisplay } from '../../usa/common/ChartComponents'
-import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
+import { TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
 
 // マーケットインパクト関連
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
@@ -132,7 +132,7 @@ export default function CBIIndustrialTrendsChart({ data }: CBIIndustrialTrendsCh
   return (
     <div id="cbi-industrial-trends-chart">
       <ChartContainer
-        title="CBI製造業受注指数（イギリス）"
+        title="CBI製造業受注指数"
         showPeriodSelector={false}
         dataSource="Confederation of British Industry (CBI)"
         sourceUrl="https://www.cbi.org.uk/media-centre/?pageSize=12&filter=topic%7CEconomic~&currentFilter=topic"

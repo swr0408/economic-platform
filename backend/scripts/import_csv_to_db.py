@@ -289,6 +289,49 @@ CSV_CONFIGS = [
         "date_format": "monthly_utc",  # UKデータはUTC月初で保存
         "value_type": "number",
     },
+    # UK BRC Retail Sales Monitor
+    # 注意: CSVの日付はデータ対象月を指す（例: 2025/12 = 12月分のデータ）
+    # FMPは発表月で保存されるため、CSVも発表月に合わせて+1ヶ月オフセット
+    # 例: 2025/12データ → 2026/1に発表 → 2026-01-01として保存
+    {
+        "file": "BRC小売売上高前年比.csv",
+        "event_name": "BRC Retail Sales Monitor YoY",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "percent",
+        "date_offset_months": 1,  # データ対象月→発表月（+1ヶ月）
+    },
+    # UK GfK Consumer Confidence
+    # 注意: CSVの日付はデータ対象月を指す（例: 2025/12 = 12月分のデータ）
+    # FMPは発表月で保存されるため、CSVも発表月に合わせて+1ヶ月オフセット
+    {
+        "file": "UK GfK消費者信頼感指数.csv",
+        "event_name": "Consumer Confidence",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "number",
+        "date_offset_months": 1,  # データ対象月→発表月（+1ヶ月）
+    },
+    # UK RICS House Price Balance
+    # CSVの日付はデータ対象月を指す（例: 2025/12 = 12月分のデータ）
+    # CSVはデータ対象月のまま保存し、サービス側で表示用に調整
+    {
+        "file": "RICS住宅価格.csv",
+        "event_name": "RICS House Price Balance",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "number",
+        # date_offset_monthsなし - データ対象月のまま保存
+    },
 ]
 
 
