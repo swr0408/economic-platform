@@ -34,7 +34,7 @@ PI_SERIES_ID = "PI"      # 名目個人所得（10億ドル、季節調整済み
 RPI_SERIES_ID = "RPI"    # 実質個人所得（2017年基準、10億ドル、季節調整済み年率換算）
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "personal_income_cache.json"
 

@@ -4,6 +4,7 @@ import BOJPolicyRateChart from './monetary_policy/BOJPolicyRateChart'
 import OISCurveChart from './monetary_policy/OISCurveChart'
 import BOJMeetingExpectationsTable from './monetary_policy/BOJMeetingExpectationsTable'
 import BOJOutlookReport from './monetary_policy/BOJOutlookReport'
+import BEIChart from './monetary_policy/BEIChart'
 
 /**
  * 日本金融政策チャート群
@@ -59,6 +60,11 @@ export default function JapanPolicyCharts() {
       {/* BOJ Outlook Report */}
       <div id="boj-outlook">
         <BOJOutlookReport />
+      </div>
+
+      {/* 10年物価連動国債BEI */}
+      <div id="bei">
+        <BEIChart />
       </div>
     </div>
   )

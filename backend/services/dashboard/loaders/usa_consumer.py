@@ -406,10 +406,12 @@ class USAConsumerLoader(BaseDashboardLoader):
         from services.usa.disposable_income_service import disposable_income_service
         from services.usa.pce_service import pce_service
         from services.usa.unemployment_rate_service import unemployment_rate_service
+        from services.usa.advance_real_retail_sales_service import advance_real_retail_sales_service
 
         result = {
             "retail_sales": None,
             "retail_control": None,
+            "advance_real_retail_sales": None,
             "carts": None,
             "affinity_spend": None,
             "visa_spending": None,
@@ -428,10 +430,11 @@ class USAConsumerLoader(BaseDashboardLoader):
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=18) as executor:
+        with ThreadPoolExecutor(max_workers=19) as executor:
             futures = {
                 executor.submit(self._get_retail_sales, retail_sales_service): "retail_sales",
                 executor.submit(self._get_retail_control, retail_control_service): "retail_control",
+                executor.submit(self._get_advance_real_retail_sales, advance_real_retail_sales_service): "advance_real_retail_sales",
                 executor.submit(self._get_carts, carts_service): "carts",
                 executor.submit(self._get_affinity_spend, affinity_spend_service): "affinity_spend",
                 executor.submit(self._get_visa_spending, visa_spending_service): "visa_spending",
@@ -481,7 +484,7 @@ class USAConsumerLoader(BaseDashboardLoader):
         """コントロールグループデータを取得"""
         try:
             force_refresh = self._should_force_refresh("retail_control")
-            response = service.get_control_group_data(force_refresh=force_refresh)
+            response = service.get_retail_control_data(force_refresh=force_refresh)
             data = response.get("data", [])
             if not data:
                 return None
@@ -492,6 +495,24 @@ class USAConsumerLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Retail Control data: {e}")
+            return None
+
+    def _get_advance_real_retail_sales(self, service) -> Optional[dict]:
+        """実質小売売上高データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("retail_sales")  # 小売売上高と同時発表
+            response = service.get_advance_real_retail_sales_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Advance Real Retail Sales data: {e}")
             return None
 
     def _get_carts(self, service) -> Optional[dict]:
@@ -769,6 +790,7 @@ class USAConsumerLoader(BaseDashboardLoader):
         """
         from services.usa.retail_sales_service import retail_sales_service
         from services.usa.retail_control_service import retail_control_service
+        from services.usa.advance_real_retail_sales_service import advance_real_retail_sales_service
         from services.usa.carts_service import carts_service
         from services.usa.affinity_spend_service import affinity_spend_service
         from services.usa.visa_spending_service import visa_spending_service
@@ -788,6 +810,7 @@ class USAConsumerLoader(BaseDashboardLoader):
         services = [
             (retail_sales_service, "Retail Sales"),
             (retail_control_service, "Retail Control"),
+            (advance_real_retail_sales_service, "Advance Real Retail Sales"),
             (carts_service, "CARTS"),
             (affinity_spend_service, "Affinity Spend"),
             (visa_spending_service, "Visa Spending"),

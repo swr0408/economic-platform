@@ -39,7 +39,7 @@ from services.eurozone.fmp_next_release_utils import (
 CET = ZoneInfo("Europe/Paris")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "eurozone" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "eurozone" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "eu_pmi_cache.json"
 
@@ -212,17 +212,17 @@ class EurozonePMIService:
                                 target_year = dt_utc.year
                                 if target_month > dt_utc.month:
                                     target_year -= 1
-                                date_str = f"{target_year}-{target_month:02d}-01"
+                                date_str = f"{target_year}-{target_month:02d}"
                             else:
                                 # 月名が不明な場合は発表月の前月を使用
                                 prev_month = dt_utc.month - 1 if dt_utc.month > 1 else 12
                                 prev_year = dt_utc.year if dt_utc.month > 1 else dt_utc.year - 1
-                                date_str = f"{prev_year}-{prev_month:02d}-01"
+                                date_str = f"{prev_year}-{prev_month:02d}"
                         else:
                             # 括弧内に月がない場合は発表月の前月を使用
                             prev_month = dt_utc.month - 1 if dt_utc.month > 1 else 12
                             prev_year = dt_utc.year if dt_utc.month > 1 else dt_utc.year - 1
-                            date_str = f"{prev_year}-{prev_month:02d}-01"
+                            date_str = f"{prev_year}-{prev_month:02d}"
 
                         # 速報値と確報値があるため、同一月の確報値で上書き
                         existing_idx = None

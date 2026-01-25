@@ -332,6 +332,112 @@ CSV_CONFIGS = [
         "value_type": "number",
         # date_offset_monthsなし - データ対象月のまま保存
     },
+    # UK Halifax House Price Index
+    # CSVの日付はデータ対象月を指す（例: 2025/12 = 12月分のデータ）
+    {
+        "file": "ハリファックス住宅価格指数前月比.csv",
+        "event_name": "Halifax House Price Index MoM",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "percent",
+    },
+    {
+        "file": "ハリファックス住宅価格指数前年比.csv",
+        "event_name": "Halifax House Price Index YoY",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "percent",
+    },
+    # UK Rightmove House Price Index
+    # CSVの日付はデータ対象月を指す（例: 2025/12 = 12月分のデータ）
+    {
+        "file": "ライトムーブ住宅価格指数前月比.csv",
+        "event_name": "Rightmove House Price Index MoM",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "percent",
+    },
+    {
+        "file": "ライトムーブ住宅価格指数前年比.csv",
+        "event_name": "Rightmove House Price Index YoY",
+        "provider": "CSV_IMPORT",
+        "country": "UK",
+        "currency": "GBP",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # UKデータはUTC月初で保存
+        "value_type": "percent",
+    },
+    # Germany S&P Global PMI
+    {
+        "file": "DE S&P製造業PMI.csv",
+        "event_name": "S&P Global Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "DE",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # ドイツデータはUTC月初で保存
+        "value_type": "number",
+    },
+    {
+        "file": "DE S&PサービスPMI.csv",
+        "event_name": "S&P Global Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "DE",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # ドイツデータはUTC月初で保存
+        "value_type": "number",
+    },
+    {
+        "file": "DE S&P総合PMI.csv",
+        "event_name": "S&P Global Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "DE",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # ドイツデータはUTC月初で保存
+        "value_type": "number",
+    },
+    # France HCOB PMI
+    {
+        "file": "FR S&P製造業PMI.csv",
+        "event_name": "HCOB Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "FR",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # フランスデータはUTC月初で保存
+        "value_type": "number",
+    },
+    {
+        "file": "FR S&PサービスPMI.csv",
+        "event_name": "HCOB Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "FR",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # フランスデータはUTC月初で保存
+        "value_type": "number",
+    },
+    {
+        "file": "FR S&P総合PMI.csv",
+        "event_name": "HCOB Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "FR",
+        "currency": "EUR",
+        "impact": "High",
+        "date_format": "monthly_utc",  # フランスデータはUTC月初で保存
+        "value_type": "number",
+    },
 ]
 
 

@@ -46,7 +46,7 @@ JST = ZoneInfo("Asia/Tokyo")
 CET = ZoneInfo("Europe/Berlin")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "eurozone" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "eurozone" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "ecb_gdp_cache.json"
 

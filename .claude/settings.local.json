@@ -164,7 +164,29 @@
       "Bash(npm run typecheck:*)",
       "Bash(docker compose restart:*)",
       "Bash(docker compose up:*)",
-      "Bash(pip show:*)"
+      "Bash(pip show:*)",
+      "Bash(more:*)",
+      "Bash(source venv/Scripts/activate)",
+      "Bash(source .venv/Scripts/activate)",
+      "Bash(netstat:*)",
+      "Bash(ss:*)",
+      "Bash(tasklist:*)",
+      "Bash(ps:*)",
+      "Bash(wmic process:*)",
+      "Bash(timeout /t 5 /nobreak)",
+      "Bash(docker exec economic-platform-backend python:*)",
+      "Bash(del \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\japan\\\\employment\\\\scheduled_wage_estat_cache.json\")",
+      "Bash(del \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\japan\\\\economy\\\\machinery_orders_cache.json\")",
+      "Bash(del /q \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\japan\\\\economy\\\\machinery_orders_cache.json\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend && python -c \"\"from core.database import SessionLocal; from sqlalchemy import text; session = SessionLocal\\(\\); result = session.execute\\(text\\(''SELECT id, econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE econalpha_id = chr\\(39\\)+chr\\(106\\)+chr\\(97\\)+chr\\(112\\)+chr\\(97\\)+chr\\(110\\)+chr\\(95\\)+chr\\(109\\)+chr\\(97\\)+chr\\(99\\)+chr\\(104\\)+chr\\(105\\)+chr\\(110\\)+chr\\(101\\)+chr\\(95\\)+chr\\(116\\)+chr\\(111\\)+chr\\(111\\)+chr\\(108\\)+chr\\(95\\)+chr\\(111\\)+chr\\(114\\)+chr\\(100\\)+chr\\(101\\)+chr\\(114\\)+chr\\(115\\)+chr\\(39\\)''\\)\\).fetchall\\(\\); print\\(result\\); session.close\\(\\)\"\"\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend && python check_mapping.py\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend && python check_mapping.py 2>&1\")",
+      "Bash(powershell -Command \"cd C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend; python check_mapping.py 2>&1\")",
+      "Bash(/c/Program Files/Redis/redis-cli.exe DEL:*)",
+      "Bash(dir /b \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\eurozone\\\\economy\"\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\owner\\Desktop\\economic-platform"
     ]
   }
 }

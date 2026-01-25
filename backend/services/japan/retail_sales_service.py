@@ -35,7 +35,7 @@ from services.japan.fmp_next_release_utils import (
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "retail_sales_cache.json"
 

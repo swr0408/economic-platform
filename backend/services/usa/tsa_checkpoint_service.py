@@ -36,7 +36,7 @@ UTC = ZoneInfo("UTC")
 TSA_BASE_URL = "https://www.tsa.gov/travel/passenger-volumes"
 
 # ファイルキャッシュ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "economy"
 CACHE_FILE = CACHE_DIR / "tsa_checkpoint_data.json"
 
 

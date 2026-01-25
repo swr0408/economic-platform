@@ -324,8 +324,8 @@ const BOJLendingChart: React.FC = () => {
                     currentMode={viewMode}
                     onChange={(mode) => setViewMode(mode as ViewMode)}
                     options={[
-                      { mode: 'yoy_chart', label: 'グラフ' },
-                      { mode: 'yoy_table', label: 'テーブル' },
+                      { mode: 'yoy_chart', label: '前年比' },
+                      { mode: 'yoy_table', label: '前年比（テーブル）' },
                     ]}
                   />
 

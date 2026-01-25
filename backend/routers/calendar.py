@@ -278,10 +278,11 @@ async def get_sync_status():
 @router.post("/sync/run")
 async def run_sync(
     background_tasks: BackgroundTasks,
-    days: int = Query(14, ge=1, le=365, description="同期日数"),
+    days: int = Query(14, ge=1, le=365, description="同期日数（過去）"),
+    future_days: int = Query(7, ge=0, le=90, description="同期日数（将来）"),
 ):
     """
-    手動で同期を実行（直近N日）
+    手動で同期を実行（直近N日+将来M日）
 
     バックグラウンドで実行し、即座にレスポンスを返す
     """
@@ -289,10 +290,11 @@ async def run_sync(
 
     today = date.today()
     start_date = today - timedelta(days=days)
+    end_date = today + timedelta(days=future_days)
 
     def sync_task():
         try:
-            result = calendar_scheduler.sync_range(start_date, today)
+            result = calendar_scheduler.sync_range(start_date, end_date)
             print(f"[CalendarAPI] Sync completed: {result['upserted_count']} events")
         except Exception as e:
             print(f"[CalendarAPI] Sync failed: {e}")
@@ -301,7 +303,39 @@ async def run_sync(
 
     return {
         "status": "started",
-        "message": f"Syncing calendar from {start_date} to {today}",
+        "message": f"Syncing calendar from {start_date} to {end_date}",
+        "past_days": days,
+        "future_days": future_days,
+    }
+
+
+@router.post("/sync/future")
+async def run_future_sync(
+    background_tasks: BackgroundTasks,
+    days: int = Query(90, ge=1, le=180, description="将来の取得日数"),
+):
+    """
+    将来のカレンダーデータを同期（次回発表日の予想値・発表時刻取得用）
+
+    バックグラウンドで実行し、即座にレスポンスを返す
+    """
+    from datetime import date, timedelta
+
+    today = date.today()
+    end_date = today + timedelta(days=days)
+
+    def sync_task():
+        try:
+            result = calendar_scheduler.sync_range(today, end_date)
+            print(f"[CalendarAPI] Future sync completed: {result['upserted_count']} events")
+        except Exception as e:
+            print(f"[CalendarAPI] Future sync failed: {e}")
+
+    background_tasks.add_task(sync_task)
+
+    return {
+        "status": "started",
+        "message": f"Syncing future calendar from {today} to {end_date}",
         "days": days,
     }
 
@@ -353,4 +387,183 @@ async def sync_indicator_releases(econalpha_id: str):
         "econalpha_id": econalpha_id,
         "synced_count": count,
         "message": f"Synced {count} releases for {econalpha_id}",
+    }
+
+
+@router.post("/sync/event")
+async def sync_specific_event(
+    background_tasks: BackgroundTasks,
+    country: str = Query(..., description="国コード（US, EU, DE, JP, GB等）"),
+    event: str = Query(..., description="イベント名パターン（例: HCOB Manufacturing PMI）"),
+    days: int = Query(30, ge=1, le=90, description="取得日数（過去+将来）"),
+):
+    """
+    特定イベントのみFMPから個別取得してDBに保存
+
+    発表直後に最新データを取得したい場合に使用
+    """
+    from datetime import date, timedelta
+    from services.calendar.fmp_service import fmp_service
+
+    today = date.today()
+    start_date = today - timedelta(days=days)
+    end_date = today + timedelta(days=days)
+
+    def fetch_and_save():
+        try:
+            # FMPから特定イベントを取得
+            events = fmp_service.fetch_calendar(
+                start_date, end_date,
+                country=country.upper(),
+                event=event
+            )
+
+            # 処理してUpsert
+            processed_events = [fmp_service.process_event(e) for e in events]
+            upserted_count = calendar_repository.upsert_events(processed_events)
+
+            print(f"[CalendarAPI] Event sync completed: {upserted_count} events for '{event}' ({country})")
+
+        except Exception as e:
+            print(f"[CalendarAPI] Event sync failed: {e}")
+            import traceback
+            traceback.print_exc()
+
+    background_tasks.add_task(fetch_and_save)
+
+    return {
+        "status": "started",
+        "message": f"Syncing '{event}' events for {country} from {start_date} to {end_date}",
+        "country": country,
+        "event": event,
+        "days": days,
+    }
+
+
+@router.get("/fmp/indicators")
+async def get_fmp_indicators():
+    """
+    FMPスケジューラーに登録されている指標一覧を取得
+    """
+    try:
+        from scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS
+    except ImportError:
+        from backend.scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS
+
+    indicators = [
+        {
+            "name_ja": config["name_ja"],
+            "fmp_event": config["fmp_event"],
+            "country": config.get("country", "US"),
+            "service_module": config["service_module"],
+        }
+        for config in FMP_INDICATOR_CONFIGS
+    ]
+
+    # 国別にグループ化
+    by_country = {}
+    for ind in indicators:
+        country = ind["country"]
+        if country not in by_country:
+            by_country[country] = []
+        by_country[country].append(ind)
+
+    return {
+        "total": len(indicators),
+        "by_country": by_country,
+        "indicators": indicators,
+    }
+
+
+@router.post("/fmp/sync/{indicator_name}")
+async def sync_fmp_indicator(
+    indicator_name: str,
+    background_tasks: BackgroundTasks,
+    days: int = Query(7, ge=1, le=30, description="取得日数（過去）"),
+):
+    """
+    特定の指標をFMPから個別取得してサービスキャッシュを更新
+
+    indicator_name: 指標名（日本語、例: "ユーロ圏PMI（HCOB）"）または部分一致
+    """
+    try:
+        from scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS, fmp_release_scheduler
+    except ImportError:
+        from backend.scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS, fmp_release_scheduler
+
+    # 指標を検索（部分一致）
+    matched_config = None
+    for config in FMP_INDICATOR_CONFIGS:
+        if indicator_name.lower() in config["name_ja"].lower():
+            matched_config = config
+            break
+
+    if not matched_config:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Indicator not found: {indicator_name}. Use GET /api/calendar/fmp/indicators to see available indicators."
+        )
+
+    async def fetch_and_update():
+        try:
+            # 3分方式で更新
+            await fmp_release_scheduler.update_indicator_for_3_minutes(matched_config)
+        except Exception as e:
+            print(f"[CalendarAPI] FMP indicator sync failed: {e}")
+            import traceback
+            traceback.print_exc()
+
+    background_tasks.add_task(fetch_and_update)
+
+    return {
+        "status": "started",
+        "message": f"Syncing indicator: {matched_config['name_ja']}",
+        "indicator": {
+            "name_ja": matched_config["name_ja"],
+            "fmp_event": matched_config["fmp_event"],
+            "country": matched_config.get("country", "US"),
+        },
+    }
+
+
+@router.post("/fmp/sync-all")
+async def sync_all_fmp_indicators(
+    background_tasks: BackgroundTasks,
+    country: Optional[str] = Query(None, description="国コード（US, EU, DE, JP, GB等）でフィルタ"),
+):
+    """
+    登録されている全指標（または特定国の指標）をFMPから個別取得
+    """
+    try:
+        from scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS, fmp_release_scheduler
+    except ImportError:
+        from backend.scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS, fmp_release_scheduler
+
+    # 対象指標をフィルタ
+    if country:
+        configs = [c for c in FMP_INDICATOR_CONFIGS if c.get("country", "US") == country.upper()]
+    else:
+        configs = FMP_INDICATOR_CONFIGS
+
+    if not configs:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No indicators found for country: {country}"
+        )
+
+    async def fetch_all():
+        for config in configs:
+            try:
+                print(f"[CalendarAPI] Syncing: {config['name_ja']}")
+                await fmp_release_scheduler.fetch_indicator_data(config, iteration=1)
+            except Exception as e:
+                print(f"[CalendarAPI] Error syncing {config['name_ja']}: {e}")
+
+    background_tasks.add_task(fetch_all)
+
+    return {
+        "status": "started",
+        "message": f"Syncing {len(configs)} indicators" + (f" for {country}" if country else ""),
+        "count": len(configs),
+        "indicators": [c["name_ja"] for c in configs],
     }

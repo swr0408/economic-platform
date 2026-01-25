@@ -68,9 +68,9 @@ type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy_chart'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '前期比グラフ' },
-  { mode: 'qoq_table', label: '前期比テーブル' },
-  { mode: 'yoy_chart', label: '前年比グラフ' },
+  { mode: 'qoq_chart', label: '前期比' },
+  { mode: 'qoq_table', label: '前期比（テーブル）' },
+  { mode: 'yoy_chart', label: '前年比' },
 ]
 
 // グラフの色

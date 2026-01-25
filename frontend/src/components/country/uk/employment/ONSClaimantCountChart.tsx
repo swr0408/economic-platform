@@ -256,10 +256,10 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
                       currentMode={viewMode}
                       onChange={setViewMode}
                       options={[
-                        { mode: 'mom', label: '前月比グラフ' },
-                        { mode: 'mom_table', label: '前月比テーブル' },
-                        { mode: 'yoy', label: '前年比' },
                         { mode: 'value', label: '原数値' },
+                        { mode: 'yoy', label: '前年比' },
+                        { mode: 'mom', label: '前月比' },
+                        { mode: 'mom_table', label: '前月比（テーブル）' },
                       ]}
                     />
                   </div>

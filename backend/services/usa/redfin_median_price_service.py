@@ -34,7 +34,7 @@ from core.redis_client import redis_client
 JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "housing"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "housing"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "redfin_median_price_cache.json"
 

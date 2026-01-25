@@ -46,7 +46,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュ設定
 REDIS_KEY = "japan:boj:meeting_expectations"
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "monetary_policy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "monetary_policy"
 CACHE_FILE = CACHE_DIR / "boj_meeting_expectations.json"
 
 # Google Cloud Vision API (fallback)

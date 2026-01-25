@@ -21,6 +21,8 @@ import ImportExportPriceChart from './inflation/ImportExportPriceChart'
 import RetailFoodServicesPriceChart from './inflation/RetailFoodServicesPriceChart'
 import NYInflationExpectationsChart from './inflation/NYInflationExpectationsChart'
 import MichiganInflationExpectationsChart from './inflation/MichiganInflationExpectationsChart'
+import TrimmedMeanPCEChart from './inflation/TrimmedMeanPCEChart'
+import MedianCPIChart from './inflation/MedianCPIChart'
 
 export default function USAInflationCharts() {
   const queryResult = useUSAInflationDashboard()
@@ -40,10 +42,20 @@ export default function USAInflationCharts() {
               categoriesData={dashboardData?.cpi_categories ?? null}
             />
           </ChartWrapper>
+          <ChartWrapper id="median-cpi">
+            <MedianCPIChart
+              data={dashboardData?.median_cpi ?? null}
+            />
+          </ChartWrapper>
           <ChartWrapper id="pce-deflator">
             <PCEDeflatorChart
               pceData={dashboardData?.pce_deflator ?? null}
               corePceData={dashboardData?.core_pce_deflator ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="trimmed-mean-pce">
+            <TrimmedMeanPCEChart
+              data={dashboardData?.trimmed_mean_pce ?? null}
             />
           </ChartWrapper>
           <ChartWrapper id="housing-indicators">

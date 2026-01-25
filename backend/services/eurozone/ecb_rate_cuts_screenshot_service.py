@@ -29,7 +29,7 @@ from core.redis_client import redis_client
 JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュディレクトリの設定
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "eurozone" / "monetary_policy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "eurozone" / "monetary_policy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # スクリーンショットファイル名

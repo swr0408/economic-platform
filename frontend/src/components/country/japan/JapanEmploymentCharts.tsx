@@ -8,9 +8,12 @@ import { Spin, Alert, Button } from 'antd'
 import { useJapanEmploymentDashboard } from '../../../hooks/useDashboardData'
 import ScheduledWageChart from './employment/ScheduledWageChart'
 import ScheduledWageCommonChart from './employment/ScheduledWageCommonChart'
+import RealWageChart from './employment/RealWageChart'
+import CashEarningsChart from './employment/CashEarningsChart'
 import EmploymentTypeChart from './employment/EmploymentTypeChart'
 import UnemploymentChart from './employment/UnemploymentChart'
 import JobOffersRatioChart from './employment/JobOffersRatioChart'
+import ShuntouChart from './employment/ShuntouChart'
 
 /**
  * 日本雇用チャート群
@@ -55,6 +58,20 @@ export default function JapanEmploymentCharts() {
         />
       </div>
 
+      {/* 実質賃金（共通事業所版） */}
+      <div id="real-wage">
+        <RealWageChart
+          data={isLoading ? null : (dashboardData?.real_wage ?? null)}
+        />
+      </div>
+
+      {/* 現金給与額（共通事業所版） */}
+      <div id="cash-earnings">
+        <CashEarningsChart
+          data={isLoading ? null : (dashboardData?.cash_earnings ?? null)}
+        />
+      </div>
+
       {/* 雇用形態別労働者過不足判断D.I. */}
       <div id="employment-type">
         <EmploymentTypeChart
@@ -73,6 +90,13 @@ export default function JapanEmploymentCharts() {
       <div id="job-offers-ratio">
         <JobOffersRatioChart
           data={isLoading ? null : (dashboardData?.job_offers_ratio ?? null)}
+        />
+      </div>
+
+      {/* 春闘 */}
+      <div id="shuntou">
+        <ShuntouChart
+          data={isLoading ? null : (dashboardData?.shuntou ?? null)}
         />
       </div>
     </div>

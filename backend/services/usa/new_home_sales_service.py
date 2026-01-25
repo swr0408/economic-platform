@@ -26,7 +26,7 @@ from services.usa.fmp_next_release_utils import get_next_release_from_fmp
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "housing"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "housing"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 

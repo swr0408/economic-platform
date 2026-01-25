@@ -2,6 +2,11 @@ import { Spin, Alert, Button } from 'antd'
 import { useUKHousingDashboard } from '../../../hooks/useDashboardData'
 import UKHousePriceChart from './housing/UKHousePriceChart'
 import RICSHousePriceChart from './housing/RICSHousePriceChart'
+import HalifaxHousePriceChart from './housing/HalifaxHousePriceChart'
+import RightmoveHousePriceChart from './housing/RightmoveHousePriceChart'
+import NationwideHPIChart from './housing/NationwideHPIChart'
+import BoEMortgageLendingChart from './housing/BoEMortgageLendingChart'
+import BoEMortgageRatesChart from './housing/BoEMortgageRatesChart'
 
 /**
  * イギリス住宅チャート群
@@ -48,6 +53,41 @@ export default function UKHousingCharts() {
       <div id="rics-house-price">
         <RICSHousePriceChart
           data={dashboardData?.rics_house_price ?? null}
+        />
+      </div>
+
+      {/* Halifax House Price Index Chart */}
+      <div id="halifax-house-price">
+        <HalifaxHousePriceChart
+          data={dashboardData?.halifax_house_price ?? null}
+        />
+      </div>
+
+      {/* Rightmove House Price Index Chart */}
+      <div id="rightmove-house-price">
+        <RightmoveHousePriceChart
+          data={dashboardData?.rightmove_house_price ?? null}
+        />
+      </div>
+
+      {/* Nationwide House Price Index Chart */}
+      <div id="nationwide-hpi">
+        <NationwideHPIChart
+          data={dashboardData?.nationwide_hpi ?? null}
+        />
+      </div>
+
+      {/* BoE Mortgage Lending Chart */}
+      <div id="boe-mortgage-lending">
+        <BoEMortgageLendingChart
+          data={dashboardData?.boe_mortgage_lending ?? null}
+        />
+      </div>
+
+      {/* BoE Mortgage Rates Chart */}
+      <div id="boe-mortgage-rates">
+        <BoEMortgageRatesChart
+          data={dashboardData?.boe_mortgage_rates ?? null}
         />
       </div>
     </div>

@@ -20,8 +20,8 @@ import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
 import { formatPercent, type PeriodType } from '../../usa/common/useChartData'
-import { NoDataMessage, NextReleaseDisplay } from '../../usa/common/ChartComponents'
-import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
+import { NoDataMessage, NextReleaseDisplay, ViewModeButtonGroup } from '../../usa/common/ChartComponents'
+import { DARK_THEME, TEXT_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
 
 // マーケットインパクト関連
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
@@ -32,9 +32,8 @@ interface ONSProductionChartProps {
   data: ONSProductionData | null
 }
 
-type ViewMode = 'chart' | 'table'
-// 2つの表示モード
-type ProductionType = 'yoy' | 'mom'
+// 統一されたビューモード（データタイプ + 表示形式）
+type ViewMode = 'yoy' | 'mom_chart' | 'mom_table'
 
 interface ChartDataPoint {
   date: string
@@ -69,40 +68,52 @@ const getMonthFromDate = (dateStr: string): number => {
 // 月名配列（テーブル用）
 const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 
-// Productionタイプの設定
-const PRODUCTION_TYPE_CONFIG: Record<ProductionType, {
-  label: string
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom_chart', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
+]
+
+// ビューモードの設定情報
+const VIEW_MODE_CONFIG: Record<ViewMode, {
   chartType: 'bar' | 'line'
-  hasTable: boolean
   compareId: string
   chartTitle: string
   tableDescription: string
+  dataType: 'yoy' | 'mom'
 }> = {
   'yoy': {
-    label: '前年比',
     chartType: 'line',
-    hasTable: false,
     compareId: 'uk_production_yoy',
     chartTitle: '鉱工業生産（前年比）',
     tableDescription: '',
+    dataType: 'yoy',
   },
-  'mom': {
-    label: '前月比',
+  'mom_chart': {
     chartType: 'bar',
-    hasTable: true,
+    compareId: 'uk_production_mom',
+    chartTitle: '鉱工業生産（前月比）',
+    tableDescription: '',
+    dataType: 'mom',
+  },
+  'mom_table': {
+    chartType: 'bar',
     compareId: 'uk_production_mom',
     chartTitle: '鉱工業生産（前月比）',
     tableDescription: '※ 鉱工業生産 前月比データ（単位: %）',
+    dataType: 'mom',
   },
 }
 
 export default function ONSProductionChart({ data }: ONSProductionChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [productionType, setProductionType] = useState<ProductionType>('yoy')
 
-  const config = PRODUCTION_TYPE_CONFIG[productionType]
+  const config = VIEW_MODE_CONFIG[viewMode]
+  // viewModeからデータタイプを導出
+  const productionType = config.dataType
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -225,72 +236,6 @@ export default function ONSProductionChart({ data }: ONSProductionChartProps) {
     return 'transparent'
   }
 
-  // Production種類切り替えボタン
-  const ProductionTypeButtons = () => (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-      {(Object.keys(PRODUCTION_TYPE_CONFIG) as ProductionType[]).map((type) => (
-        <button
-          key={type}
-          onClick={() => {
-            setProductionType(type)
-            // テーブル非対応のモードに切り替えた場合はチャート表示に戻す
-            if (!PRODUCTION_TYPE_CONFIG[type].hasTable) {
-              setViewMode('chart')
-            }
-          }}
-          style={{
-            padding: '6px 12px',
-            border: productionType === type ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: productionType === type ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: productionType === type ? 'bold' : 'normal',
-            color: productionType === type ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          {PRODUCTION_TYPE_CONFIG[type].label}
-        </button>
-      ))}
-    </div>
-  )
-
-  // 表示モード切り替えボタン（テーブル対応のモードのみ）
-  const ViewModeButtons = () => {
-    if (!config.hasTable) return null
-
-    return (
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button
-          onClick={() => setViewMode('chart')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'chart' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'chart' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'chart' ? 'bold' : 'normal',
-            color: viewMode === 'chart' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          グラフ
-        </button>
-        <button
-          onClick={() => setViewMode('table')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'table' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'table' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'table' ? 'bold' : 'normal',
-            color: viewMode === 'table' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          テーブル
-        </button>
-      </div>
-    )
-  }
 
   // テーブルコンポーネント（ダークテーマ・月次版）
   const ProductionTable = () => (
@@ -429,10 +374,9 @@ export default function ONSProductionChart({ data }: ONSProductionChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <ProductionTypeButtons />
-                  <ViewModeButtons />
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-                  {viewMode === 'chart' && (
+                  {viewMode !== 'mom_table' && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
                       <Tooltip title="比較ページを開く">
@@ -446,13 +390,13 @@ export default function ONSProductionChart({ data }: ONSProductionChartProps) {
                     </div>
                   )}
                   {/* テーブル説明 */}
-                  {viewMode === 'table' && config.hasTable && (
+                  {viewMode === 'mom_table' && (
                     <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
                       {config.tableDescription}
                     </div>
                   )}
 
-                  {viewMode === 'table' && config.hasTable ? (
+                  {viewMode === 'mom_table' ? (
                     <ProductionTable />
                   ) : (
                     <ZoomableChart

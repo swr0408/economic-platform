@@ -19,6 +19,10 @@ export interface USAPolicyData {
   policy_rate: PolicyRateItem[] | null
   term_premium: TermPremiumItem[] | null
   kw_term_premium: KWTermPremiumItem[] | null
+  frb_total_assets: FRBTotalAssetsItem[] | null
+  reserve_balances: ReserveBalancesItem[] | null
+  tga: TGAItem[] | null
+  oas: OASData | null
   sep_dates: SEPDateItem[] | null
   fedwatch_screenshot_url: string | null
   next_fomc: NextFOMCInfo | null
@@ -50,6 +54,32 @@ export interface KWTermPremiumItem {
 export interface SEPDateItem {
   date: string
   label: string
+}
+
+export interface FRBTotalAssetsItem {
+  date: string
+  value: number
+}
+
+export interface ReserveBalancesItem {
+  date: string
+  value: number
+}
+
+export interface TGAItem {
+  date: string
+  value: number
+}
+
+export interface OASItem {
+  date: string
+  value: number
+}
+
+export interface OASData {
+  hy_spread: OASItem[]
+  ig_spread: OASItem[]
+  hy_yield: OASItem[]
 }
 
 // 米国経済データの型
@@ -524,6 +554,7 @@ export interface OpenTableLatest {
 export interface USAConsumerData {
   retail_sales: RetailSalesData | null
   retail_control: RetailControlData | null
+  advance_real_retail_sales: AdvanceRealRetailSalesData | null
   carts: CartsData | null
   affinity_spend: AffinitySpendData | null
   visa_spending: VisaSpendingData | null
@@ -896,6 +927,27 @@ export interface RetailControlItem {
   mom: number               // 前月比（%）
   forecast: number | null   // 予想値
   revised: number | null    // 改定値
+}
+
+// Advance Real Retail and Food Services Sales データの型（FRED RRSFS）
+// 小売売上高発表と同日（毎月中旬 8:30 ET）
+export interface AdvanceRealRetailSalesData {
+  data: AdvanceRealRetailSalesItem[]
+  latest: AdvanceRealRetailSalesItem | null
+  next_release: AdvanceRealRetailSalesNextRelease | null
+  last_updated: string | null
+}
+
+export interface AdvanceRealRetailSalesItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 実質小売売上高（百万ドル、2017年基準）
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface AdvanceRealRetailSalesNextRelease {
+  date: string
+  label: string
 }
 
 /**
@@ -1634,6 +1686,25 @@ export interface OvertimeHoursNextRelease {
   label: string
 }
 
+// サームルールデータの型（FRED: SAHMCURRENT）
+// 毎月第1金曜日 8:30 ET発表（雇用統計と同時）
+export interface SahmRuleData {
+  data: SahmRuleItem[]
+  latest: SahmRuleItem | null
+  next_release: SahmRuleNextRelease | null
+  last_updated: string | null
+}
+
+export interface SahmRuleItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // サームルール指標値（%）
+}
+
+export interface SahmRuleNextRelease {
+  date: string
+  label: string
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
@@ -1661,6 +1732,7 @@ export interface USAEmploymentData {
   nfib_compensation: NFIBCompensationData | null
   nfib_compensation_unemployment: NFIBCompensationUnemploymentData | null
   overtime_hours: OvertimeHoursData | null
+  sahm_rule: SahmRuleData | null
 }
 
 /**
@@ -2040,6 +2112,49 @@ export interface MichiganInflationExpectationsLatest {
   date: string       // 最新データの日付
 }
 
+// Trimmed Mean PCE Inflation Rate データの型（Dallas Fed）
+// 毎月末頃発表（PCEデフレーターと同時）
+export interface TrimmedMeanPCEData {
+  data: TrimmedMeanPCEItem[]
+  latest: TrimmedMeanPCEItem | null
+  next_release: TrimmedMeanPCENextRelease | null
+  last_updated: string | null
+}
+
+export interface TrimmedMeanPCEItem {
+  date: string              // YYYY-MM-DD形式
+  one_month: number | null  // 1ヶ月変化率（年率換算）
+  six_month: number | null  // 6ヶ月変化率（年率換算）
+  twelve_month: number | null  // 12ヶ月変化率
+}
+
+export interface TrimmedMeanPCENextRelease {
+  date: string    // YYYY-MM-DD形式
+  label: string   // 例: "PCE Deflator (Jan 31)"
+}
+
+// Median CPI データの型（Cleveland Fed）
+// CPI発表と同日（毎月中旬 8:30 ET）
+export interface MedianCPIData {
+  data: MedianCPIItem[]
+  latest: MedianCPIItem | null
+  next_release: MedianCPINextRelease | null
+  last_updated: string | null
+}
+
+export interface MedianCPIItem {
+  date: string                 // YYYY-MM-DD形式
+  median_cpi: number | null    // Median CPI（前年比）
+  trimmed_mean_16: number | null  // 16% Trimmed Mean（前年比）
+  cpi: number | null           // CPI（前年比）
+  core_cpi: number | null      // Core CPI（前年比）
+}
+
+export interface MedianCPINextRelease {
+  date: string    // YYYY-MM-DD形式
+  label: string   // 例: "CPI (Feb 11)"
+}
+
 // 米国物価ダッシュボードデータの型
 export interface USAInflationData {
   cpi: CPIData | null
@@ -2059,6 +2174,8 @@ export interface USAInflationData {
   retail_food_services_price: RetailFoodServicesPriceData | null
   ny_inflation_expectations: NYInflationExpectationsData | null
   michigan_inflation_expectations: MichiganInflationExpectationsData | null
+  trimmed_mean_pce: TrimmedMeanPCEData | null
+  median_cpi: MedianCPIData | null
 }
 
 /**
@@ -2490,7 +2607,8 @@ export interface JapanScheduledWageNextRelease {
 export interface JapanScheduledWageData {
   scheduled_wage: JapanScheduledWageSeriesData | null
   general: JapanScheduledWageSeriesData | null
-  part_time: JapanScheduledWageSeriesData | null
+  part_time_wage: JapanScheduledWageSeriesData | null  // パート所定内給与
+  part_time_hourly: JapanScheduledWageSeriesData | null  // パート時間当
   next_release: JapanScheduledWageNextRelease | null
 }
 
@@ -2572,13 +2690,105 @@ export interface JapanJobOffersRatioData {
   next_release: JapanJobOffersRatioNextRelease | null
 }
 
+// =============================================================================
+// 日本 実質賃金データの型（2系列：全事業所版/共通事業所版）
+// =============================================================================
+
+// 実質賃金データポイント
+export interface JapanRealWageDataPoint {
+  date: string  // YYYY-MM-DD形式
+  value: number // 前年比（%）
+}
+
+// 実質賃金系列データ
+export interface JapanRealWageSeriesData {
+  data: JapanRealWageDataPoint[]
+  latest: JapanRealWageDataPoint | null
+}
+
+// 実質賃金次回発表情報
+export interface JapanRealWageNextRelease {
+  date?: string
+  time_jst?: string
+  datetime_jst?: string
+}
+
+// 実質賃金データ全体（2系列）
+export interface JapanRealWageData {
+  all: JapanRealWageSeriesData | null  // 全事業所版
+  common: JapanRealWageSeriesData | null  // 共通事業所版
+  next_release: JapanRealWageNextRelease | null
+}
+
+// =============================================================================
+// 日本 現金給与額データの型
+// =============================================================================
+
+// 現金給与額データポイント
+export interface JapanCashEarningsDataPoint {
+  date: string  // YYYY-MM-DD形式
+  value: number // 前年比（%）
+}
+
+// 現金給与額次回発表情報
+export interface JapanCashEarningsNextRelease {
+  date?: string
+  time_jst?: string
+  datetime_jst?: string
+}
+
+// 現金給与額データ全体（単一系列）
+export interface JapanCashEarningsData {
+  data: JapanCashEarningsDataPoint[]
+  latest: JapanCashEarningsDataPoint | null
+  next_release: JapanCashEarningsNextRelease | null
+}
+
+// 春闘データポイント
+export interface JapanShuntouDataPoint {
+  date: string  // YYYY-01-01形式（年度単位）
+  value: number // 賃上げ率（%）
+}
+
+// 春闘系列データ
+export interface JapanShuntouSeriesData {
+  data: JapanShuntouDataPoint[]
+  latest: JapanShuntouDataPoint | null
+}
+
+// 春闘プレスリリース情報
+export interface JapanShuntouPressRelease {
+  number: number  // 第何回速報
+  url: string     // PDF URL
+  year: number    // 発表年度
+  title: string   // タイトル
+}
+
+// 春闘次回発表情報
+export interface JapanShuntouNextRelease {
+  date?: string
+  label?: string  // "第3回速報" など
+  estimated?: boolean  // 推定値かどうか
+}
+
+// 春闘データ全体
+export interface JapanShuntouData {
+  wage_increase: JapanShuntouSeriesData | null  // 賃上げ率（加重平均）
+  union_member: JapanShuntouSeriesData | null   // 組合員数賃上げ率（単純平均）
+  press_releases: JapanShuntouPressRelease[]
+  next_release: JapanShuntouNextRelease | null
+}
+
 // 日本雇用ダッシュボードデータの型
 export interface JapanEmploymentDashboardData {
   scheduled_wage: JapanScheduledWageData | null
   scheduled_wage_common: JapanScheduledWageCommonData | null
+  real_wage: JapanRealWageData | null
+  cash_earnings: JapanCashEarningsData | null
   employment_type: JapanEmploymentTypeData | null
   unemployment: JapanUnemploymentData | null
   job_offers_ratio: JapanJobOffersRatioData | null
+  shuntou: JapanShuntouData | null
 }
 
 /**
@@ -2595,6 +2805,133 @@ export interface JapanEmploymentDashboardData {
  */
 export function useJapanEmploymentDashboard(): UseQueryResult<DashboardResponse<JapanEmploymentDashboardData>, Error> {
   return useDashboardData<JapanEmploymentDashboardData>('japan', 'employment')
+}
+
+// =============================================================================
+// 日本経済データの型
+// =============================================================================
+
+// 日本経済指標の次回発表情報
+export interface JapanEconomyNextRelease {
+  date?: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
+// 四半期GDPデータポイント
+export interface JapanQuarterlyGDPDataPoint {
+  date: string
+  qoq?: number | null
+  qoq_annualized?: number | null
+  yoy?: number | null
+}
+
+// 四半期GDPデータ
+export interface JapanQuarterlyGDPData {
+  data: JapanQuarterlyGDPDataPoint[]
+  latest: JapanQuarterlyGDPDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 鉱工業生産データポイント
+export interface JapanIIPDataPoint {
+  date: string
+  value?: number | null
+  mom_change?: number | null
+  yoy_change?: number | null
+}
+
+// 鉱工業生産データ
+export interface JapanIIPData {
+  data: JapanIIPDataPoint[]
+  latest: JapanIIPDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 第三次産業活動指数データポイント
+export interface JapanTertiaryIndustryDataPoint {
+  date: string
+  mom?: number | null
+  yoy?: number | null
+}
+
+// 第三次産業活動指数データ
+export interface JapanTertiaryIndustryData {
+  data: JapanTertiaryIndustryDataPoint[]
+  latest: JapanTertiaryIndustryDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 機械受注データポイント
+export interface JapanMachineryOrdersDataPoint {
+  date: string
+  value?: number | null
+  mom?: number | null
+  yoy?: number | null
+}
+
+// 機械受注データ
+export interface JapanMachineryOrdersData {
+  data: JapanMachineryOrdersDataPoint[]
+  latest: JapanMachineryOrdersDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 工作機械受注データポイント
+export interface JapanMachineToolOrdersDataPoint {
+  date: string
+  value?: number | null
+  total_orders?: number | null
+}
+
+// 工作機械受注データ
+export interface JapanMachineToolOrdersData {
+  data: JapanMachineToolOrdersDataPoint[]
+  latest: JapanMachineToolOrdersDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 設備投資データポイント
+export interface JapanCapitalInvestmentDataPoint {
+  date: string
+  value?: number | null
+}
+
+// 設備投資データ
+export interface JapanCapitalInvestmentData {
+  data: JapanCapitalInvestmentDataPoint[]
+  latest: JapanCapitalInvestmentDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 日本経済ダッシュボードデータの型
+export interface JapanEconomyDashboardData {
+  quarterly_gdp: JapanQuarterlyGDPData | null
+  iip: JapanIIPData | null
+  iip_yoy: JapanIIPData | null
+  tertiary_industry: JapanTertiaryIndustryData | null
+  machinery_orders: JapanMachineryOrdersData | null
+  machine_tool_orders: JapanMachineToolOrdersData | null
+  capital_investment: JapanCapitalInvestmentData | null
+}
+
+/**
+ * 日本経済ダッシュボード専用フック
+ *
+ * @example
+ * ```tsx
+ * const { data, isLoading, error } = useJapanEconomyDashboard()
+ *
+ * if (data) {
+ *   console.log(data.data.quarterly_gdp) // 四半期GDPデータ
+ *   console.log(data.data.tertiary_industry) // 第三次産業活動指数
+ * }
+ * ```
+ */
+export function useJapanEconomyDashboard(): UseQueryResult<DashboardResponse<JapanEconomyDashboardData>, Error> {
+  return useDashboardData<JapanEconomyDashboardData>('japan', 'economy')
 }
 
 // =============================================================================
@@ -3860,10 +4197,130 @@ export interface RICSHousePriceData {
   next_release?: RICSHousePriceNextRelease | null
 }
 
+// ハリファックス住宅価格指数データの型
+export interface HalifaxHousePriceDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface HalifaxHousePriceLatest {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface HalifaxHousePriceData {
+  mom: HalifaxHousePriceDataPoint[]
+  yoy: HalifaxHousePriceDataPoint[]
+  latest_mom: HalifaxHousePriceLatest | null
+  latest_yoy: HalifaxHousePriceLatest | null
+  next_release?: string | null
+}
+
+// ライトムーブ住宅価格指数データの型
+export interface RightmoveHousePriceDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface RightmoveHousePriceLatest {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface RightmoveHousePriceData {
+  mom: RightmoveHousePriceDataPoint[]
+  yoy: RightmoveHousePriceDataPoint[]
+  latest_mom: RightmoveHousePriceLatest | null
+  latest_yoy: RightmoveHousePriceLatest | null
+  next_release?: string | null
+}
+
+// ネーションワイド住宅価格指数データの型
+export interface NationwideHPIDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface NationwideHPILatest {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface NationwideHPIData {
+  mom: NationwideHPIDataPoint[]
+  yoy: NationwideHPIDataPoint[]
+  latest_mom: NationwideHPILatest | null
+  latest_yoy: NationwideHPILatest | null
+  next_release?: string | null
+}
+
+// BoE Mortgage Lendingデータ型
+export interface BoEMortgageLendingDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface BoEMortgageLendingLatest {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface BoEMortgageLendingData {
+  data: BoEMortgageLendingDataPoint[]
+  latest: BoEMortgageLendingLatest | null
+  next_release?: string | null
+}
+
+// BoE Mortgage Ratesデータ型
+export interface BoEMortgageRatesDataPoint {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface BoEMortgageRatesLatest {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface BoEMortgageRatesData {
+  cfmz6k6: BoEMortgageRatesDataPoint[]
+  cfmz6jv: BoEMortgageRatesDataPoint[]
+  iumtlmv: BoEMortgageRatesDataPoint[]
+  latest_cfmz6k6: BoEMortgageRatesLatest | null
+  latest_cfmz6jv: BoEMortgageRatesLatest | null
+  latest_iumtlmv: BoEMortgageRatesLatest | null
+  next_release?: string | null
+}
+
 // UK住宅ダッシュボードデータの型
 export interface UKHousingDashboardData {
   uk_house_price: UKHousePriceData | null
   rics_house_price: RICSHousePriceData | null
+  halifax_house_price: HalifaxHousePriceData | null
+  rightmove_house_price: RightmoveHousePriceData | null
+  nationwide_hpi: NationwideHPIData | null
+  boe_mortgage_lending: BoEMortgageLendingData | null
+  boe_mortgage_rates: BoEMortgageRatesData | null
 }
 
 /**
@@ -4146,6 +4603,63 @@ export interface GermanyGDPGrowthMetadata {
   adjustment?: string
 }
 
+// ドイツ鉱工業生産データの型
+export interface GermanyIndustrialProductionData {
+  mom: GermanyIndustrialProductionItem[]
+  yoy: GermanyIndustrialProductionItem[]
+  latest_mom: GermanyIndustrialProductionItem | null
+  latest_yoy: GermanyIndustrialProductionItem | null
+  next_release?: GermanyIndustrialProductionNextRelease | null
+}
+
+export interface GermanyIndustrialProductionNextRelease {
+  date: string
+  label?: string
+  time_jst?: string
+  datetime_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+}
+
+export interface GermanyIndustrialProductionItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+// ドイツ製造業新規受注データの型
+export interface GermanyFactoryOrdersData {
+  mom: GermanyFactoryOrdersItem[]
+  yoy: GermanyFactoryOrdersItem[]
+  domestic_mom: GermanyFactoryOrdersItem[]
+  domestic_yoy: GermanyFactoryOrdersItem[]
+  foreign_mom: GermanyFactoryOrdersItem[]
+  foreign_yoy: GermanyFactoryOrdersItem[]
+  index_total: GermanyFactoryOrdersItem[]
+  index_domestic: GermanyFactoryOrdersItem[]
+  index_foreign: GermanyFactoryOrdersItem[]
+  latest_mom: GermanyFactoryOrdersItem | null
+  latest_yoy: GermanyFactoryOrdersItem | null
+  next_release?: GermanyFactoryOrdersNextRelease | null
+}
+
+export interface GermanyFactoryOrdersNextRelease {
+  date: string
+  label?: string
+  time_jst?: string
+  datetime_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+}
+
+export interface GermanyFactoryOrdersItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
 // ユーロ圏経済ダッシュボードデータの型
 export interface EurozoneEconomyData {
   ecb_gdp: ECBGDPData | null
@@ -4156,6 +4670,122 @@ export interface EurozoneEconomyData {
   euro_policy_uncertainty: EuroPolicyUncertaintyData | null
   eu_pmi: EUPMIData | null
   germany_gdp_growth: GermanyGDPGrowthData | null
+  germany_industrial_production: GermanyIndustrialProductionData | null
+  germany_factory_orders: GermanyFactoryOrdersData | null
+  zew_economic_sentiment: ZEWEconomicSentimentData | null
+  ifo_business_climate: IfoBusinessClimateData | null
+  germany_pmi: GermanyPMIData | null
+  france_pmi: FrancePMIData | null
+}
+
+// ZEW景況感指数データの型
+export interface ZEWEconomicSentimentData {
+  sentiment: ZEWEconomicSentimentItem[]
+  situation: ZEWEconomicSentimentItem[]
+  latest_sentiment: ZEWEconomicSentimentItem | null
+  latest_situation: ZEWEconomicSentimentItem | null
+  next_release?: ZEWEconomicSentimentNextRelease | null
+}
+
+export interface ZEWEconomicSentimentItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface ZEWEconomicSentimentNextRelease {
+  date: string
+  label?: string
+  time_jst?: string
+  datetime_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+}
+
+// IFO企業景況感指数データの型
+export interface IfoBusinessClimateData {
+  climate: IfoBusinessClimateItem[]
+  current: IfoBusinessClimateItem[]
+  expectations: IfoBusinessClimateItem[]
+  latest_climate: IfoBusinessClimateItem | null
+  latest_current: IfoBusinessClimateItem | null
+  latest_expectations: IfoBusinessClimateItem | null
+  next_release?: IfoBusinessClimateNextRelease | null
+}
+
+export interface IfoBusinessClimateItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface IfoBusinessClimateNextRelease {
+  date: string
+  label?: string
+  time_jst?: string
+  datetime_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+}
+
+// ドイツ S&P Global PMIデータの型（製造業/サービス業/総合）
+export interface GermanyPMIData {
+  manufacturing: GermanyPMISeriesData | null
+  services: GermanyPMISeriesData | null
+  composite: GermanyPMISeriesData | null
+  next_release: GermanyPMINextRelease | null
+}
+
+export interface GermanyPMISeriesData {
+  data: GermanyPMIItem[]
+  latest: GermanyPMIItem | null
+}
+
+export interface GermanyPMIItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface GermanyPMINextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_cet?: string
+  time_cet?: string
+  label?: string
+  estimate?: number | null
+}
+
+// フランス HCOB PMIデータの型（製造業/サービス業/総合）
+export interface FrancePMIData {
+  manufacturing: FrancePMISeriesData | null
+  services: FrancePMISeriesData | null
+  composite: FrancePMISeriesData | null
+  next_release: FrancePMINextRelease | null
+}
+
+export interface FrancePMISeriesData {
+  data: FrancePMIItem[]
+  latest: FrancePMIItem | null
+}
+
+export interface FrancePMIItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface FrancePMINextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_cet?: string
+  time_cet?: string
+  label?: string
+  estimate?: number | null
 }
 
 // ユーロ圏 HCOB PMIデータの型（製造業/サービス業/総合）

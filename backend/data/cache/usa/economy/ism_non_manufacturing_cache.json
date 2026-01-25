@@ -1,0 +1,1087 @@
+{
+  "data": [
+    {
+      "date": "2009-11-01",
+      "value": 50.5,
+      "forecast": 51.0,
+      "previous": 49.8
+    },
+    {
+      "date": "2009-12-01",
+      "value": 53.0,
+      "forecast": 51.0,
+      "previous": 50.5
+    },
+    {
+      "date": "2010-02-01",
+      "value": 55.4,
+      "forecast": 53.5,
+      "previous": 53.0
+    },
+    {
+      "date": "2010-03-01",
+      "value": 55.4,
+      "forecast": 56.1,
+      "previous": 55.4
+    },
+    {
+      "date": "2010-04-01",
+      "value": 55.4,
+      "forecast": 55.5,
+      "previous": 55.4
+    },
+    {
+      "date": "2010-05-01",
+      "value": 53.8,
+      "forecast": 55.0,
+      "previous": 55.4
+    },
+    {
+      "date": "2010-06-01",
+      "value": 54.3,
+      "forecast": 53.0,
+      "previous": 53.8
+    },
+    {
+      "date": "2010-07-01",
+      "value": 51.5,
+      "forecast": 53.2,
+      "previous": 54.3
+    },
+    {
+      "date": "2010-08-01",
+      "value": 53.2,
+      "forecast": 51.8,
+      "previous": 51.5
+    },
+    {
+      "date": "2010-09-01",
+      "value": 54.3,
+      "forecast": 53.6,
+      "previous": 53.2
+    },
+    {
+      "date": "2010-10-01",
+      "value": 57.1,
+      "forecast": 55.7,
+      "previous": 55.0
+    },
+    {
+      "date": "2010-11-01",
+      "value": 59.4,
+      "forecast": 57.0,
+      "previous": 57.1
+    },
+    {
+      "date": "2010-12-01",
+      "value": 59.7,
+      "forecast": 59.7,
+      "previous": 59.4
+    },
+    {
+      "date": "2011-02-01",
+      "value": 57.3,
+      "forecast": 60.0,
+      "previous": 59.7
+    },
+    {
+      "date": "2011-03-01",
+      "value": 52.8,
+      "forecast": 57.4,
+      "previous": 57.3
+    },
+    {
+      "date": "2011-04-01",
+      "value": 54.6,
+      "forecast": 54.0,
+      "previous": 52.8
+    },
+    {
+      "date": "2011-05-01",
+      "value": 53.3,
+      "forecast": 54.0,
+      "previous": 54.6
+    },
+    {
+      "date": "2011-06-01",
+      "value": 52.7,
+      "forecast": 53.8,
+      "previous": 53.3
+    },
+    {
+      "date": "2011-07-01",
+      "value": 53.3,
+      "forecast": 51.0,
+      "previous": 52.7
+    },
+    {
+      "date": "2011-08-01",
+      "value": 53.0,
+      "forecast": 53.0,
+      "previous": 53.3
+    },
+    {
+      "date": "2011-09-01",
+      "value": 52.9,
+      "forecast": 53.7,
+      "previous": 53.0
+    },
+    {
+      "date": "2011-10-01",
+      "value": 52.6,
+      "forecast": 53.0,
+      "previous": 52.0
+    },
+    {
+      "date": "2011-11-01",
+      "value": 56.8,
+      "forecast": 53.2,
+      "previous": 52.6
+    },
+    {
+      "date": "2011-12-01",
+      "value": 57.3,
+      "forecast": 56.1,
+      "previous": 56.8
+    },
+    {
+      "date": "2012-02-01",
+      "value": 56.0,
+      "forecast": 57.0,
+      "previous": 57.3
+    },
+    {
+      "date": "2012-03-01",
+      "value": 53.5,
+      "forecast": 55.5,
+      "previous": 56.0
+    },
+    {
+      "date": "2012-04-01",
+      "value": 53.7,
+      "forecast": 53.5,
+      "previous": 53.5
+    },
+    {
+      "date": "2012-05-01",
+      "value": 52.1,
+      "forecast": 53.0,
+      "previous": 53.7
+    },
+    {
+      "date": "2012-06-01",
+      "value": 52.6,
+      "forecast": 52.0,
+      "previous": 52.1
+    },
+    {
+      "date": "2012-07-01",
+      "value": 53.7,
+      "forecast": 52.5,
+      "previous": 52.6
+    },
+    {
+      "date": "2012-08-01",
+      "value": 55.1,
+      "forecast": 53.2,
+      "previous": 53.7
+    },
+    {
+      "date": "2012-09-01",
+      "value": 54.7,
+      "forecast": 53.5,
+      "previous": 54.2
+    },
+    {
+      "date": "2012-10-01",
+      "value": 56.1,
+      "forecast": 54.2,
+      "previous": 54.7
+    },
+    {
+      "date": "2012-11-01",
+      "value": 55.2,
+      "forecast": 55.2,
+      "previous": 55.7
+    },
+    {
+      "date": "2012-12-01",
+      "value": 56.0,
+      "forecast": 55.0,
+      "previous": 55.2
+    },
+    {
+      "date": "2013-02-01",
+      "value": 54.4,
+      "forecast": 55.8,
+      "previous": 56.0
+    },
+    {
+      "date": "2013-03-01",
+      "value": 53.1,
+      "forecast": 54.0,
+      "previous": 54.4
+    },
+    {
+      "date": "2013-04-01",
+      "value": 53.7,
+      "forecast": 53.5,
+      "previous": 53.1
+    },
+    {
+      "date": "2013-05-01",
+      "value": 52.2,
+      "forecast": 54.0,
+      "previous": 53.7
+    },
+    {
+      "date": "2013-06-01",
+      "value": 56.0,
+      "forecast": 53.0,
+      "previous": 52.2
+    },
+    {
+      "date": "2013-07-01",
+      "value": 58.6,
+      "forecast": 55.0,
+      "previous": 56.0
+    },
+    {
+      "date": "2013-08-01",
+      "value": 54.4,
+      "forecast": 57.4,
+      "previous": 58.6
+    },
+    {
+      "date": "2013-09-01",
+      "value": 53.9,
+      "forecast": 55.0,
+      "previous": 55.4
+    },
+    {
+      "date": "2013-10-01",
+      "value": 53.0,
+      "forecast": 54.5,
+      "previous": 53.9
+    },
+    {
+      "date": "2013-11-01",
+      "value": 54.0,
+      "forecast": 53.7,
+      "previous": 53.0
+    },
+    {
+      "date": "2013-12-01",
+      "value": 51.6,
+      "forecast": 53.5,
+      "previous": 54.0
+    },
+    {
+      "date": "2014-02-01",
+      "value": 53.1,
+      "forecast": 53.5,
+      "previous": 51.6
+    },
+    {
+      "date": "2014-03-01",
+      "value": 55.2,
+      "forecast": 54.1,
+      "previous": 53.1
+    },
+    {
+      "date": "2014-04-01",
+      "value": 56.3,
+      "forecast": 55.5,
+      "previous": 55.2
+    },
+    {
+      "date": "2014-05-01",
+      "value": 56.0,
+      "forecast": 56.3,
+      "previous": 56.3
+    },
+    {
+      "date": "2014-06-01",
+      "value": 58.7,
+      "forecast": 56.3,
+      "previous": 56.0
+    },
+    {
+      "date": "2014-07-01",
+      "value": 59.6,
+      "forecast": 57.5,
+      "previous": 58.7
+    },
+    {
+      "date": "2014-08-01",
+      "value": 58.6,
+      "forecast": 58.5,
+      "previous": 59.6
+    },
+    {
+      "date": "2014-09-01",
+      "value": 59.3,
+      "forecast": 57.5,
+      "previous": 57.1
+    },
+    {
+      "date": "2014-10-01",
+      "value": 56.2,
+      "forecast": 58.0,
+      "previous": 59.3
+    },
+    {
+      "date": "2014-11-01",
+      "value": 56.7,
+      "forecast": 56.3,
+      "previous": 56.2
+    },
+    {
+      "date": "2014-12-01",
+      "value": 56.9,
+      "forecast": 56.5,
+      "previous": 56.7
+    },
+    {
+      "date": "2015-02-01",
+      "value": 56.5,
+      "forecast": 56.5,
+      "previous": 56.9
+    },
+    {
+      "date": "2015-03-01",
+      "value": 57.8,
+      "forecast": 56.2,
+      "previous": 56.5
+    },
+    {
+      "date": "2015-04-01",
+      "value": 55.7,
+      "forecast": 57.0,
+      "previous": 57.8
+    },
+    {
+      "date": "2015-05-01",
+      "value": 56.0,
+      "forecast": 56.2,
+      "previous": 55.7
+    },
+    {
+      "date": "2015-06-01",
+      "value": 60.3,
+      "forecast": 56.2,
+      "previous": 56.0
+    },
+    {
+      "date": "2015-07-01",
+      "value": 59.0,
+      "forecast": 58.1,
+      "previous": 60.3
+    },
+    {
+      "date": "2015-08-01",
+      "value": 56.9,
+      "forecast": 57.5,
+      "previous": 59.0
+    },
+    {
+      "date": "2015-09-01",
+      "value": 55.9,
+      "forecast": 58.0,
+      "previous": 59.1
+    },
+    {
+      "date": "2015-10-01",
+      "value": 55.3,
+      "forecast": 56.0,
+      "previous": 55.9
+    },
+    {
+      "date": "2015-11-01",
+      "value": 53.5,
+      "forecast": 55.1,
+      "previous": 55.3
+    },
+    {
+      "date": "2015-12-01",
+      "value": 53.4,
+      "forecast": 53.2,
+      "previous": 53.5
+    },
+    {
+      "date": "2016-02-01",
+      "value": 54.5,
+      "forecast": 54.0,
+      "previous": 53.4
+    },
+    {
+      "date": "2016-03-01",
+      "value": 55.7,
+      "forecast": 54.7,
+      "previous": 54.5
+    },
+    {
+      "date": "2016-04-01",
+      "value": 52.9,
+      "forecast": 55.5,
+      "previous": 55.7
+    },
+    {
+      "date": "2016-05-01",
+      "value": 56.5,
+      "forecast": 53.3,
+      "previous": 52.9
+    },
+    {
+      "date": "2016-06-01",
+      "value": 55.5,
+      "forecast": 56.0,
+      "previous": 56.5
+    },
+    {
+      "date": "2016-07-01",
+      "value": 51.4,
+      "forecast": 55.0,
+      "previous": 55.5
+    },
+    {
+      "date": "2016-08-01",
+      "value": 57.1,
+      "forecast": 53.0,
+      "previous": 51.4
+    },
+    {
+      "date": "2016-09-01",
+      "value": 54.8,
+      "forecast": 56.0,
+      "previous": 57.1
+    },
+    {
+      "date": "2016-10-01",
+      "value": 57.2,
+      "forecast": 56.6,
+      "previous": 57.2
+    },
+    {
+      "date": "2016-11-01",
+      "value": 56.5,
+      "forecast": 57.0,
+      "previous": 56.6
+    },
+    {
+      "date": "2016-12-01",
+      "value": 57.6,
+      "forecast": 56.5,
+      "previous": 56.5
+    },
+    {
+      "date": "2017-02-01",
+      "value": 55.2,
+      "forecast": 57.0,
+      "previous": 57.6
+    },
+    {
+      "date": "2017-03-01",
+      "value": 57.5,
+      "forecast": 55.8,
+      "previous": 55.2
+    },
+    {
+      "date": "2017-04-01",
+      "value": 56.9,
+      "forecast": 57.0,
+      "previous": 57.5
+    },
+    {
+      "date": "2017-05-01",
+      "value": 57.4,
+      "forecast": 56.5,
+      "previous": 56.9
+    },
+    {
+      "date": "2017-06-01",
+      "value": 53.9,
+      "forecast": 57.0,
+      "previous": 57.4
+    },
+    {
+      "date": "2017-07-01",
+      "value": 55.3,
+      "forecast": 55.4,
+      "previous": 53.9
+    },
+    {
+      "date": "2017-08-01",
+      "value": 59.8,
+      "forecast": 55.5,
+      "previous": 55.3
+    },
+    {
+      "date": "2017-09-01",
+      "value": 60.1,
+      "forecast": 58.5,
+      "previous": 59.8
+    },
+    {
+      "date": "2017-10-01",
+      "value": 55.9,
+      "forecast": 57.8,
+      "previous": 57.4
+    },
+    {
+      "date": "2017-11-01",
+      "value": 59.9,
+      "forecast": 56.5,
+      "previous": 56.0
+    },
+    {
+      "date": "2017-12-01",
+      "value": 59.5,
+      "forecast": 58.9,
+      "previous": 59.9
+    },
+    {
+      "date": "2018-02-01",
+      "value": 58.8,
+      "forecast": 59.0,
+      "previous": 59.5
+    },
+    {
+      "date": "2018-03-01",
+      "value": 56.8,
+      "forecast": 58.1,
+      "previous": 58.8
+    },
+    {
+      "date": "2018-04-01",
+      "value": 58.6,
+      "forecast": 57.9,
+      "previous": 56.8
+    },
+    {
+      "date": "2018-05-01",
+      "value": 59.1,
+      "forecast": 58.3,
+      "previous": 58.6
+    },
+    {
+      "date": "2018-06-01",
+      "value": 55.7,
+      "forecast": 58.6,
+      "previous": 59.1
+    },
+    {
+      "date": "2018-07-01",
+      "value": 58.5,
+      "forecast": 57.0,
+      "previous": 55.7
+    },
+    {
+      "date": "2018-08-01",
+      "value": 61.6,
+      "forecast": 58.1,
+      "previous": 58.5
+    },
+    {
+      "date": "2018-09-01",
+      "value": 60.7,
+      "forecast": 59.2,
+      "previous": 60.3
+    },
+    {
+      "date": "2018-10-01",
+      "value": 57.6,
+      "forecast": 59.6,
+      "previous": 60.7
+    },
+    {
+      "date": "2018-11-01",
+      "value": 56.7,
+      "forecast": 57.2,
+      "previous": 58.0
+    },
+    {
+      "date": "2018-12-01",
+      "value": 59.7,
+      "forecast": 57.3,
+      "previous": 56.7
+    },
+    {
+      "date": "2019-02-01",
+      "value": 56.1,
+      "forecast": 58.1,
+      "previous": 59.7
+    },
+    {
+      "date": "2019-03-01",
+      "value": 55.5,
+      "forecast": 57.2,
+      "previous": 56.1
+    },
+    {
+      "date": "2019-04-01",
+      "value": 56.9,
+      "forecast": 55.5,
+      "previous": 55.5
+    },
+    {
+      "date": "2019-05-01",
+      "value": 55.1,
+      "forecast": 56.1,
+      "previous": 56.9
+    },
+    {
+      "date": "2019-06-01",
+      "value": 53.7,
+      "forecast": 55.5,
+      "previous": 55.1
+    },
+    {
+      "date": "2019-07-01",
+      "value": 56.4,
+      "forecast": 54.0,
+      "previous": 53.7
+    },
+    {
+      "date": "2019-08-01",
+      "value": 52.6,
+      "forecast": 55.0,
+      "previous": 56.4
+    },
+    {
+      "date": "2019-09-01",
+      "value": 53.9,
+      "forecast": 54.5,
+      "previous": 54.7
+    },
+    {
+      "date": "2019-10-01",
+      "value": 55.0,
+      "forecast": 54.5,
+      "previous": 53.9
+    },
+    {
+      "date": "2019-11-01",
+      "value": 55.5,
+      "forecast": 55.0,
+      "previous": 54.9
+    },
+    {
+      "date": "2019-12-01",
+      "value": 57.3,
+      "forecast": 54.9,
+      "previous": 55.5
+    },
+    {
+      "date": "2020-02-01",
+      "value": 52.5,
+      "forecast": 44.0,
+      "previous": 57.3
+    },
+    {
+      "date": "2020-03-01",
+      "value": 41.8,
+      "forecast": 36.8,
+      "previous": 52.5
+    },
+    {
+      "date": "2020-04-01",
+      "value": 45.4,
+      "forecast": 44.0,
+      "previous": 41.8
+    },
+    {
+      "date": "2020-05-01",
+      "value": 57.1,
+      "forecast": 50.1,
+      "previous": 45.4
+    },
+    {
+      "date": "2020-06-01",
+      "value": 58.1,
+      "forecast": 55.0,
+      "previous": 57.1
+    },
+    {
+      "date": "2020-07-01",
+      "value": 56.9,
+      "forecast": 57.0,
+      "previous": 58.1
+    },
+    {
+      "date": "2020-08-01",
+      "value": 57.8,
+      "forecast": 56.3,
+      "previous": 56.9
+    },
+    {
+      "date": "2020-09-01",
+      "value": 55.9,
+      "forecast": 56.0,
+      "previous": 56.6
+    },
+    {
+      "date": "2020-10-01",
+      "value": 57.2,
+      "forecast": 54.6,
+      "previous": 55.9
+    },
+    {
+      "date": "2020-11-01",
+      "value": 58.7,
+      "forecast": 56.8,
+      "previous": 57.7
+    },
+    {
+      "date": "2020-12-01",
+      "value": 55.3,
+      "forecast": 58.7,
+      "previous": 58.7
+    },
+    {
+      "date": "2021-02-01",
+      "value": 63.7,
+      "forecast": 59.0,
+      "previous": 55.3
+    },
+    {
+      "date": "2021-03-01",
+      "value": 62.7,
+      "forecast": 64.3,
+      "previous": 63.7
+    },
+    {
+      "date": "2021-04-01",
+      "value": 64.0,
+      "forecast": 63.0,
+      "previous": 62.7
+    },
+    {
+      "date": "2021-05-01",
+      "value": 60.1,
+      "forecast": 63.5,
+      "previous": 64.0
+    },
+    {
+      "date": "2021-06-01",
+      "value": 64.1,
+      "forecast": 60.5,
+      "previous": 60.1
+    },
+    {
+      "date": "2021-07-01",
+      "value": 61.7,
+      "forecast": 61.5,
+      "previous": 64.1
+    },
+    {
+      "date": "2021-08-01",
+      "value": 61.9,
+      "forecast": 60.0,
+      "previous": 61.7
+    },
+    {
+      "date": "2021-09-01",
+      "value": 66.7,
+      "forecast": 62.0,
+      "previous": 61.9
+    },
+    {
+      "date": "2021-10-01",
+      "value": 62.0,
+      "forecast": 66.9,
+      "previous": 69.1
+    },
+    {
+      "date": "2021-11-01",
+      "value": 59.9,
+      "forecast": 59.5,
+      "previous": 62.3
+    },
+    {
+      "date": "2021-12-01",
+      "value": 56.5,
+      "forecast": 61.0,
+      "previous": 59.9
+    },
+    {
+      "date": "2022-02-01",
+      "value": 58.3,
+      "forecast": 58.4,
+      "previous": 56.5
+    },
+    {
+      "date": "2022-03-01",
+      "value": 57.1,
+      "forecast": 58.5,
+      "previous": 58.3
+    },
+    {
+      "date": "2022-04-01",
+      "value": 55.9,
+      "forecast": 56.4,
+      "previous": 57.1
+    },
+    {
+      "date": "2022-05-01",
+      "value": 55.3,
+      "forecast": 54.3,
+      "previous": 55.9
+    },
+    {
+      "date": "2022-06-01",
+      "value": 56.7,
+      "forecast": 53.5,
+      "previous": 55.3
+    },
+    {
+      "date": "2022-07-01",
+      "value": 56.9,
+      "forecast": 55.1,
+      "previous": 56.7
+    },
+    {
+      "date": "2022-08-01",
+      "value": 56.7,
+      "forecast": 56.0,
+      "previous": 56.9
+    },
+    {
+      "date": "2022-09-01",
+      "value": 54.4,
+      "forecast": 55.5,
+      "previous": 56.7
+    },
+    {
+      "date": "2022-10-01",
+      "value": 49.6,
+      "forecast": 55.0,
+      "previous": 56.5
+    },
+    {
+      "date": "2022-11-01",
+      "value": 55.2,
+      "forecast": 50.4,
+      "previous": 49.2
+    },
+    {
+      "date": "2022-12-01",
+      "value": 55.1,
+      "forecast": 54.5,
+      "previous": 55.2
+    },
+    {
+      "date": "2023-02-01",
+      "value": 51.2,
+      "forecast": 54.5,
+      "previous": 55.1
+    },
+    {
+      "date": "2023-03-01",
+      "value": 51.9,
+      "forecast": 51.8,
+      "previous": 51.2
+    },
+    {
+      "date": "2023-04-01",
+      "value": 50.3,
+      "forecast": 52.2,
+      "previous": 51.9
+    },
+    {
+      "date": "2023-05-01",
+      "value": 53.9,
+      "forecast": 51.0,
+      "previous": 50.3
+    },
+    {
+      "date": "2023-06-01",
+      "value": 52.7,
+      "forecast": 53.0,
+      "previous": 53.9
+    },
+    {
+      "date": "2023-07-01",
+      "value": 54.5,
+      "forecast": 52.5,
+      "previous": 52.7
+    },
+    {
+      "date": "2023-08-01",
+      "value": 53.6,
+      "forecast": 53.6,
+      "previous": 54.5
+    },
+    {
+      "date": "2023-09-01",
+      "value": 51.8,
+      "forecast": 53.0,
+      "previous": 53.6
+    },
+    {
+      "date": "2023-10-01",
+      "value": 50.6,
+      "forecast": 52.6,
+      "previous": 52.7
+    },
+    {
+      "date": "2023-11-01",
+      "value": 53.4,
+      "forecast": 52.0,
+      "previous": 50.5
+    },
+    {
+      "date": "2023-12-01",
+      "value": 52.6,
+      "forecast": 53.0,
+      "previous": 53.4
+    },
+    {
+      "date": "2024-02-01",
+      "value": 51.4,
+      "forecast": 52.8,
+      "previous": 52.6
+    },
+    {
+      "date": "2024-03-01",
+      "value": 49.4,
+      "forecast": 52.0,
+      "previous": 51.4
+    },
+    {
+      "date": "2024-04-01",
+      "value": 53.8,
+      "forecast": 51.0,
+      "previous": 49.4
+    },
+    {
+      "date": "2024-05-01",
+      "value": 48.8,
+      "forecast": 52.6,
+      "previous": 53.8
+    },
+    {
+      "date": "2024-06-01",
+      "value": 51.4,
+      "forecast": 51.4,
+      "previous": 48.8
+    },
+    {
+      "date": "2024-07-01",
+      "value": 51.5,
+      "forecast": 51.3,
+      "previous": 51.4
+    },
+    {
+      "date": "2024-08-01",
+      "value": 54.9,
+      "forecast": 51.7,
+      "previous": 51.5
+    },
+    {
+      "date": "2024-09-01",
+      "value": 52.1,
+      "forecast": 55.5,
+      "previous": 56.0
+    },
+    {
+      "date": "2024-10-01",
+      "value": 54.1,
+      "forecast": 53.5,
+      "previous": 52.1
+    },
+    {
+      "date": "2024-11-01",
+      "value": 52.8,
+      "forecast": 54.2,
+      "previous": 54.0
+    },
+    {
+      "date": "2024-12-01",
+      "value": 53.5,
+      "forecast": 52.5,
+      "previous": 52.8
+    },
+    {
+      "date": "2025-02-01",
+      "value": 50.8,
+      "forecast": 53.0,
+      "previous": 53.5
+    },
+    {
+      "date": "2025-03-01",
+      "value": 51.6,
+      "forecast": 50.2,
+      "previous": 50.8
+    },
+    {
+      "date": "2025-04-01",
+      "value": 49.9,
+      "forecast": 52.0,
+      "previous": 51.6
+    },
+    {
+      "date": "2025-05-01",
+      "value": 50.8,
+      "forecast": 50.8,
+      "previous": 49.9
+    },
+    {
+      "date": "2025-06-01",
+      "value": 50.1,
+      "forecast": 51.5,
+      "previous": 50.8
+    },
+    {
+      "date": "2025-07-01",
+      "value": 52.0,
+      "forecast": 50.9,
+      "previous": 50.1
+    },
+    {
+      "date": "2025-08-01",
+      "value": 50.0,
+      "forecast": 51.8,
+      "previous": 52.0
+    },
+    {
+      "date": "2025-09-01",
+      "value": 50.0,
+      "forecast": 51.8,
+      "previous": 52.0
+    },
+    {
+      "date": "2025-10-01",
+      "value": 52.4,
+      "forecast": 50.7,
+      "previous": 50.0
+    },
+    {
+      "date": "2025-11-01",
+      "value": 52.6,
+      "forecast": 52.1,
+      "previous": 52.4
+    },
+    {
+      "date": "2025-12-01",
+      "value": 54.4,
+      "forecast": 52.2,
+      "previous": 52.6
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "value": 54.4,
+    "forecast": 52.2,
+    "previous": 52.6
+  },
+  "next_release": {
+    "date": "2026-02-04",
+    "datetime_utc": "2026-02-04T15:00:00+00:00",
+    "datetime_jst": "2026-02-05T00:00:00+09:00",
+    "time_jst": "00:00",
+    "label": "ISM Non-Manufacturing PMI (Jan)",
+    "estimate": null
+  },
+  "last_updated": "2026-01-26T00:30:37.168843+09:00"
+}

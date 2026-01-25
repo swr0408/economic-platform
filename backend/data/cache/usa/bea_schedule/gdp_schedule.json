@@ -1,0 +1,198 @@
+{
+  "schedule": [
+    {
+      "date": "2026-01-30",
+      "date_str": "January 30, 2026",
+      "title": "Gross Domestic Product, 4th Quarter 2025 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 4,
+      "year": 2025
+    },
+    {
+      "date": "2026-02-27",
+      "date_str": "February 27, 2026",
+      "title": "Gross Domestic Product, 4th Quarter 2025 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 4,
+      "year": 2025
+    },
+    {
+      "date": "2026-03-27",
+      "date_str": "March 27, 2026",
+      "title": "Gross Domestic Product, 4th Quarter 2025 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 4,
+      "year": 2025
+    },
+    {
+      "date": "2026-04-24",
+      "date_str": "April 24, 2026",
+      "title": "Gross Domestic Product, 1st Quarter 2026 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 1,
+      "year": 2026
+    },
+    {
+      "date": "2026-05-29",
+      "date_str": "May 29, 2026",
+      "title": "Gross Domestic Product, 1st Quarter 2026 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 1,
+      "year": 2026
+    },
+    {
+      "date": "2026-06-26",
+      "date_str": "June 26, 2026",
+      "title": "Gross Domestic Product, 1st Quarter 2026 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 1,
+      "year": 2026
+    },
+    {
+      "date": "2026-07-31",
+      "date_str": "July 31, 2026",
+      "title": "Gross Domestic Product, 2nd Quarter 2026 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 2,
+      "year": 2026
+    },
+    {
+      "date": "2026-08-28",
+      "date_str": "August 28, 2026",
+      "title": "Gross Domestic Product, 2nd Quarter 2026 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 2,
+      "year": 2026
+    },
+    {
+      "date": "2026-09-25",
+      "date_str": "September 25, 2026",
+      "title": "Gross Domestic Product, 2nd Quarter 2026 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 2,
+      "year": 2026
+    },
+    {
+      "date": "2026-10-30",
+      "date_str": "October 30, 2026",
+      "title": "Gross Domestic Product, 3rd Quarter 2026 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 3,
+      "year": 2026
+    },
+    {
+      "date": "2026-11-27",
+      "date_str": "November 27, 2026",
+      "title": "Gross Domestic Product, 3rd Quarter 2026 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 3,
+      "year": 2026
+    },
+    {
+      "date": "2026-12-23",
+      "date_str": "December 23, 2026",
+      "title": "Gross Domestic Product, 3rd Quarter 2026 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 3,
+      "year": 2026
+    },
+    {
+      "date": "2027-01-30",
+      "date_str": "January 30, 2027",
+      "title": "Gross Domestic Product, 4th Quarter 2026 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 4,
+      "year": 2026
+    },
+    {
+      "date": "2027-02-27",
+      "date_str": "February 27, 2027",
+      "title": "Gross Domestic Product, 4th Quarter 2026 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 4,
+      "year": 2026
+    },
+    {
+      "date": "2027-03-27",
+      "date_str": "March 27, 2027",
+      "title": "Gross Domestic Product, 4th Quarter 2026 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 4,
+      "year": 2026
+    },
+    {
+      "date": "2027-04-24",
+      "date_str": "April 24, 2027",
+      "title": "Gross Domestic Product, 1st Quarter 2027 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 1,
+      "year": 2027
+    },
+    {
+      "date": "2027-05-29",
+      "date_str": "May 29, 2027",
+      "title": "Gross Domestic Product, 1st Quarter 2027 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 1,
+      "year": 2027
+    },
+    {
+      "date": "2027-06-26",
+      "date_str": "June 26, 2027",
+      "title": "Gross Domestic Product, 1st Quarter 2027 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 1,
+      "year": 2027
+    },
+    {
+      "date": "2027-07-31",
+      "date_str": "July 31, 2027",
+      "title": "Gross Domestic Product, 2nd Quarter 2027 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 2,
+      "year": 2027
+    },
+    {
+      "date": "2027-08-28",
+      "date_str": "August 28, 2027",
+      "title": "Gross Domestic Product, 2nd Quarter 2027 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 2,
+      "year": 2027
+    },
+    {
+      "date": "2027-09-25",
+      "date_str": "September 25, 2027",
+      "title": "Gross Domestic Product, 2nd Quarter 2027 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 2,
+      "year": 2027
+    },
+    {
+      "date": "2027-10-30",
+      "date_str": "October 30, 2027",
+      "title": "Gross Domestic Product, 3rd Quarter 2027 (Advance Estimate)",
+      "estimate_type": "advance",
+      "quarter": 3,
+      "year": 2027
+    },
+    {
+      "date": "2027-11-27",
+      "date_str": "November 27, 2027",
+      "title": "Gross Domestic Product, 3rd Quarter 2027 (Second Estimate)",
+      "estimate_type": "second",
+      "quarter": 3,
+      "year": 2027
+    },
+    {
+      "date": "2027-12-23",
+      "date_str": "December 23, 2027",
+      "title": "Gross Domestic Product, 3rd Quarter 2027 (Third Estimate)",
+      "estimate_type": "third",
+      "quarter": 3,
+      "year": 2027
+    }
+  ],
+  "cached_at": "2026-01-25T11:52:41.385228",
+  "source": "https://www.bea.gov/news/schedule"
+}

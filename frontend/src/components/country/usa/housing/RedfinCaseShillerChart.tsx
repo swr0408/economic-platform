@@ -73,8 +73,8 @@ const COLORS = {
 
 // 項目の日本語名
 const LABELS: Record<string, string> = {
-  redfin: 'Redfin 住宅価格中央値 (YoY)',
-  caseShiller: 'ケースシラー住宅価格指数 (YoY)',
+  redfin: 'Redfin 住宅価格中央値（前年比）',
+  caseShiller: 'ケースシラー住宅価格指数（前年比）',
 }
 
 // =============================================================================
@@ -218,13 +218,13 @@ export default function RedfinCaseShillerChart({
         <LatestValueBox
           items={[
             {
-              label: `Redfin住宅価格中央値 (YoY)${latestRedfinDate ? ` [${formatDateLabel(latestRedfinDate)}]` : ''}`,
+              label: `Redfin住宅価格中央値（前年比）${latestRedfinDate ? ` [${formatDateLabel(latestRedfinDate)}]` : ''}`,
               value: latestRedfin,
               color: COLORS.redfin,
               format: 'percent',
             },
             {
-              label: `ケースシラー指数 (YoY)${latestCaseShillerDate ? ` [${formatDateLabel(latestCaseShillerDate)}]` : ''}`,
+              label: `ケースシラー指数（前年比）${latestCaseShillerDate ? ` [${formatDateLabel(latestCaseShillerDate)}]` : ''}`,
               value: latestCaseShiller,
               color: COLORS.caseShiller,
               format: 'percent',

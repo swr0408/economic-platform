@@ -2,6 +2,7 @@
 経済カレンダー スケジューラー
 
 月2回（月初・月中）の定期更新 + 初回バックフィル
+週1回の将来データ取得（次回発表日の予想値・発表時刻取得用）
 """
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
@@ -51,7 +52,7 @@ class CalendarScheduler:
             replace_existing=True,
         )
 
-        # 毎日の差分更新（直近14日を再取得）JST 7:00
+        # 毎日の差分更新（直近14日+将来7日を再取得）JST 7:00
         self.scheduler.add_job(
             self._sync_recent,
             CronTrigger(hour=7, minute=0, timezone=JST),
@@ -60,9 +61,19 @@ class CalendarScheduler:
             replace_existing=True,
         )
 
+        # 週1回の将来データ取得（毎週月曜 JST 6:30）
+        # 次回発表日の予想値・発表時刻を事前に取得
+        self.scheduler.add_job(
+            self._sync_future,
+            CronTrigger(day_of_week="mon", hour=6, minute=30, timezone=JST),
+            id="calendar_sync_weekly_future",
+            name="Calendar Sync (Weekly Future)",
+            replace_existing=True,
+        )
+
         self.scheduler.start()
         self._is_running = True
-        print("[CalendarScheduler] Started - Monthly sync on 1st and 15th, daily recent sync at 7:00 JST")
+        print("[CalendarScheduler] Started - Monthly sync on 1st/15th, daily recent at 7:00, weekly future on Mon 6:30 JST")
 
     def stop(self):
         """スケジューラーを停止"""
@@ -99,7 +110,7 @@ class CalendarScheduler:
 
     def _sync_recent(self):
         """
-        直近14日を再取得（改定データ拾い）
+        直近14日+将来7日を再取得（改定データ拾い＋直近の将来イベント更新）
 
         毎日の定期実行用
         """
@@ -108,13 +119,38 @@ class CalendarScheduler:
         try:
             today = date.today()
             start_date = today - timedelta(days=14)
+            end_date = today + timedelta(days=7)
 
-            result = self.sync_range(start_date, today)
+            result = self.sync_range(start_date, end_date)
 
             print(f"[CalendarScheduler] Daily sync completed: {result['upserted_count']} events")
 
         except Exception as e:
             print(f"[CalendarScheduler] Daily sync failed: {e}")
+
+    def _sync_future(self):
+        """
+        将来90日分を取得（次回発表日の予想値・発表時刻取得用）
+
+        週1回の定期実行用
+        """
+        print(f"[CalendarScheduler] Starting weekly future sync at {datetime.now(JST).isoformat()}")
+
+        try:
+            today = date.today()
+            end_date = today + timedelta(days=90)
+
+            result = self.sync_range(today, end_date)
+
+            print(f"[CalendarScheduler] Weekly future sync completed:")
+            print(f"  - Total events: {result['total_events']}")
+            print(f"  - Upserted: {result['upserted_count']}")
+            print(f"  - Duration: {result['duration_seconds']:.2f}s")
+
+        except Exception as e:
+            print(f"[CalendarScheduler] Weekly future sync failed: {e}")
+            import traceback
+            traceback.print_exc()
 
     def sync_range(
         self,
@@ -213,7 +249,12 @@ class CalendarScheduler:
 
         result = {}
 
-        for job_id in ["calendar_sync_monthly_1st", "calendar_sync_monthly_15th", "calendar_sync_daily"]:
+        for job_id in [
+            "calendar_sync_monthly_1st",
+            "calendar_sync_monthly_15th",
+            "calendar_sync_daily",
+            "calendar_sync_weekly_future",
+        ]:
             job = self.scheduler.get_job(job_id)
             if job and job.next_run_time:
                 result[job_id] = job.next_run_time.isoformat()

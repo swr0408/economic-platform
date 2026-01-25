@@ -1,0 +1,305 @@
+{
+  "data": [
+    {
+      "date": "2020-11-01",
+      "job_changer": 5.3,
+      "job_stayer": 2.9
+    },
+    {
+      "date": "2020-12-01",
+      "job_changer": 5.7,
+      "job_stayer": 3.0
+    },
+    {
+      "date": "2021-01-01",
+      "job_changer": 6.0,
+      "job_stayer": 3.1
+    },
+    {
+      "date": "2021-02-01",
+      "job_changer": 6.3,
+      "job_stayer": 3.0
+    },
+    {
+      "date": "2021-03-01",
+      "job_changer": 7.3,
+      "job_stayer": 3.0
+    },
+    {
+      "date": "2021-04-01",
+      "job_changer": 7.7,
+      "job_stayer": 3.7
+    },
+    {
+      "date": "2021-05-01",
+      "job_changer": 8.0,
+      "job_stayer": 4.1
+    },
+    {
+      "date": "2021-06-01",
+      "job_changer": 9.2,
+      "job_stayer": 4.4
+    },
+    {
+      "date": "2021-07-01",
+      "job_changer": 10.7,
+      "job_stayer": 4.9
+    },
+    {
+      "date": "2021-08-01",
+      "job_changer": 11.2,
+      "job_stayer": 5.2
+    },
+    {
+      "date": "2021-09-01",
+      "job_changer": 11.9,
+      "job_stayer": 5.6
+    },
+    {
+      "date": "2021-10-01",
+      "job_changer": 12.8,
+      "job_stayer": 5.9
+    },
+    {
+      "date": "2021-11-01",
+      "job_changer": 13.3,
+      "job_stayer": 6.3
+    },
+    {
+      "date": "2021-12-01",
+      "job_changer": 14.3,
+      "job_stayer": 6.5
+    },
+    {
+      "date": "2022-01-01",
+      "job_changer": 14.4,
+      "job_stayer": 6.8
+    },
+    {
+      "date": "2022-02-01",
+      "job_changer": 15.3,
+      "job_stayer": 7.2
+    },
+    {
+      "date": "2022-03-01",
+      "job_changer": 16.0,
+      "job_stayer": 7.6
+    },
+    {
+      "date": "2022-04-01",
+      "job_changer": 16.1,
+      "job_stayer": 7.7
+    },
+    {
+      "date": "2022-05-01",
+      "job_changer": 16.0,
+      "job_stayer": 7.8
+    },
+    {
+      "date": "2022-06-01",
+      "job_changer": 16.0,
+      "job_stayer": 7.8
+    },
+    {
+      "date": "2022-07-01",
+      "job_changer": 15.8,
+      "job_stayer": 7.6
+    },
+    {
+      "date": "2022-08-01",
+      "job_changer": 15.4,
+      "job_stayer": 7.7
+    },
+    {
+      "date": "2022-09-01",
+      "job_changer": 15.1,
+      "job_stayer": 7.8
+    },
+    {
+      "date": "2022-10-01",
+      "job_changer": 14.4,
+      "job_stayer": 7.7
+    },
+    {
+      "date": "2022-11-01",
+      "job_changer": 13.8,
+      "job_stayer": 7.6
+    },
+    {
+      "date": "2022-12-01",
+      "job_changer": 13.8,
+      "job_stayer": 7.4
+    },
+    {
+      "date": "2023-01-01",
+      "job_changer": 13.4,
+      "job_stayer": 7.4
+    },
+    {
+      "date": "2023-02-01",
+      "job_changer": 12.6,
+      "job_stayer": 7.3
+    },
+    {
+      "date": "2023-03-01",
+      "job_changer": 12.9,
+      "job_stayer": 6.9
+    },
+    {
+      "date": "2023-04-01",
+      "job_changer": 12.1,
+      "job_stayer": 6.6
+    },
+    {
+      "date": "2023-05-01",
+      "job_changer": 11.3,
+      "job_stayer": 6.5
+    },
+    {
+      "date": "2023-06-01",
+      "job_changer": 10.8,
+      "job_stayer": 6.4
+    },
+    {
+      "date": "2023-07-01",
+      "job_changer": 9.9,
+      "job_stayer": 6.1
+    },
+    {
+      "date": "2023-08-01",
+      "job_changer": 9.5,
+      "job_stayer": 6.0
+    },
+    {
+      "date": "2023-09-01",
+      "job_changer": 8.8,
+      "job_stayer": 5.8
+    },
+    {
+      "date": "2023-10-01",
+      "job_changer": 8.4,
+      "job_stayer": 5.7
+    },
+    {
+      "date": "2023-11-01",
+      "job_changer": 8.3,
+      "job_stayer": 5.6
+    },
+    {
+      "date": "2023-12-01",
+      "job_changer": 8.3,
+      "job_stayer": 5.4
+    },
+    {
+      "date": "2024-01-01",
+      "job_changer": 7.7,
+      "job_stayer": 5.3
+    },
+    {
+      "date": "2024-02-01",
+      "job_changer": 7.6,
+      "job_stayer": 5.1
+    },
+    {
+      "date": "2024-03-01",
+      "job_changer": 7.8,
+      "job_stayer": 5.0
+    },
+    {
+      "date": "2024-04-01",
+      "job_changer": 7.6,
+      "job_stayer": 5.0
+    },
+    {
+      "date": "2024-05-01",
+      "job_changer": 7.5,
+      "job_stayer": 5.0
+    },
+    {
+      "date": "2024-06-01",
+      "job_changer": 7.3,
+      "job_stayer": 4.9
+    },
+    {
+      "date": "2024-07-01",
+      "job_changer": 7.1,
+      "job_stayer": 4.8
+    },
+    {
+      "date": "2024-08-01",
+      "job_changer": 7.1,
+      "job_stayer": 4.8
+    },
+    {
+      "date": "2024-09-01",
+      "job_changer": 6.6,
+      "job_stayer": 4.7
+    },
+    {
+      "date": "2024-10-01",
+      "job_changer": 6.7,
+      "job_stayer": 4.7
+    },
+    {
+      "date": "2024-11-01",
+      "job_changer": 6.8,
+      "job_stayer": 4.7
+    },
+    {
+      "date": "2024-12-01",
+      "job_changer": 6.9,
+      "job_stayer": 4.6
+    },
+    {
+      "date": "2025-01-01",
+      "job_changer": 6.8,
+      "job_stayer": 4.7
+    },
+    {
+      "date": "2025-02-01",
+      "job_changer": 6.8,
+      "job_stayer": 4.7
+    },
+    {
+      "date": "2025-03-01",
+      "job_changer": 6.7,
+      "job_stayer": 4.6
+    },
+    {
+      "date": "2025-04-01",
+      "job_changer": 7.0,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2025-05-01",
+      "job_changer": 7.0,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2025-06-01",
+      "job_changer": 7.0,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2025-07-01",
+      "job_changer": 7.1,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2025-08-01",
+      "job_changer": 7.1,
+      "job_stayer": 4.4
+    },
+    {
+      "date": "2025-09-01",
+      "job_changer": 6.6,
+      "job_stayer": 4.5
+    }
+  ],
+  "latest": {
+    "date": "2025-09-01",
+    "job_changer": 6.6,
+    "job_stayer": 4.5
+  },
+  "last_updated": "2026-01-25T22:21:48.077165+09:00"
+}

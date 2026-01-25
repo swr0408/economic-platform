@@ -33,6 +33,7 @@ import UnitLaborCostChart from './employment/UnitLaborCostChart'
 import NFIBCompensationChart from './employment/NFIBCompensationChart'
 import NFIBCompensationUnemploymentChart from './employment/NFIBCompensationUnemploymentChart'
 import OvertimeHoursChart from './employment/OvertimeHoursChart'
+import SahmRuleChart from './employment/SahmRuleChart'
 
 export default function USAEmploymentCharts() {
   const queryResult = useUSAEmploymentDashboard()
@@ -47,6 +48,10 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="unemployment-by-reason">
             <UnemploymentByReasonChart data={dashboardData?.unemployment_by_reason ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="sahm-rule">
+            <SahmRuleChart data={dashboardData?.sahm_rule?.data ?? null} />
           </ChartWrapper>
 
           <ChartWrapper id="job-openings-per-unemployed">

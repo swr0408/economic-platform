@@ -9,6 +9,7 @@ import { DashboardContainer, ChartWrapper } from './common/DashboardContainer'
 
 // チャートコンポーネント
 import RetailSalesChart from './consumer/RetailSalesChart'
+import AdvanceRealRetailSalesChart from './consumer/AdvanceRealRetailSalesChart'
 import CartsChart from './consumer/CartsChart'
 import AffinitySpendChart from './consumer/AffinitySpendChart'
 import VisaSpendingChart from './consumer/VisaSpendingChart'
@@ -35,6 +36,10 @@ export default function USAConsumerCharts() {
               data={dashboardData?.retail_sales ?? null}
               controlData={dashboardData?.retail_control ?? null}
             />
+          </ChartWrapper>
+
+          <ChartWrapper id="advance-real-retail-sales">
+            <AdvanceRealRetailSalesChart data={dashboardData?.advance_real_retail_sales ?? null} />
           </ChartWrapper>
 
           <ChartWrapper id="carts">

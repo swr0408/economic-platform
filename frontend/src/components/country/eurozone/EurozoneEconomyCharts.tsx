@@ -3,11 +3,17 @@ import { useEurozoneEconomyDashboard } from '../../../hooks/useDashboardData'
 import EuroGDPChart from './economy/EuroGDPChart'
 import EuroGDPComponentsChart from './economy/EuroGDPComponentsChart'
 import GermanyGDPGrowthChart from './economy/GermanyGDPGrowthChart'
+import GermanyIndustrialProductionChart from './economy/GermanyIndustrialProductionChart'
+import GermanyFactoryOrdersChart from './economy/GermanyFactoryOrdersChart'
+import ZEWEconomicSentimentChart from './economy/ZEWEconomicSentimentChart'
+import IfoBusinessClimateChart from './economy/IfoBusinessClimateChart'
 import ECBBLSChart from './economy/ECBBLSChart'
 import ECBProductionChart from './economy/ECBProductionChart'
 import EurostatESIChart from './economy/EurostatESIChart'
 import EuroPolicyUncertaintyChart from './economy/EuroPolicyUncertaintyChart'
 import EurozonePMIChart from './economy/EurozonePMIChart'
+import GermanyPMIChart from './economy/GermanyPMIChart'
+import FrancePMIChart from './economy/FrancePMIChart'
 
 /**
  * ユーロ圏経済チャート群
@@ -57,10 +63,10 @@ export default function EurozoneEconomyCharts() {
         />
       </div>
 
-      {/* Germany GDP Growth Chart */}
-      <div id="germany-gdp-growth">
-        <GermanyGDPGrowthChart
-          data={dashboardData?.germany_gdp_growth ?? null}
+      {/* HCOB PMI Chart */}
+      <div id="pmi">
+        <EurozonePMIChart
+          data={dashboardData?.eu_pmi ?? null}
         />
       </div>
 
@@ -92,10 +98,52 @@ export default function EurozoneEconomyCharts() {
         />
       </div>
 
-      {/* HCOB PMI Chart */}
-      <div id="pmi">
-        <EurozonePMIChart
-          data={dashboardData?.eu_pmi ?? null}
+      {/* Germany GDP Growth Chart */}
+      <div id="germany-gdp-growth">
+        <GermanyGDPGrowthChart
+          data={dashboardData?.germany_gdp_growth ?? null}
+        />
+      </div>
+
+      {/* Germany S&P Global PMI Chart */}
+      <div id="germany-pmi">
+        <GermanyPMIChart
+          data={dashboardData?.germany_pmi ?? null}
+        />
+      </div>
+
+      {/* Germany Industrial Production Chart */}
+      <div id="germany-industrial-production">
+        <GermanyIndustrialProductionChart
+          data={dashboardData?.germany_industrial_production ?? null}
+        />
+      </div>
+
+      {/* Germany Factory Orders Chart */}
+      <div id="germany-factory-orders">
+        <GermanyFactoryOrdersChart
+          data={dashboardData?.germany_factory_orders ?? null}
+        />
+      </div>
+
+      {/* ZEW Economic Sentiment Chart */}
+      <div id="zew-economic-sentiment">
+        <ZEWEconomicSentimentChart
+          data={dashboardData?.zew_economic_sentiment ?? null}
+        />
+      </div>
+
+      {/* IFO Business Climate Chart */}
+      <div id="ifo-business-climate">
+        <IfoBusinessClimateChart
+          data={dashboardData?.ifo_business_climate ?? null}
+        />
+      </div>
+
+      {/* France HCOB PMI Chart */}
+      <div id="france-pmi">
+        <FrancePMIChart
+          data={dashboardData?.france_pmi ?? null}
         />
       </div>
     </div>

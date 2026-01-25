@@ -19,7 +19,7 @@ from services.usa.fred_utils import BaseSingleSeriesService
 
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "economy"
 
 
 class IndustrialProductionService(BaseSingleSeriesService):

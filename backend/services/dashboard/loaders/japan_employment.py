@@ -7,13 +7,17 @@
 - 雇用形態別D.I.: 四半期発表（3,6,9,12月）
 - 失業率: 毎月末発表（FMPカレンダーから取得）
 - 有効求人倍率: 毎月末発表（FMPカレンダーから取得）
+- 春闘: 不定期（2〜4月、独自スケジュール判定）
 
 取得データ:
 - scheduled_wage: 所定内給与（e-Stat版）
-- scheduled_wage_common: 所定内給与（共通事業所版）
+- scheduled_wage_common: 所定内給与（e-Stat Excel版）
+- real_wage: 実質賃金（e-Stat Excel版）
+- cash_earnings: 現金給与額（e-Stat Excel版）
 - employment_type: 雇用形態別労働者過不足判断D.I.
 - unemployment: 完全失業率（季節調整値）
 - job_offers_ratio: 有効求人倍率（季節調整値）
+- shuntou: 春闘賃上げ率（連合）
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -33,10 +37,13 @@ class JapanEmploymentLoader(BaseDashboardLoader):
 
     取得データ:
     - scheduled_wage: 所定内給与（e-Stat版）
-    - scheduled_wage_common: 所定内給与（共通事業所版）
+    - scheduled_wage_common: 所定内給与（e-Stat Excel版）
+    - real_wage: 実質賃金（e-Stat Excel版）
+    - cash_earnings: 現金給与額（e-Stat Excel版）
     - employment_type: 雇用形態別労働者過不足判断D.I.
     - unemployment: 完全失業率（季節調整値）
     - job_offers_ratio: 有効求人倍率（季節調整値）
+    - shuntou: 春闘賃上げ率（連合）
 
     キャッシュ方式: FMP発表日時ベース判定
     """
@@ -196,32 +203,43 @@ class JapanEmploymentLoader(BaseDashboardLoader):
             {
                 "scheduled_wage": {...},  # e-Stat版
                 "scheduled_wage_common": {...},  # 共通事業所版
+                "real_wage": {...},  # 実質賃金（共通事業所版）
+                "cash_earnings": {...},  # 現金給与額（共通事業所版）
                 "employment_type": {...},  # 雇用形態別D.I.
             }
         """
         # 遅延インポート（循環参照回避）
         from services.japan.scheduled_wage_service import scheduled_wage_service
         from services.japan.scheduled_wage_common_service import scheduled_wage_common_service
+        from services.japan.real_wage_service import real_wage_service
+        from services.japan.cash_earnings_service import cash_earnings_service
         from services.japan.employment_type_service import employment_type_service
         from services.japan.japan_unemployment_service import japan_unemployment_service
         from services.japan.job_offers_ratio_service import job_offers_ratio_service
+        from services.japan.shuntou_service import shuntou_service
 
         result = {
             "scheduled_wage": None,
             "scheduled_wage_common": None,
+            "real_wage": None,
+            "cash_earnings": None,
             "employment_type": None,
             "unemployment": None,
             "job_offers_ratio": None,
+            "shuntou": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=6) as executor:
+        with ThreadPoolExecutor(max_workers=8) as executor:
             futures = {
                 executor.submit(self._get_scheduled_wage, scheduled_wage_service): "scheduled_wage",
                 executor.submit(self._get_scheduled_wage_common, scheduled_wage_common_service): "scheduled_wage_common",
+                executor.submit(self._get_real_wage, real_wage_service): "real_wage",
+                executor.submit(self._get_cash_earnings, cash_earnings_service): "cash_earnings",
                 executor.submit(self._get_employment_type, employment_type_service): "employment_type",
                 executor.submit(self._get_unemployment, japan_unemployment_service): "unemployment",
                 executor.submit(self._get_job_offers_ratio, job_offers_ratio_service): "job_offers_ratio",
+                executor.submit(self._get_shuntou, shuntou_service): "shuntou",
             }
 
             for future in as_completed(futures):
@@ -259,11 +277,38 @@ class JapanEmploymentLoader(BaseDashboardLoader):
                 "general": response.get("general"),
                 "part_time": response.get("part_time"),
                 "next_release": response.get("next_release"),
-                "data_type": response.get("data_type"),
             }
         except Exception as e:
             print(f"Error getting scheduled wage (common): {e}")
-            return {"scheduled_wage": None, "general": None, "part_time": None, "next_release": None, "data_type": None}
+            return {"scheduled_wage": None, "general": None, "part_time": None, "next_release": None}
+
+    def _get_real_wage(self, service) -> dict:
+        """実質賃金データを取得（2系列：全事業所版/共通事業所版）"""
+        try:
+            force_refresh = self._should_force_refresh("scheduled_wage")
+            response = service.get_real_wage_data(force_refresh=force_refresh)
+            return {
+                "all": response.get("all"),
+                "common": response.get("common"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting real wage: {e}")
+            return {"all": None, "common": None, "next_release": None}
+
+    def _get_cash_earnings(self, service) -> dict:
+        """現金給与額データを取得（単一系列）"""
+        try:
+            force_refresh = self._should_force_refresh("scheduled_wage")
+            response = service.get_cash_earnings_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data"),
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting cash earnings: {e}")
+            return {"data": None, "latest": None, "next_release": None}
 
     def _get_employment_type(self, service) -> dict:
         """雇用形態別労働者過不足判断D.I.データを取得"""
@@ -304,3 +349,18 @@ class JapanEmploymentLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting job offers ratio: {e}")
             return {"job_offers_ratio": None, "latest": None, "next_release": None}
+
+    def _get_shuntou(self, service) -> dict:
+        """春闘データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("shuntou")
+            response = service.get_shuntou_data(force_refresh=force_refresh)
+            return {
+                "wage_increase": response.get("wage_increase"),
+                "union_member": response.get("union_member"),
+                "press_releases": response.get("press_releases", []),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting shuntou: {e}")
+            return {"wage_increase": None, "union_member": None, "press_releases": [], "next_release": None}

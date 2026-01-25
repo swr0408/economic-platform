@@ -22,7 +22,7 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 import { formatPercent, type PeriodType } from '../../usa/common/useChartData'
-import { NoDataMessage, NextReleaseDisplay } from '../../usa/common/ChartComponents'
+import { NoDataMessage, NextReleaseDisplay, ViewModeButtonGroup } from '../../usa/common/ChartComponents'
 import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE, QUARTER_NAMES } from '../../usa/common/chartConstants'
 
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
@@ -33,8 +33,14 @@ interface GermanyGDPGrowthChartProps {
   data: GermanyGDPGrowthData | null
 }
 
-type ViewMode = 'chart' | 'table'
-type GDPType = 'qoq' | 'yoy'
+type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy'
+
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'qoq_chart', label: '前期比' },
+  { mode: 'qoq_table', label: '前期比（テーブル）' },
+  { mode: 'yoy', label: '前年比' },
+]
 
 interface ChartDataPoint {
   date: string
@@ -62,9 +68,11 @@ const getQuarterFromQuarter = (dateStr: string): number => {
 
 export default function GermanyGDPGrowthChart({ data }: GermanyGDPGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [gdpType, setGdpType] = useState<GDPType>('qoq')
+
+  // viewModeからgdpTypeを導出
+  const gdpType = viewMode === 'yoy' ? 'yoy' : 'qoq'
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -164,77 +172,6 @@ export default function GermanyGDPGrowthChart({ data }: GermanyGDPGrowthChartPro
     return 'transparent'
   }
 
-  // GDP種類切り替えボタン
-  const GDPTypeButtons = () => (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-      <button
-        onClick={() => setGdpType('qoq')}
-        style={{
-          padding: '6px 12px',
-          border: gdpType === 'qoq' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: gdpType === 'qoq' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: gdpType === 'qoq' ? 'bold' : 'normal',
-          color: gdpType === 'qoq' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-        }}
-      >
-        前期比 (QoQ)
-      </button>
-      <button
-        onClick={() => setGdpType('yoy')}
-        style={{
-          padding: '6px 12px',
-          border: gdpType === 'yoy' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: gdpType === 'yoy' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: gdpType === 'yoy' ? 'bold' : 'normal',
-          color: gdpType === 'yoy' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-        }}
-      >
-        前年比 (YoY)
-      </button>
-    </div>
-  )
-
-  // 表示モード切り替えボタン（QoQのみテーブル表示可能）
-  const ViewModeButtons = () => {
-    if (gdpType === 'yoy') return null
-
-    return (
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button
-          onClick={() => setViewMode('chart')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'chart' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'chart' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'chart' ? 'bold' : 'normal',
-            color: viewMode === 'chart' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          グラフ
-        </button>
-        <button
-          onClick={() => setViewMode('table')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'table' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'table' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'table' ? 'bold' : 'normal',
-            color: viewMode === 'table' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          テーブル
-        </button>
-      </div>
-    )
-  }
 
   // テーブルコンポーネント
   const GDPTable = () => (
@@ -373,10 +310,9 @@ export default function GermanyGDPGrowthChart({ data }: GermanyGDPGrowthChartPro
               label: '時系列',
               children: (
                 <>
-                  <GDPTypeButtons />
-                  <ViewModeButtons />
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-                  {viewMode === 'chart' && (
+                  {viewMode !== 'qoq_table' && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
                       <Tooltip title="比較ページを開く">
@@ -390,13 +326,7 @@ export default function GermanyGDPGrowthChart({ data }: GermanyGDPGrowthChartPro
                     </div>
                   )}
 
-                  {viewMode === 'table' && gdpType === 'qoq' && (
-                    <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-                      ※ 直近10年間のGDP成長率データ（単位: %）
-                    </div>
-                  )}
-
-                  {viewMode === 'table' && gdpType === 'qoq' ? (
+                  {viewMode === 'qoq_table' ? (
                     <GDPTable />
                   ) : (
                     <ZoomableChart

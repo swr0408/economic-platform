@@ -1,6 +1,6 @@
 """
 RICS住宅価格サービス
-DBからRICS House Price Balanceデータを取得
+DBからRICS House Price Balanceデータを取得し、PDFから最新データを取得
 
 指標:
 - RICS住宅価格バランス（住宅価格の上昇・下落を示すサーベイ指標）
@@ -8,14 +8,22 @@ DBからRICS House Price Balanceデータを取得
 データソース:
 - DB: economic_calendar_events（FMP蓄積データ）
 - CSV: 過去データインポート
+- PDF: 手動ダウンロード（backend/data/pdf/uk/YYYYMM-rics-house-price.pdf）
 
 発表スケジュール:
 - 月次（不定期・FMPカレンダーから取得）
 
-キャッシュ方式: FMP発表日時ベース判定方式
+キャッシュ方式: FMP発表日時ベース判定方式 + PDF自動検知
+
+PDFインポート手順:
+1. https://www.rics.org/news-insights/research から UK Residential Market Survey をダウンロード
+2. ファイル名を YYYYMM-rics-house-price.pdf に変更（例: 202512-rics-house-price.pdf）
+3. backend/data/pdf/uk/ に配置
+4. PDFの最初のページに House Price Balance の数値がある
 """
 import json
 import logging
+import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
@@ -35,6 +43,10 @@ JST = ZoneInfo("Asia/Tokyo")
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "uk" / "housing"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "rics_house_price_cache.json"
+IMPORTED_PDF_FILE = CACHE_DIR / "rics_imported_pdfs.json"
+
+# PDFディレクトリ
+PDF_DIR = Path(__file__).parent.parent.parent / "data" / "pdf" / "uk"
 
 
 class RICSHousePriceService:
@@ -65,6 +77,18 @@ class RICSHousePriceService:
 
         # DBから取得
         db_result = self._load_from_db()
+
+        # 未処理のPDFがあれば自動でDBにインポート
+        new_pdfs = self._check_new_pdfs()
+        for pdf_path in new_pdfs:
+            pdf_data = self._extract_data_from_pdf(pdf_path)
+            if pdf_data:
+                self._save_pdf_data_to_db(pdf_data)
+                self._mark_pdf_as_imported(pdf_path)
+                # メモリ上でもマージ
+                db_result = self._merge_pdf_data(db_result, pdf_data)
+                logger.info(f"[RICS] Auto-imported new PDF: {pdf_path.name}")
+
         if db_result:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             latest = db_result[-1] if db_result else None
@@ -168,6 +192,208 @@ class RICSHousePriceService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
         return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+
+    def _check_new_pdfs(self) -> List[Path]:
+        """未処理のPDFファイルをチェック"""
+        if not PDF_DIR.exists():
+            return []
+
+        imported_pdfs = self._load_imported_pdfs()
+        pdf_files = list(PDF_DIR.glob("*rics*.pdf"))
+        new_pdfs = []
+
+        for pdf_path in pdf_files:
+            pdf_key = f"{pdf_path.name}:{pdf_path.stat().st_size}"
+            if pdf_key not in imported_pdfs:
+                new_pdfs.append(pdf_path)
+
+        if new_pdfs:
+            logger.info(f"[RICS] Found {len(new_pdfs)} new PDF(s) to import")
+
+        return new_pdfs
+
+    def _extract_data_from_pdf(self, pdf_path: Path) -> Optional[Dict[str, Any]]:
+        """PDFファイルからRICS House Price Balanceを抽出"""
+        try:
+            # ファイル名から対象月を抽出 (YYYYMM-rics-...)
+            match = re.search(r'(\d{6})', pdf_path.name)
+            if not match:
+                logger.warning(f"Could not extract date from PDF filename: {pdf_path.name}")
+                return None
+
+            date_str = match.group(1)
+            year = int(date_str[:4])
+            month = int(date_str[4:6])
+            data_date = f"{year}-{month:02d}-01"
+
+            try:
+                import pdfplumber
+            except ImportError:
+                logger.warning("pdfplumber not installed, cannot read PDF")
+                return None
+
+            value = None
+
+            with pdfplumber.open(pdf_path) as pdf:
+                if len(pdf.pages) > 0:
+                    page = pdf.pages[0]
+                    text = page.extract_text()
+
+                    if text:
+                        # House Price Balance パターンを探す
+                        # 例: "House Price Balance: -25%" または "-25% House Price Balance"
+                        # または単に数値（例: "-25"）
+                        patterns = [
+                            r'House\s*Price\s*Balance[:\s]*([+-]?\d+)',
+                            r'([+-]?\d+)\s*%?\s*House\s*Price\s*Balance',
+                            r'price\s*balance[:\s]*([+-]?\d+)',
+                            r'net\s*balance[:\s]*([+-]?\d+)',
+                        ]
+                        for pattern in patterns:
+                            m = re.search(pattern, text, re.IGNORECASE)
+                            if m:
+                                value = float(m.group(1))
+                                logger.info(f"Found RICS House Price Balance from PDF: {value}")
+                                break
+
+            if value is None:
+                logger.warning(f"Could not extract value from PDF: {pdf_path.name}")
+                return None
+
+            result = {
+                "date": data_date,
+                "value": value,
+            }
+            logger.info(f"Extracted from {pdf_path.name}: {result}")
+            return result
+
+        except Exception as e:
+            logger.error(f"Error extracting data from PDF {pdf_path.name}: {e}")
+            return None
+
+    def _merge_pdf_data(self, db_data: List[Dict], pdf_data: Optional[Dict]) -> List[Dict]:
+        """PDFデータをDBデータにマージ（メモリ上）"""
+        if not pdf_data or not db_data:
+            if pdf_data and not db_data:
+                return [{
+                    "date": pdf_data["date"],
+                    "value": pdf_data["value"],
+                    "forecast": None,
+                    "previous": None,
+                }]
+            return db_data or []
+
+        merged = db_data.copy()
+        pdf_date = pdf_data["date"]
+        pdf_value = pdf_data["value"]
+
+        found = False
+        for item in merged:
+            if item["date"] == pdf_date:
+                if item["value"] != pdf_value:
+                    logger.info(f"Updating RICS data: {pdf_date} {item['value']} -> {pdf_value}")
+                    item["value"] = pdf_value
+                found = True
+                break
+
+        if not found:
+            merged.append({
+                "date": pdf_date,
+                "value": pdf_value,
+                "forecast": None,
+                "previous": None,
+            })
+            merged.sort(key=lambda x: x["date"])
+
+        return merged
+
+    def _save_pdf_data_to_db(self, pdf_data: Dict[str, Any]) -> bool:
+        """PDFデータをDBに保存（UPSERT方式）"""
+        if not pdf_data:
+            return False
+
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            date_str = pdf_data["date"]
+            value = pdf_data["value"]
+
+            # 日付をdatetime_utcに変換
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+            datetime_utc = date_obj.replace(hour=0, minute=1, second=0)
+
+            with SessionLocal() as session:
+                # 既存レコードを検索
+                check_query = text("""
+                    SELECT id, actual FROM economic_calendar_events
+                    WHERE country = 'UK'
+                      AND event ILIKE '%RICS House Price Balance%'
+                      AND datetime_utc::date = :target_date
+                    ORDER BY datetime_utc DESC
+                    LIMIT 1
+                """)
+                existing = session.execute(
+                    check_query,
+                    {"target_date": date_obj.date()}
+                ).fetchone()
+
+                if existing:
+                    existing_id, existing_value = existing
+                    if existing_value != value:
+                        update_query = text("""
+                            UPDATE economic_calendar_events
+                            SET actual = :value, updated_at = NOW()
+                            WHERE id = :id
+                        """)
+                        session.execute(update_query, {"value": value, "id": existing_id})
+                        logger.info(f"[RICS] Updated: {date_str} {existing_value} -> {value}")
+                else:
+                    insert_query = text("""
+                        INSERT INTO economic_calendar_events
+                        (country, event, datetime_utc, actual, estimate, previous, impact, source, created_at, updated_at)
+                        VALUES ('UK', 'RICS House Price Balance', :datetime_utc, :actual, NULL, NULL, 'Medium', 'PDF Import', NOW(), NOW())
+                    """)
+                    session.execute(insert_query, {
+                        "datetime_utc": datetime_utc,
+                        "actual": value
+                    })
+                    logger.info(f"[RICS] Inserted: {date_str} = {value}")
+
+                session.commit()
+                return True
+
+        except Exception as e:
+            logger.error(f"[RICS] Error saving PDF data to DB: {e}")
+            return False
+
+    def _load_imported_pdfs(self) -> set:
+        """処理済みPDFリストを読み込む"""
+        try:
+            if IMPORTED_PDF_FILE.exists():
+                with open(IMPORTED_PDF_FILE, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    return set(data.get("imported", []))
+        except Exception as e:
+            logger.error(f"Error loading imported PDFs list: {e}")
+        return set()
+
+    def _mark_pdf_as_imported(self, pdf_path: Path) -> None:
+        """PDFを処理済みとしてマーク"""
+        try:
+            imported = self._load_imported_pdfs()
+            pdf_key = f"{pdf_path.name}:{pdf_path.stat().st_size}"
+            imported.add(pdf_key)
+
+            CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            with open(IMPORTED_PDF_FILE, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "imported": list(imported),
+                    "last_updated": datetime.now(JST).isoformat()
+                }, f, ensure_ascii=False, indent=2)
+            logger.info(f"Marked PDF as imported: {pdf_path.name}")
+        except Exception as e:
+            logger.error(f"Error marking PDF as imported: {e}")
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込む"""

@@ -1,0 +1,766 @@
+{
+  "data": [
+    {
+      "date": "2025-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.9,
+      "mom_change": -2.67
+    },
+    {
+      "date": "2025-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.7,
+      "mom_change": 1.45
+    },
+    {
+      "date": "2025-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.2,
+      "mom_change": 2.58
+    },
+    {
+      "date": "2025-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 100.6,
+      "mom_change": -1.47
+    },
+    {
+      "date": "2025-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 102.1,
+      "mom_change": -1.16
+    },
+    {
+      "date": "2025-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.3,
+      "mom_change": 2.08
+    },
+    {
+      "date": "2025-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.2,
+      "mom_change": -0.1
+    },
+    {
+      "date": "2025-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.3,
+      "mom_change": -1.07
+    },
+    {
+      "date": "2025-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 102.4,
+      "mom_change": 0.2
+    },
+    {
+      "date": "2025-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 102.2,
+      "mom_change": 2.3
+    },
+    {
+      "date": "2025-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 99.9,
+      "mom_change": -1.09
+    },
+    {
+      "date": "2024-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.0,
+      "mom_change": -0.3
+    },
+    {
+      "date": "2024-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.3,
+      "mom_change": -1.65
+    },
+    {
+      "date": "2024-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.0,
+      "mom_change": 1.78
+    },
+    {
+      "date": "2024-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.2,
+      "mom_change": 0.7
+    },
+    {
+      "date": "2024-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 100.5,
+      "mom_change": -1.95
+    },
+    {
+      "date": "2024-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 102.5,
+      "mom_change": 1.79
+    },
+    {
+      "date": "2024-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 100.7,
+      "mom_change": -1.18
+    },
+    {
+      "date": "2024-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.9,
+      "mom_change": 1.09
+    },
+    {
+      "date": "2024-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 100.8,
+      "mom_change": -0.59
+    },
+    {
+      "date": "2024-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.4,
+      "mom_change": 3.47
+    },
+    {
+      "date": "2024-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 98.0,
+      "mom_change": 0.31
+    },
+    {
+      "date": "2024-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 97.7,
+      "mom_change": -6.95
+    },
+    {
+      "date": "2023-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.0,
+      "mom_change": 1.16
+    },
+    {
+      "date": "2023-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.8,
+      "mom_change": -0.57
+    },
+    {
+      "date": "2023-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.4,
+      "mom_change": 1.16
+    },
+    {
+      "date": "2023-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.2,
+      "mom_change": 0.1
+    },
+    {
+      "date": "2023-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.1,
+      "mom_change": -0.39
+    },
+    {
+      "date": "2023-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.5,
+      "mom_change": -1.43
+    },
+    {
+      "date": "2023-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.0,
+      "mom_change": 0.86
+    },
+    {
+      "date": "2023-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.1,
+      "mom_change": -1.05
+    },
+    {
+      "date": "2023-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.2,
+      "mom_change": 0.29
+    },
+    {
+      "date": "2023-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.9,
+      "mom_change": 0.38
+    },
+    {
+      "date": "2023-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.5,
+      "mom_change": 3.36
+    },
+    {
+      "date": "2023-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.1,
+      "mom_change": -3.62
+    },
+    {
+      "date": "2022-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.9,
+      "mom_change": -0.57
+    },
+    {
+      "date": "2022-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.5,
+      "mom_change": 0.0
+    },
+    {
+      "date": "2022-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.5,
+      "mom_change": -1.68
+    },
+    {
+      "date": "2022-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 107.3,
+      "mom_change": -0.46
+    },
+    {
+      "date": "2022-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 107.8,
+      "mom_change": 1.41
+    },
+    {
+      "date": "2022-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 106.3,
+      "mom_change": 0.57
+    },
+    {
+      "date": "2022-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.7,
+      "mom_change": 4.97
+    },
+    {
+      "date": "2022-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 100.7,
+      "mom_change": -4.37
+    },
+    {
+      "date": "2022-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.3,
+      "mom_change": -0.38
+    },
+    {
+      "date": "2022-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.7,
+      "mom_change": -0.28
+    },
+    {
+      "date": "2022-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 106.0,
+      "mom_change": 1.34
+    },
+    {
+      "date": "2022-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.6,
+      "mom_change": -0.76
+    },
+    {
+      "date": "2021-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.4,
+      "mom_change": -1.5
+    },
+    {
+      "date": "2021-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 107.0,
+      "mom_change": 5.52
+    },
+    {
+      "date": "2021-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 101.4,
+      "mom_change": 2.63
+    },
+    {
+      "date": "2021-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 98.8,
+      "mom_change": -4.82
+    },
+    {
+      "date": "2021-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.8,
+      "mom_change": -3.35
+    },
+    {
+      "date": "2021-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 107.4,
+      "mom_change": -1.47
+    },
+    {
+      "date": "2021-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 109.0,
+      "mom_change": 4.01
+    },
+    {
+      "date": "2021-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 104.8,
+      "mom_change": -3.68
+    },
+    {
+      "date": "2021-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 108.8,
+      "mom_change": 2.16
+    },
+    {
+      "date": "2021-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 106.5,
+      "mom_change": 0.57
+    },
+    {
+      "date": "2021-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.9,
+      "mom_change": -0.47
+    },
+    {
+      "date": "2021-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 106.4,
+      "mom_change": 3.1
+    },
+    {
+      "date": "2020-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.2,
+      "mom_change": -0.48
+    },
+    {
+      "date": "2020-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.7,
+      "mom_change": 0.1
+    },
+    {
+      "date": "2020-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 103.6,
+      "mom_change": 3.08
+    },
+    {
+      "date": "2020-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 100.5,
+      "mom_change": 3.4
+    },
+    {
+      "date": "2020-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 97.2,
+      "mom_change": 1.99
+    },
+    {
+      "date": "2020-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 95.3,
+      "mom_change": 6.6
+    },
+    {
+      "date": "2020-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 89.4,
+      "mom_change": 2.05
+    },
+    {
+      "date": "2020-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 87.6,
+      "mom_change": -7.98
+    },
+    {
+      "date": "2020-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 95.2,
+      "mom_change": -10.02
+    },
+    {
+      "date": "2020-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.8,
+      "mom_change": 0.0
+    },
+    {
+      "date": "2020-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 105.8,
+      "mom_change": -2.76
+    },
+    {
+      "date": "2020-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 108.8,
+      "mom_change": 0.55
+    },
+    {
+      "date": "2019-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 108.2,
+      "mom_change": 0.37
+    },
+    {
+      "date": "2019-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 107.8,
+      "mom_change": -0.09
+    },
+    {
+      "date": "2019-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 107.9,
+      "mom_change": -4.85
+    },
+    {
+      "date": "2019-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 113.4,
+      "mom_change": 1.7
+    },
+    {
+      "date": "2019-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 111.5,
+      "mom_change": -1.33
+    },
+    {
+      "date": "2019-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 113.0,
+      "mom_change": 0.18
+    },
+    {
+      "date": "2019-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 112.8,
+      "mom_change": -1.74
+    },
+    {
+      "date": "2019-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 114.8,
+      "mom_change": 1.68
+    },
+    {
+      "date": "2019-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 112.9,
+      "mom_change": -0.44
+    },
+    {
+      "date": "2019-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 113.4,
+      "mom_change": -0.79
+    },
+    {
+      "date": "2019-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 114.3,
+      "mom_change": 1.6
+    },
+    {
+      "date": "2019-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 112.5,
+      "mom_change": -2.34
+    },
+    {
+      "date": "2018-12-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 115.2,
+      "mom_change": 0.09
+    },
+    {
+      "date": "2018-11-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 115.1,
+      "mom_change": -0.86
+    },
+    {
+      "date": "2018-10-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 116.1,
+      "mom_change": 2.56
+    },
+    {
+      "date": "2018-09-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 113.2,
+      "mom_change": -1.14
+    },
+    {
+      "date": "2018-08-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 114.5,
+      "mom_change": 0.62
+    },
+    {
+      "date": "2018-07-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 113.8,
+      "mom_change": -0.44
+    },
+    {
+      "date": "2018-06-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 114.3,
+      "mom_change": -0.7
+    },
+    {
+      "date": "2018-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 115.1,
+      "mom_change": 0.52
+    },
+    {
+      "date": "2018-04-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 114.5,
+      "mom_change": -1.55
+    },
+    {
+      "date": "2018-03-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 116.3,
+      "mom_change": 1.48
+    },
+    {
+      "date": "2018-02-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 114.6,
+      "mom_change": 2.05
+    },
+    {
+      "date": "2018-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 112.3,
+      "mom_change": null
+    }
+  ],
+  "last_updated": "2026-01-25T20:52:44.909290+09:00",
+  "source": "Ministry of Economy, Trade and Industry (METI)"
+}

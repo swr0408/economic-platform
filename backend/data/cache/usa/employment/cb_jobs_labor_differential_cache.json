@@ -1,0 +1,1164 @@
+{
+  "data": [
+    {
+      "date": "2010-01",
+      "plentiful": 3.2,
+      "hard": 48.4,
+      "differential": -45.2
+    },
+    {
+      "date": "2010-02",
+      "plentiful": 3.6,
+      "hard": 48.4,
+      "differential": -44.8
+    },
+    {
+      "date": "2010-03",
+      "plentiful": 4.0,
+      "hard": 46.1,
+      "differential": -42.1
+    },
+    {
+      "date": "2010-04",
+      "plentiful": 4.6,
+      "hard": 45.1,
+      "differential": -40.5
+    },
+    {
+      "date": "2010-05",
+      "plentiful": 4.6,
+      "hard": 43.4,
+      "differential": -38.8
+    },
+    {
+      "date": "2010-06",
+      "plentiful": 4.3,
+      "hard": 42.4,
+      "differential": -38.1
+    },
+    {
+      "date": "2010-07",
+      "plentiful": 4.3,
+      "hard": 44.6,
+      "differential": -40.3
+    },
+    {
+      "date": "2010-08",
+      "plentiful": 4.0,
+      "hard": 45.3,
+      "differential": -41.3
+    },
+    {
+      "date": "2010-09",
+      "plentiful": 3.8,
+      "hard": 46.1,
+      "differential": -42.3
+    },
+    {
+      "date": "2010-10",
+      "plentiful": 3.5,
+      "hard": 46.0,
+      "differential": -42.5
+    },
+    {
+      "date": "2010-11",
+      "plentiful": 4.0,
+      "hard": 45.6,
+      "differential": -41.6
+    },
+    {
+      "date": "2010-12",
+      "plentiful": 3.9,
+      "hard": 46.8,
+      "differential": -42.9
+    },
+    {
+      "date": "2011-01",
+      "plentiful": 4.6,
+      "hard": 43.0,
+      "differential": -38.4
+    },
+    {
+      "date": "2011-02",
+      "plentiful": 4.9,
+      "hard": 39.6,
+      "differential": -34.7
+    },
+    {
+      "date": "2011-03",
+      "plentiful": 4.7,
+      "hard": 42.5,
+      "differential": -37.8
+    },
+    {
+      "date": "2011-04",
+      "plentiful": 5.1,
+      "hard": 42.5,
+      "differential": -37.4
+    },
+    {
+      "date": "2011-05",
+      "plentiful": 5.6,
+      "hard": 42.7,
+      "differential": -37.1
+    },
+    {
+      "date": "2011-06",
+      "plentiful": 5.2,
+      "hard": 43.8,
+      "differential": -38.6
+    },
+    {
+      "date": "2011-07",
+      "plentiful": 5.2,
+      "hard": 43.3,
+      "differential": -38.1
+    },
+    {
+      "date": "2011-08",
+      "plentiful": 4.8,
+      "hard": 46.1,
+      "differential": -41.3
+    },
+    {
+      "date": "2011-09",
+      "plentiful": 2.5,
+      "hard": 45.3,
+      "differential": -42.8
+    },
+    {
+      "date": "2011-10",
+      "plentiful": 3.6,
+      "hard": 45.2,
+      "differential": -41.6
+    },
+    {
+      "date": "2011-11",
+      "plentiful": 5.6,
+      "hard": 43.0,
+      "differential": -37.4
+    },
+    {
+      "date": "2011-12",
+      "plentiful": 6.6,
+      "hard": 41.6,
+      "differential": -35.0
+    },
+    {
+      "date": "2012-01",
+      "plentiful": 6.2,
+      "hard": 42.7,
+      "differential": -36.5
+    },
+    {
+      "date": "2012-02",
+      "plentiful": 7.3,
+      "hard": 38.6,
+      "differential": -31.3
+    },
+    {
+      "date": "2012-03",
+      "plentiful": 9.0,
+      "hard": 40.6,
+      "differential": -31.6
+    },
+    {
+      "date": "2012-04",
+      "plentiful": 7.9,
+      "hard": 40.7,
+      "differential": -32.8
+    },
+    {
+      "date": "2012-05",
+      "plentiful": 7.9,
+      "hard": 39.4,
+      "differential": -31.5
+    },
+    {
+      "date": "2012-06",
+      "plentiful": 7.0,
+      "hard": 41.8,
+      "differential": -34.8
+    },
+    {
+      "date": "2012-07",
+      "plentiful": 7.8,
+      "hard": 43.0,
+      "differential": -35.2
+    },
+    {
+      "date": "2012-08",
+      "plentiful": 7.2,
+      "hard": 41.1,
+      "differential": -33.9
+    },
+    {
+      "date": "2012-09",
+      "plentiful": 8.2,
+      "hard": 40.7,
+      "differential": -32.5
+    },
+    {
+      "date": "2012-10",
+      "plentiful": 9.1,
+      "hard": 43.9,
+      "differential": -34.8
+    },
+    {
+      "date": "2012-11",
+      "plentiful": 10.3,
+      "hard": 46.0,
+      "differential": -35.7
+    },
+    {
+      "date": "2012-12",
+      "plentiful": 8.2,
+      "hard": 45.1,
+      "differential": -36.9
+    },
+    {
+      "date": "2013-01",
+      "plentiful": 8.6,
+      "hard": 32.7,
+      "differential": -24.1
+    },
+    {
+      "date": "2013-02",
+      "plentiful": 10.3,
+      "hard": 34.7,
+      "differential": -24.4
+    },
+    {
+      "date": "2013-03",
+      "plentiful": 9.5,
+      "hard": 33.0,
+      "differential": -23.5
+    },
+    {
+      "date": "2013-04",
+      "plentiful": 9.6,
+      "hard": 35.1,
+      "differential": -25.5
+    },
+    {
+      "date": "2013-05",
+      "plentiful": 10.8,
+      "hard": 36.0,
+      "differential": -25.2
+    },
+    {
+      "date": "2013-06",
+      "plentiful": 12.2,
+      "hard": 33.3,
+      "differential": -21.1
+    },
+    {
+      "date": "2013-07",
+      "plentiful": 12.2,
+      "hard": 35.7,
+      "differential": -23.5
+    },
+    {
+      "date": "2013-08",
+      "plentiful": 11.3,
+      "hard": 33.1,
+      "differential": -21.8
+    },
+    {
+      "date": "2013-09",
+      "plentiful": 11.5,
+      "hard": 34.6,
+      "differential": -23.1
+    },
+    {
+      "date": "2013-10",
+      "plentiful": 11.6,
+      "hard": 36.1,
+      "differential": -24.5
+    },
+    {
+      "date": "2013-11",
+      "plentiful": 11.8,
+      "hard": 33.3,
+      "differential": -21.5
+    },
+    {
+      "date": "2013-12",
+      "plentiful": 12.1,
+      "hard": 35.3,
+      "differential": -23.2
+    },
+    {
+      "date": "2014-01",
+      "plentiful": 12.5,
+      "hard": 23.9,
+      "differential": -11.4
+    },
+    {
+      "date": "2014-02",
+      "plentiful": 13.9,
+      "hard": 24.5,
+      "differential": -10.6
+    },
+    {
+      "date": "2014-03",
+      "plentiful": 12.9,
+      "hard": 23.1,
+      "differential": -10.2
+    },
+    {
+      "date": "2014-04",
+      "plentiful": 12.3,
+      "hard": 23.9,
+      "differential": -11.6
+    },
+    {
+      "date": "2014-05",
+      "plentiful": 14.4,
+      "hard": 26.7,
+      "differential": -12.3
+    },
+    {
+      "date": "2014-06",
+      "plentiful": 16.1,
+      "hard": 25.7,
+      "differential": -9.6
+    },
+    {
+      "date": "2014-07",
+      "plentiful": 15.6,
+      "hard": 24.3,
+      "differential": -8.7
+    },
+    {
+      "date": "2014-08",
+      "plentiful": 18.2,
+      "hard": 25.4,
+      "differential": -7.2
+    },
+    {
+      "date": "2014-09",
+      "plentiful": 16.3,
+      "hard": 24.8,
+      "differential": -8.5
+    },
+    {
+      "date": "2014-10",
+      "plentiful": 16.5,
+      "hard": 21.1,
+      "differential": -4.6
+    },
+    {
+      "date": "2014-11",
+      "plentiful": 16.2,
+      "hard": 22.8,
+      "differential": -6.6
+    },
+    {
+      "date": "2014-12",
+      "plentiful": 17.2,
+      "hard": 27.7,
+      "differential": -10.5
+    },
+    {
+      "date": "2015-01",
+      "plentiful": 19.1,
+      "hard": 20.2,
+      "differential": -1.1
+    },
+    {
+      "date": "2015-02",
+      "plentiful": 19.9,
+      "hard": 20.8,
+      "differential": -0.9
+    },
+    {
+      "date": "2015-03",
+      "plentiful": 21.0,
+      "hard": 21.9,
+      "differential": -0.9
+    },
+    {
+      "date": "2015-04",
+      "plentiful": 19.2,
+      "hard": 20.7,
+      "differential": -1.5
+    },
+    {
+      "date": "2015-05",
+      "plentiful": 20.5,
+      "hard": 21.1,
+      "differential": -0.6
+    },
+    {
+      "date": "2015-06",
+      "plentiful": 21.1,
+      "hard": 20.9,
+      "differential": 0.2
+    },
+    {
+      "date": "2015-07",
+      "plentiful": 19.9,
+      "hard": 20.1,
+      "differential": -0.2
+    },
+    {
+      "date": "2015-08",
+      "plentiful": 22.1,
+      "hard": 22.0,
+      "differential": 0.1
+    },
+    {
+      "date": "2015-09",
+      "plentiful": 24.7,
+      "hard": 20.6,
+      "differential": 4.1
+    },
+    {
+      "date": "2015-10",
+      "plentiful": 22.2,
+      "hard": 20.5,
+      "differential": 1.7
+    },
+    {
+      "date": "2015-11",
+      "plentiful": 19.7,
+      "hard": 19.9,
+      "differential": -0.2
+    },
+    {
+      "date": "2015-12",
+      "plentiful": 24.1,
+      "hard": 24.5,
+      "differential": -0.4
+    },
+    {
+      "date": "2016-01",
+      "plentiful": 23.0,
+      "hard": 20.9,
+      "differential": 2.1
+    },
+    {
+      "date": "2016-02",
+      "plentiful": 23.8,
+      "hard": 22.7,
+      "differential": 1.1
+    },
+    {
+      "date": "2016-03",
+      "plentiful": 25.4,
+      "hard": 23.5,
+      "differential": 1.9
+    },
+    {
+      "date": "2016-04",
+      "plentiful": 23.3,
+      "hard": 22.4,
+      "differential": 0.9
+    },
+    {
+      "date": "2016-05",
+      "plentiful": 24.3,
+      "hard": 24.4,
+      "differential": -0.1
+    },
+    {
+      "date": "2016-06",
+      "plentiful": 23.3,
+      "hard": 22.9,
+      "differential": 0.4
+    },
+    {
+      "date": "2016-07",
+      "plentiful": 24.0,
+      "hard": 22.3,
+      "differential": 1.7
+    },
+    {
+      "date": "2016-08",
+      "plentiful": 24.9,
+      "hard": 21.7,
+      "differential": 3.2
+    },
+    {
+      "date": "2016-09",
+      "plentiful": 27.6,
+      "hard": 21.6,
+      "differential": 6.0
+    },
+    {
+      "date": "2016-10",
+      "plentiful": 24.3,
+      "hard": 22.5,
+      "differential": 1.8
+    },
+    {
+      "date": "2016-11",
+      "plentiful": 26.4,
+      "hard": 20.7,
+      "differential": 5.7
+    },
+    {
+      "date": "2016-12",
+      "plentiful": 26.0,
+      "hard": 22.7,
+      "differential": 3.3
+    },
+    {
+      "date": "2017-01",
+      "plentiful": 27.4,
+      "hard": 14.3,
+      "differential": 13.1
+    },
+    {
+      "date": "2017-02",
+      "plentiful": 28.5,
+      "hard": 14.4,
+      "differential": 14.1
+    },
+    {
+      "date": "2017-03",
+      "plentiful": 31.8,
+      "hard": 14.2,
+      "differential": 17.6
+    },
+    {
+      "date": "2017-04",
+      "plentiful": 30.6,
+      "hard": 15.9,
+      "differential": 14.7
+    },
+    {
+      "date": "2017-05",
+      "plentiful": 29.7,
+      "hard": 18.2,
+      "differential": 11.5
+    },
+    {
+      "date": "2017-06",
+      "plentiful": 30.0,
+      "hard": 18.0,
+      "differential": 12.0
+    },
+    {
+      "date": "2017-07",
+      "plentiful": 33.2,
+      "hard": 17.8,
+      "differential": 15.4
+    },
+    {
+      "date": "2017-08",
+      "plentiful": 34.4,
+      "hard": 18.8,
+      "differential": 15.6
+    },
+    {
+      "date": "2017-09",
+      "plentiful": 32.7,
+      "hard": 17.9,
+      "differential": 14.8
+    },
+    {
+      "date": "2017-10",
+      "plentiful": 36.7,
+      "hard": 17.7,
+      "differential": 19.0
+    },
+    {
+      "date": "2017-11",
+      "plentiful": 37.5,
+      "hard": 17.3,
+      "differential": 20.2
+    },
+    {
+      "date": "2017-12",
+      "plentiful": 35.2,
+      "hard": 16.5,
+      "differential": 18.7
+    },
+    {
+      "date": "2018-01",
+      "plentiful": 36.9,
+      "hard": 12.4,
+      "differential": 24.5
+    },
+    {
+      "date": "2018-02",
+      "plentiful": 39.4,
+      "hard": 14.9,
+      "differential": 24.5
+    },
+    {
+      "date": "2018-03",
+      "plentiful": 38.7,
+      "hard": 15.0,
+      "differential": 23.7
+    },
+    {
+      "date": "2018-04",
+      "plentiful": 37.9,
+      "hard": 15.8,
+      "differential": 22.1
+    },
+    {
+      "date": "2018-05",
+      "plentiful": 38.5,
+      "hard": 16.3,
+      "differential": 22.2
+    },
+    {
+      "date": "2018-06",
+      "plentiful": 40.8,
+      "hard": 14.4,
+      "differential": 26.4
+    },
+    {
+      "date": "2018-07",
+      "plentiful": 43.1,
+      "hard": 14.6,
+      "differential": 28.5
+    },
+    {
+      "date": "2018-08",
+      "plentiful": 42.7,
+      "hard": 12.7,
+      "differential": 30.0
+    },
+    {
+      "date": "2018-09",
+      "plentiful": 45.2,
+      "hard": 12.8,
+      "differential": 32.4
+    },
+    {
+      "date": "2018-10",
+      "plentiful": 45.4,
+      "hard": 12.2,
+      "differential": 33.2
+    },
+    {
+      "date": "2018-11",
+      "plentiful": 46.6,
+      "hard": 12.2,
+      "differential": 34.4
+    },
+    {
+      "date": "2018-12",
+      "plentiful": 45.5,
+      "hard": 11.8,
+      "differential": 33.7
+    },
+    {
+      "date": "2019-01",
+      "plentiful": 45.2,
+      "hard": 11.6,
+      "differential": 33.6
+    },
+    {
+      "date": "2019-02",
+      "plentiful": 45.1,
+      "hard": 11.8,
+      "differential": 33.3
+    },
+    {
+      "date": "2019-03",
+      "plentiful": 46.5,
+      "hard": 13.7,
+      "differential": 32.8
+    },
+    {
+      "date": "2019-04",
+      "plentiful": 46.7,
+      "hard": 13.2,
+      "differential": 33.5
+    },
+    {
+      "date": "2019-05",
+      "plentiful": 46.4,
+      "hard": 13.0,
+      "differential": 33.4
+    },
+    {
+      "date": "2019-06",
+      "plentiful": 44.0,
+      "hard": 12.1,
+      "differential": 31.9
+    },
+    {
+      "date": "2019-07",
+      "plentiful": 45.8,
+      "hard": 12.1,
+      "differential": 33.7
+    },
+    {
+      "date": "2019-08",
+      "plentiful": 50.3,
+      "hard": 12.0,
+      "differential": 38.3
+    },
+    {
+      "date": "2019-09",
+      "plentiful": 47.3,
+      "hard": 11.7,
+      "differential": 35.6
+    },
+    {
+      "date": "2019-10",
+      "plentiful": 47.1,
+      "hard": 12.0,
+      "differential": 35.1
+    },
+    {
+      "date": "2019-11",
+      "plentiful": 44.0,
+      "hard": 12.9,
+      "differential": 31.1
+    },
+    {
+      "date": "2019-12",
+      "plentiful": 46.5,
+      "hard": 12.9,
+      "differential": 33.6
+    },
+    {
+      "date": "2020-01",
+      "plentiful": 49.0,
+      "hard": 13.2,
+      "differential": 35.8
+    },
+    {
+      "date": "2020-02",
+      "plentiful": 46.5,
+      "hard": 13.2,
+      "differential": 33.3
+    },
+    {
+      "date": "2020-03",
+      "plentiful": 43.3,
+      "hard": 13.0,
+      "differential": 30.3
+    },
+    {
+      "date": "2020-04",
+      "plentiful": 19.9,
+      "hard": 13.2,
+      "differential": 6.7
+    },
+    {
+      "date": "2020-05",
+      "plentiful": 16.5,
+      "hard": 29.2,
+      "differential": -12.7
+    },
+    {
+      "date": "2020-06",
+      "plentiful": 21.0,
+      "hard": 25.1,
+      "differential": -4.1
+    },
+    {
+      "date": "2020-07",
+      "plentiful": 22.3,
+      "hard": 19.8,
+      "differential": 2.5
+    },
+    {
+      "date": "2020-08",
+      "plentiful": 21.4,
+      "hard": 16.2,
+      "differential": 5.2
+    },
+    {
+      "date": "2020-09",
+      "plentiful": 23.2,
+      "hard": 19.8,
+      "differential": 3.4
+    },
+    {
+      "date": "2020-10",
+      "plentiful": 26.2,
+      "hard": 19.8,
+      "differential": 6.4
+    },
+    {
+      "date": "2020-11",
+      "plentiful": 25.9,
+      "hard": 20.3,
+      "differential": 5.6
+    },
+    {
+      "date": "2020-12",
+      "plentiful": 26.1,
+      "hard": 17.2,
+      "differential": 8.9
+    },
+    {
+      "date": "2021-01",
+      "plentiful": 20.6,
+      "hard": 19.1,
+      "differential": 1.5
+    },
+    {
+      "date": "2021-02",
+      "plentiful": 21.6,
+      "hard": 16.4,
+      "differential": 5.2
+    },
+    {
+      "date": "2021-03",
+      "plentiful": 24.7,
+      "hard": 17.9,
+      "differential": 6.8
+    },
+    {
+      "date": "2021-04",
+      "plentiful": 35.1,
+      "hard": 15.4,
+      "differential": 19.7
+    },
+    {
+      "date": "2021-05",
+      "plentiful": 46.4,
+      "hard": 11.8,
+      "differential": 34.6
+    },
+    {
+      "date": "2021-06",
+      "plentiful": 53.5,
+      "hard": 11.1,
+      "differential": 42.4
+    },
+    {
+      "date": "2021-07",
+      "plentiful": 54.0,
+      "hard": 10.5,
+      "differential": 43.5
+    },
+    {
+      "date": "2021-08",
+      "plentiful": 53.7,
+      "hard": 11.2,
+      "differential": 42.5
+    },
+    {
+      "date": "2021-09",
+      "plentiful": 54.8,
+      "hard": 12.7,
+      "differential": 42.1
+    },
+    {
+      "date": "2021-10",
+      "plentiful": 54.4,
+      "hard": 10.8,
+      "differential": 43.6
+    },
+    {
+      "date": "2021-11",
+      "plentiful": 54.8,
+      "hard": 10.4,
+      "differential": 44.4
+    },
+    {
+      "date": "2021-12",
+      "plentiful": 55.0,
+      "hard": 12.5,
+      "differential": 42.5
+    },
+    {
+      "date": "2022-01",
+      "plentiful": 55.1,
+      "hard": 11.3,
+      "differential": 43.8
+    },
+    {
+      "date": "2022-02",
+      "plentiful": 53.8,
+      "hard": 11.8,
+      "differential": 42.0
+    },
+    {
+      "date": "2022-03",
+      "plentiful": 56.7,
+      "hard": 9.6,
+      "differential": 47.1
+    },
+    {
+      "date": "2022-04",
+      "plentiful": 54.4,
+      "hard": 11.3,
+      "differential": 43.1
+    },
+    {
+      "date": "2022-05",
+      "plentiful": 51.9,
+      "hard": 12.5,
+      "differential": 39.4
+    },
+    {
+      "date": "2022-06",
+      "plentiful": 50.6,
+      "hard": 11.4,
+      "differential": 39.2
+    },
+    {
+      "date": "2022-07",
+      "plentiful": 48.3,
+      "hard": 12.3,
+      "differential": 36.0
+    },
+    {
+      "date": "2022-08",
+      "plentiful": 47.6,
+      "hard": 11.4,
+      "differential": 36.2
+    },
+    {
+      "date": "2022-09",
+      "plentiful": 49.2,
+      "hard": 11.7,
+      "differential": 37.5
+    },
+    {
+      "date": "2022-10",
+      "plentiful": 44.7,
+      "hard": 13.6,
+      "differential": 31.1
+    },
+    {
+      "date": "2022-11",
+      "plentiful": 45.8,
+      "hard": 13.0,
+      "differential": 32.8
+    },
+    {
+      "date": "2022-12",
+      "plentiful": 46.4,
+      "hard": 12.1,
+      "differential": 34.3
+    },
+    {
+      "date": "2023-01",
+      "plentiful": 48.1,
+      "hard": 11.3,
+      "differential": 36.8
+    },
+    {
+      "date": "2023-02",
+      "plentiful": 51.2,
+      "hard": 10.5,
+      "differential": 40.7
+    },
+    {
+      "date": "2023-03",
+      "plentiful": 48.2,
+      "hard": 10.9,
+      "differential": 37.3
+    },
+    {
+      "date": "2023-04",
+      "plentiful": 47.5,
+      "hard": 10.9,
+      "differential": 36.6
+    },
+    {
+      "date": "2023-05",
+      "plentiful": 47.7,
+      "hard": 11.9,
+      "differential": 35.8
+    },
+    {
+      "date": "2023-06",
+      "plentiful": 46.1,
+      "hard": 12.0,
+      "differential": 34.1
+    },
+    {
+      "date": "2023-07",
+      "plentiful": 48.5,
+      "hard": 11.6,
+      "differential": 36.9
+    },
+    {
+      "date": "2023-08",
+      "plentiful": 39.9,
+      "hard": 9.7,
+      "differential": 30.2
+    },
+    {
+      "date": "2023-09",
+      "plentiful": 39.9,
+      "hard": 12.4,
+      "differential": 27.5
+    },
+    {
+      "date": "2023-10",
+      "plentiful": 37.9,
+      "hard": 12.4,
+      "differential": 25.5
+    },
+    {
+      "date": "2023-11",
+      "plentiful": 38.3,
+      "hard": 14.2,
+      "differential": 24.1
+    },
+    {
+      "date": "2023-12",
+      "plentiful": 40.7,
+      "hard": 13.1,
+      "differential": 27.6
+    },
+    {
+      "date": "2024-01",
+      "plentiful": 45.1,
+      "hard": 11.4,
+      "differential": 33.7
+    },
+    {
+      "date": "2024-02",
+      "plentiful": 45.5,
+      "hard": 11.9,
+      "differential": 33.6
+    },
+    {
+      "date": "2024-03",
+      "plentiful": 42.3,
+      "hard": 10.8,
+      "differential": 31.5
+    },
+    {
+      "date": "2024-04",
+      "plentiful": 39.1,
+      "hard": 9.8,
+      "differential": 29.3
+    },
+    {
+      "date": "2024-05",
+      "plentiful": 37.3,
+      "hard": 13.0,
+      "differential": 24.3
+    },
+    {
+      "date": "2024-06",
+      "plentiful": 36.3,
+      "hard": 14.7,
+      "differential": 21.6
+    },
+    {
+      "date": "2024-07",
+      "plentiful": 34.1,
+      "hard": 15.8,
+      "differential": 18.3
+    },
+    {
+      "date": "2024-08",
+      "plentiful": 32.0,
+      "hard": 15.9,
+      "differential": 16.1
+    },
+    {
+      "date": "2024-09",
+      "plentiful": 30.8,
+      "hard": 16.6,
+      "differential": 14.2
+    },
+    {
+      "date": "2024-10",
+      "plentiful": 34.0,
+      "hard": 17.5,
+      "differential": 16.5
+    },
+    {
+      "date": "2024-11",
+      "plentiful": 33.5,
+      "hard": 15.3,
+      "differential": 18.2
+    },
+    {
+      "date": "2024-12",
+      "plentiful": 34.9,
+      "hard": 15.3,
+      "differential": 19.6
+    },
+    {
+      "date": "2025-01",
+      "plentiful": 43.1,
+      "hard": 11.4,
+      "differential": 31.7
+    },
+    {
+      "date": "2025-02",
+      "plentiful": 41.9,
+      "hard": 12.6,
+      "differential": 29.3
+    },
+    {
+      "date": "2025-03",
+      "plentiful": 41.5,
+      "hard": 11.9,
+      "differential": 29.6
+    },
+    {
+      "date": "2025-04",
+      "plentiful": 38.0,
+      "hard": 14.1,
+      "differential": 23.9
+    },
+    {
+      "date": "2025-05",
+      "plentiful": 36.3,
+      "hard": 14.3,
+      "differential": 22.0
+    },
+    {
+      "date": "2025-06",
+      "plentiful": 34.1,
+      "hard": 15.6,
+      "differential": 18.5
+    },
+    {
+      "date": "2025-07",
+      "plentiful": 32.1,
+      "hard": 16.5,
+      "differential": 15.6
+    },
+    {
+      "date": "2025-08",
+      "plentiful": 30.6,
+      "hard": 17.5,
+      "differential": 13.1
+    },
+    {
+      "date": "2025-09",
+      "plentiful": 26.9,
+      "hard": 19.1,
+      "differential": 7.8
+    },
+    {
+      "date": "2025-10",
+      "plentiful": 28.6,
+      "hard": 18.3,
+      "differential": 10.3
+    },
+    {
+      "date": "2025-11",
+      "plentiful": 28.2,
+      "hard": 20.1,
+      "differential": 8.1
+    },
+    {
+      "date": "2025-12",
+      "plentiful": 26.7,
+      "hard": 20.8,
+      "differential": 5.9
+    }
+  ],
+  "latest": {
+    "date": "2025-12",
+    "plentiful": 26.7,
+    "hard": 20.8,
+    "differential": 5.9
+  },
+  "latest_data_date": "2025-12",
+  "last_updated": "2026-01-26T00:09:38.358930+09:00"
+}

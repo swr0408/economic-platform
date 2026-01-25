@@ -32,7 +32,7 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "cb_consumer_confidence_cache.json"
 

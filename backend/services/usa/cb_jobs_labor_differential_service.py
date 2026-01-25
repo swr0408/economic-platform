@@ -48,7 +48,7 @@ PR_NEWSWIRE_SEARCH_URL = "https://www.prnewswire.com/search/news/?keyword=Confer
 CSV_FILE_PATH = Path(__file__).parent.parent.parent / "data" / "usa" / "consumer" / "cb_jobs_labor_differential.csv"
 
 # キャッシュディレクトリ（雇用カテゴリ）
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "cb_jobs_labor_differential_cache.json"
 

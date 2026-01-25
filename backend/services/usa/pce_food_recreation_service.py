@@ -41,7 +41,7 @@ JST = ZoneInfo("Asia/Tokyo")
 BEA_API_BASE = "https://apps.bea.gov/api/data/"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "pce_food_recreation_cache.json"
 

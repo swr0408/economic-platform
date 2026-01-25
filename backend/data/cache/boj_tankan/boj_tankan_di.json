@@ -29,8 +29,16 @@
       "large_non_manufacturing_outlook": 28.0
     }
   ],
-  "last_updated": "2026-01-12T15:37:12.421583",
+  "last_updated": "2026-01-22T01:20:35.616025",
   "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
   "cached": false,
-  "source": "boj"
+  "source": "boj",
+  "next_release": {
+    "date": "2026-02-19",
+    "datetime_utc": "2026-02-19T00:00:00+00:00",
+    "datetime_jst": "2026-02-19T09:00:00+09:00",
+    "time_jst": "09:00",
+    "label": "Reuters Tankan Index (Feb)",
+    "estimate": null
+  }
 }

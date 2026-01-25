@@ -27,7 +27,7 @@ from core.redis_client import redis_client
 JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "inflation"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "inflation"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 INFLATION_NOWCASTING_CACHE_FILE = CACHE_DIR / "inflation_nowcasting_cache.json"
 

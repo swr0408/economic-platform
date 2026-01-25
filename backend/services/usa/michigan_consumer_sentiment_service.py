@@ -45,7 +45,7 @@ MICHIGAN_COMPONENTS_CSV_URL = "https://www.sca.isr.umich.edu/files/tbmiccice.csv
 MICHIGAN_HOMEPAGE_URL = "https://www.sca.isr.umich.edu/"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "michigan_consumer_sentiment_cache.json"
 

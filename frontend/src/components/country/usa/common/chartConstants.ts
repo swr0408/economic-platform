@@ -47,6 +47,9 @@ export const CHART_COLORS = {
   // ニュートラル（ダークテーマ用に調整）
   gray: '#64748b',
   lightGray: '#475569',
+  green: '#2fb584',
+  red: '#ef4444',
+
 
   // 背景色（ダークテーマ）
   bgLight: '#1e293b',
@@ -259,11 +262,11 @@ export function getDataTypeButtonStyle(
 /** 標準ビューモードタイプ（前年比/前月比テーブル/前月比グラフ） */
 export type StandardViewMode = 'yoy' | 'mom_table' | 'mom_chart'
 
-/** 標準ビューモード設定（前年比/前月比テーブル/前月比グラフ） */
+/** 標準ビューモード設定（前年比/前月比/前月比テーブル） */
 export const STANDARD_VIEW_MODE_OPTIONS: { mode: StandardViewMode; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
+  { mode: 'mom_chart', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
 ]
 
 /** 名目/実質データタイプ */
@@ -313,8 +316,8 @@ export type ValueChangeViewMode = 'value' | 'change_chart' | 'change_table'
 /** 現数値/増減幅ビューモード設定 */
 export const VALUE_CHANGE_VIEW_MODE_OPTIONS: { mode: ValueChangeViewMode; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'change_table', label: '前月増減幅テーブル' },
-  { mode: 'change_chart', label: '前月増減幅グラフ' },
+  { mode: 'change_chart', label: '前月増減幅' },
+  { mode: 'change_table', label: '前月増減幅（テーブル）' },
 ]
 
 // =============================================================================

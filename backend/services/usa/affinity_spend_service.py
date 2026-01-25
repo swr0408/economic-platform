@@ -35,7 +35,7 @@ AFFINITY_CSV_URL = "https://raw.githubusercontent.com/OpportunityInsights/Econom
 GITHUB_COMMITS_API = "https://api.github.com/repos/OpportunityInsights/EconomicTracker/commits"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "affinity_spend_cache.json"
 

@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "japan_capacity_utilization_cache.json"
 

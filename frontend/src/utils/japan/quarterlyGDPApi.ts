@@ -21,7 +21,7 @@ export interface QuarterlyGDPData {
 }
 
 /**
- * Fetch Quarterly GDP Growth Rate (QoQ) data
+ * Fetch Quarterly GDP Growth Rate (QoQ) data - 前期比（非年率）
  */
 export async function fetchQuarterlyGDPQoQ(forceRefresh = false): Promise<QuarterlyGDPData> {
   try {
@@ -38,6 +38,50 @@ export async function fetchQuarterlyGDPQoQ(forceRefresh = false): Promise<Quarte
     return await response.json()
   } catch (error) {
     console.error('Error fetching GDP QoQ:', error)
+    throw error
+  }
+}
+
+/**
+ * Fetch Quarterly GDP Growth Rate (QoQ Annualized) data - 前期比年率
+ */
+export async function fetchQuarterlyGDPQoQAnnualized(forceRefresh = false): Promise<QuarterlyGDPData> {
+  try {
+    const url = forceRefresh
+      ? '/api/japan/quarterly-gdp/annualized?force_refresh=true'
+      : '/api/japan/quarterly-gdp/annualized'
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch GDP QoQ Annualized: ${response.statusText}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching GDP QoQ Annualized:', error)
+    throw error
+  }
+}
+
+/**
+ * Fetch Quarterly GDP Growth Rate (YoY) data - 前年比
+ */
+export async function fetchQuarterlyGDPYoY(forceRefresh = false): Promise<QuarterlyGDPData> {
+  try {
+    const url = forceRefresh
+      ? '/api/japan/quarterly-gdp/yoy?force_refresh=true'
+      : '/api/japan/quarterly-gdp/yoy'
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch GDP YoY: ${response.statusText}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching GDP YoY:', error)
     throw error
   }
 }

@@ -43,7 +43,7 @@ ET = ZoneInfo("America/New_York")
 ADP_DATA_URL_BASE = "https://adp-ri-nrip-static.adp.com/artifacts/us_wage/"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "adp_wage_growth_cache.json"
 

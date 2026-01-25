@@ -255,8 +255,8 @@ export default function RetailSalesChart({ data }: RetailSalesChartProps) {
                     onChange={(mode) => setViewMode(mode as ViewMode)}
                     options={[
                       { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_table', label: '前月比テーブル' },
-                      { mode: 'mom_chart', label: '前月比グラフ' },
+                      { mode: 'mom_chart', label: '前月比' },
+                      { mode: 'mom_table', label: '前月比（テーブル）' },
                     ]}
                   />
 

@@ -33,7 +33,7 @@ ET = ZoneInfo("America/New_York")
 UTC = ZoneInfo("UTC")
 
 # キャッシュ設定
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "market"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "market"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # データ期間（15年）

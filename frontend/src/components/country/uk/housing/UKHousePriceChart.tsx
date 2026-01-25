@@ -64,9 +64,9 @@ type PropertyType = 'all' | 'detached' | 'semi_detached' | 'terraced' | 'flat'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比グラフ' },
-  { mode: 'mom', label: '前月比グラフ' },
-  { mode: 'mom_table', label: '前月比テーブル' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
 ]
 
 // グラフの色
@@ -233,7 +233,7 @@ export default function UKHousePriceChart({ data }: UKHousePriceChartProps) {
   return (
     <div id="uk-house-price-chart">
       <ChartContainer
-        title="国家統計局住宅価格指数（前年比）"
+        title="国家統計局住宅価格指数"
         showPeriodSelector={false}
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/latest"

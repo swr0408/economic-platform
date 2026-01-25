@@ -45,7 +45,7 @@ ET = ZoneInfo("America/New_York")
 ATLANTAFED_WAGE_URL = "https://www.atlantafed.org/-/media/documents/datafiles/chcs/wage-growth-tracker/wage-growth-data.xlsx"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "atlanta_fed_wage_cache.json"
 

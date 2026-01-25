@@ -207,8 +207,8 @@ export default function ECBUnitLabourCostChart({ data }: ECBUnitLabourCostChartP
                     onChange={(mode) => setViewMode(mode)}
                     options={[
                       { mode: 'yoy', label: '前年比' },
-                      { mode: 'qoq_table', label: '前期比テーブル' },
-                      { mode: 'qoq_chart', label: '前期比グラフ' },
+                      { mode: 'qoq_chart', label: '前期比' },
+                      { mode: 'qoq_table', label: '前期比（テーブル）' },
                     ]}
                   />
 

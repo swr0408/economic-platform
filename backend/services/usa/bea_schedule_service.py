@@ -25,7 +25,7 @@ class BEAScheduleService:
     """BEA公式サイトからGDP・Personal Income発表スケジュールを取得するサービス"""
 
     SCHEDULE_URL = "https://www.bea.gov/news/schedule"
-    CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "bea_schedule"
+    CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "bea_schedule"
     CACHE_FILE = "gdp_schedule.json"
     PERSONAL_INCOME_CACHE_FILE = "personal_income_schedule.json"
     CACHE_EXPIRY_DAYS = 180  # 半年間キャッシュ

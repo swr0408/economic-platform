@@ -72,9 +72,9 @@ type SeriesType = 'all' | 'core'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比グラフ' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom_chart', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
 ]
 
 // グラフの色

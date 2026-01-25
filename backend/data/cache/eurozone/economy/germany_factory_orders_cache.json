@@ -1,0 +1,3643 @@
+{
+  "mom": [
+    {
+      "date": "2020-02-01",
+      "value": -2.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-03-01",
+      "value": -15.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-04-01",
+      "value": -27.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 12.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 28.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-07-01",
+      "value": 4.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 4.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 3.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 3.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 2.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-12-01",
+      "value": -1.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-01-01",
+      "value": -0.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 2.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 3.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 2.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": -4.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 5.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 4.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": -9.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 3.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": -5.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 3.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 2.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 3.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": -2.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": -4.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": -1.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": -0.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": -0.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": 2.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": -2.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": -2.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": 1.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": -3.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 1.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 4.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": -8.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 6.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 6.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": -11.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 2.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": -0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": -2.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 1.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 11.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": -11.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 0.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": -0.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": -1.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": -0.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 4.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 2.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": -5.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 7.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": -4.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 5.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": -5.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": -0.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 1.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": -0.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": -0.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": -2.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": -0.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 2.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 1.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 5.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    }
+  ],
+  "yoy": [
+    {
+      "date": "2021-01-01",
+      "value": 1.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 5.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 29.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 79.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 54.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 27.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 26.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 10.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 10.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 0.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 2.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 5.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 10.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 5.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": -3.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": -6.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": -3.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": -8.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": -10.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": -3.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": -9.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": -3.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": -9.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": -10.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": -13.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": -7.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": -11.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": -11.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": -5.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 2.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": -11.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": -6.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": -5.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": -8.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": -4.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 6.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": -6.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": -9.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": -2.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": -2.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": -8.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": -10.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 3.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": -4.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 3.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 4.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": -1.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": -7.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 0.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": -0.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 5.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 5.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 1.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": -3.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 2.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": -3.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": -0.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 10.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    }
+  ],
+  "domestic_mom": [
+    {
+      "date": "2020-02-01",
+      "value": 0.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-03-01",
+      "value": -14.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-04-01",
+      "value": -23.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 14.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 36.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-07-01",
+      "value": -8.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 3.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 3.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 4.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 1.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-12-01",
+      "value": -0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-01-01",
+      "value": -3.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 4.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 4.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": -2.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 0.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 11.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": -1.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": -10.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": -3.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 3.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 9.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": -5.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": -0.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": -1.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": -1.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": 0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": -2.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": -2.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": 1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": -1.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": -1.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 4.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": -6.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 5.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": -5.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": -0.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 6.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 0.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": -9.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 2.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": -4.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 1.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 10.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": -11.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 0.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": -2.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": -0.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 0.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 10.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 1.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": -10.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 5.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": -6.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 3.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 14.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": -12.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": -1.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 2.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 2.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": -7.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 2.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": -1.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 4.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": -1.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 10.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 6.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    }
+  ],
+  "domestic_yoy": [
+    {
+      "date": "2021-01-01",
+      "value": 1.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 4.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 28.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 64.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 43.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 17.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 27.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 10.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 3.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 1.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 0.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 11.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 8.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 2.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": -2.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": -2.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": -4.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": -13.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": -14.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": -6.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": -1.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": -6.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": -6.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": -12.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": -12.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": -6.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": -11.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": -10.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": -2.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": -2.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": -9.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": -4.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": -10.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": -7.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": -6.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": -1.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": -6.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": -10.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": -8.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": -8.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": -13.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": -5.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 5.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": -7.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 1.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": -6.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": -1.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 3.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 0.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": -1.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 6.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": -1.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": -8.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": -10.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 3.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": -3.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 12.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 16.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    }
+  ],
+  "foreign_mom": [
+    {
+      "date": "2020-02-01",
+      "value": -4.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-03-01",
+      "value": -16.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-04-01",
+      "value": -30.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 10.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 22.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-07-01",
+      "value": 16.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 5.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 3.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 3.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 2.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-12-01",
+      "value": -2.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-01-01",
+      "value": 1.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 3.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 5.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": -7.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 1.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 8.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": -9.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 8.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": -11.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 6.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": -2.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 10.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": -3.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": -7.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": -1.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": 0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": -1.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": 5.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": -3.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": -4.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": 2.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": -5.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 0.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": 3.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 3.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": -10.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": -1.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 5.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 11.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": -12.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 2.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 1.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": -6.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 3.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 12.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": -12.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 0.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": -1.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": -1.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 0.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 3.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": -2.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 9.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 2.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": -9.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 0.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": -0.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 0.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 4.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 0.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 4.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": -2.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": -3.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": -3.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 4.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": -3.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 4.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    }
+  ],
+  "foreign_yoy": [
+    {
+      "date": "2021-01-01",
+      "value": 0.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 5.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 29.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 91.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 63.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 35.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 25.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 10.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 16.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": -0.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 3.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 2.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 12.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 6.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": -4.0,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": -9.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": -2.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": -5.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": -8.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": -1.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": -13.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": -0.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": -11.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": -8.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": -14.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": -8.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": -11.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": -11.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": -7.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 5.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": -12.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": -7.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": -1.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": -9.5,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": -2.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 12.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": -5.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": -8.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 2.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 2.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": -4.4,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": -13.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 2.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": -2.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 4.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 12.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": -1.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": -13.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": -0.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 0.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.6,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 5.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 11.3,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 8.8,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 2.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 0.9,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": -3.1,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": -8.7,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 6.2,
+      "source": "destatis",
+      "adjustment": "calendar adjusted"
+    }
+  ],
+  "index_total": [
+    {
+      "date": "2020-01-01",
+      "value": 93.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-02-01",
+      "value": 91.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-03-01",
+      "value": 77.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-04-01",
+      "value": 56.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 63.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 81.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-07-01",
+      "value": 85.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 88.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 91.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 94.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 96.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-12-01",
+      "value": 94.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-01-01",
+      "value": 94.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 96.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 99.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 102.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 97.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 103.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 107.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 97.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 100.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 95.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 98.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 100.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 104.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 101.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": 96.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": 95.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": 94.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": 94.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": 96.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": 93.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": 91.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": 92.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": 88.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 90.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": 89.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 93.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 85.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 84.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 89.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 96.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 85.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 87.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 86.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 84.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 85.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 95.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 84.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 84.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 83.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 83.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 82.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 86.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 88.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 83.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 89.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 88.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 84.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 89.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 84.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 84.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 86.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 88.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 87.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 87.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 85.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 84.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 86.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 87.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 92.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    }
+  ],
+  "index_domestic": [
+    {
+      "date": "2020-01-01",
+      "value": 90.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-02-01",
+      "value": 91.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-03-01",
+      "value": 78.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-04-01",
+      "value": 59.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 68.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 93.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-07-01",
+      "value": 85.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 88.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 90.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 94.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 96.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-12-01",
+      "value": 95.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-01-01",
+      "value": 91.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 96.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 100.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 98.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 98.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 109.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 108.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 97.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 93.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 96.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 95.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 104.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 99.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 98.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": 97.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": 96.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": 94.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": 95.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": 92.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": 90.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": 91.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": 90.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": 89.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 93.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": 86.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 91.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 86.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 86.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 92.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 92.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 84.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 86.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 82.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 84.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 83.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 91.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 81.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 81.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 79.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 79.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 79.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 87.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 88.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 79.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 84.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 78.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 81.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 93.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 81.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 80.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 82.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 84.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 78.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 80.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 79.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 82.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 81.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 89.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 95.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    }
+  ],
+  "index_foreign": [
+    {
+      "date": "2020-01-01",
+      "value": 96.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-02-01",
+      "value": 91.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-03-01",
+      "value": 76.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-04-01",
+      "value": 53.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-05-01",
+      "value": 59.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-06-01",
+      "value": 72.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-07-01",
+      "value": 84.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-08-01",
+      "value": 89.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-09-01",
+      "value": 91.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-10-01",
+      "value": 94.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-11-01",
+      "value": 96.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2020-12-01",
+      "value": 94.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-01-01",
+      "value": 95.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-02-01",
+      "value": 96.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-03-01",
+      "value": 99.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-04-01",
+      "value": 104.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-05-01",
+      "value": 97.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-06-01",
+      "value": 99.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-07-01",
+      "value": 107.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-08-01",
+      "value": 97.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-09-01",
+      "value": 105.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-10-01",
+      "value": 93.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-11-01",
+      "value": 100.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2021-12-01",
+      "value": 97.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-01-01",
+      "value": 107.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-02-01",
+      "value": 103.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-03-01",
+      "value": 95.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-04-01",
+      "value": 94.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-05-01",
+      "value": 95.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-06-01",
+      "value": 93.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-07-01",
+      "value": 98.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-08-01",
+      "value": 95.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-09-01",
+      "value": 90.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-10-01",
+      "value": 93.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-11-01",
+      "value": 88.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2022-12-01",
+      "value": 88.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-01-01",
+      "value": 91.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-02-01",
+      "value": 94.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-03-01",
+      "value": 84.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-04-01",
+      "value": 83.5,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-05-01",
+      "value": 88.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-06-01",
+      "value": 98.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-07-01",
+      "value": 85.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-08-01",
+      "value": 88.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-09-01",
+      "value": 89.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-10-01",
+      "value": 84.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-11-01",
+      "value": 87.1,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2023-12-01",
+      "value": 98.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-01-01",
+      "value": 86.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-02-01",
+      "value": 86.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-03-01",
+      "value": 86.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-04-01",
+      "value": 85.8,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-05-01",
+      "value": 84.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-06-01",
+      "value": 85.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-07-01",
+      "value": 87.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-08-01",
+      "value": 85.6,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-09-01",
+      "value": 93.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-10-01",
+      "value": 95.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-11-01",
+      "value": 85.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2024-12-01",
+      "value": 86.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-01-01",
+      "value": 85.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-02-01",
+      "value": 86.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 90.0,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-04-01",
+      "value": 90.7,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 94.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-06-01",
+      "value": 92.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 89.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-08-01",
+      "value": 86.3,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 90.4,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 86.9,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 91.2,
+      "source": "destatis",
+      "adjustment": "seasonally and calendar adjusted"
+    }
+  ],
+  "latest_mom": {
+    "date": "2025-11-01",
+    "value": 5.6,
+    "source": "destatis",
+    "adjustment": "seasonally and calendar adjusted"
+  },
+  "latest_yoy": {
+    "date": "2025-11-01",
+    "value": 10.5,
+    "source": "destatis",
+    "adjustment": "calendar adjusted"
+  },
+  "next_release": {
+    "date": "2026-02-05",
+    "datetime_utc": "2026-02-05T07:00:00+00:00",
+    "datetime_jst": "2026-02-05T16:00:00+09:00",
+    "time_jst": "16:00",
+    "datetime_cet": "2026-02-05T08:00:00+01:00",
+    "time_cet": "08:00",
+    "label": "Factory Orders MoM (Dec)",
+    "estimate": -4.2
+  },
+  "last_updated": "2026-01-25T22:13:15.340515+09:00"
+}

@@ -5,12 +5,16 @@
 指標:
 - 所定内給与 (Scheduled Wage): 所定内給与 前年同月比 (%)
 - 一般 (General): 一般労働者 前年同月比 (%)
-- パート (Part-time): パートタイム労働者 前年同月比 (%)
+- パート (Part-time): パートタイム労働者 所定内給与 前年同月比 (%)
+- パート時間当 (Part-time Hourly): パートタイム労働者 時間当たり所定内給与 前年同月比 (%)
+  注: 厚労省は実額（円）から時間当たり給与を計算し、前年比を算出
 
-データソース: e-Stat Excel（付表シート）
-- Column H: 所定内給与 YoY (%)
-- Column I: 一般 YoY (%)
-- Column J: パート YoY (%)
+データソース: e-Stat Excel（直接ダウンロード）
+- 毎月勤労統計調査の時系列データ
+- https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189732&fileKind=4 (所定内給与)
+- https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189734&fileKind=4 (一般)
+- https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189736&fileKind=4 (パート)
+- https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040187500&fileKind=4 (パート時間当: Sheet 9)
 
 キャッシュ方式: FMP発表日時ベース判定方式
 """
@@ -22,6 +26,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
+from io import BytesIO
 import logging
 
 from core.redis_client import redis_client
@@ -34,11 +39,9 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "scheduled_wage_estat_cache.json"
-TEMP_DIR = CACHE_DIR / "temp"
-TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 
 class ScheduledWageService:
@@ -49,15 +52,15 @@ class ScheduledWageService:
     # FMP event mapping
     ECONALPHA_ID = "jp_average_cash_earnings_yoy"
 
-    # e-Stat Excel File Download URL
-    ESTAT_EXCEL_URL = "https://www.e-stat.go.jp/stat-search/file-download"
-
-    # Fallback list of statInfIds
-    FALLBACK_STAT_INF_IDS = [
-        "000040187500",
-    ]
-
-    SHEET_NAME = "付表"
+    # e-Stat Excel直接ダウンロードURL
+    # 所定内給与: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189732&fileKind=4
+    # 一般: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189734&fileKind=4
+    # パート: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189736&fileKind=4
+    # パート時間当: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040187500&fileKind=4 (Sheet 9)
+    ESTAT_SCHEDULED_WAGE_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189732&fileKind=4"
+    ESTAT_GENERAL_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189734&fileKind=4"
+    ESTAT_PARTTIME_WAGE_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032189736&fileKind=4"
+    ESTAT_HOURLY_WAGE_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040187500&fileKind=4"
 
     def __init__(self):
         pass
@@ -70,7 +73,8 @@ class ScheduledWageService:
             {
                 "scheduled_wage": {"data": [...], "latest": {...}},
                 "general": {"data": [...], "latest": {...}},
-                "part_time": {"data": [...], "latest": {...}},
+                "part_time_wage": {"data": [...], "latest": {...}},
+                "part_time_hourly": {"data": [...], "latest": {...}},
                 "next_release": {...},
                 "cached": bool,
                 "source": str
@@ -84,7 +88,8 @@ class ScheduledWageService:
                     return {
                         "scheduled_wage": cached_data.get("scheduled_wage"),
                         "general": cached_data.get("general"),
-                        "part_time": cached_data.get("part_time"),
+                        "part_time_wage": cached_data.get("part_time_wage"),
+                        "part_time_hourly": cached_data.get("part_time_hourly"),
                         "next_release": cached_data.get("next_release"),
                         "cached": True,
                         "source": "redis",
@@ -110,7 +115,8 @@ class ScheduledWageService:
             cache_payload = {
                 "scheduled_wage": merged_data.get("scheduled_wage"),
                 "general": merged_data.get("general"),
-                "part_time": merged_data.get("part_time"),
+                "part_time_wage": merged_data.get("part_time_wage"),
+                "part_time_hourly": merged_data.get("part_time_hourly"),
                 "next_release": next_release,
                 "last_updated": datetime.now(JST).isoformat()
             }
@@ -137,7 +143,8 @@ class ScheduledWageService:
                     "latest": fmp_data[-1] if fmp_data else None,
                 },
                 "general": None,
-                "part_time": None,
+                "part_time_wage": None,
+                "part_time_hourly": None,
                 "next_release": next_release,
                 "last_updated": datetime.now(JST).isoformat()
             }
@@ -156,7 +163,8 @@ class ScheduledWageService:
             return {
                 "scheduled_wage": file_cache.get("scheduled_wage"),
                 "general": file_cache.get("general"),
-                "part_time": file_cache.get("part_time"),
+                "part_time_wage": file_cache.get("part_time_wage"),
+                "part_time_hourly": file_cache.get("part_time_hourly"),
                 "next_release": file_cache.get("next_release"),
                 "cached": True,
                 "source": "file (fallback)",
@@ -166,7 +174,8 @@ class ScheduledWageService:
         return {
             "scheduled_wage": None,
             "general": None,
-            "part_time": None,
+            "part_time_wage": None,
+            "part_time_hourly": None,
             "next_release": None,
             "cached": False,
             "source": "none",
@@ -174,54 +183,50 @@ class ScheduledWageService:
             "error": "No data available"
         }
 
-    def _download_excel_file(self) -> Optional[Path]:
-        """e-StatからExcelファイルをダウンロード"""
-        for stat_inf_id in self.FALLBACK_STAT_INF_IDS:
-            try:
-                params = {
-                    "statInfId": stat_inf_id,
-                    "fileKind": 0
+    def _load_from_estat(self) -> Optional[Dict[str, Any]]:
+        """e-Statから所定内給与データを取得（4系列：所定内給与、一般、パート、パート時間当）"""
+        try:
+            # 所定内給与、一般、パートを取得
+            scheduled_wage_data = self._load_single_series(
+                self.ESTAT_SCHEDULED_WAGE_URL,
+                "所定内給与",
+                search_start_row=80
+            )
+            general_data = self._load_single_series(
+                self.ESTAT_GENERAL_URL,
+                "一般",
+                search_start_row=80
+            )
+            part_time_wage_data = self._load_single_series(
+                self.ESTAT_PARTTIME_WAGE_URL,
+                "パート",
+                search_start_row=80
+            )
+
+            # パート時間当を取得（時間当たり所定内給与シート）
+            part_time_hourly_data = self._load_part_time_hourly()
+
+            if scheduled_wage_data or general_data or part_time_wage_data or part_time_hourly_data:
+                return {
+                    "scheduled_wage": {
+                        "data": scheduled_wage_data,
+                        "latest": scheduled_wage_data[-1] if scheduled_wage_data else None,
+                    } if scheduled_wage_data else None,
+                    "general": {
+                        "data": general_data,
+                        "latest": general_data[-1] if general_data else None,
+                    } if general_data else None,
+                    "part_time_wage": {
+                        "data": part_time_wage_data,
+                        "latest": part_time_wage_data[-1] if part_time_wage_data else None,
+                    } if part_time_wage_data else None,
+                    "part_time_hourly": {
+                        "data": part_time_hourly_data,
+                        "latest": part_time_hourly_data[-1] if part_time_hourly_data else None,
+                    } if part_time_hourly_data else None,
                 }
 
-                logger.info(f"Downloading scheduled wage data from e-Stat with statInfId: {stat_inf_id}")
-
-                response = requests.get(self.ESTAT_EXCEL_URL, params=params, timeout=60)
-
-                if response.status_code == 200:
-                    excel_path = TEMP_DIR / "scheduled_wage_estat.xlsx"
-                    excel_path.write_bytes(response.content)
-                    logger.info(f"Downloaded {len(response.content)} bytes from e-Stat")
-                    return excel_path
-                else:
-                    logger.warning(f"statInfId {stat_inf_id} returned status {response.status_code}")
-
-            except Exception as e:
-                logger.warning(f"Error with statInfId {stat_inf_id}: {e}")
-                continue
-
-        logger.error("All e-Stat statInfIds failed")
-        return None
-
-    def _load_from_estat(self) -> Optional[Dict[str, Any]]:
-        """e-Statから所定内給与データを取得"""
-        try:
-            excel_path = self._download_excel_file()
-            if not excel_path:
-                return None
-
-            processed_data = self._parse_excel_file(excel_path)
-            if not processed_data:
-                return None
-
-            # Clean up temp files
-            try:
-                for file in TEMP_DIR.glob("*"):
-                    if file.is_file():
-                        file.unlink()
-            except Exception as e:
-                logger.warning(f"Error cleaning up temp files: {e}")
-
-            return processed_data
+            return None
 
         except Exception as e:
             logger.error(f"Error fetching scheduled wage data from e-Stat: {e}")
@@ -229,162 +234,200 @@ class ScheduledWageService:
             traceback.print_exc()
             return None
 
-    def _parse_excel_file(self, excel_path: Path) -> Optional[Dict[str, Any]]:
-        """e-Stat Excelを解析"""
-        try:
-            logger.info(f"Parsing scheduled wage Excel file: {excel_path}")
-
-            df = pd.read_excel(excel_path, sheet_name=self.SHEET_NAME, header=None)
-            logger.info(f"Excel shape: {df.shape}")
-
-            return self._process_scheduled_wage_dataframe(df)
-
-        except Exception as e:
-            logger.error(f"Error parsing scheduled wage Excel: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
-
-    def _process_scheduled_wage_dataframe(self, df: pd.DataFrame) -> Dict[str, Any]:
+    def _load_part_time_hourly(self) -> Optional[List[Dict[str, Any]]]:
         """
-        e-Stat付表シートを処理
+        パート時間当（時間当たり所定内給与）を取得
 
-        Excel structure (付表 sheet):
-        Row 0-8: Headers
-        Row 9+: Data
-        Column 1 (B): Year-Month (年月)
-        Column 7 (H): 所定内給与 YoY (%)
-        Column 8 (I): 一般 YoY (%)
-        Column 9 (J): パート YoY (%)
+        e-Stat Excel（時間当たり給与シート）から直接前年比を取得
+        データソース: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040187500&fileKind=4
+        注: 厚労省は実額（円）から時間当たり給与を計算し、前年比を算出
+        """
+        # e-Statから時間当たり給与データを取得（唯一のデータソース）
+        result = self._load_hourly_wage_from_estat()
+
+        if result:
+            logger.info(f"Processed {len(result)} part-time hourly data points from e-Stat")
+            if result:
+                logger.info(f"Date range: {result[0]['date']} to {result[-1]['date']}")
+                logger.info(f"Latest part-time hourly: {result[-1]}")
+
+        return result
+
+    def _load_hourly_wage_from_estat(self) -> Optional[List[Dict[str, Any]]]:
+        """
+        e-Statから時間当たり給与の前年比を取得
+
+        データソース: e-Stat 毎月勤労統計調査 時間当たり給与シート
+        URL: https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040187500&fileKind=4
         """
         try:
-            logger.info(f"Processing scheduled wage dataframe with shape: {df.shape}")
+            logger.info(f"Downloading hourly wage data from e-Stat: {self.ESTAT_HOURLY_WAGE_URL}")
 
-            scheduled_wage_data = []  # 所定内給与 (Column H)
-            general_data = []  # 一般 (Column I)
-            part_time_data = []  # パート (Column J)
+            response = requests.get(self.ESTAT_HOURLY_WAGE_URL, timeout=60)
+            if response.status_code != 200:
+                logger.error(f"Failed to download hourly wage from e-Stat: {response.status_code}")
+                return None
 
+            # Sheet 9: 時間当たり給与（パートタイム労働者）
+            df = pd.read_excel(BytesIO(response.content), sheet_name=9, header=None)
+
+            data = {}
             current_year = None
 
-            # Start from row 9 (data starts after headers)
-            for idx in range(9, len(df)):
-                try:
-                    row = df.iloc[idx]
+            for i in range(8, len(df)):
+                row = df.iloc[i]
+                period = str(row[1]).strip() if pd.notna(row[1]) else ''
+                wage = row[3] if pd.notna(row[3]) else None
+                yoy = row[4] if pd.notna(row[4]) else None
 
-                    date_val = row[1]
-
-                    if pd.isna(date_val):
-                        continue
-
-                    date_str = str(date_val).strip()
-
-                    if not date_str or date_str.startswith('注') or date_str.startswith('Note'):
-                        continue
-
-                    # Parse date
-                    if '年' in date_str:
-                        year_match = re.search(r'(\d+)年', date_str)
-                        if year_match:
-                            era_year = int(year_match.group(1))
-                            if era_year <= 10:
-                                current_year = 2018 + era_year
-                            elif era_year < 100:
-                                current_year = 1988 + era_year
-                            else:
-                                current_year = era_year
-
-                        month_match = re.search(r'(\d+)月', date_str)
-                        if month_match:
-                            month = int(month_match.group(1))
-                        else:
-                            continue
-                    else:
-                        month_match = re.search(r'(\d+)月', date_str)
-                        if month_match:
-                            month = int(month_match.group(1))
-                        else:
-                            continue
-
-                    if current_year is None:
-                        continue
-
-                    date_string = f"{current_year}-{month:02d}-01"
-
-                    # Get values from columns H, I, J (indices 7, 8, 9)
-                    col_h = row[7]  # 所定内給与
-                    col_i = row[8]  # 一般
-                    col_j = row[9]  # パート
-
-                    if pd.notna(col_h) and col_h != '':
-                        try:
-                            value = float(col_h)
-                            scheduled_wage_data.append({
-                                "date": date_string,
-                                "value": round(value, 1)
-                            })
-                        except (ValueError, TypeError):
-                            pass
-
-                    if pd.notna(col_i) and col_i != '':
-                        try:
-                            value = float(col_i)
-                            general_data.append({
-                                "date": date_string,
-                                "value": round(value, 1)
-                            })
-                        except (ValueError, TypeError):
-                            pass
-
-                    if pd.notna(col_j) and col_j != '':
-                        try:
-                            value = float(col_j)
-                            part_time_data.append({
-                                "date": date_string,
-                                "value": round(value, 1)
-                            })
-                        except (ValueError, TypeError):
-                            pass
-
-                except Exception as e:
-                    logger.debug(f"Error processing row {idx}: {e}")
+                if not period or wage is None:
                     continue
 
-            # Sort by date
-            scheduled_wage_data.sort(key=lambda x: x["date"])
-            general_data.sort(key=lambda x: x["date"])
-            part_time_data.sort(key=lambda x: x["date"])
+                # 年月を解析
+                year_match = re.search(r'(\d{4})年', period)
+                month_match = re.search(r'([０-９\d]+)月', period)
 
-            # Filter to data from 2000 onwards
-            cutoff_date = "2000-01-01"
-            scheduled_wage_data = [point for point in scheduled_wage_data if point["date"] >= cutoff_date]
-            general_data = [point for point in general_data if point["date"] >= cutoff_date]
-            part_time_data = [point for point in part_time_data if point["date"] >= cutoff_date]
+                if year_match:
+                    current_year = int(year_match.group(1))
 
-            logger.info(f"Processed: {len(scheduled_wage_data)} scheduled, {len(general_data)} general, {len(part_time_data)} part-time")
+                if '年' in period and '月' not in period:
+                    # 年平均（スキップ）
+                    continue
+                elif month_match:
+                    month_str = month_match.group(1)
+                    # 全角数字を半角に変換
+                    month_str = month_str.translate(str.maketrans('０１２３４５６７８９', '0123456789'))
+                    month = int(month_str)
 
-            if scheduled_wage_data:
-                logger.info(f"Date range: {scheduled_wage_data[0]['date']} to {scheduled_wage_data[-1]['date']}")
+                    if current_year and yoy is not None:
+                        date_str = f'{current_year}-{month:02d}-01'
+                        data[date_str] = round(float(yoy), 1)
 
-            return {
-                "scheduled_wage": {
-                    "data": scheduled_wage_data,
-                    "latest": scheduled_wage_data[-1] if scheduled_wage_data else None,
-                },
-                "general": {
-                    "data": general_data,
-                    "latest": general_data[-1] if general_data else None,
-                },
-                "part_time": {
-                    "data": part_time_data,
-                    "latest": part_time_data[-1] if part_time_data else None,
-                },
-            }
+            # 結果を整形
+            result = [{"date": date, "value": value} for date, value in sorted(data.items())]
+
+            logger.info(f"Loaded {len(result)} hourly wage data points from e-Stat")
+            return result if result else None
 
         except Exception as e:
-            logger.error(f"Error processing scheduled wage dataframe: {e}")
+            logger.error(f"Error loading hourly wage from e-Stat: {e}")
             import traceback
             traceback.print_exc()
             return None
+
+    def _load_single_series(self, url: str, name: str, search_start_row: int) -> Optional[List[Dict[str, Any]]]:
+        """e-Stat Excelから単一系列を取得"""
+        try:
+            logger.info(f"Downloading {name} data from e-Stat: {url}")
+
+            response = requests.get(url, timeout=60)
+            if response.status_code != 200:
+                logger.error(f"Failed to download {name} from e-Stat: {response.status_code}")
+                return None
+
+            df = pd.read_excel(BytesIO(response.content), sheet_name=0, header=None)
+            return self._process_excel(df, name, search_start_row)
+
+        except Exception as e:
+            logger.error(f"Error fetching {name} data from e-Stat: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def _process_excel(self, df: pd.DataFrame, name: str, search_start_row: int) -> List[Dict[str, Any]]:
+        """
+        所定内給与Excelデータを処理
+
+        Excel構造:
+        - 前年比セクション以降のデータを抽出
+          - Column 0: 年
+          - Column 1: 年平均
+          - Column 8-19: 1月〜12月
+        """
+        try:
+            logger.info(f"Processing scheduled wage Excel ({name}) with shape: {df.shape}")
+
+            result = []
+
+            # Find the YoY section (前年比)
+            yoy_start_row = None
+            for i in range(search_start_row, min(search_start_row + 30, len(df))):
+                cell = str(df.iloc[i, 0]) if pd.notna(df.iloc[i, 0]) else ""
+                if "前年比" in cell or "Year-on-year" in cell or "growth rate" in cell.lower():
+                    yoy_start_row = i + 3  # Skip header rows
+                    break
+
+            if yoy_start_row is None:
+                # Try alternative detection - look for numeric year
+                for i in range(search_start_row + 10, min(search_start_row + 40, len(df))):
+                    cell = df.iloc[i, 0]
+                    if pd.notna(cell):
+                        try:
+                            year = int(cell)
+                            if 1950 <= year <= 2100:
+                                yoy_start_row = i
+                                break
+                        except (ValueError, TypeError):
+                            continue
+
+            if yoy_start_row is None:
+                logger.error(f"Could not find YoY section in Excel ({name})")
+                return []
+
+            logger.info(f"YoY section starts at row {yoy_start_row} ({name})")
+
+            # Process YoY data
+            for i in range(yoy_start_row, len(df)):
+                row = df.iloc[i]
+                year_val = row[0]
+
+                if pd.isna(year_val):
+                    continue
+
+                try:
+                    year = int(year_val)
+                except (ValueError, TypeError):
+                    continue
+
+                if year < 1950 or year > 2100:
+                    continue
+
+                # Process each month (columns 8-19 for Jan-Dec)
+                for month in range(1, 13):
+                    col_idx = 7 + month  # Column 8 = Jan, 9 = Feb, ..., 19 = Dec
+                    value = row[col_idx]
+
+                    if pd.isna(value) or value == '-' or value == '':
+                        continue
+
+                    try:
+                        val = float(value)
+                        date_str = f"{year}-{month:02d}-01"
+
+                        # Only include data from 2000 onwards
+                        if year >= 2000:
+                            result.append({
+                                "date": date_str,
+                                "value": round(val, 1)
+                            })
+                    except (ValueError, TypeError):
+                        continue
+
+            # Sort by date
+            result.sort(key=lambda x: x["date"])
+
+            logger.info(f"Processed {len(result)} {name} data points")
+            if result:
+                logger.info(f"Date range: {result[0]['date']} to {result[-1]['date']}")
+                logger.info(f"Latest value: {result[-1]}")
+
+            return result
+
+        except Exception as e:
+            logger.error(f"Error processing Excel ({name}): {e}")
+            import traceback
+            traceback.print_exc()
+            return []
 
     def _load_from_fmp_db(self) -> List[Dict[str, Any]]:
         """FMP economic_calendar_eventsからAverage Cash Earnings YoYデータを取得"""
@@ -524,7 +567,11 @@ class ScheduledWageService:
         db_data: Optional[Dict[str, Any]],
         estat_data: Optional[Dict[str, Any]]
     ) -> Optional[Dict[str, Any]]:
-        """DBデータとe-Statデータをマージ"""
+        """DBデータとe-Statデータをマージ
+
+        注: part_time_wageとpart_time_hourlyはe-Statから取得するため、
+        DBデータとマージせずe-Statデータのみを使用する
+        """
         if not db_data and not estat_data:
             return None
 
@@ -537,10 +584,12 @@ class ScheduledWageService:
         result = {
             "scheduled_wage": {"data": [], "latest": None},
             "general": {"data": [], "latest": None},
-            "part_time": {"data": [], "latest": None},
+            "part_time_wage": {"data": [], "latest": None},
+            "part_time_hourly": {"data": [], "latest": None},
         }
 
-        for key in ["scheduled_wage", "general", "part_time"]:
+        # scheduled_wage と general はDBとe-Statをマージ
+        for key in ["scheduled_wage", "general"]:
             db_series = db_data.get(key, {}).get("data", []) if db_data.get(key) else []
             estat_series = estat_data.get(key, {}).get("data", []) if estat_data.get(key) else []
 
@@ -556,6 +605,23 @@ class ScheduledWageService:
                 "data": merged_list,
                 "latest": merged_list[-1] if merged_list else None,
             }
+
+        # part_time_wage はe-Statからのみ取得（DBデータは使わない）
+        estat_ptw = estat_data.get("part_time_wage", {}) if estat_data else {}
+        estat_ptw_data = estat_ptw.get("data", []) if estat_ptw else []
+        result["part_time_wage"] = {
+            "data": estat_ptw_data,
+            "latest": estat_ptw_data[-1] if estat_ptw_data else None,
+        }
+
+        # part_time_hourly はe-Statの時間当たり給与シートのみを使用（DBデータは使わない）
+        # 理由: 厚労省の計算方法（実額から時間当たり給与を計算）と異なるため
+        estat_pth = estat_data.get("part_time_hourly", {}) if estat_data else {}
+        estat_pth_data = estat_pth.get("data", []) if estat_pth else []
+        result["part_time_hourly"] = {
+            "data": estat_pth_data,
+            "latest": estat_pth_data[-1] if estat_pth_data else None,
+        }
 
         return result
 
@@ -650,15 +716,18 @@ class ScheduledWageService:
 
         scheduled_wage_count = 0
         general_count = 0
-        part_time_count = 0
+        part_time_wage_count = 0
+        part_time_hourly_count = 0
 
         if cached_data:
             sw = cached_data.get("scheduled_wage")
             gen = cached_data.get("general")
-            pt = cached_data.get("part_time")
+            ptw = cached_data.get("part_time_wage")
+            pth = cached_data.get("part_time_hourly")
             scheduled_wage_count = len(sw.get("data", [])) if sw else 0
             general_count = len(gen.get("data", [])) if gen else 0
-            part_time_count = len(pt.get("data", [])) if pt else 0
+            part_time_wage_count = len(ptw.get("data", [])) if ptw else 0
+            part_time_hourly_count = len(pth.get("data", [])) if pth else 0
 
         return {
             "indicator": "JP Scheduled Wage (所定内給与 - e-Stat版)",
@@ -669,7 +738,8 @@ class ScheduledWageService:
             "data_count": {
                 "scheduled_wage": scheduled_wage_count,
                 "general": general_count,
-                "part_time": part_time_count,
+                "part_time_wage": part_time_wage_count,
+                "part_time_hourly": part_time_hourly_count,
             },
             "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
             "file_cache_exists": DATA_CACHE_FILE.exists()

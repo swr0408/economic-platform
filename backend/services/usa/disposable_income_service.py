@@ -36,7 +36,7 @@ DSPI_SERIES_ID = "DSPI"       # 名目可処分所得（10億ドル、季節調�
 DSPIC96_SERIES_ID = "DSPIC96" # 実質可処分所得（2017年基準、10億ドル、季節調整済み年率換算）
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "disposable_income_cache.json"
 

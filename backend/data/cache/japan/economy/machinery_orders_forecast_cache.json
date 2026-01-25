@@ -1,0 +1,666 @@
+[
+  {
+    "date": "2025-12-01",
+    "achievement_rate": null,
+    "actual_amount": null,
+    "forecast_amount": 2696135.0,
+    "unit": "百万円",
+    "qoq_change": 0.2
+  },
+  {
+    "date": "2025-09-01",
+    "achievement_rate": 97.08671,
+    "actual_amount": 2689581.0,
+    "forecast_amount": 2784123.0,
+    "unit": "百万円",
+    "qoq_change": 1.8
+  },
+  {
+    "date": "2025-06-01",
+    "achievement_rate": 96.09018,
+    "actual_amount": 2735095.0,
+    "forecast_amount": 2718333.0,
+    "unit": "百万円",
+    "qoq_change": -9.6
+  },
+  {
+    "date": "2025-03-01",
+    "achievement_rate": 98.24298,
+    "actual_amount": 3006809.0,
+    "forecast_amount": 3093493.0,
+    "unit": "百万円",
+    "qoq_change": 20.4
+  },
+  {
+    "date": "2024-12-01",
+    "achievement_rate": 91.21064,
+    "actual_amount": 2569890.0,
+    "forecast_amount": 2801896.0,
+    "unit": "百万円",
+    "qoq_change": 11.0
+  },
+  {
+    "date": "2024-09-01",
+    "achievement_rate": 91.73539,
+    "actual_amount": 2523491.0,
+    "forecast_amount": 2818368.0,
+    "unit": "百万円",
+    "qoq_change": 9.5
+  },
+  {
+    "date": "2024-06-01",
+    "achievement_rate": 94.46739,
+    "actual_amount": 2573212.0,
+    "forecast_amount": 2608871.0,
+    "unit": "百万円",
+    "qoq_change": -8.3
+  },
+  {
+    "date": "2024-03-01",
+    "achievement_rate": 92.09559,
+    "actual_amount": 2846479.0,
+    "forecast_amount": 3132451.0,
+    "unit": "百万円",
+    "qoq_change": 29.9
+  },
+  {
+    "date": "2023-12-01",
+    "achievement_rate": 93.6758,
+    "actual_amount": 2411462.0,
+    "forecast_amount": 2574318.0,
+    "unit": "百万円",
+    "qoq_change": 1.6
+  },
+  {
+    "date": "2023-09-01",
+    "achievement_rate": 94.90237,
+    "actual_amount": 2532534.0,
+    "forecast_amount": 2680605.0,
+    "unit": "百万円",
+    "qoq_change": 7.0
+  },
+  {
+    "date": "2023-06-01",
+    "achievement_rate": 89.28878,
+    "actual_amount": 2506346.0,
+    "forecast_amount": 2723862.0,
+    "unit": "百万円",
+    "qoq_change": -6.2
+  },
+  {
+    "date": "2023-03-01",
+    "achievement_rate": 98.85886,
+    "actual_amount": 2904670.0,
+    "forecast_amount": 2962624.0,
+    "unit": "百万円",
+    "qoq_change": 19.8
+  },
+  {
+    "date": "2022-12-01",
+    "achievement_rate": 92.5919,
+    "actual_amount": 2473502.0,
+    "forecast_amount": 2692863.0,
+    "unit": "百万円",
+    "qoq_change": -1.4
+  },
+  {
+    "date": "2022-09-01",
+    "achievement_rate": 99.71768,
+    "actual_amount": 2730169.0,
+    "forecast_amount": 2738355.0,
+    "unit": "百万円",
+    "qoq_change": 2.0
+  },
+  {
+    "date": "2022-06-01",
+    "achievement_rate": 106.55334,
+    "actual_amount": 2685357.0,
+    "forecast_amount": 2462178.0,
+    "unit": "百万円",
+    "qoq_change": -13.7
+  },
+  {
+    "date": "2022-03-01",
+    "achievement_rate": 93.01077,
+    "actual_amount": 2852791.0,
+    "forecast_amount": 3061470.0,
+    "unit": "百万円",
+    "qoq_change": 19.3
+  },
+  {
+    "date": "2021-12-01",
+    "achievement_rate": 97.07,
+    "actual_amount": 2566034.0,
+    "forecast_amount": 2636945.0,
+    "unit": "百万円",
+    "qoq_change": 4.2
+  },
+  {
+    "date": "2021-09-01",
+    "achievement_rate": 90.5611,
+    "actual_amount": 2530749.0,
+    "forecast_amount": 2802550.0,
+    "unit": "百万円",
+    "qoq_change": 15.6
+  },
+  {
+    "date": "2021-06-01",
+    "achievement_rate": 96.74157,
+    "actual_amount": 2423651.0,
+    "forecast_amount": 2462000.0,
+    "unit": "百万円",
+    "qoq_change": -8.4
+  },
+  {
+    "date": "2021-03-01",
+    "achievement_rate": 95.33841,
+    "actual_amount": 2688134.0,
+    "forecast_amount": 2790819.0,
+    "unit": "百万円",
+    "qoq_change": 15.7
+  },
+  {
+    "date": "2020-12-01",
+    "achievement_rate": 103.9991,
+    "actual_amount": 2412068.0,
+    "forecast_amount": 2313375.0,
+    "unit": "百万円",
+    "qoq_change": 3.6
+  },
+  {
+    "date": "2020-09-01",
+    "achievement_rate": 91.95983,
+    "actual_amount": 2233633.0,
+    "forecast_amount": 2457992.0,
+    "unit": "百万円",
+    "qoq_change": 14.2
+  },
+  {
+    "date": "2020-06-01",
+    "achievement_rate": 84.07299,
+    "actual_amount": 2153209.0,
+    "forecast_amount": 2543175.0,
+    "unit": "百万円",
+    "qoq_change": -7.8
+  },
+  {
+    "date": "2020-03-01",
+    "achievement_rate": 94.60665,
+    "actual_amount": 2758133.0,
+    "forecast_amount": 2957308.0,
+    "unit": "百万円",
+    "qoq_change": 24.0
+  },
+  {
+    "date": "2019-12-01",
+    "achievement_rate": 88.47847,
+    "actual_amount": 2384604.0,
+    "forecast_amount": 2688825.0,
+    "unit": "百万円",
+    "qoq_change": 3.5
+  },
+  {
+    "date": "2019-09-01",
+    "achievement_rate": 96.81243,
+    "actual_amount": 2598911.0,
+    "forecast_amount": 2747182.0,
+    "unit": "百万円",
+    "qoq_change": 3.2
+  },
+  {
+    "date": "2019-06-01",
+    "achievement_rate": 95.93548,
+    "actual_amount": 2662000.0,
+    "forecast_amount": 2737708.0,
+    "unit": "百万円",
+    "qoq_change": -1.8
+  },
+  {
+    "date": "2019-03-01",
+    "achievement_rate": 94.87168,
+    "actual_amount": 2786817.0,
+    "forecast_amount": 2955278.0,
+    "unit": "百万円",
+    "qoq_change": 22.1
+  },
+  {
+    "date": "2018-12-01",
+    "achievement_rate": 93.98236,
+    "actual_amount": 2421014.0,
+    "forecast_amount": 2571389.0,
+    "unit": "百万円",
+    "qoq_change": -3.7
+  },
+  {
+    "date": "2018-09-01",
+    "achievement_rate": 102.85973,
+    "actual_amount": 2670862.0,
+    "forecast_amount": 2667826.0,
+    "unit": "百万円",
+    "qoq_change": 4.3
+  },
+  {
+    "date": "2018-06-01",
+    "achievement_rate": 99.91703,
+    "actual_amount": 2557707.0,
+    "forecast_amount": 2499354.0,
+    "unit": "百万円",
+    "qoq_change": -12.6
+  },
+  {
+    "date": "2018-03-01",
+    "achievement_rate": 103.23566,
+    "actual_amount": 2859530.0,
+    "forecast_amount": 2822288.0,
+    "unit": "百万円",
+    "qoq_change": 18.9
+  },
+  {
+    "date": "2017-12-01",
+    "achievement_rate": 101.13893,
+    "actual_amount": 2373538.0,
+    "forecast_amount": 2340975.0,
+    "unit": "百万円",
+    "qoq_change": -8.1
+  },
+  {
+    "date": "2017-09-01",
+    "achievement_rate": 99.05033,
+    "actual_amount": 2547716.0,
+    "forecast_amount": 2586471.0,
+    "unit": "百万円",
+    "qoq_change": 9.3
+  },
+  {
+    "date": "2017-06-01",
+    "achievement_rate": 103.46598,
+    "actual_amount": 2367245.0,
+    "forecast_amount": 2207663.0,
+    "unit": "百万円",
+    "qoq_change": -22.7
+  },
+  {
+    "date": "2017-03-01",
+    "achievement_rate": 97.38636,
+    "actual_amount": 2854590.0,
+    "forecast_amount": 2923022.0,
+    "unit": "百万円",
+    "qoq_change": 23.2
+  },
+  {
+    "date": "2016-12-01",
+    "achievement_rate": 101.79786,
+    "actual_amount": 2372506.0,
+    "forecast_amount": 2368504.0,
+    "unit": "百万円",
+    "qoq_change": -9.4
+  },
+  {
+    "date": "2016-09-01",
+    "achievement_rate": 101.80573,
+    "actual_amount": 2612958.0,
+    "forecast_amount": 2556075.0,
+    "unit": "百万円",
+    "qoq_change": 6.9
+  },
+  {
+    "date": "2016-06-01",
+    "achievement_rate": 96.12633,
+    "actual_amount": 2391313.0,
+    "forecast_amount": 2370444.0,
+    "unit": "百万円",
+    "qoq_change": -17.8
+  },
+  {
+    "date": "2016-03-01",
+    "achievement_rate": 101.71213,
+    "actual_amount": 2883228.0,
+    "forecast_amount": 2858686.0,
+    "unit": "百万円",
+    "qoq_change": 24.8
+  },
+  {
+    "date": "2015-12-01",
+    "achievement_rate": 100.35282,
+    "actual_amount": 2289817.0,
+    "forecast_amount": 2350081.0,
+    "unit": "百万円",
+    "qoq_change": -4.2
+  },
+  {
+    "date": "2015-09-01",
+    "achievement_rate": 96.15326,
+    "actual_amount": 2452709.0,
+    "forecast_amount": 2541143.0,
+    "unit": "百万円",
+    "qoq_change": -0.7
+  },
+  {
+    "date": "2015-06-01",
+    "achievement_rate": 110.35215,
+    "actual_amount": 2558021.0,
+    "forecast_amount": 2233906.0,
+    "unit": "百万円",
+    "qoq_change": -19.9
+  },
+  {
+    "date": "2015-03-01",
+    "achievement_rate": 100.99172,
+    "actual_amount": 2788543.0,
+    "forecast_amount": 2768550.0,
+    "unit": "百万円",
+    "qoq_change": 23.5
+  },
+  {
+    "date": "2014-12-01",
+    "achievement_rate": 98.5305,
+    "actual_amount": 2241871.0,
+    "forecast_amount": 2366725.0,
+    "unit": "百万円",
+    "qoq_change": -4.4
+  },
+  {
+    "date": "2014-09-01",
+    "achievement_rate": 101.09934,
+    "actual_amount": 2475053.0,
+    "forecast_amount": 2409317.0,
+    "unit": "百万円",
+    "qoq_change": 5.9
+  },
+  {
+    "date": "2014-06-01",
+    "achievement_rate": 90.58137,
+    "actual_amount": 2275058.0,
+    "forecast_amount": 2366919.0,
+    "unit": "百万円",
+    "qoq_change": -12.3
+  },
+  {
+    "date": "2014-03-01",
+    "achievement_rate": 104.78332,
+    "actual_amount": 2700051.0,
+    "forecast_amount": 2626490.0,
+    "unit": "百万円",
+    "qoq_change": 14.2
+  },
+  {
+    "date": "2013-12-01",
+    "achievement_rate": 98.65318,
+    "actual_amount": 2300603.0,
+    "forecast_amount": 2412549.0,
+    "unit": "百万円",
+    "qoq_change": -0.2
+  },
+  {
+    "date": "2013-09-01",
+    "achievement_rate": 98.50604,
+    "actual_amount": 2417476.0,
+    "forecast_amount": 2455328.0,
+    "unit": "百万円",
+    "qoq_change": 7.5
+  },
+  {
+    "date": "2013-06-01",
+    "achievement_rate": 96.94203,
+    "actual_amount": 2284874.0,
+    "forecast_amount": 2235547.0,
+    "unit": "百万円",
+    "qoq_change": -3.7
+  },
+  {
+    "date": "2013-03-01",
+    "achievement_rate": 86.51708,
+    "actual_amount": 2320238.0,
+    "forecast_amount": 2672569.0,
+    "unit": "百万円",
+    "qoq_change": 31.7
+  },
+  {
+    "date": "2012-12-01",
+    "achievement_rate": 87.29784,
+    "actual_amount": 2029649.0,
+    "forecast_amount": 2418086.0,
+    "unit": "百万円",
+    "qoq_change": 9.6
+  },
+  {
+    "date": "2012-09-01",
+    "achievement_rate": 92.00557,
+    "actual_amount": 2205776.0,
+    "forecast_amount": 2391639.0,
+    "unit": "百万円",
+    "qoq_change": 11.4
+  },
+  {
+    "date": "2012-06-01",
+    "achievement_rate": 91.57985,
+    "actual_amount": 2146942.0,
+    "forecast_amount": 2243626.0,
+    "unit": "百万円",
+    "qoq_change": -7.7
+  },
+  {
+    "date": "2012-03-01",
+    "achievement_rate": 92.34474,
+    "actual_amount": 2431012.0,
+    "forecast_amount": 2641175.0,
+    "unit": "百万円",
+    "qoq_change": 29.1
+  },
+  {
+    "date": "2011-12-01",
+    "achievement_rate": 93.75904,
+    "actual_amount": 2045805.0,
+    "forecast_amount": 2305835.0,
+    "unit": "百万円",
+    "qoq_change": -0.3
+  },
+  {
+    "date": "2011-09-01",
+    "achievement_rate": 92.52213,
+    "actual_amount": 2312182.0,
+    "forecast_amount": 2454254.0,
+    "unit": "百万円",
+    "qoq_change": 12.3
+  },
+  {
+    "date": "2011-06-01",
+    "achievement_rate": 91.48249,
+    "actual_amount": 2185165.0,
+    "forecast_amount": 2250635.0,
+    "unit": "百万円",
+    "qoq_change": -4.3
+  },
+  {
+    "date": "2011-03-01",
+    "achievement_rate": 94.98834,
+    "actual_amount": 2352953.0,
+    "forecast_amount": 2467784.0,
+    "unit": "百万円",
+    "qoq_change": 28.7
+  },
+  {
+    "date": "2010-12-01",
+    "achievement_rate": 95.87961,
+    "actual_amount": 1917736.0,
+    "forecast_amount": 2111963.0,
+    "unit": "百万円",
+    "qoq_change": -3.4
+  },
+  {
+    "date": "2010-09-01",
+    "achievement_rate": 95.54181,
+    "actual_amount": 2186314.0,
+    "forecast_amount": 2277904.0,
+    "unit": "百万円",
+    "qoq_change": 14.4
+  },
+  {
+    "date": "2010-06-01",
+    "achievement_rate": 91.72155,
+    "actual_amount": 1991029.0,
+    "forecast_amount": 2036932.0,
+    "unit": "百万円",
+    "qoq_change": -5.7
+  },
+  {
+    "date": "2010-03-01",
+    "achievement_rate": 90.25699,
+    "actual_amount": 2160420.0,
+    "forecast_amount": 2389514.0,
+    "unit": "百万円",
+    "qoq_change": 31.6
+  },
+  {
+    "date": "2009-12-01",
+    "achievement_rate": 89.65581,
+    "actual_amount": 1815399.0,
+    "forecast_amount": 2128236.0,
+    "unit": "百万円",
+    "qoq_change": 10.8
+  },
+  {
+    "date": "2009-09-01",
+    "achievement_rate": 91.43737,
+    "actual_amount": 1920049.0,
+    "forecast_amount": 2109661.0,
+    "unit": "百万円",
+    "qoq_change": 14.4
+  },
+  {
+    "date": "2009-06-01",
+    "achievement_rate": 89.54206,
+    "actual_amount": 1844598.0,
+    "forecast_amount": 1929284.0,
+    "unit": "百万円",
+    "qoq_change": -9.5
+  },
+  {
+    "date": "2009-03-01",
+    "achievement_rate": 85.27413,
+    "actual_amount": 2131808.0,
+    "forecast_amount": 2518202.0,
+    "unit": "百万円",
+    "qoq_change": 20.6
+  },
+  {
+    "date": "2008-12-01",
+    "achievement_rate": 84.89567,
+    "actual_amount": 2088015.0,
+    "forecast_amount": 2609363.0,
+    "unit": "百万円",
+    "qoq_change": -2.6
+  },
+  {
+    "date": "2008-09-01",
+    "achievement_rate": 92.78459,
+    "actual_amount": 2679056.0,
+    "forecast_amount": 2915884.0,
+    "unit": "百万円",
+    "qoq_change": 3.3
+  },
+  {
+    "date": "2008-06-01",
+    "achievement_rate": 97.85291,
+    "actual_amount": 2823192.0,
+    "forecast_amount": 2639919.0,
+    "unit": "百万円",
+    "qoq_change": -12.2
+  },
+  {
+    "date": "2008-03-01",
+    "achievement_rate": 98.71795,
+    "actual_amount": 3006265.0,
+    "forecast_amount": 3188327.0,
+    "unit": "百万円",
+    "qoq_change": 18.3
+  },
+  {
+    "date": "2007-12-01",
+    "achievement_rate": 98.6826,
+    "actual_amount": 2695135.0,
+    "forecast_amount": 2841515.0,
+    "unit": "百万円",
+    "qoq_change": 1.4
+  },
+  {
+    "date": "2007-09-01",
+    "achievement_rate": 97.78162,
+    "actual_amount": 2802712.0,
+    "forecast_amount": 2942644.0,
+    "unit": "百万円",
+    "qoq_change": 9.8
+  },
+  {
+    "date": "2007-06-01",
+    "achievement_rate": 94.15848,
+    "actual_amount": 2680027.0,
+    "forecast_amount": 2639776.0,
+    "unit": "百万円",
+    "qoq_change": -12.0
+  },
+  {
+    "date": "2007-03-01",
+    "achievement_rate": 97.06362,
+    "actual_amount": 3001342.0,
+    "forecast_amount": 3162498.0,
+    "unit": "百万円",
+    "qoq_change": 16.5
+  },
+  {
+    "date": "2006-12-01",
+    "achievement_rate": 98.26481,
+    "actual_amount": 2715738.0,
+    "forecast_amount": 2850889.0,
+    "unit": "百万円",
+    "qoq_change": -1.8
+  },
+  {
+    "date": "2006-09-01",
+    "achievement_rate": 88.21798,
+    "actual_amount": 2903270.0,
+    "forecast_amount": 3318422.0,
+    "unit": "百万円",
+    "qoq_change": 10.3
+  },
+  {
+    "date": "2006-06-01",
+    "achievement_rate": 102.97942,
+    "actual_amount": 3009232.0,
+    "forecast_amount": 2689872.0,
+    "unit": "百万円",
+    "qoq_change": -11.8
+  },
+  {
+    "date": "2006-03-01",
+    "achievement_rate": 97.17304,
+    "actual_amount": 3048154.0,
+    "forecast_amount": 3127985.0,
+    "unit": "百万円",
+    "qoq_change": 15.2
+  },
+  {
+    "date": "2005-12-01",
+    "achievement_rate": 104.09452,
+    "actual_amount": 2714202.0,
+    "forecast_amount": 2723040.0,
+    "unit": "百万円",
+    "qoq_change": -5.4
+  },
+  {
+    "date": "2005-09-01",
+    "achievement_rate": 103.57293,
+    "actual_amount": 2878483.0,
+    "forecast_amount": 2789639.0,
+    "unit": "百万円",
+    "qoq_change": 7.6
+  },
+  {
+    "date": "2005-06-01",
+    "achievement_rate": 96.11275,
+    "actual_amount": 2593128.0,
+    "forecast_amount": 2490745.0,
+    "unit": "百万円",
+    "qoq_change": null
+  }
+]

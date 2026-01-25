@@ -39,7 +39,7 @@ from services.usa.chicago_fed_schedule_utils import (
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "inflation"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "inflation"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "retail_food_services_price_cache.json"
 

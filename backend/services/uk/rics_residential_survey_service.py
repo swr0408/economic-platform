@@ -32,7 +32,7 @@ LONDON = ZoneInfo("Europe/London")
 
 # キャッシュ設定
 REDIS_KEY = "uk:rics:residential_survey"
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "uk" / "housing"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "uk" / "housing"
 CACHE_FILE = CACHE_DIR / "rics_residential_survey.json"
 IMAGE_CACHE_DIR = CACHE_DIR / "rics_survey_images"
 

@@ -16,7 +16,7 @@ class FOMCScheduleService:
     """FRB公式サイトからFOMCスケジュールを取得するサービス"""
 
     SCHEDULE_URL = "https://www.federalreserve.gov/newsevents/pressreleases/monetary20240809a.htm"
-    CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "fomc_schedule"
+    CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "fomc_schedule"
     CACHE_FILE = "fomc_schedule.json"
     CACHE_EXPIRY_DAYS = 30  # 30日間キャッシュ
 

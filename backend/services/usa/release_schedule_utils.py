@@ -1657,7 +1657,7 @@ class VisaSpendingScheduleChecker:
 # Visa Spending用チェッカーインスタンス
 # スケジュールファイルは backend/cache/usa/consumer/visa_spending_schedule.json に配置
 from pathlib import Path as _Path
-_VISA_SCHEDULE_FILE = _Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer" / "visa_spending_schedule.json"
+_VISA_SCHEDULE_FILE = _Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer" / "visa_spending_schedule.json"
 
 VISA_SPENDING_CHECKER = VisaSpendingScheduleChecker(
     schedule_file=str(_VISA_SCHEDULE_FILE),

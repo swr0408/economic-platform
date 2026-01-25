@@ -74,7 +74,7 @@ SERIES_CONFIG = {
 }
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "unemployment_by_reason_cache.json"
 

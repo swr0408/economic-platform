@@ -1,6 +1,6 @@
 """
 ユーロ圏経済ダッシュボードローダー
-ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策不確実性指数、PMI、ドイツGDP成長率などの経済指標を一括取得
+ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策不確実性指数、PMI、ドイツGDP成長率、ドイツ鉱工業生産、ドイツ製造業新規受注、ZEW景況感、フランスPMIなどの経済指標を一括取得
 
 キャッシュ更新判定: 日次更新方式
 - ECB GDP: 毎日18:00 CET更新
@@ -11,6 +11,11 @@ ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策�
 - Euro Policy Uncertainty: 24時間TTL更新
 - EU PMI: FMP発表日時ベース更新
 - Germany GDP Growth: FMP発表日時ベース更新
+- Germany Industrial Production: FMP発表日時ベース更新
+- Germany Factory Orders: FMP発表日時ベース更新
+- ZEW Economic Sentiment: FMP発表日時ベース更新
+- Germany PMI: FMP発表日時ベース更新
+- France PMI: FMP発表日時ベース更新
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -37,6 +42,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
     - euro_policy_uncertainty: 欧州経済政策不確実性指数
     - eu_pmi: HCOB PMI（製造業・サービス業・総合）
     - germany_gdp_growth: ドイツGDP成長率（前期比・前年比）
+    - germany_industrial_production: ドイツ鉱工業生産（前月比・前年比）
+    - germany_factory_orders: ドイツ製造業新規受注（前月比・前年比）
+    - zew_economic_sentiment: ZEW景況感指数（景況感・現況）
+    - germany_pmi: ドイツS&P Global PMI（製造業・サービス業・総合）
+    - france_pmi: フランスHCOB PMI（製造業・サービス業・総合）
 
     キャッシュ方式: 日次更新
     - ECB GDP: 毎日18:00 CET更新
@@ -47,6 +57,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
     - Euro Policy Uncertainty: 24時間TTL更新
     - EU PMI: FMP発表日時ベース更新
     - Germany GDP Growth: FMP発表日時ベース更新
+    - Germany Industrial Production: FMP発表日時ベース更新
+    - Germany Factory Orders: FMP発表日時ベース更新
+    - ZEW Economic Sentiment: FMP発表日時ベース更新
+    - Germany PMI: FMP発表日時ベース更新
+    - France PMI: FMP発表日時ベース更新
     """
 
     COUNTRY_CODE = "eurozone"
@@ -124,6 +139,12 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         from services.eurozone.euro_policy_uncertainty_service import euro_policy_uncertainty_service
         from services.eurozone.eu_pmi_service import eu_pmi_service
         from services.eurozone.germany_gdp_growth_service import germany_gdp_growth_service
+        from services.eurozone.germany_industrial_production_service import germany_industrial_production_service
+        from services.eurozone.germany_factory_orders_service import germany_factory_orders_service
+        from services.eurozone.zew_economic_sentiment_service import zew_economic_sentiment_service
+        from services.eurozone.ifo_business_climate_service import ifo_business_climate_service
+        from services.eurozone.germany_pmi_service import germany_pmi_service
+        from services.eurozone.france_pmi_service import france_pmi_service
 
         result = {
             "ecb_gdp": None,
@@ -134,10 +155,16 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
             "euro_policy_uncertainty": None,
             "eu_pmi": None,
             "germany_gdp_growth": None,
+            "germany_industrial_production": None,
+            "germany_factory_orders": None,
+            "zew_economic_sentiment": None,
+            "ifo_business_climate": None,
+            "germany_pmi": None,
+            "france_pmi": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=10) as executor:
             futures = {
                 executor.submit(self._get_ecb_gdp, ecb_gdp_service): "ecb_gdp",
                 executor.submit(self._get_ecb_gdp_components, ecb_gdp_components_service): "ecb_gdp_components",
@@ -147,6 +174,12 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_euro_policy_uncertainty, euro_policy_uncertainty_service): "euro_policy_uncertainty",
                 executor.submit(self._get_eu_pmi, eu_pmi_service): "eu_pmi",
                 executor.submit(self._get_germany_gdp_growth, germany_gdp_growth_service): "germany_gdp_growth",
+                executor.submit(self._get_germany_industrial_production, germany_industrial_production_service): "germany_industrial_production",
+                executor.submit(self._get_germany_factory_orders, germany_factory_orders_service): "germany_factory_orders",
+                executor.submit(self._get_zew_economic_sentiment, zew_economic_sentiment_service): "zew_economic_sentiment",
+                executor.submit(self._get_ifo_business_climate, ifo_business_climate_service): "ifo_business_climate",
+                executor.submit(self._get_germany_pmi, germany_pmi_service): "germany_pmi",
+                executor.submit(self._get_france_pmi, france_pmi_service): "france_pmi",
             }
 
             for future in as_completed(futures):
@@ -278,3 +311,120 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting Germany GDP Growth: {e}")
             return {"gdp_growth_qoq": [], "gdp_growth_yoy": [], "metadata": {}, "next_release": None}
+
+    def _get_germany_industrial_production(self, service) -> dict:
+        """ドイツ鉱工業生産データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_industrial_production")
+            response = service.get_germany_industrial_production_data(force_refresh=force_refresh)
+            return {
+                "mom": response.get("mom", []),
+                "yoy": response.get("yoy", []),
+                "latest_mom": response.get("latest_mom"),
+                "latest_yoy": response.get("latest_yoy"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany Industrial Production: {e}")
+            return {"mom": [], "yoy": [], "latest_mom": None, "latest_yoy": None, "next_release": None}
+
+    def _get_germany_factory_orders(self, service) -> dict:
+        """ドイツ製造業新規受注データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_factory_orders")
+            response = service.get_germany_factory_orders_data(force_refresh=force_refresh)
+            return {
+                "mom": response.get("mom", []),
+                "yoy": response.get("yoy", []),
+                "domestic_mom": response.get("domestic_mom", []),
+                "domestic_yoy": response.get("domestic_yoy", []),
+                "foreign_mom": response.get("foreign_mom", []),
+                "foreign_yoy": response.get("foreign_yoy", []),
+                "index_total": response.get("index_total", []),
+                "index_domestic": response.get("index_domestic", []),
+                "index_foreign": response.get("index_foreign", []),
+                "latest_mom": response.get("latest_mom"),
+                "latest_yoy": response.get("latest_yoy"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany Factory Orders: {e}")
+            return {
+                "mom": [], "yoy": [],
+                "domestic_mom": [], "domestic_yoy": [],
+                "foreign_mom": [], "foreign_yoy": [],
+                "index_total": [], "index_domestic": [], "index_foreign": [],
+                "latest_mom": None, "latest_yoy": None, "next_release": None
+            }
+
+    def _get_zew_economic_sentiment(self, service) -> dict:
+        """ZEW景況感指数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("zew_economic_sentiment")
+            response = service.get_zew_economic_sentiment_data(force_refresh=force_refresh)
+            return {
+                "sentiment": response.get("sentiment", []),
+                "situation": response.get("situation", []),
+                "latest_sentiment": response.get("latest_sentiment"),
+                "latest_situation": response.get("latest_situation"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ZEW Economic Sentiment: {e}")
+            return {
+                "sentiment": [], "situation": [],
+                "latest_sentiment": None, "latest_situation": None,
+                "next_release": None
+            }
+
+    def _get_ifo_business_climate(self, service) -> dict:
+        """IFO企業景況感指数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ifo_business_climate")
+            response = service.get_ifo_business_climate_data(force_refresh=force_refresh)
+            return {
+                "climate": response.get("climate", []),
+                "current": response.get("current", []),
+                "expectations": response.get("expectations", []),
+                "latest_climate": response.get("latest_climate"),
+                "latest_current": response.get("latest_current"),
+                "latest_expectations": response.get("latest_expectations"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting IFO Business Climate: {e}")
+            return {
+                "climate": [], "current": [], "expectations": [],
+                "latest_climate": None, "latest_current": None, "latest_expectations": None,
+                "next_release": None
+            }
+
+    def _get_germany_pmi(self, service) -> dict:
+        """ドイツS&P Global PMIデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("germany_pmi")
+            response = service.get_germany_pmi_data(force_refresh=force_refresh)
+            return {
+                "manufacturing": response.get("manufacturing"),
+                "services": response.get("services"),
+                "composite": response.get("composite"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Germany PMI: {e}")
+            return {"manufacturing": None, "services": None, "composite": None, "next_release": None}
+
+    def _get_france_pmi(self, service) -> dict:
+        """フランスHCOB PMIデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("france_pmi")
+            response = service.get_france_pmi_data(force_refresh=force_refresh)
+            return {
+                "manufacturing": response.get("manufacturing"),
+                "services": response.get("services"),
+                "composite": response.get("composite"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting France PMI: {e}")
+            return {"manufacturing": None, "services": None, "composite": None, "next_release": None}

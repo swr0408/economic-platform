@@ -15,6 +15,7 @@ from services.dashboard.loaders.usa_housing import USAHousingLoader
 from services.dashboard.loaders.japan_policy import JapanPolicyLoader
 from services.dashboard.loaders.japan_consumer import JapanConsumerLoader
 from services.dashboard.loaders.japan_employment import JapanEmploymentLoader
+from services.dashboard.loaders.japan_economy import JapanEconomyLoader
 from services.dashboard.loaders.eurozone_policy import EurozonePolicyLoader
 from services.dashboard.loaders.eurozone_economy import EurozoneEconomyLoader
 from services.dashboard.loaders.eurozone_consumer import EurozoneConsumerLoader
@@ -41,10 +42,9 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
 
     # 日本
     ("japan", "policy"): JapanPolicyLoader,
+    ("japan", "economy"): JapanEconomyLoader,
     ("japan", "consumer"): JapanConsumerLoader,
     ("japan", "employment"): JapanEmploymentLoader,
-    # ("japan", "economy"): JapanEconomyLoader,  # 将来追加
-
     ("japan", "inflation"): JapanPriceLoader,
 
     # イギリス

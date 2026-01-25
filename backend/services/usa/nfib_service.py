@@ -46,7 +46,7 @@ NFIB_BASE_URL = "https://www.nfib.com"
 NFIB_REPORTS_URL = f"{NFIB_BASE_URL}/news/monthly_report/sbet/"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_FILE = CACHE_DIR / "nfib_optimism_cache.json"
 CACHE_FILE_CAPEX = CACHE_DIR / "nfib_capex_cache.json"

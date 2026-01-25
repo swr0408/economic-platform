@@ -38,6 +38,7 @@ import {
 import {
   LatestValueBox,
   ZERO_LINE_PROPS,
+  ViewModeButtonGroup,
   type TooltipPayloadItem,
 } from '../../usa/common/ChartComponents'
 import {
@@ -54,7 +55,13 @@ import {
 // =============================================================================
 
 // 表示モード
-type ViewMode = 'table' | 'chart'
+type ViewMode = 'qoq_chart' | 'qoq_table'
+
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'qoq_chart', label: '前期比' },
+  { mode: 'qoq_table', label: '前期比（テーブル）' },
+]
 
 // マージ済みデータの型
 interface MergedDataItem {
@@ -158,7 +165,7 @@ const GDPComponentsChart: React.FC = () => {
   const [data, setData] = useState<GDPComponentsData | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(5)
   const [displayCount, setDisplayCount] = useState<number>(10)
 
@@ -368,23 +375,9 @@ const GDPComponentsChart: React.FC = () => {
               children: (
                 <>
                   {/* 表示モード切替 */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <Button
-                        type={viewMode === 'chart' ? 'primary' : 'default'}
-                        onClick={() => setViewMode('chart')}
-                        size="small"
-                      >
-                        前期比グラフ
-                      </Button>
-                      <Button
-                        type={viewMode === 'table' ? 'primary' : 'default'}
-                        onClick={() => { setViewMode('table'); setDisplayCount(INITIAL_COUNT) }}
-                        size="small"
-                      >
-                        前期比テーブル
-                      </Button>
-                    </div>
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={(mode) => { setViewMode(mode); if (mode === 'qoq_table') setDisplayCount(INITIAL_COUNT) }} />
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
                     <Button
                       icon={<AreaChartOutlined />}
                       onClick={() => {
@@ -396,7 +389,7 @@ const GDPComponentsChart: React.FC = () => {
                   </div>
 
                   {/* グラフ表示 */}
-                  {viewMode === 'chart' && (
+                  {viewMode === 'qoq_chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
@@ -432,7 +425,7 @@ const GDPComponentsChart: React.FC = () => {
                   )}
 
                   {/* テーブル表示 */}
-                  {viewMode === 'table' && (
+                  {viewMode === 'qoq_table' && (
                     <>
                       <Table
                         columns={tableColumns}

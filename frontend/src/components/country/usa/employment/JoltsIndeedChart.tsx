@@ -73,8 +73,8 @@ type ViewMode = 'value' | 'jolts_change_chart' | 'jolts_change_table'
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'jolts_change_table', label: 'JOLTS前月増減幅テーブル' },
-  { mode: 'jolts_change_chart', label: 'JOLTS前月増減幅グラフ' },
+  { mode: 'jolts_change_chart', label: 'JOLTS前月増減幅' },
+  { mode: 'jolts_change_table', label: 'JOLTS前月増減幅（テーブル）' },
 ]
 
 // カラー設定（サービスから取得したものを優先、フォールバック用）

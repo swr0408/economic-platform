@@ -43,7 +43,7 @@ MULTIPLE_JOBS_SERIES_ID = "LNS12026619"   # 複数の仕事を持つ人（千人
 PARTTIME_ECON_SERIES_ID = "LNS12032194"   # 経済的理由によるパートタイム（千人）
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "multiple_jobs_parttime_cache.json"
 

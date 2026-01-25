@@ -1,12 +1,13 @@
 /**
  * 所定内給与チャートコンポーネント（日本）- e-Stat版
  *
- * データソース: e-Stat 毎月勤労統計調査（付表シート）
+ * データソース: e-Stat 毎月勤労統計調査
  *
  * 表示:
- * - 所定内給与 前年比 (Column H)
- * - 一般 前年比 (Column I)
- * - パート 前年比 (Column J)
+ * - 所定内給与 前年比
+ * - 一般 前年比
+ * - パート 前年比
+ * - パート時間当 前年比（所定内給与÷所定内労働時間）
  */
 import { useState, useMemo } from 'react'
 import { Tabs, Button, Tooltip } from 'antd'
@@ -41,14 +42,16 @@ interface ChartDataPoint {
   date: string
   scheduled_wage: number | null
   general: number | null
-  part_time: number | null
+  part_time_wage: number | null
+  part_time_hourly: number | null
 }
 
 // グラフの色
 const COLORS = {
   scheduled_wage: '#1890ff',  // 青：所定内給与
   general: '#52c41a',         // 緑：一般
-  part_time: '#722ed1',       // 紫：パート
+  part_time_wage: '#fa8c16',  // オレンジ：パート
+  part_time_hourly: '#722ed1', // 紫：パート時間当
 }
 
 // =============================================================================
@@ -135,32 +138,36 @@ export default function ScheduledWageChart({ data }: ScheduledWageChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
 
-  // チャートデータに変換（3系列をマージ）
+  // チャートデータに変換（4系列をマージ）
   const chartData = useMemo<ChartDataPoint[]>(() => {
     if (!data) return []
 
     const scheduledWageData = data.scheduled_wage?.data || []
     const generalData = data.general?.data || []
-    const partTimeData = data.part_time?.data || []
+    const partTimeWageData = data.part_time_wage?.data || []
+    const partTimeHourlyData = data.part_time_hourly?.data || []
 
     // 全ての日付を収集
     const dateSet = new Set<string>()
     scheduledWageData.forEach(d => dateSet.add(d.date))
     generalData.forEach(d => dateSet.add(d.date))
-    partTimeData.forEach(d => dateSet.add(d.date))
+    partTimeWageData.forEach(d => dateSet.add(d.date))
+    partTimeHourlyData.forEach(d => dateSet.add(d.date))
 
     const dates = Array.from(dateSet).sort()
 
     // 日付ごとにデータをマージ
-    const generalMap = new Map(generalData.map(d => [d.date, d.value]))
-    const partTimeMap = new Map(partTimeData.map(d => [d.date, d.value]))
     const scheduledWageMap = new Map(scheduledWageData.map(d => [d.date, d.value]))
+    const generalMap = new Map(generalData.map(d => [d.date, d.value]))
+    const partTimeWageMap = new Map(partTimeWageData.map(d => [d.date, d.value]))
+    const partTimeHourlyMap = new Map(partTimeHourlyData.map(d => [d.date, d.value]))
 
     return dates.map(date => ({
       date,
       scheduled_wage: scheduledWageMap.get(date) ?? null,
       general: generalMap.get(date) ?? null,
-      part_time: partTimeMap.get(date) ?? null,
+      part_time_wage: partTimeWageMap.get(date) ?? null,
+      part_time_hourly: partTimeHourlyMap.get(date) ?? null,
     }))
   }, [data])
 
@@ -174,7 +181,8 @@ export default function ScheduledWageChart({ data }: ScheduledWageChartProps) {
   // 最新値を取得
   const latestScheduledWage = data?.scheduled_wage?.latest
   const latestGeneral = data?.general?.latest
-  const latestPartTime = data?.part_time?.latest
+  const latestPartTimeWage = data?.part_time_wage?.latest
+  const latestPartTimeHourly = data?.part_time_hourly?.latest
 
   // データがnullの場合はローディング表示
   if (data === null) {
@@ -224,11 +232,20 @@ export default function ScheduledWageChart({ data }: ScheduledWageChartProps) {
               </div>
             )}
             {/* パート */}
-            {latestPartTime && (
+            {latestPartTimeWage && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>パート:</span>
-                <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.part_time }}>
-                  {formatValue(latestPartTime?.value)}
+                <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.part_time_wage }}>
+                  {formatValue(latestPartTimeWage?.value)}
+                </span>
+              </div>
+            )}
+            {/* パート時間当 */}
+            {latestPartTimeHourly && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>パート時間当:</span>
+                <span style={{ fontSize: 16, fontWeight: 'bold', color: COLORS.part_time_hourly }}>
+                  {formatValue(latestPartTimeHourly?.value)}
                 </span>
               </div>
             )}
@@ -279,7 +296,8 @@ export default function ScheduledWageChart({ data }: ScheduledWageChartProps) {
                     lines={[
                       { dataKey: 'scheduled_wage', color: COLORS.scheduled_wage, name: '所定内給与', hide: false },
                       { dataKey: 'general', color: COLORS.general, name: '一般', hide: false },
-                      { dataKey: 'part_time', color: COLORS.part_time, name: 'パート', hide: false },
+                      { dataKey: 'part_time_wage', color: COLORS.part_time_wage, name: 'パート', hide: false },
+                      { dataKey: 'part_time_hourly', color: COLORS.part_time_hourly, name: 'パート時間当', hide: false },
                     ]}
                     yAxisFormatter={(v) => `${v}%`}
                     yDomain={['dataMin - 0.5', 'dataMax + 0.5']}

@@ -1,6 +1,6 @@
 """
 米国物価ダッシュボードローダー
-CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項目別 + GSCPI + Inflation Nowcasting + 輸入輸出物価指数 + シカゴ連銀小売物価指数 + NY連銀インフレ期待 + ミシガン大学インフレ期待 を一括取得
+CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項目別 + GSCPI + Inflation Nowcasting + 輸入輸出物価指数 + シカゴ連銀小売物価指数 + NY連銀インフレ期待 + ミシガン大学インフレ期待 + Trimmed Mean PCE を一括取得
 
 データソース:
 - CPI/コアCPI/CPI項目別/住宅関連指標: FRED
@@ -15,6 +15,7 @@ CPI（消費者物価指数）+ コアCPI + PCEデフレーター + PPI + PPI項
 - シカゴ連銀小売物価指数: Chicago Fed CARTS (ZIP/Excel)
 - NY連銀インフレ期待: NY Fed SCE (Excel)
 - ミシガン大学インフレ期待: University of Michigan CSV
+- Trimmed Mean PCE: Dallas Fed Excel
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: FMPカレンダーから取得
@@ -55,6 +56,7 @@ class USAInflationLoader(BaseDashboardLoader):
     - retail_food_services_price: シカゴ連銀小売物価指数（CARTS Fig6）- Chicago Fed（週次更新）
     - ny_inflation_expectations: NY連銀インフレ期待 - NY Fed SCE Excel（毎月第2月曜日 11:00 ET頃）
     - michigan_inflation_expectations: ミシガン大学インフレ期待 - University of Michigan CSV（毎月2回発表）
+    - trimmed_mean_pce: Trimmed Mean PCE Inflation Rate - Dallas Fed Excel（毎月末頃）
 
     キャッシュ方式: 発表日時ベース判定
     - CPI発表: 毎月10-15日頃 8:30 ET（CPIとコアCPIは同時発表）
@@ -214,6 +216,8 @@ class USAInflationLoader(BaseDashboardLoader):
         from services.usa.retail_food_services_price_service import retail_food_services_price_service
         from services.usa.ny_inflation_expectations_service import ny_inflation_expectations_service
         from services.usa.michigan_inflation_expectations_service import michigan_inflation_expectations_service
+        from services.usa.trimmed_mean_pce_service import trimmed_mean_pce_service
+        from services.usa.median_cpi_service import median_cpi_service
 
         result = {
             "cpi": None,
@@ -233,6 +237,8 @@ class USAInflationLoader(BaseDashboardLoader):
             "retail_food_services_price": None,
             "ny_inflation_expectations": None,
             "michigan_inflation_expectations": None,
+            "trimmed_mean_pce": None,
+            "median_cpi": None,
         }
 
         # 並列でデータを取得
@@ -255,6 +261,8 @@ class USAInflationLoader(BaseDashboardLoader):
                 executor.submit(self._get_retail_food_services_price, retail_food_services_price_service): "retail_food_services_price",
                 executor.submit(self._get_ny_inflation_expectations, ny_inflation_expectations_service): "ny_inflation_expectations",
                 executor.submit(self._get_michigan_inflation_expectations, michigan_inflation_expectations_service): "michigan_inflation_expectations",
+                executor.submit(self._get_trimmed_mean_pce, trimmed_mean_pce_service): "trimmed_mean_pce",
+                executor.submit(self._get_median_cpi, median_cpi_service): "median_cpi",
             }
 
             for future in as_completed(futures):
@@ -563,4 +571,40 @@ class USAInflationLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Michigan Inflation Expectations data: {e}")
+            return None
+
+    def _get_trimmed_mean_pce(self, service) -> Optional[dict]:
+        """Trimmed Mean PCE Inflation Rate データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("trimmed_mean_pce")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Trimmed Mean PCE data: {e}")
+            return None
+
+    def _get_median_cpi(self, service) -> Optional[dict]:
+        """Median CPI データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("median_cpi")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Median CPI data: {e}")
             return None

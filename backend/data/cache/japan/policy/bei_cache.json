@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "date": "2026-01-22",
+      "value": 1.915,
+      "fixed_rate_10y": 2.141,
+      "inflation_indexed_10y": 0.226
+    }
+  ],
+  "latest": {
+    "date": "2026-01-22",
+    "value": 1.915,
+    "fixed_rate_10y": 2.141,
+    "inflation_indexed_10y": 0.226
+  },
+  "next_release": {
+    "date": "2026-01-31",
+    "time_jst": "07:00",
+    "datetime_jst": "2026-01-31T07:00:00+09:00"
+  },
+  "last_updated": "2026-01-25T18:07:11.457253+09:00"
+}

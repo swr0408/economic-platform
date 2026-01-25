@@ -31,6 +31,7 @@ import {
   NoDataMessage,
   LatestValueBox,
   StandardLineChart,
+  ViewModeButtonGroup,
 } from '../../usa/common/ChartComponents'
 import { MonthlyTable } from '../../usa/common/MonthlyTable'
 import {
@@ -59,11 +60,8 @@ const MOM_COLOR = '#3498db'
 const QOQ_COLOR = '#9b59b6'
 const YOY_COLOR = '#e74c3c'
 
-// データタイプ
-type DataType = 'qoq' | 'mom' | 'yoy'
-
-// ビューモード
-type ViewMode = 'chart' | 'table'
+// 統一されたビューモード（データタイプ + 表示形式）
+type ViewMode = 'qoq_chart' | 'qoq_table' | 'mom_chart' | 'mom_table' | 'yoy'
 
 // 前月増減幅テーブル用の凡例と色関数（50k閾値）
 const MOM_TABLE_LEGEND = createChangeLegend(50, 'k')
@@ -73,23 +71,42 @@ const getMomTableCellColor = createChangeCellColorFn(50)
 const QOQ_TABLE_LEGEND = createChangeLegend(100, 'k')
 const getQoqTableCellColor = createChangeCellColorFn(100)
 
-// ダークテーマ用スタイル
-const DARK_THEME = {
-  bgSecondary: 'rgba(255, 255, 255, 0.04)',
-  border: 'rgba(255, 255, 255, 0.1)',
-  textSecondary: 'rgba(255, 255, 255, 0.65)',
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'qoq_chart', label: '対前3か月' },
+  { mode: 'qoq_table', label: '対前3か月（テーブル）' },
+  { mode: 'mom_chart', label: '単月' },
+  { mode: 'mom_table', label: '単月（テーブル）' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// ビューモードの設定情報
+const VIEW_MODE_CONFIG: Record<ViewMode, {
+  dataType: 'qoq' | 'mom' | 'yoy'
+  isTable: boolean
+}> = {
+  'qoq_chart': { dataType: 'qoq', isTable: false },
+  'qoq_table': { dataType: 'qoq', isTable: true },
+  'mom_chart': { dataType: 'mom', isTable: false },
+  'mom_table': { dataType: 'mom', isTable: true },
+  'yoy': { dataType: 'yoy', isTable: false },
 }
 
 export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [dataType, setDataType] = useState<DataType>('qoq')
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
+  const config = VIEW_MODE_CONFIG[viewMode]
+  // viewModeからデータタイプを導出
+  const dataType = config.dataType
+
   // データタイプ毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataType, {
-    qoq: 'default',
-    mom: 'default',
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+    qoq_chart: 'default',
+    qoq_table: 'default',
+    mom_chart: 'default',
+    mom_table: 'default',
     yoy: 'default',
   })
 
@@ -145,11 +162,6 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
     window.open(`/compare?s=${seriesId}&s=uk_claimant_count_mom`, '_blank')
   }, [dataType])
 
-  // データタイプ変更時にビューモードをチャートにリセット
-  const handleDataTypeChange = useCallback((type: DataType) => {
-    setDataType(type)
-    setViewMode('chart')
-  }, [])
 
   if (data === null) {
     return <LoadingChart title="ONS雇用者数" />
@@ -190,91 +202,6 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
     },
   ] : []
 
-  // データタイプ切替ボタン
-  const DataTypeButtons = () => (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-      <button
-        onClick={() => handleDataTypeChange('qoq')}
-        style={{
-          padding: '6px 12px',
-          border: dataType === 'qoq' ? `2px solid ${QOQ_COLOR}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: dataType === 'qoq' ? 'rgba(155, 89, 182, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: dataType === 'qoq' ? 'bold' : 'normal',
-          color: dataType === 'qoq' ? QOQ_COLOR : DARK_THEME.textSecondary,
-        }}
-      >
-        対前3か月
-      </button>
-      <button
-        onClick={() => handleDataTypeChange('mom')}
-        style={{
-          padding: '6px 12px',
-          border: dataType === 'mom' ? `2px solid ${MOM_COLOR}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: dataType === 'mom' ? 'rgba(52, 152, 219, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: dataType === 'mom' ? 'bold' : 'normal',
-          color: dataType === 'mom' ? MOM_COLOR : DARK_THEME.textSecondary,
-        }}
-      >
-        単月
-      </button>
-      <button
-        onClick={() => handleDataTypeChange('yoy')}
-        style={{
-          padding: '6px 12px',
-          border: dataType === 'yoy' ? `2px solid ${YOY_COLOR}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: dataType === 'yoy' ? 'rgba(231, 76, 60, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: dataType === 'yoy' ? 'bold' : 'normal',
-          color: dataType === 'yoy' ? YOY_COLOR : DARK_THEME.textSecondary,
-        }}
-      >
-        前年比
-      </button>
-    </div>
-  )
-
-  // 表示モード切替ボタン（前年比の場合はテーブルなし）
-  const ViewModeButtons = () => {
-    if (dataType === 'yoy') return null
-
-    return (
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button
-          onClick={() => setViewMode('chart')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'chart' ? `2px solid ${dataType === 'qoq' ? QOQ_COLOR : MOM_COLOR}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'chart' ? (dataType === 'qoq' ? 'rgba(155, 89, 182, 0.15)' : 'rgba(52, 152, 219, 0.15)') : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'chart' ? 'bold' : 'normal',
-            color: viewMode === 'chart' ? (dataType === 'qoq' ? QOQ_COLOR : MOM_COLOR) : DARK_THEME.textSecondary,
-          }}
-        >
-          グラフ
-        </button>
-        <button
-          onClick={() => setViewMode('table')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'table' ? `2px solid ${dataType === 'qoq' ? QOQ_COLOR : MOM_COLOR}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'table' ? (dataType === 'qoq' ? 'rgba(155, 89, 182, 0.15)' : 'rgba(52, 152, 219, 0.15)') : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'table' ? 'bold' : 'normal',
-            color: viewMode === 'table' ? (dataType === 'qoq' ? QOQ_COLOR : MOM_COLOR) : DARK_THEME.textSecondary,
-          }}
-        >
-          テーブル
-        </button>
-      </div>
-    )
-  }
 
   // チャート設定取得
   const getChartConfig = () => {
@@ -337,14 +264,11 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* データタイプ切替 */}
-                  <DataTypeButtons />
-
-                  {/* 表示モード切替 */}
-                  <ViewModeButtons />
+                  {/* ビューモード切替 */}
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
                   {/* グラフ表示 */}
-                  {viewMode === 'chart' && (
+                  {!config.isTable && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -376,7 +300,7 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
                   )}
 
                   {/* テーブル表示（前3か月比） */}
-                  {viewMode === 'table' && dataType === 'qoq' && (
+                  {viewMode === 'qoq_table' && (
                     <MonthlyTable
                       data={qoqTableData}
                       formatValue={(value) => {
@@ -391,7 +315,7 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
                   )}
 
                   {/* テーブル表示（単月） */}
-                  {viewMode === 'table' && dataType === 'mom' && (
+                  {viewMode === 'mom_table' && (
                     <MonthlyTable
                       data={momTableData}
                       formatValue={(value) => {

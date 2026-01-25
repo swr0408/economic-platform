@@ -26,7 +26,7 @@ from core.redis_client import redis_client
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "inflation"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "inflation"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 RENT_CPI_CACHE_FILE = CACHE_DIR / "rent_cpi_cache.json"
 

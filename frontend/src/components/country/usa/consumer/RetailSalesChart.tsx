@@ -17,7 +17,6 @@ import MarketImpactTab from '../../../indicator/MarketImpactTab'
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  STANDARD_VIEW_MODE_OPTIONS,
   RETAIL_DATA_TYPE_OPTIONS,
   type StandardViewMode,
   type RetailDataType,
@@ -46,6 +45,14 @@ interface RetailSalesChartProps {
   data: RetailSalesData | null
   controlData: RetailControlData | null
 }
+type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'mom_chart', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'yoy', label: '前年比' },
+]
 
 // カラー設定
 const COLORS = {
@@ -62,16 +69,16 @@ const COLORS = {
 // =============================================================================
 
 export default function RetailSalesChart({ data, controlData }: RetailSalesChartProps) {
-  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [viewMode, setViewMode] = useState<StandardViewMode>('mom_chart')
   const [dataType, setDataType] = useState<RetailDataType>('total')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理（共通フック使用）
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    yoy: 'default',
     mom_table: 'default',
     mom_chart: 3,
+    yoy: 'default',
   })
 
   // コントロールグループデータを日付でマッピング
@@ -156,11 +163,11 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
             },
             ...(viewMode !== 'yoy' && controlData?.latest
               ? [{
-                  label: 'コントロールグループ',
-                  value: controlData.latest.mom,
-                  color: COLORS.yoy_cg,
-                  format: 'percent' as const,
-                }]
+                label: 'コントロールグループ',
+                value: controlData.latest.mom,
+                color: COLORS.yoy_cg,
+                format: 'percent' as const,
+              }]
               : []),
           ]}
           date={latest?.date}
@@ -179,7 +186,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
               children: (
                 <>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -228,8 +235,8 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                           dataType === 'total'
                             ? { dataKey: 'mom', color: COLORS.mom, name: '小売売上高（前月比）' }
                             : dataType === 'ex_auto'
-                            ? { dataKey: 'ex_auto_mom', color: COLORS.mom_ex, name: '自動車除く（前月比）' }
-                            : { dataKey: 'control_group_mom', color: COLORS.mom_cg, name: 'コントロールグループ（前月比）' },
+                              ? { dataKey: 'ex_auto_mom', color: COLORS.mom_ex, name: '自動車除く（前月比）' }
+                              : { dataKey: 'control_group_mom', color: COLORS.mom_cg, name: 'コントロールグループ（前月比）' },
                         ]}
                         yAxisFormatter={(v) => `${v}%`}
                         yDomain={['dataMin - 1', 'dataMax + 1']}

@@ -750,6 +750,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.unit_labor_cost_service import unit_labor_cost_service
         from services.usa.nfib_service import nfib_service
         from services.usa.overtime_hours_service import overtime_hours_service
+        from services.usa.sahm_rule_service import sahm_rule_service
 
         result = {
             "unemployment_rate": None,
@@ -777,6 +778,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "nfib_compensation": None,
             "nfib_compensation_unemployment": None,
             "overtime_hours": None,
+            "sahm_rule": None,
         }
 
         # 並列でデータを取得（25ワーカー）
@@ -807,6 +809,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_nfib_compensation, nfib_service): "nfib_compensation",
                 executor.submit(self._get_nfib_compensation_unemployment, nfib_service, unemployment_rate_service): "nfib_compensation_unemployment",
                 executor.submit(self._get_overtime_hours, overtime_hours_service): "overtime_hours",
+                executor.submit(self._get_sahm_rule, sahm_rule_service): "sahm_rule",
             }
 
             for future in as_completed(futures):
@@ -1318,6 +1321,24 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Overtime Hours data: {e}")
             return None
 
+    def _get_sahm_rule(self, service) -> Optional[dict]:
+        """サームルールデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("sahm_rule")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Sahm Rule data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -1346,6 +1367,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.unit_labor_cost_service import unit_labor_cost_service
         from services.usa.nfib_service import nfib_service
         from services.usa.overtime_hours_service import overtime_hours_service
+        from services.usa.sahm_rule_service import sahm_rule_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -1373,6 +1395,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (unit_labor_cost_service, "Unit Labor Cost"),
             (nfib_service, "NFIB Compensation"),
             (overtime_hours_service, "Overtime Hours"),
+            (sahm_rule_service, "Sahm Rule"),
         ]
         self._invalidate_service_caches(services)
 

@@ -61,9 +61,16 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/import-export-price',
     '/api/japan/sppi',
     '/api/japan/pos-uvpi',
+    '/api/japan/machinery-orders',
+    '/api/japan/machine-tool-orders',
+    '/api/japan/tertiary-industry-index',
     // UK個別API（BOE Bank Rate、ONS GDP/GVA/Production等）
     '/api/uk/boe-',
     '/api/uk/ons-',
+    // Eurozone個別API（PMI等）
+    '/api/eurozone/pmi',
+    '/api/eurozone/germany-pmi',
+    '/api/eurozone/france-pmi',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -588,6 +595,27 @@ function extractDirectApiData(
   nestedKey?: string
 ): DataPoint[] {
   const data = response as Record<string, unknown>;
+
+  // パターン: ドット記法のdataKey（例: manufacturing.data）
+  // { manufacturing: { data: [{date, value}], latest: {...} }, services: {...} }
+  if (dataKey.includes('.')) {
+    const indicatorData = getNestedValue(data, dataKey);
+    if (Array.isArray(indicatorData)) {
+      const field = valueField || 'value';
+      console.log('[useOverlayData] Direct API dot notation pattern for:', dataKey, 'field:', field, 'length:', indicatorData.length);
+      return (indicatorData as DirectApiDataItem[])
+        .filter((item) => {
+          const val = item[field];
+          return val !== undefined && val !== null && typeof val === 'number';
+        })
+        .map((item) => ({
+          date: item.date,
+          value: item[field] as number,
+        }));
+    }
+    console.log('[useOverlayData] No data found for dot notation dataKey:', dataKey);
+    return [];
+  }
 
   // パターン: series 配列構造 (GDP構成要素)
   // { series: [{ name: '民間最終消費支出', data: [{date, value}] }, ...] }

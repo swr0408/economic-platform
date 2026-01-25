@@ -38,7 +38,7 @@ from services.usa.fmp_next_release_utils import (
 JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "sp_pmi_cache.json"
 

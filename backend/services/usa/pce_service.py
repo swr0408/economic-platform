@@ -34,7 +34,7 @@ PCE_SERIES_ID = "PCE"       # 名目個人消費支出（10億ドル、季節調
 PCEC96_SERIES_ID = "PCEC96" # 実質個人消費支出（2017年基準、10億ドル、季節調整済み年率換算）
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "pce_cache.json"
 

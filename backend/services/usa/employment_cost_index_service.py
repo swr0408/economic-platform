@@ -26,7 +26,7 @@ from services.usa.fred_utils import BaseSingleSeriesService, FRED_BASE_URL
 
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 
 
 class EmploymentCostIndexService(BaseSingleSeriesService):

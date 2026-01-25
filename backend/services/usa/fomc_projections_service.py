@@ -28,7 +28,7 @@ class FOMCProjectionsService:
     """FOMC Projections PDFから図を抽出するサービス"""
 
     BASE_URL = "https://www.federalreserve.gov/monetarypolicy/files/fomcprojtabl{date}.pdf"
-    CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "fomc_projections"
+    CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "fomc_projections"
 
     def __init__(self):
         self.CACHE_DIR.mkdir(parents=True, exist_ok=True)

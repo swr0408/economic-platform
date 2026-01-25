@@ -32,7 +32,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュ設定
 REDIS_KEY = "japan:boj:outlook_report"
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "monetary_policy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "monetary_policy"
 CACHE_FILE = CACHE_DIR / "boj_outlook_report.json"
 IMAGE_CACHE_DIR = CACHE_DIR / "outlook_images"
 

@@ -68,9 +68,9 @@ type ViewMode = 'value' | 'yoy_chart' | 'mom_chart' | 'mom_table'
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'yoy_chart', label: '前年比グラフ' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
-  { mode: 'mom_table', label: '前月比テーブル' },
+  { mode: 'yoy_chart', label: '前年比' },
+  { mode: 'mom_chart', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
 ]
 
 // カラー設定

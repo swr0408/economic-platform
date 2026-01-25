@@ -22,7 +22,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
 import { formatPercent, type PeriodType } from '../../usa/common/useChartData'
-import { NoDataMessage, NextReleaseDisplay } from '../../usa/common/ChartComponents'
+import { NoDataMessage, NextReleaseDisplay, ViewModeButtonGroup } from '../../usa/common/ChartComponents'
 import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'
 
 // マーケットインパクト関連
@@ -34,9 +34,8 @@ interface ONSGVAChartProps {
   data: ONSGVAData | null
 }
 
-type ViewMode = 'chart' | 'table'
-// 4つの表示モード
-type GVAType = '3m3m' | 'mom' | '3m_yoy' | 'yoy'
+// 統一されたビューモード（データタイプ + 表示形式）
+type ViewMode = '3m3m_chart' | '3m3m_table' | 'mom_chart' | 'mom_table' | '3m_yoy' | 'yoy'
 
 interface ChartDataPoint {
   date: string
@@ -71,56 +70,76 @@ const getMonthFromDate = (dateStr: string): number => {
 // 月名配列（テーブル用）
 const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 
-// GVAタイプの設定
-const GVA_TYPE_CONFIG: Record<GVAType, {
-  label: string
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: '3m3m_chart', label: '3か月成長率' },
+  { mode: '3m3m_table', label: '3か月成長率（テーブル）' },
+  { mode: 'mom_chart', label: '単月前月比' },
+  { mode: 'mom_table', label: '単月前月比（テーブル）' },
+  { mode: '3m_yoy', label: '3か月前年比' },
+  { mode: 'yoy', label: '前年同月比' },
+]
+
+// ビューモードの設定情報
+const VIEW_MODE_CONFIG: Record<ViewMode, {
   chartType: 'bar' | 'line'
-  hasTable: boolean
   compareId: string
   chartTitle: string
   tableDescription: string
+  dataType: '3m3m' | 'mom' | '3m_yoy' | 'yoy'
 }> = {
-  '3m3m': {
-    label: '3か月成長率',
+  '3m3m_chart': {
     chartType: 'bar',
-    hasTable: true,
+    compareId: 'uk_gva_3m3m',
+    chartTitle: '月間GDP（3か月成長率）',
+    tableDescription: '',
+    dataType: '3m3m',
+  },
+  '3m3m_table': {
+    chartType: 'bar',
     compareId: 'uk_gva_3m3m',
     chartTitle: '月間GDP（3か月成長率）',
     tableDescription: '※ 月間GDP（GVA）3か月間成長率データ（単位: %）',
+    dataType: '3m3m',
   },
-  'mom': {
-    label: '単月前月比',
+  'mom_chart': {
     chartType: 'bar',
-    hasTable: true,
+    compareId: 'uk_gva_mom',
+    chartTitle: '月間GDP（前月比）',
+    tableDescription: '',
+    dataType: 'mom',
+  },
+  'mom_table': {
+    chartType: 'bar',
     compareId: 'uk_gva_mom',
     chartTitle: '月間GDP（前月比）',
     tableDescription: '※ 月間GDP（GVA）前月比データ（単位: %）',
+    dataType: 'mom',
   },
   '3m_yoy': {
-    label: '3か月前年比',
     chartType: 'line',
-    hasTable: false,
     compareId: 'uk_gva_3m_yoy',
     chartTitle: '月間GDP（3か月前年比）',
     tableDescription: '',
+    dataType: '3m_yoy',
   },
   'yoy': {
-    label: '前年同月比',
     chartType: 'line',
-    hasTable: false,
     compareId: 'uk_gva_yoy',
     chartTitle: '月間GDP（前年同月比）',
     tableDescription: '',
+    dataType: 'yoy',
   },
 }
 
 export default function ONSGVAChart({ data }: ONSGVAChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [viewMode, setViewMode] = useState<ViewMode>('3m3m_chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [gvaType, setGvaType] = useState<GVAType>('3m3m')
 
-  const config = GVA_TYPE_CONFIG[gvaType]
+  const config = VIEW_MODE_CONFIG[viewMode]
+  // viewModeからデータタイプを導出
+  const gvaType = config.dataType
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -273,72 +292,6 @@ export default function ONSGVAChart({ data }: ONSGVAChartProps) {
     return 'transparent'
   }
 
-  // GVA種類切り替えボタン（4つのモード）
-  const GVATypeButtons = () => (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-      {(Object.keys(GVA_TYPE_CONFIG) as GVAType[]).map((type) => (
-        <button
-          key={type}
-          onClick={() => {
-            setGvaType(type)
-            // テーブル非対応のモードに切り替えた場合はチャート表示に戻す
-            if (!GVA_TYPE_CONFIG[type].hasTable) {
-              setViewMode('chart')
-            }
-          }}
-          style={{
-            padding: '6px 12px',
-            border: gvaType === type ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: gvaType === type ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: gvaType === type ? 'bold' : 'normal',
-            color: gvaType === type ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          {GVA_TYPE_CONFIG[type].label}
-        </button>
-      ))}
-    </div>
-  )
-
-  // 表示モード切り替えボタン（テーブル対応のモードのみ）
-  const ViewModeButtons = () => {
-    if (!config.hasTable) return null
-
-    return (
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-        <button
-          onClick={() => setViewMode('chart')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'chart' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'chart' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'chart' ? 'bold' : 'normal',
-            color: viewMode === 'chart' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          グラフ
-        </button>
-        <button
-          onClick={() => setViewMode('table')}
-          style={{
-            padding: '6px 12px',
-            border: viewMode === 'table' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-            borderRadius: 4,
-            background: viewMode === 'table' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-            cursor: 'pointer',
-            fontWeight: viewMode === 'table' ? 'bold' : 'normal',
-            color: viewMode === 'table' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-          }}
-        >
-          テーブル
-        </button>
-      </div>
-    )
-  }
 
   // テーブルコンポーネント（ダークテーマ・月次版）
   const GVATable = () => (
@@ -477,10 +430,9 @@ export default function ONSGVAChart({ data }: ONSGVAChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <GVATypeButtons />
-                  <ViewModeButtons />
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-                  {viewMode === 'chart' && (
+                  {!viewMode.endsWith('_table') && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
                       <Tooltip title="比較ページを開く">
@@ -494,13 +446,13 @@ export default function ONSGVAChart({ data }: ONSGVAChartProps) {
                     </div>
                   )}
                   {/* テーブル説明 */}
-                  {viewMode === 'table' && config.hasTable && (
+                  {viewMode.endsWith('_table') && (
                     <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
                       {config.tableDescription}
                     </div>
                   )}
 
-                  {viewMode === 'table' && config.hasTable ? (
+                  {viewMode.endsWith('_table') ? (
                     <GVATable />
                   ) : (
                     <ZoomableChart

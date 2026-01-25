@@ -1,13 +1,13 @@
 """
 四半期GDP成長率サービス
-e-Stat APIから日本の四半期GDP成長率データを取得
+内閣府CSVから日本の四半期GDP成長率データを取得
 
 指標:
-- GDP成長率（前期比）: 0003113542 TAB_CODE=14
-- GDP成長率（前年同期比）: 0003113542 TAB_CODE=13
+- GDP成長率（前期比年率）: nritu-jk{YYMM}.csv
+- GDP成長率（前年同期比）: ritu-jg{YYMM}.csv
 
 データソース:
-- e-Stat API（内閣府）
+- 内閣府 国民経済計算 GDP速報CSV
 
 発表スケジュール:
 - 四半期毎（速報・改定値）
@@ -15,9 +15,12 @@ e-Stat APIから日本の四半期GDP成長率データを取得
 
 キャッシュ方式: FMP発表日時ベース判定方式
 """
+import csv
+import io
 import json
 import logging
 import os
+import re
 import requests
 from datetime import datetime
 from pathlib import Path
@@ -33,291 +36,229 @@ logger = logging.getLogger(__name__)
 JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュ設定
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "economy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
-QOQ_CACHE_FILE = CACHE_DIR / "quarterly_gdp_qoq.json"
-YOY_CACHE_FILE = CACHE_DIR / "quarterly_gdp_yoy.json"
+QOQ_CACHE_FILE = CACHE_DIR / "quarterly_gdp_qoq.json"  # 前期比（非年率）
+QOQ_ANNUALIZED_CACHE_FILE = CACHE_DIR / "quarterly_gdp_qoq_annualized.json"  # 前期比年率
+YOY_CACHE_FILE = CACHE_DIR / "quarterly_gdp_yoy.json"  # 前年比
 
 # Redisキー
-QOQ_REDIS_KEY = "japan:gdp:qoq"
-YOY_REDIS_KEY = "japan:gdp:yoy"
+QOQ_REDIS_KEY = "japan:gdp:qoq"  # 前期比（非年率）
+QOQ_ANNUALIZED_REDIS_KEY = "japan:gdp:qoq_annualized"  # 前期比年率
+YOY_REDIS_KEY = "japan:gdp:yoy"  # 前年比
 
 
 class QuarterlyGDPService:
-    """四半期GDP成長率サービス（e-Stat API）"""
+    """四半期GDP成長率サービス（内閣府CSV直接取得・自動URL検出）"""
 
-    # e-Stat API設定
-    ESTAT_API_URL = "http://api.e-stat.go.jp/rest/3.0/app/json/getStatsData"
-    STATS_DATA_ID_QOQ = "0003113542"  # 国内総生産（実質季節調整系列・成長率）
-    STATS_DATA_ID_AMOUNT = "0003109750"  # 国内総生産（実質季節調整系列・金額）
+    # CSV URL パターン
+    # 前年比: ritu-jg{YYQR}.csv (例: ritu-jg2532.csv = 2025年Q3 2次改定)
+    # 年率換算（前期比年率）: nritu-jk{YYQR}.csv
+    # URL例: https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files/2025/qe253_2/tables/ritu-jg2532.csv
 
-    # フィルターコード
-    TAB_CODE_ZENKI = "14"  # 前期比 (Quarter-on-Quarter)
-    TAB_CODE_YOY = "13"  # 前年同期比 (Year-on-Year)
-    TAB_CODE_KINGAKU = "11"  # 金額 (Amount) - 使用しない
-    CAT01_CODE_GDP = "11"  # 国内総生産(支出側)
+    BASE_URL = "https://www.esri.cao.go.jp/jp/sna/data/data_list/sokuhou/files"
+
+    # ファイル名パターン
+    YOY_FILENAME_PATTERN = "ritu-jg{yy}{q}{rev}.csv"  # 前年比
+    QOQ_FILENAME_PATTERN = "ritu-jk{yy}{q}{rev}.csv"  # 前期比（非年率）
+    QOQ_ANNUALIZED_FILENAME_PATTERN = "nritu-jk{yy}{q}{rev}.csv"  # 年率換算
 
     # FMPイベント名（更新判定用）
     FMP_EVENT_PATTERN = "GDP Growth Rate QoQ"
 
+    # URL検出キャッシュ（クラス変数）
+    _detected_url_info: Optional[Dict[str, Any]] = None
+    _detected_url_timestamp: Optional[datetime] = None
+    _URL_CACHE_HOURS = 24  # URL検出結果のキャッシュ時間
+
     def __init__(self):
         """Initialize Quarterly GDP service"""
-        self.api_key = os.getenv('ESTAT_API_KEY')
+        pass
 
-        if not self.api_key:
-            logger.warning("ESTAT_API_KEY not found in environment variables")
-
-    def _fetch_from_estat_api(self, stats_data_id: str, tab_code: str) -> Optional[Dict]:
+    def _detect_latest_csv_url(self) -> Optional[Dict[str, Any]]:
         """
-        Fetch data from e-Stat API
+        最新のCSV URLを自動検出
 
-        Args:
-            stats_data_id: Statistics data ID
-            tab_code: Tab code for filtering
+        現在日時から逆算して、最新のGDP速報CSVを探す。
+        四半期ごとに1次速報(1)、2次速報(2)が発表される。
 
         Returns:
-            Raw API response data
+            {"year": int, "quarter": int, "revision": int} or None
         """
-        try:
-            if not self.api_key:
-                logger.error("e-Stat API key not configured")
-                return None
+        # キャッシュチェック
+        if (self._detected_url_info and self._detected_url_timestamp and
+            (datetime.now(JST) - self._detected_url_timestamp).total_seconds() < self._URL_CACHE_HOURS * 3600):
+            return self._detected_url_info
 
-            logger.info(f"Fetching data from e-Stat API (statsDataId: {stats_data_id})")
+        now = datetime.now(JST)
+        current_year = now.year
+        current_month = now.month
 
-            params = {
-                "appId": self.api_key,
-                "lang": "J",
-                "statsDataId": stats_data_id,
-                "metaGetFlg": "Y",
-                "cntGetFlg": "N",
-                "explanationGetFlg": "Y",
-                "annotationGetFlg": "Y",
-                "sectionHeaderFlg": "1",
-                "replaceSpChars": "0",
-                "cdTab": tab_code,
-                "cdCat01": self.CAT01_CODE_GDP,
-            }
+        # 現在の四半期を計算（1-3月=Q4前年, 4-6月=Q1, 7-9月=Q2, 10-12月=Q3）
+        # GDP速報は四半期終了後約1.5ヶ月後に発表
+        # 例: Q3(7-9月)のデータは11月に発表
 
-            response = requests.get(self.ESTAT_API_URL, params=params, timeout=30)
-            response.raise_for_status()
+        # 検索順序: 最新から古い順に試す
+        # 最大で過去2年分を検索
+        candidates = []
 
-            data = response.json()
-            logger.info(f"Successfully fetched data from e-Stat API")
+        for year in range(current_year, current_year - 2, -1):
+            for quarter in [4, 3, 2, 1]:
+                # 各四半期で revision 2 → 1 の順で試す
+                for revision in [2, 1]:
+                    candidates.append((year, quarter, revision))
 
-            return data
+        # 候補を試す
+        for year, quarter, revision in candidates:
+            yy = year % 100
+            # YoY CSVで存在確認
+            filename = self.YOY_FILENAME_PATTERN.format(yy=yy, q=quarter, rev=revision)
+            url = f"{self.BASE_URL}/{year}/qe{yy}{quarter}_{revision}/tables/{filename}"
 
-        except requests.RequestException as e:
-            logger.error(f"Error fetching data from e-Stat API: {e}")
-            return None
-        except Exception as e:
-            logger.error(f"Unexpected error in e-Stat API fetch: {e}")
-            return None
+            try:
+                response = requests.head(url, timeout=5)
+                if response.status_code == 200:
+                    logger.info(f"Detected latest GDP CSV: year={year}, quarter={quarter}, revision={revision}")
+                    QuarterlyGDPService._detected_url_info = {
+                        "year": year,
+                        "quarter": quarter,
+                        "revision": revision
+                    }
+                    QuarterlyGDPService._detected_url_timestamp = datetime.now(JST)
+                    return QuarterlyGDPService._detected_url_info
+            except requests.RequestException:
+                continue
 
-    def _parse_time_code(self, time_code: str) -> Optional[tuple[int, str]]:
+        logger.warning("Could not detect latest GDP CSV URL")
+        return None
+
+    def _get_csv_url(self, data_type: str = "yoy") -> Optional[str]:
         """
-        Parse e-Stat time code to year and quarter
+        CSVのURLを生成（自動検出）
 
         Args:
-            time_code: Time code like "1994000406"
+            data_type: "yoy" (前年比), "qoq" (前期比), or "qoq_annualized" (年率換算)
 
         Returns:
-            Tuple of (year, quarter_str) or None
+            CSV URL or None if detection fails
         """
-        try:
-            year = int(time_code[:4])
-            month_range = time_code[4:]
-
-            # Map month range to quarter
-            quarter_map = {
-                "000103": "Q1",  # 1-3月
-                "000406": "Q2",  # 4-6月
-                "000709": "Q3",  # 7-9月
-                "001012": "Q4",  # 10-12月
-            }
-
-            quarter = quarter_map.get(month_range)
-            if not quarter:
-                return None
-
-            return year, quarter
-
-        except Exception:
+        url_info = self._detect_latest_csv_url()
+        if not url_info:
             return None
 
-    def _parse_qoq_response(self, api_data: Dict) -> List[Dict[str, Any]]:
+        year = url_info["year"]
+        yy = year % 100
+        q = url_info["quarter"]
+        rev = url_info["revision"]
+
+        if data_type == "yoy":
+            filename = self.YOY_FILENAME_PATTERN.format(yy=yy, q=q, rev=rev)
+        elif data_type == "qoq":
+            filename = self.QOQ_FILENAME_PATTERN.format(yy=yy, q=q, rev=rev)
+        else:
+            filename = self.QOQ_ANNUALIZED_FILENAME_PATTERN.format(yy=yy, q=q, rev=rev)
+
+        url = f"{self.BASE_URL}/{year}/qe{yy}{q}_{rev}/tables/{filename}"
+        return url
+
+    def _fetch_csv_data(self, data_type: str = "yoy") -> List[Dict[str, Any]]:
         """
-        Parse e-Stat API response for QoQ data
+        内閣府CSVからGDPデータを取得
 
         Args:
-            api_data: Raw API response
+            data_type: "yoy" (前年比) or "qoq_annualized" (年率換算)
 
         Returns:
             List of data points
         """
         try:
-            if 'GET_STATS_DATA' not in api_data:
-                logger.error("Invalid API response structure")
+            url = self._get_csv_url(data_type)
+            if not url:
+                logger.error("Could not determine GDP CSV URL")
+                return []
+            logger.info(f"Fetching GDP CSV from: {url}")
+
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+
+            # Shift-JISでデコード
+            content = response.content.decode('shift_jis', errors='replace')
+
+            # CSVをパース
+            reader = csv.reader(io.StringIO(content))
+            rows = list(reader)
+
+            if len(rows) < 5:
+                logger.error("CSV has insufficient rows")
                 return []
 
-            stats_data = api_data['GET_STATS_DATA']
+            # データ行を探す
+            # CSVフォーマット:
+            # - 最初の年は "1994/ 1- 3." のようなフォーマット
+            # - 続く四半期は "4- 6.", "7- 9.", "10-12." のようなフォーマット
+            data = []
+            current_year = None
 
-            if 'STATISTICAL_DATA' not in stats_data:
-                logger.error("No statistical data in response")
-                return []
-
-            stat_data = stats_data['STATISTICAL_DATA']
-
-            if 'DATA_INF' not in stat_data or 'VALUE' not in stat_data['DATA_INF']:
-                logger.error("No data values in response")
-                return []
-
-            values = stat_data['DATA_INF']['VALUE']
-            if not isinstance(values, list):
-                values = [values]
-
-            logger.info(f"Found {len(values)} raw data points")
-
-            # Process values
-            series_data = []
-            for val in values:
-                try:
-                    time_code = val.get('@time', '')
-                    if not time_code:
-                        continue
-
-                    parsed = self._parse_time_code(time_code)
-                    if not parsed:
-                        continue
-
-                    year, quarter = parsed
-
-                    # Get value
-                    value_str = val.get('$', '')
-                    if not value_str or value_str == '-':
-                        continue
-
-                    # Remove % sign and convert to float
-                    value_str = value_str.replace('%', '').strip()
-                    try:
-                        value = float(value_str)
-                    except ValueError:
-                        continue
-
-                    date_str = f"{year}-{quarter}"
-
-                    series_data.append({
-                        "date": date_str,
-                        "value": round(value, 2)
-                    })
-
-                except Exception as e:
-                    logger.debug(f"Error processing value: {e}")
+            for row in rows:
+                if not row or len(row) < 2:
                     continue
 
-            # Sort by date
-            series_data.sort(key=lambda x: (int(x["date"][:4]), x["date"][5:]))
+                date_cell = row[0].strip()
 
-            # Filter to data from 2000 onwards
-            if series_data:
-                series_data = [p for p in series_data if p["date"] >= "2000-Q1"]
+                # フルフォーマット: "1994/ 1- 3." or "2024/10-12."
+                full_match = re.match(r'^(\d{4})/\s*(\d{1,2})-\s*(\d{1,2})\.?$', date_cell)
+                if full_match:
+                    current_year = int(full_match.group(1))
+                    start_month = int(full_match.group(2))
+                else:
+                    # 四半期のみ: "4- 6." or "10-12."
+                    quarter_match = re.match(r'^(\d{1,2})-\s*(\d{1,2})\.?$', date_cell)
+                    if quarter_match and current_year:
+                        start_month = int(quarter_match.group(1))
+                    else:
+                        continue
 
-            logger.info(f"Processed {len(series_data)} QoQ GDP data points")
-            return series_data
+                year = current_year
+                if year is None:
+                    continue
 
-        except Exception as e:
-            logger.error(f"Error parsing e-Stat response: {e}", exc_info=True)
+                # 四半期を判定
+                quarter_map = {1: "Q1", 4: "Q2", 7: "Q3", 10: "Q4"}
+                quarter = quarter_map.get(start_month)
+                if not quarter:
+                    continue
+
+                # GDP値（2列目）
+                gdp_value_str = row[1].strip() if len(row) > 1 else ""
+                if gdp_value_str == "***" or not gdp_value_str:
+                    continue
+
+                try:
+                    gdp_value = float(gdp_value_str)
+                except ValueError:
+                    continue
+
+                date_str = f"{year}-{quarter}"
+
+                data.append({
+                    "date": date_str,
+                    "value": round(gdp_value, 2)
+                })
+
+            # 日付でソート
+            data.sort(key=lambda x: (int(x["date"][:4]), x["date"][5:]))
+
+            # 2000年以降のデータのみ
+            data = [p for p in data if p["date"] >= "2000-Q1"]
+
+            logger.info(f"Fetched {len(data)} GDP {data_type} data points from CSV")
+            return data
+
+        except requests.RequestException as e:
+            logger.error(f"Error fetching GDP CSV: {e}")
             return []
-
-    def _calculate_yoy_from_amount(self, api_data: Dict) -> List[Dict[str, Any]]:
-        """
-        Calculate Year-over-Year growth rate from amount data
-
-        Formula: YoY = ((current - prev_year) / prev_year) * 100
-
-        Args:
-            api_data: Raw API response with amount values
-
-        Returns:
-            List of YoY data points
-        """
-        try:
-            if 'GET_STATS_DATA' not in api_data:
-                return []
-
-            stats_data = api_data['GET_STATS_DATA']
-
-            if 'STATISTICAL_DATA' not in stats_data:
-                return []
-
-            stat_data = stats_data['STATISTICAL_DATA']
-
-            if 'DATA_INF' not in stat_data or 'VALUE' not in stat_data['DATA_INF']:
-                return []
-
-            values = stat_data['DATA_INF']['VALUE']
-            if not isinstance(values, list):
-                values = [values]
-
-            # Parse amount data
-            amount_data = []
-            for val in values:
-                try:
-                    time_code = val.get('@time', '')
-                    if not time_code:
-                        continue
-
-                    parsed = self._parse_time_code(time_code)
-                    if not parsed:
-                        continue
-
-                    year, quarter = parsed
-
-                    value_str = val.get('$', '')
-                    if not value_str or value_str == '-':
-                        continue
-
-                    try:
-                        amount = float(value_str)
-                    except ValueError:
-                        continue
-
-                    date_str = f"{year}-{quarter}"
-
-                    amount_data.append({
-                        "date": date_str,
-                        "amount": amount
-                    })
-
-                except Exception:
-                    continue
-
-            # Sort by date
-            amount_data.sort(key=lambda x: (int(x["date"][:4]), x["date"][5:]))
-
-            # Calculate YoY (need 4 quarters of history)
-            yoy_data = []
-            for i in range(len(amount_data)):
-                if i >= 4:
-                    current = amount_data[i]
-                    prev_year = amount_data[i - 4]
-
-                    yoy_growth = ((current['amount'] - prev_year['amount']) / prev_year['amount']) * 100
-
-                    yoy_data.append({
-                        "date": current['date'],
-                        "value": round(yoy_growth, 2)
-                    })
-
-            # Filter to data from 2000 onwards
-            if yoy_data:
-                yoy_data = [p for p in yoy_data if p["date"] >= "2000-Q1"]
-
-            logger.info(f"Calculated {len(yoy_data)} YoY GDP data points")
-            return yoy_data
-
         except Exception as e:
-            logger.error(f"Error calculating YoY from amount data: {e}", exc_info=True)
+            logger.error(f"Error parsing GDP CSV: {e}", exc_info=True)
             return []
 
     def _get_next_release_from_fmp(self) -> Optional[str]:
@@ -403,7 +344,9 @@ class QuarterlyGDPService:
 
     def get_quarterly_gdp_qoq(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
-        Get Quarterly GDP Growth Rate (QoQ) data
+        Get Quarterly GDP Growth Rate (QoQ) data - 前期比（非年率）
+
+        前期比（非年率）データを内閣府CSVから取得
 
         Args:
             force_refresh: Force refresh from source
@@ -428,30 +371,92 @@ class QuarterlyGDPService:
                     redis_client.set(QOQ_REDIS_KEY, file_cache, expire=0)
                     return {**file_cache, "cached": True}
 
-        # Fetch from e-Stat API
-        api_data = self._fetch_from_estat_api(self.STATS_DATA_ID_QOQ, self.TAB_CODE_ZENKI)
-        if api_data:
-            qoq_data = self._parse_qoq_response(api_data)
+        # Fetch from Cabinet Office CSV (前期比・非年率)
+        qoq_data = self._fetch_csv_data("qoq")
 
-            if qoq_data:
-                latest = qoq_data[-1] if qoq_data else None
-                next_release = self._get_next_release_from_fmp()
+        if qoq_data:
+            latest = qoq_data[-1] if qoq_data else None
+            next_release = self._get_next_release_from_fmp()
 
-                cache_payload = {
-                    "data": qoq_data,
-                    "latest": latest,
-                    "next_release": next_release,
-                    "last_updated": datetime.now(JST).isoformat(),
-                    "source": "e-Stat (Cabinet Office)"
-                }
+            cache_payload = {
+                "data": qoq_data,
+                "latest": latest,
+                "next_release": next_release,
+                "last_updated": datetime.now(JST).isoformat(),
+                "source": "Cabinet Office CSV"
+            }
 
-                redis_client.set(QOQ_REDIS_KEY, cache_payload, expire=0)
-                save_file_cache(QOQ_CACHE_FILE, cache_payload)
+            redis_client.set(QOQ_REDIS_KEY, cache_payload, expire=0)
+            save_file_cache(QOQ_CACHE_FILE, cache_payload)
 
-                return {**cache_payload, "cached": False}
+            return {**cache_payload, "cached": False}
 
         # Fallback to file cache
         file_cache = load_file_cache(QOQ_CACHE_FILE)
+        if file_cache:
+            return {**file_cache, "cached": True, "source": "file (fallback)"}
+
+        return {
+            "data": [],
+            "latest": None,
+            "next_release": None,
+            "cached": False,
+            "source": "none",
+            "last_updated": datetime.now(JST).isoformat(),
+            "error": "No data available"
+        }
+
+    def get_quarterly_gdp_qoq_annualized(self, force_refresh: bool = False) -> Dict[str, Any]:
+        """
+        Get Quarterly GDP Growth Rate (QoQ Annualized) data - 前期比年率
+
+        前期比年率データを内閣府CSVから取得
+
+        Args:
+            force_refresh: Force refresh from source
+
+        Returns:
+            GDP QoQ Annualized data dictionary
+        """
+        # Check cache
+        if not force_refresh:
+            cached_data = redis_client.get(QOQ_ANNUALIZED_REDIS_KEY)
+            if cached_data:
+                last_updated_str = cached_data.get("last_updated")
+                if last_updated_str and not self._should_refresh_by_fmp(last_updated_str):
+                    logger.info("Returning cached GDP QoQ Annualized from Redis")
+                    return {**cached_data, "cached": True}
+
+            file_cache = load_file_cache(QOQ_ANNUALIZED_CACHE_FILE)
+            if file_cache:
+                last_updated_str = file_cache.get("last_updated")
+                if last_updated_str and not self._should_refresh_by_fmp(last_updated_str):
+                    logger.info("Returning cached GDP QoQ Annualized from file")
+                    redis_client.set(QOQ_ANNUALIZED_REDIS_KEY, file_cache, expire=0)
+                    return {**file_cache, "cached": True}
+
+        # Fetch from Cabinet Office CSV (年率換算)
+        qoq_data = self._fetch_csv_data("qoq_annualized")
+
+        if qoq_data:
+            latest = qoq_data[-1] if qoq_data else None
+            next_release = self._get_next_release_from_fmp()
+
+            cache_payload = {
+                "data": qoq_data,
+                "latest": latest,
+                "next_release": next_release,
+                "last_updated": datetime.now(JST).isoformat(),
+                "source": "Cabinet Office CSV"
+            }
+
+            redis_client.set(QOQ_ANNUALIZED_REDIS_KEY, cache_payload, expire=0)
+            save_file_cache(QOQ_ANNUALIZED_CACHE_FILE, cache_payload)
+
+            return {**cache_payload, "cached": False}
+
+        # Fallback to file cache
+        file_cache = load_file_cache(QOQ_ANNUALIZED_CACHE_FILE)
         if file_cache:
             return {**file_cache, "cached": True, "source": "file (fallback)"}
 
@@ -469,7 +474,7 @@ class QuarterlyGDPService:
         """
         Get Quarterly GDP Growth Rate (YoY) data
 
-        前年同期比データをe-Stat APIから直接取得（TAB_CODE=13）
+        前年同期比データを内閣府CSVから取得
 
         Args:
             force_refresh: Force refresh from source
@@ -494,29 +499,25 @@ class QuarterlyGDPService:
                     redis_client.set(YOY_REDIS_KEY, file_cache, expire=0)
                     return {**file_cache, "cached": True}
 
-        # Fetch from e-Stat API - 季節調整済み金額データから前年同期比を計算
-        # 注: 季節調整系列には直接の前年同期比データがないため、金額から計算
-        api_data = self._fetch_from_estat_api(self.STATS_DATA_ID_AMOUNT, self.TAB_CODE_KINGAKU)
-        if api_data:
-            yoy_data = self._calculate_yoy_from_amount(api_data)
+        # Fetch from Cabinet Office CSV (前年比)
+        yoy_data = self._fetch_csv_data("yoy")
 
-            if yoy_data:
-                latest = yoy_data[-1] if yoy_data else None
-                next_release = self._get_next_release_from_fmp()
+        if yoy_data:
+            latest = yoy_data[-1] if yoy_data else None
+            next_release = self._get_next_release_from_fmp()
 
-                cache_payload = {
-                    "data": yoy_data,
-                    "latest": latest,
-                    "next_release": next_release,
-                    "last_updated": datetime.now(JST).isoformat(),
-                    "source": "e-Stat (Cabinet Office)",
-                    "calculation_method": "Calculated from seasonally adjusted GDP amount data"
-                }
+            cache_payload = {
+                "data": yoy_data,
+                "latest": latest,
+                "next_release": next_release,
+                "last_updated": datetime.now(JST).isoformat(),
+                "source": "Cabinet Office CSV"
+            }
 
-                redis_client.set(YOY_REDIS_KEY, cache_payload, expire=0)
-                save_file_cache(YOY_CACHE_FILE, cache_payload)
+            redis_client.set(YOY_REDIS_KEY, cache_payload, expire=0)
+            save_file_cache(YOY_CACHE_FILE, cache_payload)
 
-                return {**cache_payload, "cached": False}
+            return {**cache_payload, "cached": False}
 
         # Fallback to file cache
         file_cache = load_file_cache(YOY_CACHE_FILE)
@@ -536,20 +537,31 @@ class QuarterlyGDPService:
     def invalidate_cache(self) -> bool:
         """Invalidate all GDP caches"""
         qoq_deleted = redis_client.delete(QOQ_REDIS_KEY)
+        qoq_ann_deleted = redis_client.delete(QOQ_ANNUALIZED_REDIS_KEY)
         yoy_deleted = redis_client.delete(YOY_REDIS_KEY)
-        return qoq_deleted or yoy_deleted
+        return qoq_deleted or qoq_ann_deleted or yoy_deleted
 
     def get_cache_status(self) -> Dict[str, Any]:
         """Get cache status"""
         qoq_exists = redis_client.exists(QOQ_REDIS_KEY)
+        qoq_ann_exists = redis_client.exists(QOQ_ANNUALIZED_REDIS_KEY)
         yoy_exists = redis_client.exists(YOY_REDIS_KEY)
         qoq_data = redis_client.get(QOQ_REDIS_KEY) if qoq_exists else None
+        qoq_ann_data = redis_client.get(QOQ_ANNUALIZED_REDIS_KEY) if qoq_ann_exists else None
         yoy_data = redis_client.get(YOY_REDIS_KEY) if yoy_exists else None
+
+        # 検出されたURL情報
+        url_info = self._detect_latest_csv_url()
 
         return {
             "indicator": "Japan Quarterly GDP",
-            "source": "e-Stat (Cabinet Office)",
+            "source": "Cabinet Office CSV (Auto-detected)",
+            "detected_version": url_info,
+            "qoq_csv_url": self._get_csv_url("qoq"),
+            "qoq_annualized_csv_url": self._get_csv_url("qoq_annualized"),
+            "yoy_csv_url": self._get_csv_url("yoy"),
             "qoq": {
+                "label": "前期比（非年率）",
                 "cache_key": QOQ_REDIS_KEY,
                 "exists": qoq_exists,
                 "last_updated": qoq_data.get("last_updated") if qoq_data else None,
@@ -557,7 +569,17 @@ class QuarterlyGDPService:
                 "latest": qoq_data.get("latest") if qoq_data else None,
                 "file_cache_exists": QOQ_CACHE_FILE.exists()
             },
+            "qoq_annualized": {
+                "label": "前期比年率",
+                "cache_key": QOQ_ANNUALIZED_REDIS_KEY,
+                "exists": qoq_ann_exists,
+                "last_updated": qoq_ann_data.get("last_updated") if qoq_ann_data else None,
+                "data_count": len(qoq_ann_data.get("data", [])) if qoq_ann_data else 0,
+                "latest": qoq_ann_data.get("latest") if qoq_ann_data else None,
+                "file_cache_exists": QOQ_ANNUALIZED_CACHE_FILE.exists()
+            },
             "yoy": {
+                "label": "前年比",
                 "cache_key": YOY_REDIS_KEY,
                 "exists": yoy_exists,
                 "last_updated": yoy_data.get("last_updated") if yoy_data else None,

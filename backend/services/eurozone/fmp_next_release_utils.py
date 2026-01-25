@@ -29,6 +29,37 @@ NEXT_RELEASE_CACHE_TTL = 86400
 UPDATE_WINDOW_MINUTES = 10
 
 
+def _get_country_from_mapping(econalpha_id: str) -> Optional[str]:
+    """
+    indicator_event_mappingから国コードを取得
+
+    Args:
+        econalpha_id: EconAlpha指標ID
+
+    Returns:
+        国コード（マッピングがなければNone）
+    """
+    try:
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        with SessionLocal() as session:
+            query = text("""
+                SELECT country
+                FROM indicator_event_mapping
+                WHERE econalpha_id = :id AND is_active = TRUE
+            """)
+            row = session.execute(query, {"id": econalpha_id}).fetchone()
+
+            if row and row[0]:
+                return row[0]
+            return None
+
+    except Exception as e:
+        print(f"Error fetching country for {econalpha_id}: {e}")
+        return None
+
+
 def get_fmp_event_patterns(econalpha_id: str) -> Optional[List[str]]:
     """
     indicator_event_mappingからFMPイベントパターンを取得
@@ -63,7 +94,8 @@ def get_fmp_event_patterns(econalpha_id: str) -> Optional[List[str]]:
 def get_next_release_from_fmp(
     econalpha_id: str,
     patterns: Optional[List[str]] = None,
-    use_cache: bool = True
+    use_cache: bool = True,
+    country: str = None
 ) -> Optional[Dict[str, Any]]:
     """
     FMP APIから次回発表日を取得（ユーロ圏向け）
@@ -72,6 +104,7 @@ def get_next_release_from_fmp(
         econalpha_id: EconAlpha指標ID（マッピングテーブルから自動取得）
         patterns: FMPイベントパターン（指定しない場合はマッピングテーブルから取得）
         use_cache: Redisキャッシュを使用するか
+        country: 国コード（指定しない場合はマッピングテーブルから取得、またはデフォルトEU）
 
     Returns:
         次回発表日情報
@@ -92,21 +125,27 @@ def get_next_release_from_fmp(
         print(f"No FMP event patterns found for {econalpha_id}")
         return None
 
+    # 国コードを決定（マッピングから取得、なければデフォルト）
+    if country is None:
+        country = _get_country_from_mapping(econalpha_id)
+        if country is None:
+            country = "EU"
+
     try:
         from services.calendar.fmp_service import fmp_service
 
         today = date.today()
-        # 90日先までのイベントを取得（ユーロ圏）
+        # 90日先までのイベントを取得
         events = fmp_service.fetch_calendar(
             today,
             today + timedelta(days=90),
-            country="EU"
+            country=country
         )
 
         # 対象イベントを収集
         candidates = []
         for event in events:
-            if event.get("country") != "EU":
+            if event.get("country") != country:
                 continue
 
             event_name = event.get("event", "")
@@ -167,6 +206,7 @@ def get_next_release_from_fmp(
 def get_last_release_from_fmp(
     econalpha_id: str,
     patterns: Optional[List[str]] = None,
+    country: str = None,
 ) -> Optional[Dict[str, Any]]:
     """
     FMP APIから直近の発表日時を取得（過去のイベント）
@@ -174,6 +214,7 @@ def get_last_release_from_fmp(
     Args:
         econalpha_id: EconAlpha指標ID
         patterns: FMPイベントパターン
+        country: 国コード（指定しない場合はマッピングテーブルから取得）
 
     Returns:
         直近の発表日時情報
@@ -184,20 +225,26 @@ def get_last_release_from_fmp(
     if not patterns:
         return None
 
+    # 国コードを決定
+    if country is None:
+        country = _get_country_from_mapping(econalpha_id)
+        if country is None:
+            country = "EU"
+
     try:
         from services.calendar.fmp_service import fmp_service
 
         today = date.today()
-        # 過去90日分を取得（ユーロ圏）
+        # 過去90日分を取得
         events = fmp_service.fetch_calendar(
             today - timedelta(days=90),
             today,
-            country="EU"
+            country=country
         )
 
         candidates = []
         for event in events:
-            if event.get("country") != "EU":
+            if event.get("country") != country:
                 continue
 
             event_name = event.get("event", "")
@@ -274,10 +321,14 @@ def should_refresh_by_fmp_schedule(
 
         now = datetime.now(JST)
 
-        # マッピングからパターンを取得
+        # マッピングからパターンと国コードを取得
         patterns = get_fmp_event_patterns(econalpha_id)
         if not patterns:
             return False
+
+        country = _get_country_from_mapping(econalpha_id)
+        if country is None:
+            country = "EU"
 
         with SessionLocal() as session:
             # 直近の発表イベントをDBから取得
@@ -285,14 +336,14 @@ def should_refresh_by_fmp_schedule(
             query = text(f"""
                 SELECT datetime_utc, event, actual
                 FROM economic_calendar_events
-                WHERE country = 'EU'
+                WHERE country = :country
                   AND ({pattern_conditions})
                   AND actual IS NOT NULL
                   AND datetime_utc <= NOW()
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row = session.execute(query).fetchone()
+            row = session.execute(query, {"country": country}).fetchone()
 
             if not row:
                 return False

@@ -36,7 +36,7 @@ from services.japan.fmp_next_release_utils import (
 JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "japan" / "monetary_policy"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "monetary_policy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "boj_policy_rate_cache.json"
 

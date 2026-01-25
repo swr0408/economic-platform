@@ -9,6 +9,10 @@ import CapitalInvestmentChart from './economy/CapitalInvestmentChart'
 import JapanIIPChart from './economy/JapanIIPChart'
 import JapanIIPForecastTable from './economy/JapanIIPForecastTable'
 import CapacityUtilizationChart from './economy/CapacityUtilizationChart'
+import TertiaryIndustryIndexChart from './economy/TertiaryIndustryIndexChart'
+import MachineryOrdersChart from './economy/MachineryOrdersChart'
+import MachineryOrdersForecastTable from './economy/MachineryOrdersForecastTable'
+import MachineToolOrdersChart from './economy/MachineToolOrdersChart'
 import BOJTankanUnifiedTable from './economy/BOJTankanUnifiedTable'
 import BSIUnifiedChart from './economy/BSIUnifiedChart'
 import JapanPMIChart from './economy/JapanPMIChart'
@@ -69,6 +73,26 @@ export default function JapanEconomyCharts() {
       {/* Capacity Utilization Chart */}
       <div id="capacity-utilization">
         <CapacityUtilizationChart />
+      </div>
+
+      {/* Tertiary Industry Activity Index Chart */}
+      <div id="tertiary-industry-index">
+        <TertiaryIndustryIndexChart />
+      </div>
+
+      {/* Machinery Orders Chart */}
+      <div id="machinery-orders">
+        <MachineryOrdersChart />
+      </div>
+
+      {/* Machinery Orders Forecast Table */}
+      <div id="machinery-orders-forecast">
+        <MachineryOrdersForecastTable />
+      </div>
+
+      {/* Machine Tool Orders Chart */}
+      <div id="machine-tool-orders">
+        <MachineToolOrdersChart />
       </div>
 
       {/* BOJ Tankan Unified Table */}

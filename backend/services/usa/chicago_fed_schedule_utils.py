@@ -43,7 +43,7 @@ ET = ZoneInfo("America/New_York")
 CHICAGO_FED_SCHEDULE_URL = "https://www.chicagofed.org/research/data/data-release-calendar"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 CARTS_SCHEDULE_CACHE_FILE = CACHE_DIR / "carts_schedule.json"
 

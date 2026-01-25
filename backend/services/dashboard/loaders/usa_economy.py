@@ -1305,7 +1305,7 @@ class USAEconomyLoader(BaseDashboardLoader):
 
         # TSAサービスのファイルキャッシュを削除
         try:
-            cache_file = Path(__file__).parent.parent.parent.parent / "cache" / "usa" / "economy" / "tsa_checkpoint_data.json"
+            cache_file = Path(__file__).parent.parent.parent.parent / "data" / "cache" / "usa" / "economy" / "tsa_checkpoint_data.json"
             if cache_file.exists():
                 cache_file.unlink()
                 print("TSA checkpoint file cache deleted")

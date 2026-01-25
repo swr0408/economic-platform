@@ -1,6 +1,7 @@
 import { Spin, Alert, Button } from 'antd'
 import { useUKPolicyDashboard } from '../../../hooks/useDashboardData'
 import BOEBankRateChart from './monetary_policy/BOEBankRateChart'
+import SONIAChart from './monetary_policy/SONIAChart'
 import BOEMPCVotingChart from './monetary_policy/BOEMPCVotingChart'
 import BOEOISCurveChart from './monetary_policy/BOEOISCurveChart'
 import BOEEconomicOutlookSection from './monetary_policy/BOEEconomicOutlookSection'
@@ -45,6 +46,11 @@ export default function UKPolicyCharts() {
         <BOEBankRateChart
           data={dashboardData?.boe_bank_rate ?? null}
         />
+      </div>
+
+      {/* SONIA Chart */}
+      <div id="sonia">
+        <SONIAChart />
       </div>
 
       {/* BOE MPC Voting Chart */}

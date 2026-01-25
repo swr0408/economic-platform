@@ -12,6 +12,10 @@ try:
     from backend.routers.usa.fed_h15 import router as fed_h15_router
     from backend.routers.usa.nyfed import router as nyfed_router
     from backend.routers.usa.fred import router as fred_router
+    from backend.routers.usa.frb_total_assets import router as frb_total_assets_router
+    from backend.routers.usa.reserve_balances import router as reserve_balances_router
+    from backend.routers.usa.tga import router as tga_router
+    from backend.routers.usa.oas import router as oas_router
     from backend.routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from backend.routers.usa.fomc_projections import router as fomc_projections_router
     from backend.routers.dashboard import router as dashboard_router
@@ -49,6 +53,10 @@ try:
     from backend.routers.japan.pos_uvpi import router as japan_pos_uvpi_router
     from backend.routers.japan.gdp_gap import router as japan_gdp_gap_router
     from backend.routers.japan.boj_gdp_gap import router as japan_boj_gdp_gap_router
+    from backend.routers.japan.machinery_orders import router as japan_machinery_orders_router
+    from backend.routers.japan.machinery_orders_forecast import router as japan_machinery_orders_forecast_router
+    from backend.routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
+    from backend.routers.japan.bei import router as japan_bei_router
     from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from backend.routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from backend.routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -76,6 +84,7 @@ try:
     from backend.routers.eurozone.germany_retail_sales import router as eurozone_germany_retail_sales_router
     from backend.routers.eurozone.ecb_inflation_expectations import router as eurozone_ecb_inflation_expectations_router
     from backend.routers.uk.boe_bank_rate import router as uk_boe_bank_rate_router
+    from backend.routers.uk.sonia import router as uk_sonia_router
     from backend.routers.uk.boe_ois_curve import router as uk_boe_ois_curve_router
     from backend.routers.uk.boe_market_expectations import router as uk_boe_market_expectations_router
     from backend.routers.uk.boe_cpi_projections import router as uk_boe_cpi_projections_router
@@ -102,6 +111,10 @@ except ImportError:
     from routers.usa.fed_h15 import router as fed_h15_router
     from routers.usa.nyfed import router as nyfed_router
     from routers.usa.fred import router as fred_router
+    from routers.usa.frb_total_assets import router as frb_total_assets_router
+    from routers.usa.reserve_balances import router as reserve_balances_router
+    from routers.usa.tga import router as tga_router
+    from routers.usa.oas import router as oas_router
     from routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from routers.usa.fomc_projections import router as fomc_projections_router
     from routers.dashboard import router as dashboard_router
@@ -139,6 +152,11 @@ except ImportError:
     from routers.japan.pos_uvpi import router as japan_pos_uvpi_router
     from routers.japan.gdp_gap import router as japan_gdp_gap_router
     from routers.japan.boj_gdp_gap import router as japan_boj_gdp_gap_router
+    from routers.japan.machinery_orders import router as japan_machinery_orders_router
+    from routers.japan.machinery_orders_forecast import router as japan_machinery_orders_forecast_router
+    from routers.japan.machine_tool_orders import router as japan_machine_tool_orders_router
+    from routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
+    from routers.japan.bei import router as japan_bei_router
     from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -151,6 +169,8 @@ except ImportError:
     from routers.eurozone.euro_policy_uncertainty import router as eurozone_policy_uncertainty_router
     from routers.eurozone.ecb_retail_trade import router as eurozone_ecb_retail_trade_router
     from routers.eurozone.eu_pmi import router as eurozone_pmi_router
+    from routers.eurozone.germany_pmi import router as eurozone_germany_pmi_router
+    from routers.eurozone.france_pmi import router as eurozone_france_pmi_router
     from routers.eurozone.ecb_labor_productivity import router as eurozone_labor_productivity_router
     from routers.eurozone.ecb_unit_labour_cost import router as eurozone_unit_labour_cost_router
     from routers.eurozone.eurostat_wages import router as eurozone_eurostat_wages_router
@@ -166,6 +186,7 @@ except ImportError:
     from routers.eurozone.germany_retail_sales import router as eurozone_germany_retail_sales_router
     from routers.eurozone.ecb_inflation_expectations import router as eurozone_ecb_inflation_expectations_router
     from routers.uk.boe_bank_rate import router as uk_boe_bank_rate_router
+    from routers.uk.sonia import router as uk_sonia_router
     from routers.uk.boe_mpc_voting import router as uk_boe_mpc_voting_router
     from routers.uk.boe_ois_curve import router as uk_boe_ois_curve_router
     from routers.uk.boe_market_expectations import router as uk_boe_market_expectations_router
@@ -189,6 +210,7 @@ except ImportError:
     from scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
     from scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
     from scheduler.boj_lending_scheduler import boj_lending_scheduler
+    from scheduler.non_fmp_release_scheduler import non_fmp_release_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -222,6 +244,10 @@ app.include_router(seasonality_router)
 app.include_router(fed_h15_router)
 app.include_router(nyfed_router)
 app.include_router(fred_router)
+app.include_router(frb_total_assets_router)
+app.include_router(reserve_balances_router)
+app.include_router(tga_router)
+app.include_router(oas_router)
 app.include_router(cme_fedwatch_router)
 app.include_router(fomc_projections_router)
 app.include_router(dashboard_router)
@@ -259,6 +285,11 @@ app.include_router(japan_import_export_price_router)
 app.include_router(japan_pos_uvpi_router)
 app.include_router(japan_gdp_gap_router)
 app.include_router(japan_boj_gdp_gap_router)
+app.include_router(japan_machinery_orders_router)
+app.include_router(japan_machinery_orders_forecast_router)
+app.include_router(japan_machine_tool_orders_router)
+app.include_router(japan_tertiary_industry_index_router)
+app.include_router(japan_bei_router)
 app.include_router(eurozone_ecb_rates_router)
 app.include_router(eurozone_eurex_ois_router)
 app.include_router(eurozone_ecb_rate_cuts_screenshot_router)
@@ -271,6 +302,8 @@ app.include_router(eurozone_esi_router)
 app.include_router(eurozone_policy_uncertainty_router)
 app.include_router(eurozone_ecb_retail_trade_router)
 app.include_router(eurozone_pmi_router)
+app.include_router(eurozone_germany_pmi_router)
+app.include_router(eurozone_france_pmi_router)
 app.include_router(eurozone_labor_productivity_router)
 app.include_router(eurozone_unit_labour_cost_router)
 app.include_router(eurozone_eurostat_wages_router)
@@ -288,6 +321,7 @@ app.include_router(eurozone_ecb_inflation_expectations_router)
 
 # UK
 app.include_router(uk_boe_bank_rate_router)
+app.include_router(uk_sonia_router)
 app.include_router(uk_boe_mpc_voting_router)
 app.include_router(uk_boe_ois_curve_router)
 app.include_router(uk_boe_market_expectations_router)
@@ -392,6 +426,13 @@ async def startup_event():
         print("BOJ Lending Scheduler started successfully")
     except Exception as e:
         print(f"Warning: Could not start BOJ Lending Scheduler: {e}")
+
+    # 非FMP指標スケジューラーを開始
+    try:
+        non_fmp_release_scheduler.start()
+        print("Non-FMP Release Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Non-FMP Release Scheduler: {e}")
 
     print("=" * 60)
     print("Economic Platform API started")

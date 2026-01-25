@@ -43,7 +43,7 @@ JOLTS_SERIES_ID = "JTSJOL"       # JOLTS求人件数（千人）
 INDEED_SERIES_ID = "IHLIDXUS"   # Indeed求人件数指数
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "jolts_indeed_cache.json"
 

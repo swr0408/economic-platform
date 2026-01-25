@@ -43,7 +43,7 @@ JOLTS_SERIES_ID = "JTSJOL"      # JOLTS求人件数（千人）
 UNEMPLOY_SERIES_ID = "UNEMPLOY"  # 失業者数（千人）
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "job_openings_per_unemployed_cache.json"
 

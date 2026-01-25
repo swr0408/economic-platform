@@ -5,6 +5,10 @@ import TermPremiumChart from './monetary_policy/TermPremiumChart'
 import CMEFedWatchChart from './monetary_policy/CMEFedWatchChart'
 import FOMCProjectionsChart from './monetary_policy/FOMCProjectionsChart'
 import FOMCTable1Chart from './monetary_policy/FOMCTable1Chart'
+import FRBTotalAssetsChart from './monetary_policy/FRBTotalAssetsChart'
+import ReserveBalancesChart from './monetary_policy/ReserveBalancesChart'
+import TGAChart from './monetary_policy/TGAChart'
+import OASChart from './monetary_policy/OASChart'
 
 /**
  * 米国金融政策チャート群
@@ -74,6 +78,26 @@ export default function USAPolicyCharts() {
       {/* FOMC Economic Projections Table 1 */}
       <div id="fomc-projections">
         <FOMCTable1Chart sepDates={dashboardData?.sep_dates ?? null} />
+      </div>
+
+      {/* FRB Total Assets Chart */}
+      <div id="frb-total-assets">
+        <FRBTotalAssetsChart data={dashboardData?.frb_total_assets ?? null} />
+      </div>
+
+      {/* Reserve Balances Chart */}
+      <div id="reserve-balances">
+        <ReserveBalancesChart data={dashboardData?.reserve_balances ?? null} />
+      </div>
+
+      {/* TGA Chart */}
+      <div id="tga">
+        <TGAChart data={dashboardData?.tga ?? null} />
+      </div>
+
+      {/* OAS Chart */}
+      <div id="oas">
+        <OASChart data={dashboardData?.oas ?? null} />
       </div>
     </div>
   )

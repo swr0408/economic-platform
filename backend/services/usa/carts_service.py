@@ -46,7 +46,7 @@ CARTS_FIG1_CSV_URL = "https://api.data.chicagofed.org/CARTS/carts-dashboard-fig1
 CARTS_SCHEDULE_URL = "https://www.chicagofed.org/research/data/data-release-calendar"
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "consumer"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "consumer"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 WEEKLY_CACHE_FILE = CACHE_DIR / "carts_weekly_cache.json"
 PRICE_CACHE_FILE = CACHE_DIR / "carts_price_cache.json"

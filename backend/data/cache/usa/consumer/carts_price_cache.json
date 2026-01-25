@@ -1,0 +1,515 @@
+{
+  "data": [
+    {
+      "date": "2019-01-01",
+      "bea": -0.5,
+      "cpi": -0.69,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-02-01",
+      "bea": -0.41,
+      "cpi": -0.45,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-03-01",
+      "bea": 0.16,
+      "cpi": 0.54,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-04-01",
+      "bea": 0.17,
+      "cpi": 0.65,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-05-01",
+      "bea": -0.04,
+      "cpi": 0.46,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-06-01",
+      "bea": -0.36,
+      "cpi": 0.02,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-07-01",
+      "bea": -0.13,
+      "cpi": 0.33,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-08-01",
+      "bea": -0.15,
+      "cpi": 0.02,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-09-01",
+      "bea": -0.41,
+      "cpi": -0.31,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-10-01",
+      "bea": -0.4,
+      "cpi": -0.26,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-11-01",
+      "bea": 0.05,
+      "cpi": 0.7,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2019-12-01",
+      "bea": 0.87,
+      "cpi": 1.57,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-01-01",
+      "bea": 1.11,
+      "cpi": 2.12,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-02-01",
+      "bea": 0.62,
+      "cpi": 1.28,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-03-01",
+      "bea": -0.8,
+      "cpi": -0.45,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-04-01",
+      "bea": -2.81,
+      "cpi": -2.48,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-05-01",
+      "bea": -3.11,
+      "cpi": -2.51,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-06-01",
+      "bea": -1.73,
+      "cpi": -0.99,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-07-01",
+      "bea": -1.26,
+      "cpi": -0.97,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-08-01",
+      "bea": -0.5,
+      "cpi": -0.44,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-09-01",
+      "bea": -0.46,
+      "cpi": -0.34,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-10-01",
+      "bea": -0.8,
+      "cpi": -0.61,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-11-01",
+      "bea": -0.76,
+      "cpi": -0.75,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2020-12-01",
+      "bea": -0.06,
+      "cpi": -0.21,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-01-01",
+      "bea": 0.75,
+      "cpi": 0.52,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-02-01",
+      "bea": 1.51,
+      "cpi": 1.36,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-03-01",
+      "bea": 3.43,
+      "cpi": 3.2,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-04-01",
+      "bea": 5.54,
+      "cpi": 4.91,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-05-01",
+      "bea": 6.58,
+      "cpi": 5.53,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-06-01",
+      "bea": 6.01,
+      "cpi": 5.03,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-07-01",
+      "bea": 5.77,
+      "cpi": 5.24,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-08-01",
+      "bea": 5.73,
+      "cpi": 5.47,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-09-01",
+      "bea": 6.08,
+      "cpi": 6.02,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-10-01",
+      "bea": 7.5,
+      "cpi": 7.2,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-11-01",
+      "bea": 8.41,
+      "cpi": 8.12,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2021-12-01",
+      "bea": 8.31,
+      "cpi": 7.88,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-01-01",
+      "bea": 8.5,
+      "cpi": 7.78,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-02-01",
+      "bea": 9.07,
+      "cpi": 8.25,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-03-01",
+      "bea": 10.12,
+      "cpi": 9.64,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-04-01",
+      "bea": 9.6,
+      "cpi": 9.22,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-05-01",
+      "bea": 9.87,
+      "cpi": 9.9,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-06-01",
+      "bea": 10.78,
+      "cpi": 11.18,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-07-01",
+      "bea": 9.99,
+      "cpi": 9.86,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-08-01",
+      "bea": 9.11,
+      "cpi": 8.36,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-09-01",
+      "bea": 8.64,
+      "cpi": 7.59,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-10-01",
+      "bea": 7.97,
+      "cpi": 7.26,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-11-01",
+      "bea": 6.96,
+      "cpi": 6.36,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2022-12-01",
+      "bea": 5.48,
+      "cpi": 4.87,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-01-01",
+      "bea": 5.17,
+      "cpi": 4.88,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-02-01",
+      "bea": 4.44,
+      "cpi": 4.15,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-03-01",
+      "bea": 2.44,
+      "cpi": 1.8,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-04-01",
+      "bea": 2.65,
+      "cpi": 2.15,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-05-01",
+      "bea": 1.45,
+      "cpi": 0.77,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-06-01",
+      "bea": 0.13,
+      "cpi": -0.86,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-07-01",
+      "bea": 0.46,
+      "cpi": -0.22,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-08-01",
+      "bea": 1.6,
+      "cpi": 1.44,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-09-01",
+      "bea": 1.89,
+      "cpi": 1.88,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-10-01",
+      "bea": 1.06,
+      "cpi": 0.87,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-11-01",
+      "bea": 0.64,
+      "cpi": 0.12,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2023-12-01",
+      "bea": 0.98,
+      "cpi": 0.74,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2024-01-01",
+      "bea": 0.1,
+      "cpi": 0.27,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2024-02-01",
+      "bea": 0.18,
+      "cpi": 0.3,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2024-03-01",
+      "bea": 0.62,
+      "cpi": 0.64,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2024-04-01",
+      "bea": 0.71,
+      "cpi": 0.74,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2024-05-01",
+      "bea": 0.74,
+      "cpi": 0.79,
+      "carts_nowcast": null
+    },
+    {
+      "date": "2024-06-01",
+      "bea": null,
+      "cpi": 0.42,
+      "carts_nowcast": 0.41
+    },
+    {
+      "date": "2024-07-01",
+      "bea": null,
+      "cpi": 0.45,
+      "carts_nowcast": 0.37
+    },
+    {
+      "date": "2024-08-01",
+      "bea": null,
+      "cpi": -0.46,
+      "carts_nowcast": -0.64
+    },
+    {
+      "date": "2024-09-01",
+      "bea": null,
+      "cpi": -0.89,
+      "carts_nowcast": -1.04
+    },
+    {
+      "date": "2024-10-01",
+      "bea": null,
+      "cpi": -0.73,
+      "carts_nowcast": -0.8
+    },
+    {
+      "date": "2024-11-01",
+      "bea": null,
+      "cpi": -0.0,
+      "carts_nowcast": -0.21
+    },
+    {
+      "date": "2024-12-01",
+      "bea": null,
+      "cpi": 0.52,
+      "carts_nowcast": 0.41
+    },
+    {
+      "date": "2025-01-01",
+      "bea": null,
+      "cpi": 0.68,
+      "carts_nowcast": 0.87
+    },
+    {
+      "date": "2025-02-01",
+      "bea": null,
+      "cpi": 0.47,
+      "carts_nowcast": 0.39
+    },
+    {
+      "date": "2025-03-01",
+      "bea": null,
+      "cpi": -0.01,
+      "carts_nowcast": -0.2
+    },
+    {
+      "date": "2025-04-01",
+      "bea": null,
+      "cpi": -0.3,
+      "carts_nowcast": -0.44
+    },
+    {
+      "date": "2025-05-01",
+      "bea": null,
+      "cpi": -0.17,
+      "carts_nowcast": -0.14
+    },
+    {
+      "date": "2025-06-01",
+      "bea": null,
+      "cpi": 0.43,
+      "carts_nowcast": 0.52
+    },
+    {
+      "date": "2025-07-01",
+      "bea": null,
+      "cpi": 0.42,
+      "carts_nowcast": 0.68
+    },
+    {
+      "date": "2025-08-01",
+      "bea": null,
+      "cpi": 0.9,
+      "carts_nowcast": 1.1
+    },
+    {
+      "date": "2025-09-01",
+      "bea": null,
+      "cpi": 1.51,
+      "carts_nowcast": 1.66
+    },
+    {
+      "date": "2025-10-01",
+      "bea": null,
+      "cpi": 1.25,
+      "carts_nowcast": 1.49
+    },
+    {
+      "date": "2025-11-01",
+      "bea": null,
+      "cpi": 1.46,
+      "carts_nowcast": 1.79
+    },
+    {
+      "date": "2025-12-01",
+      "bea": null,
+      "cpi": 1.38,
+      "carts_nowcast": 1.65
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "bea": null,
+    "cpi": 1.38,
+    "carts_nowcast": 1.65
+  },
+  "last_updated": "2026-01-26T00:18:57.002821+09:00"
+}

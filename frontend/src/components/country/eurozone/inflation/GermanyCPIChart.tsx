@@ -62,8 +62,8 @@ type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
 
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
-  { mode: 'mom_chart', label: '前月比グラフ' },
+  { mode: 'mom_chart', label: '前月比' },
+  { mode: 'mom_table', label: '前月比（テーブル）' },
 ]
 
 // データタイプ

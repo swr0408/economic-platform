@@ -1,0 +1,2774 @@
+{
+  "data": [
+    {
+      "date": "1997-03-01",
+      "overall": 4.5,
+      "fulltime": 4.5,
+      "paid_hourly": 4.2,
+      "job_stayer": 4.1,
+      "job_switcher": 5.2
+    },
+    {
+      "date": "1997-04-01",
+      "overall": 4.6,
+      "fulltime": 4.6,
+      "paid_hourly": 4.3,
+      "job_stayer": 4.1,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "1997-05-01",
+      "overall": 4.5,
+      "fulltime": 4.6,
+      "paid_hourly": 4.1,
+      "job_stayer": 4.1,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "1997-06-01",
+      "overall": 4.6,
+      "fulltime": 4.6,
+      "paid_hourly": 4.4,
+      "job_stayer": 4.1,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1997-07-01",
+      "overall": 4.8,
+      "fulltime": 4.7,
+      "paid_hourly": 4.5,
+      "job_stayer": 4.3,
+      "job_switcher": 5.9
+    },
+    {
+      "date": "1997-08-01",
+      "overall": 4.9,
+      "fulltime": 4.8,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.3,
+      "job_switcher": 6.0
+    },
+    {
+      "date": "1997-09-01",
+      "overall": 4.8,
+      "fulltime": 4.8,
+      "paid_hourly": 4.5,
+      "job_stayer": 4.3,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1997-10-01",
+      "overall": 4.8,
+      "fulltime": 4.7,
+      "paid_hourly": 4.5,
+      "job_stayer": 4.4,
+      "job_switcher": 5.5
+    },
+    {
+      "date": "1997-11-01",
+      "overall": 4.8,
+      "fulltime": 4.8,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.4,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "1997-12-01",
+      "overall": 4.9,
+      "fulltime": 4.8,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.5,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "1998-01-01",
+      "overall": 4.9,
+      "fulltime": 4.8,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.3,
+      "job_switcher": 6.1
+    },
+    {
+      "date": "1998-02-01",
+      "overall": 4.8,
+      "fulltime": 4.7,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.3,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1998-03-01",
+      "overall": 4.6,
+      "fulltime": 4.5,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.3,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "1998-04-01",
+      "overall": 4.9,
+      "fulltime": 4.7,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.6,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "1998-05-01",
+      "overall": 5.2,
+      "fulltime": 5.1,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.9,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1998-06-01",
+      "overall": 5.4,
+      "fulltime": 5.4,
+      "paid_hourly": 5.0,
+      "job_stayer": 5.1,
+      "job_switcher": 6.0
+    },
+    {
+      "date": "1998-07-01",
+      "overall": 5.4,
+      "fulltime": 5.5,
+      "paid_hourly": 5.2,
+      "job_stayer": 4.9,
+      "job_switcher": 6.4
+    },
+    {
+      "date": "1998-08-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 5.2,
+      "job_stayer": 4.9,
+      "job_switcher": 6.3
+    },
+    {
+      "date": "1998-09-01",
+      "overall": 5.1,
+      "fulltime": 5.1,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.5,
+      "job_switcher": 6.6
+    },
+    {
+      "date": "1998-10-01",
+      "overall": 5.0,
+      "fulltime": 5.0,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.4,
+      "job_switcher": 6.3
+    },
+    {
+      "date": "1998-11-01",
+      "overall": 4.9,
+      "fulltime": 5.0,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.3,
+      "job_switcher": 6.4
+    },
+    {
+      "date": "1998-12-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 4.8,
+      "job_stayer": 4.5,
+      "job_switcher": 6.3
+    },
+    {
+      "date": "1999-01-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.6,
+      "job_switcher": 5.9
+    },
+    {
+      "date": "1999-02-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.7,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1999-03-01",
+      "overall": 5.2,
+      "fulltime": 5.3,
+      "paid_hourly": 4.8,
+      "job_stayer": 4.9,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1999-04-01",
+      "overall": 5.2,
+      "fulltime": 5.2,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.7,
+      "job_switcher": 6.1
+    },
+    {
+      "date": "1999-05-01",
+      "overall": 5.2,
+      "fulltime": 5.3,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.8,
+      "job_switcher": 6.0
+    },
+    {
+      "date": "1999-06-01",
+      "overall": 4.9,
+      "fulltime": 5.1,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.7,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "1999-07-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.8,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "1999-08-01",
+      "overall": 4.8,
+      "fulltime": 5.0,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.6,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "1999-09-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.7,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "1999-10-01",
+      "overall": 5.1,
+      "fulltime": 5.2,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.7,
+      "job_switcher": 6.0
+    },
+    {
+      "date": "1999-11-01",
+      "overall": 5.2,
+      "fulltime": 5.3,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.7,
+      "job_switcher": 6.3
+    },
+    {
+      "date": "1999-12-01",
+      "overall": 5.0,
+      "fulltime": 5.2,
+      "paid_hourly": 4.8,
+      "job_stayer": 4.7,
+      "job_switcher": 6.0
+    },
+    {
+      "date": "2000-01-01",
+      "overall": 4.9,
+      "fulltime": 5.0,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.5,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "2000-02-01",
+      "overall": 4.8,
+      "fulltime": 4.9,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.4,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "2000-03-01",
+      "overall": 4.8,
+      "fulltime": 4.9,
+      "paid_hourly": 4.4,
+      "job_stayer": 4.4,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "2000-04-01",
+      "overall": 4.9,
+      "fulltime": 4.9,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.6,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "2000-05-01",
+      "overall": 4.9,
+      "fulltime": 4.9,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.5,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "2000-06-01",
+      "overall": 5.0,
+      "fulltime": 5.0,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.7,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "2000-07-01",
+      "overall": 5.1,
+      "fulltime": 5.1,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.6,
+      "job_switcher": 6.3
+    },
+    {
+      "date": "2000-08-01",
+      "overall": 5.1,
+      "fulltime": 5.3,
+      "paid_hourly": 5.0,
+      "job_stayer": 4.7,
+      "job_switcher": 6.3
+    },
+    {
+      "date": "2000-09-01",
+      "overall": 5.2,
+      "fulltime": 5.3,
+      "paid_hourly": 5.0,
+      "job_stayer": 4.7,
+      "job_switcher": 6.4
+    },
+    {
+      "date": "2000-10-01",
+      "overall": 5.2,
+      "fulltime": 5.4,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.7,
+      "job_switcher": 6.4
+    },
+    {
+      "date": "2000-11-01",
+      "overall": 5.4,
+      "fulltime": 5.5,
+      "paid_hourly": 5.1,
+      "job_stayer": 4.9,
+      "job_switcher": 6.5
+    },
+    {
+      "date": "2000-12-01",
+      "overall": 5.4,
+      "fulltime": 5.5,
+      "paid_hourly": 5.1,
+      "job_stayer": 4.8,
+      "job_switcher": 6.4
+    },
+    {
+      "date": "2001-01-01",
+      "overall": 5.4,
+      "fulltime": 5.4,
+      "paid_hourly": 5.1,
+      "job_stayer": 4.8,
+      "job_switcher": 6.2
+    },
+    {
+      "date": "2001-02-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.9,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "2001-03-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 4.9,
+      "job_stayer": 5.0,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "2001-04-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 5.1,
+      "job_stayer": 5.3,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "2001-05-01",
+      "overall": 5.1,
+      "fulltime": 5.2,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.9,
+      "job_switcher": 5.3
+    },
+    {
+      "date": "2001-06-01",
+      "overall": 5.2,
+      "fulltime": 5.4,
+      "paid_hourly": 4.8,
+      "job_stayer": 4.9,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "2001-07-01",
+      "overall": 5.1,
+      "fulltime": 5.3,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.5,
+      "job_switcher": 6.2
+    },
+    {
+      "date": "2001-08-01",
+      "overall": 5.2,
+      "fulltime": 5.4,
+      "paid_hourly": 5.0,
+      "job_stayer": 4.7,
+      "job_switcher": 6.5
+    },
+    {
+      "date": "2001-09-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 5.0,
+      "job_stayer": 4.7,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "2001-10-01",
+      "overall": 5.0,
+      "fulltime": 5.2,
+      "paid_hourly": 5.0,
+      "job_stayer": 4.8,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "2001-11-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 4.8,
+      "job_stayer": 4.9,
+      "job_switcher": 5.1
+    },
+    {
+      "date": "2001-12-01",
+      "overall": 5.0,
+      "fulltime": 5.2,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.7,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "2002-01-01",
+      "overall": 4.9,
+      "fulltime": 5.0,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.6,
+      "job_switcher": 5.5
+    },
+    {
+      "date": "2002-02-01",
+      "overall": 4.7,
+      "fulltime": 4.7,
+      "paid_hourly": 4.5,
+      "job_stayer": 4.4,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "2002-03-01",
+      "overall": 4.6,
+      "fulltime": 4.6,
+      "paid_hourly": 4.3,
+      "job_stayer": 4.3,
+      "job_switcher": 4.9
+    },
+    {
+      "date": "2002-04-01",
+      "overall": 4.3,
+      "fulltime": 4.4,
+      "paid_hourly": 4.1,
+      "job_stayer": 4.1,
+      "job_switcher": 4.6
+    },
+    {
+      "date": "2002-05-01",
+      "overall": 4.4,
+      "fulltime": 4.5,
+      "paid_hourly": 4.0,
+      "job_stayer": 4.3,
+      "job_switcher": 4.6
+    },
+    {
+      "date": "2002-06-01",
+      "overall": 4.2,
+      "fulltime": 4.3,
+      "paid_hourly": 4.1,
+      "job_stayer": 4.1,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2002-07-01",
+      "overall": 4.1,
+      "fulltime": 4.3,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.1,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2002-08-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.9,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2002-09-01",
+      "overall": 3.9,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.9,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2002-10-01",
+      "overall": 3.8,
+      "fulltime": 4.0,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.8,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2002-11-01",
+      "overall": 3.5,
+      "fulltime": 3.7,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.6,
+      "job_switcher": 3.5
+    },
+    {
+      "date": "2002-12-01",
+      "overall": 3.6,
+      "fulltime": 3.7,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.7,
+      "job_switcher": 3.5
+    },
+    {
+      "date": "2003-01-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.7,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2003-02-01",
+      "overall": 3.9,
+      "fulltime": 3.9,
+      "paid_hourly": 4.0,
+      "job_stayer": 3.9,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2003-03-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.7,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2003-04-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.4,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2003-05-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.4,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2003-06-01",
+      "overall": 3.6,
+      "fulltime": 3.7,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.4,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2003-07-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.6,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2003-08-01",
+      "overall": 3.5,
+      "fulltime": 3.7,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.4,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2003-09-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.5,
+      "job_switcher": 3.3
+    },
+    {
+      "date": "2003-10-01",
+      "overall": 3.4,
+      "fulltime": 3.6,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.5,
+      "job_switcher": 3.1
+    },
+    {
+      "date": "2003-11-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.5,
+      "job_switcher": 3.1
+    },
+    {
+      "date": "2003-12-01",
+      "overall": 3.3,
+      "fulltime": 3.5,
+      "paid_hourly": 3.1,
+      "job_stayer": 3.4,
+      "job_switcher": 3.1
+    },
+    {
+      "date": "2004-01-01",
+      "overall": 3.3,
+      "fulltime": 3.5,
+      "paid_hourly": 3.1,
+      "job_stayer": 3.4,
+      "job_switcher": 3.0
+    },
+    {
+      "date": "2004-02-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.1,
+      "job_stayer": 3.4,
+      "job_switcher": 3.2
+    },
+    {
+      "date": "2004-03-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.3,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2004-04-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.2,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2004-05-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.2,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2004-06-01",
+      "overall": 3.3,
+      "fulltime": 3.4,
+      "paid_hourly": 3.1,
+      "job_stayer": 3.2,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2004-07-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.2,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2004-08-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.3,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2004-09-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.6,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2004-10-01",
+      "overall": 3.7,
+      "fulltime": 3.9,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.7,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2004-11-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.5,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2004-12-01",
+      "overall": 3.5,
+      "fulltime": 3.8,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.3,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2005-01-01",
+      "overall": 3.6,
+      "fulltime": 3.8,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.4,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2005-02-01",
+      "overall": 3.5,
+      "fulltime": 3.8,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.5,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2005-03-01",
+      "overall": 3.6,
+      "fulltime": 3.7,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.6,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2005-04-01",
+      "overall": 3.5,
+      "fulltime": 3.7,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.5,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2005-05-01",
+      "overall": 3.6,
+      "fulltime": 3.8,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.6,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2005-06-01",
+      "overall": 3.8,
+      "fulltime": 4.0,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.8,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2005-07-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.7,
+      "job_stayer": 4.0,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2005-08-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.0,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2005-09-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.9,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2005-10-01",
+      "overall": 4.0,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.9,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2005-11-01",
+      "overall": 4.2,
+      "fulltime": 4.3,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.9,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2005-12-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 3.7,
+      "job_stayer": 4.0,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2006-01-01",
+      "overall": 4.0,
+      "fulltime": 4.1,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.9,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2006-02-01",
+      "overall": 3.8,
+      "fulltime": 3.8,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.7,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2006-03-01",
+      "overall": 3.8,
+      "fulltime": 3.9,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.8,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2006-04-01",
+      "overall": 3.8,
+      "fulltime": 3.9,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.8,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2006-05-01",
+      "overall": 3.9,
+      "fulltime": 4.0,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.7,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2006-06-01",
+      "overall": 3.8,
+      "fulltime": 4.0,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.5,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2006-07-01",
+      "overall": 3.7,
+      "fulltime": 3.9,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.3,
+      "job_switcher": 4.6
+    },
+    {
+      "date": "2006-08-01",
+      "overall": 3.8,
+      "fulltime": 4.0,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.5,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2006-09-01",
+      "overall": 3.8,
+      "fulltime": 4.1,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.5,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2006-10-01",
+      "overall": 3.8,
+      "fulltime": 4.1,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.6,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2006-11-01",
+      "overall": 3.9,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.6,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2006-12-01",
+      "overall": 4.0,
+      "fulltime": 4.1,
+      "paid_hourly": 4.1,
+      "job_stayer": 3.8,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2007-01-01",
+      "overall": 4.2,
+      "fulltime": 4.3,
+      "paid_hourly": 4.2,
+      "job_stayer": 4.0,
+      "job_switcher": 4.6
+    },
+    {
+      "date": "2007-02-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 4.1,
+      "job_stayer": 3.9,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2007-03-01",
+      "overall": 4.3,
+      "fulltime": 4.4,
+      "paid_hourly": 4.1,
+      "job_stayer": 4.0,
+      "job_switcher": 4.8
+    },
+    {
+      "date": "2007-04-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 4.0,
+      "job_stayer": 3.9,
+      "job_switcher": 4.7
+    },
+    {
+      "date": "2007-05-01",
+      "overall": 4.1,
+      "fulltime": 4.3,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.7,
+      "job_switcher": 4.9
+    },
+    {
+      "date": "2007-06-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.7,
+      "job_switcher": 4.7
+    },
+    {
+      "date": "2007-07-01",
+      "overall": 4.2,
+      "fulltime": 4.4,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.8,
+      "job_switcher": 5.0
+    },
+    {
+      "date": "2007-08-01",
+      "overall": 4.3,
+      "fulltime": 4.5,
+      "paid_hourly": 4.0,
+      "job_stayer": 4.1,
+      "job_switcher": 4.9
+    },
+    {
+      "date": "2007-09-01",
+      "overall": 4.4,
+      "fulltime": 4.6,
+      "paid_hourly": 4.1,
+      "job_stayer": 4.2,
+      "job_switcher": 4.8
+    },
+    {
+      "date": "2007-10-01",
+      "overall": 4.3,
+      "fulltime": 4.5,
+      "paid_hourly": 4.1,
+      "job_stayer": 4.2,
+      "job_switcher": 4.7
+    },
+    {
+      "date": "2007-11-01",
+      "overall": 4.3,
+      "fulltime": 4.4,
+      "paid_hourly": 4.0,
+      "job_stayer": 4.2,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2007-12-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 4.0,
+      "job_stayer": 4.0,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2008-01-01",
+      "overall": 3.9,
+      "fulltime": 4.0,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.8,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2008-02-01",
+      "overall": 3.9,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.8,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2008-03-01",
+      "overall": 4.0,
+      "fulltime": 4.0,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.8,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2008-04-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.0,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2008-05-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 3.6,
+      "job_stayer": 4.0,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2008-06-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 3.7,
+      "job_stayer": 4.0,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2008-07-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.0,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2008-08-01",
+      "overall": 4.0,
+      "fulltime": 4.1,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.9,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2008-09-01",
+      "overall": 4.0,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.9,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2008-10-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.9,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2008-11-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.9,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2008-12-01",
+      "overall": 3.8,
+      "fulltime": 4.1,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.8,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2009-01-01",
+      "overall": 3.7,
+      "fulltime": 3.9,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.6,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2009-02-01",
+      "overall": 3.4,
+      "fulltime": 3.6,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.4,
+      "job_switcher": 3.3
+    },
+    {
+      "date": "2009-03-01",
+      "overall": 3.3,
+      "fulltime": 3.4,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.3,
+      "job_switcher": 3.1
+    },
+    {
+      "date": "2009-04-01",
+      "overall": 3.2,
+      "fulltime": 3.3,
+      "paid_hourly": 2.9,
+      "job_stayer": 3.3,
+      "job_switcher": 3.0
+    },
+    {
+      "date": "2009-05-01",
+      "overall": 3.3,
+      "fulltime": 3.4,
+      "paid_hourly": 3.0,
+      "job_stayer": 3.4,
+      "job_switcher": 3.0
+    },
+    {
+      "date": "2009-06-01",
+      "overall": 3.1,
+      "fulltime": 3.2,
+      "paid_hourly": 2.9,
+      "job_stayer": 3.3,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2009-07-01",
+      "overall": 3.0,
+      "fulltime": 3.0,
+      "paid_hourly": 2.9,
+      "job_stayer": 3.1,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2009-08-01",
+      "overall": 2.5,
+      "fulltime": 2.6,
+      "paid_hourly": 2.5,
+      "job_stayer": 2.7,
+      "job_switcher": 1.6
+    },
+    {
+      "date": "2009-09-01",
+      "overall": 2.3,
+      "fulltime": 2.4,
+      "paid_hourly": 2.4,
+      "job_stayer": 2.5,
+      "job_switcher": 1.8
+    },
+    {
+      "date": "2009-10-01",
+      "overall": 2.1,
+      "fulltime": 2.1,
+      "paid_hourly": 2.3,
+      "job_stayer": 2.4,
+      "job_switcher": 1.5
+    },
+    {
+      "date": "2009-11-01",
+      "overall": 2.1,
+      "fulltime": 2.2,
+      "paid_hourly": 2.3,
+      "job_stayer": 2.4,
+      "job_switcher": 1.6
+    },
+    {
+      "date": "2009-12-01",
+      "overall": 1.7,
+      "fulltime": 1.9,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.0,
+      "job_switcher": 1.3
+    },
+    {
+      "date": "2010-01-01",
+      "overall": 1.6,
+      "fulltime": 1.8,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.9,
+      "job_switcher": 1.2
+    },
+    {
+      "date": "2010-02-01",
+      "overall": 1.7,
+      "fulltime": 1.8,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.8,
+      "job_switcher": 1.4
+    },
+    {
+      "date": "2010-03-01",
+      "overall": 1.9,
+      "fulltime": 2.0,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.9,
+      "job_switcher": 1.7
+    },
+    {
+      "date": "2010-04-01",
+      "overall": 1.9,
+      "fulltime": 2.0,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.9,
+      "job_switcher": 1.8
+    },
+    {
+      "date": "2010-05-01",
+      "overall": 1.6,
+      "fulltime": 1.7,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.7,
+      "job_switcher": 1.6
+    },
+    {
+      "date": "2010-06-01",
+      "overall": 1.7,
+      "fulltime": 1.8,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.8,
+      "job_switcher": 1.7
+    },
+    {
+      "date": "2010-07-01",
+      "overall": 1.8,
+      "fulltime": 1.8,
+      "paid_hourly": 1.5,
+      "job_stayer": 1.8,
+      "job_switcher": 1.7
+    },
+    {
+      "date": "2010-08-01",
+      "overall": 2.0,
+      "fulltime": 2.1,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.9,
+      "job_switcher": 2.0
+    },
+    {
+      "date": "2010-09-01",
+      "overall": 1.9,
+      "fulltime": 2.0,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.8,
+      "job_switcher": 2.1
+    },
+    {
+      "date": "2010-10-01",
+      "overall": 1.7,
+      "fulltime": 1.7,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.4,
+      "job_switcher": 2.1
+    },
+    {
+      "date": "2010-11-01",
+      "overall": 1.7,
+      "fulltime": 1.7,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.3,
+      "job_switcher": 2.1
+    },
+    {
+      "date": "2010-12-01",
+      "overall": 1.7,
+      "fulltime": 1.7,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.3,
+      "job_switcher": 2.2
+    },
+    {
+      "date": "2011-01-01",
+      "overall": 1.9,
+      "fulltime": 1.9,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.5,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2011-02-01",
+      "overall": 1.9,
+      "fulltime": 2.1,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.6,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2011-03-01",
+      "overall": 1.9,
+      "fulltime": 2.1,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.7,
+      "job_switcher": 2.2
+    },
+    {
+      "date": "2011-04-01",
+      "overall": 1.9,
+      "fulltime": 2.2,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.9,
+      "job_switcher": 1.9
+    },
+    {
+      "date": "2011-05-01",
+      "overall": 2.0,
+      "fulltime": 2.2,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.9,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2011-06-01",
+      "overall": 2.0,
+      "fulltime": 2.3,
+      "paid_hourly": 1.6,
+      "job_stayer": 1.8,
+      "job_switcher": 2.5
+    },
+    {
+      "date": "2011-07-01",
+      "overall": 2.1,
+      "fulltime": 2.3,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.9,
+      "job_switcher": 2.7
+    },
+    {
+      "date": "2011-08-01",
+      "overall": 2.2,
+      "fulltime": 2.3,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.1,
+      "job_switcher": 2.3
+    },
+    {
+      "date": "2011-09-01",
+      "overall": 2.1,
+      "fulltime": 2.2,
+      "paid_hourly": 2.0,
+      "job_stayer": 2.0,
+      "job_switcher": 2.1
+    },
+    {
+      "date": "2011-10-01",
+      "overall": 2.2,
+      "fulltime": 2.3,
+      "paid_hourly": 1.9,
+      "job_stayer": 1.9,
+      "job_switcher": 2.3
+    },
+    {
+      "date": "2011-11-01",
+      "overall": 2.0,
+      "fulltime": 2.1,
+      "paid_hourly": 1.7,
+      "job_stayer": 1.7,
+      "job_switcher": 2.2
+    },
+    {
+      "date": "2011-12-01",
+      "overall": 2.0,
+      "fulltime": 2.3,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.8,
+      "job_switcher": 2.2
+    },
+    {
+      "date": "2012-01-01",
+      "overall": 1.9,
+      "fulltime": 2.2,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.8,
+      "job_switcher": 2.1
+    },
+    {
+      "date": "2012-02-01",
+      "overall": 1.9,
+      "fulltime": 2.3,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.7,
+      "job_switcher": 2.3
+    },
+    {
+      "date": "2012-03-01",
+      "overall": 2.0,
+      "fulltime": 2.4,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.8,
+      "job_switcher": 2.2
+    },
+    {
+      "date": "2012-04-01",
+      "overall": 2.2,
+      "fulltime": 2.5,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.0,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2012-05-01",
+      "overall": 2.1,
+      "fulltime": 2.4,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.1,
+      "job_switcher": 1.9
+    },
+    {
+      "date": "2012-06-01",
+      "overall": 2.3,
+      "fulltime": 2.6,
+      "paid_hourly": 2.0,
+      "job_stayer": 2.0,
+      "job_switcher": 2.6
+    },
+    {
+      "date": "2012-07-01",
+      "overall": 2.1,
+      "fulltime": 2.4,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.0,
+      "job_switcher": 2.3
+    },
+    {
+      "date": "2012-08-01",
+      "overall": 2.1,
+      "fulltime": 2.4,
+      "paid_hourly": 1.9,
+      "job_stayer": 1.7,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2012-09-01",
+      "overall": 2.1,
+      "fulltime": 2.4,
+      "paid_hourly": 1.9,
+      "job_stayer": 1.9,
+      "job_switcher": 2.6
+    },
+    {
+      "date": "2012-10-01",
+      "overall": 2.1,
+      "fulltime": 2.4,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.9,
+      "job_switcher": 2.5
+    },
+    {
+      "date": "2012-11-01",
+      "overall": 2.3,
+      "fulltime": 2.7,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.0,
+      "job_switcher": 2.7
+    },
+    {
+      "date": "2012-12-01",
+      "overall": 2.3,
+      "fulltime": 2.6,
+      "paid_hourly": 1.9,
+      "job_stayer": 1.9,
+      "job_switcher": 2.8
+    },
+    {
+      "date": "2013-01-01",
+      "overall": 2.3,
+      "fulltime": 2.7,
+      "paid_hourly": 2.0,
+      "job_stayer": 2.0,
+      "job_switcher": 2.8
+    },
+    {
+      "date": "2013-02-01",
+      "overall": 2.3,
+      "fulltime": 2.7,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.1,
+      "job_switcher": 2.6
+    },
+    {
+      "date": "2013-03-01",
+      "overall": 2.2,
+      "fulltime": 2.6,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.0,
+      "job_switcher": 2.5
+    },
+    {
+      "date": "2013-04-01",
+      "overall": 2.2,
+      "fulltime": 2.6,
+      "paid_hourly": 1.9,
+      "job_stayer": 1.8,
+      "job_switcher": 2.7
+    },
+    {
+      "date": "2013-05-01",
+      "overall": 2.2,
+      "fulltime": 2.5,
+      "paid_hourly": 2.1,
+      "job_stayer": 1.8,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2013-06-01",
+      "overall": 2.1,
+      "fulltime": 2.4,
+      "paid_hourly": 1.8,
+      "job_stayer": 1.6,
+      "job_switcher": 2.8
+    },
+    {
+      "date": "2013-07-01",
+      "overall": 2.3,
+      "fulltime": 2.5,
+      "paid_hourly": 1.9,
+      "job_stayer": 1.9,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2013-08-01",
+      "overall": 2.3,
+      "fulltime": 2.7,
+      "paid_hourly": 1.9,
+      "job_stayer": 2.0,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2013-09-01",
+      "overall": 2.4,
+      "fulltime": 2.7,
+      "paid_hourly": 2.2,
+      "job_stayer": 2.2,
+      "job_switcher": 2.5
+    },
+    {
+      "date": "2013-10-01",
+      "overall": 2.2,
+      "fulltime": 2.5,
+      "paid_hourly": 2.1,
+      "job_stayer": 2.2,
+      "job_switcher": 2.2
+    },
+    {
+      "date": "2013-11-01",
+      "overall": 2.0,
+      "fulltime": 2.3,
+      "paid_hourly": 2.1,
+      "job_stayer": 2.0,
+      "job_switcher": 2.0
+    },
+    {
+      "date": "2013-12-01",
+      "overall": 2.2,
+      "fulltime": 2.3,
+      "paid_hourly": 2.1,
+      "job_stayer": 2.0,
+      "job_switcher": 2.4
+    },
+    {
+      "date": "2014-01-01",
+      "overall": 2.3,
+      "fulltime": 2.5,
+      "paid_hourly": 2.1,
+      "job_stayer": 2.0,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2014-02-01",
+      "overall": 2.5,
+      "fulltime": 2.6,
+      "paid_hourly": 2.4,
+      "job_stayer": 2.1,
+      "job_switcher": 3.1
+    },
+    {
+      "date": "2014-03-01",
+      "overall": 2.4,
+      "fulltime": 2.7,
+      "paid_hourly": 2.3,
+      "job_stayer": 2.1,
+      "job_switcher": 3.0
+    },
+    {
+      "date": "2014-04-01",
+      "overall": 2.3,
+      "fulltime": 2.7,
+      "paid_hourly": 2.2,
+      "job_stayer": 2.2,
+      "job_switcher": 2.6
+    },
+    {
+      "date": "2014-05-01",
+      "overall": 2.3,
+      "fulltime": 2.6,
+      "paid_hourly": 2.1,
+      "job_stayer": 2.2,
+      "job_switcher": 2.5
+    },
+    {
+      "date": "2014-06-01",
+      "overall": 2.3,
+      "fulltime": 2.6,
+      "paid_hourly": 2.1,
+      "job_stayer": 2.1,
+      "job_switcher": 2.6
+    },
+    {
+      "date": "2014-07-01",
+      "overall": 2.4,
+      "fulltime": 2.6,
+      "paid_hourly": 2.3,
+      "job_stayer": 2.1,
+      "job_switcher": 2.7
+    },
+    {
+      "date": "2014-08-01",
+      "overall": 2.4,
+      "fulltime": 2.7,
+      "paid_hourly": 2.3,
+      "job_stayer": 2.2,
+      "job_switcher": 2.5
+    },
+    {
+      "date": "2014-09-01",
+      "overall": 2.6,
+      "fulltime": 2.8,
+      "paid_hourly": 2.6,
+      "job_stayer": 2.6,
+      "job_switcher": 2.7
+    },
+    {
+      "date": "2014-10-01",
+      "overall": 2.8,
+      "fulltime": 3.0,
+      "paid_hourly": 2.7,
+      "job_stayer": 2.8,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2014-11-01",
+      "overall": 2.9,
+      "fulltime": 3.1,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.9,
+      "job_switcher": 3.2
+    },
+    {
+      "date": "2014-12-01",
+      "overall": 2.9,
+      "fulltime": 3.0,
+      "paid_hourly": 2.7,
+      "job_stayer": 2.8,
+      "job_switcher": 2.9
+    },
+    {
+      "date": "2015-01-01",
+      "overall": 3.0,
+      "fulltime": 3.0,
+      "paid_hourly": 2.8,
+      "job_stayer": 2.8,
+      "job_switcher": 3.2
+    },
+    {
+      "date": "2015-02-01",
+      "overall": 3.0,
+      "fulltime": 3.1,
+      "paid_hourly": 2.7,
+      "job_stayer": 2.9,
+      "job_switcher": 3.1
+    },
+    {
+      "date": "2015-03-01",
+      "overall": 3.2,
+      "fulltime": 3.5,
+      "paid_hourly": 2.8,
+      "job_stayer": 3.0,
+      "job_switcher": 3.5
+    },
+    {
+      "date": "2015-04-01",
+      "overall": 3.3,
+      "fulltime": 3.6,
+      "paid_hourly": 2.7,
+      "job_stayer": 3.2,
+      "job_switcher": 3.4
+    },
+    {
+      "date": "2015-05-01",
+      "overall": 3.3,
+      "fulltime": 3.5,
+      "paid_hourly": 2.7,
+      "job_stayer": 3.0,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2015-06-01",
+      "overall": 3.2,
+      "fulltime": 3.4,
+      "paid_hourly": 3.0,
+      "job_stayer": 2.9,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2015-07-01",
+      "overall": 3.1,
+      "fulltime": 3.3,
+      "paid_hourly": 3.2,
+      "job_stayer": 2.8,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2015-08-01",
+      "overall": 3.1,
+      "fulltime": 3.2,
+      "paid_hourly": 3.2,
+      "job_stayer": 2.9,
+      "job_switcher": 3.2
+    },
+    {
+      "date": "2015-09-01",
+      "overall": 3.0,
+      "fulltime": 3.1,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.9,
+      "job_switcher": 3.2
+    },
+    {
+      "date": "2015-10-01",
+      "overall": 2.9,
+      "fulltime": 3.0,
+      "paid_hourly": 2.7,
+      "job_stayer": 2.5,
+      "job_switcher": 3.5
+    },
+    {
+      "date": "2015-11-01",
+      "overall": 3.1,
+      "fulltime": 3.3,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.7,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2015-12-01",
+      "overall": 3.1,
+      "fulltime": 3.3,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.8,
+      "job_switcher": 3.5
+    },
+    {
+      "date": "2016-01-01",
+      "overall": 3.1,
+      "fulltime": 3.3,
+      "paid_hourly": 2.9,
+      "job_stayer": 3.0,
+      "job_switcher": 3.4
+    },
+    {
+      "date": "2016-02-01",
+      "overall": 3.2,
+      "fulltime": 3.4,
+      "paid_hourly": 2.8,
+      "job_stayer": 2.8,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2016-03-01",
+      "overall": 3.2,
+      "fulltime": 3.3,
+      "paid_hourly": 3.0,
+      "job_stayer": 2.8,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2016-04-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.0,
+      "job_stayer": 3.1,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2016-05-01",
+      "overall": 3.5,
+      "fulltime": 3.5,
+      "paid_hourly": 3.0,
+      "job_stayer": 3.2,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2016-06-01",
+      "overall": 3.6,
+      "fulltime": 3.6,
+      "paid_hourly": 3.0,
+      "job_stayer": 3.2,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2016-07-01",
+      "overall": 3.4,
+      "fulltime": 3.6,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.9,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2016-08-01",
+      "overall": 3.3,
+      "fulltime": 3.6,
+      "paid_hourly": 3.0,
+      "job_stayer": 3.0,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2016-09-01",
+      "overall": 3.6,
+      "fulltime": 3.9,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.3,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2016-10-01",
+      "overall": 3.9,
+      "fulltime": 4.2,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.7,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2016-11-01",
+      "overall": 3.9,
+      "fulltime": 4.2,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.7,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2016-12-01",
+      "overall": 3.5,
+      "fulltime": 3.8,
+      "paid_hourly": 3.0,
+      "job_stayer": 3.4,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2017-01-01",
+      "overall": 3.2,
+      "fulltime": 3.4,
+      "paid_hourly": 2.8,
+      "job_stayer": 3.0,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2017-02-01",
+      "overall": 3.2,
+      "fulltime": 3.3,
+      "paid_hourly": 2.7,
+      "job_stayer": 2.8,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2017-03-01",
+      "overall": 3.4,
+      "fulltime": 3.6,
+      "paid_hourly": 3.0,
+      "job_stayer": 2.8,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2017-04-01",
+      "overall": 3.5,
+      "fulltime": 3.8,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.9,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2017-05-01",
+      "overall": 3.4,
+      "fulltime": 3.7,
+      "paid_hourly": 3.2,
+      "job_stayer": 2.8,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2017-06-01",
+      "overall": 3.2,
+      "fulltime": 3.6,
+      "paid_hourly": 3.0,
+      "job_stayer": 2.8,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2017-07-01",
+      "overall": 3.3,
+      "fulltime": 3.5,
+      "paid_hourly": 3.1,
+      "job_stayer": 2.8,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2017-08-01",
+      "overall": 3.4,
+      "fulltime": 3.6,
+      "paid_hourly": 3.2,
+      "job_stayer": 2.8,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2017-09-01",
+      "overall": 3.6,
+      "fulltime": 3.7,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.0,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2017-10-01",
+      "overall": 3.4,
+      "fulltime": 3.5,
+      "paid_hourly": 3.2,
+      "job_stayer": 2.9,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2017-11-01",
+      "overall": 3.2,
+      "fulltime": 3.6,
+      "paid_hourly": 2.9,
+      "job_stayer": 2.8,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2017-12-01",
+      "overall": 2.9,
+      "fulltime": 3.2,
+      "paid_hourly": 2.6,
+      "job_stayer": 2.5,
+      "job_switcher": 3.5
+    },
+    {
+      "date": "2018-01-01",
+      "overall": 3.0,
+      "fulltime": 3.3,
+      "paid_hourly": 2.5,
+      "job_stayer": 2.4,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2018-02-01",
+      "overall": 2.9,
+      "fulltime": 3.1,
+      "paid_hourly": 2.6,
+      "job_stayer": 2.4,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2018-03-01",
+      "overall": 3.3,
+      "fulltime": 3.4,
+      "paid_hourly": 3.0,
+      "job_stayer": 2.9,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2018-04-01",
+      "overall": 3.3,
+      "fulltime": 3.3,
+      "paid_hourly": 3.1,
+      "job_stayer": 2.9,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2018-05-01",
+      "overall": 3.2,
+      "fulltime": 3.3,
+      "paid_hourly": 3.1,
+      "job_stayer": 2.8,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2018-06-01",
+      "overall": 3.2,
+      "fulltime": 3.3,
+      "paid_hourly": 3.1,
+      "job_stayer": 2.7,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2018-07-01",
+      "overall": 3.3,
+      "fulltime": 3.3,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.0,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2018-08-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.5,
+      "job_switcher": 3.4
+    },
+    {
+      "date": "2018-09-01",
+      "overall": 3.5,
+      "fulltime": 3.5,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.7,
+      "job_switcher": 3.0
+    },
+    {
+      "date": "2018-10-01",
+      "overall": 3.7,
+      "fulltime": 3.7,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.8,
+      "job_switcher": 3.3
+    },
+    {
+      "date": "2018-11-01",
+      "overall": 3.9,
+      "fulltime": 4.1,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.9,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2018-12-01",
+      "overall": 3.8,
+      "fulltime": 4.2,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.6,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2019-01-01",
+      "overall": 3.8,
+      "fulltime": 4.1,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.4,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2019-02-01",
+      "overall": 3.4,
+      "fulltime": 3.7,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.1,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2019-03-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.2,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2019-04-01",
+      "overall": 3.6,
+      "fulltime": 3.7,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.3,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2019-05-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.3,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2019-06-01",
+      "overall": 3.9,
+      "fulltime": 3.9,
+      "paid_hourly": 4.0,
+      "job_stayer": 3.4,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2019-07-01",
+      "overall": 3.9,
+      "fulltime": 3.9,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.3,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2019-08-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.2,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2019-09-01",
+      "overall": 3.6,
+      "fulltime": 3.7,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.1,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2019-10-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.1,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2019-11-01",
+      "overall": 3.7,
+      "fulltime": 3.7,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.4,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2019-12-01",
+      "overall": 3.7,
+      "fulltime": 3.7,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.3,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2020-01-01",
+      "overall": 3.8,
+      "fulltime": 3.8,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.2,
+      "job_switcher": 4.8
+    },
+    {
+      "date": "2020-02-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.2,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2020-03-01",
+      "overall": 3.5,
+      "fulltime": 3.7,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.0,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2020-04-01",
+      "overall": 3.3,
+      "fulltime": 3.5,
+      "paid_hourly": 3.3,
+      "job_stayer": 2.9,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2020-05-01",
+      "overall": 3.5,
+      "fulltime": 3.7,
+      "paid_hourly": 3.1,
+      "job_stayer": 3.0,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2020-06-01",
+      "overall": 3.8,
+      "fulltime": 3.9,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.2,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2020-07-01",
+      "overall": 3.9,
+      "fulltime": 4.0,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.5,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2020-08-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.3,
+      "job_switcher": 3.7
+    },
+    {
+      "date": "2020-09-01",
+      "overall": 3.5,
+      "fulltime": 3.5,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.3,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2020-10-01",
+      "overall": 3.5,
+      "fulltime": 3.6,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.3,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2020-11-01",
+      "overall": 3.7,
+      "fulltime": 3.7,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.3,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2020-12-01",
+      "overall": 3.4,
+      "fulltime": 3.3,
+      "paid_hourly": 3.6,
+      "job_stayer": 3.0,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2021-01-01",
+      "overall": 3.4,
+      "fulltime": 3.3,
+      "paid_hourly": 3.5,
+      "job_stayer": 2.9,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2021-02-01",
+      "overall": 3.4,
+      "fulltime": 3.4,
+      "paid_hourly": 3.4,
+      "job_stayer": 3.0,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2021-03-01",
+      "overall": 3.4,
+      "fulltime": 3.4,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.1,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2021-04-01",
+      "overall": 3.2,
+      "fulltime": 3.2,
+      "paid_hourly": 3.2,
+      "job_stayer": 3.1,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2021-05-01",
+      "overall": 3.0,
+      "fulltime": 3.1,
+      "paid_hourly": 3.1,
+      "job_stayer": 2.8,
+      "job_switcher": 3.4
+    },
+    {
+      "date": "2021-06-01",
+      "overall": 3.2,
+      "fulltime": 3.4,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.1,
+      "job_switcher": 3.6
+    },
+    {
+      "date": "2021-07-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.2,
+      "job_switcher": 4.4
+    },
+    {
+      "date": "2021-08-01",
+      "overall": 3.9,
+      "fulltime": 3.9,
+      "paid_hourly": 4.1,
+      "job_stayer": 3.3,
+      "job_switcher": 4.8
+    },
+    {
+      "date": "2021-09-01",
+      "overall": 4.2,
+      "fulltime": 4.2,
+      "paid_hourly": 4.3,
+      "job_stayer": 3.5,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "2021-10-01",
+      "overall": 4.1,
+      "fulltime": 4.2,
+      "paid_hourly": 4.2,
+      "job_stayer": 3.7,
+      "job_switcher": 5.1
+    },
+    {
+      "date": "2021-11-01",
+      "overall": 4.3,
+      "fulltime": 4.3,
+      "paid_hourly": 4.4,
+      "job_stayer": 3.8,
+      "job_switcher": 5.1
+    },
+    {
+      "date": "2021-12-01",
+      "overall": 4.5,
+      "fulltime": 4.7,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.1,
+      "job_switcher": 5.3
+    },
+    {
+      "date": "2022-01-01",
+      "overall": 5.1,
+      "fulltime": 5.1,
+      "paid_hourly": 5.7,
+      "job_stayer": 4.7,
+      "job_switcher": 5.8
+    },
+    {
+      "date": "2022-02-01",
+      "overall": 5.8,
+      "fulltime": 5.9,
+      "paid_hourly": 6.2,
+      "job_stayer": 5.4,
+      "job_switcher": 6.6
+    },
+    {
+      "date": "2022-03-01",
+      "overall": 6.0,
+      "fulltime": 6.0,
+      "paid_hourly": 6.6,
+      "job_stayer": 5.3,
+      "job_switcher": 7.0
+    },
+    {
+      "date": "2022-04-01",
+      "overall": 6.0,
+      "fulltime": 6.2,
+      "paid_hourly": 6.5,
+      "job_stayer": 5.3,
+      "job_switcher": 7.2
+    },
+    {
+      "date": "2022-05-01",
+      "overall": 6.1,
+      "fulltime": 6.2,
+      "paid_hourly": 6.8,
+      "job_stayer": 5.4,
+      "job_switcher": 7.5
+    },
+    {
+      "date": "2022-06-01",
+      "overall": 6.7,
+      "fulltime": 6.8,
+      "paid_hourly": 7.1,
+      "job_stayer": 6.1,
+      "job_switcher": 8.0
+    },
+    {
+      "date": "2022-07-01",
+      "overall": 6.7,
+      "fulltime": 6.6,
+      "paid_hourly": 7.1,
+      "job_stayer": 5.9,
+      "job_switcher": 8.5
+    },
+    {
+      "date": "2022-08-01",
+      "overall": 6.7,
+      "fulltime": 6.6,
+      "paid_hourly": 6.9,
+      "job_stayer": 5.6,
+      "job_switcher": 8.4
+    },
+    {
+      "date": "2022-09-01",
+      "overall": 6.3,
+      "fulltime": 6.2,
+      "paid_hourly": 6.4,
+      "job_stayer": 5.3,
+      "job_switcher": 7.9
+    },
+    {
+      "date": "2022-10-01",
+      "overall": 6.4,
+      "fulltime": 6.5,
+      "paid_hourly": 6.3,
+      "job_stayer": 5.4,
+      "job_switcher": 7.6
+    },
+    {
+      "date": "2022-11-01",
+      "overall": 6.4,
+      "fulltime": 6.6,
+      "paid_hourly": 6.2,
+      "job_stayer": 5.5,
+      "job_switcher": 8.1
+    },
+    {
+      "date": "2022-12-01",
+      "overall": 6.1,
+      "fulltime": 6.3,
+      "paid_hourly": 6.0,
+      "job_stayer": 5.3,
+      "job_switcher": 7.7
+    },
+    {
+      "date": "2023-01-01",
+      "overall": 6.1,
+      "fulltime": 6.3,
+      "paid_hourly": 5.8,
+      "job_stayer": 5.4,
+      "job_switcher": 7.3
+    },
+    {
+      "date": "2023-02-01",
+      "overall": 6.1,
+      "fulltime": 6.2,
+      "paid_hourly": 6.1,
+      "job_stayer": 5.8,
+      "job_switcher": 6.8
+    },
+    {
+      "date": "2023-03-01",
+      "overall": 6.4,
+      "fulltime": 6.4,
+      "paid_hourly": 6.2,
+      "job_stayer": 5.8,
+      "job_switcher": 7.2
+    },
+    {
+      "date": "2023-04-01",
+      "overall": 6.0,
+      "fulltime": 6.0,
+      "paid_hourly": 6.1,
+      "job_stayer": 5.6,
+      "job_switcher": 6.7
+    },
+    {
+      "date": "2023-05-01",
+      "overall": 5.9,
+      "fulltime": 6.0,
+      "paid_hourly": 5.7,
+      "job_stayer": 5.5,
+      "job_switcher": 6.7
+    },
+    {
+      "date": "2023-06-01",
+      "overall": 5.6,
+      "fulltime": 5.6,
+      "paid_hourly": 5.5,
+      "job_stayer": 5.3,
+      "job_switcher": 6.2
+    },
+    {
+      "date": "2023-07-01",
+      "overall": 5.7,
+      "fulltime": 5.6,
+      "paid_hourly": 5.6,
+      "job_stayer": 5.3,
+      "job_switcher": 6.6
+    },
+    {
+      "date": "2023-08-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 5.5,
+      "job_stayer": 5.2,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "2023-09-01",
+      "overall": 5.2,
+      "fulltime": 5.3,
+      "paid_hourly": 5.2,
+      "job_stayer": 5.0,
+      "job_switcher": 5.7
+    },
+    {
+      "date": "2023-10-01",
+      "overall": 5.1,
+      "fulltime": 5.3,
+      "paid_hourly": 5.1,
+      "job_stayer": 4.8,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "2023-11-01",
+      "overall": 5.0,
+      "fulltime": 5.1,
+      "paid_hourly": 5.1,
+      "job_stayer": 4.7,
+      "job_switcher": 5.5
+    },
+    {
+      "date": "2023-12-01",
+      "overall": 5.2,
+      "fulltime": 5.2,
+      "paid_hourly": 5.1,
+      "job_stayer": 4.8,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "2024-01-01",
+      "overall": 5.1,
+      "fulltime": 5.0,
+      "paid_hourly": 4.9,
+      "job_stayer": 4.7,
+      "job_switcher": 5.6
+    },
+    {
+      "date": "2024-02-01",
+      "overall": 5.0,
+      "fulltime": 4.9,
+      "paid_hourly": 4.8,
+      "job_stayer": 4.6,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "2024-03-01",
+      "overall": 4.7,
+      "fulltime": 4.6,
+      "paid_hourly": 4.7,
+      "job_stayer": 4.4,
+      "job_switcher": 5.1
+    },
+    {
+      "date": "2024-04-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 5.3,
+      "job_stayer": 5.2,
+      "job_switcher": 5.4
+    },
+    {
+      "date": "2024-05-01",
+      "overall": 5.2,
+      "fulltime": 5.2,
+      "paid_hourly": 5.3,
+      "job_stayer": 5.0,
+      "job_switcher": 5.5
+    },
+    {
+      "date": "2024-06-01",
+      "overall": 5.3,
+      "fulltime": 5.3,
+      "paid_hourly": 5.3,
+      "job_stayer": 5.2,
+      "job_switcher": 5.3
+    },
+    {
+      "date": "2024-07-01",
+      "overall": 4.7,
+      "fulltime": 4.8,
+      "paid_hourly": 4.6,
+      "job_stayer": 4.5,
+      "job_switcher": 4.8
+    },
+    {
+      "date": "2024-08-01",
+      "overall": 4.7,
+      "fulltime": 4.8,
+      "paid_hourly": 4.5,
+      "job_stayer": 4.8,
+      "job_switcher": 4.6
+    },
+    {
+      "date": "2024-09-01",
+      "overall": 4.8,
+      "fulltime": 4.9,
+      "paid_hourly": 4.4,
+      "job_stayer": 4.8,
+      "job_switcher": 4.8
+    },
+    {
+      "date": "2024-10-01",
+      "overall": 4.7,
+      "fulltime": 4.7,
+      "paid_hourly": 4.4,
+      "job_stayer": 4.7,
+      "job_switcher": 4.6
+    },
+    {
+      "date": "2024-11-01",
+      "overall": 4.3,
+      "fulltime": 4.5,
+      "paid_hourly": 4.0,
+      "job_stayer": 4.3,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2024-12-01",
+      "overall": 4.2,
+      "fulltime": 4.3,
+      "paid_hourly": 3.9,
+      "job_stayer": 4.2,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2025-01-01",
+      "overall": 4.2,
+      "fulltime": 4.2,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.1,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2025-02-01",
+      "overall": 4.3,
+      "fulltime": 4.3,
+      "paid_hourly": 3.9,
+      "job_stayer": 4.4,
+      "job_switcher": 4.3
+    },
+    {
+      "date": "2025-03-01",
+      "overall": 4.3,
+      "fulltime": 4.3,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.3,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2025-04-01",
+      "overall": 4.3,
+      "fulltime": 4.3,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.4,
+      "job_switcher": 4.2
+    },
+    {
+      "date": "2025-05-01",
+      "overall": 4.3,
+      "fulltime": 4.3,
+      "paid_hourly": 3.7,
+      "job_stayer": 4.4,
+      "job_switcher": 4.1
+    },
+    {
+      "date": "2025-06-01",
+      "overall": 4.1,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 4.2,
+      "job_switcher": 3.9
+    },
+    {
+      "date": "2025-07-01",
+      "overall": 4.1,
+      "fulltime": 4.1,
+      "paid_hourly": 3.9,
+      "job_stayer": 4.1,
+      "job_switcher": 4.0
+    },
+    {
+      "date": "2025-08-01",
+      "overall": 4.0,
+      "fulltime": 4.2,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.7,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2025-09-01",
+      "overall": 4.1,
+      "fulltime": 4.3,
+      "paid_hourly": 3.9,
+      "job_stayer": 3.8,
+      "job_switcher": 4.7
+    },
+    {
+      "date": "2025-11-01",
+      "overall": 4.0,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.7,
+      "job_switcher": 4.5
+    },
+    {
+      "date": "2025-12-01",
+      "overall": 3.7,
+      "fulltime": 3.8,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.5,
+      "job_switcher": 4.0
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "overall": 3.7,
+    "fulltime": 3.8,
+    "paid_hourly": 3.5,
+    "job_stayer": 3.5,
+    "job_switcher": 4.0
+  },
+  "latest_data_date": "2025-12-01",
+  "last_updated": "2026-01-25T22:21:52.484065+09:00"
+}

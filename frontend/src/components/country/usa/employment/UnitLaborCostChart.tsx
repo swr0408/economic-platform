@@ -71,8 +71,8 @@ type TableType = 'ulc' | 'productivity'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_table', label: '前期比テーブル' },
-  { mode: 'qoq_chart', label: '前期比グラフ' },
+  { mode: 'qoq_chart', label: '前期比' },
+  { mode: 'qoq_table', label: '前期比（テーブル）' },
 ]
 
 // カラー設定

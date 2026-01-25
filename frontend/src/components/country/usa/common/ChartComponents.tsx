@@ -16,6 +16,7 @@ import {
   ReferenceLine,
   Bar,
   BarChart,
+  ComposedChart,
 } from 'recharts'
 import { Button, Tooltip as AntTooltip } from 'antd'
 import { AreaChartOutlined } from '@ant-design/icons'
@@ -880,11 +881,29 @@ interface BarConfig {
   hide?: boolean
 }
 
+/** 折れ線の定義（バーチャート用） */
+interface BarChartLineConfig {
+  /** データキー */
+  dataKey: string
+  /** 線の色 */
+  color: string
+  /** 表示名 */
+  name: string
+  /** 非表示フラグ */
+  hide?: boolean
+  /** 線幅（デフォルト: 2） */
+  strokeWidth?: number
+  /** 破線パターン（例: "5 5"） */
+  strokeDasharray?: string
+}
+
 interface StandardBarChartProps<T> {
   /** チャートデータ */
   data: T[]
   /** 棒の設定 */
   bars: BarConfig[]
+  /** 折れ線の設定（オプション） - 棒グラフに重ねて表示 */
+  lines?: BarChartLineConfig[]
   /** 高さ（デフォルト: 450） */
   height?: number
   /** X軸のフォーマッター（デフォルト: formatDateLabel） */
@@ -917,10 +936,18 @@ interface StandardBarChartProps<T> {
  *   yAxisFormatter={(v) => `${v}%`}
  *   tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
  * />
+ *
+ * @example 折れ線を重ねる場合
+ * <StandardBarChart
+ *   data={filteredData}
+ *   bars={[{ dataKey: 'mom', color: '#52c41a', name: '前月比' }]}
+ *   lines={[{ dataKey: 'mom_3m_avg', color: '#fa8c16', name: '3か月平均' }]}
+ * />
  */
 export function StandardBarChart<T extends { date: string }>({
   data,
   bars,
+  lines,
   height = 450,
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
@@ -973,6 +1000,55 @@ export function StandardBarChart<T extends { date: string }>({
           </div>
         ))}
       </div>
+    )
+  }
+
+  // lines がある場合は ComposedChart を使用
+  if (lines && lines.length > 0) {
+    return (
+      <ResponsiveContainer width="100%" height={height}>
+        <ComposedChart data={data} margin={CHART_MARGIN}>
+          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+          <XAxis
+            dataKey="date"
+            tickFormatter={xAxisFormatter}
+            tick={AXIS_STYLE.tick}
+            interval={AXIS_STYLE.interval}
+          />
+          <YAxis
+            domain={yDomain}
+            tick={AXIS_STYLE.tick}
+            tickFormatter={yAxisFormatter}
+          />
+          <RechartsTooltip content={<BarChartTooltip />} />
+          {showLegend && <Legend />}
+          {showZeroLine && <ReferenceLine {...ZERO_LINE_PROPS} />}
+          {bars.map((bar) => (
+            <Bar
+              key={bar.dataKey}
+              dataKey={bar.dataKey}
+              fill={bar.color}
+              name={bar.name}
+              hide={bar.hide}
+            />
+          ))}
+          {lines.map((line) => (
+            <Line
+              key={line.dataKey}
+              type="monotone"
+              dataKey={line.dataKey}
+              stroke={line.color}
+              strokeWidth={line.strokeWidth ?? 2}
+              strokeDasharray={line.strokeDasharray}
+              dot={false}
+              name={line.name}
+              hide={line.hide}
+              isAnimationActive={false}
+              connectNulls={true}
+            />
+          ))}
+        </ComposedChart>
+      </ResponsiveContainer>
     )
   }
 

@@ -52,6 +52,7 @@ RUN pip install --no-cache-dir \
     playwright \
     PyMuPDF \
     pdfplumber \
+    PyPDF2 \
     Pillow \
     pytesseract \
     APScheduler \

@@ -251,8 +251,8 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
                     options={[
                       { mode: 'value', label: '現数値' },
                       { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_table', label: '前月比テーブル' },
-                      { mode: 'mom_chart', label: '前月比グラフ' },
+                      { mode: 'mom_chart', label: '前月比' },
+                      { mode: 'mom_table', label: '前月比（テーブル）' },
                     ]}
                   />
 

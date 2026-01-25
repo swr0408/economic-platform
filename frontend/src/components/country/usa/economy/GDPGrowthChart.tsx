@@ -8,7 +8,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
 import { usePeriodFiltering, formatQuarterLabel, useQuarterlyTableData, formatPercent, type PeriodType } from '../common/useChartData'
-import { NoDataMessage } from '../common/ChartComponents'
+import { NoDataMessage, ViewModeButtonGroup } from '../common/ChartComponents'
 import { DARK_THEME, TEXT_COLORS, CHART_COLORS, LATEST_VALUE_BOX_STYLE, QUARTER_NAMES } from '../common/chartConstants'
 
 // マーケットインパクト関連
@@ -37,11 +37,17 @@ interface GDPChartData {
   [key: string]: string | number | null | undefined
 }
 
-type ViewMode = 'chart' | 'table'
+type ViewMode = 'qoq_chart' | 'qoq_table'
+
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'qoq_chart', label: '前期比' },
+  { mode: 'qoq_table', label: '前期比（テーブル）' },
+]
 
 export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換
@@ -101,39 +107,6 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
     return 'transparent'
   }
 
-  // 表示モード切り替えボタン（ダークテーマ）
-  const ViewModeButtons = () => (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-      <button
-        onClick={() => setViewMode('chart')}
-        style={{
-          padding: '6px 12px',
-          border: viewMode === 'chart' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: viewMode === 'chart' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: viewMode === 'chart' ? 'bold' : 'normal',
-          color: viewMode === 'chart' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-        }}
-      >
-        グラフ
-      </button>
-      <button
-        onClick={() => setViewMode('table')}
-        style={{
-          padding: '6px 12px',
-          border: viewMode === 'table' ? `2px solid ${CHART_COLORS.primary}` : `1px solid ${DARK_THEME.border}`,
-          borderRadius: 4,
-          background: viewMode === 'table' ? 'rgba(59, 130, 246, 0.15)' : DARK_THEME.bgSecondary,
-          cursor: 'pointer',
-          fontWeight: viewMode === 'table' ? 'bold' : 'normal',
-          color: viewMode === 'table' ? CHART_COLORS.primary : DARK_THEME.textSecondary,
-        }}
-      >
-        テーブル
-      </button>
-    </div>
-  )
 
   // テーブルコンポーネント（ダークテーマ）
   const GDPTable = () => (
@@ -274,9 +247,9 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtons />
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
 
-                  {viewMode === 'chart' && (
+                  {viewMode === 'qoq_chart' && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
                       <Tooltip title="比較ページを開く">
@@ -289,20 +262,15 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
                       </Tooltip>
                     </div>
                   )}
-                  {viewMode === 'table' && (
-                    <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-                      ※ 直近10年間のGDP成長率データ（単位: %）
-                    </div>
-                  )}
 
-                  {viewMode === 'table' ? (
+                  {viewMode === 'qoq_table' ? (
                     <GDPTable />
                   ) : (
                     <ZoomableChart
                       data={filteredData}
                       dataKey="value"
                       color={CHART_COLORS.primary}
-                      name="GDP成長率"
+                      name="GDP成長率（前期比）"
                       height={450}
                       tickFormatter={formatPercentage}
                       tooltipFormatter={formatPercentage}

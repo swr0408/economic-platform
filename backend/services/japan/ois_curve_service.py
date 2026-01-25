@@ -30,7 +30,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュ設定
 REDIS_KEY = "japan:jscc:ois_curve"
-CACHE_FILE = Path(__file__).parent.parent.parent / "cache" / "japan" / "monetary_policy" / "jscc_ois_curve.json"
+CACHE_FILE = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "monetary_policy" / "jscc_ois_curve.json"
 
 
 class OISCurveService:

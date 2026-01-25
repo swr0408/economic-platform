@@ -34,7 +34,7 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 UTC = ZoneInfo("UTC")
 
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "inflation"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "inflation"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "ny_inflation_expectations_cache.json"
 SCHEDULE_CACHE_FILE = CACHE_DIR / "ny_fed_sce_schedule_cache.json"

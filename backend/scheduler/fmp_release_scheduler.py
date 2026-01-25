@@ -1,11 +1,11 @@
 """
 FMP発表日ベースの経済指標スケジューラー
 
-FMP Economic Calendar APIから発表日を取得し、発表時刻の3分後にデータを取得する。
+FMP Economic Calendar APIから発表日を取得し、発表時刻の1分後にデータを取得する。
 週1回、2ヶ月先までの発表日を取得してスケジュールを更新。
 
 ハイブリッド方式:
-1. メイン: FMP発表日の3分後にピンポイント取得
+1. メイン: FMP発表日の1分後にピンポイント取得
 2. バックアップ: 週1回の発表日リフレッシュ（変更検知・漏れ防止）
 """
 
@@ -33,7 +33,7 @@ JST = ZoneInfo("Asia/Tokyo")
 UTC = ZoneInfo("UTC")
 
 # 発表後の更新設定
-UPDATE_DELAY_MINUTES = 3  # 発表から3分後に取得開始
+UPDATE_DELAY_MINUTES = 1  # 発表から1分後に取得開始
 UPDATE_ITERATIONS = 3     # 3回取得（3分方式）
 UPDATE_INTERVAL_SECONDS = 60
 
@@ -43,27 +43,44 @@ FUTURE_DAYS = 60  # 2ヶ月先まで取得
 # 対象指標の設定
 # fmp_event: FMP APIのeventパラメータに渡す値（完全一致検索用）
 # fmp_event_pattern: イベント名のパターンマッチ用（部分一致）
+# country: FMP APIの国コード
+# FMP国コードからダッシュボードAPI用の国名へのマッピング
+FMP_COUNTRY_TO_DASHBOARD = {
+    "US": "usa",
+    "EU": "eurozone",
+    "DE": "eurozone",  # ドイツはユーロ圏ダッシュボードに含まれる
+    "JP": "japan",
+    "GB": "uk",
+}
+
 FMP_INDICATOR_CONFIGS = [
+    # ========== USA ==========
     {
         "name_ja": "ISM製造業景況指数",
         "fmp_event": "ISM Manufacturing PMI",
         "fmp_event_pattern": "ISM Manufacturing PMI",
+        "country": "US",
+        "category": "economy",
         "service_module": "services.usa.ism_manufacturing_service",
         "service_instance": "ism_manufacturing_service",
         "fetch_method": "get_ism_manufacturing_data",
     },
     {
         "name_ja": "ISM非製造業景況指数",
-        "fmp_event": "ISM Services PMI",  # FMP APIでの正式名
+        "fmp_event": "ISM Services PMI",
         "fmp_event_pattern": "ISM Services PMI",
+        "country": "US",
+        "category": "economy",
         "service_module": "services.usa.ism_non_manufacturing_service",
         "service_instance": "ism_non_manufacturing_service",
         "fetch_method": "get_ism_non_manufacturing_data",
     },
     {
         "name_ja": "CB消費者信頼感指数",
-        "fmp_event": "CB Consumer Confidence",  # FMP APIでの正式名
+        "fmp_event": "CB Consumer Confidence",
         "fmp_event_pattern": "CB Consumer Confidence",
+        "country": "US",
+        "category": "consumer",
         "service_module": "services.usa.cb_consumer_confidence_service",
         "service_instance": "cb_consumer_confidence_service",
         "fetch_method": "get_cb_consumer_confidence_data",
@@ -72,6 +89,8 @@ FMP_INDICATOR_CONFIGS = [
         "name_ja": "Challenger人員削減数",
         "fmp_event": "Challenger Job Cuts",
         "fmp_event_pattern": "Challenger Job Cuts",
+        "country": "US",
+        "category": "employment",
         "service_module": "services.usa.challenger_job_cuts_service",
         "service_instance": "challenger_job_cuts_service",
         "fetch_method": "get_challenger_data",
@@ -80,6 +99,8 @@ FMP_INDICATOR_CONFIGS = [
         "name_ja": "レッドブック",
         "fmp_event": "Redbook YoY",
         "fmp_event_pattern": "Redbook",
+        "country": "US",
+        "category": "consumer",
         "service_module": "services.usa.redbook_service",
         "service_instance": "redbook_service",
         "fetch_method": "get_redbook_data",
@@ -88,6 +109,8 @@ FMP_INDICATOR_CONFIGS = [
         "name_ja": "コントロールグループ",
         "fmp_event": "Retail Sales Ex Gas/Autos MoM",
         "fmp_event_pattern": "Retail Sales",
+        "country": "US",
+        "category": "consumer",
         "service_module": "services.usa.retail_control_service",
         "service_instance": "retail_control_service",
         "fetch_method": "get_retail_control_data",
@@ -96,26 +119,399 @@ FMP_INDICATOR_CONFIGS = [
         "name_ja": "輸入物価指数/輸出物価指数",
         "fmp_event": "Import Price Index MoM",
         "fmp_event_pattern": "Import Price",
+        "country": "US",
+        "category": "inflation",
         "service_module": "services.usa.import_export_price_service",
         "service_instance": "import_export_price_service",
         "fetch_method": "get_import_export_price_data",
     },
     {
-        "name_ja": "銀行貸出態度調査（SLOOS）",
-        "fmp_event": "Loan Officer Survey",
-        "fmp_event_pattern": "Loan Officer",
-        "service_module": "services.usa.bank_lending_service",
-        "service_instance": "bank_lending_service",
-        "fetch_method": "get_bank_lending_standards",
+        "name_ja": "S&P Global PMI（米国）",
+        "fmp_event": "S&P Global Manufacturing PMI",
+        "fmp_event_pattern": "S&P Global",
+        "country": "US",
+        "category": "economy",
+        "service_module": "services.usa.sp_pmi_service",
+        "service_instance": "sp_pmi_service",
+        "fetch_method": "get_sp_pmi_data",
+    },
+    {
+        # FMP: "Atlanta Fed GDPNow" (us_gdonow mapping)
+        "name_ja": "GDPNow（アトランタ連銀）",
+        "fmp_event": "Atlanta Fed GDPNow",
+        "fmp_event_pattern": "Atlanta Fed GDPNow",
+        "country": "US",
+        "category": "economy",
+        "service_module": "services.usa.gdpnow_service",
+        "service_instance": "gdpnow_service",
+        "fetch_method": "get_gdpnow_data",
+    },
+    {
+        # FMP: "Inflation Rate MoM/YoY", "CPI" (us_cpi mapping)
+        # 同時更新: Median CPI（クリーブランド連銀）
+        "name_ja": "CPI（消費者物価指数）",
+        "fmp_event": "Inflation Rate MoM",
+        "fmp_event_pattern": "Inflation Rate",
+        "country": "US",
+        "category": "inflation",
+        "service_module": "services.usa.cpi_service",
+        "service_instance": "cpi_service",
+        "fetch_method": "get_cpi_data",
+        "related_services": [
+            {
+                "service_module": "services.usa.median_cpi_service",
+                "service_instance": "median_cpi_service",
+                "fetch_method": "get_median_cpi_data",
+            },
+        ],
+    },
+    {
+        # FMP: "PCE Price Index MoM/YoY" (pce mapping)
+        # 同時更新: Trimmed Mean PCE（ダラス連銀）
+        "name_ja": "PCE（個人消費支出）",
+        "fmp_event": "PCE Price Index MoM",
+        "fmp_event_pattern": "PCE Price Index",
+        "country": "US",
+        "category": "inflation",
+        "service_module": "services.usa.pce_service",
+        "service_instance": "pce_service",
+        "fetch_method": "get_pce_data",
+        "related_services": [
+            {
+                "service_module": "services.usa.trimmed_mean_pce_service",
+                "service_instance": "trimmed_mean_pce_service",
+                "fetch_method": "get_trimmed_mean_pce_data",
+            },
+        ],
+    },
+    {
+        # FMP: "Unemployment Rate" (unemployment_rate mapping)
+        # 同時更新: Sahm Rule
+        "name_ja": "失業率（米国）",
+        "fmp_event": "Unemployment Rate",
+        "fmp_event_pattern": "Unemployment Rate",
+        "country": "US",
+        "category": "employment",
+        "service_module": "services.usa.unemployment_service",
+        "service_instance": "unemployment_service",
+        "fetch_method": "get_unemployment_data",
+        "related_services": [
+            {
+                "service_module": "services.usa.sahm_rule_service",
+                "service_instance": "sahm_rule_service",
+                "fetch_method": "get_sahm_rule_data",
+            },
+        ],
+    },
+    {
+        # FMP: "Retail Sales MoM/YoY" (retail_sales mapping)
+        # 同時更新: 実質小売売上高
+        "name_ja": "小売売上高（米国）",
+        "fmp_event": "Retail Sales MoM",
+        "fmp_event_pattern": "Retail Sales",
+        "country": "US",
+        "category": "consumer",
+        "service_module": "services.usa.retail_sales_service",
+        "service_instance": "retail_sales_service",
+        "fetch_method": "get_retail_sales_data",
+        "related_services": [
+            {
+                "service_module": "services.usa.advance_real_retail_sales_service",
+                "service_instance": "advance_real_retail_sales_service",
+                "fetch_method": "get_advance_real_retail_sales_data",
+            },
+        ],
+    },
+    # ========== Eurozone ==========
+    {
+        "name_ja": "ユーロ圏PMI（HCOB）",
+        "fmp_event": "HCOB Manufacturing PMI",
+        "fmp_event_pattern": "HCOB",
+        "country": "EU",
+        "category": "economy",
+        "service_module": "services.eurozone.eu_pmi_service",
+        "service_instance": "eu_pmi_service",
+        "fetch_method": "get_eurozone_pmi_data",
+    },
+    {
+        "name_ja": "ドイツPMI（HCOB）",
+        "fmp_event": "HCOB Manufacturing PMI",
+        "fmp_event_pattern": "HCOB",
+        "country": "DE",
+        "category": "economy",
+        "service_module": "services.eurozone.germany_pmi_service",
+        "service_instance": "germany_pmi_service",
+        "fetch_method": "get_germany_pmi_data",
+    },
+    {
+        "name_ja": "フランスPMI（HCOB）",
+        "fmp_event": "HCOB Manufacturing PMI",
+        "fmp_event_pattern": "HCOB",
+        "country": "FR",
+        "category": "economy",
+        "service_module": "services.eurozone.france_pmi_service",
+        "service_instance": "france_pmi_service",
+        "fetch_method": "get_france_pmi_data",
+    },
+    {
+        "name_ja": "ドイツ鉱工業生産",
+        "fmp_event": "Industrial Production MoM",
+        "fmp_event_pattern": "Industrial Production",
+        "country": "DE",
+        "category": "economy",
+        "service_module": "services.eurozone.germany_industrial_production_service",
+        "service_instance": "germany_industrial_production_service",
+        "fetch_method": "get_germany_industrial_production_data",
+    },
+    {
+        "name_ja": "ドイツ製造業受注",
+        "fmp_event": "Factory Orders MoM",
+        "fmp_event_pattern": "Factory Orders",
+        "country": "DE",
+        "category": "economy",
+        "service_module": "services.eurozone.germany_factory_orders_service",
+        "service_instance": "germany_factory_orders_service",
+        "fetch_method": "get_germany_factory_orders_data",
+    },
+    {
+        "name_ja": "ZEW景況感指数",
+        "fmp_event": "ZEW Economic Sentiment Index",
+        "fmp_event_pattern": "ZEW",
+        "country": "DE",
+        "category": "economy",
+        "service_module": "services.eurozone.zew_economic_sentiment_service",
+        "service_instance": "zew_economic_sentiment_service",
+        "fetch_method": "get_zew_economic_sentiment_data",
+    },
+    {
+        "name_ja": "Ifo景況感指数",
+        "fmp_event": "Ifo Business Climate",
+        "fmp_event_pattern": "Ifo",
+        "country": "DE",
+        "category": "economy",
+        "service_module": "services.eurozone.ifo_business_climate_service",
+        "service_instance": "ifo_business_climate_service",
+        "fetch_method": "get_ifo_business_climate_data",
+    },
+    # ========== Japan ==========
+    {
+        "name_ja": "日本PMI（じぶん銀行）",
+        "fmp_event": "Jibun Bank Manufacturing PMI",
+        "fmp_event_pattern": "Jibun Bank",
+        "country": "JP",
+        "category": "economy",
+        "service_module": "services.japan.jp_pmi_service",
+        "service_instance": "jp_pmi_service",
+        "fetch_method": "get_jp_pmi_data",
+    },
+    {
+        "name_ja": "日本失業率",
+        "fmp_event": "Unemployment Rate",
+        "fmp_event_pattern": "Unemployment Rate",
+        "country": "JP",
+        "category": "employment",
+        "service_module": "services.japan.japan_unemployment_service",
+        "service_instance": "japan_unemployment_service",
+        "fetch_method": "get_unemployment_data",
+    },
+    {
+        "name_ja": "日本小売売上高",
+        "fmp_event": "Retail Sales YoY",
+        "fmp_event_pattern": "Retail Sales",
+        "country": "JP",
+        "category": "consumer",
+        "service_module": "services.japan.retail_sales_service",
+        "service_instance": "retail_sales_service",
+        "fetch_method": "get_retail_sales_data",
+    },
+    {
+        # FMP: "Producer Price Index MoM/YoY" (japan_cgpi mapping)
+        "name_ja": "企業物価指数（CGPI）",
+        "fmp_event": "Producer Price Index MoM",
+        "fmp_event_pattern": "Producer Price Index",
+        "country": "JP",
+        "category": "price",
+        "service_module": "services.japan.japan_cgpi_service",
+        "service_instance": "japan_cgpi_service",
+        "fetch_method": "get_cgpi_data",
+        # 同時更新: 飲食料品・農林水産物、輸入/輸出物価
+        "related_services": [
+            {
+                "service_module": "services.japan.japan_cgpi_food_agriculture_service",
+                "service_instance": "japan_cgpi_food_agriculture_service",
+                "fetch_method": "get_cgpi_food_agriculture_data",
+            },
+            {
+                "service_module": "services.japan.japan_import_export_price_service",
+                "service_instance": "japan_import_export_price_service",
+                "fetch_method": "get_import_export_price_data",
+            },
+        ],
+    },
+    {
+        # FMP: "Machinery Orders MoM/YoY" (japan_machinery_orders mapping)
+        "name_ja": "機械受注",
+        "fmp_event": "Machinery Orders MoM",
+        "fmp_event_pattern": "Machinery Orders",
+        "country": "JP",
+        "category": "economy",
+        "service_module": "services.japan.machinery_orders_service",
+        "service_instance": "machinery_orders_service",
+        "fetch_method": "get_machinery_orders_data",
+    },
+    {
+        # FMP: "Tertiary Industry Index MoM" (japan_tertiary_industry_index mapping)
+        "name_ja": "第3次産業活動指数",
+        "fmp_event": "Tertiary Industry Index MoM",
+        "fmp_event_pattern": "Tertiary Industry Index",
+        "country": "JP",
+        "category": "economy",
+        "service_module": "services.japan.tertiary_industry_index_service",
+        "service_instance": "tertiary_industry_index_service",
+        "fetch_method": "get_tertiary_industry_index_data",
+    },
+    {
+        # FMP: "Average Cash Earnings YoY" (japan_scheduled_wage mapping)
+        "name_ja": "毎月勤労統計（現金給与総額）",
+        "fmp_event": "Average Cash Earnings YoY",
+        "fmp_event_pattern": "Average Cash Earnings",
+        "country": "JP",
+        "category": "employment",
+        "service_module": "services.japan.cash_earnings_service",
+        "service_instance": "cash_earnings_service",
+        "fetch_method": "get_cash_earnings_data",
+        # 同時更新: 実質賃金、所定内給与
+        "related_services": [
+            {
+                "service_module": "services.japan.real_wage_service",
+                "service_instance": "real_wage_service",
+                "fetch_method": "get_real_wage_data",
+            },
+            {
+                "service_module": "services.japan.scheduled_wage_service",
+                "service_instance": "scheduled_wage_service",
+                "fetch_method": "get_scheduled_wage_data",
+            },
+        ],
+    },
+    {
+        # FMP: "Consumer Confidence" (jp_consumer_Sentiment mapping)
+        "name_ja": "消費動向調査（消費者態度指数）",
+        "fmp_event": "Consumer Confidence",
+        "fmp_event_pattern": "Consumer Confidence",
+        "country": "JP",
+        "category": "consumer",
+        "service_module": "services.japan.consumer_sentiment_service",
+        "service_instance": "consumer_sentiment_service",
+        "fetch_method": "get_consumer_sentiment_data",
+    },
+    {
+        # FMP: "Eco Watchers Survey Current" (economy_watcher mapping)
+        "name_ja": "景気ウォッチャー調査",
+        "fmp_event": "Eco Watchers Survey Current",
+        "fmp_event_pattern": "Eco Watchers",
+        "country": "JP",
+        "category": "consumer",
+        "service_module": "services.japan.economy_watcher_service",
+        "service_instance": "economy_watcher_service",
+        "fetch_method": "get_economy_watcher_data",
+    },
+    # ========== UK ==========
+    {
+        "name_ja": "イギリスPMI（S&P Global）",
+        "fmp_event": "S&P Global/CIPS Manufacturing PMI",
+        "fmp_event_pattern": "S&P Global",
+        "country": "GB",
+        "category": "economy",
+        "service_module": "services.uk.uk_pmi_service",
+        "service_instance": "uk_pmi_service",
+        "fetch_method": "get_uk_pmi_data",
+    },
+    {
+        "name_ja": "BRC小売売上高",
+        "fmp_event": "BRC Retail Sales Monitor YoY",
+        "fmp_event_pattern": "BRC Retail Sales",
+        "country": "GB",
+        "category": "consumer",
+        "service_module": "services.uk.brc_retail_sales_service",
+        "service_instance": "brc_retail_sales_service",
+        "fetch_method": "get_brc_retail_sales_data",
+    },
+    {
+        # FMP: "Nationwide Housing Prices MoM/YoY" (nationwide_hpi mapping)
+        "name_ja": "Nationwide住宅価格指数",
+        "fmp_event": "Nationwide Housing Prices MoM",
+        "fmp_event_pattern": "Nationwide Housing Prices",
+        "country": "GB",
+        "category": "housing",
+        "service_module": "services.uk.nationwide_hpi_service",
+        "service_instance": "nationwide_hpi_service",
+        "fetch_method": "get_nationwide_hpi_data",
+    },
+    {
+        # FMP: "BBA Mortgage Rate" (boe_mortgage_rates mapping)
+        "name_ja": "BoE住宅ローン金利",
+        "fmp_event": "BBA Mortgage Rate",
+        "fmp_event_pattern": "BBA Mortgage Rate",
+        "country": "GB",
+        "category": "housing",
+        "service_module": "services.uk.boe_mortgage_rates_service",
+        "service_instance": "boe_mortgage_rates_service",
+        "fetch_method": "get_boe_mortgage_rates_data",
+    },
+    {
+        # FMP: "Mortgage Approvals" (boe_mortgage_lending mapping)
+        "name_ja": "BoE住宅ローン承認件数",
+        "fmp_event": "Mortgage Approvals",
+        "fmp_event_pattern": "Mortgage Approvals",
+        "country": "GB",
+        "category": "housing",
+        "service_module": "services.uk.boe_mortgage_lending_service",
+        "service_instance": "boe_mortgage_lending_service",
+        "fetch_method": "get_boe_mortgage_lending_data",
     },
 ]
+
+
+def invalidate_dashboard_cache(country_code: str, category: str) -> bool:
+    """
+    ダッシュボードのRedisキャッシュを無効化
+
+    Args:
+        country_code: FMP国コード（US, EU, DE, JP, GB）
+        category: カテゴリ（economy, consumer, employment, inflation, housing, policy）
+
+    Returns:
+        成功した場合True
+    """
+    try:
+        from core.redis_client import redis_client
+    except ImportError:
+        from backend.core.redis_client import redis_client
+
+    # FMP国コードからダッシュボード用の国名に変換
+    dashboard_country = FMP_COUNTRY_TO_DASHBOARD.get(country_code)
+    if not dashboard_country:
+        print(f"[FMPScheduler] Unknown country code: {country_code}")
+        return False
+
+    cache_key = f"dashboard:{dashboard_country}:{category}:data"
+
+    try:
+        deleted = redis_client.delete(cache_key)
+        if deleted:
+            print(f"[FMPScheduler] Dashboard cache invalidated: {cache_key}")
+        return deleted
+    except Exception as e:
+        print(f"[FMPScheduler] Failed to invalidate dashboard cache: {e}")
+        return False
 
 
 class FMPReleaseScheduler:
     """
     FMP発表日ベースの経済指標スケジューラー
 
-    FMPから将来の発表日を取得し、各発表の3分後にデータ取得ジョブをスケジュール。
+    FMPから将来の発表日を取得し、各発表の1分後にデータ取得ジョブをスケジュール。
     """
 
     def __init__(self):
@@ -164,6 +560,7 @@ class FMPReleaseScheduler:
         """
         name_ja = config["name_ja"]
         fmp_event = config["fmp_event"]
+        country = config.get("country", "US")
 
         today = date.today()
         end_date = today + timedelta(days=FUTURE_DAYS)
@@ -172,7 +569,7 @@ class FMPReleaseScheduler:
             # eventパラメータで指標を絞って取得
             events = fmp_service.fetch_calendar(
                 today, end_date,
-                country="US",
+                country=country,
                 event=fmp_event
             )
         except Exception as e:
@@ -247,13 +644,14 @@ class FMPReleaseScheduler:
         self._upcoming_releases = all_releases
         return all_releases
 
-    def _sync_fmp_indicator_data(self, fmp_event: str, name_ja: str) -> int:
+    def _sync_fmp_indicator_data(self, fmp_event: str, name_ja: str, country: str = "US") -> int:
         """
         FMPから特定指標の直近イベントを取得してDBに同期（eventパラメータで絞り込み）
 
         Args:
             fmp_event: FMP APIのeventパラメータ値
             name_ja: 指標名（ログ用）
+            country: FMP APIの国コード
 
         Returns:
             Upsertしたレコード数
@@ -266,19 +664,19 @@ class FMPReleaseScheduler:
             # eventパラメータで指標を絞って取得
             events = fmp_service.fetch_calendar(
                 start_date, today,
-                country="US",
+                country=country,
                 event=fmp_event
             )
 
             if not events:
-                print(f"[FMPScheduler] No events found for: {name_ja}")
+                print(f"[FMPScheduler] No events found for: {name_ja} ({country})")
                 return 0
 
             # 処理してDBにUpsert
             processed = [fmp_service.process_event(e) for e in events]
             count = calendar_repository.upsert_events(processed)
 
-            print(f"[FMPScheduler] Synced {count} events for: {name_ja}")
+            print(f"[FMPScheduler] Synced {count} events for: {name_ja} ({country})")
             return count
 
         except Exception as e:
@@ -299,12 +697,13 @@ class FMPReleaseScheduler:
         """
         name_ja = config["name_ja"]
         fmp_event = config["fmp_event"]
+        country = config.get("country", "US")
 
         try:
             print(f"[FMPScheduler] Fetching {name_ja} (iteration {iteration}/{UPDATE_ITERATIONS})...")
 
             # Step 1: FMPから最新データを取得してDBに保存（eventパラメータで絞り込み）
-            synced_count = self._sync_fmp_indicator_data(fmp_event, name_ja)
+            synced_count = self._sync_fmp_indicator_data(fmp_event, name_ja, country)
             print(f"[FMPScheduler] DB synced: {synced_count} events")
 
             # Step 2: サービス経由でデータを取得（DBから読み込み）
@@ -329,6 +728,28 @@ class FMPReleaseScheduler:
                 latest_date = latest.get("date") if latest else "N/A"
                 latest_value = latest.get("value") if latest else "N/A"
                 print(f"[FMPScheduler] ✓ {name_ja}: date={latest_date}, value={latest_value}, source={result.get('source')}")
+
+                # Step 3: 関連サービスも同時更新（related_servicesがある場合）
+                related_services = config.get("related_services", [])
+                for related in related_services:
+                    try:
+                        related_service = self._get_service_instance(related)
+                        if related_service:
+                            related_method = getattr(related_service, related['fetch_method'], None)
+                            if related_method:
+                                related_result = related_method(force_refresh=True)
+                                if related_result and not related_result.get("error"):
+                                    r_latest = related_result.get("latest", {})
+                                    r_date = r_latest.get("date") if r_latest else "N/A"
+                                    r_value = r_latest.get("value") if r_latest else "N/A"
+                                    print(f"[FMPScheduler] ✓ (related) {related['service_instance']}: date={r_date}, value={r_value}")
+                    except Exception as e:
+                        print(f"[FMPScheduler] Error updating related service {related.get('service_instance')}: {e}")
+
+                # Step 4: ダッシュボードキャッシュを無効化（サービスキャッシュとは別）
+                category = config.get("category")
+                if category:
+                    invalidate_dashboard_cache(country, category)
             else:
                 error = result.get("error") if result else "Unknown error"
                 print(f"[FMPScheduler] ✗ {name_ja}: {error}")
@@ -381,7 +802,7 @@ class FMPReleaseScheduler:
             config = release["config"]
             name_ja = release["name_ja"]
 
-            # 発表3分後にスケジュール
+            # 発表1分後にスケジュール
             trigger_time = dt_jst + timedelta(minutes=UPDATE_DELAY_MINUTES)
 
             if trigger_time <= now_jst:

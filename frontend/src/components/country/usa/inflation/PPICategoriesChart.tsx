@@ -35,6 +35,7 @@ import {
   NoDataMessage,
   LatestValueBox,
   ZERO_LINE_PROPS,
+  ViewModeButtonGroup,
   type TooltipPayloadItem,
 } from '../common/ChartComponents'
 import {
@@ -54,8 +55,14 @@ interface PPICategoriesChartProps {
   categoriesData: PPICategoriesData | null
 }
 
-// 表示モード（前月比テーブルとグラフのみ）
-type ViewMode = 'table' | 'chart'
+// 表示モード（前月比テーブルと前年比グラフ）
+type ViewMode = 'mom_table' | 'yoy_chart'
+
+// ビューモード設定
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'yoy_chart', label: '前年比' },
+]
 
 // マージ済みデータの型
 interface MergedDataItem {
@@ -173,7 +180,7 @@ function CategoryTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function PPICategoriesChart({ categoriesData }: PPICategoriesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('table')
+  const [viewMode, setViewMode] = useState<ViewMode>('mom_table')
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(5)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [displayCount, setDisplayCount] = useState<number>(5) // 初期表示5件
@@ -304,7 +311,7 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
   // 最新値を各カテゴリから取得（ビューモードに応じてYoY/MoMを切替）
   const latestItems = categoriesData.categories.map(cat => ({
     label: CATEGORY_LABELS[cat.key] || cat.name,
-    value: viewMode === 'table' ? cat.latest?.mom : cat.latest?.yoy,
+    value: viewMode === 'mom_table' ? cat.latest?.mom : cat.latest?.yoy,
     color: COLORS[cat.key] || '#94a3b8',
     format: 'percent' as const,
   }))
@@ -372,23 +379,13 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
               children: (
                 <>
                   {/* 表示モード切替 */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <Button
-                        type={viewMode === 'table' ? 'primary' : 'default'}
-                        onClick={() => { setViewMode('table'); setDisplayCount(5) }}
-                        size="small"
-                      >
-                        前月比テーブル
-                      </Button>
-                      <Button
-                        type={viewMode === 'chart' ? 'primary' : 'default'}
-                        onClick={() => setViewMode('chart')}
-                        size="small"
-                      >
-                        前年比グラフ
-                      </Button>
-                    </div>
+                  <ViewModeButtonGroup
+                    options={VIEW_MODE_OPTIONS}
+                    currentMode={viewMode}
+                    onChange={(mode) => { setViewMode(mode); if (mode === 'mom_table') setDisplayCount(5) }}
+                  />
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
                     <Tooltip title="比較ページを開く（PPI項目別）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -403,7 +400,7 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
                   </div>
 
                   {/* テーブル表示（前月比） */}
-                  {viewMode === 'table' && (
+                  {viewMode === 'mom_table' && (
                     <>
                       <Table
                         dataSource={displayedTableData}
@@ -428,8 +425,8 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
                     </>
                   )}
 
-                  {/* グラフ表示 */}
-                  {viewMode === 'chart' && (
+                  {/* グラフ表示（前年比） */}
+                  {viewMode === 'yoy_chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>

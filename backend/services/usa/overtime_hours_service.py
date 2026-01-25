@@ -40,7 +40,7 @@ ET = ZoneInfo("America/New_York")
 AWOTMAN_SERIES_ID = "AWOTMAN"  # 製造業の平均週間残業時間
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "overtime_hours_cache.json"
 

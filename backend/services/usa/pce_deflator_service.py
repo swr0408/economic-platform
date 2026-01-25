@@ -35,7 +35,7 @@ from services.usa.fmp_next_release_utils import (
 JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "inflation"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "inflation"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 PCE_DEFLATOR_CACHE_FILE = CACHE_DIR / "pce_deflator_cache.json"
 CORE_PCE_DEFLATOR_CACHE_FILE = CACHE_DIR / "core_pce_deflator_cache.json"

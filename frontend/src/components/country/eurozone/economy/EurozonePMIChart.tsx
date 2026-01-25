@@ -120,7 +120,7 @@ export default function EurozonePMIChart({ data }: EurozonePMIChartProps) {
       <ChartContainer
         title="HCOB PMI（ユーロ圏）"
         showPeriodSelector={false}
-        dataSource="HCOB"
+        dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
       >
         {/* 最新値表示（3系列） */}
@@ -223,6 +223,7 @@ export default function EurozonePMIChart({ data }: EurozonePMIChartProps) {
                     showZeroLine={false}
                     showFiftyLine={true}
                     onLegendClick={handleLegendClick}
+                    yDomain={['dataMin - 3', 'dataMax + 3']}
                   />
                 </>
               ),

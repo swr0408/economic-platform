@@ -1,0 +1,1565 @@
+{
+  "data": [
+    {
+      "date": "2000-01-01",
+      "multiple_jobs": 7895.0,
+      "parttime_econ": 3208.0
+    },
+    {
+      "date": "2000-02-01",
+      "multiple_jobs": 7687.0,
+      "parttime_econ": 3167.0
+    },
+    {
+      "date": "2000-03-01",
+      "multiple_jobs": 7656.0,
+      "parttime_econ": 3231.0
+    },
+    {
+      "date": "2000-04-01",
+      "multiple_jobs": 7885.0,
+      "parttime_econ": 3186.0
+    },
+    {
+      "date": "2000-05-01",
+      "multiple_jobs": 7652.0,
+      "parttime_econ": 3283.0
+    },
+    {
+      "date": "2000-06-01",
+      "multiple_jobs": 7448.0,
+      "parttime_econ": 3209.0
+    },
+    {
+      "date": "2000-07-01",
+      "multiple_jobs": 7588.0,
+      "parttime_econ": 3144.0
+    },
+    {
+      "date": "2000-08-01",
+      "multiple_jobs": 7515.0,
+      "parttime_econ": 3211.0
+    },
+    {
+      "date": "2000-09-01",
+      "multiple_jobs": 7550.0,
+      "parttime_econ": 3217.0
+    },
+    {
+      "date": "2000-10-01",
+      "multiple_jobs": 7445.0,
+      "parttime_econ": 3179.0
+    },
+    {
+      "date": "2000-11-01",
+      "multiple_jobs": 7415.0,
+      "parttime_econ": 3467.0
+    },
+    {
+      "date": "2000-12-01",
+      "multiple_jobs": 7556.0,
+      "parttime_econ": 3243.0
+    },
+    {
+      "date": "2001-01-01",
+      "multiple_jobs": 7366.0,
+      "parttime_econ": 3332.0
+    },
+    {
+      "date": "2001-02-01",
+      "multiple_jobs": 7517.0,
+      "parttime_econ": 3296.0
+    },
+    {
+      "date": "2001-03-01",
+      "multiple_jobs": 7555.0,
+      "parttime_econ": 3280.0
+    },
+    {
+      "date": "2001-04-01",
+      "multiple_jobs": 7439.0,
+      "parttime_econ": 3289.0
+    },
+    {
+      "date": "2001-05-01",
+      "multiple_jobs": 7496.0,
+      "parttime_econ": 3439.0
+    },
+    {
+      "date": "2001-06-01",
+      "multiple_jobs": 7469.0,
+      "parttime_econ": 3792.0
+    },
+    {
+      "date": "2001-07-01",
+      "multiple_jobs": 7498.0,
+      "parttime_econ": 3556.0
+    },
+    {
+      "date": "2001-08-01",
+      "multiple_jobs": 7389.0,
+      "parttime_econ": 3380.0
+    },
+    {
+      "date": "2001-09-01",
+      "multiple_jobs": 7319.0,
+      "parttime_econ": 4233.0
+    },
+    {
+      "date": "2001-10-01",
+      "multiple_jobs": 7036.0,
+      "parttime_econ": 4437.0
+    },
+    {
+      "date": "2001-11-01",
+      "multiple_jobs": 7112.0,
+      "parttime_econ": 4317.0
+    },
+    {
+      "date": "2001-12-01",
+      "multiple_jobs": 7105.0,
+      "parttime_econ": 4393.0
+    },
+    {
+      "date": "2002-01-01",
+      "multiple_jobs": 7186.0,
+      "parttime_econ": 4112.0
+    },
+    {
+      "date": "2002-02-01",
+      "multiple_jobs": 7326.0,
+      "parttime_econ": 4289.0
+    },
+    {
+      "date": "2002-03-01",
+      "multiple_jobs": 7361.0,
+      "parttime_econ": 4101.0
+    },
+    {
+      "date": "2002-04-01",
+      "multiple_jobs": 7443.0,
+      "parttime_econ": 4199.0
+    },
+    {
+      "date": "2002-05-01",
+      "multiple_jobs": 7252.0,
+      "parttime_econ": 4103.0
+    },
+    {
+      "date": "2002-06-01",
+      "multiple_jobs": 7374.0,
+      "parttime_econ": 4048.0
+    },
+    {
+      "date": "2002-07-01",
+      "multiple_jobs": 7244.0,
+      "parttime_econ": 4145.0
+    },
+    {
+      "date": "2002-08-01",
+      "multiple_jobs": 7210.0,
+      "parttime_econ": 4301.0
+    },
+    {
+      "date": "2002-09-01",
+      "multiple_jobs": 7267.0,
+      "parttime_econ": 4329.0
+    },
+    {
+      "date": "2002-10-01",
+      "multiple_jobs": 7157.0,
+      "parttime_econ": 4314.0
+    },
+    {
+      "date": "2002-11-01",
+      "multiple_jobs": 7243.0,
+      "parttime_econ": 4329.0
+    },
+    {
+      "date": "2002-12-01",
+      "multiple_jobs": 7416.0,
+      "parttime_econ": 4321.0
+    },
+    {
+      "date": "2003-01-01",
+      "multiple_jobs": 7351.0,
+      "parttime_econ": 4607.0
+    },
+    {
+      "date": "2003-02-01",
+      "multiple_jobs": 7492.0,
+      "parttime_econ": 4844.0
+    },
+    {
+      "date": "2003-03-01",
+      "multiple_jobs": 7285.0,
+      "parttime_econ": 4652.0
+    },
+    {
+      "date": "2003-04-01",
+      "multiple_jobs": 7279.0,
+      "parttime_econ": 4798.0
+    },
+    {
+      "date": "2003-05-01",
+      "multiple_jobs": 7389.0,
+      "parttime_econ": 4570.0
+    },
+    {
+      "date": "2003-06-01",
+      "multiple_jobs": 7378.0,
+      "parttime_econ": 4592.0
+    },
+    {
+      "date": "2003-07-01",
+      "multiple_jobs": 7306.0,
+      "parttime_econ": 4648.0
+    },
+    {
+      "date": "2003-08-01",
+      "multiple_jobs": 7549.0,
+      "parttime_econ": 4419.0
+    },
+    {
+      "date": "2003-09-01",
+      "multiple_jobs": 7091.0,
+      "parttime_econ": 4882.0
+    },
+    {
+      "date": "2003-10-01",
+      "multiple_jobs": 7323.0,
+      "parttime_econ": 4813.0
+    },
+    {
+      "date": "2003-11-01",
+      "multiple_jobs": 7283.0,
+      "parttime_econ": 4862.0
+    },
+    {
+      "date": "2003-12-01",
+      "multiple_jobs": 7044.0,
+      "parttime_econ": 4750.0
+    },
+    {
+      "date": "2004-01-01",
+      "multiple_jobs": 7284.0,
+      "parttime_econ": 4705.0
+    },
+    {
+      "date": "2004-02-01",
+      "multiple_jobs": 7144.0,
+      "parttime_econ": 4549.0
+    },
+    {
+      "date": "2004-03-01",
+      "multiple_jobs": 7291.0,
+      "parttime_econ": 4742.0
+    },
+    {
+      "date": "2004-04-01",
+      "multiple_jobs": 7334.0,
+      "parttime_econ": 4568.0
+    },
+    {
+      "date": "2004-05-01",
+      "multiple_jobs": 7329.0,
+      "parttime_econ": 4588.0
+    },
+    {
+      "date": "2004-06-01",
+      "multiple_jobs": 7425.0,
+      "parttime_econ": 4443.0
+    },
+    {
+      "date": "2004-07-01",
+      "multiple_jobs": 7522.0,
+      "parttime_econ": 4449.0
+    },
+    {
+      "date": "2004-08-01",
+      "multiple_jobs": 7688.0,
+      "parttime_econ": 4474.0
+    },
+    {
+      "date": "2004-09-01",
+      "multiple_jobs": 7575.0,
+      "parttime_econ": 4487.0
+    },
+    {
+      "date": "2004-10-01",
+      "multiple_jobs": 7797.0,
+      "parttime_econ": 4820.0
+    },
+    {
+      "date": "2004-11-01",
+      "multiple_jobs": 7601.0,
+      "parttime_econ": 4547.0
+    },
+    {
+      "date": "2004-12-01",
+      "multiple_jobs": 7644.0,
+      "parttime_econ": 4427.0
+    },
+    {
+      "date": "2005-01-01",
+      "multiple_jobs": 7375.0,
+      "parttime_econ": 4389.0
+    },
+    {
+      "date": "2005-02-01",
+      "multiple_jobs": 7610.0,
+      "parttime_econ": 4250.0
+    },
+    {
+      "date": "2005-03-01",
+      "multiple_jobs": 7535.0,
+      "parttime_econ": 4388.0
+    },
+    {
+      "date": "2005-04-01",
+      "multiple_jobs": 7502.0,
+      "parttime_econ": 4278.0
+    },
+    {
+      "date": "2005-05-01",
+      "multiple_jobs": 7425.0,
+      "parttime_econ": 4315.0
+    },
+    {
+      "date": "2005-06-01",
+      "multiple_jobs": 7755.0,
+      "parttime_econ": 4432.0
+    },
+    {
+      "date": "2005-07-01",
+      "multiple_jobs": 7597.0,
+      "parttime_econ": 4400.0
+    },
+    {
+      "date": "2005-08-01",
+      "multiple_jobs": 7535.0,
+      "parttime_econ": 4491.0
+    },
+    {
+      "date": "2005-09-01",
+      "multiple_jobs": 7605.0,
+      "parttime_econ": 4675.0
+    },
+    {
+      "date": "2005-10-01",
+      "multiple_jobs": 7572.0,
+      "parttime_econ": 4269.0
+    },
+    {
+      "date": "2005-11-01",
+      "multiple_jobs": 7508.0,
+      "parttime_econ": 4219.0
+    },
+    {
+      "date": "2005-12-01",
+      "multiple_jobs": 7521.0,
+      "parttime_econ": 4115.0
+    },
+    {
+      "date": "2006-01-01",
+      "multiple_jobs": 7597.0,
+      "parttime_econ": 4123.0
+    },
+    {
+      "date": "2006-02-01",
+      "multiple_jobs": 7400.0,
+      "parttime_econ": 4174.0
+    },
+    {
+      "date": "2006-03-01",
+      "multiple_jobs": 7531.0,
+      "parttime_econ": 3972.0
+    },
+    {
+      "date": "2006-04-01",
+      "multiple_jobs": 7389.0,
+      "parttime_econ": 3900.0
+    },
+    {
+      "date": "2006-05-01",
+      "multiple_jobs": 7696.0,
+      "parttime_econ": 4111.0
+    },
+    {
+      "date": "2006-06-01",
+      "multiple_jobs": 7355.0,
+      "parttime_econ": 4318.0
+    },
+    {
+      "date": "2006-07-01",
+      "multiple_jobs": 7448.0,
+      "parttime_econ": 4303.0
+    },
+    {
+      "date": "2006-08-01",
+      "multiple_jobs": 7552.0,
+      "parttime_econ": 4195.0
+    },
+    {
+      "date": "2006-09-01",
+      "multiple_jobs": 7697.0,
+      "parttime_econ": 4115.0
+    },
+    {
+      "date": "2006-10-01",
+      "multiple_jobs": 7624.0,
+      "parttime_econ": 4352.0
+    },
+    {
+      "date": "2006-11-01",
+      "multiple_jobs": 7768.0,
+      "parttime_econ": 4190.0
+    },
+    {
+      "date": "2006-12-01",
+      "multiple_jobs": 7867.0,
+      "parttime_econ": 4187.0
+    },
+    {
+      "date": "2007-01-01",
+      "multiple_jobs": 7716.0,
+      "parttime_econ": 4279.0
+    },
+    {
+      "date": "2007-02-01",
+      "multiple_jobs": 7711.0,
+      "parttime_econ": 4220.0
+    },
+    {
+      "date": "2007-03-01",
+      "multiple_jobs": 7748.0,
+      "parttime_econ": 4253.0
+    },
+    {
+      "date": "2007-04-01",
+      "multiple_jobs": 7832.0,
+      "parttime_econ": 4313.0
+    },
+    {
+      "date": "2007-05-01",
+      "multiple_jobs": 7693.0,
+      "parttime_econ": 4473.0
+    },
+    {
+      "date": "2007-06-01",
+      "multiple_jobs": 7614.0,
+      "parttime_econ": 4342.0
+    },
+    {
+      "date": "2007-07-01",
+      "multiple_jobs": 7619.0,
+      "parttime_econ": 4410.0
+    },
+    {
+      "date": "2007-08-01",
+      "multiple_jobs": 7550.0,
+      "parttime_econ": 4576.0
+    },
+    {
+      "date": "2007-09-01",
+      "multiple_jobs": 7550.0,
+      "parttime_econ": 4521.0
+    },
+    {
+      "date": "2007-10-01",
+      "multiple_jobs": 7636.0,
+      "parttime_econ": 4325.0
+    },
+    {
+      "date": "2007-11-01",
+      "multiple_jobs": 7692.0,
+      "parttime_econ": 4494.0
+    },
+    {
+      "date": "2007-12-01",
+      "multiple_jobs": 7538.0,
+      "parttime_econ": 4618.0
+    },
+    {
+      "date": "2008-01-01",
+      "multiple_jobs": 7602.0,
+      "parttime_econ": 4846.0
+    },
+    {
+      "date": "2008-02-01",
+      "multiple_jobs": 7536.0,
+      "parttime_econ": 4902.0
+    },
+    {
+      "date": "2008-03-01",
+      "multiple_jobs": 7454.0,
+      "parttime_econ": 4904.0
+    },
+    {
+      "date": "2008-04-01",
+      "multiple_jobs": 7576.0,
+      "parttime_econ": 5220.0
+    },
+    {
+      "date": "2008-05-01",
+      "multiple_jobs": 7567.0,
+      "parttime_econ": 5286.0
+    },
+    {
+      "date": "2008-06-01",
+      "multiple_jobs": 7782.0,
+      "parttime_econ": 5540.0
+    },
+    {
+      "date": "2008-07-01",
+      "multiple_jobs": 7767.0,
+      "parttime_econ": 5930.0
+    },
+    {
+      "date": "2008-08-01",
+      "multiple_jobs": 8071.0,
+      "parttime_econ": 5851.0
+    },
+    {
+      "date": "2008-09-01",
+      "multiple_jobs": 7686.0,
+      "parttime_econ": 6148.0
+    },
+    {
+      "date": "2008-10-01",
+      "multiple_jobs": 7635.0,
+      "parttime_econ": 6690.0
+    },
+    {
+      "date": "2008-11-01",
+      "multiple_jobs": 7430.0,
+      "parttime_econ": 7311.0
+    },
+    {
+      "date": "2008-12-01",
+      "multiple_jobs": 7415.0,
+      "parttime_econ": 8029.0
+    },
+    {
+      "date": "2009-01-01",
+      "multiple_jobs": 7466.0,
+      "parttime_econ": 8046.0
+    },
+    {
+      "date": "2009-02-01",
+      "multiple_jobs": 7573.0,
+      "parttime_econ": 8796.0
+    },
+    {
+      "date": "2009-03-01",
+      "multiple_jobs": 7668.0,
+      "parttime_econ": 9145.0
+    },
+    {
+      "date": "2009-04-01",
+      "multiple_jobs": 7700.0,
+      "parttime_econ": 8908.0
+    },
+    {
+      "date": "2009-05-01",
+      "multiple_jobs": 7141.0,
+      "parttime_econ": 9113.0
+    },
+    {
+      "date": "2009-06-01",
+      "multiple_jobs": 7117.0,
+      "parttime_econ": 9024.0
+    },
+    {
+      "date": "2009-07-01",
+      "multiple_jobs": 7333.0,
+      "parttime_econ": 8891.0
+    },
+    {
+      "date": "2009-08-01",
+      "multiple_jobs": 7086.0,
+      "parttime_econ": 9029.0
+    },
+    {
+      "date": "2009-09-01",
+      "multiple_jobs": 7102.0,
+      "parttime_econ": 8847.0
+    },
+    {
+      "date": "2009-10-01",
+      "multiple_jobs": 7094.0,
+      "parttime_econ": 8979.0
+    },
+    {
+      "date": "2009-11-01",
+      "multiple_jobs": 7121.0,
+      "parttime_econ": 9114.0
+    },
+    {
+      "date": "2009-12-01",
+      "multiple_jobs": 6887.0,
+      "parttime_econ": 9098.0
+    },
+    {
+      "date": "2010-01-01",
+      "multiple_jobs": 6948.0,
+      "parttime_econ": 8530.0
+    },
+    {
+      "date": "2010-02-01",
+      "multiple_jobs": 7034.0,
+      "parttime_econ": 8936.0
+    },
+    {
+      "date": "2010-03-01",
+      "multiple_jobs": 7011.0,
+      "parttime_econ": 9233.0
+    },
+    {
+      "date": "2010-04-01",
+      "multiple_jobs": 7028.0,
+      "parttime_econ": 9178.0
+    },
+    {
+      "date": "2010-05-01",
+      "multiple_jobs": 7059.0,
+      "parttime_econ": 8845.0
+    },
+    {
+      "date": "2010-06-01",
+      "multiple_jobs": 6956.0,
+      "parttime_econ": 8577.0
+    },
+    {
+      "date": "2010-07-01",
+      "multiple_jobs": 6657.0,
+      "parttime_econ": 8500.0
+    },
+    {
+      "date": "2010-08-01",
+      "multiple_jobs": 6811.0,
+      "parttime_econ": 8800.0
+    },
+    {
+      "date": "2010-09-01",
+      "multiple_jobs": 6711.0,
+      "parttime_econ": 9246.0
+    },
+    {
+      "date": "2010-10-01",
+      "multiple_jobs": 6730.0,
+      "parttime_econ": 8837.0
+    },
+    {
+      "date": "2010-11-01",
+      "multiple_jobs": 6708.0,
+      "parttime_econ": 8873.0
+    },
+    {
+      "date": "2010-12-01",
+      "multiple_jobs": 6899.0,
+      "parttime_econ": 8935.0
+    },
+    {
+      "date": "2011-01-01",
+      "multiple_jobs": 6816.0,
+      "parttime_econ": 8470.0
+    },
+    {
+      "date": "2011-02-01",
+      "multiple_jobs": 6741.0,
+      "parttime_econ": 8464.0
+    },
+    {
+      "date": "2011-03-01",
+      "multiple_jobs": 6735.0,
+      "parttime_econ": 8645.0
+    },
+    {
+      "date": "2011-04-01",
+      "multiple_jobs": 6823.0,
+      "parttime_econ": 8652.0
+    },
+    {
+      "date": "2011-05-01",
+      "multiple_jobs": 6880.0,
+      "parttime_econ": 8576.0
+    },
+    {
+      "date": "2011-06-01",
+      "multiple_jobs": 6946.0,
+      "parttime_econ": 8427.0
+    },
+    {
+      "date": "2011-07-01",
+      "multiple_jobs": 6850.0,
+      "parttime_econ": 8281.0
+    },
+    {
+      "date": "2011-08-01",
+      "multiple_jobs": 6940.0,
+      "parttime_econ": 8788.0
+    },
+    {
+      "date": "2011-09-01",
+      "multiple_jobs": 6995.0,
+      "parttime_econ": 9166.0
+    },
+    {
+      "date": "2011-10-01",
+      "multiple_jobs": 6917.0,
+      "parttime_econ": 8657.0
+    },
+    {
+      "date": "2011-11-01",
+      "multiple_jobs": 6946.0,
+      "parttime_econ": 8447.0
+    },
+    {
+      "date": "2011-12-01",
+      "multiple_jobs": 6977.0,
+      "parttime_econ": 8171.0
+    },
+    {
+      "date": "2012-01-01",
+      "multiple_jobs": 7022.0,
+      "parttime_econ": 8305.0
+    },
+    {
+      "date": "2012-02-01",
+      "multiple_jobs": 6966.0,
+      "parttime_econ": 8238.0
+    },
+    {
+      "date": "2012-03-01",
+      "multiple_jobs": 6954.0,
+      "parttime_econ": 7775.0
+    },
+    {
+      "date": "2012-04-01",
+      "multiple_jobs": 6903.0,
+      "parttime_econ": 7913.0
+    },
+    {
+      "date": "2012-05-01",
+      "multiple_jobs": 6980.0,
+      "parttime_econ": 8101.0
+    },
+    {
+      "date": "2012-06-01",
+      "multiple_jobs": 6804.0,
+      "parttime_econ": 8072.0
+    },
+    {
+      "date": "2012-07-01",
+      "multiple_jobs": 6916.0,
+      "parttime_econ": 8082.0
+    },
+    {
+      "date": "2012-08-01",
+      "multiple_jobs": 6921.0,
+      "parttime_econ": 7974.0
+    },
+    {
+      "date": "2012-09-01",
+      "multiple_jobs": 6865.0,
+      "parttime_econ": 8671.0
+    },
+    {
+      "date": "2012-10-01",
+      "multiple_jobs": 6888.0,
+      "parttime_econ": 8203.0
+    },
+    {
+      "date": "2012-11-01",
+      "multiple_jobs": 7060.0,
+      "parttime_econ": 8166.0
+    },
+    {
+      "date": "2012-12-01",
+      "multiple_jobs": 7003.0,
+      "parttime_econ": 7943.0
+    },
+    {
+      "date": "2013-01-01",
+      "multiple_jobs": 6899.0,
+      "parttime_econ": 8151.0
+    },
+    {
+      "date": "2013-02-01",
+      "multiple_jobs": 7281.0,
+      "parttime_econ": 8178.0
+    },
+    {
+      "date": "2013-03-01",
+      "multiple_jobs": 7068.0,
+      "parttime_econ": 7722.0
+    },
+    {
+      "date": "2013-04-01",
+      "multiple_jobs": 7002.0,
+      "parttime_econ": 7964.0
+    },
+    {
+      "date": "2013-05-01",
+      "multiple_jobs": 6966.0,
+      "parttime_econ": 7937.0
+    },
+    {
+      "date": "2013-06-01",
+      "multiple_jobs": 7108.0,
+      "parttime_econ": 8103.0
+    },
+    {
+      "date": "2013-07-01",
+      "multiple_jobs": 7115.0,
+      "parttime_econ": 8099.0
+    },
+    {
+      "date": "2013-08-01",
+      "multiple_jobs": 7077.0,
+      "parttime_econ": 7816.0
+    },
+    {
+      "date": "2013-09-01",
+      "multiple_jobs": 6995.0,
+      "parttime_econ": 7764.0
+    },
+    {
+      "date": "2013-10-01",
+      "multiple_jobs": 6877.0,
+      "parttime_econ": 7936.0
+    },
+    {
+      "date": "2013-11-01",
+      "multiple_jobs": 6776.0,
+      "parttime_econ": 7718.0
+    },
+    {
+      "date": "2013-12-01",
+      "multiple_jobs": 6851.0,
+      "parttime_econ": 7827.0
+    },
+    {
+      "date": "2014-01-01",
+      "multiple_jobs": 6817.0,
+      "parttime_econ": 7296.0
+    },
+    {
+      "date": "2014-02-01",
+      "multiple_jobs": 7012.0,
+      "parttime_econ": 7299.0
+    },
+    {
+      "date": "2014-03-01",
+      "multiple_jobs": 6996.0,
+      "parttime_econ": 7435.0
+    },
+    {
+      "date": "2014-04-01",
+      "multiple_jobs": 7158.0,
+      "parttime_econ": 7509.0
+    },
+    {
+      "date": "2014-05-01",
+      "multiple_jobs": 7195.0,
+      "parttime_econ": 7254.0
+    },
+    {
+      "date": "2014-06-01",
+      "multiple_jobs": 7105.0,
+      "parttime_econ": 7422.0
+    },
+    {
+      "date": "2014-07-01",
+      "multiple_jobs": 7016.0,
+      "parttime_econ": 7402.0
+    },
+    {
+      "date": "2014-08-01",
+      "multiple_jobs": 7144.0,
+      "parttime_econ": 7177.0
+    },
+    {
+      "date": "2014-09-01",
+      "multiple_jobs": 7130.0,
+      "parttime_econ": 7020.0
+    },
+    {
+      "date": "2014-10-01",
+      "multiple_jobs": 7610.0,
+      "parttime_econ": 7025.0
+    },
+    {
+      "date": "2014-11-01",
+      "multiple_jobs": 7318.0,
+      "parttime_econ": 6898.0
+    },
+    {
+      "date": "2014-12-01",
+      "multiple_jobs": 7220.0,
+      "parttime_econ": 6856.0
+    },
+    {
+      "date": "2015-01-01",
+      "multiple_jobs": 7412.0,
+      "parttime_econ": 6808.0
+    },
+    {
+      "date": "2015-02-01",
+      "multiple_jobs": 7068.0,
+      "parttime_econ": 6665.0
+    },
+    {
+      "date": "2015-03-01",
+      "multiple_jobs": 7100.0,
+      "parttime_econ": 6633.0
+    },
+    {
+      "date": "2015-04-01",
+      "multiple_jobs": 7017.0,
+      "parttime_econ": 6611.0
+    },
+    {
+      "date": "2015-05-01",
+      "multiple_jobs": 7027.0,
+      "parttime_econ": 6634.0
+    },
+    {
+      "date": "2015-06-01",
+      "multiple_jobs": 7197.0,
+      "parttime_econ": 6388.0
+    },
+    {
+      "date": "2015-07-01",
+      "multiple_jobs": 7224.0,
+      "parttime_econ": 6253.0
+    },
+    {
+      "date": "2015-08-01",
+      "multiple_jobs": 7234.0,
+      "parttime_econ": 6418.0
+    },
+    {
+      "date": "2015-09-01",
+      "multiple_jobs": 7302.0,
+      "parttime_econ": 6042.0
+    },
+    {
+      "date": "2015-10-01",
+      "multiple_jobs": 7430.0,
+      "parttime_econ": 5813.0
+    },
+    {
+      "date": "2015-11-01",
+      "multiple_jobs": 7356.0,
+      "parttime_econ": 6170.0
+    },
+    {
+      "date": "2015-12-01",
+      "multiple_jobs": 7757.0,
+      "parttime_econ": 6075.0
+    },
+    {
+      "date": "2016-01-01",
+      "multiple_jobs": 7401.0,
+      "parttime_econ": 5937.0
+    },
+    {
+      "date": "2016-02-01",
+      "multiple_jobs": 7327.0,
+      "parttime_econ": 5938.0
+    },
+    {
+      "date": "2016-03-01",
+      "multiple_jobs": 7432.0,
+      "parttime_econ": 6057.0
+    },
+    {
+      "date": "2016-04-01",
+      "multiple_jobs": 7420.0,
+      "parttime_econ": 6011.0
+    },
+    {
+      "date": "2016-05-01",
+      "multiple_jobs": 7460.0,
+      "parttime_econ": 6488.0
+    },
+    {
+      "date": "2016-06-01",
+      "multiple_jobs": 7224.0,
+      "parttime_econ": 5791.0
+    },
+    {
+      "date": "2016-07-01",
+      "multiple_jobs": 7286.0,
+      "parttime_econ": 5950.0
+    },
+    {
+      "date": "2016-08-01",
+      "multiple_jobs": 7529.0,
+      "parttime_econ": 6033.0
+    },
+    {
+      "date": "2016-09-01",
+      "multiple_jobs": 7867.0,
+      "parttime_econ": 5882.0
+    },
+    {
+      "date": "2016-10-01",
+      "multiple_jobs": 7884.0,
+      "parttime_econ": 5949.0
+    },
+    {
+      "date": "2016-11-01",
+      "multiple_jobs": 7932.0,
+      "parttime_econ": 5685.0
+    },
+    {
+      "date": "2016-12-01",
+      "multiple_jobs": 7620.0,
+      "parttime_econ": 5607.0
+    },
+    {
+      "date": "2017-01-01",
+      "multiple_jobs": 7574.0,
+      "parttime_econ": 5762.0
+    },
+    {
+      "date": "2017-02-01",
+      "multiple_jobs": 7855.0,
+      "parttime_econ": 5562.0
+    },
+    {
+      "date": "2017-03-01",
+      "multiple_jobs": 8009.0,
+      "parttime_econ": 5462.0
+    },
+    {
+      "date": "2017-04-01",
+      "multiple_jobs": 7620.0,
+      "parttime_econ": 5272.0
+    },
+    {
+      "date": "2017-05-01",
+      "multiple_jobs": 7570.0,
+      "parttime_econ": 5259.0
+    },
+    {
+      "date": "2017-06-01",
+      "multiple_jobs": 7538.0,
+      "parttime_econ": 5381.0
+    },
+    {
+      "date": "2017-07-01",
+      "multiple_jobs": 7377.0,
+      "parttime_econ": 5320.0
+    },
+    {
+      "date": "2017-08-01",
+      "multiple_jobs": 7219.0,
+      "parttime_econ": 5301.0
+    },
+    {
+      "date": "2017-09-01",
+      "multiple_jobs": 7365.0,
+      "parttime_econ": 5138.0
+    },
+    {
+      "date": "2017-10-01",
+      "multiple_jobs": 7219.0,
+      "parttime_econ": 4857.0
+    },
+    {
+      "date": "2017-11-01",
+      "multiple_jobs": 7470.0,
+      "parttime_econ": 4745.0
+    },
+    {
+      "date": "2017-12-01",
+      "multiple_jobs": 7707.0,
+      "parttime_econ": 4940.0
+    },
+    {
+      "date": "2018-01-01",
+      "multiple_jobs": 7893.0,
+      "parttime_econ": 5033.0
+    },
+    {
+      "date": "2018-02-01",
+      "multiple_jobs": 7961.0,
+      "parttime_econ": 5119.0
+    },
+    {
+      "date": "2018-03-01",
+      "multiple_jobs": 7633.0,
+      "parttime_econ": 4983.0
+    },
+    {
+      "date": "2018-04-01",
+      "multiple_jobs": 7650.0,
+      "parttime_econ": 4946.0
+    },
+    {
+      "date": "2018-05-01",
+      "multiple_jobs": 7426.0,
+      "parttime_econ": 4940.0
+    },
+    {
+      "date": "2018-06-01",
+      "multiple_jobs": 7583.0,
+      "parttime_econ": 4835.0
+    },
+    {
+      "date": "2018-07-01",
+      "multiple_jobs": 7909.0,
+      "parttime_econ": 4607.0
+    },
+    {
+      "date": "2018-08-01",
+      "multiple_jobs": 7814.0,
+      "parttime_econ": 4400.0
+    },
+    {
+      "date": "2018-09-01",
+      "multiple_jobs": 7684.0,
+      "parttime_econ": 4625.0
+    },
+    {
+      "date": "2018-10-01",
+      "multiple_jobs": 7915.0,
+      "parttime_econ": 4553.0
+    },
+    {
+      "date": "2018-11-01",
+      "multiple_jobs": 7815.0,
+      "parttime_econ": 4665.0
+    },
+    {
+      "date": "2018-12-01",
+      "multiple_jobs": 7940.0,
+      "parttime_econ": 4627.0
+    },
+    {
+      "date": "2019-01-01",
+      "multiple_jobs": 7867.0,
+      "parttime_econ": 5190.0
+    },
+    {
+      "date": "2019-02-01",
+      "multiple_jobs": 7670.0,
+      "parttime_econ": 4345.0
+    },
+    {
+      "date": "2019-03-01",
+      "multiple_jobs": 7899.0,
+      "parttime_econ": 4507.0
+    },
+    {
+      "date": "2019-04-01",
+      "multiple_jobs": 7794.0,
+      "parttime_econ": 4687.0
+    },
+    {
+      "date": "2019-05-01",
+      "multiple_jobs": 7900.0,
+      "parttime_econ": 4362.0
+    },
+    {
+      "date": "2019-06-01",
+      "multiple_jobs": 8132.0,
+      "parttime_econ": 4397.0
+    },
+    {
+      "date": "2019-07-01",
+      "multiple_jobs": 8390.0,
+      "parttime_econ": 3952.0
+    },
+    {
+      "date": "2019-08-01",
+      "multiple_jobs": 8340.0,
+      "parttime_econ": 4393.0
+    },
+    {
+      "date": "2019-09-01",
+      "multiple_jobs": 8356.0,
+      "parttime_econ": 4320.0
+    },
+    {
+      "date": "2019-10-01",
+      "multiple_jobs": 8165.0,
+      "parttime_econ": 4358.0
+    },
+    {
+      "date": "2019-11-01",
+      "multiple_jobs": 8154.0,
+      "parttime_econ": 4233.0
+    },
+    {
+      "date": "2019-12-01",
+      "multiple_jobs": 7947.0,
+      "parttime_econ": 4134.0
+    },
+    {
+      "date": "2020-01-01",
+      "multiple_jobs": 8220.0,
+      "parttime_econ": 4275.0
+    },
+    {
+      "date": "2020-02-01",
+      "multiple_jobs": 8035.0,
+      "parttime_econ": 4378.0
+    },
+    {
+      "date": "2020-03-01",
+      "multiple_jobs": 7221.0,
+      "parttime_econ": 5763.0
+    },
+    {
+      "date": "2020-04-01",
+      "multiple_jobs": 5380.0,
+      "parttime_econ": 10880.0
+    },
+    {
+      "date": "2020-05-01",
+      "multiple_jobs": 5538.0,
+      "parttime_econ": 10627.0
+    },
+    {
+      "date": "2020-06-01",
+      "multiple_jobs": 6226.0,
+      "parttime_econ": 9109.0
+    },
+    {
+      "date": "2020-07-01",
+      "multiple_jobs": 6629.0,
+      "parttime_econ": 8418.0
+    },
+    {
+      "date": "2020-08-01",
+      "multiple_jobs": 6781.0,
+      "parttime_econ": 7553.0
+    },
+    {
+      "date": "2020-09-01",
+      "multiple_jobs": 6489.0,
+      "parttime_econ": 6283.0
+    },
+    {
+      "date": "2020-10-01",
+      "multiple_jobs": 6721.0,
+      "parttime_econ": 6657.0
+    },
+    {
+      "date": "2020-11-01",
+      "multiple_jobs": 6584.0,
+      "parttime_econ": 6635.0
+    },
+    {
+      "date": "2020-12-01",
+      "multiple_jobs": 6406.0,
+      "parttime_econ": 6142.0
+    },
+    {
+      "date": "2021-01-01",
+      "multiple_jobs": 6638.0,
+      "parttime_econ": 5948.0
+    },
+    {
+      "date": "2021-02-01",
+      "multiple_jobs": 6657.0,
+      "parttime_econ": 6066.0
+    },
+    {
+      "date": "2021-03-01",
+      "multiple_jobs": 6860.0,
+      "parttime_econ": 5784.0
+    },
+    {
+      "date": "2021-04-01",
+      "multiple_jobs": 6902.0,
+      "parttime_econ": 5222.0
+    },
+    {
+      "date": "2021-05-01",
+      "multiple_jobs": 7299.0,
+      "parttime_econ": 5245.0
+    },
+    {
+      "date": "2021-06-01",
+      "multiple_jobs": 7111.0,
+      "parttime_econ": 4651.0
+    },
+    {
+      "date": "2021-07-01",
+      "multiple_jobs": 7103.0,
+      "parttime_econ": 4455.0
+    },
+    {
+      "date": "2021-08-01",
+      "multiple_jobs": 7036.0,
+      "parttime_econ": 4456.0
+    },
+    {
+      "date": "2021-09-01",
+      "multiple_jobs": 7046.0,
+      "parttime_econ": 4476.0
+    },
+    {
+      "date": "2021-10-01",
+      "multiple_jobs": 7016.0,
+      "parttime_econ": 4414.0
+    },
+    {
+      "date": "2021-11-01",
+      "multiple_jobs": 7052.0,
+      "parttime_econ": 4301.0
+    },
+    {
+      "date": "2021-12-01",
+      "multiple_jobs": 7364.0,
+      "parttime_econ": 3949.0
+    },
+    {
+      "date": "2022-01-01",
+      "multiple_jobs": 7451.0,
+      "parttime_econ": 3720.0
+    },
+    {
+      "date": "2022-02-01",
+      "multiple_jobs": 7411.0,
+      "parttime_econ": 4105.0
+    },
+    {
+      "date": "2022-03-01",
+      "multiple_jobs": 7340.0,
+      "parttime_econ": 4137.0
+    },
+    {
+      "date": "2022-04-01",
+      "multiple_jobs": 7554.0,
+      "parttime_econ": 4013.0
+    },
+    {
+      "date": "2022-05-01",
+      "multiple_jobs": 7367.0,
+      "parttime_econ": 4314.0
+    },
+    {
+      "date": "2022-06-01",
+      "multiple_jobs": 7565.0,
+      "parttime_econ": 3652.0
+    },
+    {
+      "date": "2022-07-01",
+      "multiple_jobs": 7671.0,
+      "parttime_econ": 3934.0
+    },
+    {
+      "date": "2022-08-01",
+      "multiple_jobs": 7764.0,
+      "parttime_econ": 4131.0
+    },
+    {
+      "date": "2022-09-01",
+      "multiple_jobs": 7753.0,
+      "parttime_econ": 3869.0
+    },
+    {
+      "date": "2022-10-01",
+      "multiple_jobs": 7516.0,
+      "parttime_econ": 3676.0
+    },
+    {
+      "date": "2022-11-01",
+      "multiple_jobs": 7641.0,
+      "parttime_econ": 3718.0
+    },
+    {
+      "date": "2022-12-01",
+      "multiple_jobs": 8032.0,
+      "parttime_econ": 3891.0
+    },
+    {
+      "date": "2023-01-01",
+      "multiple_jobs": 7997.0,
+      "parttime_econ": 4042.0
+    },
+    {
+      "date": "2023-02-01",
+      "multiple_jobs": 7885.0,
+      "parttime_econ": 4042.0
+    },
+    {
+      "date": "2023-03-01",
+      "multiple_jobs": 7965.0,
+      "parttime_econ": 4076.0
+    },
+    {
+      "date": "2023-04-01",
+      "multiple_jobs": 7699.0,
+      "parttime_econ": 3882.0
+    },
+    {
+      "date": "2023-05-01",
+      "multiple_jobs": 7778.0,
+      "parttime_econ": 3734.0
+    },
+    {
+      "date": "2023-06-01",
+      "multiple_jobs": 8021.0,
+      "parttime_econ": 4218.0
+    },
+    {
+      "date": "2023-07-01",
+      "multiple_jobs": 8198.0,
+      "parttime_econ": 4009.0
+    },
+    {
+      "date": "2023-08-01",
+      "multiple_jobs": 8068.0,
+      "parttime_econ": 4215.0
+    },
+    {
+      "date": "2023-09-01",
+      "multiple_jobs": 8160.0,
+      "parttime_econ": 4088.0
+    },
+    {
+      "date": "2023-10-01",
+      "multiple_jobs": 8365.0,
+      "parttime_econ": 4293.0
+    },
+    {
+      "date": "2023-11-01",
+      "multiple_jobs": 8307.0,
+      "parttime_econ": 4008.0
+    },
+    {
+      "date": "2023-12-01",
+      "multiple_jobs": 8580.0,
+      "parttime_econ": 4223.0
+    },
+    {
+      "date": "2024-01-01",
+      "multiple_jobs": 8257.0,
+      "parttime_econ": 4418.0
+    },
+    {
+      "date": "2024-02-01",
+      "multiple_jobs": 8248.0,
+      "parttime_econ": 4349.0
+    },
+    {
+      "date": "2024-03-01",
+      "multiple_jobs": 8453.0,
+      "parttime_econ": 4293.0
+    },
+    {
+      "date": "2024-04-01",
+      "multiple_jobs": 8374.0,
+      "parttime_econ": 4457.0
+    },
+    {
+      "date": "2024-05-01",
+      "multiple_jobs": 8419.0,
+      "parttime_econ": 4416.0
+    },
+    {
+      "date": "2024-06-01",
+      "multiple_jobs": 8342.0,
+      "parttime_econ": 4236.0
+    },
+    {
+      "date": "2024-07-01",
+      "multiple_jobs": 8517.0,
+      "parttime_econ": 4569.0
+    },
+    {
+      "date": "2024-08-01",
+      "multiple_jobs": 8544.0,
+      "parttime_econ": 4828.0
+    },
+    {
+      "date": "2024-09-01",
+      "multiple_jobs": 8663.0,
+      "parttime_econ": 4643.0
+    },
+    {
+      "date": "2024-10-01",
+      "multiple_jobs": 8306.0,
+      "parttime_econ": 4566.0
+    },
+    {
+      "date": "2024-11-01",
+      "multiple_jobs": 8553.0,
+      "parttime_econ": 4463.0
+    },
+    {
+      "date": "2024-12-01",
+      "multiple_jobs": 8493.0,
+      "parttime_econ": 4361.0
+    },
+    {
+      "date": "2025-01-01",
+      "multiple_jobs": 8774.0,
+      "parttime_econ": 4478.0
+    },
+    {
+      "date": "2025-02-01",
+      "multiple_jobs": 8859.0,
+      "parttime_econ": 4923.0
+    },
+    {
+      "date": "2025-03-01",
+      "multiple_jobs": 8935.0,
+      "parttime_econ": 4771.0
+    },
+    {
+      "date": "2025-04-01",
+      "multiple_jobs": 8857.0,
+      "parttime_econ": 4686.0
+    },
+    {
+      "date": "2025-05-01",
+      "multiple_jobs": 8571.0,
+      "parttime_econ": 4624.0
+    },
+    {
+      "date": "2025-06-01",
+      "multiple_jobs": 8859.0,
+      "parttime_econ": 4473.0
+    },
+    {
+      "date": "2025-07-01",
+      "multiple_jobs": 8358.0,
+      "parttime_econ": 4689.0
+    },
+    {
+      "date": "2025-08-01",
+      "multiple_jobs": 8796.0,
+      "parttime_econ": 4755.0
+    },
+    {
+      "date": "2025-09-01",
+      "multiple_jobs": 8810.0,
+      "parttime_econ": 4594.0
+    },
+    {
+      "date": "2025-11-01",
+      "multiple_jobs": 9292.0,
+      "parttime_econ": 5487.0
+    },
+    {
+      "date": "2025-12-01",
+      "multiple_jobs": 8848.0,
+      "parttime_econ": 5341.0
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "multiple_jobs": 8848.0,
+    "parttime_econ": 5341.0
+  },
+  "last_updated": "2026-01-25T22:21:36.304162+09:00"
+}

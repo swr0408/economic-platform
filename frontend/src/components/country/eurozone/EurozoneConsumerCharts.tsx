@@ -46,17 +46,17 @@ export default function EurozoneConsumerCharts() {
         />
       </div>
 
-      {/* Germany Retail Sales Chart */}
-      <div id="germany-retail-sales">
-        <GermanyRetailSalesChart
-          data={dashboardData?.germany_retail_sales ?? null}
-        />
-      </div>
-
       {/* Eurostat Consumer Confidence Chart */}
       <div id="eurostat-consumer-confidence">
         <EurostatConsumerConfidenceChart
           data={dashboardData?.eurostat_consumer_confidence ?? null}
+        />
+      </div>
+
+      {/* Germany Retail Sales Chart */}
+      <div id="germany-retail-sales">
+        <GermanyRetailSalesChart
+          data={dashboardData?.germany_retail_sales ?? null}
         />
       </div>
 

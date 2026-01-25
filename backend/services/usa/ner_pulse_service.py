@@ -33,7 +33,7 @@ from services.usa.fmp_next_release_utils import (
 JST = ZoneInfo("Asia/Tokyo")
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "ner_pulse_cache.json"
 SCHEDULE_CACHE_FILE = CACHE_DIR / "ner_pulse_schedule.json"

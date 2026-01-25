@@ -274,22 +274,34 @@ class USAPolicyLoader(BaseDashboardLoader):
         from services.usa.nyfed_service import nyfed_term_premium_service
         from services.usa.fred_service import fred_service
         from services.usa.fomc_schedule_service import fomc_schedule_service
+        from services.usa.frb_total_assets_service import frb_total_assets_service
+        from services.usa.reserve_balances_service import reserve_balances_service
+        from services.usa.tga_service import tga_service
+        from services.usa.oas_service import oas_service
 
         result = {
             "policy_rate": None,
             "term_premium": None,
             "kw_term_premium": None,
+            "frb_total_assets": None,
+            "reserve_balances": None,
+            "tga": None,
+            "oas": None,
             "sep_dates": None,
             "fedwatch_screenshot_url": None,
             "next_fomc": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=6) as executor:
+        with ThreadPoolExecutor(max_workers=8) as executor:
             futures = {
                 executor.submit(self._get_policy_rate, fed_h15_service): "policy_rate",
                 executor.submit(self._get_term_premium, nyfed_term_premium_service): "term_premium",
                 executor.submit(self._get_kw_term_premium, fred_service): "kw_term_premium",
+                executor.submit(self._get_frb_total_assets, frb_total_assets_service): "frb_total_assets",
+                executor.submit(self._get_reserve_balances, reserve_balances_service): "reserve_balances",
+                executor.submit(self._get_tga, tga_service): "tga",
+                executor.submit(self._get_oas, oas_service): "oas",
                 executor.submit(self._get_sep_dates, fomc_schedule_service): "sep_dates",
                 executor.submit(self._get_fedwatch_url): "fedwatch_screenshot_url",
                 executor.submit(self._get_next_fomc, fomc_schedule_service): "next_fomc",
@@ -334,6 +346,50 @@ class USAPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting KW term premium: {e}")
             return []
+
+    def _get_frb_total_assets(self, service) -> list:
+        """FRB総資産データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("frb_total_assets")
+            response = service.get_data(force_refresh=force_refresh)
+            return response.get("data", [])
+        except Exception as e:
+            print(f"Error getting FRB total assets: {e}")
+            return []
+
+    def _get_reserve_balances(self, service) -> list:
+        """準備預金残高データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("reserve_balances")
+            response = service.get_data(force_refresh=force_refresh)
+            return response.get("data", [])
+        except Exception as e:
+            print(f"Error getting reserve balances: {e}")
+            return []
+
+    def _get_tga(self, service) -> list:
+        """TGA（財務省一般勘定残高）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("tga")
+            response = service.get_data(force_refresh=force_refresh)
+            return response.get("data", [])
+        except Exception as e:
+            print(f"Error getting TGA: {e}")
+            return []
+
+    def _get_oas(self, service) -> dict:
+        """OAS（Option-Adjusted Spread）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("oas")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "hy_spread": response.get("hy_spread", []),
+                "ig_spread": response.get("ig_spread", []),
+                "hy_yield": response.get("hy_yield", []),
+            }
+        except Exception as e:
+            print(f"Error getting OAS: {e}")
+            return {"hy_spread": [], "ig_spread": [], "hy_yield": []}
 
     def _get_sep_dates(self, service) -> list:
         """SEP発表日リストを取得（過去の公開済み日付のみ）"""

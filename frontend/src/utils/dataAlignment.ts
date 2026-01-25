@@ -266,6 +266,7 @@ export function mergeWithFrequencyAwareness<T extends { date: string }>(
     weekly: 2,
     monthly: 3,
     quarterly: 4,
+    yearly: 5,
     irregular: 3,
   };
 

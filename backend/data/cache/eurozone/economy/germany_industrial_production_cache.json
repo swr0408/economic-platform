@@ -1,0 +1,171 @@
+{
+  "mom": [
+    {
+      "date": "2025-02-01",
+      "value": -1.3,
+      "forecast": -1.1,
+      "previous": 2.0,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.0,
+      "forecast": 0.8,
+      "previous": -1.3,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-04-01",
+      "value": -1.4,
+      "forecast": -1.0,
+      "previous": 2.3,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 1.2,
+      "forecast": -0.6,
+      "previous": -1.6,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-06-01",
+      "value": -1.9,
+      "forecast": -0.5,
+      "previous": -0.1,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 1.3,
+      "forecast": 1.0,
+      "previous": -0.1,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-08-01",
+      "value": -4.3,
+      "forecast": -1.0,
+      "previous": 1.3,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-09-01",
+      "value": 1.3,
+      "forecast": 3.0,
+      "previous": -3.7,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 1.8,
+      "forecast": -0.4,
+      "previous": 1.1,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 0.8,
+      "forecast": -0.4,
+      "previous": 2.0,
+      "source": "fmp"
+    }
+  ],
+  "yoy": [
+    {
+      "date": "2025-02-01",
+      "value": -4.0,
+      "forecast": null,
+      "previous": -1.49,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-03-01",
+      "value": -0.42,
+      "forecast": null,
+      "previous": -4.1,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-04-01",
+      "value": -2.02,
+      "forecast": null,
+      "previous": -0.85,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-05-01",
+      "value": 1.2,
+      "forecast": null,
+      "previous": -2.24,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-06-01",
+      "value": -3.53,
+      "forecast": -0.6,
+      "previous": null,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-07-01",
+      "value": 1.53,
+      "forecast": null,
+      "previous": -1.82,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-08-01",
+      "value": -4.2,
+      "forecast": null,
+      "previous": 1.53,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-09-01",
+      "value": -0.98,
+      "forecast": null,
+      "previous": -3.66,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 0.88,
+      "forecast": null,
+      "previous": -1.2,
+      "source": "fmp"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 0.76,
+      "forecast": null,
+      "previous": 1.1,
+      "source": "fmp"
+    }
+  ],
+  "latest_mom": {
+    "date": "2025-11-01",
+    "value": 0.8,
+    "forecast": -0.4,
+    "previous": 2.0,
+    "source": "fmp"
+  },
+  "latest_yoy": {
+    "date": "2025-11-01",
+    "value": 0.76,
+    "forecast": null,
+    "previous": 1.1,
+    "source": "fmp"
+  },
+  "next_release": {
+    "date": "2026-02-06",
+    "datetime_utc": "2026-02-06T07:00:00+00:00",
+    "datetime_jst": "2026-02-06T16:00:00+09:00",
+    "time_jst": "16:00",
+    "datetime_cet": "2026-02-06T08:00:00+01:00",
+    "time_cet": "08:00",
+    "label": "Industrial Production YoY (Dec)",
+    "estimate": null
+  },
+  "last_updated": "2026-01-26T00:22:05.701080+09:00"
+}

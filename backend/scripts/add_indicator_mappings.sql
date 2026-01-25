@@ -181,6 +181,21 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('germany_consumer_confidence_gfk', 'ドイツGfK消費者信頼感指数', 'DE', 'monthly', ARRAY['GfK Consumer Confidence', 'Consumer Confidence'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- ドイツ製造業新規受注（germany_factory_orders）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('germany_factory_orders', 'ドイツ製造業新規受注', 'DE', 'monthly', ARRAY['German Factory Orders', 'Factory Orders MoM', 'Factory Orders YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ドイツ鉱工業生産（germany_industrial_production）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('germany_industrial_production', 'ドイツ鉱工業生産', 'DE', 'monthly', ARRAY['German Industrial Production', 'Industrial Production MoM', 'Industrial Production YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ZEW景況感指数（zew_economic_sentiment_index）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('zew_economic_sentiment_index', 'ZEW景況感指数', 'DE', 'monthly', ARRAY['ZEW Economic Sentiment Index'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- =============================================================================
 -- イギリス（UK）指標
 -- =============================================================================
@@ -193,6 +208,25 @@ ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event
 -- UK PMI（製造業・サービス業・総合）
 INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
 VALUES ('uk_pmi', 'UK PMI（製造業・サービス業・総合）', 'UK', 'monthly', ARRAY['S&P Global Manufacturing PMI', 'S&P Global Services PMI', 'S&P Global Composite PMI'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- =============================================================================
+-- 日本（Japan）指標
+-- =============================================================================
+
+-- 日本鉱工業生産（jp_industrial_production）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('jp_industrial_production', '日本鉱工業生産', 'JP', 'monthly', ARRAY['Industrial Production MoM', 'Industrial Production YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 日本第三次産業活動指数（jp_tertiary_industry_index）※バックエンドサービス用
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('jp_tertiary_industry_index', '日本第三次産業活動指数', 'JP', 'monthly', ARRAY['Tertiary Industry Index MoM'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 日本第三次産業活動指数（japan_tertiary_industry）※マーケットインパクト用
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('japan_tertiary_industry', '日本第三次産業活動指数', 'JP', 'monthly', ARRAY['Tertiary Industry Index MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
 -- 確認用クエリ

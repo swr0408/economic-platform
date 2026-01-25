@@ -147,7 +147,7 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
                     options={[
                       { mode: 'yoy', label: '前年比' },
                       { mode: 'mom', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比テーブル' },
+                      { mode: 'mom_table', label: '前月比（テーブル）' },
                     ]}
                   />
 

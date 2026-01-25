@@ -42,7 +42,7 @@ HIRES_SERIES_ID = "JTSHIL"      # JOLTS採用数（千人）
 LAYOFFS_SERIES_ID = "JTSLDL"    # JOLTS解雇数（千人）
 
 # キャッシュディレクトリ
-CACHE_DIR = Path(__file__).parent.parent.parent / "cache" / "usa" / "employment"
+CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "jolts_hires_layoffs_cache.json"
 

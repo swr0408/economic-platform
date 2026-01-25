@@ -169,8 +169,8 @@ export default function GermanyRetailSalesChart({ data }: GermanyRetailSalesChar
                     onChange={(mode) => setViewMode(mode)}
                     options={[
                       { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_table', label: '前月比テーブル（季節調整済）' },
-                      { mode: 'mom_chart', label: '前月比グラフ（季節調整済）' },
+                      { mode: 'mom_chart', label: '前月比' },
+                      { mode: 'mom_table', label: '前月比（テーブル）' },
                     ]}
                   />
 
@@ -207,7 +207,7 @@ export default function GermanyRetailSalesChart({ data }: GermanyRetailSalesChar
                     <StandardBarChart
                       data={filteredData}
                       bars={[
-                        { dataKey: 'mom', color: COLORS.mom, name: '小売売上高（前月比・季節調整済）' },
+                        { dataKey: 'mom', color: COLORS.mom, name: '小売売上高（前月比）' },
                       ]}
                       yAxisFormatter={(v) => `${v}%`}
                     />

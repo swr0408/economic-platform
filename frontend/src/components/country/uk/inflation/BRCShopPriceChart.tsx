@@ -59,8 +59,8 @@ type ViewMode = 'yoy' | 'yoy_table'
 
 // ビューモード設定
 const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比グラフ' },
-  { mode: 'yoy_table', label: '前年比テーブル' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'yoy_table', label: '前年比（テーブル）' },
 ]
 
 // グラフの色
