@@ -151,7 +151,7 @@ export default function SONIAChart() {
           value={latestValue?.value}
           valueColor={CHART_COLORS.primary}
           date={latestValue?.date}
-          nextRelease={data?.next_release ? {
+          nextRelease={data?.next_release?.date ? {
             date: data.next_release.date,
             label: data.next_release.time_jst ? `${data.next_release.time_jst} JST` : undefined
           } : null}

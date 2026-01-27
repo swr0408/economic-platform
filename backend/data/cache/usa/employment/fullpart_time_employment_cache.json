@@ -1,0 +1,1565 @@
+{
+  "data": [
+    {
+      "date": "2000-01-01",
+      "fulltime": 113189.0,
+      "parttime": 23233.0
+    },
+    {
+      "date": "2000-02-01",
+      "fulltime": 113367.0,
+      "parttime": 23179.0
+    },
+    {
+      "date": "2000-03-01",
+      "fulltime": 113490.0,
+      "parttime": 23266.0
+    },
+    {
+      "date": "2000-04-01",
+      "fulltime": 114390.0,
+      "parttime": 22918.0
+    },
+    {
+      "date": "2000-05-01",
+      "fulltime": 113798.0,
+      "parttime": 22793.0
+    },
+    {
+      "date": "2000-06-01",
+      "fulltime": 114057.0,
+      "parttime": 22834.0
+    },
+    {
+      "date": "2000-07-01",
+      "fulltime": 113670.0,
+      "parttime": 22641.0
+    },
+    {
+      "date": "2000-08-01",
+      "fulltime": 113812.0,
+      "parttime": 22725.0
+    },
+    {
+      "date": "2000-09-01",
+      "fulltime": 113986.0,
+      "parttime": 22839.0
+    },
+    {
+      "date": "2000-10-01",
+      "fulltime": 114124.0,
+      "parttime": 23042.0
+    },
+    {
+      "date": "2000-11-01",
+      "fulltime": 114076.0,
+      "parttime": 23346.0
+    },
+    {
+      "date": "2000-12-01",
+      "fulltime": 114289.0,
+      "parttime": 23633.0
+    },
+    {
+      "date": "2001-01-01",
+      "fulltime": 114262.0,
+      "parttime": 23423.0
+    },
+    {
+      "date": "2001-02-01",
+      "fulltime": 114006.0,
+      "parttime": 23542.0
+    },
+    {
+      "date": "2001-03-01",
+      "fulltime": 114617.0,
+      "parttime": 23273.0
+    },
+    {
+      "date": "2001-04-01",
+      "fulltime": 114214.0,
+      "parttime": 23115.0
+    },
+    {
+      "date": "2001-05-01",
+      "fulltime": 113950.0,
+      "parttime": 23089.0
+    },
+    {
+      "date": "2001-06-01",
+      "fulltime": 113850.0,
+      "parttime": 22990.0
+    },
+    {
+      "date": "2001-07-01",
+      "fulltime": 113969.0,
+      "parttime": 22923.0
+    },
+    {
+      "date": "2001-08-01",
+      "fulltime": 113120.0,
+      "parttime": 23146.0
+    },
+    {
+      "date": "2001-09-01",
+      "fulltime": 113165.0,
+      "parttime": 23654.0
+    },
+    {
+      "date": "2001-10-01",
+      "fulltime": 112766.0,
+      "parttime": 23662.0
+    },
+    {
+      "date": "2001-11-01",
+      "fulltime": 112724.0,
+      "parttime": 23559.0
+    },
+    {
+      "date": "2001-12-01",
+      "fulltime": 112339.0,
+      "parttime": 23860.0
+    },
+    {
+      "date": "2002-01-01",
+      "fulltime": 112447.0,
+      "parttime": 23120.0
+    },
+    {
+      "date": "2002-02-01",
+      "fulltime": 112635.0,
+      "parttime": 23699.0
+    },
+    {
+      "date": "2002-03-01",
+      "fulltime": 112616.0,
+      "parttime": 23667.0
+    },
+    {
+      "date": "2002-04-01",
+      "fulltime": 112279.0,
+      "parttime": 23854.0
+    },
+    {
+      "date": "2002-05-01",
+      "fulltime": 112509.0,
+      "parttime": 23969.0
+    },
+    {
+      "date": "2002-06-01",
+      "fulltime": 112388.0,
+      "parttime": 24053.0
+    },
+    {
+      "date": "2002-07-01",
+      "fulltime": 112354.0,
+      "parttime": 24052.0
+    },
+    {
+      "date": "2002-08-01",
+      "fulltime": 112942.0,
+      "parttime": 23856.0
+    },
+    {
+      "date": "2002-09-01",
+      "fulltime": 113433.0,
+      "parttime": 23906.0
+    },
+    {
+      "date": "2002-10-01",
+      "fulltime": 113425.0,
+      "parttime": 23601.0
+    },
+    {
+      "date": "2002-11-01",
+      "fulltime": 112771.0,
+      "parttime": 23755.0
+    },
+    {
+      "date": "2002-12-01",
+      "fulltime": 112629.0,
+      "parttime": 23908.0
+    },
+    {
+      "date": "2003-01-01",
+      "fulltime": 112746.0,
+      "parttime": 24525.0
+    },
+    {
+      "date": "2003-02-01",
+      "fulltime": 113285.0,
+      "parttime": 24038.0
+    },
+    {
+      "date": "2003-03-01",
+      "fulltime": 113174.0,
+      "parttime": 24263.0
+    },
+    {
+      "date": "2003-04-01",
+      "fulltime": 113168.0,
+      "parttime": 24431.0
+    },
+    {
+      "date": "2003-05-01",
+      "fulltime": 112991.0,
+      "parttime": 24497.0
+    },
+    {
+      "date": "2003-06-01",
+      "fulltime": 113056.0,
+      "parttime": 24777.0
+    },
+    {
+      "date": "2003-07-01",
+      "fulltime": 113313.0,
+      "parttime": 24249.0
+    },
+    {
+      "date": "2003-08-01",
+      "fulltime": 113082.0,
+      "parttime": 24687.0
+    },
+    {
+      "date": "2003-09-01",
+      "fulltime": 113208.0,
+      "parttime": 24430.0
+    },
+    {
+      "date": "2003-10-01",
+      "fulltime": 113583.0,
+      "parttime": 24404.0
+    },
+    {
+      "date": "2003-11-01",
+      "fulltime": 113892.0,
+      "parttime": 24551.0
+    },
+    {
+      "date": "2003-12-01",
+      "fulltime": 114366.0,
+      "parttime": 24083.0
+    },
+    {
+      "date": "2004-01-01",
+      "fulltime": 113905.0,
+      "parttime": 24501.0
+    },
+    {
+      "date": "2004-02-01",
+      "fulltime": 114193.0,
+      "parttime": 24204.0
+    },
+    {
+      "date": "2004-03-01",
+      "fulltime": 114015.0,
+      "parttime": 24378.0
+    },
+    {
+      "date": "2004-04-01",
+      "fulltime": 114087.0,
+      "parttime": 24535.0
+    },
+    {
+      "date": "2004-05-01",
+      "fulltime": 114016.0,
+      "parttime": 24778.0
+    },
+    {
+      "date": "2004-06-01",
+      "fulltime": 114312.0,
+      "parttime": 24919.0
+    },
+    {
+      "date": "2004-07-01",
+      "fulltime": 114338.0,
+      "parttime": 25382.0
+    },
+    {
+      "date": "2004-08-01",
+      "fulltime": 114716.0,
+      "parttime": 24966.0
+    },
+    {
+      "date": "2004-09-01",
+      "fulltime": 114854.0,
+      "parttime": 24654.0
+    },
+    {
+      "date": "2004-10-01",
+      "fulltime": 114828.0,
+      "parttime": 24936.0
+    },
+    {
+      "date": "2004-11-01",
+      "fulltime": 115284.0,
+      "parttime": 24922.0
+    },
+    {
+      "date": "2004-12-01",
+      "fulltime": 115501.0,
+      "parttime": 24681.0
+    },
+    {
+      "date": "2005-01-01",
+      "fulltime": 116007.0,
+      "parttime": 24314.0
+    },
+    {
+      "date": "2005-02-01",
+      "fulltime": 115649.0,
+      "parttime": 24621.0
+    },
+    {
+      "date": "2005-03-01",
+      "fulltime": 115765.0,
+      "parttime": 24784.0
+    },
+    {
+      "date": "2005-04-01",
+      "fulltime": 116639.0,
+      "parttime": 24549.0
+    },
+    {
+      "date": "2005-05-01",
+      "fulltime": 116960.0,
+      "parttime": 24584.0
+    },
+    {
+      "date": "2005-06-01",
+      "fulltime": 117305.0,
+      "parttime": 24350.0
+    },
+    {
+      "date": "2005-07-01",
+      "fulltime": 117278.0,
+      "parttime": 24767.0
+    },
+    {
+      "date": "2005-08-01",
+      "fulltime": 117604.0,
+      "parttime": 24851.0
+    },
+    {
+      "date": "2005-09-01",
+      "fulltime": 117355.0,
+      "parttime": 25096.0
+    },
+    {
+      "date": "2005-10-01",
+      "fulltime": 117552.0,
+      "parttime": 25074.0
+    },
+    {
+      "date": "2005-11-01",
+      "fulltime": 117580.0,
+      "parttime": 24915.0
+    },
+    {
+      "date": "2005-12-01",
+      "fulltime": 118129.0,
+      "parttime": 24674.0
+    },
+    {
+      "date": "2006-01-01",
+      "fulltime": 118337.0,
+      "parttime": 24884.0
+    },
+    {
+      "date": "2006-02-01",
+      "fulltime": 118667.0,
+      "parttime": 24731.0
+    },
+    {
+      "date": "2006-03-01",
+      "fulltime": 119175.0,
+      "parttime": 24542.0
+    },
+    {
+      "date": "2006-04-01",
+      "fulltime": 119336.0,
+      "parttime": 24325.0
+    },
+    {
+      "date": "2006-05-01",
+      "fulltime": 119033.0,
+      "parttime": 24989.0
+    },
+    {
+      "date": "2006-06-01",
+      "fulltime": 119615.0,
+      "parttime": 24774.0
+    },
+    {
+      "date": "2006-07-01",
+      "fulltime": 119680.0,
+      "parttime": 24477.0
+    },
+    {
+      "date": "2006-08-01",
+      "fulltime": 119948.0,
+      "parttime": 24629.0
+    },
+    {
+      "date": "2006-09-01",
+      "fulltime": 120308.0,
+      "parttime": 24549.0
+    },
+    {
+      "date": "2006-10-01",
+      "fulltime": 120609.0,
+      "parttime": 24784.0
+    },
+    {
+      "date": "2006-11-01",
+      "fulltime": 120573.0,
+      "parttime": 24958.0
+    },
+    {
+      "date": "2006-12-01",
+      "fulltime": 120793.0,
+      "parttime": 25226.0
+    },
+    {
+      "date": "2007-01-01",
+      "fulltime": 121159.0,
+      "parttime": 24986.0
+    },
+    {
+      "date": "2007-02-01",
+      "fulltime": 121020.0,
+      "parttime": 25016.0
+    },
+    {
+      "date": "2007-03-01",
+      "fulltime": 121168.0,
+      "parttime": 25144.0
+    },
+    {
+      "date": "2007-04-01",
+      "fulltime": 120325.0,
+      "parttime": 25143.0
+    },
+    {
+      "date": "2007-05-01",
+      "fulltime": 120902.0,
+      "parttime": 24932.0
+    },
+    {
+      "date": "2007-06-01",
+      "fulltime": 120689.0,
+      "parttime": 25435.0
+    },
+    {
+      "date": "2007-07-01",
+      "fulltime": 120960.0,
+      "parttime": 24897.0
+    },
+    {
+      "date": "2007-08-01",
+      "fulltime": 120824.0,
+      "parttime": 24753.0
+    },
+    {
+      "date": "2007-09-01",
+      "fulltime": 121232.0,
+      "parttime": 24996.0
+    },
+    {
+      "date": "2007-10-01",
+      "fulltime": 121378.0,
+      "parttime": 24680.0
+    },
+    {
+      "date": "2007-11-01",
+      "fulltime": 121875.0,
+      "parttime": 24758.0
+    },
+    {
+      "date": "2007-12-01",
+      "fulltime": 121609.0,
+      "parttime": 24745.0
+    },
+    {
+      "date": "2008-01-01",
+      "fulltime": 121435.0,
+      "parttime": 25067.0
+    },
+    {
+      "date": "2008-02-01",
+      "fulltime": 121474.0,
+      "parttime": 24692.0
+    },
+    {
+      "date": "2008-03-01",
+      "fulltime": 121426.0,
+      "parttime": 24715.0
+    },
+    {
+      "date": "2008-04-01",
+      "fulltime": 120708.0,
+      "parttime": 25352.0
+    },
+    {
+      "date": "2008-05-01",
+      "fulltime": 120766.0,
+      "parttime": 25063.0
+    },
+    {
+      "date": "2008-06-01",
+      "fulltime": 120388.0,
+      "parttime": 25416.0
+    },
+    {
+      "date": "2008-07-01",
+      "fulltime": 120206.0,
+      "parttime": 25288.0
+    },
+    {
+      "date": "2008-08-01",
+      "fulltime": 119534.0,
+      "parttime": 25595.0
+    },
+    {
+      "date": "2008-09-01",
+      "fulltime": 119724.0,
+      "parttime": 25327.0
+    },
+    {
+      "date": "2008-10-01",
+      "fulltime": 119349.0,
+      "parttime": 25508.0
+    },
+    {
+      "date": "2008-11-01",
+      "fulltime": 118397.0,
+      "parttime": 25666.0
+    },
+    {
+      "date": "2008-12-01",
+      "fulltime": 117096.0,
+      "parttime": 26333.0
+    },
+    {
+      "date": "2009-01-01",
+      "fulltime": 115818.0,
+      "parttime": 26377.0
+    },
+    {
+      "date": "2009-02-01",
+      "fulltime": 114783.0,
+      "parttime": 26722.0
+    },
+    {
+      "date": "2009-03-01",
+      "fulltime": 113607.0,
+      "parttime": 27069.0
+    },
+    {
+      "date": "2009-04-01",
+      "fulltime": 113298.0,
+      "parttime": 27279.0
+    },
+    {
+      "date": "2009-05-01",
+      "fulltime": 112929.0,
+      "parttime": 27239.0
+    },
+    {
+      "date": "2009-06-01",
+      "fulltime": 112745.0,
+      "parttime": 27459.0
+    },
+    {
+      "date": "2009-07-01",
+      "fulltime": 112406.0,
+      "parttime": 27737.0
+    },
+    {
+      "date": "2009-08-01",
+      "fulltime": 112106.0,
+      "parttime": 27509.0
+    },
+    {
+      "date": "2009-09-01",
+      "fulltime": 111513.0,
+      "parttime": 27273.0
+    },
+    {
+      "date": "2009-10-01",
+      "fulltime": 110949.0,
+      "parttime": 27462.0
+    },
+    {
+      "date": "2009-11-01",
+      "fulltime": 111211.0,
+      "parttime": 27327.0
+    },
+    {
+      "date": "2009-12-01",
+      "fulltime": 110559.0,
+      "parttime": 27479.0
+    },
+    {
+      "date": "2010-01-01",
+      "fulltime": 110613.0,
+      "parttime": 27781.0
+    },
+    {
+      "date": "2010-02-01",
+      "fulltime": 110778.0,
+      "parttime": 27627.0
+    },
+    {
+      "date": "2010-03-01",
+      "fulltime": 111162.0,
+      "parttime": 27558.0
+    },
+    {
+      "date": "2010-04-01",
+      "fulltime": 111854.0,
+      "parttime": 27386.0
+    },
+    {
+      "date": "2010-05-01",
+      "fulltime": 112539.0,
+      "parttime": 26692.0
+    },
+    {
+      "date": "2010-06-01",
+      "fulltime": 112608.0,
+      "parttime": 26658.0
+    },
+    {
+      "date": "2010-07-01",
+      "fulltime": 112248.0,
+      "parttime": 26991.0
+    },
+    {
+      "date": "2010-08-01",
+      "fulltime": 111847.0,
+      "parttime": 27703.0
+    },
+    {
+      "date": "2010-09-01",
+      "fulltime": 111926.0,
+      "parttime": 27459.0
+    },
+    {
+      "date": "2010-10-01",
+      "fulltime": 111723.0,
+      "parttime": 27353.0
+    },
+    {
+      "date": "2010-11-01",
+      "fulltime": 111343.0,
+      "parttime": 27561.0
+    },
+    {
+      "date": "2010-12-01",
+      "fulltime": 111900.0,
+      "parttime": 27419.0
+    },
+    {
+      "date": "2011-01-01",
+      "fulltime": 112248.0,
+      "parttime": 26987.0
+    },
+    {
+      "date": "2011-02-01",
+      "fulltime": 112352.0,
+      "parttime": 26872.0
+    },
+    {
+      "date": "2011-03-01",
+      "fulltime": 112350.0,
+      "parttime": 27282.0
+    },
+    {
+      "date": "2011-04-01",
+      "fulltime": 112222.0,
+      "parttime": 27333.0
+    },
+    {
+      "date": "2011-05-01",
+      "fulltime": 112263.0,
+      "parttime": 27381.0
+    },
+    {
+      "date": "2011-06-01",
+      "fulltime": 112001.0,
+      "parttime": 27469.0
+    },
+    {
+      "date": "2011-07-01",
+      "fulltime": 112193.0,
+      "parttime": 27432.0
+    },
+    {
+      "date": "2011-08-01",
+      "fulltime": 112723.0,
+      "parttime": 27296.0
+    },
+    {
+      "date": "2011-09-01",
+      "fulltime": 112544.0,
+      "parttime": 27644.0
+    },
+    {
+      "date": "2011-10-01",
+      "fulltime": 112923.0,
+      "parttime": 27474.0
+    },
+    {
+      "date": "2011-11-01",
+      "fulltime": 113213.0,
+      "parttime": 27434.0
+    },
+    {
+      "date": "2011-12-01",
+      "fulltime": 113774.0,
+      "parttime": 27168.0
+    },
+    {
+      "date": "2012-01-01",
+      "fulltime": 113755.0,
+      "parttime": 27834.0
+    },
+    {
+      "date": "2012-02-01",
+      "fulltime": 114141.0,
+      "parttime": 27582.0
+    },
+    {
+      "date": "2012-03-01",
+      "fulltime": 115024.0,
+      "parttime": 27023.0
+    },
+    {
+      "date": "2012-04-01",
+      "fulltime": 114371.0,
+      "parttime": 27508.0
+    },
+    {
+      "date": "2012-05-01",
+      "fulltime": 114233.0,
+      "parttime": 28054.0
+    },
+    {
+      "date": "2012-06-01",
+      "fulltime": 114749.0,
+      "parttime": 27674.0
+    },
+    {
+      "date": "2012-07-01",
+      "fulltime": 114575.0,
+      "parttime": 27746.0
+    },
+    {
+      "date": "2012-08-01",
+      "fulltime": 114736.0,
+      "parttime": 27600.0
+    },
+    {
+      "date": "2012-09-01",
+      "fulltime": 115252.0,
+      "parttime": 27810.0
+    },
+    {
+      "date": "2012-10-01",
+      "fulltime": 115570.0,
+      "parttime": 27975.0
+    },
+    {
+      "date": "2012-11-01",
+      "fulltime": 115655.0,
+      "parttime": 27545.0
+    },
+    {
+      "date": "2012-12-01",
+      "fulltime": 115791.0,
+      "parttime": 27580.0
+    },
+    {
+      "date": "2013-01-01",
+      "fulltime": 115653.0,
+      "parttime": 27546.0
+    },
+    {
+      "date": "2013-02-01",
+      "fulltime": 115695.0,
+      "parttime": 27584.0
+    },
+    {
+      "date": "2013-03-01",
+      "fulltime": 115808.0,
+      "parttime": 27439.0
+    },
+    {
+      "date": "2013-04-01",
+      "fulltime": 116014.0,
+      "parttime": 27584.0
+    },
+    {
+      "date": "2013-05-01",
+      "fulltime": 116240.0,
+      "parttime": 27715.0
+    },
+    {
+      "date": "2013-06-01",
+      "fulltime": 116166.0,
+      "parttime": 27863.0
+    },
+    {
+      "date": "2013-07-01",
+      "fulltime": 116201.0,
+      "parttime": 28145.0
+    },
+    {
+      "date": "2013-08-01",
+      "fulltime": 116417.0,
+      "parttime": 27896.0
+    },
+    {
+      "date": "2013-09-01",
+      "fulltime": 116846.0,
+      "parttime": 27552.0
+    },
+    {
+      "date": "2013-10-01",
+      "fulltime": 116352.0,
+      "parttime": 27323.0
+    },
+    {
+      "date": "2013-11-01",
+      "fulltime": 117078.0,
+      "parttime": 27379.0
+    },
+    {
+      "date": "2013-12-01",
+      "fulltime": 117394.0,
+      "parttime": 27418.0
+    },
+    {
+      "date": "2014-01-01",
+      "fulltime": 117468.0,
+      "parttime": 27574.0
+    },
+    {
+      "date": "2014-02-01",
+      "fulltime": 117734.0,
+      "parttime": 27379.0
+    },
+    {
+      "date": "2014-03-01",
+      "fulltime": 117959.0,
+      "parttime": 27620.0
+    },
+    {
+      "date": "2014-04-01",
+      "fulltime": 118433.0,
+      "parttime": 27170.0
+    },
+    {
+      "date": "2014-05-01",
+      "fulltime": 118791.0,
+      "parttime": 27105.0
+    },
+    {
+      "date": "2014-06-01",
+      "fulltime": 118229.0,
+      "parttime": 28023.0
+    },
+    {
+      "date": "2014-07-01",
+      "fulltime": 118426.0,
+      "parttime": 28028.0
+    },
+    {
+      "date": "2014-08-01",
+      "fulltime": 118715.0,
+      "parttime": 27814.0
+    },
+    {
+      "date": "2014-09-01",
+      "fulltime": 119306.0,
+      "parttime": 27461.0
+    },
+    {
+      "date": "2014-10-01",
+      "fulltime": 119787.0,
+      "parttime": 27772.0
+    },
+    {
+      "date": "2014-11-01",
+      "fulltime": 119717.0,
+      "parttime": 27696.0
+    },
+    {
+      "date": "2014-12-01",
+      "fulltime": 120138.0,
+      "parttime": 27473.0
+    },
+    {
+      "date": "2015-01-01",
+      "fulltime": 120452.0,
+      "parttime": 27559.0
+    },
+    {
+      "date": "2015-02-01",
+      "fulltime": 120658.0,
+      "parttime": 27389.0
+    },
+    {
+      "date": "2015-03-01",
+      "fulltime": 120981.0,
+      "parttime": 27126.0
+    },
+    {
+      "date": "2015-04-01",
+      "fulltime": 120813.0,
+      "parttime": 27645.0
+    },
+    {
+      "date": "2015-05-01",
+      "fulltime": 121514.0,
+      "parttime": 27355.0
+    },
+    {
+      "date": "2015-06-01",
+      "fulltime": 121021.0,
+      "parttime": 27778.0
+    },
+    {
+      "date": "2015-07-01",
+      "fulltime": 121642.0,
+      "parttime": 27211.0
+    },
+    {
+      "date": "2015-08-01",
+      "fulltime": 122067.0,
+      "parttime": 27062.0
+    },
+    {
+      "date": "2015-09-01",
+      "fulltime": 121760.0,
+      "parttime": 27035.0
+    },
+    {
+      "date": "2015-10-01",
+      "fulltime": 122094.0,
+      "parttime": 27251.0
+    },
+    {
+      "date": "2015-11-01",
+      "fulltime": 122182.0,
+      "parttime": 27295.0
+    },
+    {
+      "date": "2015-12-01",
+      "fulltime": 122757.0,
+      "parttime": 27371.0
+    },
+    {
+      "date": "2016-01-01",
+      "fulltime": 123036.0,
+      "parttime": 27517.0
+    },
+    {
+      "date": "2016-02-01",
+      "fulltime": 123004.0,
+      "parttime": 27827.0
+    },
+    {
+      "date": "2016-03-01",
+      "fulltime": 123590.0,
+      "parttime": 27660.0
+    },
+    {
+      "date": "2016-04-01",
+      "fulltime": 123214.0,
+      "parttime": 27783.0
+    },
+    {
+      "date": "2016-05-01",
+      "fulltime": 123314.0,
+      "parttime": 28008.0
+    },
+    {
+      "date": "2016-06-01",
+      "fulltime": 123784.0,
+      "parttime": 27559.0
+    },
+    {
+      "date": "2016-07-01",
+      "fulltime": 124076.0,
+      "parttime": 27569.0
+    },
+    {
+      "date": "2016-08-01",
+      "fulltime": 124594.0,
+      "parttime": 27208.0
+    },
+    {
+      "date": "2016-09-01",
+      "fulltime": 124237.0,
+      "parttime": 27538.0
+    },
+    {
+      "date": "2016-10-01",
+      "fulltime": 124109.0,
+      "parttime": 27645.0
+    },
+    {
+      "date": "2016-11-01",
+      "fulltime": 124076.0,
+      "parttime": 27892.0
+    },
+    {
+      "date": "2016-12-01",
+      "fulltime": 124126.0,
+      "parttime": 27921.0
+    },
+    {
+      "date": "2017-01-01",
+      "fulltime": 124553.0,
+      "parttime": 27428.0
+    },
+    {
+      "date": "2017-02-01",
+      "fulltime": 124884.0,
+      "parttime": 27554.0
+    },
+    {
+      "date": "2017-03-01",
+      "fulltime": 125626.0,
+      "parttime": 27501.0
+    },
+    {
+      "date": "2017-04-01",
+      "fulltime": 126092.0,
+      "parttime": 27202.0
+    },
+    {
+      "date": "2017-05-01",
+      "fulltime": 125727.0,
+      "parttime": 27479.0
+    },
+    {
+      "date": "2017-06-01",
+      "fulltime": 126180.0,
+      "parttime": 27168.0
+    },
+    {
+      "date": "2017-07-01",
+      "fulltime": 126113.0,
+      "parttime": 27600.0
+    },
+    {
+      "date": "2017-08-01",
+      "fulltime": 126007.0,
+      "parttime": 27518.0
+    },
+    {
+      "date": "2017-09-01",
+      "fulltime": 126780.0,
+      "parttime": 27513.0
+    },
+    {
+      "date": "2017-10-01",
+      "fulltime": 126656.0,
+      "parttime": 26990.0
+    },
+    {
+      "date": "2017-11-01",
+      "fulltime": 126588.0,
+      "parttime": 27181.0
+    },
+    {
+      "date": "2017-12-01",
+      "fulltime": 126459.0,
+      "parttime": 27316.0
+    },
+    {
+      "date": "2018-01-01",
+      "fulltime": 126964.0,
+      "parttime": 27321.0
+    },
+    {
+      "date": "2018-02-01",
+      "fulltime": 127544.0,
+      "parttime": 27561.0
+    },
+    {
+      "date": "2018-03-01",
+      "fulltime": 127447.0,
+      "parttime": 27869.0
+    },
+    {
+      "date": "2018-04-01",
+      "fulltime": 127935.0,
+      "parttime": 27453.0
+    },
+    {
+      "date": "2018-05-01",
+      "fulltime": 128805.0,
+      "parttime": 26990.0
+    },
+    {
+      "date": "2018-06-01",
+      "fulltime": 128859.0,
+      "parttime": 26979.0
+    },
+    {
+      "date": "2018-07-01",
+      "fulltime": 129213.0,
+      "parttime": 27032.0
+    },
+    {
+      "date": "2018-08-01",
+      "fulltime": 128704.0,
+      "parttime": 26821.0
+    },
+    {
+      "date": "2018-09-01",
+      "fulltime": 129029.0,
+      "parttime": 26983.0
+    },
+    {
+      "date": "2018-10-01",
+      "fulltime": 129240.0,
+      "parttime": 27130.0
+    },
+    {
+      "date": "2018-11-01",
+      "fulltime": 129632.0,
+      "parttime": 27038.0
+    },
+    {
+      "date": "2018-12-01",
+      "fulltime": 129618.0,
+      "parttime": 27032.0
+    },
+    {
+      "date": "2019-01-01",
+      "fulltime": 129696.0,
+      "parttime": 26637.0
+    },
+    {
+      "date": "2019-02-01",
+      "fulltime": 129955.0,
+      "parttime": 26837.0
+    },
+    {
+      "date": "2019-03-01",
+      "fulltime": 129744.0,
+      "parttime": 27058.0
+    },
+    {
+      "date": "2019-04-01",
+      "fulltime": 129780.0,
+      "parttime": 26972.0
+    },
+    {
+      "date": "2019-05-01",
+      "fulltime": 129882.0,
+      "parttime": 27154.0
+    },
+    {
+      "date": "2019-06-01",
+      "fulltime": 130453.0,
+      "parttime": 26827.0
+    },
+    {
+      "date": "2019-07-01",
+      "fulltime": 130693.0,
+      "parttime": 26921.0
+    },
+    {
+      "date": "2019-08-01",
+      "fulltime": 130921.0,
+      "parttime": 26890.0
+    },
+    {
+      "date": "2019-09-01",
+      "fulltime": 131280.0,
+      "parttime": 27004.0
+    },
+    {
+      "date": "2019-10-01",
+      "fulltime": 131590.0,
+      "parttime": 26905.0
+    },
+    {
+      "date": "2019-11-01",
+      "fulltime": 131490.0,
+      "parttime": 27062.0
+    },
+    {
+      "date": "2019-12-01",
+      "fulltime": 131675.0,
+      "parttime": 27014.0
+    },
+    {
+      "date": "2020-01-01",
+      "fulltime": 130898.0,
+      "parttime": 27451.0
+    },
+    {
+      "date": "2020-02-01",
+      "fulltime": 130872.0,
+      "parttime": 27731.0
+    },
+    {
+      "date": "2020-03-01",
+      "fulltime": 128914.0,
+      "parttime": 26566.0
+    },
+    {
+      "date": "2020-04-01",
+      "fulltime": 114106.0,
+      "parttime": 19300.0
+    },
+    {
+      "date": "2020-05-01",
+      "fulltime": 116472.0,
+      "parttime": 20906.0
+    },
+    {
+      "date": "2020-06-01",
+      "fulltime": 119244.0,
+      "parttime": 23081.0
+    },
+    {
+      "date": "2020-07-01",
+      "fulltime": 119948.0,
+      "parttime": 23884.0
+    },
+    {
+      "date": "2020-08-01",
+      "fulltime": 122555.0,
+      "parttime": 24711.0
+    },
+    {
+      "date": "2020-09-01",
+      "fulltime": 122565.0,
+      "parttime": 25011.0
+    },
+    {
+      "date": "2020-10-01",
+      "fulltime": 123780.0,
+      "parttime": 26102.0
+    },
+    {
+      "date": "2020-11-01",
+      "fulltime": 124433.0,
+      "parttime": 25455.0
+    },
+    {
+      "date": "2020-12-01",
+      "fulltime": 124895.0,
+      "parttime": 24910.0
+    },
+    {
+      "date": "2021-01-01",
+      "fulltime": 125248.0,
+      "parttime": 24554.0
+    },
+    {
+      "date": "2021-02-01",
+      "fulltime": 125115.0,
+      "parttime": 25030.0
+    },
+    {
+      "date": "2021-03-01",
+      "fulltime": 125756.0,
+      "parttime": 25035.0
+    },
+    {
+      "date": "2021-04-01",
+      "fulltime": 126095.0,
+      "parttime": 25047.0
+    },
+    {
+      "date": "2021-05-01",
+      "fulltime": 126444.0,
+      "parttime": 25261.0
+    },
+    {
+      "date": "2021-06-01",
+      "fulltime": 126075.0,
+      "parttime": 25667.0
+    },
+    {
+      "date": "2021-07-01",
+      "fulltime": 127445.0,
+      "parttime": 25386.0
+    },
+    {
+      "date": "2021-08-01",
+      "fulltime": 127551.0,
+      "parttime": 25683.0
+    },
+    {
+      "date": "2021-09-01",
+      "fulltime": 128024.0,
+      "parttime": 25800.0
+    },
+    {
+      "date": "2021-10-01",
+      "fulltime": 128494.0,
+      "parttime": 25971.0
+    },
+    {
+      "date": "2021-11-01",
+      "fulltime": 129503.0,
+      "parttime": 26021.0
+    },
+    {
+      "date": "2021-12-01",
+      "fulltime": 130324.0,
+      "parttime": 25650.0
+    },
+    {
+      "date": "2022-01-01",
+      "fulltime": 131317.0,
+      "parttime": 25734.0
+    },
+    {
+      "date": "2022-02-01",
+      "fulltime": 131860.0,
+      "parttime": 25690.0
+    },
+    {
+      "date": "2022-03-01",
+      "fulltime": 132568.0,
+      "parttime": 25788.0
+    },
+    {
+      "date": "2022-04-01",
+      "fulltime": 131803.0,
+      "parttime": 26127.0
+    },
+    {
+      "date": "2022-05-01",
+      "fulltime": 132668.0,
+      "parttime": 25854.0
+    },
+    {
+      "date": "2022-06-01",
+      "fulltime": 132463.0,
+      "parttime": 25605.0
+    },
+    {
+      "date": "2022-07-01",
+      "fulltime": 132455.0,
+      "parttime": 25896.0
+    },
+    {
+      "date": "2022-08-01",
+      "fulltime": 132502.0,
+      "parttime": 26198.0
+    },
+    {
+      "date": "2022-09-01",
+      "fulltime": 132541.0,
+      "parttime": 26248.0
+    },
+    {
+      "date": "2022-10-01",
+      "fulltime": 132192.0,
+      "parttime": 26470.0
+    },
+    {
+      "date": "2022-11-01",
+      "fulltime": 132336.0,
+      "parttime": 26160.0
+    },
+    {
+      "date": "2022-12-01",
+      "fulltime": 132318.0,
+      "parttime": 26791.0
+    },
+    {
+      "date": "2023-01-01",
+      "fulltime": 132792.0,
+      "parttime": 27341.0
+    },
+    {
+      "date": "2023-02-01",
+      "fulltime": 133365.0,
+      "parttime": 26955.0
+    },
+    {
+      "date": "2023-03-01",
+      "fulltime": 134360.0,
+      "parttime": 26584.0
+    },
+    {
+      "date": "2023-04-01",
+      "fulltime": 134299.0,
+      "parttime": 26680.0
+    },
+    {
+      "date": "2023-05-01",
+      "fulltime": 134428.0,
+      "parttime": 26490.0
+    },
+    {
+      "date": "2023-06-01",
+      "fulltime": 134710.0,
+      "parttime": 26283.0
+    },
+    {
+      "date": "2023-07-01",
+      "fulltime": 134159.0,
+      "parttime": 27218.0
+    },
+    {
+      "date": "2023-08-01",
+      "fulltime": 134336.0,
+      "parttime": 27143.0
+    },
+    {
+      "date": "2023-09-01",
+      "fulltime": 134042.0,
+      "parttime": 27397.0
+    },
+    {
+      "date": "2023-10-01",
+      "fulltime": 134467.0,
+      "parttime": 26739.0
+    },
+    {
+      "date": "2023-11-01",
+      "fulltime": 134819.0,
+      "parttime": 27069.0
+    },
+    {
+      "date": "2023-12-01",
+      "fulltime": 133071.0,
+      "parttime": 27887.0
+    },
+    {
+      "date": "2024-01-01",
+      "fulltime": 133203.0,
+      "parttime": 27912.0
+    },
+    {
+      "date": "2024-02-01",
+      "fulltime": 133028.0,
+      "parttime": 27875.0
+    },
+    {
+      "date": "2024-03-01",
+      "fulltime": 132977.0,
+      "parttime": 28504.0
+    },
+    {
+      "date": "2024-04-01",
+      "fulltime": 133741.0,
+      "parttime": 27707.0
+    },
+    {
+      "date": "2024-05-01",
+      "fulltime": 133262.0,
+      "parttime": 28010.0
+    },
+    {
+      "date": "2024-06-01",
+      "fulltime": 133137.0,
+      "parttime": 28119.0
+    },
+    {
+      "date": "2024-07-01",
+      "fulltime": 133675.0,
+      "parttime": 27759.0
+    },
+    {
+      "date": "2024-08-01",
+      "fulltime": 133328.0,
+      "parttime": 28162.0
+    },
+    {
+      "date": "2024-09-01",
+      "fulltime": 133610.0,
+      "parttime": 28199.0
+    },
+    {
+      "date": "2024-10-01",
+      "fulltime": 133525.0,
+      "parttime": 27935.0
+    },
+    {
+      "date": "2024-11-01",
+      "fulltime": 133558.0,
+      "parttime": 27633.0
+    },
+    {
+      "date": "2024-12-01",
+      "fulltime": 133502.0,
+      "parttime": 28008.0
+    },
+    {
+      "date": "2025-01-01",
+      "fulltime": 135898.0,
+      "parttime": 27928.0
+    },
+    {
+      "date": "2025-02-01",
+      "fulltime": 134618.0,
+      "parttime": 28521.0
+    },
+    {
+      "date": "2025-03-01",
+      "fulltime": 135055.0,
+      "parttime": 28453.0
+    },
+    {
+      "date": "2025-04-01",
+      "fulltime": 135351.0,
+      "parttime": 28522.0
+    },
+    {
+      "date": "2025-05-01",
+      "fulltime": 134773.0,
+      "parttime": 28547.0
+    },
+    {
+      "date": "2025-06-01",
+      "fulltime": 135188.0,
+      "parttime": 28207.0
+    },
+    {
+      "date": "2025-07-01",
+      "fulltime": 134839.0,
+      "parttime": 28453.0
+    },
+    {
+      "date": "2025-08-01",
+      "fulltime": 134468.0,
+      "parttime": 29043.0
+    },
+    {
+      "date": "2025-09-01",
+      "fulltime": 135157.0,
+      "parttime": 28490.0
+    },
+    {
+      "date": "2025-11-01",
+      "fulltime": 134325.0,
+      "parttime": 29452.0
+    },
+    {
+      "date": "2025-12-01",
+      "fulltime": 135215.0,
+      "parttime": 28712.0
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "fulltime": 135215.0,
+    "parttime": 28712.0
+  },
+  "last_updated": "2026-01-27T12:02:19.467443+09:00"
+}

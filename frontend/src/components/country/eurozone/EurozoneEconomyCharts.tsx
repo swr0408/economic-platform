@@ -14,6 +14,7 @@ import EuroPolicyUncertaintyChart from './economy/EuroPolicyUncertaintyChart'
 import EurozonePMIChart from './economy/EurozonePMIChart'
 import GermanyPMIChart from './economy/GermanyPMIChart'
 import FrancePMIChart from './economy/FrancePMIChart'
+import AdjustedLoansChart from './economy/AdjustedLoansChart'
 
 /**
  * ユーロ圏経済チャート群
@@ -74,6 +75,13 @@ export default function EurozoneEconomyCharts() {
       <div id="ecb-bls">
         <ECBBLSChart
           data={dashboardData?.ecb_bls ?? null}
+        />
+      </div>
+
+      {/* ECB Adjusted Loans Chart */}
+      <div id="ecb-adjusted-loans">
+        <AdjustedLoansChart
+          data={dashboardData?.ecb_adjusted_loans ?? null}
         />
       </div>
 

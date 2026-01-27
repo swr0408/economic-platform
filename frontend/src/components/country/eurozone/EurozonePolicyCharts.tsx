@@ -4,6 +4,8 @@ import ECBRatesChart from './monetary_policy/ECBRatesChart'
 import EurexOISChart from './monetary_policy/EurexOISChart'
 import ECBRateCutsExpectationChart from './monetary_policy/ECBRateCutsExpectationChart'
 import ECBMacroProjectionsChart from './monetary_policy/ECBMacroProjectionsChart'
+import ECBM3Chart from './monetary_policy/ECBM3Chart'
+import BankInterestRatesChart from './monetary_policy/BankInterestRatesChart'
 
 /**
  * ユーロ圏金融政策チャート群
@@ -62,6 +64,20 @@ export default function EurozonePolicyCharts() {
       <div id="ecb-macro-projections">
         <ECBMacroProjectionsChart
           data={dashboardData?.ecb_macro_projections ?? null}
+        />
+      </div>
+
+      {/* ECB M3 Money Supply Chart */}
+      <div id="ecb-m3">
+        <ECBM3Chart
+          data={dashboardData?.ecb_m3 ?? null}
+        />
+      </div>
+
+      {/* Bank Interest Rates Chart */}
+      <div id="ecb-bank-interest-rates">
+        <BankInterestRatesChart
+          data={dashboardData?.ecb_bank_interest_rates ?? null}
         />
       </div>
     </div>

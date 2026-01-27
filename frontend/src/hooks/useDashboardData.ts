@@ -3015,11 +3015,83 @@ export interface ECBMacroProjectionsData {
   metadata: ECBMacroProjectionsMetadata
 }
 
+// ECB M3マネーサプライデータの型
+export interface ECBM3Data {
+  yoy: ECBM3SeriesData      // 前年比
+  level: ECBM3SeriesData    // 原数値（10億ユーロ）
+  next_release: ECBM3NextRelease | null
+}
+
+export interface ECBM3SeriesData {
+  data: ECBM3Item[]
+  latest: ECBM3Item | null
+}
+
+export interface ECBM3Item {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 値
+}
+
+export interface ECBM3NextRelease {
+  date: string
+  time_jst?: string
+  datetime_jst?: string
+}
+
+// ECB Bank Interest Rates（銀行金利）データの型
+export interface ECBBankInterestRatesData {
+  corporations: ECBBankInterestRatesSeriesData  // 企業向け新規融資金利
+  housing: ECBBankInterestRatesSeriesData       // 住宅ローン新規金利
+  next_release: ECBBankInterestRatesNextRelease | null
+}
+
+export interface ECBBankInterestRatesSeriesData {
+  data: ECBBankInterestRatesItem[]
+  latest: ECBBankInterestRatesItem | null
+}
+
+export interface ECBBankInterestRatesItem {
+  date: string   // YYYY-MM-DD形式
+  value: number  // 金利（%）
+}
+
+export interface ECBBankInterestRatesNextRelease {
+  date: string
+  time_cet?: string
+  time_jst?: string
+}
+
+// ECB調整済貸出データの型
+export interface ECBAdjustedLoansData {
+  nfc: ECBAdjustedLoansSeriesData          // 非金融法人向け
+  households: ECBAdjustedLoansSeriesData   // 家計向け（総合）
+  housing: ECBAdjustedLoansSeriesData      // 家計向け（住宅購入）
+  next_release: ECBAdjustedLoansNextRelease | null
+}
+
+export interface ECBAdjustedLoansSeriesData {
+  data: ECBAdjustedLoansItem[]
+  latest: ECBAdjustedLoansItem | null
+}
+
+export interface ECBAdjustedLoansItem {
+  date: string   // YYYY-MM-DD形式
+  value: number  // 前年比（%）
+}
+
+export interface ECBAdjustedLoansNextRelease {
+  date: string
+  time_jst?: string
+  datetime_jst?: string
+}
+
 // ユーロ圏金融政策ダッシュボードデータの型
 export interface EurozonePolicyData {
   ecb_rates: ECBRatesData | null
   eurex_ois: EurexOISData | null
   ecb_macro_projections: ECBMacroProjectionsData | null
+  ecb_m3: ECBM3Data | null
+  ecb_bank_interest_rates: ECBBankInterestRatesData | null
 }
 
 // BOE Bank Rate データの型
@@ -4408,8 +4480,12 @@ export interface ECBBLSMetadata {
   unit: string
   frequency: string
   description: {
-    enterprises: string
-    households: string
+    enterprises_current?: string
+    enterprises_expected?: string
+    consumer_current?: string
+    consumer_expected?: string
+    housing_current?: string
+    housing_expected?: string
   }
 }
 
@@ -4424,8 +4500,12 @@ export interface ECBBLSNextRelease {
 }
 
 export interface ECBBLSData {
-  enterprises: ECBBLSDataPoint[]
-  households: ECBBLSDataPoint[]
+  enterprises_current: ECBBLSDataPoint[]   // 現在の信用需要 - 企業向け融資
+  enterprises_expected: ECBBLSDataPoint[]  // 予想信用需要 - 企業向け融資
+  consumer_current: ECBBLSDataPoint[]      // 現在の信用需要 - 消費者信用
+  consumer_expected: ECBBLSDataPoint[]     // 期待信用需要 - 消費者信用
+  housing_current: ECBBLSDataPoint[]       // 現在の信用需要 - 住宅購入向け融資
+  housing_expected: ECBBLSDataPoint[]      // 期待信用需要 - 住宅購入向け融資
   metadata: ECBBLSMetadata
   next_release?: ECBBLSNextRelease | null
 }
@@ -4676,6 +4756,7 @@ export interface EurozoneEconomyData {
   ifo_business_climate: IfoBusinessClimateData | null
   germany_pmi: GermanyPMIData | null
   france_pmi: FrancePMIData | null
+  ecb_adjusted_loans: ECBAdjustedLoansData | null
 }
 
 // ZEW景況感指数データの型

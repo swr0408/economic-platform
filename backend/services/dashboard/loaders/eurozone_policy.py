@@ -1,10 +1,12 @@
 """
 ユーロ圏金融政策ダッシュボードローダー
-ECB政策金利、Eurex OIS、次回発表日などを一括取得
+ECB政策金利、Eurex OIS、M3マネーサプライ、Bank Interest Rates、次回発表日などを一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - ECB金利決定: 21:15-21:25 JST（冬時間）/ 22:15-22:25 JST（夏時間）
 - Eurex OIS: 20:00-20:10 JST（夏時間）/ 21:00-21:10 JST（冬時間）
+- M3マネーサプライ: FMP発表日時ベース更新
+- Bank Interest Rates: ECBカレンダーベース更新
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime, timedelta
@@ -26,11 +28,15 @@ class EurozonePolicyLoader(BaseDashboardLoader):
     - ecb_rates: ECB預金ファシリティ金利
     - eurex_ois: Eurex OISカーブ
     - ecb_macro_projections: ECBマクロ経済予測
+    - ecb_m3: M3マネーサプライ
+    - ecb_bank_interest_rates: 銀行金利（企業向け・住宅ローン）
 
     キャッシュ方式: 発表日時ベース判定
     - ECB金利決定: 21:15-22:25 JST（時期により変動）
     - Eurex OIS: 20:00-21:10 JST（時期により変動）
     - ECBマクロ経済予測: 四半期ごと（3月、6月、9月、12月）
+    - M3マネーサプライ: FMP発表日時ベース更新
+    - Bank Interest Rates: ECBカレンダーベース更新
     """
 
     COUNTRY_CODE = "eurozone"
@@ -145,19 +151,25 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         from services.eurozone.ecb_rates_service import ecb_rates_service
         from services.eurozone.eurex_ois_service import eurex_ois_service
         from services.eurozone.ecb_macro_projections_service import ecb_macro_projections_service
+        from services.eurozone.ecb_m3_service import ecb_m3_service
+        from services.eurozone.ecb_bank_interest_rates_service import ecb_bank_interest_rates_service
 
         result = {
             "ecb_rates": None,
             "eurex_ois": None,
             "ecb_macro_projections": None,
+            "ecb_m3": None,
+            "ecb_bank_interest_rates": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=4) as executor:
+        with ThreadPoolExecutor(max_workers=6) as executor:
             futures = {
                 executor.submit(self._get_ecb_rates, ecb_rates_service): "ecb_rates",
                 executor.submit(self._get_eurex_ois, eurex_ois_service): "eurex_ois",
                 executor.submit(self._get_ecb_macro_projections, ecb_macro_projections_service): "ecb_macro_projections",
+                executor.submit(self._get_ecb_m3, ecb_m3_service): "ecb_m3",
+                executor.submit(self._get_ecb_bank_interest_rates, ecb_bank_interest_rates_service): "ecb_bank_interest_rates",
             }
 
             for future in as_completed(futures):
@@ -234,3 +246,31 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting ECB macro projections: {e}")
             return {"indicators": {}, "metadata": {}}
+
+    def _get_ecb_m3(self, service) -> dict:
+        """ECB M3マネーサプライデータを取得（原数値と前年比）"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_m3")
+            response = service.get_ecb_m3_data(force_refresh=force_refresh)
+            return {
+                "yoy": response.get("yoy", {}),
+                "level": response.get("level", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB M3: {e}")
+            return {"yoy": {"data": [], "latest": None}, "level": {"data": [], "latest": None}, "next_release": None}
+
+    def _get_ecb_bank_interest_rates(self, service) -> dict:
+        """ECB Bank Interest Ratesデータを取得（企業向け・住宅ローン）"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_bank_interest_rates")
+            response = service.get_bank_interest_rates_data(force_refresh=force_refresh)
+            return {
+                "corporations": response.get("corporations", {}),
+                "housing": response.get("housing", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB Bank Interest Rates: {e}")
+            return {"corporations": {"data": [], "latest": None}, "housing": {"data": [], "latest": None}, "next_release": None}

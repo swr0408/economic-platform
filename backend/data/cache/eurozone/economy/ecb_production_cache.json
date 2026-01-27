@@ -1786,7 +1786,7 @@
     }
   ],
   "metadata": {
-    "last_updated": "2026-01-26T00:21:34.882887+09:00",
+    "last_updated": "2026-01-28T01:10:42.604618+09:00",
     "source": "Eurostat - Short-term business statistics",
     "dataset": "sts_inpr_m",
     "data_start": "2015-01",
@@ -1797,5 +1797,5 @@
     "adjustment_nsa": "Not seasonally adjusted",
     "adjustment_sca": "Seasonally and calendar adjusted"
   },
-  "last_updated": "2026-01-26T00:21:34.882901+09:00"
+  "last_updated": "2026-01-28T01:10:42.604635+09:00"
 }

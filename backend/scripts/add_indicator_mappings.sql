@@ -229,5 +229,19 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('japan_tertiary_industry', '日本第三次産業活動指数', 'JP', 'monthly', ARRAY['Tertiary Industry Index MoM'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- =============================================================================
+-- ユーロ圏（Eurozone）指標
+-- =============================================================================
+
+-- ECB M3マネーサプライ（monetary_aggregate_m3）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('monetary_aggregate_m3', 'M3マネーサプライ前年比', 'EU', 'monthly', ARRAY['M3 Money Supply YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ECB調整済貸出（ecb_adjusted_loans）- M3マネーサプライと同時発表
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('ecb_adjusted_loans', '調整済貸出（ユーロ圏）', 'EU', 'monthly', ARRAY['M3 Money Supply YoY', 'M3 Money Supply'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;

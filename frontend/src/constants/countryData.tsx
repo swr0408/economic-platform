@@ -298,6 +298,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'eurex-ois', name: '3ヶ月ユーロSTR先物カーブ' },
           { code: 'ecb-rate-cuts', name: 'ECB利上げ・利下げ期待' },
           { code: 'ecb-macro-projections', name: 'マクロ経済予測' },
+          { code: 'ecb-m3', name: 'M3マネーサプライ' },
+          { code: 'ecb-bank-interest-rates', name: '銀行金利' },
         ],
       },
       {
@@ -309,7 +311,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-gdp', name: 'GDP（ユーロ圏）' },
           { code: 'ecb-gdp-components', name: 'GDP構成要素（ユーロ圏）' },
           { code: 'pmi', name: 'PMI（ユーロ圏）' },
-          { code: 'ecb-bls', name: '銀行貸出調査（ユーロ圏）' },
+          { code: 'ecb-bls', name: '銀行貸出調査（ユーロ圏・BLS）' },
+          { code: 'ecb-adjusted-loans', name: '貸出動向（ユーロ圏・BSI）' },
           { code: 'ecb-production', name: '鉱工業生産（ユーロ圏）' },
           { code: 'euro-policy-uncertainty', name: '欧州経済政策不確実性指数' },
           { code: 'eurostat-esi', name: 'ESI（ユーロ圏・主要国）' },

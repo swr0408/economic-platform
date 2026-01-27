@@ -1,0 +1,2413 @@
+{
+  "data": [
+    {
+      "date": "2001-01-01",
+      "food": 2.89,
+      "energy": 17.78,
+      "core_goods": 0.84,
+      "core_services": 3.42,
+      "shelter": 3.31
+    },
+    {
+      "date": "2001-02-01",
+      "food": 3.01,
+      "energy": 13.11,
+      "core_goods": 0.9,
+      "core_services": 3.56,
+      "shelter": 3.46
+    },
+    {
+      "date": "2001-03-01",
+      "food": 3.12,
+      "energy": 5.97,
+      "core_goods": 0.62,
+      "core_services": 3.49,
+      "shelter": 3.49
+    },
+    {
+      "date": "2001-04-01",
+      "food": 3.18,
+      "energy": 10.27,
+      "core_goods": 0.48,
+      "core_services": 3.53,
+      "shelter": 3.59
+    },
+    {
+      "date": "2001-05-01",
+      "food": 3.11,
+      "energy": 15.79,
+      "core_goods": 0.14,
+      "core_services": 3.58,
+      "shelter": 3.74
+    },
+    {
+      "date": "2001-06-01",
+      "food": 3.41,
+      "energy": 8.41,
+      "core_goods": 0.28,
+      "core_services": 3.71,
+      "shelter": 3.83
+    },
+    {
+      "date": "2001-07-01",
+      "food": 3.21,
+      "energy": 2.08,
+      "core_goods": 0.42,
+      "core_services": 3.65,
+      "shelter": 3.76
+    },
+    {
+      "date": "2001-08-01",
+      "food": 3.08,
+      "energy": 2.78,
+      "core_goods": 0.07,
+      "core_services": 3.78,
+      "shelter": 3.95
+    },
+    {
+      "date": "2001-09-01",
+      "food": 3.08,
+      "energy": 1.45,
+      "core_goods": 0.07,
+      "core_services": 3.78,
+      "shelter": 3.8
+    },
+    {
+      "date": "2001-10-01",
+      "food": 3.43,
+      "energy": -5.57,
+      "core_goods": 0.0,
+      "core_services": 3.72,
+      "shelter": 3.69
+    },
+    {
+      "date": "2001-11-01",
+      "food": 3.37,
+      "energy": -10.08,
+      "core_goods": 0.0,
+      "core_services": 3.97,
+      "shelter": 3.94
+    },
+    {
+      "date": "2001-12-01",
+      "food": 2.76,
+      "energy": -13.04,
+      "core_goods": -0.28,
+      "core_services": 4.01,
+      "shelter": 4.15
+    },
+    {
+      "date": "2002-01-01",
+      "food": 2.87,
+      "energy": -15.7,
+      "core_goods": -0.76,
+      "core_services": 3.94,
+      "shelter": 4.12
+    },
+    {
+      "date": "2002-02-01",
+      "food": 2.69,
+      "energy": -15.91,
+      "core_goods": -0.89,
+      "core_services": 4.01,
+      "shelter": 4.3
+    },
+    {
+      "date": "2002-03-01",
+      "food": 2.56,
+      "energy": -10.73,
+      "core_goods": -1.09,
+      "core_services": 3.95,
+      "shelter": 4.07
+    },
+    {
+      "date": "2002-04-01",
+      "food": 2.5,
+      "energy": -8.19,
+      "core_goods": -1.02,
+      "core_services": 3.99,
+      "shelter": 4.17
+    },
+    {
+      "date": "2002-05-01",
+      "food": 1.91,
+      "energy": -12.28,
+      "core_goods": -0.89,
+      "core_services": 3.93,
+      "shelter": 3.96
+    },
+    {
+      "date": "2002-06-01",
+      "food": 1.62,
+      "energy": -11.1,
+      "core_goods": -1.04,
+      "core_services": 3.72,
+      "shelter": 3.69
+    },
+    {
+      "date": "2002-07-01",
+      "food": 1.44,
+      "energy": -5.21,
+      "core_goods": -1.32,
+      "core_services": 3.76,
+      "shelter": 3.67
+    },
+    {
+      "date": "2002-08-01",
+      "food": 1.21,
+      "energy": -2.78,
+      "core_goods": -0.7,
+      "core_services": 3.69,
+      "shelter": 3.56
+    },
+    {
+      "date": "2002-09-01",
+      "food": 1.32,
+      "energy": -4.83,
+      "core_goods": -1.1,
+      "core_services": 3.65,
+      "shelter": 3.56
+    },
+    {
+      "date": "2002-10-01",
+      "food": 0.91,
+      "energy": 3.03,
+      "core_goods": -1.17,
+      "core_services": 3.68,
+      "shelter": 3.61
+    },
+    {
+      "date": "2002-11-01",
+      "food": 1.26,
+      "energy": 8.02,
+      "core_goods": -1.64,
+      "core_services": 3.53,
+      "shelter": 3.3
+    },
+    {
+      "date": "2002-12-01",
+      "food": 1.49,
+      "energy": 10.68,
+      "core_goods": -1.52,
+      "core_services": 3.39,
+      "shelter": 3.1
+    },
+    {
+      "date": "2003-01-01",
+      "food": 0.97,
+      "energy": 14.15,
+      "core_goods": -1.39,
+      "core_services": 3.37,
+      "shelter": 3.13
+    },
+    {
+      "date": "2003-02-01",
+      "food": 1.36,
+      "energy": 21.98,
+      "core_goods": -1.46,
+      "core_services": 3.16,
+      "shelter": 2.67
+    },
+    {
+      "date": "2003-03-01",
+      "food": 1.42,
+      "energy": 23.36,
+      "core_goods": -1.38,
+      "core_services": 3.01,
+      "shelter": 2.46
+    },
+    {
+      "date": "2003-04-01",
+      "food": 1.25,
+      "energy": 13.01,
+      "core_goods": -1.79,
+      "core_services": 2.87,
+      "shelter": 2.22
+    },
+    {
+      "date": "2003-05-01",
+      "food": 1.71,
+      "energy": 9.03,
+      "core_goods": -1.87,
+      "core_services": 3.0,
+      "shelter": 2.55
+    },
+    {
+      "date": "2003-06-01",
+      "food": 2.16,
+      "energy": 9.29,
+      "core_goods": -1.81,
+      "core_services": 2.9,
+      "shelter": 2.35
+    },
+    {
+      "date": "2003-07-01",
+      "food": 2.1,
+      "energy": 9.0,
+      "core_goods": -1.82,
+      "core_services": 2.89,
+      "shelter": 2.39
+    },
+    {
+      "date": "2003-08-01",
+      "food": 2.5,
+      "energy": 11.76,
+      "core_goods": -2.17,
+      "core_services": 2.69,
+      "shelter": 2.24
+    },
+    {
+      "date": "2003-09-01",
+      "food": 2.44,
+      "energy": 14.67,
+      "core_goods": -2.37,
+      "core_services": 2.74,
+      "shelter": 2.2
+    },
+    {
+      "date": "2003-10-01",
+      "food": 2.95,
+      "energy": 8.82,
+      "core_goods": -2.43,
+      "core_services": 2.87,
+      "shelter": 2.38
+    },
+    {
+      "date": "2003-11-01",
+      "food": 3.17,
+      "energy": 6.23,
+      "core_goods": -2.58,
+      "core_services": 2.64,
+      "shelter": 2.19
+    },
+    {
+      "date": "2003-12-01",
+      "food": 3.55,
+      "energy": 6.89,
+      "core_goods": -2.46,
+      "core_services": 2.59,
+      "shelter": 2.2
+    },
+    {
+      "date": "2004-01-01",
+      "food": 3.55,
+      "energy": 7.76,
+      "core_goods": -2.26,
+      "core_services": 2.53,
+      "shelter": 2.04
+    },
+    {
+      "date": "2004-02-01",
+      "food": 3.25,
+      "energy": 3.84,
+      "core_goods": -1.97,
+      "core_services": 2.52,
+      "shelter": 2.08
+    },
+    {
+      "date": "2004-03-01",
+      "food": 3.25,
+      "energy": 0.35,
+      "core_goods": -1.61,
+      "core_services": 2.92,
+      "shelter": 2.69
+    },
+    {
+      "date": "2004-04-01",
+      "food": 3.42,
+      "energy": 5.65,
+      "core_goods": -1.4,
+      "core_services": 3.1,
+      "shelter": 2.97
+    },
+    {
+      "date": "2004-05-01",
+      "food": 4.08,
+      "energy": 15.0,
+      "core_goods": -1.06,
+      "core_services": 2.91,
+      "shelter": 2.77
+    },
+    {
+      "date": "2004-06-01",
+      "food": 3.73,
+      "energy": 17.0,
+      "core_goods": -0.99,
+      "core_services": 3.0,
+      "shelter": 2.91
+    },
+    {
+      "date": "2004-07-01",
+      "food": 3.95,
+      "energy": 14.25,
+      "core_goods": -1.22,
+      "core_services": 2.99,
+      "shelter": 2.9
+    },
+    {
+      "date": "2004-08-01",
+      "food": 3.55,
+      "energy": 10.46,
+      "core_goods": -1.15,
+      "core_services": 2.89,
+      "shelter": 2.8
+    },
+    {
+      "date": "2004-09-01",
+      "food": 3.32,
+      "energy": 6.71,
+      "core_goods": -0.57,
+      "core_services": 2.98,
+      "shelter": 2.99
+    },
+    {
+      "date": "2004-10-01",
+      "food": 3.41,
+      "energy": 15.19,
+      "core_goods": 0.07,
+      "core_services": 2.79,
+      "shelter": 2.75
+    },
+    {
+      "date": "2004-11-01",
+      "food": 3.18,
+      "energy": 19.16,
+      "core_goods": 0.5,
+      "core_services": 2.79,
+      "shelter": 2.66
+    },
+    {
+      "date": "2004-12-01",
+      "food": 2.67,
+      "energy": 16.62,
+      "core_goods": 0.58,
+      "core_services": 2.84,
+      "shelter": 2.66
+    },
+    {
+      "date": "2005-01-01",
+      "food": 2.88,
+      "energy": 10.55,
+      "core_goods": 0.87,
+      "core_services": 2.78,
+      "shelter": 2.7
+    },
+    {
+      "date": "2005-02-01",
+      "food": 2.55,
+      "energy": 10.38,
+      "core_goods": 0.72,
+      "core_services": 2.99,
+      "shelter": 3.01
+    },
+    {
+      "date": "2005-03-01",
+      "food": 2.55,
+      "energy": 12.37,
+      "core_goods": 0.57,
+      "core_services": 2.97,
+      "shelter": 3.03
+    },
+    {
+      "date": "2005-04-01",
+      "food": 3.09,
+      "energy": 17.14,
+      "core_goods": 0.5,
+      "core_services": 2.88,
+      "shelter": 2.75
+    },
+    {
+      "date": "2005-05-01",
+      "food": 2.42,
+      "energy": 9.93,
+      "core_goods": 0.64,
+      "core_services": 2.74,
+      "shelter": 2.42
+    },
+    {
+      "date": "2005-06-01",
+      "food": 2.2,
+      "energy": 7.33,
+      "core_goods": 0.43,
+      "core_services": 2.69,
+      "shelter": 2.42
+    },
+    {
+      "date": "2005-07-01",
+      "food": 2.14,
+      "energy": 14.2,
+      "core_goods": 0.51,
+      "core_services": 2.77,
+      "shelter": 2.55
+    },
+    {
+      "date": "2005-08-01",
+      "food": 2.19,
+      "energy": 20.15,
+      "core_goods": 0.65,
+      "core_services": 2.72,
+      "shelter": 2.41
+    },
+    {
+      "date": "2005-09-01",
+      "food": 2.52,
+      "energy": 34.8,
+      "core_goods": 0.57,
+      "core_services": 2.5,
+      "shelter": 1.91
+    },
+    {
+      "date": "2005-10-01",
+      "food": 2.24,
+      "energy": 29.55,
+      "core_goods": 0.36,
+      "core_services": 2.71,
+      "shelter": 2.31
+    },
+    {
+      "date": "2005-11-01",
+      "food": 2.23,
+      "energy": 18.28,
+      "core_goods": 0.14,
+      "core_services": 2.89,
+      "shelter": 2.5
+    },
+    {
+      "date": "2005-12-01",
+      "food": 2.33,
+      "energy": 17.11,
+      "core_goods": 0.21,
+      "core_services": 2.93,
+      "shelter": 2.64
+    },
+    {
+      "date": "2006-01-01",
+      "food": 2.64,
+      "energy": 24.75,
+      "core_goods": 0.14,
+      "core_services": 2.92,
+      "shelter": 2.62
+    },
+    {
+      "date": "2006-02-01",
+      "food": 2.75,
+      "energy": 20.1,
+      "core_goods": 0.0,
+      "core_services": 2.9,
+      "shelter": 2.61
+    },
+    {
+      "date": "2006-03-01",
+      "food": 2.59,
+      "energy": 17.29,
+      "core_goods": 0.28,
+      "core_services": 2.84,
+      "shelter": 2.45
+    },
+    {
+      "date": "2006-04-01",
+      "food": 1.84,
+      "energy": 17.85,
+      "core_goods": 0.35,
+      "core_services": 3.05,
+      "shelter": 2.81
+    },
+    {
+      "date": "2006-05-01",
+      "food": 1.89,
+      "energy": 23.55,
+      "core_goods": 0.28,
+      "core_services": 3.31,
+      "shelter": 3.21
+    },
+    {
+      "date": "2006-06-01",
+      "food": 2.15,
+      "energy": 23.28,
+      "core_goods": 0.5,
+      "core_services": 3.51,
+      "shelter": 3.43
+    },
+    {
+      "date": "2006-07-01",
+      "food": 2.2,
+      "energy": 20.5,
+      "core_goods": 0.5,
+      "core_services": 3.54,
+      "shelter": 3.55
+    },
+    {
+      "date": "2006-08-01",
+      "food": 2.41,
+      "energy": 15.06,
+      "core_goods": 0.65,
+      "core_services": 3.7,
+      "shelter": 3.81
+    },
+    {
+      "date": "2006-09-01",
+      "food": 2.51,
+      "energy": -4.28,
+      "core_goods": 0.5,
+      "core_services": 3.88,
+      "shelter": 4.23
+    },
+    {
+      "date": "2006-10-01",
+      "food": 2.6,
+      "energy": -11.26,
+      "core_goods": 0.14,
+      "core_services": 3.82,
+      "shelter": 4.03
+    },
+    {
+      "date": "2006-11-01",
+      "food": 2.29,
+      "energy": -3.84,
+      "core_goods": -0.14,
+      "core_services": 3.73,
+      "shelter": 4.21
+    },
+    {
+      "date": "2006-12-01",
+      "food": 2.13,
+      "energy": 2.89,
+      "core_goods": -0.14,
+      "core_services": 3.69,
+      "shelter": 4.21
+    },
+    {
+      "date": "2007-01-01",
+      "food": 2.43,
+      "energy": -3.13,
+      "core_goods": -0.19,
+      "core_services": 3.81,
+      "shelter": 4.28
+    },
+    {
+      "date": "2007-02-01",
+      "food": 3.09,
+      "energy": -1.05,
+      "core_goods": 0.0,
+      "core_services": 3.77,
+      "shelter": 4.24
+    },
+    {
+      "date": "2007-03-01",
+      "food": 3.3,
+      "energy": 4.42,
+      "core_goods": -0.31,
+      "core_services": 3.56,
+      "shelter": 3.95
+    },
+    {
+      "date": "2007-04-01",
+      "food": 3.68,
+      "energy": 2.91,
+      "core_goods": -0.5,
+      "core_services": 3.5,
+      "shelter": 3.92
+    },
+    {
+      "date": "2007-05-01",
+      "food": 3.91,
+      "energy": 4.67,
+      "core_goods": -0.69,
+      "core_services": 3.43,
+      "shelter": 3.75
+    },
+    {
+      "date": "2007-06-01",
+      "food": 4.08,
+      "energy": 4.63,
+      "core_goods": -0.79,
+      "core_services": 3.37,
+      "shelter": 3.78
+    },
+    {
+      "date": "2007-07-01",
+      "food": 4.16,
+      "energy": 1.01,
+      "core_goods": -0.6,
+      "core_services": 3.34,
+      "shelter": 3.62
+    },
+    {
+      "date": "2007-08-01",
+      "food": 4.29,
+      "energy": -2.52,
+      "core_goods": -0.72,
+      "core_services": 3.24,
+      "shelter": 3.43
+    },
+    {
+      "date": "2007-09-01",
+      "food": 4.46,
+      "energy": 5.29,
+      "core_goods": -0.76,
+      "core_services": 3.29,
+      "shelter": 3.46
+    },
+    {
+      "date": "2007-10-01",
+      "food": 4.41,
+      "energy": 14.5,
+      "core_goods": -0.5,
+      "core_services": 3.19,
+      "shelter": 3.24
+    },
+    {
+      "date": "2007-11-01",
+      "food": 4.82,
+      "energy": 21.4,
+      "core_goods": -0.04,
+      "core_services": 3.25,
+      "shelter": 3.11
+    },
+    {
+      "date": "2007-12-01",
+      "food": 4.93,
+      "energy": 17.44,
+      "core_goods": 0.08,
+      "core_services": 3.35,
+      "shelter": 3.09
+    },
+    {
+      "date": "2008-01-01",
+      "food": 4.93,
+      "energy": 19.56,
+      "core_goods": 0.16,
+      "core_services": 3.37,
+      "shelter": 3.11
+    },
+    {
+      "date": "2008-02-01",
+      "food": 4.58,
+      "energy": 18.9,
+      "core_goods": 0.01,
+      "core_services": 3.16,
+      "shelter": 2.86
+    },
+    {
+      "date": "2008-03-01",
+      "food": 4.48,
+      "energy": 17.05,
+      "core_goods": 0.0,
+      "core_services": 3.28,
+      "shelter": 2.94
+    },
+    {
+      "date": "2008-04-01",
+      "food": 5.12,
+      "energy": 15.89,
+      "core_goods": 0.11,
+      "core_services": 3.09,
+      "shelter": 2.61
+    },
+    {
+      "date": "2008-05-01",
+      "food": 5.09,
+      "energy": 17.36,
+      "core_goods": 0.11,
+      "core_services": 3.17,
+      "shelter": 2.58
+    },
+    {
+      "date": "2008-06-01",
+      "food": 5.34,
+      "energy": 24.67,
+      "core_goods": 0.24,
+      "core_services": 3.27,
+      "shelter": 2.53
+    },
+    {
+      "date": "2008-07-01",
+      "food": 6.0,
+      "energy": 29.25,
+      "core_goods": 0.56,
+      "core_services": 3.28,
+      "shelter": 2.48
+    },
+    {
+      "date": "2008-08-01",
+      "food": 6.15,
+      "energy": 27.23,
+      "core_goods": 0.64,
+      "core_services": 3.29,
+      "shelter": 2.37
+    },
+    {
+      "date": "2008-09-01",
+      "food": 6.22,
+      "energy": 23.08,
+      "core_goods": 0.5,
+      "core_services": 3.25,
+      "shelter": 2.37
+    },
+    {
+      "date": "2008-10-01",
+      "food": 6.29,
+      "energy": 11.55,
+      "core_goods": 0.11,
+      "core_services": 3.04,
+      "shelter": 2.24
+    },
+    {
+      "date": "2008-11-01",
+      "food": 6.05,
+      "energy": -13.27,
+      "core_goods": -0.22,
+      "core_services": 2.88,
+      "shelter": 2.17
+    },
+    {
+      "date": "2008-12-01",
+      "food": 5.85,
+      "energy": -21.31,
+      "core_goods": -0.56,
+      "core_services": 2.68,
+      "shelter": 1.94
+    },
+    {
+      "date": "2009-01-01",
+      "food": 5.3,
+      "energy": -20.43,
+      "core_goods": -0.52,
+      "core_services": 2.54,
+      "shelter": 1.81
+    },
+    {
+      "date": "2009-02-01",
+      "food": 4.8,
+      "energy": -18.5,
+      "core_goods": -0.04,
+      "core_services": 2.5,
+      "shelter": 1.67
+    },
+    {
+      "date": "2009-03-01",
+      "food": 4.4,
+      "energy": -23.02,
+      "core_goods": 0.43,
+      "core_services": 2.28,
+      "shelter": 1.46
+    },
+    {
+      "date": "2009-04-01",
+      "food": 3.34,
+      "energy": -25.18,
+      "core_goods": 0.94,
+      "core_services": 2.27,
+      "shelter": 1.57
+    },
+    {
+      "date": "2009-05-01",
+      "food": 2.72,
+      "energy": -27.3,
+      "core_goods": 1.2,
+      "core_services": 2.08,
+      "shelter": 1.51
+    },
+    {
+      "date": "2009-06-01",
+      "food": 2.11,
+      "energy": -25.47,
+      "core_goods": 1.48,
+      "core_services": 1.83,
+      "shelter": 1.28
+    },
+    {
+      "date": "2009-07-01",
+      "food": 0.91,
+      "energy": -28.09,
+      "core_goods": 1.38,
+      "core_services": 1.59,
+      "shelter": 0.9
+    },
+    {
+      "date": "2009-08-01",
+      "food": 0.43,
+      "energy": -23.03,
+      "core_goods": 1.09,
+      "core_services": 1.58,
+      "shelter": 0.91
+    },
+    {
+      "date": "2009-09-01",
+      "food": -0.22,
+      "energy": -21.62,
+      "core_goods": 1.57,
+      "core_services": 1.49,
+      "shelter": 0.71
+    },
+    {
+      "date": "2009-10-01",
+      "food": -0.55,
+      "energy": -13.98,
+      "core_goods": 2.27,
+      "core_services": 1.49,
+      "shelter": 0.66
+    },
+    {
+      "date": "2009-11-01",
+      "food": -0.68,
+      "energy": 7.42,
+      "core_goods": 2.59,
+      "core_services": 1.36,
+      "shelter": 0.3
+    },
+    {
+      "date": "2009-12-01",
+      "food": -0.53,
+      "energy": 18.2,
+      "core_goods": 2.98,
+      "core_services": 1.37,
+      "shelter": 0.31
+    },
+    {
+      "date": "2010-01-01",
+      "food": -0.36,
+      "energy": 19.13,
+      "core_goods": 2.89,
+      "core_services": 1.05,
+      "shelter": -0.14
+    },
+    {
+      "date": "2010-02-01",
+      "food": -0.19,
+      "energy": 14.39,
+      "core_goods": 2.45,
+      "core_services": 0.91,
+      "shelter": -0.35
+    },
+    {
+      "date": "2010-03-01",
+      "food": 0.2,
+      "energy": 18.34,
+      "core_goods": 1.93,
+      "core_services": 0.79,
+      "shelter": -0.62
+    },
+    {
+      "date": "2010-04-01",
+      "food": 0.48,
+      "energy": 18.52,
+      "core_goods": 1.18,
+      "core_services": 0.82,
+      "shelter": -0.73
+    },
+    {
+      "date": "2010-05-01",
+      "food": 0.71,
+      "energy": 14.69,
+      "core_goods": 1.07,
+      "core_services": 0.89,
+      "shelter": -0.67
+    },
+    {
+      "date": "2010-06-01",
+      "food": 0.68,
+      "energy": 3.04,
+      "core_goods": 0.98,
+      "core_services": 0.87,
+      "shelter": -0.71
+    },
+    {
+      "date": "2010-07-01",
+      "food": 0.86,
+      "energy": 5.17,
+      "core_goods": 0.99,
+      "core_services": 0.81,
+      "shelter": -0.65
+    },
+    {
+      "date": "2010-08-01",
+      "food": 0.99,
+      "energy": 3.75,
+      "core_goods": 1.34,
+      "core_services": 0.71,
+      "shelter": -0.66
+    },
+    {
+      "date": "2010-09-01",
+      "food": 1.38,
+      "energy": 3.84,
+      "core_goods": 0.8,
+      "core_services": 0.8,
+      "shelter": -0.39
+    },
+    {
+      "date": "2010-10-01",
+      "food": 1.42,
+      "energy": 5.9,
+      "core_goods": 0.12,
+      "core_services": 0.8,
+      "shelter": -0.33
+    },
+    {
+      "date": "2010-11-01",
+      "food": 1.54,
+      "energy": 3.89,
+      "core_goods": -0.19,
+      "core_services": 1.13,
+      "shelter": 0.21
+    },
+    {
+      "date": "2010-12-01",
+      "food": 1.52,
+      "energy": 7.74,
+      "core_goods": -0.39,
+      "core_services": 1.25,
+      "shelter": 0.45
+    },
+    {
+      "date": "2011-01-01",
+      "food": 1.84,
+      "energy": 7.33,
+      "core_goods": -0.2,
+      "core_services": 1.38,
+      "shelter": 0.61
+    },
+    {
+      "date": "2011-02-01",
+      "food": 2.3,
+      "energy": 10.96,
+      "core_goods": 0.0,
+      "core_services": 1.5,
+      "shelter": 0.76
+    },
+    {
+      "date": "2011-03-01",
+      "food": 2.88,
+      "energy": 15.48,
+      "core_goods": 0.16,
+      "core_services": 1.58,
+      "shelter": 0.91
+    },
+    {
+      "date": "2011-04-01",
+      "food": 3.16,
+      "energy": 19.02,
+      "core_goods": 0.72,
+      "core_services": 1.57,
+      "shelter": 0.97
+    },
+    {
+      "date": "2011-05-01",
+      "food": 3.47,
+      "energy": 21.46,
+      "core_goods": 1.23,
+      "core_services": 1.62,
+      "shelter": 1.07
+    },
+    {
+      "date": "2011-06-01",
+      "food": 3.71,
+      "energy": 20.08,
+      "core_goods": 1.65,
+      "core_services": 1.64,
+      "shelter": 1.19
+    },
+    {
+      "date": "2011-07-01",
+      "food": 4.2,
+      "energy": 18.97,
+      "core_goods": 1.84,
+      "core_services": 1.74,
+      "shelter": 1.4
+    },
+    {
+      "date": "2011-08-01",
+      "food": 4.58,
+      "energy": 18.36,
+      "core_goods": 2.06,
+      "core_services": 1.91,
+      "shelter": 1.59
+    },
+    {
+      "date": "2011-09-01",
+      "food": 4.7,
+      "energy": 19.27,
+      "core_goods": 1.99,
+      "core_services": 1.97,
+      "shelter": 1.66
+    },
+    {
+      "date": "2011-10-01",
+      "food": 4.71,
+      "energy": 14.2,
+      "core_goods": 2.11,
+      "core_services": 2.1,
+      "shelter": 1.79
+    },
+    {
+      "date": "2011-11-01",
+      "food": 4.61,
+      "energy": 12.36,
+      "core_goods": 2.24,
+      "core_services": 2.12,
+      "shelter": 1.84
+    },
+    {
+      "date": "2011-12-01",
+      "food": 4.69,
+      "energy": 6.58,
+      "core_goods": 2.17,
+      "core_services": 2.25,
+      "shelter": 1.91
+    },
+    {
+      "date": "2012-01-01",
+      "food": 4.38,
+      "energy": 6.13,
+      "core_goods": 2.18,
+      "core_services": 2.31,
+      "shelter": 1.98
+    },
+    {
+      "date": "2012-02-01",
+      "food": 3.88,
+      "energy": 6.97,
+      "core_goods": 2.03,
+      "core_services": 2.23,
+      "shelter": 2.02
+    },
+    {
+      "date": "2012-03-01",
+      "food": 3.3,
+      "energy": 4.57,
+      "core_goods": 2.08,
+      "core_services": 2.33,
+      "shelter": 2.12
+    },
+    {
+      "date": "2012-04-01",
+      "food": 3.13,
+      "energy": 0.88,
+      "core_goods": 1.97,
+      "core_services": 2.45,
+      "shelter": 2.23
+    },
+    {
+      "date": "2012-05-01",
+      "food": 2.8,
+      "energy": -3.87,
+      "core_goods": 1.62,
+      "core_services": 2.5,
+      "shelter": 2.27
+    },
+    {
+      "date": "2012-06-01",
+      "food": 2.73,
+      "energy": -3.94,
+      "core_goods": 1.36,
+      "core_services": 2.54,
+      "shelter": 2.2
+    },
+    {
+      "date": "2012-07-01",
+      "food": 2.33,
+      "energy": -5.02,
+      "core_goods": 1.13,
+      "core_services": 2.45,
+      "shelter": 2.08
+    },
+    {
+      "date": "2012-08-01",
+      "food": 2.0,
+      "energy": -0.56,
+      "core_goods": 0.67,
+      "core_services": 2.37,
+      "shelter": 2.1
+    },
+    {
+      "date": "2012-09-01",
+      "food": 1.62,
+      "energy": 2.34,
+      "core_goods": 0.69,
+      "core_services": 2.46,
+      "shelter": 2.22
+    },
+    {
+      "date": "2012-10-01",
+      "food": 1.67,
+      "energy": 3.99,
+      "core_goods": 0.66,
+      "core_services": 2.49,
+      "shelter": 2.26
+    },
+    {
+      "date": "2012-11-01",
+      "food": 1.78,
+      "energy": 0.32,
+      "core_goods": 0.46,
+      "core_services": 2.48,
+      "shelter": 2.25
+    },
+    {
+      "date": "2012-12-01",
+      "food": 1.77,
+      "energy": 0.5,
+      "core_goods": 0.31,
+      "core_services": 2.45,
+      "shelter": 2.2
+    },
+    {
+      "date": "2013-01-01",
+      "food": 1.58,
+      "energy": -0.98,
+      "core_goods": 0.36,
+      "core_services": 2.48,
+      "shelter": 2.21
+    },
+    {
+      "date": "2013-02-01",
+      "food": 1.64,
+      "energy": 2.26,
+      "core_goods": 0.32,
+      "core_services": 2.6,
+      "shelter": 2.27
+    },
+    {
+      "date": "2013-03-01",
+      "food": 1.52,
+      "energy": -1.59,
+      "core_goods": 0.05,
+      "core_services": 2.54,
+      "shelter": 2.24
+    },
+    {
+      "date": "2013-04-01",
+      "food": 1.55,
+      "energy": -4.29,
+      "core_goods": -0.05,
+      "core_services": 2.34,
+      "shelter": 2.2
+    },
+    {
+      "date": "2013-05-01",
+      "food": 1.37,
+      "energy": -1.0,
+      "core_goods": -0.17,
+      "core_services": 2.34,
+      "shelter": 2.28
+    },
+    {
+      "date": "2013-06-01",
+      "food": 1.38,
+      "energy": 3.18,
+      "core_goods": -0.23,
+      "core_services": 2.29,
+      "shelter": 2.32
+    },
+    {
+      "date": "2013-07-01",
+      "food": 1.44,
+      "energy": 4.75,
+      "core_goods": -0.18,
+      "core_services": 2.35,
+      "shelter": 2.35
+    },
+    {
+      "date": "2013-08-01",
+      "food": 1.39,
+      "energy": -0.12,
+      "core_goods": -0.03,
+      "core_services": 2.39,
+      "shelter": 2.4
+    },
+    {
+      "date": "2013-09-01",
+      "food": 1.38,
+      "energy": -3.05,
+      "core_goods": -0.05,
+      "core_services": 2.36,
+      "shelter": 2.36
+    },
+    {
+      "date": "2013-10-01",
+      "food": 1.27,
+      "energy": -4.79,
+      "core_goods": -0.15,
+      "core_services": 2.32,
+      "shelter": 2.28
+    },
+    {
+      "date": "2013-11-01",
+      "food": 1.17,
+      "energy": -2.43,
+      "core_goods": -0.2,
+      "core_services": 2.39,
+      "shelter": 2.44
+    },
+    {
+      "date": "2013-12-01",
+      "food": 1.05,
+      "energy": 0.46,
+      "core_goods": -0.08,
+      "core_services": 2.34,
+      "shelter": 2.54
+    },
+    {
+      "date": "2014-01-01",
+      "food": 1.07,
+      "energy": 2.1,
+      "core_goods": -0.32,
+      "core_services": 2.29,
+      "shelter": 2.58
+    },
+    {
+      "date": "2014-02-01",
+      "food": 1.4,
+      "energy": -2.46,
+      "core_goods": -0.4,
+      "core_services": 2.25,
+      "shelter": 2.57
+    },
+    {
+      "date": "2014-03-01",
+      "food": 1.72,
+      "energy": 0.39,
+      "core_goods": -0.33,
+      "core_services": 2.35,
+      "shelter": 2.72
+    },
+    {
+      "date": "2014-04-01",
+      "food": 1.9,
+      "energy": 3.25,
+      "core_goods": -0.27,
+      "core_services": 2.56,
+      "shelter": 2.77
+    },
+    {
+      "date": "2014-05-01",
+      "food": 2.46,
+      "energy": 3.3,
+      "core_goods": -0.21,
+      "core_services": 2.71,
+      "shelter": 2.85
+    },
+    {
+      "date": "2014-06-01",
+      "food": 2.34,
+      "energy": 3.15,
+      "core_goods": -0.2,
+      "core_services": 2.67,
+      "shelter": 2.82
+    },
+    {
+      "date": "2014-07-01",
+      "food": 2.55,
+      "energy": 2.6,
+      "core_goods": -0.29,
+      "core_services": 2.6,
+      "shelter": 2.91
+    },
+    {
+      "date": "2014-08-01",
+      "food": 2.7,
+      "energy": 0.38,
+      "core_goods": -0.39,
+      "core_services": 2.45,
+      "shelter": 2.9
+    },
+    {
+      "date": "2014-09-01",
+      "food": 2.99,
+      "energy": -0.58,
+      "core_goods": -0.26,
+      "core_services": 2.42,
+      "shelter": 2.96
+    },
+    {
+      "date": "2014-10-01",
+      "food": 3.07,
+      "energy": -1.58,
+      "core_goods": -0.18,
+      "core_services": 2.49,
+      "shelter": 3.05
+    },
+    {
+      "date": "2014-11-01",
+      "food": 3.18,
+      "energy": -4.84,
+      "core_goods": -0.51,
+      "core_services": 2.47,
+      "shelter": 2.99
+    },
+    {
+      "date": "2014-12-01",
+      "food": 3.41,
+      "energy": -10.56,
+      "core_goods": -0.79,
+      "core_services": 2.43,
+      "shelter": 2.9
+    },
+    {
+      "date": "2015-01-01",
+      "food": 3.21,
+      "energy": -19.59,
+      "core_goods": -0.79,
+      "core_services": 2.48,
+      "shelter": 2.94
+    },
+    {
+      "date": "2015-02-01",
+      "food": 2.95,
+      "energy": -18.78,
+      "core_goods": -0.51,
+      "core_services": 2.45,
+      "shelter": 2.98
+    },
+    {
+      "date": "2015-03-01",
+      "food": 2.35,
+      "energy": -18.29,
+      "core_goods": -0.23,
+      "core_services": 2.43,
+      "shelter": 2.95
+    },
+    {
+      "date": "2015-04-01",
+      "food": 1.98,
+      "energy": -19.39,
+      "core_goods": -0.19,
+      "core_services": 2.49,
+      "shelter": 3.0
+    },
+    {
+      "date": "2015-05-01",
+      "food": 1.59,
+      "energy": -16.27,
+      "core_goods": -0.3,
+      "core_services": 2.41,
+      "shelter": 2.89
+    },
+    {
+      "date": "2015-06-01",
+      "food": 1.8,
+      "energy": -15.01,
+      "core_goods": -0.44,
+      "core_services": 2.51,
+      "shelter": 3.01
+    },
+    {
+      "date": "2015-07-01",
+      "food": 1.63,
+      "energy": -14.76,
+      "core_goods": -0.5,
+      "core_services": 2.58,
+      "shelter": 3.11
+    },
+    {
+      "date": "2015-08-01",
+      "food": 1.58,
+      "energy": -15.02,
+      "core_goods": -0.49,
+      "core_services": 2.61,
+      "shelter": 3.1
+    },
+    {
+      "date": "2015-09-01",
+      "food": 1.64,
+      "energy": -18.39,
+      "core_goods": -0.52,
+      "core_services": 2.71,
+      "shelter": 3.18
+    },
+    {
+      "date": "2015-10-01",
+      "food": 1.59,
+      "energy": -17.14,
+      "core_goods": -0.7,
+      "core_services": 2.8,
+      "shelter": 3.19
+    },
+    {
+      "date": "2015-11-01",
+      "food": 1.27,
+      "energy": -14.68,
+      "core_goods": -0.56,
+      "core_services": 2.88,
+      "shelter": 3.18
+    },
+    {
+      "date": "2015-12-01",
+      "food": 0.78,
+      "energy": -12.59,
+      "core_goods": -0.42,
+      "core_services": 2.93,
+      "shelter": 3.21
+    },
+    {
+      "date": "2016-01-01",
+      "food": 0.85,
+      "energy": -6.46,
+      "core_goods": -0.1,
+      "core_services": 2.97,
+      "shelter": 3.24
+    },
+    {
+      "date": "2016-02-01",
+      "food": 0.86,
+      "energy": -12.48,
+      "core_goods": 0.07,
+      "core_services": 3.08,
+      "shelter": 3.28
+    },
+    {
+      "date": "2016-03-01",
+      "food": 0.79,
+      "energy": -12.56,
+      "core_goods": -0.35,
+      "core_services": 3.04,
+      "shelter": 3.2
+    },
+    {
+      "date": "2016-04-01",
+      "food": 0.93,
+      "energy": -8.87,
+      "core_goods": -0.5,
+      "core_services": 3.03,
+      "shelter": 3.2
+    },
+    {
+      "date": "2016-05-01",
+      "food": 0.68,
+      "energy": -10.1,
+      "core_goods": -0.53,
+      "core_services": 3.17,
+      "shelter": 3.37
+    },
+    {
+      "date": "2016-06-01",
+      "food": 0.33,
+      "energy": -9.43,
+      "core_goods": -0.63,
+      "core_services": 3.2,
+      "shelter": 3.45
+    },
+    {
+      "date": "2016-07-01",
+      "food": 0.22,
+      "energy": -10.88,
+      "core_goods": -0.61,
+      "core_services": 3.12,
+      "shelter": 3.3
+    },
+    {
+      "date": "2016-08-01",
+      "food": 0.02,
+      "energy": -9.25,
+      "core_goods": -0.46,
+      "core_services": 3.24,
+      "shelter": 3.4
+    },
+    {
+      "date": "2016-09-01",
+      "food": -0.29,
+      "energy": -2.87,
+      "core_goods": -0.64,
+      "core_services": 3.15,
+      "shelter": 3.43
+    },
+    {
+      "date": "2016-10-01",
+      "food": -0.39,
+      "energy": 0.15,
+      "core_goods": -0.55,
+      "core_services": 3.04,
+      "shelter": 3.52
+    },
+    {
+      "date": "2016-11-01",
+      "food": -0.35,
+      "energy": 1.13,
+      "core_goods": -0.71,
+      "core_services": 3.04,
+      "shelter": 3.55
+    },
+    {
+      "date": "2016-12-01",
+      "food": -0.24,
+      "energy": 5.41,
+      "core_goods": -0.59,
+      "core_services": 3.11,
+      "shelter": 3.62
+    },
+    {
+      "date": "2017-01-01",
+      "food": -0.16,
+      "energy": 10.79,
+      "core_goods": -0.25,
+      "core_services": 3.1,
+      "shelter": 3.55
+    },
+    {
+      "date": "2017-02-01",
+      "food": -0.0,
+      "energy": 15.19,
+      "core_goods": -0.49,
+      "core_services": 3.12,
+      "shelter": 3.52
+    },
+    {
+      "date": "2017-03-01",
+      "food": 0.48,
+      "energy": 10.94,
+      "core_goods": -0.57,
+      "core_services": 2.85,
+      "shelter": 3.45
+    },
+    {
+      "date": "2017-04-01",
+      "food": 0.53,
+      "energy": 9.27,
+      "core_goods": -0.61,
+      "core_services": 2.71,
+      "shelter": 3.45
+    },
+    {
+      "date": "2017-05-01",
+      "food": 0.87,
+      "energy": 5.43,
+      "core_goods": -0.76,
+      "core_services": 2.55,
+      "shelter": 3.34
+    },
+    {
+      "date": "2017-06-01",
+      "food": 0.88,
+      "energy": 2.31,
+      "core_goods": -0.65,
+      "core_services": 2.47,
+      "shelter": 3.26
+    },
+    {
+      "date": "2017-07-01",
+      "food": 1.07,
+      "energy": 3.38,
+      "core_goods": -0.63,
+      "core_services": 2.44,
+      "shelter": 3.16
+    },
+    {
+      "date": "2017-08-01",
+      "food": 1.12,
+      "energy": 6.39,
+      "core_goods": -0.86,
+      "core_services": 2.51,
+      "shelter": 3.3
+    },
+    {
+      "date": "2017-09-01",
+      "food": 1.24,
+      "energy": 10.14,
+      "core_goods": -1.0,
+      "core_services": 2.56,
+      "shelter": 3.24
+    },
+    {
+      "date": "2017-10-01",
+      "food": 1.33,
+      "energy": 6.42,
+      "core_goods": -0.98,
+      "core_services": 2.66,
+      "shelter": 3.24
+    },
+    {
+      "date": "2017-11-01",
+      "food": 1.39,
+      "energy": 9.39,
+      "core_goods": -0.9,
+      "core_services": 2.55,
+      "shelter": 3.16
+    },
+    {
+      "date": "2017-12-01",
+      "food": 1.59,
+      "energy": 6.88,
+      "core_goods": -0.71,
+      "core_services": 2.57,
+      "shelter": 3.2
+    },
+    {
+      "date": "2018-01-01",
+      "food": 1.66,
+      "energy": 5.54,
+      "core_goods": -0.66,
+      "core_services": 2.61,
+      "shelter": 3.19
+    },
+    {
+      "date": "2018-02-01",
+      "food": 1.4,
+      "energy": 7.73,
+      "core_goods": -0.5,
+      "core_services": 2.59,
+      "shelter": 3.13
+    },
+    {
+      "date": "2018-03-01",
+      "food": 1.29,
+      "energy": 7.03,
+      "core_goods": -0.33,
+      "core_services": 2.88,
+      "shelter": 3.32
+    },
+    {
+      "date": "2018-04-01",
+      "food": 1.39,
+      "energy": 7.87,
+      "core_goods": -0.37,
+      "core_services": 2.93,
+      "shelter": 3.39
+    },
+    {
+      "date": "2018-05-01",
+      "food": 1.23,
+      "energy": 11.66,
+      "core_goods": -0.26,
+      "core_services": 3.03,
+      "shelter": 3.51
+    },
+    {
+      "date": "2018-06-01",
+      "food": 1.43,
+      "energy": 11.97,
+      "core_goods": -0.24,
+      "core_services": 3.05,
+      "shelter": 3.39
+    },
+    {
+      "date": "2018-07-01",
+      "food": 1.41,
+      "energy": 12.12,
+      "core_goods": -0.04,
+      "core_services": 3.13,
+      "shelter": 3.52
+    },
+    {
+      "date": "2018-08-01",
+      "food": 1.43,
+      "energy": 10.22,
+      "core_goods": -0.21,
+      "core_services": 2.98,
+      "shelter": 3.39
+    },
+    {
+      "date": "2018-09-01",
+      "food": 1.35,
+      "energy": 4.85,
+      "core_goods": -0.32,
+      "core_services": 2.98,
+      "shelter": 3.29
+    },
+    {
+      "date": "2018-10-01",
+      "food": 1.19,
+      "energy": 8.91,
+      "core_goods": -0.1,
+      "core_services": 2.87,
+      "shelter": 3.17
+    },
+    {
+      "date": "2018-11-01",
+      "food": 1.4,
+      "energy": 3.12,
+      "core_goods": 0.17,
+      "core_services": 2.89,
+      "shelter": 3.24
+    },
+    {
+      "date": "2018-12-01",
+      "food": 1.58,
+      "energy": -0.34,
+      "core_goods": 0.14,
+      "core_services": 2.86,
+      "shelter": 3.2
+    },
+    {
+      "date": "2019-01-01",
+      "food": 1.61,
+      "energy": -4.79,
+      "core_goods": 0.33,
+      "core_services": 2.76,
+      "shelter": 3.22
+    },
+    {
+      "date": "2019-02-01",
+      "food": 1.96,
+      "energy": -5.05,
+      "core_goods": 0.14,
+      "core_services": 2.74,
+      "shelter": 3.37
+    },
+    {
+      "date": "2019-03-01",
+      "food": 2.12,
+      "energy": -0.39,
+      "core_goods": -0.04,
+      "core_services": 2.74,
+      "shelter": 3.37
+    },
+    {
+      "date": "2019-04-01",
+      "food": 1.78,
+      "energy": 1.68,
+      "core_goods": -0.19,
+      "core_services": 2.82,
+      "shelter": 3.45
+    },
+    {
+      "date": "2019-05-01",
+      "food": 1.98,
+      "energy": -0.46,
+      "core_goods": -0.2,
+      "core_services": 2.72,
+      "shelter": 3.35
+    },
+    {
+      "date": "2019-06-01",
+      "food": 1.91,
+      "energy": -3.39,
+      "core_goods": 0.16,
+      "core_services": 2.78,
+      "shelter": 3.51
+    },
+    {
+      "date": "2019-07-01",
+      "food": 1.78,
+      "energy": -2.03,
+      "core_goods": 0.41,
+      "core_services": 2.81,
+      "shelter": 3.48
+    },
+    {
+      "date": "2019-08-01",
+      "food": 1.71,
+      "energy": -4.39,
+      "core_goods": 0.84,
+      "core_services": 2.9,
+      "shelter": 3.36
+    },
+    {
+      "date": "2019-09-01",
+      "food": 1.79,
+      "energy": -4.75,
+      "core_goods": 0.66,
+      "core_services": 2.92,
+      "shelter": 3.51
+    },
+    {
+      "date": "2019-10-01",
+      "food": 2.07,
+      "energy": -4.17,
+      "core_goods": 0.31,
+      "core_services": 2.98,
+      "shelter": 3.34
+    },
+    {
+      "date": "2019-11-01",
+      "food": 2.0,
+      "energy": -0.59,
+      "core_goods": 0.13,
+      "core_services": 3.04,
+      "shelter": 3.32
+    },
+    {
+      "date": "2019-12-01",
+      "food": 1.81,
+      "energy": 3.44,
+      "core_goods": 0.06,
+      "core_services": 2.98,
+      "shelter": 3.25
+    },
+    {
+      "date": "2020-01-01",
+      "food": 1.81,
+      "energy": 6.22,
+      "core_goods": -0.25,
+      "core_services": 3.08,
+      "shelter": 3.31
+    },
+    {
+      "date": "2020-02-01",
+      "food": 1.81,
+      "energy": 2.77,
+      "core_goods": -0.0,
+      "core_services": 3.12,
+      "shelter": 3.31
+    },
+    {
+      "date": "2020-03-01",
+      "food": 1.93,
+      "energy": -5.74,
+      "core_goods": -0.19,
+      "core_services": 2.83,
+      "shelter": 3.01
+    },
+    {
+      "date": "2020-04-01",
+      "food": 3.51,
+      "energy": -17.72,
+      "core_goods": -0.85,
+      "core_services": 2.18,
+      "shelter": 2.61
+    },
+    {
+      "date": "2020-05-01",
+      "food": 4.0,
+      "energy": -18.91,
+      "core_goods": -1.03,
+      "core_services": 1.96,
+      "shelter": 2.55
+    },
+    {
+      "date": "2020-06-01",
+      "food": 4.54,
+      "energy": -12.65,
+      "core_goods": -1.08,
+      "core_services": 1.93,
+      "shelter": 2.36
+    },
+    {
+      "date": "2020-07-01",
+      "food": 4.1,
+      "energy": -11.16,
+      "core_goods": -0.52,
+      "core_services": 2.26,
+      "shelter": 2.33
+    },
+    {
+      "date": "2020-08-01",
+      "food": 4.13,
+      "energy": -9.04,
+      "core_goods": 0.4,
+      "core_services": 2.16,
+      "shelter": 2.29
+    },
+    {
+      "date": "2020-09-01",
+      "food": 3.95,
+      "energy": -7.69,
+      "core_goods": 1.04,
+      "core_services": 1.92,
+      "shelter": 2.04
+    },
+    {
+      "date": "2020-10-01",
+      "food": 3.93,
+      "energy": -9.19,
+      "core_goods": 1.16,
+      "core_services": 1.74,
+      "shelter": 2.03
+    },
+    {
+      "date": "2020-11-01",
+      "food": 3.7,
+      "energy": -9.43,
+      "core_goods": 1.41,
+      "core_services": 1.72,
+      "shelter": 1.92
+    },
+    {
+      "date": "2020-12-01",
+      "food": 3.93,
+      "energy": -6.96,
+      "core_goods": 1.68,
+      "core_services": 1.6,
+      "shelter": 1.84
+    },
+    {
+      "date": "2021-01-01",
+      "food": 3.78,
+      "energy": -3.65,
+      "core_goods": 1.7,
+      "core_services": 1.31,
+      "shelter": 1.62
+    },
+    {
+      "date": "2021-02-01",
+      "food": 3.62,
+      "energy": 2.36,
+      "core_goods": 1.33,
+      "core_services": 1.27,
+      "shelter": 1.47
+    },
+    {
+      "date": "2021-03-01",
+      "food": 3.47,
+      "energy": 13.17,
+      "core_goods": 1.69,
+      "core_services": 1.63,
+      "shelter": 1.7
+    },
+    {
+      "date": "2021-04-01",
+      "food": 2.37,
+      "energy": 25.14,
+      "core_goods": 4.39,
+      "core_services": 2.48,
+      "shelter": 2.11
+    },
+    {
+      "date": "2021-05-01",
+      "food": 2.15,
+      "energy": 28.55,
+      "core_goods": 6.47,
+      "core_services": 2.89,
+      "shelter": 2.21
+    },
+    {
+      "date": "2021-06-01",
+      "food": 2.39,
+      "energy": 24.48,
+      "core_goods": 8.66,
+      "core_services": 3.07,
+      "shelter": 2.58
+    },
+    {
+      "date": "2021-07-01",
+      "food": 3.45,
+      "energy": 23.85,
+      "core_goods": 8.47,
+      "core_services": 2.86,
+      "shelter": 2.83
+    },
+    {
+      "date": "2021-08-01",
+      "food": 3.74,
+      "energy": 24.97,
+      "core_goods": 7.7,
+      "core_services": 2.74,
+      "shelter": 2.84
+    },
+    {
+      "date": "2021-09-01",
+      "food": 4.59,
+      "energy": 24.83,
+      "core_goods": 7.27,
+      "core_services": 2.91,
+      "shelter": 3.16
+    },
+    {
+      "date": "2021-10-01",
+      "food": 5.33,
+      "energy": 29.97,
+      "core_goods": 8.4,
+      "core_services": 3.25,
+      "shelter": 3.48
+    },
+    {
+      "date": "2021-11-01",
+      "food": 6.11,
+      "energy": 33.29,
+      "core_goods": 9.38,
+      "core_services": 3.41,
+      "shelter": 3.84
+    },
+    {
+      "date": "2021-12-01",
+      "food": 6.27,
+      "energy": 29.3,
+      "core_goods": 10.69,
+      "core_services": 3.68,
+      "shelter": 4.13
+    },
+    {
+      "date": "2022-01-01",
+      "food": 6.95,
+      "energy": 26.98,
+      "core_goods": 11.66,
+      "core_services": 4.09,
+      "shelter": 4.36
+    },
+    {
+      "date": "2022-02-01",
+      "food": 7.9,
+      "energy": 25.55,
+      "core_goods": 12.3,
+      "core_services": 4.4,
+      "shelter": 4.74
+    },
+    {
+      "date": "2022-03-01",
+      "food": 8.8,
+      "energy": 32.05,
+      "core_goods": 11.75,
+      "core_services": 4.67,
+      "shelter": 5.0
+    },
+    {
+      "date": "2022-04-01",
+      "food": 9.38,
+      "energy": 30.27,
+      "core_goods": 9.74,
+      "core_services": 4.93,
+      "shelter": 5.14
+    },
+    {
+      "date": "2022-05-01",
+      "food": 10.15,
+      "energy": 34.6,
+      "core_goods": 8.49,
+      "core_services": 5.16,
+      "shelter": 5.45
+    },
+    {
+      "date": "2022-06-01",
+      "food": 10.44,
+      "energy": 41.62,
+      "core_goods": 7.16,
+      "core_services": 5.48,
+      "shelter": 5.61
+    },
+    {
+      "date": "2022-07-01",
+      "food": 10.93,
+      "energy": 32.93,
+      "core_goods": 6.98,
+      "core_services": 5.54,
+      "shelter": 5.69
+    },
+    {
+      "date": "2022-08-01",
+      "food": 11.37,
+      "energy": 23.81,
+      "core_goods": 7.06,
+      "core_services": 6.07,
+      "shelter": 6.24
+    },
+    {
+      "date": "2022-09-01",
+      "food": 11.24,
+      "energy": 19.79,
+      "core_goods": 6.63,
+      "core_services": 6.65,
+      "shelter": 6.59
+    },
+    {
+      "date": "2022-10-01",
+      "food": 10.95,
+      "energy": 17.63,
+      "core_goods": 5.08,
+      "core_services": 6.74,
+      "shelter": 6.92
+    },
+    {
+      "date": "2022-11-01",
+      "food": 10.63,
+      "energy": 13.07,
+      "core_goods": 3.68,
+      "core_services": 6.82,
+      "shelter": 7.12
+    },
+    {
+      "date": "2022-12-01",
+      "food": 10.41,
+      "energy": 7.31,
+      "core_goods": 2.15,
+      "core_services": 7.05,
+      "shelter": 7.51
+    },
+    {
+      "date": "2023-01-01",
+      "food": 10.13,
+      "energy": 8.7,
+      "core_goods": 1.44,
+      "core_services": 7.16,
+      "shelter": 7.88
+    },
+    {
+      "date": "2023-02-01",
+      "food": 9.49,
+      "energy": 5.19,
+      "core_goods": 1.03,
+      "core_services": 7.26,
+      "shelter": 8.1
+    },
+    {
+      "date": "2023-03-01",
+      "food": 8.5,
+      "energy": -6.42,
+      "core_goods": 1.53,
+      "core_services": 7.13,
+      "shelter": 8.18
+    },
+    {
+      "date": "2023-04-01",
+      "food": 7.65,
+      "energy": -5.06,
+      "core_goods": 2.01,
+      "core_services": 6.84,
+      "shelter": 8.11
+    },
+    {
+      "date": "2023-05-01",
+      "food": 6.69,
+      "energy": -11.66,
+      "core_goods": 2.03,
+      "core_services": 6.57,
+      "shelter": 8.04
+    },
+    {
+      "date": "2023-06-01",
+      "food": 5.74,
+      "energy": -16.74,
+      "core_goods": 1.31,
+      "core_services": 6.15,
+      "shelter": 7.83
+    },
+    {
+      "date": "2023-07-01",
+      "food": 4.86,
+      "energy": -12.47,
+      "core_goods": 0.76,
+      "core_services": 6.12,
+      "shelter": 7.69
+    },
+    {
+      "date": "2023-08-01",
+      "food": 4.25,
+      "energy": -3.62,
+      "core_goods": 0.23,
+      "core_services": 5.9,
+      "shelter": 7.27
+    },
+    {
+      "date": "2023-09-01",
+      "food": 3.69,
+      "energy": -0.45,
+      "core_goods": 0.02,
+      "core_services": 5.69,
+      "shelter": 7.15
+    },
+    {
+      "date": "2023-10-01",
+      "food": 3.3,
+      "energy": -4.53,
+      "core_goods": 0.09,
+      "core_services": 5.5,
+      "shelter": 6.72
+    },
+    {
+      "date": "2023-11-01",
+      "food": 2.95,
+      "energy": -5.44,
+      "core_goods": 0.05,
+      "core_services": 5.47,
+      "shelter": 6.51
+    },
+    {
+      "date": "2023-12-01",
+      "food": 2.7,
+      "energy": -2.02,
+      "core_goods": 0.17,
+      "core_services": 5.31,
+      "shelter": 6.15
+    },
+    {
+      "date": "2024-01-01",
+      "food": 2.57,
+      "energy": -4.56,
+      "core_goods": -0.29,
+      "core_services": 5.37,
+      "shelter": 6.04
+    },
+    {
+      "date": "2024-02-01",
+      "food": 2.23,
+      "energy": -1.9,
+      "core_goods": -0.3,
+      "core_services": 5.22,
+      "shelter": 5.74
+    },
+    {
+      "date": "2024-03-01",
+      "food": 2.24,
+      "energy": 2.12,
+      "core_goods": -0.65,
+      "core_services": 5.4,
+      "shelter": 5.65
+    },
+    {
+      "date": "2024-04-01",
+      "food": 2.21,
+      "energy": 2.61,
+      "core_goods": -1.27,
+      "core_services": 5.35,
+      "shelter": 5.55
+    },
+    {
+      "date": "2024-05-01",
+      "food": 2.13,
+      "energy": 3.69,
+      "core_goods": -1.75,
+      "core_services": 5.25,
+      "shelter": 5.41
+    },
+    {
+      "date": "2024-06-01",
+      "food": 2.22,
+      "energy": 0.99,
+      "core_goods": -1.84,
+      "core_services": 5.06,
+      "shelter": 5.16
+    },
+    {
+      "date": "2024-07-01",
+      "food": 2.18,
+      "energy": 1.07,
+      "core_goods": -1.89,
+      "core_services": 4.92,
+      "shelter": 5.05
+    },
+    {
+      "date": "2024-08-01",
+      "food": 2.05,
+      "energy": -3.98,
+      "core_goods": -1.86,
+      "core_services": 4.93,
+      "shelter": 5.23
+    },
+    {
+      "date": "2024-09-01",
+      "food": 2.27,
+      "energy": -6.85,
+      "core_goods": -0.96,
+      "core_services": 4.75,
+      "shelter": 4.85
+    },
+    {
+      "date": "2024-10-01",
+      "food": 2.13,
+      "energy": -4.86,
+      "core_goods": -1.0,
+      "core_services": 4.77,
+      "shelter": 4.88
+    },
+    {
+      "date": "2024-11-01",
+      "food": 2.38,
+      "energy": -3.18,
+      "core_goods": -0.58,
+      "core_services": 4.56,
+      "shelter": 4.73
+    },
+    {
+      "date": "2024-12-01",
+      "food": 2.51,
+      "energy": -0.52,
+      "core_goods": -0.53,
+      "core_services": 4.41,
+      "shelter": 4.57
+    },
+    {
+      "date": "2025-01-01",
+      "food": 2.5,
+      "energy": 0.97,
+      "core_goods": -0.13,
+      "core_services": 4.31,
+      "shelter": 4.4
+    },
+    {
+      "date": "2025-02-01",
+      "food": 2.61,
+      "energy": -0.17,
+      "core_goods": -0.12,
+      "core_services": 4.11,
+      "shelter": 4.25
+    },
+    {
+      "date": "2025-03-01",
+      "food": 2.96,
+      "energy": -3.25,
+      "core_goods": -0.1,
+      "core_services": 3.68,
+      "shelter": 3.99
+    },
+    {
+      "date": "2025-04-01",
+      "food": 2.76,
+      "energy": -3.74,
+      "core_goods": 0.13,
+      "core_services": 3.59,
+      "shelter": 3.99
+    },
+    {
+      "date": "2025-05-01",
+      "food": 2.88,
+      "energy": -3.46,
+      "core_goods": 0.28,
+      "core_services": 3.56,
+      "shelter": 3.86
+    },
+    {
+      "date": "2025-06-01",
+      "food": 2.97,
+      "energy": -0.83,
+      "core_goods": 0.7,
+      "core_services": 3.62,
+      "shelter": 3.8
+    },
+    {
+      "date": "2025-07-01",
+      "food": 2.87,
+      "energy": -1.55,
+      "core_goods": 1.17,
+      "core_services": 3.64,
+      "shelter": 3.67
+    },
+    {
+      "date": "2025-08-01",
+      "food": 3.19,
+      "energy": 0.22,
+      "core_goods": 1.54,
+      "core_services": 3.59,
+      "shelter": 3.63
+    },
+    {
+      "date": "2025-09-01",
+      "food": 3.11,
+      "energy": 2.85,
+      "core_goods": 1.54,
+      "core_services": 3.47,
+      "shelter": 3.58
+    },
+    {
+      "date": "2025-11-01",
+      "food": 2.65,
+      "energy": 4.24,
+      "core_goods": 1.39,
+      "core_services": 3.02,
+      "shelter": 3.04
+    },
+    {
+      "date": "2025-12-01",
+      "food": 3.07,
+      "energy": 2.3,
+      "core_goods": 1.42,
+      "core_services": 3.03,
+      "shelter": 3.17
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "food": 3.07,
+    "energy": 2.3,
+    "core_goods": 1.42,
+    "core_services": 3.03,
+    "shelter": 3.17
+  },
+  "next_release": {
+    "date": "2026-02-11",
+    "datetime_utc": "2026-02-11T13:30:00+00:00",
+    "datetime_jst": "2026-02-11T22:30:00+09:00",
+    "time_jst": "22:30",
+    "label": "CPI (Jan)",
+    "estimate": null
+  },
+  "last_updated": "2026-01-27T12:02:33.369898+09:00"
+}

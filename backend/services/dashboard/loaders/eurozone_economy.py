@@ -145,6 +145,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         from services.eurozone.ifo_business_climate_service import ifo_business_climate_service
         from services.eurozone.germany_pmi_service import germany_pmi_service
         from services.eurozone.france_pmi_service import france_pmi_service
+        from services.eurozone.ecb_adjusted_loans_service import ecb_adjusted_loans_service
 
         result = {
             "ecb_gdp": None,
@@ -161,10 +162,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
             "ifo_business_climate": None,
             "germany_pmi": None,
             "france_pmi": None,
+            "ecb_adjusted_loans": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=10) as executor:
+        with ThreadPoolExecutor(max_workers=15) as executor:
             futures = {
                 executor.submit(self._get_ecb_gdp, ecb_gdp_service): "ecb_gdp",
                 executor.submit(self._get_ecb_gdp_components, ecb_gdp_components_service): "ecb_gdp_components",
@@ -180,6 +182,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_ifo_business_climate, ifo_business_climate_service): "ifo_business_climate",
                 executor.submit(self._get_germany_pmi, germany_pmi_service): "germany_pmi",
                 executor.submit(self._get_france_pmi, france_pmi_service): "france_pmi",
+                executor.submit(self._get_ecb_adjusted_loans, ecb_adjusted_loans_service): "ecb_adjusted_loans",
             }
 
             for future in as_completed(futures):
@@ -221,19 +224,32 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
             return {"components": {}, "metadata": {}}
 
     def _get_ecb_bls(self, service) -> dict:
-        """ECB BLSデータを取得"""
+        """ECB BLSデータを取得（企業向け・消費者信用・住宅購入向け）"""
         try:
             force_refresh = self._should_force_refresh("ecb_bls")
             response = service.get_ecb_bls_data(force_refresh=force_refresh)
             return {
-                "enterprises": response.get("enterprises", []),
-                "households": response.get("households", []),
+                "enterprises_current": response.get("enterprises_current", []),
+                "enterprises_expected": response.get("enterprises_expected", []),
+                "consumer_current": response.get("consumer_current", []),
+                "consumer_expected": response.get("consumer_expected", []),
+                "housing_current": response.get("housing_current", []),
+                "housing_expected": response.get("housing_expected", []),
                 "metadata": response.get("metadata", {}),
                 "next_release": response.get("next_release"),
             }
         except Exception as e:
             print(f"Error getting ECB BLS: {e}")
-            return {"enterprises": [], "households": [], "metadata": {}, "next_release": None}
+            return {
+                "enterprises_current": [],
+                "enterprises_expected": [],
+                "consumer_current": [],
+                "consumer_expected": [],
+                "housing_current": [],
+                "housing_expected": [],
+                "metadata": {},
+                "next_release": None
+            }
 
     def _get_ecb_production(self, service) -> dict:
         """ECB鉱工業生産データを取得"""
@@ -428,3 +444,23 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting France PMI: {e}")
             return {"manufacturing": None, "services": None, "composite": None, "next_release": None}
+
+    def _get_ecb_adjusted_loans(self, service) -> dict:
+        """ECB調整済貸出データを取得（NFC・家計・住宅向け）"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_adjusted_loans")
+            response = service.get_adjusted_loans_data(force_refresh=force_refresh)
+            return {
+                "nfc": response.get("nfc", {}),
+                "households": response.get("households", {}),
+                "housing": response.get("housing", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB Adjusted Loans: {e}")
+            return {
+                "nfc": {"data": [], "latest": None},
+                "households": {"data": [], "latest": None},
+                "housing": {"data": [], "latest": None},
+                "next_release": None
+            }

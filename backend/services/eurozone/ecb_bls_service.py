@@ -5,15 +5,18 @@ ECB Data APIからユーロ圏銀行貸出調査データを取得
 指標:
 - Credit Standards - Enterprises (企業向け融資の信用基準)
 - Credit Standards - Households (家計向け融資の信用基準)
+- Credit Demand - Enterprises (企業向け融資の信用需要)
+- Credit Demand - Households (家計向け融資の信用需要)
 
 キー構造:
 - BLS = Bank Lending Survey
 - Q = Quarterly
 - U2 = Euro Area
 - ALL = All banks
-- O = Outstanding amounts
-- E = Expected
+- O = Outstanding amounts (信用基準)
 - Z = All
+- H = Households / Credit demand
+- C = Credit
 - B3 = Enterprises
 - F3 = Households for house purchase
 - ZZ = All
@@ -52,13 +55,26 @@ DATA_CACHE_FILE = CACHE_DIR / "ecb_bls_cache.json"
 class ECBBLSService:
     """ECB BLSサービス"""
 
-    # ECB Data API
-    ECB_API_BASE = "https://data-api.ecb.europa.eu/service/data"
+    # ECB Data Portal API (新エンドポイント)
+    # https://data.ecb.europa.eu/data/datasets/BLS/BLS.Q.U2.ALL.O.E.Z.B3.ZZ.D.WFNET
+    # https://data.ecb.europa.eu/data/datasets/BLS/BLS.Q.U2.ALL.O.E.Z.F3.ZZ.D.WFNET
+    ECB_API_BASE = "https://data.ecb.europa.eu/data-detail-api"
     DATAFLOW = "BLS"
 
-    # シリーズキー（信用基準）
-    SERIES_KEY_ENTERPRISES = "Q.U2.ALL.O.E.Z.B3.ZZ.D.WFNET"  # 企業向け
-    SERIES_KEY_HOUSEHOLDS = "Q.U2.ALL.O.E.Z.F3.ZZ.D.WFNET"   # 家計向け
+    # シリーズキー（企業向け融資 - Enterprises）
+    # B3 = 現在（Backward looking）, F3 = 予想（Forward looking）
+    SERIES_KEY_DEMAND_ENTERPRISES_CURRENT = "BLS.Q.U2.ALL.O.E.Z.B3.ZZ.D.WFNET"   # 現在の信用需要 - 企業向け融資
+    SERIES_KEY_DEMAND_ENTERPRISES_EXPECTED = "BLS.Q.U2.ALL.O.E.Z.F3.ZZ.D.WFNET"  # 予想信用需要 - 企業向け融資
+
+    # シリーズキー（消費者信用 - Consumer Credit）
+    # B3 = 現在（Backward looking）, F3 = 予想（Forward looking）
+    SERIES_KEY_DEMAND_CONSUMER_CURRENT = "BLS.Q.U2.ALL.Z.H.C.B3.ZZ.D.WFNET"      # 現在の信用需要 - 消費者信用
+    SERIES_KEY_DEMAND_CONSUMER_EXPECTED = "BLS.Q.U2.ALL.Z.H.C.F3.ZZ.D.WFNET"     # 期待信用需要 - 消費者信用
+
+    # シリーズキー（住宅購入向け融資 - Loans to Households for House Purchase）
+    # B3 = 現在（Backward looking）, F3 = 予想（Forward looking）
+    SERIES_KEY_DEMAND_HOUSING_CURRENT = "BLS.Q.U2.ALL.Z.H.H.B3.ZZ.D.WFNET"       # 現在の信用需要 - 住宅購入向け融資
+    SERIES_KEY_DEMAND_HOUSING_EXPECTED = "BLS.Q.U2.ALL.Z.H.H.F3.ZZ.D.WFNET"      # 期待信用需要 - 住宅購入向け融資
 
     DATA_CACHE_KEY = "economy:ecb_bls:data"
     ECONALPHA_ID = "ecb_bls"
@@ -67,15 +83,97 @@ class ECBBLSService:
         pass
 
     def _fetch_series_data(self, series_key: str, start_date: str = "2015-01-01") -> Optional[List[Dict]]:
-        """ECB APIから単一シリーズデータを取得"""
-        url = f"{self.ECB_API_BASE}/{self.DATAFLOW}/{series_key}"
+        """ECB Data Portal APIから単一シリーズデータを取得"""
+        # 新しいECB Data Portal APIを使用
+        url = f"{self.ECB_API_BASE}/{series_key}"
+
+        try:
+            print(f"[ECB BLS] Fetching: {url}")
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+
+            data = response.json()
+
+            # 新APIのレスポンス形式に対応
+            # レスポンスは直接配列: [{"PERIOD": "2025-10-01", "OBS_VALUE_AS_IS": "1.925...", ...}, ...]
+            # または { "data": [...] } 形式の場合もある
+            if isinstance(data, list):
+                raw_data = data
+            elif isinstance(data, dict) and "data" in data:
+                raw_data = data["data"]
+            else:
+                print(f"[ECB BLS] Unexpected response format for {series_key}")
+                return None
+
+            if not raw_data:
+                print(f"[ECB BLS] Empty data for {series_key}")
+                return None
+
+            result = []
+            for item in raw_data:
+                # 日付は PERIOD フィールド（2025-10-01形式）から四半期形式に変換
+                period_raw = item.get("PERIOD") or item.get("TIME_PERIOD")
+                period_name = item.get("PERIOD_NAME")  # "Q4 2025" 形式
+
+                # OBS_VALUE_AS_IS から値を取得（文字列で格納されている）
+                value_str = item.get("OBS_VALUE_AS_IS") or item.get("OBS_VALUE") or item.get("VALUE")
+
+                # 日付を四半期形式に変換
+                if period_name:
+                    # "Q4 2025" -> "2025-Q4"
+                    parts = period_name.split()
+                    if len(parts) == 2:
+                        period = f"{parts[1]}-{parts[0]}"
+                    else:
+                        period = period_raw
+                elif period_raw:
+                    # "2025-10-01" -> "2025-Q4"
+                    try:
+                        from datetime import datetime
+                        dt = datetime.strptime(period_raw[:10], "%Y-%m-%d")
+                        quarter = (dt.month - 1) // 3 + 1
+                        period = f"{dt.year}-Q{quarter}"
+                    except:
+                        period = period_raw
+                else:
+                    continue
+
+                if period and value_str is not None:
+                    try:
+                        value = float(value_str)
+                        # 期間をフィルタリング（start_date以降のみ）
+                        if period >= start_date[:4]:  # 年で比較
+                            result.append({
+                                "date": period,
+                                "value": value
+                            })
+                    except (ValueError, TypeError):
+                        continue
+
+            result.sort(key=lambda x: x["date"])
+            print(f"[ECB BLS] Fetched {len(result)} data points for {series_key}")
+            return result
+
+        except requests.exceptions.RequestException as e:
+            print(f"[ECB BLS] Request error for {series_key}: {e}")
+            # フォールバック: 旧APIを試す
+            return self._fetch_series_data_legacy(series_key, start_date)
+        except (KeyError, ValueError, IndexError) as e:
+            print(f"[ECB BLS] Parse error for {series_key}: {e}")
+            return self._fetch_series_data_legacy(series_key, start_date)
+
+    def _fetch_series_data_legacy(self, series_key: str, start_date: str = "2015-01-01") -> Optional[List[Dict]]:
+        """旧ECB APIから単一シリーズデータを取得（フォールバック）"""
+        # 旧形式のシリーズキー（BLS.プレフィックスを除去）
+        legacy_key = series_key.replace("BLS.", "") if series_key.startswith("BLS.") else series_key
+        url = f"https://data-api.ecb.europa.eu/service/data/BLS/{legacy_key}"
         params = {
             "startPeriod": start_date,
             "format": "jsondata"
         }
 
         try:
-            print(f"[ECB BLS] Fetching: {url}")
+            print(f"[ECB BLS] Fetching (legacy): {url}")
             response = requests.get(url, params=params, timeout=30)
             response.raise_for_status()
 
@@ -120,14 +218,14 @@ class ECBBLSService:
                         })
 
             result.sort(key=lambda x: x["date"])
-            print(f"[ECB BLS] Fetched {len(result)} data points for {series_key}")
+            print(f"[ECB BLS] Fetched {len(result)} data points (legacy) for {series_key}")
             return result
 
         except requests.exceptions.RequestException as e:
-            print(f"[ECB BLS] Request error for {series_key}: {e}")
+            print(f"[ECB BLS] Legacy request error for {series_key}: {e}")
             return None
         except (KeyError, ValueError, IndexError) as e:
-            print(f"[ECB BLS] Parse error for {series_key}: {e}")
+            print(f"[ECB BLS] Legacy parse error for {series_key}: {e}")
             return None
 
     def get_ecb_bls_data(self, force_refresh: bool = False) -> Dict[str, Any]:
@@ -140,8 +238,12 @@ class ECBBLSService:
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
                     return {
-                        "enterprises": cached_data.get("enterprises", []),
-                        "households": cached_data.get("households", []),
+                        "enterprises_current": cached_data.get("enterprises_current", []),
+                        "enterprises_expected": cached_data.get("enterprises_expected", []),
+                        "consumer_current": cached_data.get("consumer_current", []),
+                        "consumer_expected": cached_data.get("consumer_expected", []),
+                        "housing_current": cached_data.get("housing_current", []),
+                        "housing_expected": cached_data.get("housing_expected", []),
                         "metadata": cached_data.get("metadata", {}),
                         "next_release": next_release,
                         "cached": True,
@@ -149,12 +251,22 @@ class ECBBLSService:
                         "last_updated": last_updated_str
                     }
 
-        # ECB APIからデータ取得
-        enterprises_data = self._fetch_series_data(self.SERIES_KEY_ENTERPRISES) or []
-        households_data = self._fetch_series_data(self.SERIES_KEY_HOUSEHOLDS) or []
+        # ECB APIからデータ取得（企業向け融資）
+        enterprises_current_data = self._fetch_series_data(self.SERIES_KEY_DEMAND_ENTERPRISES_CURRENT) or []
+        enterprises_expected_data = self._fetch_series_data(self.SERIES_KEY_DEMAND_ENTERPRISES_EXPECTED) or []
+
+        # ECB APIからデータ取得（消費者信用）
+        consumer_current_data = self._fetch_series_data(self.SERIES_KEY_DEMAND_CONSUMER_CURRENT) or []
+        consumer_expected_data = self._fetch_series_data(self.SERIES_KEY_DEMAND_CONSUMER_EXPECTED) or []
+
+        # ECB APIからデータ取得（住宅購入向け融資）
+        housing_current_data = self._fetch_series_data(self.SERIES_KEY_DEMAND_HOUSING_CURRENT) or []
+        housing_expected_data = self._fetch_series_data(self.SERIES_KEY_DEMAND_HOUSING_EXPECTED) or []
 
         # 少なくとも1つにデータがあれば成功
-        has_data = len(enterprises_data) > 0 or len(households_data) > 0
+        has_data = (len(enterprises_current_data) > 0 or len(enterprises_expected_data) > 0 or
+                    len(consumer_current_data) > 0 or len(consumer_expected_data) > 0 or
+                    len(housing_current_data) > 0 or len(housing_expected_data) > 0)
 
         if has_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
@@ -165,14 +277,22 @@ class ECBBLSService:
                 "unit": "Net percentage",
                 "frequency": "Quarterly",
                 "description": {
-                    "enterprises": "Credit standards for loans to enterprises (企業向け融資の信用基準)",
-                    "households": "Credit standards for loans to households for house purchase (家計向け住宅融資の信用基準)"
+                    "enterprises_current": "Loan demand - Enterprises (現在の信用需要 - 企業向け融資)",
+                    "enterprises_expected": "Loan demand - Enterprises expected (予想信用需要 - 企業向け融資)",
+                    "consumer_current": "Loan demand - Consumer credit (現在の信用需要 - 消費者信用)",
+                    "consumer_expected": "Loan demand - Consumer credit expected (期待信用需要 - 消費者信用)",
+                    "housing_current": "Loan demand - Households for house purchase (現在の信用需要 - 住宅購入向け融資)",
+                    "housing_expected": "Loan demand - Households for house purchase expected (期待信用需要 - 住宅購入向け融資)"
                 }
             }
 
             cache_payload = {
-                "enterprises": enterprises_data,
-                "households": households_data,
+                "enterprises_current": enterprises_current_data,
+                "enterprises_expected": enterprises_expected_data,
+                "consumer_current": consumer_current_data,
+                "consumer_expected": consumer_expected_data,
+                "housing_current": housing_current_data,
+                "housing_expected": housing_expected_data,
                 "metadata": metadata,
                 "last_updated": datetime.now(JST).isoformat()
             }
@@ -180,8 +300,12 @@ class ECBBLSService:
             self._save_file_cache(cache_payload)
 
             return {
-                "enterprises": enterprises_data,
-                "households": households_data,
+                "enterprises_current": enterprises_current_data,
+                "enterprises_expected": enterprises_expected_data,
+                "consumer_current": consumer_current_data,
+                "consumer_expected": consumer_expected_data,
+                "housing_current": housing_current_data,
+                "housing_expected": housing_expected_data,
                 "metadata": metadata,
                 "next_release": next_release,
                 "cached": False,
@@ -194,8 +318,12 @@ class ECBBLSService:
         if file_cache:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             return {
-                "enterprises": file_cache.get("enterprises", []),
-                "households": file_cache.get("households", []),
+                "enterprises_current": file_cache.get("enterprises_current", []),
+                "enterprises_expected": file_cache.get("enterprises_expected", []),
+                "consumer_current": file_cache.get("consumer_current", []),
+                "consumer_expected": file_cache.get("consumer_expected", []),
+                "housing_current": file_cache.get("housing_current", []),
+                "housing_expected": file_cache.get("housing_expected", []),
                 "metadata": file_cache.get("metadata", {}),
                 "next_release": next_release,
                 "cached": True,
@@ -204,8 +332,12 @@ class ECBBLSService:
             }
 
         return {
-            "enterprises": [],
-            "households": [],
+            "enterprises_current": [],
+            "enterprises_expected": [],
+            "consumer_current": [],
+            "consumer_expected": [],
+            "housing_current": [],
+            "housing_expected": [],
             "metadata": {},
             "next_release": None,
             "cached": False,
@@ -267,8 +399,12 @@ class ECBBLSService:
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,
-            "enterprises_count": len(cached_data.get("enterprises", [])) if cached_data else 0,
-            "households_count": len(cached_data.get("households", [])) if cached_data else 0,
+            "enterprises_current_count": len(cached_data.get("enterprises_current", [])) if cached_data else 0,
+            "enterprises_expected_count": len(cached_data.get("enterprises_expected", [])) if cached_data else 0,
+            "consumer_current_count": len(cached_data.get("consumer_current", [])) if cached_data else 0,
+            "consumer_expected_count": len(cached_data.get("consumer_expected", [])) if cached_data else 0,
+            "housing_current_count": len(cached_data.get("housing_current", [])) if cached_data else 0,
+            "housing_expected_count": len(cached_data.get("housing_expected", [])) if cached_data else 0,
             "file_cache_exists": DATA_CACHE_FILE.exists()
         }
 

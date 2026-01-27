@@ -1080,8 +1080,8 @@
     "datetime_utc": "2026-02-04T15:00:00+00:00",
     "datetime_jst": "2026-02-05T00:00:00+09:00",
     "time_jst": "00:00",
-    "label": "ISM Non-Manufacturing PMI (Jan)",
+    "label": "ISM Services PMI (Jan)",
     "estimate": null
   },
-  "last_updated": "2026-01-26T00:30:37.168843+09:00"
+  "last_updated": "2026-01-27T12:00:00.163619+09:00"
 }

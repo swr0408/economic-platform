@@ -183,7 +183,8 @@
       "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend && python check_mapping.py 2>&1\")",
       "Bash(powershell -Command \"cd C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend; python check_mapping.py 2>&1\")",
       "Bash(/c/Program Files/Redis/redis-cli.exe DEL:*)",
-      "Bash(dir /b \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\eurozone\\\\economy\"\")"
+      "Bash(dir /b \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\eurozone\\\\economy\"\")",
+      "Bash(xargs ls:*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

@@ -254,6 +254,16 @@ FMP_INDICATOR_CONFIGS = [
         "fetch_method": "get_france_pmi_data",
     },
     {
+        "name_ja": "M3マネーサプライ",
+        "fmp_event": "M3 Money Supply YoY",
+        "fmp_event_pattern": "M3 Money Supply",
+        "country": "EU",
+        "category": "policy",
+        "service_module": "services.eurozone.ecb_m3_service",
+        "service_instance": "ecb_m3_service",
+        "fetch_method": "get_ecb_m3_data",
+    },
+    {
         "name_ja": "ドイツ鉱工業生産",
         "fmp_event": "Industrial Production MoM",
         "fmp_event_pattern": "Industrial Production",

@@ -1,0 +1,365 @@
+{
+  "data": [
+    {
+      "date": "2020-01-01",
+      "compensation_plans": 24.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2020-02-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 21.0
+    },
+    {
+      "date": "2020-03-01",
+      "compensation_plans": 16.0,
+      "hiring_plans": 9.0
+    },
+    {
+      "date": "2020-04-01",
+      "compensation_plans": 7.0,
+      "hiring_plans": 1.0
+    },
+    {
+      "date": "2020-05-01",
+      "compensation_plans": 10.0,
+      "hiring_plans": 8.0
+    },
+    {
+      "date": "2020-06-01",
+      "compensation_plans": 13.0,
+      "hiring_plans": 16.0
+    },
+    {
+      "date": "2020-07-01",
+      "compensation_plans": 14.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2020-08-01",
+      "compensation_plans": 14.0,
+      "hiring_plans": 21.0
+    },
+    {
+      "date": "2020-09-01",
+      "compensation_plans": 16.0,
+      "hiring_plans": 23.0
+    },
+    {
+      "date": "2020-10-01",
+      "compensation_plans": 18.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2020-11-01",
+      "compensation_plans": 20.0,
+      "hiring_plans": 21.0
+    },
+    {
+      "date": "2020-12-01",
+      "compensation_plans": 14.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2021-01-01",
+      "compensation_plans": 17.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2021-02-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2021-03-01",
+      "compensation_plans": 17.0,
+      "hiring_plans": 22.0
+    },
+    {
+      "date": "2021-04-01",
+      "compensation_plans": 20.0,
+      "hiring_plans": 21.0
+    },
+    {
+      "date": "2021-05-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 27.0
+    },
+    {
+      "date": "2021-06-01",
+      "compensation_plans": 26.0,
+      "hiring_plans": 28.0
+    },
+    {
+      "date": "2021-07-01",
+      "compensation_plans": 27.0,
+      "hiring_plans": 27.0
+    },
+    {
+      "date": "2021-08-01",
+      "compensation_plans": 26.0,
+      "hiring_plans": 32.0
+    },
+    {
+      "date": "2021-09-01",
+      "compensation_plans": 30.0,
+      "hiring_plans": 26.0
+    },
+    {
+      "date": "2021-10-01",
+      "compensation_plans": 32.0,
+      "hiring_plans": 26.0
+    },
+    {
+      "date": "2021-11-01",
+      "compensation_plans": 32.0,
+      "hiring_plans": 25.0
+    },
+    {
+      "date": "2021-12-01",
+      "compensation_plans": 32.0,
+      "hiring_plans": 28.0
+    },
+    {
+      "date": "2022-01-01",
+      "compensation_plans": 27.0,
+      "hiring_plans": 26.0
+    },
+    {
+      "date": "2022-02-01",
+      "compensation_plans": 26.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2022-03-01",
+      "compensation_plans": 28.0,
+      "hiring_plans": 20.0
+    },
+    {
+      "date": "2022-04-01",
+      "compensation_plans": 27.0,
+      "hiring_plans": 20.0
+    },
+    {
+      "date": "2022-05-01",
+      "compensation_plans": 25.0,
+      "hiring_plans": 26.0
+    },
+    {
+      "date": "2022-06-01",
+      "compensation_plans": 28.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2022-07-01",
+      "compensation_plans": 25.0,
+      "hiring_plans": 20.0
+    },
+    {
+      "date": "2022-08-01",
+      "compensation_plans": 26.0,
+      "hiring_plans": 21.0
+    },
+    {
+      "date": "2022-09-01",
+      "compensation_plans": 23.0,
+      "hiring_plans": 23.0
+    },
+    {
+      "date": "2022-10-01",
+      "compensation_plans": 32.0,
+      "hiring_plans": 20.0
+    },
+    {
+      "date": "2022-11-01",
+      "compensation_plans": 28.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2022-12-01",
+      "compensation_plans": 27.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2023-01-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2023-02-01",
+      "compensation_plans": 23.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2023-03-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2023-04-01",
+      "compensation_plans": 21.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2023-05-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2023-06-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2023-07-01",
+      "compensation_plans": 21.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2023-08-01",
+      "compensation_plans": 26.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2023-09-01",
+      "compensation_plans": 23.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2023-10-01",
+      "compensation_plans": 24.0,
+      "hiring_plans": 17.0
+    },
+    {
+      "date": "2023-11-01",
+      "compensation_plans": 30.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2023-12-01",
+      "compensation_plans": 29.0,
+      "hiring_plans": 16.0
+    },
+    {
+      "date": "2024-01-01",
+      "compensation_plans": 26.0,
+      "hiring_plans": 14.0
+    },
+    {
+      "date": "2024-02-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 12.0
+    },
+    {
+      "date": "2024-03-01",
+      "compensation_plans": 21.0,
+      "hiring_plans": 11.0
+    },
+    {
+      "date": "2024-04-01",
+      "compensation_plans": 21.0,
+      "hiring_plans": 12.0
+    },
+    {
+      "date": "2024-05-01",
+      "compensation_plans": 18.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2024-06-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2024-07-01",
+      "compensation_plans": 18.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2024-08-01",
+      "compensation_plans": 20.0,
+      "hiring_plans": 13.0
+    },
+    {
+      "date": "2024-09-01",
+      "compensation_plans": 23.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2024-10-01",
+      "compensation_plans": 23.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2024-11-01",
+      "compensation_plans": 28.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2024-12-01",
+      "compensation_plans": 24.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2025-01-01",
+      "compensation_plans": 20.0,
+      "hiring_plans": 18.0
+    },
+    {
+      "date": "2025-02-01",
+      "compensation_plans": 18.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2025-03-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 12.0
+    },
+    {
+      "date": "2025-04-01",
+      "compensation_plans": 17.0,
+      "hiring_plans": 13.0
+    },
+    {
+      "date": "2025-05-01",
+      "compensation_plans": 20.0,
+      "hiring_plans": 12.0
+    },
+    {
+      "date": "2025-06-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 13.0
+    },
+    {
+      "date": "2025-07-01",
+      "compensation_plans": 17.0,
+      "hiring_plans": 14.0
+    },
+    {
+      "date": "2025-08-01",
+      "compensation_plans": 20.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2025-09-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 16.0
+    },
+    {
+      "date": "2025-10-01",
+      "compensation_plans": 19.0,
+      "hiring_plans": 15.0
+    },
+    {
+      "date": "2025-11-01",
+      "compensation_plans": 24.0,
+      "hiring_plans": 19.0
+    },
+    {
+      "date": "2025-12-01",
+      "compensation_plans": 24.0,
+      "hiring_plans": 17.0
+    }
+  ],
+  "last_updated": "2026-01-27T12:02:21.714538+09:00"
+}
