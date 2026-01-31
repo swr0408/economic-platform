@@ -32,7 +32,7 @@ ET = ZoneInfo("America/New_York")
 
 # 対象国コード
 # FMP APIは国によってGBではなくUKで返すことがあるため、両方を含める
-TARGET_COUNTRIES = {"US", "JP", "EU", "DE", "GB", "UK", "CA", "AU", "CN", "CH", "NZ", "FR"}
+TARGET_COUNTRIES = {"US", "JP", "EU", "DE", "GB", "UK", "CA", "AU", "CN", "CH", "NZ", "FR", "ES", "IT"}
 
 
 class FMPService:

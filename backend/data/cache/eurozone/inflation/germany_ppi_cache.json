@@ -1047,6 +1047,14 @@
       "ppi_mom_change": 0.0,
       "source": "destatis",
       "is_preliminary": false
+    },
+    {
+      "date": "2025-12-01",
+      "ppi_index": 125.1,
+      "ppi_yoy_change": -2.5,
+      "ppi_mom_change": -0.2,
+      "source": "destatis",
+      "is_preliminary": false
     }
   ],
   "metadata": {
@@ -1057,14 +1065,14 @@
     "description": "ドイツ生産者物価指数（PPI）"
   },
   "next_release": {
-    "date": "2026-01-20",
-    "datetime_utc": "2026-01-20T07:00:00+00:00",
-    "datetime_jst": "2026-01-20T16:00:00+09:00",
+    "date": "2026-02-20",
+    "datetime_utc": "2026-02-20T07:00:00+00:00",
+    "datetime_jst": "2026-02-20T16:00:00+09:00",
     "time_jst": "16:00",
-    "datetime_cet": "2026-01-20T08:00:00+01:00",
+    "datetime_cet": "2026-02-20T08:00:00+01:00",
     "time_cet": "08:00",
-    "label": "Producer Price Index YoY (Dec)",
-    "estimate": -2.1
+    "label": "Producer Price Index MoM (Jan)",
+    "estimate": -0.1
   },
-  "last_updated": "2026-01-16T13:14:35.234594+09:00"
+  "last_updated": "2026-01-30T10:40:56.121188+09:00"
 }

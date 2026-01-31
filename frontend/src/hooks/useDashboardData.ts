@@ -3094,6 +3094,27 @@ export interface EurozonePolicyData {
   ecb_bank_interest_rates: ECBBankInterestRatesData | null
 }
 
+// ECB CISS（システミックストレス総合指標）データの型
+export interface ECBCISSData {
+  data: ECBCISSDataPoint[]
+  latest: ECBCISSDataPoint | null
+  next_release: ECBCISSNextRelease | null
+}
+
+export interface ECBCISSDataPoint {
+  date: string
+  value: number
+}
+
+export interface ECBCISSNextRelease {
+  date: string
+  datetime_cet: string
+  datetime_jst: string
+  time_cet: string
+  time_jst: string
+  label?: string
+}
+
 // BOE Bank Rate データの型
 export interface BOEBankRateData {
   data: BOEBankRateItem[]
@@ -3345,6 +3366,49 @@ export interface BOEDMPSurveyData {
   next_release?: BOEDMPSurveyNextRelease | null
 }
 
+// UK Public Sector Net Borrowing（公的部門純借入）データの型
+export interface UKPublicSectorNetBorrowingDataPoint {
+  date: string
+  value: number
+}
+
+export interface UKPublicSectorNetBorrowingLatest {
+  date: string
+  value: number
+}
+
+export interface UKPublicSectorNetBorrowingNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  datetime_london?: string
+  time_london?: string
+  label?: string
+}
+
+export interface UKPublicSectorNetBorrowingMetadata {
+  source: string
+  description: string
+  unit_psnb_ex: string
+  unit_cgnb: string
+  unit_psnd_ex: string
+  unit_psnd_gdp: string
+}
+
+export interface UKPublicSectorNetBorrowingData {
+  psnb_ex: UKPublicSectorNetBorrowingDataPoint[]
+  cgnb: UKPublicSectorNetBorrowingDataPoint[]
+  psnd_ex: UKPublicSectorNetBorrowingDataPoint[]
+  psnd_gdp: UKPublicSectorNetBorrowingDataPoint[]
+  latest_psnb_ex: UKPublicSectorNetBorrowingLatest | null
+  latest_cgnb: UKPublicSectorNetBorrowingLatest | null
+  latest_psnd_ex: UKPublicSectorNetBorrowingLatest | null
+  latest_psnd_gdp: UKPublicSectorNetBorrowingLatest | null
+  metadata: UKPublicSectorNetBorrowingMetadata
+  next_release?: UKPublicSectorNetBorrowingNextRelease | null
+}
+
 // イギリス金融政策ダッシュボードデータの型（基本仕様・常設のみ）
 // ※ CPI構成項目（boe_cpi_components）は2025年11月以降の拡張データのため除外
 // ※ CPI寄与度（boe_cpi_contributions）は分解粒度が号で変わりやすいため除外
@@ -3362,6 +3426,7 @@ export interface UKPolicyData {
   boe_unit_wage_costs: BOEUnitWageCostsData | null
   boe_inflation_expectations: BOEInflationExpectationsData | null
   boe_dmp_survey: BOEDMPSurveyData | null
+  uk_public_sector_net_borrowing: UKPublicSectorNetBorrowingData | null
 }
 
 // ONS GDP データの型
@@ -4757,6 +4822,55 @@ export interface EurozoneEconomyData {
   germany_pmi: GermanyPMIData | null
   france_pmi: FrancePMIData | null
   ecb_adjusted_loans: ECBAdjustedLoansData | null
+  ecb_ciss: ECBCISSData | null
+  eu_international_trade: EUInternationalTradeData | null
+  eu_terms_of_trade: EUTermsOfTradeData | null
+  ecb_current_account: ECBCurrentAccountData | null
+  france_business_confidence: FranceBusinessConfidenceData | null
+}
+
+// フランス企業信頼感データの型
+export interface FranceBusinessConfidenceData {
+  data: FranceBusinessConfidenceItem[]
+  latest: FranceBusinessConfidenceItem | null
+  metadata: Record<string, unknown>
+  next_release: FranceBusinessConfidenceNextRelease | null
+}
+
+export interface FranceBusinessConfidenceItem {
+  date: string
+  value: number
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface FranceBusinessConfidenceNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
+// ECB経常収支データの型
+export interface ECBCurrentAccountData {
+  data: ECBCurrentAccountItem[]
+  latest: ECBCurrentAccountItem | null
+  metadata: Record<string, unknown>
+  next_release: ECBCurrentAccountNextRelease | null
+}
+
+export interface ECBCurrentAccountItem {
+  date: string
+  value: number
+}
+
+export interface ECBCurrentAccountNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
 }
 
 // ZEW景況感指数データの型
@@ -4898,6 +5012,74 @@ export interface EUPMINextRelease {
   estimate?: number | null
 }
 
+// EU国際貿易データの型
+export interface EUInternationalTradeData {
+  balance: EUInternationalTradeItem[]
+  exports: EUInternationalTradeItem[]
+  imports: EUInternationalTradeItem[]
+  balance_mom: EUInternationalTradeItem[]
+  balance_mom_diff: EUInternationalTradeItem[]
+  balance_yoy: EUInternationalTradeItem[]
+  exports_mom: EUInternationalTradeItem[]
+  exports_yoy: EUInternationalTradeItem[]
+  imports_mom: EUInternationalTradeItem[]
+  imports_yoy: EUInternationalTradeItem[]
+  latest_balance: EUInternationalTradeItem | null
+  latest_exports: EUInternationalTradeItem | null
+  latest_imports: EUInternationalTradeItem | null
+  latest_balance_mom: EUInternationalTradeItem | null
+  latest_balance_mom_diff: EUInternationalTradeItem | null
+  latest_balance_yoy: EUInternationalTradeItem | null
+  latest_exports_mom: EUInternationalTradeItem | null
+  latest_exports_yoy: EUInternationalTradeItem | null
+  latest_imports_mom: EUInternationalTradeItem | null
+  latest_imports_yoy: EUInternationalTradeItem | null
+  metadata: Record<string, unknown>
+  next_release: EUInternationalTradeNextRelease | null
+}
+
+export interface EUInternationalTradeItem {
+  date: string
+  value: number
+}
+
+export interface EUInternationalTradeNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+  label?: string
+}
+
+// EU交易条件データの型
+export interface EUTermsOfTradeData {
+  terms_of_trade: EUTermsOfTradeItem[]
+  export_uv: EUTermsOfTradeItem[]
+  import_uv: EUTermsOfTradeItem[]
+  latest_tot: EUTermsOfTradeItem | null
+  latest_export_uv: EUTermsOfTradeItem | null
+  latest_import_uv: EUTermsOfTradeItem | null
+  metadata: Record<string, unknown>
+  next_release: EUTermsOfTradeNextRelease | null
+}
+
+export interface EUTermsOfTradeItem {
+  date: string
+  value: number
+}
+
+export interface EUTermsOfTradeNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  datetime_cet?: string
+  time_cet?: string
+  label?: string
+}
+
 /**
  * ユーロ圏経済ダッシュボード専用フック
  *
@@ -4992,6 +5174,7 @@ export interface EurozoneEmploymentData {
   ecb_negotiated_wages: ECBNegotiatedWagesData | null
   indeed_euro_wage: IndeedEuroWageData | null
   germany_unemployment: GermanyUnemploymentData | null
+  eurostat_job_vacancy: EurostatJobVacancyData | null
 }
 
 // ECB失業率データの型
@@ -5178,6 +5361,26 @@ export interface GermanyUnemploymentNextRelease {
   estimate: number | null
 }
 
+// Eurostat求人欠員率データの型
+export interface EurostatJobVacancyData {
+  data: EurostatJobVacancyItem[]
+  latest: EurostatJobVacancyItem | null
+  metadata: Record<string, unknown>
+  next_release: EurostatJobVacancyNextRelease | null
+}
+
+export interface EurostatJobVacancyItem {
+  date: string
+  value: number
+}
+
+export interface EurostatJobVacancyNextRelease {
+  date: string
+  label: string
+  month: number
+  year: number
+}
+
 /**
  * ユーロ圏雇用ダッシュボード専用フック
  *
@@ -5203,6 +5406,8 @@ export interface EurozoneInflationData {
   germany_cpi: GermanyCPIData | null
   germany_ppi: GermanyPPIData | null
   ecb_inflation_expectations: ECBInflationExpectationsData | null
+  eu_import_prices: EUImportPricesData | null
+  spain_hicp_cpi: SpainHICPCPIData | null
 }
 
 // ECB HICPデータの型
@@ -5391,6 +5596,58 @@ export interface ECBInflationExpectationsNextRelease {
   estimate: number | null
 }
 
+// EU輸入物価データの型
+export interface EUImportPricesData {
+  yoy: EUImportPricesItem[]
+  mom: EUImportPricesItem[]
+  latest_yoy: EUImportPricesItem | null
+  latest_mom: EUImportPricesItem | null
+  metadata: Record<string, unknown>
+  next_release: EUImportPricesNextRelease | null
+}
+
+export interface EUImportPricesItem {
+  date: string
+  value: number
+}
+
+export interface EUImportPricesNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+// スペインHICP/CPIデータの型
+export interface SpainHICPCPIData {
+  cpi_mom: SpainHICPCPIItem[]
+  cpi_yoy: SpainHICPCPIItem[]
+  core_cpi_mom: SpainHICPCPIItem[]
+  core_cpi_yoy: SpainHICPCPIItem[]
+  hicp_mom: SpainHICPCPIItem[]
+  hicp_yoy: SpainHICPCPIItem[]
+  latest_cpi_yoy: SpainHICPCPIItem | null
+  latest_hicp_yoy: SpainHICPCPIItem | null
+  metadata: Record<string, unknown>
+  next_release: SpainHICPCPINextRelease | null
+}
+
+export interface SpainHICPCPIItem {
+  date: string
+  value: number
+}
+
+export interface SpainHICPCPINextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_cet: string
+  time_cet: string
+  label: string
+  estimate: number | null
+}
+
 /**
  * ユーロ圏インフレダッシュボード専用フック
  *
@@ -5405,4 +5662,201 @@ export interface ECBInflationExpectationsNextRelease {
  */
 export function useEurozoneInflationDashboard(): UseQueryResult<DashboardResponse<EurozoneInflationData>, Error> {
   return useDashboardData<EurozoneInflationData>('eurozone', 'inflation')
+}
+
+// ============================================================================
+// スイス金融政策ダッシュボード
+// ============================================================================
+
+// SNB政策金利データの型
+export interface ChSnbRateItem {
+  date: string
+  value: number
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface ChSnbRateNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_zurich?: string
+  time_zurich?: string
+  label: string
+  estimate?: number | null
+}
+
+export interface ChSnbRateData {
+  data: ChSnbRateItem[]
+  latest: ChSnbRateItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// SNBインフレ見通しリリース
+export interface ChInflationForecastRelease {
+  release_date: string
+  observed_image: string | null
+  forecast_image: string | null
+  observed_url: string
+  forecast_url: string
+}
+
+export interface ChInflationForecastData {
+  latest: ChInflationForecastRelease | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイスCPIデータアイテム
+export interface ChCPIItem {
+  date: string
+  cpi_yoy: number | null
+  cpi_mom: number | null
+  core1_yoy?: number | null
+  core1_mom?: number | null
+  core2_yoy?: number | null
+  core2_mom?: number | null
+}
+
+// スイスCPIデータ
+export interface ChCPIData {
+  data: ChCPIItem[]
+  latest: ChCPIItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// SNBバランスシートデータアイテム
+export interface SNBBalanceSheetItem {
+  date: string
+  value: number
+}
+
+// SNBバランスシートデータ
+export interface SNBBalanceSheetData {
+  data: SNBBalanceSheetItem[]
+  latest: SNBBalanceSheetItem | null
+  metadata: {
+    source: string
+    indicator: string
+    description: string
+    unit: string
+  }
+  next_release: string | null
+}
+
+// スイス金融政策ダッシュボードデータの型
+export interface SwitzerlandPolicyData {
+  ch_snb_rate: ChSnbRateData | null
+  ch_inflation_forecast: ChInflationForecastData | null
+  ch_cpi: ChCPIData | null
+  snb_balance_sheet: SNBBalanceSheetData | null
+}
+
+/**
+ * スイス金融政策ダッシュボード専用フック
+ * SNB政策金利などを取得
+ */
+export function useSwitzerlandPolicyDashboard(): UseQueryResult<DashboardResponse<SwitzerlandPolicyData>, Error> {
+  return useDashboardData<SwitzerlandPolicyData>('switzerland', 'policy')
+}
+
+// スイスPPIデータ項目
+export interface ChPPIItem {
+  date: string
+  ppi_yoy: number | null
+  ppi_mom: number | null
+}
+
+// スイスPPIデータ
+export interface ChPPIData {
+  data: ChPPIItem[]
+  latest: ChPPIItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス物価ダッシュボードデータの型
+export interface SwitzerlandInflationData {
+  ch_cpi: ChCPIData | null
+  ch_ppi: ChPPIData | null
+}
+
+/**
+ * スイス物価ダッシュボード専用フック
+ * CPIなどを取得
+ */
+export function useSwitzerlandInflationDashboard(): UseQueryResult<DashboardResponse<SwitzerlandInflationData>, Error> {
+  return useDashboardData<SwitzerlandInflationData>('switzerland', 'inflation')
+}
+
+// KOF経済バロメーターデータ項目
+export interface KofBarometerItem {
+  date: string
+  value: number | null
+}
+
+// KOF経済バロメーターデータ
+export interface KofBarometerData {
+  data: KofBarometerItem[]
+  latest: KofBarometerItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// SECO消費者景況感データ項目
+export interface CHConsumerSentimentItem {
+  date: string
+  value: number | null
+}
+
+// SECO消費者景況感データ
+export interface CHConsumerSentimentData {
+  data: CHConsumerSentimentItem[]
+  latest: CHConsumerSentimentItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス消費者ダッシュボードデータの型
+export interface SwitzerlandConsumerData {
+  kof_economic_barometer: KofBarometerData | null
+  ch_consumer_sentiment: CHConsumerSentimentData | null
+}
+
+/**
+ * スイス消費者ダッシュボード専用フック
+ * KOF経済バロメーターなどを取得
+ */
+export function useSwitzerlandConsumerDashboard(): UseQueryResult<DashboardResponse<SwitzerlandConsumerData>, Error> {
+  return useDashboardData<SwitzerlandConsumerData>('switzerland', 'consumer')
+}
+
+// スイス失業率データ項目
+export interface CHUnemploymentRateItem {
+  date: string
+  value: number | null
+}
+
+// スイス失業率データ
+export interface CHUnemploymentRateData {
+  data: CHUnemploymentRateItem[]
+  latest: CHUnemploymentRateItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス雇用ダッシュボードデータの型
+export interface SwitzerlandEmploymentData {
+  ch_unemployment_rate: CHUnemploymentRateData | null
+}
+
+/**
+ * スイス雇用ダッシュボード専用フック
+ * スイス失業率などを取得
+ */
+export function useSwitzerlandEmploymentDashboard(): UseQueryResult<DashboardResponse<SwitzerlandEmploymentData>, Error> {
+  return useDashboardData<SwitzerlandEmploymentData>('switzerland', 'employment')
 }

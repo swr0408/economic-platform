@@ -115,7 +115,7 @@ export default function BankInterestRatesChart({ data }: BankInterestRatesChartP
         title="銀行金利（MIR）"
         showPeriodSelector={false}
         dataSource="European Central Bank"
-        sourceUrl="https://data.ecb.europa.eu/data/datasets/MIR"
+        sourceUrl="https://www.ecb.europa.eu/press/stats/mfi/html/index.en.html"
       >
         {/* 最新値表示 */}
         <LatestValueBox

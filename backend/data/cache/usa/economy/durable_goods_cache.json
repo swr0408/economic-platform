@@ -2783,31 +2783,31 @@
     },
     {
       "date": "2025-10-01",
-      "value": 307406.0,
-      "ex_transport": 203350.0,
-      "mom": -2.15,
-      "yoy": 4.82,
-      "ex_transport_mom": 0.13,
-      "ex_transport_yoy": 3.48
+      "value": 307570.0,
+      "ex_transport": 203472.0,
+      "mom": -2.09,
+      "yoy": 4.88,
+      "ex_transport_mom": 0.19,
+      "ex_transport_yoy": 3.54
     },
     {
       "date": "2025-11-01",
-      "value": 323791.0,
-      "ex_transport": 204445.0,
-      "mom": 5.33,
+      "value": 323764.0,
+      "ex_transport": 204348.0,
+      "mom": 5.27,
       "yoy": 12.29,
-      "ex_transport_mom": 0.54,
-      "ex_transport_yoy": 4.41
+      "ex_transport_mom": 0.43,
+      "ex_transport_yoy": 4.36
     }
   ],
   "latest": {
     "date": "2025-11-01",
-    "value": 323791.0,
-    "ex_transport": 204445.0,
-    "mom": 5.33,
+    "value": 323764.0,
+    "ex_transport": 204348.0,
+    "mom": 5.27,
     "yoy": 12.29,
-    "ex_transport_mom": 0.54,
-    "ex_transport_yoy": 4.41
+    "ex_transport_mom": 0.43,
+    "ex_transport_yoy": 4.36
   },
-  "last_updated": "2026-01-27T22:42:08.056202+09:00"
+  "last_updated": "2026-01-30T23:00:02.171960+09:00"
 }

@@ -1151,13 +1151,19 @@
       "value": -17.0,
       "forecast": -18.0,
       "previous": -19.0
+    },
+    {
+      "date": "2026-01-01",
+      "value": -16.0,
+      "forecast": -17.0,
+      "previous": -17.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": -17.0,
-    "forecast": -18.0,
-    "previous": -19.0
+    "date": "2026-01-01",
+    "value": -16.0,
+    "forecast": -17.0,
+    "previous": -17.0
   },
-  "last_updated": "2026-01-19T16:38:08.667770+09:00"
+  "last_updated": "2026-01-29T01:12:41.426221+09:00"
 }

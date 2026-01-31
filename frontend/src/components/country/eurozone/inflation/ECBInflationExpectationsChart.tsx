@@ -202,8 +202,9 @@ export default function ECBInflationExpectationsChart({ data }: ECBInflationExpe
               label: '時系列',
               children: (
                 <>
-                  {/* データ比較ボタン */}
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+                  {/* 期間セレクタ + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                     <Tooltip title="比較ページを開く（インフレ期待・CES）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -218,8 +219,6 @@ export default function ECBInflationExpectationsChart({ data }: ECBInflationExpe
                       </Button>
                     </Tooltip>
                   </div>
-
-                  <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
                   {/* インフレ期待グラフ（3系列） */}
                   <StandardLineChart

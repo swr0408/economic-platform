@@ -1047,19 +1047,19 @@
     {
       "date": "2025-09-01",
       "value": 50.0,
-      "forecast": 51.8,
+      "forecast": 51.7,
       "previous": 52.0
     },
     {
       "date": "2025-10-01",
       "value": 52.4,
-      "forecast": 50.7,
+      "forecast": 50.8,
       "previous": 50.0
     },
     {
       "date": "2025-11-01",
       "value": 52.6,
-      "forecast": 52.1,
+      "forecast": 52.0,
       "previous": 52.4
     },
     {
@@ -1081,7 +1081,7 @@
     "datetime_jst": "2026-02-05T00:00:00+09:00",
     "time_jst": "00:00",
     "label": "ISM Services PMI (Jan)",
-    "estimate": null
+    "estimate": 54.3
   },
-  "last_updated": "2026-01-27T12:00:00.163619+09:00"
+  "last_updated": "2026-01-30T23:00:00.428507+09:00"
 }

@@ -16,6 +16,7 @@ DBからGfK Consumer Confidenceデータを取得
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
+import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
@@ -139,6 +140,41 @@ class GermanyConsumerConfidenceGfKService:
             "error": "No data available",
         }
 
+    # 月名から月番号へのマッピング
+    MONTH_MAP = {
+        "jan": 1, "feb": 2, "mar": 3, "apr": 4,
+        "may": 5, "jun": 6, "jul": 7, "aug": 8,
+        "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    }
+
+    def _parse_target_month(self, event_name: str, datetime_utc: datetime) -> str:
+        """
+        イベント名から対象月を抽出してYYYY-MM-01形式で返す
+
+        例: "Consumer Confidence (Feb)" + 2026-01-28 → "2026-02-01"
+            "GfK Consumer Confidence" + 2026-01-01 → "2026-01-01"（発表月をそのまま使用）
+        """
+        # "Consumer Confidence (Mon)" パターンを検索
+        match = re.search(r'\((\w{3})\)', event_name)
+        if match:
+            month_abbr = match.group(1).lower()
+            if month_abbr in self.MONTH_MAP:
+                target_month = self.MONTH_MAP[month_abbr]
+                year = datetime_utc.year
+                # 12月に翌年1月のデータが発表される場合
+                if datetime_utc.month == 12 and target_month == 1:
+                    year += 1
+                return f"{year}-{target_month:02d}-01"
+
+        # パターンがない場合（GfK Consumer Confidenceなど）は発表月の翌月を対象とする
+        # GfKは翌月予測なので、発表月+1
+        year = datetime_utc.year
+        month = datetime_utc.month + 1
+        if month > 12:
+            month = 1
+            year += 1
+        return f"{year}-{month:02d}-01"
+
     def _load_from_db(self) -> List[Dict[str, Any]]:
         """DBから履歴データを取得"""
         try:
@@ -147,8 +183,10 @@ class GermanyConsumerConfidenceGfKService:
 
             with SessionLocal() as session:
                 # GfK Consumer Confidence または Consumer Confidence でドイツのイベントを取得
+                # イベント名も取得して対象月を判定する
+                # datetime_utc DESCで取得して、より新しい発表データを優先する
                 query = text("""
-                    SELECT datetime_utc, actual, estimate, previous
+                    SELECT datetime_utc, event, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'DE'
                       AND (
@@ -156,7 +194,7 @@ class GermanyConsumerConfidenceGfKService:
                           OR event ILIKE '%Consumer Confidence%'
                       )
                       AND actual IS NOT NULL
-                    ORDER BY datetime_utc ASC
+                    ORDER BY datetime_utc DESC
                 """)
                 rows = session.execute(query).fetchall()
 
@@ -164,11 +202,13 @@ class GermanyConsumerConfidenceGfKService:
                 seen_dates = set()
 
                 for row in rows:
-                    dt_utc, actual, estimate, previous = row
+                    dt_utc, event_name, actual, estimate, previous = row
                     if dt_utc:
-                        # 月単位で一意にする（翌月予測なのでそのまま使用）
-                        date_str = dt_utc.strftime("%Y-%m-01")
+                        # イベント名から対象月を抽出（翌月予測のため）
+                        date_str = self._parse_target_month(event_name, dt_utc)
                         if date_str in seen_dates:
+                            # 同じ対象月のデータが既にある場合はスキップ
+                            # （新しい発表データを優先するためDESC順で取得）
                             continue
                         seen_dates.add(date_str)
 
@@ -178,6 +218,9 @@ class GermanyConsumerConfidenceGfKService:
                             "forecast": float(estimate) if estimate else None,
                             "previous": float(previous) if previous else None,
                         })
+
+                # 日付でソート（ASC）
+                result.sort(key=lambda x: x["date"])
 
                 print(f"[GermanyConsumerConfidenceGfK] Loaded {len(result)} records from DB")
                 return result

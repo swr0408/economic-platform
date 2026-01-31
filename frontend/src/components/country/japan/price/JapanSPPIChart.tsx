@@ -182,7 +182,9 @@ export default function JapanSPPIChart() {
           nextRelease={data?.next_release ? { date: formatNextRelease() || '' } : undefined}
         />
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+        {/* 期間セレクタ + 比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
           <Tooltip title="比較ページを開く">
             <Button
               icon={<AreaChartOutlined />}
@@ -192,8 +194,6 @@ export default function JapanSPPIChart() {
             </Button>
           </Tooltip>
         </div>
-
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
         <StandardLineChart
           data={filteredData}
           lines={[

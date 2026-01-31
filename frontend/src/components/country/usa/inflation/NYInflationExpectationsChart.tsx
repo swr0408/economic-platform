@@ -236,8 +236,9 @@ export default function NYInflationExpectationsChart({ nyInflationExpectationsDa
           nextRelease={nyInflationExpectationsData?.next_release}
         />
 
-        {/* データ比較ボタン */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+        {/* 期間セレクタ + 比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
           <Tooltip title="比較ページを開く（NY連銀インフレ期待）">
             <Button
               icon={<AreaChartOutlined />}
@@ -247,9 +248,6 @@ export default function NYInflationExpectationsChart({ nyInflationExpectationsDa
             </Button>
           </Tooltip>
         </div>
-
-        {/* 期間選択 */}
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
         {/* 折れ線グラフ */}
         <ResponsiveContainer width="100%" height={400}>

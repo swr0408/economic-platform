@@ -14,7 +14,12 @@ import EuroPolicyUncertaintyChart from './economy/EuroPolicyUncertaintyChart'
 import EurozonePMIChart from './economy/EurozonePMIChart'
 import GermanyPMIChart from './economy/GermanyPMIChart'
 import FrancePMIChart from './economy/FrancePMIChart'
+import FranceBusinessConfidenceChart from './economy/FranceBusinessConfidenceChart'
 import AdjustedLoansChart from './economy/AdjustedLoansChart'
+import CISSChart from './economy/CISSChart'
+import EUInternationalTradeChart from './economy/EUInternationalTradeChart'
+import EUTermsOfTradeChart from './economy/EUTermsOfTradeChart'
+import ECBCurrentAccountChart from './economy/ECBCurrentAccountChart'
 
 /**
  * ユーロ圏経済チャート群
@@ -85,6 +90,13 @@ export default function EurozoneEconomyCharts() {
         />
       </div>
 
+      {/* CISS Chart */}
+      <div id="ecb-ciss">
+        <CISSChart
+          data={dashboardData?.ecb_ciss ?? null}
+        />
+      </div>
+      
       {/* ECB Production Chart */}
       <div id="ecb-production">
         <ECBProductionChart
@@ -152,6 +164,34 @@ export default function EurozoneEconomyCharts() {
       <div id="france-pmi">
         <FrancePMIChart
           data={dashboardData?.france_pmi ?? null}
+        />
+      </div>
+
+      {/* France Business Confidence Chart */}
+      <div id="france-business-confidence">
+        <FranceBusinessConfidenceChart
+          data={dashboardData?.france_business_confidence ?? null}
+        />
+      </div>
+
+      {/* EU International Trade Chart */}
+      <div id="eu-international-trade">
+        <EUInternationalTradeChart
+          data={dashboardData?.eu_international_trade ?? null}
+        />
+      </div>
+
+      {/* EU Terms of Trade Chart */}
+      <div id="eu-terms-of-trade">
+        <EUTermsOfTradeChart
+          data={dashboardData?.eu_terms_of_trade ?? null}
+        />
+      </div>
+
+      {/* ECB Current Account Chart */}
+      <div id="ecb-current-account">
+        <ECBCurrentAccountChart
+          data={dashboardData?.ecb_current_account ?? null}
         />
       </div>
     </div>

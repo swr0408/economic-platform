@@ -18,6 +18,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 # FMP Event Patterns
 FMP_PATTERN_MPR = "BoE Monetary Policy Report"
+FMP_PATTERN_PSNB = "Public Sector Net Borrowing"
 
 
 class UKPolicyLoader(BaseDashboardLoader):
@@ -38,6 +39,7 @@ class UKPolicyLoader(BaseDashboardLoader):
     - boe_unit_wage_costs: 単位賃金コスト（UWC）見通し
     - boe_inflation_expectations: インフレ期待（家計/企業）
     - boe_dmp_survey: DMP（意思決定者パネル）サーベイ
+    - uk_public_sector_net_borrowing: 公的部門純借入（銀行除く）
 
     ※ CPI構成項目（boe_cpi_components）は2025年11月以降の拡張データのため除外
     ※ CPI寄与度（boe_cpi_contributions）は分解粒度が号で変わりやすいため除外
@@ -63,6 +65,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         "boe_unit_wage_costs",
         "boe_inflation_expectations",
         "boe_dmp_survey",
+        "uk_public_sector_net_borrowing",
     ]
 
     def __init__(self):
@@ -128,6 +131,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         from services.uk.boe_unit_wage_costs_service import boe_unit_wage_costs_service
         from services.uk.boe_inflation_expectations_service import boe_inflation_expectations_service
         from services.uk.boe_dmp_survey_service import boe_dmp_survey_service
+        from services.uk.ons_public_sector_net_borrowing_service import ons_public_sector_net_borrowing_service
 
         result = {
             "boe_bank_rate": None,
@@ -143,10 +147,11 @@ class UKPolicyLoader(BaseDashboardLoader):
             "boe_unit_wage_costs": None,
             "boe_inflation_expectations": None,
             "boe_dmp_survey": None,
+            "uk_public_sector_net_borrowing": None,
         }
 
         # 並列でデータを取得（基本仕様・常設のみ）
-        with ThreadPoolExecutor(max_workers=13) as executor:
+        with ThreadPoolExecutor(max_workers=14) as executor:
             futures = {
                 executor.submit(self._get_boe_bank_rate, boe_bank_rate_service): "boe_bank_rate",
                 executor.submit(self._get_boe_mpc_voting, boe_mpc_voting_service): "boe_mpc_voting",
@@ -161,6 +166,7 @@ class UKPolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_boe_unit_wage_costs, boe_unit_wage_costs_service): "boe_unit_wage_costs",
                 executor.submit(self._get_boe_inflation_expectations, boe_inflation_expectations_service): "boe_inflation_expectations",
                 executor.submit(self._get_boe_dmp_survey, boe_dmp_survey_service): "boe_dmp_survey",
+                executor.submit(self._get_uk_public_sector_net_borrowing, ons_public_sector_net_borrowing_service): "uk_public_sector_net_borrowing",
             }
 
             for future in as_completed(futures):
@@ -376,3 +382,37 @@ class UKPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting BOE DMP Survey: {e}")
             return {"survey_data": {}, "metadata": {}}
+
+    def _get_uk_public_sector_net_borrowing(self, service) -> dict:
+        """UK公的部門純借入データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("uk_public_sector_net_borrowing")
+            response = service.get_data(force_refresh=force_refresh)
+            # FMPから次回発表日時を取得
+            next_release = get_next_release_by_pattern(FMP_PATTERN_PSNB)
+            return {
+                "psnb_ex": response.get("psnb_ex", []),
+                "cgnb": response.get("cgnb", []),
+                "psnd_ex": response.get("psnd_ex", []),
+                "psnd_gdp": response.get("psnd_gdp", []),
+                "latest_psnb_ex": response.get("latest_psnb_ex"),
+                "latest_cgnb": response.get("latest_cgnb"),
+                "latest_psnd_ex": response.get("latest_psnd_ex"),
+                "latest_psnd_gdp": response.get("latest_psnd_gdp"),
+                "metadata": response.get("metadata", {}),
+                "next_release": next_release,
+            }
+        except Exception as e:
+            print(f"Error getting UK Public Sector Net Borrowing: {e}")
+            return {
+                "psnb_ex": [],
+                "cgnb": [],
+                "psnd_ex": [],
+                "psnd_gdp": [],
+                "latest_psnb_ex": None,
+                "latest_cgnb": None,
+                "latest_psnd_ex": None,
+                "latest_psnd_gdp": None,
+                "metadata": {},
+                "next_release": None,
+            }

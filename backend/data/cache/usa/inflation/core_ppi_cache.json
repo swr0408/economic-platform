@@ -1241,12 +1241,12 @@
     "index": 149.13
   },
   "next_release": {
-    "date": "2026-01-30",
-    "datetime_utc": "2026-01-30T13:30:00+00:00",
-    "datetime_jst": "2026-01-30T22:30:00+09:00",
+    "date": "2026-02-12",
+    "datetime_utc": "2026-02-12T13:30:00+00:00",
+    "datetime_jst": "2026-02-12T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "Producer Price Index (Dec)",
-    "estimate": 151
+    "label": "Producer Price Index (Jan)",
+    "estimate": null
   },
-  "last_updated": "2026-01-27T12:02:33.209548+09:00"
+  "last_updated": "2026-01-30T23:03:01.940751+09:00"
 }

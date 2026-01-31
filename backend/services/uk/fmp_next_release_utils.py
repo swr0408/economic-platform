@@ -37,6 +37,9 @@ def get_next_release_by_pattern(
     """
     FMPイベントパターンで次回発表日を取得
 
+    まずDBのeconomic_calendar_eventsテーブルから検索し、
+    なければFMP APIを呼び出す。
+
     Args:
         event_pattern: イベント名のパターン（例: "Interest Rate Decision"）
         use_cache: Redisキャッシュを使用するか
@@ -53,6 +56,14 @@ def get_next_release_by_pattern(
             return cached
 
     try:
+        # まずDBから検索（より信頼性が高い）
+        result = _get_next_release_from_db(event_pattern, country)
+        if result:
+            if use_cache:
+                redis_client.set(cache_key, result, expire=NEXT_RELEASE_CACHE_TTL)
+            return result
+
+        # DBになければAPIから取得
         from services.calendar.fmp_service import fmp_service
 
         today = date.today()
@@ -110,6 +121,70 @@ def get_next_release_by_pattern(
 
     except Exception as e:
         print(f"[UK FMP Utils] Error fetching next release by pattern '{event_pattern}' for country '{country}': {e}")
+        return None
+
+
+def _get_next_release_from_db(
+    event_pattern: str,
+    country: str = "GB"
+) -> Optional[Dict[str, Any]]:
+    """
+    DBのeconomic_calendar_eventsテーブルから次回発表日を取得
+
+    Args:
+        event_pattern: イベント名のパターン
+        country: 国コード
+
+    Returns:
+        次回発表日情報、なければNone
+    """
+    try:
+        from core.database import get_db_connection
+
+        # GBとUKの両方を検索
+        valid_countries = ("GB", "UK") if country == "GB" else (country,)
+
+        with get_db_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT event, datetime_utc, estimate
+                FROM economic_calendar_events
+                WHERE country IN %s
+                  AND event ILIKE %s
+                  AND actual IS NULL
+                  AND datetime_utc >= NOW()
+                ORDER BY datetime_utc ASC
+                LIMIT 1
+            """, (valid_countries, f"%{event_pattern}%"))
+            row = cursor.fetchone()
+            cursor.close()
+
+            if not row:
+                return None
+
+            event_name = row[0]
+            dt_utc = row[1]
+            estimate = row[2]
+
+            if dt_utc.tzinfo is None:
+                dt_utc = dt_utc.replace(tzinfo=UTC)
+
+            dt_jst = dt_utc.astimezone(JST)
+            dt_london = dt_utc.astimezone(LONDON)
+
+            return {
+                "date": dt_utc.strftime("%Y-%m-%d"),
+                "datetime_utc": dt_utc.isoformat(),
+                "datetime_jst": dt_jst.isoformat(),
+                "time_jst": dt_jst.strftime("%H:%M"),
+                "datetime_london": dt_london.isoformat(),
+                "time_london": dt_london.strftime("%H:%M"),
+                "label": event_name,
+                "estimate": float(estimate) if estimate is not None else None,
+            }
+
+    except Exception as e:
+        print(f"[UK FMP Utils] Error fetching from DB: {e}")
         return None
 
 

@@ -707,19 +707,16 @@
     {
       "date": "2025-12-01",
       "value": 89.1
+    },
+    {
+      "date": "2026-01-01",
+      "value": 84.5
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 89.1
+    "date": "2026-01-01",
+    "value": 84.5
   },
-  "next_release": {
-    "date": "2026-01-27",
-    "datetime_utc": "2026-01-27T15:00:00+00:00",
-    "datetime_jst": "2026-01-28T00:00:00+09:00",
-    "time_jst": "00:00",
-    "label": "CB Consumer Confidence (Jan)",
-    "estimate": 90.6
-  },
-  "last_updated": "2026-01-28T00:01:42.992713+09:00"
+  "next_release": null,
+  "last_updated": "2026-02-01T01:03:01.482483+09:00"
 }

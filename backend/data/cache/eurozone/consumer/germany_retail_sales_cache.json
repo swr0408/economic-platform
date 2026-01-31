@@ -1055,8 +1055,8 @@
     "time_jst": "16:00",
     "datetime_cet": "2026-02-02T08:00:00+01:00",
     "time_cet": "08:00",
-    "label": "Retail Sales MoM (Dec)",
-    "estimate": null
+    "label": "Retail Sales YoY (Dec)",
+    "estimate": 1.5
   },
-  "last_updated": "2026-01-18T23:48:36.893432+09:00"
+  "last_updated": "2026-01-29T01:07:31.801700+09:00"
 }

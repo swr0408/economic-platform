@@ -226,8 +226,9 @@ export default function ECBSPFCoreChart({ data }: ECBSPFCoreChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* データ比較ボタン */}
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+                  {/* 期間セレクタ + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                     <Tooltip title="比較ページを開く（コアインフレ期待）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -242,8 +243,6 @@ export default function ECBSPFCoreChart({ data }: ECBSPFCoreChartProps) {
                       </Button>
                     </Tooltip>
                   </div>
-
-                  <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                   <StandardLineChart
                     data={filteredData}
                     lines={[

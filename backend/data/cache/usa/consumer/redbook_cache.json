@@ -2299,19 +2299,23 @@
     {
       "date": "2026-01-21",
       "value": 5.5
+    },
+    {
+      "date": "2026-01-27",
+      "value": 7.1
     }
   ],
   "latest": {
-    "date": "2026-01-21",
-    "value": 5.5
+    "date": "2026-01-27",
+    "value": 7.1
   },
   "next_release": {
-    "date": "2026-01-27",
-    "datetime_utc": "2026-01-27T13:55:00+00:00",
-    "datetime_jst": "2026-01-27T22:55:00+09:00",
+    "date": "2026-02-03",
+    "datetime_utc": "2026-02-03T13:55:00+00:00",
+    "datetime_jst": "2026-02-03T22:55:00+09:00",
     "time_jst": "22:55",
-    "label": "Redbook YoY (Jan/24)",
+    "label": "Redbook YoY (Jan/31)",
     "estimate": null
   },
-  "last_updated": "2026-01-27T23:40:49.669003+09:00"
+  "last_updated": "2026-01-30T23:02:14.565389+09:00"
 }

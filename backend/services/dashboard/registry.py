@@ -28,6 +28,10 @@ from services.dashboard.loaders.uk_consumer import UKConsumerLoader
 from services.dashboard.loaders.uk_employment import UKEmploymentLoader
 from services.dashboard.loaders.uk_inflation import UKInflationLoader
 from services.dashboard.loaders.uk_housing import UKHousingLoader
+from services.dashboard.loaders.switzerland_policy import SwitzerlandPolicyLoader
+from services.dashboard.loaders.switzerland_inflation import SwitzerlandInflationLoader
+from services.dashboard.loaders.switzerland_consumer import SwitzerlandConsumerLoader
+from services.dashboard.loaders.switzerland_employment import SwitzerlandEmploymentLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -61,6 +65,12 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
     ("eurozone", "consumer"): EurozoneConsumerLoader,
     ("eurozone", "employment"): EurozoneEmploymentLoader,
     ("eurozone", "inflation"): EurozoneInflationLoader,
+
+    # スイス
+    ("switzerland", "policy"): SwitzerlandPolicyLoader,
+    ("switzerland", "inflation"): SwitzerlandInflationLoader,
+    ("switzerland", "consumer"): SwitzerlandConsumerLoader,
+    ("switzerland", "employment"): SwitzerlandEmploymentLoader,
 
     # 他の国も同様に追加可能
 }

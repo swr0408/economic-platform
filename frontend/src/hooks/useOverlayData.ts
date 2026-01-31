@@ -71,6 +71,8 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/eurozone/pmi',
     '/api/eurozone/germany-pmi',
     '/api/eurozone/france-pmi',
+    // Switzerland個別API（SNB、BFS/FSO等）
+    '/api/switzerland/',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

@@ -2702,12 +2702,12 @@
     "annualized_6m": 2.72
   },
   "next_release": {
-    "date": "2026-01-29",
-    "datetime_utc": "2026-01-29T13:30:00+00:00",
-    "datetime_jst": "2026-01-29T22:30:00+09:00",
+    "date": "2026-02-20",
+    "datetime_utc": "2026-02-20T13:30:00+00:00",
+    "datetime_jst": "2026-02-20T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "Core PCE Price Index YoY (Dec)",
+    "label": "PCE Price Index YoY (Dec)",
     "estimate": null
   },
-  "last_updated": "2026-01-27T12:02:32.862787+09:00"
+  "last_updated": "2026-01-30T23:03:01.370336+09:00"
 }

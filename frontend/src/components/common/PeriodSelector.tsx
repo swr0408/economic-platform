@@ -35,7 +35,7 @@ export default function PeriodSelector({
   const allOptions: PeriodOption[] = showReset ? [...options, resetOption] : options
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+    <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 8 }}>
       <Space size={8}>
         {allOptions.map(({ label, value }) => (
           <Button

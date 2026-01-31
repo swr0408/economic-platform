@@ -59,6 +59,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         "ecb_negotiated_wages",
         "indeed_euro_wage",
         "germany_unemployment",
+        "eurostat_job_vacancy",
     ]
 
     def __init__(self):
@@ -131,6 +132,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         from services.eurozone.ecb_negotiated_wages_service import ecb_negotiated_wages_service
         from services.eurozone.indeed_euro_wage_service import indeed_euro_wage_service
         from services.eurozone.germany_unemployment_service import germany_unemployment_service
+        from services.eurozone.eurostat_job_vacancy_service import eurostat_job_vacancy_service
 
         result = {
             "ecb_unemployment": None,
@@ -141,6 +143,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
             "ecb_negotiated_wages": None,
             "indeed_euro_wage": None,
             "germany_unemployment": None,
+            "eurostat_job_vacancy": None,
         }
 
         # 並列でデータを取得
@@ -154,6 +157,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_ecb_negotiated_wages, ecb_negotiated_wages_service): "ecb_negotiated_wages",
                 executor.submit(self._get_indeed_euro_wage, indeed_euro_wage_service): "indeed_euro_wage",
                 executor.submit(self._get_germany_unemployment, germany_unemployment_service): "germany_unemployment",
+                executor.submit(self._get_eurostat_job_vacancy, eurostat_job_vacancy_service): "eurostat_job_vacancy",
             }
 
             for future in as_completed(futures):
@@ -287,3 +291,18 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting Germany Unemployment: {e}")
             return {"unemployment_rate": [], "metadata": {}}
+
+    def _get_eurostat_job_vacancy(self, service) -> dict:
+        """Eurostat求人欠員率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("eurostat_job_vacancy")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Eurostat Job Vacancy: {e}")
+            return {"data": [], "latest": None, "metadata": {}}

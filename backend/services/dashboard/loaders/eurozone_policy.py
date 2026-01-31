@@ -163,7 +163,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=6) as executor:
+        with ThreadPoolExecutor(max_workers=7) as executor:
             futures = {
                 executor.submit(self._get_ecb_rates, ecb_rates_service): "ecb_rates",
                 executor.submit(self._get_eurex_ois, eurex_ois_service): "eurex_ois",

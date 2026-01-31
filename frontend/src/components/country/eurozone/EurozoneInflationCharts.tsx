@@ -8,6 +8,8 @@ import ECBSPFCoreChart from './inflation/ECBSPFCoreChart'
 import ECBInflationExpectationsChart from './inflation/ECBInflationExpectationsChart'
 import GermanyCPIChart from './inflation/GermanyCPIChart'
 import GermanyPPIChart from './inflation/GermanyPPIChart'
+import SpainHICPCPIChart from './inflation/SpainHICPCPIChart'
+import EUImportPricesChart from './inflation/EUImportPricesChart'
 
 /**
  * ユーロ圏インフレチャート群
@@ -96,6 +98,20 @@ export default function EurozoneInflationCharts() {
       <div id="germany-ppi">
         <GermanyPPIChart
           data={dashboardData?.germany_ppi ?? null}
+        />
+      </div>
+
+      {/* Spain HICP/CPI Chart */}
+      <div id="spain-hicp-cpi">
+        <SpainHICPCPIChart
+          data={dashboardData?.spain_hicp_cpi ?? null}
+        />
+      </div>
+
+      {/* EU Import Prices Chart */}
+      <div id="eu-import-prices">
+        <EUImportPricesChart
+          data={dashboardData?.eu_import_prices ?? null}
         />
       </div>
     </div>

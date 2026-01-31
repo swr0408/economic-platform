@@ -1,0 +1,15 @@
+{
+  "latest": {
+    "release_date": "2025-12-11",
+    "observed_image": "/api/switzerland/snb/inflation-forecast/image/20251211_observed.png",
+    "forecast_image": "/api/switzerland/snb/inflation-forecast/image/20251211_forecast.png",
+    "observed_url": "https://www.snb.ch/public/asset/en/www-snb-ch/publications/communication/press-releases-restricted/pre_20251211/publications2_en/pre_20251211_p2.en.png",
+    "forecast_url": "https://www.snb.ch/public/asset/en/www-snb-ch/publications/communication/press-releases-restricted/pre_20251211/publications3_en/pre_20251211_p3.en.png"
+  },
+  "metadata": {
+    "source": "Swiss National Bank",
+    "indicator": "SNB Inflation Forecast",
+    "description": "SNBインフレ見通し（条件付き予測）"
+  },
+  "last_updated": "2026-02-01T02:08:56.380370+09:00"
+}

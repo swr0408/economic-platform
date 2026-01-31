@@ -243,5 +243,25 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('ecb_adjusted_loans', '調整済貸出（ユーロ圏）', 'EU', 'monthly', ARRAY['M3 Money Supply YoY', 'M3 Money Supply'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- EU国際貿易（eu_international_trade）- 貿易収支・輸出・輸入
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('eu_international_trade', 'EU国際貿易', 'EU', 'monthly', ARRAY['Balance of Trade'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- EU経常収支（eu_current_account_balance）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('eu_current_account_balance', '経常収支（ユーロ圏）', 'EU', 'monthly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- スペインHICP/CPI（spain_hicp_cpi）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('spain_hicp_cpi', 'HICP/CPI（スペイン）', 'ES', 'monthly', ARRAY['CPI', 'HICP', 'Inflation Rate', 'Core Inflation Rate'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- UK公的部門純借入（uk_public_sector_net_borrowing_ex_bank）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('uk_public_sector_net_borrowing_ex_bank', '公的部門純借入（イギリス）', 'GB', 'monthly', ARRAY['Public Sector Net Borrowing'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;

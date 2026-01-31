@@ -1,0 +1,184 @@
+{
+  "terms_of_trade": [
+    {
+      "date": "2024-11-01",
+      "value": 104.81
+    },
+    {
+      "date": "2024-12-01",
+      "value": 105.45
+    },
+    {
+      "date": "2025-01-01",
+      "value": 105.43
+    },
+    {
+      "date": "2025-02-01",
+      "value": 106.36
+    },
+    {
+      "date": "2025-03-01",
+      "value": 108.36
+    },
+    {
+      "date": "2025-04-01",
+      "value": 107.8
+    },
+    {
+      "date": "2025-05-01",
+      "value": 109.01
+    },
+    {
+      "date": "2025-06-01",
+      "value": 107.79
+    },
+    {
+      "date": "2025-07-01",
+      "value": 106.45
+    },
+    {
+      "date": "2025-08-01",
+      "value": 108.92
+    },
+    {
+      "date": "2025-09-01",
+      "value": 108.11
+    },
+    {
+      "date": "2025-10-01",
+      "value": 108.18
+    }
+  ],
+  "export_uv": [
+    {
+      "date": "2024-11-01",
+      "value": 126.4
+    },
+    {
+      "date": "2024-12-01",
+      "value": 127.6
+    },
+    {
+      "date": "2025-01-01",
+      "value": 130.2
+    },
+    {
+      "date": "2025-02-01",
+      "value": 132.1
+    },
+    {
+      "date": "2025-03-01",
+      "value": 133.5
+    },
+    {
+      "date": "2025-04-01",
+      "value": 129.9
+    },
+    {
+      "date": "2025-05-01",
+      "value": 127.1
+    },
+    {
+      "date": "2025-06-01",
+      "value": 127.3
+    },
+    {
+      "date": "2025-07-01",
+      "value": 125.4
+    },
+    {
+      "date": "2025-08-01",
+      "value": 125.8
+    },
+    {
+      "date": "2025-09-01",
+      "value": 126.7
+    },
+    {
+      "date": "2025-10-01",
+      "value": 127.0
+    }
+  ],
+  "import_uv": [
+    {
+      "date": "2024-11-01",
+      "value": 120.6
+    },
+    {
+      "date": "2024-12-01",
+      "value": 121.0
+    },
+    {
+      "date": "2025-01-01",
+      "value": 123.5
+    },
+    {
+      "date": "2025-02-01",
+      "value": 124.2
+    },
+    {
+      "date": "2025-03-01",
+      "value": 123.2
+    },
+    {
+      "date": "2025-04-01",
+      "value": 120.5
+    },
+    {
+      "date": "2025-05-01",
+      "value": 116.6
+    },
+    {
+      "date": "2025-06-01",
+      "value": 118.1
+    },
+    {
+      "date": "2025-07-01",
+      "value": 117.8
+    },
+    {
+      "date": "2025-08-01",
+      "value": 115.5
+    },
+    {
+      "date": "2025-09-01",
+      "value": 117.2
+    },
+    {
+      "date": "2025-10-01",
+      "value": 117.4
+    }
+  ],
+  "latest_tot": {
+    "date": "2025-10-01",
+    "value": 108.18
+  },
+  "latest_export_uv": {
+    "date": "2025-10-01",
+    "value": 127.0
+  },
+  "latest_import_uv": {
+    "date": "2025-10-01",
+    "value": 117.4
+  },
+  "metadata": {
+    "source": "Eurostat - External Trade",
+    "export_dataset": "teiet300",
+    "import_dataset": "teiet310",
+    "area": "Euro area (20 countries)",
+    "unit": "Index (2021 = 100)",
+    "frequency": "Monthly",
+    "description": "Terms of Trade = Export Unit Value / Import Unit Value × 100"
+  },
+  "next_release": {
+    "date": "2026-02-13",
+    "datetime_utc": "2026-02-13T10:00:00+00:00",
+    "datetime_jst": "2026-02-13T19:00:00+09:00",
+    "time_jst": "19:00",
+    "datetime_cet": "2026-02-13T11:00:00+01:00",
+    "time_cet": "11:00",
+    "label": "Balance of Trade (Dec)",
+    "estimate": 12
+  },
+  "last_updated": "2026-01-30T02:32:30.366003+09:00"
+}

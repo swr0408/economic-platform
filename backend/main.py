@@ -97,6 +97,9 @@ try:
     from backend.routers.uk.ons_gdp import router as uk_ons_gdp_router
     from backend.routers.uk.ons_gva import router as uk_ons_gva_router
     from backend.routers.uk.brc_commentary import router as uk_brc_commentary_router
+    from backend.routers.switzerland.snb import router as switzerland_snb_router
+    from backend.routers.switzerland.fso import router as switzerland_fso_router
+    from backend.routers.switzerland.kof import router as switzerland_kof_router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -202,6 +205,11 @@ except ImportError:
     from routers.uk.ons_production import router as uk_ons_production_router
     from routers.uk.brc_commentary import router as uk_brc_commentary_router
     from routers.uk.rics_residential_survey import router as uk_rics_residential_survey_router
+    from routers.switzerland.snb import router as switzerland_snb_router
+    from routers.switzerland.fso import router as switzerland_fso_router
+    from routers.switzerland.kof import router as switzerland_kof_router
+    from routers.switzerland.seco import router as switzerland_seco_router
+    from routers.switzerland.bfs import router as switzerland_bfs_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -337,6 +345,13 @@ app.include_router(uk_ons_gva_router)
 app.include_router(uk_ons_production_router)
 app.include_router(uk_brc_commentary_router)
 app.include_router(uk_rics_residential_survey_router)
+
+# Switzerland
+app.include_router(switzerland_snb_router)
+app.include_router(switzerland_fso_router)
+app.include_router(switzerland_kof_router)
+app.include_router(switzerland_seco_router)
+app.include_router(switzerland_bfs_router)
 
 
 @app.get("/health")

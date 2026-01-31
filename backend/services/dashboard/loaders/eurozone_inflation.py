@@ -10,6 +10,8 @@ HICP（消費者物価調和指数）、PPI（生産者物価指数）、SPF（�
 - Germany CPI: FMP発表日時ベース更新（"Inflation Rate YoY"パターン）
 - Germany PPI: FMP発表日時ベース更新（"Producer Price Index MoM", "Producer Price Index YoY"パターン）
 - ECB Inflation Expectations: FMP発表日時ベース更新（"Consumer Inflation Expectation"パターン）
+- EU Import Prices: Eurostatリリースカレンダーベース更新（"Industrial import prices"パターン）
+- Spain HICP/CPI: FMP発表日時ベース更新（"HICP YoY"パターン、country=ES）
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -35,6 +37,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
     - germany_cpi: ドイツCPI/HICP（消費者物価指数）
     - germany_ppi: ドイツPPI（生産者物価指数）
     - ecb_inflation_expectations: ECB CES インフレ期待（消費者期待調査）
+    - eu_import_prices: EU輸入物価（Eurostat）
+    - spain_hicp_cpi: スペインHICP/CPI（INE）
 
     キャッシュ方式: FMP発表日時ベース判定
     - ECB HICP: FMP発表日時ベース更新
@@ -44,6 +48,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
     - Germany CPI: FMP発表日時ベース更新
     - Germany PPI: FMP発表日時ベース更新
     - ECB Inflation Expectations: FMP発表日時ベース更新
+    - EU Import Prices: Eurostatリリースカレンダーベース更新
+    - Spain HICP/CPI: FMP発表日時ベース更新
     """
 
     COUNTRY_CODE = "eurozone"
@@ -58,6 +64,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
         "germany_cpi",
         "germany_ppi",
         "ecb_inflation_expectations",
+        "eu_import_prices",
+        "spain_hicp_cpi",
     ]
 
     def __init__(self):
@@ -130,6 +138,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
         from services.eurozone.germany_cpi_service import germany_cpi_service
         from services.eurozone.germany_ppi_service import germany_ppi_service
         from services.eurozone.ecb_inflation_expectations_service import ecb_inflation_expectations_service
+        from services.eurozone.eu_import_prices_service import eu_import_prices_service
+        from services.eurozone.spain_hicp_cpi_service import spain_hicp_cpi_service
 
         result = {
             "ecb_hicp": None,
@@ -139,10 +149,12 @@ class EurozoneInflationLoader(BaseDashboardLoader):
             "germany_cpi": None,
             "germany_ppi": None,
             "ecb_inflation_expectations": None,
+            "eu_import_prices": None,
+            "spain_hicp_cpi": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=9) as executor:
             futures = {
                 executor.submit(self._get_ecb_hicp, ecb_hicp_service): "ecb_hicp",
                 executor.submit(self._get_ecb_ppi, ecb_ppi_service): "ecb_ppi",
@@ -151,6 +163,8 @@ class EurozoneInflationLoader(BaseDashboardLoader):
                 executor.submit(self._get_germany_cpi, germany_cpi_service): "germany_cpi",
                 executor.submit(self._get_germany_ppi, germany_ppi_service): "germany_ppi",
                 executor.submit(self._get_ecb_inflation_expectations, ecb_inflation_expectations_service): "ecb_inflation_expectations",
+                executor.submit(self._get_eu_import_prices, eu_import_prices_service): "eu_import_prices",
+                executor.submit(self._get_spain_hicp_cpi, spain_hicp_cpi_service): "spain_hicp_cpi",
             }
 
             for future in as_completed(futures):
@@ -339,5 +353,61 @@ class EurozoneInflationLoader(BaseDashboardLoader):
                 "inflation_12m": [],
                 "inflation_3y": [],
                 "inflation_5y": [],
+                "metadata": {},
+            }
+
+    def _get_eu_import_prices(self, service) -> dict:
+        """EU輸入物価データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("eu_import_prices")
+            response = service.get_data(force_refresh=force_refresh)
+
+            return {
+                "yoy": response.get("yoy", []),
+                "mom": response.get("mom", []),
+                "latest_yoy": response.get("latest_yoy"),
+                "latest_mom": response.get("latest_mom"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting EU Import Prices: {e}")
+            return {
+                "yoy": [],
+                "mom": [],
+                "latest_yoy": None,
+                "latest_mom": None,
+                "metadata": {},
+            }
+
+    def _get_spain_hicp_cpi(self, service) -> dict:
+        """スペインHICP/CPIデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("spain_hicp_cpi")
+            response = service.get_data(force_refresh=force_refresh)
+
+            return {
+                "cpi_mom": response.get("cpi_mom", []),
+                "cpi_yoy": response.get("cpi_yoy", []),
+                "core_cpi_mom": response.get("core_cpi_mom", []),
+                "core_cpi_yoy": response.get("core_cpi_yoy", []),
+                "hicp_mom": response.get("hicp_mom", []),
+                "hicp_yoy": response.get("hicp_yoy", []),
+                "latest_cpi_yoy": response.get("latest_cpi_yoy"),
+                "latest_hicp_yoy": response.get("latest_hicp_yoy"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Spain HICP/CPI: {e}")
+            return {
+                "cpi_mom": [],
+                "cpi_yoy": [],
+                "core_cpi_mom": [],
+                "core_cpi_yoy": [],
+                "hicp_mom": [],
+                "hicp_yoy": [],
+                "latest_cpi_yoy": None,
+                "latest_hicp_yoy": None,
                 "metadata": {},
             }

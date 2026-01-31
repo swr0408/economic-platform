@@ -8139,11 +8139,31 @@
     {
       "date": "2026-01-21",
       "value": 3.7246
+    },
+    {
+      "date": "2026-01-22",
+      "value": 3.726
+    },
+    {
+      "date": "2026-01-23",
+      "value": 3.7265
+    },
+    {
+      "date": "2026-01-26",
+      "value": 3.7259
+    },
+    {
+      "date": "2026-01-27",
+      "value": 3.7256
+    },
+    {
+      "date": "2026-01-28",
+      "value": 3.7248
     }
   ],
   "latest": {
-    "date": "2026-01-21",
-    "value": 3.7246
+    "date": "2026-01-28",
+    "value": 3.7248
   },
   "metadata": {
     "source": "Bank of England",
@@ -8151,5 +8171,5 @@
     "series_code": "IUDSOIA",
     "description": "Sterling Overnight Index Average - 英国のオーバーナイト金利ベンチマーク"
   },
-  "last_updated": "2026-01-25T20:16:37.918058+09:00"
+  "last_updated": "2026-01-30T21:01:53.933010+09:00"
 }

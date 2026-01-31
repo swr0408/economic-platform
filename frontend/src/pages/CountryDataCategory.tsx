@@ -35,6 +35,10 @@ import UKConsumerCharts from '../components/country/uk/UKConsumerCharts'
 import UKEmploymentCharts from '../components/country/uk/UKEmploymentCharts'
 import UKInflationCharts from '../components/country/uk/UKInflationCharts'
 import UKHousingCharts from '../components/country/uk/UKHousingCharts'
+import SwitzerlandPolicyCharts from '../components/country/switzerland/SwitzerlandPolicyCharts'
+import SwitzerlandInflationCharts from '../components/country/switzerland/SwitzerlandInflationCharts'
+import SwitzerlandConsumerCharts from '../components/country/switzerland/SwitzerlandConsumerCharts'
+import SwitzerlandEmploymentCharts from '../components/country/switzerland/SwitzerlandEmploymentCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -262,6 +266,11 @@ function CountryDataCategory() {
   const isUKEmployment = countryCode === 'uk' && categoryCode === 'employment'
   const isUKInflation = countryCode === 'uk' && categoryCode === 'inflation'
   const isUKHousing = countryCode === 'uk' && categoryCode === 'housing'
+  // スイス金融政策・物価・消費・雇用の場合はチャートを表示
+  const isSwitzerlandPolicy = countryCode === 'switzerland' && categoryCode === 'policy'
+  const isSwitzerlandInflation = countryCode === 'switzerland' && categoryCode === 'inflation'
+  const isSwitzerlandConsumer = countryCode === 'switzerland' && categoryCode === 'consumer'
+  const isSwitzerlandEmployment = countryCode === 'switzerland' && categoryCode === 'employment'
 
   // メインコンテンツ
   const mainContent = (
@@ -310,6 +319,14 @@ function CountryDataCategory() {
         <UKInflationCharts />
       ) : isUKHousing ? (
         <UKHousingCharts />
+      ) : isSwitzerlandPolicy ? (
+        <SwitzerlandPolicyCharts />
+      ) : isSwitzerlandInflation ? (
+        <SwitzerlandInflationCharts />
+      ) : isSwitzerlandConsumer ? (
+        <SwitzerlandConsumerCharts />
+      ) : isSwitzerlandEmployment ? (
+        <SwitzerlandEmploymentCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

@@ -1,6 +1,6 @@
 """
 ユーロ圏経済ダッシュボードローダー
-ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策不確実性指数、PMI、ドイツGDP成長率、ドイツ鉱工業生産、ドイツ製造業新規受注、ZEW景況感、フランスPMIなどの経済指標を一括取得
+ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策不確実性指数、PMI、ドイツGDP成長率、ドイツ鉱工業生産、ドイツ製造業新規受注、ZEW景況感、フランスPMI、経常収支などの経済指標を一括取得
 
 キャッシュ更新判定: 日次更新方式
 - ECB GDP: 毎日18:00 CET更新
@@ -16,6 +16,8 @@ ECB GDP、GDP構成要素、銀行貸出調査、鉱工業生産、ESI、政策�
 - ZEW Economic Sentiment: FMP発表日時ベース更新
 - Germany PMI: FMP発表日時ベース更新
 - France PMI: FMP発表日時ベース更新
+- EU Terms of Trade: FMP発表日時ベース更新（EU国際貿易と同時発表）
+- ECB Current Account: FMP発表日時ベース更新
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
@@ -146,6 +148,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         from services.eurozone.germany_pmi_service import germany_pmi_service
         from services.eurozone.france_pmi_service import france_pmi_service
         from services.eurozone.ecb_adjusted_loans_service import ecb_adjusted_loans_service
+        from services.eurozone.ecb_ciss_service import ecb_ciss_service
+        from services.eurozone.eu_international_trade_service import eu_international_trade_service
+        from services.eurozone.eu_terms_of_trade_service import eu_terms_of_trade_service
+        from services.eurozone.ecb_current_account_service import ecb_current_account_service
+        from services.eurozone.france_business_confidence_service import france_business_confidence_service
 
         result = {
             "ecb_gdp": None,
@@ -163,6 +170,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
             "germany_pmi": None,
             "france_pmi": None,
             "ecb_adjusted_loans": None,
+            "ecb_ciss": None,
+            "eu_international_trade": None,
+            "eu_terms_of_trade": None,
+            "ecb_current_account": None,
+            "france_business_confidence": None,
         }
 
         # 並列でデータを取得
@@ -183,6 +195,11 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_germany_pmi, germany_pmi_service): "germany_pmi",
                 executor.submit(self._get_france_pmi, france_pmi_service): "france_pmi",
                 executor.submit(self._get_ecb_adjusted_loans, ecb_adjusted_loans_service): "ecb_adjusted_loans",
+                executor.submit(self._get_ecb_ciss, ecb_ciss_service): "ecb_ciss",
+                executor.submit(self._get_eu_international_trade, eu_international_trade_service): "eu_international_trade",
+                executor.submit(self._get_eu_terms_of_trade, eu_terms_of_trade_service): "eu_terms_of_trade",
+                executor.submit(self._get_ecb_current_account, ecb_current_account_service): "ecb_current_account",
+                executor.submit(self._get_france_business_confidence, france_business_confidence_service): "france_business_confidence",
             }
 
             for future in as_completed(futures):
@@ -462,5 +479,125 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 "nfc": {"data": [], "latest": None},
                 "households": {"data": [], "latest": None},
                 "housing": {"data": [], "latest": None},
+                "next_release": None
+            }
+
+    def _get_ecb_ciss(self, service) -> dict:
+        """ECB CISSデータを取得（システミックストレス総合指標）"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_ciss")
+            response = service.get_ciss_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB CISS: {e}")
+            return {"data": [], "latest": None, "next_release": None}
+
+    def _get_eu_international_trade(self, service) -> dict:
+        """EU国際貿易データを取得（貿易収支・輸出・輸入 + 前月比・前年比・増減幅）"""
+        try:
+            force_refresh = self._should_force_refresh("eu_international_trade")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "balance": response.get("balance", []),
+                "exports": response.get("exports", []),
+                "imports": response.get("imports", []),
+                "balance_mom": response.get("balance_mom", []),
+                "balance_mom_diff": response.get("balance_mom_diff", []),
+                "balance_yoy": response.get("balance_yoy", []),
+                "exports_mom": response.get("exports_mom", []),
+                "exports_yoy": response.get("exports_yoy", []),
+                "imports_mom": response.get("imports_mom", []),
+                "imports_yoy": response.get("imports_yoy", []),
+                "latest_balance": response.get("latest_balance"),
+                "latest_exports": response.get("latest_exports"),
+                "latest_imports": response.get("latest_imports"),
+                "latest_balance_mom": response.get("latest_balance_mom"),
+                "latest_balance_mom_diff": response.get("latest_balance_mom_diff"),
+                "latest_balance_yoy": response.get("latest_balance_yoy"),
+                "latest_exports_mom": response.get("latest_exports_mom"),
+                "latest_exports_yoy": response.get("latest_exports_yoy"),
+                "latest_imports_mom": response.get("latest_imports_mom"),
+                "latest_imports_yoy": response.get("latest_imports_yoy"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting EU International Trade: {e}")
+            return {
+                "balance": [], "exports": [], "imports": [],
+                "balance_mom": [], "balance_mom_diff": [], "balance_yoy": [],
+                "exports_mom": [], "exports_yoy": [],
+                "imports_mom": [], "imports_yoy": [],
+                "latest_balance": None, "latest_exports": None, "latest_imports": None,
+                "latest_balance_mom": None, "latest_balance_mom_diff": None, "latest_balance_yoy": None,
+                "latest_exports_mom": None, "latest_exports_yoy": None,
+                "latest_imports_mom": None, "latest_imports_yoy": None,
+                "metadata": {}, "next_release": None
+            }
+
+    def _get_eu_terms_of_trade(self, service) -> dict:
+        """EU交易条件データを取得（輸出単価指数/輸入単価指数）"""
+        try:
+            force_refresh = self._should_force_refresh("eu_terms_of_trade")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "terms_of_trade": response.get("terms_of_trade", []),
+                "export_uv": response.get("export_uv", []),
+                "import_uv": response.get("import_uv", []),
+                "latest_tot": response.get("latest_tot"),
+                "latest_export_uv": response.get("latest_export_uv"),
+                "latest_import_uv": response.get("latest_import_uv"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting EU Terms of Trade: {e}")
+            return {
+                "terms_of_trade": [], "export_uv": [], "import_uv": [],
+                "latest_tot": None, "latest_export_uv": None, "latest_import_uv": None,
+                "metadata": {}, "next_release": None
+            }
+
+    def _get_ecb_current_account(self, service) -> dict:
+        """ECB経常収支データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_current_account")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB Current Account: {e}")
+            return {
+                "data": [],
+                "latest": None,
+                "metadata": {},
+                "next_release": None
+            }
+
+    def _get_france_business_confidence(self, service) -> dict:
+        """フランス企業信頼感データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("france_business_confidence")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting France Business Confidence: {e}")
+            return {
+                "data": [],
+                "latest": None,
+                "metadata": {},
                 "next_release": None
             }

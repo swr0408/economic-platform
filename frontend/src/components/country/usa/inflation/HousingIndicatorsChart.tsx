@@ -267,8 +267,9 @@ export default function HousingIndicatorsChart({ housingData }: HousingIndicator
           date={latest?.rent_cpi?.date}
         />
 
-        {/* データ比較ボタン */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+        {/* 期間セレクタ + 比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
           <Tooltip title="比較ページを開く（Zillow家賃指数・ケースシラー・家賃CPI）">
             <Button
               icon={<AreaChartOutlined />}
@@ -278,9 +279,6 @@ export default function HousingIndicatorsChart({ housingData }: HousingIndicator
             </Button>
           </Tooltip>
         </div>
-
-        {/* 期間選択 */}
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
         {/* 折れ線グラフ（家賃CPIは右Y軸） */}
         <ResponsiveContainer width="100%" height={450}>

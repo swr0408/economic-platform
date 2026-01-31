@@ -1162,14 +1162,14 @@
       {
         "date": "2026-01",
         "value": 48.7,
-        "forecast": 47.8,
+        "forecast": 48.5,
         "previous": 47.0
       }
     ],
     "latest": {
       "date": "2026-01",
       "value": 48.7,
-      "forecast": 47.8,
+      "forecast": 48.5,
       "previous": 47.0
     }
   },
@@ -3171,5 +3171,5 @@
     "label": "HCOB Manufacturing PMI (Jan)",
     "estimate": 48.7
   },
-  "last_updated": "2026-01-27T17:10:41.348738+01:00"
+  "last_updated": "2026-01-29T18:32:28.406776+01:00"
 }

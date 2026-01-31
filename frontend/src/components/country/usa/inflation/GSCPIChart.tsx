@@ -169,8 +169,9 @@ export default function GSCPIChart({ gscpiData }: GSCPIChartProps) {
           nextRelease={gscpiData.next_release}
         />
 
-        {/* データ比較ボタン */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+        {/* 期間セレクタ + 比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
           <Tooltip title="比較ページを開く（GSCPI）">
             <Button
               icon={<AreaChartOutlined />}
@@ -180,9 +181,6 @@ export default function GSCPIChart({ gscpiData }: GSCPIChartProps) {
             </Button>
           </Tooltip>
         </div>
-
-        {/* 期間選択 */}
-        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
         {/* 折れ線グラフ */}
         <ResponsiveContainer width="100%" height={400}>

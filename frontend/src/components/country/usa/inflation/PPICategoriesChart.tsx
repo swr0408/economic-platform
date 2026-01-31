@@ -378,14 +378,13 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
               label: '時系列',
               children: (
                 <>
-                  {/* 表示モード切替 */}
-                  <ViewModeButtonGroup
-                    options={VIEW_MODE_OPTIONS}
-                    currentMode={viewMode}
-                    onChange={(mode) => { setViewMode(mode); if (mode === 'mom_table') setDisplayCount(5) }}
-                  />
-
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+                  {/* 表示モード切替 + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={VIEW_MODE_OPTIONS}
+                      currentMode={viewMode}
+                      onChange={(mode) => { setViewMode(mode); if (mode === 'mom_table') setDisplayCount(5) }}
+                    />
                     <Tooltip title="比較ページを開く（PPI項目別）">
                       <Button
                         icon={<AreaChartOutlined />}

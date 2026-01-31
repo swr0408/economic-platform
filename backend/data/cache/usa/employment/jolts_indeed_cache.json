@@ -1183,42 +1183,42 @@
     {
       "date": "2020-02-07",
       "jolts": null,
-      "indeed": 100.3
+      "indeed": 100.2
     },
     {
       "date": "2020-02-08",
       "jolts": null,
-      "indeed": 100.4
+      "indeed": 100.2
     },
     {
       "date": "2020-02-09",
       "jolts": null,
-      "indeed": 100.3
+      "indeed": 100.2
     },
     {
       "date": "2020-02-10",
       "jolts": null,
-      "indeed": 100.4
+      "indeed": 100.3
     },
     {
       "date": "2020-02-11",
       "jolts": null,
-      "indeed": 100.5
+      "indeed": 100.3
     },
     {
       "date": "2020-02-12",
       "jolts": null,
-      "indeed": 100.5
+      "indeed": 100.4
     },
     {
       "date": "2020-02-13",
       "jolts": null,
-      "indeed": 100.5
+      "indeed": 100.4
     },
     {
       "date": "2020-02-14",
       "jolts": null,
-      "indeed": 100.5
+      "indeed": 100.6
     },
     {
       "date": "2020-02-15",
@@ -1258,7 +1258,7 @@
     {
       "date": "2020-02-22",
       "jolts": null,
-      "indeed": 99.7
+      "indeed": 99.6
     },
     {
       "date": "2020-02-23",
@@ -1313,7 +1313,7 @@
     {
       "date": "2020-03-04",
       "jolts": null,
-      "indeed": 100.0
+      "indeed": 99.9
     },
     {
       "date": "2020-03-05",
@@ -1328,37 +1328,37 @@
     {
       "date": "2020-03-07",
       "jolts": null,
-      "indeed": 99.8
+      "indeed": 99.7
     },
     {
       "date": "2020-03-08",
       "jolts": null,
-      "indeed": 99.7
+      "indeed": 99.6
     },
     {
       "date": "2020-03-09",
       "jolts": null,
-      "indeed": 99.5
+      "indeed": 99.4
     },
     {
       "date": "2020-03-10",
       "jolts": null,
-      "indeed": 99.4
+      "indeed": 99.3
     },
     {
       "date": "2020-03-11",
       "jolts": null,
-      "indeed": 99.3
+      "indeed": 99.2
     },
     {
       "date": "2020-03-12",
       "jolts": null,
-      "indeed": 99.2
+      "indeed": 99.0
     },
     {
       "date": "2020-03-13",
       "jolts": null,
-      "indeed": 98.9
+      "indeed": 98.8
     },
     {
       "date": "2020-03-14",
@@ -1373,12 +1373,12 @@
     {
       "date": "2020-03-16",
       "jolts": null,
-      "indeed": 98.2
+      "indeed": 98.3
     },
     {
       "date": "2020-03-17",
       "jolts": null,
-      "indeed": 97.7
+      "indeed": 97.8
     },
     {
       "date": "2020-03-18",
@@ -1388,37 +1388,37 @@
     {
       "date": "2020-03-19",
       "jolts": null,
-      "indeed": 96.1
+      "indeed": 96.2
     },
     {
       "date": "2020-03-20",
       "jolts": null,
-      "indeed": 95.0
+      "indeed": 95.1
     },
     {
       "date": "2020-03-21",
       "jolts": null,
-      "indeed": 93.6
+      "indeed": 93.7
     },
     {
       "date": "2020-03-22",
       "jolts": null,
-      "indeed": 92.3
+      "indeed": 92.4
     },
     {
       "date": "2020-03-23",
       "jolts": null,
-      "indeed": 90.8
+      "indeed": 90.9
     },
     {
       "date": "2020-03-24",
       "jolts": null,
-      "indeed": 89.5
+      "indeed": 89.6
     },
     {
       "date": "2020-03-25",
       "jolts": null,
-      "indeed": 88.1
+      "indeed": 88.2
     },
     {
       "date": "2020-03-26",
@@ -1428,17 +1428,17 @@
     {
       "date": "2020-03-27",
       "jolts": null,
-      "indeed": 85.1
+      "indeed": 85.2
     },
     {
       "date": "2020-03-28",
       "jolts": null,
-      "indeed": 83.9
+      "indeed": 84.0
     },
     {
       "date": "2020-03-29",
       "jolts": null,
-      "indeed": 82.5
+      "indeed": 82.6
     },
     {
       "date": "2020-03-30",
@@ -1448,12 +1448,12 @@
     {
       "date": "2020-03-31",
       "jolts": null,
-      "indeed": 80.0
+      "indeed": 80.1
     },
     {
       "date": "2020-04-01",
       "jolts": 4606.0,
-      "indeed": 78.8
+      "indeed": 78.9
     },
     {
       "date": "2020-04-02",
@@ -1463,7 +1463,7 @@
     {
       "date": "2020-04-03",
       "jolts": null,
-      "indeed": 76.7
+      "indeed": 76.8
     },
     {
       "date": "2020-04-04",
@@ -1473,7 +1473,7 @@
     {
       "date": "2020-04-05",
       "jolts": null,
-      "indeed": 74.4
+      "indeed": 74.5
     },
     {
       "date": "2020-04-06",
@@ -1483,37 +1483,37 @@
     {
       "date": "2020-04-07",
       "jolts": null,
-      "indeed": 72.3
+      "indeed": 72.2
     },
     {
       "date": "2020-04-08",
       "jolts": null,
-      "indeed": 71.5
+      "indeed": 71.4
     },
     {
       "date": "2020-04-09",
       "jolts": null,
-      "indeed": 70.6
+      "indeed": 70.5
     },
     {
       "date": "2020-04-10",
       "jolts": null,
-      "indeed": 69.8
+      "indeed": 69.7
     },
     {
       "date": "2020-04-11",
       "jolts": null,
-      "indeed": 69.3
+      "indeed": 69.2
     },
     {
       "date": "2020-04-12",
       "jolts": null,
-      "indeed": 68.8
+      "indeed": 68.7
     },
     {
       "date": "2020-04-13",
       "jolts": null,
-      "indeed": 68.2
+      "indeed": 68.1
     },
     {
       "date": "2020-04-14",
@@ -1553,7 +1553,7 @@
     {
       "date": "2020-04-21",
       "jolts": null,
-      "indeed": 64.8
+      "indeed": 64.9
     },
     {
       "date": "2020-04-22",
@@ -1563,12 +1563,12 @@
     {
       "date": "2020-04-23",
       "jolts": null,
-      "indeed": 64.1
+      "indeed": 64.2
     },
     {
       "date": "2020-04-24",
       "jolts": null,
-      "indeed": 63.8
+      "indeed": 63.9
     },
     {
       "date": "2020-04-25",
@@ -1578,12 +1578,12 @@
     {
       "date": "2020-04-26",
       "jolts": null,
-      "indeed": 63.3
+      "indeed": 63.4
     },
     {
       "date": "2020-04-27",
       "jolts": null,
-      "indeed": 63.0
+      "indeed": 63.1
     },
     {
       "date": "2020-04-28",
@@ -1603,7 +1603,7 @@
     {
       "date": "2020-05-01",
       "jolts": 5612.0,
-      "indeed": 62.4
+      "indeed": 62.3
     },
     {
       "date": "2020-05-02",
@@ -1623,47 +1623,47 @@
     {
       "date": "2020-05-05",
       "jolts": null,
-      "indeed": 62.0
+      "indeed": 61.9
     },
     {
       "date": "2020-05-06",
       "jolts": null,
-      "indeed": 62.0
+      "indeed": 61.9
     },
     {
       "date": "2020-05-07",
       "jolts": null,
-      "indeed": 62.0
+      "indeed": 61.8
     },
     {
       "date": "2020-05-08",
       "jolts": null,
-      "indeed": 62.0
+      "indeed": 61.8
     },
     {
       "date": "2020-05-09",
       "jolts": null,
-      "indeed": 62.0
+      "indeed": 61.9
     },
     {
       "date": "2020-05-10",
       "jolts": null,
-      "indeed": 62.1
+      "indeed": 62.0
     },
     {
       "date": "2020-05-11",
       "jolts": null,
-      "indeed": 62.2
+      "indeed": 62.1
     },
     {
       "date": "2020-05-12",
       "jolts": null,
-      "indeed": 62.3
+      "indeed": 62.2
     },
     {
       "date": "2020-05-13",
       "jolts": null,
-      "indeed": 62.0
+      "indeed": 61.9
     },
     {
       "date": "2020-05-14",
@@ -1683,7 +1683,7 @@
     {
       "date": "2020-05-17",
       "jolts": null,
-      "indeed": 62.4
+      "indeed": 62.3
     },
     {
       "date": "2020-05-18",
@@ -1703,7 +1703,7 @@
     {
       "date": "2020-05-21",
       "jolts": null,
-      "indeed": 63.5
+      "indeed": 63.6
     },
     {
       "date": "2020-05-22",
@@ -1718,7 +1718,7 @@
     {
       "date": "2020-05-24",
       "jolts": null,
-      "indeed": 64.1
+      "indeed": 64.2
     },
     {
       "date": "2020-05-25",
@@ -1733,7 +1733,7 @@
     {
       "date": "2020-05-27",
       "jolts": null,
-      "indeed": 64.3
+      "indeed": 64.4
     },
     {
       "date": "2020-05-28",
@@ -1753,32 +1753,32 @@
     {
       "date": "2020-05-31",
       "jolts": null,
-      "indeed": 65.0
+      "indeed": 65.1
     },
     {
       "date": "2020-06-01",
       "jolts": 6129.0,
-      "indeed": 65.3
+      "indeed": 65.4
     },
     {
       "date": "2020-06-02",
       "jolts": null,
-      "indeed": 65.7
+      "indeed": 65.8
     },
     {
       "date": "2020-06-03",
       "jolts": null,
-      "indeed": 66.2
+      "indeed": 66.3
     },
     {
       "date": "2020-06-04",
       "jolts": null,
-      "indeed": 66.7
+      "indeed": 66.8
     },
     {
       "date": "2020-06-05",
       "jolts": null,
-      "indeed": 67.0
+      "indeed": 67.1
     },
     {
       "date": "2020-06-06",
@@ -1788,42 +1788,42 @@
     {
       "date": "2020-06-07",
       "jolts": null,
-      "indeed": 67.6
+      "indeed": 67.5
     },
     {
       "date": "2020-06-08",
       "jolts": null,
-      "indeed": 67.8
+      "indeed": 67.7
     },
     {
       "date": "2020-06-09",
       "jolts": null,
-      "indeed": 68.1
+      "indeed": 68.0
     },
     {
       "date": "2020-06-10",
       "jolts": null,
-      "indeed": 68.3
+      "indeed": 68.2
     },
     {
       "date": "2020-06-11",
       "jolts": null,
-      "indeed": 68.5
+      "indeed": 68.4
     },
     {
       "date": "2020-06-12",
       "jolts": null,
-      "indeed": 68.7
+      "indeed": 68.6
     },
     {
       "date": "2020-06-13",
       "jolts": null,
-      "indeed": 68.9
+      "indeed": 68.8
     },
     {
       "date": "2020-06-14",
       "jolts": null,
-      "indeed": 69.3
+      "indeed": 69.2
     },
     {
       "date": "2020-06-15",
@@ -1858,7 +1858,7 @@
     {
       "date": "2020-06-21",
       "jolts": null,
-      "indeed": 72.4
+      "indeed": 72.3
     },
     {
       "date": "2020-06-22",
@@ -1888,7 +1888,7 @@
     {
       "date": "2020-06-27",
       "jolts": null,
-      "indeed": 73.5
+      "indeed": 73.6
     },
     {
       "date": "2020-06-28",
@@ -1908,7 +1908,7 @@
     {
       "date": "2020-07-01",
       "jolts": 6530.0,
-      "indeed": 74.5
+      "indeed": 74.4
     },
     {
       "date": "2020-07-02",
@@ -1918,12 +1918,12 @@
     {
       "date": "2020-07-03",
       "jolts": null,
-      "indeed": 75.1
+      "indeed": 75.0
     },
     {
       "date": "2020-07-04",
       "jolts": null,
-      "indeed": 75.4
+      "indeed": 75.3
     },
     {
       "date": "2020-07-05",
@@ -1938,42 +1938,42 @@
     {
       "date": "2020-07-07",
       "jolts": null,
-      "indeed": 76.0
+      "indeed": 75.9
     },
     {
       "date": "2020-07-08",
       "jolts": null,
-      "indeed": 76.2
+      "indeed": 76.1
     },
     {
       "date": "2020-07-09",
       "jolts": null,
-      "indeed": 76.5
+      "indeed": 76.4
     },
     {
       "date": "2020-07-10",
       "jolts": null,
-      "indeed": 76.8
+      "indeed": 76.7
     },
     {
       "date": "2020-07-11",
       "jolts": null,
-      "indeed": 77.2
+      "indeed": 77.1
     },
     {
       "date": "2020-07-12",
       "jolts": null,
-      "indeed": 77.5
+      "indeed": 77.4
     },
     {
       "date": "2020-07-13",
       "jolts": null,
-      "indeed": 77.8
+      "indeed": 77.7
     },
     {
       "date": "2020-07-14",
       "jolts": null,
-      "indeed": 78.2
+      "indeed": 78.1
     },
     {
       "date": "2020-07-15",
@@ -1993,7 +1993,7 @@
     {
       "date": "2020-07-18",
       "jolts": null,
-      "indeed": 78.5
+      "indeed": 78.6
     },
     {
       "date": "2020-07-19",
@@ -2038,12 +2038,12 @@
     {
       "date": "2020-07-27",
       "jolts": null,
-      "indeed": 81.2
+      "indeed": 81.3
     },
     {
       "date": "2020-07-28",
       "jolts": null,
-      "indeed": 81.5
+      "indeed": 81.6
     },
     {
       "date": "2020-07-29",
@@ -2058,7 +2058,7 @@
     {
       "date": "2020-07-31",
       "jolts": null,
-      "indeed": 82.1
+      "indeed": 82.2
     },
     {
       "date": "2020-08-01",
@@ -2068,7 +2068,7 @@
     {
       "date": "2020-08-02",
       "jolts": null,
-      "indeed": 82.4
+      "indeed": 82.5
     },
     {
       "date": "2020-08-03",
@@ -2093,12 +2093,12 @@
     {
       "date": "2020-08-07",
       "jolts": null,
-      "indeed": 82.8
+      "indeed": 82.7
     },
     {
       "date": "2020-08-08",
       "jolts": null,
-      "indeed": 82.8
+      "indeed": 82.7
     },
     {
       "date": "2020-08-09",
@@ -2108,7 +2108,7 @@
     {
       "date": "2020-08-10",
       "jolts": null,
-      "indeed": 82.7
+      "indeed": 82.6
     },
     {
       "date": "2020-08-11",
@@ -2118,12 +2118,12 @@
     {
       "date": "2020-08-12",
       "jolts": null,
-      "indeed": 82.7
+      "indeed": 82.6
     },
     {
       "date": "2020-08-13",
       "jolts": null,
-      "indeed": 82.7
+      "indeed": 82.6
     },
     {
       "date": "2020-08-14",
@@ -2168,12 +2168,12 @@
     {
       "date": "2020-08-22",
       "jolts": null,
-      "indeed": 83.2
+      "indeed": 83.3
     },
     {
       "date": "2020-08-23",
       "jolts": null,
-      "indeed": 83.3
+      "indeed": 83.4
     },
     {
       "date": "2020-08-24",
@@ -2193,7 +2193,7 @@
     {
       "date": "2020-08-27",
       "jolts": null,
-      "indeed": 83.6
+      "indeed": 83.7
     },
     {
       "date": "2020-08-28",
@@ -2208,12 +2208,12 @@
     {
       "date": "2020-08-30",
       "jolts": null,
-      "indeed": 83.9
+      "indeed": 84.0
     },
     {
       "date": "2020-08-31",
       "jolts": null,
-      "indeed": 84.0
+      "indeed": 84.1
     },
     {
       "date": "2020-09-01",
@@ -2248,7 +2248,7 @@
     {
       "date": "2020-09-07",
       "jolts": null,
-      "indeed": 85.2
+      "indeed": 85.1
     },
     {
       "date": "2020-09-08",
@@ -2263,17 +2263,17 @@
     {
       "date": "2020-09-10",
       "jolts": null,
-      "indeed": 85.4
+      "indeed": 85.3
     },
     {
       "date": "2020-09-11",
       "jolts": null,
-      "indeed": 85.6
+      "indeed": 85.5
     },
     {
       "date": "2020-09-12",
       "jolts": null,
-      "indeed": 85.8
+      "indeed": 85.7
     },
     {
       "date": "2020-09-13",
@@ -2283,27 +2283,27 @@
     {
       "date": "2020-09-14",
       "jolts": null,
-      "indeed": 85.8
+      "indeed": 85.9
     },
     {
       "date": "2020-09-15",
       "jolts": null,
-      "indeed": 86.0
+      "indeed": 86.1
     },
     {
       "date": "2020-09-16",
       "jolts": null,
-      "indeed": 86.2
+      "indeed": 86.3
     },
     {
       "date": "2020-09-17",
       "jolts": null,
-      "indeed": 86.4
+      "indeed": 86.5
     },
     {
       "date": "2020-09-18",
       "jolts": null,
-      "indeed": 86.6
+      "indeed": 86.7
     },
     {
       "date": "2020-09-19",
@@ -2313,12 +2313,12 @@
     {
       "date": "2020-09-20",
       "jolts": null,
-      "indeed": 87.0
+      "indeed": 87.1
     },
     {
       "date": "2020-09-21",
       "jolts": null,
-      "indeed": 87.2
+      "indeed": 87.3
     },
     {
       "date": "2020-09-22",
@@ -2338,12 +2338,12 @@
     {
       "date": "2020-09-25",
       "jolts": null,
-      "indeed": 87.8
+      "indeed": 87.9
     },
     {
       "date": "2020-09-26",
       "jolts": null,
-      "indeed": 87.9
+      "indeed": 88.0
     },
     {
       "date": "2020-09-27",
@@ -2353,7 +2353,7 @@
     {
       "date": "2020-09-28",
       "jolts": null,
-      "indeed": 88.1
+      "indeed": 88.2
     },
     {
       "date": "2020-09-29",
@@ -2363,7 +2363,7 @@
     {
       "date": "2020-09-30",
       "jolts": null,
-      "indeed": 88.5
+      "indeed": 88.6
     },
     {
       "date": "2020-10-01",
@@ -2378,12 +2378,12 @@
     {
       "date": "2020-10-03",
       "jolts": null,
-      "indeed": 89.0
+      "indeed": 89.1
     },
     {
       "date": "2020-10-04",
       "jolts": null,
-      "indeed": 89.2
+      "indeed": 89.3
     },
     {
       "date": "2020-10-05",
@@ -2393,32 +2393,32 @@
     {
       "date": "2020-10-06",
       "jolts": null,
-      "indeed": 89.4
+      "indeed": 89.5
     },
     {
       "date": "2020-10-07",
       "jolts": null,
-      "indeed": 89.5
+      "indeed": 89.4
     },
     {
       "date": "2020-10-08",
       "jolts": null,
-      "indeed": 89.7
+      "indeed": 89.6
     },
     {
       "date": "2020-10-09",
       "jolts": null,
-      "indeed": 89.8
+      "indeed": 89.7
     },
     {
       "date": "2020-10-10",
       "jolts": null,
-      "indeed": 90.0
+      "indeed": 89.9
     },
     {
       "date": "2020-10-11",
       "jolts": null,
-      "indeed": 90.1
+      "indeed": 90.0
     },
     {
       "date": "2020-10-12",
@@ -2428,12 +2428,12 @@
     {
       "date": "2020-10-13",
       "jolts": null,
-      "indeed": 90.5
+      "indeed": 90.4
     },
     {
       "date": "2020-10-14",
       "jolts": null,
-      "indeed": 90.5
+      "indeed": 90.6
     },
     {
       "date": "2020-10-15",
@@ -2443,12 +2443,12 @@
     {
       "date": "2020-10-16",
       "jolts": null,
-      "indeed": 90.7
+      "indeed": 90.8
     },
     {
       "date": "2020-10-17",
       "jolts": null,
-      "indeed": 90.6
+      "indeed": 90.7
     },
     {
       "date": "2020-10-18",
@@ -2463,7 +2463,7 @@
     {
       "date": "2020-10-20",
       "jolts": null,
-      "indeed": 90.7
+      "indeed": 90.8
     },
     {
       "date": "2020-10-21",
@@ -2488,7 +2488,7 @@
     {
       "date": "2020-10-25",
       "jolts": null,
-      "indeed": 91.5
+      "indeed": 91.6
     },
     {
       "date": "2020-10-26",
@@ -2503,7 +2503,7 @@
     {
       "date": "2020-10-28",
       "jolts": null,
-      "indeed": 91.7
+      "indeed": 91.8
     },
     {
       "date": "2020-10-29",
@@ -2513,7 +2513,7 @@
     {
       "date": "2020-10-30",
       "jolts": null,
-      "indeed": 91.7
+      "indeed": 91.8
     },
     {
       "date": "2020-10-31",
@@ -2553,27 +2553,27 @@
     {
       "date": "2020-11-07",
       "jolts": null,
-      "indeed": 93.1
+      "indeed": 92.9
     },
     {
       "date": "2020-11-08",
       "jolts": null,
-      "indeed": 93.2
+      "indeed": 93.1
     },
     {
       "date": "2020-11-09",
       "jolts": null,
-      "indeed": 93.3
+      "indeed": 93.2
     },
     {
       "date": "2020-11-10",
       "jolts": null,
-      "indeed": 93.5
+      "indeed": 93.4
     },
     {
       "date": "2020-11-11",
       "jolts": null,
-      "indeed": 93.6
+      "indeed": 93.5
     },
     {
       "date": "2020-11-12",
@@ -2588,7 +2588,7 @@
     {
       "date": "2020-11-14",
       "jolts": null,
-      "indeed": 93.6
+      "indeed": 93.7
     },
     {
       "date": "2020-11-15",
@@ -2693,47 +2693,47 @@
     {
       "date": "2020-12-05",
       "jolts": null,
-      "indeed": 94.3
+      "indeed": 94.2
     },
     {
       "date": "2020-12-06",
       "jolts": null,
-      "indeed": 94.4
+      "indeed": 94.3
     },
     {
       "date": "2020-12-07",
       "jolts": null,
-      "indeed": 94.5
+      "indeed": 94.3
     },
     {
       "date": "2020-12-08",
       "jolts": null,
-      "indeed": 94.6
+      "indeed": 94.5
     },
     {
       "date": "2020-12-09",
       "jolts": null,
-      "indeed": 94.6
+      "indeed": 94.5
     },
     {
       "date": "2020-12-10",
       "jolts": null,
-      "indeed": 94.6
+      "indeed": 94.5
     },
     {
       "date": "2020-12-11",
       "jolts": null,
-      "indeed": 94.7
+      "indeed": 94.6
     },
     {
       "date": "2020-12-12",
       "jolts": null,
-      "indeed": 94.7
+      "indeed": 94.6
     },
     {
       "date": "2020-12-13",
       "jolts": null,
-      "indeed": 94.9
+      "indeed": 94.8
     },
     {
       "date": "2020-12-14",
@@ -2788,7 +2788,7 @@
     {
       "date": "2020-12-24",
       "jolts": null,
-      "indeed": 95.1
+      "indeed": 95.2
     },
     {
       "date": "2020-12-25",
@@ -2798,12 +2798,12 @@
     {
       "date": "2020-12-26",
       "jolts": null,
-      "indeed": 95.1
+      "indeed": 95.2
     },
     {
       "date": "2020-12-27",
       "jolts": null,
-      "indeed": 95.1
+      "indeed": 95.2
     },
     {
       "date": "2020-12-28",
@@ -2813,17 +2813,17 @@
     {
       "date": "2020-12-29",
       "jolts": null,
-      "indeed": 95.2
+      "indeed": 95.3
     },
     {
       "date": "2020-12-30",
       "jolts": null,
-      "indeed": 95.3
+      "indeed": 95.4
     },
     {
       "date": "2020-12-31",
       "jolts": null,
-      "indeed": 95.3
+      "indeed": 95.4
     },
     {
       "date": "2021-01-01",
@@ -2848,47 +2848,47 @@
     {
       "date": "2021-01-05",
       "jolts": null,
-      "indeed": 95.3
+      "indeed": 95.2
     },
     {
       "date": "2021-01-06",
       "jolts": null,
-      "indeed": 95.4
+      "indeed": 95.3
     },
     {
       "date": "2021-01-07",
       "jolts": null,
-      "indeed": 95.7
+      "indeed": 95.4
     },
     {
       "date": "2021-01-08",
       "jolts": null,
-      "indeed": 96.1
+      "indeed": 95.8
     },
     {
       "date": "2021-01-09",
       "jolts": null,
-      "indeed": 96.4
+      "indeed": 96.2
     },
     {
       "date": "2021-01-10",
       "jolts": null,
-      "indeed": 96.9
+      "indeed": 96.7
     },
     {
       "date": "2021-01-11",
       "jolts": null,
-      "indeed": 97.3
+      "indeed": 97.1
     },
     {
       "date": "2021-01-12",
       "jolts": null,
-      "indeed": 97.6
+      "indeed": 97.4
     },
     {
       "date": "2021-01-13",
       "jolts": null,
-      "indeed": 97.8
+      "indeed": 97.7
     },
     {
       "date": "2021-01-14",
@@ -2898,7 +2898,7 @@
     {
       "date": "2021-01-15",
       "jolts": null,
-      "indeed": 98.2
+      "indeed": 98.1
     },
     {
       "date": "2021-01-16",
@@ -2973,7 +2973,7 @@
     {
       "date": "2021-01-30",
       "jolts": null,
-      "indeed": 100.0
+      "indeed": 99.9
     },
     {
       "date": "2021-01-31",
@@ -2983,7 +2983,7 @@
     {
       "date": "2021-02-01",
       "jolts": 7752.0,
-      "indeed": 100.4
+      "indeed": 100.3
     },
     {
       "date": "2021-02-02",
@@ -3003,47 +3003,47 @@
     {
       "date": "2021-02-05",
       "jolts": null,
-      "indeed": 101.2
+      "indeed": 101.1
     },
     {
       "date": "2021-02-06",
       "jolts": null,
-      "indeed": 101.4
+      "indeed": 101.3
     },
     {
       "date": "2021-02-07",
       "jolts": null,
-      "indeed": 101.6
+      "indeed": 101.5
     },
     {
       "date": "2021-02-08",
       "jolts": null,
-      "indeed": 101.8
+      "indeed": 101.6
     },
     {
       "date": "2021-02-09",
       "jolts": null,
-      "indeed": 101.9
+      "indeed": 101.8
     },
     {
       "date": "2021-02-10",
       "jolts": null,
-      "indeed": 102.2
+      "indeed": 102.1
     },
     {
       "date": "2021-02-11",
       "jolts": null,
-      "indeed": 102.7
+      "indeed": 102.5
     },
     {
       "date": "2021-02-12",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 102.8
     },
     {
       "date": "2021-02-13",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 103.2
     },
     {
       "date": "2021-02-14",
@@ -3053,17 +3053,17 @@
     {
       "date": "2021-02-15",
       "jolts": null,
-      "indeed": 103.9
+      "indeed": 103.8
     },
     {
       "date": "2021-02-16",
       "jolts": null,
-      "indeed": 104.2
+      "indeed": 104.1
     },
     {
       "date": "2021-02-17",
       "jolts": null,
-      "indeed": 104.4
+      "indeed": 104.3
     },
     {
       "date": "2021-02-18",
@@ -3133,7 +3133,7 @@
     {
       "date": "2021-03-03",
       "jolts": null,
-      "indeed": 106.4
+      "indeed": 106.3
     },
     {
       "date": "2021-03-04",
@@ -3153,42 +3153,42 @@
     {
       "date": "2021-03-07",
       "jolts": null,
-      "indeed": 107.5
+      "indeed": 107.3
     },
     {
       "date": "2021-03-08",
       "jolts": null,
-      "indeed": 107.9
+      "indeed": 107.8
     },
     {
       "date": "2021-03-09",
       "jolts": null,
-      "indeed": 108.2
+      "indeed": 108.1
     },
     {
       "date": "2021-03-10",
       "jolts": null,
-      "indeed": 108.5
+      "indeed": 108.4
     },
     {
       "date": "2021-03-11",
       "jolts": null,
-      "indeed": 108.8
+      "indeed": 108.7
     },
     {
       "date": "2021-03-12",
       "jolts": null,
-      "indeed": 109.1
+      "indeed": 109.0
     },
     {
       "date": "2021-03-13",
       "jolts": null,
-      "indeed": 109.5
+      "indeed": 109.4
     },
     {
       "date": "2021-03-14",
       "jolts": null,
-      "indeed": 109.8
+      "indeed": 109.9
     },
     {
       "date": "2021-03-15",
@@ -3238,7 +3238,7 @@
     {
       "date": "2021-03-24",
       "jolts": null,
-      "indeed": 113.4
+      "indeed": 113.5
     },
     {
       "date": "2021-03-25",
@@ -3248,7 +3248,7 @@
     {
       "date": "2021-03-26",
       "jolts": null,
-      "indeed": 114.2
+      "indeed": 114.3
     },
     {
       "date": "2021-03-27",
@@ -3258,7 +3258,7 @@
     {
       "date": "2021-03-28",
       "jolts": null,
-      "indeed": 115.2
+      "indeed": 115.3
     },
     {
       "date": "2021-03-29",
@@ -3273,7 +3273,7 @@
     {
       "date": "2021-03-31",
       "jolts": null,
-      "indeed": 116.7
+      "indeed": 116.8
     },
     {
       "date": "2021-04-01",
@@ -3303,47 +3303,47 @@
     {
       "date": "2021-04-06",
       "jolts": null,
-      "indeed": 119.2
+      "indeed": 119.3
     },
     {
       "date": "2021-04-07",
       "jolts": null,
-      "indeed": 119.5
+      "indeed": 119.4
     },
     {
       "date": "2021-04-08",
       "jolts": null,
-      "indeed": 119.8
+      "indeed": 119.7
     },
     {
       "date": "2021-04-09",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2021-04-10",
       "jolts": null,
-      "indeed": 120.5
+      "indeed": 120.4
     },
     {
       "date": "2021-04-11",
       "jolts": null,
-      "indeed": 120.6
+      "indeed": 120.5
     },
     {
       "date": "2021-04-12",
       "jolts": null,
-      "indeed": 120.8
+      "indeed": 120.7
     },
     {
       "date": "2021-04-13",
       "jolts": null,
-      "indeed": 121.0
+      "indeed": 120.9
     },
     {
       "date": "2021-04-14",
       "jolts": null,
-      "indeed": 121.2
+      "indeed": 121.3
     },
     {
       "date": "2021-04-15",
@@ -3383,27 +3383,27 @@
     {
       "date": "2021-04-22",
       "jolts": null,
-      "indeed": 124.4
+      "indeed": 124.5
     },
     {
       "date": "2021-04-23",
       "jolts": null,
-      "indeed": 124.8
+      "indeed": 124.9
     },
     {
       "date": "2021-04-24",
       "jolts": null,
-      "indeed": 125.1
+      "indeed": 125.2
     },
     {
       "date": "2021-04-25",
       "jolts": null,
-      "indeed": 125.3
+      "indeed": 125.4
     },
     {
       "date": "2021-04-26",
       "jolts": null,
-      "indeed": 125.5
+      "indeed": 125.6
     },
     {
       "date": "2021-04-27",
@@ -3413,17 +3413,17 @@
     {
       "date": "2021-04-28",
       "jolts": null,
-      "indeed": 125.9
+      "indeed": 126.0
     },
     {
       "date": "2021-04-29",
       "jolts": null,
-      "indeed": 126.1
+      "indeed": 126.2
     },
     {
       "date": "2021-04-30",
       "jolts": null,
-      "indeed": 126.3
+      "indeed": 126.4
     },
     {
       "date": "2021-05-01",
@@ -3443,12 +3443,12 @@
     {
       "date": "2021-05-04",
       "jolts": null,
-      "indeed": 126.7
+      "indeed": 126.8
     },
     {
       "date": "2021-05-05",
       "jolts": null,
-      "indeed": 126.8
+      "indeed": 126.9
     },
     {
       "date": "2021-05-06",
@@ -3473,22 +3473,22 @@
     {
       "date": "2021-05-10",
       "jolts": null,
-      "indeed": 127.7
+      "indeed": 127.8
     },
     {
       "date": "2021-05-11",
       "jolts": null,
-      "indeed": 128.0
+      "indeed": 128.1
     },
     {
       "date": "2021-05-12",
       "jolts": null,
-      "indeed": 128.3
+      "indeed": 128.4
     },
     {
       "date": "2021-05-13",
       "jolts": null,
-      "indeed": 128.6
+      "indeed": 128.7
     },
     {
       "date": "2021-05-14",
@@ -3498,57 +3498,57 @@
     {
       "date": "2021-05-15",
       "jolts": null,
-      "indeed": 129.2
+      "indeed": 129.3
     },
     {
       "date": "2021-05-16",
       "jolts": null,
-      "indeed": 129.3
+      "indeed": 129.4
     },
     {
       "date": "2021-05-17",
       "jolts": null,
-      "indeed": 129.5
+      "indeed": 129.6
     },
     {
       "date": "2021-05-18",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.7
     },
     {
       "date": "2021-05-19",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.7
     },
     {
       "date": "2021-05-20",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.7
     },
     {
       "date": "2021-05-21",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.7
     },
     {
       "date": "2021-05-22",
       "jolts": null,
-      "indeed": 129.5
+      "indeed": 129.6
     },
     {
       "date": "2021-05-23",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.7
     },
     {
       "date": "2021-05-24",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.7
     },
     {
       "date": "2021-05-25",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.8
     },
     {
       "date": "2021-05-26",
@@ -3558,32 +3558,32 @@
     {
       "date": "2021-05-27",
       "jolts": null,
-      "indeed": 130.0
+      "indeed": 130.1
     },
     {
       "date": "2021-05-28",
       "jolts": null,
-      "indeed": 130.3
+      "indeed": 130.4
     },
     {
       "date": "2021-05-29",
       "jolts": null,
-      "indeed": 130.7
+      "indeed": 130.8
     },
     {
       "date": "2021-05-30",
       "jolts": null,
-      "indeed": 131.0
+      "indeed": 131.1
     },
     {
       "date": "2021-05-31",
       "jolts": null,
-      "indeed": 131.3
+      "indeed": 131.4
     },
     {
       "date": "2021-06-01",
       "jolts": 10298.0,
-      "indeed": 131.4
+      "indeed": 131.5
     },
     {
       "date": "2021-06-02",
@@ -3598,7 +3598,7 @@
     {
       "date": "2021-06-04",
       "jolts": null,
-      "indeed": 131.8
+      "indeed": 131.9
     },
     {
       "date": "2021-06-05",
@@ -3608,7 +3608,7 @@
     {
       "date": "2021-06-06",
       "jolts": null,
-      "indeed": 131.9
+      "indeed": 132.0
     },
     {
       "date": "2021-06-07",
@@ -3623,7 +3623,7 @@
     {
       "date": "2021-06-09",
       "jolts": null,
-      "indeed": 132.3
+      "indeed": 132.2
     },
     {
       "date": "2021-06-10",
@@ -3638,32 +3638,32 @@
     {
       "date": "2021-06-12",
       "jolts": null,
-      "indeed": 132.8
+      "indeed": 132.7
     },
     {
       "date": "2021-06-13",
       "jolts": null,
-      "indeed": 132.9
+      "indeed": 132.8
     },
     {
       "date": "2021-06-14",
       "jolts": null,
-      "indeed": 133.1
+      "indeed": 133.2
     },
     {
       "date": "2021-06-15",
       "jolts": null,
-      "indeed": 133.4
+      "indeed": 133.5
     },
     {
       "date": "2021-06-16",
       "jolts": null,
-      "indeed": 133.6
+      "indeed": 133.7
     },
     {
       "date": "2021-06-17",
       "jolts": null,
-      "indeed": 133.7
+      "indeed": 133.8
     },
     {
       "date": "2021-06-18",
@@ -3673,22 +3673,22 @@
     {
       "date": "2021-06-19",
       "jolts": null,
-      "indeed": 133.9
+      "indeed": 134.0
     },
     {
       "date": "2021-06-20",
       "jolts": null,
-      "indeed": 134.1
+      "indeed": 134.2
     },
     {
       "date": "2021-06-21",
       "jolts": null,
-      "indeed": 134.3
+      "indeed": 134.4
     },
     {
       "date": "2021-06-22",
       "jolts": null,
-      "indeed": 134.3
+      "indeed": 134.4
     },
     {
       "date": "2021-06-23",
@@ -3698,7 +3698,7 @@
     {
       "date": "2021-06-24",
       "jolts": null,
-      "indeed": 134.7
+      "indeed": 134.8
     },
     {
       "date": "2021-06-25",
@@ -3723,27 +3723,27 @@
     {
       "date": "2021-06-29",
       "jolts": null,
-      "indeed": 136.2
+      "indeed": 136.1
     },
     {
       "date": "2021-06-30",
       "jolts": null,
-      "indeed": 136.4
+      "indeed": 136.3
     },
     {
       "date": "2021-07-01",
       "jolts": 11049.0,
-      "indeed": 136.7
+      "indeed": 136.6
     },
     {
       "date": "2021-07-02",
       "jolts": null,
-      "indeed": 136.8
+      "indeed": 136.7
     },
     {
       "date": "2021-07-03",
       "jolts": null,
-      "indeed": 137.0
+      "indeed": 136.9
     },
     {
       "date": "2021-07-04",
@@ -3753,7 +3753,7 @@
     {
       "date": "2021-07-05",
       "jolts": null,
-      "indeed": 137.2
+      "indeed": 137.3
     },
     {
       "date": "2021-07-06",
@@ -3768,12 +3768,12 @@
     {
       "date": "2021-07-08",
       "jolts": null,
-      "indeed": 137.4
+      "indeed": 137.3
     },
     {
       "date": "2021-07-09",
       "jolts": null,
-      "indeed": 137.6
+      "indeed": 137.5
     },
     {
       "date": "2021-07-10",
@@ -3783,7 +3783,7 @@
     {
       "date": "2021-07-11",
       "jolts": null,
-      "indeed": 137.5
+      "indeed": 137.4
     },
     {
       "date": "2021-07-12",
@@ -3793,27 +3793,27 @@
     {
       "date": "2021-07-13",
       "jolts": null,
-      "indeed": 137.5
+      "indeed": 137.4
     },
     {
       "date": "2021-07-14",
       "jolts": null,
-      "indeed": 137.4
+      "indeed": 137.5
     },
     {
       "date": "2021-07-15",
       "jolts": null,
-      "indeed": 137.5
+      "indeed": 137.6
     },
     {
       "date": "2021-07-16",
       "jolts": null,
-      "indeed": 137.5
+      "indeed": 137.6
     },
     {
       "date": "2021-07-17",
       "jolts": null,
-      "indeed": 137.7
+      "indeed": 137.8
     },
     {
       "date": "2021-07-18",
@@ -3823,7 +3823,7 @@
     {
       "date": "2021-07-19",
       "jolts": null,
-      "indeed": 138.3
+      "indeed": 138.4
     },
     {
       "date": "2021-07-20",
@@ -3833,7 +3833,7 @@
     {
       "date": "2021-07-21",
       "jolts": null,
-      "indeed": 138.7
+      "indeed": 138.8
     },
     {
       "date": "2021-07-22",
@@ -3843,32 +3843,32 @@
     {
       "date": "2021-07-23",
       "jolts": null,
-      "indeed": 138.4
+      "indeed": 138.5
     },
     {
       "date": "2021-07-24",
       "jolts": null,
-      "indeed": 138.2
+      "indeed": 138.3
     },
     {
       "date": "2021-07-25",
       "jolts": null,
-      "indeed": 137.8
+      "indeed": 137.9
     },
     {
       "date": "2021-07-26",
       "jolts": null,
-      "indeed": 137.3
+      "indeed": 137.4
     },
     {
       "date": "2021-07-27",
       "jolts": null,
-      "indeed": 136.9
+      "indeed": 137.0
     },
     {
       "date": "2021-07-28",
       "jolts": null,
-      "indeed": 136.8
+      "indeed": 136.9
     },
     {
       "date": "2021-07-29",
@@ -3878,12 +3878,12 @@
     {
       "date": "2021-07-30",
       "jolts": null,
-      "indeed": 136.6
+      "indeed": 136.7
     },
     {
       "date": "2021-07-31",
       "jolts": null,
-      "indeed": 136.7
+      "indeed": 136.8
     },
     {
       "date": "2021-08-01",
@@ -3893,7 +3893,7 @@
     {
       "date": "2021-08-02",
       "jolts": null,
-      "indeed": 136.9
+      "indeed": 137.0
     },
     {
       "date": "2021-08-03",
@@ -3923,62 +3923,62 @@
     {
       "date": "2021-08-08",
       "jolts": null,
-      "indeed": 137.8
+      "indeed": 137.9
     },
     {
       "date": "2021-08-09",
       "jolts": null,
-      "indeed": 137.9
+      "indeed": 138.0
     },
     {
       "date": "2021-08-10",
       "jolts": null,
-      "indeed": 138.1
+      "indeed": 138.2
     },
     {
       "date": "2021-08-11",
       "jolts": null,
-      "indeed": 138.2
+      "indeed": 138.3
     },
     {
       "date": "2021-08-12",
       "jolts": null,
-      "indeed": 138.4
+      "indeed": 138.5
     },
     {
       "date": "2021-08-13",
       "jolts": null,
-      "indeed": 138.6
+      "indeed": 138.7
     },
     {
       "date": "2021-08-14",
       "jolts": null,
-      "indeed": 138.8
+      "indeed": 138.9
     },
     {
       "date": "2021-08-15",
       "jolts": null,
-      "indeed": 139.0
+      "indeed": 139.1
     },
     {
       "date": "2021-08-16",
       "jolts": null,
-      "indeed": 139.1
+      "indeed": 139.2
     },
     {
       "date": "2021-08-17",
       "jolts": null,
-      "indeed": 139.3
+      "indeed": 139.4
     },
     {
       "date": "2021-08-18",
       "jolts": null,
-      "indeed": 139.5
+      "indeed": 139.6
     },
     {
       "date": "2021-08-19",
       "jolts": null,
-      "indeed": 139.7
+      "indeed": 139.8
     },
     {
       "date": "2021-08-20",
@@ -3988,157 +3988,157 @@
     {
       "date": "2021-08-21",
       "jolts": null,
-      "indeed": 140.1
+      "indeed": 140.2
     },
     {
       "date": "2021-08-22",
       "jolts": null,
-      "indeed": 140.4
+      "indeed": 140.5
     },
     {
       "date": "2021-08-23",
       "jolts": null,
-      "indeed": 140.7
+      "indeed": 140.8
     },
     {
       "date": "2021-08-24",
       "jolts": null,
-      "indeed": 140.8
+      "indeed": 140.9
     },
     {
       "date": "2021-08-25",
       "jolts": null,
-      "indeed": 141.1
+      "indeed": 141.2
     },
     {
       "date": "2021-08-26",
       "jolts": null,
-      "indeed": 141.2
+      "indeed": 141.4
     },
     {
       "date": "2021-08-27",
       "jolts": null,
-      "indeed": 141.3
+      "indeed": 141.5
     },
     {
       "date": "2021-08-28",
       "jolts": null,
-      "indeed": 141.4
+      "indeed": 141.5
     },
     {
       "date": "2021-08-29",
       "jolts": null,
-      "indeed": 141.5
+      "indeed": 141.6
     },
     {
       "date": "2021-08-30",
       "jolts": null,
-      "indeed": 141.6
+      "indeed": 141.7
     },
     {
       "date": "2021-08-31",
       "jolts": null,
-      "indeed": 141.7
+      "indeed": 141.8
     },
     {
       "date": "2021-09-01",
       "jolts": 10879.0,
-      "indeed": 141.7
+      "indeed": 141.8
     },
     {
       "date": "2021-09-02",
       "jolts": null,
-      "indeed": 141.8
+      "indeed": 141.9
     },
     {
       "date": "2021-09-03",
       "jolts": null,
-      "indeed": 141.9
+      "indeed": 142.1
     },
     {
       "date": "2021-09-04",
       "jolts": null,
-      "indeed": 142.0
+      "indeed": 142.1
     },
     {
       "date": "2021-09-05",
       "jolts": null,
-      "indeed": 142.1
+      "indeed": 142.2
     },
     {
       "date": "2021-09-06",
       "jolts": null,
-      "indeed": 142.3
+      "indeed": 142.5
     },
     {
       "date": "2021-09-07",
       "jolts": null,
-      "indeed": 142.4
+      "indeed": 142.5
     },
     {
       "date": "2021-09-08",
       "jolts": null,
-      "indeed": 142.6
+      "indeed": 142.7
     },
     {
       "date": "2021-09-09",
       "jolts": null,
-      "indeed": 142.7
+      "indeed": 142.8
     },
     {
       "date": "2021-09-10",
       "jolts": null,
-      "indeed": 142.7
+      "indeed": 142.8
     },
     {
       "date": "2021-09-11",
       "jolts": null,
-      "indeed": 142.7
+      "indeed": 142.8
     },
     {
       "date": "2021-09-12",
       "jolts": null,
-      "indeed": 142.6
+      "indeed": 142.7
     },
     {
       "date": "2021-09-13",
       "jolts": null,
-      "indeed": 142.4
+      "indeed": 142.6
     },
     {
       "date": "2021-09-14",
       "jolts": null,
-      "indeed": 142.7
+      "indeed": 142.8
     },
     {
       "date": "2021-09-15",
       "jolts": null,
-      "indeed": 142.8
+      "indeed": 142.9
     },
     {
       "date": "2021-09-16",
       "jolts": null,
-      "indeed": 142.9
+      "indeed": 143.0
     },
     {
       "date": "2021-09-17",
       "jolts": null,
-      "indeed": 143.2
+      "indeed": 143.3
     },
     {
       "date": "2021-09-18",
       "jolts": null,
-      "indeed": 143.5
+      "indeed": 143.6
     },
     {
       "date": "2021-09-19",
       "jolts": null,
-      "indeed": 143.8
+      "indeed": 143.9
     },
     {
       "date": "2021-09-20",
       "jolts": null,
-      "indeed": 144.1
+      "indeed": 144.2
     },
     {
       "date": "2021-09-21",
@@ -4148,237 +4148,237 @@
     {
       "date": "2021-09-22",
       "jolts": null,
-      "indeed": 144.2
+      "indeed": 144.4
     },
     {
       "date": "2021-09-23",
       "jolts": null,
-      "indeed": 144.4
+      "indeed": 144.5
     },
     {
       "date": "2021-09-24",
       "jolts": null,
-      "indeed": 144.4
+      "indeed": 144.6
     },
     {
       "date": "2021-09-25",
       "jolts": null,
-      "indeed": 144.4
+      "indeed": 144.6
     },
     {
       "date": "2021-09-26",
       "jolts": null,
-      "indeed": 144.4
+      "indeed": 144.6
     },
     {
       "date": "2021-09-27",
       "jolts": null,
-      "indeed": 144.4
+      "indeed": 144.6
     },
     {
       "date": "2021-09-28",
       "jolts": null,
-      "indeed": 144.6
+      "indeed": 144.7
     },
     {
       "date": "2021-09-29",
       "jolts": null,
-      "indeed": 144.6
+      "indeed": 144.8
     },
     {
       "date": "2021-09-30",
       "jolts": null,
-      "indeed": 144.8
+      "indeed": 144.9
     },
     {
       "date": "2021-10-01",
       "jolts": 11341.0,
-      "indeed": 145.0
+      "indeed": 145.1
     },
     {
       "date": "2021-10-02",
       "jolts": null,
-      "indeed": 145.2
+      "indeed": 145.3
     },
     {
       "date": "2021-10-03",
       "jolts": null,
-      "indeed": 145.5
+      "indeed": 145.6
     },
     {
       "date": "2021-10-04",
       "jolts": null,
-      "indeed": 145.7
+      "indeed": 145.8
     },
     {
       "date": "2021-10-05",
       "jolts": null,
-      "indeed": 145.8
+      "indeed": 145.9
     },
     {
       "date": "2021-10-06",
       "jolts": null,
-      "indeed": 145.9
+      "indeed": 146.1
     },
     {
       "date": "2021-10-07",
       "jolts": null,
-      "indeed": 146.1
+      "indeed": 146.2
     },
     {
       "date": "2021-10-08",
       "jolts": null,
-      "indeed": 146.2
+      "indeed": 146.3
     },
     {
       "date": "2021-10-09",
       "jolts": null,
-      "indeed": 146.3
+      "indeed": 146.4
     },
     {
       "date": "2021-10-10",
       "jolts": null,
-      "indeed": 146.4
+      "indeed": 146.6
     },
     {
       "date": "2021-10-11",
       "jolts": null,
-      "indeed": 146.6
+      "indeed": 146.7
     },
     {
       "date": "2021-10-12",
       "jolts": null,
-      "indeed": 146.6
+      "indeed": 146.7
     },
     {
       "date": "2021-10-13",
       "jolts": null,
-      "indeed": 146.6
+      "indeed": 146.7
     },
     {
       "date": "2021-10-14",
       "jolts": null,
-      "indeed": 146.7
+      "indeed": 146.8
     },
     {
       "date": "2021-10-15",
       "jolts": null,
-      "indeed": 146.8
+      "indeed": 147.0
     },
     {
       "date": "2021-10-16",
       "jolts": null,
-      "indeed": 146.7
+      "indeed": 146.8
     },
     {
       "date": "2021-10-17",
       "jolts": null,
-      "indeed": 146.8
+      "indeed": 147.0
     },
     {
       "date": "2021-10-18",
       "jolts": null,
-      "indeed": 146.8
+      "indeed": 147.0
     },
     {
       "date": "2021-10-19",
       "jolts": null,
-      "indeed": 147.1
+      "indeed": 147.2
     },
     {
       "date": "2021-10-20",
       "jolts": null,
-      "indeed": 147.3
+      "indeed": 147.5
     },
     {
       "date": "2021-10-21",
       "jolts": null,
-      "indeed": 147.6
+      "indeed": 147.7
     },
     {
       "date": "2021-10-22",
       "jolts": null,
-      "indeed": 147.8
+      "indeed": 147.9
     },
     {
       "date": "2021-10-23",
       "jolts": null,
-      "indeed": 148.2
+      "indeed": 148.3
     },
     {
       "date": "2021-10-24",
       "jolts": null,
-      "indeed": 148.3
+      "indeed": 148.5
     },
     {
       "date": "2021-10-25",
       "jolts": null,
-      "indeed": 148.6
+      "indeed": 148.7
     },
     {
       "date": "2021-10-26",
       "jolts": null,
-      "indeed": 148.7
+      "indeed": 148.8
     },
     {
       "date": "2021-10-27",
       "jolts": null,
-      "indeed": 148.8
+      "indeed": 149.0
     },
     {
       "date": "2021-10-28",
       "jolts": null,
-      "indeed": 148.9
+      "indeed": 149.1
     },
     {
       "date": "2021-10-29",
       "jolts": null,
-      "indeed": 148.9
+      "indeed": 149.1
     },
     {
       "date": "2021-10-30",
       "jolts": null,
-      "indeed": 149.1
+      "indeed": 149.2
     },
     {
       "date": "2021-10-31",
       "jolts": null,
-      "indeed": 149.2
+      "indeed": 149.4
     },
     {
       "date": "2021-11-01",
       "jolts": 11119.0,
-      "indeed": 149.5
+      "indeed": 149.6
     },
     {
       "date": "2021-11-02",
       "jolts": null,
-      "indeed": 149.9
+      "indeed": 150.0
     },
     {
       "date": "2021-11-03",
       "jolts": null,
-      "indeed": 150.2
+      "indeed": 150.3
     },
     {
       "date": "2021-11-04",
       "jolts": null,
-      "indeed": 150.4
+      "indeed": 150.6
     },
     {
       "date": "2021-11-05",
       "jolts": null,
-      "indeed": 150.8
+      "indeed": 150.9
     },
     {
       "date": "2021-11-06",
       "jolts": null,
-      "indeed": 150.8
+      "indeed": 151.0
     },
     {
       "date": "2021-11-07",
       "jolts": null,
-      "indeed": 151.2
+      "indeed": 151.3
     },
     {
       "date": "2021-11-08",
@@ -4403,7 +4403,7 @@
     {
       "date": "2021-11-12",
       "jolts": null,
-      "indeed": 152.4
+      "indeed": 152.5
     },
     {
       "date": "2021-11-13",
@@ -4413,117 +4413,117 @@
     {
       "date": "2021-11-14",
       "jolts": null,
-      "indeed": 152.9
+      "indeed": 153.0
     },
     {
       "date": "2021-11-15",
       "jolts": null,
-      "indeed": 153.2
+      "indeed": 153.3
     },
     {
       "date": "2021-11-16",
       "jolts": null,
-      "indeed": 153.5
+      "indeed": 153.6
     },
     {
       "date": "2021-11-17",
       "jolts": null,
-      "indeed": 153.8
+      "indeed": 153.9
     },
     {
       "date": "2021-11-18",
       "jolts": null,
-      "indeed": 153.9
+      "indeed": 154.0
     },
     {
       "date": "2021-11-19",
       "jolts": null,
-      "indeed": 154.2
+      "indeed": 154.3
     },
     {
       "date": "2021-11-20",
       "jolts": null,
-      "indeed": 154.3
+      "indeed": 154.4
     },
     {
       "date": "2021-11-21",
       "jolts": null,
-      "indeed": 154.6
+      "indeed": 154.7
     },
     {
       "date": "2021-11-22",
       "jolts": null,
-      "indeed": 155.0
+      "indeed": 155.1
     },
     {
       "date": "2021-11-23",
       "jolts": null,
-      "indeed": 155.1
+      "indeed": 155.2
     },
     {
       "date": "2021-11-24",
       "jolts": null,
-      "indeed": 155.2
+      "indeed": 155.3
     },
     {
       "date": "2021-11-25",
       "jolts": null,
-      "indeed": 155.3
+      "indeed": 155.4
     },
     {
       "date": "2021-11-26",
       "jolts": null,
-      "indeed": 155.2
+      "indeed": 155.4
     },
     {
       "date": "2021-11-27",
       "jolts": null,
-      "indeed": 155.4
+      "indeed": 155.6
     },
     {
       "date": "2021-11-28",
       "jolts": null,
-      "indeed": 155.3
+      "indeed": 155.4
     },
     {
       "date": "2021-11-29",
       "jolts": null,
-      "indeed": 155.1
+      "indeed": 155.2
     },
     {
       "date": "2021-11-30",
       "jolts": null,
-      "indeed": 155.0
+      "indeed": 155.2
     },
     {
       "date": "2021-12-01",
       "jolts": 11417.0,
-      "indeed": 154.9
+      "indeed": 155.0
     },
     {
       "date": "2021-12-02",
       "jolts": null,
-      "indeed": 155.0
+      "indeed": 155.1
     },
     {
       "date": "2021-12-03",
       "jolts": null,
-      "indeed": 155.1
+      "indeed": 155.2
     },
     {
       "date": "2021-12-04",
       "jolts": null,
-      "indeed": 155.4
+      "indeed": 155.5
     },
     {
       "date": "2021-12-05",
       "jolts": null,
-      "indeed": 155.8
+      "indeed": 155.9
     },
     {
       "date": "2021-12-06",
       "jolts": null,
-      "indeed": 156.3
+      "indeed": 156.4
     },
     {
       "date": "2021-12-07",
@@ -4533,7 +4533,7 @@
     {
       "date": "2021-12-08",
       "jolts": null,
-      "indeed": 157.0
+      "indeed": 157.1
     },
     {
       "date": "2021-12-09",
@@ -4563,122 +4563,122 @@
     {
       "date": "2021-12-14",
       "jolts": null,
-      "indeed": 158.1
+      "indeed": 158.2
     },
     {
       "date": "2021-12-15",
       "jolts": null,
-      "indeed": 158.2
+      "indeed": 158.3
     },
     {
       "date": "2021-12-16",
       "jolts": null,
-      "indeed": 158.2
+      "indeed": 158.3
     },
     {
       "date": "2021-12-17",
       "jolts": null,
-      "indeed": 158.4
+      "indeed": 158.5
     },
     {
       "date": "2021-12-18",
       "jolts": null,
-      "indeed": 158.6
+      "indeed": 158.8
     },
     {
       "date": "2021-12-19",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.8
     },
     {
       "date": "2021-12-20",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.9
     },
     {
       "date": "2021-12-21",
       "jolts": null,
-      "indeed": 158.5
+      "indeed": 158.6
     },
     {
       "date": "2021-12-22",
       "jolts": null,
-      "indeed": 158.2
+      "indeed": 158.4
     },
     {
       "date": "2021-12-23",
       "jolts": null,
-      "indeed": 158.1
+      "indeed": 158.2
     },
     {
       "date": "2021-12-24",
       "jolts": null,
-      "indeed": 157.8
+      "indeed": 157.9
     },
     {
       "date": "2021-12-25",
       "jolts": null,
-      "indeed": 157.6
+      "indeed": 157.8
     },
     {
       "date": "2021-12-26",
       "jolts": null,
-      "indeed": 157.3
+      "indeed": 157.5
     },
     {
       "date": "2021-12-27",
       "jolts": null,
-      "indeed": 157.2
+      "indeed": 157.4
     },
     {
       "date": "2021-12-28",
       "jolts": null,
-      "indeed": 157.3
+      "indeed": 157.5
     },
     {
       "date": "2021-12-29",
       "jolts": null,
-      "indeed": 157.5
+      "indeed": 157.6
     },
     {
       "date": "2021-12-30",
       "jolts": null,
-      "indeed": 157.5
+      "indeed": 157.7
     },
     {
       "date": "2021-12-31",
       "jolts": null,
-      "indeed": 157.5
+      "indeed": 157.7
     },
     {
       "date": "2022-01-01",
       "jolts": 11238.0,
-      "indeed": 157.4
+      "indeed": 157.6
     },
     {
       "date": "2022-01-02",
       "jolts": null,
-      "indeed": 157.2
+      "indeed": 157.4
     },
     {
       "date": "2022-01-03",
       "jolts": null,
-      "indeed": 156.9
+      "indeed": 157.1
     },
     {
       "date": "2022-01-04",
       "jolts": null,
-      "indeed": 156.7
+      "indeed": 156.8
     },
     {
       "date": "2022-01-05",
       "jolts": null,
-      "indeed": 156.6
+      "indeed": 156.7
     },
     {
       "date": "2022-01-06",
       "jolts": null,
-      "indeed": 156.5
+      "indeed": 156.6
     },
     {
       "date": "2022-01-07",
@@ -4693,7 +4693,7 @@
     {
       "date": "2022-01-09",
       "jolts": null,
-      "indeed": 156.6
+      "indeed": 156.5
     },
     {
       "date": "2022-01-10",
@@ -4718,27 +4718,27 @@
     {
       "date": "2022-01-14",
       "jolts": null,
-      "indeed": 156.3
+      "indeed": 156.4
     },
     {
       "date": "2022-01-15",
       "jolts": null,
-      "indeed": 156.5
+      "indeed": 156.6
     },
     {
       "date": "2022-01-16",
       "jolts": null,
-      "indeed": 156.4
+      "indeed": 156.5
     },
     {
       "date": "2022-01-17",
       "jolts": null,
-      "indeed": 156.3
+      "indeed": 156.4
     },
     {
       "date": "2022-01-18",
       "jolts": null,
-      "indeed": 156.3
+      "indeed": 156.4
     },
     {
       "date": "2022-01-19",
@@ -4753,72 +4753,72 @@
     {
       "date": "2022-01-21",
       "jolts": null,
-      "indeed": 156.7
+      "indeed": 156.8
     },
     {
       "date": "2022-01-22",
       "jolts": null,
-      "indeed": 156.6
+      "indeed": 156.7
     },
     {
       "date": "2022-01-23",
       "jolts": null,
-      "indeed": 156.6
+      "indeed": 156.7
     },
     {
       "date": "2022-01-24",
       "jolts": null,
-      "indeed": 156.6
+      "indeed": 156.7
     },
     {
       "date": "2022-01-25",
       "jolts": null,
-      "indeed": 156.7
+      "indeed": 156.8
     },
     {
       "date": "2022-01-26",
       "jolts": null,
-      "indeed": 156.7
+      "indeed": 156.8
     },
     {
       "date": "2022-01-27",
       "jolts": null,
-      "indeed": 156.8
+      "indeed": 156.9
     },
     {
       "date": "2022-01-28",
       "jolts": null,
-      "indeed": 156.9
+      "indeed": 157.0
     },
     {
       "date": "2022-01-29",
       "jolts": null,
-      "indeed": 157.2
+      "indeed": 157.3
     },
     {
       "date": "2022-01-30",
       "jolts": null,
-      "indeed": 157.4
+      "indeed": 157.5
     },
     {
       "date": "2022-01-31",
       "jolts": null,
-      "indeed": 157.6
+      "indeed": 157.7
     },
     {
       "date": "2022-02-01",
       "jolts": 11661.0,
-      "indeed": 157.7
+      "indeed": 157.8
     },
     {
       "date": "2022-02-02",
       "jolts": null,
-      "indeed": 157.9
+      "indeed": 158.0
     },
     {
       "date": "2022-02-03",
       "jolts": null,
-      "indeed": 158.1
+      "indeed": 158.2
     },
     {
       "date": "2022-02-04",
@@ -4828,32 +4828,32 @@
     {
       "date": "2022-02-05",
       "jolts": null,
-      "indeed": 158.4
+      "indeed": 158.5
     },
     {
       "date": "2022-02-06",
       "jolts": null,
-      "indeed": 158.5
+      "indeed": 158.6
     },
     {
       "date": "2022-02-07",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.6
     },
     {
       "date": "2022-02-08",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 158.7
     },
     {
       "date": "2022-02-09",
       "jolts": null,
-      "indeed": 158.9
+      "indeed": 158.8
     },
     {
       "date": "2022-02-10",
       "jolts": null,
-      "indeed": 159.1
+      "indeed": 159.0
     },
     {
       "date": "2022-02-11",
@@ -4863,7 +4863,7 @@
     {
       "date": "2022-02-12",
       "jolts": null,
-      "indeed": 159.4
+      "indeed": 159.3
     },
     {
       "date": "2022-02-13",
@@ -4873,17 +4873,17 @@
     {
       "date": "2022-02-14",
       "jolts": null,
-      "indeed": 159.5
+      "indeed": 159.6
     },
     {
       "date": "2022-02-15",
       "jolts": null,
-      "indeed": 159.7
+      "indeed": 159.8
     },
     {
       "date": "2022-02-16",
       "jolts": null,
-      "indeed": 159.8
+      "indeed": 159.9
     },
     {
       "date": "2022-02-17",
@@ -4893,57 +4893,57 @@
     {
       "date": "2022-02-18",
       "jolts": null,
-      "indeed": 159.9
+      "indeed": 160.0
     },
     {
       "date": "2022-02-19",
       "jolts": null,
-      "indeed": 159.8
+      "indeed": 159.9
     },
     {
       "date": "2022-02-20",
       "jolts": null,
-      "indeed": 160.0
+      "indeed": 160.1
     },
     {
       "date": "2022-02-21",
       "jolts": null,
-      "indeed": 160.2
+      "indeed": 160.3
     },
     {
       "date": "2022-02-22",
       "jolts": null,
-      "indeed": 160.2
+      "indeed": 160.3
     },
     {
       "date": "2022-02-23",
       "jolts": null,
-      "indeed": 160.2
+      "indeed": 160.3
     },
     {
       "date": "2022-02-24",
       "jolts": null,
-      "indeed": 160.3
+      "indeed": 160.4
     },
     {
       "date": "2022-02-25",
       "jolts": null,
-      "indeed": 160.4
+      "indeed": 160.5
     },
     {
       "date": "2022-02-26",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.8
     },
     {
       "date": "2022-02-27",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.8
     },
     {
       "date": "2022-02-28",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-03-01",
@@ -4968,7 +4968,7 @@
     {
       "date": "2022-03-05",
       "jolts": null,
-      "indeed": 160.4
+      "indeed": 160.5
     },
     {
       "date": "2022-03-06",
@@ -4978,22 +4978,22 @@
     {
       "date": "2022-03-07",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.4
     },
     {
       "date": "2022-03-08",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.5
     },
     {
       "date": "2022-03-09",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.6
     },
     {
       "date": "2022-03-10",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.6
     },
     {
       "date": "2022-03-11",
@@ -5013,7 +5013,7 @@
     {
       "date": "2022-03-14",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-03-15",
@@ -5023,92 +5023,92 @@
     {
       "date": "2022-03-16",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-03-17",
       "jolts": null,
-      "indeed": 160.9
+      "indeed": 161.0
     },
     {
       "date": "2022-03-18",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-03-19",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.8
     },
     {
       "date": "2022-03-20",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-03-21",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.6
     },
     {
       "date": "2022-03-22",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-03-23",
       "jolts": null,
-      "indeed": 160.4
+      "indeed": 160.5
     },
     {
       "date": "2022-03-24",
       "jolts": null,
-      "indeed": 160.4
+      "indeed": 160.5
     },
     {
       "date": "2022-03-25",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.6
     },
     {
       "date": "2022-03-26",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-03-27",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-03-28",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-03-29",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-03-30",
       "jolts": null,
-      "indeed": 161.3
+      "indeed": 161.4
     },
     {
       "date": "2022-03-31",
       "jolts": null,
-      "indeed": 161.5
+      "indeed": 161.6
     },
     {
       "date": "2022-04-01",
       "jolts": 11881.0,
-      "indeed": 161.4
+      "indeed": 161.5
     },
     {
       "date": "2022-04-02",
       "jolts": null,
-      "indeed": 161.3
+      "indeed": 161.4
     },
     {
       "date": "2022-04-03",
@@ -5128,7 +5128,7 @@
     {
       "date": "2022-04-06",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-04-07",
@@ -5153,7 +5153,7 @@
     {
       "date": "2022-04-11",
       "jolts": null,
-      "indeed": 159.3
+      "indeed": 159.4
     },
     {
       "date": "2022-04-12",
@@ -5168,37 +5168,37 @@
     {
       "date": "2022-04-14",
       "jolts": null,
-      "indeed": 158.4
+      "indeed": 158.5
     },
     {
       "date": "2022-04-15",
       "jolts": null,
-      "indeed": 158.2
+      "indeed": 158.3
     },
     {
       "date": "2022-04-16",
       "jolts": null,
-      "indeed": 158.4
+      "indeed": 158.5
     },
     {
       "date": "2022-04-17",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.8
     },
     {
       "date": "2022-04-18",
       "jolts": null,
-      "indeed": 159.1
+      "indeed": 159.2
     },
     {
       "date": "2022-04-19",
       "jolts": null,
-      "indeed": 159.4
+      "indeed": 159.5
     },
     {
       "date": "2022-04-20",
       "jolts": null,
-      "indeed": 159.7
+      "indeed": 159.8
     },
     {
       "date": "2022-04-21",
@@ -5208,22 +5208,22 @@
     {
       "date": "2022-04-22",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.6
     },
     {
       "date": "2022-04-23",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-04-24",
       "jolts": null,
-      "indeed": 160.9
+      "indeed": 161.0
     },
     {
       "date": "2022-04-25",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-04-26",
@@ -5233,22 +5233,22 @@
     {
       "date": "2022-04-27",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.8
     },
     {
       "date": "2022-04-28",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-04-29",
       "jolts": null,
-      "indeed": 160.4
+      "indeed": 160.5
     },
     {
       "date": "2022-04-30",
       "jolts": null,
-      "indeed": 160.1
+      "indeed": 160.2
     },
     {
       "date": "2022-05-01",
@@ -5283,22 +5283,22 @@
     {
       "date": "2022-05-07",
       "jolts": null,
-      "indeed": 160.9
+      "indeed": 160.8
     },
     {
       "date": "2022-05-08",
       "jolts": null,
-      "indeed": 160.4
+      "indeed": 160.3
     },
     {
       "date": "2022-05-09",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.4
     },
     {
       "date": "2022-05-10",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.4
     },
     {
       "date": "2022-05-11",
@@ -5318,97 +5318,97 @@
     {
       "date": "2022-05-14",
       "jolts": null,
-      "indeed": 160.5
+      "indeed": 160.6
     },
     {
       "date": "2022-05-15",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-05-16",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-05-17",
       "jolts": null,
-      "indeed": 160.7
+      "indeed": 160.8
     },
     {
       "date": "2022-05-18",
       "jolts": null,
-      "indeed": 160.9
+      "indeed": 161.0
     },
     {
       "date": "2022-05-19",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-05-20",
       "jolts": null,
-      "indeed": 161.1
+      "indeed": 161.2
     },
     {
       "date": "2022-05-21",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-05-22",
       "jolts": null,
-      "indeed": 161.1
+      "indeed": 161.2
     },
     {
       "date": "2022-05-23",
       "jolts": null,
-      "indeed": 161.2
+      "indeed": 161.3
     },
     {
       "date": "2022-05-24",
       "jolts": null,
-      "indeed": 161.3
+      "indeed": 161.4
     },
     {
       "date": "2022-05-25",
       "jolts": null,
-      "indeed": 161.2
+      "indeed": 161.3
     },
     {
       "date": "2022-05-26",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-05-27",
       "jolts": null,
-      "indeed": 160.9
+      "indeed": 161.0
     },
     {
       "date": "2022-05-28",
       "jolts": null,
-      "indeed": 161.0
+      "indeed": 161.1
     },
     {
       "date": "2022-05-29",
       "jolts": null,
-      "indeed": 160.9
+      "indeed": 161.0
     },
     {
       "date": "2022-05-30",
       "jolts": null,
-      "indeed": 160.8
+      "indeed": 160.9
     },
     {
       "date": "2022-05-31",
       "jolts": null,
-      "indeed": 160.6
+      "indeed": 160.7
     },
     {
       "date": "2022-06-01",
       "jolts": 11256.0,
-      "indeed": 160.4
+      "indeed": 160.5
     },
     {
       "date": "2022-06-02",
@@ -5418,22 +5418,22 @@
     {
       "date": "2022-06-03",
       "jolts": null,
-      "indeed": 160.2
+      "indeed": 160.3
     },
     {
       "date": "2022-06-04",
       "jolts": null,
-      "indeed": 160.1
+      "indeed": 160.2
     },
     {
       "date": "2022-06-05",
       "jolts": null,
-      "indeed": 159.9
+      "indeed": 160.0
     },
     {
       "date": "2022-06-06",
       "jolts": null,
-      "indeed": 159.7
+      "indeed": 159.8
     },
     {
       "date": "2022-06-07",
@@ -5443,117 +5443,117 @@
     {
       "date": "2022-06-08",
       "jolts": null,
-      "indeed": 159.6
+      "indeed": 159.7
     },
     {
       "date": "2022-06-09",
       "jolts": null,
-      "indeed": 159.4
+      "indeed": 159.5
     },
     {
       "date": "2022-06-10",
       "jolts": null,
-      "indeed": 159.2
+      "indeed": 159.4
     },
     {
       "date": "2022-06-11",
       "jolts": null,
-      "indeed": 159.1
+      "indeed": 159.2
     },
     {
       "date": "2022-06-12",
       "jolts": null,
-      "indeed": 159.0
+      "indeed": 159.1
     },
     {
       "date": "2022-06-13",
       "jolts": null,
-      "indeed": 158.9
+      "indeed": 159.1
     },
     {
       "date": "2022-06-14",
       "jolts": null,
-      "indeed": 158.9
+      "indeed": 159.0
     },
     {
       "date": "2022-06-15",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 159.0
     },
     {
       "date": "2022-06-16",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 158.9
     },
     {
       "date": "2022-06-17",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 158.9
     },
     {
       "date": "2022-06-18",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 158.9
     },
     {
       "date": "2022-06-19",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 158.9
     },
     {
       "date": "2022-06-20",
       "jolts": null,
-      "indeed": 158.8
+      "indeed": 158.9
     },
     {
       "date": "2022-06-21",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.8
     },
     {
       "date": "2022-06-22",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.8
     },
     {
       "date": "2022-06-23",
       "jolts": null,
-      "indeed": 158.7
+      "indeed": 158.8
     },
     {
       "date": "2022-06-24",
       "jolts": null,
-      "indeed": 158.6
+      "indeed": 158.7
     },
     {
       "date": "2022-06-25",
       "jolts": null,
-      "indeed": 158.3
+      "indeed": 158.4
     },
     {
       "date": "2022-06-26",
       "jolts": null,
-      "indeed": 158.1
+      "indeed": 158.2
     },
     {
       "date": "2022-06-27",
       "jolts": null,
-      "indeed": 157.8
+      "indeed": 157.9
     },
     {
       "date": "2022-06-28",
       "jolts": null,
-      "indeed": 157.6
+      "indeed": 157.7
     },
     {
       "date": "2022-06-29",
       "jolts": null,
-      "indeed": 157.7
+      "indeed": 157.8
     },
     {
       "date": "2022-06-30",
       "jolts": null,
-      "indeed": 157.7
+      "indeed": 157.8
     },
     {
       "date": "2022-07-01",
@@ -5568,7 +5568,7 @@
     {
       "date": "2022-07-03",
       "jolts": null,
-      "indeed": 157.9
+      "indeed": 158.0
     },
     {
       "date": "2022-07-04",
@@ -5588,7 +5588,7 @@
     {
       "date": "2022-07-07",
       "jolts": null,
-      "indeed": 157.3
+      "indeed": 157.2
     },
     {
       "date": "2022-07-08",
@@ -5623,27 +5623,27 @@
     {
       "date": "2022-07-14",
       "jolts": null,
-      "indeed": 156.2
+      "indeed": 156.3
     },
     {
       "date": "2022-07-15",
       "jolts": null,
-      "indeed": 156.0
+      "indeed": 156.1
     },
     {
       "date": "2022-07-16",
       "jolts": null,
-      "indeed": 155.9
+      "indeed": 156.0
     },
     {
       "date": "2022-07-17",
       "jolts": null,
-      "indeed": 155.8
+      "indeed": 155.9
     },
     {
       "date": "2022-07-18",
       "jolts": null,
-      "indeed": 155.6
+      "indeed": 155.7
     },
     {
       "date": "2022-07-19",
@@ -5678,7 +5678,7 @@
     {
       "date": "2022-07-25",
       "jolts": null,
-      "indeed": 155.2
+      "indeed": 155.3
     },
     {
       "date": "2022-07-26",
@@ -5703,7 +5703,7 @@
     {
       "date": "2022-07-30",
       "jolts": null,
-      "indeed": 155.3
+      "indeed": 155.4
     },
     {
       "date": "2022-07-31",
@@ -5713,7 +5713,7 @@
     {
       "date": "2022-08-01",
       "jolts": 10148.0,
-      "indeed": 155.2
+      "indeed": 155.3
     },
     {
       "date": "2022-08-02",
@@ -5728,42 +5728,42 @@
     {
       "date": "2022-08-04",
       "jolts": null,
-      "indeed": 155.1
+      "indeed": 155.2
     },
     {
       "date": "2022-08-05",
       "jolts": null,
-      "indeed": 155.2
+      "indeed": 155.3
     },
     {
       "date": "2022-08-06",
       "jolts": null,
-      "indeed": 155.2
+      "indeed": 155.3
     },
     {
       "date": "2022-08-07",
       "jolts": null,
-      "indeed": 155.2
+      "indeed": 155.3
     },
     {
       "date": "2022-08-08",
       "jolts": null,
-      "indeed": 155.1
+      "indeed": 155.2
     },
     {
       "date": "2022-08-09",
       "jolts": null,
-      "indeed": 155.1
+      "indeed": 155.2
     },
     {
       "date": "2022-08-10",
       "jolts": null,
-      "indeed": 154.9
+      "indeed": 155.0
     },
     {
       "date": "2022-08-11",
       "jolts": null,
-      "indeed": 154.8
+      "indeed": 154.9
     },
     {
       "date": "2022-08-12",
@@ -5773,22 +5773,22 @@
     {
       "date": "2022-08-13",
       "jolts": null,
-      "indeed": 154.4
+      "indeed": 154.5
     },
     {
       "date": "2022-08-14",
       "jolts": null,
-      "indeed": 154.2
+      "indeed": 154.3
     },
     {
       "date": "2022-08-15",
       "jolts": null,
-      "indeed": 154.0
+      "indeed": 154.1
     },
     {
       "date": "2022-08-16",
       "jolts": null,
-      "indeed": 153.9
+      "indeed": 154.0
     },
     {
       "date": "2022-08-17",
@@ -5798,17 +5798,17 @@
     {
       "date": "2022-08-18",
       "jolts": null,
-      "indeed": 153.6
+      "indeed": 153.7
     },
     {
       "date": "2022-08-19",
       "jolts": null,
-      "indeed": 153.4
+      "indeed": 153.5
     },
     {
       "date": "2022-08-20",
       "jolts": null,
-      "indeed": 153.4
+      "indeed": 153.5
     },
     {
       "date": "2022-08-21",
@@ -5818,52 +5818,52 @@
     {
       "date": "2022-08-22",
       "jolts": null,
-      "indeed": 153.1
+      "indeed": 153.2
     },
     {
       "date": "2022-08-23",
       "jolts": null,
-      "indeed": 153.0
+      "indeed": 153.1
     },
     {
       "date": "2022-08-24",
       "jolts": null,
-      "indeed": 152.9
+      "indeed": 153.0
     },
     {
       "date": "2022-08-25",
       "jolts": null,
-      "indeed": 152.9
+      "indeed": 153.0
     },
     {
       "date": "2022-08-26",
       "jolts": null,
-      "indeed": 152.9
+      "indeed": 153.0
     },
     {
       "date": "2022-08-27",
       "jolts": null,
-      "indeed": 152.9
+      "indeed": 153.0
     },
     {
       "date": "2022-08-28",
       "jolts": null,
-      "indeed": 152.8
+      "indeed": 152.9
     },
     {
       "date": "2022-08-29",
       "jolts": null,
-      "indeed": 152.7
+      "indeed": 152.8
     },
     {
       "date": "2022-08-30",
       "jolts": null,
-      "indeed": 152.7
+      "indeed": 152.8
     },
     {
       "date": "2022-08-31",
       "jolts": null,
-      "indeed": 152.6
+      "indeed": 152.7
     },
     {
       "date": "2022-09-01",
@@ -5873,7 +5873,7 @@
     {
       "date": "2022-09-02",
       "jolts": null,
-      "indeed": 152.5
+      "indeed": 152.4
     },
     {
       "date": "2022-09-03",
@@ -5898,37 +5898,37 @@
     {
       "date": "2022-09-07",
       "jolts": null,
-      "indeed": 152.2
+      "indeed": 152.0
     },
     {
       "date": "2022-09-08",
       "jolts": null,
-      "indeed": 152.1
+      "indeed": 152.0
     },
     {
       "date": "2022-09-09",
       "jolts": null,
-      "indeed": 152.0
+      "indeed": 151.9
     },
     {
       "date": "2022-09-10",
       "jolts": null,
-      "indeed": 151.9
+      "indeed": 151.8
     },
     {
       "date": "2022-09-11",
       "jolts": null,
-      "indeed": 151.7
+      "indeed": 151.6
     },
     {
       "date": "2022-09-12",
       "jolts": null,
-      "indeed": 151.6
+      "indeed": 151.5
     },
     {
       "date": "2022-09-13",
       "jolts": null,
-      "indeed": 151.6
+      "indeed": 151.5
     },
     {
       "date": "2022-09-14",
@@ -5943,7 +5943,7 @@
     {
       "date": "2022-09-16",
       "jolts": null,
-      "indeed": 151.3
+      "indeed": 151.4
     },
     {
       "date": "2022-09-17",
@@ -5953,7 +5953,7 @@
     {
       "date": "2022-09-18",
       "jolts": null,
-      "indeed": 151.1
+      "indeed": 151.2
     },
     {
       "date": "2022-09-19",
@@ -5963,12 +5963,12 @@
     {
       "date": "2022-09-20",
       "jolts": null,
-      "indeed": 150.7
+      "indeed": 150.8
     },
     {
       "date": "2022-09-21",
       "jolts": null,
-      "indeed": 150.6
+      "indeed": 150.7
     },
     {
       "date": "2022-09-22",
@@ -5978,12 +5978,12 @@
     {
       "date": "2022-09-23",
       "jolts": null,
-      "indeed": 150.4
+      "indeed": 150.5
     },
     {
       "date": "2022-09-24",
       "jolts": null,
-      "indeed": 150.3
+      "indeed": 150.4
     },
     {
       "date": "2022-09-25",
@@ -6008,12 +6008,12 @@
     {
       "date": "2022-09-29",
       "jolts": null,
-      "indeed": 150.3
+      "indeed": 150.4
     },
     {
       "date": "2022-09-30",
       "jolts": null,
-      "indeed": 150.2
+      "indeed": 150.3
     },
     {
       "date": "2022-10-01",
@@ -6048,12 +6048,12 @@
     {
       "date": "2022-10-07",
       "jolts": null,
-      "indeed": 149.6
+      "indeed": 149.5
     },
     {
       "date": "2022-10-08",
       "jolts": null,
-      "indeed": 149.6
+      "indeed": 149.5
     },
     {
       "date": "2022-10-09",
@@ -6068,32 +6068,32 @@
     {
       "date": "2022-10-11",
       "jolts": null,
-      "indeed": 149.4
+      "indeed": 149.3
     },
     {
       "date": "2022-10-12",
       "jolts": null,
-      "indeed": 149.3
+      "indeed": 149.2
     },
     {
       "date": "2022-10-13",
       "jolts": null,
-      "indeed": 149.4
+      "indeed": 149.3
     },
     {
       "date": "2022-10-14",
       "jolts": null,
-      "indeed": 149.4
+      "indeed": 149.5
     },
     {
       "date": "2022-10-15",
       "jolts": null,
-      "indeed": 149.3
+      "indeed": 149.4
     },
     {
       "date": "2022-10-16",
       "jolts": null,
-      "indeed": 149.4
+      "indeed": 149.5
     },
     {
       "date": "2022-10-17",
@@ -6108,7 +6108,7 @@
     {
       "date": "2022-10-19",
       "jolts": null,
-      "indeed": 149.3
+      "indeed": 149.4
     },
     {
       "date": "2022-10-20",
@@ -6118,57 +6118,57 @@
     {
       "date": "2022-10-21",
       "jolts": null,
-      "indeed": 149.1
+      "indeed": 149.2
     },
     {
       "date": "2022-10-22",
       "jolts": null,
-      "indeed": 148.8
+      "indeed": 148.9
     },
     {
       "date": "2022-10-23",
       "jolts": null,
-      "indeed": 148.7
+      "indeed": 148.8
     },
     {
       "date": "2022-10-24",
       "jolts": null,
-      "indeed": 148.6
+      "indeed": 148.7
     },
     {
       "date": "2022-10-25",
       "jolts": null,
-      "indeed": 148.5
+      "indeed": 148.6
     },
     {
       "date": "2022-10-26",
       "jolts": null,
-      "indeed": 148.4
+      "indeed": 148.5
     },
     {
       "date": "2022-10-27",
       "jolts": null,
-      "indeed": 148.3
+      "indeed": 148.4
     },
     {
       "date": "2022-10-28",
       "jolts": null,
-      "indeed": 148.2
+      "indeed": 148.3
     },
     {
       "date": "2022-10-29",
       "jolts": null,
-      "indeed": 148.4
+      "indeed": 148.5
     },
     {
       "date": "2022-10-30",
       "jolts": null,
-      "indeed": 148.4
+      "indeed": 148.5
     },
     {
       "date": "2022-10-31",
       "jolts": null,
-      "indeed": 148.4
+      "indeed": 148.5
     },
     {
       "date": "2022-11-01",
@@ -6188,7 +6188,7 @@
     {
       "date": "2022-11-04",
       "jolts": null,
-      "indeed": 148.5
+      "indeed": 148.4
     },
     {
       "date": "2022-11-05",
@@ -6203,7 +6203,7 @@
     {
       "date": "2022-11-07",
       "jolts": null,
-      "indeed": 148.6
+      "indeed": 148.4
     },
     {
       "date": "2022-11-08",
@@ -6223,17 +6223,17 @@
     {
       "date": "2022-11-11",
       "jolts": null,
-      "indeed": 149.0
+      "indeed": 148.9
     },
     {
       "date": "2022-11-12",
       "jolts": null,
-      "indeed": 149.0
+      "indeed": 148.9
     },
     {
       "date": "2022-11-13",
       "jolts": null,
-      "indeed": 149.0
+      "indeed": 148.9
     },
     {
       "date": "2022-11-14",
@@ -6243,7 +6243,7 @@
     {
       "date": "2022-11-15",
       "jolts": null,
-      "indeed": 149.0
+      "indeed": 148.9
     },
     {
       "date": "2022-11-16",
@@ -6268,22 +6268,22 @@
     {
       "date": "2022-11-20",
       "jolts": null,
-      "indeed": 148.5
+      "indeed": 148.6
     },
     {
       "date": "2022-11-21",
       "jolts": null,
-      "indeed": 148.4
+      "indeed": 148.5
     },
     {
       "date": "2022-11-22",
       "jolts": null,
-      "indeed": 148.3
+      "indeed": 148.4
     },
     {
       "date": "2022-11-23",
       "jolts": null,
-      "indeed": 148.2
+      "indeed": 148.3
     },
     {
       "date": "2022-11-24",
@@ -6293,7 +6293,7 @@
     {
       "date": "2022-11-25",
       "jolts": null,
-      "indeed": 147.9
+      "indeed": 148.0
     },
     {
       "date": "2022-11-26",
@@ -6318,17 +6318,17 @@
     {
       "date": "2022-11-30",
       "jolts": null,
-      "indeed": 147.3
+      "indeed": 147.4
     },
     {
       "date": "2022-12-01",
       "jolts": 10876.0,
-      "indeed": 147.2
+      "indeed": 147.1
     },
     {
       "date": "2022-12-02",
       "jolts": null,
-      "indeed": 146.9
+      "indeed": 146.8
     },
     {
       "date": "2022-12-03",
@@ -6338,7 +6338,7 @@
     {
       "date": "2022-12-04",
       "jolts": null,
-      "indeed": 146.5
+      "indeed": 146.4
     },
     {
       "date": "2022-12-05",
@@ -6353,22 +6353,22 @@
     {
       "date": "2022-12-07",
       "jolts": null,
-      "indeed": 145.8
+      "indeed": 145.7
     },
     {
       "date": "2022-12-08",
       "jolts": null,
-      "indeed": 145.6
+      "indeed": 145.5
     },
     {
       "date": "2022-12-09",
       "jolts": null,
-      "indeed": 145.5
+      "indeed": 145.4
     },
     {
       "date": "2022-12-10",
       "jolts": null,
-      "indeed": 145.3
+      "indeed": 145.2
     },
     {
       "date": "2022-12-11",
@@ -6378,12 +6378,12 @@
     {
       "date": "2022-12-12",
       "jolts": null,
-      "indeed": 145.1
+      "indeed": 145.0
     },
     {
       "date": "2022-12-13",
       "jolts": null,
-      "indeed": 145.1
+      "indeed": 145.0
     },
     {
       "date": "2022-12-14",
@@ -6398,7 +6398,7 @@
     {
       "date": "2022-12-16",
       "jolts": null,
-      "indeed": 145.2
+      "indeed": 145.3
     },
     {
       "date": "2022-12-17",
@@ -6408,7 +6408,7 @@
     {
       "date": "2022-12-18",
       "jolts": null,
-      "indeed": 145.2
+      "indeed": 145.3
     },
     {
       "date": "2022-12-19",
@@ -6423,7 +6423,7 @@
     {
       "date": "2022-12-21",
       "jolts": null,
-      "indeed": 144.9
+      "indeed": 145.0
     },
     {
       "date": "2022-12-22",
@@ -6438,7 +6438,7 @@
     {
       "date": "2022-12-24",
       "jolts": null,
-      "indeed": 144.4
+      "indeed": 144.5
     },
     {
       "date": "2022-12-25",
@@ -6453,12 +6453,12 @@
     {
       "date": "2022-12-27",
       "jolts": null,
-      "indeed": 144.1
+      "indeed": 144.2
     },
     {
       "date": "2022-12-28",
       "jolts": null,
-      "indeed": 143.9
+      "indeed": 144.0
     },
     {
       "date": "2022-12-29",
@@ -6468,7 +6468,7 @@
     {
       "date": "2022-12-30",
       "jolts": null,
-      "indeed": 143.7
+      "indeed": 143.8
     },
     {
       "date": "2022-12-31",
@@ -6483,7 +6483,7 @@
     {
       "date": "2023-01-02",
       "jolts": null,
-      "indeed": 143.1
+      "indeed": 143.0
     },
     {
       "date": "2023-01-03",
@@ -6493,7 +6493,7 @@
     {
       "date": "2023-01-04",
       "jolts": null,
-      "indeed": 142.5
+      "indeed": 142.4
     },
     {
       "date": "2023-01-05",
@@ -6503,42 +6503,42 @@
     {
       "date": "2023-01-06",
       "jolts": null,
-      "indeed": 141.9
+      "indeed": 141.8
     },
     {
       "date": "2023-01-07",
       "jolts": null,
-      "indeed": 141.8
+      "indeed": 141.5
     },
     {
       "date": "2023-01-08",
       "jolts": null,
-      "indeed": 141.7
+      "indeed": 141.6
     },
     {
       "date": "2023-01-09",
       "jolts": null,
-      "indeed": 141.6
+      "indeed": 141.5
     },
     {
       "date": "2023-01-10",
       "jolts": null,
-      "indeed": 141.5
+      "indeed": 141.4
     },
     {
       "date": "2023-01-11",
       "jolts": null,
-      "indeed": 141.6
+      "indeed": 141.5
     },
     {
       "date": "2023-01-12",
       "jolts": null,
-      "indeed": 141.7
+      "indeed": 141.6
     },
     {
       "date": "2023-01-13",
       "jolts": null,
-      "indeed": 141.8
+      "indeed": 141.6
     },
     {
       "date": "2023-01-14",
@@ -6563,17 +6563,17 @@
     {
       "date": "2023-01-18",
       "jolts": null,
-      "indeed": 141.1
+      "indeed": 141.2
     },
     {
       "date": "2023-01-19",
       "jolts": null,
-      "indeed": 141.0
+      "indeed": 141.1
     },
     {
       "date": "2023-01-20",
       "jolts": null,
-      "indeed": 140.9
+      "indeed": 141.0
     },
     {
       "date": "2023-01-21",
@@ -6583,7 +6583,7 @@
     {
       "date": "2023-01-22",
       "jolts": null,
-      "indeed": 140.8
+      "indeed": 140.9
     },
     {
       "date": "2023-01-23",
@@ -6593,7 +6593,7 @@
     {
       "date": "2023-01-24",
       "jolts": null,
-      "indeed": 140.7
+      "indeed": 140.8
     },
     {
       "date": "2023-01-25",
@@ -6663,42 +6663,42 @@
     {
       "date": "2023-02-07",
       "jolts": null,
-      "indeed": 139.0
+      "indeed": 138.9
     },
     {
       "date": "2023-02-08",
       "jolts": null,
-      "indeed": 138.8
+      "indeed": 138.5
     },
     {
       "date": "2023-02-09",
       "jolts": null,
-      "indeed": 138.6
+      "indeed": 138.3
     },
     {
       "date": "2023-02-10",
       "jolts": null,
-      "indeed": 138.3
+      "indeed": 138.0
     },
     {
       "date": "2023-02-11",
       "jolts": null,
-      "indeed": 138.0
+      "indeed": 137.7
     },
     {
       "date": "2023-02-12",
       "jolts": null,
-      "indeed": 137.7
+      "indeed": 137.3
     },
     {
       "date": "2023-02-13",
       "jolts": null,
-      "indeed": 137.4
+      "indeed": 137.1
     },
     {
       "date": "2023-02-14",
       "jolts": null,
-      "indeed": 137.1
+      "indeed": 136.9
     },
     {
       "date": "2023-02-15",
@@ -6708,7 +6708,7 @@
     {
       "date": "2023-02-16",
       "jolts": null,
-      "indeed": 136.8
+      "indeed": 136.9
     },
     {
       "date": "2023-02-17",
@@ -6763,7 +6763,7 @@
     {
       "date": "2023-02-27",
       "jolts": null,
-      "indeed": 136.0
+      "indeed": 135.9
     },
     {
       "date": "2023-02-28",
@@ -6773,67 +6773,67 @@
     {
       "date": "2023-03-01",
       "jolts": 9572.0,
-      "indeed": 135.1
+      "indeed": 135.0
     },
     {
       "date": "2023-03-02",
       "jolts": null,
-      "indeed": 134.8
+      "indeed": 134.7
     },
     {
       "date": "2023-03-03",
       "jolts": null,
-      "indeed": 134.6
+      "indeed": 134.4
     },
     {
       "date": "2023-03-04",
       "jolts": null,
-      "indeed": 134.4
+      "indeed": 134.3
     },
     {
       "date": "2023-03-05",
       "jolts": null,
-      "indeed": 134.3
+      "indeed": 134.2
     },
     {
       "date": "2023-03-06",
       "jolts": null,
-      "indeed": 134.2
+      "indeed": 134.1
     },
     {
       "date": "2023-03-07",
       "jolts": null,
-      "indeed": 134.1
+      "indeed": 133.8
     },
     {
       "date": "2023-03-08",
       "jolts": null,
-      "indeed": 134.1
+      "indeed": 133.9
     },
     {
       "date": "2023-03-09",
       "jolts": null,
-      "indeed": 133.8
+      "indeed": 133.7
     },
     {
       "date": "2023-03-10",
       "jolts": null,
-      "indeed": 134.3
+      "indeed": 134.2
     },
     {
       "date": "2023-03-11",
       "jolts": null,
-      "indeed": 134.9
+      "indeed": 134.7
     },
     {
       "date": "2023-03-12",
       "jolts": null,
-      "indeed": 135.3
+      "indeed": 135.1
     },
     {
       "date": "2023-03-13",
       "jolts": null,
-      "indeed": 135.6
+      "indeed": 135.5
     },
     {
       "date": "2023-03-14",
@@ -6853,7 +6853,7 @@
     {
       "date": "2023-03-17",
       "jolts": null,
-      "indeed": 137.3
+      "indeed": 137.4
     },
     {
       "date": "2023-03-18",
@@ -6863,42 +6863,42 @@
     {
       "date": "2023-03-19",
       "jolts": null,
-      "indeed": 137.0
+      "indeed": 137.1
     },
     {
       "date": "2023-03-20",
       "jolts": null,
-      "indeed": 137.0
+      "indeed": 137.1
     },
     {
       "date": "2023-03-21",
       "jolts": null,
-      "indeed": 137.0
+      "indeed": 137.1
     },
     {
       "date": "2023-03-22",
       "jolts": null,
-      "indeed": 136.9
+      "indeed": 137.0
     },
     {
       "date": "2023-03-23",
       "jolts": null,
-      "indeed": 136.7
+      "indeed": 136.8
     },
     {
       "date": "2023-03-24",
       "jolts": null,
-      "indeed": 136.6
+      "indeed": 136.7
     },
     {
       "date": "2023-03-25",
       "jolts": null,
-      "indeed": 136.5
+      "indeed": 136.6
     },
     {
       "date": "2023-03-26",
       "jolts": null,
-      "indeed": 136.5
+      "indeed": 136.6
     },
     {
       "date": "2023-03-27",
@@ -6918,7 +6918,7 @@
     {
       "date": "2023-03-30",
       "jolts": null,
-      "indeed": 136.5
+      "indeed": 136.6
     },
     {
       "date": "2023-03-31",
@@ -6928,27 +6928,27 @@
     {
       "date": "2023-04-01",
       "jolts": 9992.0,
-      "indeed": 136.5
+      "indeed": 136.4
     },
     {
       "date": "2023-04-02",
       "jolts": null,
-      "indeed": 136.5
+      "indeed": 136.4
     },
     {
       "date": "2023-04-03",
       "jolts": null,
-      "indeed": 136.3
+      "indeed": 136.2
     },
     {
       "date": "2023-04-04",
       "jolts": null,
-      "indeed": 136.3
+      "indeed": 136.2
     },
     {
       "date": "2023-04-05",
       "jolts": null,
-      "indeed": 136.4
+      "indeed": 136.3
     },
     {
       "date": "2023-04-06",
@@ -6958,22 +6958,22 @@
     {
       "date": "2023-04-07",
       "jolts": null,
-      "indeed": 136.6
+      "indeed": 136.4
     },
     {
       "date": "2023-04-08",
       "jolts": null,
-      "indeed": 136.7
+      "indeed": 136.6
     },
     {
       "date": "2023-04-09",
       "jolts": null,
-      "indeed": 136.8
+      "indeed": 136.7
     },
     {
       "date": "2023-04-10",
       "jolts": null,
-      "indeed": 137.1
+      "indeed": 137.0
     },
     {
       "date": "2023-04-11",
@@ -7028,7 +7028,7 @@
     {
       "date": "2023-04-21",
       "jolts": null,
-      "indeed": 137.0
+      "indeed": 137.1
     },
     {
       "date": "2023-04-22",
@@ -7048,7 +7048,7 @@
     {
       "date": "2023-04-25",
       "jolts": null,
-      "indeed": 137.2
+      "indeed": 137.3
     },
     {
       "date": "2023-04-26",
@@ -7078,37 +7078,37 @@
     {
       "date": "2023-05-01",
       "jolts": 9310.0,
-      "indeed": 137.2
+      "indeed": 137.1
     },
     {
       "date": "2023-05-02",
       "jolts": null,
-      "indeed": 137.1
+      "indeed": 137.0
     },
     {
       "date": "2023-05-03",
       "jolts": null,
-      "indeed": 136.9
+      "indeed": 136.8
     },
     {
       "date": "2023-05-04",
       "jolts": null,
-      "indeed": 136.6
+      "indeed": 136.5
     },
     {
       "date": "2023-05-05",
       "jolts": null,
-      "indeed": 136.5
+      "indeed": 136.4
     },
     {
       "date": "2023-05-06",
       "jolts": null,
-      "indeed": 136.4
+      "indeed": 136.3
     },
     {
       "date": "2023-05-07",
       "jolts": null,
-      "indeed": 136.4
+      "indeed": 136.1
     },
     {
       "date": "2023-05-08",
@@ -7118,32 +7118,32 @@
     {
       "date": "2023-05-09",
       "jolts": null,
-      "indeed": 136.1
+      "indeed": 136.0
     },
     {
       "date": "2023-05-10",
       "jolts": null,
-      "indeed": 136.1
+      "indeed": 135.9
     },
     {
       "date": "2023-05-11",
       "jolts": null,
-      "indeed": 136.1
+      "indeed": 136.0
     },
     {
       "date": "2023-05-12",
       "jolts": null,
-      "indeed": 135.4
+      "indeed": 135.3
     },
     {
       "date": "2023-05-13",
       "jolts": null,
-      "indeed": 135.2
+      "indeed": 135.1
     },
     {
       "date": "2023-05-14",
       "jolts": null,
-      "indeed": 135.0
+      "indeed": 135.1
     },
     {
       "date": "2023-05-15",
@@ -7158,17 +7158,17 @@
     {
       "date": "2023-05-17",
       "jolts": null,
-      "indeed": 134.6
+      "indeed": 134.7
     },
     {
       "date": "2023-05-18",
       "jolts": null,
-      "indeed": 134.6
+      "indeed": 134.7
     },
     {
       "date": "2023-05-19",
       "jolts": null,
-      "indeed": 135.1
+      "indeed": 135.2
     },
     {
       "date": "2023-05-20",
@@ -7188,17 +7188,17 @@
     {
       "date": "2023-05-23",
       "jolts": null,
-      "indeed": 135.5
+      "indeed": 135.6
     },
     {
       "date": "2023-05-24",
       "jolts": null,
-      "indeed": 135.5
+      "indeed": 135.6
     },
     {
       "date": "2023-05-25",
       "jolts": null,
-      "indeed": 135.5
+      "indeed": 135.6
     },
     {
       "date": "2023-05-26",
@@ -7208,82 +7208,82 @@
     {
       "date": "2023-05-27",
       "jolts": null,
-      "indeed": 135.4
+      "indeed": 135.5
     },
     {
       "date": "2023-05-28",
       "jolts": null,
-      "indeed": 135.2
+      "indeed": 135.3
     },
     {
       "date": "2023-05-29",
       "jolts": null,
-      "indeed": 135.1
+      "indeed": 135.2
     },
     {
       "date": "2023-05-30",
       "jolts": null,
-      "indeed": 135.0
+      "indeed": 135.1
     },
     {
       "date": "2023-05-31",
       "jolts": null,
-      "indeed": 134.8
+      "indeed": 134.9
     },
     {
       "date": "2023-06-01",
       "jolts": 9191.0,
-      "indeed": 134.6
+      "indeed": 134.5
     },
     {
       "date": "2023-06-02",
       "jolts": null,
-      "indeed": 134.4
+      "indeed": 134.3
     },
     {
       "date": "2023-06-03",
       "jolts": null,
-      "indeed": 134.2
+      "indeed": 134.1
     },
     {
       "date": "2023-06-04",
       "jolts": null,
-      "indeed": 134.0
+      "indeed": 133.9
     },
     {
       "date": "2023-06-05",
       "jolts": null,
-      "indeed": 133.8
+      "indeed": 133.7
     },
     {
       "date": "2023-06-06",
       "jolts": null,
-      "indeed": 133.6
+      "indeed": 133.5
     },
     {
       "date": "2023-06-07",
       "jolts": null,
-      "indeed": 133.5
+      "indeed": 133.3
     },
     {
       "date": "2023-06-08",
       "jolts": null,
-      "indeed": 133.4
+      "indeed": 133.3
     },
     {
       "date": "2023-06-09",
       "jolts": null,
-      "indeed": 133.3
+      "indeed": 133.2
     },
     {
       "date": "2023-06-10",
       "jolts": null,
-      "indeed": 133.1
+      "indeed": 133.0
     },
     {
       "date": "2023-06-11",
       "jolts": null,
-      "indeed": 133.0
+      "indeed": 132.9
     },
     {
       "date": "2023-06-12",
@@ -7293,32 +7293,32 @@
     {
       "date": "2023-06-13",
       "jolts": null,
-      "indeed": 132.7
+      "indeed": 132.6
     },
     {
       "date": "2023-06-14",
       "jolts": null,
-      "indeed": 132.7
+      "indeed": 132.8
     },
     {
       "date": "2023-06-15",
       "jolts": null,
-      "indeed": 132.6
+      "indeed": 132.7
     },
     {
       "date": "2023-06-16",
       "jolts": null,
-      "indeed": 132.5
+      "indeed": 132.6
     },
     {
       "date": "2023-06-17",
       "jolts": null,
-      "indeed": 132.4
+      "indeed": 132.5
     },
     {
       "date": "2023-06-18",
       "jolts": null,
-      "indeed": 132.4
+      "indeed": 132.5
     },
     {
       "date": "2023-06-19",
@@ -7328,17 +7328,17 @@
     {
       "date": "2023-06-20",
       "jolts": null,
-      "indeed": 132.3
+      "indeed": 132.4
     },
     {
       "date": "2023-06-21",
       "jolts": null,
-      "indeed": 132.1
+      "indeed": 132.2
     },
     {
       "date": "2023-06-22",
       "jolts": null,
-      "indeed": 132.0
+      "indeed": 132.1
     },
     {
       "date": "2023-06-23",
@@ -7348,7 +7348,7 @@
     {
       "date": "2023-06-24",
       "jolts": null,
-      "indeed": 131.9
+      "indeed": 132.0
     },
     {
       "date": "2023-06-25",
@@ -7363,7 +7363,7 @@
     {
       "date": "2023-06-27",
       "jolts": null,
-      "indeed": 131.4
+      "indeed": 131.5
     },
     {
       "date": "2023-06-28",
@@ -7373,7 +7373,7 @@
     {
       "date": "2023-06-29",
       "jolts": null,
-      "indeed": 131.2
+      "indeed": 131.3
     },
     {
       "date": "2023-06-30",
@@ -7388,37 +7388,37 @@
     {
       "date": "2023-07-02",
       "jolts": null,
-      "indeed": 131.0
+      "indeed": 130.9
     },
     {
       "date": "2023-07-03",
       "jolts": null,
-      "indeed": 130.9
+      "indeed": 130.8
     },
     {
       "date": "2023-07-04",
       "jolts": null,
-      "indeed": 130.8
+      "indeed": 130.7
     },
     {
       "date": "2023-07-05",
       "jolts": null,
-      "indeed": 130.8
+      "indeed": 130.7
     },
     {
       "date": "2023-07-06",
       "jolts": null,
-      "indeed": 130.5
+      "indeed": 130.4
     },
     {
       "date": "2023-07-07",
       "jolts": null,
-      "indeed": 130.3
+      "indeed": 130.1
     },
     {
       "date": "2023-07-08",
       "jolts": null,
-      "indeed": 130.2
+      "indeed": 130.1
     },
     {
       "date": "2023-07-09",
@@ -7428,22 +7428,22 @@
     {
       "date": "2023-07-10",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 130.0
     },
     {
       "date": "2023-07-11",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 130.0
     },
     {
       "date": "2023-07-12",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 129.9
     },
     {
       "date": "2023-07-13",
       "jolts": null,
-      "indeed": 130.2
+      "indeed": 130.1
     },
     {
       "date": "2023-07-14",
@@ -7468,7 +7468,7 @@
     {
       "date": "2023-07-18",
       "jolts": null,
-      "indeed": 130.4
+      "indeed": 130.5
     },
     {
       "date": "2023-07-19",
@@ -7483,27 +7483,27 @@
     {
       "date": "2023-07-21",
       "jolts": null,
-      "indeed": 130.2
+      "indeed": 130.3
     },
     {
       "date": "2023-07-22",
       "jolts": null,
-      "indeed": 129.9
+      "indeed": 130.0
     },
     {
       "date": "2023-07-23",
       "jolts": null,
-      "indeed": 129.9
+      "indeed": 130.0
     },
     {
       "date": "2023-07-24",
       "jolts": null,
-      "indeed": 129.9
+      "indeed": 130.0
     },
     {
       "date": "2023-07-25",
       "jolts": null,
-      "indeed": 130.0
+      "indeed": 130.1
     },
     {
       "date": "2023-07-26",
@@ -7513,12 +7513,12 @@
     {
       "date": "2023-07-27",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 130.2
     },
     {
       "date": "2023-07-28",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 130.2
     },
     {
       "date": "2023-07-29",
@@ -7528,17 +7528,17 @@
     {
       "date": "2023-07-30",
       "jolts": null,
-      "indeed": 130.3
+      "indeed": 130.4
     },
     {
       "date": "2023-07-31",
       "jolts": null,
-      "indeed": 130.3
+      "indeed": 130.4
     },
     {
       "date": "2023-08-01",
       "jolts": 9287.0,
-      "indeed": 130.3
+      "indeed": 130.2
     },
     {
       "date": "2023-08-02",
@@ -7548,42 +7548,42 @@
     {
       "date": "2023-08-03",
       "jolts": null,
-      "indeed": 130.2
+      "indeed": 130.1
     },
     {
       "date": "2023-08-04",
       "jolts": null,
-      "indeed": 130.2
+      "indeed": 130.1
     },
     {
       "date": "2023-08-05",
       "jolts": null,
-      "indeed": 130.2
+      "indeed": 130.1
     },
     {
       "date": "2023-08-06",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 130.0
     },
     {
       "date": "2023-08-07",
       "jolts": null,
-      "indeed": 130.1
+      "indeed": 129.8
     },
     {
       "date": "2023-08-08",
       "jolts": null,
-      "indeed": 130.0
+      "indeed": 129.9
     },
     {
       "date": "2023-08-09",
       "jolts": null,
-      "indeed": 130.0
+      "indeed": 129.9
     },
     {
       "date": "2023-08-10",
       "jolts": null,
-      "indeed": 130.0
+      "indeed": 129.9
     },
     {
       "date": "2023-08-11",
@@ -7593,7 +7593,7 @@
     {
       "date": "2023-08-12",
       "jolts": null,
-      "indeed": 129.8
+      "indeed": 129.7
     },
     {
       "date": "2023-08-13",
@@ -7608,7 +7608,7 @@
     {
       "date": "2023-08-15",
       "jolts": null,
-      "indeed": 129.8
+      "indeed": 129.9
     },
     {
       "date": "2023-08-16",
@@ -7618,12 +7618,12 @@
     {
       "date": "2023-08-17",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.8
     },
     {
       "date": "2023-08-18",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.8
     },
     {
       "date": "2023-08-19",
@@ -7633,12 +7633,12 @@
     {
       "date": "2023-08-20",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.8
     },
     {
       "date": "2023-08-21",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.8
     },
     {
       "date": "2023-08-22",
@@ -7653,12 +7653,12 @@
     {
       "date": "2023-08-24",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.5
     },
     {
       "date": "2023-08-25",
       "jolts": null,
-      "indeed": 129.3
+      "indeed": 129.4
     },
     {
       "date": "2023-08-26",
@@ -7668,7 +7668,7 @@
     {
       "date": "2023-08-27",
       "jolts": null,
-      "indeed": 129.2
+      "indeed": 129.3
     },
     {
       "date": "2023-08-28",
@@ -7688,72 +7688,72 @@
     {
       "date": "2023-08-31",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.5
     },
     {
       "date": "2023-09-01",
       "jolts": 9279.0,
-      "indeed": 129.4
+      "indeed": 129.2
     },
     {
       "date": "2023-09-02",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.3
     },
     {
       "date": "2023-09-03",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.2
     },
     {
       "date": "2023-09-04",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.2
     },
     {
       "date": "2023-09-05",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.2
     },
     {
       "date": "2023-09-06",
       "jolts": null,
-      "indeed": 129.3
+      "indeed": 129.2
     },
     {
       "date": "2023-09-07",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.0
     },
     {
       "date": "2023-09-08",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.3
     },
     {
       "date": "2023-09-09",
       "jolts": null,
-      "indeed": 129.4
+      "indeed": 129.3
     },
     {
       "date": "2023-09-10",
       "jolts": null,
-      "indeed": 129.5
+      "indeed": 129.4
     },
     {
       "date": "2023-09-11",
       "jolts": null,
-      "indeed": 129.6
+      "indeed": 129.4
     },
     {
       "date": "2023-09-12",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.5
     },
     {
       "date": "2023-09-13",
       "jolts": null,
-      "indeed": 129.7
+      "indeed": 129.6
     },
     {
       "date": "2023-09-14",
@@ -7793,7 +7793,7 @@
     {
       "date": "2023-09-21",
       "jolts": null,
-      "indeed": 128.1
+      "indeed": 128.2
     },
     {
       "date": "2023-09-22",
@@ -7833,7 +7833,7 @@
     {
       "date": "2023-09-29",
       "jolts": null,
-      "indeed": 127.9
+      "indeed": 128.0
     },
     {
       "date": "2023-09-30",
@@ -7843,77 +7843,77 @@
     {
       "date": "2023-10-01",
       "jolts": 8550.0,
-      "indeed": 127.8
+      "indeed": 127.5
     },
     {
       "date": "2023-10-02",
       "jolts": null,
-      "indeed": 127.6
+      "indeed": 127.3
     },
     {
       "date": "2023-10-03",
       "jolts": null,
-      "indeed": 127.5
+      "indeed": 127.2
     },
     {
       "date": "2023-10-04",
       "jolts": null,
-      "indeed": 127.4
+      "indeed": 127.1
     },
     {
       "date": "2023-10-05",
       "jolts": null,
-      "indeed": 127.3
+      "indeed": 127.0
     },
     {
       "date": "2023-10-06",
       "jolts": null,
-      "indeed": 127.2
+      "indeed": 126.9
     },
     {
       "date": "2023-10-07",
       "jolts": null,
-      "indeed": 127.2
+      "indeed": 126.8
     },
     {
       "date": "2023-10-08",
       "jolts": null,
-      "indeed": 127.2
+      "indeed": 127.0
     },
     {
       "date": "2023-10-09",
       "jolts": null,
-      "indeed": 127.2
+      "indeed": 127.0
     },
     {
       "date": "2023-10-10",
       "jolts": null,
-      "indeed": 127.1
+      "indeed": 127.0
     },
     {
       "date": "2023-10-11",
       "jolts": null,
-      "indeed": 127.1
+      "indeed": 126.9
     },
     {
       "date": "2023-10-12",
       "jolts": null,
-      "indeed": 127.1
+      "indeed": 126.9
     },
     {
       "date": "2023-10-13",
       "jolts": null,
-      "indeed": 127.1
+      "indeed": 127.0
     },
     {
       "date": "2023-10-14",
       "jolts": null,
-      "indeed": 127.1
+      "indeed": 127.0
     },
     {
       "date": "2023-10-15",
       "jolts": null,
-      "indeed": 127.2
+      "indeed": 127.1
     },
     {
       "date": "2023-10-16",
@@ -7983,12 +7983,12 @@
     {
       "date": "2023-10-29",
       "jolts": null,
-      "indeed": 126.4
+      "indeed": 126.5
     },
     {
       "date": "2023-10-30",
       "jolts": null,
-      "indeed": 126.4
+      "indeed": 126.5
     },
     {
       "date": "2023-10-31",
@@ -7998,67 +7998,67 @@
     {
       "date": "2023-11-01",
       "jolts": 8663.0,
-      "indeed": 126.5
+      "indeed": 126.2
     },
     {
       "date": "2023-11-02",
       "jolts": null,
-      "indeed": 126.4
+      "indeed": 126.2
     },
     {
       "date": "2023-11-03",
       "jolts": null,
-      "indeed": 126.5
+      "indeed": 126.2
     },
     {
       "date": "2023-11-04",
       "jolts": null,
-      "indeed": 126.4
+      "indeed": 126.2
     },
     {
       "date": "2023-11-05",
       "jolts": null,
-      "indeed": 126.4
+      "indeed": 126.2
     },
     {
       "date": "2023-11-06",
       "jolts": null,
-      "indeed": 126.3
+      "indeed": 126.1
     },
     {
       "date": "2023-11-07",
       "jolts": null,
-      "indeed": 126.3
+      "indeed": 125.9
     },
     {
       "date": "2023-11-08",
       "jolts": null,
-      "indeed": 126.1
+      "indeed": 125.9
     },
     {
       "date": "2023-11-09",
       "jolts": null,
-      "indeed": 125.9
+      "indeed": 125.8
     },
     {
       "date": "2023-11-10",
       "jolts": null,
-      "indeed": 125.8
+      "indeed": 125.7
     },
     {
       "date": "2023-11-11",
       "jolts": null,
-      "indeed": 125.8
+      "indeed": 125.6
     },
     {
       "date": "2023-11-12",
       "jolts": null,
-      "indeed": 125.6
+      "indeed": 125.5
     },
     {
       "date": "2023-11-13",
       "jolts": null,
-      "indeed": 125.5
+      "indeed": 125.3
     },
     {
       "date": "2023-11-14",
@@ -8138,77 +8138,77 @@
     {
       "date": "2023-11-29",
       "jolts": null,
-      "indeed": 123.6
+      "indeed": 123.7
     },
     {
       "date": "2023-11-30",
       "jolts": null,
-      "indeed": 123.5
+      "indeed": 123.6
     },
     {
       "date": "2023-12-01",
       "jolts": 8585.0,
-      "indeed": 123.5
+      "indeed": 123.3
     },
     {
       "date": "2023-12-02",
       "jolts": null,
-      "indeed": 123.4
+      "indeed": 123.2
     },
     {
       "date": "2023-12-03",
       "jolts": null,
-      "indeed": 123.4
+      "indeed": 123.2
     },
     {
       "date": "2023-12-04",
       "jolts": null,
-      "indeed": 123.4
+      "indeed": 123.2
     },
     {
       "date": "2023-12-05",
       "jolts": null,
-      "indeed": 123.4
+      "indeed": 123.1
     },
     {
       "date": "2023-12-06",
       "jolts": null,
-      "indeed": 123.3
+      "indeed": 123.0
     },
     {
       "date": "2023-12-07",
       "jolts": null,
-      "indeed": 123.3
+      "indeed": 122.9
     },
     {
       "date": "2023-12-08",
       "jolts": null,
-      "indeed": 123.3
+      "indeed": 123.1
     },
     {
       "date": "2023-12-09",
       "jolts": null,
-      "indeed": 123.2
+      "indeed": 123.0
     },
     {
       "date": "2023-12-10",
       "jolts": null,
-      "indeed": 123.3
+      "indeed": 123.1
     },
     {
       "date": "2023-12-11",
       "jolts": null,
-      "indeed": 123.3
+      "indeed": 123.2
     },
     {
       "date": "2023-12-12",
       "jolts": null,
-      "indeed": 123.3
+      "indeed": 123.1
     },
     {
       "date": "2023-12-13",
       "jolts": null,
-      "indeed": 123.2
+      "indeed": 123.1
     },
     {
       "date": "2023-12-14",
@@ -8273,7 +8273,7 @@
     {
       "date": "2023-12-26",
       "jolts": null,
-      "indeed": 121.8
+      "indeed": 121.9
     },
     {
       "date": "2023-12-27",
@@ -8283,7 +8283,7 @@
     {
       "date": "2023-12-28",
       "jolts": null,
-      "indeed": 121.9
+      "indeed": 122.0
     },
     {
       "date": "2023-12-29",
@@ -8293,7 +8293,7 @@
     {
       "date": "2023-12-30",
       "jolts": null,
-      "indeed": 121.9
+      "indeed": 122.0
     },
     {
       "date": "2023-12-31",
@@ -8303,67 +8303,67 @@
     {
       "date": "2024-01-01",
       "jolts": 8468.0,
-      "indeed": 121.5
+      "indeed": 121.4
     },
     {
       "date": "2024-01-02",
       "jolts": null,
-      "indeed": 121.2
+      "indeed": 121.1
     },
     {
       "date": "2024-01-03",
       "jolts": null,
-      "indeed": 121.0
+      "indeed": 120.9
     },
     {
       "date": "2024-01-04",
       "jolts": null,
-      "indeed": 120.9
+      "indeed": 120.8
     },
     {
       "date": "2024-01-05",
       "jolts": null,
-      "indeed": 120.9
+      "indeed": 120.8
     },
     {
       "date": "2024-01-06",
       "jolts": null,
-      "indeed": 120.9
+      "indeed": 120.8
     },
     {
       "date": "2024-01-07",
       "jolts": null,
-      "indeed": 121.0
+      "indeed": 120.7
     },
     {
       "date": "2024-01-08",
       "jolts": null,
-      "indeed": 121.0
+      "indeed": 120.9
     },
     {
       "date": "2024-01-09",
       "jolts": null,
-      "indeed": 121.1
+      "indeed": 121.0
     },
     {
       "date": "2024-01-10",
       "jolts": null,
-      "indeed": 121.2
+      "indeed": 121.0
     },
     {
       "date": "2024-01-11",
       "jolts": null,
-      "indeed": 121.1
+      "indeed": 120.9
     },
     {
       "date": "2024-01-12",
       "jolts": null,
-      "indeed": 121.0
+      "indeed": 120.8
     },
     {
       "date": "2024-01-13",
       "jolts": null,
-      "indeed": 120.8
+      "indeed": 120.7
     },
     {
       "date": "2024-01-14",
@@ -8388,7 +8388,7 @@
     {
       "date": "2024-01-18",
       "jolts": null,
-      "indeed": 120.4
+      "indeed": 120.3
     },
     {
       "date": "2024-01-19",
@@ -8413,12 +8413,12 @@
     {
       "date": "2024-01-23",
       "jolts": null,
-      "indeed": 120.1
+      "indeed": 120.0
     },
     {
       "date": "2024-01-24",
       "jolts": null,
-      "indeed": 120.0
+      "indeed": 119.9
     },
     {
       "date": "2024-01-25",
@@ -8428,7 +8428,7 @@
     {
       "date": "2024-01-26",
       "jolts": null,
-      "indeed": 119.8
+      "indeed": 119.7
     },
     {
       "date": "2024-01-27",
@@ -8458,67 +8458,67 @@
     {
       "date": "2024-02-01",
       "jolts": 8445.0,
-      "indeed": 119.4
+      "indeed": 119.2
     },
     {
       "date": "2024-02-02",
       "jolts": null,
-      "indeed": 119.4
+      "indeed": 119.2
     },
     {
       "date": "2024-02-03",
       "jolts": null,
-      "indeed": 119.4
+      "indeed": 119.3
     },
     {
       "date": "2024-02-04",
       "jolts": null,
-      "indeed": 119.4
+      "indeed": 119.2
     },
     {
       "date": "2024-02-05",
       "jolts": null,
-      "indeed": 119.3
+      "indeed": 119.2
     },
     {
       "date": "2024-02-06",
       "jolts": null,
-      "indeed": 119.3
+      "indeed": 119.1
     },
     {
       "date": "2024-02-07",
       "jolts": null,
-      "indeed": 119.3
+      "indeed": 119.0
     },
     {
       "date": "2024-02-08",
       "jolts": null,
-      "indeed": 119.3
+      "indeed": 119.2
     },
     {
       "date": "2024-02-09",
       "jolts": null,
-      "indeed": 119.4
+      "indeed": 119.3
     },
     {
       "date": "2024-02-10",
       "jolts": null,
-      "indeed": 119.4
+      "indeed": 119.3
     },
     {
       "date": "2024-02-11",
       "jolts": null,
-      "indeed": 119.4
+      "indeed": 119.3
     },
     {
       "date": "2024-02-12",
       "jolts": null,
-      "indeed": 119.5
+      "indeed": 119.3
     },
     {
       "date": "2024-02-13",
       "jolts": null,
-      "indeed": 119.5
+      "indeed": 119.4
     },
     {
       "date": "2024-02-14",
@@ -8543,7 +8543,7 @@
     {
       "date": "2024-02-18",
       "jolts": null,
-      "indeed": 119.5
+      "indeed": 119.4
     },
     {
       "date": "2024-02-19",
@@ -8603,37 +8603,37 @@
     {
       "date": "2024-03-01",
       "jolts": 8093.0,
-      "indeed": 119.1
+      "indeed": 119.0
     },
     {
       "date": "2024-03-02",
       "jolts": null,
-      "indeed": 119.0
+      "indeed": 118.9
     },
     {
       "date": "2024-03-03",
       "jolts": null,
-      "indeed": 119.0
+      "indeed": 118.8
     },
     {
       "date": "2024-03-04",
       "jolts": null,
-      "indeed": 119.0
+      "indeed": 118.8
     },
     {
       "date": "2024-03-05",
       "jolts": null,
-      "indeed": 119.0
+      "indeed": 118.9
     },
     {
       "date": "2024-03-06",
       "jolts": null,
-      "indeed": 119.2
+      "indeed": 119.0
     },
     {
       "date": "2024-03-07",
       "jolts": null,
-      "indeed": 119.2
+      "indeed": 119.0
     },
     {
       "date": "2024-03-08",
@@ -8658,7 +8658,7 @@
     {
       "date": "2024-03-12",
       "jolts": null,
-      "indeed": 119.7
+      "indeed": 119.8
     },
     {
       "date": "2024-03-13",
@@ -8678,12 +8678,12 @@
     {
       "date": "2024-03-16",
       "jolts": null,
-      "indeed": 119.8
+      "indeed": 119.9
     },
     {
       "date": "2024-03-17",
       "jolts": null,
-      "indeed": 119.8
+      "indeed": 119.9
     },
     {
       "date": "2024-03-18",
@@ -8693,7 +8693,7 @@
     {
       "date": "2024-03-19",
       "jolts": null,
-      "indeed": 119.7
+      "indeed": 119.8
     },
     {
       "date": "2024-03-20",
@@ -8708,17 +8708,17 @@
     {
       "date": "2024-03-22",
       "jolts": null,
-      "indeed": 119.6
+      "indeed": 119.7
     },
     {
       "date": "2024-03-23",
       "jolts": null,
-      "indeed": 119.6
+      "indeed": 119.7
     },
     {
       "date": "2024-03-24",
       "jolts": null,
-      "indeed": 119.6
+      "indeed": 119.7
     },
     {
       "date": "2024-03-25",
@@ -8728,7 +8728,7 @@
     {
       "date": "2024-03-26",
       "jolts": null,
-      "indeed": 119.7
+      "indeed": 119.8
     },
     {
       "date": "2024-03-27",
@@ -8738,17 +8738,17 @@
     {
       "date": "2024-03-28",
       "jolts": null,
-      "indeed": 119.8
+      "indeed": 119.9
     },
     {
       "date": "2024-03-29",
       "jolts": null,
-      "indeed": 119.9
+      "indeed": 120.0
     },
     {
       "date": "2024-03-30",
       "jolts": null,
-      "indeed": 120.0
+      "indeed": 120.1
     },
     {
       "date": "2024-03-31",
@@ -8758,37 +8758,37 @@
     {
       "date": "2024-04-01",
       "jolts": 7619.0,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2024-04-02",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2024-04-03",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2024-04-04",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2024-04-05",
       "jolts": null,
-      "indeed": 120.3
+      "indeed": 120.2
     },
     {
       "date": "2024-04-06",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2024-04-07",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.1
     },
     {
       "date": "2024-04-08",
@@ -8798,7 +8798,7 @@
     {
       "date": "2024-04-09",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.3
     },
     {
       "date": "2024-04-10",
@@ -8808,22 +8808,22 @@
     {
       "date": "2024-04-11",
       "jolts": null,
-      "indeed": 120.3
+      "indeed": 120.4
     },
     {
       "date": "2024-04-12",
       "jolts": null,
-      "indeed": 120.2
+      "indeed": 120.3
     },
     {
       "date": "2024-04-13",
       "jolts": null,
-      "indeed": 120.1
+      "indeed": 120.2
     },
     {
       "date": "2024-04-14",
       "jolts": null,
-      "indeed": 120.0
+      "indeed": 120.1
     },
     {
       "date": "2024-04-15",
@@ -8833,7 +8833,7 @@
     {
       "date": "2024-04-16",
       "jolts": null,
-      "indeed": 119.8
+      "indeed": 119.9
     },
     {
       "date": "2024-04-17",
@@ -8848,12 +8848,12 @@
     {
       "date": "2024-04-19",
       "jolts": null,
-      "indeed": 119.3
+      "indeed": 119.4
     },
     {
       "date": "2024-04-20",
       "jolts": null,
-      "indeed": 119.1
+      "indeed": 119.2
     },
     {
       "date": "2024-04-21",
@@ -8863,27 +8863,27 @@
     {
       "date": "2024-04-22",
       "jolts": null,
-      "indeed": 118.8
+      "indeed": 118.9
     },
     {
       "date": "2024-04-23",
       "jolts": null,
-      "indeed": 118.7
+      "indeed": 118.8
     },
     {
       "date": "2024-04-24",
       "jolts": null,
-      "indeed": 118.6
+      "indeed": 118.7
     },
     {
       "date": "2024-04-25",
       "jolts": null,
-      "indeed": 118.5
+      "indeed": 118.6
     },
     {
       "date": "2024-04-26",
       "jolts": null,
-      "indeed": 118.4
+      "indeed": 118.5
     },
     {
       "date": "2024-04-27",
@@ -8893,22 +8893,22 @@
     {
       "date": "2024-04-28",
       "jolts": null,
-      "indeed": 118.4
+      "indeed": 118.5
     },
     {
       "date": "2024-04-29",
       "jolts": null,
-      "indeed": 118.4
+      "indeed": 118.5
     },
     {
       "date": "2024-04-30",
       "jolts": null,
-      "indeed": 118.3
+      "indeed": 118.4
     },
     {
       "date": "2024-05-01",
       "jolts": 7901.0,
-      "indeed": 118.3
+      "indeed": 118.2
     },
     {
       "date": "2024-05-02",
@@ -8918,12 +8918,12 @@
     {
       "date": "2024-05-03",
       "jolts": null,
-      "indeed": 118.1
+      "indeed": 118.0
     },
     {
       "date": "2024-05-04",
       "jolts": null,
-      "indeed": 118.0
+      "indeed": 117.9
     },
     {
       "date": "2024-05-05",
@@ -8933,22 +8933,22 @@
     {
       "date": "2024-05-06",
       "jolts": null,
-      "indeed": 117.7
+      "indeed": 117.6
     },
     {
       "date": "2024-05-07",
       "jolts": null,
-      "indeed": 117.7
+      "indeed": 117.6
     },
     {
       "date": "2024-05-08",
       "jolts": null,
-      "indeed": 117.6
+      "indeed": 117.7
     },
     {
       "date": "2024-05-09",
       "jolts": null,
-      "indeed": 117.6
+      "indeed": 117.7
     },
     {
       "date": "2024-05-10",
@@ -8958,12 +8958,12 @@
     {
       "date": "2024-05-11",
       "jolts": null,
-      "indeed": 117.5
+      "indeed": 117.6
     },
     {
       "date": "2024-05-12",
       "jolts": null,
-      "indeed": 117.5
+      "indeed": 117.6
     },
     {
       "date": "2024-05-13",
@@ -8973,7 +8973,7 @@
     {
       "date": "2024-05-14",
       "jolts": null,
-      "indeed": 117.4
+      "indeed": 117.5
     },
     {
       "date": "2024-05-15",
@@ -8983,27 +8983,27 @@
     {
       "date": "2024-05-16",
       "jolts": null,
-      "indeed": 117.3
+      "indeed": 117.4
     },
     {
       "date": "2024-05-17",
       "jolts": null,
-      "indeed": 117.2
+      "indeed": 117.3
     },
     {
       "date": "2024-05-18",
       "jolts": null,
-      "indeed": 116.9
+      "indeed": 117.0
     },
     {
       "date": "2024-05-19",
       "jolts": null,
-      "indeed": 116.3
+      "indeed": 116.4
     },
     {
       "date": "2024-05-20",
       "jolts": null,
-      "indeed": 115.7
+      "indeed": 115.8
     },
     {
       "date": "2024-05-21",
@@ -9013,12 +9013,12 @@
     {
       "date": "2024-05-22",
       "jolts": null,
-      "indeed": 115.1
+      "indeed": 115.2
     },
     {
       "date": "2024-05-23",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-05-24",
@@ -9028,7 +9028,7 @@
     {
       "date": "2024-05-25",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-05-26",
@@ -9048,7 +9048,7 @@
     {
       "date": "2024-05-29",
       "jolts": null,
-      "indeed": 115.8
+      "indeed": 115.9
     },
     {
       "date": "2024-05-30",
@@ -9063,22 +9063,22 @@
     {
       "date": "2024-06-01",
       "jolts": 7412.0,
-      "indeed": 115.7
+      "indeed": 115.6
     },
     {
       "date": "2024-06-02",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.5
     },
     {
       "date": "2024-06-03",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.5
     },
     {
       "date": "2024-06-04",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.5
     },
     {
       "date": "2024-06-05",
@@ -9088,32 +9088,32 @@
     {
       "date": "2024-06-06",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.5
     },
     {
       "date": "2024-06-07",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.5
     },
     {
       "date": "2024-06-08",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.7
     },
     {
       "date": "2024-06-09",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.7
     },
     {
       "date": "2024-06-10",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.7
     },
     {
       "date": "2024-06-11",
       "jolts": null,
-      "indeed": 115.6
+      "indeed": 115.7
     },
     {
       "date": "2024-06-12",
@@ -9123,22 +9123,22 @@
     {
       "date": "2024-06-13",
       "jolts": null,
-      "indeed": 115.5
+      "indeed": 115.6
     },
     {
       "date": "2024-06-14",
       "jolts": null,
-      "indeed": 115.4
+      "indeed": 115.5
     },
     {
       "date": "2024-06-15",
       "jolts": null,
-      "indeed": 115.2
+      "indeed": 115.3
     },
     {
       "date": "2024-06-16",
       "jolts": null,
-      "indeed": 115.1
+      "indeed": 115.2
     },
     {
       "date": "2024-06-17",
@@ -9148,37 +9148,37 @@
     {
       "date": "2024-06-18",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-06-19",
       "jolts": null,
-      "indeed": 114.9
+      "indeed": 115.0
     },
     {
       "date": "2024-06-20",
       "jolts": null,
-      "indeed": 114.9
+      "indeed": 115.0
     },
     {
       "date": "2024-06-21",
       "jolts": null,
-      "indeed": 114.8
+      "indeed": 114.9
     },
     {
       "date": "2024-06-22",
       "jolts": null,
-      "indeed": 114.8
+      "indeed": 114.9
     },
     {
       "date": "2024-06-23",
       "jolts": null,
-      "indeed": 114.7
+      "indeed": 114.8
     },
     {
       "date": "2024-06-24",
       "jolts": null,
-      "indeed": 114.6
+      "indeed": 114.7
     },
     {
       "date": "2024-06-25",
@@ -9193,12 +9193,12 @@
     {
       "date": "2024-06-27",
       "jolts": null,
-      "indeed": 114.2
+      "indeed": 114.3
     },
     {
       "date": "2024-06-28",
       "jolts": null,
-      "indeed": 114.2
+      "indeed": 114.3
     },
     {
       "date": "2024-06-29",
@@ -9208,47 +9208,47 @@
     {
       "date": "2024-06-30",
       "jolts": null,
-      "indeed": 114.3
+      "indeed": 114.4
     },
     {
       "date": "2024-07-01",
       "jolts": 7504.0,
-      "indeed": 114.4
+      "indeed": 114.3
     },
     {
       "date": "2024-07-02",
       "jolts": null,
-      "indeed": 114.5
+      "indeed": 114.4
     },
     {
       "date": "2024-07-03",
       "jolts": null,
-      "indeed": 114.5
+      "indeed": 114.4
     },
     {
       "date": "2024-07-04",
       "jolts": null,
-      "indeed": 114.6
+      "indeed": 114.5
     },
     {
       "date": "2024-07-05",
       "jolts": null,
-      "indeed": 114.7
+      "indeed": 114.6
     },
     {
       "date": "2024-07-06",
       "jolts": null,
-      "indeed": 114.6
+      "indeed": 114.5
     },
     {
       "date": "2024-07-07",
       "jolts": null,
-      "indeed": 114.5
+      "indeed": 114.4
     },
     {
       "date": "2024-07-08",
       "jolts": null,
-      "indeed": 114.4
+      "indeed": 114.5
     },
     {
       "date": "2024-07-09",
@@ -9258,17 +9258,17 @@
     {
       "date": "2024-07-10",
       "jolts": null,
-      "indeed": 114.3
+      "indeed": 114.4
     },
     {
       "date": "2024-07-11",
       "jolts": null,
-      "indeed": 114.2
+      "indeed": 114.3
     },
     {
       "date": "2024-07-12",
       "jolts": null,
-      "indeed": 114.2
+      "indeed": 114.3
     },
     {
       "date": "2024-07-13",
@@ -9313,7 +9313,7 @@
     {
       "date": "2024-07-21",
       "jolts": null,
-      "indeed": 114.0
+      "indeed": 114.1
     },
     {
       "date": "2024-07-22",
@@ -9323,7 +9323,7 @@
     {
       "date": "2024-07-23",
       "jolts": null,
-      "indeed": 114.3
+      "indeed": 114.4
     },
     {
       "date": "2024-07-24",
@@ -9333,7 +9333,7 @@
     {
       "date": "2024-07-25",
       "jolts": null,
-      "indeed": 114.6
+      "indeed": 114.7
     },
     {
       "date": "2024-07-26",
@@ -9348,22 +9348,22 @@
     {
       "date": "2024-07-28",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-07-29",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-07-30",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-07-31",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 115.1
     },
     {
       "date": "2024-08-01",
@@ -9373,12 +9373,12 @@
     {
       "date": "2024-08-02",
       "jolts": null,
-      "indeed": 115.1
+      "indeed": 115.0
     },
     {
       "date": "2024-08-03",
       "jolts": null,
-      "indeed": 115.1
+      "indeed": 115.0
     },
     {
       "date": "2024-08-04",
@@ -9388,22 +9388,22 @@
     {
       "date": "2024-08-05",
       "jolts": null,
-      "indeed": 115.0
+      "indeed": 114.9
     },
     {
       "date": "2024-08-06",
       "jolts": null,
-      "indeed": 114.9
+      "indeed": 114.8
     },
     {
       "date": "2024-08-07",
       "jolts": null,
-      "indeed": 114.8
+      "indeed": 114.7
     },
     {
       "date": "2024-08-08",
       "jolts": null,
-      "indeed": 114.7
+      "indeed": 114.8
     },
     {
       "date": "2024-08-09",
@@ -9413,27 +9413,27 @@
     {
       "date": "2024-08-10",
       "jolts": null,
-      "indeed": 114.4
+      "indeed": 114.5
     },
     {
       "date": "2024-08-11",
       "jolts": null,
-      "indeed": 114.4
+      "indeed": 114.5
     },
     {
       "date": "2024-08-12",
       "jolts": null,
-      "indeed": 114.3
+      "indeed": 114.4
     },
     {
       "date": "2024-08-13",
       "jolts": null,
-      "indeed": 114.3
+      "indeed": 114.4
     },
     {
       "date": "2024-08-14",
       "jolts": null,
-      "indeed": 114.2
+      "indeed": 114.3
     },
     {
       "date": "2024-08-15",
@@ -9453,62 +9453,62 @@
     {
       "date": "2024-08-18",
       "jolts": null,
-      "indeed": 114.1
+      "indeed": 114.2
     },
     {
       "date": "2024-08-19",
       "jolts": null,
-      "indeed": 114.0
+      "indeed": 114.1
     },
     {
       "date": "2024-08-20",
       "jolts": null,
-      "indeed": 113.8
+      "indeed": 113.9
     },
     {
       "date": "2024-08-21",
       "jolts": null,
-      "indeed": 113.7
+      "indeed": 113.8
     },
     {
       "date": "2024-08-22",
       "jolts": null,
-      "indeed": 113.6
+      "indeed": 113.7
     },
     {
       "date": "2024-08-23",
       "jolts": null,
-      "indeed": 113.5
+      "indeed": 113.6
     },
     {
       "date": "2024-08-24",
       "jolts": null,
-      "indeed": 113.4
+      "indeed": 113.5
     },
     {
       "date": "2024-08-25",
       "jolts": null,
-      "indeed": 113.2
+      "indeed": 113.3
     },
     {
       "date": "2024-08-26",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-08-27",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-08-28",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-08-29",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-08-30",
@@ -9528,22 +9528,22 @@
     {
       "date": "2024-09-02",
       "jolts": null,
-      "indeed": 113.2
+      "indeed": 113.1
     },
     {
       "date": "2024-09-03",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.0
     },
     {
       "date": "2024-09-04",
       "jolts": null,
-      "indeed": 113.0
+      "indeed": 112.9
     },
     {
       "date": "2024-09-05",
       "jolts": null,
-      "indeed": 112.9
+      "indeed": 112.8
     },
     {
       "date": "2024-09-06",
@@ -9558,12 +9558,12 @@
     {
       "date": "2024-09-08",
       "jolts": null,
-      "indeed": 112.8
+      "indeed": 112.9
     },
     {
       "date": "2024-09-09",
       "jolts": null,
-      "indeed": 112.8
+      "indeed": 112.9
     },
     {
       "date": "2024-09-10",
@@ -9578,27 +9578,27 @@
     {
       "date": "2024-09-12",
       "jolts": null,
-      "indeed": 113.0
+      "indeed": 113.1
     },
     {
       "date": "2024-09-13",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-09-14",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-09-15",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-09-16",
       "jolts": null,
-      "indeed": 113.1
+      "indeed": 113.2
     },
     {
       "date": "2024-09-17",
@@ -9628,7 +9628,7 @@
     {
       "date": "2024-09-22",
       "jolts": null,
-      "indeed": 113.5
+      "indeed": 113.6
     },
     {
       "date": "2024-09-23",
@@ -9638,12 +9638,12 @@
     {
       "date": "2024-09-24",
       "jolts": null,
-      "indeed": 113.5
+      "indeed": 113.6
     },
     {
       "date": "2024-09-25",
       "jolts": null,
-      "indeed": 113.4
+      "indeed": 113.5
     },
     {
       "date": "2024-09-26",
@@ -9673,7 +9673,7 @@
     {
       "date": "2024-10-01",
       "jolts": 7615.0,
-      "indeed": 113.1
+      "indeed": 113.0
     },
     {
       "date": "2024-10-02",
@@ -9683,7 +9683,7 @@
     {
       "date": "2024-10-03",
       "jolts": null,
-      "indeed": 112.9
+      "indeed": 112.8
     },
     {
       "date": "2024-10-04",
@@ -9698,7 +9698,7 @@
     {
       "date": "2024-10-06",
       "jolts": null,
-      "indeed": 112.7
+      "indeed": 112.6
     },
     {
       "date": "2024-10-07",
@@ -9708,12 +9708,12 @@
     {
       "date": "2024-10-08",
       "jolts": null,
-      "indeed": 112.4
+      "indeed": 112.5
     },
     {
       "date": "2024-10-09",
       "jolts": null,
-      "indeed": 112.3
+      "indeed": 112.4
     },
     {
       "date": "2024-10-10",
@@ -9723,17 +9723,17 @@
     {
       "date": "2024-10-11",
       "jolts": null,
-      "indeed": 111.8
+      "indeed": 111.9
     },
     {
       "date": "2024-10-12",
       "jolts": null,
-      "indeed": 111.6
+      "indeed": 111.7
     },
     {
       "date": "2024-10-13",
       "jolts": null,
-      "indeed": 111.4
+      "indeed": 111.5
     },
     {
       "date": "2024-10-14",
@@ -9748,17 +9748,17 @@
     {
       "date": "2024-10-16",
       "jolts": null,
-      "indeed": 110.7
+      "indeed": 110.8
     },
     {
       "date": "2024-10-17",
       "jolts": null,
-      "indeed": 110.5
+      "indeed": 110.6
     },
     {
       "date": "2024-10-18",
       "jolts": null,
-      "indeed": 110.3
+      "indeed": 110.4
     },
     {
       "date": "2024-10-19",
@@ -9768,7 +9768,7 @@
     {
       "date": "2024-10-20",
       "jolts": null,
-      "indeed": 109.7
+      "indeed": 109.8
     },
     {
       "date": "2024-10-21",
@@ -9783,12 +9783,12 @@
     {
       "date": "2024-10-23",
       "jolts": null,
-      "indeed": 109.2
+      "indeed": 109.3
     },
     {
       "date": "2024-10-24",
       "jolts": null,
-      "indeed": 109.1
+      "indeed": 109.0
     },
     {
       "date": "2024-10-25",
@@ -9818,7 +9818,7 @@
     {
       "date": "2024-10-30",
       "jolts": null,
-      "indeed": 109.3
+      "indeed": 109.2
     },
     {
       "date": "2024-10-31",
@@ -9828,7 +9828,7 @@
     {
       "date": "2024-11-01",
       "jolts": 8031.0,
-      "indeed": 109.4
+      "indeed": 109.3
     },
     {
       "date": "2024-11-02",
@@ -9838,12 +9838,12 @@
     {
       "date": "2024-11-03",
       "jolts": null,
-      "indeed": 109.6
+      "indeed": 109.5
     },
     {
       "date": "2024-11-04",
       "jolts": null,
-      "indeed": 109.6
+      "indeed": 109.5
     },
     {
       "date": "2024-11-05",
@@ -9858,12 +9858,12 @@
     {
       "date": "2024-11-07",
       "jolts": null,
-      "indeed": 109.8
+      "indeed": 109.7
     },
     {
       "date": "2024-11-08",
       "jolts": null,
-      "indeed": 109.9
+      "indeed": 110.0
     },
     {
       "date": "2024-11-09",
@@ -9873,7 +9873,7 @@
     {
       "date": "2024-11-10",
       "jolts": null,
-      "indeed": 110.0
+      "indeed": 110.1
     },
     {
       "date": "2024-11-11",
@@ -9883,7 +9883,7 @@
     {
       "date": "2024-11-12",
       "jolts": null,
-      "indeed": 110.2
+      "indeed": 110.3
     },
     {
       "date": "2024-11-13",
@@ -9893,32 +9893,32 @@
     {
       "date": "2024-11-14",
       "jolts": null,
-      "indeed": 110.3
+      "indeed": 110.4
     },
     {
       "date": "2024-11-15",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.5
     },
     {
       "date": "2024-11-16",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.5
     },
     {
       "date": "2024-11-17",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.5
     },
     {
       "date": "2024-11-18",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.5
     },
     {
       "date": "2024-11-19",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.5
     },
     {
       "date": "2024-11-20",
@@ -9928,7 +9928,7 @@
     {
       "date": "2024-11-21",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.5
     },
     {
       "date": "2024-11-22",
@@ -9963,27 +9963,27 @@
     {
       "date": "2024-11-28",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.2
     },
     {
       "date": "2024-11-29",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.2
     },
     {
       "date": "2024-11-30",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.2
     },
     {
       "date": "2024-12-01",
       "jolts": 7508.0,
-      "indeed": 111.1
+      "indeed": 111.0
     },
     {
       "date": "2024-12-02",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.0
     },
     {
       "date": "2024-12-03",
@@ -10003,12 +10003,12 @@
     {
       "date": "2024-12-06",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 110.9
     },
     {
       "date": "2024-12-07",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 110.9
     },
     {
       "date": "2024-12-08",
@@ -10028,7 +10028,7 @@
     {
       "date": "2024-12-11",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.2
     },
     {
       "date": "2024-12-12",
@@ -10043,17 +10043,17 @@
     {
       "date": "2024-12-14",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 111.1
     },
     {
       "date": "2024-12-15",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 111.1
     },
     {
       "date": "2024-12-16",
       "jolts": null,
-      "indeed": 110.9
+      "indeed": 111.0
     },
     {
       "date": "2024-12-17",
@@ -10063,7 +10063,7 @@
     {
       "date": "2024-12-18",
       "jolts": null,
-      "indeed": 110.8
+      "indeed": 110.9
     },
     {
       "date": "2024-12-19",
@@ -10088,17 +10088,17 @@
     {
       "date": "2024-12-23",
       "jolts": null,
-      "indeed": 110.9
+      "indeed": 111.0
     },
     {
       "date": "2024-12-24",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 111.1
     },
     {
       "date": "2024-12-25",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.2
     },
     {
       "date": "2024-12-26",
@@ -10108,27 +10108,27 @@
     {
       "date": "2024-12-27",
       "jolts": null,
-      "indeed": 111.3
+      "indeed": 111.4
     },
     {
       "date": "2024-12-28",
       "jolts": null,
-      "indeed": 111.4
+      "indeed": 111.5
     },
     {
       "date": "2024-12-29",
       "jolts": null,
-      "indeed": 111.4
+      "indeed": 111.5
     },
     {
       "date": "2024-12-30",
       "jolts": null,
-      "indeed": 111.5
+      "indeed": 111.6
     },
     {
       "date": "2024-12-31",
       "jolts": null,
-      "indeed": 111.5
+      "indeed": 111.6
     },
     {
       "date": "2025-01-01",
@@ -10143,27 +10143,27 @@
     {
       "date": "2025-01-03",
       "jolts": null,
-      "indeed": 111.4
+      "indeed": 111.3
     },
     {
       "date": "2025-01-04",
       "jolts": null,
-      "indeed": 111.4
+      "indeed": 111.3
     },
     {
       "date": "2025-01-05",
       "jolts": null,
-      "indeed": 111.3
+      "indeed": 111.2
     },
     {
       "date": "2025-01-06",
       "jolts": null,
-      "indeed": 111.2
+      "indeed": 111.1
     },
     {
       "date": "2025-01-07",
       "jolts": null,
-      "indeed": 111.1
+      "indeed": 111.0
     },
     {
       "date": "2025-01-08",
@@ -10208,7 +10208,7 @@
     {
       "date": "2025-01-16",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 111.1
     },
     {
       "date": "2025-01-17",
@@ -10228,7 +10228,7 @@
     {
       "date": "2025-01-20",
       "jolts": null,
-      "indeed": 111.0
+      "indeed": 111.1
     },
     {
       "date": "2025-01-21",
@@ -10248,7 +10248,7 @@
     {
       "date": "2025-01-24",
       "jolts": null,
-      "indeed": 110.8
+      "indeed": 110.9
     },
     {
       "date": "2025-01-25",
@@ -10268,17 +10268,17 @@
     {
       "date": "2025-01-28",
       "jolts": null,
-      "indeed": 110.6
+      "indeed": 110.7
     },
     {
       "date": "2025-01-29",
       "jolts": null,
-      "indeed": 110.6
+      "indeed": 110.7
     },
     {
       "date": "2025-01-30",
       "jolts": null,
-      "indeed": 110.6
+      "indeed": 110.7
     },
     {
       "date": "2025-01-31",
@@ -10288,37 +10288,37 @@
     {
       "date": "2025-02-01",
       "jolts": 7480.0,
-      "indeed": 110.5
+      "indeed": 110.4
     },
     {
       "date": "2025-02-02",
       "jolts": null,
-      "indeed": 110.5
+      "indeed": 110.3
     },
     {
       "date": "2025-02-03",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.3
     },
     {
       "date": "2025-02-04",
       "jolts": null,
-      "indeed": 110.4
+      "indeed": 110.2
     },
     {
       "date": "2025-02-05",
       "jolts": null,
-      "indeed": 110.3
+      "indeed": 110.2
     },
     {
       "date": "2025-02-06",
       "jolts": null,
-      "indeed": 110.3
+      "indeed": 110.1
     },
     {
       "date": "2025-02-07",
       "jolts": null,
-      "indeed": 110.2
+      "indeed": 110.1
     },
     {
       "date": "2025-02-08",
@@ -10398,7 +10398,7 @@
     {
       "date": "2025-02-23",
       "jolts": null,
-      "indeed": 109.9
+      "indeed": 110.0
     },
     {
       "date": "2025-02-24",
@@ -10428,37 +10428,37 @@
     {
       "date": "2025-03-01",
       "jolts": 7200.0,
-      "indeed": 109.7
+      "indeed": 109.6
     },
     {
       "date": "2025-03-02",
       "jolts": null,
-      "indeed": 109.7
+      "indeed": 109.6
     },
     {
       "date": "2025-03-03",
       "jolts": null,
-      "indeed": 109.6
+      "indeed": 109.5
     },
     {
       "date": "2025-03-04",
       "jolts": null,
-      "indeed": 109.5
+      "indeed": 109.4
     },
     {
       "date": "2025-03-05",
       "jolts": null,
-      "indeed": 109.4
+      "indeed": 109.2
     },
     {
       "date": "2025-03-06",
       "jolts": null,
-      "indeed": 109.3
+      "indeed": 109.2
     },
     {
       "date": "2025-03-07",
       "jolts": null,
-      "indeed": 109.2
+      "indeed": 109.1
     },
     {
       "date": "2025-03-08",
@@ -10473,7 +10473,7 @@
     {
       "date": "2025-03-10",
       "jolts": null,
-      "indeed": 109.0
+      "indeed": 109.1
     },
     {
       "date": "2025-03-11",
@@ -10543,7 +10543,7 @@
     {
       "date": "2025-03-24",
       "jolts": null,
-      "indeed": 108.1
+      "indeed": 108.2
     },
     {
       "date": "2025-03-25",
@@ -10568,12 +10568,12 @@
     {
       "date": "2025-03-29",
       "jolts": null,
-      "indeed": 107.7
+      "indeed": 107.8
     },
     {
       "date": "2025-03-30",
       "jolts": null,
-      "indeed": 107.7
+      "indeed": 107.8
     },
     {
       "date": "2025-03-31",
@@ -10583,47 +10583,47 @@
     {
       "date": "2025-04-01",
       "jolts": 7395.0,
-      "indeed": 107.7
+      "indeed": 107.6
     },
     {
       "date": "2025-04-02",
       "jolts": null,
-      "indeed": 107.7
+      "indeed": 107.5
     },
     {
       "date": "2025-04-03",
       "jolts": null,
-      "indeed": 107.7
+      "indeed": 107.6
     },
     {
       "date": "2025-04-04",
       "jolts": null,
-      "indeed": 107.8
+      "indeed": 107.7
     },
     {
       "date": "2025-04-05",
       "jolts": null,
-      "indeed": 108.0
+      "indeed": 107.8
     },
     {
       "date": "2025-04-06",
       "jolts": null,
-      "indeed": 108.0
+      "indeed": 107.8
     },
     {
       "date": "2025-04-07",
       "jolts": null,
-      "indeed": 108.0
+      "indeed": 107.9
     },
     {
       "date": "2025-04-08",
       "jolts": null,
-      "indeed": 108.1
+      "indeed": 108.0
     },
     {
       "date": "2025-04-09",
       "jolts": null,
-      "indeed": 108.1
+      "indeed": 108.2
     },
     {
       "date": "2025-04-10",
@@ -10663,17 +10663,17 @@
     {
       "date": "2025-04-17",
       "jolts": null,
-      "indeed": 107.9
+      "indeed": 108.0
     },
     {
       "date": "2025-04-18",
       "jolts": null,
-      "indeed": 107.9
+      "indeed": 108.0
     },
     {
       "date": "2025-04-19",
       "jolts": null,
-      "indeed": 107.8
+      "indeed": 107.9
     },
     {
       "date": "2025-04-20",
@@ -10693,7 +10693,7 @@
     {
       "date": "2025-04-23",
       "jolts": null,
-      "indeed": 107.5
+      "indeed": 107.6
     },
     {
       "date": "2025-04-24",
@@ -10733,37 +10733,37 @@
     {
       "date": "2025-05-01",
       "jolts": 7712.0,
-      "indeed": 106.8
+      "indeed": 106.7
     },
     {
       "date": "2025-05-02",
       "jolts": null,
-      "indeed": 106.9
+      "indeed": 106.8
     },
     {
       "date": "2025-05-03",
       "jolts": null,
-      "indeed": 107.0
+      "indeed": 106.9
     },
     {
       "date": "2025-05-04",
       "jolts": null,
-      "indeed": 107.0
+      "indeed": 106.9
     },
     {
       "date": "2025-05-05",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 106.4
     },
     {
       "date": "2025-05-06",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 106.5
     },
     {
       "date": "2025-05-07",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 106.5
     },
     {
       "date": "2025-05-08",
@@ -10798,7 +10798,7 @@
     {
       "date": "2025-05-14",
       "jolts": null,
-      "indeed": 106.8
+      "indeed": 106.9
     },
     {
       "date": "2025-05-15",
@@ -10873,7 +10873,7 @@
     {
       "date": "2025-05-29",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 106.7
     },
     {
       "date": "2025-05-30",
@@ -10883,42 +10883,42 @@
     {
       "date": "2025-05-31",
       "jolts": null,
-      "indeed": 106.4
+      "indeed": 106.5
     },
     {
       "date": "2025-06-01",
       "jolts": 7357.0,
-      "indeed": 106.5
+      "indeed": 106.3
     },
     {
       "date": "2025-06-02",
       "jolts": null,
-      "indeed": 106.5
+      "indeed": 106.3
     },
     {
       "date": "2025-06-03",
       "jolts": null,
-      "indeed": 106.5
+      "indeed": 106.4
     },
     {
       "date": "2025-06-04",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 106.4
     },
     {
       "date": "2025-06-05",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 106.5
     },
     {
       "date": "2025-06-06",
       "jolts": null,
-      "indeed": 106.8
+      "indeed": 106.7
     },
     {
       "date": "2025-06-07",
       "jolts": null,
-      "indeed": 106.8
+      "indeed": 106.7
     },
     {
       "date": "2025-06-08",
@@ -10938,7 +10938,7 @@
     {
       "date": "2025-06-11",
       "jolts": null,
-      "indeed": 106.5
+      "indeed": 106.6
     },
     {
       "date": "2025-06-12",
@@ -10948,7 +10948,7 @@
     {
       "date": "2025-06-13",
       "jolts": null,
-      "indeed": 106.4
+      "indeed": 106.5
     },
     {
       "date": "2025-06-14",
@@ -10968,7 +10968,7 @@
     {
       "date": "2025-06-17",
       "jolts": null,
-      "indeed": 106.3
+      "indeed": 106.4
     },
     {
       "date": "2025-06-18",
@@ -10998,12 +10998,12 @@
     {
       "date": "2025-06-23",
       "jolts": null,
-      "indeed": 106.3
+      "indeed": 106.4
     },
     {
       "date": "2025-06-24",
       "jolts": null,
-      "indeed": 106.3
+      "indeed": 106.4
     },
     {
       "date": "2025-06-25",
@@ -11018,7 +11018,7 @@
     {
       "date": "2025-06-27",
       "jolts": null,
-      "indeed": 106.1
+      "indeed": 106.2
     },
     {
       "date": "2025-06-28",
@@ -11038,37 +11038,37 @@
     {
       "date": "2025-07-01",
       "jolts": 7208.0,
-      "indeed": 106.0
+      "indeed": 105.8
     },
     {
       "date": "2025-07-02",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.8
     },
     {
       "date": "2025-07-03",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.8
     },
     {
       "date": "2025-07-04",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.7
     },
     {
       "date": "2025-07-05",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.8
     },
     {
       "date": "2025-07-06",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 105.6
     },
     {
       "date": "2025-07-07",
       "jolts": null,
-      "indeed": 105.7
+      "indeed": 105.5
     },
     {
       "date": "2025-07-08",
@@ -11078,7 +11078,7 @@
     {
       "date": "2025-07-09",
       "jolts": null,
-      "indeed": 105.3
+      "indeed": 105.4
     },
     {
       "date": "2025-07-10",
@@ -11088,7 +11088,7 @@
     {
       "date": "2025-07-11",
       "jolts": null,
-      "indeed": 105.1
+      "indeed": 105.2
     },
     {
       "date": "2025-07-12",
@@ -11123,7 +11123,7 @@
     {
       "date": "2025-07-18",
       "jolts": null,
-      "indeed": 105.1
+      "indeed": 105.2
     },
     {
       "date": "2025-07-19",
@@ -11148,7 +11148,7 @@
     {
       "date": "2025-07-23",
       "jolts": null,
-      "indeed": 105.3
+      "indeed": 105.4
     },
     {
       "date": "2025-07-24",
@@ -11163,7 +11163,7 @@
     {
       "date": "2025-07-26",
       "jolts": null,
-      "indeed": 105.7
+      "indeed": 105.8
     },
     {
       "date": "2025-07-27",
@@ -11173,17 +11173,17 @@
     {
       "date": "2025-07-28",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 105.9
     },
     {
       "date": "2025-07-29",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 106.0
     },
     {
       "date": "2025-07-30",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 106.0
     },
     {
       "date": "2025-07-31",
@@ -11193,37 +11193,37 @@
     {
       "date": "2025-08-01",
       "jolts": 7227.0,
-      "indeed": 106.0
+      "indeed": 105.8
     },
     {
       "date": "2025-08-02",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.8
     },
     {
       "date": "2025-08-03",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.8
     },
     {
       "date": "2025-08-04",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.7
     },
     {
       "date": "2025-08-05",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 105.6
     },
     {
       "date": "2025-08-06",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 105.7
     },
     {
       "date": "2025-08-07",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 105.7
     },
     {
       "date": "2025-08-08",
@@ -11238,7 +11238,7 @@
     {
       "date": "2025-08-10",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 106.0
     },
     {
       "date": "2025-08-11",
@@ -11253,7 +11253,7 @@
     {
       "date": "2025-08-13",
       "jolts": null,
-      "indeed": 105.9
+      "indeed": 106.0
     },
     {
       "date": "2025-08-14",
@@ -11283,7 +11283,7 @@
     {
       "date": "2025-08-19",
       "jolts": null,
-      "indeed": 106.0
+      "indeed": 106.1
     },
     {
       "date": "2025-08-20",
@@ -11298,17 +11298,17 @@
     {
       "date": "2025-08-22",
       "jolts": null,
-      "indeed": 106.1
+      "indeed": 106.2
     },
     {
       "date": "2025-08-23",
       "jolts": null,
-      "indeed": 106.0
+      "indeed": 106.1
     },
     {
       "date": "2025-08-24",
       "jolts": null,
-      "indeed": 106.0
+      "indeed": 106.1
     },
     {
       "date": "2025-08-25",
@@ -11323,7 +11323,7 @@
     {
       "date": "2025-08-27",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 105.9
     },
     {
       "date": "2025-08-28",
@@ -11348,37 +11348,37 @@
     {
       "date": "2025-09-01",
       "jolts": 7658.0,
-      "indeed": 105.0
+      "indeed": 104.8
     },
     {
       "date": "2025-09-02",
       "jolts": null,
-      "indeed": 104.7
+      "indeed": 104.6
     },
     {
       "date": "2025-09-03",
       "jolts": null,
-      "indeed": 104.7
+      "indeed": 104.5
     },
     {
       "date": "2025-09-04",
       "jolts": null,
-      "indeed": 104.5
+      "indeed": 104.4
     },
     {
       "date": "2025-09-05",
       "jolts": null,
-      "indeed": 104.6
+      "indeed": 104.5
     },
     {
       "date": "2025-09-06",
       "jolts": null,
-      "indeed": 104.6
+      "indeed": 104.5
     },
     {
       "date": "2025-09-07",
       "jolts": null,
-      "indeed": 104.7
+      "indeed": 104.6
     },
     {
       "date": "2025-09-08",
@@ -11428,7 +11428,7 @@
     {
       "date": "2025-09-17",
       "jolts": null,
-      "indeed": 103.8
+      "indeed": 103.9
     },
     {
       "date": "2025-09-18",
@@ -11438,7 +11438,7 @@
     {
       "date": "2025-09-19",
       "jolts": null,
-      "indeed": 103.6
+      "indeed": 103.7
     },
     {
       "date": "2025-09-20",
@@ -11448,7 +11448,7 @@
     {
       "date": "2025-09-21",
       "jolts": null,
-      "indeed": 103.4
+      "indeed": 103.5
     },
     {
       "date": "2025-09-22",
@@ -11463,7 +11463,7 @@
     {
       "date": "2025-09-24",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 103.1
     },
     {
       "date": "2025-09-25",
@@ -11483,7 +11483,7 @@
     {
       "date": "2025-09-28",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 102.5
     },
     {
       "date": "2025-09-29",
@@ -11498,37 +11498,37 @@
     {
       "date": "2025-10-01",
       "jolts": 7449.0,
-      "indeed": 102.4
+      "indeed": 102.3
     },
     {
       "date": "2025-10-02",
       "jolts": null,
-      "indeed": 102.4
+      "indeed": 102.2
     },
     {
       "date": "2025-10-03",
       "jolts": null,
-      "indeed": 102.4
+      "indeed": 102.3
     },
     {
       "date": "2025-10-04",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 102.3
     },
     {
       "date": "2025-10-05",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 102.4
     },
     {
       "date": "2025-10-06",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 102.4
     },
     {
       "date": "2025-10-07",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 102.3
     },
     {
       "date": "2025-10-08",
@@ -11563,7 +11563,7 @@
     {
       "date": "2025-10-14",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 102.1
     },
     {
       "date": "2025-10-15",
@@ -11588,7 +11588,7 @@
     {
       "date": "2025-10-19",
       "jolts": null,
-      "indeed": 101.9
+      "indeed": 102.0
     },
     {
       "date": "2025-10-20",
@@ -11598,52 +11598,52 @@
     {
       "date": "2025-10-21",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 101.8
     },
     {
       "date": "2025-10-22",
       "jolts": null,
-      "indeed": 102.1
+      "indeed": 101.8
     },
     {
       "date": "2025-10-23",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 101.8
     },
     {
       "date": "2025-10-24",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 101.8
     },
     {
       "date": "2025-10-25",
       "jolts": null,
-      "indeed": 102.1
+      "indeed": 101.9
     },
     {
       "date": "2025-10-26",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 101.8
     },
     {
       "date": "2025-10-27",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 101.8
     },
     {
       "date": "2025-10-28",
       "jolts": null,
-      "indeed": 101.9
+      "indeed": 102.0
     },
     {
       "date": "2025-10-29",
       "jolts": null,
-      "indeed": 101.8
+      "indeed": 101.9
     },
     {
       "date": "2025-10-30",
       "jolts": null,
-      "indeed": 101.9
+      "indeed": 102.0
     },
     {
       "date": "2025-10-31",
@@ -11653,7 +11653,7 @@
     {
       "date": "2025-11-01",
       "jolts": 7146.0,
-      "indeed": 101.4
+      "indeed": 101.5
     },
     {
       "date": "2025-11-02",
@@ -11668,7 +11668,7 @@
     {
       "date": "2025-11-04",
       "jolts": null,
-      "indeed": 101.4
+      "indeed": 101.5
     },
     {
       "date": "2025-11-05",
@@ -11678,7 +11678,7 @@
     {
       "date": "2025-11-06",
       "jolts": null,
-      "indeed": 101.5
+      "indeed": 101.6
     },
     {
       "date": "2025-11-07",
@@ -11698,315 +11698,385 @@
     {
       "date": "2025-11-10",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 102.3
     },
     {
       "date": "2025-11-11",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 102.4
     },
     {
       "date": "2025-11-12",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 102.4
     },
     {
       "date": "2025-11-13",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 102.4
     },
     {
       "date": "2025-11-14",
       "jolts": null,
-      "indeed": 103.6
+      "indeed": 102.2
     },
     {
       "date": "2025-11-15",
       "jolts": null,
-      "indeed": 103.9
+      "indeed": 102.4
     },
     {
       "date": "2025-11-16",
       "jolts": null,
-      "indeed": 104.0
+      "indeed": 102.5
     },
     {
       "date": "2025-11-17",
       "jolts": null,
-      "indeed": 104.1
+      "indeed": 102.6
     },
     {
       "date": "2025-11-18",
       "jolts": null,
-      "indeed": 104.2
+      "indeed": 102.7
     },
     {
       "date": "2025-11-19",
       "jolts": null,
-      "indeed": 104.2
+      "indeed": 102.7
     },
     {
       "date": "2025-11-20",
       "jolts": null,
-      "indeed": 104.3
+      "indeed": 102.9
     },
     {
       "date": "2025-11-21",
       "jolts": null,
-      "indeed": 104.5
+      "indeed": 103.0
     },
     {
       "date": "2025-11-22",
       "jolts": null,
-      "indeed": 104.5
+      "indeed": 103.0
     },
     {
       "date": "2025-11-23",
       "jolts": null,
-      "indeed": 104.6
+      "indeed": 103.1
     },
     {
       "date": "2025-11-24",
       "jolts": null,
-      "indeed": 104.7
+      "indeed": 103.2
     },
     {
       "date": "2025-11-25",
       "jolts": null,
-      "indeed": 104.8
+      "indeed": 103.3
     },
     {
       "date": "2025-11-26",
       "jolts": null,
-      "indeed": 104.9
+      "indeed": 103.5
     },
     {
       "date": "2025-11-27",
       "jolts": null,
-      "indeed": 104.8
+      "indeed": 103.6
     },
     {
       "date": "2025-11-28",
       "jolts": null,
-      "indeed": 104.7
+      "indeed": 103.7
     },
     {
       "date": "2025-11-29",
       "jolts": null,
-      "indeed": 104.6
+      "indeed": 103.6
     },
     {
       "date": "2025-11-30",
       "jolts": null,
-      "indeed": 104.6
+      "indeed": 103.6
     },
     {
       "date": "2025-12-01",
       "jolts": null,
-      "indeed": 104.7
+      "indeed": 103.5
     },
     {
       "date": "2025-12-02",
       "jolts": null,
-      "indeed": 104.8
+      "indeed": 103.5
     },
     {
       "date": "2025-12-03",
       "jolts": null,
-      "indeed": 104.8
+      "indeed": 103.4
     },
     {
       "date": "2025-12-04",
       "jolts": null,
-      "indeed": 105.0
+      "indeed": 103.4
     },
     {
       "date": "2025-12-05",
       "jolts": null,
-      "indeed": 105.1
+      "indeed": 103.3
     },
     {
       "date": "2025-12-06",
       "jolts": null,
-      "indeed": 105.2
+      "indeed": 103.4
     },
     {
       "date": "2025-12-07",
       "jolts": null,
-      "indeed": 105.2
+      "indeed": 103.4
     },
     {
       "date": "2025-12-08",
       "jolts": null,
-      "indeed": 105.1
+      "indeed": 103.5
     },
     {
       "date": "2025-12-09",
       "jolts": null,
-      "indeed": 105.0
+      "indeed": 103.4
     },
     {
       "date": "2025-12-10",
       "jolts": null,
-      "indeed": 105.0
+      "indeed": 103.4
     },
     {
       "date": "2025-12-11",
       "jolts": null,
-      "indeed": 104.9
+      "indeed": 103.4
     },
     {
       "date": "2025-12-12",
       "jolts": null,
-      "indeed": 104.9
+      "indeed": 103.4
     },
     {
       "date": "2025-12-13",
       "jolts": null,
-      "indeed": 104.9
+      "indeed": 103.4
     },
     {
       "date": "2025-12-14",
       "jolts": null,
-      "indeed": 104.9
+      "indeed": 103.5
     },
     {
       "date": "2025-12-15",
       "jolts": null,
-      "indeed": 104.9
+      "indeed": 103.4
     },
     {
       "date": "2025-12-16",
       "jolts": null,
-      "indeed": 105.0
+      "indeed": 103.5
     },
     {
       "date": "2025-12-17",
       "jolts": null,
-      "indeed": 105.3
+      "indeed": 103.8
     },
     {
       "date": "2025-12-18",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 104.3
     },
     {
       "date": "2025-12-19",
       "jolts": null,
-      "indeed": 106.1
+      "indeed": 104.6
     },
     {
       "date": "2025-12-20",
       "jolts": null,
-      "indeed": 106.3
+      "indeed": 104.9
     },
     {
       "date": "2025-12-21",
       "jolts": null,
-      "indeed": 106.4
+      "indeed": 105.0
     },
     {
       "date": "2025-12-22",
       "jolts": null,
-      "indeed": 106.8
+      "indeed": 105.3
     },
     {
       "date": "2025-12-23",
       "jolts": null,
-      "indeed": 107.0
+      "indeed": 105.6
     },
     {
       "date": "2025-12-24",
       "jolts": null,
-      "indeed": 106.9
+      "indeed": 105.7
     },
     {
       "date": "2025-12-25",
       "jolts": null,
-      "indeed": 106.6
+      "indeed": 105.6
     },
     {
       "date": "2025-12-26",
       "jolts": null,
-      "indeed": 106.3
+      "indeed": 105.4
     },
     {
       "date": "2025-12-27",
       "jolts": null,
-      "indeed": 106.1
+      "indeed": 105.2
     },
     {
       "date": "2025-12-28",
       "jolts": null,
-      "indeed": 106.1
+      "indeed": 105.2
     },
     {
       "date": "2025-12-29",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 105.0
     },
     {
       "date": "2025-12-30",
       "jolts": null,
-      "indeed": 105.8
+      "indeed": 104.9
     },
     {
       "date": "2025-12-31",
       "jolts": null,
-      "indeed": 105.7
+      "indeed": 104.7
     },
     {
       "date": "2026-01-01",
       "jolts": null,
-      "indeed": 105.5
+      "indeed": 104.3
     },
     {
       "date": "2026-01-02",
       "jolts": null,
-      "indeed": 105.5
+      "indeed": 104.2
     },
     {
       "date": "2026-01-03",
       "jolts": null,
-      "indeed": 105.4
+      "indeed": 104.0
     },
     {
       "date": "2026-01-04",
       "jolts": null,
-      "indeed": 105.2
+      "indeed": 103.8
     },
     {
       "date": "2026-01-05",
       "jolts": null,
-      "indeed": 105.2
+      "indeed": 103.7
     },
     {
       "date": "2026-01-06",
       "jolts": null,
-      "indeed": 105.2
+      "indeed": 103.5
     },
     {
       "date": "2026-01-07",
       "jolts": null,
-      "indeed": 105.2
+      "indeed": 103.5
     },
     {
       "date": "2026-01-08",
       "jolts": null,
-      "indeed": 105.4
+      "indeed": 103.6
     },
     {
       "date": "2026-01-09",
       "jolts": null,
-      "indeed": 105.5
+      "indeed": 103.6
+    },
+    {
+      "date": "2026-01-10",
+      "jolts": null,
+      "indeed": 103.6
+    },
+    {
+      "date": "2026-01-11",
+      "jolts": null,
+      "indeed": 103.8
+    },
+    {
+      "date": "2026-01-12",
+      "jolts": null,
+      "indeed": 103.8
+    },
+    {
+      "date": "2026-01-13",
+      "jolts": null,
+      "indeed": 103.9
+    },
+    {
+      "date": "2026-01-14",
+      "jolts": null,
+      "indeed": 103.9
+    },
+    {
+      "date": "2026-01-15",
+      "jolts": null,
+      "indeed": 104.0
+    },
+    {
+      "date": "2026-01-16",
+      "jolts": null,
+      "indeed": 104.0
+    },
+    {
+      "date": "2026-01-17",
+      "jolts": null,
+      "indeed": 104.1
+    },
+    {
+      "date": "2026-01-18",
+      "jolts": null,
+      "indeed": 104.2
+    },
+    {
+      "date": "2026-01-19",
+      "jolts": null,
+      "indeed": 104.3
+    },
+    {
+      "date": "2026-01-20",
+      "jolts": null,
+      "indeed": 104.3
+    },
+    {
+      "date": "2026-01-21",
+      "jolts": null,
+      "indeed": 104.3
+    },
+    {
+      "date": "2026-01-22",
+      "jolts": null,
+      "indeed": 104.3
+    },
+    {
+      "date": "2026-01-23",
+      "jolts": null,
+      "indeed": 104.4
     }
   ],
   "latest": {
-    "date": "2026-01-09",
+    "date": "2026-01-23",
     "jolts": 7146.0,
     "jolts_date": "2025-11-01",
-    "indeed": 105.5,
-    "indeed_date": "2026-01-09"
+    "indeed": 104.4,
+    "indeed_date": "2026-01-23"
   },
-  "last_updated": "2026-01-27T12:02:19.509933+09:00"
+  "last_updated": "2026-01-30T23:02:33.529315+09:00"
 }

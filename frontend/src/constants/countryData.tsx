@@ -313,6 +313,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'pmi', name: 'PMI（ユーロ圏）' },
           { code: 'ecb-bls', name: '銀行貸出調査（ユーロ圏・BLS）' },
           { code: 'ecb-adjusted-loans', name: '貸出動向（ユーロ圏・BSI）' },
+          { code: 'ecb-ciss', name: 'システミックストレス指標（CISS）' },
           { code: 'ecb-production', name: '鉱工業生産（ユーロ圏）' },
           { code: 'euro-policy-uncertainty', name: '欧州経済政策不確実性指数' },
           { code: 'eurostat-esi', name: 'ESI（ユーロ圏・主要国）' },
@@ -323,6 +324,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'zew-economic-sentiment', name: 'ZEW景況感指数（ドイツ）' },
           { code: 'ifo-business-climate', name: 'IFO企業景況感指数（ドイツ）' },
           { code: 'france-pmi', name: 'PMI（フランス）' },
+          { code: 'france-business-confidence', name: '企業信頼感（フランス）' },
+          { code: 'eu-international-trade', name: '国際貿易（ユーロ圏）' },
+          { code: 'eu-terms-of-trade', name: '交易条件（ユーロ圏）' },
+          { code: 'ecb-current-account', name: '経常収支（ユーロ圏）' },
         ],
       },
       {
@@ -351,6 +356,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-negotiated-wages', name: '交渉妥結賃金（ユーロ圏）' },
           { code: 'indeed-euro-wage', name: 'Indeed賃金トラッカー（ユーロ圏）' },
           { code: 'germany-unemployment', name: '失業率（ドイツ）' },
+          { code: 'eurostat-job-vacancy', name: '求人率（ユーロ圏）' },
         ],
       },
       {
@@ -367,6 +373,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-spf-core', name: 'コアインフレ期待 / SPF（ユーロ圏）' },
           { code: 'germany-cpi', name: 'CPI（ドイツ）' },
           { code: 'germany-ppi', name: 'PPI（ドイツ）' },
+          { code: 'spain-hicp-cpi', name: 'CPI / HICP（スペイン）' },
+          { code: 'eu-import-prices', name: '輸入物価（ユーロ圏）' },
         ],
       },
       {
@@ -396,6 +404,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'boe-mpc-voting', name: 'MPC投票履歴' },
           { code: 'boe-ois-curve', name: 'OISカーブ' },
           { code: 'boe-economic-outlook', name: 'BOE経済見通し' },
+          { code: 'boe-dmp-survey', name: 'Decision Maker Panel (DMP) サーベイ' },
+          { code: 'uk-public-sector-net-borrowing', name: '公的部門純借入' },
         ],
       },
       {
@@ -755,6 +765,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <ShoppingOutlined />,
         color: '#13c2c2',
         indicators: [
+          { code: 'kof-barometer', name: 'KOF経済バロメーター' },
+          { code: 'ch-consumer-sentiment', name: 'SECO消費者景況感' },
           { code: 'retail-sales', name: '小売売上高' },
         ],
       },
@@ -764,7 +776,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <TeamOutlined />,
         color: '#faad14',
         indicators: [
-          { code: 'unemployment', name: '失業率' },
+          { code: 'ch-unemployment-rate', name: '失業率' },
         ],
       },
       {
@@ -774,6 +786,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#ff4d4f',
         indicators: [
           { code: 'cpi', name: 'CPI' },
+          { code: 'ppi', name: 'PPI' },
         ],
       },
       {

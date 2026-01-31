@@ -132,7 +132,7 @@ export default function AdjustedLoansChart({ data }: AdjustedLoansChartProps) {
         title="貸出動向（ユーロ圏・BSI）"
         showPeriodSelector={false}
         dataSource="European Central Bank"
-        sourceUrl="https://data.ecb.europa.eu/data/datasets/BSI"
+        sourceUrl="https://www.bis.org/statistics/rppb2510.htm?utm"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>
