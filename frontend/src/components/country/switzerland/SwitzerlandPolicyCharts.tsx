@@ -4,6 +4,10 @@ import ChSnbRateChart from './monetary_policy/ChSnbRateChart'
 import ChInflationForecastChart from './monetary_policy/ChInflationForecastChart'
 import ChCPIChart from './inflation/ChCPIChart'
 import SNBBalanceSheetChart from './monetary_policy/SNBBalanceSheetChart'
+import SNBSightDepositsChart from './monetary_policy/SNBSightDepositsChart'
+import ForeignCurrencyReservesChart from './monetary_policy/ForeignCurrencyReservesChart'
+import MonetaryBaseChart from './monetary_policy/MonetaryBaseChart'
+import MonetaryAggregateM2Chart from './monetary_policy/MonetaryAggregateM2Chart'
 
 /**
  * スイス金融政策チャート群
@@ -57,6 +61,34 @@ export default function SwitzerlandPolicyCharts() {
       <div id="balance-sheet">
         <SNBBalanceSheetChart
           data={dashboardData?.snb_balance_sheet ?? null}
+        />
+      </div>
+
+      {/* SNB Sight Deposits Chart */}
+      <div id="sight-deposits">
+        <SNBSightDepositsChart
+          data={dashboardData?.snb_sight_deposits ?? null}
+        />
+      </div>
+
+      {/* Foreign Currency Reserves Chart */}
+      <div id="foreign-currency-reserves">
+        <ForeignCurrencyReservesChart
+          data={dashboardData?.foreign_currency_reserves ?? null}
+        />
+      </div>
+
+      {/* Monetary Base Chart */}
+      <div id="monetary-base">
+        <MonetaryBaseChart
+          data={dashboardData?.monetary_base ?? null}
+        />
+      </div>
+
+      {/* Monetary Aggregate M2 Chart */}
+      <div id="monetary-aggregate-m2">
+        <MonetaryAggregateM2Chart
+          data={dashboardData?.monetary_aggregate_m2 ?? null}
         />
       </div>
     </div>

@@ -5747,12 +5747,98 @@ export interface SNBBalanceSheetData {
   next_release: string | null
 }
 
+// SNB当座預金データアイテム
+export interface SNBSightDepositsItem {
+  date: string
+  value: number
+}
+
+// SNB当座預金データ
+export interface SNBSightDepositsData {
+  data: SNBSightDepositsItem[]
+  latest: SNBSightDepositsItem | null
+  metadata: {
+    source: string
+    indicator: string
+    description: string
+    unit: string
+  }
+  next_release: string | null
+  last_publishing_date: string | null
+}
+
+// 外貨準備データ項目
+export interface ForeignCurrencyReservesItem {
+  date: string
+  chf: number | null
+  usd: number | null
+}
+
+// 外貨準備データ
+export interface ForeignCurrencyReservesData {
+  data: ForeignCurrencyReservesItem[]
+  latest: ForeignCurrencyReservesItem | null
+  metadata: {
+    source: string
+    indicator: string
+    description: string
+    unit: string
+  }
+  next_release: string | null
+  last_publishing_date: string | null
+}
+
+// マネタリーベースデータ項目
+export interface MonetaryBaseItem {
+  date: string
+  value: number
+}
+
+// マネタリーベースデータ
+export interface MonetaryBaseData {
+  data: MonetaryBaseItem[]
+  latest: MonetaryBaseItem | null
+  metadata: {
+    source: string
+    indicator: string
+    description: string
+    unit: string
+  }
+  next_release: string | null
+  last_publishing_date: string | null
+}
+
+// 貨幣総量M2データ項目
+export interface MonetaryAggregateM2Item {
+  date: string
+  value: number | null
+  yoy: number | null
+}
+
+// 貨幣総量M2データ
+export interface MonetaryAggregateM2Data {
+  data: MonetaryAggregateM2Item[]
+  latest: MonetaryAggregateM2Item | null
+  metadata: {
+    source: string
+    indicator: string
+    description: string
+    unit: string
+  }
+  next_release: string | null
+  last_publishing_date: string | null
+}
+
 // スイス金融政策ダッシュボードデータの型
 export interface SwitzerlandPolicyData {
   ch_snb_rate: ChSnbRateData | null
   ch_inflation_forecast: ChInflationForecastData | null
   ch_cpi: ChCPIData | null
   snb_balance_sheet: SNBBalanceSheetData | null
+  snb_sight_deposits: SNBSightDepositsData | null
+  foreign_currency_reserves: ForeignCurrencyReservesData | null
+  monetary_base: MonetaryBaseData | null
+  monetary_aggregate_m2: MonetaryAggregateM2Data | null
 }
 
 /**
@@ -5820,10 +5906,26 @@ export interface CHConsumerSentimentData {
   next_release: ChSnbRateNextRelease | null
 }
 
+// スイス小売売上高データ項目
+export interface CHRetailTradeItem {
+  date: string
+  mom: number | null
+  yoy: number | null
+}
+
+// スイス小売売上高データ
+export interface CHRetailTradeData {
+  data: CHRetailTradeItem[]
+  latest: CHRetailTradeItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
 // スイス消費者ダッシュボードデータの型
 export interface SwitzerlandConsumerData {
   kof_economic_barometer: KofBarometerData | null
   ch_consumer_sentiment: CHConsumerSentimentData | null
+  ch_retail_trade: CHRetailTradeData | null
 }
 
 /**
@@ -5859,4 +5961,34 @@ export interface SwitzerlandEmploymentData {
  */
 export function useSwitzerlandEmploymentDashboard(): UseQueryResult<DashboardResponse<SwitzerlandEmploymentData>, Error> {
   return useDashboardData<SwitzerlandEmploymentData>('switzerland', 'employment')
+}
+
+// スイスGDP成長率データ項目
+export interface CHGrowthRateItem {
+  date: string
+  qoq: number | null  // 前期比（季節調整 + スポーツ調整済み）
+  yoy: number | null  // 前年比（スポーツ調整済み、TradingEconomics準拠）
+  yoy_unadjusted: number | null  // 前年比（調整前、Investing.com準拠）
+  annualized: number | null  // 年率換算
+}
+
+// スイスGDP成長率データ
+export interface CHGrowthRateData {
+  data: CHGrowthRateItem[]
+  latest: CHGrowthRateItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス経済ダッシュボードデータの型
+export interface SwitzerlandEconomyData {
+  ch_growth_rate: CHGrowthRateData | null
+}
+
+/**
+ * スイス経済ダッシュボード専用フック
+ * GDP成長率などを取得
+ */
+export function useSwitzerlandEconomyDashboard(): UseQueryResult<DashboardResponse<SwitzerlandEconomyData>, Error> {
+  return useDashboardData<SwitzerlandEconomyData>('switzerland', 'economy')
 }

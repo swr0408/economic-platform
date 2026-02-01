@@ -9,9 +9,10 @@ SNB Data Portalからバランスシートデータを取得
 - SNB Data Portal: https://data.snb.ch/api/cube/snbbipo/data/csv/en
 
 発表スケジュール:
-- 月次（毎月末頃発表、09:00 チューリッヒ時間）
-- 次回発表日はSNB統計RSSフィードから過去の発表パターンを分析して推定
-- RSS: https://www.snb.ch/public/en/rss/statistics
+- 月次
+- 毎月最終営業日 09:00（チューリッヒ時間）
+- 参照: https://data.snb.ch/en/calendar
+  "SNB balance sheet items - Monthly - Last working day of the month (9.00 am)"
 
 キャッシュ方式: 発表日ベース判定（PublishingDateの変更を検知）
 """
@@ -26,6 +27,7 @@ import requests
 import pandas as pd
 
 from core.redis_client import redis_client
+from services.switzerland.swiss_holidays import get_swiss_holidays
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -40,13 +42,9 @@ class SNBBalanceSheetService:
     """SNB中央銀行バランスシートサービス"""
 
     DATA_CACHE_KEY = "switzerland:snb_balance_sheet:data"
-    SCHEDULE_CACHE_KEY = "switzerland:snb_balance_sheet:schedule"
 
     # SNB Data Portal API URL
     DATA_SOURCE_URL = "https://data.snb.ch/api/cube/snbbipo/data/csv/en"
-
-    # SNB統計RSSフィード（発表履歴を取得）
-    RSS_URL = "https://www.snb.ch/public/en/rss/statistics"
 
     # バランスシート合計の指標コード
     # T0 = Total assets（資産合計 / Bilanzsumme）
@@ -212,144 +210,85 @@ class SNBBalanceSheetService:
             traceback.print_exc()
             return [], None
 
-    def _get_next_release_from_rss(self) -> Optional[str]:
-        """SNB統計RSSフィードから次回発表日を推定
-
-        過去の発表パターンを分析して次回発表日を推定する
-
-        Returns:
-            次回発表日（"YYYY-MM-DD"形式、推定値）
-        """
-        import re
-
-        try:
-            # キャッシュをチェック（1日有効）
-            cached = redis_client.get(self.SCHEDULE_CACHE_KEY)
-            if cached:
-                cache_time = cached.get("cached_at")
-                if cache_time:
-                    cache_dt = datetime.fromisoformat(cache_time)
-                    if (datetime.now(JST) - cache_dt).total_seconds() < 86400:  # 24時間
-                        return cached.get("next_release")
-
-            print(f"[SNBBalanceSheet] Fetching RSS: {self.RSS_URL}")
-            resp = requests.get(self.RSS_URL, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
-            resp.raise_for_status()
-            content = resp.text
-
-            # バランスシート関連のエントリを探す
-            items = re.findall(r'<item>(.*?)</item>', content, re.DOTALL)
-            balance_items = []
-
-            for item in items:
-                title_match = re.search(r'<title>(.*?)</title>', item)
-                if title_match and 'balance sheet' in title_match.group(1).lower():
-                    title = title_match.group(1)
-                    # タイトルから日付を抽出（例: 2026-01-30 - SNB balance sheet items...）
-                    date_match = re.match(r'(\d{4}-\d{2}-\d{2})', title)
-                    if date_match:
-                        pub_date = datetime.strptime(date_match.group(1), '%Y-%m-%d')
-                        balance_items.append(pub_date)
-
-            if not balance_items:
-                print("[SNBBalanceSheet] No balance sheet entries found in RSS")
-                return None
-
-            # 最新の発表日を取得
-            balance_items.sort(reverse=True)
-            latest = balance_items[0]
-            print(f"[SNBBalanceSheet] Latest release from RSS: {latest.strftime('%Y-%m-%d')}")
-
-            # 過去の発表間隔の平均を計算（約30日）
-            if len(balance_items) >= 2:
-                intervals = []
-                for i in range(min(len(balance_items) - 1, 6)):  # 最大6回分
-                    diff = (balance_items[i] - balance_items[i + 1]).days
-                    intervals.append(diff)
-                avg_interval = sum(intervals) / len(intervals)
-            else:
-                avg_interval = 30  # デフォルト30日
-
-            # 次回発表日を推定
-            next_release = latest + timedelta(days=int(avg_interval))
-
-            # 現在より過去の場合は調整
-            now = datetime.now(ZURICH).replace(tzinfo=None)
-            while next_release <= now:
-                next_release = next_release + timedelta(days=int(avg_interval))
-
-            next_release_str = next_release.strftime("%Y-%m-%d")
-            print(f"[SNBBalanceSheet] Next release (estimated): {next_release_str}")
-
-            # キャッシュに保存
-            redis_client.set(self.SCHEDULE_CACHE_KEY, {
-                "next_release": next_release_str,
-                "latest_release": latest.strftime("%Y-%m-%d"),
-                "avg_interval_days": avg_interval,
-                "cached_at": datetime.now(JST).isoformat()
-            }, expire=86400)
-
-            return next_release_str
-
-        except Exception as e:
-            print(f"[SNBBalanceSheet] Error fetching RSS: {e}")
-            return None
-
     def _calculate_next_release(self, publishing_date_str: Optional[str]) -> Optional[str]:
-        """次回発表日を取得
+        """次回発表日を計算
 
-        1. まずRSSから取得を試みる
-        2. RSSが取得できない場合はPublishingDateから推定
+        SNBバランスシートは毎月最終営業日 09:00（チューリッヒ時間）に発表される
+        参照: https://data.snb.ch/en/calendar
 
         Args:
             publishing_date_str: 最後の発表日時文字列（"YYYY-MM-DD HH:MM"形式）
 
         Returns:
-            次回発表日（"YYYY-MM-DD"形式、推定値）
+            次回発表日（"YYYY-MM-DD HH:MM"形式）
         """
-        # RSSから取得を試みる
-        next_release = self._get_next_release_from_rss()
-        if next_release:
-            return next_release
-
-        # フォールバック: PublishingDateから推定
         try:
-            if not publishing_date_str:
-                now = datetime.now(ZURICH)
-                return self._add_one_month(now).strftime("%Y-%m-%d")
-
-            try:
-                pub_date = datetime.strptime(publishing_date_str, "%Y-%m-%d %H:%M")
-            except ValueError:
-                pub_date = datetime.strptime(publishing_date_str[:10], "%Y-%m-%d")
-
-            next_release = self._add_one_month(pub_date)
-
             now = datetime.now(ZURICH)
-            while next_release.replace(tzinfo=ZURICH) <= now:
-                next_release = self._add_one_month(next_release)
 
-            return next_release.strftime("%Y-%m-%d")
+            # 今月の最終営業日を取得
+            this_month_last_bday = self._get_last_business_day(now.year, now.month)
+
+            # 発表時刻（09:00 チューリッヒ時間）
+            release_datetime = this_month_last_bday.replace(hour=9, minute=0, second=0, microsecond=0, tzinfo=ZURICH)
+
+            # 今月の発表日時がまだ来ていなければそれを返す
+            if now < release_datetime:
+                return release_datetime.strftime("%Y-%m-%d %H:%M")
+
+            # 来月の最終営業日を取得
+            next_month = now.month + 1
+            next_year = now.year
+            if next_month > 12:
+                next_month = 1
+                next_year += 1
+
+            next_month_last_bday = self._get_last_business_day(next_year, next_month)
+            next_release_datetime = next_month_last_bday.replace(hour=9, minute=0, second=0, microsecond=0, tzinfo=ZURICH)
+
+            return next_release_datetime.strftime("%Y-%m-%d %H:%M")
 
         except Exception as e:
             print(f"[SNBBalanceSheet] Error calculating next release: {e}")
             return None
 
-    def _add_one_month(self, dt: datetime) -> datetime:
-        """1ヶ月後の日付を計算（月末の調整付き）"""
+    def _get_last_business_day(self, year: int, month: int) -> datetime:
+        """指定月の最終営業日を取得
+
+        営業日 = 平日（月〜金）かつスイスの祝日でない日
+        祝日はNager.Date APIから自動取得（swiss_holidaysモジュール）
+
+        Args:
+            year: 年
+            month: 月
+
+        Returns:
+            最終営業日のdatetimeオブジェクト
+        """
         import calendar
 
-        year = dt.year
-        month = dt.month + 1
+        # スイス祝日を取得（APIから自動取得、キャッシュあり）
+        swiss_holidays = get_swiss_holidays(year)
 
-        if month > 12:
-            month = 1
-            year += 1
-
+        # 月末日を取得
         _, last_day = calendar.monthrange(year, month)
-        day = min(dt.day, last_day)
+        current_date = datetime(year, month, last_day)
 
-        return dt.replace(year=year, month=month, day=day)
+        # 営業日が見つかるまで遡る
+        while True:
+            # 土曜（5）または日曜（6）でない
+            if current_date.weekday() < 5:
+                # スイスの祝日でない
+                date_str = current_date.strftime("%Y-%m-%d")
+                if date_str not in swiss_holidays:
+                    return current_date
+
+            # 前日に移動
+            current_date = current_date - timedelta(days=1)
+
+            # 月を跨いだ場合は安全策として終了（通常はあり得ない）
+            if current_date.month != month:
+                print(f"[SNBBalanceSheet] Warning: Could not find business day in {year}-{month:02d}")
+                return datetime(year, month, last_day)
 
     def _should_refresh(self, last_updated_str: str, publishing_date_str: Optional[str]) -> bool:
         """キャッシュを更新すべきかどうかを判定

@@ -746,7 +746,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'policy-rate', name: '政策金利' },
-          { code: 'snb-statement', name: 'SNB声明' },
+          { code: 'inflation-forecast', name: 'SNBインフレ見通し' },
+          { code: 'balance-sheet', name: 'SNB中銀バランスシート' },
+          { code: 'sight-deposits', name: 'SNB当座預金' },
+          { code: 'foreign-currency-reserves', name: '外貨準備' },
         ],
       },
       {
@@ -755,7 +758,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
+          { code: 'ch-growth-rate', name: 'GDP成長率' },
           { code: 'trade-balance', name: '貿易収支' },
         ],
       },

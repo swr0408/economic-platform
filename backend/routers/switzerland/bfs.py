@@ -3,6 +3,7 @@ BFS（スイス連邦統計局）関連 APIルーター
 
 提供データ:
 - Unemployment Rate（失業率）
+- Retail Trade（小売売上高）
 """
 from fastapi import APIRouter, Query
 
@@ -19,7 +20,8 @@ async def bfs_root():
         "message": "BFS (Federal Statistical Office) API",
         "status": "Active",
         "available_endpoints": [
-            "/unemployment-rate - Unemployment Rate"
+            "/unemployment-rate - Unemployment Rate",
+            "/retail-trade - Retail Trade (小売売上高)",
         ]
     }
 
@@ -75,6 +77,67 @@ async def invalidate_unemployment_rate_cache():
     from services.switzerland.ch_unemployment_rate_service import ch_unemployment_rate_service
 
     success = ch_unemployment_rate_service.invalidate_cache()
+    return {
+        "success": success,
+        "message": "Cache invalidated" if success else "Failed to invalidate cache"
+    }
+
+
+# =============================================================================
+# 小売売上高（Retail Trade）
+# =============================================================================
+
+@router.get("/retail-trade")
+async def get_retail_trade(
+    force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
+):
+    """
+    スイス小売売上高データを取得
+
+    Returns:
+        {
+            "data": [...],
+            "latest": {...},
+            "metadata": {...},
+            "next_release": {...}
+        }
+    """
+    from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
+
+    return ch_retail_trade_service.get_ch_retail_trade_data(force_refresh=force_refresh)
+
+
+@router.get("/retail-trade/latest")
+async def get_retail_trade_latest():
+    """
+    スイス小売売上高 最新データを取得
+
+    Returns:
+        最新のスイス小売売上高データ
+    """
+    from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
+
+    result = ch_retail_trade_service.get_ch_retail_trade_data()
+    return {
+        "latest": result.get("latest"),
+        "next_release": result.get("next_release"),
+    }
+
+
+@router.get("/retail-trade/cache/status")
+async def get_retail_trade_cache_status():
+    """スイス小売売上高 キャッシュ状態を取得"""
+    from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
+
+    return ch_retail_trade_service.get_cache_status()
+
+
+@router.delete("/retail-trade/cache")
+async def invalidate_retail_trade_cache():
+    """スイス小売売上高 キャッシュを無効化"""
+    from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
+
+    success = ch_retail_trade_service.invalidate_cache()
     return {
         "success": success,
         "message": "Cache invalidated" if success else "Failed to invalidate cache"

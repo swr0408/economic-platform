@@ -196,6 +196,289 @@ export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
 
 ---
 
+## 前年比/前月比切り替えの場合（MoM/YoY toggle）
+
+**重要**: 前年比/前月比の切り替えには `ViewModeButtonGroup` を使用してください。
+`Radio.Group` は使用しないでください。
+
+```tsx
+import {
+  NoDataMessage,
+  SimpleLatestValueBox,
+  StandardLineChart,
+  ViewModeButtonGroup,  // ← 必ずこれを使用
+} from '../../usa/common/ChartComponents'
+
+// ...
+
+type ViewMode = 'yoy' | 'mom'
+
+export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
+  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+
+  // ビューモード毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+    yoy: 'default',
+    mom: 'default',
+  })
+
+  // propsのデータをチャート用に変換
+  const rawChartData = useMemo<ChartDataPoint[]>(() => {
+    if (!data?.data) return []
+
+    return data.data.map((item) => ({
+      date: item.date,
+      value: viewMode === 'mom' ? item.mom : item.yoy,
+    }))
+  }, [data, viewMode])
+
+  // ... 以下同様 ...
+
+  const chartTitle = viewMode === 'mom' ? '{indicator_name_ja}（前月比）' : '{indicator_name_ja}（前年比）'
+  const overlayKey = viewMode === 'mom' ? '{econalpha_id}_mom' : '{econalpha_id}_yoy'
+
+  return (
+    // ...
+    <>
+      {/* YoY/MoM切替 - ViewModeButtonGroupを使用 */}
+      <ViewModeButtonGroup
+        currentMode={viewMode}
+        onChange={(mode) => setViewMode(mode)}
+        options={[
+          { mode: 'yoy', label: '前年比' },
+          { mode: 'mom', label: '前月比' },
+        ]}
+      />
+
+      {/* コントロールバー */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+
+        <Tooltip title={`比較ページを開く（${chartTitle}）`}>
+          <Button
+            icon={<AreaChartOutlined />}
+            onClick={() => window.open(`/compare?s=${overlayKey}`, '_blank')}
+          >
+            データ比較
+          </Button>
+        </Tooltip>
+      </div>
+
+      {/* グラフ */}
+      <StandardLineChart
+        data={filteredData}
+        lines={[
+          { dataKey: 'value', color: COLORS.main, name: chartTitle },
+        ]}
+        yAxisFormatter={(v) => `${v}%`}
+        tooltipValueFormatter={(v) => `${v.toFixed(1)}%`}
+        yDomain={['dataMin - 2', 'dataMax + 2']}
+        showZeroLine={true}
+      />
+    </>
+  )
+}
+```
+
+**MoM/YoYの型定義**:
+
+```tsx
+export interface {PascalCase}Item {
+  date: string
+  mom: number | null
+  yoy: number | null
+}
+```
+
+---
+
+## 前年比/前月比切り替え（MoM棒グラフ＋テーブル表示パターン）
+
+**重要**: 小売売上高など、MoMを棒グラフとテーブルの両方で表示する場合はこのパターンを使用。
+GermanyRetailSalesChart、CHRetailTradeChartと同じ形式。
+
+```tsx
+import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import ChartContainer from '../../../common/ChartContainer'
+import LoadingChart from '../../../common/LoadingChart'
+import PeriodSelector from '../../../common/PeriodSelector'
+
+import {
+  useSortedData,
+  usePeriodFiltering,
+  useViewModePeriodManagement,
+  useMonthlyTableData,  // テーブル用
+} from '../../usa/common/useChartData'
+import {
+  NoDataMessage,
+  SimpleLatestValueBox,
+  StandardLineChart,
+  StandardBarChart,  // MoM棒グラフ用
+  ViewModeButtonGroup,
+} from '../../usa/common/ChartComponents'
+import { MonthlyTable } from '../../usa/common/MonthlyTable'  // テーブル用
+
+// ...
+
+interface ChartDataPoint {
+  date: string
+  yoy: number
+  mom: number
+  [key: string]: unknown
+}
+
+const COLORS = {
+  yoy: '#1890ff',  // 前年比（折れ線）
+  mom: '#52c41a',  // 前月比（棒グラフ）
+}
+
+// ビューモードは3種類: yoy（折れ線）, mom_chart（棒グラフ）, mom_table（テーブル）
+type ViewMode = 'yoy' | 'mom_chart' | 'mom_table'
+
+export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
+  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
+
+  // ビューモード毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+    yoy: 'default',
+    mom_chart: 3,  // MoMチャートは3年表示
+    mom_table: 'default',
+  })
+
+  // データ変換（yoyとmomの両方を保持）
+  const rawChartData = useMemo<ChartDataPoint[]>(() => {
+    if (!data?.data) return []
+
+    return data.data.map((item) => ({
+      date: item.date,
+      yoy: item.yoy ?? 0,
+      mom: item.mom ?? 0,
+    }))
+  }, [data])
+
+  // データを日付昇順にソート
+  const chartData = useSortedData(rawChartData)
+
+  // 期間フィルタリング
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod: currentPeriod,
+    defaultStartYear: 2020,
+  })
+
+  // テーブル用データ（年別×月別のマトリックス）
+  const momTableData = useMonthlyTableData(chartData, (item) => item.mom)
+
+  // 最新値を取得
+  const latest = useMemo(() => {
+    if (!chartData.length) return null
+    return chartData[chartData.length - 1]
+  }, [chartData])
+
+  // ...（省略: データなしの処理）
+
+  return (
+    <div id="{snake_case}-chart">
+      <ChartContainer
+        title="{indicator_name_ja}"
+        showPeriodSelector={false}
+        dataSource="{data_source_name}"
+        sourceUrl="{data_source_url}"
+      >
+        {/* 最新値表示 */}
+        <SimpleLatestValueBox
+          value={viewMode === 'yoy' ? latest?.yoy : latest?.mom}
+          valueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
+          date={latest?.date}
+          nextRelease={data.next_release}
+          format="percent"
+        />
+
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 3ボタン切替 */}
+                  <ViewModeButtonGroup
+                    currentMode={viewMode}
+                    onChange={(mode) => setViewMode(mode as ViewMode)}
+                    options={[
+                      { mode: 'yoy', label: '前年比' },
+                      { mode: 'mom_chart', label: '前月比' },
+                      { mode: 'mom_table', label: '前月比（テーブル）' },
+                    ]}
+                  />
+
+                  {/* 期間セレクター（テーブル以外で表示） */}
+                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <Tooltip title="比較ページを開く">
+                        <Button
+                          icon={<AreaChartOutlined />}
+                          onClick={() => window.open('/compare?s={econalpha_id}_yoy', '_blank')}
+                        >
+                          データ比較
+                        </Button>
+                      </Tooltip>
+                    </div>
+                  )}
+
+                  {/* コンテンツ表示 */}
+                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+
+                  {viewMode === 'yoy' && (
+                    <StandardLineChart
+                      data={filteredData}
+                      lines={[
+                        { dataKey: 'yoy', color: COLORS.yoy, name: '{indicator_name_ja}（前年比）' },
+                      ]}
+                      yAxisFormatter={(v) => `${v}%`}
+                    />
+                  )}
+
+                  {viewMode === 'mom_chart' && (
+                    <StandardBarChart
+                      data={filteredData}
+                      bars={[
+                        { dataKey: 'mom', color: COLORS.mom, name: '{indicator_name_ja}（前月比）' },
+                      ]}
+                      yAxisFormatter={(v) => `${v}%`}
+                    />
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="{econalpha_id}" />
+              ),
+            },
+          ]}
+        />
+      </ChartContainer>
+    </div>
+  )
+}
+```
+
+**参考実装**:
+- `frontend/src/components/country/eurozone/consumer/GermanyRetailSalesChart.tsx`
+- `frontend/src/components/country/switzerland/consumer/CHRetailTradeChart.tsx`
+
+---
+
 ## 棒グラフの場合
 
 `StandardLineChart` を `StandardBarChart` に変更：

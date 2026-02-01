@@ -41,6 +41,10 @@ class SwitzerlandPolicyLoader(BaseDashboardLoader):
         "ch_inflation_forecast",
         "ch_cpi",
         "snb_balance_sheet",
+        "snb_sight_deposits",
+        "foreign_currency_reserves",
+        "monetary_base",
+        "monetary_aggregate_m2",
     ]
 
     def __init__(self):
@@ -91,21 +95,33 @@ class SwitzerlandPolicyLoader(BaseDashboardLoader):
         from services.switzerland.ch_inflation_forecast_service import ch_inflation_forecast_service
         from services.switzerland.ch_cpi_service import ch_cpi_service
         from services.switzerland.snb_balance_sheet_service import snb_balance_sheet_service
+        from services.switzerland.snb_sight_deposits_service import snb_sight_deposits_service
+        from services.switzerland.foreign_currency_reserves_service import foreign_currency_reserves_service
+        from services.switzerland.monetary_base_service import monetary_base_service
+        from services.switzerland.monetary_aggregate_m2_service import monetary_aggregate_m2_service
 
         result = {
             "ch_snb_rate": None,
             "ch_inflation_forecast": None,
             "ch_cpi": None,
             "snb_balance_sheet": None,
+            "snb_sight_deposits": None,
+            "foreign_currency_reserves": None,
+            "monetary_base": None,
+            "monetary_aggregate_m2": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=4) as executor:
+        with ThreadPoolExecutor(max_workers=8) as executor:
             futures = {
                 executor.submit(self._get_ch_snb_rate, ch_snb_rate_service): "ch_snb_rate",
                 executor.submit(self._get_ch_inflation_forecast, ch_inflation_forecast_service): "ch_inflation_forecast",
                 executor.submit(self._get_ch_cpi, ch_cpi_service): "ch_cpi",
                 executor.submit(self._get_snb_balance_sheet, snb_balance_sheet_service): "snb_balance_sheet",
+                executor.submit(self._get_snb_sight_deposits, snb_sight_deposits_service): "snb_sight_deposits",
+                executor.submit(self._get_foreign_currency_reserves, foreign_currency_reserves_service): "foreign_currency_reserves",
+                executor.submit(self._get_monetary_base, monetary_base_service): "monetary_base",
+                executor.submit(self._get_monetary_aggregate_m2, monetary_aggregate_m2_service): "monetary_aggregate_m2",
             }
 
             for future in as_completed(futures):
@@ -176,3 +192,67 @@ class SwitzerlandPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"[SwitzerlandPolicy] Error getting SNB Balance Sheet: {e}")
             return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_snb_sight_deposits(self, service) -> dict:
+        """SNB当座預金データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("snb_sight_deposits")
+            response = service.get_sight_deposits_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+                "last_publishing_date": response.get("last_publishing_date"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandPolicy] Error getting SNB Sight Deposits: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None, "last_publishing_date": None}
+
+    def _get_foreign_currency_reserves(self, service) -> dict:
+        """外貨準備データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("foreign_currency_reserves")
+            response = service.get_foreign_currency_reserves_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+                "last_publishing_date": response.get("last_publishing_date"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandPolicy] Error getting Foreign Currency Reserves: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None, "last_publishing_date": None}
+
+    def _get_monetary_base(self, service) -> dict:
+        """マネタリーベースデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("monetary_base")
+            response = service.get_monetary_base_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+                "last_publishing_date": response.get("last_publishing_date"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandPolicy] Error getting Monetary Base: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None, "last_publishing_date": None}
+
+    def _get_monetary_aggregate_m2(self, service) -> dict:
+        """貨幣総量M2データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("monetary_aggregate_m2")
+            response = service.get_monetary_aggregate_m2_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+                "last_publishing_date": response.get("last_publishing_date"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandPolicy] Error getting Monetary Aggregate M2: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None, "last_publishing_date": None}

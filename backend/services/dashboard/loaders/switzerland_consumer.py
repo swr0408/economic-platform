@@ -34,6 +34,7 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
     EXPECTED_KEYS = [
         "kof_economic_barometer",
         "ch_consumer_sentiment",
+        "ch_retail_trade",
     ]
 
     def __init__(self):
@@ -82,17 +83,20 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
         # 遅延インポート（循環参照回避）
         from services.switzerland.kof_economic_barometer_service import kof_economic_barometer_service
         from services.switzerland.ch_consumer_sentiment_service import ch_consumer_sentiment_service
+        from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
 
         result = {
             "kof_economic_barometer": None,
             "ch_consumer_sentiment": None,
+            "ch_retail_trade": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=2) as executor:
+        with ThreadPoolExecutor(max_workers=3) as executor:
             futures = {
                 executor.submit(self._get_kof_barometer, kof_economic_barometer_service): "kof_economic_barometer",
                 executor.submit(self._get_consumer_sentiment, ch_consumer_sentiment_service): "ch_consumer_sentiment",
+                executor.submit(self._get_retail_trade, ch_retail_trade_service): "ch_retail_trade",
             }
 
             for future in as_completed(futures):
@@ -133,4 +137,19 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"[SwitzerlandConsumer] Error getting SECO Consumer Sentiment: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_retail_trade(self, service) -> dict:
+        """小売売上高データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ch_retail_trade")
+            response = service.get_ch_retail_trade_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandConsumer] Error getting Retail Trade: {e}")
             return {"data": [], "latest": None, "metadata": {}, "next_release": None}

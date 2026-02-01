@@ -2,6 +2,7 @@ import { Spin, Alert, Button } from 'antd'
 import { useSwitzerlandConsumerDashboard } from '../../../hooks/useDashboardData'
 import KofBarometerChart from './consumer/KofBarometerChart'
 import CHConsumerSentimentChart from './consumer/CHConsumerSentimentChart'
+import CHRetailTradeChart from './consumer/CHRetailTradeChart'
 
 /**
  * スイス消費者チャート群
@@ -48,6 +49,13 @@ export default function SwitzerlandConsumerCharts() {
       <div id="ch-consumer-sentiment">
         <CHConsumerSentimentChart
           data={dashboardData?.ch_consumer_sentiment ?? null}
+        />
+      </div>
+
+      {/* Retail Trade Chart */}
+      <div id="ch-retail-trade">
+        <CHRetailTradeChart
+          data={dashboardData?.ch_retail_trade ?? null}
         />
       </div>
     </div>

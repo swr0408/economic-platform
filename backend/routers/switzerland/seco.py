@@ -3,6 +3,7 @@ SECO（スイス連邦経済省経済事務局）関連 APIルーター
 
 提供データ:
 - Consumer Climate（消費者景況感）
+- GDP Growth Rate（GDP成長率）
 """
 from fastapi import APIRouter, Query
 
@@ -19,7 +20,8 @@ async def seco_root():
         "message": "SECO (State Secretariat for Economic Affairs) API",
         "status": "Active",
         "available_endpoints": [
-            "/consumer-sentiment - Consumer Climate"
+            "/consumer-sentiment - Consumer Climate",
+            "/growth-rate - GDP Growth Rate",
         ]
     }
 
@@ -75,6 +77,67 @@ async def invalidate_consumer_sentiment_cache():
     from services.switzerland.ch_consumer_sentiment_service import ch_consumer_sentiment_service
 
     success = ch_consumer_sentiment_service.invalidate_cache()
+    return {
+        "success": success,
+        "message": "Cache invalidated" if success else "Failed to invalidate cache"
+    }
+
+
+# =============================================================================
+# GDP成長率（Growth Rate）
+# =============================================================================
+
+@router.get("/growth-rate")
+async def get_growth_rate(
+    force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
+):
+    """
+    スイスGDP成長率データを取得
+
+    Returns:
+        {
+            "data": [...],
+            "latest": {...},
+            "metadata": {...},
+            "next_release": {...}
+        }
+    """
+    from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
+
+    return ch_growth_rate_service.get_ch_growth_rate_data(force_refresh=force_refresh)
+
+
+@router.get("/growth-rate/latest")
+async def get_growth_rate_latest():
+    """
+    スイスGDP成長率 最新データを取得
+
+    Returns:
+        最新のスイスGDP成長率データ
+    """
+    from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
+
+    result = ch_growth_rate_service.get_ch_growth_rate_data()
+    return {
+        "latest": result.get("latest"),
+        "next_release": result.get("next_release"),
+    }
+
+
+@router.get("/growth-rate/cache/status")
+async def get_growth_rate_cache_status():
+    """スイスGDP成長率 キャッシュ状態を取得"""
+    from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
+
+    return ch_growth_rate_service.get_cache_status()
+
+
+@router.delete("/growth-rate/cache")
+async def invalidate_growth_rate_cache():
+    """スイスGDP成長率 キャッシュを無効化"""
+    from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
+
+    success = ch_growth_rate_service.invalidate_cache()
     return {
         "success": success,
         "message": "Cache invalidated" if success else "Failed to invalidate cache"

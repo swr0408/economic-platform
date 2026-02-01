@@ -32,6 +32,7 @@ from services.dashboard.loaders.switzerland_policy import SwitzerlandPolicyLoade
 from services.dashboard.loaders.switzerland_inflation import SwitzerlandInflationLoader
 from services.dashboard.loaders.switzerland_consumer import SwitzerlandConsumerLoader
 from services.dashboard.loaders.switzerland_employment import SwitzerlandEmploymentLoader
+from services.dashboard.loaders.switzerland_economy import SwitzerlandEconomyLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -68,6 +69,7 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
 
     # スイス
     ("switzerland", "policy"): SwitzerlandPolicyLoader,
+    ("switzerland", "economy"): SwitzerlandEconomyLoader,
     ("switzerland", "inflation"): SwitzerlandInflationLoader,
     ("switzerland", "consumer"): SwitzerlandConsumerLoader,
     ("switzerland", "employment"): SwitzerlandEmploymentLoader,

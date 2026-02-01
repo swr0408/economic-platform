@@ -302,6 +302,61 @@ def _load_from_source(self) -> List[Dict[str, Any]]:
 
 ---
 
+## BFS Excel から取得する場合の注意事項
+
+BFS（スイス連邦統計局）のExcelファイルは以下の点に注意：
+
+1. **シート選択**: 指数値（Indices）と変化率（Variation rates）が別シートになっていることが多い
+   - `sheet_name='Variation rates'` で変化率シートを明示的に指定
+
+2. **名目 vs 実質**: 名目（Nominal）と実質（Real）の両方がある場合は通常、実質を使用
+   - Row 5付近: 名目売上高（Nominal turnover）
+   - Row 30付近: 実質売上高（Real turnover）
+
+3. **行インデックス**: データ行は固定インデックスで指定する方が安定
+   - 動的検索よりも確実
+
+```python
+def _fetch_excel_data(self, url: str, data_type: str) -> Dict[str, float]:
+    """BFS Excelファイルからデータを取得
+
+    BFSのExcel形式:
+    - シート: "Variation rates"（変化率）
+    - 実質売上高（Real turnover）の変化率を使用
+    - Row 30: "47: Total retail sector"
+    """
+    try:
+        resp = requests.get(url, timeout=60)
+        resp.raise_for_status()
+
+        # Variation ratesシートを読み込み（必ずシート名を指定）
+        df = pd.read_excel(io.BytesIO(resp.content), sheet_name='Variation rates', header=None)
+
+        # 固定行インデックス（実質売上高のTotal）
+        DATE_ROW_INDEX = 2   # 日付行
+        DATA_ROW_INDEX = 30  # データ行（Real turnover Total）
+
+        data = {}
+        for col in range(2, len(df.columns)):
+            date_cell = df.iloc[DATE_ROW_INDEX, col]
+            value_cell = df.iloc[DATA_ROW_INDEX, col]
+
+            if pd.isna(date_cell) or pd.isna(value_cell):
+                continue
+
+            if isinstance(date_cell, (datetime, pd.Timestamp)):
+                date_str = date_cell.strftime('%Y-%m-01')
+                value = float(value_cell)
+                data[date_str] = value
+
+        return data
+    except Exception as e:
+        print(f"Error: {e}")
+        return {}
+```
+
+---
+
 ## DB から取得する場合の例
 
 ```python

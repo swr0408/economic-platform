@@ -41,11 +41,43 @@ frontend/src/constants/overlayConfig.ts
 
 ### 1. apiEndpoint について
 
+#### ダッシュボードAPI（カテゴリ単位で一括取得）
+
 - **付けない**: `/dashboard` は自動で付与される
-- **正しい例**: `apiEndpoint: '/api/switzerland/employment'`
-- **間違い例**: `apiEndpoint: '/api/switzerland/employment/dashboard'`
+- **正しい例**: `apiEndpoint: '/api/usa/employment'`
+- **間違い例**: `apiEndpoint: '/api/usa/employment/dashboard'`
 
 `useOverlayData.ts` が自動で `/dashboard` を付与します。
+
+#### 個別API（Direct API）
+
+以下のパターンで始まるエンドポイントは個別APIとして認識され、`/dashboard`が付与されません：
+
+- `/api/nyfed/`, `/api/fed-h15/`, `/api/cme/`
+- `/api/japan/` 配下の多くのエンドポイント
+- `/api/uk/boe-`, `/api/uk/ons-`
+- `/api/eurozone/pmi`, `/api/eurozone/germany-pmi`, `/api/eurozone/france-pmi`
+- `/api/switzerland/` 配下のすべてのエンドポイント
+
+個別APIの場合：
+- `dataKey: 'data'` （APIレスポンスの `data` 配列を参照）
+- `valueField` で値フィールドを指定
+
+```typescript
+{
+  id: 'foreign_currency_reserves_chf',
+  name: '外貨準備（CHF）',
+  nameEn: 'Foreign Currency Reserves (CHF)',
+  frequency: 'monthly',
+  country: 'switzerland',
+  category: 'policy',
+  subCategory: 'fed',
+  apiEndpoint: '/api/switzerland/snb/foreign-currency-reserves',
+  dataKey: 'data',  // APIレスポンスの data 配列
+  valueField: 'chf',  // data配列内の各項目から取得するフィールド
+  unit: 'M CHF',
+},
+```
 
 ### 2. dataKey について
 
