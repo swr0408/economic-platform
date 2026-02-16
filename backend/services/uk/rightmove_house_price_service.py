@@ -435,31 +435,50 @@ class RightmoveHousePriceService:
                     text = page.extract_text()
 
                     if text:
-                        # Monthly change を探す
-                        mom_patterns = [
-                            r'Monthly\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
-                            r'([+-]?\d+\.?\d*)\s*%\s*Monthly\s*change',
-                            r'\+(\d+\.?\d*)\s*%[^A]*Largest\s*price\s*increase',
+                        month_names = [
+                            "January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"
                         ]
-                        for pattern in mom_patterns:
-                            m = re.search(pattern, text, re.IGNORECASE)
-                            if m:
-                                mom_value = float(m.group(1))
-                                break
+                        target_month_name = month_names[month - 1]
 
-                        # Annual change を探す
-                        yoy_patterns = [
-                            r'Annual\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
-                            r'([+-]?\d+\.?\d*)\s*%\s*Annual\s*change',
-                            r'\+(\d+\.?\d*)\s*%[^A]*Average\s*asking\s*prices\s*are',
-                        ]
-                        for pattern in yoy_patterns:
-                            m = re.search(pattern, text, re.IGNORECASE)
-                            if m:
-                                yoy_value = float(m.group(1))
-                                break
+                        # 最優先: テキスト内テーブル行（最も信頼性が高い）
+                        # "February 2026 £368,019 0.0% 0.0% 284.5" 形式
+                        row_pattern = (
+                            rf'{target_month_name}\s+{year}\s+\S+\s+'
+                            r'([+-]?\d+\.?\d*)\s*%\s+([+-]?\d+\.?\d*)\s*%'
+                        )
+                        row_match = re.search(row_pattern, text, re.IGNORECASE)
+                        if row_match:
+                            mom_value = float(row_match.group(1))
+                            yoy_value = float(row_match.group(2))
+                            logger.info(f"Found Rightmove from text table row: MoM={mom_value}%, YoY={yoy_value}%")
 
-                    # テーブルからも探す
+                        # フォールバック: "Monthly change: +2.8%" 形式
+                        if mom_value is None:
+                            mom_patterns = [
+                                r'Monthly\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
+                                r'([+-]?\d+\.?\d*)\s*%\s*Monthly\s*change',
+                            ]
+                            for pattern in mom_patterns:
+                                m = re.search(pattern, text, re.IGNORECASE)
+                                if m:
+                                    mom_value = float(m.group(1))
+                                    logger.info(f"Found Rightmove MoM from text pattern: {mom_value}%")
+                                    break
+
+                        if yoy_value is None:
+                            yoy_patterns = [
+                                r'Annual\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
+                                r'([+-]?\d+\.?\d*)\s*%\s*Annual\s*change',
+                            ]
+                            for pattern in yoy_patterns:
+                                m = re.search(pattern, text, re.IGNORECASE)
+                                if m:
+                                    yoy_value = float(m.group(1))
+                                    logger.info(f"Found Rightmove YoY from text pattern: {yoy_value}%")
+                                    break
+
+                    # structured table フォールバック
                     if mom_value is None or yoy_value is None:
                         tables = page.extract_tables()
                         for table in tables:
@@ -472,8 +491,10 @@ class RightmoveHousePriceService:
                                                 value = float(value_match.group(1))
                                                 if i == 2 and mom_value is None:
                                                     mom_value = value
+                                                    logger.info(f"Found Rightmove MoM from table: {mom_value}%")
                                                 elif i == 3 and yoy_value is None:
                                                     yoy_value = value
+                                                    logger.info(f"Found Rightmove YoY from table: {yoy_value}%")
 
             if mom_value is None and yoy_value is None:
                 logger.warning(f"Could not extract values from PDF: {pdf_path.name}")

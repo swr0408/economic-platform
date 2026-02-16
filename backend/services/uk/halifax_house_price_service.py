@@ -95,9 +95,13 @@ class HalifaxHousePriceService:
             if pdf_data:
                 self._save_pdf_data_to_db(pdf_data)
                 self._mark_pdf_as_imported(pdf_path)
-                # メモリ上でもマージ
+                # メモリ上でもマージ（最新月）
                 mom_data = self._merge_pdf_data(mom_data, pdf_data.get("mom"))
                 yoy_data = self._merge_pdf_data(yoy_data, pdf_data.get("yoy"))
+                # 修正値を反映（前回分の修正）
+                for rev in pdf_data.get("revisions", []):
+                    mom_data = self._merge_pdf_data(mom_data, {"date": rev["date"], "value": rev["mom"]})
+                    yoy_data = self._merge_pdf_data(yoy_data, {"date": rev["date"], "value": rev["yoy"]})
                 logger.info(f"[Halifax] Auto-imported new PDF: {pdf_path.name}")
 
         if mom_data or yoy_data:
@@ -450,12 +454,63 @@ class HalifaxHousePriceService:
             if yoy_value is not None:
                 result["yoy"] = {"date": data_date, "value": yoy_value}
 
-            logger.info(f"Extracted from {pdf_path.name}: {result}")
+            # 4ページ目の履歴テーブルから修正値を抽出
+            with pdfplumber.open(pdf_path) as pdf:
+                if len(pdf.pages) >= 4:
+                    hist_text = pdf.pages[3].extract_text()
+                    if hist_text:
+                        revisions = self._extract_historical_table(hist_text)
+                        if revisions:
+                            result["revisions"] = revisions
+                            logger.info(f"[Halifax] Extracted {len(revisions)} revision rows from PDF page 4")
+
+            logger.info(f"Extracted from {pdf_path.name}: mom={result.get('mom')}, yoy={result.get('yoy')}, revisions={len(result.get('revisions', []))}")
             return result
 
         except Exception as e:
             logger.error(f"Error extracting data from PDF {pdf_path.name}: {e}")
             return None
+
+    def _extract_historical_table(self, text: str) -> List[Dict[str, Any]]:
+        """
+        PDF 4ページ目の履歴テーブルを解析して修正値を抽出
+
+        テーブル形式:
+          January 2025 512.4 297,118 0.1 1.1 2.3
+          February 514.3 298,274 0.4 0.7 2.8
+          ...
+          December 513.8 297,938 -0.5 0.2 0.4
+          January 2026 517.5 300,077 0.7 0.1 1.0
+        """
+        month_names = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ]
+        results = []
+        current_year = None
+
+        for line in text.split('\n'):
+            # "January 2025 512.4 297,118 0.1 1.1 2.3" or "February 514.3 298,274 0.4 0.7 2.8"
+            m = re.match(
+                r'(January|February|March|April|May|June|July|August|September|October|November|December)'
+                r'(?:\s+(\d{4}))?\s+[\d.]+\s+[\d,]+\s+([+-]?\d+\.?\d*)\s+[+-]?\d+\.?\d*\s+([+-]?\d+\.?\d*)',
+                line.strip()
+            )
+            if m:
+                month_name = m.group(1)
+                if m.group(2):
+                    current_year = int(m.group(2))
+                if current_year is None:
+                    continue
+                month_num = month_names.index(month_name) + 1
+                # 年を跨ぐ場合: January YYYY の後の February は同年
+                # ただし December の次の January は翌年（年が明示される）
+                date_str = f"{current_year}-{month_num:02d}-01"
+                mom = float(m.group(3))
+                yoy = float(m.group(4))
+                results.append({"date": date_str, "mom": mom, "yoy": yoy})
+
+        return results
 
     def _load_imported_pdfs(self) -> set:
         """処理済みPDFリストを読み込む"""
