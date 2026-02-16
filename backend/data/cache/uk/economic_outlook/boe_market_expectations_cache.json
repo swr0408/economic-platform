@@ -124,12 +124,13 @@
     }
   },
   "metadata": {
-    "last_updated": "2026-01-30T12:02:23.696988",
+    "last_updated": "2026-02-14T05:14:01.321325",
     "source": "Bank of England",
     "mpr_date": "November 2025",
     "latest_forecast_date": "2025-11",
     "previous_forecast_date": "2025-08",
+    "note": "Using previous MPR data",
     "data_source": "Projections Databank"
   },
-  "last_updated": "2026-01-30T21:02:23.697007+09:00"
+  "last_updated": "2026-02-14T14:14:01.321344+09:00"
 }

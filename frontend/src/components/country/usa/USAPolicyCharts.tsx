@@ -9,6 +9,11 @@ import FRBTotalAssetsChart from './monetary_policy/FRBTotalAssetsChart'
 import ReserveBalancesChart from './monetary_policy/ReserveBalancesChart'
 import TGAChart from './monetary_policy/TGAChart'
 import OASChart from './monetary_policy/OASChart'
+import SOFRVolatilityChart from './monetary_policy/SOFRVolatilityChart'
+import ONRRPChart from './monetary_policy/ONRRPChart'
+import FederalBudgetChart from './monetary_policy/FederalBudgetChart'
+import CBOProjectionsChart from './monetary_policy/CBOProjectionsChart'
+import CRELoanDelinquencyChart from './monetary_policy/CRELoanDelinquencyChart'
 
 /**
  * 米国金融政策チャート群
@@ -98,6 +103,31 @@ export default function USAPolicyCharts() {
       {/* OAS Chart */}
       <div id="oas">
         <OASChart data={dashboardData?.oas ?? null} />
+      </div>
+
+      {/* SOFR Volatility Chart */}
+      <div id="sofr-volatility">
+        <SOFRVolatilityChart data={dashboardData?.sofr_volatility ?? null} />
+      </div>
+
+      {/* ON RRP Chart */}
+      <div id="on-rrp">
+        <ONRRPChart data={dashboardData?.on_rrp ?? null} />
+      </div>
+
+      {/* Federal Budget Balance Chart */}
+      <div id="federal-budget">
+        <FederalBudgetChart data={dashboardData?.federal_budget ?? null} />
+      </div>
+
+      {/* CBO Budget Projections Chart */}
+      <div id="cbo-projections">
+        <CBOProjectionsChart data={dashboardData?.cbo_projections ?? null} />
+      </div>
+
+      {/* CRE Loan Delinquency Rate Chart */}
+      <div id="cre-loan-delinquency">
+        <CRELoanDelinquencyChart data={dashboardData?.cre_loan_delinquency ?? null} />
       </div>
     </div>
   )

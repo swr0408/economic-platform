@@ -2,36 +2,36 @@
   "meetings": [
     {
       "meeting_date": "2026-03-01",
-      "ois_rate": 0.7788,
-      "difference": 0.0468,
-      "probability": 19.0
+      "ois_rate": 0.7938,
+      "difference": 0.0654,
+      "probability": 26.0
     },
     {
       "meeting_date": "2026-04-01",
-      "ois_rate": 0.9,
-      "difference": 0.1213,
-      "probability": 49.0
+      "ois_rate": 0.9213,
+      "difference": 0.1275,
+      "probability": 51.0
     },
     {
       "meeting_date": "2026-06-01",
-      "ois_rate": 0.975,
-      "difference": 0.075,
+      "ois_rate": 0.995,
+      "difference": 0.0738,
       "probability": 30.0
     },
     {
       "meeting_date": "2026-07-01",
-      "ois_rate": 1.0413,
-      "difference": 0.0663,
-      "probability": 27.0
+      "ois_rate": 1.0763,
+      "difference": 0.0812,
+      "probability": 33.0
     },
     {
       "meeting_date": "2026-09-01",
-      "ois_rate": 1.11,
-      "difference": 0.0688,
-      "probability": 28.0
+      "ois_rate": 1.1575,
+      "difference": 0.0813,
+      "probability": 33.0
     }
   ],
-  "last_updated": "2026-01-29T00:42:12.211536+09:00",
+  "last_updated": "2026-02-11T16:46:54.330986+09:00",
   "source": "https://www.tokyotanshi.co.jp/archives/15647",
   "data_source": "playwright"
 }

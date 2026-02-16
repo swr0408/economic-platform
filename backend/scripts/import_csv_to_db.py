@@ -438,6 +438,59 @@ CSV_CONFIGS = [
         "date_format": "monthly_utc",  # フランスデータはUTC月初で保存
         "value_type": "number",
     },
+    # Canada Ivey PMI
+    {
+        "file": "IveyPMI.csv",
+        "event_name": "Ivey PMI s.a",
+        "provider": "CSV_IMPORT",
+        "country": "CA",
+        "currency": "CAD",
+        "impact": "Medium",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
+    # Canada S&P Global PMI (3 series)
+    {
+        "file": "カナダ製造業PMI.csv",
+        "event_name": "S&P Global Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "CA",
+        "currency": "CAD",
+        "impact": "High",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
+    {
+        "file": "カナダサービスPMI.csv",
+        "event_name": "S&P Global Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "CA",
+        "currency": "CAD",
+        "impact": "High",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
+    {
+        "file": "カナダ総合PMI.csv",
+        "event_name": "S&P Global Composite PMI",
+        "provider": "CSV_IMPORT",
+        "country": "CA",
+        "currency": "CAD",
+        "impact": "High",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
+    # Australia Inflation Expectations (Melbourne Institute)
+    {
+        "file": "豪インフレ期待.csv",
+        "event_name": "Inflation Expectations",
+        "provider": "CSV_IMPORT",
+        "country": "AU",
+        "currency": "AUD",
+        "impact": "Medium",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
 ]
 
 

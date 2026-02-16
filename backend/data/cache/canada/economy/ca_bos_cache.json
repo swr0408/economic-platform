@@ -1,0 +1,1019 @@
+{
+  "data": [
+    {
+      "date": "1998-07-01",
+      "future_sales": -19.0,
+      "investment": -2.0,
+      "employment": -10.0,
+      "input_prices": -2.0,
+      "output_prices": -28.0,
+      "credit": null
+    },
+    {
+      "date": "1998-10-01",
+      "future_sales": -2.0,
+      "investment": 16.0,
+      "employment": 15.0,
+      "input_prices": -2.0,
+      "output_prices": -14.0,
+      "credit": null
+    },
+    {
+      "date": "1999-01-01",
+      "future_sales": 25.0,
+      "investment": -3.0,
+      "employment": 18.0,
+      "input_prices": -14.0,
+      "output_prices": -9.0,
+      "credit": null
+    },
+    {
+      "date": "1999-04-01",
+      "future_sales": 14.0,
+      "investment": 19.0,
+      "employment": 35.0,
+      "input_prices": 23.0,
+      "output_prices": 10.0,
+      "credit": null
+    },
+    {
+      "date": "1999-07-01",
+      "future_sales": 6.0,
+      "investment": 2.0,
+      "employment": 23.0,
+      "input_prices": -3.0,
+      "output_prices": 7.0,
+      "credit": null
+    },
+    {
+      "date": "1999-10-01",
+      "future_sales": 43.0,
+      "investment": 28.0,
+      "employment": 38.0,
+      "input_prices": 6.0,
+      "output_prices": 2.0,
+      "credit": null
+    },
+    {
+      "date": "2000-01-01",
+      "future_sales": 31.0,
+      "investment": 11.0,
+      "employment": 33.0,
+      "input_prices": 9.0,
+      "output_prices": 15.0,
+      "credit": null
+    },
+    {
+      "date": "2000-04-01",
+      "future_sales": -6.0,
+      "investment": 8.0,
+      "employment": 36.0,
+      "input_prices": 27.0,
+      "output_prices": 5.0,
+      "credit": null
+    },
+    {
+      "date": "2000-07-01",
+      "future_sales": 7.0,
+      "investment": 26.0,
+      "employment": 35.0,
+      "input_prices": 8.0,
+      "output_prices": 6.0,
+      "credit": -15.0
+    },
+    {
+      "date": "2000-10-01",
+      "future_sales": 2.0,
+      "investment": 16.0,
+      "employment": 27.0,
+      "input_prices": 6.0,
+      "output_prices": 6.0,
+      "credit": -20.0
+    },
+    {
+      "date": "2001-01-01",
+      "future_sales": -1.0,
+      "investment": 13.0,
+      "employment": 31.0,
+      "input_prices": -10.0,
+      "output_prices": -5.0,
+      "credit": -9.0
+    },
+    {
+      "date": "2001-04-01",
+      "future_sales": 5.0,
+      "investment": -3.0,
+      "employment": 17.0,
+      "input_prices": -5.0,
+      "output_prices": -17.0,
+      "credit": -39.0
+    },
+    {
+      "date": "2001-07-01",
+      "future_sales": -6.0,
+      "investment": -6.0,
+      "employment": 11.0,
+      "input_prices": -30.0,
+      "output_prices": -5.0,
+      "credit": -20.0
+    },
+    {
+      "date": "2001-10-01",
+      "future_sales": -3.0,
+      "investment": -15.0,
+      "employment": 1.0,
+      "input_prices": -33.0,
+      "output_prices": -27.0,
+      "credit": 29.0
+    },
+    {
+      "date": "2002-01-01",
+      "future_sales": 29.0,
+      "investment": -7.0,
+      "employment": 26.0,
+      "input_prices": -8.0,
+      "output_prices": -11.0,
+      "credit": 31.0
+    },
+    {
+      "date": "2002-04-01",
+      "future_sales": 31.0,
+      "investment": 14.0,
+      "employment": 38.0,
+      "input_prices": 8.0,
+      "output_prices": 14.0,
+      "credit": 11.0
+    },
+    {
+      "date": "2002-07-01",
+      "future_sales": 11.0,
+      "investment": 23.0,
+      "employment": 31.0,
+      "input_prices": 17.0,
+      "output_prices": 12.0,
+      "credit": 9.0
+    },
+    {
+      "date": "2002-10-01",
+      "future_sales": 17.0,
+      "investment": 15.0,
+      "employment": 22.0,
+      "input_prices": 13.0,
+      "output_prices": -2.0,
+      "credit": 15.0
+    },
+    {
+      "date": "2003-01-01",
+      "future_sales": 20.0,
+      "investment": 2.0,
+      "employment": 34.0,
+      "input_prices": 6.0,
+      "output_prices": -1.0,
+      "credit": 19.0
+    },
+    {
+      "date": "2003-04-01",
+      "future_sales": 14.0,
+      "investment": -3.0,
+      "employment": 18.0,
+      "input_prices": -11.0,
+      "output_prices": -7.0,
+      "credit": 11.0
+    },
+    {
+      "date": "2003-07-01",
+      "future_sales": 22.0,
+      "investment": 2.0,
+      "employment": 33.0,
+      "input_prices": -17.0,
+      "output_prices": 3.0,
+      "credit": -11.0
+    },
+    {
+      "date": "2003-10-01",
+      "future_sales": 32.0,
+      "investment": 11.0,
+      "employment": 27.0,
+      "input_prices": -4.0,
+      "output_prices": -19.0,
+      "credit": -10.0
+    },
+    {
+      "date": "2004-01-01",
+      "future_sales": 18.0,
+      "investment": 7.0,
+      "employment": 31.0,
+      "input_prices": -11.0,
+      "output_prices": -4.0,
+      "credit": -17.0
+    },
+    {
+      "date": "2004-04-01",
+      "future_sales": 24.0,
+      "investment": 23.0,
+      "employment": 32.0,
+      "input_prices": 20.0,
+      "output_prices": -4.0,
+      "credit": -4.0
+    },
+    {
+      "date": "2004-07-01",
+      "future_sales": 22.0,
+      "investment": 17.0,
+      "employment": 33.0,
+      "input_prices": -1.0,
+      "output_prices": 10.0,
+      "credit": -3.0
+    },
+    {
+      "date": "2004-10-01",
+      "future_sales": 8.0,
+      "investment": 22.0,
+      "employment": 38.0,
+      "input_prices": -23.0,
+      "output_prices": -15.0,
+      "credit": -20.0
+    },
+    {
+      "date": "2005-01-01",
+      "future_sales": 20.0,
+      "investment": 17.0,
+      "employment": 39.0,
+      "input_prices": 1.0,
+      "output_prices": 8.0,
+      "credit": -19.0
+    },
+    {
+      "date": "2005-04-01",
+      "future_sales": 20.0,
+      "investment": 21.0,
+      "employment": 32.0,
+      "input_prices": 0.0,
+      "output_prices": -2.0,
+      "credit": -18.0
+    },
+    {
+      "date": "2005-07-01",
+      "future_sales": 14.0,
+      "investment": 20.0,
+      "employment": 50.0,
+      "input_prices": 28.0,
+      "output_prices": 11.0,
+      "credit": -22.0
+    },
+    {
+      "date": "2005-10-01",
+      "future_sales": 16.0,
+      "investment": 19.0,
+      "employment": 50.0,
+      "input_prices": 17.0,
+      "output_prices": 3.0,
+      "credit": -8.0
+    },
+    {
+      "date": "2006-01-01",
+      "future_sales": 3.0,
+      "investment": 35.0,
+      "employment": 43.0,
+      "input_prices": -3.0,
+      "output_prices": 5.0,
+      "credit": -5.0
+    },
+    {
+      "date": "2006-04-01",
+      "future_sales": 16.0,
+      "investment": 27.0,
+      "employment": 35.0,
+      "input_prices": 7.0,
+      "output_prices": 7.0,
+      "credit": -5.0
+    },
+    {
+      "date": "2006-07-01",
+      "future_sales": 3.0,
+      "investment": 15.0,
+      "employment": 41.0,
+      "input_prices": -6.0,
+      "output_prices": -8.0,
+      "credit": -19.0
+    },
+    {
+      "date": "2006-10-01",
+      "future_sales": 7.0,
+      "investment": 20.0,
+      "employment": 40.0,
+      "input_prices": -11.0,
+      "output_prices": -2.0,
+      "credit": -10.0
+    },
+    {
+      "date": "2007-01-01",
+      "future_sales": 14.0,
+      "investment": 29.0,
+      "employment": 45.0,
+      "input_prices": -11.0,
+      "output_prices": -3.0,
+      "credit": -19.0
+    },
+    {
+      "date": "2007-04-01",
+      "future_sales": 12.0,
+      "investment": 21.0,
+      "employment": 34.0,
+      "input_prices": 0.0,
+      "output_prices": -9.0,
+      "credit": -15.0
+    },
+    {
+      "date": "2007-07-01",
+      "future_sales": 3.0,
+      "investment": 7.0,
+      "employment": 37.0,
+      "input_prices": -3.0,
+      "output_prices": -4.0,
+      "credit": 25.0
+    },
+    {
+      "date": "2007-10-01",
+      "future_sales": 0.0,
+      "investment": 8.0,
+      "employment": 30.0,
+      "input_prices": -6.0,
+      "output_prices": 2.0,
+      "credit": 24.0
+    },
+    {
+      "date": "2008-01-01",
+      "future_sales": -2.0,
+      "investment": 2.0,
+      "employment": 33.0,
+      "input_prices": 27.0,
+      "output_prices": 11.0,
+      "credit": 24.0
+    },
+    {
+      "date": "2008-04-01",
+      "future_sales": 4.0,
+      "investment": 24.0,
+      "employment": 33.0,
+      "input_prices": 38.0,
+      "output_prices": 20.0,
+      "credit": 14.0
+    },
+    {
+      "date": "2008-07-01",
+      "future_sales": 3.0,
+      "investment": 20.0,
+      "employment": 28.0,
+      "input_prices": -15.0,
+      "output_prices": -5.0,
+      "credit": 32.0
+    },
+    {
+      "date": "2008-10-01",
+      "future_sales": -34.0,
+      "investment": -31.0,
+      "employment": -8.0,
+      "input_prices": -48.0,
+      "output_prices": -23.0,
+      "credit": 58.0
+    },
+    {
+      "date": "2009-01-01",
+      "future_sales": -22.0,
+      "investment": -14.0,
+      "employment": -1.0,
+      "input_prices": -34.0,
+      "output_prices": -35.0,
+      "credit": 36.0
+    },
+    {
+      "date": "2009-04-01",
+      "future_sales": 39.0,
+      "investment": -12.0,
+      "employment": 22.0,
+      "input_prices": -15.0,
+      "output_prices": -10.0,
+      "credit": 12.0
+    },
+    {
+      "date": "2009-07-01",
+      "future_sales": 53.0,
+      "investment": 3.0,
+      "employment": 27.0,
+      "input_prices": 10.0,
+      "output_prices": 3.0,
+      "credit": -4.0
+    },
+    {
+      "date": "2009-10-01",
+      "future_sales": 50.0,
+      "investment": 17.0,
+      "employment": 41.0,
+      "input_prices": 20.0,
+      "output_prices": 10.0,
+      "credit": -12.0
+    },
+    {
+      "date": "2010-01-01",
+      "future_sales": 44.0,
+      "investment": 22.0,
+      "employment": 38.0,
+      "input_prices": 29.0,
+      "output_prices": 28.0,
+      "credit": -1.0
+    },
+    {
+      "date": "2010-04-01",
+      "future_sales": 25.0,
+      "investment": 12.0,
+      "employment": 40.0,
+      "input_prices": 34.0,
+      "output_prices": 28.0,
+      "credit": -10.0
+    },
+    {
+      "date": "2010-07-01",
+      "future_sales": 29.0,
+      "investment": 36.0,
+      "employment": 25.0,
+      "input_prices": 20.0,
+      "output_prices": 29.0,
+      "credit": -16.0
+    },
+    {
+      "date": "2010-10-01",
+      "future_sales": 22.0,
+      "investment": 29.0,
+      "employment": 41.0,
+      "input_prices": 32.0,
+      "output_prices": 23.0,
+      "credit": -14.0
+    },
+    {
+      "date": "2011-01-01",
+      "future_sales": 13.0,
+      "investment": 24.0,
+      "employment": 37.0,
+      "input_prices": 39.0,
+      "output_prices": 14.0,
+      "credit": -6.0
+    },
+    {
+      "date": "2011-04-01",
+      "future_sales": 20.0,
+      "investment": 30.0,
+      "employment": 53.0,
+      "input_prices": 35.0,
+      "output_prices": 13.0,
+      "credit": -24.0
+    },
+    {
+      "date": "2011-07-01",
+      "future_sales": 6.0,
+      "investment": 22.0,
+      "employment": 38.0,
+      "input_prices": 3.0,
+      "output_prices": -9.0,
+      "credit": -13.0
+    },
+    {
+      "date": "2011-10-01",
+      "future_sales": -4.0,
+      "investment": 21.0,
+      "employment": 45.0,
+      "input_prices": 5.0,
+      "output_prices": -7.0,
+      "credit": 5.0
+    },
+    {
+      "date": "2012-01-01",
+      "future_sales": 35.0,
+      "investment": 24.0,
+      "employment": 43.0,
+      "input_prices": 7.0,
+      "output_prices": -1.0,
+      "credit": -20.0
+    },
+    {
+      "date": "2012-04-01",
+      "future_sales": 15.0,
+      "investment": 24.0,
+      "employment": 53.0,
+      "input_prices": 3.0,
+      "output_prices": 3.0,
+      "credit": 7.0
+    },
+    {
+      "date": "2012-07-01",
+      "future_sales": 0.0,
+      "investment": 8.0,
+      "employment": 26.0,
+      "input_prices": 5.0,
+      "output_prices": 12.0,
+      "credit": -10.0
+    },
+    {
+      "date": "2012-10-01",
+      "future_sales": 16.0,
+      "investment": 20.0,
+      "employment": 28.0,
+      "input_prices": 3.0,
+      "output_prices": -3.0,
+      "credit": -7.0
+    },
+    {
+      "date": "2013-01-01",
+      "future_sales": 24.0,
+      "investment": 12.0,
+      "employment": 32.0,
+      "input_prices": 6.0,
+      "output_prices": -7.0,
+      "credit": 6.0
+    },
+    {
+      "date": "2013-04-01",
+      "future_sales": 9.0,
+      "investment": 9.0,
+      "employment": 35.0,
+      "input_prices": 2.0,
+      "output_prices": 8.0,
+      "credit": -1.0
+    },
+    {
+      "date": "2013-07-01",
+      "future_sales": 31.0,
+      "investment": 7.0,
+      "employment": 30.0,
+      "input_prices": 8.0,
+      "output_prices": 12.0,
+      "credit": 0.0
+    },
+    {
+      "date": "2013-10-01",
+      "future_sales": 29.0,
+      "investment": 19.0,
+      "employment": 42.0,
+      "input_prices": 19.0,
+      "output_prices": 9.0,
+      "credit": 3.0
+    },
+    {
+      "date": "2014-01-01",
+      "future_sales": 27.0,
+      "investment": 21.0,
+      "employment": 46.0,
+      "input_prices": 37.0,
+      "output_prices": 14.0,
+      "credit": -8.0
+    },
+    {
+      "date": "2014-04-01",
+      "future_sales": 24.0,
+      "investment": 24.0,
+      "employment": 28.0,
+      "input_prices": -8.0,
+      "output_prices": 6.0,
+      "credit": -27.0
+    },
+    {
+      "date": "2014-07-01",
+      "future_sales": 35.0,
+      "investment": 20.0,
+      "employment": 44.0,
+      "input_prices": 9.0,
+      "output_prices": 8.0,
+      "credit": -11.0
+    },
+    {
+      "date": "2014-10-01",
+      "future_sales": 8.0,
+      "investment": 8.0,
+      "employment": 31.0,
+      "input_prices": -3.0,
+      "output_prices": -5.0,
+      "credit": -3.0
+    },
+    {
+      "date": "2015-01-01",
+      "future_sales": 4.0,
+      "investment": 4.0,
+      "employment": 20.0,
+      "input_prices": -1.0,
+      "output_prices": 5.0,
+      "credit": -11.0
+    },
+    {
+      "date": "2015-04-01",
+      "future_sales": 8.0,
+      "investment": 7.0,
+      "employment": 26.0,
+      "input_prices": -26.0,
+      "output_prices": -13.0,
+      "credit": -10.0
+    },
+    {
+      "date": "2015-07-01",
+      "future_sales": 16.0,
+      "investment": 14.0,
+      "employment": 28.0,
+      "input_prices": 7.0,
+      "output_prices": 10.0,
+      "credit": 7.0
+    },
+    {
+      "date": "2015-10-01",
+      "future_sales": 16.0,
+      "investment": -3.0,
+      "employment": 12.0,
+      "input_prices": -17.0,
+      "output_prices": -17.0,
+      "credit": -2.0
+    },
+    {
+      "date": "2016-01-01",
+      "future_sales": 16.0,
+      "investment": 9.0,
+      "employment": 26.0,
+      "input_prices": 10.0,
+      "output_prices": 0.0,
+      "credit": 15.0
+    },
+    {
+      "date": "2016-04-01",
+      "future_sales": 5.0,
+      "investment": 9.0,
+      "employment": 21.0,
+      "input_prices": -5.0,
+      "output_prices": -3.0,
+      "credit": -8.0
+    },
+    {
+      "date": "2016-07-01",
+      "future_sales": 12.0,
+      "investment": 18.0,
+      "employment": 31.0,
+      "input_prices": -2.0,
+      "output_prices": -10.0,
+      "credit": -5.0
+    },
+    {
+      "date": "2016-10-01",
+      "future_sales": 26.0,
+      "investment": 24.0,
+      "employment": 37.0,
+      "input_prices": 23.0,
+      "output_prices": 24.0,
+      "credit": -1.0
+    },
+    {
+      "date": "2017-01-01",
+      "future_sales": 21.0,
+      "investment": 35.0,
+      "employment": 38.0,
+      "input_prices": 10.0,
+      "output_prices": -3.0,
+      "credit": -2.0
+    },
+    {
+      "date": "2017-04-01",
+      "future_sales": 31.0,
+      "investment": 29.0,
+      "employment": 58.0,
+      "input_prices": 14.0,
+      "output_prices": 14.0,
+      "credit": -1.0
+    },
+    {
+      "date": "2017-07-01",
+      "future_sales": 19.0,
+      "investment": 17.0,
+      "employment": 34.0,
+      "input_prices": 0.0,
+      "output_prices": 0.0,
+      "credit": 3.0
+    },
+    {
+      "date": "2017-10-01",
+      "future_sales": 8.0,
+      "investment": 29.0,
+      "employment": 40.0,
+      "input_prices": 26.0,
+      "output_prices": 2.0,
+      "credit": -4.0
+    },
+    {
+      "date": "2018-01-01",
+      "future_sales": 16.0,
+      "investment": 24.0,
+      "employment": 45.0,
+      "input_prices": 22.0,
+      "output_prices": 6.0,
+      "credit": 9.0
+    },
+    {
+      "date": "2018-04-01",
+      "future_sales": 6.0,
+      "investment": 17.0,
+      "employment": 51.0,
+      "input_prices": 30.0,
+      "output_prices": 12.0,
+      "credit": -5.0
+    },
+    {
+      "date": "2018-07-01",
+      "future_sales": 15.0,
+      "investment": 33.0,
+      "employment": 39.0,
+      "input_prices": 26.0,
+      "output_prices": 12.0,
+      "credit": -1.0
+    },
+    {
+      "date": "2018-10-01",
+      "future_sales": -1.0,
+      "investment": 25.0,
+      "employment": 41.0,
+      "input_prices": 7.0,
+      "output_prices": 10.0,
+      "credit": 11.0
+    },
+    {
+      "date": "2019-01-01",
+      "future_sales": 6.0,
+      "investment": 20.0,
+      "employment": 35.0,
+      "input_prices": 2.0,
+      "output_prices": -6.0,
+      "credit": -7.0
+    },
+    {
+      "date": "2019-04-01",
+      "future_sales": 23.0,
+      "investment": 20.0,
+      "employment": 36.0,
+      "input_prices": -6.0,
+      "output_prices": 7.0,
+      "credit": -6.0
+    },
+    {
+      "date": "2019-07-01",
+      "future_sales": 24.0,
+      "investment": 28.0,
+      "employment": 31.0,
+      "input_prices": -7.0,
+      "output_prices": 5.0,
+      "credit": -5.0
+    },
+    {
+      "date": "2019-10-01",
+      "future_sales": 11.0,
+      "investment": 11.0,
+      "employment": 43.0,
+      "input_prices": 13.0,
+      "output_prices": -4.0,
+      "credit": -3.0
+    },
+    {
+      "date": "2020-01-01",
+      "future_sales": 22.0,
+      "investment": 12.0,
+      "employment": 28.0,
+      "input_prices": 6.0,
+      "output_prices": -6.0,
+      "credit": -8.0
+    },
+    {
+      "date": "2020-04-01",
+      "future_sales": -35.0,
+      "investment": -30.0,
+      "employment": 23.0,
+      "input_prices": -4.0,
+      "output_prices": -20.0,
+      "credit": 19.0
+    },
+    {
+      "date": "2020-07-01",
+      "future_sales": 39.0,
+      "investment": 2.0,
+      "employment": 26.0,
+      "input_prices": 9.0,
+      "output_prices": 0.0,
+      "credit": -13.0
+    },
+    {
+      "date": "2020-10-01",
+      "future_sales": 49.0,
+      "investment": 26.0,
+      "employment": 43.0,
+      "input_prices": 24.0,
+      "output_prices": 15.0,
+      "credit": -13.0
+    },
+    {
+      "date": "2021-01-01",
+      "future_sales": 52.0,
+      "investment": 40.0,
+      "employment": 45.0,
+      "input_prices": 46.0,
+      "output_prices": 45.0,
+      "credit": -16.0
+    },
+    {
+      "date": "2021-04-01",
+      "future_sales": 47.0,
+      "investment": 36.0,
+      "employment": 65.0,
+      "input_prices": 20.0,
+      "output_prices": 26.0,
+      "credit": -13.0
+    },
+    {
+      "date": "2021-07-01",
+      "future_sales": 9.0,
+      "investment": 46.0,
+      "employment": 67.0,
+      "input_prices": 8.0,
+      "output_prices": 8.0,
+      "credit": -12.0
+    },
+    {
+      "date": "2021-10-01",
+      "future_sales": 3.0,
+      "investment": 47.0,
+      "employment": 77.0,
+      "input_prices": 7.0,
+      "output_prices": 16.0,
+      "credit": 2.0
+    },
+    {
+      "date": "2022-01-01",
+      "future_sales": -11.0,
+      "investment": 42.0,
+      "employment": 63.0,
+      "input_prices": 16.0,
+      "output_prices": 26.0,
+      "credit": 6.0
+    },
+    {
+      "date": "2022-04-01",
+      "future_sales": -26.0,
+      "investment": 37.0,
+      "employment": 66.0,
+      "input_prices": 12.0,
+      "output_prices": 22.0,
+      "credit": 16.0
+    },
+    {
+      "date": "2022-07-01",
+      "future_sales": -18.0,
+      "investment": 29.0,
+      "employment": 47.0,
+      "input_prices": -39.0,
+      "output_prices": -24.0,
+      "credit": 12.0
+    },
+    {
+      "date": "2022-10-01",
+      "future_sales": -24.0,
+      "investment": 20.0,
+      "employment": 35.0,
+      "input_prices": -39.0,
+      "output_prices": -10.0,
+      "credit": 27.0
+    },
+    {
+      "date": "2023-01-01",
+      "future_sales": -18.0,
+      "investment": 19.0,
+      "employment": 45.0,
+      "input_prices": -49.0,
+      "output_prices": -26.0,
+      "credit": 10.0
+    },
+    {
+      "date": "2023-04-01",
+      "future_sales": -6.0,
+      "investment": 14.0,
+      "employment": 34.0,
+      "input_prices": -53.0,
+      "output_prices": -33.0,
+      "credit": 30.0
+    },
+    {
+      "date": "2023-07-01",
+      "future_sales": 14.0,
+      "investment": 7.0,
+      "employment": 27.0,
+      "input_prices": -63.0,
+      "output_prices": -43.0,
+      "credit": 26.0
+    },
+    {
+      "date": "2023-10-01",
+      "future_sales": 20.0,
+      "investment": 22.0,
+      "employment": 21.0,
+      "input_prices": -57.0,
+      "output_prices": -21.0,
+      "credit": 29.0
+    },
+    {
+      "date": "2024-01-01",
+      "future_sales": 1.0,
+      "investment": 0.0,
+      "employment": 32.0,
+      "input_prices": -48.0,
+      "output_prices": -18.0,
+      "credit": 4.0
+    },
+    {
+      "date": "2024-04-01",
+      "future_sales": 1.0,
+      "investment": 11.0,
+      "employment": 26.0,
+      "input_prices": -32.0,
+      "output_prices": -23.0,
+      "credit": 0.0
+    },
+    {
+      "date": "2024-07-01",
+      "future_sales": 13.0,
+      "investment": 9.0,
+      "employment": 28.0,
+      "input_prices": -28.0,
+      "output_prices": -28.0,
+      "credit": -7.0
+    },
+    {
+      "date": "2024-10-01",
+      "future_sales": 31.0,
+      "investment": 32.0,
+      "employment": 33.0,
+      "input_prices": -33.0,
+      "output_prices": -1.0,
+      "credit": -3.0
+    },
+    {
+      "date": "2025-01-01",
+      "future_sales": 13.0,
+      "investment": 3.0,
+      "employment": 19.0,
+      "input_prices": 4.0,
+      "output_prices": 3.0,
+      "credit": -3.0
+    },
+    {
+      "date": "2025-04-01",
+      "future_sales": 6.0,
+      "investment": 7.0,
+      "employment": 23.0,
+      "input_prices": 9.0,
+      "output_prices": -1.0,
+      "credit": 16.0
+    },
+    {
+      "date": "2025-07-01",
+      "future_sales": -2.0,
+      "investment": 7.0,
+      "employment": 25.0,
+      "input_prices": 10.0,
+      "output_prices": -1.0,
+      "credit": -6.0
+    },
+    {
+      "date": "2025-10-01",
+      "future_sales": 13.0,
+      "investment": 14.0,
+      "employment": 16.0,
+      "input_prices": 12.0,
+      "output_prices": 6.0,
+      "credit": 9.0
+    }
+  ],
+  "latest": {
+    "date": "2025-10-01",
+    "future_sales": 13.0,
+    "investment": 14.0,
+    "employment": 16.0,
+    "input_prices": 12.0,
+    "output_prices": 6.0,
+    "credit": 9.0
+  },
+  "metadata": {
+    "source": "Bank of Canada",
+    "survey": "Business Outlook Survey (BOS)",
+    "description": "カナダ企業景況感調査（BOS）",
+    "unit": "% (Balance of Opinion)",
+    "frequency": "quarterly"
+  },
+  "next_release": {
+    "date": "2026-04-20",
+    "datetime_jst": "2026-04-20T23:30:00+09:00",
+    "time_jst": "23:30",
+    "datetime_toronto": "2026-04-20T10:30:00-04:00",
+    "time_toronto": "10:30",
+    "label": "Business Outlook Survey"
+  },
+  "last_updated": "2026-02-13T22:58:14.959390+09:00"
+}

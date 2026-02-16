@@ -485,6 +485,56 @@ export function useQuarterlyTableData<T extends DateBasedData, V>(
 }
 
 // =============================================================================
+// useMultiValueQuarterlyTableData - 複数値の四半期別テーブルデータを生成
+// =============================================================================
+
+interface MultiValueQuarterlyTableDataResult<T extends string> {
+  years: number[]
+  quarterlyData: Record<number, Record<number, Record<T, number | null> | null>>
+}
+
+export function useMultiValueQuarterlyTableData<T extends DateBasedData, K extends string>(
+  data: T[],
+  valueExtractors: Record<K, (item: T) => number | null | undefined>,
+  yearRange: number = 10
+): MultiValueQuarterlyTableDataResult<K> {
+  return useMemo(() => {
+    if (data.length === 0) return { years: [], quarterlyData: {} }
+
+    const currentYear = new Date().getFullYear()
+    const startYear = currentYear - (yearRange - 1)
+
+    const years: number[] = []
+    for (let y = startYear; y <= currentYear; y++) {
+      years.push(y)
+    }
+
+    const quarterlyData: Record<number, Record<number, Record<K, number | null> | null>> = {}
+
+    data.forEach((item) => {
+      const parsed = parseQuarterlyDate(item.date)
+      if (!parsed) return
+
+      const { year, quarter } = parsed
+
+      if (year >= startYear && year <= currentYear) {
+        if (!quarterlyData[year]) {
+          quarterlyData[year] = {}
+        }
+
+        const values = {} as Record<K, number | null>
+        for (const [key, extractor] of Object.entries(valueExtractors) as [K, (item: T) => number | null | undefined][]) {
+          values[key] = extractor(item) ?? null
+        }
+        quarterlyData[year][quarter] = values
+      }
+    })
+
+    return { years, quarterlyData }
+  }, [data, valueExtractors, yearRange])
+}
+
+// =============================================================================
 // useMultiValueMonthlyTableData - 複数値の月別テーブルデータを生成
 // =============================================================================
 

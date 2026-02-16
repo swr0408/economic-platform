@@ -150,8 +150,9 @@ export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* コントロールバー */}
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginBottom: 8 }}>
+                  {/* 期間選択 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                     <Tooltip title="比較ページを開く（{indicator_name_ja}）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -161,9 +162,6 @@ export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
                       </Button>
                     </Tooltip>
                   </div>
-
-                  {/* 期間選択 */}
-                  <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
                   {/* グラフ */}
                   <StandardLineChart
@@ -504,39 +502,392 @@ import {
 
 ---
 
-## 複数系列の場合
+## 複数系列の場合（全て同時表示・凡例クリック切替）
+
+**重要**: 複数系列を同時表示する場合は以下のパターンを使用してください。
+- `LATEST_VALUE_BOX_STYLE` で最新値を横並びに表示
+- `useHiddenSeries` と `onLegendClick` で凡例クリックによる表示/非表示切替
+- `SimpleLatestValueBox` は使用しない（単一系列用のため）
 
 ```tsx
-const COLORS = {
-  series1: '#2196f3',
-  series2: '#4caf50',
-  series3: '#ff9800',
+import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import ChartContainer from '../../../common/ChartContainer'
+import LoadingChart from '../../../common/LoadingChart'
+import PeriodSelector, { type PeriodValue } from '../../../common/PeriodSelector'
+
+import {
+  usePeriodFiltering,
+  useHiddenSeries,  // ← 凡例クリック用
+} from '../../usa/common/useChartData'
+import {
+  NoDataMessage,
+  StandardLineChart,
+} from '../../usa/common/ChartComponents'
+import { LATEST_VALUE_BOX_STYLE } from '../../usa/common/chartConstants'  // ← 最新値ボックス用
+
+// マーケットインパクト関連
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
+import type { {PascalCase}Data } from '../../../../hooks/useDashboardData'
+
+interface {PascalCase}ChartProps {
+  data: {PascalCase}Data | null
 }
 
-// rawChartData で複数フィールドをマッピング
-const rawChartData = useMemo<ChartDataPoint[]>(() => {
-  if (!data?.data) return []
+interface ChartDataPoint {
+  date: string
+  series1: number | null
+  series2: number | null
+  [key: string]: unknown
+}
 
-  return data.data.map((item) => ({
-    date: item.date,
-    value1: item.value1,
-    value2: item.value2,
-    value3: item.value3,
-  }))
-}, [data])
+// グラフの色
+const COLORS = {
+  series1: '#DC143C',  // 赤
+  series2: '#1890ff',  // 青
+}
 
-// グラフ
-<StandardLineChart
-  data={filteredData}
-  lines={[
-    { dataKey: 'value1', color: COLORS.series1, name: '系列1' },
-    { dataKey: 'value2', color: COLORS.series2, name: '系列2' },
-    { dataKey: 'value3', color: COLORS.series3, name: '系列3' },
-  ]}
-  yAxisFormatter={(v) => `${v}`}
-  tooltipValueFormatter={(v) => `${v.toFixed(1)}`}
-/>
+export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  // 凡例クリックで非表示にするシリーズを管理
+  const { hiddenSeries, handleLegendClick } = useHiddenSeries()
+
+  // propsのデータをチャート用に変換（両データをマージ）
+  const chartData = useMemo<ChartDataPoint[]>(() => {
+    if (!data) return []
+
+    const dateMap: Record<string, ChartDataPoint> = {}
+
+    // 系列1データをマージ
+    data.series1_data?.forEach((item) => {
+      if (!dateMap[item.date]) {
+        dateMap[item.date] = {
+          date: item.date,
+          series1: null,
+          series2: null,
+        }
+      }
+      dateMap[item.date].series1 = item.value
+    })
+
+    // 系列2データをマージ
+    data.series2_data?.forEach((item) => {
+      if (!dateMap[item.date]) {
+        dateMap[item.date] = {
+          date: item.date,
+          series1: null,
+          series2: null,
+        }
+      }
+      dateMap[item.date].series2 = item.value
+    })
+
+    // 日付順にソート
+    return Object.values(dateMap).sort((a, b) => a.date.localeCompare(b.date))
+  }, [data])
+
+  // 期間フィルタリング
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod: currentPeriod,
+    defaultStartYear: 2018,
+  })
+
+  const hasData = chartData.length > 0
+
+  // 最新値を取得
+  const latestSeries1 = data?.latest_series1
+  const latestSeries2 = data?.latest_series2
+
+  if (data === null) {
+    return <LoadingChart title="{indicator_name_ja}" />
+  }
+
+  if (!hasData) {
+    return (
+      <ChartContainer title="{indicator_name_ja}" showPeriodSelector={false} showDataSource={false}>
+        <NoDataMessage />
+      </ChartContainer>
+    )
+  }
+
+  return (
+    <div id="{snake_case}-chart">
+      <ChartContainer
+        title="{indicator_name_ja}"
+        showPeriodSelector={false}
+        dataSource="{data_source_name}"
+        sourceUrl="{data_source_url}"
+      >
+        {/* 最新値表示（複数系列） - LATEST_VALUE_BOX_STYLEを使用 */}
+        <div style={LATEST_VALUE_BOX_STYLE}>
+          {/* 系列1 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span
+              style={{
+                width: 12,
+                height: 12,
+                backgroundColor: COLORS.series1,
+                borderRadius: 2,
+              }}
+            />
+            <span style={{ fontSize: 12, color: '#a0a0a0' }}>系列1</span>
+            <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.series1 }}>
+              {latestSeries1?.value?.toFixed(1) ?? '-'}
+            </span>
+          </div>
+
+          {/* 系列2 */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span
+              style={{
+                width: 12,
+                height: 12,
+                backgroundColor: COLORS.series2,
+                borderRadius: 2,
+              }}
+            />
+            <span style={{ fontSize: 12, color: '#a0a0a0' }}>系列2</span>
+            <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.series2 }}>
+              {latestSeries2?.value?.toFixed(1) ?? '-'}
+            </span>
+          </div>
+
+          {/* 日付・次回発表情報（右側に配置） */}
+          <div style={{ marginLeft: 'auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-end', fontSize: 11, color: '#8c8c8c' }}>
+            {latestSeries1?.date && <div>{latestSeries1.date}</div>}
+            {data.next_release && (
+              <div>
+                次回発表: {data.next_release.date}{data.next_release.label && ` - ${data.next_release.label}`}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* タブ切替 */}
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  {/* 期間セレクター */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s={econalpha_id}_series1&s={econalpha_id}_series2', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* グラフ（凡例クリックで表示切替） */}
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      { dataKey: 'series1', color: COLORS.series1, name: '系列1', hide: hiddenSeries.has('series1') },
+                      { dataKey: 'series2', color: COLORS.series2, name: '系列2', hide: hiddenSeries.has('series2') },
+                    ]}
+                    yAxisFormatter={(v) => `${v}`}
+                    tooltipValueFormatter={(v) => `${v.toFixed(1)}`}
+                    yDomain={[30, 70]}
+                    showZeroLine={false}
+                    showFiftyLine={true}  // PMI等の場合
+                    onLegendClick={handleLegendClick}  // ← 凡例クリックハンドラ
+                  />
+
+                  {/* 説明文 */}
+                  <div style={{ marginTop: 8, fontSize: 11, color: '#888' }}>
+                    ※凡例クリックで表示/非表示切替
+                  </div>
+                </>
+              ),
+            },
+            {
+              key: 'market-impact',
+              label: 'マーケットインパクト',
+              children: (
+                <MarketImpactTab indicatorId="{econalpha_id}" />
+              ),
+            },
+          ]}
+        />
+      </ChartContainer>
+    </div>
+  )
+}
 ```
+
+**参考実装**:
+- `frontend/src/components/country/switzerland/economy/ChPmiChart.tsx`（製造業PMI・サービス業PMI）
+- `frontend/src/components/country/usa/economy/SPPMIChart.tsx`（S&P Global PMI 3系列）
+
+---
+
+## 複数系列の切り替え表示（グループ切り替えパターン）
+
+**重要**: 系列をグループで切り替え表示する場合は必ず `ViewModeButtonGroup` を使用してください。
+`Radio.Group` は使用しないでください（レイアウト統一のため）。
+
+```tsx
+import { useState, useMemo } from 'react'
+import { Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import ChartContainer from '../../../common/ChartContainer'
+import LoadingChart from '../../../common/LoadingChart'
+import PeriodSelector from '../../../common/PeriodSelector'
+
+import {
+  useSortedData,
+  usePeriodFiltering,
+  useViewModePeriodManagement,
+} from '../../usa/common/useChartData'
+import {
+  NoDataMessage,
+  SimpleLatestValueBox,
+  StandardLineChart,
+  ViewModeButtonGroup,  // ← 必ずこれを使用
+} from '../../usa/common/ChartComponents'
+
+// グラフの色
+const COLORS = {
+  group1_series1: '#FF6B6B',
+  group1_series2: '#FF8E53',
+  group2_series1: '#4169E1',
+  group2_series2: '#00CED1',
+}
+
+// 表示モード
+type ViewMode = 'all' | 'group1' | 'group2'
+
+// ビューモード設定（ViewModeButtonGroup用）
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'all', label: '全て' },
+  { mode: 'group1', label: 'グループ1' },
+  { mode: 'group2', label: 'グループ2' },
+]
+
+export default function {PascalCase}Chart({ data }: {PascalCase}ChartProps) {
+  const [viewMode, setViewMode] = useState<ViewMode>('all')
+
+  // ビューモード毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
+    default: 'default',
+  })
+
+  // ...データ変換処理...
+
+  // 現在のビューモードに応じた最新値を取得
+  const currentLatestValue = useMemo(() => {
+    if (!latestValue) return null
+    if (viewMode === 'group1') return latestValue.group1_series1
+    if (viewMode === 'group2') return latestValue.group2_series1
+    return latestValue.group1_series1 // all の場合
+  }, [latestValue, viewMode])
+
+  // 現在のビューモードに応じた色を取得
+  const currentColor = useMemo(() => {
+    if (viewMode === 'group1') return COLORS.group1_series1
+    if (viewMode === 'group2') return COLORS.group2_series1
+    return COLORS.group1_series1
+  }, [viewMode])
+
+  // 表示する系列を取得
+  const getLines = () => {
+    if (viewMode === 'group1') {
+      return [
+        { dataKey: 'group1_series1', color: COLORS.group1_series1, name: 'G1系列1' },
+        { dataKey: 'group1_series2', color: COLORS.group1_series2, name: 'G1系列2' },
+      ]
+    } else if (viewMode === 'group2') {
+      return [
+        { dataKey: 'group2_series1', color: COLORS.group2_series1, name: 'G2系列1' },
+        { dataKey: 'group2_series2', color: COLORS.group2_series2, name: 'G2系列2' },
+      ]
+    }
+    // all
+    return [
+      { dataKey: 'group1_series1', color: COLORS.group1_series1, name: 'G1系列1' },
+      { dataKey: 'group1_series2', color: COLORS.group1_series2, name: 'G1系列2' },
+      { dataKey: 'group2_series1', color: COLORS.group2_series1, name: 'G2系列1' },
+      { dataKey: 'group2_series2', color: COLORS.group2_series2, name: 'G2系列2' },
+    ]
+  }
+
+  // 最新値ラベルを取得
+  const getLatestLabel = () => {
+    if (viewMode === 'group1') return '{indicator_name_ja}（グループ1）'
+    if (viewMode === 'group2') return '{indicator_name_ja}（グループ2）'
+    return '{indicator_name_ja}（グループ1）'
+  }
+
+  // ...（省略: ローディング・NoData処理）
+
+  return (
+    <div id="{snake_case}-chart">
+      <ChartContainer
+        title="{indicator_name_ja}"
+        showPeriodSelector={false}
+        dataSource="{data_source_name}"
+        sourceUrl="{data_source_url}"
+      >
+        {/* 最新値表示 */}
+        <SimpleLatestValueBox
+          label={getLatestLabel()}
+          value={currentLatestValue}
+          date={latestValue?.date}
+          format="percent"
+          decimals={2}
+          valueColor={currentColor}
+          nextRelease={data.next_release}
+        />
+
+        {/* ビューモード切替 - ViewModeButtonGroupを必ず使用 */}
+        <ViewModeButtonGroup
+          options={VIEW_MODE_OPTIONS}
+          currentMode={viewMode}
+          onChange={setViewMode}
+        />
+
+        {/* 期間セレクター・データ比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+          <Tooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={() => window.open('/compare?s={econalpha_id}_group1&s={econalpha_id}_group2', '_blank')}
+            >
+              データ比較
+            </Button>
+          </Tooltip>
+        </div>
+
+        {/* グラフ */}
+        <StandardLineChart
+          data={filteredData}
+          lines={getLines()}
+          yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+          tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
+          yDomain={['auto', 'auto']}
+          showZeroLine={false}
+        />
+      </ChartContainer>
+    </div>
+  )
+}
+```
+
+**参考実装**:
+- `frontend/src/components/country/switzerland/housing/CHMortgageRatesChart.tsx`（変動金利/固定金利の切り替え）
 
 ---
 
@@ -577,6 +928,15 @@ const tableData = useMonthlyTableData(chartData, 'value')
 `frontend/src/hooks/useDashboardData.ts` に以下を追加：
 
 ```tsx
+// 次回発表日の型（FMPから取得される形式）
+export interface {PascalCase}NextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  label: string          // 例: "Indicator Name (Jan)"
+  estimate: number | null
+}
+
 // {indicator_name_ja}データの型
 export interface {PascalCase}Data {
   data: {PascalCase}Item[]
@@ -587,7 +947,7 @@ export interface {PascalCase}Data {
     description: string
     unit: string
   }
-  next_release: string | null
+  next_release?: {PascalCase}NextRelease | null  // ← オブジェクト型（stringではない）
 }
 
 export interface {PascalCase}Item {

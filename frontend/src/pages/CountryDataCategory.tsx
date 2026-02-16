@@ -40,6 +40,15 @@ import SwitzerlandEconomyCharts from '../components/country/switzerland/Switzerl
 import SwitzerlandInflationCharts from '../components/country/switzerland/SwitzerlandInflationCharts'
 import SwitzerlandConsumerCharts from '../components/country/switzerland/SwitzerlandConsumerCharts'
 import SwitzerlandEmploymentCharts from '../components/country/switzerland/SwitzerlandEmploymentCharts'
+import SwitzerlandHousingCharts from '../components/country/switzerland/SwitzerlandHousingCharts'
+import CanadaPolicyCharts from '../components/country/canada/CanadaPolicyCharts'
+import CanadaEconomyCharts from '../components/country/canada/CanadaEconomyCharts'
+import CanadaInflationCharts from '../components/country/canada/CanadaInflationCharts'
+import CanadaEmploymentCharts from '../components/country/canada/CanadaEmploymentCharts'
+import CanadaConsumerCharts from '../components/country/canada/CanadaConsumerCharts'
+import CanadaHousingCharts from '../components/country/canada/CanadaHousingCharts'
+import AustraliaPolicyCharts from '../components/country/australia/AustraliaPolicyCharts'
+import AustraliaInflationCharts from '../components/country/australia/AustraliaInflationCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -267,12 +276,23 @@ function CountryDataCategory() {
   const isUKEmployment = countryCode === 'uk' && categoryCode === 'employment'
   const isUKInflation = countryCode === 'uk' && categoryCode === 'inflation'
   const isUKHousing = countryCode === 'uk' && categoryCode === 'housing'
-  // スイス金融政策・経済・物価・消費・雇用の場合はチャートを表示
+  // スイス金融政策・経済・物価・消費・雇用・住宅の場合はチャートを表示
   const isSwitzerlandPolicy = countryCode === 'switzerland' && categoryCode === 'policy'
   const isSwitzerlandEconomy = countryCode === 'switzerland' && categoryCode === 'economy'
   const isSwitzerlandInflation = countryCode === 'switzerland' && categoryCode === 'inflation'
   const isSwitzerlandConsumer = countryCode === 'switzerland' && categoryCode === 'consumer'
   const isSwitzerlandEmployment = countryCode === 'switzerland' && categoryCode === 'employment'
+  const isSwitzerlandHousing = countryCode === 'switzerland' && categoryCode === 'housing'
+  // カナダ金融政策・経済・物価・消費・雇用・住宅の場合はチャートを表示
+  const isCanadaPolicy = countryCode === 'canada' && categoryCode === 'policy'
+  const isCanadaEconomy = countryCode === 'canada' && categoryCode === 'economy'
+  const isCanadaInflation = countryCode === 'canada' && categoryCode === 'inflation'
+  const isCanadaConsumer = countryCode === 'canada' && categoryCode === 'consumer'
+  const isCanadaEmployment = countryCode === 'canada' && categoryCode === 'employment'
+  const isCanadaHousing = countryCode === 'canada' && categoryCode === 'housing'
+  // オーストラリア金融政策・物価の場合はチャートを表示
+  const isAustraliaPolicy = countryCode === 'australia' && categoryCode === 'policy'
+  const isAustraliaInflation = countryCode === 'australia' && categoryCode === 'inflation'
 
   // メインコンテンツ
   const mainContent = (
@@ -331,6 +351,24 @@ function CountryDataCategory() {
         <SwitzerlandConsumerCharts />
       ) : isSwitzerlandEmployment ? (
         <SwitzerlandEmploymentCharts />
+      ) : isSwitzerlandHousing ? (
+        <SwitzerlandHousingCharts />
+      ) : isCanadaPolicy ? (
+        <CanadaPolicyCharts />
+      ) : isCanadaEconomy ? (
+        <CanadaEconomyCharts />
+      ) : isCanadaInflation ? (
+        <CanadaInflationCharts />
+      ) : isCanadaConsumer ? (
+        <CanadaConsumerCharts />
+      ) : isCanadaEmployment ? (
+        <CanadaEmploymentCharts />
+      ) : isCanadaHousing ? (
+        <CanadaHousingCharts />
+      ) : isAustraliaPolicy ? (
+        <AustraliaPolicyCharts />
+      ) : isAustraliaInflation ? (
+        <AustraliaInflationCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

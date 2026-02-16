@@ -1,0 +1,313 @@
+{
+  "data": [
+    {
+      "date": "2022-07-31",
+      "receipts": 268.38,
+      "outlays": 439.01,
+      "deficit_surplus": -170.63,
+      "fiscal_year": "2022"
+    },
+    {
+      "date": "2022-08-31",
+      "receipts": 459.52,
+      "outlays": 524.46,
+      "deficit_surplus": -64.94,
+      "fiscal_year": "2022"
+    },
+    {
+      "date": "2022-09-30",
+      "receipts": 521.62,
+      "outlays": 970.75,
+      "deficit_surplus": -449.13,
+      "fiscal_year": "2022"
+    },
+    {
+      "date": "2022-10-31",
+      "receipts": 281.21,
+      "outlays": 472.54,
+      "deficit_surplus": -191.34,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2022-11-30",
+      "receipts": 486.72,
+      "outlays": 508.03,
+      "deficit_surplus": -21.3,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2022-12-31",
+      "receipts": 465.07,
+      "outlays": 346.37,
+      "deficit_surplus": 118.7,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-01-31",
+      "receipts": 289.86,
+      "outlays": 506.45,
+      "deficit_surplus": -216.59,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-02-28",
+      "receipts": 315.17,
+      "outlays": 507.8,
+      "deficit_surplus": -192.63,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-03-31",
+      "receipts": 863.64,
+      "outlays": 555.43,
+      "deficit_surplus": 308.22,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-04-30",
+      "receipts": 388.99,
+      "outlays": 455.21,
+      "deficit_surplus": -66.22,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-05-31",
+      "receipts": 460.76,
+      "outlays": 549.6,
+      "deficit_surplus": -88.84,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-06-30",
+      "receipts": 269.33,
+      "outlays": 480.38,
+      "deficit_surplus": -211.05,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-07-31",
+      "receipts": 303.72,
+      "outlays": 523.32,
+      "deficit_surplus": -219.6,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-08-31",
+      "receipts": 487.72,
+      "outlays": 917.49,
+      "deficit_surplus": -429.77,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-09-30",
+      "receipts": 602.43,
+      "outlays": 855.36,
+      "deficit_surplus": -252.93,
+      "fiscal_year": "2023"
+    },
+    {
+      "date": "2023-10-31",
+      "receipts": 252.11,
+      "outlays": 500.65,
+      "deficit_surplus": -248.53,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2023-11-30",
+      "receipts": 454.94,
+      "outlays": 539.94,
+      "deficit_surplus": -85.0,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2023-12-31",
+      "receipts": 447.29,
+      "outlays": 486.07,
+      "deficit_surplus": -38.78,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-01-31",
+      "receipts": 262.11,
+      "outlays": 524.55,
+      "deficit_surplus": -262.43,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-02-29",
+      "receipts": 313.24,
+      "outlays": 691.68,
+      "deficit_surplus": -378.44,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-03-31",
+      "receipts": 467.47,
+      "outlays": 638.19,
+      "deficit_surplus": -170.71,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-04-30",
+      "receipts": 526.94,
+      "outlays": 1089.49,
+      "deficit_surplus": -562.55,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-05-31",
+      "receipts": 418.32,
+      "outlays": 646.09,
+      "deficit_surplus": -227.77,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-06-30",
+      "receipts": 276.16,
+      "outlays": 496.94,
+      "deficit_surplus": -220.78,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-07-31",
+      "receipts": 283.13,
+      "outlays": 193.87,
+      "deficit_surplus": 89.26,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-08-31",
+      "receipts": 467.47,
+      "outlays": 638.19,
+      "deficit_surplus": -170.71,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-09-30",
+      "receipts": 721.93,
+      "outlays": 876.37,
+      "deficit_surplus": -154.44,
+      "fiscal_year": "2024"
+    },
+    {
+      "date": "2024-10-31",
+      "receipts": 330.38,
+      "outlays": 574.12,
+      "deficit_surplus": -243.74,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2024-11-30",
+      "receipts": 429.31,
+      "outlays": 558.66,
+      "deficit_surplus": -129.35,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2024-12-31",
+      "receipts": 730.2,
+      "outlays": 1054.22,
+      "deficit_surplus": -324.01,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-01-31",
+      "receipts": 730.2,
+      "outlays": 1054.22,
+      "deficit_surplus": -324.01,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-02-28",
+      "receipts": 776.2,
+      "outlays": 566.67,
+      "deficit_surplus": 209.53,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-03-31",
+      "receipts": 576.58,
+      "outlays": 1257.36,
+      "deficit_surplus": -680.77,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-04-30",
+      "receipts": 330.38,
+      "outlays": 574.12,
+      "deficit_surplus": -243.74,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-05-31",
+      "receipts": 466.25,
+      "outlays": 537.22,
+      "deficit_surplus": -70.97,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-06-30",
+      "receipts": 330.38,
+      "outlays": 574.12,
+      "deficit_surplus": -243.74,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-07-31",
+      "receipts": 306.54,
+      "outlays": 686.62,
+      "deficit_surplus": -380.08,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-08-31",
+      "receipts": 694.88,
+      "outlays": 1357.66,
+      "deficit_surplus": -662.78,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-09-30",
+      "receipts": 1626.37,
+      "outlays": 1158.44,
+      "deficit_surplus": 467.93,
+      "fiscal_year": "2025"
+    },
+    {
+      "date": "2025-10-31",
+      "receipts": 543.66,
+      "outlays": 345.73,
+      "deficit_surplus": 197.93,
+      "fiscal_year": "2026"
+    },
+    {
+      "date": "2025-11-30",
+      "receipts": 296.42,
+      "outlays": 603.44,
+      "deficit_surplus": -307.02,
+      "fiscal_year": "2026"
+    },
+    {
+      "date": "2025-12-31",
+      "receipts": 513.29,
+      "outlays": 641.93,
+      "deficit_surplus": -128.64,
+      "fiscal_year": "2026"
+    }
+  ],
+  "latest": {
+    "date": "2025-12-31",
+    "receipts": 513.29,
+    "outlays": 641.93,
+    "deficit_surplus": -128.64,
+    "fiscal_year": "2026"
+  },
+  "metadata": {
+    "source": "U.S. Department of the Treasury",
+    "dataset": "Monthly Treasury Statement (MTS)",
+    "unit": "billions USD",
+    "description": "連邦政府の月次財政収支（歳入・歳出・財政収支）",
+    "release_schedule": "翌月の第8営業日"
+  },
+  "last_updated": "2026-02-11T04:05:01.128243"
+}

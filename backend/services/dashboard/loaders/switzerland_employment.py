@@ -32,6 +32,8 @@ class SwitzerlandEmploymentLoader(BaseDashboardLoader):
     # 期待されるデータキー
     EXPECTED_KEYS = [
         "ch_unemployment_rate",
+        "ch_job_vacancies",
+        "ch_nominal_wage_growth",
     ]
 
     def __init__(self):
@@ -51,7 +53,7 @@ class SwitzerlandEmploymentLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         return stale
 
@@ -74,19 +76,26 @@ class SwitzerlandEmploymentLoader(BaseDashboardLoader):
         Returns:
             {
                 "ch_unemployment_rate": {...},
+                "ch_job_vacancies": {...},
             }
         """
         # 遅延インポート（循環参照回避）
         from services.switzerland.ch_unemployment_rate_service import ch_unemployment_rate_service
+        from services.switzerland.ch_job_vacancies_service import ch_job_vacancies_service
+        from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
 
         result = {
             "ch_unemployment_rate": None,
+            "ch_job_vacancies": None,
+            "ch_nominal_wage_growth": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=1) as executor:
+        with ThreadPoolExecutor(max_workers=3) as executor:
             futures = {
                 executor.submit(self._get_unemployment_rate, ch_unemployment_rate_service): "ch_unemployment_rate",
+                executor.submit(self._get_job_vacancies, ch_job_vacancies_service): "ch_job_vacancies",
+                executor.submit(self._get_nominal_wage_growth, ch_nominal_wage_growth_service): "ch_nominal_wage_growth",
             }
 
             for future in as_completed(futures):
@@ -112,4 +121,34 @@ class SwitzerlandEmploymentLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"[SwitzerlandEmployment] Error getting Unemployment Rate: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_job_vacancies(self, service) -> dict:
+        """スイス求人情報データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ch_job_vacancies")
+            response = service.get_job_vacancies_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandEmployment] Error getting Job Vacancies: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_nominal_wage_growth(self, service) -> dict:
+        """スイス名目賃金上昇率データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ch_nominal_wage_growth")
+            response = service.get_nominal_wage_growth_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandEmployment] Error getting Nominal Wage Growth: {e}")
             return {"data": [], "latest": None, "metadata": {}, "next_release": None}

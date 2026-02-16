@@ -134,7 +134,7 @@ export default function ECBRatesChart({ data }: ECBRatesChartProps) {
                   <ZoomableChart
                     data={filteredData}
                     dataKey="rate"
-                    color="#003399"
+                    color="#374cdf"
                     name="預金ファシリティ金利"
                     height={450}
                     tickFormatter={formatPercentage}

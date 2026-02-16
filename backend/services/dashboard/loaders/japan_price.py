@@ -103,7 +103,7 @@ class JapanPriceLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
@@ -152,22 +152,26 @@ class JapanPriceLoader(BaseDashboardLoader):
             {
                 "national_cpi": {...},
                 "tokyo_cpi": {...},
+                "terms_of_trade": {...},
             }
         """
         # 遅延インポート（循環参照回避）
         from services.japan.japan_national_cpi_service import japan_national_cpi_service
         from services.japan.japan_tokyo_cpi_service import japan_tokyo_cpi_service
+        from services.japan.japan_terms_of_trade_service import japan_terms_of_trade_service
 
         result = {
             "national_cpi": None,
             "tokyo_cpi": None,
+            "terms_of_trade": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=2) as executor:
+        with ThreadPoolExecutor(max_workers=3) as executor:
             futures = {
                 executor.submit(self._get_national_cpi, japan_national_cpi_service): "national_cpi",
                 executor.submit(self._get_tokyo_cpi, japan_tokyo_cpi_service): "tokyo_cpi",
+                executor.submit(self._get_terms_of_trade, japan_terms_of_trade_service): "terms_of_trade",
             }
 
             for future in as_completed(futures):
@@ -214,6 +218,25 @@ class JapanPriceLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Tokyo CPI: {e}")
+            import traceback
+            traceback.print_exc()
+            return {"data": [], "latest": None, "next_release": None}
+
+    def _get_terms_of_trade(self, service) -> dict:
+        """交易条件データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("terms_of_trade")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            latest = response.get("latest") or (data[-1] if data else None)
+
+            return {
+                "data": data,
+                "latest": latest,
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Terms of Trade: {e}")
             import traceback
             traceback.print_exc()
             return {"data": [], "latest": None, "next_release": None}

@@ -11,9 +11,13 @@ UK住宅ダッシュボードローダー
 from typing import Dict, Any, Optional, List
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from services.dashboard.loaders.base import BaseDashboardLoader
+
+# PDFディレクトリ
+PDF_DIR = Path(__file__).parent.parent.parent.parent / "data" / "pdf" / "uk"
 
 
 # タイムゾーン
@@ -50,6 +54,27 @@ class UKHousingLoader(BaseDashboardLoader):
         super().__init__()
         self._stale_indicators: set = set()
 
+    def _has_new_pdfs(self) -> bool:
+        """未処理のPDFがあるかチェック（Halifax/Rightmove/RICS）"""
+        try:
+            from services.uk.halifax_house_price_service import halifax_house_price_service
+            from services.uk.rightmove_house_price_service import rightmove_house_price_service
+            from services.uk.rics_house_price_service import rics_house_price_service
+            if (halifax_house_price_service._check_new_pdfs()
+                    or rightmove_house_price_service._check_new_pdfs()
+                    or rics_house_price_service._check_new_pdfs()):
+                return True
+        except Exception as e:
+            print(f"Error checking new PDFs: {e}")
+        return False
+
+    def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
+        """新しいPDFがあればキャッシュをstaleと判定"""
+        if self._has_new_pdfs():
+            print(f"[UK Housing] New PDF detected, invalidating dashboard cache")
+            return True
+        return super()._is_cache_stale(last_updated)
+
     def get_expected_keys(self) -> List[str]:
         """期待されるデータキーのリスト"""
         return [
@@ -75,7 +100,7 @@ class UKHousingLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)

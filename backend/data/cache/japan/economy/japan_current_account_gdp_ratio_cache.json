@@ -1,0 +1,732 @@
+{
+  "data": [
+    {
+      "date": "1996-Q1",
+      "ratio": 0.41,
+      "current_account": 22105.0,
+      "nominal_gdp": 5405374.0
+    },
+    {
+      "date": "1996-Q2",
+      "ratio": 0.3,
+      "current_account": 16617.0,
+      "nominal_gdp": 5465175.0
+    },
+    {
+      "date": "1996-Q3",
+      "ratio": 0.32,
+      "current_account": 17277.0,
+      "nominal_gdp": 5466827.0
+    },
+    {
+      "date": "1996-Q4",
+      "ratio": 0.34,
+      "current_account": 18945.0,
+      "nominal_gdp": 5515766.0
+    },
+    {
+      "date": "1997-Q1",
+      "ratio": 0.38,
+      "current_account": 20870.0,
+      "nominal_gdp": 5532715.0
+    },
+    {
+      "date": "1997-Q2",
+      "ratio": 0.53,
+      "current_account": 29542.0,
+      "nominal_gdp": 5547857.0
+    },
+    {
+      "date": "1997-Q3",
+      "ratio": 0.51,
+      "current_account": 28333.0,
+      "nominal_gdp": 5545214.0
+    },
+    {
+      "date": "1997-Q4",
+      "ratio": 0.67,
+      "current_account": 36955.0,
+      "nominal_gdp": 5550466.0
+    },
+    {
+      "date": "1998-Q1",
+      "ratio": 0.67,
+      "current_account": 36802.0,
+      "nominal_gdp": 5456190.0
+    },
+    {
+      "date": "1998-Q2",
+      "ratio": 0.69,
+      "current_account": 37270.0,
+      "nominal_gdp": 5415326.0
+    },
+    {
+      "date": "1998-Q3",
+      "ratio": 0.75,
+      "current_account": 40418.0,
+      "nominal_gdp": 5402713.0
+    },
+    {
+      "date": "1998-Q4",
+      "ratio": 0.65,
+      "current_account": 35491.0,
+      "nominal_gdp": 5459402.0
+    },
+    {
+      "date": "1999-Q1",
+      "ratio": 0.57,
+      "current_account": 30316.0,
+      "nominal_gdp": 5346356.0
+    },
+    {
+      "date": "1999-Q2",
+      "ratio": 0.62,
+      "current_account": 33444.0,
+      "nominal_gdp": 5353462.0
+    },
+    {
+      "date": "1999-Q3",
+      "ratio": 0.65,
+      "current_account": 34700.0,
+      "nominal_gdp": 5348686.0
+    },
+    {
+      "date": "1999-Q4",
+      "ratio": 0.59,
+      "current_account": 31274.0,
+      "nominal_gdp": 5339882.0
+    },
+    {
+      "date": "2000-Q1",
+      "ratio": 0.68,
+      "current_account": 36632.0,
+      "nominal_gdp": 5423822.0
+    },
+    {
+      "date": "2000-Q2",
+      "ratio": 0.7,
+      "current_account": 38301.0,
+      "nominal_gdp": 5441646.0
+    },
+    {
+      "date": "2000-Q3",
+      "ratio": 0.72,
+      "current_account": 38775.0,
+      "nominal_gdp": 5421410.0
+    },
+    {
+      "date": "2000-Q4",
+      "ratio": 0.49,
+      "current_account": 26905.0,
+      "nominal_gdp": 5462572.0
+    },
+    {
+      "date": "2001-Q1",
+      "ratio": 0.58,
+      "current_account": 31820.0,
+      "nominal_gdp": 5502264.0
+    },
+    {
+      "date": "2001-Q2",
+      "ratio": 0.4,
+      "current_account": 21598.0,
+      "nominal_gdp": 5425152.0
+    },
+    {
+      "date": "2001-Q3",
+      "ratio": 0.49,
+      "current_account": 26116.0,
+      "nominal_gdp": 5342763.0
+    },
+    {
+      "date": "2001-Q4",
+      "ratio": 0.47,
+      "current_account": 24990.0,
+      "nominal_gdp": 5318275.0
+    },
+    {
+      "date": "2002-Q1",
+      "ratio": 0.77,
+      "current_account": 41294.0,
+      "nominal_gdp": 5339662.0
+    },
+    {
+      "date": "2002-Q2",
+      "ratio": 0.63,
+      "current_account": 33698.0,
+      "nominal_gdp": 5323588.0
+    },
+    {
+      "date": "2002-Q3",
+      "ratio": 0.62,
+      "current_account": 32821.0,
+      "nominal_gdp": 5318436.0
+    },
+    {
+      "date": "2002-Q4",
+      "ratio": 0.55,
+      "current_account": 29023.0,
+      "nominal_gdp": 5316844.0
+    },
+    {
+      "date": "2003-Q1",
+      "ratio": 0.68,
+      "current_account": 35906.0,
+      "nominal_gdp": 5267869.0
+    },
+    {
+      "date": "2003-Q2",
+      "ratio": 0.72,
+      "current_account": 38123.0,
+      "nominal_gdp": 5314148.0
+    },
+    {
+      "date": "2003-Q3",
+      "ratio": 0.87,
+      "current_account": 46090.0,
+      "nominal_gdp": 5309930.0
+    },
+    {
+      "date": "2003-Q4",
+      "ratio": 0.77,
+      "current_account": 41136.0,
+      "nominal_gdp": 5323556.0
+    },
+    {
+      "date": "2004-Q1",
+      "ratio": 0.99,
+      "current_account": 52956.0,
+      "nominal_gdp": 5349328.0
+    },
+    {
+      "date": "2004-Q2",
+      "ratio": 0.91,
+      "current_account": 48455.0,
+      "nominal_gdp": 5336298.0
+    },
+    {
+      "date": "2004-Q3",
+      "ratio": 0.95,
+      "current_account": 51016.0,
+      "nominal_gdp": 5359431.0
+    },
+    {
+      "date": "2004-Q4",
+      "ratio": 0.83,
+      "current_account": 44512.0,
+      "nominal_gdp": 5339060.0
+    },
+    {
+      "date": "2005-Q1",
+      "ratio": 0.9,
+      "current_account": 48358.0,
+      "nominal_gdp": 5344414.0
+    },
+    {
+      "date": "2005-Q2",
+      "ratio": 0.79,
+      "current_account": 42510.0,
+      "nominal_gdp": 5369137.0
+    },
+    {
+      "date": "2005-Q3",
+      "ratio": 0.9,
+      "current_account": 48474.0,
+      "nominal_gdp": 5390275.0
+    },
+    {
+      "date": "2005-Q4",
+      "ratio": 0.89,
+      "current_account": 47935.0,
+      "nominal_gdp": 5395636.0
+    },
+    {
+      "date": "2006-Q1",
+      "ratio": 1.02,
+      "current_account": 55209.0,
+      "nominal_gdp": 5387898.0
+    },
+    {
+      "date": "2006-Q2",
+      "ratio": 0.77,
+      "current_account": 41500.0,
+      "nominal_gdp": 5391492.0
+    },
+    {
+      "date": "2006-Q3",
+      "ratio": 1.01,
+      "current_account": 54565.0,
+      "nominal_gdp": 5383063.0
+    },
+    {
+      "date": "2006-Q4",
+      "ratio": 0.95,
+      "current_account": 52034.0,
+      "nominal_gdp": 5460296.0
+    },
+    {
+      "date": "2007-Q1",
+      "ratio": 1.29,
+      "current_account": 70766.0,
+      "nominal_gdp": 5467871.0
+    },
+    {
+      "date": "2007-Q2",
+      "ratio": 1.03,
+      "current_account": 56227.0,
+      "nominal_gdp": 5477445.0
+    },
+    {
+      "date": "2007-Q3",
+      "ratio": 1.27,
+      "current_account": 68589.0,
+      "nominal_gdp": 5415624.0
+    },
+    {
+      "date": "2007-Q4",
+      "ratio": 0.99,
+      "current_account": 53908.0,
+      "nominal_gdp": 5424226.0
+    },
+    {
+      "date": "2008-Q1",
+      "ratio": 1.19,
+      "current_account": 64651.0,
+      "nominal_gdp": 5426590.0
+    },
+    {
+      "date": "2008-Q2",
+      "ratio": 0.61,
+      "current_account": 33091.0,
+      "nominal_gdp": 5392296.0
+    },
+    {
+      "date": "2008-Q3",
+      "ratio": 0.7,
+      "current_account": 36953.0,
+      "nominal_gdp": 5288155.0
+    },
+    {
+      "date": "2008-Q4",
+      "ratio": 0.27,
+      "current_account": 14089.0,
+      "nominal_gdp": 5231149.0
+    },
+    {
+      "date": "2009-Q1",
+      "ratio": 0.45,
+      "current_account": 22751.0,
+      "nominal_gdp": 5001614.0
+    },
+    {
+      "date": "2009-Q2",
+      "ratio": 0.64,
+      "current_account": 32189.0,
+      "nominal_gdp": 5025846.0
+    },
+    {
+      "date": "2009-Q3",
+      "ratio": 0.86,
+      "current_account": 42610.0,
+      "nominal_gdp": 4951537.0
+    },
+    {
+      "date": "2009-Q4",
+      "ratio": 0.77,
+      "current_account": 38376.0,
+      "nominal_gdp": 5001568.0
+    },
+    {
+      "date": "2010-Q1",
+      "ratio": 1.08,
+      "current_account": 54377.0,
+      "nominal_gdp": 5056348.0
+    },
+    {
+      "date": "2010-Q2",
+      "ratio": 0.86,
+      "current_account": 43760.0,
+      "nominal_gdp": 5100045.0
+    },
+    {
+      "date": "2010-Q3",
+      "ratio": 1.06,
+      "current_account": 54554.0,
+      "nominal_gdp": 5153563.0
+    },
+    {
+      "date": "2010-Q4",
+      "ratio": 0.81,
+      "current_account": 41138.0,
+      "nominal_gdp": 5102559.0
+    },
+    {
+      "date": "2011-Q1",
+      "ratio": 0.86,
+      "current_account": 43235.0,
+      "nominal_gdp": 5016430.0
+    },
+    {
+      "date": "2011-Q2",
+      "ratio": 0.36,
+      "current_account": 18039.0,
+      "nominal_gdp": 4943412.0
+    },
+    {
+      "date": "2011-Q3",
+      "ratio": 0.66,
+      "current_account": 33385.0,
+      "nominal_gdp": 5045691.0
+    },
+    {
+      "date": "2011-Q4",
+      "ratio": 0.19,
+      "current_account": 9354.0,
+      "nominal_gdp": 5050802.0
+    },
+    {
+      "date": "2012-Q1",
+      "ratio": 0.41,
+      "current_account": 21075.0,
+      "nominal_gdp": 5121544.0
+    },
+    {
+      "date": "2012-Q2",
+      "ratio": 0.22,
+      "current_account": 11322.0,
+      "nominal_gdp": 5049604.0
+    },
+    {
+      "date": "2012-Q3",
+      "ratio": 0.31,
+      "current_account": 15678.0,
+      "nominal_gdp": 5026583.0
+    },
+    {
+      "date": "2012-Q4",
+      "ratio": -0.01,
+      "current_account": -435.0,
+      "nominal_gdp": 5023276.0
+    },
+    {
+      "date": "2013-Q1",
+      "ratio": 0.31,
+      "current_account": 15930.0,
+      "nominal_gdp": 5084121.0
+    },
+    {
+      "date": "2013-Q2",
+      "ratio": 0.42,
+      "current_account": 21342.0,
+      "nominal_gdp": 5132020.0
+    },
+    {
+      "date": "2013-Q3",
+      "ratio": 0.34,
+      "current_account": 17473.0,
+      "nominal_gdp": 5189494.0
+    },
+    {
+      "date": "2013-Q4",
+      "ratio": -0.2,
+      "current_account": -10179.0,
+      "nominal_gdp": 5187017.0
+    },
+    {
+      "date": "2014-Q1",
+      "ratio": -0.09,
+      "current_account": -4707.0,
+      "nominal_gdp": 5241595.0
+    },
+    {
+      "date": "2014-Q2",
+      "ratio": 0.16,
+      "current_account": 8556.0,
+      "nominal_gdp": 5272238.0
+    },
+    {
+      "date": "2014-Q3",
+      "ratio": 0.37,
+      "current_account": 19607.0,
+      "nominal_gdp": 5281142.0
+    },
+    {
+      "date": "2014-Q4",
+      "ratio": 0.3,
+      "current_account": 15759.0,
+      "nominal_gdp": 5328849.0
+    },
+    {
+      "date": "2015-Q1",
+      "ratio": 0.79,
+      "current_account": 43109.0,
+      "nominal_gdp": 5456560.0
+    },
+    {
+      "date": "2015-Q2",
+      "ratio": 0.71,
+      "current_account": 39119.0,
+      "nominal_gdp": 5488414.0
+    },
+    {
+      "date": "2015-Q3",
+      "ratio": 0.91,
+      "current_account": 49911.0,
+      "nominal_gdp": 5506162.0
+    },
+    {
+      "date": "2015-Q4",
+      "ratio": 0.6,
+      "current_account": 33055.0,
+      "nominal_gdp": 5505829.0
+    },
+    {
+      "date": "2016-Q1",
+      "ratio": 1.09,
+      "current_account": 60871.0,
+      "nominal_gdp": 5574641.0
+    },
+    {
+      "date": "2016-Q2",
+      "ratio": 0.88,
+      "current_account": 48990.0,
+      "nominal_gdp": 5546669.0
+    },
+    {
+      "date": "2016-Q3",
+      "ratio": 1.11,
+      "current_account": 61465.0,
+      "nominal_gdp": 5551786.0
+    },
+    {
+      "date": "2016-Q4",
+      "ratio": 0.77,
+      "current_account": 42585.0,
+      "nominal_gdp": 5557686.0
+    },
+    {
+      "date": "2017-Q1",
+      "ratio": 1.14,
+      "current_account": 63733.0,
+      "nominal_gdp": 5591612.0
+    },
+    {
+      "date": "2017-Q2",
+      "ratio": 0.86,
+      "current_account": 48017.0,
+      "nominal_gdp": 5615485.0
+    },
+    {
+      "date": "2017-Q3",
+      "ratio": 1.27,
+      "current_account": 72531.0,
+      "nominal_gdp": 5698102.0
+    },
+    {
+      "date": "2017-Q4",
+      "ratio": 0.76,
+      "current_account": 43498.0,
+      "nominal_gdp": 5696614.0
+    },
+    {
+      "date": "2018-Q1",
+      "ratio": 1.05,
+      "current_account": 59950.0,
+      "nominal_gdp": 5695901.0
+    },
+    {
+      "date": "2018-Q2",
+      "ratio": 0.88,
+      "current_account": 50257.0,
+      "nominal_gdp": 5712924.0
+    },
+    {
+      "date": "2018-Q3",
+      "ratio": 1.02,
+      "current_account": 58131.0,
+      "nominal_gdp": 5678451.0
+    },
+    {
+      "date": "2018-Q4",
+      "ratio": 0.47,
+      "current_account": 26709.0,
+      "nominal_gdp": 5680696.0
+    },
+    {
+      "date": "2019-Q1",
+      "ratio": 1.03,
+      "current_account": 58739.0,
+      "nominal_gdp": 5726326.0
+    },
+    {
+      "date": "2019-Q2",
+      "ratio": 0.76,
+      "current_account": 43882.0,
+      "nominal_gdp": 5748183.0
+    },
+    {
+      "date": "2019-Q3",
+      "ratio": 0.95,
+      "current_account": 54852.0,
+      "nominal_gdp": 5753713.0
+    },
+    {
+      "date": "2019-Q4",
+      "ratio": 0.62,
+      "current_account": 35040.0,
+      "nominal_gdp": 5645838.0
+    },
+    {
+      "date": "2020-Q1",
+      "ratio": 0.93,
+      "current_account": 52938.0,
+      "nominal_gdp": 5677185.0
+    },
+    {
+      "date": "2020-Q2",
+      "ratio": 0.17,
+      "current_account": 8929.0,
+      "nominal_gdp": 5287864.0
+    },
+    {
+      "date": "2020-Q3",
+      "ratio": 0.88,
+      "current_account": 48974.0,
+      "nominal_gdp": 5547455.0
+    },
+    {
+      "date": "2020-Q4",
+      "ratio": 0.87,
+      "current_account": 49074.0,
+      "nominal_gdp": 5640605.0
+    },
+    {
+      "date": "2021-Q1",
+      "ratio": 1.1,
+      "current_account": 62366.0,
+      "nominal_gdp": 5686695.0
+    },
+    {
+      "date": "2021-Q2",
+      "ratio": 0.97,
+      "current_account": 55430.0,
+      "nominal_gdp": 5732564.0
+    },
+    {
+      "date": "2021-Q3",
+      "ratio": 1.06,
+      "current_account": 60844.0,
+      "nominal_gdp": 5732963.0
+    },
+    {
+      "date": "2021-Q4",
+      "ratio": 0.62,
+      "current_account": 36029.0,
+      "nominal_gdp": 5796849.0
+    },
+    {
+      "date": "2022-Q1",
+      "ratio": 0.84,
+      "current_account": 48918.0,
+      "nominal_gdp": 5800407.0
+    },
+    {
+      "date": "2022-Q2",
+      "ratio": 0.39,
+      "current_account": 22996.0,
+      "nominal_gdp": 5837498.0
+    },
+    {
+      "date": "2022-Q3",
+      "ratio": 0.38,
+      "current_account": 22309.0,
+      "nominal_gdp": 5823262.0
+    },
+    {
+      "date": "2022-Q4",
+      "ratio": 0.34,
+      "current_account": 20204.0,
+      "nominal_gdp": 5938056.0
+    },
+    {
+      "date": "2023-Q1",
+      "ratio": 0.42,
+      "current_account": 25432.0,
+      "nominal_gdp": 6056664.0
+    },
+    {
+      "date": "2023-Q2",
+      "ratio": 0.92,
+      "current_account": 57097.0,
+      "nominal_gdp": 6174435.0
+    },
+    {
+      "date": "2023-Q3",
+      "ratio": 1.33,
+      "current_account": 82331.0,
+      "nominal_gdp": 6174527.0
+    },
+    {
+      "date": "2023-Q4",
+      "ratio": 0.93,
+      "current_account": 57922.0,
+      "nominal_gdp": 6234441.0
+    },
+    {
+      "date": "2024-Q1",
+      "ratio": 1.05,
+      "current_account": 64705.0,
+      "nominal_gdp": 6190282.0
+    },
+    {
+      "date": "2024-Q2",
+      "ratio": 1.06,
+      "current_account": 66774.0,
+      "nominal_gdp": 6319298.0
+    },
+    {
+      "date": "2024-Q3",
+      "ratio": 1.36,
+      "current_account": 86744.0,
+      "nominal_gdp": 6391029.0
+    },
+    {
+      "date": "2024-Q4",
+      "ratio": 1.06,
+      "current_account": 68645.0,
+      "nominal_gdp": 6463563.0
+    },
+    {
+      "date": "2025-Q1",
+      "ratio": 1.12,
+      "current_account": 73329.0,
+      "nominal_gdp": 6518760.0
+    },
+    {
+      "date": "2025-Q2",
+      "ratio": 1.01,
+      "current_account": 67183.0,
+      "nominal_gdp": 6653464.0
+    },
+    {
+      "date": "2025-Q3",
+      "ratio": 1.59,
+      "current_account": 105923.0,
+      "nominal_gdp": 6650097.0
+    }
+  ],
+  "latest": {
+    "date": "2025-Q3",
+    "ratio": 1.59,
+    "current_account": 105923.0,
+    "nominal_gdp": 6650097.0
+  },
+  "metadata": {
+    "source": "財務省国際収支統計 / 内閣府GDP統計",
+    "description": "Japan Current Account to GDP Ratio",
+    "unit": "Percentage (%)",
+    "frequency": "Quarterly",
+    "calculation": "Current Account (quarterly sum) / Nominal GDP × 100"
+  },
+  "last_updated": "2026-02-11T23:18:01.849848+09:00"
+}

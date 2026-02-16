@@ -64,7 +64,7 @@ class SwitzerlandPolicyLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         return stale
 

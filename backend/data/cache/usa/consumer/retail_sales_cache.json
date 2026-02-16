@@ -2684,29 +2684,29 @@
     },
     {
       "date": "2024-11-01",
-      "value": 712175.0,
-      "ex_auto": 572485.0,
-      "mom": 0.55,
-      "yoy": 3.92,
-      "ex_auto_mom": -0.04,
-      "ex_auto_yoy": 3.11
+      "value": 711853.0,
+      "ex_auto": 572288.0,
+      "mom": 0.5,
+      "yoy": 3.87,
+      "ex_auto_mom": -0.07,
+      "ex_auto_yoy": 3.07
     },
     {
       "date": "2024-12-01",
-      "value": 717662.0,
-      "ex_auto": 576688.0,
-      "mom": 0.77,
-      "yoy": 4.57,
-      "ex_auto_mom": 0.73,
-      "ex_auto_yoy": 3.71
+      "value": 717547.0,
+      "ex_auto": 577230.0,
+      "mom": 0.8,
+      "yoy": 4.56,
+      "ex_auto_mom": 0.86,
+      "ex_auto_yoy": 3.81
     },
     {
       "date": "2025-01-01",
       "value": 711461.0,
       "ex_auto": 575138.0,
-      "mom": -0.86,
+      "mom": -0.85,
       "yoy": 4.56,
-      "ex_auto_mom": -0.27,
+      "ex_auto_mom": -0.36,
       "ex_auto_yoy": 4.36
     },
     {
@@ -2783,31 +2783,40 @@
     },
     {
       "date": "2025-10-01",
-      "value": 731412.0,
-      "ex_auto": 594113.0,
-      "mom": -0.11,
-      "yoy": 3.26,
-      "ex_auto_mom": 0.25,
-      "ex_auto_yoy": 3.74
+      "value": 731051.0,
+      "ex_auto": 593611.0,
+      "mom": -0.16,
+      "yoy": 3.21,
+      "ex_auto_mom": 0.16,
+      "ex_auto_yoy": 3.65
     },
     {
       "date": "2025-11-01",
-      "value": 735904.0,
-      "ex_auto": 597199.0,
-      "mom": 0.61,
-      "yoy": 3.33,
-      "ex_auto_mom": 0.52,
-      "ex_auto_yoy": 4.32
+      "value": 735085.0,
+      "ex_auto": 596052.0,
+      "mom": 0.55,
+      "yoy": 3.26,
+      "ex_auto_mom": 0.41,
+      "ex_auto_yoy": 4.15
+    },
+    {
+      "date": "2025-12-01",
+      "value": 734967.0,
+      "ex_auto": 596185.0,
+      "mom": -0.02,
+      "yoy": 2.43,
+      "ex_auto_mom": 0.02,
+      "ex_auto_yoy": 3.28
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "value": 735904.0,
-    "ex_auto": 597199.0,
-    "mom": 0.61,
-    "yoy": 3.33,
-    "ex_auto_mom": 0.52,
-    "ex_auto_yoy": 4.32
+    "date": "2025-12-01",
+    "value": 734967.0,
+    "ex_auto": 596185.0,
+    "mom": -0.02,
+    "yoy": 2.43,
+    "ex_auto_mom": 0.02,
+    "ex_auto_yoy": 3.28
   },
-  "last_updated": "2026-01-30T23:02:18.719898+09:00"
+  "last_updated": "2026-02-15T22:44:06.518466+09:00"
 }

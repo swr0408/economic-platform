@@ -4,8 +4,7 @@ SECOから四半期GDP成長率データを取得
 
 指標:
 - GDP Growth Rate QoQ（前期比）- 季節調整済み
-- GDP Growth Rate YoY（前年比）- スポーツイベント調整済み（TradingEconomics準拠）
-- GDP Growth Rate YoY Unadjusted（前年比・調整前）- Investing.com準拠
+- GDP Growth Rate YoY（前年比）- 調整前
 - GDP Growth Rate Annualized（年率換算）
 
 データソース:
@@ -13,9 +12,8 @@ SECOから四半期GDP成長率データを取得
 - https://www.seco.admin.ch/seco/en/home/wirtschaftslage---wirtschaftspolitik/Wirtschaftslage/bip-quartalsschaetzungen-.html
 
 Excelファイル:
-- qna_p_csa.xlsx: 季節調整済み（QoQ用）
-- qna_p_nasa.xlsx: スポーツイベント調整済み（YoY用、TradingEconomics準拠）
-- qna_p_na.xlsx: 調整前（YoY調整前用）
+- qna_p_cssa.xlsx: 季節調整 + スポーツ調整済み（QoQ・年率用）
+- qna_p_na.xlsx: 調整前（YoY用）
 
 発表スケジュール:
 - 四半期ごと（FMPから次回発表日時取得）
@@ -57,10 +55,8 @@ class CHGrowthRateService:
     # データソースURL
     # CSSA: 季節調整 + スポーツイベント調整済み（QoQ・年率用）
     QOQ_URL = "https://www.seco.admin.ch/dam/seco/de/dokumente/Wirtschaft/Wirtschaftslage/VIP%20Quartalssch%C3%A4tzungen/qna_p_cssa.xlsx.download.xlsx/qna_p_cssa.xlsx"
-    # NASA: スポーツイベント調整済み（YoY用、TradingEconomics準拠）
-    YOY_URL = "https://www.seco.admin.ch/dam/seco/de/dokumente/Wirtschaft/Wirtschaftslage/VIP%20Quartalssch%C3%A4tzungen/qna_p_nasa.xlsx.download.xlsx/qna_p_nasa.xlsx"
-    # NA: 調整前（YoY調整前用、Investing.com準拠）
-    YOY_UNADJUSTED_URL = "https://www.seco.admin.ch/dam/seco/de/dokumente/Wirtschaft/Wirtschaftslage/VIP%20Quartalssch%C3%A4tzungen/qna_p_na.xlsx.download.xlsx/qna_p_na.xlsx"
+    # NA: 調整前（YoY用）
+    YOY_URL = "https://www.seco.admin.ch/dam/seco/de/dokumente/Wirtschaft/Wirtschaftslage/VIP%20Quartalssch%C3%A4tzungen/qna_p_na.xlsx.download.xlsx/qna_p_na.xlsx"
 
     def __init__(self):
         pass
@@ -145,28 +141,22 @@ class CHGrowthRateService:
         try:
             print(f"[CHGrowthRate] Fetching QoQ data from: {self.QOQ_URL}")
             print(f"[CHGrowthRate] Fetching YoY data from: {self.YOY_URL}")
-            print(f"[CHGrowthRate] Fetching YoY unadjusted data from: {self.YOY_UNADJUSTED_URL}")
 
             # QoQデータ取得（CSSA: 季節調整 + スポーツ調整済み）
             qoq_data = self._fetch_excel_data(self.QOQ_URL, "qoq")
             print(f"[CHGrowthRate] QoQ records: {len(qoq_data)}")
 
-            # YoYデータ取得（NASA: スポーツ調整済み、TradingEconomics準拠）
+            # YoYデータ取得（NA: 調整前）
             yoy_data = self._fetch_excel_data(self.YOY_URL, "yoy")
             print(f"[CHGrowthRate] YoY records: {len(yoy_data)}")
 
-            # YoY調整前データ取得（NA: 調整なし、Investing.com準拠）
-            yoy_unadj_data = self._fetch_excel_data(self.YOY_UNADJUSTED_URL, "yoy_unadjusted")
-            print(f"[CHGrowthRate] YoY unadjusted records: {len(yoy_unadj_data)}")
-
             # データをマージ
             result = []
-            all_dates = set(qoq_data.keys()) | set(yoy_data.keys()) | set(yoy_unadj_data.keys())
+            all_dates = set(qoq_data.keys()) | set(yoy_data.keys())
 
             for date_str in sorted(all_dates):
                 qoq_val = qoq_data.get(date_str)
                 yoy_val = yoy_data.get(date_str)
-                yoy_unadj_val = yoy_unadj_data.get(date_str)
 
                 # 年率換算（QoQから計算: (1 + qoq)^4 - 1）
                 annualized = None
@@ -177,7 +167,6 @@ class CHGrowthRateService:
                     "date": date_str,
                     "qoq": round(qoq_val, 2) if qoq_val is not None else None,
                     "yoy": round(yoy_val, 2) if yoy_val is not None else None,
-                    "yoy_unadjusted": round(yoy_unadj_val, 2) if yoy_unadj_val is not None else None,
                     "annualized": annualized,
                 })
 
@@ -188,7 +177,7 @@ class CHGrowthRateService:
             if result:
                 print(f"[CHGrowthRate] Date range: {result[0]['date']} to {result[-1]['date']}")
                 latest = result[-1]
-                print(f"[CHGrowthRate] Latest: QoQ={latest.get('qoq')}, YoY={latest.get('yoy')}, YoY(unadj)={latest.get('yoy_unadjusted')}, Annualized={latest.get('annualized')}")
+                print(f"[CHGrowthRate] Latest: QoQ={latest.get('qoq')}, YoY={latest.get('yoy')}, Annualized={latest.get('annualized')}")
 
             return result
 

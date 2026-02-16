@@ -1,18 +1,6 @@
 {
   "data": [
     {
-      "date": "2006-01-01",
-      "index": null,
-      "yoy": -0.3,
-      "mom": null,
-      "core_index": null,
-      "core_yoy": -0.4,
-      "core_mom": null,
-      "core_core_index": null,
-      "core_core_yoy": -0.6,
-      "core_core_mom": null
-    },
-    {
       "date": "2006-02-01",
       "index": null,
       "yoy": -0.3,
@@ -410,13 +398,13 @@
     },
     {
       "date": "2008-11-01",
-      "index": 98.6,
+      "index": null,
       "yoy": 1.1,
       "mom": null,
-      "core_index": 99.2,
+      "core_index": null,
       "core_yoy": 1.1,
       "core_mom": null,
-      "core_core_index": 99.7,
+      "core_core_index": null,
       "core_core_yoy": 0.9,
       "core_core_mom": null
     },
@@ -1414,7 +1402,7 @@
       "core_mom": -0.1,
       "core_core_index": 98.6,
       "core_core_yoy": 0.7,
-      "core_core_mom": -0.1
+      "core_core_mom": 0.0
     },
     {
       "date": "2015-11-01",
@@ -1846,7 +1834,7 @@
       "core_mom": 0.1,
       "core_core_index": 99.5,
       "core_core_yoy": 0.6,
-      "core_core_mom": 0.0
+      "core_core_mom": 0.1
     },
     {
       "date": "2018-11-01",
@@ -1858,7 +1846,7 @@
       "core_mom": 0.1,
       "core_core_index": 99.5,
       "core_core_yoy": 0.6,
-      "core_core_mom": 0.0
+      "core_core_mom": 0.1
     },
     {
       "date": "2018-12-01",
@@ -2050,7 +2038,7 @@
       "core_mom": 0.0,
       "core_core_index": 100.2,
       "core_core_yoy": 0.7,
-      "core_core_mom": 0.0
+      "core_core_mom": 0.1
     },
     {
       "date": "2020-04-01",
@@ -2062,7 +2050,7 @@
       "core_mom": -0.3,
       "core_core_index": 100.1,
       "core_core_yoy": 0.2,
-      "core_core_mom": -0.3
+      "core_core_mom": -0.4
     },
     {
       "date": "2020-05-01",
@@ -2086,7 +2074,7 @@
       "core_mom": -0.1,
       "core_core_index": 100.0,
       "core_core_yoy": 0.4,
-      "core_core_mom": -0.1
+      "core_core_mom": 0.0
     },
     {
       "date": "2020-07-01",
@@ -2110,7 +2098,7 @@
       "core_mom": -0.3,
       "core_core_index": 99.9,
       "core_core_yoy": -0.1,
-      "core_core_mom": -0.5
+      "core_core_mom": -0.4
     },
     {
       "date": "2020-09-01",
@@ -2200,13 +2188,13 @@
       "date": "2021-04-01",
       "index": 99.1,
       "yoy": -1.2,
-      "mom": -0.8,
+      "mom": -0.9,
       "core_index": 99.3,
       "core_yoy": -0.9,
       "core_mom": -0.9,
       "core_core_index": 99.5,
       "core_core_yoy": -0.7,
-      "core_core_mom": -1.0
+      "core_core_mom": -1.1
     },
     {
       "date": "2021-05-01",
@@ -2287,7 +2275,7 @@
       "mom": 0.2,
       "core_index": 100.0,
       "core_yoy": 0.3,
-      "core_mom": 0.1,
+      "core_mom": 0.2,
       "core_core_index": 99.6,
       "core_core_yoy": -0.4,
       "core_core_mom": 0.1
@@ -2302,13 +2290,13 @@
       "core_mom": 0.0,
       "core_core_index": 99.5,
       "core_core_yoy": -0.3,
-      "core_core_mom": 0.1
+      "core_core_mom": 0.0
     },
     {
       "date": "2022-01-01",
       "index": 100.3,
       "yoy": 0.6,
-      "mom": 0.3,
+      "mom": 0.2,
       "core_index": 99.9,
       "core_yoy": 0.2,
       "core_mom": 0.2,
@@ -2320,13 +2308,13 @@
       "date": "2022-02-01",
       "index": 100.7,
       "yoy": 1.0,
-      "mom": 0.5,
+      "mom": 0.6,
       "core_index": 100.4,
       "core_yoy": 0.5,
       "core_mom": 0.4,
       "core_core_index": 99.6,
       "core_core_yoy": -0.6,
-      "core_core_mom": 0.2
+      "core_core_mom": 0.1
     },
     {
       "date": "2022-03-01",
@@ -2335,7 +2323,7 @@
       "mom": 0.3,
       "core_index": 100.8,
       "core_yoy": 0.8,
-      "core_mom": 0.4,
+      "core_mom": 0.3,
       "core_core_index": 99.8,
       "core_core_yoy": -0.4,
       "core_core_mom": 0.2
@@ -2347,10 +2335,10 @@
       "mom": 0.3,
       "core_index": 101.3,
       "core_yoy": 1.9,
-      "core_mom": 0.2,
+      "core_mom": 0.1,
       "core_core_index": 100.2,
       "core_core_yoy": 0.8,
-      "core_core_mom": 0.2
+      "core_core_mom": 0.1
     },
     {
       "date": "2022-05-01",
@@ -2374,7 +2362,7 @@
       "core_mom": 0.2,
       "core_core_index": 100.5,
       "core_core_yoy": 1.0,
-      "core_core_mom": 0.2
+      "core_core_mom": 0.3
     },
     {
       "date": "2022-07-01",
@@ -2398,13 +2386,13 @@
       "core_mom": 0.4,
       "core_core_index": 101.2,
       "core_core_yoy": 1.4,
-      "core_core_mom": 0.1
+      "core_core_mom": 0.2
     },
     {
       "date": "2022-09-01",
       "index": 102.9,
       "yoy": 2.8,
-      "mom": 0.4,
+      "mom": 0.5,
       "core_index": 102.7,
       "core_yoy": 2.8,
       "core_mom": 0.5,
@@ -2422,7 +2410,7 @@
       "core_mom": 0.3,
       "core_core_index": 101.8,
       "core_core_yoy": 2.2,
-      "core_core_mom": 0.2
+      "core_core_mom": 0.3
     },
     {
       "date": "2022-11-01",
@@ -2452,7 +2440,7 @@
       "date": "2023-01-01",
       "index": 104.7,
       "yoy": 4.4,
-      "mom": 0.7,
+      "mom": 0.6,
       "core_index": 104.2,
       "core_yoy": 4.3,
       "core_mom": 0.5,
@@ -2464,7 +2452,7 @@
       "date": "2023-02-01",
       "index": 104.1,
       "yoy": 3.4,
-      "mom": -0.5,
+      "mom": -0.4,
       "core_index": 103.6,
       "core_yoy": 3.3,
       "core_mom": -0.5,
@@ -2488,25 +2476,25 @@
       "date": "2023-04-01",
       "index": 105.1,
       "yoy": 3.5,
-      "mom": 0.6,
+      "mom": 0.5,
       "core_index": 104.8,
       "core_yoy": 3.5,
-      "core_mom": 0.4,
+      "core_mom": 0.3,
       "core_core_index": 104.1,
       "core_core_yoy": 3.8,
-      "core_core_mom": 0.6
+      "core_core_mom": 0.5
     },
     {
       "date": "2023-05-01",
       "index": 105.1,
       "yoy": 3.2,
-      "mom": 0.0,
+      "mom": -0.1,
       "core_index": 104.7,
       "core_yoy": 3.1,
       "core_mom": -0.1,
       "core_core_index": 104.3,
       "core_core_yoy": 3.9,
-      "core_core_mom": 0.3
+      "core_core_mom": 0.2
     },
     {
       "date": "2023-06-01",
@@ -2515,7 +2503,7 @@
       "mom": 0.2,
       "core_index": 104.8,
       "core_yoy": 3.2,
-      "core_mom": 0.2,
+      "core_mom": 0.3,
       "core_core_index": 104.3,
       "core_core_yoy": 3.8,
       "core_core_mom": 0.2
@@ -2551,7 +2539,7 @@
       "mom": 0.4,
       "core_index": 105.2,
       "core_yoy": 2.5,
-      "core_mom": 0.2,
+      "core_mom": 0.3,
       "core_core_index": 105.3,
       "core_core_yoy": 3.9,
       "core_core_mom": 0.2
@@ -2563,7 +2551,7 @@
       "mom": 0.7,
       "core_index": 106.0,
       "core_yoy": 2.7,
-      "core_mom": 0.5,
+      "core_mom": 0.4,
       "core_core_index": 105.7,
       "core_core_yoy": 3.8,
       "core_core_mom": 0.2
@@ -2578,7 +2566,7 @@
       "core_mom": 0.0,
       "core_core_index": 105.7,
       "core_core_yoy": 3.6,
-      "core_core_mom": 0.1
+      "core_core_mom": 0.2
     },
     {
       "date": "2023-12-01",
@@ -2587,31 +2575,31 @@
       "mom": 0.0,
       "core_index": 106.1,
       "core_yoy": 2.1,
-      "core_mom": 0.1,
+      "core_mom": 0.2,
       "core_core_index": 105.8,
       "core_core_yoy": 3.5,
-      "core_core_mom": 0.2
+      "core_core_mom": 0.3
     },
     {
       "date": "2024-01-01",
       "index": 106.6,
       "yoy": 1.8,
-      "mom": 0.2,
+      "mom": 0.1,
       "core_index": 106.0,
       "core_yoy": 1.8,
       "core_mom": 0.2,
       "core_core_index": 105.7,
       "core_core_yoy": 3.3,
-      "core_core_mom": 0.1
+      "core_core_mom": 0.2
     },
     {
       "date": "2024-02-01",
       "index": 106.7,
       "yoy": 2.5,
-      "mom": 0.2,
+      "mom": 0.4,
       "core_index": 106.2,
       "core_yoy": 2.5,
-      "core_mom": 0.2,
+      "core_mom": 0.3,
       "core_core_index": 105.9,
       "core_core_yoy": 3.1,
       "core_core_mom": 0.2
@@ -2620,10 +2608,10 @@
       "date": "2024-03-01",
       "index": 107.1,
       "yoy": 2.6,
-      "mom": 0.3,
+      "mom": 0.2,
       "core_index": 106.5,
       "core_yoy": 2.4,
-      "core_mom": 0.3,
+      "core_mom": 0.2,
       "core_core_index": 106.2,
       "core_core_yoy": 2.9,
       "core_core_mom": 0.1
@@ -2635,10 +2623,10 @@
       "mom": -0.2,
       "core_index": 106.4,
       "core_yoy": 1.6,
-      "core_mom": -0.4,
+      "core_mom": -0.6,
       "core_core_index": 106.0,
       "core_core_yoy": 1.8,
-      "core_core_mom": -0.4
+      "core_core_mom": -0.6
     },
     {
       "date": "2024-05-01",
@@ -2650,13 +2638,13 @@
       "core_mom": 0.3,
       "core_core_index": 106.1,
       "core_core_yoy": 1.7,
-      "core_core_mom": 0.2
+      "core_core_mom": 0.1
     },
     {
       "date": "2024-06-01",
       "index": 107.5,
       "yoy": 2.3,
-      "mom": 0.3,
+      "mom": 0.4,
       "core_index": 107.0,
       "core_yoy": 2.1,
       "core_mom": 0.4,
@@ -2671,7 +2659,7 @@
       "mom": 0.2,
       "core_index": 107.4,
       "core_yoy": 2.2,
-      "core_mom": 0.2,
+      "core_mom": 0.3,
       "core_core_index": 106.4,
       "core_core_yoy": 1.5,
       "core_core_mom": 0.1
@@ -2680,7 +2668,7 @@
       "date": "2024-08-01",
       "index": 108.4,
       "yoy": 2.6,
-      "mom": 0.4,
+      "mom": 0.5,
       "core_index": 107.9,
       "core_yoy": 2.4,
       "core_mom": 0.4,
@@ -2692,10 +2680,10 @@
       "date": "2024-09-01",
       "index": 108.1,
       "yoy": 2.1,
-      "mom": -0.1,
+      "mom": 0.0,
       "core_index": 107.3,
       "core_yoy": 2.0,
-      "core_mom": -0.2,
+      "core_mom": 0.0,
       "core_core_index": 106.9,
       "core_core_yoy": 1.6,
       "core_core_mom": 0.2
@@ -2704,19 +2692,19 @@
       "date": "2024-10-01",
       "index": 108.8,
       "yoy": 1.8,
-      "mom": 0.4,
+      "mom": 0.3,
       "core_index": 107.9,
       "core_yoy": 1.8,
-      "core_mom": 0.3,
+      "core_mom": 0.2,
       "core_core_index": 107.5,
       "core_core_yoy": 1.8,
-      "core_core_mom": 0.4
+      "core_core_mom": 0.3
     },
     {
       "date": "2024-11-01",
       "index": 109.2,
       "yoy": 2.5,
-      "mom": 0.4,
+      "mom": 0.3,
       "core_index": 108.3,
       "core_yoy": 2.2,
       "core_mom": 0.3,
@@ -2728,10 +2716,10 @@
       "date": "2024-12-01",
       "index": 109.8,
       "yoy": 3.1,
-      "mom": 0.5,
+      "mom": 0.6,
       "core_index": 108.6,
       "core_yoy": 2.4,
-      "core_mom": 0.3,
+      "core_mom": 0.4,
       "core_core_index": 107.7,
       "core_core_yoy": 1.8,
       "core_core_mom": 0.2
@@ -2740,7 +2728,7 @@
       "date": "2025-01-01",
       "index": 110.2,
       "yoy": 3.4,
-      "mom": 0.5,
+      "mom": 0.3,
       "core_index": 108.7,
       "core_yoy": 2.5,
       "core_mom": 0.3,
@@ -2752,10 +2740,10 @@
       "date": "2025-02-01",
       "index": 109.7,
       "yoy": 2.8,
-      "mom": -0.3,
+      "mom": -0.1,
       "core_index": 108.5,
       "core_yoy": 2.2,
-      "core_mom": -0.1,
+      "core_mom": 0.0,
       "core_core_index": 108.0,
       "core_core_yoy": 1.9,
       "core_core_mom": 0.2
@@ -2767,7 +2755,7 @@
       "mom": 0.3,
       "core_index": 109.1,
       "core_yoy": 2.4,
-      "core_mom": 0.5,
+      "core_mom": 0.4,
       "core_core_index": 108.5,
       "core_core_yoy": 2.2,
       "core_core_mom": 0.4
@@ -2776,13 +2764,13 @@
       "date": "2025-04-01",
       "index": 110.7,
       "yoy": 3.4,
-      "mom": 0.4,
+      "mom": 0.3,
       "core_index": 110.0,
       "core_yoy": 3.4,
-      "core_mom": 0.5,
+      "core_mom": 0.3,
       "core_core_index": 109.3,
       "core_core_yoy": 3.1,
-      "core_core_mom": 0.4
+      "core_core_mom": 0.3
     },
     {
       "date": "2025-05-01",
@@ -2791,10 +2779,10 @@
       "mom": 0.3,
       "core_index": 110.5,
       "core_yoy": 3.6,
-      "core_mom": 0.5,
+      "core_mom": 0.4,
       "core_core_index": 109.6,
       "core_core_yoy": 3.3,
-      "core_core_mom": 0.4
+      "core_core_mom": 0.3
     },
     {
       "date": "2025-06-01",
@@ -2803,7 +2791,7 @@
       "mom": 0.0,
       "core_index": 110.3,
       "core_yoy": 3.1,
-      "core_mom": -0.1,
+      "core_mom": 0.0,
       "core_core_index": 109.5,
       "core_core_yoy": 3.1,
       "core_core_mom": 0.1
@@ -2812,13 +2800,13 @@
       "date": "2025-07-01",
       "index": 111.0,
       "yoy": 2.9,
-      "mom": 0.0,
+      "mom": 0.1,
       "core_index": 110.5,
       "core_yoy": 2.9,
       "core_mom": 0.0,
       "core_core_index": 109.7,
       "core_core_yoy": 3.1,
-      "core_core_mom": 0.0
+      "core_core_mom": 0.1
     },
     {
       "date": "2025-08-01",
@@ -2836,25 +2824,25 @@
       "date": "2025-09-01",
       "index": 110.7,
       "yoy": 2.5,
-      "mom": -0.1,
+      "mom": 0.0,
       "core_index": 110.0,
       "core_yoy": 2.5,
-      "core_mom": -0.2,
+      "core_mom": 0.0,
       "core_core_index": 109.6,
       "core_core_yoy": 2.5,
-      "core_core_mom": -0.3
+      "core_core_mom": -0.2
     },
     {
       "date": "2025-10-01",
       "index": 111.8,
       "yoy": 2.7,
-      "mom": 0.6,
+      "mom": 0.5,
       "core_index": 111.0,
       "core_yoy": 2.8,
-      "core_mom": 0.6,
+      "core_mom": 0.4,
       "core_core_index": 110.6,
       "core_core_yoy": 2.8,
-      "core_core_mom": 0.7
+      "core_core_mom": 0.6
     },
     {
       "date": "2025-11-01",
@@ -2870,36 +2858,48 @@
     },
     {
       "date": "2025-12-01",
-      "index": 111.9,
+      "index": 112.0,
       "yoy": 2.0,
-      "mom": -0.2,
+      "mom": -0.1,
       "core_index": 111.1,
       "core_yoy": 2.3,
-      "core_mom": -0.2,
+      "core_mom": 0.0,
       "core_core_index": 110.6,
       "core_core_yoy": 2.6,
+      "core_core_mom": 0.1
+    },
+    {
+      "date": "2026-01-01",
+      "index": 111.9,
+      "yoy": 1.5,
+      "mom": -0.1,
+      "core_index": 110.9,
+      "core_yoy": 2.0,
+      "core_mom": 0.0,
+      "core_core_index": 110.4,
+      "core_core_yoy": 2.4,
       "core_core_mom": 0.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
+    "date": "2026-01-01",
     "index": 111.9,
-    "yoy": 2.0,
-    "mom": -0.2,
-    "core_index": 111.1,
-    "core_yoy": 2.3,
-    "core_mom": -0.2,
-    "core_core_index": 110.6,
-    "core_core_yoy": 2.6,
+    "yoy": 1.5,
+    "mom": -0.1,
+    "core_index": 110.9,
+    "core_yoy": 2.0,
+    "core_mom": 0.0,
+    "core_core_index": 110.4,
+    "core_core_yoy": 2.4,
     "core_core_mom": 0.0
   },
   "next_release": {
-    "date": "2026-01-29",
-    "datetime_utc": "2026-01-29T23:30:00+00:00",
-    "datetime_jst": "2026-01-30T08:30:00+09:00",
+    "date": "2026-02-26",
+    "datetime_utc": "2026-02-26T23:30:00+00:00",
+    "datetime_jst": "2026-02-27T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "Core CPI YoY (Jan)",
+    "label": "Core CPI YoY (Feb)",
     "estimate": null
   },
-  "last_updated": "2026-01-14T17:19:29.098615+09:00"
+  "last_updated": "2026-02-11T22:38:52.618925+09:00"
 }

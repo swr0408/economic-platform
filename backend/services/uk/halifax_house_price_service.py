@@ -56,6 +56,11 @@ class HalifaxHousePriceService:
 
     def get_halifax_house_price_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """ハリファックス住宅価格指数データを取得"""
+        # 未処理PDFがあればキャッシュを無視して強制更新
+        if not force_refresh and self._check_new_pdfs():
+            logger.info("[Halifax] New PDF detected, forcing refresh")
+            force_refresh = True
+
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
@@ -73,9 +78,15 @@ class HalifaxHousePriceService:
                         "last_updated": last_updated_str
                     }
 
-        # DBから取得
+        # DBから取得（DB失敗時はファイルキャッシュから復元）
         mom_data = self._load_mom_from_db()
         yoy_data = self._load_yoy_from_db()
+        if not mom_data and not yoy_data:
+            file_cache = self._load_file_cache()
+            if file_cache:
+                mom_data = file_cache.get("mom", [])
+                yoy_data = file_cache.get("yoy", [])
+                logger.info(f"[Halifax] DB empty, restored {len(mom_data)} MoM + {len(yoy_data)} YoY from file cache")
 
         # 未処理のPDFがあれば自動でDBにインポート
         new_pdfs = self._check_new_pdfs()
@@ -412,6 +423,22 @@ class HalifaxHousePriceService:
                             if m:
                                 yoy_value = float(m.group(1))
                                 break
+
+                        # ヘッダー行+値行形式のフォールバック
+                        # "Monthly change Quarterly change Annual change\n£300,077 +0.7% +0.1% +1.0%"
+                        if mom_value is None or yoy_value is None:
+                            m = re.search(
+                                r'Monthly\s+change\s+Quarterly\s+change\s+Annual\s+change\s*\n'
+                                r'[£\d,]+\s+([+-]?\d+\.?\d*)\s*%\s+([+-]?\d+\.?\d*)\s*%\s+([+-]?\d+\.?\d*)\s*%',
+                                text, re.IGNORECASE
+                            )
+                            if m:
+                                if mom_value is None:
+                                    mom_value = float(m.group(1))
+                                    logger.info(f"Found Halifax MoM from header-row format: {mom_value}%")
+                                if yoy_value is None:
+                                    yoy_value = float(m.group(3))
+                                    logger.info(f"Found Halifax YoY from header-row format: {yoy_value}%")
 
             if mom_value is None and yoy_value is None:
                 logger.warning(f"Could not extract values from PDF: {pdf_path.name}")

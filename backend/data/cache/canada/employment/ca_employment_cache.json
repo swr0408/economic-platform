@@ -1,0 +1,5438 @@
+{
+  "data": [
+    {
+      "date": "1976-01-01",
+      "employment": 9636.7,
+      "fulltime": 8431.0,
+      "parttime": 1205.6
+    },
+    {
+      "date": "1976-02-01",
+      "employment": 9659.8,
+      "fulltime": 8467.5,
+      "parttime": 1192.3,
+      "employment_change": 23.1,
+      "fulltime_change": 36.5,
+      "parttime_change": -13.3
+    },
+    {
+      "date": "1976-03-01",
+      "employment": 9704.2,
+      "fulltime": 8509.4,
+      "parttime": 1194.8,
+      "employment_change": 44.4,
+      "fulltime_change": 41.9,
+      "parttime_change": 2.5
+    },
+    {
+      "date": "1976-04-01",
+      "employment": 9738.2,
+      "fulltime": 8540.1,
+      "parttime": 1198.1,
+      "employment_change": 34.0,
+      "fulltime_change": 30.7,
+      "parttime_change": 3.3
+    },
+    {
+      "date": "1976-05-01",
+      "employment": 9726.1,
+      "fulltime": 8529.6,
+      "parttime": 1196.4,
+      "employment_change": -12.1,
+      "fulltime_change": -10.5,
+      "parttime_change": -1.7
+    },
+    {
+      "date": "1976-06-01",
+      "employment": 9748.3,
+      "fulltime": 8519.2,
+      "parttime": 1229.1,
+      "employment_change": 22.2,
+      "fulltime_change": -10.4,
+      "parttime_change": 32.7
+    },
+    {
+      "date": "1976-07-01",
+      "employment": 9759.5,
+      "fulltime": 8544.4,
+      "parttime": 1215.1,
+      "employment_change": 11.2,
+      "fulltime_change": 25.2,
+      "parttime_change": -14.0
+    },
+    {
+      "date": "1976-08-01",
+      "employment": 9780.5,
+      "fulltime": 8561.9,
+      "parttime": 1218.6,
+      "employment_change": 21.0,
+      "fulltime_change": 17.5,
+      "parttime_change": 3.5
+    },
+    {
+      "date": "1976-09-01",
+      "employment": 9795.2,
+      "fulltime": 8582.6,
+      "parttime": 1212.6,
+      "employment_change": 14.7,
+      "fulltime_change": 20.7,
+      "parttime_change": -6.0
+    },
+    {
+      "date": "1976-10-01",
+      "employment": 9782.5,
+      "fulltime": 8537.7,
+      "parttime": 1244.8,
+      "employment_change": -12.7,
+      "fulltime_change": -44.9,
+      "parttime_change": 32.2
+    },
+    {
+      "date": "1976-11-01",
+      "employment": 9829.0,
+      "fulltime": 8560.8,
+      "parttime": 1268.2,
+      "employment_change": 46.5,
+      "fulltime_change": 23.1,
+      "parttime_change": 23.4
+    },
+    {
+      "date": "1976-12-01",
+      "employment": 9862.6,
+      "fulltime": 8606.3,
+      "parttime": 1256.3,
+      "employment_change": 33.6,
+      "fulltime_change": 45.5,
+      "parttime_change": -11.9
+    },
+    {
+      "date": "1977-01-01",
+      "employment": 9869.3,
+      "fulltime": 8615.1,
+      "parttime": 1254.2,
+      "employment_change": 6.7,
+      "fulltime_change": 8.8,
+      "parttime_change": -2.1
+    },
+    {
+      "date": "1977-02-01",
+      "employment": 9874.2,
+      "fulltime": 8611.3,
+      "parttime": 1262.9,
+      "employment_change": 4.9,
+      "fulltime_change": -3.8,
+      "parttime_change": 8.7
+    },
+    {
+      "date": "1977-03-01",
+      "employment": 9865.7,
+      "fulltime": 8589.5,
+      "parttime": 1276.2,
+      "employment_change": -8.5,
+      "fulltime_change": -21.8,
+      "parttime_change": 13.3
+    },
+    {
+      "date": "1977-04-01",
+      "employment": 9892.6,
+      "fulltime": 8620.4,
+      "parttime": 1272.1,
+      "employment_change": 26.9,
+      "fulltime_change": 30.9,
+      "parttime_change": -4.1
+    },
+    {
+      "date": "1977-05-01",
+      "employment": 9912.0,
+      "fulltime": 8619.7,
+      "parttime": 1292.3,
+      "employment_change": 19.4,
+      "fulltime_change": -0.7,
+      "parttime_change": 20.2
+    },
+    {
+      "date": "1977-06-01",
+      "employment": 9906.9,
+      "fulltime": 8611.4,
+      "parttime": 1295.5,
+      "employment_change": -5.1,
+      "fulltime_change": -8.3,
+      "parttime_change": 3.2
+    },
+    {
+      "date": "1977-07-01",
+      "employment": 9911.4,
+      "fulltime": 8619.6,
+      "parttime": 1291.8,
+      "employment_change": 4.5,
+      "fulltime_change": 8.2,
+      "parttime_change": -3.7
+    },
+    {
+      "date": "1977-08-01",
+      "employment": 9936.6,
+      "fulltime": 8628.9,
+      "parttime": 1307.8,
+      "employment_change": 25.2,
+      "fulltime_change": 9.3,
+      "parttime_change": 16.0
+    },
+    {
+      "date": "1977-09-01",
+      "employment": 9937.0,
+      "fulltime": 8631.4,
+      "parttime": 1305.6,
+      "employment_change": 0.4,
+      "fulltime_change": 2.5,
+      "parttime_change": -2.2
+    },
+    {
+      "date": "1977-10-01",
+      "employment": 9962.1,
+      "fulltime": 8639.8,
+      "parttime": 1322.3,
+      "employment_change": 25.1,
+      "fulltime_change": 8.4,
+      "parttime_change": 16.7
+    },
+    {
+      "date": "1977-11-01",
+      "employment": 9976.3,
+      "fulltime": 8655.7,
+      "parttime": 1320.6,
+      "employment_change": 14.2,
+      "fulltime_change": 15.9,
+      "parttime_change": -1.7
+    },
+    {
+      "date": "1977-12-01",
+      "employment": 10002.3,
+      "fulltime": 8668.9,
+      "parttime": 1333.4,
+      "employment_change": 26.0,
+      "fulltime_change": 13.2,
+      "parttime_change": 12.8
+    },
+    {
+      "date": "1978-01-01",
+      "employment": 10013.0,
+      "fulltime": 8692.2,
+      "parttime": 1320.8,
+      "employment_change": 10.7,
+      "fulltime_change": 23.3,
+      "parttime_change": -12.6
+    },
+    {
+      "date": "1978-02-01",
+      "employment": 10067.5,
+      "fulltime": 8747.7,
+      "parttime": 1319.8,
+      "employment_change": 54.5,
+      "fulltime_change": 55.5,
+      "parttime_change": -1.0
+    },
+    {
+      "date": "1978-03-01",
+      "employment": 10100.3,
+      "fulltime": 8781.5,
+      "parttime": 1318.8,
+      "employment_change": 32.8,
+      "fulltime_change": 33.8,
+      "parttime_change": -1.0
+    },
+    {
+      "date": "1978-04-01",
+      "employment": 10128.7,
+      "fulltime": 8782.0,
+      "parttime": 1346.7,
+      "employment_change": 28.4,
+      "fulltime_change": 0.5,
+      "parttime_change": 27.9
+    },
+    {
+      "date": "1978-05-01",
+      "employment": 10146.7,
+      "fulltime": 8816.4,
+      "parttime": 1330.2,
+      "employment_change": 18.0,
+      "fulltime_change": 34.4,
+      "parttime_change": -16.5
+    },
+    {
+      "date": "1978-06-01",
+      "employment": 10207.6,
+      "fulltime": 8852.0,
+      "parttime": 1355.6,
+      "employment_change": 60.9,
+      "fulltime_change": 35.6,
+      "parttime_change": 25.4
+    },
+    {
+      "date": "1978-07-01",
+      "employment": 10255.0,
+      "fulltime": 8849.7,
+      "parttime": 1405.3,
+      "employment_change": 47.4,
+      "fulltime_change": -2.3,
+      "parttime_change": 49.7
+    },
+    {
+      "date": "1978-08-01",
+      "employment": 10287.5,
+      "fulltime": 8900.3,
+      "parttime": 1387.2,
+      "employment_change": 32.5,
+      "fulltime_change": 50.6,
+      "parttime_change": -18.1
+    },
+    {
+      "date": "1978-09-01",
+      "employment": 10305.5,
+      "fulltime": 8941.4,
+      "parttime": 1364.1,
+      "employment_change": 18.0,
+      "fulltime_change": 41.1,
+      "parttime_change": -23.1
+    },
+    {
+      "date": "1978-10-01",
+      "employment": 10368.8,
+      "fulltime": 9017.8,
+      "parttime": 1351.0,
+      "employment_change": 63.3,
+      "fulltime_change": 76.4,
+      "parttime_change": -13.1
+    },
+    {
+      "date": "1978-11-01",
+      "employment": 10387.2,
+      "fulltime": 9024.7,
+      "parttime": 1362.4,
+      "employment_change": 18.4,
+      "fulltime_change": 6.9,
+      "parttime_change": 11.4
+    },
+    {
+      "date": "1978-12-01",
+      "employment": 10428.3,
+      "fulltime": 9050.2,
+      "parttime": 1378.1,
+      "employment_change": 41.1,
+      "fulltime_change": 25.5,
+      "parttime_change": 15.7
+    },
+    {
+      "date": "1979-01-01",
+      "employment": 10483.1,
+      "fulltime": 9074.6,
+      "parttime": 1408.5,
+      "employment_change": 54.8,
+      "fulltime_change": 24.4,
+      "parttime_change": 30.4
+    },
+    {
+      "date": "1979-02-01",
+      "employment": 10490.0,
+      "fulltime": 9100.5,
+      "parttime": 1389.5,
+      "employment_change": 6.9,
+      "fulltime_change": 25.9,
+      "parttime_change": -19.0
+    },
+    {
+      "date": "1979-03-01",
+      "employment": 10535.9,
+      "fulltime": 9113.1,
+      "parttime": 1422.8,
+      "employment_change": 45.9,
+      "fulltime_change": 12.6,
+      "parttime_change": 33.3
+    },
+    {
+      "date": "1979-04-01",
+      "employment": 10560.8,
+      "fulltime": 9129.5,
+      "parttime": 1431.4,
+      "employment_change": 24.9,
+      "fulltime_change": 16.4,
+      "parttime_change": 8.6
+    },
+    {
+      "date": "1979-05-01",
+      "employment": 10611.4,
+      "fulltime": 9136.1,
+      "parttime": 1475.3,
+      "employment_change": 50.6,
+      "fulltime_change": 6.6,
+      "parttime_change": 43.9
+    },
+    {
+      "date": "1979-06-01",
+      "employment": 10645.4,
+      "fulltime": 9190.2,
+      "parttime": 1455.2,
+      "employment_change": 34.0,
+      "fulltime_change": 54.1,
+      "parttime_change": -20.1
+    },
+    {
+      "date": "1979-07-01",
+      "employment": 10702.1,
+      "fulltime": 9222.6,
+      "parttime": 1479.5,
+      "employment_change": 56.7,
+      "fulltime_change": 32.4,
+      "parttime_change": 24.3
+    },
+    {
+      "date": "1979-08-01",
+      "employment": 10742.1,
+      "fulltime": 9246.3,
+      "parttime": 1495.8,
+      "employment_change": 40.0,
+      "fulltime_change": 23.7,
+      "parttime_change": 16.3
+    },
+    {
+      "date": "1979-09-01",
+      "employment": 10756.5,
+      "fulltime": 9246.8,
+      "parttime": 1509.7,
+      "employment_change": 14.4,
+      "fulltime_change": 0.5,
+      "parttime_change": 13.9
+    },
+    {
+      "date": "1979-10-01",
+      "employment": 10809.0,
+      "fulltime": 9296.6,
+      "parttime": 1512.4,
+      "employment_change": 52.5,
+      "fulltime_change": 49.8,
+      "parttime_change": 2.7
+    },
+    {
+      "date": "1979-11-01",
+      "employment": 10841.3,
+      "fulltime": 9322.7,
+      "parttime": 1518.5,
+      "employment_change": 32.3,
+      "fulltime_change": 26.1,
+      "parttime_change": 6.1
+    },
+    {
+      "date": "1979-12-01",
+      "employment": 10859.9,
+      "fulltime": 9340.8,
+      "parttime": 1519.1,
+      "employment_change": 18.6,
+      "fulltime_change": 18.1,
+      "parttime_change": 0.6
+    },
+    {
+      "date": "1980-01-01",
+      "employment": 10882.6,
+      "fulltime": 9360.5,
+      "parttime": 1522.1,
+      "employment_change": 22.7,
+      "fulltime_change": 19.7,
+      "parttime_change": 3.0
+    },
+    {
+      "date": "1980-02-01",
+      "employment": 10902.9,
+      "fulltime": 9375.4,
+      "parttime": 1527.6,
+      "employment_change": 20.3,
+      "fulltime_change": 14.9,
+      "parttime_change": 5.5
+    },
+    {
+      "date": "1980-03-01",
+      "employment": 10897.8,
+      "fulltime": 9358.5,
+      "parttime": 1539.3,
+      "employment_change": -5.1,
+      "fulltime_change": -16.9,
+      "parttime_change": 11.7
+    },
+    {
+      "date": "1980-04-01",
+      "employment": 10938.3,
+      "fulltime": 9380.1,
+      "parttime": 1558.3,
+      "employment_change": 40.5,
+      "fulltime_change": 21.6,
+      "parttime_change": 19.0
+    },
+    {
+      "date": "1980-05-01",
+      "employment": 10891.6,
+      "fulltime": 9351.0,
+      "parttime": 1540.6,
+      "employment_change": -46.7,
+      "fulltime_change": -29.1,
+      "parttime_change": -17.7
+    },
+    {
+      "date": "1980-06-01",
+      "employment": 10936.8,
+      "fulltime": 9379.9,
+      "parttime": 1556.9,
+      "employment_change": 45.2,
+      "fulltime_change": 28.9,
+      "parttime_change": 16.3
+    },
+    {
+      "date": "1980-07-01",
+      "employment": 10935.0,
+      "fulltime": 9373.5,
+      "parttime": 1561.5,
+      "employment_change": -1.8,
+      "fulltime_change": -6.4,
+      "parttime_change": 4.6
+    },
+    {
+      "date": "1980-08-01",
+      "employment": 10970.3,
+      "fulltime": 9397.7,
+      "parttime": 1572.5,
+      "employment_change": 35.3,
+      "fulltime_change": 24.2,
+      "parttime_change": 11.0
+    },
+    {
+      "date": "1980-09-01",
+      "employment": 11051.9,
+      "fulltime": 9439.8,
+      "parttime": 1612.1,
+      "employment_change": 81.6,
+      "fulltime_change": 42.1,
+      "parttime_change": 39.6
+    },
+    {
+      "date": "1980-10-01",
+      "employment": 11083.1,
+      "fulltime": 9476.3,
+      "parttime": 1606.8,
+      "employment_change": 31.2,
+      "fulltime_change": 36.5,
+      "parttime_change": -5.3
+    },
+    {
+      "date": "1980-11-01",
+      "employment": 11127.0,
+      "fulltime": 9499.3,
+      "parttime": 1627.7,
+      "employment_change": 43.9,
+      "fulltime_change": 23.0,
+      "parttime_change": 20.9
+    },
+    {
+      "date": "1980-12-01",
+      "employment": 11140.0,
+      "fulltime": 9557.8,
+      "parttime": 1582.2,
+      "employment_change": 13.0,
+      "fulltime_change": 58.5,
+      "parttime_change": -45.5
+    },
+    {
+      "date": "1981-01-01",
+      "employment": 11206.5,
+      "fulltime": 9592.5,
+      "parttime": 1614.1,
+      "employment_change": 66.5,
+      "fulltime_change": 34.7,
+      "parttime_change": 31.9
+    },
+    {
+      "date": "1981-02-01",
+      "employment": 11283.3,
+      "fulltime": 9625.9,
+      "parttime": 1657.4,
+      "employment_change": 76.8,
+      "fulltime_change": 33.4,
+      "parttime_change": 43.3
+    },
+    {
+      "date": "1981-03-01",
+      "employment": 11278.7,
+      "fulltime": 9604.9,
+      "parttime": 1673.8,
+      "employment_change": -4.6,
+      "fulltime_change": -21.0,
+      "parttime_change": 16.4
+    },
+    {
+      "date": "1981-04-01",
+      "employment": 11315.8,
+      "fulltime": 9661.6,
+      "parttime": 1654.2,
+      "employment_change": 37.1,
+      "fulltime_change": 56.7,
+      "parttime_change": -19.6
+    },
+    {
+      "date": "1981-05-01",
+      "employment": 11345.8,
+      "fulltime": 9646.5,
+      "parttime": 1699.3,
+      "employment_change": 30.0,
+      "fulltime_change": -15.1,
+      "parttime_change": 45.1
+    },
+    {
+      "date": "1981-06-01",
+      "employment": 11375.6,
+      "fulltime": 9685.1,
+      "parttime": 1690.6,
+      "employment_change": 29.8,
+      "fulltime_change": 38.6,
+      "parttime_change": -8.7
+    },
+    {
+      "date": "1981-07-01",
+      "employment": 11336.4,
+      "fulltime": 9708.2,
+      "parttime": 1628.2,
+      "employment_change": -39.2,
+      "fulltime_change": 23.1,
+      "parttime_change": -62.4
+    },
+    {
+      "date": "1981-08-01",
+      "employment": 11353.8,
+      "fulltime": 9690.9,
+      "parttime": 1662.8,
+      "employment_change": 17.4,
+      "fulltime_change": -17.3,
+      "parttime_change": 34.6
+    },
+    {
+      "date": "1981-09-01",
+      "employment": 11328.7,
+      "fulltime": 9618.1,
+      "parttime": 1710.5,
+      "employment_change": -25.1,
+      "fulltime_change": -72.8,
+      "parttime_change": 47.7
+    },
+    {
+      "date": "1981-10-01",
+      "employment": 11300.1,
+      "fulltime": 9595.1,
+      "parttime": 1705.0,
+      "employment_change": -28.6,
+      "fulltime_change": -23.0,
+      "parttime_change": -5.5
+    },
+    {
+      "date": "1981-11-01",
+      "employment": 11291.5,
+      "fulltime": 9583.8,
+      "parttime": 1707.7,
+      "employment_change": -8.6,
+      "fulltime_change": -11.3,
+      "parttime_change": 2.7
+    },
+    {
+      "date": "1981-12-01",
+      "employment": 11236.0,
+      "fulltime": 9513.0,
+      "parttime": 1723.0,
+      "employment_change": -55.5,
+      "fulltime_change": -70.8,
+      "parttime_change": 15.3
+    },
+    {
+      "date": "1982-01-01",
+      "employment": 11205.6,
+      "fulltime": 9490.0,
+      "parttime": 1715.6,
+      "employment_change": -30.4,
+      "fulltime_change": -23.0,
+      "parttime_change": -7.4
+    },
+    {
+      "date": "1982-02-01",
+      "employment": 11166.9,
+      "fulltime": 9459.5,
+      "parttime": 1707.4,
+      "employment_change": -38.7,
+      "fulltime_change": -30.5,
+      "parttime_change": -8.2
+    },
+    {
+      "date": "1982-03-01",
+      "employment": 11140.5,
+      "fulltime": 9435.5,
+      "parttime": 1705.0,
+      "employment_change": -26.4,
+      "fulltime_change": -24.0,
+      "parttime_change": -2.4
+    },
+    {
+      "date": "1982-04-01",
+      "employment": 11076.3,
+      "fulltime": 9358.1,
+      "parttime": 1718.2,
+      "employment_change": -64.2,
+      "fulltime_change": -77.4,
+      "parttime_change": 13.2
+    },
+    {
+      "date": "1982-05-01",
+      "employment": 11021.9,
+      "fulltime": 9325.8,
+      "parttime": 1696.1,
+      "employment_change": -54.4,
+      "fulltime_change": -32.3,
+      "parttime_change": -22.1
+    },
+    {
+      "date": "1982-06-01",
+      "employment": 10940.6,
+      "fulltime": 9200.1,
+      "parttime": 1740.5,
+      "employment_change": -81.3,
+      "fulltime_change": -125.7,
+      "parttime_change": 44.4
+    },
+    {
+      "date": "1982-07-01",
+      "employment": 10893.6,
+      "fulltime": 9125.2,
+      "parttime": 1768.4,
+      "employment_change": -47.0,
+      "fulltime_change": -74.9,
+      "parttime_change": 27.9
+    },
+    {
+      "date": "1982-08-01",
+      "employment": 10836.3,
+      "fulltime": 9032.0,
+      "parttime": 1804.2,
+      "employment_change": -57.3,
+      "fulltime_change": -93.2,
+      "parttime_change": 35.8
+    },
+    {
+      "date": "1982-09-01",
+      "employment": 10806.7,
+      "fulltime": 9062.8,
+      "parttime": 1743.9,
+      "employment_change": -29.6,
+      "fulltime_change": 30.8,
+      "parttime_change": -60.3
+    },
+    {
+      "date": "1982-10-01",
+      "employment": 10787.2,
+      "fulltime": 9023.3,
+      "parttime": 1764.0,
+      "employment_change": -19.5,
+      "fulltime_change": -39.5,
+      "parttime_change": 20.1
+    },
+    {
+      "date": "1982-11-01",
+      "employment": 10764.1,
+      "fulltime": 8997.0,
+      "parttime": 1767.2,
+      "employment_change": -23.1,
+      "fulltime_change": -26.3,
+      "parttime_change": 3.2
+    },
+    {
+      "date": "1982-12-01",
+      "employment": 10774.1,
+      "fulltime": 8992.8,
+      "parttime": 1781.3,
+      "employment_change": 10.0,
+      "fulltime_change": -4.2,
+      "parttime_change": 14.1
+    },
+    {
+      "date": "1983-01-01",
+      "employment": 10801.1,
+      "fulltime": 8993.4,
+      "parttime": 1807.7,
+      "employment_change": 27.0,
+      "fulltime_change": 0.6,
+      "parttime_change": 26.4
+    },
+    {
+      "date": "1983-02-01",
+      "employment": 10818.2,
+      "fulltime": 9009.9,
+      "parttime": 1808.4,
+      "employment_change": 17.1,
+      "fulltime_change": 16.5,
+      "parttime_change": 0.7
+    },
+    {
+      "date": "1983-03-01",
+      "employment": 10874.9,
+      "fulltime": 9059.0,
+      "parttime": 1815.9,
+      "employment_change": 56.7,
+      "fulltime_change": 49.1,
+      "parttime_change": 7.5
+    },
+    {
+      "date": "1983-04-01",
+      "employment": 10932.6,
+      "fulltime": 9096.7,
+      "parttime": 1835.9,
+      "employment_change": 57.7,
+      "fulltime_change": 37.7,
+      "parttime_change": 20.0
+    },
+    {
+      "date": "1983-05-01",
+      "employment": 10952.5,
+      "fulltime": 9120.6,
+      "parttime": 1831.9,
+      "employment_change": 19.9,
+      "fulltime_change": 23.9,
+      "parttime_change": -4.0
+    },
+    {
+      "date": "1983-06-01",
+      "employment": 11021.4,
+      "fulltime": 9178.5,
+      "parttime": 1842.9,
+      "employment_change": 68.9,
+      "fulltime_change": 57.9,
+      "parttime_change": 11.0
+    },
+    {
+      "date": "1983-07-01",
+      "employment": 11073.4,
+      "fulltime": 9191.3,
+      "parttime": 1882.0,
+      "employment_change": 52.0,
+      "fulltime_change": 12.8,
+      "parttime_change": 39.1
+    },
+    {
+      "date": "1983-08-01",
+      "employment": 11126.6,
+      "fulltime": 9235.5,
+      "parttime": 1891.1,
+      "employment_change": 53.2,
+      "fulltime_change": 44.2,
+      "parttime_change": 9.1
+    },
+    {
+      "date": "1983-09-01",
+      "employment": 11174.2,
+      "fulltime": 9308.3,
+      "parttime": 1865.9,
+      "employment_change": 47.6,
+      "fulltime_change": 72.8,
+      "parttime_change": -25.2
+    },
+    {
+      "date": "1983-10-01",
+      "employment": 11163.3,
+      "fulltime": 9280.7,
+      "parttime": 1882.6,
+      "employment_change": -10.9,
+      "fulltime_change": -27.6,
+      "parttime_change": 16.7
+    },
+    {
+      "date": "1983-11-01",
+      "employment": 11162.0,
+      "fulltime": 9278.4,
+      "parttime": 1883.6,
+      "employment_change": -1.3,
+      "fulltime_change": -2.3,
+      "parttime_change": 1.0
+    },
+    {
+      "date": "1983-12-01",
+      "employment": 11187.4,
+      "fulltime": 9289.7,
+      "parttime": 1897.8,
+      "employment_change": 25.4,
+      "fulltime_change": 11.3,
+      "parttime_change": 14.2
+    },
+    {
+      "date": "1984-01-01",
+      "employment": 11168.6,
+      "fulltime": 9297.8,
+      "parttime": 1870.8,
+      "employment_change": -18.8,
+      "fulltime_change": 8.1,
+      "parttime_change": -27.0
+    },
+    {
+      "date": "1984-02-01",
+      "employment": 11203.9,
+      "fulltime": 9325.8,
+      "parttime": 1878.1,
+      "employment_change": 35.3,
+      "fulltime_change": 28.0,
+      "parttime_change": 7.3
+    },
+    {
+      "date": "1984-03-01",
+      "employment": 11205.9,
+      "fulltime": 9341.0,
+      "parttime": 1864.9,
+      "employment_change": 2.0,
+      "fulltime_change": 15.2,
+      "parttime_change": -13.2
+    },
+    {
+      "date": "1984-04-01",
+      "employment": 11198.5,
+      "fulltime": 9331.1,
+      "parttime": 1867.4,
+      "employment_change": -7.4,
+      "fulltime_change": -9.9,
+      "parttime_change": 2.5
+    },
+    {
+      "date": "1984-05-01",
+      "employment": 11245.5,
+      "fulltime": 9375.1,
+      "parttime": 1870.5,
+      "employment_change": 47.0,
+      "fulltime_change": 44.0,
+      "parttime_change": 3.1
+    },
+    {
+      "date": "1984-06-01",
+      "employment": 11314.5,
+      "fulltime": 9418.3,
+      "parttime": 1896.2,
+      "employment_change": 69.0,
+      "fulltime_change": 43.2,
+      "parttime_change": 25.7
+    },
+    {
+      "date": "1984-07-01",
+      "employment": 11356.6,
+      "fulltime": 9438.4,
+      "parttime": 1918.3,
+      "employment_change": 42.1,
+      "fulltime_change": 20.1,
+      "parttime_change": 22.1
+    },
+    {
+      "date": "1984-08-01",
+      "employment": 11349.3,
+      "fulltime": 9418.8,
+      "parttime": 1930.5,
+      "employment_change": -7.3,
+      "fulltime_change": -19.6,
+      "parttime_change": 12.2
+    },
+    {
+      "date": "1984-09-01",
+      "employment": 11373.8,
+      "fulltime": 9467.5,
+      "parttime": 1906.3,
+      "employment_change": 24.5,
+      "fulltime_change": 48.7,
+      "parttime_change": -24.2
+    },
+    {
+      "date": "1984-10-01",
+      "employment": 11387.7,
+      "fulltime": 9472.4,
+      "parttime": 1915.3,
+      "employment_change": 13.9,
+      "fulltime_change": 4.9,
+      "parttime_change": 9.0
+    },
+    {
+      "date": "1984-11-01",
+      "employment": 11391.1,
+      "fulltime": 9492.7,
+      "parttime": 1898.4,
+      "employment_change": 3.4,
+      "fulltime_change": 20.3,
+      "parttime_change": -16.9
+    },
+    {
+      "date": "1984-12-01",
+      "employment": 11430.3,
+      "fulltime": 9534.1,
+      "parttime": 1896.1,
+      "employment_change": 39.2,
+      "fulltime_change": 41.4,
+      "parttime_change": -2.3
+    },
+    {
+      "date": "1985-01-01",
+      "employment": 11481.7,
+      "fulltime": 9555.1,
+      "parttime": 1926.6,
+      "employment_change": 51.4,
+      "fulltime_change": 21.0,
+      "parttime_change": 30.5
+    },
+    {
+      "date": "1985-02-01",
+      "employment": 11506.3,
+      "fulltime": 9562.2,
+      "parttime": 1944.2,
+      "employment_change": 24.6,
+      "fulltime_change": 7.1,
+      "parttime_change": 17.6
+    },
+    {
+      "date": "1985-03-01",
+      "employment": 11531.4,
+      "fulltime": 9576.7,
+      "parttime": 1954.7,
+      "employment_change": 25.1,
+      "fulltime_change": 14.5,
+      "parttime_change": 10.5
+    },
+    {
+      "date": "1985-04-01",
+      "employment": 11571.5,
+      "fulltime": 9597.0,
+      "parttime": 1974.5,
+      "employment_change": 40.1,
+      "fulltime_change": 20.3,
+      "parttime_change": 19.8
+    },
+    {
+      "date": "1985-05-01",
+      "employment": 11613.7,
+      "fulltime": 9646.0,
+      "parttime": 1967.7,
+      "employment_change": 42.2,
+      "fulltime_change": 49.0,
+      "parttime_change": -6.8
+    },
+    {
+      "date": "1985-06-01",
+      "employment": 11627.0,
+      "fulltime": 9648.2,
+      "parttime": 1978.8,
+      "employment_change": 13.3,
+      "fulltime_change": 2.2,
+      "parttime_change": 11.1
+    },
+    {
+      "date": "1985-07-01",
+      "employment": 11681.1,
+      "fulltime": 9679.7,
+      "parttime": 2001.4,
+      "employment_change": 54.1,
+      "fulltime_change": 31.5,
+      "parttime_change": 22.6
+    },
+    {
+      "date": "1985-08-01",
+      "employment": 11712.1,
+      "fulltime": 9695.5,
+      "parttime": 2016.6,
+      "employment_change": 31.0,
+      "fulltime_change": 15.8,
+      "parttime_change": 15.2
+    },
+    {
+      "date": "1985-09-01",
+      "employment": 11723.3,
+      "fulltime": 9716.6,
+      "parttime": 2006.7,
+      "employment_change": 11.2,
+      "fulltime_change": 21.1,
+      "parttime_change": -9.9
+    },
+    {
+      "date": "1985-10-01",
+      "employment": 11754.0,
+      "fulltime": 9759.8,
+      "parttime": 1994.2,
+      "employment_change": 30.7,
+      "fulltime_change": 43.2,
+      "parttime_change": -12.5
+    },
+    {
+      "date": "1985-11-01",
+      "employment": 11819.0,
+      "fulltime": 9810.0,
+      "parttime": 2009.0,
+      "employment_change": 65.0,
+      "fulltime_change": 50.2,
+      "parttime_change": 14.8
+    },
+    {
+      "date": "1985-12-01",
+      "employment": 11860.5,
+      "fulltime": 9866.8,
+      "parttime": 1993.8,
+      "employment_change": 41.5,
+      "fulltime_change": 56.8,
+      "parttime_change": -15.2
+    },
+    {
+      "date": "1986-01-01",
+      "employment": 11903.5,
+      "fulltime": 9911.1,
+      "parttime": 1992.4,
+      "employment_change": 43.0,
+      "fulltime_change": 44.3,
+      "parttime_change": -1.4
+    },
+    {
+      "date": "1986-02-01",
+      "employment": 11917.9,
+      "fulltime": 9918.6,
+      "parttime": 1999.3,
+      "employment_change": 14.4,
+      "fulltime_change": 7.5,
+      "parttime_change": 6.9
+    },
+    {
+      "date": "1986-03-01",
+      "employment": 11926.3,
+      "fulltime": 9929.9,
+      "parttime": 1996.4,
+      "employment_change": 8.4,
+      "fulltime_change": 11.3,
+      "parttime_change": -2.9
+    },
+    {
+      "date": "1986-04-01",
+      "employment": 12008.1,
+      "fulltime": 9957.4,
+      "parttime": 2050.8,
+      "employment_change": 81.8,
+      "fulltime_change": 27.5,
+      "parttime_change": 54.4
+    },
+    {
+      "date": "1986-05-01",
+      "employment": 11977.2,
+      "fulltime": 9954.4,
+      "parttime": 2022.8,
+      "employment_change": -30.9,
+      "fulltime_change": -3.0,
+      "parttime_change": -28.0
+    },
+    {
+      "date": "1986-06-01",
+      "employment": 12016.9,
+      "fulltime": 9976.2,
+      "parttime": 2040.7,
+      "employment_change": 39.7,
+      "fulltime_change": 21.8,
+      "parttime_change": 17.9
+    },
+    {
+      "date": "1986-07-01",
+      "employment": 12017.1,
+      "fulltime": 10001.9,
+      "parttime": 2015.2,
+      "employment_change": 0.2,
+      "fulltime_change": 25.7,
+      "parttime_change": -25.5
+    },
+    {
+      "date": "1986-08-01",
+      "employment": 12024.7,
+      "fulltime": 10000.5,
+      "parttime": 2024.2,
+      "employment_change": 7.6,
+      "fulltime_change": -1.4,
+      "parttime_change": 9.0
+    },
+    {
+      "date": "1986-09-01",
+      "employment": 12035.2,
+      "fulltime": 9982.9,
+      "parttime": 2052.2,
+      "employment_change": 10.5,
+      "fulltime_change": -17.6,
+      "parttime_change": 28.0
+    },
+    {
+      "date": "1986-10-01",
+      "employment": 12059.6,
+      "fulltime": 10006.5,
+      "parttime": 2053.1,
+      "employment_change": 24.4,
+      "fulltime_change": 23.6,
+      "parttime_change": 0.9
+    },
+    {
+      "date": "1986-11-01",
+      "employment": 12082.0,
+      "fulltime": 10033.8,
+      "parttime": 2048.2,
+      "employment_change": 22.4,
+      "fulltime_change": 27.3,
+      "parttime_change": -4.9
+    },
+    {
+      "date": "1986-12-01",
+      "employment": 12079.7,
+      "fulltime": 10018.2,
+      "parttime": 2061.5,
+      "employment_change": -2.3,
+      "fulltime_change": -15.6,
+      "parttime_change": 13.3
+    },
+    {
+      "date": "1987-01-01",
+      "employment": 12102.0,
+      "fulltime": 10059.0,
+      "parttime": 2043.0,
+      "employment_change": 22.3,
+      "fulltime_change": 40.8,
+      "parttime_change": -18.5
+    },
+    {
+      "date": "1987-02-01",
+      "employment": 12131.4,
+      "fulltime": 10091.6,
+      "parttime": 2039.8,
+      "employment_change": 29.4,
+      "fulltime_change": 32.6,
+      "parttime_change": -3.2
+    },
+    {
+      "date": "1987-03-01",
+      "employment": 12182.0,
+      "fulltime": 10169.2,
+      "parttime": 2012.8,
+      "employment_change": 50.6,
+      "fulltime_change": 77.6,
+      "parttime_change": -27.0
+    },
+    {
+      "date": "1987-04-01",
+      "employment": 12229.5,
+      "fulltime": 10186.9,
+      "parttime": 2042.6,
+      "employment_change": 47.5,
+      "fulltime_change": 17.7,
+      "parttime_change": 29.8
+    },
+    {
+      "date": "1987-05-01",
+      "employment": 12285.7,
+      "fulltime": 10219.9,
+      "parttime": 2065.8,
+      "employment_change": 56.2,
+      "fulltime_change": 33.0,
+      "parttime_change": 23.2
+    },
+    {
+      "date": "1987-06-01",
+      "employment": 12319.4,
+      "fulltime": 10261.3,
+      "parttime": 2058.1,
+      "employment_change": 33.7,
+      "fulltime_change": 41.4,
+      "parttime_change": -7.7
+    },
+    {
+      "date": "1987-07-01",
+      "employment": 12345.5,
+      "fulltime": 10293.6,
+      "parttime": 2051.9,
+      "employment_change": 26.1,
+      "fulltime_change": 32.3,
+      "parttime_change": -6.2
+    },
+    {
+      "date": "1987-08-01",
+      "employment": 12376.2,
+      "fulltime": 10326.5,
+      "parttime": 2049.7,
+      "employment_change": 30.7,
+      "fulltime_change": 32.9,
+      "parttime_change": -2.2
+    },
+    {
+      "date": "1987-09-01",
+      "employment": 12421.9,
+      "fulltime": 10378.3,
+      "parttime": 2043.6,
+      "employment_change": 45.7,
+      "fulltime_change": 51.8,
+      "parttime_change": -6.1
+    },
+    {
+      "date": "1987-10-01",
+      "employment": 12487.4,
+      "fulltime": 10426.9,
+      "parttime": 2060.5,
+      "employment_change": 65.5,
+      "fulltime_change": 48.6,
+      "parttime_change": 16.9
+    },
+    {
+      "date": "1987-11-01",
+      "employment": 12519.4,
+      "fulltime": 10429.2,
+      "parttime": 2090.2,
+      "employment_change": 32.0,
+      "fulltime_change": 2.3,
+      "parttime_change": 29.7
+    },
+    {
+      "date": "1987-12-01",
+      "employment": 12583.3,
+      "fulltime": 10478.6,
+      "parttime": 2104.7,
+      "employment_change": 63.9,
+      "fulltime_change": 49.4,
+      "parttime_change": 14.5
+    },
+    {
+      "date": "1988-01-01",
+      "employment": 12601.9,
+      "fulltime": 10494.5,
+      "parttime": 2107.5,
+      "employment_change": 18.6,
+      "fulltime_change": 15.9,
+      "parttime_change": 2.8
+    },
+    {
+      "date": "1988-02-01",
+      "employment": 12642.6,
+      "fulltime": 10530.0,
+      "parttime": 2112.6,
+      "employment_change": 40.7,
+      "fulltime_change": 35.5,
+      "parttime_change": 5.1
+    },
+    {
+      "date": "1988-03-01",
+      "employment": 12662.6,
+      "fulltime": 10520.4,
+      "parttime": 2142.3,
+      "employment_change": 20.0,
+      "fulltime_change": -9.6,
+      "parttime_change": 29.7
+    },
+    {
+      "date": "1988-04-01",
+      "employment": 12676.0,
+      "fulltime": 10532.7,
+      "parttime": 2143.4,
+      "employment_change": 13.4,
+      "fulltime_change": 12.3,
+      "parttime_change": 1.1
+    },
+    {
+      "date": "1988-05-01",
+      "employment": 12679.7,
+      "fulltime": 10572.5,
+      "parttime": 2107.2,
+      "employment_change": 3.7,
+      "fulltime_change": 39.8,
+      "parttime_change": -36.2
+    },
+    {
+      "date": "1988-06-01",
+      "employment": 12698.1,
+      "fulltime": 10577.4,
+      "parttime": 2120.7,
+      "employment_change": 18.4,
+      "fulltime_change": 4.9,
+      "parttime_change": 13.5
+    },
+    {
+      "date": "1988-07-01",
+      "employment": 12711.8,
+      "fulltime": 10615.1,
+      "parttime": 2096.8,
+      "employment_change": 13.7,
+      "fulltime_change": 37.7,
+      "parttime_change": -23.9
+    },
+    {
+      "date": "1988-08-01",
+      "employment": 12720.0,
+      "fulltime": 10584.0,
+      "parttime": 2136.1,
+      "employment_change": 8.2,
+      "fulltime_change": -31.1,
+      "parttime_change": 39.3
+    },
+    {
+      "date": "1988-09-01",
+      "employment": 12732.8,
+      "fulltime": 10544.3,
+      "parttime": 2188.5,
+      "employment_change": 12.8,
+      "fulltime_change": -39.7,
+      "parttime_change": 52.4
+    },
+    {
+      "date": "1988-10-01",
+      "employment": 12765.0,
+      "fulltime": 10592.4,
+      "parttime": 2172.6,
+      "employment_change": 32.2,
+      "fulltime_change": 48.1,
+      "parttime_change": -15.9
+    },
+    {
+      "date": "1988-11-01",
+      "employment": 12795.8,
+      "fulltime": 10608.7,
+      "parttime": 2187.1,
+      "employment_change": 30.8,
+      "fulltime_change": 16.3,
+      "parttime_change": 14.5
+    },
+    {
+      "date": "1988-12-01",
+      "employment": 12849.4,
+      "fulltime": 10684.3,
+      "parttime": 2165.1,
+      "employment_change": 53.6,
+      "fulltime_change": 75.6,
+      "parttime_change": -22.0
+    },
+    {
+      "date": "1989-01-01",
+      "employment": 12922.0,
+      "fulltime": 10742.1,
+      "parttime": 2179.9,
+      "employment_change": 72.6,
+      "fulltime_change": 57.8,
+      "parttime_change": 14.8
+    },
+    {
+      "date": "1989-02-01",
+      "employment": 12936.8,
+      "fulltime": 10754.1,
+      "parttime": 2182.8,
+      "employment_change": 14.8,
+      "fulltime_change": 12.0,
+      "parttime_change": 2.9
+    },
+    {
+      "date": "1989-03-01",
+      "employment": 12982.4,
+      "fulltime": 10796.8,
+      "parttime": 2185.6,
+      "employment_change": 45.6,
+      "fulltime_change": 42.7,
+      "parttime_change": 2.8
+    },
+    {
+      "date": "1989-04-01",
+      "employment": 12959.9,
+      "fulltime": 10803.8,
+      "parttime": 2156.1,
+      "employment_change": -22.5,
+      "fulltime_change": 7.0,
+      "parttime_change": -29.5
+    },
+    {
+      "date": "1989-05-01",
+      "employment": 12962.2,
+      "fulltime": 10836.7,
+      "parttime": 2125.5,
+      "employment_change": 2.3,
+      "fulltime_change": 32.9,
+      "parttime_change": -30.6
+    },
+    {
+      "date": "1989-06-01",
+      "employment": 12979.4,
+      "fulltime": 10837.9,
+      "parttime": 2141.5,
+      "employment_change": 17.2,
+      "fulltime_change": 1.2,
+      "parttime_change": 16.0
+    },
+    {
+      "date": "1989-07-01",
+      "employment": 12979.8,
+      "fulltime": 10896.0,
+      "parttime": 2083.8,
+      "employment_change": 0.4,
+      "fulltime_change": 58.1,
+      "parttime_change": -57.7
+    },
+    {
+      "date": "1989-08-01",
+      "employment": 13029.1,
+      "fulltime": 10932.4,
+      "parttime": 2096.7,
+      "employment_change": 49.3,
+      "fulltime_change": 36.4,
+      "parttime_change": 12.9
+    },
+    {
+      "date": "1989-09-01",
+      "employment": 13029.5,
+      "fulltime": 10854.4,
+      "parttime": 2175.1,
+      "employment_change": 0.4,
+      "fulltime_change": -78.0,
+      "parttime_change": 78.4
+    },
+    {
+      "date": "1989-10-01",
+      "employment": 13034.5,
+      "fulltime": 10869.5,
+      "parttime": 2165.0,
+      "employment_change": 5.0,
+      "fulltime_change": 15.1,
+      "parttime_change": -10.1
+    },
+    {
+      "date": "1989-11-01",
+      "employment": 13059.7,
+      "fulltime": 10859.8,
+      "parttime": 2199.9,
+      "employment_change": 25.2,
+      "fulltime_change": -9.7,
+      "parttime_change": 34.9
+    },
+    {
+      "date": "1989-12-01",
+      "employment": 13066.8,
+      "fulltime": 10866.5,
+      "parttime": 2200.3,
+      "employment_change": 7.1,
+      "fulltime_change": 6.7,
+      "parttime_change": 0.4
+    },
+    {
+      "date": "1990-01-01",
+      "employment": 13101.4,
+      "fulltime": 10907.2,
+      "parttime": 2194.2,
+      "employment_change": 34.6,
+      "fulltime_change": 40.7,
+      "parttime_change": -6.1
+    },
+    {
+      "date": "1990-02-01",
+      "employment": 13134.9,
+      "fulltime": 10930.7,
+      "parttime": 2204.2,
+      "employment_change": 33.5,
+      "fulltime_change": 23.5,
+      "parttime_change": 10.0
+    },
+    {
+      "date": "1990-03-01",
+      "employment": 13126.1,
+      "fulltime": 10903.5,
+      "parttime": 2222.6,
+      "employment_change": -8.8,
+      "fulltime_change": -27.2,
+      "parttime_change": 18.4
+    },
+    {
+      "date": "1990-04-01",
+      "employment": 13141.3,
+      "fulltime": 10930.1,
+      "parttime": 2211.1,
+      "employment_change": 15.2,
+      "fulltime_change": 26.6,
+      "parttime_change": -11.5
+    },
+    {
+      "date": "1990-05-01",
+      "employment": 13101.9,
+      "fulltime": 10919.4,
+      "parttime": 2182.5,
+      "employment_change": -39.4,
+      "fulltime_change": -10.7,
+      "parttime_change": -28.6
+    },
+    {
+      "date": "1990-06-01",
+      "employment": 13134.4,
+      "fulltime": 10935.8,
+      "parttime": 2198.6,
+      "employment_change": 32.5,
+      "fulltime_change": 16.4,
+      "parttime_change": 16.1
+    },
+    {
+      "date": "1990-07-01",
+      "employment": 13113.6,
+      "fulltime": 10948.4,
+      "parttime": 2165.1,
+      "employment_change": -20.8,
+      "fulltime_change": 12.6,
+      "parttime_change": -33.5
+    },
+    {
+      "date": "1990-08-01",
+      "employment": 13100.3,
+      "fulltime": 10922.2,
+      "parttime": 2178.1,
+      "employment_change": -13.3,
+      "fulltime_change": -26.2,
+      "parttime_change": 13.0
+    },
+    {
+      "date": "1990-09-01",
+      "employment": 13089.5,
+      "fulltime": 10842.4,
+      "parttime": 2247.0,
+      "employment_change": -10.8,
+      "fulltime_change": -79.8,
+      "parttime_change": 68.9
+    },
+    {
+      "date": "1990-10-01",
+      "employment": 13039.3,
+      "fulltime": 10789.4,
+      "parttime": 2250.0,
+      "employment_change": -50.2,
+      "fulltime_change": -53.0,
+      "parttime_change": 3.0
+    },
+    {
+      "date": "1990-11-01",
+      "employment": 12985.3,
+      "fulltime": 10727.2,
+      "parttime": 2258.1,
+      "employment_change": -54.0,
+      "fulltime_change": -62.2,
+      "parttime_change": 8.1
+    },
+    {
+      "date": "1990-12-01",
+      "employment": 12934.7,
+      "fulltime": 10655.9,
+      "parttime": 2278.8,
+      "employment_change": -50.6,
+      "fulltime_change": -71.3,
+      "parttime_change": 20.7
+    },
+    {
+      "date": "1991-01-01",
+      "employment": 12894.2,
+      "fulltime": 10596.0,
+      "parttime": 2298.2,
+      "employment_change": -40.5,
+      "fulltime_change": -59.9,
+      "parttime_change": 19.4
+    },
+    {
+      "date": "1991-02-01",
+      "employment": 12845.1,
+      "fulltime": 10551.3,
+      "parttime": 2293.9,
+      "employment_change": -49.1,
+      "fulltime_change": -44.7,
+      "parttime_change": -4.3
+    },
+    {
+      "date": "1991-03-01",
+      "employment": 12809.2,
+      "fulltime": 10517.2,
+      "parttime": 2292.1,
+      "employment_change": -35.9,
+      "fulltime_change": -34.1,
+      "parttime_change": -1.8
+    },
+    {
+      "date": "1991-04-01",
+      "employment": 12850.7,
+      "fulltime": 10506.1,
+      "parttime": 2344.6,
+      "employment_change": 41.5,
+      "fulltime_change": -11.1,
+      "parttime_change": 52.5
+    },
+    {
+      "date": "1991-05-01",
+      "employment": 12879.9,
+      "fulltime": 10575.5,
+      "parttime": 2304.4,
+      "employment_change": 29.2,
+      "fulltime_change": 69.4,
+      "parttime_change": -40.2
+    },
+    {
+      "date": "1991-06-01",
+      "employment": 12886.3,
+      "fulltime": 10557.5,
+      "parttime": 2328.8,
+      "employment_change": 6.4,
+      "fulltime_change": -18.0,
+      "parttime_change": 24.4
+    },
+    {
+      "date": "1991-07-01",
+      "employment": 12872.3,
+      "fulltime": 10508.3,
+      "parttime": 2364.0,
+      "employment_change": -14.0,
+      "fulltime_change": -49.2,
+      "parttime_change": 35.2
+    },
+    {
+      "date": "1991-08-01",
+      "employment": 12876.2,
+      "fulltime": 10508.8,
+      "parttime": 2367.5,
+      "employment_change": 3.9,
+      "fulltime_change": 0.5,
+      "parttime_change": 3.5
+    },
+    {
+      "date": "1991-09-01",
+      "employment": 12855.4,
+      "fulltime": 10521.6,
+      "parttime": 2333.7,
+      "employment_change": -20.8,
+      "fulltime_change": 12.8,
+      "parttime_change": -33.8
+    },
+    {
+      "date": "1991-10-01",
+      "employment": 12861.0,
+      "fulltime": 10523.0,
+      "parttime": 2338.1,
+      "employment_change": 5.6,
+      "fulltime_change": 1.4,
+      "parttime_change": 4.4
+    },
+    {
+      "date": "1991-11-01",
+      "employment": 12823.2,
+      "fulltime": 10491.4,
+      "parttime": 2331.9,
+      "employment_change": -37.8,
+      "fulltime_change": -31.6,
+      "parttime_change": -6.2
+    },
+    {
+      "date": "1991-12-01",
+      "employment": 12810.2,
+      "fulltime": 10498.1,
+      "parttime": 2312.2,
+      "employment_change": -13.0,
+      "fulltime_change": 6.7,
+      "parttime_change": -19.7
+    },
+    {
+      "date": "1992-01-01",
+      "employment": 12790.2,
+      "fulltime": 10441.5,
+      "parttime": 2348.7,
+      "employment_change": -20.0,
+      "fulltime_change": -56.6,
+      "parttime_change": 36.5
+    },
+    {
+      "date": "1992-02-01",
+      "employment": 12771.3,
+      "fulltime": 10422.6,
+      "parttime": 2348.7,
+      "employment_change": -18.9,
+      "fulltime_change": -18.9,
+      "parttime_change": 0.0
+    },
+    {
+      "date": "1992-03-01",
+      "employment": 12744.9,
+      "fulltime": 10385.7,
+      "parttime": 2359.2,
+      "employment_change": -26.4,
+      "fulltime_change": -36.9,
+      "parttime_change": 10.5
+    },
+    {
+      "date": "1992-04-01",
+      "employment": 12730.9,
+      "fulltime": 10378.9,
+      "parttime": 2352.0,
+      "employment_change": -14.0,
+      "fulltime_change": -6.8,
+      "parttime_change": -7.2
+    },
+    {
+      "date": "1992-05-01",
+      "employment": 12736.6,
+      "fulltime": 10387.8,
+      "parttime": 2348.8,
+      "employment_change": 5.7,
+      "fulltime_change": 8.9,
+      "parttime_change": -3.2
+    },
+    {
+      "date": "1992-06-01",
+      "employment": 12717.3,
+      "fulltime": 10398.7,
+      "parttime": 2318.6,
+      "employment_change": -19.3,
+      "fulltime_change": 10.9,
+      "parttime_change": -30.2
+    },
+    {
+      "date": "1992-07-01",
+      "employment": 12732.5,
+      "fulltime": 10363.4,
+      "parttime": 2369.1,
+      "employment_change": 15.2,
+      "fulltime_change": -35.3,
+      "parttime_change": 50.5
+    },
+    {
+      "date": "1992-08-01",
+      "employment": 12693.7,
+      "fulltime": 10295.8,
+      "parttime": 2398.0,
+      "employment_change": -38.8,
+      "fulltime_change": -67.6,
+      "parttime_change": 28.9
+    },
+    {
+      "date": "1992-09-01",
+      "employment": 12700.1,
+      "fulltime": 10331.8,
+      "parttime": 2368.3,
+      "employment_change": 6.4,
+      "fulltime_change": 36.0,
+      "parttime_change": -29.7
+    },
+    {
+      "date": "1992-10-01",
+      "employment": 12713.0,
+      "fulltime": 10340.5,
+      "parttime": 2372.5,
+      "employment_change": 12.9,
+      "fulltime_change": 8.7,
+      "parttime_change": 4.2
+    },
+    {
+      "date": "1992-11-01",
+      "employment": 12704.8,
+      "fulltime": 10348.1,
+      "parttime": 2356.6,
+      "employment_change": -8.2,
+      "fulltime_change": 7.6,
+      "parttime_change": -15.9
+    },
+    {
+      "date": "1992-12-01",
+      "employment": 12721.9,
+      "fulltime": 10341.9,
+      "parttime": 2380.1,
+      "employment_change": 17.1,
+      "fulltime_change": -6.2,
+      "parttime_change": 23.5
+    },
+    {
+      "date": "1993-01-01",
+      "employment": 12755.0,
+      "fulltime": 10369.2,
+      "parttime": 2385.8,
+      "employment_change": 33.1,
+      "fulltime_change": 27.3,
+      "parttime_change": 5.7
+    },
+    {
+      "date": "1993-02-01",
+      "employment": 12763.2,
+      "fulltime": 10352.6,
+      "parttime": 2410.6,
+      "employment_change": 8.2,
+      "fulltime_change": -16.6,
+      "parttime_change": 24.8
+    },
+    {
+      "date": "1993-03-01",
+      "employment": 12780.7,
+      "fulltime": 10370.7,
+      "parttime": 2410.0,
+      "employment_change": 17.5,
+      "fulltime_change": 18.1,
+      "parttime_change": -0.6
+    },
+    {
+      "date": "1993-04-01",
+      "employment": 12748.8,
+      "fulltime": 10328.9,
+      "parttime": 2419.9,
+      "employment_change": -31.9,
+      "fulltime_change": -41.8,
+      "parttime_change": 9.9
+    },
+    {
+      "date": "1993-05-01",
+      "employment": 12755.9,
+      "fulltime": 10283.8,
+      "parttime": 2472.2,
+      "employment_change": 7.1,
+      "fulltime_change": -45.1,
+      "parttime_change": 52.3
+    },
+    {
+      "date": "1993-06-01",
+      "employment": 12780.0,
+      "fulltime": 10277.3,
+      "parttime": 2502.7,
+      "employment_change": 24.1,
+      "fulltime_change": -6.5,
+      "parttime_change": 30.5
+    },
+    {
+      "date": "1993-07-01",
+      "employment": 12789.6,
+      "fulltime": 10290.3,
+      "parttime": 2499.3,
+      "employment_change": 9.6,
+      "fulltime_change": 13.0,
+      "parttime_change": -3.4
+    },
+    {
+      "date": "1993-08-01",
+      "employment": 12808.1,
+      "fulltime": 10336.5,
+      "parttime": 2471.7,
+      "employment_change": 18.5,
+      "fulltime_change": 46.2,
+      "parttime_change": -27.6
+    },
+    {
+      "date": "1993-09-01",
+      "employment": 12840.5,
+      "fulltime": 10363.4,
+      "parttime": 2477.1,
+      "employment_change": 32.4,
+      "fulltime_change": 26.9,
+      "parttime_change": 5.4
+    },
+    {
+      "date": "1993-10-01",
+      "employment": 12825.3,
+      "fulltime": 10369.2,
+      "parttime": 2456.1,
+      "employment_change": -15.2,
+      "fulltime_change": 5.8,
+      "parttime_change": -21.0
+    },
+    {
+      "date": "1993-11-01",
+      "employment": 12873.9,
+      "fulltime": 10379.6,
+      "parttime": 2494.3,
+      "employment_change": 48.6,
+      "fulltime_change": 10.4,
+      "parttime_change": 38.2
+    },
+    {
+      "date": "1993-12-01",
+      "employment": 12848.4,
+      "fulltime": 10358.1,
+      "parttime": 2490.4,
+      "employment_change": -25.5,
+      "fulltime_change": -21.5,
+      "parttime_change": -3.9
+    },
+    {
+      "date": "1994-01-01",
+      "employment": 12856.4,
+      "fulltime": 10373.2,
+      "parttime": 2483.2,
+      "employment_change": 8.0,
+      "fulltime_change": 15.1,
+      "parttime_change": -7.2
+    },
+    {
+      "date": "1994-02-01",
+      "employment": 12889.5,
+      "fulltime": 10397.7,
+      "parttime": 2491.8,
+      "employment_change": 33.1,
+      "fulltime_change": 24.5,
+      "parttime_change": 8.6
+    },
+    {
+      "date": "1994-03-01",
+      "employment": 12928.6,
+      "fulltime": 10422.0,
+      "parttime": 2506.6,
+      "employment_change": 39.1,
+      "fulltime_change": 24.3,
+      "parttime_change": 14.8
+    },
+    {
+      "date": "1994-04-01",
+      "employment": 12940.7,
+      "fulltime": 10454.9,
+      "parttime": 2485.8,
+      "employment_change": 12.1,
+      "fulltime_change": 32.9,
+      "parttime_change": -20.8
+    },
+    {
+      "date": "1994-05-01",
+      "employment": 13012.4,
+      "fulltime": 10548.8,
+      "parttime": 2463.6,
+      "employment_change": 71.7,
+      "fulltime_change": 93.9,
+      "parttime_change": -22.2
+    },
+    {
+      "date": "1994-06-01",
+      "employment": 13041.5,
+      "fulltime": 10570.2,
+      "parttime": 2471.3,
+      "employment_change": 29.1,
+      "fulltime_change": 21.4,
+      "parttime_change": 7.7
+    },
+    {
+      "date": "1994-07-01",
+      "employment": 13098.5,
+      "fulltime": 10617.5,
+      "parttime": 2481.0,
+      "employment_change": 57.0,
+      "fulltime_change": 47.3,
+      "parttime_change": 9.7
+    },
+    {
+      "date": "1994-08-01",
+      "employment": 13115.2,
+      "fulltime": 10628.4,
+      "parttime": 2486.8,
+      "employment_change": 16.7,
+      "fulltime_change": 10.9,
+      "parttime_change": 5.8
+    },
+    {
+      "date": "1994-09-01",
+      "employment": 13176.9,
+      "fulltime": 10689.8,
+      "parttime": 2487.1,
+      "employment_change": 61.7,
+      "fulltime_change": 61.4,
+      "parttime_change": 0.3
+    },
+    {
+      "date": "1994-10-01",
+      "employment": 13168.8,
+      "fulltime": 10692.2,
+      "parttime": 2476.7,
+      "employment_change": -8.1,
+      "fulltime_change": 2.4,
+      "parttime_change": -10.4
+    },
+    {
+      "date": "1994-11-01",
+      "employment": 13259.2,
+      "fulltime": 10803.2,
+      "parttime": 2456.0,
+      "employment_change": 90.4,
+      "fulltime_change": 111.0,
+      "parttime_change": -20.7
+    },
+    {
+      "date": "1994-12-01",
+      "employment": 13245.8,
+      "fulltime": 10814.7,
+      "parttime": 2431.1,
+      "employment_change": -13.4,
+      "fulltime_change": 11.5,
+      "parttime_change": -24.9
+    },
+    {
+      "date": "1995-01-01",
+      "employment": 13269.5,
+      "fulltime": 10802.6,
+      "parttime": 2466.8,
+      "employment_change": 23.7,
+      "fulltime_change": -12.1,
+      "parttime_change": 35.7
+    },
+    {
+      "date": "1995-02-01",
+      "employment": 13262.3,
+      "fulltime": 10813.3,
+      "parttime": 2449.0,
+      "employment_change": -7.2,
+      "fulltime_change": 10.7,
+      "parttime_change": -17.8
+    },
+    {
+      "date": "1995-03-01",
+      "employment": 13290.5,
+      "fulltime": 10839.6,
+      "parttime": 2451.0,
+      "employment_change": 28.2,
+      "fulltime_change": 26.3,
+      "parttime_change": 2.0
+    },
+    {
+      "date": "1995-04-01",
+      "employment": 13268.9,
+      "fulltime": 10793.8,
+      "parttime": 2475.1,
+      "employment_change": -21.6,
+      "fulltime_change": -45.8,
+      "parttime_change": 24.1
+    },
+    {
+      "date": "1995-05-01",
+      "employment": 13265.8,
+      "fulltime": 10755.8,
+      "parttime": 2510.0,
+      "employment_change": -3.1,
+      "fulltime_change": -38.0,
+      "parttime_change": 34.9
+    },
+    {
+      "date": "1995-06-01",
+      "employment": 13278.2,
+      "fulltime": 10770.6,
+      "parttime": 2507.6,
+      "employment_change": 12.4,
+      "fulltime_change": 14.8,
+      "parttime_change": -2.4
+    },
+    {
+      "date": "1995-07-01",
+      "employment": 13280.6,
+      "fulltime": 10784.3,
+      "parttime": 2496.3,
+      "employment_change": 2.4,
+      "fulltime_change": 13.7,
+      "parttime_change": -11.3
+    },
+    {
+      "date": "1995-08-01",
+      "employment": 13297.8,
+      "fulltime": 10801.3,
+      "parttime": 2496.4,
+      "employment_change": 17.2,
+      "fulltime_change": 17.0,
+      "parttime_change": 0.1
+    },
+    {
+      "date": "1995-09-01",
+      "employment": 13331.2,
+      "fulltime": 10813.1,
+      "parttime": 2518.1,
+      "employment_change": 33.4,
+      "fulltime_change": 11.8,
+      "parttime_change": 21.7
+    },
+    {
+      "date": "1995-10-01",
+      "employment": 13347.0,
+      "fulltime": 10842.6,
+      "parttime": 2504.4,
+      "employment_change": 15.8,
+      "fulltime_change": 29.5,
+      "parttime_change": -13.7
+    },
+    {
+      "date": "1995-11-01",
+      "employment": 13315.0,
+      "fulltime": 10790.8,
+      "parttime": 2524.3,
+      "employment_change": -32.0,
+      "fulltime_change": -51.8,
+      "parttime_change": 19.9
+    },
+    {
+      "date": "1995-12-01",
+      "employment": 13356.8,
+      "fulltime": 10793.2,
+      "parttime": 2563.6,
+      "employment_change": 41.8,
+      "fulltime_change": 2.4,
+      "parttime_change": 39.3
+    },
+    {
+      "date": "1996-01-01",
+      "employment": 13374.5,
+      "fulltime": 10815.0,
+      "parttime": 2559.5,
+      "employment_change": 17.7,
+      "fulltime_change": 21.8,
+      "parttime_change": -4.1
+    },
+    {
+      "date": "1996-02-01",
+      "employment": 13399.4,
+      "fulltime": 10827.0,
+      "parttime": 2572.3,
+      "employment_change": 24.9,
+      "fulltime_change": 12.0,
+      "parttime_change": 12.8
+    },
+    {
+      "date": "1996-03-01",
+      "employment": 13377.2,
+      "fulltime": 10833.9,
+      "parttime": 2543.3,
+      "employment_change": -22.2,
+      "fulltime_change": 6.9,
+      "parttime_change": -29.0
+    },
+    {
+      "date": "1996-04-01",
+      "employment": 13404.1,
+      "fulltime": 10865.2,
+      "parttime": 2538.8,
+      "employment_change": 26.9,
+      "fulltime_change": 31.3,
+      "parttime_change": -4.5
+    },
+    {
+      "date": "1996-05-01",
+      "employment": 13425.6,
+      "fulltime": 10867.4,
+      "parttime": 2558.2,
+      "employment_change": 21.5,
+      "fulltime_change": 2.2,
+      "parttime_change": 19.4
+    },
+    {
+      "date": "1996-06-01",
+      "employment": 13412.9,
+      "fulltime": 10865.8,
+      "parttime": 2547.1,
+      "employment_change": -12.7,
+      "fulltime_change": -1.6,
+      "parttime_change": -11.1
+    },
+    {
+      "date": "1996-07-01",
+      "employment": 13440.4,
+      "fulltime": 10907.4,
+      "parttime": 2533.0,
+      "employment_change": 27.5,
+      "fulltime_change": 41.6,
+      "parttime_change": -14.1
+    },
+    {
+      "date": "1996-08-01",
+      "employment": 13456.6,
+      "fulltime": 10929.0,
+      "parttime": 2527.6,
+      "employment_change": 16.2,
+      "fulltime_change": 21.6,
+      "parttime_change": -5.4
+    },
+    {
+      "date": "1996-09-01",
+      "employment": 13414.4,
+      "fulltime": 10855.7,
+      "parttime": 2558.7,
+      "employment_change": -42.2,
+      "fulltime_change": -73.3,
+      "parttime_change": 31.1
+    },
+    {
+      "date": "1996-10-01",
+      "employment": 13412.8,
+      "fulltime": 10872.8,
+      "parttime": 2540.0,
+      "employment_change": -1.6,
+      "fulltime_change": 17.1,
+      "parttime_change": -18.7
+    },
+    {
+      "date": "1996-11-01",
+      "employment": 13441.5,
+      "fulltime": 10872.0,
+      "parttime": 2569.6,
+      "employment_change": 28.7,
+      "fulltime_change": -0.8,
+      "parttime_change": 29.6
+    },
+    {
+      "date": "1996-12-01",
+      "employment": 13465.7,
+      "fulltime": 10872.5,
+      "parttime": 2593.2,
+      "employment_change": 24.2,
+      "fulltime_change": 0.5,
+      "parttime_change": 23.6
+    },
+    {
+      "date": "1997-01-01",
+      "employment": 13535.9,
+      "fulltime": 10948.2,
+      "parttime": 2587.7,
+      "employment_change": 70.2,
+      "fulltime_change": 75.7,
+      "parttime_change": -5.5
+    },
+    {
+      "date": "1997-02-01",
+      "employment": 13538.1,
+      "fulltime": 10930.7,
+      "parttime": 2607.4,
+      "employment_change": 2.2,
+      "fulltime_change": -17.5,
+      "parttime_change": 19.7
+    },
+    {
+      "date": "1997-03-01",
+      "employment": 13569.8,
+      "fulltime": 10937.0,
+      "parttime": 2632.8,
+      "employment_change": 31.7,
+      "fulltime_change": 6.3,
+      "parttime_change": 25.4
+    },
+    {
+      "date": "1997-04-01",
+      "employment": 13571.2,
+      "fulltime": 10959.9,
+      "parttime": 2611.3,
+      "employment_change": 1.4,
+      "fulltime_change": 22.9,
+      "parttime_change": -21.5
+    },
+    {
+      "date": "1997-05-01",
+      "employment": 13637.2,
+      "fulltime": 11028.4,
+      "parttime": 2608.8,
+      "employment_change": 66.0,
+      "fulltime_change": 68.5,
+      "parttime_change": -2.5
+    },
+    {
+      "date": "1997-06-01",
+      "employment": 13690.0,
+      "fulltime": 11133.3,
+      "parttime": 2556.6,
+      "employment_change": 52.8,
+      "fulltime_change": 104.9,
+      "parttime_change": -52.2
+    },
+    {
+      "date": "1997-07-01",
+      "employment": 13731.5,
+      "fulltime": 11080.3,
+      "parttime": 2651.2,
+      "employment_change": 41.5,
+      "fulltime_change": -53.0,
+      "parttime_change": 94.6
+    },
+    {
+      "date": "1997-08-01",
+      "employment": 13798.9,
+      "fulltime": 11124.6,
+      "parttime": 2674.3,
+      "employment_change": 67.4,
+      "fulltime_change": 44.3,
+      "parttime_change": 23.1
+    },
+    {
+      "date": "1997-09-01",
+      "employment": 13815.9,
+      "fulltime": 11221.0,
+      "parttime": 2595.0,
+      "employment_change": 17.0,
+      "fulltime_change": 96.4,
+      "parttime_change": -79.3
+    },
+    {
+      "date": "1997-10-01",
+      "employment": 13833.1,
+      "fulltime": 11206.3,
+      "parttime": 2626.8,
+      "employment_change": 17.2,
+      "fulltime_change": -14.7,
+      "parttime_change": 31.8
+    },
+    {
+      "date": "1997-11-01",
+      "employment": 13859.5,
+      "fulltime": 11233.6,
+      "parttime": 2625.9,
+      "employment_change": 26.4,
+      "fulltime_change": 27.3,
+      "parttime_change": -0.9
+    },
+    {
+      "date": "1997-12-01",
+      "employment": 13874.9,
+      "fulltime": 11295.6,
+      "parttime": 2579.2,
+      "employment_change": 15.4,
+      "fulltime_change": 62.0,
+      "parttime_change": -46.7
+    },
+    {
+      "date": "1998-01-01",
+      "employment": 13864.8,
+      "fulltime": 11286.2,
+      "parttime": 2578.7,
+      "employment_change": -10.1,
+      "fulltime_change": -9.4,
+      "parttime_change": -0.5
+    },
+    {
+      "date": "1998-02-01",
+      "employment": 13914.5,
+      "fulltime": 11327.7,
+      "parttime": 2586.8,
+      "employment_change": 49.7,
+      "fulltime_change": 41.5,
+      "parttime_change": 8.1
+    },
+    {
+      "date": "1998-03-01",
+      "employment": 13949.4,
+      "fulltime": 11328.6,
+      "parttime": 2620.8,
+      "employment_change": 34.9,
+      "fulltime_change": 0.9,
+      "parttime_change": 34.0
+    },
+    {
+      "date": "1998-04-01",
+      "employment": 13977.6,
+      "fulltime": 11322.4,
+      "parttime": 2655.2,
+      "employment_change": 28.2,
+      "fulltime_change": -6.2,
+      "parttime_change": 34.4
+    },
+    {
+      "date": "1998-05-01",
+      "employment": 13993.3,
+      "fulltime": 11366.9,
+      "parttime": 2626.4,
+      "employment_change": 15.7,
+      "fulltime_change": 44.5,
+      "parttime_change": -28.8
+    },
+    {
+      "date": "1998-06-01",
+      "employment": 14005.8,
+      "fulltime": 11383.5,
+      "parttime": 2622.3,
+      "employment_change": 12.5,
+      "fulltime_change": 16.6,
+      "parttime_change": -4.1
+    },
+    {
+      "date": "1998-07-01",
+      "employment": 14063.8,
+      "fulltime": 11392.9,
+      "parttime": 2670.9,
+      "employment_change": 58.0,
+      "fulltime_change": 9.4,
+      "parttime_change": 48.6
+    },
+    {
+      "date": "1998-08-01",
+      "employment": 14101.7,
+      "fulltime": 11441.7,
+      "parttime": 2660.0,
+      "employment_change": 37.9,
+      "fulltime_change": 48.8,
+      "parttime_change": -10.9
+    },
+    {
+      "date": "1998-09-01",
+      "employment": 14140.7,
+      "fulltime": 11473.4,
+      "parttime": 2667.3,
+      "employment_change": 39.0,
+      "fulltime_change": 31.7,
+      "parttime_change": 7.3
+    },
+    {
+      "date": "1998-10-01",
+      "employment": 14159.4,
+      "fulltime": 11508.7,
+      "parttime": 2650.7,
+      "employment_change": 18.7,
+      "fulltime_change": 35.3,
+      "parttime_change": -16.6
+    },
+    {
+      "date": "1998-11-01",
+      "employment": 14198.9,
+      "fulltime": 11524.9,
+      "parttime": 2674.1,
+      "employment_change": 39.5,
+      "fulltime_change": 16.2,
+      "parttime_change": 23.4
+    },
+    {
+      "date": "1998-12-01",
+      "employment": 14200.0,
+      "fulltime": 11498.9,
+      "parttime": 2701.1,
+      "employment_change": 1.1,
+      "fulltime_change": -26.0,
+      "parttime_change": 27.0
+    },
+    {
+      "date": "1999-01-01",
+      "employment": 14273.3,
+      "fulltime": 11592.2,
+      "parttime": 2681.2,
+      "employment_change": 73.3,
+      "fulltime_change": 93.3,
+      "parttime_change": -19.9
+    },
+    {
+      "date": "1999-02-01",
+      "employment": 14263.3,
+      "fulltime": 11612.2,
+      "parttime": 2651.0,
+      "employment_change": -10.0,
+      "fulltime_change": 20.0,
+      "parttime_change": -30.2
+    },
+    {
+      "date": "1999-03-01",
+      "employment": 14278.7,
+      "fulltime": 11643.7,
+      "parttime": 2635.0,
+      "employment_change": 15.4,
+      "fulltime_change": 31.5,
+      "parttime_change": -16.0
+    },
+    {
+      "date": "1999-04-01",
+      "employment": 14316.6,
+      "fulltime": 11693.4,
+      "parttime": 2623.2,
+      "employment_change": 37.9,
+      "fulltime_change": 49.7,
+      "parttime_change": -11.8
+    },
+    {
+      "date": "1999-05-01",
+      "employment": 14352.7,
+      "fulltime": 11731.6,
+      "parttime": 2621.1,
+      "employment_change": 36.1,
+      "fulltime_change": 38.2,
+      "parttime_change": -2.1
+    },
+    {
+      "date": "1999-06-01",
+      "employment": 14373.0,
+      "fulltime": 11721.4,
+      "parttime": 2651.5,
+      "employment_change": 20.3,
+      "fulltime_change": -10.2,
+      "parttime_change": 30.4
+    },
+    {
+      "date": "1999-07-01",
+      "employment": 14430.9,
+      "fulltime": 11754.3,
+      "parttime": 2676.5,
+      "employment_change": 57.9,
+      "fulltime_change": 32.9,
+      "parttime_change": 25.0
+    },
+    {
+      "date": "1999-08-01",
+      "employment": 14451.8,
+      "fulltime": 11769.0,
+      "parttime": 2682.8,
+      "employment_change": 20.9,
+      "fulltime_change": 14.7,
+      "parttime_change": 6.3
+    },
+    {
+      "date": "1999-09-01",
+      "employment": 14474.6,
+      "fulltime": 11816.2,
+      "parttime": 2658.4,
+      "employment_change": 22.8,
+      "fulltime_change": 47.2,
+      "parttime_change": -24.4
+    },
+    {
+      "date": "1999-10-01",
+      "employment": 14514.7,
+      "fulltime": 11864.4,
+      "parttime": 2650.2,
+      "employment_change": 40.1,
+      "fulltime_change": 48.2,
+      "parttime_change": -8.2
+    },
+    {
+      "date": "1999-11-01",
+      "employment": 14549.4,
+      "fulltime": 11923.4,
+      "parttime": 2626.0,
+      "employment_change": 34.7,
+      "fulltime_change": 59.0,
+      "parttime_change": -24.2
+    },
+    {
+      "date": "1999-12-01",
+      "employment": 14611.3,
+      "fulltime": 11978.4,
+      "parttime": 2632.9,
+      "employment_change": 61.9,
+      "fulltime_change": 55.0,
+      "parttime_change": 6.9
+    },
+    {
+      "date": "2000-01-01",
+      "employment": 14652.7,
+      "fulltime": 12006.9,
+      "parttime": 2645.9,
+      "employment_change": 41.4,
+      "fulltime_change": 28.5,
+      "parttime_change": 13.0
+    },
+    {
+      "date": "2000-02-01",
+      "employment": 14672.2,
+      "fulltime": 12027.3,
+      "parttime": 2645.0,
+      "employment_change": 19.5,
+      "fulltime_change": 20.4,
+      "parttime_change": -0.9
+    },
+    {
+      "date": "2000-03-01",
+      "employment": 14697.5,
+      "fulltime": 12061.5,
+      "parttime": 2636.0,
+      "employment_change": 25.3,
+      "fulltime_change": 34.2,
+      "parttime_change": -9.0
+    },
+    {
+      "date": "2000-04-01",
+      "employment": 14722.7,
+      "fulltime": 12034.4,
+      "parttime": 2688.2,
+      "employment_change": 25.2,
+      "fulltime_change": -27.1,
+      "parttime_change": 52.2
+    },
+    {
+      "date": "2000-05-01",
+      "employment": 14736.4,
+      "fulltime": 12076.6,
+      "parttime": 2659.8,
+      "employment_change": 13.7,
+      "fulltime_change": 42.2,
+      "parttime_change": -28.4
+    },
+    {
+      "date": "2000-06-01",
+      "employment": 14746.8,
+      "fulltime": 12074.9,
+      "parttime": 2671.9,
+      "employment_change": 10.4,
+      "fulltime_change": -1.7,
+      "parttime_change": 12.1
+    },
+    {
+      "date": "2000-07-01",
+      "employment": 14750.4,
+      "fulltime": 12079.5,
+      "parttime": 2670.9,
+      "employment_change": 3.6,
+      "fulltime_change": 4.6,
+      "parttime_change": -1.0
+    },
+    {
+      "date": "2000-08-01",
+      "employment": 14770.3,
+      "fulltime": 12082.3,
+      "parttime": 2688.0,
+      "employment_change": 19.9,
+      "fulltime_change": 2.8,
+      "parttime_change": 17.1
+    },
+    {
+      "date": "2000-09-01",
+      "employment": 14812.2,
+      "fulltime": 12081.8,
+      "parttime": 2730.4,
+      "employment_change": 41.9,
+      "fulltime_change": -0.5,
+      "parttime_change": 42.4
+    },
+    {
+      "date": "2000-10-01",
+      "employment": 14835.3,
+      "fulltime": 12138.8,
+      "parttime": 2696.5,
+      "employment_change": 23.1,
+      "fulltime_change": 57.0,
+      "parttime_change": -33.9
+    },
+    {
+      "date": "2000-11-01",
+      "employment": 14871.4,
+      "fulltime": 12203.6,
+      "parttime": 2667.8,
+      "employment_change": 36.1,
+      "fulltime_change": 64.8,
+      "parttime_change": -28.7
+    },
+    {
+      "date": "2000-12-01",
+      "employment": 14920.0,
+      "fulltime": 12219.9,
+      "parttime": 2700.1,
+      "employment_change": 48.6,
+      "fulltime_change": 16.3,
+      "parttime_change": 32.3
+    },
+    {
+      "date": "2001-01-01",
+      "employment": 14894.4,
+      "fulltime": 12196.3,
+      "parttime": 2698.0,
+      "employment_change": -25.6,
+      "fulltime_change": -23.6,
+      "parttime_change": -2.1
+    },
+    {
+      "date": "2001-02-01",
+      "employment": 14883.9,
+      "fulltime": 12202.3,
+      "parttime": 2681.5,
+      "employment_change": -10.5,
+      "fulltime_change": 6.0,
+      "parttime_change": -16.5
+    },
+    {
+      "date": "2001-03-01",
+      "employment": 14888.7,
+      "fulltime": 12202.6,
+      "parttime": 2686.1,
+      "employment_change": 4.8,
+      "fulltime_change": 0.3,
+      "parttime_change": 4.6
+    },
+    {
+      "date": "2001-04-01",
+      "employment": 14922.3,
+      "fulltime": 12221.1,
+      "parttime": 2701.2,
+      "employment_change": 33.6,
+      "fulltime_change": 18.5,
+      "parttime_change": 15.1
+    },
+    {
+      "date": "2001-05-01",
+      "employment": 14946.2,
+      "fulltime": 12219.5,
+      "parttime": 2726.7,
+      "employment_change": 23.9,
+      "fulltime_change": -1.6,
+      "parttime_change": 25.5
+    },
+    {
+      "date": "2001-06-01",
+      "employment": 14922.5,
+      "fulltime": 12218.3,
+      "parttime": 2704.2,
+      "employment_change": -23.7,
+      "fulltime_change": -1.2,
+      "parttime_change": -22.5
+    },
+    {
+      "date": "2001-07-01",
+      "employment": 14946.3,
+      "fulltime": 12187.2,
+      "parttime": 2759.1,
+      "employment_change": 23.8,
+      "fulltime_change": -31.1,
+      "parttime_change": 54.9
+    },
+    {
+      "date": "2001-08-01",
+      "employment": 14948.5,
+      "fulltime": 12262.6,
+      "parttime": 2685.9,
+      "employment_change": 2.2,
+      "fulltime_change": 75.4,
+      "parttime_change": -73.2
+    },
+    {
+      "date": "2001-09-01",
+      "employment": 14972.8,
+      "fulltime": 12273.0,
+      "parttime": 2699.8,
+      "employment_change": 24.3,
+      "fulltime_change": 10.4,
+      "parttime_change": 13.9
+    },
+    {
+      "date": "2001-10-01",
+      "employment": 14976.9,
+      "fulltime": 12274.0,
+      "parttime": 2702.9,
+      "employment_change": 4.1,
+      "fulltime_change": 1.0,
+      "parttime_change": 3.1
+    },
+    {
+      "date": "2001-11-01",
+      "employment": 14990.3,
+      "fulltime": 12240.7,
+      "parttime": 2749.6,
+      "employment_change": 13.4,
+      "fulltime_change": -33.3,
+      "parttime_change": 46.7
+    },
+    {
+      "date": "2001-12-01",
+      "employment": 14965.6,
+      "fulltime": 12199.9,
+      "parttime": 2765.7,
+      "employment_change": -24.7,
+      "fulltime_change": -40.8,
+      "parttime_change": 16.1
+    },
+    {
+      "date": "2002-01-01",
+      "employment": 15019.4,
+      "fulltime": 12223.1,
+      "parttime": 2796.3,
+      "employment_change": 53.8,
+      "fulltime_change": 23.2,
+      "parttime_change": 30.6
+    },
+    {
+      "date": "2002-02-01",
+      "employment": 15042.3,
+      "fulltime": 12262.0,
+      "parttime": 2780.3,
+      "employment_change": 22.9,
+      "fulltime_change": 38.9,
+      "parttime_change": -16.0
+    },
+    {
+      "date": "2002-03-01",
+      "employment": 15120.5,
+      "fulltime": 12308.2,
+      "parttime": 2812.4,
+      "employment_change": 78.2,
+      "fulltime_change": 46.2,
+      "parttime_change": 32.1
+    },
+    {
+      "date": "2002-04-01",
+      "employment": 15167.8,
+      "fulltime": 12331.3,
+      "parttime": 2836.5,
+      "employment_change": 47.3,
+      "fulltime_change": 23.1,
+      "parttime_change": 24.1
+    },
+    {
+      "date": "2002-05-01",
+      "employment": 15222.2,
+      "fulltime": 12382.3,
+      "parttime": 2839.9,
+      "employment_change": 54.4,
+      "fulltime_change": 51.0,
+      "parttime_change": 3.4
+    },
+    {
+      "date": "2002-06-01",
+      "employment": 15284.3,
+      "fulltime": 12438.4,
+      "parttime": 2845.9,
+      "employment_change": 62.1,
+      "fulltime_change": 56.1,
+      "parttime_change": 6.0
+    },
+    {
+      "date": "2002-07-01",
+      "employment": 15324.2,
+      "fulltime": 12491.8,
+      "parttime": 2832.4,
+      "employment_change": 39.9,
+      "fulltime_change": 53.4,
+      "parttime_change": -13.5
+    },
+    {
+      "date": "2002-08-01",
+      "employment": 15406.9,
+      "fulltime": 12516.6,
+      "parttime": 2890.3,
+      "employment_change": 82.7,
+      "fulltime_change": 24.8,
+      "parttime_change": 57.9
+    },
+    {
+      "date": "2002-09-01",
+      "employment": 15405.2,
+      "fulltime": 12504.8,
+      "parttime": 2900.4,
+      "employment_change": -1.7,
+      "fulltime_change": -11.8,
+      "parttime_change": 10.1
+    },
+    {
+      "date": "2002-10-01",
+      "employment": 15419.1,
+      "fulltime": 12471.6,
+      "parttime": 2947.5,
+      "employment_change": 13.9,
+      "fulltime_change": -33.2,
+      "parttime_change": 47.1
+    },
+    {
+      "date": "2002-11-01",
+      "employment": 15467.2,
+      "fulltime": 12537.9,
+      "parttime": 2929.3,
+      "employment_change": 48.1,
+      "fulltime_change": 66.3,
+      "parttime_change": -18.2
+    },
+    {
+      "date": "2002-12-01",
+      "employment": 15524.7,
+      "fulltime": 12576.1,
+      "parttime": 2948.6,
+      "employment_change": 57.5,
+      "fulltime_change": 38.2,
+      "parttime_change": 19.3
+    },
+    {
+      "date": "2003-01-01",
+      "employment": 15544.2,
+      "fulltime": 12600.9,
+      "parttime": 2943.3,
+      "employment_change": 19.5,
+      "fulltime_change": 24.8,
+      "parttime_change": -5.3
+    },
+    {
+      "date": "2003-02-01",
+      "employment": 15601.6,
+      "fulltime": 12633.2,
+      "parttime": 2968.4,
+      "employment_change": 57.4,
+      "fulltime_change": 32.3,
+      "parttime_change": 25.1
+    },
+    {
+      "date": "2003-03-01",
+      "employment": 15609.7,
+      "fulltime": 12655.6,
+      "parttime": 2954.0,
+      "employment_change": 8.1,
+      "fulltime_change": 22.4,
+      "parttime_change": -14.4
+    },
+    {
+      "date": "2003-04-01",
+      "employment": 15593.2,
+      "fulltime": 12661.8,
+      "parttime": 2931.4,
+      "employment_change": -16.5,
+      "fulltime_change": 6.2,
+      "parttime_change": -22.6
+    },
+    {
+      "date": "2003-05-01",
+      "employment": 15574.8,
+      "fulltime": 12646.7,
+      "parttime": 2928.0,
+      "employment_change": -18.4,
+      "fulltime_change": -15.1,
+      "parttime_change": -3.4
+    },
+    {
+      "date": "2003-06-01",
+      "employment": 15627.1,
+      "fulltime": 12649.6,
+      "parttime": 2977.5,
+      "employment_change": 52.3,
+      "fulltime_change": 2.9,
+      "parttime_change": 49.5
+    },
+    {
+      "date": "2003-07-01",
+      "employment": 15648.4,
+      "fulltime": 12696.1,
+      "parttime": 2952.3,
+      "employment_change": 21.3,
+      "fulltime_change": 46.5,
+      "parttime_change": -25.2
+    },
+    {
+      "date": "2003-08-01",
+      "employment": 15638.9,
+      "fulltime": 12653.6,
+      "parttime": 2985.3,
+      "employment_change": -9.5,
+      "fulltime_change": -42.5,
+      "parttime_change": 33.0
+    },
+    {
+      "date": "2003-09-01",
+      "employment": 15674.7,
+      "fulltime": 12655.2,
+      "parttime": 3019.6,
+      "employment_change": 35.8,
+      "fulltime_change": 1.6,
+      "parttime_change": 34.3
+    },
+    {
+      "date": "2003-10-01",
+      "employment": 15729.5,
+      "fulltime": 12759.5,
+      "parttime": 2970.0,
+      "employment_change": 54.8,
+      "fulltime_change": 104.3,
+      "parttime_change": -49.6
+    },
+    {
+      "date": "2003-11-01",
+      "employment": 15778.5,
+      "fulltime": 12790.8,
+      "parttime": 2987.7,
+      "employment_change": 49.0,
+      "fulltime_change": 31.3,
+      "parttime_change": 17.7
+    },
+    {
+      "date": "2003-12-01",
+      "employment": 15821.1,
+      "fulltime": 12826.7,
+      "parttime": 2994.5,
+      "employment_change": 42.6,
+      "fulltime_change": 35.9,
+      "parttime_change": 6.8
+    },
+    {
+      "date": "2004-01-01",
+      "employment": 15819.7,
+      "fulltime": 12864.0,
+      "parttime": 2955.7,
+      "employment_change": -1.4,
+      "fulltime_change": 37.3,
+      "parttime_change": -38.8
+    },
+    {
+      "date": "2004-02-01",
+      "employment": 15826.9,
+      "fulltime": 12890.3,
+      "parttime": 2936.7,
+      "employment_change": 7.2,
+      "fulltime_change": 26.3,
+      "parttime_change": -19.0
+    },
+    {
+      "date": "2004-03-01",
+      "employment": 15836.3,
+      "fulltime": 12928.0,
+      "parttime": 2908.3,
+      "employment_change": 9.4,
+      "fulltime_change": 37.7,
+      "parttime_change": -28.4
+    },
+    {
+      "date": "2004-04-01",
+      "employment": 15882.7,
+      "fulltime": 12967.4,
+      "parttime": 2915.3,
+      "employment_change": 46.4,
+      "fulltime_change": 39.4,
+      "parttime_change": 7.0
+    },
+    {
+      "date": "2004-05-01",
+      "employment": 15900.9,
+      "fulltime": 12964.3,
+      "parttime": 2936.7,
+      "employment_change": 18.2,
+      "fulltime_change": -3.1,
+      "parttime_change": 21.4
+    },
+    {
+      "date": "2004-06-01",
+      "employment": 15923.9,
+      "fulltime": 12985.8,
+      "parttime": 2938.2,
+      "employment_change": 23.0,
+      "fulltime_change": 21.5,
+      "parttime_change": 1.5
+    },
+    {
+      "date": "2004-07-01",
+      "employment": 15937.6,
+      "fulltime": 12958.2,
+      "parttime": 2979.4,
+      "employment_change": 13.7,
+      "fulltime_change": -27.6,
+      "parttime_change": 41.2
+    },
+    {
+      "date": "2004-08-01",
+      "employment": 15945.4,
+      "fulltime": 12978.8,
+      "parttime": 2966.6,
+      "employment_change": 7.8,
+      "fulltime_change": 20.6,
+      "parttime_change": -12.8
+    },
+    {
+      "date": "2004-09-01",
+      "employment": 15978.9,
+      "fulltime": 13033.0,
+      "parttime": 2945.8,
+      "employment_change": 33.5,
+      "fulltime_change": 54.2,
+      "parttime_change": -20.8
+    },
+    {
+      "date": "2004-10-01",
+      "employment": 15989.6,
+      "fulltime": 13036.3,
+      "parttime": 2953.3,
+      "employment_change": 10.7,
+      "fulltime_change": 3.3,
+      "parttime_change": 7.5
+    },
+    {
+      "date": "2004-11-01",
+      "employment": 16008.3,
+      "fulltime": 13026.9,
+      "parttime": 2981.4,
+      "employment_change": 18.7,
+      "fulltime_change": -9.4,
+      "parttime_change": 28.1
+    },
+    {
+      "date": "2004-12-01",
+      "employment": 16022.8,
+      "fulltime": 13039.9,
+      "parttime": 2982.9,
+      "employment_change": 14.5,
+      "fulltime_change": 13.0,
+      "parttime_change": 1.5
+    },
+    {
+      "date": "2005-01-01",
+      "employment": 16034.0,
+      "fulltime": 13066.5,
+      "parttime": 2967.5,
+      "employment_change": 11.2,
+      "fulltime_change": 26.6,
+      "parttime_change": -15.4
+    },
+    {
+      "date": "2005-02-01",
+      "employment": 16047.1,
+      "fulltime": 13080.2,
+      "parttime": 2966.9,
+      "employment_change": 13.1,
+      "fulltime_change": 13.7,
+      "parttime_change": -0.6
+    },
+    {
+      "date": "2005-03-01",
+      "employment": 16046.5,
+      "fulltime": 13072.6,
+      "parttime": 2973.8,
+      "employment_change": -0.6,
+      "fulltime_change": -7.6,
+      "parttime_change": 6.9
+    },
+    {
+      "date": "2005-04-01",
+      "employment": 16072.3,
+      "fulltime": 13107.6,
+      "parttime": 2964.6,
+      "employment_change": 25.8,
+      "fulltime_change": 35.0,
+      "parttime_change": -9.2
+    },
+    {
+      "date": "2005-05-01",
+      "employment": 16076.7,
+      "fulltime": 13083.1,
+      "parttime": 2993.5,
+      "employment_change": 4.4,
+      "fulltime_change": -24.5,
+      "parttime_change": 28.9
+    },
+    {
+      "date": "2005-06-01",
+      "employment": 16101.8,
+      "fulltime": 13156.4,
+      "parttime": 2945.4,
+      "employment_change": 25.1,
+      "fulltime_change": 73.3,
+      "parttime_change": -48.1
+    },
+    {
+      "date": "2005-07-01",
+      "employment": 16142.2,
+      "fulltime": 13171.7,
+      "parttime": 2970.5,
+      "employment_change": 40.4,
+      "fulltime_change": 15.3,
+      "parttime_change": 25.1
+    },
+    {
+      "date": "2005-08-01",
+      "employment": 16186.6,
+      "fulltime": 13211.6,
+      "parttime": 2975.0,
+      "employment_change": 44.4,
+      "fulltime_change": 39.9,
+      "parttime_change": 4.5
+    },
+    {
+      "date": "2005-09-01",
+      "employment": 16172.2,
+      "fulltime": 13216.5,
+      "parttime": 2955.7,
+      "employment_change": -14.4,
+      "fulltime_change": 4.9,
+      "parttime_change": -19.3
+    },
+    {
+      "date": "2005-10-01",
+      "employment": 16211.7,
+      "fulltime": 13197.3,
+      "parttime": 3014.5,
+      "employment_change": 39.5,
+      "fulltime_change": -19.2,
+      "parttime_change": 58.8
+    },
+    {
+      "date": "2005-11-01",
+      "employment": 16241.2,
+      "fulltime": 13255.2,
+      "parttime": 2986.0,
+      "employment_change": 29.5,
+      "fulltime_change": 57.9,
+      "parttime_change": -28.5
+    },
+    {
+      "date": "2005-12-01",
+      "employment": 16232.3,
+      "fulltime": 13277.2,
+      "parttime": 2955.1,
+      "employment_change": -8.9,
+      "fulltime_change": 22.0,
+      "parttime_change": -30.9
+    },
+    {
+      "date": "2006-01-01",
+      "employment": 16261.0,
+      "fulltime": 13283.9,
+      "parttime": 2977.1,
+      "employment_change": 28.7,
+      "fulltime_change": 6.7,
+      "parttime_change": 22.0
+    },
+    {
+      "date": "2006-02-01",
+      "employment": 16292.2,
+      "fulltime": 13284.4,
+      "parttime": 3007.8,
+      "employment_change": 31.2,
+      "fulltime_change": 0.5,
+      "parttime_change": 30.7
+    },
+    {
+      "date": "2006-03-01",
+      "employment": 16347.3,
+      "fulltime": 13337.7,
+      "parttime": 3009.6,
+      "employment_change": 55.1,
+      "fulltime_change": 53.3,
+      "parttime_change": 1.8
+    },
+    {
+      "date": "2006-04-01",
+      "employment": 16383.5,
+      "fulltime": 13399.6,
+      "parttime": 2984.0,
+      "employment_change": 36.2,
+      "fulltime_change": 61.9,
+      "parttime_change": -25.6
+    },
+    {
+      "date": "2006-05-01",
+      "employment": 16450.4,
+      "fulltime": 13473.9,
+      "parttime": 2976.5,
+      "employment_change": 66.9,
+      "fulltime_change": 74.3,
+      "parttime_change": -7.5
+    },
+    {
+      "date": "2006-06-01",
+      "employment": 16432.5,
+      "fulltime": 13421.1,
+      "parttime": 3011.5,
+      "employment_change": -17.9,
+      "fulltime_change": -52.8,
+      "parttime_change": 35.0
+    },
+    {
+      "date": "2006-07-01",
+      "employment": 16440.4,
+      "fulltime": 13441.4,
+      "parttime": 2999.1,
+      "employment_change": 7.9,
+      "fulltime_change": 20.3,
+      "parttime_change": -12.4
+    },
+    {
+      "date": "2006-08-01",
+      "employment": 16435.7,
+      "fulltime": 13482.8,
+      "parttime": 2952.8,
+      "employment_change": -4.7,
+      "fulltime_change": 41.4,
+      "parttime_change": -46.3
+    },
+    {
+      "date": "2006-09-01",
+      "employment": 16468.0,
+      "fulltime": 13500.4,
+      "parttime": 2967.6,
+      "employment_change": 32.3,
+      "fulltime_change": 17.6,
+      "parttime_change": 14.8
+    },
+    {
+      "date": "2006-10-01",
+      "employment": 16487.5,
+      "fulltime": 13505.6,
+      "parttime": 2981.9,
+      "employment_change": 19.5,
+      "fulltime_change": 5.2,
+      "parttime_change": 14.3
+    },
+    {
+      "date": "2006-11-01",
+      "employment": 16487.5,
+      "fulltime": 13469.7,
+      "parttime": 3017.8,
+      "employment_change": 0.0,
+      "fulltime_change": -35.9,
+      "parttime_change": 35.9
+    },
+    {
+      "date": "2006-12-01",
+      "employment": 16549.6,
+      "fulltime": 13512.9,
+      "parttime": 3036.8,
+      "employment_change": 62.1,
+      "fulltime_change": 43.2,
+      "parttime_change": 19.0
+    },
+    {
+      "date": "2007-01-01",
+      "employment": 16615.0,
+      "fulltime": 13546.8,
+      "parttime": 3068.2,
+      "employment_change": 65.4,
+      "fulltime_change": 33.9,
+      "parttime_change": 31.4
+    },
+    {
+      "date": "2007-02-01",
+      "employment": 16636.4,
+      "fulltime": 13576.6,
+      "parttime": 3059.8,
+      "employment_change": 21.4,
+      "fulltime_change": 29.8,
+      "parttime_change": -8.4
+    },
+    {
+      "date": "2007-03-01",
+      "employment": 16664.8,
+      "fulltime": 13575.9,
+      "parttime": 3088.8,
+      "employment_change": 28.4,
+      "fulltime_change": -0.7,
+      "parttime_change": 29.0
+    },
+    {
+      "date": "2007-04-01",
+      "employment": 16658.6,
+      "fulltime": 13573.2,
+      "parttime": 3085.4,
+      "employment_change": -6.2,
+      "fulltime_change": -2.7,
+      "parttime_change": -3.4
+    },
+    {
+      "date": "2007-05-01",
+      "employment": 16682.1,
+      "fulltime": 13633.6,
+      "parttime": 3048.5,
+      "employment_change": 23.5,
+      "fulltime_change": 60.4,
+      "parttime_change": -36.9
+    },
+    {
+      "date": "2007-06-01",
+      "employment": 16728.2,
+      "fulltime": 13716.2,
+      "parttime": 3012.0,
+      "employment_change": 46.1,
+      "fulltime_change": 82.6,
+      "parttime_change": -36.5
+    },
+    {
+      "date": "2007-07-01",
+      "employment": 16796.2,
+      "fulltime": 13755.2,
+      "parttime": 3041.0,
+      "employment_change": 68.0,
+      "fulltime_change": 39.0,
+      "parttime_change": 29.0
+    },
+    {
+      "date": "2007-08-01",
+      "employment": 16817.5,
+      "fulltime": 13748.0,
+      "parttime": 3069.5,
+      "employment_change": 21.3,
+      "fulltime_change": -7.2,
+      "parttime_change": 28.5
+    },
+    {
+      "date": "2007-09-01",
+      "employment": 16836.2,
+      "fulltime": 13736.9,
+      "parttime": 3099.3,
+      "employment_change": 18.7,
+      "fulltime_change": -11.1,
+      "parttime_change": 29.8
+    },
+    {
+      "date": "2007-10-01",
+      "employment": 16883.7,
+      "fulltime": 13749.1,
+      "parttime": 3134.6,
+      "employment_change": 47.5,
+      "fulltime_change": 12.2,
+      "parttime_change": 35.3
+    },
+    {
+      "date": "2007-11-01",
+      "employment": 16904.8,
+      "fulltime": 13764.6,
+      "parttime": 3140.2,
+      "employment_change": 21.1,
+      "fulltime_change": 15.5,
+      "parttime_change": 5.6
+    },
+    {
+      "date": "2007-12-01",
+      "employment": 16907.1,
+      "fulltime": 13775.0,
+      "parttime": 3132.1,
+      "employment_change": 2.3,
+      "fulltime_change": 10.4,
+      "parttime_change": -8.1
+    },
+    {
+      "date": "2008-01-01",
+      "employment": 16932.2,
+      "fulltime": 13829.0,
+      "parttime": 3103.2,
+      "employment_change": 25.1,
+      "fulltime_change": 54.0,
+      "parttime_change": -28.9
+    },
+    {
+      "date": "2008-02-01",
+      "employment": 16967.5,
+      "fulltime": 13844.8,
+      "parttime": 3122.7,
+      "employment_change": 35.3,
+      "fulltime_change": 15.8,
+      "parttime_change": 19.5
+    },
+    {
+      "date": "2008-03-01",
+      "employment": 16972.1,
+      "fulltime": 13834.6,
+      "parttime": 3137.5,
+      "employment_change": 4.6,
+      "fulltime_change": -10.2,
+      "parttime_change": 14.8
+    },
+    {
+      "date": "2008-04-01",
+      "employment": 16971.8,
+      "fulltime": 13846.5,
+      "parttime": 3125.4,
+      "employment_change": -0.3,
+      "fulltime_change": 11.9,
+      "parttime_change": -12.1
+    },
+    {
+      "date": "2008-05-01",
+      "employment": 16986.8,
+      "fulltime": 13846.4,
+      "parttime": 3140.4,
+      "employment_change": 15.0,
+      "fulltime_change": -0.1,
+      "parttime_change": 15.0
+    },
+    {
+      "date": "2008-06-01",
+      "employment": 16996.2,
+      "fulltime": 13833.7,
+      "parttime": 3162.5,
+      "employment_change": 9.4,
+      "fulltime_change": -12.7,
+      "parttime_change": 22.1
+    },
+    {
+      "date": "2008-07-01",
+      "employment": 16980.9,
+      "fulltime": 13829.3,
+      "parttime": 3151.6,
+      "employment_change": -15.3,
+      "fulltime_change": -4.4,
+      "parttime_change": -10.9
+    },
+    {
+      "date": "2008-08-01",
+      "employment": 17003.3,
+      "fulltime": 13855.0,
+      "parttime": 3148.3,
+      "employment_change": 22.4,
+      "fulltime_change": 25.7,
+      "parttime_change": -3.3
+    },
+    {
+      "date": "2008-09-01",
+      "employment": 17025.4,
+      "fulltime": 13784.7,
+      "parttime": 3240.8,
+      "employment_change": 22.1,
+      "fulltime_change": -70.3,
+      "parttime_change": 92.5
+    },
+    {
+      "date": "2008-10-01",
+      "employment": 17070.5,
+      "fulltime": 13822.7,
+      "parttime": 3247.8,
+      "employment_change": 45.1,
+      "fulltime_change": 38.0,
+      "parttime_change": 7.0
+    },
+    {
+      "date": "2008-11-01",
+      "employment": 16982.7,
+      "fulltime": 13789.8,
+      "parttime": 3192.9,
+      "employment_change": -87.8,
+      "fulltime_change": -32.9,
+      "parttime_change": -54.9
+    },
+    {
+      "date": "2008-12-01",
+      "employment": 16972.3,
+      "fulltime": 13756.9,
+      "parttime": 3215.4,
+      "employment_change": -10.4,
+      "fulltime_change": -32.9,
+      "parttime_change": 22.5
+    },
+    {
+      "date": "2009-01-01",
+      "employment": 16824.7,
+      "fulltime": 13636.2,
+      "parttime": 3188.5,
+      "employment_change": -147.6,
+      "fulltime_change": -120.7,
+      "parttime_change": -26.9
+    },
+    {
+      "date": "2009-02-01",
+      "employment": 16782.4,
+      "fulltime": 13547.0,
+      "parttime": 3235.3,
+      "employment_change": -42.3,
+      "fulltime_change": -89.2,
+      "parttime_change": 46.8
+    },
+    {
+      "date": "2009-03-01",
+      "employment": 16756.4,
+      "fulltime": 13498.7,
+      "parttime": 3257.6,
+      "employment_change": -26.0,
+      "fulltime_change": -48.3,
+      "parttime_change": 22.3
+    },
+    {
+      "date": "2009-04-01",
+      "employment": 16730.8,
+      "fulltime": 13466.9,
+      "parttime": 3263.9,
+      "employment_change": -25.6,
+      "fulltime_change": -31.8,
+      "parttime_change": 6.3
+    },
+    {
+      "date": "2009-05-01",
+      "employment": 16740.7,
+      "fulltime": 13450.5,
+      "parttime": 3290.2,
+      "employment_change": 9.9,
+      "fulltime_change": -16.4,
+      "parttime_change": 26.3
+    },
+    {
+      "date": "2009-06-01",
+      "employment": 16712.7,
+      "fulltime": 13396.5,
+      "parttime": 3316.1,
+      "employment_change": -28.0,
+      "fulltime_change": -54.0,
+      "parttime_change": 25.9
+    },
+    {
+      "date": "2009-07-01",
+      "employment": 16702.8,
+      "fulltime": 13443.4,
+      "parttime": 3259.5,
+      "employment_change": -9.9,
+      "fulltime_change": 46.9,
+      "parttime_change": -56.6
+    },
+    {
+      "date": "2009-08-01",
+      "employment": 16702.7,
+      "fulltime": 13398.2,
+      "parttime": 3304.6,
+      "employment_change": -0.1,
+      "fulltime_change": -45.2,
+      "parttime_change": 45.1
+    },
+    {
+      "date": "2009-09-01",
+      "employment": 16743.8,
+      "fulltime": 13472.2,
+      "parttime": 3271.6,
+      "employment_change": 41.1,
+      "fulltime_change": 74.0,
+      "parttime_change": -33.0
+    },
+    {
+      "date": "2009-10-01",
+      "employment": 16753.3,
+      "fulltime": 13527.3,
+      "parttime": 3225.9,
+      "employment_change": 9.5,
+      "fulltime_change": 55.1,
+      "parttime_change": -45.7
+    },
+    {
+      "date": "2009-11-01",
+      "employment": 16824.7,
+      "fulltime": 13571.2,
+      "parttime": 3253.5,
+      "employment_change": 71.4,
+      "fulltime_change": 43.9,
+      "parttime_change": 27.6
+    },
+    {
+      "date": "2009-12-01",
+      "employment": 16797.4,
+      "fulltime": 13541.5,
+      "parttime": 3255.9,
+      "employment_change": -27.3,
+      "fulltime_change": -29.7,
+      "parttime_change": 2.4
+    },
+    {
+      "date": "2010-01-01",
+      "employment": 16825.0,
+      "fulltime": 13576.0,
+      "parttime": 3248.9,
+      "employment_change": 27.6,
+      "fulltime_change": 34.5,
+      "parttime_change": -7.0
+    },
+    {
+      "date": "2010-02-01",
+      "employment": 16818.0,
+      "fulltime": 13600.1,
+      "parttime": 3217.9,
+      "employment_change": -7.0,
+      "fulltime_change": 24.1,
+      "parttime_change": -31.0
+    },
+    {
+      "date": "2010-03-01",
+      "employment": 16861.7,
+      "fulltime": 13606.2,
+      "parttime": 3255.5,
+      "employment_change": 43.7,
+      "fulltime_change": 6.1,
+      "parttime_change": 37.6
+    },
+    {
+      "date": "2010-04-01",
+      "employment": 16928.5,
+      "fulltime": 13599.9,
+      "parttime": 3328.6,
+      "employment_change": 66.8,
+      "fulltime_change": -6.3,
+      "parttime_change": 73.1
+    },
+    {
+      "date": "2010-05-01",
+      "employment": 16946.8,
+      "fulltime": 13662.6,
+      "parttime": 3284.2,
+      "employment_change": 18.3,
+      "fulltime_change": 62.7,
+      "parttime_change": -44.4
+    },
+    {
+      "date": "2010-06-01",
+      "employment": 17024.6,
+      "fulltime": 13701.1,
+      "parttime": 3323.5,
+      "employment_change": 77.8,
+      "fulltime_change": 38.5,
+      "parttime_change": 39.3
+    },
+    {
+      "date": "2010-07-01",
+      "employment": 17036.5,
+      "fulltime": 13596.8,
+      "parttime": 3439.7,
+      "employment_change": 11.9,
+      "fulltime_change": -104.3,
+      "parttime_change": 116.2
+    },
+    {
+      "date": "2010-08-01",
+      "employment": 17062.1,
+      "fulltime": 13668.8,
+      "parttime": 3393.3,
+      "employment_change": 25.6,
+      "fulltime_change": 72.0,
+      "parttime_change": -46.4
+    },
+    {
+      "date": "2010-09-01",
+      "employment": 17058.4,
+      "fulltime": 13684.4,
+      "parttime": 3374.1,
+      "employment_change": -3.7,
+      "fulltime_change": 15.6,
+      "parttime_change": -19.2
+    },
+    {
+      "date": "2010-10-01",
+      "employment": 17044.3,
+      "fulltime": 13696.3,
+      "parttime": 3348.0,
+      "employment_change": -14.1,
+      "fulltime_change": 11.9,
+      "parttime_change": -26.1
+    },
+    {
+      "date": "2010-11-01",
+      "employment": 17089.4,
+      "fulltime": 13723.6,
+      "parttime": 3365.9,
+      "employment_change": 45.1,
+      "fulltime_change": 27.3,
+      "parttime_change": 17.9
+    },
+    {
+      "date": "2010-12-01",
+      "employment": 17117.4,
+      "fulltime": 13779.1,
+      "parttime": 3338.2,
+      "employment_change": 28.0,
+      "fulltime_change": 55.5,
+      "parttime_change": -27.7
+    },
+    {
+      "date": "2011-01-01",
+      "employment": 17187.2,
+      "fulltime": 13796.4,
+      "parttime": 3390.8,
+      "employment_change": 69.8,
+      "fulltime_change": 17.3,
+      "parttime_change": 52.6
+    },
+    {
+      "date": "2011-02-01",
+      "employment": 17174.8,
+      "fulltime": 13774.4,
+      "parttime": 3400.4,
+      "employment_change": -12.4,
+      "fulltime_change": -22.0,
+      "parttime_change": 9.6
+    },
+    {
+      "date": "2011-03-01",
+      "employment": 17173.7,
+      "fulltime": 13845.0,
+      "parttime": 3328.7,
+      "employment_change": -1.1,
+      "fulltime_change": 70.6,
+      "parttime_change": -71.7
+    },
+    {
+      "date": "2011-04-01",
+      "employment": 17222.1,
+      "fulltime": 13896.7,
+      "parttime": 3325.4,
+      "employment_change": 48.4,
+      "fulltime_change": 51.7,
+      "parttime_change": -3.3
+    },
+    {
+      "date": "2011-05-01",
+      "employment": 17187.4,
+      "fulltime": 13835.1,
+      "parttime": 3352.4,
+      "employment_change": -34.7,
+      "fulltime_change": -61.6,
+      "parttime_change": 27.0
+    },
+    {
+      "date": "2011-06-01",
+      "employment": 17218.8,
+      "fulltime": 13836.3,
+      "parttime": 3382.5,
+      "employment_change": 31.4,
+      "fulltime_change": 1.2,
+      "parttime_change": 30.1
+    },
+    {
+      "date": "2011-07-01",
+      "employment": 17256.4,
+      "fulltime": 13911.9,
+      "parttime": 3344.4,
+      "employment_change": 37.6,
+      "fulltime_change": 75.6,
+      "parttime_change": -38.1
+    },
+    {
+      "date": "2011-08-01",
+      "employment": 17269.4,
+      "fulltime": 13934.0,
+      "parttime": 3335.4,
+      "employment_change": 13.0,
+      "fulltime_change": 22.1,
+      "parttime_change": -9.0
+    },
+    {
+      "date": "2011-09-01",
+      "employment": 17272.0,
+      "fulltime": 13941.3,
+      "parttime": 3330.7,
+      "employment_change": 2.6,
+      "fulltime_change": 7.3,
+      "parttime_change": -4.7
+    },
+    {
+      "date": "2011-10-01",
+      "employment": 17258.0,
+      "fulltime": 13923.3,
+      "parttime": 3334.7,
+      "employment_change": -14.0,
+      "fulltime_change": -18.0,
+      "parttime_change": 4.0
+    },
+    {
+      "date": "2011-11-01",
+      "employment": 17241.4,
+      "fulltime": 13912.5,
+      "parttime": 3328.8,
+      "employment_change": -16.6,
+      "fulltime_change": -10.8,
+      "parttime_change": -5.9
+    },
+    {
+      "date": "2011-12-01",
+      "employment": 17258.2,
+      "fulltime": 13954.2,
+      "parttime": 3304.0,
+      "employment_change": 16.8,
+      "fulltime_change": 41.7,
+      "parttime_change": -24.8
+    },
+    {
+      "date": "2012-01-01",
+      "employment": 17270.1,
+      "fulltime": 13941.8,
+      "parttime": 3328.3,
+      "employment_change": 11.9,
+      "fulltime_change": -12.4,
+      "parttime_change": 24.3
+    },
+    {
+      "date": "2012-02-01",
+      "employment": 17245.0,
+      "fulltime": 13924.5,
+      "parttime": 3320.6,
+      "employment_change": -25.1,
+      "fulltime_change": -17.3,
+      "parttime_change": -7.7
+    },
+    {
+      "date": "2012-03-01",
+      "employment": 17338.6,
+      "fulltime": 14011.3,
+      "parttime": 3327.4,
+      "employment_change": 93.6,
+      "fulltime_change": 86.8,
+      "parttime_change": 6.8
+    },
+    {
+      "date": "2012-04-01",
+      "employment": 17416.2,
+      "fulltime": 14043.9,
+      "parttime": 3372.3,
+      "employment_change": 77.6,
+      "fulltime_change": 32.6,
+      "parttime_change": 44.9
+    },
+    {
+      "date": "2012-05-01",
+      "employment": 17412.2,
+      "fulltime": 14057.6,
+      "parttime": 3354.6,
+      "employment_change": -4.0,
+      "fulltime_change": 13.7,
+      "parttime_change": -17.7
+    },
+    {
+      "date": "2012-06-01",
+      "employment": 17414.7,
+      "fulltime": 14085.5,
+      "parttime": 3329.2,
+      "employment_change": 2.5,
+      "fulltime_change": 27.9,
+      "parttime_change": -25.4
+    },
+    {
+      "date": "2012-07-01",
+      "employment": 17439.8,
+      "fulltime": 14130.0,
+      "parttime": 3309.8,
+      "employment_change": 25.1,
+      "fulltime_change": 44.5,
+      "parttime_change": -19.4
+    },
+    {
+      "date": "2012-08-01",
+      "employment": 17486.0,
+      "fulltime": 14168.5,
+      "parttime": 3317.5,
+      "employment_change": 46.2,
+      "fulltime_change": 38.5,
+      "parttime_change": 7.7
+    },
+    {
+      "date": "2012-09-01",
+      "employment": 17534.5,
+      "fulltime": 14220.7,
+      "parttime": 3313.8,
+      "employment_change": 48.5,
+      "fulltime_change": 52.2,
+      "parttime_change": -3.7
+    },
+    {
+      "date": "2012-10-01",
+      "employment": 17543.2,
+      "fulltime": 14247.4,
+      "parttime": 3295.9,
+      "employment_change": 8.7,
+      "fulltime_change": 26.7,
+      "parttime_change": -17.9
+    },
+    {
+      "date": "2012-11-01",
+      "employment": 17563.8,
+      "fulltime": 14257.3,
+      "parttime": 3306.5,
+      "employment_change": 20.6,
+      "fulltime_change": 9.9,
+      "parttime_change": 10.6
+    },
+    {
+      "date": "2012-12-01",
+      "employment": 17609.5,
+      "fulltime": 14271.6,
+      "parttime": 3338.0,
+      "employment_change": 45.7,
+      "fulltime_change": 14.3,
+      "parttime_change": 31.5
+    },
+    {
+      "date": "2013-01-01",
+      "employment": 17600.7,
+      "fulltime": 14220.6,
+      "parttime": 3380.0,
+      "employment_change": -8.8,
+      "fulltime_change": -51.0,
+      "parttime_change": 42.0
+    },
+    {
+      "date": "2013-02-01",
+      "employment": 17676.1,
+      "fulltime": 14276.9,
+      "parttime": 3399.2,
+      "employment_change": 75.4,
+      "fulltime_change": 56.3,
+      "parttime_change": 19.2
+    },
+    {
+      "date": "2013-03-01",
+      "employment": 17610.4,
+      "fulltime": 14229.6,
+      "parttime": 3380.8,
+      "employment_change": -65.7,
+      "fulltime_change": -47.3,
+      "parttime_change": -18.4
+    },
+    {
+      "date": "2013-04-01",
+      "employment": 17641.3,
+      "fulltime": 14280.0,
+      "parttime": 3361.4,
+      "employment_change": 30.9,
+      "fulltime_change": 50.4,
+      "parttime_change": -19.4
+    },
+    {
+      "date": "2013-05-01",
+      "employment": 17692.5,
+      "fulltime": 14333.3,
+      "parttime": 3359.2,
+      "employment_change": 51.2,
+      "fulltime_change": 53.3,
+      "parttime_change": -2.2
+    },
+    {
+      "date": "2013-06-01",
+      "employment": 17682.1,
+      "fulltime": 14270.2,
+      "parttime": 3411.9,
+      "employment_change": -10.4,
+      "fulltime_change": -63.1,
+      "parttime_change": 52.7
+    },
+    {
+      "date": "2013-07-01",
+      "employment": 17650.1,
+      "fulltime": 14271.8,
+      "parttime": 3378.3,
+      "employment_change": -32.0,
+      "fulltime_change": 1.6,
+      "parttime_change": -33.6
+    },
+    {
+      "date": "2013-08-01",
+      "employment": 17677.9,
+      "fulltime": 14263.9,
+      "parttime": 3413.9,
+      "employment_change": 27.8,
+      "fulltime_change": -7.9,
+      "parttime_change": 35.6
+    },
+    {
+      "date": "2013-09-01",
+      "employment": 17659.6,
+      "fulltime": 14264.0,
+      "parttime": 3395.6,
+      "employment_change": -18.3,
+      "fulltime_change": 0.1,
+      "parttime_change": -18.3
+    },
+    {
+      "date": "2013-10-01",
+      "employment": 17664.4,
+      "fulltime": 14281.8,
+      "parttime": 3382.6,
+      "employment_change": 4.8,
+      "fulltime_change": 17.8,
+      "parttime_change": -13.0
+    },
+    {
+      "date": "2013-11-01",
+      "employment": 17691.3,
+      "fulltime": 14288.3,
+      "parttime": 3403.0,
+      "employment_change": 26.9,
+      "fulltime_change": 6.5,
+      "parttime_change": 20.4
+    },
+    {
+      "date": "2013-12-01",
+      "employment": 17668.9,
+      "fulltime": 14253.2,
+      "parttime": 3415.7,
+      "employment_change": -22.4,
+      "fulltime_change": -35.1,
+      "parttime_change": 12.7
+    },
+    {
+      "date": "2014-01-01",
+      "employment": 17666.4,
+      "fulltime": 14265.5,
+      "parttime": 3400.9,
+      "employment_change": -2.5,
+      "fulltime_change": 12.3,
+      "parttime_change": -14.8
+    },
+    {
+      "date": "2014-02-01",
+      "employment": 17662.7,
+      "fulltime": 14286.7,
+      "parttime": 3376.0,
+      "employment_change": -3.7,
+      "fulltime_change": 21.2,
+      "parttime_change": -24.9
+    },
+    {
+      "date": "2014-03-01",
+      "employment": 17699.4,
+      "fulltime": 14263.5,
+      "parttime": 3435.9,
+      "employment_change": 36.7,
+      "fulltime_change": -23.2,
+      "parttime_change": 59.9
+    },
+    {
+      "date": "2014-04-01",
+      "employment": 17691.2,
+      "fulltime": 14249.2,
+      "parttime": 3442.1,
+      "employment_change": -8.2,
+      "fulltime_change": -14.3,
+      "parttime_change": 6.2
+    },
+    {
+      "date": "2014-05-01",
+      "employment": 17687.7,
+      "fulltime": 14223.8,
+      "parttime": 3463.9,
+      "employment_change": -3.5,
+      "fulltime_change": -25.4,
+      "parttime_change": 21.8
+    },
+    {
+      "date": "2014-06-01",
+      "employment": 17720.5,
+      "fulltime": 14296.9,
+      "parttime": 3423.6,
+      "employment_change": 32.8,
+      "fulltime_change": 73.1,
+      "parttime_change": -40.3
+    },
+    {
+      "date": "2014-07-01",
+      "employment": 17771.9,
+      "fulltime": 14280.8,
+      "parttime": 3491.1,
+      "employment_change": 51.4,
+      "fulltime_change": -16.1,
+      "parttime_change": 67.5
+    },
+    {
+      "date": "2014-08-01",
+      "employment": 17723.7,
+      "fulltime": 14250.5,
+      "parttime": 3473.2,
+      "employment_change": -48.2,
+      "fulltime_change": -30.3,
+      "parttime_change": -17.9
+    },
+    {
+      "date": "2014-09-01",
+      "employment": 17756.0,
+      "fulltime": 14320.4,
+      "parttime": 3435.6,
+      "employment_change": 32.3,
+      "fulltime_change": 69.9,
+      "parttime_change": -37.6
+    },
+    {
+      "date": "2014-10-01",
+      "employment": 17782.2,
+      "fulltime": 14330.3,
+      "parttime": 3451.8,
+      "employment_change": 26.2,
+      "fulltime_change": 9.9,
+      "parttime_change": 16.2
+    },
+    {
+      "date": "2014-11-01",
+      "employment": 17784.5,
+      "fulltime": 14302.1,
+      "parttime": 3482.4,
+      "employment_change": 2.3,
+      "fulltime_change": -28.2,
+      "parttime_change": 30.6
+    },
+    {
+      "date": "2014-12-01",
+      "employment": 17821.7,
+      "fulltime": 14388.2,
+      "parttime": 3433.5,
+      "employment_change": 37.2,
+      "fulltime_change": 86.1,
+      "parttime_change": -48.9
+    },
+    {
+      "date": "2015-01-01",
+      "employment": 17813.1,
+      "fulltime": 14395.8,
+      "parttime": 3417.3,
+      "employment_change": -8.6,
+      "fulltime_change": 7.6,
+      "parttime_change": -16.2
+    },
+    {
+      "date": "2015-02-01",
+      "employment": 17827.2,
+      "fulltime": 14412.9,
+      "parttime": 3414.3,
+      "employment_change": 14.1,
+      "fulltime_change": 17.1,
+      "parttime_change": -3.0
+    },
+    {
+      "date": "2015-03-01",
+      "employment": 17854.1,
+      "fulltime": 14431.1,
+      "parttime": 3423.0,
+      "employment_change": 26.9,
+      "fulltime_change": 18.2,
+      "parttime_change": 8.7
+    },
+    {
+      "date": "2015-04-01",
+      "employment": 17819.4,
+      "fulltime": 14424.4,
+      "parttime": 3395.0,
+      "employment_change": -34.7,
+      "fulltime_change": -6.7,
+      "parttime_change": -28.0
+    },
+    {
+      "date": "2015-05-01",
+      "employment": 17843.7,
+      "fulltime": 14442.9,
+      "parttime": 3400.8,
+      "employment_change": 24.3,
+      "fulltime_change": 18.5,
+      "parttime_change": 5.8
+    },
+    {
+      "date": "2015-06-01",
+      "employment": 17836.7,
+      "fulltime": 14501.6,
+      "parttime": 3335.1,
+      "employment_change": -7.0,
+      "fulltime_change": 58.7,
+      "parttime_change": -65.7
+    },
+    {
+      "date": "2015-07-01",
+      "employment": 17863.3,
+      "fulltime": 14521.0,
+      "parttime": 3342.3,
+      "employment_change": 26.6,
+      "fulltime_change": 19.4,
+      "parttime_change": 7.2
+    },
+    {
+      "date": "2015-08-01",
+      "employment": 17889.0,
+      "fulltime": 14538.8,
+      "parttime": 3350.2,
+      "employment_change": 25.7,
+      "fulltime_change": 17.8,
+      "parttime_change": 7.9
+    },
+    {
+      "date": "2015-09-01",
+      "employment": 17890.2,
+      "fulltime": 14486.8,
+      "parttime": 3403.4,
+      "employment_change": 1.2,
+      "fulltime_change": -52.0,
+      "parttime_change": 53.2
+    },
+    {
+      "date": "2015-10-01",
+      "employment": 17899.1,
+      "fulltime": 14513.4,
+      "parttime": 3385.7,
+      "employment_change": 8.9,
+      "fulltime_change": 26.6,
+      "parttime_change": -17.7
+    },
+    {
+      "date": "2015-11-01",
+      "employment": 17872.6,
+      "fulltime": 14539.0,
+      "parttime": 3333.6,
+      "employment_change": -26.5,
+      "fulltime_change": 25.6,
+      "parttime_change": -52.1
+    },
+    {
+      "date": "2015-12-01",
+      "employment": 17867.4,
+      "fulltime": 14482.7,
+      "parttime": 3384.7,
+      "employment_change": -5.2,
+      "fulltime_change": -56.3,
+      "parttime_change": 51.1
+    },
+    {
+      "date": "2016-01-01",
+      "employment": 17871.6,
+      "fulltime": 14481.6,
+      "parttime": 3390.0,
+      "employment_change": 4.2,
+      "fulltime_change": -1.1,
+      "parttime_change": 5.3
+    },
+    {
+      "date": "2016-02-01",
+      "employment": 17889.0,
+      "fulltime": 14466.9,
+      "parttime": 3422.2,
+      "employment_change": 17.4,
+      "fulltime_change": -14.7,
+      "parttime_change": 32.2
+    },
+    {
+      "date": "2016-03-01",
+      "employment": 17892.8,
+      "fulltime": 14487.5,
+      "parttime": 3405.3,
+      "employment_change": 3.8,
+      "fulltime_change": 20.6,
+      "parttime_change": -16.9
+    },
+    {
+      "date": "2016-04-01",
+      "employment": 17919.7,
+      "fulltime": 14464.8,
+      "parttime": 3454.9,
+      "employment_change": 26.9,
+      "fulltime_change": -22.7,
+      "parttime_change": 49.6
+    },
+    {
+      "date": "2016-05-01",
+      "employment": 17947.4,
+      "fulltime": 14519.6,
+      "parttime": 3427.8,
+      "employment_change": 27.7,
+      "fulltime_change": 54.8,
+      "parttime_change": -27.1
+    },
+    {
+      "date": "2016-06-01",
+      "employment": 17954.5,
+      "fulltime": 14499.4,
+      "parttime": 3455.1,
+      "employment_change": 7.1,
+      "fulltime_change": -20.2,
+      "parttime_change": 27.3
+    },
+    {
+      "date": "2016-07-01",
+      "employment": 17943.2,
+      "fulltime": 14472.3,
+      "parttime": 3470.9,
+      "employment_change": -11.3,
+      "fulltime_change": -27.1,
+      "parttime_change": 15.8
+    },
+    {
+      "date": "2016-08-01",
+      "employment": 17994.2,
+      "fulltime": 14530.7,
+      "parttime": 3463.5,
+      "employment_change": 51.0,
+      "fulltime_change": 58.4,
+      "parttime_change": -7.4
+    },
+    {
+      "date": "2016-09-01",
+      "employment": 18032.5,
+      "fulltime": 14525.6,
+      "parttime": 3506.9,
+      "employment_change": 38.3,
+      "fulltime_change": -5.1,
+      "parttime_change": 43.4
+    },
+    {
+      "date": "2016-10-01",
+      "employment": 18051.2,
+      "fulltime": 14490.3,
+      "parttime": 3561.0,
+      "employment_change": 18.7,
+      "fulltime_change": -35.3,
+      "parttime_change": 54.1
+    },
+    {
+      "date": "2016-11-01",
+      "employment": 18076.0,
+      "fulltime": 14511.1,
+      "parttime": 3564.9,
+      "employment_change": 24.8,
+      "fulltime_change": 20.8,
+      "parttime_change": 3.9
+    },
+    {
+      "date": "2016-12-01",
+      "employment": 18104.0,
+      "fulltime": 14558.2,
+      "parttime": 3545.8,
+      "employment_change": 28.0,
+      "fulltime_change": 47.1,
+      "parttime_change": -19.1
+    },
+    {
+      "date": "2017-01-01",
+      "employment": 18172.5,
+      "fulltime": 14581.5,
+      "parttime": 3591.0,
+      "employment_change": 68.5,
+      "fulltime_change": 23.3,
+      "parttime_change": 45.2
+    },
+    {
+      "date": "2017-02-01",
+      "employment": 18216.6,
+      "fulltime": 14669.4,
+      "parttime": 3547.2,
+      "employment_change": 44.1,
+      "fulltime_change": 87.9,
+      "parttime_change": -43.8
+    },
+    {
+      "date": "2017-03-01",
+      "employment": 18241.5,
+      "fulltime": 14677.2,
+      "parttime": 3564.3,
+      "employment_change": 24.9,
+      "fulltime_change": 7.8,
+      "parttime_change": 17.1
+    },
+    {
+      "date": "2017-04-01",
+      "employment": 18271.6,
+      "fulltime": 14711.4,
+      "parttime": 3560.3,
+      "employment_change": 30.1,
+      "fulltime_change": 34.2,
+      "parttime_change": -4.0
+    },
+    {
+      "date": "2017-05-01",
+      "employment": 18312.9,
+      "fulltime": 14765.6,
+      "parttime": 3547.3,
+      "employment_change": 41.3,
+      "fulltime_change": 54.2,
+      "parttime_change": -13.0
+    },
+    {
+      "date": "2017-06-01",
+      "employment": 18371.4,
+      "fulltime": 14805.8,
+      "parttime": 3565.6,
+      "employment_change": 58.5,
+      "fulltime_change": 40.2,
+      "parttime_change": 18.3
+    },
+    {
+      "date": "2017-07-01",
+      "employment": 18416.9,
+      "fulltime": 14878.6,
+      "parttime": 3538.3,
+      "employment_change": 45.5,
+      "fulltime_change": 72.8,
+      "parttime_change": -27.3
+    },
+    {
+      "date": "2017-08-01",
+      "employment": 18436.4,
+      "fulltime": 14802.6,
+      "parttime": 3633.8,
+      "employment_change": 19.5,
+      "fulltime_change": -76.0,
+      "parttime_change": 95.5
+    },
+    {
+      "date": "2017-09-01",
+      "employment": 18442.5,
+      "fulltime": 14920.4,
+      "parttime": 3522.1,
+      "employment_change": 6.1,
+      "fulltime_change": 117.8,
+      "parttime_change": -111.7
+    },
+    {
+      "date": "2017-10-01",
+      "employment": 18475.1,
+      "fulltime": 14940.2,
+      "parttime": 3534.9,
+      "employment_change": 32.6,
+      "fulltime_change": 19.8,
+      "parttime_change": 12.8
+    },
+    {
+      "date": "2017-11-01",
+      "employment": 18550.5,
+      "fulltime": 14991.0,
+      "parttime": 3559.6,
+      "employment_change": 75.4,
+      "fulltime_change": 50.8,
+      "parttime_change": 24.7
+    },
+    {
+      "date": "2017-12-01",
+      "employment": 18619.7,
+      "fulltime": 15007.8,
+      "parttime": 3611.9,
+      "employment_change": 69.2,
+      "fulltime_change": 16.8,
+      "parttime_change": 52.3
+    },
+    {
+      "date": "2018-01-01",
+      "employment": 18576.8,
+      "fulltime": 15067.7,
+      "parttime": 3509.1,
+      "employment_change": -42.9,
+      "fulltime_change": 59.9,
+      "parttime_change": -102.8
+    },
+    {
+      "date": "2018-02-01",
+      "employment": 18570.3,
+      "fulltime": 15032.6,
+      "parttime": 3537.7,
+      "employment_change": -6.5,
+      "fulltime_change": -35.1,
+      "parttime_change": 28.6
+    },
+    {
+      "date": "2018-03-01",
+      "employment": 18630.1,
+      "fulltime": 15118.7,
+      "parttime": 3511.4,
+      "employment_change": 59.8,
+      "fulltime_change": 86.1,
+      "parttime_change": -26.3
+    },
+    {
+      "date": "2018-04-01",
+      "employment": 18613.0,
+      "fulltime": 15161.9,
+      "parttime": 3451.1,
+      "employment_change": -17.1,
+      "fulltime_change": 43.2,
+      "parttime_change": -60.3
+    },
+    {
+      "date": "2018-05-01",
+      "employment": 18621.7,
+      "fulltime": 15115.3,
+      "parttime": 3506.4,
+      "employment_change": 8.7,
+      "fulltime_change": -46.6,
+      "parttime_change": 55.3
+    },
+    {
+      "date": "2018-06-01",
+      "employment": 18677.6,
+      "fulltime": 15142.6,
+      "parttime": 3535.0,
+      "employment_change": 55.9,
+      "fulltime_change": 27.3,
+      "parttime_change": 28.6
+    },
+    {
+      "date": "2018-07-01",
+      "employment": 18763.9,
+      "fulltime": 15191.0,
+      "parttime": 3573.0,
+      "employment_change": 86.3,
+      "fulltime_change": 48.4,
+      "parttime_change": 38.0
+    },
+    {
+      "date": "2018-08-01",
+      "employment": 18704.7,
+      "fulltime": 15199.2,
+      "parttime": 3505.5,
+      "employment_change": -59.2,
+      "fulltime_change": 8.2,
+      "parttime_change": -67.5
+    },
+    {
+      "date": "2018-09-01",
+      "employment": 18797.5,
+      "fulltime": 15197.5,
+      "parttime": 3600.0,
+      "employment_change": 92.8,
+      "fulltime_change": -1.7,
+      "parttime_change": 94.5
+    },
+    {
+      "date": "2018-10-01",
+      "employment": 18814.9,
+      "fulltime": 15254.1,
+      "parttime": 3560.9,
+      "employment_change": 17.4,
+      "fulltime_change": 56.6,
+      "parttime_change": -39.1
+    },
+    {
+      "date": "2018-11-01",
+      "employment": 18869.4,
+      "fulltime": 15289.6,
+      "parttime": 3579.9,
+      "employment_change": 54.5,
+      "fulltime_change": 35.5,
+      "parttime_change": 19.0
+    },
+    {
+      "date": "2018-12-01",
+      "employment": 18892.8,
+      "fulltime": 15300.3,
+      "parttime": 3592.4,
+      "employment_change": 23.4,
+      "fulltime_change": 10.7,
+      "parttime_change": 12.5
+    },
+    {
+      "date": "2019-01-01",
+      "employment": 18920.5,
+      "fulltime": 15281.4,
+      "parttime": 3639.1,
+      "employment_change": 27.7,
+      "fulltime_change": -18.9,
+      "parttime_change": 46.7
+    },
+    {
+      "date": "2019-02-01",
+      "employment": 18965.7,
+      "fulltime": 15339.1,
+      "parttime": 3626.6,
+      "employment_change": 45.2,
+      "fulltime_change": 57.7,
+      "parttime_change": -12.5
+    },
+    {
+      "date": "2019-03-01",
+      "employment": 18932.9,
+      "fulltime": 15345.2,
+      "parttime": 3587.7,
+      "employment_change": -32.8,
+      "fulltime_change": 6.1,
+      "parttime_change": -38.9
+    },
+    {
+      "date": "2019-04-01",
+      "employment": 19053.7,
+      "fulltime": 15410.3,
+      "parttime": 3643.5,
+      "employment_change": 120.8,
+      "fulltime_change": 65.1,
+      "parttime_change": 55.8
+    },
+    {
+      "date": "2019-05-01",
+      "employment": 19067.3,
+      "fulltime": 15433.9,
+      "parttime": 3633.4,
+      "employment_change": 13.6,
+      "fulltime_change": 23.6,
+      "parttime_change": -10.1
+    },
+    {
+      "date": "2019-06-01",
+      "employment": 19078.6,
+      "fulltime": 15462.4,
+      "parttime": 3616.2,
+      "employment_change": 11.3,
+      "fulltime_change": 28.5,
+      "parttime_change": -17.2
+    },
+    {
+      "date": "2019-07-01",
+      "employment": 19072.4,
+      "fulltime": 15465.2,
+      "parttime": 3607.2,
+      "employment_change": -6.2,
+      "fulltime_change": 2.8,
+      "parttime_change": -9.0
+    },
+    {
+      "date": "2019-08-01",
+      "employment": 19133.9,
+      "fulltime": 15513.8,
+      "parttime": 3620.1,
+      "employment_change": 61.5,
+      "fulltime_change": 48.6,
+      "parttime_change": 12.9
+    },
+    {
+      "date": "2019-09-01",
+      "employment": 19142.8,
+      "fulltime": 15534.5,
+      "parttime": 3608.3,
+      "employment_change": 8.9,
+      "fulltime_change": 20.7,
+      "parttime_change": -11.8
+    },
+    {
+      "date": "2019-10-01",
+      "employment": 19130.9,
+      "fulltime": 15503.3,
+      "parttime": 3627.6,
+      "employment_change": -11.9,
+      "fulltime_change": -31.2,
+      "parttime_change": 19.3
+    },
+    {
+      "date": "2019-11-01",
+      "employment": 19096.8,
+      "fulltime": 15470.4,
+      "parttime": 3626.4,
+      "employment_change": -34.1,
+      "fulltime_change": -32.9,
+      "parttime_change": -1.2
+    },
+    {
+      "date": "2019-12-01",
+      "employment": 19186.5,
+      "fulltime": 15556.6,
+      "parttime": 3629.9,
+      "employment_change": 89.7,
+      "fulltime_change": 86.2,
+      "parttime_change": 3.5
+    },
+    {
+      "date": "2020-01-01",
+      "employment": 19204.7,
+      "fulltime": 15578.3,
+      "parttime": 3626.4,
+      "employment_change": 18.2,
+      "fulltime_change": 21.7,
+      "parttime_change": -3.5
+    },
+    {
+      "date": "2020-02-01",
+      "employment": 19202.9,
+      "fulltime": 15607.0,
+      "parttime": 3595.9,
+      "employment_change": -1.8,
+      "fulltime_change": 28.7,
+      "parttime_change": -30.5
+    },
+    {
+      "date": "2020-03-01",
+      "employment": 18058.2,
+      "fulltime": 15076.9,
+      "parttime": 2981.2,
+      "employment_change": -1144.7,
+      "fulltime_change": -530.1,
+      "parttime_change": -614.7
+    },
+    {
+      "date": "2020-04-01",
+      "employment": 16085.8,
+      "fulltime": 13612.9,
+      "parttime": 2472.9,
+      "employment_change": -1972.4,
+      "fulltime_change": -1464.0,
+      "parttime_change": -508.3
+    },
+    {
+      "date": "2020-05-01",
+      "employment": 16410.7,
+      "fulltime": 13870.2,
+      "parttime": 2540.5,
+      "employment_change": 324.9,
+      "fulltime_change": 257.3,
+      "parttime_change": 67.6
+    },
+    {
+      "date": "2020-06-01",
+      "employment": 17469.4,
+      "fulltime": 14459.3,
+      "parttime": 3010.1,
+      "employment_change": 1058.7,
+      "fulltime_change": 589.1,
+      "parttime_change": 469.6
+    },
+    {
+      "date": "2020-07-01",
+      "employment": 17895.5,
+      "fulltime": 14580.9,
+      "parttime": 3314.6,
+      "employment_change": 426.1,
+      "fulltime_change": 121.6,
+      "parttime_change": 304.5
+    },
+    {
+      "date": "2020-08-01",
+      "employment": 18129.3,
+      "fulltime": 14714.9,
+      "parttime": 3414.4,
+      "employment_change": 233.8,
+      "fulltime_change": 134.0,
+      "parttime_change": 99.8
+    },
+    {
+      "date": "2020-09-01",
+      "employment": 18555.9,
+      "fulltime": 15079.5,
+      "parttime": 3476.5,
+      "employment_change": 426.6,
+      "fulltime_change": 364.6,
+      "parttime_change": 62.1
+    },
+    {
+      "date": "2020-10-01",
+      "employment": 18616.4,
+      "fulltime": 15062.3,
+      "parttime": 3554.1,
+      "employment_change": 60.5,
+      "fulltime_change": -17.2,
+      "parttime_change": 77.6
+    },
+    {
+      "date": "2020-11-01",
+      "employment": 18650.0,
+      "fulltime": 15189.6,
+      "parttime": 3460.4,
+      "employment_change": 33.6,
+      "fulltime_change": 127.3,
+      "parttime_change": -93.7
+    },
+    {
+      "date": "2020-12-01",
+      "employment": 18591.7,
+      "fulltime": 15217.5,
+      "parttime": 3374.2,
+      "employment_change": -58.3,
+      "fulltime_change": 27.9,
+      "parttime_change": -86.2
+    },
+    {
+      "date": "2021-01-01",
+      "employment": 18392.1,
+      "fulltime": 15205.6,
+      "parttime": 3186.5,
+      "employment_change": -199.6,
+      "fulltime_change": -11.9,
+      "parttime_change": -187.7
+    },
+    {
+      "date": "2021-02-01",
+      "employment": 18632.0,
+      "fulltime": 15298.9,
+      "parttime": 3333.1,
+      "employment_change": 239.9,
+      "fulltime_change": 93.3,
+      "parttime_change": 146.6
+    },
+    {
+      "date": "2021-03-01",
+      "employment": 18873.0,
+      "fulltime": 15454.3,
+      "parttime": 3418.7,
+      "employment_change": 241.0,
+      "fulltime_change": 155.4,
+      "parttime_change": 85.6
+    },
+    {
+      "date": "2021-04-01",
+      "employment": 18673.8,
+      "fulltime": 15372.5,
+      "parttime": 3301.3,
+      "employment_change": -199.2,
+      "fulltime_change": -81.8,
+      "parttime_change": -117.4
+    },
+    {
+      "date": "2021-05-01",
+      "employment": 18623.6,
+      "fulltime": 15337.7,
+      "parttime": 3285.9,
+      "employment_change": -50.2,
+      "fulltime_change": -34.8,
+      "parttime_change": -15.4
+    },
+    {
+      "date": "2021-06-01",
+      "employment": 18894.4,
+      "fulltime": 15384.3,
+      "parttime": 3510.1,
+      "employment_change": 270.8,
+      "fulltime_change": 46.6,
+      "parttime_change": 224.2
+    },
+    {
+      "date": "2021-07-01",
+      "employment": 19016.5,
+      "fulltime": 15441.1,
+      "parttime": 3575.4,
+      "employment_change": 122.1,
+      "fulltime_change": 56.8,
+      "parttime_change": 65.3
+    },
+    {
+      "date": "2021-08-01",
+      "employment": 19081.7,
+      "fulltime": 15507.5,
+      "parttime": 3574.2,
+      "employment_change": 65.2,
+      "fulltime_change": 66.4,
+      "parttime_change": -1.2
+    },
+    {
+      "date": "2021-09-01",
+      "employment": 19251.1,
+      "fulltime": 15692.0,
+      "parttime": 3559.1,
+      "employment_change": 169.4,
+      "fulltime_change": 184.5,
+      "parttime_change": -15.1
+    },
+    {
+      "date": "2021-10-01",
+      "employment": 19288.1,
+      "fulltime": 15728.7,
+      "parttime": 3559.4,
+      "employment_change": 37.0,
+      "fulltime_change": 36.7,
+      "parttime_change": 0.3
+    },
+    {
+      "date": "2021-11-01",
+      "employment": 19437.3,
+      "fulltime": 15801.1,
+      "parttime": 3636.2,
+      "employment_change": 149.2,
+      "fulltime_change": 72.4,
+      "parttime_change": 76.8
+    },
+    {
+      "date": "2021-12-01",
+      "employment": 19508.8,
+      "fulltime": 15920.8,
+      "parttime": 3588.0,
+      "employment_change": 71.5,
+      "fulltime_change": 119.7,
+      "parttime_change": -48.2
+    },
+    {
+      "date": "2022-01-01",
+      "employment": 19305.4,
+      "fulltime": 15870.3,
+      "parttime": 3435.1,
+      "employment_change": -203.4,
+      "fulltime_change": -50.5,
+      "parttime_change": -152.9
+    },
+    {
+      "date": "2022-02-01",
+      "employment": 19629.0,
+      "fulltime": 16030.5,
+      "parttime": 3598.6,
+      "employment_change": 323.6,
+      "fulltime_change": 160.2,
+      "parttime_change": 163.5
+    },
+    {
+      "date": "2022-03-01",
+      "employment": 19647.8,
+      "fulltime": 16037.3,
+      "parttime": 3610.5,
+      "employment_change": 18.8,
+      "fulltime_change": 6.8,
+      "parttime_change": 11.9
+    },
+    {
+      "date": "2022-04-01",
+      "employment": 19709.7,
+      "fulltime": 16084.2,
+      "parttime": 3625.4,
+      "employment_change": 61.9,
+      "fulltime_change": 46.9,
+      "parttime_change": 14.9
+    },
+    {
+      "date": "2022-05-01",
+      "employment": 19763.4,
+      "fulltime": 16210.3,
+      "parttime": 3553.1,
+      "employment_change": 53.7,
+      "fulltime_change": 126.1,
+      "parttime_change": -72.3
+    },
+    {
+      "date": "2022-06-01",
+      "employment": 19750.8,
+      "fulltime": 16212.3,
+      "parttime": 3538.5,
+      "employment_change": -12.6,
+      "fulltime_change": 2.0,
+      "parttime_change": -14.6
+    },
+    {
+      "date": "2022-07-01",
+      "employment": 19787.5,
+      "fulltime": 16246.6,
+      "parttime": 3540.9,
+      "employment_change": 36.7,
+      "fulltime_change": 34.3,
+      "parttime_change": 2.4
+    },
+    {
+      "date": "2022-08-01",
+      "employment": 19781.2,
+      "fulltime": 16217.1,
+      "parttime": 3564.1,
+      "employment_change": -6.3,
+      "fulltime_change": -29.5,
+      "parttime_change": 23.2
+    },
+    {
+      "date": "2022-09-01",
+      "employment": 19796.1,
+      "fulltime": 16212.3,
+      "parttime": 3583.8,
+      "employment_change": 14.9,
+      "fulltime_change": -4.8,
+      "parttime_change": 19.7
+    },
+    {
+      "date": "2022-10-01",
+      "employment": 19882.8,
+      "fulltime": 16269.8,
+      "parttime": 3613.1,
+      "employment_change": 86.7,
+      "fulltime_change": 57.5,
+      "parttime_change": 29.3
+    },
+    {
+      "date": "2022-11-01",
+      "employment": 19923.8,
+      "fulltime": 16345.9,
+      "parttime": 3577.9,
+      "employment_change": 41.0,
+      "fulltime_change": 76.1,
+      "parttime_change": -35.2
+    },
+    {
+      "date": "2022-12-01",
+      "employment": 19998.5,
+      "fulltime": 16426.8,
+      "parttime": 3571.7,
+      "employment_change": 74.7,
+      "fulltime_change": 80.9,
+      "parttime_change": -6.2
+    },
+    {
+      "date": "2023-01-01",
+      "employment": 20097.5,
+      "fulltime": 16515.0,
+      "parttime": 3582.6,
+      "employment_change": 99.0,
+      "fulltime_change": 88.2,
+      "parttime_change": 10.9
+    },
+    {
+      "date": "2023-02-01",
+      "employment": 20143.3,
+      "fulltime": 16557.0,
+      "parttime": 3586.3,
+      "employment_change": 45.8,
+      "fulltime_change": 42.0,
+      "parttime_change": 3.7
+    },
+    {
+      "date": "2023-03-01",
+      "employment": 20214.7,
+      "fulltime": 16624.5,
+      "parttime": 3590.2,
+      "employment_change": 71.4,
+      "fulltime_change": 67.5,
+      "parttime_change": 3.9
+    },
+    {
+      "date": "2023-04-01",
+      "employment": 20242.1,
+      "fulltime": 16604.5,
+      "parttime": 3637.6,
+      "employment_change": 27.4,
+      "fulltime_change": -20.0,
+      "parttime_change": 47.4
+    },
+    {
+      "date": "2023-05-01",
+      "employment": 20253.9,
+      "fulltime": 16600.5,
+      "parttime": 3653.4,
+      "employment_change": 11.8,
+      "fulltime_change": -4.0,
+      "parttime_change": 15.8
+    },
+    {
+      "date": "2023-06-01",
+      "employment": 20325.1,
+      "fulltime": 16718.6,
+      "parttime": 3606.5,
+      "employment_change": 71.2,
+      "fulltime_change": 118.1,
+      "parttime_change": -46.9
+    },
+    {
+      "date": "2023-07-01",
+      "employment": 20356.9,
+      "fulltime": 16732.1,
+      "parttime": 3624.8,
+      "employment_change": 31.8,
+      "fulltime_change": 13.5,
+      "parttime_change": 18.3
+    },
+    {
+      "date": "2023-08-01",
+      "employment": 20423.7,
+      "fulltime": 16803.8,
+      "parttime": 3619.9,
+      "employment_change": 66.8,
+      "fulltime_change": 71.7,
+      "parttime_change": -4.9
+    },
+    {
+      "date": "2023-09-01",
+      "employment": 20473.1,
+      "fulltime": 16794.8,
+      "parttime": 3678.2,
+      "employment_change": 49.4,
+      "fulltime_change": -9.0,
+      "parttime_change": 58.3
+    },
+    {
+      "date": "2023-10-01",
+      "employment": 20501.8,
+      "fulltime": 16822.9,
+      "parttime": 3678.9,
+      "employment_change": 28.7,
+      "fulltime_change": 28.1,
+      "parttime_change": 0.7
+    },
+    {
+      "date": "2023-11-01",
+      "employment": 20522.2,
+      "fulltime": 16846.2,
+      "parttime": 3676.0,
+      "employment_change": 20.4,
+      "fulltime_change": 23.3,
+      "parttime_change": -2.9
+    },
+    {
+      "date": "2023-12-01",
+      "employment": 20530.6,
+      "fulltime": 16849.2,
+      "parttime": 3681.4,
+      "employment_change": 8.4,
+      "fulltime_change": 3.0,
+      "parttime_change": 5.4
+    },
+    {
+      "date": "2024-01-01",
+      "employment": 20552.1,
+      "fulltime": 16824.9,
+      "parttime": 3727.2,
+      "employment_change": 21.5,
+      "fulltime_change": -24.3,
+      "parttime_change": 45.8
+    },
+    {
+      "date": "2024-02-01",
+      "employment": 20593.8,
+      "fulltime": 16897.9,
+      "parttime": 3695.9,
+      "employment_change": 41.7,
+      "fulltime_change": 73.0,
+      "parttime_change": -31.3
+    },
+    {
+      "date": "2024-03-01",
+      "employment": 20620.8,
+      "fulltime": 16918.7,
+      "parttime": 3702.1,
+      "employment_change": 27.0,
+      "fulltime_change": 20.8,
+      "parttime_change": 6.2
+    },
+    {
+      "date": "2024-04-01",
+      "employment": 20674.9,
+      "fulltime": 16924.1,
+      "parttime": 3750.8,
+      "employment_change": 54.1,
+      "fulltime_change": 5.4,
+      "parttime_change": 48.7
+    },
+    {
+      "date": "2024-05-01",
+      "employment": 20707.2,
+      "fulltime": 16898.0,
+      "parttime": 3809.2,
+      "employment_change": 32.3,
+      "fulltime_change": -26.1,
+      "parttime_change": 58.4
+    },
+    {
+      "date": "2024-06-01",
+      "employment": 20708.1,
+      "fulltime": 16921.7,
+      "parttime": 3786.5,
+      "employment_change": 0.9,
+      "fulltime_change": 23.7,
+      "parttime_change": -22.7
+    },
+    {
+      "date": "2024-07-01",
+      "employment": 20725.1,
+      "fulltime": 16996.0,
+      "parttime": 3729.2,
+      "employment_change": 17.0,
+      "fulltime_change": 74.3,
+      "parttime_change": -57.3
+    },
+    {
+      "date": "2024-08-01",
+      "employment": 20760.4,
+      "fulltime": 16949.8,
+      "parttime": 3810.6,
+      "employment_change": 35.3,
+      "fulltime_change": -46.2,
+      "parttime_change": 81.4
+    },
+    {
+      "date": "2024-09-01",
+      "employment": 20796.0,
+      "fulltime": 17046.4,
+      "parttime": 3749.6,
+      "employment_change": 35.6,
+      "fulltime_change": 96.6,
+      "parttime_change": -61.0
+    },
+    {
+      "date": "2024-10-01",
+      "employment": 20804.9,
+      "fulltime": 17050.4,
+      "parttime": 3754.5,
+      "employment_change": 8.9,
+      "fulltime_change": 4.0,
+      "parttime_change": 4.9
+    },
+    {
+      "date": "2024-11-01",
+      "employment": 20842.0,
+      "fulltime": 17112.2,
+      "parttime": 3729.9,
+      "employment_change": 37.1,
+      "fulltime_change": 61.8,
+      "parttime_change": -24.6
+    },
+    {
+      "date": "2024-12-01",
+      "employment": 20934.7,
+      "fulltime": 17152.1,
+      "parttime": 3782.6,
+      "employment_change": 92.7,
+      "fulltime_change": 39.9,
+      "parttime_change": 52.7
+    },
+    {
+      "date": "2025-01-01",
+      "employment": 20986.9,
+      "fulltime": 17176.1,
+      "parttime": 3810.8,
+      "employment_change": 52.2,
+      "fulltime_change": 24.0,
+      "parttime_change": 28.2
+    },
+    {
+      "date": "2025-02-01",
+      "employment": 20985.5,
+      "fulltime": 17156.3,
+      "parttime": 3829.2,
+      "employment_change": -1.4,
+      "fulltime_change": -19.8,
+      "parttime_change": 18.4
+    },
+    {
+      "date": "2025-03-01",
+      "employment": 20964.3,
+      "fulltime": 17110.8,
+      "parttime": 3853.5,
+      "employment_change": -21.2,
+      "fulltime_change": -45.5,
+      "parttime_change": 24.3
+    },
+    {
+      "date": "2025-04-01",
+      "employment": 20966.7,
+      "fulltime": 17120.7,
+      "parttime": 3846.0,
+      "employment_change": 2.4,
+      "fulltime_change": 9.9,
+      "parttime_change": -7.5
+    },
+    {
+      "date": "2025-05-01",
+      "employment": 20974.4,
+      "fulltime": 17174.5,
+      "parttime": 3799.8,
+      "employment_change": 7.7,
+      "fulltime_change": 53.8,
+      "parttime_change": -46.2
+    },
+    {
+      "date": "2025-06-01",
+      "employment": 21040.7,
+      "fulltime": 17191.8,
+      "parttime": 3848.9,
+      "employment_change": 66.3,
+      "fulltime_change": 17.3,
+      "parttime_change": 49.1
+    },
+    {
+      "date": "2025-07-01",
+      "employment": 21018.3,
+      "fulltime": 17155.9,
+      "parttime": 3862.4,
+      "employment_change": -22.4,
+      "fulltime_change": -35.9,
+      "parttime_change": 13.5
+    },
+    {
+      "date": "2025-08-01",
+      "employment": 20956.6,
+      "fulltime": 17152.7,
+      "parttime": 3803.9,
+      "employment_change": -61.7,
+      "fulltime_change": -3.2,
+      "parttime_change": -58.5
+    },
+    {
+      "date": "2025-09-01",
+      "employment": 21009.9,
+      "fulltime": 17255.3,
+      "parttime": 3754.6,
+      "employment_change": 53.3,
+      "fulltime_change": 102.6,
+      "parttime_change": -49.3
+    },
+    {
+      "date": "2025-10-01",
+      "employment": 21083.6,
+      "fulltime": 17233.2,
+      "parttime": 3850.4,
+      "employment_change": 73.7,
+      "fulltime_change": -22.1,
+      "parttime_change": 95.8
+    },
+    {
+      "date": "2025-11-01",
+      "employment": 21135.9,
+      "fulltime": 17228.3,
+      "parttime": 3907.6,
+      "employment_change": 52.3,
+      "fulltime_change": -4.9,
+      "parttime_change": 57.2
+    },
+    {
+      "date": "2025-12-01",
+      "employment": 21146.0,
+      "fulltime": 17279.7,
+      "parttime": 3866.3,
+      "employment_change": 10.1,
+      "fulltime_change": 51.4,
+      "parttime_change": -41.3
+    },
+    {
+      "date": "2026-01-01",
+      "employment": 21121.2,
+      "fulltime": 17324.6,
+      "parttime": 3796.6,
+      "employment_change": -24.8,
+      "fulltime_change": 44.9,
+      "parttime_change": -69.7
+    }
+  ],
+  "latest": {
+    "date": "2026-01-01",
+    "employment": 21121.2,
+    "fulltime": 17324.6,
+    "parttime": 3796.6,
+    "employment_change": -24.8,
+    "fulltime_change": 44.9,
+    "parttime_change": -69.7
+  },
+  "metadata": {
+    "source": "Statistics Canada",
+    "table": "14-10-0287-01",
+    "indicator": "Employment",
+    "description": "カナダ雇用者数（千人）",
+    "unit": "thousands",
+    "frequency": "monthly"
+  },
+  "next_release": {
+    "date": "2026-03-13",
+    "datetime_utc": "2026-03-13T13:30:00+00:00",
+    "datetime_jst": "2026-03-13T22:30:00+09:00",
+    "time_jst": "22:30",
+    "datetime_toronto": "2026-03-13T09:30:00-04:00",
+    "time_toronto": "09:30",
+    "label": "Employment Change (Feb)",
+    "estimate": null
+  },
+  "last_updated": "2026-02-13T11:52:05.449822+09:00"
+}

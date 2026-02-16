@@ -1076,12 +1076,12 @@
     "previous": 48.2
   },
   "next_release": {
-    "date": "2026-02-02",
-    "datetime_utc": "2026-02-02T15:00:00+00:00",
-    "datetime_jst": "2026-02-03T00:00:00+09:00",
+    "date": "2026-03-02",
+    "datetime_utc": "2026-03-02T15:00:00+00:00",
+    "datetime_jst": "2026-03-03T00:00:00+09:00",
     "time_jst": "00:00",
-    "label": "ISM Manufacturing PMI (Jan)",
-    "estimate": 48.2
+    "label": "ISM Manufacturing New Orders (Feb)",
+    "estimate": null
   },
-  "last_updated": "2026-02-02T00:43:04.469341+09:00"
+  "last_updated": "2026-02-13T23:00:00.527206+09:00"
 }

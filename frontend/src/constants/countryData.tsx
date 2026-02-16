@@ -49,6 +49,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'reserve-balances', name: '準備預金残高' },
           { code: 'tga', name: 'TGA（財務省一般勘定）' },
           { code: 'oas', name: 'OAS（スプレッド）' },
+          { code: 'sofr-volatility', name: 'SOFR / ボラティリティ' },
+          { code: 'on-rrp', name: 'ON RRP' },
+          { code: 'federal-budget', name: '連邦財政収支' },
+          { code: 'cbo-projections', name: 'CBO経済見通し' },
+          { code: 'cre-loan-delinquency', name: 'CRE貸出延滞率' },
         ],
       },
       {
@@ -195,6 +200,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'boj-policy-rate-chart', name: '政策金利' },
+          { code: 'japan-balance-sheet', name: '日銀バランスシート' },
           { code: 'ois-curve-chart', name: 'OISカーブ' },
           { code: 'boj-meeting-expectations', name: '日銀政策金利期待' },
           { code: 'boj-outlook', name: '経済・物価情勢の展望' },
@@ -224,6 +230,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'boj-tankan', name: '日銀短観' },
           { code: 'bsi', name: '法人企業景気予測調査' },
           { code: 'pmi', name: 'PMI' },
+          { code: 'current-account', name: '経常収支' },
+          { code: 'current-account-gdp-ratio"', name: '経常収支対GDP比' },
+          { code: 'balance-of-trade', name: '貿易収支' },
         ],
       },
       {
@@ -267,6 +276,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'cgpi', name: '企業物価指数（CGPI）' },
           { code: 'cgpi-food-agriculture', name: '企業物価指数：飲食料品 / 農林水産物' },
           { code: 'import-export-price', name: '輸入・輸出物価指数' },
+          { code: 'terms-of-trade', name: '交易条件' },
           { code: 'pos-uvpi', name: 'POS-UVPI（消費者購買単価指数）' },
           { code: 'gdp-gap', name: 'GDPギャップ（内閣府）' },
           { code: 'boj-gdp-gap', name: 'GDPギャップ（日銀）' },
@@ -300,6 +310,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-macro-projections', name: 'マクロ経済予測' },
           { code: 'ecb-m3', name: 'M3マネーサプライ' },
           { code: 'ecb-bank-interest-rates', name: '銀行金利' },
+          { code: 'ecb-balance-sheet', name: 'ECBバランスシート' },
         ],
       },
       {
@@ -328,6 +339,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'eu-international-trade', name: '国際貿易（ユーロ圏）' },
           { code: 'eu-terms-of-trade', name: '交易条件（ユーロ圏）' },
           { code: 'ecb-current-account', name: '経常収支（ユーロ圏）' },
+          { code: 'eu-government-debt-to-gdp-ratio', name: '政府債務残高対GDP比（ユーロ圏）' },
         ],
       },
       {
@@ -357,6 +369,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'indeed-euro-wage', name: 'Indeed賃金トラッカー（ユーロ圏）' },
           { code: 'germany-unemployment', name: '失業率（ドイツ）' },
           { code: 'eurostat-job-vacancy', name: '求人率（ユーロ圏）' },
+          { code: 'ecb-ces-wage-expectations', name: 'CES賃金期待（ユーロ圏）' },
         ],
       },
       {
@@ -406,6 +419,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'boe-economic-outlook', name: 'BOE経済見通し' },
           { code: 'boe-dmp-survey', name: 'Decision Maker Panel (DMP) サーベイ' },
           { code: 'uk-public-sector-net-borrowing', name: '公的部門純借入' },
+          { code: 'uk-qt', name: 'APFギルト保有残高（QT）' },
         ],
       },
       {
@@ -419,6 +433,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ons-production', name: '鉱工業生産' },
           { code: 'cbi-industrial-trends', name: 'CBI製造業受注指数' },
           { code: 'pmi', name: 'PMI' },
+          { code: 'uk-trade-balance', name: '貿易収支' },
+          { code: 'uk-current-account', name: '経常収支' },
+          { code: 'uk-current-account-gdp-ratio', name: '経常収支対GDP比' },
+          { code: 'uk-government-debt-to-gdp-ratio', name: '政府債務残高対GDP比' },
         ],
       },
       {
@@ -554,6 +572,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'policy-rate', name: '政策金利' },
+          { code: 'asx-rate-tracker', name: 'Rate Tracker' },
+          { code: 'rba-monetary-policy', name: 'RBA経済予測' },
+          { code: 'rba-ois', name: 'OIS' },
+          { code: 'rba-expectations', name: '利上げ・利下げ期待' },
           { code: 'rba-statement', name: 'RBA声明' },
         ],
       },
@@ -593,6 +615,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#ff4d4f',
         indicators: [
           { code: 'cpi', name: 'CPI' },
+          { code: 'cpi-categories', name: 'CPI カテゴリ別' },
+          { code: 'quarterly-cpi', name: '四半期CPI' },
+          { code: 'ppi', name: 'PPI' },
+          { code: 'inflation-expectations', name: 'インフレ期待' },
+          { code: 'nab-cost-price', name: 'NAB企業調査（コスト・価格）' },
         ],
       },
       {
@@ -681,7 +708,13 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'policy-rate', name: '政策金利' },
-          { code: 'boc-statement', name: 'BOC声明' },
+          { code: 'boc-rate-cuts', name: 'BOC利上げ・利下げ期待' },
+          { code: 'boc-mpr', name: 'BOC金融政策報告書' },
+          { code: 'boc-balance-sheet', name: 'BOCバランスシート' },
+          { code: 'canada-banks-balance-sheet', name: 'カナダ銀行バランスシート（チャータード銀行）' },
+          { code: 'ca-corra', name: 'CORRA（翌日物レポ平均金利）' },
+          { code: 'ca-settlement-balances', name: '決済残高' },
+          { code: 'ca-government-deposits', name: '政府預金' },
         ],
       },
       {
@@ -690,8 +723,18 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
+          { code: 'gdp-growth', name: 'GDP成長率' },
+          { code: 'gdp-monthly', name: '月次GDP' },
+          { code: 'industrial-production', name: '鉱工業生産' },
           { code: 'trade-balance', name: '貿易収支' },
+          { code: 'current-account', name: '経常収支' },
+          { code: 'current-account-gdp-ratio', name: '経常収支対GDP比率' },
+          { code: 'us-export-dependence', name: '米国輸出依存度' },
+          { code: 'bos', name: 'Business Outlook Survey（BOS）' },
+          { code: 'csce', name: 'Canadian Survey of Consumer Expectations（CSCE）' },
+          { code: 'slos', name: 'Senior Loan Officer Survey（SLOS）' },
+          { code: 'ivey-pmi', name: 'Ivey PMI' },
+          { code: 'sp-pmi', name: 'S&P Global PMI' },
         ],
       },
       {
@@ -709,8 +752,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <TeamOutlined />,
         color: '#faad14',
         indicators: [
-          { code: 'employment-change', name: '雇用者数変化' },
           { code: 'unemployment', name: '失業率' },
+          { code: 'employment', name: '雇用者数' },
+          { code: 'fulltime-parttime', name: 'フルタイム・パートタイム' },
+          { code: 'ca-labor-force-participation-rate', name: '労働参加率' },
+          { code: 'ca-average-hourly-wage', name: '平均時給' },
+          { code: 'ca-job-vacancy-rate', name: '求人率' },
         ],
       },
       {
@@ -720,6 +767,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#ff4d4f',
         indicators: [
           { code: 'cpi', name: 'CPI' },
+          { code: 'cpi-service-rent', name: 'CPI サービス/家賃（粘着性CPI）' },
+          { code: 'ippi', name: 'IPPI（工業製品価格指数）' },
+          { code: 'inflation-expectations', name: 'インフレ期待' },
         ],
       },
       {
@@ -728,8 +778,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <HomeOutlined />,
         color: '#722ed1',
         indicators: [
+          { code: 'housing-starts', name: '住宅着工件数' },
           { code: 'building-permits', name: '建設許可' },
-          { code: 'hpi', name: '住宅価格指数' },
+          { code: 'new-housing-price-index', name: '新築住宅価格指数' },
+          { code: 'debt-service-ratio', name: '家計債務返済比率（DSR）' },
         ],
       },
     ],
@@ -759,7 +811,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#52c41a',
         indicators: [
           { code: 'ch-growth-rate', name: 'GDP成長率' },
-          { code: 'trade-balance', name: '貿易収支' },
+          { code: 'ch-households-and-npish', name: '家計消費' },
+          { code: 'ch-industrial-production', name: '鉱工業生産' },
+          { code: 'ch-balance-of-trade', name: '貿易収支' },
+          { code: 'ch-current-account', name: '経常収支' },
+          { code: 'ch-current-account-gdp-ratio', name: '経常収支対GDP比' },
         ],
       },
       {
@@ -780,6 +836,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#faad14',
         indicators: [
           { code: 'ch-unemployment-rate', name: '失業率' },
+          { code: 'ch-job-vacancies', name: '求人情報' },
+          { code: 'ch-nominal-wage-growth', name: '名目賃金上昇率' },
         ],
       },
       {
@@ -798,7 +856,10 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <HomeOutlined />,
         color: '#722ed1',
         indicators: [
-          { code: 'hpi', name: '住宅価格指数' },
+          { code: 'ch-mortgage-rates', name: '住宅ローン金利' },
+          { code: 'ch-mortgage-balance', name: '住宅ローン残高' },
+          { code: 'ch-new-mortgage-loans', name: '新規住宅ローンの融資限度額の合計金額' },
+          { code: 'ch-hpi', name: '住宅価格指数' },
         ],
       },
     ],

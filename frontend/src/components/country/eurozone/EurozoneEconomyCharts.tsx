@@ -20,6 +20,7 @@ import CISSChart from './economy/CISSChart'
 import EUInternationalTradeChart from './economy/EUInternationalTradeChart'
 import EUTermsOfTradeChart from './economy/EUTermsOfTradeChart'
 import ECBCurrentAccountChart from './economy/ECBCurrentAccountChart'
+import EuGovernmentDebtToGdpRatioChart from './economy/EuGovernmentDebtToGdpRatioChart'
 
 /**
  * ユーロ圏経済チャート群
@@ -192,6 +193,13 @@ export default function EurozoneEconomyCharts() {
       <div id="ecb-current-account">
         <ECBCurrentAccountChart
           data={dashboardData?.ecb_current_account ?? null}
+        />
+      </div>
+
+      {/* EU政府債務残高対GDP比 */}
+      <div id="eu-government-debt-to-gdp-ratio">
+        <EuGovernmentDebtToGdpRatioChart
+          data={dashboardData?.eu_government_debt_to_gdp_ratio ?? null}
         />
       </div>
     </div>

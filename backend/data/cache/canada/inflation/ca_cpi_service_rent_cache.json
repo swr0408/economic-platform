@@ -1,0 +1,2432 @@
+{
+  "data": [
+    {
+      "date": "2001-01-01",
+      "all_items": 2.99,
+      "ex_food_energy": 1.91,
+      "services": 2.69,
+      "shelter": 4.06,
+      "rent": 1.35
+    },
+    {
+      "date": "2001-02-01",
+      "all_items": 2.87,
+      "ex_food_energy": 2.01,
+      "services": 2.78,
+      "shelter": 3.07,
+      "rent": 1.35
+    },
+    {
+      "date": "2001-03-01",
+      "all_items": 2.43,
+      "ex_food_energy": 1.68,
+      "services": 2.67,
+      "shelter": 4.13,
+      "rent": 1.46
+    },
+    {
+      "date": "2001-04-01",
+      "all_items": 3.49,
+      "ex_food_energy": 2.11,
+      "services": 2.55,
+      "shelter": 4.66,
+      "rent": 1.45
+    },
+    {
+      "date": "2001-05-01",
+      "all_items": 3.9,
+      "ex_food_energy": 2.1,
+      "services": 2.54,
+      "shelter": 5.6,
+      "rent": 1.45
+    },
+    {
+      "date": "2001-06-01",
+      "all_items": 3.35,
+      "ex_food_energy": 1.99,
+      "services": 2.53,
+      "shelter": 5.58,
+      "rent": 1.55
+    },
+    {
+      "date": "2001-07-01",
+      "all_items": 2.71,
+      "ex_food_energy": 2.19,
+      "services": 2.52,
+      "shelter": 4.61,
+      "rent": 1.55
+    },
+    {
+      "date": "2001-08-01",
+      "all_items": 2.82,
+      "ex_food_energy": 2.19,
+      "services": 2.62,
+      "shelter": 4.39,
+      "rent": 1.76
+    },
+    {
+      "date": "2001-09-01",
+      "all_items": 2.6,
+      "ex_food_energy": 2.19,
+      "services": 2.51,
+      "shelter": 3.43,
+      "rent": 1.76
+    },
+    {
+      "date": "2001-10-01",
+      "all_items": 1.87,
+      "ex_food_energy": 1.98,
+      "services": 2.41,
+      "shelter": 2.67,
+      "rent": 1.86
+    },
+    {
+      "date": "2001-11-01",
+      "all_items": 0.62,
+      "ex_food_energy": 1.66,
+      "services": 2.2,
+      "shelter": 0.72,
+      "rent": 1.85
+    },
+    {
+      "date": "2001-12-01",
+      "all_items": 0.72,
+      "ex_food_energy": 1.56,
+      "services": 2.2,
+      "shelter": 0.82,
+      "rent": 1.85
+    },
+    {
+      "date": "2002-01-01",
+      "all_items": 1.35,
+      "ex_food_energy": 1.67,
+      "services": 2.3,
+      "shelter": 1.85,
+      "rent": 1.85
+    },
+    {
+      "date": "2002-02-01",
+      "all_items": 1.45,
+      "ex_food_energy": 1.76,
+      "services": 2.29,
+      "shelter": 2.16,
+      "rent": 1.95
+    },
+    {
+      "date": "2002-03-01",
+      "all_items": 1.85,
+      "ex_food_energy": 2.17,
+      "services": 2.49,
+      "shelter": 1.02,
+      "rent": 1.84
+    },
+    {
+      "date": "2002-04-01",
+      "all_items": 1.74,
+      "ex_food_energy": 2.27,
+      "services": 2.59,
+      "shelter": 0.2,
+      "rent": 1.84
+    },
+    {
+      "date": "2002-05-01",
+      "all_items": 1.12,
+      "ex_food_energy": 2.36,
+      "services": 2.89,
+      "shelter": -0.6,
+      "rent": 1.94
+    },
+    {
+      "date": "2002-06-01",
+      "all_items": 1.22,
+      "ex_food_energy": 2.67,
+      "services": 2.77,
+      "shelter": -1.0,
+      "rent": 1.94
+    },
+    {
+      "date": "2002-07-01",
+      "all_items": 2.13,
+      "ex_food_energy": 2.86,
+      "services": 2.76,
+      "shelter": -0.4,
+      "rent": 1.94
+    },
+    {
+      "date": "2002-08-01",
+      "all_items": 2.54,
+      "ex_food_energy": 3.06,
+      "services": 2.96,
+      "shelter": 0.4,
+      "rent": 1.93
+    },
+    {
+      "date": "2002-09-01",
+      "all_items": 2.33,
+      "ex_food_energy": 2.96,
+      "services": 2.96,
+      "shelter": 1.1,
+      "rent": 2.03
+    },
+    {
+      "date": "2002-10-01",
+      "all_items": 3.16,
+      "ex_food_energy": 3.27,
+      "services": 3.27,
+      "shelter": 1.9,
+      "rent": 2.03
+    },
+    {
+      "date": "2002-11-01",
+      "all_items": 4.42,
+      "ex_food_energy": 3.68,
+      "services": 3.79,
+      "shelter": 3.35,
+      "rent": 1.92
+    },
+    {
+      "date": "2002-12-01",
+      "all_items": 3.8,
+      "ex_food_energy": 3.89,
+      "services": 4.3,
+      "shelter": 1.21,
+      "rent": 1.92
+    },
+    {
+      "date": "2003-01-01",
+      "all_items": 4.51,
+      "ex_food_energy": 4.0,
+      "services": 4.4,
+      "shelter": 2.82,
+      "rent": 1.92
+    },
+    {
+      "date": "2003-02-01",
+      "all_items": 4.68,
+      "ex_food_energy": 3.97,
+      "services": 4.37,
+      "shelter": 3.12,
+      "rent": 1.71
+    },
+    {
+      "date": "2003-03-01",
+      "all_items": 4.25,
+      "ex_food_energy": 3.65,
+      "services": 4.16,
+      "shelter": 3.82,
+      "rent": 1.71
+    },
+    {
+      "date": "2003-04-01",
+      "all_items": 2.91,
+      "ex_food_energy": 3.12,
+      "services": 3.94,
+      "shelter": 3.23,
+      "rent": 1.71
+    },
+    {
+      "date": "2003-05-01",
+      "all_items": 2.81,
+      "ex_food_energy": 2.91,
+      "services": 3.51,
+      "shelter": 3.52,
+      "rent": 1.6
+    },
+    {
+      "date": "2003-06-01",
+      "all_items": 2.6,
+      "ex_food_energy": 2.3,
+      "services": 3.5,
+      "shelter": 4.13,
+      "rent": 1.4
+    },
+    {
+      "date": "2003-07-01",
+      "all_items": 2.09,
+      "ex_food_energy": 1.79,
+      "services": 3.18,
+      "shelter": 3.82,
+      "rent": 1.4
+    },
+    {
+      "date": "2003-08-01",
+      "all_items": 1.98,
+      "ex_food_energy": 1.68,
+      "services": 3.07,
+      "shelter": 3.09,
+      "rent": 1.4
+    },
+    {
+      "date": "2003-09-01",
+      "all_items": 2.18,
+      "ex_food_energy": 1.88,
+      "services": 3.37,
+      "shelter": 2.88,
+      "rent": 1.29
+    },
+    {
+      "date": "2003-10-01",
+      "all_items": 1.58,
+      "ex_food_energy": 1.78,
+      "services": 3.46,
+      "shelter": 2.06,
+      "rent": 1.19
+    },
+    {
+      "date": "2003-11-01",
+      "all_items": 1.58,
+      "ex_food_energy": 1.87,
+      "services": 3.16,
+      "shelter": 2.26,
+      "rent": 1.19
+    },
+    {
+      "date": "2003-12-01",
+      "all_items": 2.08,
+      "ex_food_energy": 1.67,
+      "services": 2.75,
+      "shelter": 4.3,
+      "rent": 1.19
+    },
+    {
+      "date": "2004-01-01",
+      "all_items": 1.27,
+      "ex_food_energy": 1.58,
+      "services": 2.45,
+      "shelter": 2.15,
+      "rent": 1.09
+    },
+    {
+      "date": "2004-02-01",
+      "all_items": 0.68,
+      "ex_food_energy": 1.08,
+      "services": 2.14,
+      "shelter": 1.95,
+      "rent": 1.19
+    },
+    {
+      "date": "2004-03-01",
+      "all_items": 0.78,
+      "ex_food_energy": 1.17,
+      "services": 2.24,
+      "shelter": 1.36,
+      "rent": 1.09
+    },
+    {
+      "date": "2004-04-01",
+      "all_items": 1.66,
+      "ex_food_energy": 1.27,
+      "services": 2.24,
+      "shelter": 2.74,
+      "rent": 1.09
+    },
+    {
+      "date": "2004-05-01",
+      "all_items": 2.44,
+      "ex_food_energy": 1.37,
+      "services": 2.33,
+      "shelter": 2.33,
+      "rent": 0.99
+    },
+    {
+      "date": "2004-06-01",
+      "all_items": 2.54,
+      "ex_food_energy": 1.47,
+      "services": 2.22,
+      "shelter": 2.22,
+      "rent": 1.09
+    },
+    {
+      "date": "2004-07-01",
+      "all_items": 2.34,
+      "ex_food_energy": 1.56,
+      "services": 2.41,
+      "shelter": 2.61,
+      "rent": 1.08
+    },
+    {
+      "date": "2004-08-01",
+      "all_items": 1.85,
+      "ex_food_energy": 1.17,
+      "services": 2.12,
+      "shelter": 2.71,
+      "rent": 0.98
+    },
+    {
+      "date": "2004-09-01",
+      "all_items": 1.84,
+      "ex_food_energy": 1.17,
+      "services": 2.11,
+      "shelter": 2.8,
+      "rent": 0.88
+    },
+    {
+      "date": "2004-10-01",
+      "all_items": 2.33,
+      "ex_food_energy": 1.07,
+      "services": 2.01,
+      "shelter": 3.08,
+      "rent": 0.88
+    },
+    {
+      "date": "2004-11-01",
+      "all_items": 2.42,
+      "ex_food_energy": 1.26,
+      "services": 2.2,
+      "shelter": 3.27,
+      "rent": 0.88
+    },
+    {
+      "date": "2004-12-01",
+      "all_items": 2.13,
+      "ex_food_energy": 1.36,
+      "services": 2.2,
+      "shelter": 2.87,
+      "rent": 0.88
+    },
+    {
+      "date": "2005-01-01",
+      "all_items": 1.94,
+      "ex_food_energy": 1.16,
+      "services": 2.2,
+      "shelter": 3.07,
+      "rent": 0.88
+    },
+    {
+      "date": "2005-02-01",
+      "all_items": 2.13,
+      "ex_food_energy": 1.45,
+      "services": 2.29,
+      "shelter": 3.06,
+      "rent": 0.88
+    },
+    {
+      "date": "2005-03-01",
+      "all_items": 2.31,
+      "ex_food_energy": 1.55,
+      "services": 2.29,
+      "shelter": 3.35,
+      "rent": 0.88
+    },
+    {
+      "date": "2005-04-01",
+      "all_items": 2.4,
+      "ex_food_energy": 1.16,
+      "services": 2.28,
+      "shelter": 3.14,
+      "rent": 0.78
+    },
+    {
+      "date": "2005-05-01",
+      "all_items": 1.62,
+      "ex_food_energy": 1.15,
+      "services": 2.27,
+      "shelter": 3.13,
+      "rent": 0.88
+    },
+    {
+      "date": "2005-06-01",
+      "all_items": 1.71,
+      "ex_food_energy": 1.35,
+      "services": 2.36,
+      "shelter": 2.93,
+      "rent": 0.78
+    },
+    {
+      "date": "2005-07-01",
+      "all_items": 2.0,
+      "ex_food_energy": 1.06,
+      "services": 2.17,
+      "shelter": 3.21,
+      "rent": 0.78
+    },
+    {
+      "date": "2005-08-01",
+      "all_items": 2.58,
+      "ex_food_energy": 1.45,
+      "services": 2.17,
+      "shelter": 2.92,
+      "rent": 0.78
+    },
+    {
+      "date": "2005-09-01",
+      "all_items": 3.24,
+      "ex_food_energy": 1.54,
+      "services": 2.07,
+      "shelter": 3.29,
+      "rent": 0.88
+    },
+    {
+      "date": "2005-10-01",
+      "all_items": 2.57,
+      "ex_food_energy": 1.44,
+      "services": 2.06,
+      "shelter": 3.46,
+      "rent": 0.78
+    },
+    {
+      "date": "2005-11-01",
+      "all_items": 1.99,
+      "ex_food_energy": 1.43,
+      "services": 2.15,
+      "shelter": 3.17,
+      "rent": 0.78
+    },
+    {
+      "date": "2005-12-01",
+      "all_items": 2.09,
+      "ex_food_energy": 1.34,
+      "services": 2.06,
+      "shelter": 2.89,
+      "rent": 0.68
+    },
+    {
+      "date": "2006-01-01",
+      "all_items": 2.75,
+      "ex_food_energy": 1.44,
+      "services": 2.15,
+      "shelter": 4.0,
+      "rent": 0.78
+    },
+    {
+      "date": "2006-02-01",
+      "all_items": 2.18,
+      "ex_food_energy": 1.34,
+      "services": 2.15,
+      "shelter": 3.71,
+      "rent": 0.78
+    },
+    {
+      "date": "2006-03-01",
+      "all_items": 2.16,
+      "ex_food_energy": 1.43,
+      "services": 2.33,
+      "shelter": 3.52,
+      "rent": 0.78
+    },
+    {
+      "date": "2006-04-01",
+      "all_items": 2.44,
+      "ex_food_energy": 1.72,
+      "services": 2.51,
+      "shelter": 3.51,
+      "rent": 0.87
+    },
+    {
+      "date": "2006-05-01",
+      "all_items": 2.81,
+      "ex_food_energy": 1.81,
+      "services": 2.78,
+      "shelter": 4.05,
+      "rent": 0.87
+    },
+    {
+      "date": "2006-06-01",
+      "all_items": 2.43,
+      "ex_food_energy": 1.43,
+      "services": 2.59,
+      "shelter": 3.68,
+      "rent": 0.97
+    },
+    {
+      "date": "2006-07-01",
+      "all_items": 2.33,
+      "ex_food_energy": 1.33,
+      "services": 2.49,
+      "shelter": 3.47,
+      "rent": 0.97
+    },
+    {
+      "date": "2006-08-01",
+      "all_items": 2.14,
+      "ex_food_energy": 1.42,
+      "services": 2.67,
+      "shelter": 3.84,
+      "rent": 0.97
+    },
+    {
+      "date": "2006-09-01",
+      "all_items": 0.74,
+      "ex_food_energy": 1.61,
+      "services": 2.94,
+      "shelter": 3.64,
+      "rent": 0.97
+    },
+    {
+      "date": "2006-10-01",
+      "all_items": 1.02,
+      "ex_food_energy": 1.8,
+      "services": 3.03,
+      "shelter": 3.07,
+      "rent": 1.16
+    },
+    {
+      "date": "2006-11-01",
+      "all_items": 1.39,
+      "ex_food_energy": 1.51,
+      "services": 3.02,
+      "shelter": 2.98,
+      "rent": 1.16
+    },
+    {
+      "date": "2006-12-01",
+      "all_items": 1.67,
+      "ex_food_energy": 1.51,
+      "services": 3.11,
+      "shelter": 3.71,
+      "rent": 1.25
+    },
+    {
+      "date": "2007-01-01",
+      "all_items": 1.11,
+      "ex_food_energy": 1.7,
+      "services": 3.02,
+      "shelter": 2.68,
+      "rent": 1.25
+    },
+    {
+      "date": "2007-02-01",
+      "all_items": 2.04,
+      "ex_food_energy": 1.79,
+      "services": 3.2,
+      "shelter": 2.86,
+      "rent": 1.25
+    },
+    {
+      "date": "2007-03-01",
+      "all_items": 2.3,
+      "ex_food_energy": 1.78,
+      "services": 3.18,
+      "shelter": 3.13,
+      "rent": 1.44
+    },
+    {
+      "date": "2007-04-01",
+      "all_items": 2.2,
+      "ex_food_energy": 1.97,
+      "services": 3.26,
+      "shelter": 3.57,
+      "rent": 1.44
+    },
+    {
+      "date": "2007-05-01",
+      "all_items": 2.19,
+      "ex_food_energy": 1.87,
+      "services": 3.15,
+      "shelter": 2.65,
+      "rent": 1.44
+    },
+    {
+      "date": "2007-06-01",
+      "all_items": 2.19,
+      "ex_food_energy": 2.16,
+      "services": 3.33,
+      "shelter": 3.55,
+      "rent": 1.54
+    },
+    {
+      "date": "2007-07-01",
+      "all_items": 2.19,
+      "ex_food_energy": 2.44,
+      "services": 3.69,
+      "shelter": 3.36,
+      "rent": 1.63
+    },
+    {
+      "date": "2007-08-01",
+      "all_items": 1.73,
+      "ex_food_energy": 2.25,
+      "services": 3.77,
+      "shelter": 3.61,
+      "rent": 1.72
+    },
+    {
+      "date": "2007-09-01",
+      "all_items": 2.47,
+      "ex_food_energy": 2.14,
+      "services": 3.57,
+      "shelter": 3.33,
+      "rent": 1.72
+    },
+    {
+      "date": "2007-10-01",
+      "all_items": 2.39,
+      "ex_food_energy": 1.95,
+      "services": 3.48,
+      "shelter": 4.03,
+      "rent": 1.72
+    },
+    {
+      "date": "2007-11-01",
+      "all_items": 2.47,
+      "ex_food_energy": 1.76,
+      "services": 3.38,
+      "shelter": 4.12,
+      "rent": 1.72
+    },
+    {
+      "date": "2007-12-01",
+      "all_items": 2.38,
+      "ex_food_energy": 1.67,
+      "services": 3.46,
+      "shelter": 4.01,
+      "rent": 1.81
+    },
+    {
+      "date": "2008-01-01",
+      "all_items": 2.19,
+      "ex_food_energy": 1.3,
+      "services": 3.29,
+      "shelter": 3.83,
+      "rent": 1.81
+    },
+    {
+      "date": "2008-02-01",
+      "all_items": 1.81,
+      "ex_food_energy": 1.3,
+      "services": 3.45,
+      "shelter": 4.09,
+      "rent": 1.9
+    },
+    {
+      "date": "2008-03-01",
+      "all_items": 1.35,
+      "ex_food_energy": 1.01,
+      "services": 3.26,
+      "shelter": 4.07,
+      "rent": 1.8
+    },
+    {
+      "date": "2008-04-01",
+      "all_items": 1.7,
+      "ex_food_energy": 1.1,
+      "services": 3.34,
+      "shelter": 4.3,
+      "rent": 1.8
+    },
+    {
+      "date": "2008-05-01",
+      "all_items": 2.23,
+      "ex_food_energy": 1.19,
+      "services": 3.67,
+      "shelter": 4.83,
+      "rent": 1.89
+    },
+    {
+      "date": "2008-06-01",
+      "all_items": 3.13,
+      "ex_food_energy": 1.19,
+      "services": 3.75,
+      "shelter": 4.71,
+      "rent": 1.8
+    },
+    {
+      "date": "2008-07-01",
+      "all_items": 3.39,
+      "ex_food_energy": 1.19,
+      "services": 3.56,
+      "shelter": 5.38,
+      "rent": 1.79
+    },
+    {
+      "date": "2008-08-01",
+      "all_items": 3.49,
+      "ex_food_energy": 1.19,
+      "services": 3.46,
+      "shelter": 5.27,
+      "rent": 1.69
+    },
+    {
+      "date": "2008-09-01",
+      "all_items": 3.4,
+      "ex_food_energy": 1.0,
+      "services": 3.36,
+      "shelter": 4.5,
+      "rent": 1.69
+    },
+    {
+      "date": "2008-10-01",
+      "all_items": 2.6,
+      "ex_food_energy": 0.91,
+      "services": 3.36,
+      "shelter": 3.79,
+      "rent": 1.69
+    },
+    {
+      "date": "2008-11-01",
+      "all_items": 1.97,
+      "ex_food_energy": 1.55,
+      "services": 3.27,
+      "shelter": 3.87,
+      "rent": 1.78
+    },
+    {
+      "date": "2008-12-01",
+      "all_items": 1.16,
+      "ex_food_energy": 1.46,
+      "services": 3.09,
+      "shelter": 3.52,
+      "rent": 1.68
+    },
+    {
+      "date": "2009-01-01",
+      "all_items": 1.07,
+      "ex_food_energy": 1.19,
+      "services": 3.01,
+      "shelter": 3.27,
+      "rent": 1.68
+    },
+    {
+      "date": "2009-02-01",
+      "all_items": 1.43,
+      "ex_food_energy": 1.28,
+      "services": 2.82,
+      "shelter": 3.01,
+      "rent": 1.59
+    },
+    {
+      "date": "2009-03-01",
+      "all_items": 1.24,
+      "ex_food_energy": 1.37,
+      "services": 2.82,
+      "shelter": 2.08,
+      "rent": 1.58
+    },
+    {
+      "date": "2009-04-01",
+      "all_items": 0.35,
+      "ex_food_energy": 1.18,
+      "services": 2.55,
+      "shelter": 0.17,
+      "rent": 1.58
+    },
+    {
+      "date": "2009-05-01",
+      "all_items": 0.09,
+      "ex_food_energy": 1.27,
+      "services": 2.19,
+      "shelter": -0.16,
+      "rent": 1.49
+    },
+    {
+      "date": "2009-06-01",
+      "all_items": -0.26,
+      "ex_food_energy": 1.27,
+      "services": 2.02,
+      "shelter": -0.82,
+      "rent": 1.49
+    },
+    {
+      "date": "2009-07-01",
+      "all_items": -0.95,
+      "ex_food_energy": 1.0,
+      "services": 1.84,
+      "shelter": -2.03,
+      "rent": 1.39
+    },
+    {
+      "date": "2009-08-01",
+      "all_items": -0.78,
+      "ex_food_energy": 0.9,
+      "services": 1.67,
+      "shelter": -2.18,
+      "rent": 1.48
+    },
+    {
+      "date": "2009-09-01",
+      "all_items": -0.86,
+      "ex_food_energy": 0.9,
+      "services": 1.75,
+      "shelter": -1.79,
+      "rent": 1.48
+    },
+    {
+      "date": "2009-10-01",
+      "all_items": 0.09,
+      "ex_food_energy": 1.27,
+      "services": 1.75,
+      "shelter": -1.62,
+      "rent": 1.48
+    },
+    {
+      "date": "2009-11-01",
+      "all_items": 0.96,
+      "ex_food_energy": 0.81,
+      "services": 1.5,
+      "shelter": -1.7,
+      "rent": 1.38
+    },
+    {
+      "date": "2009-12-01",
+      "all_items": 1.32,
+      "ex_food_energy": 0.63,
+      "services": 1.42,
+      "shelter": -1.7,
+      "rent": 1.38
+    },
+    {
+      "date": "2010-01-01",
+      "all_items": 1.86,
+      "ex_food_energy": 1.18,
+      "services": 1.75,
+      "shelter": -1.06,
+      "rent": 1.38
+    },
+    {
+      "date": "2010-02-01",
+      "all_items": 1.58,
+      "ex_food_energy": 1.44,
+      "services": 2.0,
+      "shelter": -1.14,
+      "rent": 1.29
+    },
+    {
+      "date": "2010-03-01",
+      "all_items": 1.4,
+      "ex_food_energy": 0.9,
+      "services": 1.5,
+      "shelter": -0.73,
+      "rent": 1.28
+    },
+    {
+      "date": "2010-04-01",
+      "all_items": 1.84,
+      "ex_food_energy": 1.17,
+      "services": 1.57,
+      "shelter": 0.82,
+      "rent": 1.28
+    },
+    {
+      "date": "2010-05-01",
+      "all_items": 1.39,
+      "ex_food_energy": 0.98,
+      "services": 1.57,
+      "shelter": 1.32,
+      "rent": 1.28
+    },
+    {
+      "date": "2010-06-01",
+      "all_items": 0.96,
+      "ex_food_energy": 0.9,
+      "services": 1.73,
+      "shelter": 1.65,
+      "rent": 1.28
+    },
+    {
+      "date": "2010-07-01",
+      "all_items": 1.83,
+      "ex_food_energy": 1.35,
+      "services": 2.38,
+      "shelter": 2.9,
+      "rent": 1.28
+    },
+    {
+      "date": "2010-08-01",
+      "all_items": 1.74,
+      "ex_food_energy": 1.35,
+      "services": 2.22,
+      "shelter": 2.39,
+      "rent": 1.19
+    },
+    {
+      "date": "2010-09-01",
+      "all_items": 1.92,
+      "ex_food_energy": 1.43,
+      "services": 2.13,
+      "shelter": 2.48,
+      "rent": 1.18
+    },
+    {
+      "date": "2010-10-01",
+      "all_items": 2.44,
+      "ex_food_energy": 1.7,
+      "services": 2.29,
+      "shelter": 2.81,
+      "rent": 1.18
+    },
+    {
+      "date": "2010-11-01",
+      "all_items": 2.0,
+      "ex_food_energy": 1.52,
+      "services": 2.63,
+      "shelter": 2.56,
+      "rent": 1.18
+    },
+    {
+      "date": "2010-12-01",
+      "all_items": 2.35,
+      "ex_food_energy": 1.61,
+      "services": 2.55,
+      "shelter": 2.72,
+      "rent": 1.18
+    },
+    {
+      "date": "2011-01-01",
+      "all_items": 2.35,
+      "ex_food_energy": 1.61,
+      "services": 2.63,
+      "shelter": 2.22,
+      "rent": 1.09
+    },
+    {
+      "date": "2011-02-01",
+      "all_items": 2.16,
+      "ex_food_energy": 1.16,
+      "services": 2.2,
+      "shelter": 2.22,
+      "rent": 1.18
+    },
+    {
+      "date": "2011-03-01",
+      "all_items": 3.29,
+      "ex_food_energy": 2.05,
+      "services": 2.86,
+      "shelter": 2.38,
+      "rent": 1.18
+    },
+    {
+      "date": "2011-04-01",
+      "all_items": 3.28,
+      "ex_food_energy": 1.69,
+      "services": 2.69,
+      "shelter": 2.29,
+      "rent": 1.18
+    },
+    {
+      "date": "2011-05-01",
+      "all_items": 3.7,
+      "ex_food_energy": 1.95,
+      "services": 2.84,
+      "shelter": 1.79,
+      "rent": 1.18
+    },
+    {
+      "date": "2011-06-01",
+      "all_items": 3.1,
+      "ex_food_energy": 1.42,
+      "services": 2.59,
+      "shelter": 1.7,
+      "rent": 1.08
+    },
+    {
+      "date": "2011-07-01",
+      "all_items": 2.74,
+      "ex_food_energy": 1.15,
+      "services": 2.09,
+      "shelter": 1.29,
+      "rent": 1.08
+    },
+    {
+      "date": "2011-08-01",
+      "all_items": 3.08,
+      "ex_food_energy": 1.5,
+      "services": 2.41,
+      "shelter": 1.77,
+      "rent": 1.08
+    },
+    {
+      "date": "2011-09-01",
+      "all_items": 3.17,
+      "ex_food_energy": 1.85,
+      "services": 2.65,
+      "shelter": 1.45,
+      "rent": 1.08
+    },
+    {
+      "date": "2011-10-01",
+      "all_items": 2.9,
+      "ex_food_energy": 1.49,
+      "services": 2.24,
+      "shelter": 1.52,
+      "rent": 1.08
+    },
+    {
+      "date": "2011-11-01",
+      "all_items": 2.89,
+      "ex_food_energy": 1.58,
+      "services": 2.24,
+      "shelter": 1.53,
+      "rent": 1.08
+    },
+    {
+      "date": "2011-12-01",
+      "all_items": 2.3,
+      "ex_food_energy": 1.32,
+      "services": 2.24,
+      "shelter": 1.77,
+      "rent": 1.08
+    },
+    {
+      "date": "2012-01-01",
+      "all_items": 2.46,
+      "ex_food_energy": 1.59,
+      "services": 2.24,
+      "shelter": 2.09,
+      "rent": 1.17
+    },
+    {
+      "date": "2012-02-01",
+      "all_items": 2.62,
+      "ex_food_energy": 1.67,
+      "services": 2.31,
+      "shelter": 1.93,
+      "rent": 1.25
+    },
+    {
+      "date": "2012-03-01",
+      "all_items": 1.93,
+      "ex_food_energy": 1.49,
+      "services": 2.31,
+      "shelter": 1.61,
+      "rent": 1.25
+    },
+    {
+      "date": "2012-04-01",
+      "all_items": 2.0,
+      "ex_food_energy": 1.92,
+      "services": 2.54,
+      "shelter": 1.12,
+      "rent": 1.25
+    },
+    {
+      "date": "2012-05-01",
+      "all_items": 1.24,
+      "ex_food_energy": 1.48,
+      "services": 2.21,
+      "shelter": 1.2,
+      "rent": 1.25
+    },
+    {
+      "date": "2012-06-01",
+      "all_items": 1.5,
+      "ex_food_energy": 1.66,
+      "services": 2.21,
+      "shelter": 1.28,
+      "rent": 1.34
+    },
+    {
+      "date": "2012-07-01",
+      "all_items": 1.25,
+      "ex_food_energy": 1.31,
+      "services": 2.05,
+      "shelter": 1.03,
+      "rent": 1.34
+    },
+    {
+      "date": "2012-08-01",
+      "all_items": 1.25,
+      "ex_food_energy": 1.13,
+      "services": 1.81,
+      "shelter": 0.95,
+      "rent": 1.43
+    },
+    {
+      "date": "2012-09-01",
+      "all_items": 1.16,
+      "ex_food_energy": 0.78,
+      "services": 1.56,
+      "shelter": 1.19,
+      "rent": 1.51
+    },
+    {
+      "date": "2012-10-01",
+      "all_items": 1.16,
+      "ex_food_energy": 0.95,
+      "services": 1.64,
+      "shelter": 0.87,
+      "rent": 1.51
+    },
+    {
+      "date": "2012-11-01",
+      "all_items": 0.83,
+      "ex_food_energy": 0.86,
+      "services": 1.64,
+      "shelter": 0.95,
+      "rent": 1.51
+    },
+    {
+      "date": "2012-12-01",
+      "all_items": 0.83,
+      "ex_food_energy": 0.87,
+      "services": 1.57,
+      "shelter": 0.55,
+      "rent": 1.6
+    },
+    {
+      "date": "2013-01-01",
+      "all_items": 0.5,
+      "ex_food_energy": 0.61,
+      "services": 1.41,
+      "shelter": 0.55,
+      "rent": 1.6
+    },
+    {
+      "date": "2013-02-01",
+      "all_items": 1.24,
+      "ex_food_energy": 1.12,
+      "services": 1.48,
+      "shelter": 0.79,
+      "rent": 1.59
+    },
+    {
+      "date": "2013-03-01",
+      "all_items": 0.99,
+      "ex_food_energy": 0.95,
+      "services": 1.32,
+      "shelter": 1.11,
+      "rent": 1.59
+    },
+    {
+      "date": "2013-04-01",
+      "all_items": 0.41,
+      "ex_food_energy": 0.51,
+      "services": 0.93,
+      "shelter": 1.26,
+      "rent": 1.59
+    },
+    {
+      "date": "2013-05-01",
+      "all_items": 0.74,
+      "ex_food_energy": 0.51,
+      "services": 1.08,
+      "shelter": 1.26,
+      "rent": 1.59
+    },
+    {
+      "date": "2013-06-01",
+      "all_items": 1.15,
+      "ex_food_energy": 0.86,
+      "services": 1.16,
+      "shelter": 1.18,
+      "rent": 1.68
+    },
+    {
+      "date": "2013-07-01",
+      "all_items": 1.32,
+      "ex_food_energy": 1.12,
+      "services": 1.39,
+      "shelter": 1.26,
+      "rent": 1.67
+    },
+    {
+      "date": "2013-08-01",
+      "all_items": 1.07,
+      "ex_food_energy": 0.95,
+      "services": 1.54,
+      "shelter": 1.1,
+      "rent": 1.67
+    },
+    {
+      "date": "2013-09-01",
+      "all_items": 1.07,
+      "ex_food_energy": 0.95,
+      "services": 1.46,
+      "shelter": 1.42,
+      "rent": 1.58
+    },
+    {
+      "date": "2013-10-01",
+      "all_items": 0.65,
+      "ex_food_energy": 0.94,
+      "services": 1.54,
+      "shelter": 1.25,
+      "rent": 1.58
+    },
+    {
+      "date": "2013-11-01",
+      "all_items": 0.9,
+      "ex_food_energy": 0.69,
+      "services": 1.46,
+      "shelter": 1.8,
+      "rent": 1.66
+    },
+    {
+      "date": "2013-12-01",
+      "all_items": 1.24,
+      "ex_food_energy": 0.95,
+      "services": 1.54,
+      "shelter": 1.88,
+      "rent": 1.57
+    },
+    {
+      "date": "2014-01-01",
+      "all_items": 1.48,
+      "ex_food_energy": 1.21,
+      "services": 1.77,
+      "shelter": 2.11,
+      "rent": 1.57
+    },
+    {
+      "date": "2014-02-01",
+      "all_items": 1.14,
+      "ex_food_energy": 1.11,
+      "services": 1.84,
+      "shelter": 2.19,
+      "rent": 1.48
+    },
+    {
+      "date": "2014-03-01",
+      "all_items": 1.55,
+      "ex_food_energy": 1.19,
+      "services": 1.69,
+      "shelter": 2.66,
+      "rent": 1.48
+    },
+    {
+      "date": "2014-04-01",
+      "all_items": 2.04,
+      "ex_food_energy": 1.37,
+      "services": 2.0,
+      "shelter": 3.28,
+      "rent": 1.48
+    },
+    {
+      "date": "2014-05-01",
+      "all_items": 2.28,
+      "ex_food_energy": 1.53,
+      "services": 2.06,
+      "shelter": 3.35,
+      "rent": 1.48
+    },
+    {
+      "date": "2014-06-01",
+      "all_items": 2.36,
+      "ex_food_energy": 1.62,
+      "services": 2.14,
+      "shelter": 2.88,
+      "rent": 1.47
+    },
+    {
+      "date": "2014-07-01",
+      "all_items": 2.11,
+      "ex_food_energy": 1.54,
+      "services": 2.05,
+      "shelter": 2.95,
+      "rent": 1.47
+    },
+    {
+      "date": "2014-08-01",
+      "all_items": 2.11,
+      "ex_food_energy": 1.96,
+      "services": 2.36,
+      "shelter": 2.8,
+      "rent": 1.38
+    },
+    {
+      "date": "2014-09-01",
+      "all_items": 2.03,
+      "ex_food_energy": 1.87,
+      "services": 2.35,
+      "shelter": 2.71,
+      "rent": 1.47
+    },
+    {
+      "date": "2014-10-01",
+      "all_items": 2.36,
+      "ex_food_energy": 2.04,
+      "services": 2.35,
+      "shelter": 2.79,
+      "rent": 1.47
+    },
+    {
+      "date": "2014-11-01",
+      "all_items": 1.95,
+      "ex_food_energy": 1.96,
+      "services": 2.05,
+      "shelter": 2.31,
+      "rent": 1.38
+    },
+    {
+      "date": "2014-12-01",
+      "all_items": 1.47,
+      "ex_food_energy": 1.88,
+      "services": 2.13,
+      "shelter": 2.39,
+      "rent": 1.38
+    },
+    {
+      "date": "2015-01-01",
+      "all_items": 0.97,
+      "ex_food_energy": 1.88,
+      "services": 2.12,
+      "shelter": 1.99,
+      "rent": 1.29
+    },
+    {
+      "date": "2015-02-01",
+      "all_items": 1.05,
+      "ex_food_energy": 1.78,
+      "services": 2.26,
+      "shelter": 1.84,
+      "rent": 1.37
+    },
+    {
+      "date": "2015-03-01",
+      "all_items": 1.2,
+      "ex_food_energy": 2.02,
+      "services": 2.34,
+      "shelter": 1.45,
+      "rent": 1.37
+    },
+    {
+      "date": "2015-04-01",
+      "all_items": 0.8,
+      "ex_food_energy": 1.85,
+      "services": 2.03,
+      "shelter": 0.53,
+      "rent": 1.37
+    },
+    {
+      "date": "2015-05-01",
+      "all_items": 0.87,
+      "ex_food_energy": 1.85,
+      "services": 1.95,
+      "shelter": 0.45,
+      "rent": 1.28
+    },
+    {
+      "date": "2015-06-01",
+      "all_items": 1.03,
+      "ex_food_energy": 1.85,
+      "services": 1.94,
+      "shelter": 0.98,
+      "rent": 1.2
+    },
+    {
+      "date": "2015-07-01",
+      "all_items": 1.27,
+      "ex_food_energy": 2.02,
+      "services": 1.94,
+      "shelter": 0.9,
+      "rent": 1.2
+    },
+    {
+      "date": "2015-08-01",
+      "all_items": 1.27,
+      "ex_food_energy": 1.76,
+      "services": 1.78,
+      "shelter": 1.13,
+      "rent": 1.11
+    },
+    {
+      "date": "2015-09-01",
+      "all_items": 1.03,
+      "ex_food_energy": 1.84,
+      "services": 1.93,
+      "shelter": 1.06,
+      "rent": 1.02
+    },
+    {
+      "date": "2015-10-01",
+      "all_items": 1.03,
+      "ex_food_energy": 1.66,
+      "services": 1.85,
+      "shelter": 1.13,
+      "rent": 0.93
+    },
+    {
+      "date": "2015-11-01",
+      "all_items": 1.36,
+      "ex_food_energy": 1.75,
+      "services": 1.78,
+      "shelter": 1.2,
+      "rent": 0.85
+    },
+    {
+      "date": "2015-12-01",
+      "all_items": 1.61,
+      "ex_food_energy": 1.68,
+      "services": 1.71,
+      "shelter": 1.13,
+      "rent": 0.85
+    },
+    {
+      "date": "2016-01-01",
+      "all_items": 2.01,
+      "ex_food_energy": 1.76,
+      "services": 1.71,
+      "shelter": 1.13,
+      "rent": 0.85
+    },
+    {
+      "date": "2016-02-01",
+      "all_items": 1.36,
+      "ex_food_energy": 1.66,
+      "services": 1.62,
+      "shelter": 1.2,
+      "rent": 0.76
+    },
+    {
+      "date": "2016-03-01",
+      "all_items": 1.27,
+      "ex_food_energy": 1.74,
+      "services": 1.77,
+      "shelter": 1.13,
+      "rent": 0.68
+    },
+    {
+      "date": "2016-04-01",
+      "all_items": 1.66,
+      "ex_food_energy": 1.9,
+      "services": 1.77,
+      "shelter": 1.35,
+      "rent": 0.59
+    },
+    {
+      "date": "2016-05-01",
+      "all_items": 1.5,
+      "ex_food_energy": 2.06,
+      "services": 1.91,
+      "shelter": 1.43,
+      "rent": 0.68
+    },
+    {
+      "date": "2016-06-01",
+      "all_items": 1.49,
+      "ex_food_energy": 2.14,
+      "services": 1.9,
+      "shelter": 1.57,
+      "rent": 0.59
+    },
+    {
+      "date": "2016-07-01",
+      "all_items": 1.26,
+      "ex_food_energy": 2.06,
+      "services": 2.12,
+      "shelter": 1.64,
+      "rent": 0.51
+    },
+    {
+      "date": "2016-08-01",
+      "all_items": 1.1,
+      "ex_food_energy": 1.89,
+      "services": 1.82,
+      "shelter": 1.72,
+      "rent": 0.59
+    },
+    {
+      "date": "2016-09-01",
+      "all_items": 1.34,
+      "ex_food_energy": 1.97,
+      "services": 1.82,
+      "shelter": 1.72,
+      "rent": 0.51
+    },
+    {
+      "date": "2016-10-01",
+      "all_items": 1.49,
+      "ex_food_energy": 1.88,
+      "services": 1.82,
+      "shelter": 1.94,
+      "rent": 0.51
+    },
+    {
+      "date": "2016-11-01",
+      "all_items": 1.18,
+      "ex_food_energy": 1.72,
+      "services": 1.97,
+      "shelter": 2.08,
+      "rent": 0.51
+    },
+    {
+      "date": "2016-12-01",
+      "all_items": 1.5,
+      "ex_food_energy": 1.81,
+      "services": 1.97,
+      "shelter": 2.08,
+      "rent": 0.5
+    },
+    {
+      "date": "2017-01-01",
+      "all_items": 2.13,
+      "ex_food_energy": 2.22,
+      "services": 2.34,
+      "shelter": 2.38,
+      "rent": 0.5
+    },
+    {
+      "date": "2017-02-01",
+      "all_items": 2.05,
+      "ex_food_energy": 2.04,
+      "services": 2.18,
+      "shelter": 2.15,
+      "rent": 0.5
+    },
+    {
+      "date": "2017-03-01",
+      "all_items": 1.56,
+      "ex_food_energy": 1.71,
+      "services": 2.25,
+      "shelter": 2.15,
+      "rent": 0.59
+    },
+    {
+      "date": "2017-04-01",
+      "all_items": 1.64,
+      "ex_food_energy": 1.54,
+      "services": 2.46,
+      "shelter": 2.22,
+      "rent": 0.59
+    },
+    {
+      "date": "2017-05-01",
+      "all_items": 1.32,
+      "ex_food_energy": 1.37,
+      "services": 2.31,
+      "shelter": 1.92,
+      "rent": 0.59
+    },
+    {
+      "date": "2017-06-01",
+      "all_items": 1.01,
+      "ex_food_energy": 1.37,
+      "services": 2.37,
+      "shelter": 1.62,
+      "rent": 0.67
+    },
+    {
+      "date": "2017-07-01",
+      "all_items": 1.16,
+      "ex_food_energy": 1.45,
+      "services": 2.08,
+      "shelter": 1.25,
+      "rent": 0.67
+    },
+    {
+      "date": "2017-08-01",
+      "all_items": 1.4,
+      "ex_food_energy": 1.45,
+      "services": 2.22,
+      "shelter": 1.32,
+      "rent": 0.59
+    },
+    {
+      "date": "2017-09-01",
+      "all_items": 1.55,
+      "ex_food_energy": 1.21,
+      "services": 2.07,
+      "shelter": 1.4,
+      "rent": 0.67
+    },
+    {
+      "date": "2017-10-01",
+      "all_items": 1.39,
+      "ex_food_energy": 1.37,
+      "services": 2.22,
+      "shelter": 1.24,
+      "rent": 0.67
+    },
+    {
+      "date": "2017-11-01",
+      "all_items": 2.1,
+      "ex_food_energy": 1.77,
+      "services": 2.29,
+      "shelter": 1.24,
+      "rent": 0.75
+    },
+    {
+      "date": "2017-12-01",
+      "all_items": 1.87,
+      "ex_food_energy": 1.7,
+      "services": 2.01,
+      "shelter": 1.38,
+      "rent": 0.75
+    },
+    {
+      "date": "2018-01-01",
+      "all_items": 1.7,
+      "ex_food_energy": 1.53,
+      "services": 2.21,
+      "shelter": 1.38,
+      "rent": 0.84
+    },
+    {
+      "date": "2018-02-01",
+      "all_items": 2.16,
+      "ex_food_energy": 1.84,
+      "services": 2.56,
+      "shelter": 1.74,
+      "rent": 0.92
+    },
+    {
+      "date": "2018-03-01",
+      "all_items": 2.31,
+      "ex_food_energy": 1.92,
+      "services": 2.69,
+      "shelter": 1.67,
+      "rent": 0.92
+    },
+    {
+      "date": "2018-04-01",
+      "all_items": 2.22,
+      "ex_food_energy": 1.84,
+      "services": 2.26,
+      "shelter": 1.74,
+      "rent": 1.0
+    },
+    {
+      "date": "2018-05-01",
+      "all_items": 2.22,
+      "ex_food_energy": 1.67,
+      "services": 2.32,
+      "shelter": 1.96,
+      "rent": 1.09
+    },
+    {
+      "date": "2018-06-01",
+      "all_items": 2.45,
+      "ex_food_energy": 1.75,
+      "services": 2.18,
+      "shelter": 1.96,
+      "rent": 1.08
+    },
+    {
+      "date": "2018-07-01",
+      "all_items": 2.99,
+      "ex_food_energy": 2.31,
+      "services": 3.16,
+      "shelter": 2.4,
+      "rent": 1.17
+    },
+    {
+      "date": "2018-08-01",
+      "all_items": 2.84,
+      "ex_food_energy": 2.31,
+      "services": 3.08,
+      "shelter": 2.32,
+      "rent": 1.33
+    },
+    {
+      "date": "2018-09-01",
+      "all_items": 2.22,
+      "ex_food_energy": 1.83,
+      "services": 2.45,
+      "shelter": 2.46,
+      "rent": 1.33
+    },
+    {
+      "date": "2018-10-01",
+      "all_items": 2.44,
+      "ex_food_energy": 2.06,
+      "services": 2.66,
+      "shelter": 2.45,
+      "rent": 1.33
+    },
+    {
+      "date": "2018-11-01",
+      "all_items": 1.68,
+      "ex_food_energy": 1.74,
+      "services": 2.66,
+      "shelter": 2.45,
+      "rent": 1.41
+    },
+    {
+      "date": "2018-12-01",
+      "all_items": 1.99,
+      "ex_food_energy": 2.31,
+      "services": 3.51,
+      "shelter": 2.23,
+      "rent": 1.41
+    },
+    {
+      "date": "2019-01-01",
+      "all_items": 1.44,
+      "ex_food_energy": 1.9,
+      "services": 2.65,
+      "shelter": 2.36,
+      "rent": 2.24
+    },
+    {
+      "date": "2019-02-01",
+      "all_items": 1.51,
+      "ex_food_energy": 1.97,
+      "services": 2.29,
+      "shelter": 2.43,
+      "rent": 2.49
+    },
+    {
+      "date": "2019-03-01",
+      "all_items": 1.88,
+      "ex_food_energy": 1.88,
+      "services": 2.21,
+      "shelter": 2.71,
+      "rent": 2.73
+    },
+    {
+      "date": "2019-04-01",
+      "all_items": 2.03,
+      "ex_food_energy": 2.04,
+      "services": 2.42,
+      "shelter": 2.71,
+      "rent": 2.23
+    },
+    {
+      "date": "2019-05-01",
+      "all_items": 2.4,
+      "ex_food_energy": 2.43,
+      "services": 2.68,
+      "shelter": 2.71,
+      "rent": 2.15
+    },
+    {
+      "date": "2019-06-01",
+      "all_items": 2.02,
+      "ex_food_energy": 2.35,
+      "services": 2.82,
+      "shelter": 2.49,
+      "rent": 2.39
+    },
+    {
+      "date": "2019-07-01",
+      "all_items": 2.01,
+      "ex_food_energy": 2.18,
+      "services": 2.45,
+      "shelter": 2.34,
+      "rent": 2.56
+    },
+    {
+      "date": "2019-08-01",
+      "all_items": 1.94,
+      "ex_food_energy": 2.18,
+      "services": 2.58,
+      "shelter": 2.41,
+      "rent": 3.04
+    },
+    {
+      "date": "2019-09-01",
+      "all_items": 1.87,
+      "ex_food_energy": 2.11,
+      "services": 2.19,
+      "shelter": 2.33,
+      "rent": 2.96
+    },
+    {
+      "date": "2019-10-01",
+      "all_items": 1.86,
+      "ex_food_energy": 2.02,
+      "services": 2.25,
+      "shelter": 2.61,
+      "rent": 3.69
+    },
+    {
+      "date": "2019-11-01",
+      "all_items": 2.17,
+      "ex_food_energy": 2.02,
+      "services": 1.91,
+      "shelter": 2.53,
+      "rent": 3.11
+    },
+    {
+      "date": "2019-12-01",
+      "all_items": 2.25,
+      "ex_food_energy": 1.79,
+      "services": 1.9,
+      "shelter": 2.81,
+      "rent": 3.44
+    },
+    {
+      "date": "2020-01-01",
+      "all_items": 2.4,
+      "ex_food_energy": 1.87,
+      "services": 1.77,
+      "shelter": 2.38,
+      "rent": 2.44
+    },
+    {
+      "date": "2020-02-01",
+      "all_items": 2.16,
+      "ex_food_energy": 1.93,
+      "services": 2.17,
+      "shelter": 2.3,
+      "rent": 2.75
+    },
+    {
+      "date": "2020-03-01",
+      "all_items": 0.89,
+      "ex_food_energy": 1.69,
+      "services": 2.03,
+      "shelter": 1.88,
+      "rent": 2.58
+    },
+    {
+      "date": "2020-04-01",
+      "all_items": -0.22,
+      "ex_food_energy": 1.31,
+      "services": 2.03,
+      "shelter": 1.32,
+      "rent": 2.35
+    },
+    {
+      "date": "2020-05-01",
+      "all_items": -0.37,
+      "ex_food_energy": 0.61,
+      "services": 1.27,
+      "shelter": 0.97,
+      "rent": 1.46
+    },
+    {
+      "date": "2020-06-01",
+      "all_items": 0.66,
+      "ex_food_energy": 0.99,
+      "services": 1.34,
+      "shelter": 1.67,
+      "rent": 1.77
+    },
+    {
+      "date": "2020-07-01",
+      "all_items": 0.15,
+      "ex_food_energy": 0.46,
+      "services": 0.53,
+      "shelter": 1.46,
+      "rent": 1.21
+    },
+    {
+      "date": "2020-08-01",
+      "all_items": 0.15,
+      "ex_food_energy": 0.46,
+      "services": 0.46,
+      "shelter": 1.52,
+      "rent": 1.36
+    },
+    {
+      "date": "2020-09-01",
+      "all_items": 0.51,
+      "ex_food_energy": 0.84,
+      "services": 1.34,
+      "shelter": 1.73,
+      "rent": 1.6
+    },
+    {
+      "date": "2020-10-01",
+      "all_items": 0.66,
+      "ex_food_energy": 0.84,
+      "services": 1.2,
+      "shelter": 1.78,
+      "rent": 0.95
+    },
+    {
+      "date": "2020-11-01",
+      "all_items": 0.95,
+      "ex_food_energy": 1.3,
+      "services": 1.81,
+      "shelter": 1.92,
+      "rent": 1.51
+    },
+    {
+      "date": "2020-12-01",
+      "all_items": 0.73,
+      "ex_food_energy": 1.07,
+      "services": 1.33,
+      "shelter": 1.64,
+      "rent": 0.55
+    },
+    {
+      "date": "2021-01-01",
+      "all_items": 1.02,
+      "ex_food_energy": 1.37,
+      "services": 1.87,
+      "shelter": 1.37,
+      "rent": 0.87
+    },
+    {
+      "date": "2021-02-01",
+      "all_items": 1.09,
+      "ex_food_energy": 0.76,
+      "services": 1.19,
+      "shelter": 1.43,
+      "rent": 0.08
+    },
+    {
+      "date": "2021-03-01",
+      "all_items": 2.2,
+      "ex_food_energy": 0.91,
+      "services": 1.19,
+      "shelter": 2.39,
+      "rent": 0.55
+    },
+    {
+      "date": "2021-04-01",
+      "all_items": 3.39,
+      "ex_food_energy": 1.82,
+      "services": 1.72,
+      "shelter": 3.22,
+      "rent": 0.95
+    },
+    {
+      "date": "2021-05-01",
+      "all_items": 3.6,
+      "ex_food_energy": 2.36,
+      "services": 1.92,
+      "shelter": 4.19,
+      "rent": 2.47
+    },
+    {
+      "date": "2021-06-01",
+      "all_items": 3.06,
+      "ex_food_energy": 2.2,
+      "services": 1.98,
+      "shelter": 4.37,
+      "rent": 2.14
+    },
+    {
+      "date": "2021-07-01",
+      "all_items": 3.72,
+      "ex_food_energy": 2.81,
+      "services": 2.57,
+      "shelter": 4.85,
+      "rent": 2.62
+    },
+    {
+      "date": "2021-08-01",
+      "all_items": 4.09,
+      "ex_food_energy": 3.03,
+      "services": 2.7,
+      "shelter": 4.84,
+      "rent": 1.57
+    },
+    {
+      "date": "2021-09-01",
+      "all_items": 4.38,
+      "ex_food_energy": 3.26,
+      "services": 3.04,
+      "shelter": 4.82,
+      "rent": 1.89
+    },
+    {
+      "date": "2021-10-01",
+      "all_items": 4.65,
+      "ex_food_energy": 3.25,
+      "services": 3.16,
+      "shelter": 4.79,
+      "rent": 1.8
+    },
+    {
+      "date": "2021-11-01",
+      "all_items": 4.72,
+      "ex_food_energy": 3.09,
+      "services": 2.89,
+      "shelter": 4.84,
+      "rent": 1.72
+    },
+    {
+      "date": "2021-12-01",
+      "all_items": 4.8,
+      "ex_food_energy": 3.4,
+      "services": 3.35,
+      "shelter": 5.45,
+      "rent": 2.76
+    },
+    {
+      "date": "2022-01-01",
+      "all_items": 5.14,
+      "ex_food_energy": 3.54,
+      "services": 3.41,
+      "shelter": 6.2,
+      "rent": 3.14
+    },
+    {
+      "date": "2022-02-01",
+      "all_items": 5.69,
+      "ex_food_energy": 3.91,
+      "services": 3.8,
+      "shelter": 6.59,
+      "rent": 4.25
+    },
+    {
+      "date": "2022-03-01",
+      "all_items": 6.66,
+      "ex_food_energy": 4.65,
+      "services": 4.25,
+      "shelter": 6.8,
+      "rent": 4.14
+    },
+    {
+      "date": "2022-04-01",
+      "all_items": 6.77,
+      "ex_food_energy": 4.62,
+      "services": 4.62,
+      "shelter": 7.43,
+      "rent": 4.54
+    },
+    {
+      "date": "2022-05-01",
+      "all_items": 7.73,
+      "ex_food_energy": 5.2,
+      "services": 5.19,
+      "shelter": 7.45,
+      "rent": 4.43
+    },
+    {
+      "date": "2022-06-01",
+      "all_items": 8.13,
+      "ex_food_energy": 5.33,
+      "services": 5.24,
+      "shelter": 7.07,
+      "rent": 4.26
+    },
+    {
+      "date": "2022-07-01",
+      "all_items": 7.59,
+      "ex_food_energy": 5.53,
+      "services": 5.66,
+      "shelter": 6.97,
+      "rent": 4.88
+    },
+    {
+      "date": "2022-08-01",
+      "all_items": 7.01,
+      "ex_food_energy": 5.3,
+      "services": 5.52,
+      "shelter": 6.63,
+      "rent": 4.73
+    },
+    {
+      "date": "2022-09-01",
+      "all_items": 6.86,
+      "ex_food_energy": 5.43,
+      "services": 5.57,
+      "shelter": 6.8,
+      "rent": 4.24
+    },
+    {
+      "date": "2022-10-01",
+      "all_items": 6.88,
+      "ex_food_energy": 5.34,
+      "services": 5.42,
+      "shelter": 6.95,
+      "rent": 4.7
+    },
+    {
+      "date": "2022-11-01",
+      "all_items": 6.8,
+      "ex_food_energy": 5.41,
+      "services": 5.75,
+      "shelter": 7.25,
+      "rent": 5.85
+    },
+    {
+      "date": "2022-12-01",
+      "all_items": 6.32,
+      "ex_food_energy": 5.34,
+      "services": 5.6,
+      "shelter": 7.02,
+      "rent": 5.82
+    },
+    {
+      "date": "2023-01-01",
+      "all_items": 5.92,
+      "ex_food_energy": 4.95,
+      "services": 5.33,
+      "shelter": 6.6,
+      "rent": 5.79
+    },
+    {
+      "date": "2023-02-01",
+      "all_items": 5.25,
+      "ex_food_energy": 4.84,
+      "services": 5.3,
+      "shelter": 6.12,
+      "rent": 5.35
+    },
+    {
+      "date": "2023-03-01",
+      "all_items": 4.3,
+      "ex_food_energy": 4.51,
+      "services": 5.14,
+      "shelter": 5.43,
+      "rent": 5.33
+    },
+    {
+      "date": "2023-04-01",
+      "all_items": 4.41,
+      "ex_food_energy": 4.42,
+      "services": 4.79,
+      "shelter": 4.94,
+      "rent": 6.07
+    },
+    {
+      "date": "2023-05-01",
+      "all_items": 3.36,
+      "ex_food_energy": 3.95,
+      "services": 4.57,
+      "shelter": 4.66,
+      "rent": 5.66
+    },
+    {
+      "date": "2023-06-01",
+      "all_items": 2.81,
+      "ex_food_energy": 3.52,
+      "services": 4.18,
+      "shelter": 4.77,
+      "rent": 5.8
+    },
+    {
+      "date": "2023-07-01",
+      "all_items": 3.27,
+      "ex_food_energy": 3.42,
+      "services": 4.26,
+      "shelter": 5.12,
+      "rent": 5.46
+    },
+    {
+      "date": "2023-08-01",
+      "all_items": 4.0,
+      "ex_food_energy": 3.63,
+      "services": 4.26,
+      "shelter": 6.03,
+      "rent": 6.51
+    },
+    {
+      "date": "2023-09-01",
+      "all_items": 3.8,
+      "ex_food_energy": 3.2,
+      "services": 3.94,
+      "shelter": 6.0,
+      "rent": 7.32
+    },
+    {
+      "date": "2023-10-01",
+      "all_items": 3.12,
+      "ex_food_energy": 3.4,
+      "services": 4.6,
+      "shelter": 6.08,
+      "rent": 8.24
+    },
+    {
+      "date": "2023-11-01",
+      "all_items": 3.12,
+      "ex_food_energy": 3.54,
+      "services": 4.59,
+      "shelter": 5.92,
+      "rent": 7.42
+    },
+    {
+      "date": "2023-12-01",
+      "all_items": 3.4,
+      "ex_food_energy": 3.4,
+      "services": 4.28,
+      "shelter": 5.96,
+      "rent": 7.75
+    },
+    {
+      "date": "2024-01-01",
+      "all_items": 2.86,
+      "ex_food_energy": 3.12,
+      "services": 4.21,
+      "shelter": 6.19,
+      "rent": 7.92
+    },
+    {
+      "date": "2024-02-01",
+      "all_items": 2.78,
+      "ex_food_energy": 2.83,
+      "services": 4.2,
+      "shelter": 6.48,
+      "rent": 8.16
+    },
+    {
+      "date": "2024-03-01",
+      "all_items": 2.9,
+      "ex_food_energy": 2.88,
+      "services": 4.47,
+      "shelter": 6.51,
+      "rent": 8.55
+    },
+    {
+      "date": "2024-04-01",
+      "all_items": 2.69,
+      "ex_food_energy": 2.66,
+      "services": 4.15,
+      "shelter": 6.42,
+      "rent": 8.19
+    },
+    {
+      "date": "2024-05-01",
+      "all_items": 2.87,
+      "ex_food_energy": 2.85,
+      "services": 4.6,
+      "shelter": 6.39,
+      "rent": 8.95
+    },
+    {
+      "date": "2024-06-01",
+      "all_items": 2.67,
+      "ex_food_energy": 2.85,
+      "services": 4.78,
+      "shelter": 6.24,
+      "rent": 8.78
+    },
+    {
+      "date": "2024-07-01",
+      "all_items": 2.53,
+      "ex_food_energy": 2.7,
+      "services": 4.44,
+      "shelter": 5.74,
+      "rent": 8.54
+    },
+    {
+      "date": "2024-08-01",
+      "all_items": 1.95,
+      "ex_food_energy": 2.36,
+      "services": 4.26,
+      "shelter": 5.34,
+      "rent": 8.9
+    },
+    {
+      "date": "2024-09-01",
+      "all_items": 1.64,
+      "ex_food_energy": 2.36,
+      "services": 4.03,
+      "shelter": 4.98,
+      "rent": 8.2
+    },
+    {
+      "date": "2024-10-01",
+      "all_items": 2.02,
+      "ex_food_energy": 2.28,
+      "services": 3.59,
+      "shelter": 4.82,
+      "rent": 7.34
+    },
+    {
+      "date": "2024-11-01",
+      "all_items": 1.89,
+      "ex_food_energy": 1.94,
+      "services": 3.47,
+      "shelter": 4.63,
+      "rent": 7.65
+    },
+    {
+      "date": "2024-12-01",
+      "all_items": 1.83,
+      "ex_food_energy": 2.15,
+      "services": 3.52,
+      "shelter": 4.5,
+      "rent": 7.12
+    },
+    {
+      "date": "2025-01-01",
+      "all_items": 1.9,
+      "ex_food_energy": 2.15,
+      "services": 2.77,
+      "shelter": 4.48,
+      "rent": 6.27
+    },
+    {
+      "date": "2025-02-01",
+      "all_items": 2.64,
+      "ex_food_energy": 2.88,
+      "services": 3.62,
+      "shelter": 4.19,
+      "rent": 5.76
+    },
+    {
+      "date": "2025-03-01",
+      "all_items": 2.32,
+      "ex_food_energy": 2.4,
+      "services": 3.14,
+      "shelter": 3.95,
+      "rent": 5.05
+    },
+    {
+      "date": "2025-04-01",
+      "all_items": 1.74,
+      "ex_food_energy": 2.59,
+      "services": 3.53,
+      "shelter": 3.37,
+      "rent": 5.22
+    },
+    {
+      "date": "2025-05-01",
+      "all_items": 1.73,
+      "ex_food_energy": 2.58,
+      "services": 3.22,
+      "shelter": 2.98,
+      "rent": 4.46
+    },
+    {
+      "date": "2025-06-01",
+      "all_items": 1.86,
+      "ex_food_energy": 2.64,
+      "services": 3.04,
+      "shelter": 2.86,
+      "rent": 4.72
+    },
+    {
+      "date": "2025-07-01",
+      "all_items": 1.73,
+      "ex_food_energy": 2.5,
+      "services": 2.8,
+      "shelter": 2.96,
+      "rent": 5.09
+    },
+    {
+      "date": "2025-08-01",
+      "all_items": 1.85,
+      "ex_food_energy": 2.44,
+      "services": 2.8,
+      "shelter": 2.56,
+      "rent": 4.47
+    },
+    {
+      "date": "2025-09-01",
+      "all_items": 2.36,
+      "ex_food_energy": 2.44,
+      "services": 2.97,
+      "shelter": 2.56,
+      "rent": 4.78
+    },
+    {
+      "date": "2025-10-01",
+      "all_items": 2.16,
+      "ex_food_energy": 2.69,
+      "services": 3.24,
+      "shelter": 2.49,
+      "rent": 5.19
+    },
+    {
+      "date": "2025-11-01",
+      "all_items": 2.22,
+      "ex_food_energy": 2.43,
+      "services": 2.85,
+      "shelter": 2.32,
+      "rent": 4.65
+    },
+    {
+      "date": "2025-12-01",
+      "all_items": 2.36,
+      "ex_food_energy": 2.5,
+      "services": 3.29,
+      "shelter": 2.1,
+      "rent": 4.89
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "all_items": 2.36,
+    "ex_food_energy": 2.5,
+    "services": 3.29,
+    "shelter": 2.1,
+    "rent": 4.89
+  },
+  "metadata": {
+    "source": "Statistics Canada",
+    "table": "18-10-0004-01",
+    "indicator": "CPI Service / Rent (Sticky CPI)",
+    "description": "カナダCPI サービス/家賃（粘着性CPI）",
+    "unit": "% (YoY)",
+    "frequency": "monthly",
+    "base_year": "2002=100"
+  },
+  "next_release": {
+    "date": "2026-02-16",
+    "datetime_utc": "2026-02-16T13:30:00+00:00",
+    "datetime_jst": "2026-02-16T22:30:00+09:00",
+    "time_jst": "22:30",
+    "datetime_toronto": "2026-02-16T08:30:00-05:00",
+    "time_toronto": "08:30",
+    "label": "CPI (Jan)",
+    "estimate": null
+  },
+  "last_updated": "2026-02-13T09:34:41.016930+09:00"
+}

@@ -1,0 +1,1106 @@
+{
+  "data": [
+    {
+      "date": "1981-01-01",
+      "value": -4.36,
+      "current_account": -3685.0,
+      "gdp": 84538.0
+    },
+    {
+      "date": "1981-04-01",
+      "value": -4.76,
+      "current_account": -4256.0,
+      "gdp": 89420.0
+    },
+    {
+      "date": "1981-07-01",
+      "value": -4.39,
+      "current_account": -4353.0,
+      "gdp": 99242.0
+    },
+    {
+      "date": "1981-10-01",
+      "value": -3.26,
+      "current_account": -3104.0,
+      "gdp": 95158.0
+    },
+    {
+      "date": "1982-01-01",
+      "value": -0.47,
+      "current_account": -427.0,
+      "gdp": 91630.0
+    },
+    {
+      "date": "1982-04-01",
+      "value": 0.4,
+      "current_account": 376.0,
+      "gdp": 94040.0
+    },
+    {
+      "date": "1982-07-01",
+      "value": 1.55,
+      "current_account": 1598.0,
+      "gdp": 103417.0
+    },
+    {
+      "date": "1982-10-01",
+      "value": 0.34,
+      "current_account": 337.0,
+      "gdp": 99094.0
+    },
+    {
+      "date": "1983-01-01",
+      "value": -0.48,
+      "current_account": -468.0,
+      "gdp": 96806.0
+    },
+    {
+      "date": "1983-04-01",
+      "value": 0.09,
+      "current_account": 92.0,
+      "gdp": 101460.0
+    },
+    {
+      "date": "1983-07-01",
+      "value": -1.15,
+      "current_account": -1301.0,
+      "gdp": 113010.0
+    },
+    {
+      "date": "1983-10-01",
+      "value": -1.68,
+      "current_account": -1854.0,
+      "gdp": 110040.0
+    },
+    {
+      "date": "1984-01-01",
+      "value": -1.31,
+      "current_account": -1410.0,
+      "gdp": 107443.0
+    },
+    {
+      "date": "1984-04-01",
+      "value": -0.72,
+      "current_account": -804.0,
+      "gdp": 112075.0
+    },
+    {
+      "date": "1984-07-01",
+      "value": -0.33,
+      "current_account": -400.0,
+      "gdp": 122679.0
+    },
+    {
+      "date": "1984-10-01",
+      "value": 0.42,
+      "current_account": 503.0,
+      "gdp": 119789.0
+    },
+    {
+      "date": "1985-01-01",
+      "value": -0.42,
+      "current_account": -488.0,
+      "gdp": 116619.0
+    },
+    {
+      "date": "1985-04-01",
+      "value": -1.65,
+      "current_account": -1981.0,
+      "gdp": 120368.0
+    },
+    {
+      "date": "1985-07-01",
+      "value": -2.27,
+      "current_account": -3007.0,
+      "gdp": 132712.0
+    },
+    {
+      "date": "1985-10-01",
+      "value": -2.16,
+      "current_account": -2819.0,
+      "gdp": 130328.0
+    },
+    {
+      "date": "1986-01-01",
+      "value": -3.32,
+      "current_account": -4137.0,
+      "gdp": 124766.0
+    },
+    {
+      "date": "1986-04-01",
+      "value": -3.0,
+      "current_account": -3844.0,
+      "gdp": 127948.0
+    },
+    {
+      "date": "1986-07-01",
+      "value": -3.1,
+      "current_account": -4301.0,
+      "gdp": 138805.0
+    },
+    {
+      "date": "1986-10-01",
+      "value": -2.84,
+      "current_account": -3833.0,
+      "gdp": 135111.0
+    },
+    {
+      "date": "1987-01-01",
+      "value": -2.64,
+      "current_account": -3511.0,
+      "gdp": 133185.0
+    },
+    {
+      "date": "1987-04-01",
+      "value": -2.88,
+      "current_account": -4025.0,
+      "gdp": 139745.0
+    },
+    {
+      "date": "1987-07-01",
+      "value": -3.04,
+      "current_account": -4602.0,
+      "gdp": 151421.0
+    },
+    {
+      "date": "1987-10-01",
+      "value": -4.25,
+      "current_account": -6370.0,
+      "gdp": 149985.0
+    },
+    {
+      "date": "1988-01-01",
+      "value": -3.24,
+      "current_account": -4804.0,
+      "gdp": 148063.0
+    },
+    {
+      "date": "1988-04-01",
+      "value": -2.7,
+      "current_account": -4145.0,
+      "gdp": 153318.0
+    },
+    {
+      "date": "1988-07-01",
+      "value": -3.53,
+      "current_account": -5768.0,
+      "gdp": 163615.0
+    },
+    {
+      "date": "1988-10-01",
+      "value": -2.76,
+      "current_account": -4469.0,
+      "gdp": 161898.0
+    },
+    {
+      "date": "1989-01-01",
+      "value": -3.3,
+      "current_account": -5214.0,
+      "gdp": 158215.0
+    },
+    {
+      "date": "1989-04-01",
+      "value": -4.47,
+      "current_account": -7351.0,
+      "gdp": 164436.0
+    },
+    {
+      "date": "1989-07-01",
+      "value": -3.81,
+      "current_account": -6724.0,
+      "gdp": 176561.0
+    },
+    {
+      "date": "1989-10-01",
+      "value": -4.22,
+      "current_account": -7278.0,
+      "gdp": 172367.0
+    },
+    {
+      "date": "1990-01-01",
+      "value": -4.44,
+      "current_account": -7402.0,
+      "gdp": 166580.0
+    },
+    {
+      "date": "1990-04-01",
+      "value": -3.14,
+      "current_account": -5404.0,
+      "gdp": 172205.0
+    },
+    {
+      "date": "1990-07-01",
+      "value": -2.81,
+      "current_account": -5093.0,
+      "gdp": 181403.0
+    },
+    {
+      "date": "1990-10-01",
+      "value": -3.41,
+      "current_account": -5972.0,
+      "gdp": 175313.0
+    },
+    {
+      "date": "1991-01-01",
+      "value": -3.85,
+      "current_account": -6444.0,
+      "gdp": 167228.0
+    },
+    {
+      "date": "1991-04-01",
+      "value": -3.52,
+      "current_account": -6067.0,
+      "gdp": 172598.0
+    },
+    {
+      "date": "1991-07-01",
+      "value": -3.91,
+      "current_account": -7136.0,
+      "gdp": 182638.0
+    },
+    {
+      "date": "1991-10-01",
+      "value": -3.64,
+      "current_account": -6525.0,
+      "gdp": 179309.0
+    },
+    {
+      "date": "1992-01-01",
+      "value": -4.24,
+      "current_account": -7265.0,
+      "gdp": 171431.0
+    },
+    {
+      "date": "1992-04-01",
+      "value": -3.73,
+      "current_account": -6608.0,
+      "gdp": 176922.0
+    },
+    {
+      "date": "1992-07-01",
+      "value": -3.7,
+      "current_account": -6901.0,
+      "gdp": 186332.0
+    },
+    {
+      "date": "1992-10-01",
+      "value": -2.8,
+      "current_account": -5142.0,
+      "gdp": 183751.0
+    },
+    {
+      "date": "1993-01-01",
+      "value": -3.42,
+      "current_account": -6062.0,
+      "gdp": 177146.0
+    },
+    {
+      "date": "1993-04-01",
+      "value": -3.69,
+      "current_account": -6832.0,
+      "gdp": 185214.0
+    },
+    {
+      "date": "1993-07-01",
+      "value": -4.05,
+      "current_account": -7758.0,
+      "gdp": 191739.0
+    },
+    {
+      "date": "1993-10-01",
+      "value": -4.15,
+      "current_account": -8012.0,
+      "gdp": 192938.0
+    },
+    {
+      "date": "1994-01-01",
+      "value": -2.87,
+      "current_account": -5351.0,
+      "gdp": 186254.0
+    },
+    {
+      "date": "1994-04-01",
+      "value": -3.29,
+      "current_account": -6395.0,
+      "gdp": 194634.0
+    },
+    {
+      "date": "1994-07-01",
+      "value": -1.74,
+      "current_account": -3571.0,
+      "gdp": 205656.0
+    },
+    {
+      "date": "1994-10-01",
+      "value": -1.7,
+      "current_account": -3499.0,
+      "gdp": 205428.0
+    },
+    {
+      "date": "1995-01-01",
+      "value": -0.87,
+      "current_account": -1706.0,
+      "gdp": 197209.0
+    },
+    {
+      "date": "1995-04-01",
+      "value": -2.12,
+      "current_account": -4350.0,
+      "gdp": 205659.0
+    },
+    {
+      "date": "1995-07-01",
+      "value": -0.85,
+      "current_account": -1834.0,
+      "gdp": 215915.0
+    },
+    {
+      "date": "1995-10-01",
+      "value": 0.49,
+      "current_account": 1046.0,
+      "gdp": 212838.0
+    },
+    {
+      "date": "1996-01-01",
+      "value": 0.01,
+      "current_account": 22.0,
+      "gdp": 202701.0
+    },
+    {
+      "date": "1996-04-01",
+      "value": 1.23,
+      "current_account": 2565.0,
+      "gdp": 208638.0
+    },
+    {
+      "date": "1996-07-01",
+      "value": 0.45,
+      "current_account": 1012.0,
+      "gdp": 225185.0
+    },
+    {
+      "date": "1996-10-01",
+      "value": -0.01,
+      "current_account": -28.0,
+      "gdp": 223310.0
+    },
+    {
+      "date": "1997-01-01",
+      "value": -0.34,
+      "current_account": -727.0,
+      "gdp": 214418.0
+    },
+    {
+      "date": "1997-04-01",
+      "value": -1.04,
+      "current_account": -2314.0,
+      "gdp": 222456.0
+    },
+    {
+      "date": "1997-07-01",
+      "value": -2.37,
+      "current_account": -5584.0,
+      "gdp": 236004.0
+    },
+    {
+      "date": "1997-10-01",
+      "value": -1.5,
+      "current_account": -3504.0,
+      "gdp": 234048.0
+    },
+    {
+      "date": "1998-01-01",
+      "value": -1.75,
+      "current_account": -3901.0,
+      "gdp": 223467.0
+    },
+    {
+      "date": "1998-04-01",
+      "value": -1.61,
+      "current_account": -3743.0,
+      "gdp": 232123.0
+    },
+    {
+      "date": "1998-07-01",
+      "value": -1.11,
+      "current_account": -2699.0,
+      "gdp": 242727.0
+    },
+    {
+      "date": "1998-10-01",
+      "value": -0.93,
+      "current_account": -2245.0,
+      "gdp": 242231.0
+    },
+    {
+      "date": "1999-01-01",
+      "value": -0.15,
+      "current_account": -358.0,
+      "gdp": 234112.0
+    },
+    {
+      "date": "1999-04-01",
+      "value": -0.25,
+      "current_account": -627.0,
+      "gdp": 248064.0
+    },
+    {
+      "date": "1999-07-01",
+      "value": 0.7,
+      "current_account": 1849.0,
+      "gdp": 262465.0
+    },
+    {
+      "date": "1999-10-01",
+      "value": 0.36,
+      "current_account": 937.0,
+      "gdp": 263286.0
+    },
+    {
+      "date": "2000-01-01",
+      "value": 2.16,
+      "current_account": 5582.0,
+      "gdp": 257878.0
+    },
+    {
+      "date": "2000-04-01",
+      "value": 2.25,
+      "current_account": 6171.0,
+      "gdp": 274521.0
+    },
+    {
+      "date": "2000-07-01",
+      "value": 2.68,
+      "current_account": 7720.0,
+      "gdp": 287734.0
+    },
+    {
+      "date": "2000-10-01",
+      "value": 3.05,
+      "current_account": 8735.0,
+      "gdp": 285938.0
+    },
+    {
+      "date": "2001-01-01",
+      "value": 3.85,
+      "current_account": 10680.0,
+      "gdp": 277284.0
+    },
+    {
+      "date": "2001-04-01",
+      "value": 2.55,
+      "current_account": 7332.0,
+      "gdp": 287272.0
+    },
+    {
+      "date": "2001-07-01",
+      "value": 1.4,
+      "current_account": 4100.0,
+      "gdp": 291890.0
+    },
+    {
+      "date": "2001-10-01",
+      "value": 1.12,
+      "current_account": 3213.0,
+      "gdp": 288097.0
+    },
+    {
+      "date": "2002-01-01",
+      "value": 2.54,
+      "current_account": 7087.0,
+      "gdp": 278499.0
+    },
+    {
+      "date": "2002-04-01",
+      "value": 1.86,
+      "current_account": 5525.0,
+      "gdp": 297094.0
+    },
+    {
+      "date": "2002-07-01",
+      "value": 1.37,
+      "current_account": 4226.0,
+      "gdp": 308927.0
+    },
+    {
+      "date": "2002-10-01",
+      "value": 1.25,
+      "current_account": 3876.0,
+      "gdp": 309174.0
+    },
+    {
+      "date": "2003-01-01",
+      "value": 1.21,
+      "current_account": 3645.0,
+      "gdp": 301290.0
+    },
+    {
+      "date": "2003-04-01",
+      "value": 0.31,
+      "current_account": 947.0,
+      "gdp": 309049.0
+    },
+    {
+      "date": "2003-07-01",
+      "value": 1.62,
+      "current_account": 5219.0,
+      "gdp": 322993.0
+    },
+    {
+      "date": "2003-10-01",
+      "value": 1.75,
+      "current_account": 5636.0,
+      "gdp": 321415.0
+    },
+    {
+      "date": "2004-01-01",
+      "value": 2.18,
+      "current_account": 6825.0,
+      "gdp": 312726.0
+    },
+    {
+      "date": "2004-04-01",
+      "value": 2.73,
+      "current_account": 9024.0,
+      "gdp": 330441.0
+    },
+    {
+      "date": "2004-07-01",
+      "value": 2.28,
+      "current_account": 7909.0,
+      "gdp": 347162.0
+    },
+    {
+      "date": "2004-10-01",
+      "value": 2.19,
+      "current_account": 7566.0,
+      "gdp": 345402.0
+    },
+    {
+      "date": "2005-01-01",
+      "value": 0.93,
+      "current_account": 3116.0,
+      "gdp": 334172.0
+    },
+    {
+      "date": "2005-04-01",
+      "value": 1.11,
+      "current_account": 3880.0,
+      "gdp": 349238.0
+    },
+    {
+      "date": "2005-07-01",
+      "value": 2.15,
+      "current_account": 7913.0,
+      "gdp": 368347.0
+    },
+    {
+      "date": "2005-10-01",
+      "value": 3.38,
+      "current_account": 12492.0,
+      "gdp": 369833.0
+    },
+    {
+      "date": "2006-01-01",
+      "value": 1.92,
+      "current_account": 6827.0,
+      "gdp": 355187.0
+    },
+    {
+      "date": "2006-04-01",
+      "value": 1.22,
+      "current_account": 4529.0,
+      "gdp": 371292.0
+    },
+    {
+      "date": "2006-07-01",
+      "value": 1.28,
+      "current_account": 4934.0,
+      "gdp": 386362.0
+    },
+    {
+      "date": "2006-10-01",
+      "value": 1.39,
+      "current_account": 5335.0,
+      "gdp": 383763.0
+    },
+    {
+      "date": "2007-01-01",
+      "value": 1.07,
+      "current_account": 3970.0,
+      "gdp": 371449.0
+    },
+    {
+      "date": "2007-04-01",
+      "value": 1.51,
+      "current_account": 5906.0,
+      "gdp": 391488.0
+    },
+    {
+      "date": "2007-07-01",
+      "value": 0.3,
+      "current_account": 1222.0,
+      "gdp": 409243.0
+    },
+    {
+      "date": "2007-10-01",
+      "value": 0.47,
+      "current_account": 1891.0,
+      "gdp": 405481.0
+    },
+    {
+      "date": "2008-01-01",
+      "value": 0.95,
+      "current_account": 3691.0,
+      "gdp": 389660.0
+    },
+    {
+      "date": "2008-04-01",
+      "value": 1.35,
+      "current_account": 5570.0,
+      "gdp": 411697.0
+    },
+    {
+      "date": "2008-07-01",
+      "value": 0.92,
+      "current_account": 4074.0,
+      "gdp": 442410.0
+    },
+    {
+      "date": "2008-10-01",
+      "value": -2.64,
+      "current_account": -10895.0,
+      "gdp": 413274.0
+    },
+    {
+      "date": "2009-01-01",
+      "value": -2.84,
+      "current_account": -10665.0,
+      "gdp": 375035.0
+    },
+    {
+      "date": "2009-04-01",
+      "value": -2.86,
+      "current_account": -10941.0,
+      "gdp": 382727.0
+    },
+    {
+      "date": "2009-07-01",
+      "value": -3.2,
+      "current_account": -13019.0,
+      "gdp": 407002.0
+    },
+    {
+      "date": "2009-10-01",
+      "value": -2.73,
+      "current_account": -11090.0,
+      "gdp": 406570.0
+    },
+    {
+      "date": "2010-01-01",
+      "value": -3.4,
+      "current_account": -13318.0,
+      "gdp": 391696.0
+    },
+    {
+      "date": "2010-04-01",
+      "value": -3.56,
+      "current_account": -14502.0,
+      "gdp": 407594.0
+    },
+    {
+      "date": "2010-07-01",
+      "value": -4.65,
+      "current_account": -20035.0,
+      "gdp": 430749.0
+    },
+    {
+      "date": "2010-10-01",
+      "value": -2.64,
+      "current_account": -11496.0,
+      "gdp": 436009.0
+    },
+    {
+      "date": "2011-01-01",
+      "value": -3.21,
+      "current_account": -13405.0,
+      "gdp": 417217.0
+    },
+    {
+      "date": "2011-04-01",
+      "value": -3.17,
+      "current_account": -13715.0,
+      "gdp": 432644.0
+    },
+    {
+      "date": "2011-07-01",
+      "value": -2.15,
+      "current_account": -9923.0,
+      "gdp": 461083.0
+    },
+    {
+      "date": "2011-10-01",
+      "value": -2.39,
+      "current_account": -11068.0,
+      "gdp": 463119.0
+    },
+    {
+      "date": "2012-01-01",
+      "value": -3.05,
+      "current_account": -13187.0,
+      "gdp": 432807.0
+    },
+    {
+      "date": "2012-04-01",
+      "value": -3.88,
+      "current_account": -17328.0,
+      "gdp": 446954.0
+    },
+    {
+      "date": "2012-07-01",
+      "value": -3.65,
+      "current_account": -17288.0,
+      "gdp": 473592.0
+    },
+    {
+      "date": "2012-10-01",
+      "value": -3.54,
+      "current_account": -16776.0,
+      "gdp": 473848.0
+    },
+    {
+      "date": "2013-01-01",
+      "value": -3.41,
+      "current_account": -15119.0,
+      "gdp": 443125.0
+    },
+    {
+      "date": "2013-04-01",
+      "value": -3.39,
+      "current_account": -15599.0,
+      "gdp": 460401.0
+    },
+    {
+      "date": "2013-07-01",
+      "value": -2.81,
+      "current_account": -14062.0,
+      "gdp": 500963.0
+    },
+    {
+      "date": "2013-10-01",
+      "value": -3.01,
+      "current_account": -14979.0,
+      "gdp": 497758.0
+    },
+    {
+      "date": "2014-01-01",
+      "value": -2.53,
+      "current_account": -11805.0,
+      "gdp": 467345.0
+    },
+    {
+      "date": "2014-04-01",
+      "value": -2.09,
+      "current_account": -10216.0,
+      "gdp": 488985.0
+    },
+    {
+      "date": "2014-07-01",
+      "value": -1.82,
+      "current_account": -9549.0,
+      "gdp": 524490.0
+    },
+    {
+      "date": "2014-10-01",
+      "value": -2.86,
+      "current_account": -14709.0,
+      "gdp": 514078.0
+    },
+    {
+      "date": "2015-01-01",
+      "value": -4.09,
+      "current_account": -19319.0,
+      "gdp": 472379.0
+    },
+    {
+      "date": "2015-04-01",
+      "value": -3.42,
+      "current_account": -16654.0,
+      "gdp": 487051.0
+    },
+    {
+      "date": "2015-07-01",
+      "value": -3.01,
+      "current_account": -15683.0,
+      "gdp": 521592.0
+    },
+    {
+      "date": "2015-10-01",
+      "value": -3.52,
+      "current_account": -17913.0,
+      "gdp": 509419.0
+    },
+    {
+      "date": "2016-01-01",
+      "value": -3.92,
+      "current_account": -18642.0,
+      "gdp": 475252.0
+    },
+    {
+      "date": "2016-04-01",
+      "value": -3.63,
+      "current_account": -17807.0,
+      "gdp": 490410.0
+    },
+    {
+      "date": "2016-07-01",
+      "value": -3.1,
+      "current_account": -16411.0,
+      "gdp": 530194.0
+    },
+    {
+      "date": "2016-10-01",
+      "value": -1.83,
+      "current_account": -9693.0,
+      "gdp": 529679.0
+    },
+    {
+      "date": "2017-01-01",
+      "value": -2.52,
+      "current_account": -12576.0,
+      "gdp": 499834.0
+    },
+    {
+      "date": "2017-04-01",
+      "value": -2.85,
+      "current_account": -14958.0,
+      "gdp": 524426.0
+    },
+    {
+      "date": "2017-07-01",
+      "value": -3.01,
+      "current_account": -16828.0,
+      "gdp": 559074.0
+    },
+    {
+      "date": "2017-10-01",
+      "value": -2.81,
+      "current_account": -15637.0,
+      "gdp": 557307.0
+    },
+    {
+      "date": "2018-01-01",
+      "value": -2.88,
+      "current_account": -15056.0,
+      "gdp": 523396.0
+    },
+    {
+      "date": "2018-04-01",
+      "value": -2.28,
+      "current_account": -12566.0,
+      "gdp": 551260.0
+    },
+    {
+      "date": "2018-07-01",
+      "value": -1.56,
+      "current_account": -9192.0,
+      "gdp": 588531.0
+    },
+    {
+      "date": "2018-10-01",
+      "value": -2.85,
+      "current_account": -16327.0,
+      "gdp": 572488.0
+    },
+    {
+      "date": "2019-01-01",
+      "value": -3.23,
+      "current_account": -17476.0,
+      "gdp": 540673.0
+    },
+    {
+      "date": "2019-04-01",
+      "value": -1.14,
+      "current_account": -6523.0,
+      "gdp": 571112.0
+    },
+    {
+      "date": "2019-07-01",
+      "value": -2.1,
+      "current_account": -12648.0,
+      "gdp": 601595.0
+    },
+    {
+      "date": "2019-10-01",
+      "value": -1.42,
+      "current_account": -8536.0,
+      "gdp": 600183.0
+    },
+    {
+      "date": "2020-01-01",
+      "value": -3.26,
+      "current_account": -17822.0,
+      "gdp": 546193.0
+    },
+    {
+      "date": "2020-04-01",
+      "value": -1.44,
+      "current_account": -7080.0,
+      "gdp": 492999.0
+    },
+    {
+      "date": "2020-07-01",
+      "value": -2.11,
+      "current_account": -12375.0,
+      "gdp": 585419.0
+    },
+    {
+      "date": "2020-10-01",
+      "value": -1.26,
+      "current_account": -7512.0,
+      "gdp": 595916.0
+    },
+    {
+      "date": "2021-01-01",
+      "value": -0.3,
+      "current_account": -1731.0,
+      "gdp": 578387.0
+    },
+    {
+      "date": "2021-04-01",
+      "value": -0.1,
+      "current_account": -625.0,
+      "gdp": 615170.0
+    },
+    {
+      "date": "2021-07-01",
+      "value": 0.34,
+      "current_account": 2286.0,
+      "gdp": 664976.0
+    },
+    {
+      "date": "2021-10-01",
+      "value": -0.06,
+      "current_account": -417.0,
+      "gdp": 677285.0
+    },
+    {
+      "date": "2022-01-01",
+      "value": 0.37,
+      "current_account": 2433.0,
+      "gdp": 659810.0
+    },
+    {
+      "date": "2022-04-01",
+      "value": 0.48,
+      "current_account": 3453.0,
+      "gdp": 712116.0
+    },
+    {
+      "date": "2022-07-01",
+      "value": -1.13,
+      "current_account": -8552.0,
+      "gdp": 756757.0
+    },
+    {
+      "date": "2022-10-01",
+      "value": -1.42,
+      "current_account": -10456.0,
+      "gdp": 735476.0
+    },
+    {
+      "date": "2023-01-01",
+      "value": -0.96,
+      "current_account": -6628.0,
+      "gdp": 692986.0
+    },
+    {
+      "date": "2023-04-01",
+      "value": -0.79,
+      "current_account": -5693.0,
+      "gdp": 722628.0
+    },
+    {
+      "date": "2023-07-01",
+      "value": -0.77,
+      "current_account": -5986.0,
+      "gdp": 780014.0
+    },
+    {
+      "date": "2023-10-01",
+      "value": -0.28,
+      "current_account": -2122.0,
+      "gdp": 769573.0
+    },
+    {
+      "date": "2024-01-01",
+      "value": -0.8,
+      "current_account": -5839.0,
+      "gdp": 725784.0
+    },
+    {
+      "date": "2024-04-01",
+      "value": -0.49,
+      "current_account": -3709.0,
+      "gdp": 761841.0
+    },
+    {
+      "date": "2024-07-01",
+      "value": -0.57,
+      "current_account": -4628.0,
+      "gdp": 811321.0
+    },
+    {
+      "date": "2024-10-01",
+      "value": -0.1,
+      "current_account": -798.0,
+      "gdp": 809605.0
+    },
+    {
+      "date": "2025-01-01",
+      "value": -0.4,
+      "current_account": -3048.0,
+      "gdp": 768474.0
+    },
+    {
+      "date": "2025-04-01",
+      "value": -2.73,
+      "current_account": -21557.0,
+      "gdp": 789709.0
+    },
+    {
+      "date": "2025-07-01",
+      "value": -1.14,
+      "current_account": -9680.0,
+      "gdp": 846089.0
+    }
+  ],
+  "latest": {
+    "date": "2025-07-01",
+    "value": -1.14,
+    "current_account": -9680.0,
+    "gdp": 846089.0
+  },
+  "metadata": {
+    "source": "Statistics Canada",
+    "tables": [
+      "36-10-0018-01",
+      "36-10-0104-01"
+    ],
+    "indicator": "Current Account to GDP Ratio",
+    "description": "カナダ経常収支対GDP比",
+    "unit": "%",
+    "frequency": "quarterly"
+  },
+  "next_release": {
+    "date": "2026-02-27",
+    "datetime_utc": "2026-02-27T13:30:00+00:00",
+    "datetime_jst": "2026-02-27T22:30:00+09:00",
+    "time_jst": "22:30",
+    "datetime_toronto": "2026-02-27T08:30:00-05:00",
+    "time_toronto": "08:30",
+    "label": "Gross Domestic Product MoM (Dec)",
+    "estimate": null
+  },
+  "last_updated": "2026-02-13T22:58:26.252786+09:00"
+}

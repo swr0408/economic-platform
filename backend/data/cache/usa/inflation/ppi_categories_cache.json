@@ -6944,8 +6944,8 @@
     "datetime_utc": "2026-02-12T13:30:00+00:00",
     "datetime_jst": "2026-02-12T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "Producer Price Index (Jan)",
+    "label": "Producer Price Index MoM (Jan)",
     "estimate": null
   },
-  "last_updated": "2026-01-30T23:03:01.913996+09:00"
+  "last_updated": "2026-02-05T12:03:19.425790+09:00"
 }

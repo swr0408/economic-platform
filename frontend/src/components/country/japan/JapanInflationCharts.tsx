@@ -9,6 +9,7 @@
  * - 輸入・輸出物価指数
  * - 企業向けサービス価格指数（SPPI）
  * - POS-UVPI（消費者購買単価指数）
+ * - 交易条件（Terms of Trade）
  * - GDPギャップ（内閣府）
  * - GDPギャップ（日銀）
  */
@@ -21,6 +22,8 @@ import JapanCGPIFoodAgricultureChart from './price/JapanCGPIFoodAgricultureChart
 import JapanImportExportPriceChart from './price/JapanImportExportPriceChart'
 import JapanSPPIChart from './price/JapanSPPIChart'
 import JapanPosUvpiChart from './price/JapanPosUvpiChart'
+import JapanTermsOfTradeChart from './price/JapanTermsOfTradeChart'
+import JapanPriceDISpreadChart from './price/JapanPriceDISpreadChart'
 import JapanGDPGapChart from './economy/JapanGDPGapChart'
 import BOJGDPGapChart from './price/BOJGDPGapChart'
 
@@ -60,6 +63,16 @@ export default function JapanInflationCharts() {
       {/* 輸入・輸出物価指数 */}
       <div id="import-export-price">
         <JapanImportExportPriceChart />
+      </div>
+
+      {/* 交易条件（Terms of Trade） */}
+      <div id="terms-of-trade">
+        <JapanTermsOfTradeChart />
+      </div>
+
+      {/* 価格DIスプレッド（日銀短観） */}
+      <div id="price-di-spread">
+        <JapanPriceDISpreadChart />
       </div>
 
       {/* POS-UVPI（消費者購買単価指数） */}

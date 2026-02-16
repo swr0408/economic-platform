@@ -1,6 +1,8 @@
 import { Spin, Alert, Button } from 'antd'
 import { useSwitzerlandEmploymentDashboard } from '../../../hooks/useDashboardData'
 import CHUnemploymentRateChart from './employment/CHUnemploymentRateChart'
+import ChJobVacanciesChart from './employment/ChJobVacanciesChart'
+import ChNominalWageGrowthChart from './employment/ChNominalWageGrowthChart'
 
 /**
  * スイス雇用チャート群
@@ -40,6 +42,20 @@ export default function SwitzerlandEmploymentCharts() {
       <div id="ch-unemployment-rate">
         <CHUnemploymentRateChart
           data={dashboardData?.ch_unemployment_rate ?? null}
+        />
+      </div>
+
+      {/* CH Job Vacancies Chart */}
+      <div id="ch-job-vacancies">
+        <ChJobVacanciesChart
+          data={dashboardData?.ch_job_vacancies ?? null}
+        />
+      </div>
+
+      {/* CH Nominal Wage Growth Chart */}
+      <div id="ch-nominal-wage-growth">
+        <ChNominalWageGrowthChart
+          data={dashboardData?.ch_nominal_wage_growth ?? null}
         />
       </div>
     </div>

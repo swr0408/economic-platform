@@ -7,6 +7,7 @@ import BOEOISCurveChart from './monetary_policy/BOEOISCurveChart'
 import BOEEconomicOutlookSection from './monetary_policy/BOEEconomicOutlookSection'
 import BOEDMPSurveySection from './monetary_policy/BOEDMPSurveySection'
 import UKPublicSectorNetBorrowingChart from './monetary_policy/UKPublicSectorNetBorrowingChart'
+import UkQtChart from './monetary_policy/UkQtChart'
 
 /**
  * イギリス金融政策チャート群
@@ -96,6 +97,13 @@ export default function UKPolicyCharts() {
       <div id="uk-public-sector-net-borrowing">
         <UKPublicSectorNetBorrowingChart
           data={dashboardData?.uk_public_sector_net_borrowing ?? null}
+        />
+      </div>
+
+      {/* UK QT (APF Gilt Holdings) Chart */}
+      <div id="uk-qt">
+        <UkQtChart
+          data={dashboardData?.uk_qt ?? null}
         />
       </div>
     </div>

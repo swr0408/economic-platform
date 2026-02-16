@@ -1,0 +1,2563 @@
+[
+  {
+    "status": "SUCCESS",
+    "object": {
+      "responseStatusCode": 0,
+      "productId": "34100292",
+      "cansimId": null,
+      "cubeTitleEn": "Building permits, by type of structure and type of work",
+      "cubeTitleFr": "Permis de bâtir, par type de structure et type de travaux",
+      "cubeStartDate": "2018-01-01",
+      "cubeEndDate": "2025-11-01",
+      "frequencyCode": 6,
+      "nbSeriesCube": 375864,
+      "nbDatapointsCube": 35707080,
+      "releaseTime": "2026-01-13T08:30",
+      "archiveStatusCode": "2",
+      "archiveStatusEn": "CURRENT - a cube available to the public and that is current",
+      "archiveStatusFr": "ACTIF - un cube qui est disponible au public et qui est toujours mise a jour",
+      "subjectCode": [
+        "3409"
+      ],
+      "surveyCode": [
+        "2802"
+      ],
+      "dimension": [
+        {
+          "dimensionPositionId": 1,
+          "dimensionNameEn": "Geography",
+          "dimensionNameFr": "Géographie",
+          "hasUom": false,
+          "member": [
+            {
+              "memberId": 1,
+              "parentMemberId": null,
+              "memberNameEn": "Canada",
+              "memberNameFr": "Canada",
+              "classificationCode": "11124",
+              "classificationTypeCode": "1",
+              "geoLevel": 0,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 2,
+              "parentMemberId": 1,
+              "memberNameEn": "Newfoundland and Labrador",
+              "memberNameFr": "Terre-Neuve-et-Labrador",
+              "classificationCode": "10",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 3,
+              "parentMemberId": 1,
+              "memberNameEn": "Prince Edward Island",
+              "memberNameFr": "Île-du-Prince-Édouard",
+              "classificationCode": "11",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 4,
+              "parentMemberId": 1,
+              "memberNameEn": "Nova Scotia",
+              "memberNameFr": "Nouvelle-Écosse",
+              "classificationCode": "12",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 5,
+              "parentMemberId": 1,
+              "memberNameEn": "New Brunswick",
+              "memberNameFr": "Nouveau-Brunswick",
+              "classificationCode": "13",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 6,
+              "parentMemberId": 1,
+              "memberNameEn": "Quebec",
+              "memberNameFr": "Québec",
+              "classificationCode": "24",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 7,
+              "parentMemberId": 1,
+              "memberNameEn": "Ontario",
+              "memberNameFr": "Ontario",
+              "classificationCode": "35",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 8,
+              "parentMemberId": 1,
+              "memberNameEn": "Manitoba",
+              "memberNameFr": "Manitoba",
+              "classificationCode": "46",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 9,
+              "parentMemberId": 1,
+              "memberNameEn": "Saskatchewan",
+              "memberNameFr": "Saskatchewan",
+              "classificationCode": "47",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 10,
+              "parentMemberId": 1,
+              "memberNameEn": "Alberta",
+              "memberNameFr": "Alberta",
+              "classificationCode": "48",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 11,
+              "parentMemberId": 1,
+              "memberNameEn": "British Columbia",
+              "memberNameFr": "Colombie-Britannique",
+              "classificationCode": "59",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 12,
+              "parentMemberId": 1,
+              "memberNameEn": "Yukon",
+              "memberNameFr": "Yukon",
+              "classificationCode": "60",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 13,
+              "parentMemberId": 1,
+              "memberNameEn": "Northwest Territories",
+              "memberNameFr": "Territoires du Nord-Ouest",
+              "classificationCode": "61",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 14,
+              "parentMemberId": 1,
+              "memberNameEn": "Nunavut",
+              "memberNameFr": "Nunavut",
+              "classificationCode": "62",
+              "classificationTypeCode": "1",
+              "geoLevel": 2,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 15,
+              "parentMemberId": null,
+              "memberNameEn": "Canada - total census metropolitan area",
+              "memberNameFr": "Canada - Région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 16,
+              "parentMemberId": 15,
+              "memberNameEn": "Newfoundland and Labrador - total census metropolitan area",
+              "memberNameFr": "Terre-Neuve-et-Labrador - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 17,
+              "parentMemberId": 16,
+              "memberNameEn": "St. John's, Newfoundland and Labrador",
+              "memberNameFr": "St. John's, Terre-Neuve-et-Labrador",
+              "classificationCode": "001",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 18,
+              "parentMemberId": 15,
+              "memberNameEn": "Nova Scotia - total census metropolitan area",
+              "memberNameFr": "Nouvelle-Écosse - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 19,
+              "parentMemberId": 18,
+              "memberNameEn": "Halifax, Nova Scotia",
+              "memberNameFr": "Halifax, Nouvelle-Écosse",
+              "classificationCode": "205",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 20,
+              "parentMemberId": 15,
+              "memberNameEn": "New Brunswick - total census metropolitan area",
+              "memberNameFr": "Nouveau-Brunswick - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 61,
+              "parentMemberId": 20,
+              "memberNameEn": "Fredericton, New Brunswick",
+              "memberNameFr": "Fredericton, Nouveau-Brunswick",
+              "classificationCode": "320",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 21,
+              "parentMemberId": 20,
+              "memberNameEn": "Moncton, New Brunswick",
+              "memberNameFr": "Moncton, Nouveau-Brunswick",
+              "classificationCode": "305",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 22,
+              "parentMemberId": 20,
+              "memberNameEn": "Saint John, New Brunswick",
+              "memberNameFr": "Saint John, Nouveau-Brunswick",
+              "classificationCode": "310",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 23,
+              "parentMemberId": 15,
+              "memberNameEn": "Quebec - total census metropolitan area",
+              "memberNameFr": "Québec - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 62,
+              "parentMemberId": 23,
+              "memberNameEn": "Drummondville, Quebec",
+              "memberNameFr": "Drummondville, Québec",
+              "classificationCode": "447",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 24,
+              "parentMemberId": 23,
+              "memberNameEn": "Montréal, Quebec",
+              "memberNameFr": "Montréal, Québec",
+              "classificationCode": "462",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 25,
+              "parentMemberId": 23,
+              "memberNameEn": "Ottawa-Gatineau, Québec part",
+              "memberNameFr": "Ottawa-Gatineau, partie québécoise",
+              "classificationCode": "24505",
+              "classificationTypeCode": "1",
+              "geoLevel": 505,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 26,
+              "parentMemberId": 23,
+              "memberNameEn": "Québec, Quebec",
+              "memberNameFr": "Québec, Québec",
+              "classificationCode": "421",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 27,
+              "parentMemberId": 23,
+              "memberNameEn": "Saguenay, Quebec",
+              "memberNameFr": "Saguenay, Québec",
+              "classificationCode": "408",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 28,
+              "parentMemberId": 23,
+              "memberNameEn": "Sherbrooke, Quebec",
+              "memberNameFr": "Sherbrooke, Québec",
+              "classificationCode": "433",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 29,
+              "parentMemberId": 23,
+              "memberNameEn": "Trois-Rivières, Quebec",
+              "memberNameFr": "Trois-Rivières, Québec",
+              "classificationCode": "442",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 30,
+              "parentMemberId": 15,
+              "memberNameEn": "Ontario - total census metropolitan area",
+              "memberNameFr": "Ontario - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 31,
+              "parentMemberId": 30,
+              "memberNameEn": "Barrie, Ontario",
+              "memberNameFr": "Barrie, Ontario",
+              "classificationCode": "568",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 32,
+              "parentMemberId": 30,
+              "memberNameEn": "Belleville - Quinte West, Ontario",
+              "memberNameFr": "Belleville - Quinte West, Ontario",
+              "classificationCode": "522",
+              "classificationTypeCode": "1",
+              "geoLevel": 504,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 33,
+              "parentMemberId": 30,
+              "memberNameEn": "Brantford, Ontario",
+              "memberNameFr": "Brantford, Ontario",
+              "classificationCode": "543",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 34,
+              "parentMemberId": 30,
+              "memberNameEn": "Greater Sudbury, Ontario",
+              "memberNameFr": "Grand Sudbury, Ontario",
+              "classificationCode": "580",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 35,
+              "parentMemberId": 30,
+              "memberNameEn": "Guelph, Ontario",
+              "memberNameFr": "Guelph, Ontario",
+              "classificationCode": "550",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 36,
+              "parentMemberId": 30,
+              "memberNameEn": "Hamilton, Ontario",
+              "memberNameFr": "Hamilton, Ontario",
+              "classificationCode": "537",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 37,
+              "parentMemberId": 30,
+              "memberNameEn": "Kingston, Ontario",
+              "memberNameFr": "Kingston, Ontario",
+              "classificationCode": "521",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 38,
+              "parentMemberId": 30,
+              "memberNameEn": "Kitchener-Cambridge-Waterloo, Ontario",
+              "memberNameFr": "Kitchener-Cambridge-Waterloo, Ontario",
+              "classificationCode": "541",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 39,
+              "parentMemberId": 30,
+              "memberNameEn": "London, Ontario",
+              "memberNameFr": "London, Ontario",
+              "classificationCode": "555",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 40,
+              "parentMemberId": 30,
+              "memberNameEn": "Oshawa, Ontario",
+              "memberNameFr": "Oshawa, Ontario",
+              "classificationCode": "532",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 41,
+              "parentMemberId": 30,
+              "memberNameEn": "Ottawa-Gatineau, Ontario part",
+              "memberNameFr": "Ottawa-Gatineau, partie ontarienne",
+              "classificationCode": "35505",
+              "classificationTypeCode": "1",
+              "geoLevel": 505,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 42,
+              "parentMemberId": 30,
+              "memberNameEn": "Peterborough, Ontario",
+              "memberNameFr": "Peterborough, Ontario",
+              "classificationCode": "529",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 43,
+              "parentMemberId": 30,
+              "memberNameEn": "St. Catharines-Niagara, Ontario",
+              "memberNameFr": "St. Catharines-Niagara, Ontario",
+              "classificationCode": "539",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 44,
+              "parentMemberId": 30,
+              "memberNameEn": "Thunder Bay, Ontario",
+              "memberNameFr": "Thunder Bay, Ontario",
+              "classificationCode": "595",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 45,
+              "parentMemberId": 30,
+              "memberNameEn": "Toronto, Ontario",
+              "memberNameFr": "Toronto, Ontario",
+              "classificationCode": "535",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 46,
+              "parentMemberId": 30,
+              "memberNameEn": "Windsor, Ontario",
+              "memberNameFr": "Windsor, Ontario",
+              "classificationCode": "559",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 47,
+              "parentMemberId": 15,
+              "memberNameEn": "Manitoba - total census metropolitan area",
+              "memberNameFr": "Manitoba - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 48,
+              "parentMemberId": 47,
+              "memberNameEn": "Winnipeg, Manitoba",
+              "memberNameFr": "Winnipeg, Manitoba",
+              "classificationCode": "602",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 49,
+              "parentMemberId": 15,
+              "memberNameEn": "Saskatchewan - total census metropolitan area",
+              "memberNameFr": "Saskatchewan - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 50,
+              "parentMemberId": 49,
+              "memberNameEn": "Regina, Saskatchewan",
+              "memberNameFr": "Regina, Saskatchewan",
+              "classificationCode": "705",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 51,
+              "parentMemberId": 49,
+              "memberNameEn": "Saskatoon, Saskatchewan",
+              "memberNameFr": "Saskatoon, Saskatchewan",
+              "classificationCode": "725",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 52,
+              "parentMemberId": 15,
+              "memberNameEn": "Alberta - total census metropolitan area",
+              "memberNameFr": "Alberta - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 53,
+              "parentMemberId": 52,
+              "memberNameEn": "Calgary, Alberta",
+              "memberNameFr": "Calgary, Alberta",
+              "classificationCode": "825",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 54,
+              "parentMemberId": 52,
+              "memberNameEn": "Edmonton, Alberta",
+              "memberNameFr": "Edmonton, Alberta",
+              "classificationCode": "835",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 55,
+              "parentMemberId": 52,
+              "memberNameEn": "Lethbridge, Alberta",
+              "memberNameFr": "Lethbridge, Alberta",
+              "classificationCode": "810",
+              "classificationTypeCode": "1",
+              "geoLevel": 504,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 63,
+              "parentMemberId": 52,
+              "memberNameEn": "Red Deer, Alberta",
+              "memberNameFr": "Red Deer, Alberta",
+              "classificationCode": "830",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 56,
+              "parentMemberId": 15,
+              "memberNameEn": "British Columbia - total census metropolitan area",
+              "memberNameFr": "Colombie-Britannique - région métropolitaine de recensement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 57,
+              "parentMemberId": 56,
+              "memberNameEn": "Abbotsford-Mission, British Columbia",
+              "memberNameFr": "Abbotsford-Mission, Colombie-Britannique",
+              "classificationCode": "932",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 66,
+              "parentMemberId": 56,
+              "memberNameEn": "Chilliwack, British Columbia",
+              "memberNameFr": "Chilliwack, Colombie-Britannique",
+              "classificationCode": "930",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 65,
+              "parentMemberId": 56,
+              "memberNameEn": "Kamloops, British Columbia",
+              "memberNameFr": "Kamloops, Colombie-Britannique",
+              "classificationCode": "925",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 58,
+              "parentMemberId": 56,
+              "memberNameEn": "Kelowna, British Columbia",
+              "memberNameFr": "Kelowna, Colombie-Britannique",
+              "classificationCode": "915",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 64,
+              "parentMemberId": 56,
+              "memberNameEn": "Nanaimo, British Columbia",
+              "memberNameFr": "Nanaimo, Colombie-Britannique",
+              "classificationCode": "938",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2021,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 59,
+              "parentMemberId": 56,
+              "memberNameEn": "Vancouver, British Columbia",
+              "memberNameFr": "Vancouver, Colombie-Britannique",
+              "classificationCode": "933",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 60,
+              "parentMemberId": 56,
+              "memberNameEn": "Victoria, British Columbia",
+              "memberNameFr": "Victoria, Colombie-Britannique",
+              "classificationCode": "935",
+              "classificationTypeCode": "1",
+              "geoLevel": 503,
+              "vintage": 2011,
+              "terminated": 0,
+              "memberUomCode": null
+            }
+          ]
+        },
+        {
+          "dimensionPositionId": 2,
+          "dimensionNameEn": "Type of building",
+          "dimensionNameFr": "Type de bâtiment",
+          "hasUom": false,
+          "member": [
+            {
+              "memberId": 1,
+              "parentMemberId": null,
+              "memberNameEn": "Total residential and non-residential",
+              "memberNameFr": "Résidentiel et non résidentiel, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 2,
+              "parentMemberId": 1,
+              "memberNameEn": "Total major permits residential and non-residential",
+              "memberNameFr": "Résidentiel et non résidentiel majeur, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 3,
+              "parentMemberId": 1,
+              "memberNameEn": "Total minor residential and non-residential",
+              "memberNameFr": "Résidentiel et non résidentiel mineur, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 4,
+              "parentMemberId": 1,
+              "memberNameEn": "Total residential",
+              "memberNameFr": "Résidentiel, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 5,
+              "parentMemberId": 4,
+              "memberNameEn": "Total major residential project",
+              "memberNameFr": "Projets résidentiels majeurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 6,
+              "parentMemberId": 4,
+              "memberNameEn": "Total minor residential project",
+              "memberNameFr": "Projets résidentiels mineurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 7,
+              "parentMemberId": 4,
+              "memberNameEn": "Single dwelling building total",
+              "memberNameFr": "Unifamilial, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 8,
+              "parentMemberId": 7,
+              "memberNameEn": "Major single dwelling  projects",
+              "memberNameFr": "Projets unifamiliaux majeurs",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 9,
+              "parentMemberId": 7,
+              "memberNameEn": "Minor single dwelling projects",
+              "memberNameFr": "Projets unifamiliaux mineurs",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 10,
+              "parentMemberId": 7,
+              "memberNameEn": "Single total",
+              "memberNameFr": "Simple, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 11,
+              "parentMemberId": 10,
+              "memberNameEn": "Single",
+              "memberNameFr": "Simple",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 12,
+              "parentMemberId": 10,
+              "memberNameEn": "Single condominium",
+              "memberNameFr": "Simple condominium",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 13,
+              "parentMemberId": 7,
+              "memberNameEn": "Mobile home",
+              "memberNameFr": "Maison mobile",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 14,
+              "parentMemberId": 7,
+              "memberNameEn": "Cottage",
+              "memberNameFr": "Chalet",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 15,
+              "parentMemberId": 4,
+              "memberNameEn": "Multiple dwelling building total",
+              "memberNameFr": "Multifamilial, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 16,
+              "parentMemberId": 15,
+              "memberNameEn": "Major multiple dwelling projects",
+              "memberNameFr": "Projets multifamiliaux majeurs",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 17,
+              "parentMemberId": 15,
+              "memberNameEn": "Minor multiple dwelling projects",
+              "memberNameFr": "Projets multifamiliaux mineurs",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 18,
+              "parentMemberId": 15,
+              "memberNameEn": "Double total",
+              "memberNameFr": "Double, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 19,
+              "parentMemberId": 18,
+              "memberNameEn": "Double",
+              "memberNameFr": "Double",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 20,
+              "parentMemberId": 18,
+              "memberNameEn": "Double condominium",
+              "memberNameFr": "Double condominium",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 21,
+              "parentMemberId": 15,
+              "memberNameEn": "Row total",
+              "memberNameFr": "Rangée, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 22,
+              "parentMemberId": 21,
+              "memberNameEn": "Row",
+              "memberNameFr": "Rangée",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 23,
+              "parentMemberId": 21,
+              "memberNameEn": "Row condominium",
+              "memberNameFr": "Rangée condominium",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 24,
+              "parentMemberId": 15,
+              "memberNameEn": "Apartment total",
+              "memberNameFr": "Appartement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 25,
+              "parentMemberId": 24,
+              "memberNameEn": "Apartment",
+              "memberNameFr": "Appartement",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 26,
+              "parentMemberId": 24,
+              "memberNameEn": "Apartment condominium",
+              "memberNameFr": "Appartement condominium",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 27,
+              "parentMemberId": 4,
+              "memberNameEn": "Total demolitions",
+              "memberNameFr": "Démolition, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 28,
+              "parentMemberId": 27,
+              "memberNameEn": "Demolition single - detached",
+              "memberNameFr": "Démolition de logements simples",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 29,
+              "parentMemberId": 27,
+              "memberNameEn": "Demolition cottage",
+              "memberNameFr": "Démolition de chalets",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 30,
+              "parentMemberId": 27,
+              "memberNameEn": "Demolition semi-detached",
+              "memberNameFr": "Démolition de logements semi-détachés",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 31,
+              "parentMemberId": 27,
+              "memberNameEn": "Demolition row",
+              "memberNameFr": "Démolition de logements en rangée",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 32,
+              "parentMemberId": 27,
+              "memberNameEn": "Demolition apartment",
+              "memberNameFr": "Démolition de logements d'immeuble appartement",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 33,
+              "parentMemberId": 1,
+              "memberNameEn": "Total non-residential",
+              "memberNameFr": "Non résidentiel, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 34,
+              "parentMemberId": 33,
+              "memberNameEn": "Total major non-residential projects",
+              "memberNameFr": "Projets non résidentiels majeurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 35,
+              "parentMemberId": 33,
+              "memberNameEn": "Total minor non-residential projects",
+              "memberNameFr": "Projets non-résidentiels mineurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 36,
+              "parentMemberId": 33,
+              "memberNameEn": "Total industrial",
+              "memberNameFr": "Industriel, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 37,
+              "parentMemberId": 36,
+              "memberNameEn": "Total major industrial projects",
+              "memberNameFr": "Projets industriels majeurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 38,
+              "parentMemberId": 36,
+              "memberNameEn": "Total minor industrial projects",
+              "memberNameFr": "Projets industriels mineurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 39,
+              "parentMemberId": 36,
+              "memberNameEn": "Factories, plants",
+              "memberNameFr": "Usines, fabriques",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 40,
+              "parentMemberId": 39,
+              "memberNameEn": "Maintenance building",
+              "memberNameFr": "Bâtiment rattaché à l'entretien",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 41,
+              "parentMemberId": 39,
+              "memberNameEn": "Plant for manufacturing, processing and assembling goods",
+              "memberNameFr": "Usine de fabrication",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 42,
+              "parentMemberId": 36,
+              "memberNameEn": "Transportation, utilities",
+              "memberNameFr": "Transports, services",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 43,
+              "parentMemberId": 42,
+              "memberNameEn": "Communication building",
+              "memberNameFr": "Bâtiment de télécommunication",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 44,
+              "parentMemberId": 42,
+              "memberNameEn": "Transportation terminal",
+              "memberNameFr": "Gare, terminus",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 45,
+              "parentMemberId": 42,
+              "memberNameEn": "Utility building",
+              "memberNameFr": "Bâtiment rattaché aux services publics",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 46,
+              "parentMemberId": 36,
+              "memberNameEn": "Mining and agriculture",
+              "memberNameFr": "Mines et agriculture",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 47,
+              "parentMemberId": 46,
+              "memberNameEn": "Mining building",
+              "memberNameFr": "Mines",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 48,
+              "parentMemberId": 46,
+              "memberNameEn": "Agriculture",
+              "memberNameFr": "Agriculture",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 49,
+              "parentMemberId": 33,
+              "memberNameEn": "Total commercial",
+              "memberNameFr": "Commercial, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 50,
+              "parentMemberId": 49,
+              "memberNameEn": "Total major commercial projects",
+              "memberNameFr": "Projets commerciaux majeurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 51,
+              "parentMemberId": 49,
+              "memberNameEn": "Total minor commercial projects",
+              "memberNameFr": "Projets commerciaux mineurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 52,
+              "parentMemberId": 49,
+              "memberNameEn": "Trade and services",
+              "memberNameFr": "Commerces et services",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 53,
+              "parentMemberId": 52,
+              "memberNameEn": "Motor vehicle show room (new and used) - car dealership, used car, motorcycle and tractor sale",
+              "memberNameFr": "Salle d'exposition d'automobiles (neuves et usagées) - concessionnaire d'automobiles, de motocyclettes ou de tracteurs",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 54,
+              "parentMemberId": 52,
+              "memberNameEn": "Retail and wholesale outlets",
+              "memberNameFr": "Magasin de détail et en gros",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 55,
+              "parentMemberId": 52,
+              "memberNameEn": "Retail complex - plaza, mall, shopping center, store and office building",
+              "memberNameFr": "Ensemble commercial - complexe commercial, centre commercial, magasin et immeuble à bureaux",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 56,
+              "parentMemberId": 52,
+              "memberNameEn": "Special building use - funeral director, crematorium, mausoleum",
+              "memberNameFr": "Immeuble à usages spéciaux - salon funéraire, crématorium, mausolée",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 57,
+              "parentMemberId": 49,
+              "memberNameEn": "Warehouses",
+              "memberNameFr": "Entrepôts",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 58,
+              "parentMemberId": 49,
+              "memberNameEn": "Service stations",
+              "memberNameFr": "Postes d'essence",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 59,
+              "parentMemberId": 49,
+              "memberNameEn": "Office buildings",
+              "memberNameFr": "Édifices à bureaux",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 60,
+              "parentMemberId": 59,
+              "memberNameEn": "Office building - consultant's office, doctor's office, insurance company, bank, taxi stand, office with cafeteria, office with smoke shop",
+              "memberNameFr": "Immeuble à bureaux - cabinet de consultants ou de médecins, bureau de compagnie d'assurances, banque, station de taxi, bureaux avec cafétéria, bureaux avec tabagie",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 61,
+              "parentMemberId": 59,
+              "memberNameEn": "Office complex, office and store, office and apartment",
+              "memberNameFr": "Immeuble de bureaux à usage mixte, bureaux et magasins, bureaux et appartements",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 62,
+              "parentMemberId": 49,
+              "memberNameEn": "Recreation",
+              "memberNameFr": "Loisirs",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 63,
+              "parentMemberId": 62,
+              "memberNameEn": "Theatre and performing art center - movie theatre, concert hall, opera house, cultural center",
+              "memberNameFr": "Théâtre et centre d'art d'interprétation - cinéma, salle de concert ou d'opéra, centre culturel",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 64,
+              "parentMemberId": 62,
+              "memberNameEn": "Indoor recreational building - sports complex, tennis court and squash, community center, arena, curling club, swimming pool",
+              "memberNameFr": "Centre de loisir intérieur - complexe sportif, court de tennis ou de squash, centre communautaire, club de curling, patinoire, piscine",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 65,
+              "parentMemberId": 62,
+              "memberNameEn": "Outdoor recreational building - country club, golf club campground facilities, outdoor skating rink, outdoor swimming pool",
+              "memberNameFr": "Centre de loisir en plein air - club sportif, chalet de golf, camping, patinoire ou piscine en plein air",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 66,
+              "parentMemberId": 49,
+              "memberNameEn": "Hotels, restaurants",
+              "memberNameFr": "Hôtels, restaurants",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 67,
+              "parentMemberId": 66,
+              "memberNameEn": "Convention center, exhibition building",
+              "memberNameFr": "Centre de congrès, salle d'exposition",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 68,
+              "parentMemberId": 66,
+              "memberNameEn": "Hotel, hotel and motel, motor hotel",
+              "memberNameFr": "Hôtel, hôtel et motel",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 69,
+              "parentMemberId": 66,
+              "memberNameEn": "Motel, cabin for tourism",
+              "memberNameFr": "Motel, petit chalet pour touristes",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 70,
+              "parentMemberId": 66,
+              "memberNameEn": "Other accommodation - student's residence, boarding house, religious residence, hostel, dormitory",
+              "memberNameFr": "Autres types d'hébergement - résidence d'étudiants, maison de pension, résidence de religieux, auberge, dortoir",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 71,
+              "parentMemberId": 66,
+              "memberNameEn": "Restaurant, bar, tavern, night club, diner, donut shop",
+              "memberNameFr": "Restaurant, bar, taverne, boîte de nuit, casse-croûte, beignerie, brasserie",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 72,
+              "parentMemberId": 49,
+              "memberNameEn": "Laboratories",
+              "memberNameFr": "Laboratoires",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 73,
+              "parentMemberId": 33,
+              "memberNameEn": "Total institutional and governmental",
+              "memberNameFr": "Institutionnel et gouvernemental, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 74,
+              "parentMemberId": 73,
+              "memberNameEn": "Total major institutional and governmental projects",
+              "memberNameFr": "Projets institutionnels et gouvernementaux majeurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 75,
+              "parentMemberId": 73,
+              "memberNameEn": "Total minor institutional and governmental projects",
+              "memberNameFr": "Projets institutionnels et gouvernementaux mineurs, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 76,
+              "parentMemberId": 73,
+              "memberNameEn": "Schools, education",
+              "memberNameFr": "Écoles, éducation",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 77,
+              "parentMemberId": 76,
+              "memberNameEn": "Elementary school, kindergarten",
+              "memberNameFr": "École élémentaire, maternelle",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 78,
+              "parentMemberId": 76,
+              "memberNameEn": "Secondary school, high school, junior high school",
+              "memberNameFr": "École secondaire",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 79,
+              "parentMemberId": 76,
+              "memberNameEn": "Post-secondary institution - technical institute, trade school",
+              "memberNameFr": "Établissement d'enseignement post-secondaire",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 80,
+              "parentMemberId": 76,
+              "memberNameEn": "University",
+              "memberNameFr": "Université",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 81,
+              "parentMemberId": 76,
+              "memberNameEn": "Library, museum, art gallery, aquarium, botanical garden, archive building, scientific center",
+              "memberNameFr": "Bibliothèque, musée, galerie d'art, aquarium, jardin botanique, archive, centre scientifique",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 82,
+              "parentMemberId": 73,
+              "memberNameEn": "Medical, hospital",
+              "memberNameFr": "Hôpitaux, médical",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 83,
+              "parentMemberId": 82,
+              "memberNameEn": "Hospital general - military, specialized",
+              "memberNameFr": "Hôpital général - militaire ou spécialisé",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 84,
+              "parentMemberId": 82,
+              "memberNameEn": "Clinic - health unit, out-patient clinic, first aid station",
+              "memberNameFr": "Clinique de santé - clinique externe, poste de premier soin",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 85,
+              "parentMemberId": 73,
+              "memberNameEn": "Welfare, home",
+              "memberNameFr": "Bien-être, foyers",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 86,
+              "parentMemberId": 73,
+              "memberNameEn": "Churches, religion",
+              "memberNameFr": "Églises, religion",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 87,
+              "parentMemberId": 73,
+              "memberNameEn": "Government buildings",
+              "memberNameFr": "Bureaux gouvernementaux",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 88,
+              "parentMemberId": 87,
+              "memberNameEn": "Government legislative and administration building other than office building - city hall, court of justice, embassy, parliament and senate building",
+              "memberNameFr": "Édifice gouvernemental législatif ou administratif autre qu'édifice à bureau - hôtel de ville, tribunal, cours de justice, ambassade, édifice parlementaire, édifice du Sénat",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 89,
+              "parentMemberId": 87,
+              "memberNameEn": "Other government building - police station, prison, fire station, military building",
+              "memberNameFr": "Autres immeubles gouvernementaux - poste de police, caserne de pompier, prison, bâtiment militaire",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            }
+          ]
+        },
+        {
+          "dimensionPositionId": 3,
+          "dimensionNameEn": "Type of work",
+          "dimensionNameFr": "Type de travaux",
+          "hasUom": false,
+          "member": [
+            {
+              "memberId": 1,
+              "parentMemberId": null,
+              "memberNameEn": "Types of work, total",
+              "memberNameFr": "Type de travaux, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 3,
+              "parentMemberId": 1,
+              "memberNameEn": "New dwelling units total",
+              "memberNameFr": "Nouvelles unités de logement, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 5,
+              "parentMemberId": 1,
+              "memberNameEn": "New residential and non-residential constructions, total",
+              "memberNameFr": "Nouvelle constructions résidentielle et non résidentielle, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 6,
+              "parentMemberId": 5,
+              "memberNameEn": "New construction",
+              "memberNameFr": "Nouvelle construction",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 7,
+              "parentMemberId": 5,
+              "memberNameEn": "Foundation",
+              "memberNameFr": "Fondation",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 8,
+              "parentMemberId": 5,
+              "memberNameEn": "Superstructure or part of a new building",
+              "memberNameFr": "Superstructure ou partie d'un nouveau bâtiment",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 9,
+              "parentMemberId": 5,
+              "memberNameEn": "Mechanical",
+              "memberNameFr": "Mécanique",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 10,
+              "parentMemberId": 5,
+              "memberNameEn": "Installation of a pre-fabricated building",
+              "memberNameFr": "Installation d'un immeuble préfabriqué",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 11,
+              "parentMemberId": 5,
+              "memberNameEn": "Additional value to previous permit(s)",
+              "memberNameFr": "Valeur additionnelle ajoutée au(x) permis antérieur(s)",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 12,
+              "parentMemberId": 1,
+              "memberNameEn": "Improvements total",
+              "memberNameFr": "Amélioration, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 13,
+              "parentMemberId": 12,
+              "memberNameEn": "Addition to existing building (structural extension) for non-residential only",
+              "memberNameFr": "Ajout à un bâtiment existant (ajout structurel) pour non résidentiel seulement",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 14,
+              "parentMemberId": 12,
+              "memberNameEn": "Alterations and improvements",
+              "memberNameFr": "Modifications et améliorations",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 15,
+              "parentMemberId": 1,
+              "memberNameEn": "Garage and carport for residential construction, only",
+              "memberNameFr": "Garage et abri d'auto pour construction résidentielle seulement",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 16,
+              "parentMemberId": 1,
+              "memberNameEn": "Conversions total",
+              "memberNameFr": "Transformation, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 17,
+              "parentMemberId": 16,
+              "memberNameEn": "Conversion from single to multiple dwelling",
+              "memberNameFr": "Transformation d'un logement unifamilial en un logement multifamilial",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 18,
+              "parentMemberId": 16,
+              "memberNameEn": "Conversion from multiple to multiple dwelling",
+              "memberNameFr": "Transformation d'un logement multifamilial en un logement multifamilial",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 19,
+              "parentMemberId": 16,
+              "memberNameEn": "Conversion from non-residential to residential building",
+              "memberNameFr": "Transformation d'un bâtiment non résidentiel en résidentiel",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 20,
+              "parentMemberId": 1,
+              "memberNameEn": "Deconversion total",
+              "memberNameFr": "Fusion, total",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 21,
+              "parentMemberId": 20,
+              "memberNameEn": "Deconversion from single to non-residential building",
+              "memberNameFr": "Fusion d'un logement unifamilial en un logement non résidentiel",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 22,
+              "parentMemberId": 20,
+              "memberNameEn": "Deconversion from multiple to multiple or single dwelling or non-residential building",
+              "memberNameFr": "Fusion d'un logement multifamilial en un logement multifamilial, en un logement unifamilial ou en bâtiment non résidentiel",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 23,
+              "parentMemberId": 1,
+              "memberNameEn": "Inground swimming pools for residential construction, only",
+              "memberNameFr": "Piscine creusée, construction résidentielle seulement",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 24,
+              "parentMemberId": 1,
+              "memberNameEn": "Demolitions for residential dwellings",
+              "memberNameFr": "Démolition pour un logement résidentiel",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            }
+          ]
+        },
+        {
+          "dimensionPositionId": 4,
+          "dimensionNameEn": "Variables",
+          "dimensionNameFr": "Variables",
+          "hasUom": true,
+          "member": [
+            {
+              "memberId": 1,
+              "parentMemberId": null,
+              "memberNameEn": "Value of permits",
+              "memberNameFr": "Valeur des permis",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": 81
+            },
+            {
+              "memberId": 2,
+              "parentMemberId": null,
+              "memberNameEn": "Number of dwelling-units created",
+              "memberNameFr": "Nombre de nouvelles unités de logement créées",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": 223
+            },
+            {
+              "memberId": 3,
+              "parentMemberId": null,
+              "memberNameEn": "Number of dwelling-units lost",
+              "memberNameFr": "Nombre d'unités de logement supprimées",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": 223
+            },
+            {
+              "memberId": 4,
+              "parentMemberId": null,
+              "memberNameEn": "Number of dwelling-units demolished",
+              "memberNameFr": "Nombre d'unités démolies",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": 223
+            },
+            {
+              "memberId": 5,
+              "parentMemberId": null,
+              "memberNameEn": "Number of permits",
+              "memberNameFr": "Nombre de permis",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": 223
+            }
+          ]
+        },
+        {
+          "dimensionPositionId": 5,
+          "dimensionNameEn": "Seasonal adjustment, value type",
+          "dimensionNameFr": "Désaisonnalisation, type de valeur",
+          "hasUom": false,
+          "member": [
+            {
+              "memberId": 1,
+              "parentMemberId": null,
+              "memberNameEn": "Unadjusted, current",
+              "memberNameFr": "Non désaisonnalisées, courant",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 2,
+              "parentMemberId": null,
+              "memberNameEn": "Seasonally adjusted, current",
+              "memberNameFr": "Désaisonnalisées, courant",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 3,
+              "parentMemberId": null,
+              "memberNameEn": "Unadjusted, constant dollars",
+              "memberNameFr": "Non désaisonnalisées, dollars constants",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            },
+            {
+              "memberId": 4,
+              "parentMemberId": null,
+              "memberNameEn": "Seasonally adjusted, constant dollars",
+              "memberNameFr": "Désaisonnalisées, dollars constants",
+              "classificationCode": null,
+              "classificationTypeCode": null,
+              "geoLevel": null,
+              "vintage": null,
+              "terminated": 0,
+              "memberUomCode": null
+            }
+          ]
+        }
+      ],
+      "footnote": [
+        {
+          "footnoteId": 1,
+          "footnotesEn": "The Building permits survey covers all Canadian municipalities that issue permits. The number of Canadian municipalities currently surveyed is approximately 2,400, representing all the provinces and territories. They account for 95% of the Canadian population. Historically, the data are not strictly comparable due to the continuing improvement in coverage and the modifications to the geographical areas required to reflect the most recent census definitions.",
+          "footnotesFr": "L'enquête sur les permis de bâtir vise toutes les municipalités canadiennes émettant des permis. Celles-ci, au nombre approximatif de 2400 en provenance de toutes les provinces et territoires, regroupent 95 % de la population canadienne. Historiquement, les données ne sont pas strictement comparables du fait de l'amélioration continuelle de la couverture et des modifications des régions géographiques afin de refléter les définitions du dernier recensement.",
+          "link": {
+            "footnoteId": 1,
+            "dimensionPositionId": 0,
+            "memberId": 0
+          }
+        },
+        {
+          "footnoteId": 9,
+          "footnotesEn": "For historical data see table 34100285.",
+          "footnotesFr": "Pour les données historiques, veuillez-vous référer au tableau 34100285.",
+          "link": {
+            "footnoteId": 9,
+            "dimensionPositionId": 0,
+            "memberId": 0
+          }
+        },
+        {
+          "footnoteId": 10,
+          "footnotesEn": "Data processing methodology has been updated as of January 2018. Comparisons between the previous data and the subsequent data should be used with caution.",
+          "footnotesFr": "La méthode de traitement des données a été modifiée à compter de janvier 2018. La comparaison entre les données antérieures et subséquentes devrait être utilisée avec précaution.",
+          "link": {
+            "footnoteId": 10,
+            "dimensionPositionId": 0,
+            "memberId": 0
+          }
+        },
+        {
+          "footnoteId": 4,
+          "footnotesEn": "Formerly Ottawa-Hull. Note: to obtain the total for Ottawa-Gatineau CMA, the Ontario part (35505) and Quebec part (24505) will have to be added together.",
+          "footnotesFr": "Autrefois Ottawa-Hull. Note: Pour obtenir la somme de la RMR d'Ottawa-Gatineau, la partie ontarienne (35505) et la partie québécoise (24505) doivent être additionnées",
+          "link": {
+            "footnoteId": 4,
+            "dimensionPositionId": 1,
+            "memberId": 25
+          }
+        },
+        {
+          "footnoteId": 5,
+          "footnotesEn": "Formerly Chicoutimi-Jonquière.",
+          "footnotesFr": "Autrefois Chicoutimi-Jonquière.",
+          "link": {
+            "footnoteId": 5,
+            "dimensionPositionId": 1,
+            "memberId": 27
+          }
+        },
+        {
+          "footnoteId": 3,
+          "footnotesEn": "Formerly Sudbury.",
+          "footnotesFr": "Autrefois Sudbury.",
+          "link": {
+            "footnoteId": 3,
+            "dimensionPositionId": 1,
+            "memberId": 34
+          }
+        },
+        {
+          "footnoteId": 4,
+          "footnotesEn": "Formerly Ottawa-Hull. Note: to obtain the total for Ottawa-Gatineau CMA, the Ontario part (35505) and Quebec part (24505) will have to be added together.",
+          "footnotesFr": "Autrefois Ottawa-Hull. Note: Pour obtenir la somme de la RMR d'Ottawa-Gatineau, la partie ontarienne (35505) et la partie québécoise (24505) doivent être additionnées",
+          "link": {
+            "footnoteId": 4,
+            "dimensionPositionId": 1,
+            "memberId": 41
+          }
+        },
+        {
+          "footnoteId": 6,
+          "footnotesEn": "Minor non-residential projects refer to permits valued at less than $250,000. The exception is if a permit is for a deconversion from a residential to non-residential building. All deconversions from a residential to a non-residential building include one or more units lost.",
+          "footnotesFr": "Les projets non résidentiels mineurs font référence à des permis d'une valeur inférieure à 250 000 $. L'exception concerne les permis visant la fusion d'un bâtiment résidentiel en bâtiment non résidentiel. Toutes les fusions d'un bâtiment résidentiel en bâtiment non résidentiel impliquent la perte d’une ou plusieurs unités.",
+          "link": {
+            "footnoteId": 6,
+            "dimensionPositionId": 2,
+            "memberId": 3
+          }
+        },
+        {
+          "footnoteId": 15,
+          "footnotesEn": "Minor residential projects refer to permits that do not have one or more units created or lost and are valued at less than $50,000.",
+          "footnotesFr": "Les projets résidentiels mineurs font référence aux permis qui n’entraînent pas la création ou la perte d’une ou plusieurs unités et dont la valeur est inférieure à 50 000 $.",
+          "link": {
+            "footnoteId": 15,
+            "dimensionPositionId": 2,
+            "memberId": 3
+          }
+        },
+        {
+          "footnoteId": 15,
+          "footnotesEn": "Minor residential projects refer to permits that do not have one or more units created or lost and are valued at less than $50,000.",
+          "footnotesFr": "Les projets résidentiels mineurs font référence aux permis qui n’entraînent pas la création ou la perte d’une ou plusieurs unités et dont la valeur est inférieure à 50 000 $.",
+          "link": {
+            "footnoteId": 15,
+            "dimensionPositionId": 2,
+            "memberId": 6
+          }
+        },
+        {
+          "footnoteId": 15,
+          "footnotesEn": "Minor residential projects refer to permits that do not have one or more units created or lost and are valued at less than $50,000.",
+          "footnotesFr": "Les projets résidentiels mineurs font référence aux permis qui n’entraînent pas la création ou la perte d’une ou plusieurs unités et dont la valeur est inférieure à 50 000 $.",
+          "link": {
+            "footnoteId": 15,
+            "dimensionPositionId": 2,
+            "memberId": 9
+          }
+        },
+        {
+          "footnoteId": 8,
+          "footnotesEn": "Beginning in reference month January 2018, the methodology for cottages has changed. Previously, this type of structure was coded as \"Single house\" if the value of the permit was higher than $60,000. This transformation is no longer performed.",
+          "footnotesFr": "Depuis janvier 2018, la méthodologie des chalets a changé. Auparavant, les chalets ayant une valeur supérieure à 60 000$ étaient reclassifiés sous la catégorie des maisons simples. Cette transformation ne sera plus appliquée.",
+          "link": {
+            "footnoteId": 8,
+            "dimensionPositionId": 2,
+            "memberId": 11
+          }
+        },
+        {
+          "footnoteId": 8,
+          "footnotesEn": "Beginning in reference month January 2018, the methodology for cottages has changed. Previously, this type of structure was coded as \"Single house\" if the value of the permit was higher than $60,000. This transformation is no longer performed.",
+          "footnotesFr": "Depuis janvier 2018, la méthodologie des chalets a changé. Auparavant, les chalets ayant une valeur supérieure à 60 000$ étaient reclassifiés sous la catégorie des maisons simples. Cette transformation ne sera plus appliquée.",
+          "link": {
+            "footnoteId": 8,
+            "dimensionPositionId": 2,
+            "memberId": 14
+          }
+        },
+        {
+          "footnoteId": 15,
+          "footnotesEn": "Minor residential projects refer to permits that do not have one or more units created or lost and are valued at less than $50,000.",
+          "footnotesFr": "Les projets résidentiels mineurs font référence aux permis qui n’entraînent pas la création ou la perte d’une ou plusieurs unités et dont la valeur est inférieure à 50 000 $.",
+          "link": {
+            "footnoteId": 15,
+            "dimensionPositionId": 2,
+            "memberId": 17
+          }
+        },
+        {
+          "footnoteId": 6,
+          "footnotesEn": "Minor non-residential projects refer to permits valued at less than $250,000. The exception is if a permit is for a deconversion from a residential to non-residential building. All deconversions from a residential to a non-residential building include one or more units lost.",
+          "footnotesFr": "Les projets non résidentiels mineurs font référence à des permis d'une valeur inférieure à 250 000 $. L'exception concerne les permis visant la fusion d'un bâtiment résidentiel en bâtiment non résidentiel. Toutes les fusions d'un bâtiment résidentiel en bâtiment non résidentiel impliquent la perte d’une ou plusieurs unités.",
+          "link": {
+            "footnoteId": 6,
+            "dimensionPositionId": 2,
+            "memberId": 35
+          }
+        },
+        {
+          "footnoteId": 6,
+          "footnotesEn": "Minor non-residential projects refer to permits valued at less than $250,000. The exception is if a permit is for a deconversion from a residential to non-residential building. All deconversions from a residential to a non-residential building include one or more units lost.",
+          "footnotesFr": "Les projets non résidentiels mineurs font référence à des permis d'une valeur inférieure à 250 000 $. L'exception concerne les permis visant la fusion d'un bâtiment résidentiel en bâtiment non résidentiel. Toutes les fusions d'un bâtiment résidentiel en bâtiment non résidentiel impliquent la perte d’une ou plusieurs unités.",
+          "link": {
+            "footnoteId": 6,
+            "dimensionPositionId": 2,
+            "memberId": 38
+          }
+        },
+        {
+          "footnoteId": 6,
+          "footnotesEn": "Minor non-residential projects refer to permits valued at less than $250,000. The exception is if a permit is for a deconversion from a residential to non-residential building. All deconversions from a residential to a non-residential building include one or more units lost.",
+          "footnotesFr": "Les projets non résidentiels mineurs font référence à des permis d'une valeur inférieure à 250 000 $. L'exception concerne les permis visant la fusion d'un bâtiment résidentiel en bâtiment non résidentiel. Toutes les fusions d'un bâtiment résidentiel en bâtiment non résidentiel impliquent la perte d’une ou plusieurs unités.",
+          "link": {
+            "footnoteId": 6,
+            "dimensionPositionId": 2,
+            "memberId": 51
+          }
+        },
+        {
+          "footnoteId": 6,
+          "footnotesEn": "Minor non-residential projects refer to permits valued at less than $250,000. The exception is if a permit is for a deconversion from a residential to non-residential building. All deconversions from a residential to a non-residential building include one or more units lost.",
+          "footnotesFr": "Les projets non résidentiels mineurs font référence à des permis d'une valeur inférieure à 250 000 $. L'exception concerne les permis visant la fusion d'un bâtiment résidentiel en bâtiment non résidentiel. Toutes les fusions d'un bâtiment résidentiel en bâtiment non résidentiel impliquent la perte d’une ou plusieurs unités.",
+          "link": {
+            "footnoteId": 6,
+            "dimensionPositionId": 2,
+            "memberId": 75
+          }
+        },
+        {
+          "footnoteId": 2,
+          "footnotesEn": "The present value corresponds only to the value associated to the units created. This value can differ from the value reported under the appellation \"residential\" in historical tables, due to values associated to the renovation for example.",
+          "footnotesFr": "La présente valeur correspond seulement à la valeur associée aux unités créées. Cette valeur peut différer de la valeur observée sous l'appellation « résidentiel » dans les tableaux historiques et provenant de la valeur associée aux rénovations, par exemple.",
+          "link": {
+            "footnoteId": 2,
+            "dimensionPositionId": 3,
+            "memberId": 3
+          }
+        },
+        {
+          "footnoteId": 13,
+          "footnotesEn": "Detailed information for all types of work may not be available for all regions, as permit regulations and requirements vary by municipality.",
+          "footnotesFr": "L'information détaillée pour tous les types de travaux peut ne pas être disponible pour toutes les régions, car la réglementation et les exigences en matière de permis varient d'une municipalité à l'autre.",
+          "link": {
+            "footnoteId": 13,
+            "dimensionPositionId": 3,
+            "memberId": 0
+          }
+        },
+        {
+          "footnoteId": 7,
+          "footnotesEn": "Seasonally adjusted data for the total number of housing units as well as for the aggregate value of building permits are obtained indirectly, for example, by adding their seasonally adjusted components. The total number of dwelling units is obtained by summing the seasonally adjusted data for single- and multiple-family units; the total value of building permits is obtained by summing the following elements: residential, industrial, commercial and institutional. Some series contain no apparent seasonality. In these cases, unadjusted values have been tabulated and aggregated to the adjusted values of the other series. At the end of the year, the chronological series adjusted for seasonality are revised to take into account the most recent seasonal fluctuations.",
+          "footnotesFr": "Les données désaisonnalisées portant sur le total des unités et la valeur agrégée des permis de bâtir sont obtenues indirectement, c'est-à-dire par l'addition de leurs composantes désaisonnalisées. On obtient les unités totales de logement par l'agrégation des données désaisonnalisées de type unifamilial et multiple; la valeur totale des permis résulte pour sa part de la somme des éléments suivant s: résidentiel, industriel, commercial et institutionnel. Certaines séries ne présentent aucune saisonnalité apparente. Dans ces cas, les valeurs non-désaisonnalisées de ces séries ont été utilisées et agrégées aux valeurs désaisonnalisées des autres séries. À la fin de l'année, les séries chronologiques désaisonnalisées sont révisées afin de tenir compte des plus récentes fluctuations saisonnières.",
+          "link": {
+            "footnoteId": 7,
+            "dimensionPositionId": 5,
+            "memberId": 2
+          }
+        },
+        {
+          "footnoteId": 14,
+          "footnotesEn": "Monthly estimates for constant dollars are calculated using quarterly deflators from the Building Construction Price Index (18-10-0289).  The monthly indexes used for the deflation process were part of a methodology review to increase the quality of the constant dollar and seasonally adjusted series. They previously displayed a step pattern due to lower frequency collection.",
+          "footnotesFr": "Les estimations mensuelles en dollars constants sont calculées au moyen des déflateurs trimestriels de l’Indice des prix de la construction de bâtiments (18-10-0289).Dans le cadre d'une révision méthodologique, les indices de prix mensuels utilisés dans le processus de déflation ont été améliorés pour accroître la qualité des séries en dollars constants et des séries désaisonnalisées. Ces indices affichaient auparavant un patron en escalier causé par une collecte de données moins fréquente.",
+          "link": {
+            "footnoteId": 14,
+            "dimensionPositionId": 5,
+            "memberId": 3
+          }
+        },
+        {
+          "footnoteId": 14,
+          "footnotesEn": "Monthly estimates for constant dollars are calculated using quarterly deflators from the Building Construction Price Index (18-10-0289).  The monthly indexes used for the deflation process were part of a methodology review to increase the quality of the constant dollar and seasonally adjusted series. They previously displayed a step pattern due to lower frequency collection.",
+          "footnotesFr": "Les estimations mensuelles en dollars constants sont calculées au moyen des déflateurs trimestriels de l’Indice des prix de la construction de bâtiments (18-10-0289).Dans le cadre d'une révision méthodologique, les indices de prix mensuels utilisés dans le processus de déflation ont été améliorés pour accroître la qualité des séries en dollars constants et des séries désaisonnalisées. Ces indices affichaient auparavant un patron en escalier causé par une collecte de données moins fréquente.",
+          "link": {
+            "footnoteId": 14,
+            "dimensionPositionId": 5,
+            "memberId": 4
+          }
+        },
+        {
+          "footnoteId": 11,
+          "footnotesEn": "The sum may not add up to the total due to rounding.",
+          "footnotesFr": "La somme peut ne pas correspondre au total en raison des arrondissements.",
+          "link": {
+            "footnoteId": 11,
+            "dimensionPositionId": 5,
+            "memberId": 0
+          }
+        },
+        {
+          "footnoteId": 12,
+          "footnotesEn": "Data for the provincial totals can not be reconciled because data at the census agglomerations and census subdivision levels is not publish in this table.",
+          "footnotesFr": "Les données pour les totaux provinciaux ne peuvent pas être réconciliées car les données aux niveaux des agglomérations de recensement et des subdivisions de recensement ne sont pas publiées dans ce tableau.",
+          "link": {
+            "footnoteId": 12,
+            "dimensionPositionId": 5,
+            "memberId": 0
+          }
+        }
+      ],
+      "correctionFootnote": [],
+      "correction": [
+        {
+          "correctionId": "3959",
+          "correctionDate": "2025-06-25",
+          "correctionNoteEn": "On June 25, 2025, corrections have been made to the number of dwelling units demolished: (i) data from 2019 to 2021 were revised for both “Types of work, total” and “Demolitions for residential dwellings”; and (ii) data for 2018 were revised for “Types of work, total” only.",
+          "correctionNoteFr": "Le 25 juin 2025, des corrections ont été apportées au nombre d’unités de logements démolis : (i) les données de 2019 à 2021 ont été révisées pour les catégories “Types de travaux, total” et “Démolitions pour un logement résidentiel” ; et (ii) les données de 2018 ont été révisées uniquement pour la catégorie “Types de travaux, total” seulement."
+        }
+      ],
+      "issueDate": "2025-06-11"
+    }
+  }
+]

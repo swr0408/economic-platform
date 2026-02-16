@@ -2706,8 +2706,8 @@
     "datetime_utc": "2026-02-20T13:30:00+00:00",
     "datetime_jst": "2026-02-20T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "PCE Price Index YoY (Dec)",
+    "label": "PCE Price Index MoM (Dec)",
     "estimate": null
   },
-  "last_updated": "2026-01-30T23:03:01.082840+09:00"
+  "last_updated": "2026-02-05T12:03:14.728412+09:00"
 }

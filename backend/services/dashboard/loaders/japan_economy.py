@@ -51,6 +51,9 @@ class JapanEconomyLoader(BaseDashboardLoader):
             "machinery_orders",
             "machine_tool_orders",
             "capital_investment",
+            "current_account",
+            "current_account_gdp_ratio",
+            "balance_of_trade",
         ]
 
     def get_release_datetimes(self) -> List[Optional[datetime]]:
@@ -66,7 +69,7 @@ class JapanEconomyLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
@@ -118,6 +121,9 @@ class JapanEconomyLoader(BaseDashboardLoader):
         from services.japan.machinery_orders_service import machinery_orders_service
         from services.japan.machine_tool_orders_service import machine_tool_orders_service
         from services.japan.capital_investment_service import capital_investment_service
+        from services.japan.japan_current_account_service import japan_current_account_service
+        from services.japan.japan_current_account_gdp_ratio_service import japan_current_account_gdp_ratio_service
+        from services.japan.japan_balance_of_trade_service import japan_balance_of_trade_service
 
         result = {
             "quarterly_gdp": None,
@@ -127,10 +133,13 @@ class JapanEconomyLoader(BaseDashboardLoader):
             "machinery_orders": None,
             "machine_tool_orders": None,
             "capital_investment": None,
+            "current_account": None,
+            "current_account_gdp_ratio": None,
+            "balance_of_trade": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=10) as executor:
             futures = {
                 executor.submit(self._get_quarterly_gdp, quarterly_gdp_service): "quarterly_gdp",
                 executor.submit(self._get_iip, japan_iip_service): "iip",
@@ -139,6 +148,9 @@ class JapanEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_machinery_orders, machinery_orders_service): "machinery_orders",
                 executor.submit(self._get_machine_tool_orders, machine_tool_orders_service): "machine_tool_orders",
                 executor.submit(self._get_capital_investment, capital_investment_service): "capital_investment",
+                executor.submit(self._get_current_account, japan_current_account_service): "current_account",
+                executor.submit(self._get_current_account_gdp_ratio, japan_current_account_gdp_ratio_service): "current_account_gdp_ratio",
+                executor.submit(self._get_balance_of_trade, japan_balance_of_trade_service): "balance_of_trade",
             }
 
             for future in as_completed(futures):
@@ -247,4 +259,46 @@ class JapanEconomyLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Capital Investment: {e}")
+            return {"data": [], "latest": None, "next_release": None}
+
+    def _get_current_account(self, service) -> dict:
+        """経常収支データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("current_account")
+            response = service.get_current_account_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Current Account: {e}")
+            return {"data": [], "latest": None, "next_release": None}
+
+    def _get_current_account_gdp_ratio(self, service) -> dict:
+        """経常収支対GDP比データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("current_account_gdp_ratio")
+            response = service.get_current_account_gdp_ratio_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Current Account GDP Ratio: {e}")
+            return {"data": [], "latest": None, "next_release": None}
+
+    def _get_balance_of_trade(self, service) -> dict:
+        """貿易収支データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("balance_of_trade")
+            response = service.get_balance_of_trade_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Balance of Trade: {e}")
             return {"data": [], "latest": None, "next_release": None}

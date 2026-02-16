@@ -32,7 +32,7 @@
   "data_type": "selling_price",
   "name": "販売価格判断指数（DI）",
   "unit": "%ポイント",
-  "last_updated": "2026-01-12T06:38:53.989256",
+  "last_updated": "2026-02-11T23:55:26.391678",
   "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
   "cached": false,
   "source": "boj"

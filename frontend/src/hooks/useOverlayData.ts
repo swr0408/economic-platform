@@ -64,15 +64,33 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/machinery-orders',
     '/api/japan/machine-tool-orders',
     '/api/japan/tertiary-industry-index',
-    // UK個別API（BOE Bank Rate、ONS GDP/GVA/Production等）
+    '/api/japan/current-account',
+    '/api/japan/balance-of-trade',
+    '/api/japan/terms-of-trade',
+    '/api/japan/price-di-spread',
+    // UK個別API（BOE Bank Rate、ONS GDP/GVA/Production、UK QT等）
     '/api/uk/boe-',
     '/api/uk/ons-',
-    // Eurozone個別API（PMI等）
+    '/api/uk/uk-qt',
+    '/api/uk/uk-trade-balance',
+    '/api/uk/uk-current-account',
+    '/api/uk/uk-government-debt-to-gdp-ratio',
+    // Eurozone個別API（PMI、ECB CES等）
     '/api/eurozone/pmi',
     '/api/eurozone/germany-pmi',
     '/api/eurozone/france-pmi',
+    '/api/eurozone/ecb-ces-wage-expectations',
+    '/api/eurozone/ecb-balance-sheet',
+    '/api/eurozone/eu-government-debt-to-gdp-ratio',
     // Switzerland個別API（SNB、BFS/FSO等）
     '/api/switzerland/',
+    // Canada個別API（BOC、Statistics Canada等）
+    '/api/canada/boc/',
+    '/api/canada/statcan/',
+    // Australia個別API（RBA、ABS、Melbourne Institute等）
+    '/api/australia/rba/',
+    '/api/australia/abs/',
+    '/api/australia/melbourne-institute/',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

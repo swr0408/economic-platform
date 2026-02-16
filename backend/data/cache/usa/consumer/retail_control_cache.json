@@ -962,12 +962,12 @@
     "forecast": 0.1
   },
   "next_release": {
-    "date": "2026-02-10",
-    "datetime_utc": "2026-02-10T13:30:00+00:00",
-    "datetime_jst": "2026-02-10T22:30:00+09:00",
+    "date": "2026-02-17",
+    "datetime_utc": "2026-02-17T13:30:00+00:00",
+    "datetime_jst": "2026-02-17T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "Retail Sales Ex Gas/Autos MoM (Dec)",
+    "label": "Retail Sales Ex Gas/Autos MoM (Jan)",
     "estimate": null
   },
-  "last_updated": "2026-01-30T23:02:14.566589+09:00"
+  "last_updated": "2026-02-15T22:44:06.618434+09:00"
 }

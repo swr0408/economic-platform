@@ -86,7 +86,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
@@ -153,6 +153,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
         from services.eurozone.eu_terms_of_trade_service import eu_terms_of_trade_service
         from services.eurozone.ecb_current_account_service import ecb_current_account_service
         from services.eurozone.france_business_confidence_service import france_business_confidence_service
+        from services.eurozone.eu_government_debt_to_gdp_ratio_service import eu_government_debt_to_gdp_ratio_service
 
         result = {
             "ecb_gdp": None,
@@ -175,6 +176,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
             "eu_terms_of_trade": None,
             "ecb_current_account": None,
             "france_business_confidence": None,
+            "eu_government_debt_to_gdp_ratio": None,
         }
 
         # 並列でデータを取得
@@ -200,6 +202,7 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_eu_terms_of_trade, eu_terms_of_trade_service): "eu_terms_of_trade",
                 executor.submit(self._get_ecb_current_account, ecb_current_account_service): "ecb_current_account",
                 executor.submit(self._get_france_business_confidence, france_business_confidence_service): "france_business_confidence",
+                executor.submit(self._get_eu_government_debt_to_gdp_ratio, eu_government_debt_to_gdp_ratio_service): "eu_government_debt_to_gdp_ratio",
             }
 
             for future in as_completed(futures):
@@ -600,4 +603,28 @@ class EurozoneEconomyLoader(BaseDashboardLoader):
                 "latest": None,
                 "metadata": {},
                 "next_release": None
+            }
+
+    def _get_eu_government_debt_to_gdp_ratio(self, service) -> dict:
+        """EU政府債務残高対GDP比データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("eu_government_debt_to_gdp_ratio")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "countries": response.get("countries", {}),
+                "ea20": response.get("ea20", []),
+                "qoq_change": response.get("qoq_change", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting EU Government Debt to GDP Ratio: {e}")
+            return {
+                "countries": {},
+                "ea20": [],
+                "qoq_change": [],
+                "latest": None,
+                "metadata": {},
+                "next_release": None,
             }

@@ -30,6 +30,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
     - ecb_macro_projections: ECBマクロ経済予測
     - ecb_m3: M3マネーサプライ
     - ecb_bank_interest_rates: 銀行金利（企業向け・住宅ローン）
+    - ecb_balance_sheet: ECBバランスシート（総資産）
 
     キャッシュ方式: 発表日時ベース判定
     - ECB金利決定: 21:15-22:25 JST（時期により変動）
@@ -100,7 +101,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
@@ -153,6 +154,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         from services.eurozone.ecb_macro_projections_service import ecb_macro_projections_service
         from services.eurozone.ecb_m3_service import ecb_m3_service
         from services.eurozone.ecb_bank_interest_rates_service import ecb_bank_interest_rates_service
+        from services.eurozone.ecb_balance_sheet_service import ecb_balance_sheet_service
 
         result = {
             "ecb_rates": None,
@@ -160,6 +162,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
             "ecb_macro_projections": None,
             "ecb_m3": None,
             "ecb_bank_interest_rates": None,
+            "ecb_balance_sheet": None,
         }
 
         # 並列でデータを取得
@@ -170,6 +173,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_ecb_macro_projections, ecb_macro_projections_service): "ecb_macro_projections",
                 executor.submit(self._get_ecb_m3, ecb_m3_service): "ecb_m3",
                 executor.submit(self._get_ecb_bank_interest_rates, ecb_bank_interest_rates_service): "ecb_bank_interest_rates",
+                executor.submit(self._get_ecb_balance_sheet, ecb_balance_sheet_service): "ecb_balance_sheet",
             }
 
             for future in as_completed(futures):
@@ -274,3 +278,16 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting ECB Bank Interest Rates: {e}")
             return {"corporations": {"data": [], "latest": None}, "housing": {"data": [], "latest": None}, "next_release": None}
+
+    def _get_ecb_balance_sheet(self, service) -> dict:
+        """ECBバランスシート（総資産）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_balance_sheet")
+            response = service.get_ecb_balance_sheet_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB Balance Sheet: {e}")
+            return {"data": [], "latest": None}

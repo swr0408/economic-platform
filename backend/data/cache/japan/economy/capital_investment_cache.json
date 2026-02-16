@@ -1,0 +1,2007 @@
+{
+  "data": [
+    {
+      "date": "1954-Q2",
+      "value": 129519.0,
+      "unit": "百万円",
+      "qoq_growth": null,
+      "yoy_growth": null
+    },
+    {
+      "date": "1954-Q3",
+      "value": 141360.0,
+      "unit": "百万円",
+      "qoq_growth": 9.1,
+      "yoy_growth": null
+    },
+    {
+      "date": "1954-Q4",
+      "value": 124307.0,
+      "unit": "百万円",
+      "qoq_growth": -12.1,
+      "yoy_growth": null
+    },
+    {
+      "date": "1955-Q1",
+      "value": 107103.0,
+      "unit": "百万円",
+      "qoq_growth": -13.8,
+      "yoy_growth": null
+    },
+    {
+      "date": "1955-Q2",
+      "value": 109372.0,
+      "unit": "百万円",
+      "qoq_growth": 2.1,
+      "yoy_growth": -15.6
+    },
+    {
+      "date": "1955-Q3",
+      "value": 129912.0,
+      "unit": "百万円",
+      "qoq_growth": 18.8,
+      "yoy_growth": -8.1
+    },
+    {
+      "date": "1955-Q4",
+      "value": 142583.0,
+      "unit": "百万円",
+      "qoq_growth": 9.8,
+      "yoy_growth": 14.7
+    },
+    {
+      "date": "1956-Q1",
+      "value": 155444.0,
+      "unit": "百万円",
+      "qoq_growth": 9.0,
+      "yoy_growth": 45.1
+    },
+    {
+      "date": "1956-Q2",
+      "value": 181226.0,
+      "unit": "百万円",
+      "qoq_growth": 16.6,
+      "yoy_growth": 65.7
+    },
+    {
+      "date": "1956-Q3",
+      "value": 247237.0,
+      "unit": "百万円",
+      "qoq_growth": 36.4,
+      "yoy_growth": 90.3
+    },
+    {
+      "date": "1956-Q4",
+      "value": 287559.0,
+      "unit": "百万円",
+      "qoq_growth": 16.3,
+      "yoy_growth": 101.7
+    },
+    {
+      "date": "1957-Q1",
+      "value": 288866.0,
+      "unit": "百万円",
+      "qoq_growth": 0.5,
+      "yoy_growth": 85.8
+    },
+    {
+      "date": "1957-Q2",
+      "value": 306086.0,
+      "unit": "百万円",
+      "qoq_growth": 6.0,
+      "yoy_growth": 68.9
+    },
+    {
+      "date": "1957-Q3",
+      "value": 369652.0,
+      "unit": "百万円",
+      "qoq_growth": 20.8,
+      "yoy_growth": 49.5
+    },
+    {
+      "date": "1957-Q4",
+      "value": 300027.0,
+      "unit": "百万円",
+      "qoq_growth": -18.8,
+      "yoy_growth": 4.3
+    },
+    {
+      "date": "1958-Q1",
+      "value": 283927.0,
+      "unit": "百万円",
+      "qoq_growth": -5.4,
+      "yoy_growth": -1.7
+    },
+    {
+      "date": "1958-Q2",
+      "value": 254424.0,
+      "unit": "百万円",
+      "qoq_growth": -10.4,
+      "yoy_growth": -16.9
+    },
+    {
+      "date": "1958-Q3",
+      "value": 305731.0,
+      "unit": "百万円",
+      "qoq_growth": 20.2,
+      "yoy_growth": -17.3
+    },
+    {
+      "date": "1958-Q4",
+      "value": 277933.0,
+      "unit": "百万円",
+      "qoq_growth": -9.1,
+      "yoy_growth": -7.4
+    },
+    {
+      "date": "1959-Q1",
+      "value": 286878.0,
+      "unit": "百万円",
+      "qoq_growth": 3.2,
+      "yoy_growth": 1.0
+    },
+    {
+      "date": "1959-Q2",
+      "value": 281216.0,
+      "unit": "百万円",
+      "qoq_growth": -2.0,
+      "yoy_growth": 10.5
+    },
+    {
+      "date": "1959-Q3",
+      "value": 347091.0,
+      "unit": "百万円",
+      "qoq_growth": 23.4,
+      "yoy_growth": 13.5
+    },
+    {
+      "date": "1959-Q4",
+      "value": 380300.0,
+      "unit": "百万円",
+      "qoq_growth": 9.6,
+      "yoy_growth": 36.8
+    },
+    {
+      "date": "1960-Q1",
+      "value": 430704.0,
+      "unit": "百万円",
+      "qoq_growth": 13.3,
+      "yoy_growth": 50.1
+    },
+    {
+      "date": "1960-Q2",
+      "value": 426009.0,
+      "unit": "百万円",
+      "qoq_growth": -1.1,
+      "yoy_growth": 51.5
+    },
+    {
+      "date": "1960-Q3",
+      "value": 537540.0,
+      "unit": "百万円",
+      "qoq_growth": 26.2,
+      "yoy_growth": 54.9
+    },
+    {
+      "date": "1960-Q4",
+      "value": 570809.0,
+      "unit": "百万円",
+      "qoq_growth": 6.2,
+      "yoy_growth": 50.1
+    },
+    {
+      "date": "1961-Q1",
+      "value": 624592.0,
+      "unit": "百万円",
+      "qoq_growth": 9.4,
+      "yoy_growth": 45.0
+    },
+    {
+      "date": "1961-Q2",
+      "value": 628738.0,
+      "unit": "百万円",
+      "qoq_growth": 0.7,
+      "yoy_growth": 47.6
+    },
+    {
+      "date": "1961-Q3",
+      "value": 793852.0,
+      "unit": "百万円",
+      "qoq_growth": 26.3,
+      "yoy_growth": 47.7
+    },
+    {
+      "date": "1961-Q4",
+      "value": 832742.0,
+      "unit": "百万円",
+      "qoq_growth": 4.9,
+      "yoy_growth": 45.9
+    },
+    {
+      "date": "1962-Q1",
+      "value": 741337.0,
+      "unit": "百万円",
+      "qoq_growth": -11.0,
+      "yoy_growth": 18.7
+    },
+    {
+      "date": "1962-Q2",
+      "value": 690558.0,
+      "unit": "百万円",
+      "qoq_growth": -6.8,
+      "yoy_growth": 9.8
+    },
+    {
+      "date": "1962-Q3",
+      "value": 699905.0,
+      "unit": "百万円",
+      "qoq_growth": 1.4,
+      "yoy_growth": -11.8
+    },
+    {
+      "date": "1962-Q4",
+      "value": 641565.0,
+      "unit": "百万円",
+      "qoq_growth": -8.3,
+      "yoy_growth": -23.0
+    },
+    {
+      "date": "1963-Q1",
+      "value": 607401.0,
+      "unit": "百万円",
+      "qoq_growth": -5.3,
+      "yoy_growth": -18.1
+    },
+    {
+      "date": "1963-Q2",
+      "value": 593292.0,
+      "unit": "百万円",
+      "qoq_growth": -2.3,
+      "yoy_growth": -14.1
+    },
+    {
+      "date": "1963-Q3",
+      "value": 686372.0,
+      "unit": "百万円",
+      "qoq_growth": 15.7,
+      "yoy_growth": -1.9
+    },
+    {
+      "date": "1963-Q4",
+      "value": 724302.0,
+      "unit": "百万円",
+      "qoq_growth": 5.5,
+      "yoy_growth": 12.9
+    },
+    {
+      "date": "1964-Q1",
+      "value": 762459.0,
+      "unit": "百万円",
+      "qoq_growth": 5.3,
+      "yoy_growth": 25.5
+    },
+    {
+      "date": "1964-Q2",
+      "value": 736532.0,
+      "unit": "百万円",
+      "qoq_growth": -3.4,
+      "yoy_growth": 24.1
+    },
+    {
+      "date": "1964-Q3",
+      "value": 922960.0,
+      "unit": "百万円",
+      "qoq_growth": 25.3,
+      "yoy_growth": 34.5
+    },
+    {
+      "date": "1964-Q4",
+      "value": 864912.0,
+      "unit": "百万円",
+      "qoq_growth": -6.3,
+      "yoy_growth": 19.4
+    },
+    {
+      "date": "1965-Q1",
+      "value": 812115.0,
+      "unit": "百万円",
+      "qoq_growth": -6.1,
+      "yoy_growth": 6.5
+    },
+    {
+      "date": "1965-Q2",
+      "value": 712977.0,
+      "unit": "百万円",
+      "qoq_growth": -12.2,
+      "yoy_growth": -3.2
+    },
+    {
+      "date": "1965-Q3",
+      "value": 829961.0,
+      "unit": "百万円",
+      "qoq_growth": 16.4,
+      "yoy_growth": -10.1
+    },
+    {
+      "date": "1965-Q4",
+      "value": 755448.0,
+      "unit": "百万円",
+      "qoq_growth": -9.0,
+      "yoy_growth": -12.7
+    },
+    {
+      "date": "1966-Q1",
+      "value": 756671.0,
+      "unit": "百万円",
+      "qoq_growth": 0.2,
+      "yoy_growth": -6.8
+    },
+    {
+      "date": "1966-Q2",
+      "value": 745890.0,
+      "unit": "百万円",
+      "qoq_growth": -1.4,
+      "yoy_growth": 4.6
+    },
+    {
+      "date": "1966-Q3",
+      "value": 866616.0,
+      "unit": "百万円",
+      "qoq_growth": 16.2,
+      "yoy_growth": 4.4
+    },
+    {
+      "date": "1966-Q4",
+      "value": 901195.0,
+      "unit": "百万円",
+      "qoq_growth": 4.0,
+      "yoy_growth": 19.3
+    },
+    {
+      "date": "1967-Q1",
+      "value": 969850.0,
+      "unit": "百万円",
+      "qoq_growth": 7.6,
+      "yoy_growth": 28.2
+    },
+    {
+      "date": "1967-Q2",
+      "value": 1060828.0,
+      "unit": "百万円",
+      "qoq_growth": 9.4,
+      "yoy_growth": 42.2
+    },
+    {
+      "date": "1967-Q3",
+      "value": 1238583.0,
+      "unit": "百万円",
+      "qoq_growth": 16.8,
+      "yoy_growth": 42.9
+    },
+    {
+      "date": "1967-Q4",
+      "value": 1306009.0,
+      "unit": "百万円",
+      "qoq_growth": 5.4,
+      "yoy_growth": 44.9
+    },
+    {
+      "date": "1968-Q1",
+      "value": 1363086.0,
+      "unit": "百万円",
+      "qoq_growth": 4.4,
+      "yoy_growth": 40.5
+    },
+    {
+      "date": "1968-Q2",
+      "value": 1383693.0,
+      "unit": "百万円",
+      "qoq_growth": 1.5,
+      "yoy_growth": 30.4
+    },
+    {
+      "date": "1968-Q3",
+      "value": 1556980.0,
+      "unit": "百万円",
+      "qoq_growth": 12.5,
+      "yoy_growth": 25.7
+    },
+    {
+      "date": "1968-Q4",
+      "value": 1641159.0,
+      "unit": "百万円",
+      "qoq_growth": 5.4,
+      "yoy_growth": 25.7
+    },
+    {
+      "date": "1969-Q1",
+      "value": 1538167.0,
+      "unit": "百万円",
+      "qoq_growth": -6.3,
+      "yoy_growth": 12.8
+    },
+    {
+      "date": "1969-Q2",
+      "value": 1777349.0,
+      "unit": "百万円",
+      "qoq_growth": 15.5,
+      "yoy_growth": 28.4
+    },
+    {
+      "date": "1969-Q3",
+      "value": 2054106.0,
+      "unit": "百万円",
+      "qoq_growth": 15.6,
+      "yoy_growth": 31.9
+    },
+    {
+      "date": "1969-Q4",
+      "value": 2089738.0,
+      "unit": "百万円",
+      "qoq_growth": 1.7,
+      "yoy_growth": 27.3
+    },
+    {
+      "date": "1970-Q1",
+      "value": 2248221.0,
+      "unit": "百万円",
+      "qoq_growth": 7.6,
+      "yoy_growth": 46.2
+    },
+    {
+      "date": "1970-Q2",
+      "value": 2136995.0,
+      "unit": "百万円",
+      "qoq_growth": -4.9,
+      "yoy_growth": 20.2
+    },
+    {
+      "date": "1970-Q3",
+      "value": 2410601.0,
+      "unit": "百万円",
+      "qoq_growth": 12.8,
+      "yoy_growth": 17.4
+    },
+    {
+      "date": "1970-Q4",
+      "value": 2397265.0,
+      "unit": "百万円",
+      "qoq_growth": -0.6,
+      "yoy_growth": 14.7
+    },
+    {
+      "date": "1971-Q1",
+      "value": 2425474.0,
+      "unit": "百万円",
+      "qoq_growth": 1.2,
+      "yoy_growth": 7.9
+    },
+    {
+      "date": "1971-Q2",
+      "value": 2232252.0,
+      "unit": "百万円",
+      "qoq_growth": -8.0,
+      "yoy_growth": 4.5
+    },
+    {
+      "date": "1971-Q3",
+      "value": 2502549.0,
+      "unit": "百万円",
+      "qoq_growth": 12.1,
+      "yoy_growth": 3.8
+    },
+    {
+      "date": "1971-Q4",
+      "value": 2348512.0,
+      "unit": "百万円",
+      "qoq_growth": -6.2,
+      "yoy_growth": -2.0
+    },
+    {
+      "date": "1972-Q1",
+      "value": 2410592.0,
+      "unit": "百万円",
+      "qoq_growth": 2.6,
+      "yoy_growth": -0.6
+    },
+    {
+      "date": "1972-Q2",
+      "value": 2283177.0,
+      "unit": "百万円",
+      "qoq_growth": -5.3,
+      "yoy_growth": 2.3
+    },
+    {
+      "date": "1972-Q3",
+      "value": 2550299.0,
+      "unit": "百万円",
+      "qoq_growth": 11.7,
+      "yoy_growth": 1.9
+    },
+    {
+      "date": "1972-Q4",
+      "value": 2711791.0,
+      "unit": "百万円",
+      "qoq_growth": 6.3,
+      "yoy_growth": 15.5
+    },
+    {
+      "date": "1973-Q1",
+      "value": 2881884.0,
+      "unit": "百万円",
+      "qoq_growth": 6.3,
+      "yoy_growth": 19.6
+    },
+    {
+      "date": "1973-Q2",
+      "value": 2751341.0,
+      "unit": "百万円",
+      "qoq_growth": -4.5,
+      "yoy_growth": 20.5
+    },
+    {
+      "date": "1973-Q3",
+      "value": 3383775.0,
+      "unit": "百万円",
+      "qoq_growth": 23.0,
+      "yoy_growth": 32.7
+    },
+    {
+      "date": "1973-Q4",
+      "value": 3717865.0,
+      "unit": "百万円",
+      "qoq_growth": 9.9,
+      "yoy_growth": 37.1
+    },
+    {
+      "date": "1974-Q1",
+      "value": 3557580.0,
+      "unit": "百万円",
+      "qoq_growth": -4.3,
+      "yoy_growth": 23.4
+    },
+    {
+      "date": "1974-Q2",
+      "value": 3382368.0,
+      "unit": "百万円",
+      "qoq_growth": -4.9,
+      "yoy_growth": 22.9
+    },
+    {
+      "date": "1974-Q3",
+      "value": 3802639.0,
+      "unit": "百万円",
+      "qoq_growth": 12.4,
+      "yoy_growth": 12.4
+    },
+    {
+      "date": "1974-Q4",
+      "value": 3630472.0,
+      "unit": "百万円",
+      "qoq_growth": -4.5,
+      "yoy_growth": -2.4
+    },
+    {
+      "date": "1975-Q1",
+      "value": 3399862.0,
+      "unit": "百万円",
+      "qoq_growth": -6.4,
+      "yoy_growth": -4.4
+    },
+    {
+      "date": "1975-Q2",
+      "value": 2932535.0,
+      "unit": "百万円",
+      "qoq_growth": -13.7,
+      "yoy_growth": -13.3
+    },
+    {
+      "date": "1975-Q3",
+      "value": 3235193.0,
+      "unit": "百万円",
+      "qoq_growth": 10.3,
+      "yoy_growth": -14.9
+    },
+    {
+      "date": "1975-Q4",
+      "value": 3120042.0,
+      "unit": "百万円",
+      "qoq_growth": -3.6,
+      "yoy_growth": -14.1
+    },
+    {
+      "date": "1976-Q1",
+      "value": 3180823.0,
+      "unit": "百万円",
+      "qoq_growth": 1.9,
+      "yoy_growth": -6.4
+    },
+    {
+      "date": "1976-Q2",
+      "value": 2872783.0,
+      "unit": "百万円",
+      "qoq_growth": -9.7,
+      "yoy_growth": -2.0
+    },
+    {
+      "date": "1976-Q3",
+      "value": 3184060.0,
+      "unit": "百万円",
+      "qoq_growth": 10.8,
+      "yoy_growth": -1.6
+    },
+    {
+      "date": "1976-Q4",
+      "value": 3313901.0,
+      "unit": "百万円",
+      "qoq_growth": 4.1,
+      "yoy_growth": 6.2
+    },
+    {
+      "date": "1977-Q1",
+      "value": 3558714.0,
+      "unit": "百万円",
+      "qoq_growth": 7.4,
+      "yoy_growth": 11.9
+    },
+    {
+      "date": "1977-Q2",
+      "value": 3057546.0,
+      "unit": "百万円",
+      "qoq_growth": -14.1,
+      "yoy_growth": 6.4
+    },
+    {
+      "date": "1977-Q3",
+      "value": 3672720.0,
+      "unit": "百万円",
+      "qoq_growth": 20.1,
+      "yoy_growth": 15.3
+    },
+    {
+      "date": "1977-Q4",
+      "value": 3241629.0,
+      "unit": "百万円",
+      "qoq_growth": -11.7,
+      "yoy_growth": -2.2
+    },
+    {
+      "date": "1978-Q1",
+      "value": 3447045.0,
+      "unit": "百万円",
+      "qoq_growth": 6.3,
+      "yoy_growth": -3.1
+    },
+    {
+      "date": "1978-Q2",
+      "value": 3254402.0,
+      "unit": "百万円",
+      "qoq_growth": -5.6,
+      "yoy_growth": 6.4
+    },
+    {
+      "date": "1978-Q3",
+      "value": 3836155.0,
+      "unit": "百万円",
+      "qoq_growth": 17.9,
+      "yoy_growth": 4.4
+    },
+    {
+      "date": "1978-Q4",
+      "value": 4219637.0,
+      "unit": "百万円",
+      "qoq_growth": 10.0,
+      "yoy_growth": 30.2
+    },
+    {
+      "date": "1979-Q1",
+      "value": 4262045.0,
+      "unit": "百万円",
+      "qoq_growth": 1.0,
+      "yoy_growth": 23.6
+    },
+    {
+      "date": "1979-Q2",
+      "value": 3813266.0,
+      "unit": "百万円",
+      "qoq_growth": -10.5,
+      "yoy_growth": 17.2
+    },
+    {
+      "date": "1979-Q3",
+      "value": 4667548.0,
+      "unit": "百万円",
+      "qoq_growth": 22.4,
+      "yoy_growth": 21.7
+    },
+    {
+      "date": "1979-Q4",
+      "value": 4555534.0,
+      "unit": "百万円",
+      "qoq_growth": -2.4,
+      "yoy_growth": 8.0
+    },
+    {
+      "date": "1980-Q1",
+      "value": 4812383.0,
+      "unit": "百万円",
+      "qoq_growth": 5.6,
+      "yoy_growth": 12.9
+    },
+    {
+      "date": "1980-Q2",
+      "value": 4830445.0,
+      "unit": "百万円",
+      "qoq_growth": 0.4,
+      "yoy_growth": 26.7
+    },
+    {
+      "date": "1980-Q3",
+      "value": 5434814.0,
+      "unit": "百万円",
+      "qoq_growth": 12.5,
+      "yoy_growth": 16.4
+    },
+    {
+      "date": "1980-Q4",
+      "value": 5718775.0,
+      "unit": "百万円",
+      "qoq_growth": 5.2,
+      "yoy_growth": 25.5
+    },
+    {
+      "date": "1981-Q1",
+      "value": 5820221.0,
+      "unit": "百万円",
+      "qoq_growth": 1.8,
+      "yoy_growth": 20.9
+    },
+    {
+      "date": "1981-Q2",
+      "value": 5299694.0,
+      "unit": "百万円",
+      "qoq_growth": -8.9,
+      "yoy_growth": 9.7
+    },
+    {
+      "date": "1981-Q3",
+      "value": 5791803.0,
+      "unit": "百万円",
+      "qoq_growth": 9.3,
+      "yoy_growth": 6.6
+    },
+    {
+      "date": "1981-Q4",
+      "value": 5938376.0,
+      "unit": "百万円",
+      "qoq_growth": 2.5,
+      "yoy_growth": 3.8
+    },
+    {
+      "date": "1982-Q1",
+      "value": 5924799.0,
+      "unit": "百万円",
+      "qoq_growth": -0.2,
+      "yoy_growth": 1.8
+    },
+    {
+      "date": "1982-Q2",
+      "value": 5539672.0,
+      "unit": "百万円",
+      "qoq_growth": -6.5,
+      "yoy_growth": 4.5
+    },
+    {
+      "date": "1982-Q3",
+      "value": 5987283.0,
+      "unit": "百万円",
+      "qoq_growth": 8.1,
+      "yoy_growth": 3.4
+    },
+    {
+      "date": "1982-Q4",
+      "value": 5923876.0,
+      "unit": "百万円",
+      "qoq_growth": -1.1,
+      "yoy_growth": -0.2
+    },
+    {
+      "date": "1983-Q1",
+      "value": 5758966.0,
+      "unit": "百万円",
+      "qoq_growth": -2.8,
+      "yoy_growth": -2.8
+    },
+    {
+      "date": "1983-Q2",
+      "value": 5574890.0,
+      "unit": "百万円",
+      "qoq_growth": -3.2,
+      "yoy_growth": 0.6
+    },
+    {
+      "date": "1983-Q3",
+      "value": 6307086.0,
+      "unit": "百万円",
+      "qoq_growth": 13.1,
+      "yoy_growth": 5.3
+    },
+    {
+      "date": "1983-Q4",
+      "value": 6208567.0,
+      "unit": "百万円",
+      "qoq_growth": -1.6,
+      "yoy_growth": 4.8
+    },
+    {
+      "date": "1984-Q1",
+      "value": 6728776.0,
+      "unit": "百万円",
+      "qoq_growth": 8.4,
+      "yoy_growth": 16.8
+    },
+    {
+      "date": "1984-Q2",
+      "value": 5921697.0,
+      "unit": "百万円",
+      "qoq_growth": -12.0,
+      "yoy_growth": 6.2
+    },
+    {
+      "date": "1984-Q3",
+      "value": 6958896.0,
+      "unit": "百万円",
+      "qoq_growth": 17.5,
+      "yoy_growth": 10.3
+    },
+    {
+      "date": "1984-Q4",
+      "value": 7039811.0,
+      "unit": "百万円",
+      "qoq_growth": 1.2,
+      "yoy_growth": 13.4
+    },
+    {
+      "date": "1985-Q1",
+      "value": 7125415.0,
+      "unit": "百万円",
+      "qoq_growth": 1.2,
+      "yoy_growth": 5.9
+    },
+    {
+      "date": "1985-Q2",
+      "value": 6931823.0,
+      "unit": "百万円",
+      "qoq_growth": -2.7,
+      "yoy_growth": 17.1
+    },
+    {
+      "date": "1985-Q3",
+      "value": 8344280.0,
+      "unit": "百万円",
+      "qoq_growth": 20.4,
+      "yoy_growth": 19.9
+    },
+    {
+      "date": "1985-Q4",
+      "value": 8328996.0,
+      "unit": "百万円",
+      "qoq_growth": -0.2,
+      "yoy_growth": 18.3
+    },
+    {
+      "date": "1986-Q1",
+      "value": 7971917.0,
+      "unit": "百万円",
+      "qoq_growth": -4.3,
+      "yoy_growth": 11.9
+    },
+    {
+      "date": "1986-Q2",
+      "value": 7513644.0,
+      "unit": "百万円",
+      "qoq_growth": -5.7,
+      "yoy_growth": 8.4
+    },
+    {
+      "date": "1986-Q3",
+      "value": 8230049.0,
+      "unit": "百万円",
+      "qoq_growth": 9.5,
+      "yoy_growth": -1.4
+    },
+    {
+      "date": "1986-Q4",
+      "value": 8004272.0,
+      "unit": "百万円",
+      "qoq_growth": -2.7,
+      "yoy_growth": -3.9
+    },
+    {
+      "date": "1987-Q1",
+      "value": 8321510.0,
+      "unit": "百万円",
+      "qoq_growth": 4.0,
+      "yoy_growth": 4.4
+    },
+    {
+      "date": "1987-Q2",
+      "value": 7571175.0,
+      "unit": "百万円",
+      "qoq_growth": -9.0,
+      "yoy_growth": 0.8
+    },
+    {
+      "date": "1987-Q3",
+      "value": 8710485.0,
+      "unit": "百万円",
+      "qoq_growth": 15.0,
+      "yoy_growth": 5.8
+    },
+    {
+      "date": "1987-Q4",
+      "value": 8821988.0,
+      "unit": "百万円",
+      "qoq_growth": 1.3,
+      "yoy_growth": 10.2
+    },
+    {
+      "date": "1988-Q1",
+      "value": 9441035.0,
+      "unit": "百万円",
+      "qoq_growth": 7.0,
+      "yoy_growth": 13.5
+    },
+    {
+      "date": "1988-Q2",
+      "value": 8926132.0,
+      "unit": "百万円",
+      "qoq_growth": -5.5,
+      "yoy_growth": 17.9
+    },
+    {
+      "date": "1988-Q3",
+      "value": 10854905.0,
+      "unit": "百万円",
+      "qoq_growth": 21.6,
+      "yoy_growth": 24.6
+    },
+    {
+      "date": "1988-Q4",
+      "value": 10804920.0,
+      "unit": "百万円",
+      "qoq_growth": -0.5,
+      "yoy_growth": 22.5
+    },
+    {
+      "date": "1989-Q1",
+      "value": 12731088.0,
+      "unit": "百万円",
+      "qoq_growth": 17.8,
+      "yoy_growth": 34.8
+    },
+    {
+      "date": "1989-Q2",
+      "value": 10916712.0,
+      "unit": "百万円",
+      "qoq_growth": -14.3,
+      "yoy_growth": 22.3
+    },
+    {
+      "date": "1989-Q3",
+      "value": 12665420.0,
+      "unit": "百万円",
+      "qoq_growth": 16.0,
+      "yoy_growth": 16.7
+    },
+    {
+      "date": "1989-Q4",
+      "value": 13458674.0,
+      "unit": "百万円",
+      "qoq_growth": 6.3,
+      "yoy_growth": 24.6
+    },
+    {
+      "date": "1990-Q1",
+      "value": 14646228.0,
+      "unit": "百万円",
+      "qoq_growth": 8.8,
+      "yoy_growth": 15.0
+    },
+    {
+      "date": "1990-Q2",
+      "value": 13045367.0,
+      "unit": "百万円",
+      "qoq_growth": -10.9,
+      "yoy_growth": 19.5
+    },
+    {
+      "date": "1990-Q3",
+      "value": 14805071.0,
+      "unit": "百万円",
+      "qoq_growth": 13.5,
+      "yoy_growth": 16.9
+    },
+    {
+      "date": "1990-Q4",
+      "value": 14969219.0,
+      "unit": "百万円",
+      "qoq_growth": 1.1,
+      "yoy_growth": 11.2
+    },
+    {
+      "date": "1991-Q1",
+      "value": 16249517.0,
+      "unit": "百万円",
+      "qoq_growth": 8.6,
+      "yoy_growth": 10.9
+    },
+    {
+      "date": "1991-Q2",
+      "value": 13994069.0,
+      "unit": "百万円",
+      "qoq_growth": -13.9,
+      "yoy_growth": 7.3
+    },
+    {
+      "date": "1991-Q3",
+      "value": 15479768.0,
+      "unit": "百万円",
+      "qoq_growth": 10.6,
+      "yoy_growth": 4.6
+    },
+    {
+      "date": "1991-Q4",
+      "value": 15356652.0,
+      "unit": "百万円",
+      "qoq_growth": -0.8,
+      "yoy_growth": 2.6
+    },
+    {
+      "date": "1992-Q1",
+      "value": 15988232.0,
+      "unit": "百万円",
+      "qoq_growth": 4.1,
+      "yoy_growth": -1.6
+    },
+    {
+      "date": "1992-Q2",
+      "value": 13513564.0,
+      "unit": "百万円",
+      "qoq_growth": -15.5,
+      "yoy_growth": -3.4
+    },
+    {
+      "date": "1992-Q3",
+      "value": 14570557.0,
+      "unit": "百万円",
+      "qoq_growth": 7.8,
+      "yoy_growth": -5.9
+    },
+    {
+      "date": "1992-Q4",
+      "value": 13722931.0,
+      "unit": "百万円",
+      "qoq_growth": -5.8,
+      "yoy_growth": -10.6
+    },
+    {
+      "date": "1993-Q1",
+      "value": 14584143.0,
+      "unit": "百万円",
+      "qoq_growth": 6.3,
+      "yoy_growth": -8.8
+    },
+    {
+      "date": "1993-Q2",
+      "value": 11764935.0,
+      "unit": "百万円",
+      "qoq_growth": -19.3,
+      "yoy_growth": -12.9
+    },
+    {
+      "date": "1993-Q3",
+      "value": 12274277.0,
+      "unit": "百万円",
+      "qoq_growth": 4.3,
+      "yoy_growth": -15.8
+    },
+    {
+      "date": "1993-Q4",
+      "value": 11410874.0,
+      "unit": "百万円",
+      "qoq_growth": -7.0,
+      "yoy_growth": -16.8
+    },
+    {
+      "date": "1994-Q1",
+      "value": 12879010.0,
+      "unit": "百万円",
+      "qoq_growth": 12.9,
+      "yoy_growth": -11.7
+    },
+    {
+      "date": "1994-Q2",
+      "value": 9789637.0,
+      "unit": "百万円",
+      "qoq_growth": -24.0,
+      "yoy_growth": -16.8
+    },
+    {
+      "date": "1994-Q3",
+      "value": 11106971.0,
+      "unit": "百万円",
+      "qoq_growth": 13.5,
+      "yoy_growth": -9.5
+    },
+    {
+      "date": "1994-Q4",
+      "value": 10869138.0,
+      "unit": "百万円",
+      "qoq_growth": -2.1,
+      "yoy_growth": -4.7
+    },
+    {
+      "date": "1995-Q1",
+      "value": 12268088.0,
+      "unit": "百万円",
+      "qoq_growth": 12.9,
+      "yoy_growth": -4.7
+    },
+    {
+      "date": "1995-Q2",
+      "value": 9971727.0,
+      "unit": "百万円",
+      "qoq_growth": -18.7,
+      "yoy_growth": 1.9
+    },
+    {
+      "date": "1995-Q3",
+      "value": 11676460.0,
+      "unit": "百万円",
+      "qoq_growth": 17.1,
+      "yoy_growth": 5.1
+    },
+    {
+      "date": "1995-Q4",
+      "value": 11491588.0,
+      "unit": "百万円",
+      "qoq_growth": -1.6,
+      "yoy_growth": 5.7
+    },
+    {
+      "date": "1996-Q1",
+      "value": 13184602.0,
+      "unit": "百万円",
+      "qoq_growth": 14.7,
+      "yoy_growth": 7.5
+    },
+    {
+      "date": "1996-Q2",
+      "value": 10699871.0,
+      "unit": "百万円",
+      "qoq_growth": -18.8,
+      "yoy_growth": 7.3
+    },
+    {
+      "date": "1996-Q3",
+      "value": 12634446.0,
+      "unit": "百万円",
+      "qoq_growth": 18.1,
+      "yoy_growth": 8.2
+    },
+    {
+      "date": "1996-Q4",
+      "value": 12645455.0,
+      "unit": "百万円",
+      "qoq_growth": 0.1,
+      "yoy_growth": 10.0
+    },
+    {
+      "date": "1997-Q1",
+      "value": 14899278.0,
+      "unit": "百万円",
+      "qoq_growth": 17.8,
+      "yoy_growth": 13.0
+    },
+    {
+      "date": "1997-Q2",
+      "value": 11422598.0,
+      "unit": "百万円",
+      "qoq_growth": -23.3,
+      "yoy_growth": 6.8
+    },
+    {
+      "date": "1997-Q3",
+      "value": 13384521.0,
+      "unit": "百万円",
+      "qoq_growth": 17.2,
+      "yoy_growth": 5.9
+    },
+    {
+      "date": "1997-Q4",
+      "value": 13092670.0,
+      "unit": "百万円",
+      "qoq_growth": -2.2,
+      "yoy_growth": 3.5
+    },
+    {
+      "date": "1998-Q1",
+      "value": 14031423.0,
+      "unit": "百万円",
+      "qoq_growth": 7.2,
+      "yoy_growth": -5.8
+    },
+    {
+      "date": "1998-Q2",
+      "value": 10214041.0,
+      "unit": "百万円",
+      "qoq_growth": -27.2,
+      "yoy_growth": -10.6
+    },
+    {
+      "date": "1998-Q3",
+      "value": 11778584.0,
+      "unit": "百万円",
+      "qoq_growth": 15.3,
+      "yoy_growth": -12.0
+    },
+    {
+      "date": "1998-Q4",
+      "value": 10645522.0,
+      "unit": "百万円",
+      "qoq_growth": -9.6,
+      "yoy_growth": -18.7
+    },
+    {
+      "date": "1999-Q1",
+      "value": 12558338.0,
+      "unit": "百万円",
+      "qoq_growth": 18.0,
+      "yoy_growth": -10.5
+    },
+    {
+      "date": "1999-Q2",
+      "value": 8843785.0,
+      "unit": "百万円",
+      "qoq_growth": -29.6,
+      "yoy_growth": -13.4
+    },
+    {
+      "date": "1999-Q3",
+      "value": 10646327.0,
+      "unit": "百万円",
+      "qoq_growth": 20.4,
+      "yoy_growth": -9.6
+    },
+    {
+      "date": "1999-Q4",
+      "value": 10571105.0,
+      "unit": "百万円",
+      "qoq_growth": -0.7,
+      "yoy_growth": -0.7
+    },
+    {
+      "date": "2000-Q1",
+      "value": 12969436.0,
+      "unit": "百万円",
+      "qoq_growth": 22.7,
+      "yoy_growth": 3.3
+    },
+    {
+      "date": "2000-Q2",
+      "value": 9038874.0,
+      "unit": "百万円",
+      "qoq_growth": -30.3,
+      "yoy_growth": 2.2
+    },
+    {
+      "date": "2000-Q3",
+      "value": 10670438.0,
+      "unit": "百万円",
+      "qoq_growth": 18.1,
+      "yoy_growth": 0.2
+    },
+    {
+      "date": "2000-Q4",
+      "value": 11323822.0,
+      "unit": "百万円",
+      "qoq_growth": 6.1,
+      "yoy_growth": 7.1
+    },
+    {
+      "date": "2001-Q1",
+      "value": 13295437.0,
+      "unit": "百万円",
+      "qoq_growth": 17.4,
+      "yoy_growth": 2.5
+    },
+    {
+      "date": "2001-Q2",
+      "value": 9244478.0,
+      "unit": "百万円",
+      "qoq_growth": -30.5,
+      "yoy_growth": 2.3
+    },
+    {
+      "date": "2001-Q3",
+      "value": 11243291.0,
+      "unit": "百万円",
+      "qoq_growth": 21.6,
+      "yoy_growth": 5.4
+    },
+    {
+      "date": "2001-Q4",
+      "value": 10123250.0,
+      "unit": "百万円",
+      "qoq_growth": -10.0,
+      "yoy_growth": -10.6
+    },
+    {
+      "date": "2002-Q1",
+      "value": 11784804.0,
+      "unit": "百万円",
+      "qoq_growth": 16.4,
+      "yoy_growth": -11.4
+    },
+    {
+      "date": "2002-Q2",
+      "value": 8312055.0,
+      "unit": "百万円",
+      "qoq_growth": -29.5,
+      "yoy_growth": -10.1
+    },
+    {
+      "date": "2002-Q3",
+      "value": 9869725.0,
+      "unit": "百万円",
+      "qoq_growth": 18.7,
+      "yoy_growth": -12.2
+    },
+    {
+      "date": "2002-Q4",
+      "value": 10065158.0,
+      "unit": "百万円",
+      "qoq_growth": 2.0,
+      "yoy_growth": -0.6
+    },
+    {
+      "date": "2003-Q1",
+      "value": 11585539.0,
+      "unit": "百万円",
+      "qoq_growth": 15.1,
+      "yoy_growth": -1.7
+    },
+    {
+      "date": "2003-Q2",
+      "value": 8834321.0,
+      "unit": "百万円",
+      "qoq_growth": -23.7,
+      "yoy_growth": 6.3
+    },
+    {
+      "date": "2003-Q3",
+      "value": 10014862.0,
+      "unit": "百万円",
+      "qoq_growth": 13.4,
+      "yoy_growth": 1.5
+    },
+    {
+      "date": "2003-Q4",
+      "value": 10666633.0,
+      "unit": "百万円",
+      "qoq_growth": 6.5,
+      "yoy_growth": 6.0
+    },
+    {
+      "date": "2004-Q1",
+      "value": 12753944.0,
+      "unit": "百万円",
+      "qoq_growth": 19.6,
+      "yoy_growth": 10.1
+    },
+    {
+      "date": "2004-Q2",
+      "value": 9777151.0,
+      "unit": "百万円",
+      "qoq_growth": -23.3,
+      "yoy_growth": 10.7
+    },
+    {
+      "date": "2004-Q3",
+      "value": 11461018.0,
+      "unit": "百万円",
+      "qoq_growth": 17.2,
+      "yoy_growth": 14.4
+    },
+    {
+      "date": "2004-Q4",
+      "value": 11040181.0,
+      "unit": "百万円",
+      "qoq_growth": -3.7,
+      "yoy_growth": 3.5
+    },
+    {
+      "date": "2005-Q1",
+      "value": 13697131.0,
+      "unit": "百万円",
+      "qoq_growth": 24.1,
+      "yoy_growth": 7.4
+    },
+    {
+      "date": "2005-Q2",
+      "value": 10488612.0,
+      "unit": "百万円",
+      "qoq_growth": -23.4,
+      "yoy_growth": 7.3
+    },
+    {
+      "date": "2005-Q3",
+      "value": 12564391.0,
+      "unit": "百万円",
+      "qoq_growth": 19.8,
+      "yoy_growth": 9.6
+    },
+    {
+      "date": "2005-Q4",
+      "value": 12089550.0,
+      "unit": "百万円",
+      "qoq_growth": -3.8,
+      "yoy_growth": 9.5
+    },
+    {
+      "date": "2006-Q1",
+      "value": 15605146.0,
+      "unit": "百万円",
+      "qoq_growth": 29.1,
+      "yoy_growth": 13.9
+    },
+    {
+      "date": "2006-Q2",
+      "value": 12226791.0,
+      "unit": "百万円",
+      "qoq_growth": -21.6,
+      "yoy_growth": 16.6
+    },
+    {
+      "date": "2006-Q3",
+      "value": 14075655.0,
+      "unit": "百万円",
+      "qoq_growth": 15.1,
+      "yoy_growth": 12.0
+    },
+    {
+      "date": "2006-Q4",
+      "value": 14115184.0,
+      "unit": "百万円",
+      "qoq_growth": 0.3,
+      "yoy_growth": 16.8
+    },
+    {
+      "date": "2007-Q1",
+      "value": 17728657.0,
+      "unit": "百万円",
+      "qoq_growth": 25.6,
+      "yoy_growth": 13.6
+    },
+    {
+      "date": "2007-Q2",
+      "value": 11628400.0,
+      "unit": "百万円",
+      "qoq_growth": -34.4,
+      "yoy_growth": -4.9
+    },
+    {
+      "date": "2007-Q3",
+      "value": 13911325.0,
+      "unit": "百万円",
+      "qoq_growth": 19.6,
+      "yoy_growth": -1.2
+    },
+    {
+      "date": "2007-Q4",
+      "value": 13025325.0,
+      "unit": "百万円",
+      "qoq_growth": -6.4,
+      "yoy_growth": -7.7
+    },
+    {
+      "date": "2008-Q1",
+      "value": 16864821.0,
+      "unit": "百万円",
+      "qoq_growth": 29.5,
+      "yoy_growth": -4.9
+    },
+    {
+      "date": "2008-Q2",
+      "value": 10867962.0,
+      "unit": "百万円",
+      "qoq_growth": -35.6,
+      "yoy_growth": -6.5
+    },
+    {
+      "date": "2008-Q3",
+      "value": 12104159.0,
+      "unit": "百万円",
+      "qoq_growth": 11.4,
+      "yoy_growth": -13.0
+    },
+    {
+      "date": "2008-Q4",
+      "value": 10769227.0,
+      "unit": "百万円",
+      "qoq_growth": -11.0,
+      "yoy_growth": -17.3
+    },
+    {
+      "date": "2009-Q1",
+      "value": 12592244.0,
+      "unit": "百万円",
+      "qoq_growth": 16.9,
+      "yoy_growth": -25.3
+    },
+    {
+      "date": "2009-Q2",
+      "value": 8511570.0,
+      "unit": "百万円",
+      "qoq_growth": -32.4,
+      "yoy_growth": -21.7
+    },
+    {
+      "date": "2009-Q3",
+      "value": 9099857.0,
+      "unit": "百万円",
+      "qoq_growth": 6.9,
+      "yoy_growth": -24.8
+    },
+    {
+      "date": "2009-Q4",
+      "value": 8900946.0,
+      "unit": "百万円",
+      "qoq_growth": -2.2,
+      "yoy_growth": -17.3
+    },
+    {
+      "date": "2010-Q1",
+      "value": 11142921.0,
+      "unit": "百万円",
+      "qoq_growth": 25.2,
+      "yoy_growth": -11.5
+    },
+    {
+      "date": "2010-Q2",
+      "value": 8364759.0,
+      "unit": "百万円",
+      "qoq_growth": -24.9,
+      "yoy_growth": -1.7
+    },
+    {
+      "date": "2010-Q3",
+      "value": 9555010.0,
+      "unit": "百万円",
+      "qoq_growth": 14.2,
+      "yoy_growth": 5.0
+    },
+    {
+      "date": "2010-Q4",
+      "value": 9241178.0,
+      "unit": "百万円",
+      "qoq_growth": -3.3,
+      "yoy_growth": 3.8
+    },
+    {
+      "date": "2011-Q1",
+      "value": 11472346.0,
+      "unit": "百万円",
+      "qoq_growth": 24.1,
+      "yoy_growth": 3.0
+    },
+    {
+      "date": "2011-Q2",
+      "value": 7714525.0,
+      "unit": "百万円",
+      "qoq_growth": -32.8,
+      "yoy_growth": -7.8
+    },
+    {
+      "date": "2011-Q3",
+      "value": 8618326.0,
+      "unit": "百万円",
+      "qoq_growth": 11.7,
+      "yoy_growth": -9.8
+    },
+    {
+      "date": "2011-Q4",
+      "value": 9944185.0,
+      "unit": "百万円",
+      "qoq_growth": 15.4,
+      "yoy_growth": 7.6
+    },
+    {
+      "date": "2012-Q1",
+      "value": 11854506.0,
+      "unit": "百万円",
+      "qoq_growth": 19.2,
+      "yoy_growth": 3.3
+    },
+    {
+      "date": "2012-Q2",
+      "value": 8309224.0,
+      "unit": "百万円",
+      "qoq_growth": -29.9,
+      "yoy_growth": 7.7
+    },
+    {
+      "date": "2012-Q3",
+      "value": 8806228.0,
+      "unit": "百万円",
+      "qoq_growth": 6.0,
+      "yoy_growth": 2.2
+    },
+    {
+      "date": "2012-Q4",
+      "value": 9076672.0,
+      "unit": "百万円",
+      "qoq_growth": 3.1,
+      "yoy_growth": -8.7
+    },
+    {
+      "date": "2013-Q1",
+      "value": 11392844.0,
+      "unit": "百万円",
+      "qoq_growth": 25.5,
+      "yoy_growth": -3.9
+    },
+    {
+      "date": "2013-Q2",
+      "value": 8310594.0,
+      "unit": "百万円",
+      "qoq_growth": -27.1,
+      "yoy_growth": 0.0
+    },
+    {
+      "date": "2013-Q3",
+      "value": 8942404.0,
+      "unit": "百万円",
+      "qoq_growth": 7.6,
+      "yoy_growth": 1.5
+    },
+    {
+      "date": "2013-Q4",
+      "value": 9439320.0,
+      "unit": "百万円",
+      "qoq_growth": 5.6,
+      "yoy_growth": 4.0
+    },
+    {
+      "date": "2014-Q1",
+      "value": 12230655.0,
+      "unit": "百万円",
+      "qoq_growth": 29.6,
+      "yoy_growth": 7.4
+    },
+    {
+      "date": "2014-Q2",
+      "value": 8561655.0,
+      "unit": "百万円",
+      "qoq_growth": -30.0,
+      "yoy_growth": 3.0
+    },
+    {
+      "date": "2014-Q3",
+      "value": 9438274.0,
+      "unit": "百万円",
+      "qoq_growth": 10.2,
+      "yoy_growth": 5.5
+    },
+    {
+      "date": "2014-Q4",
+      "value": 9707992.0,
+      "unit": "百万円",
+      "qoq_growth": 2.9,
+      "yoy_growth": 2.8
+    },
+    {
+      "date": "2015-Q1",
+      "value": 13129381.0,
+      "unit": "百万円",
+      "qoq_growth": 35.2,
+      "yoy_growth": 7.3
+    },
+    {
+      "date": "2015-Q2",
+      "value": 9038518.0,
+      "unit": "百万円",
+      "qoq_growth": -31.2,
+      "yoy_growth": 5.6
+    },
+    {
+      "date": "2015-Q3",
+      "value": 10493682.0,
+      "unit": "百万円",
+      "qoq_growth": 16.1,
+      "yoy_growth": 11.2
+    },
+    {
+      "date": "2015-Q4",
+      "value": 10530186.0,
+      "unit": "百万円",
+      "qoq_growth": 0.3,
+      "yoy_growth": 8.5
+    },
+    {
+      "date": "2016-Q1",
+      "value": 13680548.0,
+      "unit": "百万円",
+      "qoq_growth": 29.9,
+      "yoy_growth": 4.2
+    },
+    {
+      "date": "2016-Q2",
+      "value": 9314451.0,
+      "unit": "百万円",
+      "qoq_growth": -31.9,
+      "yoy_growth": 3.1
+    },
+    {
+      "date": "2016-Q3",
+      "value": 10352140.0,
+      "unit": "百万円",
+      "qoq_growth": 11.1,
+      "yoy_growth": -1.3
+    },
+    {
+      "date": "2016-Q4",
+      "value": 10935003.0,
+      "unit": "百万円",
+      "qoq_growth": 5.6,
+      "yoy_growth": 3.8
+    },
+    {
+      "date": "2017-Q1",
+      "value": 14290057.0,
+      "unit": "百万円",
+      "qoq_growth": 30.7,
+      "yoy_growth": 4.5
+    },
+    {
+      "date": "2017-Q2",
+      "value": 9450553.0,
+      "unit": "百万円",
+      "qoq_growth": -33.9,
+      "yoy_growth": 1.5
+    },
+    {
+      "date": "2017-Q3",
+      "value": 10791957.0,
+      "unit": "百万円",
+      "qoq_growth": 14.2,
+      "yoy_growth": 4.2
+    },
+    {
+      "date": "2017-Q4",
+      "value": 11400008.0,
+      "unit": "百万円",
+      "qoq_growth": 5.6,
+      "yoy_growth": 4.3
+    },
+    {
+      "date": "2018-Q1",
+      "value": 14772034.0,
+      "unit": "百万円",
+      "qoq_growth": 29.6,
+      "yoy_growth": 3.4
+    },
+    {
+      "date": "2018-Q2",
+      "value": 10661321.0,
+      "unit": "百万円",
+      "qoq_growth": -27.8,
+      "yoy_growth": 12.8
+    },
+    {
+      "date": "2018-Q3",
+      "value": 11278448.0,
+      "unit": "百万円",
+      "qoq_growth": 5.8,
+      "yoy_growth": 4.5
+    },
+    {
+      "date": "2018-Q4",
+      "value": 12052988.0,
+      "unit": "百万円",
+      "qoq_growth": 6.9,
+      "yoy_growth": 5.7
+    },
+    {
+      "date": "2019-Q1",
+      "value": 15676269.0,
+      "unit": "百万円",
+      "qoq_growth": 30.1,
+      "yoy_growth": 6.1
+    },
+    {
+      "date": "2019-Q2",
+      "value": 10868730.0,
+      "unit": "百万円",
+      "qoq_growth": -30.7,
+      "yoy_growth": 1.9
+    },
+    {
+      "date": "2019-Q3",
+      "value": 12082621.0,
+      "unit": "百万円",
+      "qoq_growth": 11.2,
+      "yoy_growth": 7.1
+    },
+    {
+      "date": "2019-Q4",
+      "value": 11630283.0,
+      "unit": "百万円",
+      "qoq_growth": -3.7,
+      "yoy_growth": -3.5
+    },
+    {
+      "date": "2020-Q1",
+      "value": 15694906.0,
+      "unit": "百万円",
+      "qoq_growth": 34.9,
+      "yoy_growth": 0.1
+    },
+    {
+      "date": "2020-Q2",
+      "value": 9636873.0,
+      "unit": "百万円",
+      "qoq_growth": -38.6,
+      "yoy_growth": -11.3
+    },
+    {
+      "date": "2020-Q3",
+      "value": 10800618.0,
+      "unit": "百万円",
+      "qoq_growth": 12.1,
+      "yoy_growth": -10.6
+    },
+    {
+      "date": "2020-Q4",
+      "value": 11076052.0,
+      "unit": "百万円",
+      "qoq_growth": 2.6,
+      "yoy_growth": -4.8
+    },
+    {
+      "date": "2021-Q1",
+      "value": 14470232.0,
+      "unit": "百万円",
+      "qoq_growth": 30.6,
+      "yoy_growth": -7.8
+    },
+    {
+      "date": "2021-Q2",
+      "value": 10146463.0,
+      "unit": "百万円",
+      "qoq_growth": -29.9,
+      "yoy_growth": 5.3
+    },
+    {
+      "date": "2021-Q3",
+      "value": 10927615.0,
+      "unit": "百万円",
+      "qoq_growth": 7.7,
+      "yoy_growth": 1.2
+    },
+    {
+      "date": "2021-Q4",
+      "value": 11551825.0,
+      "unit": "百万円",
+      "qoq_growth": 5.7,
+      "yoy_growth": 4.3
+    },
+    {
+      "date": "2022-Q1",
+      "value": 14904027.0,
+      "unit": "百万円",
+      "qoq_growth": 29.0,
+      "yoy_growth": 3.0
+    },
+    {
+      "date": "2022-Q2",
+      "value": 10610780.0,
+      "unit": "百万円",
+      "qoq_growth": -28.8,
+      "yoy_growth": 4.6
+    },
+    {
+      "date": "2022-Q3",
+      "value": 12001707.0,
+      "unit": "百万円",
+      "qoq_growth": 13.1,
+      "yoy_growth": 9.8
+    },
+    {
+      "date": "2022-Q4",
+      "value": 12441674.0,
+      "unit": "百万円",
+      "qoq_growth": 3.7,
+      "yoy_growth": 7.7
+    },
+    {
+      "date": "2023-Q1",
+      "value": 16539517.0,
+      "unit": "百万円",
+      "qoq_growth": 32.9,
+      "yoy_growth": 11.0
+    },
+    {
+      "date": "2023-Q2",
+      "value": 11092746.0,
+      "unit": "百万円",
+      "qoq_growth": -32.9,
+      "yoy_growth": 4.5
+    },
+    {
+      "date": "2023-Q3",
+      "value": 12407897.0,
+      "unit": "百万円",
+      "qoq_growth": 11.9,
+      "yoy_growth": 3.4
+    },
+    {
+      "date": "2023-Q4",
+      "value": 14482320.0,
+      "unit": "百万円",
+      "qoq_growth": 16.7,
+      "yoy_growth": 16.4
+    },
+    {
+      "date": "2024-Q1",
+      "value": 17662787.0,
+      "unit": "百万円",
+      "qoq_growth": 22.0,
+      "yoy_growth": 6.8
+    },
+    {
+      "date": "2024-Q2",
+      "value": 11916142.0,
+      "unit": "百万円",
+      "qoq_growth": -32.5,
+      "yoy_growth": 7.4
+    },
+    {
+      "date": "2024-Q3",
+      "value": 13411003.0,
+      "unit": "百万円",
+      "qoq_growth": 12.5,
+      "yoy_growth": 8.1
+    },
+    {
+      "date": "2024-Q4",
+      "value": 14451800.0,
+      "unit": "百万円",
+      "qoq_growth": 7.8,
+      "yoy_growth": -0.2
+    },
+    {
+      "date": "2025-Q1",
+      "value": 18797512.0,
+      "unit": "百万円",
+      "qoq_growth": 30.1,
+      "yoy_growth": 6.4
+    },
+    {
+      "date": "2025-Q2",
+      "value": 12821363.0,
+      "unit": "百万円",
+      "qoq_growth": -31.8,
+      "yoy_growth": 7.6
+    },
+    {
+      "date": "2025-Q3",
+      "value": 13806316.0,
+      "unit": "百万円",
+      "qoq_growth": 7.7,
+      "yoy_growth": 2.9
+    }
+  ],
+  "last_updated": "2026-02-11T23:18:04.553502+09:00"
+}

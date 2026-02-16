@@ -1,0 +1,3403 @@
+{
+  "data": [
+    {
+      "date": "1979-01-01",
+      "trade_balance": -2838.0,
+      "exports": 11925.0,
+      "imports": 14763.0
+    },
+    {
+      "date": "1979-02-01",
+      "trade_balance": 723.0,
+      "exports": 15471.0,
+      "imports": 14748.0
+    },
+    {
+      "date": "1979-03-01",
+      "trade_balance": 1957.0,
+      "exports": 19247.0,
+      "imports": 17290.0
+    },
+    {
+      "date": "1979-04-01",
+      "trade_balance": -798.0,
+      "exports": 16742.0,
+      "imports": 17540.0
+    },
+    {
+      "date": "1979-05-01",
+      "trade_balance": -1764.0,
+      "exports": 17951.0,
+      "imports": 19715.0
+    },
+    {
+      "date": "1979-06-01",
+      "trade_balance": 526.0,
+      "exports": 19063.0,
+      "imports": 18537.0
+    },
+    {
+      "date": "1979-07-01",
+      "trade_balance": -510.0,
+      "exports": 19350.0,
+      "imports": 19860.0
+    },
+    {
+      "date": "1979-08-01",
+      "trade_balance": -3613.0,
+      "exports": 17968.0,
+      "imports": 21581.0
+    },
+    {
+      "date": "1979-09-01",
+      "trade_balance": -1648.0,
+      "exports": 20547.0,
+      "imports": 22195.0
+    },
+    {
+      "date": "1979-10-01",
+      "trade_balance": -3161.0,
+      "exports": 20057.0,
+      "imports": 23218.0
+    },
+    {
+      "date": "1979-11-01",
+      "trade_balance": -5266.0,
+      "exports": 20493.0,
+      "imports": 25759.0
+    },
+    {
+      "date": "1979-12-01",
+      "trade_balance": -746.0,
+      "exports": 26501.0,
+      "imports": 27247.0
+    },
+    {
+      "date": "1980-01-01",
+      "trade_balance": -8248.0,
+      "exports": 16563.0,
+      "imports": 24811.0
+    },
+    {
+      "date": "1980-02-01",
+      "trade_balance": -3364.0,
+      "exports": 23039.0,
+      "imports": 26403.0
+    },
+    {
+      "date": "1980-03-01",
+      "trade_balance": -2686.0,
+      "exports": 26547.0,
+      "imports": 29233.0
+    },
+    {
+      "date": "1980-04-01",
+      "trade_balance": -5084.0,
+      "exports": 25347.0,
+      "imports": 30431.0
+    },
+    {
+      "date": "1980-05-01",
+      "trade_balance": -4536.0,
+      "exports": 24935.0,
+      "imports": 29471.0
+    },
+    {
+      "date": "1980-06-01",
+      "trade_balance": -2299.0,
+      "exports": 24347.0,
+      "imports": 26646.0
+    },
+    {
+      "date": "1980-07-01",
+      "trade_balance": -2135.0,
+      "exports": 24950.0,
+      "imports": 27085.0
+    },
+    {
+      "date": "1980-08-01",
+      "trade_balance": -1821.0,
+      "exports": 23361.0,
+      "imports": 25182.0
+    },
+    {
+      "date": "1980-09-01",
+      "trade_balance": 1914.0,
+      "exports": 25528.0,
+      "imports": 23614.0
+    },
+    {
+      "date": "1980-10-01",
+      "trade_balance": -656.0,
+      "exports": 25008.0,
+      "imports": 25664.0
+    },
+    {
+      "date": "1980-11-01",
+      "trade_balance": -499.0,
+      "exports": 23488.0,
+      "imports": 23987.0
+    },
+    {
+      "date": "1980-12-01",
+      "trade_balance": 3284.0,
+      "exports": 30711.0,
+      "imports": 27427.0
+    },
+    {
+      "date": "1981-01-01",
+      "trade_balance": -5120.0,
+      "exports": 19248.0,
+      "imports": 24368.0
+    },
+    {
+      "date": "1981-02-01",
+      "trade_balance": 611.0,
+      "exports": 24639.0,
+      "imports": 24028.0
+    },
+    {
+      "date": "1981-03-01",
+      "trade_balance": 2156.0,
+      "exports": 29025.0,
+      "imports": 26869.0
+    },
+    {
+      "date": "1981-04-01",
+      "trade_balance": 943.0,
+      "exports": 27246.0,
+      "imports": 26303.0
+    },
+    {
+      "date": "1981-05-01",
+      "trade_balance": 12.0,
+      "exports": 27484.0,
+      "imports": 27472.0
+    },
+    {
+      "date": "1981-06-01",
+      "trade_balance": 3279.0,
+      "exports": 28568.0,
+      "imports": 25289.0
+    },
+    {
+      "date": "1981-07-01",
+      "trade_balance": 3429.0,
+      "exports": 30833.0,
+      "imports": 27404.0
+    },
+    {
+      "date": "1981-08-01",
+      "trade_balance": 1740.0,
+      "exports": 27843.0,
+      "imports": 26103.0
+    },
+    {
+      "date": "1981-09-01",
+      "trade_balance": 5318.0,
+      "exports": 30284.0,
+      "imports": 24966.0
+    },
+    {
+      "date": "1981-10-01",
+      "trade_balance": 4859.0,
+      "exports": 30935.0,
+      "imports": 26076.0
+    },
+    {
+      "date": "1981-11-01",
+      "trade_balance": -385.0,
+      "exports": 26924.0,
+      "imports": 27309.0
+    },
+    {
+      "date": "1981-12-01",
+      "trade_balance": 3207.0,
+      "exports": 31661.0,
+      "imports": 28454.0
+    },
+    {
+      "date": "1982-01-01",
+      "trade_balance": -4080.0,
+      "exports": 22837.0,
+      "imports": 26917.0
+    },
+    {
+      "date": "1982-02-01",
+      "trade_balance": 817.0,
+      "exports": 27043.0,
+      "imports": 26226.0
+    },
+    {
+      "date": "1982-03-01",
+      "trade_balance": 2031.0,
+      "exports": 31957.0,
+      "imports": 29926.0
+    },
+    {
+      "date": "1982-04-01",
+      "trade_balance": 1213.0,
+      "exports": 30321.0,
+      "imports": 29108.0
+    },
+    {
+      "date": "1982-05-01",
+      "trade_balance": 1071.0,
+      "exports": 27500.0,
+      "imports": 26429.0
+    },
+    {
+      "date": "1982-06-01",
+      "trade_balance": 4085.0,
+      "exports": 28623.0,
+      "imports": 24538.0
+    },
+    {
+      "date": "1982-07-01",
+      "trade_balance": 3261.0,
+      "exports": 30602.0,
+      "imports": 27341.0
+    },
+    {
+      "date": "1982-08-01",
+      "trade_balance": -47.0,
+      "exports": 26845.0,
+      "imports": 26892.0
+    },
+    {
+      "date": "1982-09-01",
+      "trade_balance": 4123.0,
+      "exports": 30098.0,
+      "imports": 25975.0
+    },
+    {
+      "date": "1982-10-01",
+      "trade_balance": 2587.0,
+      "exports": 29741.0,
+      "imports": 27154.0
+    },
+    {
+      "date": "1982-11-01",
+      "trade_balance": -1160.0,
+      "exports": 27410.0,
+      "imports": 28570.0
+    },
+    {
+      "date": "1982-12-01",
+      "trade_balance": 3861.0,
+      "exports": 31348.0,
+      "imports": 27487.0
+    },
+    {
+      "date": "1983-01-01",
+      "trade_balance": -4098.0,
+      "exports": 21342.0,
+      "imports": 25440.0
+    },
+    {
+      "date": "1983-02-01",
+      "trade_balance": 3337.0,
+      "exports": 26163.0,
+      "imports": 22826.0
+    },
+    {
+      "date": "1983-03-01",
+      "trade_balance": 4827.0,
+      "exports": 30689.0,
+      "imports": 25862.0
+    },
+    {
+      "date": "1983-04-01",
+      "trade_balance": 4840.0,
+      "exports": 29120.0,
+      "imports": 24280.0
+    },
+    {
+      "date": "1983-05-01",
+      "trade_balance": 4226.0,
+      "exports": 27384.0,
+      "imports": 23158.0
+    },
+    {
+      "date": "1983-06-01",
+      "trade_balance": 4659.0,
+      "exports": 29354.0,
+      "imports": 24695.0
+    },
+    {
+      "date": "1983-07-01",
+      "trade_balance": 6843.0,
+      "exports": 30295.0,
+      "imports": 23452.0
+    },
+    {
+      "date": "1983-08-01",
+      "trade_balance": 4074.0,
+      "exports": 28240.0,
+      "imports": 24166.0
+    },
+    {
+      "date": "1983-09-01",
+      "trade_balance": 5847.0,
+      "exports": 31297.0,
+      "imports": 25450.0
+    },
+    {
+      "date": "1983-10-01",
+      "trade_balance": 4804.0,
+      "exports": 30323.0,
+      "imports": 25519.0
+    },
+    {
+      "date": "1983-11-01",
+      "trade_balance": 2797.0,
+      "exports": 29076.0,
+      "imports": 26279.0
+    },
+    {
+      "date": "1983-12-01",
+      "trade_balance": 6786.0,
+      "exports": 35808.0,
+      "imports": 29022.0
+    },
+    {
+      "date": "1984-01-01",
+      "trade_balance": -1966.0,
+      "exports": 23841.0,
+      "imports": 25807.0
+    },
+    {
+      "date": "1984-02-01",
+      "trade_balance": 5098.0,
+      "exports": 30981.0,
+      "imports": 25883.0
+    },
+    {
+      "date": "1984-03-01",
+      "trade_balance": 7264.0,
+      "exports": 35569.0,
+      "imports": 28305.0
+    },
+    {
+      "date": "1984-04-01",
+      "trade_balance": 6995.0,
+      "exports": 32515.0,
+      "imports": 25520.0
+    },
+    {
+      "date": "1984-05-01",
+      "trade_balance": 4255.0,
+      "exports": 32563.0,
+      "imports": 28308.0
+    },
+    {
+      "date": "1984-06-01",
+      "trade_balance": 9295.0,
+      "exports": 34178.0,
+      "imports": 24883.0
+    },
+    {
+      "date": "1984-07-01",
+      "trade_balance": 7602.0,
+      "exports": 35359.0,
+      "imports": 27757.0
+    },
+    {
+      "date": "1984-08-01",
+      "trade_balance": 2703.0,
+      "exports": 32443.0,
+      "imports": 29740.0
+    },
+    {
+      "date": "1984-09-01",
+      "trade_balance": 10928.0,
+      "exports": 35596.0,
+      "imports": 24668.0
+    },
+    {
+      "date": "1984-10-01",
+      "trade_balance": 8868.0,
+      "exports": 36798.0,
+      "imports": 27930.0
+    },
+    {
+      "date": "1984-11-01",
+      "trade_balance": 7546.0,
+      "exports": 34101.0,
+      "imports": 26555.0
+    },
+    {
+      "date": "1984-12-01",
+      "trade_balance": 11453.0,
+      "exports": 39308.0,
+      "imports": 27855.0
+    },
+    {
+      "date": "1985-01-01",
+      "trade_balance": 1242.0,
+      "exports": 27948.0,
+      "imports": 26706.0
+    },
+    {
+      "date": "1985-02-01",
+      "trade_balance": 6042.0,
+      "exports": 33206.0,
+      "imports": 27164.0
+    },
+    {
+      "date": "1985-03-01",
+      "trade_balance": 8301.0,
+      "exports": 37828.0,
+      "imports": 29527.0
+    },
+    {
+      "date": "1985-04-01",
+      "trade_balance": 8272.0,
+      "exports": 37825.0,
+      "imports": 29553.0
+    },
+    {
+      "date": "1985-05-01",
+      "trade_balance": 8492.0,
+      "exports": 36286.0,
+      "imports": 27794.0
+    },
+    {
+      "date": "1985-06-01",
+      "trade_balance": 12555.0,
+      "exports": 36140.0,
+      "imports": 23585.0
+    },
+    {
+      "date": "1985-07-01",
+      "trade_balance": 11262.0,
+      "exports": 37589.0,
+      "imports": 26327.0
+    },
+    {
+      "date": "1985-08-01",
+      "trade_balance": 8308.0,
+      "exports": 32979.0,
+      "imports": 24671.0
+    },
+    {
+      "date": "1985-09-01",
+      "trade_balance": 10998.0,
+      "exports": 35341.0,
+      "imports": 24343.0
+    },
+    {
+      "date": "1985-10-01",
+      "trade_balance": 9742.0,
+      "exports": 35601.0,
+      "imports": 25859.0
+    },
+    {
+      "date": "1985-11-01",
+      "trade_balance": 10015.0,
+      "exports": 32420.0,
+      "imports": 22405.0
+    },
+    {
+      "date": "1985-12-01",
+      "trade_balance": 13477.0,
+      "exports": 36394.0,
+      "imports": 22917.0
+    },
+    {
+      "date": "1986-01-01",
+      "trade_balance": 3801.0,
+      "exports": 25836.0,
+      "imports": 22035.0
+    },
+    {
+      "date": "1986-02-01",
+      "trade_balance": 7585.0,
+      "exports": 29131.0,
+      "imports": 21546.0
+    },
+    {
+      "date": "1986-03-01",
+      "trade_balance": 12007.0,
+      "exports": 31771.0,
+      "imports": 19764.0
+    },
+    {
+      "date": "1986-04-01",
+      "trade_balance": 12250.0,
+      "exports": 31733.0,
+      "imports": 19483.0
+    },
+    {
+      "date": "1986-05-01",
+      "trade_balance": 12530.0,
+      "exports": 29879.0,
+      "imports": 17349.0
+    },
+    {
+      "date": "1986-06-01",
+      "trade_balance": 12419.0,
+      "exports": 29573.0,
+      "imports": 17154.0
+    },
+    {
+      "date": "1986-07-01",
+      "trade_balance": 13305.0,
+      "exports": 30755.0,
+      "imports": 17450.0
+    },
+    {
+      "date": "1986-08-01",
+      "trade_balance": 11590.0,
+      "exports": 26092.0,
+      "imports": 14502.0
+    },
+    {
+      "date": "1986-09-01",
+      "trade_balance": 13847.0,
+      "exports": 29476.0,
+      "imports": 15629.0
+    },
+    {
+      "date": "1986-10-01",
+      "trade_balance": 11985.0,
+      "exports": 29526.0,
+      "imports": 17541.0
+    },
+    {
+      "date": "1986-11-01",
+      "trade_balance": 11872.0,
+      "exports": 27120.0,
+      "imports": 15248.0
+    },
+    {
+      "date": "1986-12-01",
+      "trade_balance": 14198.0,
+      "exports": 32006.0,
+      "imports": 17808.0
+    },
+    {
+      "date": "1987-01-01",
+      "trade_balance": 6767.0,
+      "exports": 23623.0,
+      "imports": 16856.0
+    },
+    {
+      "date": "1987-02-01",
+      "trade_balance": 10905.0,
+      "exports": 26348.0,
+      "imports": 15443.0
+    },
+    {
+      "date": "1987-03-01",
+      "trade_balance": 12347.0,
+      "exports": 29633.0,
+      "imports": 17286.0
+    },
+    {
+      "date": "1987-04-01",
+      "trade_balance": 11048.0,
+      "exports": 28631.0,
+      "imports": 17583.0
+    },
+    {
+      "date": "1987-05-01",
+      "trade_balance": 8992.0,
+      "exports": 26057.0,
+      "imports": 17065.0
+    },
+    {
+      "date": "1987-06-01",
+      "trade_balance": 9424.0,
+      "exports": 26846.0,
+      "imports": 17422.0
+    },
+    {
+      "date": "1987-07-01",
+      "trade_balance": 10271.0,
+      "exports": 29422.0,
+      "imports": 19151.0
+    },
+    {
+      "date": "1987-08-01",
+      "trade_balance": 7763.0,
+      "exports": 26552.0,
+      "imports": 18789.0
+    },
+    {
+      "date": "1987-09-01",
+      "trade_balance": 10602.0,
+      "exports": 29098.0,
+      "imports": 18496.0
+    },
+    {
+      "date": "1987-10-01",
+      "trade_balance": 9808.0,
+      "exports": 29855.0,
+      "imports": 20047.0
+    },
+    {
+      "date": "1987-11-01",
+      "trade_balance": 6536.0,
+      "exports": 26188.0,
+      "imports": 19652.0
+    },
+    {
+      "date": "1987-12-01",
+      "trade_balance": 11321.0,
+      "exports": 30900.0,
+      "imports": 19579.0
+    },
+    {
+      "date": "1988-01-01",
+      "trade_balance": 3914.0,
+      "exports": 21876.0,
+      "imports": 17962.0
+    },
+    {
+      "date": "1988-02-01",
+      "trade_balance": 6753.0,
+      "exports": 26030.0,
+      "imports": 19277.0
+    },
+    {
+      "date": "1988-03-01",
+      "trade_balance": 9585.0,
+      "exports": 29225.0,
+      "imports": 19640.0
+    },
+    {
+      "date": "1988-04-01",
+      "trade_balance": 8536.0,
+      "exports": 28256.0,
+      "imports": 19720.0
+    },
+    {
+      "date": "1988-05-01",
+      "trade_balance": 6470.0,
+      "exports": 25759.0,
+      "imports": 19289.0
+    },
+    {
+      "date": "1988-06-01",
+      "trade_balance": 7451.0,
+      "exports": 27617.0,
+      "imports": 20166.0
+    },
+    {
+      "date": "1988-07-01",
+      "trade_balance": 9414.0,
+      "exports": 30394.0,
+      "imports": 20980.0
+    },
+    {
+      "date": "1988-08-01",
+      "trade_balance": 6622.0,
+      "exports": 27756.0,
+      "imports": 21134.0
+    },
+    {
+      "date": "1988-09-01",
+      "trade_balance": 10406.0,
+      "exports": 31095.0,
+      "imports": 20689.0
+    },
+    {
+      "date": "1988-10-01",
+      "trade_balance": 10056.0,
+      "exports": 30945.0,
+      "imports": 20889.0
+    },
+    {
+      "date": "1988-11-01",
+      "trade_balance": 8214.0,
+      "exports": 28419.0,
+      "imports": 20205.0
+    },
+    {
+      "date": "1988-12-01",
+      "trade_balance": 11908.0,
+      "exports": 32021.0,
+      "imports": 20113.0
+    },
+    {
+      "date": "1989-01-01",
+      "trade_balance": 4125.0,
+      "exports": 24369.0,
+      "imports": 20244.0
+    },
+    {
+      "date": "1989-02-01",
+      "trade_balance": 9292.0,
+      "exports": 28757.0,
+      "imports": 19465.0
+    },
+    {
+      "date": "1989-03-01",
+      "trade_balance": 8474.0,
+      "exports": 33921.0,
+      "imports": 25447.0
+    },
+    {
+      "date": "1989-04-01",
+      "trade_balance": 9628.0,
+      "exports": 30675.0,
+      "imports": 21047.0
+    },
+    {
+      "date": "1989-05-01",
+      "trade_balance": 5068.0,
+      "exports": 29076.0,
+      "imports": 24008.0
+    },
+    {
+      "date": "1989-06-01",
+      "trade_balance": 7552.0,
+      "exports": 32468.0,
+      "imports": 24916.0
+    },
+    {
+      "date": "1989-07-01",
+      "trade_balance": 8474.0,
+      "exports": 33199.0,
+      "imports": 24725.0
+    },
+    {
+      "date": "1989-08-01",
+      "trade_balance": 4718.0,
+      "exports": 30613.0,
+      "imports": 25895.0
+    },
+    {
+      "date": "1989-09-01",
+      "trade_balance": 10438.0,
+      "exports": 35292.0,
+      "imports": 24854.0
+    },
+    {
+      "date": "1989-10-01",
+      "trade_balance": 6675.0,
+      "exports": 32864.0,
+      "imports": 26189.0
+    },
+    {
+      "date": "1989-11-01",
+      "trade_balance": 5044.0,
+      "exports": 31509.0,
+      "imports": 26465.0
+    },
+    {
+      "date": "1989-12-01",
+      "trade_balance": 8949.0,
+      "exports": 35480.0,
+      "imports": 26531.0
+    },
+    {
+      "date": "1990-01-01",
+      "trade_balance": 500.0,
+      "exports": 26989.0,
+      "imports": 26489.0
+    },
+    {
+      "date": "1990-02-01",
+      "trade_balance": 7211.0,
+      "exports": 31899.0,
+      "imports": 24688.0
+    },
+    {
+      "date": "1990-03-01",
+      "trade_balance": 10529.0,
+      "exports": 38764.0,
+      "imports": 28235.0
+    },
+    {
+      "date": "1990-04-01",
+      "trade_balance": 5568.0,
+      "exports": 34445.0,
+      "imports": 28877.0
+    },
+    {
+      "date": "1990-05-01",
+      "trade_balance": 4806.0,
+      "exports": 33801.0,
+      "imports": 28995.0
+    },
+    {
+      "date": "1990-06-01",
+      "trade_balance": 10197.0,
+      "exports": 36240.0,
+      "imports": 26043.0
+    },
+    {
+      "date": "1990-07-01",
+      "trade_balance": 8031.0,
+      "exports": 36257.0,
+      "imports": 28226.0
+    },
+    {
+      "date": "1990-08-01",
+      "trade_balance": 5093.0,
+      "exports": 33396.0,
+      "imports": 28303.0
+    },
+    {
+      "date": "1990-09-01",
+      "trade_balance": 9749.0,
+      "exports": 36859.0,
+      "imports": 27110.0
+    },
+    {
+      "date": "1990-10-01",
+      "trade_balance": 4300.0,
+      "exports": 35729.0,
+      "imports": 31429.0
+    },
+    {
+      "date": "1990-11-01",
+      "trade_balance": 2871.0,
+      "exports": 33023.0,
+      "imports": 30152.0
+    },
+    {
+      "date": "1990-12-01",
+      "trade_balance": 7163.0,
+      "exports": 37168.0,
+      "imports": 30005.0
+    },
+    {
+      "date": "1991-01-01",
+      "trade_balance": 1239.0,
+      "exports": 29513.0,
+      "imports": 28274.0
+    },
+    {
+      "date": "1991-02-01",
+      "trade_balance": 6620.0,
+      "exports": 32704.0,
+      "imports": 26084.0
+    },
+    {
+      "date": "1991-03-01",
+      "trade_balance": 11402.0,
+      "exports": 39615.0,
+      "imports": 28213.0
+    },
+    {
+      "date": "1991-04-01",
+      "trade_balance": 8662.0,
+      "exports": 33159.0,
+      "imports": 24497.0
+    },
+    {
+      "date": "1991-05-01",
+      "trade_balance": 5752.0,
+      "exports": 33702.0,
+      "imports": 27950.0
+    },
+    {
+      "date": "1991-06-01",
+      "trade_balance": 10089.0,
+      "exports": 35388.0,
+      "imports": 25299.0
+    },
+    {
+      "date": "1991-07-01",
+      "trade_balance": 9147.0,
+      "exports": 36928.0,
+      "imports": 27781.0
+    },
+    {
+      "date": "1991-08-01",
+      "trade_balance": 7809.0,
+      "exports": 33979.0,
+      "imports": 26170.0
+    },
+    {
+      "date": "1991-09-01",
+      "trade_balance": 13117.0,
+      "exports": 37623.0,
+      "imports": 24506.0
+    },
+    {
+      "date": "1991-10-01",
+      "trade_balance": 9486.0,
+      "exports": 37486.0,
+      "imports": 28000.0
+    },
+    {
+      "date": "1991-11-01",
+      "trade_balance": 8354.0,
+      "exports": 35332.0,
+      "imports": 26978.0
+    },
+    {
+      "date": "1991-12-01",
+      "trade_balance": 12918.0,
+      "exports": 38168.0,
+      "imports": 25250.0
+    },
+    {
+      "date": "1992-01-01",
+      "trade_balance": 4751.0,
+      "exports": 30214.0,
+      "imports": 25463.0
+    },
+    {
+      "date": "1992-02-01",
+      "trade_balance": 12807.0,
+      "exports": 35292.0,
+      "imports": 22485.0
+    },
+    {
+      "date": "1992-03-01",
+      "trade_balance": 14367.0,
+      "exports": 39693.0,
+      "imports": 25326.0
+    },
+    {
+      "date": "1992-04-01",
+      "trade_balance": 9475.0,
+      "exports": 36271.0,
+      "imports": 26796.0
+    },
+    {
+      "date": "1992-05-01",
+      "trade_balance": 10210.0,
+      "exports": 33688.0,
+      "imports": 23478.0
+    },
+    {
+      "date": "1992-06-01",
+      "trade_balance": 11436.0,
+      "exports": 35996.0,
+      "imports": 24560.0
+    },
+    {
+      "date": "1992-07-01",
+      "trade_balance": 11585.0,
+      "exports": 37065.0,
+      "imports": 25480.0
+    },
+    {
+      "date": "1992-08-01",
+      "trade_balance": 8892.0,
+      "exports": 33184.0,
+      "imports": 24292.0
+    },
+    {
+      "date": "1992-09-01",
+      "trade_balance": 14986.0,
+      "exports": 39298.0,
+      "imports": 24312.0
+    },
+    {
+      "date": "1992-10-01",
+      "trade_balance": 13127.0,
+      "exports": 37604.0,
+      "imports": 24477.0
+    },
+    {
+      "date": "1992-11-01",
+      "trade_balance": 9323.0,
+      "exports": 33517.0,
+      "imports": 24194.0
+    },
+    {
+      "date": "1992-12-01",
+      "trade_balance": 13889.0,
+      "exports": 38300.0,
+      "imports": 24411.0
+    },
+    {
+      "date": "1993-01-01",
+      "trade_balance": 6551.0,
+      "exports": 30125.0,
+      "imports": 23574.0
+    },
+    {
+      "date": "1993-02-01",
+      "trade_balance": 13042.0,
+      "exports": 34615.0,
+      "imports": 21573.0
+    },
+    {
+      "date": "1993-03-01",
+      "trade_balance": 15763.0,
+      "exports": 40866.0,
+      "imports": 25103.0
+    },
+    {
+      "date": "1993-04-01",
+      "trade_balance": 11790.0,
+      "exports": 35288.0,
+      "imports": 23498.0
+    },
+    {
+      "date": "1993-05-01",
+      "trade_balance": 8627.0,
+      "exports": 29868.0,
+      "imports": 21241.0
+    },
+    {
+      "date": "1993-06-01",
+      "trade_balance": 10640.0,
+      "exports": 32885.0,
+      "imports": 22245.0
+    },
+    {
+      "date": "1993-07-01",
+      "trade_balance": 12804.0,
+      "exports": 34875.0,
+      "imports": 22071.0
+    },
+    {
+      "date": "1993-08-01",
+      "trade_balance": 7831.0,
+      "exports": 29307.0,
+      "imports": 21476.0
+    },
+    {
+      "date": "1993-09-01",
+      "trade_balance": 13085.0,
+      "exports": 34817.0,
+      "imports": 21732.0
+    },
+    {
+      "date": "1993-10-01",
+      "trade_balance": 11576.0,
+      "exports": 33194.0,
+      "imports": 21618.0
+    },
+    {
+      "date": "1993-11-01",
+      "trade_balance": 7984.0,
+      "exports": 30635.0,
+      "imports": 22651.0
+    },
+    {
+      "date": "1993-12-01",
+      "trade_balance": 14067.0,
+      "exports": 35549.0,
+      "imports": 21482.0
+    },
+    {
+      "date": "1994-01-01",
+      "trade_balance": 6786.0,
+      "exports": 29069.0,
+      "imports": 22283.0
+    },
+    {
+      "date": "1994-02-01",
+      "trade_balance": 11831.0,
+      "exports": 32250.0,
+      "imports": 20419.0
+    },
+    {
+      "date": "1994-03-01",
+      "trade_balance": 14612.0,
+      "exports": 38395.0,
+      "imports": 23783.0
+    },
+    {
+      "date": "1994-04-01",
+      "trade_balance": 11579.0,
+      "exports": 34385.0,
+      "imports": 22806.0
+    },
+    {
+      "date": "1994-05-01",
+      "trade_balance": 6743.0,
+      "exports": 29007.0,
+      "imports": 22264.0
+    },
+    {
+      "date": "1994-06-01",
+      "trade_balance": 11817.0,
+      "exports": 35165.0,
+      "imports": 23348.0
+    },
+    {
+      "date": "1994-07-01",
+      "trade_balance": 12182.0,
+      "exports": 34317.0,
+      "imports": 22135.0
+    },
+    {
+      "date": "1994-08-01",
+      "trade_balance": 6043.0,
+      "exports": 31171.0,
+      "imports": 25128.0
+    },
+    {
+      "date": "1994-09-01",
+      "trade_balance": 11863.0,
+      "exports": 35878.0,
+      "imports": 24015.0
+    },
+    {
+      "date": "1994-10-01",
+      "trade_balance": 9153.0,
+      "exports": 34277.0,
+      "imports": 25124.0
+    },
+    {
+      "date": "1994-11-01",
+      "trade_balance": 8326.0,
+      "exports": 33546.0,
+      "imports": 25220.0
+    },
+    {
+      "date": "1994-12-01",
+      "trade_balance": 12999.0,
+      "exports": 37517.0,
+      "imports": 24518.0
+    },
+    {
+      "date": "1995-01-01",
+      "trade_balance": 2749.0,
+      "exports": 27189.0,
+      "imports": 24440.0
+    },
+    {
+      "date": "1995-02-01",
+      "trade_balance": 11213.0,
+      "exports": 34947.0,
+      "imports": 23734.0
+    },
+    {
+      "date": "1995-03-01",
+      "trade_balance": 12949.0,
+      "exports": 40106.0,
+      "imports": 27157.0
+    },
+    {
+      "date": "1995-04-01",
+      "trade_balance": 9288.0,
+      "exports": 34677.0,
+      "imports": 25389.0
+    },
+    {
+      "date": "1995-05-01",
+      "trade_balance": 5870.0,
+      "exports": 29815.0,
+      "imports": 23945.0
+    },
+    {
+      "date": "1995-06-01",
+      "trade_balance": 9896.0,
+      "exports": 34136.0,
+      "imports": 24240.0
+    },
+    {
+      "date": "1995-07-01",
+      "trade_balance": 8084.0,
+      "exports": 32574.0,
+      "imports": 24490.0
+    },
+    {
+      "date": "1995-08-01",
+      "trade_balance": 5352.0,
+      "exports": 31950.0,
+      "imports": 26598.0
+    },
+    {
+      "date": "1995-09-01",
+      "trade_balance": 11184.0,
+      "exports": 38176.0,
+      "imports": 26992.0
+    },
+    {
+      "date": "1995-10-01",
+      "trade_balance": 5404.0,
+      "exports": 35605.0,
+      "imports": 30201.0
+    },
+    {
+      "date": "1995-11-01",
+      "trade_balance": 6736.0,
+      "exports": 36048.0,
+      "imports": 29312.0
+    },
+    {
+      "date": "1995-12-01",
+      "trade_balance": 11097.0,
+      "exports": 40087.0,
+      "imports": 28990.0
+    },
+    {
+      "date": "1996-01-01",
+      "trade_balance": 629.0,
+      "exports": 30274.0,
+      "imports": 29645.0
+    },
+    {
+      "date": "1996-02-01",
+      "trade_balance": 6448.0,
+      "exports": 36247.0,
+      "imports": 29799.0
+    },
+    {
+      "date": "1996-03-01",
+      "trade_balance": 11176.0,
+      "exports": 41105.0,
+      "imports": 29929.0
+    },
+    {
+      "date": "1996-04-01",
+      "trade_balance": 3154.0,
+      "exports": 36447.0,
+      "imports": 33293.0
+    },
+    {
+      "date": "1996-05-01",
+      "trade_balance": 2291.0,
+      "exports": 34059.0,
+      "imports": 31768.0
+    },
+    {
+      "date": "1996-06-01",
+      "trade_balance": 7316.0,
+      "exports": 36630.0,
+      "imports": 29314.0
+    },
+    {
+      "date": "1996-07-01",
+      "trade_balance": 5004.0,
+      "exports": 38260.0,
+      "imports": 33256.0
+    },
+    {
+      "date": "1996-08-01",
+      "trade_balance": 3475.0,
+      "exports": 34543.0,
+      "imports": 31068.0
+    },
+    {
+      "date": "1996-09-01",
+      "trade_balance": 7772.0,
+      "exports": 38745.0,
+      "imports": 30973.0
+    },
+    {
+      "date": "1996-10-01",
+      "trade_balance": 4622.0,
+      "exports": 39624.0,
+      "imports": 35002.0
+    },
+    {
+      "date": "1996-11-01",
+      "trade_balance": 6701.0,
+      "exports": 39685.0,
+      "imports": 32984.0
+    },
+    {
+      "date": "1996-12-01",
+      "trade_balance": 8789.0,
+      "exports": 41692.0,
+      "imports": 32903.0
+    },
+    {
+      "date": "1997-01-01",
+      "trade_balance": -245.0,
+      "exports": 35413.0,
+      "imports": 35658.0
+    },
+    {
+      "date": "1997-02-01",
+      "trade_balance": 6807.0,
+      "exports": 39904.0,
+      "imports": 33097.0
+    },
+    {
+      "date": "1997-03-01",
+      "trade_balance": 8002.0,
+      "exports": 45402.0,
+      "imports": 37400.0
+    },
+    {
+      "date": "1997-04-01",
+      "trade_balance": 8072.0,
+      "exports": 44270.0,
+      "imports": 36198.0
+    },
+    {
+      "date": "1997-05-01",
+      "trade_balance": 7320.0,
+      "exports": 41027.0,
+      "imports": 33707.0
+    },
+    {
+      "date": "1997-06-01",
+      "trade_balance": 9594.0,
+      "exports": 41196.0,
+      "imports": 31602.0
+    },
+    {
+      "date": "1997-07-01",
+      "trade_balance": 8391.0,
+      "exports": 42812.0,
+      "imports": 34421.0
+    },
+    {
+      "date": "1997-08-01",
+      "trade_balance": 7190.0,
+      "exports": 39361.0,
+      "imports": 32171.0
+    },
+    {
+      "date": "1997-09-01",
+      "trade_balance": 10635.0,
+      "exports": 44235.0,
+      "imports": 33600.0
+    },
+    {
+      "date": "1997-10-01",
+      "trade_balance": 11059.0,
+      "exports": 46460.0,
+      "imports": 35401.0
+    },
+    {
+      "date": "1997-11-01",
+      "trade_balance": 10625.0,
+      "exports": 42248.0,
+      "imports": 31623.0
+    },
+    {
+      "date": "1997-12-01",
+      "trade_balance": 12367.0,
+      "exports": 47052.0,
+      "imports": 34685.0
+    },
+    {
+      "date": "1998-01-01",
+      "trade_balance": 4066.0,
+      "exports": 38599.0,
+      "imports": 34533.0
+    },
+    {
+      "date": "1998-02-01",
+      "trade_balance": 12772.0,
+      "exports": 40940.0,
+      "imports": 28168.0
+    },
+    {
+      "date": "1998-03-01",
+      "trade_balance": 12405.0,
+      "exports": 45912.0,
+      "imports": 33507.0
+    },
+    {
+      "date": "1998-04-01",
+      "trade_balance": 12227.0,
+      "exports": 43467.0,
+      "imports": 31240.0
+    },
+    {
+      "date": "1998-05-01",
+      "trade_balance": 12181.0,
+      "exports": 40423.0,
+      "imports": 28242.0
+    },
+    {
+      "date": "1998-06-01",
+      "trade_balance": 12135.0,
+      "exports": 43464.0,
+      "imports": 31329.0
+    },
+    {
+      "date": "1998-07-01",
+      "trade_balance": 13102.0,
+      "exports": 45613.0,
+      "imports": 32511.0
+    },
+    {
+      "date": "1998-08-01",
+      "trade_balance": 8910.0,
+      "exports": 40140.0,
+      "imports": 31230.0
+    },
+    {
+      "date": "1998-09-01",
+      "trade_balance": 15416.0,
+      "exports": 45966.0,
+      "imports": 30550.0
+    },
+    {
+      "date": "1998-10-01",
+      "trade_balance": 13660.0,
+      "exports": 43814.0,
+      "imports": 30154.0
+    },
+    {
+      "date": "1998-11-01",
+      "trade_balance": 8903.0,
+      "exports": 36792.0,
+      "imports": 27889.0
+    },
+    {
+      "date": "1998-12-01",
+      "trade_balance": 14139.0,
+      "exports": 41321.0,
+      "imports": 27182.0
+    },
+    {
+      "date": "1999-01-01",
+      "trade_balance": 7540.0,
+      "exports": 34506.0,
+      "imports": 26966.0
+    },
+    {
+      "date": "1999-02-01",
+      "trade_balance": 9311.0,
+      "exports": 35932.0,
+      "imports": 26621.0
+    },
+    {
+      "date": "1999-03-01",
+      "trade_balance": 13035.0,
+      "exports": 43057.0,
+      "imports": 30022.0
+    },
+    {
+      "date": "1999-04-01",
+      "trade_balance": 10370.0,
+      "exports": 40236.0,
+      "imports": 29866.0
+    },
+    {
+      "date": "1999-05-01",
+      "trade_balance": 8201.0,
+      "exports": 35611.0,
+      "imports": 27410.0
+    },
+    {
+      "date": "1999-06-01",
+      "trade_balance": 11623.0,
+      "exports": 40868.0,
+      "imports": 29245.0
+    },
+    {
+      "date": "1999-07-01",
+      "trade_balance": 12426.0,
+      "exports": 42198.0,
+      "imports": 29772.0
+    },
+    {
+      "date": "1999-08-01",
+      "trade_balance": 6971.0,
+      "exports": 37370.0,
+      "imports": 30399.0
+    },
+    {
+      "date": "1999-09-01",
+      "trade_balance": 13749.0,
+      "exports": 42704.0,
+      "imports": 28955.0
+    },
+    {
+      "date": "1999-10-01",
+      "trade_balance": 11690.0,
+      "exports": 41327.0,
+      "imports": 29637.0
+    },
+    {
+      "date": "1999-11-01",
+      "trade_balance": 6633.0,
+      "exports": 38895.0,
+      "imports": 32262.0
+    },
+    {
+      "date": "1999-12-01",
+      "trade_balance": 11247.0,
+      "exports": 42772.0,
+      "imports": 31525.0
+    },
+    {
+      "date": "2000-01-01",
+      "trade_balance": 5205.0,
+      "exports": 35127.0,
+      "imports": 29922.0
+    },
+    {
+      "date": "2000-02-01",
+      "trade_balance": 11793.0,
+      "exports": 41368.0,
+      "imports": 29575.0
+    },
+    {
+      "date": "2000-03-01",
+      "trade_balance": 11053.0,
+      "exports": 47001.0,
+      "imports": 35948.0
+    },
+    {
+      "date": "2000-04-01",
+      "trade_balance": 11408.0,
+      "exports": 43778.0,
+      "imports": 32370.0
+    },
+    {
+      "date": "2000-05-01",
+      "trade_balance": 5751.0,
+      "exports": 38515.0,
+      "imports": 32764.0
+    },
+    {
+      "date": "2000-06-01",
+      "trade_balance": 11926.0,
+      "exports": 44872.0,
+      "imports": 32946.0
+    },
+    {
+      "date": "2000-07-01",
+      "trade_balance": 10005.0,
+      "exports": 43132.0,
+      "imports": 33127.0
+    },
+    {
+      "date": "2000-08-01",
+      "trade_balance": 6063.0,
+      "exports": 42049.0,
+      "imports": 35986.0
+    },
+    {
+      "date": "2000-09-01",
+      "trade_balance": 12932.0,
+      "exports": 46792.0,
+      "imports": 33860.0
+    },
+    {
+      "date": "2000-10-01",
+      "trade_balance": 6890.0,
+      "exports": 44762.0,
+      "imports": 37872.0
+    },
+    {
+      "date": "2000-11-01",
+      "trade_balance": 5956.0,
+      "exports": 42831.0,
+      "imports": 36875.0
+    },
+    {
+      "date": "2000-12-01",
+      "trade_balance": 8178.0,
+      "exports": 46316.0,
+      "imports": 38138.0
+    },
+    {
+      "date": "2001-01-01",
+      "trade_balance": -985.0,
+      "exports": 36239.0,
+      "imports": 37224.0
+    },
+    {
+      "date": "2001-02-01",
+      "trade_balance": 8757.0,
+      "exports": 41974.0,
+      "imports": 33217.0
+    },
+    {
+      "date": "2001-03-01",
+      "trade_balance": 9080.0,
+      "exports": 49193.0,
+      "imports": 40113.0
+    },
+    {
+      "date": "2001-04-01",
+      "trade_balance": 6609.0,
+      "exports": 43296.0,
+      "imports": 36687.0
+    },
+    {
+      "date": "2001-05-01",
+      "trade_balance": 760.0,
+      "exports": 38156.0,
+      "imports": 37396.0
+    },
+    {
+      "date": "2001-06-01",
+      "trade_balance": 7590.0,
+      "exports": 41387.0,
+      "imports": 33797.0
+    },
+    {
+      "date": "2001-07-01",
+      "trade_balance": 4171.0,
+      "exports": 40371.0,
+      "imports": 36200.0
+    },
+    {
+      "date": "2001-08-01",
+      "trade_balance": 3098.0,
+      "exports": 38300.0,
+      "imports": 35202.0
+    },
+    {
+      "date": "2001-09-01",
+      "trade_balance": 10430.0,
+      "exports": 41629.0,
+      "imports": 31199.0
+    },
+    {
+      "date": "2001-10-01",
+      "trade_balance": 4610.0,
+      "exports": 40736.0,
+      "imports": 36126.0
+    },
+    {
+      "date": "2001-11-01",
+      "trade_balance": 4922.0,
+      "exports": 38896.0,
+      "imports": 33974.0
+    },
+    {
+      "date": "2001-12-01",
+      "trade_balance": 6594.0,
+      "exports": 39614.0,
+      "imports": 33020.0
+    },
+    {
+      "date": "2002-01-01",
+      "trade_balance": 1701.0,
+      "exports": 35595.0,
+      "imports": 33894.0
+    },
+    {
+      "date": "2002-02-01",
+      "trade_balance": 7774.0,
+      "exports": 40217.0,
+      "imports": 32443.0
+    },
+    {
+      "date": "2002-03-01",
+      "trade_balance": 12579.0,
+      "exports": 47731.0,
+      "imports": 35152.0
+    },
+    {
+      "date": "2002-04-01",
+      "trade_balance": 8272.0,
+      "exports": 44008.0,
+      "imports": 35736.0
+    },
+    {
+      "date": "2002-05-01",
+      "trade_balance": 6172.0,
+      "exports": 41522.0,
+      "imports": 35350.0
+    },
+    {
+      "date": "2002-06-01",
+      "trade_balance": 12209.0,
+      "exports": 44304.0,
+      "imports": 32095.0
+    },
+    {
+      "date": "2002-07-01",
+      "trade_balance": 7449.0,
+      "exports": 43965.0,
+      "imports": 36516.0
+    },
+    {
+      "date": "2002-08-01",
+      "trade_balance": 6392.0,
+      "exports": 40681.0,
+      "imports": 34289.0
+    },
+    {
+      "date": "2002-09-01",
+      "trade_balance": 10511.0,
+      "exports": 44498.0,
+      "imports": 33987.0
+    },
+    {
+      "date": "2002-10-01",
+      "trade_balance": 8920.0,
+      "exports": 46496.0,
+      "imports": 37576.0
+    },
+    {
+      "date": "2002-11-01",
+      "trade_balance": 8896.0,
+      "exports": 46397.0,
+      "imports": 37501.0
+    },
+    {
+      "date": "2002-12-01",
+      "trade_balance": 7942.0,
+      "exports": 45676.0,
+      "imports": 37734.0
+    },
+    {
+      "date": "2003-01-01",
+      "trade_balance": 962.0,
+      "exports": 38415.0,
+      "imports": 37453.0
+    },
+    {
+      "date": "2003-02-01",
+      "trade_balance": 9272.0,
+      "exports": 43248.0,
+      "imports": 33976.0
+    },
+    {
+      "date": "2003-03-01",
+      "trade_balance": 9604.0,
+      "exports": 48061.0,
+      "imports": 38457.0
+    },
+    {
+      "date": "2003-04-01",
+      "trade_balance": 8285.0,
+      "exports": 46090.0,
+      "imports": 37805.0
+    },
+    {
+      "date": "2003-05-01",
+      "trade_balance": 6892.0,
+      "exports": 43013.0,
+      "imports": 36121.0
+    },
+    {
+      "date": "2003-06-01",
+      "trade_balance": 8378.0,
+      "exports": 44285.0,
+      "imports": 35907.0
+    },
+    {
+      "date": "2003-07-01",
+      "trade_balance": 7892.0,
+      "exports": 46432.0,
+      "imports": 38540.0
+    },
+    {
+      "date": "2003-08-01",
+      "trade_balance": 7785.0,
+      "exports": 43299.0,
+      "imports": 35514.0
+    },
+    {
+      "date": "2003-09-01",
+      "trade_balance": 10978.0,
+      "exports": 48586.0,
+      "imports": 37608.0
+    },
+    {
+      "date": "2003-10-01",
+      "trade_balance": 10696.0,
+      "exports": 49005.0,
+      "imports": 38309.0
+    },
+    {
+      "date": "2003-11-01",
+      "trade_balance": 9899.0,
+      "exports": 45474.0,
+      "imports": 35575.0
+    },
+    {
+      "date": "2003-12-01",
+      "trade_balance": 11220.0,
+      "exports": 49577.0,
+      "imports": 38357.0
+    },
+    {
+      "date": "2004-01-01",
+      "trade_balance": 4883.0,
+      "exports": 42742.0,
+      "imports": 37859.0
+    },
+    {
+      "date": "2004-02-01",
+      "trade_balance": 13957.0,
+      "exports": 47677.0,
+      "imports": 33720.0
+    },
+    {
+      "date": "2004-03-01",
+      "trade_balance": 11186.0,
+      "exports": 54424.0,
+      "imports": 43238.0
+    },
+    {
+      "date": "2004-04-01",
+      "trade_balance": 10747.0,
+      "exports": 51063.0,
+      "imports": 40316.0
+    },
+    {
+      "date": "2004-05-01",
+      "trade_balance": 9361.0,
+      "exports": 47297.0,
+      "imports": 37936.0
+    },
+    {
+      "date": "2004-06-01",
+      "trade_balance": 11406.0,
+      "exports": 52892.0,
+      "imports": 41486.0
+    },
+    {
+      "date": "2004-07-01",
+      "trade_balance": 11287.0,
+      "exports": 53075.0,
+      "imports": 41788.0
+    },
+    {
+      "date": "2004-08-01",
+      "trade_balance": 5730.0,
+      "exports": 47855.0,
+      "imports": 42125.0
+    },
+    {
+      "date": "2004-09-01",
+      "trade_balance": 12132.0,
+      "exports": 54458.0,
+      "imports": 42326.0
+    },
+    {
+      "date": "2004-10-01",
+      "trade_balance": 11540.0,
+      "exports": 54720.0,
+      "imports": 43180.0
+    },
+    {
+      "date": "2004-11-01",
+      "trade_balance": 5973.0,
+      "exports": 51552.0,
+      "imports": 45579.0
+    },
+    {
+      "date": "2004-12-01",
+      "trade_balance": 11332.0,
+      "exports": 53946.0,
+      "imports": 42614.0
+    },
+    {
+      "date": "2005-01-01",
+      "trade_balance": 1882.0,
+      "exports": 44114.0,
+      "imports": 42232.0
+    },
+    {
+      "date": "2005-02-01",
+      "trade_balance": 10841.0,
+      "exports": 48463.0,
+      "imports": 37622.0
+    },
+    {
+      "date": "2005-03-01",
+      "trade_balance": 11106.0,
+      "exports": 57760.0,
+      "imports": 46654.0
+    },
+    {
+      "date": "2005-04-01",
+      "trade_balance": 9475.0,
+      "exports": 55043.0,
+      "imports": 45568.0
+    },
+    {
+      "date": "2005-05-01",
+      "trade_balance": 2847.0,
+      "exports": 47952.0,
+      "imports": 45105.0
+    },
+    {
+      "date": "2005-06-01",
+      "trade_balance": 8583.0,
+      "exports": 54782.0,
+      "imports": 46199.0
+    },
+    {
+      "date": "2005-07-01",
+      "trade_balance": 8620.0,
+      "exports": 55368.0,
+      "imports": 46748.0
+    },
+    {
+      "date": "2005-08-01",
+      "trade_balance": 1026.0,
+      "exports": 52200.0,
+      "imports": 51174.0
+    },
+    {
+      "date": "2005-09-01",
+      "trade_balance": 9486.0,
+      "exports": 59271.0,
+      "imports": 49785.0
+    },
+    {
+      "date": "2005-10-01",
+      "trade_balance": 8179.0,
+      "exports": 59106.0,
+      "imports": 50927.0
+    },
+    {
+      "date": "2005-11-01",
+      "trade_balance": 5944.0,
+      "exports": 59136.0,
+      "imports": 53192.0
+    },
+    {
+      "date": "2005-12-01",
+      "trade_balance": 9083.0,
+      "exports": 63371.0,
+      "imports": 54288.0
+    },
+    {
+      "date": "2006-01-01",
+      "trade_balance": -3944.0,
+      "exports": 50037.0,
+      "imports": 53981.0
+    },
+    {
+      "date": "2006-02-01",
+      "trade_balance": 9098.0,
+      "exports": 58495.0,
+      "imports": 49397.0
+    },
+    {
+      "date": "2006-03-01",
+      "trade_balance": 9392.0,
+      "exports": 68142.0,
+      "imports": 58750.0
+    },
+    {
+      "date": "2006-04-01",
+      "trade_balance": 6107.0,
+      "exports": 61289.0,
+      "imports": 55182.0
+    },
+    {
+      "date": "2006-05-01",
+      "trade_balance": 3563.0,
+      "exports": 57034.0,
+      "imports": 53471.0
+    },
+    {
+      "date": "2006-06-01",
+      "trade_balance": 7997.0,
+      "exports": 62707.0,
+      "imports": 54710.0
+    },
+    {
+      "date": "2006-07-01",
+      "trade_balance": 8512.0,
+      "exports": 63207.0,
+      "imports": 54695.0
+    },
+    {
+      "date": "2006-08-01",
+      "trade_balance": 1918.0,
+      "exports": 61405.0,
+      "imports": 59487.0
+    },
+    {
+      "date": "2006-09-01",
+      "trade_balance": 10067.0,
+      "exports": 68284.0,
+      "imports": 58217.0
+    },
+    {
+      "date": "2006-10-01",
+      "trade_balance": 6134.0,
+      "exports": 65975.0,
+      "imports": 59841.0
+    },
+    {
+      "date": "2006-11-01",
+      "trade_balance": 9079.0,
+      "exports": 66296.0,
+      "imports": 57217.0
+    },
+    {
+      "date": "2006-12-01",
+      "trade_balance": 11096.0,
+      "exports": 69591.0,
+      "imports": 58495.0
+    },
+    {
+      "date": "2007-01-01",
+      "trade_balance": 18.0,
+      "exports": 59527.0,
+      "imports": 59509.0
+    },
+    {
+      "date": "2007-02-01",
+      "trade_balance": 9615.0,
+      "exports": 64161.0,
+      "imports": 54546.0
+    },
+    {
+      "date": "2007-03-01",
+      "trade_balance": 16027.0,
+      "exports": 75130.0,
+      "imports": 59103.0
+    },
+    {
+      "date": "2007-04-01",
+      "trade_balance": 9031.0,
+      "exports": 66335.0,
+      "imports": 57304.0
+    },
+    {
+      "date": "2007-05-01",
+      "trade_balance": 3955.0,
+      "exports": 65678.0,
+      "imports": 61723.0
+    },
+    {
+      "date": "2007-06-01",
+      "trade_balance": 12459.0,
+      "exports": 72860.0,
+      "imports": 60401.0
+    },
+    {
+      "date": "2007-07-01",
+      "trade_balance": 6820.0,
+      "exports": 70631.0,
+      "imports": 63811.0
+    },
+    {
+      "date": "2007-08-01",
+      "trade_balance": 7437.0,
+      "exports": 70347.0,
+      "imports": 62910.0
+    },
+    {
+      "date": "2007-09-01",
+      "trade_balance": 16087.0,
+      "exports": 72555.0,
+      "imports": 56468.0
+    },
+    {
+      "date": "2007-10-01",
+      "trade_balance": 9994.0,
+      "exports": 75065.0,
+      "imports": 65071.0
+    },
+    {
+      "date": "2007-11-01",
+      "trade_balance": 7844.0,
+      "exports": 72686.0,
+      "imports": 64842.0
+    },
+    {
+      "date": "2007-12-01",
+      "trade_balance": 8670.0,
+      "exports": 74340.0,
+      "imports": 65670.0
+    },
+    {
+      "date": "2008-01-01",
+      "trade_balance": -1063.0,
+      "exports": 64083.0,
+      "imports": 65146.0
+    },
+    {
+      "date": "2008-02-01",
+      "trade_balance": 9358.0,
+      "exports": 69737.0,
+      "imports": 60379.0
+    },
+    {
+      "date": "2008-03-01",
+      "trade_balance": 10962.0,
+      "exports": 76817.0,
+      "imports": 65855.0
+    },
+    {
+      "date": "2008-04-01",
+      "trade_balance": 4588.0,
+      "exports": 68895.0,
+      "imports": 64307.0
+    },
+    {
+      "date": "2008-05-01",
+      "trade_balance": 3411.0,
+      "exports": 68068.0,
+      "imports": 64657.0
+    },
+    {
+      "date": "2008-06-01",
+      "trade_balance": 1041.0,
+      "exports": 71521.0,
+      "imports": 70480.0
+    },
+    {
+      "date": "2008-07-01",
+      "trade_balance": 819.0,
+      "exports": 76245.0,
+      "imports": 75426.0
+    },
+    {
+      "date": "2008-08-01",
+      "trade_balance": -3143.0,
+      "exports": 70514.0,
+      "imports": 73657.0
+    },
+    {
+      "date": "2008-09-01",
+      "trade_balance": 910.0,
+      "exports": 73613.0,
+      "imports": 72703.0
+    },
+    {
+      "date": "2008-10-01",
+      "trade_balance": -752.0,
+      "exports": 69148.0,
+      "imports": 69900.0
+    },
+    {
+      "date": "2008-11-01",
+      "trade_balance": -2275.0,
+      "exports": 53235.0,
+      "imports": 55510.0
+    },
+    {
+      "date": "2008-12-01",
+      "trade_balance": -3222.0,
+      "exports": 48305.0,
+      "imports": 51527.0
+    },
+    {
+      "date": "2009-01-01",
+      "trade_balance": -9680.0,
+      "exports": 34778.0,
+      "imports": 44458.0
+    },
+    {
+      "date": "2009-02-01",
+      "trade_balance": 709.0,
+      "exports": 35296.0,
+      "imports": 34587.0
+    },
+    {
+      "date": "2009-03-01",
+      "trade_balance": -54.0,
+      "exports": 41838.0,
+      "imports": 41892.0
+    },
+    {
+      "date": "2009-04-01",
+      "trade_balance": 490.0,
+      "exports": 41947.0,
+      "imports": 41457.0
+    },
+    {
+      "date": "2009-05-01",
+      "trade_balance": 2814.0,
+      "exports": 40200.0,
+      "imports": 37386.0
+    },
+    {
+      "date": "2009-06-01",
+      "trade_balance": 4870.0,
+      "exports": 45944.0,
+      "imports": 41074.0
+    },
+    {
+      "date": "2009-07-01",
+      "trade_balance": 3657.0,
+      "exports": 48430.0,
+      "imports": 44773.0
+    },
+    {
+      "date": "2009-08-01",
+      "trade_balance": 1652.0,
+      "exports": 45098.0,
+      "imports": 43446.0
+    },
+    {
+      "date": "2009-09-01",
+      "trade_balance": 5176.0,
+      "exports": 51094.0,
+      "imports": 45918.0
+    },
+    {
+      "date": "2009-10-01",
+      "trade_balance": 8000.0,
+      "exports": 53083.0,
+      "imports": 45083.0
+    },
+    {
+      "date": "2009-11-01",
+      "trade_balance": 3653.0,
+      "exports": 49882.0,
+      "imports": 46229.0
+    },
+    {
+      "date": "2009-12-01",
+      "trade_balance": 5426.0,
+      "exports": 54117.0,
+      "imports": 48691.0
+    },
+    {
+      "date": "2010-01-01",
+      "trade_balance": 431.0,
+      "exports": 49009.0,
+      "imports": 48578.0
+    },
+    {
+      "date": "2010-02-01",
+      "trade_balance": 6382.0,
+      "exports": 51271.0,
+      "imports": 44889.0
+    },
+    {
+      "date": "2010-03-01",
+      "trade_balance": 9319.0,
+      "exports": 60004.0,
+      "imports": 50685.0
+    },
+    {
+      "date": "2010-04-01",
+      "trade_balance": 7292.0,
+      "exports": 58897.0,
+      "imports": 51605.0
+    },
+    {
+      "date": "2010-05-01",
+      "trade_balance": 3091.0,
+      "exports": 53086.0,
+      "imports": 49995.0
+    },
+    {
+      "date": "2010-06-01",
+      "trade_balance": 6705.0,
+      "exports": 58672.0,
+      "imports": 51967.0
+    },
+    {
+      "date": "2010-07-01",
+      "trade_balance": 7846.0,
+      "exports": 59819.0,
+      "imports": 51973.0
+    },
+    {
+      "date": "2010-08-01",
+      "trade_balance": 638.0,
+      "exports": 52098.0,
+      "imports": 51460.0
+    },
+    {
+      "date": "2010-09-01",
+      "trade_balance": 7743.0,
+      "exports": 58396.0,
+      "imports": 50653.0
+    },
+    {
+      "date": "2010-10-01",
+      "trade_balance": 8126.0,
+      "exports": 57225.0,
+      "imports": 49099.0
+    },
+    {
+      "date": "2010-11-01",
+      "trade_balance": 1576.0,
+      "exports": 54398.0,
+      "imports": 52822.0
+    },
+    {
+      "date": "2010-12-01",
+      "trade_balance": 7196.0,
+      "exports": 61120.0,
+      "imports": 53924.0
+    },
+    {
+      "date": "2011-01-01",
+      "trade_balance": -4972.0,
+      "exports": 49701.0,
+      "imports": 54673.0
+    },
+    {
+      "date": "2011-02-01",
+      "trade_balance": 6370.0,
+      "exports": 55890.0,
+      "imports": 49520.0
+    },
+    {
+      "date": "2011-03-01",
+      "trade_balance": 1709.0,
+      "exports": 58585.0,
+      "imports": 56876.0
+    },
+    {
+      "date": "2011-04-01",
+      "trade_balance": -4778.0,
+      "exports": 51566.0,
+      "imports": 56344.0
+    },
+    {
+      "date": "2011-05-01",
+      "trade_balance": -8607.0,
+      "exports": 47593.0,
+      "imports": 56200.0
+    },
+    {
+      "date": "2011-06-01",
+      "trade_balance": 644.0,
+      "exports": 57746.0,
+      "imports": 57102.0
+    },
+    {
+      "date": "2011-07-01",
+      "trade_balance": 698.0,
+      "exports": 57818.0,
+      "imports": 57120.0
+    },
+    {
+      "date": "2011-08-01",
+      "trade_balance": -7774.0,
+      "exports": 53557.0,
+      "imports": 61331.0
+    },
+    {
+      "date": "2011-09-01",
+      "trade_balance": 2888.0,
+      "exports": 59738.0,
+      "imports": 56850.0
+    },
+    {
+      "date": "2011-10-01",
+      "trade_balance": -2830.0,
+      "exports": 55069.0,
+      "imports": 57899.0
+    },
+    {
+      "date": "2011-11-01",
+      "trade_balance": -6912.0,
+      "exports": 51962.0,
+      "imports": 58874.0
+    },
+    {
+      "date": "2011-12-01",
+      "trade_balance": -2083.0,
+      "exports": 56239.0,
+      "imports": 58322.0
+    },
+    {
+      "date": "2012-01-01",
+      "trade_balance": -14906.0,
+      "exports": 45137.0,
+      "imports": 60043.0
+    },
+    {
+      "date": "2012-02-01",
+      "trade_balance": 259.0,
+      "exports": 54426.0,
+      "imports": 54167.0
+    },
+    {
+      "date": "2012-03-01",
+      "trade_balance": -818.0,
+      "exports": 62034.0,
+      "imports": 62852.0
+    },
+    {
+      "date": "2012-04-01",
+      "trade_balance": -5184.0,
+      "exports": 55649.0,
+      "imports": 60833.0
+    },
+    {
+      "date": "2012-05-01",
+      "trade_balance": -9079.0,
+      "exports": 52369.0,
+      "imports": 61448.0
+    },
+    {
+      "date": "2012-06-01",
+      "trade_balance": 560.0,
+      "exports": 56418.0,
+      "imports": 55858.0
+    },
+    {
+      "date": "2012-07-01",
+      "trade_balance": -5286.0,
+      "exports": 53122.0,
+      "imports": 58408.0
+    },
+    {
+      "date": "2012-08-01",
+      "trade_balance": -7684.0,
+      "exports": 50444.0,
+      "imports": 58128.0
+    },
+    {
+      "date": "2012-09-01",
+      "trade_balance": -5682.0,
+      "exports": 53579.0,
+      "imports": 59261.0
+    },
+    {
+      "date": "2012-10-01",
+      "trade_balance": -5562.0,
+      "exports": 51480.0,
+      "imports": 57042.0
+    },
+    {
+      "date": "2012-11-01",
+      "trade_balance": -9570.0,
+      "exports": 49832.0,
+      "imports": 59402.0
+    },
+    {
+      "date": "2012-12-01",
+      "trade_balance": -6458.0,
+      "exports": 52985.0,
+      "imports": 59443.0
+    },
+    {
+      "date": "2013-01-01",
+      "trade_balance": -16331.0,
+      "exports": 47986.0,
+      "imports": 64317.0
+    },
+    {
+      "date": "2013-02-01",
+      "trade_balance": -7733.0,
+      "exports": 52833.0,
+      "imports": 60566.0
+    },
+    {
+      "date": "2013-03-01",
+      "trade_balance": -3569.0,
+      "exports": 62702.0,
+      "imports": 66271.0
+    },
+    {
+      "date": "2013-04-01",
+      "trade_balance": -8773.0,
+      "exports": 57758.0,
+      "imports": 66531.0
+    },
+    {
+      "date": "2013-05-01",
+      "trade_balance": -9913.0,
+      "exports": 57652.0,
+      "imports": 67565.0
+    },
+    {
+      "date": "2013-06-01",
+      "trade_balance": -1805.0,
+      "exports": 60586.0,
+      "imports": 62391.0
+    },
+    {
+      "date": "2013-07-01",
+      "trade_balance": -10325.0,
+      "exports": 59585.0,
+      "imports": 69910.0
+    },
+    {
+      "date": "2013-08-01",
+      "trade_balance": -9714.0,
+      "exports": 57821.0,
+      "imports": 67535.0
+    },
+    {
+      "date": "2013-09-01",
+      "trade_balance": -9432.0,
+      "exports": 59710.0,
+      "imports": 69142.0
+    },
+    {
+      "date": "2013-10-01",
+      "trade_balance": -11004.0,
+      "exports": 61030.0,
+      "imports": 72034.0
+    },
+    {
+      "date": "2013-11-01",
+      "trade_balance": -13011.0,
+      "exports": 58988.0,
+      "imports": 71999.0
+    },
+    {
+      "date": "2013-12-01",
+      "trade_balance": -13071.0,
+      "exports": 61092.0,
+      "imports": 74163.0
+    },
+    {
+      "date": "2014-01-01",
+      "trade_balance": -27951.0,
+      "exports": 52519.0,
+      "imports": 80470.0
+    },
+    {
+      "date": "2014-02-01",
+      "trade_balance": -8061.0,
+      "exports": 57992.0,
+      "imports": 66053.0
+    },
+    {
+      "date": "2014-03-01",
+      "trade_balance": -14501.0,
+      "exports": 63833.0,
+      "imports": 78334.0
+    },
+    {
+      "date": "2014-04-01",
+      "trade_balance": -8255.0,
+      "exports": 60672.0,
+      "imports": 68927.0
+    },
+    {
+      "date": "2014-05-01",
+      "trade_balance": -9172.0,
+      "exports": 56060.0,
+      "imports": 65232.0
+    },
+    {
+      "date": "2014-06-01",
+      "trade_balance": -8341.0,
+      "exports": 59400.0,
+      "imports": 67741.0
+    },
+    {
+      "date": "2014-07-01",
+      "trade_balance": -9666.0,
+      "exports": 61919.0,
+      "imports": 71585.0
+    },
+    {
+      "date": "2014-08-01",
+      "trade_balance": -9532.0,
+      "exports": 57048.0,
+      "imports": 66580.0
+    },
+    {
+      "date": "2014-09-01",
+      "trade_balance": -9620.0,
+      "exports": 63821.0,
+      "imports": 73441.0
+    },
+    {
+      "date": "2014-10-01",
+      "trade_balance": -7418.0,
+      "exports": 66873.0,
+      "imports": 74291.0
+    },
+    {
+      "date": "2014-11-01",
+      "trade_balance": -8988.0,
+      "exports": 61875.0,
+      "imports": 70863.0
+    },
+    {
+      "date": "2014-12-01",
+      "trade_balance": -6656.0,
+      "exports": 68918.0,
+      "imports": 75574.0
+    },
+    {
+      "date": "2015-01-01",
+      "trade_balance": -11605.0,
+      "exports": 61409.0,
+      "imports": 73014.0
+    },
+    {
+      "date": "2015-02-01",
+      "trade_balance": -4261.0,
+      "exports": 59407.0,
+      "imports": 63668.0
+    },
+    {
+      "date": "2015-03-01",
+      "trade_balance": 2234.0,
+      "exports": 69267.0,
+      "imports": 67033.0
+    },
+    {
+      "date": "2015-04-01",
+      "trade_balance": -583.0,
+      "exports": 65488.0,
+      "imports": 66071.0
+    },
+    {
+      "date": "2015-05-01",
+      "trade_balance": -2153.0,
+      "exports": 57379.0,
+      "imports": 59532.0
+    },
+    {
+      "date": "2015-06-01",
+      "trade_balance": -609.0,
+      "exports": 65047.0,
+      "imports": 65656.0
+    },
+    {
+      "date": "2015-07-01",
+      "trade_balance": -2614.0,
+      "exports": 66629.0,
+      "imports": 69243.0
+    },
+    {
+      "date": "2015-08-01",
+      "trade_balance": -5675.0,
+      "exports": 58802.0,
+      "imports": 64477.0
+    },
+    {
+      "date": "2015-09-01",
+      "trade_balance": -1213.0,
+      "exports": 64133.0,
+      "imports": 65346.0
+    },
+    {
+      "date": "2015-10-01",
+      "trade_balance": 1048.0,
+      "exports": 65413.0,
+      "imports": 64365.0
+    },
+    {
+      "date": "2015-11-01",
+      "trade_balance": -3875.0,
+      "exports": 59787.0,
+      "imports": 63662.0
+    },
+    {
+      "date": "2015-12-01",
+      "trade_balance": 1389.0,
+      "exports": 63378.0,
+      "imports": 61989.0
+    },
+    {
+      "date": "2016-01-01",
+      "trade_balance": -6570.0,
+      "exports": 53505.0,
+      "imports": 60075.0
+    },
+    {
+      "date": "2016-02-01",
+      "trade_balance": 2355.0,
+      "exports": 57023.0,
+      "imports": 54668.0
+    },
+    {
+      "date": "2016-03-01",
+      "trade_balance": 7449.0,
+      "exports": 64568.0,
+      "imports": 57119.0
+    },
+    {
+      "date": "2016-04-01",
+      "trade_balance": 8113.0,
+      "exports": 58896.0,
+      "imports": 50783.0
+    },
+    {
+      "date": "2016-05-01",
+      "trade_balance": -474.0,
+      "exports": 50919.0,
+      "imports": 51393.0
+    },
+    {
+      "date": "2016-06-01",
+      "trade_balance": 6864.0,
+      "exports": 60253.0,
+      "imports": 53389.0
+    },
+    {
+      "date": "2016-07-01",
+      "trade_balance": 5045.0,
+      "exports": 57284.0,
+      "imports": 52239.0
+    },
+    {
+      "date": "2016-08-01",
+      "trade_balance": -346.0,
+      "exports": 53164.0,
+      "imports": 53510.0
+    },
+    {
+      "date": "2016-09-01",
+      "trade_balance": 4865.0,
+      "exports": 59689.0,
+      "imports": 54824.0
+    },
+    {
+      "date": "2016-10-01",
+      "trade_balance": 4811.0,
+      "exports": 58702.0,
+      "imports": 53891.0
+    },
+    {
+      "date": "2016-11-01",
+      "trade_balance": 1465.0,
+      "exports": 59564.0,
+      "imports": 58099.0
+    },
+    {
+      "date": "2016-12-01",
+      "trade_balance": 6359.0,
+      "exports": 66789.0,
+      "imports": 60430.0
+    },
+    {
+      "date": "2017-01-01",
+      "trade_balance": -11051.0,
+      "exports": 54209.0,
+      "imports": 65260.0
+    },
+    {
+      "date": "2017-02-01",
+      "trade_balance": 8045.0,
+      "exports": 63471.0,
+      "imports": 55426.0
+    },
+    {
+      "date": "2017-03-01",
+      "trade_balance": 6035.0,
+      "exports": 72280.0,
+      "imports": 66245.0
+    },
+    {
+      "date": "2017-04-01",
+      "trade_balance": 4783.0,
+      "exports": 63302.0,
+      "imports": 58519.0
+    },
+    {
+      "date": "2017-05-01",
+      "trade_balance": -2044.0,
+      "exports": 58516.0,
+      "imports": 60560.0
+    },
+    {
+      "date": "2017-06-01",
+      "trade_balance": 4333.0,
+      "exports": 66080.0,
+      "imports": 61747.0
+    },
+    {
+      "date": "2017-07-01",
+      "trade_balance": 4066.0,
+      "exports": 64946.0,
+      "imports": 60880.0
+    },
+    {
+      "date": "2017-08-01",
+      "trade_balance": 968.0,
+      "exports": 62785.0,
+      "imports": 61817.0
+    },
+    {
+      "date": "2017-09-01",
+      "trade_balance": 6538.0,
+      "exports": 68107.0,
+      "imports": 61569.0
+    },
+    {
+      "date": "2017-10-01",
+      "trade_balance": 2786.0,
+      "exports": 66929.0,
+      "imports": 64143.0
+    },
+    {
+      "date": "2017-11-01",
+      "trade_balance": 1052.0,
+      "exports": 69200.0,
+      "imports": 68148.0
+    },
+    {
+      "date": "2017-12-01",
+      "trade_balance": 3562.0,
+      "exports": 73039.0,
+      "imports": 69477.0
+    },
+    {
+      "date": "2018-01-01",
+      "trade_balance": -9638.0,
+      "exports": 60860.0,
+      "imports": 70498.0
+    },
+    {
+      "date": "2018-02-01",
+      "trade_balance": -139.0,
+      "exports": 64628.0,
+      "imports": 64767.0
+    },
+    {
+      "date": "2018-03-01",
+      "trade_balance": 7842.0,
+      "exports": 73821.0,
+      "imports": 65979.0
+    },
+    {
+      "date": "2018-04-01",
+      "trade_balance": 6210.0,
+      "exports": 68223.0,
+      "imports": 62013.0
+    },
+    {
+      "date": "2018-05-01",
+      "trade_balance": -5773.0,
+      "exports": 63269.0,
+      "imports": 69042.0
+    },
+    {
+      "date": "2018-06-01",
+      "trade_balance": 7277.0,
+      "exports": 70538.0,
+      "imports": 63261.0
+    },
+    {
+      "date": "2018-07-01",
+      "trade_balance": -2274.0,
+      "exports": 67479.0,
+      "imports": 69753.0
+    },
+    {
+      "date": "2018-08-01",
+      "trade_balance": -4481.0,
+      "exports": 66878.0,
+      "imports": 71359.0
+    },
+    {
+      "date": "2018-09-01",
+      "trade_balance": 1241.0,
+      "exports": 67168.0,
+      "imports": 65927.0
+    },
+    {
+      "date": "2018-10-01",
+      "trade_balance": -4562.0,
+      "exports": 72435.0,
+      "imports": 76997.0
+    },
+    {
+      "date": "2018-11-01",
+      "trade_balance": -7391.0,
+      "exports": 69271.0,
+      "imports": 76662.0
+    },
+    {
+      "date": "2018-12-01",
+      "trade_balance": -557.0,
+      "exports": 70218.0,
+      "imports": 70775.0
+    },
+    {
+      "date": "2019-01-01",
+      "trade_balance": -14241.0,
+      "exports": 55744.0,
+      "imports": 69985.0
+    },
+    {
+      "date": "2019-02-01",
+      "trade_balance": 3287.0,
+      "exports": 63854.0,
+      "imports": 60567.0
+    },
+    {
+      "date": "2019-03-01",
+      "trade_balance": 5172.0,
+      "exports": 72021.0,
+      "imports": 66849.0
+    },
+    {
+      "date": "2019-04-01",
+      "trade_balance": 590.0,
+      "exports": 66643.0,
+      "imports": 66053.0
+    },
+    {
+      "date": "2019-05-01",
+      "trade_balance": -9654.0,
+      "exports": 58378.0,
+      "imports": 68032.0
+    },
+    {
+      "date": "2019-06-01",
+      "trade_balance": 5881.0,
+      "exports": 65851.0,
+      "imports": 59970.0
+    },
+    {
+      "date": "2019-07-01",
+      "trade_balance": -2538.0,
+      "exports": 66435.0,
+      "imports": 68973.0
+    },
+    {
+      "date": "2019-08-01",
+      "trade_balance": -1522.0,
+      "exports": 61387.0,
+      "imports": 62909.0
+    },
+    {
+      "date": "2019-09-01",
+      "trade_balance": -1291.0,
+      "exports": 63690.0,
+      "imports": 64981.0
+    },
+    {
+      "date": "2019-10-01",
+      "trade_balance": 112.0,
+      "exports": 65762.0,
+      "imports": 65650.0
+    },
+    {
+      "date": "2019-11-01",
+      "trade_balance": -884.0,
+      "exports": 63790.0,
+      "imports": 64674.0
+    },
+    {
+      "date": "2019-12-01",
+      "trade_balance": -1591.0,
+      "exports": 65761.0,
+      "imports": 67352.0
+    },
+    {
+      "date": "2020-01-01",
+      "trade_balance": -13155.0,
+      "exports": 54323.0,
+      "imports": 67478.0
+    },
+    {
+      "date": "2020-02-01",
+      "trade_balance": 11097.0,
+      "exports": 63197.0,
+      "imports": 52100.0
+    },
+    {
+      "date": "2020-03-01",
+      "trade_balance": 19.0,
+      "exports": 63571.0,
+      "imports": 63552.0
+    },
+    {
+      "date": "2020-04-01",
+      "trade_balance": -9455.0,
+      "exports": 52049.0,
+      "imports": 61504.0
+    },
+    {
+      "date": "2020-05-01",
+      "trade_balance": -8698.0,
+      "exports": 41856.0,
+      "imports": 50554.0
+    },
+    {
+      "date": "2020-06-01",
+      "trade_balance": -3032.0,
+      "exports": 48603.0,
+      "imports": 51635.0
+    },
+    {
+      "date": "2020-07-01",
+      "trade_balance": -328.0,
+      "exports": 53680.0,
+      "imports": 54008.0
+    },
+    {
+      "date": "2020-08-01",
+      "trade_balance": 2161.0,
+      "exports": 52331.0,
+      "imports": 50170.0
+    },
+    {
+      "date": "2020-09-01",
+      "trade_balance": 6523.0,
+      "exports": 60538.0,
+      "imports": 54015.0
+    },
+    {
+      "date": "2020-10-01",
+      "trade_balance": 8408.0,
+      "exports": 65648.0,
+      "imports": 57240.0
+    },
+    {
+      "date": "2020-11-01",
+      "trade_balance": 3259.0,
+      "exports": 61130.0,
+      "imports": 57871.0
+    },
+    {
+      "date": "2020-12-01",
+      "trade_balance": 7082.0,
+      "exports": 67065.0,
+      "imports": 59983.0
+    },
+    {
+      "date": "2021-01-01",
+      "trade_balance": -3707.0,
+      "exports": 57795.0,
+      "imports": 61502.0
+    },
+    {
+      "date": "2021-02-01",
+      "trade_balance": 1673.0,
+      "exports": 60383.0,
+      "imports": 58710.0
+    },
+    {
+      "date": "2021-03-01",
+      "trade_balance": 6099.0,
+      "exports": 73776.0,
+      "imports": 67677.0
+    },
+    {
+      "date": "2021-04-01",
+      "trade_balance": 2179.0,
+      "exports": 71803.0,
+      "imports": 69624.0
+    },
+    {
+      "date": "2021-05-01",
+      "trade_balance": -2178.0,
+      "exports": 62606.0,
+      "imports": 64784.0
+    },
+    {
+      "date": "2021-06-01",
+      "trade_balance": 3612.0,
+      "exports": 72238.0,
+      "imports": 68626.0
+    },
+    {
+      "date": "2021-07-01",
+      "trade_balance": 4284.0,
+      "exports": 73547.0,
+      "imports": 69263.0
+    },
+    {
+      "date": "2021-08-01",
+      "trade_balance": -6635.0,
+      "exports": 66049.0,
+      "imports": 72684.0
+    },
+    {
+      "date": "2021-09-01",
+      "trade_balance": -6490.0,
+      "exports": 68405.0,
+      "imports": 74895.0
+    },
+    {
+      "date": "2021-10-01",
+      "trade_balance": -907.0,
+      "exports": 71832.0,
+      "imports": 72739.0
+    },
+    {
+      "date": "2021-11-01",
+      "trade_balance": -9735.0,
+      "exports": 73670.0,
+      "imports": 83405.0
+    },
+    {
+      "date": "2021-12-01",
+      "trade_balance": -6031.0,
+      "exports": 78811.0,
+      "imports": 84842.0
+    },
+    {
+      "date": "2022-01-01",
+      "trade_balance": -22497.0,
+      "exports": 63303.0,
+      "imports": 85800.0
+    },
+    {
+      "date": "2022-02-01",
+      "trade_balance": -7376.0,
+      "exports": 71889.0,
+      "imports": 79265.0
+    },
+    {
+      "date": "2022-03-01",
+      "trade_balance": -4920.0,
+      "exports": 84585.0,
+      "imports": 89505.0
+    },
+    {
+      "date": "2022-04-01",
+      "trade_balance": -8882.0,
+      "exports": 80753.0,
+      "imports": 89635.0
+    },
+    {
+      "date": "2022-05-01",
+      "trade_balance": -24033.0,
+      "exports": 72509.0,
+      "imports": 96542.0
+    },
+    {
+      "date": "2022-06-01",
+      "trade_balance": -14011.0,
+      "exports": 86137.0,
+      "imports": 100148.0
+    },
+    {
+      "date": "2022-07-01",
+      "trade_balance": -14798.0,
+      "exports": 87528.0,
+      "imports": 102326.0
+    },
+    {
+      "date": "2022-08-01",
+      "trade_balance": -27911.0,
+      "exports": 80605.0,
+      "imports": 108516.0
+    },
+    {
+      "date": "2022-09-01",
+      "trade_balance": -21253.0,
+      "exports": 88176.0,
+      "imports": 109429.0
+    },
+    {
+      "date": "2022-10-01",
+      "trade_balance": -22060.0,
+      "exports": 90013.0,
+      "imports": 112073.0
+    },
+    {
+      "date": "2022-11-01",
+      "trade_balance": -20576.0,
+      "exports": 88368.0,
+      "imports": 108944.0
+    },
+    {
+      "date": "2022-12-01",
+      "trade_balance": -14980.0,
+      "exports": 87868.0,
+      "imports": 102848.0
+    },
+    {
+      "date": "2023-01-01",
+      "trade_balance": -35389.0,
+      "exports": 65500.0,
+      "imports": 100889.0
+    },
+    {
+      "date": "2023-02-01",
+      "trade_balance": -9417.0,
+      "exports": 76540.0,
+      "imports": 85957.0
+    },
+    {
+      "date": "2023-03-01",
+      "trade_balance": -7552.0,
+      "exports": 88230.0,
+      "imports": 95782.0
+    },
+    {
+      "date": "2023-04-01",
+      "trade_balance": -4621.0,
+      "exports": 82909.0,
+      "imports": 87530.0
+    },
+    {
+      "date": "2023-05-01",
+      "trade_balance": -13881.0,
+      "exports": 72918.0,
+      "imports": 86799.0
+    },
+    {
+      "date": "2023-06-01",
+      "trade_balance": 354.0,
+      "exports": 87408.0,
+      "imports": 87054.0
+    },
+    {
+      "date": "2023-07-01",
+      "trade_balance": -680.0,
+      "exports": 87241.0,
+      "imports": 87921.0
+    },
+    {
+      "date": "2023-08-01",
+      "trade_balance": -9522.0,
+      "exports": 79942.0,
+      "imports": 89464.0
+    },
+    {
+      "date": "2023-09-01",
+      "trade_balance": 330.0,
+      "exports": 91986.0,
+      "imports": 91656.0
+    },
+    {
+      "date": "2023-10-01",
+      "trade_balance": -7029.0,
+      "exports": 91451.0,
+      "imports": 98480.0
+    },
+    {
+      "date": "2023-11-01",
+      "trade_balance": -8138.0,
+      "exports": 88180.0,
+      "imports": 96318.0
+    },
+    {
+      "date": "2023-12-01",
+      "trade_balance": 323.0,
+      "exports": 96424.0,
+      "imports": 96101.0
+    },
+    {
+      "date": "2024-01-01",
+      "trade_balance": -17923.0,
+      "exports": 73326.0,
+      "imports": 91249.0
+    },
+    {
+      "date": "2024-02-01",
+      "trade_balance": -4302.0,
+      "exports": 82489.0,
+      "imports": 86791.0
+    },
+    {
+      "date": "2024-03-01",
+      "trade_balance": 3439.0,
+      "exports": 94749.0,
+      "imports": 91310.0
+    },
+    {
+      "date": "2024-04-01",
+      "trade_balance": -5154.0,
+      "exports": 89796.0,
+      "imports": 94950.0
+    },
+    {
+      "date": "2024-05-01",
+      "trade_balance": -12299.0,
+      "exports": 82773.0,
+      "imports": 95072.0
+    },
+    {
+      "date": "2024-06-01",
+      "trade_balance": 2155.0,
+      "exports": 92089.0,
+      "imports": 89934.0
+    },
+    {
+      "date": "2024-07-01",
+      "trade_balance": -6405.0,
+      "exports": 96116.0,
+      "imports": 102521.0
+    },
+    {
+      "date": "2024-08-01",
+      "trade_balance": -7456.0,
+      "exports": 84325.0,
+      "imports": 91781.0
+    },
+    {
+      "date": "2024-09-01",
+      "trade_balance": -3335.0,
+      "exports": 90369.0,
+      "imports": 93704.0
+    },
+    {
+      "date": "2024-10-01",
+      "trade_balance": -5000.0,
+      "exports": 94257.0,
+      "imports": 99257.0
+    },
+    {
+      "date": "2024-11-01",
+      "trade_balance": -1208.0,
+      "exports": 91520.0,
+      "imports": 92728.0
+    },
+    {
+      "date": "2024-12-01",
+      "trade_balance": 1203.0,
+      "exports": 99066.0,
+      "imports": 97863.0
+    },
+    {
+      "date": "2025-01-01",
+      "trade_balance": -27417.0,
+      "exports": 78652.0,
+      "imports": 106069.0
+    },
+    {
+      "date": "2025-02-01",
+      "trade_balance": 5855.0,
+      "exports": 91901.0,
+      "imports": 86046.0
+    },
+    {
+      "date": "2025-03-01",
+      "trade_balance": 5543.0,
+      "exports": 98526.0,
+      "imports": 92983.0
+    },
+    {
+      "date": "2025-04-01",
+      "trade_balance": -1283.0,
+      "exports": 91572.0,
+      "imports": 92855.0
+    },
+    {
+      "date": "2025-05-01",
+      "trade_balance": -6425.0,
+      "exports": 81345.0,
+      "imports": 87770.0
+    },
+    {
+      "date": "2025-06-01",
+      "trade_balance": 1477.0,
+      "exports": 91627.0,
+      "imports": 90150.0
+    },
+    {
+      "date": "2025-07-01",
+      "trade_balance": -1232.0,
+      "exports": 93595.0,
+      "imports": 94827.0
+    },
+    {
+      "date": "2025-08-01",
+      "trade_balance": -2502.0,
+      "exports": 84258.0,
+      "imports": 86760.0
+    },
+    {
+      "date": "2025-09-01",
+      "trade_balance": -2424.0,
+      "exports": 94133.0,
+      "imports": 96557.0
+    },
+    {
+      "date": "2025-10-01",
+      "trade_balance": -2321.0,
+      "exports": 97662.0,
+      "imports": 99983.0
+    },
+    {
+      "date": "2025-11-01",
+      "trade_balance": 3111.0,
+      "exports": 97095.0,
+      "imports": 93984.0
+    },
+    {
+      "date": "2025-12-01",
+      "trade_balance": 1135.0,
+      "exports": 104083.0,
+      "imports": 102948.0
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "trade_balance": 1135.0,
+    "exports": 104083.0,
+    "imports": 102948.0
+  },
+  "metadata": {
+    "source": "財務省貿易統計（税関）",
+    "source_url": "https://www.customs.go.jp/toukei/suii/html/data/d41ma.csv",
+    "description": "Japan Balance of Trade (Customs Basis)",
+    "unit": "100 Million Yen (億円)",
+    "frequency": "Monthly",
+    "basis": "Customs (通関ベース)"
+  },
+  "last_updated": "2026-02-11T23:18:04.384562+09:00"
+}

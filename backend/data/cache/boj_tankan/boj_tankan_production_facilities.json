@@ -32,7 +32,7 @@
   "data_type": "production_facilities",
   "name": "生産・営業用設備判断指数（DI）",
   "unit": "%ポイント",
-  "last_updated": "2026-01-12T15:37:24.267295",
+  "last_updated": "2026-02-11T15:00:06.347774",
   "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
   "cached": false,
   "source": "boj"

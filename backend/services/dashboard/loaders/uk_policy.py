@@ -66,6 +66,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         "boe_inflation_expectations",
         "boe_dmp_survey",
         "uk_public_sector_net_borrowing",
+        "uk_qt",
     ]
 
     def __init__(self):
@@ -89,7 +90,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         return stale
 
@@ -132,6 +133,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         from services.uk.boe_inflation_expectations_service import boe_inflation_expectations_service
         from services.uk.boe_dmp_survey_service import boe_dmp_survey_service
         from services.uk.ons_public_sector_net_borrowing_service import ons_public_sector_net_borrowing_service
+        from services.uk.uk_qt_service import uk_qt_service
 
         result = {
             "boe_bank_rate": None,
@@ -148,10 +150,11 @@ class UKPolicyLoader(BaseDashboardLoader):
             "boe_inflation_expectations": None,
             "boe_dmp_survey": None,
             "uk_public_sector_net_borrowing": None,
+            "uk_qt": None,
         }
 
         # 並列でデータを取得（基本仕様・常設のみ）
-        with ThreadPoolExecutor(max_workers=14) as executor:
+        with ThreadPoolExecutor(max_workers=15) as executor:
             futures = {
                 executor.submit(self._get_boe_bank_rate, boe_bank_rate_service): "boe_bank_rate",
                 executor.submit(self._get_boe_mpc_voting, boe_mpc_voting_service): "boe_mpc_voting",
@@ -167,6 +170,7 @@ class UKPolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_boe_inflation_expectations, boe_inflation_expectations_service): "boe_inflation_expectations",
                 executor.submit(self._get_boe_dmp_survey, boe_dmp_survey_service): "boe_dmp_survey",
                 executor.submit(self._get_uk_public_sector_net_borrowing, ons_public_sector_net_borrowing_service): "uk_public_sector_net_borrowing",
+                executor.submit(self._get_uk_qt, uk_qt_service): "uk_qt",
             }
 
             for future in as_completed(futures):
@@ -416,3 +420,18 @@ class UKPolicyLoader(BaseDashboardLoader):
                 "metadata": {},
                 "next_release": None,
             }
+
+    def _get_uk_qt(self, service) -> dict:
+        """UK QT（APFギルト保有残高）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("uk_qt")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting UK QT: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}

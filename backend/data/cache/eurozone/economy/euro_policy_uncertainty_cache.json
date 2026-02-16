@@ -1242,16 +1242,20 @@
     },
     {
       "date": "2025-11-01",
-      "value": 426.3
+      "value": 426.74
     },
     {
       "date": "2025-12-01",
-      "value": 362.99
+      "value": 351.5
+    },
+    {
+      "date": "2026-01-01",
+      "value": 371.74
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 362.99
+    "date": "2026-01-01",
+    "value": 371.74
   },
   "metadata": {
     "source": "FRED (Federal Reserve Economic Data)",
@@ -1261,5 +1265,5 @@
     "frequency": "Monthly",
     "description": "News-based index of economic policy uncertainty for Europe"
   },
-  "last_updated": "2026-01-30T02:32:28.789817+09:00"
+  "last_updated": "2026-02-14T19:55:54.287321+09:00"
 }

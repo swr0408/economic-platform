@@ -144,8 +144,7 @@ class USAInflationLoader(BaseDashboardLoader):
             発表日時を過ぎた指標名のセット
         """
         if last_updated is None:
-            # キャッシュがない場合は全指標を更新対象とする
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)

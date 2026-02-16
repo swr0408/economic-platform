@@ -19,6 +19,11 @@ export interface USAPolicyData {
   policy_rate: PolicyRateItem[] | null
   term_premium: TermPremiumItem[] | null
   kw_term_premium: KWTermPremiumItem[] | null
+  sofr_volatility: SOFRVolatilityData | null
+  on_rrp: ONRRPData | null
+  federal_budget: FederalBudgetData | null
+  cbo_projections: CBOProjectionsData | null
+  cre_loan_delinquency: CRELoanDelinquencyData | null
   frb_total_assets: FRBTotalAssetsItem[] | null
   reserve_balances: ReserveBalancesItem[] | null
   tga: TGAItem[] | null
@@ -80,6 +85,112 @@ export interface OASData {
   hy_spread: OASItem[]
   ig_spread: OASItem[]
   hy_yield: OASItem[]
+}
+
+export interface SOFRVolatilityItem {
+  date: string
+  sofr: number
+  sofr_change: number
+  volatility_20d: number | null
+}
+
+export interface ONRRPItem {
+  date: string
+  value: number
+  value_raw: number
+}
+
+export interface ONRRPData {
+  data: ONRRPItem[]
+  latest: ONRRPItem | null
+  metadata: {
+    source?: string
+    unit?: string
+    description?: string
+    operation_time?: string
+  }
+}
+
+export interface SOFRVolatilityData {
+  data: SOFRVolatilityItem[]
+  latest: SOFRVolatilityItem | null
+  metadata: {
+    source?: string
+    unit?: string
+    rolling_window?: number
+    description?: string
+    release_time?: string
+  }
+}
+
+export interface FederalBudgetItem {
+  date: string
+  receipts: number
+  outlays: number
+  deficit_surplus: number
+  fiscal_year?: number
+}
+
+export interface FederalBudgetData {
+  data: FederalBudgetItem[]
+  latest: FederalBudgetItem | null
+  metadata: {
+    source?: string
+    dataset?: string
+    unit?: string
+    description?: string
+    release_schedule?: string
+  }
+  next_release?: { date: string; label: string } | null
+}
+
+export interface CBOProjectionItem {
+  fiscal_year: number
+  value: number
+}
+
+export interface CBOProjectionsData {
+  data: {
+    debt: CBOProjectionItem[]
+    deficit: CBOProjectionItem[]
+    revenue: CBOProjectionItem[]
+    outlay: CBOProjectionItem[]
+  }
+  latest_baseline_date: string | null
+  projection_years: number[]
+  metadata: {
+    source?: string
+    dataset?: string
+    unit?: string
+    description?: string
+    github_repo?: string
+  }
+}
+
+// CREローン延滞率データの型
+export interface CRELoanDelinquencyItem {
+  date: string
+  all_banks: number | null
+  top_100: number | null
+  other_banks: number | null
+}
+
+export interface CRELoanDelinquencyNextRelease {
+  date: string
+  label: string
+}
+
+export interface CRELoanDelinquencyData {
+  data: CRELoanDelinquencyItem[]
+  latest: CRELoanDelinquencyItem | null
+  metadata: {
+    source?: string
+    description?: string
+    unit?: string
+    frequency?: string
+    series?: Record<string, string>
+  }
+  next_release: CRELoanDelinquencyNextRelease | null
 }
 
 // 米国経済データの型
@@ -2467,9 +2578,39 @@ export interface BOJPolicyRateNextRelease {
   estimate?: number | null
 }
 
+// 日銀バランスシートデータの型
+export interface JapanBalanceSheetItem {
+  date: string
+  value: number // 億円
+  value_trillion: number // 兆円
+}
+
+export interface JapanBalanceSheetNextRelease {
+  date: string
+  time?: string
+  datetime_jst?: string
+  as_of?: string
+  label?: string
+}
+
+export interface JapanBalanceSheetData {
+  data: JapanBalanceSheetItem[]
+  latest: JapanBalanceSheetItem | null
+  metadata: {
+    source?: string
+    description?: string
+    unit?: string
+    display_unit?: string
+    frequency?: string
+    series_id?: string
+  }
+  next_release: JapanBalanceSheetNextRelease | null
+}
+
 // 日本金融政策ダッシュボードデータの型
 export interface JapanPolicyData {
   boj_policy_rate: BOJPolicyRateData | null
+  japan_balance_sheet: JapanBalanceSheetData | null
 }
 
 /**
@@ -2906,6 +3047,52 @@ export interface JapanCapitalInvestmentData {
   next_release?: JapanEconomyNextRelease | null
 }
 
+// 経常収支データポイント
+export interface JapanCurrentAccountDataPoint {
+  date: string
+  current_account: number // 10億円
+  goods_services?: number | null
+  primary_income?: number | null
+  secondary_income?: number | null
+}
+
+// 経常収支データ
+export interface JapanCurrentAccountData {
+  data: JapanCurrentAccountDataPoint[]
+  latest: JapanCurrentAccountDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 経常収支対GDP比データポイント
+export interface JapanCurrentAccountGdpRatioDataPoint {
+  date: string // YYYY-QN形式
+  ratio: number // %
+  current_account: number // 億円（四半期合計）
+  nominal_gdp: number // 億円
+}
+
+// 経常収支対GDP比データ
+export interface JapanCurrentAccountGdpRatioData {
+  data: JapanCurrentAccountGdpRatioDataPoint[]
+  latest: JapanCurrentAccountGdpRatioDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
+// 貿易収支データポイント
+export interface JapanBalanceOfTradeDataPoint {
+  date: string
+  trade_balance: number // 億円
+  exports?: number | null // 億円
+  imports?: number | null // 億円
+}
+
+// 貿易収支データ
+export interface JapanBalanceOfTradeData {
+  data: JapanBalanceOfTradeDataPoint[]
+  latest: JapanBalanceOfTradeDataPoint | null
+  next_release?: JapanEconomyNextRelease | null
+}
+
 // 日本経済ダッシュボードデータの型
 export interface JapanEconomyDashboardData {
   quarterly_gdp: JapanQuarterlyGDPData | null
@@ -2915,6 +3102,9 @@ export interface JapanEconomyDashboardData {
   machinery_orders: JapanMachineryOrdersData | null
   machine_tool_orders: JapanMachineToolOrdersData | null
   capital_investment: JapanCapitalInvestmentData | null
+  current_account: JapanCurrentAccountData | null
+  current_account_gdp_ratio: JapanCurrentAccountGdpRatioData | null
+  balance_of_trade: JapanBalanceOfTradeData | null
 }
 
 /**
@@ -3085,6 +3275,17 @@ export interface ECBAdjustedLoansNextRelease {
   datetime_jst?: string
 }
 
+// ECBバランスシートデータの型
+export interface ECBBalanceSheetData {
+  data: ECBBalanceSheetItem[]
+  latest: ECBBalanceSheetItem | null
+}
+
+export interface ECBBalanceSheetItem {
+  date: string
+  value: number  // 百万ユーロ
+}
+
 // ユーロ圏金融政策ダッシュボードデータの型
 export interface EurozonePolicyData {
   ecb_rates: ECBRatesData | null
@@ -3092,6 +3293,7 @@ export interface EurozonePolicyData {
   ecb_macro_projections: ECBMacroProjectionsData | null
   ecb_m3: ECBM3Data | null
   ecb_bank_interest_rates: ECBBankInterestRatesData | null
+  ecb_balance_sheet: ECBBalanceSheetData | null
 }
 
 // ECB CISS（システミックストレス総合指標）データの型
@@ -3409,6 +3611,31 @@ export interface UKPublicSectorNetBorrowingData {
   next_release?: UKPublicSectorNetBorrowingNextRelease | null
 }
 
+// UK QT（APFギルト保有残高）データの型
+export interface UKQTDataPoint {
+  date: string
+  value: number // GBP billions
+}
+
+export interface UKQTData {
+  data: UKQTDataPoint[]
+  latest: UKQTDataPoint | null
+  metadata: {
+    source?: string
+    indicator?: string
+    series_code?: string
+    unit?: string
+    frequency?: string
+    description?: string
+  }
+  next_release?: {
+    date: string
+    time_london?: string
+    time_jst?: string
+    datetime_jst?: string
+  } | null
+}
+
 // イギリス金融政策ダッシュボードデータの型（基本仕様・常設のみ）
 // ※ CPI構成項目（boe_cpi_components）は2025年11月以降の拡張データのため除外
 // ※ CPI寄与度（boe_cpi_contributions）は分解粒度が号で変わりやすいため除外
@@ -3427,6 +3654,7 @@ export interface UKPolicyData {
   boe_inflation_expectations: BOEInflationExpectationsData | null
   boe_dmp_survey: BOEDMPSurveyData | null
   uk_public_sector_net_borrowing: UKPublicSectorNetBorrowingData | null
+  uk_qt: UKQTData | null
 }
 
 // ONS GDP データの型
@@ -3630,6 +3858,113 @@ export interface UKPMIData {
   next_release?: UKPMINextRelease | null
 }
 
+// UK貿易収支データの型
+export interface UKTradeBalanceDataPoint {
+  date: string
+  value: number // £ billions
+  value_millions?: number
+}
+
+export interface UKTradeBalanceMoMChangePoint {
+  date: string
+  value: number // £ billions (前月増減幅)
+}
+
+export interface UKTradeBalanceNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
+export interface UKTradeBalanceData {
+  data: UKTradeBalanceDataPoint[]
+  mom_change: UKTradeBalanceMoMChangePoint[]
+  latest: UKTradeBalanceDataPoint | null
+  metadata: {
+    title?: string
+    cdid?: string
+    unit?: string
+    source?: string
+    release_date?: string
+    description?: string
+  }
+  next_release?: UKTradeBalanceNextRelease | null
+}
+
+// UK経常収支データの型
+export interface UKCurrentAccountDataPoint {
+  date: string
+  value: number // £ billions
+  value_millions?: number
+}
+
+export interface UKCurrentAccountQoQChangePoint {
+  date: string
+  value: number // £ billions (前期増減幅)
+}
+
+export interface UKCurrentAccountGdpRatioPoint {
+  date: string
+  value: number // % of GDP
+}
+
+export interface UKCurrentAccountNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
+export interface UKCurrentAccountData {
+  data: UKCurrentAccountDataPoint[]
+  qoq_change: UKCurrentAccountQoQChangePoint[]
+  gdp_ratio: UKCurrentAccountGdpRatioPoint[]
+  latest: UKCurrentAccountDataPoint | null
+  metadata: {
+    title?: string
+    cdid?: string
+    unit?: string
+    source?: string
+    release_date?: string
+    description?: string
+  }
+  next_release?: UKCurrentAccountNextRelease | null
+}
+
+// UK政府債務残高対GDP比データの型
+export interface UKGovernmentDebtToGdpRatioDataPoint {
+  date: string
+  value: number // % of GDP
+}
+
+export interface UKGovernmentDebtToGdpRatioMoMChangePoint {
+  date: string
+  value: number // %ポイント（前月増減幅）
+}
+
+export interface UKGovernmentDebtToGdpRatioNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
+export interface UKGovernmentDebtToGdpRatioData {
+  data: UKGovernmentDebtToGdpRatioDataPoint[]
+  mom_change: UKGovernmentDebtToGdpRatioMoMChangePoint[]
+  latest: UKGovernmentDebtToGdpRatioDataPoint | null
+  metadata: {
+    title?: string
+    cdid?: string
+    unit?: string
+    source?: string
+    release_date?: string
+    description?: string
+  }
+  next_release?: UKGovernmentDebtToGdpRatioNextRelease | null
+}
+
 // UK経済ダッシュボードデータの型
 export interface UKEconomyDashboardData {
   ons_gdp: ONSGDPData | null
@@ -3637,6 +3972,9 @@ export interface UKEconomyDashboardData {
   ons_production: ONSProductionData | null
   cbi_industrial_trends: CBIIndustrialTrendsData | null
   uk_pmi: UKPMIData | null
+  uk_trade_balance: UKTradeBalanceData | null
+  uk_current_account: UKCurrentAccountData | null
+  uk_government_debt_to_gdp_ratio: UKGovernmentDebtToGdpRatioData | null
 }
 
 /**
@@ -4827,6 +5165,37 @@ export interface EurozoneEconomyData {
   eu_terms_of_trade: EUTermsOfTradeData | null
   ecb_current_account: ECBCurrentAccountData | null
   france_business_confidence: FranceBusinessConfidenceData | null
+  eu_government_debt_to_gdp_ratio: EUGovernmentDebtToGdpRatioData | null
+}
+
+// EU政府債務残高対GDP比データの型
+export interface EUGovernmentDebtToGdpRatioDataPoint {
+  date: string
+  value: number // % of GDP
+  quarter?: string
+}
+
+export interface EUGovernmentDebtToGdpRatioNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+}
+
+export interface EUGovernmentDebtToGdpRatioData {
+  countries: Record<string, EUGovernmentDebtToGdpRatioDataPoint[]>
+  ea20: EUGovernmentDebtToGdpRatioDataPoint[]
+  qoq_change?: EUGovernmentDebtToGdpRatioDataPoint[]
+  latest: EUGovernmentDebtToGdpRatioDataPoint | null
+  metadata: {
+    title?: string
+    source?: string
+    dataset?: string
+    unit?: string
+    description?: string
+    updated?: string
+  }
+  next_release?: EUGovernmentDebtToGdpRatioNextRelease | null
 }
 
 // フランス企業信頼感データの型
@@ -5164,6 +5533,18 @@ export function useEurozoneConsumerDashboard(): UseQueryResult<DashboardResponse
   return useDashboardData<EurozoneConsumerData>('eurozone', 'consumer')
 }
 
+// ECB CES賃金期待データの型
+export interface ECBCesWageExpectationsData {
+  data: ECBCesWageExpectationsItem[]
+  latest: ECBCesWageExpectationsItem | null
+  next_release: { date: string; datetime_jst?: string; time_jst?: string; label?: string } | null
+}
+
+export interface ECBCesWageExpectationsItem {
+  date: string
+  value: number  // % change (household income expectations 12m ahead)
+}
+
 // ユーロ圏雇用ダッシュボードデータの型
 export interface EurozoneEmploymentData {
   ecb_unemployment: ECBUnemploymentData | null
@@ -5175,6 +5556,7 @@ export interface EurozoneEmploymentData {
   indeed_euro_wage: IndeedEuroWageData | null
   germany_unemployment: GermanyUnemploymentData | null
   eurostat_job_vacancy: EurostatJobVacancyData | null
+  ecb_ces_wage_expectations: ECBCesWageExpectationsData | null
 }
 
 // ECB失業率データの型
@@ -5950,9 +6332,40 @@ export interface CHUnemploymentRateData {
   next_release: ChSnbRateNextRelease | null
 }
 
+// スイス求人情報データ項目
+export interface CHJobVacanciesItem {
+  date: string
+  value: number | null
+}
+
+// スイス求人情報データ
+export interface CHJobVacanciesData {
+  data: CHJobVacanciesItem[]
+  latest: CHJobVacanciesItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス名目賃金上昇率データ項目
+export interface CHNominalWageGrowthItem {
+  date: string
+  value: number | null
+  period?: string  // 元の四半期表記（例: "2024-Q3"）
+}
+
+// スイス名目賃金上昇率データ
+export interface CHNominalWageGrowthData {
+  data: CHNominalWageGrowthItem[]
+  latest: CHNominalWageGrowthItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
 // スイス雇用ダッシュボードデータの型
 export interface SwitzerlandEmploymentData {
   ch_unemployment_rate: CHUnemploymentRateData | null
+  ch_job_vacancies: CHJobVacanciesData | null
+  ch_nominal_wage_growth: CHNominalWageGrowthData | null
 }
 
 /**
@@ -5967,8 +6380,7 @@ export function useSwitzerlandEmploymentDashboard(): UseQueryResult<DashboardRes
 export interface CHGrowthRateItem {
   date: string
   qoq: number | null  // 前期比（季節調整 + スポーツ調整済み）
-  yoy: number | null  // 前年比（スポーツ調整済み、TradingEconomics準拠）
-  yoy_unadjusted: number | null  // 前年比（調整前、Investing.com準拠）
+  yoy: number | null  // 前年比（調整前）
   annualized: number | null  // 年率換算
 }
 
@@ -5980,15 +6392,1414 @@ export interface CHGrowthRateData {
   next_release: ChSnbRateNextRelease | null
 }
 
+// スイス鉱工業生産 月次データ項目
+export interface CHIndustrialProductionMonthlyItem {
+  date: string
+  mom: number | null  // 前月比
+  yoy: number | null  // 前年比
+}
+
+// スイス鉱工業生産 四半期データ項目
+export interface CHIndustrialProductionQuarterlyItem {
+  date: string
+  qoq: number | null  // 前期比
+  yoy: number | null  // 前年比
+}
+
+// スイス鉱工業生産データ
+export interface CHIndustrialProductionData {
+  monthly_data: CHIndustrialProductionMonthlyItem[]
+  quarterly_data: CHIndustrialProductionQuarterlyItem[]
+  latest_monthly: CHIndustrialProductionMonthlyItem | null
+  latest_quarterly: CHIndustrialProductionQuarterlyItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス家計消費データ項目
+export interface CHHouseholdsAndNpishItem {
+  date: string
+  qoq: number | null  // 前期比（季節調整済み）
+  yoy: number | null  // 前年比（調整前）
+}
+
+// スイス家計消費データ
+export interface CHHouseholdsAndNpishData {
+  data: CHHouseholdsAndNpishItem[]
+  latest: CHHouseholdsAndNpishItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイスPMIデータ項目
+export interface CHPmiItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+  period?: string
+}
+
+// スイスPMIデータ
+export interface CHPmiData {
+  manufacturing_data: CHPmiItem[]
+  services_data: CHPmiItem[]
+  latest_manufacturing: CHPmiItem | null
+  latest_services: CHPmiItem | null
+  metadata: Record<string, unknown>
+  next_release: ChSnbRateNextRelease | null
+}
+
+// スイス貿易収支データ
+export interface CHBalanceOfTradeDataPoint {
+  date: string
+  value: number
+  exports: number
+  imports: number
+}
+
+export interface CHBalanceOfTradeMoMChangePoint {
+  date: string
+  value: number
+}
+
+export interface CHBalanceOfTradeNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CHBalanceOfTradeData {
+  data: CHBalanceOfTradeDataPoint[]
+  mom_change: CHBalanceOfTradeMoMChangePoint[]
+  latest: CHBalanceOfTradeDataPoint | null
+  metadata: Record<string, unknown>
+  next_release?: CHBalanceOfTradeNextRelease | null
+}
+
+// スイス経常収支データ項目
+export interface CHCurrentAccountItem {
+  date: string
+  value: number             // 経常収支（B CHF）
+  qoq_change?: number       // 前期比変化額（B CHF）
+}
+
+// スイス経常収支データ
+export interface CHCurrentAccountData {
+  data: CHCurrentAccountItem[]
+  qoq_change: { date: string; value: number }[]
+  latest: CHCurrentAccountItem | null
+  metadata: Record<string, unknown>
+  next_release?: CHBalanceOfTradeNextRelease | null
+}
+
+// スイス経常収支対GDP比データ項目
+export interface CHCurrentAccountGdpRatioItem {
+  date: string
+  value: number             // 経常収支対GDP比（%）
+  current_account?: number  // 経常収支（M CHF）
+  gdp?: number              // GDP（M CHF）
+}
+
+// スイス経常収支対GDP比データ
+export interface CHCurrentAccountGdpRatioData {
+  data: CHCurrentAccountGdpRatioItem[]
+  latest: CHCurrentAccountGdpRatioItem | null
+  metadata: Record<string, unknown>
+  next_release?: CHBalanceOfTradeNextRelease | null
+}
+
 // スイス経済ダッシュボードデータの型
 export interface SwitzerlandEconomyData {
   ch_growth_rate: CHGrowthRateData | null
+  ch_industrial_production: CHIndustrialProductionData | null
+  ch_households_and_npish: CHHouseholdsAndNpishData | null
+  ch_pmi: CHPmiData | null
+  ch_balance_of_trade: CHBalanceOfTradeData | null
+  ch_current_account: CHCurrentAccountData | null
+  ch_current_account_gdp_ratio: CHCurrentAccountGdpRatioData | null
 }
 
 /**
  * スイス経済ダッシュボード専用フック
- * GDP成長率などを取得
+ * GDP成長率、鉱工業生産などを取得
  */
 export function useSwitzerlandEconomyDashboard(): UseQueryResult<DashboardResponse<SwitzerlandEconomyData>, Error> {
   return useDashboardData<SwitzerlandEconomyData>('switzerland', 'economy')
+}
+
+// スイス住宅ローン金利データ項目
+export interface CHMortgageRatesItem {
+  date: string
+  variable_500k_1m: number | null  // 変動金利（50万〜100万CHF）
+  variable_1m_5m: number | null    // 変動金利（100万〜500万CHF）
+  fixed_500k_1m: number | null     // 固定金利（50万〜100万CHF）
+  fixed_1m_5m: number | null       // 固定金利（100万〜500万CHF）
+}
+
+// スイス住宅ローン金利データ
+export interface CHMortgageRatesData {
+  data: CHMortgageRatesItem[]
+  latest: CHMortgageRatesItem | null
+  metadata: Record<string, unknown>
+  next_release: string | null
+}
+
+// スイス住宅ローン残高データ項目
+export interface CHMortgageBalanceItem {
+  date: string
+  value: number           // 十億CHF単位
+  value_chf?: number      // CHF単位（元データ）
+  mom?: number            // 前月比（%）
+  yoy?: number            // 前年比（%）
+}
+
+// スイス住宅ローン残高データ
+export interface CHMortgageBalanceData {
+  data: CHMortgageBalanceItem[]
+  latest: CHMortgageBalanceItem | null
+  metadata: Record<string, unknown>
+  next_release: string | null
+}
+
+// スイス新規住宅ローン融資額データ項目
+export interface CHNewMortgageLoansItem {
+  date: string
+  quarter: string
+  value: number  // 百万CHF単位
+  qoq?: number   // 前期比（%）
+  yoy?: number   // 前年比（%）
+}
+
+// スイス新規住宅ローン融資額データ
+export interface CHNewMortgageLoansData {
+  data: CHNewMortgageLoansItem[]
+  latest: CHNewMortgageLoansItem | null
+  metadata: Record<string, unknown>
+  next_release: string | null
+}
+
+// スイス住宅価格指数データ項目
+export interface CHHousingPricesItem {
+  date: string
+  quarter: string
+  value: number  // 指数 (2020Q1=100)
+  qoq?: number   // 前期比（%）
+  yoy?: number   // 前年比（%）
+}
+
+// スイス住宅価格指数データ
+export interface CHHousingPricesData {
+  data: CHHousingPricesItem[]
+  latest: CHHousingPricesItem | null
+  metadata: Record<string, unknown>
+  next_release: string | null
+}
+
+// スイス住宅ダッシュボードデータの型
+export interface SwitzerlandHousingData {
+  ch_mortgage_rates: CHMortgageRatesData | null
+  ch_mortgage_balance: CHMortgageBalanceData | null
+  ch_new_mortgage_loans: CHNewMortgageLoansData | null
+  ch_housing_prices: CHHousingPricesData | null
+}
+
+/**
+ * スイス住宅ダッシュボード専用フック
+ * 住宅ローン金利などを取得
+ */
+export function useSwitzerlandHousingDashboard(): UseQueryResult<DashboardResponse<SwitzerlandHousingData>, Error> {
+  return useDashboardData<SwitzerlandHousingData>('switzerland', 'housing')
+}
+
+// =============================================================================
+// カナダ (Canada)
+// =============================================================================
+
+// カナダBOC政策金利データ項目
+export interface CaBocRateItem {
+  date: string
+  value: number
+}
+
+// カナダBOC政策金利の次回発表日
+export interface CaBocRateNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_toronto: string
+  time_toronto: string
+  label: string
+  estimate?: number | null
+}
+
+// カナダBOC政策金利データ
+export interface CaBocRateData {
+  data: CaBocRateItem[]
+  latest: CaBocRateItem | null
+  metadata: Record<string, unknown>
+  next_release: CaBocRateNextRelease | null
+}
+
+// BOC金融政策報告書データ項目
+export interface BocMprSeriesItem {
+  date: string
+  value: number
+}
+
+// BOC金融政策報告書の比較項目
+export interface BocMprComparisonItem {
+  date: string
+  latest: number | null
+  previous: number | null
+  diff: number | null
+}
+
+// BOC金融政策報告書の系列比較
+export interface BocMprSeriesComparison {
+  label: string
+  data: BocMprComparisonItem[]
+}
+
+// BOC金融政策報告書レポート
+export interface BocMprReport {
+  period: string
+  report_date: string
+  report_label: string
+  series: {
+    gdp_qoq: BocMprSeriesItem[]
+    gdp_yoy: BocMprSeriesItem[]
+    cpi_yoy: BocMprSeriesItem[]
+    core_yoy: BocMprSeriesItem[]
+  }
+}
+
+// BOC金融政策報告書の比較データ
+export interface BocMprComparison {
+  latest_period: string
+  previous_period: string
+  series_comparison: {
+    gdp_qoq: BocMprSeriesComparison
+    gdp_yoy: BocMprSeriesComparison
+    cpi_yoy: BocMprSeriesComparison
+    core_yoy: BocMprSeriesComparison
+  }
+}
+
+// BOC金融政策報告書データ
+export interface BocMprData {
+  latest_report: BocMprReport | null
+  previous_report: BocMprReport | null
+  comparison: BocMprComparison | null
+  metadata: Record<string, unknown>
+}
+
+// BOCバランスシートデータ項目
+export interface BocBalanceSheetItem {
+  date: string
+  value: number
+}
+
+// BOCバランスシートデータ
+export interface BocBalanceSheetData {
+  data: BocBalanceSheetItem[]
+  latest: BocBalanceSheetItem | null
+  metadata: Record<string, unknown>
+}
+
+// カナダ銀行バランスシート（チャータード銀行）データ
+export interface CanadaBanksBalanceSheetItem {
+  date: string
+  value: number
+}
+
+export interface CanadaBanksBalanceSheetData {
+  data: CanadaBanksBalanceSheetItem[]
+  latest: CanadaBanksBalanceSheetItem | null
+  metadata: Record<string, unknown>
+}
+
+// CORRA（カナダ翌日物レポ平均金利）データ項目
+export interface CaCorraItem {
+  date: string
+  value: number
+}
+
+// CORRAデータ
+export interface CaCorraData {
+  data: CaCorraItem[]
+  latest: CaCorraItem | null
+  metadata: Record<string, unknown>
+}
+
+// 決済残高（Settlement Balances）データ項目
+export interface CaSettlementBalancesItem {
+  date: string
+  value: number  // 百万CAD
+}
+
+// 決済残高の日次/週次データセット
+export interface CaSettlementBalancesDataset {
+  data: CaSettlementBalancesItem[]
+  latest: CaSettlementBalancesItem | null
+  metadata: Record<string, unknown>
+}
+
+// 決済残高データ（日次と週次の両方を含む）
+export interface CaSettlementBalancesData {
+  data: CaSettlementBalancesItem[]
+  latest: CaSettlementBalancesItem | null
+  metadata: Record<string, unknown>
+  daily: CaSettlementBalancesDataset
+  weekly: CaSettlementBalancesDataset
+}
+
+// 政府預金（Government Deposits）データ項目
+export interface CaGovernmentDepositsItem {
+  date: string
+  value: number | null  // 百万CAD（total）
+  total: number | null  // 合計
+  boc: number | null    // BOC保有分
+  ap: number | null     // オークション参加者保有分
+}
+
+// 政府預金データ
+export interface CaGovernmentDepositsData {
+  data: CaGovernmentDepositsItem[]
+  latest: CaGovernmentDepositsItem | null
+  metadata: Record<string, unknown>
+}
+
+// カナダ金融政策ダッシュボードデータの型
+export interface CanadaPolicyData {
+  ca_boc_rate: CaBocRateData | null
+  boc_mpr: BocMprData | null
+  boc_balance_sheet: BocBalanceSheetData | null
+  canada_banks_balance_sheet: CanadaBanksBalanceSheetData | null
+  ca_corra: CaCorraData | null
+  ca_settlement_balances: CaSettlementBalancesData | null
+  ca_government_deposits: CaGovernmentDepositsData | null
+}
+
+/**
+ * カナダ金融政策ダッシュボード専用フック
+ * BOC政策金利などを取得
+ */
+export function useCanadaPolicyDashboard(): UseQueryResult<DashboardResponse<CanadaPolicyData>, Error> {
+  return useDashboardData<CanadaPolicyData>('canada', 'policy')
+}
+
+// ===== カナダ物価 =====
+
+// カナダCPIデータ項目
+export interface CaCpiItem {
+  date: string
+  yoy?: number
+  mom?: number
+  index?: number
+  trim?: number
+  median?: number
+  common?: number
+}
+
+// カナダCPIデータ
+export interface CaCpiData {
+  data: CaCpiItem[]
+  latest: CaCpiItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダIPPIデータ項目
+export interface CaIppiItem {
+  date: string
+  yoy?: number
+  mom?: number
+  index?: number
+}
+
+// カナダIPPIデータ
+export interface CaIppiData {
+  data: CaIppiItem[]
+  latest: CaIppiItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダインフレ期待データ項目
+export interface CaInflationExpectationsItem {
+  date: string
+  exp_1y?: number
+  exp_2y?: number
+  exp_5y?: number
+}
+
+// カナダインフレ期待データ
+export interface CaInflationExpectationsData {
+  data: CaInflationExpectationsItem[]
+  latest: CaInflationExpectationsItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダCPI サービス/家賃（粘着性CPI）データ項目
+export interface CaCpiServiceRentItem {
+  date: string
+  all_items?: number
+  ex_food_energy?: number
+  services?: number
+  shelter?: number
+  rent?: number
+}
+
+// カナダCPI サービス/家賃データ
+export interface CaCpiServiceRentData {
+  data: CaCpiServiceRentItem[]
+  latest: CaCpiServiceRentItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ物価ダッシュボードデータの型
+export interface CanadaInflationData {
+  ca_cpi: CaCpiData | null
+  ca_ippi: CaIppiData | null
+  ca_inflation_expectations: CaInflationExpectationsData | null
+  ca_cpi_service_rent: CaCpiServiceRentData | null
+}
+
+/**
+ * カナダ物価ダッシュボード専用フック
+ * CPIなどを取得
+ */
+export function useCanadaInflationDashboard(): UseQueryResult<DashboardResponse<CanadaInflationData>, Error> {
+  return useDashboardData<CanadaInflationData>('canada', 'inflation')
+}
+
+// カナダ雇用者数データ項目
+export interface CaEmploymentItem {
+  date: string
+  employment?: number
+  fulltime?: number
+  parttime?: number
+  employment_change?: number
+  fulltime_change?: number
+  parttime_change?: number
+}
+
+// カナダ雇用者数データ
+export interface CaEmploymentData {
+  data: CaEmploymentItem[]
+  latest: CaEmploymentItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ失業率データ項目
+export interface CaUnemploymentRateItem {
+  date: string
+  value: number
+}
+
+// カナダ失業率データ
+export interface CaUnemploymentRateData {
+  data: CaUnemploymentRateItem[]
+  latest: CaUnemploymentRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ労働参加率データ項目
+export interface CaLaborForceParticipationRateItem {
+  date: string
+  value: number
+}
+
+// カナダ労働参加率データ
+export interface CaLaborForceParticipationRateData {
+  data: CaLaborForceParticipationRateItem[]
+  latest: CaLaborForceParticipationRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ平均時給データ項目
+export interface CaAverageHourlyWageItem {
+  date: string
+  value: number
+  yoy: number | null
+  mom: number | null
+}
+
+// カナダ平均時給データ
+export interface CaAverageHourlyWageData {
+  data: CaAverageHourlyWageItem[]
+  latest: CaAverageHourlyWageItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ週間平均給与データ項目
+export interface CaWeeklyAverageSalaryItem {
+  date: string
+  value: number
+  yoy: number | null
+  mom: number | null
+}
+
+// カナダ週間平均給与データ
+export interface CaWeeklyAverageSalaryData {
+  data: CaWeeklyAverageSalaryItem[]
+  latest: CaWeeklyAverageSalaryItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ求人率データ項目
+export interface CaJobVacancyRateItem {
+  date: string
+  value: number
+}
+
+// カナダ求人率データ
+export interface CaJobVacancyRateData {
+  data: CaJobVacancyRateItem[]
+  latest: CaJobVacancyRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ雇用ダッシュボードデータの型
+export interface CanadaEmploymentData {
+  ca_employment: CaEmploymentData | null
+  ca_unemployment_rate: CaUnemploymentRateData | null
+  ca_labor_force_participation_rate: CaLaborForceParticipationRateData | null
+  ca_average_hourly_wage: CaAverageHourlyWageData | null
+  ca_weekly_average_salary: CaWeeklyAverageSalaryData | null
+  ca_job_vacancy_rate: CaJobVacancyRateData | null
+}
+
+/**
+ * カナダ雇用ダッシュボード専用フック
+ * 雇用者数などを取得
+ */
+export function useCanadaEmploymentDashboard(): UseQueryResult<DashboardResponse<CanadaEmploymentData>, Error> {
+  return useDashboardData<CanadaEmploymentData>('canada', 'employment')
+}
+
+// ===== カナダ経済 =====
+
+// カナダGDP成長率データ項目
+export interface CaGdpGrowthItem {
+  date: string
+  value: number
+  qoq_simple?: number  // 前期比（非年率）
+  qoq?: number         // 前期比年率
+  yoy?: number         // 前年比
+}
+
+// カナダGDP成長率データ
+export interface CaGdpGrowthData {
+  data: CaGdpGrowthItem[]
+  latest: CaGdpGrowthItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ月次GDPデータ項目
+export interface CaGdpMonthlyItem {
+  date: string
+  value: number
+  mom?: number  // 前月比
+  yoy?: number  // 前年比
+}
+
+// カナダ月次GDP FMP最新データ
+export interface CaGdpMonthlyFmpLatest {
+  date: string
+  mom: number
+  estimate?: number
+  previous?: number
+  is_advance: boolean
+  source: string
+  event?: string
+  release_date?: string
+}
+
+// カナダ月次GDP速報値
+export interface CaGdpMonthlyAdvanceEstimate {
+  date: string
+  mom: number  // 前月比（速報値）
+  is_advance: boolean
+  source?: string
+  source_url?: string
+  fetched_at?: string
+  fmp_latest?: CaGdpMonthlyFmpLatest  // FMPからの最新確定値
+}
+
+// カナダ月次GDPデータ
+export interface CaGdpMonthlyData {
+  data: CaGdpMonthlyItem[]
+  latest: CaGdpMonthlyItem | null
+  advance_estimate?: CaGdpMonthlyAdvanceEstimate | null  // 速報値
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ鉱工業生産データ項目
+export interface CaIndustrialProductionItem {
+  date: string
+  value: number   // 絶対値（百万CAD、Chained 2017 dollars）
+  mom?: number    // 前月比（%）
+  yoy?: number    // 前年比（%）
+}
+
+// カナダ鉱工業生産データ
+export interface CaIndustrialProductionData {
+  data: CaIndustrialProductionItem[]
+  latest: CaIndustrialProductionItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ貿易収支データ項目
+export interface CaTradeBalanceItem {
+  date: string
+  balance: number         // 貿易収支（百万CAD）
+  exports?: number        // 輸出（百万CAD）
+  imports?: number        // 輸入（百万CAD）
+  mom?: number            // 前月比（%）
+  mom_change?: number     // 前月比変化額（百万CAD）
+  yoy?: number            // 前年比（%）
+  yoy_change?: number     // 前年比変化額（百万CAD）
+}
+
+// カナダ貿易収支データ
+export interface CaTradeBalanceData {
+  data: CaTradeBalanceItem[]
+  latest: CaTradeBalanceItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ経常収支データ項目
+export interface CaCurrentAccountItem {
+  date: string
+  value: number             // 経常収支（百万CAD）
+  qoq_change?: number       // 前期比変化額（百万CAD）
+}
+
+// カナダ経常収支データ
+export interface CaCurrentAccountData {
+  data: CaCurrentAccountItem[]
+  latest: CaCurrentAccountItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ経常収支対GDP比データ項目
+export interface CaCurrentAccountGdpRatioItem {
+  date: string
+  value: number             // 経常収支対GDP比（%）
+  current_account?: number  // 経常収支（百万CAD）
+  gdp?: number              // GDP（百万CAD）
+}
+
+// カナダ経常収支対GDP比データ
+export interface CaCurrentAccountGdpRatioData {
+  data: CaCurrentAccountGdpRatioItem[]
+  latest: CaCurrentAccountGdpRatioItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ対米輸出依存度データ項目
+export interface CaUsExportDependenceItem {
+  date: string
+  value: number           // 依存度（%）
+  us_export?: number      // 米国向け輸出（百万CAD）
+  total_export?: number   // 総輸出（百万CAD）
+  ma_3m?: number          // 3ヶ月移動平均（%）
+  ma_12m?: number         // 12ヶ月移動平均（%）
+}
+
+// カナダ対米輸出依存度データ
+export interface CaUsExportDependenceData {
+  data: CaUsExportDependenceItem[]
+  latest: CaUsExportDependenceItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダBOS（企業景況感調査）データ項目
+export interface CaBosItem {
+  date: string
+  future_sales?: number | null       // 将来売上見通し（BO）
+  investment?: number | null         // 設備投資見通し（BO）
+  employment?: number | null         // 雇用見通し（BO）
+  input_prices?: number | null       // 投入価格インフレ（BO）
+  output_prices?: number | null      // 産出価格インフレ（BO）
+  credit?: number | null             // 信用条件（BO）
+}
+
+// カナダBOS次回発表情報
+export interface CaBosNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  datetime_toronto: string
+  time_toronto: string
+  label: string
+}
+
+// カナダBOSデータ
+export interface CaBosData {
+  data: CaBosItem[]
+  latest: CaBosItem | null
+  metadata: Record<string, unknown>
+  next_release?: CaBosNextRelease | null
+}
+
+// カナダCSCE（消費者期待調査）データ項目
+export interface CaCsceItem {
+  date: string
+  inflation_1y?: number | null       // 1年先インフレ期待
+  inflation_2y?: number | null       // 2年先インフレ期待
+  inflation_5y?: number | null       // 5年先インフレ期待
+  wage_next_12m?: number | null      // 賃金成長期待（次の12ヶ月）
+  wage_past_12m?: number | null      // 賃金成長実績（過去12ヶ月）
+  prob_lose_job?: number | null      // 失業確率
+  prob_leave_job?: number | null     // 自発的退職確率
+  prob_find_job?: number | null      // 求職成功確率
+  income_growth?: number | null      // 所得成長期待
+  spending_growth?: number | null    // 支出成長期待
+}
+
+// カナダCSCE次回発表情報
+export interface CaCsceNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  datetime_toronto: string
+  time_toronto: string
+  label: string
+}
+
+// カナダCSCEデータ
+export interface CaCsceData {
+  data: CaCsceItem[]
+  latest: CaCsceItem | null
+  metadata: Record<string, unknown>
+  next_release?: CaCsceNextRelease | null
+}
+
+// カナダSLOS（貸出態度調査）データ項目
+export interface CaSlosItem {
+  date: string
+  business?: number | null           // 企業向け貸出条件（BO）
+  mortgage?: number | null           // 住宅ローン貸出条件（BO）
+  non_mortgage?: number | null       // 非住宅ローン貸出条件（BO）
+}
+
+// カナダSLOS次回発表情報
+export interface CaSlosNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  datetime_toronto: string
+  time_toronto: string
+  label: string
+}
+
+// カナダSLOSデータ
+export interface CaSlosData {
+  data: CaSlosItem[]
+  latest: CaSlosItem | null
+  metadata: Record<string, unknown>
+  next_release?: CaSlosNextRelease | null
+}
+
+// カナダ Ivey PMI データ項目
+export interface CaIveyPmiItem {
+  date: string
+  value: number
+}
+
+// カナダ Ivey PMI データ
+export interface CaIveyPmiData {
+  data: CaIveyPmiItem[]
+  latest: CaIveyPmiItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    datetime_jst?: string
+    time_jst?: string
+    datetime_toronto?: string
+    time_toronto?: string
+    label?: string
+    estimate?: number | null
+  } | null
+}
+
+// カナダ S&P Global PMI データ項目
+export interface CaSpPmiItem {
+  date: string
+  value: number
+}
+
+// カナダ S&P Global PMI 系列データ
+export interface CaSpPmiSeriesData {
+  data: CaSpPmiItem[]
+  latest: CaSpPmiItem | null
+}
+
+// カナダ S&P Global PMI 次回発表
+export interface CaSpPmiNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  datetime_toronto?: string
+  time_toronto?: string
+  label?: string
+  estimate?: number | null
+}
+
+// カナダ S&P Global PMI データ（3系列）
+export interface CaSpPmiData {
+  manufacturing: CaSpPmiSeriesData | null
+  services: CaSpPmiSeriesData | null
+  composite: CaSpPmiSeriesData | null
+  next_release: CaSpPmiNextRelease | null
+  last_updated: string | null
+}
+
+// カナダ経済ダッシュボードデータの型
+export interface CanadaEconomyData {
+  ca_gdp_growth: CaGdpGrowthData | null
+  ca_gdp_monthly: CaGdpMonthlyData | null
+  ca_industrial_production: CaIndustrialProductionData | null
+  ca_trade_balance: CaTradeBalanceData | null
+  ca_current_account: CaCurrentAccountData | null
+  ca_current_account_gdp_ratio: CaCurrentAccountGdpRatioData | null
+  ca_us_export_dependence: CaUsExportDependenceData | null
+  ca_bos: CaBosData | null
+  ca_csce: CaCsceData | null
+  ca_slos: CaSlosData | null
+  ca_ivey_pmi: CaIveyPmiData | null
+  ca_sp_pmi: CaSpPmiData | null
+}
+
+/**
+ * カナダ経済ダッシュボード専用フック
+ * GDP成長率などを取得
+ */
+export function useCanadaEconomyDashboard(): UseQueryResult<DashboardResponse<CanadaEconomyData>, Error> {
+  return useDashboardData<CanadaEconomyData>('canada', 'economy')
+}
+
+// ===== カナダ消費者 =====
+
+// カナダ小売売上高データ項目
+export interface CaRetailSalesItem {
+  date: string
+  total_value: number
+  ex_auto_value: number
+  ex_auto_gas_value: number
+  total_mom?: number
+  total_yoy?: number
+  ex_auto_mom?: number
+  ex_auto_yoy?: number
+  ex_auto_gas_mom?: number
+  ex_auto_gas_yoy?: number
+}
+
+// カナダ小売売上高速報値
+export interface CaRetailSalesAdvanceEstimate {
+  date: string
+  total_mom: number
+}
+
+// カナダ小売売上高データ
+export interface CaRetailSalesData {
+  data: CaRetailSalesItem[]
+  latest: CaRetailSalesItem | null
+  advance_estimate?: CaRetailSalesAdvanceEstimate | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ家計DSRデータ項目
+export interface CaDebtServiceRatioItem {
+  date: string
+  value: number           // 総合DSR（%）
+  mortgage?: number       // 住宅ローンDSR（%）
+  non_mortgage?: number   // 非住宅ローンDSR（%）
+}
+
+// カナダ家計DSRデータ
+export interface CaDebtServiceRatioData {
+  data: CaDebtServiceRatioItem[]
+  latest: CaDebtServiceRatioItem | null
+  metadata: Record<string, unknown>
+  next_release?: {
+    date: string
+    time_jst?: string
+    label?: string
+  } | null
+}
+
+// カナダ消費者ダッシュボードデータの型
+export interface CanadaConsumerData {
+  ca_retail_sales: CaRetailSalesData | null
+}
+
+/**
+ * カナダ消費者ダッシュボード専用フック
+ * 小売売上高などを取得
+ */
+export function useCanadaConsumerDashboard(): UseQueryResult<DashboardResponse<CanadaConsumerData>, Error> {
+  return useDashboardData<CanadaConsumerData>('canada', 'consumer')
+}
+
+// ===== カナダ住宅 =====
+
+// カナダ住宅着工件数データ項目
+export interface CaHousingStartsItem {
+  date: string
+  value: number  // 千件
+  mom?: number   // 前月比（%）
+  yoy?: number   // 前年比（%）
+}
+
+// カナダ住宅着工件数次回発表情報
+export interface CaHousingStartsNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  datetime_toronto: string // ISO8601形式（トロント時間）
+  time_toronto: string   // HH:MM形式
+  label: string          // 例: "Housing Starts (Jan)"
+  estimate: number | null
+}
+
+// カナダ住宅着工件数データ
+export interface CaHousingStartsData {
+  data: CaHousingStartsItem[]
+  latest: CaHousingStartsItem | null
+  metadata: Record<string, unknown>
+  next_release?: CaHousingStartsNextRelease | null
+}
+
+// カナダ建築許可データ項目
+export interface CaBuildingPermitsItem {
+  date: string
+  value: number  // 百万カナダドル
+  mom?: number   // 前月比（%）
+  yoy?: number   // 前年比（%）
+}
+
+// カナダ建築許可次回発表情報
+export interface CaBuildingPermitsNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  datetime_toronto: string // ISO8601形式（トロント時間）
+  time_toronto: string   // HH:MM形式
+  label: string          // 例: "Building Permits (Jan)"
+  estimate: number | null
+}
+
+// カナダ建築許可データ
+export interface CaBuildingPermitsData {
+  data: CaBuildingPermitsItem[]
+  latest: CaBuildingPermitsItem | null
+  metadata: Record<string, unknown>
+  next_release?: CaBuildingPermitsNextRelease | null
+}
+
+// カナダ新築住宅価格指数データ項目
+export interface CaNewHousingPriceIndexItem {
+  date: string
+  mom?: number   // 前月比（%）
+  yoy?: number   // 前年比（%）
+}
+
+// カナダ新築住宅価格指数次回発表情報
+export interface CaNewHousingPriceIndexNextRelease {
+  date: string           // YYYY-MM-DD形式
+  datetime_jst: string   // ISO8601形式（JST）
+  time_jst: string       // HH:MM形式
+  datetime_toronto: string // ISO8601形式（トロント時間）
+  time_toronto: string   // HH:MM形式
+  label: string          // 例: "New Housing Price Index MoM (Dec)"
+  estimate: number | null
+}
+
+// カナダ新築住宅価格指数データ
+export interface CaNewHousingPriceIndexData {
+  data: CaNewHousingPriceIndexItem[]
+  latest: CaNewHousingPriceIndexItem | null
+  metadata: Record<string, unknown>
+  next_release?: CaNewHousingPriceIndexNextRelease | null
+}
+
+// カナダ住宅ダッシュボードデータの型
+export interface CanadaHousingData {
+  ca_housing_starts: CaHousingStartsData | null
+  ca_building_permits: CaBuildingPermitsData | null
+  ca_new_housing_price_index: CaNewHousingPriceIndexData | null
+  ca_debt_service_ratio: CaDebtServiceRatioData | null
+}
+
+/**
+ * カナダ住宅ダッシュボード専用フック
+ * 住宅着工件数、建築許可などを取得
+ */
+export function useCanadaHousingDashboard(): UseQueryResult<DashboardResponse<CanadaHousingData>, Error> {
+  return useDashboardData<CanadaHousingData>('canada', 'housing')
+}
+
+// ===== オーストラリア金融政策 =====
+
+// RBA政策金利データ項目
+export interface AuRbaRateItem {
+  date: string
+  value: number
+}
+
+// RBA政策金利の次回発表日
+export interface AuRbaRateNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_sydney: string
+  time_sydney: string
+  label: string
+  estimate?: number | null
+}
+
+// RBA政策金利データ
+export interface AuRbaRateData {
+  data: AuRbaRateItem[]
+  latest: AuRbaRateItem | null
+  metadata: Record<string, unknown>
+  next_release: AuRbaRateNextRelease | null
+}
+
+// ASX RBA Rate Tracker サマリ
+export interface AsxRateTrackerSummary {
+  current_rate: number | null
+  last_rate_change: number | null
+  last_meeting_date: string | null
+  next_meeting_date: string | null
+  settlement_date: string | null
+  settlement_price: number | null
+  market_expectation_pct: number | null
+  future_cash_rate: number | null
+  future_rate_change: number | null
+  expiry_month: number | null
+  expiry_year: number | null
+}
+
+// ASX 確率推移データ
+export interface AsxProbabilityDay {
+  date: string
+  prob_no_change: number
+  prob_change: number
+}
+
+// ASX 確率メタ情報
+export interface AsxProbabilityMeta {
+  future_cash_rate: number | null
+  future_rate_change: number | null
+}
+
+// ASX イールドカーブデータポイント
+export interface AsxYieldCurvePoint {
+  month: string
+  implied_yield: number
+}
+
+// ASX イールドカーブ
+export interface AsxYieldCurveData {
+  settlement_date: string | null
+  target_rate: number | null
+  data: AsxYieldCurvePoint[]
+}
+
+// ASX RBA Rate Trackerデータ
+export interface AsxRateTrackerData {
+  summary: AsxRateTrackerSummary | null
+  probability_history: AsxProbabilityDay[]
+  probability_meta: AsxProbabilityMeta | null
+  yield_curve: AsxYieldCurveData | null
+}
+
+// RBA SMP経済予測データの型
+export interface RbaSmpForecastPoint {
+  date: string
+  value: number | null
+}
+
+export interface RbaSmpIndicatorData {
+  latest: RbaSmpForecastPoint[]
+  previous: RbaSmpForecastPoint[]
+}
+
+export interface RbaSmpForecastMetadata {
+  latest_publication: string
+  previous_publication: string
+  source: string
+  last_updated: string
+}
+
+export interface RbaSmpForecastData {
+  indicators: {
+    cash_rate: RbaSmpIndicatorData
+    gdp: RbaSmpIndicatorData
+    household_consumption: RbaSmpIndicatorData
+    employment: RbaSmpIndicatorData
+    unemployment_rate: RbaSmpIndicatorData
+    cpi: RbaSmpIndicatorData
+    trimmed_mean: RbaSmpIndicatorData
+  }
+  metadata: RbaSmpForecastMetadata
+}
+
+// オーストラリア金融政策ダッシュボードデータの型
+export interface AustraliaPolicyData {
+  au_rba_rate: AuRbaRateData | null
+  au_asx_rate_tracker: AsxRateTrackerData | null
+  au_monetary_policy: RbaSmpForecastData | null
+}
+
+/**
+ * オーストラリア金融政策ダッシュボード専用フック
+ * RBA政策金利などを取得
+ */
+export function useAustraliaPolicyDashboard(): UseQueryResult<DashboardResponse<AustraliaPolicyData>, Error> {
+  return useDashboardData<AustraliaPolicyData>('australia', 'policy')
+}
+
+// ABS 月次CPIデータの型
+export interface AuMonthlyCpiDataPoint {
+  date: string
+  cpi_yoy: number | null
+  cpi_mom: number | null
+  trimmed_mean_yoy: number | null
+  trimmed_mean_mom: number | null
+  weighted_median_yoy: number | null
+  weighted_median_mom: number | null
+}
+
+export interface AuMonthlyCpiData {
+  data: AuMonthlyCpiDataPoint[]
+  latest: AuMonthlyCpiDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release: { date: string; event: string } | null
+}
+
+// AU CPIカテゴリ別データの型
+export interface AuCpiCategoriesDataPoint {
+  date: string
+  goods_yoy: number | null
+  goods_mom: number | null
+  services_yoy: number | null
+  services_mom: number | null
+  electricity_yoy: number | null
+  electricity_mom: number | null
+  rents_yoy: number | null
+  rents_mom: number | null
+  new_dwellings_yoy: number | null
+  new_dwellings_mom: number | null
+  food_yoy: number | null
+  food_mom: number | null
+}
+
+export interface AuCpiCategoriesData {
+  data: AuCpiCategoriesDataPoint[]
+  latest: AuCpiCategoriesDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release: { date: string; event: string } | null
+}
+
+// AU 四半期CPIデータの型
+export interface AuQuarterlyCpiDataPoint {
+  date: string
+  cpi_qoq: number | null
+  cpi_yoy: number | null
+  cpi_sa_yoy: number | null
+  trimmed_mean_yoy: number | null
+  weighted_median_yoy: number | null
+  trimmed_mean_qoq: number | null
+  weighted_median_qoq: number | null
+}
+
+export interface AuQuarterlyCpiData {
+  data: AuQuarterlyCpiDataPoint[]
+  latest: AuQuarterlyCpiDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release: { date: string; event: string } | null
+}
+
+// AU 四半期PPIデータの型
+export interface AuQuarterlyPpiDataPoint {
+  date: string
+  ppi_qoq: number | null
+  ppi_yoy: number | null
+}
+
+export interface AuQuarterlyPpiData {
+  data: AuQuarterlyPpiDataPoint[]
+  latest: AuQuarterlyPpiDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release: { date: string; event: string } | null
+}
+
+// AU インフレ期待データの型
+export interface AuInflationExpectationsDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface AuInflationExpectationsData {
+  data: AuInflationExpectationsDataPoint[]
+  latest: AuInflationExpectationsDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release: { date: string; event: string } | null
+}
+
+// NAB企業調査 コスト・価格チャート（PDFスクリーンショット）の型
+export interface NabCostPriceScreenshot {
+  key: string
+  label: string
+  label_ja: string
+  url: string | null
+  exists: boolean
+}
+
+export interface NabCostPriceData {
+  screenshots: NabCostPriceScreenshot[]
+  last_updated: string | null
+  next_release: { date: string; label?: string } | null
+  pdf_name?: string
+}
+
+// オーストラリア物価ダッシュボードデータの型
+export interface AustraliaInflationData {
+  au_monthly_cpi: AuMonthlyCpiData | null
+  au_cpi_categories: AuCpiCategoriesData | null
+  au_quarterly_cpi: AuQuarterlyCpiData | null
+  au_quarterly_ppi: AuQuarterlyPpiData | null
+  au_inflation_expectations: AuInflationExpectationsData | null
+  au_nab_cost_price: NabCostPriceData | null
+}
+
+/**
+ * オーストラリア物価ダッシュボード専用フック
+ * ABS月次CPIなどを取得
+ */
+export function useAustraliaInflationDashboard(): UseQueryResult<DashboardResponse<AustraliaInflationData>, Error> {
+  return useDashboardData<AustraliaInflationData>('australia', 'inflation')
 }

@@ -33,6 +33,15 @@ from services.dashboard.loaders.switzerland_inflation import SwitzerlandInflatio
 from services.dashboard.loaders.switzerland_consumer import SwitzerlandConsumerLoader
 from services.dashboard.loaders.switzerland_employment import SwitzerlandEmploymentLoader
 from services.dashboard.loaders.switzerland_economy import SwitzerlandEconomyLoader
+from services.dashboard.loaders.switzerland_housing import SwitzerlandHousingLoader
+from services.dashboard.loaders.canada_policy import CanadaPolicyLoader
+from services.dashboard.loaders.canada_inflation import CanadaInflationLoader
+from services.dashboard.loaders.canada_employment import CanadaEmploymentLoader
+from services.dashboard.loaders.canada_economy import CanadaEconomyLoader
+from services.dashboard.loaders.canada_consumer import CanadaConsumerLoader
+from services.dashboard.loaders.canada_housing import CanadaHousingLoader
+from services.dashboard.loaders.australia_policy import AustraliaPolicyLoader
+from services.dashboard.loaders.australia_inflation import AustraliaInflationLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -73,6 +82,19 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
     ("switzerland", "inflation"): SwitzerlandInflationLoader,
     ("switzerland", "consumer"): SwitzerlandConsumerLoader,
     ("switzerland", "employment"): SwitzerlandEmploymentLoader,
+    ("switzerland", "housing"): SwitzerlandHousingLoader,
+
+    # カナダ
+    ("canada", "policy"): CanadaPolicyLoader,
+    ("canada", "economy"): CanadaEconomyLoader,
+    ("canada", "inflation"): CanadaInflationLoader,
+    ("canada", "employment"): CanadaEmploymentLoader,
+    ("canada", "consumer"): CanadaConsumerLoader,
+    ("canada", "housing"): CanadaHousingLoader,
+
+    # オーストラリア
+    ("australia", "policy"): AustraliaPolicyLoader,
+    ("australia", "inflation"): AustraliaInflationLoader,
 
     # 他の国も同様に追加可能
 }

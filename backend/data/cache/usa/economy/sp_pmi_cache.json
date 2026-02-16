@@ -2370,12 +2370,12 @@
     }
   },
   "next_release": {
-    "date": "2026-02-02",
-    "datetime_utc": "2026-02-02T14:45:00+00:00",
-    "datetime_jst": "2026-02-02T23:45:00+09:00",
+    "date": "2026-02-20",
+    "datetime_utc": "2026-02-20T14:45:00+00:00",
+    "datetime_jst": "2026-02-20T23:45:00+09:00",
     "time_jst": "23:45",
-    "label": "S&P Global Manufacturing PMI (Jan)",
-    "estimate": 51.9
+    "label": "S&P Global Manufacturing PMI (Feb)",
+    "estimate": null
   },
-  "last_updated": "2026-01-30T23:00:06.215252+09:00"
+  "last_updated": "2026-02-13T23:00:04.495349+09:00"
 }

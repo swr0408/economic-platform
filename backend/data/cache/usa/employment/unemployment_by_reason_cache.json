@@ -2487,15 +2487,23 @@
       "leavers": 832.0,
       "reentrants": 2337.0,
       "new_entrants": 840.0
+    },
+    {
+      "date": "2026-01-01",
+      "layoff": 846.0,
+      "other_losers": 2668.0,
+      "leavers": 1029.0,
+      "reentrants": 2157.0,
+      "new_entrants": 792.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "layoff": 929.0,
-    "other_losers": 2544.0,
-    "leavers": 832.0,
-    "reentrants": 2337.0,
-    "new_entrants": 840.0
+    "date": "2026-01-01",
+    "layoff": 846.0,
+    "other_losers": 2668.0,
+    "leavers": 1029.0,
+    "reentrants": 2157.0,
+    "new_entrants": 792.0
   },
-  "last_updated": "2026-02-01T23:25:56.488850+09:00"
+  "last_updated": "2026-02-15T22:44:34.748751+09:00"
 }

@@ -1,0 +1,878 @@
+{
+  "data": [
+    {
+      "date": "1990-01-01",
+      "value": 12.19,
+      "mortgage": 6.46,
+      "non_mortgage": 5.73
+    },
+    {
+      "date": "1990-04-01",
+      "value": 12.68,
+      "mortgage": 6.69,
+      "non_mortgage": 5.99
+    },
+    {
+      "date": "1990-07-01",
+      "value": 12.47,
+      "mortgage": 6.62,
+      "non_mortgage": 5.85
+    },
+    {
+      "date": "1990-10-01",
+      "value": 12.29,
+      "mortgage": 6.64,
+      "non_mortgage": 5.66
+    },
+    {
+      "date": "1991-01-01",
+      "value": 12.19,
+      "mortgage": 6.8,
+      "non_mortgage": 5.39
+    },
+    {
+      "date": "1991-04-01",
+      "value": 12.13,
+      "mortgage": 6.95,
+      "non_mortgage": 5.18
+    },
+    {
+      "date": "1991-07-01",
+      "value": 11.95,
+      "mortgage": 6.88,
+      "non_mortgage": 5.07
+    },
+    {
+      "date": "1991-10-01",
+      "value": 11.83,
+      "mortgage": 6.9,
+      "non_mortgage": 4.92
+    },
+    {
+      "date": "1992-01-01",
+      "value": 11.79,
+      "mortgage": 6.91,
+      "non_mortgage": 4.88
+    },
+    {
+      "date": "1992-04-01",
+      "value": 11.57,
+      "mortgage": 6.84,
+      "non_mortgage": 4.73
+    },
+    {
+      "date": "1992-07-01",
+      "value": 11.2,
+      "mortgage": 6.7,
+      "non_mortgage": 4.5
+    },
+    {
+      "date": "1992-10-01",
+      "value": 11.57,
+      "mortgage": 6.79,
+      "non_mortgage": 4.78
+    },
+    {
+      "date": "1993-01-01",
+      "value": 11.22,
+      "mortgage": 6.62,
+      "non_mortgage": 4.6
+    },
+    {
+      "date": "1993-04-01",
+      "value": 10.69,
+      "mortgage": 6.35,
+      "non_mortgage": 4.34
+    },
+    {
+      "date": "1993-07-01",
+      "value": 10.99,
+      "mortgage": 6.45,
+      "non_mortgage": 4.54
+    },
+    {
+      "date": "1993-10-01",
+      "value": 11.12,
+      "mortgage": 6.46,
+      "non_mortgage": 4.66
+    },
+    {
+      "date": "1994-01-01",
+      "value": 11.12,
+      "mortgage": 6.47,
+      "non_mortgage": 4.65
+    },
+    {
+      "date": "1994-04-01",
+      "value": 11.11,
+      "mortgage": 6.31,
+      "non_mortgage": 4.8
+    },
+    {
+      "date": "1994-07-01",
+      "value": 11.37,
+      "mortgage": 6.4,
+      "non_mortgage": 4.97
+    },
+    {
+      "date": "1994-10-01",
+      "value": 11.46,
+      "mortgage": 6.42,
+      "non_mortgage": 5.04
+    },
+    {
+      "date": "1995-01-01",
+      "value": 11.94,
+      "mortgage": 6.59,
+      "non_mortgage": 5.36
+    },
+    {
+      "date": "1995-04-01",
+      "value": 11.88,
+      "mortgage": 6.51,
+      "non_mortgage": 5.37
+    },
+    {
+      "date": "1995-07-01",
+      "value": 11.91,
+      "mortgage": 6.54,
+      "non_mortgage": 5.37
+    },
+    {
+      "date": "1995-10-01",
+      "value": 11.9,
+      "mortgage": 6.49,
+      "non_mortgage": 5.42
+    },
+    {
+      "date": "1996-01-01",
+      "value": 11.9,
+      "mortgage": 6.45,
+      "non_mortgage": 5.45
+    },
+    {
+      "date": "1996-04-01",
+      "value": 11.97,
+      "mortgage": 6.43,
+      "non_mortgage": 5.54
+    },
+    {
+      "date": "1996-07-01",
+      "value": 12.03,
+      "mortgage": 6.39,
+      "non_mortgage": 5.64
+    },
+    {
+      "date": "1996-10-01",
+      "value": 11.9,
+      "mortgage": 6.28,
+      "non_mortgage": 5.61
+    },
+    {
+      "date": "1997-01-01",
+      "value": 11.9,
+      "mortgage": 6.19,
+      "non_mortgage": 5.71
+    },
+    {
+      "date": "1997-04-01",
+      "value": 11.94,
+      "mortgage": 6.12,
+      "non_mortgage": 5.82
+    },
+    {
+      "date": "1997-07-01",
+      "value": 11.78,
+      "mortgage": 5.95,
+      "non_mortgage": 5.83
+    },
+    {
+      "date": "1997-10-01",
+      "value": 11.92,
+      "mortgage": 5.89,
+      "non_mortgage": 6.03
+    },
+    {
+      "date": "1998-01-01",
+      "value": 12.22,
+      "mortgage": 5.94,
+      "non_mortgage": 6.28
+    },
+    {
+      "date": "1998-04-01",
+      "value": 12.33,
+      "mortgage": 5.85,
+      "non_mortgage": 6.48
+    },
+    {
+      "date": "1998-07-01",
+      "value": 12.38,
+      "mortgage": 5.85,
+      "non_mortgage": 6.53
+    },
+    {
+      "date": "1998-10-01",
+      "value": 12.33,
+      "mortgage": 5.78,
+      "non_mortgage": 6.55
+    },
+    {
+      "date": "1999-01-01",
+      "value": 12.26,
+      "mortgage": 5.59,
+      "non_mortgage": 6.68
+    },
+    {
+      "date": "1999-04-01",
+      "value": 12.05,
+      "mortgage": 5.45,
+      "non_mortgage": 6.6
+    },
+    {
+      "date": "1999-07-01",
+      "value": 12.04,
+      "mortgage": 5.43,
+      "non_mortgage": 6.61
+    },
+    {
+      "date": "1999-10-01",
+      "value": 12.15,
+      "mortgage": 5.47,
+      "non_mortgage": 6.68
+    },
+    {
+      "date": "2000-01-01",
+      "value": 12.21,
+      "mortgage": 5.5,
+      "non_mortgage": 6.71
+    },
+    {
+      "date": "2000-04-01",
+      "value": 12.35,
+      "mortgage": 5.55,
+      "non_mortgage": 6.8
+    },
+    {
+      "date": "2000-07-01",
+      "value": 12.32,
+      "mortgage": 5.48,
+      "non_mortgage": 6.84
+    },
+    {
+      "date": "2000-10-01",
+      "value": 12.36,
+      "mortgage": 5.45,
+      "non_mortgage": 6.9
+    },
+    {
+      "date": "2001-01-01",
+      "value": 12.05,
+      "mortgage": 5.28,
+      "non_mortgage": 6.77
+    },
+    {
+      "date": "2001-04-01",
+      "value": 12.28,
+      "mortgage": 5.39,
+      "non_mortgage": 6.88
+    },
+    {
+      "date": "2001-07-01",
+      "value": 11.99,
+      "mortgage": 5.27,
+      "non_mortgage": 6.72
+    },
+    {
+      "date": "2001-10-01",
+      "value": 11.81,
+      "mortgage": 5.23,
+      "non_mortgage": 6.58
+    },
+    {
+      "date": "2002-01-01",
+      "value": 11.71,
+      "mortgage": 5.24,
+      "non_mortgage": 6.47
+    },
+    {
+      "date": "2002-04-01",
+      "value": 11.81,
+      "mortgage": 5.24,
+      "non_mortgage": 6.57
+    },
+    {
+      "date": "2002-07-01",
+      "value": 11.88,
+      "mortgage": 5.22,
+      "non_mortgage": 6.65
+    },
+    {
+      "date": "2002-10-01",
+      "value": 11.99,
+      "mortgage": 5.22,
+      "non_mortgage": 6.76
+    },
+    {
+      "date": "2003-01-01",
+      "value": 12.04,
+      "mortgage": 5.23,
+      "non_mortgage": 6.81
+    },
+    {
+      "date": "2003-04-01",
+      "value": 12.34,
+      "mortgage": 5.32,
+      "non_mortgage": 7.02
+    },
+    {
+      "date": "2003-07-01",
+      "value": 12.46,
+      "mortgage": 5.35,
+      "non_mortgage": 7.11
+    },
+    {
+      "date": "2003-10-01",
+      "value": 12.49,
+      "mortgage": 5.36,
+      "non_mortgage": 7.13
+    },
+    {
+      "date": "2004-01-01",
+      "value": 12.47,
+      "mortgage": 5.33,
+      "non_mortgage": 7.14
+    },
+    {
+      "date": "2004-04-01",
+      "value": 12.36,
+      "mortgage": 5.29,
+      "non_mortgage": 7.07
+    },
+    {
+      "date": "2004-07-01",
+      "value": 12.42,
+      "mortgage": 5.31,
+      "non_mortgage": 7.11
+    },
+    {
+      "date": "2004-10-01",
+      "value": 12.67,
+      "mortgage": 5.37,
+      "non_mortgage": 7.3
+    },
+    {
+      "date": "2005-01-01",
+      "value": 13.11,
+      "mortgage": 5.5,
+      "non_mortgage": 7.61
+    },
+    {
+      "date": "2005-04-01",
+      "value": 13.15,
+      "mortgage": 5.5,
+      "non_mortgage": 7.65
+    },
+    {
+      "date": "2005-07-01",
+      "value": 13.28,
+      "mortgage": 5.56,
+      "non_mortgage": 7.72
+    },
+    {
+      "date": "2005-10-01",
+      "value": 13.49,
+      "mortgage": 5.62,
+      "non_mortgage": 7.86
+    },
+    {
+      "date": "2006-01-01",
+      "value": 13.46,
+      "mortgage": 5.56,
+      "non_mortgage": 7.9
+    },
+    {
+      "date": "2006-04-01",
+      "value": 13.91,
+      "mortgage": 5.71,
+      "non_mortgage": 8.19
+    },
+    {
+      "date": "2006-07-01",
+      "value": 13.96,
+      "mortgage": 5.72,
+      "non_mortgage": 8.24
+    },
+    {
+      "date": "2006-10-01",
+      "value": 14.04,
+      "mortgage": 5.74,
+      "non_mortgage": 8.3
+    },
+    {
+      "date": "2007-01-01",
+      "value": 14.16,
+      "mortgage": 5.82,
+      "non_mortgage": 8.34
+    },
+    {
+      "date": "2007-04-01",
+      "value": 14.54,
+      "mortgage": 5.98,
+      "non_mortgage": 8.56
+    },
+    {
+      "date": "2007-07-01",
+      "value": 14.88,
+      "mortgage": 6.13,
+      "non_mortgage": 8.75
+    },
+    {
+      "date": "2007-10-01",
+      "value": 15.0,
+      "mortgage": 6.26,
+      "non_mortgage": 8.74
+    },
+    {
+      "date": "2008-01-01",
+      "value": 14.82,
+      "mortgage": 6.21,
+      "non_mortgage": 8.6
+    },
+    {
+      "date": "2008-04-01",
+      "value": 14.66,
+      "mortgage": 6.22,
+      "non_mortgage": 8.44
+    },
+    {
+      "date": "2008-07-01",
+      "value": 14.5,
+      "mortgage": 6.2,
+      "non_mortgage": 8.3
+    },
+    {
+      "date": "2008-10-01",
+      "value": 14.37,
+      "mortgage": 6.11,
+      "non_mortgage": 8.26
+    },
+    {
+      "date": "2009-01-01",
+      "value": 14.19,
+      "mortgage": 6.2,
+      "non_mortgage": 7.99
+    },
+    {
+      "date": "2009-04-01",
+      "value": 14.09,
+      "mortgage": 6.23,
+      "non_mortgage": 7.86
+    },
+    {
+      "date": "2009-07-01",
+      "value": 13.87,
+      "mortgage": 6.18,
+      "non_mortgage": 7.69
+    },
+    {
+      "date": "2009-10-01",
+      "value": 13.82,
+      "mortgage": 6.16,
+      "non_mortgage": 7.65
+    },
+    {
+      "date": "2010-01-01",
+      "value": 13.76,
+      "mortgage": 6.09,
+      "non_mortgage": 7.67
+    },
+    {
+      "date": "2010-04-01",
+      "value": 14.11,
+      "mortgage": 6.24,
+      "non_mortgage": 7.87
+    },
+    {
+      "date": "2010-07-01",
+      "value": 14.1,
+      "mortgage": 6.23,
+      "non_mortgage": 7.87
+    },
+    {
+      "date": "2010-10-01",
+      "value": 14.04,
+      "mortgage": 6.21,
+      "non_mortgage": 7.82
+    },
+    {
+      "date": "2011-01-01",
+      "value": 14.09,
+      "mortgage": 6.25,
+      "non_mortgage": 7.85
+    },
+    {
+      "date": "2011-04-01",
+      "value": 14.18,
+      "mortgage": 6.28,
+      "non_mortgage": 7.91
+    },
+    {
+      "date": "2011-07-01",
+      "value": 14.14,
+      "mortgage": 6.27,
+      "non_mortgage": 7.87
+    },
+    {
+      "date": "2011-10-01",
+      "value": 14.02,
+      "mortgage": 6.24,
+      "non_mortgage": 7.79
+    },
+    {
+      "date": "2012-01-01",
+      "value": 13.95,
+      "mortgage": 6.22,
+      "non_mortgage": 7.73
+    },
+    {
+      "date": "2012-04-01",
+      "value": 14.02,
+      "mortgage": 6.29,
+      "non_mortgage": 7.73
+    },
+    {
+      "date": "2012-07-01",
+      "value": 13.98,
+      "mortgage": 6.28,
+      "non_mortgage": 7.69
+    },
+    {
+      "date": "2012-10-01",
+      "value": 13.97,
+      "mortgage": 6.31,
+      "non_mortgage": 7.65
+    },
+    {
+      "date": "2013-01-01",
+      "value": 13.77,
+      "mortgage": 6.25,
+      "non_mortgage": 7.52
+    },
+    {
+      "date": "2013-04-01",
+      "value": 13.83,
+      "mortgage": 6.28,
+      "non_mortgage": 7.54
+    },
+    {
+      "date": "2013-07-01",
+      "value": 13.87,
+      "mortgage": 6.34,
+      "non_mortgage": 7.53
+    },
+    {
+      "date": "2013-10-01",
+      "value": 13.83,
+      "mortgage": 6.34,
+      "non_mortgage": 7.49
+    },
+    {
+      "date": "2014-01-01",
+      "value": 13.84,
+      "mortgage": 6.4,
+      "non_mortgage": 7.45
+    },
+    {
+      "date": "2014-04-01",
+      "value": 13.88,
+      "mortgage": 6.4,
+      "non_mortgage": 7.48
+    },
+    {
+      "date": "2014-07-01",
+      "value": 13.91,
+      "mortgage": 6.39,
+      "non_mortgage": 7.52
+    },
+    {
+      "date": "2014-10-01",
+      "value": 14.1,
+      "mortgage": 6.44,
+      "non_mortgage": 7.66
+    },
+    {
+      "date": "2015-01-01",
+      "value": 13.98,
+      "mortgage": 6.37,
+      "non_mortgage": 7.61
+    },
+    {
+      "date": "2015-04-01",
+      "value": 13.9,
+      "mortgage": 6.35,
+      "non_mortgage": 7.55
+    },
+    {
+      "date": "2015-07-01",
+      "value": 13.81,
+      "mortgage": 6.38,
+      "non_mortgage": 7.44
+    },
+    {
+      "date": "2015-10-01",
+      "value": 13.81,
+      "mortgage": 6.45,
+      "non_mortgage": 7.36
+    },
+    {
+      "date": "2016-01-01",
+      "value": 14.17,
+      "mortgage": 6.63,
+      "non_mortgage": 7.55
+    },
+    {
+      "date": "2016-04-01",
+      "value": 14.18,
+      "mortgage": 6.7,
+      "non_mortgage": 7.48
+    },
+    {
+      "date": "2016-07-01",
+      "value": 14.15,
+      "mortgage": 6.71,
+      "non_mortgage": 7.43
+    },
+    {
+      "date": "2016-10-01",
+      "value": 14.12,
+      "mortgage": 6.7,
+      "non_mortgage": 7.41
+    },
+    {
+      "date": "2017-01-01",
+      "value": 14.31,
+      "mortgage": 6.77,
+      "non_mortgage": 7.54
+    },
+    {
+      "date": "2017-04-01",
+      "value": 14.3,
+      "mortgage": 6.74,
+      "non_mortgage": 7.55
+    },
+    {
+      "date": "2017-07-01",
+      "value": 14.25,
+      "mortgage": 6.7,
+      "non_mortgage": 7.54
+    },
+    {
+      "date": "2017-10-01",
+      "value": 14.38,
+      "mortgage": 6.78,
+      "non_mortgage": 7.59
+    },
+    {
+      "date": "2018-01-01",
+      "value": 14.64,
+      "mortgage": 6.93,
+      "non_mortgage": 7.71
+    },
+    {
+      "date": "2018-04-01",
+      "value": 14.85,
+      "mortgage": 7.04,
+      "non_mortgage": 7.81
+    },
+    {
+      "date": "2018-07-01",
+      "value": 14.97,
+      "mortgage": 7.1,
+      "non_mortgage": 7.88
+    },
+    {
+      "date": "2018-10-01",
+      "value": 14.94,
+      "mortgage": 7.1,
+      "non_mortgage": 7.84
+    },
+    {
+      "date": "2019-01-01",
+      "value": 15.11,
+      "mortgage": 7.23,
+      "non_mortgage": 7.88
+    },
+    {
+      "date": "2019-04-01",
+      "value": 15.03,
+      "mortgage": 7.2,
+      "non_mortgage": 7.83
+    },
+    {
+      "date": "2019-07-01",
+      "value": 15.06,
+      "mortgage": 7.25,
+      "non_mortgage": 7.82
+    },
+    {
+      "date": "2019-10-01",
+      "value": 14.95,
+      "mortgage": 7.19,
+      "non_mortgage": 7.76
+    },
+    {
+      "date": "2020-01-01",
+      "value": 14.64,
+      "mortgage": 7.1,
+      "non_mortgage": 7.53
+    },
+    {
+      "date": "2020-04-01",
+      "value": 12.56,
+      "mortgage": 6.17,
+      "non_mortgage": 6.39
+    },
+    {
+      "date": "2020-07-01",
+      "value": 13.47,
+      "mortgage": 6.75,
+      "non_mortgage": 6.71
+    },
+    {
+      "date": "2020-10-01",
+      "value": 13.94,
+      "mortgage": 7.03,
+      "non_mortgage": 6.91
+    },
+    {
+      "date": "2021-01-01",
+      "value": 13.57,
+      "mortgage": 6.92,
+      "non_mortgage": 6.66
+    },
+    {
+      "date": "2021-04-01",
+      "value": 13.72,
+      "mortgage": 7.06,
+      "non_mortgage": 6.65
+    },
+    {
+      "date": "2021-07-01",
+      "value": 13.68,
+      "mortgage": 7.06,
+      "non_mortgage": 6.62
+    },
+    {
+      "date": "2021-10-01",
+      "value": 13.9,
+      "mortgage": 7.2,
+      "non_mortgage": 6.7
+    },
+    {
+      "date": "2022-01-01",
+      "value": 13.81,
+      "mortgage": 7.18,
+      "non_mortgage": 6.63
+    },
+    {
+      "date": "2022-04-01",
+      "value": 14.0,
+      "mortgage": 7.33,
+      "non_mortgage": 6.68
+    },
+    {
+      "date": "2022-07-01",
+      "value": 14.43,
+      "mortgage": 7.64,
+      "non_mortgage": 6.8
+    },
+    {
+      "date": "2022-10-01",
+      "value": 14.62,
+      "mortgage": 7.84,
+      "non_mortgage": 6.78
+    },
+    {
+      "date": "2023-01-01",
+      "value": 15.17,
+      "mortgage": 8.23,
+      "non_mortgage": 6.95
+    },
+    {
+      "date": "2023-04-01",
+      "value": 15.14,
+      "mortgage": 8.22,
+      "non_mortgage": 6.92
+    },
+    {
+      "date": "2023-07-01",
+      "value": 15.09,
+      "mortgage": 8.19,
+      "non_mortgage": 6.89
+    },
+    {
+      "date": "2023-10-01",
+      "value": 15.13,
+      "mortgage": 8.2,
+      "non_mortgage": 6.93
+    },
+    {
+      "date": "2024-01-01",
+      "value": 15.1,
+      "mortgage": 8.17,
+      "non_mortgage": 6.94
+    },
+    {
+      "date": "2024-04-01",
+      "value": 15.09,
+      "mortgage": 8.21,
+      "non_mortgage": 6.88
+    },
+    {
+      "date": "2024-07-01",
+      "value": 14.77,
+      "mortgage": 7.99,
+      "non_mortgage": 6.78
+    },
+    {
+      "date": "2024-10-01",
+      "value": 14.67,
+      "mortgage": 7.89,
+      "non_mortgage": 6.78
+    },
+    {
+      "date": "2025-01-01",
+      "value": 14.71,
+      "mortgage": 7.9,
+      "non_mortgage": 6.81
+    },
+    {
+      "date": "2025-04-01",
+      "value": 14.68,
+      "mortgage": 7.87,
+      "non_mortgage": 6.82
+    },
+    {
+      "date": "2025-07-01",
+      "value": 14.64,
+      "mortgage": 7.83,
+      "non_mortgage": 6.81
+    }
+  ],
+  "latest": {
+    "date": "2025-07-01",
+    "value": 14.64,
+    "mortgage": 7.83,
+    "non_mortgage": 6.81
+  },
+  "metadata": {
+    "source": "Statistics Canada",
+    "table": "11-10-0065-01",
+    "indicator": "Debt Service Ratio",
+    "description": "カナダ家計債務返済比率",
+    "unit": "%",
+    "frequency": "quarterly"
+  },
+  "next_release": null,
+  "last_updated": "2026-02-12T20:14:09.934172+09:00"
+}

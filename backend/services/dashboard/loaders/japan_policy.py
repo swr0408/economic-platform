@@ -1,9 +1,10 @@
 """
 日本金融政策ダッシュボードローダー
-日銀政策金利、次回発表日などを一括取得
+日銀政策金利、バランスシート、次回発表日などを一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - 政策金利: 日銀金融政策決定会合発表後（11:30-13:00 JST）
+- バランスシート: 月次更新（FRED経由）
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime, timedelta
@@ -23,9 +24,11 @@ class JapanPolicyLoader(BaseDashboardLoader):
 
     取得データ:
     - boj_policy_rate: 日銀政策金利
+    - japan_balance_sheet: 日銀バランスシート（総資産）
 
     キャッシュ方式: 発表日時ベース判定
     - 日銀金融政策決定会合: 11:30-13:00 JST（発表時刻が変動するため5分おきにチェック）
+    - バランスシート: 月次更新（FRED経由、月初チェック）
     """
 
     COUNTRY_CODE = "japan"
@@ -95,7 +98,7 @@ class JapanPolicyLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
@@ -139,19 +142,23 @@ class JapanPolicyLoader(BaseDashboardLoader):
         Returns:
             {
                 "boj_policy_rate": {...},
+                "japan_balance_sheet": {...},
             }
         """
         # 遅延インポート（循環参照回避）
         from services.japan.boj_policy_rate_service import boj_policy_rate_service
+        from services.japan.japan_balance_sheet_service import japan_balance_sheet_service
 
         result = {
             "boj_policy_rate": None,
+            "japan_balance_sheet": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=2) as executor:
+        with ThreadPoolExecutor(max_workers=3) as executor:
             futures = {
                 executor.submit(self._get_boj_policy_rate, boj_policy_rate_service): "boj_policy_rate",
+                executor.submit(self._get_japan_balance_sheet, japan_balance_sheet_service): "japan_balance_sheet",
             }
 
             for future in as_completed(futures):
@@ -177,3 +184,18 @@ class JapanPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting BOJ policy rate: {e}")
             return {"data": [], "latest": None, "next_release": None}
+
+    def _get_japan_balance_sheet(self, service) -> dict:
+        """日銀バランスシートデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("japan_balance_sheet")
+            response = service.get_balance_sheet_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting Japan Balance Sheet: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}

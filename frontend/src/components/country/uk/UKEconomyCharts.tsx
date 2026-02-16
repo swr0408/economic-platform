@@ -13,6 +13,10 @@ import ONSGVAChart from './economy/ONSGVAChart'
 import ONSProductionChart from './economy/ONSProductionChart'
 import CBIIndustrialTrendsChart from './economy/CBIIndustrialTrendsChart'
 import UKPMIChart from './economy/UKPMIChart'
+import UKTradeBalanceChart from './economy/UKTradeBalanceChart'
+import UKCurrentAccountChart from './economy/UKCurrentAccountChart'
+import UKCurrentAccountGdpRatioChart from './economy/UKCurrentAccountGdpRatioChart'
+import UkGovernmentDebtToGdpRatioChart from './economy/UkGovernmentDebtToGdpRatioChart'
 
 export default function UKEconomyCharts() {
   const { data, isLoading, error, refetch } = useUKEconomyDashboard()
@@ -66,6 +70,26 @@ export default function UKEconomyCharts() {
       {/* UK PMI */}
       <div id="uk-pmi">
         <UKPMIChart data={dashboardData?.uk_pmi ?? null} />
+      </div>
+
+      {/* UK貿易収支 */}
+      <div id="uk-trade-balance">
+        <UKTradeBalanceChart data={dashboardData?.uk_trade_balance ?? null} />
+      </div>
+
+      {/* UK経常収支 */}
+      <div id="uk-current-account">
+        <UKCurrentAccountChart data={dashboardData?.uk_current_account ?? null} />
+      </div>
+
+      {/* UK経常収支対GDP比 */}
+      <div id="uk-current-account-gdp-ratio">
+        <UKCurrentAccountGdpRatioChart data={dashboardData?.uk_current_account ?? null} />
+      </div>
+
+      {/* UK政府債務残高対GDP比 */}
+      <div id="uk-government-debt-to-gdp-ratio">
+        <UkGovernmentDebtToGdpRatioChart data={dashboardData?.uk_government_debt_to_gdp_ratio ?? null} />
       </div>
     </div>
   )

@@ -1,0 +1,3477 @@
+{
+  "data": [
+    {
+      "date": "1997-01-01",
+      "balance": 3097.4,
+      "exports": 24976.7,
+      "imports": 21879.3
+    },
+    {
+      "date": "1997-02-01",
+      "balance": 2941.7,
+      "exports": 24749.8,
+      "imports": 21808.1,
+      "mom_change": -155.7,
+      "mom": -5.03
+    },
+    {
+      "date": "1997-03-01",
+      "balance": 2710.0,
+      "exports": 24592.2,
+      "imports": 21882.3,
+      "mom_change": -231.7,
+      "mom": -7.88
+    },
+    {
+      "date": "1997-04-01",
+      "balance": 2170.2,
+      "exports": 24842.1,
+      "imports": 22671.8,
+      "mom_change": -539.8,
+      "mom": -19.92
+    },
+    {
+      "date": "1997-05-01",
+      "balance": 2147.2,
+      "exports": 24945.8,
+      "imports": 22798.6,
+      "mom_change": -23.0,
+      "mom": -1.06
+    },
+    {
+      "date": "1997-06-01",
+      "balance": 1756.7,
+      "exports": 24675.6,
+      "imports": 22918.8,
+      "mom_change": -390.5,
+      "mom": -18.19
+    },
+    {
+      "date": "1997-07-01",
+      "balance": 2006.3,
+      "exports": 25521.9,
+      "imports": 23515.7,
+      "mom_change": 249.6,
+      "mom": 14.21
+    },
+    {
+      "date": "1997-08-01",
+      "balance": 1524.9,
+      "exports": 25155.5,
+      "imports": 23630.6,
+      "mom_change": -481.4,
+      "mom": -23.99
+    },
+    {
+      "date": "1997-09-01",
+      "balance": 1752.4,
+      "exports": 25574.9,
+      "imports": 23822.4,
+      "mom_change": 227.5,
+      "mom": 14.92
+    },
+    {
+      "date": "1997-10-01",
+      "balance": 1109.5,
+      "exports": 25206.1,
+      "imports": 24096.6,
+      "mom_change": -642.9,
+      "mom": -36.69
+    },
+    {
+      "date": "1997-11-01",
+      "balance": 1885.5,
+      "exports": 26175.9,
+      "imports": 24290.5,
+      "mom_change": 776.0,
+      "mom": 69.94
+    },
+    {
+      "date": "1997-12-01",
+      "balance": 2089.5,
+      "exports": 26779.3,
+      "imports": 24689.8,
+      "mom_change": 204.0,
+      "mom": 10.82
+    },
+    {
+      "date": "1998-01-01",
+      "balance": 1391.7,
+      "exports": 25799.7,
+      "imports": 24408.0,
+      "mom_change": -697.8,
+      "mom": -33.4,
+      "yoy_change": -1705.7,
+      "yoy": -55.07
+    },
+    {
+      "date": "1998-02-01",
+      "balance": 1786.3,
+      "exports": 26703.6,
+      "imports": 24917.3,
+      "mom_change": 394.6,
+      "mom": 28.35,
+      "yoy_change": -1155.4,
+      "yoy": -39.28
+    },
+    {
+      "date": "1998-03-01",
+      "balance": 1818.3,
+      "exports": 26347.5,
+      "imports": 24529.2,
+      "mom_change": 32.0,
+      "mom": 1.79,
+      "yoy_change": -891.7,
+      "yoy": -32.9
+    },
+    {
+      "date": "1998-04-01",
+      "balance": 2021.5,
+      "exports": 26978.2,
+      "imports": 24956.7,
+      "mom_change": 203.2,
+      "mom": 11.18,
+      "yoy_change": -148.7,
+      "yoy": -6.85
+    },
+    {
+      "date": "1998-05-01",
+      "balance": 1571.7,
+      "exports": 26725.2,
+      "imports": 25153.5,
+      "mom_change": -449.8,
+      "mom": -22.25,
+      "yoy_change": -575.5,
+      "yoy": -26.8
+    },
+    {
+      "date": "1998-06-01",
+      "balance": 1447.9,
+      "exports": 25886.5,
+      "imports": 24438.6,
+      "mom_change": -123.8,
+      "mom": -7.88,
+      "yoy_change": -308.8,
+      "yoy": -17.58
+    },
+    {
+      "date": "1998-07-01",
+      "balance": 2093.1,
+      "exports": 26174.7,
+      "imports": 24081.7,
+      "mom_change": 645.2,
+      "mom": 44.56,
+      "yoy_change": 86.8,
+      "yoy": 4.33
+    },
+    {
+      "date": "1998-08-01",
+      "balance": 2362.2,
+      "exports": 27768.2,
+      "imports": 25405.9,
+      "mom_change": 269.1,
+      "mom": 12.86,
+      "yoy_change": 837.3,
+      "yoy": 54.91
+    },
+    {
+      "date": "1998-09-01",
+      "balance": 2317.6,
+      "exports": 28284.6,
+      "imports": 25967.1,
+      "mom_change": -44.6,
+      "mom": -1.89,
+      "yoy_change": 565.2,
+      "yoy": 32.25
+    },
+    {
+      "date": "1998-10-01",
+      "balance": 2138.4,
+      "exports": 28822.1,
+      "imports": 26683.7,
+      "mom_change": -179.2,
+      "mom": -7.73,
+      "yoy_change": 1028.9,
+      "yoy": 92.74
+    },
+    {
+      "date": "1998-11-01",
+      "balance": 2173.7,
+      "exports": 28642.7,
+      "imports": 26469.0,
+      "mom_change": 35.3,
+      "mom": 1.65,
+      "yoy_change": 288.2,
+      "yoy": 15.29
+    },
+    {
+      "date": "1998-12-01",
+      "balance": 2376.2,
+      "exports": 28878.2,
+      "imports": 26502.0,
+      "mom_change": 202.5,
+      "mom": 9.32,
+      "yoy_change": 286.7,
+      "yoy": 13.72
+    },
+    {
+      "date": "1999-01-01",
+      "balance": 3140.0,
+      "exports": 29288.5,
+      "imports": 26148.5,
+      "mom_change": 763.8,
+      "mom": 32.14,
+      "yoy_change": 1748.3,
+      "yoy": 125.62
+    },
+    {
+      "date": "1999-02-01",
+      "balance": 2787.0,
+      "exports": 29599.5,
+      "imports": 26812.5,
+      "mom_change": -353.0,
+      "mom": -11.24,
+      "yoy_change": 1000.7,
+      "yoy": 56.02
+    },
+    {
+      "date": "1999-03-01",
+      "balance": 2976.9,
+      "exports": 29438.8,
+      "imports": 26461.8,
+      "mom_change": 189.9,
+      "mom": 6.81,
+      "yoy_change": 1158.6,
+      "yoy": 63.72
+    },
+    {
+      "date": "1999-04-01",
+      "balance": 3094.1,
+      "exports": 29367.0,
+      "imports": 26272.9,
+      "mom_change": 117.2,
+      "mom": 3.94,
+      "yoy_change": 1072.6,
+      "yoy": 53.06
+    },
+    {
+      "date": "1999-05-01",
+      "balance": 2882.6,
+      "exports": 29395.2,
+      "imports": 26512.6,
+      "mom_change": -211.5,
+      "mom": -6.84,
+      "yoy_change": 1310.9,
+      "yoy": 83.41
+    },
+    {
+      "date": "1999-06-01",
+      "balance": 3464.8,
+      "exports": 30036.1,
+      "imports": 26571.3,
+      "mom_change": 582.2,
+      "mom": 20.2,
+      "yoy_change": 2016.9,
+      "yoy": 139.3
+    },
+    {
+      "date": "1999-07-01",
+      "balance": 3818.9,
+      "exports": 30842.6,
+      "imports": 27023.7,
+      "mom_change": 354.1,
+      "mom": 10.22,
+      "yoy_change": 1725.8,
+      "yoy": 82.45
+    },
+    {
+      "date": "1999-08-01",
+      "balance": 4626.6,
+      "exports": 32017.7,
+      "imports": 27391.1,
+      "mom_change": 807.7,
+      "mom": 21.15,
+      "yoy_change": 2264.4,
+      "yoy": 95.86
+    },
+    {
+      "date": "1999-09-01",
+      "balance": 3587.0,
+      "exports": 31414.5,
+      "imports": 27827.6,
+      "mom_change": -1039.6,
+      "mom": -22.47,
+      "yoy_change": 1269.4,
+      "yoy": 54.77
+    },
+    {
+      "date": "1999-10-01",
+      "balance": 3338.6,
+      "exports": 31815.1,
+      "imports": 28476.5,
+      "mom_change": -248.4,
+      "mom": -6.93,
+      "yoy_change": 1200.2,
+      "yoy": 56.13
+    },
+    {
+      "date": "1999-11-01",
+      "balance": 4206.7,
+      "exports": 32508.6,
+      "imports": 28301.9,
+      "mom_change": 868.1,
+      "mom": 26.0,
+      "yoy_change": 2033.0,
+      "yoy": 93.53
+    },
+    {
+      "date": "1999-12-01",
+      "balance": 3592.6,
+      "exports": 32910.1,
+      "imports": 29317.4,
+      "mom_change": -614.1,
+      "mom": -14.6,
+      "yoy_change": 1216.4,
+      "yoy": 51.19
+    },
+    {
+      "date": "2000-01-01",
+      "balance": 4768.0,
+      "exports": 33872.6,
+      "imports": 29104.5,
+      "mom_change": 1175.4,
+      "mom": 32.72,
+      "yoy_change": 1628.0,
+      "yoy": 51.85
+    },
+    {
+      "date": "2000-02-01",
+      "balance": 4232.7,
+      "exports": 33302.2,
+      "imports": 29069.5,
+      "mom_change": -535.3,
+      "mom": -11.23,
+      "yoy_change": 1445.7,
+      "yoy": 51.87
+    },
+    {
+      "date": "2000-03-01",
+      "balance": 4984.3,
+      "exports": 34673.8,
+      "imports": 29689.5,
+      "mom_change": 751.6,
+      "mom": 17.76,
+      "yoy_change": 2007.4,
+      "yoy": 67.43
+    },
+    {
+      "date": "2000-04-01",
+      "balance": 4275.6,
+      "exports": 33826.5,
+      "imports": 29550.9,
+      "mom_change": -708.7,
+      "mom": -14.22,
+      "yoy_change": 1181.5,
+      "yoy": 38.19
+    },
+    {
+      "date": "2000-05-01",
+      "balance": 5189.4,
+      "exports": 35724.5,
+      "imports": 30535.0,
+      "mom_change": 913.8,
+      "mom": 21.37,
+      "yoy_change": 2306.8,
+      "yoy": 80.02
+    },
+    {
+      "date": "2000-06-01",
+      "balance": 6536.9,
+      "exports": 36680.2,
+      "imports": 30143.3,
+      "mom_change": 1347.5,
+      "mom": 25.97,
+      "yoy_change": 3072.1,
+      "yoy": 88.67
+    },
+    {
+      "date": "2000-07-01",
+      "balance": 5480.3,
+      "exports": 35830.1,
+      "imports": 30349.8,
+      "mom_change": -1056.6,
+      "mom": -16.16,
+      "yoy_change": 1661.4,
+      "yoy": 43.5
+    },
+    {
+      "date": "2000-08-01",
+      "balance": 5632.4,
+      "exports": 36165.1,
+      "imports": 30532.7,
+      "mom_change": 152.1,
+      "mom": 2.78,
+      "yoy_change": 1005.8,
+      "yoy": 21.74
+    },
+    {
+      "date": "2000-09-01",
+      "balance": 5923.4,
+      "exports": 36433.0,
+      "imports": 30509.6,
+      "mom_change": 291.0,
+      "mom": 5.17,
+      "yoy_change": 2336.4,
+      "yoy": 65.14
+    },
+    {
+      "date": "2000-10-01",
+      "balance": 6369.8,
+      "exports": 37010.4,
+      "imports": 30640.6,
+      "mom_change": 446.4,
+      "mom": 7.54,
+      "yoy_change": 3031.2,
+      "yoy": 90.79
+    },
+    {
+      "date": "2000-11-01",
+      "balance": 5941.1,
+      "exports": 37114.8,
+      "imports": 31173.7,
+      "mom_change": -428.7,
+      "mom": -6.73,
+      "yoy_change": 1734.4,
+      "yoy": 41.23
+    },
+    {
+      "date": "2000-12-01",
+      "balance": 7075.4,
+      "exports": 38183.8,
+      "imports": 31108.4,
+      "mom_change": 1134.3,
+      "mom": 19.09,
+      "yoy_change": 3482.8,
+      "yoy": 96.94
+    },
+    {
+      "date": "2001-01-01",
+      "balance": 8554.4,
+      "exports": 39027.4,
+      "imports": 30473.0,
+      "mom_change": 1479.0,
+      "mom": 20.9,
+      "yoy_change": 3786.4,
+      "yoy": 79.41
+    },
+    {
+      "date": "2001-02-01",
+      "balance": 6716.2,
+      "exports": 36034.7,
+      "imports": 29318.5,
+      "mom_change": -1838.2,
+      "mom": -21.49,
+      "yoy_change": 2483.5,
+      "yoy": 58.67
+    },
+    {
+      "date": "2001-03-01",
+      "balance": 7001.6,
+      "exports": 36890.5,
+      "imports": 29889.0,
+      "mom_change": 285.4,
+      "mom": 4.25,
+      "yoy_change": 2017.3,
+      "yoy": 40.47
+    },
+    {
+      "date": "2001-04-01",
+      "balance": 6610.2,
+      "exports": 36675.0,
+      "imports": 30064.9,
+      "mom_change": -391.4,
+      "mom": -5.59,
+      "yoy_change": 2334.6,
+      "yoy": 54.6
+    },
+    {
+      "date": "2001-05-01",
+      "balance": 6441.7,
+      "exports": 36246.9,
+      "imports": 29805.2,
+      "mom_change": -168.5,
+      "mom": -2.55,
+      "yoy_change": 1252.3,
+      "yoy": 24.13
+    },
+    {
+      "date": "2001-06-01",
+      "balance": 5340.0,
+      "exports": 35083.2,
+      "imports": 29743.1,
+      "mom_change": -1101.7,
+      "mom": -17.1,
+      "yoy_change": -1196.9,
+      "yoy": -18.31
+    },
+    {
+      "date": "2001-07-01",
+      "balance": 5298.3,
+      "exports": 34183.1,
+      "imports": 28884.7,
+      "mom_change": -41.7,
+      "mom": -0.78,
+      "yoy_change": -182.0,
+      "yoy": -3.32
+    },
+    {
+      "date": "2001-08-01",
+      "balance": 4674.9,
+      "exports": 34026.2,
+      "imports": 29351.2,
+      "mom_change": -623.4,
+      "mom": -11.77,
+      "yoy_change": -957.5,
+      "yoy": -17.0
+    },
+    {
+      "date": "2001-09-01",
+      "balance": 4964.2,
+      "exports": 33175.6,
+      "imports": 28211.4,
+      "mom_change": 289.3,
+      "mom": 6.19,
+      "yoy_change": -959.2,
+      "yoy": -16.19
+    },
+    {
+      "date": "2001-10-01",
+      "balance": 3850.5,
+      "exports": 32333.4,
+      "imports": 28482.9,
+      "mom_change": -1113.7,
+      "mom": -22.43,
+      "yoy_change": -2519.3,
+      "yoy": -39.55
+    },
+    {
+      "date": "2001-11-01",
+      "balance": 5703.4,
+      "exports": 33842.9,
+      "imports": 28139.4,
+      "mom_change": 1852.9,
+      "mom": 48.12,
+      "yoy_change": -237.7,
+      "yoy": -4.0
+    },
+    {
+      "date": "2001-12-01",
+      "balance": 4917.5,
+      "exports": 32482.3,
+      "imports": 27564.8,
+      "mom_change": -785.9,
+      "mom": -13.78,
+      "yoy_change": -2157.9,
+      "yoy": -30.5
+    },
+    {
+      "date": "2002-01-01",
+      "balance": 5712.5,
+      "exports": 33704.7,
+      "imports": 27992.2,
+      "mom_change": 795.0,
+      "mom": 16.17,
+      "yoy_change": -2841.9,
+      "yoy": -33.22
+    },
+    {
+      "date": "2002-02-01",
+      "balance": 5121.5,
+      "exports": 34271.6,
+      "imports": 29150.1,
+      "mom_change": -591.0,
+      "mom": -10.35,
+      "yoy_change": -1594.7,
+      "yoy": -23.74
+    },
+    {
+      "date": "2002-03-01",
+      "balance": 4459.5,
+      "exports": 32962.7,
+      "imports": 28503.2,
+      "mom_change": -662.0,
+      "mom": -12.93,
+      "yoy_change": -2542.1,
+      "yoy": -36.31
+    },
+    {
+      "date": "2002-04-01",
+      "balance": 5589.2,
+      "exports": 34856.0,
+      "imports": 29266.9,
+      "mom_change": 1129.7,
+      "mom": 25.33,
+      "yoy_change": -1021.0,
+      "yoy": -15.45
+    },
+    {
+      "date": "2002-05-01",
+      "balance": 5145.7,
+      "exports": 34341.8,
+      "imports": 29196.1,
+      "mom_change": -443.5,
+      "mom": -7.93,
+      "yoy_change": -1296.0,
+      "yoy": -20.12
+    },
+    {
+      "date": "2002-06-01",
+      "balance": 2789.3,
+      "exports": 32924.4,
+      "imports": 30135.1,
+      "mom_change": -2356.4,
+      "mom": -45.79,
+      "yoy_change": -2550.7,
+      "yoy": -47.77
+    },
+    {
+      "date": "2002-07-01",
+      "balance": 5048.6,
+      "exports": 34907.6,
+      "imports": 29859.0,
+      "mom_change": 2259.3,
+      "mom": 81.0,
+      "yoy_change": -249.7,
+      "yoy": -4.71
+    },
+    {
+      "date": "2002-08-01",
+      "balance": 4116.1,
+      "exports": 34965.6,
+      "imports": 30849.5,
+      "mom_change": -932.5,
+      "mom": -18.47,
+      "yoy_change": -558.8,
+      "yoy": -11.95
+    },
+    {
+      "date": "2002-09-01",
+      "balance": 4717.3,
+      "exports": 35017.1,
+      "imports": 30299.8,
+      "mom_change": 601.2,
+      "mom": 14.61,
+      "yoy_change": -246.9,
+      "yoy": -4.97
+    },
+    {
+      "date": "2002-10-01",
+      "balance": 5383.0,
+      "exports": 35933.5,
+      "imports": 30550.5,
+      "mom_change": 665.7,
+      "mom": 14.11,
+      "yoy_change": 1532.5,
+      "yoy": 39.8
+    },
+    {
+      "date": "2002-11-01",
+      "balance": 4540.5,
+      "exports": 34855.0,
+      "imports": 30314.5,
+      "mom_change": -842.5,
+      "mom": -15.65,
+      "yoy_change": -1162.9,
+      "yoy": -20.39
+    },
+    {
+      "date": "2002-12-01",
+      "balance": 3816.3,
+      "exports": 34328.8,
+      "imports": 30512.4,
+      "mom_change": -724.2,
+      "mom": -15.95,
+      "yoy_change": -1101.2,
+      "yoy": -22.39
+    },
+    {
+      "date": "2003-01-01",
+      "balance": 4811.3,
+      "exports": 35181.2,
+      "imports": 30369.9,
+      "mom_change": 995.0,
+      "mom": 26.07,
+      "yoy_change": -901.2,
+      "yoy": -15.78
+    },
+    {
+      "date": "2003-02-01",
+      "balance": 4898.0,
+      "exports": 35066.3,
+      "imports": 30168.3,
+      "mom_change": 86.7,
+      "mom": 1.8,
+      "yoy_change": -223.5,
+      "yoy": -4.36
+    },
+    {
+      "date": "2003-03-01",
+      "balance": 5585.9,
+      "exports": 35531.4,
+      "imports": 29945.5,
+      "mom_change": 687.9,
+      "mom": 14.04,
+      "yoy_change": 1126.4,
+      "yoy": 25.26
+    },
+    {
+      "date": "2003-04-01",
+      "balance": 4123.0,
+      "exports": 33116.3,
+      "imports": 28993.3,
+      "mom_change": -1462.9,
+      "mom": -26.19,
+      "yoy_change": -1466.2,
+      "yoy": -26.23
+    },
+    {
+      "date": "2003-05-01",
+      "balance": 3585.0,
+      "exports": 32122.0,
+      "imports": 28536.9,
+      "mom_change": -538.0,
+      "mom": -13.05,
+      "yoy_change": -1560.7,
+      "yoy": -30.33
+    },
+    {
+      "date": "2003-06-01",
+      "balance": 3598.6,
+      "exports": 31389.6,
+      "imports": 27791.0,
+      "mom_change": 13.6,
+      "mom": 0.38,
+      "yoy_change": 809.3,
+      "yoy": 29.01
+    },
+    {
+      "date": "2003-07-01",
+      "balance": 4384.6,
+      "exports": 32614.9,
+      "imports": 28230.3,
+      "mom_change": 786.0,
+      "mom": 21.84,
+      "yoy_change": -664.0,
+      "yoy": -13.15
+    },
+    {
+      "date": "2003-08-01",
+      "balance": 4770.5,
+      "exports": 31434.2,
+      "imports": 26663.6,
+      "mom_change": 385.9,
+      "mom": 8.8,
+      "yoy_change": 654.4,
+      "yoy": 15.9
+    },
+    {
+      "date": "2003-09-01",
+      "balance": 5442.9,
+      "exports": 33408.5,
+      "imports": 27965.5,
+      "mom_change": 672.4,
+      "mom": 14.09,
+      "yoy_change": 725.6,
+      "yoy": 15.38
+    },
+    {
+      "date": "2003-10-01",
+      "balance": 4953.1,
+      "exports": 32599.9,
+      "imports": 27646.8,
+      "mom_change": -489.8,
+      "mom": -9.0,
+      "yoy_change": -429.9,
+      "yoy": -7.99
+    },
+    {
+      "date": "2003-11-01",
+      "balance": 4506.5,
+      "exports": 32687.3,
+      "imports": 28180.7,
+      "mom_change": -446.6,
+      "mom": -9.02,
+      "yoy_change": -34.0,
+      "yoy": -0.75
+    },
+    {
+      "date": "2003-12-01",
+      "balance": 4898.3,
+      "exports": 33109.5,
+      "imports": 28211.2,
+      "mom_change": 391.8,
+      "mom": 8.69,
+      "yoy_change": 1082.0,
+      "yoy": 28.35
+    },
+    {
+      "date": "2004-01-01",
+      "balance": 4940.7,
+      "exports": 32047.5,
+      "imports": 27106.8,
+      "mom_change": 42.4,
+      "mom": 0.87,
+      "yoy_change": 129.4,
+      "yoy": 2.69
+    },
+    {
+      "date": "2004-02-01",
+      "balance": 5466.4,
+      "exports": 34287.5,
+      "imports": 28821.2,
+      "mom_change": 525.7,
+      "mom": 10.64,
+      "yoy_change": 568.4,
+      "yoy": 11.6
+    },
+    {
+      "date": "2004-03-01",
+      "balance": 5290.9,
+      "exports": 34660.1,
+      "imports": 29369.2,
+      "mom_change": -175.5,
+      "mom": -3.21,
+      "yoy_change": -295.0,
+      "yoy": -5.28
+    },
+    {
+      "date": "2004-04-01",
+      "balance": 6367.7,
+      "exports": 35979.7,
+      "imports": 29612.0,
+      "mom_change": 1076.8,
+      "mom": 20.35,
+      "yoy_change": 2244.7,
+      "yoy": 54.44
+    },
+    {
+      "date": "2004-05-01",
+      "balance": 5108.6,
+      "exports": 36891.1,
+      "imports": 31782.6,
+      "mom_change": -1259.1,
+      "mom": -19.77,
+      "yoy_change": 1523.6,
+      "yoy": 42.5
+    },
+    {
+      "date": "2004-06-01",
+      "balance": 7644.9,
+      "exports": 38143.3,
+      "imports": 30498.4,
+      "mom_change": 2536.3,
+      "mom": 49.65,
+      "yoy_change": 4046.3,
+      "yoy": 112.44
+    },
+    {
+      "date": "2004-07-01",
+      "balance": 5775.8,
+      "exports": 37439.9,
+      "imports": 31664.1,
+      "mom_change": -1869.1,
+      "mom": -24.45,
+      "yoy_change": 1391.2,
+      "yoy": 31.73
+    },
+    {
+      "date": "2004-08-01",
+      "balance": 6064.2,
+      "exports": 37005.7,
+      "imports": 30941.5,
+      "mom_change": 288.4,
+      "mom": 4.99,
+      "yoy_change": 1293.7,
+      "yoy": 27.12
+    },
+    {
+      "date": "2004-09-01",
+      "balance": 4482.8,
+      "exports": 35874.2,
+      "imports": 31391.4,
+      "mom_change": -1581.4,
+      "mom": -26.08,
+      "yoy_change": -960.1,
+      "yoy": -17.64
+    },
+    {
+      "date": "2004-10-01",
+      "balance": 4885.5,
+      "exports": 35851.9,
+      "imports": 30966.4,
+      "mom_change": 402.7,
+      "mom": 8.98,
+      "yoy_change": -67.6,
+      "yoy": -1.36
+    },
+    {
+      "date": "2004-11-01",
+      "balance": 4701.0,
+      "exports": 34934.3,
+      "imports": 30233.4,
+      "mom_change": -184.5,
+      "mom": -3.78,
+      "yoy_change": 194.5,
+      "yoy": 4.32
+    },
+    {
+      "date": "2004-12-01",
+      "balance": 4249.5,
+      "exports": 35138.9,
+      "imports": 30889.3,
+      "mom_change": -451.5,
+      "mom": -9.6,
+      "yoy_change": -648.8,
+      "yoy": -13.25
+    },
+    {
+      "date": "2005-01-01",
+      "balance": 3783.0,
+      "exports": 35501.6,
+      "imports": 31718.6,
+      "mom_change": -466.5,
+      "mom": -10.98,
+      "yoy_change": -1157.7,
+      "yoy": -23.43
+    },
+    {
+      "date": "2005-02-01",
+      "balance": 4431.2,
+      "exports": 35979.8,
+      "imports": 31548.5,
+      "mom_change": 648.2,
+      "mom": 17.13,
+      "yoy_change": -1035.2,
+      "yoy": -18.94
+    },
+    {
+      "date": "2005-03-01",
+      "balance": 4142.7,
+      "exports": 35722.1,
+      "imports": 31579.4,
+      "mom_change": -288.5,
+      "mom": -6.51,
+      "yoy_change": -1148.2,
+      "yoy": -21.7
+    },
+    {
+      "date": "2005-04-01",
+      "balance": 4642.4,
+      "exports": 36305.9,
+      "imports": 31663.4,
+      "mom_change": 499.7,
+      "mom": 12.06,
+      "yoy_change": -1725.3,
+      "yoy": -27.09
+    },
+    {
+      "date": "2005-05-01",
+      "balance": 4013.6,
+      "exports": 36493.4,
+      "imports": 32479.9,
+      "mom_change": -628.8,
+      "mom": -13.54,
+      "yoy_change": -1095.0,
+      "yoy": -21.43
+    },
+    {
+      "date": "2005-06-01",
+      "balance": 4032.3,
+      "exports": 36513.4,
+      "imports": 32481.1,
+      "mom_change": 18.7,
+      "mom": 0.47,
+      "yoy_change": -3612.6,
+      "yoy": -47.26
+    },
+    {
+      "date": "2005-07-01",
+      "balance": 4576.4,
+      "exports": 36732.4,
+      "imports": 32155.9,
+      "mom_change": 544.1,
+      "mom": 13.49,
+      "yoy_change": -1199.4,
+      "yoy": -20.77
+    },
+    {
+      "date": "2005-08-01",
+      "balance": 5556.2,
+      "exports": 37862.7,
+      "imports": 32306.5,
+      "mom_change": 979.8,
+      "mom": 21.41,
+      "yoy_change": -508.0,
+      "yoy": -8.38
+    },
+    {
+      "date": "2005-09-01",
+      "balance": 6216.4,
+      "exports": 38926.8,
+      "imports": 32710.5,
+      "mom_change": 660.2,
+      "mom": 11.88,
+      "yoy_change": 1733.6,
+      "yoy": 38.67
+    },
+    {
+      "date": "2005-10-01",
+      "balance": 7527.6,
+      "exports": 40274.1,
+      "imports": 32746.5,
+      "mom_change": 1311.2,
+      "mom": 21.09,
+      "yoy_change": 2642.1,
+      "yoy": 54.08
+    },
+    {
+      "date": "2005-11-01",
+      "balance": 6161.5,
+      "exports": 39197.8,
+      "imports": 33036.3,
+      "mom_change": -1366.1,
+      "mom": -18.15,
+      "yoy_change": 1460.5,
+      "yoy": 31.07
+    },
+    {
+      "date": "2005-12-01",
+      "balance": 6511.4,
+      "exports": 39925.1,
+      "imports": 33413.7,
+      "mom_change": 349.9,
+      "mom": 5.68,
+      "yoy_change": 2261.9,
+      "yoy": 53.23
+    },
+    {
+      "date": "2006-01-01",
+      "balance": 5565.6,
+      "exports": 39124.6,
+      "imports": 33559.0,
+      "mom_change": -945.8,
+      "mom": -14.53,
+      "yoy_change": 1782.6,
+      "yoy": 47.12
+    },
+    {
+      "date": "2006-02-01",
+      "balance": 4809.1,
+      "exports": 36906.9,
+      "imports": 32097.8,
+      "mom_change": -756.5,
+      "mom": -13.59,
+      "yoy_change": 377.9,
+      "yoy": 8.53
+    },
+    {
+      "date": "2006-03-01",
+      "balance": 4140.0,
+      "exports": 36947.1,
+      "imports": 32807.2,
+      "mom_change": -669.1,
+      "mom": -13.91,
+      "yoy_change": -2.7,
+      "yoy": -0.07
+    },
+    {
+      "date": "2006-04-01",
+      "balance": 3849.9,
+      "exports": 37428.4,
+      "imports": 33578.6,
+      "mom_change": -290.1,
+      "mom": -7.01,
+      "yoy_change": -792.5,
+      "yoy": -17.07
+    },
+    {
+      "date": "2006-05-01",
+      "balance": 3263.8,
+      "exports": 36993.6,
+      "imports": 33729.8,
+      "mom_change": -586.1,
+      "mom": -15.22,
+      "yoy_change": -749.8,
+      "yoy": -18.68
+    },
+    {
+      "date": "2006-06-01",
+      "balance": 3525.1,
+      "exports": 37552.1,
+      "imports": 34027.0,
+      "mom_change": 261.3,
+      "mom": 8.01,
+      "yoy_change": -507.2,
+      "yoy": -12.58
+    },
+    {
+      "date": "2006-07-01",
+      "balance": 3617.0,
+      "exports": 37801.4,
+      "imports": 34184.4,
+      "mom_change": 91.9,
+      "mom": 2.61,
+      "yoy_change": -959.4,
+      "yoy": -20.96
+    },
+    {
+      "date": "2006-08-01",
+      "balance": 3280.1,
+      "exports": 37917.5,
+      "imports": 34637.3,
+      "mom_change": -336.9,
+      "mom": -9.31,
+      "yoy_change": -2276.1,
+      "yoy": -40.97
+    },
+    {
+      "date": "2006-09-01",
+      "balance": 4160.6,
+      "exports": 37558.6,
+      "imports": 33398.0,
+      "mom_change": 880.5,
+      "mom": 26.84,
+      "yoy_change": -2055.8,
+      "yoy": -33.07
+    },
+    {
+      "date": "2006-10-01",
+      "balance": 2820.6,
+      "exports": 36524.1,
+      "imports": 33703.6,
+      "mom_change": -1340.0,
+      "mom": -32.21,
+      "yoy_change": -4707.0,
+      "yoy": -62.53
+    },
+    {
+      "date": "2006-11-01",
+      "balance": 3599.0,
+      "exports": 37796.6,
+      "imports": 34197.5,
+      "mom_change": 778.4,
+      "mom": 27.6,
+      "yoy_change": -2562.5,
+      "yoy": -41.59
+    },
+    {
+      "date": "2006-12-01",
+      "balance": 5437.9,
+      "exports": 40398.0,
+      "imports": 34960.1,
+      "mom_change": 1838.9,
+      "mom": 51.09,
+      "yoy_change": -1073.5,
+      "yoy": -16.49
+    },
+    {
+      "date": "2007-01-01",
+      "balance": 4687.2,
+      "exports": 39668.9,
+      "imports": 34981.7,
+      "mom_change": -750.7,
+      "mom": -13.8,
+      "yoy_change": -878.4,
+      "yoy": -15.78
+    },
+    {
+      "date": "2007-02-01",
+      "balance": 4084.7,
+      "exports": 39011.1,
+      "imports": 34926.4,
+      "mom_change": -602.5,
+      "mom": -12.85,
+      "yoy_change": -724.4,
+      "yoy": -15.06
+    },
+    {
+      "date": "2007-03-01",
+      "balance": 4500.3,
+      "exports": 40499.2,
+      "imports": 35998.9,
+      "mom_change": 415.6,
+      "mom": 10.17,
+      "yoy_change": 360.3,
+      "yoy": 8.7
+    },
+    {
+      "date": "2007-04-01",
+      "balance": 5616.2,
+      "exports": 40705.2,
+      "imports": 35089.0,
+      "mom_change": 1115.9,
+      "mom": 24.8,
+      "yoy_change": 1766.3,
+      "yoy": 45.88
+    },
+    {
+      "date": "2007-05-01",
+      "balance": 5387.7,
+      "exports": 39911.2,
+      "imports": 34523.5,
+      "mom_change": -228.5,
+      "mom": -4.07,
+      "yoy_change": 2123.9,
+      "yoy": 65.07
+    },
+    {
+      "date": "2007-06-01",
+      "balance": 3818.9,
+      "exports": 38598.0,
+      "imports": 34779.1,
+      "mom_change": -1568.8,
+      "mom": -29.12,
+      "yoy_change": 293.8,
+      "yoy": 8.33
+    },
+    {
+      "date": "2007-07-01",
+      "balance": 2611.3,
+      "exports": 38043.8,
+      "imports": 35432.5,
+      "mom_change": -1207.6,
+      "mom": -31.62,
+      "yoy_change": -1005.7,
+      "yoy": -27.8
+    },
+    {
+      "date": "2007-08-01",
+      "balance": 3835.1,
+      "exports": 38150.1,
+      "imports": 34315.0,
+      "mom_change": 1223.8,
+      "mom": 46.87,
+      "yoy_change": 555.0,
+      "yoy": 16.92
+    },
+    {
+      "date": "2007-09-01",
+      "balance": 2657.9,
+      "exports": 37171.7,
+      "imports": 34513.8,
+      "mom_change": -1177.2,
+      "mom": -30.7,
+      "yoy_change": -1502.7,
+      "yoy": -36.12
+    },
+    {
+      "date": "2007-10-01",
+      "balance": 3140.0,
+      "exports": 36714.6,
+      "imports": 33574.6,
+      "mom_change": 482.1,
+      "mom": 18.14,
+      "yoy_change": 319.4,
+      "yoy": 11.32
+    },
+    {
+      "date": "2007-11-01",
+      "balance": 3819.9,
+      "exports": 37717.4,
+      "imports": 33897.5,
+      "mom_change": 679.9,
+      "mom": 21.65,
+      "yoy_change": 220.9,
+      "yoy": 6.14
+    },
+    {
+      "date": "2007-12-01",
+      "balance": 2010.8,
+      "exports": 36118.5,
+      "imports": 34107.7,
+      "mom_change": -1809.1,
+      "mom": -47.36,
+      "yoy_change": -3427.1,
+      "yoy": -63.02
+    },
+    {
+      "date": "2008-01-01",
+      "balance": 2534.5,
+      "exports": 37699.6,
+      "imports": 35165.1,
+      "mom_change": 523.7,
+      "mom": 26.04,
+      "yoy_change": -2152.7,
+      "yoy": -45.93
+    },
+    {
+      "date": "2008-02-01",
+      "balance": 3825.4,
+      "exports": 39077.1,
+      "imports": 35251.7,
+      "mom_change": 1290.9,
+      "mom": 50.93,
+      "yoy_change": -259.3,
+      "yoy": -6.35
+    },
+    {
+      "date": "2008-03-01",
+      "balance": 5780.1,
+      "exports": 40214.1,
+      "imports": 34434.0,
+      "mom_change": 1954.7,
+      "mom": 51.1,
+      "yoy_change": 1279.8,
+      "yoy": 28.44
+    },
+    {
+      "date": "2008-04-01",
+      "balance": 5018.8,
+      "exports": 40931.6,
+      "imports": 35912.9,
+      "mom_change": -761.3,
+      "mom": -13.17,
+      "yoy_change": -597.4,
+      "yoy": -10.64
+    },
+    {
+      "date": "2008-05-01",
+      "balance": 5678.5,
+      "exports": 43109.9,
+      "imports": 37431.4,
+      "mom_change": 659.7,
+      "mom": 13.14,
+      "yoy_change": 290.8,
+      "yoy": 5.4
+    },
+    {
+      "date": "2008-06-01",
+      "balance": 5107.3,
+      "exports": 43745.7,
+      "imports": 38638.4,
+      "mom_change": -571.2,
+      "mom": -10.06,
+      "yoy_change": 1288.4,
+      "yoy": 33.74
+    },
+    {
+      "date": "2008-07-01",
+      "balance": 5647.1,
+      "exports": 44625.4,
+      "imports": 38978.3,
+      "mom_change": 539.8,
+      "mom": 10.57,
+      "yoy_change": 3035.8,
+      "yoy": 116.26
+    },
+    {
+      "date": "2008-08-01",
+      "balance": 5726.7,
+      "exports": 43007.4,
+      "imports": 37280.7,
+      "mom_change": 79.6,
+      "mom": 1.41,
+      "yoy_change": 1891.6,
+      "yoy": 49.32
+    },
+    {
+      "date": "2008-09-01",
+      "balance": 3490.0,
+      "exports": 41828.1,
+      "imports": 38338.1,
+      "mom_change": -2236.7,
+      "mom": -39.06,
+      "yoy_change": 832.1,
+      "yoy": 31.31
+    },
+    {
+      "date": "2008-10-01",
+      "balance": 2652.4,
+      "exports": 41727.4,
+      "imports": 39075.1,
+      "mom_change": -837.6,
+      "mom": -24.0,
+      "yoy_change": -487.6,
+      "yoy": -15.53
+    },
+    {
+      "date": "2008-11-01",
+      "balance": 430.3,
+      "exports": 38361.6,
+      "imports": 37931.3,
+      "mom_change": -2222.1,
+      "mom": -83.78,
+      "yoy_change": -3389.6,
+      "yoy": -88.74
+    },
+    {
+      "date": "2008-12-01",
+      "balance": -1646.9,
+      "exports": 33856.8,
+      "imports": 35503.6,
+      "mom_change": -2077.2,
+      "mom": -482.73,
+      "yoy_change": -3657.7,
+      "yoy": -181.9
+    },
+    {
+      "date": "2009-01-01",
+      "balance": -1735.5,
+      "exports": 30620.3,
+      "imports": 32355.8,
+      "mom_change": -88.6,
+      "mom": -5.38,
+      "yoy_change": -4270.0,
+      "yoy": -168.48
+    },
+    {
+      "date": "2009-02-01",
+      "balance": 5.8,
+      "exports": 32436.3,
+      "imports": 32430.5,
+      "mom_change": 1741.3,
+      "mom": 100.33,
+      "yoy_change": -3819.6,
+      "yoy": -99.85
+    },
+    {
+      "date": "2009-03-01",
+      "balance": 1138.3,
+      "exports": 32142.2,
+      "imports": 31003.9,
+      "mom_change": 1132.5,
+      "mom": 19525.86,
+      "yoy_change": -4641.8,
+      "yoy": -80.31
+    },
+    {
+      "date": "2009-04-01",
+      "balance": -629.8,
+      "exports": 30411.0,
+      "imports": 31040.8,
+      "mom_change": -1768.1,
+      "mom": -155.33,
+      "yoy_change": -5648.6,
+      "yoy": -112.55
+    },
+    {
+      "date": "2009-05-01",
+      "balance": -1493.1,
+      "exports": 27896.2,
+      "imports": 29389.3,
+      "mom_change": -863.3,
+      "mom": -137.08,
+      "yoy_change": -7171.6,
+      "yoy": -126.29
+    },
+    {
+      "date": "2009-06-01",
+      "balance": 139.8,
+      "exports": 29397.7,
+      "imports": 29257.9,
+      "mom_change": 1632.9,
+      "mom": 109.36,
+      "yoy_change": -4967.5,
+      "yoy": -97.26
+    },
+    {
+      "date": "2009-07-01",
+      "balance": -733.8,
+      "exports": 30814.1,
+      "imports": 31547.9,
+      "mom_change": -873.6,
+      "mom": -624.89,
+      "yoy_change": -6380.9,
+      "yoy": -112.99
+    },
+    {
+      "date": "2009-08-01",
+      "balance": -1520.0,
+      "exports": 29355.5,
+      "imports": 30875.5,
+      "mom_change": -786.2,
+      "mom": -107.14,
+      "yoy_change": -7246.7,
+      "yoy": -126.54
+    },
+    {
+      "date": "2009-09-01",
+      "balance": -773.3,
+      "exports": 30144.1,
+      "imports": 30917.4,
+      "mom_change": 746.7,
+      "mom": 49.12,
+      "yoy_change": -4263.3,
+      "yoy": -122.16
+    },
+    {
+      "date": "2009-10-01",
+      "balance": 405.2,
+      "exports": 31103.6,
+      "imports": 30698.4,
+      "mom_change": 1178.5,
+      "mom": 152.4,
+      "yoy_change": -2247.2,
+      "yoy": -84.72
+    },
+    {
+      "date": "2009-11-01",
+      "balance": -290.7,
+      "exports": 31580.2,
+      "imports": 31870.9,
+      "mom_change": -695.9,
+      "mom": -171.74,
+      "yoy_change": -721.0,
+      "yoy": -167.56
+    },
+    {
+      "date": "2009-12-01",
+      "balance": -731.1,
+      "exports": 32200.2,
+      "imports": 32931.2,
+      "mom_change": -440.4,
+      "mom": -151.5,
+      "yoy_change": 915.8,
+      "yoy": 55.61
+    },
+    {
+      "date": "2010-01-01",
+      "balance": 434.6,
+      "exports": 32414.9,
+      "imports": 31980.3,
+      "mom_change": 1165.7,
+      "mom": 159.44,
+      "yoy_change": 2170.1,
+      "yoy": 125.04
+    },
+    {
+      "date": "2010-02-01",
+      "balance": 106.1,
+      "exports": 33173.0,
+      "imports": 33066.9,
+      "mom_change": -328.5,
+      "mom": -75.59,
+      "yoy_change": 100.3,
+      "yoy": 1729.31
+    },
+    {
+      "date": "2010-03-01",
+      "balance": -1205.5,
+      "exports": 32795.5,
+      "imports": 34001.1,
+      "mom_change": -1311.6,
+      "mom": -1236.19,
+      "yoy_change": -2343.8,
+      "yoy": -205.9
+    },
+    {
+      "date": "2010-04-01",
+      "balance": 150.4,
+      "exports": 32958.0,
+      "imports": 32807.6,
+      "mom_change": 1355.9,
+      "mom": 112.48,
+      "yoy_change": 780.2,
+      "yoy": 123.88
+    },
+    {
+      "date": "2010-05-01",
+      "balance": -810.7,
+      "exports": 33826.6,
+      "imports": 34637.2,
+      "mom_change": -961.1,
+      "mom": -639.03,
+      "yoy_change": 682.4,
+      "yoy": 45.7
+    },
+    {
+      "date": "2010-06-01",
+      "balance": -1350.4,
+      "exports": 33459.9,
+      "imports": 34810.3,
+      "mom_change": -539.7,
+      "mom": -66.57,
+      "yoy_change": -1490.2,
+      "yoy": -1065.95
+    },
+    {
+      "date": "2010-07-01",
+      "balance": -2027.8,
+      "exports": 33112.4,
+      "imports": 35140.2,
+      "mom_change": -677.4,
+      "mom": -50.16,
+      "yoy_change": -1294.0,
+      "yoy": -176.34
+    },
+    {
+      "date": "2010-08-01",
+      "balance": -1725.4,
+      "exports": 34021.6,
+      "imports": 35747.0,
+      "mom_change": 302.4,
+      "mom": 14.91,
+      "yoy_change": -205.4,
+      "yoy": -13.51
+    },
+    {
+      "date": "2010-09-01",
+      "balance": -2284.9,
+      "exports": 33357.9,
+      "imports": 35642.8,
+      "mom_change": -559.5,
+      "mom": -32.43,
+      "yoy_change": -1511.6,
+      "yoy": -195.47
+    },
+    {
+      "date": "2010-10-01",
+      "balance": -1134.4,
+      "exports": 34283.8,
+      "imports": 35418.2,
+      "mom_change": 1150.5,
+      "mom": 50.35,
+      "yoy_change": -1539.6,
+      "yoy": -379.96
+    },
+    {
+      "date": "2010-11-01",
+      "balance": -466.6,
+      "exports": 34819.0,
+      "imports": 35285.5,
+      "mom_change": 667.8,
+      "mom": 58.87,
+      "yoy_change": -175.9,
+      "yoy": -60.51
+    },
+    {
+      "date": "2010-12-01",
+      "balance": 1162.9,
+      "exports": 36629.6,
+      "imports": 35466.8,
+      "mom_change": 1629.5,
+      "mom": 349.23,
+      "yoy_change": 1894.0,
+      "yoy": 259.06
+    },
+    {
+      "date": "2011-01-01",
+      "balance": 787.6,
+      "exports": 37607.8,
+      "imports": 36820.2,
+      "mom_change": -375.3,
+      "mom": -32.27,
+      "yoy_change": 353.0,
+      "yoy": 81.22
+    },
+    {
+      "date": "2011-02-01",
+      "balance": -5.0,
+      "exports": 35732.2,
+      "imports": 35737.1,
+      "mom_change": -792.6,
+      "mom": -100.63,
+      "yoy_change": -111.1,
+      "yoy": -104.71
+    },
+    {
+      "date": "2011-03-01",
+      "balance": -940.3,
+      "exports": 36422.3,
+      "imports": 37362.5,
+      "mom_change": -935.3,
+      "mom": -18706.0,
+      "yoy_change": 265.2,
+      "yoy": 22.0
+    },
+    {
+      "date": "2011-04-01",
+      "balance": -186.1,
+      "exports": 36887.4,
+      "imports": 37073.5,
+      "mom_change": 754.2,
+      "mom": 80.21,
+      "yoy_change": -336.5,
+      "yoy": -223.74
+    },
+    {
+      "date": "2011-05-01",
+      "balance": -1036.3,
+      "exports": 36730.9,
+      "imports": 37767.2,
+      "mom_change": -850.2,
+      "mom": -456.85,
+      "yoy_change": -225.6,
+      "yoy": -27.83
+    },
+    {
+      "date": "2011-06-01",
+      "balance": -1066.0,
+      "exports": 36387.1,
+      "imports": 37453.1,
+      "mom_change": -29.7,
+      "mom": -2.87,
+      "yoy_change": 284.4,
+      "yoy": 21.06
+    },
+    {
+      "date": "2011-07-01",
+      "balance": 204.5,
+      "exports": 37744.5,
+      "imports": 37540.1,
+      "mom_change": 1270.5,
+      "mom": 119.18,
+      "yoy_change": 2232.3,
+      "yoy": 110.08
+    },
+    {
+      "date": "2011-08-01",
+      "balance": 264.4,
+      "exports": 38817.9,
+      "imports": 38553.6,
+      "mom_change": 59.9,
+      "mom": 29.29,
+      "yoy_change": 1989.8,
+      "yoy": 115.32
+    },
+    {
+      "date": "2011-09-01",
+      "balance": 1145.1,
+      "exports": 39960.4,
+      "imports": 38815.4,
+      "mom_change": 880.7,
+      "mom": 333.09,
+      "yoy_change": 3430.0,
+      "yoy": 150.12
+    },
+    {
+      "date": "2011-10-01",
+      "balance": -792.9,
+      "exports": 39160.4,
+      "imports": 39953.3,
+      "mom_change": -1938.0,
+      "mom": -169.24,
+      "yoy_change": 341.5,
+      "yoy": 30.1
+    },
+    {
+      "date": "2011-11-01",
+      "balance": 625.7,
+      "exports": 40236.2,
+      "imports": 39610.5,
+      "mom_change": 1418.6,
+      "mom": 178.91,
+      "yoy_change": 1092.3,
+      "yoy": 234.1
+    },
+    {
+      "date": "2011-12-01",
+      "balance": 2189.5,
+      "exports": 41898.2,
+      "imports": 39708.7,
+      "mom_change": 1563.8,
+      "mom": 249.93,
+      "yoy_change": 1026.6,
+      "yoy": 88.28
+    },
+    {
+      "date": "2012-01-01",
+      "balance": 15.8,
+      "exports": 39747.4,
+      "imports": 39731.6,
+      "mom_change": -2173.7,
+      "mom": -99.28,
+      "yoy_change": -771.8,
+      "yoy": -97.99
+    },
+    {
+      "date": "2012-02-01",
+      "balance": 57.5,
+      "exports": 39698.4,
+      "imports": 39640.9,
+      "mom_change": 41.7,
+      "mom": 263.92,
+      "yoy_change": 62.5,
+      "yoy": 1250.0
+    },
+    {
+      "date": "2012-03-01",
+      "balance": -1096.7,
+      "exports": 38435.6,
+      "imports": 39532.4,
+      "mom_change": -1154.2,
+      "mom": -2007.3,
+      "yoy_change": -156.4,
+      "yoy": -16.63
+    },
+    {
+      "date": "2012-04-01",
+      "balance": -683.0,
+      "exports": 38674.9,
+      "imports": 39357.9,
+      "mom_change": 413.7,
+      "mom": 37.72,
+      "yoy_change": -496.9,
+      "yoy": -267.01
+    },
+    {
+      "date": "2012-05-01",
+      "balance": -1325.3,
+      "exports": 38617.3,
+      "imports": 39942.6,
+      "mom_change": -642.3,
+      "mom": -94.04,
+      "yoy_change": -289.0,
+      "yoy": -27.89
+    },
+    {
+      "date": "2012-06-01",
+      "balance": -2273.6,
+      "exports": 38282.3,
+      "imports": 40555.9,
+      "mom_change": -948.3,
+      "mom": -71.55,
+      "yoy_change": -1207.6,
+      "yoy": -113.28
+    },
+    {
+      "date": "2012-07-01",
+      "balance": -2973.4,
+      "exports": 37618.2,
+      "imports": 40591.7,
+      "mom_change": -699.8,
+      "mom": -30.78,
+      "yoy_change": -3177.9,
+      "yoy": -1553.99
+    },
+    {
+      "date": "2012-08-01",
+      "balance": -1016.5,
+      "exports": 38082.2,
+      "imports": 39098.7,
+      "mom_change": 1956.9,
+      "mom": 65.81,
+      "yoy_change": -1280.9,
+      "yoy": -484.46
+    },
+    {
+      "date": "2012-09-01",
+      "balance": -986.0,
+      "exports": 37945.8,
+      "imports": 38931.8,
+      "mom_change": 30.5,
+      "mom": 3.0,
+      "yoy_change": -2131.1,
+      "yoy": -186.11
+    },
+    {
+      "date": "2012-10-01",
+      "balance": -314.3,
+      "exports": 38388.0,
+      "imports": 38702.3,
+      "mom_change": 671.7,
+      "mom": 68.12,
+      "yoy_change": 478.6,
+      "yoy": 60.36
+    },
+    {
+      "date": "2012-11-01",
+      "balance": -1605.2,
+      "exports": 38574.7,
+      "imports": 40179.8,
+      "mom_change": -1290.9,
+      "mom": -410.72,
+      "yoy_change": -2230.9,
+      "yoy": -356.54
+    },
+    {
+      "date": "2012-12-01",
+      "balance": -332.4,
+      "exports": 38573.5,
+      "imports": 38905.9,
+      "mom_change": 1272.8,
+      "mom": 79.29,
+      "yoy_change": -2521.9,
+      "yoy": -115.18
+    },
+    {
+      "date": "2013-01-01",
+      "balance": -812.5,
+      "exports": 38695.7,
+      "imports": 39508.2,
+      "mom_change": -480.1,
+      "mom": -144.43,
+      "yoy_change": -828.3,
+      "yoy": -5242.41
+    },
+    {
+      "date": "2013-02-01",
+      "balance": -626.7,
+      "exports": 39588.3,
+      "imports": 40214.9,
+      "mom_change": 185.8,
+      "mom": 22.87,
+      "yoy_change": -684.2,
+      "yoy": -1189.91
+    },
+    {
+      "date": "2013-03-01",
+      "balance": -100.3,
+      "exports": 40146.0,
+      "imports": 40246.4,
+      "mom_change": 526.4,
+      "mom": 84.0,
+      "yoy_change": 996.4,
+      "yoy": 90.85
+    },
+    {
+      "date": "2013-04-01",
+      "balance": -84.3,
+      "exports": 40669.6,
+      "imports": 40753.9,
+      "mom_change": 16.0,
+      "mom": 15.95,
+      "yoy_change": 598.7,
+      "yoy": 87.66
+    },
+    {
+      "date": "2013-05-01",
+      "balance": -740.8,
+      "exports": 39744.5,
+      "imports": 40485.3,
+      "mom_change": -656.5,
+      "mom": -778.77,
+      "yoy_change": 584.5,
+      "yoy": 44.1
+    },
+    {
+      "date": "2013-06-01",
+      "balance": -367.3,
+      "exports": 39640.5,
+      "imports": 40007.7,
+      "mom_change": 373.5,
+      "mom": 50.42,
+      "yoy_change": 1906.3,
+      "yoy": 83.85
+    },
+    {
+      "date": "2013-07-01",
+      "balance": -1575.5,
+      "exports": 38770.2,
+      "imports": 40345.7,
+      "mom_change": -1208.2,
+      "mom": -328.94,
+      "yoy_change": 1397.9,
+      "yoy": 47.01
+    },
+    {
+      "date": "2013-08-01",
+      "balance": -726.8,
+      "exports": 40775.3,
+      "imports": 41502.1,
+      "mom_change": 848.7,
+      "mom": 53.87,
+      "yoy_change": 289.7,
+      "yoy": 28.5
+    },
+    {
+      "date": "2013-09-01",
+      "balance": 43.0,
+      "exports": 41156.8,
+      "imports": 41113.8,
+      "mom_change": 769.8,
+      "mom": 105.92,
+      "yoy_change": 1029.0,
+      "yoy": 104.36
+    },
+    {
+      "date": "2013-10-01",
+      "balance": -301.6,
+      "exports": 40424.6,
+      "imports": 40726.3,
+      "mom_change": -344.6,
+      "mom": -801.4,
+      "yoy_change": 12.7,
+      "yoy": 4.04
+    },
+    {
+      "date": "2013-11-01",
+      "balance": -1199.2,
+      "exports": 40259.5,
+      "imports": 41458.7,
+      "mom_change": -897.6,
+      "mom": -297.61,
+      "yoy_change": 406.0,
+      "yoy": 25.29
+    },
+    {
+      "date": "2013-12-01",
+      "balance": -750.7,
+      "exports": 40646.2,
+      "imports": 41396.9,
+      "mom_change": 448.5,
+      "mom": 37.4,
+      "yoy_change": -418.3,
+      "yoy": -125.84
+    },
+    {
+      "date": "2014-01-01",
+      "balance": -791.3,
+      "exports": 40542.9,
+      "imports": 41334.2,
+      "mom_change": -40.6,
+      "mom": -5.41,
+      "yoy_change": 21.2,
+      "yoy": 2.61
+    },
+    {
+      "date": "2014-02-01",
+      "balance": 648.5,
+      "exports": 43295.5,
+      "imports": 42647.0,
+      "mom_change": 1439.8,
+      "mom": 181.95,
+      "yoy_change": 1275.2,
+      "yoy": 203.48
+    },
+    {
+      "date": "2014-03-01",
+      "balance": 1592.7,
+      "exports": 44537.4,
+      "imports": 42944.6,
+      "mom_change": 944.2,
+      "mom": 145.6,
+      "yoy_change": 1693.0,
+      "yoy": 1687.94
+    },
+    {
+      "date": "2014-04-01",
+      "balance": 385.1,
+      "exports": 43795.1,
+      "imports": 43410.0,
+      "mom_change": -1207.6,
+      "mom": -75.82,
+      "yoy_change": 469.4,
+      "yoy": 556.82
+    },
+    {
+      "date": "2014-05-01",
+      "balance": 644.3,
+      "exports": 45355.5,
+      "imports": 44711.2,
+      "mom_change": 259.2,
+      "mom": 67.31,
+      "yoy_change": 1385.1,
+      "yoy": 186.97
+    },
+    {
+      "date": "2014-06-01",
+      "balance": 1715.5,
+      "exports": 45242.3,
+      "imports": 43526.8,
+      "mom_change": 1071.2,
+      "mom": 166.26,
+      "yoy_change": 2082.8,
+      "yoy": 567.06
+    },
+    {
+      "date": "2014-07-01",
+      "balance": 1766.0,
+      "exports": 45422.8,
+      "imports": 43656.8,
+      "mom_change": 50.5,
+      "mom": 2.94,
+      "yoy_change": 3341.5,
+      "yoy": 212.09
+    },
+    {
+      "date": "2014-08-01",
+      "balance": 991.6,
+      "exports": 44859.9,
+      "imports": 43868.2,
+      "mom_change": -774.4,
+      "mom": -43.85,
+      "yoy_change": 1718.4,
+      "yoy": 236.43
+    },
+    {
+      "date": "2014-09-01",
+      "balance": 670.5,
+      "exports": 45070.1,
+      "imports": 44399.6,
+      "mom_change": -321.1,
+      "mom": -32.38,
+      "yoy_change": 627.5,
+      "yoy": 1459.3
+    },
+    {
+      "date": "2014-10-01",
+      "balance": -122.1,
+      "exports": 45116.7,
+      "imports": 45238.9,
+      "mom_change": -792.6,
+      "mom": -118.21,
+      "yoy_change": 179.5,
+      "yoy": 59.52
+    },
+    {
+      "date": "2014-11-01",
+      "balance": -724.3,
+      "exports": 43738.4,
+      "imports": 44462.7,
+      "mom_change": -602.2,
+      "mom": -493.2,
+      "yoy_change": 474.9,
+      "yoy": 39.6
+    },
+    {
+      "date": "2014-12-01",
+      "balance": -1199.7,
+      "exports": 43652.1,
+      "imports": 44851.8,
+      "mom_change": -475.4,
+      "mom": -65.64,
+      "yoy_change": -449.0,
+      "yoy": -59.81
+    },
+    {
+      "date": "2015-01-01",
+      "balance": -2357.2,
+      "exports": 42367.2,
+      "imports": 44724.4,
+      "mom_change": -1157.5,
+      "mom": -96.48,
+      "yoy_change": -1565.9,
+      "yoy": -197.89
+    },
+    {
+      "date": "2015-02-01",
+      "balance": -1655.0,
+      "exports": 42932.6,
+      "imports": 44587.7,
+      "mom_change": 702.2,
+      "mom": 29.79,
+      "yoy_change": -2303.5,
+      "yoy": -355.2
+    },
+    {
+      "date": "2015-03-01",
+      "balance": -3323.5,
+      "exports": 43273.7,
+      "imports": 46597.3,
+      "mom_change": -1668.5,
+      "mom": -100.82,
+      "yoy_change": -4916.2,
+      "yoy": -308.67
+    },
+    {
+      "date": "2015-04-01",
+      "balance": -2310.1,
+      "exports": 42996.2,
+      "imports": 45306.3,
+      "mom_change": 1013.4,
+      "mom": 30.49,
+      "yoy_change": -2695.2,
+      "yoy": -699.87
+    },
+    {
+      "date": "2015-05-01",
+      "balance": -2577.3,
+      "exports": 42598.9,
+      "imports": 45176.2,
+      "mom_change": -267.2,
+      "mom": -11.57,
+      "yoy_change": -3221.6,
+      "yoy": -500.02
+    },
+    {
+      "date": "2015-06-01",
+      "balance": -340.0,
+      "exports": 44943.9,
+      "imports": 45283.9,
+      "mom_change": 2237.3,
+      "mom": 86.81,
+      "yoy_change": -2055.5,
+      "yoy": -119.82
+    },
+    {
+      "date": "2015-07-01",
+      "balance": -384.0,
+      "exports": 45674.3,
+      "imports": 46058.3,
+      "mom_change": -44.0,
+      "mom": -12.94,
+      "yoy_change": -2150.0,
+      "yoy": -121.74
+    },
+    {
+      "date": "2015-08-01",
+      "balance": -1537.3,
+      "exports": 44856.2,
+      "imports": 46393.5,
+      "mom_change": -1153.3,
+      "mom": -300.34,
+      "yoy_change": -2528.9,
+      "yoy": -255.03
+    },
+    {
+      "date": "2015-09-01",
+      "balance": -1933.1,
+      "exports": 44452.4,
+      "imports": 46385.5,
+      "mom_change": -395.8,
+      "mom": -25.75,
+      "yoy_change": -2603.6,
+      "yoy": -388.31
+    },
+    {
+      "date": "2015-10-01",
+      "balance": -2338.9,
+      "exports": 43458.7,
+      "imports": 45797.6,
+      "mom_change": -405.8,
+      "mom": -20.99,
+      "yoy_change": -2216.8,
+      "yoy": -1815.56
+    },
+    {
+      "date": "2015-11-01",
+      "balance": -3083.9,
+      "exports": 43153.7,
+      "imports": 46237.6,
+      "mom_change": -745.0,
+      "mom": -31.85,
+      "yoy_change": -2359.6,
+      "yoy": -325.78
+    },
+    {
+      "date": "2015-12-01",
+      "balance": -1911.0,
+      "exports": 44605.3,
+      "imports": 46516.4,
+      "mom_change": 1172.9,
+      "mom": 38.03,
+      "yoy_change": -711.3,
+      "yoy": -59.29
+    },
+    {
+      "date": "2016-01-01",
+      "balance": -1306.8,
+      "exports": 45518.4,
+      "imports": 46825.3,
+      "mom_change": 604.2,
+      "mom": 31.62,
+      "yoy_change": 1050.4,
+      "yoy": 44.56
+    },
+    {
+      "date": "2016-02-01",
+      "balance": -3205.2,
+      "exports": 43349.7,
+      "imports": 46555.0,
+      "mom_change": -1898.4,
+      "mom": -145.27,
+      "yoy_change": -1550.2,
+      "yoy": -93.67
+    },
+    {
+      "date": "2016-03-01",
+      "balance": -3236.9,
+      "exports": 41507.4,
+      "imports": 44744.3,
+      "mom_change": -31.7,
+      "mom": -0.99,
+      "yoy_change": 86.6,
+      "yoy": 2.61
+    },
+    {
+      "date": "2016-04-01",
+      "balance": -3086.3,
+      "exports": 41552.4,
+      "imports": 44638.7,
+      "mom_change": 150.6,
+      "mom": 4.65,
+      "yoy_change": -776.2,
+      "yoy": -33.6
+    },
+    {
+      "date": "2016-05-01",
+      "balance": -3584.8,
+      "exports": 40944.8,
+      "imports": 44529.7,
+      "mom_change": -498.5,
+      "mom": -16.15,
+      "yoy_change": -1007.5,
+      "yoy": -39.09
+    },
+    {
+      "date": "2016-06-01",
+      "balance": -3776.0,
+      "exports": 41120.5,
+      "imports": 44896.4,
+      "mom_change": -191.2,
+      "mom": -5.33,
+      "yoy_change": -3436.0,
+      "yoy": -1010.59
+    },
+    {
+      "date": "2016-07-01",
+      "balance": -1436.7,
+      "exports": 43174.4,
+      "imports": 44611.1,
+      "mom_change": 2339.3,
+      "mom": 61.95,
+      "yoy_change": -1052.7,
+      "yoy": -274.14
+    },
+    {
+      "date": "2016-08-01",
+      "balance": -1518.7,
+      "exports": 44151.3,
+      "imports": 45670.0,
+      "mom_change": -82.0,
+      "mom": -5.71,
+      "yoy_change": 18.6,
+      "yoy": 1.21
+    },
+    {
+      "date": "2016-09-01",
+      "balance": -4035.8,
+      "exports": 44001.0,
+      "imports": 48036.7,
+      "mom_change": -2517.1,
+      "mom": -165.74,
+      "yoy_change": -2102.7,
+      "yoy": -108.77
+    },
+    {
+      "date": "2016-10-01",
+      "balance": -1385.7,
+      "exports": 44407.9,
+      "imports": 45793.6,
+      "mom_change": 2650.1,
+      "mom": 65.66,
+      "yoy_change": 953.2,
+      "yoy": 40.75
+    },
+    {
+      "date": "2016-11-01",
+      "balance": 1073.2,
+      "exports": 46456.4,
+      "imports": 45383.2,
+      "mom_change": 2458.9,
+      "mom": 177.45,
+      "yoy_change": 4157.1,
+      "yoy": 134.8
+    },
+    {
+      "date": "2016-12-01",
+      "balance": 451.5,
+      "exports": 46116.7,
+      "imports": 45665.2,
+      "mom_change": -621.7,
+      "mom": -57.93,
+      "yoy_change": 2362.5,
+      "yoy": 123.63
+    },
+    {
+      "date": "2017-01-01",
+      "balance": -95.2,
+      "exports": 46977.1,
+      "imports": 47072.3,
+      "mom_change": -546.7,
+      "mom": -121.09,
+      "yoy_change": 1211.6,
+      "yoy": 92.72
+    },
+    {
+      "date": "2017-02-01",
+      "balance": -1260.5,
+      "exports": 46110.4,
+      "imports": 47370.9,
+      "mom_change": -1165.3,
+      "mom": -1224.05,
+      "yoy_change": 1944.7,
+      "yoy": 60.67
+    },
+    {
+      "date": "2017-03-01",
+      "balance": -671.4,
+      "exports": 46769.3,
+      "imports": 47440.7,
+      "mom_change": 589.1,
+      "mom": 46.74,
+      "yoy_change": 2565.5,
+      "yoy": 79.26
+    },
+    {
+      "date": "2017-04-01",
+      "balance": -1050.5,
+      "exports": 47390.3,
+      "imports": 48440.8,
+      "mom_change": -379.1,
+      "mom": -56.46,
+      "yoy_change": 2035.8,
+      "yoy": 65.96
+    },
+    {
+      "date": "2017-05-01",
+      "balance": -1580.9,
+      "exports": 47988.4,
+      "imports": 49569.3,
+      "mom_change": -530.4,
+      "mom": -50.49,
+      "yoy_change": 2003.9,
+      "yoy": 55.9
+    },
+    {
+      "date": "2017-06-01",
+      "balance": -3558.4,
+      "exports": 45712.0,
+      "imports": 49270.4,
+      "mom_change": -1977.5,
+      "mom": -125.09,
+      "yoy_change": 217.6,
+      "yoy": 5.76
+    },
+    {
+      "date": "2017-07-01",
+      "balance": -2947.8,
+      "exports": 43807.0,
+      "imports": 46754.8,
+      "mom_change": 610.6,
+      "mom": 17.16,
+      "yoy_change": -1511.1,
+      "yoy": -105.18
+    },
+    {
+      "date": "2017-08-01",
+      "balance": -2925.5,
+      "exports": 43560.1,
+      "imports": 46485.6,
+      "mom_change": 22.3,
+      "mom": 0.76,
+      "yoy_change": -1406.8,
+      "yoy": -92.63
+    },
+    {
+      "date": "2017-09-01",
+      "balance": -3167.2,
+      "exports": 43763.8,
+      "imports": 46931.0,
+      "mom_change": -241.7,
+      "mom": -8.26,
+      "yoy_change": 868.6,
+      "yoy": 21.52
+    },
+    {
+      "date": "2017-10-01",
+      "balance": -1684.4,
+      "exports": 44638.0,
+      "imports": 46322.4,
+      "mom_change": 1482.8,
+      "mom": 46.82,
+      "yoy_change": -298.7,
+      "yoy": -21.56
+    },
+    {
+      "date": "2017-11-01",
+      "balance": -2625.6,
+      "exports": 46728.9,
+      "imports": 49354.5,
+      "mom_change": -941.2,
+      "mom": -55.88,
+      "yoy_change": -3698.8,
+      "yoy": -344.65
+    },
+    {
+      "date": "2017-12-01",
+      "balance": -2932.2,
+      "exports": 47079.4,
+      "imports": 50011.6,
+      "mom_change": -306.6,
+      "mom": -11.68,
+      "yoy_change": -3383.7,
+      "yoy": -749.44
+    },
+    {
+      "date": "2018-01-01",
+      "balance": -1858.1,
+      "exports": 46068.9,
+      "imports": 47927.0,
+      "mom_change": 1074.1,
+      "mom": 36.63,
+      "yoy_change": -1762.9,
+      "yoy": -1851.79
+    },
+    {
+      "date": "2018-02-01",
+      "balance": -2104.0,
+      "exports": 46806.1,
+      "imports": 48910.1,
+      "mom_change": -245.9,
+      "mom": -13.23,
+      "yoy_change": -843.5,
+      "yoy": -66.92
+    },
+    {
+      "date": "2018-03-01",
+      "balance": -3469.2,
+      "exports": 48208.0,
+      "imports": 51677.2,
+      "mom_change": -1365.2,
+      "mom": -64.89,
+      "yoy_change": -2797.8,
+      "yoy": -416.71
+    },
+    {
+      "date": "2018-04-01",
+      "balance": -1487.4,
+      "exports": 49008.9,
+      "imports": 50496.2,
+      "mom_change": 1981.8,
+      "mom": 57.13,
+      "yoy_change": -436.9,
+      "yoy": -41.59
+    },
+    {
+      "date": "2018-05-01",
+      "balance": -2465.6,
+      "exports": 49014.3,
+      "imports": 51479.9,
+      "mom_change": -978.2,
+      "mom": -65.77,
+      "yoy_change": -884.7,
+      "yoy": -55.96
+    },
+    {
+      "date": "2018-06-01",
+      "balance": -248.7,
+      "exports": 51684.6,
+      "imports": 51933.3,
+      "mom_change": 2216.9,
+      "mom": 89.91,
+      "yoy_change": 3309.7,
+      "yoy": 93.01
+    },
+    {
+      "date": "2018-07-01",
+      "balance": -65.4,
+      "exports": 51481.6,
+      "imports": 51547.0,
+      "mom_change": 183.3,
+      "mom": 73.7,
+      "yoy_change": 2882.4,
+      "yoy": 97.78
+    },
+    {
+      "date": "2018-08-01",
+      "balance": -500.8,
+      "exports": 50585.9,
+      "imports": 51086.7,
+      "mom_change": -435.4,
+      "mom": -665.75,
+      "yoy_change": 2424.7,
+      "yoy": 82.88
+    },
+    {
+      "date": "2018-09-01",
+      "balance": -526.9,
+      "exports": 50664.2,
+      "imports": 51191.1,
+      "mom_change": -26.1,
+      "mom": -5.21,
+      "yoy_change": 2640.3,
+      "yoy": 83.36
+    },
+    {
+      "date": "2018-10-01",
+      "balance": -201.5,
+      "exports": 50226.3,
+      "imports": 50427.9,
+      "mom_change": 325.4,
+      "mom": 61.76,
+      "yoy_change": 1482.9,
+      "yoy": 88.04
+    },
+    {
+      "date": "2018-11-01",
+      "balance": -3123.0,
+      "exports": 47003.3,
+      "imports": 50126.3,
+      "mom_change": -2921.5,
+      "mom": -1449.88,
+      "yoy_change": -497.4,
+      "yoy": -18.94
+    },
+    {
+      "date": "2018-12-01",
+      "balance": -5755.0,
+      "exports": 45412.5,
+      "imports": 51167.5,
+      "mom_change": -2632.0,
+      "mom": -84.28,
+      "yoy_change": -2822.8,
+      "yoy": -96.27
+    },
+    {
+      "date": "2019-01-01",
+      "balance": -4043.5,
+      "exports": 47883.2,
+      "imports": 51926.7,
+      "mom_change": 1711.5,
+      "mom": 29.74,
+      "yoy_change": -2185.4,
+      "yoy": -117.61
+    },
+    {
+      "date": "2019-02-01",
+      "balance": -3145.6,
+      "exports": 48221.5,
+      "imports": 51367.0,
+      "mom_change": 897.9,
+      "mom": 22.21,
+      "yoy_change": -1041.6,
+      "yoy": -49.51
+    },
+    {
+      "date": "2019-03-01",
+      "balance": -2383.5,
+      "exports": 50285.3,
+      "imports": 52668.8,
+      "mom_change": 762.1,
+      "mom": 24.23,
+      "yoy_change": 1085.7,
+      "yoy": 31.3
+    },
+    {
+      "date": "2019-04-01",
+      "balance": -1099.8,
+      "exports": 50781.9,
+      "imports": 51881.7,
+      "mom_change": 1283.7,
+      "mom": 53.86,
+      "yoy_change": 387.6,
+      "yoy": 26.06
+    },
+    {
+      "date": "2019-05-01",
+      "balance": -315.1,
+      "exports": 52395.2,
+      "imports": 52710.3,
+      "mom_change": 784.7,
+      "mom": 71.35,
+      "yoy_change": 2150.5,
+      "yoy": 87.22
+    },
+    {
+      "date": "2019-06-01",
+      "balance": -1271.8,
+      "exports": 49835.9,
+      "imports": 51107.7,
+      "mom_change": -956.7,
+      "mom": -303.62,
+      "yoy_change": -1023.1,
+      "yoy": -411.38
+    },
+    {
+      "date": "2019-07-01",
+      "balance": -1665.5,
+      "exports": 49445.4,
+      "imports": 51110.9,
+      "mom_change": -393.7,
+      "mom": -30.96,
+      "yoy_change": -1600.1,
+      "yoy": -2446.64
+    },
+    {
+      "date": "2019-08-01",
+      "balance": -1571.7,
+      "exports": 50262.5,
+      "imports": 51834.2,
+      "mom_change": 93.8,
+      "mom": 5.63,
+      "yoy_change": -1070.9,
+      "yoy": -213.84
+    },
+    {
+      "date": "2019-09-01",
+      "balance": -876.1,
+      "exports": 49632.7,
+      "imports": 50508.8,
+      "mom_change": 695.6,
+      "mom": 44.26,
+      "yoy_change": -349.2,
+      "yoy": -66.27
+    },
+    {
+      "date": "2019-10-01",
+      "balance": -1326.2,
+      "exports": 48968.8,
+      "imports": 50295.0,
+      "mom_change": -450.1,
+      "mom": -51.38,
+      "yoy_change": -1124.7,
+      "yoy": -558.16
+    },
+    {
+      "date": "2019-11-01",
+      "balance": -903.5,
+      "exports": 48703.4,
+      "imports": 49606.9,
+      "mom_change": 422.7,
+      "mom": 31.87,
+      "yoy_change": 2219.5,
+      "yoy": 71.07
+    },
+    {
+      "date": "2019-12-01",
+      "balance": -195.7,
+      "exports": 49183.6,
+      "imports": 49379.4,
+      "mom_change": 707.8,
+      "mom": 78.34,
+      "yoy_change": 5559.3,
+      "yoy": 96.6
+    },
+    {
+      "date": "2020-01-01",
+      "balance": -2801.6,
+      "exports": 47575.3,
+      "imports": 50376.9,
+      "mom_change": -2605.9,
+      "mom": -1331.58,
+      "yoy_change": 1241.9,
+      "yoy": 30.71
+    },
+    {
+      "date": "2020-02-01",
+      "balance": -2949.4,
+      "exports": 47859.6,
+      "imports": 50809.0,
+      "mom_change": -147.8,
+      "mom": -5.28,
+      "yoy_change": 196.2,
+      "yoy": 6.24
+    },
+    {
+      "date": "2020-03-01",
+      "balance": -4556.3,
+      "exports": 43878.8,
+      "imports": 48435.2,
+      "mom_change": -1606.9,
+      "mom": -54.48,
+      "yoy_change": -2172.8,
+      "yoy": -91.16
+    },
+    {
+      "date": "2020-04-01",
+      "balance": -5538.5,
+      "exports": 31699.5,
+      "imports": 37238.0,
+      "mom_change": -982.2,
+      "mom": -21.56,
+      "yoy_change": -4438.7,
+      "yoy": -403.59
+    },
+    {
+      "date": "2020-05-01",
+      "balance": -1901.0,
+      "exports": 34109.0,
+      "imports": 36010.0,
+      "mom_change": 3637.5,
+      "mom": 65.68,
+      "yoy_change": -1585.9,
+      "yoy": -503.3
+    },
+    {
+      "date": "2020-06-01",
+      "balance": -2622.6,
+      "exports": 40955.6,
+      "imports": 43578.1,
+      "mom_change": -721.6,
+      "mom": -37.96,
+      "yoy_change": -1350.8,
+      "yoy": -106.21
+    },
+    {
+      "date": "2020-07-01",
+      "balance": -3221.8,
+      "exports": 44625.3,
+      "imports": 47847.2,
+      "mom_change": -599.2,
+      "mom": -22.85,
+      "yoy_change": -1556.3,
+      "yoy": -93.44
+    },
+    {
+      "date": "2020-08-01",
+      "balance": -3403.4,
+      "exports": 45176.8,
+      "imports": 48580.1,
+      "mom_change": -181.6,
+      "mom": -5.64,
+      "yoy_change": -1831.7,
+      "yoy": -116.54
+    },
+    {
+      "date": "2020-09-01",
+      "balance": -3980.7,
+      "exports": 45930.2,
+      "imports": 49910.9,
+      "mom_change": -577.3,
+      "mom": -16.96,
+      "yoy_change": -3104.6,
+      "yoy": -354.37
+    },
+    {
+      "date": "2020-10-01",
+      "balance": -3944.8,
+      "exports": 46242.4,
+      "imports": 50187.2,
+      "mom_change": 35.9,
+      "mom": 0.9,
+      "yoy_change": -2618.6,
+      "yoy": -197.45
+    },
+    {
+      "date": "2020-11-01",
+      "balance": -3584.5,
+      "exports": 46827.6,
+      "imports": 50412.1,
+      "mom_change": 360.3,
+      "mom": 9.13,
+      "yoy_change": -2681.0,
+      "yoy": -296.73
+    },
+    {
+      "date": "2020-12-01",
+      "balance": -2142.7,
+      "exports": 47596.0,
+      "imports": 49738.7,
+      "mom_change": 1441.8,
+      "mom": 40.22,
+      "yoy_change": -1947.0,
+      "yoy": -994.89
+    },
+    {
+      "date": "2021-01-01",
+      "balance": 871.2,
+      "exports": 51782.0,
+      "imports": 50910.7,
+      "mom_change": 3013.9,
+      "mom": 140.66,
+      "yoy_change": 3672.8,
+      "yoy": 131.1
+    },
+    {
+      "date": "2021-02-01",
+      "balance": 733.5,
+      "exports": 50711.3,
+      "imports": 49977.8,
+      "mom_change": -137.7,
+      "mom": -15.81,
+      "yoy_change": 3682.9,
+      "yoy": 124.87
+    },
+    {
+      "date": "2021-03-01",
+      "balance": -1798.6,
+      "exports": 50389.5,
+      "imports": 52188.1,
+      "mom_change": -2532.1,
+      "mom": -345.21,
+      "yoy_change": 2757.7,
+      "yoy": 60.52
+    },
+    {
+      "date": "2021-04-01",
+      "balance": -359.0,
+      "exports": 49987.1,
+      "imports": 50346.1,
+      "mom_change": 1439.6,
+      "mom": 80.04,
+      "yoy_change": 5179.5,
+      "yoy": 93.52
+    },
+    {
+      "date": "2021-05-01",
+      "balance": -1926.1,
+      "exports": 49586.3,
+      "imports": 51512.4,
+      "mom_change": -1567.1,
+      "mom": -436.52,
+      "yoy_change": -25.1,
+      "yoy": -1.32
+    },
+    {
+      "date": "2021-06-01",
+      "balance": 1555.1,
+      "exports": 53132.9,
+      "imports": 51577.7,
+      "mom_change": 3481.2,
+      "mom": 180.74,
+      "yoy_change": 4177.7,
+      "yoy": 159.3
+    },
+    {
+      "date": "2021-07-01",
+      "balance": 241.8,
+      "exports": 53412.9,
+      "imports": 53171.1,
+      "mom_change": -1313.3,
+      "mom": -84.45,
+      "yoy_change": 3463.6,
+      "yoy": 107.51
+    },
+    {
+      "date": "2021-08-01",
+      "balance": 1070.2,
+      "exports": 53887.5,
+      "imports": 52817.3,
+      "mom_change": 828.4,
+      "mom": 342.6,
+      "yoy_change": 4473.6,
+      "yoy": 131.45
+    },
+    {
+      "date": "2021-09-01",
+      "balance": 854.1,
+      "exports": 52728.5,
+      "imports": 51874.4,
+      "mom_change": -216.1,
+      "mom": -20.19,
+      "yoy_change": 4834.8,
+      "yoy": 121.46
+    },
+    {
+      "date": "2021-10-01",
+      "balance": 1493.3,
+      "exports": 56103.8,
+      "imports": 54610.5,
+      "mom_change": 639.2,
+      "mom": 74.84,
+      "yoy_change": 5438.1,
+      "yoy": 137.85
+    },
+    {
+      "date": "2021-11-01",
+      "balance": 2355.2,
+      "exports": 58606.5,
+      "imports": 56251.3,
+      "mom_change": 861.9,
+      "mom": 57.72,
+      "yoy_change": 5939.7,
+      "yoy": 165.71
+    },
+    {
+      "date": "2021-12-01",
+      "balance": -1341.0,
+      "exports": 58247.3,
+      "imports": 59588.3,
+      "mom_change": -3696.2,
+      "mom": -156.94,
+      "yoy_change": 801.7,
+      "yoy": 37.42
+    },
+    {
+      "date": "2022-01-01",
+      "balance": 2605.5,
+      "exports": 58504.6,
+      "imports": 55899.1,
+      "mom_change": 3946.5,
+      "mom": 294.3,
+      "yoy_change": 1734.3,
+      "yoy": 199.07
+    },
+    {
+      "date": "2022-02-01",
+      "balance": 2839.2,
+      "exports": 61350.3,
+      "imports": 58511.0,
+      "mom_change": 233.7,
+      "mom": 8.97,
+      "yoy_change": 2105.7,
+      "yoy": 287.08
+    },
+    {
+      "date": "2022-03-01",
+      "balance": 2141.2,
+      "exports": 64943.0,
+      "imports": 62801.7,
+      "mom_change": -698.0,
+      "mom": -24.58,
+      "yoy_change": 3939.8,
+      "yoy": 219.05
+    },
+    {
+      "date": "2022-04-01",
+      "balance": 1294.0,
+      "exports": 65675.3,
+      "imports": 64381.4,
+      "mom_change": -847.2,
+      "mom": -39.57,
+      "yoy_change": 1653.0,
+      "yoy": 460.45
+    },
+    {
+      "date": "2022-05-01",
+      "balance": 6982.5,
+      "exports": 71304.9,
+      "imports": 64322.4,
+      "mom_change": 5688.5,
+      "mom": 439.61,
+      "yoy_change": 8908.6,
+      "yoy": 462.52
+    },
+    {
+      "date": "2022-06-01",
+      "balance": 3143.4,
+      "exports": 69354.8,
+      "imports": 66211.3,
+      "mom_change": -3839.1,
+      "mom": -54.98,
+      "yoy_change": 1588.3,
+      "yoy": 102.13
+    },
+    {
+      "date": "2022-07-01",
+      "balance": 1348.1,
+      "exports": 66771.8,
+      "imports": 65423.7,
+      "mom_change": -1795.3,
+      "mom": -57.11,
+      "yoy_change": 1106.3,
+      "yoy": 457.53
+    },
+    {
+      "date": "2022-08-01",
+      "balance": -613.3,
+      "exports": 65103.3,
+      "imports": 65716.6,
+      "mom_change": -1961.4,
+      "mom": -145.49,
+      "yoy_change": -1683.5,
+      "yoy": -157.31
+    },
+    {
+      "date": "2022-09-01",
+      "balance": 518.6,
+      "exports": 65715.1,
+      "imports": 65196.5,
+      "mom_change": 1131.9,
+      "mom": 184.56,
+      "yoy_change": -335.5,
+      "yoy": -39.28
+    },
+    {
+      "date": "2022-10-01",
+      "balance": -1084.5,
+      "exports": 65283.2,
+      "imports": 66367.8,
+      "mom_change": -1603.1,
+      "mom": -309.12,
+      "yoy_change": -2577.8,
+      "yoy": -172.62
+    },
+    {
+      "date": "2022-11-01",
+      "balance": -243.6,
+      "exports": 64044.0,
+      "imports": 64287.6,
+      "mom_change": 840.9,
+      "mom": 77.54,
+      "yoy_change": -2598.8,
+      "yoy": -110.34
+    },
+    {
+      "date": "2022-12-01",
+      "balance": 787.6,
+      "exports": 64501.3,
+      "imports": 63713.7,
+      "mom_change": 1031.2,
+      "mom": 423.32,
+      "yoy_change": 2128.6,
+      "yoy": 158.73
+    },
+    {
+      "date": "2023-01-01",
+      "balance": 621.3,
+      "exports": 65925.6,
+      "imports": 65304.3,
+      "mom_change": -166.3,
+      "mom": -21.11,
+      "yoy_change": -1984.2,
+      "yoy": -76.15
+    },
+    {
+      "date": "2023-02-01",
+      "balance": -671.2,
+      "exports": 63070.9,
+      "imports": 63742.2,
+      "mom_change": -1292.5,
+      "mom": -208.03,
+      "yoy_change": -3510.4,
+      "yoy": -123.64
+    },
+    {
+      "date": "2023-03-01",
+      "balance": 1570.5,
+      "exports": 63888.7,
+      "imports": 62318.2,
+      "mom_change": 2241.7,
+      "mom": 333.98,
+      "yoy_change": -570.7,
+      "yoy": -26.65
+    },
+    {
+      "date": "2023-04-01",
+      "balance": 1618.5,
+      "exports": 64517.2,
+      "imports": 62898.7,
+      "mom_change": 48.0,
+      "mom": 3.06,
+      "yoy_change": 324.5,
+      "yoy": 25.08
+    },
+    {
+      "date": "2023-05-01",
+      "balance": -2090.9,
+      "exports": 63286.7,
+      "imports": 65377.6,
+      "mom_change": -3709.4,
+      "mom": -229.19,
+      "yoy_change": -9073.4,
+      "yoy": -129.94
+    },
+    {
+      "date": "2023-06-01",
+      "balance": -5071.7,
+      "exports": 60556.4,
+      "imports": 65628.1,
+      "mom_change": -2980.8,
+      "mom": -142.56,
+      "yoy_change": -8215.1,
+      "yoy": -261.34
+    },
+    {
+      "date": "2023-07-01",
+      "balance": -1027.3,
+      "exports": 61696.4,
+      "imports": 62723.7,
+      "mom_change": 4044.4,
+      "mom": 79.74,
+      "yoy_change": -2375.4,
+      "yoy": -176.2
+    },
+    {
+      "date": "2023-08-01",
+      "balance": 718.0,
+      "exports": 65334.2,
+      "imports": 64616.2,
+      "mom_change": 1745.3,
+      "mom": 169.89,
+      "yoy_change": 1331.3,
+      "yoy": 217.07
+    },
+    {
+      "date": "2023-09-01",
+      "balance": 1665.7,
+      "exports": 66557.8,
+      "imports": 64892.1,
+      "mom_change": 947.7,
+      "mom": 131.99,
+      "yoy_change": 1147.1,
+      "yoy": 221.19
+    },
+    {
+      "date": "2023-10-01",
+      "balance": 2768.3,
+      "exports": 66479.4,
+      "imports": 63711.1,
+      "mom_change": 1102.6,
+      "mom": 66.19,
+      "yoy_change": 3852.8,
+      "yoy": 355.26
+    },
+    {
+      "date": "2023-11-01",
+      "balance": 589.7,
+      "exports": 65272.0,
+      "imports": 64682.3,
+      "mom_change": -2178.6,
+      "mom": -78.7,
+      "yoy_change": 833.3,
+      "yoy": 342.08
+    },
+    {
+      "date": "2023-12-01",
+      "balance": -1623.8,
+      "exports": 63178.6,
+      "imports": 64802.4,
+      "mom_change": -2213.5,
+      "mom": -375.36,
+      "yoy_change": -2411.4,
+      "yoy": -306.17
+    },
+    {
+      "date": "2024-01-01",
+      "balance": -981.3,
+      "exports": 61007.6,
+      "imports": 61988.9,
+      "mom_change": 642.5,
+      "mom": 39.57,
+      "yoy_change": -1602.6,
+      "yoy": -257.94
+    },
+    {
+      "date": "2024-02-01",
+      "balance": 641.3,
+      "exports": 65145.2,
+      "imports": 64503.9,
+      "mom_change": 1622.6,
+      "mom": 165.35,
+      "yoy_change": 1312.5,
+      "yoy": 195.55
+    },
+    {
+      "date": "2024-03-01",
+      "balance": -810.1,
+      "exports": 63144.4,
+      "imports": 63954.5,
+      "mom_change": -1451.4,
+      "mom": -226.32,
+      "yoy_change": -2380.6,
+      "yoy": -151.58
+    },
+    {
+      "date": "2024-04-01",
+      "balance": -765.1,
+      "exports": 65302.2,
+      "imports": 66067.3,
+      "mom_change": 45.0,
+      "mom": 5.55,
+      "yoy_change": -2383.6,
+      "yoy": -147.27
+    },
+    {
+      "date": "2024-05-01",
+      "balance": -1453.0,
+      "exports": 63470.0,
+      "imports": 64923.0,
+      "mom_change": -687.9,
+      "mom": -89.91,
+      "yoy_change": 637.9,
+      "yoy": 30.51
+    },
+    {
+      "date": "2024-06-01",
+      "balance": -863.4,
+      "exports": 65848.7,
+      "imports": 66712.1,
+      "mom_change": 589.6,
+      "mom": 40.58,
+      "yoy_change": 4208.3,
+      "yoy": 82.98
+    },
+    {
+      "date": "2024-07-01",
+      "balance": -353.0,
+      "exports": 65096.0,
+      "imports": 65449.0,
+      "mom_change": 510.4,
+      "mom": 59.12,
+      "yoy_change": 674.3,
+      "yoy": 65.64
+    },
+    {
+      "date": "2024-08-01",
+      "balance": -1768.1,
+      "exports": 64124.5,
+      "imports": 65892.6,
+      "mom_change": -1415.1,
+      "mom": -400.88,
+      "yoy_change": -2486.1,
+      "yoy": -346.25
+    },
+    {
+      "date": "2024-09-01",
+      "balance": -1350.4,
+      "exports": 63893.2,
+      "imports": 65243.6,
+      "mom_change": 417.7,
+      "mom": 23.62,
+      "yoy_change": -3016.1,
+      "yoy": -181.07
+    },
+    {
+      "date": "2024-10-01",
+      "balance": -616.7,
+      "exports": 64989.5,
+      "imports": 65606.1,
+      "mom_change": 733.7,
+      "mom": 54.33,
+      "yoy_change": -3385.0,
+      "yoy": -122.28
+    },
+    {
+      "date": "2024-11-01",
+      "balance": -611.1,
+      "exports": 66006.0,
+      "imports": 66617.1,
+      "mom_change": 5.6,
+      "mom": 0.91,
+      "yoy_change": -1200.8,
+      "yoy": -203.63
+    },
+    {
+      "date": "2024-12-01",
+      "balance": 1757.0,
+      "exports": 69585.3,
+      "imports": 67828.3,
+      "mom_change": 2368.1,
+      "mom": 387.51,
+      "yoy_change": 3380.8,
+      "yoy": 208.2
+    },
+    {
+      "date": "2025-01-01",
+      "balance": 3549.7,
+      "exports": 72759.5,
+      "imports": 69209.8,
+      "mom_change": 1792.7,
+      "mom": 102.03,
+      "yoy_change": 4531.0,
+      "yoy": 461.73
+    },
+    {
+      "date": "2025-02-01",
+      "balance": -1177.1,
+      "exports": 68696.5,
+      "imports": 69873.6,
+      "mom_change": -4726.8,
+      "mom": -133.16,
+      "yoy_change": -1818.4,
+      "yoy": -283.55
+    },
+    {
+      "date": "2025-03-01",
+      "balance": -1949.1,
+      "exports": 67469.2,
+      "imports": 69418.3,
+      "mom_change": -772.0,
+      "mom": -65.58,
+      "yoy_change": -1139.0,
+      "yoy": -140.6
+    },
+    {
+      "date": "2025-04-01",
+      "balance": -7197.1,
+      "exports": 60152.8,
+      "imports": 67349.9,
+      "mom_change": -5248.0,
+      "mom": -269.25,
+      "yoy_change": -6432.0,
+      "yoy": -840.67
+    },
+    {
+      "date": "2025-05-01",
+      "balance": -5655.4,
+      "exports": 61140.3,
+      "imports": 66795.7,
+      "mom_change": 1541.7,
+      "mom": 21.42,
+      "yoy_change": -4202.4,
+      "yoy": -289.22
+    },
+    {
+      "date": "2025-06-01",
+      "balance": -5548.1,
+      "exports": 61580.1,
+      "imports": 67128.3,
+      "mom_change": 107.3,
+      "mom": 1.9,
+      "yoy_change": -4684.7,
+      "yoy": -542.59
+    },
+    {
+      "date": "2025-07-01",
+      "balance": -3830.9,
+      "exports": 62472.0,
+      "imports": 66302.9,
+      "mom_change": 1717.2,
+      "mom": 30.95,
+      "yoy_change": -3477.9,
+      "yoy": -985.24
+    },
+    {
+      "date": "2025-08-01",
+      "balance": -6429.7,
+      "exports": 60450.3,
+      "imports": 66880.0,
+      "mom_change": -2598.8,
+      "mom": -67.84,
+      "yoy_change": -4661.6,
+      "yoy": -263.65
+    },
+    {
+      "date": "2025-09-01",
+      "balance": 257.1,
+      "exports": 64239.0,
+      "imports": 63981.8,
+      "mom_change": 6686.8,
+      "mom": 104.0,
+      "yoy_change": 1607.5,
+      "yoy": 119.04
+    },
+    {
+      "date": "2025-10-01",
+      "balance": -394.9,
+      "exports": 65782.0,
+      "imports": 66176.9,
+      "mom_change": -652.0,
+      "mom": -253.6,
+      "yoy_change": 221.8,
+      "yoy": 35.97
+    },
+    {
+      "date": "2025-11-01",
+      "balance": -2196.9,
+      "exports": 63942.7,
+      "imports": 66139.6,
+      "mom_change": -1802.0,
+      "mom": -456.32,
+      "yoy_change": -1585.8,
+      "yoy": -259.5
+    }
+  ],
+  "latest": {
+    "date": "2025-11-01",
+    "balance": -2196.9,
+    "exports": 63942.7,
+    "imports": 66139.6,
+    "mom_change": -1802.0,
+    "mom": -456.32,
+    "yoy_change": -1585.8,
+    "yoy": -259.5
+  },
+  "metadata": {
+    "source": "Statistics Canada",
+    "table": "12-10-0011-01",
+    "indicator": "Canadian international merchandise trade",
+    "description": "カナダ貿易収支（季節調整済み）",
+    "unit": "Millions CAD",
+    "frequency": "monthly"
+  },
+  "next_release": {
+    "date": "2026-02-19",
+    "datetime_utc": "2026-02-19T13:30:00+00:00",
+    "datetime_jst": "2026-02-19T22:30:00+09:00",
+    "time_jst": "22:30",
+    "datetime_toronto": "2026-02-19T08:30:00-05:00",
+    "time_toronto": "08:30",
+    "label": "Imports (Oct)",
+    "estimate": null
+  },
+  "last_updated": "2026-02-13T22:58:22.457631+09:00"
+}

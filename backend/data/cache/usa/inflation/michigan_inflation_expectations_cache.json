@@ -4043,8 +4043,8 @@
     "datetime_utc": "2026-02-06T15:00:00+00:00",
     "datetime_jst": "2026-02-07T00:00:00+09:00",
     "time_jst": "00:00",
-    "label": "Michigan Inflation Expectations (Feb)",
-    "estimate": 4
+    "label": "Michigan Consumer Sentiment (Feb)",
+    "estimate": 53
   },
-  "last_updated": "2026-01-30T23:03:03.317032+09:00"
+  "last_updated": "2026-02-05T12:03:17.785525+09:00"
 }

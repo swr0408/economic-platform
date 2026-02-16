@@ -1,0 +1,856 @@
+{
+  "data": [
+    {
+      "date": "1991-01-01",
+      "all_banks": 11.99,
+      "top_100": 17.17,
+      "other_banks": 7.8
+    },
+    {
+      "date": "1991-04-01",
+      "all_banks": 11.83,
+      "top_100": 16.97,
+      "other_banks": 7.8
+    },
+    {
+      "date": "1991-07-01",
+      "all_banks": 11.51,
+      "top_100": 16.76,
+      "other_banks": 7.52
+    },
+    {
+      "date": "1991-10-01",
+      "all_banks": 11.41,
+      "top_100": 16.52,
+      "other_banks": 7.6
+    },
+    {
+      "date": "1992-01-01",
+      "all_banks": 10.92,
+      "top_100": 16.24,
+      "other_banks": 6.99
+    },
+    {
+      "date": "1992-04-01",
+      "all_banks": 10.49,
+      "top_100": 15.96,
+      "other_banks": 6.46
+    },
+    {
+      "date": "1992-07-01",
+      "all_banks": 10.31,
+      "top_100": 15.8,
+      "other_banks": 6.35
+    },
+    {
+      "date": "1992-10-01",
+      "all_banks": 9.7,
+      "top_100": 15.26,
+      "other_banks": 5.69
+    },
+    {
+      "date": "1993-01-01",
+      "all_banks": 8.81,
+      "top_100": 13.81,
+      "other_banks": 5.24
+    },
+    {
+      "date": "1993-04-01",
+      "all_banks": 8.25,
+      "top_100": 12.62,
+      "other_banks": 5.17
+    },
+    {
+      "date": "1993-07-01",
+      "all_banks": 7.51,
+      "top_100": 11.25,
+      "other_banks": 4.9
+    },
+    {
+      "date": "1993-10-01",
+      "all_banks": 6.69,
+      "top_100": 10.13,
+      "other_banks": 4.42
+    },
+    {
+      "date": "1994-01-01",
+      "all_banks": 6.06,
+      "top_100": 8.93,
+      "other_banks": 4.13
+    },
+    {
+      "date": "1994-04-01",
+      "all_banks": 5.44,
+      "top_100": 8.18,
+      "other_banks": 3.63
+    },
+    {
+      "date": "1994-07-01",
+      "all_banks": 4.83,
+      "top_100": 7.14,
+      "other_banks": 3.3
+    },
+    {
+      "date": "1994-10-01",
+      "all_banks": 4.31,
+      "top_100": 6.26,
+      "other_banks": 3.04
+    },
+    {
+      "date": "1995-01-01",
+      "all_banks": 4.32,
+      "top_100": 6.24,
+      "other_banks": 3.0
+    },
+    {
+      "date": "1995-04-01",
+      "all_banks": 4.07,
+      "top_100": 5.9,
+      "other_banks": 2.83
+    },
+    {
+      "date": "1995-07-01",
+      "all_banks": 3.82,
+      "top_100": 5.42,
+      "other_banks": 2.73
+    },
+    {
+      "date": "1995-10-01",
+      "all_banks": 3.4,
+      "top_100": 4.46,
+      "other_banks": 2.72
+    },
+    {
+      "date": "1996-01-01",
+      "all_banks": 3.32,
+      "top_100": 4.41,
+      "other_banks": 2.59
+    },
+    {
+      "date": "1996-04-01",
+      "all_banks": 3.18,
+      "top_100": 4.15,
+      "other_banks": 2.48
+    },
+    {
+      "date": "1996-07-01",
+      "all_banks": 3.07,
+      "top_100": 4.08,
+      "other_banks": 2.3
+    },
+    {
+      "date": "1996-10-01",
+      "all_banks": 2.84,
+      "top_100": 3.64,
+      "other_banks": 2.27
+    },
+    {
+      "date": "1997-01-01",
+      "all_banks": 2.61,
+      "top_100": 3.22,
+      "other_banks": 2.14
+    },
+    {
+      "date": "1997-04-01",
+      "all_banks": 2.37,
+      "top_100": 2.67,
+      "other_banks": 2.12
+    },
+    {
+      "date": "1997-07-01",
+      "all_banks": 2.25,
+      "top_100": 2.49,
+      "other_banks": 2.02
+    },
+    {
+      "date": "1997-10-01",
+      "all_banks": 2.21,
+      "top_100": 2.48,
+      "other_banks": 1.95
+    },
+    {
+      "date": "1998-01-01",
+      "all_banks": 2.12,
+      "top_100": 2.33,
+      "other_banks": 1.9
+    },
+    {
+      "date": "1998-04-01",
+      "all_banks": 2.02,
+      "top_100": 2.2,
+      "other_banks": 1.86
+    },
+    {
+      "date": "1998-07-01",
+      "all_banks": 1.95,
+      "top_100": 2.06,
+      "other_banks": 1.83
+    },
+    {
+      "date": "1998-10-01",
+      "all_banks": 1.99,
+      "top_100": 2.22,
+      "other_banks": 1.75
+    },
+    {
+      "date": "1999-01-01",
+      "all_banks": 1.87,
+      "top_100": 2.09,
+      "other_banks": 1.64
+    },
+    {
+      "date": "1999-04-01",
+      "all_banks": 1.82,
+      "top_100": 2.14,
+      "other_banks": 1.51
+    },
+    {
+      "date": "1999-07-01",
+      "all_banks": 1.56,
+      "top_100": 1.72,
+      "other_banks": 1.4
+    },
+    {
+      "date": "1999-10-01",
+      "all_banks": 1.45,
+      "top_100": 1.58,
+      "other_banks": 1.33
+    },
+    {
+      "date": "2000-01-01",
+      "all_banks": 1.5,
+      "top_100": 1.6,
+      "other_banks": 1.38
+    },
+    {
+      "date": "2000-04-01",
+      "all_banks": 1.43,
+      "top_100": 1.49,
+      "other_banks": 1.38
+    },
+    {
+      "date": "2000-07-01",
+      "all_banks": 1.47,
+      "top_100": 1.49,
+      "other_banks": 1.45
+    },
+    {
+      "date": "2000-10-01",
+      "all_banks": 1.51,
+      "top_100": 1.51,
+      "other_banks": 1.53
+    },
+    {
+      "date": "2001-01-01",
+      "all_banks": 1.6,
+      "top_100": 1.56,
+      "other_banks": 1.63
+    },
+    {
+      "date": "2001-04-01",
+      "all_banks": 1.72,
+      "top_100": 1.7,
+      "other_banks": 1.76
+    },
+    {
+      "date": "2001-07-01",
+      "all_banks": 1.92,
+      "top_100": 1.98,
+      "other_banks": 1.86
+    },
+    {
+      "date": "2001-10-01",
+      "all_banks": 1.93,
+      "top_100": 1.98,
+      "other_banks": 1.89
+    },
+    {
+      "date": "2002-01-01",
+      "all_banks": 1.78,
+      "top_100": 1.81,
+      "other_banks": 1.74
+    },
+    {
+      "date": "2002-04-01",
+      "all_banks": 1.76,
+      "top_100": 1.79,
+      "other_banks": 1.72
+    },
+    {
+      "date": "2002-07-01",
+      "all_banks": 1.69,
+      "top_100": 1.67,
+      "other_banks": 1.71
+    },
+    {
+      "date": "2002-10-01",
+      "all_banks": 1.61,
+      "top_100": 1.55,
+      "other_banks": 1.69
+    },
+    {
+      "date": "2003-01-01",
+      "all_banks": 1.67,
+      "top_100": 1.6,
+      "other_banks": 1.73
+    },
+    {
+      "date": "2003-04-01",
+      "all_banks": 1.61,
+      "top_100": 1.56,
+      "other_banks": 1.67
+    },
+    {
+      "date": "2003-07-01",
+      "all_banks": 1.48,
+      "top_100": 1.42,
+      "other_banks": 1.55
+    },
+    {
+      "date": "2003-10-01",
+      "all_banks": 1.4,
+      "top_100": 1.34,
+      "other_banks": 1.46
+    },
+    {
+      "date": "2004-01-01",
+      "all_banks": 1.25,
+      "top_100": 1.16,
+      "other_banks": 1.34
+    },
+    {
+      "date": "2004-04-01",
+      "all_banks": 1.26,
+      "top_100": 1.23,
+      "other_banks": 1.29
+    },
+    {
+      "date": "2004-07-01",
+      "all_banks": 1.19,
+      "top_100": 1.18,
+      "other_banks": 1.2
+    },
+    {
+      "date": "2004-10-01",
+      "all_banks": 1.1,
+      "top_100": 1.08,
+      "other_banks": 1.13
+    },
+    {
+      "date": "2005-01-01",
+      "all_banks": 1.12,
+      "top_100": 1.09,
+      "other_banks": 1.15
+    },
+    {
+      "date": "2005-04-01",
+      "all_banks": 1.05,
+      "top_100": 1.03,
+      "other_banks": 1.08
+    },
+    {
+      "date": "2005-07-01",
+      "all_banks": 1.07,
+      "top_100": 1.06,
+      "other_banks": 1.09
+    },
+    {
+      "date": "2005-10-01",
+      "all_banks": 1.03,
+      "top_100": 0.99,
+      "other_banks": 1.08
+    },
+    {
+      "date": "2006-01-01",
+      "all_banks": 1.02,
+      "top_100": 0.94,
+      "other_banks": 1.09
+    },
+    {
+      "date": "2006-04-01",
+      "all_banks": 1.02,
+      "top_100": 0.93,
+      "other_banks": 1.12
+    },
+    {
+      "date": "2006-07-01",
+      "all_banks": 1.13,
+      "top_100": 0.99,
+      "other_banks": 1.28
+    },
+    {
+      "date": "2006-10-01",
+      "all_banks": 1.32,
+      "top_100": 1.26,
+      "other_banks": 1.39
+    },
+    {
+      "date": "2007-01-01",
+      "all_banks": 1.43,
+      "top_100": 1.35,
+      "other_banks": 1.51
+    },
+    {
+      "date": "2007-04-01",
+      "all_banks": 1.63,
+      "top_100": 1.51,
+      "other_banks": 1.76
+    },
+    {
+      "date": "2007-07-01",
+      "all_banks": 1.97,
+      "top_100": 1.83,
+      "other_banks": 2.14
+    },
+    {
+      "date": "2007-10-01",
+      "all_banks": 2.75,
+      "top_100": 2.66,
+      "other_banks": 2.86
+    },
+    {
+      "date": "2008-01-01",
+      "all_banks": 3.5,
+      "top_100": 3.46,
+      "other_banks": 3.55
+    },
+    {
+      "date": "2008-04-01",
+      "all_banks": 4.16,
+      "top_100": 4.11,
+      "other_banks": 4.21
+    },
+    {
+      "date": "2008-07-01",
+      "all_banks": 4.64,
+      "top_100": 4.62,
+      "other_banks": 4.67
+    },
+    {
+      "date": "2008-10-01",
+      "all_banks": 5.48,
+      "top_100": 5.37,
+      "other_banks": 5.61
+    },
+    {
+      "date": "2009-01-01",
+      "all_banks": 6.59,
+      "top_100": 6.64,
+      "other_banks": 6.5
+    },
+    {
+      "date": "2009-04-01",
+      "all_banks": 7.85,
+      "top_100": 8.11,
+      "other_banks": 7.55
+    },
+    {
+      "date": "2009-07-01",
+      "all_banks": 8.5,
+      "top_100": 9.2,
+      "other_banks": 7.65
+    },
+    {
+      "date": "2009-10-01",
+      "all_banks": 8.72,
+      "top_100": 9.61,
+      "other_banks": 7.55
+    },
+    {
+      "date": "2010-01-01",
+      "all_banks": 8.75,
+      "top_100": 9.73,
+      "other_banks": 7.5
+    },
+    {
+      "date": "2010-04-01",
+      "all_banks": 8.76,
+      "top_100": 9.95,
+      "other_banks": 7.25
+    },
+    {
+      "date": "2010-07-01",
+      "all_banks": 8.59,
+      "top_100": 9.55,
+      "other_banks": 7.33
+    },
+    {
+      "date": "2010-10-01",
+      "all_banks": 7.95,
+      "top_100": 8.61,
+      "other_banks": 7.07
+    },
+    {
+      "date": "2011-01-01",
+      "all_banks": 7.56,
+      "top_100": 8.18,
+      "other_banks": 6.77
+    },
+    {
+      "date": "2011-04-01",
+      "all_banks": 7.09,
+      "top_100": 7.4,
+      "other_banks": 6.7
+    },
+    {
+      "date": "2011-07-01",
+      "all_banks": 6.66,
+      "top_100": 6.9,
+      "other_banks": 6.34
+    },
+    {
+      "date": "2011-10-01",
+      "all_banks": 6.11,
+      "top_100": 6.19,
+      "other_banks": 5.99
+    },
+    {
+      "date": "2012-01-01",
+      "all_banks": 5.48,
+      "top_100": 5.48,
+      "other_banks": 5.49
+    },
+    {
+      "date": "2012-04-01",
+      "all_banks": 5.0,
+      "top_100": 4.96,
+      "other_banks": 5.05
+    },
+    {
+      "date": "2012-07-01",
+      "all_banks": 4.6,
+      "top_100": 4.46,
+      "other_banks": 4.79
+    },
+    {
+      "date": "2012-10-01",
+      "all_banks": 4.13,
+      "top_100": 3.99,
+      "other_banks": 4.31
+    },
+    {
+      "date": "2013-01-01",
+      "all_banks": 3.67,
+      "top_100": 3.5,
+      "other_banks": 3.9
+    },
+    {
+      "date": "2013-04-01",
+      "all_banks": 3.28,
+      "top_100": 3.1,
+      "other_banks": 3.52
+    },
+    {
+      "date": "2013-07-01",
+      "all_banks": 2.81,
+      "top_100": 2.58,
+      "other_banks": 3.12
+    },
+    {
+      "date": "2013-10-01",
+      "all_banks": 2.47,
+      "top_100": 2.2,
+      "other_banks": 2.82
+    },
+    {
+      "date": "2014-01-01",
+      "all_banks": 2.21,
+      "top_100": 1.93,
+      "other_banks": 2.57
+    },
+    {
+      "date": "2014-04-01",
+      "all_banks": 1.95,
+      "top_100": 1.67,
+      "other_banks": 2.32
+    },
+    {
+      "date": "2014-07-01",
+      "all_banks": 1.77,
+      "top_100": 1.53,
+      "other_banks": 2.09
+    },
+    {
+      "date": "2014-10-01",
+      "all_banks": 1.57,
+      "top_100": 1.34,
+      "other_banks": 1.88
+    },
+    {
+      "date": "2015-01-01",
+      "all_banks": 1.41,
+      "top_100": 1.18,
+      "other_banks": 1.73
+    },
+    {
+      "date": "2015-04-01",
+      "all_banks": 1.28,
+      "top_100": 1.05,
+      "other_banks": 1.58
+    },
+    {
+      "date": "2015-07-01",
+      "all_banks": 1.15,
+      "top_100": 0.95,
+      "other_banks": 1.43
+    },
+    {
+      "date": "2015-10-01",
+      "all_banks": 1.06,
+      "top_100": 0.86,
+      "other_banks": 1.33
+    },
+    {
+      "date": "2016-01-01",
+      "all_banks": 0.97,
+      "top_100": 0.8,
+      "other_banks": 1.23
+    },
+    {
+      "date": "2016-04-01",
+      "all_banks": 0.92,
+      "top_100": 0.75,
+      "other_banks": 1.16
+    },
+    {
+      "date": "2016-07-01",
+      "all_banks": 0.87,
+      "top_100": 0.69,
+      "other_banks": 1.13
+    },
+    {
+      "date": "2016-10-01",
+      "all_banks": 0.85,
+      "top_100": 0.7,
+      "other_banks": 1.06
+    },
+    {
+      "date": "2017-01-01",
+      "all_banks": 0.78,
+      "top_100": 0.65,
+      "other_banks": 0.99
+    },
+    {
+      "date": "2017-04-01",
+      "all_banks": 0.77,
+      "top_100": 0.64,
+      "other_banks": 0.96
+    },
+    {
+      "date": "2017-07-01",
+      "all_banks": 0.77,
+      "top_100": 0.65,
+      "other_banks": 0.94
+    },
+    {
+      "date": "2017-10-01",
+      "all_banks": 0.75,
+      "top_100": 0.64,
+      "other_banks": 0.89
+    },
+    {
+      "date": "2018-01-01",
+      "all_banks": 0.74,
+      "top_100": 0.64,
+      "other_banks": 0.91
+    },
+    {
+      "date": "2018-04-01",
+      "all_banks": 0.72,
+      "top_100": 0.61,
+      "other_banks": 0.87
+    },
+    {
+      "date": "2018-07-01",
+      "all_banks": 0.7,
+      "top_100": 0.59,
+      "other_banks": 0.86
+    },
+    {
+      "date": "2018-10-01",
+      "all_banks": 0.71,
+      "top_100": 0.6,
+      "other_banks": 0.85
+    },
+    {
+      "date": "2019-01-01",
+      "all_banks": 0.69,
+      "top_100": 0.59,
+      "other_banks": 0.84
+    },
+    {
+      "date": "2019-04-01",
+      "all_banks": 0.67,
+      "top_100": 0.56,
+      "other_banks": 0.84
+    },
+    {
+      "date": "2019-07-01",
+      "all_banks": 0.69,
+      "top_100": 0.59,
+      "other_banks": 0.84
+    },
+    {
+      "date": "2019-10-01",
+      "all_banks": 0.67,
+      "top_100": 0.56,
+      "other_banks": 0.83
+    },
+    {
+      "date": "2020-01-01",
+      "all_banks": 0.83,
+      "top_100": 0.7,
+      "other_banks": 1.04
+    },
+    {
+      "date": "2020-04-01",
+      "all_banks": 0.92,
+      "top_100": 0.88,
+      "other_banks": 0.98
+    },
+    {
+      "date": "2020-07-01",
+      "all_banks": 1.01,
+      "top_100": 1.04,
+      "other_banks": 0.95
+    },
+    {
+      "date": "2020-10-01",
+      "all_banks": 1.15,
+      "top_100": 1.27,
+      "other_banks": 0.95
+    },
+    {
+      "date": "2021-01-01",
+      "all_banks": 1.0,
+      "top_100": 1.09,
+      "other_banks": 0.88
+    },
+    {
+      "date": "2021-04-01",
+      "all_banks": 0.93,
+      "top_100": 1.02,
+      "other_banks": 0.8
+    },
+    {
+      "date": "2021-07-01",
+      "all_banks": 0.87,
+      "top_100": 0.99,
+      "other_banks": 0.7
+    },
+    {
+      "date": "2021-10-01",
+      "all_banks": 0.78,
+      "top_100": 0.89,
+      "other_banks": 0.61
+    },
+    {
+      "date": "2022-01-01",
+      "all_banks": 0.75,
+      "top_100": 0.9,
+      "other_banks": 0.56
+    },
+    {
+      "date": "2022-04-01",
+      "all_banks": 0.72,
+      "top_100": 0.85,
+      "other_banks": 0.52
+    },
+    {
+      "date": "2022-07-01",
+      "all_banks": 0.63,
+      "top_100": 0.74,
+      "other_banks": 0.47
+    },
+    {
+      "date": "2022-10-01",
+      "all_banks": 0.69,
+      "top_100": 0.83,
+      "other_banks": 0.47
+    },
+    {
+      "date": "2023-01-01",
+      "all_banks": 0.78,
+      "top_100": 0.98,
+      "other_banks": 0.5
+    },
+    {
+      "date": "2023-04-01",
+      "all_banks": 0.85,
+      "top_100": 1.04,
+      "other_banks": 0.56
+    },
+    {
+      "date": "2023-07-01",
+      "all_banks": 1.06,
+      "top_100": 1.33,
+      "other_banks": 0.66
+    },
+    {
+      "date": "2023-10-01",
+      "all_banks": 1.16,
+      "top_100": 1.45,
+      "other_banks": 0.74
+    },
+    {
+      "date": "2024-01-01",
+      "all_banks": 1.21,
+      "top_100": 1.51,
+      "other_banks": 0.79
+    },
+    {
+      "date": "2024-04-01",
+      "all_banks": 1.41,
+      "top_100": 1.77,
+      "other_banks": 0.91
+    },
+    {
+      "date": "2024-07-01",
+      "all_banks": 1.51,
+      "top_100": 1.9,
+      "other_banks": 0.98
+    },
+    {
+      "date": "2024-10-01",
+      "all_banks": 1.56,
+      "top_100": 1.97,
+      "other_banks": 0.99
+    },
+    {
+      "date": "2025-01-01",
+      "all_banks": 1.57,
+      "top_100": 1.94,
+      "other_banks": 1.09
+    },
+    {
+      "date": "2025-04-01",
+      "all_banks": 1.56,
+      "top_100": 1.88,
+      "other_banks": 1.11
+    },
+    {
+      "date": "2025-07-01",
+      "all_banks": 1.56,
+      "top_100": 1.86,
+      "other_banks": 1.14
+    }
+  ],
+  "latest": {
+    "date": "2025-07-01",
+    "all_banks": 1.56,
+    "top_100": 1.86,
+    "other_banks": 1.14
+  },
+  "metadata": {
+    "source": "Federal Reserve Board",
+    "description": "Delinquency Rate on Commercial Real Estate Loans (Excluding Farmland)",
+    "unit": "%",
+    "frequency": "Quarterly",
+    "series": {
+      "all_banks": "DRCRELEXFACBS - All Commercial Banks",
+      "top_100": "DRCRELEXFT100S - Top 100 Banks",
+      "other_banks": "DRCRELEXFOBS - Banks Not Among Top 100"
+    }
+  },
+  "last_updated": "2026-02-11T12:55:23.561888+09:00"
+}

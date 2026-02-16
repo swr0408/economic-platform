@@ -1162,14 +1162,14 @@
       {
         "date": "2026-01",
         "value": 48.7,
-        "forecast": 48.5,
+        "forecast": 47.8,
         "previous": 47.0
       }
     ],
     "latest": {
       "date": "2026-01",
       "value": 48.7,
-      "forecast": 48.5,
+      "forecast": 47.8,
       "previous": 47.0
     }
   },
@@ -2335,15 +2335,15 @@
       },
       {
         "date": "2026-01",
-        "value": 53.3,
-        "forecast": 52.9,
+        "value": 52.4,
+        "forecast": 53.3,
         "previous": 52.7
       }
     ],
     "latest": {
       "date": "2026-01",
-      "value": 53.3,
-      "forecast": 52.9,
+      "value": 52.4,
+      "forecast": 53.3,
       "previous": 52.7
     }
   },
@@ -3149,27 +3149,27 @@
       },
       {
         "date": "2026-01",
-        "value": 52.5,
-        "forecast": 52.2,
+        "value": 52.1,
+        "forecast": 52.5,
         "previous": 51.3
       }
     ],
     "latest": {
       "date": "2026-01",
-      "value": 52.5,
-      "forecast": 52.2,
+      "value": 52.1,
+      "forecast": 52.5,
       "previous": 51.3
     }
   },
   "next_release": {
-    "date": "2026-02-02",
-    "datetime_utc": "2026-02-02T08:55:00+00:00",
-    "datetime_jst": "2026-02-02T17:55:00+09:00",
-    "time_jst": "17:55",
-    "datetime_cet": "2026-02-02T09:55:00+01:00",
-    "time_cet": "09:55",
-    "label": "HCOB Manufacturing PMI (Jan)",
-    "estimate": 48.7
+    "date": "2026-02-20",
+    "datetime_utc": "2026-02-20T08:30:00+00:00",
+    "datetime_jst": "2026-02-20T17:30:00+09:00",
+    "time_jst": "17:30",
+    "datetime_cet": "2026-02-20T09:30:00+01:00",
+    "time_cet": "09:30",
+    "label": "Services PMI (Feb)",
+    "estimate": null
   },
-  "last_updated": "2026-01-29T18:32:28.406776+01:00"
+  "last_updated": "2026-02-14T11:55:54.757755+01:00"
 }

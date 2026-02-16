@@ -35,6 +35,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
     - eurostat_wages: Eurostat賃金・給与（YoY）
     - ecb_negotiated_wages: ECB交渉妥結賃金（YoY）
     - indeed_euro_wage: Indeed賃金トラッカー（ドイツ/フランス/ユーロ圏）
+    - ecb_ces_wage_expectations: ECB CES賃金期待（家計所得12ヶ月先見通し）
 
     キャッシュ方式: FMP発表日時ベース判定
     - ECB Unemployment: FMP発表日時ベース更新
@@ -60,6 +61,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         "indeed_euro_wage",
         "germany_unemployment",
         "eurostat_job_vacancy",
+        "ecb_ces_wage_expectations",
     ]
 
     def __init__(self):
@@ -83,7 +85,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return {"all"}
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
@@ -133,6 +135,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         from services.eurozone.indeed_euro_wage_service import indeed_euro_wage_service
         from services.eurozone.germany_unemployment_service import germany_unemployment_service
         from services.eurozone.eurostat_job_vacancy_service import eurostat_job_vacancy_service
+        from services.eurozone.ecb_ces_wage_expectations_service import ecb_ces_wage_expectations_service
 
         result = {
             "ecb_unemployment": None,
@@ -144,10 +147,11 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
             "indeed_euro_wage": None,
             "germany_unemployment": None,
             "eurostat_job_vacancy": None,
+            "ecb_ces_wage_expectations": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=9) as executor:
+        with ThreadPoolExecutor(max_workers=10) as executor:
             futures = {
                 executor.submit(self._get_ecb_unemployment, ecb_unemployment_service): "ecb_unemployment",
                 executor.submit(self._get_ecb_employment, ecb_employment_service): "ecb_employment",
@@ -158,6 +162,7 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_indeed_euro_wage, indeed_euro_wage_service): "indeed_euro_wage",
                 executor.submit(self._get_germany_unemployment, germany_unemployment_service): "germany_unemployment",
                 executor.submit(self._get_eurostat_job_vacancy, eurostat_job_vacancy_service): "eurostat_job_vacancy",
+                executor.submit(self._get_ecb_ces_wage_expectations, ecb_ces_wage_expectations_service): "ecb_ces_wage_expectations",
             }
 
             for future in as_completed(futures):
@@ -306,3 +311,17 @@ class EurozoneEmploymentLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting Eurostat Job Vacancy: {e}")
             return {"data": [], "latest": None, "metadata": {}}
+
+    def _get_ecb_ces_wage_expectations(self, service) -> dict:
+        """ECB CES賃金期待データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ecb_ces_wage_expectations")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting ECB CES Wage Expectations: {e}")
+            return {"data": [], "latest": None, "next_release": None}

@@ -1,0 +1,531 @@
+{
+  "data": [
+    {
+      "date": "2020-01-01",
+      "value": 92.43,
+      "terms_of_trade": 92.43,
+      "export_price_index": 102.5,
+      "import_price_index": 110.9
+    },
+    {
+      "date": "2020-02-01",
+      "value": 92.52,
+      "terms_of_trade": 92.52,
+      "export_price_index": 102.7,
+      "import_price_index": 111.0
+    },
+    {
+      "date": "2020-03-01",
+      "value": 94.71,
+      "terms_of_trade": 94.71,
+      "export_price_index": 100.2,
+      "import_price_index": 105.8
+    },
+    {
+      "date": "2020-04-01",
+      "value": 100.1,
+      "terms_of_trade": 100.1,
+      "export_price_index": 99.5,
+      "import_price_index": 99.4
+    },
+    {
+      "date": "2020-05-01",
+      "value": 104.92,
+      "terms_of_trade": 104.92,
+      "export_price_index": 98.1,
+      "import_price_index": 93.5
+    },
+    {
+      "date": "2020-06-01",
+      "value": 105.31,
+      "terms_of_trade": 105.31,
+      "export_price_index": 99.1,
+      "import_price_index": 94.1
+    },
+    {
+      "date": "2020-07-01",
+      "value": 103.01,
+      "terms_of_trade": 103.01,
+      "export_price_index": 99.3,
+      "import_price_index": 96.4
+    },
+    {
+      "date": "2020-08-01",
+      "value": 102.36,
+      "terms_of_trade": 102.36,
+      "export_price_index": 99.7,
+      "import_price_index": 97.4
+    },
+    {
+      "date": "2020-09-01",
+      "value": 102.15,
+      "terms_of_trade": 102.15,
+      "export_price_index": 99.7,
+      "import_price_index": 97.6
+    },
+    {
+      "date": "2020-10-01",
+      "value": 102.57,
+      "terms_of_trade": 102.57,
+      "export_price_index": 99.6,
+      "import_price_index": 97.1
+    },
+    {
+      "date": "2020-11-01",
+      "value": 102.15,
+      "terms_of_trade": 102.15,
+      "export_price_index": 99.6,
+      "import_price_index": 97.5
+    },
+    {
+      "date": "2020-12-01",
+      "value": 100.7,
+      "terms_of_trade": 100.7,
+      "export_price_index": 100.1,
+      "import_price_index": 99.4
+    },
+    {
+      "date": "2021-01-01",
+      "value": 98.34,
+      "terms_of_trade": 98.34,
+      "export_price_index": 101.0,
+      "import_price_index": 102.7
+    },
+    {
+      "date": "2021-02-01",
+      "value": 95.34,
+      "terms_of_trade": 95.34,
+      "export_price_index": 102.2,
+      "import_price_index": 107.2
+    },
+    {
+      "date": "2021-03-01",
+      "value": 94.34,
+      "terms_of_trade": 94.34,
+      "export_price_index": 105.0,
+      "import_price_index": 111.3
+    },
+    {
+      "date": "2021-04-01",
+      "value": 93.43,
+      "terms_of_trade": 93.43,
+      "export_price_index": 106.7,
+      "import_price_index": 114.2
+    },
+    {
+      "date": "2021-05-01",
+      "value": 92.47,
+      "terms_of_trade": 92.47,
+      "export_price_index": 108.0,
+      "import_price_index": 116.8
+    },
+    {
+      "date": "2021-06-01",
+      "value": 90.67,
+      "terms_of_trade": 90.67,
+      "export_price_index": 108.9,
+      "import_price_index": 120.1
+    },
+    {
+      "date": "2021-07-01",
+      "value": 89.32,
+      "terms_of_trade": 89.32,
+      "export_price_index": 109.6,
+      "import_price_index": 122.7
+    },
+    {
+      "date": "2021-08-01",
+      "value": 87.16,
+      "terms_of_trade": 87.16,
+      "export_price_index": 109.3,
+      "import_price_index": 125.4
+    },
+    {
+      "date": "2021-09-01",
+      "value": 86.39,
+      "terms_of_trade": 86.39,
+      "export_price_index": 109.8,
+      "import_price_index": 127.1
+    },
+    {
+      "date": "2021-10-01",
+      "value": 84.91,
+      "terms_of_trade": 84.91,
+      "export_price_index": 112.5,
+      "import_price_index": 132.5
+    },
+    {
+      "date": "2021-11-01",
+      "value": 81.43,
+      "terms_of_trade": 81.43,
+      "export_price_index": 113.6,
+      "import_price_index": 139.5
+    },
+    {
+      "date": "2021-12-01",
+      "value": 80.92,
+      "terms_of_trade": 80.92,
+      "export_price_index": 112.8,
+      "import_price_index": 139.4
+    },
+    {
+      "date": "2022-01-01",
+      "value": 81.68,
+      "terms_of_trade": 81.68,
+      "export_price_index": 113.7,
+      "import_price_index": 139.2
+    },
+    {
+      "date": "2022-02-01",
+      "value": 80.59,
+      "terms_of_trade": 80.59,
+      "export_price_index": 115.0,
+      "import_price_index": 142.7
+    },
+    {
+      "date": "2022-03-01",
+      "value": 80.09,
+      "terms_of_trade": 80.09,
+      "export_price_index": 118.3,
+      "import_price_index": 147.7
+    },
+    {
+      "date": "2022-04-01",
+      "value": 76.6,
+      "terms_of_trade": 76.6,
+      "export_price_index": 124.7,
+      "import_price_index": 162.8
+    },
+    {
+      "date": "2022-05-01",
+      "value": 74.76,
+      "terms_of_trade": 74.76,
+      "export_price_index": 126.5,
+      "import_price_index": 169.2
+    },
+    {
+      "date": "2022-06-01",
+      "value": 72.85,
+      "terms_of_trade": 72.85,
+      "export_price_index": 129.9,
+      "import_price_index": 178.3
+    },
+    {
+      "date": "2022-07-01",
+      "value": 71.59,
+      "terms_of_trade": 71.59,
+      "export_price_index": 131.3,
+      "import_price_index": 183.4
+    },
+    {
+      "date": "2022-08-01",
+      "value": 71.48,
+      "terms_of_trade": 71.48,
+      "export_price_index": 128.3,
+      "import_price_index": 179.5
+    },
+    {
+      "date": "2022-09-01",
+      "value": 69.84,
+      "terms_of_trade": 69.84,
+      "export_price_index": 132.0,
+      "import_price_index": 189.0
+    },
+    {
+      "date": "2022-10-01",
+      "value": 70.82,
+      "terms_of_trade": 70.82,
+      "export_price_index": 133.5,
+      "import_price_index": 188.5
+    },
+    {
+      "date": "2022-11-01",
+      "value": 73.28,
+      "terms_of_trade": 73.28,
+      "export_price_index": 130.8,
+      "import_price_index": 178.5
+    },
+    {
+      "date": "2022-12-01",
+      "value": 74.28,
+      "terms_of_trade": 74.28,
+      "export_price_index": 126.5,
+      "import_price_index": 170.3
+    },
+    {
+      "date": "2023-01-01",
+      "value": 76.15,
+      "terms_of_trade": 76.15,
+      "export_price_index": 123.9,
+      "import_price_index": 162.7
+    },
+    {
+      "date": "2023-02-01",
+      "value": 76.6,
+      "terms_of_trade": 76.6,
+      "export_price_index": 125.7,
+      "import_price_index": 164.1
+    },
+    {
+      "date": "2023-03-01",
+      "value": 78.39,
+      "terms_of_trade": 78.39,
+      "export_price_index": 126.6,
+      "import_price_index": 161.5
+    },
+    {
+      "date": "2023-04-01",
+      "value": 80.99,
+      "terms_of_trade": 80.99,
+      "export_price_index": 127.0,
+      "import_price_index": 156.8
+    },
+    {
+      "date": "2023-05-01",
+      "value": 80.64,
+      "terms_of_trade": 80.64,
+      "export_price_index": 129.1,
+      "import_price_index": 160.1
+    },
+    {
+      "date": "2023-06-01",
+      "value": 83.04,
+      "terms_of_trade": 83.04,
+      "export_price_index": 130.7,
+      "import_price_index": 157.4
+    },
+    {
+      "date": "2023-07-01",
+      "value": 83.7,
+      "terms_of_trade": 83.7,
+      "export_price_index": 130.9,
+      "import_price_index": 156.4
+    },
+    {
+      "date": "2023-08-01",
+      "value": 84.17,
+      "terms_of_trade": 84.17,
+      "export_price_index": 133.5,
+      "import_price_index": 158.6
+    },
+    {
+      "date": "2023-09-01",
+      "value": 83.95,
+      "terms_of_trade": 83.95,
+      "export_price_index": 136.0,
+      "import_price_index": 162.0
+    },
+    {
+      "date": "2023-10-01",
+      "value": 82.31,
+      "terms_of_trade": 82.31,
+      "export_price_index": 136.8,
+      "import_price_index": 166.2
+    },
+    {
+      "date": "2023-11-01",
+      "value": 82.16,
+      "terms_of_trade": 82.16,
+      "export_price_index": 137.2,
+      "import_price_index": 167.0
+    },
+    {
+      "date": "2023-12-01",
+      "value": 82.62,
+      "terms_of_trade": 82.62,
+      "export_price_index": 133.6,
+      "import_price_index": 161.7
+    },
+    {
+      "date": "2024-01-01",
+      "value": 83.52,
+      "terms_of_trade": 83.52,
+      "export_price_index": 135.8,
+      "import_price_index": 162.6
+    },
+    {
+      "date": "2024-02-01",
+      "value": 83.61,
+      "terms_of_trade": 83.61,
+      "export_price_index": 137.7,
+      "import_price_index": 164.7
+    },
+    {
+      "date": "2024-03-01",
+      "value": 84.42,
+      "terms_of_trade": 84.42,
+      "export_price_index": 138.7,
+      "import_price_index": 164.3
+    },
+    {
+      "date": "2024-04-01",
+      "value": 84.56,
+      "terms_of_trade": 84.56,
+      "export_price_index": 141.8,
+      "import_price_index": 167.7
+    },
+    {
+      "date": "2024-05-01",
+      "value": 83.92,
+      "terms_of_trade": 83.92,
+      "export_price_index": 144.0,
+      "import_price_index": 171.6
+    },
+    {
+      "date": "2024-06-01",
+      "value": 84.21,
+      "terms_of_trade": 84.21,
+      "export_price_index": 145.1,
+      "import_price_index": 172.3
+    },
+    {
+      "date": "2024-07-01",
+      "value": 83.93,
+      "terms_of_trade": 83.93,
+      "export_price_index": 145.2,
+      "import_price_index": 173.0
+    },
+    {
+      "date": "2024-08-01",
+      "value": 84.78,
+      "terms_of_trade": 84.78,
+      "export_price_index": 137.6,
+      "import_price_index": 162.3
+    },
+    {
+      "date": "2024-09-01",
+      "value": 85.72,
+      "terms_of_trade": 85.72,
+      "export_price_index": 135.1,
+      "import_price_index": 157.6
+    },
+    {
+      "date": "2024-10-01",
+      "value": 85.44,
+      "terms_of_trade": 85.44,
+      "export_price_index": 138.5,
+      "import_price_index": 162.1
+    },
+    {
+      "date": "2024-11-01",
+      "value": 85.73,
+      "terms_of_trade": 85.73,
+      "export_price_index": 141.2,
+      "import_price_index": 164.7
+    },
+    {
+      "date": "2024-12-01",
+      "value": 85.57,
+      "terms_of_trade": 85.57,
+      "export_price_index": 140.0,
+      "import_price_index": 163.6
+    },
+    {
+      "date": "2025-01-01",
+      "value": 85.36,
+      "terms_of_trade": 85.36,
+      "export_price_index": 141.7,
+      "import_price_index": 166.0
+    },
+    {
+      "date": "2025-02-01",
+      "value": 85.87,
+      "terms_of_trade": 85.87,
+      "export_price_index": 139.8,
+      "import_price_index": 162.8
+    },
+    {
+      "date": "2025-03-01",
+      "value": 86.33,
+      "terms_of_trade": 86.33,
+      "export_price_index": 138.3,
+      "import_price_index": 160.2
+    },
+    {
+      "date": "2025-04-01",
+      "value": 87.27,
+      "terms_of_trade": 87.27,
+      "export_price_index": 135.7,
+      "import_price_index": 155.5
+    },
+    {
+      "date": "2025-05-01",
+      "value": 87.39,
+      "terms_of_trade": 87.39,
+      "export_price_index": 134.5,
+      "import_price_index": 153.9
+    },
+    {
+      "date": "2025-06-01",
+      "value": 88.85,
+      "terms_of_trade": 88.85,
+      "export_price_index": 134.7,
+      "import_price_index": 151.6
+    },
+    {
+      "date": "2025-07-01",
+      "value": 88.62,
+      "terms_of_trade": 88.62,
+      "export_price_index": 137.1,
+      "import_price_index": 154.7
+    },
+    {
+      "date": "2025-08-01",
+      "value": 88.6,
+      "terms_of_trade": 88.6,
+      "export_price_index": 137.6,
+      "import_price_index": 155.3
+    },
+    {
+      "date": "2025-09-01",
+      "value": 88.82,
+      "terms_of_trade": 88.82,
+      "export_price_index": 138.3,
+      "import_price_index": 155.7
+    },
+    {
+      "date": "2025-10-01",
+      "value": 88.97,
+      "terms_of_trade": 88.97,
+      "export_price_index": 141.9,
+      "import_price_index": 159.5
+    },
+    {
+      "date": "2025-11-01",
+      "value": 89.25,
+      "terms_of_trade": 89.25,
+      "export_price_index": 144.5,
+      "import_price_index": 161.9
+    },
+    {
+      "date": "2025-12-01",
+      "value": 89.79,
+      "terms_of_trade": 89.79,
+      "export_price_index": 146.9,
+      "import_price_index": 163.6
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "value": 89.79,
+    "terms_of_trade": 89.79,
+    "export_price_index": 146.9,
+    "import_price_index": 163.6
+  },
+  "metadata": {
+    "source": "Bank of Japan (BOJ)",
+    "source_url": "https://www.stat-search.boj.or.jp/ssi/docs/info/cgpi_m_jp.zip",
+    "description": "Japan Terms of Trade (Export Price Index / Import Price Index × 100)",
+    "unit": "Index (2020=100)",
+    "frequency": "Monthly"
+  },
+  "next_release": {
+    "date": "2026-02-11",
+    "datetime_utc": "2026-02-11T23:50:00+00:00",
+    "datetime_jst": "2026-02-12T08:50:00+09:00",
+    "time_jst": "08:50",
+    "label": "Producer Price Index MoM (Jan)",
+    "estimate": 0.2
+  },
+  "last_updated": "2026-02-11T23:33:33.380893+09:00"
+}

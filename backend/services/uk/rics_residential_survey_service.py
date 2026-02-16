@@ -343,6 +343,17 @@ class RICSResidentialSurveyService:
             "last_updated": datetime.now(JST).isoformat()
         }
 
+    def _has_newer_local_pdf(self, cached_date_str: Optional[str]) -> bool:
+        """キャッシュより新しいローカルPDFが存在するかチェック"""
+        if not cached_date_str:
+            return True
+        result = self._get_latest_local_pdf()
+        if not result:
+            return False
+        _, report_date = result
+        latest_date_str = report_date.replace('-', '')[:6]
+        return latest_date_str > cached_date_str
+
     def get_survey_report(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
         Get RICS Residential Survey data with caching
@@ -365,19 +376,30 @@ class RICSResidentialSurveyService:
             # Redisキャッシュチェック
             cached_data = redis_client.get(REDIS_KEY)
             if cached_data:
-                last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
-                    logger.info("Returning cached RICS survey from Redis")
-                    return {**cached_data, "cached": True}
+                # キャッシュより新しいPDFがあれば強制更新
+                if self._has_newer_local_pdf(cached_data.get("date_str")):
+                    logger.info("[RICS Survey] Newer PDF detected, forcing refresh")
+                    force_refresh = True
+                else:
+                    last_updated_str = cached_data.get("last_updated")
+                    if last_updated_str and not self._should_refresh(last_updated_str):
+                        logger.info("Returning cached RICS survey from Redis")
+                        return {**cached_data, "cached": True}
 
             # ファイルキャッシュチェック
-            file_cache = load_file_cache(CACHE_FILE)
-            if file_cache:
-                last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
-                    logger.info("Returning cached RICS survey from file")
-                    redis_client.set(REDIS_KEY, file_cache, expire=0)
-                    return {**file_cache, "cached": True}
+            if not force_refresh:
+                file_cache = load_file_cache(CACHE_FILE)
+                if file_cache:
+                    # キャッシュより新しいPDFがあれば強制更新
+                    if self._has_newer_local_pdf(file_cache.get("date_str")):
+                        logger.info("[RICS Survey] Newer PDF detected (file cache), forcing refresh")
+                        force_refresh = True
+                    else:
+                        last_updated_str = file_cache.get("last_updated")
+                        if last_updated_str and not self._should_refresh(last_updated_str):
+                            logger.info("Returning cached RICS survey from file")
+                            redis_client.set(REDIS_KEY, file_cache, expire=0)
+                            return {**file_cache, "cached": True}
 
         # 新規データ取得
         data = self._fetch_survey_data()

@@ -1,0 +1,663 @@
+{
+  "data": [
+    {
+      "date": "1999-04-01",
+      "business": 42.14,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "1999-07-01",
+      "business": 23.54,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "1999-10-01",
+      "business": 27.12,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2000-01-01",
+      "business": 3.16,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2000-04-01",
+      "business": 30.28,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2000-07-01",
+      "business": 14.19,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2000-10-01",
+      "business": 40.01,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2001-01-01",
+      "business": 45.97,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2001-04-01",
+      "business": 20.93,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2001-07-01",
+      "business": 18.29,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2001-10-01",
+      "business": 19.17,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2002-01-01",
+      "business": 21.53,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2002-04-01",
+      "business": 20.17,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2002-07-01",
+      "business": 27.54,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2002-10-01",
+      "business": 21.7,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2003-01-01",
+      "business": 18.79,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2003-04-01",
+      "business": 10.23,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2003-07-01",
+      "business": 6.64,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2003-10-01",
+      "business": 3.82,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2004-01-01",
+      "business": -20.69,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2004-04-01",
+      "business": -20.17,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2004-07-01",
+      "business": -31.57,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2004-10-01",
+      "business": -31.8,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2005-01-01",
+      "business": -28.84,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2005-04-01",
+      "business": -33.43,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2005-07-01",
+      "business": -9.05,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2005-10-01",
+      "business": -11.13,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2006-01-01",
+      "business": -8.46,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2006-04-01",
+      "business": -10.2,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2006-07-01",
+      "business": 6.63,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2006-10-01",
+      "business": -1.15,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2007-01-01",
+      "business": -17.07,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2007-04-01",
+      "business": -21.94,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2007-07-01",
+      "business": 33.69,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2007-10-01",
+      "business": 47.37,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2008-01-01",
+      "business": 41.95,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2008-04-01",
+      "business": 38.99,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2008-07-01",
+      "business": 49.77,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2008-10-01",
+      "business": 75.81,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2009-01-01",
+      "business": 60.31,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2009-04-01",
+      "business": 33.39,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2009-07-01",
+      "business": 6.66,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2009-10-01",
+      "business": -8.71,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2010-01-01",
+      "business": -18.94,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2010-04-01",
+      "business": -24.79,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2010-07-01",
+      "business": -22.26,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2010-10-01",
+      "business": -36.38,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2011-01-01",
+      "business": -31.71,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2011-04-01",
+      "business": -49.64,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2011-07-01",
+      "business": -26.88,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2011-10-01",
+      "business": -6.33,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2012-01-01",
+      "business": -16.89,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2012-04-01",
+      "business": -10.83,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2012-07-01",
+      "business": -15.84,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2012-10-01",
+      "business": -3.41,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2013-01-01",
+      "business": -5.79,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2013-04-01",
+      "business": -12.72,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2013-07-01",
+      "business": -7.35,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2013-10-01",
+      "business": -10.84,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2014-01-01",
+      "business": -10.92,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2014-04-01",
+      "business": -12.84,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2014-07-01",
+      "business": -10.45,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2014-10-01",
+      "business": -2.7,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2015-01-01",
+      "business": 6.66,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2015-04-01",
+      "business": 1.4,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2015-07-01",
+      "business": 4.19,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2015-10-01",
+      "business": 5.39,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2016-01-01",
+      "business": 6.39,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2016-04-01",
+      "business": 23.87,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2016-07-01",
+      "business": 3.25,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2016-10-01",
+      "business": -2.62,
+      "mortgage": null,
+      "non_mortgage": null
+    },
+    {
+      "date": "2017-01-01",
+      "business": 1.18,
+      "mortgage": 22.93,
+      "non_mortgage": 4.86
+    },
+    {
+      "date": "2017-04-01",
+      "business": 2.06,
+      "mortgage": -1.37,
+      "non_mortgage": -3.73
+    },
+    {
+      "date": "2017-07-01",
+      "business": -0.47,
+      "mortgage": 18.58,
+      "non_mortgage": 6.44
+    },
+    {
+      "date": "2017-10-01",
+      "business": -6.36,
+      "mortgage": 9.41,
+      "non_mortgage": 1.92
+    },
+    {
+      "date": "2018-01-01",
+      "business": -5.24,
+      "mortgage": 34.63,
+      "non_mortgage": -1.23
+    },
+    {
+      "date": "2018-04-01",
+      "business": -8.85,
+      "mortgage": -8.12,
+      "non_mortgage": -2.01
+    },
+    {
+      "date": "2018-07-01",
+      "business": -10.94,
+      "mortgage": -2.95,
+      "non_mortgage": 0.48
+    },
+    {
+      "date": "2018-10-01",
+      "business": -15.98,
+      "mortgage": -0.83,
+      "non_mortgage": -2.22
+    },
+    {
+      "date": "2019-01-01",
+      "business": -2.67,
+      "mortgage": 0.21,
+      "non_mortgage": -2.25
+    },
+    {
+      "date": "2019-04-01",
+      "business": -5.76,
+      "mortgage": -6.37,
+      "non_mortgage": 2.16
+    },
+    {
+      "date": "2019-07-01",
+      "business": 1.94,
+      "mortgage": -11.87,
+      "non_mortgage": 5.02
+    },
+    {
+      "date": "2019-10-01",
+      "business": -15.62,
+      "mortgage": -17.43,
+      "non_mortgage": -8.56
+    },
+    {
+      "date": "2020-01-01",
+      "business": 7.69,
+      "mortgage": 15.03,
+      "non_mortgage": -5.04
+    },
+    {
+      "date": "2020-04-01",
+      "business": 19.16,
+      "mortgage": 24.52,
+      "non_mortgage": 36.46
+    },
+    {
+      "date": "2020-07-01",
+      "business": 7.28,
+      "mortgage": -1.51,
+      "non_mortgage": 6.48
+    },
+    {
+      "date": "2020-10-01",
+      "business": -3.03,
+      "mortgage": -14.78,
+      "non_mortgage": -0.33
+    },
+    {
+      "date": "2021-01-01",
+      "business": -14.95,
+      "mortgage": -11.3,
+      "non_mortgage": -4.86
+    },
+    {
+      "date": "2021-04-01",
+      "business": -9.93,
+      "mortgage": -0.51,
+      "non_mortgage": -12.47
+    },
+    {
+      "date": "2021-07-01",
+      "business": -14.02,
+      "mortgage": -16.18,
+      "non_mortgage": -24.17
+    },
+    {
+      "date": "2021-10-01",
+      "business": -9.38,
+      "mortgage": -10.1,
+      "non_mortgage": -10.64
+    },
+    {
+      "date": "2022-01-01",
+      "business": -3.88,
+      "mortgage": -7.96,
+      "non_mortgage": -6.06
+    },
+    {
+      "date": "2022-04-01",
+      "business": -0.64,
+      "mortgage": -12.21,
+      "non_mortgage": -5.88
+    },
+    {
+      "date": "2022-07-01",
+      "business": 0.57,
+      "mortgage": -12.19,
+      "non_mortgage": -11.9
+    },
+    {
+      "date": "2022-10-01",
+      "business": 4.07,
+      "mortgage": -3.87,
+      "non_mortgage": 3.62
+    },
+    {
+      "date": "2023-01-01",
+      "business": 11.3,
+      "mortgage": 35.62,
+      "non_mortgage": 11.63
+    },
+    {
+      "date": "2023-04-01",
+      "business": 7.61,
+      "mortgage": 0.39,
+      "non_mortgage": 2.86
+    },
+    {
+      "date": "2023-07-01",
+      "business": 13.2,
+      "mortgage": -5.55,
+      "non_mortgage": -1.8
+    },
+    {
+      "date": "2023-10-01",
+      "business": 5.76,
+      "mortgage": -1.74,
+      "non_mortgage": 10.46
+    },
+    {
+      "date": "2024-01-01",
+      "business": 2.64,
+      "mortgage": 3.76,
+      "non_mortgage": 15.52
+    },
+    {
+      "date": "2024-04-01",
+      "business": 6.85,
+      "mortgage": -2.74,
+      "non_mortgage": 10.34
+    },
+    {
+      "date": "2024-07-01",
+      "business": 1.71,
+      "mortgage": -2.86,
+      "non_mortgage": -1.53
+    },
+    {
+      "date": "2024-10-01",
+      "business": -1.89,
+      "mortgage": -10.39,
+      "non_mortgage": -1.2
+    },
+    {
+      "date": "2025-01-01",
+      "business": 1.51,
+      "mortgage": 19.61,
+      "non_mortgage": 7.92
+    },
+    {
+      "date": "2025-04-01",
+      "business": 0.67,
+      "mortgage": 16.67,
+      "non_mortgage": 26.86
+    },
+    {
+      "date": "2025-07-01",
+      "business": 0.67,
+      "mortgage": 5.96,
+      "non_mortgage": 19.05
+    }
+  ],
+  "latest": {
+    "date": "2025-07-01",
+    "business": 0.67,
+    "mortgage": 5.96,
+    "non_mortgage": 19.05
+  },
+  "metadata": {
+    "source": "Bank of Canada",
+    "survey": "Senior Loan Officer Survey (SLOS)",
+    "description": "カナダ貸出態度調査（SLOS）",
+    "unit": "% (Balance of Opinion)",
+    "frequency": "quarterly",
+    "interpretation": "正(+)=厳格化, 負(-)=緩和"
+  },
+  "next_release": {
+    "date": "2026-02-20",
+    "datetime_jst": "2026-02-21T00:30:00+09:00",
+    "time_jst": "00:30",
+    "datetime_toronto": "2026-02-20T10:30:00-05:00",
+    "time_toronto": "10:30",
+    "label": "Senior Loan Officer Survey"
+  },
+  "last_updated": "2026-02-13T22:58:14.967344+09:00"
+}

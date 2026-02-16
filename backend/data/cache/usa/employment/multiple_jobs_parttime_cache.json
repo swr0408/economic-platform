@@ -1554,12 +1554,17 @@
       "date": "2025-12-01",
       "multiple_jobs": 8848.0,
       "parttime_econ": 5341.0
+    },
+    {
+      "date": "2026-01-01",
+      "multiple_jobs": 8769.0,
+      "parttime_econ": 4888.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "multiple_jobs": 8848.0,
-    "parttime_econ": 5341.0
+    "date": "2026-01-01",
+    "multiple_jobs": 8769.0,
+    "parttime_econ": 4888.0
   },
-  "last_updated": "2026-02-01T23:25:57.537008+09:00"
+  "last_updated": "2026-02-15T22:44:35.696233+09:00"
 }

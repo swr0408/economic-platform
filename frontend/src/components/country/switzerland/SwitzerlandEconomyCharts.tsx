@@ -1,6 +1,12 @@
 import { Spin, Alert, Button } from 'antd'
 import { useSwitzerlandEconomyDashboard } from '../../../hooks/useDashboardData'
 import CHGrowthRateChart from './economy/CHGrowthRateChart'
+import CHIndustrialProductionChart from './economy/CHIndustrialProductionChart'
+import CHHouseholdsAndNpishChart from './economy/CHHouseholdsAndNpishChart'
+import ChPmiChart from './economy/ChPmiChart'
+import CHBalanceOfTradeChart from './economy/CHBalanceOfTradeChart'
+import ChCurrentAccountChart from './economy/ChCurrentAccountChart'
+import ChCurrentAccountGdpRatioChart from './economy/ChCurrentAccountGdpRatioChart'
 
 /**
  * スイス経済チャート群
@@ -40,6 +46,48 @@ export default function SwitzerlandEconomyCharts() {
       <div id="ch-growth-rate">
         <CHGrowthRateChart
           data={dashboardData?.ch_growth_rate ?? null}
+        />
+      </div>
+
+      {/* Households and NPISH Chart */}
+      <div id="ch-households-and-npish">
+        <CHHouseholdsAndNpishChart
+          data={dashboardData?.ch_households_and_npish ?? null}
+        />
+      </div>
+
+      {/* Industrial Production Chart */}
+      <div id="ch-industrial-production">
+        <CHIndustrialProductionChart
+          data={dashboardData?.ch_industrial_production ?? null}
+        />
+      </div>
+
+      {/* PMI Chart */}
+      <div id="ch-pmi">
+        <ChPmiChart
+          data={dashboardData?.ch_pmi ?? null}
+        />
+      </div>
+
+      {/* 貿易収支 */}
+      <div id="ch-balance-of-trade">
+        <CHBalanceOfTradeChart
+          data={dashboardData?.ch_balance_of_trade ?? null}
+        />
+      </div>
+
+      {/* 経常収支 */}
+      <div id="ch-current-account">
+        <ChCurrentAccountChart
+          data={dashboardData?.ch_current_account ?? null}
+        />
+      </div>
+
+      {/* 経常収支対GDP比 */}
+      <div id="ch-current-account-gdp-ratio">
+        <ChCurrentAccountGdpRatioChart
+          data={dashboardData?.ch_current_account_gdp_ratio ?? null}
         />
       </div>
     </div>

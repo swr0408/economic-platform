@@ -60,6 +60,11 @@ class RICSHousePriceService:
 
     def get_rics_house_price_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """RICS住宅価格データを取得"""
+        # 未処理PDFがあればキャッシュを無視して強制更新
+        if not force_refresh and self._check_new_pdfs():
+            logger.info("[RICS] New PDF detected, forcing refresh")
+            force_refresh = True
+
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
@@ -75,8 +80,13 @@ class RICSHousePriceService:
                         "last_updated": last_updated_str
                     }
 
-        # DBから取得
+        # DBから取得（DB失敗時はファイルキャッシュから復元）
         db_result = self._load_from_db()
+        if not db_result:
+            file_cache = self._load_file_cache()
+            if file_cache:
+                db_result = file_cache.get("data", [])
+                logger.info(f"[RICS] DB empty, restored {len(db_result)} records from file cache")
 
         # 未処理のPDFがあれば自動でDBにインポート
         new_pdfs = self._check_new_pdfs()

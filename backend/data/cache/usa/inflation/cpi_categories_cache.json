@@ -2406,8 +2406,8 @@
     "datetime_utc": "2026-02-11T13:30:00+00:00",
     "datetime_jst": "2026-02-11T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "Inflation Rate YoY (Jan)",
-    "estimate": null
+    "label": "CPI s.a (Jan)",
+    "estimate": 326.3
   },
-  "last_updated": "2026-01-30T23:03:00.893364+09:00"
+  "last_updated": "2026-02-05T12:03:15.174997+09:00"
 }

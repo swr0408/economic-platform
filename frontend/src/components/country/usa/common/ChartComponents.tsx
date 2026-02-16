@@ -181,6 +181,12 @@ interface LatestValueBoxProps {
   children?: React.ReactNode
   /** 日付のフォーマット関数（デフォルト: formatDateLabel） */
   dateFormatter?: (date: string) => string
+  /** 速報値（Advance Estimate）情報 */
+  advanceEstimate?: {
+    value: number
+    date: string
+    label?: string
+  } | null
 }
 
 function formatItemValue(item: LatestValueItem): string {
@@ -208,6 +214,7 @@ export function LatestValueBox({
   nextRelease,
   children,
   dateFormatter = formatDateLabel,
+  advanceEstimate,
 }: LatestValueBoxProps) {
   return (
     <div style={LATEST_VALUE_BOX_STYLE}>
@@ -238,6 +245,21 @@ export function LatestValueBox({
         {children}
       </div>
 
+      {/* 速報値表示 */}
+      {advanceEstimate && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+          <span style={{ fontSize: 11, color: '#F59E0B', fontWeight: 'bold' }}>
+            {advanceEstimate.label || '速報値'}:
+          </span>
+          <span style={{ fontSize: 14, fontWeight: 'bold', color: '#F59E0B' }}>
+            {formatPercent(advanceEstimate.value, 2)}
+          </span>
+          <span style={{ fontSize: 10, color: TEXT_COLORS.tertiary }}>
+            ({dateFormatter(advanceEstimate.date)})
+          </span>
+        </div>
+      )}
+
       {nextRelease && (nextRelease.date || nextRelease.label) && (
         <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
           <div>次回発表: {nextRelease.label || nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}</div>
@@ -250,6 +272,12 @@ export function LatestValueBox({
 // =============================================================================
 // SimpleLatestValueBox - シンプルな最新値表示ボックス
 // =============================================================================
+
+interface AdvanceEstimateInfo {
+  value: number
+  date: string
+  label?: string
+}
 
 interface SimpleLatestValueBoxProps {
   label?: string
@@ -265,6 +293,8 @@ interface SimpleLatestValueBoxProps {
   decimals?: number
   /** 日付のフォーマット関数（デフォルト: formatDateLabel） */
   dateFormatter?: (date: string) => string
+  /** 速報値（Advance Estimate）情報 */
+  advanceEstimate?: AdvanceEstimateInfo | null
 }
 
 export function SimpleLatestValueBox({
@@ -280,6 +310,7 @@ export function SimpleLatestValueBox({
   unit = '',
   decimals = 2,
   dateFormatter = formatDateLabel,
+  advanceEstimate,
 }: SimpleLatestValueBoxProps) {
   const formattedValue = formatItemValue({
     label: '',
@@ -299,9 +330,19 @@ export function SimpleLatestValueBox({
       })
     : null
 
+  const formattedAdvanceValue = advanceEstimate
+    ? formatItemValue({
+        label: '',
+        value: advanceEstimate.value,
+        format,
+        unit,
+        decimals,
+      })
+    : null
+
   return (
     <div style={LATEST_VALUE_BOX_STYLE}>
-      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
         <div>
           <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{label}: </span>
           <span style={{ fontSize: 20, fontWeight: 'bold', color: valueColor }}>
@@ -328,6 +369,29 @@ export function SimpleLatestValueBox({
           <span style={{ fontSize: 12, color: TEXT_COLORS.tertiary, alignSelf: 'center' }}>
             ({dateFormatter(date)})
           </span>
+        )}
+
+        {/* 速報値表示 */}
+        {advanceEstimate && formattedAdvanceValue && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            padding: '4px 12px',
+            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+            borderRadius: 6,
+            border: '1px solid rgba(245, 158, 11, 0.3)',
+          }}>
+            <span style={{ fontSize: 12, color: '#F59E0B' }}>
+              {advanceEstimate.label || '速報値'}:
+            </span>
+            <span style={{ fontSize: 18, fontWeight: 'bold', color: '#F59E0B' }}>
+              {formattedAdvanceValue}
+            </span>
+            <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
+              ({dateFormatter(advanceEstimate.date)})
+            </span>
+          </div>
         )}
       </div>
 

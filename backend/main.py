@@ -57,6 +57,7 @@ try:
     from backend.routers.japan.machinery_orders_forecast import router as japan_machinery_orders_forecast_router
     from backend.routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
     from backend.routers.japan.bei import router as japan_bei_router
+    from backend.routers.japan.price_di_spread import router as japan_price_di_spread_router
     from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from backend.routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from backend.routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -97,6 +98,9 @@ try:
     from backend.routers.uk.ons_gdp import router as uk_ons_gdp_router
     from backend.routers.uk.ons_gva import router as uk_ons_gva_router
     from backend.routers.uk.brc_commentary import router as uk_brc_commentary_router
+    from backend.routers.uk.uk_qt import router as uk_qt_router
+    from backend.routers.uk.uk_trade_balance import router as uk_trade_balance_router
+    from backend.routers.uk.uk_current_account import router as uk_current_account_router
     from backend.routers.switzerland.snb import router as switzerland_snb_router
     from backend.routers.switzerland.fso import router as switzerland_fso_router
     from backend.routers.switzerland.kof import router as switzerland_kof_router
@@ -120,6 +124,7 @@ except ImportError:
     from routers.usa.oas import router as oas_router
     from routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from routers.usa.fomc_projections import router as fomc_projections_router
+    from routers.usa.treasury import router as treasury_router
     from routers.dashboard import router as dashboard_router
     from routers.market import router as market_router
     from routers.calendar import router as calendar_router
@@ -160,6 +165,11 @@ except ImportError:
     from routers.japan.machine_tool_orders import router as japan_machine_tool_orders_router
     from routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
     from routers.japan.bei import router as japan_bei_router
+    from routers.japan.japan_balance_sheet import router as japan_balance_sheet_router
+    from routers.japan.current_account import router as japan_current_account_router
+    from routers.japan.balance_of_trade import router as japan_balance_of_trade_router
+    from routers.japan.terms_of_trade import router as japan_terms_of_trade_router
+    from routers.japan.price_di_spread import router as japan_price_di_spread_router
     from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -188,6 +198,9 @@ except ImportError:
     from routers.eurozone.germany_ppi import router as eurozone_germany_ppi_router
     from routers.eurozone.germany_retail_sales import router as eurozone_germany_retail_sales_router
     from routers.eurozone.ecb_inflation_expectations import router as eurozone_ecb_inflation_expectations_router
+    from routers.eurozone.ecb_balance_sheet import router as eurozone_ecb_balance_sheet_router
+    from routers.eurozone.ecb_ces_wage_expectations import router as eurozone_ecb_ces_wage_expectations_router
+    from routers.eurozone.eu_government_debt_to_gdp_ratio import router as eurozone_eu_govt_debt_gdp_router
     from routers.uk.boe_bank_rate import router as uk_boe_bank_rate_router
     from routers.uk.sonia import router as uk_sonia_router
     from routers.uk.boe_mpc_voting import router as uk_boe_mpc_voting_router
@@ -205,11 +218,24 @@ except ImportError:
     from routers.uk.ons_production import router as uk_ons_production_router
     from routers.uk.brc_commentary import router as uk_brc_commentary_router
     from routers.uk.rics_residential_survey import router as uk_rics_residential_survey_router
+    from routers.uk.uk_qt import router as uk_qt_router
+    from routers.uk.uk_trade_balance import router as uk_trade_balance_router
+    from routers.uk.uk_current_account import router as uk_current_account_router
+    from routers.uk.uk_government_debt_to_gdp_ratio import router as uk_government_debt_to_gdp_ratio_router
     from routers.switzerland.snb import router as switzerland_snb_router
     from routers.switzerland.fso import router as switzerland_fso_router
     from routers.switzerland.kof import router as switzerland_kof_router
     from routers.switzerland.seco import router as switzerland_seco_router
     from routers.switzerland.bfs import router as switzerland_bfs_router
+    from routers.canada.boc import router as canada_boc_router
+    from routers.canada.boc_rate_cuts_screenshot import router as canada_boc_rate_cuts_screenshot_router
+    from routers.canada.statcan import router as canada_statcan_router
+    from routers.australia.rba import router as australia_rba_router
+    from routers.australia.rba_ois_screenshot import router as australia_rba_ois_screenshot_router
+    from routers.australia.rba_expectations_screenshot import router as australia_rba_expectations_screenshot_router
+    from routers.australia.abs import router as australia_abs_router
+    from routers.australia.melbourne_institute import router as australia_melbourne_institute_router
+    from routers.australia.nab import router as australia_nab_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -258,6 +284,7 @@ app.include_router(tga_router)
 app.include_router(oas_router)
 app.include_router(cme_fedwatch_router)
 app.include_router(fomc_projections_router)
+app.include_router(treasury_router)
 app.include_router(dashboard_router)
 app.include_router(market_router)
 app.include_router(calendar_router)
@@ -298,6 +325,11 @@ app.include_router(japan_machinery_orders_forecast_router)
 app.include_router(japan_machine_tool_orders_router)
 app.include_router(japan_tertiary_industry_index_router)
 app.include_router(japan_bei_router)
+app.include_router(japan_balance_sheet_router)
+app.include_router(japan_current_account_router)
+app.include_router(japan_balance_of_trade_router)
+app.include_router(japan_terms_of_trade_router)
+app.include_router(japan_price_di_spread_router)
 app.include_router(eurozone_ecb_rates_router)
 app.include_router(eurozone_eurex_ois_router)
 app.include_router(eurozone_ecb_rate_cuts_screenshot_router)
@@ -326,6 +358,9 @@ app.include_router(eurozone_germany_cpi_router)
 app.include_router(eurozone_germany_ppi_router)
 app.include_router(eurozone_germany_retail_sales_router)
 app.include_router(eurozone_ecb_inflation_expectations_router)
+app.include_router(eurozone_ecb_balance_sheet_router)
+app.include_router(eurozone_ecb_ces_wage_expectations_router)
+app.include_router(eurozone_eu_govt_debt_gdp_router)
 
 # UK
 app.include_router(uk_boe_bank_rate_router)
@@ -345,6 +380,10 @@ app.include_router(uk_ons_gva_router)
 app.include_router(uk_ons_production_router)
 app.include_router(uk_brc_commentary_router)
 app.include_router(uk_rics_residential_survey_router)
+app.include_router(uk_qt_router)
+app.include_router(uk_trade_balance_router)
+app.include_router(uk_current_account_router)
+app.include_router(uk_government_debt_to_gdp_ratio_router)
 
 # Switzerland
 app.include_router(switzerland_snb_router)
@@ -352,6 +391,17 @@ app.include_router(switzerland_fso_router)
 app.include_router(switzerland_kof_router)
 app.include_router(switzerland_seco_router)
 app.include_router(switzerland_bfs_router)
+
+# Canada
+app.include_router(canada_boc_router)
+app.include_router(canada_boc_rate_cuts_screenshot_router)
+app.include_router(canada_statcan_router)
+app.include_router(australia_rba_router)
+app.include_router(australia_rba_ois_screenshot_router)
+app.include_router(australia_rba_expectations_screenshot_router)
+app.include_router(australia_abs_router)
+app.include_router(australia_melbourne_institute_router)
+app.include_router(australia_nab_router)
 
 
 @app.get("/health")
@@ -448,6 +498,13 @@ async def startup_event():
         print("Non-FMP Release Scheduler started successfully")
     except Exception as e:
         print(f"Warning: Could not start Non-FMP Release Scheduler: {e}")
+
+    # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
+    try:
+        from services.canada.ca_settlement_balances_service import ca_settlement_balances_service
+        ca_settlement_balances_service.warm_cache()
+    except Exception as e:
+        print(f"Warning: Could not warm Canada Settlement Balances cache: {e}")
 
     print("=" * 60)
     print("Economic Platform API started")

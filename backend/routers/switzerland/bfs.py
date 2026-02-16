@@ -4,6 +4,7 @@ BFS（スイス連邦統計局）関連 APIルーター
 提供データ:
 - Unemployment Rate（失業率）
 - Retail Trade（小売売上高）
+- Industrial Production（鉱工業生産）
 """
 from fastapi import APIRouter, Query
 
@@ -22,6 +23,9 @@ async def bfs_root():
         "available_endpoints": [
             "/unemployment-rate - Unemployment Rate",
             "/retail-trade - Retail Trade (小売売上高)",
+            "/industrial-production - Industrial Production (鉱工業生産)",
+            "/nominal-wage-growth - Nominal Wage Growth (名目賃金上昇率)",
+            "/housing-prices - Housing Prices (住宅価格指数)",
         ]
     }
 
@@ -138,6 +142,192 @@ async def invalidate_retail_trade_cache():
     from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
 
     success = ch_retail_trade_service.invalidate_cache()
+    return {
+        "success": success,
+        "message": "Cache invalidated" if success else "Failed to invalidate cache"
+    }
+
+
+# =============================================================================
+# 鉱工業生産（Industrial Production）
+# =============================================================================
+
+@router.get("/industrial-production")
+async def get_industrial_production(
+    force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
+):
+    """
+    スイス鉱工業生産データを取得
+
+    Returns:
+        {
+            "monthly_data": [...],
+            "quarterly_data": [...],
+            "latest_monthly": {...},
+            "latest_quarterly": {...},
+            "metadata": {...},
+            "next_release": {...}
+        }
+    """
+    from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
+
+    return ch_industrial_production_service.get_ch_industrial_production_data(force_refresh=force_refresh)
+
+
+@router.get("/industrial-production/latest")
+async def get_industrial_production_latest():
+    """
+    スイス鉱工業生産 最新データを取得
+
+    Returns:
+        最新のスイス鉱工業生産データ
+    """
+    from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
+
+    result = ch_industrial_production_service.get_ch_industrial_production_data()
+    return {
+        "latest_monthly": result.get("latest_monthly"),
+        "latest_quarterly": result.get("latest_quarterly"),
+        "next_release": result.get("next_release"),
+    }
+
+
+@router.get("/industrial-production/cache/status")
+async def get_industrial_production_cache_status():
+    """スイス鉱工業生産 キャッシュ状態を取得"""
+    from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
+
+    return ch_industrial_production_service.get_cache_status()
+
+
+@router.delete("/industrial-production/cache")
+async def invalidate_industrial_production_cache():
+    """スイス鉱工業生産 キャッシュを無効化"""
+    from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
+
+    success = ch_industrial_production_service.invalidate_cache()
+    return {
+        "success": success,
+        "message": "Cache invalidated" if success else "Failed to invalidate cache"
+    }
+
+
+# =============================================================================
+# 名目賃金上昇率（Nominal Wage Growth）
+# =============================================================================
+
+@router.get("/nominal-wage-growth")
+async def get_nominal_wage_growth(
+    force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
+):
+    """
+    スイス名目賃金上昇率データを取得
+
+    Returns:
+        {
+            "data": [...],
+            "latest": {...},
+            "metadata": {...},
+            "next_release": {...}
+        }
+    """
+    from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
+
+    return ch_nominal_wage_growth_service.get_nominal_wage_growth_data(force_refresh=force_refresh)
+
+
+@router.get("/nominal-wage-growth/latest")
+async def get_nominal_wage_growth_latest():
+    """
+    スイス名目賃金上昇率 最新データを取得
+
+    Returns:
+        最新のスイス名目賃金上昇率データ
+    """
+    from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
+
+    result = ch_nominal_wage_growth_service.get_nominal_wage_growth_data()
+    return {
+        "latest": result.get("latest"),
+        "next_release": result.get("next_release"),
+    }
+
+
+@router.get("/nominal-wage-growth/cache/status")
+async def get_nominal_wage_growth_cache_status():
+    """スイス名目賃金上昇率 キャッシュ状態を取得"""
+    from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
+
+    return ch_nominal_wage_growth_service.get_cache_status()
+
+
+@router.delete("/nominal-wage-growth/cache")
+async def invalidate_nominal_wage_growth_cache():
+    """スイス名目賃金上昇率 キャッシュを無効化"""
+    from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
+
+    success = ch_nominal_wage_growth_service.invalidate_cache()
+    return {
+        "success": success,
+        "message": "Cache invalidated" if success else "Failed to invalidate cache"
+    }
+
+
+# =============================================================================
+# 住宅価格指数（Housing Prices）
+# =============================================================================
+
+@router.get("/housing-prices")
+async def get_housing_prices(
+    force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
+):
+    """
+    スイス住宅価格指数データを取得
+
+    Returns:
+        {
+            "data": [...],
+            "latest": {...},
+            "metadata": {...},
+            "next_release": {...}
+        }
+    """
+    from services.switzerland.ch_housing_prices_service import ch_housing_prices_service
+
+    return ch_housing_prices_service.get_housing_prices_data(force_refresh=force_refresh)
+
+
+@router.get("/housing-prices/latest")
+async def get_housing_prices_latest():
+    """
+    スイス住宅価格指数 最新データを取得
+
+    Returns:
+        最新のスイス住宅価格指数データ
+    """
+    from services.switzerland.ch_housing_prices_service import ch_housing_prices_service
+
+    result = ch_housing_prices_service.get_housing_prices_data()
+    return {
+        "latest": result.get("latest"),
+        "next_release": result.get("next_release"),
+    }
+
+
+@router.get("/housing-prices/cache/status")
+async def get_housing_prices_cache_status():
+    """スイス住宅価格指数 キャッシュ状態を取得"""
+    from services.switzerland.ch_housing_prices_service import ch_housing_prices_service
+
+    return ch_housing_prices_service.get_cache_status()
+
+
+@router.delete("/housing-prices/cache")
+async def invalidate_housing_prices_cache():
+    """スイス住宅価格指数 キャッシュを無効化"""
+    from services.switzerland.ch_housing_prices_service import ch_housing_prices_service
+
+    success = ch_housing_prices_service.invalidate_cache()
     return {
         "success": success,
         "message": "Cache invalidated" if success else "Failed to invalidate cache"

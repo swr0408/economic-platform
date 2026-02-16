@@ -12069,14 +12069,49 @@
       "date": "2026-01-23",
       "jolts": null,
       "indeed": 104.4
+    },
+    {
+      "date": "2026-01-24",
+      "jolts": null,
+      "indeed": 104.4
+    },
+    {
+      "date": "2026-01-25",
+      "jolts": null,
+      "indeed": 104.4
+    },
+    {
+      "date": "2026-01-26",
+      "jolts": null,
+      "indeed": 104.3
+    },
+    {
+      "date": "2026-01-27",
+      "jolts": null,
+      "indeed": 104.3
+    },
+    {
+      "date": "2026-01-28",
+      "jolts": null,
+      "indeed": 104.2
+    },
+    {
+      "date": "2026-01-29",
+      "jolts": null,
+      "indeed": 104.1
+    },
+    {
+      "date": "2026-01-30",
+      "jolts": null,
+      "indeed": 103.9
     }
   ],
   "latest": {
-    "date": "2026-01-23",
+    "date": "2026-01-30",
     "jolts": 7146.0,
     "jolts_date": "2025-11-01",
-    "indeed": 104.4,
-    "indeed_date": "2026-01-23"
+    "indeed": 103.9,
+    "indeed_date": "2026-01-30"
   },
-  "last_updated": "2026-01-30T23:02:33.529315+09:00"
+  "last_updated": "2026-02-05T12:02:15.179121+09:00"
 }

@@ -315,9 +315,9 @@ export type ValueChangeViewMode = 'value' | 'change_chart' | 'change_table'
 
 /** 現数値/増減幅ビューモード設定 */
 export const VALUE_CHANGE_VIEW_MODE_OPTIONS: { mode: ValueChangeViewMode; label: string }[] = [
-  { mode: 'value', label: '現数値' },
   { mode: 'change_chart', label: '前月増減幅' },
   { mode: 'change_table', label: '前月増減幅（テーブル）' },
+  { mode: 'value', label: '現数値' },
 ]
 
 // =============================================================================

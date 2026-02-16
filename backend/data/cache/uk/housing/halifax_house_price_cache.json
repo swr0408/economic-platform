@@ -1151,6 +1151,12 @@
       "value": -0.6,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-01-01",
+      "value": 0.7,
+      "forecast": null,
+      "previous": null
     }
   ],
   "yoy": [
@@ -2305,20 +2311,26 @@
       "value": 0.3,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-01-01",
+      "value": 1.0,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest_mom": {
-    "date": "2025-12-01",
-    "value": -0.6,
+    "date": "2026-01-01",
+    "value": 0.7,
     "forecast": null,
     "previous": null
   },
   "latest_yoy": {
-    "date": "2025-12-01",
-    "value": 0.3,
+    "date": "2026-01-01",
+    "value": 1.0,
     "forecast": null,
     "previous": null
   },
   "next_release": "2026-02-06T07:00:00+00:00",
-  "last_updated": "2026-01-22T00:04:27.735739+09:00"
+  "last_updated": "2026-02-17T01:40:39.512497+09:00"
 }

@@ -1,6 +1,7 @@
 import { Spin, Alert, Button } from 'antd'
 import { useJapanPolicyDashboard } from '../../../hooks/useDashboardData'
 import BOJPolicyRateChart from './monetary_policy/BOJPolicyRateChart'
+import JapanBalanceSheetChart from './monetary_policy/JapanBalanceSheetChart'
 import OISCurveChart from './monetary_policy/OISCurveChart'
 import BOJMeetingExpectationsTable from './monetary_policy/BOJMeetingExpectationsTable'
 import BOJOutlookReport from './monetary_policy/BOJOutlookReport'
@@ -44,6 +45,13 @@ export default function JapanPolicyCharts() {
       <div id="boj-policy-rate">
         <BOJPolicyRateChart
           data={dashboardData?.boj_policy_rate ?? null}
+        />
+      </div>
+
+      {/* Japan Balance Sheet (BOJ Total Assets) */}
+      <div id="japan-balance-sheet">
+        <JapanBalanceSheetChart
+          data={dashboardData?.japan_balance_sheet ?? null}
         />
       </div>
 

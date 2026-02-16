@@ -47,7 +47,6 @@ interface ChartDataPoint {
   date: string
   qoq: number
   yoy: number
-  yoy_unadjusted: number
   annualized: number
   [key: string]: unknown
 }
@@ -55,12 +54,11 @@ interface ChartDataPoint {
 // グラフの色
 const COLORS = {
   qoq: '#DC143C', // スイス赤
-  yoy: '#1890ff', // 青（スポーツ調整済み）
-  yoy_unadjusted: '#a069ed', // 紫（調整前）
+  yoy: '#1890ff', // 青
   annualized: '#52c41a', // 緑
 }
 
-type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy' | 'yoy_unadjusted' | 'annualized'
+type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy' | 'annualized'
 
 // 四半期日付フォーマッター（2025-01-01 → 2025/Q1）
 const formatQuarterLabel = (dateStr: string): string => {
@@ -91,7 +89,6 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
     qoq_chart: 'default',
     qoq_table: 'default',
     yoy: 'default',
-    yoy_unadjusted: 'default',
     annualized: 'default',
   })
 
@@ -103,7 +100,6 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
       date: item.date,
       qoq: item.qoq ?? 0,
       yoy: item.yoy ?? 0,
-      yoy_unadjusted: item.yoy_unadjusted ?? 0,
       annualized: item.annualized ?? 0,
     }))
   }, [data])
@@ -157,7 +153,6 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
   const currentValue = useMemo(() => {
     if (!latest) return null
     if (viewMode === 'yoy') return latest.yoy
-    if (viewMode === 'yoy_unadjusted') return latest.yoy_unadjusted
     if (viewMode === 'annualized') return latest.annualized
     return latest.qoq
   }, [latest, viewMode])
@@ -165,7 +160,6 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
   // 現在の色を取得
   const currentColor = useMemo(() => {
     if (viewMode === 'yoy') return COLORS.yoy
-    if (viewMode === 'yoy_unadjusted') return COLORS.yoy_unadjusted
     if (viewMode === 'annualized') return COLORS.annualized
     return COLORS.qoq
   }, [viewMode])
@@ -288,14 +282,12 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
   // データ比較用のoverlayConfig ID
   const getCompareId = () => {
     if (viewMode === 'yoy') return 'ch_growth_rate_yoy'
-    if (viewMode === 'yoy_unadjusted') return 'ch_growth_rate_yoy_unadjusted'
     if (viewMode === 'annualized') return 'ch_growth_rate_annualized'
     return 'ch_growth_rate_qoq'
   }
 
   const getChartTitle = () => {
     if (viewMode === 'yoy') return 'GDP成長率（前年比）'
-    if (viewMode === 'yoy_unadjusted') return 'GDP成長率（前年比・調整前）'
     if (viewMode === 'annualized') return 'GDP成長率（年率）'
     return 'GDP成長率（前期比）'
   }
@@ -331,7 +323,7 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替（5種類） */}
+                  {/* ビューモード切替（4種類） */}
                   <ViewModeButtonGroup
                     currentMode={viewMode}
                     onChange={(mode) => setViewMode(mode as ViewMode)}
@@ -339,7 +331,6 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
                       { mode: 'qoq_chart', label: '前期比' },
                       { mode: 'qoq_table', label: '前期比（テーブル）' },
                       { mode: 'yoy', label: '前年比' },
-                      { mode: 'yoy_unadjusted', label: '前年比（調整前）' },
                       { mode: 'annualized', label: '年率' },
                     ]}
                   />
@@ -378,20 +369,6 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
                       data={filteredData}
                       lines={[
                         { dataKey: 'yoy', color: COLORS.yoy, name: 'GDP成長率（前年比）' },
-                      ]}
-                      yAxisFormatter={(v) => `${v}%`}
-                      tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
-                      yDomain={['dataMin - 1', 'dataMax + 1']}
-                      showZeroLine={true}
-                      xAxisFormatter={formatQuarterLabel}
-                    />
-                  )}
-
-                  {viewMode === 'yoy_unadjusted' && (
-                    <StandardLineChart
-                      data={filteredData}
-                      lines={[
-                        { dataKey: 'yoy_unadjusted', color: COLORS.yoy_unadjusted, name: 'GDP成長率（前年比・調整前）' },
                       ]}
                       yAxisFormatter={(v) => `${v}%`}
                       tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}

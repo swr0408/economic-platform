@@ -66,14 +66,14 @@ async def get_rics_survey_image(image_name: str):
     try:
         # バックエンドディレクトリからの相対パス
         backend_dir = Path(__file__).parent.parent.parent
-        image_path = backend_dir / "cache" / "uk" / "housing" / "rics_survey_images" / image_name
+        image_path = backend_dir / "data" / "cache" / "uk" / "housing" / "rics_survey_images" / image_name
 
         if not image_path.exists():
             raise HTTPException(status_code=404, detail="Image not found")
 
         # セキュリティチェック: パストラバーサル防止
         image_path = image_path.resolve()
-        allowed_dir = (backend_dir / "cache" / "uk" / "housing" / "rics_survey_images").resolve()
+        allowed_dir = (backend_dir / "data" / "cache" / "uk" / "housing" / "rics_survey_images").resolve()
         if not str(image_path).startswith(str(allowed_dir)):
             raise HTTPException(status_code=403, detail="Access denied")
 

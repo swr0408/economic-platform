@@ -394,7 +394,7 @@
       "date": "2024-06-01",
       "bea": null,
       "cpi": 0.42,
-      "carts_nowcast": 0.41
+      "carts_nowcast": 0.4
     },
     {
       "date": "2024-07-01",
@@ -424,7 +424,7 @@
       "date": "2024-11-01",
       "bea": null,
       "cpi": -0.0,
-      "carts_nowcast": -0.21
+      "carts_nowcast": -0.2
     },
     {
       "date": "2024-12-01",
@@ -442,7 +442,7 @@
       "date": "2025-02-01",
       "bea": null,
       "cpi": 0.47,
-      "carts_nowcast": 0.39
+      "carts_nowcast": 0.4
     },
     {
       "date": "2025-03-01",
@@ -460,7 +460,7 @@
       "date": "2025-05-01",
       "bea": null,
       "cpi": -0.17,
-      "carts_nowcast": -0.14
+      "carts_nowcast": -0.13
     },
     {
       "date": "2025-06-01",
@@ -472,25 +472,25 @@
       "date": "2025-07-01",
       "bea": null,
       "cpi": 0.42,
-      "carts_nowcast": 0.68
+      "carts_nowcast": 0.67
     },
     {
       "date": "2025-08-01",
       "bea": null,
       "cpi": 0.9,
-      "carts_nowcast": 1.1
+      "carts_nowcast": 1.09
     },
     {
       "date": "2025-09-01",
       "bea": null,
       "cpi": 1.51,
-      "carts_nowcast": 1.66
+      "carts_nowcast": 1.65
     },
     {
       "date": "2025-10-01",
       "bea": null,
       "cpi": 1.25,
-      "carts_nowcast": 1.49
+      "carts_nowcast": 1.47
     },
     {
       "date": "2025-11-01",
@@ -502,21 +502,27 @@
       "date": "2025-12-01",
       "bea": null,
       "cpi": 1.38,
-      "carts_nowcast": 1.65
+      "carts_nowcast": 1.72
+    },
+    {
+      "date": "2026-01-01",
+      "bea": null,
+      "cpi": null,
+      "carts_nowcast": 1.43
     }
   ],
   "latest": {
-    "date": "2025-12-01",
+    "date": "2026-01-01",
     "bea": null,
-    "cpi": 1.38,
-    "carts_nowcast": 1.65
+    "cpi": null,
+    "carts_nowcast": 1.43
   },
   "next_release": {
-    "date": "2026-02-06",
-    "datetime_jst": "2026-02-06T22:30:00+09:00",
+    "date": "2026-02-16",
+    "datetime_jst": "2026-02-16T22:30:00+09:00",
     "time_jst": "22:30",
-    "label": "January 2026 (Preliminary)",
-    "type": "preliminary"
+    "label": "January 2026 (Final)",
+    "type": "final"
   },
-  "last_updated": "2026-01-30T23:03:11.341637+09:00"
+  "last_updated": "2026-02-13T22:34:01.542107+09:00"
 }

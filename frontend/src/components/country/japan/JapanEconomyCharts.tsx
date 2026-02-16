@@ -16,13 +16,21 @@ import MachineToolOrdersChart from './economy/MachineToolOrdersChart'
 import BOJTankanUnifiedTable from './economy/BOJTankanUnifiedTable'
 import BSIUnifiedChart from './economy/BSIUnifiedChart'
 import JapanPMIChart from './economy/JapanPMIChart'
+import JapanCurrentAccountChart from './economy/JapanCurrentAccountChart'
+import JapanCurrentAccountGdpRatioChart from './economy/JapanCurrentAccountGdpRatioChart'
+import JapanBalanceOfTradeChart from './economy/JapanBalanceOfTradeChart'
+import { useJapanEconomyDashboard } from '../../../hooks/useDashboardData'
 
 /**
  * 日本経済チャート群
  *
  * 経済指標関連のチャートを表示
+ * ダッシュボードAPIからデータを取得し、各チャートコンポーネントにpropsで渡す
  */
 export default function JapanEconomyCharts() {
+  const { data } = useJapanEconomyDashboard()
+  const dashboardData = data?.data
+
   return (
     <div className="country-chart-stack">
       {/* Quarterly GDP Growth Rate Chart */}
@@ -108,6 +116,21 @@ export default function JapanEconomyCharts() {
       {/* S&P Global PMI（日本） */}
       <div id="pmi">
         <JapanPMIChart />
+      </div>
+
+      {/* 経常収支 */}
+      <div id="current-account">
+        <JapanCurrentAccountChart data={dashboardData?.current_account ?? null} />
+      </div>
+
+      {/* 経常収支対GDP比 */}
+      <div id="current-account-gdp-ratio">
+        <JapanCurrentAccountGdpRatioChart data={dashboardData?.current_account_gdp_ratio ?? null} />
+      </div>
+
+      {/* 貿易収支 */}
+      <div id="balance-of-trade">
+        <JapanBalanceOfTradeChart data={dashboardData?.balance_of_trade ?? null} />
       </div>
     </div>
   )

@@ -9,6 +9,7 @@ import ECBNegotiatedWagesChart from './employment/ECBNegotiatedWagesChart'
 import IndeedEuroWageChart from './employment/IndeedEuroWageChart'
 import GermanyUnemploymentChart from './employment/GermanyUnemploymentChart'
 import EurostatJobVacancyChart from './employment/EurostatJobVacancyChart'
+import EcbCesWageExpectationsChart from './employment/EcbCesWageExpectationsChart'
 
 /**
  * ユーロ圏雇用チャート群
@@ -104,6 +105,13 @@ export default function EurozoneEmploymentCharts() {
       <div id="eurostat-job-vacancy">
         <EurostatJobVacancyChart
           data={dashboardData?.eurostat_job_vacancy ?? null}
+        />
+      </div>
+
+      {/* ECB CES Wage Expectations Chart */}
+      <div id="ecb-ces-wage-expectations">
+        <EcbCesWageExpectationsChart
+          data={dashboardData?.ecb_ces_wage_expectations ?? null}
         />
       </div>
     </div>

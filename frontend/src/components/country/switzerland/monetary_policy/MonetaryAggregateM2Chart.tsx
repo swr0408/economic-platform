@@ -25,7 +25,6 @@ import {
 } from '../../usa/common/useChartData'
 import {
   NoDataMessage,
-  SimpleLatestValueBox,
   StandardLineChart,
 } from '../../usa/common/ChartComponents'
 import {

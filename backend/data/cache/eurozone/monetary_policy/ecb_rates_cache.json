@@ -29349,22 +29349,77 @@
       "date": "2026-01-26",
       "value": 2.0,
       "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-01-27",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-01-28",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-01-29",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-01-30",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-01-31",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-02-02",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-02-03",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-02-04",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-02-05",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-02-06",
+      "value": 2.0,
+      "deposit_facility": 2.0
     }
   ],
   "latest": {
-    "date": "2026-01-26",
+    "date": "2026-02-06",
     "value": 2.0,
     "deposit_facility": 2.0
   },
   "next_release": {
-    "date": "2026-02-05",
-    "datetime_utc": "2026-02-05T13:15:00+00:00",
-    "datetime_jst": "2026-02-05T22:15:00+09:00",
+    "date": "2026-03-19",
+    "datetime_utc": "2026-03-19T13:15:00+00:00",
+    "datetime_jst": "2026-03-19T22:15:00+09:00",
     "time_jst": "22:15",
-    "datetime_cet": "2026-02-05T14:15:00+01:00",
+    "datetime_cet": "2026-03-19T14:15:00+01:00",
     "time_cet": "14:15",
-    "label": "Deposit Facility Rate (Feb)",
+    "label": "ECB Interest Rate Decision",
     "estimate": null
   },
-  "last_updated": "2026-01-27T23:56:10.216803+09:00"
+  "last_updated": "2026-02-06T20:22:04.632214+09:00"
 }

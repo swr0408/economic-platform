@@ -56,6 +56,11 @@ class RightmoveHousePriceService:
 
     def get_rightmove_house_price_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """ライトムーブ住宅価格指数データを取得"""
+        # 未処理PDFがあればキャッシュを無視して強制更新
+        if not force_refresh and self._check_new_pdfs():
+            logger.info("[Rightmove] New PDF detected, forcing refresh")
+            force_refresh = True
+
         # Redisキャッシュチェック
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
@@ -73,9 +78,15 @@ class RightmoveHousePriceService:
                         "last_updated": last_updated_str
                     }
 
-        # DBから取得
+        # DBから取得（DB失敗時はファイルキャッシュから復元）
         mom_data = self._load_mom_from_db()
         yoy_data = self._load_yoy_from_db()
+        if not mom_data and not yoy_data:
+            file_cache = self._load_file_cache()
+            if file_cache:
+                mom_data = file_cache.get("mom", [])
+                yoy_data = file_cache.get("yoy", [])
+                logger.info(f"[Rightmove] DB empty, restored {len(mom_data)} MoM + {len(yoy_data)} YoY from file cache")
 
         # 未処理のPDFがあれば自動でDBにインポート
         new_pdfs = self._check_new_pdfs()
@@ -281,46 +292,60 @@ class RightmoveHousePriceService:
                     text = page.extract_text()
 
                     if text:
-                        # Monthly change を探す (+2.8% など)
-                        # Rightmoveの形式: "Monthly change +2.8%" または表形式
-                        mom_patterns = [
-                            r'Monthly\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
-                            r'([+-]?\d+\.?\d*)\s*%\s*Monthly\s*change',
-                            r'\+(\d+\.?\d*)\s*%[^A]*Largest\s*price\s*increase',  # 特殊パターン
+                        month_names = [
+                            "January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"
                         ]
-                        for pattern in mom_patterns:
-                            match = re.search(pattern, text, re.IGNORECASE)
-                            if match:
-                                mom_value = float(match.group(1))
-                                logger.info(f"Found Rightmove MoM from PDF: {mom_value}%")
-                                break
+                        target_month_name = month_names[month - 1]
 
-                        # Annual change を探す (+0.5% など)
-                        yoy_patterns = [
-                            r'Annual\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
-                            r'([+-]?\d+\.?\d*)\s*%\s*Annual\s*change',
-                            r'\+(\d+\.?\d*)\s*%[^A]*Average\s*asking\s*prices\s*are',  # 特殊パターン
-                        ]
-                        for pattern in yoy_patterns:
-                            match = re.search(pattern, text, re.IGNORECASE)
-                            if match:
-                                yoy_value = float(match.group(1))
-                                logger.info(f"Found Rightmove YoY from PDF: {yoy_value}%")
-                                break
+                        # 最優先: テキスト内テーブル行（最も信頼性が高い）
+                        # "February 2026 £368,019 0.0% 0.0% 284.5" 形式
+                        row_pattern = (
+                            rf'{target_month_name}\s+{year}\s+\S+\s+'
+                            r'([+-]?\d+\.?\d*)\s*%\s+([+-]?\d+\.?\d*)\s*%'
+                        )
+                        row_match = re.search(row_pattern, text, re.IGNORECASE)
+                        if row_match:
+                            mom_value = float(row_match.group(1))
+                            yoy_value = float(row_match.group(2))
+                            logger.info(f"Found Rightmove from text table row: MoM={mom_value}%, YoY={yoy_value}%")
 
-                    # 1ページ目で見つからなければテーブルを探す
+                        # フォールバック: "Monthly change: +2.8%" 形式
+                        if mom_value is None:
+                            mom_patterns = [
+                                r'Monthly\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
+                                r'([+-]?\d+\.?\d*)\s*%\s*Monthly\s*change',
+                            ]
+                            for pattern in mom_patterns:
+                                match = re.search(pattern, text, re.IGNORECASE)
+                                if match:
+                                    mom_value = float(match.group(1))
+                                    logger.info(f"Found Rightmove MoM from PDF: {mom_value}%")
+                                    break
+
+                        if yoy_value is None:
+                            yoy_patterns = [
+                                r'Annual\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
+                                r'([+-]?\d+\.?\d*)\s*%\s*Annual\s*change',
+                            ]
+                            for pattern in yoy_patterns:
+                                match = re.search(pattern, text, re.IGNORECASE)
+                                if match:
+                                    yoy_value = float(match.group(1))
+                                    logger.info(f"Found Rightmove YoY from PDF: {yoy_value}%")
+                                    break
+
+                    # structured table フォールバック
                     if mom_value is None or yoy_value is None:
                         tables = page.extract_tables()
                         for table in tables:
                             for row in table:
                                 if row and len(row) >= 4:
-                                    # "January 2026" | "£368,031" | "+2.8%" | "+0.5%"
                                     for i, cell in enumerate(row):
                                         if cell and '%' in str(cell):
                                             value_match = re.search(r'([+-]?\d+\.?\d*)\s*%', str(cell))
                                             if value_match:
                                                 value = float(value_match.group(1))
-                                                # 列の位置で判定（通常3列目がMoM、4列目がYoY）
                                                 if i == 2 and mom_value is None:
                                                     mom_value = value
                                                     logger.info(f"Found Rightmove MoM from table: {mom_value}%")

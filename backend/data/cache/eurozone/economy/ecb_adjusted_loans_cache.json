@@ -1608,14 +1608,14 @@
     }
   },
   "next_release": {
-    "date": "2026-01-29",
-    "datetime_utc": "2026-01-29T09:00:00+00:00",
-    "datetime_jst": "2026-01-29T18:00:00+09:00",
+    "date": "2026-02-26",
+    "datetime_utc": "2026-02-26T09:00:00+00:00",
+    "datetime_jst": "2026-02-26T18:00:00+09:00",
     "time_jst": "18:00",
-    "datetime_cet": "2026-01-29T10:00:00+01:00",
+    "datetime_cet": "2026-02-26T10:00:00+01:00",
     "time_cet": "10:00",
-    "label": "M3 Money Supply YoY (Dec)",
-    "estimate": 3
+    "label": "M3 Money Supply YoY (Jan)",
+    "estimate": 2.8
   },
-  "last_updated": "2026-01-30T02:32:32.245874+09:00"
+  "last_updated": "2026-02-14T19:55:56.863869+09:00"
 }

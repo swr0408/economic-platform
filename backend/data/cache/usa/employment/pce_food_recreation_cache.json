@@ -10,7 +10,7 @@
       "date": "2015-02-01",
       "food_services_yoy": 3.4,
       "recreation_yoy": 1.03,
-      "avg_hourly_earnings_yoy": 1.93
+      "avg_hourly_earnings_yoy": 1.89
     },
     {
       "date": "2015-03-01",
@@ -46,19 +46,19 @@
       "date": "2015-08-01",
       "food_services_yoy": 2.29,
       "recreation_yoy": 1.92,
-      "avg_hourly_earnings_yoy": 2.24
+      "avg_hourly_earnings_yoy": 2.28
     },
     {
       "date": "2015-09-01",
       "food_services_yoy": 2.67,
       "recreation_yoy": 1.78,
-      "avg_hourly_earnings_yoy": 2.28
+      "avg_hourly_earnings_yoy": 2.24
     },
     {
       "date": "2015-10-01",
       "food_services_yoy": 2.67,
       "recreation_yoy": 1.91,
-      "avg_hourly_earnings_yoy": 2.52
+      "avg_hourly_earnings_yoy": 2.48
     },
     {
       "date": "2015-11-01",
@@ -76,13 +76,13 @@
       "date": "2016-01-01",
       "food_services_yoy": 2.55,
       "recreation_yoy": 2.02,
-      "avg_hourly_earnings_yoy": 2.51
+      "avg_hourly_earnings_yoy": 2.55
     },
     {
       "date": "2016-02-01",
       "food_services_yoy": 2.62,
       "recreation_yoy": 2.14,
-      "avg_hourly_earnings_yoy": 2.34
+      "avg_hourly_earnings_yoy": 2.38
     },
     {
       "date": "2016-03-01",
@@ -118,7 +118,7 @@
       "date": "2016-08-01",
       "food_services_yoy": 2.97,
       "recreation_yoy": 2.33,
-      "avg_hourly_earnings_yoy": 2.47
+      "avg_hourly_earnings_yoy": 2.43
     },
     {
       "date": "2016-09-01",
@@ -166,7 +166,7 @@
       "date": "2017-04-01",
       "food_services_yoy": 2.44,
       "recreation_yoy": 2.67,
-      "avg_hourly_earnings_yoy": 2.51
+      "avg_hourly_earnings_yoy": 2.55
     },
     {
       "date": "2017-05-01",
@@ -238,7 +238,7 @@
       "date": "2018-04-01",
       "food_services_yoy": 2.2,
       "recreation_yoy": 1.84,
-      "avg_hourly_earnings_yoy": 2.83
+      "avg_hourly_earnings_yoy": 2.79
     },
     {
       "date": "2018-05-01",
@@ -322,7 +322,7 @@
       "date": "2019-06-01",
       "food_services_yoy": 2.88,
       "recreation_yoy": 1.48,
-      "avg_hourly_earnings_yoy": 3.44
+      "avg_hourly_earnings_yoy": 3.48
     },
     {
       "date": "2019-07-01",
@@ -346,7 +346,7 @@
       "date": "2019-10-01",
       "food_services_yoy": 2.87,
       "recreation_yoy": 2.16,
-      "avg_hourly_earnings_yoy": 3.14
+      "avg_hourly_earnings_yoy": 3.18
     },
     {
       "date": "2019-11-01",
@@ -376,7 +376,7 @@
       "date": "2020-03-01",
       "food_services_yoy": 1.74,
       "recreation_yoy": 2.09,
-      "avg_hourly_earnings_yoy": 3.49
+      "avg_hourly_earnings_yoy": 3.46
     },
     {
       "date": "2020-04-01",
@@ -394,7 +394,7 @@
       "date": "2020-06-01",
       "food_services_yoy": 1.41,
       "recreation_yoy": 2.63,
-      "avg_hourly_earnings_yoy": 5.08
+      "avg_hourly_earnings_yoy": 5.04
     },
     {
       "date": "2020-07-01",
@@ -406,7 +406,7 @@
       "date": "2020-08-01",
       "food_services_yoy": 2.05,
       "recreation_yoy": 1.99,
-      "avg_hourly_earnings_yoy": 4.83
+      "avg_hourly_earnings_yoy": 4.8
     },
     {
       "date": "2020-09-01",
@@ -418,7 +418,7 @@
       "date": "2020-10-01",
       "food_services_yoy": 2.23,
       "recreation_yoy": 2.35,
-      "avg_hourly_earnings_yoy": 4.68
+      "avg_hourly_earnings_yoy": 4.6
     },
     {
       "date": "2020-11-01",
@@ -436,13 +436,13 @@
       "date": "2021-01-01",
       "food_services_yoy": 2.58,
       "recreation_yoy": 1.42,
-      "avg_hourly_earnings_yoy": 5.24
+      "avg_hourly_earnings_yoy": 5.28
     },
     {
       "date": "2021-02-01",
       "food_services_yoy": 2.07,
       "recreation_yoy": 1.75,
-      "avg_hourly_earnings_yoy": 5.36
+      "avg_hourly_earnings_yoy": 5.29
     },
     {
       "date": "2021-03-01",
@@ -454,7 +454,7 @@
       "date": "2021-04-01",
       "food_services_yoy": 4.71,
       "recreation_yoy": 2.52,
-      "avg_hourly_earnings_yoy": 0.63
+      "avg_hourly_earnings_yoy": 0.6
     },
     {
       "date": "2021-05-01",
@@ -466,7 +466,7 @@
       "date": "2021-06-01",
       "food_services_yoy": 5.52,
       "recreation_yoy": 2.97,
-      "avg_hourly_earnings_yoy": 3.98
+      "avg_hourly_earnings_yoy": 3.95
     },
     {
       "date": "2021-07-01",
@@ -484,31 +484,31 @@
       "date": "2021-09-01",
       "food_services_yoy": 6.46,
       "recreation_yoy": 3.73,
-      "avg_hourly_earnings_yoy": 4.91
+      "avg_hourly_earnings_yoy": 4.98
     },
     {
       "date": "2021-10-01",
       "food_services_yoy": 7.26,
       "recreation_yoy": 4.1,
-      "avg_hourly_earnings_yoy": 5.41
+      "avg_hourly_earnings_yoy": 5.42
     },
     {
       "date": "2021-11-01",
       "food_services_yoy": 7.65,
       "recreation_yoy": 4.04,
-      "avg_hourly_earnings_yoy": 5.43
+      "avg_hourly_earnings_yoy": 5.36
     },
     {
       "date": "2021-12-01",
       "food_services_yoy": 8.18,
       "recreation_yoy": 4.22,
-      "avg_hourly_earnings_yoy": 5.02
+      "avg_hourly_earnings_yoy": 4.95
     },
     {
       "date": "2022-01-01",
       "food_services_yoy": 8.04,
       "recreation_yoy": 5.12,
-      "avg_hourly_earnings_yoy": 5.68
+      "avg_hourly_earnings_yoy": 5.58
     },
     {
       "date": "2022-02-01",
@@ -520,13 +520,13 @@
       "date": "2022-03-01",
       "food_services_yoy": 8.65,
       "recreation_yoy": 5.71,
-      "avg_hourly_earnings_yoy": 5.93
+      "avg_hourly_earnings_yoy": 5.89
     },
     {
       "date": "2022-04-01",
       "food_services_yoy": 8.44,
       "recreation_yoy": 5.5,
-      "avg_hourly_earnings_yoy": 5.72
+      "avg_hourly_earnings_yoy": 5.76
     },
     {
       "date": "2022-05-01",
@@ -544,25 +544,25 @@
       "date": "2022-07-01",
       "food_services_yoy": 6.74,
       "recreation_yoy": 5.45,
-      "avg_hourly_earnings_yoy": 5.51
+      "avg_hourly_earnings_yoy": 5.48
     },
     {
       "date": "2022-08-01",
       "food_services_yoy": 7.2,
       "recreation_yoy": 5.14,
-      "avg_hourly_earnings_yoy": 5.36
+      "avg_hourly_earnings_yoy": 5.39
     },
     {
       "date": "2022-09-01",
       "food_services_yoy": 7.17,
       "recreation_yoy": 4.98,
-      "avg_hourly_earnings_yoy": 5.14
+      "avg_hourly_earnings_yoy": 5.13
     },
     {
       "date": "2022-10-01",
       "food_services_yoy": 7.73,
       "recreation_yoy": 4.9,
-      "avg_hourly_earnings_yoy": 4.98
+      "avg_hourly_earnings_yoy": 5.01
     },
     {
       "date": "2022-11-01",
@@ -574,49 +574,49 @@
       "date": "2022-12-01",
       "food_services_yoy": 6.93,
       "recreation_yoy": 5.5,
-      "avg_hourly_earnings_yoy": 4.93
+      "avg_hourly_earnings_yoy": 4.94
     },
     {
       "date": "2023-01-01",
       "food_services_yoy": 7.44,
       "recreation_yoy": 5.58,
-      "avg_hourly_earnings_yoy": 4.52
+      "avg_hourly_earnings_yoy": 4.49
     },
     {
       "date": "2023-02-01",
       "food_services_yoy": 7.44,
       "recreation_yoy": 5.78,
-      "avg_hourly_earnings_yoy": 4.74
+      "avg_hourly_earnings_yoy": 4.77
     },
     {
       "date": "2023-03-01",
       "food_services_yoy": 7.75,
       "recreation_yoy": 5.34,
-      "avg_hourly_earnings_yoy": 4.59
+      "avg_hourly_earnings_yoy": 4.62
     },
     {
       "date": "2023-04-01",
       "food_services_yoy": 7.11,
       "recreation_yoy": 5.62,
-      "avg_hourly_earnings_yoy": 4.57
+      "avg_hourly_earnings_yoy": 4.6
     },
     {
       "date": "2023-05-01",
       "food_services_yoy": 6.94,
       "recreation_yoy": 4.97,
-      "avg_hourly_earnings_yoy": 4.42
+      "avg_hourly_earnings_yoy": 4.36
     },
     {
       "date": "2023-06-01",
       "food_services_yoy": 6.74,
       "recreation_yoy": 4.73,
-      "avg_hourly_earnings_yoy": 4.63
+      "avg_hourly_earnings_yoy": 4.66
     },
     {
       "date": "2023-07-01",
       "food_services_yoy": 6.51,
       "recreation_yoy": 4.88,
-      "avg_hourly_earnings_yoy": 4.61
+      "avg_hourly_earnings_yoy": 4.67
     },
     {
       "date": "2023-08-01",
@@ -634,7 +634,7 @@
       "date": "2023-10-01",
       "food_services_yoy": 4.7,
       "recreation_yoy": 4.85,
-      "avg_hourly_earnings_yoy": 4.19
+      "avg_hourly_earnings_yoy": 4.22
     },
     {
       "date": "2023-11-01",
@@ -652,19 +652,19 @@
       "date": "2024-01-01",
       "food_services_yoy": 4.38,
       "recreation_yoy": 4.59,
-      "avg_hourly_earnings_yoy": 4.3
+      "avg_hourly_earnings_yoy": 4.39
     },
     {
       "date": "2024-02-01",
       "food_services_yoy": 3.75,
       "recreation_yoy": 4.26,
-      "avg_hourly_earnings_yoy": 4.16
+      "avg_hourly_earnings_yoy": 4.13
     },
     {
       "date": "2024-03-01",
       "food_services_yoy": 3.31,
       "recreation_yoy": 4.3,
-      "avg_hourly_earnings_yoy": 4.18
+      "avg_hourly_earnings_yoy": 4.15
     },
     {
       "date": "2024-04-01",
@@ -676,13 +676,13 @@
       "date": "2024-05-01",
       "food_services_yoy": 3.14,
       "recreation_yoy": 3.62,
-      "avg_hourly_earnings_yoy": 4.09
+      "avg_hourly_earnings_yoy": 4.15
     },
     {
       "date": "2024-06-01",
       "food_services_yoy": 3.08,
       "recreation_yoy": 3.37,
-      "avg_hourly_earnings_yoy": 3.89
+      "avg_hourly_earnings_yoy": 3.92
     },
     {
       "date": "2024-07-01",
@@ -694,104 +694,104 @@
       "date": "2024-08-01",
       "food_services_yoy": 3.59,
       "recreation_yoy": 3.54,
-      "avg_hourly_earnings_yoy": 3.95
+      "avg_hourly_earnings_yoy": 3.92
     },
     {
       "date": "2024-09-01",
       "food_services_yoy": 2.86,
       "recreation_yoy": 2.73,
-      "avg_hourly_earnings_yoy": 3.94
+      "avg_hourly_earnings_yoy": 3.91
     },
     {
       "date": "2024-10-01",
       "food_services_yoy": 3.15,
       "recreation_yoy": 3.28,
-      "avg_hourly_earnings_yoy": 4.14
+      "avg_hourly_earnings_yoy": 4.05
     },
     {
       "date": "2024-11-01",
       "food_services_yoy": 3.55,
       "recreation_yoy": 3.52,
-      "avg_hourly_earnings_yoy": 4.15
+      "avg_hourly_earnings_yoy": 4.18
     },
     {
       "date": "2024-12-01",
       "food_services_yoy": 3.28,
       "recreation_yoy": 3.03,
-      "avg_hourly_earnings_yoy": 3.99
+      "avg_hourly_earnings_yoy": 4.08
     },
     {
       "date": "2025-01-01",
       "food_services_yoy": 3.05,
       "recreation_yoy": 3.58,
-      "avg_hourly_earnings_yoy": 3.95
+      "avg_hourly_earnings_yoy": 3.97
     },
     {
       "date": "2025-02-01",
       "food_services_yoy": 3.38,
       "recreation_yoy": 3.91,
-      "avg_hourly_earnings_yoy": 3.94
+      "avg_hourly_earnings_yoy": 4.11
     },
     {
       "date": "2025-03-01",
       "food_services_yoy": 2.86,
       "recreation_yoy": 4.11,
-      "avg_hourly_earnings_yoy": 3.89
+      "avg_hourly_earnings_yoy": 4.21
     },
     {
       "date": "2025-04-01",
       "food_services_yoy": 3.08,
       "recreation_yoy": 3.85,
-      "avg_hourly_earnings_yoy": 3.83
+      "avg_hourly_earnings_yoy": 3.91
     },
     {
       "date": "2025-05-01",
       "food_services_yoy": 3.16,
       "recreation_yoy": 4.29,
-      "avg_hourly_earnings_yoy": 3.84
+      "avg_hourly_earnings_yoy": 3.98
     },
     {
       "date": "2025-06-01",
       "food_services_yoy": 2.94,
       "recreation_yoy": 4.19,
-      "avg_hourly_earnings_yoy": 3.74
+      "avg_hourly_earnings_yoy": 3.86
     },
     {
       "date": "2025-07-01",
       "food_services_yoy": 2.9,
       "recreation_yoy": 3.57,
-      "avg_hourly_earnings_yoy": 3.88
+      "avg_hourly_earnings_yoy": 3.96
     },
     {
       "date": "2025-08-01",
       "food_services_yoy": 3.07,
       "recreation_yoy": 3.24,
-      "avg_hourly_earnings_yoy": 3.83
+      "avg_hourly_earnings_yoy": 3.98
     },
     {
       "date": "2025-09-01",
       "food_services_yoy": 3.25,
       "recreation_yoy": 3.8,
-      "avg_hourly_earnings_yoy": 3.74
+      "avg_hourly_earnings_yoy": 3.85
     },
     {
       "date": "2025-10-01",
       "food_services_yoy": 3.02,
       "recreation_yoy": 3.1,
-      "avg_hourly_earnings_yoy": 3.75
+      "avg_hourly_earnings_yoy": 3.92
     },
     {
       "date": "2025-11-01",
       "food_services_yoy": 2.51,
       "recreation_yoy": 2.48,
-      "avg_hourly_earnings_yoy": 3.62
+      "avg_hourly_earnings_yoy": 3.93
     }
   ],
   "latest": {
     "date": "2025-11-01",
     "food_services_yoy": 2.51,
     "recreation_yoy": 2.48,
-    "avg_hourly_earnings_yoy": 3.62
+    "avg_hourly_earnings_yoy": 3.93
   },
-  "last_updated": "2026-02-01T23:25:29.008690+09:00"
+  "last_updated": "2026-02-14T23:01:04.094635+09:00"
 }

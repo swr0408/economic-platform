@@ -1,0 +1,246 @@
+/**
+ * カナダGDP成長率チャートコンポーネント
+ *
+ * 四半期GDP成長率（前期比・前期比年率・前年比）の推移を表示
+ *
+ * データソース:
+ * - Statistics Canada Table 36-10-0104-01
+ *
+ * 発表スケジュール:
+ * - 四半期ごと（対象期間終了の約2ヶ月後）
+ * - 発表時刻: 08:30 ET
+ */
+import { useState, useMemo } from 'react'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
+import ChartContainer from '../../../common/ChartContainer'
+import LoadingChart from '../../../common/LoadingChart'
+import PeriodSelector from '../../../common/PeriodSelector'
+import MarketImpactTab from '../../../indicator/MarketImpactTab'
+
+// 共通モジュールのインポート
+import {
+  usePeriodFiltering,
+  useViewModePeriodManagement,
+  useQuarterlyTableData,
+  type PeriodType,
+} from '../../usa/common/useChartData'
+import {
+  NoDataMessage,
+  SimpleLatestValueBox,
+  ViewModeButtonGroup,
+  StandardLineChart,
+  MOM_LEGEND_DEFAULT,
+} from '../../usa/common/ChartComponents'
+import { QuarterlyTable } from '../../usa/common/QuarterlyTable'
+import { CHART_COLORS } from '../../usa/common/chartConstants'
+
+// 型定義
+import type { CaGdpGrowthData } from '../../../../hooks/useDashboardData'
+
+interface CanadaGdpGrowthChartProps {
+  data: CaGdpGrowthData | null
+}
+
+type ViewMode = 'qoq_simple' | 'qoq_simple_table' | 'qoq' | 'yoy'
+
+export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps) {
+  const [activeTab, setActiveTab] = useState<string>('timeseries')
+  const [viewMode, setViewMode] = useState<ViewMode>('qoq_simple')
+
+  // ビューモード毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+    qoq_simple: 'default' as PeriodType,
+    qoq_simple_table: 'default' as PeriodType,
+    qoq: 'default' as PeriodType,
+    yoy: 'default' as PeriodType,
+  })
+
+  // propsのデータをチャート用に変換
+  const chartData = useMemo(() => {
+    if (!data?.data || data.data.length === 0) return []
+
+    return [...data.data]
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .map((item) => ({
+        date: item.date,
+        qoq_simple: item.qoq_simple,
+        qoq: item.qoq,
+        yoy: item.yoy,
+      }))
+  }, [data])
+
+  // 期間フィルタリング
+  const filteredData = usePeriodFiltering(chartData, {
+    selectedPeriod: currentPeriod,
+    defaultStartYear: 2000,
+  })
+
+  // テーブル用データ（前期比）
+  const qoqTableData = useQuarterlyTableData(
+    chartData,
+    (item) => item.qoq_simple,
+    10
+  )
+
+  const hasData = chartData.length > 0
+
+  // 最新値を取得
+  const latestValue = data?.latest
+
+  // データがnullの場合はローディング表示
+  if (data === null) {
+    return <LoadingChart title="GDP成長率" />
+  }
+
+  if (!hasData) {
+    return (
+      <ChartContainer title="GDP成長率" showPeriodSelector={false} showDataSource={false}>
+        <NoDataMessage />
+      </ChartContainer>
+    )
+  }
+
+  const viewModeOptions = [
+    { mode: 'qoq_simple' as ViewMode, label: '前期比' },
+    { mode: 'qoq_simple_table' as ViewMode, label: '前期比（テーブル）' },
+    { mode: 'qoq' as ViewMode, label: '前期比年率' },
+    { mode: 'yoy' as ViewMode, label: '前年比' },
+  ]
+
+  // 表示ラベルを取得
+  const getViewModeLabel = (mode: ViewMode) => {
+    switch (mode) {
+      case 'qoq_simple': return '前期比'
+      case 'qoq_simple_table': return '前期比'
+      case 'qoq': return '前期比年率'
+      case 'yoy': return '前年比'
+    }
+  }
+
+  // 最新値を取得（ViewModeに応じて）
+  const getLatestValue = () => {
+    if (!latestValue) return undefined
+    switch (viewMode) {
+      case 'qoq_simple':
+      case 'qoq_simple_table':
+        return latestValue.qoq_simple
+      case 'qoq': return latestValue.qoq
+      case 'yoy': return latestValue.yoy
+    }
+  }
+
+  // グラフ用のデータキーを取得
+  const getDataKey = () => {
+    switch (viewMode) {
+      case 'qoq_simple':
+      case 'qoq_simple_table':
+        return 'qoq_simple'
+      case 'qoq': return 'qoq'
+      case 'yoy': return 'yoy'
+    }
+  }
+
+  // 比較ページ用のキーを取得
+  const getCompareKey = () => {
+    switch (viewMode) {
+      case 'qoq_simple':
+      case 'qoq_simple_table':
+        return 'qoq_simple'
+      case 'qoq': return 'qoq'
+      case 'yoy': return 'yoy'
+    }
+  }
+
+  return (
+    <div id="ca-gdp-growth-chart">
+      <ChartContainer
+        title="GDP成長率"
+        showPeriodSelector={false}
+        dataSource="Statistics Canada"
+        sourceUrl="https://www.statcan.gc.ca/en/subjects-start/economic_accounts"
+      >
+        {/* 最新値表示 */}
+        <SimpleLatestValueBox
+          label={getViewModeLabel(viewMode)}
+          value={getLatestValue()}
+          valueColor={CHART_COLORS.primary}
+          date={latestValue?.date}
+          nextRelease={data.next_release ? {
+            date: data.next_release.date,
+            label: data.next_release.time_jst ? `${data.next_release.time_jst} JST` : undefined
+          } : null}
+          format="percent"
+          decimals={1}
+        />
+
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={viewModeOptions}
+                      currentMode={viewMode}
+                      onChange={setViewMode}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=ca_gdp_growth_${getCompareKey()}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* 前期比テーブル */}
+                  {viewMode === 'qoq_simple_table' && (
+                    <QuarterlyTable
+                      data={qoqTableData}
+                      decimals={1}
+                      showLegend={true}
+                      legendItems={MOM_LEGEND_DEFAULT}
+                      helperText="※ 直近10年間の前期比データ（単位: %）"
+                    />
+                  )}
+
+                  {/* グラフ表示 */}
+                  {viewMode !== 'qoq_simple_table' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          {
+                            dataKey: getDataKey(),
+                            color: CHART_COLORS.primary,
+                            name: `GDP（${getViewModeLabel(viewMode)}）`,
+                          },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 1', 'dataMax + 1']}
+                        showZeroLine={true}
+                      />
+                    </>
+                  )}
+                </>
+              ),
+            },
+            {
+              key: 'market_impact',
+              label: 'マーケットインパクト',
+              children: <MarketImpactTab indicatorId="ca_gdp_growth" />,
+            },
+          ]}
+        />
+      </ChartContainer>
+    </div>
+  )
+}

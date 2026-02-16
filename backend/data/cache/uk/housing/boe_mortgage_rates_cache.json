@@ -1429,6 +1429,12 @@
       "value": 4.16,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2025-12-01",
+      "value": 4.12,
+      "forecast": null,
+      "previous": null
     }
   ],
   "iumtlmv": [
@@ -2448,8 +2454,8 @@
     "previous": null
   },
   "latest_cfmz6jv": {
-    "date": "2025-11-01",
-    "value": 4.16,
+    "date": "2025-12-01",
+    "value": 4.12,
     "forecast": null,
     "previous": null
   },
@@ -2460,5 +2466,5 @@
     "previous": null
   },
   "next_release": null,
-  "last_updated": "2026-01-22T00:04:30.521492+09:00"
+  "last_updated": "2026-02-08T23:01:50.912818+09:00"
 }

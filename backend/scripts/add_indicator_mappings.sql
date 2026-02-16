@@ -263,5 +263,40 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('uk_public_sector_net_borrowing_ex_bank', '公的部門純借入（イギリス）', 'GB', 'monthly', ARRAY['Public Sector Net Borrowing'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- UK貿易収支（uk_trade_balance）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('uk_trade_balance', '貿易収支（イギリス）', 'GB', 'monthly', ARRAY['Trade Balance'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- UK経常収支（uk_current_account）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('uk_current_account', '経常収支（イギリス）', 'GB', 'quarterly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- UK政府債務残高対GDP比（uk_government_debt_to_gdp_ratio）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('uk_government_debt_to_gdp_ratio', '政府債務残高対GDP比（イギリス）', 'GB', 'monthly', ARRAY['Public Sector Net Borrowing'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 日本経常収支（japan_current_account）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('japan_current_account', '経常収支（日本）', 'JP', 'monthly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 日本貿易収支（japan_balance_of_trade）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('japan_balance_of_trade', '貿易収支（日本）', 'JP', 'monthly', ARRAY['Balance of Trade'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- スイス貿易収支（ch_balance_of_trade）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('ch_balance_of_trade', '貿易収支（スイス）', 'CH', 'monthly', ARRAY['Balance of Trade'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- スイス経常収支（ch_current_account）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('ch_current_account', '経常収支（スイス）', 'CH', 'quarterly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;
