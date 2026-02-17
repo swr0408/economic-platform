@@ -7796,10 +7796,169 @@ export interface AustraliaInflationData {
   au_nab_cost_price: NabCostPriceData | null
 }
 
+// =====================================================================
+// オーストラリア雇用 (Australia Employment)
+// =====================================================================
+
+export interface AuUnemploymentRateDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface AuUnemploymentRateNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface AuUnemploymentRateData {
+  data: AuUnemploymentRateDataPoint[]
+  latest: AuUnemploymentRateDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuEmployedPersonsDataPoint {
+  date: string
+  value: number | null
+  mom_change: number | null
+  yoy_change: number | null
+}
+
+export interface AuEmployedPersonsData {
+  data: AuEmployedPersonsDataPoint[]
+  latest: AuEmployedPersonsDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuFulltimeParttimeDataPoint {
+  date: string
+  fulltime: number | null
+  parttime: number | null
+  fulltime_mom: number | null
+  parttime_mom: number | null
+  fulltime_yoy: number | null
+  parttime_yoy: number | null
+}
+
+export interface AuFulltimeParttimeData {
+  data: AuFulltimeParttimeDataPoint[]
+  latest: AuFulltimeParttimeDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuParticipationRateDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface AuParticipationRateData {
+  data: AuParticipationRateDataPoint[]
+  latest: AuParticipationRateDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuWagePriceIndexDataPoint {
+  date: string
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface AuWagePriceIndexData {
+  data: AuWagePriceIndexDataPoint[]
+  latest: AuWagePriceIndexDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuJobVacanciesDataPoint {
+  date: string
+  value: number | null
+}
+
+export interface AuJobVacanciesData {
+  data: AuJobVacanciesDataPoint[]
+  latest: AuJobVacanciesDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuAnzJobAdvertisementsDataPoint {
+  date: string
+  value: number | null
+  mom: number | null
+  yoy: number | null
+}
+
+export interface AuAnzJobAdvertisementsData {
+  data: AuAnzJobAdvertisementsDataPoint[]
+  latest: AuAnzJobAdvertisementsDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AustraliaEmploymentData {
+  au_unemployment_rate: AuUnemploymentRateData | null
+  au_employed_persons: AuEmployedPersonsData | null
+  au_fulltime_parttime: AuFulltimeParttimeData | null
+  au_participation_rate: AuParticipationRateData | null
+  au_wage_price_index: AuWagePriceIndexData | null
+  au_job_vacancies: AuJobVacanciesData | null
+  au_anz_job_advertisements: AuAnzJobAdvertisementsData | null
+}
+
 /**
  * オーストラリア物価ダッシュボード専用フック
  * ABS月次CPIなどを取得
  */
 export function useAustraliaInflationDashboard(): UseQueryResult<DashboardResponse<AustraliaInflationData>, Error> {
   return useDashboardData<AustraliaInflationData>('australia', 'inflation')
+}
+
+/**
+ * オーストラリア雇用ダッシュボード専用フック
+ * ABS失業率などを取得
+ */
+export function useAustraliaEmploymentDashboard(): UseQueryResult<DashboardResponse<AustraliaEmploymentData>, Error> {
+  return useDashboardData<AustraliaEmploymentData>('australia', 'employment')
 }

@@ -276,7 +276,9 @@
       "WebFetch(domain:business.nab.com.au)",
       "WebFetch(domain:news.nab.com.au)",
       "Bash(ls -la \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\uk\\\\housing\\\\rics_survey_images\"\" 2>&1 || echo \"Directory does not exist \")",
-      "Bash(powershell.exe -Command:*)"
+      "Bash(powershell.exe -Command:*)",
+      "Bash(ls -la \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\services\"\" | grep -i australia || echo \"No australia directory in services \")",
+      "Bash(del \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\temp_jv.json\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

@@ -42,6 +42,7 @@ from services.dashboard.loaders.canada_consumer import CanadaConsumerLoader
 from services.dashboard.loaders.canada_housing import CanadaHousingLoader
 from services.dashboard.loaders.australia_policy import AustraliaPolicyLoader
 from services.dashboard.loaders.australia_inflation import AustraliaInflationLoader
+from services.dashboard.loaders.australia_employment import AustraliaEmploymentLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -95,6 +96,7 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
     # オーストラリア
     ("australia", "policy"): AustraliaPolicyLoader,
     ("australia", "inflation"): AustraliaInflationLoader,
+    ("australia", "employment"): AustraliaEmploymentLoader,
 
     # 他の国も同様に追加可能
 }

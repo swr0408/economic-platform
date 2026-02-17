@@ -236,6 +236,7 @@ except ImportError:
     from routers.australia.abs import router as australia_abs_router
     from routers.australia.melbourne_institute import router as australia_melbourne_institute_router
     from routers.australia.nab import router as australia_nab_router
+    from routers.australia.abs_employment import router as australia_abs_employment_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -402,6 +403,7 @@ app.include_router(australia_rba_expectations_screenshot_router)
 app.include_router(australia_abs_router)
 app.include_router(australia_melbourne_institute_router)
 app.include_router(australia_nab_router)
+app.include_router(australia_abs_employment_router)
 
 
 @app.get("/health")

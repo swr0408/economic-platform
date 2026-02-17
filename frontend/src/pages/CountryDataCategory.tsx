@@ -49,6 +49,7 @@ import CanadaConsumerCharts from '../components/country/canada/CanadaConsumerCha
 import CanadaHousingCharts from '../components/country/canada/CanadaHousingCharts'
 import AustraliaPolicyCharts from '../components/country/australia/AustraliaPolicyCharts'
 import AustraliaInflationCharts from '../components/country/australia/AustraliaInflationCharts'
+import AustraliaEmploymentCharts from '../components/country/australia/AustraliaEmploymentCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -293,6 +294,7 @@ function CountryDataCategory() {
   // オーストラリア金融政策・物価の場合はチャートを表示
   const isAustraliaPolicy = countryCode === 'australia' && categoryCode === 'policy'
   const isAustraliaInflation = countryCode === 'australia' && categoryCode === 'inflation'
+  const isAustraliaEmployment = countryCode === 'australia' && categoryCode === 'employment'
 
   // メインコンテンツ
   const mainContent = (
@@ -369,6 +371,8 @@ function CountryDataCategory() {
         <AustraliaPolicyCharts />
       ) : isAustraliaInflation ? (
         <AustraliaInflationCharts />
+      ) : isAustraliaEmployment ? (
+        <AustraliaEmploymentCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

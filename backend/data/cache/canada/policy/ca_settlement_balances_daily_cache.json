@@ -6151,11 +6151,15 @@
     {
       "date": "2026-02-13",
       "value": 68866.0
+    },
+    {
+      "date": "2026-02-16",
+      "value": 74453.0
     }
   ],
   "latest": {
-    "date": "2026-02-13",
-    "value": 68866.0
+    "date": "2026-02-16",
+    "value": 74453.0
   },
   "metadata": {
     "source": "Bank of Canada",
@@ -6165,5 +6169,5 @@
     "series_id": "ACTUAL",
     "frequency": "daily"
   },
-  "last_updated": "2026-02-16T10:14:32.159009+09:00"
+  "last_updated": "2026-02-17T20:51:49.334131+09:00"
 }

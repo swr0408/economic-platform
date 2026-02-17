@@ -605,7 +605,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#faad14',
         indicators: [
           { code: 'employment-change', name: '雇用者数変化' },
+          { code: 'fulltime-parttime', name: 'フルタイム/パートタイム' },
           { code: 'unemployment', name: '失業率' },
+          { code: 'participation-rate', name: '労働参加率' },
+          { code: 'wage-price-index', name: '賃金物価指数' },
+          { code: 'job-vacancies', name: '求人件数' },
+          { code: 'anz-job-advertisements', name: 'ANZ求人広告' },
         ],
       },
       {
