@@ -27,6 +27,7 @@ class AustraliaEmploymentLoader(BaseDashboardLoader):
     - au_participation_rate: ABS労働参加率（季節調整済み）
     - au_wage_price_index: ABS賃金物価指数（季節調整済み、QoQ/YoY）
     - au_job_vacancies: ABS求人件数（季節調整済み、千件）
+    - au_underutilization: アンダー・ユーティライゼーション（不足雇用含む）
 
     キャッシュ方式: FMP発表日時ベース判定
     """
@@ -43,6 +44,7 @@ class AustraliaEmploymentLoader(BaseDashboardLoader):
         "au_wage_price_index",
         "au_job_vacancies",
         "au_anz_job_advertisements",
+        "au_underutilization",
     ]
 
     def __init__(self):
@@ -95,6 +97,7 @@ class AustraliaEmploymentLoader(BaseDashboardLoader):
         from services.australia.au_wage_price_index_service import au_wage_price_index_service
         from services.australia.au_job_vacancies_service import au_job_vacancies_service
         from services.australia.au_anz_job_advertisements_service import au_anz_job_advertisements_service
+        from services.australia.au_underutilization_service import au_underutilization_service
 
         result = {
             "au_unemployment_rate": None,
@@ -104,6 +107,7 @@ class AustraliaEmploymentLoader(BaseDashboardLoader):
             "au_wage_price_index": None,
             "au_job_vacancies": None,
             "au_anz_job_advertisements": None,
+            "au_underutilization": None,
         }
 
         # データを取得
@@ -114,6 +118,7 @@ class AustraliaEmploymentLoader(BaseDashboardLoader):
         result["au_wage_price_index"] = self._get_wage_price_index(au_wage_price_index_service)
         result["au_job_vacancies"] = self._get_job_vacancies(au_job_vacancies_service)
         result["au_anz_job_advertisements"] = self._get_anz_job_advertisements(au_anz_job_advertisements_service)
+        result["au_underutilization"] = self._get_underutilization(au_underutilization_service)
 
         return result
 
@@ -220,4 +225,19 @@ class AustraliaEmploymentLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"[AustraliaEmployment] Error getting ANZ Job Advertisements: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_underutilization(self, service) -> dict:
+        """アンダー・ユーティライゼーションデータを取得"""
+        try:
+            force_refresh = self._should_force_refresh("au_underutilization")
+            response = service.get_au_underutilization_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[AustraliaEmployment] Error getting Underutilization: {e}")
             return {"data": [], "latest": None, "metadata": {}, "next_release": None}

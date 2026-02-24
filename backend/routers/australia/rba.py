@@ -11,6 +11,9 @@
 - GET /api/australia/rba/smp-forecast - SMP経済予測データ
 - GET /api/australia/rba/smp-forecast/cache - キャッシュ状態
 - DELETE /api/australia/rba/smp-forecast/cache - キャッシュ無効化
+- GET /api/australia/rba/housing-lending-rates - 住宅ローン金利データ
+- GET /api/australia/rba/housing-lending-rates/cache - キャッシュ状態
+- DELETE /api/australia/rba/housing-lending-rates/cache - キャッシュ無効化
 """
 from fastapi import APIRouter, Query
 from typing import Dict, Any
@@ -18,6 +21,7 @@ from typing import Dict, Any
 from services.australia.rba_policy_rate_service import rba_policy_rate_service
 from services.australia.asx_rate_tracker_service import asx_rate_tracker_service
 from services.australia.rba_smp_forecast_service import rba_smp_forecast_service
+from services.australia.au_housing_lending_rates_service import au_housing_lending_rates_service
 
 router = APIRouter(
     prefix="/api/australia/rba",
@@ -123,4 +127,31 @@ async def get_smp_forecast_cache_status() -> Dict[str, Any]:
 async def invalidate_smp_forecast_cache() -> Dict[str, bool]:
     """SMP予測のキャッシュを無効化"""
     success = rba_smp_forecast_service.invalidate_cache()
+    return {"success": success}
+
+
+# ===== Housing Lending Rates (F6) =====
+
+@router.get("/housing-lending-rates")
+async def get_housing_lending_rates(
+    force_refresh: bool = Query(False, description="強制的にデータを再取得")
+) -> Dict[str, Any]:
+    """
+    住宅ローン金利データを取得（RBA F6）
+
+    固定金利・変動金利（既存ローン/新規ローン、自己居住/投資用）
+    """
+    return au_housing_lending_rates_service.get_au_housing_lending_rates_data(force_refresh=force_refresh)
+
+
+@router.get("/housing-lending-rates/cache")
+async def get_housing_lending_rates_cache_status() -> Dict[str, Any]:
+    """住宅ローン金利のキャッシュ状態を取得"""
+    return au_housing_lending_rates_service.get_cache_status()
+
+
+@router.delete("/housing-lending-rates/cache")
+async def invalidate_housing_lending_rates_cache() -> Dict[str, bool]:
+    """住宅ローン金利のキャッシュを無効化"""
+    success = au_housing_lending_rates_service.invalidate_cache()
     return {"success": success}

@@ -1,0 +1,732 @@
+{
+  "data": [
+    {
+      "date": "2019-07-31",
+      "outstanding_oo_variable": 3.81,
+      "outstanding_oo_fixed": 3.94,
+      "outstanding_inv_variable": 4.35,
+      "outstanding_inv_fixed": 4.17,
+      "new_oo_variable": 3.5,
+      "new_oo_fixed": 3.43
+    },
+    {
+      "date": "2019-08-31",
+      "outstanding_oo_variable": 3.79,
+      "outstanding_oo_fixed": 3.91,
+      "outstanding_inv_variable": 4.31,
+      "outstanding_inv_fixed": 4.15,
+      "new_oo_variable": 3.51,
+      "new_oo_fixed": 3.21
+    },
+    {
+      "date": "2019-09-30",
+      "outstanding_oo_variable": 3.77,
+      "outstanding_oo_fixed": 3.89,
+      "outstanding_inv_variable": 4.28,
+      "outstanding_inv_fixed": 4.14,
+      "new_oo_variable": 3.49,
+      "new_oo_fixed": 3.16
+    },
+    {
+      "date": "2019-10-31",
+      "outstanding_oo_variable": 3.64,
+      "outstanding_oo_fixed": 3.87,
+      "outstanding_inv_variable": 4.05,
+      "outstanding_inv_fixed": 4.1,
+      "new_oo_variable": 3.33,
+      "new_oo_fixed": 3.01
+    },
+    {
+      "date": "2019-11-30",
+      "outstanding_oo_variable": 3.63,
+      "outstanding_oo_fixed": 3.83,
+      "outstanding_inv_variable": 4.03,
+      "outstanding_inv_fixed": 4.08,
+      "new_oo_variable": 3.31,
+      "new_oo_fixed": 2.97
+    },
+    {
+      "date": "2019-12-31",
+      "outstanding_oo_variable": 3.61,
+      "outstanding_oo_fixed": 3.79,
+      "outstanding_inv_variable": 4.01,
+      "outstanding_inv_fixed": 4.05,
+      "new_oo_variable": 3.28,
+      "new_oo_fixed": 2.96
+    },
+    {
+      "date": "2020-01-31",
+      "outstanding_oo_variable": 3.6,
+      "outstanding_oo_fixed": 3.76,
+      "outstanding_inv_variable": 4.0,
+      "outstanding_inv_fixed": 4.03,
+      "new_oo_variable": 3.26,
+      "new_oo_fixed": 2.95
+    },
+    {
+      "date": "2020-02-29",
+      "outstanding_oo_variable": 3.57,
+      "outstanding_oo_fixed": 3.73,
+      "outstanding_inv_variable": 3.97,
+      "outstanding_inv_fixed": 4.01,
+      "new_oo_variable": 3.25,
+      "new_oo_fixed": 2.94
+    },
+    {
+      "date": "2020-03-31",
+      "outstanding_oo_variable": 3.31,
+      "outstanding_oo_fixed": 3.68,
+      "outstanding_inv_variable": 3.69,
+      "outstanding_inv_fixed": 3.98,
+      "new_oo_variable": 3.0,
+      "new_oo_fixed": 2.75
+    },
+    {
+      "date": "2020-04-30",
+      "outstanding_oo_variable": 3.27,
+      "outstanding_oo_fixed": 3.54,
+      "outstanding_inv_variable": 3.65,
+      "outstanding_inv_fixed": 3.88,
+      "new_oo_variable": 2.96,
+      "new_oo_fixed": 2.34
+    },
+    {
+      "date": "2020-05-31",
+      "outstanding_oo_variable": 3.26,
+      "outstanding_oo_fixed": 3.4,
+      "outstanding_inv_variable": 3.63,
+      "outstanding_inv_fixed": 3.77,
+      "new_oo_variable": 2.93,
+      "new_oo_fixed": 2.32
+    },
+    {
+      "date": "2020-06-30",
+      "outstanding_oo_variable": 3.24,
+      "outstanding_oo_fixed": 3.27,
+      "outstanding_inv_variable": 3.61,
+      "outstanding_inv_fixed": 3.64,
+      "new_oo_variable": 2.93,
+      "new_oo_fixed": 2.3
+    },
+    {
+      "date": "2020-07-31",
+      "outstanding_oo_variable": 3.23,
+      "outstanding_oo_fixed": 3.17,
+      "outstanding_inv_variable": 3.6,
+      "outstanding_inv_fixed": 3.55,
+      "new_oo_variable": 2.92,
+      "new_oo_fixed": 2.3
+    },
+    {
+      "date": "2020-08-31",
+      "outstanding_oo_variable": 3.21,
+      "outstanding_oo_fixed": 3.09,
+      "outstanding_inv_variable": 3.58,
+      "outstanding_inv_fixed": 3.46,
+      "new_oo_variable": 2.91,
+      "new_oo_fixed": 2.29
+    },
+    {
+      "date": "2020-09-30",
+      "outstanding_oo_variable": 3.2,
+      "outstanding_oo_fixed": 3.01,
+      "outstanding_inv_variable": 3.56,
+      "outstanding_inv_fixed": 3.38,
+      "new_oo_variable": 2.9,
+      "new_oo_fixed": 2.27
+    },
+    {
+      "date": "2020-10-31",
+      "outstanding_oo_variable": 3.18,
+      "outstanding_oo_fixed": 2.93,
+      "outstanding_inv_variable": 3.55,
+      "outstanding_inv_fixed": 3.31,
+      "new_oo_variable": 2.86,
+      "new_oo_fixed": 2.27
+    },
+    {
+      "date": "2020-11-30",
+      "outstanding_oo_variable": 3.17,
+      "outstanding_oo_fixed": 2.86,
+      "outstanding_inv_variable": 3.53,
+      "outstanding_inv_fixed": 3.24,
+      "new_oo_variable": 2.85,
+      "new_oo_fixed": 2.16
+    },
+    {
+      "date": "2020-12-31",
+      "outstanding_oo_variable": 3.15,
+      "outstanding_oo_fixed": 2.79,
+      "outstanding_inv_variable": 3.51,
+      "outstanding_inv_fixed": 3.17,
+      "new_oo_variable": 2.8,
+      "new_oo_fixed": 2.11
+    },
+    {
+      "date": "2021-01-31",
+      "outstanding_oo_variable": 3.14,
+      "outstanding_oo_fixed": 2.73,
+      "outstanding_inv_variable": 3.49,
+      "outstanding_inv_fixed": 3.11,
+      "new_oo_variable": 2.79,
+      "new_oo_fixed": 2.1
+    },
+    {
+      "date": "2021-02-28",
+      "outstanding_oo_variable": 3.12,
+      "outstanding_oo_fixed": 2.68,
+      "outstanding_inv_variable": 3.47,
+      "outstanding_inv_fixed": 3.05,
+      "new_oo_variable": 2.78,
+      "new_oo_fixed": 2.09
+    },
+    {
+      "date": "2021-03-31",
+      "outstanding_oo_variable": 3.1,
+      "outstanding_oo_fixed": 2.6,
+      "outstanding_inv_variable": 3.48,
+      "outstanding_inv_fixed": 3.01,
+      "new_oo_variable": 2.78,
+      "new_oo_fixed": 2.02
+    },
+    {
+      "date": "2021-04-30",
+      "outstanding_oo_variable": 3.09,
+      "outstanding_oo_fixed": 2.54,
+      "outstanding_inv_variable": 3.47,
+      "outstanding_inv_fixed": 2.95,
+      "new_oo_variable": 2.77,
+      "new_oo_fixed": 1.98
+    },
+    {
+      "date": "2021-05-31",
+      "outstanding_oo_variable": 3.07,
+      "outstanding_oo_fixed": 2.48,
+      "outstanding_inv_variable": 3.45,
+      "outstanding_inv_fixed": 2.88,
+      "new_oo_variable": 2.76,
+      "new_oo_fixed": 1.95
+    },
+    {
+      "date": "2021-06-30",
+      "outstanding_oo_variable": 3.06,
+      "outstanding_oo_fixed": 2.42,
+      "outstanding_inv_variable": 3.44,
+      "outstanding_inv_fixed": 2.81,
+      "new_oo_variable": 2.73,
+      "new_oo_fixed": 1.96
+    },
+    {
+      "date": "2021-07-31",
+      "outstanding_oo_variable": 3.04,
+      "outstanding_oo_fixed": 2.37,
+      "outstanding_inv_variable": 3.42,
+      "outstanding_inv_fixed": 2.76,
+      "new_oo_variable": 2.72,
+      "new_oo_fixed": 1.98
+    },
+    {
+      "date": "2021-08-31",
+      "outstanding_oo_variable": 3.03,
+      "outstanding_oo_fixed": 2.33,
+      "outstanding_inv_variable": 3.4,
+      "outstanding_inv_fixed": 2.71,
+      "new_oo_variable": 2.68,
+      "new_oo_fixed": 1.98
+    },
+    {
+      "date": "2021-09-30",
+      "outstanding_oo_variable": 3.01,
+      "outstanding_oo_fixed": 2.29,
+      "outstanding_inv_variable": 3.37,
+      "outstanding_inv_fixed": 2.67,
+      "new_oo_variable": 2.68,
+      "new_oo_fixed": 1.98
+    },
+    {
+      "date": "2021-10-31",
+      "outstanding_oo_variable": 2.99,
+      "outstanding_oo_fixed": 2.25,
+      "outstanding_inv_variable": 3.35,
+      "outstanding_inv_fixed": 2.63,
+      "new_oo_variable": 2.63,
+      "new_oo_fixed": 2.0
+    },
+    {
+      "date": "2021-11-30",
+      "outstanding_oo_variable": 2.98,
+      "outstanding_oo_fixed": 2.23,
+      "outstanding_inv_variable": 3.33,
+      "outstanding_inv_fixed": 2.6,
+      "new_oo_variable": 2.59,
+      "new_oo_fixed": 2.18
+    },
+    {
+      "date": "2021-12-31",
+      "outstanding_oo_variable": 2.96,
+      "outstanding_oo_fixed": 2.21,
+      "outstanding_inv_variable": 3.31,
+      "outstanding_inv_fixed": 2.58,
+      "new_oo_variable": 2.56,
+      "new_oo_fixed": 2.34
+    },
+    {
+      "date": "2022-01-31",
+      "outstanding_oo_variable": 2.94,
+      "outstanding_oo_fixed": 2.21,
+      "outstanding_inv_variable": 3.29,
+      "outstanding_inv_fixed": 2.58,
+      "new_oo_variable": 2.52,
+      "new_oo_fixed": 2.42
+    },
+    {
+      "date": "2022-02-28",
+      "outstanding_oo_variable": 2.91,
+      "outstanding_oo_fixed": 2.2,
+      "outstanding_inv_variable": 3.27,
+      "outstanding_inv_fixed": 2.57,
+      "new_oo_variable": 2.49,
+      "new_oo_fixed": 2.58
+    },
+    {
+      "date": "2022-03-31",
+      "outstanding_oo_variable": 2.89,
+      "outstanding_oo_fixed": 2.21,
+      "outstanding_inv_variable": 3.24,
+      "outstanding_inv_fixed": 2.57,
+      "new_oo_variable": 2.46,
+      "new_oo_fixed": 2.81
+    },
+    {
+      "date": "2022-04-30",
+      "outstanding_oo_variable": 2.86,
+      "outstanding_oo_fixed": 2.22,
+      "outstanding_inv_variable": 3.21,
+      "outstanding_inv_fixed": 2.58,
+      "new_oo_variable": 2.41,
+      "new_oo_fixed": 3.06
+    },
+    {
+      "date": "2022-05-31",
+      "outstanding_oo_variable": 3.07,
+      "outstanding_oo_fixed": 2.24,
+      "outstanding_inv_variable": 3.42,
+      "outstanding_inv_fixed": 2.59,
+      "new_oo_variable": 2.61,
+      "new_oo_fixed": 3.31
+    },
+    {
+      "date": "2022-06-30",
+      "outstanding_oo_variable": 3.52,
+      "outstanding_oo_fixed": 2.26,
+      "outstanding_inv_variable": 3.88,
+      "outstanding_inv_fixed": 2.61,
+      "new_oo_variable": 3.05,
+      "new_oo_fixed": 3.69
+    },
+    {
+      "date": "2022-07-31",
+      "outstanding_oo_variable": 3.99,
+      "outstanding_oo_fixed": 2.28,
+      "outstanding_inv_variable": 4.36,
+      "outstanding_inv_fixed": 2.63,
+      "new_oo_variable": 3.51,
+      "new_oo_fixed": 4.1
+    },
+    {
+      "date": "2022-08-31",
+      "outstanding_oo_variable": 4.44,
+      "outstanding_oo_fixed": 2.3,
+      "outstanding_inv_variable": 4.81,
+      "outstanding_inv_fixed": 2.64,
+      "new_oo_variable": 3.96,
+      "new_oo_fixed": 4.45
+    },
+    {
+      "date": "2022-09-30",
+      "outstanding_oo_variable": 4.88,
+      "outstanding_oo_fixed": 2.33,
+      "outstanding_inv_variable": 5.25,
+      "outstanding_inv_fixed": 2.66,
+      "new_oo_variable": 4.38,
+      "new_oo_fixed": 4.7
+    },
+    {
+      "date": "2022-10-31",
+      "outstanding_oo_variable": 5.09,
+      "outstanding_oo_fixed": 2.36,
+      "outstanding_inv_variable": 5.46,
+      "outstanding_inv_fixed": 2.69,
+      "new_oo_variable": 4.58,
+      "new_oo_fixed": 4.88
+    },
+    {
+      "date": "2022-11-30",
+      "outstanding_oo_variable": 5.29,
+      "outstanding_oo_fixed": 2.4,
+      "outstanding_inv_variable": 5.66,
+      "outstanding_inv_fixed": 2.72,
+      "new_oo_variable": 4.8,
+      "new_oo_fixed": 5.1
+    },
+    {
+      "date": "2022-12-31",
+      "outstanding_oo_variable": 5.49,
+      "outstanding_oo_fixed": 2.44,
+      "outstanding_inv_variable": 5.85,
+      "outstanding_inv_fixed": 2.75,
+      "new_oo_variable": 4.99,
+      "new_oo_fixed": 5.22
+    },
+    {
+      "date": "2023-01-31",
+      "outstanding_oo_variable": 5.46,
+      "outstanding_oo_fixed": 2.46,
+      "outstanding_inv_variable": 5.82,
+      "outstanding_inv_fixed": 2.78,
+      "new_oo_variable": 4.96,
+      "new_oo_fixed": 5.33
+    },
+    {
+      "date": "2023-02-28",
+      "outstanding_oo_variable": 5.65,
+      "outstanding_oo_fixed": 2.52,
+      "outstanding_inv_variable": 6.0,
+      "outstanding_inv_fixed": 2.84,
+      "new_oo_variable": 5.17,
+      "new_oo_fixed": 5.36
+    },
+    {
+      "date": "2023-03-31",
+      "outstanding_oo_variable": 5.85,
+      "outstanding_oo_fixed": 2.58,
+      "outstanding_inv_variable": 6.19,
+      "outstanding_inv_fixed": 2.89,
+      "new_oo_variable": 5.42,
+      "new_oo_fixed": 5.53
+    },
+    {
+      "date": "2023-04-30",
+      "outstanding_oo_variable": 5.82,
+      "outstanding_oo_fixed": 2.62,
+      "outstanding_inv_variable": 6.16,
+      "outstanding_inv_fixed": 2.93,
+      "new_oo_variable": 5.41,
+      "new_oo_fixed": 5.55
+    },
+    {
+      "date": "2023-05-31",
+      "outstanding_oo_variable": 6.03,
+      "outstanding_oo_fixed": 2.7,
+      "outstanding_inv_variable": 6.36,
+      "outstanding_inv_fixed": 3.01,
+      "new_oo_variable": 5.66,
+      "new_oo_fixed": 5.52
+    },
+    {
+      "date": "2023-06-30",
+      "outstanding_oo_variable": 6.24,
+      "outstanding_oo_fixed": 2.84,
+      "outstanding_inv_variable": 6.57,
+      "outstanding_inv_fixed": 3.17,
+      "new_oo_variable": 5.94,
+      "new_oo_fixed": 5.68
+    },
+    {
+      "date": "2023-07-31",
+      "outstanding_oo_variable": 6.23,
+      "outstanding_oo_fixed": 2.95,
+      "outstanding_inv_variable": 6.54,
+      "outstanding_inv_fixed": 3.27,
+      "new_oo_variable": 5.95,
+      "new_oo_fixed": 5.81
+    },
+    {
+      "date": "2023-08-31",
+      "outstanding_oo_variable": 6.2,
+      "outstanding_oo_fixed": 3.03,
+      "outstanding_inv_variable": 6.51,
+      "outstanding_inv_fixed": 3.36,
+      "new_oo_variable": 5.99,
+      "new_oo_fixed": 5.86
+    },
+    {
+      "date": "2023-09-30",
+      "outstanding_oo_variable": 6.18,
+      "outstanding_oo_fixed": 3.11,
+      "outstanding_inv_variable": 6.49,
+      "outstanding_inv_fixed": 3.43,
+      "new_oo_variable": 6.0,
+      "new_oo_fixed": 5.94
+    },
+    {
+      "date": "2023-10-31",
+      "outstanding_oo_variable": 6.17,
+      "outstanding_oo_fixed": 3.18,
+      "outstanding_inv_variable": 6.47,
+      "outstanding_inv_fixed": 3.5,
+      "new_oo_variable": 6.0,
+      "new_oo_fixed": 6.02
+    },
+    {
+      "date": "2023-11-30",
+      "outstanding_oo_variable": 6.39,
+      "outstanding_oo_fixed": 3.27,
+      "outstanding_inv_variable": 6.69,
+      "outstanding_inv_fixed": 3.58,
+      "new_oo_variable": 6.23,
+      "new_oo_fixed": 6.12
+    },
+    {
+      "date": "2023-12-31",
+      "outstanding_oo_variable": 6.39,
+      "outstanding_oo_fixed": 3.34,
+      "outstanding_inv_variable": 6.69,
+      "outstanding_inv_fixed": 3.66,
+      "new_oo_variable": 6.24,
+      "new_oo_fixed": 6.22
+    },
+    {
+      "date": "2024-01-31",
+      "outstanding_oo_variable": 6.37,
+      "outstanding_oo_fixed": 3.39,
+      "outstanding_inv_variable": 6.67,
+      "outstanding_inv_fixed": 3.72,
+      "new_oo_variable": 6.27,
+      "new_oo_fixed": 6.24
+    },
+    {
+      "date": "2024-02-29",
+      "outstanding_oo_variable": 6.36,
+      "outstanding_oo_fixed": 3.41,
+      "outstanding_inv_variable": 6.66,
+      "outstanding_inv_fixed": 3.76,
+      "new_oo_variable": 6.27,
+      "new_oo_fixed": 6.07
+    },
+    {
+      "date": "2024-03-31",
+      "outstanding_oo_variable": 6.39,
+      "outstanding_oo_fixed": 3.43,
+      "outstanding_inv_variable": 6.68,
+      "outstanding_inv_fixed": 3.82,
+      "new_oo_variable": 6.28,
+      "new_oo_fixed": 5.86
+    },
+    {
+      "date": "2024-04-30",
+      "outstanding_oo_variable": 6.38,
+      "outstanding_oo_fixed": 3.46,
+      "outstanding_inv_variable": 6.67,
+      "outstanding_inv_fixed": 3.88,
+      "new_oo_variable": 6.27,
+      "new_oo_fixed": 6.0
+    },
+    {
+      "date": "2024-05-31",
+      "outstanding_oo_variable": 6.37,
+      "outstanding_oo_fixed": 3.49,
+      "outstanding_inv_variable": 6.65,
+      "outstanding_inv_fixed": 3.95,
+      "new_oo_variable": 6.27,
+      "new_oo_fixed": 5.95
+    },
+    {
+      "date": "2024-06-30",
+      "outstanding_oo_variable": 6.37,
+      "outstanding_oo_fixed": 3.49,
+      "outstanding_inv_variable": 6.64,
+      "outstanding_inv_fixed": 3.99,
+      "new_oo_variable": 6.28,
+      "new_oo_fixed": 6.0
+    },
+    {
+      "date": "2024-07-31",
+      "outstanding_oo_variable": 6.36,
+      "outstanding_oo_fixed": 3.53,
+      "outstanding_inv_variable": 6.63,
+      "outstanding_inv_fixed": 4.07,
+      "new_oo_variable": 6.28,
+      "new_oo_fixed": 6.09
+    },
+    {
+      "date": "2024-08-31",
+      "outstanding_oo_variable": 6.35,
+      "outstanding_oo_fixed": 3.58,
+      "outstanding_inv_variable": 6.62,
+      "outstanding_inv_fixed": 4.18,
+      "new_oo_variable": 6.27,
+      "new_oo_fixed": 6.07
+    },
+    {
+      "date": "2024-09-30",
+      "outstanding_oo_variable": 6.34,
+      "outstanding_oo_fixed": 3.64,
+      "outstanding_inv_variable": 6.61,
+      "outstanding_inv_fixed": 4.31,
+      "new_oo_variable": 6.27,
+      "new_oo_fixed": 5.9
+    },
+    {
+      "date": "2024-10-31",
+      "outstanding_oo_variable": 6.33,
+      "outstanding_oo_fixed": 3.7,
+      "outstanding_inv_variable": 6.6,
+      "outstanding_inv_fixed": 4.46,
+      "new_oo_variable": 6.25,
+      "new_oo_fixed": 5.73
+    },
+    {
+      "date": "2024-11-30",
+      "outstanding_oo_variable": 6.33,
+      "outstanding_oo_fixed": 3.83,
+      "outstanding_inv_variable": 6.59,
+      "outstanding_inv_fixed": 4.68,
+      "new_oo_variable": 6.24,
+      "new_oo_fixed": 5.77
+    },
+    {
+      "date": "2024-12-31",
+      "outstanding_oo_variable": 6.32,
+      "outstanding_oo_fixed": 3.99,
+      "outstanding_inv_variable": 6.58,
+      "outstanding_inv_fixed": 4.84,
+      "new_oo_variable": 6.24,
+      "new_oo_fixed": 5.8
+    },
+    {
+      "date": "2025-01-31",
+      "outstanding_oo_variable": 6.31,
+      "outstanding_oo_fixed": 4.16,
+      "outstanding_inv_variable": 6.58,
+      "outstanding_inv_fixed": 4.96,
+      "new_oo_variable": 6.25,
+      "new_oo_fixed": 5.8
+    },
+    {
+      "date": "2025-02-28",
+      "outstanding_oo_variable": 6.16,
+      "outstanding_oo_fixed": 4.33,
+      "outstanding_inv_variable": 6.41,
+      "outstanding_inv_fixed": 5.06,
+      "new_oo_variable": 6.09,
+      "new_oo_fixed": 5.77
+    },
+    {
+      "date": "2025-03-31",
+      "outstanding_oo_variable": 6.06,
+      "outstanding_oo_fixed": 4.55,
+      "outstanding_inv_variable": 6.32,
+      "outstanding_inv_fixed": 5.16,
+      "new_oo_variable": 6.0,
+      "new_oo_fixed": 5.76
+    },
+    {
+      "date": "2025-04-30",
+      "outstanding_oo_variable": 6.05,
+      "outstanding_oo_fixed": 4.77,
+      "outstanding_inv_variable": 6.31,
+      "outstanding_inv_fixed": 5.25,
+      "new_oo_variable": 5.99,
+      "new_oo_fixed": 5.69
+    },
+    {
+      "date": "2025-05-31",
+      "outstanding_oo_variable": 5.89,
+      "outstanding_oo_fixed": 4.96,
+      "outstanding_inv_variable": 6.14,
+      "outstanding_inv_fixed": 5.32,
+      "new_oo_variable": 5.84,
+      "new_oo_fixed": 5.53
+    },
+    {
+      "date": "2025-06-30",
+      "outstanding_oo_variable": 5.79,
+      "outstanding_oo_fixed": 5.06,
+      "outstanding_inv_variable": 6.05,
+      "outstanding_inv_fixed": 5.3,
+      "new_oo_variable": 5.75,
+      "new_oo_fixed": 5.41
+    },
+    {
+      "date": "2025-07-31",
+      "outstanding_oo_variable": 5.78,
+      "outstanding_oo_fixed": 5.14,
+      "outstanding_inv_variable": 6.04,
+      "outstanding_inv_fixed": 5.31,
+      "new_oo_variable": 5.75,
+      "new_oo_fixed": 5.39
+    },
+    {
+      "date": "2025-08-31",
+      "outstanding_oo_variable": 5.54,
+      "outstanding_oo_fixed": 5.18,
+      "outstanding_inv_variable": 5.79,
+      "outstanding_inv_fixed": 5.3,
+      "new_oo_variable": 5.51,
+      "new_oo_fixed": 5.31
+    },
+    {
+      "date": "2025-09-30",
+      "outstanding_oo_variable": 5.52,
+      "outstanding_oo_fixed": 5.22,
+      "outstanding_inv_variable": 5.78,
+      "outstanding_inv_fixed": 5.3,
+      "new_oo_variable": 5.51,
+      "new_oo_fixed": 5.2
+    },
+    {
+      "date": "2025-10-31",
+      "outstanding_oo_variable": 5.52,
+      "outstanding_oo_fixed": 5.24,
+      "outstanding_inv_variable": 5.77,
+      "outstanding_inv_fixed": 5.28,
+      "new_oo_variable": 5.5,
+      "new_oo_fixed": 5.1
+    },
+    {
+      "date": "2025-11-30",
+      "outstanding_oo_variable": 5.52,
+      "outstanding_oo_fixed": 5.26,
+      "outstanding_inv_variable": 5.76,
+      "outstanding_inv_fixed": 5.26,
+      "new_oo_variable": 5.49,
+      "new_oo_fixed": 5.08
+    },
+    {
+      "date": "2025-12-31",
+      "outstanding_oo_variable": 5.51,
+      "outstanding_oo_fixed": 5.27,
+      "outstanding_inv_variable": 5.75,
+      "outstanding_inv_fixed": 5.26,
+      "new_oo_variable": 5.5,
+      "new_oo_fixed": 5.17
+    }
+  ],
+  "latest": {
+    "date": "2025-12-31",
+    "outstanding_oo_variable": 5.51,
+    "outstanding_oo_fixed": 5.27,
+    "outstanding_inv_variable": 5.75,
+    "outstanding_inv_fixed": 5.26,
+    "new_oo_variable": 5.5,
+    "new_oo_fixed": 5.17
+  },
+  "metadata": {
+    "source": "Reserve Bank of Australia",
+    "indicator": "Housing Lending Rates (F6)",
+    "frequency": "monthly",
+    "unit": "% p.a."
+  },
+  "next_release": {
+    "date": "2026-03-17",
+    "datetime_utc": "2026-03-17T03:30:00+00:00",
+    "datetime_jst": "2026-03-17T12:30:00+09:00",
+    "time_jst": "12:30",
+    "datetime_sydney": "2026-03-17T14:30:00+11:00",
+    "time_sydney": "14:30",
+    "label": "RBA Interest Rate Decision",
+    "estimate": null
+  },
+  "last_updated": "2026-02-22T18:04:27.320980+09:00"
+}

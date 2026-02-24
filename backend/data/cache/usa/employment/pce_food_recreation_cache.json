@@ -776,22 +776,28 @@
     },
     {
       "date": "2025-10-01",
-      "food_services_yoy": 3.02,
-      "recreation_yoy": 3.1,
+      "food_services_yoy": 3.04,
+      "recreation_yoy": 3.15,
       "avg_hourly_earnings_yoy": 3.92
     },
     {
       "date": "2025-11-01",
-      "food_services_yoy": 2.51,
-      "recreation_yoy": 2.48,
+      "food_services_yoy": 2.55,
+      "recreation_yoy": 2.57,
       "avg_hourly_earnings_yoy": 3.93
+    },
+    {
+      "date": "2025-12-01",
+      "food_services_yoy": 3.32,
+      "recreation_yoy": 4.64,
+      "avg_hourly_earnings_yoy": 3.73
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "food_services_yoy": 2.51,
-    "recreation_yoy": 2.48,
-    "avg_hourly_earnings_yoy": 3.93
+    "date": "2025-12-01",
+    "food_services_yoy": 3.32,
+    "recreation_yoy": 4.64,
+    "avg_hourly_earnings_yoy": 3.73
   },
-  "last_updated": "2026-02-14T23:01:04.094635+09:00"
+  "last_updated": "2026-02-23T23:59:38.649754+09:00"
 }

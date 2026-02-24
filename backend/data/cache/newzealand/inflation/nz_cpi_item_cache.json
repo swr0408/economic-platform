@@ -1,0 +1,860 @@
+{
+  "data": [
+    {
+      "date": "2000-03-01",
+      "food_yoy": -0.2,
+      "rentals_yoy": null,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2000-06-01",
+      "food_yoy": 0.0,
+      "rentals_yoy": 0.6,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2000-09-01",
+      "food_yoy": 1.8,
+      "rentals_yoy": -0.1,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2000-12-01",
+      "food_yoy": 3.6,
+      "rentals_yoy": -0.2,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2001-03-01",
+      "food_yoy": 4.8,
+      "rentals_yoy": -9.5,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2001-06-01",
+      "food_yoy": 6.0,
+      "rentals_yoy": -9.6,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2001-09-01",
+      "food_yoy": 6.6,
+      "rentals_yoy": -9.6,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2001-12-01",
+      "food_yoy": 6.7,
+      "rentals_yoy": -9.2,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2002-03-01",
+      "food_yoy": 5.3,
+      "rentals_yoy": 0.8,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2002-06-01",
+      "food_yoy": 4.1,
+      "rentals_yoy": 1.6,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2002-09-01",
+      "food_yoy": 2.3,
+      "rentals_yoy": 2.4,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2002-12-01",
+      "food_yoy": 0.9,
+      "rentals_yoy": 2.7,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2003-03-01",
+      "food_yoy": -0.2,
+      "rentals_yoy": 2.8,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2003-06-01",
+      "food_yoy": 0.0,
+      "rentals_yoy": 3.2,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2003-09-01",
+      "food_yoy": 0.3,
+      "rentals_yoy": 3.3,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2003-12-01",
+      "food_yoy": 0.2,
+      "rentals_yoy": 3.1,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2004-03-01",
+      "food_yoy": 0.5,
+      "rentals_yoy": 3.7,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2004-06-01",
+      "food_yoy": 1.1,
+      "rentals_yoy": 3.3,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2004-09-01",
+      "food_yoy": 0.5,
+      "rentals_yoy": 2.9,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2004-12-01",
+      "food_yoy": 1.2,
+      "rentals_yoy": 2.9,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2005-03-01",
+      "food_yoy": 1.5,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2005-06-01",
+      "food_yoy": 1.1,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2005-09-01",
+      "food_yoy": 1.6,
+      "rentals_yoy": 2.7,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2005-12-01",
+      "food_yoy": 1.5,
+      "rentals_yoy": 2.5,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2006-03-01",
+      "food_yoy": 1.8,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2006-06-01",
+      "food_yoy": 2.2,
+      "rentals_yoy": 2.6,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2006-09-01",
+      "food_yoy": 3.9,
+      "rentals_yoy": 1.9,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2006-12-01",
+      "food_yoy": 3.9,
+      "rentals_yoy": 2.4,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2007-03-01",
+      "food_yoy": 4.0,
+      "rentals_yoy": 3.0,
+      "purchase_housing_yoy": null,
+      "electricity_yoy": null,
+      "gas_yoy": null
+    },
+    {
+      "date": "2007-06-01",
+      "food_yoy": 4.1,
+      "rentals_yoy": 2.6,
+      "purchase_housing_yoy": 6.1,
+      "electricity_yoy": 6.9,
+      "gas_yoy": 8.9
+    },
+    {
+      "date": "2007-09-01",
+      "food_yoy": 3.3,
+      "rentals_yoy": 3.1,
+      "purchase_housing_yoy": 5.8,
+      "electricity_yoy": 6.2,
+      "gas_yoy": 7.3
+    },
+    {
+      "date": "2007-12-01",
+      "food_yoy": 4.4,
+      "rentals_yoy": 2.9,
+      "purchase_housing_yoy": 6.1,
+      "electricity_yoy": 6.5,
+      "gas_yoy": 5.1
+    },
+    {
+      "date": "2008-03-01",
+      "food_yoy": 5.1,
+      "rentals_yoy": 3.0,
+      "purchase_housing_yoy": 5.7,
+      "electricity_yoy": 6.0,
+      "gas_yoy": 10.3
+    },
+    {
+      "date": "2008-06-01",
+      "food_yoy": 6.9,
+      "rentals_yoy": 3.1,
+      "purchase_housing_yoy": 5.2,
+      "electricity_yoy": 6.6,
+      "gas_yoy": 12.4
+    },
+    {
+      "date": "2008-09-01",
+      "food_yoy": 9.5,
+      "rentals_yoy": 3.1,
+      "purchase_housing_yoy": 4.6,
+      "electricity_yoy": 6.9,
+      "gas_yoy": 14.0
+    },
+    {
+      "date": "2008-12-01",
+      "food_yoy": 9.4,
+      "rentals_yoy": 3.0,
+      "purchase_housing_yoy": 3.1,
+      "electricity_yoy": 7.7,
+      "gas_yoy": 11.6
+    },
+    {
+      "date": "2009-03-01",
+      "food_yoy": 8.8,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 2.2,
+      "electricity_yoy": 7.5,
+      "gas_yoy": 4.6
+    },
+    {
+      "date": "2009-06-01",
+      "food_yoy": 7.5,
+      "rentals_yoy": 1.7,
+      "purchase_housing_yoy": 1.3,
+      "electricity_yoy": 5.4,
+      "gas_yoy": 2.9
+    },
+    {
+      "date": "2009-09-01",
+      "food_yoy": 5.4,
+      "rentals_yoy": 1.1,
+      "purchase_housing_yoy": 0.1,
+      "electricity_yoy": 4.5,
+      "gas_yoy": 0.6
+    },
+    {
+      "date": "2009-12-01",
+      "food_yoy": 1.4,
+      "rentals_yoy": 1.0,
+      "purchase_housing_yoy": 0.7,
+      "electricity_yoy": 2.1,
+      "gas_yoy": 1.3
+    },
+    {
+      "date": "2010-03-01",
+      "food_yoy": 1.2,
+      "rentals_yoy": 1.2,
+      "purchase_housing_yoy": 0.9,
+      "electricity_yoy": 1.7,
+      "gas_yoy": 4.3
+    },
+    {
+      "date": "2010-06-01",
+      "food_yoy": -0.7,
+      "rentals_yoy": 1.4,
+      "purchase_housing_yoy": 1.2,
+      "electricity_yoy": 1.1,
+      "gas_yoy": 4.0
+    },
+    {
+      "date": "2010-09-01",
+      "food_yoy": 0.1,
+      "rentals_yoy": 1.7,
+      "purchase_housing_yoy": 1.6,
+      "electricity_yoy": 3.7,
+      "gas_yoy": 4.1
+    },
+    {
+      "date": "2010-12-01",
+      "food_yoy": 4.6,
+      "rentals_yoy": 1.6,
+      "purchase_housing_yoy": 3.2,
+      "electricity_yoy": 5.8,
+      "gas_yoy": 5.0
+    },
+    {
+      "date": "2011-03-01",
+      "food_yoy": 4.8,
+      "rentals_yoy": 1.7,
+      "purchase_housing_yoy": 2.9,
+      "electricity_yoy": 6.0,
+      "gas_yoy": 5.3
+    },
+    {
+      "date": "2011-06-01",
+      "food_yoy": 7.0,
+      "rentals_yoy": 1.8,
+      "purchase_housing_yoy": 3.4,
+      "electricity_yoy": 7.8,
+      "gas_yoy": 4.9
+    },
+    {
+      "date": "2011-09-01",
+      "food_yoy": 6.2,
+      "rentals_yoy": 1.8,
+      "purchase_housing_yoy": 3.7,
+      "electricity_yoy": 4.6,
+      "gas_yoy": 3.1
+    },
+    {
+      "date": "2011-12-01",
+      "food_yoy": 1.7,
+      "rentals_yoy": 2.0,
+      "purchase_housing_yoy": 2.0,
+      "electricity_yoy": 2.4,
+      "gas_yoy": 1.3
+    },
+    {
+      "date": "2012-03-01",
+      "food_yoy": 0.6,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 2.8,
+      "electricity_yoy": 2.0,
+      "gas_yoy": -0.4
+    },
+    {
+      "date": "2012-06-01",
+      "food_yoy": -0.4,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 2.8,
+      "electricity_yoy": 3.7,
+      "gas_yoy": -0.8
+    },
+    {
+      "date": "2012-09-01",
+      "food_yoy": -0.9,
+      "rentals_yoy": 2.4,
+      "purchase_housing_yoy": 3.0,
+      "electricity_yoy": 4.4,
+      "gas_yoy": -0.2
+    },
+    {
+      "date": "2012-12-01",
+      "food_yoy": -0.5,
+      "rentals_yoy": 2.4,
+      "purchase_housing_yoy": 3.1,
+      "electricity_yoy": 5.2,
+      "gas_yoy": 1.1
+    },
+    {
+      "date": "2013-03-01",
+      "food_yoy": 0.1,
+      "rentals_yoy": 2.2,
+      "purchase_housing_yoy": 3.3,
+      "electricity_yoy": 5.2,
+      "gas_yoy": -0.4
+    },
+    {
+      "date": "2013-06-01",
+      "food_yoy": 0.2,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 4.1,
+      "electricity_yoy": 3.4,
+      "gas_yoy": 0.4
+    },
+    {
+      "date": "2013-09-01",
+      "food_yoy": 0.8,
+      "rentals_yoy": 2.0,
+      "purchase_housing_yoy": 4.1,
+      "electricity_yoy": 3.6,
+      "gas_yoy": 0.7
+    },
+    {
+      "date": "2013-12-01",
+      "food_yoy": 1.3,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 4.7,
+      "electricity_yoy": 3.0,
+      "gas_yoy": -2.2
+    },
+    {
+      "date": "2014-03-01",
+      "food_yoy": 0.8,
+      "rentals_yoy": 2.0,
+      "purchase_housing_yoy": 5.1,
+      "electricity_yoy": 2.9,
+      "gas_yoy": 2.1
+    },
+    {
+      "date": "2014-06-01",
+      "food_yoy": 1.6,
+      "rentals_yoy": 2.2,
+      "purchase_housing_yoy": 4.6,
+      "electricity_yoy": 4.5,
+      "gas_yoy": 1.6
+    },
+    {
+      "date": "2014-09-01",
+      "food_yoy": -0.2,
+      "rentals_yoy": 2.2,
+      "purchase_housing_yoy": 4.8,
+      "electricity_yoy": 3.7,
+      "gas_yoy": 1.8
+    },
+    {
+      "date": "2014-12-01",
+      "food_yoy": 0.5,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 5.4,
+      "electricity_yoy": 3.6,
+      "gas_yoy": 3.3
+    },
+    {
+      "date": "2015-03-01",
+      "food_yoy": 1.2,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 5.0,
+      "electricity_yoy": 3.6,
+      "gas_yoy": -0.6
+    },
+    {
+      "date": "2015-06-01",
+      "food_yoy": 0.2,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 5.3,
+      "electricity_yoy": 0.0,
+      "gas_yoy": -0.9
+    },
+    {
+      "date": "2015-09-01",
+      "food_yoy": 0.8,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 5.5,
+      "electricity_yoy": 0.1,
+      "gas_yoy": -0.8
+    },
+    {
+      "date": "2015-12-01",
+      "food_yoy": -0.6,
+      "rentals_yoy": 2.5,
+      "purchase_housing_yoy": 5.0,
+      "electricity_yoy": 0.4,
+      "gas_yoy": 0.6
+    },
+    {
+      "date": "2016-03-01",
+      "food_yoy": -0.4,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 5.0,
+      "electricity_yoy": 0.5,
+      "gas_yoy": 1.2
+    },
+    {
+      "date": "2016-06-01",
+      "food_yoy": 0.0,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 5.6,
+      "electricity_yoy": 1.7,
+      "gas_yoy": 4.1
+    },
+    {
+      "date": "2016-09-01",
+      "food_yoy": -0.2,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 6.3,
+      "electricity_yoy": 2.3,
+      "gas_yoy": 4.1
+    },
+    {
+      "date": "2016-12-01",
+      "food_yoy": 0.6,
+      "rentals_yoy": 2.0,
+      "purchase_housing_yoy": 6.5,
+      "electricity_yoy": 2.3,
+      "gas_yoy": 3.1
+    },
+    {
+      "date": "2017-03-01",
+      "food_yoy": 1.6,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 6.7,
+      "electricity_yoy": 2.2,
+      "gas_yoy": 2.8
+    },
+    {
+      "date": "2017-06-01",
+      "food_yoy": 2.0,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 6.4,
+      "electricity_yoy": 1.9,
+      "gas_yoy": 0.6
+    },
+    {
+      "date": "2017-09-01",
+      "food_yoy": 2.8,
+      "rentals_yoy": 2.2,
+      "purchase_housing_yoy": 5.4,
+      "electricity_yoy": 1.6,
+      "gas_yoy": 1.3
+    },
+    {
+      "date": "2017-12-01",
+      "food_yoy": 2.3,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 5.3,
+      "electricity_yoy": 2.0,
+      "gas_yoy": 1.0
+    },
+    {
+      "date": "2018-03-01",
+      "food_yoy": 0.6,
+      "rentals_yoy": 2.1,
+      "purchase_housing_yoy": 4.7,
+      "electricity_yoy": 2.7,
+      "gas_yoy": 1.9
+    },
+    {
+      "date": "2018-06-01",
+      "food_yoy": 0.7,
+      "rentals_yoy": 2.5,
+      "purchase_housing_yoy": 3.9,
+      "electricity_yoy": 2.9,
+      "gas_yoy": 1.5
+    },
+    {
+      "date": "2018-09-01",
+      "food_yoy": 0.2,
+      "rentals_yoy": 2.3,
+      "purchase_housing_yoy": 4.1,
+      "electricity_yoy": 2.5,
+      "gas_yoy": 0.7
+    },
+    {
+      "date": "2018-12-01",
+      "food_yoy": 0.6,
+      "rentals_yoy": 2.4,
+      "purchase_housing_yoy": 3.6,
+      "electricity_yoy": 2.1,
+      "gas_yoy": 2.3
+    },
+    {
+      "date": "2019-03-01",
+      "food_yoy": 1.3,
+      "rentals_yoy": 2.4,
+      "purchase_housing_yoy": 3.9,
+      "electricity_yoy": 2.6,
+      "gas_yoy": 2.1
+    },
+    {
+      "date": "2019-06-01",
+      "food_yoy": 1.1,
+      "rentals_yoy": 2.5,
+      "purchase_housing_yoy": 3.5,
+      "electricity_yoy": 1.4,
+      "gas_yoy": 2.1
+    },
+    {
+      "date": "2019-09-01",
+      "food_yoy": 1.8,
+      "rentals_yoy": 2.9,
+      "purchase_housing_yoy": 2.8,
+      "electricity_yoy": 1.4,
+      "gas_yoy": 2.5
+    },
+    {
+      "date": "2019-12-01",
+      "food_yoy": 2.5,
+      "rentals_yoy": 3.1,
+      "purchase_housing_yoy": 2.4,
+      "electricity_yoy": 1.4,
+      "gas_yoy": 2.5
+    },
+    {
+      "date": "2020-03-01",
+      "food_yoy": 3.3,
+      "rentals_yoy": 3.7,
+      "purchase_housing_yoy": 2.7,
+      "electricity_yoy": 1.3,
+      "gas_yoy": 2.3
+    },
+    {
+      "date": "2020-06-01",
+      "food_yoy": 3.7,
+      "rentals_yoy": 3.4,
+      "purchase_housing_yoy": 2.8,
+      "electricity_yoy": 1.3,
+      "gas_yoy": 1.7
+    },
+    {
+      "date": "2020-09-01",
+      "food_yoy": 3.7,
+      "rentals_yoy": 3.1,
+      "purchase_housing_yoy": 2.5,
+      "electricity_yoy": 1.5,
+      "gas_yoy": 1.3
+    },
+    {
+      "date": "2020-12-01",
+      "food_yoy": 2.5,
+      "rentals_yoy": 2.9,
+      "purchase_housing_yoy": 3.3,
+      "electricity_yoy": 0.5,
+      "gas_yoy": -0.6
+    },
+    {
+      "date": "2021-03-01",
+      "food_yoy": 1.1,
+      "rentals_yoy": 2.7,
+      "purchase_housing_yoy": 3.5,
+      "electricity_yoy": -0.4,
+      "gas_yoy": -0.5
+    },
+    {
+      "date": "2021-06-01",
+      "food_yoy": 1.6,
+      "rentals_yoy": 2.9,
+      "purchase_housing_yoy": 7.4,
+      "electricity_yoy": -0.6,
+      "gas_yoy": 0.4
+    },
+    {
+      "date": "2021-09-01",
+      "food_yoy": 3.1,
+      "rentals_yoy": 3.2,
+      "purchase_housing_yoy": 12.0,
+      "electricity_yoy": -0.8,
+      "gas_yoy": 0.4
+    },
+    {
+      "date": "2021-12-01",
+      "food_yoy": 4.1,
+      "rentals_yoy": 3.8,
+      "purchase_housing_yoy": 15.7,
+      "electricity_yoy": -0.7,
+      "gas_yoy": 0.6
+    },
+    {
+      "date": "2022-03-01",
+      "food_yoy": 6.7,
+      "rentals_yoy": 4.0,
+      "purchase_housing_yoy": 18.3,
+      "electricity_yoy": 0.3,
+      "gas_yoy": 1.4
+    },
+    {
+      "date": "2022-06-01",
+      "food_yoy": 6.5,
+      "rentals_yoy": 4.3,
+      "purchase_housing_yoy": 18.3,
+      "electricity_yoy": 1.7,
+      "gas_yoy": 3.7
+    },
+    {
+      "date": "2022-09-01",
+      "food_yoy": 8.0,
+      "rentals_yoy": 4.6,
+      "purchase_housing_yoy": 16.8,
+      "electricity_yoy": 0.3,
+      "gas_yoy": 5.2
+    },
+    {
+      "date": "2022-12-01",
+      "food_yoy": 10.7,
+      "rentals_yoy": 4.4,
+      "purchase_housing_yoy": 14.1,
+      "electricity_yoy": 2.4,
+      "gas_yoy": 7.4
+    },
+    {
+      "date": "2023-03-01",
+      "food_yoy": 11.3,
+      "rentals_yoy": 4.3,
+      "purchase_housing_yoy": 11.5,
+      "electricity_yoy": 3.2,
+      "gas_yoy": 10.7
+    },
+    {
+      "date": "2023-06-01",
+      "food_yoy": 12.3,
+      "rentals_yoy": 4.2,
+      "purchase_housing_yoy": 7.8,
+      "electricity_yoy": 4.2,
+      "gas_yoy": 10.0
+    },
+    {
+      "date": "2023-09-01",
+      "food_yoy": 8.8,
+      "rentals_yoy": 4.4,
+      "purchase_housing_yoy": 5.0,
+      "electricity_yoy": 4.0,
+      "gas_yoy": 12.1
+    },
+    {
+      "date": "2023-12-01",
+      "food_yoy": 5.7,
+      "rentals_yoy": 4.5,
+      "purchase_housing_yoy": 3.6,
+      "electricity_yoy": 4.9,
+      "gas_yoy": 13.1
+    },
+    {
+      "date": "2024-03-01",
+      "food_yoy": 2.4,
+      "rentals_yoy": 4.7,
+      "purchase_housing_yoy": 3.3,
+      "electricity_yoy": 3.1,
+      "gas_yoy": 9.5
+    },
+    {
+      "date": "2024-06-01",
+      "food_yoy": 0.2,
+      "rentals_yoy": 4.8,
+      "purchase_housing_yoy": 3.0,
+      "electricity_yoy": 3.5,
+      "gas_yoy": 8.5
+    },
+    {
+      "date": "2024-09-01",
+      "food_yoy": 0.7,
+      "rentals_yoy": 4.5,
+      "purchase_housing_yoy": 2.5,
+      "electricity_yoy": 5.9,
+      "gas_yoy": 7.4
+    },
+    {
+      "date": "2024-12-01",
+      "food_yoy": 1.3,
+      "rentals_yoy": 4.2,
+      "purchase_housing_yoy": 2.0,
+      "electricity_yoy": 4.6,
+      "gas_yoy": 8.1
+    },
+    {
+      "date": "2025-03-01",
+      "food_yoy": 2.6,
+      "rentals_yoy": 3.7,
+      "purchase_housing_yoy": 1.9,
+      "electricity_yoy": 6.5,
+      "gas_yoy": 12.8
+    },
+    {
+      "date": "2025-06-01",
+      "food_yoy": 4.2,
+      "rentals_yoy": 3.2,
+      "purchase_housing_yoy": 0.8,
+      "electricity_yoy": 8.4,
+      "gas_yoy": 15.7
+    },
+    {
+      "date": "2025-09-01",
+      "food_yoy": 4.6,
+      "rentals_yoy": 2.6,
+      "purchase_housing_yoy": 0.8,
+      "electricity_yoy": 11.3,
+      "gas_yoy": 15.0
+    },
+    {
+      "date": "2025-12-01",
+      "food_yoy": 4.3,
+      "rentals_yoy": 1.9,
+      "purchase_housing_yoy": 1.2,
+      "electricity_yoy": 12.2,
+      "gas_yoy": 16.2
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "food_yoy": 4.3,
+    "rentals_yoy": 1.9,
+    "purchase_housing_yoy": 1.2,
+    "electricity_yoy": 12.2,
+    "gas_yoy": 16.2
+  },
+  "metadata": {
+    "source": "Stats NZ",
+    "indicator": "CPI Item Breakdown",
+    "description": "NZ CPI項目別（前年比）",
+    "unit": "% YoY",
+    "frequency": "quarterly",
+    "series": {
+      "food": "CPIQ.SE901",
+      "rentals": "CPIQ.SE9041",
+      "purchase_housing": "CPIQ.SE9TN04201",
+      "electricity": "CPIQ.SE9TN04501",
+      "gas": "CPIQ.SE9TN04502"
+    }
+  },
+  "next_release": null,
+  "last_updated": "2026-02-25T01:22:33.946409+09:00"
+}

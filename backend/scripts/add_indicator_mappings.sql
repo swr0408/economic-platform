@@ -298,5 +298,15 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('ch_current_account', '経常収支（スイス）', 'CH', 'quarterly', ARRAY['Current Account'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- オーストラリア貿易収支（au_international_trade）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('au_international_trade', '貿易収支（オーストラリア）', 'AU', 'monthly', ARRAY['Balance of Trade'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- オーストラリア経常収支（au_current_account）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('au_current_account', '経常収支（オーストラリア）', 'AU', 'quarterly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;

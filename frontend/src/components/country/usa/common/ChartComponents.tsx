@@ -262,7 +262,7 @@ export function LatestValueBox({
 
       {nextRelease && (nextRelease.date || nextRelease.label) && (
         <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
-          <div>次回発表: {nextRelease.label || nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}</div>
+          <div>次回発表: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}{nextRelease.label && ` (${nextRelease.label})`}</div>
         </div>
       )}
     </div>

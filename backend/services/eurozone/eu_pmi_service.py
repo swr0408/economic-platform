@@ -57,10 +57,11 @@ class EurozonePMIService:
     }
 
     # DBクエリ用のイベントパターン（国コードでフィルタリング）
+    # FMPでは "HCOB" 接頭辞がない汎用名で登録されることもあるためフォールバック追加
     EVENT_PATTERNS = {
-        "manufacturing": "HCOB Manufacturing PMI",
-        "services": "HCOB Services PMI",
-        "composite": "HCOB Composite PMI",
+        "manufacturing": ["HCOB Manufacturing PMI", "Manufacturing PMI"],
+        "services": ["HCOB Services PMI", "Services PMI"],
+        "composite": ["HCOB Composite PMI"],
     }
 
     def __init__(self):
@@ -175,21 +176,34 @@ class EurozonePMIService:
             from sqlalchemy import text
             import re
 
-            event_pattern = self.EVENT_PATTERNS.get(pmi_type)
-            if not event_pattern:
+            event_patterns = self.EVENT_PATTERNS.get(pmi_type)
+            if not event_patterns:
                 return []
+
+            # リストでない場合はリストに変換
+            if isinstance(event_patterns, str):
+                event_patterns = [event_patterns]
 
             with SessionLocal() as session:
                 # country='EU'でフィルタリングして他国のPMIを除外
-                query = text("""
+                # 複数パターンをOR条件で結合
+                pattern_conditions = " OR ".join(
+                    [f"event ILIKE :pattern{i}" for i in range(len(event_patterns))]
+                )
+                query = text(f"""
                     SELECT datetime_utc, event, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'EU'
-                      AND event ILIKE :pattern
+                      AND ({pattern_conditions})
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)
-                rows = session.execute(query, {"pattern": f"%{event_pattern}%"}).fetchall()
+
+                params = {}
+                for i, pattern in enumerate(event_patterns):
+                    params[f"pattern{i}"] = f"%{pattern}%"
+
+                rows = session.execute(query, params).fetchall()
 
                 result = []
 

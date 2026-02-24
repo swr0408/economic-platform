@@ -237,6 +237,12 @@ except ImportError:
     from routers.australia.melbourne_institute import router as australia_melbourne_institute_router
     from routers.australia.nab import router as australia_nab_router
     from routers.australia.abs_employment import router as australia_abs_employment_router
+    from routers.australia.abs_consumer import router as australia_abs_consumer_router
+    from routers.australia.abs_economy import router as australia_abs_economy_router
+    from routers.australia.abs_housing import router as australia_abs_housing_router
+    from routers.australia.apra import router as australia_apra_router
+    from routers.newzealand.rbnz import router as newzealand_rbnz_router
+    from routers.newzealand.stats_nz import router as newzealand_stats_nz_router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -404,6 +410,14 @@ app.include_router(australia_abs_router)
 app.include_router(australia_melbourne_institute_router)
 app.include_router(australia_nab_router)
 app.include_router(australia_abs_employment_router)
+app.include_router(australia_abs_consumer_router)
+app.include_router(australia_abs_economy_router)
+app.include_router(australia_abs_housing_router)
+app.include_router(australia_apra_router)
+
+# New Zealand
+app.include_router(newzealand_rbnz_router)
+app.include_router(newzealand_stats_nz_router)
 
 
 @app.get("/health")

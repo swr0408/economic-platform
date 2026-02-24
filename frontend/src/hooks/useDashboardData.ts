@@ -7642,11 +7642,54 @@ export interface RbaSmpForecastData {
   metadata: RbaSmpForecastMetadata
 }
 
+// ===== 住宅ローン金利（RBA F6）=====
+export interface AuHousingLendingRatesItem {
+  date: string
+  outstanding_oo_variable: number | null   // 既存 自己居住 変動
+  outstanding_oo_fixed: number | null      // 既存 自己居住 固定(≤3yr)
+  outstanding_inv_variable: number | null  // 既存 投資 変動
+  outstanding_inv_fixed: number | null     // 既存 投資 固定(≤3yr)
+  new_oo_variable: number | null           // 新規 自己居住 変動
+  new_oo_fixed: number | null              // 新規 自己居住 固定(≤3yr)
+}
+
+export interface AuHousingLendingRatesNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface AuHousingLendingRatesData {
+  data: AuHousingLendingRatesItem[]
+  latest: AuHousingLendingRatesItem | null
+  metadata: Record<string, unknown>
+  next_release?: AuHousingLendingRatesNextRelease | null
+}
+
+// ===== 住宅ローン延滞率（APRA）=====
+export interface AuHousingLoanArrearsItem {
+  date: string
+  past_due_30_89: number    // 30-89日延滞率 (%)
+  non_performing: number    // 不良債権率 (90日以上, %)
+  total_arrears: number     // 合計延滞率 (%)
+}
+
+export interface AuHousingLoanArrearsData {
+  data: AuHousingLoanArrearsItem[]
+  latest: AuHousingLoanArrearsItem | null
+  metadata: Record<string, unknown>
+  next_release?: Record<string, unknown> | null
+}
+
 // オーストラリア金融政策ダッシュボードデータの型
 export interface AustraliaPolicyData {
   au_rba_rate: AuRbaRateData | null
   au_asx_rate_tracker: AsxRateTrackerData | null
   au_monetary_policy: RbaSmpForecastData | null
+  au_housing_lending_rates: AuHousingLendingRatesData | null
+  au_housing_loan_arrears: AuHousingLoanArrearsData | null
 }
 
 /**
@@ -7937,6 +7980,22 @@ export interface AuAnzJobAdvertisementsData {
   next_release?: AuUnemploymentRateNextRelease | null
 }
 
+// オーストラリア アンダー・ユーティライゼーション データ項目
+export interface AuUnderutilizationItem {
+  date: string
+  underutilisation: number | null
+  underemployment: number | null
+  unemployment: number | null
+}
+
+// オーストラリア アンダー・ユーティライゼーション データ
+export interface AuUnderutilizationData {
+  data: AuUnderutilizationItem[]
+  latest: AuUnderutilizationItem | null
+  metadata: Record<string, unknown>
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
 export interface AustraliaEmploymentData {
   au_unemployment_rate: AuUnemploymentRateData | null
   au_employed_persons: AuEmployedPersonsData | null
@@ -7945,6 +8004,7 @@ export interface AustraliaEmploymentData {
   au_wage_price_index: AuWagePriceIndexData | null
   au_job_vacancies: AuJobVacanciesData | null
   au_anz_job_advertisements: AuAnzJobAdvertisementsData | null
+  au_underutilization: AuUnderutilizationData | null
 }
 
 /**
@@ -7961,4 +8021,616 @@ export function useAustraliaInflationDashboard(): UseQueryResult<DashboardRespon
  */
 export function useAustraliaEmploymentDashboard(): UseQueryResult<DashboardResponse<AustraliaEmploymentData>, Error> {
   return useDashboardData<AustraliaEmploymentData>('australia', 'employment')
+}
+
+// オーストラリア消費データの型
+export interface AuHouseholdSpendingDataPoint {
+  date: string
+  mom: number | null
+  yoy: number | null
+}
+
+export interface AuHouseholdSpendingData {
+  data: AuHouseholdSpendingDataPoint[]
+  latest: AuHouseholdSpendingDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuWestpacConsumerConfidenceDataPoint {
+  date: string
+  value: number | null
+  change: number | null
+}
+
+export interface AuWestpacConsumerConfidenceData {
+  data: AuWestpacConsumerConfidenceDataPoint[]
+  latest: AuWestpacConsumerConfidenceDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuNabBusinessConfidenceDataPoint {
+  date: string
+  value: number | null
+  mom: number | null
+}
+
+export interface AuNabBusinessConfidenceData {
+  data: AuNabBusinessConfidenceDataPoint[]
+  latest: AuNabBusinessConfidenceDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuConsumerSpendingDataPoint {
+  date: string
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface AuConsumerSpendingData {
+  data: AuConsumerSpendingDataPoint[]
+  latest: AuConsumerSpendingDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuHouseholdSavingRatioDataPoint {
+  date: string
+  value: number | null
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface AuHouseholdSavingRatioData {
+  data: AuHouseholdSavingRatioDataPoint[]
+  latest: AuHouseholdSavingRatioDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuDisposablePersonalIncomeDataPoint {
+  date: string
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface AuDisposablePersonalIncomeData {
+  data: AuDisposablePersonalIncomeDataPoint[]
+  latest: AuDisposablePersonalIncomeDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AustraliaConsumerData {
+  au_household_spending: AuHouseholdSpendingData | null
+  au_westpac_consumer_confidence: AuWestpacConsumerConfidenceData | null
+  au_nab_business_confidence: AuNabBusinessConfidenceData | null
+  au_consumer_spending: AuConsumerSpendingData | null
+  au_household_saving_ratio: AuHouseholdSavingRatioData | null
+  au_disposable_personal_income: AuDisposablePersonalIncomeData | null
+}
+
+/**
+ * オーストラリア消費ダッシュボード専用フック
+ * ABS家計支出などを取得
+ */
+export function useAustraliaConsumerDashboard(): UseQueryResult<DashboardResponse<AustraliaConsumerData>, Error> {
+  return useDashboardData<AustraliaConsumerData>('australia', 'consumer')
+}
+
+// =====================================================================
+// オーストラリア経済 (Australia Economy)
+// =====================================================================
+
+export interface AuGdpGrowthRateDataPoint {
+  date: string
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface AuGdpGrowthRateData {
+  data: AuGdpGrowthRateDataPoint[]
+  latest: AuGdpGrowthRateDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuGdpPriceRelatedDataPoint {
+  date: string
+  deflator_qoq: number | null
+  deflator_yoy: number | null
+  net_exports_contribution: number | null
+  exports_contribution: number | null
+  imports_contribution: number | null
+  gfcf_qoq: number | null
+  gfcf_yoy: number | null
+  gfcf_level: number | null
+  consumption_qoq: number | null
+  consumption_yoy: number | null
+  consumption_level: number | null
+}
+
+export interface AuGdpPriceRelatedData {
+  data: AuGdpPriceRelatedDataPoint[]
+  latest: AuGdpPriceRelatedDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+export interface AuPrivateNewCapitalExpenditureDataPoint {
+  date: string
+  value: number | null
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface AuPrivateNewCapitalExpenditureData {
+  data: AuPrivateNewCapitalExpenditureDataPoint[]
+  latest: AuPrivateNewCapitalExpenditureDataPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: AuUnemploymentRateNextRelease | null
+}
+
+// === 国際貿易 ===
+export interface AuInternationalTradeItem {
+  date: string
+  value: number
+}
+
+export interface AuInternationalTradeNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface AuInternationalTradeData {
+  balance: AuInternationalTradeItem[]
+  exports: AuInternationalTradeItem[]
+  imports: AuInternationalTradeItem[]
+  balance_mom_diff: AuInternationalTradeItem[]
+  exports_mom: AuInternationalTradeItem[]
+  exports_yoy: AuInternationalTradeItem[]
+  imports_mom: AuInternationalTradeItem[]
+  imports_yoy: AuInternationalTradeItem[]
+  latest_balance: AuInternationalTradeItem | null
+  latest_exports: AuInternationalTradeItem | null
+  latest_imports: AuInternationalTradeItem | null
+  metadata: Record<string, unknown>
+  next_release: AuInternationalTradeNextRelease | null
+}
+
+// === 経常収支 ===
+export interface AuCurrentAccountItem {
+  date: string
+  value: number
+}
+
+export interface AuCurrentAccountNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface AuCurrentAccountData {
+  data: AuCurrentAccountItem[]
+  qoq_diff: AuCurrentAccountItem[]
+  yoy_diff: AuCurrentAccountItem[]
+  latest: AuCurrentAccountItem | null
+  metadata: Record<string, unknown>
+  next_release: AuCurrentAccountNextRelease | null
+}
+
+// === 経常収支対GDP比 ===
+export interface AuCurrentAccountGdpRatioItem {
+  date: string
+  value: number
+  current_account?: number
+  gdp?: number
+}
+
+export interface AuCurrentAccountGdpRatioData {
+  data: AuCurrentAccountGdpRatioItem[]
+  latest: AuCurrentAccountGdpRatioItem | null
+  metadata: Record<string, unknown>
+  next_release?: AuCurrentAccountNextRelease | null
+}
+
+// オーストラリア S&P Global PMI データ項目
+export interface AuPmiItem {
+  date: string
+  value: number
+}
+
+// オーストラリア S&P Global PMI 系列データ
+export interface AuPmiSeriesData {
+  data: AuPmiItem[]
+  latest: AuPmiItem | null
+}
+
+// オーストラリア S&P Global PMI 次回発表
+export interface AuPmiNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+// オーストラリア S&P Global PMI データ（3系列）
+export interface AuPmiData {
+  manufacturing: AuPmiSeriesData | null
+  services: AuPmiSeriesData | null
+  composite: AuPmiSeriesData | null
+  next_release: AuPmiNextRelease | null
+  last_updated: string | null
+}
+
+// オーストラリア 交易条件データ項目
+export interface AuTermsOfTradeItem {
+  date: string
+  value: number | null
+  qoq: number | null
+  yoy: number | null
+}
+
+// オーストラリア 交易条件データ
+export interface AuTermsOfTradeData {
+  data: AuTermsOfTradeItem[]
+  latest: AuTermsOfTradeItem | null
+  metadata: Record<string, unknown>
+  next_release?: AuCurrentAccountNextRelease | null
+}
+
+export interface AustraliaEconomyData {
+  au_gdp_growth_rate: AuGdpGrowthRateData | null
+  au_gdp_price_related: AuGdpPriceRelatedData | null
+  au_private_new_capital_expenditure: AuPrivateNewCapitalExpenditureData | null
+  au_international_trade: AuInternationalTradeData | null
+  au_current_account: AuCurrentAccountData | null
+  au_current_account_gdp_ratio: AuCurrentAccountGdpRatioData | null
+  au_pmi: AuPmiData | null
+  au_terms_of_trade: AuTermsOfTradeData | null
+}
+
+/**
+ * オーストラリア経済ダッシュボード専用フック
+ * GDP成長率などを取得
+ */
+export function useAustraliaEconomyDashboard(): UseQueryResult<DashboardResponse<AustraliaEconomyData>, Error> {
+  return useDashboardData<AustraliaEconomyData>('australia', 'economy')
+}
+
+// ===== オーストラリア住宅 =====
+
+export interface AuCotalityHomePricesDailyPoint {
+  date: string
+  value: number | null
+}
+
+export interface AuCotalityHomePricesMonthlyPoint {
+  date: string
+  value: number | null
+  mom: number | null
+}
+
+export interface AuCotalityHomePricesData {
+  data: AuCotalityHomePricesDailyPoint[]
+  monthly_data: AuCotalityHomePricesMonthlyPoint[]
+  latest: AuCotalityHomePricesDailyPoint | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+  }
+  next_release?: null
+}
+
+// === 建築許可件数 ===
+export interface AuNumberOfBuildingPermitsItem {
+  date: string
+  value: number | null
+  mom: number | null
+  yoy: number | null
+}
+
+export interface AuNumberOfBuildingPermitsNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface AuNumberOfBuildingPermitsData {
+  data: AuNumberOfBuildingPermitsItem[]
+  latest: AuNumberOfBuildingPermitsItem | null
+  metadata: {
+    source: string
+    indicator: string
+    frequency: string
+    unit: string
+    series_id: string
+  }
+  next_release?: AuNumberOfBuildingPermitsNextRelease | null
+}
+
+export interface AustraliaHousingData {
+  au_cotality_home_prices: AuCotalityHomePricesData | null
+  au_number_of_building_permits: AuNumberOfBuildingPermitsData | null
+}
+
+/**
+ * オーストラリア住宅ダッシュボード専用フック
+ * Cotality住宅価格指数などを取得
+ */
+export function useAustraliaHousingDashboard(): UseQueryResult<DashboardResponse<AustraliaHousingData>, Error> {
+  return useDashboardData<AustraliaHousingData>('australia', 'housing')
+}
+
+// ===== ニュージーランド =====
+
+// RBNZ政策金利（OCR）データの型
+export interface NzRbnzRateItem {
+  date: string
+  value: number
+}
+
+export interface NzRbnzRateNextRelease {
+  date: string
+  datetime_utc: string
+  datetime_jst: string
+  time_jst: string
+  datetime_auckland: string
+  time_auckland: string
+  label: string
+  estimate: number | null
+}
+
+export interface NzRbnzRateData {
+  data: NzRbnzRateItem[]
+  latest: NzRbnzRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: NzRbnzRateNextRelease | null
+}
+
+// RBNZ MPS経済見通しデータの型
+export interface NzMpsForecastPoint {
+  date: string
+  value: number | null
+}
+
+export interface NzMpsSimpleIndicator {
+  latest: NzMpsForecastPoint[]
+  previous: NzMpsForecastPoint[]
+  name_jp: string
+  name_en: string
+  unit: string
+}
+
+export interface NzMpsMultiSeriesIndicator {
+  series: Record<string, NzMpsForecastPoint[]>
+  series_config: { key: string; name: string }[]
+  name_jp: string
+  name_en: string
+  unit: string
+}
+
+export interface NzMpsMultiLatestPreviousIndicator {
+  series: Record<string, { latest: NzMpsForecastPoint[]; previous: NzMpsForecastPoint[] }>
+  series_config: { key: string; name: string }[]
+  name_jp: string
+  name_en: string
+  unit: string
+}
+
+export interface NzMpsForecastMetadata {
+  source: string
+  indicator: string
+  latest_publication: string
+  previous_publication: string
+  filename: string
+  last_updated: string
+}
+
+export interface NzMpsForecastData {
+  indicators: {
+    ocr: NzMpsSimpleIndicator
+    gdp_qoq: NzMpsSimpleIndicator
+    cpi_headline: NzMpsMultiSeriesIndicator
+    inflation_components: NzMpsMultiLatestPreviousIndicator
+    wage_inflation: NzMpsSimpleIndicator
+    output_gap: NzMpsSimpleIndicator
+    unemployment_rate: NzMpsSimpleIndicator
+    neutral_ocr: NzMpsMultiSeriesIndicator
+  }
+  metadata: NzMpsForecastMetadata
+}
+
+// RBNZ中央銀行バランスシートデータの型
+export interface NzBalanceSheetItem {
+  date: string
+  value: number
+}
+
+export interface NzBalanceSheetNextRelease {
+  date: string
+  label: string
+  estimated: boolean
+}
+
+export interface NzBalanceSheetData {
+  data: NzBalanceSheetItem[]
+  latest: NzBalanceSheetItem | null
+  metadata: Record<string, unknown>
+  next_release?: NzBalanceSheetNextRelease | null
+}
+
+// NZ銀行バランスシートデータの型
+export interface NzBankBalanceSheetItem {
+  date: string
+  value: number
+}
+
+export interface NzBankBalanceSheetNextRelease {
+  date: string
+  label: string
+  estimated: boolean
+}
+
+export interface NzBankBalanceSheetData {
+  data: NzBankBalanceSheetItem[]
+  latest: NzBankBalanceSheetItem | null
+  metadata: Record<string, unknown>
+  next_release?: NzBankBalanceSheetNextRelease | null
+}
+
+// ニュージーランド金融政策ダッシュボードデータの型
+export interface NewZealandPolicyData {
+  nz_rbnz_rate: NzRbnzRateData | null
+  nz_economic_forecast: NzMpsForecastData | null
+  nz_central_bank_balance_sheet: NzBalanceSheetData | null
+  nz_bank_balance_sheet: NzBankBalanceSheetData | null
+}
+
+/**
+ * ニュージーランド金融政策ダッシュボード専用フック
+ * RBNZ政策金利などを取得
+ */
+export function useNewZealandPolicyDashboard(): UseQueryResult<DashboardResponse<NewZealandPolicyData>, Error> {
+  return useDashboardData<NewZealandPolicyData>('newzealand', 'policy')
+}
+
+// NZ CPI（消費者物価指数）データの型
+export interface NzCpiItem {
+  date: string
+  all_qoq: number | null
+  all_yoy: number | null
+  tradable_qoq: number | null
+  tradable_yoy: number | null
+  non_tradable_qoq: number | null
+  non_tradable_yoy: number | null
+}
+
+export interface NzCpiData {
+  data: NzCpiItem[]
+  latest: NzCpiItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// NZ CPI項目別データの型
+export interface NzCpiItemItem {
+  date: string
+  food_yoy: number | null
+  rentals_yoy: number | null
+  purchase_housing_yoy: number | null
+  electricity_yoy: number | null
+  gas_yoy: number | null
+}
+
+export interface NzCpiItemData {
+  data: NzCpiItemItem[]
+  latest: NzCpiItemItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// NZ 貿易財/非貿易財データの型
+export interface NzTradedNontradedItem {
+  date: string
+  tradable_yoy: number | null
+  non_tradable_yoy: number | null
+}
+
+export interface NzTradedNontradedData {
+  data: NzTradedNontradedItem[]
+  latest: NzTradedNontradedItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// NZ PPI（生産者物価指数）データの型
+export interface NzPpiItem {
+  date: string
+  output_index: number | null
+  output_qoq: number | null
+  output_yoy: number | null
+  input_index: number | null
+  input_qoq: number | null
+  input_yoy: number | null
+}
+
+export interface NzPpiData {
+  data: NzPpiItem[]
+  latest: NzPpiItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// ニュージーランド物価ダッシュボードデータの型
+export interface NewZealandInflationData {
+  nz_cpi: NzCpiData | null
+  nz_cpi_item: NzCpiItemData | null
+  nz_traded_nontraded: NzTradedNontradedData | null
+  nz_ppi: NzPpiData | null
+}
+
+/**
+ * ニュージーランド物価ダッシュボード専用フック
+ * PPI等を取得
+ */
+export function useNewZealandInflationDashboard(): UseQueryResult<DashboardResponse<NewZealandInflationData>, Error> {
+  return useDashboardData<NewZealandInflationData>('newzealand', 'inflation')
 }

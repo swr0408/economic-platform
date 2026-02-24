@@ -1,0 +1,2056 @@
+
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+
+    <script type="text/javascript" nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+    ;window.NREUM||(NREUM={});NREUM.init={privacy:{cookies_enabled:false},ajax:{deny_list:["bam.nr-data.net"]}};
+    window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(t){try{s.console&&console.log(t)}catch(e){}}var i,o=t("ee"),a=t(27),s={};try{i=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,i.indexOf("dev")!==-1&&(s.dev=!0),i.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&o.on("internal-error",function(t){r(t.stack)}),s.dev&&o.on("fn-err",function(t,e,n){r(n.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,s){try{p?p-=1:i(s||new UncaughtException(t,e,n),!0)}catch(f){try{o("ierr",[f,c.now(),!0])}catch(d){}}return"function"==typeof u&&u.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function i(t,e){var n=e?null:c.now();o("err",[t,n])}var o=t("handle"),a=t(28),s=t("ee"),c=t("loader"),f=t("gos"),u=window.onerror,d=!1,l="nr@seenError";if(!c.disabled){var p=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(h){"stack"in h&&(t(10),t(9),"addEventListener"in window&&t(6),c.xhrWrappable&&t(11),d=!0)}s.on("fn-start",function(t,e,n){d&&(p+=1)}),s.on("fn-err",function(t,e,n){d&&!n[l]&&(f(n,l,function(){return!0}),this.thrown=!0,i(n))}),s.on("fn-end",function(){d&&!this.thrown&&p>0&&(p-=1)}),s.on("internal-error",function(t){o("ierr",[t,c.now(),!0])})}},{}],3:[function(t,e,n){var r=t("loader");r.disabled||(r.features.ins=!0)},{}],4:[function(t,e,n){function r(){var t=new PerformanceObserver(function(t,e){var n=t.getEntries();s(v,[n])});try{t.observe({entryTypes:["resource"]})}catch(e){}}function i(t){if(s(v,[window.performance.getEntriesByType(w)]),window.performance["c"+l])try{window.performance[h](m,i,!1)}catch(t){}else try{window.performance[h]("webkit"+m,i,!1)}catch(t){}}function o(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var a=t("ee"),s=t("handle"),c=t(10),f=t(9),u=t(5),d=t(19),l="learResourceTimings",p="addEventListener",h="removeEventListener",m="resourcetimingbufferfull",v="bstResource",w="resource",g="-start",y="-end",x="fn"+g,b="fn"+y,E="bstTimer",R="pushState",S=t("loader");if(!S.disabled){S.features.stn=!0,t(8),"addEventListener"in window&&t(6);var O=NREUM.o.EV;a.on(x,function(t,e){var n=t[0];n instanceof O&&(this.bstStart=S.now())}),a.on(b,function(t,e){var n=t[0];n instanceof O&&s("bst",[n,e,this.bstStart,S.now()])}),c.on(x,function(t,e,n){this.bstStart=S.now(),this.bstType=n}),c.on(b,function(t,e){s(E,[e,this.bstStart,S.now(),this.bstType])}),f.on(x,function(){this.bstStart=S.now()}),f.on(b,function(t,e){s(E,[e,this.bstStart,S.now(),"requestAnimationFrame"])}),a.on(R+g,function(t){this.time=S.now(),this.startPath=location.pathname+location.hash}),a.on(R+y,function(t){s("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),u()?(s(v,[window.performance.getEntriesByType("resource")]),r()):p in window.performance&&(window.performance["c"+l]?window.performance[p](m,i,d(!1)):window.performance[p]("webkit"+m,i,d(!1))),document[p]("scroll",o,d(!1)),document[p]("keypress",o,d(!1)),document[p]("click",o,d(!1))}}},{}],5:[function(t,e,n){e.exports=function(){return"PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver}},{}],6:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&i(e)}function i(t){s.inPlace(t,[u,d],"-",o)}function o(t,e){return t[1]}var a=t("ee").get("events"),s=t("wrap-function")(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(i(window),i(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1];if(null!==n&&("function"==typeof n||"object"==typeof n)){var r=c(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?s(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],7:[function(t,e,n){function r(t,e,n){var r=t[e];"function"==typeof r&&(t[e]=function(){var t=o(arguments),e={};i.emit(n+"before-start",[t],e);var a;e[m]&&e[m].dt&&(a=e[m].dt);var s=r.apply(this,t);return i.emit(n+"start",[t,a],s),s.then(function(t){return i.emit(n+"end",[null,t],s),t},function(t){throw i.emit(n+"end",[t],s),t})})}var i=t("ee").get("fetch"),o=t(28),a=t(27);e.exports=i;var s=window,c="fetch-",f=c+"body-",u=["arrayBuffer","blob","json","text","formData"],d=s.Request,l=s.Response,p=s.fetch,h="prototype",m="nr@context";d&&l&&p&&(a(u,function(t,e){r(d[h],e,f),r(l[h],e,f)}),r(s,"fetch",c),i.on(c+"end",function(t,e){var n=this;if(e){var r=e.headers.get("content-length");null!==r&&(n.rxSize=r),i.emit(c+"done",[null,e],n)}else i.emit(c+"done",[t],n)}))},{}],8:[function(t,e,n){var r=t("ee").get("history"),i=t("wrap-function")(r);e.exports=r;var o=window.history&&window.history.constructor&&window.history.constructor.prototype,a=window.history;o&&o.pushState&&o.replaceState&&(a=o),i.inPlace(a,["pushState","replaceState"],"-")},{}],9:[function(t,e,n){var r=t("ee").get("raf"),i=t("wrap-function")(r),o="equestAnimationFrame";e.exports=r,i.inPlace(window,["r"+o,"mozR"+o,"webkitR"+o,"msR"+o],"raf-"),r.on("raf-start",function(t){t[0]=i(t[0],"fn-")})},{}],10:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function i(t,e,n){this.method=n,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,n)}var o=t("ee").get("timer"),a=t("wrap-function")(o),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";e.exports=o,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),o.on(c+u,r),o.on(s+u,i)},{}],11:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",s)}function i(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,y,"fn-",s)}function o(t){x.push(t),m&&(E?E.then(a):w?w(a):(R=-R,S.data=R))}function a(){for(var t=0;t<x.length;t++)r([],x[t]);x.length&&(x=[])}function s(t,e){return e}function c(t,e){for(var n in t)e[n]=t[n];return e}t(6);var f=t("ee"),u=f.get("xhr"),d=t("wrap-function")(u),l=t(19),p=NREUM.o,h=p.XHR,m=p.MO,v=p.PR,w=p.SI,g="readystatechange",y=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],x=[];e.exports=u;var b=window.XMLHttpRequest=function(t){var e=new h(t);try{u.emit("new-xhr",[e],e),e.addEventListener(g,i,l(!1))}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(c(h,b),b.prototype=h.prototype,d.inPlace(b.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,e){r(t,e),o(e)}),u.on("open-xhr-start",r),m){var E=v&&v.resolve();if(!w&&!v){var R=1,S=document.createTextNode(R);new m(a).observe(S,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===g||a()})},{}],12:[function(t,e,n){function r(t){if(!s(t))return null;var e=window.NREUM;if(!e.loader_config)return null;var n=(e.loader_config.accountID||"").toString()||null,r=(e.loader_config.agentID||"").toString()||null,f=(e.loader_config.trustKey||"").toString()||null;if(!n||!r)return null;var h=p.generateSpanId(),m=p.generateTraceId(),v=Date.now(),w={spanId:h,traceId:m,timestamp:v};return(t.sameOrigin||c(t)&&l())&&(w.traceContextParentHeader=i(h,m),w.traceContextStateHeader=o(h,v,n,r,f)),(t.sameOrigin&&!u()||!t.sameOrigin&&c(t)&&d())&&(w.newrelicHeader=a(h,m,v,n,r,f)),w}function i(t,e){return"00-"+e+"-"+t+"-01"}function o(t,e,n,r,i){var o=0,a="",s=1,c="",f="";return i+"@nr="+o+"-"+s+"-"+n+"-"+r+"-"+t+"-"+a+"-"+c+"-"+f+"-"+e}function a(t,e,n,r,i,o){var a="btoa"in window&&"function"==typeof window.btoa;if(!a)return null;var s={v:[0,1],d:{ty:"Browser",ac:r,ap:i,id:t,tr:e,ti:n}};return o&&r!==o&&(s.d.tk=o),btoa(JSON.stringify(s))}function s(t){return f()&&c(t)}function c(t){var e=!1,n={};if("init"in NREUM&&"distributed_tracing"in NREUM.init&&(n=NREUM.init.distributed_tracing),t.sameOrigin)e=!0;else if(n.allowed_origins instanceof Array)for(var r=0;r<n.allowed_origins.length;r++){var i=h(n.allowed_origins[r]);if(t.hostname===i.hostname&&t.protocol===i.protocol&&t.port===i.port){e=!0;break}}return e}function f(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&!!NREUM.init.distributed_tracing.enabled}function u(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&!!NREUM.init.distributed_tracing.exclude_newrelic_header}function d(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&NREUM.init.distributed_tracing.cors_use_newrelic_header!==!1}function l(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&!!NREUM.init.distributed_tracing.cors_use_tracecontext_headers}var p=t(24),h=t(14);e.exports={generateTracePayload:r,shouldGenerateTrace:s}},{}],13:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<l;r++)t.removeEventListener(d[r],this.listener,!1);return e.protocol&&"data"===e.protocol?void g("Ajax/DataUrl/Excluded"):void(e.aborted||(n.duration=a.now()-this.startTime,this.loadCaptureCalled||4!==t.readyState?null==e.status&&(e.status=0):o(this,t),n.cbTime=this.cbTime,s("xhr",[e,n,this.startTime,this.endTime,"xhr"],this)))}}function i(t,e){var n=c(e),r=t.params;r.hostname=n.hostname,r.port=n.port,r.protocol=n.protocol,r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.parsedOrigin=n,t.sameOrigin=n.sameOrigin}function o(t,e){t.params.status=e.status;var n=v(e,t.lastSize);if(n&&(t.metrics.rxSize=n),t.sameOrigin){var r=e.getResponseHeader("X-NewRelic-App-Data");r&&(t.params.cat=r.split(", ").pop())}t.loadCaptureCalled=!0}var a=t("loader");if(a.xhrWrappable&&!a.disabled){var s=t("handle"),c=t(14),f=t(12).generateTracePayload,u=t("ee"),d=["load","error","abort","timeout"],l=d.length,p=t("id"),h=t(20),m=t(18),v=t(15),w=t(19),g=t(21).recordSupportability,y=NREUM.o.REQ,x=window.XMLHttpRequest;a.features.xhr=!0,t(11),t(7),u.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,e.loadCaptureCalled=!1,e.params=this.params||{},e.metrics=this.metrics||{},t.addEventListener("load",function(n){o(e,t)},w(!1)),h&&(h>34||h<10)||t.addEventListener("progress",function(t){e.lastSize=t.loaded},w(!1))}),u.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),u.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid);var n=f(this.parsedOrigin);if(n){var r=!1;n.newrelicHeader&&(e.setRequestHeader("newrelic",n.newrelicHeader),r=!0),n.traceContextParentHeader&&(e.setRequestHeader("traceparent",n.traceContextParentHeader),n.traceContextStateHeader&&e.setRequestHeader("tracestate",n.traceContextStateHeader),r=!0),r&&(this.dt=n)}}),u.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],i=this;if(n&&r){var o=m(r);o&&(n.txSize=o)}this.startTime=a.now(),this.listener=function(t){try{"abort"!==t.type||i.loadCaptureCalled||(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}};for(var s=0;s<l;s++)e.addEventListener(d[s],this.listener,w(!1))}),u.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),u.on("xhr-load-added",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),u.on("xhr-load-removed",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),u.on("xhr-resolved",function(){this.endTime=a.now()}),u.on("addEventListener-end",function(t,e){e instanceof x&&"load"===t[0]&&u.emit("xhr-load-added",[t[1],t[2]],e)}),u.on("removeEventListener-end",function(t,e){e instanceof x&&"load"===t[0]&&u.emit("xhr-load-removed",[t[1],t[2]],e)}),u.on("fn-start",function(t,e,n){e instanceof x&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),u.on("fn-end",function(t,e){this.xhrCbStart&&u.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,e],e)}),u.on("fetch-before-start",function(t){function e(t,e){var n=!1;return e.newrelicHeader&&(t.set("newrelic",e.newrelicHeader),n=!0),e.traceContextParentHeader&&(t.set("traceparent",e.traceContextParentHeader),e.traceContextStateHeader&&t.set("tracestate",e.traceContextStateHeader),n=!0),n}var n,r=t[1]||{};"string"==typeof t[0]?n=t[0]:t[0]&&t[0].url?n=t[0].url:window.URL&&t[0]&&t[0]instanceof URL&&(n=t[0].href),n&&(this.parsedOrigin=c(n),this.sameOrigin=this.parsedOrigin.sameOrigin);var i=f(this.parsedOrigin);if(i&&(i.newrelicHeader||i.traceContextParentHeader))if("string"==typeof t[0]||window.URL&&t[0]&&t[0]instanceof URL){var o={};for(var a in r)o[a]=r[a];o.headers=new Headers(r.headers||{}),e(o.headers,i)&&(this.dt=i),t.length>1?t[1]=o:t.push(o)}else t[0]&&t[0].headers&&e(t[0].headers,i)&&(this.dt=i)}),u.on("fetch-start",function(t,e){this.params={},this.metrics={},this.startTime=a.now(),this.dt=e,t.length>=1&&(this.target=t[0]),t.length>=2&&(this.opts=t[1]);var n,r=this.opts||{},o=this.target;if("string"==typeof o?n=o:"object"==typeof o&&o instanceof y?n=o.url:window.URL&&"object"==typeof o&&o instanceof URL&&(n=o.href),i(this,n),"data"!==this.params.protocol){var s=(""+(o&&o instanceof y&&o.method||r.method||"GET")).toUpperCase();this.params.method=s,this.txSize=m(r.body)||0}}),u.on("fetch-done",function(t,e){if(this.endTime=a.now(),this.params||(this.params={}),"data"===this.params.protocol)return void g("Ajax/DataUrl/Excluded");this.params.status=e?e.status:0;var n;"string"==typeof this.rxSize&&this.rxSize.length>0&&(n=+this.rxSize);var r={txSize:this.txSize,rxSize:n,duration:a.now()-this.startTime};s("xhr",[this.params,r,this.startTime,this.endTime,"fetch"],this)})}},{}],14:[function(t,e,n){var r={};e.exports=function(t){if(t in r)return r[t];if(0===(t||"").indexOf("data:"))return{protocol:"data"};var e=document.createElement("a"),n=window.location,i={};e.href=t,i.port=e.port;var o=e.href.split("://");!i.port&&o[1]&&(i.port=o[1].split("/")[0].split("@").pop().split(":")[1]),i.port&&"0"!==i.port||(i.port="https"===o[0]?"443":"80"),i.hostname=e.hostname||n.hostname,i.pathname=e.pathname,i.protocol=o[0],"/"!==i.pathname.charAt(0)&&(i.pathname="/"+i.pathname);var a=!e.protocol||":"===e.protocol||e.protocol===n.protocol,s=e.hostname===document.domain&&e.port===n.port;return i.sameOrigin=a&&(!e.hostname||s),"/"===i.pathname&&(r[t]=i),i}},{}],15:[function(t,e,n){function r(t,e){var n=t.responseType;return"json"===n&&null!==e?e:"arraybuffer"===n||"blob"===n||"json"===n?i(t.response):"text"===n||""===n||void 0===n?i(t.responseText):void 0}var i=t(18);e.exports=r},{}],16:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return u.recordSupportability("API/"+e+"/called"),o(t+e,[f.now()].concat(s(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(27),s=t(28),c=t("ee").get("tracer"),f=t("loader"),u=t(21),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var l=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",h=p+"ixn-";a(l,function(t,e){d[e]=i(p,e,!0,"api")}),d.addPageAction=i(p,"addPageAction",!0),d.setCurrentRouteName=i(p,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(h+"tracer",[f.now(),t,n],r),function(){if(c.emit((i?"":"no-")+"fn-start",[f.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],n),t}finally{c.emit("fn-end",[f.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(h,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),u.recordSupportability("API/noticeError/called"),o("err",[t,f.now(),!1,e])}},{}],17:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],18:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],19:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],20:[function(t,e,n){var r=0,i=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);i&&(r=+i[1]),e.exports=r},{}],21:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[s,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",s="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:s},recordSupportability:r,recordCustom:i}},{}],22:[function(t,e,n){function r(){return s.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,s=t(29);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],23:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;var i=[r],o=a({});o&&i.push(o),p("lcp",i)}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){var e=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(e)return e.type&&(t["net-type"]=e.type),e.effectiveType&&(t["net-etype"]=e.effectiveType),e.rtt&&(t["net-rtt"]=e.rtt),e.downlink&&(t["net-dlink"]=e.downlink),t}function s(t){if(t instanceof w&&!y){var e=Math.round(t.timeStamp),n={type:t.type};a(n),e<=h.now()?n.fid=h.now()-e:e>h.offset&&e<=Date.now()?(e-=h.offset,n.fid=h.now()-e):e=h.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=h.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,d,l,p=t("handle"),h=t("loader"),m=t(26),v=t(19),w=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(g){}d=new PerformanceObserver(i);try{d.observe({entryTypes:["largest-contentful-paint"]})}catch(g){}l=new PerformanceObserver(o);try{l.observe({type:"layout-shift",buffered:!0})}catch(g){}}if("addEventListener"in document){var y=!1,x=["click","keydown","mousedown","pointerdown","touchstart"];x.forEach(function(t){document.addEventListener(t,s,v(!1))})}m(c)}},{}],24:[function(t,e,n){function r(){function t(){return e?15&e[n++]:16*Math.random()|0}var e=null,n=0,r=window.crypto||window.msCrypto;r&&r.getRandomValues&&(e=r.getRandomValues(new Uint8Array(31)));for(var i,o="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx",a="",s=0;s<o.length;s++)i=o[s],"x"===i?a+=t().toString(16):"y"===i?(i=3&t()|8,a+=i.toString(16)):a+=i;return a}function i(){return a(16)}function o(){return a(32)}function a(t){function e(){return n?15&n[r++]:16*Math.random()|0}var n=null,r=0,i=window.crypto||window.msCrypto;i&&i.getRandomValues&&Uint8Array&&(n=i.getRandomValues(new Uint8Array(t)));for(var o=[],a=0;a<t;a++)o.push(e().toString(16));return o.join("")}e.exports={generateUuid:r,generateSpanId:i,generateTraceId:o}},{}],25:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var s=navigator.userAgent,c=s.match(a);c&&s.indexOf("Chrome")===-1&&s.indexOf("Chromium")===-1&&(i="Safari",o=c[1])}e.exports={agent:i,version:o,match:r}},{}],26:[function(t,e,n){function r(t){function e(){t(s&&document[s]?document[s]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(19);e.exports=r;var o,a,s;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",s="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",s="webkitVisibilityState")},{}],27:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],28:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],29:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?f(t,c,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!p.aborted||o){t&&a&&t(n,r,i);for(var s=e(i),c=m(n),f=c.length,u=0;u<f;u++)c[u].apply(s,r);var l=d[y[n]];return l&&l.push([x,n,r,s]),s}}function o(t,e){g[t]=m(t).concat(e)}function h(t,e){var n=g[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return g[t]||[]}function v(t){return l[t]=l[t]||i(n)}function w(t,e){p.aborted||u(t,function(t,n){e=e||"feature",y[n]=e,e in d||(d[e]=[])})}var g={},y={},x={on:o,addEventListener:o,removeEventListener:h,emit:n,get:v,listeners:m,context:e,buffer:w,abort:s,aborted:!1};return x}function o(t){return f(t,c,a)}function a(){return new r}function s(){(d.api||d.feature)&&(p.aborted=!0,d=p.backlog={})}var c="nr@context",f=t("gos"),u=t(27),d={},l={},p=e.exports=i();e.exports.getOrSetContext=o,p.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!O++){var t=S.info=NREUM.info,e=m.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();c(E,function(e,n){t[e]||(t[e]=n)});var n=a();s("mark",["onload",n+S.offset],null,"api"),s("timing",["load",n]);var r=m.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=p+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===m.readyState&&o()}function o(){s("mark",["domContent",a()+S.offset],null,"api")}var a=t(22),s=t("handle"),c=t(27),f=t("ee"),u=t(25),d=t(17),l=t(19),p=d.getConfiguration("ssl")===!1?"http":"https",h=window,m=h.document,v="addEventListener",w="attachEvent",g=h.XMLHttpRequest,y=g&&g.prototype,x=!1;NREUM.o={ST:setTimeout,SI:h.setImmediate,CT:clearTimeout,XHR:g,REQ:h.Request,EV:h.Event,PR:h.Promise,MO:h.MutationObserver};var b=""+location,E={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1216.min.js"},R=g&&y&&y[v]&&!/CriOS/.test(navigator.userAgent),S=e.exports={offset:a.getLastTimestamp(),now:a,origin:b,features:{},xhrWrappable:R,userAgent:u,disabled:x};if(!x){t(16),t(23),m[v]?(m[v]("DOMContentLoaded",o,l(!1)),h[v]("load",r,l(!1))):(m[w]("onreadystatechange",i),h[w]("onload",r)),s("mark",["firstbyte",a.getLastTimestamp()],null,"api");var O=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,c,f){function nrWrapper(){var o,a,u,l;try{a=this,o=d(arguments),u="function"==typeof r?r(o,a):r||{}}catch(p){i([p,"",[o,a,c],u],t)}s(n+"start",[o,a,c],u,f);try{return l=e.apply(a,o)}catch(h){throw s(n+"err",[o,a,h],u,f),h}finally{s(n+"end",[o,a,l],u,f)}}return a(e)?e:(n||(n=""),nrWrapper[l]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var s,c,f,u="-"===r.charAt(0);for(f=0;f<e.length;f++)c=e[f],s=t[c],a(s)||(t[c]=n(s,u?c+r:r,i,c,o))}function s(n,r,o,a){if(!h||e){var s=h;h=!0;try{t.emit(n,r,o,e,a)}catch(c){i([c,n,r,o],t)}h=s}}return t||(t=u),n.inPlace=r,n.flag=l,n}function i(t,e){e||(e=u);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)p.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[l])}function s(t,e){var n=e(t);return n[l]=t,o(t,n,u),n}function c(t,e,n){var r=t[e];t[e]=s(r,n)}function f(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var u=t("ee"),d=t(28),l="nr@original",p=Object.prototype.hasOwnProperty,h=!1;e.exports=r,e.exports.wrapFunction=s,e.exports.wrapInPlace=c,e.exports.argsToArray=f},{}]},{},["loader",2,13,4,3]);
+    ;NREUM.loader_config={accountID:"3491579",trustKey:"2786587",agentID:"594344107",licenseKey:"NRJS-dc7343d2a9de50b2731",applicationID:"571291741"}
+    ;NREUM.info={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",licenseKey:"NRJS-dc7343d2a9de50b2731",applicationID:"571291741",sa:1}
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="title" content="Banks: Balance sheet (S10) - Reserve Bank of New Zealand - Te Pūtea Matua">
+    <meta name="description" content="This data provides information on the assets and liabilities of registered banks in New Zealand.">
+
+    <link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10118/0/css/CoveoFullSearch.min.css" integrity="sha512-BBq4ByQ6yQfH5dWBzfmyxcwO/HmwI2J75c3CyuanHpV7sEBCPJ6J5YDT7hZchgS3lVzDIfLCqST8Uv8Ke2w6Cg==" crossorigin="anonymous" />
+    <link href="/public/styles/main.css?v=45855&cms=sprint1" rel="stylesheet" type="text/css" />
+
+    <script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10118/0/js/CoveoJsSearch.Lazy.min.js" integrity="sha512-+kANMqOvU65SiIeITZ+AC6/YLW5HiDkywJnOgVGoZ/m3C7Kn2onPiDnMfv5mGzPdpk3tdQkCW6tUz0gXXoOdSQ==" crossorigin="anonymous"></script>
+
+    <title>Banks: Balance sheet (S10) - Reserve Bank of New Zealand - Te Pūtea Matua</title>
+
+    
+
+    
+
+<script type="text/javascript" nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+    var dataLayer = dataLayer || [];
+    dataLayer.push({
+        'pageId': 'AE0C0ABC-B50B-420F-B40A-57293752D95F',
+'pageName': 'banks-balance-sheet',
+'pageTemplateName': 'Statistics Detail Page',
+'pageContentStatus': 'n/a',
+'pageAuthoringDates': '20220331T110000Z | ',
+'pageTopic': 'Registered banks',
+'pageContentType': 'Statistical series',
+'pageStatisticsSeriesGroup': 'Registered banks',
+'x-bot-score': '82'
+    });
+</script>
+
+    <!-- Google Tag Manager -->
+    <script nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MHFS96G');
+    </script>
+
+
+
+
+    <!-- BEGIN NOINDEX -->
+
+    <script nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+        window.RBNZ_COVEO_CONFIG = {
+            originContext: "Search",
+            searchPageEndpoint: "/search",
+            token: "eyJhbGciOiJIUzI1NiJ9.eyJzZWFyY2hIdWIiOiJSQk5aX3JibnotMTA0LXByb2Rfd2ViIiwidjgiOnRydWUsInRva2VuSWQiOiJ4cnY0Y3c1NHo1dWFjdmppaW90M2J0a2EzYSIsIm9yZ2FuaXphdGlvbiI6InJlc2VydmViYW5rbmV3emVhbGFuZHByb2R1Y3Rpb251OHR2aXZqNSIsInVzZXJJZHMiOlt7InR5cGUiOiJVc2VyIiwibmFtZSI6ImFub255bW91cyIsInByb3ZpZGVyIjoiRW1haWwgU2VjdXJpdHkgUHJvdmlkZXIifV0sInJvbGVzIjpbInF1ZXJ5RXhlY3V0b3IiXSwiaXNzIjoiU2VhcmNoQXBpIiwiZXhwIjoxNzcxODE5NDg3LCJpYXQiOjE3NzE4MTU4ODd9.Ia61wGLaCk_-IwYo8fg2SQdr9sxv39_OQzqQnhZbKds",
+            organisation: "reservebanknewzealandproductionu8tvivj5",
+            searchHub: "RBNZ_rbnz-104-prod_web",
+            restEndpoint: "https://reservebanknewzealandproductionu8tvivj5.org.coveo.com/rest/search"
+        };
+    </script>
+
+    <script data-config-id="react-social-share-config" type="application/json" nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+        {"platforms":[{"type":"TWITTER"},{"type":"LINKEDIN"},{"type":"FACEBOOK"},{"type":"EMAIL"},{"type":"COPY_TO_CLIPBOARD"}]}
+    </script>
+
+    <link rel="shortcut icon" href="/-/media/Project/Sites/RBNZ/icons/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/-/media/Project/Sites/RBNZ/icons/rbnz-logo.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/-/media/Project/Sites/RBNZ/icons/rbnz-logo-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/-/media/Project/Sites/RBNZ/icons/rbnz-logo-114x114.png">
+    <!-- END NOINDEX -->
+    
+
+
+
+
+
+<meta property="og:title"  content="Banks: Balance sheet (S10)"><meta property="og:url"  content="https://www.rbnz.govt.nz/statistics/series/registered-banks/banks-balance-sheet">
+
+
+
+
+</head>
+<body class="hero--refresh default-device bodyclass" data-enable-history="true" data-server-date="2026-02-23T16:09:31.7808779+13:00">
+    <input name="__RequestVerificationToken" type="hidden" value="Br_pjILWk-DaMKqCFcaMkWlio3d49IpXoUFN2OvArOlud9BAmLN09-eXOgxsj6gbfsh8I7o2YxBNn9q_8jEnnUNKdJJDA31h0yKjNJ3mWkg1" />
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHFS96G" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Navigation comoponent endpoint -->
+    <script data-config-id="endpoints" type="application/json" nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+        {
+            "nav": "/api/cache/Navigation/items/v2?version=45855&cms=sprint1",
+            "glossary": "/api/cache/glossary/item",
+            "chart": "/api/cache/chart/data",
+            "categoryChart": "/api/cache/categorychart/data",
+            "mailChimpGetAllInterests": "/api/mailchimp/GetAllInterests",
+            "mailChimpPostAddSubscriber": "/api/mailchimp/AddSubscriber",
+            "inflationCalculatorGetAllCategories": "/api/inflcalc/v1/categories",
+            "inflationCalculatorDatesByCategory": "/api/inflcalc/v1/dates/categories/",
+            "inflationCalculatorCalculateResult": "/api/inflcalc/v1/calculate",
+            "feedbackForm": "/api/forms/SubmitPageFeedback"
+        }
+    </script>
+
+    <div class="root">
+
+            <script data-component-id="react-nav" type="application/json" nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+                {"CurrentItemPath": "/statistics/series/registered-banks/banks-balance-sheet", "CurrentItemId": "{ae0c0abc-b50b-420f-b40a-57293752d95f}", "CurrentParentItemId": "{93a9c913-ce4d-4ba5-b0f6-3403b08db192}"}
+            </script>
+            <script data-component-id="react-nav-assets" type="application/json" nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">
+                {"logoPath": "/public/assets/images/rbnz-logo-max.svg"}
+            </script>
+            <!-- NAV MARKUP FOR REACT TO BIND TO -->
+            <section class="nav" id="react-nav" >
+                <!-- fallback html. gets replaced by react once js loads -->
+                    <nav class="sidebar__nav sidebar__nav--is-visible" aria-label="Newsroom" aria-label="Newsroom navigation">
+                        <div class="sidebar__inner">
+                            <div class="sidebar__header sidebar__header--is-visible">
+                                <div class="sidebar__min-logo">
+                                    <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http:://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="icon sidebar__hamburger-icon">
+                                        <use href="/public/assets/icons/spritemap.svg#logo-min"></use>
+                                    </svg>
+                                </div>
+
+                                <button class="sidebar__button sidebar__button--min-max-button" aria-label="Minimise the menu">
+                                    <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http:://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="icon sidebar__hamburger-icon">
+                                        <use href="/public/assets/icons/spritemap.svg#menu"></use>
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            <div class="sidebar__panels">
+                                <div class="sidebar__panel sidebar__panel--top-level sidebar__panel--max" style="">
+                                    <div class="sidebar__panel-container">
+                                        <button class="sidebar__panel-button" aria-label="Minimise the menu"><svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http:://www.w3.org/1999/xlink" focusable="false" aria-hidden="true" class="sidebar__hamburger-icon"><use href="/public/assets/icons/spritemap.svg#menu"></use></svg></button>
+                                        <a href="/" class="sidebar__panel-header"><img src="/public/assets/images/rbnz-logo-max.svg" alt=""></a>
+                                        <nav class="sidebar__panel-content" aria-label="Sidebar navigation"></nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar__sizer">
+                            <div class="sidebar__panel-sizer"></div>
+                        </div>
+                    </nav>
+                <!-- end of fallback html -->
+            </section>
+        <div class="container">
+                    <nav class="secondary-nav-search main-search" aria-label="Site search">
+                        <div class="main-search__panel">
+                            <div class="main-search__panel-wrapper">
+                                <div class="main-search__wrapper">
+                                    <h2 class="main-search__heading" tabindex="-1">Search</h2>
+                                </div>
+                                <div id="global-search" class="search-box">
+                                    <div class="search-box__wrapper">
+                                        <div class="search-box__interface">
+                                            <div class="CoveoOmnibox search-box__input"
+                                                 role="search"
+                                                 aria-label="Sidebar search box"
+                                                 data-placeholder="Start typing to search"
+                                                 data-query-suggest-character-threshold="3"></div>
+                                            <div class="CoveoSearchButton search-box__button"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="js-top-searches" data-title="Top searches:"></div>
+
+                                <div class="main-search__close-wrap">
+                                    <button class="main-search__close-button js-ga4-tracking" aria-label="close the menu"
+                                            data-ga4-component-type="icon" data-ga4-component-name="search navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="" data-ga4-interaction-value="close">
+                                        <svg class="main-search__close-icon" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                                            <use xlink:href="/public/assets/icons/spritemap.svg#close"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+            <main role="main" class="content ">
+                    <div class="secondary-navigation" id="react-secondary-nav"></div>
+                <!-- BEGIN NOINDEX -->
+                <div class="row"></div>
+                <!-- END NOINDEX -->
+                <div class="row">
+
+
+<!--Start RBNZ Site Wide Alert-->
+            <div class="component sitewide-alert-component--wrapper" data-all_banner_guids="">
+                <div class="component-content">
+                </div>
+            </div>
+
+<!--End RBNZ Site Wide Alert-->
+<!--Start RBNZ Browser Support Notification Banner-->
+        <div class="component browser-support-notification-banner-component">
+            <div class="component-content">
+                <div class="browser-support-notification-banner">
+                    <div class="browser-support-notification-banner__content">
+                        <div class="browser-support-notification-banner__image">
+                            <svg 
+                                class="browser-support-notification-banner__image-item"
+                                viewBox="0 0 45 45" 
+                                fill="none" 
+                                xmlns="http://www.w3.org/2000/svg">
+                                    <path 
+                                        d="M45.4531 37.4531L26.7031 4.875C25.2969 2.45312 21.625 2.375 20.2188 4.875L1.46875 37.4531C0.0625 39.875 1.85938 43 4.75 43H42.1719C45.0625 43 46.8594 39.9531 45.4531 37.4531ZM23.5 30.6562C25.4531 30.6562 27.0938 32.2969 27.0938 34.25C27.0938 36.2812 25.4531 37.8438 23.5 37.8438C21.4688 37.8438 19.9062 36.2812 19.9062 34.25C19.9062 32.2969 21.4688 30.6562 23.5 30.6562ZM20.0625 17.7656C19.9844 17.2188 20.4531 16.75 21 16.75H25.9219C26.4688 16.75 26.9375 17.2188 26.8594 17.7656L26.3125 28.3906C26.2344 28.9375 25.8438 29.25 25.375 29.25H21.5469C21.0781 29.25 20.6875 28.9375 20.6094 28.3906L20.0625 17.7656Z" 
+                                        fill="currentColor"/>
+                            </svg>      
+                        </div>
+                        <div class="browser-support-notification-banner__description">
+                                <h4 class="browser-support-notification-banner__description-heading">Browser issue</h4>
+                                                            <div class="browser-support-notification-banner__description-paragraph">
+                                    <p>It looks like the browser you're using doesn&rsquo;t work well with our website. For a better experience, please update to the latest version of <a rel="noopener noreferrer" href="https://www.google.com/chrome/" target="_blank" style="color: black; font-weight: bold; text-decoration: underline;">Chrome</a>, <a rel="noopener noreferrer" href="https://www.microsoft.com/en-us/edge/download?form=MA13FJ" target="_blank" style="color: black; font-weight: bold; text-decoration: underline;">Edge</a>, <a rel="noopener noreferrer" href="https://www.mozilla.org/en-US/firefox/new/" target="_blank" style="color: black; font-weight: bold; text-decoration: underline;">Firefox</a> or <a rel="noopener noreferrer" href="https://www.apple.com/nz/safari/" target="_blank" style="color: black; font-weight: bold; text-decoration: underline;">Safari</a>.</p>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="browser-support-notification-banner__close-button">
+                        <svg 
+                            class="browser-support-notification-banner__close-button-item"
+                            viewBox="0 0 45 45" 
+                            fill="none" 
+                            xmlns="http://www.w3.org/2000/svg">
+                                <path 
+                                    d="M24.6836 22.25L30.7188 16.2734L31.9492 15.043C32.125 14.8672 32.125 14.5742 31.9492 14.3398L30.6602 13.0508C30.4258 12.875 30.1328 12.875 29.957 13.0508L22.75 20.3164L15.4844 13.0508C15.3086 12.875 15.0156 12.875 14.7812 13.0508L13.4922 14.3398C13.3164 14.5742 13.3164 14.8672 13.4922 15.043L20.7578 22.25L13.4922 29.5156C13.3164 29.6914 13.3164 29.9844 13.4922 30.2188L14.7812 31.5078C15.0156 31.6836 15.3086 31.6836 15.4844 31.5078L22.75 24.2422L28.7266 30.2773L29.957 31.5078C30.1328 31.6836 30.4258 31.6836 30.6602 31.5078L31.9492 30.2188C32.125 29.9844 32.125 29.6914 31.9492 29.5156L24.6836 22.25Z" 
+                                    fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--End RBNZ Browser Support Notification Banner-->
+
+
+<!-- Page Header Start -->
+        <div class="component component--no-margin hero-component  hero--octonary col-12" class="component hero--has-image">
+            <div class="component-content">
+
+                    <section class="hero">
+                        <div class="hero__inner">
+                                    <!-- Breadcrumb - start -->
+        <!-- BEGIN NOINDEX -->
+<div class="row">
+<!--Start RBNZ / Breadcrumb.cshtml-->
+
+
+
+    <div class="component rbnz-breadcrumb component--no-margin  navigation-title breadcrumb-component col-12">
+        <div class="component-content">
+
+
+                <nav aria-label="Breadcrumb" class="breadcrumb">
+
+                    <ol class="breadcrumb__list">
+                            <li class="breadcrumb__item home">
+                                        <a href="/" class="breadcrumb__link" aria-label="Home">
+
+                                            <svg class="breadcrumb__home-icon"
+                                                 viewBox="0 0 45 45"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 focusable="false">
+                                                <use xlink:href="/public/assets/icons/spritemap.svg#home"></use>
+
+                                            </svg>
+
+                                        </a>
+                            </li>
+                            <li class="breadcrumb__item ">
+                                        <a class="breadcrumb__link" href="/statistics">
+                                            Statistics
+                                        </a>
+                            </li>
+                            <li class="breadcrumb__item ">
+                                        <a class="breadcrumb__link" href="/statistics/series">
+                                            Statistical series
+                                        </a>
+                            </li>
+                            <li class="breadcrumb__item ">
+                                        <a class="breadcrumb__link" href="/statistics/series/registered-banks">
+                                            Registered banks
+                                        </a>
+                            </li>
+                            <li class="breadcrumb__item last">
+                                        <a class="breadcrumb__link" href="/statistics/series/registered-banks/banks-balance-sheet">
+                                            Banks: Balance sheet (S10)
+                                        </a>
+                            </li>
+                    </ol>
+                </nav>
+        </div>
+    </div>
+<!--End RBNZ / Breadcrumb.cshtml-->
+
+<!--Start RBNZ / Breadcrumb.cshtml-->
+
+
+
+    <div class="component rbnz-breadcrumb component--no-margin  navigation-title breadcrumb-alt-component">
+        <div class="component-content">
+
+
+                <a class="breadcrumb-alt" href="/statistics/series/registered-banks">
+
+                    <svg class="breadcrumb-alt__icon"
+                         viewBox="0 0 45 45"
+                         xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                         focusable="false">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#chevron"></use>
+
+                    </svg>
+Registered banks                </a>
+        </div>
+    </div>
+<!--End RBNZ / Breadcrumb.cshtml-->
+</div>        <!-- END NOINDEX -->
+        <!-- Breadcrumb - end -->
+
+
+                                <h1 class="hero__heading">
+        Banks: Balance sheet (S10)
+    </h1>
+
+                            <div class="hero__content-wrapper">
+                                        <p class="hero__description">
+            This data provides information on the assets and liabilities of registered banks in New Zealand.
+        </p>
+
+                                
+                                <div class="hero__metadata">
+                                    
+                                                    <div class="hero__metadata-item">
+                    <div class="hero__metadata-title">Released:</div>
+                    <div class="hero__metadata-detail">
+                        <time datetime="2026-01-30">30 January 2026</time>
+                    </div>
+
+                </div>
+                <div class="hero__metadata-item">
+                    <div class="hero__metadata-title">Next Release:</div>
+                    <div class="hero__metadata-detail">
+                        <time datetime="2026-02-27">27 February 2026</time>
+                    </div>
+                </div>
+                <div class="hero__metadata-item">
+                    <div class="hero__metadata-title">Periodicity:</div>
+                    <div class="hero__metadata-detail">Monthly</div>
+                </div>
+            <div class="hero__metadata-item">
+                <div class="hero__metadata-title">Source:</div>
+                <div class="hero__metadata-detail">Reserve Bank of New Zealand</div>
+            </div>
+
+                                            <div class="social-share js-social-share"></div>
+
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--Start RBNZ Content Status Banner-->
+<!--End RBNZ Content Status Banner--></div>
+<div class="row"></div>                <div id="article-content">
+<div class="row">
+<!-- START Chart Component -->
+            <div class="component chart-component component--rebase col-12 col-12 component--ma component--full-width">
+                <div class="component-content">
+                    <section class="component__section">
+                                                <a name="ueu8Cij6P0S3mPTSUBDcfQ" ></a>
+                        
+            <div class="component__pretext">
+                
+
+                
+
+                    <h2 
+    >
+Annual growth in total assets    </h2>
+
+
+                
+
+                
+
+                
+            </div>
+
+
+
+
+
+
+
+                        <div class="component__body">
+                            <section class="chart js-chart"
+                                data-chart-id="{0ABCEBB9-FA28-443F-B798-F4D25010DC7D}"
+                                data-chart-type="line"
+                                data-chart-projection="false"
+                                data-show-data-table="false"
+                                data-is-data-table-sortable="false">
+                            </section>
+                        </div>
+                    </section>
+                </div>
+            </div>
+<!-- END Chart Component -->
+<!--START RBNZ Mini Downloads Card Container -->
+            <div class="component download-card-component component--rebase  col-12 col-12">
+                <div class="component-content">
+                    <section class="component__section" >
+                        
+            <div class="component__pretext">
+                
+
+                
+
+                    <h2 
+    >
+Data files    </h2>
+
+
+                
+
+                
+
+                
+            </div>
+
+
+
+
+
+
+
+                        <div class="component__body">
+                            <a name="VQfY2CG2kCHnBIEN6u2w" ></a>
+
+                                <div class="component download-card-component download-card col-12 download-card--mini download-card--condensed download-card--xlsx">
+        <div class="component-content">
+            <a name="t6adq3dK6kuKCgqaK6sVBA" ></a>
+            <a class="download-card__link js-ga4-tracking" href="/-/media/project/sites/rbnz/files/statistics/series/l-s/s10/hs10-long-run.xlsx" data-ga4-event="file_download" data-ga4-component-type="card" data-ga4-component-name="mini download" data-ga4-interaction-type="click" data-ga4-interaction-detail="XLSX | 17KB" data-ga4-interaction-value="Banks: Balance sheet – Long run total loans and assets" data-ga4-interaction-url="/-/media/project/sites/rbnz/files/statistics/series/l-s/s10/hs10-long-run.xlsx">
+                <div class="download-card__icon-wrapper"></div>
+                <div class="download-card__content-container">
+                    <svg class="download-card__file-type-icon" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#xlsx"></use>
+                    </svg>
+                    <div class="download-card__content">
+                        <p class="download-card__heading">Banks: Balance sheet – Long run total loans and assets</p>
+                            <span class="download-card__file-type-text"> XLSX | 17KB</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="component download-card-component download-card col-12 download-card--mini download-card--condensed download-card--xlsx">
+        <div class="component-content">
+            <a name="cIGOJg80DESTcxtuw88c1A" ></a>
+            <a class="download-card__link js-ga4-tracking" href="/-/media/project/sites/rbnz/files/statistics/series/l-s/s10/hs10.xlsx" data-ga4-event="file_download" data-ga4-component-type="card" data-ga4-component-name="mini download" data-ga4-interaction-type="click" data-ga4-interaction-detail="XLSX | 39KB" data-ga4-interaction-value="Banks: Balance sheet - S10 (Dec 2016 - current)" data-ga4-interaction-url="/-/media/project/sites/rbnz/files/statistics/series/l-s/s10/hs10.xlsx">
+                <div class="download-card__icon-wrapper"></div>
+                <div class="download-card__content-container">
+                    <svg class="download-card__file-type-icon" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#xlsx"></use>
+                    </svg>
+                    <div class="download-card__content">
+                        <p class="download-card__heading">Banks: Balance sheet - S10 (Dec 2016 - current)</p>
+                            <span class="download-card__file-type-text"> XLSX | 39KB</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="component download-card-component download-card col-12 download-card--mini download-card--condensed download-card--xlsx">
+        <div class="component-content">
+            <a name="BDIAzBHfjU6hoYNh6ETAUQ" ></a>
+            <a class="download-card__link js-ga4-tracking" href="/-/media/project/sites/rbnz/files/statistics/series/l-s/s10/hs10m.xlsx" data-ga4-event="file_download" data-ga4-component-type="card" data-ga4-component-name="mini download" data-ga4-interaction-type="click" data-ga4-interaction-detail="XLSX | 23KB" data-ga4-interaction-value="Banks: Balance sheet - S10 more detail (Dec 2016 - current)" data-ga4-interaction-url="/-/media/project/sites/rbnz/files/statistics/series/l-s/s10/hs10m.xlsx">
+                <div class="download-card__icon-wrapper"></div>
+                <div class="download-card__content-container">
+                    <svg class="download-card__file-type-icon" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#xlsx"></use>
+                    </svg>
+                    <div class="download-card__content">
+                        <p class="download-card__heading">Banks: Balance sheet - S10 more detail (Dec 2016 - current)</p>
+                            <span class="download-card__file-type-text"> XLSX | 23KB</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="component download-card-component download-card col-12 download-card--mini download-card--condensed download-card--pdf">
+        <div class="component-content">
+            <a name="oqKX7LSfkGt1dZKPX49Q" ></a>
+            <a class="download-card__link js-ga4-tracking" href="/-/media/project/sites/rbnz/files/statistics/news-and-updates/new-bank-balance-sheet-web-table-concordance.pdf" data-ga4-event="file_download" data-ga4-component-type="card" data-ga4-component-name="mini download" data-ga4-interaction-type="click" data-ga4-interaction-detail="PDF | 60KB" data-ga4-interaction-value=" Concordance on the new bank balance sheet web tables (April 2017)" data-ga4-interaction-url="/-/media/project/sites/rbnz/files/statistics/news-and-updates/new-bank-balance-sheet-web-table-concordance.pdf">
+                <div class="download-card__icon-wrapper"></div>
+                <div class="download-card__content-container">
+                    <svg class="download-card__file-type-icon" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#pdf"></use>
+                    </svg>
+                    <div class="download-card__content">
+                        <p class="download-card__heading"> Concordance on the new bank balance sheet web tables (April 2017)</p>
+                            <span class="download-card__file-type-text"> PDF | 60KB</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="component download-card-component download-card col-12 download-card--mini download-card--condensed download-card--pdf">
+        <div class="component-content">
+            <a name="rR9pHQ3Lk7I53c9gXHYw" ></a>
+            <a class="download-card__link js-ga4-tracking" href="/-/media/project/sites/rbnz/files/statistics/news-and-updates/new-banking-sector-balance-sheet-statistics-technical-note.pdf" data-ga4-event="file_download" data-ga4-component-type="card" data-ga4-component-name="mini download" data-ga4-interaction-type="click" data-ga4-interaction-detail="PDF | 673KB" data-ga4-interaction-value=" Technical note on the new banking sector balance sheet statistics (April 2017)" data-ga4-interaction-url="/-/media/project/sites/rbnz/files/statistics/news-and-updates/new-banking-sector-balance-sheet-statistics-technical-note.pdf">
+                <div class="download-card__icon-wrapper"></div>
+                <div class="download-card__content-container">
+                    <svg class="download-card__file-type-icon" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#pdf"></use>
+                    </svg>
+                    <div class="download-card__content">
+                        <p class="download-card__heading"> Technical note on the new banking sector balance sheet statistics (April 2017)</p>
+                            <span class="download-card__file-type-text"> PDF | 673KB</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="component download-card-component download-card col-12 download-card--mini download-card--condensed download-card--pdf">
+        <div class="component-content">
+            <a name="GIcyps0azgMZ74SDtDg" ></a>
+            <a class="download-card__link js-ga4-tracking" href="/-/media/project/sites/rbnz/files/statistics/series/shared/c-s/2025/sector-lending-and-deposits-summary-banks-december-2025.pdf" data-ga4-event="file_download" data-ga4-component-type="card" data-ga4-component-name="mini download" data-ga4-interaction-type="click" data-ga4-interaction-detail="PDF | 225KB" data-ga4-interaction-value="Sector lending &amp;amp; deposits summary (Banks) - December 2025" data-ga4-interaction-url="/-/media/project/sites/rbnz/files/statistics/series/shared/c-s/2025/sector-lending-and-deposits-summary-banks-december-2025.pdf">
+                <div class="download-card__icon-wrapper"></div>
+                <div class="download-card__content-container">
+                    <svg class="download-card__file-type-icon" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/public/assets/icons/spritemap.svg#pdf"></use>
+                    </svg>
+                    <div class="download-card__content">
+                        <p class="download-card__heading">Sector lending &amp; deposits summary (Banks) - December 2025</p>
+                            <span class="download-card__file-type-text"> PDF | 225KB</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+<!--END RBNZ Mini Downloads Card Container -->
+
+    <div class="component component rich-text component--constraint-width col-12 col-12 rich-text--full-width">
+        <div class="component-content">
+            <div class="table-wrapper" role="region" tabindex="0" aria-label="content table">
+                <a name="Q8gJlZjhU0BO4KcbtJVCw" ></a>
+<table class="table--data">
+    <thead>
+            <tr>
+                <th></th>
+                            <th colspan="2">Previous years:</th>
+                            <th colspan="5">Monthly:</th>
+
+            </tr>
+        <tr>
+            <th></th>
+                <th>Dec 2023</th>
+                <th>Dec 2024</th>
+                <th>Aug 2025</th>
+                <th>Sept 2025</th>
+                <th>Oct 2025</th>
+                <th>Nov 2025</th>
+                <th>Dec 2025</th>
+        </tr>
+    </thead>
+
+    <tbody>
+                <tr><td colspan="8"><strong>Assets ($m)</strong></td></tr>
+            <tr>
+                <td>1. Cash (notes and coins)</td>
+                        <td class="table__cell--highlighted">770</td>
+                        <td class="table__cell--highlighted">662</td>
+                        <td>408</td>
+                        <td>429</td>
+                        <td>446</td>
+                        <td>525</td>
+                        <td class="table__cell--bold">761</td>
+            </tr>
+            <tr>
+                <td>2. Deposits (with depository institutions)</td>
+                        <td class="table__cell--highlighted">59,439</td>
+                        <td class="table__cell--highlighted">46,847</td>
+                        <td>36,922</td>
+                        <td>39,186</td>
+                        <td>37,101</td>
+                        <td>36,936</td>
+                        <td class="table__cell--bold">40,565</td>
+            </tr>
+            <tr>
+                <td>3. Debt securities (Net)</td>
+                        <td class="table__cell--highlighted">56,727</td>
+                        <td class="table__cell--highlighted">63,950</td>
+                        <td>69,772</td>
+                        <td>71,159</td>
+                        <td>71,456</td>
+                        <td>72,034</td>
+                        <td class="table__cell--bold">72,078</td>
+            </tr>
+            <tr>
+                <td>Debt securities (Gross)</td>
+                        <td class="table__cell--highlighted">56,727</td>
+                        <td class="table__cell--highlighted">63,951</td>
+                        <td>69,773</td>
+                        <td>71,160</td>
+                        <td>71,457</td>
+                        <td>72,034</td>
+                        <td class="table__cell--bold">72,079</td>
+            </tr>
+            <tr>
+                <td>MA1. Less provisions for credit impairment</td>
+                        <td class="table__cell--highlighted">0</td>
+                        <td class="table__cell--highlighted">0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="table__cell--bold">1</td>
+            </tr>
+            <tr>
+                <td>4. Loans and advances (Net)</td>
+                        <td class="table__cell--highlighted">555,069</td>
+                        <td class="table__cell--highlighted">573,252</td>
+                        <td>589,850</td>
+                        <td>592,325</td>
+                        <td>596,999</td>
+                        <td>599,065</td>
+                        <td class="table__cell--bold">601,203</td>
+            </tr>
+            <tr>
+                <td>Loans and advances (Gross)</td>
+                        <td class="table__cell--highlighted">556,605</td>
+                        <td class="table__cell--highlighted">574,558</td>
+                        <td>590,730</td>
+                        <td>593,147</td>
+                        <td>597,784</td>
+                        <td>599,837</td>
+                        <td class="table__cell--bold">601,791</td>
+            </tr>
+            <tr>
+                <td>MA2. Less provisions for credit impairment</td>
+                        <td class="table__cell--highlighted">3,152</td>
+                        <td class="table__cell--highlighted">3,393</td>
+                        <td>3,231</td>
+                        <td>3,211</td>
+                        <td>3,215</td>
+                        <td>3,209</td>
+                        <td class="table__cell--bold">3,163</td>
+            </tr>
+            <tr>
+                <td>MA3. Plus other net adjustments for loans and advances</td>
+                        <td class="table__cell--highlighted">1,616</td>
+                        <td class="table__cell--highlighted">2,087</td>
+                        <td>2,351</td>
+                        <td>2,389</td>
+                        <td>2,430</td>
+                        <td>2,437</td>
+                        <td class="table__cell--bold">2,574</td>
+            </tr>
+            <tr>
+                <td>5. Securities purchased under agreement to resell</td>
+                        <td class="table__cell--highlighted">4,822</td>
+                        <td class="table__cell--highlighted">12,351</td>
+                        <td>12,229</td>
+                        <td>12,839</td>
+                        <td>13,716</td>
+                        <td>15,136</td>
+                        <td class="table__cell--bold">14,453</td>
+            </tr>
+            <tr>
+                <td>6. Shares and other equity investments</td>
+                        <td class="table__cell--highlighted">27</td>
+                        <td class="table__cell--highlighted">503</td>
+                        <td>500</td>
+                        <td>495</td>
+                        <td>495</td>
+                        <td>501</td>
+                        <td class="table__cell--bold">500</td>
+            </tr>
+            <tr>
+                <td>7. Derivatives in an asset position</td>
+                        <td class="table__cell--highlighted">22,564</td>
+                        <td class="table__cell--highlighted">33,274</td>
+                        <td>22,470</td>
+                        <td>27,010</td>
+                        <td>29,234</td>
+                        <td>26,381</td>
+                        <td class="table__cell--bold">23,233</td>
+            </tr>
+            <tr>
+                <td>8. Other assets</td>
+                        <td class="table__cell--highlighted">12,254</td>
+                        <td class="table__cell--highlighted">13,122</td>
+                        <td>14,067</td>
+                        <td>15,497</td>
+                        <td>14,869</td>
+                        <td>16,259</td>
+                        <td class="table__cell--bold">14,998</td>
+            </tr>
+            <tr>
+                <td>9. Total assets</td>
+                        <td class="table__cell--highlighted">711,674</td>
+                        <td class="table__cell--highlighted">743,960</td>
+                        <td>746,219</td>
+                        <td>758,939</td>
+                        <td>764,315</td>
+                        <td>766,836</td>
+                        <td class="table__cell--bold">767,791</td>
+            </tr>
+                <tr><td colspan="8"><strong>Liabilities ($m)</strong></td></tr>
+            <tr>
+                <td>10. Deposits (Net)</td>
+                        <td class="table__cell--highlighted">452,141</td>
+                        <td class="table__cell--highlighted">471,645</td>
+                        <td>477,128</td>
+                        <td>481,260</td>
+                        <td>487,234</td>
+                        <td>486,608</td>
+                        <td class="table__cell--bold">493,112</td>
+            </tr>
+            <tr>
+                <td>Deposits (Gross)</td>
+                        <td class="table__cell--highlighted">451,884</td>
+                        <td class="table__cell--highlighted">471,321</td>
+                        <td>476,844</td>
+                        <td>480,973</td>
+                        <td>486,951</td>
+                        <td>486,331</td>
+                        <td class="table__cell--bold">492,839</td>
+            </tr>
+            <tr>
+                <td>ML1. Plus other net adjustments for deposits</td>
+                        <td class="table__cell--highlighted">258</td>
+                        <td class="table__cell--highlighted">324</td>
+                        <td>284</td>
+                        <td>286</td>
+                        <td>283</td>
+                        <td>277</td>
+                        <td class="table__cell--bold">273</td>
+            </tr>
+            <tr>
+                <td>11. Debt securities (issued) (Net)</td>
+                        <td class="table__cell--highlighted">107,601</td>
+                        <td class="table__cell--highlighted">112,092</td>
+                        <td>124,346</td>
+                        <td>126,437</td>
+                        <td>128,506</td>
+                        <td>132,067</td>
+                        <td class="table__cell--bold">132,816</td>
+            </tr>
+            <tr>
+                <td>Debt securities (issued) (Gross)</td>
+                        <td class="table__cell--highlighted">110,097</td>
+                        <td class="table__cell--highlighted">113,996</td>
+                        <td>125,434</td>
+                        <td>127,590</td>
+                        <td>129,608</td>
+                        <td>133,179</td>
+                        <td class="table__cell--bold">133,998</td>
+            </tr>
+            <tr>
+                <td>ML2. Plus other net adjustments for debt securities</td>
+                        <td class="table__cell--highlighted">-2,495</td>
+                        <td class="table__cell--highlighted">-1,904</td>
+                        <td>-1,088</td>
+                        <td>-1,152</td>
+                        <td>-1,102</td>
+                        <td>-1,112</td>
+                        <td class="table__cell--bold">-1,182</td>
+            </tr>
+            <tr>
+                <td>12. Borrowings (Net)</td>
+                        <td class="table__cell--highlighted">55,246</td>
+                        <td class="table__cell--highlighted">54,012</td>
+                        <td>47,362</td>
+                        <td>50,426</td>
+                        <td>45,825</td>
+                        <td>47,015</td>
+                        <td class="table__cell--bold">44,677</td>
+            </tr>
+            <tr>
+                <td>Borrowings (Gross)</td>
+                        <td class="table__cell--highlighted">55,342</td>
+                        <td class="table__cell--highlighted">54,083</td>
+                        <td>47,385</td>
+                        <td>50,446</td>
+                        <td>45,843</td>
+                        <td>47,029</td>
+                        <td class="table__cell--bold">44,686</td>
+            </tr>
+            <tr>
+                <td>ML3. Plus other net adjustments for borrowing</td>
+                        <td class="table__cell--highlighted">-97</td>
+                        <td class="table__cell--highlighted">-71</td>
+                        <td>-23</td>
+                        <td>-20</td>
+                        <td>-18</td>
+                        <td>-14</td>
+                        <td class="table__cell--bold">-10</td>
+            </tr>
+            <tr>
+                <td>13. Derivatives in a liability position</td>
+                        <td class="table__cell--highlighted">24,976</td>
+                        <td class="table__cell--highlighted">28,780</td>
+                        <td>17,900</td>
+                        <td>21,215</td>
+                        <td>23,265</td>
+                        <td>20,012</td>
+                        <td class="table__cell--bold">17,835</td>
+            </tr>
+            <tr>
+                <td>14. Other liabilities</td>
+                        <td class="table__cell--highlighted">10,608</td>
+                        <td class="table__cell--highlighted">12,536</td>
+                        <td>11,915</td>
+                        <td>12,429</td>
+                        <td>11,667</td>
+                        <td>12,810</td>
+                        <td class="table__cell--bold">10,954</td>
+            </tr>
+            <tr>
+                <td>Total liabilities</td>
+                        <td class="table__cell--highlighted">650,572</td>
+                        <td class="table__cell--highlighted">679,065</td>
+                        <td>678,651</td>
+                        <td>691,768</td>
+                        <td>696,497</td>
+                        <td>698,513</td>
+                        <td class="table__cell--bold">699,394</td>
+            </tr>
+                <tr><td colspan="8"><strong>Equity ($m)</strong></td></tr>
+            <tr>
+                <td>15. Total equity</td>
+                        <td class="table__cell--highlighted">61,101</td>
+                        <td class="table__cell--highlighted">64,896</td>
+                        <td>67,568</td>
+                        <td>67,172</td>
+                        <td>67,818</td>
+                        <td>68,324</td>
+                        <td class="table__cell--bold">68,396</td>
+            </tr>
+                <tr><td colspan="8"><strong>Liabilities and equity ($m)</strong></td></tr>
+            <tr>
+                <td>16. Total liabilities and equity</td>
+                        <td class="table__cell--highlighted">711,674</td>
+                        <td class="table__cell--highlighted">743,960</td>
+                        <td>746,219</td>
+                        <td>758,939</td>
+                        <td>764,315</td>
+                        <td>766,836</td>
+                        <td class="table__cell--bold">767,791</td>
+            </tr>
+    </tbody>
+</table>            </div>
+            
+
+        </div>
+    </div>
+
+    <div class="component component--rebase component-accordion js-ga-tracking col-12">
+        <div class="component-content">
+            <section class="component__section">
+                
+
+
+
+
+
+
+
+                <div class="component__body">
+
+
+
+                                                                            <div class="accordion__container">
+                                        <div class="accordion  js-is-special-note">
+                                            <h3 class="heading--h5">
+                                                <button type="button"
+                                                        aria-controls="accordion-content-1-4"
+                                                        class="accordion__button js-accordion-trigger"
+                                                        aria-expanded="false"
+                                                        id="accordion-title-1-4">
+                                                    <svg class="accordion__button-icon"
+                                                         viewBox="0 0 45 45"
+                                                         xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         focusable="false">
+                                                        <use xlink:href="/public/assets/icons/spritemap.svg#chevron-right"></use>
+                                                    </svg>
+                                                    <a name="c58vqOFpDEijvrao3YZWw" ></a>
+                                                    Special note
+                                                </button>
+                                            </h3>
+                                            <div id="accordion-content-1-4" role="region" aria-labelledby="accordion-title-1-4" class="accordion__content">
+                                                <div class="component rich-text rich-text--full-width component--no-margin col-12">
+                                                    <div class="component-content">
+                                                        <h3>Revisions to historical data</h3>
+<p><strong>30 August 2024</strong></p>
+<p>Today&rsquo;s publication of Bank Balance Sheet data includes revisions to historical data between&nbsp;March 2024 to June 2024 inclusive, as we now have updated data from our respondents. This&nbsp;has resulted in minor changes to data in:</p>
+<ul>
+    <li>C5 Sector lending (banks and non-bank lending institutions)</li>
+    <li>C50 Money and credit aggregates (depository corporations)</li>
+    <li>C51 Other depository corporations analytical accounts </li>
+    <li>C52 Depository corporations analytical accounts </li>
+    <li>S10 Banks: Balance sheet </li>
+    <li>S30 Banks: Assets &ndash; Loans by sector </li>
+    <li>S31 Banks: Assets &ndash; Loans by purpose </li>
+    <li>S32 Banks: Assets &ndash; Loans by product </li>
+    <li>S33 Banks: Assets &ndash; Loans fully secured by residential mortgage by repricing </li>
+    <li>S34 Banks: Assets &ndash; Loans and Repos by Industry </li>
+    <li>S35 Banks: Assets &ndash; Loans by business size </li>
+    <li>S36 Banks: Assets &ndash; Business loans by product </li>
+    <li>S40 Banks: Liabilities &ndash; Deposits by sector </li>
+    <li>S41 Banks: Liabilities &ndash; Deposits by industry </li>
+    <li>S42 Banks: Liabilities &ndash; Deposits by repricing </li>
+    <li>S45 Banks: Liabilities &ndash; Deposits by size (value) </li>
+    <li>S46 Banks: Liabilities &ndash; Deposits by size (number)</li>
+    <li>S50 Banks: Assets &ndash; Loans by asset quality</li>
+    <li>S51 Banks: Assets &ndash; Business loans by asset quality</li>
+</ul>
+<p>If you have any questions, please contact <a href="/cdn-cgi/l/email-protection#90b0e3e4f1e4e3bdf9fef6ffd0e2f2feeabef7ffe6e4befeea"><span class="__cf_email__" data-cfemail="0172756075722c686f676e4173636f7b2f666e77752f6f7b">[email&#160;protected]</span></a></p>
+<p><a href="/statistics/series/registered-banks/banks-balance-sheet/special-note">View all Banks: Balance sheet special notes</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion__container">
+                                        <div class="accordion ">
+                                            <h3 class="heading--h5">
+                                                <button type="button"
+                                                        aria-controls="accordion-content-2-4"
+                                                        class="accordion__button js-accordion-trigger"
+                                                        aria-expanded="false"
+                                                        id="accordion-title-2-4">
+                                                    <svg class="accordion__button-icon"
+                                                         viewBox="0 0 45 45"
+                                                         xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         focusable="false">
+                                                        <use xlink:href="/public/assets/icons/spritemap.svg#chevron-right"></use>
+                                                    </svg>
+                                                    <a name="DdAEb0x5DEynpODDWuLe1A" ></a>
+                                                    Background notes
+                                                </button>
+                                            </h3>
+                                            <div id="accordion-content-2-4" role="region" aria-labelledby="accordion-title-2-4" class="accordion__content">
+                                                <div class="component rich-text rich-text--full-width component--no-margin col-12">
+                                                    <div class="component-content">
+                                                        <h3>The data: coverage, periodicity and timeliness</h3>
+<h4>Coverage characteristics</h4>
+<p>We source data from our Balance Sheet Survey.</p>
+<ul>
+    <li>S10 Banks: Balance sheet</li>
+    <li>S30 Banks: Assets&nbsp;&ndash; Loans by sector</li>
+    <li>S31 Banks: Assets&nbsp;&ndash; Loans by purpose</li>
+    <li>S32 Banks: Assets&nbsp;&ndash; Loans by product</li>
+    <li>S33 Banks: Assets&nbsp;&ndash; Loans fully secured by residential mortgage by repricing</li>
+    <li>S34 Banks: Assets&nbsp;&ndash; Loans and Repos by industry</li>
+    <li>S35 Banks: Assets&nbsp;&ndash; Loans by business size</li>
+    <li>S36 Banks: Assets&nbsp;&ndash; Business loans by product</li>
+    <li>S37 Banks: Assets&nbsp;&ndash; Agriculture loans by product</li>
+    <li>S40 Banks: Liabilities &ndash; Deposits by sector</li>
+    <li>S41 Banks: Liabilities &ndash; Deposits by industry</li>
+    <li>S50 Banks: Assets&nbsp;&ndash; Loans by asset quality</li>
+</ul>
+<p>Most data starts from 31 December 2016 when the Bank Balance Sheet Survey replaced the Standard Statistical Return (SSR). However, some data has been backdated to provide long-run consistent data. The back series has been estimated using data from the SSR. Asset quality data starts from March 2018.</p>
+<p>Data is reported at market values, where applicable, and as at the end of the reporting period.</p>
+<p>Data covers assets and liabilities denominated in both NZ dollars and foreign currency. Assets and liabilities denominated in foreign currency are converted into New Zealand dollars in accordance with NZ GAAP.</p>
+<h4>Periodicity and timeliness</h4>
+<p>We publish data on the last working day of the month.</p>
+<h3>Access by the public</h3>
+<h4>Statistics release calendar</h4>
+<p>The statistics release calendar provides a long-term plan of scheduled releases. We update it and release it on the first working day of the month.</p>
+<p><a href="/statistics/statistics-release-calendar">View the statistics release calendar</a></p>
+<h3>Integrity</h3>
+<h4>Dissemination of terms and conditions under which official statistics are produced, including confidentiality of individual responses</h4>
+<p>We collect data under Sections 36 and 93 of the Reserve Bank of New Zealand Act (1989).</p>
+<p>We publish aggregated data. Individual institutional data is confidential.</p>
+<p>Read the <a rel="noopener noreferrer" href="https://www.legislation.govt.nz/act/public/1989/0157/latest/DLM199364.html" target="_blank">Reserve Bank of New Zealand Act 1989</a></p>
+<h4>Provision of information about revisions and advance notice of major changes in methodology</h4>
+<p>We generally publish revisions when we are next due to update and release the table. Should we need to make revisions more promptly, we will post a special note. We post any major changes in methodology as a special note.</p>
+<h3>Quality</h3>
+<h4>Dissemination of documentation on methodology and sources used in preparing statistics</h4>
+<p>The survey template and definitions are available.</p>
+<p><a href="/statistics/surveys">Go to the Surveys page</a></p>
+<h4>Dissemination of statistics that support statistical cross-check and provide assurance of reasonableness</h4>
+<p>Registered banks publish disclosure statements that offer checks for reasonableness.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion__container">
+                                        <div class="accordion ">
+                                            <h3 class="heading--h5">
+                                                <button type="button"
+                                                        aria-controls="accordion-content-3-4"
+                                                        class="accordion__button js-accordion-trigger"
+                                                        aria-expanded="false"
+                                                        id="accordion-title-3-4">
+                                                    <svg class="accordion__button-icon"
+                                                         viewBox="0 0 45 45"
+                                                         xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         focusable="false">
+                                                        <use xlink:href="/public/assets/icons/spritemap.svg#chevron-right"></use>
+                                                    </svg>
+                                                    <a name="kDiPj8N16E2vpwzQqegZKQ" ></a>
+                                                    Series description (Assets, Liabilities, Equity and Sector)
+                                                </button>
+                                            </h3>
+                                            <div id="accordion-content-3-4" role="region" aria-labelledby="accordion-title-3-4" class="accordion__content">
+                                                <div class="component rich-text rich-text--full-width component--no-margin col-12">
+                                                    <div class="component-content">
+                                                        <h3>Assets</h3>
+<h4>Cash (notes and coin)</h4>
+<p>All currency held by registered banks. Includes both notes and coins issued or authorised by the Reserve Bank of New Zealand and all foreign currency notes and coin held that have been issued or authorised by offshore central banks or governments.</p>
+<h4>Deposits (with depository institutions)</h4>
+<p>Deposits are amounts that are redeemable or withdrawable from another bank or financial institution and are not debt securities or held as available for sale.</p>
+<h4>Demand deposits</h4>
+<p>Demand balances are amounts that are redeemable or withdrawable from another bank or financial institution on demand (balances are on call) and are not debt securities or held as available for sale.</p>
+<h4>Other deposits</h4>
+<p>Other deposits comprise all claims, other than demand deposits, that are represented by evidence of deposit. Includes all time or term deposits that have a maturity of greater than one day and also includes cash collateral placed in relation to derivative trades.</p>
+<h4>Debt securities</h4>
+<p>Debt securities are negotiable instruments serving as evidence of a debt, can be bought or sold between two parties and have basic terms defined, such as notional amount (amount borrowed), interest rate and maturity/renewal date. Debt securities include government bonds, corporate bonds, CDs, local body bonds, preference stock, collateralised securities and zero-coupon securities. Includes both available-for-sale and trading securities.</p>
+<h4>Available-for-sale securities</h4>
+<p>Available-for-sale securities that are non-derivative financial assets that are designated as available for sale.</p>
+<h4>Trading securities</h4>
+<p>Trading securities are financial instruments acquired principally for selling in the short term or securities that are part of a portfolio that is managed for short-term profit-taking. Trading securities are held at fair value, with gains and losses being recorded in profit or loss in accordance with NZ GAAP.</p>
+<h4>Loans and advances</h4>
+<p>Loans and advances (or receivables) are financial assets with fixed or determinable payments that are not quoted in an active market. Loans are financial assets that:</p>
+<ol>
+    <li>are created when a creditor lends funds directly to a debtor</li>
+    <li>are evidenced by non-negotiable documents.</li>
+</ol>
+<h4>Other net adjustments for loans and advances</h4>
+<p>Adjustments currently included in &lsquo;Net loans and advances&rsquo; as reported in Disclosure Statements.</p>
+<h4>Securities purchased under agreement to resell</h4>
+<p>Securities purchased under agreement to re-sell with counterparties (including with us).</p>
+<h4>Shares and other equity investments</h4>
+<p>Shares are referred to as equity and represent ownership of part of a company. Shares can be listed, unlisted or units in investment funds.</p>
+<h4>Derivatives in an asset position</h4>
+<p>Derivatives are instruments that derive their value from an underlying asset, an underlying liability, an index or reference rate. Derivatives in an asset position are contracts where the market value of the closing position is positive at the reporting date.</p>
+<h4>Other assets</h4>
+<p>All other assets not classified including insurance assets, accounts receivable, dividends receivable, tax assets, property plant and equipment, goodwill and intangibles.</p>
+<h3>Liabilities</h3>
+<h4>Deposits</h4>
+<p>Deposits are standard, non-negotiable contracts open to the public that allow the placements of variable amounts of funds and the later withdrawal. Deposits exclude any debt securities but include redeemable shares issued by building societies to customers</p>
+<h4>Transaction balances</h4>
+<p>These include balances where the purpose of the account is primarily for making transactions or everyday banking by customers. Balances are on call.</p>
+<h4>Savings balances</h4>
+<p>These include balances where the purpose of the account is primarily for saving. For some balances disincentives may apply if used for transaction purposes; that is, a penalty may apply such as loss of bonus interest. Balances are on call.</p>
+<h4>Term deposit balances</h4>
+<p>Customer time or term deposits with a maturity of greater than one day.</p>
+<h4>Other net adjustments for deposits</h4>
+<p>Adjustments currently included in &lsquo;total deposits&rsquo; as reported in Disclosure Statements.</p>
+<h4>Debt securities (issued)</h4>
+<p>Debt securities are negotiable instruments serving as evidence of a debt, can be bought or sold between two parties and have basic terms defined, such as notional amount (amount borrowed), interest rate and maturity/renewal date. Debt securities issued include CDs, preferred stock, collateralised securities (such as CDOs, CMOs, GNMAs) and zero-coupon securities. Includes short-term, subordinated, and other long-term debt securities.</p>
+<p>Debt securities issued comprises securities issued in New Zealand and issued offshore.</p>
+<h4>Short-term debt securities ( &le; one year)</h4>
+<p>Debt securities that have an original term to maturity of one year or less.</p>
+<h4>Subordinated debt securities ( &gt; one year)</h4>
+<p>Tradable subordinated debt securities (not loans) as defined under the Basel Capital Adequacy framework including those held by parents and related parties.</p>
+<h4>All other long-term debt securities ( &gt; one year)</h4>
+<p>All other debt securities that have an original term to maturity of greater than one year.</p>
+<h4>Other net adjustments for debt securities</h4>
+<p>Adjustments currently included in &lsquo;total debt securities&rsquo; as reported in Disclosure Statements.</p>
+<h4>Borrowings</h4>
+<p>Borrowing is a loan to the bank. A loan is a financial liability created when funds are borrowed directly from a lender and are evidenced by documents that are not negotiable. Includes subordinated and other borrowed funds. Also includes securities sold under agreement to repurchase.</p>
+<h4>Subordinated loans</h4>
+<p>Subordinated loans as defined under the Basel Capital Adequacy framework.</p>
+<h4>Securities sold under agreement to repurchase</h4>
+<p>Securities sold under agreements to repurchase with banks (including with us).</p>
+<h4>All other borrowed funds</h4>
+<p>All other borrowing from parents (except subordinated borrowings and subordinated debt securities), cash collateral received in relation to derivative trades, and all other funding not classified as deposits or securities.</p>
+<h4>Other net adjustments for borrowings</h4>
+<p>Adjustments currently included in &lsquo;total borrowing&rsquo; as reported in Disclosure Statements.</p>
+<h4>Derivatives in a liability position</h4>
+<p>Derivatives are instruments that derive their value from an underlying asset, an underlying liability, an index or reference rate. Derivatives in a liability position are contracts where the market value of the closing position is negative at the reporting date.</p>
+<h4>Other liabilities</h4>
+<p>All liabilities not already classified.</p>
+<h3>Equity</h3>
+<h4>Ordinary shares</h4>
+<p>Ordinary share capital on issue.</p>
+<h4>Preference shares</h4>
+<p>Preference shares have a priority over dividend payments and to the assets of the reporting company.</p>
+<h4>Reserves</h4>
+<p>Profits that are not distributed to shareholders as dividends but are kept as a reserve for specific purposes.</p>
+<h4>Retained earnings</h4>
+<p>Profits that are not distributed to shareholders as dividends but are reinvested in the bank.</p>
+<h4>Other</h4>
+<p>Any equity not separately identified including branch capital.</p>
+<h3>Sector</h3>
+<h4>Residents</h4>
+<p>Persons, companies and other entities that are ordinarily domiciled or have a principal centre of economic interest in New Zealand.</p>
+<h4>Financial businesses</h4>
+<p>This sector consists of resident financial institutions that mainly pursue financial services.</p>
+<p>The major subsectors are:</p>
+<ul>
+    <li>Reserve Bank of New Zealand</li>
+    <li>registered banks</li>
+    <li>other depository institutions</li>
+    <li>other financial institutions.</li>
+</ul>
+<h4>Non-financial businesses</h4>
+<p>Non-financial businesses consist of resident business enterprises that produce goods and non-financial services to sell at competitive market prices that are sufficient to generate a profit or surplus in the long term. Includes residential investor property use loans.</p>
+<h4>General government</h4>
+<p>General government comprises:</p>
+<ul>
+    <li>central government</li>
+    <li>local government.</li>
+</ul>
+<h4>Central government</h4>
+<p>Central government includes organisational units of central government responsible for functions such as taxation, law and order, defence, and those responsible for advancing the economic and social wellbeing of the country in other ways.</p>
+<h4>Local government</h4>
+<p>This sector consists of territorial authorities and regional councils, as well as other non-market units and non-profit institutions they control. They are responsible for functions such as town planning, providing local infrastructure, libraries, museums and sports grounds.</p>
+<h4>Non-profit institutions serving households (NPISH)</h4>
+<p>This sector includes organisations that provide goods or services to their members, or to other households, without charge or at prices that are not economically significant.</p>
+<p>The main kinds of organisations included are:</p>
+<ul>
+    <li>community and social groups</li>
+    <li>philanthropic organisations.</li>
+</ul>
+<h4>Households</h4>
+<p>This sector includes individuals, family trusts and estates.</p>
+<h4>Non-residents</h4>
+<p>Persons, companies and other entities that are ordinarily domiciled or have a principal centre of economic interest in a country other than New Zealand. Includes financial institutions abroad, sovereign abroad, non-financial business abroad and households abroad.</p>
+<h4>Sovereign abroad</h4>
+<p>Non-New Zealand sovereigns, supranational and quasi-sovereign entities.</p>
+<h4>Financial institutions abroad</h4>
+<p>This sector consists of non-resident financial institutions that mainly pursue financial services.</p>
+<h4>Non-financial business abroad</h4>
+<p>Includes non-resident business enterprises that produce goods and non-financial services to sell at competitive market prices that are sufficient to generate a profit or surplus in the long term.</p>
+<h4>Households abroad</h4>
+<p>This sector includes individuals, family trusts and estates ordinarily domiciled or have a principal centre of economic interest in a country other than New Zealand.</p>
+<h4>Other abroad</h4>
+<p>All other non-resident entities not already classified.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion__container">
+                                        <div class="accordion ">
+                                            <h3 class="heading--h5">
+                                                <button type="button"
+                                                        aria-controls="accordion-content-4-4"
+                                                        class="accordion__button js-accordion-trigger"
+                                                        aria-expanded="false"
+                                                        id="accordion-title-4-4">
+                                                    <svg class="accordion__button-icon"
+                                                         viewBox="0 0 45 45"
+                                                         xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         focusable="false">
+                                                        <use xlink:href="/public/assets/icons/spritemap.svg#chevron-right"></use>
+                                                    </svg>
+                                                    <a name="azqoctrwvUWAhFnh8a25UA" ></a>
+                                                    Series description (Loan, ANZSIC and Other)
+                                                </button>
+                                            </h3>
+                                            <div id="accordion-content-4-4" role="region" aria-labelledby="accordion-title-4-4" class="accordion__content">
+                                                <div class="component rich-text rich-text--full-width component--no-margin col-12">
+                                                    <div class="component-content">
+                                                        <h3>Loan purpose</h3>
+<h4>Housing</h4>
+<p>Housing comprises:</p>
+<ul>
+    <li>owner occupier property use</li>
+    <li>residential investor property use.</li>
+</ul>
+<h4>Owner occupier property use</h4>
+<p>Owner occupiers are borrowers who own or are in the process of buying or building the house or flat they will live in as their principal place of residence. An owner can occupy more than one property; for example, a family home and a holiday home. Only households can have owner occupier property use loans.</p>
+<h4>Residential investor property use</h4>
+<p>Investors are entities or persons borrowing for the purpose of building or purchasing residential property to rent. This includes &lsquo;mum and dad&rsquo; investor loans and any person(s) that have a separate residential investor property use loan that is not for their normal business purpose.</p>
+<h4>Personal consumer loans</h4>
+<p>Personal or consumer loans that are not fully secured on residential property including overdrafts, credit cards and term loans.</p>
+<h4>Business loans</h4>
+<p>Business loans comprise:</p>
+<ul>
+    <li>loans (for business use) to non-financial businesses that are fully secured by residential mortgage</li>
+    <li>loans to non-financial businesses that not fully secured by residential mortgage.</li>
+</ul>
+<p>Excludes agriculture loans.</p>
+<h4>Commercial property</h4>
+<p>Includes:</p>
+<ul>
+    <li>investment property</li>
+    <li>property development &ndash; commercial</li>
+    <li>property development &ndash; residential.</li>
+</ul>
+<h4>Investment property</h4>
+<p>Includes primarily commercial property for capital value appreciation and associated cash flows.</p>
+<h4>Property development &ndash; commercial</h4>
+<p>Includes primarily construction of office, retail or other commercial developments.</p>
+<h4>Property development &ndash; residential</h4>
+<p>Includes primarily residential sub-division and residential apartment developments.</p>
+<h4>Other business</h4>
+<p>All other business loans that are not for commercial property. Excludes agriculture loans.</p>
+<h4>Agriculture loans</h4>
+<p>Business loans to the agriculture industry (ANZSIC06) including:</p>
+<ul>
+    <li>dairy farming</li>
+    <li>sheep, beef cattle and grain farming</li>
+    <li>horticulture</li>
+    <li>other agriculture on farm.</li>
+</ul>
+<p>Does not include any loans to the agriculture industry for residential investor property use.</p>
+<h4>Financial institutions loans</h4>
+<p>Loans to financial institutions. Does not include any loans to financial institutions for residential investor property use.</p>
+<h4>Other loans</h4>
+<p>All other loans to general government non-profit institutions serving households.</p>
+<h3>Loan product</h3>
+<h4>Interest only</h4>
+<p>Loans that have no scheduled principal repayment. This does not include revolving credit loans that have a fixed limit or revolving credit loans that have a scheduled reducing limit.</p>
+<h4>Revolving credit</h4>
+<p>Revolving credit loans are loans that have a fixed limit but no scheduled principal repayment. Such loans can be redrawn and paid back repeatedly within approved limits without further credit approval. This does not include revolving credit loans that have a scheduled reducing limit.</p>
+<h4>Principal and interest</h4>
+<p>Loans that have scheduled principal repayment; for example, table loans. This includes revolving credit loans that have a scheduled reducing limit.</p>
+<h4>Overdraft (personal consumer)</h4>
+<p>Available balance is below zero (overdrawn).</p>
+<h4>Credit cards (personal consumer)</h4>
+<p>Outstanding loans originated and still managed via credit cards.</p>
+<h4>Term loans (personal consumer)</h4>
+<p>Loan that is repaid in regular payments over a set period of time. Does not include term loans fully secured by residential property.</p>
+<h4>All other loans</h4>
+<p>All other loans and advances not included elsewhere.</p>
+<h3>Loans fully secured by residential mortgage</h3>
+<h4>Loans fully secured by residential mortgage</h4>
+<p>Loans secured by a mortgage over a residential property. Excludes loans cross collateralised between residential property and other assets where the share attributable to the residential property cannot be identified.</p>
+<h4>Owner occupier property use</h4>
+<p>Owner occupiers are borrowers who own or are in the process of buying or building the house or flat they will live in as their principal place of residence. An owner can occupy more than one property; for example, a family home and a holiday home.</p>
+<h4>Residential investor property use</h4>
+<p>Investors are entities or persons borrowing for the purpose of building or purchasing residential property to rent. This includes &lsquo;mum and dad&rsquo; investor loans and any person(s) that have a separate residential investor property use loan that is not for their normal business purpose.</p>
+<h4>Business loans secured by residential property</h4>
+<p>Business lending where the only security type is a residential mortgage loan. The borrower declares that the loan is for business purposes as part of the loan application. Excludes loans cross collateralised between residential property and other assets where the share attributable to the residential property cannot be identified.</p>
+<h3>Loan repricing</h3>
+<h4>Floating</h4>
+<p>Floating rate loans where the interest rate can or does change the following business day and offset loans.</p>
+<h4>Fixed</h4>
+<p>All other loans that are not floating or non-interest bearing, which are reporting in the bucket in which the interest rate resets. Loans are reported on a non-amortised basis i.e. the fully outstanding loan principal is reported in the time bucket in which the loan&rsquo;s interest rate is re-priced or reset.</p>
+<h3>ANZSIC</h3>
+<h4>ANZSIC 2006</h4>
+<p>The Australian and New Zealand Standard Industrial Classification (ANZSIC) 2006 is used to compile and analyse industry statistics in New Zealand and Australia.</p>
+<p>Data for loans by (ANZSIC) industry (S34) will not align with loans by sector (S30) or purpose (S31). For example:</p>
+<ul>
+    <li>Loans by (ANZSIC) industry (S34) includes securities purchased under agreement to resell (repos).</li>
+    <li>Loans to the public administration and safety industry does not include Crown entities (S34). Loans to Crown entities are included in the general government sector (S30).</li>
+    <li>Loans to ACC and EQC are included in the insurance industry (S34). Loans to ACC and EQC are included in the general government sector (S30).</li>
+    <li>Loans to district health boards (DHBs) are included in the health care and social assistance industry (S43). Loans to DHBs are included in the general government sector (S30).</li>
+    <li>Loans to the agriculture industry includes loans for residential investor property use and loans to Crown entities involved in agriculture (S34). The loans for agriculture purposes does not include residential investor property use or loans to Crown entities involved in agriculture (S31).</li>
+    <li>Loans to the rental, hiring and real estate surveys includes loans for residential investor property use (S34).</li>
+</ul>
+<h3>Loans by business size</h3>
+<h4>Loans by business size</h4>
+<p>Business loans are categorised by the size of their business turnover. Further guidance on loans by business size can be found in the Bank Balance Sheet definitions. Business loans by size is a breakdown of business loans in table S31.</p>
+<h4>Small</h4>
+<p>Turnover less than $1m.</p>
+<h4>Medium</h4>
+<p>Turnover greater than $1m and less than $50m.</p>
+<h4>Large</h4>
+<p>Turnover greater than $50m.</p>
+<h4>SME</h4>
+<p>Small and medium enterprise loans.</p>
+<h3>Loans by asset quality</h3>
+<h4>Total loans</h4>
+<p>Gross loans and advances.</p>
+<h4>Impaired loans</h4>
+<p>A loan or advance is impaired when one or more events occur that cause a lender to believe they will not receive all of the future principal and interest repayments that have been contractually agreed with the borrower. These events could include: the borrower entering significant financial difficulty or bankruptcy; the borrower failing to make repayments as required and the loan becoming past due; the contractual agreement between the lender and borrower being restructured or amended; the borrower breaching covenants or other terms and conditions that have been contractually agreed with the lender.</p>
+<h4>Loans 90 days past due but not impaired</h4>
+<p>A loan or advance is past due when the borrower fails to make a payment (of principal and/or interest) when that payment was contractually due. When a borrower has failed to make repayments on a loan for 90 or more days, that loan is 90 days past due.</p>
+<h4>Total non-performing loans</h4>
+<p>The total value of loans and advances that are 90 days past due plus impaired loans.</p>
+<h4>Non-performing loans ratio (%)</h4>
+<p>Ratio of total non-performing loans to total loans.</p>
+<h4>Individual provisions</h4>
+<p>An allowance for expected credit impairment loss on individual loans and advances where the borrower is having difficulty servicing the loan, or where a loan or advance becomes non-performing.</p>
+<h4>Collective provisions</h4>
+<p>An allowance for anticipated credit impairment loss from groups of loans and advances.</p>
+<h4>Difference to other published tables</h4>
+<p>The table S50 Loans by Asset Quality will not align with series published in table S31 Loans by Purpose due to business loans fully secured by residential property not being collected with a detailed asset quality breakdown. Business loans fully secured by residential property are published in table S33 Loans Fully Secured by Residential Mortgage, by time until next repricing.</p>
+<h3>Other</h3>
+<h4>Foreign currency (FX)</h4>
+<p>The New Zealand dollar equivalent of foreign currency balances.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion__container">
+                                        <div class="accordion ">
+                                            <h3 class="heading--h5">
+                                                <button type="button"
+                                                        aria-controls="accordion-content-5-4"
+                                                        class="accordion__button js-accordion-trigger"
+                                                        aria-expanded="false"
+                                                        id="accordion-title-5-4">
+                                                    <svg class="accordion__button-icon"
+                                                         viewBox="0 0 45 45"
+                                                         xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         focusable="false">
+                                                        <use xlink:href="/public/assets/icons/spritemap.svg#chevron-right"></use>
+                                                    </svg>
+                                                    <a name="msG8ey2wOECYxz4A9xGQHQ" ></a>
+                                                    Legend
+                                                </button>
+                                            </h3>
+                                            <div id="accordion-content-5-4" role="region" aria-labelledby="accordion-title-5-4" class="accordion__content">
+                                                <div class="component rich-text rich-text--full-width component--no-margin col-12">
+                                                    <div class="component-content">
+                                                        <h3>Symbols and conventions for summary table</h3>
+<div class="table-wrapper">
+<table class="table--data">
+    <thead>
+        <tr>
+            <th>Symbol or convention</th>
+            <th>Definition</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td style="text-align: left;">Zero or value rounded to zero</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td style="text-align: left;">Not applicable</td>
+        </tr>
+        <tr>
+            <td>..</td>
+            <td style="text-align: left;">Not available</td>
+        </tr>
+        <tr>
+            <td><strong>bold</strong></td>
+            <td style="text-align: left;">Revised/new</td>
+        </tr>
+        <tr>
+            <td><em>italics</em></td>
+            <td style="text-align: left;">Provisional</td>
+        </tr>
+        <tr>
+            <td class="table__cell--highlighted">Light grey background</td>
+            <td style="text-align: left;">Historical</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<h3>General notes</h3>
+<ul>
+    <li>Individual figures may not sum to the totals due to rounding</li>
+    <li>Percentage changes are calculated on unrounded numbers</li>
+    <li>You are free to copy, distribute and adapt these statistics subject to the conditions listed on our <a href="/about-our-site/terms-of-use">copyright page</a>.</li>
+</ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+<!--START CardContainer-->
+
+
+        <div class="component component--rebase section-cards-component col-12 component--taupe component--full-width section-cards--is-carousel" data-ga4-component-name="">
+            <div class="component-content">
+
+                    <section class="component__section">
+                        <a name="OMaKGNOgkMYolGUdVQlg" ></a>
+
+                        
+            <div class="component__pretext-small">
+                <div class="component__pretext-small-container">
+                    
+
+                    
+
+                        <h2 
+ class="heading--h4 "      >
+Related statistics    </h2>
+
+
+                            <div class="paragraph--default">
+            View our Registered banks statistical series
+        </div>
+
+
+                    
+                </div>
+
+                <a href="/statistics/series/registered-banks" class='button js-ga4-tracking button--secondary' data-ga4-component-type='button' data-ga4-component-name='button' data-ga4-interaction-type='click' data-ga4-interaction-detail='Related statistics' data-ga4-interaction-value='View all L and S series' data-ga4-interaction-url='/statistics/series/registered-banks'>        <span class="button__text">
+            View all L and S series
+        </span>
+        <svg class="button__icon"
+             viewBox="0 0 45 45"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             focusable="false">
+            <use xlink:href="/public/assets/icons/spritemap.svg#arrow-right-short"></use>
+        </svg>
+</a>
+
+            </div>
+
+
+
+
+
+
+
+
+                        <div class="section-cards__grid-container">
+                            <div class="section-cards__grid-inner">
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-mismatch-ratios" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 1' data-ga4-interaction-value='Banks: Mismatch ratios (L1)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-mismatch-ratios'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Mismatch ratios (L1)</h3>
+
+
+                <p class="card__description" >This data tracks the mismatch ratio of banks. This is a measure of a bank&#39;s liquidity over a 1-week or 1-month period.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-core-funding-ratio" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 2' data-ga4-interaction-value='Banks: Core funding ratio (L2)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-core-funding-ratio'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Core funding ratio (L2)</h3>
+
+
+                <p class="card__description" >This data tracks the core funding ratio (CFR) of banks. The CFR compares an estimate of a bank&#39;s funding that is stable and can be assumed to stay in place for at least 1 year (‘core funding&#39;), and the core lending business of a bank that needs to be funded on a continuing basis.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-face-value-of-funding-by-residual-maturity" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 3' data-ga4-interaction-value='Banks: Face value of funding by residual maturity (L3)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-face-value-of-funding-by-residual-maturity'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Face value of funding by residual maturity (L3)</h3>
+
+
+                <p class="card__description" >This data presents the funding obtained by banks (such as deposits and the issuing of bonds), broken down by the remaining term of such funding.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-balance-sheet" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 4' data-ga4-interaction-value='Banks: Balance sheet (S10)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-balance-sheet'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Balance sheet (S10)</h3>
+
+
+                <p class="card__description" >This data provides information on the assets and liabilities of registered banks in New Zealand.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-income-statement" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 5' data-ga4-interaction-value='Banks: Summary income statement and related ratios (S20)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-income-statement'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Summary income statement and related ratios (S20)</h3>
+
+
+                <p class="card__description" >This data is a summary of the income and expenditure flows of banks along with a summary balance sheet and a variety of accounting ratios.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-income-statement" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 6' data-ga4-interaction-value='Banks: Income statement (S21)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-income-statement'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Income statement (S21)</h3>
+
+
+                <p class="card__description" >This data is a detailed representation of the income and expenditure flows of banks in New Zealand.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-assets-loans-by-sector" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 7' data-ga4-interaction-value='Banks: Assets – Loans by sector (S30)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-assets-loans-by-sector'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans by sector (S30)</h3>
+
+
+                <p class="card__description" >This data provides information on bank lending by sector.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-assets-loans-by-purpose" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 8' data-ga4-interaction-value='Banks: Assets – Loans by purpose (S31)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-assets-loans-by-purpose'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans by purpose (S31)</h3>
+
+
+                <p class="card__description" >This data provides information on bank lending by the purpose of the loan, for example: housing – owner occupier and investor, business, agriculture or personal loans.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-assets-loans-by-product" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 9' data-ga4-interaction-value='Banks: Assets – Loans by product (S32)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-assets-loans-by-product'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans by product (S32)</h3>
+
+
+                <p class="card__description" >This data provides information on bank lending by product, for example interest only, revolving credit or principal and interest.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-assets-loans-fully-secured-by-residential-mortgage" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 10' data-ga4-interaction-value='Banks: Assets – Loans fully secured by residential mortgage, by time until next repricing (S33)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-assets-loans-fully-secured-by-residential-mortgage'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans fully secured by residential mortgage, by time until next repricing (S33)</h3>
+
+
+                <p class="card__description" >This data classifies all loans secured by residential property into fixed and floating loans, and shows the amounts of fixed loans at different durations as they are due to be repriced.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-liabilities-deposits-by-industry" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 11' data-ga4-interaction-value='Banks: Assets – Loans and repos by industry (S34)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-liabilities-deposits-by-industry'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans and repos by industry (S34)</h3>
+
+
+                <p class="card__description" >This data provides information on bank lending, including Repos, classified by industrial activity (ANZSIC classification).</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-assets-loans-by-business-size" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 12' data-ga4-interaction-value='Banks: Assets – Loans by business size (S35)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-assets-loans-by-business-size'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans by business size (S35)</h3>
+
+
+                <p class="card__description" >This data provides information on bank business lending by business size.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-liabilities-deposits-by-sector" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 13' data-ga4-interaction-value='Banks: Liabilities – Deposits by sector (S40)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-liabilities-deposits-by-sector'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Liabilities – Deposits by sector (S40)</h3>
+
+
+                <p class="card__description" >This data provides information on bank deposits, by sector.</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-liabilities-deposits-by-industry" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 14' data-ga4-interaction-value='Banks: Liabilities – Deposits by industry (S41)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-liabilities-deposits-by-industry'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Liabilities – Deposits by industry (S41)</h3>
+
+
+                <p class="card__description" >This data provides information on bank deposits, classified by industrial activity (ANZSIC classification).</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+<!--START Card-->
+
+
+    <div class="component card-component component--no-margin   col-12" data-ga4-component-name="clickable card with carousel">
+        <div class="component-content">
+
+
+<a href="/statistics/series/registered-banks/banks-assets-loans-by-asset-quality" class='js-ga4-tracking card component-card ' data-ga4-component-type='card carousel' data-ga4-interaction-type='click' data-ga4-interaction-detail='position: 15' data-ga4-interaction-value='Banks: Assets – Loans by asset quality (S50)' data-ga4-interaction-url='/statistics/series/registered-banks/banks-assets-loans-by-asset-quality'>        <div class="card__content">
+
+
+            <div class="card__content-inner">
+                <h3 class="heading--h5 card__heading" >Banks: Assets – Loans by asset quality (S50)</h3>
+
+
+                <p class="card__description" >This data provides information on bank deposits, classified by industrial activity (ANZSIC classification).</p>
+
+            </div>
+        </div>
+</a>        </div>
+    </div>
+<!--END Card-->
+
+
+                            </div>
+                        </div>
+                    </section>
+
+            </div>
+        </div>
+<!--END CardContainer-->
+
+
+</div>                </div>
+<div class="row">
+
+
+<!--START RBNZ Page Feedback Form-->
+    <div class="component feedback-form-component component--no-margin ">
+        <div class="component-content">
+            <div class="feedback-form"
+                 id="react-feedback-form"
+                 data-public-key="6LfijMMhAAAAABM_2nbK-I2zR2sxu9zuF7ClKfcP">
+            </div>
+        </div>
+    </div>
+<!--END RBNZ Page Feedback Form-->
+</div>            </main>
+                <!-- BEGIN NOINDEX -->
+<div class="row">
+
+
+    <div class="footer-scroll-button-container" data-ga4-component-name="scroll to top">
+        <button type="button" class="footer__button footer__button-scroll-up-page footer__button-scroll-up-page--hide js-ga4-tracking" aria-label="Scroll to top"
+                data-ga4-component-type="button" data-ga4-interaction-type="click" data-ga4-interaction-detail="" data-ga4-interaction-value="Scroll to top">
+            <svg class="footer__button-scroll-icon" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#arrow"></use>
+            </svg>
+        </button>
+    </div>
+    <footer class="footer js-ga-tracking" data-ga-category="footer navigation">
+        <button type="button" class="footer__button footer__button-scroll js-ga4-tracking" aria-label="Scroll to top" data-ga4-component-name="scroll to top"
+                data-ga4-component-type="button" data-ga4-interaction-type="click" data-ga4-interaction-detail="" data-ga4-interaction-value="Scroll to top">
+            <svg class="footer__button-scroll-icon"
+                 viewBox="0 0 45 45"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#arrow"></use>
+            </svg>
+        </button>
+
+        <div class="footer__inner">
+            <div class="footer__nav-container">
+
+                    <div class="footer__nav-links-container">
+
+                        <div class="footer__nav-heading-section">
+                            <span class="footer__nav-heading">Useful links</span>
+                        </div>
+
+                        <nav class="footer__nav-links">
+                            <ul class="footer__list">
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/news-and-events/news" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="Browse recent news" data-ga4-interaction-url="/news-and-events/news">
+                                            Browse recent news
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/research-and-publications/publications/publications-library" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="Search for publications" data-ga4-interaction-url="/research-and-publications/publications/publications-library">
+                                            Search for publications
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/news-and-events/events" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="See upcoming events" data-ga4-interaction-url="/news-and-events/events">
+                                            See upcoming events
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/statistics" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="Access key statistics" data-ga4-interaction-url="/statistics">
+                                            Access key statistics
+                                        </a>
+                                    </li>
+                            </ul>
+                            <ul class="footer__list">
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/monetary-policy/about-monetary-policy/inflation-calculator" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="Use the inflation calculator" data-ga4-interaction-url="/monetary-policy/about-monetary-policy/inflation-calculator">
+                                            Use the inflation calculator
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/monetary-policy/monetary-policy-decisions" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="View past OCR decisions" data-ga4-interaction-url="/monetary-policy/monetary-policy-decisions">
+                                            View past OCR decisions
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/money-and-cash/money-and-cash-resources/what-to-do-with-damaged-or-old-cash" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="Exchange old or damaged cash" data-ga4-interaction-url="/money-and-cash/money-and-cash-resources/what-to-do-with-damaged-or-old-cash">
+                                            Exchange old or damaged cash
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/regulation-and-supervision/cross-sector-oversight/registers-of-entities-we-regulate/registered-banks-in-new-zealand" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="Useful links" data-ga4-interaction-value="View registered banks" data-ga4-interaction-url="/regulation-and-supervision/cross-sector-oversight/registers-of-entities-we-regulate/registered-banks-in-new-zealand">
+                                            View registered banks
+                                        </a>
+                                    </li>
+                            </ul>
+                        </nav>
+                    </div>
+                                    <div class="footer__nav-links-container">
+                        <div class="footer__nav-heading-section">
+                            <span class="footer__nav-heading">About us</span>
+                        </div>
+                        <nav class="footer__nav-links">
+                            <ul class="footer__section-list-right">
+                                        <li>
+                                            <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/about-us/careers" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="About us" data-ga4-interaction-value="Careers" data-ga4-interaction-url="/hub/data/site-data/footer/about-us/careers">
+                                                Careers
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a target="" class="footer__primary-nav-item js-ga4-tracking" href="https://consultations.rbnz.govt.nz/" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="About us" data-ga4-interaction-value="Consultations" data-ga4-interaction-url="/hub/data/site-data/footer/about-us/consultations">
+                                                Consultations
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/about-our-site/contact" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="About us" data-ga4-interaction-value="Contact us" data-ga4-interaction-url="/hub/data/site-data/footer/about-us/contact-us">
+                                                Contact us
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a target="" class="footer__primary-nav-item js-ga4-tracking" href="/about-our-site/sign-up-for-updates" data-ga4-component-type="link" data-ga4-component-name="footer navigation" data-ga4-interaction-type="click" data-ga4-interaction-detail="About us" data-ga4-interaction-value="Sign up for updates" data-ga4-interaction-url="/hub/data/site-data/footer/about-us/sign-up-for-updates">
+                                                Sign up for updates
+                                            </a>
+                                        </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+
+
+                <nav class="footer__social-nav" aria-label="footer social media navbar">
+                    <a href="/">
+                        <img class="footer__logo-image" src="/public/assets/images/footer-logo-white.svg" alt="New Zealand Government Logo" width="221" height="33">
+                    </a>
+                    <div class="footer__nav-links footer__nav-links--last">
+                                <a class="footer__social-nav-item" href="https://twitter.com/reservebankofnz" target="_blank" rel="noopener"
+           data-ga-action="social network links" data-ga-label="X" aria-label="X">
+            <span class="visually-hidden">X</span>
+            <svg class="footer__social-nav-item-icon"
+                 viewBox="0 0 45 45"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#X"></use>
+            </svg>
+        </a>
+
+                                <a class="footer__social-nav-item" href="https://nz.linkedin.com/company/reserve-bank-of-new-zealand" target="_blank" rel="noopener"
+           data-ga-action="social network links" data-ga-label="Linkedin" aria-label="Linkedin">
+            <span class="visually-hidden">Linkedin</span>
+            <svg class="footer__social-nav-item-icon"
+                 viewBox="0 0 45 45"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#linkedin"></use>
+            </svg>
+        </a>
+
+                                <a class="footer__social-nav-item" href="https://www.facebook.com/ReserveBankofNZ" target="_blank" rel="noopener"
+           data-ga-action="social network links" data-ga-label="Facebook" aria-label="Facebook">
+            <span class="visually-hidden">Facebook</span>
+            <svg class="footer__social-nav-item-icon"
+                 viewBox="0 0 45 45"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#facebook"></use>
+            </svg>
+        </a>
+
+                                <a class="footer__social-nav-item" href="https://www.youtube.com/user/reservebankofnz" target="_blank" rel="noopener"
+           data-ga-action="social network links" data-ga-label="Youtube" aria-label="Youtube">
+            <span class="visually-hidden">Youtube</span>
+            <svg class="footer__social-nav-item-icon"
+                 viewBox="0 0 45 45"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#youtube"></use>
+            </svg>
+        </a>
+
+                                <a class="footer__social-nav-item" href="https://www.instagram.com/reservebankofnz" target="_blank" rel="noopener"
+           data-ga-action="social network links" data-ga-label="instagram" aria-label="instagram">
+            <span class="visually-hidden">instagram</span>
+            <svg class="footer__social-nav-item-icon"
+                 viewBox="0 0 45 45"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 focusable="false">
+                <use xlink:href="/public/assets/icons/spritemap.svg#Instagram"></use>
+            </svg>
+        </a>
+
+                    </div>
+                </nav>
+            </div>
+            <div class="footer__details">
+                    <small class="footer__details-copy">© Copyright 2026 Reserve Bank of New Zealand</small>
+
+                <nav class="footer__primary-nav" aria-label="Footer primary navigation">
+                            <a class="footer__primary-bottom-nav-item" href="/about-our-site/terms-of-use"
+                               rel=""
+                               target=""
+                               data-ga-action="main links"
+                               data-ga-label="Terms of use">
+                                Terms of use
+                            </a>
+                            <a class="footer__primary-bottom-nav-item" href="/about-our-site/accessibility"
+                               rel=""
+                               target=""
+                               data-ga-action="main links"
+                               data-ga-label="Accessibility">
+                                Accessibility
+                            </a>
+                            <a class="footer__primary-bottom-nav-item" href="/about-our-site/privacy-policy"
+                               rel=""
+                               target=""
+                               data-ga-action="main links"
+                               data-ga-label="Privacy Policy">
+                                Privacy Policy
+                            </a>
+                </nav>
+
+                <a class="footer__logo" href="https://www.govt.nz" target="_blank" rel="noopener">
+                    <span class="visually-hidden">New Zealand Government Logo</span>
+                    <img class="footer__details-logo-image" src="/public/assets/images/nz-government-logo.svg" alt="New Zealand Government Logo" width="221" height="33">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+</div>                <!-- END NOINDEX -->
+                <!-- Placeholder for the Forms scripts -->
+
+
+
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/public/js/vendors.js?v=45855&cms=sprint1"></script>
+    <script src="/public/js/main.js?v=45855&cms=sprint1"></script>
+    <script src="/public/js/react.js?v=45855&cms=sprint1"></script>
+    <script src="/public/js/coveo.js?v=45855&cms=sprint1"></script>
+<script nonce="d3QSG+B/pUgn/iFPcZ6g4sUj3oE=">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='d3QSG+B/pUgn/iFPcZ6g4sUj3oE=';d.innerHTML="window.__CF$cv$params={r:'9d238724fd5a302a',t:'MTc3MTgxNjIwMw=='};var a=document.createElement('script');a.nonce='d3QSG+B/pUgn/iFPcZ6g4sUj3oE=';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

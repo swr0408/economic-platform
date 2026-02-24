@@ -1,0 +1,3796 @@
+{
+  "data": [
+    {
+      "date": "1915-09-01",
+      "all_qoq": 8.2,
+      "all_yoy": null,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1916-09-01",
+      "all_qoq": 7.9,
+      "all_yoy": null,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1917-09-01",
+      "all_qoq": 9.8,
+      "all_yoy": null,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1918-09-01",
+      "all_qoq": 12.3,
+      "all_yoy": 44.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1919-03-01",
+      "all_qoq": 5.9,
+      "all_yoy": 40.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1919-09-01",
+      "all_qoq": 3.1,
+      "all_yoy": 34.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1920-03-01",
+      "all_qoq": 8.5,
+      "all_yoy": 33.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1920-09-01",
+      "all_qoq": 6.4,
+      "all_yoy": 26.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1921-03-01",
+      "all_qoq": 2.2,
+      "all_yoy": 21.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1921-09-01",
+      "all_qoq": -3.9,
+      "all_yoy": 13.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1922-03-01",
+      "all_qoq": -7.4,
+      "all_yoy": -3.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1922-09-01",
+      "all_qoq": -3.6,
+      "all_yoy": -12.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1923-03-01",
+      "all_qoq": -1.2,
+      "all_yoy": -15.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1923-09-01",
+      "all_qoq": 0.8,
+      "all_yoy": -11.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1924-03-01",
+      "all_qoq": 2.3,
+      "all_yoy": -1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1924-09-01",
+      "all_qoq": -1.2,
+      "all_yoy": 0.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1925-03-01",
+      "all_qoq": -0.4,
+      "all_yoy": 1.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1925-09-01",
+      "all_qoq": 2.2,
+      "all_yoy": 3.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1925-12-01",
+      "all_qoq": 0.3,
+      "all_yoy": 0.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1926-03-01",
+      "all_qoq": -0.7,
+      "all_yoy": 1.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1926-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 2.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1926-09-01",
+      "all_qoq": 0.1,
+      "all_yoy": 0.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1926-12-01",
+      "all_qoq": -0.4,
+      "all_yoy": -0.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1927-03-01",
+      "all_qoq": -0.2,
+      "all_yoy": -0.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1927-06-01",
+      "all_qoq": -0.4,
+      "all_yoy": -0.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1927-09-01",
+      "all_qoq": -0.4,
+      "all_yoy": -1.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1927-12-01",
+      "all_qoq": 0.1,
+      "all_yoy": -0.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1928-03-01",
+      "all_qoq": 0.0,
+      "all_yoy": -0.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1928-06-01",
+      "all_qoq": 0.6,
+      "all_yoy": 0.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1928-09-01",
+      "all_qoq": -0.5,
+      "all_yoy": 0.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1928-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 0.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1929-03-01",
+      "all_qoq": -0.6,
+      "all_yoy": 0.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1929-06-01",
+      "all_qoq": -0.2,
+      "all_yoy": -0.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1929-09-01",
+      "all_qoq": 0.3,
+      "all_yoy": 0.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1929-12-01",
+      "all_qoq": 0.0,
+      "all_yoy": -0.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1930-03-01",
+      "all_qoq": -0.7,
+      "all_yoy": -0.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1930-06-01",
+      "all_qoq": -0.6,
+      "all_yoy": -1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1930-09-01",
+      "all_qoq": -1.0,
+      "all_yoy": -2.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1930-12-01",
+      "all_qoq": -1.7,
+      "all_yoy": -4.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1931-03-01",
+      "all_qoq": -3.2,
+      "all_yoy": -6.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1931-06-01",
+      "all_qoq": -2.0,
+      "all_yoy": -7.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1931-09-01",
+      "all_qoq": -2.4,
+      "all_yoy": -9.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1931-12-01",
+      "all_qoq": -0.3,
+      "all_yoy": -7.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1932-03-01",
+      "all_qoq": -1.5,
+      "all_yoy": -6.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1932-06-01",
+      "all_qoq": -4.1,
+      "all_yoy": -8.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1932-09-01",
+      "all_qoq": -2.1,
+      "all_yoy": -7.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1932-12-01",
+      "all_qoq": -1.8,
+      "all_yoy": -9.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1933-03-01",
+      "all_qoq": -1.1,
+      "all_yoy": -8.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1933-06-01",
+      "all_qoq": -0.1,
+      "all_yoy": -5.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1933-09-01",
+      "all_qoq": 0.0,
+      "all_yoy": -3.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1933-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": -0.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1934-03-01",
+      "all_qoq": 0.5,
+      "all_yoy": 0.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1934-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1934-09-01",
+      "all_qoq": -0.6,
+      "all_yoy": 1.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1934-12-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1935-03-01",
+      "all_qoq": 2.0,
+      "all_yoy": 2.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1935-06-01",
+      "all_qoq": 1.1,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1935-09-01",
+      "all_qoq": 0.4,
+      "all_yoy": 3.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1935-12-01",
+      "all_qoq": 2.0,
+      "all_yoy": 5.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1936-03-01",
+      "all_qoq": -1.8,
+      "all_yoy": 1.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1936-06-01",
+      "all_qoq": 1.9,
+      "all_yoy": 2.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1936-09-01",
+      "all_qoq": 1.6,
+      "all_yoy": 3.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1936-12-01",
+      "all_qoq": 1.5,
+      "all_yoy": 3.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1937-03-01",
+      "all_qoq": 1.7,
+      "all_yoy": 6.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1937-06-01",
+      "all_qoq": 2.3,
+      "all_yoy": 7.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1937-09-01",
+      "all_qoq": 0.9,
+      "all_yoy": 6.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1937-12-01",
+      "all_qoq": 2.2,
+      "all_yoy": 7.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1938-03-01",
+      "all_qoq": -0.4,
+      "all_yoy": 5.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1938-06-01",
+      "all_qoq": 0.8,
+      "all_yoy": 3.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1938-09-01",
+      "all_qoq": 0.1,
+      "all_yoy": 2.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1938-12-01",
+      "all_qoq": 0.1,
+      "all_yoy": 0.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1939-03-01",
+      "all_qoq": 1.7,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1939-06-01",
+      "all_qoq": 1.4,
+      "all_yoy": 3.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1939-09-01",
+      "all_qoq": 1.2,
+      "all_yoy": 4.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1939-12-01",
+      "all_qoq": 3.1,
+      "all_yoy": 7.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1940-03-01",
+      "all_qoq": -1.3,
+      "all_yoy": 4.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1940-06-01",
+      "all_qoq": 1.6,
+      "all_yoy": 4.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1940-09-01",
+      "all_qoq": 1.3,
+      "all_yoy": 4.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1940-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 2.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1941-03-01",
+      "all_qoq": 0.2,
+      "all_yoy": 4.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1941-06-01",
+      "all_qoq": 1.2,
+      "all_yoy": 3.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1941-09-01",
+      "all_qoq": 0.4,
+      "all_yoy": 3.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1941-12-01",
+      "all_qoq": 2.0,
+      "all_yoy": 3.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1942-03-01",
+      "all_qoq": -1.3,
+      "all_yoy": 2.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1942-06-01",
+      "all_qoq": 1.6,
+      "all_yoy": 2.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1942-09-01",
+      "all_qoq": 1.9,
+      "all_yoy": 4.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1942-12-01",
+      "all_qoq": 1.7,
+      "all_yoy": 3.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1943-03-01",
+      "all_qoq": -1.2,
+      "all_yoy": 4.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1943-06-01",
+      "all_qoq": 0.3,
+      "all_yoy": 2.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1943-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1943-12-01",
+      "all_qoq": 1.3,
+      "all_yoy": 1.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1944-03-01",
+      "all_qoq": -0.9,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1944-06-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1944-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1944-12-01",
+      "all_qoq": 1.1,
+      "all_yoy": 1.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1945-03-01",
+      "all_qoq": -0.6,
+      "all_yoy": 1.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1945-06-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1945-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1945-12-01",
+      "all_qoq": 1.3,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1946-03-01",
+      "all_qoq": -0.9,
+      "all_yoy": 0.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1946-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": 1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1946-09-01",
+      "all_qoq": 0.8,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1946-12-01",
+      "all_qoq": -0.2,
+      "all_yoy": -0.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1947-03-01",
+      "all_qoq": -0.4,
+      "all_yoy": 0.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1947-06-01",
+      "all_qoq": 0.7,
+      "all_yoy": 0.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1947-09-01",
+      "all_qoq": 1.7,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1947-12-01",
+      "all_qoq": 8.0,
+      "all_yoy": 10.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1948-03-01",
+      "all_qoq": -0.5,
+      "all_yoy": 10.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1948-06-01",
+      "all_qoq": 1.2,
+      "all_yoy": 10.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1948-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 9.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1948-12-01",
+      "all_qoq": 0.2,
+      "all_yoy": 1.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1949-03-01",
+      "all_qoq": 0.0,
+      "all_yoy": 2.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1949-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": 1.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1949-09-01",
+      "all_qoq": 1.2,
+      "all_yoy": 1.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1949-12-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1950-03-01",
+      "all_qoq": 0.2,
+      "all_yoy": 2.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1950-06-01",
+      "all_qoq": 3.1,
+      "all_yoy": 5.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1950-09-01",
+      "all_qoq": 3.3,
+      "all_yoy": 7.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1950-12-01",
+      "all_qoq": 1.7,
+      "all_yoy": 8.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1951-03-01",
+      "all_qoq": 1.4,
+      "all_yoy": 9.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1951-06-01",
+      "all_qoq": 4.3,
+      "all_yoy": 11.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1951-09-01",
+      "all_qoq": 3.3,
+      "all_yoy": 11.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1951-12-01",
+      "all_qoq": 2.5,
+      "all_yoy": 11.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1952-03-01",
+      "all_qoq": 1.3,
+      "all_yoy": 11.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1952-06-01",
+      "all_qoq": 1.4,
+      "all_yoy": 8.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1952-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 6.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1952-12-01",
+      "all_qoq": 0.8,
+      "all_yoy": 4.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1953-03-01",
+      "all_qoq": 1.0,
+      "all_yoy": 4.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1953-06-01",
+      "all_qoq": 1.1,
+      "all_yoy": 4.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1953-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 4.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1953-12-01",
+      "all_qoq": 2.2,
+      "all_yoy": 5.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1954-03-01",
+      "all_qoq": 0.8,
+      "all_yoy": 5.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1954-06-01",
+      "all_qoq": 1.7,
+      "all_yoy": 5.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1954-09-01",
+      "all_qoq": 0.1,
+      "all_yoy": 4.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1954-12-01",
+      "all_qoq": -0.2,
+      "all_yoy": 2.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1955-03-01",
+      "all_qoq": 1.4,
+      "all_yoy": 3.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1955-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1955-09-01",
+      "all_qoq": 0.1,
+      "all_yoy": 2.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1955-12-01",
+      "all_qoq": 0.0,
+      "all_yoy": 2.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1956-03-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1956-06-01",
+      "all_qoq": 1.4,
+      "all_yoy": 2.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1956-09-01",
+      "all_qoq": 2.1,
+      "all_yoy": 4.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1956-12-01",
+      "all_qoq": 0.0,
+      "all_yoy": 4.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1957-03-01",
+      "all_qoq": -0.8,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1957-06-01",
+      "all_qoq": 1.4,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1957-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1957-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1958-03-01",
+      "all_qoq": 0.1,
+      "all_yoy": 2.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1958-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1958-09-01",
+      "all_qoq": 4.6,
+      "all_yoy": 6.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1958-12-01",
+      "all_qoq": 0.6,
+      "all_yoy": 6.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1959-03-01",
+      "all_qoq": 0.2,
+      "all_yoy": 6.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1959-06-01",
+      "all_qoq": 0.3,
+      "all_yoy": 5.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1959-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 2.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1959-12-01",
+      "all_qoq": -0.3,
+      "all_yoy": 1.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1960-03-01",
+      "all_qoq": -0.4,
+      "all_yoy": 0.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1960-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": 0.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1960-09-01",
+      "all_qoq": 0.9,
+      "all_yoy": 0.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1960-12-01",
+      "all_qoq": 1.0,
+      "all_yoy": 1.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1961-03-01",
+      "all_qoq": -0.4,
+      "all_yoy": 1.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1961-06-01",
+      "all_qoq": 0.0,
+      "all_yoy": 1.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1961-09-01",
+      "all_qoq": 1.5,
+      "all_yoy": 2.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1961-12-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1962-03-01",
+      "all_qoq": 0.3,
+      "all_yoy": 2.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1962-06-01",
+      "all_qoq": 0.3,
+      "all_yoy": 3.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1962-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 2.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1962-12-01",
+      "all_qoq": 0.7,
+      "all_yoy": 2.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1963-03-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1963-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1963-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1963-12-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1964-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 2.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1964-06-01",
+      "all_qoq": 0.9,
+      "all_yoy": 3.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1964-09-01",
+      "all_qoq": 1.5,
+      "all_yoy": 3.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1964-12-01",
+      "all_qoq": 1.6,
+      "all_yoy": 4.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1965-03-01",
+      "all_qoq": 0.2,
+      "all_yoy": 4.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1965-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": 3.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1965-09-01",
+      "all_qoq": 1.3,
+      "all_yoy": 3.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1965-12-01",
+      "all_qoq": 0.7,
+      "all_yoy": 2.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1966-03-01",
+      "all_qoq": 0.7,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1966-06-01",
+      "all_qoq": 0.6,
+      "all_yoy": 3.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1966-09-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1966-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1967-03-01",
+      "all_qoq": 2.5,
+      "all_yoy": 4.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1967-06-01",
+      "all_qoq": 2.7,
+      "all_yoy": 6.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1967-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 7.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1967-12-01",
+      "all_qoq": 0.1,
+      "all_yoy": 6.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1968-03-01",
+      "all_qoq": 1.0,
+      "all_yoy": 5.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1968-06-01",
+      "all_qoq": 1.3,
+      "all_yoy": 3.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1968-09-01",
+      "all_qoq": 1.2,
+      "all_yoy": 3.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1968-12-01",
+      "all_qoq": 1.5,
+      "all_yoy": 5.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1969-03-01",
+      "all_qoq": 1.4,
+      "all_yoy": 5.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1969-06-01",
+      "all_qoq": 1.1,
+      "all_yoy": 5.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1969-09-01",
+      "all_qoq": 1.0,
+      "all_yoy": 5.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1969-12-01",
+      "all_qoq": 0.4,
+      "all_yoy": 4.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1970-03-01",
+      "all_qoq": 2.2,
+      "all_yoy": 4.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1970-06-01",
+      "all_qoq": 1.5,
+      "all_yoy": 5.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1970-09-01",
+      "all_qoq": 1.8,
+      "all_yoy": 6.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1970-12-01",
+      "all_qoq": 4.1,
+      "all_yoy": 10.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1971-03-01",
+      "all_qoq": 2.5,
+      "all_yoy": 10.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1971-06-01",
+      "all_qoq": 2.2,
+      "all_yoy": 11.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1971-09-01",
+      "all_qoq": 1.9,
+      "all_yoy": 11.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1971-12-01",
+      "all_qoq": 2.2,
+      "all_yoy": 9.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1972-03-01",
+      "all_qoq": 1.9,
+      "all_yoy": 8.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1972-06-01",
+      "all_qoq": 1.2,
+      "all_yoy": 7.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1972-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 6.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1972-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 5.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1973-03-01",
+      "all_qoq": 2.4,
+      "all_yoy": 6.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1973-06-01",
+      "all_qoq": 2.8,
+      "all_yoy": 7.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1973-09-01",
+      "all_qoq": 2.3,
+      "all_yoy": 8.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1973-12-01",
+      "all_qoq": 2.4,
+      "all_yoy": 10.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1974-03-01",
+      "all_qoq": 2.5,
+      "all_yoy": 10.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1974-06-01",
+      "all_qoq": 2.4,
+      "all_yoy": 10.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1974-09-01",
+      "all_qoq": 3.7,
+      "all_yoy": 11.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1974-12-01",
+      "all_qoq": 3.3,
+      "all_yoy": 12.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1975-03-01",
+      "all_qoq": 3.1,
+      "all_yoy": 13.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1975-06-01",
+      "all_qoq": 4.0,
+      "all_yoy": 14.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1975-09-01",
+      "all_qoq": 3.6,
+      "all_yoy": 14.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1975-12-01",
+      "all_qoq": 4.1,
+      "all_yoy": 15.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1976-03-01",
+      "all_qoq": 4.4,
+      "all_yoy": 17.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1976-06-01",
+      "all_qoq": 4.5,
+      "all_yoy": 17.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1976-09-01",
+      "all_qoq": 3.2,
+      "all_yoy": 17.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1976-12-01",
+      "all_qoq": 2.8,
+      "all_yoy": 15.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1977-03-01",
+      "all_qoq": 2.6,
+      "all_yoy": 13.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1977-06-01",
+      "all_qoq": 4.8,
+      "all_yoy": 14.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1977-09-01",
+      "all_qoq": 3.5,
+      "all_yoy": 14.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1977-12-01",
+      "all_qoq": 3.6,
+      "all_yoy": 15.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1978-03-01",
+      "all_qoq": 2.0,
+      "all_yoy": 14.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1978-06-01",
+      "all_qoq": 2.6,
+      "all_yoy": 12.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1978-09-01",
+      "all_qoq": 2.5,
+      "all_yoy": 11.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1978-12-01",
+      "all_qoq": 2.6,
+      "all_yoy": 10.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1979-03-01",
+      "all_qoq": 2.3,
+      "all_yoy": 10.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1979-06-01",
+      "all_qoq": 4.5,
+      "all_yoy": 12.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1979-09-01",
+      "all_qoq": 5.0,
+      "all_yoy": 15.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1979-12-01",
+      "all_qoq": 3.8,
+      "all_yoy": 16.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1980-03-01",
+      "all_qoq": 3.9,
+      "all_yoy": 18.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1980-06-01",
+      "all_qoq": 4.1,
+      "all_yoy": 17.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1980-09-01",
+      "all_qoq": 3.6,
+      "all_yoy": 16.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1980-12-01",
+      "all_qoq": 3.6,
+      "all_yoy": 16.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1981-03-01",
+      "all_qoq": 3.1,
+      "all_yoy": 15.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1981-06-01",
+      "all_qoq": 4.0,
+      "all_yoy": 15.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1981-09-01",
+      "all_qoq": 3.9,
+      "all_yoy": 15.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1981-12-01",
+      "all_qoq": 3.9,
+      "all_yoy": 15.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1982-03-01",
+      "all_qoq": 3.2,
+      "all_yoy": 15.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1982-06-01",
+      "all_qoq": 5.0,
+      "all_yoy": 17.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1982-09-01",
+      "all_qoq": 3.6,
+      "all_yoy": 16.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1982-12-01",
+      "all_qoq": 2.7,
+      "all_yoy": 15.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1983-03-01",
+      "all_qoq": 0.8,
+      "all_yoy": 12.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1983-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 8.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1983-09-01",
+      "all_qoq": 0.8,
+      "all_yoy": 5.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1983-12-01",
+      "all_qoq": 0.9,
+      "all_yoy": 3.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1984-03-01",
+      "all_qoq": 0.7,
+      "all_yoy": 3.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1984-06-01",
+      "all_qoq": 2.2,
+      "all_yoy": 4.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1984-09-01",
+      "all_qoq": 3.0,
+      "all_yoy": 7.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1984-12-01",
+      "all_qoq": 3.2,
+      "all_yoy": 9.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1985-03-01",
+      "all_qoq": 4.4,
+      "all_yoy": 13.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1985-06-01",
+      "all_qoq": 5.1,
+      "all_yoy": 16.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1985-09-01",
+      "all_qoq": 2.8,
+      "all_yoy": 16.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1985-12-01",
+      "all_qoq": 2.3,
+      "all_yoy": 15.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1986-03-01",
+      "all_qoq": 2.3,
+      "all_yoy": 13.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1986-06-01",
+      "all_qoq": 2.7,
+      "all_yoy": 10.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1986-09-01",
+      "all_qoq": 3.3,
+      "all_yoy": 11.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1986-12-01",
+      "all_qoq": 8.9,
+      "all_yoy": 18.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1987-03-01",
+      "all_qoq": 2.3,
+      "all_yoy": 18.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1987-06-01",
+      "all_qoq": 3.3,
+      "all_yoy": 18.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1987-09-01",
+      "all_qoq": 1.6,
+      "all_yoy": 16.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1987-12-01",
+      "all_qoq": 2.1,
+      "all_yoy": 9.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1988-03-01",
+      "all_qoq": 1.8,
+      "all_yoy": 9.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1988-06-01",
+      "all_qoq": 0.8,
+      "all_yoy": 6.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1988-09-01",
+      "all_qoq": 0.9,
+      "all_yoy": 5.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1988-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 4.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1989-03-01",
+      "all_qoq": 1.1,
+      "all_yoy": 4.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1989-06-01",
+      "all_qoq": 1.2,
+      "all_yoy": 4.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1989-09-01",
+      "all_qoq": 3.5,
+      "all_yoy": 7.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1989-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 7.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1990-03-01",
+      "all_qoq": 0.9,
+      "all_yoy": 7.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1990-06-01",
+      "all_qoq": 1.8,
+      "all_yoy": 7.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1990-09-01",
+      "all_qoq": 1.0,
+      "all_yoy": 5.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1990-12-01",
+      "all_qoq": 1.1,
+      "all_yoy": 4.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1991-03-01",
+      "all_qoq": 0.6,
+      "all_yoy": 4.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1991-06-01",
+      "all_qoq": 0.1,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1991-09-01",
+      "all_qoq": 0.4,
+      "all_yoy": 2.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1991-12-01",
+      "all_qoq": -0.1,
+      "all_yoy": 1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1992-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 0.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1992-06-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1992-09-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1992-12-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1993-03-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1993-06-01",
+      "all_qoq": 0.6,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1993-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1993-12-01",
+      "all_qoq": 0.2,
+      "all_yoy": 1.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1994-03-01",
+      "all_qoq": 0.0,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1994-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1994-09-01",
+      "all_qoq": 1.2,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1994-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 2.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1995-03-01",
+      "all_qoq": 1.2,
+      "all_yoy": 4.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1995-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 4.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1995-09-01",
+      "all_qoq": 0.2,
+      "all_yoy": 3.5,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1995-12-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.9,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1996-03-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.2,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1996-06-01",
+      "all_qoq": 0.8,
+      "all_yoy": 2.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1996-09-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1996-12-01",
+      "all_qoq": 0.7,
+      "all_yoy": 2.6,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1997-03-01",
+      "all_qoq": -0.3,
+      "all_yoy": 1.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1997-06-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1997-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.0,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1997-12-01",
+      "all_qoq": 0.6,
+      "all_yoy": 0.8,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1998-03-01",
+      "all_qoq": 0.2,
+      "all_yoy": 1.3,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1998-06-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1998-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.7,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1998-12-01",
+      "all_qoq": -0.8,
+      "all_yoy": 0.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1999-03-01",
+      "all_qoq": -0.3,
+      "all_yoy": -0.1,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1999-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": -0.4,
+      "tradable_qoq": null,
+      "tradable_yoy": null,
+      "non_tradable_qoq": null,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1999-09-01",
+      "all_qoq": 0.4,
+      "all_yoy": -0.5,
+      "tradable_qoq": 0.0,
+      "tradable_yoy": null,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "1999-12-01",
+      "all_qoq": 0.2,
+      "all_yoy": 0.5,
+      "tradable_qoq": 0.4,
+      "tradable_yoy": null,
+      "non_tradable_qoq": 0.1,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "2000-03-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.5,
+      "tradable_qoq": 0.5,
+      "tradable_yoy": null,
+      "non_tradable_qoq": 0.8,
+      "non_tradable_yoy": null
+    },
+    {
+      "date": "2000-06-01",
+      "all_qoq": 0.7,
+      "all_yoy": 2.0,
+      "tradable_qoq": 0.7,
+      "tradable_yoy": 1.6,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 2.3
+    },
+    {
+      "date": "2000-09-01",
+      "all_qoq": 1.4,
+      "all_yoy": 3.0,
+      "tradable_qoq": 1.6,
+      "tradable_yoy": 3.2,
+      "non_tradable_qoq": 1.3,
+      "non_tradable_yoy": 2.9
+    },
+    {
+      "date": "2000-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 4.0,
+      "tradable_qoq": 1.7,
+      "tradable_yoy": 4.6,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2001-03-01",
+      "all_qoq": -0.2,
+      "all_yoy": 3.1,
+      "tradable_qoq": -0.2,
+      "tradable_yoy": 3.9,
+      "non_tradable_qoq": -0.1,
+      "non_tradable_yoy": 2.6
+    },
+    {
+      "date": "2001-06-01",
+      "all_qoq": 0.9,
+      "all_yoy": 3.2,
+      "tradable_qoq": 1.5,
+      "tradable_yoy": 4.7,
+      "non_tradable_qoq": 0.3,
+      "non_tradable_yoy": 2.2
+    },
+    {
+      "date": "2001-09-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.4,
+      "tradable_qoq": 0.5,
+      "tradable_yoy": 3.6,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 1.5
+    },
+    {
+      "date": "2001-12-01",
+      "all_qoq": 0.6,
+      "all_yoy": 1.8,
+      "tradable_qoq": 0.3,
+      "tradable_yoy": 2.1,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 1.5
+    },
+    {
+      "date": "2002-03-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.6,
+      "tradable_qoq": -0.2,
+      "tradable_yoy": 2.1,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 2.9
+    },
+    {
+      "date": "2002-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.8,
+      "tradable_qoq": 1.6,
+      "tradable_yoy": 2.2,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 3.2
+    },
+    {
+      "date": "2002-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.6,
+      "tradable_qoq": -0.3,
+      "tradable_yoy": 1.4,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2002-12-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.7,
+      "tradable_qoq": 0.5,
+      "tradable_yoy": 1.6,
+      "non_tradable_qoq": 0.9,
+      "non_tradable_yoy": 3.8
+    },
+    {
+      "date": "2003-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 2.5,
+      "tradable_qoq": -0.3,
+      "tradable_yoy": 1.5,
+      "non_tradable_qoq": 0.8,
+      "non_tradable_yoy": 3.4
+    },
+    {
+      "date": "2003-06-01",
+      "all_qoq": 0.0,
+      "all_yoy": 1.5,
+      "tradable_qoq": -1.0,
+      "tradable_yoy": -1.1,
+      "non_tradable_qoq": 0.8,
+      "non_tradable_yoy": 3.6
+    },
+    {
+      "date": "2003-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.5,
+      "tradable_qoq": -0.7,
+      "tradable_yoy": -1.5,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 3.8
+    },
+    {
+      "date": "2003-12-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.6,
+      "tradable_qoq": -0.1,
+      "tradable_yoy": -2.0,
+      "non_tradable_qoq": 1.3,
+      "non_tradable_yoy": 4.2
+    },
+    {
+      "date": "2004-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.5,
+      "tradable_qoq": -0.6,
+      "tradable_yoy": -2.3,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.5
+    },
+    {
+      "date": "2004-06-01",
+      "all_qoq": 0.8,
+      "all_yoy": 2.4,
+      "tradable_qoq": 0.7,
+      "tradable_yoy": -0.7,
+      "non_tradable_qoq": 0.9,
+      "non_tradable_yoy": 4.7
+    },
+    {
+      "date": "2004-09-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.5,
+      "tradable_qoq": 0.0,
+      "tradable_yoy": 0.0,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 4.5
+    },
+    {
+      "date": "2004-12-01",
+      "all_qoq": 0.9,
+      "all_yoy": 2.7,
+      "tradable_qoq": 0.7,
+      "tradable_yoy": 0.7,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.3
+    },
+    {
+      "date": "2005-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 2.8,
+      "tradable_qoq": -0.5,
+      "tradable_yoy": 0.8,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.2
+    },
+    {
+      "date": "2005-06-01",
+      "all_qoq": 0.9,
+      "all_yoy": 2.8,
+      "tradable_qoq": 0.6,
+      "tradable_yoy": 0.7,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.4
+    },
+    {
+      "date": "2005-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 3.4,
+      "tradable_qoq": 1.1,
+      "tradable_yoy": 1.9,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.4
+    },
+    {
+      "date": "2005-12-01",
+      "all_qoq": 0.7,
+      "all_yoy": 3.2,
+      "tradable_qoq": 0.5,
+      "tradable_yoy": 1.7,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 4.3
+    },
+    {
+      "date": "2006-03-01",
+      "all_qoq": 0.6,
+      "all_yoy": 3.3,
+      "tradable_qoq": -0.1,
+      "tradable_yoy": 2.1,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 4.1
+    },
+    {
+      "date": "2006-06-01",
+      "all_qoq": 1.5,
+      "all_yoy": 4.0,
+      "tradable_qoq": 2.3,
+      "tradable_yoy": 3.8,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 4.1
+    },
+    {
+      "date": "2006-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 3.5,
+      "tradable_qoq": 0.3,
+      "tradable_yoy": 3.0,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 4.0
+    },
+    {
+      "date": "2006-12-01",
+      "all_qoq": -0.2,
+      "all_yoy": 2.6,
+      "tradable_qoq": -1.3,
+      "tradable_yoy": 1.2,
+      "non_tradable_qoq": 0.8,
+      "non_tradable_yoy": 3.8
+    },
+    {
+      "date": "2007-03-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.5,
+      "tradable_qoq": -0.4,
+      "tradable_yoy": 0.9,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 4.1
+    },
+    {
+      "date": "2007-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.0,
+      "tradable_qoq": 0.9,
+      "tradable_yoy": -0.5,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.1
+    },
+    {
+      "date": "2007-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.8,
+      "tradable_qoq": 0.5,
+      "tradable_yoy": -0.3,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 3.7
+    },
+    {
+      "date": "2007-12-01",
+      "all_qoq": 1.2,
+      "all_yoy": 3.2,
+      "tradable_qoq": 1.8,
+      "tradable_yoy": 2.8,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2008-03-01",
+      "all_qoq": 0.7,
+      "all_yoy": 3.4,
+      "tradable_qoq": 0.2,
+      "tradable_yoy": 3.4,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2008-06-01",
+      "all_qoq": 1.6,
+      "all_yoy": 4.0,
+      "tradable_qoq": 2.3,
+      "tradable_yoy": 4.8,
+      "non_tradable_qoq": 0.9,
+      "non_tradable_yoy": 3.4
+    },
+    {
+      "date": "2008-09-01",
+      "all_qoq": 1.5,
+      "all_yoy": 5.1,
+      "tradable_qoq": 1.9,
+      "tradable_yoy": 6.3,
+      "non_tradable_qoq": 1.3,
+      "non_tradable_yoy": 4.1
+    },
+    {
+      "date": "2008-12-01",
+      "all_qoq": -0.5,
+      "all_yoy": 3.4,
+      "tradable_qoq": -2.1,
+      "tradable_yoy": 2.3,
+      "non_tradable_qoq": 0.8,
+      "non_tradable_yoy": 4.3
+    },
+    {
+      "date": "2009-03-01",
+      "all_qoq": 0.3,
+      "all_yoy": 3.0,
+      "tradable_qoq": -0.4,
+      "tradable_yoy": 1.7,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 3.8
+    },
+    {
+      "date": "2009-06-01",
+      "all_qoq": 0.6,
+      "all_yoy": 1.9,
+      "tradable_qoq": 0.8,
+      "tradable_yoy": 0.2,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 3.3
+    },
+    {
+      "date": "2009-09-01",
+      "all_qoq": 1.3,
+      "all_yoy": 1.7,
+      "tradable_qoq": 1.6,
+      "tradable_yoy": -0.1,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 3.0
+    },
+    {
+      "date": "2009-12-01",
+      "all_qoq": -0.2,
+      "all_yoy": 2.0,
+      "tradable_qoq": -0.5,
+      "tradable_yoy": 1.5,
+      "non_tradable_qoq": 0.1,
+      "non_tradable_yoy": 2.3
+    },
+    {
+      "date": "2010-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 2.0,
+      "tradable_qoq": 0.1,
+      "tradable_yoy": 2.0,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.1
+    },
+    {
+      "date": "2010-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": 1.7,
+      "tradable_qoq": -0.3,
+      "tradable_yoy": 1.0,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 2.2
+    },
+    {
+      "date": "2010-09-01",
+      "all_qoq": 1.1,
+      "all_yoy": 1.5,
+      "tradable_qoq": 0.9,
+      "tradable_yoy": 0.3,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2010-12-01",
+      "all_qoq": 2.3,
+      "all_yoy": 4.0,
+      "tradable_qoq": 2.5,
+      "tradable_yoy": 3.3,
+      "non_tradable_qoq": 2.2,
+      "non_tradable_yoy": 4.6
+    },
+    {
+      "date": "2011-03-01",
+      "all_qoq": 0.8,
+      "all_yoy": 4.5,
+      "tradable_qoq": 0.5,
+      "tradable_yoy": 3.7,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 5.2
+    },
+    {
+      "date": "2011-06-01",
+      "all_qoq": 1.0,
+      "all_yoy": 5.3,
+      "tradable_qoq": 1.5,
+      "tradable_yoy": 5.5,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 5.2
+    },
+    {
+      "date": "2011-09-01",
+      "all_qoq": 0.4,
+      "all_yoy": 4.6,
+      "tradable_qoq": 0.1,
+      "tradable_yoy": 4.6,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 4.5
+    },
+    {
+      "date": "2011-12-01",
+      "all_qoq": -0.3,
+      "all_yoy": 1.8,
+      "tradable_qoq": -0.9,
+      "tradable_yoy": 1.1,
+      "non_tradable_qoq": 0.2,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2012-03-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.6,
+      "tradable_qoq": -0.4,
+      "tradable_yoy": 0.3,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2012-06-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.0,
+      "tradable_qoq": 0.1,
+      "tradable_yoy": -1.1,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2012-09-01",
+      "all_qoq": 0.3,
+      "all_yoy": 0.8,
+      "tradable_qoq": 0.0,
+      "tradable_yoy": -1.2,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.3
+    },
+    {
+      "date": "2012-12-01",
+      "all_qoq": -0.2,
+      "all_yoy": 0.9,
+      "tradable_qoq": -0.7,
+      "tradable_yoy": -1.0,
+      "non_tradable_qoq": 0.3,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2013-03-01",
+      "all_qoq": 0.4,
+      "all_yoy": 0.9,
+      "tradable_qoq": -0.5,
+      "tradable_yoy": -1.1,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2013-06-01",
+      "all_qoq": 0.2,
+      "all_yoy": 0.7,
+      "tradable_qoq": -0.5,
+      "tradable_yoy": -1.6,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2013-09-01",
+      "all_qoq": 0.9,
+      "all_yoy": 1.4,
+      "tradable_qoq": 1.2,
+      "tradable_yoy": -0.5,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 2.8
+    },
+    {
+      "date": "2013-12-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.6,
+      "tradable_qoq": -0.5,
+      "tradable_yoy": -0.3,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.9
+    },
+    {
+      "date": "2014-03-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.5,
+      "tradable_qoq": -0.7,
+      "tradable_yoy": -0.6,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 3.0
+    },
+    {
+      "date": "2014-06-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.6,
+      "tradable_qoq": 0.2,
+      "tradable_yoy": 0.1,
+      "non_tradable_qoq": 0.4,
+      "non_tradable_yoy": 2.7
+    },
+    {
+      "date": "2014-09-01",
+      "all_qoq": 0.3,
+      "all_yoy": 1.0,
+      "tradable_qoq": 0.1,
+      "tradable_yoy": -1.0,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2014-12-01",
+      "all_qoq": -0.2,
+      "all_yoy": 0.8,
+      "tradable_qoq": -0.8,
+      "tradable_yoy": -1.3,
+      "non_tradable_qoq": 0.3,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2015-03-01",
+      "all_qoq": -0.2,
+      "all_yoy": 0.3,
+      "tradable_qoq": -1.9,
+      "tradable_yoy": -2.4,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2015-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 0.4,
+      "tradable_qoq": 0.9,
+      "tradable_yoy": -1.8,
+      "non_tradable_qoq": 0.1,
+      "non_tradable_yoy": 2.1
+    },
+    {
+      "date": "2015-09-01",
+      "all_qoq": 0.3,
+      "all_yoy": 0.4,
+      "tradable_qoq": 0.7,
+      "tradable_yoy": -1.2,
+      "non_tradable_qoq": 0.0,
+      "non_tradable_yoy": 1.5
+    },
+    {
+      "date": "2015-12-01",
+      "all_qoq": -0.5,
+      "all_yoy": 0.1,
+      "tradable_qoq": -1.8,
+      "tradable_yoy": -2.1,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 1.8
+    },
+    {
+      "date": "2016-03-01",
+      "all_qoq": 0.2,
+      "all_yoy": 0.4,
+      "tradable_qoq": -0.9,
+      "tradable_yoy": -1.2,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 1.6
+    },
+    {
+      "date": "2016-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 0.4,
+      "tradable_qoq": 0.6,
+      "tradable_yoy": -1.5,
+      "non_tradable_qoq": 0.3,
+      "non_tradable_yoy": 1.8
+    },
+    {
+      "date": "2016-09-01",
+      "all_qoq": 0.3,
+      "all_yoy": 0.4,
+      "tradable_qoq": 0.0,
+      "tradable_yoy": -2.1,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2016-12-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.3,
+      "tradable_qoq": 0.3,
+      "tradable_yoy": -0.1,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2017-03-01",
+      "all_qoq": 1.0,
+      "all_yoy": 2.2,
+      "tradable_qoq": 0.8,
+      "tradable_yoy": 1.6,
+      "non_tradable_qoq": 1.0,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2017-06-01",
+      "all_qoq": 0.0,
+      "all_yoy": 1.7,
+      "tradable_qoq": -0.2,
+      "tradable_yoy": 0.9,
+      "non_tradable_qoq": 0.2,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2017-09-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.9,
+      "tradable_qoq": 0.2,
+      "tradable_yoy": 1.1,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 2.6
+    },
+    {
+      "date": "2017-12-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.6,
+      "tradable_qoq": -0.3,
+      "tradable_yoy": 0.5,
+      "non_tradable_qoq": 0.5,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2018-03-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.1,
+      "tradable_qoq": 0.0,
+      "tradable_yoy": -0.3,
+      "non_tradable_qoq": 0.9,
+      "non_tradable_yoy": 2.3
+    },
+    {
+      "date": "2018-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 1.5,
+      "tradable_qoq": 0.4,
+      "tradable_yoy": 0.3,
+      "non_tradable_qoq": 0.3,
+      "non_tradable_yoy": 2.4
+    },
+    {
+      "date": "2018-09-01",
+      "all_qoq": 0.9,
+      "all_yoy": 1.9,
+      "tradable_qoq": 0.9,
+      "tradable_yoy": 1.0,
+      "non_tradable_qoq": 0.8,
+      "non_tradable_yoy": 2.5
+    },
+    {
+      "date": "2018-12-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.9,
+      "tradable_qoq": -0.4,
+      "tradable_yoy": 0.9,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 2.7
+    },
+    {
+      "date": "2019-03-01",
+      "all_qoq": 0.1,
+      "all_yoy": 1.5,
+      "tradable_qoq": -1.3,
+      "tradable_yoy": -0.4,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 2.8
+    },
+    {
+      "date": "2019-06-01",
+      "all_qoq": 0.6,
+      "all_yoy": 1.7,
+      "tradable_qoq": 0.9,
+      "tradable_yoy": 0.1,
+      "non_tradable_qoq": 0.3,
+      "non_tradable_yoy": 2.8
+    },
+    {
+      "date": "2019-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.5,
+      "tradable_qoq": 0.1,
+      "tradable_yoy": -0.7,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 3.2
+    },
+    {
+      "date": "2019-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.9,
+      "tradable_qoq": 0.4,
+      "tradable_yoy": 0.1,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 3.1
+    },
+    {
+      "date": "2020-03-01",
+      "all_qoq": 0.8,
+      "all_yoy": 2.5,
+      "tradable_qoq": 0.1,
+      "tradable_yoy": 1.5,
+      "non_tradable_qoq": 1.4,
+      "non_tradable_yoy": 3.4
+    },
+    {
+      "date": "2020-06-01",
+      "all_qoq": -0.5,
+      "all_yoy": 1.5,
+      "tradable_qoq": -1.2,
+      "tradable_yoy": -0.6,
+      "non_tradable_qoq": 0.0,
+      "non_tradable_yoy": 3.1
+    },
+    {
+      "date": "2020-09-01",
+      "all_qoq": 0.7,
+      "all_yoy": 1.4,
+      "tradable_qoq": 0.6,
+      "tradable_yoy": -0.1,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 2.6
+    },
+    {
+      "date": "2020-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 1.4,
+      "tradable_qoq": 0.2,
+      "tradable_yoy": -0.3,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 2.8
+    },
+    {
+      "date": "2021-03-01",
+      "all_qoq": 0.8,
+      "all_yoy": 1.5,
+      "tradable_qoq": 0.9,
+      "tradable_yoy": 0.5,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 2.1
+    },
+    {
+      "date": "2021-06-01",
+      "all_qoq": 1.3,
+      "all_yoy": 3.3,
+      "tradable_qoq": 1.7,
+      "tradable_yoy": 3.4,
+      "non_tradable_qoq": 1.2,
+      "non_tradable_yoy": 3.3
+    },
+    {
+      "date": "2021-09-01",
+      "all_qoq": 2.2,
+      "all_yoy": 4.9,
+      "tradable_qoq": 2.8,
+      "tradable_yoy": 5.7,
+      "non_tradable_qoq": 1.8,
+      "non_tradable_yoy": 4.5
+    },
+    {
+      "date": "2021-12-01",
+      "all_qoq": 1.4,
+      "all_yoy": 5.9,
+      "tradable_qoq": 1.3,
+      "tradable_yoy": 6.9,
+      "non_tradable_qoq": 1.5,
+      "non_tradable_yoy": 5.3
+    },
+    {
+      "date": "2022-03-01",
+      "all_qoq": 1.8,
+      "all_yoy": 6.9,
+      "tradable_qoq": 2.4,
+      "tradable_yoy": 8.5,
+      "non_tradable_qoq": 1.5,
+      "non_tradable_yoy": 6.0
+    },
+    {
+      "date": "2022-06-01",
+      "all_qoq": 1.7,
+      "all_yoy": 7.3,
+      "tradable_qoq": 1.9,
+      "tradable_yoy": 8.7,
+      "non_tradable_qoq": 1.4,
+      "non_tradable_yoy": 6.3
+    },
+    {
+      "date": "2022-09-01",
+      "all_qoq": 2.2,
+      "all_yoy": 7.2,
+      "tradable_qoq": 2.2,
+      "tradable_yoy": 8.1,
+      "non_tradable_qoq": 2.0,
+      "non_tradable_yoy": 6.6
+    },
+    {
+      "date": "2022-12-01",
+      "all_qoq": 1.4,
+      "all_yoy": 7.2,
+      "tradable_qoq": 1.4,
+      "tradable_yoy": 8.2,
+      "non_tradable_qoq": 1.5,
+      "non_tradable_yoy": 6.6
+    },
+    {
+      "date": "2023-03-01",
+      "all_qoq": 1.2,
+      "all_yoy": 6.7,
+      "tradable_qoq": 0.7,
+      "tradable_yoy": 6.4,
+      "non_tradable_qoq": 1.7,
+      "non_tradable_yoy": 6.8
+    },
+    {
+      "date": "2023-06-01",
+      "all_qoq": 1.1,
+      "all_yoy": 6.0,
+      "tradable_qoq": 0.8,
+      "tradable_yoy": 5.2,
+      "non_tradable_qoq": 1.3,
+      "non_tradable_yoy": 6.6
+    },
+    {
+      "date": "2023-09-01",
+      "all_qoq": 1.8,
+      "all_yoy": 5.6,
+      "tradable_qoq": 1.8,
+      "tradable_yoy": 4.7,
+      "non_tradable_qoq": 1.7,
+      "non_tradable_yoy": 6.3
+    },
+    {
+      "date": "2023-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 4.7,
+      "tradable_qoq": -0.2,
+      "tradable_yoy": 3.0,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 5.9
+    },
+    {
+      "date": "2024-03-01",
+      "all_qoq": 0.6,
+      "all_yoy": 4.0,
+      "tradable_qoq": -0.7,
+      "tradable_yoy": 1.6,
+      "non_tradable_qoq": 1.6,
+      "non_tradable_yoy": 5.8
+    },
+    {
+      "date": "2024-06-01",
+      "all_qoq": 0.4,
+      "all_yoy": 3.3,
+      "tradable_qoq": -0.5,
+      "tradable_yoy": 0.3,
+      "non_tradable_qoq": 0.9,
+      "non_tradable_yoy": 5.4
+    },
+    {
+      "date": "2024-09-01",
+      "all_qoq": 0.6,
+      "all_yoy": 2.2,
+      "tradable_qoq": -0.2,
+      "tradable_yoy": -1.6,
+      "non_tradable_qoq": 1.3,
+      "non_tradable_yoy": 4.9
+    },
+    {
+      "date": "2024-12-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.2,
+      "tradable_qoq": 0.3,
+      "tradable_yoy": -1.1,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 4.5
+    },
+    {
+      "date": "2025-03-01",
+      "all_qoq": 0.9,
+      "all_yoy": 2.5,
+      "tradable_qoq": 0.8,
+      "tradable_yoy": 0.3,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 4.0
+    },
+    {
+      "date": "2025-06-01",
+      "all_qoq": 0.5,
+      "all_yoy": 2.7,
+      "tradable_qoq": 0.3,
+      "tradable_yoy": 1.2,
+      "non_tradable_qoq": 0.7,
+      "non_tradable_yoy": 3.7
+    },
+    {
+      "date": "2025-09-01",
+      "all_qoq": 1.0,
+      "all_yoy": 3.0,
+      "tradable_qoq": 0.8,
+      "tradable_yoy": 2.2,
+      "non_tradable_qoq": 1.1,
+      "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2025-12-01",
+      "all_qoq": 0.6,
+      "all_yoy": 3.1,
+      "tradable_qoq": 0.7,
+      "tradable_yoy": 2.6,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 3.5
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "all_qoq": 0.6,
+    "all_yoy": 3.1,
+    "tradable_qoq": 0.7,
+    "tradable_yoy": 2.6,
+    "non_tradable_qoq": 0.6,
+    "non_tradable_yoy": 3.5
+  },
+  "metadata": {
+    "source": "Stats NZ",
+    "indicator": "Consumers Price Index (CPI)",
+    "description": "NZ消費者物価指数（CPI）",
+    "unit": "Index (June 2006 qtr = 1000)",
+    "frequency": "quarterly",
+    "series_all": "CPIQ.SE9A",
+    "series_tradable": "CPIQ.SE9NS6000",
+    "series_non_tradable": "CPIQ.SE9NS6500"
+  },
+  "next_release": null,
+  "last_updated": "2026-02-25T00:43:15.090220+09:00"
+}

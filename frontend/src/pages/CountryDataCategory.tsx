@@ -50,6 +50,11 @@ import CanadaHousingCharts from '../components/country/canada/CanadaHousingChart
 import AustraliaPolicyCharts from '../components/country/australia/AustraliaPolicyCharts'
 import AustraliaInflationCharts from '../components/country/australia/AustraliaInflationCharts'
 import AustraliaEmploymentCharts from '../components/country/australia/AustraliaEmploymentCharts'
+import AustraliaConsumerCharts from '../components/country/australia/AustraliaConsumerCharts'
+import AustraliaEconomyCharts from '../components/country/australia/AustraliaEconomyCharts'
+import AustraliaHousingCharts from '../components/country/australia/AustraliaHousingCharts'
+import NewZealandPolicyCharts from '../components/country/newzealand/NewZealandPolicyCharts'
+import NewZealandInflationCharts from '../components/country/newzealand/NewZealandInflationCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -295,6 +300,12 @@ function CountryDataCategory() {
   const isAustraliaPolicy = countryCode === 'australia' && categoryCode === 'policy'
   const isAustraliaInflation = countryCode === 'australia' && categoryCode === 'inflation'
   const isAustraliaEmployment = countryCode === 'australia' && categoryCode === 'employment'
+  const isAustraliaConsumer = countryCode === 'australia' && categoryCode === 'consumer'
+  const isAustraliaEconomy = countryCode === 'australia' && categoryCode === 'economy'
+  const isAustraliaHousing = countryCode === 'australia' && categoryCode === 'housing'
+  // ニュージーランド金融政策の場合はチャートを表示
+  const isNewZealandPolicy = countryCode === 'newzealand' && categoryCode === 'policy'
+  const isNewZealandInflation = countryCode === 'newzealand' && categoryCode === 'inflation'
 
   // メインコンテンツ
   const mainContent = (
@@ -373,6 +384,16 @@ function CountryDataCategory() {
         <AustraliaInflationCharts />
       ) : isAustraliaEmployment ? (
         <AustraliaEmploymentCharts />
+      ) : isAustraliaConsumer ? (
+        <AustraliaConsumerCharts />
+      ) : isAustraliaEconomy ? (
+        <AustraliaEconomyCharts />
+      ) : isAustraliaHousing ? (
+        <AustraliaHousingCharts />
+      ) : isNewZealandPolicy ? (
+        <NewZealandPolicyCharts />
+      ) : isNewZealandInflation ? (
+        <NewZealandInflationCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (

@@ -1,0 +1,88 @@
+import { Spin, Alert, Button } from 'antd'
+import { useNewZealandInflationDashboard } from '../../../hooks/useDashboardData'
+import NzCpiChart from './inflation/NzCpiChart'
+import NzCpiItemChart from './inflation/NzCpiItemChart'
+import NzTradedNontradedChart from './inflation/NzTradedNontradedChart'
+import NzPpiChart from './inflation/NzPpiChart'
+
+/**
+ * ニュージーランド物価チャート群
+ *
+ * バッチAPIで全データを一括取得し、各チャートコンポーネントにpropsで渡す
+ */
+export default function NewZealandInflationCharts() {
+  const { data, isLoading, error, refetch } = useNewZealandInflationDashboard()
+
+  // ローディング状態
+  if (isLoading) {
+    return <InflationChartsSkeleton />
+  }
+
+  // エラー状態
+  if (error) {
+    return (
+      <Alert
+        type="error"
+        message="データの取得に失敗しました"
+        description={error.message}
+        action={
+          <Button size="small" onClick={() => refetch()}>
+            再試行
+          </Button>
+        }
+        style={{ marginBottom: 24 }}
+      />
+    )
+  }
+
+  const dashboardData = data?.data
+
+  return (
+    <div className="country-chart-stack">
+      {/* CPI */}
+      <NzCpiChart
+        data={dashboardData?.nz_cpi ?? null}
+      />
+
+      {/* CPI 項目別 */}
+      <NzCpiItemChart
+        data={dashboardData?.nz_cpi_item ?? null}
+      />
+
+      {/* 貿易財/非貿易財 */}
+      <NzTradedNontradedChart
+        data={dashboardData?.nz_traded_nontraded ?? null}
+      />
+
+      {/* PPI */}
+      <NzPpiChart
+        data={dashboardData?.nz_ppi ?? null}
+      />
+    </div>
+  )
+}
+
+/**
+ * スケルトンローダー
+ * データ取得中に表示される骨組み
+ */
+function InflationChartsSkeleton() {
+  return (
+    <div className="country-chart-stack">
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: 400,
+          background: '#fafafa',
+          borderRadius: 12,
+        }}
+      >
+        <Spin size="large" />
+        <div style={{ marginTop: 16, color: '#666' }}>物価データを読み込み中...</div>
+      </div>
+    </div>
+  )
+}

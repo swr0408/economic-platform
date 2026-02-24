@@ -87,10 +87,15 @@ function getIndicatorMapping(indicatorId: string): {
     // Canada個別API（BOC、Statistics Canada等）
     '/api/canada/boc/',
     '/api/canada/statcan/',
-    // Australia個別API（RBA、ABS、Melbourne Institute等）
+    // Australia個別API（RBA、ABS、APRA、Melbourne Institute等）
     '/api/australia/rba/',
     '/api/australia/abs/',
+    '/api/australia/apra/',
     '/api/australia/melbourne-institute/',
+    '/api/australia/housing/',
+    // New Zealand個別API（RBNZ・Stats NZ等）
+    '/api/newzealand/rbnz/',
+    '/api/newzealand/stats-nz/',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

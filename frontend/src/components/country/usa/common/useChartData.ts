@@ -19,6 +19,21 @@ export interface DateBasedData {
 export type PeriodType = number | 'all' | 'default'
 
 // =============================================================================
+// 四半期日付パース（YYYY-QN 形式対応）
+// =============================================================================
+
+/**
+ * YYYY-QN 形式（例: "2025-Q3"）を含む日付文字列をDateオブジェクトに変換
+ */
+function parseFlexibleDate(dateStr: string): Date {
+  const qm = dateStr.match(/^(\d{4})-Q([1-4])$/)
+  if (qm) {
+    return new Date(parseInt(qm[1], 10), (parseInt(qm[2], 10) - 1) * 3, 1)
+  }
+  return new Date(dateStr)
+}
+
+// =============================================================================
 // useSortedData - データを日付でソート
 // =============================================================================
 
@@ -38,7 +53,7 @@ export function useSortedData<T extends DateBasedData>(
     if (!data || data.length === 0) return []
 
     return [...data].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+      (a, b) => parseFlexibleDate(a.date).getTime() - parseFlexibleDate(b.date).getTime()
     )
   }, [data])
 }
@@ -89,7 +104,7 @@ export function usePeriodFiltering<T extends DateBasedData>(
     }
 
     return data.filter((item) => {
-      const itemDate = new Date(item.date)
+      const itemDate = parseFlexibleDate(item.date)
       return itemDate >= cutoffDate
     })
   }, [data, selectedPeriod, defaultStartYear])

@@ -51,10 +51,11 @@ CSV_FILES = {
 }
 
 # FMPパターン（country='CA'でフィルタリング）
+# FMPでは汎用名で登録されることもあるためフォールバック追加
 EVENT_PATTERNS = {
-    "manufacturing": "S&P Global Manufacturing PMI",
-    "services": "S&P Global Services PMI",
-    "composite": "S&P Global Composite PMI",
+    "manufacturing": ["S&P Global Manufacturing PMI"],
+    "services": ["S&P Global Services PMI", "Services PMI"],
+    "composite": ["S&P Global Composite PMI"],
 }
 
 COUNTRY = "CA"
@@ -208,13 +209,21 @@ class CaSpPmiService:
     def _load_from_db(self, pmi_type: str) -> List[Dict[str, Any]]:
         """DBから履歴データを取得"""
         result = []
-        event_pattern = EVENT_PATTERNS.get(pmi_type)
-        if not event_pattern:
+        event_patterns = EVENT_PATTERNS.get(pmi_type)
+        if not event_patterns:
             return result
+
+        # リストでない場合はリストに変換
+        if isinstance(event_patterns, str):
+            event_patterns = [event_patterns]
 
         try:
             with SessionLocal() as session:
-                query = text("""
+                # 複数パターンをOR条件で結合
+                pattern_conditions = " OR ".join(
+                    [f"LOWER(event) LIKE LOWER(:pattern{i})" for i in range(len(event_patterns))]
+                )
+                query = text(f"""
                     SELECT
                         datetime_utc,
                         event,
@@ -223,15 +232,16 @@ class CaSpPmiService:
                         previous
                     FROM economic_calendar_events
                     WHERE country = :country
-                      AND LOWER(event) LIKE LOWER(:pattern)
+                      AND ({pattern_conditions})
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)
 
-                rows = session.execute(query, {
-                    "country": COUNTRY,
-                    "pattern": f"%{event_pattern}%"
-                }).fetchall()
+                params = {"country": COUNTRY}
+                for i, pattern in enumerate(event_patterns):
+                    params[f"pattern{i}"] = f"%{pattern}%"
+
+                rows = session.execute(query, params).fetchall()
 
                 for row in rows:
                     dt_utc, event, actual, estimate, previous = row
@@ -269,9 +279,13 @@ class CaSpPmiService:
     def _fetch_from_fmp(self, pmi_type: str) -> List[Dict[str, Any]]:
         """FMPから最新データを取得"""
         result = []
-        event_pattern = EVENT_PATTERNS.get(pmi_type)
-        if not event_pattern:
+        event_patterns = EVENT_PATTERNS.get(pmi_type)
+        if not event_patterns:
             return result
+
+        # リストでない場合はリストに変換
+        if isinstance(event_patterns, str):
+            event_patterns = [event_patterns]
 
         try:
             today = date.today()
@@ -285,7 +299,9 @@ class CaSpPmiService:
                     continue
 
                 event_name = event.get("event", "")
-                if event_pattern.lower() not in event_name.lower():
+                # 複数パターンのいずれかにマッチするか確認
+                matched = any(p.lower() in event_name.lower() for p in event_patterns)
+                if not matched:
                     continue
 
                 dt_utc, _ = fmp_service.parse_datetime(event.get("date", ""))
@@ -378,7 +394,10 @@ class CaSpPmiService:
     def _get_next_release(self) -> Optional[Dict[str, Any]]:
         """次回発表日を取得（製造業PMIのスケジュールで代表）"""
         try:
-            return get_next_release_by_pattern(EVENT_PATTERNS["manufacturing"], country=COUNTRY)
+            pattern = EVENT_PATTERNS["manufacturing"]
+            if isinstance(pattern, list):
+                pattern = pattern[0]
+            return get_next_release_by_pattern(pattern, country=COUNTRY)
         except Exception as e:
             print(f"[CaSpPmi] Error getting next release: {e}")
             return None
@@ -386,7 +405,10 @@ class CaSpPmiService:
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
         try:
-            return should_refresh_by_pattern(EVENT_PATTERNS["manufacturing"], last_updated_str, country=COUNTRY)
+            pattern = EVENT_PATTERNS["manufacturing"]
+            if isinstance(pattern, list):
+                pattern = pattern[0]
+            return should_refresh_by_pattern(pattern, last_updated_str, country=COUNTRY)
         except Exception:
             try:
                 last_updated = datetime.fromisoformat(last_updated_str)

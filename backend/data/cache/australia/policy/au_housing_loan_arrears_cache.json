@@ -1,0 +1,183 @@
+{
+  "data": [
+    {
+      "date": "2019-03-31",
+      "past_due_30_89": 0.787,
+      "non_performing": 0.872,
+      "total_arrears": 1.659
+    },
+    {
+      "date": "2019-06-30",
+      "past_due_30_89": 0.77,
+      "non_performing": 0.931,
+      "total_arrears": 1.701
+    },
+    {
+      "date": "2019-09-30",
+      "past_due_30_89": 0.658,
+      "non_performing": 0.92,
+      "total_arrears": 1.578
+    },
+    {
+      "date": "2019-12-31",
+      "past_due_30_89": 0.701,
+      "non_performing": 0.897,
+      "total_arrears": 1.597
+    },
+    {
+      "date": "2020-03-31",
+      "past_due_30_89": 0.812,
+      "non_performing": 0.936,
+      "total_arrears": 1.749
+    },
+    {
+      "date": "2020-06-30",
+      "past_due_30_89": 0.75,
+      "non_performing": 1.107,
+      "total_arrears": 1.857
+    },
+    {
+      "date": "2020-09-30",
+      "past_due_30_89": 0.486,
+      "non_performing": 1.058,
+      "total_arrears": 1.545
+    },
+    {
+      "date": "2020-12-31",
+      "past_due_30_89": 0.568,
+      "non_performing": 1.013,
+      "total_arrears": 1.581
+    },
+    {
+      "date": "2021-03-31",
+      "past_due_30_89": 0.554,
+      "non_performing": 1.045,
+      "total_arrears": 1.599
+    },
+    {
+      "date": "2021-06-30",
+      "past_due_30_89": 0.514,
+      "non_performing": 1.015,
+      "total_arrears": 1.529
+    },
+    {
+      "date": "2021-09-30",
+      "past_due_30_89": 0.468,
+      "non_performing": 0.91,
+      "total_arrears": 1.378
+    },
+    {
+      "date": "2021-12-31",
+      "past_due_30_89": 0.422,
+      "non_performing": 0.823,
+      "total_arrears": 1.244
+    },
+    {
+      "date": "2022-03-31",
+      "past_due_30_89": 0.44,
+      "non_performing": 0.815,
+      "total_arrears": 1.255
+    },
+    {
+      "date": "2022-06-30",
+      "past_due_30_89": 0.39,
+      "non_performing": 0.783,
+      "total_arrears": 1.173
+    },
+    {
+      "date": "2022-09-30",
+      "past_due_30_89": 0.34,
+      "non_performing": 0.712,
+      "total_arrears": 1.052
+    },
+    {
+      "date": "2022-12-31",
+      "past_due_30_89": 0.419,
+      "non_performing": 0.676,
+      "total_arrears": 1.095
+    },
+    {
+      "date": "2023-03-31",
+      "past_due_30_89": 0.488,
+      "non_performing": 0.72,
+      "total_arrears": 1.207
+    },
+    {
+      "date": "2023-06-30",
+      "past_due_30_89": 0.508,
+      "non_performing": 0.763,
+      "total_arrears": 1.271
+    },
+    {
+      "date": "2023-09-30",
+      "past_due_30_89": 0.537,
+      "non_performing": 0.806,
+      "total_arrears": 1.343
+    },
+    {
+      "date": "2023-12-31",
+      "past_due_30_89": 0.601,
+      "non_performing": 0.857,
+      "total_arrears": 1.457
+    },
+    {
+      "date": "2024-03-31",
+      "past_due_30_89": 0.658,
+      "non_performing": 0.958,
+      "total_arrears": 1.616
+    },
+    {
+      "date": "2024-06-30",
+      "past_due_30_89": 0.658,
+      "non_performing": 1.037,
+      "total_arrears": 1.695
+    },
+    {
+      "date": "2024-09-30",
+      "past_due_30_89": 0.578,
+      "non_performing": 1.061,
+      "total_arrears": 1.639
+    },
+    {
+      "date": "2024-12-31",
+      "past_due_30_89": 0.591,
+      "non_performing": 1.052,
+      "total_arrears": 1.643
+    },
+    {
+      "date": "2025-03-31",
+      "past_due_30_89": 0.603,
+      "non_performing": 1.078,
+      "total_arrears": 1.681
+    },
+    {
+      "date": "2025-06-30",
+      "past_due_30_89": 0.545,
+      "non_performing": 1.074,
+      "total_arrears": 1.619
+    },
+    {
+      "date": "2025-09-30",
+      "past_due_30_89": 0.471,
+      "non_performing": 1.043,
+      "total_arrears": 1.514
+    }
+  ],
+  "latest": {
+    "date": "2025-09-30",
+    "past_due_30_89": 0.471,
+    "non_performing": 1.043,
+    "total_arrears": 1.514
+  },
+  "metadata": {
+    "source": "Australian Prudential Regulation Authority",
+    "indicator": "Housing Loan Arrears (ADI Property Exposures)",
+    "frequency": "quarterly",
+    "unit": "%"
+  },
+  "next_release": {
+    "date": "2026-02-15",
+    "label": "APRA Property Exposures (Q4 2025)"
+  },
+  "last_updated": "2026-02-22T18:49:09.110777+09:00"
+}

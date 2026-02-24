@@ -57,9 +57,9 @@ class SPPMIService:
 
     # DBクエリ用のイベントパターン（国コードでフィルタリング）
     EVENT_PATTERNS = {
-        "manufacturing": "S&P Global Manufacturing PMI",
-        "services": "S&P Global Services PMI",
-        "composite": "S&P Global Composite PMI",
+        "manufacturing": ["S&P Global Manufacturing PMI"],
+        "services": ["S&P Global Services PMI"],
+        "composite": ["S&P Global Composite PMI"],
     }
 
     def __init__(self):
@@ -174,21 +174,34 @@ class SPPMIService:
             from sqlalchemy import text
             import re
 
-            event_pattern = self.EVENT_PATTERNS.get(pmi_type)
-            if not event_pattern:
+            event_patterns = self.EVENT_PATTERNS.get(pmi_type)
+            if not event_patterns:
                 return []
+
+            # リストでない場合はリストに変換
+            if isinstance(event_patterns, str):
+                event_patterns = [event_patterns]
 
             with SessionLocal() as session:
                 # country='US'でフィルタリングして他国のPMIを除外
-                query = text("""
+                # 複数パターンをOR条件で結合
+                pattern_conditions = " OR ".join(
+                    [f"event ILIKE :pattern{i}" for i in range(len(event_patterns))]
+                )
+                query = text(f"""
                     SELECT datetime_utc, event, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'US'
-                      AND event ILIKE :pattern
+                      AND ({pattern_conditions})
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)
-                rows = session.execute(query, {"pattern": f"%{event_pattern}%"}).fetchall()
+
+                params = {}
+                for i, pattern in enumerate(event_patterns):
+                    params[f"pattern{i}"] = f"%{pattern}%"
+
+                rows = session.execute(query, params).fetchall()
 
                 result = []
                 seen_dates = set()

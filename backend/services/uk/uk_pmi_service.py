@@ -42,10 +42,11 @@ class UKPMIService:
     ECONALPHA_ID = "uk_pmi"
 
     # FMPカレンダー検索パターン（製造業・サービス・総合）
+    # FMPでは3指標が同時発表されるため、製造業には全パターンを含む
     FMP_EVENT_PATTERNS = {
-        "manufacturing": "S&P Global Manufacturing PMI",
-        "services": "S&P Global Services PMI",
-        "composite": "S&P Global Composite PMI",
+        "manufacturing": ["S&P Global Manufacturing PMI", "S&P Global Services PMI", "S&P Global Composite PMI"],
+        "services": ["S&P Global Services PMI"],
+        "composite": ["S&P Global Composite PMI"],
     }
 
     def __init__(self):
@@ -127,10 +128,10 @@ class UKPMIService:
             from services.uk.fmp_next_release_utils import get_next_release_by_pattern
 
             # 製造業PMIで検索（通常最初に発表される）
-            result = get_next_release_by_pattern(
-                self.FMP_EVENT_PATTERNS["manufacturing"],
-                country="GB"
-            )
+            pattern = self.FMP_EVENT_PATTERNS["manufacturing"]
+            if isinstance(pattern, list):
+                pattern = pattern[0]
+            result = get_next_release_by_pattern(pattern, country="GB")
             return result
         except Exception as e:
             print(f"[UK PMI] Error getting next release: {e}")
@@ -142,13 +143,22 @@ class UKPMIService:
             from core.database import SessionLocal
             from sqlalchemy import text
 
-            event_pattern = self.FMP_EVENT_PATTERNS.get(pmi_type)
-            if not event_pattern:
+            event_patterns = self.FMP_EVENT_PATTERNS.get(pmi_type)
+            if not event_patterns:
                 return []
 
+            # リストでない場合はリストに変換
+            if isinstance(event_patterns, str):
+                event_patterns = [event_patterns]
+
             with SessionLocal() as session:
+                # 複数パターンをOR条件で結合
+                pattern_conditions = " OR ".join(
+                    [f"event ILIKE :pattern{i}" for i in range(len(event_patterns))]
+                )
+
                 # Flash（速報）とFinal（確報）の両方を取得し、同月は確報を優先
-                query = text("""
+                query = text(f"""
                     WITH ranked_events AS (
                         SELECT
                             datetime_utc,
@@ -174,7 +184,7 @@ class UKPMIService:
                             ) as rn
                         FROM economic_calendar_events
                         WHERE country = 'UK'
-                          AND event ILIKE :pattern
+                          AND ({pattern_conditions})
                           AND actual IS NOT NULL
                     )
                     SELECT datetime_utc, actual, estimate, previous, event
@@ -182,10 +192,12 @@ class UKPMIService:
                     WHERE rn = 1
                     ORDER BY datetime_utc ASC
                 """)
-                rows = session.execute(
-                    query,
-                    {"pattern": f"%{event_pattern}%"}
-                ).fetchall()
+
+                params = {}
+                for i, pattern in enumerate(event_patterns):
+                    params[f"pattern{i}"] = f"%{pattern}%"
+
+                rows = session.execute(query, params).fetchall()
 
                 result = []
                 seen_dates = set()
@@ -240,8 +252,11 @@ class UKPMIService:
             try:
                 from services.uk.fmp_next_release_utils import should_refresh_by_pattern
                 # 製造業PMIで判定（通常最初に発表される）
+                pattern = self.FMP_EVENT_PATTERNS["manufacturing"]
+                if isinstance(pattern, list):
+                    pattern = pattern[0]
                 if should_refresh_by_pattern(
-                    self.FMP_EVENT_PATTERNS["manufacturing"],
+                    pattern,
                     last_updated_str,
                     country="GB"
                 ):

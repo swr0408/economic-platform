@@ -22,6 +22,10 @@ class AustraliaPolicyLoader(BaseDashboardLoader):
 
     取得データ:
     - au_rba_rate: RBA政策金利（キャッシュレート目標）
+    - au_asx_rate_tracker: ASX RBA Rate Tracker
+    - au_monetary_policy: RBA SMP経済予測
+    - au_housing_lending_rates: 住宅ローン金利（RBA F6）
+    - au_housing_loan_arrears: 住宅ローン延滞率（APRA）
 
     キャッシュ方式: FMP発表日時ベース判定
     """
@@ -34,6 +38,8 @@ class AustraliaPolicyLoader(BaseDashboardLoader):
         "au_rba_rate",
         "au_asx_rate_tracker",
         "au_monetary_policy",
+        "au_housing_lending_rates",
+        "au_housing_loan_arrears",
     ]
 
     def __init__(self):
@@ -82,17 +88,23 @@ class AustraliaPolicyLoader(BaseDashboardLoader):
         from services.australia.rba_policy_rate_service import rba_policy_rate_service
         from services.australia.asx_rate_tracker_service import asx_rate_tracker_service
         from services.australia.rba_smp_forecast_service import rba_smp_forecast_service
+        from services.australia.au_housing_lending_rates_service import au_housing_lending_rates_service
+        from services.australia.au_housing_loan_arrears_service import au_housing_loan_arrears_service
 
         result = {
             "au_rba_rate": None,
             "au_asx_rate_tracker": None,
             "au_monetary_policy": None,
+            "au_housing_lending_rates": None,
+            "au_housing_loan_arrears": None,
         }
 
         # データを取得
         result["au_rba_rate"] = self._get_au_rba_rate(rba_policy_rate_service)
         result["au_asx_rate_tracker"] = self._get_asx_rate_tracker(asx_rate_tracker_service)
         result["au_monetary_policy"] = self._get_monetary_policy(rba_smp_forecast_service)
+        result["au_housing_lending_rates"] = self._get_housing_lending_rates(au_housing_lending_rates_service)
+        result["au_housing_loan_arrears"] = self._get_housing_loan_arrears(au_housing_loan_arrears_service)
 
         return result
 
@@ -138,3 +150,33 @@ class AustraliaPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"[AustraliaPolicy] Error getting SMP Forecast: {e}")
             return {"indicators": {}, "metadata": {}}
+
+    def _get_housing_lending_rates(self, service) -> dict:
+        """住宅ローン金利データを取得（RBA F6）"""
+        try:
+            force_refresh = self._should_force_refresh("au_housing_lending_rates")
+            response = service.get_au_housing_lending_rates_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[AustraliaPolicy] Error getting Housing Lending Rates: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_housing_loan_arrears(self, service) -> dict:
+        """住宅ローン延滞率データを取得（APRA）"""
+        try:
+            force_refresh = self._should_force_refresh("au_housing_loan_arrears")
+            response = service.get_au_housing_loan_arrears_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[AustraliaPolicy] Error getting Housing Loan Arrears: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}

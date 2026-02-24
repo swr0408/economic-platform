@@ -577,6 +577,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'rba-ois', name: 'OIS' },
           { code: 'rba-expectations', name: '利上げ・利下げ期待' },
           { code: 'rba-statement', name: 'RBA声明' },
+          { code: 'housing-lending-rates', name: '住宅ローン金利' },
+          { code: 'housing-loan-arrears', name: '住宅ローン延滞率' },
         ],
       },
       {
@@ -586,7 +588,13 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#52c41a',
         indicators: [
           { code: 'gdp', name: 'GDP' },
+          { code: 'gdp-price-related', name: 'GDP詳細' },
+          { code: 'private-capex', name: '民間設備投資' },
           { code: 'trade-balance', name: '貿易収支' },
+          { code: 'current-account', name: '経常収支' },
+          { code: 'current-account-gdp-ratio', name: '経常収支対GDP比' },
+          { code: 'pmi', name: 'S&P Global PMI' },
+          { code: 'terms-of-trade', name: '交易条件' },
         ],
       },
       {
@@ -595,7 +603,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <ShoppingOutlined />,
         color: '#13c2c2',
         indicators: [
-          { code: 'retail-sales', name: '小売売上高' },
+          { code: 'household-spending', name: '家計支出' },
+          { code: 'consumer-confidence', name: '消費者信頼感指数' },
+          { code: 'nab-business-confidence', name: 'NAB企業信頼感指数' },
+          { code: 'consumer-spending', name: '個人消費' },
+          { code: 'household-saving-ratio', name: '家計貯蓄率' },
+          { code: 'disposable-personal-income', name: '可処分所得' },
         ],
       },
       {
@@ -611,6 +624,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'wage-price-index', name: '賃金物価指数' },
           { code: 'job-vacancies', name: '求人件数' },
           { code: 'anz-job-advertisements', name: 'ANZ求人広告' },
+          { code: 'underutilization', name: 'アンダー・ユーティライゼーション' },
         ],
       },
       {
@@ -633,7 +647,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <HomeOutlined />,
         color: '#722ed1',
         indicators: [
-          { code: 'building-permits', name: '建設許可' },
+          { code: 'cotality-home-prices', name: 'Cotality住宅価格指数' },
+          { code: 'building-permits', name: '建築許可件数' },
         ],
       },
     ],
@@ -650,6 +665,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'policy-rate', name: '政策金利' },
+          { code: 'economic-forecast', name: '経済見通し（MPS）' },
+          { code: 'balance-sheet', name: '中銀バランスシート' },
+          { code: 'bank-balance-sheet', name: '銀行バランスシート' },
           { code: 'rbnz-statement', name: 'RBNZ声明' },
         ],
       },
@@ -688,6 +706,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#ff4d4f',
         indicators: [
           { code: 'cpi', name: 'CPI' },
+          { code: 'cpi-item', name: 'CPI 項目別' },
+          { code: 'traded-nontraded', name: '貿易財 / 非貿易財' },
+          { code: 'ppi', name: 'PPI' },
         ],
       },
       {

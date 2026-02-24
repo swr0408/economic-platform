@@ -7,6 +7,7 @@ import AuParticipationRateChart from './employment/AuParticipationRateChart'
 import AuWagePriceIndexChart from './employment/AuWagePriceIndexChart'
 import AuJobVacanciesChart from './employment/AuJobVacanciesChart'
 import AuAnzJobAdvertisementsChart from './employment/AuAnzJobAdvertisementsChart'
+import AuUnderutilizationChart from './employment/AuUnderutilizationChart'
 
 /**
  * オーストラリア雇用チャート群
@@ -88,6 +89,13 @@ export default function AustraliaEmploymentCharts() {
       <div id="anz-job-advertisements">
         <AuAnzJobAdvertisementsChart
           data={dashboardData?.au_anz_job_advertisements ?? null}
+        />
+      </div>
+
+      {/* AU Underutilization */}
+      <div id="underutilization">
+        <AuUnderutilizationChart
+          data={dashboardData?.au_underutilization ?? null}
         />
       </div>
     </div>

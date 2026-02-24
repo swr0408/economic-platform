@@ -20,6 +20,9 @@
 - GET /api/australia/abs/anz-job-advertisements - ANZ求人広告データ
 - GET /api/australia/abs/anz-job-advertisements/cache - キャッシュ状態
 - DELETE /api/australia/abs/anz-job-advertisements/cache - キャッシュ無効化
+- GET /api/australia/abs/underutilization - アンダー・ユーティライゼーション
+- GET /api/australia/abs/underutilization/cache - キャッシュ状態
+- DELETE /api/australia/abs/underutilization/cache - キャッシュ無効化
 """
 from fastapi import APIRouter, Query
 from typing import Dict, Any
@@ -31,6 +34,7 @@ from services.australia.au_participation_rate_service import au_participation_ra
 from services.australia.au_wage_price_index_service import au_wage_price_index_service
 from services.australia.au_job_vacancies_service import au_job_vacancies_service
 from services.australia.au_anz_job_advertisements_service import au_anz_job_advertisements_service
+from services.australia.au_underutilization_service import au_underutilization_service
 
 router = APIRouter(
     prefix="/api/australia/abs",
@@ -252,4 +256,37 @@ async def get_anz_job_advertisements_cache_status() -> Dict[str, Any]:
 async def invalidate_anz_job_advertisements_cache() -> Dict[str, bool]:
     """ANZ求人広告のキャッシュを無効化"""
     success = au_anz_job_advertisements_service.invalidate_cache()
+    return {"success": success}
+
+
+# =====================================================================
+# Underutilization（アンダー・ユーティライゼーション）
+# =====================================================================
+
+
+@router.get("/underutilization")
+async def get_underutilization(
+    force_refresh: bool = Query(False, description="強制的にデータを再取得")
+) -> Dict[str, Any]:
+    """
+    アンダー・ユーティライゼーションデータを取得
+
+    ABS 6202.0 Table 23:
+    - underutilisation: 不完全利用率 (%, SA)
+    - underemployment: 不完全雇用率 (%, SA)
+    - unemployment: 失業率 (%, SA)
+    """
+    return au_underutilization_service.get_au_underutilization_data(force_refresh=force_refresh)
+
+
+@router.get("/underutilization/cache")
+async def get_underutilization_cache_status() -> Dict[str, Any]:
+    """アンダー・ユーティライゼーションのキャッシュ状態を取得"""
+    return au_underutilization_service.get_cache_status()
+
+
+@router.delete("/underutilization/cache")
+async def invalidate_underutilization_cache() -> Dict[str, bool]:
+    """アンダー・ユーティライゼーションのキャッシュを無効化"""
+    success = au_underutilization_service.invalidate_cache()
     return {"success": success}
