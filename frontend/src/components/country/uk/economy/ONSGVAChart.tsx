@@ -34,8 +34,11 @@ interface ONSGVAChartProps {
   data: ONSGVAData | null
 }
 
-// 統一されたビューモード（データタイプ + 表示形式）
-type ViewMode = '3m3m_chart' | '3m3m_table' | 'mom_chart' | 'mom_table' | '3m_yoy' | 'yoy'
+// データ種別
+type DataKind = '3m3m' | 'mom' | '3m_yoy' | 'yoy'
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
 
 interface ChartDataPoint {
   date: string
@@ -70,76 +73,61 @@ const getMonthFromDate = (dateStr: string): number => {
 // 月名配列（テーブル用）
 const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: '3m3m_chart', label: '3か月成長率' },
-  { mode: '3m3m_table', label: '3か月成長率（テーブル）' },
-  { mode: 'mom_chart', label: '単月前月比' },
-  { mode: 'mom_table', label: '単月前月比（テーブル）' },
+// データ種別オプション
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: '3m3m', label: '3か月成長率' },
+  { mode: 'mom', label: '単月前月比' },
   { mode: '3m_yoy', label: '3か月前年比' },
   { mode: 'yoy', label: '前年同月比' },
 ]
 
-// ビューモードの設定情報
-const VIEW_MODE_CONFIG: Record<ViewMode, {
+// 表示形式オプション
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
+// データ種別の設定情報
+const DATA_KIND_CONFIG: Record<DataKind, {
   chartType: 'bar' | 'line'
   compareId: string
   chartTitle: string
   tableDescription: string
-  dataType: '3m3m' | 'mom' | '3m_yoy' | 'yoy'
 }> = {
-  '3m3m_chart': {
-    chartType: 'bar',
-    compareId: 'uk_gva_3m3m',
-    chartTitle: '月間GDP（3か月成長率）',
-    tableDescription: '',
-    dataType: '3m3m',
-  },
-  '3m3m_table': {
+  '3m3m': {
     chartType: 'bar',
     compareId: 'uk_gva_3m3m',
     chartTitle: '月間GDP（3か月成長率）',
     tableDescription: '※ 月間GDP（GVA）3か月間成長率データ（単位: %）',
-    dataType: '3m3m',
   },
-  'mom_chart': {
-    chartType: 'bar',
-    compareId: 'uk_gva_mom',
-    chartTitle: '月間GDP（前月比）',
-    tableDescription: '',
-    dataType: 'mom',
-  },
-  'mom_table': {
+  'mom': {
     chartType: 'bar',
     compareId: 'uk_gva_mom',
     chartTitle: '月間GDP（前月比）',
     tableDescription: '※ 月間GDP（GVA）前月比データ（単位: %）',
-    dataType: 'mom',
   },
   '3m_yoy': {
     chartType: 'line',
     compareId: 'uk_gva_3m_yoy',
     chartTitle: '月間GDP（3か月前年比）',
     tableDescription: '',
-    dataType: '3m_yoy',
   },
   'yoy': {
     chartType: 'line',
     compareId: 'uk_gva_yoy',
     chartTitle: '月間GDP（前年同月比）',
     tableDescription: '',
-    dataType: 'yoy',
   },
 }
 
 export default function ONSGVAChart({ data }: ONSGVAChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('3m3m_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('3m3m')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  const config = VIEW_MODE_CONFIG[viewMode]
-  // viewModeからデータタイプを導出
-  const gvaType = config.dataType
+  const config = DATA_KIND_CONFIG[dataKind]
+  const gvaType = dataKind
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -389,6 +377,9 @@ export default function ONSGVAChart({ data }: ONSGVAChartProps) {
   const marketImpactIndicatorId = 'ons_gva'
   const chartTitle = config.chartTitle
 
+  // ヒートマップ表示の有無（3m3mとmomのみ）
+  const showDisplayModeToggle = dataKind === '3m3m' || dataKind === 'mom'
+
   return (
     <div id="ons-gva-chart">
       <ChartContainer
@@ -430,48 +421,60 @@ export default function ONSGVAChart({ data }: ONSGVAChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                  </div>
 
-                  {!viewMode.endsWith('_table') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${compareIndicatorId}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
-                    </div>
-                  )}
-                  {/* テーブル説明 */}
-                  {viewMode.endsWith('_table') && (
-                    <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
-                      {config.tableDescription}
+                  {/* 下段: 表示形式（3m3m/momのときのみ） */}
+                  {showDisplayModeToggle && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {viewMode.endsWith('_table') ? (
-                    <GVATable />
-                  ) : (
-                    <ZoomableChart
-                      data={filteredData}
-                      dataKey="value"
-                      color={CHART_COLORS.primary}
-                      name={chartTitle}
-                      height={450}
-                      tickFormatter={formatPercentage}
-                      tooltipFormatter={formatPercentage}
-                      tooltipLabelFormatter={formatMonthLabel}
-                      xAxisTickFormatter={formatMonthLabel}
-                      enableDynamicTicks={true}
-                      showZeroLine={true}
-                      showFiftyLine={false}
-                      connectNulls={true}
-                      hideLegend={true}
-                      chartType={config.chartType}
-                    />
+                  {/* チャート表示 */}
+                  {!(showDisplayModeToggle && displayMode === 'heatmap') && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                        <Tooltip title="比較ページを開く">
+                          <Button
+                            icon={<AreaChartOutlined />}
+                            onClick={() => window.open(`/compare?s=${compareIndicatorId}`, '_blank')}
+                          >
+                            データ比較
+                          </Button>
+                        </Tooltip>
+                      </div>
+                      <ZoomableChart
+                        data={filteredData}
+                        dataKey="value"
+                        color={CHART_COLORS.primary}
+                        name={chartTitle}
+                        height={450}
+                        tickFormatter={formatPercentage}
+                        tooltipFormatter={formatPercentage}
+                        tooltipLabelFormatter={formatMonthLabel}
+                        xAxisTickFormatter={formatMonthLabel}
+                        enableDynamicTicks={true}
+                        showZeroLine={true}
+                        showFiftyLine={false}
+                        connectNulls={true}
+                        hideLegend={true}
+                        chartType={config.chartType}
+                      />
+                    </>
+                  )}
+
+                  {/* テーブル表示 */}
+                  {showDisplayModeToggle && displayMode === 'heatmap' && (
+                    <>
+                      <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
+                        {config.tableDescription}
+                      </div>
+                      <GVATable />
+                    </>
                   )}
                 </>
               ),

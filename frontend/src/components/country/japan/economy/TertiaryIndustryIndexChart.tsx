@@ -66,7 +66,16 @@ interface ChartDataPoint {
   mom: number | null
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // グラフの色
 const COLORS = {
@@ -155,15 +164,15 @@ const filterByPeriod = (
 // =============================================================================
 
 export default function TertiaryIndustryIndexChart() {
-  const [viewMode, setViewMode] = useState<ViewMode>('mom_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データ取得
@@ -243,10 +252,10 @@ export default function TertiaryIndustryIndexChart() {
             )}
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>
-                {viewMode === 'yoy' ? '前年比:' : '前月比:'}
+                {dataKind === 'yoy' ? '前年比:' : '前月比:'}
               </span>
-              <span style={{ fontSize: 16, fontWeight: 'bold', color: viewMode === 'yoy' ? COLORS.yoy : COLORS.mom }}>
-                {(viewMode === 'yoy' ? latestData?.yoy : latestData?.mom)?.toFixed(1) ?? '-'}%
+              <span style={{ fontSize: 16, fontWeight: 'bold', color: dataKind === 'yoy' ? COLORS.yoy : COLORS.mom }}>
+                {(dataKind === 'yoy' ? latestData?.yoy : latestData?.mom)?.toFixed(1) ?? '-'}%
               </span>
             </div>
           </div>
@@ -277,55 +286,52 @@ export default function TertiaryIndustryIndexChart() {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'mom_chart', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                      { mode: 'yoy', label: '前年比' },
-                    ]}
-                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${dataKind === 'yoy' ? 'japan_tertiary_industry_yoy' : 'japan_tertiary_industry_mom'}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${viewMode === 'yoy' ? 'japan_tertiary_industry_yoy' : 'japan_tertiary_industry_mom'}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
-                    </div>
+                  {dataKind === 'mom' && (
+                    <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                   )}
 
                   {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={momTableData} />}
 
-                  {viewMode === 'yoy' && (
-                    <StandardLineChart
-                      data={filteredData}
-                      lines={[
-                        { dataKey: 'yoy', color: COLORS.yoy, name: '第三次産業活動指数（前年比）', hide: hiddenSeries.has('yoy') },
-                      ]}
-                      yAxisFormatter={(v) => `${v}%`}
-                      yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
-                      onLegendClick={handleLegendClick}
-                    />
+                  {dataKind === 'yoy' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          { dataKey: 'yoy', color: COLORS.yoy, name: '第三次産業活動指数（前年比）', hide: hiddenSeries.has('yoy') },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                        onLegendClick={handleLegendClick}
+                      />
+                    </>
                   )}
 
-                  {viewMode === 'mom_chart' && (
-                    <StandardBarChart
-                      data={filteredData}
-                      bars={[
-                        { dataKey: 'mom', color: COLORS.mom, name: '第三次産業活動指数（前月比）' },
-                      ]}
-                      yAxisFormatter={(v) => `${v}%`}
-                      yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
-                    />
+                  {dataKind === 'mom' && displayMode === 'chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardBarChart
+                        data={filteredData}
+                        bars={[
+                          { dataKey: 'mom', color: COLORS.mom, name: '第三次産業活動指数（前月比）' },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                      />
+                    </>
                   )}
                 </>
               ),

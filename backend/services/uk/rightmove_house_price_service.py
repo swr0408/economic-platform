@@ -95,9 +95,13 @@ class RightmoveHousePriceService:
             if pdf_data:
                 self._save_pdf_data_to_db(pdf_data)
                 self._mark_pdf_as_imported(pdf_path)
-                # メモリ上でもマージ
+                # メモリ上でもマージ（最新月）
                 mom_data = self._merge_pdf_data(mom_data, pdf_data.get("mom"))
                 yoy_data = self._merge_pdf_data(yoy_data, pdf_data.get("yoy"))
+                # 前月データも反映（PDFテーブルに含まれる過去月の修正値/補完値）
+                for prev in pdf_data.get("previous_months", []):
+                    mom_data = self._merge_pdf_data(mom_data, {"date": prev["date"], "value": prev["mom"]})
+                    yoy_data = self._merge_pdf_data(yoy_data, {"date": prev["date"], "value": prev["yoy"]})
                 logger.info(f"[Rightmove] Auto-imported new PDF: {pdf_path.name}")
 
         if mom_data or yoy_data:
@@ -264,8 +268,9 @@ class RightmoveHousePriceService:
             latest_pdf = pdf_files[0]
             logger.info(f"Found Rightmove PDF: {latest_pdf.name}")
 
-            # ファイル名から対象月を抽出 (Rightmove-HPI-YYYYMMl.pdf)
-            match = re.search(r'(\d{6})', latest_pdf.name)
+            # ファイル名から対象月を抽出
+            # 対応形式: YYYYMMDD(8桁), YYYYMM(6桁), YYYYMMl(6桁+文字)
+            match = re.search(r'(\d{8}|\d{6})', latest_pdf.name)
             if not match:
                 logger.warning(f"Could not extract date from PDF filename: {latest_pdf.name}")
                 return None
@@ -406,11 +411,12 @@ class RightmoveHousePriceService:
             pdf_path: PDFファイルパス
 
         Returns:
-            抽出されたデータ {"mom": {...}, "yoy": {...}}
+            抽出されたデータ {"mom": {...}, "yoy": {...}, "previous_months": [...]}
         """
         try:
-            # ファイル名から対象月を抽出 (Rightmove-HPI-YYYYMMl.pdf)
-            match = re.search(r'(\d{6})', pdf_path.name)
+            # ファイル名から対象月を抽出
+            # 対応形式: YYYYMMDD(8桁), YYYYMM(6桁), YYYYMMl(6桁+文字)
+            match = re.search(r'(\d{8}|\d{6})', pdf_path.name)
             if not match:
                 logger.warning(f"Could not extract date from PDF filename: {pdf_path.name}")
                 return None
@@ -428,6 +434,12 @@ class RightmoveHousePriceService:
 
             mom_value = None
             yoy_value = None
+            previous_months = []
+
+            month_names = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ]
 
             with pdfplumber.open(pdf_path) as pdf:
                 if len(pdf.pages) > 0:
@@ -435,23 +447,37 @@ class RightmoveHousePriceService:
                     text = page.extract_text()
 
                     if text:
-                        month_names = [
-                            "January", "February", "March", "April", "May", "June",
-                            "July", "August", "September", "October", "November", "December"
-                        ]
                         target_month_name = month_names[month - 1]
 
-                        # 最優先: テキスト内テーブル行（最も信頼性が高い）
+                        # テキスト内テーブルから全月の行を抽出
                         # "February 2026 £368,019 0.0% 0.0% 284.5" 形式
-                        row_pattern = (
-                            rf'{target_month_name}\s+{year}\s+\S+\s+'
+                        # "January 2026 £368,031 +2.8% +0.5% 284.5" 形式
+                        all_row_pattern = (
+                            r'(January|February|March|April|May|June|July|August|September|October|November|December)'
+                            r'\s+(\d{4})\s+\S+\s+'
                             r'([+-]?\d+\.?\d*)\s*%\s+([+-]?\d+\.?\d*)\s*%'
                         )
-                        row_match = re.search(row_pattern, text, re.IGNORECASE)
-                        if row_match:
-                            mom_value = float(row_match.group(1))
-                            yoy_value = float(row_match.group(2))
-                            logger.info(f"Found Rightmove from text table row: MoM={mom_value}%, YoY={yoy_value}%")
+                        for row_match in re.finditer(all_row_pattern, text, re.IGNORECASE):
+                            row_month_name = row_match.group(1)
+                            row_year = int(row_match.group(2))
+                            row_mom = float(row_match.group(3))
+                            row_yoy = float(row_match.group(4))
+                            row_month_num = month_names.index(row_month_name) + 1
+                            row_date = f"{row_year}-{row_month_num:02d}-01"
+
+                            if row_date == data_date:
+                                # 対象月のデータ
+                                mom_value = row_mom
+                                yoy_value = row_yoy
+                                logger.info(f"Found Rightmove from text table row: {row_date} MoM={row_mom}%, YoY={row_yoy}%")
+                            else:
+                                # 前月のデータ（修正値として保存）
+                                previous_months.append({
+                                    "date": row_date,
+                                    "mom": row_mom,
+                                    "yoy": row_yoy,
+                                })
+                                logger.info(f"Found Rightmove previous month: {row_date} MoM={row_mom}%, YoY={row_yoy}%")
 
                         # フォールバック: "Monthly change: +2.8%" 形式
                         if mom_value is None:
@@ -505,8 +531,10 @@ class RightmoveHousePriceService:
                 result["mom"] = {"date": data_date, "value": mom_value}
             if yoy_value is not None:
                 result["yoy"] = {"date": data_date, "value": yoy_value}
+            if previous_months:
+                result["previous_months"] = previous_months
 
-            logger.info(f"Extracted from {pdf_path.name}: {result}")
+            logger.info(f"Extracted from {pdf_path.name}: mom={result.get('mom')}, yoy={result.get('yoy')}, previous_months={len(previous_months)}")
             return result
 
         except Exception as e:

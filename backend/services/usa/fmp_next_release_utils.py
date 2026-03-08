@@ -72,7 +72,8 @@ def get_fmp_event_patterns(econalpha_id: str) -> Optional[List[str]]:
 def get_next_release_from_fmp(
     econalpha_id: str,
     patterns: Optional[List[str]] = None,
-    use_cache: bool = True
+    use_cache: bool = True,
+    country: str = "US",
 ) -> Optional[Dict[str, Any]]:
     """
     FMP APIから次回発表日を取得
@@ -81,6 +82,7 @@ def get_next_release_from_fmp(
         econalpha_id: EconAlpha指標ID（マッピングテーブルから自動取得）
         patterns: FMPイベントパターン（指定しない場合はマッピングテーブルから取得）
         use_cache: Redisキャッシュを使用するか
+        country: FMP国コード（デフォルト: "US"）
 
     Returns:
         次回発表日情報:
@@ -116,13 +118,13 @@ def get_next_release_from_fmp(
         events = fmp_service.fetch_calendar(
             today,
             today + timedelta(days=60),
-            country="US"
+            country=country,
         )
 
         # 対象イベントを収集
         candidates = []
         for event in events:
-            if event.get("country") != "US":
+            if event.get("country") != country:
                 continue
 
             event_name = event.get("event", "")
@@ -398,6 +400,10 @@ def should_refresh_by_fmp_schedule(
         # マッピングからパターンを取得
         patterns = get_fmp_event_patterns(econalpha_id)
         if not patterns:
+            # FMPマッピングがない場合、24時間TTLフォールバック
+            elapsed = (now - last_updated).total_seconds()
+            if elapsed > 24 * 60 * 60:
+                return True
             return False
 
         with SessionLocal() as session:

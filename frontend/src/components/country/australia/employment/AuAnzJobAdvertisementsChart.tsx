@@ -54,14 +54,21 @@ interface AuAnzJobAdvertisementsChartProps {
   data: AuAnzJobAdvertisementsData | null
 }
 
-// ビューモード
-type AnzViewMode = 'yoy' | 'mom_change' | 'mom_table' | 'index'
+// データ種別
+type DataKind = 'index' | 'yoy' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: AnzViewMode; label: string }[] = [
-  { mode: 'mom_change', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
   { mode: 'yoy', label: '前年比' },
   { mode: 'index', label: '指数' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -92,15 +99,15 @@ const formatDateLabelJP = (dateStr: string): string => {
 // =============================================================================
 
 export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisementsChartProps) {
-  const [viewMode, setViewMode] = useState<AnzViewMode>('mom_change')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_change: 3,
+    mom: 3,
     index: 'default',
   })
 
@@ -191,8 +198,9 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: データ種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -203,8 +211,15 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_change' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -221,8 +236,17 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
                     </>
                   )}
 
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
+                    <MonthlyTable
+                      data={momTableData}
+                      decimals={1}
+                      helperText="※ 直近10年間の前月比データ（単位: %）"
+                    />
+                  )}
+
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -240,17 +264,8 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
-                    <MonthlyTable
-                      data={momTableData}
-                      decimals={1}
-                      helperText="※ 直近10年間の前月比データ（単位: %）"
-                    />
-                  )}
-
                   {/* 指数（折れ線グラフ） */}
-                  {viewMode === 'index' && (
+                  {dataKind === 'index' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart

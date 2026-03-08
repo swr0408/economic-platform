@@ -42,6 +42,8 @@ import {
   TOOLTIP_STYLE,
   CHANGE_LEGEND_200K,
   getChangeCellColor200k,
+  DISPLAY_MODE_OPTIONS,
+  type DisplayMode,
 } from '../common/chartConstants'
 import {
   useSortedData,
@@ -68,13 +70,12 @@ interface JoltsIndeedChartProps {
   data: JoltsIndeedData | null
 }
 
-type ViewMode = 'value' | 'jolts_change_chart' | 'jolts_change_table'
+type DataKind = 'value' | 'jolts_change'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+// データ種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'jolts_change_chart', label: 'JOLTS前月増減幅' },
-  { mode: 'jolts_change_table', label: 'JOLTS前月増減幅（テーブル）' },
+  { mode: 'jolts_change', label: 'JOLTS前月増減幅' },
 ]
 
 // カラー設定（サービスから取得したものを優先、フォールバック用）
@@ -181,15 +182,15 @@ function ValueTooltip({ active, payload, label }: CustomTooltipProps) {
 // =============================================================================
 
 export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'jolts' | 'indeed' | 'jolts_change'>()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    jolts_change_chart: 3,
-    jolts_change_table: 'default',
+    jolts_change: 3,
   })
 
   // データのソート
@@ -339,7 +340,7 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
 
   // 最新値の表示用アイテム
   const getLatestItems = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return latest ? [
         { label: SERIES_NAMES.jolts, value: latest.jolts, color: getColor('jolts'), format: 'number' as const, unit: 'k', decimals: 0 },
         { label: SERIES_NAMES.indeed, value: latest.indeed, color: getColor('indeed'), format: 'number' as const, unit: '', decimals: 1 },
@@ -385,11 +386,18 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* データ種別切り替え */}
+                  <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+
+                  {/* 表示形式切り替え（JOLTS増減幅のときのみ） */}
+                  {dataKind === 'jolts_change' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 現数値グラフ */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -487,7 +495,7 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
                   )}
 
                   {/* JOLTS前月増減幅グラフ */}
-                  {viewMode === 'jolts_change_chart' && (
+                  {dataKind === 'jolts_change' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
@@ -526,7 +534,7 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
                   )}
 
                   {/* JOLTS前月増減幅テーブル */}
-                  {viewMode === 'jolts_change_table' && (
+                  {dataKind === 'jolts_change' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={changeTableData}
                       formatValue={(value) => {

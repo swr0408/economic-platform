@@ -15,7 +15,7 @@
  * - 毎月（通常月中旬）
  */
 import { useState, useMemo } from 'react'
-import { Tabs, Button, Tooltip, Segmented } from 'antd'
+import { Tabs, Button, Tooltip } from 'antd'
 import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
@@ -53,8 +53,23 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
 type SeriesType = 'all' | 'core'
+const SERIES_TYPE_OPTIONS: { mode: SeriesType; label: string }[] = [
+  { mode: 'all', label: '全小売（燃料込み）' },
+  { mode: 'core', label: 'コア（燃料除く）' },
+]
 
 // グラフの色
 const COLORS = {
@@ -65,16 +80,16 @@ const COLORS = {
 }
 
 export default function ONSRetailSalesChart({ data }: ONSRetailSalesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [seriesType, setSeriesType] = useState<SeriesType>('all')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換（全系列をマージ）
@@ -155,18 +170,18 @@ export default function ONSRetailSalesChart({ data }: ONSRetailSalesChartProps) 
   // 現在の表示値を取得
   const currentValue = useMemo(() => {
     if (!latest) return null
-    if (viewMode === 'yoy') {
+    if (dataKind === 'yoy') {
       return seriesType === 'all' ? latest.yoy : latest.core_yoy
     }
     return seriesType === 'all' ? latest.mom : latest.core_mom
-  }, [latest, viewMode, seriesType])
+  }, [latest, dataKind, seriesType])
 
   const currentColor = useMemo(() => {
-    if (viewMode === 'yoy') {
+    if (dataKind === 'yoy') {
       return seriesType === 'all' ? COLORS.yoy : COLORS.core_yoy
     }
     return seriesType === 'all' ? COLORS.mom : COLORS.core_mom
-  }, [viewMode, seriesType])
+  }, [dataKind, seriesType])
 
   if (data === null) {
     return <LoadingChart title="小売売上高（イギリス）" />
@@ -213,46 +228,39 @@ export default function ONSRetailSalesChart({ data }: ONSRetailSalesChartProps) 
               children: (
                 <>
                   {/* 系列選択（全小売 vs コア） */}
-                  <div style={{ marginBottom: 12 }}>
-                    <Segmented
-                      options={[
-                        { label: '全小売（燃料込み）', value: 'all' },
-                        { label: 'コア（燃料除く）', value: 'core' },
-                      ]}
-                      value={seriesType}
-                      onChange={(value) => setSeriesType(value as SeriesType)}
-                    />
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={SERIES_TYPE_OPTIONS} currentMode={seriesType} onChange={setSeriesType} />
                   </div>
 
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_chart', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=uk_retail_sales_yoy&s=uk_retail_sales_core_yoy`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=uk_retail_sales_yoy&s=uk_retail_sales_core_yoy`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+                  {/* 期間セレクター */}
+                  {(dataKind === 'yoy' || (dataKind === 'mom' && displayMode === 'chart')) && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
 
-                  {viewMode === 'yoy' && (
+                  {/* コンテンツ表示 */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={momTableData} />}
+
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -266,11 +274,11 @@ export default function ONSRetailSalesChart({ data }: ONSRetailSalesChartProps) 
                       yAxisFormatter={(v) => `${v}%`}
                       onLegendClick={handleLegendClick}
                       yDomain={['dataMin - 2', 'dataMax + 2']}
-                      
+
                     />
                   )}
 
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

@@ -308,5 +308,67 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('au_current_account', '経常収支（オーストラリア）', 'AU', 'quarterly', ARRAY['Current Account'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- ニュージーランド 乳製品価格（GDT）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('nz_global_dairy_trade', '乳製品価格（GDT）', 'NZ', 'irregular', ARRAY['GlobalDairyTrade Price Index'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ニュージーランド 経常収支（nz_current_account_balance）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('nz_current_account_balance', '経常収支（ニュージーランド）', 'NZ', 'quarterly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 新規人民元貸出（cn_new_rmb_loans）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_new_rmb_loans', '新規人民元貸出', 'CN', 'monthly', ARRAY['New Yuan Loans', 'New Loans'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 LPR 1年（cn_lpr_1y）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_lpr_1y', 'ローンプライムレート（1年）', 'CN', 'monthly', ARRAY['Loan Prime Rate 1Y'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 LPR 5年（cn_lpr_5y）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_lpr_5y', 'ローンプライムレート（5年）', 'CN', 'monthly', ARRAY['Loan Prime Rate 5Y'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 外貨準備（cn_foreign_exchange_reserves）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_foreign_exchange_reserves', '外貨準備高', 'CN', 'monthly', ARRAY['Foreign Exchange Reserves'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 経常収支（cn_current_account）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_current_account', '経常収支', 'CN', 'quarterly', ARRAY['Current Account'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 住宅価格指数（cn_house_price_index）
+-- NBS序号9: 商品住宅销售价格指数月度报告
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_house_price_index', '住宅価格指数', 'CN', 'monthly', ARRAY['House Price Index YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 中国 商業住宅販売（cn_commercial_residential_sales）
+-- NBS序号10: 房地产开发和销售情况月度报告 — 住宅価格指数と同日発表
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cn_commercial_residential_sales', '商業住宅販売', 'CN', 'monthly', ARRAY['House Price Index YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 台湾PMI先行き・電子工学業（taiwan_pmi_outlook）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('taiwan_pmi_outlook', '台湾PMI先行き（電子工学業）', 'TW', 'monthly', ARRAY['S&P Global Manufacturing PMI'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 韓国輸出（south_korean_exports）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('south_korean_exports', '韓国輸出', 'KR', 'monthly', ARRAY['Exports YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 台湾輸出受注（taiwan_export_orders）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('taiwan_export_orders', '台湾輸出受注', 'TW', 'monthly', ARRAY['Export Orders YoY'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
-SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country = 'US' ORDER BY econalpha_id;
+SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country IN ('US', 'CN', 'TW', 'KR') ORDER BY country, econalpha_id;

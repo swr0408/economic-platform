@@ -54,11 +54,14 @@ y_axis_format: number         # Y軸フォーマット: number, percent, index
 chart_color: "#DC143C"        # グラフ色（省略可）
 unit: "%"                     # 単位
 
-# ===== テーブル表示 =====
-# 注意: テーブル表示は基本的に使用しない（他指標との統一性のため）
-# 特別な理由がない限り show_table: false を推奨
-show_table: false             # テーブル表示するか（基本はfalse）
-table_type: none              # テーブル種別: none, monthly, quarterly
+# ===== ヒートマップ表示 =====
+# 前月比/前期比がある指標で、複数系列（総合/コア等）がある場合に使用
+# 上段: [前月比/前期比 | 前年比] 下段: [チャート | ヒートマップ]
+show_heatmap: false           # ヒートマップ表示するか（前月比/前期比+複数系列の場合にtrue）
+heatmap_type: none            # ヒートマップ種別: none, monthly, quarterly
+heatmap_data_types:           # ヒートマップ切替項目（例: 総合/コア/コアコア）
+  - total: '総合'
+  - core: 'コア'
 
 # ===== 系列数 =====
 series_count: single          # 系列数: single, multiple
@@ -238,22 +241,101 @@ notes: |
      - PDF URLから年月を抽出するフォールバック
 
 6. **レイアウトが他の指標と異なる / 見た目が統一されていない**
+
+   > ### ⚠️ 厳守: チャートレイアウト標準（Pattern B）
+   > **全指標で以下の順序・配置を必ず守ること。例外は認めない。**
+   >
+   > **【ビューモードあり + 比較ボタンあり（標準）】**
+   > ```
+   > 1. LatestValueBox / SimpleLatestValueBox   ← 最新値（最上段）
+   > 2. [ViewModeButtonGroup]  [データ比較ボタン]  ← 同一行・左右に配置
+   > 3. PeriodSelector                           ← 単独行
+   > 4. グラフ
+   > ```
+   >
+   > **【ビューモードなし + 比較ボタンあり】**
+   > ```
+   > 1. SimpleLatestValueBox   ← 最新値
+   > 2.           [データ比較ボタン]  ← 右端に単独配置（justifyContent: flex-end）
+   > 3. PeriodSelector         ← 単独行
+   > 4. グラフ
+   > ```
+   >
+   > **絶対NG（やってはいけない配置）**:
+   > - `PeriodSelector` と `データ比較ボタン` を同一行に配置する → **禁止**
+   > - `ViewModeButtonGroup` を単独行に配置して `データ比較ボタン` を別行（PeriodSelector行）にする → **禁止**
+   > - `ViewModeButtonGroup` → 改行 → `PeriodSelector + 比較ボタン` の順序 → **禁止**
+   >
+   > **NG例（最もよくある間違いパターン）**:
+   > ```tsx
+   > // ❌ 禁止パターン
+   > <ViewModeButtonGroup ... />           {/* 単独行 */}
+   > <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+   >   <PeriodSelector ... />
+   >   <Button>データ比較</Button>         {/* PeriodSelectorと同行 → 禁止 */}
+   > </div>
+   > ```
+   >
+   > **OK例（正しいパターン）**:
+   > ```tsx
+   > // ✅ 正しいパターン
+   > <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+   >   <ViewModeButtonGroup ... />
+   >   <Button>データ比較</Button>         {/* ViewModeButtonGroupと同行 ✅ */}
+   > </div>
+   > <PeriodSelector ... />               {/* 単独行 ✅ */}
+   > ```
+
    - **ビューモード切り替えには必ず `ViewModeButtonGroup` を使用する**
      - NG: `Radio.Group` を使用してはいけない
      - OK: `ViewModeButtonGroup` コンポーネント（`usa/common/ChartComponents.tsx`）
    - **グラフ種別の使い分け**:
      - **原数値・前年比**: `StandardLineChart`（線グラフ）を使用
-     - **前月比**: `StandardBarChart`（棒グラフ）を使用
+     - **前月比/前期比**: `StandardBarChart`（棒グラフ）を使用
      - 前年比は `showZeroLine={true}` を設定
-   - **標準レイアウトパターン**:
-     1. `SimpleLatestValueBox` - 最新値表示
-     2. `ViewModeButtonGroup` - ビューモード切替（複数系列/前年比等の場合）
-     3. `PeriodSelector` + `データ比較ボタン` - 横並びで配置
-     4. グラフ（原数値/前年比は線グラフ、前月比は棒グラフ）
-   - **参考実装**:
+   - **標準レイアウト実装例（Pattern B）**:
+     ```tsx
+     {/* 1. 最新値表示 */}
+     <SimpleLatestValueBox ... />
+
+     {/* 2. ViewModeButtonGroup + データ比較ボタン ← 必ず同一行 */}
+     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+       <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+       <Tooltip title="比較ページを開く">
+         <Button icon={<AreaChartOutlined />}
+           onClick={() => window.open('/compare?s=indicator_id', '_blank')}>
+           データ比較
+         </Button>
+       </Tooltip>
+     </div>
+
+     {/* 3. PeriodSelector ← 単独行（比較ボタンと同一行にしてはいけない） */}
+     <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+
+     {/* 4. グラフ */}
+     {viewMode === 'raw' && <StandardLineChart ... />}
+     {viewMode === 'yoy' && <StandardLineChart showZeroLine={true} ... />}
+     {viewMode === 'mom' && <StandardBarChart ... />}
+     ```
+   - **★推奨: 前月比/前期比＋前年比の標準レイアウト（複数系列がある場合）**:
+     ```
+     上段: [前期比/前月比 | 前年比]  [データ比較]  ← ViewModeButtonGroup（同一行）
+     下段: [チャート | ヒートマップ]               ← 前期比/前月比のときのみ表示
+
+     前年比 → 折れ線グラフ（全系列同時表示、凡例クリック切替）
+     前月比/前期比チャート → DataTypeButtonGroup（総合/コア/その他）+ 棒グラフ
+     前月比/前期比ヒートマップ → テーブル内で総合/コア/その他切替
+     ```
+     - 指標によって `前月比`（monthly）か `前期比`（quarterly）かが異なる
+     - 総合/コア以外の項目がある場合は `DataTypeButtonGroup` の選択肢を追加
+     - テンプレート: [templates/chart.tsx.md](templates/chart.tsx.md) の「チャート＋ヒートマップパターン★推奨」を参照
+   - **参考実装（Pattern B 準拠）**:
      - 単一系列: `frontend/src/components/country/switzerland/consumer/KofBarometerChart.tsx`
      - 複数系列切替: `frontend/src/components/country/switzerland/housing/CHMortgageRatesChart.tsx`
-     - 前年比/前月比切替: `frontend/src/components/country/switzerland/housing/CHMortgageBalanceChart.tsx`
+     - ★前期比/前年比+ヒートマップ（四半期）: `frontend/src/components/country/newzealand/consumer/NzRetailSalesChart.tsx`
+     - ★前月比/前年比+ヒートマップ（月次）: `frontend/src/components/country/japan/price/NationalCPIChart.tsx`
+     - ★前期比/前年比+ヒートマップ（四半期・多系列）: `frontend/src/components/country/australia/inflation/AuQuarterlyCpiChart.tsx`
+     - ★ビューモード付き多系列: `frontend/src/components/country/china/policy/CnAggregateFinancingChart.tsx`
 
 7. **Excelからのデータ抽出が失敗する / 「データが利用できません」エラー**
    - **Excelファイルの構造を必ず事前確認する**
@@ -565,6 +647,96 @@ notes: |
       - レート制限: IPあたり50rps
     - **代替方法**: cube metadata CSV（約50KB）をダウンロードしてvectorIdを抽出
     - **実装例**: `backend/services/canada/ca_building_permits_service.py`（WDS実装予定）
+
+20. **前月比棒グラフのDataType切替ボタンに手動Buttonループを使ってはいけない**
+    - **問題**: 手動で`Button`をmapしてDataType切替を実装すると、他の指標チャートとレイアウト・スタイルが不統一になる
+    - **NG**:
+      ```tsx
+      // ❌ 禁止: 手動Buttonループ
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 8 }}>
+        {CPI_DATA_TYPE_OPTIONS.map(opt => (
+          <Button key={opt.type} type={dataType === opt.type ? 'primary' : 'default'}
+            size="small" onClick={() => setDataType(opt.type)} style={{ marginRight: 4 }}>
+            {opt.label}
+          </Button>
+        ))}
+      </div>
+      ```
+    - **OK**:
+      ```tsx
+      // ✅ 正しい: DataTypeButtonGroupコンポーネントを使用
+      import { DataTypeButtonGroup } from '../../usa/common/ChartComponents'
+      <DataTypeButtonGroup options={CPI_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+      ```
+    - **配置順序（前月比チャートモード時）**:
+      1. `DataTypeButtonGroup` — DataType切替（総合/コア等）
+      2. `PeriodSelector` — 期間選択
+      3. `StandardBarChart` — 棒グラフ
+    - **参考実装**: `frontend/src/components/country/japan/price/NationalCPIChart.tsx`
+
+21. **NBS（中国国家統計局）APIの時代分割コード体系**
+    - **問題**: NBS統計データAPI（`data.stats.gov.cn/easyquery.htm`）は同一指標でも時代別にコードが分かれている
+    - **時代区分**: 2016-2020 / 2021-2025 / 2026+ の3期間
+    - **コード命名パターン**:
+      - 2016-2020: `A01010101`（基本コード）
+      - 2021-2025: `A01010G01`（Gプレフィックス）
+      - 2026+: `A01010J01`（Jプレフィックス）
+    - **一部の指標は2016-2020にコードが存在しない**:
+      - 例: コアCPI（食品・エネルギー除く）は2021-2025以降のみ（`A01010G0D`）
+      - 2016-2020のCSVにもコアCPI行がない → **データソースの制約であり、実装の問題ではない**
+    - **食品CPI等はcross-periodコード（全時代共通）**:
+      - 例: `A01010301`（食品CPI YoY）は2016〜2026+の全データを返す
+    - **APIコード特定方法**:
+      ```python
+      # 特定時代の全サブカテゴリコードを一括取得
+      import requests, json
+      url = 'https://data.stats.gov.cn/easyquery.htm'
+      params = {
+          'm': 'QueryData', 'dbcode': 'hgyd', 'rowcode': 'zb', 'colcode': 'sj',
+          'wds': json.dumps([]),
+          'dfwds': json.dumps([
+              {'wdcode':'sj','valuecode':'202512'},  # 対象月
+              {'wdcode':'zb','valuecode':'A01010G'}   # 親コード（2021-2025 YoY）
+          ]),
+          'k1': '1'
+      }
+      resp = requests.get(url, params=params, timeout=30)
+      # → 全子コード（G01〜G0D等）とその値が返る
+      # CSVの行順序と値を照合してコードを特定する
+      ```
+    - **NBS APIの値はインデックス（base=100）**: `percent = value - 100`
+      - 例: 100.8 → +0.8%, 99.3 → -0.7%
+    - **実装パターン**: 各系列の全時代コードをリストで保持し、マージ（後の時代が優先）
+      ```python
+      NBS_API_CODES = {
+          "cpi_yoy": ["A01010101", "A01010G01", "A01010J01"],  # 3時代
+          "core_yoy": ["A01010G0D", "A01010J0D"],              # 2時代のみ
+          "food_yoy": ["A01010301"],                           # cross-period
+      }
+      ```
+    - **実装例**: `backend/services/china/cn_cpi_service.py`
+
+22. **変動幅が大きい系列は右Y軸に分離する**
+    - **問題**: 食品CPIのように変動幅が大きい系列（-20%〜+30%）と、CPI総合のように変動幅が小さい系列（-1%〜+3%）を同じY軸で表示すると、小変動の系列が平坦に見える
+    - **解決策**: `StandardLineChart`の`yAxisId: 'right'`を使って右Y軸に分離
+      ```tsx
+      <StandardLineChart
+        data={filteredData}
+        lines={[
+          { dataKey: 'yoy', color: COLOR_TOTAL, name: 'CPI総合(L)' },
+          { dataKey: 'core_yoy', color: COLOR_CORE, name: 'コアCPI(L)' },
+          { dataKey: 'food_yoy', color: COLOR_FOOD, name: '食品CPI(R)', yAxisId: 'right' },
+        ]}
+        yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+        rightYAxisFormatter={(v) => `${v.toFixed(0)}%`}
+        yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+      />
+      ```
+    - **凡例のL/R表記**: 右Y軸の系列は名前に`(R)`、左Y軸は`(L)`を付ける
+    - **適用すべきケース**:
+      - 食品CPI vs CPI総合/コア/非食品
+      - 原数値（水準）と前年比（%）を同時表示する場合
+    - **実装例**: `frontend/src/components/country/china/inflation/CnCpiChart.tsx`
 
 ---
 

@@ -5247,24 +5247,40 @@
       "qoq": -17.0,
       "yoy": 1.33,
       "period": "2025 SEP"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 34303.0,
+      "mom": 77.0,
+      "qoq": 82.0,
+      "yoy": 1.52,
+      "period": "2025 OCT"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 34244.0,
+      "mom": -59.0,
+      "qoq": 52.0,
+      "yoy": 1.13,
+      "period": "2025 NOV"
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "value": 34226.0,
-    "mom": 34.0,
-    "qoq": -17.0,
-    "yoy": 1.33,
-    "period": "2025 SEP"
+    "date": "2025-11-01",
+    "value": 34244.0,
+    "mom": -59.0,
+    "qoq": 52.0,
+    "yoy": 1.13,
+    "period": "2025 NOV"
   },
   "metadata": {
     "title": "Number of People in Employment (aged 16 and over, seasonally adjusted):000s",
     "cdid": "MGRZ",
     "unit": "000's",
-    "release_date": "16-12-2025",
-    "next_release_ons": "20 January 2026",
+    "release_date": "17-02-2026",
+    "next_release_ons": "19 March 2026",
     "source": "Office for National Statistics",
     "description": "イギリス雇用者数（16歳以上、季節調整済）"
   },
-  "last_updated": "2026-01-20T12:22:19.963682+09:00"
+  "last_updated": "2026-02-28T09:57:52.152150+09:00"
 }

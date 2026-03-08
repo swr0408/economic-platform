@@ -53,13 +53,16 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // グラフの色
@@ -75,13 +78,13 @@ const SERIES_NAMES = {
 }
 
 export default function NationwideHPIChart({ data }: NationwideHPIChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換
@@ -172,7 +175,7 @@ export default function NationwideHPIChart({ data }: NationwideHPIChartProps) {
 
   // データ比較ページを開く
   const handleCompare = () => {
-    const series = viewMode === 'yoy' ? 'uk_nationwide_hpi_yoy' : 'uk_nationwide_hpi_mom'
+    const series = dataKind === 'yoy' ? 'uk_nationwide_hpi_yoy' : 'uk_nationwide_hpi_mom'
     window.open(`/compare?s=${series}`, '_blank')
   }
 
@@ -199,21 +202,23 @@ export default function NationwideHPIChart({ data }: NationwideHPIChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <AntTooltip title="比較ページを開く">
-                      <Button
-                        icon={<AreaChartOutlined />}
-                        onClick={handleCompare}
-                      >
-                        データ比較
-                      </Button>
+                      <Button icon={<AreaChartOutlined />} onClick={handleCompare}>データ比較</Button>
                     </AntTooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* YoY折れ線グラフ */}
-                  {viewMode === 'yoy' && hasYoYData && (
+                  {dataKind === 'yoy' && hasYoYData && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -236,7 +241,7 @@ export default function NationwideHPIChart({ data }: NationwideHPIChartProps) {
                   )}
 
                   {/* MoMテーブル */}
-                  {viewMode === 'mom_table' && hasMoMData && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && hasMoMData && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={1}
@@ -245,7 +250,7 @@ export default function NationwideHPIChart({ data }: NationwideHPIChartProps) {
                   )}
 
                   {/* MoM棒グラフ */}
-                  {viewMode === 'mom_chart' && hasMoMData && (
+                  {dataKind === 'mom' && displayMode === 'chart' && hasMoMData && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -267,8 +272,8 @@ export default function NationwideHPIChart({ data }: NationwideHPIChartProps) {
                   )}
 
                   {/* データなし */}
-                  {viewMode === 'yoy' && !hasYoYData && <NoDataMessage />}
-                  {(viewMode === 'mom_table' || viewMode === 'mom_chart') && !hasMoMData && <NoDataMessage />}
+                  {dataKind === 'yoy' && !hasYoYData && <NoDataMessage />}
+                  {dataKind === 'mom' && !hasMoMData && <NoDataMessage />}
                 </>
               ),
             },

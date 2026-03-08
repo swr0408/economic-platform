@@ -32,8 +32,17 @@ interface ONSProductionChartProps {
   data: ONSProductionData | null
 }
 
-// 統一されたビューモード（データタイプ + 表示形式）
-type ViewMode = 'yoy' | 'mom_chart' | 'mom_table'
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 interface ChartDataPoint {
   date: string
@@ -68,52 +77,36 @@ const getMonthFromDate = (dateStr: string): number => {
 // 月名配列（テーブル用）
 const MONTH_NAMES = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
-]
-
-// ビューモードの設定情報
-const VIEW_MODE_CONFIG: Record<ViewMode, {
+// データ種別ごとの設定情報
+const DATA_KIND_CONFIG: Record<DataKind, {
   chartType: 'bar' | 'line'
   compareId: string
   chartTitle: string
   tableDescription: string
-  dataType: 'yoy' | 'mom'
 }> = {
   'yoy': {
     chartType: 'line',
     compareId: 'uk_production_yoy',
     chartTitle: '鉱工業生産（前年比）',
     tableDescription: '',
-    dataType: 'yoy',
   },
-  'mom_chart': {
-    chartType: 'bar',
-    compareId: 'uk_production_mom',
-    chartTitle: '鉱工業生産（前月比）',
-    tableDescription: '',
-    dataType: 'mom',
-  },
-  'mom_table': {
+  'mom': {
     chartType: 'bar',
     compareId: 'uk_production_mom',
     chartTitle: '鉱工業生産（前月比）',
     tableDescription: '※ 鉱工業生産 前月比データ（単位: %）',
-    dataType: 'mom',
   },
 }
 
 export default function ONSProductionChart({ data }: ONSProductionChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  const config = VIEW_MODE_CONFIG[viewMode]
-  // viewModeからデータタイプを導出
-  const productionType = config.dataType
+  const config = DATA_KIND_CONFIG[dataKind]
+  // dataKindからデータタイプを導出
+  const productionType = dataKind
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -374,29 +367,38 @@ export default function ONSProductionChart({ data }: ONSProductionChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${compareIndicatorId}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {viewMode !== 'mom_table' && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${compareIndicatorId}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
+
+                  {(dataKind === 'yoy' || (dataKind === 'mom' && displayMode === 'chart')) && (
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                  )}
+
                   {/* テーブル説明 */}
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, marginBottom: 12 }}>
                       {config.tableDescription}
                     </div>
                   )}
 
-                  {viewMode === 'mom_table' ? (
+                  {dataKind === 'mom' && displayMode === 'heatmap' ? (
                     <ProductionTable />
                   ) : (
                     <ZoomableChart

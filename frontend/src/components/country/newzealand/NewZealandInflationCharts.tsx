@@ -4,6 +4,8 @@ import NzCpiChart from './inflation/NzCpiChart'
 import NzCpiItemChart from './inflation/NzCpiItemChart'
 import NzTradedNontradedChart from './inflation/NzTradedNontradedChart'
 import NzPpiChart from './inflation/NzPpiChart'
+import NzInflationExpectationsChart from './inflation/NzInflationExpectationsChart'
+import NzAnzBusinessSentimentPriceChart from './inflation/NzAnzBusinessSentimentPriceChart'
 
 /**
  * ニュージーランド物価チャート群
@@ -57,6 +59,16 @@ export default function NewZealandInflationCharts() {
       {/* PPI */}
       <NzPpiChart
         data={dashboardData?.nz_ppi ?? null}
+      />
+
+      {/* インフレ期待 */}
+      <NzInflationExpectationsChart
+        data={dashboardData?.nz_inflation_expectations ?? null}
+      />
+
+      {/* ANZ企業景況感物価関連 */}
+      <NzAnzBusinessSentimentPriceChart
+        data={dashboardData?.nz_anz_business_outlook_price ?? null}
       />
     </div>
   )

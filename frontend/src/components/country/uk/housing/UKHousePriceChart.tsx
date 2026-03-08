@@ -59,15 +59,19 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'yoy' | 'mom' | 'mom_table'
-type PropertyType = 'all' | 'detached' | 'semi_detached' | 'terraced' | 'flat'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
   { mode: 'mom', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
 ]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
+type PropertyType = 'all' | 'detached' | 'semi_detached' | 'terraced' | 'flat'
 
 // グラフの色
 const COLORS = {
@@ -91,15 +95,15 @@ const SERIES_NAMES: Record<PropertyType, string> = {
 const INITIAL_HIDDEN_SERIES: PropertyType[] = ['detached', 'semi_detached', 'terraced', 'flat']
 
 export default function UKHousePriceChart({ data }: UKHousePriceChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [propertyType, setPropertyType] = useState<PropertyType>('all')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<PropertyType>(INITIAL_HIDDEN_SERIES)
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
     mom: 'default',
-    mom_table: 'default',
   })
 
   // propsのデータをチャート用に変換（YoY - 全系列をマージ）
@@ -253,23 +257,25 @@ export default function UKHousePriceChart({ data }: UKHousePriceChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <AntTooltip title="比較ページを開く">
+                      <Button icon={<AreaChartOutlined />} onClick={handleCompare}>データ比較</Button>
+                    </AntTooltip>
+                  </div>
+
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ（YoY） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <AntTooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={handleCompare}
-                          >
-                            データ比較
-                          </Button>
-                        </AntTooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[
@@ -316,11 +322,9 @@ export default function UKHousePriceChart({ data }: UKHousePriceChartProps) {
                   )}
 
                   {/* 前月比グラフ（MoM） */}
-                  {viewMode === 'mom' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredMomData}
                         lines={[
@@ -367,7 +371,7 @@ export default function UKHousePriceChart({ data }: UKHousePriceChartProps) {
                   )}
 
                   {/* 前月比テーブル（MoM Table） */}
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <>
                       <div style={{ marginBottom: 12 }}>
                         <Segmented

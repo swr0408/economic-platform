@@ -60,15 +60,29 @@ const COLORS = {
   parttime: '#E74C3C',
 }
 
-// 表示モード
-type ViewMode = 'value' | 'mom' | 'change_table_ft' | 'change_table_pt' | 'yoy'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'mom', label: '前月増減' },
-  { mode: 'change_table_ft', label: 'テーブル（FT）' },
-  { mode: 'change_table_pt', label: 'テーブル（PT）' },
   { mode: 'value', label: '雇用者数' },
   { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
+// ヒートマップ用データ種別
+type HeatmapType = 'ft' | 'pt'
+
+const HEATMAP_TYPE_OPTIONS: { mode: HeatmapType; label: string }[] = [
+  { mode: 'ft', label: 'フルタイム' },
+  { mode: 'pt', label: 'パートタイム' },
 ]
 
 // =============================================================================
@@ -76,10 +90,12 @@ const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
 // =============================================================================
 
 export default function AuFulltimeParttimeChart({ data }: AuFulltimeParttimeChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('mom')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
+  const [heatmapType, setHeatmapType] = useState<HeatmapType>('ft')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     mom: 3,
     yoy: 'default',
@@ -131,36 +147,29 @@ export default function AuFulltimeParttimeChart({ data }: AuFulltimeParttimeChar
 
   const latest = data?.latest
 
-  // ビューモードに応じた最新値（フルタイムを表示）
+  // データ種別に応じた最新値
   const currentLatestValue = (() => {
     if (!latest) return null
-    if (viewMode === 'value') return latest.fulltime
-    if (viewMode === 'mom' || viewMode === 'change_table_ft') return latest.fulltime_mom
-    if (viewMode === 'change_table_pt') return latest.parttime_mom
-    if (viewMode === 'yoy') return latest.fulltime_yoy
+    if (dataKind === 'value') return latest.fulltime
+    if (dataKind === 'mom') return latest.fulltime_mom
+    if (dataKind === 'yoy') return latest.fulltime_yoy
     return latest.fulltime
   })()
 
   const getLatestLabel = () => {
-    if (viewMode === 'value') return 'フルタイム雇用者数'
-    if (viewMode === 'mom' || viewMode === 'change_table_ft') return 'フルタイム（前月増減）'
-    if (viewMode === 'change_table_pt') return 'パートタイム（前月増減）'
-    if (viewMode === 'yoy') return 'フルタイム（前年比）'
+    if (dataKind === 'value') return 'フルタイム雇用者数'
+    if (dataKind === 'mom') return 'フルタイム（前月増減）'
+    if (dataKind === 'yoy') return 'フルタイム（前年比）'
     return 'フルタイム雇用者数'
   }
 
-  const getLatestColor = () => {
-    if (viewMode === 'change_table_pt') return COLORS.parttime
-    return COLORS.fulltime
-  }
-
   const getUnit = () => {
-    if (viewMode === 'yoy') return '%'
+    if (dataKind === 'yoy') return '%'
     return '千人'
   }
 
   const getFormat = (): 'number' | 'percent' => {
-    if (viewMode === 'yoy') return 'percent'
+    if (dataKind === 'yoy') return 'percent'
     return 'number'
   }
 
@@ -179,10 +188,10 @@ export default function AuFulltimeParttimeChart({ data }: AuFulltimeParttimeChar
           value={currentLatestValue}
           unit={getUnit()}
           date={latest?.date}
-          valueColor={getLatestColor()}
+          valueColor={COLORS.fulltime}
           nextRelease={data?.next_release ?? undefined}
           format={getFormat()}
-          decimals={viewMode === 'yoy' ? 1 : 0}
+          decimals={dataKind === 'yoy' ? 1 : 0}
         />
 
         {/* タブ切替 */}
@@ -194,26 +203,46 @@ export default function AuFulltimeParttimeChart({ data }: AuFulltimeParttimeChar
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    options={VIEW_MODE_OPTIONS}
-                    currentMode={viewMode}
-                    onChange={setViewMode}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(
+                          dataKind === 'yoy'
+                            ? '/compare?s=au_fulltime_yoy&s=au_parttime_yoy'
+                            : '/compare?s=au_fulltime&s=au_parttime',
+                          '_blank'
+                        )}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {viewMode === 'value' && (
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* ヒートマップ時のデータ種別選択 */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={HEATMAP_TYPE_OPTIONS} currentMode={heatmapType} onChange={setHeatmapType} />
+                    </div>
+                  )}
+
+                  {/* 雇用者数（折れ線グラフ） */}
+                  {dataKind === 'value' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=au_fulltime&s=au_parttime', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[
@@ -228,19 +257,10 @@ export default function AuFulltimeParttimeChart({ data }: AuFulltimeParttimeChar
                     </>
                   )}
 
-                  {viewMode === 'mom' && (
+                  {/* 前月増減（棒グラフ） */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=au_fulltime&s=au_parttime', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
                         data={filteredData}
                         bars={[
@@ -253,35 +273,22 @@ export default function AuFulltimeParttimeChart({ data }: AuFulltimeParttimeChar
                     </>
                   )}
 
-                  {viewMode === 'change_table_ft' && (
+                  {/* 前月増減ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
-                      data={ftTableData}
+                      data={heatmapType === 'ft' ? ftTableData : ptTableData}
                       decimals={1}
-                      helperText="※ 直近10年間のフルタイム前月増減幅データ（単位: 千人）"
+                      helperText={heatmapType === 'ft'
+                        ? '※ 直近10年間のフルタイム前月増減幅データ（単位: 千人）'
+                        : '※ 直近10年間のパートタイム前月増減幅データ（単位: 千人）'
+                      }
                     />
                   )}
 
-                  {viewMode === 'change_table_pt' && (
-                    <MonthlyTable
-                      data={ptTableData}
-                      decimals={1}
-                      helperText="※ 直近10年間のパートタイム前月増減幅データ（単位: 千人）"
-                    />
-                  )}
-
-                  {viewMode === 'yoy' && (
+                  {/* 前年比（折れ線グラフ） */}
+                  {dataKind === 'yoy' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=au_fulltime_yoy&s=au_parttime_yoy', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[

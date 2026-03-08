@@ -42,16 +42,30 @@ interface CanadaGdpGrowthChartProps {
   data: CaGdpGrowthData | null
 }
 
-type ViewMode = 'qoq_simple' | 'qoq_simple_table' | 'qoq' | 'yoy'
+type DataKind = 'qoq_simple' | 'qoq' | 'yoy'
+type DisplayMode = 'chart' | 'heatmap'
+
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq_simple', label: '前期比' },
+  { mode: 'qoq', label: '前期比年率' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_simple')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq_simple')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     qoq_simple: 'default' as PeriodType,
-    qoq_simple_table: 'default' as PeriodType,
     qoq: 'default' as PeriodType,
     yoy: 'default' as PeriodType,
   })
@@ -101,30 +115,20 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
     )
   }
 
-  const viewModeOptions = [
-    { mode: 'qoq_simple' as ViewMode, label: '前期比' },
-    { mode: 'qoq_simple_table' as ViewMode, label: '前期比（テーブル）' },
-    { mode: 'qoq' as ViewMode, label: '前期比年率' },
-    { mode: 'yoy' as ViewMode, label: '前年比' },
-  ]
-
   // 表示ラベルを取得
-  const getViewModeLabel = (mode: ViewMode) => {
-    switch (mode) {
+  const getDataKindLabel = (kind: DataKind) => {
+    switch (kind) {
       case 'qoq_simple': return '前期比'
-      case 'qoq_simple_table': return '前期比'
       case 'qoq': return '前期比年率'
       case 'yoy': return '前年比'
     }
   }
 
-  // 最新値を取得（ViewModeに応じて）
+  // 最新値を取得（DataKindに応じて）
   const getLatestValue = () => {
     if (!latestValue) return undefined
-    switch (viewMode) {
-      case 'qoq_simple':
-      case 'qoq_simple_table':
-        return latestValue.qoq_simple
+    switch (dataKind) {
+      case 'qoq_simple': return latestValue.qoq_simple
       case 'qoq': return latestValue.qoq
       case 'yoy': return latestValue.yoy
     }
@@ -132,10 +136,8 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
 
   // グラフ用のデータキーを取得
   const getDataKey = () => {
-    switch (viewMode) {
-      case 'qoq_simple':
-      case 'qoq_simple_table':
-        return 'qoq_simple'
+    switch (dataKind) {
+      case 'qoq_simple': return 'qoq_simple'
       case 'qoq': return 'qoq'
       case 'yoy': return 'yoy'
     }
@@ -143,10 +145,8 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
 
   // 比較ページ用のキーを取得
   const getCompareKey = () => {
-    switch (viewMode) {
-      case 'qoq_simple':
-      case 'qoq_simple_table':
-        return 'qoq_simple'
+    switch (dataKind) {
+      case 'qoq_simple': return 'qoq_simple'
       case 'qoq': return 'qoq'
       case 'yoy': return 'yoy'
     }
@@ -162,7 +162,7 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={getViewModeLabel(viewMode)}
+          label={getDataKindLabel(dataKind)}
           value={getLatestValue()}
           valueColor={CHART_COLORS.primary}
           date={latestValue?.date}
@@ -184,11 +184,12 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={viewModeOptions}
-                      currentMode={viewMode}
-                      onChange={setViewMode}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く">
                       <Button
@@ -199,9 +200,14 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'qoq_simple' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
-                  {/* 前期比テーブル */}
-                  {viewMode === 'qoq_simple_table' && (
+                  {/* 前期比ヒートマップ */}
+                  {dataKind === 'qoq_simple' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={1}
@@ -212,7 +218,7 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
                   )}
 
                   {/* グラフ表示 */}
-                  {viewMode !== 'qoq_simple_table' && (
+                  {!(dataKind === 'qoq_simple' && displayMode === 'heatmap') && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -221,7 +227,7 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
                           {
                             dataKey: getDataKey(),
                             color: CHART_COLORS.primary,
-                            name: `GDP（${getViewModeLabel(viewMode)}）`,
+                            name: `GDP（${getDataKindLabel(dataKind)}）`,
                           },
                         ]}
                         yAxisFormatter={(v) => `${v}%`}

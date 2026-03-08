@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 import { Card, Row, Col, Typography, Space, Button } from 'antd'
 import {
   ArrowLeftOutlined,
@@ -8,6 +8,7 @@ import {
   RiseOutlined,
   HomeOutlined,
   ShoppingOutlined,
+  GlobalOutlined,
 } from '@ant-design/icons'
 
 const { Title, Text } = Typography
@@ -124,6 +125,11 @@ const COUNTRY_INFO: Record<string, { name: string; isoCode: string; description:
     isoCode: 'ch',
     description: '国際金融の中心地。銀行業と精密機械工業で世界的に有名。',
   },
+  global: {
+    name: 'グローバル',
+    isoCode: 'globe',
+    description: 'グローバル先行指標・韓国・台湾。世界経済の方向性を示す主要指標。',
+  },
 }
 
 function CountryDetail() {
@@ -136,11 +142,16 @@ function CountryDetail() {
         <br />
         <Link to="/country">
           <Button type="link" icon={<ArrowLeftOutlined />} style={{ color: colors.accent }}>
-            各国データ一覧へ戻る
+            マクロデータ一覧へ戻る
           </Button>
         </Link>
       </div>
     )
+  }
+
+  // グローバルはカテゴリが1つだけなので直接チャートページへ
+  if (countryCode === 'global') {
+    return <Navigate to="/country/global/economy" replace />
   }
 
   const country = COUNTRY_INFO[countryCode]
@@ -158,21 +169,25 @@ function CountryDetail() {
               color: colors.textSecondary,
             }}
           >
-            各国データ一覧へ戻る
+            マクロデータ一覧へ戻る
           </Button>
         </Link>
       </Space>
 
       <div style={{ marginBottom: 28 }}>
         <Space size={16} align="center">
-          <span
-            className={`fi fi-${country.isoCode}`}
-            style={{
-              fontSize: 48,
-              borderRadius: 4,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-            }}
-          />
+          {country.isoCode === 'globe' ? (
+            <GlobalOutlined style={{ fontSize: 48, color: '#10b981' }} />
+          ) : (
+            <span
+              className={`fi fi-${country.isoCode}`}
+              style={{
+                fontSize: 48,
+                borderRadius: 4,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              }}
+            />
+          )}
           <div>
             <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
               {country.name}のデータ

@@ -55,24 +55,23 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'yoy' | 'yoy_table'
+type DisplayMode = 'chart' | 'heatmap'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'yoy', label: '前年比' },
-  { mode: 'yoy_table', label: '前年比（テーブル）' },
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // グラフの色
 const CHART_COLOR = '#e74c3c' // 赤系
 
 export default function BRCShopPriceChart({ data }: BRCShopPriceChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    yoy: 'default',
-    yoy_table: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
+    chart: 'default',
+    heatmap: 'default',
   })
 
   // propsのデータをチャート用に変換
@@ -162,11 +161,13 @@ export default function BRCShopPriceChart({ data }: BRCShopPriceChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 表示形式切り替え */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                  </div>
 
-                  {/* 前年比グラフ（YoY） */}
-                  {viewMode === 'yoy' && (
+                  {/* 前年比グラフ */}
+                  {displayMode === 'chart' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -199,8 +200,8 @@ export default function BRCShopPriceChart({ data }: BRCShopPriceChartProps) {
                     </>
                   )}
 
-                  {/* 前年比テーブル（YoY Table） */}
-                  {viewMode === 'yoy_table' && (
+                  {/* 前年比テーブル */}
+                  {displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={yoyTableData}
                       getCellBgColor={getChangeCellColor10pct}

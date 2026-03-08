@@ -43,14 +43,20 @@ interface CanadaHousingStartsChartProps {
   data: CaHousingStartsData | null
 }
 
-type ViewMode = 'value' | 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'value' | 'yoy' | 'mom'
+type DisplayMode = 'chart' | 'heatmap'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
   { mode: 'yoy', label: '前年比' },
   { mode: 'value', label: '原数値' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -62,14 +68,14 @@ const COLORS = {
 
 export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('mom_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default' as PeriodType,
     yoy: 'default' as PeriodType,
-    mom_table: 'default' as PeriodType,
-    mom_chart: 3 as PeriodType,
+    mom: 3 as PeriodType,
   })
 
   // propsのデータをチャート用に変換
@@ -121,7 +127,7 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
 
   // 最新値の表示内容
   const getLatestItems = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return [
         {
           label: '住宅着工',
@@ -131,7 +137,7 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
           suffix: '千件',
         },
       ]
-    } else if (viewMode === 'yoy') {
+    } else if (dataKind === 'yoy') {
       return [
         {
           label: '前年比',
@@ -177,8 +183,9 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -188,9 +195,14 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 原数値グラフ（線グラフ） */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -205,7 +217,7 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
                   )}
 
                   {/* 前年比グラフ（線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -220,8 +232,8 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={[{ type: 'mom', label: '前月比' }]}
@@ -231,7 +243,7 @@ export default function CanadaHousingStartsChart({ data }: CanadaHousingStartsCh
                   )}
 
                   {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart

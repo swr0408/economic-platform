@@ -1790,16 +1790,22 @@
     },
     {
       "date": "2025-11-01",
-      "value": 1317.16,
-      "yoy": 2.45,
-      "mom": 0.55
+      "value": 1315.22,
+      "yoy": 2.3,
+      "mom": 0.4
+    },
+    {
+      "date": "2025-12-01",
+      "value": 1316.18,
+      "yoy": 1.94,
+      "mom": 0.07
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "value": 1317.16,
-    "yoy": 2.45,
-    "mom": 0.55
+    "date": "2025-12-01",
+    "value": 1316.18,
+    "yoy": 1.94,
+    "mom": 0.07
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1810,14 +1816,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-02-26",
-    "datetime_utc": "2026-02-26T13:30:00+00:00",
-    "datetime_jst": "2026-02-26T22:30:00+09:00",
-    "time_jst": "22:30",
-    "datetime_toronto": "2026-02-26T08:30:00-05:00",
+    "date": "2026-04-24",
+    "datetime_utc": "2026-04-24T12:30:00+00:00",
+    "datetime_jst": "2026-04-24T21:30:00+09:00",
+    "time_jst": "21:30",
+    "datetime_toronto": "2026-04-24T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Average Weekly Earnings (Dec)",
+    "label": "Average Weekly Earnings (Feb)",
     "estimate": null
   },
-  "last_updated": "2026-02-13T11:50:48.773565+09:00"
+  "last_updated": "2026-02-28T10:05:59.037080+09:00"
 }

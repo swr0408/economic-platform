@@ -178,6 +178,34 @@ class BaseDashboardLoader(ABC):
 
         return False
 
+    def _has_null_values(self, cached_data: Dict[str, Any]) -> bool:
+        """
+        キャッシュにNone値が含まれているかチェック
+
+        一部の指標がNoneの場合、外部API取得失敗時のキャッシュと判断し、
+        再取得を促す。全キーを対象にチェックする。
+
+        Args:
+            cached_data: キャッシュされたデータ
+
+        Returns:
+            True: None値のキーが存在する（再取得推奨）
+            False: 全キーに値がある
+        """
+        data = cached_data.get("data", {})
+        if not isinstance(data, dict):
+            return False
+
+        for key, value in data.items():
+            # next_*キーは次回発表日情報で取得失敗が許容される（スキップ）
+            if key.startswith("next_"):
+                continue
+            if value is None:
+                print(f"Cache has null value for '{key}' in {self.COUNTRY_CODE}:{self.CATEGORY_CODE}")
+                return True
+
+        return False
+
     def get_data(self) -> Dict[str, Any]:
         """
         データを取得（キャッシュ優先、last_updated判定）
@@ -198,6 +226,9 @@ class BaseDashboardLoader(ABC):
             # キャッシュに必要なキーが欠けている場合は再取得
             if self._is_cache_incomplete(cached):
                 print(f"Cache incomplete for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
+            # キャッシュにNull値がある場合は再取得（外部API取得失敗の可能性）
+            elif self._has_null_values(cached):
+                print(f"Cache has null values for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
             # スケジュール時刻でキャッシュの鮮度をチェック
             elif self._is_cache_stale(last_updated):
                 print(f"Cache is stale for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
@@ -264,7 +295,11 @@ class BaseDashboardLoader(ABC):
 
         if cached:
             last_updated = cached.get("last_updated")
-            if not self._is_cache_stale(last_updated):
+            cached_wrapper = {"data": cached.get("data", {})}
+            has_nulls = self._has_null_values(cached_wrapper)
+            if has_nulls:
+                print(f"Light cache has null values for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
+            elif not self._is_cache_stale(last_updated):
                 return {
                     "data": cached.get("data", {}),
                     "cached": True,
@@ -320,7 +355,11 @@ class BaseDashboardLoader(ABC):
 
         if cached:
             last_updated = cached.get("last_updated")
-            if not self._is_cache_stale(last_updated):
+            cached_wrapper = {"data": cached.get("data", {})}
+            has_nulls = self._has_null_values(cached_wrapper)
+            if has_nulls:
+                print(f"Heavy cache has null values for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
+            elif not self._is_cache_stale(last_updated):
                 return {
                     "data": cached.get("data", {}),
                     "cached": True,

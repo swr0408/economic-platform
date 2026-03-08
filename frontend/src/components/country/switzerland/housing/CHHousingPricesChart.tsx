@@ -53,14 +53,20 @@ const COLORS = {
   yoy: '#00CED1',    // シアン系（前年比）
 }
 
-// 表示モード
-type ViewMode = 'qoq' | 'qoq_table' | 'yoy'
+// データ種別
+type DataKind = 'yoy' | 'qoq'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
   { mode: 'qoq', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比テーブル' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // 日付から年を抽出
@@ -75,12 +81,13 @@ const getQuarterFromDate = (dateStr: string): number => {
 }
 
 export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps) {
-  // 表示モード
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    yoy: 'default',
+    qoq: 'default',
   })
 
   // propsのデータをチャート用に変換
@@ -143,25 +150,25 @@ export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps
     return { years: sortedYears, quarterlyData }
   }, [chartData])
 
-  // 現在のビューモードに応じた最新値を取得
+  // 現在のデータ種別に応じた最新値を取得
   const currentLatestValue = useMemo(() => {
     if (!latestValue) return null
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return latestValue.qoq
-    if (viewMode === 'yoy') return latestValue.yoy
+    if (dataKind === 'qoq') return latestValue.qoq
+    if (dataKind === 'yoy') return latestValue.yoy
     return latestValue.yoy
-  }, [latestValue, viewMode])
+  }, [latestValue, dataKind])
 
-  // 現在のビューモードに応じた色を取得
+  // 現在のデータ種別に応じた色を取得
   const currentColor = useMemo(() => {
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return COLORS.qoq
-    if (viewMode === 'yoy') return COLORS.yoy
+    if (dataKind === 'qoq') return COLORS.qoq
+    if (dataKind === 'yoy') return COLORS.yoy
     return COLORS.yoy
-  }, [viewMode])
+  }, [dataKind])
 
   // 最新値ラベルを取得
   const getLatestLabel = () => {
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return '住宅価格指数（前期比）'
-    if (viewMode === 'yoy') return '住宅価格指数（前年比）'
+    if (dataKind === 'qoq') return '住宅価格指数（前期比）'
+    if (dataKind === 'yoy') return '住宅価格指数（前年比）'
     return '住宅価格指数（前年比）'
   }
 
@@ -197,16 +204,13 @@ export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps
           nextRelease={data.next_release ? { date: data.next_release } : null}
         />
 
-        {/* ビューモード切替 */}
-        <ViewModeButtonGroup
-          options={VIEW_MODE_OPTIONS}
-          currentMode={viewMode}
-          onChange={setViewMode}
-        />
-
-        {/* 期間セレクター・データ比較ボタン */}
+        {/* 上段: データ種別 + データ比較ボタン */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+          <ViewModeButtonGroup
+            options={DATA_KIND_OPTIONS}
+            currentMode={dataKind}
+            onChange={setDataKind}
+          />
           <Tooltip title="比較ページを開く">
             <Button
               icon={<AreaChartOutlined />}
@@ -217,8 +221,20 @@ export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps
           </Tooltip>
         </div>
 
-        {/* グラフ */}
-        {viewMode === 'qoq' && (
+        {/* 下段: 表示形式（qoqのときのみ） */}
+        {dataKind === 'qoq' && (
+          <div style={{ marginBottom: 8 }}>
+            <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+          </div>
+        )}
+
+        {/* 期間セレクター（ヒートマップ以外で表示） */}
+        {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+        )}
+
+        {/* 前期比チャート */}
+        {dataKind === 'qoq' && displayMode === 'chart' && (
           <StandardBarChart
             data={filteredData}
             bars={[{
@@ -230,7 +246,9 @@ export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps
             tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
           />
         )}
-        {viewMode === 'qoq_table' && (
+
+        {/* 前期比ヒートマップ */}
+        {dataKind === 'qoq' && displayMode === 'heatmap' && (
           <QuarterlyTable
             data={quarterlyTableData}
             showLegend={true}
@@ -238,7 +256,9 @@ export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps
             helperText="※ 直近10年間の前期比データ（単位: %）"
           />
         )}
-        {viewMode === 'yoy' && (
+
+        {/* 前年比チャート */}
+        {dataKind === 'yoy' && (
           <StandardLineChart
             data={filteredData}
             lines={[{

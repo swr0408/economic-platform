@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { Menu } from 'antd'
 import type { MenuProps } from 'antd'
+import { GlobalOutlined } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { COUNTRIES_DATA } from '../../constants/countryData'
 
@@ -29,7 +30,9 @@ function SidebarNavigation() {
   const menuItems: MenuItem[] = useMemo(() => {
     return COUNTRIES_DATA.map((country) => ({
       key: `/country/${country.code}`,
-      icon: (
+      icon: country.isoCode === 'globe' ? (
+        <GlobalOutlined style={{ fontSize: '16px', color: '#10b981' }} />
+      ) : (
         <span
           className={`fi fi-${country.isoCode}`}
           style={{
@@ -40,25 +43,35 @@ function SidebarNavigation() {
       ),
       label: (
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <span
-            className={`fi fi-${country.isoCode}`}
-            style={{ fontSize: '14px', borderRadius: '2px' }}
-          />
+          {country.isoCode === 'globe' ? (
+            <GlobalOutlined style={{ fontSize: '14px', color: '#10b981' }} />
+          ) : (
+            <span
+              className={`fi fi-${country.isoCode}`}
+              style={{ fontSize: '14px', borderRadius: '2px' }}
+            />
+          )}
           {country.name}
         </span>
       ),
-      children: country.categories.map((category) => ({
-        key: `/country/${country.code}/${category.code}`,
-        icon: React.cloneElement(category.icon as React.ReactElement, {
-          style: { color: category.color },
-        }),
-        label: category.name,
-        children: category.indicators.map((indicator) => ({
-          // 小見出しはカテゴリページ + ハッシュ
-          key: `/country/${country.code}/${category.code}#${indicator.code}`,
-          label: indicator.name,
-        })),
-      })),
+      children: country.code === 'global'
+        // グローバルはカテゴリが1つだけなので、カテゴリ階層をスキップして直接指標を表示
+        ? country.categories[0].indicators.map((indicator) => ({
+            key: `/country/global/economy#${indicator.code}`,
+            label: indicator.name,
+          }))
+        : country.categories.map((category) => ({
+            key: `/country/${country.code}/${category.code}`,
+            icon: React.cloneElement(category.icon as React.ReactElement, {
+              style: { color: category.color },
+            }),
+            label: category.name,
+            children: category.indicators.map((indicator) => ({
+              // 小見出しはカテゴリページ + ハッシュ
+              key: `/country/${country.code}/${category.code}#${indicator.code}`,
+              label: indicator.name,
+            })),
+          })),
     }))
   }, [])
 

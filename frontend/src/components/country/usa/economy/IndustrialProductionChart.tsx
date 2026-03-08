@@ -39,7 +39,14 @@ interface IndustrialProductionChartProps {
   data: IndustrialProductionData | null
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+// 指標種別
+type DataKind = 'yoy' | 'mom'
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // グラフの色
 const COLORS = {
@@ -52,15 +59,15 @@ const COLORS = {
 // =============================================================================
 
 export default function IndustrialProductionChart({ data }: IndustrialProductionChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -101,8 +108,8 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          value={viewMode === 'yoy' ? latest?.yoy : latest?.mom}
-          valueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
+          value={dataKind === 'yoy' ? latest?.yoy : latest?.mom}
+          valueColor={dataKind === 'yoy' ? COLORS.yoy : COLORS.mom}
           date={latest?.date}
           nextRelease={data.next_release}
           format="percent"
@@ -119,18 +126,25 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 */}
                   <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
+                    currentMode={dataKind}
+                    onChange={setDataKind}
                     options={[
                       { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_chart', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
+                      { mode: 'mom', label: '前月比' },
                     ]}
                   />
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 期間セレクター */}
-                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
+                  {(dataKind === 'yoy' || (dataKind === 'mom' && displayMode === 'chart')) && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <Tooltip title="比較ページを開く">
@@ -144,10 +158,11 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={momTableData} />}
 
-                  {viewMode === 'yoy' && (
+                  {/* 前年比グラフ */}
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -158,7 +173,8 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
                     />
                   )}
 
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

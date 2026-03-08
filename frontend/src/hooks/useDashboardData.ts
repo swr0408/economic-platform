@@ -8537,6 +8537,191 @@ export interface NzBankBalanceSheetData {
 }
 
 // ニュージーランド金融政策ダッシュボードデータの型
+// =============================================================================
+// 中国（China）
+// =============================================================================
+
+export interface CnLprItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+}
+
+export interface CnLprData {
+  data: CnLprItem[]
+  latest: CnLprItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface ChReverseRepoItem {
+  date: string
+  value: number | null
+  bid_amount: number | null
+  win_amount: number | null
+}
+
+export interface ChReverseRepoData {
+  data: ChReverseRepoItem[]
+  latest: ChReverseRepoItem | null
+  metadata: Record<string, unknown>
+}
+
+export interface ChRrrItem {
+  date: string
+  value: number | null
+}
+
+export interface ChRrrData {
+  data: ChRrrItem[]
+  latest: ChRrrItem | null
+  metadata: Record<string, unknown>
+}
+
+export interface ChCbsItem {
+  date: string
+  value: number | null
+}
+
+export interface ChCbsNextRelease {
+  date: string   // YYYY-MM-DD
+  label: string  // e.g. "Central Bank Balance Sheet (Mar)"
+}
+
+export interface ChCbsData {
+  data: ChCbsItem[]
+  latest: ChCbsItem | null
+  metadata: Record<string, unknown>
+  next_release?: ChCbsNextRelease | null
+}
+
+export interface ChM1M2Item {
+  date: string
+  m2: number | null
+  m1: number | null
+  m2_yoy: number | null
+  m1_yoy: number | null
+}
+
+export interface ChM1M2NextRelease {
+  date: string   // YYYY-MM-DD
+  label: string  // e.g. "M1/M2 Money Supply (Mar)"
+}
+
+export interface ChM1M2Data {
+  data: ChM1M2Item[]
+  latest: ChM1M2Item | null
+  metadata: Record<string, unknown>
+  next_release?: ChM1M2NextRelease | null
+}
+
+export interface CnAggregateFinancingItem {
+  date: string
+  flow: number | null   // 100億元単位（月次フロー）
+  stock: number | null  // 兆元単位（月末残高）
+  yoy: number | null    // 残高前年比（%）
+}
+
+export interface CnAggregateFinancingNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnAggregateFinancingData {
+  data: CnAggregateFinancingItem[]
+  latest: CnAggregateFinancingItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnAggregateFinancingNextRelease | null
+}
+
+export interface CnNewRmbLoansItem {
+  date: string
+  stock: number | null   // 亿元（全項貸款残高）
+  flow: number | null    // 亿元（月次新増人民元貸出）
+  stock_yoy: number | null // 残高前年比（%）
+}
+
+export interface CnNewRmbLoansNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnNewRmbLoansData {
+  data: CnNewRmbLoansItem[]
+  latest: CnNewRmbLoansItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnNewRmbLoansNextRelease | null
+}
+
+export interface CnForexReservesItem {
+  date: string
+  value: number | null   // 亿美元（Foreign currency reserves）
+  yoy: number | null     // 前年比（%）
+}
+
+export interface CnForexReservesNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnForexReservesData {
+  data: CnForexReservesItem[]
+  latest: CnForexReservesItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnForexReservesNextRelease | null
+}
+
+export interface ChinaPolicyData {
+  cn_lpr_1y: CnLprData | null
+  cn_lpr_5y: CnLprData | null
+  ch_reverse_repo_rate: ChReverseRepoData | null
+  china_reserve_requirement_ratio_for_large_banks: ChRrrData | null
+  ch_central_bank_balance_sheet: ChCbsData | null
+  ch_m1_m2: ChM1M2Data | null
+  cn_aggregate_financing_to_the_real_economy: CnAggregateFinancingData | null
+  cn_new_rmb_loans: CnNewRmbLoansData | null
+  cn_foreign_exchange_reserves: CnForexReservesData | null
+  cn_local_bonds: CnLocalBondsData | null
+  cn_overseas_investor_flow: CnOverseasInvestorFlowData | null
+  cn_capital_flows: CnCapitalFlowsData | null
+}
+
+export interface CnCapitalFlowsItem {
+  date: string
+  net_total: number | null
+  net_current: number | null
+  net_goods: number | null
+  net_services: number | null
+  net_capital: number | null
+  net_securities: number | null
+  net_other: number | null
+}
+
+export interface CnCapitalFlowsData {
+  data: CnCapitalFlowsItem[]
+  latest: CnCapitalFlowsItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; [key: string]: unknown } | null
+}
+
+/**
+ * 中国金融政策ダッシュボード専用フック
+ * LPR（ローンプライムレート）などを取得
+ */
+export function useChinaPolicyDashboard(): UseQueryResult<DashboardResponse<ChinaPolicyData>, Error> {
+  return useDashboardData<ChinaPolicyData>('china', 'policy')
+}
+
 export interface NewZealandPolicyData {
   nz_rbnz_rate: NzRbnzRateData | null
   nz_economic_forecast: NzMpsForecastData | null
@@ -8601,6 +8786,22 @@ export interface NzTradedNontradedData {
   next_release?: { date: string; label?: string; time_jst?: string } | null
 }
 
+// NZ インフレ期待データの型
+export interface NzInflationExpectationsItem {
+  date: string
+  one_year: number | null
+  two_year: number | null
+  five_year: number | null
+  ten_year: number | null
+}
+
+export interface NzInflationExpectationsData {
+  data: NzInflationExpectationsItem[]
+  latest: NzInflationExpectationsItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
 // NZ PPI（生産者物価指数）データの型
 export interface NzPpiItem {
   date: string
@@ -8619,12 +8820,22 @@ export interface NzPpiData {
   next_release?: { date: string; label?: string; time_jst?: string } | null
 }
 
+// NZ ANZ企業景況感物価関連（PDFスクリーンショット）
+export interface NzAnzBusinessOutlookPriceData {
+  page2_exists: boolean
+  last_updated: string | null
+  pdf_date: string | null
+  next_release: { date: string; label?: string; time_jst?: string } | null
+}
+
 // ニュージーランド物価ダッシュボードデータの型
 export interface NewZealandInflationData {
   nz_cpi: NzCpiData | null
   nz_cpi_item: NzCpiItemData | null
   nz_traded_nontraded: NzTradedNontradedData | null
   nz_ppi: NzPpiData | null
+  nz_inflation_expectations: NzInflationExpectationsData | null
+  nz_anz_business_outlook_price: NzAnzBusinessOutlookPriceData | null
 }
 
 /**
@@ -8633,4 +8844,1037 @@ export interface NewZealandInflationData {
  */
 export function useNewZealandInflationDashboard(): UseQueryResult<DashboardResponse<NewZealandInflationData>, Error> {
   return useDashboardData<NewZealandInflationData>('newzealand', 'inflation')
+}
+
+// NZ 雇用者数データの型
+export interface NzNumberOfEmployeesItem {
+  date: string
+  total: number | null
+  fulltime: number | null
+  parttime: number | null
+  total_qoq: number | null
+  fulltime_qoq: number | null
+  parttime_qoq: number | null
+  total_yoy: number | null
+  fulltime_yoy: number | null
+  parttime_yoy: number | null
+}
+
+export interface NzNumberOfEmployeesData {
+  data: NzNumberOfEmployeesItem[]
+  latest: NzNumberOfEmployeesItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// NZ 失業率データの型
+export interface NzUnemploymentRateItem {
+  date: string
+  value: number | null
+}
+
+export interface NzUnemploymentRateData {
+  data: NzUnemploymentRateItem[]
+  latest: NzUnemploymentRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// NZ 賃金データの型
+export interface NzWagesItem {
+  date: string
+  wage_index: number | null
+  wage_index_qoq: number | null
+  wage_index_yoy: number | null
+  hourly_earnings: number | null
+  hourly_earnings_qoq: number | null
+  hourly_earnings_yoy: number | null
+}
+
+export interface NzWagesData {
+  data: NzWagesItem[]
+  latest: NzWagesItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// NZ 労働参加率データの型
+export interface NzLabourForceParticipationItem {
+  date: string
+  value: number | null
+}
+
+export interface NzLabourForceParticipationData {
+  data: NzLabourForceParticipationItem[]
+  latest: NzLabourForceParticipationItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzLaborCostIndexItem {
+  date: string
+  value: number | null
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface NzLaborCostIndexData {
+  data: NzLaborCostIndexItem[]
+  latest: NzLaborCostIndexItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// ニュージーランド雇用ダッシュボードデータの型
+export interface NewZealandEmploymentData {
+  nz_number_of_employees: NzNumberOfEmployeesData | null
+  nz_unemployment_rate: NzUnemploymentRateData | null
+  nz_wages: NzWagesData | null
+  nz_labour_force_participation: NzLabourForceParticipationData | null
+  nz_labor_cost_index: NzLaborCostIndexData | null
+}
+
+/**
+ * ニュージーランド雇用ダッシュボード専用フック
+ * 雇用者数・失業率等を取得
+ */
+export function useNewZealandEmploymentDashboard(): UseQueryResult<DashboardResponse<NewZealandEmploymentData>, Error> {
+  return useDashboardData<NewZealandEmploymentData>('newzealand', 'employment')
+}
+
+// =============================================================================
+// ニュージーランド消費
+// =============================================================================
+
+export interface NzRetailSalesItem {
+  date: string
+  total_qoq: number | null
+  core_qoq: number | null
+  total_yoy: number | null
+  core_yoy: number | null
+}
+
+export interface NzRetailSalesData {
+  data: NzRetailSalesItem[]
+  latest: NzRetailSalesItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzAnzBusinessOutlookSurveyItem {
+  date: string
+  value: number | null
+}
+
+export interface NzAnzBusinessOutlookSurveyData {
+  data: NzAnzBusinessOutlookSurveyItem[]
+  latest: NzAnzBusinessOutlookSurveyItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzNzierBusinessConditionsIndexItem {
+  date: string
+  value: number | null
+}
+
+export interface NzNzierBusinessConditionsIndexData {
+  data: NzNzierBusinessConditionsIndexItem[]
+  latest: NzNzierBusinessConditionsIndexItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// ニュージーランド消費ダッシュボードデータの型
+export interface NewZealandConsumerData {
+  nz_retail_sales: NzRetailSalesData | null
+  nz_anz_business_outlook_survey: NzAnzBusinessOutlookSurveyData | null
+  nz_nzier_business_conditions_index: NzNzierBusinessConditionsIndexData | null
+}
+
+/**
+ * ニュージーランド消費ダッシュボード専用フック
+ * 小売売上高等を取得
+ */
+export function useNewZealandConsumerDashboard(): UseQueryResult<DashboardResponse<NewZealandConsumerData>, Error> {
+  return useDashboardData<NewZealandConsumerData>('newzealand', 'consumer')
+}
+
+// =============================================================================
+// ニュージーランド経済
+// =============================================================================
+
+export interface NzGdpGrowthRateItem {
+  date: string
+  qoq: number | null
+  yoy: number | null
+}
+
+export interface NzGdpGrowthRateData {
+  data: NzGdpGrowthRateItem[]
+  latest: NzGdpGrowthRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string } | null
+}
+
+export interface NzGdpItemItem {
+  date: string
+  hce_qoq: number | null
+  gfcf_qoq: number | null
+  exports_qoq: number | null
+  imports_qoq: number | null
+  gdp_expenditure_qoq: number | null
+  net_exports_qoq: number | null
+  hce_yoy: number | null
+  gfcf_yoy: number | null
+  exports_yoy: number | null
+  imports_yoy: number | null
+  gdp_expenditure_yoy: number | null
+  net_exports_yoy: number | null
+  inventories: number | null
+  inventories_diff: number | null
+  inventories_yoy_diff: number | null
+  net_exports: number | null
+}
+
+export interface NzGdpItemData {
+  data: NzGdpItemItem[]
+  latest: NzGdpItemItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string } | null
+}
+
+export interface NzCapacityUtilizationItem {
+  date: string
+  value: number | null
+}
+
+export interface NzCapacityUtilizationData {
+  data: NzCapacityUtilizationItem[]
+  latest: NzCapacityUtilizationItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzPmiItem {
+  date: string
+  value: number | null
+}
+
+export interface NzPmiData {
+  data: NzPmiItem[]
+  latest: NzPmiItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzGlobalDairyTradeItem {
+  date: string
+  value: number | null
+}
+
+export interface NzGlobalDairyTradeData {
+  data: NzGlobalDairyTradeItem[]
+  latest: NzGlobalDairyTradeItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzTermsOfTradeItem {
+  date: string
+  terms_of_trade_qoq: number | null
+  export_price_qoq: number | null
+  import_price_qoq: number | null
+  terms_of_trade_yoy: number | null
+  export_price_yoy: number | null
+  import_price_yoy: number | null
+}
+
+export interface NzTermsOfTradeData {
+  data: NzTermsOfTradeItem[]
+  latest: NzTermsOfTradeItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzTradeBalanceItem {
+  date: string
+  exports: number | null
+  imports: number | null
+  balance: number | null
+}
+
+export interface NzTradeBalanceData {
+  data: NzTradeBalanceItem[]
+  latest: NzTradeBalanceItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzCurrentAccountBalanceItem {
+  date: string
+  value: number | null
+  qoq_change: number | null
+}
+
+export interface NzCurrentAccountBalanceData {
+  data: NzCurrentAccountBalanceItem[]
+  latest: NzCurrentAccountBalanceItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+export interface NzCurrentAccountGdpRatioItem {
+  date: string
+  ratio: number | null
+  ca_value: number | null
+  gdp_value: number | null
+}
+
+export interface NzCurrentAccountGdpRatioData {
+  data: NzCurrentAccountGdpRatioItem[]
+  latest: NzCurrentAccountGdpRatioItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string; label?: string; time_jst?: string } | null
+}
+
+// ニュージーランド経済ダッシュボードデータの型
+export interface NewZealandEconomyData {
+  nz_gdp_growth_rate: NzGdpGrowthRateData | null
+  nz_gdp_item: NzGdpItemData | null
+  nz_capacity_utilization: NzCapacityUtilizationData | null
+  nz_pmi: NzPmiData | null
+  nz_psi: NzPmiData | null
+  nz_pci: NzPmiData | null
+  nz_global_dairy_trade: NzGlobalDairyTradeData | null
+  nz_terms_of_trade: NzTermsOfTradeData | null
+  nz_trade_balance: NzTradeBalanceData | null
+  nz_current_account_balance: NzCurrentAccountBalanceData | null
+  nz_current_account_gdp_ratio: NzCurrentAccountGdpRatioData | null
+}
+
+/**
+ * ニュージーランド経済ダッシュボード専用フック
+ * GDP成長率等を取得
+ */
+export function useNewZealandEconomyDashboard(): UseQueryResult<DashboardResponse<NewZealandEconomyData>, Error> {
+  return useDashboardData<NewZealandEconomyData>('newzealand', 'economy')
+}
+
+// ============================================================================
+// 中国住宅
+// ============================================================================
+
+export interface CnCommercialResidentialSalesItem {
+  date: string
+  floor_started_yoy?: number | null
+  sales_yoy?: number | null
+  floor_sold_yoy?: number | null
+}
+
+export interface CnCommercialResidentialSalesNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+}
+
+export interface CnCommercialResidentialSalesData {
+  data: CnCommercialResidentialSalesItem[]
+  latest: CnCommercialResidentialSalesItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnCommercialResidentialSalesNextRelease | null
+}
+
+export interface CnHousePriceIndexItem {
+  date: string
+  value: number | null
+  forecast?: number | null
+  previous?: number | null
+}
+
+export interface CnHousePriceIndexNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate?: number | null
+}
+
+export interface CnHousePriceIndexData {
+  data: CnHousePriceIndexItem[]
+  latest: CnHousePriceIndexItem | null
+  metadata?: Record<string, unknown>
+  next_release?: CnHousePriceIndexNextRelease | null
+}
+
+export interface ChinaHousingData {
+  cn_commercial_residential_sales: CnCommercialResidentialSalesData | null
+  cn_house_price_index: CnHousePriceIndexData | null
+}
+
+/**
+ * 中国住宅ダッシュボード専用フック
+ */
+export function useChinaHousingDashboard(): UseQueryResult<DashboardResponse<ChinaHousingData>, Error> {
+  return useDashboardData<ChinaHousingData>('china', 'housing')
+}
+
+// =============================================================================
+// 中国インフレーション
+// =============================================================================
+
+export interface CnPpiItem {
+  date: string
+  yoy: number | null
+  mom: number | null
+}
+
+export interface CnPpiNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate?: number | null
+}
+
+export interface CnPpiData {
+  data: CnPpiItem[]
+  latest: CnPpiItem | null
+  metadata?: Record<string, unknown>
+  next_release?: CnPpiNextRelease | null
+}
+
+export interface CnCpiItem {
+  date: string
+  yoy: number | null
+  mom: number | null
+  food_yoy: number | null
+  food_mom: number | null
+  nonfood_yoy: number | null
+  nonfood_mom: number | null
+  core_yoy: number | null
+  core_mom: number | null
+}
+
+export interface CnCpiNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate?: number | null
+}
+
+export interface CnCpiData {
+  data: CnCpiItem[]
+  latest: CnCpiItem | null
+  metadata?: Record<string, unknown>
+  next_release?: CnCpiNextRelease | null
+}
+
+export interface ChinaInflationData {
+  cn_cpi: CnCpiData | null
+  cn_ppi: CnPpiData | null
+}
+
+/**
+ * 中国インフレーションダッシュボード専用フック
+ */
+export function useChinaInflationDashboard(): UseQueryResult<DashboardResponse<ChinaInflationData>, Error> {
+  return useDashboardData<ChinaInflationData>('china', 'inflation')
+}
+
+// --- 中国雇用 ---
+export interface CnUnemploymentRateItem {
+  date: string
+  total: number | null
+  youth: number | null
+}
+
+export interface CnUnemploymentRateNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate?: number | null
+}
+
+export interface CnUnemploymentRateData {
+  data: CnUnemploymentRateItem[]
+  latest: CnUnemploymentRateItem | null
+  metadata?: Record<string, unknown>
+  next_release?: CnUnemploymentRateNextRelease | null
+}
+
+// --- 中国消費 ---
+
+export interface CnRetailSalesItem {
+  date: string
+  yoy: number | null
+}
+
+export interface CnRetailSalesNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate?: number | null
+}
+
+export interface CnRetailSalesData {
+  data: CnRetailSalesItem[]
+  latest: CnRetailSalesItem | null
+  metadata?: Record<string, unknown>
+  next_release?: CnRetailSalesNextRelease | null
+}
+
+export interface ChinaConsumerData {
+  cn_retail_sales: CnRetailSalesData | null
+}
+
+/**
+ * 中国消費ダッシュボード専用フック
+ */
+export function useChinaConsumerDashboard(): UseQueryResult<DashboardResponse<ChinaConsumerData>, Error> {
+  return useDashboardData<ChinaConsumerData>('china', 'consumer')
+}
+
+export interface ChinaEmploymentData {
+  cn_unemployment_rate: CnUnemploymentRateData | null
+}
+
+/**
+ * 中国雇用ダッシュボード専用フック
+ */
+export function useChinaEmploymentDashboard(): UseQueryResult<DashboardResponse<ChinaEmploymentData>, Error> {
+  return useDashboardData<ChinaEmploymentData>('china', 'employment')
+}
+
+// ---------------------------------------------------------------------------
+// 中国経済（China Economy）
+// ---------------------------------------------------------------------------
+
+export interface CnGdpGrowthRateItem {
+  date: string
+  yoy: number | null
+  qoq: number | null
+}
+
+export interface CnGdpGrowthRateNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface CnGdpGrowthRateData {
+  data: CnGdpGrowthRateItem[]
+  latest: CnGdpGrowthRateItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnGdpGrowthRateNextRelease | null
+}
+
+export interface CnIndustrialProductionItem {
+  date: string
+  yoy: number | null
+}
+
+export interface CnIndustrialProductionNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface CnIndustrialProductionData {
+  data: CnIndustrialProductionItem[]
+  latest: CnIndustrialProductionItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnIndustrialProductionNextRelease | null
+}
+
+export interface CnFixedAssetInvestmentItem {
+  date: string
+  ytd: number | null
+}
+
+export interface CnFixedAssetInvestmentNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface CnFixedAssetInvestmentData {
+  data: CnFixedAssetInvestmentItem[]
+  latest: CnFixedAssetInvestmentItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnFixedAssetInvestmentNextRelease | null
+}
+
+export interface CnBeijingPm25DailyItem {
+  date: string
+  pm25: number
+}
+
+export interface CnBeijingPm25MonthlyItem {
+  date: string
+  pm25_avg: number
+}
+
+export interface CnBeijingPm25Ma30Item {
+  date: string
+  pm25_ma30: number
+}
+
+export interface CnBeijingPm25Data {
+  daily: CnBeijingPm25DailyItem[]
+  monthly: CnBeijingPm25MonthlyItem[]
+  ma30: CnBeijingPm25Ma30Item[]
+  latest: CnBeijingPm25DailyItem | null
+  latest_monthly: CnBeijingPm25MonthlyItem | null
+  metadata: Record<string, unknown>
+}
+
+// --- PMI（購買担当者景況指数）---
+export interface CnPmiHeadlineItem {
+  date: string
+  manufacturing: number | null
+  non_manufacturing: number | null
+  composite: number | null
+}
+
+export interface CnPmiMfgSubItem {
+  date: string
+  production: number | null
+  new_orders: number | null
+  new_export_orders: number | null
+  in_hand_orders: number | null
+  employment: number | null
+  raw_material_price: number | null
+  producer_prices: number | null
+  supplier_delivery: number | null
+}
+
+export interface CnPmiNmfSubItem {
+  date: string
+  services: number | null
+  construction: number | null
+  new_orders: number | null
+  export_new_orders: number | null
+  in_hand_orders: number | null
+  sale_price: number | null
+  input_price: number | null
+  supplier_delivery: number | null
+  employment: number | null
+}
+
+export interface CnPmiNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnPmiData {
+  headline: {
+    data: CnPmiHeadlineItem[]
+    latest: CnPmiHeadlineItem | null
+  } | null
+  manufacturing_sub: {
+    data: CnPmiMfgSubItem[]
+    latest: CnPmiMfgSubItem | null
+  } | null
+  non_manufacturing_sub: {
+    data: CnPmiNmfSubItem[]
+    latest: CnPmiNmfSubItem | null
+  } | null
+  metadata: Record<string, unknown>
+  next_release?: CnPmiNextRelease | null
+}
+
+// --- Caixin PMI（財新PMI）---
+export interface CnCaixinPmiItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+}
+
+export interface CnCaixinPmiNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnCaixinPmiData {
+  manufacturing: {
+    data: CnCaixinPmiItem[]
+    latest: CnCaixinPmiItem | null
+  } | null
+  services: {
+    data: CnCaixinPmiItem[]
+    latest: CnCaixinPmiItem | null
+  } | null
+  next_release_manufacturing?: CnCaixinPmiNextRelease | null
+  next_release_services?: CnCaixinPmiNextRelease | null
+  metadata: Record<string, unknown>
+}
+
+// 中国貿易収支
+export interface CnTradeBalanceItem {
+  date: string
+  value: number
+}
+
+export interface CnTradeBalanceNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnTradeBalanceData {
+  balance: CnTradeBalanceItem[]
+  exports: CnTradeBalanceItem[]
+  imports: CnTradeBalanceItem[]
+  balance_yoy: CnTradeBalanceItem[]
+  exports_yoy: CnTradeBalanceItem[]
+  imports_yoy: CnTradeBalanceItem[]
+  balance_mom_diff: CnTradeBalanceItem[]
+  exports_mom_diff: CnTradeBalanceItem[]
+  imports_mom_diff: CnTradeBalanceItem[]
+  latest_balance: CnTradeBalanceItem | null
+  latest_exports: CnTradeBalanceItem | null
+  latest_imports: CnTradeBalanceItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnTradeBalanceNextRelease | null
+}
+
+// 中国 集積回路生産 (Integrated Circuit Manufacturing)
+export interface CnIntegratedCircuitManufacturingItem {
+  date: string
+  raw_value: number | null
+  yoy: number | null
+  mom: number | null
+}
+
+export interface CnIntegratedCircuitManufacturingData {
+  data: CnIntegratedCircuitManufacturingItem[]
+  latest: CnIntegratedCircuitManufacturingItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// 中国 電気機器在庫 (Electronics Stock)
+export interface CnElectronicsStockItem {
+  date: string
+  yoy: number | null
+}
+
+export interface CnElectronicsStockSoxItem {
+  date: string
+  sox_yoy: number | null
+}
+
+export interface CnElectronicsStockData {
+  data: CnElectronicsStockItem[]
+  sox_data: CnElectronicsStockSoxItem[]
+  latest: CnElectronicsStockItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+export interface ChinaEconomyData {
+  cn_gdp_growth_rate: CnGdpGrowthRateData | null
+  cn_industrial_production: CnIndustrialProductionData | null
+  cn_fixed_asset_investment: CnFixedAssetInvestmentData | null
+  cn_beijing_pm25: CnBeijingPm25Data | null
+  cn_pmi: CnPmiData | null
+  cn_caixin_pmi: CnCaixinPmiData | null
+  cn_trade_balance: CnTradeBalanceData | null
+  cn_current_account: CnCurrentAccountData | null
+  cn_current_account_gdp_ratio: CnCurrentAccountGdpRatioData | null
+  cn_land_sales_income: CnLandSalesIncomeData | null
+  cn_integrated_circuit_manufacturing: CnIntegratedCircuitManufacturingData | null
+  cn_electronics_stock: CnElectronicsStockData | null
+}
+
+// 中国 経常収支 (Current Account)
+export interface CnCurrentAccountItem {
+  date: string
+  value: number
+}
+
+export interface CnCurrentAccountNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
+export interface CnCurrentAccountData {
+  data: CnCurrentAccountItem[]
+  qoq_diff: CnCurrentAccountItem[]
+  yoy_diff: CnCurrentAccountItem[]
+  latest: CnCurrentAccountItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnCurrentAccountNextRelease | null
+}
+
+// 中国 経常収支対GDP比 (Current Account to GDP Ratio)
+export interface CnCurrentAccountGdpRatioItem {
+  date: string
+  value: number
+  current_account?: number
+  gdp?: number
+}
+
+export interface CnCurrentAccountGdpRatioData {
+  data: CnCurrentAccountGdpRatioItem[]
+  latest: CnCurrentAccountGdpRatioItem | null
+  metadata: Record<string, unknown>
+  next_release?: CnCurrentAccountNextRelease | null
+}
+
+// 中国 土地売却収入 (Land Sales Income)
+export interface CnLandSalesIncomeItem {
+  date: string
+  value: number
+  yoy: number | null
+  mom: number | null
+  monthly_increment: number | null
+}
+
+export interface CnLandSalesIncomeData {
+  data: CnLandSalesIncomeItem[]
+  latest: CnLandSalesIncomeItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// 中国 地方政府債券 (Local Government Bonds)
+export interface CnLocalBondsItem {
+  date: string
+  new_ratio: number | null
+  special_ratio: number | null
+  headroom: number | null
+  cost: number | null
+}
+
+export interface CnLocalBondsData {
+  data: CnLocalBondsItem[]
+  latest: CnLocalBondsItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// 中国 海外投資家フロー (Overseas Investor Flow)
+export interface CnOverseasInvestorFlowItem {
+  date: string
+  shch: number | null       // Shanghai Clearing House (RMB billion)
+  ccdc: number | null       // China Central Depository & Clearing (RMB billion)
+  total: number | null      // 合計 (RMB billion)
+}
+
+export interface CnOverseasInvestorFlowData {
+  data: CnOverseasInvestorFlowItem[]
+  latest: CnOverseasInvestorFlowItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+/**
+ * 中国経済ダッシュボード専用フック
+ */
+export function useChinaEconomyDashboard(): UseQueryResult<DashboardResponse<ChinaEconomyData>, Error> {
+  return useDashboardData<ChinaEconomyData>('china', 'economy')
+}
+
+// ============================================================================
+// グローバル経済
+// ============================================================================
+
+export interface GlobalManufacturingPmiItem {
+  date: string
+  value: number | null
+}
+
+export interface GlobalManufacturingPmiData {
+  data: GlobalManufacturingPmiItem[]
+  latest: GlobalManufacturingPmiItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+export interface GlobalEpuItem {
+  date: string
+  value: number | null
+}
+
+export interface GlobalEpuData {
+  data: GlobalEpuItem[]
+  latest: GlobalEpuItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// WSTS 半導体売上高
+export interface SemiconductorSalesItem {
+  date: string
+  worldwide: number | null
+  americas: number | null
+  europe: number | null
+  japan: number | null
+  asia_pacific: number | null
+}
+
+export interface SemiconductorSalesData {
+  data: SemiconductorSalesItem[]
+  yoy_data: SemiconductorSalesItem[]
+  mma_data: SemiconductorSalesItem[]
+  mma_yoy_data: SemiconductorSalesItem[]
+  latest: SemiconductorSalesItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// 台湾PMI先行き（電子工学業）
+export interface TaiwanPmiOutlookItem {
+  date: string
+  value: number | null
+}
+
+export interface TaiwanPmiOutlookData {
+  data: TaiwanPmiOutlookItem[]
+  latest: TaiwanPmiOutlookItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// 台湾製造業PMI（S&P Global）
+export interface TaiwanManufacturingPmiItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+}
+
+export interface TaiwanManufacturingPmiNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface TaiwanManufacturingPmiData {
+  data: TaiwanManufacturingPmiItem[]
+  latest: TaiwanManufacturingPmiItem | null
+  metadata: Record<string, unknown>
+  next_release?: TaiwanManufacturingPmiNextRelease | null
+}
+
+// 韓国輸出（前年比）
+export interface SouthKoreanExportsItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+}
+
+export interface SouthKoreanExportsNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface SouthKoreanExportsData {
+  data: SouthKoreanExportsItem[]
+  latest: SouthKoreanExportsItem | null
+  metadata: Record<string, unknown>
+  next_release?: SouthKoreanExportsNextRelease | null
+}
+
+// 台湾輸出受注（前年比）
+export interface TaiwanExportOrdersItem {
+  date: string
+  value: number | null
+  forecast: number | null
+  previous: number | null
+}
+
+export interface TaiwanExportOrdersNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface TaiwanExportOrdersData {
+  data: TaiwanExportOrdersItem[]
+  latest: TaiwanExportOrdersItem | null
+  metadata: Record<string, unknown>
+  next_release?: TaiwanExportOrdersNextRelease | null
+}
+
+// 台湾電気機器輸出
+export interface TaiwanElectricalEquipmentExportsItem {
+  date: string
+  value: number | null  // YoY%
+  mom: number | null     // MoM%
+  raw_value: number | null  // 百萬美元
+}
+
+export interface TaiwanElectricalEquipmentExportsData {
+  data: TaiwanElectricalEquipmentExportsItem[]
+  latest: TaiwanElectricalEquipmentExportsItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// 中国・上海コンテナ運賃指数
+export interface ChinaShanghaiContainerFreightIndexItem {
+  date: string
+  scfi: number | null
+  ccfi: number | null
+}
+export interface ChinaShanghaiContainerFreightIndexData {
+  data: ChinaShanghaiContainerFreightIndexItem[]
+  latest: ChinaShanghaiContainerFreightIndexItem | null
+  metadata: Record<string, unknown>
+  next_release?: null
+}
+
+// グローバル経済ダッシュボードデータの型
+export interface GlobalEconomyData {
+  jpmorgan_global_manufacturing_pmi: GlobalManufacturingPmiData | null
+  economic_surprise_index_screenshot_url: string | null
+  komtrax_screenshot_url: string | null
+  global_epu: GlobalEpuData | null
+  semiconductor_sales: SemiconductorSalesData | null
+  taiwan_pmi_outlook: TaiwanPmiOutlookData | null
+  taiwan_manufacturing_pmi: TaiwanManufacturingPmiData | null
+  south_korean_exports: SouthKoreanExportsData | null
+  taiwan_export_orders: TaiwanExportOrdersData | null
+  taiwan_electrical_equipment_exports: TaiwanElectricalEquipmentExportsData | null
+  china_shanghai_container_freight_index: ChinaShanghaiContainerFreightIndexData | null
+}
+
+/**
+ * グローバル経済ダッシュボード専用フック
+ */
+export function useGlobalEconomyDashboard(): UseQueryResult<DashboardResponse<GlobalEconomyData>, Error> {
+  return useDashboardData<GlobalEconomyData>('global', 'economy')
 }

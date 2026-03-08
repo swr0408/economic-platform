@@ -16,6 +16,7 @@ interface TradingViewWidgetProps {
   allowSymbolChange?: boolean;
   withDateRanges?: boolean; // 上部に日付レンジボタン群を表示
   range?: string; // 初期表示レンジ（例: '12M', '6M', '5D'）
+  chartStyle?: string; // チャートスタイル: "0"=Bar, "1"=Candles, "2"=Line(close), "3"=Area, "8"=HeikinAshi, "9"=HollowCandles
   style?: React.CSSProperties;
 }
 
@@ -34,6 +35,7 @@ function TradingViewWidget({
   allowSymbolChange = true,
   withDateRanges = true,
   range,
+  chartStyle = "1",
   style = {}
 }: TradingViewWidgetProps) {
   const container = useRef<HTMLDivElement>(null);
@@ -63,7 +65,7 @@ function TradingViewWidget({
       "interval": interval,
       "locale": locale,
       "save_image": true,
-      "style": "1",
+      "style": chartStyle,
       "symbol": tradingViewSymbol,
       "theme": theme,
       "timezone": timezone,
@@ -89,7 +91,7 @@ function TradingViewWidget({
         container.current.innerHTML = '';
       }
     };
-  }, [symbol, theme, interval, timezone, locale, hideTopToolbar, hideSideToolbar, hideLegend, hideVolume, allowSymbolChange]);
+  }, [symbol, theme, interval, timezone, locale, hideTopToolbar, hideSideToolbar, hideLegend, hideVolume, allowSymbolChange, chartStyle]);
 
   return (
     <div 

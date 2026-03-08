@@ -20,6 +20,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import {
   usePeriodFiltering,
   useViewModePeriodManagement,
+  useQuarterlyTableData,
   formatPercent,
 } from '../../usa/common/useChartData'
 import {
@@ -27,6 +28,7 @@ import {
   NoDataMessage,
   SimpleLatestValueBox,
 } from '../../usa/common/ChartComponents'
+import { QuarterlyTable } from '../../usa/common/QuarterlyTable'
 
 // マーケットインパクト関連
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
@@ -45,8 +47,20 @@ interface GDPChartData {
   [key: string]: string | number | null | undefined
 }
 
-// ビューモード
-type ViewMode = 'qoq_chart' | 'qoq_annualized_chart' | 'yoy_chart'
+// 指標種別
+type DataKind = 'qoq' | 'qoq_annualized' | 'yoy'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '前期比' },
+  { mode: 'qoq_annualized', label: '前期比年率' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示モード（チャート/ヒートマップ）
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // グラフの色
 const COLORS = {
@@ -61,14 +75,15 @@ const QuarterlyGDPChart: React.FC = () => {
   const [qoqData, setQoqData] = useState<QuarterlyGDPData | null>(null)
   const [qoqAnnualizedData, setQoqAnnualizedData] = useState<QuarterlyGDPData | null>(null)
   const [yoyData, setYoyData] = useState<QuarterlyGDPData | null>(null)
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 'default',
-    qoq_annualized_chart: 'default',
-    yoy_chart: 'default',
+  // 指標種別毎の期間管理（共通フック使用）
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    qoq: 'default',
+    qoq_annualized: 'default',
+    yoy: 'default',
   })
 
   useEffect(() => {
@@ -172,6 +187,9 @@ const QuarterlyGDPChart: React.FC = () => {
     defaultStartYear: 2015,
   })
 
+  // 四半期テーブルデータ（ヒートマップ用）
+  const qoqTableData = useQuarterlyTableData(qoqChartData, (item) => item.value)
+
   const hasData = qoqChartData.length > 0 || qoqAnnualizedChartData.length > 0 || yoyChartData.length > 0
 
   if (loading) {
@@ -208,37 +226,37 @@ const QuarterlyGDPChart: React.FC = () => {
 
   // 現在のビューモードに応じた最新値を取得
   const getCurrentLabel = () => {
-    switch (viewMode) {
-      case 'qoq_chart': return '前期比'
-      case 'qoq_annualized_chart': return '前期比年率'
-      case 'yoy_chart': return '前年比'
+    switch (dataKind) {
+      case 'qoq': return '前期比'
+      case 'qoq_annualized': return '前期比年率'
+      case 'yoy': return '前年比'
       default: return '前期比年率'
     }
   }
 
   const getCurrentLatest = () => {
-    switch (viewMode) {
-      case 'qoq_chart': return latestQoQ
-      case 'qoq_annualized_chart': return latestQoQAnnualized
-      case 'yoy_chart': return latestYoY
+    switch (dataKind) {
+      case 'qoq': return latestQoQ
+      case 'qoq_annualized': return latestQoQAnnualized
+      case 'yoy': return latestYoY
       default: return latestQoQAnnualized
     }
   }
 
   const getCurrentColor = () => {
-    switch (viewMode) {
-      case 'qoq_chart': return COLORS.qoq
-      case 'qoq_annualized_chart': return COLORS.qoq_annualized
-      case 'yoy_chart': return COLORS.yoy
+    switch (dataKind) {
+      case 'qoq': return COLORS.qoq
+      case 'qoq_annualized': return COLORS.qoq_annualized
+      case 'yoy': return COLORS.yoy
       default: return COLORS.qoq_annualized
     }
   }
 
   const getCompareIndicator = () => {
-    switch (viewMode) {
-      case 'qoq_chart': return 'japan_gdp_qoq'
-      case 'qoq_annualized_chart': return 'japan_gdp_qoq_annualized'
-      case 'yoy_chart': return 'japan_gdp_yoy'
+    switch (dataKind) {
+      case 'qoq': return 'japan_gdp_qoq'
+      case 'qoq_annualized': return 'japan_gdp_qoq_annualized'
+      case 'yoy': return 'japan_gdp_yoy'
       default: return 'japan_gdp_qoq_annualized'
     }
   }
@@ -274,19 +292,9 @@ const QuarterlyGDPChart: React.FC = () => {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'qoq_chart', label: '前期比' },
-                      { mode: 'qoq_annualized_chart', label: '前期比年率' },
-                      { mode: 'yoy_chart', label: '前年比' },
-                    ]}
-                  />
-
-                  {/* 期間セレクター */}
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -297,86 +305,101 @@ const QuarterlyGDPChart: React.FC = () => {
                     </Tooltip>
                   </div>
 
+                  {dataKind === 'qoq' && (
+                    <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                  )}
+
                   {/* コンテンツ表示 */}
-                  {viewMode === 'qoq_chart' && (
-                    <ZoomableChart
-                      data={filteredQoQData}
-                      dataKey="value"
-                      color={COLORS.qoq}
-                      name="GDP成長率（前期比）"
-                      height={450}
-                      tickFormatter={formatPercentage}
-                      tooltipFormatter={formatPercentage}
-                      tooltipLabelFormatter={(dateStr) => {
-                        const date = new Date(dateStr)
-                        const quarter = Math.floor(date.getMonth() / 3) + 1
-                        return `${date.getFullYear()}年Q${quarter}`
-                      }}
-                      xAxisTickFormatter={(dateStr) => {
-                        const date = new Date(dateStr)
-                        const quarter = Math.floor(date.getMonth() / 3) + 1
-                        return `${date.getFullYear()}/Q${quarter}`
-                      }}
-                      enableDynamicTicks={true}
-                      showZeroLine={true}
-                      showFiftyLine={false}
-                      connectNulls={true}
-                      hideLegend={true}
-                    />
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && <QuarterlyTable data={qoqTableData} />}
+
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ZoomableChart
+                        data={filteredQoQData}
+                        dataKey="value"
+                        color={COLORS.qoq}
+                        name="GDP成長率（前期比）"
+                        height={450}
+                        tickFormatter={formatPercentage}
+                        tooltipFormatter={formatPercentage}
+                        tooltipLabelFormatter={(dateStr) => {
+                          const date = new Date(dateStr)
+                          const quarter = Math.floor(date.getMonth() / 3) + 1
+                          return `${date.getFullYear()}年Q${quarter}`
+                        }}
+                        xAxisTickFormatter={(dateStr) => {
+                          const date = new Date(dateStr)
+                          const quarter = Math.floor(date.getMonth() / 3) + 1
+                          return `${date.getFullYear()}/Q${quarter}`
+                        }}
+                        enableDynamicTicks={true}
+                        showZeroLine={true}
+                        showFiftyLine={false}
+                        connectNulls={true}
+                        hideLegend={true}
+                      />
+                    </>
                   )}
 
-                  {viewMode === 'qoq_annualized_chart' && (
-                    <ZoomableChart
-                      data={filteredQoQAnnualizedData}
-                      dataKey="value"
-                      color={COLORS.qoq_annualized}
-                      name="GDP成長率（前期比年率）"
-                      height={450}
-                      tickFormatter={formatPercentage}
-                      tooltipFormatter={formatPercentage}
-                      tooltipLabelFormatter={(dateStr) => {
-                        const date = new Date(dateStr)
-                        const quarter = Math.floor(date.getMonth() / 3) + 1
-                        return `${date.getFullYear()}年Q${quarter}`
-                      }}
-                      xAxisTickFormatter={(dateStr) => {
-                        const date = new Date(dateStr)
-                        const quarter = Math.floor(date.getMonth() / 3) + 1
-                        return `${date.getFullYear()}/Q${quarter}`
-                      }}
-                      enableDynamicTicks={true}
-                      showZeroLine={true}
-                      showFiftyLine={false}
-                      connectNulls={true}
-                      hideLegend={true}
-                    />
+                  {dataKind === 'qoq_annualized' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ZoomableChart
+                        data={filteredQoQAnnualizedData}
+                        dataKey="value"
+                        color={COLORS.qoq_annualized}
+                        name="GDP成長率（前期比年率）"
+                        height={450}
+                        tickFormatter={formatPercentage}
+                        tooltipFormatter={formatPercentage}
+                        tooltipLabelFormatter={(dateStr) => {
+                          const date = new Date(dateStr)
+                          const quarter = Math.floor(date.getMonth() / 3) + 1
+                          return `${date.getFullYear()}年Q${quarter}`
+                        }}
+                        xAxisTickFormatter={(dateStr) => {
+                          const date = new Date(dateStr)
+                          const quarter = Math.floor(date.getMonth() / 3) + 1
+                          return `${date.getFullYear()}/Q${quarter}`
+                        }}
+                        enableDynamicTicks={true}
+                        showZeroLine={true}
+                        showFiftyLine={false}
+                        connectNulls={true}
+                        hideLegend={true}
+                      />
+                    </>
                   )}
 
-                  {viewMode === 'yoy_chart' && (
-                    <ZoomableChart
-                      data={filteredYoYData}
-                      dataKey="value"
-                      color={COLORS.yoy}
-                      name="GDP成長率（前年比）"
-                      height={450}
-                      tickFormatter={formatPercentage}
-                      tooltipFormatter={formatPercentage}
-                      tooltipLabelFormatter={(dateStr) => {
-                        const date = new Date(dateStr)
-                        const quarter = Math.floor(date.getMonth() / 3) + 1
-                        return `${date.getFullYear()}年Q${quarter}`
-                      }}
-                      xAxisTickFormatter={(dateStr) => {
-                        const date = new Date(dateStr)
-                        const quarter = Math.floor(date.getMonth() / 3) + 1
-                        return `${date.getFullYear()}/Q${quarter}`
-                      }}
-                      enableDynamicTicks={true}
-                      showZeroLine={true}
-                      showFiftyLine={false}
-                      connectNulls={true}
-                      hideLegend={true}
-                    />
+                  {dataKind === 'yoy' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ZoomableChart
+                        data={filteredYoYData}
+                        dataKey="value"
+                        color={COLORS.yoy}
+                        name="GDP成長率（前年比）"
+                        height={450}
+                        tickFormatter={formatPercentage}
+                        tooltipFormatter={formatPercentage}
+                        tooltipLabelFormatter={(dateStr) => {
+                          const date = new Date(dateStr)
+                          const quarter = Math.floor(date.getMonth() / 3) + 1
+                          return `${date.getFullYear()}年Q${quarter}`
+                        }}
+                        xAxisTickFormatter={(dateStr) => {
+                          const date = new Date(dateStr)
+                          const quarter = Math.floor(date.getMonth() / 3) + 1
+                          return `${date.getFullYear()}/Q${quarter}`
+                        }}
+                        enableDynamicTicks={true}
+                        showZeroLine={true}
+                        showFiftyLine={false}
+                        connectNulls={true}
+                        hideLegend={true}
+                      />
+                    </>
                   )}
                 </>
               ),

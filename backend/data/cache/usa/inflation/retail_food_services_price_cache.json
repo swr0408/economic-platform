@@ -147,7 +147,7 @@
     {
       "date": "2021-01-01",
       "bea": 0.75,
-      "cpi": 0.52,
+      "cpi": 0.59,
       "carts_nowcast": null
     },
     {
@@ -159,181 +159,181 @@
     {
       "date": "2021-03-01",
       "bea": 3.43,
-      "cpi": 3.2,
+      "cpi": 3.33,
       "carts_nowcast": null
     },
     {
       "date": "2021-04-01",
       "bea": 5.54,
-      "cpi": 4.91,
+      "cpi": 4.89,
       "carts_nowcast": null
     },
     {
       "date": "2021-05-01",
       "bea": 6.58,
-      "cpi": 5.53,
+      "cpi": 5.51,
       "carts_nowcast": null
     },
     {
       "date": "2021-06-01",
       "bea": 6.01,
-      "cpi": 5.03,
+      "cpi": 4.96,
       "carts_nowcast": null
     },
     {
       "date": "2021-07-01",
       "bea": 5.77,
-      "cpi": 5.24,
+      "cpi": 5.16,
       "carts_nowcast": null
     },
     {
       "date": "2021-08-01",
       "bea": 5.73,
-      "cpi": 5.47,
+      "cpi": 5.4,
       "carts_nowcast": null
     },
     {
       "date": "2021-09-01",
       "bea": 6.08,
-      "cpi": 6.02,
+      "cpi": 5.99,
       "carts_nowcast": null
     },
     {
       "date": "2021-10-01",
       "bea": 7.5,
-      "cpi": 7.2,
+      "cpi": 7.19,
       "carts_nowcast": null
     },
     {
       "date": "2021-11-01",
       "bea": 8.41,
-      "cpi": 8.12,
+      "cpi": 8.21,
       "carts_nowcast": null
     },
     {
       "date": "2021-12-01",
       "bea": 8.31,
-      "cpi": 7.88,
+      "cpi": 7.94,
       "carts_nowcast": null
     },
     {
       "date": "2022-01-01",
       "bea": 8.5,
-      "cpi": 7.78,
+      "cpi": 7.73,
       "carts_nowcast": null
     },
     {
       "date": "2022-02-01",
       "bea": 9.07,
-      "cpi": 8.25,
+      "cpi": 8.22,
       "carts_nowcast": null
     },
     {
       "date": "2022-03-01",
       "bea": 10.12,
-      "cpi": 9.64,
+      "cpi": 9.7,
       "carts_nowcast": null
     },
     {
       "date": "2022-04-01",
       "bea": 9.6,
-      "cpi": 9.22,
+      "cpi": 9.21,
       "carts_nowcast": null
     },
     {
       "date": "2022-05-01",
       "bea": 9.87,
-      "cpi": 9.9,
+      "cpi": 9.91,
       "carts_nowcast": null
     },
     {
       "date": "2022-06-01",
       "bea": 10.78,
-      "cpi": 11.18,
+      "cpi": 11.14,
       "carts_nowcast": null
     },
     {
       "date": "2022-07-01",
       "bea": 9.99,
-      "cpi": 9.86,
+      "cpi": 9.91,
       "carts_nowcast": null
     },
     {
       "date": "2022-08-01",
       "bea": 9.11,
-      "cpi": 8.36,
+      "cpi": 8.39,
       "carts_nowcast": null
     },
     {
       "date": "2022-09-01",
       "bea": 8.64,
-      "cpi": 7.59,
+      "cpi": 7.57,
       "carts_nowcast": null
     },
     {
       "date": "2022-10-01",
       "bea": 7.97,
-      "cpi": 7.26,
+      "cpi": 7.25,
       "carts_nowcast": null
     },
     {
       "date": "2022-11-01",
       "bea": 6.96,
-      "cpi": 6.36,
+      "cpi": 6.32,
       "carts_nowcast": null
     },
     {
       "date": "2022-12-01",
       "bea": 5.48,
-      "cpi": 4.87,
+      "cpi": 4.85,
       "carts_nowcast": null
     },
     {
       "date": "2023-01-01",
       "bea": 5.17,
-      "cpi": 4.88,
+      "cpi": 4.83,
       "carts_nowcast": null
     },
     {
       "date": "2023-02-01",
       "bea": 4.44,
-      "cpi": 4.15,
+      "cpi": 4.14,
       "carts_nowcast": null
     },
     {
       "date": "2023-03-01",
       "bea": 2.44,
-      "cpi": 1.8,
+      "cpi": 1.76,
       "carts_nowcast": null
     },
     {
       "date": "2023-04-01",
       "bea": 2.65,
-      "cpi": 2.15,
+      "cpi": 2.16,
       "carts_nowcast": null
     },
     {
       "date": "2023-05-01",
       "bea": 1.45,
-      "cpi": 0.77,
+      "cpi": 0.79,
       "carts_nowcast": null
     },
     {
       "date": "2023-06-01",
       "bea": 0.13,
-      "cpi": -0.86,
+      "cpi": -0.82,
       "carts_nowcast": null
     },
     {
       "date": "2023-07-01",
       "bea": 0.46,
-      "cpi": -0.22,
+      "cpi": -0.19,
       "carts_nowcast": null
     },
     {
       "date": "2023-08-01",
       "bea": 1.6,
-      "cpi": 1.44,
+      "cpi": 1.46,
       "carts_nowcast": null
     },
     {
@@ -345,184 +345,184 @@
     {
       "date": "2023-10-01",
       "bea": 1.06,
-      "cpi": 0.87,
+      "cpi": 0.88,
       "carts_nowcast": null
     },
     {
       "date": "2023-11-01",
       "bea": 0.64,
-      "cpi": 0.12,
+      "cpi": 0.1,
       "carts_nowcast": null
     },
     {
       "date": "2023-12-01",
       "bea": 0.98,
-      "cpi": 0.74,
+      "cpi": 0.71,
       "carts_nowcast": null
     },
     {
       "date": "2024-01-01",
       "bea": 0.1,
-      "cpi": 0.27,
+      "cpi": 0.24,
       "carts_nowcast": null
     },
     {
       "date": "2024-02-01",
       "bea": 0.18,
-      "cpi": 0.3,
+      "cpi": 0.28,
       "carts_nowcast": null
     },
     {
       "date": "2024-03-01",
       "bea": 0.62,
-      "cpi": 0.64,
+      "cpi": 0.69,
       "carts_nowcast": null
     },
     {
       "date": "2024-04-01",
       "bea": 0.71,
-      "cpi": 0.74,
+      "cpi": 0.76,
       "carts_nowcast": null
     },
     {
       "date": "2024-05-01",
       "bea": 0.74,
-      "cpi": 0.79,
+      "cpi": 0.81,
       "carts_nowcast": null
     },
     {
       "date": "2024-06-01",
       "bea": null,
-      "cpi": 0.42,
-      "carts_nowcast": 0.4
+      "cpi": 0.4,
+      "carts_nowcast": 0.34
     },
     {
       "date": "2024-07-01",
+      "bea": null,
+      "cpi": 0.46,
+      "carts_nowcast": 0.39
+    },
+    {
+      "date": "2024-08-01",
+      "bea": null,
+      "cpi": -0.45,
+      "carts_nowcast": -0.61
+    },
+    {
+      "date": "2024-09-01",
+      "bea": null,
+      "cpi": -0.9,
+      "carts_nowcast": -1.07
+    },
+    {
+      "date": "2024-10-01",
+      "bea": null,
+      "cpi": -0.71,
+      "carts_nowcast": -0.77
+    },
+    {
+      "date": "2024-11-01",
+      "bea": null,
+      "cpi": 0.0,
+      "carts_nowcast": -0.18
+    },
+    {
+      "date": "2024-12-01",
+      "bea": null,
+      "cpi": 0.51,
+      "carts_nowcast": 0.4
+    },
+    {
+      "date": "2025-01-01",
+      "bea": null,
+      "cpi": 0.69,
+      "carts_nowcast": 0.82
+    },
+    {
+      "date": "2025-02-01",
       "bea": null,
       "cpi": 0.45,
       "carts_nowcast": 0.37
     },
     {
-      "date": "2024-08-01",
-      "bea": null,
-      "cpi": -0.46,
-      "carts_nowcast": -0.64
-    },
-    {
-      "date": "2024-09-01",
-      "bea": null,
-      "cpi": -0.89,
-      "carts_nowcast": -1.04
-    },
-    {
-      "date": "2024-10-01",
-      "bea": null,
-      "cpi": -0.73,
-      "carts_nowcast": -0.8
-    },
-    {
-      "date": "2024-11-01",
-      "bea": null,
-      "cpi": -0.0,
-      "carts_nowcast": -0.2
-    },
-    {
-      "date": "2024-12-01",
-      "bea": null,
-      "cpi": 0.52,
-      "carts_nowcast": 0.41
-    },
-    {
-      "date": "2025-01-01",
-      "bea": null,
-      "cpi": 0.68,
-      "carts_nowcast": 0.87
-    },
-    {
-      "date": "2025-02-01",
-      "bea": null,
-      "cpi": 0.47,
-      "carts_nowcast": 0.4
-    },
-    {
       "date": "2025-03-01",
       "bea": null,
-      "cpi": -0.01,
-      "carts_nowcast": -0.2
+      "cpi": -0.07,
+      "carts_nowcast": -0.14
     },
     {
       "date": "2025-04-01",
       "bea": null,
-      "cpi": -0.3,
-      "carts_nowcast": -0.44
+      "cpi": -0.31,
+      "carts_nowcast": -0.47
     },
     {
       "date": "2025-05-01",
       "bea": null,
-      "cpi": -0.17,
-      "carts_nowcast": -0.13
+      "cpi": -0.16,
+      "carts_nowcast": -0.14
     },
     {
       "date": "2025-06-01",
       "bea": null,
-      "cpi": 0.43,
-      "carts_nowcast": 0.52
+      "cpi": 0.44,
+      "carts_nowcast": 0.49
     },
     {
       "date": "2025-07-01",
       "bea": null,
-      "cpi": 0.42,
-      "carts_nowcast": 0.67
+      "cpi": 0.43,
+      "carts_nowcast": 0.61
     },
     {
       "date": "2025-08-01",
       "bea": null,
       "cpi": 0.9,
-      "carts_nowcast": 1.09
+      "carts_nowcast": 0.98
     },
     {
       "date": "2025-09-01",
       "bea": null,
       "cpi": 1.51,
-      "carts_nowcast": 1.65
+      "carts_nowcast": 1.55
     },
     {
       "date": "2025-10-01",
       "bea": null,
-      "cpi": 1.25,
-      "carts_nowcast": 1.47
+      "cpi": 1.33,
+      "carts_nowcast": 1.43
     },
     {
       "date": "2025-11-01",
       "bea": null,
       "cpi": 1.46,
-      "carts_nowcast": 1.79
+      "carts_nowcast": 1.69
     },
     {
       "date": "2025-12-01",
       "bea": null,
-      "cpi": 1.38,
-      "carts_nowcast": 1.72
+      "cpi": 1.39,
+      "carts_nowcast": 1.6
     },
     {
       "date": "2026-01-01",
       "bea": null,
-      "cpi": null,
-      "carts_nowcast": 1.43
+      "cpi": 1.12,
+      "carts_nowcast": 1.33
     }
   ],
   "latest": {
     "date": "2026-01-01",
     "bea": null,
-    "cpi": null,
-    "carts_nowcast": 1.43
+    "cpi": 1.12,
+    "carts_nowcast": 1.33
   },
   "next_release": {
-    "date": "2026-02-16",
-    "datetime_jst": "2026-02-16T22:30:00+09:00",
-    "time_jst": "22:30",
-    "label": "January 2026 (Final)",
-    "type": "final"
+    "date": "2026-03-09",
+    "datetime_jst": "2026-03-09T21:30:00+09:00",
+    "time_jst": "21:30",
+    "label": "February 2026 (Preliminary)",
+    "type": "preliminary"
   },
-  "last_updated": "2026-02-13T22:34:01.542107+09:00"
+  "last_updated": "2026-03-05T22:35:29.426669+09:00"
 }

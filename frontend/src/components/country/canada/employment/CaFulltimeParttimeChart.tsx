@@ -37,8 +37,10 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  VALUE_CHANGE_VIEW_MODE_OPTIONS,
-  type ValueChangeViewMode,
+  VALUE_CHANGE_DATA_KIND_OPTIONS,
+  type ValueChangeDataKind,
+  DISPLAY_MODE_OPTIONS,
+  type DisplayMode,
   CHANGE_LEGEND_100K,
   getChangeCellColor100k,
 } from '../../usa/common/chartConstants'
@@ -96,16 +98,16 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChartProps) {
-  const [viewMode, setViewMode] = useState<ValueChangeViewMode>('change_chart')
+  const [dataKind, setDataKind] = useState<ValueChangeDataKind>('change')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<DataType>('fulltime')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'fulltime' | 'parttime' | 'fulltime_change' | 'parttime_change'>()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    change_chart: 3,
-    change_table: 'default',
+    change: 3,
   })
 
   // データを日付昇順にソート
@@ -164,7 +166,7 @@ export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChar
 
   // 最新値の表示用アイテム
   const getLatestItems = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return latestValues ? [
         { label: SERIES_NAMES.fulltime, value: latestValues.fulltime, color: COLORS.fulltime, format: 'number' as const, unit: '千人', decimals: 1 },
         { label: SERIES_NAMES.parttime, value: latestValues.parttime, color: COLORS.parttime, format: 'number' as const, unit: '千人', decimals: 1 },
@@ -191,7 +193,7 @@ export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChar
 
   // 比較ボタンのURLを生成
   const getCompareUrl = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return '/compare?s=ca_fulltime_employment&s=ca_parttime_employment'
     } else {
       return '/compare?s=ca_fulltime_change&s=ca_parttime_change'
@@ -226,15 +228,24 @@ export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChar
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    options={VALUE_CHANGE_VIEW_MODE_OPTIONS}
-                    currentMode={viewMode}
-                    onChange={setViewMode}
-                  />
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={VALUE_CHANGE_DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                    />
+                  </div>
+
+                  {/* 下段: 表示形式（changeのときのみ） */}
+                  {dataKind === 'change' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 現数値グラフ（左右Y軸） */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -322,7 +333,7 @@ export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChar
                   )}
 
                   {/* 前月増減幅グラフ */}
-                  {viewMode === 'change_chart' && (
+                  {dataKind === 'change' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup
                         options={DATA_TYPE_OPTIONS}
@@ -386,7 +397,7 @@ export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChar
                   )}
 
                   {/* 前月増減幅テーブル */}
-                  {viewMode === 'change_table' && (
+                  {dataKind === 'change' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={changeTableData}
                       dataTypes={DATA_TYPE_OPTIONS}

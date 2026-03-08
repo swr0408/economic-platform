@@ -92,6 +92,13 @@ MARKET_SYMBOLS: List[SymbolInfo] = [
     {"id": "dax", "ticker": "^GDAXI", "name": "DAX", "name_en": "DAX", "category": "index", "sub_category": "europe"},
     {"id": "ftse100", "ticker": "^FTSE", "name": "FTSE100", "name_en": "FTSE 100", "category": "index", "sub_category": "europe"},
     {"id": "cac40", "ticker": "^FCHI", "name": "CAC40", "name_en": "CAC 40", "category": "index", "sub_category": "europe"},
+    {"id": "eurostoxx50", "ticker": "^STOXX50E", "name": "EURO STOXX 50", "name_en": "EURO STOXX 50", "category": "index", "sub_category": "europe"},
+
+    # =========================================================================
+    # 株価指数 - 台湾/半導体
+    # =========================================================================
+    {"id": "twii", "ticker": "^TWII", "name": "台湾加権指数", "name_en": "TWSE Weighted Index", "category": "index", "sub_category": "asia"},
+    {"id": "tsmc", "ticker": "TSM", "name": "TSMC (ADR)", "name_en": "TSMC (ADR)", "category": "index", "sub_category": "asia"},
 
     # =========================================================================
     # 債券利回り（米国）
@@ -107,6 +114,8 @@ MARKET_SYMBOLS: List[SymbolInfo] = [
     {"id": "gold", "ticker": "GC=F", "name": "金（ドル建て）", "name_en": "Gold (USD)", "category": "commodity", "sub_category": "metal"},
     {"id": "silver", "ticker": "SI=F", "name": "銀（ドル建て）", "name_en": "Silver (USD)", "category": "commodity", "sub_category": "metal"},
     {"id": "copper", "ticker": "HG=F", "name": "銅", "name_en": "Copper", "category": "commodity", "sub_category": "metal"},
+    {"id": "platinum", "ticker": "PL=F", "name": "プラチナ", "name_en": "Platinum", "category": "commodity", "sub_category": "metal"},
+    {"id": "aluminum", "ticker": "ALI=F", "name": "アルミニウム", "name_en": "Aluminum", "category": "commodity", "sub_category": "metal"},
 
     # =========================================================================
     # 商品 - エネルギー

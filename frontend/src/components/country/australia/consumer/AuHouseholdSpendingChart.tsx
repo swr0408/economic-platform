@@ -52,13 +52,20 @@ interface AuHouseholdSpendingChartProps {
   data: AuHouseholdSpendingData | null
 }
 
-// ビューモード
-type HsViewMode = 'yoy' | 'mom_change' | 'mom_table'
+// データ種別
+type DataKind = 'yoy' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: HsViewMode; label: string }[] = [
-  { mode: 'mom_change', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
   { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -88,15 +95,15 @@ const formatDateLabelJP = (dateStr: string): string => {
 // =============================================================================
 
 export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingChartProps) {
-  const [viewMode, setViewMode] = useState<HsViewMode>('mom_change')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_change: 3,
-    mom_table: 'default',
+    mom: 3,
   })
 
   // データを変換
@@ -185,8 +192,9 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -196,9 +204,15 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
                       </Button>
                     </Tooltip>
                   </div>
+                  {/* 下段: 表示形式（変動系のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_change' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -215,8 +229,8 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={1}
@@ -225,7 +239,7 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
                   )}
 
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart

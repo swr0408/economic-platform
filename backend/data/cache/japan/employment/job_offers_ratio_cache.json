@@ -1,0 +1,73 @@
+{
+  "data": [
+    {
+      "date": "2025-03-01",
+      "value": 1.24,
+      "forecast": 1.26,
+      "previous": 1.26
+    },
+    {
+      "date": "2025-05-01",
+      "value": 1.26,
+      "forecast": 1.24,
+      "previous": 1.24
+    },
+    {
+      "date": "2025-06-01",
+      "value": 1.24,
+      "forecast": 1.26,
+      "previous": 1.26
+    },
+    {
+      "date": "2025-07-01",
+      "value": 1.22,
+      "forecast": 1.25,
+      "previous": 1.24
+    },
+    {
+      "date": "2025-08-01",
+      "value": 1.22,
+      "forecast": 1.23,
+      "previous": 1.22
+    },
+    {
+      "date": "2025-10-01",
+      "value": 1.2,
+      "forecast": 1.22,
+      "previous": 1.22
+    },
+    {
+      "date": "2025-11-01",
+      "value": 1.18,
+      "forecast": 1.2,
+      "previous": 1.2
+    },
+    {
+      "date": "2025-12-01",
+      "value": 1.18,
+      "forecast": 1.18,
+      "previous": 1.18
+    },
+    {
+      "date": "2026-01-01",
+      "value": 1.19,
+      "forecast": 1.18,
+      "previous": 1.18
+    }
+  ],
+  "latest": {
+    "date": "2026-01-01",
+    "value": 1.19,
+    "forecast": 1.18,
+    "previous": 1.18
+  },
+  "next_release": {
+    "date": "2026-03-02",
+    "datetime_utc": "2026-03-02T23:30:00+00:00",
+    "datetime_jst": "2026-03-03T08:30:00+09:00",
+    "time_jst": "08:30",
+    "label": "Jobs/applications ratio (Jan)",
+    "estimate": 1.19
+  },
+  "last_updated": "2026-02-28T09:52:34.059346+09:00"
+}

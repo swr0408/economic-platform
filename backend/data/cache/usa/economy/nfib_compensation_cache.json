@@ -1,66 +1,6 @@
 {
   "data": [
     {
-      "date": "2020-01-01",
-      "compensation_plans": 24.0,
-      "hiring_plans": 19.0
-    },
-    {
-      "date": "2020-02-01",
-      "compensation_plans": 19.0,
-      "hiring_plans": 21.0
-    },
-    {
-      "date": "2020-03-01",
-      "compensation_plans": 16.0,
-      "hiring_plans": 9.0
-    },
-    {
-      "date": "2020-04-01",
-      "compensation_plans": 7.0,
-      "hiring_plans": 1.0
-    },
-    {
-      "date": "2020-05-01",
-      "compensation_plans": 10.0,
-      "hiring_plans": 8.0
-    },
-    {
-      "date": "2020-06-01",
-      "compensation_plans": 13.0,
-      "hiring_plans": 16.0
-    },
-    {
-      "date": "2020-07-01",
-      "compensation_plans": 14.0,
-      "hiring_plans": 18.0
-    },
-    {
-      "date": "2020-08-01",
-      "compensation_plans": 14.0,
-      "hiring_plans": 21.0
-    },
-    {
-      "date": "2020-09-01",
-      "compensation_plans": 16.0,
-      "hiring_plans": 23.0
-    },
-    {
-      "date": "2020-10-01",
-      "compensation_plans": 18.0,
-      "hiring_plans": 18.0
-    },
-    {
-      "date": "2020-11-01",
-      "compensation_plans": 20.0,
-      "hiring_plans": 21.0
-    },
-    {
-      "date": "2020-12-01",
-      "compensation_plans": 14.0,
-      "hiring_plans": 17.0
-    },
-    {
       "date": "2021-01-01",
       "compensation_plans": 17.0,
       "hiring_plans": 17.0
@@ -359,7 +299,12 @@
       "date": "2025-12-01",
       "compensation_plans": 24.0,
       "hiring_plans": 17.0
+    },
+    {
+      "date": "2026-01-01",
+      "compensation_plans": 22.0,
+      "hiring_plans": 16.0
     }
   ],
-  "last_updated": "2026-02-05T12:02:17.877282+09:00"
+  "last_updated": "2026-02-28T10:47:25.941729+09:00"
 }

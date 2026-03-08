@@ -46,13 +46,18 @@ interface CaIppiChartProps {
 }
 
 // IPPI表示モード
-type IPPIViewMode = 'yoy' | 'mom_chart' | 'mom_table'
+type DataKind = 'yoy' | 'mom'
 
-// IPPIビューモードオプション
-const IPPI_VIEW_MODE_OPTIONS: { mode: IPPIViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -66,14 +71,14 @@ const COLORS = {
 // =============================================================================
 
 export default function CaIppiChart({ data }: CaIppiChartProps) {
-  const [viewMode, setViewMode] = useState<IPPIViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_chart: 3,
-    mom_table: 'default',
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -125,7 +130,7 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
 
   // 比較ボタンのURLを生成
   const getCompareUrl = () => {
-    if (viewMode === 'yoy') {
+    if (dataKind === 'yoy') {
       return '/compare?s=ca_ippi_yoy'
     } else {
       return '/compare?s=ca_ippi_mom'
@@ -142,8 +147,8 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={viewMode === 'yoy' ? 'IPPI（前年比）' : 'IPPI（前月比）'}
-          value={viewMode === 'yoy' ? latestValues?.yoy : latestValues?.mom}
+          label={dataKind === 'yoy' ? 'IPPI（前年比）' : 'IPPI（前月比）'}
+          value={dataKind === 'yoy' ? latestValues?.yoy : latestValues?.mom}
           valueColor={COLORS.yoy}
           date={latestValues?.date}
           nextRelease={data.next_release ? {
@@ -163,28 +168,39 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    options={IPPI_VIEW_MODE_OPTIONS}
-                    onChange={(mode) => setViewMode(mode as IPPIViewMode)}
-                  />
-
-                  {/* コントロールバー */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                    <Tooltip title="比較ページを開く">
-                      <Button
-                        icon={<AreaChartOutlined />}
-                        onClick={() => window.open(getCompareUrl(), '_blank')}
-                      >
-                        データ比較
-                      </Button>
-                    </Tooltip>
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      options={DATA_KIND_OPTIONS}
+                      onChange={setDataKind}
+                    />
                   </div>
 
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* コントロールバー（ヒートマップ以外で表示） */}
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <Tooltip title="比較ページを開く">
+                        <Button
+                          icon={<AreaChartOutlined />}
+                          onClick={() => window.open(getCompareUrl(), '_blank')}
+                        >
+                          データ比較
+                        </Button>
+                      </Tooltip>
+                    </div>
+                  )}
+
                   {/* グラフ */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -197,7 +213,7 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
                     />
                   )}
 
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -209,7 +225,7 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
                     />
                   )}
 
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable data={momTableData} />
                   )}
                 </>

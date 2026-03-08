@@ -44,7 +44,20 @@ interface ExistingHomeSalesChartProps {
   existingHomeSalesData: ExistingHomeSalesData | null
 }
 
-type ViewMode = 'value' | 'yoy' | 'mom_table' | 'mom_chart'
+// 指標種別
+type DataKind = 'value' | 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // カラー設定
 const COLORS = {
@@ -58,16 +71,16 @@ const COLORS = {
 // =============================================================================
 
 export default function ExistingHomeSalesChart({ existingHomeSalesData }: ExistingHomeSalesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -102,9 +115,9 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
 
   // 最新値の表示内容を決定
   const getLatestDisplayValue = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return latest?.value
-    } else if (viewMode === 'yoy') {
+    } else if (dataKind === 'yoy') {
       return latest?.yoy
     } else {
       return latest?.mom
@@ -112,18 +125,18 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
   }
 
   const getLatestColor = () => {
-    if (viewMode === 'value') return COLORS.value
-    if (viewMode === 'yoy') return COLORS.yoy
+    if (dataKind === 'value') return COLORS.value
+    if (dataKind === 'yoy') return COLORS.yoy
     return COLORS.mom
   }
 
   const getLatestUnit = () => {
-    if (viewMode === 'value') return 'M'
+    if (dataKind === 'value') return 'M'
     return undefined  // パーセントはformat="percent"で処理
   }
 
   const getLatestFormat = (): 'percent' | 'number' | 'raw' => {
-    if (viewMode === 'value') return 'number'
+    if (dataKind === 'value') return 'number'
     return 'percent'
   }
 
@@ -143,7 +156,7 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
           date={latest?.date}
           nextRelease={existingHomeSalesData?.next_release}
           format={getLatestFormat()}
-          decimals={viewMode === 'value' ? 2 : 1}
+          decimals={dataKind === 'value' ? 2 : 1}
         />
 
         {/* タブ切替 */}
@@ -157,36 +170,33 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '現数値' },
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_chart', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く（中古住宅販売戸数）">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=existing_home_sales', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'value' || viewMode === 'yoy' || viewMode === 'mom_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く（中古住宅販売戸数）">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=existing_home_sales', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={momTableData} />}
 
-                  {viewMode === 'value' && (
+                  {/* 現数値グラフ */}
+                  {dataKind === 'value' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -198,10 +208,14 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
                       showZeroLine={false}
                       yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                     />
+                    </>
                   )}
 
-                  {viewMode === 'yoy' && (
-                    <StandardLineChart
+                  {/* 前年比グラフ */}
+                  {dataKind === 'yoy' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardLineChart
                       data={filteredData}
                       lines={[
                         { dataKey: 'yoy', color: COLORS.yoy, name: '前年比', hide: hiddenSeries.has('yoy') },
@@ -210,16 +224,21 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
                       onLegendClick={handleLegendClick}
                       yDomain={['dataMin - 5', 'dataMax + 5']}
                     />
+                    </>
                   )}
 
-                  {viewMode === 'mom_chart' && (
-                    <StandardBarChart
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <StandardBarChart
                       data={filteredData}
                       bars={[
                         { dataKey: 'mom', color: COLORS.mom, name: '前月比' },
                       ]}
                       yAxisFormatter={(v) => `${v}%`}
                     />
+                    </>
                   )}
                 </>
               ),

@@ -56,7 +56,22 @@ const COLORS = {
   tot: '#E67E22',  // オレンジ系
 }
 
-type ViewMode = 'value' | 'qoq' | 'qoq_table' | 'yoy'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'qoq'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '指数' },
+  { mode: 'qoq', label: '前期比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 四半期日付フォーマッター
 const formatQuarterLabel = (dateStr: string): string => {
@@ -66,13 +81,13 @@ const formatQuarterLabel = (dateStr: string): string => {
 
 export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     qoq: 'default',
-    qoq_table: 'default',
     yoy: 'default',
   })
 
@@ -115,7 +130,7 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
   const { currentValue, currentLabel, currentFormat } = useMemo(() => {
     if (!latest) return { currentValue: null, currentLabel: '', currentFormat: 'number' as const }
 
-    switch (viewMode) {
+    switch (dataKind) {
       case 'value':
         return {
           currentValue: latest.value,
@@ -123,7 +138,6 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
           currentFormat: 'number' as const,
         }
       case 'qoq':
-      case 'qoq_table':
         return {
           currentValue: latest.qoq,
           currentLabel: '交易条件（前期比）',
@@ -138,7 +152,7 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
       default:
         return { currentValue: null, currentLabel: '', currentFormat: 'number' as const }
     }
-  }, [latest, viewMode])
+  }, [latest, dataKind])
 
   if (data === null) {
     return <LoadingChart title="交易条件（オーストラリア）" />
@@ -154,16 +168,13 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
 
   // データ比較用のoverlayConfig ID
   const getCompareId = () => {
-    switch (viewMode) {
+    switch (dataKind) {
       case 'value': return 'au_terms_of_trade'
-      case 'qoq':
-      case 'qoq_table': return 'au_terms_of_trade_qoq'
+      case 'qoq': return 'au_terms_of_trade_qoq'
       case 'yoy': return 'au_terms_of_trade_yoy'
       default: return 'au_terms_of_trade'
     }
   }
-
-  const isTableMode = viewMode === 'qoq_table'
 
   return (
     <div id="au-terms-of-trade-chart">
@@ -196,35 +207,37 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'value', label: '指数' },
-                      { mode: 'qoq', label: '前期比' },
-                      { mode: 'qoq_table', label: '前期比（テーブル）' },
-                      { mode: 'yoy', label: '前年比' },
-                    ]}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター（テーブル以外で表示） */}
-                  {!isTableMode && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（qoqのときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
+                  {/* 期間セレクター（ヒートマップ以外で表示） */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
+
                   {/* === 指数チャート === */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -237,7 +250,7 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
                   )}
 
                   {/* === 前期比チャート === */}
-                  {viewMode === 'qoq' && (
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -248,8 +261,8 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
                     />
                   )}
 
-                  {/* === 前期比テーブル === */}
-                  {viewMode === 'qoq_table' && (
+                  {/* === 前期比ヒートマップ === */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={2}
@@ -258,7 +271,7 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
                   )}
 
                   {/* === 前年比チャート === */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[

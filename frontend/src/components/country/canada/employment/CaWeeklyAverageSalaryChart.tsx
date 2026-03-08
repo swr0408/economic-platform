@@ -59,24 +59,29 @@ const COLORS = {
   mom: '#20B2AA', // ライトシーグリーン
 }
 
-// ビューモード
-type ViewMode = 'yoy' | 'mom' | 'table'
+// データ種別
+type DataKind = 'yoy' | 'mom'
+type DisplayMode = 'chart' | 'heatmap'
 
-const VIEW_MODE_OPTIONS = [
-  { mode: 'yoy' as const, label: '前年比' },
-  { mode: 'mom' as const, label: '前月比' },
-  { mode: 'table' as const, label: 'テーブル' },
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSalaryChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
     mom: 'default',
-    table: 'default',
   })
 
   // propsのデータをチャート用に変換
@@ -123,8 +128,8 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
   // 表示する最新値を取得
   const displayValue = useMemo(() => {
     if (!latestValue) return null
-    return viewMode === 'yoy' ? latestValue.yoy : latestValue.mom
-  }, [latestValue, viewMode])
+    return dataKind === 'yoy' ? latestValue.yoy : latestValue.mom
+  }, [latestValue, dataKind])
 
   if (data === null) {
     return <LoadingChart title="カナダ週間平均給与" />
@@ -148,12 +153,12 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={viewMode === 'yoy' ? '週間平均給与（前年比）' : '週間平均給与（前月比）'}
+          label={dataKind === 'yoy' ? '週間平均給与（前年比）' : '週間平均給与（前月比）'}
           value={displayValue}
           date={latestValue?.date}
           format="percent"
           decimals={2}
-          valueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
+          valueColor={dataKind === 'yoy' ? COLORS.yoy : COLORS.mom}
           nextRelease={data.next_release}
         />
 
@@ -168,16 +173,13 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(v) => setViewMode(v)}
-                    options={VIEW_MODE_OPTIONS}
-                  />
-
-                  {/* コントロールバー */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 12 }}>
-                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={(v) => setDataKind(v)}
+                      options={DATA_KIND_OPTIONS}
+                    />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -187,9 +189,21 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
-                  {/* グラフ */}
-                  {viewMode === 'yoy' && (
+                  {/* コントロールバー */}
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
+                    <div style={{ marginBottom: 8 }}>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    </div>
+                  )}
+
+                  {/* 前年比グラフ */}
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -202,7 +216,8 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
                     />
                   )}
 
-                  {viewMode === 'mom' && (
+                  {/* 前月比グラフ */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -215,7 +230,8 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
                     />
                   )}
 
-                  {viewMode === 'table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={tableData}
                       helperText="※ 直近10年間の週間平均給与（前月比）データ（単位: %）"

@@ -58,12 +58,17 @@ interface ChartDataPoint {
 }
 
 // 表示モード
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'yoy' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // データタイプ
@@ -82,14 +87,14 @@ const COLORS = {
 
 export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<DataType>('cpi')
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換
@@ -211,7 +216,7 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
         {/* 最新値表示 */}
         <LatestValueBox
           items={
-            viewMode === 'yoy'
+            dataKind === 'yoy'
               ? [
                   {
                     label: 'CPI',
@@ -241,7 +246,7 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                   },
                 ]
           }
-          date={viewMode === 'yoy' ? latestYoy?.date : latestMom?.date}
+          date={dataKind === 'yoy' ? latestYoy?.date : latestMom?.date}
           nextRelease={data.next_release}
         />
 
@@ -256,9 +261,9 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く（ドイツCPI・HICP）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -269,8 +274,15 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前年比グラフ */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -287,7 +299,7 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                   )}
 
                   {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={DATA_TYPE_OPTIONS}
@@ -297,7 +309,7 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                   )}
 
                   {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup options={DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />

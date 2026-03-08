@@ -41,7 +41,16 @@ interface EuGovernmentDebtToGdpRatioChartProps {
   data: EUGovernmentDebtToGdpRatioData | null
 }
 
-type ViewMode = 'value' | 'qoq_chart' | 'qoq_table'
+type DataKind = 'value' | 'qoq'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'qoq', label: '前期比' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 国別カラー設定
 const COUNTRY_COLORS: Record<string, string> = {
@@ -68,7 +77,8 @@ const DEFAULT_VISIBLE = ['ea20']
 export default function EuGovernmentDebtToGdpRatioChart({ data }: EuGovernmentDebtToGdpRatioChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(
     // 初期非表示: DEFAULT_VISIBLEに含まれない国
     new Set(Object.keys(COUNTRY_LABELS).filter(k => !DEFAULT_VISIBLE.includes(k)))
@@ -203,18 +213,28 @@ export default function EuGovernmentDebtToGdpRatioChart({ data }: EuGovernmentDe
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '原数値（国別）' },
-                      { mode: 'qoq_chart', label: '前期増減幅（EA20）' },
-                      { mode: 'qoq_table', label: '前期増減幅（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=eu_government_debt_to_gdp_ratio', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* テーブル表示 */}
-                  {viewMode === 'qoq_table' && (
+                  {/* 下段: 表示形式（前期比のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* ヒートマップ表示 */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={1}
@@ -223,23 +243,15 @@ export default function EuGovernmentDebtToGdpRatioChart({ data }: EuGovernmentDe
                     />
                   )}
 
-                  {/* 期間セレクタ + 比較ボタン */}
-                  {viewMode !== 'qoq_table' && (
+                  {/* チャート表示 */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=eu_government_debt_to_gdp_ratio', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
                       </div>
 
                       {/* 国別ラインチャート */}
-                      {viewMode === 'value' && (
+                      {dataKind === 'value' && (
                         <StandardLineChart
                           data={filteredData}
                           lines={Object.keys(COUNTRY_LABELS).map(key => ({
@@ -255,7 +267,7 @@ export default function EuGovernmentDebtToGdpRatioChart({ data }: EuGovernmentDe
                       )}
 
                       {/* QoQ変化幅バーチャート（EA20のみ） */}
-                      {viewMode === 'qoq_chart' && (
+                      {dataKind === 'qoq' && displayMode === 'chart' && (
                         <StandardBarChart
                           data={filteredQoqData}
                           bars={[

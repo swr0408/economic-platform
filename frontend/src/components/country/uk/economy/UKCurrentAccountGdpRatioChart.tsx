@@ -22,16 +22,13 @@ import PeriodSelector from '../../../common/PeriodSelector'
 
 import {
   usePeriodFiltering,
-  useViewModePeriodManagement,
-  useQuarterlyTableData,
+  type PeriodType,
 } from '../../usa/common/useChartData'
 import {
-  ViewModeButtonGroup,
   NoDataMessage,
   SimpleLatestValueBox,
   StandardLineChart,
 } from '../../usa/common/ChartComponents'
-import { QuarterlyTable } from '../../usa/common/QuarterlyTable'
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 import type { UKCurrentAccountData } from '../../../../hooks/useDashboardData'
@@ -46,21 +43,13 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'value' | 'table'
-
 const COLORS = {
   value: '#fa8c16',
 }
 
 export default function UKCurrentAccountGdpRatioChart({ data }: UKCurrentAccountGdpRatioChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    value: 'default',
-    table: 'default',
-  })
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -79,13 +68,6 @@ export default function UKCurrentAccountGdpRatioChart({ data }: UKCurrentAccount
     selectedPeriod: currentPeriod,
     defaultStartYear: 2015,
   })
-
-  // テーブル用データ（四半期別マトリックス）
-  const tableData = useQuarterlyTableData(
-    chartData,
-    (item) => item.value,
-    10
-  )
 
   const hasData = chartData.length > 0
 
@@ -136,55 +118,31 @@ export default function UKCurrentAccountGdpRatioChart({ data }: UKCurrentAccount
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '対GDP比' },
-                      { mode: 'table', label: '対GDP比（テーブル）' },
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=uk_current_account_gdp_ratio', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={[
+                      {
+                        dataKey: 'value',
+                        color: COLORS.value,
+                        name: '経常収支対GDP比（%）',
+                      },
                     ]}
+                    yAxisFormatter={(v) => `${v}%`}
+                    tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
+                    showZeroLine={true}
                   />
-
-                  {/* テーブル表示 */}
-                  {viewMode === 'table' && (
-                    <QuarterlyTable
-                      data={tableData}
-                      decimals={2}
-                      showLegend={false}
-                      helperText="※ 直近10年間の経常収支対GDP比データ（単位: %）"
-                    />
-                  )}
-
-                  {/* 期間セレクター + グラフ */}
-                  {viewMode === 'value' && (
-                    <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=uk_current_account_gdp_ratio', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
-
-                      <StandardLineChart
-                        data={filteredData}
-                        lines={[
-                          {
-                            dataKey: 'value',
-                            color: COLORS.value,
-                            name: '経常収支対GDP比（%）',
-                          },
-                        ]}
-                        yAxisFormatter={(v) => `${v}%`}
-                        tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
-                        showZeroLine={true}
-                      />
-                    </>
-                  )}
                 </>
               ),
             },

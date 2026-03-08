@@ -52,13 +52,20 @@ interface AuDisposablePersonalIncomeChartProps {
   data: AuDisposablePersonalIncomeData | null
 }
 
-// ビューモード
-type DpiViewMode = 'yoy' | 'qoq_chart' | 'qoq_table'
+// データ種別
+type DataKind = 'yoy' | 'qoq'
 
-const VIEW_MODE_OPTIONS: { mode: DpiViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
+  { mode: 'qoq', label: '前期比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -96,15 +103,15 @@ const formatDateLabelJP = (dateStr: string): string => {
 // =============================================================================
 
 export default function AuDisposablePersonalIncomeChart({ data }: AuDisposablePersonalIncomeChartProps) {
-  const [viewMode, setViewMode] = useState<DpiViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    qoq_chart: 'default',
-    qoq_table: 'default',
+    qoq: 'default',
   })
 
   // データを変換
@@ -197,8 +204,9 @@ export default function AuDisposablePersonalIncomeChart({ data }: AuDisposablePe
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -208,9 +216,15 @@ export default function AuDisposablePersonalIncomeChart({ data }: AuDisposablePe
                       </Button>
                     </Tooltip>
                   </div>
+                  {/* 下段: 表示形式（変動系のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -229,7 +243,7 @@ export default function AuDisposablePersonalIncomeChart({ data }: AuDisposablePe
                   )}
 
                   {/* 前期比グラフ（棒グラフ） */}
-                  {viewMode === 'qoq_chart' && (
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -246,8 +260,8 @@ export default function AuDisposablePersonalIncomeChart({ data }: AuDisposablePe
                     </>
                   )}
 
-                  {/* 前期比テーブル */}
-                  {viewMode === 'qoq_table' && (
+                  {/* 前期比ヒートマップ */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={2}

@@ -58,7 +58,18 @@ const COLORS = {
   annualized: '#52c41a', // 緑
 }
 
-type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy' | 'annualized'
+// 指標種別
+type DataKind = 'yoy' | 'qoq' | 'annualized'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '前期比' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'annualized', label: '年率' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 四半期日付フォーマッター（2025-01-01 → 2025/Q1）
 const formatQuarterLabel = (dateStr: string): string => {
@@ -82,12 +93,12 @@ const getQuarterFromDate = (dateStr: string): number => {
 
 export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 'default',
-    qoq_table: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    qoq: 'default',
     yoy: 'default',
     annualized: 'default',
   })
@@ -152,17 +163,17 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
   // 現在表示中の値を取得
   const currentValue = useMemo(() => {
     if (!latest) return null
-    if (viewMode === 'yoy') return latest.yoy
-    if (viewMode === 'annualized') return latest.annualized
+    if (dataKind === 'yoy') return latest.yoy
+    if (dataKind === 'annualized') return latest.annualized
     return latest.qoq
-  }, [latest, viewMode])
+  }, [latest, dataKind])
 
   // 現在の色を取得
   const currentColor = useMemo(() => {
-    if (viewMode === 'yoy') return COLORS.yoy
-    if (viewMode === 'annualized') return COLORS.annualized
+    if (dataKind === 'yoy') return COLORS.yoy
+    if (dataKind === 'annualized') return COLORS.annualized
     return COLORS.qoq
-  }, [viewMode])
+  }, [dataKind])
 
   if (data === null) {
     return <LoadingChart title="GDP成長率" />
@@ -281,14 +292,14 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
 
   // データ比較用のoverlayConfig ID
   const getCompareId = () => {
-    if (viewMode === 'yoy') return 'ch_growth_rate_yoy'
-    if (viewMode === 'annualized') return 'ch_growth_rate_annualized'
+    if (dataKind === 'yoy') return 'ch_growth_rate_yoy'
+    if (dataKind === 'annualized') return 'ch_growth_rate_annualized'
     return 'ch_growth_rate_qoq'
   }
 
   const getChartTitle = () => {
-    if (viewMode === 'yoy') return 'GDP成長率（前年比）'
-    if (viewMode === 'annualized') return 'GDP成長率（年率）'
+    if (dataKind === 'yoy') return 'GDP成長率（前年比）'
+    if (dataKind === 'annualized') return 'GDP成長率（年率）'
     return 'GDP成長率（前期比）'
   }
 
@@ -323,37 +334,33 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替（4種類） */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'qoq_chart', label: '前期比' },
-                      { mode: 'qoq_table', label: '前期比（テーブル）' },
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'annualized', label: '年率' },
-                    ]}
-                  />
-
-                  {/* 期間セレクター（テーブル以外で表示） */}
-                  {viewMode !== 'qoq_table' && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'qoq_table' && <GDPTable />}
+                  {/* 期間セレクター */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
 
-                  {viewMode === 'qoq_chart' && (
+                  {/* コンテンツ表示 */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && <GDPTable />}
+
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -364,7 +371,7 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
                     />
                   )}
 
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -378,7 +385,7 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
                     />
                   )}
 
-                  {viewMode === 'annualized' && (
+                  {dataKind === 'annualized' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

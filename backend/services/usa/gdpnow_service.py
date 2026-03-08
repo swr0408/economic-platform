@@ -34,7 +34,7 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
 # データソースURL
-GDPNOW_EXCEL_URL = "https://www.atlantafed.org/-/media/documents/cqer/researchcq/gdpnow/GDPTrackingModelDataAndForecasts.xlsx"
+GDPNOW_EXCEL_URL = "https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/cqer/researchcq/gdpnow/GDPTrackingModelDataAndForecasts.xlsx"
 
 
 class GDPNowService:
@@ -97,6 +97,18 @@ class GDPNowService:
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # API取得失敗時: force_refreshでもRedisキャッシュにフォールバック
+        cached_data = redis_client.get(self.CACHE_KEY)
+        if cached_data:
+            print("GDPNow API fetch failed, falling back to Redis cache")
+            return {
+                "data": cached_data.get("data", []),
+                "latest": cached_data.get("latest"),
+                "cached": True,
+                "source": "redis (fallback)",
+                "last_updated": cached_data.get("last_updated")
             }
 
         return {

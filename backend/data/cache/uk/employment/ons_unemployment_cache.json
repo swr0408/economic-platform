@@ -3279,21 +3279,31 @@
       "date": "2025-09-01",
       "value": 5.1,
       "period": "2025 SEP"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 5.1,
+      "period": "2025 OCT"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 5.2,
+      "period": "2025 NOV"
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "value": 5.1,
-    "period": "2025 SEP"
+    "date": "2025-11-01",
+    "value": 5.2,
+    "period": "2025 NOV"
   },
   "metadata": {
     "title": "Unemployment rate (aged 16 and over, seasonally adjusted): %",
     "cdid": "MGSX",
     "unit": "%",
-    "release_date": "16-12-2025",
-    "next_release_ons": "20 January 2026",
+    "release_date": "17-02-2026",
+    "next_release_ons": "19 March 2026",
     "source": "Office for National Statistics",
     "description": "イギリス失業率（16歳以上、季節調整済み）"
   },
-  "last_updated": "2026-01-20T12:22:19.947931+09:00"
+  "last_updated": "2026-02-28T09:57:51.987281+09:00"
 }

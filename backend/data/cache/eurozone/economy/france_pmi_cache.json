@@ -1020,13 +1020,19 @@
         "value": 51.0,
         "forecast": 50.4,
         "previous": 50.7
+      },
+      {
+        "date": "2026-02",
+        "value": 50.1,
+        "forecast": 49.9,
+        "previous": 51.2
       }
     ],
     "latest": {
-      "date": "2026-01",
-      "value": 51.0,
-      "forecast": 50.4,
-      "previous": 50.7
+      "date": "2026-02",
+      "value": 50.1,
+      "forecast": 49.9,
+      "previous": 51.2
     }
   },
   "services": {
@@ -2050,13 +2056,19 @@
         "value": 47.9,
         "forecast": 50.6,
         "previous": 50.1
+      },
+      {
+        "date": "2026-02",
+        "value": 49.6,
+        "forecast": 49.6,
+        "previous": 48.4
       }
     ],
     "latest": {
-      "date": "2026-01",
-      "value": 47.9,
-      "forecast": 50.6,
-      "previous": 50.1
+      "date": "2026-02",
+      "value": 49.6,
+      "forecast": 49.6,
+      "previous": 48.4
     }
   },
   "composite": {
@@ -2864,24 +2876,30 @@
         "value": 48.6,
         "forecast": 50.6,
         "previous": 50.0
+      },
+      {
+        "date": "2026-02",
+        "value": 49.9,
+        "forecast": 49.9,
+        "previous": 49.1
       }
     ],
     "latest": {
-      "date": "2026-01",
-      "value": 48.6,
-      "forecast": 50.6,
-      "previous": 50.0
+      "date": "2026-02",
+      "value": 49.9,
+      "forecast": 49.9,
+      "previous": 49.1
     }
   },
   "next_release": {
-    "date": "2026-02-02",
-    "datetime_utc": "2026-02-02T08:50:00+00:00",
-    "datetime_jst": "2026-02-02T17:50:00+09:00",
-    "time_jst": "17:50",
-    "datetime_cet": "2026-02-02T09:50:00+01:00",
-    "time_cet": "09:50",
-    "label": "HCOB Manufacturing PMI (Jan)",
-    "estimate": 51
+    "date": "2026-04-08",
+    "datetime_utc": "2026-04-08T07:30:00+00:00",
+    "datetime_jst": "2026-04-08T16:30:00+09:00",
+    "time_jst": "16:30",
+    "datetime_cet": "2026-04-08T09:30:00+02:00",
+    "time_cet": "09:30",
+    "label": "HCOB Construction PMI (Mar)",
+    "estimate": 45
   },
-  "last_updated": "2026-01-29T18:32:28.405581+01:00"
+  "last_updated": "2026-03-06T08:48:02.666580+01:00"
 }

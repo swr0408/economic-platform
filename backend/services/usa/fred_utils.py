@@ -354,9 +354,29 @@ class CacheManager:
         self.econalpha_id = econalpha_id
 
     def should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
+        """キャッシュを更新すべきかどうかを判定
+
+        FMPスケジュールベースで判定。FMPマッピングがない場合は
+        TTLフォールバック（24時間）で定期的に更新を試みる。
+        週次フォールバック（7日）: FMPスケジュールに関係なく最低週1回更新。
+        """
         if self.econalpha_id:
-            return should_refresh_by_fmp_schedule(self.econalpha_id, last_updated_str)
+            result = should_refresh_by_fmp_schedule(self.econalpha_id, last_updated_str)
+            if result:
+                return True
+        # FMPマッピングがない場合やFMPで判定不可の場合、TTLフォールバック（24時間）
+        # FMPマッピングがある場合でも最低週1回は強制更新（FMPスケジュール漏れ対策）
+        try:
+            last_updated = datetime.fromisoformat(last_updated_str)
+            if last_updated.tzinfo is None:
+                last_updated = last_updated.replace(tzinfo=ZoneInfo("Asia/Tokyo"))
+            elapsed = (datetime.now(ZoneInfo("Asia/Tokyo")) - last_updated).total_seconds()
+            if not self.econalpha_id and elapsed > 24 * 60 * 60:  # FMPマッピングなし: 24時間
+                return True
+            if elapsed > 7 * 24 * 60 * 60:  # FMPマッピングあり/なし共通: 7日以上経過で強制更新
+                return True
+        except Exception:
+            pass
         return False
 
     def get_cached_data(self, force_refresh: bool = False) -> Tuple[Optional[Dict[str, Any]], str]:

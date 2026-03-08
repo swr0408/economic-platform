@@ -44,7 +44,19 @@ interface PendingHomeSalesChartProps {
   pendingHomeSalesData: PendingHomeSalesData | null
 }
 
-type ViewMode = 'mom' | 'yoy' | 'mom_table'
+// 指標種別
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // カラー設定
 const COLORS = {
@@ -57,15 +69,15 @@ const COLORS = {
 // =============================================================================
 
 export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingHomeSalesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('mom')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    mom: 3,
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -100,7 +112,7 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
 
   // 最新値の表示内容を決定
   const getLatestDisplayValue = () => {
-    if (viewMode === 'mom' || viewMode === 'mom_table') {
+    if (dataKind === 'mom') {
       return latest?.mom
     } else {
       return latest?.yoy
@@ -108,7 +120,7 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
   }
 
   const getLatestColor = () => {
-    if (viewMode === 'yoy') return COLORS.yoy
+    if (dataKind === 'yoy') return COLORS.yoy
     return COLORS.mom
   }
 
@@ -141,35 +153,33 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く（中古住宅販売保留）">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=pending_home_sales', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'mom' || viewMode === 'yoy') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く（中古住宅販売保留）">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=pending_home_sales', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={momTableData} />}
 
-                  {viewMode === 'mom' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -177,9 +187,13 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
                       ]}
                       yAxisFormatter={(v) => `${v}%`}
                     />
+                    </>
                   )}
 
-                  {viewMode === 'yoy' && (
+                  {/* 前年比グラフ */}
+                  {dataKind === 'yoy' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -189,6 +203,7 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
                       onLegendClick={handleLegendClick}
                       yDomain={['dataMin - 5', 'dataMax + 5']}
                     />
+                    </>
                   )}
                 </>
               ),

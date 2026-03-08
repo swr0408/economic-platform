@@ -48,7 +48,16 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'yoy' | 'qoq_table' | 'qoq_chart'
+type DataKind = 'yoy' | 'qoq'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'qoq', label: '前期比' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // グラフの色
 const COLORS = {
@@ -100,7 +109,8 @@ function filterQuarterlyData<T extends { date: string }>(
 }
 
 export default function ECBUnitLabourCostChart({ data }: ECBUnitLabourCostChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>('default')
 
@@ -202,33 +212,28 @@ export default function ECBUnitLabourCostChart({ data }: ECBUnitLabourCostChartP
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'qoq_chart', label: '前期比' },
-                      { mode: 'qoq_table', label: '前期比（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=ecb_unit_labour_cost_yoy', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'yoy' || viewMode === 'qoq_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=ecb_unit_labour_cost_yoy', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前期比のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
                   {/* コンテンツ表示 */}
-                  {viewMode === 'qoq_table' && (
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       showLegend={false}
@@ -236,25 +241,35 @@ export default function ECBUnitLabourCostChart({ data }: ECBUnitLabourCostChartP
                     />
                   )}
 
-                  {viewMode === 'yoy' && (
-                    <StandardLineChart
-                      data={filteredData}
-                      lines={[
-                        { dataKey: 'yoy', color: COLORS.yoy, name: '前年比' },
-                      ]}
-                      yAxisFormatter={(v) => `${v}%`}
-                      showZeroLine={true}
-                    />
+                  {dataKind === 'yoy' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      </div>
+                      <StandardLineChart
+                        data={filteredData}
+                        lines={[
+                          { dataKey: 'yoy', color: COLORS.yoy, name: '前年比' },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                        showZeroLine={true}
+                      />
+                    </>
                   )}
 
-                  {viewMode === 'qoq_chart' && (
-                    <StandardBarChart
-                      data={filteredData}
-                      bars={[
-                        { dataKey: 'qoq', color: COLORS.qoq, name: '前期比' },
-                      ]}
-                      yAxisFormatter={(v) => `${v}%`}
-                    />
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      </div>
+                      <StandardBarChart
+                        data={filteredData}
+                        bars={[
+                          { dataKey: 'qoq', color: COLORS.qoq, name: '前期比' },
+                        ]}
+                        yAxisFormatter={(v) => `${v}%`}
+                      />
+                    </>
                   )}
                 </>
               ),

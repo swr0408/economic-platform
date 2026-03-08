@@ -56,23 +56,37 @@ interface ChartDataPoint {
 // データカテゴリ（タブ）
 type DataCategory = 'balance' | 'trade'
 
-// ビューモード定義
-// 貿易収支: 水準チャートと増減幅テーブルのみ
-type BalanceViewMode = 'level_chart' | 'diff_table'
-// 輸出・輸入: 水準チャート、前月比チャート、輸出テーブル、輸入テーブル、前年比チャート
-type TradeViewMode = 'level_chart' | 'mom_chart' | 'exports_table' | 'imports_table' | 'yoy_chart'
-
-const BALANCE_VIEW_OPTIONS: { mode: BalanceViewMode; label: string }[] = [
-  { mode: 'level_chart', label: '水準' },
-  { mode: 'diff_table', label: '前月増減幅（テーブル）' },
+// 貿易収支: データ種別
+type BalanceDataKind = 'level' | 'diff'
+const BALANCE_DATA_KIND_OPTIONS: { mode: BalanceDataKind; label: string }[] = [
+  { mode: 'level', label: '水準' },
+  { mode: 'diff', label: '前月増減幅' },
 ]
 
-const TRADE_VIEW_OPTIONS: { mode: TradeViewMode; label: string }[] = [
-  { mode: 'level_chart', label: '水準' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'exports_table', label: '前月比（輸出・テーブル）' },
-  { mode: 'imports_table', label: '前月比（輸入・テーブル）' },
-  { mode: 'yoy_chart', label: '前年比' },
+type BalanceDisplayMode = 'chart' | 'heatmap'
+const BALANCE_DISPLAY_MODE_OPTIONS: { mode: BalanceDisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
+// 輸出・輸入: データ種別
+type TradeDataKind = 'level' | 'mom' | 'yoy'
+const TRADE_DATA_KIND_OPTIONS: { mode: TradeDataKind; label: string }[] = [
+  { mode: 'level', label: '水準' },
+  { mode: 'mom', label: '前月比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+type TradeDisplayMode = 'chart' | 'heatmap'
+const TRADE_DISPLAY_MODE_OPTIONS: { mode: TradeDisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
+type TradeTableType = 'exports' | 'imports'
+const TRADE_TABLE_TYPE_OPTIONS: { type: TradeTableType; label: string }[] = [
+  { type: 'exports', label: '輸出' },
+  { type: 'imports', label: '輸入' },
 ]
 
 // カラー設定
@@ -85,8 +99,11 @@ const COLORS = {
 export default function EUInternationalTradeChart({ data }: EUInternationalTradeChartProps) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(3)
   const [activeTab, setActiveTab] = useState<string>('balance')
-  const [balanceViewMode, setBalanceViewMode] = useState<BalanceViewMode>('level_chart')
-  const [tradeViewMode, setTradeViewMode] = useState<TradeViewMode>('level_chart')
+  const [balanceDataKind, setBalanceDataKind] = useState<BalanceDataKind>('level')
+  const [balanceDisplayMode, setBalanceDisplayMode] = useState<BalanceDisplayMode>('chart')
+  const [tradeDataKind, setTradeDataKind] = useState<TradeDataKind>('level')
+  const [tradeDisplayMode, setTradeDisplayMode] = useState<TradeDisplayMode>('chart')
+  const [tradeTableType, setTradeTableType] = useState<TradeTableType>('exports')
 
   // 現在のデータカテゴリ
   const dataCategory: DataCategory = activeTab === 'balance' ? 'balance' : 'trade'
@@ -122,12 +139,12 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
 
     let exportsSource: { date: string; value: number }[] = []
     let importsSource: { date: string; value: number }[] = []
-    const isLevelChart = tradeViewMode === 'level_chart'
+    const isLevelChart = tradeDataKind === 'level'
 
-    if (tradeViewMode === 'mom_chart' || tradeViewMode === 'exports_table' || tradeViewMode === 'imports_table') {
+    if (tradeDataKind === 'mom') {
       exportsSource = data.exports_mom || []
       importsSource = data.imports_mom || []
-    } else if (tradeViewMode === 'yoy_chart') {
+    } else if (tradeDataKind === 'yoy') {
       exportsSource = data.exports_yoy || []
       importsSource = data.imports_yoy || []
     } else {
@@ -163,7 +180,7 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
     })
 
     return Array.from(dateMap.values())
-  }, [data, tradeViewMode])
+  }, [data, tradeDataKind])
 
   // ソートとフィルタリング
   const sortedBalanceData = useSortedData(balanceChartData)
@@ -224,7 +241,7 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
   const getBalanceLatestItems = () => {
     const items = []
 
-    if (balanceViewMode === 'level_chart') {
+    if (balanceDataKind === 'level') {
       if (latestBalance?.value !== null && latestBalance?.value !== undefined) {
         items.push({
           label: '貿易収支',
@@ -232,7 +249,7 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
           color: latestBalance.value >= 0 ? COLORS.balance : '#ef4444',
         })
       }
-    } else if (balanceViewMode === 'diff_table') {
+    } else if (balanceDataKind === 'diff') {
       if (latestBalanceMomDiff?.value !== null && latestBalanceMomDiff?.value !== undefined) {
         const diffInBillion = latestBalanceMomDiff.value / 1000
         items.push({
@@ -250,7 +267,7 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
   const getTradeLatestItems = () => {
     const items = []
 
-    if (tradeViewMode === 'level_chart') {
+    if (tradeDataKind === 'level') {
       if (latestExports?.value !== null && latestExports?.value !== undefined) {
         items.push({
           label: '輸出',
@@ -265,7 +282,7 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
           color: COLORS.imports,
         })
       }
-    } else if (tradeViewMode === 'mom_chart' || tradeViewMode === 'exports_table' || tradeViewMode === 'imports_table') {
+    } else if (tradeDataKind === 'mom') {
       if (latestExportsMom?.value !== null && latestExportsMom?.value !== undefined) {
         items.push({
           label: '輸出 前月比',
@@ -280,7 +297,7 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
           color: latestImportsMom.value >= 0 ? '#10b981' : '#ef4444',
         })
       }
-    } else if (tradeViewMode === 'yoy_chart') {
+    } else if (tradeDataKind === 'yoy') {
       if (latestExportsYoy?.value !== null && latestExportsYoy?.value !== undefined) {
         items.push({
           label: '輸出 前年比',
@@ -303,14 +320,14 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
   // 最新値の日付を取得
   const getLatestDate = () => {
     if (dataCategory === 'balance') {
-      if (balanceViewMode === 'diff_table') {
+      if (balanceDataKind === 'diff') {
         return latestBalanceMomDiff?.date
       }
       return latestBalance?.date
     } else {
-      if (tradeViewMode === 'mom_chart' || tradeViewMode === 'exports_table' || tradeViewMode === 'imports_table') {
+      if (tradeDataKind === 'mom') {
         return latestExportsMom?.date
-      } else if (tradeViewMode === 'yoy_chart') {
+      } else if (tradeDataKind === 'yoy') {
         return latestExportsYoy?.date
       }
       return latestExports?.date
@@ -350,15 +367,24 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
               label: '貿易収支',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup
-                    options={BALANCE_VIEW_OPTIONS}
-                    currentMode={balanceViewMode}
-                    onChange={setBalanceViewMode}
-                  />
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={BALANCE_DATA_KIND_OPTIONS}
+                      currentMode={balanceDataKind}
+                      onChange={setBalanceDataKind}
+                    />
+                  </div>
 
-                  {/* 期間セレクタとデータ比較ボタン（テーブル以外で表示） */}
-                  {balanceViewMode !== 'diff_table' && (
+                  {/* 下段: 表示形式（diffのときのみ） */}
+                  {balanceDataKind === 'diff' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={BALANCE_DISPLAY_MODE_OPTIONS} currentMode={balanceDisplayMode} onChange={setBalanceDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* 期間セレクタとデータ比較ボタン（ヒートマップ以外で表示） */}
+                  {!(balanceDataKind === 'diff' && balanceDisplayMode === 'heatmap') && (
                     <ChartControlRow
                       selectedPeriod={currentPeriod}
                       onPeriodChange={setCurrentPeriod}
@@ -366,20 +392,42 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
                     />
                   )}
 
-                  {/* チャート/テーブル表示 */}
-                  {balanceViewMode === 'diff_table' ? (
+                  {/* テーブル表示 */}
+                  {balanceDataKind === 'diff' && balanceDisplayMode === 'heatmap' && (
                     <MonthlyTable
                       data={balanceDiffTableData}
                       formatValue={(v) => v === null ? '-' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
                       decimals={1}
                     />
-                  ) : (
+                  )}
+
+                  {/* チャート表示 */}
+                  {balanceDataKind === 'level' && (
                     <StandardBarChart
                       data={filteredBalanceData}
                       bars={[
                         {
                           dataKey: 'value',
                           name: '貿易収支',
+                          color: COLORS.balance,
+                        },
+                      ]}
+                      xAxisFormatter={formatDateLabel}
+                      yAxisFormatter={(v) => `${v.toFixed(0)}B`}
+                      tooltipValueFormatter={(v) => `${v.toFixed(2)} Billion EUR`}
+                      tooltipLabelFormatter={formatDateLabelJP}
+                      showZeroLine={true}
+                      showLegend={false}
+                    />
+                  )}
+
+                  {balanceDataKind === 'diff' && balanceDisplayMode === 'chart' && (
+                    <StandardBarChart
+                      data={filteredBalanceData}
+                      bars={[
+                        {
+                          dataKey: 'value',
+                          name: '前月増減幅',
                           color: COLORS.balance,
                         },
                       ]}
@@ -399,15 +447,24 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
               label: '輸出・輸入',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup
-                    options={TRADE_VIEW_OPTIONS}
-                    currentMode={tradeViewMode}
-                    onChange={setTradeViewMode}
-                  />
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={TRADE_DATA_KIND_OPTIONS}
+                      currentMode={tradeDataKind}
+                      onChange={setTradeDataKind}
+                    />
+                  </div>
 
-                  {/* 期間セレクタとデータ比較ボタン（テーブル以外で表示） */}
-                  {tradeViewMode !== 'exports_table' && tradeViewMode !== 'imports_table' && (
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {tradeDataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={TRADE_DISPLAY_MODE_OPTIONS} currentMode={tradeDisplayMode} onChange={setTradeDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* 期間セレクタとデータ比較ボタン（ヒートマップ以外で表示） */}
+                  {!(tradeDataKind === 'mom' && tradeDisplayMode === 'heatmap') && (
                     <ChartControlRow
                       selectedPeriod={currentPeriod}
                       onPeriodChange={setCurrentPeriod}
@@ -415,20 +472,38 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
                     />
                   )}
 
-                  {/* チャート/テーブル表示 */}
-                  {tradeViewMode === 'exports_table' ? (
-                    <MonthlyTable
-                      data={exportsTableData}
-                      formatValue={(v) => v === null ? '-' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
-                      decimals={1}
-                    />
-                  ) : tradeViewMode === 'imports_table' ? (
-                    <MonthlyTable
-                      data={importsTableData}
-                      formatValue={(v) => v === null ? '-' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
-                      decimals={1}
-                    />
-                  ) : tradeViewMode === 'mom_chart' || tradeViewMode === 'yoy_chart' ? (
+                  {/* テーブル表示（前月比ヒートマップ） */}
+                  {tradeDataKind === 'mom' && tradeDisplayMode === 'heatmap' && (
+                    <>
+                      <div style={{ marginBottom: 8 }}>
+                        {TRADE_TABLE_TYPE_OPTIONS.map(opt => (
+                          <button
+                            key={opt.type}
+                            onClick={() => setTradeTableType(opt.type)}
+                            style={{
+                              marginRight: 8,
+                              padding: '4px 12px',
+                              border: tradeTableType === opt.type ? '1px solid #1890ff' : '1px solid #d9d9d9',
+                              borderRadius: 4,
+                              background: tradeTableType === opt.type ? '#1890ff' : 'transparent',
+                              color: tradeTableType === opt.type ? '#fff' : 'inherit',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                      <MonthlyTable
+                        data={tradeTableType === 'exports' ? exportsTableData : importsTableData}
+                        formatValue={(v) => v === null ? '-' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
+                        decimals={1}
+                      />
+                    </>
+                  )}
+
+                  {/* チャート表示 */}
+                  {tradeDataKind === 'mom' && tradeDisplayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredTradeData}
                       bars={[
@@ -449,7 +524,32 @@ export default function EUInternationalTradeChart({ data }: EUInternationalTrade
                       tooltipLabelFormatter={formatDateLabelJP}
                       showZeroLine={true}
                     />
-                  ) : (
+                  )}
+
+                  {tradeDataKind === 'yoy' && (
+                    <StandardBarChart
+                      data={filteredTradeData}
+                      bars={[
+                        {
+                          dataKey: 'exports',
+                          name: '輸出',
+                          color: COLORS.exports,
+                        },
+                        {
+                          dataKey: 'imports',
+                          name: '輸入',
+                          color: COLORS.imports,
+                        },
+                      ]}
+                      xAxisFormatter={formatDateLabel}
+                      yAxisFormatter={(v) => `${v.toFixed(0)}%`}
+                      tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
+                      tooltipLabelFormatter={formatDateLabelJP}
+                      showZeroLine={true}
+                    />
+                  )}
+
+                  {tradeDataKind === 'level' && (
                     <StandardBarChart
                       data={filteredTradeData}
                       bars={[

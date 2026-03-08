@@ -259,14 +259,13 @@ export function getDataTypeButtonStyle(
 // 共通ビューモード・データタイプ設定
 // =============================================================================
 
-/** 標準ビューモードタイプ（前年比/前月比テーブル/前月比グラフ） */
-export type StandardViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+/** 標準データ種別タイプ（前年比/前月比） */
+export type StandardDataKind = 'yoy' | 'mom'
 
-/** 標準ビューモード設定（前年比/前月比/前月比テーブル） */
-export const STANDARD_VIEW_MODE_OPTIONS: { mode: StandardViewMode; label: string }[] = [
+/** 標準データ種別設定（前年比/前月比） */
+export const STANDARD_DATA_KIND_OPTIONS: { mode: StandardDataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
 ]
 
 /** 名目/実質データタイプ */
@@ -281,11 +280,18 @@ export const NOMINAL_REAL_DATA_TYPE_OPTIONS: { type: NominalRealDataType; label:
 /** 小売売上データタイプ */
 export type RetailDataType = 'total' | 'ex_auto' | 'control_group'
 
-/** 小売売上データタイプ設定 */
+/** 小売売上データタイプ設定（MonthlyTableWithDataTypes用） */
 export const RETAIL_DATA_TYPE_OPTIONS: { type: RetailDataType; label: string }[] = [
   { type: 'total', label: '総合' },
   { type: 'ex_auto', label: '自動車除く' },
   { type: 'control_group', label: 'コントロールグループ' },
+]
+
+/** 小売売上データタイプ設定（ViewModeButtonGroup用） */
+export const RETAIL_DATA_TYPE_BUTTON_OPTIONS: { mode: RetailDataType; label: string }[] = [
+  { mode: 'total', label: '総合' },
+  { mode: 'ex_auto', label: '自動車除く' },
+  { mode: 'control_group', label: 'コントロールグループ' },
 ]
 
 /** 耐久財データタイプ */
@@ -310,14 +316,22 @@ export const HOUSING_STARTS_PERMITS_DATA_TYPE_OPTIONS: { type: HousingStartsPerm
 // 現数値/前月増減幅ビューモード（NonfarmPayrollsChart等で使用）
 // =============================================================================
 
-/** 現数値/増減幅ビューモードタイプ */
-export type ValueChangeViewMode = 'value' | 'change_chart' | 'change_table'
+/** 現数値/増減幅データ種別タイプ */
+export type ValueChangeDataKind = 'value' | 'change'
 
-/** 現数値/増減幅ビューモード設定 */
-export const VALUE_CHANGE_VIEW_MODE_OPTIONS: { mode: ValueChangeViewMode; label: string }[] = [
-  { mode: 'change_chart', label: '前月増減幅' },
-  { mode: 'change_table', label: '前月増減幅（テーブル）' },
+/** 現数値/増減幅データ種別設定 */
+export const VALUE_CHANGE_DATA_KIND_OPTIONS: { mode: ValueChangeDataKind; label: string }[] = [
+  { mode: 'change', label: '前月増減幅' },
   { mode: 'value', label: '現数値' },
+]
+
+/** 表示形式タイプ（チャート/ヒートマップ） */
+export type DisplayMode = 'chart' | 'heatmap'
+
+/** 表示形式設定 */
+export const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // =============================================================================

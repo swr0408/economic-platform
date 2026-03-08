@@ -1,0 +1,272 @@
+{
+  "data": [
+    {
+      "date": "2022-08-01",
+      "value": 41.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-09-01",
+      "value": 41.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-10-01",
+      "value": 44.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-11-01",
+      "value": 44.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-12-01",
+      "value": 49.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-01-01",
+      "value": 48.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-02-01",
+      "value": 47.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-03-01",
+      "value": 44.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-04-01",
+      "value": 44.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-05-01",
+      "value": 44.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-06-01",
+      "value": 44.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-07-01",
+      "value": 46.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-08-01",
+      "value": 47.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-09-01",
+      "value": 48.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-10-01",
+      "value": 47.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-11-01",
+      "value": 48.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-12-01",
+      "value": 48.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-01-01",
+      "value": 49.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-02-01",
+      "value": 50.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-03-01",
+      "value": 50.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-04-01",
+      "value": 53.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-05-01",
+      "value": 52.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-06-01",
+      "value": 51.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-07-01",
+      "value": 50.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-08-01",
+      "value": 50.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-09-01",
+      "value": 51.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-10-01",
+      "value": 52.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-11-01",
+      "value": 51.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-12-01",
+      "value": 51.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-01-01",
+      "value": 49.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-02-01",
+      "value": 47.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-03-01",
+      "value": 48.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-04-01",
+      "value": 47.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-05-01",
+      "value": 46.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-06-01",
+      "value": 47.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-07-01",
+      "value": 46.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-08-01",
+      "value": 47.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-09-01",
+      "value": 48.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-10-01",
+      "value": 50.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-11-01",
+      "value": 51.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-12-01",
+      "value": 55.2,
+      "forecast": null,
+      "previous": null
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "value": 55.2,
+    "forecast": null,
+    "previous": null
+  },
+  "metadata": {
+    "source": "S&P Global",
+    "indicator": "Taiwan Manufacturing PMI (S&P Global)",
+    "description": "台湾製造業PMI（S&P Global）",
+    "unit": "index",
+    "frequency": "monthly"
+  },
+  "next_release": {
+    "date": "2026-04-01",
+    "datetime_utc": "2026-04-01T00:30:00+00:00",
+    "datetime_jst": "2026-04-01T09:30:00+09:00",
+    "time_jst": "09:30",
+    "label": "S&P Global Manufacturing PMI (Mar)",
+    "estimate": 51.5
+  },
+  "last_updated": "2026-03-08T10:54:55.767980+09:00"
+}

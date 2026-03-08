@@ -2162,470 +2162,470 @@
     },
     {
       "date": "2021-01-01",
-      "value": 1.39,
-      "yoy": 1.39,
-      "mom": 0.03,
-      "index": 270.42,
-      "annualized_3m": 1.66,
-      "annualized_6m": 2.28
+      "value": 1.38,
+      "yoy": 1.38,
+      "mom": 0.02,
+      "index": 270.39,
+      "annualized_3m": 1.62,
+      "annualized_6m": 2.26
     },
     {
       "date": "2021-02-01",
-      "value": 1.27,
-      "yoy": 1.27,
-      "mom": 0.13,
-      "index": 270.78,
-      "annualized_3m": 1.19,
-      "annualized_6m": 1.76
+      "value": 1.28,
+      "yoy": 1.28,
+      "mom": 0.15,
+      "index": 270.79,
+      "annualized_3m": 1.2,
+      "annualized_6m": 1.77
     },
     {
       "date": "2021-03-01",
       "value": 1.65,
       "yoy": 1.65,
       "mom": 0.25,
-      "index": 271.45,
-      "annualized_3m": 1.65,
-      "annualized_6m": 1.88
+      "index": 271.46,
+      "annualized_3m": 1.67,
+      "annualized_6m": 1.89
     },
     {
       "date": "2021-04-01",
-      "value": 2.97,
-      "yoy": 2.97,
-      "mom": 0.8,
-      "index": 273.63,
-      "annualized_3m": 4.84,
-      "annualized_6m": 3.24
+      "value": 2.98,
+      "yoy": 2.98,
+      "mom": 0.81,
+      "index": 273.66,
+      "annualized_3m": 4.93,
+      "annualized_6m": 3.26
     },
     {
       "date": "2021-05-01",
-      "value": 3.78,
-      "yoy": 3.78,
-      "mom": 0.67,
+      "value": 3.79,
+      "yoy": 3.79,
+      "mom": 0.66,
       "index": 275.46,
-      "annualized_3m": 7.1,
+      "annualized_3m": 7.07,
       "annualized_6m": 4.1
     },
     {
       "date": "2021-06-01",
-      "value": 4.42,
-      "yoy": 4.42,
-      "mom": 0.78,
-      "index": 277.61,
-      "annualized_3m": 9.39,
-      "annualized_6m": 5.45
+      "value": 4.44,
+      "yoy": 4.44,
+      "mom": 0.79,
+      "index": 277.65,
+      "annualized_3m": 9.44,
+      "annualized_6m": 5.48
     },
     {
       "date": "2021-07-01",
       "value": 4.21,
       "yoy": 4.21,
-      "mom": 0.37,
-      "index": 278.64,
-      "annualized_3m": 7.53,
-      "annualized_6m": 6.17
+      "mom": 0.36,
+      "index": 278.65,
+      "annualized_3m": 7.5,
+      "annualized_6m": 6.21
     },
     {
       "date": "2021-08-01",
-      "value": 3.95,
-      "yoy": 3.95,
-      "mom": 0.14,
-      "index": 279.02,
-      "annualized_3m": 5.28,
-      "annualized_6m": 6.18
+      "value": 3.94,
+      "yoy": 3.94,
+      "mom": 0.13,
+      "index": 279.0,
+      "annualized_3m": 5.23,
+      "annualized_6m": 6.15
     },
     {
       "date": "2021-09-01",
-      "value": 4.01,
-      "yoy": 4.01,
+      "value": 4.0,
+      "yoy": 4.0,
       "mom": 0.25,
-      "index": 279.73,
-      "annualized_3m": 3.09,
-      "annualized_6m": 6.19
+      "index": 279.7,
+      "annualized_3m": 2.98,
+      "annualized_6m": 6.16
     },
     {
       "date": "2021-10-01",
-      "value": 4.58,
-      "yoy": 4.58,
-      "mom": 0.69,
-      "index": 281.65,
-      "annualized_3m": 4.39,
-      "annualized_6m": 5.95
+      "value": 4.59,
+      "yoy": 4.59,
+      "mom": 0.7,
+      "index": 281.67,
+      "annualized_3m": 4.41,
+      "annualized_6m": 5.94
     },
     {
       "date": "2021-11-01",
       "value": 4.97,
       "yoy": 4.97,
-      "mom": 0.63,
+      "mom": 0.62,
       "index": 283.41,
-      "annualized_3m": 6.44,
-      "annualized_6m": 5.86
+      "annualized_3m": 6.48,
+      "annualized_6m": 5.85
     },
     {
       "date": "2021-12-01",
-      "value": 5.5,
-      "yoy": 5.5,
-      "mom": 0.64,
-      "index": 285.22,
-      "annualized_3m": 8.09,
-      "annualized_6m": 5.56
+      "value": 5.49,
+      "yoy": 5.49,
+      "mom": 0.63,
+      "index": 285.18,
+      "annualized_3m": 8.07,
+      "annualized_6m": 5.5
     },
     {
       "date": "2022-01-01",
-      "value": 6.06,
-      "yoy": 6.06,
+      "value": 6.05,
+      "yoy": 6.05,
       "mom": 0.55,
-      "index": 286.8,
-      "annualized_3m": 7.52,
-      "annualized_6m": 5.94
+      "index": 286.76,
+      "annualized_3m": 7.43,
+      "annualized_6m": 5.91
     },
     {
       "date": "2022-02-01",
       "value": 6.46,
       "yoy": 6.46,
-      "mom": 0.51,
-      "index": 288.26,
-      "annualized_3m": 7.02,
-      "annualized_6m": 6.73
+      "mom": 0.53,
+      "index": 288.27,
+      "annualized_3m": 7.04,
+      "annualized_6m": 6.76
     },
     {
       "date": "2022-03-01",
       "value": 6.48,
       "yoy": 6.48,
       "mom": 0.27,
-      "index": 289.04,
-      "annualized_3m": 5.46,
-      "annualized_6m": 6.77
+      "index": 289.06,
+      "annualized_3m": 5.55,
+      "annualized_6m": 6.81
     },
     {
       "date": "2022-04-01",
       "value": 6.16,
       "yoy": 6.16,
-      "mom": 0.49,
-      "index": 290.47,
-      "annualized_3m": 5.22,
-      "annualized_6m": 6.36
+      "mom": 0.5,
+      "index": 290.51,
+      "annualized_3m": 5.34,
+      "annualized_6m": 6.38
     },
     {
       "date": "2022-05-01",
-      "value": 6.02,
-      "yoy": 6.02,
-      "mom": 0.54,
-      "index": 292.04,
+      "value": 6.03,
+      "yoy": 6.03,
+      "mom": 0.53,
+      "index": 292.06,
       "annualized_3m": 5.36,
-      "annualized_6m": 6.18
+      "annualized_6m": 6.2
     },
     {
       "date": "2022-06-01",
       "value": 5.91,
       "yoy": 5.91,
-      "mom": 0.67,
-      "index": 294.01,
-      "annualized_3m": 7.05,
-      "annualized_6m": 6.26
+      "mom": 0.68,
+      "index": 294.05,
+      "annualized_3m": 7.09,
+      "annualized_6m": 6.32
     },
     {
       "date": "2022-07-01",
       "value": 5.9,
       "yoy": 5.9,
-      "mom": 0.36,
-      "index": 295.08,
-      "annualized_3m": 6.5,
-      "annualized_6m": 5.86
+      "mom": 0.35,
+      "index": 295.09,
+      "annualized_3m": 6.45,
+      "annualized_6m": 5.9
     },
     {
       "date": "2022-08-01",
       "value": 6.29,
       "yoy": 6.29,
-      "mom": 0.51,
-      "index": 296.58,
-      "annualized_3m": 6.37,
-      "annualized_6m": 5.86
+      "mom": 0.49,
+      "index": 296.54,
+      "annualized_3m": 6.27,
+      "annualized_6m": 5.82
     },
     {
       "date": "2022-09-01",
-      "value": 6.63,
-      "yoy": 6.63,
+      "value": 6.62,
+      "yoy": 6.62,
       "mom": 0.57,
-      "index": 298.28,
-      "annualized_3m": 5.94,
-      "annualized_6m": 6.49
+      "index": 298.23,
+      "annualized_3m": 5.81,
+      "annualized_6m": 6.45
     },
     {
       "date": "2022-10-01",
-      "value": 6.3,
-      "yoy": 6.3,
-      "mom": 0.37,
-      "index": 299.38,
-      "annualized_3m": 5.96,
-      "annualized_6m": 6.23
+      "value": 6.29,
+      "yoy": 6.29,
+      "mom": 0.39,
+      "index": 299.4,
+      "annualized_3m": 5.97,
+      "annualized_6m": 6.21
     },
     {
       "date": "2022-11-01",
-      "value": 5.96,
-      "yoy": 5.96,
+      "value": 5.97,
+      "yoy": 5.97,
       "mom": 0.31,
       "index": 300.32,
-      "annualized_3m": 5.14,
-      "annualized_6m": 5.75
+      "annualized_3m": 5.2,
+      "annualized_6m": 5.73
     },
     {
       "date": "2022-12-01",
-      "value": 5.68,
-      "yoy": 5.68,
-      "mom": 0.37,
-      "index": 301.43,
-      "annualized_3m": 4.29,
-      "annualized_6m": 5.11
+      "value": 5.69,
+      "yoy": 5.69,
+      "mom": 0.36,
+      "index": 301.39,
+      "annualized_3m": 4.31,
+      "annualized_6m": 5.05
     },
     {
       "date": "2023-01-01",
       "value": 5.54,
       "yoy": 5.54,
-      "mom": 0.42,
-      "index": 302.69,
-      "annualized_3m": 4.49,
-      "annualized_6m": 5.22
+      "mom": 0.41,
+      "index": 302.64,
+      "annualized_3m": 4.4,
+      "annualized_6m": 5.18
     },
     {
       "date": "2023-02-01",
       "value": 5.5,
       "yoy": 5.5,
-      "mom": 0.47,
-      "index": 304.1,
-      "annualized_3m": 5.14,
-      "annualized_6m": 5.13
+      "mom": 0.49,
+      "index": 304.12,
+      "annualized_3m": 5.15,
+      "annualized_6m": 5.18
     },
     {
       "date": "2023-03-01",
-      "value": 5.56,
-      "yoy": 5.56,
+      "value": 5.57,
+      "yoy": 5.57,
       "mom": 0.34,
-      "index": 305.12,
-      "annualized_3m": 4.98,
-      "annualized_6m": 4.64
+      "index": 305.15,
+      "annualized_3m": 5.08,
+      "annualized_6m": 4.7
     },
     {
       "date": "2023-04-01",
       "value": 5.51,
       "yoy": 5.51,
       "mom": 0.45,
-      "index": 306.49,
-      "annualized_3m": 5.12,
-      "annualized_6m": 4.81
+      "index": 306.53,
+      "annualized_3m": 5.24,
+      "annualized_6m": 4.82
     },
     {
       "date": "2023-05-01",
       "value": 5.34,
       "yoy": 5.34,
-      "mom": 0.37,
-      "index": 307.62,
+      "mom": 0.36,
+      "index": 307.65,
       "annualized_3m": 4.72,
-      "annualized_6m": 4.92
+      "annualized_6m": 4.94
     },
     {
       "date": "2023-06-01",
-      "value": 4.86,
-      "yoy": 4.86,
+      "value": 4.85,
+      "yoy": 4.85,
       "mom": 0.22,
-      "index": 308.29,
+      "index": 308.32,
       "annualized_3m": 4.22,
-      "annualized_6m": 4.6
+      "annualized_6m": 4.65
     },
     {
       "date": "2023-07-01",
       "value": 4.7,
       "yoy": 4.7,
-      "mom": 0.22,
+      "mom": 0.21,
       "index": 308.96,
-      "annualized_3m": 3.26,
-      "annualized_6m": 4.19
+      "annualized_3m": 3.2,
+      "annualized_6m": 4.22
     },
     {
       "date": "2023-08-01",
       "value": 4.4,
       "yoy": 4.4,
-      "mom": 0.22,
-      "index": 309.65,
-      "annualized_3m": 2.66,
-      "annualized_6m": 3.69
+      "mom": 0.2,
+      "index": 309.58,
+      "annualized_3m": 2.53,
+      "annualized_6m": 3.62
     },
     {
       "date": "2023-09-01",
-      "value": 4.14,
-      "yoy": 4.14,
+      "value": 4.13,
+      "yoy": 4.13,
       "mom": 0.31,
-      "index": 310.62,
-      "annualized_3m": 3.06,
-      "annualized_6m": 3.64
+      "index": 310.54,
+      "annualized_3m": 2.91,
+      "annualized_6m": 3.57
     },
     {
       "date": "2023-10-01",
       "value": 4.03,
       "yoy": 4.03,
-      "mom": 0.26,
-      "index": 311.43,
-      "annualized_3m": 3.24,
-      "annualized_6m": 3.25
+      "mom": 0.3,
+      "index": 311.46,
+      "annualized_3m": 3.28,
+      "annualized_6m": 3.24
     },
     {
       "date": "2023-11-01",
-      "value": 4.01,
-      "yoy": 4.01,
+      "value": 4.02,
+      "yoy": 4.02,
       "mom": 0.3,
-      "index": 312.37,
-      "annualized_3m": 3.57,
-      "annualized_6m": 3.11
+      "index": 312.39,
+      "annualized_3m": 3.68,
+      "annualized_6m": 3.1
     },
     {
       "date": "2023-12-01",
-      "value": 3.91,
-      "yoy": 3.91,
-      "mom": 0.27,
-      "index": 313.23,
-      "annualized_3m": 3.41,
-      "annualized_6m": 3.23
+      "value": 3.92,
+      "yoy": 3.92,
+      "mom": 0.26,
+      "index": 313.19,
+      "annualized_3m": 3.46,
+      "annualized_6m": 3.18
     },
     {
       "date": "2024-01-01",
-      "value": 3.87,
-      "yoy": 3.87,
-      "mom": 0.37,
-      "index": 314.39,
-      "annualized_3m": 3.85,
-      "annualized_6m": 3.55
+      "value": 3.86,
+      "yoy": 3.86,
+      "mom": 0.36,
+      "index": 314.32,
+      "annualized_3m": 3.73,
+      "annualized_6m": 3.5
     },
     {
       "date": "2024-02-01",
-      "value": 3.77,
-      "yoy": 3.77,
-      "mom": 0.37,
+      "value": 3.76,
+      "yoy": 3.76,
+      "mom": 0.4,
       "index": 315.56,
-      "annualized_3m": 4.14,
-      "annualized_6m": 3.86
+      "annualized_3m": 4.12,
+      "annualized_6m": 3.9
     },
     {
       "date": "2024-03-01",
-      "value": 3.81,
-      "yoy": 3.81,
-      "mom": 0.38,
-      "index": 316.76,
-      "annualized_3m": 4.58,
-      "annualized_6m": 4.0
+      "value": 3.82,
+      "yoy": 3.82,
+      "mom": 0.39,
+      "index": 316.79,
+      "annualized_3m": 4.67,
+      "annualized_6m": 4.07
     },
     {
       "date": "2024-04-01",
-      "value": 3.62,
-      "yoy": 3.62,
-      "mom": 0.26,
-      "index": 317.6,
-      "annualized_3m": 4.15,
-      "annualized_6m": 4.0
+      "value": 3.63,
+      "yoy": 3.63,
+      "mom": 0.27,
+      "index": 317.65,
+      "annualized_3m": 4.31,
+      "annualized_6m": 4.02
     },
     {
       "date": "2024-05-01",
       "value": 3.39,
       "yoy": 3.39,
       "mom": 0.14,
-      "index": 318.05,
-      "annualized_3m": 3.2,
-      "annualized_6m": 3.67
+      "index": 318.1,
+      "annualized_3m": 3.25,
+      "annualized_6m": 3.69
     },
     {
       "date": "2024-06-01",
-      "value": 3.26,
-      "yoy": 3.26,
+      "value": 3.27,
+      "yoy": 3.27,
       "mom": 0.09,
-      "index": 318.34,
-      "annualized_3m": 2.01,
-      "annualized_6m": 3.29
+      "index": 318.39,
+      "annualized_3m": 2.03,
+      "annualized_6m": 3.34
     },
     {
       "date": "2024-07-01",
       "value": 3.23,
       "yoy": 3.23,
-      "mom": 0.19,
-      "index": 318.93,
-      "annualized_3m": 1.69,
-      "annualized_6m": 2.91
+      "mom": 0.17,
+      "index": 318.94,
+      "annualized_3m": 1.64,
+      "annualized_6m": 2.96
     },
     {
       "date": "2024-08-01",
       "value": 3.29,
       "yoy": 3.29,
-      "mom": 0.28,
-      "index": 319.84,
-      "annualized_3m": 2.27,
-      "annualized_6m": 2.73
+      "mom": 0.25,
+      "index": 319.75,
+      "annualized_3m": 2.1,
+      "annualized_6m": 2.67
     },
     {
       "date": "2024-09-01",
-      "value": 3.29,
-      "yoy": 3.29,
+      "value": 3.28,
+      "yoy": 3.28,
       "mom": 0.31,
-      "index": 320.83,
-      "annualized_3m": 3.16,
-      "annualized_6m": 2.58
+      "index": 320.73,
+      "annualized_3m": 2.97,
+      "annualized_6m": 2.5
     },
     {
       "date": "2024-10-01",
-      "value": 3.29,
-      "yoy": 3.29,
-      "mom": 0.27,
-      "index": 321.69,
-      "annualized_3m": 3.5,
+      "value": 3.3,
+      "yoy": 3.3,
+      "mom": 0.31,
+      "index": 321.73,
+      "annualized_3m": 3.55,
       "annualized_6m": 2.59
     },
     {
       "date": "2024-11-01",
-      "value": 3.28,
-      "yoy": 3.28,
+      "value": 3.29,
+      "yoy": 3.29,
       "mom": 0.29,
-      "index": 322.62,
-      "annualized_3m": 3.52,
+      "index": 322.66,
+      "annualized_3m": 3.69,
       "annualized_6m": 2.89
     },
     {
       "date": "2024-12-01",
       "value": 3.21,
       "yoy": 3.21,
-      "mom": 0.21,
-      "index": 323.3,
-      "annualized_3m": 3.11,
-      "annualized_6m": 3.14
+      "mom": 0.19,
+      "index": 323.26,
+      "annualized_3m": 3.19,
+      "annualized_6m": 3.08
     },
     {
       "date": "2025-01-01",
-      "value": 3.29,
-      "yoy": 3.29,
-      "mom": 0.45,
-      "index": 324.74,
-      "annualized_3m": 3.85,
-      "annualized_6m": 3.67
+      "value": 3.28,
+      "yoy": 3.28,
+      "mom": 0.43,
+      "index": 324.64,
+      "annualized_3m": 3.67,
+      "annualized_6m": 3.61
     },
     {
       "date": "2025-02-01",
       "value": 3.14,
       "yoy": 3.14,
-      "mom": 0.23,
-      "index": 325.48,
-      "annualized_3m": 3.59,
-      "annualized_6m": 3.56
+      "mom": 0.25,
+      "index": 325.46,
+      "annualized_3m": 3.52,
+      "annualized_6m": 3.6
     },
     {
       "date": "2025-03-01",
       "value": 2.81,
       "yoy": 2.81,
-      "mom": 0.06,
-      "index": 325.66,
-      "annualized_3m": 2.96,
-      "annualized_6m": 3.03
+      "mom": 0.07,
+      "index": 325.69,
+      "annualized_3m": 3.04,
+      "annualized_6m": 3.12
     },
     {
       "date": "2025-04-01",
       "value": 2.78,
       "yoy": 2.78,
       "mom": 0.24,
-      "index": 326.43,
-      "annualized_3m": 2.1,
+      "index": 326.47,
+      "annualized_3m": 2.28,
       "annualized_6m": 2.97
     },
     {
@@ -2633,8 +2633,8 @@
       "value": 2.77,
       "yoy": 2.77,
       "mom": 0.13,
-      "index": 326.85,
-      "annualized_3m": 1.7,
+      "index": 326.89,
+      "annualized_3m": 1.76,
       "annualized_6m": 2.64
     },
     {
@@ -2642,65 +2642,81 @@
       "value": 2.91,
       "yoy": 2.91,
       "mom": 0.23,
-      "index": 327.6,
-      "annualized_3m": 2.41,
-      "annualized_6m": 2.68
+      "index": 327.66,
+      "annualized_3m": 2.44,
+      "annualized_6m": 2.74
     },
     {
       "date": "2025-07-01",
       "value": 3.05,
       "yoy": 3.05,
-      "mom": 0.32,
-      "index": 328.66,
-      "annualized_3m": 2.76,
-      "annualized_6m": 2.43
+      "mom": 0.31,
+      "index": 328.68,
+      "annualized_3m": 2.74,
+      "annualized_6m": 2.51
     },
     {
       "date": "2025-08-01",
       "value": 3.11,
       "yoy": 3.11,
-      "mom": 0.35,
-      "index": 329.79,
-      "annualized_3m": 3.64,
-      "annualized_6m": 2.67
+      "mom": 0.31,
+      "index": 329.7,
+      "annualized_3m": 3.48,
+      "annualized_6m": 2.62
     },
     {
       "date": "2025-09-01",
-      "value": 3.03,
-      "yoy": 3.03,
-      "mom": 0.23,
-      "index": 330.54,
-      "annualized_3m": 3.64,
-      "annualized_6m": 3.02
+      "value": 3.02,
+      "yoy": 3.02,
+      "mom": 0.22,
+      "index": 330.42,
+      "annualized_3m": 3.41,
+      "annualized_6m": 2.93
     },
     {
       "date": "2025-11-01",
-      "value": 2.62,
-      "yoy": 2.62,
+      "value": 2.6,
+      "yoy": 2.6,
       "mom": null,
-      "index": 331.07,
-      "annualized_3m": 1.56,
-      "annualized_6m": 2.6
+      "index": 331.04,
+      "annualized_3m": 1.64,
+      "annualized_6m": 2.55
     },
     {
       "date": "2025-12-01",
       "value": 2.65,
       "yoy": 2.65,
-      "mom": 0.24,
-      "index": 331.86,
-      "annualized_3m": 1.6,
-      "annualized_6m": 2.62
+      "mom": 0.23,
+      "index": 331.81,
+      "annualized_3m": 1.7,
+      "annualized_6m": 2.55
+    },
+    {
+      "date": "2026-01-01",
+      "value": 2.51,
+      "yoy": 2.51,
+      "mom": 0.3,
+      "index": 332.79,
+      "annualized_3m": null,
+      "annualized_6m": 2.52
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 2.65,
-    "yoy": 2.65,
-    "mom": 0.24,
-    "index": 331.86,
-    "annualized_3m": 1.6,
-    "annualized_6m": 2.62
+    "date": "2026-01-01",
+    "value": 2.51,
+    "yoy": 2.51,
+    "mom": 0.3,
+    "index": 332.79,
+    "annualized_3m": null,
+    "annualized_6m": 2.52
   },
-  "next_release": null,
-  "last_updated": "2026-02-05T12:03:14.064567+09:00"
+  "next_release": {
+    "date": "2026-03-11",
+    "datetime_utc": "2026-03-11T12:30:00+00:00",
+    "datetime_jst": "2026-03-11T21:30:00+09:00",
+    "time_jst": "21:30",
+    "label": "Core Inflation Rate YoY (Feb)",
+    "estimate": null
+  },
+  "last_updated": "2026-02-28T10:50:35.656112+09:00"
 }

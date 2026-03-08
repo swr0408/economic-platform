@@ -3279,21 +3279,31 @@
       "date": "2025-09-01",
       "value": 79.0,
       "period": "2025 SEP"
+    },
+    {
+      "date": "2025-10-01",
+      "value": 79.2,
+      "period": "2025 OCT"
+    },
+    {
+      "date": "2025-11-01",
+      "value": 79.2,
+      "period": "2025 NOV"
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "value": 79.0,
-    "period": "2025 SEP"
+    "date": "2025-11-01",
+    "value": 79.2,
+    "period": "2025 NOV"
   },
   "metadata": {
     "title": "LFS: Economic activity rate: UK: All: Aged 16-64 (%): SA",
     "cdid": "LF22",
     "unit": "%",
-    "release_date": "16-12-2025",
-    "next_release_ons": "20 January 2026",
+    "release_date": "17-02-2026",
+    "next_release_ons": "19 March 2026",
     "source": "Office for National Statistics",
     "description": "イギリス経済活動率（16-64歳、季節調整済）"
   },
-  "last_updated": "2026-01-20T12:22:19.968590+09:00"
+  "last_updated": "2026-02-28T09:57:52.187074+09:00"
 }

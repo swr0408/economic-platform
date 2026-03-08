@@ -55,14 +55,15 @@ interface PPICategoriesChartProps {
   categoriesData: PPICategoriesData | null
 }
 
-// 表示モード（前月比テーブルと前年比グラフ）
-type ViewMode = 'mom_table' | 'yoy_chart'
+// 指標種別
+type DataKind = 'mom' | 'yoy'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'mom_table', label: '前月比（テーブル）' },
-  { mode: 'yoy_chart', label: '前年比' },
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
+  { mode: 'yoy', label: '前年比' },
 ]
+
+// NOTE: PPICategoriesChart has no MoM chart (MoM is table only, YoY is chart only)
 
 // マージ済みデータの型
 interface MergedDataItem {
@@ -180,7 +181,7 @@ function CategoryTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function PPICategoriesChart({ categoriesData }: PPICategoriesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('mom_table')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(5)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [displayCount, setDisplayCount] = useState<number>(5) // 初期表示5件
@@ -308,10 +309,10 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
     )
   }
 
-  // 最新値を各カテゴリから取得（ビューモードに応じてYoY/MoMを切替）
+  // 最新値を各カテゴリから取得（指標種別に応じてYoY/MoMを切替）
   const latestItems = categoriesData.categories.map(cat => ({
     label: CATEGORY_LABELS[cat.key] || cat.name,
-    value: viewMode === 'mom_table' ? cat.latest?.mom : cat.latest?.yoy,
+    value: dataKind === 'mom' ? cat.latest?.mom : cat.latest?.yoy,
     color: COLORS[cat.key] || '#94a3b8',
     format: 'percent' as const,
   }))
@@ -378,12 +379,12 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
               label: '時系列',
               children: (
                 <>
-                  {/* 表示モード切替 + 比較ボタン */}
+                  {/* 上段: 指標種別 + 比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={VIEW_MODE_OPTIONS}
-                      currentMode={viewMode}
-                      onChange={(mode) => { setViewMode(mode); if (mode === 'mom_table') setDisplayCount(5) }}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く（PPI項目別）">
                       <Button
@@ -399,7 +400,7 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
                   </div>
 
                   {/* テーブル表示（前月比） */}
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && (
                     <>
                       <Table
                         dataSource={displayedTableData}
@@ -425,7 +426,7 @@ export default function PPICategoriesChart({ categoriesData }: PPICategoriesChar
                   )}
 
                   {/* グラフ表示（前年比） */}
-                  {viewMode === 'yoy_chart' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>

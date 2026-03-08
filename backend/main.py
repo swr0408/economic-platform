@@ -104,6 +104,8 @@ try:
     from backend.routers.switzerland.snb import router as switzerland_snb_router
     from backend.routers.switzerland.fso import router as switzerland_fso_router
     from backend.routers.switzerland.kof import router as switzerland_kof_router
+    import importlib as _il
+    global_pmi_router = _il.import_module("backend.routers.global.global_pmi").router
     from backend.services.usa.fomc_projections_scheduler import fomc_scheduler
     from backend.services.usa.policy_rate_scheduler import policy_rate_scheduler
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
@@ -112,6 +114,8 @@ try:
     from backend.scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
     from backend.scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
     from backend.scheduler.boj_lending_scheduler import boj_lending_scheduler
+    from backend.scheduler.pbc_reverse_repo_scheduler import pbc_reverse_repo_scheduler
+    from backend.scheduler.pbc_rrr_scheduler import pbc_rrr_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -127,6 +131,7 @@ except ImportError:
     from routers.usa.treasury import router as treasury_router
     from routers.dashboard import router as dashboard_router
     from routers.market import router as market_router
+    from routers.market_tsmc import router as market_tsmc_router
     from routers.calendar import router as calendar_router
     from routers.market_impact import router as market_impact_router
     from routers.japan.ois_curve import router as japan_ois_curve_router
@@ -241,8 +246,33 @@ except ImportError:
     from routers.australia.abs_economy import router as australia_abs_economy_router
     from routers.australia.abs_housing import router as australia_abs_housing_router
     from routers.australia.apra import router as australia_apra_router
+    from routers.china.pboc import router as china_pboc_router
+    from routers.china.cn_credit_impulse_screenshot import router as china_credit_impulse_router
+    from routers.china.cn_li_keqiang_index_screenshot import router as china_li_keqiang_router
+    from routers.china.nbs import router as china_nbs_router
+    from routers.china.safe import router as china_safe_router
+    from routers.china.cn_baidu_migration_screenshot import router as china_baidu_migration_router
+    from routers.china.mof import router as china_mof_router
+    from routers.china.bond_connect import router as china_bond_connect_router
     from routers.newzealand.rbnz import router as newzealand_rbnz_router
     from routers.newzealand.stats_nz import router as newzealand_stats_nz_router
+    from routers.newzealand.anz import router as newzealand_anz_router
+    from routers.newzealand.nzier import router as newzealand_nzier_router
+    from routers.newzealand.businessnz import router as newzealand_businessnz_router
+    from routers.newzealand.gdt import router as newzealand_gdt_router
+    import importlib as _il
+    global_pmi_router = _il.import_module("routers.global.global_pmi").router
+    global_economic_surprise_index_router = _il.import_module("routers.global.economic_surprise_index_screenshot").router
+    global_komtrax_router = _il.import_module("routers.global.komtrax_screenshot").router
+    global_epu_router = _il.import_module("routers.global.global_epu").router
+    global_semiconductor_sales_router = _il.import_module("routers.global.semiconductor_sales").router
+    global_taiwan_pmi_outlook_router = _il.import_module("routers.global.taiwan_pmi_outlook").router
+    global_taiwan_manufacturing_pmi_router = _il.import_module("routers.global.taiwan_manufacturing_pmi").router
+    global_south_korean_exports_router = _il.import_module("routers.global.south_korean_exports").router
+    global_taiwan_export_orders_router = _il.import_module("routers.global.taiwan_export_orders").router
+    global_taiwan_electrical_equipment_exports_router = _il.import_module("routers.global.taiwan_electrical_equipment_exports").router
+    global_container_freight_index_router = _il.import_module("routers.global.china_shanghai_container_freight_index").router
+    global_usd_fundamental_index_router = _il.import_module("routers.global.usd_fundamental_index").router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -252,6 +282,13 @@ except ImportError:
     from scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
     from scheduler.boj_lending_scheduler import boj_lending_scheduler
     from scheduler.non_fmp_release_scheduler import non_fmp_release_scheduler
+    from scheduler.pbc_reverse_repo_scheduler import pbc_reverse_repo_scheduler
+    from scheduler.pbc_rrr_scheduler import pbc_rrr_scheduler
+    from scheduler.cn_fixing_repo_rate_scheduler import cn_fixing_repo_rate_scheduler
+    from scheduler.cn_shibor_scheduler import cn_shibor_scheduler
+    from scheduler.cn_central_parity_scheduler import cn_central_parity_scheduler
+    from scheduler.cn_government_bond_issuance_scheduler import cn_government_bond_issuance_scheduler
+    from scheduler.cn_baidu_migration_scheduler import cn_baidu_migration_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -294,6 +331,7 @@ app.include_router(fomc_projections_router)
 app.include_router(treasury_router)
 app.include_router(dashboard_router)
 app.include_router(market_router)
+app.include_router(market_tsmc_router)
 app.include_router(calendar_router)
 app.include_router(market_impact_router)
 app.include_router(japan_ois_curve_router)
@@ -418,6 +456,34 @@ app.include_router(australia_apra_router)
 # New Zealand
 app.include_router(newzealand_rbnz_router)
 app.include_router(newzealand_stats_nz_router)
+app.include_router(newzealand_anz_router)
+app.include_router(newzealand_nzier_router)
+app.include_router(newzealand_businessnz_router)
+app.include_router(newzealand_gdt_router)
+
+# China
+app.include_router(china_pboc_router)
+app.include_router(china_credit_impulse_router)
+app.include_router(china_li_keqiang_router)
+app.include_router(china_nbs_router)
+app.include_router(china_safe_router)
+app.include_router(china_baidu_migration_router)
+app.include_router(china_mof_router)
+app.include_router(china_bond_connect_router)
+
+# Global
+app.include_router(global_pmi_router)
+app.include_router(global_economic_surprise_index_router)
+app.include_router(global_komtrax_router)
+app.include_router(global_epu_router)
+app.include_router(global_semiconductor_sales_router)
+app.include_router(global_taiwan_pmi_outlook_router)
+app.include_router(global_taiwan_manufacturing_pmi_router)
+app.include_router(global_south_korean_exports_router)
+app.include_router(global_taiwan_export_orders_router)
+app.include_router(global_taiwan_electrical_equipment_exports_router)
+app.include_router(global_container_freight_index_router)
+app.include_router(global_usd_fundamental_index_router)
 
 
 @app.get("/health")
@@ -515,6 +581,55 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Non-FMP Release Scheduler: {e}")
 
+    # PBC逆回購金利 日次スケジューラーを開始
+    try:
+        pbc_reverse_repo_scheduler.start()
+        print("PBC Reverse Repo Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start PBC Reverse Repo Scheduler: {e}")
+
+    # PBC預金準備率 日次スケジューラーを開始
+    try:
+        pbc_rrr_scheduler.start()
+        print("PBC RRR Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start PBC RRR Scheduler: {e}")
+
+    # Fixing Repo Rate 日次スケジューラーを開始
+    try:
+        cn_fixing_repo_rate_scheduler.start()
+        print("CN Fixing Repo Rate Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start CN Fixing Repo Rate Scheduler: {e}")
+
+    # SHIBOR 日次スケジューラーを開始
+    try:
+        cn_shibor_scheduler.start()
+        print("CN Shibor Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start CN Shibor Scheduler: {e}")
+
+    # Central Parity Rate 日次スケジューラーを開始
+    try:
+        cn_central_parity_scheduler.start()
+        print("CN Central Parity Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start CN Central Parity Scheduler: {e}")
+
+    # 国債発行 日次スケジューラーを開始
+    try:
+        cn_government_bond_issuance_scheduler.start()
+        print("CN Government Bond Issuance Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start CN Government Bond Issuance Scheduler: {e}")
+
+    # 百度迁徙スクリーンショット日次スケジューラーを開始
+    try:
+        cn_baidu_migration_scheduler.start()
+        print("CN Baidu Migration Screenshot Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start CN Baidu Migration Screenshot Scheduler: {e}")
+
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:
         from services.canada.ca_settlement_balances_service import ca_settlement_balances_service
@@ -569,6 +684,36 @@ async def shutdown_event():
         boj_lending_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down BOJ Lending Scheduler: {e}")
+
+    try:
+        pbc_reverse_repo_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down PBC Reverse Repo Scheduler: {e}")
+
+    try:
+        pbc_rrr_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down PBC RRR Scheduler: {e}")
+
+    try:
+        cn_fixing_repo_rate_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down CN Fixing Repo Rate Scheduler: {e}")
+
+    try:
+        cn_shibor_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down CN Shibor Scheduler: {e}")
+
+    try:
+        cn_central_parity_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down CN Central Parity Scheduler: {e}")
+
+    try:
+        cn_government_bond_issuance_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down CN Government Bond Issuance Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

@@ -1,0 +1,5685 @@
+{
+  "headline": {
+    "data": [
+      {
+        "date": "2010-01-01",
+        "manufacturing": 55.8,
+        "non_manufacturing": 58.1,
+        "composite": null
+      },
+      {
+        "date": "2010-02-01",
+        "manufacturing": 52.0,
+        "non_manufacturing": 57.0,
+        "composite": null
+      },
+      {
+        "date": "2010-03-01",
+        "manufacturing": 55.1,
+        "non_manufacturing": 57.3,
+        "composite": null
+      },
+      {
+        "date": "2010-04-01",
+        "manufacturing": 55.7,
+        "non_manufacturing": 57.8,
+        "composite": null
+      },
+      {
+        "date": "2010-05-01",
+        "manufacturing": 53.9,
+        "non_manufacturing": 58.1,
+        "composite": null
+      },
+      {
+        "date": "2010-06-01",
+        "manufacturing": 52.1,
+        "non_manufacturing": 58.8,
+        "composite": null
+      },
+      {
+        "date": "2010-07-01",
+        "manufacturing": 51.2,
+        "non_manufacturing": 57.1,
+        "composite": null
+      },
+      {
+        "date": "2010-08-01",
+        "manufacturing": 51.7,
+        "non_manufacturing": 58.0,
+        "composite": null
+      },
+      {
+        "date": "2010-09-01",
+        "manufacturing": 53.8,
+        "non_manufacturing": 57.9,
+        "composite": null
+      },
+      {
+        "date": "2010-10-01",
+        "manufacturing": 54.7,
+        "non_manufacturing": 57.4,
+        "composite": null
+      },
+      {
+        "date": "2010-11-01",
+        "manufacturing": 55.2,
+        "non_manufacturing": 58.9,
+        "composite": null
+      },
+      {
+        "date": "2010-12-01",
+        "manufacturing": 53.9,
+        "non_manufacturing": 58.8,
+        "composite": null
+      },
+      {
+        "date": "2011-01-01",
+        "manufacturing": 52.9,
+        "non_manufacturing": 57.2,
+        "composite": null
+      },
+      {
+        "date": "2011-02-01",
+        "manufacturing": 52.2,
+        "non_manufacturing": 57.0,
+        "composite": null
+      },
+      {
+        "date": "2011-03-01",
+        "manufacturing": 53.4,
+        "non_manufacturing": 59.2,
+        "composite": null
+      },
+      {
+        "date": "2011-04-01",
+        "manufacturing": 52.9,
+        "non_manufacturing": 58.2,
+        "composite": null
+      },
+      {
+        "date": "2011-05-01",
+        "manufacturing": 52.0,
+        "non_manufacturing": 58.7,
+        "composite": null
+      },
+      {
+        "date": "2011-06-01",
+        "manufacturing": 50.9,
+        "non_manufacturing": 56.6,
+        "composite": null
+      },
+      {
+        "date": "2011-07-01",
+        "manufacturing": 50.7,
+        "non_manufacturing": 57.3,
+        "composite": null
+      },
+      {
+        "date": "2011-08-01",
+        "manufacturing": 50.9,
+        "non_manufacturing": 57.1,
+        "composite": null
+      },
+      {
+        "date": "2011-09-01",
+        "manufacturing": 51.2,
+        "non_manufacturing": 55.8,
+        "composite": null
+      },
+      {
+        "date": "2011-10-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 55.5,
+        "composite": null
+      },
+      {
+        "date": "2011-11-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 55.9,
+        "composite": null
+      },
+      {
+        "date": "2011-12-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 56.3,
+        "composite": null
+      },
+      {
+        "date": "2012-01-01",
+        "manufacturing": 50.5,
+        "non_manufacturing": 55.7,
+        "composite": null
+      },
+      {
+        "date": "2012-02-01",
+        "manufacturing": 51.0,
+        "non_manufacturing": 57.3,
+        "composite": null
+      },
+      {
+        "date": "2012-03-01",
+        "manufacturing": 53.1,
+        "non_manufacturing": 58.0,
+        "composite": null
+      },
+      {
+        "date": "2012-04-01",
+        "manufacturing": 53.3,
+        "non_manufacturing": 56.1,
+        "composite": null
+      },
+      {
+        "date": "2012-05-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 55.2,
+        "composite": null
+      },
+      {
+        "date": "2012-06-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 56.7,
+        "composite": null
+      },
+      {
+        "date": "2012-07-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 55.6,
+        "composite": null
+      },
+      {
+        "date": "2012-08-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 56.3,
+        "composite": null
+      },
+      {
+        "date": "2012-09-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 53.7,
+        "composite": null
+      },
+      {
+        "date": "2012-10-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 55.5,
+        "composite": null
+      },
+      {
+        "date": "2012-11-01",
+        "manufacturing": 50.6,
+        "non_manufacturing": 55.6,
+        "composite": null
+      },
+      {
+        "date": "2012-12-01",
+        "manufacturing": 50.6,
+        "non_manufacturing": 56.1,
+        "composite": null
+      },
+      {
+        "date": "2013-01-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 56.2,
+        "composite": null
+      },
+      {
+        "date": "2013-02-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 54.5,
+        "composite": null
+      },
+      {
+        "date": "2013-03-01",
+        "manufacturing": 50.9,
+        "non_manufacturing": 55.6,
+        "composite": null
+      },
+      {
+        "date": "2013-04-01",
+        "manufacturing": 50.6,
+        "non_manufacturing": 54.5,
+        "composite": null
+      },
+      {
+        "date": "2013-05-01",
+        "manufacturing": 50.8,
+        "non_manufacturing": 54.3,
+        "composite": null
+      },
+      {
+        "date": "2013-06-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 53.9,
+        "composite": null
+      },
+      {
+        "date": "2013-07-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 54.1,
+        "composite": null
+      },
+      {
+        "date": "2013-08-01",
+        "manufacturing": 51.0,
+        "non_manufacturing": 53.9,
+        "composite": null
+      },
+      {
+        "date": "2013-09-01",
+        "manufacturing": 51.1,
+        "non_manufacturing": 55.4,
+        "composite": null
+      },
+      {
+        "date": "2013-10-01",
+        "manufacturing": 51.4,
+        "non_manufacturing": 56.3,
+        "composite": null
+      },
+      {
+        "date": "2013-11-01",
+        "manufacturing": 51.4,
+        "non_manufacturing": 56.0,
+        "composite": null
+      },
+      {
+        "date": "2013-12-01",
+        "manufacturing": 51.0,
+        "non_manufacturing": 54.6,
+        "composite": null
+      },
+      {
+        "date": "2014-01-01",
+        "manufacturing": 50.5,
+        "non_manufacturing": 53.4,
+        "composite": null
+      },
+      {
+        "date": "2014-02-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 55.0,
+        "composite": null
+      },
+      {
+        "date": "2014-03-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 54.5,
+        "composite": null
+      },
+      {
+        "date": "2014-04-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 54.8,
+        "composite": null
+      },
+      {
+        "date": "2014-05-01",
+        "manufacturing": 50.8,
+        "non_manufacturing": 55.5,
+        "composite": null
+      },
+      {
+        "date": "2014-06-01",
+        "manufacturing": 51.0,
+        "non_manufacturing": 55.0,
+        "composite": null
+      },
+      {
+        "date": "2014-07-01",
+        "manufacturing": 51.7,
+        "non_manufacturing": 54.2,
+        "composite": null
+      },
+      {
+        "date": "2014-08-01",
+        "manufacturing": 51.1,
+        "non_manufacturing": 54.4,
+        "composite": null
+      },
+      {
+        "date": "2014-09-01",
+        "manufacturing": 51.1,
+        "non_manufacturing": 54.0,
+        "composite": null
+      },
+      {
+        "date": "2014-10-01",
+        "manufacturing": 50.8,
+        "non_manufacturing": 53.8,
+        "composite": null
+      },
+      {
+        "date": "2014-11-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 53.9,
+        "composite": null
+      },
+      {
+        "date": "2014-12-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 54.1,
+        "composite": null
+      },
+      {
+        "date": "2015-01-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 53.7,
+        "composite": null
+      },
+      {
+        "date": "2015-02-01",
+        "manufacturing": 49.9,
+        "non_manufacturing": 53.9,
+        "composite": null
+      },
+      {
+        "date": "2015-03-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 53.7,
+        "composite": null
+      },
+      {
+        "date": "2015-04-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 53.4,
+        "composite": null
+      },
+      {
+        "date": "2015-05-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 53.2,
+        "composite": null
+      },
+      {
+        "date": "2015-06-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 53.8,
+        "composite": null
+      },
+      {
+        "date": "2015-07-01",
+        "manufacturing": 50.0,
+        "non_manufacturing": 53.9,
+        "composite": null
+      },
+      {
+        "date": "2015-08-01",
+        "manufacturing": 49.7,
+        "non_manufacturing": 53.4,
+        "composite": null
+      },
+      {
+        "date": "2015-09-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 53.4,
+        "composite": null
+      },
+      {
+        "date": "2015-10-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 53.1,
+        "composite": null
+      },
+      {
+        "date": "2015-11-01",
+        "manufacturing": 49.6,
+        "non_manufacturing": 53.6,
+        "composite": null
+      },
+      {
+        "date": "2015-12-01",
+        "manufacturing": 49.7,
+        "non_manufacturing": 54.4,
+        "composite": null
+      },
+      {
+        "date": "2016-01-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 53.5,
+        "composite": null
+      },
+      {
+        "date": "2016-02-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 52.7,
+        "composite": null
+      },
+      {
+        "date": "2016-03-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 53.8,
+        "composite": null
+      },
+      {
+        "date": "2016-04-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 53.5,
+        "composite": null
+      },
+      {
+        "date": "2016-05-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 53.1,
+        "composite": null
+      },
+      {
+        "date": "2016-06-01",
+        "manufacturing": 50.0,
+        "non_manufacturing": 53.7,
+        "composite": null
+      },
+      {
+        "date": "2016-07-01",
+        "manufacturing": 49.9,
+        "non_manufacturing": 53.9,
+        "composite": null
+      },
+      {
+        "date": "2016-08-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 53.5,
+        "composite": null
+      },
+      {
+        "date": "2016-09-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 53.7,
+        "composite": null
+      },
+      {
+        "date": "2016-10-01",
+        "manufacturing": 51.2,
+        "non_manufacturing": 54.0,
+        "composite": null
+      },
+      {
+        "date": "2016-11-01",
+        "manufacturing": 51.7,
+        "non_manufacturing": 54.7,
+        "composite": null
+      },
+      {
+        "date": "2016-12-01",
+        "manufacturing": 51.4,
+        "non_manufacturing": 54.5,
+        "composite": null
+      },
+      {
+        "date": "2017-01-01",
+        "manufacturing": 51.3,
+        "non_manufacturing": 54.6,
+        "composite": 54.0
+      },
+      {
+        "date": "2017-02-01",
+        "manufacturing": 51.6,
+        "non_manufacturing": 54.2,
+        "composite": 54.0
+      },
+      {
+        "date": "2017-03-01",
+        "manufacturing": 51.8,
+        "non_manufacturing": 55.1,
+        "composite": 54.7
+      },
+      {
+        "date": "2017-04-01",
+        "manufacturing": 51.2,
+        "non_manufacturing": 54.0,
+        "composite": 53.9
+      },
+      {
+        "date": "2017-05-01",
+        "manufacturing": 51.2,
+        "non_manufacturing": 54.5,
+        "composite": 54.1
+      },
+      {
+        "date": "2017-06-01",
+        "manufacturing": 51.7,
+        "non_manufacturing": 54.9,
+        "composite": 54.7
+      },
+      {
+        "date": "2017-07-01",
+        "manufacturing": 51.4,
+        "non_manufacturing": 54.5,
+        "composite": 54.1
+      },
+      {
+        "date": "2017-08-01",
+        "manufacturing": 51.7,
+        "non_manufacturing": 53.4,
+        "composite": 53.7
+      },
+      {
+        "date": "2017-09-01",
+        "manufacturing": 52.4,
+        "non_manufacturing": 55.4,
+        "composite": 55.1
+      },
+      {
+        "date": "2017-10-01",
+        "manufacturing": 51.6,
+        "non_manufacturing": 54.3,
+        "composite": 53.9
+      },
+      {
+        "date": "2017-11-01",
+        "manufacturing": 51.8,
+        "non_manufacturing": 54.8,
+        "composite": 54.6
+      },
+      {
+        "date": "2017-12-01",
+        "manufacturing": 51.6,
+        "non_manufacturing": 55.0,
+        "composite": 54.6
+      },
+      {
+        "date": "2018-01-01",
+        "manufacturing": 51.3,
+        "non_manufacturing": 55.3,
+        "composite": 54.6
+      },
+      {
+        "date": "2018-02-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 54.4,
+        "composite": 52.9
+      },
+      {
+        "date": "2018-03-01",
+        "manufacturing": 51.5,
+        "non_manufacturing": 54.6,
+        "composite": 54.0
+      },
+      {
+        "date": "2018-04-01",
+        "manufacturing": 51.4,
+        "non_manufacturing": 54.8,
+        "composite": 54.1
+      },
+      {
+        "date": "2018-05-01",
+        "manufacturing": 51.9,
+        "non_manufacturing": 54.9,
+        "composite": 54.6
+      },
+      {
+        "date": "2018-06-01",
+        "manufacturing": 51.5,
+        "non_manufacturing": 55.0,
+        "composite": 54.4
+      },
+      {
+        "date": "2018-07-01",
+        "manufacturing": 51.2,
+        "non_manufacturing": 54.0,
+        "composite": 53.6
+      },
+      {
+        "date": "2018-08-01",
+        "manufacturing": 51.3,
+        "non_manufacturing": 54.2,
+        "composite": 53.8
+      },
+      {
+        "date": "2018-09-01",
+        "manufacturing": 50.8,
+        "non_manufacturing": 54.9,
+        "composite": 54.1
+      },
+      {
+        "date": "2018-10-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 53.9,
+        "composite": 53.1
+      },
+      {
+        "date": "2018-11-01",
+        "manufacturing": 50.0,
+        "non_manufacturing": 53.4,
+        "composite": 52.8
+      },
+      {
+        "date": "2018-12-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 53.8,
+        "composite": 52.6
+      },
+      {
+        "date": "2019-01-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 54.7,
+        "composite": 53.2
+      },
+      {
+        "date": "2019-02-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 54.3,
+        "composite": 52.4
+      },
+      {
+        "date": "2019-03-01",
+        "manufacturing": 50.5,
+        "non_manufacturing": 54.8,
+        "composite": 54.0
+      },
+      {
+        "date": "2019-04-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 54.3,
+        "composite": 53.4
+      },
+      {
+        "date": "2019-05-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 54.3,
+        "composite": 53.3
+      },
+      {
+        "date": "2019-06-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 54.2,
+        "composite": 53.0
+      },
+      {
+        "date": "2019-07-01",
+        "manufacturing": 49.7,
+        "non_manufacturing": 53.7,
+        "composite": 53.1
+      },
+      {
+        "date": "2019-08-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 53.8,
+        "composite": 53.0
+      },
+      {
+        "date": "2019-09-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 53.7,
+        "composite": 53.1
+      },
+      {
+        "date": "2019-10-01",
+        "manufacturing": 49.3,
+        "non_manufacturing": 52.8,
+        "composite": 52.0
+      },
+      {
+        "date": "2019-11-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 54.4,
+        "composite": 53.7
+      },
+      {
+        "date": "2019-12-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 53.5,
+        "composite": 53.4
+      },
+      {
+        "date": "2020-01-01",
+        "manufacturing": 50.0,
+        "non_manufacturing": 54.1,
+        "composite": 53.0
+      },
+      {
+        "date": "2020-02-01",
+        "manufacturing": 35.7,
+        "non_manufacturing": 29.6,
+        "composite": 28.9
+      },
+      {
+        "date": "2020-03-01",
+        "manufacturing": 52.0,
+        "non_manufacturing": 52.3,
+        "composite": 53.0
+      },
+      {
+        "date": "2020-04-01",
+        "manufacturing": 50.8,
+        "non_manufacturing": 53.2,
+        "composite": 53.4
+      },
+      {
+        "date": "2020-05-01",
+        "manufacturing": 50.6,
+        "non_manufacturing": 53.6,
+        "composite": 53.4
+      },
+      {
+        "date": "2020-06-01",
+        "manufacturing": 50.9,
+        "non_manufacturing": 54.4,
+        "composite": 54.2
+      },
+      {
+        "date": "2020-07-01",
+        "manufacturing": 51.1,
+        "non_manufacturing": 54.2,
+        "composite": 54.1
+      },
+      {
+        "date": "2020-08-01",
+        "manufacturing": 51.0,
+        "non_manufacturing": 55.2,
+        "composite": 54.5
+      },
+      {
+        "date": "2020-09-01",
+        "manufacturing": 51.5,
+        "non_manufacturing": 55.9,
+        "composite": 55.1
+      },
+      {
+        "date": "2020-10-01",
+        "manufacturing": 51.4,
+        "non_manufacturing": 56.2,
+        "composite": 55.3
+      },
+      {
+        "date": "2020-11-01",
+        "manufacturing": 52.1,
+        "non_manufacturing": 56.4,
+        "composite": 55.7
+      },
+      {
+        "date": "2020-12-01",
+        "manufacturing": 51.9,
+        "non_manufacturing": 55.7,
+        "composite": 55.1
+      },
+      {
+        "date": "2021-01-01",
+        "manufacturing": 51.3,
+        "non_manufacturing": 52.4,
+        "composite": 52.8
+      },
+      {
+        "date": "2021-02-01",
+        "manufacturing": 50.6,
+        "non_manufacturing": 51.4,
+        "composite": 51.6
+      },
+      {
+        "date": "2021-03-01",
+        "manufacturing": 51.9,
+        "non_manufacturing": 56.3,
+        "composite": 55.3
+      },
+      {
+        "date": "2021-04-01",
+        "manufacturing": 51.1,
+        "non_manufacturing": 54.9,
+        "composite": 53.8
+      },
+      {
+        "date": "2021-05-01",
+        "manufacturing": 51.0,
+        "non_manufacturing": 55.2,
+        "composite": 54.2
+      },
+      {
+        "date": "2021-06-01",
+        "manufacturing": 50.9,
+        "non_manufacturing": 53.5,
+        "composite": 52.9
+      },
+      {
+        "date": "2021-07-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 53.3,
+        "composite": 52.4
+      },
+      {
+        "date": "2021-08-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 47.5,
+        "composite": 48.9
+      },
+      {
+        "date": "2021-09-01",
+        "manufacturing": 49.6,
+        "non_manufacturing": 53.2,
+        "composite": 51.7
+      },
+      {
+        "date": "2021-10-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 52.4,
+        "composite": 50.8
+      },
+      {
+        "date": "2021-11-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 52.3,
+        "composite": 52.2
+      },
+      {
+        "date": "2021-12-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 52.7,
+        "composite": 52.2
+      },
+      {
+        "date": "2022-01-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 51.1,
+        "composite": 51.0
+      },
+      {
+        "date": "2022-02-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 51.6,
+        "composite": 51.2
+      },
+      {
+        "date": "2022-03-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 48.4,
+        "composite": 48.8
+      },
+      {
+        "date": "2022-04-01",
+        "manufacturing": 47.4,
+        "non_manufacturing": 41.9,
+        "composite": 42.7
+      },
+      {
+        "date": "2022-05-01",
+        "manufacturing": 49.6,
+        "non_manufacturing": 47.8,
+        "composite": 48.4
+      },
+      {
+        "date": "2022-06-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 54.7,
+        "composite": 54.1
+      },
+      {
+        "date": "2022-07-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 53.8,
+        "composite": 52.5
+      },
+      {
+        "date": "2022-08-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 52.6,
+        "composite": 51.7
+      },
+      {
+        "date": "2022-09-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 50.6,
+        "composite": 50.9
+      },
+      {
+        "date": "2022-10-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 48.7,
+        "composite": 49.0
+      },
+      {
+        "date": "2022-11-01",
+        "manufacturing": 48.0,
+        "non_manufacturing": 46.7,
+        "composite": 47.1
+      },
+      {
+        "date": "2022-12-01",
+        "manufacturing": 47.0,
+        "non_manufacturing": 41.6,
+        "composite": 42.6
+      },
+      {
+        "date": "2023-01-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 54.4,
+        "composite": 52.9
+      },
+      {
+        "date": "2023-02-01",
+        "manufacturing": 52.6,
+        "non_manufacturing": 56.3,
+        "composite": 56.4
+      },
+      {
+        "date": "2023-03-01",
+        "manufacturing": 51.9,
+        "non_manufacturing": 58.2,
+        "composite": 57.0
+      },
+      {
+        "date": "2023-04-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 56.4,
+        "composite": 54.4
+      },
+      {
+        "date": "2023-05-01",
+        "manufacturing": 48.8,
+        "non_manufacturing": 54.5,
+        "composite": 52.9
+      },
+      {
+        "date": "2023-06-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 53.2,
+        "composite": 52.3
+      },
+      {
+        "date": "2023-07-01",
+        "manufacturing": 49.3,
+        "non_manufacturing": 51.5,
+        "composite": 51.1
+      },
+      {
+        "date": "2023-08-01",
+        "manufacturing": 49.7,
+        "non_manufacturing": 51.0,
+        "composite": 51.3
+      },
+      {
+        "date": "2023-09-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 51.7,
+        "composite": 52.0
+      },
+      {
+        "date": "2023-10-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 50.6,
+        "composite": 50.7
+      },
+      {
+        "date": "2023-11-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 50.2,
+        "composite": 50.4
+      },
+      {
+        "date": "2023-12-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 50.4,
+        "composite": 50.3
+      },
+      {
+        "date": "2024-01-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 50.7,
+        "composite": 50.9
+      },
+      {
+        "date": "2024-02-01",
+        "manufacturing": 49.1,
+        "non_manufacturing": 51.4,
+        "composite": 50.9
+      },
+      {
+        "date": "2024-03-01",
+        "manufacturing": 50.8,
+        "non_manufacturing": 53.0,
+        "composite": 52.7
+      },
+      {
+        "date": "2024-04-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 51.2,
+        "composite": 51.7
+      },
+      {
+        "date": "2024-05-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 51.1,
+        "composite": 51.0
+      },
+      {
+        "date": "2024-06-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 50.5,
+        "composite": 50.5
+      },
+      {
+        "date": "2024-07-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 50.2,
+        "composite": 50.2
+      },
+      {
+        "date": "2024-08-01",
+        "manufacturing": 49.1,
+        "non_manufacturing": 50.3,
+        "composite": 50.1
+      },
+      {
+        "date": "2024-09-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 50.0,
+        "composite": 50.4
+      },
+      {
+        "date": "2024-10-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 50.2,
+        "composite": 50.8
+      },
+      {
+        "date": "2024-11-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 50.0,
+        "composite": 50.8
+      },
+      {
+        "date": "2024-12-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 52.2,
+        "composite": 52.2
+      },
+      {
+        "date": "2025-01-01",
+        "manufacturing": 49.1,
+        "non_manufacturing": 50.2,
+        "composite": 50.1
+      },
+      {
+        "date": "2025-02-01",
+        "manufacturing": 50.2,
+        "non_manufacturing": 50.4,
+        "composite": 51.1
+      },
+      {
+        "date": "2025-03-01",
+        "manufacturing": 50.5,
+        "non_manufacturing": 50.8,
+        "composite": 51.4
+      },
+      {
+        "date": "2025-04-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 50.4,
+        "composite": 50.2
+      },
+      {
+        "date": "2025-05-01",
+        "manufacturing": 49.5,
+        "non_manufacturing": 50.3,
+        "composite": 50.4
+      },
+      {
+        "date": "2025-06-01",
+        "manufacturing": 49.7,
+        "non_manufacturing": 50.5,
+        "composite": 50.7
+      },
+      {
+        "date": "2025-07-01",
+        "manufacturing": 49.3,
+        "non_manufacturing": 50.1,
+        "composite": 50.2
+      },
+      {
+        "date": "2025-08-01",
+        "manufacturing": 49.4,
+        "non_manufacturing": 50.3,
+        "composite": 50.5
+      },
+      {
+        "date": "2025-09-01",
+        "manufacturing": 49.8,
+        "non_manufacturing": 50.0,
+        "composite": 50.6
+      },
+      {
+        "date": "2025-10-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 50.1,
+        "composite": 50.0
+      },
+      {
+        "date": "2025-11-01",
+        "manufacturing": 49.2,
+        "non_manufacturing": 49.5,
+        "composite": 49.7
+      },
+      {
+        "date": "2025-12-01",
+        "manufacturing": 50.1,
+        "non_manufacturing": 50.2,
+        "composite": 50.7
+      },
+      {
+        "date": "2026-01-01",
+        "manufacturing": 49.3,
+        "non_manufacturing": 49.4,
+        "composite": 49.8
+      },
+      {
+        "date": "2026-02-01",
+        "manufacturing": 49.0,
+        "non_manufacturing": 49.5,
+        "composite": 49.5
+      }
+    ],
+    "latest": {
+      "date": "2026-02-01",
+      "manufacturing": 49.0,
+      "non_manufacturing": 49.5,
+      "composite": 49.5
+    }
+  },
+  "manufacturing_sub": {
+    "data": [
+      {
+        "date": "2010-01-01",
+        "production": 60.5,
+        "new_orders": 59.9,
+        "new_export_orders": 53.2,
+        "in_hand_orders": 49.9,
+        "employment": 50.6,
+        "raw_material_price": 68.5,
+        "producer_prices": null,
+        "supplier_delivery": 51.0
+      },
+      {
+        "date": "2010-02-01",
+        "production": 54.3,
+        "new_orders": 53.7,
+        "new_export_orders": 50.3,
+        "in_hand_orders": 47.1,
+        "employment": 49.9,
+        "raw_material_price": 61.1,
+        "producer_prices": null,
+        "supplier_delivery": 49.7
+      },
+      {
+        "date": "2010-03-01",
+        "production": 58.4,
+        "new_orders": 58.1,
+        "new_export_orders": 54.5,
+        "in_hand_orders": 52.0,
+        "employment": 52.9,
+        "raw_material_price": 65.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2010-04-01",
+        "production": 59.1,
+        "new_orders": 59.3,
+        "new_export_orders": 54.5,
+        "in_hand_orders": 53.4,
+        "employment": 53.2,
+        "raw_material_price": 72.6,
+        "producer_prices": null,
+        "supplier_delivery": 51.1
+      },
+      {
+        "date": "2010-05-01",
+        "production": 58.2,
+        "new_orders": 54.8,
+        "new_export_orders": 53.8,
+        "in_hand_orders": 49.7,
+        "employment": 52.1,
+        "raw_material_price": 58.9,
+        "producer_prices": null,
+        "supplier_delivery": 50.9
+      },
+      {
+        "date": "2010-06-01",
+        "production": 55.8,
+        "new_orders": 52.1,
+        "new_export_orders": 51.7,
+        "in_hand_orders": 47.4,
+        "employment": 50.6,
+        "raw_material_price": 51.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2010-07-01",
+        "production": 52.7,
+        "new_orders": 50.9,
+        "new_export_orders": 51.2,
+        "in_hand_orders": 46.8,
+        "employment": 52.2,
+        "raw_material_price": 50.4,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2010-08-01",
+        "production": 53.1,
+        "new_orders": 53.1,
+        "new_export_orders": 52.2,
+        "in_hand_orders": 48.2,
+        "employment": 51.7,
+        "raw_material_price": 60.5,
+        "producer_prices": null,
+        "supplier_delivery": 50.7
+      },
+      {
+        "date": "2010-09-01",
+        "production": 56.4,
+        "new_orders": 56.3,
+        "new_export_orders": 52.7,
+        "in_hand_orders": 50.9,
+        "employment": 52.4,
+        "raw_material_price": 65.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2010-10-01",
+        "production": 57.1,
+        "new_orders": 58.2,
+        "new_export_orders": 52.6,
+        "in_hand_orders": 50.2,
+        "employment": 52.1,
+        "raw_material_price": 69.9,
+        "producer_prices": null,
+        "supplier_delivery": 49.3
+      },
+      {
+        "date": "2010-11-01",
+        "production": 58.5,
+        "new_orders": 58.3,
+        "new_export_orders": 53.2,
+        "in_hand_orders": 50.5,
+        "employment": 52.0,
+        "raw_material_price": 73.5,
+        "producer_prices": null,
+        "supplier_delivery": 48.9
+      },
+      {
+        "date": "2010-12-01",
+        "production": 57.5,
+        "new_orders": 55.4,
+        "new_export_orders": 53.5,
+        "in_hand_orders": 50.7,
+        "employment": 51.5,
+        "raw_material_price": 66.7,
+        "producer_prices": null,
+        "supplier_delivery": 49.6
+      },
+      {
+        "date": "2011-01-01",
+        "production": 55.3,
+        "new_orders": 54.9,
+        "new_export_orders": 50.7,
+        "in_hand_orders": 46.5,
+        "employment": 49.0,
+        "raw_material_price": 69.3,
+        "producer_prices": null,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2011-02-01",
+        "production": 53.8,
+        "new_orders": 54.3,
+        "new_export_orders": 50.9,
+        "in_hand_orders": 46.6,
+        "employment": 48.9,
+        "raw_material_price": 70.1,
+        "producer_prices": null,
+        "supplier_delivery": 48.2
+      },
+      {
+        "date": "2011-03-01",
+        "production": 55.7,
+        "new_orders": 55.2,
+        "new_export_orders": 52.5,
+        "in_hand_orders": 51.4,
+        "employment": 51.8,
+        "raw_material_price": 68.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2011-04-01",
+        "production": 55.3,
+        "new_orders": 53.8,
+        "new_export_orders": 51.3,
+        "in_hand_orders": 50.7,
+        "employment": 51.8,
+        "raw_material_price": 66.2,
+        "producer_prices": null,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2011-05-01",
+        "production": 54.9,
+        "new_orders": 52.1,
+        "new_export_orders": 51.1,
+        "in_hand_orders": 47.7,
+        "employment": 50.9,
+        "raw_material_price": 60.3,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2011-06-01",
+        "production": 53.1,
+        "new_orders": 50.8,
+        "new_export_orders": 50.5,
+        "in_hand_orders": 45.9,
+        "employment": 50.2,
+        "raw_material_price": 56.7,
+        "producer_prices": null,
+        "supplier_delivery": 49.8
+      },
+      {
+        "date": "2011-07-01",
+        "production": 52.1,
+        "new_orders": 51.1,
+        "new_export_orders": 50.4,
+        "in_hand_orders": 46.5,
+        "employment": 50.5,
+        "raw_material_price": 56.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2011-08-01",
+        "production": 52.3,
+        "new_orders": 51.1,
+        "new_export_orders": 48.3,
+        "in_hand_orders": 47.6,
+        "employment": 50.4,
+        "raw_material_price": 57.2,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2011-09-01",
+        "production": 52.7,
+        "new_orders": 51.3,
+        "new_export_orders": 50.9,
+        "in_hand_orders": 48.9,
+        "employment": 51.0,
+        "raw_material_price": 56.6,
+        "producer_prices": null,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2011-10-01",
+        "production": 52.3,
+        "new_orders": 50.5,
+        "new_export_orders": 48.6,
+        "in_hand_orders": 46.0,
+        "employment": 49.7,
+        "raw_material_price": 46.2,
+        "producer_prices": null,
+        "supplier_delivery": 50.7
+      },
+      {
+        "date": "2011-11-01",
+        "production": 50.9,
+        "new_orders": 47.8,
+        "new_export_orders": 45.6,
+        "in_hand_orders": 45.2,
+        "employment": 49.0,
+        "raw_material_price": 44.4,
+        "producer_prices": null,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2011-12-01",
+        "production": 53.4,
+        "new_orders": 49.8,
+        "new_export_orders": 48.6,
+        "in_hand_orders": 46.6,
+        "employment": 48.7,
+        "raw_material_price": 47.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2012-01-01",
+        "production": 53.6,
+        "new_orders": 50.4,
+        "new_export_orders": 46.9,
+        "in_hand_orders": 43.2,
+        "employment": 47.1,
+        "raw_material_price": 50.0,
+        "producer_prices": null,
+        "supplier_delivery": 49.7
+      },
+      {
+        "date": "2012-02-01",
+        "production": 53.8,
+        "new_orders": 51.0,
+        "new_export_orders": 51.1,
+        "in_hand_orders": 49.4,
+        "employment": 49.5,
+        "raw_material_price": 54.0,
+        "producer_prices": null,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2012-03-01",
+        "production": 55.2,
+        "new_orders": 55.1,
+        "new_export_orders": 51.9,
+        "in_hand_orders": 50.5,
+        "employment": 51.0,
+        "raw_material_price": 55.9,
+        "producer_prices": null,
+        "supplier_delivery": 48.9
+      },
+      {
+        "date": "2012-04-01",
+        "production": 57.2,
+        "new_orders": 54.5,
+        "new_export_orders": 52.2,
+        "in_hand_orders": 48.4,
+        "employment": 51.0,
+        "raw_material_price": 54.8,
+        "producer_prices": null,
+        "supplier_delivery": 49.6
+      },
+      {
+        "date": "2012-05-01",
+        "production": 52.9,
+        "new_orders": 49.8,
+        "new_export_orders": 50.4,
+        "in_hand_orders": 43.6,
+        "employment": 50.5,
+        "raw_material_price": 44.8,
+        "producer_prices": null,
+        "supplier_delivery": 49.0
+      },
+      {
+        "date": "2012-06-01",
+        "production": 52.0,
+        "new_orders": 49.2,
+        "new_export_orders": 47.5,
+        "in_hand_orders": 43.3,
+        "employment": 49.7,
+        "raw_material_price": 41.2,
+        "producer_prices": null,
+        "supplier_delivery": 49.1
+      },
+      {
+        "date": "2012-07-01",
+        "production": 51.8,
+        "new_orders": 49.0,
+        "new_export_orders": 46.6,
+        "in_hand_orders": 41.9,
+        "employment": 49.5,
+        "raw_material_price": 41.0,
+        "producer_prices": null,
+        "supplier_delivery": 49.0
+      },
+      {
+        "date": "2012-08-01",
+        "production": 50.9,
+        "new_orders": 48.7,
+        "new_export_orders": 46.6,
+        "in_hand_orders": 45.1,
+        "employment": 49.1,
+        "raw_material_price": 46.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2012-09-01",
+        "production": 51.3,
+        "new_orders": 49.8,
+        "new_export_orders": 48.8,
+        "in_hand_orders": 46.5,
+        "employment": 48.9,
+        "raw_material_price": 51.0,
+        "producer_prices": null,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2012-10-01",
+        "production": 52.1,
+        "new_orders": 50.4,
+        "new_export_orders": 49.3,
+        "in_hand_orders": 43.8,
+        "employment": 49.2,
+        "raw_material_price": 54.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2012-11-01",
+        "production": 52.5,
+        "new_orders": 51.2,
+        "new_export_orders": 50.2,
+        "in_hand_orders": 45.3,
+        "employment": 48.7,
+        "raw_material_price": 50.1,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2012-12-01",
+        "production": 52.0,
+        "new_orders": 51.2,
+        "new_export_orders": 50.0,
+        "in_hand_orders": 45.9,
+        "employment": 49.0,
+        "raw_material_price": 53.3,
+        "producer_prices": null,
+        "supplier_delivery": 48.8
+      },
+      {
+        "date": "2013-01-01",
+        "production": 51.3,
+        "new_orders": 51.6,
+        "new_export_orders": 48.5,
+        "in_hand_orders": 44.4,
+        "employment": 47.8,
+        "raw_material_price": 57.2,
+        "producer_prices": null,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2013-02-01",
+        "production": 51.2,
+        "new_orders": 50.1,
+        "new_export_orders": 47.3,
+        "in_hand_orders": 44.4,
+        "employment": 47.6,
+        "raw_material_price": 55.5,
+        "producer_prices": null,
+        "supplier_delivery": 48.3
+      },
+      {
+        "date": "2013-03-01",
+        "production": 52.7,
+        "new_orders": 52.3,
+        "new_export_orders": 50.9,
+        "in_hand_orders": 47.1,
+        "employment": 49.8,
+        "raw_material_price": 50.6,
+        "producer_prices": null,
+        "supplier_delivery": 51.1
+      },
+      {
+        "date": "2013-04-01",
+        "production": 52.6,
+        "new_orders": 51.7,
+        "new_export_orders": 48.6,
+        "in_hand_orders": 43.6,
+        "employment": 49.0,
+        "raw_material_price": 40.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2013-05-01",
+        "production": 53.3,
+        "new_orders": 51.8,
+        "new_export_orders": 49.4,
+        "in_hand_orders": 44.9,
+        "employment": 48.8,
+        "raw_material_price": 45.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2013-06-01",
+        "production": 52.0,
+        "new_orders": 50.4,
+        "new_export_orders": 47.7,
+        "in_hand_orders": 42.9,
+        "employment": 48.7,
+        "raw_material_price": 44.6,
+        "producer_prices": null,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2013-07-01",
+        "production": 52.4,
+        "new_orders": 50.6,
+        "new_export_orders": 49.0,
+        "in_hand_orders": 44.7,
+        "employment": 49.1,
+        "raw_material_price": 50.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2013-08-01",
+        "production": 52.6,
+        "new_orders": 52.4,
+        "new_export_orders": 50.2,
+        "in_hand_orders": 44.8,
+        "employment": 49.3,
+        "raw_material_price": 53.2,
+        "producer_prices": null,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2013-09-01",
+        "production": 52.9,
+        "new_orders": 52.8,
+        "new_export_orders": 50.7,
+        "in_hand_orders": 46.2,
+        "employment": 49.1,
+        "raw_material_price": 54.5,
+        "producer_prices": null,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2013-10-01",
+        "production": 54.4,
+        "new_orders": 52.5,
+        "new_export_orders": 50.4,
+        "in_hand_orders": 45.5,
+        "employment": 49.2,
+        "raw_material_price": 53.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2013-11-01",
+        "production": 54.5,
+        "new_orders": 52.3,
+        "new_export_orders": 50.6,
+        "in_hand_orders": 45.3,
+        "employment": 49.6,
+        "raw_material_price": 52.5,
+        "producer_prices": null,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2013-12-01",
+        "production": 53.9,
+        "new_orders": 52.0,
+        "new_export_orders": 49.8,
+        "in_hand_orders": 45.1,
+        "employment": 48.7,
+        "raw_material_price": 52.6,
+        "producer_prices": null,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2014-01-01",
+        "production": 53.0,
+        "new_orders": 50.9,
+        "new_export_orders": 49.3,
+        "in_hand_orders": 45.7,
+        "employment": 48.2,
+        "raw_material_price": 49.2,
+        "producer_prices": null,
+        "supplier_delivery": 49.8
+      },
+      {
+        "date": "2014-02-01",
+        "production": 52.6,
+        "new_orders": 50.5,
+        "new_export_orders": 48.2,
+        "in_hand_orders": 45.1,
+        "employment": 48.0,
+        "raw_material_price": 47.7,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2014-03-01",
+        "production": 52.7,
+        "new_orders": 50.6,
+        "new_export_orders": 50.1,
+        "in_hand_orders": 44.8,
+        "employment": 48.3,
+        "raw_material_price": 44.4,
+        "producer_prices": null,
+        "supplier_delivery": 49.8
+      },
+      {
+        "date": "2014-04-01",
+        "production": 52.5,
+        "new_orders": 51.2,
+        "new_export_orders": 49.1,
+        "in_hand_orders": 44.9,
+        "employment": 48.3,
+        "raw_material_price": 48.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2014-05-01",
+        "production": 52.8,
+        "new_orders": 52.3,
+        "new_export_orders": 49.3,
+        "in_hand_orders": 46.0,
+        "employment": 48.2,
+        "raw_material_price": 50.0,
+        "producer_prices": null,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2014-06-01",
+        "production": 53.0,
+        "new_orders": 52.8,
+        "new_export_orders": 50.3,
+        "in_hand_orders": 46.2,
+        "employment": 48.6,
+        "raw_material_price": 50.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2014-07-01",
+        "production": 54.2,
+        "new_orders": 53.6,
+        "new_export_orders": 50.8,
+        "in_hand_orders": 46.4,
+        "employment": 48.3,
+        "raw_material_price": 50.5,
+        "producer_prices": null,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2014-08-01",
+        "production": 53.2,
+        "new_orders": 52.5,
+        "new_export_orders": 50.0,
+        "in_hand_orders": 45.9,
+        "employment": 48.2,
+        "raw_material_price": 49.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2014-09-01",
+        "production": 53.6,
+        "new_orders": 52.2,
+        "new_export_orders": 50.2,
+        "in_hand_orders": 45.6,
+        "employment": 48.2,
+        "raw_material_price": 47.4,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2014-10-01",
+        "production": 53.1,
+        "new_orders": 51.6,
+        "new_export_orders": 49.9,
+        "in_hand_orders": 44.7,
+        "employment": 48.4,
+        "raw_material_price": 45.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2014-11-01",
+        "production": 52.5,
+        "new_orders": 50.9,
+        "new_export_orders": 48.4,
+        "in_hand_orders": 43.9,
+        "employment": 48.2,
+        "raw_material_price": 44.7,
+        "producer_prices": null,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2014-12-01",
+        "production": 52.2,
+        "new_orders": 50.4,
+        "new_export_orders": 49.1,
+        "in_hand_orders": 43.8,
+        "employment": 48.1,
+        "raw_material_price": 43.2,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2015-01-01",
+        "production": 51.7,
+        "new_orders": 50.2,
+        "new_export_orders": 48.4,
+        "in_hand_orders": 44.0,
+        "employment": 47.9,
+        "raw_material_price": 41.9,
+        "producer_prices": null,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2015-02-01",
+        "production": 51.4,
+        "new_orders": 50.4,
+        "new_export_orders": 48.5,
+        "in_hand_orders": 43.8,
+        "employment": 47.8,
+        "raw_material_price": 43.9,
+        "producer_prices": null,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2015-03-01",
+        "production": 52.1,
+        "new_orders": 50.2,
+        "new_export_orders": 48.3,
+        "in_hand_orders": 44.1,
+        "employment": 48.4,
+        "raw_material_price": 45.0,
+        "producer_prices": null,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2015-04-01",
+        "production": 52.6,
+        "new_orders": 50.2,
+        "new_export_orders": 48.1,
+        "in_hand_orders": 43.8,
+        "employment": 48.0,
+        "raw_material_price": 47.8,
+        "producer_prices": null,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2015-05-01",
+        "production": 52.9,
+        "new_orders": 50.6,
+        "new_export_orders": 48.9,
+        "in_hand_orders": 44.7,
+        "employment": 48.2,
+        "raw_material_price": 49.4,
+        "producer_prices": null,
+        "supplier_delivery": 50.9
+      },
+      {
+        "date": "2015-06-01",
+        "production": 52.9,
+        "new_orders": 50.1,
+        "new_export_orders": 48.2,
+        "in_hand_orders": 44.6,
+        "employment": 48.1,
+        "raw_material_price": 47.3,
+        "producer_prices": null,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2015-07-01",
+        "production": 52.4,
+        "new_orders": 49.9,
+        "new_export_orders": 47.9,
+        "in_hand_orders": 44.0,
+        "employment": 48.0,
+        "raw_material_price": 44.7,
+        "producer_prices": null,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2015-08-01",
+        "production": 51.7,
+        "new_orders": 49.7,
+        "new_export_orders": 47.7,
+        "in_hand_orders": 44.6,
+        "employment": 47.9,
+        "raw_material_price": 44.9,
+        "producer_prices": null,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2015-09-01",
+        "production": 52.3,
+        "new_orders": 50.2,
+        "new_export_orders": 47.9,
+        "in_hand_orders": 43.8,
+        "employment": 47.9,
+        "raw_material_price": 45.8,
+        "producer_prices": null,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2015-10-01",
+        "production": 52.2,
+        "new_orders": 50.3,
+        "new_export_orders": 47.4,
+        "in_hand_orders": 44.4,
+        "employment": 47.8,
+        "raw_material_price": 44.4,
+        "producer_prices": null,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2015-11-01",
+        "production": 51.9,
+        "new_orders": 49.8,
+        "new_export_orders": 46.4,
+        "in_hand_orders": 43.0,
+        "employment": 47.6,
+        "raw_material_price": 41.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2015-12-01",
+        "production": 52.2,
+        "new_orders": 50.2,
+        "new_export_orders": 47.5,
+        "in_hand_orders": 43.6,
+        "employment": 47.4,
+        "raw_material_price": 42.4,
+        "producer_prices": null,
+        "supplier_delivery": 50.7
+      },
+      {
+        "date": "2016-01-01",
+        "production": 51.4,
+        "new_orders": 49.5,
+        "new_export_orders": 46.9,
+        "in_hand_orders": 43.4,
+        "employment": 47.8,
+        "raw_material_price": 45.1,
+        "producer_prices": null,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2016-02-01",
+        "production": 50.2,
+        "new_orders": 48.6,
+        "new_export_orders": 47.4,
+        "in_hand_orders": 43.9,
+        "employment": 47.6,
+        "raw_material_price": 50.2,
+        "producer_prices": 47.3,
+        "supplier_delivery": 49.8
+      },
+      {
+        "date": "2016-03-01",
+        "production": 52.3,
+        "new_orders": 51.4,
+        "new_export_orders": 50.2,
+        "in_hand_orders": 45.7,
+        "employment": 48.1,
+        "raw_material_price": 55.3,
+        "producer_prices": 50.9,
+        "supplier_delivery": 51.3
+      },
+      {
+        "date": "2016-04-01",
+        "production": 52.2,
+        "new_orders": 51.0,
+        "new_export_orders": 50.1,
+        "in_hand_orders": 44.8,
+        "employment": 47.8,
+        "raw_material_price": 57.6,
+        "producer_prices": 51.7,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2016-05-01",
+        "production": 52.3,
+        "new_orders": 50.7,
+        "new_export_orders": 50.0,
+        "in_hand_orders": 45.1,
+        "employment": 48.2,
+        "raw_material_price": 55.3,
+        "producer_prices": 49.7,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2016-06-01",
+        "production": 52.5,
+        "new_orders": 50.5,
+        "new_export_orders": 49.6,
+        "in_hand_orders": 45.0,
+        "employment": 47.9,
+        "raw_material_price": 51.3,
+        "producer_prices": 47.0,
+        "supplier_delivery": 50.7
+      },
+      {
+        "date": "2016-07-01",
+        "production": 52.1,
+        "new_orders": 50.4,
+        "new_export_orders": 49.0,
+        "in_hand_orders": 45.5,
+        "employment": 48.2,
+        "raw_material_price": 54.6,
+        "producer_prices": 50.0,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2016-08-01",
+        "production": 52.6,
+        "new_orders": 51.3,
+        "new_export_orders": 49.7,
+        "in_hand_orders": 45.0,
+        "employment": 48.4,
+        "raw_material_price": 57.2,
+        "producer_prices": 52.0,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2016-09-01",
+        "production": 52.8,
+        "new_orders": 50.9,
+        "new_export_orders": 50.1,
+        "in_hand_orders": 45.2,
+        "employment": 48.6,
+        "raw_material_price": 57.5,
+        "producer_prices": 51.5,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2016-10-01",
+        "production": 53.3,
+        "new_orders": 52.8,
+        "new_export_orders": 49.2,
+        "in_hand_orders": 45.8,
+        "employment": 48.8,
+        "raw_material_price": 62.6,
+        "producer_prices": 55.5,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2016-11-01",
+        "production": 53.9,
+        "new_orders": 53.2,
+        "new_export_orders": 50.3,
+        "in_hand_orders": 46.7,
+        "employment": 49.2,
+        "raw_material_price": 68.3,
+        "producer_prices": 58.3,
+        "supplier_delivery": 49.7
+      },
+      {
+        "date": "2016-12-01",
+        "production": 53.3,
+        "new_orders": 53.2,
+        "new_export_orders": 50.1,
+        "in_hand_orders": 46.2,
+        "employment": 48.9,
+        "raw_material_price": 69.6,
+        "producer_prices": 58.8,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2017-01-01",
+        "production": 53.1,
+        "new_orders": 52.8,
+        "new_export_orders": 50.3,
+        "in_hand_orders": 46.3,
+        "employment": 49.2,
+        "raw_material_price": 64.5,
+        "producer_prices": 54.7,
+        "supplier_delivery": 49.8
+      },
+      {
+        "date": "2017-02-01",
+        "production": 53.7,
+        "new_orders": 53.0,
+        "new_export_orders": 50.8,
+        "in_hand_orders": 46.0,
+        "employment": 49.7,
+        "raw_material_price": 64.2,
+        "producer_prices": 56.3,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2017-03-01",
+        "production": 54.2,
+        "new_orders": 53.3,
+        "new_export_orders": 51.0,
+        "in_hand_orders": 46.1,
+        "employment": 50.0,
+        "raw_material_price": 59.3,
+        "producer_prices": 53.2,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2017-04-01",
+        "production": 53.8,
+        "new_orders": 52.3,
+        "new_export_orders": 50.6,
+        "in_hand_orders": 45.0,
+        "employment": 49.2,
+        "raw_material_price": 51.8,
+        "producer_prices": 48.7,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2017-05-01",
+        "production": 53.4,
+        "new_orders": 52.3,
+        "new_export_orders": 50.7,
+        "in_hand_orders": 45.4,
+        "employment": 49.4,
+        "raw_material_price": 49.5,
+        "producer_prices": 47.6,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2017-06-01",
+        "production": 54.4,
+        "new_orders": 53.1,
+        "new_export_orders": 52.0,
+        "in_hand_orders": 47.2,
+        "employment": 49.0,
+        "raw_material_price": 50.4,
+        "producer_prices": 49.1,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2017-07-01",
+        "production": 53.5,
+        "new_orders": 52.8,
+        "new_export_orders": 50.9,
+        "in_hand_orders": 46.3,
+        "employment": 49.2,
+        "raw_material_price": 57.9,
+        "producer_prices": 52.7,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2017-08-01",
+        "production": 54.1,
+        "new_orders": 53.1,
+        "new_export_orders": 50.4,
+        "in_hand_orders": 46.1,
+        "employment": 49.1,
+        "raw_material_price": 65.3,
+        "producer_prices": 57.4,
+        "supplier_delivery": 49.3
+      },
+      {
+        "date": "2017-09-01",
+        "production": 54.7,
+        "new_orders": 54.8,
+        "new_export_orders": 51.3,
+        "in_hand_orders": 47.4,
+        "employment": 49.0,
+        "raw_material_price": 68.4,
+        "producer_prices": 59.4,
+        "supplier_delivery": 49.3
+      },
+      {
+        "date": "2017-10-01",
+        "production": 53.4,
+        "new_orders": 52.9,
+        "new_export_orders": 50.1,
+        "in_hand_orders": 45.6,
+        "employment": 49.0,
+        "raw_material_price": 63.4,
+        "producer_prices": 55.2,
+        "supplier_delivery": 48.7
+      },
+      {
+        "date": "2017-11-01",
+        "production": 54.3,
+        "new_orders": 53.6,
+        "new_export_orders": 50.8,
+        "in_hand_orders": 46.6,
+        "employment": 48.8,
+        "raw_material_price": 59.8,
+        "producer_prices": 53.8,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2017-12-01",
+        "production": 54.0,
+        "new_orders": 53.4,
+        "new_export_orders": 51.9,
+        "in_hand_orders": 46.3,
+        "employment": 48.5,
+        "raw_material_price": 62.2,
+        "producer_prices": 54.4,
+        "supplier_delivery": 49.3
+      },
+      {
+        "date": "2018-01-01",
+        "production": 53.5,
+        "new_orders": 52.6,
+        "new_export_orders": 49.5,
+        "in_hand_orders": 45.3,
+        "employment": 48.3,
+        "raw_material_price": 59.7,
+        "producer_prices": 51.8,
+        "supplier_delivery": 49.2
+      },
+      {
+        "date": "2018-02-01",
+        "production": 50.7,
+        "new_orders": 51.0,
+        "new_export_orders": 49.0,
+        "in_hand_orders": 44.9,
+        "employment": 48.1,
+        "raw_material_price": 53.4,
+        "producer_prices": 49.2,
+        "supplier_delivery": 48.4
+      },
+      {
+        "date": "2018-03-01",
+        "production": 53.1,
+        "new_orders": 53.3,
+        "new_export_orders": 51.3,
+        "in_hand_orders": 46.0,
+        "employment": 49.1,
+        "raw_material_price": 53.4,
+        "producer_prices": 48.9,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2018-04-01",
+        "production": 53.1,
+        "new_orders": 52.9,
+        "new_export_orders": 50.7,
+        "in_hand_orders": 46.2,
+        "employment": 49.0,
+        "raw_material_price": 53.0,
+        "producer_prices": 50.2,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2018-05-01",
+        "production": 54.1,
+        "new_orders": 53.8,
+        "new_export_orders": 51.2,
+        "in_hand_orders": 45.9,
+        "employment": 49.1,
+        "raw_material_price": 56.7,
+        "producer_prices": 53.2,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2018-06-01",
+        "production": 53.6,
+        "new_orders": 53.2,
+        "new_export_orders": 49.8,
+        "in_hand_orders": 45.5,
+        "employment": 49.0,
+        "raw_material_price": 57.7,
+        "producer_prices": 53.3,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2018-07-01",
+        "production": 53.0,
+        "new_orders": 52.3,
+        "new_export_orders": 49.8,
+        "in_hand_orders": 45.7,
+        "employment": 49.2,
+        "raw_material_price": 54.3,
+        "producer_prices": 50.5,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2018-08-01",
+        "production": 53.3,
+        "new_orders": 52.2,
+        "new_export_orders": 49.4,
+        "in_hand_orders": 46.7,
+        "employment": 49.4,
+        "raw_material_price": 58.7,
+        "producer_prices": 54.3,
+        "supplier_delivery": 49.6
+      },
+      {
+        "date": "2018-09-01",
+        "production": 53.0,
+        "new_orders": 52.0,
+        "new_export_orders": 48.0,
+        "in_hand_orders": 45.2,
+        "employment": 48.3,
+        "raw_material_price": 59.8,
+        "producer_prices": 54.3,
+        "supplier_delivery": 49.7
+      },
+      {
+        "date": "2018-10-01",
+        "production": 52.0,
+        "new_orders": 50.8,
+        "new_export_orders": 46.9,
+        "in_hand_orders": 44.3,
+        "employment": 48.1,
+        "raw_material_price": 58.0,
+        "producer_prices": 52.0,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2018-11-01",
+        "production": 51.9,
+        "new_orders": 50.4,
+        "new_export_orders": 47.0,
+        "in_hand_orders": 44.3,
+        "employment": 48.3,
+        "raw_material_price": 50.3,
+        "producer_prices": 46.4,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2018-12-01",
+        "production": 50.8,
+        "new_orders": 49.7,
+        "new_export_orders": 46.6,
+        "in_hand_orders": 44.1,
+        "employment": 48.0,
+        "raw_material_price": 44.8,
+        "producer_prices": 43.3,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2019-01-01",
+        "production": 50.9,
+        "new_orders": 49.6,
+        "new_export_orders": 46.9,
+        "in_hand_orders": 43.7,
+        "employment": 47.8,
+        "raw_material_price": 46.3,
+        "producer_prices": 44.5,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2019-02-01",
+        "production": 49.5,
+        "new_orders": 50.6,
+        "new_export_orders": 45.2,
+        "in_hand_orders": 43.6,
+        "employment": 47.5,
+        "raw_material_price": 51.9,
+        "producer_prices": 48.5,
+        "supplier_delivery": 49.8
+      },
+      {
+        "date": "2019-03-01",
+        "production": 52.7,
+        "new_orders": 51.6,
+        "new_export_orders": 47.1,
+        "in_hand_orders": 46.4,
+        "employment": 47.6,
+        "raw_material_price": 53.5,
+        "producer_prices": 51.4,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2019-04-01",
+        "production": 52.1,
+        "new_orders": 51.4,
+        "new_export_orders": 49.2,
+        "in_hand_orders": 44.0,
+        "employment": 47.2,
+        "raw_material_price": 53.1,
+        "producer_prices": 52.0,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2019-05-01",
+        "production": 51.7,
+        "new_orders": 49.8,
+        "new_export_orders": 46.5,
+        "in_hand_orders": 44.3,
+        "employment": 47.0,
+        "raw_material_price": 51.8,
+        "producer_prices": 49.0,
+        "supplier_delivery": 50.9
+      },
+      {
+        "date": "2019-06-01",
+        "production": 51.3,
+        "new_orders": 49.6,
+        "new_export_orders": 46.3,
+        "in_hand_orders": 44.5,
+        "employment": 46.9,
+        "raw_material_price": 49.0,
+        "producer_prices": 45.4,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2019-07-01",
+        "production": 52.1,
+        "new_orders": 49.8,
+        "new_export_orders": 46.9,
+        "in_hand_orders": 44.7,
+        "employment": 47.1,
+        "raw_material_price": 50.7,
+        "producer_prices": 46.9,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2019-08-01",
+        "production": 51.9,
+        "new_orders": 49.7,
+        "new_export_orders": 47.2,
+        "in_hand_orders": 44.8,
+        "employment": 46.9,
+        "raw_material_price": 48.6,
+        "producer_prices": 46.7,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2019-09-01",
+        "production": 52.3,
+        "new_orders": 50.5,
+        "new_export_orders": 48.2,
+        "in_hand_orders": 44.7,
+        "employment": 47.0,
+        "raw_material_price": 52.2,
+        "producer_prices": 49.9,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2019-10-01",
+        "production": 50.8,
+        "new_orders": 49.6,
+        "new_export_orders": 47.0,
+        "in_hand_orders": 44.9,
+        "employment": 47.3,
+        "raw_material_price": 50.4,
+        "producer_prices": 48.0,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2019-11-01",
+        "production": 52.6,
+        "new_orders": 51.3,
+        "new_export_orders": 48.8,
+        "in_hand_orders": 44.9,
+        "employment": 47.3,
+        "raw_material_price": 49.0,
+        "producer_prices": 47.3,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2019-12-01",
+        "production": 53.2,
+        "new_orders": 51.2,
+        "new_export_orders": 50.3,
+        "in_hand_orders": 45.0,
+        "employment": 47.3,
+        "raw_material_price": 51.8,
+        "producer_prices": 49.2,
+        "supplier_delivery": 51.1
+      },
+      {
+        "date": "2020-01-01",
+        "production": 51.3,
+        "new_orders": 51.4,
+        "new_export_orders": 48.7,
+        "in_hand_orders": 46.3,
+        "employment": 47.5,
+        "raw_material_price": 53.8,
+        "producer_prices": 49.0,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2020-02-01",
+        "production": 27.8,
+        "new_orders": 29.3,
+        "new_export_orders": 28.7,
+        "in_hand_orders": 35.6,
+        "employment": 31.8,
+        "raw_material_price": 51.4,
+        "producer_prices": 44.3,
+        "supplier_delivery": 32.1
+      },
+      {
+        "date": "2020-03-01",
+        "production": 54.1,
+        "new_orders": 52.0,
+        "new_export_orders": 46.4,
+        "in_hand_orders": 46.3,
+        "employment": 50.9,
+        "raw_material_price": 45.5,
+        "producer_prices": 43.8,
+        "supplier_delivery": 48.2
+      },
+      {
+        "date": "2020-04-01",
+        "production": 53.7,
+        "new_orders": 50.2,
+        "new_export_orders": 33.5,
+        "in_hand_orders": 43.6,
+        "employment": 50.2,
+        "raw_material_price": 42.5,
+        "producer_prices": 42.2,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2020-05-01",
+        "production": 53.2,
+        "new_orders": 50.9,
+        "new_export_orders": 35.3,
+        "in_hand_orders": 44.1,
+        "employment": 49.4,
+        "raw_material_price": 51.6,
+        "producer_prices": 48.7,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2020-06-01",
+        "production": 53.9,
+        "new_orders": 51.4,
+        "new_export_orders": 42.6,
+        "in_hand_orders": 44.8,
+        "employment": 49.1,
+        "raw_material_price": 56.8,
+        "producer_prices": 52.4,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2020-07-01",
+        "production": 54.0,
+        "new_orders": 51.7,
+        "new_export_orders": 48.4,
+        "in_hand_orders": 45.6,
+        "employment": 49.3,
+        "raw_material_price": 58.1,
+        "producer_prices": 52.2,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2020-08-01",
+        "production": 53.5,
+        "new_orders": 52.0,
+        "new_export_orders": 49.1,
+        "in_hand_orders": 46.0,
+        "employment": 49.4,
+        "raw_material_price": 58.3,
+        "producer_prices": 53.2,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2020-09-01",
+        "production": 54.0,
+        "new_orders": 52.8,
+        "new_export_orders": 50.8,
+        "in_hand_orders": 46.1,
+        "employment": 49.6,
+        "raw_material_price": 58.5,
+        "producer_prices": 52.5,
+        "supplier_delivery": 50.7
+      },
+      {
+        "date": "2020-10-01",
+        "production": 53.9,
+        "new_orders": 52.8,
+        "new_export_orders": 51.0,
+        "in_hand_orders": 47.2,
+        "employment": 49.3,
+        "raw_material_price": 58.8,
+        "producer_prices": 53.2,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2020-11-01",
+        "production": 54.7,
+        "new_orders": 53.9,
+        "new_export_orders": 51.5,
+        "in_hand_orders": 46.7,
+        "employment": 49.5,
+        "raw_material_price": 62.6,
+        "producer_prices": 56.5,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2020-12-01",
+        "production": 54.2,
+        "new_orders": 53.6,
+        "new_export_orders": 51.3,
+        "in_hand_orders": 47.1,
+        "employment": 49.6,
+        "raw_material_price": 68.0,
+        "producer_prices": 58.9,
+        "supplier_delivery": 49.9
+      },
+      {
+        "date": "2021-01-01",
+        "production": 53.5,
+        "new_orders": 52.3,
+        "new_export_orders": 50.2,
+        "in_hand_orders": 47.3,
+        "employment": 48.4,
+        "raw_material_price": 67.1,
+        "producer_prices": 57.2,
+        "supplier_delivery": 48.8
+      },
+      {
+        "date": "2021-02-01",
+        "production": 51.9,
+        "new_orders": 51.5,
+        "new_export_orders": 48.8,
+        "in_hand_orders": 46.1,
+        "employment": 48.1,
+        "raw_material_price": 66.7,
+        "producer_prices": 58.5,
+        "supplier_delivery": 47.9
+      },
+      {
+        "date": "2021-03-01",
+        "production": 53.9,
+        "new_orders": 53.6,
+        "new_export_orders": 51.2,
+        "in_hand_orders": 46.6,
+        "employment": 50.1,
+        "raw_material_price": 69.4,
+        "producer_prices": 59.8,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2021-04-01",
+        "production": 52.2,
+        "new_orders": 52.0,
+        "new_export_orders": 50.4,
+        "in_hand_orders": 46.4,
+        "employment": 49.6,
+        "raw_material_price": 66.9,
+        "producer_prices": 57.3,
+        "supplier_delivery": 48.7
+      },
+      {
+        "date": "2021-05-01",
+        "production": 52.7,
+        "new_orders": 51.3,
+        "new_export_orders": 48.3,
+        "in_hand_orders": 45.9,
+        "employment": 48.9,
+        "raw_material_price": 72.8,
+        "producer_prices": 60.6,
+        "supplier_delivery": 47.6
+      },
+      {
+        "date": "2021-06-01",
+        "production": 51.9,
+        "new_orders": 51.5,
+        "new_export_orders": 48.1,
+        "in_hand_orders": 46.6,
+        "employment": 49.2,
+        "raw_material_price": 61.2,
+        "producer_prices": 51.4,
+        "supplier_delivery": 47.9
+      },
+      {
+        "date": "2021-07-01",
+        "production": 51.0,
+        "new_orders": 50.9,
+        "new_export_orders": 47.7,
+        "in_hand_orders": 46.1,
+        "employment": 49.6,
+        "raw_material_price": 62.9,
+        "producer_prices": 53.8,
+        "supplier_delivery": 48.9
+      },
+      {
+        "date": "2021-08-01",
+        "production": 50.9,
+        "new_orders": 49.6,
+        "new_export_orders": 46.7,
+        "in_hand_orders": 45.9,
+        "employment": 49.6,
+        "raw_material_price": 61.3,
+        "producer_prices": 53.4,
+        "supplier_delivery": 48.0
+      },
+      {
+        "date": "2021-09-01",
+        "production": 49.5,
+        "new_orders": 49.3,
+        "new_export_orders": 46.2,
+        "in_hand_orders": 45.6,
+        "employment": 49.0,
+        "raw_material_price": 63.5,
+        "producer_prices": 56.4,
+        "supplier_delivery": 48.1
+      },
+      {
+        "date": "2021-10-01",
+        "production": 48.4,
+        "new_orders": 48.8,
+        "new_export_orders": 46.6,
+        "in_hand_orders": 45.0,
+        "employment": 48.8,
+        "raw_material_price": 72.1,
+        "producer_prices": 61.1,
+        "supplier_delivery": 46.7
+      },
+      {
+        "date": "2021-11-01",
+        "production": 52.0,
+        "new_orders": 49.4,
+        "new_export_orders": 48.5,
+        "in_hand_orders": 45.7,
+        "employment": 48.9,
+        "raw_material_price": 52.9,
+        "producer_prices": 48.9,
+        "supplier_delivery": 48.2
+      },
+      {
+        "date": "2021-12-01",
+        "production": 51.4,
+        "new_orders": 49.7,
+        "new_export_orders": 48.1,
+        "in_hand_orders": 45.6,
+        "employment": 49.1,
+        "raw_material_price": 48.1,
+        "producer_prices": 45.5,
+        "supplier_delivery": 48.3
+      },
+      {
+        "date": "2022-01-01",
+        "production": 50.9,
+        "new_orders": 49.3,
+        "new_export_orders": 48.4,
+        "in_hand_orders": 45.8,
+        "employment": 48.9,
+        "raw_material_price": 56.4,
+        "producer_prices": 50.9,
+        "supplier_delivery": 47.6
+      },
+      {
+        "date": "2022-02-01",
+        "production": 50.4,
+        "new_orders": 50.7,
+        "new_export_orders": 49.0,
+        "in_hand_orders": 45.2,
+        "employment": 49.2,
+        "raw_material_price": 60.0,
+        "producer_prices": 54.1,
+        "supplier_delivery": 48.2
+      },
+      {
+        "date": "2022-03-01",
+        "production": 49.5,
+        "new_orders": 48.8,
+        "new_export_orders": 47.2,
+        "in_hand_orders": 46.1,
+        "employment": 48.6,
+        "raw_material_price": 66.1,
+        "producer_prices": 56.7,
+        "supplier_delivery": 46.5
+      },
+      {
+        "date": "2022-04-01",
+        "production": 44.4,
+        "new_orders": 42.6,
+        "new_export_orders": 41.6,
+        "in_hand_orders": 46.0,
+        "employment": 47.2,
+        "raw_material_price": 64.2,
+        "producer_prices": 54.4,
+        "supplier_delivery": 37.2
+      },
+      {
+        "date": "2022-05-01",
+        "production": 49.7,
+        "new_orders": 48.2,
+        "new_export_orders": 46.2,
+        "in_hand_orders": 45.0,
+        "employment": 47.6,
+        "raw_material_price": 55.8,
+        "producer_prices": 49.5,
+        "supplier_delivery": 44.1
+      },
+      {
+        "date": "2022-06-01",
+        "production": 52.8,
+        "new_orders": 50.4,
+        "new_export_orders": 49.5,
+        "in_hand_orders": 44.2,
+        "employment": 48.7,
+        "raw_material_price": 52.0,
+        "producer_prices": 46.3,
+        "supplier_delivery": 51.3
+      },
+      {
+        "date": "2022-07-01",
+        "production": 49.8,
+        "new_orders": 48.5,
+        "new_export_orders": 47.4,
+        "in_hand_orders": 42.6,
+        "employment": 48.6,
+        "raw_material_price": 40.4,
+        "producer_prices": 40.1,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2022-08-01",
+        "production": 49.8,
+        "new_orders": 49.2,
+        "new_export_orders": 48.1,
+        "in_hand_orders": 43.1,
+        "employment": 48.9,
+        "raw_material_price": 44.3,
+        "producer_prices": 44.5,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2022-09-01",
+        "production": 51.5,
+        "new_orders": 49.8,
+        "new_export_orders": 47.0,
+        "in_hand_orders": 44.1,
+        "employment": 49.0,
+        "raw_material_price": 51.3,
+        "producer_prices": 47.1,
+        "supplier_delivery": 48.7
+      },
+      {
+        "date": "2022-10-01",
+        "production": 49.6,
+        "new_orders": 48.1,
+        "new_export_orders": 47.6,
+        "in_hand_orders": 43.9,
+        "employment": 48.3,
+        "raw_material_price": 53.3,
+        "producer_prices": 48.7,
+        "supplier_delivery": 47.1
+      },
+      {
+        "date": "2022-11-01",
+        "production": 47.8,
+        "new_orders": 46.4,
+        "new_export_orders": 46.7,
+        "in_hand_orders": 43.4,
+        "employment": 47.4,
+        "raw_material_price": 50.7,
+        "producer_prices": 47.4,
+        "supplier_delivery": 46.7
+      },
+      {
+        "date": "2022-12-01",
+        "production": 44.6,
+        "new_orders": 43.9,
+        "new_export_orders": 44.2,
+        "in_hand_orders": 43.1,
+        "employment": 44.8,
+        "raw_material_price": 51.6,
+        "producer_prices": 49.0,
+        "supplier_delivery": 40.1
+      },
+      {
+        "date": "2023-01-01",
+        "production": 49.8,
+        "new_orders": 50.9,
+        "new_export_orders": 46.1,
+        "in_hand_orders": 44.5,
+        "employment": 47.7,
+        "raw_material_price": 52.2,
+        "producer_prices": 48.7,
+        "supplier_delivery": 47.6
+      },
+      {
+        "date": "2023-02-01",
+        "production": 56.7,
+        "new_orders": 54.1,
+        "new_export_orders": 52.4,
+        "in_hand_orders": 49.3,
+        "employment": 50.2,
+        "raw_material_price": 54.4,
+        "producer_prices": 51.2,
+        "supplier_delivery": 52.0
+      },
+      {
+        "date": "2023-03-01",
+        "production": 54.6,
+        "new_orders": 53.6,
+        "new_export_orders": 50.4,
+        "in_hand_orders": 48.9,
+        "employment": 49.7,
+        "raw_material_price": 50.9,
+        "producer_prices": 48.6,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2023-04-01",
+        "production": 50.2,
+        "new_orders": 48.8,
+        "new_export_orders": 47.6,
+        "in_hand_orders": 46.8,
+        "employment": 48.8,
+        "raw_material_price": 46.4,
+        "producer_prices": 44.9,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2023-05-01",
+        "production": 49.6,
+        "new_orders": 48.3,
+        "new_export_orders": 47.2,
+        "in_hand_orders": 46.1,
+        "employment": 48.4,
+        "raw_material_price": 40.8,
+        "producer_prices": 41.6,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2023-06-01",
+        "production": 50.3,
+        "new_orders": 48.6,
+        "new_export_orders": 46.4,
+        "in_hand_orders": 45.2,
+        "employment": 48.2,
+        "raw_material_price": 45.0,
+        "producer_prices": 43.9,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2023-07-01",
+        "production": 50.2,
+        "new_orders": 49.5,
+        "new_export_orders": 46.3,
+        "in_hand_orders": 45.4,
+        "employment": 48.1,
+        "raw_material_price": 52.4,
+        "producer_prices": 48.6,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2023-08-01",
+        "production": 51.9,
+        "new_orders": 50.2,
+        "new_export_orders": 46.7,
+        "in_hand_orders": 45.9,
+        "employment": 48.0,
+        "raw_material_price": 56.5,
+        "producer_prices": 52.0,
+        "supplier_delivery": 51.6
+      },
+      {
+        "date": "2023-09-01",
+        "production": 52.7,
+        "new_orders": 50.5,
+        "new_export_orders": 47.8,
+        "in_hand_orders": 45.3,
+        "employment": 48.1,
+        "raw_material_price": 59.4,
+        "producer_prices": 53.5,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2023-10-01",
+        "production": 50.9,
+        "new_orders": 49.5,
+        "new_export_orders": 46.8,
+        "in_hand_orders": 44.2,
+        "employment": 48.0,
+        "raw_material_price": 52.6,
+        "producer_prices": 47.7,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2023-11-01",
+        "production": 50.7,
+        "new_orders": 49.4,
+        "new_export_orders": 46.3,
+        "in_hand_orders": 44.4,
+        "employment": 48.1,
+        "raw_material_price": 50.7,
+        "producer_prices": 48.2,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2023-12-01",
+        "production": 50.2,
+        "new_orders": 48.7,
+        "new_export_orders": 45.8,
+        "in_hand_orders": 44.5,
+        "employment": 47.9,
+        "raw_material_price": 51.5,
+        "producer_prices": 47.7,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2024-01-01",
+        "production": 51.3,
+        "new_orders": 49.0,
+        "new_export_orders": 47.2,
+        "in_hand_orders": 44.3,
+        "employment": 47.6,
+        "raw_material_price": 50.4,
+        "producer_prices": 47.0,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2024-02-01",
+        "production": 49.8,
+        "new_orders": 49.0,
+        "new_export_orders": 46.3,
+        "in_hand_orders": 43.5,
+        "employment": 47.5,
+        "raw_material_price": 50.1,
+        "producer_prices": 48.1,
+        "supplier_delivery": 48.8
+      },
+      {
+        "date": "2024-03-01",
+        "production": 52.2,
+        "new_orders": 53.0,
+        "new_export_orders": 51.3,
+        "in_hand_orders": 47.6,
+        "employment": 48.1,
+        "raw_material_price": 50.5,
+        "producer_prices": 47.4,
+        "supplier_delivery": 50.6
+      },
+      {
+        "date": "2024-04-01",
+        "production": 52.9,
+        "new_orders": 51.1,
+        "new_export_orders": 50.6,
+        "in_hand_orders": 45.6,
+        "employment": 48.0,
+        "raw_material_price": 54.0,
+        "producer_prices": 49.1,
+        "supplier_delivery": 50.4
+      },
+      {
+        "date": "2024-05-01",
+        "production": 50.8,
+        "new_orders": 49.6,
+        "new_export_orders": 48.3,
+        "in_hand_orders": 45.3,
+        "employment": 48.1,
+        "raw_material_price": 56.9,
+        "producer_prices": 50.4,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2024-06-01",
+        "production": 50.6,
+        "new_orders": 49.5,
+        "new_export_orders": 48.3,
+        "in_hand_orders": 45.0,
+        "employment": 48.1,
+        "raw_material_price": 51.7,
+        "producer_prices": 47.9,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2024-07-01",
+        "production": 50.1,
+        "new_orders": 49.3,
+        "new_export_orders": 48.5,
+        "in_hand_orders": 45.3,
+        "employment": 48.3,
+        "raw_material_price": 49.9,
+        "producer_prices": 46.3,
+        "supplier_delivery": 49.3
+      },
+      {
+        "date": "2024-08-01",
+        "production": 49.8,
+        "new_orders": 48.9,
+        "new_export_orders": 48.7,
+        "in_hand_orders": 44.7,
+        "employment": 48.1,
+        "raw_material_price": 43.2,
+        "producer_prices": 42.0,
+        "supplier_delivery": 49.6
+      },
+      {
+        "date": "2024-09-01",
+        "production": 51.2,
+        "new_orders": 49.9,
+        "new_export_orders": 47.5,
+        "in_hand_orders": 44.0,
+        "employment": 48.2,
+        "raw_material_price": 45.1,
+        "producer_prices": 44.0,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2024-10-01",
+        "production": 52.0,
+        "new_orders": 50.0,
+        "new_export_orders": 47.3,
+        "in_hand_orders": 45.4,
+        "employment": 48.4,
+        "raw_material_price": 53.4,
+        "producer_prices": 49.9,
+        "supplier_delivery": 49.6
+      },
+      {
+        "date": "2024-11-01",
+        "production": 52.4,
+        "new_orders": 50.8,
+        "new_export_orders": 48.1,
+        "in_hand_orders": 45.6,
+        "employment": 48.2,
+        "raw_material_price": 49.8,
+        "producer_prices": 47.7,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2024-12-01",
+        "production": 52.1,
+        "new_orders": 51.0,
+        "new_export_orders": 48.3,
+        "in_hand_orders": 45.9,
+        "employment": 48.1,
+        "raw_material_price": 48.2,
+        "producer_prices": 46.7,
+        "supplier_delivery": 50.9
+      },
+      {
+        "date": "2025-01-01",
+        "production": 49.8,
+        "new_orders": 49.2,
+        "new_export_orders": 46.4,
+        "in_hand_orders": 45.6,
+        "employment": 48.1,
+        "raw_material_price": 49.5,
+        "producer_prices": 47.4,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2025-02-01",
+        "production": 52.5,
+        "new_orders": 51.1,
+        "new_export_orders": 48.6,
+        "in_hand_orders": 46.0,
+        "employment": 48.6,
+        "raw_material_price": 50.8,
+        "producer_prices": 48.5,
+        "supplier_delivery": 51.0
+      },
+      {
+        "date": "2025-03-01",
+        "production": 52.6,
+        "new_orders": 51.8,
+        "new_export_orders": 49.0,
+        "in_hand_orders": 45.6,
+        "employment": 48.2,
+        "raw_material_price": 49.8,
+        "producer_prices": 47.9,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2025-04-01",
+        "production": 49.8,
+        "new_orders": 49.2,
+        "new_export_orders": 44.7,
+        "in_hand_orders": 43.2,
+        "employment": 47.9,
+        "raw_material_price": 47.0,
+        "producer_prices": 44.8,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2025-05-01",
+        "production": 50.7,
+        "new_orders": 49.8,
+        "new_export_orders": 47.5,
+        "in_hand_orders": 44.8,
+        "employment": 48.1,
+        "raw_material_price": 46.9,
+        "producer_prices": 44.7,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2025-06-01",
+        "production": 51.0,
+        "new_orders": 50.2,
+        "new_export_orders": 47.7,
+        "in_hand_orders": 45.2,
+        "employment": 47.9,
+        "raw_material_price": 48.4,
+        "producer_prices": 46.2,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2025-07-01",
+        "production": 50.5,
+        "new_orders": 49.4,
+        "new_export_orders": 47.1,
+        "in_hand_orders": 44.7,
+        "employment": 48.0,
+        "raw_material_price": 51.5,
+        "producer_prices": 48.3,
+        "supplier_delivery": 50.3
+      },
+      {
+        "date": "2025-08-01",
+        "production": 50.8,
+        "new_orders": 49.5,
+        "new_export_orders": 47.2,
+        "in_hand_orders": 45.5,
+        "employment": 47.9,
+        "raw_material_price": 53.3,
+        "producer_prices": 49.1,
+        "supplier_delivery": 50.5
+      },
+      {
+        "date": "2025-09-01",
+        "production": 51.9,
+        "new_orders": 49.7,
+        "new_export_orders": 47.8,
+        "in_hand_orders": 45.2,
+        "employment": 48.5,
+        "raw_material_price": 53.2,
+        "producer_prices": 48.2,
+        "supplier_delivery": 50.8
+      },
+      {
+        "date": "2025-10-01",
+        "production": 49.7,
+        "new_orders": 48.8,
+        "new_export_orders": 45.9,
+        "in_hand_orders": 44.5,
+        "employment": 48.3,
+        "raw_material_price": 52.5,
+        "producer_prices": 47.5,
+        "supplier_delivery": 50.0
+      },
+      {
+        "date": "2025-11-01",
+        "production": 50.0,
+        "new_orders": 49.2,
+        "new_export_orders": 47.6,
+        "in_hand_orders": 45.5,
+        "employment": 48.4,
+        "raw_material_price": 53.6,
+        "producer_prices": 48.2,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2025-12-01",
+        "production": 51.7,
+        "new_orders": 50.8,
+        "new_export_orders": 49.0,
+        "in_hand_orders": 46.0,
+        "employment": 48.2,
+        "raw_material_price": 53.1,
+        "producer_prices": 48.9,
+        "supplier_delivery": 50.2
+      },
+      {
+        "date": "2026-01-01",
+        "production": 50.6,
+        "new_orders": 49.2,
+        "new_export_orders": 47.8,
+        "in_hand_orders": 45.1,
+        "employment": 48.1,
+        "raw_material_price": 56.1,
+        "producer_prices": 50.6,
+        "supplier_delivery": 50.1
+      },
+      {
+        "date": "2026-02-01",
+        "production": 49.6,
+        "new_orders": 48.6,
+        "new_export_orders": 45.0,
+        "in_hand_orders": 44.0,
+        "employment": 48.0,
+        "raw_material_price": 54.8,
+        "producer_prices": 50.6,
+        "supplier_delivery": 49.1
+      }
+    ],
+    "latest": {
+      "date": "2026-02-01",
+      "production": 49.6,
+      "new_orders": 48.6,
+      "new_export_orders": 45.0,
+      "in_hand_orders": 44.0,
+      "employment": 48.0,
+      "raw_material_price": 54.8,
+      "producer_prices": 50.6,
+      "supplier_delivery": 49.1
+    }
+  },
+  "non_manufacturing_sub": {
+    "data": [
+      {
+        "date": "2010-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.3,
+        "export_new_orders": 51.2,
+        "in_hand_orders": 45.2,
+        "sale_price": 51.9,
+        "input_price": 58.7,
+        "supplier_delivery": 50.5,
+        "employment": 52.4
+      },
+      {
+        "date": "2010-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.5,
+        "export_new_orders": 51.4,
+        "in_hand_orders": 44.4,
+        "sale_price": 51.5,
+        "input_price": 57.1,
+        "supplier_delivery": 49.3,
+        "employment": 52.0
+      },
+      {
+        "date": "2010-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.4,
+        "export_new_orders": 53.7,
+        "in_hand_orders": 43.9,
+        "sale_price": 52.6,
+        "input_price": 59.1,
+        "supplier_delivery": 53.2,
+        "employment": 52.9
+      },
+      {
+        "date": "2010-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.3,
+        "export_new_orders": 52.7,
+        "in_hand_orders": 46.1,
+        "sale_price": 52.8,
+        "input_price": 61.8,
+        "supplier_delivery": 52.6,
+        "employment": 54.0
+      },
+      {
+        "date": "2010-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.0,
+        "export_new_orders": 52.4,
+        "in_hand_orders": 44.3,
+        "sale_price": 50.9,
+        "input_price": 58.2,
+        "supplier_delivery": 52.2,
+        "employment": 53.1
+      },
+      {
+        "date": "2010-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.5,
+        "export_new_orders": 53.6,
+        "in_hand_orders": 45.4,
+        "sale_price": 49.7,
+        "input_price": 54.8,
+        "supplier_delivery": 52.9,
+        "employment": 53.3
+      },
+      {
+        "date": "2010-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.2,
+        "export_new_orders": 51.9,
+        "in_hand_orders": 44.6,
+        "sale_price": 49.1,
+        "input_price": 54.3,
+        "supplier_delivery": 52.7,
+        "employment": 53.6
+      },
+      {
+        "date": "2010-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.4,
+        "export_new_orders": 50.2,
+        "in_hand_orders": 44.5,
+        "sale_price": 52.0,
+        "input_price": 59.3,
+        "supplier_delivery": 51.7,
+        "employment": 53.0
+      },
+      {
+        "date": "2010-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.3,
+        "export_new_orders": 51.1,
+        "in_hand_orders": 45.6,
+        "sale_price": 52.6,
+        "input_price": 59.8,
+        "supplier_delivery": 52.7,
+        "employment": 53.3
+      },
+      {
+        "date": "2010-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.8,
+        "export_new_orders": 51.7,
+        "in_hand_orders": 46.0,
+        "sale_price": 53.7,
+        "input_price": 64.0,
+        "supplier_delivery": 52.3,
+        "employment": 53.3
+      },
+      {
+        "date": "2010-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.6,
+        "export_new_orders": 50.5,
+        "in_hand_orders": 45.2,
+        "sale_price": 54.8,
+        "input_price": 67.2,
+        "supplier_delivery": 51.3,
+        "employment": 53.6
+      },
+      {
+        "date": "2010-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 55.0,
+        "export_new_orders": 55.2,
+        "in_hand_orders": 45.5,
+        "sale_price": 54.4,
+        "input_price": 66.7,
+        "supplier_delivery": 52.5,
+        "employment": 53.3
+      },
+      {
+        "date": "2011-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.9,
+        "export_new_orders": 52.6,
+        "in_hand_orders": 44.8,
+        "sale_price": 53.7,
+        "input_price": 64.7,
+        "supplier_delivery": 46.8,
+        "employment": 52.5
+      },
+      {
+        "date": "2011-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.1,
+        "export_new_orders": 52.7,
+        "in_hand_orders": 44.9,
+        "sale_price": 53.8,
+        "input_price": 64.3,
+        "supplier_delivery": 50.9,
+        "employment": 54.1
+      },
+      {
+        "date": "2011-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.4,
+        "export_new_orders": 50.5,
+        "in_hand_orders": 45.9,
+        "sale_price": 51.8,
+        "input_price": 62.2,
+        "supplier_delivery": 52.8,
+        "employment": 54.4
+      },
+      {
+        "date": "2011-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.4,
+        "export_new_orders": 51.5,
+        "in_hand_orders": 45.6,
+        "sale_price": 54.2,
+        "input_price": 65.1,
+        "supplier_delivery": 52.8,
+        "employment": 53.4
+      },
+      {
+        "date": "2011-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.6,
+        "export_new_orders": 52.3,
+        "in_hand_orders": 44.9,
+        "sale_price": 52.2,
+        "input_price": 61.5,
+        "supplier_delivery": 52.6,
+        "employment": 53.5
+      },
+      {
+        "date": "2011-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.5,
+        "export_new_orders": 52.9,
+        "in_hand_orders": 44.9,
+        "sale_price": 50.9,
+        "input_price": 60.9,
+        "supplier_delivery": 52.5,
+        "employment": 53.2
+      },
+      {
+        "date": "2011-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.9,
+        "export_new_orders": 54.6,
+        "in_hand_orders": 45.3,
+        "sale_price": 52.1,
+        "input_price": 62.6,
+        "supplier_delivery": 52.8,
+        "employment": 53.8
+      },
+      {
+        "date": "2011-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.9,
+        "export_new_orders": 52.4,
+        "in_hand_orders": 46.0,
+        "sale_price": 51.6,
+        "input_price": 61.6,
+        "supplier_delivery": 52.6,
+        "employment": 54.1
+      },
+      {
+        "date": "2011-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.2,
+        "export_new_orders": 50.6,
+        "in_hand_orders": 45.0,
+        "sale_price": 50.8,
+        "input_price": 57.7,
+        "supplier_delivery": 52.7,
+        "employment": 52.8
+      },
+      {
+        "date": "2011-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.1,
+        "export_new_orders": 49.7,
+        "in_hand_orders": 44.3,
+        "sale_price": 49.3,
+        "input_price": 56.7,
+        "supplier_delivery": 52.5,
+        "employment": 52.0
+      },
+      {
+        "date": "2011-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.4,
+        "export_new_orders": 51.9,
+        "in_hand_orders": 44.6,
+        "sale_price": 49.0,
+        "input_price": 55.8,
+        "supplier_delivery": 51.0,
+        "employment": 52.2
+      },
+      {
+        "date": "2011-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.4,
+        "export_new_orders": 48.4,
+        "in_hand_orders": 43.8,
+        "sale_price": 49.6,
+        "input_price": 56.7,
+        "supplier_delivery": 52.1,
+        "employment": 52.7
+      },
+      {
+        "date": "2012-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.2,
+        "export_new_orders": 49.9,
+        "in_hand_orders": 44.6,
+        "sale_price": 51.1,
+        "input_price": 58.2,
+        "supplier_delivery": 50.8,
+        "employment": 53.1
+      },
+      {
+        "date": "2012-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.7,
+        "export_new_orders": 51.0,
+        "in_hand_orders": 44.5,
+        "sale_price": 51.2,
+        "input_price": 59.0,
+        "supplier_delivery": 50.8,
+        "employment": 53.8
+      },
+      {
+        "date": "2012-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.5,
+        "export_new_orders": 52.0,
+        "in_hand_orders": 45.1,
+        "sale_price": 52.0,
+        "input_price": 60.2,
+        "supplier_delivery": 53.2,
+        "employment": 52.3
+      },
+      {
+        "date": "2012-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.7,
+        "export_new_orders": 52.7,
+        "in_hand_orders": 45.0,
+        "sale_price": 50.3,
+        "input_price": 57.9,
+        "supplier_delivery": 52.9,
+        "employment": 52.1
+      },
+      {
+        "date": "2012-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.5,
+        "export_new_orders": 50.5,
+        "in_hand_orders": 44.6,
+        "sale_price": 48.5,
+        "input_price": 53.6,
+        "supplier_delivery": 51.8,
+        "employment": 51.3
+      },
+      {
+        "date": "2012-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.7,
+        "export_new_orders": 50.5,
+        "in_hand_orders": 44.1,
+        "sale_price": 48.6,
+        "input_price": 52.1,
+        "supplier_delivery": 52.2,
+        "employment": 51.4
+      },
+      {
+        "date": "2012-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.2,
+        "export_new_orders": 49.4,
+        "in_hand_orders": 45.3,
+        "sale_price": 48.7,
+        "input_price": 49.7,
+        "supplier_delivery": 52.5,
+        "employment": 51.4
+      },
+      {
+        "date": "2012-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.7,
+        "export_new_orders": 49.6,
+        "in_hand_orders": 44.7,
+        "sale_price": 51.2,
+        "input_price": 57.6,
+        "supplier_delivery": 52.6,
+        "employment": 51.7
+      },
+      {
+        "date": "2012-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.8,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 44.7,
+        "sale_price": 51.3,
+        "input_price": 57.5,
+        "supplier_delivery": 52.9,
+        "employment": 51.0
+      },
+      {
+        "date": "2012-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.6,
+        "export_new_orders": 49.3,
+        "in_hand_orders": 44.6,
+        "sale_price": 50.5,
+        "input_price": 58.1,
+        "supplier_delivery": 53.0,
+        "employment": 51.1
+      },
+      {
+        "date": "2012-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.2,
+        "export_new_orders": 50.8,
+        "in_hand_orders": 46.6,
+        "sale_price": 48.4,
+        "input_price": 52.5,
+        "supplier_delivery": 52.6,
+        "employment": 51.8
+      },
+      {
+        "date": "2012-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.3,
+        "export_new_orders": 52.5,
+        "in_hand_orders": 46.0,
+        "sale_price": 50.0,
+        "input_price": 53.8,
+        "supplier_delivery": 53.1,
+        "employment": 52.1
+      },
+      {
+        "date": "2013-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.7,
+        "export_new_orders": 52.6,
+        "in_hand_orders": 45.8,
+        "sale_price": 50.9,
+        "input_price": 58.2,
+        "supplier_delivery": 50.9,
+        "employment": 51.8
+      },
+      {
+        "date": "2013-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.8,
+        "export_new_orders": 51.6,
+        "in_hand_orders": 44.9,
+        "sale_price": 51.1,
+        "input_price": 56.2,
+        "supplier_delivery": 50.1,
+        "employment": 51.9
+      },
+      {
+        "date": "2013-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.0,
+        "export_new_orders": 51.7,
+        "in_hand_orders": 45.0,
+        "sale_price": 50.0,
+        "input_price": 55.3,
+        "supplier_delivery": 52.6,
+        "employment": 50.4
+      },
+      {
+        "date": "2013-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.9,
+        "export_new_orders": 51.9,
+        "in_hand_orders": 44.6,
+        "sale_price": 47.6,
+        "input_price": 51.1,
+        "supplier_delivery": 52.7,
+        "employment": 51.4
+      },
+      {
+        "date": "2013-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 49.1,
+        "in_hand_orders": 45.3,
+        "sale_price": 50.7,
+        "input_price": 54.4,
+        "supplier_delivery": 52.2,
+        "employment": 51.3
+      },
+      {
+        "date": "2013-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.3,
+        "export_new_orders": 50.4,
+        "in_hand_orders": 45.9,
+        "sale_price": 50.6,
+        "input_price": 55.0,
+        "supplier_delivery": 52.2,
+        "employment": 51.5
+      },
+      {
+        "date": "2013-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.3,
+        "export_new_orders": 53.1,
+        "in_hand_orders": 44.9,
+        "sale_price": 52.4,
+        "input_price": 58.2,
+        "supplier_delivery": 52.0,
+        "employment": 51.3
+      },
+      {
+        "date": "2013-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.9,
+        "export_new_orders": 49.6,
+        "in_hand_orders": 46.1,
+        "sale_price": 51.2,
+        "input_price": 57.1,
+        "supplier_delivery": 52.2,
+        "employment": 52.5
+      },
+      {
+        "date": "2013-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.4,
+        "export_new_orders": 50.5,
+        "in_hand_orders": 46.8,
+        "sale_price": 50.6,
+        "input_price": 56.7,
+        "supplier_delivery": 52.7,
+        "employment": 51.3
+      },
+      {
+        "date": "2013-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.6,
+        "export_new_orders": 49.4,
+        "in_hand_orders": 45.0,
+        "sale_price": 51.4,
+        "input_price": 56.1,
+        "supplier_delivery": 51.8,
+        "employment": 51.5
+      },
+      {
+        "date": "2013-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 49.9,
+        "in_hand_orders": 45.4,
+        "sale_price": 49.5,
+        "input_price": 54.8,
+        "supplier_delivery": 52.1,
+        "employment": 51.9
+      },
+      {
+        "date": "2013-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 49.4,
+        "in_hand_orders": 45.5,
+        "sale_price": 52.0,
+        "input_price": 56.9,
+        "supplier_delivery": 52.4,
+        "employment": 51.1
+      },
+      {
+        "date": "2014-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.9,
+        "export_new_orders": 50.1,
+        "in_hand_orders": 45.1,
+        "sale_price": 50.1,
+        "input_price": 54.5,
+        "supplier_delivery": 52.0,
+        "employment": 49.7
+      },
+      {
+        "date": "2014-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.4,
+        "export_new_orders": 48.3,
+        "in_hand_orders": 45.3,
+        "sale_price": 49.0,
+        "input_price": 52.1,
+        "supplier_delivery": 51.5,
+        "employment": 50.9
+      },
+      {
+        "date": "2014-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.8,
+        "export_new_orders": 51.7,
+        "in_hand_orders": 44.9,
+        "sale_price": 49.5,
+        "input_price": 52.8,
+        "supplier_delivery": 52.1,
+        "employment": 51.4
+      },
+      {
+        "date": "2014-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.8,
+        "export_new_orders": 51.0,
+        "in_hand_orders": 44.3,
+        "sale_price": 49.4,
+        "input_price": 52.4,
+        "supplier_delivery": 52.1,
+        "employment": 50.2
+      },
+      {
+        "date": "2014-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.7,
+        "export_new_orders": 52.7,
+        "in_hand_orders": 45.6,
+        "sale_price": 49.0,
+        "input_price": 54.5,
+        "supplier_delivery": 52.4,
+        "employment": 50.9
+      },
+      {
+        "date": "2014-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.7,
+        "export_new_orders": 50.2,
+        "in_hand_orders": 45.3,
+        "sale_price": 50.8,
+        "input_price": 56.0,
+        "supplier_delivery": 52.7,
+        "employment": 50.4
+      },
+      {
+        "date": "2014-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.7,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 46.1,
+        "sale_price": 49.5,
+        "input_price": 53.4,
+        "supplier_delivery": 51.6,
+        "employment": 49.3
+      },
+      {
+        "date": "2014-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.0,
+        "export_new_orders": 51.6,
+        "in_hand_orders": 46.5,
+        "sale_price": 48.3,
+        "input_price": 52.2,
+        "supplier_delivery": 52.2,
+        "employment": 49.6
+      },
+      {
+        "date": "2014-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.5,
+        "export_new_orders": 50.8,
+        "in_hand_orders": 44.0,
+        "sale_price": 47.3,
+        "input_price": 49.8,
+        "supplier_delivery": 51.7,
+        "employment": 49.5
+      },
+      {
+        "date": "2014-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 49.0,
+        "in_hand_orders": 45.6,
+        "sale_price": 48.8,
+        "input_price": 52.0,
+        "supplier_delivery": 52.5,
+        "employment": 48.9
+      },
+      {
+        "date": "2014-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 49.3,
+        "in_hand_orders": 44.1,
+        "sale_price": 47.7,
+        "input_price": 50.6,
+        "supplier_delivery": 51.5,
+        "employment": 49.5
+      },
+      {
+        "date": "2014-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.5,
+        "export_new_orders": 52.9,
+        "in_hand_orders": 46.7,
+        "sale_price": 47.3,
+        "input_price": 50.1,
+        "supplier_delivery": 51.4,
+        "employment": 49.1
+      },
+      {
+        "date": "2015-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.2,
+        "export_new_orders": 53.3,
+        "in_hand_orders": 45.4,
+        "sale_price": 46.9,
+        "input_price": 47.6,
+        "supplier_delivery": 51.6,
+        "employment": 50.3
+      },
+      {
+        "date": "2015-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.2,
+        "export_new_orders": 52.1,
+        "in_hand_orders": 46.5,
+        "sale_price": 51.2,
+        "input_price": 52.5,
+        "supplier_delivery": 51.5,
+        "employment": 49.8
+      },
+      {
+        "date": "2015-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.3,
+        "export_new_orders": 51.5,
+        "in_hand_orders": 43.1,
+        "sale_price": 48.4,
+        "input_price": 50.0,
+        "supplier_delivery": 52.0,
+        "employment": 49.0
+      },
+      {
+        "date": "2015-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.1,
+        "export_new_orders": 49.7,
+        "in_hand_orders": 44.2,
+        "sale_price": 48.9,
+        "input_price": 50.8,
+        "supplier_delivery": 52.5,
+        "employment": 48.9
+      },
+      {
+        "date": "2015-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.5,
+        "export_new_orders": 47.9,
+        "in_hand_orders": 43.7,
+        "sale_price": 50.4,
+        "input_price": 52.8,
+        "supplier_delivery": 52.0,
+        "employment": 47.6
+      },
+      {
+        "date": "2015-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.3,
+        "export_new_orders": 50.1,
+        "in_hand_orders": 44.7,
+        "sale_price": 48.7,
+        "input_price": 50.6,
+        "supplier_delivery": 51.9,
+        "employment": 49.7
+      },
+      {
+        "date": "2015-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 46.2,
+        "in_hand_orders": 43.4,
+        "sale_price": 47.4,
+        "input_price": 48.9,
+        "supplier_delivery": 51.9,
+        "employment": 49.2
+      },
+      {
+        "date": "2015-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.6,
+        "export_new_orders": 46.6,
+        "in_hand_orders": 43.7,
+        "sale_price": 47.8,
+        "input_price": 49.6,
+        "supplier_delivery": 51.7,
+        "employment": 49.5
+      },
+      {
+        "date": "2015-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.2,
+        "export_new_orders": 51.1,
+        "in_hand_orders": 43.7,
+        "sale_price": 47.9,
+        "input_price": 50.8,
+        "supplier_delivery": 51.7,
+        "employment": 49.5
+      },
+      {
+        "date": "2015-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.2,
+        "export_new_orders": 49.5,
+        "in_hand_orders": 43.5,
+        "sale_price": 48.8,
+        "input_price": 51.2,
+        "supplier_delivery": 51.6,
+        "employment": 49.6
+      },
+      {
+        "date": "2015-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.2,
+        "export_new_orders": 49.4,
+        "in_hand_orders": 44.4,
+        "sale_price": 47.7,
+        "input_price": 49.3,
+        "supplier_delivery": 51.2,
+        "employment": 48.4
+      },
+      {
+        "date": "2015-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.7,
+        "export_new_orders": 50.9,
+        "in_hand_orders": 44.5,
+        "sale_price": 48.2,
+        "input_price": 49.0,
+        "supplier_delivery": 52.1,
+        "employment": 48.9
+      },
+      {
+        "date": "2016-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.6,
+        "export_new_orders": 47.3,
+        "in_hand_orders": 43.9,
+        "sale_price": 47.7,
+        "input_price": 49.9,
+        "supplier_delivery": 51.9,
+        "employment": 48.8
+      },
+      {
+        "date": "2016-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 48.7,
+        "export_new_orders": 47.7,
+        "in_hand_orders": 42.9,
+        "sale_price": 48.3,
+        "input_price": 50.5,
+        "supplier_delivery": 51.6,
+        "employment": 48.9
+      },
+      {
+        "date": "2016-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.8,
+        "export_new_orders": 47.8,
+        "in_hand_orders": 43.4,
+        "sale_price": 49.5,
+        "input_price": 51.4,
+        "supplier_delivery": 51.4,
+        "employment": 48.2
+      },
+      {
+        "date": "2016-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 48.7,
+        "export_new_orders": 45.7,
+        "in_hand_orders": 43.6,
+        "sale_price": 49.1,
+        "input_price": 52.1,
+        "supplier_delivery": 51.8,
+        "employment": 49.2
+      },
+      {
+        "date": "2016-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.2,
+        "export_new_orders": 49.5,
+        "in_hand_orders": 43.6,
+        "sale_price": 49.8,
+        "input_price": 51.6,
+        "supplier_delivery": 51.4,
+        "employment": 49.1
+      },
+      {
+        "date": "2016-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.8,
+        "export_new_orders": 48.6,
+        "in_hand_orders": 43.1,
+        "sale_price": 50.6,
+        "input_price": 51.6,
+        "supplier_delivery": 52.3,
+        "employment": 48.7
+      },
+      {
+        "date": "2016-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.9,
+        "export_new_orders": 47.5,
+        "in_hand_orders": 42.8,
+        "sale_price": 49.5,
+        "input_price": 51.4,
+        "supplier_delivery": 51.9,
+        "employment": 48.5
+      },
+      {
+        "date": "2016-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.8,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 43.0,
+        "sale_price": 50.4,
+        "input_price": 52.6,
+        "supplier_delivery": 51.7,
+        "employment": 49.1
+      },
+      {
+        "date": "2016-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.4,
+        "export_new_orders": 48.3,
+        "in_hand_orders": 43.6,
+        "sale_price": 50.1,
+        "input_price": 51.7,
+        "supplier_delivery": 52.0,
+        "employment": 49.7
+      },
+      {
+        "date": "2016-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.9,
+        "export_new_orders": 51.4,
+        "in_hand_orders": 44.0,
+        "sale_price": 51.5,
+        "input_price": 53.7,
+        "supplier_delivery": 51.4,
+        "employment": 50.0
+      },
+      {
+        "date": "2016-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.8,
+        "export_new_orders": 50.9,
+        "in_hand_orders": 44.2,
+        "sale_price": 51.4,
+        "input_price": 53.5,
+        "supplier_delivery": 51.5,
+        "employment": 50.6
+      },
+      {
+        "date": "2016-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.1,
+        "export_new_orders": 48.9,
+        "in_hand_orders": 44.0,
+        "sale_price": 51.9,
+        "input_price": 56.2,
+        "supplier_delivery": 51.6,
+        "employment": 50.0
+      },
+      {
+        "date": "2017-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.3,
+        "export_new_orders": 46.4,
+        "in_hand_orders": 44.6,
+        "sale_price": 51.0,
+        "input_price": 55.1,
+        "supplier_delivery": 51.4,
+        "employment": 49.8
+      },
+      {
+        "date": "2017-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.2,
+        "export_new_orders": 50.1,
+        "in_hand_orders": 43.5,
+        "sale_price": 51.4,
+        "input_price": 53.7,
+        "supplier_delivery": 52.1,
+        "employment": 49.7
+      },
+      {
+        "date": "2017-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.9,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 44.7,
+        "sale_price": 49.7,
+        "input_price": 52.3,
+        "supplier_delivery": 51.4,
+        "employment": 49.1
+      },
+      {
+        "date": "2017-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.5,
+        "export_new_orders": 47.1,
+        "in_hand_orders": 44.0,
+        "sale_price": 50.2,
+        "input_price": 51.7,
+        "supplier_delivery": 52.0,
+        "employment": 49.5
+      },
+      {
+        "date": "2017-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.9,
+        "export_new_orders": 48.5,
+        "in_hand_orders": 43.7,
+        "sale_price": 48.8,
+        "input_price": 51.1,
+        "supplier_delivery": 51.8,
+        "employment": 49.0
+      },
+      {
+        "date": "2017-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.4,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 44.6,
+        "sale_price": 49.3,
+        "input_price": 51.2,
+        "supplier_delivery": 51.8,
+        "employment": 49.6
+      },
+      {
+        "date": "2017-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.1,
+        "export_new_orders": 52.1,
+        "in_hand_orders": 43.9,
+        "sale_price": 50.9,
+        "input_price": 53.1,
+        "supplier_delivery": 51.7,
+        "employment": 49.5
+      },
+      {
+        "date": "2017-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.9,
+        "export_new_orders": 49.0,
+        "in_hand_orders": 44.0,
+        "sale_price": 51.5,
+        "input_price": 54.4,
+        "supplier_delivery": 51.1,
+        "employment": 49.5
+      },
+      {
+        "date": "2017-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.3,
+        "export_new_orders": 49.7,
+        "in_hand_orders": 44.2,
+        "sale_price": 51.7,
+        "input_price": 56.1,
+        "supplier_delivery": 51.6,
+        "employment": 49.7
+      },
+      {
+        "date": "2017-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.1,
+        "export_new_orders": 50.7,
+        "in_hand_orders": 43.9,
+        "sale_price": 51.6,
+        "input_price": 54.3,
+        "supplier_delivery": 51.1,
+        "employment": 49.4
+      },
+      {
+        "date": "2017-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.8,
+        "export_new_orders": 50.9,
+        "in_hand_orders": 44.1,
+        "sale_price": 52.8,
+        "input_price": 56.2,
+        "supplier_delivery": 51.6,
+        "employment": 49.2
+      },
+      {
+        "date": "2017-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.0,
+        "export_new_orders": 51.5,
+        "in_hand_orders": 43.8,
+        "sale_price": 52.6,
+        "input_price": 54.8,
+        "supplier_delivery": 51.3,
+        "employment": 49.3
+      },
+      {
+        "date": "2018-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.9,
+        "export_new_orders": 50.1,
+        "in_hand_orders": 44.4,
+        "sale_price": 52.6,
+        "input_price": 53.9,
+        "supplier_delivery": 51.3,
+        "employment": 49.4
+      },
+      {
+        "date": "2018-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.5,
+        "export_new_orders": 45.9,
+        "in_hand_orders": 43.8,
+        "sale_price": 49.9,
+        "input_price": 53.2,
+        "supplier_delivery": 50.7,
+        "employment": 49.6
+      },
+      {
+        "date": "2018-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 50.4,
+        "in_hand_orders": 44.3,
+        "sale_price": 49.3,
+        "input_price": 49.9,
+        "supplier_delivery": 51.6,
+        "employment": 49.2
+      },
+      {
+        "date": "2018-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.1,
+        "export_new_orders": 50.0,
+        "in_hand_orders": 44.4,
+        "sale_price": 50.6,
+        "input_price": 52.7,
+        "supplier_delivery": 51.5,
+        "employment": 49.0
+      },
+      {
+        "date": "2018-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 49.1,
+        "in_hand_orders": 44.1,
+        "sale_price": 50.6,
+        "input_price": 54.2,
+        "supplier_delivery": 51.7,
+        "employment": 49.2
+      },
+      {
+        "date": "2018-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.6,
+        "export_new_orders": 48.2,
+        "in_hand_orders": 44.0,
+        "sale_price": 51.1,
+        "input_price": 53.5,
+        "supplier_delivery": 51.6,
+        "employment": 48.9
+      },
+      {
+        "date": "2018-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 48.9,
+        "in_hand_orders": 45.4,
+        "sale_price": 52.0,
+        "input_price": 53.9,
+        "supplier_delivery": 51.3,
+        "employment": 50.2
+      },
+      {
+        "date": "2018-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.6,
+        "export_new_orders": 49.0,
+        "in_hand_orders": 43.9,
+        "sale_price": 50.9,
+        "input_price": 54.3,
+        "supplier_delivery": 51.4,
+        "employment": 50.4
+      },
+      {
+        "date": "2018-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 43.8,
+        "sale_price": 51.5,
+        "input_price": 55.6,
+        "supplier_delivery": 51.6,
+        "employment": 49.3
+      },
+      {
+        "date": "2018-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 47.8,
+        "in_hand_orders": 43.8,
+        "sale_price": 51.2,
+        "input_price": 54.9,
+        "supplier_delivery": 51.5,
+        "employment": 48.9
+      },
+      {
+        "date": "2018-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 50.1,
+        "in_hand_orders": 43.7,
+        "sale_price": 49.4,
+        "input_price": 50.8,
+        "supplier_delivery": 51.4,
+        "employment": 48.7
+      },
+      {
+        "date": "2018-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.4,
+        "export_new_orders": 49.0,
+        "in_hand_orders": 43.7,
+        "sale_price": 47.6,
+        "input_price": 50.1,
+        "supplier_delivery": 51.9,
+        "employment": 48.5
+      },
+      {
+        "date": "2019-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.0,
+        "export_new_orders": 49.5,
+        "in_hand_orders": 44.0,
+        "sale_price": 49.8,
+        "input_price": 52.0,
+        "supplier_delivery": 51.4,
+        "employment": 48.6
+      },
+      {
+        "date": "2019-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.7,
+        "export_new_orders": 51.6,
+        "in_hand_orders": 44.9,
+        "sale_price": 50.1,
+        "input_price": 52.7,
+        "supplier_delivery": 51.4,
+        "employment": 48.6
+      },
+      {
+        "date": "2019-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.5,
+        "export_new_orders": 49.9,
+        "in_hand_orders": 45.0,
+        "sale_price": 51.0,
+        "input_price": 52.5,
+        "supplier_delivery": 51.5,
+        "employment": 48.7
+      },
+      {
+        "date": "2019-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.8,
+        "export_new_orders": 49.2,
+        "in_hand_orders": 44.2,
+        "sale_price": 50.5,
+        "input_price": 53.0,
+        "supplier_delivery": 51.5,
+        "employment": 48.7
+      },
+      {
+        "date": "2019-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.3,
+        "export_new_orders": 47.9,
+        "in_hand_orders": 44.4,
+        "sale_price": 49.9,
+        "input_price": 52.2,
+        "supplier_delivery": 51.7,
+        "employment": 48.3
+      },
+      {
+        "date": "2019-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.5,
+        "export_new_orders": 48.5,
+        "in_hand_orders": 44.4,
+        "sale_price": 49.7,
+        "input_price": 51.5,
+        "supplier_delivery": 51.4,
+        "employment": 48.2
+      },
+      {
+        "date": "2019-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.4,
+        "export_new_orders": 48.4,
+        "in_hand_orders": 44.4,
+        "sale_price": 50.6,
+        "input_price": 52.9,
+        "supplier_delivery": 52.0,
+        "employment": 48.7
+      },
+      {
+        "date": "2019-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.1,
+        "export_new_orders": 50.3,
+        "in_hand_orders": 44.1,
+        "sale_price": 49.1,
+        "input_price": 50.8,
+        "supplier_delivery": 52.1,
+        "employment": 48.9
+      },
+      {
+        "date": "2019-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.5,
+        "export_new_orders": 47.3,
+        "in_hand_orders": 43.9,
+        "sale_price": 50.0,
+        "input_price": 52.8,
+        "supplier_delivery": 51.9,
+        "employment": 48.2
+      },
+      {
+        "date": "2019-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.4,
+        "export_new_orders": 48.1,
+        "in_hand_orders": 44.0,
+        "sale_price": 48.9,
+        "input_price": 51.3,
+        "supplier_delivery": 51.8,
+        "employment": 48.2
+      },
+      {
+        "date": "2019-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.3,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 44.6,
+        "sale_price": 51.3,
+        "input_price": 53.2,
+        "supplier_delivery": 52.1,
+        "employment": 49.0
+      },
+      {
+        "date": "2019-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.4,
+        "export_new_orders": 47.8,
+        "in_hand_orders": 44.5,
+        "sale_price": 50.3,
+        "input_price": 52.4,
+        "supplier_delivery": 52.2,
+        "employment": 48.3
+      },
+      {
+        "date": "2020-01-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 50.6,
+        "export_new_orders": 48.4,
+        "in_hand_orders": 43.6,
+        "sale_price": 50.5,
+        "input_price": 53.3,
+        "supplier_delivery": 52.1,
+        "employment": 48.6
+      },
+      {
+        "date": "2020-02-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 26.5,
+        "export_new_orders": 26.8,
+        "in_hand_orders": 35.2,
+        "sale_price": 43.9,
+        "input_price": 49.3,
+        "supplier_delivery": 28.3,
+        "employment": 37.9
+      },
+      {
+        "date": "2020-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 49.2,
+        "export_new_orders": 38.6,
+        "in_hand_orders": 43.0,
+        "sale_price": 46.1,
+        "input_price": 49.4,
+        "supplier_delivery": 46.4,
+        "employment": 47.7
+      },
+      {
+        "date": "2020-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.1,
+        "export_new_orders": 35.5,
+        "in_hand_orders": 43.4,
+        "sale_price": 45.4,
+        "input_price": 49.0,
+        "supplier_delivery": 51.0,
+        "employment": 48.6
+      },
+      {
+        "date": "2020-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.6,
+        "export_new_orders": 41.3,
+        "in_hand_orders": 44.3,
+        "sale_price": 48.6,
+        "input_price": 52.0,
+        "supplier_delivery": 52.9,
+        "employment": 48.5
+      },
+      {
+        "date": "2020-06-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.7,
+        "export_new_orders": 43.3,
+        "in_hand_orders": 44.8,
+        "sale_price": 49.5,
+        "input_price": 52.9,
+        "supplier_delivery": 52.1,
+        "employment": 48.7
+      },
+      {
+        "date": "2020-07-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.5,
+        "export_new_orders": 44.5,
+        "in_hand_orders": 44.9,
+        "sale_price": 50.1,
+        "input_price": 53.0,
+        "supplier_delivery": 51.9,
+        "employment": 48.1
+      },
+      {
+        "date": "2020-08-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.3,
+        "export_new_orders": 45.1,
+        "in_hand_orders": 44.6,
+        "sale_price": 50.1,
+        "input_price": 51.9,
+        "supplier_delivery": 52.4,
+        "employment": 48.3
+      },
+      {
+        "date": "2020-09-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 54.0,
+        "export_new_orders": 49.1,
+        "in_hand_orders": 46.3,
+        "sale_price": 48.9,
+        "input_price": 50.6,
+        "supplier_delivery": 52.2,
+        "employment": 49.1
+      },
+      {
+        "date": "2020-10-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 53.0,
+        "export_new_orders": 47.0,
+        "in_hand_orders": 44.9,
+        "sale_price": 49.4,
+        "input_price": 50.9,
+        "supplier_delivery": 52.3,
+        "employment": 49.4
+      },
+      {
+        "date": "2020-11-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 52.8,
+        "export_new_orders": 49.0,
+        "in_hand_orders": 45.2,
+        "sale_price": 51.0,
+        "input_price": 52.7,
+        "supplier_delivery": 51.8,
+        "employment": 48.9
+      },
+      {
+        "date": "2020-12-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 51.9,
+        "export_new_orders": 47.5,
+        "in_hand_orders": 44.7,
+        "sale_price": 52.3,
+        "input_price": 54.3,
+        "supplier_delivery": 51.2,
+        "employment": 48.7
+      },
+      {
+        "date": "2021-01-01",
+        "services": 51.1,
+        "construction": 60.0,
+        "new_orders": 48.7,
+        "export_new_orders": 48.0,
+        "in_hand_orders": 44.0,
+        "sale_price": 51.4,
+        "input_price": 54.5,
+        "supplier_delivery": 49.8,
+        "employment": 47.8
+      },
+      {
+        "date": "2021-02-01",
+        "services": 50.8,
+        "construction": 54.7,
+        "new_orders": 48.9,
+        "export_new_orders": 45.7,
+        "in_hand_orders": 44.0,
+        "sale_price": 50.1,
+        "input_price": 54.7,
+        "supplier_delivery": 49.8,
+        "employment": 48.4
+      },
+      {
+        "date": "2021-03-01",
+        "services": 55.2,
+        "construction": 62.3,
+        "new_orders": 55.9,
+        "export_new_orders": 50.3,
+        "in_hand_orders": 45.9,
+        "sale_price": 52.2,
+        "input_price": 56.2,
+        "supplier_delivery": 51.8,
+        "employment": 49.7
+      },
+      {
+        "date": "2021-04-01",
+        "services": 54.4,
+        "construction": 57.4,
+        "new_orders": 51.5,
+        "export_new_orders": 48.1,
+        "in_hand_orders": 45.8,
+        "sale_price": 51.2,
+        "input_price": 54.9,
+        "supplier_delivery": 50.9,
+        "employment": 48.7
+      },
+      {
+        "date": "2021-05-01",
+        "services": 54.3,
+        "construction": 60.1,
+        "new_orders": 52.2,
+        "export_new_orders": 47.6,
+        "in_hand_orders": 44.7,
+        "sale_price": 52.8,
+        "input_price": 57.7,
+        "supplier_delivery": 50.8,
+        "employment": 48.9
+      },
+      {
+        "date": "2021-06-01",
+        "services": 52.3,
+        "construction": 60.1,
+        "new_orders": 49.6,
+        "export_new_orders": 45.4,
+        "in_hand_orders": 43.8,
+        "sale_price": 51.4,
+        "input_price": 53.4,
+        "supplier_delivery": 51.0,
+        "employment": 48.0
+      },
+      {
+        "date": "2021-07-01",
+        "services": 52.5,
+        "construction": 57.5,
+        "new_orders": 49.7,
+        "export_new_orders": 47.7,
+        "in_hand_orders": 44.8,
+        "sale_price": 51.3,
+        "input_price": 53.5,
+        "supplier_delivery": 51.3,
+        "employment": 48.2
+      },
+      {
+        "date": "2021-08-01",
+        "services": 45.2,
+        "construction": 60.5,
+        "new_orders": 42.2,
+        "export_new_orders": 43.9,
+        "in_hand_orders": 42.9,
+        "sale_price": 49.3,
+        "input_price": 51.3,
+        "supplier_delivery": 49.2,
+        "employment": 47.0
+      },
+      {
+        "date": "2021-09-01",
+        "services": 52.4,
+        "construction": 57.5,
+        "new_orders": 49.0,
+        "export_new_orders": 46.4,
+        "in_hand_orders": 44.2,
+        "sale_price": 50.5,
+        "input_price": 53.5,
+        "supplier_delivery": 50.4,
+        "employment": 47.8
+      },
+      {
+        "date": "2021-10-01",
+        "services": 51.6,
+        "construction": 56.9,
+        "new_orders": 49.0,
+        "export_new_orders": 47.5,
+        "in_hand_orders": 44.3,
+        "sale_price": 52.7,
+        "input_price": 57.8,
+        "supplier_delivery": 49.7,
+        "employment": 47.5
+      },
+      {
+        "date": "2021-11-01",
+        "services": 51.1,
+        "construction": 59.1,
+        "new_orders": 48.9,
+        "export_new_orders": 47.5,
+        "in_hand_orders": 43.9,
+        "sale_price": 50.1,
+        "input_price": 50.8,
+        "supplier_delivery": 50.1,
+        "employment": 47.3
+      },
+      {
+        "date": "2021-12-01",
+        "services": 52.0,
+        "construction": 56.3,
+        "new_orders": 48.4,
+        "export_new_orders": 47.7,
+        "in_hand_orders": 43.4,
+        "sale_price": 48.1,
+        "input_price": 49.3,
+        "supplier_delivery": 49.6,
+        "employment": 47.6
+      },
+      {
+        "date": "2022-01-01",
+        "services": 50.3,
+        "construction": 55.4,
+        "new_orders": 47.8,
+        "export_new_orders": 46.0,
+        "in_hand_orders": 43.9,
+        "sale_price": 51.0,
+        "input_price": 52.1,
+        "supplier_delivery": 49.2,
+        "employment": 46.9
+      },
+      {
+        "date": "2022-02-01",
+        "services": 50.5,
+        "construction": 57.6,
+        "new_orders": 47.6,
+        "export_new_orders": 48.1,
+        "in_hand_orders": 44.1,
+        "sale_price": 49.8,
+        "input_price": 53.9,
+        "supplier_delivery": 49.8,
+        "employment": 48.0
+      },
+      {
+        "date": "2022-03-01",
+        "services": 46.7,
+        "construction": 58.1,
+        "new_orders": 45.7,
+        "export_new_orders": 45.8,
+        "in_hand_orders": 42.8,
+        "sale_price": 51.1,
+        "input_price": 55.9,
+        "supplier_delivery": 45.2,
+        "employment": 47.1
+      },
+      {
+        "date": "2022-04-01",
+        "services": 40.0,
+        "construction": 52.7,
+        "new_orders": 37.4,
+        "export_new_orders": 42.7,
+        "in_hand_orders": 41.2,
+        "sale_price": 48.9,
+        "input_price": 53.7,
+        "supplier_delivery": 42.8,
+        "employment": 45.4
+      },
+      {
+        "date": "2022-05-01",
+        "services": 47.1,
+        "construction": 52.2,
+        "new_orders": 44.1,
+        "export_new_orders": 42.8,
+        "in_hand_orders": 43.2,
+        "sale_price": 49.4,
+        "input_price": 52.5,
+        "supplier_delivery": 45.3,
+        "employment": 45.3
+      },
+      {
+        "date": "2022-06-01",
+        "services": 54.3,
+        "construction": 56.6,
+        "new_orders": 53.2,
+        "export_new_orders": 50.1,
+        "in_hand_orders": 44.5,
+        "sale_price": 49.6,
+        "input_price": 52.6,
+        "supplier_delivery": 50.8,
+        "employment": 46.9
+      },
+      {
+        "date": "2022-07-01",
+        "services": 52.8,
+        "construction": 59.2,
+        "new_orders": 49.7,
+        "export_new_orders": 45.1,
+        "in_hand_orders": 43.4,
+        "sale_price": 47.4,
+        "input_price": 48.6,
+        "supplier_delivery": 50.7,
+        "employment": 46.7
+      },
+      {
+        "date": "2022-08-01",
+        "services": 51.9,
+        "construction": 56.5,
+        "new_orders": 49.8,
+        "export_new_orders": 48.9,
+        "in_hand_orders": 43.9,
+        "sale_price": 47.6,
+        "input_price": 50.0,
+        "supplier_delivery": 49.7,
+        "employment": 46.8
+      },
+      {
+        "date": "2022-09-01",
+        "services": 48.9,
+        "construction": 60.2,
+        "new_orders": 43.1,
+        "export_new_orders": 46.0,
+        "in_hand_orders": 41.7,
+        "sale_price": 48.2,
+        "input_price": 50.0,
+        "supplier_delivery": 48.7,
+        "employment": 46.6
+      },
+      {
+        "date": "2022-10-01",
+        "services": 47.0,
+        "construction": 58.2,
+        "new_orders": 42.8,
+        "export_new_orders": 45.0,
+        "in_hand_orders": 43.1,
+        "sale_price": 48.1,
+        "input_price": 51.0,
+        "supplier_delivery": 48.3,
+        "employment": 46.1
+      },
+      {
+        "date": "2022-11-01",
+        "services": 45.1,
+        "construction": 55.4,
+        "new_orders": 42.3,
+        "export_new_orders": 46.1,
+        "in_hand_orders": 43.2,
+        "sale_price": 48.7,
+        "input_price": 49.9,
+        "supplier_delivery": 45.0,
+        "employment": 45.5
+      },
+      {
+        "date": "2022-12-01",
+        "services": 39.4,
+        "construction": 54.4,
+        "new_orders": 39.1,
+        "export_new_orders": 44.5,
+        "in_hand_orders": 43.0,
+        "sale_price": 47.5,
+        "input_price": 49.2,
+        "supplier_delivery": 40.4,
+        "employment": 42.9
+      },
+      {
+        "date": "2023-01-01",
+        "services": 54.0,
+        "construction": 56.4,
+        "new_orders": 52.5,
+        "export_new_orders": 45.9,
+        "in_hand_orders": 43.3,
+        "sale_price": 48.3,
+        "input_price": 51.5,
+        "supplier_delivery": 49.7,
+        "employment": 46.7
+      },
+      {
+        "date": "2023-02-01",
+        "services": 55.6,
+        "construction": 60.2,
+        "new_orders": 55.8,
+        "export_new_orders": 51.9,
+        "in_hand_orders": 50.3,
+        "sale_price": 50.8,
+        "input_price": 51.1,
+        "supplier_delivery": 55.2,
+        "employment": 50.2
+      },
+      {
+        "date": "2023-03-01",
+        "services": 56.9,
+        "construction": 65.6,
+        "new_orders": 57.3,
+        "export_new_orders": 48.1,
+        "in_hand_orders": 45.6,
+        "sale_price": 47.8,
+        "input_price": 50.3,
+        "supplier_delivery": 52.4,
+        "employment": 49.2
+      },
+      {
+        "date": "2023-04-01",
+        "services": 55.1,
+        "construction": 63.9,
+        "new_orders": 56.0,
+        "export_new_orders": 52.1,
+        "in_hand_orders": 45.5,
+        "sale_price": 50.3,
+        "input_price": 51.1,
+        "supplier_delivery": 52.4,
+        "employment": 48.3
+      },
+      {
+        "date": "2023-05-01",
+        "services": 53.8,
+        "construction": 58.2,
+        "new_orders": 49.5,
+        "export_new_orders": 49.7,
+        "in_hand_orders": 43.9,
+        "sale_price": 47.6,
+        "input_price": 47.4,
+        "supplier_delivery": 51.9,
+        "employment": 48.4
+      },
+      {
+        "date": "2023-06-01",
+        "services": 52.8,
+        "construction": 55.7,
+        "new_orders": 49.5,
+        "export_new_orders": 49.0,
+        "in_hand_orders": 43.9,
+        "sale_price": 47.8,
+        "input_price": 49.0,
+        "supplier_delivery": 51.9,
+        "employment": 46.8
+      },
+      {
+        "date": "2023-07-01",
+        "services": 51.5,
+        "construction": 51.2,
+        "new_orders": 48.1,
+        "export_new_orders": 47.7,
+        "in_hand_orders": 43.8,
+        "sale_price": 49.7,
+        "input_price": 50.8,
+        "supplier_delivery": 51.4,
+        "employment": 46.6
+      },
+      {
+        "date": "2023-08-01",
+        "services": 50.5,
+        "construction": 53.8,
+        "new_orders": 47.5,
+        "export_new_orders": 47.9,
+        "in_hand_orders": 43.7,
+        "sale_price": 50.0,
+        "input_price": 51.7,
+        "supplier_delivery": 52.0,
+        "employment": 46.8
+      },
+      {
+        "date": "2023-09-01",
+        "services": 50.9,
+        "construction": 56.2,
+        "new_orders": 47.8,
+        "export_new_orders": 49.4,
+        "in_hand_orders": 43.3,
+        "sale_price": 50.3,
+        "input_price": 52.5,
+        "supplier_delivery": 51.3,
+        "employment": 46.8
+      },
+      {
+        "date": "2023-10-01",
+        "services": 50.1,
+        "construction": 53.5,
+        "new_orders": 46.7,
+        "export_new_orders": 49.1,
+        "in_hand_orders": 43.1,
+        "sale_price": 48.6,
+        "input_price": 49.7,
+        "supplier_delivery": 52.0,
+        "employment": 46.5
+      },
+      {
+        "date": "2023-11-01",
+        "services": 49.3,
+        "construction": 55.0,
+        "new_orders": 47.2,
+        "export_new_orders": 46.8,
+        "in_hand_orders": 43.0,
+        "sale_price": 48.3,
+        "input_price": 49.8,
+        "supplier_delivery": 51.8,
+        "employment": 46.9
+      },
+      {
+        "date": "2023-12-01",
+        "services": 49.3,
+        "construction": 56.9,
+        "new_orders": 47.5,
+        "export_new_orders": 50.9,
+        "in_hand_orders": 43.9,
+        "sale_price": 49.3,
+        "input_price": 49.6,
+        "supplier_delivery": 51.0,
+        "employment": 47.1
+      },
+      {
+        "date": "2024-01-01",
+        "services": 50.1,
+        "construction": 53.9,
+        "new_orders": 47.6,
+        "export_new_orders": 45.2,
+        "in_hand_orders": 43.7,
+        "sale_price": 48.9,
+        "input_price": 49.6,
+        "supplier_delivery": 52.0,
+        "employment": 47.0
+      },
+      {
+        "date": "2024-02-01",
+        "services": 51.0,
+        "construction": 53.5,
+        "new_orders": 46.8,
+        "export_new_orders": 47.3,
+        "in_hand_orders": 42.7,
+        "sale_price": 48.5,
+        "input_price": 50.6,
+        "supplier_delivery": 50.3,
+        "employment": 47.0
+      },
+      {
+        "date": "2024-03-01",
+        "services": 52.4,
+        "construction": 56.2,
+        "new_orders": 47.4,
+        "export_new_orders": 47.3,
+        "in_hand_orders": 44.8,
+        "sale_price": 48.6,
+        "input_price": 49.5,
+        "supplier_delivery": 51.1,
+        "employment": 46.6
+      },
+      {
+        "date": "2024-04-01",
+        "services": 50.3,
+        "construction": 56.3,
+        "new_orders": 46.3,
+        "export_new_orders": 48.4,
+        "in_hand_orders": 44.5,
+        "sale_price": 49.4,
+        "input_price": 51.1,
+        "supplier_delivery": 51.0,
+        "employment": 47.2
+      },
+      {
+        "date": "2024-05-01",
+        "services": 50.5,
+        "construction": 54.4,
+        "new_orders": 46.9,
+        "export_new_orders": 47.6,
+        "in_hand_orders": 42.9,
+        "sale_price": 47.8,
+        "input_price": 49.7,
+        "supplier_delivery": 51.0,
+        "employment": 46.2
+      },
+      {
+        "date": "2024-06-01",
+        "services": 50.2,
+        "construction": 52.3,
+        "new_orders": 46.7,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 43.1,
+        "sale_price": 47.6,
+        "input_price": 49.6,
+        "supplier_delivery": 50.5,
+        "employment": 45.8
+      },
+      {
+        "date": "2024-07-01",
+        "services": 50.0,
+        "construction": 51.2,
+        "new_orders": 45.7,
+        "export_new_orders": 49.6,
+        "in_hand_orders": 42.7,
+        "sale_price": 48.2,
+        "input_price": 50.4,
+        "supplier_delivery": 50.5,
+        "employment": 45.5
+      },
+      {
+        "date": "2024-08-01",
+        "services": 50.2,
+        "construction": 50.6,
+        "new_orders": 46.3,
+        "export_new_orders": 47.6,
+        "in_hand_orders": 42.2,
+        "sale_price": 47.2,
+        "input_price": 48.6,
+        "supplier_delivery": 50.6,
+        "employment": 45.2
+      },
+      {
+        "date": "2024-09-01",
+        "services": 49.9,
+        "construction": 50.7,
+        "new_orders": 44.2,
+        "export_new_orders": 47.0,
+        "in_hand_orders": 42.2,
+        "sale_price": 46.1,
+        "input_price": 48.2,
+        "supplier_delivery": 50.2,
+        "employment": 44.7
+      },
+      {
+        "date": "2024-10-01",
+        "services": 50.1,
+        "construction": 50.4,
+        "new_orders": 47.2,
+        "export_new_orders": 50.0,
+        "in_hand_orders": 43.7,
+        "sale_price": 48.5,
+        "input_price": 50.6,
+        "supplier_delivery": 51.2,
+        "employment": 45.8
+      },
+      {
+        "date": "2024-11-01",
+        "services": 50.1,
+        "construction": 49.7,
+        "new_orders": 45.9,
+        "export_new_orders": 48.2,
+        "in_hand_orders": 42.7,
+        "sale_price": 48.8,
+        "input_price": 49.1,
+        "supplier_delivery": 51.2,
+        "employment": 45.4
+      },
+      {
+        "date": "2024-12-01",
+        "services": 52.0,
+        "construction": 53.2,
+        "new_orders": 48.7,
+        "export_new_orders": 50.0,
+        "in_hand_orders": 44.1,
+        "sale_price": 48.8,
+        "input_price": 50.5,
+        "supplier_delivery": 51.5,
+        "employment": 45.8
+      },
+      {
+        "date": "2025-01-01",
+        "services": 50.3,
+        "construction": 49.3,
+        "new_orders": 46.4,
+        "export_new_orders": 44.6,
+        "in_hand_orders": 43.3,
+        "sale_price": 48.6,
+        "input_price": 50.4,
+        "supplier_delivery": 51.3,
+        "employment": 46.7
+      },
+      {
+        "date": "2025-02-01",
+        "services": 50.0,
+        "construction": 52.7,
+        "new_orders": 46.1,
+        "export_new_orders": 49.5,
+        "in_hand_orders": 43.1,
+        "sale_price": 47.8,
+        "input_price": 48.4,
+        "supplier_delivery": 53.1,
+        "employment": 46.5
+      },
+      {
+        "date": "2025-03-01",
+        "services": 50.3,
+        "construction": 53.4,
+        "new_orders": 46.6,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 43.7,
+        "sale_price": 46.7,
+        "input_price": 48.6,
+        "supplier_delivery": 51.1,
+        "employment": 45.8
+      },
+      {
+        "date": "2025-04-01",
+        "services": 50.1,
+        "construction": 51.9,
+        "new_orders": 44.9,
+        "export_new_orders": 42.2,
+        "in_hand_orders": 42.3,
+        "sale_price": 46.6,
+        "input_price": 47.8,
+        "supplier_delivery": 50.8,
+        "employment": 45.5
+      },
+      {
+        "date": "2025-05-01",
+        "services": 50.2,
+        "construction": 51.0,
+        "new_orders": 46.1,
+        "export_new_orders": 48.0,
+        "in_hand_orders": 43.4,
+        "sale_price": 47.3,
+        "input_price": 48.2,
+        "supplier_delivery": 51.1,
+        "employment": 45.5
+      },
+      {
+        "date": "2025-06-01",
+        "services": 50.1,
+        "construction": 52.8,
+        "new_orders": 46.6,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 43.4,
+        "sale_price": 48.8,
+        "input_price": 49.9,
+        "supplier_delivery": 51.2,
+        "employment": 45.5
+      },
+      {
+        "date": "2025-07-01",
+        "services": 50.0,
+        "construction": 50.6,
+        "new_orders": 45.7,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 42.3,
+        "sale_price": 47.9,
+        "input_price": 50.3,
+        "supplier_delivery": 51.2,
+        "employment": 45.6
+      },
+      {
+        "date": "2025-08-01",
+        "services": 50.5,
+        "construction": 49.1,
+        "new_orders": 46.6,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 43.4,
+        "sale_price": 48.6,
+        "input_price": 50.3,
+        "supplier_delivery": 51.3,
+        "employment": 45.6
+      },
+      {
+        "date": "2025-09-01",
+        "services": 50.1,
+        "construction": 49.3,
+        "new_orders": 46.0,
+        "export_new_orders": 49.8,
+        "in_hand_orders": 44.4,
+        "sale_price": 47.3,
+        "input_price": 49.0,
+        "supplier_delivery": 51.1,
+        "employment": 45.0
+      },
+      {
+        "date": "2025-10-01",
+        "services": 50.2,
+        "construction": 49.1,
+        "new_orders": 46.0,
+        "export_new_orders": 46.2,
+        "in_hand_orders": 43.6,
+        "sale_price": 47.8,
+        "input_price": 49.4,
+        "supplier_delivery": 50.9,
+        "employment": 45.2
+      },
+      {
+        "date": "2025-11-01",
+        "services": 49.5,
+        "construction": 49.6,
+        "new_orders": 45.7,
+        "export_new_orders": 47.9,
+        "in_hand_orders": 43.6,
+        "sale_price": 49.1,
+        "input_price": 50.4,
+        "supplier_delivery": 51.2,
+        "employment": 45.3
+      },
+      {
+        "date": "2025-12-01",
+        "services": 49.7,
+        "construction": 52.8,
+        "new_orders": 47.3,
+        "export_new_orders": 47.5,
+        "in_hand_orders": 43.5,
+        "sale_price": 48.0,
+        "input_price": 50.2,
+        "supplier_delivery": 51.3,
+        "employment": 46.1
+      },
+      {
+        "date": "2026-01-01",
+        "services": 49.5,
+        "construction": 48.8,
+        "new_orders": 46.1,
+        "export_new_orders": 46.9,
+        "in_hand_orders": 42.5,
+        "sale_price": 48.8,
+        "input_price": 50.0,
+        "supplier_delivery": 51.1,
+        "employment": 46.1
+      },
+      {
+        "date": "2026-02-01",
+        "services": 49.7,
+        "construction": 48.2,
+        "new_orders": 45.2,
+        "export_new_orders": 44.7,
+        "in_hand_orders": 42.3,
+        "sale_price": 48.8,
+        "input_price": 50.9,
+        "supplier_delivery": 50.5,
+        "employment": 46.0
+      }
+    ],
+    "latest": {
+      "date": "2026-02-01",
+      "services": 49.7,
+      "construction": 48.2,
+      "new_orders": 45.2,
+      "export_new_orders": 44.7,
+      "in_hand_orders": 42.3,
+      "sale_price": 48.8,
+      "input_price": 50.9,
+      "supplier_delivery": 50.5,
+      "employment": 46.0
+    }
+  },
+  "metadata": {
+    "indicator": "NBS Purchasing Managers Index",
+    "source": "National Bureau of Statistics (NBS)",
+    "headline_records": 194,
+    "mfg_sub_records": 194,
+    "nmf_sub_records": 194,
+    "last_fetched": "2026-03-07T02:57:53.151783+09:00"
+  },
+  "next_release": {
+    "date": "2026-03-31",
+    "datetime_utc": "2026-03-31T01:30:00+00:00",
+    "datetime_jst": "2026-03-31T10:30:00+09:00",
+    "time_jst": "10:30",
+    "label": "NBS Non Manufacturing PMI (Mar)",
+    "estimate": 50.9
+  }
+}

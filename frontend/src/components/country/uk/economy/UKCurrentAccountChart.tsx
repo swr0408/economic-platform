@@ -47,7 +47,17 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'value' | 'qoq_chart' | 'qoq_table'
+type DataKind = 'value' | 'qoq'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'qoq', label: '前期比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 const COLORS = {
   value: '#1890ff',
@@ -55,14 +65,14 @@ const COLORS = {
 }
 
 export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    qoq_chart: 'default',
-    qoq_table: 'default',
+    qoq: 'default',
   })
 
   // propsのデータをチャート用に変換
@@ -110,10 +120,10 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
   // 現在の表示値
   const currentValue = useMemo(() => {
     if (!latest) return null
-    return viewMode === 'value' ? latest.value : latest.qoq_change
-  }, [latest, viewMode])
+    return dataKind === 'value' ? latest.value : latest.qoq_change
+  }, [latest, dataKind])
 
-  const currentColor = viewMode === 'value' ? COLORS.value : COLORS.qoq
+  const currentColor = dataKind === 'value' ? COLORS.value : COLORS.qoq
 
   if (data === null) {
     return <LoadingChart title="経常収支（イギリス）" />
@@ -137,7 +147,7 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={viewMode === 'value' ? '経常収支' : '前期増減幅'}
+          label={dataKind === 'value' ? '経常収支' : '前期増減幅'}
           value={currentValue != null ? `£${currentValue >= 0 ? '+' : ''}${currentValue.toFixed(2)}bn` : null}
           valueColor={currentColor}
           date={latest?.date}
@@ -156,18 +166,28 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '原数値' },
-                      { mode: 'qoq_chart', label: '前期増減幅' },
-                      { mode: 'qoq_table', label: '前期増減幅（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=uk_current_account', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* 下段: 表示形式（前期比のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* テーブル表示 */}
-                  {viewMode === 'qoq_table' && (
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={2}
@@ -177,21 +197,11 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
                   )}
 
                   {/* 期間セレクター + グラフ */}
-                  {viewMode !== 'qoq_table' && (
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=uk_current_account', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
-                      {viewMode === 'value' && (
+                      {dataKind === 'value' && (
                         <StandardBarChart
                           data={filteredData}
                           bars={[
@@ -206,7 +216,7 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
                         />
                       )}
 
-                      {viewMode === 'qoq_chart' && (
+                      {dataKind === 'qoq' && displayMode === 'chart' && (
                         <StandardBarChart
                           data={filteredData}
                           bars={[

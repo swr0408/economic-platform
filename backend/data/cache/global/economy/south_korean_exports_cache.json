@@ -1,0 +1,739 @@
+{
+  "data": [
+    {
+      "date": "2016-03-01",
+      "value": -8.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-04-01",
+      "value": -11.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-05-01",
+      "value": -6.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-06-01",
+      "value": -2.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-07-01",
+      "value": -10.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-08-01",
+      "value": 2.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-09-01",
+      "value": -5.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-10-01",
+      "value": -3.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-11-01",
+      "value": 2.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2016-12-01",
+      "value": 6.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-01-01",
+      "value": 6.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-02-01",
+      "value": 20.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-03-01",
+      "value": 13.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-04-01",
+      "value": 24.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-05-01",
+      "value": 13.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-06-01",
+      "value": 13.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-07-01",
+      "value": 19.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-08-01",
+      "value": 17.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-09-01",
+      "value": 35.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-10-01",
+      "value": 7.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-11-01",
+      "value": 9.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2017-12-01",
+      "value": 8.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-01-01",
+      "value": 22.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-02-01",
+      "value": 3.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-03-01",
+      "value": 6.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-04-01",
+      "value": -1.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-05-01",
+      "value": 13.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-06-01",
+      "value": -0.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-07-01",
+      "value": 6.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-08-01",
+      "value": 8.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-09-01",
+      "value": -8.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-10-01",
+      "value": 22.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-11-01",
+      "value": 4.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2018-12-01",
+      "value": -1.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-01-01",
+      "value": -5.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-02-01",
+      "value": -11.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-03-01",
+      "value": -8.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-04-01",
+      "value": -2.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-05-01",
+      "value": -9.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-06-01",
+      "value": -13.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-07-01",
+      "value": -11.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-08-01",
+      "value": -13.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-09-01",
+      "value": -11.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-10-01",
+      "value": -14.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-11-01",
+      "value": -14.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2019-12-01",
+      "value": -5.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-01-01",
+      "value": -6.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-02-01",
+      "value": 4.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-03-01",
+      "value": -0.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-04-01",
+      "value": -25.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-05-01",
+      "value": -23.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-06-01",
+      "value": -10.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-07-01",
+      "value": -7.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-08-01",
+      "value": -10.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-09-01",
+      "value": 7.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-10-01",
+      "value": -3.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-11-01",
+      "value": 4.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2020-12-01",
+      "value": 12.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-01-01",
+      "value": 11.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-02-01",
+      "value": 9.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-03-01",
+      "value": 16.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-04-01",
+      "value": 41.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-05-01",
+      "value": 45.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-06-01",
+      "value": 39.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-07-01",
+      "value": 29.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-08-01",
+      "value": 34.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-09-01",
+      "value": 16.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-10-01",
+      "value": 24.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-11-01",
+      "value": 32.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2021-12-01",
+      "value": 18.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-01-01",
+      "value": 15.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-02-01",
+      "value": 20.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-03-01",
+      "value": 18.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-04-01",
+      "value": 12.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-05-01",
+      "value": 21.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-06-01",
+      "value": 5.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-07-01",
+      "value": 9.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-08-01",
+      "value": 6.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-09-01",
+      "value": 2.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-10-01",
+      "value": -5.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-11-01",
+      "value": -14.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2022-12-01",
+      "value": -9.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-01-01",
+      "value": -16.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-02-01",
+      "value": -7.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-03-01",
+      "value": -13.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-04-01",
+      "value": -14.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-05-01",
+      "value": -15.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-06-01",
+      "value": -6.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-07-01",
+      "value": -16.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-08-01",
+      "value": -8.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-09-01",
+      "value": -4.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-10-01",
+      "value": 5.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-11-01",
+      "value": 7.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2023-12-01",
+      "value": 5.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-01-01",
+      "value": 18.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-02-01",
+      "value": 4.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-03-01",
+      "value": 3.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-04-01",
+      "value": 13.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-05-01",
+      "value": 11.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-06-01",
+      "value": 5.1,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-07-01",
+      "value": 13.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-08-01",
+      "value": 11.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-09-01",
+      "value": 7.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-10-01",
+      "value": 4.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-11-01",
+      "value": 1.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2024-12-01",
+      "value": 6.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-01-01",
+      "value": -10.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-02-01",
+      "value": 0.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.0,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-04-01",
+      "value": 3.7,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-05-01",
+      "value": -1.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-06-01",
+      "value": 4.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-07-01",
+      "value": 5.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-08-01",
+      "value": 1.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-09-01",
+      "value": 12.6,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-10-01",
+      "value": 3.5,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-11-01",
+      "value": 8.4,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2025-12-01",
+      "value": 13.3,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-01-01",
+      "value": 33.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-02-01",
+      "value": 29.0,
+      "forecast": null,
+      "previous": null
+    }
+  ],
+  "latest": {
+    "date": "2026-02-01",
+    "value": 29.0,
+    "forecast": null,
+    "previous": null
+  },
+  "metadata": {
+    "source": "MOTIR (Ministry of Trade, Industry and Resources)",
+    "indicator": "South Korean Exports YoY",
+    "description": "韓国輸出（前年比）",
+    "unit": "%",
+    "frequency": "monthly"
+  },
+  "next_release": null,
+  "last_updated": "2026-03-08T12:04:54.874475+09:00"
+}

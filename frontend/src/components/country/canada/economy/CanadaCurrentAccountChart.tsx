@@ -43,7 +43,20 @@ interface CanadaCurrentAccountChartProps {
   data: CaCurrentAccountData | null
 }
 
-type ViewMode = 'raw' | 'qoq' | 'qoq_table'
+type DataKind = 'value' | 'qoq'
+type DisplayMode = 'chart' | 'heatmap'
+
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '経常収支' },
+  { mode: 'qoq', label: '前期比変化額' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 interface ChartDataItem {
   date: string
@@ -54,25 +67,23 @@ interface ChartDataItem {
 
 export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccountChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('raw')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    raw: 'default' as PeriodType,
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    value: 'default' as PeriodType,
     qoq: 'default' as PeriodType,
-    qoq_table: 'default' as PeriodType,
   })
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataItem[]>(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    const currentViewMode = viewMode === 'qoq_table' ? 'qoq' : viewMode
-
     const formattedData: ChartDataItem[] = data.data.map((item) => {
       let value = 0
-      switch (currentViewMode) {
-        case 'raw':
+      switch (dataKind) {
+        case 'value':
           value = item.value ?? 0
           break
         case 'qoq':
@@ -92,7 +103,7 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
     formattedData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
     return formattedData
-  }, [data, viewMode])
+  }, [data, dataKind])
 
   const formatMillions = (value: number) => {
     if (Math.abs(value) >= 1000) {
@@ -132,40 +143,31 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
     )
   }
 
-  const viewModeOptions = [
-    { mode: 'raw' as ViewMode, label: '経常収支' },
-    { mode: 'qoq' as ViewMode, label: '前期比変化額' },
-    { mode: 'qoq_table' as ViewMode, label: '前期比変化額（テーブル）' },
-  ]
-
   // 表示ラベルを取得
-  const getViewModeLabel = (mode: ViewMode) => {
-    switch (mode) {
-      case 'raw': return '経常収支'
+  const getDataKindLabel = (kind: DataKind) => {
+    switch (kind) {
+      case 'value': return '経常収支'
       case 'qoq': return '前期比変化額'
-      case 'qoq_table': return '前期比変化額'
     }
   }
 
-  // 最新値を取得（ViewModeに応じて）
+  // 最新値を取得（DataKindに応じて）
   const getLatestValue = () => {
     if (!latestValue) return undefined
-    switch (viewMode) {
-      case 'raw':
+    switch (dataKind) {
+      case 'value':
         return latestValue.value
       case 'qoq':
-      case 'qoq_table':
         return latestValue.qoq_change
     }
   }
 
   // 比較ページ用のキーを取得
   const getCompareKey = () => {
-    switch (viewMode) {
-      case 'raw':
+    switch (dataKind) {
+      case 'value':
         return 'raw'
       case 'qoq':
-      case 'qoq_table':
         return 'qoq'
     }
   }
@@ -180,7 +182,7 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={getViewModeLabel(viewMode)}
+          label={getDataKindLabel(dataKind)}
           value={getLatestValue()}
           valueColor={CHART_COLORS.primary}
           date={latestValue?.date}
@@ -189,7 +191,7 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
             label: data.next_release.time_jst ? `${data.next_release.time_jst} JST` : undefined
           } : null}
           format="number"
-          decimals={viewMode === 'raw' ? 0 : 1}
+          decimals={dataKind === 'value' ? 0 : 1}
           unit="M CAD"
         />
 
@@ -203,11 +205,12 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={viewModeOptions}
-                      currentMode={viewMode}
-                      onChange={setViewMode}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く">
                       <Button
@@ -218,9 +221,14 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
-                  {/* 前期比変化額テーブル */}
-                  {viewMode === 'qoq_table' && (
+                  {/* 前期比変化額ヒートマップ */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={0}
@@ -230,11 +238,11 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
                   )}
 
                   {/* グラフ表示 */}
-                  {viewMode !== 'qoq_table' && (
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
-                      {viewMode === 'raw' ? (
+                      {dataKind === 'value' ? (
                         // 経常収支は棒グラフ
                         <ResponsiveContainer width="100%" height={450}>
                           <ComposedChart

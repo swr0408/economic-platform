@@ -497,6 +497,10 @@ class CartsService:
             print(f"Error reading fig6 sheet: {e}")
             return []
 
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """次回発表日を取得（Chicago Fedスケジュールから）"""
+        return get_carts_next_release()
+
     def _should_refresh(self, last_updated_str: str) -> bool:
         """
         キャッシュを更新すべきかどうかを判定

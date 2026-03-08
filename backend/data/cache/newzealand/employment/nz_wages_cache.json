@@ -1,0 +1,361 @@
+{
+  "data": [
+    {
+      "date": "2016-12-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 29.75,
+      "hourly_earnings_qoq": -0.1,
+      "hourly_earnings_yoy": 1.3
+    },
+    {
+      "date": "2017-03-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 29.9,
+      "hourly_earnings_qoq": 0.5,
+      "hourly_earnings_yoy": 1.5
+    },
+    {
+      "date": "2017-06-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 30.09,
+      "hourly_earnings_qoq": 0.6,
+      "hourly_earnings_yoy": 1.6
+    },
+    {
+      "date": "2017-09-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 30.45,
+      "hourly_earnings_qoq": 1.2,
+      "hourly_earnings_yoy": 2.2
+    },
+    {
+      "date": "2017-12-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 30.68,
+      "hourly_earnings_qoq": 0.8,
+      "hourly_earnings_yoy": 3.1
+    },
+    {
+      "date": "2018-03-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 30.96,
+      "hourly_earnings_qoq": 0.9,
+      "hourly_earnings_yoy": 3.5
+    },
+    {
+      "date": "2018-06-01",
+      "wage_index": 1168.0,
+      "wage_index_qoq": 0.5,
+      "wage_index_yoy": 1.9,
+      "hourly_earnings": 31.0,
+      "hourly_earnings_qoq": 0.1,
+      "hourly_earnings_yoy": 3.0
+    },
+    {
+      "date": "2018-09-01",
+      "wage_index": 1174.0,
+      "wage_index_qoq": 0.5,
+      "wage_index_yoy": 1.8,
+      "hourly_earnings": 31.34,
+      "hourly_earnings_qoq": 1.1,
+      "hourly_earnings_yoy": 2.9
+    },
+    {
+      "date": "2018-12-01",
+      "wage_index": 1180.0,
+      "wage_index_qoq": 0.5,
+      "wage_index_yoy": 1.9,
+      "hourly_earnings": 31.63,
+      "hourly_earnings_qoq": 0.9,
+      "hourly_earnings_yoy": 3.1
+    },
+    {
+      "date": "2019-03-01",
+      "wage_index": 1185.0,
+      "wage_index_qoq": 0.4,
+      "wage_index_yoy": 2.0,
+      "hourly_earnings": 32.0,
+      "hourly_earnings_qoq": 1.2,
+      "hourly_earnings_yoy": 3.4
+    },
+    {
+      "date": "2019-06-01",
+      "wage_index": 1193.0,
+      "wage_index_qoq": 0.7,
+      "wage_index_yoy": 2.1,
+      "hourly_earnings": 32.37,
+      "hourly_earnings_qoq": 1.2,
+      "hourly_earnings_yoy": 4.4
+    },
+    {
+      "date": "2019-09-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 32.7,
+      "hourly_earnings_qoq": 0.7,
+      "hourly_earnings_yoy": 3.4
+    },
+    {
+      "date": "2019-12-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 32.9,
+      "hourly_earnings_qoq": 0.6,
+      "hourly_earnings_yoy": 3.3
+    },
+    {
+      "date": "2020-03-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 33.2,
+      "hourly_earnings_qoq": 0.9,
+      "hourly_earnings_yoy": 3.7
+    },
+    {
+      "date": "2020-06-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 33.42,
+      "hourly_earnings_qoq": 0.7,
+      "hourly_earnings_yoy": 3.0
+    },
+    {
+      "date": "2020-09-01",
+      "wage_index": 1225.0,
+      "wage_index_qoq": 0.6,
+      "wage_index_yoy": 1.9,
+      "hourly_earnings": 34.06,
+      "hourly_earnings_qoq": 1.9,
+      "hourly_earnings_yoy": 4.2
+    },
+    {
+      "date": "2020-12-01",
+      "wage_index": 1230.0,
+      "wage_index_qoq": 0.4,
+      "wage_index_yoy": 1.6,
+      "hourly_earnings": 34.32,
+      "hourly_earnings_qoq": 0.8,
+      "hourly_earnings_yoy": 4.3
+    },
+    {
+      "date": "2021-03-01",
+      "wage_index": 1235.0,
+      "wage_index_qoq": 0.4,
+      "wage_index_yoy": 1.6,
+      "hourly_earnings": 34.53,
+      "hourly_earnings_qoq": 0.6,
+      "hourly_earnings_yoy": 4.0
+    },
+    {
+      "date": "2021-06-01",
+      "wage_index": 1244.0,
+      "wage_index_qoq": 0.7,
+      "wage_index_yoy": 2.1,
+      "hourly_earnings": 34.76,
+      "hourly_earnings_qoq": 0.7,
+      "hourly_earnings_yoy": 4.0
+    },
+    {
+      "date": "2021-09-01",
+      "wage_index": 1254.0,
+      "wage_index_qoq": 0.8,
+      "wage_index_yoy": 2.4,
+      "hourly_earnings": 35.25,
+      "hourly_earnings_qoq": 1.4,
+      "hourly_earnings_yoy": 3.5
+    },
+    {
+      "date": "2021-12-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 35.61,
+      "hourly_earnings_qoq": 1.0,
+      "hourly_earnings_yoy": 3.8
+    },
+    {
+      "date": "2022-03-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 36.18,
+      "hourly_earnings_qoq": 1.6,
+      "hourly_earnings_yoy": 4.8
+    },
+    {
+      "date": "2022-06-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 36.97,
+      "hourly_earnings_qoq": 2.2,
+      "hourly_earnings_yoy": 6.4
+    },
+    {
+      "date": "2022-09-01",
+      "wage_index": 1300.0,
+      "wage_index_qoq": 1.1,
+      "wage_index_yoy": 3.7,
+      "hourly_earnings": 37.86,
+      "hourly_earnings_qoq": 2.4,
+      "hourly_earnings_yoy": 7.4
+    },
+    {
+      "date": "2022-12-01",
+      "wage_index": 1314.0,
+      "wage_index_qoq": 1.1,
+      "wage_index_yoy": 4.1,
+      "hourly_earnings": 38.19,
+      "hourly_earnings_qoq": 0.9,
+      "hourly_earnings_yoy": 7.2
+    },
+    {
+      "date": "2023-03-01",
+      "wage_index": 1327.0,
+      "wage_index_qoq": 1.0,
+      "wage_index_yoy": 4.3,
+      "hourly_earnings": 38.93,
+      "hourly_earnings_qoq": 1.9,
+      "hourly_earnings_yoy": 7.6
+    },
+    {
+      "date": "2023-06-01",
+      "wage_index": 1341.0,
+      "wage_index_qoq": 1.1,
+      "wage_index_yoy": 4.3,
+      "hourly_earnings": null,
+      "hourly_earnings_qoq": null,
+      "hourly_earnings_yoy": null
+    },
+    {
+      "date": "2023-09-01",
+      "wage_index": 1356.0,
+      "wage_index_qoq": 1.1,
+      "wage_index_yoy": 4.3,
+      "hourly_earnings": null,
+      "hourly_earnings_qoq": null,
+      "hourly_earnings_yoy": null
+    },
+    {
+      "date": "2023-12-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 40.84,
+      "hourly_earnings_qoq": 1.1,
+      "hourly_earnings_yoy": 6.9
+    },
+    {
+      "date": "2024-03-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 40.96,
+      "hourly_earnings_qoq": 0.3,
+      "hourly_earnings_yoy": 5.2
+    },
+    {
+      "date": "2024-06-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 41.52,
+      "hourly_earnings_qoq": 1.4,
+      "hourly_earnings_yoy": 5.0
+    },
+    {
+      "date": "2024-09-01",
+      "wage_index": null,
+      "wage_index_qoq": null,
+      "wage_index_yoy": null,
+      "hourly_earnings": 41.98,
+      "hourly_earnings_qoq": 1.1,
+      "hourly_earnings_yoy": 3.9
+    },
+    {
+      "date": "2024-12-01",
+      "wage_index": 1415.0,
+      "wage_index_qoq": 0.6,
+      "wage_index_yoy": 3.3,
+      "hourly_earnings": 42.57,
+      "hourly_earnings_qoq": 1.4,
+      "hourly_earnings_yoy": 4.2
+    },
+    {
+      "date": "2025-03-01",
+      "wage_index": 1422.0,
+      "wage_index_qoq": 0.5,
+      "wage_index_yoy": 2.9,
+      "hourly_earnings": 42.79,
+      "hourly_earnings_qoq": 0.5,
+      "hourly_earnings_yoy": 4.5
+    },
+    {
+      "date": "2025-06-01",
+      "wage_index": 1431.0,
+      "wage_index_qoq": 0.6,
+      "wage_index_yoy": 2.4,
+      "hourly_earnings": 43.39,
+      "hourly_earnings_qoq": 1.4,
+      "hourly_earnings_yoy": 4.5
+    },
+    {
+      "date": "2025-09-01",
+      "wage_index": 1437.0,
+      "wage_index_qoq": 0.4,
+      "wage_index_yoy": 2.1,
+      "hourly_earnings": 43.6,
+      "hourly_earnings_qoq": 0.5,
+      "hourly_earnings_yoy": 3.9
+    },
+    {
+      "date": "2025-12-01",
+      "wage_index": 1443.0,
+      "wage_index_qoq": 0.4,
+      "wage_index_yoy": 2.0,
+      "hourly_earnings": 43.99,
+      "hourly_earnings_qoq": 0.9,
+      "hourly_earnings_yoy": 3.3
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "wage_index": 1443.0,
+    "wage_index_qoq": 0.4,
+    "wage_index_yoy": 2.0,
+    "hourly_earnings": 43.99,
+    "hourly_earnings_qoq": 0.9,
+    "hourly_earnings_yoy": 3.3
+  },
+  "metadata": {
+    "source": "Stats NZ",
+    "indicator": "Labour Cost Index + Quarterly Employment Survey",
+    "description": "NZ 全給与・賃金率指数 + 平均時給",
+    "frequency": "quarterly",
+    "series": {
+      "wage_index": "LCIQ.SG53Z9 (Base: Jun 2009 = 1000)",
+      "hourly_earnings": "QEMQ.SASZ9A ($ per hour)"
+    }
+  },
+  "next_release": {
+    "date": "2026-05-06",
+    "label": "Labour market statistics: March 2026 quarter will be released on 6 May 2026."
+  },
+  "last_updated": "2026-02-26T14:11:36.239879+09:00"
+}

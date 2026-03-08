@@ -53,15 +53,17 @@ const COLORS = {
   yoy: '#00CED1',    // シアン系（前年比）
 }
 
-// 表示モード
-type ViewMode = 'value' | 'mom' | 'mom_table' | 'yoy'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+// 指標種別
+type DataKind = 'value' | 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
   { mode: 'value', label: '残高' },
   { mode: 'mom', label: '前月比' },
-  { mode: 'mom_table', label: '前月比テーブル' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // 日付から年を抽出
@@ -76,9 +78,10 @@ const getMonthFromDate = (dateStr: string): number => {
 
 export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartProps) {
   // 表示モード（残高 / 前月比 / 前年比）
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
+  // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
     default: 'default',
   })
@@ -142,34 +145,34 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
     return { years: sortedYears, monthlyData }
   }, [chartData])
 
-  // 現在のビューモードに応じた最新値を取得
+  // 現在のデータ種別に応じた最新値を取得
   const currentLatestValue = useMemo(() => {
     if (!latestValue) return null
-    if (viewMode === 'value') return latestValue.value
-    if (viewMode === 'mom' || viewMode === 'mom_table') return latestValue.mom
-    if (viewMode === 'yoy') return latestValue.yoy
+    if (dataKind === 'value') return latestValue.value
+    if (dataKind === 'mom') return latestValue.mom
+    if (dataKind === 'yoy') return latestValue.yoy
     return latestValue.value
-  }, [latestValue, viewMode])
+  }, [latestValue, dataKind])
 
-  // 現在のビューモードに応じた色を取得
+  // 現在のデータ種別に応じた色を取得
   const currentColor = useMemo(() => {
-    if (viewMode === 'value') return COLORS.value
-    if (viewMode === 'mom' || viewMode === 'mom_table') return COLORS.mom
-    if (viewMode === 'yoy') return COLORS.yoy
+    if (dataKind === 'value') return COLORS.value
+    if (dataKind === 'mom') return COLORS.mom
+    if (dataKind === 'yoy') return COLORS.yoy
     return COLORS.value
-  }, [viewMode])
+  }, [dataKind])
 
   // 最新値ラベルを取得
   const getLatestLabel = () => {
-    if (viewMode === 'value') return '住宅ローン残高'
-    if (viewMode === 'mom' || viewMode === 'mom_table') return '住宅ローン残高（前月比）'
-    if (viewMode === 'yoy') return '住宅ローン残高（前年比）'
+    if (dataKind === 'value') return '住宅ローン残高'
+    if (dataKind === 'mom') return '住宅ローン残高（前月比）'
+    if (dataKind === 'yoy') return '住宅ローン残高（前年比）'
     return '住宅ローン残高'
   }
 
   // フォーマット種別
   const getFormat = () => {
-    if (viewMode === 'value') return 'number' as const
+    if (dataKind === 'value') return 'number' as const
     return 'percent' as const
   }
 
@@ -201,21 +204,14 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
           date={latestValue?.date}
           format={getFormat()}
           decimals={2}
-          unit={viewMode === 'value' ? 'BillionCHF' : undefined}
+          unit={dataKind === 'value' ? 'BillionCHF' : undefined}
           valueColor={currentColor}
           nextRelease={data.next_release ? { date: data.next_release } : null}
         />
 
-        {/* ビューモード切替 */}
-        <ViewModeButtonGroup
-          options={VIEW_MODE_OPTIONS}
-          currentMode={viewMode}
-          onChange={setViewMode}
-        />
-
-        {/* 期間セレクター・データ比較ボタン */}
+        {/* 上段: 指標種別 + データ比較ボタン */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+          <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
           <Tooltip title="比較ページを開く">
             <Button
               icon={<AreaChartOutlined />}
@@ -225,9 +221,21 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
             </Button>
           </Tooltip>
         </div>
+        {dataKind === 'mom' && (
+          <div style={{ marginBottom: 8 }}>
+            <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+          </div>
+        )}
+
+        {/* 期間セレクター */}
+        {!(dataKind === 'mom' && displayMode === 'heatmap') && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+          </div>
+        )}
 
         {/* グラフ */}
-        {viewMode === 'value' && (
+        {dataKind === 'value' && (
           <StandardLineChart
             data={filteredData}
             lines={[{ dataKey: 'value', color: COLORS.value, name: '住宅ローン残高' }]}
@@ -237,7 +245,7 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
             showZeroLine={false}
           />
         )}
-        {viewMode === 'mom' && (
+        {dataKind === 'mom' && displayMode === 'chart' && (
           <StandardBarChart
             data={filteredData}
             bars={[{
@@ -249,7 +257,7 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
             tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
           />
         )}
-        {viewMode === 'mom_table' && (
+        {dataKind === 'mom' && displayMode === 'heatmap' && (
           <MonthlyTable
             data={monthlyTableData}
             showLegend={true}
@@ -257,7 +265,7 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
             helperText="※ 直近10年間の前月比データ（単位: %）"
           />
         )}
-        {viewMode === 'yoy' && (
+        {dataKind === 'yoy' && (
           <StandardLineChart
             data={filteredData}
             lines={[{

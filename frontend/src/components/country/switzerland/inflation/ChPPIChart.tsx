@@ -52,13 +52,16 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-// 表示モード
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
-
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+// 指標種別
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // グラフの色
@@ -68,13 +71,13 @@ const COLORS = {
 
 export default function ChPPIChart({ data }: ChPPIChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換
@@ -151,8 +154,8 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
         {/* 最新値表示 */}
         <SimpleLatestValueBox
           label="PPI"
-          value={viewMode === 'yoy' ? latestYoy?.ppi_yoy : latestMom?.ppi_mom}
-          date={viewMode === 'yoy' ? latestYoy?.date : latestMom?.date}
+          value={dataKind === 'yoy' ? latestYoy?.ppi_yoy : latestMom?.ppi_mom}
+          date={dataKind === 'yoy' ? latestYoy?.date : latestMom?.date}
           format="percent"
           valueColor={COLORS.ppi}
           nextRelease={data.next_release}
@@ -169,9 +172,9 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く（スイスPPI）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -181,9 +184,14 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -198,13 +206,13 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable data={momTableData} />
                   )}
 
                   {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart

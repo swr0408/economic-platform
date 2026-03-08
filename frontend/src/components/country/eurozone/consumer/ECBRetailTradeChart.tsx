@@ -51,7 +51,17 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'yoy' | 'mom'
+
+type DisplayMode = 'chart' | 'heatmap'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // グラフの色
 const COLORS = {
@@ -60,15 +70,15 @@ const COLORS = {
 }
 
 export default function ECBRetailTradeChart({ data }: ECBRetailTradeChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換（前年比と前月比をマージ）
@@ -144,8 +154,8 @@ export default function ECBRetailTradeChart({ data }: ECBRetailTradeChartProps) 
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          value={viewMode === 'yoy' ? latest?.yoy : latest?.mom}
-          valueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
+          value={dataKind === 'yoy' ? latest?.yoy : latest?.mom}
+          valueColor={dataKind === 'yoy' ? COLORS.yoy : COLORS.mom}
           date={latest?.date}
           nextRelease={data.next_release}
           format="percent"
@@ -162,35 +172,35 @@ export default function ECBRetailTradeChart({ data }: ECBRetailTradeChartProps) 
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_chart', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=ecb_retail_trade_yoy', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'yoy' || viewMode === 'mom_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=ecb_retail_trade_yoy', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={momTableData} />}
+                  {/* 期間セレクター */}
+                  {(dataKind === 'yoy' || (dataKind === 'mom' && displayMode === 'chart')) && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
 
-                  {viewMode === 'yoy' && (
+                  {/* コンテンツ表示 */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={momTableData} />}
+
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -201,7 +211,7 @@ export default function ECBRetailTradeChart({ data }: ECBRetailTradeChartProps) 
                     />
                   )}
 
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

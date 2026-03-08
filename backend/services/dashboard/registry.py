@@ -46,8 +46,18 @@ from services.dashboard.loaders.australia_employment import AustraliaEmploymentL
 from services.dashboard.loaders.australia_consumer import AustraliaConsumerLoader
 from services.dashboard.loaders.australia_economy import AustraliaEconomyLoader
 from services.dashboard.loaders.australia_housing import AustraliaHousingLoader
+from services.dashboard.loaders.china_policy import ChinaPolicyLoader
+from services.dashboard.loaders.china_housing import ChinaHousingLoader
+from services.dashboard.loaders.china_inflation import ChinaInflationLoader
+from services.dashboard.loaders.china_consumer import ChinaConsumerLoader
+from services.dashboard.loaders.china_economy import ChinaEconomyLoader
+from services.dashboard.loaders.china_employment import ChinaEmploymentLoader
 from services.dashboard.loaders.newzealand_policy import NewZealandPolicyLoader
 from services.dashboard.loaders.newzealand_inflation import NewZealandInflationLoader
+from services.dashboard.loaders.newzealand_employment import NewZealandEmploymentLoader
+from services.dashboard.loaders.newzealand_consumer import NewZealandConsumerLoader
+from services.dashboard.loaders.newzealand_economy import NewZealandEconomyLoader
+from services.dashboard.loaders.global_economy import GlobalEconomyLoader
 
 
 # ローダーレジストリ: (country, category) -> LoaderClass
@@ -106,9 +116,23 @@ DASHBOARD_LOADERS: Dict[Tuple[str, str], Type[BaseDashboardLoader]] = {
     ("australia", "economy"): AustraliaEconomyLoader,
     ("australia", "housing"): AustraliaHousingLoader,
 
+    # 中国
+    ("china", "policy"): ChinaPolicyLoader,
+    ("china", "housing"): ChinaHousingLoader,
+    ("china", "inflation"): ChinaInflationLoader,
+    ("china", "consumer"): ChinaConsumerLoader,
+    ("china", "economy"): ChinaEconomyLoader,
+    ("china", "employment"): ChinaEmploymentLoader,
+
     # ニュージーランド
     ("newzealand", "policy"): NewZealandPolicyLoader,
     ("newzealand", "inflation"): NewZealandInflationLoader,
+    ("newzealand", "employment"): NewZealandEmploymentLoader,
+    ("newzealand", "consumer"): NewZealandConsumerLoader,
+    ("newzealand", "economy"): NewZealandEconomyLoader,
+
+    # グローバル
+    ("global", "economy"): GlobalEconomyLoader,
 
     # 他の国も同様に追加可能
 }
@@ -124,6 +148,7 @@ AVAILABLE_COUNTRIES = {
     "newzealand": "ニュージーランド",
     "canada": "カナダ",
     "switzerland": "スイス",
+    "global": "グローバル",
 }
 
 # 利用可能なカテゴリコード

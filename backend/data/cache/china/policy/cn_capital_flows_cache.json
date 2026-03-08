@@ -1,0 +1,1964 @@
+{
+  "data": [
+    {
+      "date": "2010-01-01",
+      "net_total": 299.0,
+      "net_current": 202.9,
+      "net_goods": 185.3,
+      "net_services": -10.0,
+      "net_capital": 96.2,
+      "net_securities": 15.9,
+      "net_other": 3.2
+    },
+    {
+      "date": "2010-02-01",
+      "net_total": 135.0,
+      "net_current": 96.3,
+      "net_goods": 93.8,
+      "net_services": -17.1,
+      "net_capital": 38.7,
+      "net_securities": -0.3,
+      "net_other": 3.9
+    },
+    {
+      "date": "2010-03-01",
+      "net_total": 158.4,
+      "net_current": 69.6,
+      "net_goods": 78.2,
+      "net_services": -22.1,
+      "net_capital": 88.7,
+      "net_securities": 4.3,
+      "net_other": 8.6
+    },
+    {
+      "date": "2010-04-01",
+      "net_total": 211.7,
+      "net_current": 170.4,
+      "net_goods": 156.3,
+      "net_services": -8.8,
+      "net_capital": 41.8,
+      "net_securities": 5.2,
+      "net_other": -50.6
+    },
+    {
+      "date": "2010-05-01",
+      "net_total": 167.3,
+      "net_current": 110.2,
+      "net_goods": 143.8,
+      "net_services": -15.7,
+      "net_capital": 57.2,
+      "net_securities": -0.6,
+      "net_other": -1.7
+    },
+    {
+      "date": "2010-06-01",
+      "net_total": 201.1,
+      "net_current": 117.0,
+      "net_goods": 178.9,
+      "net_services": -12.6,
+      "net_capital": 84.6,
+      "net_securities": 2.8,
+      "net_other": -5.6
+    },
+    {
+      "date": "2010-07-01",
+      "net_total": 270.2,
+      "net_current": 191.8,
+      "net_goods": 218.9,
+      "net_services": -12.8,
+      "net_capital": 78.4,
+      "net_securities": -5.1,
+      "net_other": -5.4
+    },
+    {
+      "date": "2010-08-01",
+      "net_total": 242.3,
+      "net_current": 160.9,
+      "net_goods": 181.1,
+      "net_services": -18.1,
+      "net_capital": 81.5,
+      "net_securities": -4.4,
+      "net_other": 18.9
+    },
+    {
+      "date": "2010-09-01",
+      "net_total": 205.5,
+      "net_current": 156.4,
+      "net_goods": 190.0,
+      "net_services": -13.7,
+      "net_capital": 49.0,
+      "net_securities": 1.2,
+      "net_other": -23.4
+    },
+    {
+      "date": "2010-10-01",
+      "net_total": 373.1,
+      "net_current": 287.3,
+      "net_goods": 259.2,
+      "net_services": 4.4,
+      "net_capital": 86.0,
+      "net_securities": 15.2,
+      "net_other": -11.8
+    },
+    {
+      "date": "2010-11-01",
+      "net_total": 293.0,
+      "net_current": 178.8,
+      "net_goods": 174.2,
+      "net_services": -5.5,
+      "net_capital": 114.7,
+      "net_securities": 4.0,
+      "net_other": 15.7
+    },
+    {
+      "date": "2010-12-01",
+      "net_total": 279.8,
+      "net_current": 136.1,
+      "net_goods": 162.0,
+      "net_services": -24.5,
+      "net_capital": 143.6,
+      "net_securities": 3.1,
+      "net_other": 21.1
+    },
+    {
+      "date": "2011-01-01",
+      "net_total": 341.1,
+      "net_current": 224.1,
+      "net_goods": 202.4,
+      "net_services": -13.6,
+      "net_capital": 117.1,
+      "net_securities": -2.4,
+      "net_other": 10.6
+    },
+    {
+      "date": "2011-02-01",
+      "net_total": 88.8,
+      "net_current": 34.3,
+      "net_goods": 40.1,
+      "net_services": -18.8,
+      "net_capital": 54.5,
+      "net_securities": -2.6,
+      "net_other": 0.0
+    },
+    {
+      "date": "2011-03-01",
+      "net_total": 245.6,
+      "net_current": 102.1,
+      "net_goods": 123.7,
+      "net_services": -32.4,
+      "net_capital": 143.6,
+      "net_securities": 7.0,
+      "net_other": 17.3
+    },
+    {
+      "date": "2011-04-01",
+      "net_total": 180.2,
+      "net_current": 83.0,
+      "net_goods": 83.6,
+      "net_services": -22.0,
+      "net_capital": 97.4,
+      "net_securities": 9.5,
+      "net_other": 10.5
+    },
+    {
+      "date": "2011-05-01",
+      "net_total": 323.6,
+      "net_current": 172.0,
+      "net_goods": 209.7,
+      "net_services": -32.8,
+      "net_capital": 151.6,
+      "net_securities": 14.9,
+      "net_other": 12.6
+    },
+    {
+      "date": "2011-06-01",
+      "net_total": 426.4,
+      "net_current": 191.4,
+      "net_goods": 283.8,
+      "net_services": -19.5,
+      "net_capital": 235.1,
+      "net_securities": 17.2,
+      "net_other": 58.8
+    },
+    {
+      "date": "2011-07-01",
+      "net_total": 313.2,
+      "net_current": 183.6,
+      "net_goods": 239.3,
+      "net_services": -37.1,
+      "net_capital": 129.7,
+      "net_securities": 0.2,
+      "net_other": 31.2
+    },
+    {
+      "date": "2011-08-01",
+      "net_total": 266.7,
+      "net_current": 130.5,
+      "net_goods": 213.9,
+      "net_services": -55.0,
+      "net_capital": 136.2,
+      "net_securities": 5.6,
+      "net_other": 42.9
+    },
+    {
+      "date": "2011-09-01",
+      "net_total": 111.3,
+      "net_current": -26.2,
+      "net_goods": 49.1,
+      "net_services": -47.0,
+      "net_capital": 137.5,
+      "net_securities": 7.5,
+      "net_other": 22.6
+    },
+    {
+      "date": "2011-10-01",
+      "net_total": 87.4,
+      "net_current": -4.6,
+      "net_goods": 33.0,
+      "net_services": -25.1,
+      "net_capital": 92.0,
+      "net_securities": 0.1,
+      "net_other": 18.1
+    },
+    {
+      "date": "2011-11-01",
+      "net_total": 153.0,
+      "net_current": -4.2,
+      "net_goods": 32.8,
+      "net_services": -34.1,
+      "net_capital": 157.1,
+      "net_securities": 4.7,
+      "net_other": 13.9
+    },
+    {
+      "date": "2011-12-01",
+      "net_total": -2.0,
+      "net_current": -119.8,
+      "net_goods": -33.8,
+      "net_services": -47.5,
+      "net_capital": 118.0,
+      "net_securities": 0.1,
+      "net_other": -11.1
+    },
+    {
+      "date": "2012-01-01",
+      "net_total": 253.1,
+      "net_current": 107.3,
+      "net_goods": 110.9,
+      "net_services": -25.0,
+      "net_capital": 145.8,
+      "net_securities": 21.6,
+      "net_other": 66.9
+    },
+    {
+      "date": "2012-02-01",
+      "net_total": 120.5,
+      "net_current": -41.3,
+      "net_goods": -17.8,
+      "net_services": -40.2,
+      "net_capital": 161.9,
+      "net_securities": 9.0,
+      "net_other": 66.0
+    },
+    {
+      "date": "2012-03-01",
+      "net_total": 133.4,
+      "net_current": -16.6,
+      "net_goods": 19.8,
+      "net_services": -46.8,
+      "net_capital": 150.1,
+      "net_securities": 20.0,
+      "net_other": 53.3
+    },
+    {
+      "date": "2012-04-01",
+      "net_total": 59.1,
+      "net_current": -12.8,
+      "net_goods": 42.0,
+      "net_services": -49.5,
+      "net_capital": 72.1,
+      "net_securities": 5.2,
+      "net_other": 22.2
+    },
+    {
+      "date": "2012-05-01",
+      "net_total": 66.6,
+      "net_current": -45.1,
+      "net_goods": 48.0,
+      "net_services": -64.0,
+      "net_capital": 112.1,
+      "net_securities": 6.7,
+      "net_other": 16.8
+    },
+    {
+      "date": "2012-06-01",
+      "net_total": 93.8,
+      "net_current": -65.2,
+      "net_goods": 76.8,
+      "net_services": -45.1,
+      "net_capital": 159.4,
+      "net_securities": 4.9,
+      "net_other": 52.2
+    },
+    {
+      "date": "2012-07-01",
+      "net_total": 79.0,
+      "net_current": 41.6,
+      "net_goods": 164.7,
+      "net_services": -66.9,
+      "net_capital": 38.1,
+      "net_securities": -9.5,
+      "net_other": -17.7
+    },
+    {
+      "date": "2012-08-01",
+      "net_total": -11.7,
+      "net_current": -88.8,
+      "net_goods": 28.2,
+      "net_services": -76.7,
+      "net_capital": 77.4,
+      "net_securities": 3.8,
+      "net_other": 1.2
+    },
+    {
+      "date": "2012-09-01",
+      "net_total": -108.7,
+      "net_current": -137.2,
+      "net_goods": -44.9,
+      "net_services": -57.5,
+      "net_capital": 29.8,
+      "net_securities": -7.1,
+      "net_other": -16.3
+    },
+    {
+      "date": "2012-10-01",
+      "net_total": -63.1,
+      "net_current": -54.6,
+      "net_goods": 13.9,
+      "net_services": -56.1,
+      "net_capital": -8.1,
+      "net_securities": -1.6,
+      "net_other": -73.8
+    },
+    {
+      "date": "2012-11-01",
+      "net_total": 39.2,
+      "net_current": -66.0,
+      "net_goods": 11.7,
+      "net_services": -66.2,
+      "net_capital": 105.4,
+      "net_securities": 22.1,
+      "net_other": -40.4
+    },
+    {
+      "date": "2012-12-01",
+      "net_total": 288.3,
+      "net_current": 111.3,
+      "net_goods": 206.8,
+      "net_services": -64.2,
+      "net_capital": 177.0,
+      "net_securities": 19.0,
+      "net_other": -5.4
+    },
+    {
+      "date": "2013-01-01",
+      "net_total": 541.8,
+      "net_current": 386.8,
+      "net_goods": 430.3,
+      "net_services": -60.8,
+      "net_capital": 154.9,
+      "net_securities": -8.9,
+      "net_other": 58.1
+    },
+    {
+      "date": "2013-02-01",
+      "net_total": 131.0,
+      "net_current": 24.6,
+      "net_goods": 168.7,
+      "net_services": -62.1,
+      "net_capital": 107.3,
+      "net_securities": 25.8,
+      "net_other": 33.5
+    },
+    {
+      "date": "2013-03-01",
+      "net_total": 366.6,
+      "net_current": 137.1,
+      "net_goods": 235.8,
+      "net_services": -77.1,
+      "net_capital": 225.8,
+      "net_securities": 11.8,
+      "net_other": 108.5
+    },
+    {
+      "date": "2013-04-01",
+      "net_total": 161.6,
+      "net_current": 80.6,
+      "net_goods": 165.4,
+      "net_services": -78.5,
+      "net_capital": 79.3,
+      "net_securities": 8.5,
+      "net_other": -4.5
+    },
+    {
+      "date": "2013-05-01",
+      "net_total": 66.6,
+      "net_current": -56.2,
+      "net_goods": 101.3,
+      "net_services": -110.1,
+      "net_capital": 120.3,
+      "net_securities": 3.3,
+      "net_other": 17.5
+    },
+    {
+      "date": "2013-06-01",
+      "net_total": -67.3,
+      "net_current": -226.3,
+      "net_goods": -49.2,
+      "net_services": -73.7,
+      "net_capital": 147.6,
+      "net_securities": 9.4,
+      "net_other": 12.8
+    },
+    {
+      "date": "2013-07-01",
+      "net_total": -26.6,
+      "net_current": -120.7,
+      "net_goods": 53.1,
+      "net_services": -108.1,
+      "net_capital": 81.5,
+      "net_securities": 9.0,
+      "net_other": -8.1
+    },
+    {
+      "date": "2013-08-01",
+      "net_total": 30.3,
+      "net_current": -73.2,
+      "net_goods": 100.8,
+      "net_services": -127.5,
+      "net_capital": 94.3,
+      "net_securities": 7.9,
+      "net_other": 5.7
+    },
+    {
+      "date": "2013-09-01",
+      "net_total": 124.1,
+      "net_current": 47.8,
+      "net_goods": 212.3,
+      "net_services": -103.6,
+      "net_capital": 78.8,
+      "net_securities": -2.2,
+      "net_other": 12.3
+    },
+    {
+      "date": "2013-10-01",
+      "net_total": 248.5,
+      "net_current": 137.4,
+      "net_goods": 221.9,
+      "net_services": -70.3,
+      "net_capital": 112.1,
+      "net_securities": 6.0,
+      "net_other": 21.7
+    },
+    {
+      "date": "2013-11-01",
+      "net_total": 240.0,
+      "net_current": 88.5,
+      "net_goods": 199.7,
+      "net_services": -91.8,
+      "net_capital": 152.2,
+      "net_securities": 3.0,
+      "net_other": 31.7
+    },
+    {
+      "date": "2013-12-01",
+      "net_total": 50.3,
+      "net_current": -76.9,
+      "net_goods": 75.5,
+      "net_services": -104.8,
+      "net_capital": 125.9,
+      "net_securities": 10.2,
+      "net_other": -9.7
+    },
+    {
+      "date": "2014-01-01",
+      "net_total": 279.5,
+      "net_current": -57.8,
+      "net_goods": 27.6,
+      "net_services": -94.4,
+      "net_capital": 330.5,
+      "net_securities": 30.2,
+      "net_other": 169.3
+    },
+    {
+      "date": "2014-02-01",
+      "net_total": 119.2,
+      "net_current": -44.3,
+      "net_goods": 40.1,
+      "net_services": -89.2,
+      "net_capital": 170.4,
+      "net_securities": 8.8,
+      "net_other": 87.4
+    },
+    {
+      "date": "2014-03-01",
+      "net_total": 41.0,
+      "net_current": -121.5,
+      "net_goods": 5.5,
+      "net_services": -111.6,
+      "net_capital": 167.0,
+      "net_securities": -3.6,
+      "net_other": 77.9
+    },
+    {
+      "date": "2014-04-01",
+      "net_total": 45.3,
+      "net_current": -82.1,
+      "net_goods": 34.1,
+      "net_services": -104.7,
+      "net_capital": 135.6,
+      "net_securities": -5.3,
+      "net_other": 63.0
+    },
+    {
+      "date": "2014-05-01",
+      "net_total": 185.0,
+      "net_current": 79.9,
+      "net_goods": 243.3,
+      "net_services": -110.2,
+      "net_capital": 112.6,
+      "net_securities": -1.0,
+      "net_other": 45.7
+    },
+    {
+      "date": "2014-06-01",
+      "net_total": 135.3,
+      "net_current": -2.6,
+      "net_goods": 196.4,
+      "net_services": -95.9,
+      "net_capital": 143.0,
+      "net_securities": 14.6,
+      "net_other": 99.4
+    },
+    {
+      "date": "2014-07-01",
+      "net_total": 78.7,
+      "net_current": 34.4,
+      "net_goods": 216.5,
+      "net_services": -120.2,
+      "net_capital": 43.9,
+      "net_securities": 29.4,
+      "net_other": -54.0
+    },
+    {
+      "date": "2014-08-01",
+      "net_total": -107.8,
+      "net_current": -222.4,
+      "net_goods": -26.8,
+      "net_services": -147.1,
+      "net_capital": 114.7,
+      "net_securities": 22.8,
+      "net_other": -58.9
+    },
+    {
+      "date": "2014-09-01",
+      "net_total": -177.6,
+      "net_current": -269.0,
+      "net_goods": -70.6,
+      "net_services": -137.7,
+      "net_capital": 97.7,
+      "net_securities": 48.7,
+      "net_other": -47.0
+    },
+    {
+      "date": "2014-10-01",
+      "net_total": -82.1,
+      "net_current": -147.6,
+      "net_goods": -0.1,
+      "net_services": -104.6,
+      "net_capital": 62.0,
+      "net_securities": 6.5,
+      "net_other": -26.2
+    },
+    {
+      "date": "2014-11-01",
+      "net_total": -65.5,
+      "net_current": -172.4,
+      "net_goods": -39.0,
+      "net_services": -98.9,
+      "net_capital": 116.2,
+      "net_securities": 68.9,
+      "net_other": -48.2
+    },
+    {
+      "date": "2014-12-01",
+      "net_total": -136.5,
+      "net_current": -169.2,
+      "net_goods": 18.9,
+      "net_services": -122.5,
+      "net_capital": 38.8,
+      "net_securities": 37.5,
+      "net_other": -54.8
+    },
+    {
+      "date": "2015-01-01",
+      "net_total": 358.4,
+      "net_current": 188.3,
+      "net_goods": 308.4,
+      "net_services": -115.1,
+      "net_capital": 168.5,
+      "net_securities": 63.9,
+      "net_other": -9.6
+    },
+    {
+      "date": "2015-02-01",
+      "net_total": 156.5,
+      "net_current": 34.7,
+      "net_goods": 146.6,
+      "net_services": -108.2,
+      "net_capital": 117.0,
+      "net_securities": 37.1,
+      "net_other": -11.7
+    },
+    {
+      "date": "2015-03-01",
+      "net_total": -243.8,
+      "net_current": -281.9,
+      "net_goods": -85.1,
+      "net_services": -141.1,
+      "net_capital": 31.7,
+      "net_securities": 23.5,
+      "net_other": -45.7
+    },
+    {
+      "date": "2015-04-01",
+      "net_total": -225.4,
+      "net_current": -116.8,
+      "net_goods": 54.7,
+      "net_services": -135.7,
+      "net_capital": -114.3,
+      "net_securities": -53.4,
+      "net_other": -87.0
+    },
+    {
+      "date": "2015-05-01",
+      "net_total": 66.7,
+      "net_current": -36.8,
+      "net_goods": 166.7,
+      "net_services": -140.0,
+      "net_capital": 98.0,
+      "net_securities": 19.0,
+      "net_other": 37.1
+    },
+    {
+      "date": "2015-06-01",
+      "net_total": 253.7,
+      "net_current": 39.9,
+      "net_goods": 300.4,
+      "net_services": -127.3,
+      "net_capital": 207.7,
+      "net_securities": 89.9,
+      "net_other": 47.3
+    },
+    {
+      "date": "2015-07-01",
+      "net_total": -6.9,
+      "net_current": -15.0,
+      "net_goods": 241.2,
+      "net_services": -158.8,
+      "net_capital": 0.2,
+      "net_securities": -27.7,
+      "net_other": -4.1
+    },
+    {
+      "date": "2015-08-01",
+      "net_total": -352.1,
+      "net_current": -219.7,
+      "net_goods": 70.1,
+      "net_services": -185.3,
+      "net_capital": -141.1,
+      "net_securities": 28.8,
+      "net_other": -34.8
+    },
+    {
+      "date": "2015-09-01",
+      "net_total": -700.3,
+      "net_current": -472.7,
+      "net_goods": -189.0,
+      "net_services": -170.0,
+      "net_capital": -236.9,
+      "net_securities": -38.5,
+      "net_other": -100.2
+    },
+    {
+      "date": "2015-10-01",
+      "net_total": -96.3,
+      "net_current": 25.1,
+      "net_goods": 205.5,
+      "net_services": -106.2,
+      "net_capital": -130.5,
+      "net_securities": -24.0,
+      "net_other": -68.2
+    },
+    {
+      "date": "2015-11-01",
+      "net_total": -426.0,
+      "net_current": -168.7,
+      "net_goods": 32.5,
+      "net_services": -121.4,
+      "net_capital": -265.7,
+      "net_securities": -76.3,
+      "net_other": -136.7
+    },
+    {
+      "date": "2015-12-01",
+      "net_total": -724.7,
+      "net_current": -201.0,
+      "net_goods": 26.2,
+      "net_services": -137.9,
+      "net_capital": -533.8,
+      "net_securities": -74.2,
+      "net_other": -323.0
+    },
+    {
+      "date": "2016-01-01",
+      "net_total": -557.6,
+      "net_current": -94.7,
+      "net_goods": 124.1,
+      "net_services": -164.3,
+      "net_capital": -460.6,
+      "net_securities": -65.8,
+      "net_other": -136.3
+    },
+    {
+      "date": "2016-02-01",
+      "net_total": -304.7,
+      "net_current": -152.8,
+      "net_goods": 13.6,
+      "net_services": -147.2,
+      "net_capital": -159.1,
+      "net_securities": -12.8,
+      "net_other": -99.7
+    },
+    {
+      "date": "2016-03-01",
+      "net_total": -261.2,
+      "net_current": -126.2,
+      "net_goods": 92.1,
+      "net_services": -155.4,
+      "net_capital": -148.3,
+      "net_securities": -35.6,
+      "net_other": -51.1
+    },
+    {
+      "date": "2016-04-01",
+      "net_total": -89.4,
+      "net_current": 2.5,
+      "net_goods": 214.1,
+      "net_services": -145.7,
+      "net_capital": -100.2,
+      "net_securities": -18.0,
+      "net_other": -22.5
+    },
+    {
+      "date": "2016-05-01",
+      "net_total": -235.3,
+      "net_current": -25.4,
+      "net_goods": 237.2,
+      "net_services": -159.7,
+      "net_capital": -217.4,
+      "net_securities": -77.1,
+      "net_other": -20.3
+    },
+    {
+      "date": "2016-06-01",
+      "net_total": -240.0,
+      "net_current": -33.5,
+      "net_goods": 269.2,
+      "net_services": -142.9,
+      "net_capital": -216.3,
+      "net_securities": -65.2,
+      "net_other": -18.4
+    },
+    {
+      "date": "2016-07-01",
+      "net_total": -319.5,
+      "net_current": -182.7,
+      "net_goods": 117.9,
+      "net_services": -168.9,
+      "net_capital": -144.6,
+      "net_securities": -44.8,
+      "net_other": -32.9
+    },
+    {
+      "date": "2016-08-01",
+      "net_total": -80.1,
+      "net_current": 0.7,
+      "net_goods": 323.4,
+      "net_services": -199.3,
+      "net_capital": -93.8,
+      "net_securities": -6.9,
+      "net_other": 40.6
+    },
+    {
+      "date": "2016-09-01",
+      "net_total": -455.3,
+      "net_current": -176.0,
+      "net_goods": 132.1,
+      "net_services": -181.9,
+      "net_capital": -287.1,
+      "net_securities": -133.8,
+      "net_other": -0.7
+    },
+    {
+      "date": "2016-10-01",
+      "net_total": -141.4,
+      "net_current": -64.7,
+      "net_goods": 163.2,
+      "net_services": -158.0,
+      "net_capital": -83.3,
+      "net_securities": -9.7,
+      "net_other": -3.6
+    },
+    {
+      "date": "2016-11-01",
+      "net_total": -246.0,
+      "net_current": -123.5,
+      "net_goods": 156.4,
+      "net_services": -190.9,
+      "net_capital": -131.2,
+      "net_securities": -19.1,
+      "net_other": -5.1
+    },
+    {
+      "date": "2016-12-01",
+      "net_total": -122.8,
+      "net_current": -266.5,
+      "net_goods": 23.9,
+      "net_services": -211.8,
+      "net_capital": 134.6,
+      "net_securities": 1.2,
+      "net_other": -11.2
+    },
+    {
+      "date": "2017-01-01",
+      "net_total": -97.0,
+      "net_current": -102.9,
+      "net_goods": 108.5,
+      "net_services": -162.0,
+      "net_capital": -15.8,
+      "net_securities": -35.1,
+      "net_other": 46.5
+    },
+    {
+      "date": "2017-02-01",
+      "net_total": 19.3,
+      "net_current": 8.5,
+      "net_goods": 201.9,
+      "net_services": -152.9,
+      "net_capital": 4.8,
+      "net_securities": -7.5,
+      "net_other": 18.9
+    },
+    {
+      "date": "2017-03-01",
+      "net_total": -174.0,
+      "net_current": -186.3,
+      "net_goods": 93.7,
+      "net_services": -175.4,
+      "net_capital": 2.4,
+      "net_securities": -22.2,
+      "net_other": 29.5
+    },
+    {
+      "date": "2017-04-01",
+      "net_total": -153.2,
+      "net_current": -223.3,
+      "net_goods": 32.7,
+      "net_services": -138.9,
+      "net_capital": 65.4,
+      "net_securities": -4.0,
+      "net_other": 33.3
+    },
+    {
+      "date": "2017-05-01",
+      "net_total": -218.0,
+      "net_current": -197.5,
+      "net_goods": 130.4,
+      "net_services": -185.1,
+      "net_capital": -30.6,
+      "net_securities": -27.5,
+      "net_other": 7.4
+    },
+    {
+      "date": "2017-06-01",
+      "net_total": -218.7,
+      "net_current": -254.3,
+      "net_goods": 145.2,
+      "net_services": -234.1,
+      "net_capital": 27.3,
+      "net_securities": 19.3,
+      "net_other": 30.9
+    },
+    {
+      "date": "2017-07-01",
+      "net_total": -220.1,
+      "net_current": -184.2,
+      "net_goods": 131.2,
+      "net_services": -141.2,
+      "net_capital": -45.4,
+      "net_securities": -35.2,
+      "net_other": -15.1
+    },
+    {
+      "date": "2017-08-01",
+      "net_total": -35.5,
+      "net_current": -107.5,
+      "net_goods": 203.2,
+      "net_services": -163.4,
+      "net_capital": 64.0,
+      "net_securities": 64.5,
+      "net_other": -20.0
+    },
+    {
+      "date": "2017-09-01",
+      "net_total": -17.4,
+      "net_current": -107.6,
+      "net_goods": 228.0,
+      "net_services": -149.1,
+      "net_capital": 74.4,
+      "net_securities": -10.4,
+      "net_other": 57.5
+    },
+    {
+      "date": "2017-10-01",
+      "net_total": 0.6,
+      "net_current": -4.8,
+      "net_goods": 171.0,
+      "net_services": -110.2,
+      "net_capital": 0.4,
+      "net_securities": -30.3,
+      "net_other": -11.3
+    },
+    {
+      "date": "2017-11-01",
+      "net_total": -128.6,
+      "net_current": -116.0,
+      "net_goods": 96.9,
+      "net_services": -118.5,
+      "net_capital": -20.3,
+      "net_securities": -15.8,
+      "net_other": -14.0
+    },
+    {
+      "date": "2017-12-01",
+      "net_total": -2.1,
+      "net_current": -146.5,
+      "net_goods": 86.2,
+      "net_services": -142.2,
+      "net_capital": 137.0,
+      "net_securities": -4.6,
+      "net_other": 8.6
+    },
+    {
+      "date": "2018-01-01",
+      "net_total": 246.3,
+      "net_current": 107.8,
+      "net_goods": 292.9,
+      "net_services": -158.2,
+      "net_capital": 131.6,
+      "net_securities": -11.9,
+      "net_other": 44.7
+    },
+    {
+      "date": "2018-02-01",
+      "net_total": -61.7,
+      "net_current": -105.1,
+      "net_goods": 89.0,
+      "net_services": -162.8,
+      "net_capital": 39.1,
+      "net_securities": -55.4,
+      "net_other": 29.4
+    },
+    {
+      "date": "2018-03-01",
+      "net_total": -77.3,
+      "net_current": -294.8,
+      "net_goods": -39.0,
+      "net_services": -173.6,
+      "net_capital": 211.0,
+      "net_securities": 51.6,
+      "net_other": 33.4
+    },
+    {
+      "date": "2018-04-01",
+      "net_total": -99.2,
+      "net_current": -174.6,
+      "net_goods": 39.3,
+      "net_services": -147.1,
+      "net_capital": 71.9,
+      "net_securities": 54.9,
+      "net_other": -21.4
+    },
+    {
+      "date": "2018-05-01",
+      "net_total": -73.5,
+      "net_current": -266.6,
+      "net_goods": 55.3,
+      "net_services": -183.1,
+      "net_capital": 184.7,
+      "net_securities": 86.2,
+      "net_other": 17.1
+    },
+    {
+      "date": "2018-06-01",
+      "net_total": -55.7,
+      "net_current": -280.5,
+      "net_goods": 86.6,
+      "net_services": -131.1,
+      "net_capital": 216.3,
+      "net_securities": 133.9,
+      "net_other": -27.9
+    },
+    {
+      "date": "2018-07-01",
+      "net_total": -120.3,
+      "net_current": -195.4,
+      "net_goods": 126.0,
+      "net_services": -168.0,
+      "net_capital": 68.7,
+      "net_securities": 45.2,
+      "net_other": -37.3
+    },
+    {
+      "date": "2018-08-01",
+      "net_total": -44.3,
+      "net_current": -244.8,
+      "net_goods": 108.4,
+      "net_services": -185.9,
+      "net_capital": 196.1,
+      "net_securities": 175.4,
+      "net_other": 3.9
+    },
+    {
+      "date": "2018-09-01",
+      "net_total": -279.0,
+      "net_current": -281.5,
+      "net_goods": 38.2,
+      "net_services": -145.6,
+      "net_capital": -2.8,
+      "net_securities": -3.5,
+      "net_other": -42.5
+    },
+    {
+      "date": "2018-10-01",
+      "net_total": -74.2,
+      "net_current": -97.9,
+      "net_goods": 96.4,
+      "net_services": -113.6,
+      "net_capital": 17.9,
+      "net_securities": 5.6,
+      "net_other": -28.0
+    },
+    {
+      "date": "2018-11-01",
+      "net_total": -222.1,
+      "net_current": -283.3,
+      "net_goods": -46.0,
+      "net_services": -115.6,
+      "net_capital": 55.6,
+      "net_securities": 77.4,
+      "net_other": -27.1
+    },
+    {
+      "date": "2018-12-01",
+      "net_total": 2.7,
+      "net_current": -164.5,
+      "net_goods": 83.9,
+      "net_services": -140.8,
+      "net_capital": 158.4,
+      "net_securities": 63.7,
+      "net_other": -11.4
+    },
+    {
+      "date": "2019-01-01",
+      "net_total": 413.4,
+      "net_current": 182.2,
+      "net_goods": 388.3,
+      "net_services": -153.5,
+      "net_capital": 223.9,
+      "net_securities": 108.0,
+      "net_other": 16.9
+    },
+    {
+      "date": "2019-02-01",
+      "net_total": 151.7,
+      "net_current": -32.4,
+      "net_goods": 140.6,
+      "net_services": -129.1,
+      "net_capital": 177.7,
+      "net_securities": 160.6,
+      "net_other": 11.5
+    },
+    {
+      "date": "2019-03-01",
+      "net_total": -22.8,
+      "net_current": -125.1,
+      "net_goods": 88.3,
+      "net_services": -124.5,
+      "net_capital": 98.6,
+      "net_securities": -7.5,
+      "net_other": 47.8
+    },
+    {
+      "date": "2019-04-01",
+      "net_total": -78.9,
+      "net_current": -182.3,
+      "net_goods": 81.9,
+      "net_services": -171.8,
+      "net_capital": 97.0,
+      "net_securities": -11.2,
+      "net_other": 38.5
+    },
+    {
+      "date": "2019-05-01",
+      "net_total": -60.4,
+      "net_current": -65.7,
+      "net_goods": 161.9,
+      "net_services": -135.8,
+      "net_capital": 0.5,
+      "net_securities": -59.6,
+      "net_other": 15.8
+    },
+    {
+      "date": "2019-06-01",
+      "net_total": -90.7,
+      "net_current": -256.0,
+      "net_goods": 81.9,
+      "net_services": -112.3,
+      "net_capital": 157.0,
+      "net_securities": 80.5,
+      "net_other": 44.6
+    },
+    {
+      "date": "2019-07-01",
+      "net_total": -20.7,
+      "net_current": -151.3,
+      "net_goods": 208.9,
+      "net_services": -166.7,
+      "net_capital": 126.5,
+      "net_securities": 75.0,
+      "net_other": 19.3
+    },
+    {
+      "date": "2019-08-01",
+      "net_total": -243.3,
+      "net_current": -246.0,
+      "net_goods": 102.9,
+      "net_services": -177.6,
+      "net_capital": -16.1,
+      "net_securities": -70.0,
+      "net_other": -20.7
+    },
+    {
+      "date": "2019-09-01",
+      "net_total": -22.7,
+      "net_current": -227.4,
+      "net_goods": 72.8,
+      "net_services": -144.4,
+      "net_capital": 198.8,
+      "net_securities": 160.4,
+      "net_other": -25.2
+    },
+    {
+      "date": "2019-10-01",
+      "net_total": 109.4,
+      "net_current": 66.8,
+      "net_goods": 273.6,
+      "net_services": -89.8,
+      "net_capital": 36.9,
+      "net_securities": 16.2,
+      "net_other": -9.5
+    },
+    {
+      "date": "2019-11-01",
+      "net_total": -4.6,
+      "net_current": -156.3,
+      "net_goods": 66.2,
+      "net_services": -109.1,
+      "net_capital": 147.1,
+      "net_securities": 98.6,
+      "net_other": -25.4
+    },
+    {
+      "date": "2019-12-01",
+      "net_total": 115.0,
+      "net_current": -204.5,
+      "net_goods": 58.0,
+      "net_services": -127.9,
+      "net_capital": 313.8,
+      "net_securities": 190.7,
+      "net_other": -24.2
+    },
+    {
+      "date": "2020-01-01",
+      "net_total": 104.6,
+      "net_current": -100.3,
+      "net_goods": 97.2,
+      "net_services": -138.1,
+      "net_capital": 200.1,
+      "net_securities": 62.5,
+      "net_other": 30.8
+    },
+    {
+      "date": "2020-02-01",
+      "net_total": 89.9,
+      "net_current": 7.4,
+      "net_goods": 121.6,
+      "net_services": -60.9,
+      "net_capital": 80.8,
+      "net_securities": 6.6,
+      "net_other": -9.9
+    },
+    {
+      "date": "2020-03-01",
+      "net_total": -454.9,
+      "net_current": -157.7,
+      "net_goods": 30.3,
+      "net_services": -91.1,
+      "net_capital": -300.1,
+      "net_securities": -313.5,
+      "net_other": -24.7
+    },
+    {
+      "date": "2020-04-01",
+      "net_total": 59.5,
+      "net_current": -7.8,
+      "net_goods": 144.4,
+      "net_services": -58.4,
+      "net_capital": 63.8,
+      "net_securities": 63.6,
+      "net_other": -7.4
+    },
+    {
+      "date": "2020-05-01",
+      "net_total": 77.0,
+      "net_current": 25.2,
+      "net_goods": 238.1,
+      "net_services": -72.6,
+      "net_capital": 47.5,
+      "net_securities": 102.0,
+      "net_other": 15.6
+    },
+    {
+      "date": "2020-06-01",
+      "net_total": 235.8,
+      "net_current": -26.1,
+      "net_goods": 255.7,
+      "net_services": -69.7,
+      "net_capital": 256.1,
+      "net_securities": 207.4,
+      "net_other": 19.4
+    },
+    {
+      "date": "2020-07-01",
+      "net_total": 2.3,
+      "net_current": -40.3,
+      "net_goods": 233.6,
+      "net_services": -76.7,
+      "net_capital": 35.4,
+      "net_securities": 29.7,
+      "net_other": 5.8
+    },
+    {
+      "date": "2020-08-01",
+      "net_total": 127.4,
+      "net_current": -43.0,
+      "net_goods": 223.2,
+      "net_services": -95.2,
+      "net_capital": 164.2,
+      "net_securities": 99.4,
+      "net_other": 7.7
+    },
+    {
+      "date": "2020-09-01",
+      "net_total": 131.9,
+      "net_current": -28.4,
+      "net_goods": 197.9,
+      "net_services": -87.3,
+      "net_capital": 150.7,
+      "net_securities": 48.9,
+      "net_other": 6.0
+    },
+    {
+      "date": "2020-10-01",
+      "net_total": 251.4,
+      "net_current": 31.1,
+      "net_goods": 208.8,
+      "net_services": -44.9,
+      "net_capital": 214.0,
+      "net_securities": 212.5,
+      "net_other": -12.6
+    },
+    {
+      "date": "2020-11-01",
+      "net_total": 3.5,
+      "net_current": -193.0,
+      "net_goods": 59.3,
+      "net_services": -67.7,
+      "net_capital": 182.1,
+      "net_securities": 148.5,
+      "net_other": -37.7
+    },
+    {
+      "date": "2020-12-01",
+      "net_total": 540.5,
+      "net_current": -5.7,
+      "net_goods": 244.0,
+      "net_services": -60.5,
+      "net_capital": 536.3,
+      "net_securities": 265.9,
+      "net_other": -33.4
+    },
+    {
+      "date": "2021-01-01",
+      "net_total": 488.4,
+      "net_current": 339.3,
+      "net_goods": 471.0,
+      "net_services": -57.5,
+      "net_capital": 138.2,
+      "net_securities": -76.8,
+      "net_other": 110.7
+    },
+    {
+      "date": "2021-02-01",
+      "net_total": 332.1,
+      "net_current": 99.2,
+      "net_goods": 182.8,
+      "net_services": -47.8,
+      "net_capital": 225.5,
+      "net_securities": 31.7,
+      "net_other": 56.8
+    },
+    {
+      "date": "2021-03-01",
+      "net_total": 392.8,
+      "net_current": 151.7,
+      "net_goods": 292.2,
+      "net_services": -63.8,
+      "net_capital": 232.4,
+      "net_securities": 37.0,
+      "net_other": 66.1
+    },
+    {
+      "date": "2021-04-01",
+      "net_total": 160.5,
+      "net_current": -4.9,
+      "net_goods": 106.7,
+      "net_services": -31.9,
+      "net_capital": 154.7,
+      "net_securities": 136.1,
+      "net_other": 1.2
+    },
+    {
+      "date": "2021-05-01",
+      "net_total": 197.4,
+      "net_current": -46.7,
+      "net_goods": 194.2,
+      "net_services": -77.0,
+      "net_capital": 234.0,
+      "net_securities": 161.3,
+      "net_other": 17.3
+    },
+    {
+      "date": "2021-06-01",
+      "net_total": 318.7,
+      "net_current": 20.6,
+      "net_goods": 299.9,
+      "net_services": -48.9,
+      "net_capital": 288.1,
+      "net_securities": 112.9,
+      "net_other": 29.9
+    },
+    {
+      "date": "2021-07-01",
+      "net_total": 183.2,
+      "net_current": -149.3,
+      "net_goods": 139.4,
+      "net_services": -72.6,
+      "net_capital": 323.1,
+      "net_securities": 155.9,
+      "net_other": -35.6
+    },
+    {
+      "date": "2021-08-01",
+      "net_total": 220.3,
+      "net_current": 21.9,
+      "net_goods": 261.4,
+      "net_services": -82.6,
+      "net_capital": 188.0,
+      "net_securities": 34.3,
+      "net_other": 3.4
+    },
+    {
+      "date": "2021-09-01",
+      "net_total": 54.6,
+      "net_current": -95.0,
+      "net_goods": 191.3,
+      "net_services": -85.0,
+      "net_capital": 138.3,
+      "net_securities": 58.7,
+      "net_other": -17.1
+    },
+    {
+      "date": "2021-10-01",
+      "net_total": 348.1,
+      "net_current": 125.3,
+      "net_goods": 261.7,
+      "net_services": -13.7,
+      "net_capital": 211.1,
+      "net_securities": 120.0,
+      "net_other": -28.0
+    },
+    {
+      "date": "2021-11-01",
+      "net_total": 331.4,
+      "net_current": 43.1,
+      "net_goods": 301.7,
+      "net_services": -39.4,
+      "net_capital": 276.9,
+      "net_securities": 224.9,
+      "net_other": -16.5
+    },
+    {
+      "date": "2021-12-01",
+      "net_total": 536.6,
+      "net_current": 326.2,
+      "net_goods": 590.5,
+      "net_services": -73.7,
+      "net_capital": 196.8,
+      "net_securities": 32.0,
+      "net_other": -37.8
+    },
+    {
+      "date": "2022-01-01",
+      "net_total": 583.8,
+      "net_current": 366.6,
+      "net_goods": 494.1,
+      "net_services": -39.8,
+      "net_capital": 197.0,
+      "net_securities": 71.7,
+      "net_other": 10.7
+    },
+    {
+      "date": "2022-02-01",
+      "net_total": -64.8,
+      "net_current": 168.3,
+      "net_goods": 257.3,
+      "net_services": -45.8,
+      "net_capital": -240.7,
+      "net_securities": -323.1,
+      "net_other": -5.4
+    },
+    {
+      "date": "2022-03-01",
+      "net_total": 103.4,
+      "net_current": 384.6,
+      "net_goods": 510.5,
+      "net_services": -30.3,
+      "net_capital": -321.9,
+      "net_securities": -413.7,
+      "net_other": -10.3
+    },
+    {
+      "date": "2022-04-01",
+      "net_total": 162.3,
+      "net_current": 313.9,
+      "net_goods": 426.1,
+      "net_services": -21.1,
+      "net_capital": -198.3,
+      "net_securities": -229.5,
+      "net_other": -20.7
+    },
+    {
+      "date": "2022-05-01",
+      "net_total": 77.2,
+      "net_current": 205.5,
+      "net_goods": 383.4,
+      "net_services": -28.4,
+      "net_capital": -152.4,
+      "net_securities": -216.0,
+      "net_other": 8.7
+    },
+    {
+      "date": "2022-06-01",
+      "net_total": -28.2,
+      "net_current": -8.1,
+      "net_goods": 417.9,
+      "net_services": -51.2,
+      "net_capital": -34.3,
+      "net_securities": -74.1,
+      "net_other": -67.8
+    },
+    {
+      "date": "2022-07-01",
+      "net_total": -111.2,
+      "net_current": 113.2,
+      "net_goods": 404.3,
+      "net_services": -61.2,
+      "net_capital": -237.8,
+      "net_securities": -168.2,
+      "net_other": -35.2
+    },
+    {
+      "date": "2022-08-01",
+      "net_total": 112.8,
+      "net_current": 273.4,
+      "net_goods": 534.9,
+      "net_services": -49.9,
+      "net_capital": -176.3,
+      "net_securities": -132.5,
+      "net_other": -27.8
+    },
+    {
+      "date": "2022-09-01",
+      "net_total": -121.6,
+      "net_current": 146.0,
+      "net_goods": 353.9,
+      "net_services": -46.3,
+      "net_capital": -289.6,
+      "net_securities": -199.7,
+      "net_other": -33.6
+    },
+    {
+      "date": "2022-10-01",
+      "net_total": -85.0,
+      "net_current": 178.9,
+      "net_goods": 320.8,
+      "net_services": -16.7,
+      "net_capital": -285.9,
+      "net_securities": -233.8,
+      "net_other": -16.4
+    },
+    {
+      "date": "2022-11-01",
+      "net_total": -96.0,
+      "net_current": 78.3,
+      "net_goods": 328.5,
+      "net_services": -26.5,
+      "net_capital": -197.9,
+      "net_securities": -117.3,
+      "net_other": -54.3
+    },
+    {
+      "date": "2022-12-01",
+      "net_total": 230.6,
+      "net_current": 110.9,
+      "net_goods": 342.5,
+      "net_services": -30.8,
+      "net_capital": 49.2,
+      "net_securities": 117.8,
+      "net_other": -46.1
+    },
+    {
+      "date": "2023-01-01",
+      "net_total": 351.3,
+      "net_current": 225.7,
+      "net_goods": 371.8,
+      "net_services": -58.1,
+      "net_capital": 111.8,
+      "net_securities": 177.6,
+      "net_other": -6.0
+    },
+    {
+      "date": "2023-02-01",
+      "net_total": -37.8,
+      "net_current": 126.8,
+      "net_goods": 246.0,
+      "net_services": -43.3,
+      "net_capital": -172.7,
+      "net_securities": -103.6,
+      "net_other": 13.8
+    },
+    {
+      "date": "2023-03-01",
+      "net_total": 28.9,
+      "net_current": 150.2,
+      "net_goods": 382.1,
+      "net_services": -91.6,
+      "net_capital": -130.8,
+      "net_securities": -28.5,
+      "net_other": -3.9
+    },
+    {
+      "date": "2023-04-01",
+      "net_total": -14.0,
+      "net_current": 81.9,
+      "net_goods": 282.0,
+      "net_services": -62.7,
+      "net_capital": -106.8,
+      "net_securities": -51.1,
+      "net_other": -24.6
+    },
+    {
+      "date": "2023-05-01",
+      "net_total": 18.9,
+      "net_current": 91.7,
+      "net_goods": 350.9,
+      "net_services": -82.0,
+      "net_capital": -89.5,
+      "net_securities": -8.8,
+      "net_other": 1.4
+    },
+    {
+      "date": "2023-06-01",
+      "net_total": 119.7,
+      "net_current": 82.5,
+      "net_goods": 449.1,
+      "net_services": -72.4,
+      "net_capital": 20.2,
+      "net_securities": 138.3,
+      "net_other": -44.3
+    },
+    {
+      "date": "2023-07-01",
+      "net_total": -114.6,
+      "net_current": -60.6,
+      "net_goods": 360.5,
+      "net_services": -89.2,
+      "net_capital": -67.0,
+      "net_securities": -6.7,
+      "net_other": -25.7
+    },
+    {
+      "date": "2023-08-01",
+      "net_total": -443.9,
+      "net_current": 35.7,
+      "net_goods": 409.1,
+      "net_services": -117.7,
+      "net_capital": -489.0,
+      "net_securities": -293.5,
+      "net_other": -27.2
+    },
+    {
+      "date": "2023-09-01",
+      "net_total": -538.9,
+      "net_current": -92.8,
+      "net_goods": 226.3,
+      "net_services": -113.0,
+      "net_capital": -453.4,
+      "net_securities": -145.8,
+      "net_other": -43.9
+    },
+    {
+      "date": "2023-10-01",
+      "net_total": -185.1,
+      "net_current": 21.8,
+      "net_goods": 350.9,
+      "net_services": -82.1,
+      "net_capital": -214.7,
+      "net_securities": -110.7,
+      "net_other": -25.3
+    },
+    {
+      "date": "2023-11-01",
+      "net_total": -12.5,
+      "net_current": 13.4,
+      "net_goods": 267.4,
+      "net_services": -88.8,
+      "net_capital": -37.7,
+      "net_securities": 131.0,
+      "net_other": -15.8
+    },
+    {
+      "date": "2023-12-01",
+      "net_total": 141.0,
+      "net_current": 78.6,
+      "net_goods": 386.5,
+      "net_services": -136.8,
+      "net_capital": 51.5,
+      "net_securities": 129.4,
+      "net_other": -16.1
+    },
+    {
+      "date": "2024-01-01",
+      "net_total": 54.9,
+      "net_current": 183.1,
+      "net_goods": 404.8,
+      "net_services": -120.0,
+      "net_capital": -140.2,
+      "net_securities": 28.5,
+      "net_other": 2.5
+    },
+    {
+      "date": "2024-02-01",
+      "net_total": 120.6,
+      "net_current": 44.8,
+      "net_goods": 223.6,
+      "net_services": -97.8,
+      "net_capital": 68.3,
+      "net_securities": 143.6,
+      "net_other": -1.1
+    },
+    {
+      "date": "2024-03-01",
+      "net_total": -144.5,
+      "net_current": -59.3,
+      "net_goods": 275.8,
+      "net_services": -111.9,
+      "net_capital": -94.3,
+      "net_securities": -62.5,
+      "net_other": 1.9
+    },
+    {
+      "date": "2024-04-01",
+      "net_total": -381.8,
+      "net_current": -108.7,
+      "net_goods": 245.1,
+      "net_services": -153.3,
+      "net_capital": -292.6,
+      "net_securities": 23.9,
+      "net_other": -20.7
+    },
+    {
+      "date": "2024-05-01",
+      "net_total": -2.5,
+      "net_current": 9.4,
+      "net_goods": 431.7,
+      "net_services": -136.8,
+      "net_capital": -28.3,
+      "net_securities": 150.6,
+      "net_other": 1.2
+    },
+    {
+      "date": "2024-06-01",
+      "net_total": -235.0,
+      "net_current": -58.1,
+      "net_goods": 379.0,
+      "net_services": -121.9,
+      "net_capital": -186.5,
+      "net_securities": -120.6,
+      "net_other": -7.3
+    },
+    {
+      "date": "2024-07-01",
+      "net_total": -138.7,
+      "net_current": 92.8,
+      "net_goods": 547.8,
+      "net_services": -143.1,
+      "net_capital": -255.1,
+      "net_securities": -136.1,
+      "net_other": -2.9
+    },
+    {
+      "date": "2024-08-01",
+      "net_total": 153.5,
+      "net_current": 213.3,
+      "net_goods": 624.2,
+      "net_services": -169.4,
+      "net_capital": -82.0,
+      "net_securities": 13.2,
+      "net_other": -9.3
+    },
+    {
+      "date": "2024-09-01",
+      "net_total": 601.9,
+      "net_current": 457.7,
+      "net_goods": 746.8,
+      "net_services": -129.4,
+      "net_capital": 130.8,
+      "net_securities": 202.4,
+      "net_other": -18.3
+    },
+    {
+      "date": "2024-10-01",
+      "net_total": 327.8,
+      "net_current": 577.8,
+      "net_goods": 800.3,
+      "net_services": -91.6,
+      "net_capital": -267.4,
+      "net_securities": -257.6,
+      "net_other": 12.7
+    },
+    {
+      "date": "2024-11-01",
+      "net_total": -195.0,
+      "net_current": 409.2,
+      "net_goods": 665.6,
+      "net_services": -84.6,
+      "net_capital": -617.3,
+      "net_securities": -456.7,
+      "net_other": 8.4
+    },
+    {
+      "date": "2024-12-01",
+      "net_total": 557.6,
+      "net_current": 639.7,
+      "net_goods": 980.4,
+      "net_services": -143.4,
+      "net_capital": -92.0,
+      "net_securities": -49.9,
+      "net_other": -6.1
+    },
+    {
+      "date": "2025-01-01",
+      "net_total": -265.4,
+      "net_current": 347.7,
+      "net_goods": 676.7,
+      "net_services": -182.2,
+      "net_capital": -626.4,
+      "net_securities": -370.9,
+      "net_other": 10.8
+    },
+    {
+      "date": "2025-02-01",
+      "net_total": 290.4,
+      "net_current": 410.3,
+      "net_goods": 625.9,
+      "net_services": -123.4,
+      "net_capital": -130.8,
+      "net_securities": 23.0,
+      "net_other": -0.8
+    },
+    {
+      "date": "2025-03-01",
+      "net_total": 491.9,
+      "net_current": 478.8,
+      "net_goods": 719.2,
+      "net_services": -108.0,
+      "net_capital": 3.3,
+      "net_securities": 73.7,
+      "net_other": -9.7
+    },
+    {
+      "date": "2025-04-01",
+      "net_total": 172.5,
+      "net_current": 358.4,
+      "net_goods": 630.0,
+      "net_services": -105.2,
+      "net_capital": -203.9,
+      "net_securities": -124.9,
+      "net_other": -5.4
+    },
+    {
+      "date": "2025-05-01",
+      "net_total": 330.0,
+      "net_current": 279.1,
+      "net_goods": 591.4,
+      "net_services": -93.7,
+      "net_capital": 41.2,
+      "net_securities": 52.1,
+      "net_other": 25.4
+    },
+    {
+      "date": "2025-06-01",
+      "net_total": 253.3,
+      "net_current": 317.1,
+      "net_goods": 667.8,
+      "net_services": -81.3,
+      "net_capital": -75.0,
+      "net_securities": -55.7,
+      "net_other": 7.5
+    },
+    {
+      "date": "2025-07-01",
+      "net_total": -77.2,
+      "net_current": 514.4,
+      "net_goods": 893.8,
+      "net_services": -108.8,
+      "net_capital": -605.8,
+      "net_securities": -582.9,
+      "net_other": 7.3
+    },
+    {
+      "date": "2025-08-01",
+      "net_total": 32.3,
+      "net_current": 411.1,
+      "net_goods": 729.1,
+      "net_services": -97.5,
+      "net_capital": -388.0,
+      "net_securities": -304.3,
+      "net_other": -9.0
+    },
+    {
+      "date": "2025-09-01",
+      "net_total": -30.9,
+      "net_current": 528.8,
+      "net_goods": 804.8,
+      "net_services": -104.1,
+      "net_capital": -577.9,
+      "net_securities": -475.8,
+      "net_other": 14.8
+    },
+    {
+      "date": "2025-10-01",
+      "net_total": 511.5,
+      "net_current": 746.6,
+      "net_goods": 901.3,
+      "net_services": -48.9,
+      "net_capital": -245.7,
+      "net_securities": -200.3,
+      "net_other": 2.9
+    },
+    {
+      "date": "2025-11-01",
+      "net_total": 177.9,
+      "net_current": 552.4,
+      "net_goods": 726.7,
+      "net_services": -64.2,
+      "net_capital": -386.0,
+      "net_securities": -346.0,
+      "net_other": -0.2
+    },
+    {
+      "date": "2025-12-01",
+      "net_total": 1134.7,
+      "net_current": 1024.6,
+      "net_goods": 1259.2,
+      "net_services": -85.3,
+      "net_capital": 98.0,
+      "net_securities": 108.1,
+      "net_other": 13.4
+    },
+    {
+      "date": "2026-01-01",
+      "net_total": 820.9,
+      "net_current": 737.6,
+      "net_goods": 915.0,
+      "net_services": -104.7,
+      "net_capital": 72.2,
+      "net_securities": 115.1,
+      "net_other": 12.8
+    }
+  ],
+  "latest": {
+    "date": "2026-01-01",
+    "net_total": 820.9,
+    "net_current": 737.6,
+    "net_goods": 915.0,
+    "net_services": -104.7,
+    "net_capital": 72.2,
+    "net_securities": 115.1,
+    "net_other": 12.8
+  },
+  "metadata": {
+    "source": "SAFE (State Administration of Foreign Exchange)",
+    "indicator": "银行代客涉外收付款数据",
+    "unit": "100 million USD",
+    "frequency": "monthly",
+    "series": [
+      "net_total",
+      "net_current",
+      "net_goods",
+      "net_services",
+      "net_capital",
+      "net_securities",
+      "net_other"
+    ]
+  },
+  "next_release": {
+    "date": "2026-03-16",
+    "label": "银行代客涉外收付款数据"
+  },
+  "last_updated": "2026-03-07T19:11:36.395985+09:00"
+}

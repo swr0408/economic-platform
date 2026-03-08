@@ -1,0 +1,944 @@
+{
+  "data": [
+    {
+      "date": "1987-06-01",
+      "ratio": null,
+      "ca_value": -0.41,
+      "gdp_value": 26.45
+    },
+    {
+      "date": "1987-09-01",
+      "ratio": null,
+      "ca_value": -0.966,
+      "gdp_value": 26.83
+    },
+    {
+      "date": "1987-12-01",
+      "ratio": null,
+      "ca_value": -0.73,
+      "gdp_value": 26.885
+    },
+    {
+      "date": "1988-03-01",
+      "ratio": -1.71,
+      "ca_value": 0.28,
+      "gdp_value": 26.882
+    },
+    {
+      "date": "1988-06-01",
+      "ratio": -1.36,
+      "ca_value": -0.043,
+      "gdp_value": 26.818
+    },
+    {
+      "date": "1988-09-01",
+      "ratio": -0.83,
+      "ca_value": -0.4,
+      "gdp_value": 27.491
+    },
+    {
+      "date": "1988-12-01",
+      "ratio": -0.21,
+      "ca_value": -0.066,
+      "gdp_value": 27.296
+    },
+    {
+      "date": "1989-03-01",
+      "ratio": -0.05,
+      "ca_value": 0.451,
+      "gdp_value": 27.72
+    },
+    {
+      "date": "1989-06-01",
+      "ratio": -0.27,
+      "ca_value": -0.283,
+      "gdp_value": 27.796
+    },
+    {
+      "date": "1989-09-01",
+      "ratio": -1.06,
+      "ca_value": -1.271,
+      "gdp_value": 27.107
+    },
+    {
+      "date": "1989-12-01",
+      "ratio": -2.01,
+      "ca_value": -1.113,
+      "gdp_value": 27.373
+    },
+    {
+      "date": "1990-03-01",
+      "ratio": -2.26,
+      "ca_value": 0.187,
+      "gdp_value": 27.54
+    },
+    {
+      "date": "1990-06-01",
+      "ratio": -2.41,
+      "ca_value": -0.443,
+      "gdp_value": 27.429
+    },
+    {
+      "date": "1990-09-01",
+      "ratio": -2.36,
+      "ca_value": -1.231,
+      "gdp_value": 27.751
+    },
+    {
+      "date": "1990-12-01",
+      "ratio": -1.97,
+      "ca_value": -0.702,
+      "gdp_value": 28.215
+    },
+    {
+      "date": "1991-03-01",
+      "ratio": -2.04,
+      "ca_value": 0.118,
+      "gdp_value": 27.136
+    },
+    {
+      "date": "1991-06-01",
+      "ratio": -1.94,
+      "ca_value": -0.323,
+      "gdp_value": 26.872
+    },
+    {
+      "date": "1991-09-01",
+      "ratio": -1.71,
+      "ca_value": -0.969,
+      "gdp_value": 27.28
+    },
+    {
+      "date": "1991-12-01",
+      "ratio": -1.66,
+      "ca_value": -0.627,
+      "gdp_value": 27.27
+    },
+    {
+      "date": "1992-03-01",
+      "ratio": -1.92,
+      "ca_value": -0.17,
+      "gdp_value": 27.387
+    },
+    {
+      "date": "1992-06-01",
+      "ratio": -1.6,
+      "ca_value": 0.014,
+      "gdp_value": 27.631
+    },
+    {
+      "date": "1992-09-01",
+      "ratio": -2.04,
+      "ca_value": -1.445,
+      "gdp_value": 27.103
+    },
+    {
+      "date": "1992-12-01",
+      "ratio": -2.59,
+      "ca_value": -1.24,
+      "gdp_value": 27.46
+    },
+    {
+      "date": "1993-03-01",
+      "ratio": -2.19,
+      "ca_value": 0.253,
+      "gdp_value": 28.037
+    },
+    {
+      "date": "1993-06-01",
+      "ratio": -2.38,
+      "ca_value": -0.204,
+      "gdp_value": 28.258
+    },
+    {
+      "date": "1993-09-01",
+      "ratio": -2.41,
+      "ca_value": -1.528,
+      "gdp_value": 29.031
+    },
+    {
+      "date": "1993-12-01",
+      "ratio": -2.39,
+      "ca_value": -1.267,
+      "gdp_value": 29.569
+    },
+    {
+      "date": "1994-03-01",
+      "ratio": -2.24,
+      "ca_value": 0.367,
+      "gdp_value": 30.495
+    },
+    {
+      "date": "1994-06-01",
+      "ratio": -2.41,
+      "ca_value": -0.459,
+      "gdp_value": 30.768
+    },
+    {
+      "date": "1994-09-01",
+      "ratio": -2.33,
+      "ca_value": -1.476,
+      "gdp_value": 30.734
+    },
+    {
+      "date": "1994-12-01",
+      "ratio": -2.28,
+      "ca_value": -1.243,
+      "gdp_value": 31.16
+    },
+    {
+      "date": "1995-03-01",
+      "ratio": -2.7,
+      "ca_value": -0.178,
+      "gdp_value": 31.503
+    },
+    {
+      "date": "1995-06-01",
+      "ratio": -2.72,
+      "ca_value": -0.518,
+      "gdp_value": 32.066
+    },
+    {
+      "date": "1995-09-01",
+      "ratio": -2.93,
+      "ca_value": -1.78,
+      "gdp_value": 31.989
+    },
+    {
+      "date": "1995-12-01",
+      "ratio": -2.93,
+      "ca_value": -1.271,
+      "gdp_value": 32.414
+    },
+    {
+      "date": "1996-03-01",
+      "ratio": -3.11,
+      "ca_value": -0.442,
+      "gdp_value": 32.584
+    },
+    {
+      "date": "1996-06-01",
+      "ratio": -3.39,
+      "ca_value": -0.913,
+      "gdp_value": 33.028
+    },
+    {
+      "date": "1996-09-01",
+      "ratio": -3.48,
+      "ca_value": -1.949,
+      "gdp_value": 33.431
+    },
+    {
+      "date": "1996-12-01",
+      "ratio": -3.58,
+      "ca_value": -1.44,
+      "gdp_value": 33.594
+    },
+    {
+      "date": "1997-03-01",
+      "ratio": -3.81,
+      "ca_value": -0.779,
+      "gdp_value": 33.389
+    },
+    {
+      "date": "1997-06-01",
+      "ratio": -4.35,
+      "ca_value": -1.695,
+      "gdp_value": 34.232
+    },
+    {
+      "date": "1997-09-01",
+      "ratio": -4.25,
+      "ca_value": -1.877,
+      "gdp_value": 34.891
+    },
+    {
+      "date": "1997-12-01",
+      "ratio": -3.95,
+      "ca_value": -1.054,
+      "gdp_value": 34.315
+    },
+    {
+      "date": "1998-03-01",
+      "ratio": -3.1,
+      "ca_value": 0.356,
+      "gdp_value": 34.249
+    },
+    {
+      "date": "1998-06-01",
+      "ratio": -2.64,
+      "ca_value": -1.059,
+      "gdp_value": 34.208
+    },
+    {
+      "date": "1998-09-01",
+      "ratio": -2.48,
+      "ca_value": -1.641,
+      "gdp_value": 34.372
+    },
+    {
+      "date": "1998-12-01",
+      "ratio": -2.13,
+      "ca_value": -0.601,
+      "gdp_value": 35.241
+    },
+    {
+      "date": "1999-03-01",
+      "ratio": -2.27,
+      "ca_value": 0.135,
+      "gdp_value": 35.497
+    },
+    {
+      "date": "1999-06-01",
+      "ratio": -2.09,
+      "ca_value": -0.836,
+      "gdp_value": 35.879
+    },
+    {
+      "date": "1999-09-01",
+      "ratio": -2.57,
+      "ca_value": -2.377,
+      "gdp_value": 36.384
+    },
+    {
+      "date": "1999-12-01",
+      "ratio": -3.85,
+      "ca_value": -2.485,
+      "gdp_value": 36.74
+    },
+    {
+      "date": "2000-03-01",
+      "ratio": -3.94,
+      "ca_value": -0.084,
+      "gdp_value": 37.571
+    },
+    {
+      "date": "2000-06-01",
+      "ratio": -3.76,
+      "ca_value": -0.621,
+      "gdp_value": 37.353
+    },
+    {
+      "date": "2000-09-01",
+      "ratio": -3.58,
+      "ca_value": -2.148,
+      "gdp_value": 37.51
+    },
+    {
+      "date": "2000-12-01",
+      "ratio": -2.63,
+      "ca_value": -1.102,
+      "gdp_value": 37.687
+    },
+    {
+      "date": "2001-03-01",
+      "ratio": -1.84,
+      "ca_value": 1.107,
+      "gdp_value": 37.355
+    },
+    {
+      "date": "2001-06-01",
+      "ratio": -1.14,
+      "ca_value": 0.418,
+      "gdp_value": 38.619
+    },
+    {
+      "date": "2001-09-01",
+      "ratio": -0.64,
+      "ca_value": -1.4,
+      "gdp_value": 38.616
+    },
+    {
+      "date": "2001-12-01",
+      "ratio": -0.68,
+      "ca_value": -1.163,
+      "gdp_value": 39.032
+    },
+    {
+      "date": "2002-03-01",
+      "ratio": -1.04,
+      "ca_value": 0.527,
+      "gdp_value": 39.486
+    },
+    {
+      "date": "2002-06-01",
+      "ratio": -1.29,
+      "ca_value": 0.012,
+      "gdp_value": 39.864
+    },
+    {
+      "date": "2002-09-01",
+      "ratio": -1.72,
+      "ca_value": -2.109,
+      "gdp_value": 40.707
+    },
+    {
+      "date": "2002-12-01",
+      "ratio": -1.76,
+      "ca_value": -1.273,
+      "gdp_value": 41.405
+    },
+    {
+      "date": "2003-03-01",
+      "ratio": -1.58,
+      "ca_value": 0.791,
+      "gdp_value": 41.625
+    },
+    {
+      "date": "2003-06-01",
+      "ratio": -2.04,
+      "ca_value": -0.78,
+      "gdp_value": 41.812
+    },
+    {
+      "date": "2003-09-01",
+      "ratio": -2.06,
+      "ca_value": -2.191,
+      "gdp_value": 42.432
+    },
+    {
+      "date": "2003-12-01",
+      "ratio": -2.08,
+      "ca_value": -1.334,
+      "gdp_value": 42.944
+    },
+    {
+      "date": "2004-03-01",
+      "ratio": -2.37,
+      "ca_value": 0.247,
+      "gdp_value": 44.088
+    },
+    {
+      "date": "2004-06-01",
+      "ratio": -2.37,
+      "ca_value": -0.836,
+      "gdp_value": 44.106
+    },
+    {
+      "date": "2004-09-01",
+      "ratio": -3.28,
+      "ca_value": -3.832,
+      "gdp_value": 44.189
+    },
+    {
+      "date": "2004-12-01",
+      "ratio": -3.98,
+      "ca_value": -2.609,
+      "gdp_value": 44.232
+    },
+    {
+      "date": "2005-03-01",
+      "ratio": -4.49,
+      "ca_value": -0.666,
+      "gdp_value": 44.325
+    },
+    {
+      "date": "2005-06-01",
+      "ratio": -5.35,
+      "ca_value": -2.431,
+      "gdp_value": 45.447
+    },
+    {
+      "date": "2005-09-01",
+      "ratio": -5.85,
+      "ca_value": -4.806,
+      "gdp_value": 45.557
+    },
+    {
+      "date": "2005-12-01",
+      "ratio": -6.35,
+      "ca_value": -3.581,
+      "gdp_value": 45.549
+    },
+    {
+      "date": "2006-03-01",
+      "ratio": -6.98,
+      "ca_value": -1.92,
+      "gdp_value": 45.961
+    },
+    {
+      "date": "2006-06-01",
+      "ratio": -6.81,
+      "ca_value": -2.153,
+      "gdp_value": 45.769
+    },
+    {
+      "date": "2006-09-01",
+      "ratio": -6.62,
+      "ca_value": -4.526,
+      "gdp_value": 46.586
+    },
+    {
+      "date": "2006-12-01",
+      "ratio": -6.56,
+      "ca_value": -3.548,
+      "gdp_value": 46.933
+    },
+    {
+      "date": "2007-03-01",
+      "ratio": -6.23,
+      "ca_value": -1.389,
+      "gdp_value": 47.283
+    },
+    {
+      "date": "2007-06-01",
+      "ratio": -6.43,
+      "ca_value": -2.675,
+      "gdp_value": 47.951
+    },
+    {
+      "date": "2007-09-01",
+      "ratio": -6.72,
+      "ca_value": -5.188,
+      "gdp_value": 48.416
+    },
+    {
+      "date": "2007-12-01",
+      "ratio": -6.53,
+      "ca_value": -3.304,
+      "gdp_value": 48.666
+    },
+    {
+      "date": "2008-03-01",
+      "ratio": -6.41,
+      "ca_value": -1.232,
+      "gdp_value": 48.425
+    },
+    {
+      "date": "2008-06-01",
+      "ratio": -6.83,
+      "ca_value": -3.478,
+      "gdp_value": 47.755
+    },
+    {
+      "date": "2008-09-01",
+      "ratio": -7.33,
+      "ca_value": -6.102,
+      "gdp_value": 47.804
+    },
+    {
+      "date": "2008-12-01",
+      "ratio": -7.67,
+      "ca_value": -3.893,
+      "gdp_value": 47.799
+    },
+    {
+      "date": "2009-03-01",
+      "ratio": -7.05,
+      "ca_value": 0.014,
+      "gdp_value": 47.446
+    },
+    {
+      "date": "2009-06-01",
+      "ratio": -5.01,
+      "ca_value": 0.414,
+      "gdp_value": 48.035
+    },
+    {
+      "date": "2009-09-01",
+      "ratio": -2.64,
+      "ca_value": -1.584,
+      "gdp_value": 48.321
+    },
+    {
+      "date": "2009-12-01",
+      "ratio": -2.17,
+      "ca_value": -3.022,
+      "gdp_value": 48.9
+    },
+    {
+      "date": "2010-03-01",
+      "ratio": -1.45,
+      "ca_value": 1.359,
+      "gdp_value": 49.469
+    },
+    {
+      "date": "2010-06-01",
+      "ratio": -1.71,
+      "ca_value": -0.116,
+      "gdp_value": 49.743
+    },
+    {
+      "date": "2010-09-01",
+      "ratio": -2.45,
+      "ca_value": -3.048,
+      "gdp_value": 49.043
+    },
+    {
+      "date": "2010-12-01",
+      "ratio": -2.34,
+      "ca_value": -2.807,
+      "gdp_value": 48.461
+    },
+    {
+      "date": "2011-03-01",
+      "ratio": -2.86,
+      "ca_value": 0.357,
+      "gdp_value": 49.282
+    },
+    {
+      "date": "2011-06-01",
+      "ratio": -2.96,
+      "ca_value": -0.326,
+      "gdp_value": 49.7
+    },
+    {
+      "date": "2011-09-01",
+      "ratio": -3.42,
+      "ca_value": -3.988,
+      "gdp_value": 50.23
+    },
+    {
+      "date": "2011-12-01",
+      "ratio": -2.95,
+      "ca_value": -1.947,
+      "gdp_value": 50.647
+    },
+    {
+      "date": "2012-03-01",
+      "ratio": -3.33,
+      "ca_value": -0.438,
+      "gdp_value": 50.746
+    },
+    {
+      "date": "2012-06-01",
+      "ratio": -3.8,
+      "ca_value": -1.328,
+      "gdp_value": 51.073
+    },
+    {
+      "date": "2012-09-01",
+      "ratio": -3.85,
+      "ca_value": -4.143,
+      "gdp_value": 51.392
+    },
+    {
+      "date": "2012-12-01",
+      "ratio": -4.14,
+      "ca_value": -2.585,
+      "gdp_value": 51.967
+    },
+    {
+      "date": "2013-03-01",
+      "ratio": -3.85,
+      "ca_value": 0.107,
+      "gdp_value": 52.239
+    },
+    {
+      "date": "2013-06-01",
+      "ratio": -3.78,
+      "ca_value": -1.227,
+      "gdp_value": 51.999
+    },
+    {
+      "date": "2013-09-01",
+      "ratio": -4.01,
+      "ca_value": -4.664,
+      "gdp_value": 52.465
+    },
+    {
+      "date": "2013-12-01",
+      "ratio": -3.45,
+      "ca_value": -1.448,
+      "gdp_value": 52.76
+    },
+    {
+      "date": "2014-03-01",
+      "ratio": -2.78,
+      "ca_value": 1.475,
+      "gdp_value": 53.345
+    },
+    {
+      "date": "2014-06-01",
+      "ratio": -2.7,
+      "ca_value": -1.102,
+      "gdp_value": 53.594
+    },
+    {
+      "date": "2014-09-01",
+      "ratio": -2.84,
+      "ca_value": -5.004,
+      "gdp_value": 54.273
+    },
+    {
+      "date": "2014-12-01",
+      "ratio": -3.49,
+      "ca_value": -2.912,
+      "gdp_value": 54.983
+    },
+    {
+      "date": "2015-03-01",
+      "ratio": -3.73,
+      "ca_value": 0.874,
+      "gdp_value": 55.422
+    },
+    {
+      "date": "2015-06-01",
+      "ratio": -3.72,
+      "ca_value": -1.155,
+      "gdp_value": 55.874
+    },
+    {
+      "date": "2015-09-01",
+      "ratio": -3.43,
+      "ca_value": -4.45,
+      "gdp_value": 56.655
+    },
+    {
+      "date": "2015-12-01",
+      "ratio": -3.15,
+      "ca_value": -2.37,
+      "gdp_value": 57.214
+    },
+    {
+      "date": "2016-03-01",
+      "ratio": -2.73,
+      "ca_value": 1.767,
+      "gdp_value": 57.781
+    },
+    {
+      "date": "2016-06-01",
+      "ratio": -2.35,
+      "ca_value": -0.348,
+      "gdp_value": 58.46
+    },
+    {
+      "date": "2016-09-01",
+      "ratio": -2.5,
+      "ca_value": -4.858,
+      "gdp_value": 58.927
+    },
+    {
+      "date": "2016-12-01",
+      "ratio": -2.37,
+      "ca_value": -2.101,
+      "gdp_value": 59.032
+    },
+    {
+      "date": "2017-03-01",
+      "ratio": -2.94,
+      "ca_value": 0.358,
+      "gdp_value": 59.894
+    },
+    {
+      "date": "2017-06-01",
+      "ratio": -2.99,
+      "ca_value": -0.534,
+      "gdp_value": 60.54
+    },
+    {
+      "date": "2017-09-01",
+      "ratio": -3.09,
+      "ca_value": -5.166,
+      "gdp_value": 61.183
+    },
+    {
+      "date": "2017-12-01",
+      "ratio": -3.45,
+      "ca_value": -3.072,
+      "gdp_value": 61.97
+    },
+    {
+      "date": "2018-03-01",
+      "ratio": -3.71,
+      "ca_value": -0.363,
+      "gdp_value": 62.646
+    },
+    {
+      "date": "2018-06-01",
+      "ratio": -4.33,
+      "ca_value": -2.176,
+      "gdp_value": 63.195
+    },
+    {
+      "date": "2018-09-01",
+      "ratio": -4.9,
+      "ca_value": -6.693,
+      "gdp_value": 63.234
+    },
+    {
+      "date": "2018-12-01",
+      "ratio": -5.14,
+      "ca_value": -3.797,
+      "gdp_value": 64.251
+    },
+    {
+      "date": "2019-03-01",
+      "ratio": -4.74,
+      "ca_value": 0.537,
+      "gdp_value": 65.042
+    },
+    {
+      "date": "2019-06-01",
+      "ratio": -4.35,
+      "ca_value": -1.255,
+      "gdp_value": 65.037
+    },
+    {
+      "date": "2019-09-01",
+      "ratio": -4.09,
+      "ca_value": -6.111,
+      "gdp_value": 65.577
+    },
+    {
+      "date": "2019-12-01",
+      "ratio": -3.55,
+      "ca_value": -2.457,
+      "gdp_value": 66.042
+    },
+    {
+      "date": "2020-03-01",
+      "ratio": -2.99,
+      "ca_value": 1.978,
+      "gdp_value": 65.502
+    },
+    {
+      "date": "2020-06-01",
+      "ratio": -2.02,
+      "ca_value": 1.428,
+      "gdp_value": 58.968
+    },
+    {
+      "date": "2020-09-01",
+      "ratio": -1.16,
+      "ca_value": -3.926,
+      "gdp_value": 67.227
+    },
+    {
+      "date": "2020-12-01",
+      "ratio": -1.24,
+      "ca_value": -2.695,
+      "gdp_value": 67.548
+    },
+    {
+      "date": "2021-03-01",
+      "ratio": -3.24,
+      "ca_value": -3.315,
+      "gdp_value": 68.916
+    },
+    {
+      "date": "2021-06-01",
+      "ratio": -4.02,
+      "ca_value": -1.042,
+      "gdp_value": 69.458
+    },
+    {
+      "date": "2021-09-01",
+      "ratio": -5.73,
+      "ca_value": -8.543,
+      "gdp_value": 66.392
+    },
+    {
+      "date": "2021-12-01",
+      "ratio": -7.45,
+      "ca_value": -7.513,
+      "gdp_value": 69.099
+    },
+    {
+      "date": "2022-03-01",
+      "ratio": -8.62,
+      "ca_value": -6.523,
+      "gdp_value": 69.143
+    },
+    {
+      "date": "2022-06-01",
+      "ratio": -10.57,
+      "ca_value": -6.459,
+      "gdp_value": 70.031
+    },
+    {
+      "date": "2022-09-01",
+      "ratio": -11.43,
+      "ca_value": -11.493,
+      "gdp_value": 71.582
+    },
+    {
+      "date": "2022-12-01",
+      "ratio": -12.3,
+      "ca_value": -10.293,
+      "gdp_value": 71.797
+    },
+    {
+      "date": "2023-03-01",
+      "ratio": -11.45,
+      "ca_value": -4.404,
+      "gdp_value": 71.675
+    },
+    {
+      "date": "2023-06-01",
+      "ratio": -10.46,
+      "ca_value": -3.868,
+      "gdp_value": 72.201
+    },
+    {
+      "date": "2023-09-01",
+      "ratio": -10.13,
+      "ca_value": -10.592,
+      "gdp_value": 72.11
+    },
+    {
+      "date": "2023-12-01",
+      "ratio": -8.95,
+      "ca_value": -6.948,
+      "gdp_value": 72.428
+    },
+    {
+      "date": "2024-03-01",
+      "ratio": -8.23,
+      "ca_value": -2.389,
+      "gdp_value": 72.522
+    },
+    {
+      "date": "2024-06-01",
+      "ratio": -8.04,
+      "ca_value": -3.327,
+      "gdp_value": 72.228
+    },
+    {
+      "date": "2024-09-01",
+      "ratio": -7.61,
+      "ca_value": -9.278,
+      "gdp_value": 71.288
+    },
+    {
+      "date": "2024-12-01",
+      "ratio": -6.95,
+      "ca_value": -4.998,
+      "gdp_value": 71.423
+    },
+    {
+      "date": "2025-03-01",
+      "ratio": -6.38,
+      "ca_value": -0.709,
+      "gdp_value": 72.271
+    },
+    {
+      "date": "2025-06-01",
+      "ratio": -5.68,
+      "ca_value": -1.297,
+      "gdp_value": 71.671
+    },
+    {
+      "date": "2025-09-01",
+      "ratio": -5.34,
+      "ca_value": -8.365,
+      "gdp_value": 72.607
+    }
+  ],
+  "latest": {
+    "date": "2025-09-01",
+    "ratio": -5.34,
+    "ca_value": -8.365,
+    "gdp_value": 72.607
+  },
+  "metadata": {
+    "source": "Stats NZ (BOP CSV + GDP Excel)",
+    "indicator": "Current Account Balance as % of GDP",
+    "description": "NZ 経常収支対GDP比（trailing 4Q合計ベース）",
+    "unit": "%",
+    "frequency": "quarterly",
+    "gdp_series": "SG02RSC00B15 (SA expenditure GDP, millions NZD)",
+    "ca_series": "BOPQ.S06AC100000000D (Current Account Balance, millions NZD)"
+  },
+  "last_updated": "2026-03-01T21:19:47.654243+09:00"
+}

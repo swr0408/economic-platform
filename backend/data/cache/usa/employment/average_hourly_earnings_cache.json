@@ -1361,13 +1361,19 @@
       "yoy": 3.71,
       "mom": 0.41,
       "quits_rate": null
+    },
+    {
+      "date": "2026-02-01",
+      "yoy": 3.84,
+      "mom": 0.4,
+      "quits_rate": null
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "yoy": 3.71,
-    "mom": 0.41,
+    "date": "2026-02-01",
+    "yoy": 3.84,
+    "mom": 0.4,
     "quits_rate": null
   },
-  "last_updated": "2026-02-15T22:45:06.612594+09:00"
+  "last_updated": "2026-03-08T21:43:31.556121+09:00"
 }

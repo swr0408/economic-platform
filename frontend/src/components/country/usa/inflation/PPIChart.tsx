@@ -28,7 +28,6 @@ import {
   NoDataMessage,
   LatestValueBox,
   ViewModeButtonGroup,
-  DataTypeButtonGroup,
   StandardLineChart,
   StandardBarChart,
 } from '../common/ChartComponents'
@@ -46,23 +45,35 @@ interface PPIChartProps {
   corePpiData: CorePPIData | null
 }
 
-// PPI表示モード
-type PPIViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+// 指標種別
+type PPIDataKind = 'yoy' | 'mom'
 
-// PPIビューモードオプション
-const PPI_VIEW_MODE_OPTIONS: { mode: PPIViewMode; label: string }[] = [
+const PPI_DATA_KIND_OPTIONS: { mode: PPIDataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // PPIデータタイプ
 type PPIDataType = 'ppi' | 'core_ppi'
 
-// PPIデータタイプ設定
+// PPIデータタイプ設定（MonthlyTableWithDataTypes用）
 const PPI_DATA_TYPE_OPTIONS: { type: PPIDataType; label: string }[] = [
   { type: 'ppi', label: 'PPI' },
   { type: 'core_ppi', label: 'コアPPI' },
+]
+
+// PPIデータタイプ設定（ViewModeButtonGroup用）
+const PPI_DATA_TYPE_BUTTON_OPTIONS: { mode: PPIDataType; label: string }[] = [
+  { mode: 'ppi', label: 'PPI' },
+  { mode: 'core_ppi', label: 'コアPPI' },
 ]
 
 // カラー設定
@@ -78,16 +89,16 @@ const COLORS = {
 // =============================================================================
 
 export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
-  const [viewMode, setViewMode] = useState<PPIViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<PPIDataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<PPIDataType>('ppi')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -184,13 +195,13 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
           items={[
             {
               label: 'PPI',
-              value: viewMode === 'yoy' ? ppiLatest?.yoy : ppiLatest?.mom,
+              value: dataKind === 'yoy' ? ppiLatest?.yoy : ppiLatest?.mom,
               color: COLORS.ppi_yoy,
               format: 'percent',
             },
             {
               label: 'コアPPI',
-              value: viewMode === 'yoy' ? corePpiLatest?.yoy : corePpiLatest?.mom,
+              value: dataKind === 'yoy' ? corePpiLatest?.yoy : corePpiLatest?.mom,
               color: COLORS.core_ppi_yoy,
               format: 'percent',
             },
@@ -210,8 +221,9 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={PPI_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={PPI_DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く（PPI・コアPPI）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -222,8 +234,15 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -239,8 +258,8 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={PPI_DATA_TYPE_OPTIONS}
@@ -249,10 +268,12 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
                     />
                   )}
 
-                  {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート（棒グラフ） */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
-                      <DataTypeButtonGroup options={PPI_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+                      <div style={{ marginBottom: 8 }}>
+                        <ViewModeButtonGroup options={PPI_DATA_TYPE_BUTTON_OPTIONS} currentMode={dataType} onChange={setDataType} />
+                      </div>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
                         data={filteredData}

@@ -268,8 +268,9 @@ class HalifaxHousePriceService:
             latest_pdf = pdf_files[0]
             logger.info(f"Found Halifax PDF: {latest_pdf.name}")
 
-            # ファイル名から対象月を抽出 (YYYYMM-halifax-...)
-            match = re.search(r'(\d{6})', latest_pdf.name)
+            # ファイル名から対象月を抽出
+            # 対応形式: YYYYMMDD(8桁), YYYYMM(6桁)
+            match = re.search(r'(\d{8}|\d{6})', latest_pdf.name)
             if not match:
                 logger.warning(f"Could not extract date from PDF filename: {latest_pdf.name}")
                 return None
@@ -378,8 +379,9 @@ class HalifaxHousePriceService:
             抽出されたデータ {"mom": {...}, "yoy": {...}}
         """
         try:
-            # ファイル名から対象月を抽出 (YYYYMM-halifax-...)
-            match = re.search(r'(\d{6})', pdf_path.name)
+            # ファイル名から対象月を抽出
+            # 対応形式: YYYYMMDD(8桁), YYYYMM(6桁)
+            match = re.search(r'(\d{8}|\d{6})', pdf_path.name)
             if not match:
                 logger.warning(f"Could not extract date from PDF filename: {pdf_path.name}")
                 return None
@@ -454,15 +456,21 @@ class HalifaxHousePriceService:
             if yoy_value is not None:
                 result["yoy"] = {"date": data_date, "value": yoy_value}
 
-            # 4ページ目の履歴テーブルから修正値を抽出
+            # 3ページ目（または4ページ目）の履歴テーブルから修正値を抽出
             with pdfplumber.open(pdf_path) as pdf:
-                if len(pdf.pages) >= 4:
-                    hist_text = pdf.pages[3].extract_text()
-                    if hist_text:
-                        revisions = self._extract_historical_table(hist_text)
-                        if revisions:
-                            result["revisions"] = revisions
-                            logger.info(f"[Halifax] Extracted {len(revisions)} revision rows from PDF page 4")
+                revisions = []
+                # 3ページ目と4ページ目の両方をチェック（PDFによりテーブル位置が異なる）
+                for page_idx in [2, 3]:
+                    if len(pdf.pages) > page_idx:
+                        hist_text = pdf.pages[page_idx].extract_text()
+                        if hist_text:
+                            found = self._extract_historical_table(hist_text)
+                            if found:
+                                revisions = found
+                                logger.info(f"[Halifax] Extracted {len(revisions)} revision rows from PDF page {page_idx + 1}")
+                                break
+                if revisions:
+                    result["revisions"] = revisions
 
             logger.info(f"Extracted from {pdf_path.name}: mom={result.get('mom')}, yoy={result.get('yoy')}, revisions={len(result.get('revisions', []))}")
             return result

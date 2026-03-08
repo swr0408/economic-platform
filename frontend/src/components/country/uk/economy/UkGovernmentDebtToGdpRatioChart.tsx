@@ -47,7 +47,17 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'value' | 'mom_chart' | 'mom_table'
+type DataKind = 'value' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 const COLORS = {
   value: '#722ed1',
@@ -55,14 +65,14 @@ const COLORS = {
 }
 
 export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDebtToGdpRatioChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    mom_chart: 3,
-    mom_table: 'default',
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換
@@ -94,7 +104,7 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
 
   // テーブル用データ（年別×月別のマトリックス）
   const tableData = useMonthlyTableData(chartData, (item) =>
-    viewMode === 'mom_table' ? item.mom_change : item.value
+    dataKind === 'mom' ? item.mom_change : item.value
   )
 
   const hasData = chartData.length > 0
@@ -108,10 +118,10 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
   // 現在の表示値
   const currentValue = useMemo(() => {
     if (!latest) return null
-    return viewMode === 'value' ? latest.value : latest.mom_change
-  }, [latest, viewMode])
+    return dataKind === 'value' ? latest.value : latest.mom_change
+  }, [latest, dataKind])
 
-  const currentColor = viewMode === 'value' ? COLORS.value : COLORS.mom
+  const currentColor = dataKind === 'value' ? COLORS.value : COLORS.mom
 
   if (data === null) {
     return <LoadingChart title="政府債務残高対GDP比（イギリス）" />
@@ -135,8 +145,8 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={viewMode === 'value' ? '政府債務残高対GDP比' : '前月増減幅'}
-          value={currentValue != null ? (viewMode === 'value' ? `${currentValue.toFixed(1)}%` : `${currentValue >= 0 ? '+' : ''}${currentValue.toFixed(2)}pp`) : null}
+          label={dataKind === 'value' ? '政府債務残高対GDP比' : '前月増減幅'}
+          value={currentValue != null ? (dataKind === 'value' ? `${currentValue.toFixed(1)}%` : `${currentValue >= 0 ? '+' : ''}${currentValue.toFixed(2)}pp`) : null}
           valueColor={currentColor}
           date={latest?.date}
           nextRelease={data.next_release ?? undefined}
@@ -154,35 +164,35 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '原数値' },
-                      { mode: 'mom_chart', label: '前月増減幅' },
-                      { mode: 'mom_table', label: '前月増減幅（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=uk_government_debt_to_gdp_ratio', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'value' || viewMode === 'mom_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=uk_government_debt_to_gdp_ratio', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（変動系のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable data={tableData} />}
+                  {/* 期間セレクター */}
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
 
-                  {viewMode === 'value' && (
+                  {/* コンテンツ表示 */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable data={tableData} />}
+
+                  {dataKind === 'value' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -197,7 +207,7 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
                     />
                   )}
 
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

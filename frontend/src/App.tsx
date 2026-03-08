@@ -6,6 +6,8 @@ import SymbolDetailPage from './pages/SymbolDetailPage'
 import CountryDataIndex from './pages/CountryDataIndex'
 import CountryDetail from './pages/CountryDetail'
 import CountryDataCategory from './pages/CountryDataCategory'
+import MarketDataIndex from './pages/MarketDataIndex'
+import MarketDataCategory from './pages/MarketDataCategory'
 import ComparePage from './pages/ComparePage'
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path="country" element={<CountryDataIndex />} />
           <Route path="country/:countryCode" element={<CountryDetail />} />
           <Route path="country/:countryCode/:categoryCode" element={<CountryDataCategory />} />
+          <Route path="markets" element={<MarketDataIndex />} />
+          <Route path="markets/:categoryCode" element={<MarketDataCategory />} />
           <Route path="compare" element={<ComparePage />} />
         </Route>
       </Routes>

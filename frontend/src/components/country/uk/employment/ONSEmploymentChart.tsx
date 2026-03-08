@@ -60,8 +60,22 @@ const MOM_COLOR = '#3498db'
 const QOQ_COLOR = '#9b59b6'
 const YOY_COLOR = '#e74c3c'
 
-// 統一されたビューモード（データタイプ + 表示形式）
-type ViewMode = 'qoq_chart' | 'qoq_table' | 'mom_chart' | 'mom_table' | 'yoy'
+// データ種別
+type DataKind = 'qoq' | 'mom' | 'yoy'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '対前3か月' },
+  { mode: 'mom', label: '単月' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 前月増減幅テーブル用の凡例と色関数（50k閾値）
 const MOM_TABLE_LEGEND = createChangeLegend(50, 'k')
@@ -71,42 +85,16 @@ const getMomTableCellColor = createChangeCellColorFn(50)
 const QOQ_TABLE_LEGEND = createChangeLegend(100, 'k')
 const getQoqTableCellColor = createChangeCellColorFn(100)
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '対前3か月' },
-  { mode: 'qoq_table', label: '対前3か月（テーブル）' },
-  { mode: 'mom_chart', label: '単月' },
-  { mode: 'mom_table', label: '単月（テーブル）' },
-  { mode: 'yoy', label: '前年比' },
-]
-
-// ビューモードの設定情報
-const VIEW_MODE_CONFIG: Record<ViewMode, {
-  dataType: 'qoq' | 'mom' | 'yoy'
-  isTable: boolean
-}> = {
-  'qoq_chart': { dataType: 'qoq', isTable: false },
-  'qoq_table': { dataType: 'qoq', isTable: true },
-  'mom_chart': { dataType: 'mom', isTable: false },
-  'mom_table': { dataType: 'mom', isTable: true },
-  'yoy': { dataType: 'yoy', isTable: false },
-}
-
 export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  const config = VIEW_MODE_CONFIG[viewMode]
-  // viewModeからデータタイプを導出
-  const dataType = config.dataType
-
-  // データタイプ毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 'default',
-    qoq_table: 'default',
-    mom_chart: 'default',
-    mom_table: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    qoq: 'default',
+    mom: 'default',
     yoy: 'default',
   })
 
@@ -158,9 +146,9 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
 
   // データ比較ページを開く
   const handleCompare = useCallback(() => {
-    const seriesId = dataType === 'qoq' ? 'uk_employment_qoq' : dataType === 'mom' ? 'uk_employment_mom' : 'uk_employment_yoy'
+    const seriesId = dataKind === 'qoq' ? 'uk_employment_qoq' : dataKind === 'mom' ? 'uk_employment_mom' : 'uk_employment_yoy'
     window.open(`/compare?s=${seriesId}&s=uk_claimant_count_mom`, '_blank')
-  }, [dataType])
+  }, [dataKind])
 
 
   if (data === null) {
@@ -205,7 +193,7 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
 
   // チャート設定取得
   const getChartConfig = () => {
-    switch (dataType) {
+    switch (dataKind) {
       case 'qoq':
         return {
           dataKey: 'qoq',
@@ -238,6 +226,9 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
 
   const chartConfig = getChartConfig()
 
+  // ヒートマップ表示の有無
+  const showDisplayModeToggle = dataKind === 'qoq' || dataKind === 'mom'
+
   return (
     <div id="uk-ons-employment-chart">
       <ChartContainer
@@ -264,11 +255,20 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                  </div>
+
+                  {/* 下段: 表示形式（qoq/momのときのみ） */}
+                  {showDisplayModeToggle && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* グラフ表示 */}
-                  {!config.isTable && (
+                  {!(showDisplayModeToggle && displayMode === 'heatmap') && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -300,7 +300,7 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
                   )}
 
                   {/* テーブル表示（前3か月比） */}
-                  {viewMode === 'qoq_table' && (
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={qoqTableData}
                       formatValue={(value) => {
@@ -315,7 +315,7 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
                   )}
 
                   {/* テーブル表示（単月） */}
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       formatValue={(value) => {

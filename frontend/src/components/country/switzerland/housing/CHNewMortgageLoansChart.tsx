@@ -54,15 +54,21 @@ const COLORS = {
   yoy: '#00CED1',    // シアン系（前年比）
 }
 
-// 表示モード
-type ViewMode = 'value' | 'qoq' | 'qoq_table' | 'yoy'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'qoq'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
   { mode: 'value', label: '金額' },
   { mode: 'qoq', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比テーブル' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // 日付から年を抽出
@@ -77,12 +83,14 @@ const getQuarterFromDate = (dateStr: string): number => {
 }
 
 export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChartProps) {
-  // 表示モード
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    value: 'default',
+    yoy: 'default',
+    qoq: 'default',
   })
 
   // propsのデータをチャート用に変換
@@ -145,34 +153,34 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
     return { years: sortedYears, quarterlyData }
   }, [chartData])
 
-  // 現在のビューモードに応じた最新値を取得
+  // 現在のデータ種別に応じた最新値を取得
   const currentLatestValue = useMemo(() => {
     if (!latestValue) return null
-    if (viewMode === 'value') return latestValue.value
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return latestValue.qoq
-    if (viewMode === 'yoy') return latestValue.yoy
+    if (dataKind === 'value') return latestValue.value
+    if (dataKind === 'qoq') return latestValue.qoq
+    if (dataKind === 'yoy') return latestValue.yoy
     return latestValue.value
-  }, [latestValue, viewMode])
+  }, [latestValue, dataKind])
 
-  // 現在のビューモードに応じた色を取得
+  // 現在のデータ種別に応じた色を取得
   const currentColor = useMemo(() => {
-    if (viewMode === 'value') return COLORS.value
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return COLORS.qoq
-    if (viewMode === 'yoy') return COLORS.yoy
+    if (dataKind === 'value') return COLORS.value
+    if (dataKind === 'qoq') return COLORS.qoq
+    if (dataKind === 'yoy') return COLORS.yoy
     return COLORS.value
-  }, [viewMode])
+  }, [dataKind])
 
   // 最新値ラベルを取得
   const getLatestLabel = () => {
-    if (viewMode === 'value') return '新規住宅ローンの融資限度額の合計金額'
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return '新規住宅ローンの融資限度額の合計金額（前期比）'
-    if (viewMode === 'yoy') return '新規住宅ローンの融資限度額の合計金額（前年比）'
+    if (dataKind === 'value') return '新規住宅ローンの融資限度額の合計金額'
+    if (dataKind === 'qoq') return '新規住宅ローンの融資限度額の合計金額（前期比）'
+    if (dataKind === 'yoy') return '新規住宅ローンの融資限度額の合計金額（前年比）'
     return '新規住宅ローンの融資限度額の合計金額'
   }
 
   // フォーマット種別
   const getFormat = () => {
-    if (viewMode === 'value') return 'number' as const
+    if (dataKind === 'value') return 'number' as const
     return 'percent' as const
   }
 
@@ -204,21 +212,18 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
           date={latestValue?.date}
           format={getFormat()}
           decimals={2}
-          unit={viewMode === 'value' ? 'MillionCHF' : undefined}
+          unit={dataKind === 'value' ? 'MillionCHF' : undefined}
           valueColor={currentColor}
           nextRelease={data.next_release ? { date: data.next_release } : null}
         />
 
-        {/* ビューモード切替 */}
-        <ViewModeButtonGroup
-          options={VIEW_MODE_OPTIONS}
-          currentMode={viewMode}
-          onChange={setViewMode}
-        />
-
-        {/* 期間セレクター・データ比較ボタン */}
+        {/* 上段: データ種別 + データ比較ボタン */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+          <ViewModeButtonGroup
+            options={DATA_KIND_OPTIONS}
+            currentMode={dataKind}
+            onChange={setDataKind}
+          />
           <Tooltip title="比較ページを開く">
             <Button
               icon={<AreaChartOutlined />}
@@ -229,8 +234,20 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
           </Tooltip>
         </div>
 
-        {/* グラフ */}
-        {viewMode === 'value' && (
+        {/* 下段: 表示形式（qoqのときのみ） */}
+        {dataKind === 'qoq' && (
+          <div style={{ marginBottom: 8 }}>
+            <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+          </div>
+        )}
+
+        {/* 期間セレクター（ヒートマップ以外で表示） */}
+        {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+        )}
+
+        {/* 金額チャート */}
+        {dataKind === 'value' && (
           <StandardLineChart
             data={filteredData}
             lines={[{ dataKey: 'value', color: COLORS.value, name: '新規住宅ローンの融資限度額の合計金額' }]}
@@ -240,7 +257,9 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
             showZeroLine={false}
           />
         )}
-        {viewMode === 'qoq' && (
+
+        {/* 前期比チャート */}
+        {dataKind === 'qoq' && displayMode === 'chart' && (
           <StandardBarChart
             data={filteredData}
             bars={[{
@@ -252,7 +271,9 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
             tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
           />
         )}
-        {viewMode === 'qoq_table' && (
+
+        {/* 前期比ヒートマップ */}
+        {dataKind === 'qoq' && displayMode === 'heatmap' && (
           <QuarterlyTable
             data={quarterlyTableData}
             showLegend={true}
@@ -260,7 +281,9 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
             helperText="※ 直近10年間の前期比データ（単位: %）"
           />
         )}
-        {viewMode === 'yoy' && (
+
+        {/* 前年比チャート */}
+        {dataKind === 'yoy' && (
           <StandardLineChart
             data={filteredData}
             lines={[{

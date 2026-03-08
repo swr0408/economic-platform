@@ -555,6 +555,105 @@ CSV_CONFIGS = [
         "date_format": "monthly_utc",
         "value_type": "number",
     },
+    # China Loan Prime Rate 1Y
+    {
+        "file": "ローンプライムレート.csv",
+        "event_name": "Loan Prime Rate 1Y",
+        "provider": "CSV_IMPORT",
+        "country": "CN",
+        "currency": "CNY",
+        "impact": "High",
+        "date_format": "cn_lpr",  # 2019/09/20 形式
+        "value_type": "percent",
+    },
+    # China Loan Prime Rate 5Y
+    {
+        "file": "ローンプライムレート5Y.csv",
+        "event_name": "Loan Prime Rate 5Y",
+        "provider": "CSV_IMPORT",
+        "country": "CN",
+        "currency": "CNY",
+        "impact": "High",
+        "date_format": "cn_lpr_5y",  # 2023年8月21日 (8月) 形式
+        "value_type": "percent",
+    },
+    # China House Price Index YoY
+    {
+        "file": "中国住宅価格指数.csv",
+        "event_name": "House Price Index YoY",
+        "provider": "CSV_IMPORT",
+        "country": "CN",
+        "currency": "CNY",
+        "impact": "Medium",
+        "date_format": "monthly_utc",  # 2011/1 形式
+        "value_type": "percent",
+    },
+    # China Caixin Manufacturing PMI
+    {
+        "file": "中国財新製造業PMI.csv",
+        "event_name": "Caixin Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "CN",
+        "currency": "CNY",
+        "impact": "High",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
+    # China Caixin Services PMI
+    {
+        "file": "中国財新サービス業PMI.csv",
+        "event_name": "Caixin Services PMI",
+        "provider": "CSV_IMPORT",
+        "country": "CN",
+        "currency": "CNY",
+        "impact": "High",
+        "date_format": "monthly_utc",
+        "value_type": "number",
+    },
+    # Taiwan S&P Global Manufacturing PMI
+    {
+        "file": "台湾製造業PMI.csv",
+        "event_name": "S&P Global Manufacturing PMI",
+        "provider": "CSV_IMPORT",
+        "country": "TW",
+        "currency": "TWD",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    # South Korean Exports YoY
+    {
+        "file": "韓国輸出.csv",
+        "event_name": "Exports YoY",
+        "provider": "CSV_IMPORT",
+        "country": "KR",
+        "currency": "KRW",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    # Taiwan Export Orders YoY
+    {
+        "file": "台湾輸出受注.csv",
+        "event_name": "Export Orders YoY",
+        "provider": "CSV_IMPORT",
+        "country": "TW",
+        "currency": "TWD",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "number",
+    },
+    # Taiwan Electrical Equipment Exports (百萬美元)
+    {
+        "file": "台湾電気機器輸出.csv",
+        "event_name": "Electrical Equipment Exports",
+        "provider": "CSV_IMPORT",
+        "country": "TW",
+        "currency": "TWD",
+        "impact": "Medium",
+        "date_format": "monthly",
+        "value_type": "comma_number",
+    },
 ]
 
 
@@ -616,6 +715,63 @@ def parse_date_daily(date_str: str, time_str: str) -> datetime:
     return dt_jst.astimezone(UTC)
 
 
+def parse_date_cn_lpr(date_str: str, time_str: str) -> datetime:
+    """
+    中国LPR（1Y）日付をパース
+    - 通常形式: 2019/09/20
+    - 日本語形式: 2025年1月20日 (1月)  ← 一部レコードで混在
+    時間は CST (UTC+8) として解釈し、UTC に変換
+    """
+    import re
+    date_str = date_str.strip()
+
+    # 日本語形式を先にチェック: "YYYY年M月D日"
+    m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", date_str)
+    if m:
+        year, month, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    else:
+        # スラッシュ/ハイフン形式: 2019/09/20
+        parts = re.split(r"[/\-]", date_str)
+        year = int(parts[0])
+        month = int(parts[1])
+        day = int(parts[2]) if len(parts) > 2 else 1
+
+    hour, minute = 10, 15
+    if time_str and ":" in time_str:
+        tp = time_str.split(":")
+        hour = int(tp[0])
+        minute = int(tp[1]) if len(tp) > 1 else 0
+
+    CST = ZoneInfo("Asia/Shanghai")
+    dt_cst = datetime(year, month, day, hour, minute, tzinfo=CST)
+    return dt_cst.astimezone(UTC)
+
+
+def parse_date_cn_lpr_5y(date_str: str, time_str: str) -> datetime:
+    """
+    中国LPR（5Y）日付をパース (2023年8月21日 (8月) 形式)
+    時間は CST (UTC+8) として解釈し、UTC に変換
+    """
+    import re
+    # Extract year, month, day from "2023年8月21日 (8月)" pattern
+    m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", date_str)
+    if not m:
+        raise ValueError(f"Cannot parse CN LPR 5Y date: {date_str}")
+    year = int(m.group(1))
+    month = int(m.group(2))
+    day = int(m.group(3))
+
+    hour, minute = 10, 15
+    if time_str and ":" in time_str:
+        tp = time_str.split(":")
+        hour = int(tp[0])
+        minute = int(tp[1]) if len(tp) > 1 else 0
+
+    CST = ZoneInfo("Asia/Shanghai")
+    dt_cst = datetime(year, month, day, hour, minute, tzinfo=CST)
+    return dt_cst.astimezone(UTC)
+
+
 def parse_date_boj(date_str: str, time_str: str) -> datetime:
     """
     日銀金利データの日付をパース (2010-01-26 形式)
@@ -649,6 +805,9 @@ def parse_value(value_str, value_type: str) -> float:
     elif value_type == "million":
         # 5.05M → 5.05（百万戸単位を数値に変換）
         value_str = value_str.replace("M", "")
+    elif value_type == "comma_number":
+        # "7,558" → 7558（カンマ区切り数値）
+        value_str = value_str.replace(",", "")
 
     try:
         return float(value_str)
@@ -714,6 +873,8 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
                         time_str = str(row["時間"])
                     elif "発表時間" in row:
                         time_str = str(row["発表時間"])
+                    elif "時刻" in row:
+                        time_str = str(row["時刻"])
 
                     if config["date_format"] == "monthly":
                         dt_utc = parse_date_monthly(date_str, time_str)
@@ -721,6 +882,10 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
                         dt_utc = parse_date_monthly_utc(date_str, time_str)
                     elif config["date_format"] == "boj_date":
                         dt_utc = parse_date_boj(date_str, time_str)
+                    elif config["date_format"] == "cn_lpr":
+                        dt_utc = parse_date_cn_lpr(date_str, time_str)
+                    elif config["date_format"] == "cn_lpr_5y":
+                        dt_utc = parse_date_cn_lpr_5y(date_str, time_str)
                     else:
                         dt_utc = parse_date_daily(date_str, time_str)
 

@@ -1151,21 +1151,27 @@
       "value": 35.553,
       "mom": -50.2,
       "yoy": -8.3
+    },
+    {
+      "date": "2026-01-01",
+      "value": 108.435,
+      "mom": 205.0,
+      "yoy": 117.8
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 35.553,
-    "mom": -50.2,
-    "yoy": -8.3
+    "date": "2026-01-01",
+    "value": 108.435,
+    "mom": 205.0,
+    "yoy": 117.8
   },
   "next_release": {
-    "date": "2026-02-05",
-    "datetime_utc": "2026-02-05T12:30:00+00:00",
-    "datetime_jst": "2026-02-05T21:30:00+09:00",
-    "time_jst": "21:30",
-    "label": "Challenger Job Cuts (Jan)",
-    "estimate": 43
+    "date": "2026-04-02",
+    "datetime_utc": "2026-04-02T11:30:00+00:00",
+    "datetime_jst": "2026-04-02T20:30:00+09:00",
+    "time_jst": "20:30",
+    "label": "Challenger Job Cuts (Mar)",
+    "estimate": 90
   },
-  "last_updated": "2026-02-05T12:02:14.391701+09:00"
+  "last_updated": "2026-03-08T18:00:33.878651+09:00"
 }

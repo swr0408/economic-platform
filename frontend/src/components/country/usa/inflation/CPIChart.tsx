@@ -28,7 +28,6 @@ import {
   NoDataMessage,
   LatestValueBox,
   ViewModeButtonGroup,
-  DataTypeButtonGroup,
   StandardLineChart,
   StandardBarChart,
 } from '../common/ChartComponents'
@@ -46,24 +45,36 @@ interface CPIChartProps {
   coreCpiData: CoreCPIData | null
 }
 
-// CPI表示モード
-type CPIViewMode = 'yoy' | 'mom_table' | 'mom_chart' | 'annualized'
+// 指標種別
+type CPIDataKind = 'yoy' | 'mom' | 'annualized'
 
-// CPIビューモードオプション
-const CPI_VIEW_MODE_OPTIONS: { mode: CPIViewMode; label: string }[] = [
+const CPI_DATA_KIND_OPTIONS: { mode: CPIDataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
   { mode: 'annualized', label: '年率' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // CPIデータタイプ
 type CPIDataType = 'cpi' | 'core_cpi'
 
-// CPIデータタイプ設定
+// CPIデータタイプ設定（MonthlyTableWithDataTypes用）
 const CPI_DATA_TYPE_OPTIONS: { type: CPIDataType; label: string }[] = [
   { type: 'cpi', label: 'CPI（総合）' },
   { type: 'core_cpi', label: 'コアCPI' },
+]
+
+// CPIデータタイプ設定（ViewModeButtonGroup用）
+const CPI_DATA_TYPE_BUTTON_OPTIONS: { mode: CPIDataType; label: string }[] = [
+  { mode: 'cpi', label: 'CPI（総合）' },
+  { mode: 'core_cpi', label: 'コアCPI' },
 ]
 
 // カラー設定
@@ -82,17 +93,17 @@ const COLORS = {
 // =============================================================================
 
 export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
-  const [viewMode, setViewMode] = useState<CPIViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<CPIDataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<CPIDataType>('cpi')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
-    annualized: 'default',  // 年率は直近3年
+    mom: 3,
+    annualized: 'default',
   })
 
   // データを日付昇順にソート
@@ -201,7 +212,7 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
         {/* 最新値表示 */}
         <LatestValueBox
           items={
-            viewMode === 'annualized'
+            dataKind === 'annualized'
               ? [
                   {
                     label: dataType === 'cpi' ? 'CPI 3か月年率' : 'コアCPI 3か月年率',
@@ -219,13 +230,13 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
               : [
                   {
                     label: 'CPI（総合）',
-                    value: viewMode === 'yoy' ? cpiLatest?.yoy : cpiLatest?.mom,
+                    value: dataKind === 'yoy' ? cpiLatest?.yoy : cpiLatest?.mom,
                     color: COLORS.cpi_yoy,
                     format: 'percent',
                   },
                   {
                     label: 'コアCPI',
-                    value: viewMode === 'yoy' ? coreCpiLatest?.yoy : coreCpiLatest?.mom,
+                    value: dataKind === 'yoy' ? coreCpiLatest?.yoy : coreCpiLatest?.mom,
                     color: COLORS.core_cpi_yoy,
                     format: 'percent',
                   },
@@ -246,8 +257,9 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={CPI_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={CPI_DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く（CPI・コアCPI）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -258,8 +270,15 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -275,8 +294,8 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={CPI_DATA_TYPE_OPTIONS}
@@ -285,10 +304,12 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
                     />
                   )}
 
-                  {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート（棒グラフ） */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
-                      <DataTypeButtonGroup options={CPI_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+                      <div style={{ marginBottom: 8 }}>
+                        <ViewModeButtonGroup options={CPI_DATA_TYPE_BUTTON_OPTIONS} currentMode={dataType} onChange={setDataType} />
+                      </div>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
                         data={filteredData}
@@ -304,9 +325,11 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
                   )}
 
                   {/* 年率グラフ（3か月年率・6か月年率を折れ線グラフで表示） */}
-                  {viewMode === 'annualized' && (
+                  {dataKind === 'annualized' && (
                     <>
-                      <DataTypeButtonGroup options={CPI_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+                      <div style={{ marginBottom: 8 }}>
+                        <ViewModeButtonGroup options={CPI_DATA_TYPE_BUTTON_OPTIONS} currentMode={dataType} onChange={setDataType} />
+                      </div>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}

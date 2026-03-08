@@ -30,6 +30,7 @@ import {
   NoDataMessage,
   SimpleLatestValueBox,
   StandardLineChart,
+  ViewModeButtonGroup,
 } from '../../usa/common/ChartComponents'
 import { MonthlyTable } from '../../usa/common/MonthlyTable'
 
@@ -53,17 +54,22 @@ const COLORS = {
   unemployment: '#DC143C', // カナダ赤
 }
 
-// ビューモード
-type ViewMode = 'chart' | 'table'
+// 表示モード
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 export default function CaUnemploymentRateChart({ data }: CaUnemploymentRateChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('chart')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 表示モード毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
     chart: 'default',
-    table: 'default',
+    heatmap: 'default',
   })
 
   // propsのデータをチャート用に変換
@@ -147,37 +153,24 @@ export default function CaUnemploymentRateChart({ data }: CaUnemploymentRateChar
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <div style={{ marginBottom: 12 }}>
-                    <Button.Group>
+                  {/* 表示モード切替 */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    <Tooltip title="比較ページを開く">
                       <Button
-                        type={viewMode === 'chart' ? 'primary' : 'default'}
-                        onClick={() => setViewMode('chart')}
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=ca_unemployment_rate', '_blank')}
                       >
-                        グラフ
+                        データ比較
                       </Button>
-                      <Button
-                        type={viewMode === 'table' ? 'primary' : 'default'}
-                        onClick={() => setViewMode('table')}
-                      >
-                        テーブル
-                      </Button>
-                    </Button.Group>
+                    </Tooltip>
                   </div>
 
-                  {viewMode === 'chart' && (
+                  {displayMode === 'chart' && (
                     <>
                       {/* コントロールバー */}
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <div style={{ marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=ca_unemployment_rate', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
                       </div>
 
                       {/* グラフ */}
@@ -194,7 +187,7 @@ export default function CaUnemploymentRateChart({ data }: CaUnemploymentRateChar
                     </>
                   )}
 
-                  {viewMode === 'table' && (
+                  {displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={tableData}
                       helperText="※ 直近10年間の失業率データ（単位: %）"

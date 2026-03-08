@@ -31,10 +31,8 @@ interface ECBM3ChartProps {
   data: ECBM3Data | null
 }
 
-type ViewMode = 'yoy' | 'index'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+type DataKind = 'yoy' | 'index'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
   { mode: 'index', label: '指数' },
 ]
@@ -42,7 +40,7 @@ const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
 export default function ECBM3Chart({ data }: ECBM3ChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
 
   // 前年比データをチャート用に変換
   const yoyChartData = useMemo(() => {
@@ -71,7 +69,7 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
   }, [data])
 
   // 選択されたビューに応じたデータを使用
-  const chartData = viewMode === 'yoy' ? yoyChartData : indexChartData
+  const chartData = dataKind === 'yoy' ? yoyChartData : indexChartData
 
   // 期間フィルタリング
   const filteredData = usePeriodFiltering(chartData, {
@@ -88,7 +86,7 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
   const indexLatestValue = data?.level?.latest
 
   // 現在選択されているビューの最新値
-  const currentLatestValue = viewMode === 'yoy' ? yoyLatestValue : indexLatestValue
+  const currentLatestValue = dataKind === 'yoy' ? yoyLatestValue : indexLatestValue
 
   // データがnullの場合はローディング表示
   if (data === null) {
@@ -113,7 +111,7 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={viewMode === 'yoy' ? '前年比' : '指数'}
+          label={dataKind === 'yoy' ? '前年比' : '指数'}
           value={currentLatestValue?.value}
           valueColor={CHART_COLORS.primary}
           date={currentLatestValue?.date}
@@ -121,9 +119,9 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
             date: data.next_release.date,
             label: data.next_release.time_jst ? `${data.next_release.time_jst} JST` : undefined
           } : null}
-          format={viewMode === 'yoy' ? 'percent' : 'number'}
-          decimals={viewMode === 'yoy' ? 2 : 1}
-          unit={viewMode === 'index' ? ' (2010.12=100)' : ''}
+          format={dataKind === 'yoy' ? 'percent' : 'number'}
+          decimals={dataKind === 'yoy' ? 2 : 1}
+          unit={dataKind === 'index' ? ' (2010.12=100)' : ''}
         />
 
         <Tabs
@@ -135,7 +133,7 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
@@ -148,7 +146,7 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
                       </Button>
                     </Tooltip>
                   </div>
-                  {viewMode === 'yoy' ? (
+                  {dataKind === 'yoy' ? (
                     <StandardLineChart
                       data={filteredData}
                       lines={[

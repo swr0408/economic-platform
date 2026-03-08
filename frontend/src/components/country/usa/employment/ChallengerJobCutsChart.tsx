@@ -63,14 +63,19 @@ interface ChallengerJobCutsChartProps {
   data: ChallengerJobCutsData | null
 }
 
-type ViewMode = 'value' | 'yoy_chart' | 'mom_chart' | 'mom_table'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+// 指標種別
+type DataKind = 'value' | 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'value', label: '現数値' },
-  { mode: 'yoy_chart', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -112,37 +117,21 @@ function formatNumber(value: number | null): string {
  * - 月初旬（1-15日）に発表 → 前月分のデータ
  * - 月後半（16-31日）に発表 → 当月分のデータ
  */
-function getTargetMonth(date: Date): Date {
-  if (date.getDate() <= 15) {
-    // 月初旬の発表 → 前月分
-    return new Date(date.getFullYear(), date.getMonth() - 1, 1)
-  } else {
-    // 月後半の発表 → 当月分
-    return new Date(date.getFullYear(), date.getMonth(), 1)
-  }
-}
-
-/** 日付を対象月形式でフォーマット（YYYY年M月分）
- * 発表日から対象月を計算して表示
- * 例: 2025-02-06 → 2025年1月分（1月分のデータが2月6日に発表）
- * 例: 2024-10-31 → 2024年10月分（月末発表の場合は当月分）
+/** 日付を対象月形式でフォーマット（YYYY年M月）
+ * バックエンドのdateは既に「対象月の1日」形式（例: 2026-01-01 = 1月分）
  */
 function formatTargetMonth(dateStr: string): string {
   const date = new Date(dateStr)
   if (isNaN(date.getTime())) return dateStr
-
-  const targetDate = getTargetMonth(date)
-  return `${targetDate.getFullYear()}年${targetDate.getMonth() + 1}月`
+  return `${date.getUTCFullYear()}年${date.getUTCMonth() + 1}月`
 }
 
-/** X軸用の日付フォーマット（YY/MM形式で対象月を表示） */
+/** X軸用の日付フォーマット（YY/MM形式） */
 function formatDateLabelTarget(dateStr: string): string {
   const date = new Date(dateStr)
   if (isNaN(date.getTime())) return dateStr
-
-  const targetDate = getTargetMonth(date)
-  const year = targetDate.getFullYear().toString().slice(-2)
-  const month = (targetDate.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.getUTCFullYear().toString().slice(-2)
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0')
   return `${year}/${month}`
 }
 
@@ -258,15 +247,15 @@ function PercentTooltip({ active, payload, label }: CustomTooltipProps) {
 // =============================================================================
 
 export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    yoy_chart: 'default',
-    mom_chart: 3,
-    mom_table: 'default',
+    yoy: 'default',
+    mom: 3,
   })
 
   // データのソート
@@ -297,17 +286,15 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
 
     sortedData.forEach((item) => {
       const date = new Date(item.date)
-      // 対象月を計算（発表日から）
-      const targetDate = getTargetMonth(date)
-      const year = targetDate.getFullYear()
-      const month = targetDate.getMonth()
+      // dateは既に対象月の1日（例: 2026-01-01 = 1月分）
+      const year = date.getUTCFullYear()
+      const month = date.getUTCMonth()
       const key = `${year}-${month}`
 
       if (year >= startYear && year <= currentYear) {
         if (!monthlyData[year]) {
           monthlyData[year] = {}
         }
-        // 既存データより新しい発表日の場合のみ更新
         if (!announceDateMap[key] || item.date > announceDateMap[key]) {
           monthlyData[year][month] = item.mom
           announceDateMap[key] = item.date
@@ -341,11 +328,11 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
   const getLatestItems = () => {
     if (!latest) return []
 
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return [
         { label: '人員削減数', value: formatNumber(latest.value), color: CHALLENGER_COLOR },
       ]
-    } else if (viewMode === 'yoy_chart') {
+    } else if (dataKind === 'yoy') {
       const yoy = latest.yoy
       const sign = yoy !== null && yoy >= 0 ? '+' : ''
       // 人員削減数は増加がネガティブ
@@ -437,23 +424,30 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <AntTooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=challenger_job_cuts', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </AntTooltip>
+                  </div>
+
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 現数値グラフ */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <AntTooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=challenger_job_cuts', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </AntTooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
                         <ComposedChart data={filteredData} margin={CHART_MARGIN}>
                           <CartesianGrid {...CARTESIAN_GRID_PROPS} />
@@ -481,7 +475,7 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
                   )}
 
                   {/* 前年比グラフ */}
-                  {viewMode === 'yoy_chart' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
@@ -511,8 +505,8 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
                     </>
                   )}
 
-                  {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
@@ -542,8 +536,8 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && <MomTable />}
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MomTable />}
                 </>
               ),
             },

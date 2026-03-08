@@ -40,8 +40,6 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  STANDARD_VIEW_MODE_OPTIONS,
-  type StandardViewMode,
   CHANGE_LEGEND_04PCT,
   getChangeCellColor04pct,
 } from '../common/chartConstants'
@@ -70,6 +68,20 @@ interface AverageHourlyEarningsChartProps {
   data: AverageHourlyEarningsData | null
 }
 
+// 指標種別
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
 // カラー設定
 const COLORS = {
   yoy: '#1890ff',        // 前年比 - 青
@@ -89,15 +101,15 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarningsChartProps) {
-  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_chart: 3,
-    mom_table: 'default',
+    mom: 3,
   })
 
   // データのソート
@@ -140,14 +152,13 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
   const getLatestItems = () => {
     if (!latest) return []
 
-    switch (viewMode) {
+    switch (dataKind) {
       case 'yoy':
         return [
           { label: SERIES_NAMES.yoy, value: latest.yoy, color: COLORS.yoy, format: 'percent' as const, decimals: 2 },
           { label: SERIES_NAMES.quits_rate, value: latest.quits_rate, color: COLORS.quits_rate, format: 'number' as const, unit: '%', decimals: 1 },
         ]
-      case 'mom_chart':
-      case 'mom_table':
+      case 'mom':
         return [
           {
             label: SERIES_NAMES.mom,
@@ -186,23 +197,30 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: 指標種別 */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <AntTooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=average_hourly_earnings_yoy', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </AntTooltip>
+                  </div>
+
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ（YoYモード） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <AntTooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=average_hourly_earnings_yoy', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </AntTooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
                         <LineChart data={filteredData} margin={CHART_MARGIN}>
                           <CartesianGrid {...CARTESIAN_GRID_PROPS} />
@@ -267,8 +285,8 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                     </>
                   )}
 
-                  {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
@@ -305,8 +323,8 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={changeTableData}
                       getCellBgColor={getChangeCellColor04pct}

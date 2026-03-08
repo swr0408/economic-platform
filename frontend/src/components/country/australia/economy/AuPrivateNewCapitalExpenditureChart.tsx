@@ -57,7 +57,21 @@ const COLORS = {
   capex: '#8E44AD',  // 紫系
 }
 
-type ViewMode = 'qoq' | 'qoq_table' | 'yoy'
+// データ種別
+type DataKind = 'yoy' | 'qoq'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '前期比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 四半期日付フォーマッター（2025-Q3 → 2025/Q3）
 const formatQuarterLabel = (dateStr: string): string => {
@@ -67,12 +81,12 @@ const formatQuarterLabel = (dateStr: string): string => {
 
 export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateNewCapitalExpenditureChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     qoq: 'default',
-    qoq_table: 'default',
     yoy: 'default',
   })
 
@@ -115,9 +129,8 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
   const { currentValue, currentLabel } = useMemo(() => {
     if (!latest) return { currentValue: null, currentLabel: '' }
 
-    switch (viewMode) {
+    switch (dataKind) {
       case 'qoq':
-      case 'qoq_table':
         return {
           currentValue: latest.qoq,
           currentLabel: '民間設備投資（前期比）',
@@ -130,7 +143,7 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
       default:
         return { currentValue: null, currentLabel: '' }
     }
-  }, [latest, viewMode])
+  }, [latest, dataKind])
 
   if (data === null) {
     return <LoadingChart title="民間新規設備投資" />
@@ -146,15 +159,12 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
 
   // データ比較用のoverlayConfig ID
   const getCompareId = () => {
-    switch (viewMode) {
-      case 'qoq':
-      case 'qoq_table': return 'au_private_capex_qoq'
+    switch (dataKind) {
+      case 'qoq': return 'au_private_capex_qoq'
       case 'yoy': return 'au_private_capex_yoy'
       default: return 'au_private_capex_qoq'
     }
   }
-
-  const isTableMode = viewMode === 'qoq_table'
 
   return (
     <div id="au-private-capex-chart">
@@ -187,34 +197,37 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'qoq', label: '前期比' },
-                      { mode: 'qoq_table', label: '前期比（テーブル）' },
-                      { mode: 'yoy', label: '前年比' },
-                    ]}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター（テーブル以外で表示） */}
-                  {!isTableMode && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（qoqのときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
+                  {/* 期間セレクター（ヒートマップ以外で表示） */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
+
                   {/* === 前期比チャート === */}
-                  {viewMode === 'qoq' && (
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -225,8 +238,8 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
                     />
                   )}
 
-                  {/* === 前期比テーブル === */}
-                  {viewMode === 'qoq_table' && (
+                  {/* === 前期比ヒートマップ === */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={2}
@@ -235,7 +248,7 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
                   )}
 
                   {/* === 前年比チャート === */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[

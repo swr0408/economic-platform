@@ -1135,6 +1135,12 @@
       "previous": null
     },
     {
+      "date": "2026-01-01",
+      "value": 2.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
       "date": "2026-02-01",
       "value": 0.0,
       "forecast": null,
@@ -1341,6 +1347,6 @@
     "forecast": null,
     "previous": null
   },
-  "next_release": "2026-02-17T08:01:00+00:00",
-  "last_updated": "2026-02-17T01:51:14.982072+09:00"
+  "next_release": "2026-03-11T08:01:00+00:00",
+  "last_updated": "2026-03-09T01:04:56.492802+09:00"
 }

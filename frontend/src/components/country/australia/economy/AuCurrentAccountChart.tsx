@@ -50,7 +50,22 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'value' | 'qoq_chart' | 'yoy_chart' | 'qoq_table'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'qoq'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '原数値' },
+  { mode: 'qoq', label: '前期差分' },
+  { mode: 'yoy', label: '前年同期差分' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 const COLORS = {
   value: '#1890ff',
@@ -59,15 +74,15 @@ const COLORS = {
 }
 
 export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default' as PeriodType,
-    qoq_chart: 3 as PeriodType,
-    yoy_chart: 3 as PeriodType,
-    qoq_table: 'default' as PeriodType,
+    qoq: 3 as PeriodType,
+    yoy: 3 as PeriodType,
   })
 
   // propsのデータをチャート用に変換
@@ -122,12 +137,12 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
   // 現在の表示値
   const currentValue = useMemo(() => {
     if (!latest) return null
-    if (viewMode === 'value') return latest.value
-    if (viewMode === 'yoy_chart') return latest.yoy_diff
+    if (dataKind === 'value') return latest.value
+    if (dataKind === 'yoy') return latest.yoy_diff
     return latest.qoq_diff
-  }, [latest, viewMode])
+  }, [latest, dataKind])
 
-  const currentColor = viewMode === 'value' ? COLORS.value : viewMode === 'yoy_chart' ? COLORS.yoy : COLORS.qoq
+  const currentColor = dataKind === 'value' ? COLORS.value : dataKind === 'yoy' ? COLORS.yoy : COLORS.qoq
 
   if (data === null) {
     return <LoadingChart title="経常収支（オーストラリア）" />
@@ -142,8 +157,8 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
   }
 
   const getLabel = () => {
-    if (viewMode === 'value') return '経常収支'
-    if (viewMode === 'yoy_chart') return '前年同期差分'
+    if (dataKind === 'value') return '経常収支'
+    if (dataKind === 'yoy') return '前年同期差分'
     return '前期差分'
   }
 
@@ -176,34 +191,37 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '原数値' },
-                      { mode: 'qoq_chart', label: '前期差分' },
-                      { mode: 'yoy_chart', label: '前年同期差分' },
-                      { mode: 'qoq_table', label: '前期差分（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=au_current_account', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'value' || viewMode === 'qoq_chart' || viewMode === 'yoy_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=au_current_account', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（qoqのときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
+                  {/* 期間セレクター */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
+
                   {/* コンテンツ表示 */}
-                  {viewMode === 'qoq_table' && (
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={tableData}
                       decimals={2}
@@ -212,7 +230,7 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
                     />
                   )}
 
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -227,7 +245,7 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
                     />
                   )}
 
-                  {viewMode === 'qoq_chart' && (
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -242,7 +260,7 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
                     />
                   )}
 
-                  {viewMode === 'yoy_chart' && (
+                  {dataKind === 'yoy' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

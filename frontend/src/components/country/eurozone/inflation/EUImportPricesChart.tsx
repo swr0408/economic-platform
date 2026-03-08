@@ -47,12 +47,17 @@ interface ChartDataPoint {
 }
 
 // 表示モード: YoYはチャートのみ、MoMはテーブル＋チャート
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'yoy' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // グラフの色
@@ -61,13 +66,13 @@ const COLORS = {
 }
 
 export default function EUImportPricesChart({ data }: EUImportPricesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
   // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // propsのデータをチャート用に変換
@@ -162,7 +167,7 @@ export default function EUImportPricesChart({ data }: EUImportPricesChartProps) 
         {/* 最新値表示 */}
         <LatestValueBox
           items={
-            viewMode === 'yoy'
+            dataKind === 'yoy'
               ? [
                   {
                     label: '輸入物価（前年比）',
@@ -180,24 +185,31 @@ export default function EUImportPricesChart({ data }: EUImportPricesChartProps) 
                   },
                 ]
           }
-          date={viewMode === 'yoy' ? latestYoy?.date : latestMom?.date}
+          date={dataKind === 'yoy' ? latestYoy?.date : latestMom?.date}
           nextRelease={data.next_release}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* 上段: 指標種別 */}
+        <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+
+        {/* 下段: 表示形式（前月比のときのみ） */}
+        {dataKind === 'mom' && (
+          <div style={{ marginBottom: 8 }}>
+            <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+          </div>
+        )}
 
         {/* 期間セレクタとデータ比較ボタン（テーブル表示以外） */}
-        {viewMode !== 'mom_table' && (
+        {!(dataKind === 'mom' && displayMode === 'heatmap') && (
           <ChartControlRow
             selectedPeriod={currentPeriod}
             onPeriodChange={setCurrentPeriod}
-            indicatorId={viewMode === 'yoy' ? 'eu_import_prices_yoy' : 'eu_import_prices_mom'}
+            indicatorId={dataKind === 'yoy' ? 'eu_import_prices_yoy' : 'eu_import_prices_mom'}
           />
         )}
 
         {/* 前年比グラフ */}
-        {viewMode === 'yoy' && (
+        {dataKind === 'yoy' && (
           <StandardLineChart
             data={filteredData}
             lines={[
@@ -211,7 +223,7 @@ export default function EUImportPricesChart({ data }: EUImportPricesChartProps) 
         )}
 
         {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && (
+        {dataKind === 'mom' && displayMode === 'heatmap' && (
           <MonthlyTable
             data={momTableData}
             helperText="※ 直近10年間の前月比データ（単位: %）"
@@ -219,7 +231,7 @@ export default function EUImportPricesChart({ data }: EUImportPricesChartProps) 
         )}
 
         {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
+        {dataKind === 'mom' && displayMode === 'chart' && (
           <StandardBarChart
             data={filteredData}
             bars={[

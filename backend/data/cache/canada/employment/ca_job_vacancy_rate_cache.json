@@ -478,20 +478,24 @@
     },
     {
       "date": "2025-09-01",
-      "value": 2.7
+      "value": 2.8
     },
     {
       "date": "2025-10-01",
-      "value": 2.6
+      "value": 2.7
     },
     {
       "date": "2025-11-01",
-      "value": 2.6
+      "value": 2.7
+    },
+    {
+      "date": "2025-12-01",
+      "value": 2.9
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "value": 2.6
+    "date": "2025-12-01",
+    "value": 2.9
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -503,5 +507,5 @@
     "seasonal_adjustment": "seasonally adjusted"
   },
   "next_release": null,
-  "last_updated": "2026-02-13T11:50:47.618892+09:00"
+  "last_updated": "2026-02-28T10:05:58.388786+09:00"
 }

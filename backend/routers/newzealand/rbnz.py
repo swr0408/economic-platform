@@ -11,6 +11,9 @@
 - GET /api/newzealand/rbnz/balance-sheet - 中央銀行バランスシート（総資産）
 - GET /api/newzealand/rbnz/balance-sheet/cache - バランスシートキャッシュ状態
 - DELETE /api/newzealand/rbnz/balance-sheet/cache - バランスシートキャッシュ無効化
+- GET /api/newzealand/rbnz/inflation-expectations - インフレ期待
+- GET /api/newzealand/rbnz/inflation-expectations/cache - インフレ期待キャッシュ状態
+- DELETE /api/newzealand/rbnz/inflation-expectations/cache - インフレ期待キャッシュ無効化
 """
 from fastapi import APIRouter, Query
 from typing import Dict, Any
@@ -19,6 +22,7 @@ from services.newzealand.rbnz_policy_rate_service import rbnz_policy_rate_servic
 from services.newzealand.rbnz_mps_forecast_service import rbnz_mps_forecast_service
 from services.newzealand.nz_central_bank_balance_sheet_service import nz_central_bank_balance_sheet_service
 from services.newzealand.nz_bank_balance_sheet_service import nz_bank_balance_sheet_service
+from services.newzealand.nz_inflation_expectations_service import nz_inflation_expectations_service
 
 router = APIRouter(
     prefix="/api/newzealand/rbnz",
@@ -178,4 +182,27 @@ async def get_bank_balance_sheet_cache_status() -> Dict[str, Any]:
 async def invalidate_bank_balance_sheet_cache() -> Dict[str, bool]:
     """銀行バランスシートのキャッシュを無効化"""
     success = nz_bank_balance_sheet_service.invalidate_cache()
+    return {"success": success}
+
+
+# ===== インフレ期待 =====
+
+@router.get("/inflation-expectations")
+async def get_inflation_expectations(
+    force_refresh: bool = Query(False, description="強制的にデータを再取得")
+) -> Dict[str, Any]:
+    """NZインフレ期待（Survey of Expectations）データを取得"""
+    return nz_inflation_expectations_service.get_data(force_refresh=force_refresh)
+
+
+@router.get("/inflation-expectations/cache")
+async def get_inflation_expectations_cache_status() -> Dict[str, Any]:
+    """インフレ期待のキャッシュ状態を取得"""
+    return nz_inflation_expectations_service.get_cache_status()
+
+
+@router.delete("/inflation-expectations/cache")
+async def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
+    """インフレ期待のキャッシュを無効化"""
+    success = nz_inflation_expectations_service.invalidate_cache()
     return {"success": success}

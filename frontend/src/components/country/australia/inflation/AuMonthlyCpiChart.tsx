@@ -58,13 +58,20 @@ interface AuMonthlyCpiChartProps {
   data: AuMonthlyCpiData | null
 }
 
-// ビューモード
-type CpiViewMode = 'yoy' | 'mom_chart' | 'mom_table'
+// データ種別
+type DataKind = 'yoy' | 'mom'
 
-const CPI_VIEW_MODE_OPTIONS: { mode: CpiViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // データタイプ
@@ -107,16 +114,16 @@ const formatDateLabelJP = (dateStr: string): string => {
 // =============================================================================
 
 export default function AuMonthlyCpiChart({ data }: AuMonthlyCpiChartProps) {
-  const [viewMode, setViewMode] = useState<CpiViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<CpiDataType>('cpi')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データを変換
@@ -199,19 +206,19 @@ export default function AuMonthlyCpiChart({ data }: AuMonthlyCpiChartProps) {
           items={[
             {
               label: '総合(SA)',
-              value: viewMode === 'yoy' || viewMode === 'mom_table' ? latest?.cpi_yoy : latest?.cpi_mom,
+              value: dataKind === 'yoy' ? latest?.cpi_yoy : latest?.cpi_mom,
               color: COLORS.cpi_yoy,
               format: 'percent',
             },
             {
               label: 'トリム平均',
-              value: viewMode === 'yoy' || viewMode === 'mom_table' ? latest?.trimmed_mean_yoy : latest?.trimmed_mean_mom,
+              value: dataKind === 'yoy' ? latest?.trimmed_mean_yoy : latest?.trimmed_mean_mom,
               color: COLORS.trimmed_mean_yoy,
               format: 'percent',
             },
             {
               label: '加重中央値',
-              value: viewMode === 'yoy' || viewMode === 'mom_table' ? latest?.weighted_median_yoy : latest?.weighted_median_mom,
+              value: dataKind === 'yoy' ? latest?.weighted_median_yoy : latest?.weighted_median_mom,
               color: COLORS.weighted_median_yoy,
               format: 'percent',
             },
@@ -232,8 +239,9 @@ export default function AuMonthlyCpiChart({ data }: AuMonthlyCpiChartProps) {
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={CPI_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -243,9 +251,15 @@ export default function AuMonthlyCpiChart({ data }: AuMonthlyCpiChartProps) {
                       </Button>
                     </Tooltip>
                   </div>
+                  {/* 下段: 表示形式（変動系のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -265,8 +279,8 @@ export default function AuMonthlyCpiChart({ data }: AuMonthlyCpiChartProps) {
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={CPI_DATA_TYPE_OPTIONS}
@@ -277,7 +291,7 @@ export default function AuMonthlyCpiChart({ data }: AuMonthlyCpiChartProps) {
                   )}
 
                   {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup options={CPI_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />

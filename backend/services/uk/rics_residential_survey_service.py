@@ -213,10 +213,11 @@ class RICSResidentialSurveyService:
         # ファイル名から日付を抽出してソート
         pdf_with_dates = []
         for pdf_path in pdf_files:
-            # Try both naming patterns
-            match = re.search(r'rics_(?:residential_survey_|survey_)(\d{6})\.pdf', pdf_path.name)
+            # Try both naming patterns (YYYYMM or YYYYMMDD)
+            match = re.search(r'rics_(?:residential_survey_|survey_)(\d{6,8})\.pdf', pdf_path.name)
             if match:
-                date_str = match.group(1)  # YYYYMM
+                raw_date = match.group(1)
+                date_str = raw_date[:6]  # YYYYMM部分のみ使用
                 report_date = f"{date_str[:4]}-{date_str[4:6]}-01"
                 pdf_with_dates.append((pdf_path, report_date, date_str))
 

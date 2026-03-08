@@ -66,9 +66,9 @@ export default function AuNabBusinessConfidenceIndexCostPriceChart({ data }: Pro
   return (
     <Card
       title={
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <span>NAB企業調査（コスト・価格）</span>
-          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
             更新
           </Button>
         </div>

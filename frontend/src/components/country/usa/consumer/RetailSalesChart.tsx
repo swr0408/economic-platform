@@ -18,7 +18,7 @@ import MarketImpactTab from '../../../indicator/MarketImpactTab'
 import {
   CHART_COLORS,
   RETAIL_DATA_TYPE_OPTIONS,
-  type StandardViewMode,
+  RETAIL_DATA_TYPE_BUTTON_OPTIONS,
   type RetailDataType,
 } from '../common/chartConstants'
 import {
@@ -29,7 +29,6 @@ import {
 } from '../common/useChartData'
 import {
   ViewModeButtonGroup,
-  DataTypeButtonGroup,
   NoDataMessage,
   LatestValueBox,
   StandardLineChart,
@@ -45,13 +44,21 @@ interface RetailSalesChartProps {
   data: RetailSalesData | null
   controlData: RetailControlData | null
 }
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+// 指標種別
+type DataKind = 'mom' | 'yoy'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
   { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -69,15 +76,15 @@ const COLORS = {
 // =============================================================================
 
 export default function RetailSalesChart({ data, controlData }: RetailSalesChartProps) {
-  const [viewMode, setViewMode] = useState<StandardViewMode>('mom_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<RetailDataType>('total')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    mom_table: 'default',
-    mom_chart: 3,
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    mom: 3,
     yoy: 'default',
   })
 
@@ -151,17 +158,17 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
           items={[
             {
               label: '総合',
-              value: viewMode === 'yoy' ? latest?.yoy : latest?.mom,
+              value: dataKind === 'yoy' ? latest?.yoy : latest?.mom,
               color: COLORS.yoy,
               format: 'percent',
             },
             {
               label: '自動車除く',
-              value: viewMode === 'yoy' ? latest?.ex_auto_yoy : latest?.ex_auto_mom,
+              value: dataKind === 'yoy' ? latest?.ex_auto_yoy : latest?.ex_auto_mom,
               color: COLORS.yoy_ex,
               format: 'percent',
             },
-            ...(viewMode !== 'yoy' && controlData?.latest
+            ...(dataKind !== 'yoy' && controlData?.latest
               ? [{
                 label: 'コントロールグループ',
                 value: controlData.latest.mom,
@@ -185,8 +192,9 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -197,8 +205,15 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前年比グラフ */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -214,8 +229,8 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={RETAIL_DATA_TYPE_OPTIONS}
@@ -224,10 +239,12 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
                     />
                   )}
 
-                  {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
-                      <DataTypeButtonGroup options={RETAIL_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
+                      <div style={{ marginBottom: 8 }}>
+                        <ViewModeButtonGroup options={RETAIL_DATA_TYPE_BUTTON_OPTIONS} currentMode={dataType} onChange={setDataType} />
+                      </div>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
                         data={filteredData}

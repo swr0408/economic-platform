@@ -37,8 +37,10 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  VALUE_CHANGE_VIEW_MODE_OPTIONS,
-  type ValueChangeViewMode,
+  VALUE_CHANGE_DATA_KIND_OPTIONS,
+  type ValueChangeDataKind,
+  DISPLAY_MODE_OPTIONS,
+  type DisplayMode,
   CHANGE_LEGEND_100K,
   getChangeCellColor100k,
 } from '../../usa/common/chartConstants'
@@ -80,15 +82,15 @@ const COLORS = {
 // =============================================================================
 
 export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
-  const [viewMode, setViewMode] = useState<ValueChangeViewMode>('change_chart')
+  const [dataKind, setDataKind] = useState<ValueChangeDataKind>('change')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'employment'>()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    change_chart: 3,
-    change_table: 'default',
+    change: 3,
   })
 
   // データを日付昇順にソート
@@ -142,7 +144,7 @@ export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
 
   // 最新値の表示用アイテム
   const getLatestItems = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return latestValues ? [
         { label: '雇用者数', value: latestValues.employment, color: COLORS.employment, format: 'number' as const, unit: '千人', decimals: 1 },
       ] : []
@@ -162,7 +164,7 @@ export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
 
   // 比較ボタンのURLを生成
   const getCompareUrl = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return '/compare?s=ca_employment'
     } else {
       return '/compare?s=ca_employment_change'
@@ -197,15 +199,24 @@ export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    options={VALUE_CHANGE_VIEW_MODE_OPTIONS}
-                    currentMode={viewMode}
-                    onChange={setViewMode}
-                  />
+                  {/* 上段: データ種別 */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={VALUE_CHANGE_DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                    />
+                  </div>
+
+                  {/* 下段: 表示形式（changeのときのみ） */}
+                  {dataKind === 'change' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 現数値グラフ */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -261,7 +272,7 @@ export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
                   )}
 
                   {/* 前月増減幅グラフ */}
-                  {viewMode === 'change_chart' && (
+                  {dataKind === 'change' && displayMode === 'chart' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -310,7 +321,7 @@ export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
                   )}
 
                   {/* 前月増減幅テーブル */}
-                  {viewMode === 'change_table' && (
+                  {dataKind === 'change' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={changeTableData}
                       helperText="※ 直近10年間の前月増減幅データ（単位: 千人）"

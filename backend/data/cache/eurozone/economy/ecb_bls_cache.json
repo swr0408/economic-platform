@@ -1092,7 +1092,7 @@
     }
   ],
   "metadata": {
-    "last_updated": "2026-02-14T19:56:01.011820+09:00",
+    "last_updated": "2026-02-28T09:54:13.180577+09:00",
     "source": "European Central Bank (ECB) - Bank Lending Survey",
     "data_start": "2015-01-01",
     "unit": "Net percentage",
@@ -1106,5 +1106,5 @@
       "housing_expected": "Loan demand - Households for house purchase expected (期待信用需要 - 住宅購入向け融資)"
     }
   },
-  "last_updated": "2026-02-14T19:56:01.011843+09:00"
+  "last_updated": "2026-02-28T09:54:13.180599+09:00"
 }

@@ -68,7 +68,14 @@ export default function ECBRateCutsExpectationChart({
 
   if (loading) {
     return (
-      <Card title={title}>
+      <Card title={
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+          <span>{title}</span>
+          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
+            更新
+          </Button>
+        </div>
+      }>
         <div style={{ textAlign: 'center', padding: '60px 0' }}>
           <Spin size="large" />
           <div style={{ marginTop: 16, color: '#666' }}>読み込み中...</div>
@@ -81,13 +88,14 @@ export default function ECBRateCutsExpectationChart({
     return (
       <Card
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>{title}</span>
             <Button
               size="small"
               icon={<ReloadOutlined />}
               onClick={handleRefresh}
               loading={refreshing}
+              style={{ position: 'absolute', right: 0 }}
             >
               再取得
             </Button>
@@ -104,13 +112,14 @@ export default function ECBRateCutsExpectationChart({
   return (
     <Card
       title={
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <span>{title}</span>
           <Button
             size="small"
             icon={<ReloadOutlined />}
             onClick={handleRefresh}
             loading={refreshing}
+            style={{ position: 'absolute', right: 0 }}
           >
             更新
           </Button>

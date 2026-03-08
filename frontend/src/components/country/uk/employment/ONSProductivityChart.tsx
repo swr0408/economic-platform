@@ -64,15 +64,19 @@ interface ONSProductivityChartProps {
   data: ONSProductivityData | null
 }
 
-type ViewMode = 'yoy_chart' | 'qoq_table' | 'qoq_chart'
-type TableType = 'lzvb' | 'a4ym'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
-  { mode: 'yoy_chart', label: '前年比' },
+type DataKind = 'yoy' | 'qoq'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'qoq', label: '前期比' },
 ]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
+type TableType = 'lzvb' | 'a4ym'
 
 // カラー設定
 const COLORS = {
@@ -93,15 +97,15 @@ const DATA_TYPE_OPTIONS = [
 ]
 
 export default function ONSProductivityChart({ data }: ONSProductivityChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [tableType, setTableType] = useState<TableType>('lzvb')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 5,
-    qoq_table: 'default',
-    yoy_chart: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    qoq: 5,
+    yoy: 'default',
   })
 
   // YoYデータの統合（LZVB + A4YM）- Flash Estimateフラグも含む
@@ -248,23 +252,30 @@ export default function ONSProductivityChart({ data }: ONSProductivityChartProps
           dateFormatter={formatQuarterLabel}
         />
 
-        {/* ビューモード切り替え */}
-        <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+        {/* 上段: 指標種別 + データ比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+          <AntTooltip title="比較ページを開く">
+            <Button
+              icon={<AreaChartOutlined />}
+              onClick={handleCompare}
+            >
+              データ比較
+            </Button>
+          </AntTooltip>
+        </div>
+
+        {/* 下段: 表示形式（前期比のときのみ） */}
+        {dataKind === 'qoq' && (
+          <div style={{ marginBottom: 8 }}>
+            <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+          </div>
+        )}
 
         {/* 前年比グラフ（YoY） */}
-        {viewMode === 'yoy_chart' && (
+        {dataKind === 'yoy' && (
           <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-              <AntTooltip title="比較ページを開く">
-                <Button
-                  icon={<AreaChartOutlined />}
-                  onClick={handleCompare}
-                >
-                  データ比較
-                </Button>
-              </AntTooltip>
-            </div>
+            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardLineChart
               data={filteredYoYData}
               lines={[
@@ -293,19 +304,9 @@ export default function ONSProductivityChart({ data }: ONSProductivityChartProps
         )}
 
         {/* 前期比グラフ（QoQ） */}
-        {viewMode === 'qoq_chart' && (
+        {dataKind === 'qoq' && displayMode === 'chart' && (
           <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-              <AntTooltip title="比較ページを開く">
-                <Button
-                  icon={<AreaChartOutlined />}
-                  onClick={handleCompare}
-                >
-                  データ比較
-                </Button>
-              </AntTooltip>
-            </div>
+            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <ResponsiveContainer width="100%" height={450}>
               <BarChart data={filteredQoQData} margin={CHART_MARGIN} barCategoryGap="20%">
                 <CartesianGrid {...CARTESIAN_GRID_PROPS} />
@@ -348,7 +349,7 @@ export default function ONSProductivityChart({ data }: ONSProductivityChartProps
         )}
 
         {/* 前期比テーブル */}
-        {viewMode === 'qoq_table' && (
+        {dataKind === 'qoq' && displayMode === 'heatmap' && (
           <QuarterlyTableWithDataTypes
             data={tableData}
             dataTypes={DATA_TYPE_OPTIONS}

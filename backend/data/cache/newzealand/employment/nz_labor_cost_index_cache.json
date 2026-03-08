@@ -1,0 +1,143 @@
+{
+  "data": [
+    {
+      "date": "2018-06-01",
+      "value": 1168.0,
+      "qoq": 0.5,
+      "yoy": 1.9
+    },
+    {
+      "date": "2018-09-01",
+      "value": 1174.0,
+      "qoq": 0.5,
+      "yoy": 1.8
+    },
+    {
+      "date": "2018-12-01",
+      "value": 1180.0,
+      "qoq": 0.5,
+      "yoy": 1.9
+    },
+    {
+      "date": "2019-03-01",
+      "value": 1185.0,
+      "qoq": 0.4,
+      "yoy": 2.0
+    },
+    {
+      "date": "2019-06-01",
+      "value": 1193.0,
+      "qoq": 0.7,
+      "yoy": 2.1
+    },
+    {
+      "date": "2020-09-01",
+      "value": 1225.0,
+      "qoq": 0.6,
+      "yoy": 1.9
+    },
+    {
+      "date": "2020-12-01",
+      "value": 1230.0,
+      "qoq": 0.4,
+      "yoy": 1.6
+    },
+    {
+      "date": "2021-03-01",
+      "value": 1235.0,
+      "qoq": 0.4,
+      "yoy": 1.6
+    },
+    {
+      "date": "2021-06-01",
+      "value": 1244.0,
+      "qoq": 0.7,
+      "yoy": 2.1
+    },
+    {
+      "date": "2021-09-01",
+      "value": 1254.0,
+      "qoq": 0.8,
+      "yoy": 2.4
+    },
+    {
+      "date": "2022-09-01",
+      "value": 1300.0,
+      "qoq": 1.1,
+      "yoy": 3.7
+    },
+    {
+      "date": "2022-12-01",
+      "value": 1314.0,
+      "qoq": 1.1,
+      "yoy": 4.1
+    },
+    {
+      "date": "2023-03-01",
+      "value": 1327.0,
+      "qoq": 1.0,
+      "yoy": 4.3
+    },
+    {
+      "date": "2023-06-01",
+      "value": 1341.0,
+      "qoq": 1.1,
+      "yoy": 4.3
+    },
+    {
+      "date": "2023-09-01",
+      "value": 1356.0,
+      "qoq": 1.1,
+      "yoy": 4.3
+    },
+    {
+      "date": "2024-12-01",
+      "value": 1415.0,
+      "qoq": 0.6,
+      "yoy": 3.3
+    },
+    {
+      "date": "2025-03-01",
+      "value": 1422.0,
+      "qoq": 0.5,
+      "yoy": 2.9
+    },
+    {
+      "date": "2025-06-01",
+      "value": 1431.0,
+      "qoq": 0.6,
+      "yoy": 2.4
+    },
+    {
+      "date": "2025-09-01",
+      "value": 1437.0,
+      "qoq": 0.4,
+      "yoy": 2.1
+    },
+    {
+      "date": "2025-12-01",
+      "value": 1443.0,
+      "qoq": 0.4,
+      "yoy": 2.0
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "value": 1443.0,
+    "qoq": 0.4,
+    "yoy": 2.0
+  },
+  "metadata": {
+    "source": "Stats NZ",
+    "indicator": "Labour Cost Index - All salary and wage rates",
+    "description": "NZ 労働コスト指数（全給与・賃金率 残業込み）",
+    "unit": "index (Base: Jun 2009 = 1000)",
+    "frequency": "quarterly",
+    "series": "LCIQ.SG53Z9"
+  },
+  "next_release": {
+    "date": "2026-05-06",
+    "label": "Labour market statistics: March 2026 quarter will be published on 6 May 2026."
+  },
+  "last_updated": "2026-02-27T00:11:19.222839+09:00"
+}

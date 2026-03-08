@@ -1,0 +1,397 @@
+{
+  "data": [
+    {
+      "date": "2010-03-01",
+      "value": 1.91,
+      "current_account": 1706.4,
+      "gdp": 89125.0
+    },
+    {
+      "date": "2010-06-01",
+      "value": 2.95,
+      "current_account": 2986.3,
+      "gdp": 101075.0
+    },
+    {
+      "date": "2010-09-01",
+      "value": 5.19,
+      "current_account": 5596.2,
+      "gdp": 107792.9
+    },
+    {
+      "date": "2010-12-01",
+      "value": 4.75,
+      "current_account": 5754.4,
+      "gdp": 121260.4
+    },
+    {
+      "date": "2011-03-01",
+      "value": 0.09,
+      "current_account": 98.9,
+      "gdp": 106218.9
+    },
+    {
+      "date": "2011-06-01",
+      "value": 2.35,
+      "current_account": 2842.8,
+      "gdp": 120776.8
+    },
+    {
+      "date": "2011-09-01",
+      "value": 2.12,
+      "current_account": 2723.2,
+      "gdp": 128561.5
+    },
+    {
+      "date": "2011-12-01",
+      "value": 2.19,
+      "current_account": 3070.9,
+      "gdp": 140150.3
+    },
+    {
+      "date": "2012-03-01",
+      "value": 1.51,
+      "current_account": 1801.9,
+      "gdp": 119377.5
+    },
+    {
+      "date": "2012-06-01",
+      "value": 2.79,
+      "current_account": 3721.6,
+      "gdp": 133491.2
+    },
+    {
+      "date": "2012-09-01",
+      "value": 3.44,
+      "current_account": 4826.5,
+      "gdp": 140384.0
+    },
+    {
+      "date": "2012-12-01",
+      "value": 2.11,
+      "current_account": 3251.8,
+      "gdp": 154258.0
+    },
+    {
+      "date": "2013-03-01",
+      "value": 1.95,
+      "current_account": 2572.9,
+      "gdp": 131879.7
+    },
+    {
+      "date": "2013-06-01",
+      "value": 1.81,
+      "current_account": 2647.9,
+      "gdp": 146113.9
+    },
+    {
+      "date": "2013-09-01",
+      "value": 1.3,
+      "current_account": 2009.9,
+      "gdp": 154972.1
+    },
+    {
+      "date": "2013-12-01",
+      "value": 1.15,
+      "current_account": 1959.6,
+      "gdp": 170694.7
+    },
+    {
+      "date": "2014-03-01",
+      "value": 0.23,
+      "current_account": 335.1,
+      "gdp": 143539.4
+    },
+    {
+      "date": "2014-06-01",
+      "value": 2.92,
+      "current_account": 4648.4,
+      "gdp": 159462.4
+    },
+    {
+      "date": "2014-09-01",
+      "value": 2.87,
+      "current_account": 4833.4,
+      "gdp": 168601.7
+    },
+    {
+      "date": "2014-12-01",
+      "value": 2.55,
+      "current_account": 4699.2,
+      "gdp": 184179.4
+    },
+    {
+      "date": "2015-03-01",
+      "value": 2.99,
+      "current_account": 4614.1,
+      "gdp": 154171.4
+    },
+    {
+      "date": "2015-06-01",
+      "value": 2.41,
+      "current_account": 4137.3,
+      "gdp": 171887.0
+    },
+    {
+      "date": "2015-09-01",
+      "value": 2.32,
+      "current_account": 4177.9,
+      "gdp": 180118.7
+    },
+    {
+      "date": "2015-12-01",
+      "value": 2.72,
+      "current_account": 5336.4,
+      "gdp": 196334.4
+    },
+    {
+      "date": "2016-03-01",
+      "value": 1.79,
+      "current_account": 2971.2,
+      "gdp": 165735.3
+    },
+    {
+      "date": "2016-06-01",
+      "value": 2.09,
+      "current_account": 3860.1,
+      "gdp": 185002.2
+    },
+    {
+      "date": "2016-09-01",
+      "value": 2.46,
+      "current_account": 4799.3,
+      "gdp": 194837.5
+    },
+    {
+      "date": "2016-12-01",
+      "value": 0.47,
+      "current_account": 1007.1,
+      "gdp": 215617.9
+    },
+    {
+      "date": "2017-03-01",
+      "value": 0.78,
+      "current_account": 1440.4,
+      "gdp": 185274.4
+    },
+    {
+      "date": "2017-06-01",
+      "value": 1.79,
+      "current_account": 3687.3,
+      "gdp": 205665.6
+    },
+    {
+      "date": "2017-09-01",
+      "value": 1.33,
+      "current_account": 2877.1,
+      "gdp": 216755.3
+    },
+    {
+      "date": "2017-12-01",
+      "value": 1.95,
+      "current_account": 4679.8,
+      "gdp": 239687.6
+    },
+    {
+      "date": "2018-03-01",
+      "value": -1.23,
+      "current_account": -2530.8,
+      "gdp": 205735.3
+    },
+    {
+      "date": "2018-06-01",
+      "value": -0.07,
+      "current_account": -168.5,
+      "gdp": 228042.4
+    },
+    {
+      "date": "2018-09-01",
+      "value": 0.5,
+      "current_account": 1194.3,
+      "gdp": 238796.8
+    },
+    {
+      "date": "2018-12-01",
+      "value": 1.29,
+      "current_account": 3386.8,
+      "gdp": 263435.6
+    },
+    {
+      "date": "2019-03-01",
+      "value": 0.68,
+      "current_account": 1504.4,
+      "gdp": 221453.9
+    },
+    {
+      "date": "2019-06-01",
+      "value": 0.55,
+      "current_account": 1350.0,
+      "gdp": 246193.9
+    },
+    {
+      "date": "2019-09-01",
+      "value": 0.84,
+      "current_account": 2140.5,
+      "gdp": 256023.2
+    },
+    {
+      "date": "2019-12-01",
+      "value": 0.75,
+      "current_account": 2121.1,
+      "gdp": 282201.4
+    },
+    {
+      "date": "2020-03-01",
+      "value": -1.76,
+      "current_account": -3689.1,
+      "gdp": 209671.1
+    },
+    {
+      "date": "2020-06-01",
+      "value": 2.55,
+      "current_account": 6455.9,
+      "gdp": 253450.0
+    },
+    {
+      "date": "2020-09-01",
+      "value": 2.3,
+      "current_account": 6217.0,
+      "gdp": 269910.2
+    },
+    {
+      "date": "2020-12-01",
+      "value": 2.64,
+      "current_account": 7979.5,
+      "gdp": 301836.2
+    },
+    {
+      "date": "2021-03-01",
+      "value": 1.93,
+      "current_account": 4929.4,
+      "gdp": 255055.2
+    },
+    {
+      "date": "2021-06-01",
+      "value": 1.25,
+      "current_account": 3590.3,
+      "gdp": 287979.2
+    },
+    {
+      "date": "2021-09-01",
+      "value": 2.0,
+      "current_account": 5971.3,
+      "gdp": 297961.9
+    },
+    {
+      "date": "2021-12-01",
+      "value": 2.48,
+      "current_account": 8243.4,
+      "gdp": 332826.7
+    },
+    {
+      "date": "2022-03-01",
+      "value": 2.2,
+      "current_account": 6108.9,
+      "gdp": 277175.8
+    },
+    {
+      "date": "2022-06-01",
+      "value": 1.86,
+      "current_account": 5557.6,
+      "gdp": 299111.5
+    },
+    {
+      "date": "2022-09-01",
+      "value": 3.28,
+      "current_account": 10357.5,
+      "gdp": 315399.6
+    },
+    {
+      "date": "2022-12-01",
+      "value": 2.32,
+      "current_account": 7939.9,
+      "gdp": 342342.4
+    },
+    {
+      "date": "2023-03-01",
+      "value": 1.73,
+      "current_account": 5048.0,
+      "gdp": 292368.8
+    },
+    {
+      "date": "2023-06-01",
+      "value": 1.38,
+      "current_account": 4354.7,
+      "gdp": 316237.5
+    },
+    {
+      "date": "2023-09-01",
+      "value": 1.5,
+      "current_account": 4911.6,
+      "gdp": 328440.7
+    },
+    {
+      "date": "2023-12-01",
+      "value": 1.17,
+      "current_account": 4178.1,
+      "gdp": 357224.8
+    },
+    {
+      "date": "2024-03-01",
+      "value": 1.1,
+      "current_account": 3356.8,
+      "gdp": 304525.2
+    },
+    {
+      "date": "2024-06-01",
+      "value": 1.2,
+      "current_account": 3942.5,
+      "gdp": 328585.4
+    },
+    {
+      "date": "2024-09-01",
+      "value": 3.28,
+      "current_account": 11195.0,
+      "gdp": 341443.2
+    },
+    {
+      "date": "2024-12-01",
+      "value": 3.14,
+      "current_account": 11718.9,
+      "gdp": 373512.4
+    },
+    {
+      "date": "2025-03-01",
+      "value": 3.73,
+      "current_account": 11873.8,
+      "gdp": 318466.4
+    },
+    {
+      "date": "2025-06-01",
+      "value": 2.71,
+      "current_account": 9252.0,
+      "gdp": 341395.3
+    },
+    {
+      "date": "2025-09-01",
+      "value": 4.0,
+      "current_account": 14164.9,
+      "gdp": 354106.2
+    }
+  ],
+  "latest": {
+    "date": "2025-09-01",
+    "value": 4.0,
+    "current_account": 14164.9,
+    "gdp": 354106.2
+  },
+  "metadata": {
+    "source": "SAFE / NBS",
+    "indicator": "Current Account to GDP Ratio",
+    "unit": "%",
+    "frequency": "quarterly",
+    "ca_source": "SAFE quarterly(RMB) Current Account (亿元)",
+    "gdp_source": "NBS A010101 Nominal GDP (亿元)"
+  },
+  "last_updated": "2026-03-07T12:47:00.345733+09:00"
+}

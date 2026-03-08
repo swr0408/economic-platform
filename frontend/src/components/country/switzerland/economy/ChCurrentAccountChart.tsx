@@ -49,7 +49,21 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-type ViewMode = 'value' | 'qoq_chart' | 'qoq_table'
+// データ種別
+type DataKind = 'value' | 'qoq'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '原数値' },
+  { mode: 'qoq', label: '前期増減幅' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 const COLORS = {
   value: '#1890ff',
@@ -57,14 +71,14 @@ const COLORS = {
 }
 
 export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default' as PeriodType,
-    qoq_chart: 3 as PeriodType,
-    qoq_table: 'default' as PeriodType,
+    qoq: 3 as PeriodType,
   })
 
   // propsのデータをチャート用に変換
@@ -97,7 +111,7 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
   // テーブル用データ（年別×四半期別のマトリックス）
   const tableData = useQuarterlyTableData(
     chartData,
-    (item) => viewMode === 'qoq_table' ? item.qoq_change : item.value,
+    (item) => item.qoq_change,
     10
   )
 
@@ -112,10 +126,10 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
   // 現在の表示値
   const currentValue = useMemo(() => {
     if (!latest) return null
-    return viewMode === 'value' ? latest.value : latest.qoq_change
-  }, [latest, viewMode])
+    return dataKind === 'value' ? latest.value : latest.qoq_change
+  }, [latest, dataKind])
 
-  const currentColor = viewMode === 'value' ? COLORS.value : COLORS.qoq
+  const currentColor = dataKind === 'value' ? COLORS.value : COLORS.qoq
 
   if (data === null) {
     return <LoadingChart title="経常収支（スイス）" />
@@ -139,7 +153,7 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={viewMode === 'value' ? '経常収支' : '前期増減幅'}
+          label={dataKind === 'value' ? '経常収支' : '前期増減幅'}
           value={currentValue != null ? `CHF ${currentValue >= 0 ? '+' : ''}${currentValue.toFixed(2)}B` : null}
           valueColor={currentColor}
           date={latest?.date}
@@ -158,33 +172,37 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '原数値' },
-                      { mode: 'qoq_chart', label: '前期増減幅' },
-                      { mode: 'qoq_table', label: '前期増減幅（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=ch_current_account', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター */}
-                  {(viewMode === 'value' || viewMode === 'qoq_chart') && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open('/compare?s=ch_current_account', '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（qoqのときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'qoq_table' && (
+                  {/* 期間セレクター（ヒートマップ以外で表示） */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
+
+                  {/* ヒートマップ */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={tableData}
                       decimals={2}
@@ -193,7 +211,8 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
                     />
                   )}
 
-                  {viewMode === 'value' && (
+                  {/* 原数値チャート */}
+                  {dataKind === 'value' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -208,7 +227,8 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
                     />
                   )}
 
-                  {viewMode === 'qoq_chart' && (
+                  {/* 前期増減幅チャート */}
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[

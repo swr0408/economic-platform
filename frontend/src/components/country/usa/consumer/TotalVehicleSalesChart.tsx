@@ -39,14 +39,21 @@ interface TotalVehicleSalesChartProps {
   data: TotalVehicleSalesData | null
 }
 
-type ViewMode = 'value' | 'yoy' | 'mom_table' | 'mom_chart'
+// 指標種別
+type DataKind = 'value' | 'yoy' | 'mom'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'value', label: '原数値' },
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -61,14 +68,14 @@ const COLORS = {
 // =============================================================================
 
 export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -107,10 +114,10 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
 
   // サブラベル・サブバリューの取得
   const getSubInfo = () => {
-    if (viewMode === 'yoy') {
+    if (dataKind === 'yoy') {
       return { label: '前年比', value: latest?.yoy }
     }
-    if (viewMode === 'mom_table' || viewMode === 'mom_chart') {
+    if (dataKind === 'mom') {
       return { label: '前月比', value: latest?.mom }
     }
     return { label: undefined, value: undefined }
@@ -133,19 +140,19 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
           valueColor={COLORS.value}
           subLabel={subInfo.label}
           subValue={subInfo.value}
-          subValueColor={viewMode === 'yoy' ? COLORS.yoy : COLORS.mom}
+          subValueColor={dataKind === 'yoy' ? COLORS.yoy : COLORS.mom}
           date={latest?.date}
           nextRelease={data.next_release}
           format="number"
           unit="M"
         />
 
-        {/* ビューモード切り替え */}
+        {/* 上段: 指標種別 + データ比較ボタン */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
           <ViewModeButtonGroup
-            options={VIEW_MODE_OPTIONS}
-            currentMode={viewMode}
-            onChange={setViewMode}
+            options={DATA_KIND_OPTIONS}
+            currentMode={dataKind}
+            onChange={setDataKind}
           />
           <Tooltip title="比較ページを開く">
             <Button
@@ -157,8 +164,15 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
           </Tooltip>
         </div>
 
+        {/* 下段: 表示形式（前月比のときのみ） */}
+        {dataKind === 'mom' && (
+          <div style={{ marginBottom: 8 }}>
+            <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+          </div>
+        )}
+
         {/* 原数値グラフ */}
-        {viewMode === 'value' && (
+        {dataKind === 'value' && (
           <>
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardLineChart
@@ -177,7 +191,7 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
         )}
 
         {/* 前年比グラフ */}
-        {viewMode === 'yoy' && (
+        {dataKind === 'yoy' && (
           <>
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardLineChart
@@ -193,8 +207,8 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
           </>
         )}
 
-        {/* 前月比テーブル */}
-        {viewMode === 'mom_table' && (
+        {/* 前月比ヒートマップ */}
+        {dataKind === 'mom' && displayMode === 'heatmap' && (
           <MonthlyTable
             data={momTableData}
             thresholdType="vehicle"
@@ -202,8 +216,8 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
           />
         )}
 
-        {/* 前月比グラフ */}
-        {viewMode === 'mom_chart' && (
+        {/* 前月比チャート */}
+        {dataKind === 'mom' && displayMode === 'chart' && (
           <>
             <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
             <StandardBarChart

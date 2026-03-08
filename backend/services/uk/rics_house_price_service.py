@@ -223,58 +223,140 @@ class RICSHousePriceService:
         return new_pdfs
 
     def _extract_data_from_pdf(self, pdf_path: Path) -> Optional[Dict[str, Any]]:
-        """PDFファイルからRICS House Price Balanceを抽出"""
+        """PDFファイルからRICS House Price Balanceを抽出
+
+        手順:
+        1. 表紙ページからデータ対象月を抽出（例: "January 2026"）
+        2. ファイル名からのフォールバック（YYYYMM形式）
+        3. 全ページをスキャンしてHouse Price Balance値を抽出
+        """
         try:
-            # ファイル名から対象月を抽出 (YYYYMM-rics-...)
-            match = re.search(r'(\d{6})', pdf_path.name)
-            if not match:
-                logger.warning(f"Could not extract date from PDF filename: {pdf_path.name}")
-                return None
-
-            date_str = match.group(1)
-            year = int(date_str[:4])
-            month = int(date_str[4:6])
-            data_date = f"{year}-{month:02d}-01"
-
             try:
                 import pdfplumber
             except ImportError:
                 logger.warning("pdfplumber not installed, cannot read PDF")
                 return None
 
+            data_date = None
             value = None
 
-            with pdfplumber.open(pdf_path) as pdf:
-                if len(pdf.pages) > 0:
-                    page = pdf.pages[0]
-                    text = page.extract_text()
+            # 月名マッピング
+            month_names = {
+                'january': 1, 'february': 2, 'march': 3, 'april': 4,
+                'may': 5, 'june': 6, 'july': 7, 'august': 8,
+                'september': 9, 'october': 10, 'november': 11, 'december': 12,
+            }
 
-                    if text:
-                        # House Price Balance パターンを探す
-                        # 例: "House Price Balance: -25%" または "-25% House Price Balance"
-                        # または単に数値（例: "-25"）
-                        patterns = [
-                            r'House\s*Price\s*Balance[:\s]*([+-]?\d+)',
-                            r'([+-]?\d+)\s*%?\s*House\s*Price\s*Balance',
-                            r'price\s*balance[:\s]*([+-]?\d+)',
-                            r'net\s*balance[:\s]*([+-]?\d+)',
-                        ]
-                        for pattern in patterns:
+            with pdfplumber.open(pdf_path) as pdf:
+                # Step 1: 表紙からデータ対象月を抽出
+                if len(pdf.pages) > 0:
+                    cover_text = pdf.pages[0].extract_text() or ""
+                    # "January 2026" のようなパターンを探す
+                    month_pattern = r'(' + '|'.join(month_names.keys()) + r')\s+(\d{4})'
+                    m = re.search(month_pattern, cover_text, re.IGNORECASE)
+                    if m:
+                        month_num = month_names[m.group(1).lower()]
+                        year_num = int(m.group(2))
+                        data_date = f"{year_num}-{month_num:02d}-01"
+                        logger.info(f"[RICS] Extracted data month from cover: {data_date}")
+
+                # Step 2: 表紙から取れなければファイル名フォールバック（YYYYMM or YYYYMMDD）
+                if not data_date:
+                    fname_match = re.search(r'(\d{6})', pdf_path.name)
+                    if fname_match:
+                        ds = fname_match.group(1)
+                        year = int(ds[:4])
+                        month = int(ds[4:6])
+                        data_date = f"{year}-{month:02d}-01"
+                        logger.info(f"[RICS] Extracted data month from filename: {data_date}")
+
+                if not data_date:
+                    logger.warning(f"Could not extract date from PDF: {pdf_path.name}")
+                    return None
+
+                # Step 3: 全ページをスキャンしてHouse Price Balance値を抽出
+                # 2段階: まず「house price」文脈のパターンで全ページ検索し、
+                # 見つからなければ汎用パターンにフォールバック
+
+                # 優先パターン: 明示的に「house price」文脈を含むもの
+                hp_patterns = [
+                    # "House Price Balance: -25" / "House Price Balance -25%"
+                    r'House\s*Price\s*Balance[:\s]*([+-]?\d+)',
+                    # "-25% House Price Balance"
+                    r'([+-]?\d+)\s*%?\s*House\s*Price\s*Balance',
+                    # "aggregate net balance stands at -10%"（house pricesセクション内）
+                    r'aggregate\s+net\s*\n?\s*balance\s+stands?\s+at\s+([+-]?\d+)\s*%',
+                ]
+
+                # 文脈パターン: 「house price」から近い距離にある「balance ... 数値」
+                def _find_hp_balance_in_text(text: str) -> Optional[float]:
+                    """house price の近く（200文字以内）にあるbalance値を抽出"""
+                    for m in re.finditer(r'house\s+prices?', text, re.IGNORECASE):
+                        # house price出現位置から200文字以内を探索
+                        window = text[m.start():m.start() + 200]
+                        bal = re.search(
+                            r'(?:net\s+)?balance\s+(?:stands?\s+at|of|is|was|:)\s*([+-]?\d+)\s*%',
+                            window, re.IGNORECASE
+                        )
+                        if bal:
+                            return float(bal.group(1))
+                    return None
+
+                # 汎用フォールバックパターン
+                fallback_patterns = [
+                    r'(?:price)\s*(?:balance|net\s*balance)\s*(?:stands?\s*at|of|is|was|:)\s*([+-]?\d+)\s*%?',
+                ]
+
+                # Step 3a: 固定パターンで全ページ検索
+                for page in pdf.pages[:6]:
+                    text = page.extract_text()
+                    if not text:
+                        continue
+                    for pattern in hp_patterns:
+                        m = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
+                        if m:
+                            value = float(m.group(1))
+                            logger.info(f"[RICS] Found House Price Balance: {value} (page {page.page_number}, hp_pattern)")
+                            break
+                    if value is not None:
+                        break
+
+                # Step 3b: 文脈パターンで全ページ検索
+                if value is None:
+                    for page in pdf.pages[:6]:
+                        text = page.extract_text()
+                        if not text:
+                            continue
+                        found = _find_hp_balance_in_text(text)
+                        if found is not None:
+                            value = found
+                            logger.info(f"[RICS] Found House Price Balance: {value} (page {page.page_number}, context)")
+                            break
+
+                # Step 3c: フォールバック
+                if value is None:
+                    for page in pdf.pages[:6]:
+                        text = page.extract_text()
+                        if not text:
+                            continue
+                        for pattern in fallback_patterns:
                             m = re.search(pattern, text, re.IGNORECASE)
                             if m:
                                 value = float(m.group(1))
-                                logger.info(f"Found RICS House Price Balance from PDF: {value}")
+                                logger.info(f"[RICS] Found House Price Balance: {value} (page {page.page_number}, fallback)")
                                 break
+                        if value is not None:
+                            break
 
             if value is None:
-                logger.warning(f"Could not extract value from PDF: {pdf_path.name}")
+                logger.warning(f"Could not extract House Price Balance value from PDF: {pdf_path.name}")
                 return None
 
             result = {
                 "date": data_date,
                 "value": value,
             }
-            logger.info(f"Extracted from {pdf_path.name}: {result}")
+            logger.info(f"[RICS] Extracted from {pdf_path.name}: {result}")
             return result
 
         except Exception as e:

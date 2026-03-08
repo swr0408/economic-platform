@@ -12,6 +12,7 @@ import {
   BarChartOutlined,
   CalendarOutlined,
   MenuFoldOutlined,
+  GlobalOutlined,
 } from '@ant-design/icons'
 import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
 import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
@@ -53,8 +54,18 @@ import AustraliaEmploymentCharts from '../components/country/australia/Australia
 import AustraliaConsumerCharts from '../components/country/australia/AustraliaConsumerCharts'
 import AustraliaEconomyCharts from '../components/country/australia/AustraliaEconomyCharts'
 import AustraliaHousingCharts from '../components/country/australia/AustraliaHousingCharts'
+import ChinaPolicyCharts from '../components/country/china/ChinaPolicyCharts'
+import ChinaHousingCharts from '../components/country/china/ChinaHousingCharts'
+import ChinaInflationCharts from '../components/country/china/ChinaInflationCharts'
+import ChinaConsumerCharts from '../components/country/china/ChinaConsumerCharts'
+import ChinaEmploymentCharts from '../components/country/china/ChinaEmploymentCharts'
+import ChinaEconomyCharts from '../components/country/china/ChinaEconomyCharts'
 import NewZealandPolicyCharts from '../components/country/newzealand/NewZealandPolicyCharts'
 import NewZealandInflationCharts from '../components/country/newzealand/NewZealandInflationCharts'
+import NewZealandEmploymentCharts from '../components/country/newzealand/NewZealandEmploymentCharts'
+import NewZealandConsumerCharts from '../components/country/newzealand/NewZealandConsumerCharts'
+import NewZealandEconomyCharts from '../components/country/newzealand/NewZealandEconomyCharts'
+import GlobalEconomyCharts from '../components/country/global/GlobalEconomyCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
@@ -245,7 +256,7 @@ function CountryDataCategory() {
         <br />
         <Link to="/country">
           <Button type="link" icon={<ArrowLeftOutlined />}>
-            各国データ一覧へ戻る
+            マクロデータ一覧へ戻る
           </Button>
         </Link>
       </div>
@@ -303,9 +314,21 @@ function CountryDataCategory() {
   const isAustraliaConsumer = countryCode === 'australia' && categoryCode === 'consumer'
   const isAustraliaEconomy = countryCode === 'australia' && categoryCode === 'economy'
   const isAustraliaHousing = countryCode === 'australia' && categoryCode === 'housing'
+  // 中国金融政策・住宅・物価
+  const isChinaPolicy = countryCode === 'china' && categoryCode === 'policy'
+  const isChinaHousing = countryCode === 'china' && categoryCode === 'housing'
+  const isChinaInflation = countryCode === 'china' && categoryCode === 'inflation'
+  const isChinaConsumer = countryCode === 'china' && categoryCode === 'consumer'
+  const isChinaEconomy = countryCode === 'china' && categoryCode === 'economy'
+  const isChinaEmployment = countryCode === 'china' && categoryCode === 'employment'
   // ニュージーランド金融政策の場合はチャートを表示
   const isNewZealandPolicy = countryCode === 'newzealand' && categoryCode === 'policy'
   const isNewZealandInflation = countryCode === 'newzealand' && categoryCode === 'inflation'
+  const isNewZealandEmployment = countryCode === 'newzealand' && categoryCode === 'employment'
+  const isNewZealandConsumer = countryCode === 'newzealand' && categoryCode === 'consumer'
+  const isNewZealandEconomy = countryCode === 'newzealand' && categoryCode === 'economy'
+  // グローバル
+  const isGlobalEconomy = countryCode === 'global' && categoryCode === 'economy'
 
   // メインコンテンツ
   const mainContent = (
@@ -390,10 +413,30 @@ function CountryDataCategory() {
         <AustraliaEconomyCharts />
       ) : isAustraliaHousing ? (
         <AustraliaHousingCharts />
+      ) : isChinaPolicy ? (
+        <ChinaPolicyCharts />
+      ) : isChinaHousing ? (
+        <ChinaHousingCharts />
+      ) : isChinaInflation ? (
+        <ChinaInflationCharts />
+      ) : isChinaConsumer ? (
+        <ChinaConsumerCharts />
+      ) : isChinaEconomy ? (
+        <ChinaEconomyCharts />
+      ) : isChinaEmployment ? (
+        <ChinaEmploymentCharts />
       ) : isNewZealandPolicy ? (
         <NewZealandPolicyCharts />
       ) : isNewZealandInflation ? (
         <NewZealandInflationCharts />
+      ) : isNewZealandEmployment ? (
+        <NewZealandEmploymentCharts />
+      ) : isNewZealandConsumer ? (
+        <NewZealandConsumerCharts />
+      ) : isNewZealandEconomy ? (
+        <NewZealandEconomyCharts />
+      ) : isGlobalEconomy ? (
+        <GlobalEconomyCharts />
       ) : indicators.length > 0 ? (
         <div>
           {indicators.map((indicator) => (
@@ -450,7 +493,7 @@ function CountryDataCategory() {
         <Space style={{ marginBottom: 24 }} wrap>
           <Link to="/country">
             <Button type="default" icon={<ArrowLeftOutlined />}>
-              各国データ一覧
+              マクロデータ一覧
             </Button>
           </Link>
           <Link to={`/country/${countryCode}`}>
@@ -460,14 +503,18 @@ function CountryDataCategory() {
 
         <div style={{ marginBottom: 32 }}>
           <Space size={16} align="center">
-            <span
-              className={`fi fi-${country.isoCode}`}
-              style={{
-                fontSize: 48,
-                borderRadius: 4,
-                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-              }}
-            />
+            {country.isoCode === 'globe' ? (
+              <GlobalOutlined style={{ fontSize: 48, color: '#10b981' }} />
+            ) : (
+              <span
+                className={`fi fi-${country.isoCode}`}
+                style={{
+                  fontSize: 48,
+                  borderRadius: 4,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                }}
+              />
+            )}
             <div
               style={{
                 color: category.color,

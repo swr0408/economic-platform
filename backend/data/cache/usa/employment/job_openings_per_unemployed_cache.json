@@ -1790,17 +1790,23 @@
     },
     {
       "date": "2025-11-01",
-      "value": 0.92,
-      "jolts": 7146.0,
+      "value": 0.89,
+      "jolts": 6928.0,
       "unemployed": 7781.0
+    },
+    {
+      "date": "2025-12-01",
+      "value": 0.87,
+      "jolts": 6542.0,
+      "unemployed": 7503.0
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "value": 0.92,
-    "jolts": 7146.0,
-    "unemployed": 7781.0
+    "date": "2025-12-01",
+    "value": 0.87,
+    "jolts": 6542.0,
+    "unemployed": 7503.0
   },
-  "latest_data_date": "2025-11-01",
-  "last_updated": "2026-02-05T12:02:14.941660+09:00"
+  "latest_data_date": "2025-12-01",
+  "last_updated": "2026-03-07T12:00:03.268019+09:00"
 }

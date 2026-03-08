@@ -1,0 +1,761 @@
+{
+  "data": [
+    {
+      "date": "2000-01-01",
+      "one_year": 2.1,
+      "two_year": 2.1,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2000-04-01",
+      "one_year": 2.3,
+      "two_year": 2.1,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2000-07-01",
+      "one_year": 2.6,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2000-10-01",
+      "one_year": 2.8,
+      "two_year": 2.4,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2001-01-01",
+      "one_year": 2.6,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2001-04-01",
+      "one_year": 2.5,
+      "two_year": 2.2,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2001-07-01",
+      "one_year": 2.5,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2001-10-01",
+      "one_year": 2.2,
+      "two_year": 2.1,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2002-01-01",
+      "one_year": 2.4,
+      "two_year": 2.2,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2002-04-01",
+      "one_year": 2.6,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2002-07-01",
+      "one_year": 2.4,
+      "two_year": 2.2,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2002-10-01",
+      "one_year": 2.5,
+      "two_year": 2.4,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2003-01-01",
+      "one_year": 2.4,
+      "two_year": 2.4,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2003-04-01",
+      "one_year": 2.3,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2003-07-01",
+      "one_year": 1.9,
+      "two_year": 2.2,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2003-10-01",
+      "one_year": 2.0,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2004-01-01",
+      "one_year": 2.2,
+      "two_year": 2.3,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2004-04-01",
+      "one_year": 2.4,
+      "two_year": 2.4,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2004-07-01",
+      "one_year": 2.7,
+      "two_year": 2.5,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2004-10-01",
+      "one_year": 2.7,
+      "two_year": 2.5,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2005-01-01",
+      "one_year": 2.7,
+      "two_year": 2.5,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2005-04-01",
+      "one_year": 2.8,
+      "two_year": 2.6,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2005-07-01",
+      "one_year": 2.9,
+      "two_year": 2.7,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2005-10-01",
+      "one_year": 3.2,
+      "two_year": 2.77,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2006-01-01",
+      "one_year": 2.9,
+      "two_year": 2.56,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2006-04-01",
+      "one_year": 3.22,
+      "two_year": 2.67,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2006-07-01",
+      "one_year": 3.54,
+      "two_year": 2.92,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2006-10-01",
+      "one_year": 2.98,
+      "two_year": 2.73,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2007-01-01",
+      "one_year": 2.67,
+      "two_year": 2.56,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2007-04-01",
+      "one_year": 2.72,
+      "two_year": 2.58,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2007-07-01",
+      "one_year": 2.73,
+      "two_year": 2.64,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2007-10-01",
+      "one_year": 2.98,
+      "two_year": 2.7,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2008-01-01",
+      "one_year": 3.0,
+      "two_year": 2.73,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2008-04-01",
+      "one_year": 3.29,
+      "two_year": 2.86,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2008-07-01",
+      "one_year": 3.63,
+      "two_year": 2.97,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2008-10-01",
+      "one_year": 2.77,
+      "two_year": 2.65,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2009-01-01",
+      "one_year": 2.02,
+      "two_year": 2.21,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2009-04-01",
+      "one_year": 1.77,
+      "two_year": 2.17,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2009-07-01",
+      "one_year": 1.83,
+      "two_year": 2.25,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2009-10-01",
+      "one_year": 2.12,
+      "two_year": 2.61,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2010-01-01",
+      "one_year": 2.09,
+      "two_year": 2.65,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2010-04-01",
+      "one_year": 2.87,
+      "two_year": 2.8,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2010-07-01",
+      "one_year": 3.85,
+      "two_year": 2.57,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2010-10-01",
+      "one_year": 3.43,
+      "two_year": 2.6,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2011-01-01",
+      "one_year": 2.87,
+      "two_year": 2.64,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2011-04-01",
+      "one_year": 3.12,
+      "two_year": 3.0,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2011-07-01",
+      "one_year": 2.94,
+      "two_year": 2.86,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2011-10-01",
+      "one_year": 2.72,
+      "two_year": 2.82,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2012-01-01",
+      "one_year": 2.24,
+      "two_year": 2.5,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2012-04-01",
+      "one_year": 2.0,
+      "two_year": 2.41,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2012-07-01",
+      "one_year": 1.98,
+      "two_year": 2.32,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2012-10-01",
+      "one_year": 1.77,
+      "two_year": 2.27,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2013-01-01",
+      "one_year": 1.68,
+      "two_year": 2.17,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2013-04-01",
+      "one_year": 1.52,
+      "two_year": 2.06,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2013-07-01",
+      "one_year": 1.9,
+      "two_year": 2.36,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2013-10-01",
+      "one_year": 1.94,
+      "two_year": 2.34,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2014-01-01",
+      "one_year": 2.03,
+      "two_year": 2.33,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2014-04-01",
+      "one_year": 2.08,
+      "two_year": 2.36,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2014-07-01",
+      "one_year": 1.96,
+      "two_year": 2.23,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2014-10-01",
+      "one_year": 1.59,
+      "two_year": 2.06,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2015-01-01",
+      "one_year": 1.11,
+      "two_year": 1.8,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2015-04-01",
+      "one_year": 1.32,
+      "two_year": 1.85,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2015-07-01",
+      "one_year": 1.46,
+      "two_year": 1.94,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2015-10-01",
+      "one_year": 1.51,
+      "two_year": 1.85,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2016-01-01",
+      "one_year": 1.09,
+      "two_year": 1.63,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2016-04-01",
+      "one_year": 1.22,
+      "two_year": 1.64,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2016-07-01",
+      "one_year": 1.26,
+      "two_year": 1.65,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2016-10-01",
+      "one_year": 1.29,
+      "two_year": 1.68,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2017-01-01",
+      "one_year": 1.56,
+      "two_year": 1.92,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2017-04-01",
+      "one_year": 1.92,
+      "two_year": 2.17,
+      "five_year": null,
+      "ten_year": null
+    },
+    {
+      "date": "2017-07-01",
+      "one_year": 1.77,
+      "two_year": 2.09,
+      "five_year": 2.15,
+      "ten_year": 2.13
+    },
+    {
+      "date": "2017-10-01",
+      "one_year": 1.87,
+      "two_year": 2.02,
+      "five_year": 2.11,
+      "ten_year": 2.03
+    },
+    {
+      "date": "2018-01-01",
+      "one_year": 1.86,
+      "two_year": 2.11,
+      "five_year": 2.09,
+      "ten_year": 2.05
+    },
+    {
+      "date": "2018-04-01",
+      "one_year": 1.8,
+      "two_year": 2.01,
+      "five_year": 2.1,
+      "ten_year": 2.18
+    },
+    {
+      "date": "2018-07-01",
+      "one_year": 1.86,
+      "two_year": 2.04,
+      "five_year": 2.15,
+      "ten_year": 2.09
+    },
+    {
+      "date": "2018-10-01",
+      "one_year": 2.09,
+      "two_year": 2.03,
+      "five_year": 2.11,
+      "ten_year": 2.18
+    },
+    {
+      "date": "2019-01-01",
+      "one_year": 1.82,
+      "two_year": 2.02,
+      "five_year": 2.09,
+      "ten_year": 2.1
+    },
+    {
+      "date": "2019-04-01",
+      "one_year": 1.97,
+      "two_year": 2.01,
+      "five_year": 2.04,
+      "ten_year": 2.02
+    },
+    {
+      "date": "2019-07-01",
+      "one_year": 1.71,
+      "two_year": 1.86,
+      "five_year": 1.94,
+      "ten_year": 2.05
+    },
+    {
+      "date": "2019-10-01",
+      "one_year": 1.66,
+      "two_year": 1.8,
+      "five_year": 1.96,
+      "ten_year": 2.02
+    },
+    {
+      "date": "2020-01-01",
+      "one_year": 1.88,
+      "two_year": 1.93,
+      "five_year": 1.97,
+      "ten_year": 1.96
+    },
+    {
+      "date": "2020-04-01",
+      "one_year": 0.74,
+      "two_year": 1.24,
+      "five_year": 1.8,
+      "ten_year": 1.96
+    },
+    {
+      "date": "2020-07-01",
+      "one_year": 1.03,
+      "two_year": 1.43,
+      "five_year": 1.89,
+      "ten_year": 1.98
+    },
+    {
+      "date": "2020-10-01",
+      "one_year": 1.23,
+      "two_year": 1.59,
+      "five_year": 1.87,
+      "ten_year": 2.06
+    },
+    {
+      "date": "2021-01-01",
+      "one_year": 1.73,
+      "two_year": 1.89,
+      "five_year": 2.03,
+      "ten_year": 2.01
+    },
+    {
+      "date": "2021-04-01",
+      "one_year": 1.87,
+      "two_year": 2.05,
+      "five_year": 2.06,
+      "ten_year": 2.02
+    },
+    {
+      "date": "2021-07-01",
+      "one_year": 3.02,
+      "two_year": 2.27,
+      "five_year": 2.03,
+      "ten_year": 2.0
+    },
+    {
+      "date": "2021-10-01",
+      "one_year": 3.7,
+      "two_year": 2.96,
+      "five_year": 2.17,
+      "ten_year": 1.97
+    },
+    {
+      "date": "2022-01-01",
+      "one_year": 4.4,
+      "two_year": 3.27,
+      "five_year": 2.3,
+      "ten_year": 2.12
+    },
+    {
+      "date": "2022-04-01",
+      "one_year": 4.88,
+      "two_year": 3.29,
+      "five_year": 2.42,
+      "ten_year": 2.11
+    },
+    {
+      "date": "2022-07-01",
+      "one_year": 4.86,
+      "two_year": 3.07,
+      "five_year": 2.33,
+      "ten_year": 2.13
+    },
+    {
+      "date": "2022-10-01",
+      "one_year": 5.08,
+      "two_year": 3.62,
+      "five_year": 2.44,
+      "ten_year": 2.18
+    },
+    {
+      "date": "2023-01-01",
+      "one_year": 5.11,
+      "two_year": 3.3,
+      "five_year": 2.36,
+      "ten_year": 2.19
+    },
+    {
+      "date": "2023-04-01",
+      "one_year": 4.28,
+      "two_year": 2.79,
+      "five_year": 2.35,
+      "ten_year": 2.28
+    },
+    {
+      "date": "2023-07-01",
+      "one_year": 4.17,
+      "two_year": 2.83,
+      "five_year": 2.25,
+      "ten_year": 2.22
+    },
+    {
+      "date": "2023-10-01",
+      "one_year": 3.6,
+      "two_year": 2.76,
+      "five_year": 2.43,
+      "ten_year": 2.28
+    },
+    {
+      "date": "2024-01-01",
+      "one_year": 3.22,
+      "two_year": 2.5,
+      "five_year": 2.25,
+      "ten_year": 2.16
+    },
+    {
+      "date": "2024-04-01",
+      "one_year": 2.73,
+      "two_year": 2.33,
+      "five_year": 2.25,
+      "ten_year": 2.19
+    },
+    {
+      "date": "2024-07-01",
+      "one_year": 2.4,
+      "two_year": 2.03,
+      "five_year": 2.07,
+      "ten_year": 2.03
+    },
+    {
+      "date": "2024-10-01",
+      "one_year": 2.05,
+      "two_year": 2.12,
+      "five_year": 2.24,
+      "ten_year": 2.19
+    },
+    {
+      "date": "2025-01-01",
+      "one_year": 2.15,
+      "two_year": 2.06,
+      "five_year": 2.13,
+      "ten_year": 2.07
+    },
+    {
+      "date": "2025-04-01",
+      "one_year": 2.41,
+      "two_year": 2.29,
+      "five_year": 2.18,
+      "ten_year": 2.15
+    },
+    {
+      "date": "2025-07-01",
+      "one_year": 2.37,
+      "two_year": 2.28,
+      "five_year": 2.26,
+      "ten_year": 2.15
+    },
+    {
+      "date": "2025-10-01",
+      "one_year": 2.39,
+      "two_year": 2.28,
+      "five_year": 2.22,
+      "ten_year": 2.18
+    },
+    {
+      "date": "2026-01-01",
+      "one_year": 2.59,
+      "two_year": 2.37,
+      "five_year": 2.31,
+      "ten_year": 2.3
+    }
+  ],
+  "latest": {
+    "date": "2026-01-01",
+    "one_year": 2.59,
+    "two_year": 2.37,
+    "five_year": 2.31,
+    "ten_year": 2.3
+  },
+  "metadata": {
+    "source": "RBNZ",
+    "indicator": "Survey of Expectations - Inflation",
+    "description": "NZ インフレ期待",
+    "unit": "%",
+    "frequency": "quarterly",
+    "series": {
+      "one_year": "SOE.Q.E210.na",
+      "two_year": "SOE.Q.E215.na",
+      "five_year": "SOE.Q.E220.na",
+      "ten_year": "SOE.Q.E230.na"
+    }
+  },
+  "next_release": null,
+  "last_updated": "2026-02-25T18:14:22.743830+09:00"
+}

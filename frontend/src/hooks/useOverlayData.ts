@@ -93,9 +93,23 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/australia/apra/',
     '/api/australia/melbourne-institute/',
     '/api/australia/housing/',
-    // New Zealand個別API（RBNZ・Stats NZ等）
+    // New Zealand個別API（RBNZ・Stats NZ・ANZ等）
     '/api/newzealand/rbnz/',
     '/api/newzealand/stats-nz/',
+    '/api/newzealand/anz/',
+    '/api/newzealand/nzier/',
+    '/api/newzealand/businessnz/',
+    // China個別API（PBOC・NBS・SAFE等）
+    '/api/china/pboc/',
+    '/api/china/nbs/',
+    '/api/china/safe/',
+    '/api/china/mof/',
+    '/api/china/bond-connect/',
+    // Global個別API
+    '/api/global/',
+    // Market個別API（TSMC売上高、Fear & Greed等）
+    '/api/market/tsmc/',
+    '/api/market/fear-greed',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

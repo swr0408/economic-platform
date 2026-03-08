@@ -1,0 +1,139 @@
+{
+  "data": [
+    {
+      "date": "2022-09-01",
+      "terms_of_trade_qoq": -3.9,
+      "export_price_qoq": 2.9,
+      "import_price_qoq": 7.1,
+      "terms_of_trade_yoy": null,
+      "export_price_yoy": null,
+      "import_price_yoy": null
+    },
+    {
+      "date": "2022-12-01",
+      "terms_of_trade_qoq": 1.5,
+      "export_price_qoq": -0.6,
+      "import_price_qoq": -2.1,
+      "terms_of_trade_yoy": null,
+      "export_price_yoy": null,
+      "import_price_yoy": null
+    },
+    {
+      "date": "2023-03-01",
+      "terms_of_trade_qoq": -2.5,
+      "export_price_qoq": -6.9,
+      "import_price_qoq": -4.5,
+      "terms_of_trade_yoy": null,
+      "export_price_yoy": null,
+      "import_price_yoy": null
+    },
+    {
+      "date": "2023-06-01",
+      "terms_of_trade_qoq": -0.1,
+      "export_price_qoq": -0.6,
+      "import_price_qoq": -0.6,
+      "terms_of_trade_yoy": null,
+      "export_price_yoy": null,
+      "import_price_yoy": null
+    },
+    {
+      "date": "2023-09-01",
+      "terms_of_trade_qoq": -0.6,
+      "export_price_qoq": -1.4,
+      "import_price_qoq": -0.9,
+      "terms_of_trade_yoy": -1.7,
+      "export_price_yoy": -9.3,
+      "import_price_yoy": -7.8
+    },
+    {
+      "date": "2023-12-01",
+      "terms_of_trade_qoq": -7.8,
+      "export_price_qoq": -4.3,
+      "import_price_qoq": 3.8,
+      "terms_of_trade_yoy": -10.7,
+      "export_price_yoy": -12.7,
+      "import_price_yoy": -2.3
+    },
+    {
+      "date": "2024-03-01",
+      "terms_of_trade_qoq": 5.1,
+      "export_price_qoq": -0.3,
+      "import_price_qoq": -5.1,
+      "terms_of_trade_yoy": -3.7,
+      "export_price_yoy": -6.5,
+      "import_price_yoy": -2.9
+    },
+    {
+      "date": "2024-06-01",
+      "terms_of_trade_qoq": 2.3,
+      "export_price_qoq": 5.2,
+      "import_price_qoq": 2.8,
+      "terms_of_trade_yoy": -1.4,
+      "export_price_yoy": -1.0,
+      "import_price_yoy": 0.4
+    },
+    {
+      "date": "2024-09-01",
+      "terms_of_trade_qoq": 2.5,
+      "export_price_qoq": 0.7,
+      "import_price_qoq": -1.7,
+      "terms_of_trade_yoy": 1.6,
+      "export_price_yoy": 1.2,
+      "import_price_yoy": -0.5
+    },
+    {
+      "date": "2024-12-01",
+      "terms_of_trade_qoq": 3.2,
+      "export_price_qoq": 3.2,
+      "import_price_qoq": 0.0,
+      "terms_of_trade_yoy": 13.7,
+      "export_price_yoy": 9.0,
+      "import_price_yoy": -4.1
+    },
+    {
+      "date": "2025-03-01",
+      "terms_of_trade_qoq": 1.9,
+      "export_price_qoq": 7.1,
+      "import_price_qoq": 5.1,
+      "terms_of_trade_yoy": 10.3,
+      "export_price_yoy": 17.1,
+      "import_price_yoy": 6.2
+    },
+    {
+      "date": "2025-06-01",
+      "terms_of_trade_qoq": 4.2,
+      "export_price_qoq": 0.3,
+      "import_price_qoq": -3.7,
+      "terms_of_trade_yoy": 12.3,
+      "export_price_yoy": 11.7,
+      "import_price_yoy": -0.5
+    },
+    {
+      "date": "2025-09-01",
+      "terms_of_trade_qoq": -2.1,
+      "export_price_qoq": -1.6,
+      "import_price_qoq": 0.5,
+      "terms_of_trade_yoy": 7.2,
+      "export_price_yoy": 9.1,
+      "import_price_yoy": 1.7
+    }
+  ],
+  "latest": {
+    "date": "2025-09-01",
+    "terms_of_trade_qoq": -2.1,
+    "export_price_qoq": -1.6,
+    "import_price_qoq": 0.5,
+    "terms_of_trade_yoy": 7.2,
+    "export_price_yoy": 9.1,
+    "import_price_yoy": 1.7
+  },
+  "metadata": {
+    "source": "Stats NZ",
+    "indicator": "Overseas Trade Indexes - Terms of Trade",
+    "description": "NZ交易条件（輸出価格指数/輸入価格指数）",
+    "unit": "%",
+    "frequency": "quarterly",
+    "sheet": "Table 1.01"
+  },
+  "last_updated": "2026-03-01T14:03:49.723704+09:00"
+}

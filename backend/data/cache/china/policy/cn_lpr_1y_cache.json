@@ -1,0 +1,490 @@
+{
+  "data": [
+    {
+      "date": "2019-09-20",
+      "value": 4.2,
+      "forecast": null,
+      "previous": 4.25
+    },
+    {
+      "date": "2019-10-21",
+      "value": 4.2,
+      "forecast": null,
+      "previous": 4.2
+    },
+    {
+      "date": "2019-11-20",
+      "value": 4.15,
+      "forecast": 4.2,
+      "previous": 4.2
+    },
+    {
+      "date": "2019-12-20",
+      "value": 4.15,
+      "forecast": null,
+      "previous": 4.15
+    },
+    {
+      "date": "2020-01-20",
+      "value": 4.15,
+      "forecast": null,
+      "previous": 4.15
+    },
+    {
+      "date": "2020-02-20",
+      "value": 4.05,
+      "forecast": null,
+      "previous": 4.15
+    },
+    {
+      "date": "2020-03-20",
+      "value": 4.05,
+      "forecast": null,
+      "previous": 4.05
+    },
+    {
+      "date": "2020-04-20",
+      "value": 3.85,
+      "forecast": 3.85,
+      "previous": 4.05
+    },
+    {
+      "date": "2020-05-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-06-22",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-07-20",
+      "value": 3.85,
+      "forecast": 3.85,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-08-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-09-21",
+      "value": 3.85,
+      "forecast": 3.85,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-10-20",
+      "value": 3.85,
+      "forecast": 3.85,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-11-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2020-12-21",
+      "value": 3.85,
+      "forecast": 3.85,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-01-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-02-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-03-22",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-04-20",
+      "value": 3.85,
+      "forecast": 3.85,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-05-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-06-21",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-07-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-08-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-09-22",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-10-20",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-11-22",
+      "value": 3.85,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2021-12-20",
+      "value": 3.8,
+      "forecast": null,
+      "previous": 3.85
+    },
+    {
+      "date": "2022-01-20",
+      "value": 3.7,
+      "forecast": null,
+      "previous": 3.8
+    },
+    {
+      "date": "2022-02-21",
+      "value": 3.7,
+      "forecast": 3.7,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-03-21",
+      "value": 3.7,
+      "forecast": null,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-04-20",
+      "value": 3.7,
+      "forecast": null,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-05-20",
+      "value": 3.7,
+      "forecast": null,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-06-20",
+      "value": 3.7,
+      "forecast": 3.7,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-07-20",
+      "value": 3.7,
+      "forecast": null,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-08-22",
+      "value": 3.65,
+      "forecast": null,
+      "previous": 3.7
+    },
+    {
+      "date": "2022-09-20",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2022-10-20",
+      "value": 3.65,
+      "forecast": null,
+      "previous": 3.65
+    },
+    {
+      "date": "2022-11-21",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2022-12-20",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-01-20",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-02-20",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-03-20",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-04-20",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-05-22",
+      "value": 3.65,
+      "forecast": 3.65,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-06-20",
+      "value": 3.55,
+      "forecast": 3.55,
+      "previous": 3.65
+    },
+    {
+      "date": "2023-07-20",
+      "value": 3.55,
+      "forecast": 3.55,
+      "previous": 3.55
+    },
+    {
+      "date": "2023-08-21",
+      "value": 3.45,
+      "forecast": 3.4,
+      "previous": 3.55
+    },
+    {
+      "date": "2023-09-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2023-10-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2023-11-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2023-12-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-01-22",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-02-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-03-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-04-22",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-05-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-06-20",
+      "value": 3.45,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-07-22",
+      "value": 3.35,
+      "forecast": 3.45,
+      "previous": 3.45
+    },
+    {
+      "date": "2024-08-20",
+      "value": 3.35,
+      "forecast": 3.35,
+      "previous": 3.35
+    },
+    {
+      "date": "2024-09-20",
+      "value": 3.35,
+      "forecast": 3.35,
+      "previous": 3.35
+    },
+    {
+      "date": "2024-10-21",
+      "value": 3.1,
+      "forecast": 3.15,
+      "previous": 3.35
+    },
+    {
+      "date": "2024-11-20",
+      "value": 3.1,
+      "forecast": 3.1,
+      "previous": 3.1
+    },
+    {
+      "date": "2024-12-20",
+      "value": 3.1,
+      "forecast": 3.1,
+      "previous": 3.1
+    },
+    {
+      "date": "2025-01-20",
+      "value": 3.1,
+      "forecast": 3.1,
+      "previous": 3.1
+    },
+    {
+      "date": "2025-02-20",
+      "value": 3.1,
+      "forecast": 3.1,
+      "previous": 3.1
+    },
+    {
+      "date": "2025-03-20",
+      "value": 3.1,
+      "forecast": 3.1,
+      "previous": 3.1
+    },
+    {
+      "date": "2025-04-21",
+      "value": 3.1,
+      "forecast": 3.1,
+      "previous": 3.1
+    },
+    {
+      "date": "2025-05-20",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.1
+    },
+    {
+      "date": "2025-06-20",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2025-07-21",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2025-08-20",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2025-09-22",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2025-10-20",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2025-11-20",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2025-12-22",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    },
+    {
+      "date": "2026-01-20",
+      "value": 3.0,
+      "forecast": 3.0,
+      "previous": 3.0
+    }
+  ],
+  "latest": {
+    "date": "2026-01-20",
+    "value": 3.0,
+    "forecast": 3.0,
+    "previous": 3.0
+  },
+  "metadata": {
+    "source": "DB (CSV_IMPORT + FMP)",
+    "indicator": "China Loan Prime Rate (1Y LPR)",
+    "unit": "%",
+    "frequency": "monthly",
+    "event_pattern": "Loan Prime Rate 1Y"
+  },
+  "next_release": {
+    "date": "2026-03-20",
+    "datetime_utc": "2026-03-20T01:15:00+00:00",
+    "datetime_jst": "2026-03-20T10:15:00+09:00",
+    "time_jst": "10:15",
+    "datetime_cst": "2026-03-20T09:15:00+08:00",
+    "time_cst": "09:15",
+    "label": "Loan Prime Rate 1Y",
+    "estimate": null
+  },
+  "last_updated": "2026-03-01T22:35:57.102752+09:00"
+}

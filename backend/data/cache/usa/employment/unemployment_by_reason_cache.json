@@ -2490,20 +2490,28 @@
     },
     {
       "date": "2026-01-01",
-      "layoff": 846.0,
-      "other_losers": 2668.0,
-      "leavers": 1029.0,
-      "reentrants": 2157.0,
-      "new_entrants": 792.0
+      "layoff": 839.0,
+      "other_losers": 2657.0,
+      "leavers": 1038.0,
+      "reentrants": 2168.0,
+      "new_entrants": 796.0
+    },
+    {
+      "date": "2026-02-01",
+      "layoff": 925.0,
+      "other_losers": 2694.0,
+      "leavers": 867.0,
+      "reentrants": 2320.0,
+      "new_entrants": 805.0
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "layoff": 846.0,
-    "other_losers": 2668.0,
-    "leavers": 1029.0,
-    "reentrants": 2157.0,
-    "new_entrants": 792.0
+    "date": "2026-02-01",
+    "layoff": 925.0,
+    "other_losers": 2694.0,
+    "leavers": 867.0,
+    "reentrants": 2320.0,
+    "new_entrants": 805.0
   },
-  "last_updated": "2026-02-15T22:44:34.748751+09:00"
+  "last_updated": "2026-03-08T21:43:25.452257+09:00"
 }

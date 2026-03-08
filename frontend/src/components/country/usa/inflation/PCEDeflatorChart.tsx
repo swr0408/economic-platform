@@ -46,15 +46,21 @@ interface PCEDeflatorChartProps {
   corePceData: CorePCEDeflatorData | null
 }
 
-// PCE表示モード
-type PCEViewMode = 'yoy' | 'mom_table' | 'mom_chart' | 'annualized'
+// 指標種別
+type PCEDataKind = 'yoy' | 'mom' | 'annualized'
 
-// PCEビューモードオプション
-const PCE_VIEW_MODE_OPTIONS: { mode: PCEViewMode; label: string }[] = [
+const PCE_DATA_KIND_OPTIONS: { mode: PCEDataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+  { mode: 'mom', label: '前月比' },
   { mode: 'annualized', label: '年率' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // PCEデータタイプ
@@ -82,17 +88,17 @@ const COLORS = {
 // =============================================================================
 
 export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorChartProps) {
-  const [viewMode, setViewMode] = useState<PCEViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<PCEDataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<PCEDataType>('pce')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
-    annualized: 'default',  // 年率は直近3年
+    mom: 3,
+    annualized: 'default',
   })
 
   // データを日付昇順にソート
@@ -201,7 +207,7 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
         {/* 最新値表示 */}
         <LatestValueBox
           items={
-            viewMode === 'annualized'
+            dataKind === 'annualized'
               ? [
                   {
                     label: dataType === 'pce' ? 'PCE 3か月年率' : 'コアPCE 3か月年率',
@@ -219,13 +225,13 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
               : [
                   {
                     label: 'PCEデフレーター',
-                    value: viewMode === 'yoy' ? pceLatest?.yoy : pceLatest?.mom,
+                    value: dataKind === 'yoy' ? pceLatest?.yoy : pceLatest?.mom,
                     color: COLORS.pce_yoy,
                     format: 'percent',
                   },
                   {
                     label: 'コアPCE',
-                    value: viewMode === 'yoy' ? corePceLatest?.yoy : corePceLatest?.mom,
+                    value: dataKind === 'yoy' ? corePceLatest?.yoy : corePceLatest?.mom,
                     color: COLORS.core_pce_yoy,
                     format: 'percent',
                   },
@@ -246,8 +252,9 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={PCE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={PCE_DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く（PCEデフレーター・コアPCE）">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -258,8 +265,15 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -275,8 +289,8 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={PCE_DATA_TYPE_OPTIONS}
@@ -285,8 +299,8 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
                     />
                   )}
 
-                  {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート（棒グラフ） */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup options={PCE_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -304,7 +318,7 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
                   )}
 
                   {/* 年率グラフ（3か月年率・6か月年率を折れ線グラフで表示） */}
-                  {viewMode === 'annualized' && (
+                  {dataKind === 'annualized' && (
                     <>
                       <DataTypeButtonGroup options={PCE_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />

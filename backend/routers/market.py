@@ -6,6 +6,7 @@ yfinance を使用した銘柄データ取得エンドポイント
     GET /api/market/symbols           - 銘柄リスト取得
     GET /api/market/{symbol_id}/daily - 個別銘柄の日足データ取得
     GET /api/market/dashboard         - 全銘柄の最新データ（バッチ）
+    GET /api/market/fear-greed        - CNN Fear & Greed Index
 """
 import time
 from typing import List, Optional
@@ -32,6 +33,11 @@ except ImportError:
         SYMBOL_CATEGORIES,
         SYMBOL_SUB_CATEGORIES,
     )
+
+try:
+    from backend.services.market.fear_greed_service import fear_greed_service
+except ImportError:
+    from services.market.fear_greed_service import fear_greed_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -69,7 +75,7 @@ async def get_symbols(
 
 
 @router.get("/dashboard")
-async def get_market_dashboard(
+def get_market_dashboard(
     symbols: Optional[str] = Query(None, description="カンマ区切りの銘柄IDリスト"),
     force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
 ):
@@ -116,8 +122,41 @@ async def get_market_dashboard(
     )
 
 
+@router.get("/fear-greed")
+def get_fear_greed(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """
+    CNN Fear & Greed Index データを取得
+
+    Returns:
+        {
+            "data": [{"date": "YYYY-MM-DD", "score": float, "rating": str, "sp500": float}, ...],
+            "latest": {...},
+            "metadata": {...},
+            "cached": bool,
+            "source": str,
+            "last_updated": str
+        }
+    """
+    start_time = time.time()
+    result = fear_greed_service.get_fear_greed_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+
+    return JSONResponse(
+        content={
+            **result,
+            "response_time_ms": round(response_time_ms, 2),
+        },
+        headers={
+            "X-Cache": "HIT" if result.get("cached") else "MISS",
+            "X-Response-Time": f"{response_time_ms:.2f}ms",
+        }
+    )
+
+
 @router.get("/{symbol_id}/daily")
-async def get_symbol_daily_data(
+def get_symbol_daily_data(
     symbol_id: str = Path(..., description="銘柄ID（例: usdjpy, sp500）"),
     force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
 ):
@@ -161,7 +200,7 @@ async def get_symbol_daily_data(
 
 
 @router.get("/{symbol_id}/status")
-async def get_symbol_cache_status(
+def get_symbol_cache_status(
     symbol_id: str = Path(..., description="銘柄ID"),
 ):
     """
@@ -185,7 +224,7 @@ async def get_symbol_cache_status(
 
 
 @router.post("/{symbol_id}/refresh")
-async def refresh_symbol_cache(
+def refresh_symbol_cache(
     symbol_id: str = Path(..., description="銘柄ID"),
 ):
     """
@@ -216,7 +255,7 @@ async def refresh_symbol_cache(
 
 
 @router.delete("/cache")
-async def invalidate_all_cache():
+def invalidate_all_cache():
     """
     全銘柄のキャッシュを無効化
 

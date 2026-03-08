@@ -61,7 +61,7 @@ class CanadaHousingLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return stale
+            return set()
 
         return stale
 

@@ -39,7 +39,7 @@ DATA_CACHE_FILE = CACHE_DIR / "ner_pulse_cache.json"
 SCHEDULE_CACHE_FILE = CACHE_DIR / "ner_pulse_schedule.json"
 
 # ADP Media CenterのURL
-LABOR_MARKET_DATA_URL = "https://mediacenter.adp.com/labor-market-data"
+LABOR_MARKET_DATA_URL = "https://mediacenter.adp.com/workforce-data-releases"
 
 # User-Agent
 HEADERS = {

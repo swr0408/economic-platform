@@ -939,20 +939,25 @@
       "date": "2026-01-01",
       "mom": -9.3,
       "yoy": -3.0
+    },
+    {
+      "date": "2026-02-01",
+      "mom": -0.8,
+      "yoy": -0.4
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "mom": -9.3,
-    "yoy": -3.0
+    "date": "2026-02-01",
+    "mom": -0.8,
+    "yoy": -0.4
   },
   "next_release": {
-    "date": "2026-02-19",
-    "datetime_utc": "2026-02-19T15:00:00+00:00",
-    "datetime_jst": "2026-02-20T00:00:00+09:00",
-    "time_jst": "00:00",
-    "label": "Pending Home Sales MoM (Jan)",
+    "date": "2026-03-17",
+    "datetime_utc": "2026-03-17T14:00:00+00:00",
+    "datetime_jst": "2026-03-17T23:00:00+09:00",
+    "time_jst": "23:00",
+    "label": "Pending Home Sales MoM (Feb)",
     "estimate": null
   },
-  "last_updated": "2026-01-27T12:02:39.814053+09:00"
+  "last_updated": "2026-03-01T18:02:21.210944+09:00"
 }

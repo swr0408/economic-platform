@@ -66,13 +66,13 @@ interface UnitLaborCostChartProps {
   data: UnitLaborCostData | null
 }
 
-type ViewMode = 'qoq_table' | 'qoq_chart'
 type TableType = 'ulc' | 'productivity'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -99,15 +99,15 @@ const DATA_TYPE_OPTIONS = [
 // =============================================================================
 
 export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_table')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [tableType, setTableType] = useState<TableType>('ulc')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 'default',
-    qoq_table: 'default',
+  // 期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
+    chart: 'default',
+    heatmap: 'default',
   })
 
   // データのソート
@@ -215,11 +215,11 @@ export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 表示形式 */}
+                  <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
 
                   {/* 前期比グラフ（両方棒グラフ） */}
-                  {viewMode === 'qoq_chart' && (
+                  {displayMode === 'chart' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -273,8 +273,8 @@ export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
                     </>
                   )}
 
-                  {/* 前期比テーブル（タブ切り替え） */}
-                  {viewMode === 'qoq_table' && (
+                  {/* 前期比ヒートマップ（タブ切り替え） */}
+                  {displayMode === 'heatmap' && (
                     <QuarterlyTableWithDataTypes
                       data={tableData}
                       dataTypes={DATA_TYPE_OPTIONS}

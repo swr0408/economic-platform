@@ -858,9 +858,59 @@ class FMPReleaseScheduler:
         print("[FMPScheduler] Scheduled daily refresh at 05:00 JST")
 
     async def _refresh_schedules(self):
-        """スケジュールを再計算して更新"""
+        """スケジュールを再計算して更新（+ 過去発表分のバックフィル）"""
         print("[FMPScheduler] Refreshing release schedules...")
         self.schedule_release_jobs()
+
+        # 過去30日分の発表データをバックフィル（スケジューラー停止中の漏れを補完）
+        await self._backfill_recent_releases()
+
+    async def _backfill_recent_releases(self):
+        """
+        過去30日間の発表データをFMPから再取得してDBに補完する
+
+        スケジューラー停止中に発表があったデータの漏れを防ぐ。
+        全指標に対してFMPからactual値を持つ直近30日分のイベントを取得してUpsert。
+        """
+        print("[FMPScheduler] Starting backfill for past 30 days...")
+        today = date.today()
+        start_date = today - timedelta(days=30)
+
+        backfilled_total = 0
+        for config in FMP_INDICATOR_CONFIGS:
+            name_ja = config["name_ja"]
+            fmp_event = config["fmp_event"]
+            country = config.get("country", "US")
+            try:
+                events = fmp_service.fetch_calendar(
+                    start_date, today,
+                    country=country,
+                    event=fmp_event
+                )
+                if events:
+                    # actual値があるイベントのみ処理
+                    actual_events = [e for e in events if e.get("actual") is not None]
+                    if actual_events:
+                        processed = [fmp_service.process_event(e) for e in actual_events]
+                        count = calendar_repository.upsert_events(processed)
+                        if count > 0:
+                            print(f"[FMPScheduler] Backfilled {count} events for: {name_ja}")
+                            backfilled_total += count
+                            # サービスキャッシュも無効化して再取得
+                            service = self._get_service_instance(config)
+                            if service and hasattr(service, 'invalidate_cache'):
+                                service.invalidate_cache()
+                            # ダッシュボードキャッシュも無効化
+                            category = config.get("category")
+                            if category:
+                                invalidate_dashboard_cache(country, category)
+            except Exception as e:
+                print(f"[FMPScheduler] Backfill error for {name_ja}: {e}")
+
+        if backfilled_total > 0:
+            print(f"[FMPScheduler] Backfill complete: {backfilled_total} events updated")
+        else:
+            print("[FMPScheduler] Backfill complete: no missing data found")
 
     def start(self):
         """スケジューラーを開始"""
@@ -871,6 +921,9 @@ class FMPReleaseScheduler:
         self.schedule_release_jobs()
         self.schedule_weekly_refresh()
         self.scheduler.start()
+
+        # 起動時にバックフィルを実行（スケジューラー停止中の漏れを補完）
+        asyncio.ensure_future(self._backfill_recent_releases())
 
         print("[FMPScheduler] Scheduler started successfully")
         self._print_status()

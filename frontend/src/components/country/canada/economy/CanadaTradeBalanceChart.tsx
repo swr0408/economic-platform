@@ -45,7 +45,21 @@ interface CanadaTradeBalanceChartProps {
   data: CaTradeBalanceData | null
 }
 
-type ViewMode = 'balance' | 'exports_imports' | 'mom' | 'mom_table'
+type DataKind = 'balance' | 'exports_imports' | 'mom'
+type DisplayMode = 'chart' | 'heatmap'
+
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'balance', label: '貿易収支' },
+  { mode: 'exports_imports', label: '輸出・輸入' },
+  { mode: 'mom', label: '前月増減幅' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 interface ChartDataItem {
   date: string
@@ -59,25 +73,23 @@ interface ChartDataItem {
 
 export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('balance')
+  const [dataKind, setDataKind] = useState<DataKind>('balance')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     balance: 'default' as PeriodType,
     exports_imports: 'default' as PeriodType,
     mom: 'default' as PeriodType,
-    mom_table: 'default' as PeriodType,
   })
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataItem[]>(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    const currentViewMode = viewMode === 'mom_table' ? 'mom' : viewMode
-
     const formattedData: ChartDataItem[] = data.data.map((item) => {
       let value = 0
-      switch (currentViewMode) {
+      switch (dataKind) {
         case 'balance':
         case 'exports_imports':
           value = item.balance ?? 0
@@ -101,7 +113,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
     formattedData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
     return formattedData
-  }, [data, viewMode])
+  }, [data, dataKind])
 
   const formatMillions = (value: number) => {
     if (Math.abs(value) >= 1000) {
@@ -141,44 +153,34 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
     )
   }
 
-  const viewModeOptions = [
-    { mode: 'balance' as ViewMode, label: '貿易収支' },
-    { mode: 'exports_imports' as ViewMode, label: '輸出・輸入' },
-    { mode: 'mom' as ViewMode, label: '前月増減幅' },
-    { mode: 'mom_table' as ViewMode, label: '前月増減幅（テーブル）' },
-  ]
-
   // 表示ラベルを取得
-  const getViewModeLabel = (mode: ViewMode) => {
-    switch (mode) {
+  const getDataKindLabel = (kind: DataKind) => {
+    switch (kind) {
       case 'balance': return '貿易収支'
       case 'exports_imports': return '貿易収支'
       case 'mom': return '前月増減幅'
-      case 'mom_table': return '前月増減幅'
     }
   }
 
-  // 最新値を取得（ViewModeに応じて）
+  // 最新値を取得（DataKindに応じて）
   const getLatestValue = () => {
     if (!latestValue) return undefined
-    switch (viewMode) {
+    switch (dataKind) {
       case 'balance':
       case 'exports_imports':
         return latestValue.balance
       case 'mom':
-      case 'mom_table':
         return latestValue.mom_change
     }
   }
 
   // 比較ページ用のキーを取得
   const getCompareKey = () => {
-    switch (viewMode) {
+    switch (dataKind) {
       case 'balance':
       case 'exports_imports':
         return 'raw'
       case 'mom':
-      case 'mom_table':
         return 'mom'
     }
   }
@@ -193,7 +195,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={getViewModeLabel(viewMode)}
+          label={getDataKindLabel(dataKind)}
           value={getLatestValue()}
           valueColor={CHART_COLORS.primary}
           date={latestValue?.date}
@@ -202,7 +204,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
             label: data.next_release.time_jst ? `${data.next_release.time_jst} JST` : undefined
           } : null}
           format="number"
-          decimals={viewMode === 'balance' || viewMode === 'exports_imports' ? 0 : 1}
+          decimals={dataKind === 'balance' || dataKind === 'exports_imports' ? 0 : 1}
           unit="M CAD"
         />
 
@@ -216,11 +218,12 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={viewModeOptions}
-                      currentMode={viewMode}
-                      onChange={setViewMode}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く">
                       <Button
@@ -231,9 +234,14 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
-                  {/* 前月増減幅テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月増減幅ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={0}
@@ -244,11 +252,11 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
                   )}
 
                   {/* グラフ表示 */}
-                  {viewMode !== 'mom_table' && (
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
-                      {viewMode === 'balance' ? (
+                      {dataKind === 'balance' ? (
                         // 貿易収支は棒グラフ
                         <ResponsiveContainer width="100%" height={450}>
                           <ComposedChart
@@ -336,7 +344,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
                             />
                           </ComposedChart>
                         </ResponsiveContainer>
-                      ) : viewMode === 'exports_imports' ? (
+                      ) : dataKind === 'exports_imports' ? (
                         // 輸出・輸入は線グラフ
                         <ResponsiveContainer width="100%" height={450}>
                           <ComposedChart

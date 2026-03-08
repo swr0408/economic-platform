@@ -563,7 +563,7 @@ interface LatestValueBoxDualProps {
     color: string
   }
   /** 表示モード（yoy=前年比, mom=前月比） */
-  viewMode: 'yoy' | 'mom' | 'mom_chart' | 'mom_table' | 'value'
+  viewMode: 'yoy' | 'mom' | 'value'
   /** 次回発表日 */
   nextRelease?: { date: string } | null
 }
@@ -662,7 +662,7 @@ interface LatestValueBoxWithSubProps {
   /** 日付 */
   date?: string
   /** 表示モード */
-  viewMode: 'yoy' | 'mom' | 'mom_chart' | 'mom_table' | 'value'
+  viewMode: 'yoy' | 'mom' | 'value'
   /** 次回発表日 */
   nextRelease?: { date: string } | null
 }
@@ -739,8 +739,8 @@ interface LineConfig {
   strokeWidth?: number
   /** 破線パターン（例: "5 5"） */
   strokeDasharray?: string
-  /** Y軸ID（'left' または 'right'、デフォルト: 'left'） */
-  yAxisId?: 'left' | 'right'
+  /** Y軸ID（'left' / 'right' / 'right2'、デフォルト: 'left'） */
+  yAxisId?: 'left' | 'right' | 'right2'
 }
 
 interface StandardLineChartProps<T> {
@@ -776,6 +776,10 @@ interface StandardLineChartProps<T> {
   rightYAxisFormatter?: (value: number) => string
   /** 右Y軸のドメイン */
   rightYDomain?: [string | number, string | number]
+  /** 右Y軸②のフォーマッター */
+  right2YAxisFormatter?: (value: number) => string
+  /** 右Y軸②のドメイン */
+  right2YDomain?: [string | number, string | number]
 }
 
 /**
@@ -800,7 +804,7 @@ export function StandardLineChart<T extends { date: string }>({
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
   tooltipLabelFormatter = formatDateLabel,
-  tooltipValueFormatter = (v) => `${v.toFixed(2)}%`,
+  tooltipValueFormatter = (v) => v != null ? `${v.toFixed(2)}%` : 'N/A',
   yDomain = ['auto', 'auto'],
   showZeroLine = true,
   showFiftyLine = false,
@@ -809,9 +813,12 @@ export function StandardLineChart<T extends { date: string }>({
   showRightYAxis = false,
   rightYAxisFormatter,
   rightYDomain = ['auto', 'auto'],
+  right2YAxisFormatter,
+  right2YDomain = ['auto', 'auto'],
 }: StandardLineChartProps<T>) {
   // 右Y軸を使用するlineがあるか確認
   const hasRightAxisLines = lines.some(line => line.yAxisId === 'right')
+  const hasRight2AxisLines = lines.some(line => line.yAxisId === 'right2')
   // カスタムTooltipコンポーネント（数値にチャートの色を使用）
   const LineChartTooltip = ({ active, payload, label }: {
     active?: boolean
@@ -886,6 +893,15 @@ export function StandardLineChart<T extends { date: string }>({
             tickFormatter={rightYAxisFormatter ?? yAxisFormatter}
           />
         )}
+        {hasRight2AxisLines && (
+          <YAxis
+            yAxisId="right2"
+            orientation="right"
+            domain={right2YDomain}
+            tick={AXIS_STYLE.tick}
+            tickFormatter={right2YAxisFormatter ?? yAxisFormatter}
+          />
+        )}
         <RechartsTooltip content={<LineChartTooltip />} />
         {showLegend && (
           <Legend
@@ -943,6 +959,8 @@ interface BarConfig {
   name: string
   /** 非表示フラグ */
   hide?: boolean
+  /** スタックID（同じIDの棒を積み上げ表示） */
+  stackId?: string
 }
 
 /** 折れ線の定義（バーチャート用） */
@@ -986,6 +1004,8 @@ interface StandardBarChartProps<T> {
   showZeroLine?: boolean
   /** 凡例を表示するか（デフォルト: true） */
   showLegend?: boolean
+  /** 凡例のクリックハンドラ */
+  onLegendClick?: (dataKey: string) => void
 }
 
 /**
@@ -1016,10 +1036,11 @@ export function StandardBarChart<T extends { date: string }>({
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
   tooltipLabelFormatter = formatDateLabel,
-  tooltipValueFormatter = (v) => `${v.toFixed(2)}%`,
+  tooltipValueFormatter = (v) => v != null ? `${v.toFixed(2)}%` : 'N/A',
   yDomain = ['auto', 'auto'],
   showZeroLine = true,
   showLegend = true,
+  onLegendClick,
 }: StandardBarChartProps<T>) {
   // カスタムTooltipコンポーネント（数値にチャートの色を使用）
   const BarChartTooltip = ({ active, payload, label }: {
@@ -1085,7 +1106,12 @@ export function StandardBarChart<T extends { date: string }>({
             tickFormatter={yAxisFormatter}
           />
           <RechartsTooltip content={<BarChartTooltip />} />
-          {showLegend && <Legend />}
+          {showLegend && (
+            <Legend
+              onClick={onLegendClick ? (e) => onLegendClick(e.dataKey as string) : undefined}
+              wrapperStyle={onLegendClick ? { cursor: 'pointer' } : undefined}
+            />
+          )}
           {showZeroLine && <ReferenceLine {...ZERO_LINE_PROPS} />}
           {bars.map((bar) => (
             <Bar
@@ -1094,6 +1120,7 @@ export function StandardBarChart<T extends { date: string }>({
               fill={bar.color}
               name={bar.name}
               hide={bar.hide}
+              stackId={bar.stackId}
             />
           ))}
           {lines.map((line) => (
@@ -1132,7 +1159,12 @@ export function StandardBarChart<T extends { date: string }>({
           tickFormatter={yAxisFormatter}
         />
         <RechartsTooltip content={<BarChartTooltip />} />
-        {showLegend && <Legend />}
+        {showLegend && (
+          <Legend
+            onClick={onLegendClick ? (e) => onLegendClick(e.dataKey as string) : undefined}
+            wrapperStyle={onLegendClick ? { cursor: 'pointer' } : undefined}
+          />
+        )}
         {showZeroLine && <ReferenceLine {...ZERO_LINE_PROPS} />}
         {bars.map((bar) => (
           <Bar
@@ -1141,6 +1173,7 @@ export function StandardBarChart<T extends { date: string }>({
             fill={bar.color}
             name={bar.name}
             hide={bar.hide}
+            stackId={bar.stackId}
           />
         ))}
       </BarChart>

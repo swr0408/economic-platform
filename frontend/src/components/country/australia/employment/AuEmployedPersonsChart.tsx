@@ -58,14 +58,21 @@ const COLORS = {
   yoy_change: '#27AE60',
 }
 
-// 表示モード
-type ViewMode = 'value' | 'mom_change' | 'change_table' | 'yoy_change'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'mom_change', label: '前月増減' },
-  { mode: 'change_table', label: '前月増減幅（テーブル）' },
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月増減' },
   { mode: 'value', label: '雇用者数' },
-  { mode: 'yoy_change', label: '前年比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // =============================================================================
@@ -73,13 +80,14 @@ const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
 // =============================================================================
 
 export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('mom_change')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    mom_change: 3,
-    yoy_change: 'default',
+    mom: 3,
+    yoy: 'default',
   })
 
   // データを変換
@@ -124,31 +132,31 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
 
   const latest = data?.latest
 
-  // ビューモードに応じた最新値
+  // データ種別に応じた最新値
   const currentLatestValue = (() => {
     if (!latest) return null
-    if (viewMode === 'value') return latest.value
-    if (viewMode === 'mom_change' || viewMode === 'change_table') return latest.mom_change
-    if (viewMode === 'yoy_change') return latest.yoy_change
+    if (dataKind === 'value') return latest.value
+    if (dataKind === 'mom') return latest.mom_change
+    if (dataKind === 'yoy') return latest.yoy_change
     return latest.value
   })()
 
-  const currentColor = viewMode === 'change_table' ? COLORS.mom_change : COLORS[viewMode as keyof typeof COLORS] ?? COLORS.value
+  const currentColor = dataKind === 'mom' ? COLORS.mom_change : dataKind === 'yoy' ? COLORS.yoy_change : COLORS.value
 
   const getLatestLabel = () => {
-    if (viewMode === 'value') return '雇用者数'
-    if (viewMode === 'mom_change' || viewMode === 'change_table') return '雇用者数（前月増減）'
-    if (viewMode === 'yoy_change') return '雇用者数（前年比）'
+    if (dataKind === 'value') return '雇用者数'
+    if (dataKind === 'mom') return '雇用者数（前月増減）'
+    if (dataKind === 'yoy') return '雇用者数（前年比）'
     return '雇用者数'
   }
 
   const getUnit = () => {
-    if (viewMode === 'yoy_change') return '%'
+    if (dataKind === 'yoy') return '%'
     return '千人'
   }
 
   const getFormat = (): 'number' | 'percent' => {
-    if (viewMode === 'yoy_change') return 'percent'
+    if (dataKind === 'yoy') return 'percent'
     return 'number'
   }
 
@@ -170,7 +178,7 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
           valueColor={currentColor}
           nextRelease={data?.next_release ?? undefined}
           format={getFormat()}
-          decimals={viewMode === 'yoy_change' ? 1 : 0}
+          decimals={dataKind === 'yoy' ? 1 : 0}
         />
 
         {/* タブ切替 */}
@@ -182,26 +190,33 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    options={VIEW_MODE_OPTIONS}
-                    currentMode={viewMode}
-                    onChange={setViewMode}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=au_employed_persons', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {viewMode === 'value' && (
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
+                  {dataKind === 'value' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=au_employed_persons', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[
@@ -214,19 +229,9 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
                     </>
                   )}
 
-                  {viewMode === 'mom_change' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=au_employed_persons_mom', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
                         data={filteredData}
                         bars={[
@@ -238,7 +243,7 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
                     </>
                   )}
 
-                  {viewMode === 'change_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={1}
@@ -246,19 +251,9 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
                     />
                   )}
 
-                  {viewMode === 'yoy_change' && (
+                  {dataKind === 'yoy' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=au_employed_persons_yoy', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[

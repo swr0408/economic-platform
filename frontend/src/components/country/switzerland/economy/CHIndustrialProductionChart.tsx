@@ -50,7 +50,23 @@ const COLORS = {
   qyoy: '#722ed1', // 紫（四半期前年比）
 }
 
-type ViewMode = 'mom' | 'mom_table' | 'yoy' | 'qoq' | 'qoq_table' | 'qyoy'
+// データ種別
+type DataKind = 'mom' | 'yoy' | 'qoq' | 'qyoy'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '四半期動向前期比' },
+  { mode: 'qyoy', label: '四半期動向前年比' },
+  { mode: 'mom', label: '月次動向前月比' },
+  { mode: 'yoy', label: '月次動向前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS_IP: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 月次日付フォーマッター（2025-01-01 → 2025/01）
 const formatMonthLabel = (dateStr: string): string => {
@@ -86,15 +102,14 @@ const getQuarterFromDate = (dateStr: string): number => {
 
 export default function CHIndustrialProductionChart({ data }: CHIndustrialProductionChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 'default',
-    mom_table: 'default',
     yoy: 'default',
     qoq: 'default',
-    qoq_table: 'default',
     qyoy: 'default',
   })
 
@@ -118,8 +133,8 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
     })).sort((a, b) => a.date.localeCompare(b.date))
   }, [data])
 
-  // 現在のビューモードに応じたデータを選択
-  const isQuarterly = viewMode.startsWith('q')
+  // 現在のデータ種別に応じたデータを選択
+  const isQuarterly = dataKind === 'qoq' || dataKind === 'qyoy'
 
   // 期間フィルタリング（月次用）
   const filteredMonthlyData = usePeriodFiltering(monthlyChartData, {
@@ -139,7 +154,7 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
 
     const years = new Set<number>()
     const monthlyData: Record<number, Record<number, number | null>> = {}
-    const dataKey = viewMode === 'mom_table' ? 'mom' : 'yoy'
+    const dataKey = 'mom'
 
     monthlyChartData.forEach(item => {
       const year = getYearFromDate(item.date)
@@ -156,7 +171,7 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
 
     const sortedYears = Array.from(years).sort((a, b) => b - a).slice(0, 10).reverse()
     return { years: sortedYears, monthlyData }
-  }, [monthlyChartData, viewMode])
+  }, [monthlyChartData])
 
   // テーブル用データ（四半期：年別×四半期のマトリックス）
   const quarterlyTableData = useMemo(() => {
@@ -190,29 +205,29 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
 
   // 現在表示中の値を取得
   const currentValue = useMemo(() => {
-    if (viewMode === 'mom' || viewMode === 'mom_table') return latestMonthly?.mom ?? null
-    if (viewMode === 'yoy') return latestMonthly?.yoy ?? null
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return latestQuarterly?.qoq ?? null
-    if (viewMode === 'qyoy') return latestQuarterly?.yoy ?? null
+    if (dataKind === 'mom') return latestMonthly?.mom ?? null
+    if (dataKind === 'yoy') return latestMonthly?.yoy ?? null
+    if (dataKind === 'qoq') return latestQuarterly?.qoq ?? null
+    if (dataKind === 'qyoy') return latestQuarterly?.yoy ?? null
     return null
-  }, [latestMonthly, latestQuarterly, viewMode])
+  }, [latestMonthly, latestQuarterly, dataKind])
 
   // 現在の日付を取得
   const currentDate = useMemo(() => {
-    if (viewMode === 'mom' || viewMode === 'mom_table' || viewMode === 'yoy') {
+    if (dataKind === 'mom' || dataKind === 'yoy') {
       return latestMonthly?.date ?? null
     }
     return latestQuarterly?.date ?? null
-  }, [latestMonthly, latestQuarterly, viewMode])
+  }, [latestMonthly, latestQuarterly, dataKind])
 
   // 現在の色を取得
   const currentColor = useMemo(() => {
-    if (viewMode === 'mom' || viewMode === 'mom_table') return COLORS.mom
-    if (viewMode === 'yoy') return COLORS.yoy
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return COLORS.qoq
-    if (viewMode === 'qyoy') return COLORS.qyoy
+    if (dataKind === 'mom') return COLORS.mom
+    if (dataKind === 'yoy') return COLORS.yoy
+    if (dataKind === 'qoq') return COLORS.qoq
+    if (dataKind === 'qyoy') return COLORS.qyoy
     return COLORS.yoy
-  }, [viewMode])
+  }, [dataKind])
 
   if (data === null) {
     return <LoadingChart title="鉱工業生産" />
@@ -384,23 +399,24 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
 
   // データ比較用のoverlayConfig ID
   const getCompareId = () => {
-    if (viewMode === 'mom' || viewMode === 'mom_table') return 'ch_industrial_production_mom'
-    if (viewMode === 'yoy') return 'ch_industrial_production_yoy'
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return 'ch_industrial_production_qoq'
-    if (viewMode === 'qyoy') return 'ch_industrial_production_qyoy'
+    if (dataKind === 'mom') return 'ch_industrial_production_mom'
+    if (dataKind === 'yoy') return 'ch_industrial_production_yoy'
+    if (dataKind === 'qoq') return 'ch_industrial_production_qoq'
+    if (dataKind === 'qyoy') return 'ch_industrial_production_qyoy'
     return 'ch_industrial_production_yoy'
   }
 
   const getChartTitle = () => {
-    if (viewMode === 'mom' || viewMode === 'mom_table') return '鉱工業生産（前月比）'
-    if (viewMode === 'yoy') return '鉱工業生産（前年比）'
-    if (viewMode === 'qoq' || viewMode === 'qoq_table') return '鉱工業生産（四半期・前期比）'
-    if (viewMode === 'qyoy') return '鉱工業生産（四半期・前年比）'
+    if (dataKind === 'mom') return '鉱工業生産（前月比）'
+    if (dataKind === 'yoy') return '鉱工業生産（前年比）'
+    if (dataKind === 'qoq') return '鉱工業生産（四半期・前期比）'
+    if (dataKind === 'qyoy') return '鉱工業生産（四半期・前年比）'
     return '鉱工業生産'
   }
 
   const dateFormatter = isQuarterly ? formatQuarterLabel : formatMonthLabel
-  const isTableMode = viewMode.endsWith('_table')
+  // momまたはqoqで表示形式切替が有効
+  const showDisplayModeToggle = dataKind === 'mom' || dataKind === 'qoq'
 
   return (
     <div id="ch-industrial-production-chart">
@@ -433,40 +449,43 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'qoq', label: '四半期動向前期比' },
-                      { mode: 'qoq_table', label: '四半期動向前期比（テーブル）' },
-                      { mode: 'qyoy', label: '四半期動向前年比' },
-                      { mode: 'mom', label: '月次動向前月比' },
-                      { mode: 'mom_table', label: '月次動向前月比（テーブル）' },
-                      { mode: 'yoy', label: '月次動向前年比' },
-                    ]}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター（テーブル以外で表示） */}
-                  {!isTableMode && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（momまたはqoqのときのみ） */}
+                  {showDisplayModeToggle && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS_IP} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'mom_table' && <MonthlyTable />}
-                  {viewMode === 'qoq_table' && <QuarterlyTable />}
+                  {/* 期間セレクター（ヒートマップ以外で表示） */}
+                  {!(showDisplayModeToggle && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
 
-                  {viewMode === 'mom' && (
+                  {/* 月次前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && <MonthlyTable />}
+
+                  {/* 四半期前期比ヒートマップ */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && <QuarterlyTable />}
+
+                  {/* 月次前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredMonthlyData}
                       bars={[
@@ -477,7 +496,8 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
                     />
                   )}
 
-                  {viewMode === 'yoy' && (
+                  {/* 月次前年比チャート */}
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredMonthlyData}
                       lines={[
@@ -491,7 +511,8 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
                     />
                   )}
 
-                  {viewMode === 'qoq' && (
+                  {/* 四半期前期比チャート */}
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredQuarterlyData}
                       bars={[
@@ -502,7 +523,8 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
                     />
                   )}
 
-                  {viewMode === 'qyoy' && (
+                  {/* 四半期前年比チャート */}
+                  {dataKind === 'qyoy' && (
                     <StandardLineChart
                       data={filteredQuarterlyData}
                       lines={[

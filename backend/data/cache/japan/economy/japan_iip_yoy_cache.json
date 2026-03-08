@@ -1,6 +1,14 @@
 {
   "data": [
     {
+      "date": "2026-01-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "index_value": 96.6,
+      "yoy_change": 2.33
+    },
+    {
       "date": "2025-12-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
@@ -769,6 +777,6 @@
       "yoy_change": null
     }
   ],
-  "last_updated": "2026-02-11T23:18:02.834953+09:00",
+  "last_updated": "2026-02-28T09:50:01.736717+09:00",
   "source": "Ministry of Economy, Trade and Industry (METI) - Raw index (原指数)"
 }

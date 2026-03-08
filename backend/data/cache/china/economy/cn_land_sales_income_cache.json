@@ -1,0 +1,243 @@
+{
+  "data": [
+    {
+      "date": "2023-03-01",
+      "value": 8728.0,
+      "yoy": -27.0,
+      "mom": null,
+      "monthly_increment": null
+    },
+    {
+      "date": "2023-04-01",
+      "value": 11761.0,
+      "yoy": -21.7,
+      "mom": null,
+      "monthly_increment": 3033.0
+    },
+    {
+      "date": "2023-05-01",
+      "value": 14893.0,
+      "yoy": -20.0,
+      "mom": 3.3,
+      "monthly_increment": 3132.0
+    },
+    {
+      "date": "2023-06-01",
+      "value": 8687.0,
+      "yoy": -20.9,
+      "mom": -298.1,
+      "monthly_increment": -6206.0
+    },
+    {
+      "date": "2023-07-01",
+      "value": 22875.0,
+      "yoy": -19.1,
+      "mom": 328.6,
+      "monthly_increment": 14188.0
+    },
+    {
+      "date": "2023-08-01",
+      "value": 27096.0,
+      "yoy": -19.6,
+      "mom": -70.2,
+      "monthly_increment": 4221.0
+    },
+    {
+      "date": "2023-09-01",
+      "value": 30875.0,
+      "yoy": -19.8,
+      "mom": -10.5,
+      "monthly_increment": 3779.0
+    },
+    {
+      "date": "2023-10-01",
+      "value": 34992.0,
+      "yoy": -20.5,
+      "mom": 8.9,
+      "monthly_increment": 4117.0
+    },
+    {
+      "date": "2023-11-01",
+      "value": 42031.0,
+      "yoy": -17.9,
+      "mom": 71.0,
+      "monthly_increment": 7039.0
+    },
+    {
+      "date": "2023-12-01",
+      "value": 57996.0,
+      "yoy": -13.2,
+      "mom": 126.8,
+      "monthly_increment": 15965.0
+    },
+    {
+      "date": "2024-02-01",
+      "value": 5625.0,
+      "yoy": 0.0,
+      "mom": -64.8,
+      "monthly_increment": 5625.0
+    },
+    {
+      "date": "2024-03-01",
+      "value": 8147.0,
+      "yoy": -6.7,
+      "mom": -55.2,
+      "monthly_increment": 2522.0
+    },
+    {
+      "date": "2024-04-01",
+      "value": 10536.0,
+      "yoy": -10.4,
+      "mom": -5.3,
+      "monthly_increment": 2389.0
+    },
+    {
+      "date": "2024-05-01",
+      "value": 12810.0,
+      "yoy": -14.0,
+      "mom": -4.8,
+      "monthly_increment": 2274.0
+    },
+    {
+      "date": "2024-06-01",
+      "value": 15263.0,
+      "yoy": -18.3,
+      "mom": 7.9,
+      "monthly_increment": 2453.0
+    },
+    {
+      "date": "2024-07-01",
+      "value": 17763.0,
+      "yoy": -22.3,
+      "mom": 1.9,
+      "monthly_increment": 2500.0
+    },
+    {
+      "date": "2024-08-01",
+      "value": 20218.0,
+      "yoy": -25.4,
+      "mom": -1.8,
+      "monthly_increment": 2455.0
+    },
+    {
+      "date": "2024-09-01",
+      "value": 23287.0,
+      "yoy": -24.6,
+      "mom": 25.0,
+      "monthly_increment": 3069.0
+    },
+    {
+      "date": "2024-10-01",
+      "value": 26971.0,
+      "yoy": -22.9,
+      "mom": 20.0,
+      "monthly_increment": 3684.0
+    },
+    {
+      "date": "2024-11-01",
+      "value": 32626.0,
+      "yoy": -22.4,
+      "mom": 53.5,
+      "monthly_increment": 5655.0
+    },
+    {
+      "date": "2024-12-01",
+      "value": 48699.0,
+      "yoy": -16.0,
+      "mom": 184.2,
+      "monthly_increment": 16073.0
+    },
+    {
+      "date": "2025-02-01",
+      "value": 4744.0,
+      "yoy": -15.7,
+      "mom": -70.5,
+      "monthly_increment": 4744.0
+    },
+    {
+      "date": "2025-03-01",
+      "value": 6849.0,
+      "yoy": -15.9,
+      "mom": -55.6,
+      "monthly_increment": 2105.0
+    },
+    {
+      "date": "2025-04-01",
+      "value": 9340.0,
+      "yoy": -11.4,
+      "mom": 18.3,
+      "monthly_increment": 2491.0
+    },
+    {
+      "date": "2025-05-01",
+      "value": 11281.0,
+      "yoy": -11.9,
+      "mom": -22.1,
+      "monthly_increment": 1941.0
+    },
+    {
+      "date": "2025-06-01",
+      "value": 14271.0,
+      "yoy": -6.5,
+      "mom": 54.0,
+      "monthly_increment": 2990.0
+    },
+    {
+      "date": "2025-07-01",
+      "value": 16950.0,
+      "yoy": -4.6,
+      "mom": -10.4,
+      "monthly_increment": 2679.0
+    },
+    {
+      "date": "2025-08-01",
+      "value": 19263.0,
+      "yoy": -4.7,
+      "mom": -13.7,
+      "monthly_increment": 2313.0
+    },
+    {
+      "date": "2025-09-01",
+      "value": 22302.0,
+      "yoy": -4.2,
+      "mom": 31.4,
+      "monthly_increment": 3039.0
+    },
+    {
+      "date": "2025-10-01",
+      "value": 24982.0,
+      "yoy": -7.4,
+      "mom": -11.8,
+      "monthly_increment": 2680.0
+    },
+    {
+      "date": "2025-11-01",
+      "value": 29119.0,
+      "yoy": -10.7,
+      "mom": 54.4,
+      "monthly_increment": 4137.0
+    },
+    {
+      "date": "2025-12-01",
+      "value": 41518.0,
+      "yoy": -14.7,
+      "mom": 199.7,
+      "monthly_increment": 12399.0
+    }
+  ],
+  "latest": {
+    "date": "2025-12-01",
+    "value": 41518.0,
+    "yoy": -14.7,
+    "mom": 199.7,
+    "monthly_increment": 12399.0
+  },
+  "metadata": {
+    "source": "中国財政部",
+    "indicator": "国有土地使用権出譲収入",
+    "unit": "亿元（累計）",
+    "frequency": "monthly"
+  },
+  "next_release": null,
+  "last_updated": "2026-03-08T19:42:34.619837+09:00"
+}

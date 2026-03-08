@@ -6,10 +6,12 @@ import {
   LineChartOutlined,
   GlobalOutlined,
   AreaChartOutlined,
+  StockOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons'
 import SidebarNavigation from './SidebarNavigation'
+import MarketSidebarNavigation from './MarketSidebarNavigation'
 
 const { Header, Content, Sider } = Layout
 
@@ -58,19 +60,24 @@ function MainLayout() {
       label: 'ホーム',
     },
     {
-      key: '/seasonality',
-      icon: <LineChartOutlined />,
-      label: 'シーズナリティ',
-    },
-    {
       key: '/country',
       icon: <GlobalOutlined />,
-      label: '各国データ',
+      label: 'マクロデータ',
+    },
+    {
+      key: '/markets',
+      icon: <StockOutlined />,
+      label: 'マーケットデータ',
     },
     {
       key: '/compare',
       icon: <AreaChartOutlined />,
       label: 'データ比較',
+    },
+    {
+      key: '/seasonality',
+      icon: <LineChartOutlined />,
+      label: 'シーズナリティ',
     },
   ]
 
@@ -79,11 +86,12 @@ function MainLayout() {
     if (path === '/') return '/'
     if (path.startsWith('/seasonality')) return '/seasonality'
     if (path.startsWith('/country')) return '/country'
+    if (path.startsWith('/markets')) return '/markets'
     if (path.startsWith('/compare')) return '/compare'
     return path
   }, [location.pathname])
 
-  const showSidebar = location.pathname.startsWith('/country')
+  const showSidebar = location.pathname.startsWith('/country') || location.pathname.startsWith('/markets')
 
   // リサイズハンドラー
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -240,7 +248,7 @@ function MainLayout() {
               >
                 {!collapsed && (
                   <span style={{ fontWeight: 600, color: colors.accent, fontSize: '13px' }}>
-                    各国データ
+                    {location.pathname.startsWith('/markets') ? 'マーケットデータ' : 'マクロデータ'}
                   </span>
                 )}
                 <span
@@ -250,7 +258,7 @@ function MainLayout() {
                   {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 </span>
               </div>
-              <SidebarNavigation />
+              {location.pathname.startsWith('/markets') ? <MarketSidebarNavigation /> : <SidebarNavigation />}
             </Sider>
             {/* リサイズハンドル */}
             {!collapsed && (

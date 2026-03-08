@@ -243,7 +243,7 @@ function HomePage() {
                   </Card>
                 </Col>
 
-                {/* 各国データカード */}
+                {/* マクロデータカード */}
                 <Col xs={24} sm={12}>
                   <Card
                     hoverable
@@ -272,7 +272,7 @@ function HomePage() {
                       </div>
                       <div style={{ flex: 1 }}>
                         <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
-                          各国マクロデータ
+                          マクロデータ
                         </Text>
                         <Text
                           style={{
@@ -283,6 +283,52 @@ function HomePage() {
                           }}
                         >
                           主要各国の経済指標をリアルタイムで分析
+                        </Text>
+                      </div>
+                    </div>
+                  </Card>
+                </Col>
+
+                {/* マーケットデータカード */}
+                <Col xs={24} sm={12}>
+                  <Card
+                    hoverable
+                    style={{
+                      background: colors.bgSecondary,
+                      border: `1px solid ${colors.border}`,
+                      height: '100%',
+                    }}
+                    bodyStyle={{ padding: '16px' }}
+                    onClick={() => navigate('/markets')}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                      <div
+                        style={{
+                          width: '44px',
+                          height: '44px',
+                          background: 'rgba(16, 185, 129, 0.15)',
+                          borderRadius: '10px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <StockOutlined style={{ fontSize: '22px', color: colors.accent }} />
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
+                          マーケットデータ
+                        </Text>
+                        <Text
+                          style={{
+                            color: colors.textSecondary,
+                            fontSize: '12px',
+                            display: 'block',
+                            marginTop: '4px',
+                          }}
+                        >
+                          株式・コモディティ・エネルギー市場の分析
                         </Text>
                       </div>
                     </div>

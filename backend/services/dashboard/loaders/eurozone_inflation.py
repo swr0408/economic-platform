@@ -89,7 +89,7 @@ class EurozoneInflationLoader(BaseDashboardLoader):
         stale = set()
 
         if last_updated is None:
-            return stale
+            return set()
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)

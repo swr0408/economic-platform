@@ -2391,23 +2391,31 @@
       "core_goods": 1.42,
       "core_services": 3.03,
       "shelter": 3.17
+    },
+    {
+      "date": "2026-01-01",
+      "food": 2.88,
+      "energy": -0.14,
+      "core_goods": 1.12,
+      "core_services": 2.95,
+      "shelter": 3.02
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "food": 3.07,
-    "energy": 2.3,
-    "core_goods": 1.42,
-    "core_services": 3.03,
-    "shelter": 3.17
+    "date": "2026-01-01",
+    "food": 2.88,
+    "energy": -0.14,
+    "core_goods": 1.12,
+    "core_services": 2.95,
+    "shelter": 3.02
   },
   "next_release": {
-    "date": "2026-02-11",
-    "datetime_utc": "2026-02-11T13:30:00+00:00",
-    "datetime_jst": "2026-02-11T22:30:00+09:00",
-    "time_jst": "22:30",
-    "label": "CPI s.a (Jan)",
-    "estimate": 326.3
+    "date": "2026-03-11",
+    "datetime_utc": "2026-03-11T12:30:00+00:00",
+    "datetime_jst": "2026-03-11T21:30:00+09:00",
+    "time_jst": "21:30",
+    "label": "Core Inflation Rate YoY (Feb)",
+    "estimate": null
   },
-  "last_updated": "2026-02-05T12:03:15.174997+09:00"
+  "last_updated": "2026-02-28T10:50:36.060220+09:00"
 }

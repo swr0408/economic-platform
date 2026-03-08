@@ -25,7 +25,7 @@ import {
   useSortedData,
   usePeriodFiltering,
   useViewModePeriodManagement,
-  useMultiValueMonthlyTableData,
+  useMonthlyTableData,
 } from '../../usa/common/useChartData'
 import {
   NoDataMessage,
@@ -34,7 +34,7 @@ import {
   StandardBarChart,
   ViewModeButtonGroup,
 } from '../../usa/common/ChartComponents'
-import { MonthlyTableWithDataTypes } from '../../usa/common/MonthlyTable'
+import { MonthlyTable } from '../../usa/common/MonthlyTable'
 
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
@@ -59,17 +59,32 @@ const COLORS = {
   yoy: '#E53935',    // 赤（前年比）
 }
 
-type ViewMode = 'value' | 'mom' | 'mom_table' | 'yoy'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'mom'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'value', label: '原数値' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuildingPermitsChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('mom')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     mom: 3,
-    mom_table: 'default',
     yoy: 'default',
   })
 
@@ -94,11 +109,7 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
   })
 
   // テーブル用データ（前月比）
-  const momTableData = useMultiValueMonthlyTableData(
-    chartData,
-    { mom: (item) => item.mom },
-    10
-  )
+  const momTableData = useMonthlyTableData(chartData, (item) => item.mom)
 
   const hasData = chartData.length > 0
 
@@ -113,9 +124,9 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
     return null
   }, [chartData])
 
-  // 現在のビューモードに応じた表示情報
+  // 現在のデータ種別に応じた表示情報
   const { currentValue, currentLabel, currentColor, currentFormat, currentDecimals } = useMemo(() => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return {
         currentValue: latestValue?.value ?? null,
         currentLabel: '建築許可件数（季節調整済み）',
@@ -124,7 +135,7 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
         currentDecimals: 0,
       }
     }
-    if (viewMode === 'mom' || viewMode === 'mom_table') {
+    if (dataKind === 'mom') {
       return {
         currentValue: latestValue?.mom ?? null,
         currentLabel: '建築許可件数（前月比）',
@@ -141,13 +152,13 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
       currentFormat: 'percent' as const,
       currentDecimals: 2,
     }
-  }, [viewMode, latestValue])
+  }, [dataKind, latestValue])
 
   // データ比較用overlayConfig ID
   const getCompareUrl = () => {
-    switch (viewMode) {
+    switch (dataKind) {
       case 'value': return '/compare?s=au_number_of_building_permits'
-      case 'mom': case 'mom_table': return '/compare?s=au_number_of_building_permits_mom'
+      case 'mom': return '/compare?s=au_number_of_building_permits_mom'
       case 'yoy': return '/compare?s=au_number_of_building_permits_yoy'
       default: return '/compare?s=au_number_of_building_permits'
     }
@@ -182,7 +193,7 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
           decimals={currentDecimals}
           valueColor={currentColor}
           nextRelease={data.next_release ?? null}
-          unit={viewMode === 'value' ? '件' : undefined}
+          unit={dataKind === 'value' ? '件' : undefined}
         />
 
         {/* タブ切替（時系列 / マーケットインパクト） */}
@@ -196,21 +207,13 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'mom', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'value', label: '原数値' },
-                    ]}
-                  />
-
-                  {/* 期間セレクター + データ比較ボタン */}
+                  {/* 上段: データ種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -221,8 +224,20 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* 期間セレクター（テーブル以外） */}
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
+
                   {/* === 原数値チャート（線グラフ） === */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[
@@ -235,7 +250,7 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
                   )}
 
                   {/* === 前月比チャート（棒グラフ） === */}
-                  {viewMode === 'mom' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -246,18 +261,13 @@ export default function AuNumberOfBuildingPermitsChart({ data }: AuNumberOfBuild
                     />
                   )}
 
-                  {/* === 前月比テーブル === */}
-                  {viewMode === 'mom_table' && (
-                    <MonthlyTableWithDataTypes
-                      data={momTableData}
-                      dataTypes={[{ type: 'mom', label: '前月比' }]}
-                      selectedType="mom"
-                      onTypeChange={() => {}}
-                    />
+                  {/* === 前月比ヒートマップ === */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
+                    <MonthlyTable data={momTableData} />
                   )}
 
                   {/* === 前年比チャート（線グラフ） === */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[

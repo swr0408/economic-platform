@@ -37,17 +37,17 @@ interface GDPChartData {
   [key: string]: string | number | null | undefined
 }
 
-type ViewMode = 'qoq_chart' | 'qoq_table'
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換
@@ -247,9 +247,10 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 表示形式 */}
+                  <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
 
-                  {viewMode === 'qoq_chart' && (
+                  {displayMode === 'chart' && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
                       <Tooltip title="比較ページを開く">
@@ -263,7 +264,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
                     </div>
                   )}
 
-                  {viewMode === 'qoq_table' ? (
+                  {displayMode === 'heatmap' ? (
                     <GDPTable />
                   ) : (
                     <ZoomableChart

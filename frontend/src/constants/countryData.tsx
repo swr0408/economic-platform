@@ -6,6 +6,7 @@ import {
   RiseOutlined,
   HomeOutlined,
   ShoppingOutlined,
+  GlobalOutlined,
 } from '@ant-design/icons'
 
 export type IndicatorItem = {
@@ -507,7 +508,21 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'lpr', name: 'LPR' },
+          { code: 'reverse-repo-rate', name: 'リバースレポ金利' },
           { code: 'rrr', name: '預金準備率' },
+          { code: 'central-bank-balance-sheet', name: '中銀バランスシート' },
+          { code: 'fixing-repo-rate', name: 'Fixing Repo Rate' },
+          { code: 'central-parity', name: 'Central Parity Rate' },
+          { code: 'shibor', name: 'SHIBOR' },
+          { code: 'm1-m2', name: 'M1/M2' },
+          { code: 'aggregate-financing', name: '社会融資総量' },
+          { code: 'new-rmb-loans', name: '新規人民元貸出' },
+          { code: 'forex-reserves', name: '外貨準備' },
+          { code: 'credit-impulse', name: 'クレジットインパルス' },
+          { code: 'bond-issuance', name: '国債発行' },
+          { code: 'cn-local-bonds', name: '地方債' },
+          { code: 'capital-flows', name: '資本フロー' },
+          { code: 'overseas-investor-flow', name: '海外投資家フロー' },
         ],
       },
       {
@@ -517,8 +532,21 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#52c41a',
         indicators: [
           { code: 'gdp', name: 'GDP' },
-          { code: 'pmi', name: 'PMI' },
+          { code: 'pmi', name: 'NBS PMI' },
+          { code: 'manufacturing-pmi-sub', name: '製造業PMIサブ' },
+          { code: 'non-manufacturing-pmi-sub', name: '非製造業PMIサブ' },
+          { code: 'caixin-pmi', name: 'Caixin PMI' },
+          { code: 'cn-trade-balance', name: '貿易収支' },
+          { code: 'cn-current-account', name: '経常収支' },
+          { code: 'cn-current-account-gdp-ratio', name: '経常収支対GDP比' },
+          { code: 'cn-land-sales-income', name: '土地売却収入' },
+          { code: 'cn-integrated-circuit-manufacturing', name: '集積回路生産' },
+          { code: 'cn-electronics-stock', name: '電気機器在庫' },
           { code: 'industrial-production', name: '鉱工業生産' },
+          { code: 'fixed-asset-investment', name: '固定資産投資' },
+          { code: 'li-keqiang-index', name: '李克強指数' },
+          { code: 'beijing-pm25', name: '北京PM2.5濃度' },
+          { code: 'total-number-of-people', name: '人流総量' },
         ],
       },
       {
@@ -555,7 +583,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <HomeOutlined />,
         color: '#722ed1',
         indicators: [
-          { code: 'hpi', name: '住宅価格' },
+          { code: 'house-price-index', name: '住宅価格指数' },
+          { code: 'commercial-residential-sales', name: '商業住宅販売' },
         ],
       },
     ],
@@ -677,8 +706,15 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <DollarOutlined />,
         color: '#52c41a',
         indicators: [
-          { code: 'gdp', name: 'GDP' },
-          { code: 'trade-balance', name: '貿易収支' },
+          { code: 'nz-gdp-growth-rate', name: 'GDP成長率' },
+          { code: 'nz-gdp-item', name: 'GDP項目' },
+          { code: 'nz-capacity-utilization', name: '設備稼働率' },
+          { code: 'nz-pmi', name: 'PMI / PSI / PCI' },
+          { code: 'nz-global-dairy-trade', name: '乳製品価格（GDT）' },
+          { code: 'nz-terms-of-trade', name: '交易条件' },
+          { code: 'nz-trade-balance', name: '貿易収支' },
+          { code: 'nz-current-account-balance', name: '経常収支' },
+          { code: 'nz-current-account-gdp-ratio', name: '経常収支対GDP比' },
         ],
       },
       {
@@ -687,6 +723,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <ShoppingOutlined />,
         color: '#13c2c2',
         indicators: [
+          { code: 'anz-business-outlook-survey', name: 'ANZ企業景況感指数' },
+          { code: 'nzier-business-conditions', name: 'NZIER企業景況指数' },
           { code: 'retail-sales', name: '小売売上高' },
         ],
       },
@@ -696,7 +734,11 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <TeamOutlined />,
         color: '#faad14',
         indicators: [
-          { code: 'unemployment', name: '失業率' },
+          { code: 'unemployment-rate', name: '失業率' },
+          { code: 'number-of-employees', name: '雇用者数' },
+          { code: 'labor-cost-index', name: '労働コスト指数' },
+          { code: 'wages', name: '賃金' },
+          { code: 'labour-force-participation', name: '労働参加率' },
         ],
       },
       {
@@ -709,6 +751,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'cpi-item', name: 'CPI 項目別' },
           { code: 'traded-nontraded', name: '貿易財 / 非貿易財' },
           { code: 'ppi', name: 'PPI' },
+          { code: 'inflation-expectations', name: 'インフレ期待' },
+          { code: 'anz-business-sentiment-price', name: 'ANZ企業景況感物価関連' },
         ],
       },
       {
@@ -886,6 +930,37 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ch-mortgage-balance', name: '住宅ローン残高' },
           { code: 'ch-new-mortgage-loans', name: '新規住宅ローンの融資限度額の合計金額' },
           { code: 'ch-hpi', name: '住宅価格指数' },
+        ],
+      },
+    ],
+  },
+  {
+    code: 'global',
+    name: 'グローバル',
+    isoCode: 'globe',
+    categories: [
+      {
+        code: 'economy',
+        name: '経済',
+        icon: <GlobalOutlined />,
+        color: '#52c41a',
+        indicators: [
+          // グローバル指標
+          { code: 'global-manufacturing-pmi', name: 'グローバル製造業PMI' },
+          { code: 'economic-surprise-index', name: 'エコノミックサプライズ指数' },
+          { code: 'komatrax', name: 'Komatrax（車両稼働時間）' },
+          { code: 'epu', name: '経済政策不確実性指数（EPU）' },
+          { code: 'semiconductor-sales', name: '半導体売上高' },
+          // 韓国
+          { code: 'korea-exports', name: '韓国輸出' },
+          // 台湾
+          { code: 'taiwan-manufacturing-pmi', name: '台湾製造業PMI' },
+          { code: 'taiwan-pmi-outlook', name: '台湾PMI先行き（電子工学業）' },
+          { code: 'taiwan-export-orders', name: '台湾輸出受注' },
+          { code: 'taiwan-electronics-exports', name: '台湾電気機器輸出' },
+          // 海運
+          { code: 'container-freight-index', name: 'コンテナ運賃指数（SCFI/CCFI）' },
+          { code: 'baltic-dry-index', name: 'バルチック海運指数（BDI）' },
         ],
       },
     ],

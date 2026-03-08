@@ -171,6 +171,10 @@
     {
       "date": "2025-Q3",
       "value": 0.2691159164598833
+    },
+    {
+      "date": "2025-Q4",
+      "value": 0.346644749163727
     }
   ],
   "gdp_growth_yoy": [
@@ -345,15 +349,19 @@
     {
       "date": "2025-Q3",
       "value": 1.3699524985340439
+    },
+    {
+      "date": "2025-Q4",
+      "value": 1.330562920183942
     }
   ],
   "metadata": {
-    "last_updated": "2026-01-30T02:32:30.334735+09:00",
+    "last_updated": "2026-02-28T09:54:11.223089+09:00",
     "source": "European Central Bank (ECB) - Main National Accounts",
     "data_start": "2015-01-01",
     "unit_qoq": "Growth rate to previous period (%)",
     "unit_yoy": "Growth rate to same period in previous year (%)",
     "frequency": "Quarterly"
   },
-  "last_updated": "2026-01-30T02:32:30.334750+09:00"
+  "last_updated": "2026-02-28T09:54:11.223101+09:00"
 }

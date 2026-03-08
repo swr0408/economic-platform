@@ -57,8 +57,19 @@ const CHART_COLOR = '#8b5cf6'
 const MOM_COLOR = '#10b981'
 const YOY_COLOR = '#f59e0b'
 
-// ビューモード
-type ViewMode = 'value' | 'mom' | 'mom_table' | 'yoy'
+// データ種別
+type DataKind = 'value' | 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 前月増減幅テーブル用の凡例と色関数（50k閾値）
 const MOM_TABLE_THRESHOLD = 50
@@ -66,15 +77,15 @@ const MOM_TABLE_LEGEND = createChangeLegend(50, 'k')
 const getMomTableCellColor = createChangeCellColorFn(MOM_TABLE_THRESHOLD)
 
 export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('mom')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     mom: 'default',
-    mom_table: 'default',
     yoy: 'default',
   })
 
@@ -124,9 +135,8 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
   // 現在のビューモードに応じた値を取得
   const getLatestValue = () => {
     if (!latest) return undefined
-    switch (viewMode) {
+    switch (dataKind) {
       case 'mom':
-      case 'mom_table':
         return latest.mom ?? undefined
       case 'yoy':
         return latest.yoy ?? undefined
@@ -137,7 +147,7 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
 
   // 値のフォーマット
   const getValueFormat = () => {
-    switch (viewMode) {
+    switch (dataKind) {
       case 'yoy':
         return 'percent'
       default:
@@ -147,11 +157,10 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
 
   // 単位
   const getUnit = () => {
-    switch (viewMode) {
+    switch (dataKind) {
       case 'yoy':
         return '%'
       case 'mom':
-      case 'mom_table':
         return 'k'
       default:
         return 'k'
@@ -172,7 +181,7 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
 
   // チャート設定
   const getChartConfig = () => {
-    switch (viewMode) {
+    switch (dataKind) {
       case 'mom':
         return {
           lines: [
@@ -231,11 +240,11 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
         {/* 最新値表示 */}
         <SimpleLatestValueBox
           value={getLatestValue()}
-          valueColor={(viewMode === 'mom' || viewMode === 'mom_table') ? MOM_COLOR : viewMode === 'yoy' ? YOY_COLOR : CHART_COLOR}
+          valueColor={dataKind === 'mom' ? MOM_COLOR : dataKind === 'yoy' ? YOY_COLOR : CHART_COLOR}
           date={latest?.date}
           nextRelease={data.next_release}
           format={getValueFormat()}
-          decimals={viewMode === 'yoy' ? 2 : 1}
+          decimals={dataKind === 'yoy' ? 2 : 1}
           unit={getUnit()}
         />
 
@@ -250,35 +259,31 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <div style={{ marginBottom: 8 }}>
-                    <ViewModeButtonGroup
-                      currentMode={viewMode}
-                      onChange={setViewMode}
-                      options={[
-                        { mode: 'value', label: '原数値' },
-                        { mode: 'yoy', label: '前年比' },
-                        { mode: 'mom', label: '前月比' },
-                        { mode: 'mom_table', label: '前月比（テーブル）' },
-                      ]}
-                    />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={handleCompare}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
                   </div>
 
-                  {/* チャート表示（原数値/前月比グラフ/前年比） */}
-                  {(viewMode === 'value' || viewMode === 'mom' || viewMode === 'yoy') && (
+                  {/* 下段: 表示形式（変動系のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
+                  {/* チャート表示 */}
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
                     <>
                       {/* 期間セレクター */}
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={handleCompare}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
 
                       <StandardLineChart
                         data={filteredData}
@@ -292,7 +297,7 @@ export default function ONSClaimantCountChart({ data }: ONSClaimantCountChartPro
                   )}
 
                   {/* 前月増減幅テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       formatValue={(value) => {

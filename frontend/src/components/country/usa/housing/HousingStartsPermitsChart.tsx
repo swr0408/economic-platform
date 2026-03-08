@@ -48,7 +48,20 @@ interface HousingStartsPermitsChartProps {
   housingStartsPermitsData: HousingStartsPermitsData | null
 }
 
-type ViewMode = 'value' | 'yoy' | 'mom_table' | 'mom_chart'
+// 指標種別
+type DataKind = 'value' | 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // カラー設定
 const COLORS = {
@@ -61,17 +74,17 @@ const COLORS = {
 // =============================================================================
 
 export default function HousingStartsPermitsChart({ housingStartsPermitsData }: HousingStartsPermitsChartProps) {
-  const [viewMode, setViewMode] = useState<ViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [dataType, setDataType] = useState<HousingStartsPermitsDataType>('housing_starts')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // 両シリーズを結合したデータを作成
@@ -165,7 +178,7 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
 
   // 最新値表示の内容を決定
   const getLatestItems = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return [
         {
           label: '住宅着工件数',
@@ -182,7 +195,7 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
           decimals: 1,
         },
       ]
-    } else if (viewMode === 'yoy') {
+    } else if (dataKind === 'yoy') {
       return [
         {
           label: '住宅着工件数（前年比）',
@@ -245,31 +258,30 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode)}
-                    options={[
-                      { mode: 'value', label: '現数値' },
-                      { mode: 'yoy', label: '前年比' },
-                      { mode: 'mom_chart', label: '前月比' },
-                      { mode: 'mom_table', label: '前月比（テーブル）' },
-                    ]}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く（住宅着工件数）">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=housing_starts&s=building_permits', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 現数値グラフ */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod as PeriodValue} />
-                        <Tooltip title="比較ページを開く（住宅着工件数）">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=housing_starts&s=building_permits', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod as PeriodValue} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[
@@ -286,19 +298,9 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
                   )}
 
                   {/* 前年比グラフ */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod as PeriodValue} />
-                        <Tooltip title="比較ページを開く（住宅着工件数）">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=housing_starts&s=building_permits', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod as PeriodValue} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[
@@ -312,8 +314,8 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={HOUSING_STARTS_PERMITS_DATA_TYPE_OPTIONS}
@@ -322,25 +324,15 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
                     />
                   )}
 
-                  {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup
                         options={HOUSING_STARTS_PERMITS_DATA_TYPE_OPTIONS}
                         currentType={dataType}
                         onChange={setDataType}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod as PeriodValue} />
-                        <Tooltip title="比較ページを開く（住宅着工件数）">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=housing_starts&s=building_permits', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod as PeriodValue} />
                       <StandardBarChart
                         data={filteredData}
                         bars={[

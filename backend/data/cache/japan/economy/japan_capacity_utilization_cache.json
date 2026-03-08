@@ -1,6 +1,12 @@
 {
   "data": [
     {
+      "date": "2025-12-01",
+      "item_name": "製造工業",
+      "category": "製造工業",
+      "value": 101.3
+    },
+    {
       "date": "2025-11-01",
       "item_name": "製造工業",
       "category": "製造工業",
@@ -571,6 +577,6 @@
       "value": 115.4
     }
   ],
-  "last_updated": "2026-02-11T19:14:29.912210+09:00",
+  "last_updated": "2026-02-28T09:50:06.245669+09:00",
   "source": "Ministry of Economy, Trade and Industry (METI)"
 }

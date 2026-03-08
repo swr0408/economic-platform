@@ -2308,6 +2308,10 @@
       {
         "date": "2026-01-01",
         "value": 4.0
+      },
+      {
+        "date": "2026-02-01",
+        "value": 3.4
       }
     ],
     "five_year": [
@@ -4030,21 +4034,25 @@
       {
         "date": "2026-01-01",
         "value": 3.3
+      },
+      {
+        "date": "2026-02-01",
+        "value": 3.3
       }
     ]
   },
   "latest": {
-    "one_year": 4.0,
+    "one_year": 3.4,
     "five_year": 3.3,
-    "date": "2026-01-01"
+    "date": "2026-02-01"
   },
   "next_release": {
-    "date": "2026-02-06",
-    "datetime_utc": "2026-02-06T15:00:00+00:00",
-    "datetime_jst": "2026-02-07T00:00:00+09:00",
-    "time_jst": "00:00",
-    "label": "Michigan Consumer Sentiment (Feb)",
-    "estimate": 53
+    "date": "2026-03-13",
+    "datetime_utc": "2026-03-13T14:00:00+00:00",
+    "datetime_jst": "2026-03-13T23:00:00+09:00",
+    "time_jst": "23:00",
+    "label": "Michigan Inflation Expectations (Mar)",
+    "estimate": 3.9
   },
-  "last_updated": "2026-02-05T12:03:17.785525+09:00"
+  "last_updated": "2026-03-08T18:00:36.904478+09:00"
 }

@@ -54,13 +54,20 @@ interface AuHouseholdSavingRatioChartProps {
   data: AuHouseholdSavingRatioData | null
 }
 
-// ビューモード
-type HsrViewMode = 'value' | 'qoq_chart' | 'qoq_table'
+// データ種別
+type DataKind = 'value' | 'qoq'
 
-const VIEW_MODE_OPTIONS: { mode: HsrViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'value', label: '貯蓄率' },
-  { mode: 'qoq_chart', label: '前期比変化幅' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
+  { mode: 'qoq', label: '前期比変化幅' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -98,15 +105,15 @@ const formatDateLabelJP = (dateStr: string): string => {
 // =============================================================================
 
 export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingRatioChartProps) {
-  const [viewMode, setViewMode] = useState<HsrViewMode>('value')
+  const [dataKind, setDataKind] = useState<DataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    qoq_chart: 'default',
-    qoq_table: 'default',
+    qoq: 'default',
   })
 
   // データを変換
@@ -202,8 +209,9 @@ export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingR
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -214,8 +222,15 @@ export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingR
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（前期比のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 貯蓄率グラフ（折れ線グラフ） */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -234,7 +249,7 @@ export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingR
                   )}
 
                   {/* 前期比変化幅グラフ（棒グラフ） */}
-                  {viewMode === 'qoq_chart' && (
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -251,8 +266,8 @@ export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingR
                     </>
                   )}
 
-                  {/* 前期比テーブル */}
-                  {viewMode === 'qoq_table' && (
+                  {/* 前期比ヒートマップ */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={2}

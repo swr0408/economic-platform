@@ -31,7 +31,16 @@ interface EuroGDPChartProps {
   data: ECBGDPData | null
 }
 
-type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy'
+type DataKind = 'yoy' | 'qoq'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'qoq', label: '前期比' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 interface ChartDataPoint {
   date: string
@@ -60,20 +69,14 @@ const getQuarterFromECBQuarter = (dateStr: string): number => {
   return match ? parseInt(match[2], 10) - 1 : 0
 }
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
-  { mode: 'yoy', label: '前年比' },
-]
-
 export default function EuroGDPChart({ data }: EuroGDPChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
-  // viewModeからgdpTypeを導出
-  const gdpType = viewMode === 'yoy' ? 'yoy' : 'qoq'
+  // dataKindからgdpTypeを導出
+  const gdpType = dataKind === 'yoy' ? 'yoy' : 'qoq'
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -318,41 +321,50 @@ export default function EuroGDPChart({ data }: EuroGDPChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${compareIndicatorId}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {viewMode !== 'qoq_table' && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${compareIndicatorId}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（前期比のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {viewMode === 'qoq_table' ? (
+                  {dataKind === 'qoq' && displayMode === 'heatmap' ? (
                     <GDPTable />
                   ) : (
-                    <ZoomableChart
-                      data={filteredData}
-                      dataKey="value"
-                      color={CHART_COLORS.primary}
-                      name={chartTitle}
-                      height={450}
-                      tickFormatter={formatPercentage}
-                      tooltipFormatter={formatPercentage}
-                      tooltipLabelFormatter={formatECBQuarterLabel}
-                      xAxisTickFormatter={formatECBQuarterLabel}
-                      enableDynamicTicks={true}
-                      showZeroLine={true}
-                      showFiftyLine={false}
-                      connectNulls={true}
-                      hideLegend={true}
-                    />
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                        <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                      </div>
+                      <ZoomableChart
+                        data={filteredData}
+                        dataKey="value"
+                        color={CHART_COLORS.primary}
+                        name={chartTitle}
+                        height={450}
+                        tickFormatter={formatPercentage}
+                        tooltipFormatter={formatPercentage}
+                        tooltipLabelFormatter={formatECBQuarterLabel}
+                        xAxisTickFormatter={formatECBQuarterLabel}
+                        enableDynamicTicks={true}
+                        showZeroLine={true}
+                        showFiftyLine={false}
+                        connectNulls={true}
+                        hideLegend={true}
+                      />
+                    </>
                   )}
                 </>
               ),

@@ -57,12 +57,18 @@ const COLORS = {
   non_tradable: '#dc2626',
 }
 
-type ViewMode = 'yoy' | 'qoq_chart' | 'qoq_table'
+type DataKind = 'yoy' | 'qoq'
 
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'yoy', label: '前年比' },
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
+  { mode: 'qoq', label: '前期比' },
+]
+
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 const formatQuarterLabel = (dateStr: string): string => {
@@ -83,14 +89,14 @@ const formatQuarterLabelJP = (dateStr: string): string => {
 
 export default function NzCpiChart({ data }: NzCpiChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [tableDataType, setTableDataType] = useState<string>('all_qoq')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    qoq_chart: 5,
-    qoq_table: 'default',
+    qoq: 5,
   })
 
   const chartData = useMemo<ChartDataPoint[]>(() => {
@@ -191,11 +197,12 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={VIEW_MODE_OPTIONS}
-                      currentMode={viewMode}
-                      onChange={setViewMode}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く">
                       <Button
@@ -206,9 +213,15 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
                       </Button>
                     </Tooltip>
                   </div>
+                  {/* 下段: 表示形式（前期比のときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ（折れ線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -230,7 +243,7 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
                   )}
 
                   {/* 前期比グラフ（棒グラフ） */}
-                  {viewMode === 'qoq_chart' && (
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -250,7 +263,7 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
                   )}
 
                   {/* テーブル */}
-                  {viewMode === 'qoq_table' && (
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTableWithDataTypes
                       data={qoqTableData}
                       dataTypes={[

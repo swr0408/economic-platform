@@ -1,0 +1,545 @@
+{
+  "data": [
+    {
+      "date": "2018-12-01",
+      "exports": 5.289,
+      "imports": 5.28,
+      "balance": 0.009
+    },
+    {
+      "date": "2019-01-01",
+      "exports": 4.344,
+      "imports": 5.279,
+      "balance": -0.935
+    },
+    {
+      "date": "2019-02-01",
+      "exports": 4.708,
+      "imports": 4.802,
+      "balance": -0.094
+    },
+    {
+      "date": "2019-03-01",
+      "exports": 5.599,
+      "imports": 4.774,
+      "balance": 0.825
+    },
+    {
+      "date": "2019-04-01",
+      "exports": 5.481,
+      "imports": 5.12,
+      "balance": 0.361
+    },
+    {
+      "date": "2019-05-01",
+      "exports": 5.743,
+      "imports": 5.568,
+      "balance": 0.175
+    },
+    {
+      "date": "2019-06-01",
+      "exports": 4.963,
+      "imports": 4.633,
+      "balance": 0.33
+    },
+    {
+      "date": "2019-07-01",
+      "exports": 4.922,
+      "imports": 5.654,
+      "balance": -0.732
+    },
+    {
+      "date": "2019-08-01",
+      "exports": 4.062,
+      "imports": 5.704,
+      "balance": -1.642
+    },
+    {
+      "date": "2019-09-01",
+      "exports": 4.356,
+      "imports": 5.666,
+      "balance": -1.31
+    },
+    {
+      "date": "2019-10-01",
+      "exports": 5.006,
+      "imports": 6.044,
+      "balance": -1.038
+    },
+    {
+      "date": "2019-11-01",
+      "exports": 5.216,
+      "imports": 6.003,
+      "balance": -0.786
+    },
+    {
+      "date": "2019-12-01",
+      "exports": 5.498,
+      "imports": 5.119,
+      "balance": 0.38
+    },
+    {
+      "date": "2020-01-01",
+      "exports": 4.678,
+      "imports": 5.073,
+      "balance": -0.396
+    },
+    {
+      "date": "2020-02-01",
+      "exports": 4.888,
+      "imports": 4.338,
+      "balance": 0.551
+    },
+    {
+      "date": "2020-03-01",
+      "exports": 5.815,
+      "imports": 5.089,
+      "balance": 0.726
+    },
+    {
+      "date": "2020-04-01",
+      "exports": 5.301,
+      "imports": 3.951,
+      "balance": 1.35
+    },
+    {
+      "date": "2020-05-01",
+      "exports": 5.406,
+      "imports": 4.112,
+      "balance": 1.294
+    },
+    {
+      "date": "2020-06-01",
+      "exports": 5.082,
+      "imports": 4.61,
+      "balance": 0.473
+    },
+    {
+      "date": "2020-07-01",
+      "exports": 4.994,
+      "imports": 4.569,
+      "balance": 0.425
+    },
+    {
+      "date": "2020-08-01",
+      "exports": 4.393,
+      "imports": 4.692,
+      "balance": -0.299
+    },
+    {
+      "date": "2020-09-01",
+      "exports": 4.009,
+      "imports": 5.032,
+      "balance": -1.023
+    },
+    {
+      "date": "2020-10-01",
+      "exports": 4.798,
+      "imports": 5.269,
+      "balance": -0.471
+    },
+    {
+      "date": "2020-11-01",
+      "exports": 5.195,
+      "imports": 4.918,
+      "balance": 0.277
+    },
+    {
+      "date": "2020-12-01",
+      "exports": 5.54,
+      "imports": 5.31,
+      "balance": 0.23
+    },
+    {
+      "date": "2021-01-01",
+      "exports": 4.117,
+      "imports": 4.847,
+      "balance": -0.73
+    },
+    {
+      "date": "2021-02-01",
+      "exports": 4.746,
+      "imports": 4.296,
+      "balance": 0.45
+    },
+    {
+      "date": "2021-03-01",
+      "exports": 5.472,
+      "imports": 5.654,
+      "balance": -0.183
+    },
+    {
+      "date": "2021-04-01",
+      "exports": 5.544,
+      "imports": 4.986,
+      "balance": 0.558
+    },
+    {
+      "date": "2021-05-01",
+      "exports": 5.795,
+      "imports": 5.39,
+      "balance": 0.405
+    },
+    {
+      "date": "2021-06-01",
+      "exports": 6.155,
+      "imports": 5.713,
+      "balance": 0.442
+    },
+    {
+      "date": "2021-07-01",
+      "exports": 5.778,
+      "imports": 6.165,
+      "balance": -0.387
+    },
+    {
+      "date": "2021-08-01",
+      "exports": 4.364,
+      "imports": 6.496,
+      "balance": -2.133
+    },
+    {
+      "date": "2021-09-01",
+      "exports": 4.396,
+      "imports": 6.562,
+      "balance": -2.166
+    },
+    {
+      "date": "2021-10-01",
+      "exports": 5.38,
+      "imports": 6.662,
+      "balance": -1.283
+    },
+    {
+      "date": "2021-11-01",
+      "exports": 5.672,
+      "imports": 6.758,
+      "balance": -1.086
+    },
+    {
+      "date": "2021-12-01",
+      "exports": 6.077,
+      "imports": 7.067,
+      "balance": -0.99
+    },
+    {
+      "date": "2022-01-01",
+      "exports": 4.802,
+      "imports": 5.909,
+      "balance": -1.107
+    },
+    {
+      "date": "2022-02-01",
+      "exports": 5.19,
+      "imports": 5.905,
+      "balance": -0.715
+    },
+    {
+      "date": "2022-03-01",
+      "exports": 6.468,
+      "imports": 7.062,
+      "balance": -0.593
+    },
+    {
+      "date": "2022-04-01",
+      "exports": 6.162,
+      "imports": 5.693,
+      "balance": 0.469
+    },
+    {
+      "date": "2022-05-01",
+      "exports": 6.806,
+      "imports": 6.657,
+      "balance": 0.148
+    },
+    {
+      "date": "2022-06-01",
+      "exports": 6.226,
+      "imports": 7.359,
+      "balance": -1.133
+    },
+    {
+      "date": "2022-07-01",
+      "exports": 6.338,
+      "imports": 7.753,
+      "balance": -1.415
+    },
+    {
+      "date": "2022-08-01",
+      "exports": 5.282,
+      "imports": 7.917,
+      "balance": -2.634
+    },
+    {
+      "date": "2022-09-01",
+      "exports": 5.91,
+      "imports": 8.43,
+      "balance": -2.52
+    },
+    {
+      "date": "2022-10-01",
+      "exports": 5.952,
+      "imports": 8.268,
+      "balance": -2.316
+    },
+    {
+      "date": "2022-11-01",
+      "exports": 6.33,
+      "imports": 8.513,
+      "balance": -2.184
+    },
+    {
+      "date": "2022-12-01",
+      "exports": 6.503,
+      "imports": 7.154,
+      "balance": -0.651
+    },
+    {
+      "date": "2023-01-01",
+      "exports": 5.308,
+      "imports": 7.403,
+      "balance": -2.095
+    },
+    {
+      "date": "2023-02-01",
+      "exports": 5.066,
+      "imports": 5.913,
+      "balance": -0.847
+    },
+    {
+      "date": "2023-03-01",
+      "exports": 6.257,
+      "imports": 7.859,
+      "balance": -1.602
+    },
+    {
+      "date": "2023-04-01",
+      "exports": 6.59,
+      "imports": 6.369,
+      "balance": 0.221
+    },
+    {
+      "date": "2023-05-01",
+      "exports": 6.954,
+      "imports": 6.912,
+      "balance": 0.042
+    },
+    {
+      "date": "2023-06-01",
+      "exports": 6.181,
+      "imports": 6.295,
+      "balance": -0.115
+    },
+    {
+      "date": "2023-07-01",
+      "exports": 5.378,
+      "imports": 6.552,
+      "balance": -1.174
+    },
+    {
+      "date": "2023-08-01",
+      "exports": 4.974,
+      "imports": 7.24,
+      "balance": -2.267
+    },
+    {
+      "date": "2023-09-01",
+      "exports": 4.766,
+      "imports": 7.187,
+      "balance": -2.421
+    },
+    {
+      "date": "2023-10-01",
+      "exports": 5.366,
+      "imports": 7.099,
+      "balance": -1.733
+    },
+    {
+      "date": "2023-11-01",
+      "exports": 5.938,
+      "imports": 7.197,
+      "balance": -1.259
+    },
+    {
+      "date": "2023-12-01",
+      "exports": 5.844,
+      "imports": 6.216,
+      "balance": -0.373
+    },
+    {
+      "date": "2024-01-01",
+      "exports": 4.824,
+      "imports": 5.888,
+      "balance": -1.064
+    },
+    {
+      "date": "2024-02-01",
+      "exports": 5.785,
+      "imports": 6.104,
+      "balance": -0.319
+    },
+    {
+      "date": "2024-03-01",
+      "exports": 6.371,
+      "imports": 5.902,
+      "balance": 0.47
+    },
+    {
+      "date": "2024-04-01",
+      "exports": 6.294,
+      "imports": 6.306,
+      "balance": -0.012
+    },
+    {
+      "date": "2024-05-01",
+      "exports": 7.0,
+      "imports": 6.94,
+      "balance": 0.059
+    },
+    {
+      "date": "2024-06-01",
+      "exports": 6.029,
+      "imports": 5.452,
+      "balance": 0.577
+    },
+    {
+      "date": "2024-07-01",
+      "exports": 6.079,
+      "imports": 7.101,
+      "balance": -1.022
+    },
+    {
+      "date": "2024-08-01",
+      "exports": 4.835,
+      "imports": 7.151,
+      "balance": -2.316
+    },
+    {
+      "date": "2024-09-01",
+      "exports": 4.895,
+      "imports": 7.062,
+      "balance": -2.166
+    },
+    {
+      "date": "2024-10-01",
+      "exports": 5.618,
+      "imports": 7.272,
+      "balance": -1.654
+    },
+    {
+      "date": "2024-11-01",
+      "exports": 6.403,
+      "imports": 6.852,
+      "balance": -0.45
+    },
+    {
+      "date": "2024-12-01",
+      "exports": 6.664,
+      "imports": 6.628,
+      "balance": 0.036
+    },
+    {
+      "date": "2025-01-01",
+      "exports": 6.055,
+      "imports": 6.604,
+      "balance": -0.549
+    },
+    {
+      "date": "2025-02-01",
+      "exports": 6.606,
+      "imports": 6.163,
+      "balance": 0.444
+    },
+    {
+      "date": "2025-03-01",
+      "exports": 7.402,
+      "imports": 6.612,
+      "balance": 0.79
+    },
+    {
+      "date": "2025-04-01",
+      "exports": 7.677,
+      "imports": 6.479,
+      "balance": 1.198
+    },
+    {
+      "date": "2025-05-01",
+      "exports": 7.517,
+      "imports": 6.416,
+      "balance": 1.102
+    },
+    {
+      "date": "2025-06-01",
+      "exports": 6.485,
+      "imports": 6.327,
+      "balance": 0.158
+    },
+    {
+      "date": "2025-07-01",
+      "exports": 6.51,
+      "imports": 7.272,
+      "balance": -0.762
+    },
+    {
+      "date": "2025-08-01",
+      "exports": 5.768,
+      "imports": 7.08,
+      "balance": -1.313
+    },
+    {
+      "date": "2025-09-01",
+      "exports": 5.76,
+      "imports": 7.166,
+      "balance": -1.406
+    },
+    {
+      "date": "2025-10-01",
+      "exports": 6.443,
+      "imports": 8.028,
+      "balance": -1.584
+    },
+    {
+      "date": "2025-11-01",
+      "exports": 6.791,
+      "imports": 7.116,
+      "balance": -0.325
+    },
+    {
+      "date": "2025-12-01",
+      "exports": 7.508,
+      "imports": 7.596,
+      "balance": -0.088
+    },
+    {
+      "date": "2026-01-01",
+      "exports": 6.211,
+      "imports": 6.73,
+      "balance": -0.519
+    }
+  ],
+  "latest": {
+    "date": "2026-01-01",
+    "exports": 6.211,
+    "imports": 6.73,
+    "balance": -0.519
+  },
+  "metadata": {
+    "source": "Stats NZ",
+    "indicator": "Overseas Merchandise Trade",
+    "description": "NZ 貿易収支（輸出入額・収支）",
+    "unit": "10億NZD",
+    "frequency": "monthly",
+    "table": "Table 1.01 - Actual values"
+  },
+  "next_release": {
+    "date": "2026-03-19",
+    "datetime_utc": "2026-03-19T21:45:00+00:00",
+    "datetime_jst": "2026-03-20T06:45:00+09:00",
+    "time_jst": "06:45",
+    "datetime_auckland": "2026-03-20T10:45:00+13:00",
+    "time_auckland": "10:45",
+    "label": "Balance of Trade (Feb)",
+    "estimate": 0.1
+  },
+  "last_updated": "2026-03-01T20:06:14.746405+09:00"
+}

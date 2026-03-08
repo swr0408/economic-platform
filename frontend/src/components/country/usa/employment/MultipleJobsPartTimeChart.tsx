@@ -41,8 +41,10 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  VALUE_CHANGE_VIEW_MODE_OPTIONS,
-  type ValueChangeViewMode,
+  VALUE_CHANGE_DATA_KIND_OPTIONS,
+  type ValueChangeDataKind,
+  DISPLAY_MODE_OPTIONS,
+  type DisplayMode,
   CHANGE_LEGEND_100K,
   getChangeCellColor100k,
 } from '../common/chartConstants'
@@ -98,16 +100,16 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTimeChartProps) {
-  const [viewMode, setViewMode] = useState<ValueChangeViewMode>('value')
+  const [dataKind, setDataKind] = useState<ValueChangeDataKind>('value')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<DataType>('multiple_jobs')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'multiple_jobs' | 'parttime_econ' | 'multiple_jobs_change' | 'parttime_econ_change'>()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 'default',
-    change_chart: 3,
-    change_table: 'default',
+    change: 3,
   })
 
   // データのソート
@@ -177,7 +179,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
 
   // 最新値の表示用アイテム
   const getLatestItems = () => {
-    if (viewMode === 'value') {
+    if (dataKind === 'value') {
       return latest ? [
         { label: SERIES_NAMES.multiple_jobs, value: latest.multiple_jobs, color: getColor('multiple_jobs'), format: 'number' as const, unit: 'k', decimals: 0 },
         { label: SERIES_NAMES.parttime_econ, value: latest.parttime_econ, color: getColor('parttime_econ'), format: 'number' as const, unit: 'k', decimals: 0 },
@@ -228,11 +230,18 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup options={VALUE_CHANGE_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* データ種別切り替え */}
+                  <ViewModeButtonGroup options={VALUE_CHANGE_DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+
+                  {/* 表示形式切り替え（増減幅のときのみ） */}
+                  {dataKind === 'change' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 現数値グラフ（左右Y軸） */}
-                  {viewMode === 'value' && (
+                  {dataKind === 'value' && (
                     <>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                         <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
@@ -322,7 +331,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
                   )}
 
                   {/* 前月増減幅グラフ */}
-                  {viewMode === 'change_chart' && (
+                  {dataKind === 'change' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup
                         options={DATA_TYPE_OPTIONS}
@@ -376,7 +385,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
                   )}
 
                   {/* 前月増減幅テーブル */}
-                  {viewMode === 'change_table' && (
+                  {dataKind === 'change' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={changeTableData}
                       dataTypes={DATA_TYPE_OPTIONS}

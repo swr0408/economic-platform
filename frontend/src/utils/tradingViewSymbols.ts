@@ -57,6 +57,9 @@ export const TRADING_VIEW_SYMBOL_MAP: Record<string, string> = {
   'CHF_INDEX': 'TVC:SXY',           // スイスフランインデックス
   'NZD_INDEX': 'TVC:ZXY',           // NZドルインデックス
 
+  // 海運指数
+  'BDI': 'INDEX:BDI',
+
   // 商品
   'AUD建てゴールド': 'OANDA:XAUAUD',
   'CAD建てゴールド': 'OANDA:XAUCAD',

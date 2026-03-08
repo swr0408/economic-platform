@@ -52,13 +52,20 @@ interface AuNabConfidenceIndexChartProps {
   data: AuNabBusinessConfidenceData | null
 }
 
-// ビューモード
-type NabViewMode = 'mom' | 'mom_table' | 'index'
+// データ種別
+type DataKind = 'index' | 'mom'
 
-const VIEW_MODE_OPTIONS: { mode: NabViewMode; label: string }[] = [
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'index', label: '指数' },
   { mode: 'mom', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // カラー設定
@@ -88,14 +95,14 @@ const formatDateLabelJP = (dateStr: string): string => {
 // =============================================================================
 
 export default function AuNabConfidenceIndexChart({ data }: AuNabConfidenceIndexChartProps) {
-  const [viewMode, setViewMode] = useState<NabViewMode>('index')
+  const [dataKind, setDataKind] = useState<DataKind>('index')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 3,
-    mom_table: 'default',
     index: 'default',
   })
 
@@ -187,8 +194,9 @@ export default function AuNabConfidenceIndexChart({ data }: AuNabConfidenceIndex
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: データ種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -199,8 +207,15 @@ export default function AuNabConfidenceIndexChart({ data }: AuNabConfidenceIndex
                     </Tooltip>
                   </div>
 
+                  {/* 下段: 表示形式（momのときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
+
                   {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
@@ -217,8 +232,8 @@ export default function AuNabConfidenceIndexChart({ data }: AuNabConfidenceIndex
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={1}
@@ -227,7 +242,7 @@ export default function AuNabConfidenceIndexChart({ data }: AuNabConfidenceIndex
                   )}
 
                   {/* 指数（折れ線グラフ） */}
-                  {viewMode === 'index' && (
+                  {dataKind === 'index' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart

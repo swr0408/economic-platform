@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Row, Col, Typography, Space, Button } from 'antd'
-import { CalendarOutlined, MenuFoldOutlined } from '@ant-design/icons'
+import { CalendarOutlined, MenuFoldOutlined, GlobalOutlined } from '@ant-design/icons'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 
 const { Title, Text } = Typography
@@ -81,6 +81,12 @@ const COUNTRIES: Country[] = [
     name: 'スイス',
     description: '金融と精密産業の中心地',
   },
+  {
+    code: 'global',
+    isoCode: 'globe',
+    name: 'グローバル',
+    description: 'グローバル先行指標・韓国・台湾',
+  },
 ]
 
 // 右サイドバー（経済カレンダー）のデフォルト幅と範囲
@@ -142,7 +148,7 @@ function CountryDataIndex() {
         }}
       >
         <Title level={3} style={{ marginBottom: 4, color: colors.textPrimary }}>
-          各国データ
+          マクロデータ
         </Title>
         <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 24, display: 'block' }}>
           主要国の経済指標とデータを国別に閲覧できます
@@ -166,14 +172,18 @@ function CountryDataIndex() {
                   }}
                 >
                   <Space direction="vertical" size={10} style={{ width: '100%' }}>
-                    <span
-                      className={`fi fi-${country.isoCode}`}
-                      style={{
-                        fontSize: 40,
-                        borderRadius: 4,
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-                      }}
-                    />
+                    {country.isoCode === 'globe' ? (
+                      <GlobalOutlined style={{ fontSize: 40, color: colors.accent }} />
+                    ) : (
+                      <span
+                        className={`fi fi-${country.isoCode}`}
+                        style={{
+                          fontSize: 40,
+                          borderRadius: 4,
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                        }}
+                      />
+                    )}
                     <div>
                       <Title level={5} style={{ margin: 0, color: colors.textPrimary }}>
                         {country.name}

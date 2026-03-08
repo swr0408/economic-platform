@@ -14,9 +14,7 @@ import type { DurableGoodsData } from '../../../../hooks/useDashboardData'
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
-  STANDARD_VIEW_MODE_OPTIONS,
   DURABLE_GOODS_DATA_TYPE_OPTIONS,
-  type StandardViewMode,
   type DurableGoodsDataType,
 } from '../common/chartConstants'
 import {
@@ -47,6 +45,20 @@ interface DurableGoodsChartProps {
   data: DurableGoodsData | null
 }
 
+// 指標種別
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
+
 // カラー設定
 const COLORS = {
   yoy: CHART_COLORS.primary,
@@ -60,16 +72,16 @@ const COLORS = {
 // =============================================================================
 
 export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
-  const [viewMode, setViewMode] = useState<StandardViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<DurableGoodsDataType>('total')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理（共通フック使用）
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // 指標種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     yoy: 'default',
-    mom_table: 'default',
-    mom_chart: 3,
+    mom: 3,
   })
 
   // データを日付昇順にソート
@@ -130,7 +142,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
             color: COLORS.yoy_ex,
           }}
           date={latest?.date}
-          viewMode={viewMode}
+          viewMode={dataKind}
           nextRelease={data.next_release}
         />
 
@@ -145,22 +157,30 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <ViewModeButtonGroup options={STANDARD_VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=durable_goods_value', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
+
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=durable_goods_value', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
                         data={filteredData}
                         lines={[
@@ -174,8 +194,8 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={DURABLE_GOODS_DATA_TYPE_OPTIONS}
@@ -184,21 +204,11 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                     />
                   )}
 
-                  {/* 前月比グラフ */}
-                  {viewMode === 'mom_chart' && (
+                  {/* 前月比チャート */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup options={DURABLE_GOODS_DATA_TYPE_OPTIONS} currentType={dataType} onChange={setDataType} />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                        <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                        <Tooltip title="比較ページを開く">
-                          <Button
-                            icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=durable_goods_value', '_blank')}
-                          >
-                            データ比較
-                          </Button>
-                        </Tooltip>
-                      </div>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardBarChart
                         data={filteredData}
                         bars={[

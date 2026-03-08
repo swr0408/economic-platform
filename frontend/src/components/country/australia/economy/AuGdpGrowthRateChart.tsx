@@ -55,7 +55,21 @@ const COLORS = {
   yoy: '#FFCD00', // オーストラリア金
 }
 
-type ViewMode = 'qoq_chart' | 'qoq_table' | 'yoy'
+// データ種別
+type DataKind = 'yoy' | 'qoq'
+
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '前期比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示形式
+type DisplayMode = 'chart' | 'heatmap'
+
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 // 四半期日付フォーマッター（2025-01-01 → 2025/Q1）
 const formatQuarterLabel = (dateStr: string): string => {
@@ -79,12 +93,12 @@ const getQuarterFromDate = (dateStr: string): number => {
 
 export default function AuGdpGrowthRateChart({ data }: AuGdpGrowthRateChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq_chart: 'default',
-    qoq_table: 'default',
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    qoq: 'default',
     yoy: 'default',
   })
 
@@ -147,15 +161,15 @@ export default function AuGdpGrowthRateChart({ data }: AuGdpGrowthRateChartProps
   // 現在表示中の値を取得
   const currentValue = useMemo(() => {
     if (!latest) return null
-    if (viewMode === 'yoy') return latest.yoy
+    if (dataKind === 'yoy') return latest.yoy
     return latest.qoq
-  }, [latest, viewMode])
+  }, [latest, dataKind])
 
   // 現在の色を取得
   const currentColor = useMemo(() => {
-    if (viewMode === 'yoy') return COLORS.yoy
+    if (dataKind === 'yoy') return COLORS.yoy
     return COLORS.qoq
-  }, [viewMode])
+  }, [dataKind])
 
   if (data === null) {
     return <LoadingChart title="GDP成長率" />
@@ -274,12 +288,12 @@ export default function AuGdpGrowthRateChart({ data }: AuGdpGrowthRateChartProps
 
   // データ比較用のoverlayConfig ID
   const getCompareId = () => {
-    if (viewMode === 'yoy') return 'au_gdp_growth_rate_yoy'
+    if (dataKind === 'yoy') return 'au_gdp_growth_rate_yoy'
     return 'au_gdp_growth_rate_qoq'
   }
 
   const getChartTitle = () => {
-    if (viewMode === 'yoy') return 'GDP成長率（前年比）'
+    if (dataKind === 'yoy') return 'GDP成長率（前年比）'
     return 'GDP成長率（前期比）'
   }
 
@@ -314,36 +328,39 @@ export default function AuGdpGrowthRateChart({ data }: AuGdpGrowthRateChartProps
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替（3種類） */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'qoq_chart', label: '前期比' },
-                      { mode: 'qoq_table', label: '前期比（テーブル）' },
-                      { mode: 'yoy', label: '前年比' },
-                    ]}
-                  />
+                  {/* 上段: データ種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={setDataKind}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                    <Tooltip title="比較ページを開く">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
-                  {/* 期間セレクター（テーブル以外で表示） */}
-                  {viewMode !== 'qoq_table' && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      <Tooltip title="比較ページを開く">
-                        <Button
-                          icon={<AreaChartOutlined />}
-                          onClick={() => window.open(`/compare?s=${getCompareId()}`, '_blank')}
-                        >
-                          データ比較
-                        </Button>
-                      </Tooltip>
+                  {/* 下段: 表示形式（qoqのときのみ） */}
+                  {dataKind === 'qoq' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
-                  {/* コンテンツ表示 */}
-                  {viewMode === 'qoq_table' && <GDPTable />}
+                  {/* 期間セレクター（テーブル以外で表示） */}
+                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  )}
 
-                  {viewMode === 'qoq_chart' && (
+                  {/* コンテンツ表示 */}
+                  {dataKind === 'qoq' && displayMode === 'heatmap' && <GDPTable />}
+
+                  {dataKind === 'qoq' && displayMode === 'chart' && (
                     <StandardBarChart
                       data={filteredData}
                       bars={[
@@ -354,7 +371,7 @@ export default function AuGdpGrowthRateChart({ data }: AuGdpGrowthRateChartProps
                     />
                   )}
 
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <StandardLineChart
                       data={filteredData}
                       lines={[

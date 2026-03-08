@@ -32,6 +32,7 @@ import {
   StandardBarChart,
   ViewModeButtonGroup,
   ChartControlRow,
+  CompareButton,
 } from '../../usa/common/ChartComponents'
 import { MonthlyTable } from '../../usa/common/MonthlyTable'
 import { CHART_COLORS } from '../../usa/common/chartConstants'
@@ -49,21 +50,24 @@ interface ChartDataPoint {
   [key: string]: unknown
 }
 
-// 統一されたビューモード定義
-type ViewMode = 'mom_chart' | 'mom_table' | 'yoy_chart'
-
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
-  { mode: 'yoy_chart', label: '前年比' },
+type DataKind = 'yoy' | 'mom'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'yoy', label: '前年比' },
+  { mode: 'mom', label: '前月比' },
+]
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 export default function GermanyIndustrialProductionChart({ data }: GermanyIndustrialProductionChartProps) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
-  const [viewMode, setViewMode] = useState<ViewMode>('mom_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
   // 現在のデータタイプを判定
-  const dataType = viewMode.startsWith('yoy') ? 'yoy' : 'mom'
+  const dataType = dataKind
 
   // propsのデータをチャート用に変換
   const rawChartData = useMemo<ChartDataPoint[]>(() => {
@@ -157,63 +161,73 @@ export default function GermanyIndustrialProductionChart({ data }: GermanyIndust
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切り替え */}
-                  <ViewModeButtonGroup
-                    options={VIEW_MODE_OPTIONS}
-                    currentMode={viewMode}
-                    onChange={setViewMode}
-                  />
+                  {/* 上段: 指標種別 + データ比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                    <CompareButton indicatorId={compareIndicatorId} />
+                  </div>
 
-                  {/* 期間セレクタとデータ比較ボタン（テーブル以外で表示） */}
-                  {viewMode !== 'mom_table' && (
-                    <ChartControlRow
-                      selectedPeriod={currentPeriod}
-                      onPeriodChange={setCurrentPeriod}
-                      indicatorId={compareIndicatorId}
-                    />
+                  {/* 下段: 表示形式（前月比のときのみ） */}
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
                   )}
 
                   {/* チャート/テーブル表示 */}
-                  {viewMode === 'mom_table' ? (
+                  {dataKind === 'mom' && displayMode === 'heatmap' ? (
                     <MonthlyTable
                       data={tableData}
                       formatValue={(v) => v === null ? '-' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}`}
                       decimals={1}
                     />
-                  ) : viewMode === 'mom_chart' ? (
-                    <StandardBarChart
-                      data={filteredData}
-                      bars={[
-                        {
-                          dataKey: 'value',
-                          name: '前月比',
-                          color: CHART_COLORS.primary,
-                        },
-                      ]}
-                      xAxisFormatter={formatDateLabel}
-                      yAxisFormatter={(v) => `${v.toFixed(1)}%`}
-                      tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
-                      tooltipLabelFormatter={formatDateLabelJP}
-                      showZeroLine={true}
-                      showLegend={false}
-                    />
                   ) : (
-                    <StandardLineChart
-                      data={filteredData}
-                      lines={[
-                        {
-                          dataKey: 'value',
-                          color: CHART_COLORS.primary,
-                          name: '前年比',
-                        },
-                      ]}
-                      xAxisFormatter={formatDateLabel}
-                      yAxisFormatter={(v) => `${v.toFixed(1)}%`}
-                      tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
-                      tooltipLabelFormatter={formatDateLabelJP}
-                      showZeroLine={true}
-                      showLegend={false}
-                    />
+                    <>
+                      <ChartControlRow
+                        selectedPeriod={currentPeriod}
+                        onPeriodChange={setCurrentPeriod}
+                        indicatorId={compareIndicatorId}
+                        hideCompareButton
+                      />
+
+                      {dataKind === 'mom' && displayMode === 'chart' && (
+                        <StandardBarChart
+                          data={filteredData}
+                          bars={[
+                            {
+                              dataKey: 'value',
+                              name: '前月比',
+                              color: CHART_COLORS.primary,
+                            },
+                          ]}
+                          xAxisFormatter={formatDateLabel}
+                          yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+                          tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
+                          tooltipLabelFormatter={formatDateLabelJP}
+                          showZeroLine={true}
+                          showLegend={false}
+                        />
+                      )}
+
+                      {dataKind === 'yoy' && (
+                        <StandardLineChart
+                          data={filteredData}
+                          lines={[
+                            {
+                              dataKey: 'value',
+                              color: CHART_COLORS.primary,
+                              name: '前年比',
+                            },
+                          ]}
+                          xAxisFormatter={formatDateLabel}
+                          yAxisFormatter={(v) => `${v.toFixed(1)}%`}
+                          tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
+                          tooltipLabelFormatter={formatDateLabelJP}
+                          showZeroLine={true}
+                          showLegend={false}
+                        />
+                      )}
+                    </>
                   )}
                 </>
               ),

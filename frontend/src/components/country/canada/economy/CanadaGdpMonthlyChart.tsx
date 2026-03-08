@@ -47,7 +47,20 @@ interface CanadaGdpMonthlyChartProps {
   data: CaGdpMonthlyData | null
 }
 
-type ViewMode = 'mom' | 'mom_table' | 'yoy'
+type DataKind = 'yoy' | 'mom'
+type DisplayMode = 'chart' | 'heatmap'
+
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 interface ChartDataItem {
   date: string
@@ -60,12 +73,12 @@ interface ChartDataItem {
 
 export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 'default' as PeriodType,
-    mom_table: 'default' as PeriodType,
     yoy: 'default' as PeriodType,
   })
 
@@ -76,18 +89,16 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
   const chartData = useMemo<ChartDataItem[]>(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    const currentViewMode = viewMode === 'mom_table' ? 'mom' : viewMode
-
     const formattedData: ChartDataItem[] = data.data.map((item) => ({
       date: item.date,
-      value: currentViewMode === 'mom' ? (item.mom ?? 0) : (item.yoy ?? 0),
+      value: dataKind === 'mom' ? (item.mom ?? 0) : (item.yoy ?? 0),
       mom: item.mom,
       yoy: item.yoy,
       isAdvance: false,
     }))
 
     // 速報値がある場合、MoMモードでチャートに追加
-    if (advanceEstimate && currentViewMode === 'mom') {
+    if (advanceEstimate && dataKind === 'mom') {
       // 速報値がまだデータに含まれていない場合のみ追加
       const advanceDate = advanceEstimate.date
       const existsInData = formattedData.some(item => item.date === advanceDate)
@@ -105,7 +116,7 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
     formattedData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
     return formattedData
-  }, [data, viewMode, advanceEstimate])
+  }, [data, dataKind, advanceEstimate])
 
   const formatPercentage = (value: number) => {
     return `${value.toFixed(2)}%`
@@ -142,38 +153,27 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
     )
   }
 
-  const viewModeOptions = [
-    { mode: 'mom' as ViewMode, label: '前月比' },
-    { mode: 'mom_table' as ViewMode, label: '前月比（テーブル）' },
-    { mode: 'yoy' as ViewMode, label: '前年比' },
-  ]
-
   // 表示ラベルを取得
-  const getViewModeLabel = (mode: ViewMode) => {
-    switch (mode) {
+  const getDataKindLabel = (kind: DataKind) => {
+    switch (kind) {
       case 'mom': return '前月比'
-      case 'mom_table': return '前月比'
       case 'yoy': return '前年比'
     }
   }
 
-  // 最新値を取得（ViewModeに応じて）
+  // 最新値を取得（DataKindに応じて）
   const getLatestValue = () => {
     if (!latestValue) return undefined
-    switch (viewMode) {
-      case 'mom':
-      case 'mom_table':
-        return latestValue.mom
+    switch (dataKind) {
+      case 'mom': return latestValue.mom
       case 'yoy': return latestValue.yoy
     }
   }
 
   // 比較ページ用のキーを取得
   const getCompareKey = () => {
-    switch (viewMode) {
-      case 'mom':
-      case 'mom_table':
-        return 'mom'
+    switch (dataKind) {
+      case 'mom': return 'mom'
       case 'yoy': return 'yoy'
     }
   }
@@ -188,7 +188,7 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={getViewModeLabel(viewMode)}
+          label={getDataKindLabel(dataKind)}
           value={getLatestValue()}
           valueColor={CHART_COLORS.primary}
           date={latestValue?.date}
@@ -198,7 +198,7 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
           } : null}
           format="percent"
           decimals={2}
-          advanceEstimate={advanceEstimate && (viewMode === 'mom' || viewMode === 'mom_table') ? {
+          advanceEstimate={advanceEstimate && dataKind === 'mom' ? {
             value: advanceEstimate.mom,
             date: advanceEstimate.date,
             label: '速報値',
@@ -215,11 +215,12 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={viewModeOptions}
-                      currentMode={viewMode}
-                      onChange={setViewMode}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く">
                       <Button
@@ -230,9 +231,14 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={2}
@@ -243,14 +249,14 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
                   )}
 
                   {/* グラフ表示 */}
-                  {viewMode !== 'mom_table' && (
+                  {!(dataKind === 'mom' && displayMode === 'heatmap') && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ZoomableChart
                         data={filteredData}
                         dataKey="value"
                         color={CHART_COLORS.primary}
-                        name={`月次GDP（${getViewModeLabel(viewMode)}）`}
+                        name={`月次GDP（${getDataKindLabel(dataKind)}）`}
                         height={450}
                         tickFormatter={formatPercentage}
                         xAxisTickFormatter={formatDateLabel}
@@ -260,7 +266,7 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
                         connectNulls={true}
                         hideLegend={true}
                         showDefaultTooltip={false}
-                        domain={viewMode === 'yoy' ? ['dataMin - 0.5', 'dataMax + 0.5'] : ['dataMin - 0.2', 'dataMax + 0.2']}
+                        domain={dataKind === 'yoy' ? ['dataMin - 0.5', 'dataMax + 0.5'] : ['dataMin - 0.2', 'dataMax + 0.2']}
                       >
                         <RechartsTooltip
                           content={({ active, payload, label }) => {
@@ -304,7 +310,7 @@ export default function CanadaGdpMonthlyChart({ data }: CanadaGdpMonthlyChartPro
                                         marginRight: 6,
                                       }}
                                     />
-                                    {getViewModeLabel(viewMode)}
+                                    {getDataKindLabel(dataKind)}
                                   </span>
                                   <span style={{ fontWeight: 500, color: displayColor }}>
                                     {formatPercentage(displayValue)}

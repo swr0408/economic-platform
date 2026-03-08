@@ -55,12 +55,10 @@ import {
 // =============================================================================
 
 // 表示モード
-type ViewMode = 'qoq_chart' | 'qoq_table'
-
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'qoq_chart', label: '前期比' },
-  { mode: 'qoq_table', label: '前期比（テーブル）' },
+type DisplayMode = 'chart' | 'heatmap'
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // マージ済みデータの型
@@ -165,7 +163,7 @@ const GDPComponentsChart: React.FC = () => {
   const [data, setData] = useState<GDPComponentsData | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [viewMode, setViewMode] = useState<ViewMode>('qoq_chart')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(5)
   const [displayCount, setDisplayCount] = useState<number>(10)
 
@@ -376,7 +374,7 @@ const GDPComponentsChart: React.FC = () => {
                 <>
                   {/* 表示モード切替 + 比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={(mode) => { setViewMode(mode); if (mode === 'qoq_table') setDisplayCount(INITIAL_COUNT) }} />
+                    <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={(mode) => { setDisplayMode(mode); if (mode === 'heatmap') setDisplayCount(INITIAL_COUNT) }} />
                     <Button
                       icon={<AreaChartOutlined />}
                       onClick={() => {
@@ -388,7 +386,7 @@ const GDPComponentsChart: React.FC = () => {
                   </div>
 
                   {/* グラフ表示 */}
-                  {viewMode === 'qoq_chart' && (
+                  {displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <ResponsiveContainer width="100%" height={450}>
@@ -424,7 +422,7 @@ const GDPComponentsChart: React.FC = () => {
                   )}
 
                   {/* テーブル表示 */}
-                  {viewMode === 'qoq_table' && (
+                  {displayMode === 'heatmap' && (
                     <>
                       <Table
                         columns={tableColumns}

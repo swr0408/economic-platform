@@ -199,6 +199,10 @@ class ISMNonManufacturingService:
             traceback.print_exc()
             return []
 
+    def _get_next_release(self) -> Optional[Dict[str, Any]]:
+        """次回発表日を取得（FMPから）"""
+        return get_next_release_from_fmp(self.ECONALPHA_ID)
+
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
         return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)

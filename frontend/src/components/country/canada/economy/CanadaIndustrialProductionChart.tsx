@@ -50,7 +50,20 @@ interface CanadaIndustrialProductionChartProps {
   data: CaIndustrialProductionData | null
 }
 
-type ViewMode = 'mom' | 'mom_table' | 'yoy'
+type DataKind = 'yoy' | 'mom'
+type DisplayMode = 'chart' | 'heatmap'
+
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
+]
 
 interface ChartDataItem {
   date: string
@@ -62,12 +75,12 @@ interface ChartDataItem {
 
 export default function CanadaIndustrialProductionChart({ data }: CanadaIndustrialProductionChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('yoy')
+  const [dataKind, setDataKind] = useState<DataKind>('yoy')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 'default' as PeriodType,
-    mom_table: 'default' as PeriodType,
     yoy: 'default' as PeriodType,
   })
 
@@ -75,11 +88,9 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
   const chartData = useMemo<ChartDataItem[]>(() => {
     if (!data?.data || data.data.length === 0) return []
 
-    const currentViewMode = viewMode === 'mom_table' ? 'mom' : viewMode
-
     const formattedData: ChartDataItem[] = data.data.map((item) => ({
       date: item.date,
-      value: currentViewMode === 'mom' ? (item.mom ?? 0) : (item.yoy ?? 0),
+      value: dataKind === 'mom' ? (item.mom ?? 0) : (item.yoy ?? 0),
       mom: item.mom,
       yoy: item.yoy,
     }))
@@ -88,7 +99,7 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
     formattedData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 
     return formattedData
-  }, [data, viewMode])
+  }, [data, dataKind])
 
   const formatPercentage = (value: number) => {
     return `${value.toFixed(2)}%`
@@ -125,38 +136,27 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
     )
   }
 
-  const viewModeOptions = [
-    { mode: 'mom' as ViewMode, label: '前月比' },
-    { mode: 'mom_table' as ViewMode, label: '前月比（テーブル）' },
-    { mode: 'yoy' as ViewMode, label: '前年比' },
-  ]
-
   // 表示ラベルを取得
-  const getViewModeLabel = (mode: ViewMode) => {
-    switch (mode) {
+  const getDataKindLabel = (kind: DataKind) => {
+    switch (kind) {
       case 'mom': return '前月比'
-      case 'mom_table': return '前月比'
       case 'yoy': return '前年比'
     }
   }
 
-  // 最新値を取得（ViewModeに応じて）
+  // 最新値を取得（DataKindに応じて）
   const getLatestValue = () => {
     if (!latestValue) return undefined
-    switch (viewMode) {
-      case 'mom':
-      case 'mom_table':
-        return latestValue.mom
+    switch (dataKind) {
+      case 'mom': return latestValue.mom
       case 'yoy': return latestValue.yoy
     }
   }
 
   // 比較ページ用のキーを取得
   const getCompareKey = () => {
-    switch (viewMode) {
-      case 'mom':
-      case 'mom_table':
-        return 'mom'
+    switch (dataKind) {
+      case 'mom': return 'mom'
       case 'yoy': return 'yoy'
     }
   }
@@ -171,7 +171,7 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
-          label={getViewModeLabel(viewMode)}
+          label={getDataKindLabel(dataKind)}
           value={getLatestValue()}
           valueColor={CHART_COLORS.primary}
           date={latestValue?.date}
@@ -193,11 +193,12 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <ViewModeButtonGroup
-                      options={viewModeOptions}
-                      currentMode={viewMode}
-                      onChange={setViewMode}
+                      options={DATA_KIND_OPTIONS}
+                      currentMode={dataKind}
+                      onChange={setDataKind}
                     />
                     <Tooltip title="比較ページを開く">
                       <Button
@@ -208,9 +209,14 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTable
                       data={momTableData}
                       decimals={2}
@@ -220,89 +226,91 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
                     />
                   )}
 
-                  {/* グラフ表示 */}
-                  {viewMode !== 'mom_table' && (
+                  {/* 前月比グラフ（棒グラフ） */}
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-                      {viewMode === 'mom' ? (
-                        // 前月比は棒グラフ
-                        <StandardBarChart
-                          data={filteredData}
-                          bars={[
-                            { dataKey: 'value', color: CHART_COLORS.primary, name: '前月比' }
-                          ]}
-                          height={450}
-                          showZeroLine={true}
-                          yAxisFormatter={(v: number) => `${v.toFixed(1)}%`}
-                          yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
-                        />
-                      ) : (
-                        // 前年比は線グラフ
-                        <ZoomableChart
-                          data={filteredData}
-                          dataKey="value"
-                          color={CHART_COLORS.primary}
-                          name="鉱工業生産（前年比）"
-                          height={450}
-                          tickFormatter={formatPercentage}
-                          xAxisTickFormatter={formatDateLabel}
-                          enableDynamicTicks={true}
-                          showZeroLine={true}
-                          showFiftyLine={false}
-                          connectNulls={true}
-                          hideLegend={true}
-                          showDefaultTooltip={false}
-                          domain={['dataMin - 0.5', 'dataMax + 0.5']}
-                        >
-                          <RechartsTooltip
-                            content={({ active, payload, label }) => {
-                              if (!active || !payload || payload.length === 0) return null
-                              const dataItem = payload[0]?.payload as ChartDataItem
-                              const displayValue = dataItem.value
-                              return (
+                      <StandardBarChart
+                        data={filteredData}
+                        bars={[
+                          { dataKey: 'value', color: CHART_COLORS.primary, name: '前月比' }
+                        ]}
+                        height={450}
+                        showZeroLine={true}
+                        yAxisFormatter={(v: number) => `${v.toFixed(1)}%`}
+                        yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+                      />
+                    </>
+                  )}
+
+                  {/* 前年比グラフ（線グラフ） */}
+                  {dataKind === 'yoy' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ZoomableChart
+                        data={filteredData}
+                        dataKey="value"
+                        color={CHART_COLORS.primary}
+                        name="鉱工業生産（前年比）"
+                        height={450}
+                        tickFormatter={formatPercentage}
+                        xAxisTickFormatter={formatDateLabel}
+                        enableDynamicTicks={true}
+                        showZeroLine={true}
+                        showFiftyLine={false}
+                        connectNulls={true}
+                        hideLegend={true}
+                        showDefaultTooltip={false}
+                        domain={['dataMin - 0.5', 'dataMax + 0.5']}
+                      >
+                        <RechartsTooltip
+                          content={({ active, payload, label }) => {
+                            if (!active || !payload || payload.length === 0) return null
+                            const dataItem = payload[0]?.payload as ChartDataItem
+                            const displayValue = dataItem.value
+                            return (
+                              <div
+                                style={{
+                                  backgroundColor: DARK_THEME.bgTertiary,
+                                  border: `1px solid ${DARK_THEME.borderLight}`,
+                                  borderRadius: 8,
+                                  padding: '12px 16px',
+                                  boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                                }}
+                              >
+                                <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
+                                  {formatDateLabel(String(label))}
+                                </div>
                                 <div
                                   style={{
-                                    backgroundColor: DARK_THEME.bgTertiary,
-                                    border: `1px solid ${DARK_THEME.borderLight}`,
-                                    borderRadius: 8,
-                                    padding: '12px 16px',
-                                    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    fontSize: 13,
                                   }}
                                 >
-                                  <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
-                                    {formatDateLabel(String(label))}
-                                  </div>
-                                  <div
-                                    style={{
-                                      display: 'flex',
-                                      justifyContent: 'space-between',
-                                      alignItems: 'center',
-                                      fontSize: 13,
-                                    }}
-                                  >
-                                    <span style={{ color: '#f1f5f9', marginRight: 16 }}>
-                                      <span
-                                        style={{
-                                          display: 'inline-block',
-                                          width: 10,
-                                          height: 10,
-                                          borderRadius: 2,
-                                          backgroundColor: CHART_COLORS.primary,
-                                          marginRight: 6,
-                                        }}
-                                      />
-                                      前年比
-                                    </span>
-                                    <span style={{ fontWeight: 500, color: CHART_COLORS.primary }}>
-                                      {formatPercentage(displayValue)}
-                                    </span>
-                                  </div>
+                                  <span style={{ color: '#f1f5f9', marginRight: 16 }}>
+                                    <span
+                                      style={{
+                                        display: 'inline-block',
+                                        width: 10,
+                                        height: 10,
+                                        borderRadius: 2,
+                                        backgroundColor: CHART_COLORS.primary,
+                                        marginRight: 6,
+                                      }}
+                                    />
+                                    前年比
+                                  </span>
+                                  <span style={{ fontWeight: 500, color: CHART_COLORS.primary }}>
+                                    {formatPercentage(displayValue)}
+                                  </span>
                                 </div>
-                              )
-                            }}
-                          />
-                        </ZoomableChart>
-                      )}
+                              </div>
+                            )
+                          }}
+                        />
+                      </ZoomableChart>
                     </>
                   )}
                 </>

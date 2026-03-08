@@ -3117,112 +3117,112 @@
     },
     {
       "date": "2021-01-01",
-      "median_cpi": 2.15,
+      "median_cpi": 2.16,
       "trimmed_mean_16": 1.97,
       "cpi": 1.4,
       "core_cpi": 1.41
     },
     {
       "date": "2021-02-01",
-      "median_cpi": 2.15,
-      "trimmed_mean_16": 1.99,
+      "median_cpi": 2.12,
+      "trimmed_mean_16": 2.0,
       "cpi": 1.68,
       "core_cpi": 1.28
     },
     {
       "date": "2021-03-01",
-      "median_cpi": 2.08,
-      "trimmed_mean_16": 2.07,
+      "median_cpi": 2.06,
+      "trimmed_mean_16": 2.08,
       "cpi": 2.62,
       "core_cpi": 1.65
     },
     {
       "date": "2021-04-01",
-      "median_cpi": 2.14,
-      "trimmed_mean_16": 2.43,
+      "median_cpi": 2.11,
+      "trimmed_mean_16": 2.44,
       "cpi": 4.16,
       "core_cpi": 2.96
     },
     {
       "date": "2021-05-01",
-      "median_cpi": 2.18,
-      "trimmed_mean_16": 2.71,
+      "median_cpi": 2.15,
+      "trimmed_mean_16": 2.72,
       "cpi": 4.99,
       "core_cpi": 3.8
     },
     {
       "date": "2021-06-01",
-      "median_cpi": 2.33,
+      "median_cpi": 2.27,
       "trimmed_mean_16": 2.98,
       "cpi": 5.39,
       "core_cpi": 4.47
     },
     {
       "date": "2021-07-01",
-      "median_cpi": 2.31,
-      "trimmed_mean_16": 3.07,
+      "median_cpi": 2.23,
+      "trimmed_mean_16": 3.06,
       "cpi": 5.37,
       "core_cpi": 4.27
     },
     {
       "date": "2021-08-01",
-      "median_cpi": 2.43,
+      "median_cpi": 2.35,
       "trimmed_mean_16": 3.23,
       "cpi": 5.25,
       "core_cpi": 4.0
     },
     {
       "date": "2021-09-01",
-      "median_cpi": 2.78,
+      "median_cpi": 2.7,
       "trimmed_mean_16": 3.57,
       "cpi": 5.39,
       "core_cpi": 4.03
     },
     {
       "date": "2021-10-01",
-      "median_cpi": 3.2,
-      "trimmed_mean_16": 4.22,
+      "median_cpi": 3.13,
+      "trimmed_mean_16": 4.23,
       "cpi": 6.22,
       "core_cpi": 4.56
     },
     {
       "date": "2021-11-01",
-      "median_cpi": 3.53,
+      "median_cpi": 3.46,
       "trimmed_mean_16": 4.66,
       "cpi": 6.81,
       "core_cpi": 4.93
     },
     {
       "date": "2021-12-01",
-      "median_cpi": 3.82,
-      "trimmed_mean_16": 5.03,
+      "median_cpi": 3.74,
+      "trimmed_mean_16": 5.02,
       "cpi": 7.04,
       "core_cpi": 5.45
     },
     {
       "date": "2022-01-01",
-      "median_cpi": 4.26,
-      "trimmed_mean_16": 5.56,
+      "median_cpi": 4.17,
+      "trimmed_mean_16": 5.54,
       "cpi": 7.48,
       "core_cpi": 6.02
     },
     {
       "date": "2022-02-01",
-      "median_cpi": 4.55,
-      "trimmed_mean_16": 5.9,
+      "median_cpi": 4.5,
+      "trimmed_mean_16": 5.89,
       "cpi": 7.87,
       "core_cpi": 6.41
     },
     {
       "date": "2022-03-01",
-      "median_cpi": 4.84,
-      "trimmed_mean_16": 6.2,
+      "median_cpi": 4.83,
+      "trimmed_mean_16": 6.18,
       "cpi": 8.54,
       "core_cpi": 6.47
     },
     {
       "date": "2022-04-01",
-      "median_cpi": 5.15,
+      "median_cpi": 5.16,
       "trimmed_mean_16": 6.28,
       "cpi": 8.26,
       "core_cpi": 6.16
@@ -3230,319 +3230,326 @@
     {
       "date": "2022-05-01",
       "median_cpi": 5.51,
-      "trimmed_mean_16": 6.56,
+      "trimmed_mean_16": 6.55,
       "cpi": 8.58,
       "core_cpi": 6.02
     },
     {
       "date": "2022-06-01",
-      "median_cpi": 5.88,
-      "trimmed_mean_16": 6.89,
+      "median_cpi": 5.89,
+      "trimmed_mean_16": 6.88,
       "cpi": 9.06,
       "core_cpi": 5.92
     },
     {
       "date": "2022-07-01",
-      "median_cpi": 6.21,
+      "median_cpi": 6.22,
       "trimmed_mean_16": 6.9,
       "cpi": 8.52,
       "core_cpi": 5.91
     },
     {
       "date": "2022-08-01",
-      "median_cpi": 6.52,
-      "trimmed_mean_16": 7.11,
+      "median_cpi": 6.53,
+      "trimmed_mean_16": 7.09,
       "cpi": 8.26,
       "core_cpi": 6.32
     },
     {
       "date": "2022-09-01",
-      "median_cpi": 6.69,
-      "trimmed_mean_16": 7.2,
+      "median_cpi": 6.67,
+      "trimmed_mean_16": 7.17,
       "cpi": 8.2,
       "core_cpi": 6.63
     },
     {
       "date": "2022-10-01",
-      "median_cpi": 6.74,
-      "trimmed_mean_16": 6.85,
+      "median_cpi": 6.71,
+      "trimmed_mean_16": 6.83,
       "cpi": 7.75,
       "core_cpi": 6.28
     },
     {
       "date": "2022-11-01",
-      "median_cpi": 6.8,
-      "trimmed_mean_16": 6.62,
+      "median_cpi": 6.76,
+      "trimmed_mean_16": 6.63,
       "cpi": 7.11,
       "core_cpi": 5.96
     },
     {
       "date": "2022-12-01",
-      "median_cpi": 6.85,
-      "trimmed_mean_16": 6.54,
+      "median_cpi": 6.81,
+      "trimmed_mean_16": 6.55,
       "cpi": 6.45,
       "core_cpi": 5.71
     },
     {
       "date": "2023-01-01",
-      "median_cpi": 6.88,
-      "trimmed_mean_16": 6.48,
+      "median_cpi": 6.85,
+      "trimmed_mean_16": 6.49,
       "cpi": 6.41,
       "core_cpi": 5.58
     },
     {
       "date": "2023-02-01",
-      "median_cpi": 6.95,
-      "trimmed_mean_16": 6.33,
+      "median_cpi": 6.92,
+      "trimmed_mean_16": 6.34,
       "cpi": 6.04,
       "core_cpi": 5.54
     },
     {
       "date": "2023-03-01",
-      "median_cpi": 6.87,
-      "trimmed_mean_16": 6.01,
+      "median_cpi": 6.8,
+      "trimmed_mean_16": 6.02,
       "cpi": 4.98,
       "core_cpi": 5.59
     },
     {
       "date": "2023-04-01",
-      "median_cpi": 6.79,
-      "trimmed_mean_16": 5.94,
+      "median_cpi": 6.64,
+      "trimmed_mean_16": 5.89,
       "cpi": 4.93,
       "core_cpi": 5.52
     },
     {
       "date": "2023-05-01",
-      "median_cpi": 6.56,
-      "trimmed_mean_16": 5.46,
+      "median_cpi": 6.41,
+      "trimmed_mean_16": 5.41,
       "cpi": 4.05,
       "core_cpi": 5.33
     },
     {
       "date": "2023-06-01",
-      "median_cpi": 6.26,
-      "trimmed_mean_16": 4.94,
+      "median_cpi": 6.15,
+      "trimmed_mean_16": 4.9,
       "cpi": 2.97,
       "core_cpi": 4.83
     },
     {
       "date": "2023-07-01",
-      "median_cpi": 5.94,
-      "trimmed_mean_16": 4.72,
+      "median_cpi": 5.84,
+      "trimmed_mean_16": 4.68,
       "cpi": 3.18,
       "core_cpi": 4.65
     },
     {
       "date": "2023-08-01",
-      "median_cpi": 5.65,
-      "trimmed_mean_16": 4.4,
+      "median_cpi": 5.54,
+      "trimmed_mean_16": 4.37,
       "cpi": 3.67,
       "core_cpi": 4.35
     },
     {
       "date": "2023-09-01",
       "median_cpi": 5.43,
-      "trimmed_mean_16": 4.19,
+      "trimmed_mean_16": 4.16,
       "cpi": 3.7,
       "core_cpi": 4.15
     },
     {
       "date": "2023-10-01",
-      "median_cpi": 5.15,
-      "trimmed_mean_16": 4.0,
+      "median_cpi": 5.18,
+      "trimmed_mean_16": 3.98,
       "cpi": 3.24,
       "core_cpi": 4.03
     },
     {
       "date": "2023-11-01",
-      "median_cpi": 5.1,
-      "trimmed_mean_16": 3.89,
+      "median_cpi": 5.17,
+      "trimmed_mean_16": 3.85,
       "cpi": 3.14,
       "core_cpi": 4.01
     },
     {
       "date": "2023-12-01",
-      "median_cpi": 4.99,
-      "trimmed_mean_16": 3.69,
+      "median_cpi": 5.06,
+      "trimmed_mean_16": 3.66,
       "cpi": 3.35,
       "core_cpi": 3.93
     },
     {
       "date": "2024-01-01",
-      "median_cpi": 4.91,
-      "trimmed_mean_16": 3.6,
+      "median_cpi": 4.96,
+      "trimmed_mean_16": 3.57,
       "cpi": 3.09,
       "core_cpi": 3.86
     },
     {
       "date": "2024-02-01",
-      "median_cpi": 4.67,
-      "trimmed_mean_16": 3.49,
+      "median_cpi": 4.73,
+      "trimmed_mean_16": 3.46,
       "cpi": 3.15,
       "core_cpi": 3.75
     },
     {
       "date": "2024-03-01",
-      "median_cpi": 4.67,
-      "trimmed_mean_16": 3.58,
+      "median_cpi": 4.74,
+      "trimmed_mean_16": 3.56,
       "cpi": 3.48,
       "core_cpi": 3.8
     },
     {
       "date": "2024-04-01",
-      "median_cpi": 4.55,
-      "trimmed_mean_16": 3.48,
+      "median_cpi": 4.67,
+      "trimmed_mean_16": 3.45,
       "cpi": 3.36,
       "core_cpi": 3.61
     },
     {
       "date": "2024-05-01",
-      "median_cpi": 4.39,
-      "trimmed_mean_16": 3.36,
+      "median_cpi": 4.46,
+      "trimmed_mean_16": 3.33,
       "cpi": 3.27,
       "core_cpi": 3.42
     },
     {
       "date": "2024-06-01",
-      "median_cpi": 4.2,
-      "trimmed_mean_16": 3.29,
+      "median_cpi": 4.28,
+      "trimmed_mean_16": 3.24,
       "cpi": 2.97,
       "core_cpi": 3.27
     },
     {
       "date": "2024-07-01",
-      "median_cpi": 4.15,
-      "trimmed_mean_16": 3.26,
+      "median_cpi": 4.22,
+      "trimmed_mean_16": 3.21,
       "cpi": 2.89,
       "core_cpi": 3.17
     },
     {
       "date": "2024-08-01",
-      "median_cpi": 4.11,
-      "trimmed_mean_16": 3.17,
+      "median_cpi": 4.18,
+      "trimmed_mean_16": 3.13,
       "cpi": 2.53,
       "core_cpi": 3.2
     },
     {
       "date": "2024-09-01",
-      "median_cpi": 4.05,
-      "trimmed_mean_16": 3.13,
+      "median_cpi": 4.06,
+      "trimmed_mean_16": 3.08,
       "cpi": 2.44,
       "core_cpi": 3.31
     },
     {
       "date": "2024-10-01",
       "median_cpi": 4.01,
-      "trimmed_mean_16": 3.16,
+      "trimmed_mean_16": 3.13,
       "cpi": 2.6,
       "core_cpi": 3.33
     },
     {
       "date": "2024-11-01",
       "median_cpi": 3.82,
-      "trimmed_mean_16": 3.18,
+      "trimmed_mean_16": 3.16,
       "cpi": 2.75,
       "core_cpi": 3.32
     },
     {
       "date": "2024-12-01",
-      "median_cpi": 3.74,
-      "trimmed_mean_16": 3.16,
+      "median_cpi": 3.73,
+      "trimmed_mean_16": 3.14,
       "cpi": 2.89,
       "core_cpi": 3.24
     },
     {
       "date": "2025-01-01",
-      "median_cpi": 3.59,
-      "trimmed_mean_16": 3.13,
+      "median_cpi": 3.6,
+      "trimmed_mean_16": 3.07,
       "cpi": 3.0,
       "core_cpi": 3.26
     },
     {
       "date": "2025-02-01",
-      "median_cpi": 3.53,
-      "trimmed_mean_16": 3.08,
+      "median_cpi": 3.52,
+      "trimmed_mean_16": 3.03,
       "cpi": 2.82,
       "core_cpi": 3.12
     },
     {
       "date": "2025-03-01",
-      "median_cpi": 3.48,
-      "trimmed_mean_16": 2.99,
+      "median_cpi": 3.44,
+      "trimmed_mean_16": 2.93,
       "cpi": 2.39,
       "core_cpi": 2.79
     },
     {
       "date": "2025-04-01",
-      "median_cpi": 3.46,
-      "trimmed_mean_16": 2.97,
+      "median_cpi": 3.42,
+      "trimmed_mean_16": 2.95,
       "cpi": 2.31,
       "core_cpi": 2.78
     },
     {
       "date": "2025-05-01",
-      "median_cpi": 3.45,
-      "trimmed_mean_16": 3.04,
+      "median_cpi": 3.48,
+      "trimmed_mean_16": 3.03,
       "cpi": 2.35,
       "core_cpi": 2.79
     },
     {
       "date": "2025-06-01",
       "median_cpi": 3.58,
-      "trimmed_mean_16": 3.17,
+      "trimmed_mean_16": 3.15,
       "cpi": 2.67,
       "core_cpi": 2.93
     },
     {
       "date": "2025-07-01",
       "median_cpi": 3.65,
-      "trimmed_mean_16": 3.22,
+      "trimmed_mean_16": 3.2,
       "cpi": 2.7,
       "core_cpi": 3.06
     },
     {
       "date": "2025-08-01",
-      "median_cpi": 3.62,
-      "trimmed_mean_16": 3.29,
+      "median_cpi": 3.63,
+      "trimmed_mean_16": 3.26,
       "cpi": 2.92,
       "core_cpi": 3.11
     },
     {
       "date": "2025-09-01",
-      "median_cpi": 3.47,
-      "trimmed_mean_16": 3.19,
+      "median_cpi": 3.49,
+      "trimmed_mean_16": 3.16,
       "cpi": 3.01,
       "core_cpi": 3.02
     },
     {
       "date": "2025-10-01",
-      "median_cpi": 3.25,
-      "trimmed_mean_16": 3.04,
+      "median_cpi": 3.28,
+      "trimmed_mean_16": 2.99,
       "cpi": null,
       "core_cpi": null
     },
     {
       "date": "2025-11-01",
-      "median_cpi": 3.07,
-      "trimmed_mean_16": 2.9,
+      "median_cpi": 3.1,
+      "trimmed_mean_16": 2.86,
       "cpi": 2.74,
       "core_cpi": 2.63
     },
     {
       "date": "2025-12-01",
-      "median_cpi": 3.08,
-      "trimmed_mean_16": 2.95,
+      "median_cpi": 3.1,
+      "trimmed_mean_16": 2.91,
       "cpi": 2.68,
       "core_cpi": 2.64
+    },
+    {
+      "date": "2026-01-01",
+      "median_cpi": 2.97,
+      "trimmed_mean_16": 2.72,
+      "cpi": 2.39,
+      "core_cpi": 2.5
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "median_cpi": 3.08,
-    "trimmed_mean_16": 2.95,
-    "cpi": 2.68,
-    "core_cpi": 2.64
+    "date": "2026-01-01",
+    "median_cpi": 2.97,
+    "trimmed_mean_16": 2.72,
+    "cpi": 2.39,
+    "core_cpi": 2.5
   },
-  "latest_data_date": "2025-12-01",
-  "last_updated": "2026-02-05T12:03:16.321248+09:00"
+  "latest_data_date": "2026-01-01",
+  "last_updated": "2026-02-28T10:50:36.414024+09:00"
 }

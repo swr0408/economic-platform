@@ -12,6 +12,7 @@ from datetime import datetime, timedelta, date
 from typing import Dict, List, Any, Optional
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 
 import yfinance as yf
 import pandas as pd
@@ -173,12 +174,9 @@ class YFinanceService:
             "error": "No data available"
         }
 
-    def _fetch_from_yfinance(self, ticker: str) -> List[Dict[str, Any]]:
-        """yfinance からデータを取得"""
-        try:
-            print(f"Fetching {ticker} from yfinance...")
-
-            # 15年前からの日足データ
+    def _fetch_from_yfinance(self, ticker: str, timeout: int = 30) -> List[Dict[str, Any]]:
+        """yfinance からデータを取得（タイムアウト付き）"""
+        def _do_fetch():
             end_date = datetime.now()
             start_date = end_date - timedelta(days=DATA_YEARS * 365)
 
@@ -195,7 +193,6 @@ class YFinanceService:
 
             result = []
             for idx, row in df.iterrows():
-                # インデックスが Timestamp の場合
                 date_str = idx.strftime("%Y-%m-%d") if hasattr(idx, 'strftime') else str(idx)[:10]
 
                 result.append({
@@ -210,10 +207,16 @@ class YFinanceService:
             print(f"Fetched {len(result)} records for {ticker}")
             return result
 
+        try:
+            print(f"Fetching {ticker} from yfinance (timeout={timeout}s)...")
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(_do_fetch)
+                return future.result(timeout=timeout)
+        except FuturesTimeoutError:
+            print(f"Timeout fetching {ticker} after {timeout}s")
+            return []
         except Exception as e:
             print(f"Error fetching {ticker}: {e}")
-            import traceback
-            traceback.print_exc()
             return []
 
     def _get_calculated_data(
@@ -372,10 +375,26 @@ class YFinanceService:
         symbol_ids: List[str],
         force_refresh: bool = False
     ) -> Dict[str, Dict[str, Any]]:
-        """複数銘柄のデータを一括取得"""
+        """複数銘柄のデータを一括取得（並列処理）"""
         result = {}
-        for symbol_id in symbol_ids:
-            result[symbol_id] = self.get_daily_data(symbol_id, force_refresh)
+
+        def _fetch_one(sid: str) -> tuple:
+            return sid, self.get_daily_data(sid, force_refresh)
+
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            futures = {executor.submit(_fetch_one, sid): sid for sid in symbol_ids}
+            for future in futures:
+                try:
+                    sid, data = future.result(timeout=60)
+                    result[sid] = data
+                except Exception as e:
+                    sid = futures[future]
+                    print(f"Error fetching {sid} in batch: {e}")
+                    result[sid] = {
+                        "data": [], "latest": None, "symbol": get_symbol_by_id(sid),
+                        "cached": False, "source": "none", "error": str(e)
+                    }
+
         return result
 
     def get_all_symbols_data(

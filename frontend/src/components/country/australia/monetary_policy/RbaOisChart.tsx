@@ -108,9 +108,9 @@ export default function RbaOisChart() {
     return (
       <Card
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>OIS (Overnight Indexed Swaps)</span>
-            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
               再取得
             </Button>
           </div>

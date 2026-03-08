@@ -45,14 +45,20 @@ interface CanadaRetailSalesChartProps {
   data: CaRetailSalesData | null
 }
 
-type ViewMode = 'yoy' | 'mom_table' | 'mom_chart'
+type DataKind = 'yoy' | 'mom'
+type DisplayMode = 'chart' | 'heatmap'
 type SeriesType = 'total' | 'ex_auto' | 'ex_auto_gas'
 
-// ビューモード設定
-const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
-  { mode: 'mom_chart', label: '前月比' },
-  { mode: 'mom_table', label: '前月比（テーブル）' },
+// 指標種別設定
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'mom', label: '前月比' },
   { mode: 'yoy', label: '前年比' },
+]
+
+// 表示モード設定
+const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
+  { mode: 'chart', label: 'チャート' },
+  { mode: 'heatmap', label: 'ヒートマップ' },
 ]
 
 // 系列設定（テーブル用）
@@ -71,14 +77,14 @@ const COLORS = {
 
 export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('mom_chart')
+  const [dataKind, setDataKind] = useState<DataKind>('mom')
+  const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [seriesType, setSeriesType] = useState<SeriesType>('total')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
-  // ビューモード毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    mom_table: 'default' as PeriodType,
-    mom_chart: 3 as PeriodType,
+  // データ種別毎の期間管理
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+    mom: 3 as PeriodType,
     yoy: 'default' as PeriodType,
   })
 
@@ -140,7 +146,7 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
   }
 
   // グラフ用のデータキーを取得
-  const getDataKey = () => `${seriesType}_${viewMode === 'yoy' ? 'yoy' : 'mom'}`
+  const getDataKey = () => `${seriesType}_${dataKind === 'yoy' ? 'yoy' : 'mom'}`
 
   // 系列のラベルを取得
   const getSeriesLabel = (series: SeriesType) => {
@@ -210,10 +216,10 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
       >
         {/* 最新値表示 */}
         <LatestValueBox
-          items={viewMode === 'yoy' ? getYoyLatestItems() : getMomLatestItems()}
+          items={dataKind === 'yoy' ? getYoyLatestItems() : getMomLatestItems()}
           date={latestValue?.date}
           nextRelease={data.next_release}
-          advanceEstimate={advanceEstimate && viewMode !== 'yoy' ? {
+          advanceEstimate={advanceEstimate && dataKind !== 'yoy' ? {
             value: advanceEstimate.total_mom,
             date: advanceEstimate.date,
             label: '総合（速報値）',
@@ -230,8 +236,9 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
               label: '時系列',
               children: (
                 <>
+                  {/* 上段: 指標種別 + データ比較ボタン */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
+                    <ViewModeButtonGroup options={DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
@@ -241,9 +248,14 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
                       </Button>
                     </Tooltip>
                   </div>
+                  {dataKind === 'mom' && (
+                    <div style={{ marginBottom: 8 }}>
+                      <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
+                    </div>
+                  )}
 
                   {/* 前年比グラフ（線グラフ） */}
-                  {viewMode === 'yoy' && (
+                  {dataKind === 'yoy' && (
                     <>
                       <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                       <StandardLineChart
@@ -261,8 +273,8 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
                     </>
                   )}
 
-                  {/* 前月比テーブル */}
-                  {viewMode === 'mom_table' && (
+                  {/* 前月比ヒートマップ */}
+                  {dataKind === 'mom' && displayMode === 'heatmap' && (
                     <MonthlyTableWithDataTypes
                       data={momTableData}
                       dataTypes={SERIES_DATA_TYPE_OPTIONS}
@@ -272,7 +284,7 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
                   )}
 
                   {/* 前月比グラフ（棒グラフ） */}
-                  {viewMode === 'mom_chart' && (
+                  {dataKind === 'mom' && displayMode === 'chart' && (
                     <>
                       <DataTypeButtonGroup
                         options={SERIES_DATA_TYPE_OPTIONS.map(s => ({ type: s.type, label: s.label }))}
