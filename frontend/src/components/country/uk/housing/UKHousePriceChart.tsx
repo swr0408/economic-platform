@@ -102,8 +102,8 @@ export default function UKHousePriceChart({ data }: UKHousePriceChartProps) {
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
-    mom: 'default',
+    yoy: 10,
+    mom: 10,
   })
 
   // propsのデータをチャート用に変換（YoY - 全系列をマージ）

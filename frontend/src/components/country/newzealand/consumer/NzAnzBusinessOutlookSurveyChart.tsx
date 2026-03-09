@@ -106,7 +106,7 @@ export default function NzAnzBusinessOutlookSurveyChart({ data }: NzAnzBusinessO
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataType, {
     mom: 3,
-    index: 'default',
+    index: 10,
   })
 
   // データを変換（MoMはフロントエンドで計算）

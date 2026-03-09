@@ -71,7 +71,7 @@ export default function UKTradeBalanceChart({ data }: UKTradeBalanceChartProps) 
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     mom: 3,
   })
 

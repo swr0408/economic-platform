@@ -40,7 +40,7 @@ interface JapanBalanceSheetChartData {
 }
 
 export default function JapanBalanceSheetChart({ data }: JapanBalanceSheetChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<JapanBalanceSheetChartData[]>(() => {

@@ -126,7 +126,7 @@ const formatNextRelease = (nextRelease: JapanUnemploymentData['next_release']): 
 
 export default function UnemploymentChart({ data }: UnemploymentChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // チャートデータに変換
   const chartData = useMemo<ChartDataPoint[]>(() => {

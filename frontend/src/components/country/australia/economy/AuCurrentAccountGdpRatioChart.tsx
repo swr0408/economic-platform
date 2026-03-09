@@ -48,7 +48,7 @@ interface ChartDataItem {
 
 export default function AuCurrentAccountGdpRatioChart({ data }: AuCurrentAccountGdpRatioChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataItem[]>(() => {

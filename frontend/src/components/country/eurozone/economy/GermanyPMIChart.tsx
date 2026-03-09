@@ -54,7 +54,7 @@ const COLORS = {
 // =============================================================================
 
 export default function GermanyPMIChart({ data }: GermanyPMIChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

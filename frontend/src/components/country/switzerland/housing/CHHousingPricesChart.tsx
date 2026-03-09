@@ -86,8 +86,8 @@ export default function CHHousingPricesChart({ data }: CHHousingPricesChartProps
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
-    qoq: 'default',
+    yoy: 10,
+    qoq: 10,
   })
 
   // propsのデータをチャート用に変換

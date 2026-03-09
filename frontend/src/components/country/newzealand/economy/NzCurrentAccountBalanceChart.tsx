@@ -80,8 +80,8 @@ export default function NzCurrentAccountBalanceChart({ data }: NzCurrentAccountB
 
   // ビューモードごとに期間を別管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    value: 'default',
-    qoq: 'default',
+    value: 20,
+    qoq: 20,
   })
 
   // データを日付昇順にソート

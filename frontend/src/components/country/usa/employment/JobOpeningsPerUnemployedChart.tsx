@@ -131,7 +131,7 @@ function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
 // =============================================================================
 
 export default function JobOpeningsPerUnemployedChart({ data }: JobOpeningsPerUnemployedChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート

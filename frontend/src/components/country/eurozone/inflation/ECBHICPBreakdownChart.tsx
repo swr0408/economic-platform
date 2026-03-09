@@ -55,7 +55,7 @@ const COLORS = {
 
 export default function ECBHICPBreakdownChart({ data }: ECBHICPBreakdownChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>(10)
 
   // propsのデータをチャート用に変換
   const rawChartData = useMemo<ChartDataPoint[]>(() => {

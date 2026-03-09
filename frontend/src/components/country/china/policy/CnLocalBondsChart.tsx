@@ -91,7 +91,7 @@ const COMPARE_IDS: Record<DataKind, string> = {
 
 export default function CnLocalBondsChart({ data }: Props) {
   const [dataKind, setDataKind] = useState<DataKind>('new_ratio')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   const chartData = useMemo((): ChartDataPoint[] => {
     if (!data?.data) return []

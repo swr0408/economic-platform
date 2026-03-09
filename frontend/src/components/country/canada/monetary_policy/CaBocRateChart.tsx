@@ -40,7 +40,7 @@ interface CaBocRateChartData {
 }
 
 export default function CaBocRateChart({ data }: CaBocRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換

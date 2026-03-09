@@ -69,8 +69,8 @@ export default function JapanBalanceOfTradeChart({ data }: JapanBalanceOfTradeCh
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    trade_balance: 'default' as PeriodType,
-    exports_imports: 'default' as PeriodType,
+    trade_balance: 20 as PeriodType,
+    exports_imports: 20 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

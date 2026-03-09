@@ -80,8 +80,8 @@ export default function CaWeeklyAverageSalaryChart({ data }: CaWeeklyAverageSala
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
-    mom: 'default',
+    yoy: 10,
+    mom: 10,
   })
 
   // propsのデータをチャート用に変換

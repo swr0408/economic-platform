@@ -53,7 +53,7 @@ const COLOR_EXPORTS = '#059669'
 
 export default function SouthKoreanExportsChart({ data }: SouthKoreanExportsChartProps) {
   const [activeTab, setActiveTab] = useState<ActiveTab>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   const sortedData = useSortedData(data?.data ?? [])
 

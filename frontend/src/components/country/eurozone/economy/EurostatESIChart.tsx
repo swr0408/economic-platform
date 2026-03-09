@@ -55,7 +55,7 @@ const getYearFromMonth = (dateStr: string): number => {
 }
 
 export default function EurostatESIChart({ data }: EurostatESIChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {

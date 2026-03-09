@@ -59,7 +59,7 @@ const COLORS = {
 
 export default function CaInflationExpectationsChart({ data }: CaInflationExpectationsChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート

@@ -12,6 +12,7 @@ interface PeriodSelectorProps {
   selectedPeriod?: PeriodValue
   options?: PeriodOption[]
   size?: 'small' | 'middle' | 'large'
+  /** @deprecated Reset is removed. This prop is ignored. */
   showReset?: boolean
 }
 
@@ -21,6 +22,7 @@ const defaultOptions: PeriodOption[] = [
   { label: '3Y', value: 3 },
   { label: '5Y', value: 5 },
   { label: '10Y', value: 10 },
+  { label: '20Y', value: 20 },
   { label: 'All', value: 'all' },
 ]
 
@@ -29,15 +31,11 @@ export default function PeriodSelector({
   selectedPeriod,
   options = defaultOptions,
   size = 'small',
-  showReset = true,
 }: PeriodSelectorProps) {
-  const resetOption: PeriodOption = { label: 'Reset', value: 'default' }
-  const allOptions: PeriodOption[] = showReset ? [...options, resetOption] : options
-
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 8 }}>
       <Space size={8}>
-        {allOptions.map(({ label, value }) => (
+        {options.map(({ label, value }) => (
           <Button
             key={label}
             size={size}

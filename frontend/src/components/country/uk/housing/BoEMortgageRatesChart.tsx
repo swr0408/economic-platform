@@ -65,7 +65,7 @@ const SERIES_NAMES = {
 }
 
 export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // propsのデータをチャート用に変換（3系列をマージ）
   const rawChartData = useMemo<ChartDataPoint[]>(() => {

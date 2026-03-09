@@ -50,7 +50,7 @@ const createPercentNoSignFormatter = (decimals: number = 1) => {
 // =============================================================================
 
 export default function PersonalSavingRateChart({ data }: PersonalSavingRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート

@@ -50,7 +50,7 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function IndeedWageGrowthChart({ data }: IndeedWageGrowthChartProps) {
-  const [period, setPeriod] = useState<'default' | 'all' | number>('default')
+  const [period, setPeriod] = useState<'default' | 'all' | number>(10)
 
   // データのソート
   const sortedData = useSortedData(data?.data)

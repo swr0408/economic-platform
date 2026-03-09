@@ -203,7 +203,7 @@ function EpuTooltip({ active, payload, label }: {
 
 export default function EpuChart({ data }: EpuChartProps) {
   const [viewMode, setViewMode] = useState<EpuViewMode>('global')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // US Monthly データ（個別API）
   const [usMonthlyData, setUsMonthlyData] = useState<EpuItem[] | null>(null)

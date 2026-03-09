@@ -74,7 +74,7 @@ export default function CnCurrentAccountChart({ data }: Props) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default' as PeriodType,
+    value: 10 as PeriodType,
     qoq: 3 as PeriodType,
   })
 

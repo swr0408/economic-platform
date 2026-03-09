@@ -122,7 +122,7 @@ function ImportExportPriceTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function ImportExportPriceChart({ importExportPriceData }: ImportExportPriceChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データを日付昇順にソート
   const sortedData = useSortedData(importExportPriceData?.data)

@@ -63,9 +63,9 @@ export default function CanadianSurveyOfConsumerExpectationsChart({ data }: Cana
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    expectations: 'default' as const,
-    labor: 'default' as const,
-    inflation: 'default' as const,
+    expectations: 20 as const,
+    labor: 20 as const,
+    inflation: 20 as const,
   })
 
   const chartData = useMemo(() => {

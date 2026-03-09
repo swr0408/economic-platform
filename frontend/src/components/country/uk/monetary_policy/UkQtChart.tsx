@@ -41,7 +41,7 @@ interface UkQtChartData {
 }
 
 export default function UkQtChart({ data }: UkQtChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<UkQtChartData[]>(() => {

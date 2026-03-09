@@ -103,7 +103,7 @@ export default function AuNabConfidenceIndexChart({ data }: AuNabConfidenceIndex
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 3,
-    index: 'default',
+    index: 10,
   })
 
   // データを変換

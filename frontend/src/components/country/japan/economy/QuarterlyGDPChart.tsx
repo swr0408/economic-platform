@@ -81,9 +81,9 @@ const QuarterlyGDPChart: React.FC = () => {
 
   // 指標種別毎の期間管理（共通フック使用）
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    qoq: 'default',
-    qoq_annualized: 'default',
-    yoy: 'default',
+    qoq: 20,
+    qoq_annualized: 20,
+    yoy: 20,
   })
 
   useEffect(() => {

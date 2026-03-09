@@ -64,7 +64,7 @@ const formatQuarterLabelJP = (dateStr: string): string => {
 
 export default function NzTradedNontradedChart({ data }: NzTradedNontradedChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const chartData = useMemo<ChartDataPoint[]>(() => {

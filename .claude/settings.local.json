@@ -343,7 +343,9 @@
       "WebFetch(domain:www.cier.edu.tw)",
       "WebFetch(domain:en.sse.net.cn)",
       "WebFetch(domain:mopsfin.twse.com.tw)",
-      "WebFetch(domain:production.dataviz.cnn.io)"
+      "WebFetch(domain:production.dataviz.cnn.io)",
+      "Bash(git stash:*)",
+      "Bash(bash fix_periods.sh)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

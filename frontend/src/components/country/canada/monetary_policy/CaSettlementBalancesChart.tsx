@@ -44,7 +44,7 @@ interface ChartDataItem {
 type ViewMode = 'daily' | 'weekly'
 
 export default function CaSettlementBalancesChart({ data }: CaSettlementBalancesChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const [viewMode, setViewMode] = useState<ViewMode>('daily')
 
   // 選択されたビューモードに応じたデータを取得

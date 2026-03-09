@@ -109,9 +109,9 @@ export default function NzNumberOfEmployeesChart({ data }: NzNumberOfEmployeesCh
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 20,
     qoq: 5,
-    yoy: 'default',
+    yoy: 20,
   })
 
   const chartData = useMemo<ChartDataPoint[]>(() => {

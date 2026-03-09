@@ -19,7 +19,7 @@ interface CapacityUtilizationChartProps {
 }
 
 export default function CapacityUtilizationChart({ data }: CapacityUtilizationChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート

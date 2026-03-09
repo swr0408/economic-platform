@@ -71,8 +71,8 @@ export default function CanadaBuildingPermitsChart({ data }: CanadaBuildingPermi
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default' as PeriodType,
-    yoy: 'default' as PeriodType,
+    value: 10 as PeriodType,
+    yoy: 10 as PeriodType,
     mom: 3 as PeriodType,
   })
 

@@ -78,9 +78,9 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    balance: 'default' as PeriodType,
-    exports_imports: 'default' as PeriodType,
-    mom: 'default' as PeriodType,
+    balance: 10 as PeriodType,
+    exports_imports: 10 as PeriodType,
+    mom: 10 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

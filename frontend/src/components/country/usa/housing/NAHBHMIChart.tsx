@@ -51,7 +51,7 @@ const COLORS = {
 
 export default function NAHBHMIChart({ nahbHMIData }: NAHBHMIChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート

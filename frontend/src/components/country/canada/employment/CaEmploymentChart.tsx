@@ -89,7 +89,7 @@ export default function CaEmploymentChart({ data }: CaEmploymentChartProps) {
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     change: 3,
   })
 

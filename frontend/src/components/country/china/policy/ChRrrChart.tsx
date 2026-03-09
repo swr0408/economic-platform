@@ -61,7 +61,7 @@ const formatDateFull = (dateStr: string): string => {
 // =============================================================================
 
 export default function ChRrrChart({ data }: ChRrrChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(2)
 
   const sortedData = useSortedData(data?.data ?? [])
 

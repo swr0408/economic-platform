@@ -2,6 +2,12 @@ import { Alert, Typography } from 'antd'
 import MarketPriceChart from '../MarketPriceChart'
 import TsmcRevenueChart from './TsmcRevenueChart'
 import FearGreedChart from './FearGreedChart'
+import NaaimChart from './NaaimChart'
+import GexDixChart from './GexDixChart'
+import CboePcrChart from './CboePcrChart'
+import NikkeiRegressionChart from './NikkeiRegressionChart'
+import ElectronicComponentsBalanceChart from './ElectronicComponentsBalanceChart'
+import JpxPcrChart from './JpxPcrChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
 
@@ -53,6 +59,9 @@ export default function EquitiesCharts() {
       <div id="vix"><MarketPriceChart title="VIX（恐怖指数）" symbolData={data?.vix} color={COLORS.vix} /></div>
       <div id="sox"><MarketPriceChart title="SOX（半導体指数）" symbolData={data?.sox} color={COLORS.sox} decimals={0} /></div>
       <div id="fear-greed"><FearGreedChart /></div>
+      <div id="naaim"><NaaimChart /></div>
+      <div id="gex-dix"><GexDixChart /></div>
+      <div id="cboe-pcr"><CboePcrChart /></div>
 
       {/* 日本株 */}
       <div id="jp-equities">
@@ -61,6 +70,9 @@ export default function EquitiesCharts() {
       <div id="nikkei225"><MarketPriceChart title="日経平均" symbolData={data?.nikkei225} color={COLORS.nikkei225} decimals={0} /></div>
       <div id="topix"><MarketPriceChart title="TOPIX" symbolData={data?.topix} color={COLORS.topix} decimals={0} /></div>
       <div id="nikkei-usd"><MarketPriceChart title="日経平均（ドル建て）" symbolData={data?.nikkei_usd} color={COLORS.nikkei_usd} decimals={0} /></div>
+      <div id="nikkei-regression"><NikkeiRegressionChart /></div>
+      <div id="electronic-components-balance"><ElectronicComponentsBalanceChart /></div>
+      <div id="jpx-pcr"><JpxPcrChart /></div>
 
       {/* 欧州株 */}
       <div id="eu-equities">
@@ -77,7 +89,7 @@ export default function EquitiesCharts() {
       </div>
       <div id="twii"><MarketPriceChart title="台湾加権指数" symbolData={data?.twii} color={COLORS.twii} decimals={0} /></div>
       <div id="tsmc"><MarketPriceChart title="TSMC (ADR)" symbolData={data?.tsmc} color={COLORS.tsmc} /></div>
-      <TsmcRevenueChart />
+      <div id="tsmc-revenue"><TsmcRevenueChart /></div>
     </div>
   )
 }

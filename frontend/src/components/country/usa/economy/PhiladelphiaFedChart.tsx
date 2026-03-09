@@ -68,7 +68,7 @@ const INITIAL_HIDDEN_SERIES = new Set([
 // =============================================================================
 
 export default function PhiladelphiaFedChart({ data }: PhiladelphiaFedChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN_SERIES)
 

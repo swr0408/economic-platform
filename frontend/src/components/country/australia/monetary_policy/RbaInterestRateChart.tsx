@@ -40,7 +40,7 @@ interface RbaInterestRateChartData {
 }
 
 export default function RbaInterestRateChart({ data }: RbaInterestRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換

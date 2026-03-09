@@ -98,9 +98,9 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    qoq: 'default',
-    yoy: 'default',
-    annualized: 'default',
+    qoq: 20,
+    yoy: 20,
+    annualized: 20,
   })
 
   // propsのデータをチャート用に変換

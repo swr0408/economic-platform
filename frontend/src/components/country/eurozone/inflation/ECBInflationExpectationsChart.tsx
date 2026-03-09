@@ -58,7 +58,7 @@ export default function ECBInflationExpectationsChart({ data }: ECBInflationExpe
 
   // 期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+    default: 10,
   })
 
   // 3系列のデータをマージ

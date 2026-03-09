@@ -121,7 +121,7 @@ const DATA_KIND_CONFIG: Record<DataKind, {
 }
 
 export default function ONSGVAChart({ data }: ONSGVAChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [dataKind, setDataKind] = useState<DataKind>('3m3m')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')

@@ -54,7 +54,7 @@ const SERIES_CONFIG: Record<SeriesType, { label: string; name: string; color: st
 }
 
 export default function CRELoanDelinquencyChart({ data }: CRELoanDelinquencyChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [selectedSeries, setSelectedSeries] = useState<SeriesType>('all_banks')
 
   // 選択されたシリーズのデータを取得

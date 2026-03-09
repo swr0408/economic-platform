@@ -49,7 +49,7 @@ const COLORS = {
 
 export default function ECBUnemploymentChart({ data }: ECBUnemploymentChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>(20)
 
   // propsのデータをチャート用に変換
   const rawChartData = useMemo<ChartDataPoint[]>(() => {

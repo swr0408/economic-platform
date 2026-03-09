@@ -65,9 +65,9 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    qoq_simple: 'default' as PeriodType,
-    qoq: 'default' as PeriodType,
-    yoy: 'default' as PeriodType,
+    qoq_simple: 20 as PeriodType,
+    qoq: 20 as PeriodType,
+    yoy: 20 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

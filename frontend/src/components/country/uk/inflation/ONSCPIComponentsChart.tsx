@@ -85,7 +85,7 @@ const SERIES_CONFIG = [
 const INITIAL_HIDDEN_SERIES = new Set(['energy_yoy', 'electricity_yoy'])
 
 export default function ONSCPIComponentsChart({ data }: ONSCPIComponentsChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'default' | 'all'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'default' | 'all'>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN_SERIES)
 
   // propsのデータをチャート用に変換（全系列をマージ）

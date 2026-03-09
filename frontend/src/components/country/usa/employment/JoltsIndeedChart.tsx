@@ -189,7 +189,7 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     jolts_change: 3,
   })
 

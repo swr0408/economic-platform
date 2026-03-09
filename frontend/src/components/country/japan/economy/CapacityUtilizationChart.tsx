@@ -81,7 +81,7 @@ export default function CapacityUtilizationChart() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [rawData, setRawData] = useState<JapanCapacityUtilizationDataPoint[]>([])
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(20)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データ取得

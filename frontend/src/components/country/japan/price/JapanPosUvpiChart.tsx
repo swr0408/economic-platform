@@ -63,7 +63,7 @@ export default function JapanPosUvpiChart() {
   const [data, setData] = useState<PosUvpiResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'default' | 'all'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'default' | 'all'>(10)
 
   // データ取得
   useEffect(() => {

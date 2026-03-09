@@ -54,7 +54,7 @@ const COLORS = {
 
 export default function ChPmiChart({ data }: ChPmiChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   // 凡例クリックで非表示にするシリーズを管理
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

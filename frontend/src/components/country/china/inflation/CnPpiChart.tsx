@@ -92,7 +92,7 @@ export default function CnPpiChart({ data }: Props) {
   const [dataType, setDataType] = useState<PPIDataType>('total')
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 10,
     mom: 3,
   })
 

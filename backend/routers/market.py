@@ -36,8 +36,20 @@ except ImportError:
 
 try:
     from backend.services.market.fear_greed_service import fear_greed_service
+    from backend.services.market.naaim_service import naaim_service
+    from backend.services.market.gex_dix_service import gex_dix_service
+    from backend.services.market.cboe_pcr_service import cboe_pcr_service
+    from backend.services.market.nikkei_regression_service import nikkei_regression_service
+    from backend.services.market.electronic_components_balance_service import electronic_components_balance_service
+    from backend.services.market.jpx_pcr_service import jpx_pcr_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
+    from services.market.naaim_service import naaim_service
+    from services.market.gex_dix_service import gex_dix_service
+    from services.market.cboe_pcr_service import cboe_pcr_service
+    from services.market.nikkei_regression_service import nikkei_regression_service
+    from services.market.electronic_components_balance_service import electronic_components_balance_service
+    from services.market.jpx_pcr_service import jpx_pcr_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -152,6 +164,78 @@ def get_fear_greed(
             "X-Cache": "HIT" if result.get("cached") else "MISS",
             "X-Response-Time": f"{response_time_ms:.2f}ms",
         }
+    )
+
+
+@router.get("/naaim")
+def get_naaim(force_refresh: bool = Query(False)):
+    """NAAIM Exposure Index データを取得"""
+    start_time = time.time()
+    result = naaim_service.get_naaim_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/gex-dix")
+def get_gex_dix(force_refresh: bool = Query(False)):
+    """GEX / DIX データを取得"""
+    start_time = time.time()
+    result = gex_dix_service.get_gex_dix_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/cboe-pcr")
+def get_cboe_pcr(force_refresh: bool = Query(False)):
+    """CBOE Total Put/Call Ratio データを取得"""
+    start_time = time.time()
+    result = cboe_pcr_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/nikkei-regression")
+def get_nikkei_regression(force_refresh: bool = Query(False)):
+    """日経平均回帰モデル データを取得"""
+    start_time = time.time()
+    result = nikkei_regression_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/electronic-components-balance")
+def get_electronic_components_balance(force_refresh: bool = Query(False)):
+    """電子部品・デバイス工業 出荷在庫バランス データを取得"""
+    start_time = time.time()
+    result = electronic_components_balance_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/jpx-pcr")
+def get_jpx_pcr(force_refresh: bool = Query(False)):
+    """JPX 日本株指数オプション Put/Call Ratio データを取得"""
+    start_time = time.time()
+    result = jpx_pcr_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
     )
 
 

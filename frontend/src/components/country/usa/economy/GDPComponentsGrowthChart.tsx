@@ -49,7 +49,7 @@ const COMPONENT_ITEMS = [
 ]
 
 export default function GDPComponentsGrowthChart({ data }: GDPComponentsGrowthChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // チャート用データを変換（輸入は符号反転）

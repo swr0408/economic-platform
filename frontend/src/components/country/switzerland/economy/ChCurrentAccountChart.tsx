@@ -77,7 +77,7 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default' as PeriodType,
+    value: 20 as PeriodType,
     qoq: 3 as PeriodType,
   })
 

@@ -71,7 +71,7 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 20,
     mom: 3,
   })
 

@@ -64,8 +64,8 @@ export default function AuCotalityHomePricesChart({ data }: AuCotalityHomePrices
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    index: 'default',
-    mom: 'default',
+    index: 10,
+    mom: 10,
   })
 
   // 日次データ

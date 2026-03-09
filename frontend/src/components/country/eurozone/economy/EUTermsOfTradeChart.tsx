@@ -74,7 +74,7 @@ const SERIES_NAMES = {
 const INITIAL_HIDDEN: string[] = []
 
 export default function EUTermsOfTradeChart({ data }: EUTermsOfTradeChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const [viewMode, setViewMode] = useState<ViewMode>('tot_chart')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN)
 

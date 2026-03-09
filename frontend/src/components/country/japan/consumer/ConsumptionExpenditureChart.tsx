@@ -150,7 +150,7 @@ export default function ConsumptionExpenditureChart({ data }: ConsumptionExpendi
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 20,
     mom: 3,
   })
 

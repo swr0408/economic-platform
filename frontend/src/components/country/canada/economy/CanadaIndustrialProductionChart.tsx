@@ -80,8 +80,8 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    mom: 'default' as PeriodType,
-    yoy: 'default' as PeriodType,
+    mom: 10 as PeriodType,
+    yoy: 10 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

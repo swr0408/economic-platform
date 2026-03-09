@@ -138,7 +138,7 @@ export default function RedfinCaseShillerChart({
   redfinMedianPriceData,
   caseShillerData,
 }: RedfinCaseShillerChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データをマージ（2つの系列を1つの配列に結合）
   const mergedData = useMemo((): MergedDataPoint[] => {

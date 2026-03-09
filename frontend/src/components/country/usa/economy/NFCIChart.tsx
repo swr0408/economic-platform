@@ -22,7 +22,7 @@ interface NFCIChartProps {
 }
 
 export default function NFCIChart({ data }: NFCIChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {

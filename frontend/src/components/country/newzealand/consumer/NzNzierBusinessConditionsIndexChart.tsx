@@ -109,7 +109,7 @@ export default function NzNzierBusinessConditionsIndexChart({ data }: NzNzierBus
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataType, {
     qoq: 5,
-    index: 'default',
+    index: 20,
   })
 
   // データを変換（QoQはフロントエンドで計算）

@@ -31,7 +31,7 @@ interface BankInterestRatesChartProps {
 }
 
 export default function BankInterestRatesChart({ data }: BankInterestRatesChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // 企業向けデータをチャート用に変換

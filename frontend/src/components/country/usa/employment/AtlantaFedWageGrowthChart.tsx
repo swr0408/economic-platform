@@ -65,7 +65,7 @@ const SERIES_NAMES = {
 const INITIAL_HIDDEN = ['fulltime', 'paid_hourly', 'job_stayer', 'job_switcher']
 
 export default function AtlantaFedWageGrowthChart({ data }: AtlantaFedWageGrowthChartProps) {
-  const [period, setPeriod] = useState<'default' | 'all' | number>('default')
+  const [period, setPeriod] = useState<'default' | 'all' | number>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN)
 
   // データのソート

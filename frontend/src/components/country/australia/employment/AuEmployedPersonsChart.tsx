@@ -85,9 +85,9 @@ export default function AuEmployedPersonsChart({ data }: AuEmployedPersonsChartP
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     mom: 3,
-    yoy: 'default',
+    yoy: 10,
   })
 
   // データを変換

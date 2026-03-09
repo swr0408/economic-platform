@@ -62,7 +62,7 @@ const formatDateFull = (dateStr: string): string => {
 
 export default function CnFixedAssetInvestmentChart({ data }: Props) {
   const [activeTab, setActiveTab] = useState('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   const chartData = useMemo((): ChartDataPoint[] => {
     if (!data?.data) return []

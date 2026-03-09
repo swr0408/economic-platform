@@ -153,7 +153,7 @@ const CapitalInvestmentChart: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [rawData, setRawData] = useState<CapitalInvestmentDataPoint[]>([])
   const [nextRelease, setNextRelease] = useState<NextRelease | null>(null)
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(20)
 
   useEffect(() => {
     const fetchData = async () => {

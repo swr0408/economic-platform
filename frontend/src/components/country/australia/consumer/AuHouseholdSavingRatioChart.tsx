@@ -112,8 +112,8 @@ export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingR
 
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
-    qoq: 'default',
+    value: 20,
+    qoq: 20,
   })
 
   // データを変換

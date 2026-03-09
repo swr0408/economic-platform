@@ -46,7 +46,7 @@ interface ChartDataItem {
 type ViewMode = 'total' | 'breakdown'
 
 export default function CaGovernmentDepositsChart({ data }: CaGovernmentDepositsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const [viewMode, setViewMode] = useState<ViewMode>('total')
 
   // propsのデータをチャート用に変換

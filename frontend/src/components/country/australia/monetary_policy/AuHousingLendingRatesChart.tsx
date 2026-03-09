@@ -47,7 +47,7 @@ interface AuHousingLendingRatesChartProps {
 }
 
 export default function AuHousingLendingRatesChart({ data }: AuHousingLendingRatesChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [viewMode, setViewMode] = useState<ViewMode>('outstanding')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()

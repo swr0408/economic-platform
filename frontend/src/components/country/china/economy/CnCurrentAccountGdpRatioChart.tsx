@@ -41,7 +41,7 @@ interface ChartDataPoint {
 
 export default function CnCurrentAccountGdpRatioChart({ data }: Props) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   const chartData = useMemo<ChartDataPoint[]>(() => {
     if (!data?.data) return []

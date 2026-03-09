@@ -93,9 +93,9 @@ export default function ONSEmploymentChart({ data }: ONSEmploymentChartProps) {
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    qoq: 'default',
-    mom: 'default',
-    yoy: 'default',
+    qoq: 10,
+    mom: 10,
+    yoy: 10,
   })
 
   // propsのデータをチャート用に変換

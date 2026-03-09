@@ -112,7 +112,7 @@ function GSCPITooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function GSCPIChart({ gscpiData }: GSCPIChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データを日付昇順にソート
   const sortedData = useSortedData(gscpiData?.data)

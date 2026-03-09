@@ -136,7 +136,7 @@ const formatNextRelease = (nextRelease: JapanScheduledWageData['next_release']):
 
 export default function ScheduledWageChart({ data }: ScheduledWageChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // チャートデータに変換（4系列をマージ）
   const chartData = useMemo<ChartDataPoint[]>(() => {

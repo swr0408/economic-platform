@@ -51,7 +51,7 @@ const COLORS = {
 
 export default function RentalVacancyRateChart({ rentalVacancyRateData }: RentalVacancyRateChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(20)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート

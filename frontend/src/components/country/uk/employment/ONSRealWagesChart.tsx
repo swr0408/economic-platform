@@ -50,7 +50,7 @@ const TOTAL_PAY_COLOR = '#3498db'
 const REGULAR_PAY_COLOR = '#e74c3c'
 
 export default function ONSRealWagesChart({ data }: ONSRealWagesChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

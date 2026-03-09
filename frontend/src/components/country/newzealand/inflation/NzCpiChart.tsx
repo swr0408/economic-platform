@@ -95,7 +95,7 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 20,
     qoq: 5,
   })
 

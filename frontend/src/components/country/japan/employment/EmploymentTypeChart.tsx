@@ -97,7 +97,7 @@ const formatValue = (value: number | null | undefined): string => {
 
 export default function EmploymentTypeChart({ data }: EmploymentTypeChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // チャートデータに変換（2系列をマージ）
   const chartData = useMemo<ChartDataPoint[]>(() => {

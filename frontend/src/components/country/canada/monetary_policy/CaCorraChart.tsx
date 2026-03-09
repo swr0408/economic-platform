@@ -38,7 +38,7 @@ interface CaCorraChartData {
 }
 
 export default function CaCorraChart({ data }: CaCorraChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<CaCorraChartData[]>(() => {

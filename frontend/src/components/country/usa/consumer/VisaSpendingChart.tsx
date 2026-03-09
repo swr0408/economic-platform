@@ -40,7 +40,7 @@ interface VisaSpendingChartProps {
 // =============================================================================
 
 export default function VisaSpendingChart({ data }: VisaSpendingChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // データを日付昇順にソート
   const chartData = useSortedData(data?.data)

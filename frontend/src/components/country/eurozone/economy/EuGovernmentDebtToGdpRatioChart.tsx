@@ -75,7 +75,7 @@ const COUNTRY_LABELS: Record<string, string> = {
 const DEFAULT_VISIBLE = ['ea20']
 
 export default function EuGovernmentDebtToGdpRatioChart({ data }: EuGovernmentDebtToGdpRatioChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [dataKind, setDataKind] = useState<DataKind>('value')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')

@@ -145,7 +145,7 @@ export default function MachineryOrdersChart() {
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 3,
-    yoy: 'default',
+    yoy: 10,
   })
 
   // データ取得

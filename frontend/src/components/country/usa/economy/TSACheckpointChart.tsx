@@ -20,7 +20,7 @@ const COLORS = {
 }
 
 export default function TSACheckpointChart({ data }: TSACheckpointChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート

@@ -74,7 +74,7 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function NFIBCompensationChart({ data }: NFIBCompensationChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

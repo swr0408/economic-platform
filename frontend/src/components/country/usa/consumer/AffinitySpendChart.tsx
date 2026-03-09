@@ -115,7 +115,7 @@ function AffinityTooltip({ active, payload, label }: CustomTooltipProps) {
 // =============================================================================
 
 export default function AffinitySpendChart({ data }: AffinitySpendChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // データを日付昇順にソート
   const chartData = useSortedData(data?.data)

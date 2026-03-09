@@ -86,8 +86,8 @@ export default function AuPrivateNewCapitalExpenditureChart({ data }: AuPrivateN
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    qoq: 'default',
-    yoy: 'default',
+    qoq: 20,
+    yoy: 20,
   })
 
   // propsのデータをチャート用に変換

@@ -84,7 +84,7 @@ const SERIES_NAMES = {
 const INITIAL_HIDDEN = ['domestic', 'foreign']
 
 export default function GermanyFactoryOrdersChart({ data }: GermanyFactoryOrdersChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const [dataKind, setDataKind] = useState<DataKind>('index')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN)

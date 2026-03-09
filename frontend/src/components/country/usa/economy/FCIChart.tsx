@@ -31,7 +31,7 @@ interface ChartDataPoint {
 }
 
 export default function FCIChart({ data }: FCIChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // 両シリーズのデータを統合
   const chartData = useMemo<ChartDataPoint[]>(() => {

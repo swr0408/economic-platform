@@ -44,7 +44,7 @@ const COLOR_OUTLOOK = '#722ed1'
 // =============================================================================
 
 export default function TaiwanPmiOutlookChart({ data }: TaiwanPmiOutlookChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   const sortedData = useSortedData(data?.data ?? [])
 

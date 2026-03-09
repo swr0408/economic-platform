@@ -83,7 +83,7 @@ export default function RightmoveHousePriceChart({ data }: RightmoveHousePriceCh
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 10,
     mom: 3,
   })
 

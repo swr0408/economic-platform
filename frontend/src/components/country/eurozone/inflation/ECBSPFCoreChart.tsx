@@ -79,7 +79,7 @@ export default function ECBSPFCoreChart({ data }: ECBSPFCoreChartProps) {
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+    default: 10,
   })
 
   // 3系列のデータをマージ（発表期をX軸に）

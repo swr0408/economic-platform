@@ -80,7 +80,7 @@ const MLP_COLORS = [
 
 export default function NzEconomicForecastChart({ data }: NzEconomicForecastChartProps) {
   const [currentIndicatorIndex, setCurrentIndicatorIndex] = useState(0)
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>(10)
 
   const currentConfig = INDICATOR_CONFIGS[currentIndicatorIndex]
 

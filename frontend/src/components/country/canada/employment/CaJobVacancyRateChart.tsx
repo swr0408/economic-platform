@@ -47,7 +47,7 @@ const COLORS = {
 }
 
 export default function CaJobVacancyRateChart({ data }: CaJobVacancyRateChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   const rawChartData = useMemo<ChartDataPoint[]>(() => {
     if (!data?.data) return []

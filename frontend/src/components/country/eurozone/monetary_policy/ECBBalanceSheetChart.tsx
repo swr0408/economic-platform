@@ -27,7 +27,7 @@ interface ECBBalanceSheetChartProps {
 }
 
 export default function ECBBalanceSheetChart({ data }: ECBBalanceSheetChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   const chartData = useMemo(() => {
     if (!data?.data || data.data.length === 0) return []

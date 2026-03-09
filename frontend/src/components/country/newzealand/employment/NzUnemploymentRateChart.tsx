@@ -59,7 +59,7 @@ const formatQuarterLabelJP = (dateStr: string): string => {
 
 export default function NzUnemploymentRateChart({ data }: NzUnemploymentRateChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(20)
 
   const chartData = useMemo<ChartDataPoint[]>(() => {
     if (!data?.data) return []

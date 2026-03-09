@@ -28,7 +28,7 @@ const SERIES_CONFIG = {
 type SeriesKey = keyof typeof SERIES_CONFIG
 
 export default function ISMComponentsChart({ data }: ISMComponentsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<SeriesKey>()
 

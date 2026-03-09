@@ -89,7 +89,7 @@ export default function NzGdpGrowthRateChart({ data }: NzGdpGrowthRateChartProps
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     qoq: 5,
-    yoy: 'default',
+    yoy: 20,
   })
 
   const chartData = useMemo<ChartDataPoint[]>(() => {

@@ -33,7 +33,7 @@ interface ChartDataPoint {
 const CHART_COLOR = '#2563eb'
 
 export default function NzCentralBankBalanceSheetChart({ data }: NzCentralBankBalanceSheetChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   const chartData = useMemo<ChartDataPoint[]>(() => {
     if (!data?.data || data.data.length === 0) return []

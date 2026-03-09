@@ -74,7 +74,7 @@ const formatQuarterLabelJP = (dateStr: string): string => {
 
 export default function NzCurrentAccountGdpRatioChart({ data }: NzCurrentAccountGdpRatioChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   // データを日付昇順にソート
   const sortedData = useSortedData(data?.data ?? [])

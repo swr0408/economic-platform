@@ -47,7 +47,7 @@ const COLORS = {
 }
 
 export default function ECBCurrentAccountChart({ data }: ECBCurrentAccountChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // データを変換
   const rawChartData = useMemo<ChartDataPoint[]>(() => {

@@ -93,7 +93,7 @@ export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
 
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     mom: 3,
   })
 

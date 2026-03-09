@@ -35,7 +35,7 @@ interface FRBTotalAssetsChartData {
 }
 
 export default function FRBTotalAssetsChart({ data }: FRBTotalAssetsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<FRBTotalAssetsChartData[]>(() => {

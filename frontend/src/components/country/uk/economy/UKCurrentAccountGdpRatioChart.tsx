@@ -49,7 +49,7 @@ const COLORS = {
 
 export default function UKCurrentAccountGdpRatioChart({ data }: UKCurrentAccountGdpRatioChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {

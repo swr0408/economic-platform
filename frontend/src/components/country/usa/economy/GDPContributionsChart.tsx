@@ -60,7 +60,7 @@ const CONTRIBUTION_ITEMS = [
 ]
 
 export default function GDPContributionsChart({ data }: GDPContributionsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // チャート用データを変換

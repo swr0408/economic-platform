@@ -63,7 +63,7 @@ const formatValue = (value: number): string => {
 }
 
 export default function CBIIndustrialTrendsChart({ data }: CBIIndustrialTrendsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換

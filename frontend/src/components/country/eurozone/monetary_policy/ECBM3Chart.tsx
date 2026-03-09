@@ -38,7 +38,7 @@ const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
 ]
 
 export default function ECBM3Chart({ data }: ECBM3ChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [dataKind, setDataKind] = useState<DataKind>('yoy')
 

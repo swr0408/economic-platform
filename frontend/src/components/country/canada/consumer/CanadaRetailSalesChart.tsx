@@ -85,7 +85,7 @@ export default function CanadaRetailSalesChart({ data }: CanadaRetailSalesChartP
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 3 as PeriodType,
-    yoy: 'default' as PeriodType,
+    yoy: 10 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

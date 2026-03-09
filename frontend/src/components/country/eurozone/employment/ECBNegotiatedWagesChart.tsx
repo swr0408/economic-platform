@@ -99,7 +99,7 @@ function filterQuarterlyData<T extends { date: string }>(
 
 export default function ECBNegotiatedWagesChart({ data }: ECBNegotiatedWagesChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>(20)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {

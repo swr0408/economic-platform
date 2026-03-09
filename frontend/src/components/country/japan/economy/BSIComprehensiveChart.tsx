@@ -102,7 +102,7 @@ export default function BSIComprehensiveChart({
   const [rawData, setRawData] = useState<ChartDataPoint[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(10)
   const [sheetTitle, setSheetTitle] = useState<string>('')
 
   useEffect(() => {

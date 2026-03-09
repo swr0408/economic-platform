@@ -19,7 +19,7 @@ interface ISMNonManufacturingChartProps {
 }
 
 export default function ISMNonManufacturingChart({ data }: ISMNonManufacturingChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソートしてDataPoint型に変換

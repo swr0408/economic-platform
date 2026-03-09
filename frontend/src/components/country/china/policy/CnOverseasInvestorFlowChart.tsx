@@ -107,7 +107,7 @@ function _LatestBox({
 // =============================================================================
 
 export default function CnOverseasInvestorFlowChart({ data }: Props) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { handleLegendClick, isHidden } = useHiddenSeries<SeriesKey>()
 
   const sortedData = useSortedData(data?.data ?? [])

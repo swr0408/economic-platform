@@ -55,7 +55,7 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function PCEFoodRecreationChart({ data }: PCEFoodRecreationChartProps) {
-  const [period, setPeriod] = useState<'default' | 'all' | number>('default')
+  const [period, setPeriod] = useState<'default' | 'all' | number>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート

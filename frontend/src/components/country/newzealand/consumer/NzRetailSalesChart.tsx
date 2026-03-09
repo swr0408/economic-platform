@@ -104,7 +104,7 @@ export default function NzRetailSalesChart({ data }: NzRetailSalesChartProps) {
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataType, {
     qoq: 5,
-    yoy: 'default',
+    yoy: 20,
   })
 
   const chartData = useMemo<ChartDataPoint[]>(() => {

@@ -86,9 +86,9 @@ export default function AuTermsOfTradeChart({ data }: AuTermsOfTradeChartProps) 
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
-    qoq: 'default',
-    yoy: 'default',
+    value: 20,
+    qoq: 20,
+    yoy: 20,
   })
 
   // propsのデータをチャート用に変換

@@ -41,7 +41,7 @@ interface DelinquencyRateChartProps {
 // =============================================================================
 
 export default function DelinquencyRateChart({ data }: DelinquencyRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
 
   // データを日付昇順にソート
   const chartData = useSortedData(data?.data)

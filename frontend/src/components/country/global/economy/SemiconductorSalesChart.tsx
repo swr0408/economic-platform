@@ -99,7 +99,7 @@ function mergeWithMma(
 
 export default function SemiconductorSalesChart({ data }: Props) {
   const [viewMode, setViewMode] = useState<ViewMode>('yoy')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<string>(
     ['americas', 'europe', 'japan', 'asia_pacific']
   )

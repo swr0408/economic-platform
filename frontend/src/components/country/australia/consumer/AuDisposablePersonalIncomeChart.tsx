@@ -110,8 +110,8 @@ export default function AuDisposablePersonalIncomeChart({ data }: AuDisposablePe
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
-    qoq: 'default',
+    yoy: 20,
+    qoq: 20,
   })
 
   // データを変換

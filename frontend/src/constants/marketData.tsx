@@ -49,6 +49,9 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
           { code: 'vix', name: 'VIX（恐怖指数）', symbolIds: ['vix'] },
           { code: 'sox', name: 'SOX（半導体指数）', symbolIds: ['sox'] },
           { code: 'fear-greed', name: 'Fear & Greed Index', symbolIds: [] },
+          { code: 'naaim', name: 'NAAIM Exposure Index', symbolIds: [] },
+          { code: 'gex-dix', name: 'GEX / DIX', symbolIds: [] },
+          { code: 'cboe-pcr', name: 'CBOE Put/Call Ratio', symbolIds: [] },
         ],
       },
       {
@@ -58,6 +61,9 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
           { code: 'nikkei225', name: '日経平均', symbolIds: ['nikkei225'] },
           { code: 'topix', name: 'TOPIX', symbolIds: ['topix'] },
           { code: 'nikkei-usd', name: '日経平均（ドル建て）', symbolIds: ['nikkei_usd'] },
+          { code: 'nikkei-regression', name: '日経平均回帰モデル', symbolIds: [] },
+          { code: 'electronic-components-balance', name: '電子部品出荷在庫バランス', symbolIds: [] },
+          { code: 'jpx-pcr', name: 'JPX Put/Call Ratio', symbolIds: [] },
         ],
       },
       {

@@ -46,7 +46,7 @@ interface ChartDataPoint {
 const CHART_COLOR = '#22c55e'
 
 export default function ONSEconomicActivityChart({ data }: ONSEconomicActivityChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

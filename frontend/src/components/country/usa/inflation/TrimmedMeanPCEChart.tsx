@@ -66,7 +66,7 @@ const SERIES_CONFIG: Record<SeriesType, { label: string; name: string; color: st
 // =============================================================================
 
 export default function TrimmedMeanPCEChart({ data }: TrimmedMeanPCEChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [selectedSeries, setSelectedSeries] = useState<SeriesType>('twelve_month')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

@@ -70,7 +70,7 @@ const getQuarterFromECBQuarter = (dateStr: string): number => {
 }
 
 export default function EuroGDPChart({ data }: EuroGDPChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [dataKind, setDataKind] = useState<DataKind>('yoy')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')

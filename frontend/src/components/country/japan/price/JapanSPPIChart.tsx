@@ -69,7 +69,7 @@ export default function JapanSPPIChart() {
   const [data, setData] = useState<SPPIResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データ取得

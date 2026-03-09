@@ -45,7 +45,7 @@ const COLORS = {
 }
 
 export default function CanadaSeniorLoanOfficerSurveyChart({ data }: CanadaSeniorLoanOfficerSurveyChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const chartData = useMemo(() => {

@@ -54,7 +54,7 @@ const COLORS = {
 export default function ForeignCurrencyReservesChart({ data }: ForeignCurrencyReservesChartProps) {
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+    default: 10,
   })
 
   // propsのデータをチャート用に変換

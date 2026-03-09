@@ -71,8 +71,8 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
-    qoq: 'default',
+    value: 20,
+    qoq: 20,
   })
 
   // propsのデータをチャート用に変換

@@ -105,7 +105,7 @@ export default function ONSProductivityChart({ data }: ONSProductivityChartProps
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     qoq: 5,
-    yoy: 'default',
+    yoy: 10,
   })
 
   // YoYデータの統合（LZVB + A4YM）- Flash Estimateフラグも含む

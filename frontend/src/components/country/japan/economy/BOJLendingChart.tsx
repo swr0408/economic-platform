@@ -64,7 +64,7 @@ const BOJLendingChart: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const [yoyData, setYoyData] = useState<BOJLendingDataPoint[]>([])
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   useEffect(() => {
     const fetchData = async () => {

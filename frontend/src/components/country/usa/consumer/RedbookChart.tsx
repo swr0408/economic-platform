@@ -42,7 +42,7 @@ interface RedbookChartProps {
 // =============================================================================
 
 export default function RedbookChart({ data }: RedbookChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート

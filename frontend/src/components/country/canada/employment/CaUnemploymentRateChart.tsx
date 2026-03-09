@@ -68,8 +68,8 @@ export default function CaUnemploymentRateChart({ data }: CaUnemploymentRateChar
 
   // 表示モード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
-    chart: 'default',
-    heatmap: 'default',
+    chart: 10,
+    heatmap: 10,
   })
 
   // propsのデータをチャート用に変換

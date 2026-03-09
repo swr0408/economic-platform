@@ -131,7 +131,7 @@ function ZillowRentCPITooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function ZillowRentCPIChart({ zillowData, rentCPIData }: ZillowRentCPIChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データをマージ
   const mergedData = useMemo((): MergedDataPoint[] => {

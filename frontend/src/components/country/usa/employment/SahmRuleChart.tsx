@@ -44,7 +44,7 @@ interface SahmRuleChartData {
 const SAHM_THRESHOLD = 0.5
 
 export default function SahmRuleChart({ data }: SahmRuleChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<SahmRuleChartData[]>(() => {

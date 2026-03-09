@@ -86,8 +86,8 @@ export default function ONSUnitLabourCostsChart({ data }: ONSUnitLabourCostsChar
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    qoq: 'default',
-    yoy: 'default',
+    qoq: 10,
+    yoy: 10,
   })
 
   // QoQデータをチャート用に変換

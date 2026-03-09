@@ -56,7 +56,7 @@ const COLORS = {
 }
 
 export default function UKPublicSectorNetBorrowingChart({ data }: UKPublicSectorNetBorrowingChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [dataType, setDataType] = useState<DataType>('psnb_ex')
 

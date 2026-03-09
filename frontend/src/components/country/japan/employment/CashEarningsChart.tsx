@@ -124,7 +124,7 @@ const formatNextRelease = (nextRelease: JapanCashEarningsData['next_release']): 
 
 export default function CashEarningsChart({ data }: CashEarningsChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // チャートデータに変換（単一系列）
   const chartData = useMemo<ChartDataPoint[]>(() => {

@@ -133,7 +133,7 @@ function CartsTooltip({ active, label, data }: CartsTooltipProps) {
 // =============================================================================
 
 export default function CartsChart({ data }: CartsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // 週次データを月次データに集約

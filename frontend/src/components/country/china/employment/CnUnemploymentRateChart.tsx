@@ -158,7 +158,7 @@ function TimeSeriesView({
   hiddenSeries: Set<string>
   handleLegendClick: (dataKey: string) => void
 }) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(10)
   const filteredData = usePeriodFiltering(data, {
     selectedPeriod,
     defaultStartYear: 2018,

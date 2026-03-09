@@ -36,7 +36,7 @@ interface ChartDataPoint {
 }
 
 export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
 
   // 名目・実質データを統合
   const chartData = useMemo<ChartDataPoint[]>(() => {

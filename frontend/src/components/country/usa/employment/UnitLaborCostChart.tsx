@@ -106,8 +106,8 @@ export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
 
   // 期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
-    chart: 'default',
-    heatmap: 'default',
+    chart: 20,
+    heatmap: 20,
   })
 
   // データのソート

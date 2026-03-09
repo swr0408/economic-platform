@@ -68,7 +68,7 @@ const SERIES_CONFIG: Record<SeriesType, { label: string; name: string; color: st
 }
 
 export default function OASChart({ data }: OASChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const [selectedSeries, setSelectedSeries] = useState<SeriesType>('hy_spread')
 
   // 選択されたシリーズのデータを取得

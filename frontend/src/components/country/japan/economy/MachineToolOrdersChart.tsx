@@ -123,7 +123,7 @@ export default function MachineToolOrdersChart() {
   const [error, setError] = useState<string | null>(null)
   const [rawData, setRawData] = useState<MachineToolOrdersDataPoint[]>([])
   const [nextRelease, setNextRelease] = useState<string | { datetime_jst?: string; date?: string } | null>(null)
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()

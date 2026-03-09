@@ -124,7 +124,7 @@ const formatNextRelease = (nextRelease: JapanRealWageData['next_release']): stri
 // =============================================================================
 
 export default function RealWageChart({ data }: RealWageChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // チャートデータに変換（2系列をマージ）
   const chartData = useMemo<ChartDataPoint[]>(() => {

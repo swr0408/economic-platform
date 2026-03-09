@@ -94,7 +94,7 @@ function mergeLprData(data1y: { date: string; value: number | null }[], data5y: 
 
 export default function CnLprChart({ lpr1y, lpr5y }: CnLprChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(2)
 
   // 1Y データのソート
   const sorted1y = useSortedData(lpr1y?.data ?? [])

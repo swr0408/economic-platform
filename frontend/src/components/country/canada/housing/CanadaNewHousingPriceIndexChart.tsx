@@ -70,7 +70,7 @@ export default function CanadaNewHousingPriceIndexChart({ data }: CanadaNewHousi
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default' as PeriodType,
+    yoy: 10 as PeriodType,
     mom: 3 as PeriodType,
   })
 

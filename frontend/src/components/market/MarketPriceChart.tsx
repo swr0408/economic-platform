@@ -30,7 +30,7 @@ export default function MarketPriceChart({
   unit = '',
   decimals = 2,
 }: MarketPriceChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(2)
 
   const chartData = useMemo(() => {
     if (!symbolData?.data) return []

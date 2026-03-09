@@ -111,7 +111,7 @@ export default function CnCpiChart({ data }: Props) {
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 10,
     mom: 3,
   })
 

@@ -92,8 +92,8 @@ export default function CnIntegratedCircuitManufacturingChart({ data }: Props) {
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    raw_value: 'default' as PeriodType,
-    yoy: 'default' as PeriodType,
+    raw_value: 10 as PeriodType,
+    yoy: 10 as PeriodType,
     mom: 3 as PeriodType,
   })
 

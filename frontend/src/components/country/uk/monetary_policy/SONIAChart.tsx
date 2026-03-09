@@ -55,7 +55,7 @@ interface SONIAChartData {
 export default function SONIAChart() {
   const [data, setData] = useState<SONIAApiResponse | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
 
   useEffect(() => {
     let isSubscribed = true

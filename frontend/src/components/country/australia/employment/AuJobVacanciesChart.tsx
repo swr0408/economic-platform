@@ -204,7 +204,7 @@ function TimeSeriesView({
 
 // PeriodSelector state wrapper
 function usePeriodFilteringWithState(data: ChartDataPoint[]) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(10)
   const filteredData = usePeriodFiltering(data, {
     selectedPeriod,
     defaultStartYear: 2015,

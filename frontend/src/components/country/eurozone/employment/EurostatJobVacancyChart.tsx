@@ -100,7 +100,7 @@ function filterQuarterlyData<T extends { date: string }>(
 }
 
 export default function EurostatJobVacancyChart({ data }: EurostatJobVacancyChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>(20)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<ChartDataPoint[]>(() => {

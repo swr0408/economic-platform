@@ -104,7 +104,7 @@ function MortgageRatesTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function MortgageRatesChart({ mortgageRatesData }: MortgageRatesChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データを準備
   const chartData = useMemo(() => {

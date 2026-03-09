@@ -108,7 +108,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     change: 3,
   })
 

@@ -88,9 +88,9 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
-    yoy: 'default',
-    qoq: 'default',
+    value: 10,
+    yoy: 10,
+    qoq: 10,
   })
 
   // propsのデータをチャート用に変換

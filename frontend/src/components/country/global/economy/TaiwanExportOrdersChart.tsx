@@ -53,7 +53,7 @@ const COLOR_EXPORT_ORDERS = '#2563EB'
 
 export default function TaiwanExportOrdersChart({ data }: TaiwanExportOrdersChartProps) {
   const [activeTab, setActiveTab] = useState<ActiveTab>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   const sortedData = useSortedData(data?.data ?? [])
 

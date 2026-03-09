@@ -84,7 +84,7 @@ const getYearFromECBQuarter = (dateStr: string): number => {
 }
 
 export default function EuroGDPComponentsChart({ data }: EuroGDPComponentsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [hiddenSeries, setHiddenSeries] = useState<Set<ComponentKey>>(new Set())
 
   // propsのデータをチャート用に変換

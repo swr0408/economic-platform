@@ -146,8 +146,8 @@ export default function NzGdpItemChart({ data }: NzGdpItemChartProps) {
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     qoq: 5,
-    yoy: 'default',
-    inventories: 'default',
+    yoy: 20,
+    inventories: 20,
   })
 
   const chartData = useMemo<ChartDataPoint[]>(() => {

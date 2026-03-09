@@ -76,7 +76,7 @@ export default function BOEInflationAttitudesChart({ data }: BOEInflationAttitud
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    chart: 'default',
+    chart: 10,
   })
 
   // propsのデータをチャート用に変換（全系列をマージ）

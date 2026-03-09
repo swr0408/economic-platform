@@ -45,7 +45,7 @@ const COLORS = {
 }
 
 export default function CaCpiServiceRentChart({ data }: CaCpiServiceRentChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const chartData = useMemo(() => {

@@ -53,7 +53,7 @@ const COLORS = {
 // =============================================================================
 
 export default function MedianCPIChart({ data }: MedianCPIChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート

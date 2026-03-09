@@ -52,7 +52,7 @@ export default function IveyPmiChart({ data }: IveyPmiChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    chart: 'default',
+    chart: 10,
   })
 
   const rawChartData = useMemo<ChartDataPoint[]>(() => {

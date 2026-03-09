@@ -62,7 +62,7 @@ const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
 ]
 
 export default function GermanyIndustrialProductionChart({ data }: GermanyIndustrialProductionChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const [dataKind, setDataKind] = useState<DataKind>('yoy')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
 

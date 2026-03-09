@@ -83,7 +83,7 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+    default: 10,
   })
 
   // propsのデータをチャート用に変換

@@ -35,7 +35,7 @@ interface TGAChartData {
 }
 
 export default function TGAChart({ data }: TGAChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
 
   // propsのデータをチャート用に変換
   const chartData = useMemo<TGAChartData[]>(() => {

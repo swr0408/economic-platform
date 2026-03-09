@@ -46,7 +46,7 @@ const DEFAULT_COLOR = '#1890ff'
 // =============================================================================
 
 export default function LaborForceParticipationChart({ data }: LaborForceParticipationChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データのソート

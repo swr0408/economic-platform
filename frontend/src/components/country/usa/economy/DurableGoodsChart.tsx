@@ -80,7 +80,7 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
 
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 10,
     mom: 3,
   })
 

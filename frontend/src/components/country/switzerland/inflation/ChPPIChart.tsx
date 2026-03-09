@@ -76,7 +76,7 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 10,
     mom: 3,
   })
 

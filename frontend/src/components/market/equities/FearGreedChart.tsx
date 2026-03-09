@@ -178,7 +178,7 @@ function CustomTooltip({ active, payload, label }: {
 
 export default function FearGreedChart() {
   const { data: apiData, isLoading } = useFearGreedData()
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(2)
 
   const chartData = useMemo(() => {
     if (!apiData?.data) return []

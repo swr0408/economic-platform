@@ -46,7 +46,7 @@ const COLOR_PMI = '#1890ff'
 // =============================================================================
 
 export default function GlobalManufacturingPmiChart({ data }: GlobalManufacturingPmiChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // データを日付昇順にソート
   const sortedData = useSortedData(data?.data ?? [])

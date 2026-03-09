@@ -42,7 +42,7 @@ const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
 ]
 
 export default function SOFRVolatilityChart({ data }: SOFRVolatilityChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const [viewMode, setViewMode] = useState<ViewMode>('volatility')
 
   // propsのデータをチャート用に変換

@@ -85,8 +85,8 @@ export default function NzTermsOfTradeChart({ data }: NzTermsOfTradeChartProps) 
 
   // QoQ/YoYで期間を別管理（前年比は2023 Q3以降）
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    qoq: 'default',
-    yoy: 'default',
+    qoq: 20,
+    yoy: 20,
   })
 
   // 輸出価格・輸入価格は初期非表示

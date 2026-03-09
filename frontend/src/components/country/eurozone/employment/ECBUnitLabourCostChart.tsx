@@ -112,7 +112,7 @@ export default function ECBUnitLabourCostChart({ data }: ECBUnitLabourCostChartP
   const [dataKind, setDataKind] = useState<DataKind>('yoy')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'all' | 'default'>(20)
 
   // propsのデータをチャート用に変換（YoYとQoQをマージ）
   const chartData = useMemo<ChartDataPoint[]>(() => {

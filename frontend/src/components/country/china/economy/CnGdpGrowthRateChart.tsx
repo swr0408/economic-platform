@@ -78,8 +78,8 @@ export default function CnGdpGrowthRateChart({ data }: Props) {
   const [dataKind, setDataKind] = useState<DataKind>('qoq')
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
-    qoq: 'default',
+    yoy: 10,
+    qoq: 10,
   })
 
   const chartData = useMemo((): ChartDataPoint[] => {

@@ -72,8 +72,8 @@ export default function CanadaCurrentAccountChart({ data }: CanadaCurrentAccount
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default' as PeriodType,
-    qoq: 'default' as PeriodType,
+    value: 20 as PeriodType,
+    qoq: 20 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

@@ -106,7 +106,7 @@ export default function CaFulltimeParttimeChart({ data }: CaFulltimeParttimeChar
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
+    value: 10,
     change: 3,
   })
 

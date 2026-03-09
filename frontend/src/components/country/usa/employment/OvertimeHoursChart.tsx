@@ -60,7 +60,7 @@ const LINE_COLOR = '#1890ff'  // 青
 // =============================================================================
 
 export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付順にソート

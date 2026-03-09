@@ -70,8 +70,8 @@ export default function BRCShopPriceChart({ data }: BRCShopPriceChartProps) {
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
-    chart: 'default',
-    heatmap: 'default',
+    chart: 10,
+    heatmap: 10,
   })
 
   // propsのデータをチャート用に変換

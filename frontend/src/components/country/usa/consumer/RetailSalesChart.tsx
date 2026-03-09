@@ -85,7 +85,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     mom: 3,
-    yoy: 'default',
+    yoy: 10,
   })
 
   // コントロールグループデータを日付でマッピング

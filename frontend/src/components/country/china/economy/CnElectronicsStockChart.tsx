@@ -67,7 +67,7 @@ const formatDateFull = (dateStr: string): string => {
 // =============================================================================
 
 export default function CnElectronicsStockChart({ data }: Props) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<string>()
 
   // 電気機器在庫データとSOXデータをdateでマージ

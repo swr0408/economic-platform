@@ -50,7 +50,7 @@ interface ChartDataItem {
 }
 
 export default function JapanCurrentAccountGdpRatioChart({ data }: JapanCurrentAccountGdpRatioChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   // 四半期形式（YYYY-QN）を日付形式（YYYY-MM-DD）に変換
   // Q1 → 01-01, Q2 → 04-01, Q3 → 07-01, Q4 → 10-01

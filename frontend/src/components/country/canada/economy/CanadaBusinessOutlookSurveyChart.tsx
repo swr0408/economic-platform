@@ -57,8 +57,8 @@ export default function CanadaBusinessOutlookSurveyChart({ data }: CanadaBusines
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    sentiment: 'default' as const,
-    prices: 'default' as const,
+    sentiment: 20 as const,
+    prices: 20 as const,
   })
 
   const chartData = useMemo(() => {

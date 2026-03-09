@@ -50,7 +50,7 @@ interface ChartDataPoint {
 const CHART_COLOR = '#e74c3c'
 
 export default function BRCRetailSalesChart({ data }: BRCRetailSalesChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
   const [commentary, setCommentary] = useState<BRCCommentaryData | null>(null)

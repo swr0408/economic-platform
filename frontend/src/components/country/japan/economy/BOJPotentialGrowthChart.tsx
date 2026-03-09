@@ -117,7 +117,7 @@ const BOJPotentialGrowthChart: React.FC = () => {
   const [data, setData] = useState<BOJPotentialGrowthData | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   useEffect(() => {
     fetchData()

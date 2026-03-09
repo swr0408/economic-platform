@@ -48,7 +48,7 @@ const calculate3MA = (data: ChartDataPoint[]): ChartDataPoint[] => {
 }
 
 export default function NFIBCapexChart({ data }: NFIBCapexChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソートして3MA計算

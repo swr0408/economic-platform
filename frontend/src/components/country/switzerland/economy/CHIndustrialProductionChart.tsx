@@ -107,10 +107,10 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    mom: 'default',
-    yoy: 'default',
-    qoq: 'default',
-    qyoy: 'default',
+    mom: 10,
+    yoy: 10,
+    qoq: 10,
+    qyoy: 10,
   })
 
   // 月次データ変換

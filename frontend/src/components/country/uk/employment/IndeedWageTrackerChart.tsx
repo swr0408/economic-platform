@@ -48,7 +48,7 @@ const YOY_COLOR = '#f39c12'
 const MA3_COLOR = '#27ae60'
 
 export default function IndeedWageTrackerChart({ data }: IndeedWageTrackerChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // propsのデータをチャート用に変換

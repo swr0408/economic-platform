@@ -69,7 +69,7 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function HiresLayoffsChart({ data }: HiresLayoffsChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { handleLegendClick, isHidden } = useHiddenSeries<'hires' | 'layoffs'>()
 

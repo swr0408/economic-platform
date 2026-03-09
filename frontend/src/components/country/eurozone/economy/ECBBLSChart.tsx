@@ -66,7 +66,7 @@ const getYearFromECBQuarter = (dateStr: string): number => {
 }
 
 export default function ECBBLSChart({ data }: ECBBLSChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [viewMode, setViewMode] = useState<ViewMode>('enterprises')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

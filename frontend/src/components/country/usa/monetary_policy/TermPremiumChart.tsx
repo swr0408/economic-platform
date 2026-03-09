@@ -37,16 +37,16 @@ interface TermPremiumChartProps {
 
 interface TermPremiumChartData {
   date: string
-  value: number  // ZoomableChart requires this (mapped to yield_10y)
-  yield_10y: number | null         // 10年債利回り (NY Fed ACM)
-  acm_term_premium: number | null  // ACMタームプレミアム (NY Fed)
-  kw_term_premium: number | null   // KWタームプレミアム (FRED)
-  expected_rate: number | null     // 期待短期金利 (NY Fed)
+  value: number  // ZoomableChart requires this (mapped to acm_term_premium)
+  yield_10y: number | null         // 10年債利回り (NY Fed ACM) → 右Y軸
+  acm_term_premium: number | null  // ACMタームプレミアム (NY Fed) → 左Y軸
+  kw_term_premium: number | null   // KWタームプレミアム (FRED) → 左Y軸
+  expected_rate: number | null     // 期待短期金利 (NY Fed) → 右Y軸
   [key: string]: string | number | null | undefined
 }
 
 export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
 
   // propsのデータをチャート用に変換・マージ
   const chartData = useMemo<TermPremiumChartData[]>(() => {
@@ -65,7 +65,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
       const kwValue = kwDataMap.get(item.date) ?? null
       return {
         date: item.date,
-        value: item.yield_10y ?? 0,
+        value: item.term_premium ?? 0,
         yield_10y: item.yield_10y,
         acm_term_premium: item.term_premium,
         kw_term_premium: kwValue,
@@ -116,21 +116,24 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
   }
 
   // 追加ライン設定（4ラインチャート）
+  // ACM・KW タームプレミアム → 左Y軸、10年債利回り・期待短期金利 → 右Y軸
   const additionalLines = [
-    {
-      dataKey: 'acm_term_premium',
-      color: '#722ed1',  // 紫
-      name: 'ACMタームプレミアム',
-    },
     {
       dataKey: 'kw_term_premium',
       color: '#fa8c16',  // オレンジ
       name: 'KWタームプレミアム',
     },
     {
+      dataKey: 'yield_10y',
+      color: '#1890ff',  // 青
+      name: '10年債利回り',
+      yAxisId: 'right',
+    },
+    {
       dataKey: 'expected_rate',
       color: '#52c41a',  // 緑
       name: '期待短期金利',
+      yAxisId: 'right',
     },
   ]
 
@@ -158,9 +161,9 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
         {/* チャート */}
         <ZoomableChart
           data={filteredData}
-          dataKey="yield_10y"
-          color="#1890ff"
-          name="10年債利回り"
+          dataKey="acm_term_premium"
+          color="#722ed1"
+          name="ACMタームプレミアム"
           height={450}
           tickFormatter={formatPercentage}
           xAxisTickFormatter={formatDateLabelFull}
@@ -170,10 +173,14 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
           connectNulls={true}
           hideLegend={false}
           showDefaultTooltip={false}
-          domain={['dataMin - 0.5', 'dataMax + 0.5']}
+          domain={['auto', 'auto']}
           additionalLines={additionalLines}
           initialHiddenLines={['kw_term_premium']}
           xAxisInterval={xAxisInterval}
+          rightYAxis={{
+            domain: ['auto', 'auto'],
+            tickFormatter: formatPercentage,
+          }}
         >
           <RechartsTooltip
             content={({ active, payload, label }) => {

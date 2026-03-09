@@ -73,8 +73,8 @@ export default function TotalVehicleSalesChart({ data }: TotalVehicleSalesChartP
 
   // 指標種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    value: 'default',
-    yoy: 'default',
+    value: 10,
+    yoy: 10,
     mom: 3,
   })
 

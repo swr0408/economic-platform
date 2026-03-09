@@ -102,7 +102,7 @@ export default function AuWestpacConsumerConfidenceChart({ data }: AuWestpacCons
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    index: 'default',
+    index: 10,
     mom: 3,
   })
 

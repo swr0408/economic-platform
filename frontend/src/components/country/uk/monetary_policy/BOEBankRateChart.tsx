@@ -40,7 +40,7 @@ interface BOEBankRateChartData {
 }
 
 export default function BOEBankRateChart({ data }: BOEBankRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(2)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // propsのデータをチャート用に変換

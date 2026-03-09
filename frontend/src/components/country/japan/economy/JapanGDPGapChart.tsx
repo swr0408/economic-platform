@@ -102,7 +102,7 @@ export default function JapanGDPGapChart() {
   const [data, setData] = useState<GDPGapResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [currentPeriod, setCurrentPeriod] = useState<number | 'default' | 'all'>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<number | 'default' | 'all'>(20)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データ取得

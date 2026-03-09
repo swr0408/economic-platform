@@ -88,8 +88,8 @@ export default function EmploymentCostIndexChart({ data }: EmploymentCostIndexCh
 
   // 期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(displayMode, {
-    chart: 'default',
-    heatmap: 'default',
+    chart: 20,
+    heatmap: 20,
   })
 
   // データのソート

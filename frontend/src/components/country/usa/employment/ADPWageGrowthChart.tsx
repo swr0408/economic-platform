@@ -54,7 +54,7 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function ADPWageGrowthChart({ data }: ADPWageGrowthChartProps) {
-  const [period, setPeriod] = useState<'default' | 'all' | number>('default')
+  const [period, setPeriod] = useState<'default' | 'all' | number>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

@@ -99,7 +99,7 @@ const DATA_KIND_CONFIG: Record<DataKind, {
 }
 
 export default function ONSProductionChart({ data }: ONSProductionChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [dataKind, setDataKind] = useState<DataKind>('yoy')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')

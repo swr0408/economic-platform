@@ -98,16 +98,16 @@ export default function AuGdpPriceRelatedChart({ data }: AuGdpPriceRelatedChartP
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    deflator_qoq: 'default',
-    deflator_table: 'default',
-    deflator_yoy: 'default',
+    deflator_qoq: 20,
+    deflator_table: 20,
+    deflator_yoy: 20,
     net_exports: 3,
-    gfcf_qoq: 'default',
-    gfcf_table: 'default',
-    gfcf_yoy: 'default',
-    consumption_qoq: 'default',
-    consumption_table: 'default',
-    consumption_yoy: 'default',
+    gfcf_qoq: 20,
+    gfcf_table: 20,
+    gfcf_yoy: 20,
+    consumption_qoq: 20,
+    consumption_table: 20,
+    consumption_yoy: 20,
   })
 
   // propsのデータをチャート用に変換

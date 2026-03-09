@@ -60,7 +60,7 @@ const formatDateFull = (dateStr: string): string => {
 // =============================================================================
 
 export default function ChinaShanghaiContainerFreightIndexChart({ data }: Props) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<string>()
 
   const sortedData = useSortedData(data?.data ?? [])

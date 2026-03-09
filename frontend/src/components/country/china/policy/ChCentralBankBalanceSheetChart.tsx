@@ -61,7 +61,7 @@ const formatDateFull = (dateStr: string): string => {
 // =============================================================================
 
 export default function ChCentralBankBalanceSheetChart({ data }: ChCentralBankBalanceSheetChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
 
   const sortedData = useSortedData(data?.data ?? [])
 

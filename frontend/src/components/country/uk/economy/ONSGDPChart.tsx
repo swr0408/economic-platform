@@ -81,7 +81,7 @@ const getQuarterFromDate = (dateStr: string): number => {
 }
 
 export default function ONSGDPChart({ data }: ONSGDPChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [dataKind, setDataKind] = useState<DataKind>('qoq')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')

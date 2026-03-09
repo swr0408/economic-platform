@@ -46,7 +46,7 @@ const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
 ]
 
 export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 

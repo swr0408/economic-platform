@@ -69,7 +69,7 @@ const formatQuarterLabelJP = (dateStr: string): string => {
 
 export default function NzCapacityUtilizationChart({ data }: NzCapacityUtilizationChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(20)
 
   // データを日付昇順にソート
   const sortedData = useSortedData(data?.data ?? [])

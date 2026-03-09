@@ -21,7 +21,7 @@ interface BankLendingChartProps {
 }
 
 export default function BankLendingChart({ data }: BankLendingChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {

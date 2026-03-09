@@ -63,8 +63,8 @@ export default function ConsumerCreditChart({ data }: ConsumerCreditChartProps) 
 
   // ビューモード毎の期間管理（共通フック使用）
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    value: 'default',
-    yoy: 'default',
+    value: 20,
+    yoy: 20,
     mom: 3,
   })
 

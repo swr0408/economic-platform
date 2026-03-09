@@ -65,8 +65,8 @@ export default function JapanCurrentAccountChart({ data }: JapanCurrentAccountCh
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    current_account: 'default' as PeriodType,
-    breakdown: 'default' as PeriodType,
+    current_account: 20 as PeriodType,
+    breakdown: 20 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

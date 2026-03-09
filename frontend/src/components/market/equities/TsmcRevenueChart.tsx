@@ -110,9 +110,9 @@ export default function TsmcRevenueChart() {
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    raw: 'default',
-    quarterly: 'default',
-    yoy: 'default',
+    raw: 10,
+    quarterly: 10,
+    yoy: 10,
     mom: 3,
   })
 

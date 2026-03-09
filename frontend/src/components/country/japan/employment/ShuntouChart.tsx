@@ -280,7 +280,7 @@ function PressReleaseViewer({ pressReleases }: { pressReleases: PressRelease[] }
 
 export default function ShuntouChart({ data }: ShuntouChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
 
   // チャートデータに変換（2系列をマージ）
   const chartData = useMemo<ChartDataPoint[]>(() => {

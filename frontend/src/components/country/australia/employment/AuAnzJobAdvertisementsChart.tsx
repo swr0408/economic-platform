@@ -106,9 +106,9 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
 
   // データ種別毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
-    yoy: 'default',
+    yoy: 10,
     mom: 3,
-    index: 'default',
+    index: 10,
   })
 
   // データを変換

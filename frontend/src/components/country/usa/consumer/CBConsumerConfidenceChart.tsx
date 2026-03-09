@@ -42,7 +42,7 @@ interface CBConsumerConfidenceChartProps {
 // =============================================================================
 
 export default function CBConsumerConfidenceChart({ data }: CBConsumerConfidenceChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
 
   // データを日付昇順にソート

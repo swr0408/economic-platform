@@ -47,7 +47,7 @@ const COLORS = {
 // =============================================================================
 
 export default function UnemploymentRateChart({ data }: UnemploymentRateChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<number | 'all' | 'default'>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

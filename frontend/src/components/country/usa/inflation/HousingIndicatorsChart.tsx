@@ -152,7 +152,7 @@ function HousingTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function HousingIndicatorsChart({ housingData }: HousingIndicatorsChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データをマージ（ZillowとケースシラーをR18か月先行させて家賃CPIと結合）
   const mergedData = useMemo((): MergedDataPoint[] => {

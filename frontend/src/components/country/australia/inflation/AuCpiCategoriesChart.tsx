@@ -144,7 +144,7 @@ function CategoryTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function AuCpiCategoriesChart({ data }: AuCpiCategoriesChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(20)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // データを日付昇順にソート

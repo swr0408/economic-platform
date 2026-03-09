@@ -59,9 +59,9 @@ export default function CaUsExportDependenceChart({ data }: CaUsExportDependence
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    raw: 'default' as PeriodType,
-    ma_3m: 'default' as PeriodType,
-    ma_12m: 'default' as PeriodType,
+    raw: 10 as PeriodType,
+    ma_3m: 10 as PeriodType,
+    ma_12m: 10 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

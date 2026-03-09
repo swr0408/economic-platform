@@ -47,7 +47,7 @@ interface ChartDataPoint {
 const CHART_COLOR = '#9b59b6'
 
 export default function GfKConsumerConfidenceChart({ data }: GfKConsumerConfidenceChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

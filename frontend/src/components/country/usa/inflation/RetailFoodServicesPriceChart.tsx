@@ -125,7 +125,7 @@ function RetailFoodServicesPriceTooltip({ active, payload, label }: {
 // =============================================================================
 
 export default function RetailFoodServicesPriceChart({ retailFoodServicesPriceData }: RetailFoodServicesPriceChartProps) {
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データを日付昇順にソート
   const sortedData = useSortedData(retailFoodServicesPriceData?.data)

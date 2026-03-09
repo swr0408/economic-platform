@@ -75,7 +75,7 @@ const formatMonthLabelJP = (dateStr: string): string => {
 export default function NzTradeBalanceChart({ data }: NzTradeBalanceChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const [viewMode, setViewMode] = useState<ViewMode>('balance')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

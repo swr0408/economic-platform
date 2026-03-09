@@ -129,7 +129,7 @@ export default function CnBeijingPm25Chart({ data }: Props) {
   const [viewMode, setViewMode] = useState<ViewMode>('ma30')
 
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    monthly: 'default',
+    monthly: 10,
     ma30: 5,
   })
 

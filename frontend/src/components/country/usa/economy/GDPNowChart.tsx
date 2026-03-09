@@ -20,7 +20,7 @@ interface GDPNowChartProps {
 }
 
 export default function GDPNowChart({ data }: GDPNowChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(20)
 
   // データを日付昇順にソート
   const chartData = useMemo(() => {

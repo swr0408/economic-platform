@@ -47,7 +47,7 @@ interface ChartDataPoint {
 const CHART_COLOR = '#faad14'
 
 export default function ONSUnemploymentChart({ data }: ONSUnemploymentChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 

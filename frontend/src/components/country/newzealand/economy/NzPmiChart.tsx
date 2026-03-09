@@ -84,7 +84,7 @@ const formatMonthLabelJP = (dateStr: string): string => {
 
 export default function NzPmiChart({ pmi, psi, pci }: NzPmiChartProps) {
   const [activeTab, setActiveTab] = useState<ActiveTab>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(10)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   // 3系列を日付でマージ

@@ -31,7 +31,7 @@ interface CISSChartProps {
 }
 
 export default function CISSChart({ data }: CISSChartProps) {
-  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>('default')
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
 
   // データをチャート用に変換
   const chartData = useMemo(() => {

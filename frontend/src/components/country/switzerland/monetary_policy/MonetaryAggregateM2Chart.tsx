@@ -61,7 +61,7 @@ export default function MonetaryAggregateM2Chart({ data }: MonetaryAggregateM2Ch
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement('default', {
-    default: 'default',
+    default: 10,
   })
 
   // propsのデータをチャート用に変換

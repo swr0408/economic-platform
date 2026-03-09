@@ -58,8 +58,8 @@ export default function CanadaDebtServiceRatioChart({ data }: CanadaDebtServiceR
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    total: 'default' as PeriodType,
-    breakdown: 'default' as PeriodType,
+    total: 20 as PeriodType,
+    breakdown: 20 as PeriodType,
   })
 
   // propsのデータをチャート用に変換

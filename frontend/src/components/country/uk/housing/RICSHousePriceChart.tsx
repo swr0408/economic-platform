@@ -101,7 +101,7 @@ export default function RICSHousePriceChart({ data }: RICSHousePriceChartProps) 
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
-    chart: 'default',
+    chart: 10,
   })
 
   // propsのデータをチャート用に変換

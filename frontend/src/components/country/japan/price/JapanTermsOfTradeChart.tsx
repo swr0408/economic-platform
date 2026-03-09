@@ -101,7 +101,7 @@ export default function JapanTermsOfTradeChart() {
   const [data, setData] = useState<TermsOfTradeResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>('default')
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
   // データ取得
   useEffect(() => {
