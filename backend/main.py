@@ -116,6 +116,10 @@ try:
     from backend.scheduler.boj_lending_scheduler import boj_lending_scheduler
     from backend.scheduler.pbc_reverse_repo_scheduler import pbc_reverse_repo_scheduler
     from backend.scheduler.pbc_rrr_scheduler import pbc_rrr_scheduler
+    from backend.scheduler.jpx_investor_trading_scheduler import jpx_investor_trading_scheduler
+    from backend.scheduler.gold_etf_holdings_scheduler import gold_etf_holdings_scheduler
+    from backend.scheduler.wgc_gold_etf_scheduler import wgc_gold_etf_scheduler
+    from backend.scheduler.gold_premium_scheduler import gold_premium_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -289,6 +293,10 @@ except ImportError:
     from scheduler.cn_central_parity_scheduler import cn_central_parity_scheduler
     from scheduler.cn_government_bond_issuance_scheduler import cn_government_bond_issuance_scheduler
     from scheduler.cn_baidu_migration_scheduler import cn_baidu_migration_scheduler
+    from scheduler.jpx_investor_trading_scheduler import jpx_investor_trading_scheduler
+    from scheduler.gold_etf_holdings_scheduler import gold_etf_holdings_scheduler
+    from scheduler.wgc_gold_etf_scheduler import wgc_gold_etf_scheduler
+    from scheduler.gold_premium_scheduler import gold_premium_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -630,6 +638,34 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start CN Baidu Migration Screenshot Scheduler: {e}")
 
+    # JPX投資部門別売買状況 週次スケジューラーを開始
+    try:
+        jpx_investor_trading_scheduler.start()
+        print("JPX Investor Trading Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start JPX Investor Trading Scheduler: {e}")
+
+    # 金ETF保有残高 日次スケジューラーを開始
+    try:
+        gold_etf_holdings_scheduler.start()
+        print("Gold ETF Holdings Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Gold ETF Holdings Scheduler: {e}")
+
+    # WGC金ETFフロー/保有残高 週次スケジューラーを開始
+    try:
+        wgc_gold_etf_scheduler.start()
+        print("WGC Gold ETF Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start WGC Gold ETF Scheduler: {e}")
+
+    # 金プレミアム/ディスカウント 週次スケジューラーを開始
+    try:
+        gold_premium_scheduler.start()
+        print("Gold Premium Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Gold Premium Scheduler: {e}")
+
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:
         from services.canada.ca_settlement_balances_service import ca_settlement_balances_service
@@ -714,6 +750,26 @@ async def shutdown_event():
         cn_government_bond_issuance_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down CN Government Bond Issuance Scheduler: {e}")
+
+    try:
+        jpx_investor_trading_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down JPX Investor Trading Scheduler: {e}")
+
+    try:
+        gold_etf_holdings_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Gold ETF Holdings Scheduler: {e}")
+
+    try:
+        wgc_gold_etf_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down WGC Gold ETF Scheduler: {e}")
+
+    try:
+        gold_premium_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Gold Premium Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

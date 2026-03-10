@@ -1,12 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-04-08",
-      "sofr": 5.31,
-      "sofr_change": -1.0,
-      "volatility_20d": 0.7255
-    },
-    {
       "date": "2024-04-09",
       "sofr": 5.31,
       "sofr_change": 0.0,
@@ -2855,12 +2849,24 @@
       "sofr": 3.66,
       "sofr_change": -1.0,
       "volatility_20d": 2.2355
+    },
+    {
+      "date": "2026-03-06",
+      "sofr": 3.65,
+      "sofr_change": -1.0,
+      "volatility_20d": 2.2478
+    },
+    {
+      "date": "2026-03-09",
+      "sofr": 3.65,
+      "sofr_change": 0.0,
+      "volatility_20d": 2.2355
     }
   ],
   "latest": {
-    "date": "2026-03-05",
-    "sofr": 3.66,
-    "sofr_change": -1.0,
+    "date": "2026-03-09",
+    "sofr": 3.65,
+    "sofr_change": 0.0,
     "volatility_20d": 2.2355
   },
   "metadata": {
@@ -2870,5 +2876,5 @@
     "description": "SOFR 20日ローリングボラティリティ（日次変化の標準偏差）",
     "release_time": "08:00 ET（毎営業日）"
   },
-  "last_updated": "2026-03-08T09:00:38.167122"
+  "last_updated": "2026-03-10T14:02:28.044133"
 }

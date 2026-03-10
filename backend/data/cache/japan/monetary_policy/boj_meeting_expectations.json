@@ -1,37 +1,37 @@
 {
   "meetings": [
     {
+      "meeting_date": "2026-01-01",
+      "ois_rate": 0.75,
+      "difference": 0.0,
+      "probability": 0.0
+    },
+    {
       "meeting_date": "2026-03-01",
-      "ois_rate": 0.7938,
-      "difference": 0.0654,
-      "probability": 26.0
+      "ois_rate": 0.8125,
+      "difference": 0.0625,
+      "probability": 25.0
     },
     {
       "meeting_date": "2026-04-01",
-      "ois_rate": 0.9213,
-      "difference": 0.1275,
-      "probability": 51.0
+      "ois_rate": 0.875,
+      "difference": 0.0625,
+      "probability": 25.0
     },
     {
       "meeting_date": "2026-06-01",
-      "ois_rate": 0.995,
-      "difference": 0.0738,
-      "probability": 30.0
+      "ois_rate": 0.9375,
+      "difference": 0.0625,
+      "probability": 25.0
     },
     {
       "meeting_date": "2026-07-01",
-      "ois_rate": 1.0763,
-      "difference": 0.0812,
-      "probability": 33.0
-    },
-    {
-      "meeting_date": "2026-09-01",
-      "ois_rate": 1.1575,
-      "difference": 0.0813,
-      "probability": 33.0
+      "ois_rate": 1.0,
+      "difference": 0.0625,
+      "probability": 25.0
     }
   ],
-  "last_updated": "2026-02-11T16:46:54.330986+09:00",
+  "last_updated": "2026-03-10T17:06:54.866567+09:00",
   "source": "https://www.tokyotanshi.co.jp/archives/15647",
-  "data_source": "playwright"
+  "data_source": "fallback"
 }

@@ -1024,12 +1024,22 @@
       "date": "2026-01-01",
       "actual": 53322.85,
       "model": 41751.0
+    },
+    {
+      "date": "2026-02-01",
+      "actual": 58850.27,
+      "model": null
+    },
+    {
+      "date": "2026-03-01",
+      "actual": 54065.57,
+      "model": null
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "actual": 53322.85,
-    "model": 41751.0
+    "date": "2026-03-01",
+    "actual": 54065.57,
+    "model": null
   },
   "model_info": {
     "coef_afre_12ma": 9.0475,
@@ -1043,14 +1053,14 @@
   },
   "metadata": {
     "source": "Regression Model (AFRE 12MA + USDJPY)",
-    "data_count": 205,
+    "data_count": 207,
     "start_date": "2009-01-01",
-    "end_date": "2026-01-01",
+    "end_date": "2026-03-01",
     "afre_latest": "2026-01-01",
     "usdjpy_latest": "2026-03-01",
     "nikkei_latest": "2026-03-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-09T19:50:51.003056+09:00"
+  "last_updated": "2026-03-10T09:36:33.266818+09:00"
 }

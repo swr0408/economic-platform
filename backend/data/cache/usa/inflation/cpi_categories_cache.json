@@ -2414,8 +2414,8 @@
     "datetime_utc": "2026-03-11T12:30:00+00:00",
     "datetime_jst": "2026-03-11T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core Inflation Rate YoY (Feb)",
-    "estimate": null
+    "label": "Inflation Rate YoY (Feb)",
+    "estimate": 2.4
   },
-  "last_updated": "2026-02-28T10:50:36.060220+09:00"
+  "last_updated": "2026-03-10T23:02:21.989821+09:00"
 }

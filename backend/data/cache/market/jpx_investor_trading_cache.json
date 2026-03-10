@@ -1,0 +1,5310 @@
+{
+  "data": [
+    {
+      "date": "2016-01-04",
+      "individuals": 5814.9,
+      "foreigners": -4471.2,
+      "trust_banks": 345.8,
+      "investment_trusts": 272.4,
+      "business_corps": 608.2,
+      "proprietary": -3764.6,
+      "nikkei_close": 17240.95
+    },
+    {
+      "date": "2016-01-12",
+      "individuals": 2566.5,
+      "foreigners": -2109.0,
+      "trust_banks": 1200.6,
+      "investment_trusts": 177.3,
+      "business_corps": 378.8,
+      "proprietary": -2915.6,
+      "nikkei_close": 16017.26
+    },
+    {
+      "date": "2016-01-18",
+      "individuals": 277.9,
+      "foreigners": -1902.3,
+      "trust_banks": 1821.6,
+      "investment_trusts": 579.5,
+      "business_corps": 238.6,
+      "proprietary": -1165.1,
+      "nikkei_close": 17041.45
+    },
+    {
+      "date": "2016-01-25",
+      "individuals": -685.6,
+      "foreigners": -2073.5,
+      "trust_banks": 2707.9,
+      "investment_trusts": -62.1,
+      "business_corps": null,
+      "proprietary": 207.6,
+      "nikkei_close": 17044.99
+    },
+    {
+      "date": "2016-02-01",
+      "individuals": 1941.5,
+      "foreigners": -6112.5,
+      "trust_banks": 252.2,
+      "investment_trusts": 545.2,
+      "business_corps": 311.8,
+      "proprietary": 3078.9,
+      "nikkei_close": 15713.39
+    },
+    {
+      "date": "2016-02-08",
+      "individuals": 1886.1,
+      "foreigners": -5735.0,
+      "trust_banks": 401.2,
+      "investment_trusts": -285.1,
+      "business_corps": 1023.8,
+      "proprietary": 2501.5,
+      "nikkei_close": 16196.8
+    },
+    {
+      "date": "2016-02-15",
+      "individuals": 25.4,
+      "foreigners": -4053.3,
+      "trust_banks": 4999.6,
+      "investment_trusts": 546.1,
+      "business_corps": 1385.3,
+      "proprietary": -2809.5,
+      "nikkei_close": 16140.34
+    },
+    {
+      "date": "2016-02-22",
+      "individuals": -417.4,
+      "foreigners": -4081.9,
+      "trust_banks": 3848.4,
+      "investment_trusts": 1174.2,
+      "business_corps": 188.8,
+      "proprietary": -1261.6,
+      "nikkei_close": 16960.16
+    },
+    {
+      "date": "2016-02-29",
+      "individuals": -1989.3,
+      "foreigners": -954.4,
+      "trust_banks": 2813.4,
+      "investment_trusts": 557.3,
+      "business_corps": null,
+      "proprietary": -148.8,
+      "nikkei_close": 16852.35
+    },
+    {
+      "date": "2016-03-07",
+      "individuals": 2038.5,
+      "foreigners": -11932.0,
+      "trust_banks": 736.9,
+      "investment_trusts": -222.5,
+      "business_corps": 333.9,
+      "proprietary": 8768.1,
+      "nikkei_close": 16936.38
+    },
+    {
+      "date": "2016-03-14",
+      "individuals": 1875.4,
+      "foreigners": -4579.6,
+      "trust_banks": 181.8,
+      "investment_trusts": 229.1,
+      "business_corps": 92.8,
+      "proprietary": 1759.2,
+      "nikkei_close": 16892.33
+    },
+    {
+      "date": "2016-03-22",
+      "individuals": -205.4,
+      "foreigners": -2042.9,
+      "trust_banks": 1831.1,
+      "investment_trusts": 80.4,
+      "business_corps": null,
+      "proprietary": 381.2,
+      "nikkei_close": 16758.67
+    },
+    {
+      "date": "2016-03-28",
+      "individuals": 1106.8,
+      "foreigners": -79.4,
+      "trust_banks": -581.0,
+      "investment_trusts": 287.5,
+      "business_corps": 8.5,
+      "proprietary": -492.9,
+      "nikkei_close": 15749.84
+    },
+    {
+      "date": "2016-04-04",
+      "individuals": 110.8,
+      "foreigners": 326.6,
+      "trust_banks": 1542.0,
+      "investment_trusts": 413.7,
+      "business_corps": 376.0,
+      "proprietary": -2683.4,
+      "nikkei_close": 16911.05
+    },
+    {
+      "date": "2016-04-11",
+      "individuals": -3465.7,
+      "foreigners": 3848.9,
+      "trust_banks": 891.1,
+      "investment_trusts": 1075.5,
+      "business_corps": 88.2,
+      "proprietary": -1646.2,
+      "nikkei_close": 17363.62
+    },
+    {
+      "date": "2016-04-18",
+      "individuals": -4605.6,
+      "foreigners": 5320.9,
+      "trust_banks": -698.5,
+      "investment_trusts": -156.5,
+      "business_corps": null,
+      "proprietary": 1032.4,
+      "nikkei_close": 16666.05
+    },
+    {
+      "date": "2016-04-25",
+      "individuals": 1013.0,
+      "foreigners": -892.3,
+      "trust_banks": -313.1,
+      "investment_trusts": -150.9,
+      "business_corps": 367.7,
+      "proprietary": 84.1,
+      "nikkei_close": 16147.38
+    },
+    {
+      "date": "2016-05-02",
+      "individuals": 2616.6,
+      "foreigners": -3142.8,
+      "trust_banks": 578.4,
+      "investment_trusts": -112.7,
+      "business_corps": 321.6,
+      "proprietary": -890.0,
+      "nikkei_close": 16646.34
+    },
+    {
+      "date": "2016-05-09",
+      "individuals": -137.4,
+      "foreigners": 567.7,
+      "trust_banks": 237.1,
+      "investment_trusts": 289.1,
+      "business_corps": 648.5,
+      "proprietary": -1865.9,
+      "nikkei_close": 16646.66
+    },
+    {
+      "date": "2016-05-16",
+      "individuals": -1301.3,
+      "foreigners": 22.0,
+      "trust_banks": 178.5,
+      "investment_trusts": -265.3,
+      "business_corps": 1308.2,
+      "proprietary": -47.1,
+      "nikkei_close": 16772.46
+    },
+    {
+      "date": "2016-05-23",
+      "individuals": -1103.9,
+      "foreigners": -705.0,
+      "trust_banks": 157.9,
+      "investment_trusts": -293.2,
+      "business_corps": 801.9,
+      "proprietary": 1228.9,
+      "nikkei_close": 16562.55
+    },
+    {
+      "date": "2016-05-30",
+      "individuals": 348.8,
+      "foreigners": -1461.7,
+      "trust_banks": 512.0,
+      "investment_trusts": -250.3,
+      "business_corps": 1149.8,
+      "proprietary": -115.9,
+      "nikkei_close": 16668.41
+    },
+    {
+      "date": "2016-06-06",
+      "individuals": 295.2,
+      "foreigners": 2235.9,
+      "trust_banks": 1488.7,
+      "investment_trusts": -205.4,
+      "business_corps": 870.8,
+      "proprietary": -4946.5,
+      "nikkei_close": 15434.14
+    },
+    {
+      "date": "2016-06-13",
+      "individuals": 1934.0,
+      "foreigners": -2208.1,
+      "trust_banks": 213.1,
+      "investment_trusts": 562.5,
+      "business_corps": 3533.5,
+      "proprietary": -1965.1,
+      "nikkei_close": 16238.35
+    },
+    {
+      "date": "2016-06-20",
+      "individuals": 355.3,
+      "foreigners": -1301.1,
+      "trust_banks": 1250.6,
+      "investment_trusts": 237.6,
+      "business_corps": 261.0,
+      "proprietary": -1397.3,
+      "nikkei_close": 15575.92
+    },
+    {
+      "date": "2016-06-27",
+      "individuals": -119.3,
+      "foreigners": 105.3,
+      "trust_banks": 2282.9,
+      "investment_trusts": 606.0,
+      "business_corps": 19.6,
+      "proprietary": -2536.4,
+      "nikkei_close": 15276.24
+    },
+    {
+      "date": "2016-07-04",
+      "individuals": 1691.9,
+      "foreigners": -1748.7,
+      "trust_banks": 1525.9,
+      "investment_trusts": -371.9,
+      "business_corps": 442.2,
+      "proprietary": -1908.4,
+      "nikkei_close": 16385.89
+    },
+    {
+      "date": "2016-07-11",
+      "individuals": -4990.3,
+      "foreigners": 3511.9,
+      "trust_banks": -56.9,
+      "investment_trusts": -463.4,
+      "business_corps": 123.8,
+      "proprietary": 2755.9,
+      "nikkei_close": 16810.22
+    },
+    {
+      "date": "2016-07-19",
+      "individuals": 386.9,
+      "foreigners": -1261.9,
+      "trust_banks": 660.1,
+      "investment_trusts": -147.4,
+      "business_corps": 87.6,
+      "proprietary": 311.8,
+      "nikkei_close": 16476.84
+    },
+    {
+      "date": "2016-07-25",
+      "individuals": -988.4,
+      "foreigners": 788.4,
+      "trust_banks": 505.9,
+      "investment_trusts": -354.5,
+      "business_corps": 75.9,
+      "proprietary": 221.9,
+      "nikkei_close": 16254.89
+    },
+    {
+      "date": "2016-08-01",
+      "individuals": 2238.5,
+      "foreigners": -4587.0,
+      "trust_banks": 1725.6,
+      "investment_trusts": -27.1,
+      "business_corps": 704.6,
+      "proprietary": -423.6,
+      "nikkei_close": 16735.12
+    },
+    {
+      "date": "2016-08-08",
+      "individuals": -2114.0,
+      "foreigners": 484.3,
+      "trust_banks": 1204.9,
+      "investment_trusts": -33.4,
+      "business_corps": 231.1,
+      "proprietary": 433.8,
+      "nikkei_close": 16486.01
+    },
+    {
+      "date": "2016-08-15",
+      "individuals": 767.1,
+      "foreigners": -1667.2,
+      "trust_banks": 1079.9,
+      "investment_trusts": -275.7,
+      "business_corps": 865.0,
+      "proprietary": -682.0,
+      "nikkei_close": 16555.95
+    },
+    {
+      "date": "2016-08-22",
+      "individuals": 186.5,
+      "foreigners": 1713.6,
+      "trust_banks": 653.1,
+      "investment_trusts": -377.5,
+      "business_corps": 729.8,
+      "proprietary": -2917.1,
+      "nikkei_close": 16926.84
+    },
+    {
+      "date": "2016-08-29",
+      "individuals": -3204.3,
+      "foreigners": -642.3,
+      "trust_banks": 699.6,
+      "investment_trusts": 228.9,
+      "business_corps": 450.2,
+      "proprietary": 2711.5,
+      "nikkei_close": 16958.77
+    },
+    {
+      "date": "2016-09-05",
+      "individuals": -1020.5,
+      "foreigners": -3338.1,
+      "trust_banks": -444.1,
+      "investment_trusts": -91.4,
+      "business_corps": 349.2,
+      "proprietary": 4674.7,
+      "nikkei_close": 16405.01
+    },
+    {
+      "date": "2016-09-12",
+      "individuals": 1764.0,
+      "foreigners": -4805.7,
+      "trust_banks": -170.1,
+      "investment_trusts": 76.3,
+      "business_corps": 500.5,
+      "proprietary": 2675.6,
+      "nikkei_close": 16807.62
+    },
+    {
+      "date": "2016-09-20",
+      "individuals": -2031.0,
+      "foreigners": -1019.2,
+      "trust_banks": 201.1,
+      "investment_trusts": 356.7,
+      "business_corps": null,
+      "proprietary": 2432.5,
+      "nikkei_close": 16693.71
+    },
+    {
+      "date": "2016-09-26",
+      "individuals": 548.0,
+      "foreigners": -1887.7,
+      "trust_banks": -372.1,
+      "investment_trusts": -315.6,
+      "business_corps": null,
+      "proprietary": 2256.5,
+      "nikkei_close": 16899.1
+    },
+    {
+      "date": "2016-10-03",
+      "individuals": -2877.3,
+      "foreigners": 2805.3,
+      "trust_banks": -277.6,
+      "investment_trusts": -434.7,
+      "business_corps": 162.9,
+      "proprietary": 1188.2,
+      "nikkei_close": 16774.24
+    },
+    {
+      "date": "2016-10-11",
+      "individuals": -120.0,
+      "foreigners": 1131.6,
+      "trust_banks": -56.5,
+      "investment_trusts": -513.1,
+      "business_corps": 140.1,
+      "proprietary": -466.5,
+      "nikkei_close": 17235.5
+    },
+    {
+      "date": "2016-10-17",
+      "individuals": -1890.0,
+      "foreigners": 730.9,
+      "trust_banks": 102.6,
+      "investment_trusts": -684.5,
+      "business_corps": 180.6,
+      "proprietary": 1826.4,
+      "nikkei_close": 17336.42
+    },
+    {
+      "date": "2016-10-24",
+      "individuals": -2773.2,
+      "foreigners": 49.4,
+      "trust_banks": -575.5,
+      "investment_trusts": -926.1,
+      "business_corps": 70.1,
+      "proprietary": 4415.5,
+      "nikkei_close": 17134.68
+    },
+    {
+      "date": "2016-10-31",
+      "individuals": 1252.4,
+      "foreigners": -645.6,
+      "trust_banks": -259.4,
+      "investment_trusts": 167.3,
+      "business_corps": 718.3,
+      "proprietary": -1051.7,
+      "nikkei_close": 17344.42
+    },
+    {
+      "date": "2016-11-07",
+      "individuals": -4154.8,
+      "foreigners": 4007.0,
+      "trust_banks": -775.0,
+      "investment_trusts": -893.4,
+      "business_corps": 932.6,
+      "proprietary": 1642.2,
+      "nikkei_close": 17862.63
+    },
+    {
+      "date": "2016-11-14",
+      "individuals": -4452.7,
+      "foreigners": 4903.3,
+      "trust_banks": -761.8,
+      "investment_trusts": -1643.1,
+      "business_corps": 1204.0,
+      "proprietary": 1855.5,
+      "nikkei_close": 18333.41
+    },
+    {
+      "date": "2016-11-21",
+      "individuals": -4332.0,
+      "foreigners": 3027.0,
+      "trust_banks": -823.6,
+      "investment_trusts": -691.8,
+      "business_corps": 452.5,
+      "proprietary": 2827.4,
+      "nikkei_close": 18513.12
+    },
+    {
+      "date": "2016-11-28",
+      "individuals": -3024.8,
+      "foreigners": 4148.5,
+      "trust_banks": -39.5,
+      "investment_trusts": 541.1,
+      "business_corps": 265.3,
+      "proprietary": -1045.3,
+      "nikkei_close": 18765.47
+    },
+    {
+      "date": "2016-12-05",
+      "individuals": -3709.8,
+      "foreigners": 5625.3,
+      "trust_banks": 2997.1,
+      "investment_trusts": 364.1,
+      "business_corps": 20.7,
+      "proprietary": -4818.8,
+      "nikkei_close": 19273.79
+    },
+    {
+      "date": "2016-12-12",
+      "individuals": -4813.0,
+      "foreigners": 822.2,
+      "trust_banks": -538.8,
+      "investment_trusts": -1733.6,
+      "business_corps": 84.3,
+      "proprietary": 6440.7,
+      "nikkei_close": 19427.67
+    },
+    {
+      "date": "2016-12-19",
+      "individuals": -1982.1,
+      "foreigners": -1947.0,
+      "trust_banks": -606.7,
+      "investment_trusts": -513.7,
+      "business_corps": 60.6,
+      "proprietary": 5190.8,
+      "nikkei_close": 19145.14
+    },
+    {
+      "date": "2016-12-26",
+      "individuals": -2156.7,
+      "foreigners": 324.7,
+      "trust_banks": -1827.3,
+      "investment_trusts": -762.0,
+      "business_corps": null,
+      "proprietary": 5187.1,
+      "nikkei_close": 19520.69
+    },
+    {
+      "date": "2017-01-04",
+      "individuals": -2424.0,
+      "foreigners": 2326.2,
+      "trust_banks": -461.4,
+      "investment_trusts": -429.9,
+      "business_corps": null,
+      "proprietary": 1322.9,
+      "nikkei_close": 19134.7
+    },
+    {
+      "date": "2017-01-10",
+      "individuals": 67.1,
+      "foreigners": 1105.7,
+      "trust_banks": -255.9,
+      "investment_trusts": -565.9,
+      "business_corps": 67.8,
+      "proprietary": -470.3,
+      "nikkei_close": 19072.25
+    },
+    {
+      "date": "2017-01-16",
+      "individuals": 105.2,
+      "foreigners": -1039.6,
+      "trust_banks": 507.0,
+      "investment_trusts": -1044.6,
+      "business_corps": 52.7,
+      "proprietary": 1592.1,
+      "nikkei_close": 19402.39
+    },
+    {
+      "date": "2017-01-23",
+      "individuals": -1317.6,
+      "foreigners": -2066.6,
+      "trust_banks": 637.5,
+      "investment_trusts": -451.6,
+      "business_corps": 5.6,
+      "proprietary": 3126.7,
+      "nikkei_close": 18914.58
+    },
+    {
+      "date": "2017-01-30",
+      "individuals": 2042.0,
+      "foreigners": -2448.0,
+      "trust_banks": -596.0,
+      "investment_trusts": -756.8,
+      "business_corps": 230.1,
+      "proprietary": 1090.1,
+      "nikkei_close": 18907.67
+    },
+    {
+      "date": "2017-02-06",
+      "individuals": -1754.2,
+      "foreigners": 1371.5,
+      "trust_banks": -393.1,
+      "investment_trusts": -232.1,
+      "business_corps": 581.9,
+      "proprietary": 1032.5,
+      "nikkei_close": 19347.53
+    },
+    {
+      "date": "2017-02-13",
+      "individuals": 122.1,
+      "foreigners": -763.1,
+      "trust_banks": -539.4,
+      "investment_trusts": -117.2,
+      "business_corps": null,
+      "proprietary": 1569.0,
+      "nikkei_close": 19371.46
+    },
+    {
+      "date": "2017-02-20",
+      "individuals": -409.1,
+      "foreigners": -727.7,
+      "trust_banks": -220.4,
+      "investment_trusts": -539.7,
+      "business_corps": 621.4,
+      "proprietary": 1193.8,
+      "nikkei_close": 19564.8
+    },
+    {
+      "date": "2017-02-27",
+      "individuals": -840.4,
+      "foreigners": -796.7,
+      "trust_banks": -380.9,
+      "investment_trusts": -588.1,
+      "business_corps": 269.2,
+      "proprietary": 2536.1,
+      "nikkei_close": 19318.58
+    },
+    {
+      "date": "2017-03-06",
+      "individuals": -975.4,
+      "foreigners": -986.7,
+      "trust_banks": -255.5,
+      "investment_trusts": -505.1,
+      "business_corps": 4.5,
+      "proprietary": 3036.9,
+      "nikkei_close": 19590.14
+    },
+    {
+      "date": "2017-03-13",
+      "individuals": 1328.8,
+      "foreigners": -4070.0,
+      "trust_banks": -1390.6,
+      "investment_trusts": -595.2,
+      "business_corps": 423.3,
+      "proprietary": 3995.9,
+      "nikkei_close": 19085.31
+    },
+    {
+      "date": "2017-03-21",
+      "individuals": 3266.4,
+      "foreigners": -3741.5,
+      "trust_banks": -790.3,
+      "investment_trusts": -488.6,
+      "business_corps": 381.7,
+      "proprietary": 995.9,
+      "nikkei_close": 19063.22
+    },
+    {
+      "date": "2017-03-27",
+      "individuals": 593.6,
+      "foreigners": -549.5,
+      "trust_banks": 30.5,
+      "investment_trusts": -271.4,
+      "business_corps": null,
+      "proprietary": 653.7,
+      "nikkei_close": 18597.06
+    },
+    {
+      "date": "2017-04-03",
+      "individuals": 3.8,
+      "foreigners": 908.3,
+      "trust_banks": -633.3,
+      "investment_trusts": -0.7,
+      "business_corps": 858.6,
+      "proprietary": -807.5,
+      "nikkei_close": 18426.84
+    },
+    {
+      "date": "2017-04-10",
+      "individuals": -508.5,
+      "foreigners": 1027.2,
+      "trust_banks": -10.7,
+      "investment_trusts": -18.2,
+      "business_corps": 215.4,
+      "proprietary": -865.7,
+      "nikkei_close": 18430.49
+    },
+    {
+      "date": "2017-04-17",
+      "individuals": -883.0,
+      "foreigners": 2770.5,
+      "trust_banks": -193.0,
+      "investment_trusts": 207.6,
+      "business_corps": 3.0,
+      "proprietary": -1866.5,
+      "nikkei_close": 19251.87
+    },
+    {
+      "date": "2017-04-24",
+      "individuals": -4448.5,
+      "foreigners": 2849.9,
+      "trust_banks": -6.3,
+      "investment_trusts": 555.7,
+      "business_corps": null,
+      "proprietary": 1942.4,
+      "nikkei_close": 19445.7
+    },
+    {
+      "date": "2017-05-01",
+      "individuals": -1877.3,
+      "foreigners": 1583.3,
+      "trust_banks": -144.9,
+      "investment_trusts": -169.0,
+      "business_corps": null,
+      "proprietary": 730.6,
+      "nikkei_close": 19961.55
+    },
+    {
+      "date": "2017-05-08",
+      "individuals": -5100.6,
+      "foreigners": 5602.0,
+      "trust_banks": -1287.7,
+      "investment_trusts": -1717.7,
+      "business_corps": null,
+      "proprietary": 3835.9,
+      "nikkei_close": 19553.86
+    },
+    {
+      "date": "2017-05-15",
+      "individuals": 166.7,
+      "foreigners": 301.8,
+      "trust_banks": 17.4,
+      "investment_trusts": -1774.8,
+      "business_corps": 621.4,
+      "proprietary": 549.9,
+      "nikkei_close": 19813.13
+    },
+    {
+      "date": "2017-05-22",
+      "individuals": -792.9,
+      "foreigners": 220.5,
+      "trust_banks": 405.8,
+      "investment_trusts": 462.4,
+      "business_corps": 518.5,
+      "proprietary": -1185.9,
+      "nikkei_close": 19860.03
+    },
+    {
+      "date": "2017-05-29",
+      "individuals": -3217.3,
+      "foreigners": 4282.3,
+      "trust_banks": -522.4,
+      "investment_trusts": 507.5,
+      "business_corps": 763.0,
+      "proprietary": -1087.2,
+      "nikkei_close": 19909.26
+    },
+    {
+      "date": "2017-06-05",
+      "individuals": -43.9,
+      "foreigners": -354.4,
+      "trust_banks": -557.9,
+      "investment_trusts": -1663.9,
+      "business_corps": 655.8,
+      "proprietary": 1963.1,
+      "nikkei_close": 19831.82
+    },
+    {
+      "date": "2017-06-12",
+      "individuals": 550.7,
+      "foreigners": -2065.7,
+      "trust_banks": 47.5,
+      "investment_trusts": -490.3,
+      "business_corps": 1358.5,
+      "proprietary": 682.6,
+      "nikkei_close": 20110.51
+    },
+    {
+      "date": "2017-06-19",
+      "individuals": -2189.4,
+      "foreigners": -92.1,
+      "trust_banks": 1259.2,
+      "investment_trusts": -851.5,
+      "business_corps": 251.8,
+      "proprietary": 1986.2,
+      "nikkei_close": 20220.3
+    },
+    {
+      "date": "2017-06-26",
+      "individuals": -1515.9,
+      "foreigners": 115.3,
+      "trust_banks": 1615.8,
+      "investment_trusts": -234.8,
+      "business_corps": null,
+      "proprietary": 358.9,
+      "nikkei_close": 19994.06
+    },
+    {
+      "date": "2017-07-03",
+      "individuals": -710.4,
+      "foreigners": -15.4,
+      "trust_banks": 2124.2,
+      "investment_trusts": 471.0,
+      "business_corps": 375.8,
+      "proprietary": -2160.1,
+      "nikkei_close": 20099.81
+    },
+    {
+      "date": "2017-07-10",
+      "individuals": -1488.6,
+      "foreigners": 1732.3,
+      "trust_banks": 273.3,
+      "investment_trusts": 85.8,
+      "business_corps": 389.1,
+      "proprietary": -715.8,
+      "nikkei_close": 20144.59
+    },
+    {
+      "date": "2017-07-18",
+      "individuals": -953.2,
+      "foreigners": 861.1,
+      "trust_banks": 518.2,
+      "investment_trusts": 219.1,
+      "business_corps": 46.7,
+      "proprietary": -617.6,
+      "nikkei_close": 20079.64
+    },
+    {
+      "date": "2017-07-24",
+      "individuals": 529.9,
+      "foreigners": -1282.9,
+      "trust_banks": -79.4,
+      "investment_trusts": -105.9,
+      "business_corps": 334.3,
+      "proprietary": 253.6,
+      "nikkei_close": 20029.26
+    },
+    {
+      "date": "2017-07-31",
+      "individuals": -1401.8,
+      "foreigners": -295.1,
+      "trust_banks": -64.4,
+      "investment_trusts": 1135.1,
+      "business_corps": 364.1,
+      "proprietary": 634.5,
+      "nikkei_close": 19729.74
+    },
+    {
+      "date": "2017-08-07",
+      "individuals": 443.8,
+      "foreigners": -2746.7,
+      "trust_banks": 265.1,
+      "investment_trusts": 85.6,
+      "business_corps": 470.4,
+      "proprietary": 1633.8,
+      "nikkei_close": 19702.63
+    },
+    {
+      "date": "2017-08-14",
+      "individuals": 1160.1,
+      "foreigners": -2057.1,
+      "trust_banks": 464.8,
+      "investment_trusts": -261.0,
+      "business_corps": 465.8,
+      "proprietary": -232.1,
+      "nikkei_close": 19353.77
+    },
+    {
+      "date": "2017-08-21",
+      "individuals": 125.8,
+      "foreigners": -1529.0,
+      "trust_banks": 255.7,
+      "investment_trusts": 363.1,
+      "business_corps": 517.8,
+      "proprietary": 96.9,
+      "nikkei_close": 19646.24
+    },
+    {
+      "date": "2017-08-28",
+      "individuals": -860.9,
+      "foreigners": -613.6,
+      "trust_banks": 87.5,
+      "investment_trusts": 194.3,
+      "business_corps": 173.5,
+      "proprietary": 798.8,
+      "nikkei_close": 19396.52
+    },
+    {
+      "date": "2017-09-04",
+      "individuals": 662.9,
+      "foreigners": -2948.9,
+      "trust_banks": 1073.5,
+      "investment_trusts": 467.8,
+      "business_corps": 532.2,
+      "proprietary": -119.7,
+      "nikkei_close": 19807.44
+    },
+    {
+      "date": "2017-09-11",
+      "individuals": -4252.8,
+      "foreigners": -4172.6,
+      "trust_banks": -1043.6,
+      "investment_trusts": 477.7,
+      "business_corps": 761.8,
+      "proprietary": 9784.8,
+      "nikkei_close": 20347.48
+    },
+    {
+      "date": "2017-09-19",
+      "individuals": -3180.2,
+      "foreigners": -611.2,
+      "trust_banks": -1008.9,
+      "investment_trusts": -735.4,
+      "business_corps": null,
+      "proprietary": 6936.9,
+      "nikkei_close": 20363.11
+    },
+    {
+      "date": "2017-09-25",
+      "individuals": -2326.3,
+      "foreigners": 2017.9,
+      "trust_banks": -206.6,
+      "investment_trusts": -1815.9,
+      "business_corps": null,
+      "proprietary": 4203.8,
+      "nikkei_close": 20628.56
+    },
+    {
+      "date": "2017-10-02",
+      "individuals": -3751.9,
+      "foreigners": 6575.4,
+      "trust_banks": 255.5,
+      "investment_trusts": -14.5,
+      "business_corps": null,
+      "proprietary": -1906.7,
+      "nikkei_close": 20954.72
+    },
+    {
+      "date": "2017-10-10",
+      "individuals": -3475.3,
+      "foreigners": 4594.0,
+      "trust_banks": -441.2,
+      "investment_trusts": -288.0,
+      "business_corps": null,
+      "proprietary": 563.4,
+      "nikkei_close": 21448.52
+    },
+    {
+      "date": "2017-10-16",
+      "individuals": -4955.3,
+      "foreigners": 4452.0,
+      "trust_banks": -647.7,
+      "investment_trusts": -1072.9,
+      "business_corps": null,
+      "proprietary": 3176.6,
+      "nikkei_close": 21739.78
+    },
+    {
+      "date": "2017-10-23",
+      "individuals": -5951.2,
+      "foreigners": 6703.7,
+      "trust_banks": -299.4,
+      "investment_trusts": -777.7,
+      "business_corps": null,
+      "proprietary": 1437.9,
+      "nikkei_close": 22539.12
+    },
+    {
+      "date": "2017-10-30",
+      "individuals": -1326.0,
+      "foreigners": 528.9,
+      "trust_banks": -953.0,
+      "investment_trusts": -336.6,
+      "business_corps": 399.6,
+      "proprietary": 2835.7,
+      "nikkei_close": 22868.71
+    },
+    {
+      "date": "2017-11-06",
+      "individuals": -1315.4,
+      "foreigners": 671.0,
+      "trust_banks": 117.9,
+      "investment_trusts": -746.6,
+      "business_corps": null,
+      "proprietary": 2162.2,
+      "nikkei_close": 22351.12
+    },
+    {
+      "date": "2017-11-13",
+      "individuals": 2353.4,
+      "foreigners": -3211.9,
+      "trust_banks": -102.5,
+      "investment_trusts": 147.3,
+      "business_corps": 617.3,
+      "proprietary": 338.1,
+      "nikkei_close": 22523.15
+    },
+    {
+      "date": "2017-11-20",
+      "individuals": -433.5,
+      "foreigners": -2819.5,
+      "trust_banks": 917.7,
+      "investment_trusts": 922.5,
+      "business_corps": 451.6,
+      "proprietary": 1009.8,
+      "nikkei_close": 22724.96
+    },
+    {
+      "date": "2017-11-27",
+      "individuals": -672.7,
+      "foreigners": -1973.9,
+      "trust_banks": -304.5,
+      "investment_trusts": 435.4,
+      "business_corps": 330.6,
+      "proprietary": 2457.3,
+      "nikkei_close": 22498.03
+    },
+    {
+      "date": "2017-12-04",
+      "individuals": -750.1,
+      "foreigners": -2168.2,
+      "trust_banks": 2689.3,
+      "investment_trusts": 1821.9,
+      "business_corps": 858.5,
+      "proprietary": -2472.5,
+      "nikkei_close": 22694.45
+    },
+    {
+      "date": "2017-12-11",
+      "individuals": -826.4,
+      "foreigners": -122.2,
+      "trust_banks": 991.8,
+      "investment_trusts": 259.4,
+      "business_corps": 405.6,
+      "proprietary": -685.8,
+      "nikkei_close": 22866.1
+    },
+    {
+      "date": "2017-12-18",
+      "individuals": -3340.1,
+      "foreigners": 1223.6,
+      "trust_banks": 239.9,
+      "investment_trusts": 105.3,
+      "business_corps": 253.0,
+      "proprietary": 2071.5,
+      "nikkei_close": 22783.98
+    },
+    {
+      "date": "2017-12-25",
+      "individuals": -1186.3,
+      "foreigners": -22.1,
+      "trust_banks": -65.7,
+      "investment_trusts": 302.3,
+      "business_corps": null,
+      "proprietary": 923.5,
+      "nikkei_close": 23506.33
+    },
+    {
+      "date": "2018-01-04",
+      "individuals": -5746.1,
+      "foreigners": 4851.0,
+      "trust_banks": 35.8,
+      "investment_trusts": 431.8,
+      "business_corps": null,
+      "proprietary": 988.7,
+      "nikkei_close": 23710.43
+    },
+    {
+      "date": "2018-01-09",
+      "individuals": 1774.7,
+      "foreigners": -316.1,
+      "trust_banks": -121.4,
+      "investment_trusts": 206.4,
+      "business_corps": 100.3,
+      "proprietary": -1496.2,
+      "nikkei_close": 23763.37
+    },
+    {
+      "date": "2018-01-15",
+      "individuals": -229.7,
+      "foreigners": -2222.4,
+      "trust_banks": 505.0,
+      "investment_trusts": -52.4,
+      "business_corps": 143.6,
+      "proprietary": 2019.9,
+      "nikkei_close": 23669.49
+    },
+    {
+      "date": "2018-01-22",
+      "individuals": 1817.3,
+      "foreigners": -3560.0,
+      "trust_banks": 314.0,
+      "investment_trusts": 871.8,
+      "business_corps": 238.0,
+      "proprietary": 1.5,
+      "nikkei_close": 23486.11
+    },
+    {
+      "date": "2018-01-29",
+      "individuals": 2733.2,
+      "foreigners": -3525.7,
+      "trust_banks": 1787.1,
+      "investment_trusts": 1322.1,
+      "business_corps": 480.4,
+      "proprietary": -3269.7,
+      "nikkei_close": 21890.86
+    },
+    {
+      "date": "2018-02-05",
+      "individuals": 7458.0,
+      "foreigners": -6446.1,
+      "trust_banks": 917.2,
+      "investment_trusts": 1051.9,
+      "business_corps": 1864.6,
+      "proprietary": -6630.1,
+      "nikkei_close": 21464.98
+    },
+    {
+      "date": "2018-02-13",
+      "individuals": 850.5,
+      "foreigners": -362.3,
+      "trust_banks": 38.4,
+      "investment_trusts": -81.6,
+      "business_corps": 1366.9,
+      "proprietary": -2425.3,
+      "nikkei_close": 21736.44
+    },
+    {
+      "date": "2018-02-19",
+      "individuals": 815.2,
+      "foreigners": -1132.4,
+      "trust_banks": 1132.6,
+      "investment_trusts": 411.6,
+      "business_corps": 625.1,
+      "proprietary": -2033.4,
+      "nikkei_close": 21724.47
+    },
+    {
+      "date": "2018-02-26",
+      "individuals": 3359.2,
+      "foreigners": -3484.1,
+      "trust_banks": -268.0,
+      "investment_trusts": 435.0,
+      "business_corps": 873.2,
+      "proprietary": -1443.3,
+      "nikkei_close": 21368.07
+    },
+    {
+      "date": "2018-03-05",
+      "individuals": 713.8,
+      "foreigners": -3754.5,
+      "trust_banks": 414.3,
+      "investment_trusts": 933.6,
+      "business_corps": 632.5,
+      "proprietary": 1178.3,
+      "nikkei_close": 21803.95
+    },
+    {
+      "date": "2018-03-12",
+      "individuals": -756.3,
+      "foreigners": -1728.5,
+      "trust_banks": -203.3,
+      "investment_trusts": 757.2,
+      "business_corps": 93.6,
+      "proprietary": 2095.0,
+      "nikkei_close": 21591.99
+    },
+    {
+      "date": "2018-03-19",
+      "individuals": 4478.7,
+      "foreigners": -4541.3,
+      "trust_banks": 99.4,
+      "investment_trusts": -443.4,
+      "business_corps": 154.4,
+      "proprietary": 14.8,
+      "nikkei_close": 21159.08
+    },
+    {
+      "date": "2018-03-26",
+      "individuals": -388.6,
+      "foreigners": 48.5,
+      "trust_banks": 9.6,
+      "investment_trusts": 770.0,
+      "business_corps": null,
+      "proprietary": 164.2,
+      "nikkei_close": 21645.42
+    },
+    {
+      "date": "2018-04-02",
+      "individuals": -1264.8,
+      "foreigners": 1584.8,
+      "trust_banks": 280.6,
+      "investment_trusts": -523.2,
+      "business_corps": 189.8,
+      "proprietary": 611.1,
+      "nikkei_close": 21660.28
+    },
+    {
+      "date": "2018-04-09",
+      "individuals": -1561.9,
+      "foreigners": 845.1,
+      "trust_banks": -72.4,
+      "investment_trusts": -109.6,
+      "business_corps": 132.8,
+      "proprietary": 1257.9,
+      "nikkei_close": 22191.18
+    },
+    {
+      "date": "2018-04-16",
+      "individuals": -2443.7,
+      "foreigners": 1151.3,
+      "trust_banks": 19.0,
+      "investment_trusts": 293.3,
+      "business_corps": null,
+      "proprietary": 1629.7,
+      "nikkei_close": 22319.61
+    },
+    {
+      "date": "2018-04-23",
+      "individuals": -2596.1,
+      "foreigners": -1509.4,
+      "trust_banks": -258.7,
+      "investment_trusts": 522.6,
+      "business_corps": null,
+      "proprietary": 4336.3,
+      "nikkei_close": 22472.78
+    },
+    {
+      "date": "2018-05-01",
+      "individuals": -538.9,
+      "foreigners": 17.1,
+      "trust_banks": -480.0,
+      "investment_trusts": -187.7,
+      "business_corps": 400.8,
+      "proprietary": 978.0,
+      "nikkei_close": 22497.18
+    },
+    {
+      "date": "2018-05-07",
+      "individuals": -2945.1,
+      "foreigners": -12.4,
+      "trust_banks": -829.2,
+      "investment_trusts": -284.7,
+      "business_corps": 247.6,
+      "proprietary": 4472.8,
+      "nikkei_close": 22838.37
+    },
+    {
+      "date": "2018-05-14",
+      "individuals": -3644.6,
+      "foreigners": -937.0,
+      "trust_banks": 43.7,
+      "investment_trusts": -68.1,
+      "business_corps": 937.6,
+      "proprietary": 4056.2,
+      "nikkei_close": 22437.01
+    },
+    {
+      "date": "2018-05-21",
+      "individuals": 1451.8,
+      "foreigners": -3404.3,
+      "trust_banks": -403.4,
+      "investment_trusts": -759.2,
+      "business_corps": 1465.6,
+      "proprietary": 1748.9,
+      "nikkei_close": 22201.82
+    },
+    {
+      "date": "2018-05-28",
+      "individuals": 2071.3,
+      "foreigners": -3076.2,
+      "trust_banks": 696.8,
+      "investment_trusts": -1349.9,
+      "business_corps": 1439.0,
+      "proprietary": -388.7,
+      "nikkei_close": 22823.26
+    },
+    {
+      "date": "2018-06-04",
+      "individuals": -3059.0,
+      "foreigners": 205.3,
+      "trust_banks": 1119.0,
+      "investment_trusts": 90.2,
+      "business_corps": 582.3,
+      "proprietary": 1870.8,
+      "nikkei_close": 22738.61
+    },
+    {
+      "date": "2018-06-11",
+      "individuals": -1426.5,
+      "foreigners": 317.7,
+      "trust_banks": -307.3,
+      "investment_trusts": -69.3,
+      "business_corps": 342.0,
+      "proprietary": 870.7,
+      "nikkei_close": 22693.04
+    },
+    {
+      "date": "2018-06-18",
+      "individuals": 2115.5,
+      "foreigners": -4306.7,
+      "trust_banks": 1452.2,
+      "investment_trusts": 525.5,
+      "business_corps": 423.7,
+      "proprietary": -326.1,
+      "nikkei_close": 22270.39
+    },
+    {
+      "date": "2018-06-25",
+      "individuals": 700.8,
+      "foreigners": -2857.9,
+      "trust_banks": 2156.5,
+      "investment_trusts": 671.9,
+      "business_corps": null,
+      "proprietary": -797.3,
+      "nikkei_close": 21546.99
+    },
+    {
+      "date": "2018-07-02",
+      "individuals": 633.6,
+      "foreigners": -313.7,
+      "trust_banks": 997.5,
+      "investment_trusts": 49.1,
+      "business_corps": 726.8,
+      "proprietary": -3076.8,
+      "nikkei_close": 22187.96
+    },
+    {
+      "date": "2018-07-09",
+      "individuals": -2459.2,
+      "foreigners": 3248.8,
+      "trust_banks": -21.8,
+      "investment_trusts": 27.4,
+      "business_corps": 383.5,
+      "proprietary": -1535.9,
+      "nikkei_close": 22764.68
+    },
+    {
+      "date": "2018-07-17",
+      "individuals": -863.9,
+      "foreigners": 319.6,
+      "trust_banks": 301.5,
+      "investment_trusts": 129.2,
+      "business_corps": 181.6,
+      "proprietary": 726.6,
+      "nikkei_close": 22586.87
+    },
+    {
+      "date": "2018-07-23",
+      "individuals": -2186.5,
+      "foreigners": 859.6,
+      "trust_banks": 52.1,
+      "investment_trusts": 812.2,
+      "business_corps": 127.7,
+      "proprietary": 870.5,
+      "nikkei_close": 22512.53
+    },
+    {
+      "date": "2018-07-30",
+      "individuals": 670.2,
+      "foreigners": -672.3,
+      "trust_banks": 970.0,
+      "investment_trusts": 543.4,
+      "business_corps": 386.1,
+      "proprietary": -1630.6,
+      "nikkei_close": 22598.39
+    },
+    {
+      "date": "2018-08-06",
+      "individuals": 289.3,
+      "foreigners": -347.3,
+      "trust_banks": 394.1,
+      "investment_trusts": -111.5,
+      "business_corps": 586.5,
+      "proprietary": -900.1,
+      "nikkei_close": 22192.04
+    },
+    {
+      "date": "2018-08-13",
+      "individuals": 2254.8,
+      "foreigners": -3449.6,
+      "trust_banks": -145.7,
+      "investment_trusts": 509.1,
+      "business_corps": 654.7,
+      "proprietary": 103.8,
+      "nikkei_close": 22410.82
+    },
+    {
+      "date": "2018-08-20",
+      "individuals": -437.2,
+      "foreigners": -840.3,
+      "trust_banks": -160.2,
+      "investment_trusts": 104.8,
+      "business_corps": 631.2,
+      "proprietary": 540.6,
+      "nikkei_close": 22869.5
+    },
+    {
+      "date": "2018-08-27",
+      "individuals": -2363.2,
+      "foreigners": 483.6,
+      "trust_banks": -476.5,
+      "investment_trusts": -153.0,
+      "business_corps": 118.3,
+      "proprietary": 2882.5,
+      "nikkei_close": 22487.94
+    },
+    {
+      "date": "2018-09-03",
+      "individuals": 3697.1,
+      "foreigners": -5279.6,
+      "trust_banks": 287.6,
+      "investment_trusts": 407.7,
+      "business_corps": 400.7,
+      "proprietary": 339.4,
+      "nikkei_close": 22821.32
+    },
+    {
+      "date": "2018-09-10",
+      "individuals": -2204.0,
+      "foreigners": -2819.3,
+      "trust_banks": 276.0,
+      "investment_trusts": 92.9,
+      "business_corps": 58.5,
+      "proprietary": 4920.1,
+      "nikkei_close": 23674.93
+    },
+    {
+      "date": "2018-09-18",
+      "individuals": -6699.0,
+      "foreigners": 2771.0,
+      "trust_banks": -644.4,
+      "investment_trusts": -2238.0,
+      "business_corps": null,
+      "proprietary": 8912.8,
+      "nikkei_close": 23796.74
+    },
+    {
+      "date": "2018-09-25",
+      "individuals": -3364.0,
+      "foreigners": 3770.7,
+      "trust_banks": -582.5,
+      "investment_trusts": -1350.2,
+      "business_corps": null,
+      "proprietary": 3193.0,
+      "nikkei_close": 23975.62
+    },
+    {
+      "date": "2018-10-01",
+      "individuals": 210.3,
+      "foreigners": 5756.0,
+      "trust_banks": -1505.2,
+      "investment_trusts": -1269.8,
+      "business_corps": null,
+      "proprietary": -2488.3,
+      "nikkei_close": 22590.86
+    },
+    {
+      "date": "2018-10-09",
+      "individuals": 6023.3,
+      "foreigners": -3290.4,
+      "trust_banks": -731.7,
+      "investment_trusts": 1047.5,
+      "business_corps": 332.7,
+      "proprietary": -3798.3,
+      "nikkei_close": 22658.16
+    },
+    {
+      "date": "2018-10-15",
+      "individuals": 2756.6,
+      "foreigners": -2120.4,
+      "trust_banks": 339.5,
+      "investment_trusts": 1569.9,
+      "business_corps": 249.7,
+      "proprietary": -3426.7,
+      "nikkei_close": 21268.73
+    },
+    {
+      "date": "2018-10-22",
+      "individuals": 3251.9,
+      "foreigners": -3174.3,
+      "trust_banks": 412.8,
+      "investment_trusts": 1498.3,
+      "business_corps": 460.5,
+      "proprietary": -2591.0,
+      "nikkei_close": 21687.65
+    },
+    {
+      "date": "2018-10-29",
+      "individuals": -1663.0,
+      "foreigners": 262.3,
+      "trust_banks": 1425.8,
+      "investment_trusts": 1000.9,
+      "business_corps": 446.1,
+      "proprietary": -1469.6,
+      "nikkei_close": 22486.92
+    },
+    {
+      "date": "2018-11-05",
+      "individuals": -1776.2,
+      "foreigners": 2440.7,
+      "trust_banks": -1358.7,
+      "investment_trusts": -276.1,
+      "business_corps": 1101.6,
+      "proprietary": -382.6,
+      "nikkei_close": 21803.62
+    },
+    {
+      "date": "2018-11-12",
+      "individuals": 1074.1,
+      "foreigners": -1369.6,
+      "trust_banks": -670.7,
+      "investment_trusts": 210.7,
+      "business_corps": 2484.4,
+      "proprietary": -1409.6,
+      "nikkei_close": 21646.55
+    },
+    {
+      "date": "2018-11-19",
+      "individuals": -361.5,
+      "foreigners": -1967.9,
+      "trust_banks": 401.8,
+      "investment_trusts": 141.0,
+      "business_corps": 1701.7,
+      "proprietary": 176.3,
+      "nikkei_close": 22262.6
+    },
+    {
+      "date": "2018-11-26",
+      "individuals": -3586.4,
+      "foreigners": -2101.8,
+      "trust_banks": 1450.1,
+      "investment_trusts": 847.3,
+      "business_corps": 1055.5,
+      "proprietary": 2236.7,
+      "nikkei_close": 21501.62
+    },
+    {
+      "date": "2018-12-03",
+      "individuals": 2220.5,
+      "foreigners": -5955.9,
+      "trust_banks": 2031.2,
+      "investment_trusts": 1075.7,
+      "business_corps": 1558.1,
+      "proprietary": -1071.3,
+      "nikkei_close": 21816.19
+    },
+    {
+      "date": "2018-12-10",
+      "individuals": 218.2,
+      "foreigners": -1613.9,
+      "trust_banks": 1415.7,
+      "investment_trusts": 1287.3,
+      "business_corps": 967.0,
+      "proprietary": -2398.0,
+      "nikkei_close": 20392.58
+    },
+    {
+      "date": "2018-12-17",
+      "individuals": -1065.9,
+      "foreigners": -3263.6,
+      "trust_banks": 1120.6,
+      "investment_trusts": 2052.1,
+      "business_corps": 185.8,
+      "proprietary": 1750.3,
+      "nikkei_close": 20077.62
+    },
+    {
+      "date": "2018-12-25",
+      "individuals": -1703.8,
+      "foreigners": -578.4,
+      "trust_banks": 1409.5,
+      "investment_trusts": 798.6,
+      "business_corps": null,
+      "proprietary": -236.0,
+      "nikkei_close": 20014.77
+    },
+    {
+      "date": "2019-01-04",
+      "individuals": 416.7,
+      "foreigners": -2086.1,
+      "trust_banks": 208.9,
+      "investment_trusts": 204.8,
+      "business_corps": 209.7,
+      "proprietary": 795.2,
+      "nikkei_close": 20163.8
+    },
+    {
+      "date": "2019-01-07",
+      "individuals": -1743.7,
+      "foreigners": -2905.2,
+      "trust_banks": 385.4,
+      "investment_trusts": 1337.3,
+      "business_corps": 413.1,
+      "proprietary": 2357.8,
+      "nikkei_close": 20402.27
+    },
+    {
+      "date": "2019-01-15",
+      "individuals": -996.6,
+      "foreigners": -542.6,
+      "trust_banks": 259.9,
+      "investment_trusts": -154.6,
+      "business_corps": 264.3,
+      "proprietary": 1536.0,
+      "nikkei_close": 20574.63
+    },
+    {
+      "date": "2019-01-21",
+      "individuals": -757.9,
+      "foreigners": 1201.6,
+      "trust_banks": -152.6,
+      "investment_trusts": -177.7,
+      "business_corps": null,
+      "proprietary": -136.9,
+      "nikkei_close": 20773.49
+    },
+    {
+      "date": "2019-01-28",
+      "individuals": -77.7,
+      "foreigners": -1294.2,
+      "trust_banks": 1064.3,
+      "investment_trusts": 652.1,
+      "business_corps": 520.2,
+      "proprietary": -621.2,
+      "nikkei_close": 20751.28
+    },
+    {
+      "date": "2019-02-04",
+      "individuals": 268.7,
+      "foreigners": -1536.4,
+      "trust_banks": -198.7,
+      "investment_trusts": 237.9,
+      "business_corps": 1158.5,
+      "proprietary": 183.1,
+      "nikkei_close": 21139.71
+    },
+    {
+      "date": "2019-02-12",
+      "individuals": -2487.1,
+      "foreigners": -655.2,
+      "trust_banks": 1026.5,
+      "investment_trusts": -172.4,
+      "business_corps": 1104.7,
+      "proprietary": 1680.7,
+      "nikkei_close": 21464.23
+    },
+    {
+      "date": "2019-02-18",
+      "individuals": -2422.4,
+      "foreigners": -34.6,
+      "trust_banks": -734.9,
+      "investment_trusts": -432.7,
+      "business_corps": 1188.4,
+      "proprietary": 3926.3,
+      "nikkei_close": 21385.16
+    },
+    {
+      "date": "2019-02-25",
+      "individuals": -897.0,
+      "foreigners": -1952.2,
+      "trust_banks": 222.8,
+      "investment_trusts": 215.1,
+      "business_corps": 1059.4,
+      "proprietary": 2632.0,
+      "nikkei_close": 21456.01
+    },
+    {
+      "date": "2019-03-04",
+      "individuals": 1779.4,
+      "foreigners": -5688.7,
+      "trust_banks": -424.4,
+      "investment_trusts": -269.1,
+      "business_corps": 1480.7,
+      "proprietary": 3243.4,
+      "nikkei_close": 21287.02
+    },
+    {
+      "date": "2019-03-11",
+      "individuals": -1280.9,
+      "foreigners": -5061.9,
+      "trust_banks": -796.6,
+      "investment_trusts": -1379.6,
+      "business_corps": 1607.0,
+      "proprietary": 7457.0,
+      "nikkei_close": 21608.92
+    },
+    {
+      "date": "2019-03-18",
+      "individuals": -60.3,
+      "foreigners": -3785.1,
+      "trust_banks": -328.5,
+      "investment_trusts": -95.5,
+      "business_corps": 255.0,
+      "proprietary": 4627.2,
+      "nikkei_close": 21033.76
+    },
+    {
+      "date": "2019-03-25",
+      "individuals": 742.7,
+      "foreigners": -744.6,
+      "trust_banks": 49.5,
+      "investment_trusts": -1028.3,
+      "business_corps": null,
+      "proprietary": 1851.0,
+      "nikkei_close": 21724.95
+    },
+    {
+      "date": "2019-04-01",
+      "individuals": -5576.5,
+      "foreigners": 6227.9,
+      "trust_banks": 617.2,
+      "investment_trusts": 588.1,
+      "business_corps": 64.0,
+      "proprietary": -649.0,
+      "nikkei_close": 21711.38
+    },
+    {
+      "date": "2019-04-08",
+      "individuals": -45.7,
+      "foreigners": 1214.5,
+      "trust_banks": 343.8,
+      "investment_trusts": -608.8,
+      "business_corps": 116.8,
+      "proprietary": -607.4,
+      "nikkei_close": 22090.12
+    },
+    {
+      "date": "2019-04-15",
+      "individuals": -3117.0,
+      "foreigners": 5534.3,
+      "trust_banks": 239.7,
+      "investment_trusts": -806.6,
+      "business_corps": 138.5,
+      "proprietary": -1305.0,
+      "nikkei_close": 22307.58
+    },
+    {
+      "date": "2019-04-22",
+      "individuals": -419.2,
+      "foreigners": 3079.3,
+      "trust_banks": -436.7,
+      "investment_trusts": -561.4,
+      "business_corps": 345.8,
+      "proprietary": -1961.7,
+      "nikkei_close": 22258.73
+    },
+    {
+      "date": "2019-05-07",
+      "individuals": 3690.3,
+      "foreigners": -191.0,
+      "trust_banks": -659.3,
+      "investment_trusts": 39.8,
+      "business_corps": 704.7,
+      "proprietary": -4595.3,
+      "nikkei_close": 21062.98
+    },
+    {
+      "date": "2019-05-13",
+      "individuals": -397.8,
+      "foreigners": -1174.0,
+      "trust_banks": 56.4,
+      "investment_trusts": 440.8,
+      "business_corps": 2306.9,
+      "proprietary": -1366.6,
+      "nikkei_close": 21151.14
+    },
+    {
+      "date": "2019-05-20",
+      "individuals": 585.2,
+      "foreigners": -799.2,
+      "trust_banks": -424.2,
+      "investment_trusts": -323.2,
+      "business_corps": 1404.1,
+      "proprietary": -578.6,
+      "nikkei_close": 20942.53
+    },
+    {
+      "date": "2019-05-27",
+      "individuals": 1122.7,
+      "foreigners": -2838.1,
+      "trust_banks": 692.1,
+      "investment_trusts": 563.2,
+      "business_corps": 1947.4,
+      "proprietary": -1155.9,
+      "nikkei_close": 20774.04
+    },
+    {
+      "date": "2019-06-03",
+      "individuals": -972.0,
+      "foreigners": -1143.5,
+      "trust_banks": 153.0,
+      "investment_trusts": 542.2,
+      "business_corps": 1725.8,
+      "proprietary": -17.6,
+      "nikkei_close": 21032.0
+    },
+    {
+      "date": "2019-06-10",
+      "individuals": -757.5,
+      "foreigners": -1992.3,
+      "trust_banks": 328.0,
+      "investment_trusts": -23.1,
+      "business_corps": 1546.7,
+      "proprietary": 733.1,
+      "nikkei_close": 21462.86
+    },
+    {
+      "date": "2019-06-17",
+      "individuals": -890.8,
+      "foreigners": -1125.8,
+      "trust_banks": -234.9,
+      "investment_trusts": 613.5,
+      "business_corps": 1294.2,
+      "proprietary": 98.4,
+      "nikkei_close": 21338.17
+    },
+    {
+      "date": "2019-06-24",
+      "individuals": 16.1,
+      "foreigners": -5.6,
+      "trust_banks": 2587.5,
+      "investment_trusts": 271.1,
+      "business_corps": null,
+      "proprietary": -3483.7,
+      "nikkei_close": 21702.45
+    },
+    {
+      "date": "2019-07-01",
+      "individuals": -3072.8,
+      "foreigners": 449.4,
+      "trust_banks": 1772.3,
+      "investment_trusts": -40.4,
+      "business_corps": 942.2,
+      "proprietary": 223.5,
+      "nikkei_close": 21643.53
+    },
+    {
+      "date": "2019-07-08",
+      "individuals": 551.3,
+      "foreigners": -238.4,
+      "trust_banks": 419.9,
+      "investment_trusts": -2201.2,
+      "business_corps": 1112.5,
+      "proprietary": -35.6,
+      "nikkei_close": 21046.24
+    },
+    {
+      "date": "2019-07-16",
+      "individuals": 500.5,
+      "foreigners": -1444.0,
+      "trust_banks": 521.5,
+      "investment_trusts": -30.2,
+      "business_corps": 1004.9,
+      "proprietary": -816.6,
+      "nikkei_close": 21756.55
+    },
+    {
+      "date": "2019-07-22",
+      "individuals": -1183.8,
+      "foreigners": 1202.6,
+      "trust_banks": -578.2,
+      "investment_trusts": 314.9,
+      "business_corps": 791.8,
+      "proprietary": -916.4,
+      "nikkei_close": 21540.99
+    },
+    {
+      "date": "2019-07-29",
+      "individuals": 2368.6,
+      "foreigners": -2091.6,
+      "trust_banks": 456.2,
+      "investment_trusts": -227.7,
+      "business_corps": 866.2,
+      "proprietary": -1691.7,
+      "nikkei_close": 20593.35
+    },
+    {
+      "date": "2019-08-05",
+      "individuals": 2447.2,
+      "foreigners": -1882.3,
+      "trust_banks": -267.7,
+      "investment_trusts": 562.4,
+      "business_corps": 1936.4,
+      "proprietary": -3196.0,
+      "nikkei_close": 20405.65
+    },
+    {
+      "date": "2019-08-13",
+      "individuals": 842.6,
+      "foreigners": -3035.7,
+      "trust_banks": 365.9,
+      "investment_trusts": 500.2,
+      "business_corps": 1313.9,
+      "proprietary": -511.2,
+      "nikkei_close": 20628.01
+    },
+    {
+      "date": "2019-08-19",
+      "individuals": -1314.6,
+      "foreigners": -402.9,
+      "trust_banks": 11.9,
+      "investment_trusts": -182.5,
+      "business_corps": 1076.9,
+      "proprietary": 478.7,
+      "nikkei_close": 20460.93
+    },
+    {
+      "date": "2019-08-26",
+      "individuals": -648.3,
+      "foreigners": -34.5,
+      "trust_banks": -63.9,
+      "investment_trusts": 158.7,
+      "business_corps": 1254.9,
+      "proprietary": -625.5,
+      "nikkei_close": 21085.94
+    },
+    {
+      "date": "2019-09-02",
+      "individuals": -2273.1,
+      "foreigners": 1284.7,
+      "trust_banks": -157.1,
+      "investment_trusts": -252.2,
+      "business_corps": 528.6,
+      "proprietary": 1145.2,
+      "nikkei_close": 21759.61
+    },
+    {
+      "date": "2019-09-09",
+      "individuals": -4957.0,
+      "foreigners": -3091.6,
+      "trust_banks": 571.0,
+      "investment_trusts": -824.8,
+      "business_corps": 2806.6,
+      "proprietary": 8882.1,
+      "nikkei_close": 22044.45
+    },
+    {
+      "date": "2019-09-17",
+      "individuals": -2566.0,
+      "foreigners": -619.6,
+      "trust_banks": 117.7,
+      "investment_trusts": -1036.1,
+      "business_corps": 227.0,
+      "proprietary": 3805.9,
+      "nikkei_close": 22048.24
+    },
+    {
+      "date": "2019-09-24",
+      "individuals": 721.8,
+      "foreigners": -2822.1,
+      "trust_banks": -876.8,
+      "investment_trusts": -1389.4,
+      "business_corps": null,
+      "proprietary": 4609.5,
+      "nikkei_close": 21341.74
+    },
+    {
+      "date": "2019-09-30",
+      "individuals": 1317.4,
+      "foreigners": 1149.1,
+      "trust_banks": -590.2,
+      "investment_trusts": -41.9,
+      "business_corps": 282.1,
+      "proprietary": -2134.6,
+      "nikkei_close": 21551.98
+    },
+    {
+      "date": "2019-10-07",
+      "individuals": -1083.5,
+      "foreigners": 530.8,
+      "trust_banks": 285.5,
+      "investment_trusts": -59.9,
+      "business_corps": 638.4,
+      "proprietary": -112.3,
+      "nikkei_close": 22451.86
+    },
+    {
+      "date": "2019-10-15",
+      "individuals": -3530.7,
+      "foreigners": 5563.8,
+      "trust_banks": -1706.2,
+      "investment_trusts": -688.3,
+      "business_corps": 344.3,
+      "proprietary": 492.9,
+      "nikkei_close": 22750.6
+    },
+    {
+      "date": "2019-10-21",
+      "individuals": -1750.8,
+      "foreigners": 1521.2,
+      "trust_banks": -1054.5,
+      "investment_trusts": -741.5,
+      "business_corps": 442.6,
+      "proprietary": 2106.9,
+      "nikkei_close": 22927.04
+    },
+    {
+      "date": "2019-10-28",
+      "individuals": -2885.3,
+      "foreigners": 2581.4,
+      "trust_banks": -168.1,
+      "investment_trusts": 146.0,
+      "business_corps": 364.1,
+      "proprietary": 854.4,
+      "nikkei_close": 23330.32
+    },
+    {
+      "date": "2019-11-05",
+      "individuals": -3632.4,
+      "foreigners": 4602.1,
+      "trust_banks": -1547.9,
+      "investment_trusts": -1204.7,
+      "business_corps": 403.3,
+      "proprietary": 1408.2,
+      "nikkei_close": 23141.55
+    },
+    {
+      "date": "2019-11-11",
+      "individuals": -1451.2,
+      "foreigners": 2045.6,
+      "trust_banks": -1742.7,
+      "investment_trusts": -1575.7,
+      "business_corps": 1357.9,
+      "proprietary": 2416.8,
+      "nikkei_close": 23038.58
+    },
+    {
+      "date": "2019-11-18",
+      "individuals": 124.5,
+      "foreigners": -160.6,
+      "trust_banks": -982.9,
+      "investment_trusts": -322.5,
+      "business_corps": 1350.2,
+      "proprietary": 34.7,
+      "nikkei_close": 23409.14
+    },
+    {
+      "date": "2019-11-25",
+      "individuals": -2107.9,
+      "foreigners": 4042.0,
+      "trust_banks": 12.0,
+      "investment_trusts": -1013.5,
+      "business_corps": 995.4,
+      "proprietary": -1646.5,
+      "nikkei_close": 23300.09
+    },
+    {
+      "date": "2019-12-02",
+      "individuals": -459.8,
+      "foreigners": -2660.5,
+      "trust_banks": 2798.8,
+      "investment_trusts": -234.2,
+      "business_corps": 1023.0,
+      "proprietary": -282.9,
+      "nikkei_close": 23424.81
+    },
+    {
+      "date": "2019-12-09",
+      "individuals": -3711.2,
+      "foreigners": 2852.5,
+      "trust_banks": -59.0,
+      "investment_trusts": 660.8,
+      "business_corps": 449.4,
+      "proprietary": -203.2,
+      "nikkei_close": 23864.85
+    },
+    {
+      "date": "2019-12-16",
+      "individuals": -704.7,
+      "foreigners": 177.6,
+      "trust_banks": -840.9,
+      "investment_trusts": -856.7,
+      "business_corps": 673.6,
+      "proprietary": 1593.5,
+      "nikkei_close": 23924.92
+    },
+    {
+      "date": "2019-12-23",
+      "individuals": -1193.5,
+      "foreigners": 1553.5,
+      "trust_banks": -729.5,
+      "investment_trusts": -666.3,
+      "business_corps": null,
+      "proprietary": 1084.0,
+      "nikkei_close": 23656.62
+    },
+    {
+      "date": "2019-12-30",
+      "individuals": 801.9,
+      "foreigners": -727.0,
+      "trust_banks": -0.7,
+      "investment_trusts": -35.5,
+      "business_corps": 22.3,
+      "proprietary": -136.0,
+      "nikkei_close": 23739.87
+    },
+    {
+      "date": "2020-01-06",
+      "individuals": -88.4,
+      "foreigners": -454.8,
+      "trust_banks": -173.3,
+      "investment_trusts": 45.4,
+      "business_corps": 902.8,
+      "proprietary": 200.6,
+      "nikkei_close": 23933.13
+    },
+    {
+      "date": "2020-01-14",
+      "individuals": 1634.7,
+      "foreigners": 751.1,
+      "trust_banks": -490.8,
+      "investment_trusts": -694.2,
+      "business_corps": 833.2,
+      "proprietary": -2053.3,
+      "nikkei_close": 23795.44
+    },
+    {
+      "date": "2020-01-20",
+      "individuals": 1954.1,
+      "foreigners": -715.0,
+      "trust_banks": -481.4,
+      "investment_trusts": -747.1,
+      "business_corps": 868.8,
+      "proprietary": -1265.6,
+      "nikkei_close": 22977.75
+    },
+    {
+      "date": "2020-01-27",
+      "individuals": 3164.7,
+      "foreigners": -2401.5,
+      "trust_banks": -448.7,
+      "investment_trusts": -448.2,
+      "business_corps": 1360.1,
+      "proprietary": -2035.0,
+      "nikkei_close": 23873.59
+    },
+    {
+      "date": "2020-02-03",
+      "individuals": -3187.6,
+      "foreigners": 2819.9,
+      "trust_banks": -1313.5,
+      "investment_trusts": -444.5,
+      "business_corps": 1044.9,
+      "proprietary": 1518.5,
+      "nikkei_close": 23827.73
+    },
+    {
+      "date": "2020-02-10",
+      "individuals": 580.5,
+      "foreigners": -494.9,
+      "trust_banks": -467.8,
+      "investment_trusts": -989.0,
+      "business_corps": 1106.9,
+      "proprietary": 788.4,
+      "nikkei_close": 23479.15
+    },
+    {
+      "date": "2020-02-17",
+      "individuals": 973.0,
+      "foreigners": -353.3,
+      "trust_banks": -1385.3,
+      "investment_trusts": -964.9,
+      "business_corps": 1004.2,
+      "proprietary": 528.1,
+      "nikkei_close": 21948.23
+    },
+    {
+      "date": "2020-02-25",
+      "individuals": 3163.7,
+      "foreigners": -3648.4,
+      "trust_banks": -114.9,
+      "investment_trusts": 720.0,
+      "business_corps": 1948.3,
+      "proprietary": -3251.5,
+      "nikkei_close": 21329.12
+    },
+    {
+      "date": "2020-03-02",
+      "individuals": 5554.4,
+      "foreigners": -1535.6,
+      "trust_banks": 236.1,
+      "investment_trusts": -86.0,
+      "business_corps": 1642.6,
+      "proprietary": -4816.3,
+      "nikkei_close": 18559.63
+    },
+    {
+      "date": "2020-03-09",
+      "individuals": 1708.3,
+      "foreigners": -6793.8,
+      "trust_banks": 286.5,
+      "investment_trusts": 981.0,
+      "business_corps": 1632.3,
+      "proprietary": 2127.9,
+      "nikkei_close": 16552.83
+    },
+    {
+      "date": "2020-03-16",
+      "individuals": 2424.2,
+      "foreigners": -4134.3,
+      "trust_banks": 2459.0,
+      "investment_trusts": -702.5,
+      "business_corps": 695.2,
+      "proprietary": -14.5,
+      "nikkei_close": 18664.6
+    },
+    {
+      "date": "2020-03-23",
+      "individuals": -1232.5,
+      "foreigners": -9517.8,
+      "trust_banks": 4451.0,
+      "investment_trusts": -1654.8,
+      "business_corps": null,
+      "proprietary": 10416.5,
+      "nikkei_close": 17818.72
+    },
+    {
+      "date": "2020-03-30",
+      "individuals": 255.1,
+      "foreigners": -654.7,
+      "trust_banks": 2790.5,
+      "investment_trusts": -628.5,
+      "business_corps": 75.5,
+      "proprietary": -385.7,
+      "nikkei_close": 19345.77
+    },
+    {
+      "date": "2020-04-06",
+      "individuals": -1584.8,
+      "foreigners": 543.8,
+      "trust_banks": 2681.8,
+      "investment_trusts": -123.0,
+      "business_corps": 432.5,
+      "proprietary": -1193.8,
+      "nikkei_close": 19290.2
+    },
+    {
+      "date": "2020-04-13",
+      "individuals": -43.2,
+      "foreigners": -3019.8,
+      "trust_banks": 1249.6,
+      "investment_trusts": -101.6,
+      "business_corps": 308.6,
+      "proprietary": 1921.9,
+      "nikkei_close": 19429.44
+    },
+    {
+      "date": "2020-04-20",
+      "individuals": 1867.2,
+      "foreigners": -3483.7,
+      "trust_banks": 23.8,
+      "investment_trusts": -273.9,
+      "business_corps": 467.9,
+      "proprietary": 964.4,
+      "nikkei_close": 20193.69
+    },
+    {
+      "date": "2020-04-27",
+      "individuals": 65.6,
+      "foreigners": -1482.4,
+      "trust_banks": 113.4,
+      "investment_trusts": -274.5,
+      "business_corps": 38.5,
+      "proprietary": 1599.6,
+      "nikkei_close": 19674.77
+    },
+    {
+      "date": "2020-05-07",
+      "individuals": 170.5,
+      "foreigners": -1206.5,
+      "trust_banks": 91.8,
+      "investment_trusts": -54.3,
+      "business_corps": 103.9,
+      "proprietary": 896.7,
+      "nikkei_close": 19914.78
+    },
+    {
+      "date": "2020-05-11",
+      "individuals": 1882.5,
+      "foreigners": -1296.4,
+      "trust_banks": -428.8,
+      "investment_trusts": -234.2,
+      "business_corps": 896.2,
+      "proprietary": -1070.4,
+      "nikkei_close": 20552.31
+    },
+    {
+      "date": "2020-05-18",
+      "individuals": -798.4,
+      "foreigners": 772.8,
+      "trust_banks": -497.3,
+      "investment_trusts": -510.4,
+      "business_corps": 246.7,
+      "proprietary": 1212.1,
+      "nikkei_close": 21916.31
+    },
+    {
+      "date": "2020-05-25",
+      "individuals": -3316.0,
+      "foreigners": -216.8,
+      "trust_banks": -184.8,
+      "investment_trusts": -548.1,
+      "business_corps": 8.4,
+      "proprietary": 4983.9,
+      "nikkei_close": 22695.74
+    },
+    {
+      "date": "2020-06-01",
+      "individuals": -2980.4,
+      "foreigners": 2613.3,
+      "trust_banks": -24.3,
+      "investment_trusts": -1547.4,
+      "business_corps": null,
+      "proprietary": 3109.3,
+      "nikkei_close": 22472.91
+    },
+    {
+      "date": "2020-06-08",
+      "individuals": 948.3,
+      "foreigners": -2847.8,
+      "trust_banks": 745.0,
+      "investment_trusts": -1022.9,
+      "business_corps": 117.1,
+      "proprietary": 2832.8,
+      "nikkei_close": 22355.46
+    },
+    {
+      "date": "2020-06-15",
+      "individuals": 314.7,
+      "foreigners": -3331.6,
+      "trust_banks": 676.8,
+      "investment_trusts": 33.3,
+      "business_corps": 62.2,
+      "proprietary": 2119.5,
+      "nikkei_close": 22259.79
+    },
+    {
+      "date": "2020-06-22",
+      "individuals": 1626.4,
+      "foreigners": -4852.8,
+      "trust_banks": 1921.4,
+      "investment_trusts": 553.2,
+      "business_corps": null,
+      "proprietary": 812.9,
+      "nikkei_close": 22145.96
+    },
+    {
+      "date": "2020-06-29",
+      "individuals": 785.8,
+      "foreigners": -1086.6,
+      "trust_banks": 2732.8,
+      "investment_trusts": 245.0,
+      "business_corps": 59.5,
+      "proprietary": -2760.1,
+      "nikkei_close": 22529.29
+    },
+    {
+      "date": "2020-07-06",
+      "individuals": 1066.4,
+      "foreigners": 1108.5,
+      "trust_banks": 811.7,
+      "investment_trusts": -2495.5,
+      "business_corps": 59.6,
+      "proprietary": -446.0,
+      "nikkei_close": 22770.36
+    },
+    {
+      "date": "2020-07-13",
+      "individuals": -1931.5,
+      "foreigners": -620.7,
+      "trust_banks": 751.2,
+      "investment_trusts": -152.6,
+      "business_corps": 15.0,
+      "proprietary": 2744.6,
+      "nikkei_close": 22751.61
+    },
+    {
+      "date": "2020-07-20",
+      "individuals": -248.2,
+      "foreigners": 849.8,
+      "trust_banks": -135.7,
+      "investment_trusts": -742.1,
+      "business_corps": null,
+      "proprietary": 279.2,
+      "nikkei_close": 22339.23
+    },
+    {
+      "date": "2020-07-27",
+      "individuals": 2831.1,
+      "foreigners": -4624.3,
+      "trust_banks": 282.4,
+      "investment_trusts": -192.7,
+      "business_corps": 162.2,
+      "proprietary": 1658.7,
+      "nikkei_close": 22418.15
+    },
+    {
+      "date": "2020-08-03",
+      "individuals": -1219.2,
+      "foreigners": 1792.0,
+      "trust_banks": 57.2,
+      "investment_trusts": -885.3,
+      "business_corps": null,
+      "proprietary": 604.5,
+      "nikkei_close": 23249.61
+    },
+    {
+      "date": "2020-08-11",
+      "individuals": -5185.5,
+      "foreigners": 3663.8,
+      "trust_banks": -522.5,
+      "investment_trusts": -478.2,
+      "business_corps": null,
+      "proprietary": 3590.9,
+      "nikkei_close": 22880.62
+    },
+    {
+      "date": "2020-08-17",
+      "individuals": 1009.0,
+      "foreigners": -298.6,
+      "trust_banks": -818.5,
+      "investment_trusts": -387.0,
+      "business_corps": null,
+      "proprietary": 956.5,
+      "nikkei_close": 23208.86
+    },
+    {
+      "date": "2020-08-24",
+      "individuals": 123.4,
+      "foreigners": -1597.7,
+      "trust_banks": -192.3,
+      "investment_trusts": -553.7,
+      "business_corps": null,
+      "proprietary": 2751.7,
+      "nikkei_close": 23465.53
+    },
+    {
+      "date": "2020-08-31",
+      "individuals": 502.0,
+      "foreigners": 125.0,
+      "trust_banks": 314.3,
+      "investment_trusts": 167.7,
+      "business_corps": null,
+      "proprietary": -1109.4,
+      "nikkei_close": 23235.47
+    },
+    {
+      "date": "2020-09-07",
+      "individuals": -531.9,
+      "foreigners": -4440.6,
+      "trust_banks": -116.9,
+      "investment_trusts": -638.8,
+      "business_corps": null,
+      "proprietary": 6063.2,
+      "nikkei_close": 23319.37
+    },
+    {
+      "date": "2020-09-14",
+      "individuals": -444.4,
+      "foreigners": -5275.8,
+      "trust_banks": 1163.5,
+      "investment_trusts": -2144.4,
+      "business_corps": 21.6,
+      "proprietary": 6246.3,
+      "nikkei_close": 23087.82
+    },
+    {
+      "date": "2020-09-23",
+      "individuals": 1185.0,
+      "foreigners": -1847.9,
+      "trust_banks": -29.9,
+      "investment_trusts": -474.6,
+      "business_corps": 103.5,
+      "proprietary": 880.0,
+      "nikkei_close": 23184.93
+    },
+    {
+      "date": "2020-09-28",
+      "individuals": 393.3,
+      "foreigners": -571.5,
+      "trust_banks": -102.0,
+      "investment_trusts": -445.1,
+      "business_corps": null,
+      "proprietary": 1316.2,
+      "nikkei_close": 23647.07
+    },
+    {
+      "date": "2020-10-05",
+      "individuals": -2576.9,
+      "foreigners": 4170.5,
+      "trust_banks": -181.2,
+      "investment_trusts": 228.0,
+      "business_corps": 367.1,
+      "proprietary": -1583.2,
+      "nikkei_close": 23507.23
+    },
+    {
+      "date": "2020-10-12",
+      "individuals": 1555.3,
+      "foreigners": 696.0,
+      "trust_banks": -88.0,
+      "investment_trusts": -197.3,
+      "business_corps": 43.2,
+      "proprietary": -1909.0,
+      "nikkei_close": 23474.27
+    },
+    {
+      "date": "2020-10-19",
+      "individuals": 23.0,
+      "foreigners": -26.8,
+      "trust_banks": 20.1,
+      "investment_trusts": -613.8,
+      "business_corps": 1.9,
+      "proprietary": 609.4,
+      "nikkei_close": 23331.94
+    },
+    {
+      "date": "2020-10-26",
+      "individuals": 875.8,
+      "foreigners": -1060.8,
+      "trust_banks": -231.2,
+      "investment_trusts": -811.9,
+      "business_corps": 223.3,
+      "proprietary": 979.1,
+      "nikkei_close": 24105.28
+    },
+    {
+      "date": "2020-11-02",
+      "individuals": -4311.0,
+      "foreigners": 3572.6,
+      "trust_banks": -104.3,
+      "investment_trusts": -731.0,
+      "business_corps": null,
+      "proprietary": 2161.9,
+      "nikkei_close": 25520.88
+    },
+    {
+      "date": "2020-11-09",
+      "individuals": -6883.0,
+      "foreigners": 3842.4,
+      "trust_banks": -1334.1,
+      "investment_trusts": -1509.7,
+      "business_corps": null,
+      "proprietary": 7826.8,
+      "nikkei_close": 25634.34
+    },
+    {
+      "date": "2020-11-16",
+      "individuals": -2343.9,
+      "foreigners": 3331.8,
+      "trust_banks": -1506.3,
+      "investment_trusts": -834.3,
+      "business_corps": null,
+      "proprietary": 2723.0,
+      "nikkei_close": 26537.31
+    },
+    {
+      "date": "2020-11-24",
+      "individuals": -4966.1,
+      "foreigners": 4366.2,
+      "trust_banks": 600.3,
+      "investment_trusts": -1268.3,
+      "business_corps": null,
+      "proprietary": 2759.6,
+      "nikkei_close": 26809.37
+    },
+    {
+      "date": "2020-11-30",
+      "individuals": 1351.5,
+      "foreigners": 1599.0,
+      "trust_banks": 1231.0,
+      "investment_trusts": 1236.3,
+      "business_corps": 64.5,
+      "proprietary": -4978.8,
+      "nikkei_close": 26756.24
+    },
+    {
+      "date": "2020-12-07",
+      "individuals": -910.3,
+      "foreigners": 2557.5,
+      "trust_banks": 1747.3,
+      "investment_trusts": 470.6,
+      "business_corps": 75.9,
+      "proprietary": -4561.9,
+      "nikkei_close": 26806.67
+    },
+    {
+      "date": "2020-12-14",
+      "individuals": -1238.1,
+      "foreigners": 1655.7,
+      "trust_banks": 61.4,
+      "investment_trusts": -213.5,
+      "business_corps": null,
+      "proprietary": -552.2,
+      "nikkei_close": 26668.35
+    },
+    {
+      "date": "2020-12-21",
+      "individuals": -196.3,
+      "foreigners": -500.1,
+      "trust_banks": 365.3,
+      "investment_trusts": -461.5,
+      "business_corps": null,
+      "proprietary": 510.9,
+      "nikkei_close": 27444.17
+    },
+    {
+      "date": "2020-12-28",
+      "individuals": -2541.8,
+      "foreigners": -74.0,
+      "trust_banks": -94.8,
+      "investment_trusts": -166.1,
+      "business_corps": null,
+      "proprietary": 2990.2,
+      "nikkei_close": 27490.13
+    },
+    {
+      "date": "2021-01-04",
+      "individuals": -2821.9,
+      "foreigners": 3647.4,
+      "trust_banks": 527.4,
+      "investment_trusts": -852.1,
+      "business_corps": null,
+      "proprietary": 482.3,
+      "nikkei_close": 28698.26
+    },
+    {
+      "date": "2021-01-12",
+      "individuals": 537.8,
+      "foreigners": 2614.0,
+      "trust_banks": -2169.9,
+      "investment_trusts": -296.3,
+      "business_corps": 71.8,
+      "proprietary": 82.2,
+      "nikkei_close": 28756.86
+    },
+    {
+      "date": "2021-01-18",
+      "individuals": 1700.7,
+      "foreigners": -1340.2,
+      "trust_banks": -1718.4,
+      "investment_trusts": -1610.1,
+      "business_corps": 211.9,
+      "proprietary": 2694.4,
+      "nikkei_close": 28197.42
+    },
+    {
+      "date": "2021-01-25",
+      "individuals": 4300.9,
+      "foreigners": -748.5,
+      "trust_banks": -1028.8,
+      "investment_trusts": -1081.6,
+      "business_corps": null,
+      "proprietary": -970.2,
+      "nikkei_close": 28341.95
+    },
+    {
+      "date": "2021-02-01",
+      "individuals": -4041.7,
+      "foreigners": 4215.5,
+      "trust_banks": -1538.4,
+      "investment_trusts": -1061.5,
+      "business_corps": null,
+      "proprietary": 3305.6,
+      "nikkei_close": 29562.93
+    },
+    {
+      "date": "2021-02-08",
+      "individuals": -4303.1,
+      "foreigners": 3451.6,
+      "trust_banks": -741.8,
+      "investment_trusts": -1337.5,
+      "business_corps": null,
+      "proprietary": 4644.9,
+      "nikkei_close": 30236.09
+    },
+    {
+      "date": "2021-02-15",
+      "individuals": -29.0,
+      "foreigners": -382.7,
+      "trust_banks": -1929.3,
+      "investment_trusts": -1434.7,
+      "business_corps": null,
+      "proprietary": 4607.0,
+      "nikkei_close": 30168.27
+    },
+    {
+      "date": "2021-02-22",
+      "individuals": 4695.3,
+      "foreigners": -3811.6,
+      "trust_banks": -2098.4,
+      "investment_trusts": -106.6,
+      "business_corps": 299.0,
+      "proprietary": 1279.7,
+      "nikkei_close": 28930.11
+    },
+    {
+      "date": "2021-03-01",
+      "individuals": 720.2,
+      "foreigners": 417.4,
+      "trust_banks": -4523.7,
+      "investment_trusts": -979.5,
+      "business_corps": 293.1,
+      "proprietary": 4582.7,
+      "nikkei_close": 29211.64
+    },
+    {
+      "date": "2021-03-08",
+      "individuals": -3048.9,
+      "foreigners": 3008.3,
+      "trust_banks": -2721.5,
+      "investment_trusts": -669.1,
+      "business_corps": null,
+      "proprietary": 4814.6,
+      "nikkei_close": 30216.75
+    },
+    {
+      "date": "2021-03-15",
+      "individuals": -3186.4,
+      "foreigners": 4088.7,
+      "trust_banks": -2222.9,
+      "investment_trusts": -2621.8,
+      "business_corps": null,
+      "proprietary": 6081.7,
+      "nikkei_close": 28729.88
+    },
+    {
+      "date": "2021-03-22",
+      "individuals": 3069.3,
+      "foreigners": -3729.8,
+      "trust_banks": -5019.6,
+      "investment_trusts": -74.0,
+      "business_corps": null,
+      "proprietary": 6267.3,
+      "nikkei_close": 29388.87
+    },
+    {
+      "date": "2021-03-29",
+      "individuals": -580.6,
+      "foreigners": 895.9,
+      "trust_banks": -1637.7,
+      "investment_trusts": 634.1,
+      "business_corps": null,
+      "proprietary": 1693.3,
+      "nikkei_close": 29708.98
+    },
+    {
+      "date": "2021-04-05",
+      "individuals": 1231.2,
+      "foreigners": 4355.3,
+      "trust_banks": -2265.3,
+      "investment_trusts": -289.5,
+      "business_corps": 55.3,
+      "proprietary": -2558.4,
+      "nikkei_close": 29642.69
+    },
+    {
+      "date": "2021-04-12",
+      "individuals": 295.1,
+      "foreigners": -311.9,
+      "trust_banks": 416.7,
+      "investment_trusts": -466.2,
+      "business_corps": 104.7,
+      "proprietary": 495.8,
+      "nikkei_close": 29188.17
+    },
+    {
+      "date": "2021-04-19",
+      "individuals": 4048.0,
+      "foreigners": -172.1,
+      "trust_banks": 256.6,
+      "investment_trusts": -652.4,
+      "business_corps": 436.1,
+      "proprietary": -3662.8,
+      "nikkei_close": 29053.97
+    },
+    {
+      "date": "2021-04-26",
+      "individuals": 1373.0,
+      "foreigners": 184.8,
+      "trust_banks": 157.3,
+      "investment_trusts": 90.7,
+      "business_corps": 85.7,
+      "proprietary": -1494.9,
+      "nikkei_close": 29331.37
+    },
+    {
+      "date": "2021-05-06",
+      "individuals": -1514.7,
+      "foreigners": 2152.6,
+      "trust_banks": 478.6,
+      "investment_trusts": -883.2,
+      "business_corps": 0.4,
+      "proprietary": -22.3,
+      "nikkei_close": 27448.01
+    },
+    {
+      "date": "2021-05-10",
+      "individuals": 4452.8,
+      "foreigners": -4214.8,
+      "trust_banks": 423.3,
+      "investment_trusts": 422.6,
+      "business_corps": 1058.2,
+      "proprietary": -1921.2,
+      "nikkei_close": 28098.25
+    },
+    {
+      "date": "2021-05-17",
+      "individuals": -1173.1,
+      "foreigners": -2269.5,
+      "trust_banks": 2757.2,
+      "investment_trusts": 1269.7,
+      "business_corps": null,
+      "proprietary": -436.9,
+      "nikkei_close": 28549.01
+    },
+    {
+      "date": "2021-05-24",
+      "individuals": -3358.2,
+      "foreigners": 3738.2,
+      "trust_banks": -283.3,
+      "investment_trusts": -1219.9,
+      "business_corps": 724.1,
+      "proprietary": 1260.7,
+      "nikkei_close": 29058.11
+    },
+    {
+      "date": "2021-05-31",
+      "individuals": 944.0,
+      "foreigners": 606.0,
+      "trust_banks": -48.8,
+      "investment_trusts": 128.7,
+      "business_corps": 356.2,
+      "proprietary": -2123.9,
+      "nikkei_close": 28958.56
+    },
+    {
+      "date": "2021-06-07",
+      "individuals": 1483.1,
+      "foreigners": -2264.0,
+      "trust_banks": 427.2,
+      "investment_trusts": -364.9,
+      "business_corps": 2760.0,
+      "proprietary": 87.7,
+      "nikkei_close": 29018.33
+    },
+    {
+      "date": "2021-06-14",
+      "individuals": 1110.4,
+      "foreigners": 1394.4,
+      "trust_banks": -686.3,
+      "investment_trusts": -447.6,
+      "business_corps": 270.1,
+      "proprietary": -1079.5,
+      "nikkei_close": 28875.23
+    },
+    {
+      "date": "2021-06-21",
+      "individuals": -252.4,
+      "foreigners": -1113.6,
+      "trust_banks": 886.9,
+      "investment_trusts": -4.7,
+      "business_corps": 81.1,
+      "proprietary": 231.5,
+      "nikkei_close": 28707.04
+    },
+    {
+      "date": "2021-06-28",
+      "individuals": 1609.9,
+      "foreigners": -2737.5,
+      "trust_banks": 1577.6,
+      "investment_trusts": 877.5,
+      "business_corps": 209.7,
+      "proprietary": -2208.9,
+      "nikkei_close": 28118.03
+    },
+    {
+      "date": "2021-07-05",
+      "individuals": 4668.2,
+      "foreigners": 137.8,
+      "trust_banks": -2.5,
+      "investment_trusts": -1482.7,
+      "business_corps": 885.0,
+      "proprietary": -4865.8,
+      "nikkei_close": 28279.09
+    },
+    {
+      "date": "2021-07-12",
+      "individuals": -2167.6,
+      "foreigners": 1101.1,
+      "trust_banks": 266.3,
+      "investment_trusts": 2255.6,
+      "business_corps": 110.0,
+      "proprietary": -1682.8,
+      "nikkei_close": 27548.0
+    },
+    {
+      "date": "2021-07-19",
+      "individuals": 2425.8,
+      "foreigners": -3133.9,
+      "trust_banks": 136.2,
+      "investment_trusts": 443.4,
+      "business_corps": 420.9,
+      "proprietary": -793.7,
+      "nikkei_close": 27782.42
+    },
+    {
+      "date": "2021-07-26",
+      "individuals": 0.2,
+      "foreigners": -579.1,
+      "trust_banks": 17.6,
+      "investment_trusts": 380.4,
+      "business_corps": 220.2,
+      "proprietary": -308.2,
+      "nikkei_close": 27728.12
+    },
+    {
+      "date": "2021-08-02",
+      "individuals": -1903.7,
+      "foreigners": 710.3,
+      "trust_banks": 509.8,
+      "investment_trusts": -144.5,
+      "business_corps": 485.4,
+      "proprietary": 584.0,
+      "nikkei_close": 28015.02
+    },
+    {
+      "date": "2021-08-10",
+      "individuals": -1579.2,
+      "foreigners": 1576.2,
+      "trust_banks": -444.0,
+      "investment_trusts": 1.0,
+      "business_corps": 438.3,
+      "proprietary": 405.1,
+      "nikkei_close": 27281.17
+    },
+    {
+      "date": "2021-08-16",
+      "individuals": 4058.7,
+      "foreigners": -3634.2,
+      "trust_banks": 112.0,
+      "investment_trusts": -1021.0,
+      "business_corps": 1651.6,
+      "proprietary": -1249.4,
+      "nikkei_close": 27742.29
+    },
+    {
+      "date": "2021-08-23",
+      "individuals": -2483.0,
+      "foreigners": -45.2,
+      "trust_banks": 798.5,
+      "investment_trusts": -297.0,
+      "business_corps": 656.5,
+      "proprietary": 1206.9,
+      "nikkei_close": 28543.51
+    },
+    {
+      "date": "2021-08-30",
+      "individuals": -4917.5,
+      "foreigners": 3669.9,
+      "trust_banks": -292.2,
+      "investment_trusts": -226.9,
+      "business_corps": 367.8,
+      "proprietary": 2246.5,
+      "nikkei_close": 30008.19
+    },
+    {
+      "date": "2021-09-06",
+      "individuals": -5805.8,
+      "foreigners": 3010.4,
+      "trust_banks": -2120.3,
+      "investment_trusts": -1896.9,
+      "business_corps": 149.0,
+      "proprietary": 7634.8,
+      "nikkei_close": 30323.34
+    },
+    {
+      "date": "2021-09-13",
+      "individuals": -520.9,
+      "foreigners": -500.3,
+      "trust_banks": -3775.1,
+      "investment_trusts": -2139.1,
+      "business_corps": 174.7,
+      "proprietary": 7596.7,
+      "nikkei_close": 29639.4
+    },
+    {
+      "date": "2021-09-21",
+      "individuals": -163.3,
+      "foreigners": -2691.9,
+      "trust_banks": -2501.9,
+      "investment_trusts": -1374.5,
+      "business_corps": 141.1,
+      "proprietary": 6681.3,
+      "nikkei_close": 29452.66
+    },
+    {
+      "date": "2021-09-27",
+      "individuals": 5516.1,
+      "foreigners": -4889.8,
+      "trust_banks": -3475.9,
+      "investment_trusts": 1314.8,
+      "business_corps": 378.3,
+      "proprietary": 1327.4,
+      "nikkei_close": 27678.21
+    },
+    {
+      "date": "2021-10-04",
+      "individuals": 2159.9,
+      "foreigners": 4653.5,
+      "trust_banks": -1610.6,
+      "investment_trusts": 337.5,
+      "business_corps": 811.7,
+      "proprietary": -6760.1,
+      "nikkei_close": 28550.93
+    },
+    {
+      "date": "2021-10-11",
+      "individuals": -1605.6,
+      "foreigners": 4788.3,
+      "trust_banks": -2569.1,
+      "investment_trusts": -139.3,
+      "business_corps": 300.4,
+      "proprietary": -946.1,
+      "nikkei_close": 28708.58
+    },
+    {
+      "date": "2021-10-18",
+      "individuals": 416.7,
+      "foreigners": -1089.2,
+      "trust_banks": 546.5,
+      "investment_trusts": 377.4,
+      "business_corps": 234.6,
+      "proprietary": -380.5,
+      "nikkei_close": 28820.09
+    },
+    {
+      "date": "2021-10-25",
+      "individuals": 188.1,
+      "foreigners": -1415.0,
+      "trust_banks": 646.3,
+      "investment_trusts": 321.0,
+      "business_corps": 270.1,
+      "proprietary": -126.8,
+      "nikkei_close": 29794.37
+    },
+    {
+      "date": "2021-11-01",
+      "individuals": -3386.4,
+      "foreigners": 1453.5,
+      "trust_banks": 2181.8,
+      "investment_trusts": 402.2,
+      "business_corps": 225.2,
+      "proprietary": -657.1,
+      "nikkei_close": 29277.86
+    },
+    {
+      "date": "2021-11-08",
+      "individuals": -541.2,
+      "foreigners": -372.6,
+      "trust_banks": 652.9,
+      "investment_trusts": 36.1,
+      "business_corps": 861.5,
+      "proprietary": -760.9,
+      "nikkei_close": 29598.66
+    },
+    {
+      "date": "2021-11-15",
+      "individuals": 1281.1,
+      "foreigners": -1475.0,
+      "trust_banks": 1310.8,
+      "investment_trusts": -373.5,
+      "business_corps": 1357.4,
+      "proprietary": -1149.2,
+      "nikkei_close": 29499.28
+    },
+    {
+      "date": "2021-11-22",
+      "individuals": 4100.0,
+      "foreigners": -2483.1,
+      "trust_banks": 73.2,
+      "investment_trusts": -231.4,
+      "business_corps": 917.8,
+      "proprietary": -2699.6,
+      "nikkei_close": 27753.37
+    },
+    {
+      "date": "2021-11-29",
+      "individuals": 2039.2,
+      "foreigners": -1201.3,
+      "trust_banks": 3444.3,
+      "investment_trusts": 1721.5,
+      "business_corps": 1773.4,
+      "proprietary": -7513.2,
+      "nikkei_close": 28725.47
+    },
+    {
+      "date": "2021-12-06",
+      "individuals": -976.9,
+      "foreigners": -2733.9,
+      "trust_banks": 2540.7,
+      "investment_trusts": 778.5,
+      "business_corps": 1077.7,
+      "proprietary": -660.0,
+      "nikkei_close": 29066.32
+    },
+    {
+      "date": "2021-12-13",
+      "individuals": -1799.6,
+      "foreigners": -4660.1,
+      "trust_banks": 3691.9,
+      "investment_trusts": 1440.3,
+      "business_corps": 887.7,
+      "proprietary": 542.3,
+      "nikkei_close": 28798.37
+    },
+    {
+      "date": "2021-12-20",
+      "individuals": -2278.5,
+      "foreigners": 540.2,
+      "trust_banks": 217.6,
+      "investment_trusts": 759.6,
+      "business_corps": 568.7,
+      "proprietary": -365.8,
+      "nikkei_close": 28791.71
+    },
+    {
+      "date": "2021-12-27",
+      "individuals": -1174.8,
+      "foreigners": 1022.4,
+      "trust_banks": -455.7,
+      "investment_trusts": -294.6,
+      "business_corps": null,
+      "proprietary": 1103.0,
+      "nikkei_close": 28487.87
+    },
+    {
+      "date": "2022-01-04",
+      "individuals": -3.2,
+      "foreigners": 2988.9,
+      "trust_banks": -572.6,
+      "investment_trusts": -337.5,
+      "business_corps": 317.6,
+      "proprietary": -1978.4,
+      "nikkei_close": 28489.13
+    },
+    {
+      "date": "2022-01-11",
+      "individuals": 1729.6,
+      "foreigners": -727.3,
+      "trust_banks": -2248.0,
+      "investment_trusts": 74.8,
+      "business_corps": 444.8,
+      "proprietary": 1650.1,
+      "nikkei_close": 27772.93
+    },
+    {
+      "date": "2022-01-17",
+      "individuals": 3194.4,
+      "foreigners": -3046.3,
+      "trust_banks": -445.8,
+      "investment_trusts": 253.0,
+      "business_corps": 951.7,
+      "proprietary": -884.9,
+      "nikkei_close": 26170.3
+    },
+    {
+      "date": "2022-01-24",
+      "individuals": 1817.8,
+      "foreigners": -2009.7,
+      "trust_banks": 728.5,
+      "investment_trusts": -110.4,
+      "business_corps": 512.4,
+      "proprietary": -1344.3,
+      "nikkei_close": 27241.31
+    },
+    {
+      "date": "2022-01-31",
+      "individuals": -468.4,
+      "foreigners": -1705.6,
+      "trust_banks": 2278.5,
+      "investment_trusts": 1239.4,
+      "business_corps": 658.7,
+      "proprietary": -1565.9,
+      "nikkei_close": 27696.08
+    },
+    {
+      "date": "2022-02-07",
+      "individuals": -1712.9,
+      "foreigners": -148.7,
+      "trust_banks": 1324.5,
+      "investment_trusts": -101.1,
+      "business_corps": 496.2,
+      "proprietary": 599.3,
+      "nikkei_close": 27232.87
+    },
+    {
+      "date": "2022-02-14",
+      "individuals": 16.7,
+      "foreigners": 32.4,
+      "trust_banks": 1890.6,
+      "investment_trusts": -1473.2,
+      "business_corps": 885.9,
+      "proprietary": -981.1,
+      "nikkei_close": 25970.82
+    },
+    {
+      "date": "2022-02-21",
+      "individuals": 1647.5,
+      "foreigners": -2678.1,
+      "trust_banks": 502.8,
+      "investment_trusts": -200.0,
+      "business_corps": 930.7,
+      "proprietary": -335.0,
+      "nikkei_close": 26577.27
+    },
+    {
+      "date": "2022-02-28",
+      "individuals": 2941.1,
+      "foreigners": -2692.4,
+      "trust_banks": -1407.4,
+      "investment_trusts": -1038.7,
+      "business_corps": 930.3,
+      "proprietary": 1501.6,
+      "nikkei_close": 25690.4
+    },
+    {
+      "date": "2022-03-07",
+      "individuals": 1853.2,
+      "foreigners": -9935.0,
+      "trust_banks": -288.3,
+      "investment_trusts": 276.4,
+      "business_corps": 1265.8,
+      "proprietary": 7049.1,
+      "nikkei_close": 26652.89
+    },
+    {
+      "date": "2022-03-14",
+      "individuals": -3556.9,
+      "foreigners": -1996.6,
+      "trust_banks": 46.2,
+      "investment_trusts": -1069.4,
+      "business_corps": 193.9,
+      "proprietary": 6851.2,
+      "nikkei_close": 28110.39
+    },
+    {
+      "date": "2022-03-22",
+      "individuals": -3472.2,
+      "foreigners": -1644.0,
+      "trust_banks": 278.1,
+      "investment_trusts": -174.8,
+      "business_corps": null,
+      "proprietary": 5250.0,
+      "nikkei_close": 27821.43
+    },
+    {
+      "date": "2022-03-28",
+      "individuals": 915.7,
+      "foreigners": 3603.8,
+      "trust_banks": -1788.0,
+      "investment_trusts": -514.7,
+      "business_corps": null,
+      "proprietary": -838.7,
+      "nikkei_close": 26888.57
+    },
+    {
+      "date": "2022-04-04",
+      "individuals": 2951.1,
+      "foreigners": 6857.3,
+      "trust_banks": -4930.2,
+      "investment_trusts": -1244.7,
+      "business_corps": 933.0,
+      "proprietary": -3921.6,
+      "nikkei_close": 27172.0
+    },
+    {
+      "date": "2022-04-11",
+      "individuals": 178.6,
+      "foreigners": 863.1,
+      "trust_banks": -2699.0,
+      "investment_trusts": -118.2,
+      "business_corps": 644.4,
+      "proprietary": 2047.0,
+      "nikkei_close": 27553.06
+    },
+    {
+      "date": "2022-04-18",
+      "individuals": 404.1,
+      "foreigners": 2380.9,
+      "trust_banks": -114.6,
+      "investment_trusts": -229.2,
+      "business_corps": 481.8,
+      "proprietary": -2041.6,
+      "nikkei_close": 26847.9
+    },
+    {
+      "date": "2022-04-25",
+      "individuals": 562.9,
+      "foreigners": 1514.5,
+      "trust_banks": 609.3,
+      "investment_trusts": -81.3,
+      "business_corps": 328.9,
+      "proprietary": -3287.8,
+      "nikkei_close": 26818.53
+    },
+    {
+      "date": "2022-05-02",
+      "individuals": -1295.1,
+      "foreigners": 514.6,
+      "trust_banks": 885.3,
+      "investment_trusts": 294.0,
+      "business_corps": 186.2,
+      "proprietary": -387.7,
+      "nikkei_close": 25748.72
+    },
+    {
+      "date": "2022-05-09",
+      "individuals": 2832.0,
+      "foreigners": -3534.3,
+      "trust_banks": 817.5,
+      "investment_trusts": -394.4,
+      "business_corps": 1343.9,
+      "proprietary": -986.2,
+      "nikkei_close": 26402.84
+    },
+    {
+      "date": "2022-05-16",
+      "individuals": -389.5,
+      "foreigners": 336.5,
+      "trust_banks": 566.8,
+      "investment_trusts": 493.4,
+      "business_corps": 2056.0,
+      "proprietary": -2369.2,
+      "nikkei_close": 26604.84
+    },
+    {
+      "date": "2022-05-23",
+      "individuals": -1497.5,
+      "foreigners": -368.4,
+      "trust_banks": -85.2,
+      "investment_trusts": -22.7,
+      "business_corps": 1741.9,
+      "proprietary": 1154.3,
+      "nikkei_close": 27413.88
+    },
+    {
+      "date": "2022-05-30",
+      "individuals": -2081.0,
+      "foreigners": -410.4,
+      "trust_banks": -863.9,
+      "investment_trusts": 488.7,
+      "business_corps": 1243.6,
+      "proprietary": 2758.0,
+      "nikkei_close": 28246.53
+    },
+    {
+      "date": "2022-06-06",
+      "individuals": -15.4,
+      "foreigners": 1823.7,
+      "trust_banks": -119.3,
+      "investment_trusts": 203.1,
+      "business_corps": 1199.6,
+      "proprietary": -2387.3,
+      "nikkei_close": 26431.2
+    },
+    {
+      "date": "2022-06-13",
+      "individuals": 7069.7,
+      "foreigners": -8045.0,
+      "trust_banks": 643.5,
+      "investment_trusts": 48.1,
+      "business_corps": 2704.4,
+      "proprietary": -2359.2,
+      "nikkei_close": 26171.25
+    },
+    {
+      "date": "2022-06-20",
+      "individuals": -1017.5,
+      "foreigners": -1656.8,
+      "trust_banks": 745.8,
+      "investment_trusts": 690.6,
+      "business_corps": 1130.7,
+      "proprietary": -72.0,
+      "nikkei_close": 26393.04
+    },
+    {
+      "date": "2022-06-27",
+      "individuals": 1517.4,
+      "foreigners": -3673.1,
+      "trust_banks": 3522.0,
+      "investment_trusts": 777.3,
+      "business_corps": 16.0,
+      "proprietary": -2470.4,
+      "nikkei_close": 26490.53
+    },
+    {
+      "date": "2022-07-04",
+      "individuals": -3047.7,
+      "foreigners": 4307.8,
+      "trust_banks": 1363.4,
+      "investment_trusts": -2782.3,
+      "business_corps": 1338.2,
+      "proprietary": -1020.1,
+      "nikkei_close": 26643.39
+    },
+    {
+      "date": "2022-07-11",
+      "individuals": -107.8,
+      "foreigners": -1443.2,
+      "trust_banks": 1157.6,
+      "investment_trusts": 456.2,
+      "business_corps": 1407.0,
+      "proprietary": -1433.9,
+      "nikkei_close": 27803.0
+    },
+    {
+      "date": "2022-07-19",
+      "individuals": -5699.2,
+      "foreigners": 1919.7,
+      "trust_banks": 829.4,
+      "investment_trusts": 198.1,
+      "business_corps": 600.6,
+      "proprietary": 2723.3,
+      "nikkei_close": 27815.48
+    },
+    {
+      "date": "2022-07-25",
+      "individuals": 141.0,
+      "foreigners": -3083.0,
+      "trust_banks": 116.6,
+      "investment_trusts": 1160.9,
+      "business_corps": 817.9,
+      "proprietary": 682.7,
+      "nikkei_close": 27932.2
+    },
+    {
+      "date": "2022-08-01",
+      "individuals": -58.8,
+      "foreigners": -820.8,
+      "trust_banks": -1648.6,
+      "investment_trusts": 97.1,
+      "business_corps": 1109.2,
+      "proprietary": 1539.2,
+      "nikkei_close": 27819.33
+    },
+    {
+      "date": "2022-08-08",
+      "individuals": -2747.9,
+      "foreigners": 1229.0,
+      "trust_banks": -97.4,
+      "investment_trusts": -660.5,
+      "business_corps": 817.7,
+      "proprietary": 1983.5,
+      "nikkei_close": 28942.14
+    },
+    {
+      "date": "2022-08-15",
+      "individuals": -1871.0,
+      "foreigners": -222.9,
+      "trust_banks": 51.9,
+      "investment_trusts": -1037.9,
+      "business_corps": 1065.8,
+      "proprietary": 2931.0,
+      "nikkei_close": 28479.01
+    },
+    {
+      "date": "2022-08-22",
+      "individuals": 1840.8,
+      "foreigners": -1212.9,
+      "trust_banks": -20.0,
+      "investment_trusts": -207.7,
+      "business_corps": 1070.7,
+      "proprietary": -1332.7,
+      "nikkei_close": 27661.47
+    },
+    {
+      "date": "2022-08-29",
+      "individuals": 6910.9,
+      "foreigners": -4273.1,
+      "trust_banks": -587.4,
+      "investment_trusts": 361.3,
+      "business_corps": 1187.6,
+      "proprietary": -3762.5,
+      "nikkei_close": 28065.28
+    },
+    {
+      "date": "2022-09-05",
+      "individuals": -1090.4,
+      "foreigners": -213.4,
+      "trust_banks": -2650.8,
+      "investment_trusts": -1.9,
+      "business_corps": 927.9,
+      "proprietary": 3367.3,
+      "nikkei_close": 27875.91
+    },
+    {
+      "date": "2022-09-12",
+      "individuals": 2784.4,
+      "foreigners": -670.9,
+      "trust_banks": -1194.6,
+      "investment_trusts": -655.4,
+      "business_corps": 4573.8,
+      "proprietary": -898.0,
+      "nikkei_close": 27153.83
+    },
+    {
+      "date": "2022-09-20",
+      "individuals": 2036.6,
+      "foreigners": -1756.1,
+      "trust_banks": -817.9,
+      "investment_trusts": -269.2,
+      "business_corps": 644.0,
+      "proprietary": 41.6,
+      "nikkei_close": 26422.05
+    },
+    {
+      "date": "2022-09-26",
+      "individuals": 6206.6,
+      "foreigners": -5644.2,
+      "trust_banks": 641.6,
+      "investment_trusts": -820.3,
+      "business_corps": 244.7,
+      "proprietary": -1042.8,
+      "nikkei_close": 27311.3
+    },
+    {
+      "date": "2022-10-03",
+      "individuals": -4544.6,
+      "foreigners": 4035.5,
+      "trust_banks": 2301.7,
+      "investment_trusts": 1731.1,
+      "business_corps": 1390.1,
+      "proprietary": -4484.0,
+      "nikkei_close": 26237.42
+    },
+    {
+      "date": "2022-10-11",
+      "individuals": -136.2,
+      "foreigners": 1524.5,
+      "trust_banks": 1459.2,
+      "investment_trusts": 217.3,
+      "business_corps": 1233.8,
+      "proprietary": -4257.5,
+      "nikkei_close": 27006.96
+    },
+    {
+      "date": "2022-10-17",
+      "individuals": 1482.7,
+      "foreigners": -4930.8,
+      "trust_banks": 1330.2,
+      "investment_trusts": 136.9,
+      "business_corps": 1016.0,
+      "proprietary": 1400.6,
+      "nikkei_close": 27345.24
+    },
+    {
+      "date": "2022-10-24",
+      "individuals": -1041.5,
+      "foreigners": 835.3,
+      "trust_banks": 1100.5,
+      "investment_trusts": -804.5,
+      "business_corps": 807.2,
+      "proprietary": -1150.6,
+      "nikkei_close": 27663.39
+    },
+    {
+      "date": "2022-10-31",
+      "individuals": -931.8,
+      "foreigners": 3904.4,
+      "trust_banks": -98.5,
+      "investment_trusts": 1983.0,
+      "business_corps": 1344.9,
+      "proprietary": -5798.9,
+      "nikkei_close": 27446.1
+    },
+    {
+      "date": "2022-11-07",
+      "individuals": -6504.1,
+      "foreigners": 5209.8,
+      "trust_banks": 1072.0,
+      "investment_trusts": -236.1,
+      "business_corps": 929.6,
+      "proprietary": 504.8,
+      "nikkei_close": 27930.57
+    },
+    {
+      "date": "2022-11-14",
+      "individuals": -185.4,
+      "foreigners": -169.6,
+      "trust_banks": -669.9,
+      "investment_trusts": -27.5,
+      "business_corps": 1344.2,
+      "proprietary": 408.5,
+      "nikkei_close": 28383.09
+    },
+    {
+      "date": "2022-11-21",
+      "individuals": -5367.4,
+      "foreigners": 4029.9,
+      "trust_banks": -200.9,
+      "investment_trusts": 614.5,
+      "business_corps": 440.9,
+      "proprietary": 1309.3,
+      "nikkei_close": 28226.08
+    },
+    {
+      "date": "2022-11-28",
+      "individuals": 5245.4,
+      "foreigners": -101.5,
+      "trust_banks": -3629.0,
+      "investment_trusts": -646.0,
+      "business_corps": 1202.7,
+      "proprietary": -1752.4,
+      "nikkei_close": 27574.43
+    },
+    {
+      "date": "2022-12-05",
+      "individuals": 569.0,
+      "foreigners": -797.7,
+      "trust_banks": -1477.5,
+      "investment_trusts": 1628.4,
+      "business_corps": 1695.9,
+      "proprietary": -1743.0,
+      "nikkei_close": 28051.7
+    },
+    {
+      "date": "2022-12-12",
+      "individuals": 1287.6,
+      "foreigners": -164.5,
+      "trust_banks": -1003.8,
+      "investment_trusts": -1374.4,
+      "business_corps": 1394.6,
+      "proprietary": -717.3,
+      "nikkei_close": 26507.87
+    },
+    {
+      "date": "2022-12-19",
+      "individuals": 2788.8,
+      "foreigners": -2418.5,
+      "trust_banks": -419.6,
+      "investment_trusts": 1379.2,
+      "business_corps": 1981.3,
+      "proprietary": -3979.1,
+      "nikkei_close": 26093.67
+    },
+    {
+      "date": "2022-12-26",
+      "individuals": -307.9,
+      "foreigners": 1782.5,
+      "trust_banks": -62.6,
+      "investment_trusts": 609.2,
+      "business_corps": 21.8,
+      "proprietary": -2328.7,
+      "nikkei_close": 25820.8
+    },
+    {
+      "date": "2023-01-04",
+      "individuals": 2410.4,
+      "foreigners": -640.9,
+      "trust_banks": -50.0,
+      "investment_trusts": 171.6,
+      "business_corps": 1397.1,
+      "proprietary": -3070.9,
+      "nikkei_close": 26449.82
+    },
+    {
+      "date": "2023-01-10",
+      "individuals": -598.4,
+      "foreigners": 1705.3,
+      "trust_banks": -1196.5,
+      "investment_trusts": -204.8,
+      "business_corps": 1035.1,
+      "proprietary": -1268.5,
+      "nikkei_close": 26405.23
+    },
+    {
+      "date": "2023-01-16",
+      "individuals": -128.9,
+      "foreigners": 987.9,
+      "trust_banks": -1200.9,
+      "investment_trusts": -136.1,
+      "business_corps": 1229.2,
+      "proprietary": -801.2,
+      "nikkei_close": 27362.75
+    },
+    {
+      "date": "2023-01-23",
+      "individuals": -3991.6,
+      "foreigners": 3038.0,
+      "trust_banks": -1933.8,
+      "investment_trusts": 727.2,
+      "business_corps": 353.4,
+      "proprietary": 2360.3,
+      "nikkei_close": 27402.05
+    },
+    {
+      "date": "2023-01-30",
+      "individuals": 683.1,
+      "foreigners": -67.4,
+      "trust_banks": -1739.6,
+      "investment_trusts": -252.6,
+      "business_corps": 875.2,
+      "proprietary": 972.6,
+      "nikkei_close": 27584.35
+    },
+    {
+      "date": "2023-02-06",
+      "individuals": -703.7,
+      "foreigners": 1864.9,
+      "trust_banks": -1758.9,
+      "investment_trusts": -698.6,
+      "business_corps": 946.8,
+      "proprietary": 1398.1,
+      "nikkei_close": 27696.44
+    },
+    {
+      "date": "2023-02-13",
+      "individuals": -688.1,
+      "foreigners": 2331.1,
+      "trust_banks": -1519.4,
+      "investment_trusts": -363.2,
+      "business_corps": 703.3,
+      "proprietary": 355.3,
+      "nikkei_close": 27104.32
+    },
+    {
+      "date": "2023-02-20",
+      "individuals": 887.5,
+      "foreigners": -2263.6,
+      "trust_banks": -1339.0,
+      "investment_trusts": 410.1,
+      "business_corps": 881.2,
+      "proprietary": 1641.9,
+      "nikkei_close": 27498.87
+    },
+    {
+      "date": "2023-02-27",
+      "individuals": -2082.2,
+      "foreigners": -994.4,
+      "trust_banks": -515.1,
+      "investment_trusts": -188.2,
+      "business_corps": 359.6,
+      "proprietary": 3418.7,
+      "nikkei_close": 28623.15
+    },
+    {
+      "date": "2023-03-06",
+      "individuals": -2009.0,
+      "foreigners": -11276.0,
+      "trust_banks": -1493.4,
+      "investment_trusts": 53.9,
+      "business_corps": 845.8,
+      "proprietary": 14466.1,
+      "nikkei_close": 27010.61
+    },
+    {
+      "date": "2023-03-13",
+      "individuals": 7542.5,
+      "foreigners": -5686.3,
+      "trust_banks": -2022.9,
+      "investment_trusts": 88.7,
+      "business_corps": 1416.2,
+      "proprietary": -2559.1,
+      "nikkei_close": 27419.61
+    },
+    {
+      "date": "2023-03-20",
+      "individuals": 2217.5,
+      "foreigners": -4617.4,
+      "trust_banks": 205.7,
+      "investment_trusts": 104.2,
+      "business_corps": 674.2,
+      "proprietary": 977.0,
+      "nikkei_close": 27782.93
+    },
+    {
+      "date": "2023-03-27",
+      "individuals": -2720.1,
+      "foreigners": 70.6,
+      "trust_banks": -180.3,
+      "investment_trusts": 162.9,
+      "business_corps": null,
+      "proprietary": 4043.2,
+      "nikkei_close": 27472.63
+    },
+    {
+      "date": "2023-04-03",
+      "individuals": 2103.2,
+      "foreigners": 6796.4,
+      "trust_banks": -4032.2,
+      "investment_trusts": -81.1,
+      "business_corps": 476.4,
+      "proprietary": -4986.6,
+      "nikkei_close": 28156.97
+    },
+    {
+      "date": "2023-04-10",
+      "individuals": -4230.2,
+      "foreigners": 10494.8,
+      "trust_banks": -2170.4,
+      "investment_trusts": -129.5,
+      "business_corps": null,
+      "proprietary": -3078.2,
+      "nikkei_close": 28657.57
+    },
+    {
+      "date": "2023-04-17",
+      "individuals": -2577.4,
+      "foreigners": 2760.5,
+      "trust_banks": -622.9,
+      "investment_trusts": -1026.9,
+      "business_corps": null,
+      "proprietary": 2203.4,
+      "nikkei_close": 28457.68
+    },
+    {
+      "date": "2023-04-24",
+      "individuals": -1049.1,
+      "foreigners": 1458.8,
+      "trust_banks": -994.1,
+      "investment_trusts": -820.2,
+      "business_corps": 99.0,
+      "proprietary": 1343.4,
+      "nikkei_close": 29157.95
+    },
+    {
+      "date": "2023-05-01",
+      "individuals": -2815.5,
+      "foreigners": 1602.6,
+      "trust_banks": -347.0,
+      "investment_trusts": -222.5,
+      "business_corps": 16.1,
+      "proprietary": 2356.2,
+      "nikkei_close": 29126.72
+    },
+    {
+      "date": "2023-05-08",
+      "individuals": -3054.7,
+      "foreigners": 5658.8,
+      "trust_banks": -1473.4,
+      "investment_trusts": -714.6,
+      "business_corps": 380.3,
+      "proprietary": 332.1,
+      "nikkei_close": 30573.93
+    },
+    {
+      "date": "2023-05-15",
+      "individuals": -9273.9,
+      "foreigners": 7476.8,
+      "trust_banks": -937.0,
+      "investment_trusts": 231.4,
+      "business_corps": 1136.0,
+      "proprietary": 3228.8,
+      "nikkei_close": 30801.13
+    },
+    {
+      "date": "2023-05-22",
+      "individuals": -442.7,
+      "foreigners": 3816.8,
+      "trust_banks": -2421.9,
+      "investment_trusts": -3267.8,
+      "business_corps": 876.2,
+      "proprietary": 2977.1,
+      "nikkei_close": 31148.01
+    },
+    {
+      "date": "2023-05-29",
+      "individuals": 388.4,
+      "foreigners": 5352.5,
+      "trust_banks": -7344.0,
+      "investment_trusts": 10.0,
+      "business_corps": 1390.4,
+      "proprietary": 283.6,
+      "nikkei_close": 31641.27
+    },
+    {
+      "date": "2023-06-05",
+      "individuals": -4819.1,
+      "foreigners": 9854.2,
+      "trust_banks": -535.9,
+      "investment_trusts": -801.9,
+      "business_corps": 656.6,
+      "proprietary": -3543.7,
+      "nikkei_close": 33485.49
+    },
+    {
+      "date": "2023-06-12",
+      "individuals": -5777.5,
+      "foreigners": 6414.3,
+      "trust_banks": -821.5,
+      "investment_trusts": -934.7,
+      "business_corps": 958.0,
+      "proprietary": 1213.7,
+      "nikkei_close": 33264.88
+    },
+    {
+      "date": "2023-06-19",
+      "individuals": 3446.4,
+      "foreigners": -3604.9,
+      "trust_banks": -4074.9,
+      "investment_trusts": -1357.7,
+      "business_corps": 642.7,
+      "proprietary": 5129.6,
+      "nikkei_close": 33234.14
+    },
+    {
+      "date": "2023-06-26",
+      "individuals": -1027.6,
+      "foreigners": 3041.5,
+      "trust_banks": -1331.3,
+      "investment_trusts": 771.5,
+      "business_corps": null,
+      "proprietary": -2221.6,
+      "nikkei_close": 32773.02
+    },
+    {
+      "date": "2023-07-03",
+      "individuals": 3687.1,
+      "foreigners": 313.7,
+      "trust_banks": -386.8,
+      "investment_trusts": -1943.7,
+      "business_corps": 860.7,
+      "proprietary": -3163.4,
+      "nikkei_close": 32419.33
+    },
+    {
+      "date": "2023-07-10",
+      "individuals": 1802.0,
+      "foreigners": 2793.9,
+      "trust_banks": -2603.7,
+      "investment_trusts": 434.6,
+      "business_corps": 929.6,
+      "proprietary": -3292.9,
+      "nikkei_close": 32490.52
+    },
+    {
+      "date": "2023-07-18",
+      "individuals": 126.4,
+      "foreigners": 197.2,
+      "trust_banks": 472.7,
+      "investment_trusts": -130.1,
+      "business_corps": 432.8,
+      "proprietary": -939.0,
+      "nikkei_close": 32891.16
+    },
+    {
+      "date": "2023-07-24",
+      "individuals": -1304.0,
+      "foreigners": 738.2,
+      "trust_banks": -944.5,
+      "investment_trusts": 212.4,
+      "business_corps": 300.6,
+      "proprietary": 1264.7,
+      "nikkei_close": 32159.28
+    },
+    {
+      "date": "2023-07-31",
+      "individuals": 2661.7,
+      "foreigners": 188.5,
+      "trust_banks": -1822.9,
+      "investment_trusts": 989.4,
+      "business_corps": 1615.8,
+      "proprietary": -2606.4,
+      "nikkei_close": 32473.65
+    },
+    {
+      "date": "2023-08-07",
+      "individuals": -2395.3,
+      "foreigners": 1799.1,
+      "trust_banks": -2719.7,
+      "investment_trusts": -767.9,
+      "business_corps": 1430.1,
+      "proprietary": 2867.7,
+      "nikkei_close": 31626.0
+    },
+    {
+      "date": "2023-08-14",
+      "individuals": 3558.0,
+      "foreigners": -7415.5,
+      "trust_banks": -1068.0,
+      "investment_trusts": 519.1,
+      "business_corps": 3210.6,
+      "proprietary": 1724.9,
+      "nikkei_close": 32287.21
+    },
+    {
+      "date": "2023-08-21",
+      "individuals": -1160.6,
+      "foreigners": -2046.9,
+      "trust_banks": 219.0,
+      "investment_trusts": 7.5,
+      "business_corps": 1833.1,
+      "proprietary": 1113.4,
+      "nikkei_close": 32619.34
+    },
+    {
+      "date": "2023-08-28",
+      "individuals": -9226.5,
+      "foreigners": 3393.2,
+      "trust_banks": 616.7,
+      "investment_trusts": 49.5,
+      "business_corps": 709.6,
+      "proprietary": 4433.5,
+      "nikkei_close": 32991.08
+    },
+    {
+      "date": "2023-09-04",
+      "individuals": 1933.4,
+      "foreigners": -7625.5,
+      "trust_banks": -1853.5,
+      "investment_trusts": -503.7,
+      "business_corps": 1113.4,
+      "proprietary": 7877.2,
+      "nikkei_close": 33168.1
+    },
+    {
+      "date": "2023-09-11",
+      "individuals": -3459.0,
+      "foreigners": -2781.5,
+      "trust_banks": -1721.8,
+      "investment_trusts": -21.5,
+      "business_corps": 1086.1,
+      "proprietary": 7453.1,
+      "nikkei_close": 32571.03
+    },
+    {
+      "date": "2023-09-19",
+      "individuals": 6613.0,
+      "foreigners": -9131.7,
+      "trust_banks": -3401.1,
+      "investment_trusts": -1422.0,
+      "business_corps": 1518.3,
+      "proprietary": 5493.8,
+      "nikkei_close": 31872.52
+    },
+    {
+      "date": "2023-09-25",
+      "individuals": 5734.6,
+      "foreigners": -776.2,
+      "trust_banks": -3678.5,
+      "investment_trusts": -1398.5,
+      "business_corps": null,
+      "proprietary": 875.4,
+      "nikkei_close": 31075.36
+    },
+    {
+      "date": "2023-10-02",
+      "individuals": 4012.0,
+      "foreigners": 5262.6,
+      "trust_banks": -577.2,
+      "investment_trusts": 710.8,
+      "business_corps": 1707.2,
+      "proprietary": -11032.1,
+      "nikkei_close": 32494.66
+    },
+    {
+      "date": "2023-10-10",
+      "individuals": -1508.9,
+      "foreigners": 4557.5,
+      "trust_banks": -606.9,
+      "investment_trusts": 476.7,
+      "business_corps": 755.7,
+      "proprietary": -3225.9,
+      "nikkei_close": 31430.62
+    },
+    {
+      "date": "2023-10-16",
+      "individuals": 3236.3,
+      "foreigners": -766.1,
+      "trust_banks": -1344.0,
+      "investment_trusts": 604.3,
+      "business_corps": 1457.2,
+      "proprietary": -3087.5,
+      "nikkei_close": 30601.78
+    },
+    {
+      "date": "2023-10-23",
+      "individuals": 1423.3,
+      "foreigners": 594.1,
+      "trust_banks": 887.8,
+      "investment_trusts": -0.6,
+      "business_corps": 1117.9,
+      "proprietary": -4125.9,
+      "nikkei_close": 31949.89
+    },
+    {
+      "date": "2023-10-30",
+      "individuals": -3868.1,
+      "foreigners": 576.5,
+      "trust_banks": 2135.1,
+      "investment_trusts": 32.6,
+      "business_corps": 515.8,
+      "proprietary": 1408.1,
+      "nikkei_close": 32646.46
+    },
+    {
+      "date": "2023-11-06",
+      "individuals": -2545.3,
+      "foreigners": 783.3,
+      "trust_banks": -547.2,
+      "investment_trusts": -429.8,
+      "business_corps": 984.7,
+      "proprietary": 2692.8,
+      "nikkei_close": 33424.41
+    },
+    {
+      "date": "2023-11-13",
+      "individuals": -5722.0,
+      "foreigners": 3629.6,
+      "trust_banks": -239.0,
+      "investment_trusts": -869.3,
+      "business_corps": 1131.7,
+      "proprietary": 2980.2,
+      "nikkei_close": 33451.83
+    },
+    {
+      "date": "2023-11-20",
+      "individuals": -894.6,
+      "foreigners": -10.1,
+      "trust_banks": 2370.7,
+      "investment_trusts": -319.5,
+      "business_corps": 1592.8,
+      "proprietary": -2483.0,
+      "nikkei_close": 33486.89
+    },
+    {
+      "date": "2023-11-27",
+      "individuals": 456.5,
+      "foreigners": -3687.9,
+      "trust_banks": -111.7,
+      "investment_trusts": 1348.1,
+      "business_corps": 1485.5,
+      "proprietary": 339.8,
+      "nikkei_close": 32858.31
+    },
+    {
+      "date": "2023-12-04",
+      "individuals": 4194.8,
+      "foreigners": -5868.7,
+      "trust_banks": 1270.9,
+      "investment_trusts": 724.2,
+      "business_corps": 1696.6,
+      "proprietary": -2739.7,
+      "nikkei_close": 32686.25
+    },
+    {
+      "date": "2023-12-11",
+      "individuals": -3298.8,
+      "foreigners": 2379.0,
+      "trust_banks": 257.7,
+      "investment_trusts": 141.8,
+      "business_corps": 2924.5,
+      "proprietary": -2259.0,
+      "nikkei_close": 33140.47
+    },
+    {
+      "date": "2023-12-18",
+      "individuals": -2103.1,
+      "foreigners": 565.0,
+      "trust_banks": -2035.2,
+      "investment_trusts": -268.1,
+      "business_corps": 2079.2,
+      "proprietary": 1812.6,
+      "nikkei_close": 33539.62
+    },
+    {
+      "date": "2023-12-25",
+      "individuals": -2834.7,
+      "foreigners": -2020.8,
+      "trust_banks": -891.2,
+      "investment_trusts": 264.1,
+      "business_corps": null,
+      "proprietary": 5371.4,
+      "nikkei_close": 33288.29
+    },
+    {
+      "date": "2024-01-04",
+      "individuals": -336.3,
+      "foreigners": 1405.7,
+      "trust_banks": 49.4,
+      "investment_trusts": 40.1,
+      "business_corps": 623.1,
+      "proprietary": -1640.1,
+      "nikkei_close": 35049.86
+    },
+    {
+      "date": "2024-01-09",
+      "individuals": -10695.1,
+      "foreigners": 9557.1,
+      "trust_banks": -105.5,
+      "investment_trusts": -1200.5,
+      "business_corps": 1312.5,
+      "proprietary": 2994.7,
+      "nikkei_close": 35466.17
+    },
+    {
+      "date": "2024-01-15",
+      "individuals": -1854.8,
+      "foreigners": 3841.3,
+      "trust_banks": -1915.4,
+      "investment_trusts": -2455.7,
+      "business_corps": 462.5,
+      "proprietary": 2860.3,
+      "nikkei_close": 36236.47
+    },
+    {
+      "date": "2024-01-22",
+      "individuals": 2946.1,
+      "foreigners": 4105.2,
+      "trust_banks": -3693.0,
+      "investment_trusts": -1486.1,
+      "business_corps": 575.6,
+      "proprietary": -2329.8,
+      "nikkei_close": 36011.46
+    },
+    {
+      "date": "2024-01-29",
+      "individuals": 570.0,
+      "foreigners": 1784.0,
+      "trust_banks": -1421.3,
+      "investment_trusts": -2155.5,
+      "business_corps": 793.5,
+      "proprietary": 689.2,
+      "nikkei_close": 36863.28
+    },
+    {
+      "date": "2024-02-05",
+      "individuals": 2277.5,
+      "foreigners": 3663.7,
+      "trust_banks": -5490.7,
+      "investment_trusts": -2829.8,
+      "business_corps": 1621.8,
+      "proprietary": 2044.6,
+      "nikkei_close": 38157.94
+    },
+    {
+      "date": "2024-02-13",
+      "individuals": -3164.9,
+      "foreigners": 3013.9,
+      "trust_banks": -4554.5,
+      "investment_trusts": -1002.4,
+      "business_corps": 630.5,
+      "proprietary": 6346.1,
+      "nikkei_close": 39098.68
+    },
+    {
+      "date": "2024-02-19",
+      "individuals": -918.8,
+      "foreigners": -786.5,
+      "trust_banks": -2235.8,
+      "investment_trusts": -663.6,
+      "business_corps": 898.0,
+      "proprietary": 5077.6,
+      "nikkei_close": 39166.19
+    },
+    {
+      "date": "2024-02-26",
+      "individuals": -905.5,
+      "foreigners": 3834.8,
+      "trust_banks": -2589.6,
+      "investment_trusts": -1569.1,
+      "business_corps": null,
+      "proprietary": 2746.9,
+      "nikkei_close": 39598.71
+    },
+    {
+      "date": "2024-03-04",
+      "individuals": 3274.2,
+      "foreigners": 1763.9,
+      "trust_banks": -6865.7,
+      "investment_trusts": -2393.2,
+      "business_corps": null,
+      "proprietary": 4762.8,
+      "nikkei_close": 38807.38
+    },
+    {
+      "date": "2024-03-11",
+      "individuals": 4942.1,
+      "foreigners": -875.2,
+      "trust_banks": -6851.4,
+      "investment_trusts": -1762.6,
+      "business_corps": 1542.6,
+      "proprietary": 2893.1,
+      "nikkei_close": 40815.66
+    },
+    {
+      "date": "2024-03-18",
+      "individuals": -8726.9,
+      "foreigners": 960.8,
+      "trust_banks": -722.7,
+      "investment_trusts": -114.0,
+      "business_corps": null,
+      "proprietary": 9424.6,
+      "nikkei_close": 40168.07
+    },
+    {
+      "date": "2024-03-25",
+      "individuals": 4438.7,
+      "foreigners": -2126.1,
+      "trust_banks": -5555.3,
+      "investment_trusts": -1285.0,
+      "business_corps": null,
+      "proprietary": 5260.6,
+      "nikkei_close": 39773.14
+    },
+    {
+      "date": "2024-04-01",
+      "individuals": 6347.8,
+      "foreigners": 11821.3,
+      "trust_banks": -7887.7,
+      "investment_trusts": -818.7,
+      "business_corps": 733.6,
+      "proprietary": -9870.6,
+      "nikkei_close": 39442.63
+    },
+    {
+      "date": "2024-04-08",
+      "individuals": -2053.5,
+      "foreigners": 5955.1,
+      "trust_banks": 366.0,
+      "investment_trusts": 178.3,
+      "business_corps": 297.6,
+      "proprietary": -4147.5,
+      "nikkei_close": 38079.7
+    },
+    {
+      "date": "2024-04-15",
+      "individuals": 9086.0,
+      "foreigners": -5924.8,
+      "trust_banks": -53.0,
+      "investment_trusts": 489.6,
+      "business_corps": 552.6,
+      "proprietary": -3909.5,
+      "nikkei_close": 37628.48
+    },
+    {
+      "date": "2024-04-22",
+      "individuals": -1873.8,
+      "foreigners": 2159.2,
+      "trust_banks": 1666.5,
+      "investment_trusts": -1570.0,
+      "business_corps": 561.7,
+      "proprietary": -450.4,
+      "nikkei_close": 38236.07
+    },
+    {
+      "date": "2024-04-30",
+      "individuals": -2741.3,
+      "foreigners": 1745.9,
+      "trust_banks": 247.8,
+      "investment_trusts": 1459.1,
+      "business_corps": 742.2,
+      "proprietary": -1474.1,
+      "nikkei_close": 38073.98
+    },
+    {
+      "date": "2024-05-07",
+      "individuals": -407.0,
+      "foreigners": 2636.1,
+      "trust_banks": 89.7,
+      "investment_trusts": -499.5,
+      "business_corps": 1369.0,
+      "proprietary": -2579.6,
+      "nikkei_close": 38920.26
+    },
+    {
+      "date": "2024-05-13",
+      "individuals": -1204.6,
+      "foreigners": 384.0,
+      "trust_banks": 472.1,
+      "investment_trusts": 365.5,
+      "business_corps": 2616.8,
+      "proprietary": -2152.5,
+      "nikkei_close": 39103.22
+    },
+    {
+      "date": "2024-05-20",
+      "individuals": 816.1,
+      "foreigners": -1139.3,
+      "trust_banks": -145.6,
+      "investment_trusts": -1262.0,
+      "business_corps": 2353.4,
+      "proprietary": -817.0,
+      "nikkei_close": 38054.13
+    },
+    {
+      "date": "2024-05-27",
+      "individuals": -887.1,
+      "foreigners": -1126.2,
+      "trust_banks": -1676.8,
+      "investment_trusts": 806.9,
+      "business_corps": 2582.8,
+      "proprietary": 942.2,
+      "nikkei_close": 38703.51
+    },
+    {
+      "date": "2024-06-03",
+      "individuals": 2861.2,
+      "foreigners": -1986.6,
+      "trust_banks": -1304.3,
+      "investment_trusts": 30.1,
+      "business_corps": 2921.1,
+      "proprietary": -2274.3,
+      "nikkei_close": 38720.47
+    },
+    {
+      "date": "2024-06-10",
+      "individuals": 853.8,
+      "foreigners": -2494.2,
+      "trust_banks": 1562.2,
+      "investment_trusts": -584.9,
+      "business_corps": 2526.7,
+      "proprietary": -2119.5,
+      "nikkei_close": 38633.02
+    },
+    {
+      "date": "2024-06-17",
+      "individuals": 1899.8,
+      "foreigners": -213.7,
+      "trust_banks": -1914.6,
+      "investment_trusts": 190.1,
+      "business_corps": 2316.0,
+      "proprietary": -2584.3,
+      "nikkei_close": 39341.54
+    },
+    {
+      "date": "2024-06-24",
+      "individuals": -4885.9,
+      "foreigners": 1239.7,
+      "trust_banks": 16.0,
+      "investment_trusts": -65.4,
+      "business_corps": null,
+      "proprietary": 4194.8,
+      "nikkei_close": 40913.65
+    },
+    {
+      "date": "2024-07-01",
+      "individuals": -4966.4,
+      "foreigners": 1836.9,
+      "trust_banks": 518.3,
+      "investment_trusts": 1032.5,
+      "business_corps": 1268.3,
+      "proprietary": 197.4,
+      "nikkei_close": 42224.02
+    },
+    {
+      "date": "2024-07-08",
+      "individuals": -773.6,
+      "foreigners": 1288.7,
+      "trust_banks": -733.3,
+      "investment_trusts": -1505.4,
+      "business_corps": 1791.1,
+      "proprietary": -23.2,
+      "nikkei_close": 40126.35
+    },
+    {
+      "date": "2024-07-16",
+      "individuals": 2512.0,
+      "foreigners": -2459.5,
+      "trust_banks": -257.8,
+      "investment_trusts": -580.6,
+      "business_corps": 1367.7,
+      "proprietary": -318.2,
+      "nikkei_close": 37869.51
+    },
+    {
+      "date": "2024-07-22",
+      "individuals": 5050.7,
+      "foreigners": -5659.1,
+      "trust_banks": 256.6,
+      "investment_trusts": 449.7,
+      "business_corps": 2054.1,
+      "proprietary": -2592.3,
+      "nikkei_close": 38126.33
+    },
+    {
+      "date": "2024-07-29",
+      "individuals": 4817.6,
+      "foreigners": -5524.3,
+      "trust_banks": 239.3,
+      "investment_trusts": 3021.4,
+      "business_corps": 1463.7,
+      "proprietary": -4441.3,
+      "nikkei_close": 34831.15
+    },
+    {
+      "date": "2024-08-05",
+      "individuals": -553.3,
+      "foreigners": 4953.6,
+      "trust_banks": 2171.0,
+      "investment_trusts": 694.2,
+      "business_corps": 5060.3,
+      "proprietary": -13096.7,
+      "nikkei_close": 36726.64
+    },
+    {
+      "date": "2024-08-13",
+      "individuals": -4041.1,
+      "foreigners": 1872.1,
+      "trust_banks": 291.1,
+      "investment_trusts": 474.0,
+      "business_corps": 2376.8,
+      "proprietary": -755.4,
+      "nikkei_close": 38211.01
+    },
+    {
+      "date": "2024-08-19",
+      "individuals": -366.4,
+      "foreigners": -3988.9,
+      "trust_banks": 1347.1,
+      "investment_trusts": -272.2,
+      "business_corps": 2216.7,
+      "proprietary": 1412.8,
+      "nikkei_close": 38362.53
+    },
+    {
+      "date": "2024-08-26",
+      "individuals": -1106.7,
+      "foreigners": -2451.3,
+      "trust_banks": 2074.5,
+      "investment_trusts": -497.3,
+      "business_corps": 1900.3,
+      "proprietary": 497.9,
+      "nikkei_close": 36657.09
+    },
+    {
+      "date": "2024-09-02",
+      "individuals": 4672.3,
+      "foreigners": -8235.6,
+      "trust_banks": 1500.1,
+      "investment_trusts": 1774.1,
+      "business_corps": 3544.5,
+      "proprietary": -2538.6,
+      "nikkei_close": 36833.27
+    },
+    {
+      "date": "2024-09-09",
+      "individuals": 2193.7,
+      "foreigners": -15425.9,
+      "trust_banks": -559.9,
+      "investment_trusts": 268.8,
+      "business_corps": 3073.4,
+      "proprietary": 9040.2,
+      "nikkei_close": 37155.33
+    },
+    {
+      "date": "2024-09-17",
+      "individuals": -3567.2,
+      "foreigners": -5122.8,
+      "trust_banks": -2963.2,
+      "investment_trusts": -649.7,
+      "business_corps": 1884.2,
+      "proprietary": 11983.2,
+      "nikkei_close": 38925.63
+    },
+    {
+      "date": "2024-09-24",
+      "individuals": -5870.0,
+      "foreigners": -567.5,
+      "trust_banks": 1332.7,
+      "investment_trusts": 455.9,
+      "business_corps": 863.4,
+      "proprietary": 5141.9,
+      "nikkei_close": 38552.06
+    },
+    {
+      "date": "2024-09-30",
+      "individuals": 1777.3,
+      "foreigners": 3955.5,
+      "trust_banks": 2090.2,
+      "investment_trusts": 2914.1,
+      "business_corps": 1857.0,
+      "proprietary": -12424.1,
+      "nikkei_close": 39380.89
+    },
+    {
+      "date": "2024-10-07",
+      "individuals": -1737.1,
+      "foreigners": 2473.6,
+      "trust_banks": -490.1,
+      "investment_trusts": 447.1,
+      "business_corps": 1625.4,
+      "proprietary": -1185.3,
+      "nikkei_close": 38911.19
+    },
+    {
+      "date": "2024-10-15",
+      "individuals": 841.6,
+      "foreigners": -579.2,
+      "trust_banks": -84.0,
+      "investment_trusts": 678.4,
+      "business_corps": 1275.1,
+      "proprietary": -1555.8,
+      "nikkei_close": 38143.29
+    },
+    {
+      "date": "2024-10-21",
+      "individuals": 272.9,
+      "foreigners": -206.5,
+      "trust_banks": -211.8,
+      "investment_trusts": 60.1,
+      "business_corps": 1680.4,
+      "proprietary": -1625.4,
+      "nikkei_close": 39081.25
+    },
+    {
+      "date": "2024-10-28",
+      "individuals": -438.1,
+      "foreigners": -1885.3,
+      "trust_banks": 1641.0,
+      "investment_trusts": -1192.5,
+      "business_corps": 1830.3,
+      "proprietary": 38.5,
+      "nikkei_close": 39381.41
+    },
+    {
+      "date": "2024-11-05",
+      "individuals": -7436.8,
+      "foreigners": 1938.2,
+      "trust_banks": 766.5,
+      "investment_trusts": 30.2,
+      "business_corps": 1594.7,
+      "proprietary": 4507.0,
+      "nikkei_close": 38535.7
+    },
+    {
+      "date": "2024-11-11",
+      "individuals": 14.8,
+      "foreigners": 1521.3,
+      "trust_banks": 153.7,
+      "investment_trusts": 240.9,
+      "business_corps": 3275.3,
+      "proprietary": -3039.6,
+      "nikkei_close": 38026.17
+    },
+    {
+      "date": "2024-11-18",
+      "individuals": 1784.0,
+      "foreigners": -3300.5,
+      "trust_banks": -138.9,
+      "investment_trusts": -362.1,
+      "business_corps": 2326.8,
+      "proprietary": 75.7,
+      "nikkei_close": 38349.06
+    },
+    {
+      "date": "2024-11-25",
+      "individuals": 1409.0,
+      "foreigners": -1794.8,
+      "trust_banks": 855.0,
+      "investment_trusts": -1641.5,
+      "business_corps": 2964.8,
+      "proprietary": -1122.9,
+      "nikkei_close": 39395.6
+    },
+    {
+      "date": "2024-12-02",
+      "individuals": -4806.7,
+      "foreigners": 1249.5,
+      "trust_banks": 2804.6,
+      "investment_trusts": 3537.6,
+      "business_corps": 2147.1,
+      "proprietary": -3814.5,
+      "nikkei_close": 39849.14
+    },
+    {
+      "date": "2024-12-09",
+      "individuals": -3565.6,
+      "foreigners": -5092.7,
+      "trust_banks": 1779.6,
+      "investment_trusts": 2133.2,
+      "business_corps": 1975.2,
+      "proprietary": 2427.4,
+      "nikkei_close": 38813.58
+    },
+    {
+      "date": "2024-12-16",
+      "individuals": 1561.4,
+      "foreigners": -4750.3,
+      "trust_banks": 59.1,
+      "investment_trusts": -835.8,
+      "business_corps": 1844.6,
+      "proprietary": 2050.4,
+      "nikkei_close": 39568.06
+    },
+    {
+      "date": "2024-12-23",
+      "individuals": -8790.4,
+      "foreigners": 4956.2,
+      "trust_banks": -1934.5,
+      "investment_trusts": -1203.2,
+      "business_corps": null,
+      "proprietary": 7704.1,
+      "nikkei_close": 39894.54
+    },
+    {
+      "date": "2024-12-30",
+      "individuals": 1315.8,
+      "foreigners": -657.2,
+      "trust_banks": 313.1,
+      "investment_trusts": -434.4,
+      "business_corps": null,
+      "proprietary": -601.8,
+      "nikkei_close": 39605.09
+    },
+    {
+      "date": "2025-01-06",
+      "individuals": 7277.5,
+      "foreigners": 3435.5,
+      "trust_banks": -5318.8,
+      "investment_trusts": -1161.8,
+      "business_corps": 3256.7,
+      "proprietary": -7800.0,
+      "nikkei_close": 38572.6
+    },
+    {
+      "date": "2025-01-14",
+      "individuals": 4513.3,
+      "foreigners": -46.2,
+      "trust_banks": -1300.3,
+      "investment_trusts": 898.1,
+      "business_corps": 2056.6,
+      "proprietary": -6143.9,
+      "nikkei_close": 39958.87
+    },
+    {
+      "date": "2025-01-20",
+      "individuals": -4586.4,
+      "foreigners": 3911.1,
+      "trust_banks": -309.4,
+      "investment_trusts": -312.4,
+      "business_corps": 1983.9,
+      "proprietary": -945.0,
+      "nikkei_close": 39513.97
+    },
+    {
+      "date": "2025-01-27",
+      "individuals": 1424.4,
+      "foreigners": -3133.6,
+      "trust_banks": -940.1,
+      "investment_trusts": -548.6,
+      "business_corps": 1516.1,
+      "proprietary": 1392.0,
+      "nikkei_close": 39066.53
+    },
+    {
+      "date": "2025-02-03",
+      "individuals": 4892.3,
+      "foreigners": -2657.5,
+      "trust_banks": 637.1,
+      "investment_trusts": 267.8,
+      "business_corps": 3038.0,
+      "proprietary": -5273.1,
+      "nikkei_close": 39461.47
+    },
+    {
+      "date": "2025-02-10",
+      "individuals": -1001.2,
+      "foreigners": 964.3,
+      "trust_banks": -681.0,
+      "investment_trusts": -78.9,
+      "business_corps": 1675.7,
+      "proprietary": 400.3,
+      "nikkei_close": 38678.04
+    },
+    {
+      "date": "2025-02-17",
+      "individuals": 1751.1,
+      "foreigners": -1632.4,
+      "trust_banks": -339.9,
+      "investment_trusts": 498.6,
+      "business_corps": 2101.2,
+      "proprietary": -1685.5,
+      "nikkei_close": 38256.17
+    },
+    {
+      "date": "2025-02-25",
+      "individuals": 5181.9,
+      "foreigners": -6071.5,
+      "trust_banks": -393.1,
+      "investment_trusts": 50.9,
+      "business_corps": 1564.7,
+      "proprietary": -1035.0,
+      "nikkei_close": 37704.93
+    },
+    {
+      "date": "2025-03-03",
+      "individuals": -4319.3,
+      "foreigners": -1015.8,
+      "trust_banks": 3342.6,
+      "investment_trusts": 2573.7,
+      "business_corps": 2037.6,
+      "proprietary": -2862.4,
+      "nikkei_close": 36790.03
+    },
+    {
+      "date": "2025-03-10",
+      "individuals": -1309.1,
+      "foreigners": -8086.0,
+      "trust_banks": 555.7,
+      "investment_trusts": -833.9,
+      "business_corps": 973.7,
+      "proprietary": 8802.2,
+      "nikkei_close": 37751.88
+    },
+    {
+      "date": "2025-03-17",
+      "individuals": -4729.3,
+      "foreigners": 2611.4,
+      "trust_banks": -755.8,
+      "investment_trusts": -1285.5,
+      "business_corps": 449.5,
+      "proprietary": 4404.3,
+      "nikkei_close": 37799.97
+    },
+    {
+      "date": "2025-03-24",
+      "individuals": 4782.7,
+      "foreigners": -8416.9,
+      "trust_banks": -7917.1,
+      "investment_trusts": -1822.4,
+      "business_corps": null,
+      "proprietary": 13929.8,
+      "nikkei_close": 34735.93
+    },
+    {
+      "date": "2025-03-31",
+      "individuals": 7209.3,
+      "foreigners": 6011.3,
+      "trust_banks": -1941.9,
+      "investment_trusts": 2499.1,
+      "business_corps": 3102.6,
+      "proprietary": -18192.7,
+      "nikkei_close": 34609.0
+    },
+    {
+      "date": "2025-04-07",
+      "individuals": -1177.1,
+      "foreigners": 1582.3,
+      "trust_banks": 1730.5,
+      "investment_trusts": 691.2,
+      "business_corps": 3653.9,
+      "proprietary": -6736.7,
+      "nikkei_close": 34377.6
+    },
+    {
+      "date": "2025-04-14",
+      "individuals": -2305.4,
+      "foreigners": 1503.8,
+      "trust_banks": 919.8,
+      "investment_trusts": 714.2,
+      "business_corps": 1849.5,
+      "proprietary": -2290.8,
+      "nikkei_close": 35039.15
+    },
+    {
+      "date": "2025-04-21",
+      "individuals": -3549.3,
+      "foreigners": 2881.4,
+      "trust_banks": -1085.2,
+      "investment_trusts": -567.8,
+      "business_corps": 793.0,
+      "proprietary": 2263.4,
+      "nikkei_close": 36452.3
+    },
+    {
+      "date": "2025-04-28",
+      "individuals": -1673.4,
+      "foreigners": 3946.1,
+      "trust_banks": -2299.6,
+      "investment_trusts": 1776.1,
+      "business_corps": 1057.8,
+      "proprietary": -2234.3,
+      "nikkei_close": 36928.63
+    },
+    {
+      "date": "2025-05-07",
+      "individuals": -3576.4,
+      "foreigners": 3570.1,
+      "trust_banks": -2680.0,
+      "investment_trusts": 319.8,
+      "business_corps": 1565.8,
+      "proprietary": 2261.9,
+      "nikkei_close": 37755.51
+    },
+    {
+      "date": "2025-05-12",
+      "individuals": -2579.8,
+      "foreigners": 6232.8,
+      "trust_banks": -2893.2,
+      "investment_trusts": 86.0,
+      "business_corps": 2560.7,
+      "proprietary": -1232.1,
+      "nikkei_close": 36985.87
+    },
+    {
+      "date": "2025-05-19",
+      "individuals": -550.6,
+      "foreigners": 2850.2,
+      "trust_banks": -359.8,
+      "investment_trusts": 738.0,
+      "business_corps": 7156.2,
+      "proprietary": -9096.0,
+      "nikkei_close": 38432.98
+    },
+    {
+      "date": "2025-05-26",
+      "individuals": -3567.8,
+      "foreigners": 6165.7,
+      "trust_banks": -981.5,
+      "investment_trusts": -2641.1,
+      "business_corps": 2469.3,
+      "proprietary": 258.7,
+      "nikkei_close": 37554.49
+    },
+    {
+      "date": "2025-06-02",
+      "individuals": 1618.5,
+      "foreigners": 3985.9,
+      "trust_banks": -4738.4,
+      "investment_trusts": -211.2,
+      "business_corps": 3446.4,
+      "proprietary": -3325.8,
+      "nikkei_close": 38173.09
+    },
+    {
+      "date": "2025-06-09",
+      "individuals": -40.1,
+      "foreigners": 997.0,
+      "trust_banks": -251.7,
+      "investment_trusts": -26.5,
+      "business_corps": 3229.9,
+      "proprietary": -3620.7,
+      "nikkei_close": 38488.34
+    },
+    {
+      "date": "2025-06-16",
+      "individuals": -2326.3,
+      "foreigners": 884.6,
+      "trust_banks": -1073.7,
+      "investment_trusts": 614.0,
+      "business_corps": 2975.5,
+      "proprietary": -383.7,
+      "nikkei_close": 39584.58
+    },
+    {
+      "date": "2025-06-23",
+      "individuals": -5917.1,
+      "foreigners": 3398.2,
+      "trust_banks": -473.2,
+      "investment_trusts": 1204.4,
+      "business_corps": 420.4,
+      "proprietary": 530.0,
+      "nikkei_close": 39785.9
+    },
+    {
+      "date": "2025-06-30",
+      "individuals": -603.3,
+      "foreigners": 5456.4,
+      "trust_banks": 848.0,
+      "investment_trusts": -1561.9,
+      "business_corps": 2454.8,
+      "proprietary": -6728.2,
+      "nikkei_close": 39646.36
+    },
+    {
+      "date": "2025-07-07",
+      "individuals": -665.5,
+      "foreigners": 4030.9,
+      "trust_banks": -353.0,
+      "investment_trusts": -4427.8,
+      "business_corps": 2280.9,
+      "proprietary": -1483.2,
+      "nikkei_close": 39901.19
+    },
+    {
+      "date": "2025-07-14",
+      "individuals": -879.9,
+      "foreigners": 1875.1,
+      "trust_banks": 107.9,
+      "investment_trusts": 584.7,
+      "business_corps": 2162.7,
+      "proprietary": -3907.7,
+      "nikkei_close": 41826.34
+    },
+    {
+      "date": "2025-07-22",
+      "individuals": -12190.5,
+      "foreigners": 6024.0,
+      "trust_banks": 385.8,
+      "investment_trusts": -222.5,
+      "business_corps": 946.0,
+      "proprietary": 5567.3,
+      "nikkei_close": 41069.82
+    },
+    {
+      "date": "2025-07-28",
+      "individuals": 255.4,
+      "foreigners": -1892.1,
+      "trust_banks": -1002.2,
+      "investment_trusts": 589.4,
+      "business_corps": 2866.0,
+      "proprietary": 2239.2,
+      "nikkei_close": 41059.15
+    },
+    {
+      "date": "2025-08-04",
+      "individuals": -5780.6,
+      "foreigners": -53.3,
+      "trust_banks": -1165.6,
+      "investment_trusts": -380.2,
+      "business_corps": 2460.2,
+      "proprietary": 6461.3,
+      "nikkei_close": 42649.26
+    },
+    {
+      "date": "2025-08-12",
+      "individuals": -11253.5,
+      "foreigners": 5737.8,
+      "trust_banks": -2165.1,
+      "investment_trusts": 99.7,
+      "business_corps": 1811.2,
+      "proprietary": 7360.8,
+      "nikkei_close": 42610.17
+    },
+    {
+      "date": "2025-08-18",
+      "individuals": 1502.0,
+      "foreigners": -1988.7,
+      "trust_banks": 13.0,
+      "investment_trusts": -2910.4,
+      "business_corps": 2374.4,
+      "proprietary": 2016.2,
+      "nikkei_close": 42828.79
+    },
+    {
+      "date": "2025-08-25",
+      "individuals": 4134.8,
+      "foreigners": -3031.5,
+      "trust_banks": -4461.4,
+      "investment_trusts": -2138.7,
+      "business_corps": 4152.8,
+      "proprietary": 2691.5,
+      "nikkei_close": 42580.27
+    },
+    {
+      "date": "2025-09-01",
+      "individuals": 1657.8,
+      "foreigners": 1314.5,
+      "trust_banks": -4220.6,
+      "investment_trusts": -939.2,
+      "business_corps": 3253.0,
+      "proprietary": -306.6,
+      "nikkei_close": 44372.5
+    },
+    {
+      "date": "2025-09-08",
+      "individuals": -4689.0,
+      "foreigners": -6923.7,
+      "trust_banks": -1301.1,
+      "investment_trusts": -1049.2,
+      "business_corps": 2077.3,
+      "proprietary": 12596.0,
+      "nikkei_close": 45303.43
+    },
+    {
+      "date": "2025-09-16",
+      "individuals": -326.6,
+      "foreigners": -2943.8,
+      "trust_banks": -5310.2,
+      "investment_trusts": -453.9,
+      "business_corps": 1824.8,
+      "proprietary": 7540.0,
+      "nikkei_close": 45754.93
+    },
+    {
+      "date": "2025-09-22",
+      "individuals": 1293.7,
+      "foreigners": -5591.8,
+      "trust_banks": -3584.2,
+      "investment_trusts": -2760.2,
+      "business_corps": null,
+      "proprietary": 11158.5,
+      "nikkei_close": 44936.73
+    },
+    {
+      "date": "2025-09-29",
+      "individuals": 4222.6,
+      "foreigners": 12398.5,
+      "trust_banks": -2136.7,
+      "investment_trusts": 650.9,
+      "business_corps": 1227.1,
+      "proprietary": -16457.0,
+      "nikkei_close": 48580.44
+    },
+    {
+      "date": "2025-10-06",
+      "individuals": -4290.2,
+      "foreigners": 10586.8,
+      "trust_banks": -4882.3,
+      "investment_trusts": -363.7,
+      "business_corps": 1504.5,
+      "proprietary": -776.4,
+      "nikkei_close": 48277.74
+    },
+    {
+      "date": "2025-10-14",
+      "individuals": 3431.2,
+      "foreigners": 1532.8,
+      "trust_banks": -109.1,
+      "investment_trusts": -1524.9,
+      "business_corps": 1314.0,
+      "proprietary": -3600.5,
+      "nikkei_close": 48641.61
+    },
+    {
+      "date": "2025-10-20",
+      "individuals": -5124.8,
+      "foreigners": 6436.5,
+      "trust_banks": -786.4,
+      "investment_trusts": -1165.6,
+      "business_corps": 639.8,
+      "proprietary": 584.2,
+      "nikkei_close": 51325.61
+    },
+    {
+      "date": "2025-10-27",
+      "individuals": -1876.8,
+      "foreigners": 3459.4,
+      "trust_banks": 1388.4,
+      "investment_trusts": -3365.4,
+      "business_corps": 1673.7,
+      "proprietary": -900.2,
+      "nikkei_close": 50883.68
+    },
+    {
+      "date": "2025-11-04",
+      "individuals": 5557.5,
+      "foreigners": -3559.4,
+      "trust_banks": 755.8,
+      "investment_trusts": 2613.2,
+      "business_corps": 2054.8,
+      "proprietary": -7506.4,
+      "nikkei_close": 51281.83
+    },
+    {
+      "date": "2025-11-10",
+      "individuals": -2366.2,
+      "foreigners": 5147.7,
+      "trust_banks": -5397.7,
+      "investment_trusts": -446.4,
+      "business_corps": 1923.6,
+      "proprietary": 3065.8,
+      "nikkei_close": 49823.94
+    },
+    {
+      "date": "2025-11-17",
+      "individuals": 1159.0,
+      "foreigners": -3836.3,
+      "trust_banks": -834.6,
+      "investment_trusts": -1246.5,
+      "business_corps": 2595.0,
+      "proprietary": 3224.7,
+      "nikkei_close": 50167.1
+    },
+    {
+      "date": "2025-11-25",
+      "individuals": -4528.3,
+      "foreigners": -1162.7,
+      "trust_banks": 236.3,
+      "investment_trusts": 356.9,
+      "business_corps": 1673.9,
+      "proprietary": 3702.7,
+      "nikkei_close": 51028.42
+    },
+    {
+      "date": "2025-12-01",
+      "individuals": 2076.9,
+      "foreigners": 34.6,
+      "trust_banks": -2084.9,
+      "investment_trusts": 1699.0,
+      "business_corps": 2038.0,
+      "proprietary": -3449.7,
+      "nikkei_close": 50148.82
+    },
+    {
+      "date": "2025-12-08",
+      "individuals": -2502.8,
+      "foreigners": 1897.9,
+      "trust_banks": 1293.7,
+      "investment_trusts": 1447.0,
+      "business_corps": 2312.0,
+      "proprietary": -4966.0,
+      "nikkei_close": 49001.5
+    },
+    {
+      "date": "2025-12-15",
+      "individuals": 2565.3,
+      "foreigners": -4391.0,
+      "trust_banks": -1766.2,
+      "investment_trusts": -775.0,
+      "business_corps": 2177.2,
+      "proprietary": 2492.1,
+      "nikkei_close": 50407.79
+    },
+    {
+      "date": "2025-12-22",
+      "individuals": -3852.9,
+      "foreigners": -210.3,
+      "trust_banks": 307.7,
+      "investment_trusts": 506.5,
+      "business_corps": 166.0,
+      "proprietary": 2825.4,
+      "nikkei_close": 50339.48
+    },
+    {
+      "date": "2025-12-29",
+      "individuals": 1846.8,
+      "foreigners": -149.9,
+      "trust_banks": 175.4,
+      "investment_trusts": -177.7,
+      "business_corps": 138.8,
+      "proprietary": -1961.3,
+      "nikkei_close": 51117.26
+    },
+    {
+      "date": "2026-01-26",
+      "individuals": 8348.5,
+      "foreigners": 1598.9,
+      "trust_banks": -2898.8,
+      "investment_trusts": -917.6,
+      "business_corps": 3190.2,
+      "proprietary": -8196.5,
+      "nikkei_close": 53818.04
+    },
+    {
+      "date": "2026-02-02",
+      "individuals": -4402.7,
+      "foreigners": 2746.0,
+      "trust_banks": -3788.8,
+      "investment_trusts": -513.5,
+      "business_corps": 3929.7,
+      "proprietary": 6093.7,
+      "nikkei_close": 57639.84
+    },
+    {
+      "date": "2026-02-09",
+      "individuals": -11658.7,
+      "foreigners": 12323.6,
+      "trust_banks": -4440.0,
+      "investment_trusts": -1791.6,
+      "business_corps": 1147.6,
+      "proprietary": 7477.8,
+      "nikkei_close": 57467.83
+    },
+    {
+      "date": "2026-02-16",
+      "individuals": 5466.2,
+      "foreigners": 5426.7,
+      "trust_banks": -9515.8,
+      "investment_trusts": -3015.4,
+      "business_corps": 2932.8,
+      "proprietary": 750.2,
+      "nikkei_close": 58753.39
+    },
+    {
+      "date": "2026-02-24",
+      "individuals": -4604.8,
+      "foreigners": 7910.7,
+      "trust_banks": -7497.1,
+      "investment_trusts": -3576.1,
+      "business_corps": 77.4,
+      "proprietary": 9047.3,
+      "nikkei_close": 55278.06
+    },
+    {
+      "date": "2026-02-27",
+      "individuals": null,
+      "foreigners": null,
+      "trust_banks": null,
+      "investment_trusts": null,
+      "business_corps": null,
+      "proprietary": null,
+      "nikkei_close": 55278.06
+    },
+    {
+      "date": "2026-03-06",
+      "individuals": null,
+      "foreigners": null,
+      "trust_banks": null,
+      "investment_trusts": null,
+      "business_corps": null,
+      "proprietary": null,
+      "nikkei_close": 54206.07
+    }
+  ],
+  "latest": {
+    "date": "2026-02-24",
+    "individuals": -4604.8,
+    "foreigners": 7910.7,
+    "trust_banks": -7497.1,
+    "investment_trusts": -3576.1,
+    "business_corps": 77.4,
+    "proprietary": 9047.3,
+    "nikkei_close": 55278.06
+  },
+  "latest_nikkei": {
+    "date": "2026-03-10",
+    "close": 54206.07
+  },
+  "metadata": {
+    "source": "JPX + yfinance (^N225)",
+    "indicator": "Investor Type Weekly Trading (Net)",
+    "unit": "億円",
+    "frequency": "weekly",
+    "data_count": 528,
+    "start_date": "2016-01-04",
+    "end_date": "2026-03-06"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-10T15:12:51.338326+09:00"
+}

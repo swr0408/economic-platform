@@ -1,0 +1,756 @@
+{
+  "data": [
+    {
+      "date": "2014-01-01",
+      "nikkei_yoy": 33.9,
+      "nikkei_close": 14914.53
+    },
+    {
+      "date": "2014-02-01",
+      "nikkei_yoy": 28.39,
+      "nikkei_close": 14841.07
+    },
+    {
+      "date": "2014-03-01",
+      "nikkei_yoy": 19.6,
+      "nikkei_close": 14827.83
+    },
+    {
+      "date": "2014-04-01",
+      "nikkei_yoy": 3.2,
+      "nikkei_close": 14304.11
+    },
+    {
+      "date": "2014-05-01",
+      "nikkei_yoy": 6.23,
+      "nikkei_close": 14632.38
+    },
+    {
+      "date": "2014-06-01",
+      "nikkei_yoy": 10.86,
+      "nikkei_close": 15162.1
+    },
+    {
+      "date": "2014-07-01",
+      "nikkei_yoy": 14.28,
+      "nikkei_close": 15620.77
+    },
+    {
+      "date": "2014-08-01",
+      "nikkei_yoy": 15.2,
+      "nikkei_close": 15424.59
+    },
+    {
+      "date": "2014-09-01",
+      "nikkei_yoy": 11.88,
+      "nikkei_close": 16173.52
+    },
+    {
+      "date": "2014-10-01",
+      "nikkei_yoy": 14.56,
+      "nikkei_close": 16413.76
+    },
+    {
+      "date": "2014-11-01",
+      "nikkei_yoy": 11.48,
+      "nikkei_close": 17459.85
+    },
+    {
+      "date": "2014-12-01",
+      "nikkei_yoy": 7.12,
+      "nikkei_close": 17450.77
+    },
+    {
+      "date": "2015-01-01",
+      "nikkei_yoy": 18.5,
+      "nikkei_close": 17674.39
+    },
+    {
+      "date": "2015-02-01",
+      "nikkei_yoy": 26.66,
+      "nikkei_close": 18797.94
+    },
+    {
+      "date": "2015-03-01",
+      "nikkei_yoy": 29.53,
+      "nikkei_close": 19206.99
+    },
+    {
+      "date": "2015-04-01",
+      "nikkei_yoy": 36.46,
+      "nikkei_close": 19520.01
+    },
+    {
+      "date": "2015-05-01",
+      "nikkei_yoy": 40.53,
+      "nikkei_close": 20563.15
+    },
+    {
+      "date": "2015-06-01",
+      "nikkei_yoy": 33.46,
+      "nikkei_close": 20235.73
+    },
+    {
+      "date": "2015-07-01",
+      "nikkei_yoy": 31.78,
+      "nikkei_close": 20585.24
+    },
+    {
+      "date": "2015-08-01",
+      "nikkei_yoy": 22.47,
+      "nikkei_close": 18890.48
+    },
+    {
+      "date": "2015-09-01",
+      "nikkei_yoy": 7.51,
+      "nikkei_close": 17388.15
+    },
+    {
+      "date": "2015-10-01",
+      "nikkei_yoy": 16.26,
+      "nikkei_close": 19083.1
+    },
+    {
+      "date": "2015-11-01",
+      "nikkei_yoy": 13.1,
+      "nikkei_close": 19747.47
+    },
+    {
+      "date": "2015-12-01",
+      "nikkei_yoy": 9.07,
+      "nikkei_close": 19033.71
+    },
+    {
+      "date": "2016-01-01",
+      "nikkei_yoy": -0.88,
+      "nikkei_close": 17518.3
+    },
+    {
+      "date": "2016-02-01",
+      "nikkei_yoy": -14.74,
+      "nikkei_close": 16026.76
+    },
+    {
+      "date": "2016-03-01",
+      "nikkei_yoy": -12.75,
+      "nikkei_close": 16758.67
+    },
+    {
+      "date": "2016-04-01",
+      "nikkei_yoy": -14.62,
+      "nikkei_close": 16666.05
+    },
+    {
+      "date": "2016-05-01",
+      "nikkei_yoy": -16.19,
+      "nikkei_close": 17234.98
+    },
+    {
+      "date": "2016-06-01",
+      "nikkei_yoy": -23.03,
+      "nikkei_close": 15575.92
+    },
+    {
+      "date": "2016-07-01",
+      "nikkei_yoy": -19.51,
+      "nikkei_close": 16569.27
+    },
+    {
+      "date": "2016-08-01",
+      "nikkei_yoy": -10.6,
+      "nikkei_close": 16887.4
+    },
+    {
+      "date": "2016-09-01",
+      "nikkei_yoy": -5.4,
+      "nikkei_close": 16449.84
+    },
+    {
+      "date": "2016-10-01",
+      "nikkei_yoy": -8.69,
+      "nikkei_close": 17425.02
+    },
+    {
+      "date": "2016-11-01",
+      "nikkei_yoy": -7.29,
+      "nikkei_close": 18308.48
+    },
+    {
+      "date": "2016-12-01",
+      "nikkei_yoy": 0.42,
+      "nikkei_close": 19114.37
+    },
+    {
+      "date": "2017-01-01",
+      "nikkei_yoy": 8.69,
+      "nikkei_close": 19041.34
+    },
+    {
+      "date": "2017-02-01",
+      "nikkei_yoy": 19.29,
+      "nikkei_close": 19118.99
+    },
+    {
+      "date": "2017-03-01",
+      "nikkei_yoy": 12.83,
+      "nikkei_close": 18909.26
+    },
+    {
+      "date": "2017-04-01",
+      "nikkei_yoy": 15.18,
+      "nikkei_close": 19196.74
+    },
+    {
+      "date": "2017-05-01",
+      "nikkei_yoy": 14.02,
+      "nikkei_close": 19650.57
+    },
+    {
+      "date": "2017-06-01",
+      "nikkei_yoy": 28.62,
+      "nikkei_close": 20033.43
+    },
+    {
+      "date": "2017-07-01",
+      "nikkei_yoy": 20.25,
+      "nikkei_close": 19925.18
+    },
+    {
+      "date": "2017-08-01",
+      "nikkei_yoy": 16.34,
+      "nikkei_close": 19646.24
+    },
+    {
+      "date": "2017-09-01",
+      "nikkei_yoy": 23.75,
+      "nikkei_close": 20356.28
+    },
+    {
+      "date": "2017-10-01",
+      "nikkei_yoy": 26.32,
+      "nikkei_close": 22011.61
+    },
+    {
+      "date": "2017-11-01",
+      "nikkei_yoy": 24.12,
+      "nikkei_close": 22724.96
+    },
+    {
+      "date": "2017-12-01",
+      "nikkei_yoy": 19.1,
+      "nikkei_close": 22764.94
+    },
+    {
+      "date": "2018-01-01",
+      "nikkei_yoy": 21.31,
+      "nikkei_close": 23098.29
+    },
+    {
+      "date": "2018-02-01",
+      "nikkei_yoy": 15.43,
+      "nikkei_close": 22068.24
+    },
+    {
+      "date": "2018-03-01",
+      "nikkei_yoy": 13.46,
+      "nikkei_close": 21454.3
+    },
+    {
+      "date": "2018-04-01",
+      "nikkei_yoy": 17.04,
+      "nikkei_close": 22467.87
+    },
+    {
+      "date": "2018-05-01",
+      "nikkei_yoy": 12.98,
+      "nikkei_close": 22201.82
+    },
+    {
+      "date": "2018-06-01",
+      "nikkei_yoy": 11.34,
+      "nikkei_close": 22304.51
+    },
+    {
+      "date": "2018-07-01",
+      "nikkei_yoy": 13.19,
+      "nikkei_close": 22553.72
+    },
+    {
+      "date": "2018-08-01",
+      "nikkei_yoy": 16.38,
+      "nikkei_close": 22865.15
+    },
+    {
+      "date": "2018-09-01",
+      "nikkei_yoy": 18.49,
+      "nikkei_close": 24120.04
+    },
+    {
+      "date": "2018-10-01",
+      "nikkei_yoy": -0.41,
+      "nikkei_close": 21920.46
+    },
+    {
+      "date": "2018-11-01",
+      "nikkei_yoy": -1.65,
+      "nikkei_close": 22351.06
+    },
+    {
+      "date": "2018-12-01",
+      "nikkei_yoy": -12.08,
+      "nikkei_close": 20014.77
+    },
+    {
+      "date": "2019-01-01",
+      "nikkei_yoy": -10.06,
+      "nikkei_close": 20773.49
+    },
+    {
+      "date": "2019-02-01",
+      "nikkei_yoy": -3.1,
+      "nikkei_close": 21385.16
+    },
+    {
+      "date": "2019-03-01",
+      "nikkei_yoy": -1.16,
+      "nikkei_close": 21205.81
+    },
+    {
+      "date": "2019-04-01",
+      "nikkei_yoy": -0.93,
+      "nikkei_close": 22258.73
+    },
+    {
+      "date": "2019-05-01",
+      "nikkei_yoy": -7.21,
+      "nikkei_close": 20601.19
+    },
+    {
+      "date": "2019-06-01",
+      "nikkei_yoy": -4.61,
+      "nikkei_close": 21275.92
+    },
+    {
+      "date": "2019-07-01",
+      "nikkei_yoy": -4.58,
+      "nikkei_close": 21521.53
+    },
+    {
+      "date": "2019-08-01",
+      "nikkei_yoy": -9.45,
+      "nikkei_close": 20704.37
+    },
+    {
+      "date": "2019-09-01",
+      "nikkei_yoy": -9.8,
+      "nikkei_close": 21755.84
+    },
+    {
+      "date": "2019-10-01",
+      "nikkei_yoy": 4.59,
+      "nikkei_close": 22927.04
+    },
+    {
+      "date": "2019-11-01",
+      "nikkei_yoy": 4.22,
+      "nikkei_close": 23293.91
+    },
+    {
+      "date": "2019-12-01",
+      "nikkei_yoy": 18.2,
+      "nikkei_close": 23656.62
+    },
+    {
+      "date": "2020-01-01",
+      "nikkei_yoy": 11.71,
+      "nikkei_close": 23205.18
+    },
+    {
+      "date": "2020-02-01",
+      "nikkei_yoy": -1.13,
+      "nikkei_close": 21142.96
+    },
+    {
+      "date": "2020-03-01",
+      "nikkei_yoy": -10.79,
+      "nikkei_close": 18917.01
+    },
+    {
+      "date": "2020-04-01",
+      "nikkei_yoy": -9.28,
+      "nikkei_close": 20193.69
+    },
+    {
+      "date": "2020-05-01",
+      "nikkei_yoy": 6.2,
+      "nikkei_close": 21877.89
+    },
+    {
+      "date": "2020-06-01",
+      "nikkei_yoy": 4.76,
+      "nikkei_close": 22288.14
+    },
+    {
+      "date": "2020-07-01",
+      "nikkei_yoy": 0.88,
+      "nikkei_close": 21710.0
+    },
+    {
+      "date": "2020-08-01",
+      "nikkei_yoy": 11.76,
+      "nikkei_close": 23139.76
+    },
+    {
+      "date": "2020-09-01",
+      "nikkei_yoy": 6.57,
+      "nikkei_close": 23185.12
+    },
+    {
+      "date": "2020-10-01",
+      "nikkei_yoy": 0.22,
+      "nikkei_close": 22977.13
+    },
+    {
+      "date": "2020-11-01",
+      "nikkei_yoy": 13.48,
+      "nikkei_close": 26433.62
+    },
+    {
+      "date": "2020-12-01",
+      "nikkei_yoy": 16.01,
+      "nikkei_close": 27444.17
+    },
+    {
+      "date": "2021-01-01",
+      "nikkei_yoy": 19.21,
+      "nikkei_close": 27663.39
+    },
+    {
+      "date": "2021-02-01",
+      "nikkei_yoy": 37.0,
+      "nikkei_close": 28966.01
+    },
+    {
+      "date": "2021-03-01",
+      "nikkei_yoy": 54.25,
+      "nikkei_close": 29178.8
+    },
+    {
+      "date": "2021-04-01",
+      "nikkei_yoy": 42.68,
+      "nikkei_close": 28812.63
+    },
+    {
+      "date": "2021-05-01",
+      "nikkei_yoy": 31.91,
+      "nikkei_close": 28860.08
+    },
+    {
+      "date": "2021-06-01",
+      "nikkei_yoy": 29.18,
+      "nikkei_close": 28791.53
+    },
+    {
+      "date": "2021-07-01",
+      "nikkei_yoy": 25.67,
+      "nikkei_close": 27283.59
+    },
+    {
+      "date": "2021-08-01",
+      "nikkei_yoy": 21.39,
+      "nikkei_close": 28089.54
+    },
+    {
+      "date": "2021-09-01",
+      "nikkei_yoy": 27.03,
+      "nikkei_close": 29452.66
+    },
+    {
+      "date": "2021-10-01",
+      "nikkei_yoy": 25.75,
+      "nikkei_close": 28892.69
+    },
+    {
+      "date": "2021-11-01",
+      "nikkei_yoy": 5.25,
+      "nikkei_close": 27821.76
+    },
+    {
+      "date": "2021-12-01",
+      "nikkei_yoy": 4.91,
+      "nikkei_close": 28791.71
+    },
+    {
+      "date": "2022-01-01",
+      "nikkei_yoy": -2.39,
+      "nikkei_close": 27001.98
+    },
+    {
+      "date": "2022-02-01",
+      "nikkei_yoy": -8.42,
+      "nikkei_close": 26526.82
+    },
+    {
+      "date": "2022-03-01",
+      "nikkei_yoy": -4.65,
+      "nikkei_close": 27821.43
+    },
+    {
+      "date": "2022-04-01",
+      "nikkei_yoy": -6.82,
+      "nikkei_close": 26847.9
+    },
+    {
+      "date": "2022-05-01",
+      "nikkei_yoy": -5.48,
+      "nikkei_close": 27279.8
+    },
+    {
+      "date": "2022-06-01",
+      "nikkei_yoy": -8.33,
+      "nikkei_close": 26393.04
+    },
+    {
+      "date": "2022-07-01",
+      "nikkei_yoy": 1.9,
+      "nikkei_close": 27801.64
+    },
+    {
+      "date": "2022-08-01",
+      "nikkei_yoy": 0.01,
+      "nikkei_close": 28091.53
+    },
+    {
+      "date": "2022-09-01",
+      "nikkei_yoy": -11.94,
+      "nikkei_close": 25937.21
+    },
+    {
+      "date": "2022-10-01",
+      "nikkei_yoy": -4.52,
+      "nikkei_close": 27587.46
+    },
+    {
+      "date": "2022-11-01",
+      "nikkei_yoy": 0.53,
+      "nikkei_close": 27968.99
+    },
+    {
+      "date": "2022-12-01",
+      "nikkei_yoy": -9.37,
+      "nikkei_close": 26094.5
+    },
+    {
+      "date": "2023-01-01",
+      "nikkei_yoy": 1.2,
+      "nikkei_close": 27327.11
+    },
+    {
+      "date": "2023-02-01",
+      "nikkei_yoy": 3.46,
+      "nikkei_close": 27445.56
+    },
+    {
+      "date": "2023-03-01",
+      "nikkei_yoy": 0.79,
+      "nikkei_close": 28041.48
+    },
+    {
+      "date": "2023-04-01",
+      "nikkei_yoy": 7.48,
+      "nikkei_close": 28856.44
+    },
+    {
+      "date": "2023-05-01",
+      "nikkei_yoy": 13.23,
+      "nikkei_close": 30887.88
+    },
+    {
+      "date": "2023-06-01",
+      "nikkei_yoy": 25.75,
+      "nikkei_close": 33189.04
+    },
+    {
+      "date": "2023-07-01",
+      "nikkei_yoy": 19.32,
+      "nikkei_close": 33172.22
+    },
+    {
+      "date": "2023-08-01",
+      "nikkei_yoy": 16.12,
+      "nikkei_close": 32619.34
+    },
+    {
+      "date": "2023-09-01",
+      "nikkei_yoy": 22.83,
+      "nikkei_close": 31857.62
+    },
+    {
+      "date": "2023-10-01",
+      "nikkei_yoy": 11.86,
+      "nikkei_close": 30858.85
+    },
+    {
+      "date": "2023-11-01",
+      "nikkei_yoy": 19.73,
+      "nikkei_close": 33486.89
+    },
+    {
+      "date": "2023-12-01",
+      "nikkei_yoy": 28.24,
+      "nikkei_close": 33464.17
+    },
+    {
+      "date": "2024-01-01",
+      "nikkei_yoy": 32.79,
+      "nikkei_close": 36286.71
+    },
+    {
+      "date": "2024-02-01",
+      "nikkei_yoy": 42.71,
+      "nikkei_close": 39166.19
+    },
+    {
+      "date": "2024-03-01",
+      "nikkei_yoy": 43.96,
+      "nikkei_close": 40369.44
+    },
+    {
+      "date": "2024-04-01",
+      "nikkei_yoy": 33.09,
+      "nikkei_close": 38405.66
+    },
+    {
+      "date": "2024-05-01",
+      "nikkei_yoy": 24.61,
+      "nikkei_close": 38487.9
+    },
+    {
+      "date": "2024-06-01",
+      "nikkei_yoy": 19.27,
+      "nikkei_close": 39583.08
+    },
+    {
+      "date": "2024-07-01",
+      "nikkei_yoy": 17.88,
+      "nikkei_close": 39101.82
+    },
+    {
+      "date": "2024-08-01",
+      "nikkei_yoy": 18.48,
+      "nikkei_close": 38647.75
+    },
+    {
+      "date": "2024-09-01",
+      "nikkei_yoy": 19.03,
+      "nikkei_close": 37919.55
+    },
+    {
+      "date": "2024-10-01",
+      "nikkei_yoy": 26.65,
+      "nikkei_close": 39081.25
+    },
+    {
+      "date": "2024-11-01",
+      "nikkei_yoy": 14.1,
+      "nikkei_close": 38208.03
+    },
+    {
+      "date": "2024-12-01",
+      "nikkei_yoy": 19.22,
+      "nikkei_close": 39894.54
+    },
+    {
+      "date": "2025-01-01",
+      "nikkei_yoy": 9.06,
+      "nikkei_close": 39572.49
+    },
+    {
+      "date": "2025-02-01",
+      "nikkei_yoy": -5.13,
+      "nikkei_close": 37155.5
+    },
+    {
+      "date": "2025-03-01",
+      "nikkei_yoy": -11.77,
+      "nikkei_close": 35617.56
+    },
+    {
+      "date": "2025-04-01",
+      "nikkei_yoy": -6.15,
+      "nikkei_close": 36045.38
+    },
+    {
+      "date": "2025-05-01",
+      "nikkei_yoy": -1.36,
+      "nikkei_close": 37965.1
+    },
+    {
+      "date": "2025-06-01",
+      "nikkei_yoy": 2.28,
+      "nikkei_close": 40487.39
+    },
+    {
+      "date": "2025-07-01",
+      "nikkei_yoy": 5.03,
+      "nikkei_close": 41069.82
+    },
+    {
+      "date": "2025-08-01",
+      "nikkei_yoy": 10.53,
+      "nikkei_close": 42718.47
+    },
+    {
+      "date": "2025-09-01",
+      "nikkei_yoy": 18.49,
+      "nikkei_close": 44932.63
+    },
+    {
+      "date": "2025-10-01",
+      "nikkei_yoy": 34.11,
+      "nikkei_close": 52411.34
+    },
+    {
+      "date": "2025-11-01",
+      "nikkei_yoy": 31.53,
+      "nikkei_close": 50253.91
+    },
+    {
+      "date": "2025-12-01",
+      "nikkei_yoy": 26.18,
+      "nikkei_close": 50339.48
+    },
+    {
+      "date": "2026-01-01",
+      "nikkei_yoy": 34.75,
+      "nikkei_close": 53322.85
+    },
+    {
+      "date": "2026-02-01",
+      "nikkei_yoy": 58.39,
+      "nikkei_close": 58850.27
+    },
+    {
+      "date": "2026-03-01",
+      "nikkei_yoy": 52.92,
+      "nikkei_close": 54467.11
+    }
+  ],
+  "latest": {
+    "date": "2026-03-01",
+    "nikkei_yoy": 52.92,
+    "nikkei_close": 54467.11
+  },
+  "metadata": {
+    "source": "yfinance (^N225)",
+    "indicator": "Nikkei 225 YoY (Monthly)",
+    "unit": "%",
+    "frequency": "monthly",
+    "data_count": 147,
+    "start_date": "2014-01-01",
+    "end_date": "2026-03-01"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-10T10:24:59.677934+09:00"
+}

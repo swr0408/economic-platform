@@ -1,8 +1,16 @@
 {
   "data": [
     {
+      "week_ending": "2026-02-21",
+      "change": 15500.0
+    },
+    {
+      "week_ending": "2026-02-14",
+      "change": 15500.0
+    },
+    {
       "week_ending": "2026-02-07",
-      "change": 12750.0
+      "change": 12000.0
     },
     {
       "week_ending": "2026-01-31",
@@ -39,19 +47,11 @@
     {
       "week_ending": "2025-12-06",
       "change": 2500.0
-    },
-    {
-      "week_ending": "2025-11-29",
-      "change": 17000.0
-    },
-    {
-      "week_ending": "2025-11-22",
-      "change": 20000.0
     }
   ],
   "latest": {
-    "week_ending": "2026-02-07",
-    "change": 12750.0
+    "week_ending": "2026-02-21",
+    "change": 15500.0
   },
-  "last_updated": "2026-03-08T18:00:34.783151+09:00"
+  "last_updated": "2026-03-10T21:15:54.940036+09:00"
 }

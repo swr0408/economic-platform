@@ -1,5 +1,8 @@
 import { Alert, Typography } from 'antd'
 import MarketPriceChart from '../MarketPriceChart'
+import GoldEtfHoldingsChart from './GoldEtfHoldingsChart'
+import GoldPremiumChart from './GoldPremiumChart'
+import WgcGoldEtfChart from './WgcGoldEtfChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
 
@@ -33,6 +36,9 @@ export default function CommoditiesCharts() {
       </div>
       <div id="gold"><MarketPriceChart title="金（ドル建て）" symbolData={data?.gold} color={COLORS.gold} unit=" USD/oz" /></div>
       <div id="gold-jpy"><MarketPriceChart title="金（円建て）" symbolData={data?.gold_jpy} color={COLORS.gold_jpy} decimals={0} unit=" 円/oz" /></div>
+      <div id="gold-etf-holdings"><GoldEtfHoldingsChart /></div>
+      <div id="gold-premium"><GoldPremiumChart /></div>
+      <div id="wgc-gold-etf"><WgcGoldEtfChart /></div>
       <div id="silver"><MarketPriceChart title="銀" symbolData={data?.silver} color={COLORS.silver} unit=" USD/oz" /></div>
       <div id="platinum"><MarketPriceChart title="プラチナ" symbolData={data?.platinum} color={COLORS.platinum} unit=" USD/oz" /></div>
 

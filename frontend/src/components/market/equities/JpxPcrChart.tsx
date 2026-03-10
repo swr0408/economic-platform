@@ -119,9 +119,9 @@ type SeriesKey = 'vol_pcr' | 'oi_pcr' | 'index'
 
 function getSeriesConfig(config: ProductConfig): { key: SeriesKey; label: string; color: string }[] {
   return [
-    { key: 'vol_pcr', label: '取引高PCR(L)', color: COLOR_VOL_PCR },
-    { key: 'oi_pcr', label: '建玉PCR(R1)', color: COLOR_OI_PCR },
-    { key: 'index', label: `${config.indexLabel}(R2)`, color: config.indexColor },
+    { key: 'vol_pcr', label: '取引高PCR', color: COLOR_VOL_PCR },
+    { key: 'oi_pcr', label: '建玉PCR', color: COLOR_OI_PCR },
+    { key: 'index', label: `${config.indexLabel}`, color: config.indexColor },
   ]
 }
 
@@ -292,7 +292,7 @@ function ProductChart({
           {/* Left Y-axis: 取引高PCR */}
           <YAxis
             yAxisId="left"
-            domain={['dataMin - 0.1', 'dataMax + 0.3']}
+            domain={['dataMin - 0.05', 'dataMax + 0.05']}
             tickFormatter={(v: number) => v.toFixed(1)}
             axisLine={{ stroke: COLOR_VOL_PCR }}
             tickLine={{ stroke: COLOR_VOL_PCR }}
@@ -304,7 +304,7 @@ function ProductChart({
           <YAxis
             yAxisId="right1"
             orientation="right"
-            domain={['dataMin - 0.1', 'dataMax + 0.3']}
+            domain={['dataMin - 0.05', 'dataMax + 0.05']}
             tickFormatter={(v: number) => v.toFixed(1)}
             axisLine={{ stroke: COLOR_OI_PCR }}
             tickLine={{ stroke: COLOR_OI_PCR }}
@@ -344,7 +344,7 @@ function ProductChart({
             stroke={COLOR_VOL_PCR}
             strokeWidth={1.5}
             dot={false}
-            name="取引高PCR(L)"
+            name="取引高PCR"
             yAxisId="left"
             connectNulls
             isAnimationActive={false}
@@ -356,7 +356,7 @@ function ProductChart({
             stroke={COLOR_OI_PCR}
             strokeWidth={1.5}
             dot={false}
-            name="建玉PCR(R1)"
+            name="建玉PCR"
             yAxisId="right1"
             connectNulls
             isAnimationActive={false}
@@ -368,7 +368,7 @@ function ProductChart({
             stroke={config.indexColor}
             strokeWidth={1.5}
             dot={false}
-            name={`${config.indexLabel}(R2)`}
+            name={`${config.indexLabel}`}
             yAxisId="right2"
             connectNulls
             isAnimationActive={false}

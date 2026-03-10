@@ -8,6 +8,9 @@ import CboePcrChart from './CboePcrChart'
 import NikkeiRegressionChart from './NikkeiRegressionChart'
 import ElectronicComponentsBalanceChart from './ElectronicComponentsBalanceChart'
 import JpxPcrChart from './JpxPcrChart'
+import ChinaM2NikkeiYoyChart from './ChinaM2NikkeiYoyChart'
+import NikkeiDoubleInverseChart from './NikkeiDoubleInverseChart'
+import JpxInvestorTradingChart from './JpxInvestorTradingChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
 
@@ -73,6 +76,9 @@ export default function EquitiesCharts() {
       <div id="nikkei-regression"><NikkeiRegressionChart /></div>
       <div id="electronic-components-balance"><ElectronicComponentsBalanceChart /></div>
       <div id="jpx-pcr"><JpxPcrChart /></div>
+      <div id="china-m2-nikkei-yoy"><ChinaM2NikkeiYoyChart /></div>
+      <div id="nikkei-double-inverse"><NikkeiDoubleInverseChart /></div>
+      <div id="jpx-investor-trading"><JpxInvestorTradingChart /></div>
 
       {/* 欧州株 */}
       <div id="eu-equities">

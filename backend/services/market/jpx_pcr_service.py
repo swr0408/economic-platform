@@ -360,14 +360,21 @@ class JpxPcrService:
                     "topix": [],
                 }
 
+                PCR_CAP = 10.0  # Cap extreme PCR values (TOPIX low-volume days)
                 for row in rows:
                     product = row[1]
                     if product not in result:
                         continue
+                    vol_pcr = float(row[6]) if row[6] is not None else None
+                    oi_pcr_val = float(row[7]) if row[7] is not None else None
+                    if vol_pcr is not None and vol_pcr > PCR_CAP:
+                        vol_pcr = None
+                    if oi_pcr_val is not None and oi_pcr_val > PCR_CAP:
+                        oi_pcr_val = None
                     result[product].append({
                         "date": row[0].strftime("%Y-%m-%d"),
-                        "volume_pcr": float(row[6]) if row[6] is not None else None,
-                        "oi_pcr": float(row[7]) if row[7] is not None else None,
+                        "volume_pcr": vol_pcr,
+                        "oi_pcr": oi_pcr_val,
                     })
 
                 for p in result:

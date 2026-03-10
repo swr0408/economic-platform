@@ -64,6 +64,9 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
           { code: 'nikkei-regression', name: '日経平均回帰モデル', symbolIds: [] },
           { code: 'electronic-components-balance', name: '電子部品出荷在庫バランス', symbolIds: [] },
           { code: 'jpx-pcr', name: 'JPX Put/Call Ratio', symbolIds: [] },
+          { code: 'china-m2-nikkei-yoy', name: '中国M2前年比 / 日経平均前年比', symbolIds: [] },
+          { code: 'nikkei-double-inverse', name: '日経ダブルインバース 信用残', symbolIds: [] },
+          { code: 'jpx-investor-trading', name: '投資部門別売買状況', symbolIds: [] },
         ],
       },
       {
@@ -174,6 +177,9 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
         indicators: [
           { code: 'gold', name: '金（ドル建て）', symbolIds: ['gold'] },
           { code: 'gold-jpy', name: '金（円建て）', symbolIds: ['gold_jpy'] },
+          { code: 'gold-etf-holdings', name: '金ETF保有残高', symbolIds: [] },
+          { code: 'gold-premium', name: '金プレミアム/ディスカウント', symbolIds: [] },
+          { code: 'wgc-gold-etf', name: '金ETFフロー（WGC）', symbolIds: [] },
           { code: 'silver', name: '銀', symbolIds: ['silver'] },
           { code: 'platinum', name: 'プラチナ', symbolIds: ['platinum'] },
         ],

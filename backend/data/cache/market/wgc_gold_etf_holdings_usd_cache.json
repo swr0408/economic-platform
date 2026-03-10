@@ -1,0 +1,2523 @@
+{
+  "data": [
+    {
+      "date": "2003-02-28",
+      "north_america": 0.0,
+      "europe": null,
+      "asia": null,
+      "other": null,
+      "total": 0.0,
+      "gold_price_usd": 358.97
+    },
+    {
+      "date": "2003-03-31",
+      "north_america": 0.09,
+      "europe": null,
+      "asia": null,
+      "other": 0.0,
+      "total": 0.09,
+      "gold_price_usd": 340.55
+    },
+    {
+      "date": "2003-04-30",
+      "north_america": 0.1,
+      "europe": null,
+      "asia": null,
+      "other": 0.01,
+      "total": 0.11,
+      "gold_price_usd": 328.07
+    },
+    {
+      "date": "2003-05-31",
+      "north_america": 0.11,
+      "europe": null,
+      "asia": null,
+      "other": 0.03,
+      "total": 0.14,
+      "gold_price_usd": 355.67
+    },
+    {
+      "date": "2003-06-30",
+      "north_america": 0.1,
+      "europe": null,
+      "asia": null,
+      "other": 0.03,
+      "total": 0.13,
+      "gold_price_usd": 356.35
+    },
+    {
+      "date": "2003-07-31",
+      "north_america": 0.11,
+      "europe": null,
+      "asia": null,
+      "other": 0.04,
+      "total": 0.15,
+      "gold_price_usd": 351.02
+    },
+    {
+      "date": "2003-08-31",
+      "north_america": 0.11,
+      "europe": null,
+      "asia": null,
+      "other": 0.05,
+      "total": 0.16,
+      "gold_price_usd": 359.72
+    },
+    {
+      "date": "2003-09-30",
+      "north_america": 0.12,
+      "europe": null,
+      "asia": null,
+      "other": 0.08,
+      "total": 0.2,
+      "gold_price_usd": 378.95
+    },
+    {
+      "date": "2003-10-31",
+      "north_america": 0.12,
+      "europe": null,
+      "asia": null,
+      "other": 0.09,
+      "total": 0.21,
+      "gold_price_usd": 378.92
+    },
+    {
+      "date": "2003-11-30",
+      "north_america": 0.12,
+      "europe": null,
+      "asia": null,
+      "other": 0.1,
+      "total": 0.22,
+      "gold_price_usd": 389.91
+    },
+    {
+      "date": "2003-12-31",
+      "north_america": 0.13,
+      "europe": 0.31,
+      "asia": null,
+      "other": 0.13,
+      "total": 0.57,
+      "gold_price_usd": 407.9
+    },
+    {
+      "date": "2004-01-31",
+      "north_america": 0.12,
+      "europe": 0.31,
+      "asia": null,
+      "other": 0.12,
+      "total": 0.55,
+      "gold_price_usd": 413.95
+    },
+    {
+      "date": "2004-02-29",
+      "north_america": 0.12,
+      "europe": 0.33,
+      "asia": null,
+      "other": 0.13,
+      "total": 0.58,
+      "gold_price_usd": 404.88
+    },
+    {
+      "date": "2004-03-31",
+      "north_america": 0.13,
+      "europe": 0.55,
+      "asia": null,
+      "other": 0.13,
+      "total": 0.81,
+      "gold_price_usd": 406.67
+    },
+    {
+      "date": "2004-04-30",
+      "north_america": 0.12,
+      "europe": 0.78,
+      "asia": null,
+      "other": 0.12,
+      "total": 1.02,
+      "gold_price_usd": 404.74
+    },
+    {
+      "date": "2004-05-31",
+      "north_america": 0.12,
+      "europe": 0.56,
+      "asia": null,
+      "other": 0.12,
+      "total": 0.8,
+      "gold_price_usd": 384.45
+    },
+    {
+      "date": "2004-06-30",
+      "north_america": 0.12,
+      "europe": 0.52,
+      "asia": null,
+      "other": 0.12,
+      "total": 0.76,
+      "gold_price_usd": 392.37
+    },
+    {
+      "date": "2004-07-31",
+      "north_america": 0.12,
+      "europe": 0.48,
+      "asia": null,
+      "other": 0.15,
+      "total": 0.75,
+      "gold_price_usd": 398.09
+    },
+    {
+      "date": "2004-08-31",
+      "north_america": 0.13,
+      "europe": 0.5,
+      "asia": null,
+      "other": 0.12,
+      "total": 0.75,
+      "gold_price_usd": 400.72
+    },
+    {
+      "date": "2004-09-30",
+      "north_america": 0.13,
+      "europe": 0.52,
+      "asia": null,
+      "other": 0.13,
+      "total": 0.78,
+      "gold_price_usd": 405.28
+    },
+    {
+      "date": "2004-10-31",
+      "north_america": 0.13,
+      "europe": 0.69,
+      "asia": null,
+      "other": 0.12,
+      "total": 0.94,
+      "gold_price_usd": 420.46
+    },
+    {
+      "date": "2004-11-30",
+      "north_america": 1.65,
+      "europe": 0.68,
+      "asia": null,
+      "other": 0.17,
+      "total": 2.5,
+      "gold_price_usd": 439.38
+    },
+    {
+      "date": "2004-12-31",
+      "north_america": 1.47,
+      "europe": 0.72,
+      "asia": null,
+      "other": 0.17,
+      "total": 2.36,
+      "gold_price_usd": 441.92
+    },
+    {
+      "date": "2005-01-31",
+      "north_america": 2.21,
+      "europe": 0.67,
+      "asia": null,
+      "other": 0.16,
+      "total": 3.04,
+      "gold_price_usd": 424.7
+    },
+    {
+      "date": "2005-02-28",
+      "north_america": 3.01,
+      "europe": 0.62,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.8,
+      "gold_price_usd": 423.35
+    },
+    {
+      "date": "2005-03-31",
+      "north_america": 2.69,
+      "europe": 0.67,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.53,
+      "gold_price_usd": 433.52
+    },
+    {
+      "date": "2005-04-30",
+      "north_america": 2.82,
+      "europe": 0.66,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.65,
+      "gold_price_usd": 429.23
+    },
+    {
+      "date": "2005-05-31",
+      "north_america": 2.68,
+      "europe": 0.6,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.45,
+      "gold_price_usd": 422.34
+    },
+    {
+      "date": "2005-06-30",
+      "north_america": 2.92,
+      "europe": 0.63,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.72,
+      "gold_price_usd": 430.66
+    },
+    {
+      "date": "2005-07-31",
+      "north_america": 3.05,
+      "europe": 0.63,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.85,
+      "gold_price_usd": 424.48
+    },
+    {
+      "date": "2005-08-31",
+      "north_america": 3.18,
+      "europe": 0.64,
+      "asia": null,
+      "other": 0.17,
+      "total": 3.99,
+      "gold_price_usd": 437.88
+    },
+    {
+      "date": "2005-09-30",
+      "north_america": 3.69,
+      "europe": 0.71,
+      "asia": null,
+      "other": 0.19,
+      "total": 4.59,
+      "gold_price_usd": 456.05
+    },
+    {
+      "date": "2005-10-31",
+      "north_america": 3.78,
+      "europe": 0.75,
+      "asia": null,
+      "other": 0.19,
+      "total": 4.72,
+      "gold_price_usd": 469.9
+    },
+    {
+      "date": "2005-11-30",
+      "north_america": 4.28,
+      "europe": 0.9,
+      "asia": null,
+      "other": 0.21,
+      "total": 5.39,
+      "gold_price_usd": 476.67
+    },
+    {
+      "date": "2005-12-31",
+      "north_america": 5.04,
+      "europe": 1.05,
+      "asia": null,
+      "other": 0.3,
+      "total": 6.39,
+      "gold_price_usd": 509.34
+    },
+    {
+      "date": "2006-01-31",
+      "north_america": 6.99,
+      "europe": 1.2,
+      "asia": null,
+      "other": 0.36,
+      "total": 8.55,
+      "gold_price_usd": 548.19
+    },
+    {
+      "date": "2006-02-28",
+      "north_america": 7.1,
+      "europe": 1.26,
+      "asia": null,
+      "other": 0.37,
+      "total": 8.73,
+      "gold_price_usd": 555.0
+    },
+    {
+      "date": "2006-03-31",
+      "north_america": 7.54,
+      "europe": 1.39,
+      "asia": null,
+      "other": 0.4,
+      "total": 9.33,
+      "gold_price_usd": 557.09
+    },
+    {
+      "date": "2006-04-30",
+      "north_america": 8.65,
+      "europe": 1.75,
+      "asia": null,
+      "other": 0.45,
+      "total": 10.85,
+      "gold_price_usd": 608.89
+    },
+    {
+      "date": "2006-05-31",
+      "north_america": 8.64,
+      "europe": 1.75,
+      "asia": null,
+      "other": 0.46,
+      "total": 10.85,
+      "gold_price_usd": 672.59
+    },
+    {
+      "date": "2006-06-30",
+      "north_america": 8.54,
+      "europe": 1.82,
+      "asia": null,
+      "other": 0.44,
+      "total": 10.8,
+      "gold_price_usd": 596.15
+    },
+    {
+      "date": "2006-07-31",
+      "north_america": 9.09,
+      "europe": 1.88,
+      "asia": null,
+      "other": 0.46,
+      "total": 11.43,
+      "gold_price_usd": 633.71
+    },
+    {
+      "date": "2006-08-31",
+      "north_america": 9.12,
+      "europe": 1.87,
+      "asia": null,
+      "other": 0.43,
+      "total": 11.42,
+      "gold_price_usd": 632.1
+    },
+    {
+      "date": "2006-09-30",
+      "north_america": 8.66,
+      "europe": 1.79,
+      "asia": null,
+      "other": 0.44,
+      "total": 10.89,
+      "gold_price_usd": 598.19
+    },
+    {
+      "date": "2006-10-31",
+      "north_america": 8.76,
+      "europe": 1.9,
+      "asia": null,
+      "other": 0.44,
+      "total": 11.1,
+      "gold_price_usd": 585.78
+    },
+    {
+      "date": "2006-11-30",
+      "north_america": 10.48,
+      "europe": 2.19,
+      "asia": null,
+      "other": 0.48,
+      "total": 13.15,
+      "gold_price_usd": 627.83
+    },
+    {
+      "date": "2006-12-31",
+      "north_america": 10.57,
+      "europe": 2.09,
+      "asia": null,
+      "other": 0.48,
+      "total": 13.14,
+      "gold_price_usd": 628.64
+    },
+    {
+      "date": "2007-01-31",
+      "north_america": 10.76,
+      "europe": 2.17,
+      "asia": null,
+      "other": 0.5,
+      "total": 13.43,
+      "gold_price_usd": 631.36
+    },
+    {
+      "date": "2007-02-28",
+      "north_america": 11.66,
+      "europe": 2.24,
+      "asia": null,
+      "other": 0.54,
+      "total": 14.44,
+      "gold_price_usd": 664.75
+    },
+    {
+      "date": "2007-03-31",
+      "north_america": 11.68,
+      "europe": 2.27,
+      "asia": 0.02,
+      "other": 0.55,
+      "total": 14.52,
+      "gold_price_usd": 654.9
+    },
+    {
+      "date": "2007-04-30",
+      "north_america": 12.16,
+      "europe": 2.39,
+      "asia": 0.05,
+      "other": 0.57,
+      "total": 15.17,
+      "gold_price_usd": 678.81
+    },
+    {
+      "date": "2007-05-31",
+      "north_america": 11.33,
+      "europe": 2.35,
+      "asia": 0.06,
+      "other": 0.59,
+      "total": 14.33,
+      "gold_price_usd": 667.31
+    },
+    {
+      "date": "2007-06-30",
+      "north_america": 11.09,
+      "europe": 2.44,
+      "asia": 0.06,
+      "other": 0.6,
+      "total": 14.19,
+      "gold_price_usd": 655.49
+    },
+    {
+      "date": "2007-07-31",
+      "north_america": 12.05,
+      "europe": 2.55,
+      "asia": 0.06,
+      "other": 0.65,
+      "total": 15.31,
+      "gold_price_usd": 665.3
+    },
+    {
+      "date": "2007-08-31",
+      "north_america": 12.6,
+      "europe": 2.63,
+      "asia": 0.07,
+      "other": 0.71,
+      "total": 16.01,
+      "gold_price_usd": 665.21
+    },
+    {
+      "date": "2007-09-30",
+      "north_america": 15.49,
+      "europe": 3.12,
+      "asia": 0.08,
+      "other": 0.83,
+      "total": 19.52,
+      "gold_price_usd": 712.65
+    },
+    {
+      "date": "2007-10-31",
+      "north_america": 17.01,
+      "europe": 3.54,
+      "asia": 0.09,
+      "other": 0.94,
+      "total": 21.58,
+      "gold_price_usd": 754.6
+    },
+    {
+      "date": "2007-11-30",
+      "north_america": 17.03,
+      "europe": 3.58,
+      "asia": 0.12,
+      "other": 0.97,
+      "total": 21.7,
+      "gold_price_usd": 806.25
+    },
+    {
+      "date": "2007-12-31",
+      "north_america": 18.92,
+      "europe": 3.88,
+      "asia": 0.12,
+      "other": 1.17,
+      "total": 24.09,
+      "gold_price_usd": 805.8
+    },
+    {
+      "date": "2008-01-31",
+      "north_america": 21.12,
+      "europe": 4.75,
+      "asia": 0.12,
+      "other": 1.44,
+      "total": 27.43,
+      "gold_price_usd": 887.29
+    },
+    {
+      "date": "2008-02-29",
+      "north_america": 22.49,
+      "europe": 5.29,
+      "asia": 0.12,
+      "other": 1.54,
+      "total": 29.44,
+      "gold_price_usd": 922.3
+    },
+    {
+      "date": "2008-03-31",
+      "north_america": 21.77,
+      "europe": 5.6,
+      "asia": 0.12,
+      "other": 1.59,
+      "total": 29.08,
+      "gold_price_usd": 964.37
+    },
+    {
+      "date": "2008-04-30",
+      "north_america": 18.57,
+      "europe": 5.32,
+      "asia": 0.11,
+      "other": 1.44,
+      "total": 25.44,
+      "gold_price_usd": 909.7
+    },
+    {
+      "date": "2008-05-31",
+      "north_america": 19.4,
+      "europe": 5.56,
+      "asia": 0.12,
+      "other": 1.21,
+      "total": 26.29,
+      "gold_price_usd": 888.83
+    },
+    {
+      "date": "2008-06-30",
+      "north_america": 21.7,
+      "europe": 6.0,
+      "asia": 0.13,
+      "other": 1.27,
+      "total": 29.1,
+      "gold_price_usd": 889.49
+    },
+    {
+      "date": "2008-07-31",
+      "north_america": 22.28,
+      "europe": 6.96,
+      "asia": 0.13,
+      "other": 1.32,
+      "total": 30.69,
+      "gold_price_usd": 939.77
+    },
+    {
+      "date": "2008-08-31",
+      "north_america": 19.58,
+      "europe": 6.38,
+      "asia": 0.13,
+      "other": 1.17,
+      "total": 27.26,
+      "gold_price_usd": 838.31
+    },
+    {
+      "date": "2008-09-30",
+      "north_america": 23.74,
+      "europe": 6.89,
+      "asia": 0.14,
+      "other": 1.18,
+      "total": 31.95,
+      "gold_price_usd": 829.93
+    },
+    {
+      "date": "2008-10-31",
+      "north_america": 19.57,
+      "europe": 6.61,
+      "asia": 0.09,
+      "other": 0.97,
+      "total": 27.24,
+      "gold_price_usd": 806.62
+    },
+    {
+      "date": "2008-11-30",
+      "north_america": 22.11,
+      "europe": 7.48,
+      "asia": 0.1,
+      "other": 1.08,
+      "total": 30.77,
+      "gold_price_usd": 760.86
+    },
+    {
+      "date": "2008-12-31",
+      "north_america": 24.2,
+      "europe": 8.47,
+      "asia": 0.15,
+      "other": 1.18,
+      "total": 34.0,
+      "gold_price_usd": 820.91
+    },
+    {
+      "date": "2009-01-31",
+      "north_america": 27.63,
+      "europe": 10.02,
+      "asia": 0.15,
+      "other": 1.29,
+      "total": 39.09,
+      "gold_price_usd": 858.98
+    },
+    {
+      "date": "2009-02-28",
+      "north_america": 34.22,
+      "europe": 11.56,
+      "asia": 0.15,
+      "other": 1.38,
+      "total": 47.31,
+      "gold_price_usd": 943.16
+    },
+    {
+      "date": "2009-03-31",
+      "north_america": 35.86,
+      "europe": 12.13,
+      "asia": 0.14,
+      "other": 1.31,
+      "total": 49.44,
+      "gold_price_usd": 924.27
+    },
+    {
+      "date": "2009-04-30",
+      "north_america": 33.93,
+      "europe": 12.27,
+      "asia": 0.14,
+      "other": 1.24,
+      "total": 47.58,
+      "gold_price_usd": 889.32
+    },
+    {
+      "date": "2009-05-31",
+      "north_america": 38.3,
+      "europe": 13.92,
+      "asia": 0.15,
+      "other": 1.5,
+      "total": 53.87,
+      "gold_price_usd": 928.02
+    },
+    {
+      "date": "2009-06-30",
+      "north_america": 36.76,
+      "europe": 13.52,
+      "asia": 0.18,
+      "other": 1.6,
+      "total": 52.06,
+      "gold_price_usd": 945.67
+    },
+    {
+      "date": "2009-07-31",
+      "north_america": 35.62,
+      "europe": 13.74,
+      "asia": 0.18,
+      "other": 1.79,
+      "total": 51.33,
+      "gold_price_usd": 934.23
+    },
+    {
+      "date": "2009-08-31",
+      "north_america": 35.89,
+      "europe": 14.72,
+      "asia": 0.18,
+      "other": 1.84,
+      "total": 52.63,
+      "gold_price_usd": 949.67
+    },
+    {
+      "date": "2009-09-30",
+      "north_america": 38.67,
+      "europe": 16.06,
+      "asia": 0.21,
+      "other": 2.14,
+      "total": 57.08,
+      "gold_price_usd": 996.59
+    },
+    {
+      "date": "2009-10-31",
+      "north_america": 40.89,
+      "europe": 17.67,
+      "asia": 0.23,
+      "other": 2.29,
+      "total": 61.08,
+      "gold_price_usd": 1043.16
+    },
+    {
+      "date": "2009-11-30",
+      "north_america": 47.77,
+      "europe": 20.04,
+      "asia": 0.26,
+      "other": 2.67,
+      "total": 70.74,
+      "gold_price_usd": 1127.04
+    },
+    {
+      "date": "2009-12-31",
+      "north_america": 44.93,
+      "europe": 18.37,
+      "asia": 0.28,
+      "other": 2.5,
+      "total": 66.08,
+      "gold_price_usd": 1129.45
+    },
+    {
+      "date": "2010-01-31",
+      "north_america": 43.17,
+      "europe": 17.94,
+      "asia": 0.31,
+      "other": 2.42,
+      "total": 63.84,
+      "gold_price_usd": 1117.3
+    },
+    {
+      "date": "2010-02-28",
+      "north_america": 44.41,
+      "europe": 19.0,
+      "asia": 0.34,
+      "other": 2.46,
+      "total": 66.21,
+      "gold_price_usd": 1095.41
+    },
+    {
+      "date": "2010-03-31",
+      "north_america": 45.29,
+      "europe": 19.53,
+      "asia": 0.35,
+      "other": 2.4,
+      "total": 67.57,
+      "gold_price_usd": 1113.34
+    },
+    {
+      "date": "2010-04-30",
+      "north_america": 49.03,
+      "europe": 21.36,
+      "asia": 0.38,
+      "other": 2.48,
+      "total": 73.25,
+      "gold_price_usd": 1146.4
+    },
+    {
+      "date": "2010-05-31",
+      "north_america": 55.07,
+      "europe": 23.72,
+      "asia": 0.39,
+      "other": 2.41,
+      "total": 81.59,
+      "gold_price_usd": 1204.29
+    },
+    {
+      "date": "2010-06-30",
+      "north_america": 58.95,
+      "europe": 25.36,
+      "asia": 0.4,
+      "other": 2.64,
+      "total": 87.35,
+      "gold_price_usd": 1232.92
+    },
+    {
+      "date": "2010-07-31",
+      "north_america": 54.22,
+      "europe": 23.83,
+      "asia": 0.45,
+      "other": 2.48,
+      "total": 80.98,
+      "gold_price_usd": 1192.97
+    },
+    {
+      "date": "2010-08-31",
+      "north_america": 58.88,
+      "europe": 26.05,
+      "asia": 0.56,
+      "other": 2.7,
+      "total": 88.19,
+      "gold_price_usd": 1216.68
+    },
+    {
+      "date": "2010-09-30",
+      "north_america": 62.53,
+      "europe": 28.05,
+      "asia": 0.67,
+      "other": 2.79,
+      "total": 94.04,
+      "gold_price_usd": 1270.98
+    },
+    {
+      "date": "2010-10-31",
+      "north_america": 64.09,
+      "europe": 29.17,
+      "asia": 0.71,
+      "other": 2.88,
+      "total": 96.85,
+      "gold_price_usd": 1342.02
+    },
+    {
+      "date": "2010-11-30",
+      "north_america": 65.84,
+      "europe": 30.23,
+      "asia": 0.81,
+      "other": 3.01,
+      "total": 99.89,
+      "gold_price_usd": 1369.89
+    },
+    {
+      "date": "2010-12-31",
+      "north_america": 67.37,
+      "europe": 31.55,
+      "asia": 0.89,
+      "other": 3.06,
+      "total": 102.87,
+      "gold_price_usd": 1390.1
+    },
+    {
+      "date": "2011-01-31",
+      "north_america": 60.84,
+      "europe": 29.04,
+      "asia": 0.88,
+      "other": 2.85,
+      "total": 93.61,
+      "gold_price_usd": 1358.96
+    },
+    {
+      "date": "2011-02-28",
+      "north_america": 64.42,
+      "europe": 31.07,
+      "asia": 0.94,
+      "other": 2.95,
+      "total": 99.38,
+      "gold_price_usd": 1372.73
+    },
+    {
+      "date": "2011-03-31",
+      "north_america": 66.06,
+      "europe": 32.4,
+      "asia": 1.08,
+      "other": 2.96,
+      "total": 102.5,
+      "gold_price_usd": 1424.01
+    },
+    {
+      "date": "2011-04-30",
+      "north_america": 72.3,
+      "europe": 35.73,
+      "asia": 1.23,
+      "other": 3.21,
+      "total": 112.47,
+      "gold_price_usd": 1479.62
+    },
+    {
+      "date": "2011-05-31",
+      "north_america": 71.51,
+      "europe": 35.44,
+      "asia": 1.28,
+      "other": 3.14,
+      "total": 111.37,
+      "gold_price_usd": 1512.6
+    },
+    {
+      "date": "2011-06-30",
+      "north_america": 70.28,
+      "europe": 35.18,
+      "asia": 1.46,
+      "other": 3.09,
+      "total": 110.01,
+      "gold_price_usd": 1528.66
+    },
+    {
+      "date": "2011-07-31",
+      "north_america": 79.94,
+      "europe": 40.25,
+      "asia": 1.59,
+      "other": 3.34,
+      "total": 125.12,
+      "gold_price_usd": 1572.81
+    },
+    {
+      "date": "2011-08-31",
+      "north_america": 87.95,
+      "europe": 46.02,
+      "asia": 1.85,
+      "other": 3.58,
+      "total": 139.4,
+      "gold_price_usd": 1757.21
+    },
+    {
+      "date": "2011-09-30",
+      "north_america": 78.33,
+      "europe": 40.69,
+      "asia": 2.07,
+      "other": 3.15,
+      "total": 124.24,
+      "gold_price_usd": 1771.85
+    },
+    {
+      "date": "2011-10-31",
+      "north_america": 84.08,
+      "europe": 44.53,
+      "asia": 2.33,
+      "other": 3.21,
+      "total": 134.15,
+      "gold_price_usd": 1665.21
+    },
+    {
+      "date": "2011-11-30",
+      "north_america": 90.53,
+      "europe": 46.07,
+      "asia": 2.31,
+      "other": 3.17,
+      "total": 142.08,
+      "gold_price_usd": 1738.98
+    },
+    {
+      "date": "2011-12-31",
+      "north_america": 79.02,
+      "europe": 41.66,
+      "asia": 2.21,
+      "other": 2.79,
+      "total": 125.68,
+      "gold_price_usd": 1642.66
+    },
+    {
+      "date": "2012-01-31",
+      "north_america": 89.45,
+      "europe": 46.76,
+      "asia": 2.46,
+      "other": 3.14,
+      "total": 141.81,
+      "gold_price_usd": 1652.41
+    },
+    {
+      "date": "2012-02-29",
+      "north_america": 92.37,
+      "europe": 47.36,
+      "asia": 2.52,
+      "other": 3.14,
+      "total": 145.39,
+      "gold_price_usd": 1742.62
+    },
+    {
+      "date": "2012-03-31",
+      "north_america": 86.41,
+      "europe": 45.74,
+      "asia": 2.49,
+      "other": 2.95,
+      "total": 137.59,
+      "gold_price_usd": 1673.77
+    },
+    {
+      "date": "2012-04-30",
+      "north_america": 85.35,
+      "europe": 45.64,
+      "asia": 2.54,
+      "other": 2.89,
+      "total": 136.42,
+      "gold_price_usd": 1648.25
+    },
+    {
+      "date": "2012-05-31",
+      "north_america": 79.9,
+      "europe": 41.7,
+      "asia": 2.39,
+      "other": 2.69,
+      "total": 126.68,
+      "gold_price_usd": 1588.04
+    },
+    {
+      "date": "2012-06-30",
+      "north_america": 82.7,
+      "europe": 44.31,
+      "asia": 2.39,
+      "other": 2.82,
+      "total": 132.22,
+      "gold_price_usd": 1597.58
+    },
+    {
+      "date": "2012-07-31",
+      "north_america": 82.58,
+      "europe": 45.39,
+      "asia": 2.44,
+      "other": 2.92,
+      "total": 133.33,
+      "gold_price_usd": 1593.91
+    },
+    {
+      "date": "2012-08-31",
+      "north_america": 86.34,
+      "europe": 47.97,
+      "asia": 2.49,
+      "other": 2.99,
+      "total": 139.79,
+      "gold_price_usd": 1627.82
+    },
+    {
+      "date": "2012-09-30",
+      "north_america": 95.87,
+      "europe": 53.14,
+      "asia": 2.73,
+      "other": 3.36,
+      "total": 155.1,
+      "gold_price_usd": 1744.45
+    },
+    {
+      "date": "2012-10-31",
+      "north_america": 94.11,
+      "europe": 52.48,
+      "asia": 2.69,
+      "other": 3.36,
+      "total": 152.64,
+      "gold_price_usd": 1747.01
+    },
+    {
+      "date": "2012-11-30",
+      "north_america": 95.4,
+      "europe": 53.42,
+      "asia": 2.75,
+      "other": 3.41,
+      "total": 154.98,
+      "gold_price_usd": 1721.14
+    },
+    {
+      "date": "2012-12-31",
+      "north_america": 92.43,
+      "europe": 51.56,
+      "asia": 2.73,
+      "other": 3.32,
+      "total": 150.04,
+      "gold_price_usd": 1683.64
+    },
+    {
+      "date": "2013-01-31",
+      "north_america": 91.41,
+      "europe": 51.37,
+      "asia": 2.81,
+      "other": 3.37,
+      "total": 148.96,
+      "gold_price_usd": 1670.65
+    },
+    {
+      "date": "2013-02-28",
+      "north_america": 83.3,
+      "europe": 47.04,
+      "asia": 2.62,
+      "other": 3.15,
+      "total": 136.11,
+      "gold_price_usd": 1627.59
+    },
+    {
+      "date": "2013-03-31",
+      "north_america": 81.82,
+      "europe": 46.7,
+      "asia": 2.65,
+      "other": 3.16,
+      "total": 134.33,
+      "gold_price_usd": 1593.12
+    },
+    {
+      "date": "2013-04-30",
+      "north_america": 67.62,
+      "europe": 41.95,
+      "asia": 2.48,
+      "other": 3.0,
+      "total": 115.05,
+      "gold_price_usd": 1490.23
+    },
+    {
+      "date": "2013-05-31",
+      "north_america": 60.74,
+      "europe": 36.78,
+      "asia": 2.35,
+      "other": 2.75,
+      "total": 102.62,
+      "gold_price_usd": 1414.91
+    },
+    {
+      "date": "2013-06-30",
+      "north_america": 49.89,
+      "europe": 30.0,
+      "asia": 2.02,
+      "other": 2.22,
+      "total": 84.13,
+      "gold_price_usd": 1342.36
+    },
+    {
+      "date": "2013-07-31",
+      "north_america": 53.15,
+      "europe": 31.76,
+      "asia": 2.3,
+      "other": 2.41,
+      "total": 89.62,
+      "gold_price_usd": 1286.72
+    },
+    {
+      "date": "2013-08-31",
+      "north_america": 56.02,
+      "europe": 33.11,
+      "asia": 2.31,
+      "other": 2.53,
+      "total": 93.97,
+      "gold_price_usd": 1348.48
+    },
+    {
+      "date": "2013-09-30",
+      "north_america": 52.69,
+      "europe": 31.13,
+      "asia": 2.18,
+      "other": 2.37,
+      "total": 88.37,
+      "gold_price_usd": 1348.8
+    },
+    {
+      "date": "2013-10-31",
+      "north_america": 50.84,
+      "europe": 30.59,
+      "asia": 2.13,
+      "other": 2.36,
+      "total": 85.92,
+      "gold_price_usd": 1316.18
+    },
+    {
+      "date": "2013-11-30",
+      "north_america": 46.79,
+      "europe": 28.37,
+      "asia": 2.01,
+      "other": 2.23,
+      "total": 79.4,
+      "gold_price_usd": 1275.82
+    },
+    {
+      "date": "2013-12-31",
+      "north_america": 42.83,
+      "europe": 25.75,
+      "asia": 1.94,
+      "other": 2.12,
+      "total": 72.64,
+      "gold_price_usd": 1220.38
+    },
+    {
+      "date": "2014-01-31",
+      "north_america": 44.11,
+      "europe": 26.15,
+      "asia": 1.94,
+      "other": 2.21,
+      "total": 74.41,
+      "gold_price_usd": 1242.91
+    },
+    {
+      "date": "2014-02-28",
+      "north_america": 47.2,
+      "europe": 27.82,
+      "asia": 2.03,
+      "other": 2.28,
+      "total": 79.33,
+      "gold_price_usd": 1300.98
+    },
+    {
+      "date": "2014-03-31",
+      "north_america": 46.38,
+      "europe": 27.14,
+      "asia": 1.95,
+      "other": 2.2,
+      "total": 77.67,
+      "gold_price_usd": 1336.08
+    },
+    {
+      "date": "2014-04-30",
+      "north_america": 45.2,
+      "europe": 27.57,
+      "asia": 1.91,
+      "other": 2.23,
+      "total": 76.91,
+      "gold_price_usd": 1299.0
+    },
+    {
+      "date": "2014-05-31",
+      "north_america": 43.74,
+      "europe": 26.51,
+      "asia": 1.79,
+      "other": 2.19,
+      "total": 74.23,
+      "gold_price_usd": 1287.42
+    },
+    {
+      "date": "2014-06-30",
+      "north_america": 46.31,
+      "europe": 27.55,
+      "asia": 1.85,
+      "other": 2.33,
+      "total": 78.04,
+      "gold_price_usd": 1279.1
+    },
+    {
+      "date": "2014-07-31",
+      "north_america": 45.72,
+      "europe": 26.82,
+      "asia": 1.8,
+      "other": 2.28,
+      "total": 76.62,
+      "gold_price_usd": 1310.97
+    },
+    {
+      "date": "2014-08-31",
+      "north_america": 45.41,
+      "europe": 26.91,
+      "asia": 1.78,
+      "other": 2.11,
+      "total": 76.21,
+      "gold_price_usd": 1295.1
+    },
+    {
+      "date": "2014-09-30",
+      "north_america": 41.82,
+      "europe": 24.79,
+      "asia": 1.68,
+      "other": 2.04,
+      "total": 70.33,
+      "gold_price_usd": 1238.82
+    },
+    {
+      "date": "2014-10-31",
+      "north_america": 38.92,
+      "europe": 23.72,
+      "asia": 1.64,
+      "other": 1.98,
+      "total": 66.26,
+      "gold_price_usd": 1222.49
+    },
+    {
+      "date": "2014-11-30",
+      "north_america": 38.57,
+      "europe": 23.85,
+      "asia": 1.63,
+      "other": 1.86,
+      "total": 65.91,
+      "gold_price_usd": 1176.3
+    },
+    {
+      "date": "2014-12-31",
+      "north_america": 38.65,
+      "europe": 23.99,
+      "asia": 1.65,
+      "other": 1.81,
+      "total": 66.1,
+      "gold_price_usd": 1198.86
+    },
+    {
+      "date": "2015-01-31",
+      "north_america": 42.83,
+      "europe": 25.48,
+      "asia": 1.68,
+      "other": 1.87,
+      "total": 71.86,
+      "gold_price_usd": 1249.45
+    },
+    {
+      "date": "2015-02-28",
+      "north_america": 41.69,
+      "europe": 25.04,
+      "asia": 1.62,
+      "other": 1.68,
+      "total": 70.03,
+      "gold_price_usd": 1227.19
+    },
+    {
+      "date": "2015-03-31",
+      "north_america": 39.38,
+      "europe": 23.81,
+      "asia": 1.65,
+      "other": 1.63,
+      "total": 66.47,
+      "gold_price_usd": 1178.63
+    },
+    {
+      "date": "2015-04-30",
+      "north_america": 39.28,
+      "europe": 23.92,
+      "asia": 1.67,
+      "other": 1.54,
+      "total": 66.41,
+      "gold_price_usd": 1197.96
+    },
+    {
+      "date": "2015-05-31",
+      "north_america": 38.77,
+      "europe": 24.29,
+      "asia": 1.62,
+      "other": 1.54,
+      "total": 66.22,
+      "gold_price_usd": 1198.19
+    },
+    {
+      "date": "2015-06-30",
+      "north_america": 37.95,
+      "europe": 23.78,
+      "asia": 1.63,
+      "other": 1.47,
+      "total": 64.83,
+      "gold_price_usd": 1181.5
+    },
+    {
+      "date": "2015-07-31",
+      "north_america": 34.0,
+      "europe": 21.36,
+      "asia": 1.51,
+      "other": 1.34,
+      "total": 58.21,
+      "gold_price_usd": 1130.04
+    },
+    {
+      "date": "2015-08-31",
+      "north_america": 35.43,
+      "europe": 21.99,
+      "asia": 1.67,
+      "other": 1.32,
+      "total": 60.41,
+      "gold_price_usd": 1118.31
+    },
+    {
+      "date": "2015-09-30",
+      "north_america": 34.88,
+      "europe": 21.35,
+      "asia": 1.64,
+      "other": 1.46,
+      "total": 59.33,
+      "gold_price_usd": 1124.53
+    },
+    {
+      "date": "2015-10-31",
+      "north_america": 35.98,
+      "europe": 22.02,
+      "asia": 1.66,
+      "other": 1.52,
+      "total": 61.18,
+      "gold_price_usd": 1159.25
+    },
+    {
+      "date": "2015-11-30",
+      "north_america": 32.04,
+      "europe": 20.2,
+      "asia": 1.59,
+      "other": 1.4,
+      "total": 55.23,
+      "gold_price_usd": 1085.7
+    },
+    {
+      "date": "2015-12-31",
+      "north_america": 31.38,
+      "europe": 19.86,
+      "asia": 1.69,
+      "other": 1.39,
+      "total": 54.32,
+      "gold_price_usd": 1068.47
+    },
+    {
+      "date": "2016-01-31",
+      "north_america": 34.28,
+      "europe": 21.32,
+      "asia": 1.79,
+      "other": 1.45,
+      "total": 58.84,
+      "gold_price_usd": 1095.7
+    },
+    {
+      "date": "2016-02-29",
+      "north_america": 43.28,
+      "europe": 26.51,
+      "asia": 2.19,
+      "other": 1.6,
+      "total": 73.58,
+      "gold_price_usd": 1199.91
+    },
+    {
+      "date": "2016-03-31",
+      "north_america": 44.86,
+      "europe": 27.82,
+      "asia": 2.44,
+      "other": 1.78,
+      "total": 76.9,
+      "gold_price_usd": 1244.13
+    },
+    {
+      "date": "2016-04-30",
+      "north_america": 46.13,
+      "europe": 29.72,
+      "asia": 2.49,
+      "other": 1.89,
+      "total": 80.23,
+      "gold_price_usd": 1242.26
+    },
+    {
+      "date": "2016-05-31",
+      "north_america": 46.41,
+      "europe": 28.7,
+      "asia": 2.51,
+      "other": 1.82,
+      "total": 79.44,
+      "gold_price_usd": 1258.63
+    },
+    {
+      "date": "2016-06-30",
+      "north_america": 54.53,
+      "europe": 32.82,
+      "asia": 2.8,
+      "other": 2.01,
+      "total": 92.16,
+      "gold_price_usd": 1276.4
+    },
+    {
+      "date": "2016-07-31",
+      "north_america": 56.3,
+      "europe": 35.39,
+      "asia": 3.27,
+      "other": 2.16,
+      "total": 97.12,
+      "gold_price_usd": 1337.33
+    },
+    {
+      "date": "2016-08-31",
+      "north_america": 54.6,
+      "europe": 35.85,
+      "asia": 3.22,
+      "other": 2.19,
+      "total": 95.86,
+      "gold_price_usd": 1340.12
+    },
+    {
+      "date": "2016-09-30",
+      "north_america": 55.42,
+      "europe": 37.71,
+      "asia": 3.29,
+      "other": 2.17,
+      "total": 98.59,
+      "gold_price_usd": 1326.03
+    },
+    {
+      "date": "2016-10-31",
+      "north_america": 53.3,
+      "europe": 37.0,
+      "asia": 3.41,
+      "other": 2.09,
+      "total": 95.8,
+      "gold_price_usd": 1266.57
+    },
+    {
+      "date": "2016-11-30",
+      "north_america": 46.04,
+      "europe": 33.39,
+      "asia": 3.16,
+      "other": 1.79,
+      "total": 84.38,
+      "gold_price_usd": 1235.98
+    },
+    {
+      "date": "2016-12-31",
+      "north_america": 42.7,
+      "europe": 31.77,
+      "asia": 3.36,
+      "other": 1.7,
+      "total": 79.53,
+      "gold_price_usd": 1148.97
+    },
+    {
+      "date": "2017-01-31",
+      "north_america": 43.97,
+      "europe": 34.67,
+      "asia": 3.48,
+      "other": 1.77,
+      "total": 83.89,
+      "gold_price_usd": 1191.09
+    },
+    {
+      "date": "2017-02-28",
+      "north_america": 47.3,
+      "europe": 37.62,
+      "asia": 3.65,
+      "other": 1.98,
+      "total": 90.55,
+      "gold_price_usd": 1234.36
+    },
+    {
+      "date": "2017-03-31",
+      "north_america": 46.45,
+      "europe": 38.04,
+      "asia": 3.31,
+      "other": 1.97,
+      "total": 89.77,
+      "gold_price_usd": 1231.09
+    },
+    {
+      "date": "2017-04-30",
+      "north_america": 48.28,
+      "europe": 38.82,
+      "asia": 3.15,
+      "other": 2.01,
+      "total": 92.26,
+      "gold_price_usd": 1267.48
+    },
+    {
+      "date": "2017-05-31",
+      "north_america": 47.98,
+      "europe": 39.7,
+      "asia": 3.04,
+      "other": 1.98,
+      "total": 92.7,
+      "gold_price_usd": 1246.81
+    },
+    {
+      "date": "2017-06-30",
+      "north_america": 47.58,
+      "europe": 39.35,
+      "asia": 3.2,
+      "other": 1.96,
+      "total": 92.09,
+      "gold_price_usd": 1260.26
+    },
+    {
+      "date": "2017-07-31",
+      "north_america": 46.08,
+      "europe": 40.64,
+      "asia": 3.25,
+      "other": 1.94,
+      "total": 91.91,
+      "gold_price_usd": 1236.22
+    },
+    {
+      "date": "2017-08-31",
+      "north_america": 49.02,
+      "europe": 42.38,
+      "asia": 3.26,
+      "other": 2.0,
+      "total": 96.66,
+      "gold_price_usd": 1282.45
+    },
+    {
+      "date": "2017-09-30",
+      "north_america": 50.39,
+      "europe": 41.16,
+      "asia": 2.92,
+      "other": 1.97,
+      "total": 96.44,
+      "gold_price_usd": 1314.98
+    },
+    {
+      "date": "2017-10-31",
+      "north_america": 49.56,
+      "europe": 41.17,
+      "asia": 2.9,
+      "other": 1.92,
+      "total": 95.55,
+      "gold_price_usd": 1279.51
+    },
+    {
+      "date": "2017-11-30",
+      "north_america": 49.74,
+      "europe": 42.35,
+      "asia": 2.91,
+      "other": 1.9,
+      "total": 96.9,
+      "gold_price_usd": 1282.28
+    },
+    {
+      "date": "2017-12-31",
+      "north_america": 51.73,
+      "europe": 43.05,
+      "asia": 3.54,
+      "other": 1.88,
+      "total": 100.2,
+      "gold_price_usd": 1263.9
+    },
+    {
+      "date": "2018-01-31",
+      "north_america": 54.64,
+      "europe": 45.04,
+      "asia": 3.62,
+      "other": 1.95,
+      "total": 105.25,
+      "gold_price_usd": 1330.14
+    },
+    {
+      "date": "2018-02-28",
+      "north_america": 53.3,
+      "europe": 43.77,
+      "asia": 3.86,
+      "other": 1.88,
+      "total": 102.81,
+      "gold_price_usd": 1331.53
+    },
+    {
+      "date": "2018-03-31",
+      "north_america": 54.38,
+      "europe": 43.98,
+      "asia": 3.36,
+      "other": 1.85,
+      "total": 103.57,
+      "gold_price_usd": 1324.62
+    },
+    {
+      "date": "2018-04-30",
+      "north_america": 55.78,
+      "europe": 44.52,
+      "asia": 3.42,
+      "other": 1.79,
+      "total": 105.51,
+      "gold_price_usd": 1334.22
+    },
+    {
+      "date": "2018-05-31",
+      "north_america": 54.2,
+      "europe": 45.4,
+      "asia": 4.23,
+      "other": 1.68,
+      "total": 105.51,
+      "gold_price_usd": 1303.32
+    },
+    {
+      "date": "2018-06-30",
+      "north_america": 50.14,
+      "europe": 43.5,
+      "asia": 3.84,
+      "other": 1.53,
+      "total": 99.01,
+      "gold_price_usd": 1281.57
+    },
+    {
+      "date": "2018-07-31",
+      "north_america": 47.97,
+      "europe": 42.16,
+      "asia": 3.54,
+      "other": 1.46,
+      "total": 95.13,
+      "gold_price_usd": 1238.53
+    },
+    {
+      "date": "2018-08-31",
+      "north_america": 45.53,
+      "europe": 41.71,
+      "asia": 3.55,
+      "other": 1.38,
+      "total": 92.17,
+      "gold_price_usd": 1201.09
+    },
+    {
+      "date": "2018-09-30",
+      "north_america": 44.72,
+      "europe": 40.77,
+      "asia": 3.2,
+      "other": 1.35,
+      "total": 90.04,
+      "gold_price_usd": 1198.47
+    },
+    {
+      "date": "2018-10-31",
+      "north_america": 46.25,
+      "europe": 42.13,
+      "asia": 3.02,
+      "other": 1.36,
+      "total": 92.76,
+      "gold_price_usd": 1215.39
+    },
+    {
+      "date": "2018-11-30",
+      "north_america": 46.68,
+      "europe": 42.59,
+      "asia": 3.1,
+      "other": 1.38,
+      "total": 93.75,
+      "gold_price_usd": 1220.95
+    },
+    {
+      "date": "2018-12-31",
+      "north_america": 50.63,
+      "europe": 46.63,
+      "asia": 3.27,
+      "other": 1.41,
+      "total": 101.94,
+      "gold_price_usd": 1251.43
+    },
+    {
+      "date": "2019-01-31",
+      "north_america": 54.54,
+      "europe": 49.17,
+      "asia": 3.37,
+      "other": 1.46,
+      "total": 108.54,
+      "gold_price_usd": 1291.31
+    },
+    {
+      "date": "2019-02-28",
+      "north_america": 53.13,
+      "europe": 48.94,
+      "asia": 3.22,
+      "other": 1.43,
+      "total": 106.72,
+      "gold_price_usd": 1320.07
+    },
+    {
+      "date": "2019-03-31",
+      "north_america": 52.28,
+      "europe": 48.01,
+      "asia": 3.1,
+      "other": 1.43,
+      "total": 104.82,
+      "gold_price_usd": 1300.9
+    },
+    {
+      "date": "2019-04-30",
+      "north_america": 49.85,
+      "europe": 47.1,
+      "asia": 2.97,
+      "other": 1.4,
+      "total": 101.32,
+      "gold_price_usd": 1285.47
+    },
+    {
+      "date": "2019-05-31",
+      "north_america": 49.8,
+      "europe": 48.33,
+      "asia": 2.83,
+      "other": 1.39,
+      "total": 102.35,
+      "gold_price_usd": 1283.65
+    },
+    {
+      "date": "2019-06-30",
+      "north_america": 57.06,
+      "europe": 55.58,
+      "asia": 3.18,
+      "other": 1.53,
+      "total": 117.35,
+      "gold_price_usd": 1359.04
+    },
+    {
+      "date": "2019-07-31",
+      "north_america": 59.8,
+      "europe": 56.85,
+      "asia": 3.27,
+      "other": 1.6,
+      "total": 121.52,
+      "gold_price_usd": 1412.98
+    },
+    {
+      "date": "2019-08-31",
+      "north_america": 67.86,
+      "europe": 62.59,
+      "asia": 3.98,
+      "other": 1.96,
+      "total": 136.39,
+      "gold_price_usd": 1499.03
+    },
+    {
+      "date": "2019-09-30",
+      "north_america": 68.87,
+      "europe": 61.37,
+      "asia": 4.03,
+      "other": 1.97,
+      "total": 136.24,
+      "gold_price_usd": 1511.31
+    },
+    {
+      "date": "2019-10-31",
+      "north_america": 70.7,
+      "europe": 63.81,
+      "asia": 4.05,
+      "other": 1.99,
+      "total": 140.55,
+      "gold_price_usd": 1494.8
+    },
+    {
+      "date": "2019-11-30",
+      "north_america": 67.54,
+      "europe": 60.98,
+      "asia": 3.82,
+      "other": 2.11,
+      "total": 134.45,
+      "gold_price_usd": 1470.02
+    },
+    {
+      "date": "2019-12-31",
+      "north_america": 70.38,
+      "europe": 64.44,
+      "asia": 3.88,
+      "other": 2.19,
+      "total": 140.89,
+      "gold_price_usd": 1480.2
+    },
+    {
+      "date": "2020-01-31",
+      "north_america": 74.7,
+      "europe": 68.75,
+      "asia": 3.97,
+      "other": 2.27,
+      "total": 149.69,
+      "gold_price_usd": 1559.03
+    },
+    {
+      "date": "2020-02-29",
+      "north_america": 78.09,
+      "europe": 71.69,
+      "asia": 4.55,
+      "other": 2.38,
+      "total": 156.71,
+      "gold_price_usd": 1597.1
+    },
+    {
+      "date": "2020-03-31",
+      "north_america": 81.0,
+      "europe": 75.97,
+      "asia": 4.77,
+      "other": 2.62,
+      "total": 164.36,
+      "gold_price_usd": 1591.93
+    },
+    {
+      "date": "2020-04-30",
+      "north_america": 93.62,
+      "europe": 81.82,
+      "asia": 5.43,
+      "other": 2.94,
+      "total": 183.81,
+      "gold_price_usd": 1682.72
+    },
+    {
+      "date": "2020-05-31",
+      "north_america": 100.72,
+      "europe": 85.61,
+      "asia": 5.73,
+      "other": 3.13,
+      "total": 195.19,
+      "gold_price_usd": 1716.61
+    },
+    {
+      "date": "2020-06-30",
+      "north_america": 107.75,
+      "europe": 88.39,
+      "asia": 5.81,
+      "other": 3.37,
+      "total": 205.32,
+      "gold_price_usd": 1732.22
+    },
+    {
+      "date": "2020-07-31",
+      "north_america": 127.17,
+      "europe": 101.02,
+      "asia": 6.75,
+      "other": 3.97,
+      "total": 238.91,
+      "gold_price_usd": 1843.31
+    },
+    {
+      "date": "2020-08-31",
+      "north_america": 129.11,
+      "europe": 99.95,
+      "asia": 7.23,
+      "other": 4.08,
+      "total": 240.37,
+      "gold_price_usd": 1968.03
+    },
+    {
+      "date": "2020-09-30",
+      "north_america": 126.57,
+      "europe": 98.38,
+      "asia": 7.39,
+      "other": 3.97,
+      "total": 236.31,
+      "gold_price_usd": 1922.21
+    },
+    {
+      "date": "2020-10-31",
+      "north_america": 126.35,
+      "europe": 99.5,
+      "asia": 7.35,
+      "other": 3.79,
+      "total": 236.99,
+      "gold_price_usd": 1900.28
+    },
+    {
+      "date": "2020-11-30",
+      "north_america": 114.81,
+      "europe": 90.56,
+      "asia": 6.88,
+      "other": 3.44,
+      "total": 215.69,
+      "gold_price_usd": 1863.49
+    },
+    {
+      "date": "2020-12-31",
+      "north_america": 121.62,
+      "europe": 96.77,
+      "asia": 7.15,
+      "other": 3.71,
+      "total": 229.25,
+      "gold_price_usd": 1859.65
+    },
+    {
+      "date": "2021-01-31",
+      "north_america": 119.49,
+      "europe": 96.65,
+      "asia": 7.11,
+      "other": 3.82,
+      "total": 227.07,
+      "gold_price_usd": 1868.13
+    },
+    {
+      "date": "2021-02-28",
+      "north_america": 107.79,
+      "europe": 89.2,
+      "asia": 7.31,
+      "other": 3.55,
+      "total": 207.85,
+      "gold_price_usd": 1808.18
+    },
+    {
+      "date": "2021-03-31",
+      "north_america": 100.85,
+      "europe": 83.81,
+      "asia": 7.42,
+      "other": 3.4,
+      "total": 195.48,
+      "gold_price_usd": 1718.23
+    },
+    {
+      "date": "2021-04-30",
+      "north_america": 103.8,
+      "europe": 88.34,
+      "asia": 7.8,
+      "other": 3.56,
+      "total": 203.5,
+      "gold_price_usd": 1758.44
+    },
+    {
+      "date": "2021-05-31",
+      "north_america": 113.68,
+      "europe": 96.86,
+      "asia": 8.11,
+      "other": 3.76,
+      "total": 222.41,
+      "gold_price_usd": 1851.37
+    },
+    {
+      "date": "2021-06-30",
+      "north_america": 106.06,
+      "europe": 88.99,
+      "asia": 7.62,
+      "other": 3.44,
+      "total": 206.11,
+      "gold_price_usd": 1834.57
+    },
+    {
+      "date": "2021-07-31",
+      "north_america": 109.37,
+      "europe": 93.28,
+      "asia": 7.99,
+      "other": 3.57,
+      "total": 214.21,
+      "gold_price_usd": 1807.09
+    },
+    {
+      "date": "2021-08-31",
+      "north_america": 106.83,
+      "europe": 93.19,
+      "asia": 7.98,
+      "other": 3.52,
+      "total": 211.52,
+      "gold_price_usd": 1784.63
+    },
+    {
+      "date": "2021-09-30",
+      "north_america": 102.28,
+      "europe": 88.62,
+      "asia": 7.78,
+      "other": 3.39,
+      "total": 202.07,
+      "gold_price_usd": 1777.25
+    },
+    {
+      "date": "2021-10-31",
+      "north_america": 102.91,
+      "europe": 89.34,
+      "asia": 8.13,
+      "other": 3.47,
+      "total": 203.85,
+      "gold_price_usd": 1776.85
+    },
+    {
+      "date": "2021-11-30",
+      "north_america": 105.65,
+      "europe": 91.16,
+      "asia": 7.86,
+      "other": 3.59,
+      "total": 208.26,
+      "gold_price_usd": 1820.23
+    },
+    {
+      "date": "2021-12-31",
+      "north_america": 105.27,
+      "europe": 92.44,
+      "asia": 8.42,
+      "other": 3.54,
+      "total": 209.67,
+      "gold_price_usd": 1788.03
+    },
+    {
+      "date": "2022-01-31",
+      "north_america": 106.67,
+      "europe": 91.57,
+      "asia": 7.76,
+      "other": 3.53,
+      "total": 209.53,
+      "gold_price_usd": 1816.92
+    },
+    {
+      "date": "2022-02-28",
+      "north_america": 114.88,
+      "europe": 98.93,
+      "asia": 7.73,
+      "other": 3.75,
+      "total": 225.29,
+      "gold_price_usd": 1856.3
+    },
+    {
+      "date": "2022-03-31",
+      "north_america": 123.08,
+      "europe": 105.68,
+      "asia": 7.99,
+      "other": 3.9,
+      "total": 240.65,
+      "gold_price_usd": 1947.83
+    },
+    {
+      "date": "2022-04-30",
+      "north_america": 122.1,
+      "europe": 105.12,
+      "asia": 7.85,
+      "other": 3.85,
+      "total": 238.92,
+      "gold_price_usd": 1936.7
+    },
+    {
+      "date": "2022-05-31",
+      "north_america": 115.47,
+      "europe": 100.28,
+      "asia": 7.57,
+      "other": 3.7,
+      "total": 227.02,
+      "gold_price_usd": 1851.17
+    },
+    {
+      "date": "2022-06-30",
+      "north_america": 112.57,
+      "europe": 98.69,
+      "asia": 7.5,
+      "other": 3.66,
+      "total": 222.42,
+      "gold_price_usd": 1834.83
+    },
+    {
+      "date": "2022-07-31",
+      "north_america": 105.85,
+      "europe": 92.95,
+      "asia": 7.82,
+      "other": 3.47,
+      "total": 210.09,
+      "gold_price_usd": 1736.37
+    },
+    {
+      "date": "2022-08-31",
+      "north_america": 101.34,
+      "europe": 90.38,
+      "asia": 7.29,
+      "other": 3.46,
+      "total": 202.47,
+      "gold_price_usd": 1765.03
+    },
+    {
+      "date": "2022-09-30",
+      "north_america": 95.49,
+      "europe": 85.82,
+      "asia": 7.07,
+      "other": 3.3,
+      "total": 191.68,
+      "gold_price_usd": 1682.13
+    },
+    {
+      "date": "2022-10-31",
+      "north_america": 91.51,
+      "europe": 83.4,
+      "asia": 6.68,
+      "other": 3.24,
+      "total": 184.83,
+      "gold_price_usd": 1664.45
+    },
+    {
+      "date": "2022-11-30",
+      "north_america": 96.72,
+      "europe": 89.06,
+      "asia": 7.03,
+      "other": 3.44,
+      "total": 196.25,
+      "gold_price_usd": 1726.45
+    },
+    {
+      "date": "2022-12-31",
+      "north_america": 100.48,
+      "europe": 91.25,
+      "asia": 7.33,
+      "other": 3.54,
+      "total": 202.6,
+      "gold_price_usd": 1797.54
+    },
+    {
+      "date": "2023-01-31",
+      "north_america": 107.21,
+      "europe": 94.82,
+      "asia": 7.41,
+      "other": 3.86,
+      "total": 213.3,
+      "gold_price_usd": 1894.71
+    },
+    {
+      "date": "2023-02-28",
+      "north_america": 101.09,
+      "europe": 88.44,
+      "asia": 7.11,
+      "other": 3.74,
+      "total": 200.38,
+      "gold_price_usd": 1854.54
+    },
+    {
+      "date": "2023-03-31",
+      "north_america": 110.41,
+      "europe": 97.12,
+      "asia": 7.91,
+      "other": 3.99,
+      "total": 219.43,
+      "gold_price_usd": 1912.73
+    },
+    {
+      "date": "2023-04-30",
+      "north_america": 111.53,
+      "europe": 97.22,
+      "asia": 7.95,
+      "other": 4.04,
+      "total": 220.74,
+      "gold_price_usd": 2000.57
+    },
+    {
+      "date": "2023-05-31",
+      "north_america": 111.86,
+      "europe": 96.21,
+      "asia": 7.88,
+      "other": 4.01,
+      "total": 219.96,
+      "gold_price_usd": 1988.51
+    },
+    {
+      "date": "2023-06-30",
+      "north_america": 107.23,
+      "europe": 92.05,
+      "asia": 7.75,
+      "other": 3.65,
+      "total": 210.68,
+      "gold_price_usd": 1942.9
+    },
+    {
+      "date": "2023-07-31",
+      "north_america": 109.47,
+      "europe": 93.68,
+      "asia": 8.08,
+      "other": 3.66,
+      "total": 214.89,
+      "gold_price_usd": 1948.85
+    },
+    {
+      "date": "2023-08-31",
+      "north_america": 105.14,
+      "europe": 91.83,
+      "asia": 8.51,
+      "other": 3.62,
+      "total": 209.1,
+      "gold_price_usd": 1919.83
+    },
+    {
+      "date": "2023-09-30",
+      "north_america": 99.12,
+      "europe": 86.74,
+      "asia": 8.48,
+      "other": 3.49,
+      "total": 197.83,
+      "gold_price_usd": 1916.96
+    },
+    {
+      "date": "2023-10-31",
+      "north_america": 104.06,
+      "europe": 91.87,
+      "asia": 9.09,
+      "other": 3.78,
+      "total": 208.8,
+      "gold_price_usd": 1913.04
+    },
+    {
+      "date": "2023-11-30",
+      "north_america": 106.75,
+      "europe": 92.33,
+      "asia": 9.34,
+      "other": 3.84,
+      "total": 212.26,
+      "gold_price_usd": 1985.27
+    },
+    {
+      "date": "2023-12-31",
+      "north_america": 108.91,
+      "europe": 91.89,
+      "asia": 9.72,
+      "other": 3.95,
+      "total": 214.47,
+      "gold_price_usd": 2034.63
+    },
+    {
+      "date": "2024-01-31",
+      "north_america": 106.03,
+      "europe": 90.32,
+      "asia": 9.89,
+      "other": 3.91,
+      "total": 210.15,
+      "gold_price_usd": 2035.27
+    },
+    {
+      "date": "2024-02-29",
+      "north_america": 103.34,
+      "europe": 89.13,
+      "asia": 10.07,
+      "other": 3.87,
+      "total": 206.41,
+      "gold_price_usd": 2023.24
+    },
+    {
+      "date": "2024-03-31",
+      "north_america": 112.08,
+      "europe": 94.8,
+      "asia": 11.22,
+      "other": 4.21,
+      "total": 222.31,
+      "gold_price_usd": 2160.7
+    },
+    {
+      "date": "2024-04-30",
+      "north_america": 116.84,
+      "europe": 94.9,
+      "asia": 13.17,
+      "other": 4.32,
+      "total": 229.23,
+      "gold_price_usd": 2329.98
+    },
+    {
+      "date": "2024-05-31",
+      "north_america": 118.76,
+      "europe": 97.02,
+      "asia": 13.74,
+      "other": 4.37,
+      "total": 233.89,
+      "gold_price_usd": 2349.22
+    },
+    {
+      "date": "2024-06-30",
+      "north_america": 117.27,
+      "europe": 97.65,
+      "asia": 14.19,
+      "other": 4.39,
+      "total": 233.5,
+      "gold_price_usd": 2326.33
+    },
+    {
+      "date": "2024-07-31",
+      "north_america": 124.08,
+      "europe": 102.94,
+      "asia": 14.81,
+      "other": 4.64,
+      "total": 246.47,
+      "gold_price_usd": 2395.31
+    },
+    {
+      "date": "2024-08-31",
+      "north_america": 129.91,
+      "europe": 107.27,
+      "asia": 15.35,
+      "other": 5.07,
+      "total": 257.6,
+      "gold_price_usd": 2469.93
+    },
+    {
+      "date": "2024-09-30",
+      "north_america": 137.31,
+      "europe": 112.1,
+      "asia": 16.32,
+      "other": 5.47,
+      "total": 271.2,
+      "gold_price_usd": 2567.12
+    },
+    {
+      "date": "2024-10-31",
+      "north_america": 145.44,
+      "europe": 115.56,
+      "asia": 19.34,
+      "other": 5.74,
+      "total": 286.08,
+      "gold_price_usd": 2690.08
+    },
+    {
+      "date": "2024-11-30",
+      "north_america": 141.09,
+      "europe": 109.8,
+      "asia": 18.36,
+      "other": 5.49,
+      "total": 274.74,
+      "gold_price_usd": 2650.68
+    },
+    {
+      "date": "2024-12-31",
+      "north_america": 138.55,
+      "europe": 108.11,
+      "asia": 18.93,
+      "other": 5.4,
+      "total": 270.99,
+      "gold_price_usd": 2638.42
+    },
+    {
+      "date": "2025-01-31",
+      "north_america": 148.68,
+      "europe": 119.97,
+      "asia": 20.17,
+      "other": 5.9,
+      "total": 294.72,
+      "gold_price_usd": 2705.39
+    },
+    {
+      "date": "2025-02-28",
+      "north_america": 156.47,
+      "europe": 121.12,
+      "asia": 23.21,
+      "other": 6.08,
+      "total": 306.88,
+      "gold_price_usd": 2894.73
+    },
+    {
+      "date": "2025-03-31",
+      "north_america": 178.71,
+      "europe": 134.49,
+      "asia": 26.24,
+      "other": 6.81,
+      "total": 346.25,
+      "gold_price_usd": 2983.25
+    },
+    {
+      "date": "2025-04-30",
+      "north_america": 194.12,
+      "europe": 142.49,
+      "asia": 35.46,
+      "other": 7.44,
+      "total": 379.51,
+      "gold_price_usd": 3216.41
+    },
+    {
+      "date": "2025-05-31",
+      "north_america": 191.05,
+      "europe": 141.6,
+      "asia": 34.84,
+      "other": 7.35,
+      "total": 374.84,
+      "gold_price_usd": 3279.64
+    },
+    {
+      "date": "2025-06-30",
+      "north_america": 196.31,
+      "europe": 144.48,
+      "asia": 35.44,
+      "other": 7.56,
+      "total": 383.79,
+      "gold_price_usd": 3352.0
+    },
+    {
+      "date": "2025-07-31",
+      "north_america": 198.3,
+      "europe": 146.14,
+      "asia": 35.49,
+      "other": 7.43,
+      "total": 387.36,
+      "gold_price_usd": 3338.31
+    },
+    {
+      "date": "2025-08-31",
+      "north_america": 210.24,
+      "europe": 154.26,
+      "asia": 36.18,
+      "other": 7.7,
+      "total": 408.38,
+      "gold_price_usd": 3361.62
+    },
+    {
+      "date": "2025-09-30",
+      "north_america": 245.52,
+      "europe": 176.67,
+      "asia": 43.15,
+      "other": 8.77,
+      "total": 474.11,
+      "gold_price_usd": 3665.2
+    },
+    {
+      "date": "2025-10-31",
+      "north_america": 263.53,
+      "europe": 180.47,
+      "asia": 51.49,
+      "other": 9.24,
+      "total": 504.73,
+      "gold_price_usd": 4053.28
+    },
+    {
+      "date": "2025-11-30",
+      "north_america": 276.34,
+      "europe": 189.61,
+      "asia": 57.0,
+      "other": 9.6,
+      "total": 532.55,
+      "gold_price_usd": 4082.95
+    },
+    {
+      "date": "2025-12-31",
+      "north_america": 290.19,
+      "europe": 196.58,
+      "asia": 61.82,
+      "other": 10.14,
+      "total": 558.73,
+      "gold_price_usd": 4315.24
+    },
+    {
+      "date": "2026-01-31",
+      "north_america": 342.45,
+      "europe": 229.39,
+      "asia": 84.81,
+      "other": 12.03,
+      "total": 668.68,
+      "gold_price_usd": 4724.62
+    },
+    {
+      "date": "2026-02-28",
+      "north_america": 363.77,
+      "europe": 238.27,
+      "asia": 86.11,
+      "other": 12.64,
+      "total": 700.79,
+      "gold_price_usd": 5019.53
+    }
+  ],
+  "data_type": "holdings_usd",
+  "latest": {
+    "date": "2026-02-28",
+    "north_america": 363.77,
+    "europe": 238.27,
+    "asia": 86.11,
+    "other": 12.64,
+    "total": 700.79,
+    "gold_price_usd": 5019.53
+  },
+  "metadata": {
+    "source": "World Gold Council",
+    "regions": [
+      "north_america",
+      "europe",
+      "asia",
+      "other"
+    ],
+    "frequency": "monthly",
+    "data_count": 277,
+    "start_date": "2003-02-28",
+    "end_date": "2026-02-28"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-11T00:05:10.255890+09:00"
+}

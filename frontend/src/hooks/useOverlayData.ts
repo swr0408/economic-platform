@@ -110,6 +110,12 @@ function getIndicatorMapping(indicatorId: string): {
     // Market個別API（TSMC売上高、Fear & Greed等）
     '/api/market/tsmc/',
     '/api/market/fear-greed',
+    '/api/market/nikkei-yoy',
+    '/api/market/nikkei-double-inverse',
+    '/api/market/jpx-investor-trading',
+    '/api/market/gold-etf-holdings',
+    '/api/market/gold-premium',
+    '/api/market/wgc-gold-etf',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

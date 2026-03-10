@@ -42,6 +42,12 @@ try:
     from backend.services.market.nikkei_regression_service import nikkei_regression_service
     from backend.services.market.electronic_components_balance_service import electronic_components_balance_service
     from backend.services.market.jpx_pcr_service import jpx_pcr_service
+    from backend.services.market.nikkei_yoy_service import nikkei_yoy_service
+    from backend.services.market.nikkei_double_inverse_service import nikkei_double_inverse_service
+    from backend.services.market.jpx_investor_trading_service import jpx_investor_trading_service
+    from backend.services.market.gold_etf_holdings_service import gold_etf_holdings_service
+    from backend.services.market.wgc_gold_etf_service import wgc_gold_etf_service
+    from backend.services.market.gold_premium_service import gold_premium_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -50,6 +56,12 @@ except ImportError:
     from services.market.nikkei_regression_service import nikkei_regression_service
     from services.market.electronic_components_balance_service import electronic_components_balance_service
     from services.market.jpx_pcr_service import jpx_pcr_service
+    from services.market.nikkei_yoy_service import nikkei_yoy_service
+    from services.market.nikkei_double_inverse_service import nikkei_double_inverse_service
+    from services.market.jpx_investor_trading_service import jpx_investor_trading_service
+    from services.market.gold_etf_holdings_service import gold_etf_holdings_service
+    from services.market.wgc_gold_etf_service import wgc_gold_etf_service
+    from services.market.gold_premium_service import gold_premium_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -232,6 +244,81 @@ def get_jpx_pcr(force_refresh: bool = Query(False)):
     """JPX 日本株指数オプション Put/Call Ratio データを取得"""
     start_time = time.time()
     result = jpx_pcr_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/nikkei-yoy")
+def get_nikkei_yoy(force_refresh: bool = Query(False)):
+    """日経平均 前年比 (YoY) データを取得"""
+    start_time = time.time()
+    result = nikkei_yoy_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/nikkei-double-inverse")
+def get_nikkei_double_inverse(force_refresh: bool = Query(False)):
+    """日経ダブルインバース (1357) 信用残データを取得"""
+    start_time = time.time()
+    result = nikkei_double_inverse_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/jpx-investor-trading")
+def get_jpx_investor_trading(force_refresh: bool = Query(False)):
+    """投資部門別売買状況データを取得"""
+    start_time = time.time()
+    result = jpx_investor_trading_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/gold-etf-holdings")
+def get_gold_etf_holdings(force_refresh: bool = Query(False)):
+    """金ETF保有残高データを取得"""
+    start_time = time.time()
+    result = gold_etf_holdings_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/wgc-gold-etf")
+def get_wgc_gold_etf(
+    data_type: str = Query("holdings_ton"),
+    force_refresh: bool = Query(False),
+):
+    """WGC 金ETFフロー/保有残高データを取得"""
+    start_time = time.time()
+    result = wgc_gold_etf_service.get_data(data_type, force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/gold-premium")
+def get_gold_premium(force_refresh: bool = Query(False)):
+    """金プレミアム/ディスカウント（中国・インド）データを取得"""
+    start_time = time.time()
+    result = gold_premium_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

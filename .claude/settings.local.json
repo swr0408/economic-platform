@@ -345,7 +345,10 @@
       "WebFetch(domain:mopsfin.twse.com.tw)",
       "WebFetch(domain:production.dataviz.cnn.io)",
       "Bash(git stash:*)",
-      "Bash(bash fix_periods.sh)"
+      "Bash(bash fix_periods.sh)",
+      "WebFetch(domain:www.jpx.co.jp)",
+      "WebFetch(domain:www.gold.org)",
+      "WebFetch(domain:fsapi.gold.org)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"
