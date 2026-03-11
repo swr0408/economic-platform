@@ -1,0 +1,600 @@
+{
+  "data": [
+    {
+      "date": "2016-07",
+      "gold_thousands_oz": 234144.0,
+      "silver_thousands_oz": 951433.0
+    },
+    {
+      "date": "2016-08",
+      "gold_thousands_oz": 239742.0,
+      "silver_thousands_oz": 957798.0
+    },
+    {
+      "date": "2016-09",
+      "gold_thousands_oz": 244025.0,
+      "silver_thousands_oz": 969175.0
+    },
+    {
+      "date": "2016-10",
+      "gold_thousands_oz": 246141.0,
+      "silver_thousands_oz": 978229.0
+    },
+    {
+      "date": "2016-11",
+      "gold_thousands_oz": 246055.0,
+      "silver_thousands_oz": 993303.0
+    },
+    {
+      "date": "2016-12",
+      "gold_thousands_oz": 241881.0,
+      "silver_thousands_oz": 1004313.0
+    },
+    {
+      "date": "2017-01",
+      "gold_thousands_oz": 238887.0,
+      "silver_thousands_oz": 1010942.0
+    },
+    {
+      "date": "2017-02",
+      "gold_thousands_oz": 238776.0,
+      "silver_thousands_oz": 1010268.0
+    },
+    {
+      "date": "2017-03",
+      "gold_thousands_oz": 239488.0,
+      "silver_thousands_oz": 1031321.0
+    },
+    {
+      "date": "2017-04",
+      "gold_thousands_oz": 241009.0,
+      "silver_thousands_oz": 1055393.0
+    },
+    {
+      "date": "2017-05",
+      "gold_thousands_oz": 241596.0,
+      "silver_thousands_oz": 1053498.0
+    },
+    {
+      "date": "2017-06",
+      "gold_thousands_oz": 243041.0,
+      "silver_thousands_oz": 1074647.0
+    },
+    {
+      "date": "2017-07",
+      "gold_thousands_oz": 241135.0,
+      "silver_thousands_oz": 1077855.0
+    },
+    {
+      "date": "2017-08",
+      "gold_thousands_oz": 243894.0,
+      "silver_thousands_oz": 1083032.0
+    },
+    {
+      "date": "2017-09",
+      "gold_thousands_oz": 248942.0,
+      "silver_thousands_oz": 1089013.0
+    },
+    {
+      "date": "2017-10",
+      "gold_thousands_oz": 251658.0,
+      "silver_thousands_oz": 1096559.0
+    },
+    {
+      "date": "2017-11",
+      "gold_thousands_oz": 252110.0,
+      "silver_thousands_oz": 1103662.0
+    },
+    {
+      "date": "2017-12",
+      "gold_thousands_oz": 251622.0,
+      "silver_thousands_oz": 1106489.0
+    },
+    {
+      "date": "2018-01",
+      "gold_thousands_oz": 251678.0,
+      "silver_thousands_oz": 1108613.0
+    },
+    {
+      "date": "2018-02",
+      "gold_thousands_oz": 251356.0,
+      "silver_thousands_oz": 1104999.0
+    },
+    {
+      "date": "2018-03",
+      "gold_thousands_oz": 250142.0,
+      "silver_thousands_oz": 1086259.0
+    },
+    {
+      "date": "2018-04",
+      "gold_thousands_oz": 250257.0,
+      "silver_thousands_oz": 1090476.0
+    },
+    {
+      "date": "2018-05",
+      "gold_thousands_oz": 248573.0,
+      "silver_thousands_oz": 1097000.0
+    },
+    {
+      "date": "2018-06",
+      "gold_thousands_oz": 247043.0,
+      "silver_thousands_oz": 1122091.0
+    },
+    {
+      "date": "2018-07",
+      "gold_thousands_oz": 245381.0,
+      "silver_thousands_oz": 1107680.0
+    },
+    {
+      "date": "2018-08",
+      "gold_thousands_oz": 242045.0,
+      "silver_thousands_oz": 1128297.0
+    },
+    {
+      "date": "2018-09",
+      "gold_thousands_oz": 239588.0,
+      "silver_thousands_oz": 1129624.0
+    },
+    {
+      "date": "2018-10",
+      "gold_thousands_oz": 238255.0,
+      "silver_thousands_oz": 1129268.0
+    },
+    {
+      "date": "2018-11",
+      "gold_thousands_oz": 239330.0,
+      "silver_thousands_oz": 1135782.0
+    },
+    {
+      "date": "2018-12",
+      "gold_thousands_oz": 240854.0,
+      "silver_thousands_oz": 1137680.0
+    },
+    {
+      "date": "2019-01",
+      "gold_thousands_oz": 242967.0,
+      "silver_thousands_oz": 1146502.0
+    },
+    {
+      "date": "2019-02",
+      "gold_thousands_oz": 245270.0,
+      "silver_thousands_oz": 1148400.0
+    },
+    {
+      "date": "2019-03",
+      "gold_thousands_oz": 246635.0,
+      "silver_thousands_oz": 1163695.0
+    },
+    {
+      "date": "2019-04",
+      "gold_thousands_oz": 245963.0,
+      "silver_thousands_oz": 1159570.0
+    },
+    {
+      "date": "2019-05",
+      "gold_thousands_oz": 245202.0,
+      "silver_thousands_oz": 1152110.0
+    },
+    {
+      "date": "2019-06",
+      "gold_thousands_oz": 244600.0,
+      "silver_thousands_oz": 1143018.0
+    },
+    {
+      "date": "2019-07",
+      "gold_thousands_oz": 251133.0,
+      "silver_thousands_oz": 1140675.0
+    },
+    {
+      "date": "2019-08",
+      "gold_thousands_oz": 258121.0,
+      "silver_thousands_oz": 1145738.0
+    },
+    {
+      "date": "2019-09",
+      "gold_thousands_oz": 264550.0,
+      "silver_thousands_oz": 1146308.0
+    },
+    {
+      "date": "2019-10",
+      "gold_thousands_oz": 265705.0,
+      "silver_thousands_oz": 1153427.0
+    },
+    {
+      "date": "2019-11",
+      "gold_thousands_oz": 265660.0,
+      "silver_thousands_oz": 1160517.0
+    },
+    {
+      "date": "2019-12",
+      "gold_thousands_oz": 267673.0,
+      "silver_thousands_oz": 1162162.0
+    },
+    {
+      "date": "2020-01",
+      "gold_thousands_oz": 268883.0,
+      "silver_thousands_oz": 1165549.0
+    },
+    {
+      "date": "2020-02",
+      "gold_thousands_oz": 271465.0,
+      "silver_thousands_oz": 1170061.0
+    },
+    {
+      "date": "2020-03",
+      "gold_thousands_oz": 273779.0,
+      "silver_thousands_oz": 1175737.0
+    },
+    {
+      "date": "2020-04",
+      "gold_thousands_oz": 272717.0,
+      "silver_thousands_oz": 1146719.0
+    },
+    {
+      "date": "2020-05",
+      "gold_thousands_oz": 272793.0,
+      "silver_thousands_oz": 1145072.0
+    },
+    {
+      "date": "2020-06",
+      "gold_thousands_oz": 278706.0,
+      "silver_thousands_oz": 1115657.0
+    },
+    {
+      "date": "2020-07",
+      "gold_thousands_oz": 282620.0,
+      "silver_thousands_oz": 1093482.0
+    },
+    {
+      "date": "2020-08",
+      "gold_thousands_oz": 287912.0,
+      "silver_thousands_oz": 1073500.0
+    },
+    {
+      "date": "2020-09",
+      "gold_thousands_oz": 291574.0,
+      "silver_thousands_oz": 1077299.0
+    },
+    {
+      "date": "2020-10",
+      "gold_thousands_oz": 300599.0,
+      "silver_thousands_oz": 1075121.0
+    },
+    {
+      "date": "2020-11",
+      "gold_thousands_oz": 303891.0,
+      "silver_thousands_oz": 1076242.0
+    },
+    {
+      "date": "2020-12",
+      "gold_thousands_oz": 306613.0,
+      "silver_thousands_oz": 1080538.0
+    },
+    {
+      "date": "2021-01",
+      "gold_thousands_oz": 308709.0,
+      "silver_thousands_oz": 1104241.0
+    },
+    {
+      "date": "2021-02",
+      "gold_thousands_oz": 307337.0,
+      "silver_thousands_oz": 1125154.0
+    },
+    {
+      "date": "2021-03",
+      "gold_thousands_oz": 304179.0,
+      "silver_thousands_oz": 1143194.0
+    },
+    {
+      "date": "2021-04",
+      "gold_thousands_oz": 303515.0,
+      "silver_thousands_oz": 1153154.0
+    },
+    {
+      "date": "2021-05",
+      "gold_thousands_oz": 305398.0,
+      "silver_thousands_oz": 1171586.0
+    },
+    {
+      "date": "2021-06",
+      "gold_thousands_oz": 308241.0,
+      "silver_thousands_oz": 1180113.0
+    },
+    {
+      "date": "2021-07",
+      "gold_thousands_oz": 309755.0,
+      "silver_thousands_oz": 1176371.0
+    },
+    {
+      "date": "2021-08",
+      "gold_thousands_oz": 312449.0,
+      "silver_thousands_oz": 1175664.0
+    },
+    {
+      "date": "2021-09",
+      "gold_thousands_oz": 312139.0,
+      "silver_thousands_oz": 1173050.0
+    },
+    {
+      "date": "2021-10",
+      "gold_thousands_oz": 310612.0,
+      "silver_thousands_oz": 1160965.0
+    },
+    {
+      "date": "2021-11",
+      "gold_thousands_oz": 311731.0,
+      "silver_thousands_oz": 1170959.0
+    },
+    {
+      "date": "2021-12",
+      "gold_thousands_oz": 309842.0,
+      "silver_thousands_oz": 1161454.0
+    },
+    {
+      "date": "2022-01",
+      "gold_thousands_oz": 309007.0,
+      "silver_thousands_oz": 1142061.0
+    },
+    {
+      "date": "2022-02",
+      "gold_thousands_oz": 309803.0,
+      "silver_thousands_oz": 1131432.0
+    },
+    {
+      "date": "2022-03",
+      "gold_thousands_oz": 310877.0,
+      "silver_thousands_oz": 1107969.0
+    },
+    {
+      "date": "2022-04",
+      "gold_thousands_oz": 310952.0,
+      "silver_thousands_oz": 1081730.0
+    },
+    {
+      "date": "2022-05",
+      "gold_thousands_oz": 309150.0,
+      "silver_thousands_oz": 1021041.0
+    },
+    {
+      "date": "2022-06",
+      "gold_thousands_oz": 309110.0,
+      "silver_thousands_oz": 997405.0
+    },
+    {
+      "date": "2022-07",
+      "gold_thousands_oz": 309180.0,
+      "silver_thousands_oz": 950899.0
+    },
+    {
+      "date": "2022-08",
+      "gold_thousands_oz": 307520.0,
+      "silver_thousands_oz": 916497.0
+    },
+    {
+      "date": "2022-09",
+      "gold_thousands_oz": 303599.0,
+      "silver_thousands_oz": 871331.0
+    },
+    {
+      "date": "2022-10",
+      "gold_thousands_oz": 299268.0,
+      "silver_thousands_oz": 852075.0
+    },
+    {
+      "date": "2022-11",
+      "gold_thousands_oz": 294793.0,
+      "silver_thousands_oz": 840347.0
+    },
+    {
+      "date": "2022-12",
+      "gold_thousands_oz": 291048.0,
+      "silver_thousands_oz": 840913.0
+    },
+    {
+      "date": "2023-01",
+      "gold_thousands_oz": 290382.0,
+      "silver_thousands_oz": 840877.0
+    },
+    {
+      "date": "2023-02",
+      "gold_thousands_oz": 289051.0,
+      "silver_thousands_oz": 847077.0
+    },
+    {
+      "date": "2023-03",
+      "gold_thousands_oz": 288020.0,
+      "silver_thousands_oz": 848149.0
+    },
+    {
+      "date": "2023-04",
+      "gold_thousands_oz": 288166.0,
+      "silver_thousands_oz": 846552.0
+    },
+    {
+      "date": "2023-05",
+      "gold_thousands_oz": 286227.0,
+      "silver_thousands_oz": 848631.0
+    },
+    {
+      "date": "2023-06",
+      "gold_thousands_oz": 285016.0,
+      "silver_thousands_oz": 859957.0
+    },
+    {
+      "date": "2023-07",
+      "gold_thousands_oz": 284998.0,
+      "silver_thousands_oz": 864404.0
+    },
+    {
+      "date": "2023-08",
+      "gold_thousands_oz": 282530.0,
+      "silver_thousands_oz": 877883.0
+    },
+    {
+      "date": "2023-09",
+      "gold_thousands_oz": 280583.0,
+      "silver_thousands_oz": 887164.0
+    },
+    {
+      "date": "2023-10",
+      "gold_thousands_oz": 276086.0,
+      "silver_thousands_oz": 848831.0
+    },
+    {
+      "date": "2023-11",
+      "gold_thousands_oz": 275977.0,
+      "silver_thousands_oz": 845046.0
+    },
+    {
+      "date": "2023-12",
+      "gold_thousands_oz": 279274.0,
+      "silver_thousands_oz": 856199.0
+    },
+    {
+      "date": "2024-01",
+      "gold_thousands_oz": 277611.0,
+      "silver_thousands_oz": 846457.0
+    },
+    {
+      "date": "2024-02",
+      "gold_thousands_oz": 275261.0,
+      "silver_thousands_oz": 814023.0
+    },
+    {
+      "date": "2024-03",
+      "gold_thousands_oz": 275287.0,
+      "silver_thousands_oz": 823451.0
+    },
+    {
+      "date": "2024-04",
+      "gold_thousands_oz": 274942.0,
+      "silver_thousands_oz": 818886.0
+    },
+    {
+      "date": "2024-05",
+      "gold_thousands_oz": 274583.0,
+      "silver_thousands_oz": 832158.0
+    },
+    {
+      "date": "2024-06",
+      "gold_thousands_oz": 276469.0,
+      "silver_thousands_oz": 840297.0
+    },
+    {
+      "date": "2024-07",
+      "gold_thousands_oz": 278145.0,
+      "silver_thousands_oz": 855800.0
+    },
+    {
+      "date": "2024-08",
+      "gold_thousands_oz": 278916.0,
+      "silver_thousands_oz": 843810.0
+    },
+    {
+      "date": "2024-09",
+      "gold_thousands_oz": 278521.0,
+      "silver_thousands_oz": 842730.0
+    },
+    {
+      "date": "2024-10",
+      "gold_thousands_oz": 282132.0,
+      "silver_thousands_oz": 856141.0
+    },
+    {
+      "date": "2024-11",
+      "gold_thousands_oz": 280226.0,
+      "silver_thousands_oz": 850640.0
+    },
+    {
+      "date": "2024-12",
+      "gold_thousands_oz": 279262.59,
+      "silver_thousands_oz": 827544.11
+    },
+    {
+      "date": "2025-01",
+      "gold_thousands_oz": 274396.0,
+      "silver_thousands_oz": 756457.39
+    },
+    {
+      "date": "2025-02",
+      "gold_thousands_oz": 272535.0,
+      "silver_thousands_oz": 722175.0
+    },
+    {
+      "date": "2025-03",
+      "gold_thousands_oz": 272907.0,
+      "silver_thousands_oz": 711396.0
+    },
+    {
+      "date": "2025-04",
+      "gold_thousands_oz": 274429.0,
+      "silver_thousands_oz": 734927.0
+    },
+    {
+      "date": "2025-05",
+      "gold_thousands_oz": 276424.24,
+      "silver_thousands_oz": 751260.52
+    },
+    {
+      "date": "2025-06",
+      "gold_thousands_oz": 282140.55,
+      "silver_thousands_oz": 764888.99
+    },
+    {
+      "date": "2025-07",
+      "gold_thousands_oz": 285015.0,
+      "silver_thousands_oz": 778013.0
+    },
+    {
+      "date": "2025-08",
+      "gold_thousands_oz": 283934.0,
+      "silver_thousands_oz": 792392.0
+    },
+    {
+      "date": "2025-09",
+      "gold_thousands_oz": 284241.0,
+      "silver_thousands_oz": 790309.0
+    },
+    {
+      "date": "2025-10",
+      "gold_thousands_oz": 284807.0,
+      "silver_thousands_oz": 844105.0
+    },
+    {
+      "date": "2025-11",
+      "gold_thousands_oz": 286360.0,
+      "silver_thousands_oz": 874066.0
+    },
+    {
+      "date": "2025-12",
+      "gold_thousands_oz": 292777.43,
+      "silver_thousands_oz": 894357.06
+    },
+    {
+      "date": "2026-01",
+      "gold_thousands_oz": 294440.27,
+      "silver_thousands_oz": 891511.5
+    },
+    {
+      "date": "2026-02",
+      "gold_thousands_oz": 296095.74,
+      "silver_thousands_oz": 870169.82
+    }
+  ],
+  "latest": {
+    "date": "2026-02",
+    "gold_thousands_oz": 296095.74,
+    "silver_thousands_oz": 870169.82
+  },
+  "metadata": {
+    "source": "LBMA",
+    "frequency": "monthly",
+    "unit": "Troy Ounces ('000s)",
+    "data_count": 116,
+    "start_date": "2016-07",
+    "end_date": "2026-02"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-11T22:28:27.364430+09:00"
+}

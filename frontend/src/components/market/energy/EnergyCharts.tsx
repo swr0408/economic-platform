@@ -1,5 +1,9 @@
 import { Alert, Typography } from 'antd'
 import MarketPriceChart from '../MarketPriceChart'
+import WeeklyCrudeOilInventoriesChart from './WeeklyCrudeOilInventoriesChart'
+import CushingInventoryChart from './CushingInventoryChart'
+import DistillateFuelInventoriesChart from './DistillateFuelInventoriesChart'
+import UsGasolineRefineryChart from './UsGasolineRefineryChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
 
@@ -27,6 +31,10 @@ export default function EnergyCharts() {
       </div>
       <div id="wti"><MarketPriceChart title="WTI原油" symbolData={data?.crude_oil} color={COLORS.crude_oil} unit=" USD/bbl" /></div>
       <div id="brent"><MarketPriceChart title="ブレント原油" symbolData={data?.brent_oil} color={COLORS.brent_oil} unit=" USD/bbl" /></div>
+      <div id="weekly-crude-oil-inventories"><WeeklyCrudeOilInventoriesChart /></div>
+      <div id="cushing-inventory"><CushingInventoryChart /></div>
+      <div id="distillate-fuel-inventories"><DistillateFuelInventoriesChart /></div>
+      <div id="gasoline-refinery"><UsGasolineRefineryChart /></div>
 
       {/* 天然ガス */}
       <div id="natural-gas">

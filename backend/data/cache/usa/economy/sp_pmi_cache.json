@@ -2392,8 +2392,8 @@
     "datetime_utc": "2026-03-24T13:45:00+00:00",
     "datetime_jst": "2026-03-24T22:45:00+09:00",
     "time_jst": "22:45",
-    "label": "S&P Global Manufacturing PMI (Mar)",
-    "estimate": null
+    "label": "S&P Global Manufacturing PMI Flash (Mar)",
+    "estimate": 52
   },
-  "last_updated": "2026-03-10T23:00:00.279414+09:00"
+  "last_updated": "2026-03-11T23:00:01.030031+09:00"
 }

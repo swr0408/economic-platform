@@ -11,6 +11,9 @@
 - GET /api/china/safe/capital-flows - 資本フローデータ
 - GET /api/china/safe/capital-flows/cache - キャッシュ状態
 - DELETE /api/china/safe/capital-flows/cache - キャッシュ無効化
+- GET /api/china/safe/gold-reserves - 金準備データ
+- GET /api/china/safe/gold-reserves/cache - キャッシュ状態
+- DELETE /api/china/safe/gold-reserves/cache - キャッシュ無効化
 """
 from fastapi import APIRouter, Query
 from typing import Dict, Any
@@ -18,6 +21,7 @@ from typing import Dict, Any
 from services.china.cn_current_account_service import cn_current_account_service
 from services.china.cn_current_account_gdp_ratio_service import cn_current_account_gdp_ratio_service
 from services.china.cn_capital_flows_service import cn_capital_flows_service
+from services.china.cn_gold_reserves_service import cn_gold_reserves_service
 
 router = APIRouter(
     prefix="/api/china/safe",
@@ -95,3 +99,27 @@ async def get_capital_flows_cache_status() -> Dict[str, Any]:
 async def invalidate_capital_flows_cache() -> Dict[str, Any]:
     """資本フローのキャッシュを無効化"""
     return cn_capital_flows_service.invalidate_cache()
+
+
+# -------------------------------------------------------------------------
+# 金準備（Gold Reserves）
+# -------------------------------------------------------------------------
+
+@router.get("/gold-reserves")
+def get_gold_reserves(
+    force_refresh: bool = Query(False, description="強制的にデータを再取得")
+) -> Dict[str, Any]:
+    """金準備（月次、万トロイオンス / 億USD）データを返す"""
+    return cn_gold_reserves_service.get_data(force_refresh=force_refresh)
+
+
+@router.get("/gold-reserves/cache")
+def get_gold_reserves_cache_status() -> Dict[str, Any]:
+    """金準備のキャッシュ状態を返す"""
+    return cn_gold_reserves_service.get_cache_status()
+
+
+@router.delete("/gold-reserves/cache")
+def invalidate_gold_reserves_cache() -> Dict[str, Any]:
+    """金準備のキャッシュを無効化"""
+    return cn_gold_reserves_service.invalidate_cache()

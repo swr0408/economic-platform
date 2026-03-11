@@ -1,0 +1,6829 @@
+{
+  "data": [
+    {
+      "date": "2019-03-01",
+      "total_shares_wan": 245404.08
+    },
+    {
+      "date": "2019-03-04",
+      "total_shares_wan": 244444.08
+    },
+    {
+      "date": "2019-03-05",
+      "total_shares_wan": 242254.08
+    },
+    {
+      "date": "2019-03-06",
+      "total_shares_wan": 241864.08
+    },
+    {
+      "date": "2019-03-07",
+      "total_shares_wan": 242734.08
+    },
+    {
+      "date": "2019-03-08",
+      "total_shares_wan": 243214.08
+    },
+    {
+      "date": "2019-03-11",
+      "total_shares_wan": 243154.08
+    },
+    {
+      "date": "2019-03-12",
+      "total_shares_wan": 244264.08
+    },
+    {
+      "date": "2019-03-13",
+      "total_shares_wan": 245584.08
+    },
+    {
+      "date": "2019-03-14",
+      "total_shares_wan": 243964.08
+    },
+    {
+      "date": "2019-03-15",
+      "total_shares_wan": 241324.08
+    },
+    {
+      "date": "2019-03-18",
+      "total_shares_wan": 237694.08
+    },
+    {
+      "date": "2019-03-19",
+      "total_shares_wan": 236644.08
+    },
+    {
+      "date": "2019-03-20",
+      "total_shares_wan": 235414.08
+    },
+    {
+      "date": "2019-03-21",
+      "total_shares_wan": 235114.08
+    },
+    {
+      "date": "2019-03-22",
+      "total_shares_wan": 234304.08
+    },
+    {
+      "date": "2019-03-25",
+      "total_shares_wan": 234364.08
+    },
+    {
+      "date": "2019-03-26",
+      "total_shares_wan": 236914.08
+    },
+    {
+      "date": "2019-03-27",
+      "total_shares_wan": 235744.08
+    },
+    {
+      "date": "2019-03-28",
+      "total_shares_wan": 235024.08
+    },
+    {
+      "date": "2019-03-29",
+      "total_shares_wan": 234724.08
+    },
+    {
+      "date": "2019-04-01",
+      "total_shares_wan": 229834.08
+    },
+    {
+      "date": "2019-04-02",
+      "total_shares_wan": 228304.08
+    },
+    {
+      "date": "2019-04-03",
+      "total_shares_wan": 233614.08
+    },
+    {
+      "date": "2019-04-04",
+      "total_shares_wan": 236614.08
+    },
+    {
+      "date": "2019-04-08",
+      "total_shares_wan": 237304.08
+    },
+    {
+      "date": "2019-04-09",
+      "total_shares_wan": 237034.08
+    },
+    {
+      "date": "2019-04-10",
+      "total_shares_wan": 237064.08
+    },
+    {
+      "date": "2019-04-11",
+      "total_shares_wan": 238354.08
+    },
+    {
+      "date": "2019-04-12",
+      "total_shares_wan": 235804.08
+    },
+    {
+      "date": "2019-04-15",
+      "total_shares_wan": 235384.08
+    },
+    {
+      "date": "2019-04-16",
+      "total_shares_wan": 234064.08
+    },
+    {
+      "date": "2019-04-17",
+      "total_shares_wan": 235294.08
+    },
+    {
+      "date": "2019-04-18",
+      "total_shares_wan": 236374.08
+    },
+    {
+      "date": "2019-04-19",
+      "total_shares_wan": 238834.08
+    },
+    {
+      "date": "2019-04-22",
+      "total_shares_wan": 235804.08
+    },
+    {
+      "date": "2019-04-23",
+      "total_shares_wan": 232804.08
+    },
+    {
+      "date": "2019-04-24",
+      "total_shares_wan": 223504.08
+    },
+    {
+      "date": "2019-04-25",
+      "total_shares_wan": 211954.08
+    },
+    {
+      "date": "2019-04-26",
+      "total_shares_wan": 197104.08
+    },
+    {
+      "date": "2019-04-29",
+      "total_shares_wan": 184204.08
+    },
+    {
+      "date": "2019-04-30",
+      "total_shares_wan": 179074.08
+    },
+    {
+      "date": "2019-05-06",
+      "total_shares_wan": 177814.08
+    },
+    {
+      "date": "2019-05-07",
+      "total_shares_wan": 175144.08
+    },
+    {
+      "date": "2019-05-08",
+      "total_shares_wan": 175534.08
+    },
+    {
+      "date": "2019-05-09",
+      "total_shares_wan": 175924.08
+    },
+    {
+      "date": "2019-05-10",
+      "total_shares_wan": 175954.08
+    },
+    {
+      "date": "2019-05-13",
+      "total_shares_wan": 176014.08
+    },
+    {
+      "date": "2019-05-14",
+      "total_shares_wan": 174664.08
+    },
+    {
+      "date": "2019-05-15",
+      "total_shares_wan": 170434.08
+    },
+    {
+      "date": "2019-05-16",
+      "total_shares_wan": 162244.08
+    },
+    {
+      "date": "2019-05-17",
+      "total_shares_wan": 158674.08
+    },
+    {
+      "date": "2019-05-20",
+      "total_shares_wan": 157924.08
+    },
+    {
+      "date": "2019-05-21",
+      "total_shares_wan": 156004.08
+    },
+    {
+      "date": "2019-05-22",
+      "total_shares_wan": 156544.08
+    },
+    {
+      "date": "2019-05-23",
+      "total_shares_wan": 159754.08
+    },
+    {
+      "date": "2019-05-24",
+      "total_shares_wan": 159424.08
+    },
+    {
+      "date": "2019-05-27",
+      "total_shares_wan": 162454.08
+    },
+    {
+      "date": "2019-05-28",
+      "total_shares_wan": 162514.08
+    },
+    {
+      "date": "2019-05-29",
+      "total_shares_wan": 165694.08
+    },
+    {
+      "date": "2019-05-30",
+      "total_shares_wan": 166744.08
+    },
+    {
+      "date": "2019-05-31",
+      "total_shares_wan": 169234.08
+    },
+    {
+      "date": "2019-06-03",
+      "total_shares_wan": 171904.08
+    },
+    {
+      "date": "2019-06-04",
+      "total_shares_wan": 175474.08
+    },
+    {
+      "date": "2019-06-05",
+      "total_shares_wan": 177994.08
+    },
+    {
+      "date": "2019-06-06",
+      "total_shares_wan": 181354.08
+    },
+    {
+      "date": "2019-06-10",
+      "total_shares_wan": 181684.08
+    },
+    {
+      "date": "2019-06-11",
+      "total_shares_wan": 177424.08
+    },
+    {
+      "date": "2019-06-12",
+      "total_shares_wan": 172564.08
+    },
+    {
+      "date": "2019-06-13",
+      "total_shares_wan": 173434.08
+    },
+    {
+      "date": "2019-06-14",
+      "total_shares_wan": 176344.08
+    },
+    {
+      "date": "2019-06-17",
+      "total_shares_wan": 178864.08
+    },
+    {
+      "date": "2019-06-18",
+      "total_shares_wan": 179974.08
+    },
+    {
+      "date": "2019-06-19",
+      "total_shares_wan": 182404.08
+    },
+    {
+      "date": "2019-06-20",
+      "total_shares_wan": 178714.08
+    },
+    {
+      "date": "2019-06-21",
+      "total_shares_wan": 176914.08
+    },
+    {
+      "date": "2019-06-24",
+      "total_shares_wan": 174544.08
+    },
+    {
+      "date": "2019-06-25",
+      "total_shares_wan": 174004.08
+    },
+    {
+      "date": "2019-06-26",
+      "total_shares_wan": 177994.08
+    },
+    {
+      "date": "2019-06-27",
+      "total_shares_wan": 179434.08
+    },
+    {
+      "date": "2019-06-28",
+      "total_shares_wan": 179344.08
+    },
+    {
+      "date": "2019-07-01",
+      "total_shares_wan": 179194.08
+    },
+    {
+      "date": "2019-07-02",
+      "total_shares_wan": 176044.08
+    },
+    {
+      "date": "2019-07-03",
+      "total_shares_wan": 176494.08
+    },
+    {
+      "date": "2019-07-04",
+      "total_shares_wan": 176494.08
+    },
+    {
+      "date": "2019-07-05",
+      "total_shares_wan": 177094.08
+    },
+    {
+      "date": "2019-07-08",
+      "total_shares_wan": 178924.08
+    },
+    {
+      "date": "2019-07-09",
+      "total_shares_wan": 180604.08
+    },
+    {
+      "date": "2019-07-10",
+      "total_shares_wan": 181114.08
+    },
+    {
+      "date": "2019-07-11",
+      "total_shares_wan": 184474.08
+    },
+    {
+      "date": "2019-07-12",
+      "total_shares_wan": 184204.08
+    },
+    {
+      "date": "2019-07-15",
+      "total_shares_wan": 183304.08
+    },
+    {
+      "date": "2019-07-16",
+      "total_shares_wan": 184324.08
+    },
+    {
+      "date": "2019-07-17",
+      "total_shares_wan": 183844.08
+    },
+    {
+      "date": "2019-07-18",
+      "total_shares_wan": 184594.08
+    },
+    {
+      "date": "2019-07-19",
+      "total_shares_wan": 185554.08
+    },
+    {
+      "date": "2019-07-22",
+      "total_shares_wan": 186124.08
+    },
+    {
+      "date": "2019-07-23",
+      "total_shares_wan": 186214.08
+    },
+    {
+      "date": "2019-07-24",
+      "total_shares_wan": 187384.08
+    },
+    {
+      "date": "2019-07-25",
+      "total_shares_wan": 188224.08
+    },
+    {
+      "date": "2019-07-26",
+      "total_shares_wan": 188674.08
+    },
+    {
+      "date": "2019-07-29",
+      "total_shares_wan": 189364.08
+    },
+    {
+      "date": "2019-07-30",
+      "total_shares_wan": 189664.08
+    },
+    {
+      "date": "2019-07-31",
+      "total_shares_wan": 189484.08
+    },
+    {
+      "date": "2019-08-01",
+      "total_shares_wan": 189184.08
+    },
+    {
+      "date": "2019-08-02",
+      "total_shares_wan": 189514.08
+    },
+    {
+      "date": "2019-08-05",
+      "total_shares_wan": 193534.08
+    },
+    {
+      "date": "2019-08-06",
+      "total_shares_wan": 195214.08
+    },
+    {
+      "date": "2019-08-07",
+      "total_shares_wan": 199564.08
+    },
+    {
+      "date": "2019-08-08",
+      "total_shares_wan": 203044.08
+    },
+    {
+      "date": "2019-08-09",
+      "total_shares_wan": 209194.08
+    },
+    {
+      "date": "2019-08-12",
+      "total_shares_wan": 211504.08
+    },
+    {
+      "date": "2019-08-13",
+      "total_shares_wan": 217264.08
+    },
+    {
+      "date": "2019-08-14",
+      "total_shares_wan": 222724.08
+    },
+    {
+      "date": "2019-08-15",
+      "total_shares_wan": 230404.08
+    },
+    {
+      "date": "2019-08-16",
+      "total_shares_wan": 233164.08
+    },
+    {
+      "date": "2019-08-19",
+      "total_shares_wan": 234844.08
+    },
+    {
+      "date": "2019-08-20",
+      "total_shares_wan": 236074.08
+    },
+    {
+      "date": "2019-08-21",
+      "total_shares_wan": 236914.08
+    },
+    {
+      "date": "2019-08-22",
+      "total_shares_wan": 236404.08
+    },
+    {
+      "date": "2019-08-23",
+      "total_shares_wan": 235624.08
+    },
+    {
+      "date": "2019-08-26",
+      "total_shares_wan": 234904.08
+    },
+    {
+      "date": "2019-08-27",
+      "total_shares_wan": 236434.08
+    },
+    {
+      "date": "2019-08-28",
+      "total_shares_wan": 236254.08
+    },
+    {
+      "date": "2019-08-29",
+      "total_shares_wan": 238054.08
+    },
+    {
+      "date": "2019-08-30",
+      "total_shares_wan": 245224.08
+    },
+    {
+      "date": "2019-09-02",
+      "total_shares_wan": 251584.08
+    },
+    {
+      "date": "2019-09-03",
+      "total_shares_wan": 253504.08
+    },
+    {
+      "date": "2019-09-04",
+      "total_shares_wan": 254104.08
+    },
+    {
+      "date": "2019-09-05",
+      "total_shares_wan": 253264.08
+    },
+    {
+      "date": "2019-09-06",
+      "total_shares_wan": 251884.08
+    },
+    {
+      "date": "2019-09-09",
+      "total_shares_wan": 255514.08
+    },
+    {
+      "date": "2019-09-10",
+      "total_shares_wan": 252304.08
+    },
+    {
+      "date": "2019-09-11",
+      "total_shares_wan": 248734.08
+    },
+    {
+      "date": "2019-09-12",
+      "total_shares_wan": 247084.08
+    },
+    {
+      "date": "2019-09-16",
+      "total_shares_wan": 253984.08
+    },
+    {
+      "date": "2019-09-17",
+      "total_shares_wan": 257374.08
+    },
+    {
+      "date": "2019-09-18",
+      "total_shares_wan": 257164.08
+    },
+    {
+      "date": "2019-09-19",
+      "total_shares_wan": 256804.08
+    },
+    {
+      "date": "2019-09-20",
+      "total_shares_wan": 255994.08
+    },
+    {
+      "date": "2019-09-23",
+      "total_shares_wan": 257134.08
+    },
+    {
+      "date": "2019-09-24",
+      "total_shares_wan": 256024.08
+    },
+    {
+      "date": "2019-09-25",
+      "total_shares_wan": 255304.08
+    },
+    {
+      "date": "2019-09-26",
+      "total_shares_wan": 253534.08
+    },
+    {
+      "date": "2019-09-27",
+      "total_shares_wan": 252274.08
+    },
+    {
+      "date": "2019-09-30",
+      "total_shares_wan": 252454.08
+    },
+    {
+      "date": "2019-10-08",
+      "total_shares_wan": 252544.08
+    },
+    {
+      "date": "2019-10-09",
+      "total_shares_wan": 252994.08
+    },
+    {
+      "date": "2019-10-10",
+      "total_shares_wan": 253774.08
+    },
+    {
+      "date": "2019-10-11",
+      "total_shares_wan": 253864.08
+    },
+    {
+      "date": "2019-10-14",
+      "total_shares_wan": 253684.08
+    },
+    {
+      "date": "2019-10-15",
+      "total_shares_wan": 253504.08
+    },
+    {
+      "date": "2019-10-16",
+      "total_shares_wan": 252544.08
+    },
+    {
+      "date": "2019-10-17",
+      "total_shares_wan": 251524.08
+    },
+    {
+      "date": "2019-10-18",
+      "total_shares_wan": 249304.08
+    },
+    {
+      "date": "2019-10-21",
+      "total_shares_wan": 249124.08
+    },
+    {
+      "date": "2019-10-22",
+      "total_shares_wan": 249574.08
+    },
+    {
+      "date": "2019-10-23",
+      "total_shares_wan": 249454.08
+    },
+    {
+      "date": "2019-10-24",
+      "total_shares_wan": 249184.08
+    },
+    {
+      "date": "2019-10-25",
+      "total_shares_wan": 250564.08
+    },
+    {
+      "date": "2019-10-28",
+      "total_shares_wan": 249544.08
+    },
+    {
+      "date": "2019-10-29",
+      "total_shares_wan": 249334.08
+    },
+    {
+      "date": "2019-10-30",
+      "total_shares_wan": 249664.08
+    },
+    {
+      "date": "2019-10-31",
+      "total_shares_wan": 249844.08
+    },
+    {
+      "date": "2019-11-01",
+      "total_shares_wan": 249754.08
+    },
+    {
+      "date": "2019-11-04",
+      "total_shares_wan": 248284.08
+    },
+    {
+      "date": "2019-11-05",
+      "total_shares_wan": 247924.08
+    },
+    {
+      "date": "2019-11-06",
+      "total_shares_wan": 247354.08
+    },
+    {
+      "date": "2019-11-07",
+      "total_shares_wan": 246574.08
+    },
+    {
+      "date": "2019-11-08",
+      "total_shares_wan": 246514.08
+    },
+    {
+      "date": "2019-11-11",
+      "total_shares_wan": 246724.08
+    },
+    {
+      "date": "2019-11-12",
+      "total_shares_wan": 244714.08
+    },
+    {
+      "date": "2019-11-13",
+      "total_shares_wan": 242254.08
+    },
+    {
+      "date": "2019-11-14",
+      "total_shares_wan": 240454.08
+    },
+    {
+      "date": "2019-11-15",
+      "total_shares_wan": 239074.08
+    },
+    {
+      "date": "2019-11-18",
+      "total_shares_wan": 238174.08
+    },
+    {
+      "date": "2019-11-19",
+      "total_shares_wan": 236914.08
+    },
+    {
+      "date": "2019-11-20",
+      "total_shares_wan": 234124.08
+    },
+    {
+      "date": "2019-11-21",
+      "total_shares_wan": 233854.08
+    },
+    {
+      "date": "2019-11-22",
+      "total_shares_wan": 233584.08
+    },
+    {
+      "date": "2019-11-25",
+      "total_shares_wan": 234784.08
+    },
+    {
+      "date": "2019-11-26",
+      "total_shares_wan": 233674.08
+    },
+    {
+      "date": "2019-11-27",
+      "total_shares_wan": 232894.08
+    },
+    {
+      "date": "2019-11-28",
+      "total_shares_wan": 232924.08
+    },
+    {
+      "date": "2019-11-29",
+      "total_shares_wan": 233884.08
+    },
+    {
+      "date": "2019-12-02",
+      "total_shares_wan": 233404.08
+    },
+    {
+      "date": "2019-12-03",
+      "total_shares_wan": 232264.08
+    },
+    {
+      "date": "2019-12-04",
+      "total_shares_wan": 231694.08
+    },
+    {
+      "date": "2019-12-05",
+      "total_shares_wan": 228694.08
+    },
+    {
+      "date": "2019-12-06",
+      "total_shares_wan": 227854.08
+    },
+    {
+      "date": "2019-12-09",
+      "total_shares_wan": 226234.08
+    },
+    {
+      "date": "2019-12-10",
+      "total_shares_wan": 224614.08
+    },
+    {
+      "date": "2019-12-11",
+      "total_shares_wan": 223774.08
+    },
+    {
+      "date": "2019-12-12",
+      "total_shares_wan": 223504.08
+    },
+    {
+      "date": "2019-12-13",
+      "total_shares_wan": 223084.08
+    },
+    {
+      "date": "2019-12-16",
+      "total_shares_wan": 226654.08
+    },
+    {
+      "date": "2019-12-17",
+      "total_shares_wan": 223384.08
+    },
+    {
+      "date": "2019-12-18",
+      "total_shares_wan": 220234.08
+    },
+    {
+      "date": "2019-12-19",
+      "total_shares_wan": 217414.08
+    },
+    {
+      "date": "2019-12-20",
+      "total_shares_wan": 215734.08
+    },
+    {
+      "date": "2019-12-23",
+      "total_shares_wan": 214564.08
+    },
+    {
+      "date": "2019-12-24",
+      "total_shares_wan": 212374.08
+    },
+    {
+      "date": "2019-12-25",
+      "total_shares_wan": 212044.08
+    },
+    {
+      "date": "2019-12-26",
+      "total_shares_wan": 212464.08
+    },
+    {
+      "date": "2019-12-27",
+      "total_shares_wan": 211714.08
+    },
+    {
+      "date": "2019-12-30",
+      "total_shares_wan": 210454.08
+    },
+    {
+      "date": "2019-12-31",
+      "total_shares_wan": 207814.08
+    },
+    {
+      "date": "2020-01-02",
+      "total_shares_wan": 205894.08
+    },
+    {
+      "date": "2020-01-03",
+      "total_shares_wan": 204184.08
+    },
+    {
+      "date": "2020-01-06",
+      "total_shares_wan": 202864.08
+    },
+    {
+      "date": "2020-01-07",
+      "total_shares_wan": 206224.08
+    },
+    {
+      "date": "2020-01-08",
+      "total_shares_wan": 206104.08
+    },
+    {
+      "date": "2020-01-09",
+      "total_shares_wan": 207004.08
+    },
+    {
+      "date": "2020-01-10",
+      "total_shares_wan": 207034.08
+    },
+    {
+      "date": "2020-01-13",
+      "total_shares_wan": 207874.08
+    },
+    {
+      "date": "2020-01-14",
+      "total_shares_wan": 209554.08
+    },
+    {
+      "date": "2020-01-15",
+      "total_shares_wan": 209794.08
+    },
+    {
+      "date": "2020-01-16",
+      "total_shares_wan": 209524.08
+    },
+    {
+      "date": "2020-01-17",
+      "total_shares_wan": 212074.08
+    },
+    {
+      "date": "2020-01-20",
+      "total_shares_wan": 212494.08
+    },
+    {
+      "date": "2020-01-21",
+      "total_shares_wan": 214894.08
+    },
+    {
+      "date": "2020-01-22",
+      "total_shares_wan": 213664.08
+    },
+    {
+      "date": "2020-01-23",
+      "total_shares_wan": 212824.08
+    },
+    {
+      "date": "2020-02-03",
+      "total_shares_wan": 212074.08
+    },
+    {
+      "date": "2020-02-04",
+      "total_shares_wan": 208834.08
+    },
+    {
+      "date": "2020-02-05",
+      "total_shares_wan": 208444.08
+    },
+    {
+      "date": "2020-02-06",
+      "total_shares_wan": 209044.08
+    },
+    {
+      "date": "2020-02-07",
+      "total_shares_wan": 210334.08
+    },
+    {
+      "date": "2020-02-10",
+      "total_shares_wan": 209914.08
+    },
+    {
+      "date": "2020-02-11",
+      "total_shares_wan": 210004.08
+    },
+    {
+      "date": "2020-02-12",
+      "total_shares_wan": 211264.08
+    },
+    {
+      "date": "2020-02-13",
+      "total_shares_wan": 212194.08
+    },
+    {
+      "date": "2020-02-14",
+      "total_shares_wan": 212734.08
+    },
+    {
+      "date": "2020-02-17",
+      "total_shares_wan": 209764.08
+    },
+    {
+      "date": "2020-02-18",
+      "total_shares_wan": 208654.08
+    },
+    {
+      "date": "2020-02-19",
+      "total_shares_wan": 207364.08
+    },
+    {
+      "date": "2020-02-20",
+      "total_shares_wan": 206794.08
+    },
+    {
+      "date": "2020-02-21",
+      "total_shares_wan": 209824.08
+    },
+    {
+      "date": "2020-02-24",
+      "total_shares_wan": 212014.08
+    },
+    {
+      "date": "2020-02-25",
+      "total_shares_wan": 222304.08
+    },
+    {
+      "date": "2020-02-26",
+      "total_shares_wan": 227884.08
+    },
+    {
+      "date": "2020-02-27",
+      "total_shares_wan": 232204.08
+    },
+    {
+      "date": "2020-02-28",
+      "total_shares_wan": 232024.08
+    },
+    {
+      "date": "2020-03-02",
+      "total_shares_wan": 237574.08
+    },
+    {
+      "date": "2020-03-03",
+      "total_shares_wan": 241834.08
+    },
+    {
+      "date": "2020-03-04",
+      "total_shares_wan": 241744.08
+    },
+    {
+      "date": "2020-03-05",
+      "total_shares_wan": 240544.08
+    },
+    {
+      "date": "2020-03-06",
+      "total_shares_wan": 238744.08
+    },
+    {
+      "date": "2020-03-09",
+      "total_shares_wan": 238054.08
+    },
+    {
+      "date": "2020-03-10",
+      "total_shares_wan": 234904.08
+    },
+    {
+      "date": "2020-03-11",
+      "total_shares_wan": 237544.08
+    },
+    {
+      "date": "2020-03-12",
+      "total_shares_wan": 240244.08
+    },
+    {
+      "date": "2020-03-13",
+      "total_shares_wan": 240304.08
+    },
+    {
+      "date": "2020-03-16",
+      "total_shares_wan": 243244.08
+    },
+    {
+      "date": "2020-03-17",
+      "total_shares_wan": 243484.08
+    },
+    {
+      "date": "2020-03-18",
+      "total_shares_wan": 242524.08
+    },
+    {
+      "date": "2020-03-19",
+      "total_shares_wan": 234724.08
+    },
+    {
+      "date": "2020-03-20",
+      "total_shares_wan": 235654.08
+    },
+    {
+      "date": "2020-03-23",
+      "total_shares_wan": 244324.08
+    },
+    {
+      "date": "2020-03-24",
+      "total_shares_wan": 249754.08
+    },
+    {
+      "date": "2020-03-25",
+      "total_shares_wan": 250234.08
+    },
+    {
+      "date": "2020-03-26",
+      "total_shares_wan": 250474.08
+    },
+    {
+      "date": "2020-03-27",
+      "total_shares_wan": 248044.08
+    },
+    {
+      "date": "2020-03-30",
+      "total_shares_wan": 247864.08
+    },
+    {
+      "date": "2020-03-31",
+      "total_shares_wan": 248224.08
+    },
+    {
+      "date": "2020-04-01",
+      "total_shares_wan": 247984.08
+    },
+    {
+      "date": "2020-04-02",
+      "total_shares_wan": 247684.08
+    },
+    {
+      "date": "2020-04-03",
+      "total_shares_wan": 248404.08
+    },
+    {
+      "date": "2020-04-07",
+      "total_shares_wan": 248884.08
+    },
+    {
+      "date": "2020-04-08",
+      "total_shares_wan": 249694.08
+    },
+    {
+      "date": "2020-04-09",
+      "total_shares_wan": 249604.08
+    },
+    {
+      "date": "2020-04-10",
+      "total_shares_wan": 251314.08
+    },
+    {
+      "date": "2020-04-13",
+      "total_shares_wan": 252244.08
+    },
+    {
+      "date": "2020-04-14",
+      "total_shares_wan": 256264.08
+    },
+    {
+      "date": "2020-04-15",
+      "total_shares_wan": 255844.08
+    },
+    {
+      "date": "2020-04-16",
+      "total_shares_wan": 260734.08
+    },
+    {
+      "date": "2020-04-17",
+      "total_shares_wan": 262084.08
+    },
+    {
+      "date": "2020-04-20",
+      "total_shares_wan": 265534.08
+    },
+    {
+      "date": "2020-04-21",
+      "total_shares_wan": 267484.08
+    },
+    {
+      "date": "2020-04-22",
+      "total_shares_wan": 268684.08
+    },
+    {
+      "date": "2020-04-23",
+      "total_shares_wan": 271714.08
+    },
+    {
+      "date": "2020-04-24",
+      "total_shares_wan": 273874.08
+    },
+    {
+      "date": "2020-04-27",
+      "total_shares_wan": 274294.08
+    },
+    {
+      "date": "2020-04-28",
+      "total_shares_wan": 274084.08
+    },
+    {
+      "date": "2020-04-29",
+      "total_shares_wan": 281944.08
+    },
+    {
+      "date": "2020-04-30",
+      "total_shares_wan": 283834.08
+    },
+    {
+      "date": "2020-05-06",
+      "total_shares_wan": 283594.08
+    },
+    {
+      "date": "2020-05-07",
+      "total_shares_wan": 284134.08
+    },
+    {
+      "date": "2020-05-08",
+      "total_shares_wan": 283594.08
+    },
+    {
+      "date": "2020-05-11",
+      "total_shares_wan": 282064.08
+    },
+    {
+      "date": "2020-05-12",
+      "total_shares_wan": 278314.08
+    },
+    {
+      "date": "2020-05-13",
+      "total_shares_wan": 279454.08
+    },
+    {
+      "date": "2020-05-14",
+      "total_shares_wan": 280204.08
+    },
+    {
+      "date": "2020-05-15",
+      "total_shares_wan": 282964.08
+    },
+    {
+      "date": "2020-05-18",
+      "total_shares_wan": 286984.08
+    },
+    {
+      "date": "2020-05-19",
+      "total_shares_wan": 287014.08
+    },
+    {
+      "date": "2020-05-20",
+      "total_shares_wan": 287824.08
+    },
+    {
+      "date": "2020-05-21",
+      "total_shares_wan": 288004.08
+    },
+    {
+      "date": "2020-05-22",
+      "total_shares_wan": 289444.08
+    },
+    {
+      "date": "2020-05-25",
+      "total_shares_wan": 290014.08
+    },
+    {
+      "date": "2020-05-26",
+      "total_shares_wan": 294664.08
+    },
+    {
+      "date": "2020-05-27",
+      "total_shares_wan": 295234.08
+    },
+    {
+      "date": "2020-05-28",
+      "total_shares_wan": 297844.08
+    },
+    {
+      "date": "2020-05-29",
+      "total_shares_wan": 298984.08
+    },
+    {
+      "date": "2020-06-01",
+      "total_shares_wan": 298774.08
+    },
+    {
+      "date": "2020-06-02",
+      "total_shares_wan": 297874.08
+    },
+    {
+      "date": "2020-06-03",
+      "total_shares_wan": 295624.08
+    },
+    {
+      "date": "2020-06-04",
+      "total_shares_wan": 295774.08
+    },
+    {
+      "date": "2020-06-05",
+      "total_shares_wan": 296884.08
+    },
+    {
+      "date": "2020-06-08",
+      "total_shares_wan": 293494.08
+    },
+    {
+      "date": "2020-06-09",
+      "total_shares_wan": 292444.08
+    },
+    {
+      "date": "2020-06-10",
+      "total_shares_wan": 290194.08
+    },
+    {
+      "date": "2020-06-11",
+      "total_shares_wan": 289804.08
+    },
+    {
+      "date": "2020-06-12",
+      "total_shares_wan": 289804.08
+    },
+    {
+      "date": "2020-06-15",
+      "total_shares_wan": 289714.08
+    },
+    {
+      "date": "2020-06-16",
+      "total_shares_wan": 288634.08
+    },
+    {
+      "date": "2020-06-17",
+      "total_shares_wan": 286654.08
+    },
+    {
+      "date": "2020-06-18",
+      "total_shares_wan": 286084.08
+    },
+    {
+      "date": "2020-06-19",
+      "total_shares_wan": 284104.08
+    },
+    {
+      "date": "2020-06-22",
+      "total_shares_wan": 282724.08
+    },
+    {
+      "date": "2020-06-23",
+      "total_shares_wan": 278794.08
+    },
+    {
+      "date": "2020-06-24",
+      "total_shares_wan": 278734.08
+    },
+    {
+      "date": "2020-06-29",
+      "total_shares_wan": 278404.08
+    },
+    {
+      "date": "2020-06-30",
+      "total_shares_wan": 278464.08
+    },
+    {
+      "date": "2020-07-01",
+      "total_shares_wan": 276754.08
+    },
+    {
+      "date": "2020-07-02",
+      "total_shares_wan": 275434.08
+    },
+    {
+      "date": "2020-07-03",
+      "total_shares_wan": 276004.08
+    },
+    {
+      "date": "2020-07-06",
+      "total_shares_wan": 274024.08
+    },
+    {
+      "date": "2020-07-07",
+      "total_shares_wan": 270244.08
+    },
+    {
+      "date": "2020-07-08",
+      "total_shares_wan": 265054.08
+    },
+    {
+      "date": "2020-07-09",
+      "total_shares_wan": 263764.08
+    },
+    {
+      "date": "2020-07-10",
+      "total_shares_wan": 263434.08
+    },
+    {
+      "date": "2020-07-13",
+      "total_shares_wan": 264574.08
+    },
+    {
+      "date": "2020-07-14",
+      "total_shares_wan": 264364.08
+    },
+    {
+      "date": "2020-07-15",
+      "total_shares_wan": 264334.08
+    },
+    {
+      "date": "2020-07-16",
+      "total_shares_wan": 264574.08
+    },
+    {
+      "date": "2020-07-17",
+      "total_shares_wan": 264094.08
+    },
+    {
+      "date": "2020-07-20",
+      "total_shares_wan": 264664.08
+    },
+    {
+      "date": "2020-07-21",
+      "total_shares_wan": 264214.08
+    },
+    {
+      "date": "2020-07-22",
+      "total_shares_wan": 265114.08
+    },
+    {
+      "date": "2020-07-23",
+      "total_shares_wan": 266734.08
+    },
+    {
+      "date": "2020-07-24",
+      "total_shares_wan": 269014.08
+    },
+    {
+      "date": "2020-07-27",
+      "total_shares_wan": 279454.08
+    },
+    {
+      "date": "2020-07-28",
+      "total_shares_wan": 281704.08
+    },
+    {
+      "date": "2020-07-29",
+      "total_shares_wan": 283054.08
+    },
+    {
+      "date": "2020-07-30",
+      "total_shares_wan": 284704.08
+    },
+    {
+      "date": "2020-07-31",
+      "total_shares_wan": 284734.08
+    },
+    {
+      "date": "2020-08-03",
+      "total_shares_wan": 283654.08
+    },
+    {
+      "date": "2020-08-04",
+      "total_shares_wan": 283684.08
+    },
+    {
+      "date": "2020-08-05",
+      "total_shares_wan": 282604.08
+    },
+    {
+      "date": "2020-08-06",
+      "total_shares_wan": 282544.08
+    },
+    {
+      "date": "2020-08-07",
+      "total_shares_wan": 279994.08
+    },
+    {
+      "date": "2020-08-10",
+      "total_shares_wan": 280414.08
+    },
+    {
+      "date": "2020-08-11",
+      "total_shares_wan": 283324.08
+    },
+    {
+      "date": "2020-08-12",
+      "total_shares_wan": 288544.08
+    },
+    {
+      "date": "2020-08-13",
+      "total_shares_wan": 284374.08
+    },
+    {
+      "date": "2020-08-14",
+      "total_shares_wan": 283204.08
+    },
+    {
+      "date": "2020-08-17",
+      "total_shares_wan": 285394.08
+    },
+    {
+      "date": "2020-08-18",
+      "total_shares_wan": 286774.08
+    },
+    {
+      "date": "2020-08-19",
+      "total_shares_wan": 287764.08
+    },
+    {
+      "date": "2020-08-20",
+      "total_shares_wan": 287764.08
+    },
+    {
+      "date": "2020-08-21",
+      "total_shares_wan": 293014.08
+    },
+    {
+      "date": "2020-08-24",
+      "total_shares_wan": 295324.08
+    },
+    {
+      "date": "2020-08-25",
+      "total_shares_wan": 295624.08
+    },
+    {
+      "date": "2020-08-26",
+      "total_shares_wan": 294754.08
+    },
+    {
+      "date": "2020-08-27",
+      "total_shares_wan": 293884.08
+    },
+    {
+      "date": "2020-08-28",
+      "total_shares_wan": 294514.08
+    },
+    {
+      "date": "2020-08-31",
+      "total_shares_wan": 296614.08
+    },
+    {
+      "date": "2020-09-01",
+      "total_shares_wan": 299674.08
+    },
+    {
+      "date": "2020-09-02",
+      "total_shares_wan": 300244.08
+    },
+    {
+      "date": "2020-09-03",
+      "total_shares_wan": 299644.08
+    },
+    {
+      "date": "2020-09-04",
+      "total_shares_wan": 298354.08
+    },
+    {
+      "date": "2020-09-07",
+      "total_shares_wan": 297874.08
+    },
+    {
+      "date": "2020-09-08",
+      "total_shares_wan": 297154.08
+    },
+    {
+      "date": "2020-09-09",
+      "total_shares_wan": 295084.08
+    },
+    {
+      "date": "2020-09-10",
+      "total_shares_wan": 294874.08
+    },
+    {
+      "date": "2020-09-11",
+      "total_shares_wan": 294814.08
+    },
+    {
+      "date": "2020-09-14",
+      "total_shares_wan": 293404.08
+    },
+    {
+      "date": "2020-09-15",
+      "total_shares_wan": 291634.08
+    },
+    {
+      "date": "2020-09-16",
+      "total_shares_wan": 290764.08
+    },
+    {
+      "date": "2020-09-17",
+      "total_shares_wan": 289324.08
+    },
+    {
+      "date": "2020-09-18",
+      "total_shares_wan": 289384.08
+    },
+    {
+      "date": "2020-09-21",
+      "total_shares_wan": 289324.08
+    },
+    {
+      "date": "2020-09-22",
+      "total_shares_wan": 289984.08
+    },
+    {
+      "date": "2020-09-23",
+      "total_shares_wan": 292594.08
+    },
+    {
+      "date": "2020-09-24",
+      "total_shares_wan": 292534.08
+    },
+    {
+      "date": "2020-09-25",
+      "total_shares_wan": 291154.08
+    },
+    {
+      "date": "2020-09-28",
+      "total_shares_wan": 291184.08
+    },
+    {
+      "date": "2020-09-29",
+      "total_shares_wan": 291154.08
+    },
+    {
+      "date": "2020-09-30",
+      "total_shares_wan": 291394.08
+    },
+    {
+      "date": "2020-10-09",
+      "total_shares_wan": 290914.08
+    },
+    {
+      "date": "2020-10-12",
+      "total_shares_wan": 290764.08
+    },
+    {
+      "date": "2020-10-13",
+      "total_shares_wan": 290524.08
+    },
+    {
+      "date": "2020-10-14",
+      "total_shares_wan": 292054.08
+    },
+    {
+      "date": "2020-10-15",
+      "total_shares_wan": 293584.08
+    },
+    {
+      "date": "2020-10-16",
+      "total_shares_wan": 294454.08
+    },
+    {
+      "date": "2020-10-19",
+      "total_shares_wan": 295984.08
+    },
+    {
+      "date": "2020-10-20",
+      "total_shares_wan": 295714.08
+    },
+    {
+      "date": "2020-10-21",
+      "total_shares_wan": 295294.08
+    },
+    {
+      "date": "2020-10-22",
+      "total_shares_wan": 294814.08
+    },
+    {
+      "date": "2020-10-23",
+      "total_shares_wan": 294754.08
+    },
+    {
+      "date": "2020-10-26",
+      "total_shares_wan": 294814.08
+    },
+    {
+      "date": "2020-10-27",
+      "total_shares_wan": 295984.08
+    },
+    {
+      "date": "2020-10-28",
+      "total_shares_wan": 296164.08
+    },
+    {
+      "date": "2020-10-29",
+      "total_shares_wan": 296614.08
+    },
+    {
+      "date": "2020-10-30",
+      "total_shares_wan": 297484.08
+    },
+    {
+      "date": "2020-11-02",
+      "total_shares_wan": 297844.08
+    },
+    {
+      "date": "2020-11-03",
+      "total_shares_wan": 299794.08
+    },
+    {
+      "date": "2020-11-04",
+      "total_shares_wan": 301714.08
+    },
+    {
+      "date": "2020-11-05",
+      "total_shares_wan": 302854.08
+    },
+    {
+      "date": "2020-11-06",
+      "total_shares_wan": 302014.08
+    },
+    {
+      "date": "2020-11-09",
+      "total_shares_wan": 300454.08
+    },
+    {
+      "date": "2020-11-10",
+      "total_shares_wan": 297874.08
+    },
+    {
+      "date": "2020-11-11",
+      "total_shares_wan": 298564.08
+    },
+    {
+      "date": "2020-11-12",
+      "total_shares_wan": 299584.08
+    },
+    {
+      "date": "2020-11-13",
+      "total_shares_wan": 299194.08
+    },
+    {
+      "date": "2020-11-16",
+      "total_shares_wan": 300004.08
+    },
+    {
+      "date": "2020-11-17",
+      "total_shares_wan": 301564.08
+    },
+    {
+      "date": "2020-11-18",
+      "total_shares_wan": 300634.08
+    },
+    {
+      "date": "2020-11-19",
+      "total_shares_wan": 299764.08
+    },
+    {
+      "date": "2020-11-20",
+      "total_shares_wan": 299254.08
+    },
+    {
+      "date": "2020-11-23",
+      "total_shares_wan": 299554.08
+    },
+    {
+      "date": "2020-11-24",
+      "total_shares_wan": 299284.08
+    },
+    {
+      "date": "2020-11-25",
+      "total_shares_wan": 293884.08
+    },
+    {
+      "date": "2020-11-26",
+      "total_shares_wan": 291034.08
+    },
+    {
+      "date": "2020-11-27",
+      "total_shares_wan": 287434.08
+    },
+    {
+      "date": "2020-11-30",
+      "total_shares_wan": 288184.08
+    },
+    {
+      "date": "2020-12-01",
+      "total_shares_wan": 287434.08
+    },
+    {
+      "date": "2020-12-02",
+      "total_shares_wan": 286354.08
+    },
+    {
+      "date": "2020-12-03",
+      "total_shares_wan": 285214.08
+    },
+    {
+      "date": "2020-12-04",
+      "total_shares_wan": 283714.08
+    },
+    {
+      "date": "2020-12-07",
+      "total_shares_wan": 282784.08
+    },
+    {
+      "date": "2020-12-08",
+      "total_shares_wan": 282634.08
+    },
+    {
+      "date": "2020-12-09",
+      "total_shares_wan": 281554.08
+    },
+    {
+      "date": "2020-12-10",
+      "total_shares_wan": 279604.08
+    },
+    {
+      "date": "2020-12-11",
+      "total_shares_wan": 275464.08
+    },
+    {
+      "date": "2020-12-14",
+      "total_shares_wan": 273844.08
+    },
+    {
+      "date": "2020-12-15",
+      "total_shares_wan": 273784.08
+    },
+    {
+      "date": "2020-12-16",
+      "total_shares_wan": 274744.08
+    },
+    {
+      "date": "2020-12-17",
+      "total_shares_wan": 274594.08
+    },
+    {
+      "date": "2020-12-18",
+      "total_shares_wan": 274294.08
+    },
+    {
+      "date": "2020-12-21",
+      "total_shares_wan": 272764.08
+    },
+    {
+      "date": "2020-12-22",
+      "total_shares_wan": 271384.08
+    },
+    {
+      "date": "2020-12-23",
+      "total_shares_wan": 269794.08
+    },
+    {
+      "date": "2020-12-24",
+      "total_shares_wan": 267844.08
+    },
+    {
+      "date": "2020-12-25",
+      "total_shares_wan": 268084.08
+    },
+    {
+      "date": "2020-12-28",
+      "total_shares_wan": 267784.08
+    },
+    {
+      "date": "2020-12-29",
+      "total_shares_wan": 268144.08
+    },
+    {
+      "date": "2020-12-30",
+      "total_shares_wan": 268414.08
+    },
+    {
+      "date": "2020-12-31",
+      "total_shares_wan": 268384.08
+    },
+    {
+      "date": "2021-01-04",
+      "total_shares_wan": 267904.08
+    },
+    {
+      "date": "2021-01-05",
+      "total_shares_wan": 262084.08
+    },
+    {
+      "date": "2021-01-06",
+      "total_shares_wan": 261214.08
+    },
+    {
+      "date": "2021-01-07",
+      "total_shares_wan": 255934.08
+    },
+    {
+      "date": "2021-01-08",
+      "total_shares_wan": 252334.08
+    },
+    {
+      "date": "2021-01-11",
+      "total_shares_wan": 252274.08
+    },
+    {
+      "date": "2021-01-12",
+      "total_shares_wan": 254254.08
+    },
+    {
+      "date": "2021-01-13",
+      "total_shares_wan": 258694.08
+    },
+    {
+      "date": "2021-01-14",
+      "total_shares_wan": 259384.08
+    },
+    {
+      "date": "2021-01-15",
+      "total_shares_wan": 259384.08
+    },
+    {
+      "date": "2021-01-18",
+      "total_shares_wan": 261334.08
+    },
+    {
+      "date": "2021-01-19",
+      "total_shares_wan": 263674.08
+    },
+    {
+      "date": "2021-01-20",
+      "total_shares_wan": 265294.08
+    },
+    {
+      "date": "2021-01-21",
+      "total_shares_wan": 265714.08
+    },
+    {
+      "date": "2021-01-22",
+      "total_shares_wan": 266104.08
+    },
+    {
+      "date": "2021-01-25",
+      "total_shares_wan": 265834.08
+    },
+    {
+      "date": "2021-01-27",
+      "total_shares_wan": 264244.08
+    },
+    {
+      "date": "2021-01-28",
+      "total_shares_wan": 264214.08
+    },
+    {
+      "date": "2021-01-29",
+      "total_shares_wan": 263494.08
+    },
+    {
+      "date": "2021-02-01",
+      "total_shares_wan": 266374.08
+    },
+    {
+      "date": "2021-02-02",
+      "total_shares_wan": 267724.08
+    },
+    {
+      "date": "2021-02-03",
+      "total_shares_wan": 267514.08
+    },
+    {
+      "date": "2021-02-04",
+      "total_shares_wan": 267094.08
+    },
+    {
+      "date": "2021-02-05",
+      "total_shares_wan": 266674.08
+    },
+    {
+      "date": "2021-02-08",
+      "total_shares_wan": 268504.08
+    },
+    {
+      "date": "2021-02-09",
+      "total_shares_wan": 269884.08
+    },
+    {
+      "date": "2021-02-10",
+      "total_shares_wan": 271354.08
+    },
+    {
+      "date": "2021-02-18",
+      "total_shares_wan": 274234.08
+    },
+    {
+      "date": "2021-02-19",
+      "total_shares_wan": 280654.08
+    },
+    {
+      "date": "2021-02-22",
+      "total_shares_wan": 284824.08
+    },
+    {
+      "date": "2021-02-23",
+      "total_shares_wan": 292984.08
+    },
+    {
+      "date": "2021-02-24",
+      "total_shares_wan": 302014.08
+    },
+    {
+      "date": "2021-02-25",
+      "total_shares_wan": 308284.08
+    },
+    {
+      "date": "2021-02-26",
+      "total_shares_wan": 312454.08
+    },
+    {
+      "date": "2021-03-01",
+      "total_shares_wan": 320524.08
+    },
+    {
+      "date": "2021-03-02",
+      "total_shares_wan": 328354.08
+    },
+    {
+      "date": "2021-03-03",
+      "total_shares_wan": 334624.08
+    },
+    {
+      "date": "2021-03-04",
+      "total_shares_wan": 336214.08
+    },
+    {
+      "date": "2021-03-05",
+      "total_shares_wan": 331834.08
+    },
+    {
+      "date": "2021-03-08",
+      "total_shares_wan": 331804.08
+    },
+    {
+      "date": "2021-03-09",
+      "total_shares_wan": 331504.08
+    },
+    {
+      "date": "2021-03-10",
+      "total_shares_wan": 328804.08
+    },
+    {
+      "date": "2021-03-11",
+      "total_shares_wan": 327694.08
+    },
+    {
+      "date": "2021-03-12",
+      "total_shares_wan": 328534.08
+    },
+    {
+      "date": "2021-03-15",
+      "total_shares_wan": 327244.08
+    },
+    {
+      "date": "2021-03-16",
+      "total_shares_wan": 327334.08
+    },
+    {
+      "date": "2021-03-17",
+      "total_shares_wan": 328744.08
+    },
+    {
+      "date": "2021-03-18",
+      "total_shares_wan": 329134.08
+    },
+    {
+      "date": "2021-03-19",
+      "total_shares_wan": 328744.08
+    },
+    {
+      "date": "2021-03-22",
+      "total_shares_wan": 327184.08
+    },
+    {
+      "date": "2021-03-23",
+      "total_shares_wan": 327724.08
+    },
+    {
+      "date": "2021-03-24",
+      "total_shares_wan": 326464.08
+    },
+    {
+      "date": "2021-03-25",
+      "total_shares_wan": 325624.08
+    },
+    {
+      "date": "2021-03-26",
+      "total_shares_wan": 325744.08
+    },
+    {
+      "date": "2021-03-29",
+      "total_shares_wan": 325684.08
+    },
+    {
+      "date": "2021-03-30",
+      "total_shares_wan": 325834.08
+    },
+    {
+      "date": "2021-03-31",
+      "total_shares_wan": 325414.08
+    },
+    {
+      "date": "2021-04-01",
+      "total_shares_wan": 323794.08
+    },
+    {
+      "date": "2021-04-02",
+      "total_shares_wan": 319504.08
+    },
+    {
+      "date": "2021-04-06",
+      "total_shares_wan": 317884.08
+    },
+    {
+      "date": "2021-04-07",
+      "total_shares_wan": 318184.08
+    },
+    {
+      "date": "2021-04-08",
+      "total_shares_wan": 318784.08
+    },
+    {
+      "date": "2021-04-09",
+      "total_shares_wan": 318214.08
+    },
+    {
+      "date": "2021-04-12",
+      "total_shares_wan": 316114.08
+    },
+    {
+      "date": "2021-04-13",
+      "total_shares_wan": 312934.08
+    },
+    {
+      "date": "2021-04-14",
+      "total_shares_wan": 312094.08
+    },
+    {
+      "date": "2021-04-15",
+      "total_shares_wan": 312874.08
+    },
+    {
+      "date": "2021-04-16",
+      "total_shares_wan": 314344.08
+    },
+    {
+      "date": "2021-04-19",
+      "total_shares_wan": 313654.08
+    },
+    {
+      "date": "2021-04-20",
+      "total_shares_wan": 312604.08
+    },
+    {
+      "date": "2021-04-21",
+      "total_shares_wan": 311164.08
+    },
+    {
+      "date": "2021-04-22",
+      "total_shares_wan": 310474.08
+    },
+    {
+      "date": "2021-04-23",
+      "total_shares_wan": 309214.08
+    },
+    {
+      "date": "2021-04-26",
+      "total_shares_wan": 308014.08
+    },
+    {
+      "date": "2021-04-27",
+      "total_shares_wan": 308464.08
+    },
+    {
+      "date": "2021-04-28",
+      "total_shares_wan": 308434.08
+    },
+    {
+      "date": "2021-04-29",
+      "total_shares_wan": 310654.08
+    },
+    {
+      "date": "2021-04-30",
+      "total_shares_wan": 309604.08
+    },
+    {
+      "date": "2021-05-06",
+      "total_shares_wan": 309334.08
+    },
+    {
+      "date": "2021-05-07",
+      "total_shares_wan": 308434.08
+    },
+    {
+      "date": "2021-05-10",
+      "total_shares_wan": 307654.08
+    },
+    {
+      "date": "2021-05-11",
+      "total_shares_wan": 304474.08
+    },
+    {
+      "date": "2021-05-12",
+      "total_shares_wan": 299344.08
+    },
+    {
+      "date": "2021-05-13",
+      "total_shares_wan": 297754.08
+    },
+    {
+      "date": "2021-05-14",
+      "total_shares_wan": 297844.08
+    },
+    {
+      "date": "2021-05-17",
+      "total_shares_wan": 297094.08
+    },
+    {
+      "date": "2021-05-18",
+      "total_shares_wan": 295564.08
+    },
+    {
+      "date": "2021-05-19",
+      "total_shares_wan": 294934.08
+    },
+    {
+      "date": "2021-05-20",
+      "total_shares_wan": 296494.08
+    },
+    {
+      "date": "2021-05-21",
+      "total_shares_wan": 300604.08
+    },
+    {
+      "date": "2021-05-24",
+      "total_shares_wan": 302314.08
+    },
+    {
+      "date": "2021-05-25",
+      "total_shares_wan": 302374.08
+    },
+    {
+      "date": "2021-05-26",
+      "total_shares_wan": 302434.08
+    },
+    {
+      "date": "2021-05-27",
+      "total_shares_wan": 302374.08
+    },
+    {
+      "date": "2021-05-28",
+      "total_shares_wan": 300244.08
+    },
+    {
+      "date": "2021-05-31",
+      "total_shares_wan": 297544.08
+    },
+    {
+      "date": "2021-06-01",
+      "total_shares_wan": 295324.08
+    },
+    {
+      "date": "2021-06-02",
+      "total_shares_wan": 291934.08
+    },
+    {
+      "date": "2021-06-03",
+      "total_shares_wan": 289444.08
+    },
+    {
+      "date": "2021-06-04",
+      "total_shares_wan": 289444.08
+    },
+    {
+      "date": "2021-06-07",
+      "total_shares_wan": 288994.08
+    },
+    {
+      "date": "2021-06-08",
+      "total_shares_wan": 289054.08
+    },
+    {
+      "date": "2021-06-09",
+      "total_shares_wan": 289564.08
+    },
+    {
+      "date": "2021-06-10",
+      "total_shares_wan": 290224.08
+    },
+    {
+      "date": "2021-06-11",
+      "total_shares_wan": 289294.08
+    },
+    {
+      "date": "2021-06-15",
+      "total_shares_wan": 288004.08
+    },
+    {
+      "date": "2021-06-16",
+      "total_shares_wan": 286834.08
+    },
+    {
+      "date": "2021-06-17",
+      "total_shares_wan": 286804.08
+    },
+    {
+      "date": "2021-06-18",
+      "total_shares_wan": 288454.08
+    },
+    {
+      "date": "2021-06-21",
+      "total_shares_wan": 292054.08
+    },
+    {
+      "date": "2021-06-22",
+      "total_shares_wan": 294934.08
+    },
+    {
+      "date": "2021-06-23",
+      "total_shares_wan": 297634.08
+    },
+    {
+      "date": "2021-06-24",
+      "total_shares_wan": 298474.08
+    },
+    {
+      "date": "2021-06-25",
+      "total_shares_wan": 300094.08
+    },
+    {
+      "date": "2021-06-28",
+      "total_shares_wan": 300784.08
+    },
+    {
+      "date": "2021-06-29",
+      "total_shares_wan": 301924.08
+    },
+    {
+      "date": "2021-06-30",
+      "total_shares_wan": 303064.08
+    },
+    {
+      "date": "2021-07-01",
+      "total_shares_wan": 307084.08
+    },
+    {
+      "date": "2021-07-02",
+      "total_shares_wan": 310114.08
+    },
+    {
+      "date": "2021-07-05",
+      "total_shares_wan": 310624.08
+    },
+    {
+      "date": "2021-07-06",
+      "total_shares_wan": 309844.08
+    },
+    {
+      "date": "2021-07-07",
+      "total_shares_wan": 309244.08
+    },
+    {
+      "date": "2021-07-08",
+      "total_shares_wan": 308974.08
+    },
+    {
+      "date": "2021-07-09",
+      "total_shares_wan": 308944.08
+    },
+    {
+      "date": "2021-07-12",
+      "total_shares_wan": 308614.08
+    },
+    {
+      "date": "2021-07-13",
+      "total_shares_wan": 308974.08
+    },
+    {
+      "date": "2021-07-14",
+      "total_shares_wan": 308824.08
+    },
+    {
+      "date": "2021-07-15",
+      "total_shares_wan": 305494.08
+    },
+    {
+      "date": "2021-07-16",
+      "total_shares_wan": 299854.08
+    },
+    {
+      "date": "2021-07-19",
+      "total_shares_wan": 297244.08
+    },
+    {
+      "date": "2021-07-20",
+      "total_shares_wan": 295654.08
+    },
+    {
+      "date": "2021-07-21",
+      "total_shares_wan": 296254.08
+    },
+    {
+      "date": "2021-07-22",
+      "total_shares_wan": 296644.08
+    },
+    {
+      "date": "2021-07-23",
+      "total_shares_wan": 296794.08
+    },
+    {
+      "date": "2021-07-26",
+      "total_shares_wan": 296584.08
+    },
+    {
+      "date": "2021-07-27",
+      "total_shares_wan": 296524.08
+    },
+    {
+      "date": "2021-07-28",
+      "total_shares_wan": 296614.08
+    },
+    {
+      "date": "2021-07-29",
+      "total_shares_wan": 296464.08
+    },
+    {
+      "date": "2021-07-30",
+      "total_shares_wan": 296254.08
+    },
+    {
+      "date": "2021-08-02",
+      "total_shares_wan": 294844.08
+    },
+    {
+      "date": "2021-08-03",
+      "total_shares_wan": 294004.08
+    },
+    {
+      "date": "2021-08-04",
+      "total_shares_wan": 297214.08
+    },
+    {
+      "date": "2021-08-05",
+      "total_shares_wan": 296794.08
+    },
+    {
+      "date": "2021-08-06",
+      "total_shares_wan": 295804.08
+    },
+    {
+      "date": "2021-08-09",
+      "total_shares_wan": 300904.08
+    },
+    {
+      "date": "2021-08-10",
+      "total_shares_wan": 306484.08
+    },
+    {
+      "date": "2021-08-11",
+      "total_shares_wan": 314044.08
+    },
+    {
+      "date": "2021-08-12",
+      "total_shares_wan": 317134.08
+    },
+    {
+      "date": "2021-08-13",
+      "total_shares_wan": 317164.08
+    },
+    {
+      "date": "2021-08-16",
+      "total_shares_wan": 317494.08
+    },
+    {
+      "date": "2021-08-17",
+      "total_shares_wan": 316354.08
+    },
+    {
+      "date": "2021-08-18",
+      "total_shares_wan": 314644.08
+    },
+    {
+      "date": "2021-08-19",
+      "total_shares_wan": 313084.08
+    },
+    {
+      "date": "2021-08-20",
+      "total_shares_wan": 310144.08
+    },
+    {
+      "date": "2021-08-23",
+      "total_shares_wan": 307864.08
+    },
+    {
+      "date": "2021-08-24",
+      "total_shares_wan": 305344.08
+    },
+    {
+      "date": "2021-08-25",
+      "total_shares_wan": 302734.08
+    },
+    {
+      "date": "2021-08-26",
+      "total_shares_wan": 300274.08
+    },
+    {
+      "date": "2021-08-27",
+      "total_shares_wan": 299464.08
+    },
+    {
+      "date": "2021-08-30",
+      "total_shares_wan": 297604.08
+    },
+    {
+      "date": "2021-08-31",
+      "total_shares_wan": 296674.08
+    },
+    {
+      "date": "2021-09-01",
+      "total_shares_wan": 294244.08
+    },
+    {
+      "date": "2021-09-02",
+      "total_shares_wan": 291454.08
+    },
+    {
+      "date": "2021-09-03",
+      "total_shares_wan": 289444.08
+    },
+    {
+      "date": "2021-09-06",
+      "total_shares_wan": 286504.08
+    },
+    {
+      "date": "2021-09-07",
+      "total_shares_wan": 284614.08
+    },
+    {
+      "date": "2021-09-08",
+      "total_shares_wan": 283774.08
+    },
+    {
+      "date": "2021-09-09",
+      "total_shares_wan": 282754.08
+    },
+    {
+      "date": "2021-09-10",
+      "total_shares_wan": 280954.08
+    },
+    {
+      "date": "2021-09-13",
+      "total_shares_wan": 279934.08
+    },
+    {
+      "date": "2021-09-14",
+      "total_shares_wan": 277594.08
+    },
+    {
+      "date": "2021-09-15",
+      "total_shares_wan": 277054.08
+    },
+    {
+      "date": "2021-09-16",
+      "total_shares_wan": 276754.08
+    },
+    {
+      "date": "2021-09-17",
+      "total_shares_wan": 277084.08
+    },
+    {
+      "date": "2021-09-22",
+      "total_shares_wan": 281974.08
+    },
+    {
+      "date": "2021-09-23",
+      "total_shares_wan": 285484.08
+    },
+    {
+      "date": "2021-09-24",
+      "total_shares_wan": 287254.08
+    },
+    {
+      "date": "2021-09-27",
+      "total_shares_wan": 293104.08
+    },
+    {
+      "date": "2021-09-28",
+      "total_shares_wan": 297334.08
+    },
+    {
+      "date": "2021-09-29",
+      "total_shares_wan": 301294.08
+    },
+    {
+      "date": "2021-09-30",
+      "total_shares_wan": 307744.08
+    },
+    {
+      "date": "2021-10-08",
+      "total_shares_wan": 312304.08
+    },
+    {
+      "date": "2021-10-11",
+      "total_shares_wan": 314824.08
+    },
+    {
+      "date": "2021-10-12",
+      "total_shares_wan": 317164.08
+    },
+    {
+      "date": "2021-10-13",
+      "total_shares_wan": 318454.08
+    },
+    {
+      "date": "2021-10-14",
+      "total_shares_wan": 317884.08
+    },
+    {
+      "date": "2021-10-15",
+      "total_shares_wan": 317104.08
+    },
+    {
+      "date": "2021-10-18",
+      "total_shares_wan": 315814.08
+    },
+    {
+      "date": "2021-10-19",
+      "total_shares_wan": 314494.08
+    },
+    {
+      "date": "2021-10-20",
+      "total_shares_wan": 313804.08
+    },
+    {
+      "date": "2021-10-21",
+      "total_shares_wan": 314434.08
+    },
+    {
+      "date": "2021-10-22",
+      "total_shares_wan": 314254.08
+    },
+    {
+      "date": "2021-10-25",
+      "total_shares_wan": 313924.08
+    },
+    {
+      "date": "2021-10-26",
+      "total_shares_wan": 313894.08
+    },
+    {
+      "date": "2021-10-27",
+      "total_shares_wan": 313504.08
+    },
+    {
+      "date": "2021-10-28",
+      "total_shares_wan": 311554.08
+    },
+    {
+      "date": "2021-10-29",
+      "total_shares_wan": 310414.08
+    },
+    {
+      "date": "2021-11-01",
+      "total_shares_wan": 308974.08
+    },
+    {
+      "date": "2021-11-02",
+      "total_shares_wan": 310054.08
+    },
+    {
+      "date": "2021-11-03",
+      "total_shares_wan": 311044.08
+    },
+    {
+      "date": "2021-11-04",
+      "total_shares_wan": 313954.08
+    },
+    {
+      "date": "2021-11-05",
+      "total_shares_wan": 316414.08
+    },
+    {
+      "date": "2021-11-08",
+      "total_shares_wan": 316354.08
+    },
+    {
+      "date": "2021-11-09",
+      "total_shares_wan": 315754.08
+    },
+    {
+      "date": "2021-11-10",
+      "total_shares_wan": 309784.08
+    },
+    {
+      "date": "2021-11-11",
+      "total_shares_wan": 305104.08
+    },
+    {
+      "date": "2021-11-12",
+      "total_shares_wan": 292894.08
+    },
+    {
+      "date": "2021-11-15",
+      "total_shares_wan": 286534.08
+    },
+    {
+      "date": "2021-11-16",
+      "total_shares_wan": 282364.08
+    },
+    {
+      "date": "2021-11-17",
+      "total_shares_wan": 282124.08
+    },
+    {
+      "date": "2021-11-18",
+      "total_shares_wan": 278644.08
+    },
+    {
+      "date": "2021-11-19",
+      "total_shares_wan": 277594.08
+    },
+    {
+      "date": "2021-11-22",
+      "total_shares_wan": 276964.08
+    },
+    {
+      "date": "2021-11-23",
+      "total_shares_wan": 278764.08
+    },
+    {
+      "date": "2021-11-24",
+      "total_shares_wan": 284164.08
+    },
+    {
+      "date": "2021-11-25",
+      "total_shares_wan": 289474.08
+    },
+    {
+      "date": "2021-11-26",
+      "total_shares_wan": 294904.08
+    },
+    {
+      "date": "2021-11-29",
+      "total_shares_wan": 303034.08
+    },
+    {
+      "date": "2021-11-30",
+      "total_shares_wan": 306694.08
+    },
+    {
+      "date": "2021-12-01",
+      "total_shares_wan": 313474.08
+    },
+    {
+      "date": "2021-12-02",
+      "total_shares_wan": 320824.08
+    },
+    {
+      "date": "2021-12-03",
+      "total_shares_wan": 329434.08
+    },
+    {
+      "date": "2021-12-06",
+      "total_shares_wan": 334834.08
+    },
+    {
+      "date": "2021-12-07",
+      "total_shares_wan": 338494.08
+    },
+    {
+      "date": "2021-12-08",
+      "total_shares_wan": 341254.08
+    },
+    {
+      "date": "2021-12-09",
+      "total_shares_wan": 343894.08
+    },
+    {
+      "date": "2021-12-10",
+      "total_shares_wan": 347014.08
+    },
+    {
+      "date": "2021-12-13",
+      "total_shares_wan": 351694.08
+    },
+    {
+      "date": "2021-12-14",
+      "total_shares_wan": 351844.08
+    },
+    {
+      "date": "2021-12-15",
+      "total_shares_wan": 350104.08
+    },
+    {
+      "date": "2021-12-16",
+      "total_shares_wan": 354154.08
+    },
+    {
+      "date": "2021-12-17",
+      "total_shares_wan": 355204.08
+    },
+    {
+      "date": "2021-12-20",
+      "total_shares_wan": 351274.08
+    },
+    {
+      "date": "2021-12-21",
+      "total_shares_wan": 349954.08
+    },
+    {
+      "date": "2021-12-22",
+      "total_shares_wan": 347974.08
+    },
+    {
+      "date": "2021-12-23",
+      "total_shares_wan": 346804.08
+    },
+    {
+      "date": "2021-12-24",
+      "total_shares_wan": 341374.08
+    },
+    {
+      "date": "2021-12-27",
+      "total_shares_wan": 334054.08
+    },
+    {
+      "date": "2021-12-28",
+      "total_shares_wan": 333844.08
+    },
+    {
+      "date": "2021-12-29",
+      "total_shares_wan": 331954.08
+    },
+    {
+      "date": "2021-12-30",
+      "total_shares_wan": 329944.08
+    },
+    {
+      "date": "2021-12-31",
+      "total_shares_wan": 329224.08
+    },
+    {
+      "date": "2022-01-04",
+      "total_shares_wan": 326134.08
+    },
+    {
+      "date": "2022-01-05",
+      "total_shares_wan": 318574.08
+    },
+    {
+      "date": "2022-01-06",
+      "total_shares_wan": 315394.08
+    },
+    {
+      "date": "2022-01-07",
+      "total_shares_wan": 314644.08
+    },
+    {
+      "date": "2022-01-10",
+      "total_shares_wan": 316804.08
+    },
+    {
+      "date": "2022-01-11",
+      "total_shares_wan": 320284.08
+    },
+    {
+      "date": "2022-01-12",
+      "total_shares_wan": 320524.08
+    },
+    {
+      "date": "2022-01-13",
+      "total_shares_wan": 316624.08
+    },
+    {
+      "date": "2022-01-14",
+      "total_shares_wan": 313024.08
+    },
+    {
+      "date": "2022-01-17",
+      "total_shares_wan": 312724.08
+    },
+    {
+      "date": "2022-01-18",
+      "total_shares_wan": 309064.08
+    },
+    {
+      "date": "2022-01-19",
+      "total_shares_wan": 308404.08
+    },
+    {
+      "date": "2022-01-20",
+      "total_shares_wan": 307474.08
+    },
+    {
+      "date": "2022-01-21",
+      "total_shares_wan": 306034.08
+    },
+    {
+      "date": "2022-01-24",
+      "total_shares_wan": 304144.08
+    },
+    {
+      "date": "2022-01-25",
+      "total_shares_wan": 301444.08
+    },
+    {
+      "date": "2022-01-26",
+      "total_shares_wan": 301084.08
+    },
+    {
+      "date": "2022-01-27",
+      "total_shares_wan": 301084.08
+    },
+    {
+      "date": "2022-01-28",
+      "total_shares_wan": 300874.08
+    },
+    {
+      "date": "2022-02-07",
+      "total_shares_wan": 306064.08
+    },
+    {
+      "date": "2022-02-08",
+      "total_shares_wan": 308494.08
+    },
+    {
+      "date": "2022-02-09",
+      "total_shares_wan": 305764.08
+    },
+    {
+      "date": "2022-02-10",
+      "total_shares_wan": 302404.08
+    },
+    {
+      "date": "2022-02-11",
+      "total_shares_wan": 300514.08
+    },
+    {
+      "date": "2022-02-14",
+      "total_shares_wan": 297904.08
+    },
+    {
+      "date": "2022-02-15",
+      "total_shares_wan": 290254.08
+    },
+    {
+      "date": "2022-02-16",
+      "total_shares_wan": 281854.08
+    },
+    {
+      "date": "2022-02-17",
+      "total_shares_wan": 275584.08
+    },
+    {
+      "date": "2022-02-18",
+      "total_shares_wan": 270124.08
+    },
+    {
+      "date": "2022-02-21",
+      "total_shares_wan": 267214.08
+    },
+    {
+      "date": "2022-02-22",
+      "total_shares_wan": 265084.08
+    },
+    {
+      "date": "2022-02-23",
+      "total_shares_wan": 267574.08
+    },
+    {
+      "date": "2022-02-24",
+      "total_shares_wan": 268774.08
+    },
+    {
+      "date": "2022-02-25",
+      "total_shares_wan": 271354.08
+    },
+    {
+      "date": "2022-02-28",
+      "total_shares_wan": 272554.08
+    },
+    {
+      "date": "2022-03-01",
+      "total_shares_wan": 274084.08
+    },
+    {
+      "date": "2022-03-02",
+      "total_shares_wan": 276094.08
+    },
+    {
+      "date": "2022-03-03",
+      "total_shares_wan": 278734.08
+    },
+    {
+      "date": "2022-03-04",
+      "total_shares_wan": 278704.08
+    },
+    {
+      "date": "2022-03-07",
+      "total_shares_wan": 280294.08
+    },
+    {
+      "date": "2022-03-08",
+      "total_shares_wan": 286954.08
+    },
+    {
+      "date": "2022-03-09",
+      "total_shares_wan": 291784.08
+    },
+    {
+      "date": "2022-03-10",
+      "total_shares_wan": 297634.08
+    },
+    {
+      "date": "2022-03-11",
+      "total_shares_wan": 304264.08
+    },
+    {
+      "date": "2022-03-14",
+      "total_shares_wan": 304294.08
+    },
+    {
+      "date": "2022-03-15",
+      "total_shares_wan": 304174.08
+    },
+    {
+      "date": "2022-03-16",
+      "total_shares_wan": 298924.08
+    },
+    {
+      "date": "2022-03-17",
+      "total_shares_wan": 294904.08
+    },
+    {
+      "date": "2022-03-18",
+      "total_shares_wan": 293494.08
+    },
+    {
+      "date": "2022-03-21",
+      "total_shares_wan": 295774.08
+    },
+    {
+      "date": "2022-03-22",
+      "total_shares_wan": 300574.08
+    },
+    {
+      "date": "2022-03-23",
+      "total_shares_wan": 300754.08
+    },
+    {
+      "date": "2022-03-24",
+      "total_shares_wan": 299164.08
+    },
+    {
+      "date": "2022-03-25",
+      "total_shares_wan": 297694.08
+    },
+    {
+      "date": "2022-03-28",
+      "total_shares_wan": 298384.08
+    },
+    {
+      "date": "2022-03-29",
+      "total_shares_wan": 303304.08
+    },
+    {
+      "date": "2022-03-30",
+      "total_shares_wan": 303934.08
+    },
+    {
+      "date": "2022-03-31",
+      "total_shares_wan": 303844.08
+    },
+    {
+      "date": "2022-04-01",
+      "total_shares_wan": 302014.08
+    },
+    {
+      "date": "2022-04-06",
+      "total_shares_wan": 301474.08
+    },
+    {
+      "date": "2022-04-07",
+      "total_shares_wan": 301984.08
+    },
+    {
+      "date": "2022-04-08",
+      "total_shares_wan": 302404.08
+    },
+    {
+      "date": "2022-04-11",
+      "total_shares_wan": 306004.08
+    },
+    {
+      "date": "2022-04-12",
+      "total_shares_wan": 312814.08
+    },
+    {
+      "date": "2022-04-13",
+      "total_shares_wan": 314734.08
+    },
+    {
+      "date": "2022-04-14",
+      "total_shares_wan": 315934.08
+    },
+    {
+      "date": "2022-04-15",
+      "total_shares_wan": 318304.08
+    },
+    {
+      "date": "2022-04-18",
+      "total_shares_wan": 321274.08
+    },
+    {
+      "date": "2022-04-19",
+      "total_shares_wan": 321394.08
+    },
+    {
+      "date": "2022-04-20",
+      "total_shares_wan": 320974.08
+    },
+    {
+      "date": "2022-04-21",
+      "total_shares_wan": 319774.08
+    },
+    {
+      "date": "2022-04-22",
+      "total_shares_wan": 318934.08
+    },
+    {
+      "date": "2022-04-25",
+      "total_shares_wan": 316354.08
+    },
+    {
+      "date": "2022-04-26",
+      "total_shares_wan": 306574.08
+    },
+    {
+      "date": "2022-04-27",
+      "total_shares_wan": 299824.08
+    },
+    {
+      "date": "2022-04-28",
+      "total_shares_wan": 286954.08
+    },
+    {
+      "date": "2022-04-29",
+      "total_shares_wan": 281764.08
+    },
+    {
+      "date": "2022-05-05",
+      "total_shares_wan": 276844.08
+    },
+    {
+      "date": "2022-05-06",
+      "total_shares_wan": 271414.08
+    },
+    {
+      "date": "2022-05-09",
+      "total_shares_wan": 267424.08
+    },
+    {
+      "date": "2022-05-10",
+      "total_shares_wan": 265864.08
+    },
+    {
+      "date": "2022-05-11",
+      "total_shares_wan": 263014.08
+    },
+    {
+      "date": "2022-05-12",
+      "total_shares_wan": 263194.08
+    },
+    {
+      "date": "2022-05-13",
+      "total_shares_wan": 262594.08
+    },
+    {
+      "date": "2022-05-16",
+      "total_shares_wan": 263074.08
+    },
+    {
+      "date": "2022-05-17",
+      "total_shares_wan": 263194.08
+    },
+    {
+      "date": "2022-05-18",
+      "total_shares_wan": 265444.08
+    },
+    {
+      "date": "2022-05-19",
+      "total_shares_wan": 268234.08
+    },
+    {
+      "date": "2022-05-20",
+      "total_shares_wan": 267874.08
+    },
+    {
+      "date": "2022-05-23",
+      "total_shares_wan": 269194.08
+    },
+    {
+      "date": "2022-05-24",
+      "total_shares_wan": 270124.08
+    },
+    {
+      "date": "2022-05-25",
+      "total_shares_wan": 270364.08
+    },
+    {
+      "date": "2022-05-26",
+      "total_shares_wan": 269884.08
+    },
+    {
+      "date": "2022-05-27",
+      "total_shares_wan": 269164.08
+    },
+    {
+      "date": "2022-05-30",
+      "total_shares_wan": 266164.08
+    },
+    {
+      "date": "2022-05-31",
+      "total_shares_wan": 266014.08
+    },
+    {
+      "date": "2022-06-01",
+      "total_shares_wan": 266464.08
+    },
+    {
+      "date": "2022-06-02",
+      "total_shares_wan": 267874.08
+    },
+    {
+      "date": "2022-06-06",
+      "total_shares_wan": 267094.08
+    },
+    {
+      "date": "2022-06-07",
+      "total_shares_wan": 268204.08
+    },
+    {
+      "date": "2022-06-08",
+      "total_shares_wan": 268264.08
+    },
+    {
+      "date": "2022-06-09",
+      "total_shares_wan": 268564.08
+    },
+    {
+      "date": "2022-06-10",
+      "total_shares_wan": 269134.08
+    },
+    {
+      "date": "2022-06-13",
+      "total_shares_wan": 267844.08
+    },
+    {
+      "date": "2022-06-14",
+      "total_shares_wan": 263794.08
+    },
+    {
+      "date": "2022-06-15",
+      "total_shares_wan": 263044.08
+    },
+    {
+      "date": "2022-06-16",
+      "total_shares_wan": 263164.08
+    },
+    {
+      "date": "2022-06-17",
+      "total_shares_wan": 262114.08
+    },
+    {
+      "date": "2022-06-20",
+      "total_shares_wan": 261394.08
+    },
+    {
+      "date": "2022-06-21",
+      "total_shares_wan": 262444.08
+    },
+    {
+      "date": "2022-06-22",
+      "total_shares_wan": 262294.08
+    },
+    {
+      "date": "2022-06-23",
+      "total_shares_wan": 261874.08
+    },
+    {
+      "date": "2022-06-24",
+      "total_shares_wan": 261574.08
+    },
+    {
+      "date": "2022-06-27",
+      "total_shares_wan": 263044.08
+    },
+    {
+      "date": "2022-06-28",
+      "total_shares_wan": 262774.08
+    },
+    {
+      "date": "2022-06-29",
+      "total_shares_wan": 263074.08
+    },
+    {
+      "date": "2022-06-30",
+      "total_shares_wan": 262534.08
+    },
+    {
+      "date": "2022-07-01",
+      "total_shares_wan": 261724.08
+    },
+    {
+      "date": "2022-07-04",
+      "total_shares_wan": 262654.08
+    },
+    {
+      "date": "2022-07-05",
+      "total_shares_wan": 262144.08
+    },
+    {
+      "date": "2022-07-06",
+      "total_shares_wan": 263284.08
+    },
+    {
+      "date": "2022-07-07",
+      "total_shares_wan": 268744.08
+    },
+    {
+      "date": "2022-07-08",
+      "total_shares_wan": 268774.08
+    },
+    {
+      "date": "2022-07-11",
+      "total_shares_wan": 270304.08
+    },
+    {
+      "date": "2022-07-12",
+      "total_shares_wan": 272374.08
+    },
+    {
+      "date": "2022-07-13",
+      "total_shares_wan": 276244.08
+    },
+    {
+      "date": "2022-07-14",
+      "total_shares_wan": 279934.08
+    },
+    {
+      "date": "2022-07-15",
+      "total_shares_wan": 282304.08
+    },
+    {
+      "date": "2022-07-18",
+      "total_shares_wan": 283654.08
+    },
+    {
+      "date": "2022-07-19",
+      "total_shares_wan": 285034.08
+    },
+    {
+      "date": "2022-07-20",
+      "total_shares_wan": 287284.08
+    },
+    {
+      "date": "2022-07-21",
+      "total_shares_wan": 290554.08
+    },
+    {
+      "date": "2022-07-22",
+      "total_shares_wan": 293374.08
+    },
+    {
+      "date": "2022-07-25",
+      "total_shares_wan": 292684.08
+    },
+    {
+      "date": "2022-07-26",
+      "total_shares_wan": 294544.08
+    },
+    {
+      "date": "2022-07-27",
+      "total_shares_wan": 297874.08
+    },
+    {
+      "date": "2022-07-28",
+      "total_shares_wan": 300814.08
+    },
+    {
+      "date": "2022-07-29",
+      "total_shares_wan": 303244.08
+    },
+    {
+      "date": "2022-08-01",
+      "total_shares_wan": 303244.08
+    },
+    {
+      "date": "2022-08-02",
+      "total_shares_wan": 302614.08
+    },
+    {
+      "date": "2022-08-03",
+      "total_shares_wan": 301474.08
+    },
+    {
+      "date": "2022-08-04",
+      "total_shares_wan": 300274.08
+    },
+    {
+      "date": "2022-08-05",
+      "total_shares_wan": 298594.08
+    },
+    {
+      "date": "2022-08-08",
+      "total_shares_wan": 296134.08
+    },
+    {
+      "date": "2022-08-09",
+      "total_shares_wan": 293944.08
+    },
+    {
+      "date": "2022-08-10",
+      "total_shares_wan": 291424.08
+    },
+    {
+      "date": "2022-08-11",
+      "total_shares_wan": 288454.08
+    },
+    {
+      "date": "2022-08-12",
+      "total_shares_wan": 285874.08
+    },
+    {
+      "date": "2022-08-15",
+      "total_shares_wan": 283414.08
+    },
+    {
+      "date": "2022-08-16",
+      "total_shares_wan": 277774.08
+    },
+    {
+      "date": "2022-08-17",
+      "total_shares_wan": 273364.08
+    },
+    {
+      "date": "2022-08-18",
+      "total_shares_wan": 269704.08
+    },
+    {
+      "date": "2022-08-19",
+      "total_shares_wan": 267064.08
+    },
+    {
+      "date": "2022-08-22",
+      "total_shares_wan": 265534.08
+    },
+    {
+      "date": "2022-08-23",
+      "total_shares_wan": 265384.08
+    },
+    {
+      "date": "2022-08-24",
+      "total_shares_wan": 266404.08
+    },
+    {
+      "date": "2022-08-25",
+      "total_shares_wan": 268144.08
+    },
+    {
+      "date": "2022-08-26",
+      "total_shares_wan": 268084.08
+    },
+    {
+      "date": "2022-08-29",
+      "total_shares_wan": 266134.08
+    },
+    {
+      "date": "2022-08-30",
+      "total_shares_wan": 264004.08
+    },
+    {
+      "date": "2022-08-31",
+      "total_shares_wan": 263764.08
+    },
+    {
+      "date": "2022-09-01",
+      "total_shares_wan": 263824.08
+    },
+    {
+      "date": "2022-09-02",
+      "total_shares_wan": 264874.08
+    },
+    {
+      "date": "2022-09-05",
+      "total_shares_wan": 266074.08
+    },
+    {
+      "date": "2022-09-06",
+      "total_shares_wan": 265264.08
+    },
+    {
+      "date": "2022-09-07",
+      "total_shares_wan": 265804.08
+    },
+    {
+      "date": "2022-09-08",
+      "total_shares_wan": 265804.08
+    },
+    {
+      "date": "2022-09-09",
+      "total_shares_wan": 265594.08
+    },
+    {
+      "date": "2022-09-13",
+      "total_shares_wan": 264994.08
+    },
+    {
+      "date": "2022-09-14",
+      "total_shares_wan": 263974.08
+    },
+    {
+      "date": "2022-09-15",
+      "total_shares_wan": 260224.08
+    },
+    {
+      "date": "2022-09-16",
+      "total_shares_wan": 261244.08
+    },
+    {
+      "date": "2022-09-19",
+      "total_shares_wan": 262534.08
+    },
+    {
+      "date": "2022-09-20",
+      "total_shares_wan": 262594.08
+    },
+    {
+      "date": "2022-09-21",
+      "total_shares_wan": 262204.08
+    },
+    {
+      "date": "2022-09-22",
+      "total_shares_wan": 263284.08
+    },
+    {
+      "date": "2022-09-23",
+      "total_shares_wan": 263764.08
+    },
+    {
+      "date": "2022-09-26",
+      "total_shares_wan": 263284.08
+    },
+    {
+      "date": "2022-09-27",
+      "total_shares_wan": 263344.08
+    },
+    {
+      "date": "2022-09-28",
+      "total_shares_wan": 262864.08
+    },
+    {
+      "date": "2022-09-29",
+      "total_shares_wan": 262144.08
+    },
+    {
+      "date": "2022-09-30",
+      "total_shares_wan": 259054.08
+    },
+    {
+      "date": "2022-10-10",
+      "total_shares_wan": 257464.08
+    },
+    {
+      "date": "2022-10-11",
+      "total_shares_wan": 248794.08
+    },
+    {
+      "date": "2022-10-12",
+      "total_shares_wan": 245974.08
+    },
+    {
+      "date": "2022-10-13",
+      "total_shares_wan": 238624.08
+    },
+    {
+      "date": "2022-10-14",
+      "total_shares_wan": 234604.08
+    },
+    {
+      "date": "2022-10-17",
+      "total_shares_wan": 233884.08
+    },
+    {
+      "date": "2022-10-18",
+      "total_shares_wan": 232924.08
+    },
+    {
+      "date": "2022-10-19",
+      "total_shares_wan": 232864.08
+    },
+    {
+      "date": "2022-10-20",
+      "total_shares_wan": 231934.08
+    },
+    {
+      "date": "2022-10-21",
+      "total_shares_wan": 230974.08
+    },
+    {
+      "date": "2022-10-24",
+      "total_shares_wan": 230074.08
+    },
+    {
+      "date": "2022-10-25",
+      "total_shares_wan": 229384.08
+    },
+    {
+      "date": "2022-10-26",
+      "total_shares_wan": 228964.08
+    },
+    {
+      "date": "2022-10-27",
+      "total_shares_wan": 225454.08
+    },
+    {
+      "date": "2022-10-28",
+      "total_shares_wan": 221944.08
+    },
+    {
+      "date": "2022-10-31",
+      "total_shares_wan": 221464.08
+    },
+    {
+      "date": "2022-11-01",
+      "total_shares_wan": 220504.08
+    },
+    {
+      "date": "2022-11-02",
+      "total_shares_wan": 220864.08
+    },
+    {
+      "date": "2022-11-03",
+      "total_shares_wan": 220954.08
+    },
+    {
+      "date": "2022-11-04",
+      "total_shares_wan": 220804.08
+    },
+    {
+      "date": "2022-11-07",
+      "total_shares_wan": 220564.08
+    },
+    {
+      "date": "2022-11-08",
+      "total_shares_wan": 219124.08
+    },
+    {
+      "date": "2022-11-09",
+      "total_shares_wan": 224014.08
+    },
+    {
+      "date": "2022-11-10",
+      "total_shares_wan": 226444.08
+    },
+    {
+      "date": "2022-11-11",
+      "total_shares_wan": 226294.08
+    },
+    {
+      "date": "2022-11-14",
+      "total_shares_wan": 224884.08
+    },
+    {
+      "date": "2022-11-15",
+      "total_shares_wan": 222484.08
+    },
+    {
+      "date": "2022-11-16",
+      "total_shares_wan": 220714.08
+    },
+    {
+      "date": "2022-11-17",
+      "total_shares_wan": 220384.08
+    },
+    {
+      "date": "2022-11-18",
+      "total_shares_wan": 219364.08
+    },
+    {
+      "date": "2022-11-21",
+      "total_shares_wan": 218524.08
+    },
+    {
+      "date": "2022-11-22",
+      "total_shares_wan": 218854.08
+    },
+    {
+      "date": "2022-11-23",
+      "total_shares_wan": 219274.08
+    },
+    {
+      "date": "2022-11-24",
+      "total_shares_wan": 226024.08
+    },
+    {
+      "date": "2022-11-25",
+      "total_shares_wan": 228514.08
+    },
+    {
+      "date": "2022-11-28",
+      "total_shares_wan": 228634.08
+    },
+    {
+      "date": "2022-11-29",
+      "total_shares_wan": 231394.08
+    },
+    {
+      "date": "2022-11-30",
+      "total_shares_wan": 232114.08
+    },
+    {
+      "date": "2022-12-01",
+      "total_shares_wan": 231934.08
+    },
+    {
+      "date": "2022-12-02",
+      "total_shares_wan": 231724.08
+    },
+    {
+      "date": "2022-12-05",
+      "total_shares_wan": 231304.08
+    },
+    {
+      "date": "2022-12-06",
+      "total_shares_wan": 230764.08
+    },
+    {
+      "date": "2022-12-07",
+      "total_shares_wan": 227434.08
+    },
+    {
+      "date": "2022-12-08",
+      "total_shares_wan": 226354.08
+    },
+    {
+      "date": "2022-12-09",
+      "total_shares_wan": 222994.08
+    },
+    {
+      "date": "2022-12-12",
+      "total_shares_wan": 222364.08
+    },
+    {
+      "date": "2022-12-13",
+      "total_shares_wan": 222484.08
+    },
+    {
+      "date": "2022-12-14",
+      "total_shares_wan": 222364.08
+    },
+    {
+      "date": "2022-12-15",
+      "total_shares_wan": 220024.08
+    },
+    {
+      "date": "2022-12-16",
+      "total_shares_wan": 219124.08
+    },
+    {
+      "date": "2022-12-19",
+      "total_shares_wan": 219184.08
+    },
+    {
+      "date": "2022-12-20",
+      "total_shares_wan": 219244.08
+    },
+    {
+      "date": "2022-12-21",
+      "total_shares_wan": 219664.08
+    },
+    {
+      "date": "2022-12-22",
+      "total_shares_wan": 219514.08
+    },
+    {
+      "date": "2022-12-23",
+      "total_shares_wan": 218524.08
+    },
+    {
+      "date": "2022-12-26",
+      "total_shares_wan": 218104.08
+    },
+    {
+      "date": "2022-12-27",
+      "total_shares_wan": 217174.08
+    },
+    {
+      "date": "2022-12-28",
+      "total_shares_wan": 218464.08
+    },
+    {
+      "date": "2022-12-29",
+      "total_shares_wan": 243034.08
+    },
+    {
+      "date": "2022-12-30",
+      "total_shares_wan": 243844.08
+    },
+    {
+      "date": "2023-01-03",
+      "total_shares_wan": 243454.08
+    },
+    {
+      "date": "2023-01-04",
+      "total_shares_wan": 242704.08
+    },
+    {
+      "date": "2023-01-05",
+      "total_shares_wan": 240514.08
+    },
+    {
+      "date": "2023-01-06",
+      "total_shares_wan": 238864.08
+    },
+    {
+      "date": "2023-01-09",
+      "total_shares_wan": 237634.08
+    },
+    {
+      "date": "2023-01-10",
+      "total_shares_wan": 234634.08
+    },
+    {
+      "date": "2023-01-11",
+      "total_shares_wan": 232564.08
+    },
+    {
+      "date": "2023-01-12",
+      "total_shares_wan": 230044.08
+    },
+    {
+      "date": "2023-01-13",
+      "total_shares_wan": 219934.08
+    },
+    {
+      "date": "2023-01-16",
+      "total_shares_wan": 220624.08
+    },
+    {
+      "date": "2023-01-17",
+      "total_shares_wan": 222424.08
+    },
+    {
+      "date": "2023-01-18",
+      "total_shares_wan": 224284.08
+    },
+    {
+      "date": "2023-01-19",
+      "total_shares_wan": 224254.08
+    },
+    {
+      "date": "2023-01-20",
+      "total_shares_wan": 224224.08
+    },
+    {
+      "date": "2023-01-30",
+      "total_shares_wan": 223294.08
+    },
+    {
+      "date": "2023-01-31",
+      "total_shares_wan": 218884.08
+    },
+    {
+      "date": "2023-02-01",
+      "total_shares_wan": 211084.08
+    },
+    {
+      "date": "2023-02-02",
+      "total_shares_wan": 212014.08
+    },
+    {
+      "date": "2023-02-03",
+      "total_shares_wan": 206134.08
+    },
+    {
+      "date": "2023-02-06",
+      "total_shares_wan": 207334.08
+    },
+    {
+      "date": "2023-02-07",
+      "total_shares_wan": 208384.08
+    },
+    {
+      "date": "2023-02-08",
+      "total_shares_wan": 209224.08
+    },
+    {
+      "date": "2023-02-09",
+      "total_shares_wan": 211564.08
+    },
+    {
+      "date": "2023-02-10",
+      "total_shares_wan": 212524.08
+    },
+    {
+      "date": "2023-02-13",
+      "total_shares_wan": 213454.08
+    },
+    {
+      "date": "2023-02-14",
+      "total_shares_wan": 213814.08
+    },
+    {
+      "date": "2023-02-15",
+      "total_shares_wan": 213754.08
+    },
+    {
+      "date": "2023-02-16",
+      "total_shares_wan": 213214.08
+    },
+    {
+      "date": "2023-02-17",
+      "total_shares_wan": 213094.08
+    },
+    {
+      "date": "2023-02-20",
+      "total_shares_wan": 212374.08
+    },
+    {
+      "date": "2023-02-21",
+      "total_shares_wan": 211564.08
+    },
+    {
+      "date": "2023-02-22",
+      "total_shares_wan": 210844.08
+    },
+    {
+      "date": "2023-02-23",
+      "total_shares_wan": 210874.08
+    },
+    {
+      "date": "2023-02-24",
+      "total_shares_wan": 210994.08
+    },
+    {
+      "date": "2023-02-27",
+      "total_shares_wan": 212284.08
+    },
+    {
+      "date": "2023-02-28",
+      "total_shares_wan": 212374.08
+    },
+    {
+      "date": "2023-03-01",
+      "total_shares_wan": 212434.08
+    },
+    {
+      "date": "2023-03-02",
+      "total_shares_wan": 212374.08
+    },
+    {
+      "date": "2023-03-03",
+      "total_shares_wan": 214864.08
+    },
+    {
+      "date": "2023-03-06",
+      "total_shares_wan": 217624.08
+    },
+    {
+      "date": "2023-03-07",
+      "total_shares_wan": 220114.08
+    },
+    {
+      "date": "2023-03-08",
+      "total_shares_wan": 222394.08
+    },
+    {
+      "date": "2023-03-09",
+      "total_shares_wan": 224254.08
+    },
+    {
+      "date": "2023-03-10",
+      "total_shares_wan": 227434.08
+    },
+    {
+      "date": "2023-03-13",
+      "total_shares_wan": 227644.08
+    },
+    {
+      "date": "2023-03-14",
+      "total_shares_wan": 228874.08
+    },
+    {
+      "date": "2023-03-15",
+      "total_shares_wan": 228484.08
+    },
+    {
+      "date": "2023-03-16",
+      "total_shares_wan": 227284.08
+    },
+    {
+      "date": "2023-03-17",
+      "total_shares_wan": 226084.08
+    },
+    {
+      "date": "2023-03-20",
+      "total_shares_wan": 230164.08
+    },
+    {
+      "date": "2023-03-21",
+      "total_shares_wan": 234034.08
+    },
+    {
+      "date": "2023-03-22",
+      "total_shares_wan": 234004.08
+    },
+    {
+      "date": "2023-03-23",
+      "total_shares_wan": 233554.08
+    },
+    {
+      "date": "2023-03-24",
+      "total_shares_wan": 234034.08
+    },
+    {
+      "date": "2023-03-27",
+      "total_shares_wan": 235264.08
+    },
+    {
+      "date": "2023-03-28",
+      "total_shares_wan": 235984.08
+    },
+    {
+      "date": "2023-03-29",
+      "total_shares_wan": 235774.08
+    },
+    {
+      "date": "2023-03-30",
+      "total_shares_wan": 235564.08
+    },
+    {
+      "date": "2023-03-31",
+      "total_shares_wan": 236404.08
+    },
+    {
+      "date": "2023-04-03",
+      "total_shares_wan": 236974.08
+    },
+    {
+      "date": "2023-04-04",
+      "total_shares_wan": 238774.08
+    },
+    {
+      "date": "2023-04-06",
+      "total_shares_wan": 237844.08
+    },
+    {
+      "date": "2023-04-07",
+      "total_shares_wan": 235174.08
+    },
+    {
+      "date": "2023-04-10",
+      "total_shares_wan": 231994.08
+    },
+    {
+      "date": "2023-04-11",
+      "total_shares_wan": 232264.08
+    },
+    {
+      "date": "2023-04-12",
+      "total_shares_wan": 235294.08
+    },
+    {
+      "date": "2023-04-13",
+      "total_shares_wan": 235084.08
+    },
+    {
+      "date": "2023-04-14",
+      "total_shares_wan": 234784.08
+    },
+    {
+      "date": "2023-04-17",
+      "total_shares_wan": 234184.08
+    },
+    {
+      "date": "2023-04-18",
+      "total_shares_wan": 235954.08
+    },
+    {
+      "date": "2023-04-19",
+      "total_shares_wan": 236464.08
+    },
+    {
+      "date": "2023-04-20",
+      "total_shares_wan": 236434.08
+    },
+    {
+      "date": "2023-04-21",
+      "total_shares_wan": 236284.08
+    },
+    {
+      "date": "2023-04-24",
+      "total_shares_wan": 236284.08
+    },
+    {
+      "date": "2023-04-25",
+      "total_shares_wan": 236344.08
+    },
+    {
+      "date": "2023-04-26",
+      "total_shares_wan": 236164.08
+    },
+    {
+      "date": "2023-04-27",
+      "total_shares_wan": 235594.08
+    },
+    {
+      "date": "2023-04-28",
+      "total_shares_wan": 235504.08
+    },
+    {
+      "date": "2023-05-04",
+      "total_shares_wan": 235234.08
+    },
+    {
+      "date": "2023-05-05",
+      "total_shares_wan": 232564.08
+    },
+    {
+      "date": "2023-05-08",
+      "total_shares_wan": 232294.08
+    },
+    {
+      "date": "2023-05-09",
+      "total_shares_wan": 231994.08
+    },
+    {
+      "date": "2023-05-10",
+      "total_shares_wan": 231844.08
+    },
+    {
+      "date": "2023-05-11",
+      "total_shares_wan": 232564.08
+    },
+    {
+      "date": "2023-05-12",
+      "total_shares_wan": 232864.08
+    },
+    {
+      "date": "2023-05-15",
+      "total_shares_wan": 232924.08
+    },
+    {
+      "date": "2023-05-16",
+      "total_shares_wan": 232444.08
+    },
+    {
+      "date": "2023-05-17",
+      "total_shares_wan": 230164.08
+    },
+    {
+      "date": "2023-05-18",
+      "total_shares_wan": 229024.08
+    },
+    {
+      "date": "2023-05-19",
+      "total_shares_wan": 228694.08
+    },
+    {
+      "date": "2023-05-22",
+      "total_shares_wan": 229234.08
+    },
+    {
+      "date": "2023-05-23",
+      "total_shares_wan": 229084.08
+    },
+    {
+      "date": "2023-05-24",
+      "total_shares_wan": 228874.08
+    },
+    {
+      "date": "2023-05-25",
+      "total_shares_wan": 229054.08
+    },
+    {
+      "date": "2023-05-26",
+      "total_shares_wan": 229534.08
+    },
+    {
+      "date": "2023-05-29",
+      "total_shares_wan": 230824.08
+    },
+    {
+      "date": "2023-05-30",
+      "total_shares_wan": 230584.08
+    },
+    {
+      "date": "2023-05-31",
+      "total_shares_wan": 230584.08
+    },
+    {
+      "date": "2023-06-01",
+      "total_shares_wan": 230554.08
+    },
+    {
+      "date": "2023-06-02",
+      "total_shares_wan": 229924.08
+    },
+    {
+      "date": "2023-06-05",
+      "total_shares_wan": 228874.08
+    },
+    {
+      "date": "2023-06-06",
+      "total_shares_wan": 229114.08
+    },
+    {
+      "date": "2023-06-07",
+      "total_shares_wan": 228574.08
+    },
+    {
+      "date": "2023-06-08",
+      "total_shares_wan": 228124.08
+    },
+    {
+      "date": "2023-06-09",
+      "total_shares_wan": 227974.08
+    },
+    {
+      "date": "2023-06-12",
+      "total_shares_wan": 227644.08
+    },
+    {
+      "date": "2023-06-13",
+      "total_shares_wan": 227464.08
+    },
+    {
+      "date": "2023-06-14",
+      "total_shares_wan": 227584.08
+    },
+    {
+      "date": "2023-06-15",
+      "total_shares_wan": 227404.08
+    },
+    {
+      "date": "2023-06-16",
+      "total_shares_wan": 228034.08
+    },
+    {
+      "date": "2023-06-19",
+      "total_shares_wan": 225814.08
+    },
+    {
+      "date": "2023-06-20",
+      "total_shares_wan": 224914.08
+    },
+    {
+      "date": "2023-06-21",
+      "total_shares_wan": 224734.08
+    },
+    {
+      "date": "2023-06-26",
+      "total_shares_wan": 226024.08
+    },
+    {
+      "date": "2023-06-27",
+      "total_shares_wan": 226834.08
+    },
+    {
+      "date": "2023-06-28",
+      "total_shares_wan": 238054.08
+    },
+    {
+      "date": "2023-06-29",
+      "total_shares_wan": 238144.08
+    },
+    {
+      "date": "2023-06-30",
+      "total_shares_wan": 239284.08
+    },
+    {
+      "date": "2023-07-03",
+      "total_shares_wan": 233734.08
+    },
+    {
+      "date": "2023-07-04",
+      "total_shares_wan": 227434.08
+    },
+    {
+      "date": "2023-07-05",
+      "total_shares_wan": 227224.08
+    },
+    {
+      "date": "2023-07-06",
+      "total_shares_wan": 226864.08
+    },
+    {
+      "date": "2023-07-07",
+      "total_shares_wan": 226054.08
+    },
+    {
+      "date": "2023-07-10",
+      "total_shares_wan": 225964.08
+    },
+    {
+      "date": "2023-07-11",
+      "total_shares_wan": 225934.08
+    },
+    {
+      "date": "2023-07-12",
+      "total_shares_wan": 226294.08
+    },
+    {
+      "date": "2023-07-13",
+      "total_shares_wan": 226144.08
+    },
+    {
+      "date": "2023-07-14",
+      "total_shares_wan": 225844.08
+    },
+    {
+      "date": "2023-07-17",
+      "total_shares_wan": 225664.08
+    },
+    {
+      "date": "2023-07-18",
+      "total_shares_wan": 225964.08
+    },
+    {
+      "date": "2023-07-19",
+      "total_shares_wan": 227104.08
+    },
+    {
+      "date": "2023-07-20",
+      "total_shares_wan": 227944.08
+    },
+    {
+      "date": "2023-07-21",
+      "total_shares_wan": 231094.08
+    },
+    {
+      "date": "2023-07-24",
+      "total_shares_wan": 232894.08
+    },
+    {
+      "date": "2023-07-25",
+      "total_shares_wan": 233794.08
+    },
+    {
+      "date": "2023-07-26",
+      "total_shares_wan": 236044.08
+    },
+    {
+      "date": "2023-07-27",
+      "total_shares_wan": 237064.08
+    },
+    {
+      "date": "2023-07-28",
+      "total_shares_wan": 237064.08
+    },
+    {
+      "date": "2023-07-31",
+      "total_shares_wan": 237304.08
+    },
+    {
+      "date": "2023-08-01",
+      "total_shares_wan": 235324.08
+    },
+    {
+      "date": "2023-08-02",
+      "total_shares_wan": 234814.08
+    },
+    {
+      "date": "2023-08-03",
+      "total_shares_wan": 234844.08
+    },
+    {
+      "date": "2023-08-04",
+      "total_shares_wan": 236404.08
+    },
+    {
+      "date": "2023-08-07",
+      "total_shares_wan": 237604.08
+    },
+    {
+      "date": "2023-08-08",
+      "total_shares_wan": 237604.08
+    },
+    {
+      "date": "2023-08-09",
+      "total_shares_wan": 238924.08
+    },
+    {
+      "date": "2023-08-10",
+      "total_shares_wan": 240484.08
+    },
+    {
+      "date": "2023-08-11",
+      "total_shares_wan": 241504.08
+    },
+    {
+      "date": "2023-08-14",
+      "total_shares_wan": 242554.08
+    },
+    {
+      "date": "2023-08-15",
+      "total_shares_wan": 244594.08
+    },
+    {
+      "date": "2023-08-16",
+      "total_shares_wan": 246694.08
+    },
+    {
+      "date": "2023-08-17",
+      "total_shares_wan": 247354.08
+    },
+    {
+      "date": "2023-08-18",
+      "total_shares_wan": 249154.08
+    },
+    {
+      "date": "2023-08-21",
+      "total_shares_wan": 251224.08
+    },
+    {
+      "date": "2023-08-22",
+      "total_shares_wan": 251644.08
+    },
+    {
+      "date": "2023-08-23",
+      "total_shares_wan": 255304.08
+    },
+    {
+      "date": "2023-08-24",
+      "total_shares_wan": 260314.08
+    },
+    {
+      "date": "2023-08-25",
+      "total_shares_wan": 264394.08
+    },
+    {
+      "date": "2023-08-28",
+      "total_shares_wan": 264094.08
+    },
+    {
+      "date": "2023-08-29",
+      "total_shares_wan": 264124.08
+    },
+    {
+      "date": "2023-08-30",
+      "total_shares_wan": 264694.08
+    },
+    {
+      "date": "2023-08-31",
+      "total_shares_wan": 265534.08
+    },
+    {
+      "date": "2023-09-01",
+      "total_shares_wan": 267154.08
+    },
+    {
+      "date": "2023-09-04",
+      "total_shares_wan": 267394.08
+    },
+    {
+      "date": "2023-09-05",
+      "total_shares_wan": 267514.08
+    },
+    {
+      "date": "2023-09-06",
+      "total_shares_wan": 269224.08
+    },
+    {
+      "date": "2023-09-07",
+      "total_shares_wan": 270244.08
+    },
+    {
+      "date": "2023-09-08",
+      "total_shares_wan": 273214.08
+    },
+    {
+      "date": "2023-09-11",
+      "total_shares_wan": 276514.08
+    },
+    {
+      "date": "2023-09-12",
+      "total_shares_wan": 281644.08
+    },
+    {
+      "date": "2023-09-13",
+      "total_shares_wan": 285124.08
+    },
+    {
+      "date": "2023-09-14",
+      "total_shares_wan": 286984.08
+    },
+    {
+      "date": "2023-09-15",
+      "total_shares_wan": 285784.08
+    },
+    {
+      "date": "2023-09-18",
+      "total_shares_wan": 285154.08
+    },
+    {
+      "date": "2023-09-19",
+      "total_shares_wan": 279934.08
+    },
+    {
+      "date": "2023-09-20",
+      "total_shares_wan": 279664.08
+    },
+    {
+      "date": "2023-09-21",
+      "total_shares_wan": 279184.08
+    },
+    {
+      "date": "2023-09-22",
+      "total_shares_wan": 279124.08
+    },
+    {
+      "date": "2023-09-25",
+      "total_shares_wan": 279694.08
+    },
+    {
+      "date": "2023-09-26",
+      "total_shares_wan": 278404.08
+    },
+    {
+      "date": "2023-09-27",
+      "total_shares_wan": 279364.08
+    },
+    {
+      "date": "2023-09-28",
+      "total_shares_wan": 279214.08
+    },
+    {
+      "date": "2023-10-09",
+      "total_shares_wan": 283264.08
+    },
+    {
+      "date": "2023-10-10",
+      "total_shares_wan": 286354.08
+    },
+    {
+      "date": "2023-10-11",
+      "total_shares_wan": 285964.08
+    },
+    {
+      "date": "2023-10-12",
+      "total_shares_wan": 284974.08
+    },
+    {
+      "date": "2023-10-13",
+      "total_shares_wan": 285904.08
+    },
+    {
+      "date": "2023-10-16",
+      "total_shares_wan": 286414.08
+    },
+    {
+      "date": "2023-10-17",
+      "total_shares_wan": 286654.08
+    },
+    {
+      "date": "2023-10-18",
+      "total_shares_wan": 285994.08
+    },
+    {
+      "date": "2023-10-19",
+      "total_shares_wan": 286474.08
+    },
+    {
+      "date": "2023-10-20",
+      "total_shares_wan": 286234.08
+    },
+    {
+      "date": "2023-10-23",
+      "total_shares_wan": 285274.08
+    },
+    {
+      "date": "2023-10-24",
+      "total_shares_wan": 283444.08
+    },
+    {
+      "date": "2023-10-25",
+      "total_shares_wan": 280024.08
+    },
+    {
+      "date": "2023-10-26",
+      "total_shares_wan": 278254.08
+    },
+    {
+      "date": "2023-10-27",
+      "total_shares_wan": 276334.08
+    },
+    {
+      "date": "2023-10-30",
+      "total_shares_wan": 274414.08
+    },
+    {
+      "date": "2023-10-31",
+      "total_shares_wan": 272644.08
+    },
+    {
+      "date": "2023-11-01",
+      "total_shares_wan": 270064.08
+    },
+    {
+      "date": "2023-11-02",
+      "total_shares_wan": 269524.08
+    },
+    {
+      "date": "2023-11-03",
+      "total_shares_wan": 267694.08
+    },
+    {
+      "date": "2023-11-06",
+      "total_shares_wan": 266194.08
+    },
+    {
+      "date": "2023-11-07",
+      "total_shares_wan": 261004.08
+    },
+    {
+      "date": "2023-11-08",
+      "total_shares_wan": 255814.08
+    },
+    {
+      "date": "2023-11-09",
+      "total_shares_wan": 252634.08
+    },
+    {
+      "date": "2023-11-10",
+      "total_shares_wan": 252184.08
+    },
+    {
+      "date": "2023-11-13",
+      "total_shares_wan": 253054.08
+    },
+    {
+      "date": "2023-11-14",
+      "total_shares_wan": 256324.08
+    },
+    {
+      "date": "2023-11-15",
+      "total_shares_wan": 263224.08
+    },
+    {
+      "date": "2023-11-16",
+      "total_shares_wan": 266494.08
+    },
+    {
+      "date": "2023-11-17",
+      "total_shares_wan": 266794.08
+    },
+    {
+      "date": "2023-11-20",
+      "total_shares_wan": 266344.08
+    },
+    {
+      "date": "2023-11-21",
+      "total_shares_wan": 266944.08
+    },
+    {
+      "date": "2023-11-22",
+      "total_shares_wan": 266584.08
+    },
+    {
+      "date": "2023-11-23",
+      "total_shares_wan": 267334.08
+    },
+    {
+      "date": "2023-11-24",
+      "total_shares_wan": 267334.08
+    },
+    {
+      "date": "2023-11-27",
+      "total_shares_wan": 267664.08
+    },
+    {
+      "date": "2023-11-28",
+      "total_shares_wan": 268474.08
+    },
+    {
+      "date": "2023-11-29",
+      "total_shares_wan": 269914.08
+    },
+    {
+      "date": "2023-11-30",
+      "total_shares_wan": 269854.08
+    },
+    {
+      "date": "2023-12-01",
+      "total_shares_wan": 269734.08
+    },
+    {
+      "date": "2023-12-04",
+      "total_shares_wan": 269134.08
+    },
+    {
+      "date": "2023-12-05",
+      "total_shares_wan": 268084.08
+    },
+    {
+      "date": "2023-12-06",
+      "total_shares_wan": 269434.08
+    },
+    {
+      "date": "2023-12-07",
+      "total_shares_wan": 270544.08
+    },
+    {
+      "date": "2023-12-08",
+      "total_shares_wan": 271264.08
+    },
+    {
+      "date": "2023-12-11",
+      "total_shares_wan": 272944.08
+    },
+    {
+      "date": "2023-12-12",
+      "total_shares_wan": 277624.08
+    },
+    {
+      "date": "2023-12-13",
+      "total_shares_wan": 280444.08
+    },
+    {
+      "date": "2023-12-14",
+      "total_shares_wan": 283384.08
+    },
+    {
+      "date": "2023-12-15",
+      "total_shares_wan": 283654.08
+    },
+    {
+      "date": "2023-12-18",
+      "total_shares_wan": 285934.08
+    },
+    {
+      "date": "2023-12-19",
+      "total_shares_wan": 286744.08
+    },
+    {
+      "date": "2023-12-20",
+      "total_shares_wan": 287584.08
+    },
+    {
+      "date": "2023-12-21",
+      "total_shares_wan": 287584.08
+    },
+    {
+      "date": "2023-12-22",
+      "total_shares_wan": 285664.08
+    },
+    {
+      "date": "2023-12-25",
+      "total_shares_wan": 283684.08
+    },
+    {
+      "date": "2023-12-26",
+      "total_shares_wan": 282034.08
+    },
+    {
+      "date": "2023-12-27",
+      "total_shares_wan": 303184.08
+    },
+    {
+      "date": "2023-12-28",
+      "total_shares_wan": 302974.08
+    },
+    {
+      "date": "2023-12-29",
+      "total_shares_wan": 300784.08
+    },
+    {
+      "date": "2024-01-02",
+      "total_shares_wan": 300424.08
+    },
+    {
+      "date": "2024-01-03",
+      "total_shares_wan": 298324.08
+    },
+    {
+      "date": "2024-01-04",
+      "total_shares_wan": 297904.08
+    },
+    {
+      "date": "2024-01-05",
+      "total_shares_wan": 299644.08
+    },
+    {
+      "date": "2024-01-08",
+      "total_shares_wan": 281344.08
+    },
+    {
+      "date": "2024-01-09",
+      "total_shares_wan": 283864.08
+    },
+    {
+      "date": "2024-01-10",
+      "total_shares_wan": 287074.08
+    },
+    {
+      "date": "2024-01-11",
+      "total_shares_wan": 287944.08
+    },
+    {
+      "date": "2024-01-12",
+      "total_shares_wan": 288514.08
+    },
+    {
+      "date": "2024-01-15",
+      "total_shares_wan": 291814.08
+    },
+    {
+      "date": "2024-01-16",
+      "total_shares_wan": 293704.08
+    },
+    {
+      "date": "2024-01-17",
+      "total_shares_wan": 295024.08
+    },
+    {
+      "date": "2024-01-18",
+      "total_shares_wan": 295024.08
+    },
+    {
+      "date": "2024-01-19",
+      "total_shares_wan": 297724.08
+    },
+    {
+      "date": "2024-01-22",
+      "total_shares_wan": 296674.08
+    },
+    {
+      "date": "2024-01-23",
+      "total_shares_wan": 296794.08
+    },
+    {
+      "date": "2024-01-24",
+      "total_shares_wan": 296794.08
+    },
+    {
+      "date": "2024-01-25",
+      "total_shares_wan": 296734.08
+    },
+    {
+      "date": "2024-01-26",
+      "total_shares_wan": 297664.08
+    },
+    {
+      "date": "2024-01-29",
+      "total_shares_wan": 296764.08
+    },
+    {
+      "date": "2024-01-30",
+      "total_shares_wan": 297034.08
+    },
+    {
+      "date": "2024-01-31",
+      "total_shares_wan": 297064.08
+    },
+    {
+      "date": "2024-02-01",
+      "total_shares_wan": 298114.08
+    },
+    {
+      "date": "2024-02-02",
+      "total_shares_wan": 298144.08
+    },
+    {
+      "date": "2024-02-05",
+      "total_shares_wan": 298144.08
+    },
+    {
+      "date": "2024-02-06",
+      "total_shares_wan": 298264.08
+    },
+    {
+      "date": "2024-02-07",
+      "total_shares_wan": 297754.08
+    },
+    {
+      "date": "2024-02-08",
+      "total_shares_wan": 296974.08
+    },
+    {
+      "date": "2024-02-19",
+      "total_shares_wan": 296794.08
+    },
+    {
+      "date": "2024-02-20",
+      "total_shares_wan": 297934.08
+    },
+    {
+      "date": "2024-02-21",
+      "total_shares_wan": 300274.08
+    },
+    {
+      "date": "2024-02-22",
+      "total_shares_wan": 302254.08
+    },
+    {
+      "date": "2024-02-23",
+      "total_shares_wan": 304684.08
+    },
+    {
+      "date": "2024-02-26",
+      "total_shares_wan": 306484.08
+    },
+    {
+      "date": "2024-02-27",
+      "total_shares_wan": 306994.08
+    },
+    {
+      "date": "2024-02-28",
+      "total_shares_wan": 307594.08
+    },
+    {
+      "date": "2024-02-29",
+      "total_shares_wan": 307864.08
+    },
+    {
+      "date": "2024-03-01",
+      "total_shares_wan": 307804.08
+    },
+    {
+      "date": "2024-03-04",
+      "total_shares_wan": 306694.08
+    },
+    {
+      "date": "2024-03-05",
+      "total_shares_wan": 305374.08
+    },
+    {
+      "date": "2024-03-06",
+      "total_shares_wan": 303994.08
+    },
+    {
+      "date": "2024-03-07",
+      "total_shares_wan": 302944.08
+    },
+    {
+      "date": "2024-03-08",
+      "total_shares_wan": 302884.08
+    },
+    {
+      "date": "2024-03-11",
+      "total_shares_wan": 301624.08
+    },
+    {
+      "date": "2024-03-12",
+      "total_shares_wan": 300304.08
+    },
+    {
+      "date": "2024-03-13",
+      "total_shares_wan": 297094.08
+    },
+    {
+      "date": "2024-03-14",
+      "total_shares_wan": 294604.08
+    },
+    {
+      "date": "2024-03-15",
+      "total_shares_wan": 293794.08
+    },
+    {
+      "date": "2024-03-18",
+      "total_shares_wan": 294604.08
+    },
+    {
+      "date": "2024-03-19",
+      "total_shares_wan": 295234.08
+    },
+    {
+      "date": "2024-03-20",
+      "total_shares_wan": 295024.08
+    },
+    {
+      "date": "2024-03-21",
+      "total_shares_wan": 295594.08
+    },
+    {
+      "date": "2024-03-22",
+      "total_shares_wan": 298444.08
+    },
+    {
+      "date": "2024-03-25",
+      "total_shares_wan": 302524.08
+    },
+    {
+      "date": "2024-03-26",
+      "total_shares_wan": 305914.08
+    },
+    {
+      "date": "2024-03-27",
+      "total_shares_wan": 309184.08
+    },
+    {
+      "date": "2024-03-28",
+      "total_shares_wan": 311284.08
+    },
+    {
+      "date": "2024-03-29",
+      "total_shares_wan": 317134.08
+    },
+    {
+      "date": "2024-04-01",
+      "total_shares_wan": 322594.08
+    },
+    {
+      "date": "2024-04-02",
+      "total_shares_wan": 330394.08
+    },
+    {
+      "date": "2024-04-03",
+      "total_shares_wan": 336664.08
+    },
+    {
+      "date": "2024-04-08",
+      "total_shares_wan": 348604.08
+    },
+    {
+      "date": "2024-04-09",
+      "total_shares_wan": 360844.08
+    },
+    {
+      "date": "2024-04-10",
+      "total_shares_wan": 369364.08
+    },
+    {
+      "date": "2024-04-11",
+      "total_shares_wan": 378244.08
+    },
+    {
+      "date": "2024-04-12",
+      "total_shares_wan": 387544.08
+    },
+    {
+      "date": "2024-04-15",
+      "total_shares_wan": 392224.08
+    },
+    {
+      "date": "2024-04-16",
+      "total_shares_wan": 398674.08
+    },
+    {
+      "date": "2024-04-17",
+      "total_shares_wan": 397474.08
+    },
+    {
+      "date": "2024-04-18",
+      "total_shares_wan": 396124.08
+    },
+    {
+      "date": "2024-04-19",
+      "total_shares_wan": 400384.08
+    },
+    {
+      "date": "2024-04-22",
+      "total_shares_wan": 399694.08
+    },
+    {
+      "date": "2024-04-23",
+      "total_shares_wan": 394294.08
+    },
+    {
+      "date": "2024-04-24",
+      "total_shares_wan": 371524.08
+    },
+    {
+      "date": "2024-04-25",
+      "total_shares_wan": 365374.08
+    },
+    {
+      "date": "2024-04-26",
+      "total_shares_wan": 362104.08
+    },
+    {
+      "date": "2024-04-29",
+      "total_shares_wan": 360454.08
+    },
+    {
+      "date": "2024-04-30",
+      "total_shares_wan": 360904.08
+    },
+    {
+      "date": "2024-05-06",
+      "total_shares_wan": 360064.08
+    },
+    {
+      "date": "2024-05-07",
+      "total_shares_wan": 359524.08
+    },
+    {
+      "date": "2024-05-08",
+      "total_shares_wan": 359704.08
+    },
+    {
+      "date": "2024-05-09",
+      "total_shares_wan": 359764.08
+    },
+    {
+      "date": "2024-05-10",
+      "total_shares_wan": 359044.08
+    },
+    {
+      "date": "2024-05-13",
+      "total_shares_wan": 358504.08
+    },
+    {
+      "date": "2024-05-14",
+      "total_shares_wan": 357964.08
+    },
+    {
+      "date": "2024-05-15",
+      "total_shares_wan": 361714.08
+    },
+    {
+      "date": "2024-05-16",
+      "total_shares_wan": 365104.08
+    },
+    {
+      "date": "2024-05-17",
+      "total_shares_wan": 365104.08
+    },
+    {
+      "date": "2024-05-20",
+      "total_shares_wan": 365974.08
+    },
+    {
+      "date": "2024-05-21",
+      "total_shares_wan": 365524.08
+    },
+    {
+      "date": "2024-05-22",
+      "total_shares_wan": 367414.08
+    },
+    {
+      "date": "2024-05-23",
+      "total_shares_wan": 366544.08
+    },
+    {
+      "date": "2024-05-24",
+      "total_shares_wan": 372544.08
+    },
+    {
+      "date": "2024-05-27",
+      "total_shares_wan": 381814.08
+    },
+    {
+      "date": "2024-05-28",
+      "total_shares_wan": 387274.08
+    },
+    {
+      "date": "2024-05-29",
+      "total_shares_wan": 390364.08
+    },
+    {
+      "date": "2024-05-30",
+      "total_shares_wan": 392014.08
+    },
+    {
+      "date": "2024-05-31",
+      "total_shares_wan": 394984.08
+    },
+    {
+      "date": "2024-06-03",
+      "total_shares_wan": 395014.08
+    },
+    {
+      "date": "2024-06-04",
+      "total_shares_wan": 398914.08
+    },
+    {
+      "date": "2024-06-05",
+      "total_shares_wan": 401524.08
+    },
+    {
+      "date": "2024-06-06",
+      "total_shares_wan": 404434.08
+    },
+    {
+      "date": "2024-06-07",
+      "total_shares_wan": 404494.08
+    },
+    {
+      "date": "2024-06-11",
+      "total_shares_wan": 405304.08
+    },
+    {
+      "date": "2024-06-12",
+      "total_shares_wan": 409594.08
+    },
+    {
+      "date": "2024-06-13",
+      "total_shares_wan": 409864.08
+    },
+    {
+      "date": "2024-06-14",
+      "total_shares_wan": 411784.08
+    },
+    {
+      "date": "2024-06-17",
+      "total_shares_wan": 412054.08
+    },
+    {
+      "date": "2024-06-18",
+      "total_shares_wan": 411904.08
+    },
+    {
+      "date": "2024-06-19",
+      "total_shares_wan": 411784.08
+    },
+    {
+      "date": "2024-06-20",
+      "total_shares_wan": 412804.08
+    },
+    {
+      "date": "2024-06-21",
+      "total_shares_wan": 412774.08
+    },
+    {
+      "date": "2024-06-24",
+      "total_shares_wan": 412774.08
+    },
+    {
+      "date": "2024-06-25",
+      "total_shares_wan": 418264.08
+    },
+    {
+      "date": "2024-06-26",
+      "total_shares_wan": 420994.08
+    },
+    {
+      "date": "2024-06-27",
+      "total_shares_wan": 427534.08
+    },
+    {
+      "date": "2024-06-28",
+      "total_shares_wan": 432064.08
+    },
+    {
+      "date": "2024-07-01",
+      "total_shares_wan": 432334.08
+    },
+    {
+      "date": "2024-07-02",
+      "total_shares_wan": 431764.08
+    },
+    {
+      "date": "2024-07-03",
+      "total_shares_wan": 430504.08
+    },
+    {
+      "date": "2024-07-04",
+      "total_shares_wan": 430294.08
+    },
+    {
+      "date": "2024-07-05",
+      "total_shares_wan": 420844.08
+    },
+    {
+      "date": "2024-07-08",
+      "total_shares_wan": 420574.08
+    },
+    {
+      "date": "2024-07-09",
+      "total_shares_wan": 418174.08
+    },
+    {
+      "date": "2024-07-10",
+      "total_shares_wan": 417034.08
+    },
+    {
+      "date": "2024-07-11",
+      "total_shares_wan": 418294.08
+    },
+    {
+      "date": "2024-07-12",
+      "total_shares_wan": 418714.08
+    },
+    {
+      "date": "2024-07-15",
+      "total_shares_wan": 420664.08
+    },
+    {
+      "date": "2024-07-16",
+      "total_shares_wan": 423634.08
+    },
+    {
+      "date": "2024-07-17",
+      "total_shares_wan": 426934.08
+    },
+    {
+      "date": "2024-07-18",
+      "total_shares_wan": 429214.08
+    },
+    {
+      "date": "2024-07-19",
+      "total_shares_wan": 431194.08
+    },
+    {
+      "date": "2024-07-22",
+      "total_shares_wan": 435484.08
+    },
+    {
+      "date": "2024-07-23",
+      "total_shares_wan": 437404.08
+    },
+    {
+      "date": "2024-07-24",
+      "total_shares_wan": 438724.08
+    },
+    {
+      "date": "2024-07-25",
+      "total_shares_wan": 440974.08
+    },
+    {
+      "date": "2024-07-26",
+      "total_shares_wan": 452704.08
+    },
+    {
+      "date": "2024-07-29",
+      "total_shares_wan": 455044.08
+    },
+    {
+      "date": "2024-07-30",
+      "total_shares_wan": 456004.08
+    },
+    {
+      "date": "2024-07-31",
+      "total_shares_wan": 457264.08
+    },
+    {
+      "date": "2024-08-01",
+      "total_shares_wan": 456694.08
+    },
+    {
+      "date": "2024-08-02",
+      "total_shares_wan": 454234.08
+    },
+    {
+      "date": "2024-08-05",
+      "total_shares_wan": 448234.08
+    },
+    {
+      "date": "2024-08-06",
+      "total_shares_wan": 452644.08
+    },
+    {
+      "date": "2024-08-07",
+      "total_shares_wan": 464014.08
+    },
+    {
+      "date": "2024-08-08",
+      "total_shares_wan": 474274.08
+    },
+    {
+      "date": "2024-08-09",
+      "total_shares_wan": 478954.08
+    },
+    {
+      "date": "2024-08-12",
+      "total_shares_wan": 479704.08
+    },
+    {
+      "date": "2024-08-13",
+      "total_shares_wan": 478354.08
+    },
+    {
+      "date": "2024-08-14",
+      "total_shares_wan": 465214.08
+    },
+    {
+      "date": "2024-08-15",
+      "total_shares_wan": 460354.08
+    },
+    {
+      "date": "2024-08-16",
+      "total_shares_wan": 453034.08
+    },
+    {
+      "date": "2024-08-19",
+      "total_shares_wan": 445474.08
+    },
+    {
+      "date": "2024-08-20",
+      "total_shares_wan": 442294.08
+    },
+    {
+      "date": "2024-08-21",
+      "total_shares_wan": 434944.08
+    },
+    {
+      "date": "2024-08-22",
+      "total_shares_wan": 430504.08
+    },
+    {
+      "date": "2024-08-23",
+      "total_shares_wan": 427864.08
+    },
+    {
+      "date": "2024-08-26",
+      "total_shares_wan": 427414.08
+    },
+    {
+      "date": "2024-08-27",
+      "total_shares_wan": 427354.08
+    },
+    {
+      "date": "2024-08-28",
+      "total_shares_wan": 427744.08
+    },
+    {
+      "date": "2024-08-29",
+      "total_shares_wan": 427654.08
+    },
+    {
+      "date": "2024-08-30",
+      "total_shares_wan": 427444.08
+    },
+    {
+      "date": "2024-09-02",
+      "total_shares_wan": 424474.08
+    },
+    {
+      "date": "2024-09-03",
+      "total_shares_wan": 425284.08
+    },
+    {
+      "date": "2024-09-04",
+      "total_shares_wan": 424654.08
+    },
+    {
+      "date": "2024-09-05",
+      "total_shares_wan": 425824.08
+    },
+    {
+      "date": "2024-09-06",
+      "total_shares_wan": 425914.08
+    },
+    {
+      "date": "2024-09-09",
+      "total_shares_wan": 426154.08
+    },
+    {
+      "date": "2024-09-10",
+      "total_shares_wan": 429364.08
+    },
+    {
+      "date": "2024-09-11",
+      "total_shares_wan": 428284.08
+    },
+    {
+      "date": "2024-09-12",
+      "total_shares_wan": 426964.08
+    },
+    {
+      "date": "2024-09-13",
+      "total_shares_wan": 425134.08
+    },
+    {
+      "date": "2024-09-18",
+      "total_shares_wan": 420604.08
+    },
+    {
+      "date": "2024-09-19",
+      "total_shares_wan": 412204.08
+    },
+    {
+      "date": "2024-09-20",
+      "total_shares_wan": 410164.08
+    },
+    {
+      "date": "2024-09-23",
+      "total_shares_wan": 412834.08
+    },
+    {
+      "date": "2024-09-24",
+      "total_shares_wan": 418474.08
+    },
+    {
+      "date": "2024-09-25",
+      "total_shares_wan": 420724.08
+    },
+    {
+      "date": "2024-09-26",
+      "total_shares_wan": 420814.08
+    },
+    {
+      "date": "2024-09-27",
+      "total_shares_wan": 418504.08
+    },
+    {
+      "date": "2024-09-30",
+      "total_shares_wan": 411424.08
+    },
+    {
+      "date": "2024-10-08",
+      "total_shares_wan": 399904.08
+    },
+    {
+      "date": "2024-10-09",
+      "total_shares_wan": 394174.08
+    },
+    {
+      "date": "2024-10-10",
+      "total_shares_wan": 382744.08
+    },
+    {
+      "date": "2024-10-11",
+      "total_shares_wan": 385684.08
+    },
+    {
+      "date": "2024-10-14",
+      "total_shares_wan": 389104.08
+    },
+    {
+      "date": "2024-10-15",
+      "total_shares_wan": 396634.08
+    },
+    {
+      "date": "2024-10-16",
+      "total_shares_wan": 405124.08
+    },
+    {
+      "date": "2024-10-17",
+      "total_shares_wan": 410884.08
+    },
+    {
+      "date": "2024-10-18",
+      "total_shares_wan": 417694.08
+    },
+    {
+      "date": "2024-10-21",
+      "total_shares_wan": 422704.08
+    },
+    {
+      "date": "2024-10-22",
+      "total_shares_wan": 431794.08
+    },
+    {
+      "date": "2024-10-23",
+      "total_shares_wan": 437464.08
+    },
+    {
+      "date": "2024-10-24",
+      "total_shares_wan": 447184.08
+    },
+    {
+      "date": "2024-10-25",
+      "total_shares_wan": 458044.08
+    },
+    {
+      "date": "2024-10-28",
+      "total_shares_wan": 458944.08
+    },
+    {
+      "date": "2024-10-29",
+      "total_shares_wan": 463984.08
+    },
+    {
+      "date": "2024-10-30",
+      "total_shares_wan": 468874.08
+    },
+    {
+      "date": "2024-10-31",
+      "total_shares_wan": 472744.08
+    },
+    {
+      "date": "2024-11-01",
+      "total_shares_wan": 474874.08
+    },
+    {
+      "date": "2024-11-04",
+      "total_shares_wan": 481264.08
+    },
+    {
+      "date": "2024-11-05",
+      "total_shares_wan": 482584.08
+    },
+    {
+      "date": "2024-11-06",
+      "total_shares_wan": 484894.08
+    },
+    {
+      "date": "2024-11-07",
+      "total_shares_wan": 484774.08
+    },
+    {
+      "date": "2024-11-08",
+      "total_shares_wan": 483724.08
+    },
+    {
+      "date": "2024-11-11",
+      "total_shares_wan": 481474.08
+    },
+    {
+      "date": "2024-11-12",
+      "total_shares_wan": 480784.08
+    },
+    {
+      "date": "2024-11-13",
+      "total_shares_wan": 480634.08
+    },
+    {
+      "date": "2024-11-14",
+      "total_shares_wan": 477724.08
+    },
+    {
+      "date": "2024-11-15",
+      "total_shares_wan": 474274.08
+    },
+    {
+      "date": "2024-11-18",
+      "total_shares_wan": 469924.08
+    },
+    {
+      "date": "2024-11-19",
+      "total_shares_wan": 468064.08
+    },
+    {
+      "date": "2024-11-20",
+      "total_shares_wan": 476584.08
+    },
+    {
+      "date": "2024-11-21",
+      "total_shares_wan": 477964.08
+    },
+    {
+      "date": "2024-11-22",
+      "total_shares_wan": 480904.08
+    },
+    {
+      "date": "2024-11-25",
+      "total_shares_wan": 476944.08
+    },
+    {
+      "date": "2024-11-26",
+      "total_shares_wan": 471484.08
+    },
+    {
+      "date": "2024-11-27",
+      "total_shares_wan": 468394.08
+    },
+    {
+      "date": "2024-11-28",
+      "total_shares_wan": 463444.08
+    },
+    {
+      "date": "2024-11-29",
+      "total_shares_wan": 461494.08
+    },
+    {
+      "date": "2024-12-02",
+      "total_shares_wan": 460024.08
+    },
+    {
+      "date": "2024-12-03",
+      "total_shares_wan": 459844.08
+    },
+    {
+      "date": "2024-12-04",
+      "total_shares_wan": 457654.08
+    },
+    {
+      "date": "2024-12-05",
+      "total_shares_wan": 457174.08
+    },
+    {
+      "date": "2024-12-06",
+      "total_shares_wan": 456094.08
+    },
+    {
+      "date": "2024-12-09",
+      "total_shares_wan": 454954.08
+    },
+    {
+      "date": "2024-12-10",
+      "total_shares_wan": 454834.08
+    },
+    {
+      "date": "2024-12-11",
+      "total_shares_wan": 454564.08
+    },
+    {
+      "date": "2024-12-12",
+      "total_shares_wan": 454264.08
+    },
+    {
+      "date": "2024-12-13",
+      "total_shares_wan": 454414.08
+    },
+    {
+      "date": "2024-12-16",
+      "total_shares_wan": 456274.08
+    },
+    {
+      "date": "2024-12-17",
+      "total_shares_wan": 463264.08
+    },
+    {
+      "date": "2024-12-18",
+      "total_shares_wan": 465634.08
+    },
+    {
+      "date": "2024-12-19",
+      "total_shares_wan": 470974.08
+    },
+    {
+      "date": "2024-12-20",
+      "total_shares_wan": 478294.08
+    },
+    {
+      "date": "2024-12-23",
+      "total_shares_wan": 484294.08
+    },
+    {
+      "date": "2024-12-24",
+      "total_shares_wan": 487834.08
+    },
+    {
+      "date": "2024-12-25",
+      "total_shares_wan": 488494.08
+    },
+    {
+      "date": "2024-12-26",
+      "total_shares_wan": 490624.08
+    },
+    {
+      "date": "2024-12-27",
+      "total_shares_wan": 488014.08
+    },
+    {
+      "date": "2024-12-30",
+      "total_shares_wan": 486454.08
+    },
+    {
+      "date": "2024-12-31",
+      "total_shares_wan": 484984.08
+    },
+    {
+      "date": "2025-01-02",
+      "total_shares_wan": 485674.08
+    },
+    {
+      "date": "2025-01-03",
+      "total_shares_wan": 485284.08
+    },
+    {
+      "date": "2025-01-06",
+      "total_shares_wan": 479704.08
+    },
+    {
+      "date": "2025-01-07",
+      "total_shares_wan": 473974.08
+    },
+    {
+      "date": "2025-01-08",
+      "total_shares_wan": 471514.08
+    },
+    {
+      "date": "2025-01-09",
+      "total_shares_wan": 470314.08
+    },
+    {
+      "date": "2025-01-10",
+      "total_shares_wan": 473434.08
+    },
+    {
+      "date": "2025-01-13",
+      "total_shares_wan": 475804.08
+    },
+    {
+      "date": "2025-01-14",
+      "total_shares_wan": 475744.08
+    },
+    {
+      "date": "2025-01-15",
+      "total_shares_wan": 473044.08
+    },
+    {
+      "date": "2025-01-16",
+      "total_shares_wan": 472984.08
+    },
+    {
+      "date": "2025-01-17",
+      "total_shares_wan": 473944.08
+    },
+    {
+      "date": "2025-01-20",
+      "total_shares_wan": 473794.08
+    },
+    {
+      "date": "2025-01-21",
+      "total_shares_wan": 475234.08
+    },
+    {
+      "date": "2025-01-22",
+      "total_shares_wan": 477154.08
+    },
+    {
+      "date": "2025-01-23",
+      "total_shares_wan": 477244.08
+    },
+    {
+      "date": "2025-01-24",
+      "total_shares_wan": 479104.08
+    },
+    {
+      "date": "2025-01-27",
+      "total_shares_wan": 479014.08
+    },
+    {
+      "date": "2025-02-05",
+      "total_shares_wan": 481894.08
+    },
+    {
+      "date": "2025-02-06",
+      "total_shares_wan": 486034.08
+    },
+    {
+      "date": "2025-02-07",
+      "total_shares_wan": 484894.08
+    },
+    {
+      "date": "2025-02-10",
+      "total_shares_wan": 487084.08
+    },
+    {
+      "date": "2025-02-11",
+      "total_shares_wan": 496354.08
+    },
+    {
+      "date": "2025-02-12",
+      "total_shares_wan": 504844.08
+    },
+    {
+      "date": "2025-02-13",
+      "total_shares_wan": 509884.08
+    },
+    {
+      "date": "2025-02-14",
+      "total_shares_wan": 513844.08
+    },
+    {
+      "date": "2025-02-17",
+      "total_shares_wan": 516694.08
+    },
+    {
+      "date": "2025-02-18",
+      "total_shares_wan": 520474.08
+    },
+    {
+      "date": "2025-02-19",
+      "total_shares_wan": 524134.08
+    },
+    {
+      "date": "2025-02-20",
+      "total_shares_wan": 528004.08
+    },
+    {
+      "date": "2025-02-21",
+      "total_shares_wan": 529714.08
+    },
+    {
+      "date": "2025-02-24",
+      "total_shares_wan": 537094.08
+    },
+    {
+      "date": "2025-02-25",
+      "total_shares_wan": 537964.08
+    },
+    {
+      "date": "2025-02-26",
+      "total_shares_wan": 538024.08
+    },
+    {
+      "date": "2025-02-27",
+      "total_shares_wan": 537124.08
+    },
+    {
+      "date": "2025-02-28",
+      "total_shares_wan": 532804.08
+    },
+    {
+      "date": "2025-03-03",
+      "total_shares_wan": 527884.08
+    },
+    {
+      "date": "2025-03-04",
+      "total_shares_wan": 525184.08
+    },
+    {
+      "date": "2025-03-05",
+      "total_shares_wan": 529864.08
+    },
+    {
+      "date": "2025-03-06",
+      "total_shares_wan": 532714.08
+    },
+    {
+      "date": "2025-03-07",
+      "total_shares_wan": 532684.08
+    },
+    {
+      "date": "2025-03-10",
+      "total_shares_wan": 534634.08
+    },
+    {
+      "date": "2025-03-11",
+      "total_shares_wan": 535234.08
+    },
+    {
+      "date": "2025-03-12",
+      "total_shares_wan": 536644.08
+    },
+    {
+      "date": "2025-03-13",
+      "total_shares_wan": 539614.08
+    },
+    {
+      "date": "2025-03-14",
+      "total_shares_wan": 539974.08
+    },
+    {
+      "date": "2025-03-17",
+      "total_shares_wan": 540064.08
+    },
+    {
+      "date": "2025-03-18",
+      "total_shares_wan": 540694.08
+    },
+    {
+      "date": "2025-03-19",
+      "total_shares_wan": 543754.08
+    },
+    {
+      "date": "2025-03-20",
+      "total_shares_wan": 548524.08
+    },
+    {
+      "date": "2025-03-21",
+      "total_shares_wan": 548134.08
+    },
+    {
+      "date": "2025-03-24",
+      "total_shares_wan": 545944.08
+    },
+    {
+      "date": "2025-03-25",
+      "total_shares_wan": 549244.08
+    },
+    {
+      "date": "2025-03-26",
+      "total_shares_wan": 555214.08
+    },
+    {
+      "date": "2025-03-27",
+      "total_shares_wan": 562144.08
+    },
+    {
+      "date": "2025-03-28",
+      "total_shares_wan": 572884.08
+    },
+    {
+      "date": "2025-03-31",
+      "total_shares_wan": 592954.08
+    },
+    {
+      "date": "2025-04-01",
+      "total_shares_wan": 607744.08
+    },
+    {
+      "date": "2025-04-02",
+      "total_shares_wan": 612754.08
+    },
+    {
+      "date": "2025-04-03",
+      "total_shares_wan": 617494.08
+    },
+    {
+      "date": "2025-04-07",
+      "total_shares_wan": 629254.08
+    },
+    {
+      "date": "2025-04-08",
+      "total_shares_wan": 643564.08
+    },
+    {
+      "date": "2025-04-09",
+      "total_shares_wan": 671194.08
+    },
+    {
+      "date": "2025-04-10",
+      "total_shares_wan": 695104.08
+    },
+    {
+      "date": "2025-04-11",
+      "total_shares_wan": 719734.08
+    },
+    {
+      "date": "2025-04-14",
+      "total_shares_wan": 733504.08
+    },
+    {
+      "date": "2025-04-15",
+      "total_shares_wan": 749374.08
+    },
+    {
+      "date": "2025-04-16",
+      "total_shares_wan": 758944.08
+    },
+    {
+      "date": "2025-04-17",
+      "total_shares_wan": 772204.08
+    },
+    {
+      "date": "2025-04-18",
+      "total_shares_wan": 782194.08
+    },
+    {
+      "date": "2025-04-21",
+      "total_shares_wan": 800374.08
+    },
+    {
+      "date": "2025-04-22",
+      "total_shares_wan": 826324.08
+    },
+    {
+      "date": "2025-04-23",
+      "total_shares_wan": 849904.08
+    },
+    {
+      "date": "2025-04-24",
+      "total_shares_wan": 835474.08
+    },
+    {
+      "date": "2025-04-25",
+      "total_shares_wan": 826864.08
+    },
+    {
+      "date": "2025-04-28",
+      "total_shares_wan": 821824.08
+    },
+    {
+      "date": "2025-04-29",
+      "total_shares_wan": 803524.08
+    },
+    {
+      "date": "2025-04-30",
+      "total_shares_wan": 796954.08
+    },
+    {
+      "date": "2025-05-06",
+      "total_shares_wan": 799474.08
+    },
+    {
+      "date": "2025-05-07",
+      "total_shares_wan": 806824.08
+    },
+    {
+      "date": "2025-05-08",
+      "total_shares_wan": 810694.08
+    },
+    {
+      "date": "2025-05-09",
+      "total_shares_wan": 815374.08
+    },
+    {
+      "date": "2025-05-12",
+      "total_shares_wan": 820744.08
+    },
+    {
+      "date": "2025-05-13",
+      "total_shares_wan": 822064.08
+    },
+    {
+      "date": "2025-05-14",
+      "total_shares_wan": 814684.08
+    },
+    {
+      "date": "2025-05-15",
+      "total_shares_wan": 820714.08
+    },
+    {
+      "date": "2025-05-16",
+      "total_shares_wan": 804814.08
+    },
+    {
+      "date": "2025-05-19",
+      "total_shares_wan": 800674.08
+    },
+    {
+      "date": "2025-05-20",
+      "total_shares_wan": 801634.08
+    },
+    {
+      "date": "2025-05-21",
+      "total_shares_wan": 802114.08
+    },
+    {
+      "date": "2025-05-22",
+      "total_shares_wan": 806434.08
+    },
+    {
+      "date": "2025-05-23",
+      "total_shares_wan": 804604.08
+    },
+    {
+      "date": "2025-05-26",
+      "total_shares_wan": 806074.08
+    },
+    {
+      "date": "2025-05-27",
+      "total_shares_wan": 806074.08
+    },
+    {
+      "date": "2025-05-28",
+      "total_shares_wan": 804634.08
+    },
+    {
+      "date": "2025-05-29",
+      "total_shares_wan": 804574.08
+    },
+    {
+      "date": "2025-05-30",
+      "total_shares_wan": 804544.08
+    },
+    {
+      "date": "2025-06-03",
+      "total_shares_wan": 803254.08
+    },
+    {
+      "date": "2025-06-04",
+      "total_shares_wan": 798334.08
+    },
+    {
+      "date": "2025-06-05",
+      "total_shares_wan": 794764.08
+    },
+    {
+      "date": "2025-06-06",
+      "total_shares_wan": 794764.08
+    },
+    {
+      "date": "2025-06-09",
+      "total_shares_wan": 801394.08
+    },
+    {
+      "date": "2025-06-10",
+      "total_shares_wan": 809894.08
+    },
+    {
+      "date": "2025-06-11",
+      "total_shares_wan": 809984.08
+    },
+    {
+      "date": "2025-06-12",
+      "total_shares_wan": 810044.08
+    },
+    {
+      "date": "2025-06-13",
+      "total_shares_wan": 813534.08
+    },
+    {
+      "date": "2025-06-16",
+      "total_shares_wan": 804764.08
+    },
+    {
+      "date": "2025-06-17",
+      "total_shares_wan": 803044.08
+    },
+    {
+      "date": "2025-06-18",
+      "total_shares_wan": 805184.08
+    },
+    {
+      "date": "2025-06-19",
+      "total_shares_wan": 807354.08
+    },
+    {
+      "date": "2025-06-20",
+      "total_shares_wan": 808474.08
+    },
+    {
+      "date": "2025-06-23",
+      "total_shares_wan": 809514.08
+    },
+    {
+      "date": "2025-06-24",
+      "total_shares_wan": 811164.08
+    },
+    {
+      "date": "2025-06-25",
+      "total_shares_wan": 812454.08
+    },
+    {
+      "date": "2025-06-26",
+      "total_shares_wan": 813404.08
+    },
+    {
+      "date": "2025-06-27",
+      "total_shares_wan": 810534.08
+    },
+    {
+      "date": "2025-06-30",
+      "total_shares_wan": 816424.08
+    },
+    {
+      "date": "2025-07-01",
+      "total_shares_wan": 821444.08
+    },
+    {
+      "date": "2025-07-02",
+      "total_shares_wan": 822744.08
+    },
+    {
+      "date": "2025-07-03",
+      "total_shares_wan": 820774.08
+    },
+    {
+      "date": "2025-07-04",
+      "total_shares_wan": 816494.08
+    },
+    {
+      "date": "2025-07-07",
+      "total_shares_wan": 816804.08
+    },
+    {
+      "date": "2025-07-08",
+      "total_shares_wan": 818274.08
+    },
+    {
+      "date": "2025-07-09",
+      "total_shares_wan": 820434.08
+    },
+    {
+      "date": "2025-07-10",
+      "total_shares_wan": 824274.08
+    },
+    {
+      "date": "2025-07-11",
+      "total_shares_wan": 818504.08
+    },
+    {
+      "date": "2025-07-14",
+      "total_shares_wan": 814434.08
+    },
+    {
+      "date": "2025-07-15",
+      "total_shares_wan": 809014.08
+    },
+    {
+      "date": "2025-07-16",
+      "total_shares_wan": 807044.08
+    },
+    {
+      "date": "2025-07-17",
+      "total_shares_wan": 807014.08
+    },
+    {
+      "date": "2025-07-18",
+      "total_shares_wan": 806254.08
+    },
+    {
+      "date": "2025-07-21",
+      "total_shares_wan": 802624.08
+    },
+    {
+      "date": "2025-07-22",
+      "total_shares_wan": 796914.08
+    },
+    {
+      "date": "2025-07-23",
+      "total_shares_wan": 783094.08
+    },
+    {
+      "date": "2025-07-24",
+      "total_shares_wan": 772524.08
+    },
+    {
+      "date": "2025-07-25",
+      "total_shares_wan": 774644.08
+    },
+    {
+      "date": "2025-07-28",
+      "total_shares_wan": 779474.08
+    },
+    {
+      "date": "2025-07-29",
+      "total_shares_wan": 784134.08
+    },
+    {
+      "date": "2025-07-30",
+      "total_shares_wan": 789794.08
+    },
+    {
+      "date": "2025-07-31",
+      "total_shares_wan": 794254.08
+    },
+    {
+      "date": "2025-08-01",
+      "total_shares_wan": 800464.08
+    },
+    {
+      "date": "2025-08-04",
+      "total_shares_wan": 802894.08
+    },
+    {
+      "date": "2025-08-05",
+      "total_shares_wan": 799334.08
+    },
+    {
+      "date": "2025-08-06",
+      "total_shares_wan": 790714.08
+    },
+    {
+      "date": "2025-08-07",
+      "total_shares_wan": 783624.08
+    },
+    {
+      "date": "2025-08-08",
+      "total_shares_wan": 782614.08
+    },
+    {
+      "date": "2025-08-11",
+      "total_shares_wan": 776644.08
+    },
+    {
+      "date": "2025-08-12",
+      "total_shares_wan": 773114.08
+    },
+    {
+      "date": "2025-08-13",
+      "total_shares_wan": 771254.08
+    },
+    {
+      "date": "2025-08-14",
+      "total_shares_wan": 772414.08
+    },
+    {
+      "date": "2025-08-15",
+      "total_shares_wan": 773264.08
+    },
+    {
+      "date": "2025-08-18",
+      "total_shares_wan": 774954.08
+    },
+    {
+      "date": "2025-08-19",
+      "total_shares_wan": 772614.08
+    },
+    {
+      "date": "2025-08-20",
+      "total_shares_wan": 772744.08
+    },
+    {
+      "date": "2025-08-21",
+      "total_shares_wan": 771994.08
+    },
+    {
+      "date": "2025-08-22",
+      "total_shares_wan": 770814.08
+    },
+    {
+      "date": "2025-08-25",
+      "total_shares_wan": 769274.08
+    },
+    {
+      "date": "2025-08-26",
+      "total_shares_wan": 765774.08
+    },
+    {
+      "date": "2025-08-27",
+      "total_shares_wan": 762814.08
+    },
+    {
+      "date": "2025-08-28",
+      "total_shares_wan": 757594.08
+    },
+    {
+      "date": "2025-08-29",
+      "total_shares_wan": 752064.08
+    },
+    {
+      "date": "2025-09-01",
+      "total_shares_wan": 754374.08
+    },
+    {
+      "date": "2025-09-02",
+      "total_shares_wan": 771394.08
+    },
+    {
+      "date": "2025-09-03",
+      "total_shares_wan": 774364.08
+    },
+    {
+      "date": "2025-09-04",
+      "total_shares_wan": 773334.08
+    },
+    {
+      "date": "2025-09-05",
+      "total_shares_wan": 767154.08
+    },
+    {
+      "date": "2025-09-08",
+      "total_shares_wan": 770344.08
+    },
+    {
+      "date": "2025-09-09",
+      "total_shares_wan": 782374.08
+    },
+    {
+      "date": "2025-09-10",
+      "total_shares_wan": 793024.08
+    },
+    {
+      "date": "2025-09-11",
+      "total_shares_wan": 791904.08
+    },
+    {
+      "date": "2025-09-12",
+      "total_shares_wan": 789524.08
+    },
+    {
+      "date": "2025-09-15",
+      "total_shares_wan": 789504.08
+    },
+    {
+      "date": "2025-09-16",
+      "total_shares_wan": 790984.08
+    },
+    {
+      "date": "2025-09-17",
+      "total_shares_wan": 792954.08
+    },
+    {
+      "date": "2025-09-18",
+      "total_shares_wan": 793574.08
+    },
+    {
+      "date": "2025-09-19",
+      "total_shares_wan": 783754.08
+    },
+    {
+      "date": "2025-09-22",
+      "total_shares_wan": 781714.08
+    },
+    {
+      "date": "2025-09-23",
+      "total_shares_wan": 789564.08
+    },
+    {
+      "date": "2025-09-24",
+      "total_shares_wan": 791784.08
+    },
+    {
+      "date": "2025-09-25",
+      "total_shares_wan": 796444.08
+    },
+    {
+      "date": "2025-09-26",
+      "total_shares_wan": 803854.08
+    },
+    {
+      "date": "2025-09-29",
+      "total_shares_wan": 811444.08
+    },
+    {
+      "date": "2025-09-30",
+      "total_shares_wan": 818124.08
+    },
+    {
+      "date": "2025-10-09",
+      "total_shares_wan": 818184.08
+    },
+    {
+      "date": "2025-10-10",
+      "total_shares_wan": 824474.08
+    },
+    {
+      "date": "2025-10-13",
+      "total_shares_wan": 832494.08
+    },
+    {
+      "date": "2025-10-14",
+      "total_shares_wan": 842884.08
+    },
+    {
+      "date": "2025-10-15",
+      "total_shares_wan": 859294.08
+    },
+    {
+      "date": "2025-10-16",
+      "total_shares_wan": 876184.08
+    },
+    {
+      "date": "2025-10-17",
+      "total_shares_wan": 893414.08
+    },
+    {
+      "date": "2025-10-20",
+      "total_shares_wan": 911364.08
+    },
+    {
+      "date": "2025-10-21",
+      "total_shares_wan": 919424.08
+    },
+    {
+      "date": "2025-10-22",
+      "total_shares_wan": 932744.08
+    },
+    {
+      "date": "2025-10-23",
+      "total_shares_wan": 937144.08
+    },
+    {
+      "date": "2025-10-24",
+      "total_shares_wan": 927154.08
+    },
+    {
+      "date": "2025-10-27",
+      "total_shares_wan": 920554.08
+    },
+    {
+      "date": "2025-10-28",
+      "total_shares_wan": 914414.08
+    },
+    {
+      "date": "2025-10-29",
+      "total_shares_wan": 910724.08
+    },
+    {
+      "date": "2025-10-30",
+      "total_shares_wan": 917654.08
+    },
+    {
+      "date": "2025-10-31",
+      "total_shares_wan": 922724.08
+    },
+    {
+      "date": "2025-11-03",
+      "total_shares_wan": 926434.08
+    },
+    {
+      "date": "2025-11-04",
+      "total_shares_wan": 931324.08
+    },
+    {
+      "date": "2025-11-05",
+      "total_shares_wan": 931114.08
+    },
+    {
+      "date": "2025-11-06",
+      "total_shares_wan": 929034.08
+    },
+    {
+      "date": "2025-11-07",
+      "total_shares_wan": 929694.08
+    },
+    {
+      "date": "2025-11-10",
+      "total_shares_wan": 938284.08
+    },
+    {
+      "date": "2025-11-11",
+      "total_shares_wan": 945324.08
+    },
+    {
+      "date": "2025-11-12",
+      "total_shares_wan": 952184.08
+    },
+    {
+      "date": "2025-11-13",
+      "total_shares_wan": 957614.08
+    },
+    {
+      "date": "2025-11-14",
+      "total_shares_wan": 963804.08
+    },
+    {
+      "date": "2025-11-17",
+      "total_shares_wan": 972334.08
+    },
+    {
+      "date": "2025-11-18",
+      "total_shares_wan": 979834.08
+    },
+    {
+      "date": "2025-11-19",
+      "total_shares_wan": 985284.08
+    },
+    {
+      "date": "2025-11-20",
+      "total_shares_wan": 989094.08
+    },
+    {
+      "date": "2025-11-21",
+      "total_shares_wan": 989094.08
+    },
+    {
+      "date": "2025-11-24",
+      "total_shares_wan": 991754.08
+    },
+    {
+      "date": "2025-11-25",
+      "total_shares_wan": 993494.08
+    },
+    {
+      "date": "2025-11-26",
+      "total_shares_wan": 997114.08
+    },
+    {
+      "date": "2025-11-27",
+      "total_shares_wan": 998444.08
+    },
+    {
+      "date": "2025-11-28",
+      "total_shares_wan": 999804.08
+    },
+    {
+      "date": "2025-12-01",
+      "total_shares_wan": 1001144.08
+    },
+    {
+      "date": "2025-12-02",
+      "total_shares_wan": 1001254.08
+    },
+    {
+      "date": "2025-12-03",
+      "total_shares_wan": 1000404.08
+    },
+    {
+      "date": "2025-12-04",
+      "total_shares_wan": 1000244.08
+    },
+    {
+      "date": "2025-12-05",
+      "total_shares_wan": 996744.08
+    },
+    {
+      "date": "2025-12-08",
+      "total_shares_wan": 994224.08
+    },
+    {
+      "date": "2025-12-09",
+      "total_shares_wan": 991074.08
+    },
+    {
+      "date": "2025-12-10",
+      "total_shares_wan": 986384.08
+    },
+    {
+      "date": "2025-12-11",
+      "total_shares_wan": 983854.08
+    },
+    {
+      "date": "2025-12-12",
+      "total_shares_wan": 983314.08
+    },
+    {
+      "date": "2025-12-15",
+      "total_shares_wan": 985134.08
+    },
+    {
+      "date": "2025-12-16",
+      "total_shares_wan": 984814.08
+    },
+    {
+      "date": "2025-12-17",
+      "total_shares_wan": 987214.08
+    },
+    {
+      "date": "2025-12-18",
+      "total_shares_wan": 988014.08
+    },
+    {
+      "date": "2025-12-19",
+      "total_shares_wan": 986964.08
+    },
+    {
+      "date": "2025-12-22",
+      "total_shares_wan": 997254.08
+    },
+    {
+      "date": "2025-12-23",
+      "total_shares_wan": 1012964.08
+    },
+    {
+      "date": "2025-12-24",
+      "total_shares_wan": 1015514.08
+    },
+    {
+      "date": "2025-12-25",
+      "total_shares_wan": 1014814.08
+    },
+    {
+      "date": "2025-12-26",
+      "total_shares_wan": 1009984.08
+    },
+    {
+      "date": "2025-12-29",
+      "total_shares_wan": 1006494.08
+    },
+    {
+      "date": "2025-12-30",
+      "total_shares_wan": 1013224.08
+    },
+    {
+      "date": "2025-12-31",
+      "total_shares_wan": 1008934.08
+    },
+    {
+      "date": "2026-01-05",
+      "total_shares_wan": 1017744.08
+    },
+    {
+      "date": "2026-01-06",
+      "total_shares_wan": 1024274.08
+    },
+    {
+      "date": "2026-01-07",
+      "total_shares_wan": 1026674.08
+    },
+    {
+      "date": "2026-01-08",
+      "total_shares_wan": 1017504.08
+    },
+    {
+      "date": "2026-01-09",
+      "total_shares_wan": 1014824.08
+    },
+    {
+      "date": "2026-01-12",
+      "total_shares_wan": 1016444.08
+    },
+    {
+      "date": "2026-01-13",
+      "total_shares_wan": 1014584.08
+    },
+    {
+      "date": "2026-01-14",
+      "total_shares_wan": 1016184.08
+    },
+    {
+      "date": "2026-01-15",
+      "total_shares_wan": 1024094.08
+    },
+    {
+      "date": "2026-01-16",
+      "total_shares_wan": 1029254.08
+    },
+    {
+      "date": "2026-01-19",
+      "total_shares_wan": 1038854.08
+    },
+    {
+      "date": "2026-01-20",
+      "total_shares_wan": 1048654.08
+    },
+    {
+      "date": "2026-01-21",
+      "total_shares_wan": 1055574.08
+    },
+    {
+      "date": "2026-01-22",
+      "total_shares_wan": 1060404.08
+    },
+    {
+      "date": "2026-01-23",
+      "total_shares_wan": 1071044.08
+    },
+    {
+      "date": "2026-01-26",
+      "total_shares_wan": 1091544.08
+    },
+    {
+      "date": "2026-01-27",
+      "total_shares_wan": 1103424.08
+    },
+    {
+      "date": "2026-01-28",
+      "total_shares_wan": 1130504.08
+    },
+    {
+      "date": "2026-01-29",
+      "total_shares_wan": 1141194.08
+    },
+    {
+      "date": "2026-01-30",
+      "total_shares_wan": 1147154.08
+    },
+    {
+      "date": "2026-02-02",
+      "total_shares_wan": 1129094.08
+    },
+    {
+      "date": "2026-02-03",
+      "total_shares_wan": 1109264.08
+    },
+    {
+      "date": "2026-02-04",
+      "total_shares_wan": 1121564.08
+    },
+    {
+      "date": "2026-02-05",
+      "total_shares_wan": 1120764.08
+    },
+    {
+      "date": "2026-02-06",
+      "total_shares_wan": 1126994.08
+    },
+    {
+      "date": "2026-02-09",
+      "total_shares_wan": 1131694.08
+    },
+    {
+      "date": "2026-02-10",
+      "total_shares_wan": 1123184.08
+    },
+    {
+      "date": "2026-02-11",
+      "total_shares_wan": 1121504.08
+    },
+    {
+      "date": "2026-02-12",
+      "total_shares_wan": 1122074.08
+    },
+    {
+      "date": "2026-02-13",
+      "total_shares_wan": 1125154.08
+    },
+    {
+      "date": "2026-02-24",
+      "total_shares_wan": 1127294.08
+    },
+    {
+      "date": "2026-02-25",
+      "total_shares_wan": 1129154.08
+    },
+    {
+      "date": "2026-02-26",
+      "total_shares_wan": 1132414.08
+    },
+    {
+      "date": "2026-02-27",
+      "total_shares_wan": 1135004.08
+    },
+    {
+      "date": "2026-03-02",
+      "total_shares_wan": 1144224.08
+    },
+    {
+      "date": "2026-03-03",
+      "total_shares_wan": 1150924.08
+    },
+    {
+      "date": "2026-03-04",
+      "total_shares_wan": 1158594.08
+    },
+    {
+      "date": "2026-03-05",
+      "total_shares_wan": 1166914.08
+    },
+    {
+      "date": "2026-03-06",
+      "total_shares_wan": 1170494.08
+    },
+    {
+      "date": "2026-03-09",
+      "total_shares_wan": 1173434.08
+    },
+    {
+      "date": "2026-03-10",
+      "total_shares_wan": 1175664.08
+    }
+  ],
+  "latest": {
+    "date": "2026-03-10",
+    "total_shares_wan": 1175664.08
+  },
+  "metadata": {
+    "source": "Shanghai Stock Exchange",
+    "fund_code": "518880",
+    "fund_name": "華安黄金ETF",
+    "frequency": "daily",
+    "unit": "万份",
+    "data_count": 1702,
+    "start_date": "2019-03-01",
+    "end_date": "2026-03-10"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-11T14:36:20.490486+09:00"
+}

@@ -120,6 +120,8 @@ try:
     from backend.scheduler.gold_etf_holdings_scheduler import gold_etf_holdings_scheduler
     from backend.scheduler.wgc_gold_etf_scheduler import wgc_gold_etf_scheduler
     from backend.scheduler.gold_premium_scheduler import gold_premium_scheduler
+    from backend.scheduler.sge_gold_scheduler import sge_gold_scheduler
+    from backend.scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
 except ImportError:
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
@@ -297,6 +299,8 @@ except ImportError:
     from scheduler.gold_etf_holdings_scheduler import gold_etf_holdings_scheduler
     from scheduler.wgc_gold_etf_scheduler import wgc_gold_etf_scheduler
     from scheduler.gold_premium_scheduler import gold_premium_scheduler
+    from scheduler.sge_gold_scheduler import sge_gold_scheduler
+    from scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -666,6 +670,20 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Gold Premium Scheduler: {e}")
 
+    # SGE Au(T+D) 日次スケジューラーを開始
+    try:
+        sge_gold_scheduler.start()
+        print("SGE Gold Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start SGE Gold Scheduler: {e}")
+
+    # 中国金ETF残高 日次スケジューラーを開始
+    try:
+        china_gold_etf_balance_scheduler.start()
+        print("China Gold ETF Balance Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start China Gold ETF Balance Scheduler: {e}")
+
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:
         from services.canada.ca_settlement_balances_service import ca_settlement_balances_service
@@ -770,6 +788,16 @@ async def shutdown_event():
         gold_premium_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Gold Premium Scheduler: {e}")
+
+    try:
+        sge_gold_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down SGE Gold Scheduler: {e}")
+
+    try:
+        china_gold_etf_balance_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down China Gold ETF Balance Scheduler: {e}")
 
     print("Economic Platform API shutdown complete")
 

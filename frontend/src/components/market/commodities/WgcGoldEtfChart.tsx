@@ -362,7 +362,7 @@ export default function WgcGoldEtfChart() {
           {/* Left Y: トン or US$mn */}
           <YAxis
             yAxisId="left"
-            domain={viewMode === 'holdings' ? ['dataMin - 50', 'auto'] : ['auto', 'auto']}
+            domain={viewMode === 'holdings' ? ['dataMin 0', 'dataMax + 100'] : ['auto', 'auto']}
             tickFormatter={(v: number) => {
               if (Math.abs(v) >= 1000) return `${(v / 1000).toFixed(1)}K`
               return `${v.toFixed(0)}`

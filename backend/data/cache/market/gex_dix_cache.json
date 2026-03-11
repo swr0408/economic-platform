@@ -22409,19 +22409,25 @@
       "price": 6795.99,
       "dix": 44.73,
       "gex": 2.65
+    },
+    {
+      "date": "2026-03-10",
+      "price": 6781.48,
+      "dix": 47.91,
+      "gex": 2.83
     }
   ],
   "latest": {
-    "date": "2026-03-09",
-    "price": 6795.99,
-    "dix": 44.73,
-    "gex": 2.65
+    "date": "2026-03-10",
+    "price": 6781.48,
+    "dix": 47.91,
+    "gex": 2.83
   },
   "metadata": {
     "source": "SqueezeMetrics",
-    "data_count": 3735,
+    "data_count": 3736,
     "start_date": "2011-05-02",
-    "end_date": "2026-03-09",
+    "end_date": "2026-03-10",
     "units": {
       "price": "S&P 500 (USD)",
       "dix": "Dark Index (%)",
@@ -22430,5 +22436,5 @@
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-03-10T09:36:34.852529+09:00"
+  "last_updated": "2026-03-12T00:29:49.897623+09:00"
 }

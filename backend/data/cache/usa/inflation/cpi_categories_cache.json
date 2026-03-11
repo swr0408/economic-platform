@@ -2399,15 +2399,23 @@
       "core_goods": 1.12,
       "core_services": 2.95,
       "shelter": 3.02
+    },
+    {
+      "date": "2026-02-01",
+      "food": 3.06,
+      "energy": 0.48,
+      "core_goods": 0.99,
+      "core_services": 2.92,
+      "shelter": 2.96
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "food": 2.88,
-    "energy": -0.14,
-    "core_goods": 1.12,
-    "core_services": 2.95,
-    "shelter": 3.02
+    "date": "2026-02-01",
+    "food": 3.06,
+    "energy": 0.48,
+    "core_goods": 0.99,
+    "core_services": 2.92,
+    "shelter": 2.96
   },
   "next_release": {
     "date": "2026-03-11",
@@ -2417,5 +2425,5 @@
     "label": "Inflation Rate YoY (Feb)",
     "estimate": 2.4
   },
-  "last_updated": "2026-03-10T23:02:21.989821+09:00"
+  "last_updated": "2026-03-11T23:02:07.001848+09:00"
 }

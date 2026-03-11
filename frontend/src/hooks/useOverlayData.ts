@@ -116,6 +116,14 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/gold-etf-holdings',
     '/api/market/gold-premium',
     '/api/market/wgc-gold-etf',
+    '/api/market/sge-gold',
+    '/api/market/china-gold-etf-balance',
+    '/api/market/lbma-stock',
+    '/api/market/silver-etf-holdings',
+    '/api/market/weekly-crude-oil-inventories',
+    '/api/market/cushing-inventory',
+    '/api/market/distillate-fuel-inventories',
+    '/api/market/gasoline-refinery',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

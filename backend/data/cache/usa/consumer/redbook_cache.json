@@ -2334,12 +2334,12 @@
     "value": 6.2
   },
   "next_release": {
-    "date": "2026-03-10",
-    "datetime_utc": "2026-03-10T12:55:00+00:00",
-    "datetime_jst": "2026-03-10T21:55:00+09:00",
+    "date": "2026-03-17",
+    "datetime_utc": "2026-03-17T12:55:00+00:00",
+    "datetime_jst": "2026-03-17T21:55:00+09:00",
     "time_jst": "21:55",
-    "label": "Redbook YoY (Mar/07)",
+    "label": "Redbook YoY (Mar/14)",
     "estimate": null
   },
-  "last_updated": "2026-03-11T00:59:47.322929+09:00"
+  "last_updated": "2026-03-12T00:15:43.926794+09:00"
 }

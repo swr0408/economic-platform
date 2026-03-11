@@ -738,6 +738,320 @@ notes: |
       - 原数値（水準）と前年比（%）を同時表示する場合
     - **実装例**: `frontend/src/components/country/china/inflation/CnCpiChart.tsx`
 
+23. **EIA エネルギー在庫チャート（原油価格オーバーレイ付き）の実装パターン**
+
+    EIA週次在庫チャート（原油在庫、クッシング在庫、蒸留燃料在庫、ガソリン在庫等）は、通常の国別経済指標とは異なる **市場カテゴリ専用パターン（Pattern E: Energy）** を使用する。
+
+    > ### ⚠️ 厳守: EIAエネルギーチャートレイアウト（Pattern E）
+    > **以下のパターンを必ず守ること。Pattern B（標準レイアウト）とは異なる。**
+    >
+    > **共通構造:**
+    > ```
+    > 1. LatestValueBox（LATEST_VALUE_BOX_STYLE）← 最新値 + 次回発表日（データ比較ボタンはここに置かない）
+    > 2. <Tabs>（antd Tabs）← 「時系列」と「マーケットインパクト」の2タブ
+    >    └─ 時系列タブ:
+    >       ├─ [ViewModeButtonGroup 水準/前月比/前年比]  [データ比較ボタン]  ← 同一行
+    >       ├─ [ViewModeButtonGroup チャート/ヒートマップ]  ← viewMode === 'mom' の時のみ表示（単独行）
+    >       ├─ viewMode別の条件付きレンダリング:
+    >       │   ├─ raw:  PeriodSelector + ComposedChart（水準 + WTI原油オーバーレイ）
+    >       │   ├─ yoy:  PeriodSelector + ComposedChart（YoY% + WTI原油オーバーレイ + ReferenceLine y=0）
+    >       │   ├─ mom + chart:  PeriodSelector + ComposedChart（Bar で MoM% + ReferenceLine y=0）
+    >       │   └─ mom + heatmap:  MonthlyTable（前月比ヒートマップ）
+    >    └─ マーケットインパクトタブ:
+    >       └─ <MarketImpactTab indicatorId="..." />
+    > ```
+
+    #### 重要な相違点（Pattern B との違い）
+
+    | 項目 | Pattern B（標準） | Pattern E（エネルギー） |
+    |------|------------------|----------------------|
+    | タブ切替 | なし or ViewModeButtonGroup | **antd `<Tabs>`** で「時系列/マーケットインパクト」を切替 |
+    | ViewMode | `'value' \| 'yoy'` 等 | **`'raw' \| 'mom' \| 'yoy'`**（3モード: 水準/前月比/前年比） |
+    | DisplayMode | なし | **`'chart' \| 'heatmap'`**（`viewMode === 'mom'` の時のみ表示） |
+    | データ比較ボタン位置 | LatestValueBox外の同一行 | **タブ内部**（時系列タブの ViewModeButtonGroup と同一行） |
+    | LatestValueBoxにデータ比較ボタン | あり | **なし** |
+    | グラフコンポーネント | StandardLineChart / StandardBarChart | **ComposedChart**（Recharts直接使用） |
+    | 原油価格Y軸 | なし | **右Y軸 + `reversed` prop**（水準・前年比モードのみ） |
+    | チャートmargin | 指定なし | **`CHART_MARGIN`**（`chartConstants.ts` からimport） |
+    | MoMデータ | バックエンド提供 | **フロントエンドで算出**（週次→月平均→MoM%） |
+    | 前年比ヒートマップ | あることもある | **なし**（ヒートマップは前月比のみ） |
+
+    #### State定義
+    ```tsx
+    type ViewMode = 'raw' | 'mom' | 'yoy'                  // ← 水準/前月比/前年比（3モード）
+    const VIEW_MODE_OPTIONS = [
+      { mode: 'raw' as ViewMode, label: '水準' },
+      { mode: 'mom' as ViewMode, label: '前月比' },
+      { mode: 'yoy' as ViewMode, label: '前年比' },
+    ]
+
+    type ActiveTab = 'timeseries' | 'market_impact'         // ← Tabs用
+    type DisplayMode = 'chart' | 'heatmap'                   // ← チャート/ヒートマップ（前月比のみ）
+    const DISPLAY_MODE_OPTIONS = [
+      { mode: 'chart' as DisplayMode, label: 'チャート' },
+      { mode: 'heatmap' as DisplayMode, label: 'ヒートマップ' },
+    ]
+
+    const [activeTab, setActiveTab] = useState<ActiveTab>('timeseries')
+    const [viewMode, setViewMode] = useState<ViewMode>('raw')
+    const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
+    ```
+
+    #### 原油価格Y軸の反転方法
+
+    - **NG（動作しない）**: `domain={['dataMax * 1.1', 'dataMin * 0.9']}`（domain値を逆にしても反転しない）
+    - **OK（正しい方法）**: `<YAxis reversed ... />` propを使用
+    ```tsx
+    <YAxis
+      yAxisId="oil"
+      orientation="right"
+      reversed                                          // ← これで反転
+      domain={['dataMin * 0.9', 'dataMax * 1.1']}       // ← domainは通常通り
+      tickFormatter={(v: number) => `$${v.toFixed(0)}`}
+      stroke={COLOR_OIL}
+      tick={{ fill: COLOR_OIL, fontSize: 10 }}
+      width={50}
+      axisLine={{ stroke: COLOR_OIL, strokeDasharray: '4 3' }}
+    />
+    ```
+
+    #### 原油価格ラインのスタイル
+    ```tsx
+    <Line
+      yAxisId="oil"
+      type="monotone"
+      dataKey="oil_price"
+      name="WTI原油 (USD/bbl, 反転)"
+      stroke={COLOR_OIL}          // '#ef4444' (Red)
+      strokeWidth={1.5}
+      strokeDasharray="4 3"       // 破線
+      dot={false}
+      hide={hiddenSeries.has('oil_price')}
+      connectNulls
+    />
+    ```
+
+    #### 前月比（MoM）データ算出パターン（週次→月平均→MoM%）
+
+    週次データはバックエンドからMoMが提供されないため、フロントエンドで算出する。
+
+    **Step 1: 月平均の算出**
+    ```tsx
+    const monthAvg = useMemo(() => {
+      if (!mergedData.length) return {} as Record<string, number>
+      const monthAccum: Record<string, number[]> = {}
+      for (const item of mergedData) {
+        const d = new Date(item.date)
+        const val = item.value  // ← メインの在庫データ系列
+        if (val == null) continue
+        const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}`
+        if (!monthAccum[key]) monthAccum[key] = []
+        monthAccum[key].push(val)
+      }
+      const avg: Record<string, number> = {}
+      for (const [key, vals] of Object.entries(monthAccum)) {
+        avg[key] = vals.reduce((a, b) => a + b, 0) / vals.length
+      }
+      return avg
+    }, [mergedData])
+    ```
+
+    **Step 2: MoMヒートマップデータ（直近10年分）**
+    ```tsx
+    const momHeatmapData = useMemo(() => {
+      const currentYear = new Date().getFullYear()
+      const startYear = currentYear - 9
+      const years: number[] = []
+      for (let y = startYear; y <= currentYear; y++) years.push(y)
+      const monthlyData: Record<number, Record<number, number | null>> = {}
+      for (const year of years) {
+        monthlyData[year] = {}
+        for (let m = 0; m < 12; m++) {
+          const curVal = monthAvg[`${year}-${String(m).padStart(2, '0')}`]
+          if (curVal == null) { monthlyData[year][m] = null; continue }
+          let prevYear = year; let prevMonth = m - 1
+          if (prevMonth < 0) { prevMonth = 11; prevYear-- }
+          const prevVal = monthAvg[`${prevYear}-${String(prevMonth).padStart(2, '0')}`]
+          monthlyData[year][m] = (prevVal != null && prevVal !== 0)
+            ? Math.round(((curVal - prevVal) / prevVal) * 10000) / 100 : null
+        }
+      }
+      return { years, monthlyData }
+    }, [monthAvg])
+    ```
+
+    **Step 3: MoMバーチャートデータ**
+    ```tsx
+    const momChartData = useMemo(() => {
+      const entries = Object.entries(monthAvg).sort(([a], [b]) => a.localeCompare(b))
+      const result: { date: string; mom: number | null }[] = []
+      for (let i = 1; i < entries.length; i++) {
+        const [curKey, curVal] = entries[i]
+        const [, prevVal] = entries[i - 1]
+        const [y, m] = curKey.split('-').map(Number)
+        result.push({
+          date: `${y}-${String(m + 1).padStart(2, '0')}-15`,
+          mom: (prevVal != null && prevVal !== 0)
+            ? Math.round(((curVal - prevVal) / prevVal) * 10000) / 100 : null,
+        })
+      }
+      return result
+    }, [monthAvg])
+
+    const filteredMomChartData = useMemo(() => {
+      if (!momChartData.length) return []
+      if (currentPeriod === 'all') return momChartData
+      const years = typeof currentPeriod === 'number' ? currentPeriod : 5
+      const cutoff = new Date()
+      cutoff.setFullYear(cutoff.getFullYear() - years)
+      const cutoffStr = cutoff.toISOString().slice(0, 10)
+      return momChartData.filter(d => d.date >= cutoffStr)
+    }, [momChartData, currentPeriod])
+    ```
+
+    #### 完全なレイアウト構造
+    ```tsx
+    <ChartContainer title="..." dataSource="EIA" sourceUrl="..." showPeriodSelector={false}>
+      {/* 1. 最新値（データ比較ボタンはここに置かない） */}
+      <div style={LATEST_VALUE_BOX_STYLE}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          {/* 日付、在庫値、YoY、WTI原油価格、次回発表日 */}
+        </div>
+      </div>
+
+      {/* 2. タブ切替（antd Tabs） */}
+      <Tabs activeKey={activeTab} onChange={(key) => setActiveTab(key as ActiveTab)} style={{ marginTop: 8 }}
+        items={[
+          {
+            key: 'timeseries', label: '時系列',
+            children: (
+              <>
+                {/* 水準/前月比/前年比 + データ比較ボタン（同一行） */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                  <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode}
+                    onChange={(m) => setViewMode(m as ViewMode)} />
+                  <Tooltip title="比較ページを開く">
+                    <Button icon={<AreaChartOutlined />}
+                      onClick={() => window.open('/compare?s=indicator_id', '_blank')}>
+                      データ比較
+                    </Button>
+                  </Tooltip>
+                </div>
+
+                {/* チャート/ヒートマップ切替（前月比のみ表示） */}
+                {viewMode === 'mom' && (
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode}
+                      onChange={(m) => setDisplayMode(m as DisplayMode)} />
+                  </div>
+                )}
+
+                {/* 水準チャート */}
+                {viewMode === 'raw' && (
+                  <>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <ResponsiveContainer width="100%" height={400}>
+                      <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                        {/* CartesianGrid, XAxis, YAxis(left), YAxis(oil, reversed), Tooltip, Legend */}
+                        <Line yAxisId="left" dataKey="value" name="在庫名 (千bbl)" ... />
+                        <Line yAxisId="oil" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" ... />
+                      </ComposedChart>
+                    </ResponsiveContainer>
+                  </>
+                )}
+
+                {/* 前年比チャート */}
+                {viewMode === 'yoy' && (
+                  <>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <ResponsiveContainer width="100%" height={400}>
+                      <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                        {/* CartesianGrid, XAxis, YAxis(left, %), YAxis(oil, reversed), Tooltip, Legend */}
+                        <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
+                        <Line yAxisId="left" dataKey="yoy" name="在庫名 YoY %" ... />
+                        <Line yAxisId="oil" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" ... />
+                      </ComposedChart>
+                    </ResponsiveContainer>
+                  </>
+                )}
+
+                {/* 前月比バーチャート */}
+                {viewMode === 'mom' && displayMode === 'chart' && (
+                  <>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                    <ResponsiveContainer width="100%" height={400}>
+                      <ComposedChart data={filteredMomChartData} margin={CHART_MARGIN}>
+                        {/* CartesianGrid, XAxis, YAxis(%) */}
+                        <ReferenceLine y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
+                        <Bar dataKey="mom" name="在庫名 前月比 (%)" fill={COLOR_MAIN} />
+                      </ComposedChart>
+                    </ResponsiveContainer>
+                  </>
+                )}
+
+                {/* 前月比ヒートマップ（前年比ヒートマップは不要） */}
+                {viewMode === 'mom' && displayMode === 'heatmap' && (
+                  <MonthlyTable data={momHeatmapData} decimals={2} showLegend
+                    helperText="※ 在庫名 前月比（週次データの月平均から算出, 単位: %）" />
+                )}
+              </>
+            ),
+          },
+          {
+            key: 'market_impact', label: 'マーケットインパクト',
+            children: <MarketImpactTab indicatorId="..." />,
+          },
+        ]}
+      />
+    </ChartContainer>
+    ```
+
+    #### 必須import
+    ```tsx
+    import { Tabs, Tooltip, Button } from 'antd'
+    import { AreaChartOutlined } from '@ant-design/icons'
+    import {
+      ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid,
+      Tooltip as RechartsTooltip, Legend, ResponsiveContainer, ReferenceLine,
+    } from 'recharts'
+    import { ViewModeButtonGroup } from '../../country/usa/common/ChartComponents'
+    import { MonthlyTable } from '../../country/usa/common/MonthlyTable'
+    import { useMarketBatchData } from '../../../hooks/useMarketData'
+    import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS, CHART_MARGIN } from '../../country/usa/common/chartConstants'
+    import MarketImpactTab from '../../indicator/MarketImpactTab'
+    ```
+
+    #### chartConstants.ts に必要なボタン設定
+    `VIEW_MODE_BUTTON_CONFIGS` に以下のキーが登録済み（追加不要）:
+    - `raw`: 水準ボタン（pink系）
+    - `mom`: 前月比ボタン（blue系）
+    - `yoy`: 前年比ボタン（green系）
+    - `chart`: チャートボタン（amber系）
+    - `heatmap`: ヒートマップボタン（purple系）
+
+    #### 注意事項
+    - **前年比ヒートマップは作成しない**（ユーザー明示: 不要）
+    - **チャート/ヒートマップ切替は `viewMode === 'mom'` の時のみ表示**
+    - **チャートmarginは `CHART_MARGIN` を使用**（`chartConstants.ts` からimport、ハードコード禁止）
+    - **MoMバーチャートには `ReferenceLine y={0}` を必ず追加**（ゼロライン）
+    - **前年比チャートにも `ReferenceLine y={0}` を追加**
+    - **WTI原油オーバーレイは水準・前年比モードのみ**（MoMバーチャートには不要）
+    - **`showPeriodSelector={false}`**: ChartContainer側のPeriodSelectorは非表示。各viewModeブロック内でPeriodSelectorを個別表示
+
+    #### 参考実装:
+    - 複数系列（合計/商業在庫/SPR）: `frontend/src/components/market/energy/WeeklyCrudeOilInventoriesChart.tsx`
+    - 単一系列 + WTI: `frontend/src/components/market/energy/CushingInventoryChart.tsx`
+    - 単一系列 + WTI: `frontend/src/components/market/energy/DistillateFuelInventoriesChart.tsx`
+    - 複数系列（ガソリン+精製稼働率+WTI）: `frontend/src/components/market/energy/UsGasolineRefineryChart.tsx`
+
+    #### バックエンドサービスの特徴:
+    - ダッシュボードローダー不要（市場カテゴリは個別APIエンドポイント）
+    - ルーター: `backend/routers/market.py` にエンドポイント追加
+    - Redisキー: `market:{snake_case}:data`
+    - EIA XLSパース: `xlrd` ライブラリ使用（OLE2形式のため `openpyxl` は不可）
+    - YoY計算: 364日前 ±7日のfuzzyマッチで前年同週を検索
+    - 参考: `backend/services/market/distillate_fuel_inventories_service.py`
+
 ---
 
 ## 参考ファイル
@@ -749,3 +1063,4 @@ notes: |
 - チャート: `frontend/src/components/country/switzerland/consumer/KofBarometerChart.tsx`
 - 型定義: `frontend/src/hooks/useDashboardData.ts`
 - オーバーレイ: `frontend/src/constants/overlayConfig.ts`
+- EIAエネルギーチャート: `frontend/src/components/market/energy/WeeklyCrudeOilInventoriesChart.tsx`

@@ -292,29 +292,34 @@
     },
     {
       "date": "2025-11-01",
-      "food_yoy": 4.76,
+      "food_yoy": 4.93,
       "agriculture_yoy": 29.77
     },
     {
       "date": "2025-12-01",
-      "food_yoy": 4.83,
+      "food_yoy": 5.08,
       "agriculture_yoy": 26.09
     },
     {
       "date": "2026-01-01",
-      "food_yoy": 4.73,
-      "agriculture_yoy": 22.42
+      "food_yoy": 5.06,
+      "agriculture_yoy": 21.93
+    },
+    {
+      "date": "2026-02-01",
+      "food_yoy": 4.62,
+      "agriculture_yoy": 18.48
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "food_yoy": 4.73,
-    "agriculture_yoy": 22.42
+    "date": "2026-02-01",
+    "food_yoy": 4.62,
+    "agriculture_yoy": 18.48
   },
   "next_release": {
-    "date": "2026-03-10",
-    "datetime_jst": "2026-03-10T08:50:00+09:00",
-    "label": "企業物価指数 - 2026/03/10 8:50 JST（予定）"
+    "date": "2026-04-10",
+    "datetime_jst": "2026-04-10T08:50:00+09:00",
+    "label": "企業物価指数 - 2026/04/10 8:50 JST（予定）"
   },
-  "last_updated": "2026-03-10T22:31:01.450455+09:00"
+  "last_updated": "2026-03-11T22:31:00.686799+09:00"
 }

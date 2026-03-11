@@ -1,0 +1,9458 @@
+{
+  "data": [
+    {
+      "date": "1990-01-05",
+      "gasoline": 210982.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-01-12",
+      "gasoline": 215395.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-01-19",
+      "gasoline": 219221.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-01-26",
+      "gasoline": 229695.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-02-02",
+      "gasoline": 234249.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-02-09",
+      "gasoline": 242038.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-02-16",
+      "gasoline": 243212.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-02-23",
+      "gasoline": 249028.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-03-02",
+      "gasoline": 251074.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-03-09",
+      "gasoline": 247348.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-03-16",
+      "gasoline": 245224.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-03-23",
+      "gasoline": 236805.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-03-30",
+      "gasoline": 230975.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-04-06",
+      "gasoline": 227448.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-04-13",
+      "gasoline": 226077.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-04-20",
+      "gasoline": 224206.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-04-27",
+      "gasoline": 223250.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-05-04",
+      "gasoline": 222618.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-05-11",
+      "gasoline": 217528.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-05-18",
+      "gasoline": 217047.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-05-25",
+      "gasoline": 218532.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-06-01",
+      "gasoline": 222014.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-06-08",
+      "gasoline": 219308.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-06-15",
+      "gasoline": 220061.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-06-22",
+      "gasoline": 218970.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-06-29",
+      "gasoline": 218597.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-07-06",
+      "gasoline": 217055.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-07-13",
+      "gasoline": 218063.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-07-20",
+      "gasoline": 218705.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-07-27",
+      "gasoline": 217799.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-08-03",
+      "gasoline": 220195.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-08-10",
+      "gasoline": 213725.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-08-17",
+      "gasoline": 216819.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-08-24",
+      "gasoline": 211198.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-08-31",
+      "gasoline": 210922.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-09-07",
+      "gasoline": 212665.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-09-14",
+      "gasoline": 219164.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-09-21",
+      "gasoline": 222160.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-09-28",
+      "gasoline": 222735.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-10-05",
+      "gasoline": 225934.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-10-12",
+      "gasoline": 225997.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-10-19",
+      "gasoline": 221043.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-10-26",
+      "gasoline": 222384.0,
+      "refinery_util": null
+    },
+    {
+      "date": "1990-11-02",
+      "gasoline": 222223.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1990-11-09",
+      "gasoline": 219499.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1990-11-16",
+      "gasoline": 217040.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1990-11-23",
+      "gasoline": 217639.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1990-11-30",
+      "gasoline": 218889.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1990-12-07",
+      "gasoline": 220010.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1990-12-14",
+      "gasoline": 224219.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1990-12-21",
+      "gasoline": 222043.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1990-12-28",
+      "gasoline": 221695.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1991-01-04",
+      "gasoline": 221194.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "1991-01-11",
+      "gasoline": 217923.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "1991-01-18",
+      "gasoline": 216098.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1991-01-25",
+      "gasoline": 219581.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-02-01",
+      "gasoline": 222223.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-02-08",
+      "gasoline": 224079.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1991-02-15",
+      "gasoline": 226459.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1991-02-22",
+      "gasoline": 226026.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1991-03-01",
+      "gasoline": 221438.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1991-03-08",
+      "gasoline": 218986.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1991-03-15",
+      "gasoline": 215670.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-03-22",
+      "gasoline": 211379.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1991-03-29",
+      "gasoline": 212087.0,
+      "refinery_util": 81.0
+    },
+    {
+      "date": "1991-04-05",
+      "gasoline": 207908.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-04-12",
+      "gasoline": 205510.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-04-19",
+      "gasoline": 205046.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1991-04-26",
+      "gasoline": 205660.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1991-05-03",
+      "gasoline": 207496.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "1991-05-10",
+      "gasoline": 208673.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1991-05-17",
+      "gasoline": 211690.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1991-05-24",
+      "gasoline": 213387.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1991-05-31",
+      "gasoline": 215678.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1991-06-07",
+      "gasoline": 217713.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1991-06-14",
+      "gasoline": 220528.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1991-06-21",
+      "gasoline": 219835.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1991-06-28",
+      "gasoline": 218757.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1991-07-05",
+      "gasoline": 215024.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1991-07-12",
+      "gasoline": 213411.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1991-07-19",
+      "gasoline": 213887.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1991-07-26",
+      "gasoline": 212122.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1991-08-02",
+      "gasoline": 210814.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1991-08-09",
+      "gasoline": 208356.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1991-08-16",
+      "gasoline": 207689.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1991-08-23",
+      "gasoline": 210098.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1991-08-30",
+      "gasoline": 211068.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1991-09-06",
+      "gasoline": 214680.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1991-09-13",
+      "gasoline": 215242.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1991-09-20",
+      "gasoline": 214984.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1991-09-27",
+      "gasoline": 215217.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1991-10-04",
+      "gasoline": 217173.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1991-10-11",
+      "gasoline": 213971.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1991-10-18",
+      "gasoline": 209834.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-10-25",
+      "gasoline": 205774.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1991-11-01",
+      "gasoline": 204354.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1991-11-08",
+      "gasoline": 199744.0,
+      "refinery_util": 81.0
+    },
+    {
+      "date": "1991-11-15",
+      "gasoline": 198464.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1991-11-22",
+      "gasoline": 203568.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1991-11-29",
+      "gasoline": 207008.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1991-12-06",
+      "gasoline": 212278.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "1991-12-13",
+      "gasoline": 215414.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1991-12-20",
+      "gasoline": 216625.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1991-12-27",
+      "gasoline": 217337.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1992-01-03",
+      "gasoline": 222483.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1992-01-10",
+      "gasoline": 225305.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1992-01-17",
+      "gasoline": 228580.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1992-01-24",
+      "gasoline": 228073.0,
+      "refinery_util": 81.0
+    },
+    {
+      "date": "1992-01-31",
+      "gasoline": 227909.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "1992-02-07",
+      "gasoline": 227243.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1992-02-14",
+      "gasoline": 230868.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "1992-02-21",
+      "gasoline": 230336.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "1992-02-28",
+      "gasoline": 231955.0,
+      "refinery_util": 79.0
+    },
+    {
+      "date": "1992-03-06",
+      "gasoline": 227662.0,
+      "refinery_util": 79.0
+    },
+    {
+      "date": "1992-03-13",
+      "gasoline": 227891.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "1992-03-20",
+      "gasoline": 224373.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1992-03-27",
+      "gasoline": 222766.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1992-04-03",
+      "gasoline": 222186.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1992-04-10",
+      "gasoline": 217422.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1992-04-17",
+      "gasoline": 221157.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1992-04-24",
+      "gasoline": 221128.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1992-05-01",
+      "gasoline": 218510.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1992-05-08",
+      "gasoline": 218142.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "1992-05-15",
+      "gasoline": 219307.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1992-05-22",
+      "gasoline": 220760.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1992-05-29",
+      "gasoline": 217988.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-06-05",
+      "gasoline": 221738.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-06-12",
+      "gasoline": 225535.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-06-19",
+      "gasoline": 227811.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-06-26",
+      "gasoline": 228449.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "1992-07-03",
+      "gasoline": 227444.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1992-07-10",
+      "gasoline": 226355.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1992-07-17",
+      "gasoline": 225184.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1992-07-24",
+      "gasoline": 222592.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-07-31",
+      "gasoline": 221461.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-08-07",
+      "gasoline": 217173.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-08-14",
+      "gasoline": 213430.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-08-21",
+      "gasoline": 210106.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-08-28",
+      "gasoline": 206548.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1992-09-04",
+      "gasoline": 202427.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1992-09-11",
+      "gasoline": 204731.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-09-18",
+      "gasoline": 206719.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-09-25",
+      "gasoline": 207727.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-10-02",
+      "gasoline": 209718.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-10-09",
+      "gasoline": 207854.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1992-10-16",
+      "gasoline": 208652.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1992-10-23",
+      "gasoline": 208033.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-10-30",
+      "gasoline": 204650.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-11-06",
+      "gasoline": 209557.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-11-13",
+      "gasoline": 209701.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-11-20",
+      "gasoline": 210574.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "1992-11-27",
+      "gasoline": 212692.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-12-04",
+      "gasoline": 212367.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1992-12-11",
+      "gasoline": 213282.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1992-12-18",
+      "gasoline": 213169.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1992-12-25",
+      "gasoline": 212969.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-01-01",
+      "gasoline": 216561.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1993-01-08",
+      "gasoline": 221306.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-01-15",
+      "gasoline": 226954.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1993-01-22",
+      "gasoline": 229754.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-01-29",
+      "gasoline": 236128.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-02-05",
+      "gasoline": 234121.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1993-02-12",
+      "gasoline": 236870.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-02-19",
+      "gasoline": 239134.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-02-26",
+      "gasoline": 239086.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1993-03-05",
+      "gasoline": 237243.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "1993-03-12",
+      "gasoline": 236477.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1993-03-19",
+      "gasoline": 232213.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "1993-03-26",
+      "gasoline": 229323.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-04-02",
+      "gasoline": 228289.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1993-04-09",
+      "gasoline": 227603.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1993-04-16",
+      "gasoline": 225814.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1993-04-23",
+      "gasoline": 224438.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "1993-04-30",
+      "gasoline": 221834.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "1993-05-07",
+      "gasoline": 221330.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "1993-05-14",
+      "gasoline": 218162.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1993-05-21",
+      "gasoline": 218431.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "1993-05-28",
+      "gasoline": 229887.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1993-06-04",
+      "gasoline": 226781.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1993-06-11",
+      "gasoline": 224637.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1993-06-18",
+      "gasoline": 224796.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "1993-06-25",
+      "gasoline": 222719.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "1993-07-02",
+      "gasoline": 220348.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1993-07-09",
+      "gasoline": 220802.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1993-07-16",
+      "gasoline": 216794.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "1993-07-23",
+      "gasoline": 214341.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "1993-07-30",
+      "gasoline": 214965.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "1993-08-06",
+      "gasoline": 209070.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "1993-08-13",
+      "gasoline": 207716.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "1993-08-20",
+      "gasoline": 202045.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "1993-08-27",
+      "gasoline": 201221.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "1993-09-03",
+      "gasoline": 202354.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "1993-09-10",
+      "gasoline": 201269.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "1993-09-17",
+      "gasoline": 204378.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "1993-09-24",
+      "gasoline": 208036.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "1993-10-01",
+      "gasoline": 208245.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "1993-10-08",
+      "gasoline": 209116.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "1993-10-15",
+      "gasoline": 208432.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "1993-10-22",
+      "gasoline": 207949.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "1993-10-29",
+      "gasoline": 209067.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "1993-11-05",
+      "gasoline": 208140.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "1993-11-12",
+      "gasoline": 210759.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "1993-11-19",
+      "gasoline": 213301.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "1993-11-26",
+      "gasoline": 217591.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "1993-12-03",
+      "gasoline": 222584.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "1993-12-10",
+      "gasoline": 222110.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "1993-12-17",
+      "gasoline": 223106.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "1993-12-24",
+      "gasoline": 224655.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1993-12-31",
+      "gasoline": 225013.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "1994-01-07",
+      "gasoline": 228804.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "1994-01-14",
+      "gasoline": 230806.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "1994-01-21",
+      "gasoline": 230603.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "1994-01-28",
+      "gasoline": 234542.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "1994-02-04",
+      "gasoline": 233869.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "1994-02-11",
+      "gasoline": 230508.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "1994-02-18",
+      "gasoline": 229691.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "1994-02-25",
+      "gasoline": 229471.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "1994-03-04",
+      "gasoline": 226080.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "1994-03-11",
+      "gasoline": 224966.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "1994-03-18",
+      "gasoline": 221918.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "1994-03-25",
+      "gasoline": 216977.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "1994-04-01",
+      "gasoline": 213868.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "1994-04-08",
+      "gasoline": 211837.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "1994-04-15",
+      "gasoline": 210367.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "1994-04-22",
+      "gasoline": 215827.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "1994-04-29",
+      "gasoline": 215173.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "1994-05-06",
+      "gasoline": 220806.0,
+      "refinery_util": 96.6
+    },
+    {
+      "date": "1994-05-13",
+      "gasoline": 221215.0,
+      "refinery_util": 97.3
+    },
+    {
+      "date": "1994-05-20",
+      "gasoline": 217833.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1994-05-27",
+      "gasoline": 214405.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "1994-06-03",
+      "gasoline": 216725.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "1994-06-10",
+      "gasoline": 216815.0,
+      "refinery_util": 97.2
+    },
+    {
+      "date": "1994-06-17",
+      "gasoline": 215440.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "1994-06-24",
+      "gasoline": 214928.0,
+      "refinery_util": 97.2
+    },
+    {
+      "date": "1994-07-01",
+      "gasoline": 213577.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "1994-07-08",
+      "gasoline": 213607.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1994-07-15",
+      "gasoline": 210786.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1994-07-22",
+      "gasoline": 210340.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "1994-07-29",
+      "gasoline": 208515.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "1994-08-05",
+      "gasoline": 208802.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "1994-08-12",
+      "gasoline": 204759.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "1994-08-19",
+      "gasoline": 204822.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "1994-08-26",
+      "gasoline": 206501.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "1994-09-02",
+      "gasoline": 203398.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "1994-09-09",
+      "gasoline": 207682.0,
+      "refinery_util": 96.8
+    },
+    {
+      "date": "1994-09-16",
+      "gasoline": 207967.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "1994-09-23",
+      "gasoline": 207262.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1994-09-30",
+      "gasoline": 208167.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1994-10-07",
+      "gasoline": 208597.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "1994-10-14",
+      "gasoline": 206013.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "1994-10-21",
+      "gasoline": 202644.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "1994-10-28",
+      "gasoline": 197671.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "1994-11-04",
+      "gasoline": 200812.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "1994-11-11",
+      "gasoline": 202319.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1994-11-18",
+      "gasoline": 206074.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "1994-11-25",
+      "gasoline": 208845.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "1994-12-02",
+      "gasoline": 214685.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "1994-12-09",
+      "gasoline": 212280.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "1994-12-16",
+      "gasoline": 212555.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "1994-12-23",
+      "gasoline": 210269.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "1994-12-30",
+      "gasoline": 210379.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "1995-01-06",
+      "gasoline": 213545.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "1995-01-13",
+      "gasoline": 215577.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "1995-01-20",
+      "gasoline": 217341.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "1995-01-27",
+      "gasoline": 220092.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "1995-02-03",
+      "gasoline": 222808.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "1995-02-10",
+      "gasoline": 224086.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "1995-02-17",
+      "gasoline": 225627.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "1995-02-24",
+      "gasoline": 224867.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "1995-03-03",
+      "gasoline": 226427.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "1995-03-10",
+      "gasoline": 225052.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1995-03-17",
+      "gasoline": 221863.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "1995-03-24",
+      "gasoline": 219388.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "1995-03-31",
+      "gasoline": 212188.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "1995-04-07",
+      "gasoline": 211126.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "1995-04-14",
+      "gasoline": 209230.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "1995-04-21",
+      "gasoline": 207445.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "1995-04-28",
+      "gasoline": 208167.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "1995-05-05",
+      "gasoline": 208961.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "1995-05-12",
+      "gasoline": 209092.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "1995-05-19",
+      "gasoline": 207135.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "1995-05-26",
+      "gasoline": 209982.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "1995-06-02",
+      "gasoline": 208602.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "1995-06-09",
+      "gasoline": 207887.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1995-06-16",
+      "gasoline": 210280.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "1995-06-23",
+      "gasoline": 208332.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "1995-06-30",
+      "gasoline": 207619.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1995-07-07",
+      "gasoline": 207854.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "1995-07-14",
+      "gasoline": 208280.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "1995-07-21",
+      "gasoline": 207955.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "1995-07-28",
+      "gasoline": 207406.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "1995-08-04",
+      "gasoline": 204700.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1995-08-11",
+      "gasoline": 203559.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "1995-08-18",
+      "gasoline": 199666.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "1995-08-25",
+      "gasoline": 196058.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "1995-09-01",
+      "gasoline": 197186.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "1995-09-08",
+      "gasoline": 196620.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "1995-09-15",
+      "gasoline": 194930.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1995-09-22",
+      "gasoline": 196796.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "1995-09-29",
+      "gasoline": 202806.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "1995-10-06",
+      "gasoline": 201137.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "1995-10-13",
+      "gasoline": 198720.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "1995-10-20",
+      "gasoline": 199377.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1995-10-27",
+      "gasoline": 197584.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "1995-11-03",
+      "gasoline": 195596.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "1995-11-10",
+      "gasoline": 190148.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "1995-11-17",
+      "gasoline": 192278.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "1995-11-24",
+      "gasoline": 193076.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "1995-12-01",
+      "gasoline": 196904.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "1995-12-08",
+      "gasoline": 196587.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "1995-12-15",
+      "gasoline": 198690.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "1995-12-22",
+      "gasoline": 197873.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "1995-12-29",
+      "gasoline": 203744.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "1996-01-05",
+      "gasoline": 203560.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "1996-01-12",
+      "gasoline": 205546.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "1996-01-19",
+      "gasoline": 210659.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "1996-01-26",
+      "gasoline": 211887.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "1996-02-02",
+      "gasoline": 214405.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "1996-02-09",
+      "gasoline": 213627.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "1996-02-16",
+      "gasoline": 212443.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "1996-02-23",
+      "gasoline": 210443.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "1996-03-01",
+      "gasoline": 213605.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "1996-03-08",
+      "gasoline": 209769.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "1996-03-15",
+      "gasoline": 209171.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "1996-03-22",
+      "gasoline": 205883.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "1996-03-29",
+      "gasoline": 203802.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "1996-04-05",
+      "gasoline": 201988.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "1996-04-12",
+      "gasoline": 201051.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1996-04-19",
+      "gasoline": 203880.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "1996-04-26",
+      "gasoline": 204218.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1996-05-03",
+      "gasoline": 204185.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "1996-05-10",
+      "gasoline": 202692.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "1996-05-17",
+      "gasoline": 204906.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "1996-05-24",
+      "gasoline": 205722.0,
+      "refinery_util": 95.2
+    },
+    {
+      "date": "1996-05-31",
+      "gasoline": 206134.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "1996-06-07",
+      "gasoline": 205584.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "1996-06-14",
+      "gasoline": 205494.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "1996-06-21",
+      "gasoline": 206541.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "1996-06-28",
+      "gasoline": 202987.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "1996-07-05",
+      "gasoline": 201677.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1996-07-12",
+      "gasoline": 200373.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "1996-07-19",
+      "gasoline": 198977.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "1996-07-26",
+      "gasoline": 197609.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "1996-08-02",
+      "gasoline": 196821.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "1996-08-09",
+      "gasoline": 198222.0,
+      "refinery_util": 95.2
+    },
+    {
+      "date": "1996-08-16",
+      "gasoline": 198433.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1996-08-23",
+      "gasoline": 196254.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "1996-08-30",
+      "gasoline": 192908.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "1996-09-06",
+      "gasoline": 191733.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "1996-09-13",
+      "gasoline": 192000.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "1996-09-20",
+      "gasoline": 193526.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "1996-09-27",
+      "gasoline": 197717.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "1996-10-04",
+      "gasoline": 197019.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "1996-10-11",
+      "gasoline": 194410.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "1996-10-18",
+      "gasoline": 190525.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "1996-10-25",
+      "gasoline": 189283.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1996-11-01",
+      "gasoline": 191956.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "1996-11-08",
+      "gasoline": 190180.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "1996-11-15",
+      "gasoline": 188595.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "1996-11-22",
+      "gasoline": 187261.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "1996-11-29",
+      "gasoline": 190483.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "1996-12-06",
+      "gasoline": 194748.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "1996-12-13",
+      "gasoline": 191420.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1996-12-20",
+      "gasoline": 191053.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1996-12-27",
+      "gasoline": 192014.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1997-01-03",
+      "gasoline": 198239.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "1997-01-10",
+      "gasoline": 199994.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "1997-01-17",
+      "gasoline": 201457.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "1997-01-24",
+      "gasoline": 203639.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "1997-01-31",
+      "gasoline": 206951.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "1997-02-07",
+      "gasoline": 210991.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "1997-02-14",
+      "gasoline": 209302.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "1997-02-21",
+      "gasoline": 205464.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "1997-02-28",
+      "gasoline": 203206.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "1997-03-07",
+      "gasoline": 203693.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "1997-03-14",
+      "gasoline": 199745.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "1997-03-21",
+      "gasoline": 198774.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "1997-03-28",
+      "gasoline": 196930.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "1997-04-04",
+      "gasoline": 195697.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "1997-04-11",
+      "gasoline": 195928.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "1997-04-18",
+      "gasoline": 195927.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "1997-04-25",
+      "gasoline": 196025.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "1997-05-02",
+      "gasoline": 193561.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "1997-05-09",
+      "gasoline": 198261.0,
+      "refinery_util": 96.9
+    },
+    {
+      "date": "1997-05-16",
+      "gasoline": 198672.0,
+      "refinery_util": 97.4
+    },
+    {
+      "date": "1997-05-23",
+      "gasoline": 199831.0,
+      "refinery_util": 98.4
+    },
+    {
+      "date": "1997-05-30",
+      "gasoline": 200728.0,
+      "refinery_util": 99.0
+    },
+    {
+      "date": "1997-06-06",
+      "gasoline": 203327.0,
+      "refinery_util": 98.6
+    },
+    {
+      "date": "1997-06-13",
+      "gasoline": 205177.0,
+      "refinery_util": 97.6
+    },
+    {
+      "date": "1997-06-20",
+      "gasoline": 205512.0,
+      "refinery_util": 97.7
+    },
+    {
+      "date": "1997-06-27",
+      "gasoline": 204006.0,
+      "refinery_util": 97.3
+    },
+    {
+      "date": "1997-07-04",
+      "gasoline": 203747.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "1997-07-11",
+      "gasoline": 199751.0,
+      "refinery_util": 97.9
+    },
+    {
+      "date": "1997-07-18",
+      "gasoline": 197484.0,
+      "refinery_util": 96.9
+    },
+    {
+      "date": "1997-07-25",
+      "gasoline": 193695.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1997-08-01",
+      "gasoline": 190575.0,
+      "refinery_util": 97.3
+    },
+    {
+      "date": "1997-08-08",
+      "gasoline": 189078.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "1997-08-15",
+      "gasoline": 186197.0,
+      "refinery_util": 97.7
+    },
+    {
+      "date": "1997-08-22",
+      "gasoline": 187035.0,
+      "refinery_util": 99.3
+    },
+    {
+      "date": "1997-08-29",
+      "gasoline": 185563.0,
+      "refinery_util": 99.8
+    },
+    {
+      "date": "1997-09-05",
+      "gasoline": 187167.0,
+      "refinery_util": 99.4
+    },
+    {
+      "date": "1997-09-12",
+      "gasoline": 189628.0,
+      "refinery_util": 99.0
+    },
+    {
+      "date": "1997-09-19",
+      "gasoline": 194289.0,
+      "refinery_util": 98.5
+    },
+    {
+      "date": "1997-09-26",
+      "gasoline": 195544.0,
+      "refinery_util": 98.1
+    },
+    {
+      "date": "1997-10-03",
+      "gasoline": 197648.0,
+      "refinery_util": 97.6
+    },
+    {
+      "date": "1997-10-10",
+      "gasoline": 196796.0,
+      "refinery_util": 98.4
+    },
+    {
+      "date": "1997-10-17",
+      "gasoline": 196969.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "1997-10-24",
+      "gasoline": 197561.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "1997-10-31",
+      "gasoline": 197629.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1997-11-07",
+      "gasoline": 196540.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "1997-11-14",
+      "gasoline": 197638.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "1997-11-21",
+      "gasoline": 196590.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "1997-11-28",
+      "gasoline": 199440.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "1997-12-05",
+      "gasoline": 198579.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "1997-12-12",
+      "gasoline": 201916.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "1997-12-19",
+      "gasoline": 201609.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "1997-12-26",
+      "gasoline": 204930.0,
+      "refinery_util": 97.1
+    },
+    {
+      "date": "1998-01-02",
+      "gasoline": 210220.0,
+      "refinery_util": 97.2
+    },
+    {
+      "date": "1998-01-09",
+      "gasoline": 216176.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "1998-01-16",
+      "gasoline": 217925.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "1998-01-23",
+      "gasoline": 217464.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "1998-01-30",
+      "gasoline": 217934.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "1998-02-06",
+      "gasoline": 220625.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "1998-02-13",
+      "gasoline": 218239.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "1998-02-20",
+      "gasoline": 218785.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "1998-02-27",
+      "gasoline": 219852.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "1998-03-06",
+      "gasoline": 218013.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "1998-03-13",
+      "gasoline": 214200.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1998-03-20",
+      "gasoline": 215334.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "1998-03-27",
+      "gasoline": 214760.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "1998-04-03",
+      "gasoline": 210823.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "1998-04-10",
+      "gasoline": 210377.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "1998-04-17",
+      "gasoline": 211207.0,
+      "refinery_util": 98.5
+    },
+    {
+      "date": "1998-04-24",
+      "gasoline": 212209.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "1998-05-01",
+      "gasoline": 212269.0,
+      "refinery_util": 98.2
+    },
+    {
+      "date": "1998-05-08",
+      "gasoline": 216119.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "1998-05-15",
+      "gasoline": 213223.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "1998-05-22",
+      "gasoline": 215208.0,
+      "refinery_util": 98.1
+    },
+    {
+      "date": "1998-05-29",
+      "gasoline": 218181.0,
+      "refinery_util": 99.5
+    },
+    {
+      "date": "1998-06-05",
+      "gasoline": 219566.0,
+      "refinery_util": 97.0
+    },
+    {
+      "date": "1998-06-12",
+      "gasoline": 220053.0,
+      "refinery_util": 98.2
+    },
+    {
+      "date": "1998-06-19",
+      "gasoline": 222740.0,
+      "refinery_util": 98.4
+    },
+    {
+      "date": "1998-06-26",
+      "gasoline": 222381.0,
+      "refinery_util": 98.1
+    },
+    {
+      "date": "1998-07-03",
+      "gasoline": 218243.0,
+      "refinery_util": 97.2
+    },
+    {
+      "date": "1998-07-10",
+      "gasoline": 221489.0,
+      "refinery_util": 100.0
+    },
+    {
+      "date": "1998-07-17",
+      "gasoline": 218840.0,
+      "refinery_util": 99.5
+    },
+    {
+      "date": "1998-07-24",
+      "gasoline": 219060.0,
+      "refinery_util": 99.6
+    },
+    {
+      "date": "1998-07-31",
+      "gasoline": 215752.0,
+      "refinery_util": 98.4
+    },
+    {
+      "date": "1998-08-07",
+      "gasoline": 212407.0,
+      "refinery_util": 98.0
+    },
+    {
+      "date": "1998-08-14",
+      "gasoline": 210064.0,
+      "refinery_util": 99.0
+    },
+    {
+      "date": "1998-08-21",
+      "gasoline": 208848.0,
+      "refinery_util": 99.8
+    },
+    {
+      "date": "1998-08-28",
+      "gasoline": 209179.0,
+      "refinery_util": 100.5
+    },
+    {
+      "date": "1998-09-04",
+      "gasoline": 207008.0,
+      "refinery_util": 98.4
+    },
+    {
+      "date": "1998-09-11",
+      "gasoline": 205691.0,
+      "refinery_util": 98.9
+    },
+    {
+      "date": "1998-09-18",
+      "gasoline": 208649.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "1998-09-25",
+      "gasoline": 207493.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1998-10-02",
+      "gasoline": 207114.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "1998-10-09",
+      "gasoline": 199486.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "1998-10-16",
+      "gasoline": 201383.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "1998-10-23",
+      "gasoline": 199734.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "1998-10-30",
+      "gasoline": 200204.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "1998-11-06",
+      "gasoline": 201825.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1998-11-13",
+      "gasoline": 206343.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "1998-11-20",
+      "gasoline": 205683.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "1998-11-27",
+      "gasoline": 205697.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "1998-12-04",
+      "gasoline": 208189.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "1998-12-11",
+      "gasoline": 210252.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1998-12-18",
+      "gasoline": 208330.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "1998-12-25",
+      "gasoline": 209868.0,
+      "refinery_util": 96.8
+    },
+    {
+      "date": "1999-01-01",
+      "gasoline": 210839.0,
+      "refinery_util": 98.2
+    },
+    {
+      "date": "1999-01-08",
+      "gasoline": 217574.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "1999-01-15",
+      "gasoline": 221987.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "1999-01-22",
+      "gasoline": 220885.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1999-01-29",
+      "gasoline": 223083.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "1999-02-05",
+      "gasoline": 228189.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "1999-02-12",
+      "gasoline": 226045.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "1999-02-19",
+      "gasoline": 229300.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "1999-02-26",
+      "gasoline": 227413.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "1999-03-05",
+      "gasoline": 226726.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "1999-03-12",
+      "gasoline": 222905.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "1999-03-19",
+      "gasoline": 219788.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "1999-03-26",
+      "gasoline": 214520.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "1999-04-02",
+      "gasoline": 214306.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "1999-04-09",
+      "gasoline": 217386.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "1999-04-16",
+      "gasoline": 216866.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "1999-04-23",
+      "gasoline": 214741.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "1999-04-30",
+      "gasoline": 218406.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "1999-05-07",
+      "gasoline": 222885.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "1999-05-14",
+      "gasoline": 221972.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "1999-05-21",
+      "gasoline": 221589.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "1999-05-28",
+      "gasoline": 223026.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1999-06-04",
+      "gasoline": 226048.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "1999-06-11",
+      "gasoline": 221080.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "1999-06-18",
+      "gasoline": 220647.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "1999-06-25",
+      "gasoline": 217966.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "1999-07-02",
+      "gasoline": 214637.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "1999-07-09",
+      "gasoline": 211022.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1999-07-16",
+      "gasoline": 208902.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "1999-07-23",
+      "gasoline": 205424.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "1999-07-30",
+      "gasoline": 204179.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "1999-08-06",
+      "gasoline": 201096.0,
+      "refinery_util": 96.9
+    },
+    {
+      "date": "1999-08-13",
+      "gasoline": 202026.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "1999-08-20",
+      "gasoline": 202168.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "1999-08-27",
+      "gasoline": 200462.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "1999-09-03",
+      "gasoline": 198532.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "1999-09-10",
+      "gasoline": 200464.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "1999-09-17",
+      "gasoline": 201304.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "1999-09-24",
+      "gasoline": 199923.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "1999-10-01",
+      "gasoline": 201114.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "1999-10-08",
+      "gasoline": 203234.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "1999-10-15",
+      "gasoline": 202656.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1999-10-22",
+      "gasoline": 199785.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "1999-10-29",
+      "gasoline": 197816.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "1999-11-05",
+      "gasoline": 195514.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "1999-11-12",
+      "gasoline": 191450.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "1999-11-19",
+      "gasoline": 190202.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "1999-11-26",
+      "gasoline": 191068.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "1999-12-03",
+      "gasoline": 196648.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "1999-12-10",
+      "gasoline": 195581.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "1999-12-17",
+      "gasoline": 194295.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "1999-12-24",
+      "gasoline": 192797.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "1999-12-31",
+      "gasoline": 191997.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2000-01-07",
+      "gasoline": 194173.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2000-01-14",
+      "gasoline": 198240.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2000-01-21",
+      "gasoline": 200815.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2000-01-28",
+      "gasoline": 201447.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2000-02-04",
+      "gasoline": 200937.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2000-02-11",
+      "gasoline": 199593.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2000-02-18",
+      "gasoline": 196688.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2000-02-25",
+      "gasoline": 196523.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2000-03-03",
+      "gasoline": 200970.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "2000-03-10",
+      "gasoline": 198819.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2000-03-17",
+      "gasoline": 199255.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2000-03-24",
+      "gasoline": 201120.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2000-03-31",
+      "gasoline": 203808.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2000-04-07",
+      "gasoline": 203566.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2000-04-14",
+      "gasoline": 202022.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2000-04-21",
+      "gasoline": 200684.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2000-04-28",
+      "gasoline": 202506.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2000-05-05",
+      "gasoline": 200770.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2000-05-12",
+      "gasoline": 202479.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2000-05-19",
+      "gasoline": 203561.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2000-05-26",
+      "gasoline": 201075.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "2000-06-02",
+      "gasoline": 201348.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "2000-06-09",
+      "gasoline": 202699.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "2000-06-16",
+      "gasoline": 202768.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2000-06-23",
+      "gasoline": 204280.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2000-06-30",
+      "gasoline": 204522.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2000-07-07",
+      "gasoline": 205147.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2000-07-14",
+      "gasoline": 205638.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2000-07-21",
+      "gasoline": 206907.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2000-07-28",
+      "gasoline": 206253.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "2000-08-04",
+      "gasoline": 204582.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "2000-08-11",
+      "gasoline": 202442.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2000-08-18",
+      "gasoline": 201200.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "2000-08-25",
+      "gasoline": 196372.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "2000-09-01",
+      "gasoline": 195498.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2000-09-08",
+      "gasoline": 191795.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2000-09-15",
+      "gasoline": 187566.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2000-09-22",
+      "gasoline": 190559.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "2000-09-29",
+      "gasoline": 195621.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2000-10-06",
+      "gasoline": 195840.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2000-10-13",
+      "gasoline": 193261.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2000-10-20",
+      "gasoline": 192240.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2000-10-27",
+      "gasoline": 188097.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2000-11-03",
+      "gasoline": 186147.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2000-11-10",
+      "gasoline": 189003.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2000-11-17",
+      "gasoline": 188941.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2000-11-24",
+      "gasoline": 191190.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2000-12-01",
+      "gasoline": 195234.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2000-12-08",
+      "gasoline": 196568.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2000-12-15",
+      "gasoline": 198983.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2000-12-22",
+      "gasoline": 196401.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2000-12-29",
+      "gasoline": 193771.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2001-01-05",
+      "gasoline": 195663.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2001-01-12",
+      "gasoline": 198713.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2001-01-19",
+      "gasoline": 200703.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2001-01-26",
+      "gasoline": 205882.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2001-02-02",
+      "gasoline": 203783.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2001-02-09",
+      "gasoline": 202920.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2001-02-16",
+      "gasoline": 204595.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2001-02-23",
+      "gasoline": 204546.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2001-03-02",
+      "gasoline": 203021.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2001-03-09",
+      "gasoline": 201582.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2001-03-16",
+      "gasoline": 198193.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2001-03-23",
+      "gasoline": 196272.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2001-03-30",
+      "gasoline": 193035.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2001-04-06",
+      "gasoline": 193855.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2001-04-13",
+      "gasoline": 192831.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2001-04-20",
+      "gasoline": 193913.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "2001-04-27",
+      "gasoline": 198975.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "2001-05-04",
+      "gasoline": 200025.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "2001-05-11",
+      "gasoline": 204069.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2001-05-18",
+      "gasoline": 203706.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2001-05-25",
+      "gasoline": 208032.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2001-06-01",
+      "gasoline": 210265.0,
+      "refinery_util": 97.6
+    },
+    {
+      "date": "2001-06-08",
+      "gasoline": 216010.0,
+      "refinery_util": 97.2
+    },
+    {
+      "date": "2001-06-15",
+      "gasoline": 219666.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2001-06-22",
+      "gasoline": 220745.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2001-06-29",
+      "gasoline": 221633.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "2001-07-06",
+      "gasoline": 221549.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2001-07-13",
+      "gasoline": 217832.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "2001-07-20",
+      "gasoline": 214521.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2001-07-27",
+      "gasoline": 211313.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2001-08-03",
+      "gasoline": 207789.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2001-08-10",
+      "gasoline": 204627.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2001-08-17",
+      "gasoline": 202069.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2001-08-24",
+      "gasoline": 195874.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2001-08-31",
+      "gasoline": 194690.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2001-09-07",
+      "gasoline": 195380.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2001-09-14",
+      "gasoline": 192331.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2001-09-21",
+      "gasoline": 200823.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2001-09-28",
+      "gasoline": 203912.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2001-10-05",
+      "gasoline": 206117.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2001-10-12",
+      "gasoline": 208339.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2001-10-19",
+      "gasoline": 208908.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2001-10-26",
+      "gasoline": 208308.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2001-11-02",
+      "gasoline": 206944.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2001-11-09",
+      "gasoline": 205335.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "2001-11-16",
+      "gasoline": 206682.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2001-11-23",
+      "gasoline": 207701.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2001-11-30",
+      "gasoline": 212099.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2001-12-07",
+      "gasoline": 211201.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2001-12-14",
+      "gasoline": 210320.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2001-12-21",
+      "gasoline": 207036.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2001-12-28",
+      "gasoline": 207914.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2002-01-04",
+      "gasoline": 207726.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2002-01-11",
+      "gasoline": 210500.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2002-01-18",
+      "gasoline": 214055.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2002-01-25",
+      "gasoline": 216656.0,
+      "refinery_util": 84.8
+    },
+    {
+      "date": "2002-02-01",
+      "gasoline": 216355.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2002-02-08",
+      "gasoline": 217358.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2002-02-15",
+      "gasoline": 216883.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2002-02-22",
+      "gasoline": 215753.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2002-03-01",
+      "gasoline": 212674.0,
+      "refinery_util": 85.4
+    },
+    {
+      "date": "2002-03-08",
+      "gasoline": 211544.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2002-03-15",
+      "gasoline": 209080.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2002-03-22",
+      "gasoline": 207157.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2002-03-29",
+      "gasoline": 211521.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2002-04-05",
+      "gasoline": 212602.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2002-04-12",
+      "gasoline": 211127.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2002-04-19",
+      "gasoline": 210555.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2002-04-26",
+      "gasoline": 211946.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2002-05-03",
+      "gasoline": 214108.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2002-05-10",
+      "gasoline": 217207.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2002-05-17",
+      "gasoline": 216094.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2002-05-24",
+      "gasoline": 218100.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2002-05-31",
+      "gasoline": 215916.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2002-06-07",
+      "gasoline": 214362.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2002-06-14",
+      "gasoline": 215229.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2002-06-21",
+      "gasoline": 216405.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2002-06-28",
+      "gasoline": 216434.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2002-07-05",
+      "gasoline": 214720.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "2002-07-12",
+      "gasoline": 213232.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2002-07-19",
+      "gasoline": 212591.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2002-07-26",
+      "gasoline": 211591.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2002-08-02",
+      "gasoline": 212470.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2002-08-09",
+      "gasoline": 207965.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2002-08-16",
+      "gasoline": 208743.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2002-08-23",
+      "gasoline": 206761.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2002-08-30",
+      "gasoline": 205330.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2002-09-06",
+      "gasoline": 205598.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2002-09-13",
+      "gasoline": 204987.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2002-09-20",
+      "gasoline": 207222.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2002-09-27",
+      "gasoline": 208421.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2002-10-04",
+      "gasoline": 205280.0,
+      "refinery_util": 82.9
+    },
+    {
+      "date": "2002-10-11",
+      "gasoline": 198979.0,
+      "refinery_util": 79.7
+    },
+    {
+      "date": "2002-10-18",
+      "gasoline": 195357.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2002-10-25",
+      "gasoline": 194311.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2002-11-01",
+      "gasoline": 192146.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2002-11-08",
+      "gasoline": 194044.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2002-11-15",
+      "gasoline": 193499.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2002-11-22",
+      "gasoline": 197419.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2002-11-29",
+      "gasoline": 199962.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2002-12-06",
+      "gasoline": 203240.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2002-12-13",
+      "gasoline": 203149.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2002-12-20",
+      "gasoline": 205370.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2002-12-27",
+      "gasoline": 204956.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2003-01-03",
+      "gasoline": 209828.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2003-01-10",
+      "gasoline": 215582.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2003-01-17",
+      "gasoline": 216270.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2003-01-24",
+      "gasoline": 212980.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2003-01-31",
+      "gasoline": 209613.0,
+      "refinery_util": 83.6
+    },
+    {
+      "date": "2003-02-07",
+      "gasoline": 212649.0,
+      "refinery_util": 84.3
+    },
+    {
+      "date": "2003-02-14",
+      "gasoline": 211206.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2003-02-21",
+      "gasoline": 208095.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2003-02-28",
+      "gasoline": 206086.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2003-03-07",
+      "gasoline": 202008.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2003-03-14",
+      "gasoline": 201083.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2003-03-21",
+      "gasoline": 198977.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "2003-03-28",
+      "gasoline": 200721.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2003-04-04",
+      "gasoline": 202182.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2003-04-11",
+      "gasoline": 201947.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2003-04-18",
+      "gasoline": 201174.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2003-04-25",
+      "gasoline": 205592.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2003-05-02",
+      "gasoline": 207794.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2003-05-09",
+      "gasoline": 208644.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2003-05-16",
+      "gasoline": 208377.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "2003-05-23",
+      "gasoline": 205034.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2003-05-30",
+      "gasoline": 207281.0,
+      "refinery_util": 97.3
+    },
+    {
+      "date": "2003-06-06",
+      "gasoline": 209853.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "2003-06-13",
+      "gasoline": 209124.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2003-06-20",
+      "gasoline": 208204.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2003-06-27",
+      "gasoline": 204960.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2003-07-04",
+      "gasoline": 205486.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2003-07-11",
+      "gasoline": 209422.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2003-07-18",
+      "gasoline": 207820.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2003-07-25",
+      "gasoline": 204496.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2003-08-01",
+      "gasoline": 201784.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2003-08-08",
+      "gasoline": 198147.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2003-08-15",
+      "gasoline": 196850.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2003-08-22",
+      "gasoline": 191179.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2003-08-29",
+      "gasoline": 191898.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2003-09-05",
+      "gasoline": 192579.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2003-09-12",
+      "gasoline": 195322.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2003-09-19",
+      "gasoline": 196822.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2003-09-26",
+      "gasoline": 199174.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2003-10-03",
+      "gasoline": 197986.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2003-10-10",
+      "gasoline": 194579.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2003-10-17",
+      "gasoline": 195986.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2003-10-24",
+      "gasoline": 193809.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2003-10-31",
+      "gasoline": 191334.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2003-11-07",
+      "gasoline": 192267.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2003-11-14",
+      "gasoline": 192194.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2003-11-21",
+      "gasoline": 193653.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2003-11-28",
+      "gasoline": 197110.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2003-12-05",
+      "gasoline": 200472.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "2003-12-12",
+      "gasoline": 202377.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2003-12-19",
+      "gasoline": 202987.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2003-12-26",
+      "gasoline": 203619.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2004-01-02",
+      "gasoline": 206308.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2004-01-09",
+      "gasoline": 208416.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2004-01-16",
+      "gasoline": 209484.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2004-01-23",
+      "gasoline": 206040.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2004-01-30",
+      "gasoline": 205593.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2004-02-06",
+      "gasoline": 204417.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2004-02-13",
+      "gasoline": 205023.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2004-02-20",
+      "gasoline": 203378.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2004-02-27",
+      "gasoline": 202014.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2004-03-05",
+      "gasoline": 200420.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2004-03-12",
+      "gasoline": 199626.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2004-03-19",
+      "gasoline": 199523.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2004-03-26",
+      "gasoline": 200885.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2004-04-02",
+      "gasoline": 200057.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2004-04-09",
+      "gasoline": 197451.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2004-04-16",
+      "gasoline": 199083.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2004-04-23",
+      "gasoline": 199958.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2004-04-30",
+      "gasoline": 203996.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2004-05-07",
+      "gasoline": 202450.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2004-05-14",
+      "gasoline": 203674.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "2004-05-21",
+      "gasoline": 203017.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2004-05-28",
+      "gasoline": 204279.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "2004-06-04",
+      "gasoline": 206432.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2004-06-11",
+      "gasoline": 205943.0,
+      "refinery_util": 96.4
+    },
+    {
+      "date": "2004-06-18",
+      "gasoline": 205134.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "2004-06-25",
+      "gasoline": 205148.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2004-07-02",
+      "gasoline": 206108.0,
+      "refinery_util": 96.7
+    },
+    {
+      "date": "2004-07-09",
+      "gasoline": 205903.0,
+      "refinery_util": 95.2
+    },
+    {
+      "date": "2004-07-16",
+      "gasoline": 208420.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2004-07-23",
+      "gasoline": 207651.0,
+      "refinery_util": 97.0
+    },
+    {
+      "date": "2004-07-30",
+      "gasoline": 210108.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "2004-08-06",
+      "gasoline": 208296.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2004-08-13",
+      "gasoline": 205742.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "2004-08-20",
+      "gasoline": 205743.0,
+      "refinery_util": 96.0
+    },
+    {
+      "date": "2004-08-27",
+      "gasoline": 206552.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "2004-09-03",
+      "gasoline": 204073.0,
+      "refinery_util": 96.5
+    },
+    {
+      "date": "2004-09-10",
+      "gasoline": 202493.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "2004-09-17",
+      "gasoline": 199654.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2004-09-24",
+      "gasoline": 198846.0,
+      "refinery_util": 83.7
+    },
+    {
+      "date": "2004-10-01",
+      "gasoline": 199429.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2004-10-08",
+      "gasoline": 200616.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "2004-10-15",
+      "gasoline": 199883.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2004-10-22",
+      "gasoline": 201163.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2004-10-29",
+      "gasoline": 201677.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2004-11-05",
+      "gasoline": 201270.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2004-11-12",
+      "gasoline": 200879.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2004-11-19",
+      "gasoline": 202741.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2004-11-26",
+      "gasoline": 205741.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2004-12-03",
+      "gasoline": 208096.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2004-12-10",
+      "gasoline": 209616.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2004-12-17",
+      "gasoline": 211381.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2004-12-24",
+      "gasoline": 212251.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "2004-12-31",
+      "gasoline": 214327.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2005-01-07",
+      "gasoline": 215333.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2005-01-14",
+      "gasoline": 216969.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2005-01-21",
+      "gasoline": 214712.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2005-01-28",
+      "gasoline": 216342.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2005-02-04",
+      "gasoline": 216757.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2005-02-11",
+      "gasoline": 221678.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2005-02-18",
+      "gasoline": 223510.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2005-02-25",
+      "gasoline": 224483.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2005-03-04",
+      "gasoline": 224282.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2005-03-11",
+      "gasoline": 221352.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2005-03-18",
+      "gasoline": 217293.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2005-03-25",
+      "gasoline": 214358.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2005-04-01",
+      "gasoline": 212252.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2005-04-08",
+      "gasoline": 213100.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2005-04-15",
+      "gasoline": 211636.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2005-04-22",
+      "gasoline": 211306.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2005-04-29",
+      "gasoline": 213507.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2005-05-06",
+      "gasoline": 213694.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2005-05-13",
+      "gasoline": 214765.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2005-05-20",
+      "gasoline": 215374.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2005-05-27",
+      "gasoline": 216678.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "2005-06-03",
+      "gasoline": 216647.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "2005-06-10",
+      "gasoline": 215742.0,
+      "refinery_util": 96.7
+    },
+    {
+      "date": "2005-06-17",
+      "gasoline": 215939.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2005-06-24",
+      "gasoline": 216240.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "2005-07-01",
+      "gasoline": 215266.0,
+      "refinery_util": 98.1
+    },
+    {
+      "date": "2005-07-08",
+      "gasoline": 212641.0,
+      "refinery_util": 96.2
+    },
+    {
+      "date": "2005-07-15",
+      "gasoline": 211322.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2005-07-22",
+      "gasoline": 209194.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2005-07-29",
+      "gasoline": 205177.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "2005-08-05",
+      "gasoline": 203091.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "2005-08-12",
+      "gasoline": 198122.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2005-08-19",
+      "gasoline": 194877.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2005-08-26",
+      "gasoline": 194369.0,
+      "refinery_util": 97.1
+    },
+    {
+      "date": "2005-09-02",
+      "gasoline": 190067.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2005-09-09",
+      "gasoline": 191959.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2005-09-16",
+      "gasoline": 195431.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2005-09-23",
+      "gasoline": 199831.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2005-09-30",
+      "gasoline": 195454.0,
+      "refinery_util": 69.8
+    },
+    {
+      "date": "2005-10-07",
+      "gasoline": 192803.0,
+      "refinery_util": 74.9
+    },
+    {
+      "date": "2005-10-14",
+      "gasoline": 195710.0,
+      "refinery_util": 79.1
+    },
+    {
+      "date": "2005-10-21",
+      "gasoline": 195869.0,
+      "refinery_util": 80.7
+    },
+    {
+      "date": "2005-10-28",
+      "gasoline": 196904.0,
+      "refinery_util": 82.5
+    },
+    {
+      "date": "2005-11-04",
+      "gasoline": 201127.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "2005-11-11",
+      "gasoline": 200175.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2005-11-18",
+      "gasoline": 200413.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2005-11-25",
+      "gasoline": 199868.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2005-12-02",
+      "gasoline": 202609.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2005-12-09",
+      "gasoline": 204375.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2005-12-16",
+      "gasoline": 204074.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2005-12-23",
+      "gasoline": 202853.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2005-12-30",
+      "gasoline": 204259.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2006-01-06",
+      "gasoline": 208778.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2006-01-13",
+      "gasoline": 211635.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2006-01-20",
+      "gasoline": 214763.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2006-01-27",
+      "gasoline": 219044.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2006-02-03",
+      "gasoline": 223344.0,
+      "refinery_util": 85.8
+    },
+    {
+      "date": "2006-02-10",
+      "gasoline": 225459.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2006-02-17",
+      "gasoline": 225648.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2006-02-24",
+      "gasoline": 225867.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2006-03-03",
+      "gasoline": 224765.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "2006-03-10",
+      "gasoline": 223884.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2006-03-17",
+      "gasoline": 221563.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2006-03-24",
+      "gasoline": 216226.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2006-03-31",
+      "gasoline": 211782.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2006-04-07",
+      "gasoline": 207927.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2006-04-14",
+      "gasoline": 202482.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2006-04-21",
+      "gasoline": 200594.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2006-04-28",
+      "gasoline": 202708.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2006-05-05",
+      "gasoline": 205050.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2006-05-12",
+      "gasoline": 206375.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2006-05-19",
+      "gasoline": 208483.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2006-05-26",
+      "gasoline": 209277.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2006-06-02",
+      "gasoline": 210331.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2006-06-09",
+      "gasoline": 213146.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2006-06-16",
+      "gasoline": 213440.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2006-06-23",
+      "gasoline": 212350.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2006-06-30",
+      "gasoline": 213077.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2006-07-07",
+      "gasoline": 212651.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2006-07-14",
+      "gasoline": 214194.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2006-07-21",
+      "gasoline": 211030.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2006-07-28",
+      "gasoline": 210868.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2006-08-04",
+      "gasoline": 207659.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2006-08-11",
+      "gasoline": 205393.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2006-08-18",
+      "gasoline": 205795.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2006-08-25",
+      "gasoline": 206162.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2006-09-01",
+      "gasoline": 206880.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2006-09-08",
+      "gasoline": 206994.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2006-09-15",
+      "gasoline": 207554.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2006-09-22",
+      "gasoline": 213899.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2006-09-29",
+      "gasoline": 215052.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2006-10-06",
+      "gasoline": 215397.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2006-10-13",
+      "gasoline": 210175.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2006-10-20",
+      "gasoline": 207416.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2006-10-27",
+      "gasoline": 204617.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2006-11-03",
+      "gasoline": 204033.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2006-11-10",
+      "gasoline": 200252.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2006-11-17",
+      "gasoline": 201658.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2006-11-24",
+      "gasoline": 201069.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2006-12-01",
+      "gasoline": 200031.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2006-12-08",
+      "gasoline": 199857.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2006-12-15",
+      "gasoline": 200915.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2006-12-22",
+      "gasoline": 203853.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2006-12-29",
+      "gasoline": 209532.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2007-01-05",
+      "gasoline": 213295.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2007-01-12",
+      "gasoline": 216786.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2007-01-19",
+      "gasoline": 220795.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2007-01-26",
+      "gasoline": 224614.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2007-02-02",
+      "gasoline": 227214.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2007-02-09",
+      "gasoline": 225156.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2007-02-16",
+      "gasoline": 222115.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2007-02-23",
+      "gasoline": 220175.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2007-03-02",
+      "gasoline": 216425.0,
+      "refinery_util": 85.8
+    },
+    {
+      "date": "2007-03-09",
+      "gasoline": 213939.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2007-03-16",
+      "gasoline": 210489.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2007-03-23",
+      "gasoline": 210231.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2007-03-30",
+      "gasoline": 205201.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2007-04-06",
+      "gasoline": 199725.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2007-04-13",
+      "gasoline": 197007.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2007-04-20",
+      "gasoline": 194214.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2007-04-27",
+      "gasoline": 193099.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2007-05-04",
+      "gasoline": 193471.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2007-05-11",
+      "gasoline": 195235.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2007-05-18",
+      "gasoline": 196666.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2007-05-25",
+      "gasoline": 198027.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2007-06-01",
+      "gasoline": 201537.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2007-06-08",
+      "gasoline": 201540.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2007-06-15",
+      "gasoline": 203331.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2007-06-22",
+      "gasoline": 202582.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2007-06-29",
+      "gasoline": 204433.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2007-07-06",
+      "gasoline": 205576.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2007-07-13",
+      "gasoline": 203341.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2007-07-20",
+      "gasoline": 204134.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2007-07-27",
+      "gasoline": 204720.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2007-08-03",
+      "gasoline": 202997.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2007-08-10",
+      "gasoline": 201940.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2007-08-17",
+      "gasoline": 196231.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2007-08-24",
+      "gasoline": 192564.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2007-08-31",
+      "gasoline": 191083.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2007-09-07",
+      "gasoline": 190417.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2007-09-14",
+      "gasoline": 190834.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2007-09-21",
+      "gasoline": 191366.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "2007-09-28",
+      "gasoline": 191325.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2007-10-05",
+      "gasoline": 193000.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2007-10-12",
+      "gasoline": 195768.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2007-10-19",
+      "gasoline": 193837.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2007-10-26",
+      "gasoline": 195132.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2007-11-02",
+      "gasoline": 194313.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2007-11-09",
+      "gasoline": 195027.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2007-11-16",
+      "gasoline": 195190.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2007-11-23",
+      "gasoline": 196628.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2007-11-30",
+      "gasoline": 200623.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2007-12-07",
+      "gasoline": 202241.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2007-12-14",
+      "gasoline": 205221.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2007-12-21",
+      "gasoline": 205857.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2007-12-28",
+      "gasoline": 207842.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2008-01-04",
+      "gasoline": 213063.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2008-01-11",
+      "gasoline": 215256.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2008-01-18",
+      "gasoline": 220341.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2008-01-25",
+      "gasoline": 223899.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2008-02-01",
+      "gasoline": 227487.0,
+      "refinery_util": 84.3
+    },
+    {
+      "date": "2008-02-08",
+      "gasoline": 229236.0,
+      "refinery_util": 85.1
+    },
+    {
+      "date": "2008-02-15",
+      "gasoline": 230264.0,
+      "refinery_util": 83.5
+    },
+    {
+      "date": "2008-02-22",
+      "gasoline": 232619.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2008-02-29",
+      "gasoline": 234276.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2008-03-07",
+      "gasoline": 235967.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2008-03-14",
+      "gasoline": 232520.0,
+      "refinery_util": 83.8
+    },
+    {
+      "date": "2008-03-21",
+      "gasoline": 229235.0,
+      "refinery_util": 82.2
+    },
+    {
+      "date": "2008-03-28",
+      "gasoline": 224710.0,
+      "refinery_util": 82.4
+    },
+    {
+      "date": "2008-04-04",
+      "gasoline": 221268.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "2008-04-11",
+      "gasoline": 215751.0,
+      "refinery_util": 81.4
+    },
+    {
+      "date": "2008-04-18",
+      "gasoline": 212572.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2008-04-25",
+      "gasoline": 211089.0,
+      "refinery_util": 85.4
+    },
+    {
+      "date": "2008-05-02",
+      "gasoline": 211883.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2008-05-09",
+      "gasoline": 210168.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2008-05-16",
+      "gasoline": 209413.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2008-05-23",
+      "gasoline": 206155.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2008-05-30",
+      "gasoline": 209090.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2008-06-06",
+      "gasoline": 210088.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2008-06-13",
+      "gasoline": 208910.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2008-06-20",
+      "gasoline": 208757.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2008-06-27",
+      "gasoline": 210857.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2008-07-04",
+      "gasoline": 211766.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2008-07-11",
+      "gasoline": 214238.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2008-07-18",
+      "gasoline": 217085.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2008-07-25",
+      "gasoline": 213560.0,
+      "refinery_util": 87.2
+    },
+    {
+      "date": "2008-08-01",
+      "gasoline": 209216.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2008-08-08",
+      "gasoline": 202822.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2008-08-15",
+      "gasoline": 196620.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2008-08-22",
+      "gasoline": 195441.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2008-08-29",
+      "gasoline": 194404.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2008-09-05",
+      "gasoline": 187942.0,
+      "refinery_util": 78.3
+    },
+    {
+      "date": "2008-09-12",
+      "gasoline": 184634.0,
+      "refinery_util": 77.4
+    },
+    {
+      "date": "2008-09-19",
+      "gasoline": 178739.0,
+      "refinery_util": 66.7
+    },
+    {
+      "date": "2008-09-26",
+      "gasoline": 179640.0,
+      "refinery_util": 72.3
+    },
+    {
+      "date": "2008-10-03",
+      "gasoline": 186815.0,
+      "refinery_util": 80.9
+    },
+    {
+      "date": "2008-10-10",
+      "gasoline": 193788.0,
+      "refinery_util": 82.2
+    },
+    {
+      "date": "2008-10-17",
+      "gasoline": 196497.0,
+      "refinery_util": 84.8
+    },
+    {
+      "date": "2008-10-24",
+      "gasoline": 194990.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2008-10-31",
+      "gasoline": 196113.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2008-11-07",
+      "gasoline": 198095.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2008-11-14",
+      "gasoline": 198634.0,
+      "refinery_util": 84.9
+    },
+    {
+      "date": "2008-11-21",
+      "gasoline": 200476.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2008-11-28",
+      "gasoline": 198942.0,
+      "refinery_util": 84.3
+    },
+    {
+      "date": "2008-12-05",
+      "gasoline": 202664.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2008-12-12",
+      "gasoline": 203959.0,
+      "refinery_util": 84.1
+    },
+    {
+      "date": "2008-12-19",
+      "gasoline": 207295.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2008-12-26",
+      "gasoline": 208103.0,
+      "refinery_util": 82.5
+    },
+    {
+      "date": "2009-01-02",
+      "gasoline": 211437.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2009-01-09",
+      "gasoline": 213505.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2009-01-16",
+      "gasoline": 219980.0,
+      "refinery_util": 83.3
+    },
+    {
+      "date": "2009-01-23",
+      "gasoline": 219859.0,
+      "refinery_util": 82.5
+    },
+    {
+      "date": "2009-01-30",
+      "gasoline": 220221.0,
+      "refinery_util": 83.5
+    },
+    {
+      "date": "2009-02-06",
+      "gasoline": 217559.0,
+      "refinery_util": 81.6
+    },
+    {
+      "date": "2009-02-13",
+      "gasoline": 218664.0,
+      "refinery_util": 82.3
+    },
+    {
+      "date": "2009-02-20",
+      "gasoline": 215342.0,
+      "refinery_util": 81.4
+    },
+    {
+      "date": "2009-02-27",
+      "gasoline": 215510.0,
+      "refinery_util": 83.1
+    },
+    {
+      "date": "2009-03-06",
+      "gasoline": 212517.0,
+      "refinery_util": 82.7
+    },
+    {
+      "date": "2009-03-13",
+      "gasoline": 215712.0,
+      "refinery_util": 82.1
+    },
+    {
+      "date": "2009-03-20",
+      "gasoline": 214568.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "2009-03-27",
+      "gasoline": 216793.0,
+      "refinery_util": 81.7
+    },
+    {
+      "date": "2009-04-03",
+      "gasoline": 217449.0,
+      "refinery_util": 81.8
+    },
+    {
+      "date": "2009-04-10",
+      "gasoline": 216505.0,
+      "refinery_util": 80.4
+    },
+    {
+      "date": "2009-04-17",
+      "gasoline": 217307.0,
+      "refinery_util": 83.4
+    },
+    {
+      "date": "2009-04-24",
+      "gasoline": 212612.0,
+      "refinery_util": 82.7
+    },
+    {
+      "date": "2009-05-01",
+      "gasoline": 212445.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2009-05-08",
+      "gasoline": 208291.0,
+      "refinery_util": 83.7
+    },
+    {
+      "date": "2009-05-15",
+      "gasoline": 203954.0,
+      "refinery_util": 81.8
+    },
+    {
+      "date": "2009-05-22",
+      "gasoline": 203417.0,
+      "refinery_util": 85.1
+    },
+    {
+      "date": "2009-05-29",
+      "gasoline": 203202.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2009-06-05",
+      "gasoline": 201649.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2009-06-12",
+      "gasoline": 205034.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2009-06-19",
+      "gasoline": 208905.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2009-06-26",
+      "gasoline": 211238.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2009-07-03",
+      "gasoline": 213140.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2009-07-10",
+      "gasoline": 214578.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2009-07-17",
+      "gasoline": 215391.0,
+      "refinery_util": 85.8
+    },
+    {
+      "date": "2009-07-24",
+      "gasoline": 213076.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2009-07-31",
+      "gasoline": 212858.0,
+      "refinery_util": 84.5
+    },
+    {
+      "date": "2009-08-07",
+      "gasoline": 211931.0,
+      "refinery_util": 83.5
+    },
+    {
+      "date": "2009-08-14",
+      "gasoline": 209754.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "2009-08-21",
+      "gasoline": 208054.0,
+      "refinery_util": 84.1
+    },
+    {
+      "date": "2009-08-28",
+      "gasoline": 205085.0,
+      "refinery_util": 87.2
+    },
+    {
+      "date": "2009-09-04",
+      "gasoline": 207153.0,
+      "refinery_util": 87.2
+    },
+    {
+      "date": "2009-09-11",
+      "gasoline": 207700.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "2009-09-18",
+      "gasoline": 213109.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2009-09-25",
+      "gasoline": 211452.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2009-10-02",
+      "gasoline": 214389.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2009-10-09",
+      "gasoline": 209159.0,
+      "refinery_util": 80.9
+    },
+    {
+      "date": "2009-10-16",
+      "gasoline": 206945.0,
+      "refinery_util": 81.1
+    },
+    {
+      "date": "2009-10-23",
+      "gasoline": 208564.0,
+      "refinery_util": 81.8
+    },
+    {
+      "date": "2009-10-30",
+      "gasoline": 208277.0,
+      "refinery_util": 80.6
+    },
+    {
+      "date": "2009-11-06",
+      "gasoline": 210837.0,
+      "refinery_util": 79.9
+    },
+    {
+      "date": "2009-11-13",
+      "gasoline": 209082.0,
+      "refinery_util": 79.4
+    },
+    {
+      "date": "2009-11-20",
+      "gasoline": 210085.0,
+      "refinery_util": 80.3
+    },
+    {
+      "date": "2009-11-27",
+      "gasoline": 214081.0,
+      "refinery_util": 79.7
+    },
+    {
+      "date": "2009-12-04",
+      "gasoline": 216334.0,
+      "refinery_util": 81.1
+    },
+    {
+      "date": "2009-12-11",
+      "gasoline": 217213.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "2009-12-18",
+      "gasoline": 216330.0,
+      "refinery_util": 80.0
+    },
+    {
+      "date": "2009-12-25",
+      "gasoline": 215964.0,
+      "refinery_util": 80.3
+    },
+    {
+      "date": "2010-01-01",
+      "gasoline": 219701.0,
+      "refinery_util": 79.9
+    },
+    {
+      "date": "2010-01-08",
+      "gasoline": 223492.0,
+      "refinery_util": 81.3
+    },
+    {
+      "date": "2010-01-15",
+      "gasoline": 227442.0,
+      "refinery_util": 78.4
+    },
+    {
+      "date": "2010-01-22",
+      "gasoline": 229427.0,
+      "refinery_util": 78.5
+    },
+    {
+      "date": "2010-01-29",
+      "gasoline": 228121.0,
+      "refinery_util": 77.7
+    },
+    {
+      "date": "2010-02-05",
+      "gasoline": 230445.0,
+      "refinery_util": 79.1
+    },
+    {
+      "date": "2010-02-12",
+      "gasoline": 232065.0,
+      "refinery_util": 79.8
+    },
+    {
+      "date": "2010-02-19",
+      "gasoline": 231170.0,
+      "refinery_util": 81.2
+    },
+    {
+      "date": "2010-02-26",
+      "gasoline": 231943.0,
+      "refinery_util": 81.9
+    },
+    {
+      "date": "2010-03-05",
+      "gasoline": 228984.0,
+      "refinery_util": 80.7
+    },
+    {
+      "date": "2010-03-12",
+      "gasoline": 227274.0,
+      "refinery_util": 80.6
+    },
+    {
+      "date": "2010-03-19",
+      "gasoline": 224559.0,
+      "refinery_util": 81.1
+    },
+    {
+      "date": "2010-03-26",
+      "gasoline": 224872.0,
+      "refinery_util": 82.6
+    },
+    {
+      "date": "2010-04-02",
+      "gasoline": 222374.0,
+      "refinery_util": 84.5
+    },
+    {
+      "date": "2010-04-09",
+      "gasoline": 221338.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2010-04-16",
+      "gasoline": 224925.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2010-04-23",
+      "gasoline": 223685.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2010-04-30",
+      "gasoline": 224942.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2010-05-07",
+      "gasoline": 222128.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2010-05-14",
+      "gasoline": 221834.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2010-05-21",
+      "gasoline": 221631.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2010-05-28",
+      "gasoline": 218984.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2010-06-04",
+      "gasoline": 218976.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2010-06-11",
+      "gasoline": 218340.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2010-06-18",
+      "gasoline": 217578.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2010-06-25",
+      "gasoline": 218115.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2010-07-02",
+      "gasoline": 219435.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2010-07-09",
+      "gasoline": 221036.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2010-07-16",
+      "gasoline": 222154.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2010-07-23",
+      "gasoline": 222245.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2010-07-30",
+      "gasoline": 222974.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2010-08-06",
+      "gasoline": 223383.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2010-08-13",
+      "gasoline": 223344.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2010-08-20",
+      "gasoline": 225617.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2010-08-27",
+      "gasoline": 225405.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2010-09-03",
+      "gasoline": 225162.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2010-09-10",
+      "gasoline": 224468.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2010-09-17",
+      "gasoline": 226058.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2010-09-24",
+      "gasoline": 222589.0,
+      "refinery_util": 85.8
+    },
+    {
+      "date": "2010-10-01",
+      "gasoline": 219943.0,
+      "refinery_util": 83.1
+    },
+    {
+      "date": "2010-10-08",
+      "gasoline": 218174.0,
+      "refinery_util": 81.9
+    },
+    {
+      "date": "2010-10-15",
+      "gasoline": 219329.0,
+      "refinery_util": 82.5
+    },
+    {
+      "date": "2010-10-22",
+      "gasoline": 214942.0,
+      "refinery_util": 83.7
+    },
+    {
+      "date": "2010-10-29",
+      "gasoline": 212253.0,
+      "refinery_util": 81.8
+    },
+    {
+      "date": "2010-11-05",
+      "gasoline": 210336.0,
+      "refinery_util": 82.4
+    },
+    {
+      "date": "2010-11-12",
+      "gasoline": 207679.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "2010-11-19",
+      "gasoline": 209592.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2010-11-26",
+      "gasoline": 210153.0,
+      "refinery_util": 82.6
+    },
+    {
+      "date": "2010-12-03",
+      "gasoline": 213964.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2010-12-10",
+      "gasoline": 214773.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2010-12-17",
+      "gasoline": 217173.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2010-12-24",
+      "gasoline": 214857.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2010-12-31",
+      "gasoline": 218146.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2011-01-07",
+      "gasoline": 223227.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2011-01-14",
+      "gasoline": 227670.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "2011-01-21",
+      "gasoline": 230074.0,
+      "refinery_util": 81.8
+    },
+    {
+      "date": "2011-01-28",
+      "gasoline": 236228.0,
+      "refinery_util": 84.5
+    },
+    {
+      "date": "2011-02-04",
+      "gasoline": 240891.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2011-02-11",
+      "gasoline": 241096.0,
+      "refinery_util": 81.2
+    },
+    {
+      "date": "2011-02-18",
+      "gasoline": 238298.0,
+      "refinery_util": 79.4
+    },
+    {
+      "date": "2011-02-25",
+      "gasoline": 234708.0,
+      "refinery_util": 80.9
+    },
+    {
+      "date": "2011-03-04",
+      "gasoline": 229214.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "2011-03-11",
+      "gasoline": 225040.0,
+      "refinery_util": 83.4
+    },
+    {
+      "date": "2011-03-18",
+      "gasoline": 219720.0,
+      "refinery_util": 84.1
+    },
+    {
+      "date": "2011-03-25",
+      "gasoline": 217036.0,
+      "refinery_util": 84.1
+    },
+    {
+      "date": "2011-04-01",
+      "gasoline": 216679.0,
+      "refinery_util": 84.4
+    },
+    {
+      "date": "2011-04-08",
+      "gasoline": 209679.0,
+      "refinery_util": 81.4
+    },
+    {
+      "date": "2011-04-15",
+      "gasoline": 208096.0,
+      "refinery_util": 82.5
+    },
+    {
+      "date": "2011-04-22",
+      "gasoline": 205588.0,
+      "refinery_util": 82.7
+    },
+    {
+      "date": "2011-04-29",
+      "gasoline": 204542.0,
+      "refinery_util": 82.8
+    },
+    {
+      "date": "2011-05-06",
+      "gasoline": 205817.0,
+      "refinery_util": 81.7
+    },
+    {
+      "date": "2011-05-13",
+      "gasoline": 205936.0,
+      "refinery_util": 83.2
+    },
+    {
+      "date": "2011-05-20",
+      "gasoline": 209730.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2011-05-27",
+      "gasoline": 212283.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2011-06-03",
+      "gasoline": 214492.0,
+      "refinery_util": 87.2
+    },
+    {
+      "date": "2011-06-10",
+      "gasoline": 215065.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2011-06-17",
+      "gasoline": 214601.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2011-06-24",
+      "gasoline": 213173.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2011-07-01",
+      "gasoline": 212539.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2011-07-08",
+      "gasoline": 211699.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2011-07-15",
+      "gasoline": 212456.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2011-07-22",
+      "gasoline": 213478.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2011-07-29",
+      "gasoline": 215179.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2011-08-05",
+      "gasoline": 213591.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2011-08-12",
+      "gasoline": 210081.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2011-08-19",
+      "gasoline": 211436.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2011-08-26",
+      "gasoline": 208641.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2011-09-02",
+      "gasoline": 208840.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2011-09-09",
+      "gasoline": 210780.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2011-09-16",
+      "gasoline": 214075.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2011-09-23",
+      "gasoline": 214866.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2011-09-30",
+      "gasoline": 213729.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2011-10-07",
+      "gasoline": 209595.0,
+      "refinery_util": 84.2
+    },
+    {
+      "date": "2011-10-14",
+      "gasoline": 206271.0,
+      "refinery_util": 83.1
+    },
+    {
+      "date": "2011-10-21",
+      "gasoline": 204918.0,
+      "refinery_util": 84.8
+    },
+    {
+      "date": "2011-10-28",
+      "gasoline": 206274.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2011-11-04",
+      "gasoline": 204167.0,
+      "refinery_util": 82.6
+    },
+    {
+      "date": "2011-11-11",
+      "gasoline": 205159.0,
+      "refinery_util": 84.8
+    },
+    {
+      "date": "2011-11-18",
+      "gasoline": 209634.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2011-11-25",
+      "gasoline": 209847.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2011-12-02",
+      "gasoline": 214994.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2011-12-09",
+      "gasoline": 218818.0,
+      "refinery_util": 85.1
+    },
+    {
+      "date": "2011-12-16",
+      "gasoline": 218406.0,
+      "refinery_util": 84.9
+    },
+    {
+      "date": "2011-12-23",
+      "gasoline": 217714.0,
+      "refinery_util": 84.2
+    },
+    {
+      "date": "2011-12-30",
+      "gasoline": 220193.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2012-01-06",
+      "gasoline": 223803.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2012-01-13",
+      "gasoline": 227520.0,
+      "refinery_util": 83.7
+    },
+    {
+      "date": "2012-01-20",
+      "gasoline": 227130.0,
+      "refinery_util": 82.2
+    },
+    {
+      "date": "2012-01-27",
+      "gasoline": 230147.0,
+      "refinery_util": 81.8
+    },
+    {
+      "date": "2012-02-03",
+      "gasoline": 231776.0,
+      "refinery_util": 82.8
+    },
+    {
+      "date": "2012-02-10",
+      "gasoline": 232176.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "2012-02-17",
+      "gasoline": 231527.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2012-02-24",
+      "gasoline": 229927.0,
+      "refinery_util": 83.6
+    },
+    {
+      "date": "2012-03-02",
+      "gasoline": 229531.0,
+      "refinery_util": 83.9
+    },
+    {
+      "date": "2012-03-09",
+      "gasoline": 228121.0,
+      "refinery_util": 82.7
+    },
+    {
+      "date": "2012-03-16",
+      "gasoline": 226907.0,
+      "refinery_util": 82.2
+    },
+    {
+      "date": "2012-03-23",
+      "gasoline": 223370.0,
+      "refinery_util": 84.5
+    },
+    {
+      "date": "2012-03-30",
+      "gasoline": 221913.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2012-04-06",
+      "gasoline": 217636.0,
+      "refinery_util": 83.8
+    },
+    {
+      "date": "2012-04-13",
+      "gasoline": 213965.0,
+      "refinery_util": 84.6
+    },
+    {
+      "date": "2012-04-20",
+      "gasoline": 211730.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2012-04-27",
+      "gasoline": 209721.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2012-05-04",
+      "gasoline": 207108.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2012-05-11",
+      "gasoline": 204311.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2012-05-18",
+      "gasoline": 201012.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2012-05-25",
+      "gasoline": 200179.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2012-06-01",
+      "gasoline": 203525.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2012-06-08",
+      "gasoline": 201801.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2012-06-15",
+      "gasoline": 202744.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2012-06-22",
+      "gasoline": 204822.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2012-06-29",
+      "gasoline": 204973.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2012-07-06",
+      "gasoline": 207725.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2012-07-13",
+      "gasoline": 205910.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2012-07-20",
+      "gasoline": 210044.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2012-07-27",
+      "gasoline": 207870.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2012-08-03",
+      "gasoline": 206069.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2012-08-10",
+      "gasoline": 203698.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2012-08-17",
+      "gasoline": 202736.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2012-08-24",
+      "gasoline": 201227.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2012-08-31",
+      "gasoline": 198893.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2012-09-07",
+      "gasoline": 197716.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2012-09-14",
+      "gasoline": 196309.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2012-09-21",
+      "gasoline": 195828.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2012-09-28",
+      "gasoline": 195942.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2012-10-05",
+      "gasoline": 195408.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2012-10-12",
+      "gasoline": 197128.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2012-10-19",
+      "gasoline": 198567.0,
+      "refinery_util": 87.2
+    },
+    {
+      "date": "2012-10-26",
+      "gasoline": 199502.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2012-11-02",
+      "gasoline": 202377.0,
+      "refinery_util": 85.4
+    },
+    {
+      "date": "2012-11-09",
+      "gasoline": 201937.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2012-11-16",
+      "gasoline": 200390.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2012-11-23",
+      "gasoline": 204255.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2012-11-30",
+      "gasoline": 212115.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2012-12-07",
+      "gasoline": 217115.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2012-12-14",
+      "gasoline": 219322.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2012-12-21",
+      "gasoline": 223104.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2012-12-28",
+      "gasoline": 225673.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2013-01-04",
+      "gasoline": 233085.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2013-01-11",
+      "gasoline": 234995.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2013-01-18",
+      "gasoline": 233257.0,
+      "refinery_util": 83.6
+    },
+    {
+      "date": "2013-01-25",
+      "gasoline": 232301.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2013-02-01",
+      "gasoline": 234039.0,
+      "refinery_util": 84.2
+    },
+    {
+      "date": "2013-02-08",
+      "gasoline": 233236.0,
+      "refinery_util": 83.8
+    },
+    {
+      "date": "2013-02-15",
+      "gasoline": 230352.0,
+      "refinery_util": 82.9
+    },
+    {
+      "date": "2013-02-22",
+      "gasoline": 228495.0,
+      "refinery_util": 85.1
+    },
+    {
+      "date": "2013-03-01",
+      "gasoline": 227879.0,
+      "refinery_util": 82.2
+    },
+    {
+      "date": "2013-03-08",
+      "gasoline": 224308.0,
+      "refinery_util": 81.0
+    },
+    {
+      "date": "2013-03-15",
+      "gasoline": 222832.0,
+      "refinery_util": 83.5
+    },
+    {
+      "date": "2013-03-22",
+      "gasoline": 221236.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2013-03-29",
+      "gasoline": 220664.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2013-04-05",
+      "gasoline": 222363.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2013-04-12",
+      "gasoline": 221730.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2013-04-19",
+      "gasoline": 217802.0,
+      "refinery_util": 83.5
+    },
+    {
+      "date": "2013-04-26",
+      "gasoline": 215984.0,
+      "refinery_util": 84.4
+    },
+    {
+      "date": "2013-05-03",
+      "gasoline": 215074.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2013-05-10",
+      "gasoline": 217662.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2013-05-17",
+      "gasoline": 220677.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2013-05-24",
+      "gasoline": 219163.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2013-05-31",
+      "gasoline": 218797.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2013-06-07",
+      "gasoline": 221545.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2013-06-14",
+      "gasoline": 221728.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2013-06-21",
+      "gasoline": 225381.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2013-06-28",
+      "gasoline": 223662.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2013-07-05",
+      "gasoline": 221028.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2013-07-12",
+      "gasoline": 224083.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2013-07-19",
+      "gasoline": 222694.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2013-07-26",
+      "gasoline": 223464.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2013-08-02",
+      "gasoline": 223599.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2013-08-09",
+      "gasoline": 222430.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2013-08-16",
+      "gasoline": 218401.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2013-08-23",
+      "gasoline": 217814.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2013-08-30",
+      "gasoline": 215987.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2013-09-06",
+      "gasoline": 217645.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2013-09-13",
+      "gasoline": 216018.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2013-09-20",
+      "gasoline": 216235.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2013-09-27",
+      "gasoline": 219730.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2013-10-04",
+      "gasoline": 219879.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2013-10-11",
+      "gasoline": 217309.0,
+      "refinery_util": 86.2
+    },
+    {
+      "date": "2013-10-18",
+      "gasoline": 215504.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2013-10-25",
+      "gasoline": 213791.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2013-11-01",
+      "gasoline": 210036.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2013-11-08",
+      "gasoline": 209198.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2013-11-15",
+      "gasoline": 208853.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2013-11-22",
+      "gasoline": 210604.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2013-11-29",
+      "gasoline": 212432.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2013-12-06",
+      "gasoline": 219149.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2013-12-13",
+      "gasoline": 220486.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2013-12-20",
+      "gasoline": 219872.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2013-12-27",
+      "gasoline": 220716.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2014-01-03",
+      "gasoline": 226959.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2014-01-10",
+      "gasoline": 233142.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2014-01-17",
+      "gasoline": 235265.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2014-01-24",
+      "gasoline": 234446.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2014-01-31",
+      "gasoline": 234951.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2014-02-07",
+      "gasoline": 233098.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2014-02-14",
+      "gasoline": 233407.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2014-02-21",
+      "gasoline": 230600.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2014-02-28",
+      "gasoline": 228996.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2014-03-07",
+      "gasoline": 223766.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2014-03-14",
+      "gasoline": 222299.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2014-03-21",
+      "gasoline": 217198.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2014-03-28",
+      "gasoline": 215624.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2014-04-04",
+      "gasoline": 210436.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2014-04-11",
+      "gasoline": 210282.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2014-04-18",
+      "gasoline": 210008.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2014-04-25",
+      "gasoline": 211572.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2014-05-02",
+      "gasoline": 213180.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2014-05-09",
+      "gasoline": 212408.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2014-05-16",
+      "gasoline": 213378.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2014-05-23",
+      "gasoline": 211575.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2014-05-30",
+      "gasoline": 211785.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2014-06-06",
+      "gasoline": 213482.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2014-06-13",
+      "gasoline": 214267.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2014-06-20",
+      "gasoline": 214977.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "2014-06-27",
+      "gasoline": 213742.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2014-07-04",
+      "gasoline": 214321.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2014-07-11",
+      "gasoline": 214492.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2014-07-18",
+      "gasoline": 217871.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2014-07-25",
+      "gasoline": 218236.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2014-08-01",
+      "gasoline": 213849.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2014-08-08",
+      "gasoline": 212689.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2014-08-15",
+      "gasoline": 213274.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2014-08-22",
+      "gasoline": 212314.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2014-08-29",
+      "gasoline": 209992.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2014-09-05",
+      "gasoline": 212373.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2014-09-12",
+      "gasoline": 210738.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2014-09-19",
+      "gasoline": 210324.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2014-09-26",
+      "gasoline": 208488.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2014-10-03",
+      "gasoline": 209668.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2014-10-10",
+      "gasoline": 205673.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2014-10-17",
+      "gasoline": 204374.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2014-10-24",
+      "gasoline": 203138.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2014-10-31",
+      "gasoline": 201760.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2014-11-07",
+      "gasoline": 203565.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2014-11-14",
+      "gasoline": 204599.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2014-11-21",
+      "gasoline": 206424.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2014-11-28",
+      "gasoline": 208567.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2014-12-05",
+      "gasoline": 216764.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2014-12-12",
+      "gasoline": 222014.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2014-12-19",
+      "gasoline": 226097.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2014-12-26",
+      "gasoline": 229048.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "2015-01-02",
+      "gasoline": 237163.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2015-01-09",
+      "gasoline": 240334.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2015-01-16",
+      "gasoline": 240922.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2015-01-23",
+      "gasoline": 238335.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2015-01-30",
+      "gasoline": 240670.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2015-02-06",
+      "gasoline": 242647.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2015-02-13",
+      "gasoline": 243132.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2015-02-20",
+      "gasoline": 240014.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2015-02-27",
+      "gasoline": 240060.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2015-03-06",
+      "gasoline": 239873.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2015-03-13",
+      "gasoline": 235400.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2015-03-20",
+      "gasoline": 233386.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2015-03-27",
+      "gasoline": 229128.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2015-04-03",
+      "gasoline": 229945.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2015-04-10",
+      "gasoline": 227873.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2015-04-17",
+      "gasoline": 225738.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2015-04-24",
+      "gasoline": 227451.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2015-05-01",
+      "gasoline": 227852.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2015-05-08",
+      "gasoline": 226710.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2015-05-15",
+      "gasoline": 223936.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2015-05-22",
+      "gasoline": 220627.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2015-05-29",
+      "gasoline": 220293.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2015-06-05",
+      "gasoline": 217354.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2015-06-12",
+      "gasoline": 217814.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2015-06-19",
+      "gasoline": 218494.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2015-06-26",
+      "gasoline": 216737.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "2015-07-03",
+      "gasoline": 217952.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2015-07-10",
+      "gasoline": 218010.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "2015-07-17",
+      "gasoline": 216285.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2015-07-24",
+      "gasoline": 215922.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "2015-07-31",
+      "gasoline": 216733.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2015-08-07",
+      "gasoline": 215482.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2015-08-14",
+      "gasoline": 212774.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "2015-08-21",
+      "gasoline": 214434.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2015-08-28",
+      "gasoline": 214163.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2015-09-04",
+      "gasoline": 214547.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2015-09-11",
+      "gasoline": 217387.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2015-09-18",
+      "gasoline": 218756.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2015-09-25",
+      "gasoline": 222010.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2015-10-02",
+      "gasoline": 223920.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2015-10-09",
+      "gasoline": 221302.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2015-10-16",
+      "gasoline": 219784.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2015-10-23",
+      "gasoline": 218647.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2015-10-30",
+      "gasoline": 215347.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2015-11-06",
+      "gasoline": 213245.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2015-11-13",
+      "gasoline": 214254.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2015-11-20",
+      "gasoline": 216732.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2015-11-27",
+      "gasoline": 216867.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2015-12-04",
+      "gasoline": 217653.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2015-12-11",
+      "gasoline": 219384.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2015-12-18",
+      "gasoline": 220495.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2015-12-25",
+      "gasoline": 221420.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2016-01-01",
+      "gasoline": 231996.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2016-01-08",
+      "gasoline": 240434.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2016-01-15",
+      "gasoline": 244997.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2016-01-22",
+      "gasoline": 248461.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2016-01-29",
+      "gasoline": 254399.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2016-02-05",
+      "gasoline": 255657.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2016-02-12",
+      "gasoline": 258693.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2016-02-19",
+      "gasoline": 256457.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2016-02-26",
+      "gasoline": 254989.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2016-03-04",
+      "gasoline": 250463.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2016-03-11",
+      "gasoline": 249716.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2016-03-18",
+      "gasoline": 245074.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2016-03-25",
+      "gasoline": 242560.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2016-04-01",
+      "gasoline": 243998.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2016-04-08",
+      "gasoline": 239761.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2016-04-15",
+      "gasoline": 239651.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2016-04-22",
+      "gasoline": 241259.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2016-04-29",
+      "gasoline": 241795.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2016-05-06",
+      "gasoline": 240564.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2016-05-13",
+      "gasoline": 238068.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2016-05-20",
+      "gasoline": 240111.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2016-05-27",
+      "gasoline": 238619.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2016-06-03",
+      "gasoline": 239629.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2016-06-10",
+      "gasoline": 237004.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2016-06-17",
+      "gasoline": 237631.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2016-06-24",
+      "gasoline": 238998.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2016-07-01",
+      "gasoline": 238876.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2016-07-08",
+      "gasoline": 240089.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2016-07-15",
+      "gasoline": 241000.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2016-07-22",
+      "gasoline": 241452.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2016-07-29",
+      "gasoline": 238190.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2016-08-05",
+      "gasoline": 235383.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2016-08-12",
+      "gasoline": 232659.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2016-08-19",
+      "gasoline": 232695.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2016-08-26",
+      "gasoline": 232004.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2016-09-02",
+      "gasoline": 227793.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2016-09-09",
+      "gasoline": 228360.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2016-09-16",
+      "gasoline": 225156.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2016-09-23",
+      "gasoline": 227183.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2016-09-30",
+      "gasoline": 227405.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2016-10-07",
+      "gasoline": 225498.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2016-10-14",
+      "gasoline": 227967.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2016-10-21",
+      "gasoline": 226011.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2016-10-28",
+      "gasoline": 223804.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2016-11-04",
+      "gasoline": 220963.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2016-11-11",
+      "gasoline": 221709.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2016-11-18",
+      "gasoline": 224026.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2016-11-25",
+      "gasoline": 226123.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2016-12-02",
+      "gasoline": 229548.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2016-12-09",
+      "gasoline": 230045.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2016-12-16",
+      "gasoline": 228736.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2016-12-23",
+      "gasoline": 227143.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2016-12-30",
+      "gasoline": 235450.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2017-01-06",
+      "gasoline": 240473.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2017-01-13",
+      "gasoline": 246424.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2017-01-20",
+      "gasoline": 253220.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2017-01-27",
+      "gasoline": 257086.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2017-02-03",
+      "gasoline": 256217.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2017-02-10",
+      "gasoline": 259063.0,
+      "refinery_util": 85.4
+    },
+    {
+      "date": "2017-02-17",
+      "gasoline": 256435.0,
+      "refinery_util": 84.3
+    },
+    {
+      "date": "2017-02-24",
+      "gasoline": 255889.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2017-03-03",
+      "gasoline": 249334.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2017-03-10",
+      "gasoline": 246279.0,
+      "refinery_util": 85.1
+    },
+    {
+      "date": "2017-03-17",
+      "gasoline": 243468.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2017-03-24",
+      "gasoline": 239721.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2017-03-31",
+      "gasoline": 239103.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2017-04-07",
+      "gasoline": 236130.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2017-04-14",
+      "gasoline": 237672.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2017-04-21",
+      "gasoline": 241041.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "2017-04-28",
+      "gasoline": 241232.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2017-05-05",
+      "gasoline": 241082.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2017-05-12",
+      "gasoline": 240669.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2017-05-19",
+      "gasoline": 239882.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2017-05-26",
+      "gasoline": 237024.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "2017-06-02",
+      "gasoline": 240348.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "2017-06-09",
+      "gasoline": 242444.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "2017-06-16",
+      "gasoline": 241866.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2017-06-23",
+      "gasoline": 240972.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2017-06-30",
+      "gasoline": 237303.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2017-07-07",
+      "gasoline": 235656.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2017-07-14",
+      "gasoline": 231211.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2017-07-21",
+      "gasoline": 230196.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2017-07-28",
+      "gasoline": 227679.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2017-08-04",
+      "gasoline": 231103.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "2017-08-11",
+      "gasoline": 231125.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2017-08-18",
+      "gasoline": 229902.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2017-08-25",
+      "gasoline": 229937.0,
+      "refinery_util": 96.6
+    },
+    {
+      "date": "2017-09-01",
+      "gasoline": 226738.0,
+      "refinery_util": 79.7
+    },
+    {
+      "date": "2017-09-08",
+      "gasoline": 218310.0,
+      "refinery_util": 77.7
+    },
+    {
+      "date": "2017-09-15",
+      "gasoline": 216185.0,
+      "refinery_util": 83.2
+    },
+    {
+      "date": "2017-09-22",
+      "gasoline": 217292.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2017-09-29",
+      "gasoline": 218936.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2017-10-06",
+      "gasoline": 221426.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2017-10-13",
+      "gasoline": 222334.0,
+      "refinery_util": 84.5
+    },
+    {
+      "date": "2017-10-20",
+      "gasoline": 216869.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2017-10-27",
+      "gasoline": 212849.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2017-11-03",
+      "gasoline": 209537.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2017-11-10",
+      "gasoline": 210431.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2017-11-17",
+      "gasoline": 210475.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2017-11-24",
+      "gasoline": 214102.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2017-12-01",
+      "gasoline": 220882.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2017-12-08",
+      "gasoline": 226546.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2017-12-15",
+      "gasoline": 227783.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "2017-12-22",
+      "gasoline": 228374.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "2017-12-29",
+      "gasoline": 233187.0,
+      "refinery_util": 96.7
+    },
+    {
+      "date": "2018-01-05",
+      "gasoline": 237322.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "2018-01-12",
+      "gasoline": 240942.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2018-01-19",
+      "gasoline": 244040.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2018-01-26",
+      "gasoline": 242060.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2018-02-02",
+      "gasoline": 245474.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2018-02-09",
+      "gasoline": 249073.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2018-02-16",
+      "gasoline": 249334.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2018-02-23",
+      "gasoline": 251817.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2018-03-02",
+      "gasoline": 251029.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2018-03-09",
+      "gasoline": 244758.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2018-03-16",
+      "gasoline": 243065.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2018-03-23",
+      "gasoline": 239593.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2018-03-30",
+      "gasoline": 238477.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2018-04-06",
+      "gasoline": 238935.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2018-04-13",
+      "gasoline": 235967.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2018-04-20",
+      "gasoline": 236807.0,
+      "refinery_util": 90.8
+    },
+    {
+      "date": "2018-04-27",
+      "gasoline": 237978.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2018-05-04",
+      "gasoline": 235804.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2018-05-11",
+      "gasoline": 232014.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2018-05-18",
+      "gasoline": 233897.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2018-05-25",
+      "gasoline": 234431.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2018-06-01",
+      "gasoline": 239034.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2018-06-08",
+      "gasoline": 236763.0,
+      "refinery_util": 95.7
+    },
+    {
+      "date": "2018-06-15",
+      "gasoline": 240040.0,
+      "refinery_util": 96.7
+    },
+    {
+      "date": "2018-06-22",
+      "gasoline": 241196.0,
+      "refinery_util": 97.5
+    },
+    {
+      "date": "2018-06-29",
+      "gasoline": 239691.0,
+      "refinery_util": 97.1
+    },
+    {
+      "date": "2018-07-06",
+      "gasoline": 238997.0,
+      "refinery_util": 96.7
+    },
+    {
+      "date": "2018-07-13",
+      "gasoline": 235832.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2018-07-20",
+      "gasoline": 233504.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2018-07-27",
+      "gasoline": 230968.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2018-08-03",
+      "gasoline": 233868.0,
+      "refinery_util": 96.6
+    },
+    {
+      "date": "2018-08-10",
+      "gasoline": 233128.0,
+      "refinery_util": 98.1
+    },
+    {
+      "date": "2018-08-17",
+      "gasoline": 234328.0,
+      "refinery_util": 98.1
+    },
+    {
+      "date": "2018-08-24",
+      "gasoline": 232774.0,
+      "refinery_util": 96.3
+    },
+    {
+      "date": "2018-08-31",
+      "gasoline": 234619.0,
+      "refinery_util": 96.6
+    },
+    {
+      "date": "2018-09-07",
+      "gasoline": 235869.0,
+      "refinery_util": 97.6
+    },
+    {
+      "date": "2018-09-14",
+      "gasoline": 234150.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2018-09-21",
+      "gasoline": 235680.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2018-09-28",
+      "gasoline": 235221.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2018-10-05",
+      "gasoline": 236172.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2018-10-12",
+      "gasoline": 234156.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2018-10-19",
+      "gasoline": 229330.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2018-10-26",
+      "gasoline": 226169.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2018-11-02",
+      "gasoline": 228021.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2018-11-09",
+      "gasoline": 226610.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2018-11-16",
+      "gasoline": 225315.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2018-11-23",
+      "gasoline": 224551.0,
+      "refinery_util": 95.6
+    },
+    {
+      "date": "2018-11-30",
+      "gasoline": 226250.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2018-12-07",
+      "gasoline": 228337.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "2018-12-14",
+      "gasoline": 230103.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2018-12-21",
+      "gasoline": 233106.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "2018-12-28",
+      "gasoline": 239996.0,
+      "refinery_util": 97.2
+    },
+    {
+      "date": "2019-01-04",
+      "gasoline": 248062.0,
+      "refinery_util": 96.1
+    },
+    {
+      "date": "2019-01-11",
+      "gasoline": 255565.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2019-01-18",
+      "gasoline": 259615.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2019-01-25",
+      "gasoline": 257380.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2019-02-01",
+      "gasoline": 257893.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2019-02-08",
+      "gasoline": 258301.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2019-02-15",
+      "gasoline": 256847.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2019-02-22",
+      "gasoline": 254941.0,
+      "refinery_util": 87.1
+    },
+    {
+      "date": "2019-03-01",
+      "gasoline": 250714.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2019-03-08",
+      "gasoline": 246090.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2019-03-15",
+      "gasoline": 241503.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2019-03-22",
+      "gasoline": 238620.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2019-03-29",
+      "gasoline": 236839.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2019-04-05",
+      "gasoline": 229129.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2019-04-12",
+      "gasoline": 227955.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2019-04-19",
+      "gasoline": 225826.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2019-04-26",
+      "gasoline": 226743.0,
+      "refinery_util": 89.2
+    },
+    {
+      "date": "2019-05-03",
+      "gasoline": 226147.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2019-05-10",
+      "gasoline": 225024.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2019-05-17",
+      "gasoline": 228740.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2019-05-24",
+      "gasoline": 230944.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2019-05-31",
+      "gasoline": 234149.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2019-06-07",
+      "gasoline": 234913.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2019-06-14",
+      "gasoline": 233221.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2019-06-21",
+      "gasoline": 232225.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "2019-06-28",
+      "gasoline": 230642.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "2019-07-05",
+      "gasoline": 229187.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2019-07-12",
+      "gasoline": 232752.0,
+      "refinery_util": 94.4
+    },
+    {
+      "date": "2019-07-19",
+      "gasoline": 232526.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2019-07-26",
+      "gasoline": 230735.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2019-08-02",
+      "gasoline": 235172.0,
+      "refinery_util": 96.4
+    },
+    {
+      "date": "2019-08-09",
+      "gasoline": 233760.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2019-08-16",
+      "gasoline": 234072.0,
+      "refinery_util": 95.9
+    },
+    {
+      "date": "2019-08-23",
+      "gasoline": 231982.0,
+      "refinery_util": 95.2
+    },
+    {
+      "date": "2019-08-30",
+      "gasoline": 229586.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2019-09-06",
+      "gasoline": 228904.0,
+      "refinery_util": 95.1
+    },
+    {
+      "date": "2019-09-13",
+      "gasoline": 229685.0,
+      "refinery_util": 91.2
+    },
+    {
+      "date": "2019-09-20",
+      "gasoline": 230204.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2019-09-27",
+      "gasoline": 229976.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2019-10-04",
+      "gasoline": 228763.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2019-10-11",
+      "gasoline": 226201.0,
+      "refinery_util": 83.1
+    },
+    {
+      "date": "2019-10-18",
+      "gasoline": 223094.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2019-10-25",
+      "gasoline": 220057.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2019-11-01",
+      "gasoline": 217229.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2019-11-08",
+      "gasoline": 219090.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2019-11-15",
+      "gasoline": 220846.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2019-11-22",
+      "gasoline": 225978.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2019-11-29",
+      "gasoline": 229363.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2019-12-06",
+      "gasoline": 234768.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2019-12-13",
+      "gasoline": 237297.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2019-12-20",
+      "gasoline": 239260.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2019-12-27",
+      "gasoline": 242472.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2020-01-03",
+      "gasoline": 251609.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2020-01-10",
+      "gasoline": 258287.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2020-01-17",
+      "gasoline": 260032.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2020-01-24",
+      "gasoline": 261235.0,
+      "refinery_util": 87.2
+    },
+    {
+      "date": "2020-01-31",
+      "gasoline": 261144.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2020-02-07",
+      "gasoline": 261049.0,
+      "refinery_util": 88.0
+    },
+    {
+      "date": "2020-02-14",
+      "gasoline": 259078.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2020-02-21",
+      "gasoline": 256387.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2020-02-28",
+      "gasoline": 252048.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "2020-03-06",
+      "gasoline": 246999.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2020-03-13",
+      "gasoline": 240819.0,
+      "refinery_util": 86.4
+    },
+    {
+      "date": "2020-03-20",
+      "gasoline": 239282.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2020-03-27",
+      "gasoline": 246806.0,
+      "refinery_util": 82.3
+    },
+    {
+      "date": "2020-04-03",
+      "gasoline": 257303.0,
+      "refinery_util": 75.6
+    },
+    {
+      "date": "2020-04-10",
+      "gasoline": 262217.0,
+      "refinery_util": 69.1
+    },
+    {
+      "date": "2020-04-17",
+      "gasoline": 263234.0,
+      "refinery_util": 67.6
+    },
+    {
+      "date": "2020-04-24",
+      "gasoline": 259565.0,
+      "refinery_util": 69.6
+    },
+    {
+      "date": "2020-05-01",
+      "gasoline": 256407.0,
+      "refinery_util": 70.5
+    },
+    {
+      "date": "2020-05-08",
+      "gasoline": 252894.0,
+      "refinery_util": 67.9
+    },
+    {
+      "date": "2020-05-15",
+      "gasoline": 255724.0,
+      "refinery_util": 69.4
+    },
+    {
+      "date": "2020-05-22",
+      "gasoline": 255000.0,
+      "refinery_util": 71.3
+    },
+    {
+      "date": "2020-05-29",
+      "gasoline": 257795.0,
+      "refinery_util": 71.8
+    },
+    {
+      "date": "2020-06-05",
+      "gasoline": 258661.0,
+      "refinery_util": 73.1
+    },
+    {
+      "date": "2020-06-12",
+      "gasoline": 256995.0,
+      "refinery_util": 73.8
+    },
+    {
+      "date": "2020-06-19",
+      "gasoline": 255322.0,
+      "refinery_util": 74.6
+    },
+    {
+      "date": "2020-06-26",
+      "gasoline": 256521.0,
+      "refinery_util": 75.5
+    },
+    {
+      "date": "2020-07-03",
+      "gasoline": 251682.0,
+      "refinery_util": 77.5
+    },
+    {
+      "date": "2020-07-10",
+      "gasoline": 248535.0,
+      "refinery_util": 78.1
+    },
+    {
+      "date": "2020-07-17",
+      "gasoline": 246733.0,
+      "refinery_util": 77.9
+    },
+    {
+      "date": "2020-07-24",
+      "gasoline": 247387.0,
+      "refinery_util": 79.5
+    },
+    {
+      "date": "2020-07-31",
+      "gasoline": 247806.0,
+      "refinery_util": 79.6
+    },
+    {
+      "date": "2020-08-07",
+      "gasoline": 247084.0,
+      "refinery_util": 81.0
+    },
+    {
+      "date": "2020-08-14",
+      "gasoline": 243762.0,
+      "refinery_util": 80.9
+    },
+    {
+      "date": "2020-08-21",
+      "gasoline": 239179.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "2020-08-28",
+      "gasoline": 234859.0,
+      "refinery_util": 76.7
+    },
+    {
+      "date": "2020-09-04",
+      "gasoline": 231905.0,
+      "refinery_util": 71.8
+    },
+    {
+      "date": "2020-09-11",
+      "gasoline": 231524.0,
+      "refinery_util": 75.8
+    },
+    {
+      "date": "2020-09-18",
+      "gasoline": 227499.0,
+      "refinery_util": 74.8
+    },
+    {
+      "date": "2020-09-25",
+      "gasoline": 228182.0,
+      "refinery_util": 75.8
+    },
+    {
+      "date": "2020-10-02",
+      "gasoline": 226747.0,
+      "refinery_util": 77.1
+    },
+    {
+      "date": "2020-10-09",
+      "gasoline": 225121.0,
+      "refinery_util": 75.1
+    },
+    {
+      "date": "2020-10-16",
+      "gasoline": 227016.0,
+      "refinery_util": 72.9
+    },
+    {
+      "date": "2020-10-23",
+      "gasoline": 226124.0,
+      "refinery_util": 74.6
+    },
+    {
+      "date": "2020-10-30",
+      "gasoline": 227665.0,
+      "refinery_util": 75.3
+    },
+    {
+      "date": "2020-11-06",
+      "gasoline": 225356.0,
+      "refinery_util": 74.5
+    },
+    {
+      "date": "2020-11-13",
+      "gasoline": 227967.0,
+      "refinery_util": 77.4
+    },
+    {
+      "date": "2020-11-20",
+      "gasoline": 230147.0,
+      "refinery_util": 78.7
+    },
+    {
+      "date": "2020-11-27",
+      "gasoline": 233638.0,
+      "refinery_util": 78.2
+    },
+    {
+      "date": "2020-12-04",
+      "gasoline": 237859.0,
+      "refinery_util": 79.9
+    },
+    {
+      "date": "2020-12-11",
+      "gasoline": 238879.0,
+      "refinery_util": 79.1
+    },
+    {
+      "date": "2020-12-18",
+      "gasoline": 237754.0,
+      "refinery_util": 78.0
+    },
+    {
+      "date": "2020-12-25",
+      "gasoline": 236562.0,
+      "refinery_util": 79.4
+    },
+    {
+      "date": "2021-01-01",
+      "gasoline": 241081.0,
+      "refinery_util": 80.7
+    },
+    {
+      "date": "2021-01-08",
+      "gasoline": 245476.0,
+      "refinery_util": 82.0
+    },
+    {
+      "date": "2021-01-15",
+      "gasoline": 245217.0,
+      "refinery_util": 82.5
+    },
+    {
+      "date": "2021-01-22",
+      "gasoline": 247686.0,
+      "refinery_util": 81.7
+    },
+    {
+      "date": "2021-01-29",
+      "gasoline": 252153.0,
+      "refinery_util": 82.3
+    },
+    {
+      "date": "2021-02-05",
+      "gasoline": 256412.0,
+      "refinery_util": 83.0
+    },
+    {
+      "date": "2021-02-12",
+      "gasoline": 257084.0,
+      "refinery_util": 83.1
+    },
+    {
+      "date": "2021-02-19",
+      "gasoline": 257096.0,
+      "refinery_util": 68.6
+    },
+    {
+      "date": "2021-02-26",
+      "gasoline": 243472.0,
+      "refinery_util": 56.0
+    },
+    {
+      "date": "2021-03-05",
+      "gasoline": 231603.0,
+      "refinery_util": 69.0
+    },
+    {
+      "date": "2021-03-12",
+      "gasoline": 232075.0,
+      "refinery_util": 76.1
+    },
+    {
+      "date": "2021-03-19",
+      "gasoline": 232279.0,
+      "refinery_util": 81.6
+    },
+    {
+      "date": "2021-03-26",
+      "gasoline": 230544.0,
+      "refinery_util": 83.9
+    },
+    {
+      "date": "2021-04-02",
+      "gasoline": 234588.0,
+      "refinery_util": 84.0
+    },
+    {
+      "date": "2021-04-09",
+      "gasoline": 234897.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2021-04-16",
+      "gasoline": 234982.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2021-04-23",
+      "gasoline": 235074.0,
+      "refinery_util": 85.4
+    },
+    {
+      "date": "2021-04-30",
+      "gasoline": 235811.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2021-05-07",
+      "gasoline": 236189.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2021-05-14",
+      "gasoline": 234226.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2021-05-21",
+      "gasoline": 232481.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2021-05-28",
+      "gasoline": 233980.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2021-06-04",
+      "gasoline": 241026.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2021-06-11",
+      "gasoline": 242980.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2021-06-18",
+      "gasoline": 240050.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2021-06-25",
+      "gasoline": 241572.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2021-07-02",
+      "gasoline": 235497.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2021-07-09",
+      "gasoline": 236535.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2021-07-16",
+      "gasoline": 236414.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2021-07-23",
+      "gasoline": 234161.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2021-07-30",
+      "gasoline": 228870.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2021-08-06",
+      "gasoline": 227469.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2021-08-13",
+      "gasoline": 228165.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2021-08-20",
+      "gasoline": 225924.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2021-08-27",
+      "gasoline": 227214.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2021-09-03",
+      "gasoline": 219999.0,
+      "refinery_util": 81.9
+    },
+    {
+      "date": "2021-09-10",
+      "gasoline": 218142.0,
+      "refinery_util": 82.1
+    },
+    {
+      "date": "2021-09-17",
+      "gasoline": 221616.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2021-09-24",
+      "gasoline": 221809.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2021-10-01",
+      "gasoline": 225065.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2021-10-08",
+      "gasoline": 223107.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2021-10-15",
+      "gasoline": 217739.0,
+      "refinery_util": 84.7
+    },
+    {
+      "date": "2021-10-22",
+      "gasoline": 215746.0,
+      "refinery_util": 85.1
+    },
+    {
+      "date": "2021-10-29",
+      "gasoline": 214258.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2021-11-05",
+      "gasoline": 212703.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2021-11-12",
+      "gasoline": 211996.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2021-11-19",
+      "gasoline": 211393.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2021-11-26",
+      "gasoline": 215422.0,
+      "refinery_util": 88.8
+    },
+    {
+      "date": "2021-12-03",
+      "gasoline": 219304.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2021-12-10",
+      "gasoline": 218585.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2021-12-17",
+      "gasoline": 224118.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2021-12-24",
+      "gasoline": 222659.0,
+      "refinery_util": 89.7
+    },
+    {
+      "date": "2021-12-31",
+      "gasoline": 232787.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2022-01-07",
+      "gasoline": 240748.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2022-01-14",
+      "gasoline": 246621.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2022-01-21",
+      "gasoline": 247918.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2022-01-28",
+      "gasoline": 250037.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2022-02-04",
+      "gasoline": 248393.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2022-02-11",
+      "gasoline": 247061.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2022-02-18",
+      "gasoline": 246479.0,
+      "refinery_util": 87.4
+    },
+    {
+      "date": "2022-02-25",
+      "gasoline": 246011.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2022-03-04",
+      "gasoline": 244606.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2022-03-11",
+      "gasoline": 240991.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2022-03-18",
+      "gasoline": 238043.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2022-03-25",
+      "gasoline": 238828.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2022-04-01",
+      "gasoline": 236787.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2022-04-08",
+      "gasoline": 233139.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2022-04-15",
+      "gasoline": 232378.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2022-04-22",
+      "gasoline": 230805.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2022-04-29",
+      "gasoline": 228575.0,
+      "refinery_util": 88.4
+    },
+    {
+      "date": "2022-05-06",
+      "gasoline": 224968.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2022-05-13",
+      "gasoline": 220189.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2022-05-20",
+      "gasoline": 219707.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2022-05-27",
+      "gasoline": 218996.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2022-06-03",
+      "gasoline": 218184.0,
+      "refinery_util": 94.2
+    },
+    {
+      "date": "2022-06-10",
+      "gasoline": 217474.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2022-06-17",
+      "gasoline": 218963.0,
+      "refinery_util": 94.0
+    },
+    {
+      "date": "2022-06-24",
+      "gasoline": 221608.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "2022-07-01",
+      "gasoline": 219112.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2022-07-08",
+      "gasoline": 224937.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "2022-07-15",
+      "gasoline": 228435.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2022-07-22",
+      "gasoline": 225131.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2022-07-29",
+      "gasoline": 225294.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2022-08-05",
+      "gasoline": 220316.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2022-08-12",
+      "gasoline": 215674.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2022-08-19",
+      "gasoline": 215647.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2022-08-26",
+      "gasoline": 214475.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2022-09-02",
+      "gasoline": 214808.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2022-09-09",
+      "gasoline": 213040.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2022-09-16",
+      "gasoline": 214610.0,
+      "refinery_util": 93.6
+    },
+    {
+      "date": "2022-09-23",
+      "gasoline": 212188.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2022-09-30",
+      "gasoline": 207460.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2022-10-07",
+      "gasoline": 209482.0,
+      "refinery_util": 89.9
+    },
+    {
+      "date": "2022-10-14",
+      "gasoline": 209368.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2022-10-21",
+      "gasoline": 207890.0,
+      "refinery_util": 88.9
+    },
+    {
+      "date": "2022-10-28",
+      "gasoline": 206633.0,
+      "refinery_util": 90.6
+    },
+    {
+      "date": "2022-11-04",
+      "gasoline": 205733.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2022-11-11",
+      "gasoline": 207940.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2022-11-18",
+      "gasoline": 210998.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2022-11-25",
+      "gasoline": 213768.0,
+      "refinery_util": 95.2
+    },
+    {
+      "date": "2022-12-02",
+      "gasoline": 219087.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2022-12-09",
+      "gasoline": 223583.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2022-12-16",
+      "gasoline": 226113.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2022-12-23",
+      "gasoline": 223008.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2022-12-30",
+      "gasoline": 222662.0,
+      "refinery_util": 79.6
+    },
+    {
+      "date": "2023-01-06",
+      "gasoline": 226776.0,
+      "refinery_util": 84.1
+    },
+    {
+      "date": "2023-01-13",
+      "gasoline": 230259.0,
+      "refinery_util": 85.3
+    },
+    {
+      "date": "2023-01-20",
+      "gasoline": 232022.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2023-01-27",
+      "gasoline": 234598.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2023-02-03",
+      "gasoline": 239606.0,
+      "refinery_util": 87.9
+    },
+    {
+      "date": "2023-02-10",
+      "gasoline": 241922.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2023-02-17",
+      "gasoline": 240066.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2023-02-24",
+      "gasoline": 239192.0,
+      "refinery_util": 85.8
+    },
+    {
+      "date": "2023-03-03",
+      "gasoline": 238058.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2023-03-10",
+      "gasoline": 235997.0,
+      "refinery_util": 88.2
+    },
+    {
+      "date": "2023-03-17",
+      "gasoline": 229598.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2023-03-24",
+      "gasoline": 226694.0,
+      "refinery_util": 90.3
+    },
+    {
+      "date": "2023-03-31",
+      "gasoline": 222575.0,
+      "refinery_util": 89.6
+    },
+    {
+      "date": "2023-04-07",
+      "gasoline": 222245.0,
+      "refinery_util": 89.3
+    },
+    {
+      "date": "2023-04-14",
+      "gasoline": 223544.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2023-04-21",
+      "gasoline": 221136.0,
+      "refinery_util": 91.3
+    },
+    {
+      "date": "2023-04-28",
+      "gasoline": 222878.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2023-05-05",
+      "gasoline": 219711.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2023-05-12",
+      "gasoline": 218330.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2023-05-19",
+      "gasoline": 216277.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2023-05-26",
+      "gasoline": 216070.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2023-06-02",
+      "gasoline": 218815.0,
+      "refinery_util": 95.8
+    },
+    {
+      "date": "2023-06-09",
+      "gasoline": 220923.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2023-06-16",
+      "gasoline": 221402.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2023-06-23",
+      "gasoline": 222005.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2023-06-30",
+      "gasoline": 219456.0,
+      "refinery_util": 91.1
+    },
+    {
+      "date": "2023-07-07",
+      "gasoline": 219452.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2023-07-14",
+      "gasoline": 218386.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2023-07-21",
+      "gasoline": 217600.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2023-07-28",
+      "gasoline": 219081.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2023-08-04",
+      "gasoline": 216420.0,
+      "refinery_util": 93.8
+    },
+    {
+      "date": "2023-08-11",
+      "gasoline": 216158.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2023-08-18",
+      "gasoline": 217626.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2023-08-25",
+      "gasoline": 217412.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2023-09-01",
+      "gasoline": 214746.0,
+      "refinery_util": 93.1
+    },
+    {
+      "date": "2023-09-08",
+      "gasoline": 220307.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2023-09-15",
+      "gasoline": 219476.0,
+      "refinery_util": 91.9
+    },
+    {
+      "date": "2023-09-22",
+      "gasoline": 220503.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2023-09-29",
+      "gasoline": 226984.0,
+      "refinery_util": 87.3
+    },
+    {
+      "date": "2023-10-06",
+      "gasoline": 225671.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2023-10-13",
+      "gasoline": 223301.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2023-10-20",
+      "gasoline": 223457.0,
+      "refinery_util": 85.6
+    },
+    {
+      "date": "2023-10-27",
+      "gasoline": 223522.0,
+      "refinery_util": 85.4
+    },
+    {
+      "date": "2023-11-03",
+      "gasoline": 217210.0,
+      "refinery_util": 85.2
+    },
+    {
+      "date": "2023-11-10",
+      "gasoline": 215670.0,
+      "refinery_util": 86.1
+    },
+    {
+      "date": "2023-11-17",
+      "gasoline": 216420.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2023-11-24",
+      "gasoline": 218184.0,
+      "refinery_util": 89.8
+    },
+    {
+      "date": "2023-12-01",
+      "gasoline": 223604.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2023-12-08",
+      "gasoline": 224013.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2023-12-15",
+      "gasoline": 226723.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2023-12-22",
+      "gasoline": 226054.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2023-12-29",
+      "gasoline": 236954.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2024-01-05",
+      "gasoline": 244982.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2024-01-12",
+      "gasoline": 248065.0,
+      "refinery_util": 92.6
+    },
+    {
+      "date": "2024-01-19",
+      "gasoline": 252977.0,
+      "refinery_util": 85.5
+    },
+    {
+      "date": "2024-01-26",
+      "gasoline": 254134.0,
+      "refinery_util": 82.9
+    },
+    {
+      "date": "2024-02-02",
+      "gasoline": 250988.0,
+      "refinery_util": 82.4
+    },
+    {
+      "date": "2024-02-09",
+      "gasoline": 247330.0,
+      "refinery_util": 80.6
+    },
+    {
+      "date": "2024-02-16",
+      "gasoline": 247037.0,
+      "refinery_util": 80.6
+    },
+    {
+      "date": "2024-02-23",
+      "gasoline": 244205.0,
+      "refinery_util": 81.5
+    },
+    {
+      "date": "2024-03-01",
+      "gasoline": 239745.0,
+      "refinery_util": 84.9
+    },
+    {
+      "date": "2024-03-08",
+      "gasoline": 234083.0,
+      "refinery_util": 86.8
+    },
+    {
+      "date": "2024-03-15",
+      "gasoline": 230773.0,
+      "refinery_util": 87.8
+    },
+    {
+      "date": "2024-03-22",
+      "gasoline": 232072.0,
+      "refinery_util": 88.7
+    },
+    {
+      "date": "2024-03-29",
+      "gasoline": 227816.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2024-04-05",
+      "gasoline": 228531.0,
+      "refinery_util": 88.3
+    },
+    {
+      "date": "2024-04-12",
+      "gasoline": 227377.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2024-04-19",
+      "gasoline": 226743.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "2024-04-26",
+      "gasoline": 227087.0,
+      "refinery_util": 87.5
+    },
+    {
+      "date": "2024-05-03",
+      "gasoline": 228002.0,
+      "refinery_util": 88.5
+    },
+    {
+      "date": "2024-05-10",
+      "gasoline": 227767.0,
+      "refinery_util": 90.4
+    },
+    {
+      "date": "2024-05-17",
+      "gasoline": 226822.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2024-05-24",
+      "gasoline": 228844.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2024-05-31",
+      "gasoline": 230946.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2024-06-07",
+      "gasoline": 233512.0,
+      "refinery_util": 95.0
+    },
+    {
+      "date": "2024-06-14",
+      "gasoline": 231232.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2024-06-21",
+      "gasoline": 233886.0,
+      "refinery_util": 92.2
+    },
+    {
+      "date": "2024-06-28",
+      "gasoline": 231672.0,
+      "refinery_util": 93.5
+    },
+    {
+      "date": "2024-07-05",
+      "gasoline": 229666.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2024-07-12",
+      "gasoline": 232994.0,
+      "refinery_util": 93.7
+    },
+    {
+      "date": "2024-07-19",
+      "gasoline": 227422.0,
+      "refinery_util": 91.6
+    },
+    {
+      "date": "2024-07-26",
+      "gasoline": 223757.0,
+      "refinery_util": 90.1
+    },
+    {
+      "date": "2024-08-02",
+      "gasoline": 225097.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2024-08-09",
+      "gasoline": 222203.0,
+      "refinery_util": 91.5
+    },
+    {
+      "date": "2024-08-16",
+      "gasoline": 220597.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2024-08-23",
+      "gasoline": 218394.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2024-08-30",
+      "gasoline": 219242.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2024-09-06",
+      "gasoline": 221552.0,
+      "refinery_util": 92.8
+    },
+    {
+      "date": "2024-09-13",
+      "gasoline": 221621.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2024-09-20",
+      "gasoline": 220083.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2024-09-27",
+      "gasoline": 221202.0,
+      "refinery_util": 87.6
+    },
+    {
+      "date": "2024-10-04",
+      "gasoline": 214898.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2024-10-11",
+      "gasoline": 212697.0,
+      "refinery_util": 87.7
+    },
+    {
+      "date": "2024-10-18",
+      "gasoline": 213575.0,
+      "refinery_util": 89.5
+    },
+    {
+      "date": "2024-10-25",
+      "gasoline": 210868.0,
+      "refinery_util": 89.1
+    },
+    {
+      "date": "2024-11-01",
+      "gasoline": 211280.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2024-11-08",
+      "gasoline": 206873.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2024-11-15",
+      "gasoline": 208927.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2024-11-22",
+      "gasoline": 212241.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2024-11-29",
+      "gasoline": 214603.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2024-12-06",
+      "gasoline": 219689.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2024-12-13",
+      "gasoline": 222037.0,
+      "refinery_util": 91.8
+    },
+    {
+      "date": "2024-12-20",
+      "gasoline": 223667.0,
+      "refinery_util": 92.5
+    },
+    {
+      "date": "2024-12-27",
+      "gasoline": 231384.0,
+      "refinery_util": 92.7
+    },
+    {
+      "date": "2025-01-03",
+      "gasoline": 237714.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2025-01-10",
+      "gasoline": 243566.0,
+      "refinery_util": 91.7
+    },
+    {
+      "date": "2025-01-17",
+      "gasoline": 245898.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2025-01-24",
+      "gasoline": 248855.0,
+      "refinery_util": 83.5
+    },
+    {
+      "date": "2025-01-31",
+      "gasoline": 251088.0,
+      "refinery_util": 84.5
+    },
+    {
+      "date": "2025-02-07",
+      "gasoline": 248053.0,
+      "refinery_util": 85.0
+    },
+    {
+      "date": "2025-02-14",
+      "gasoline": 247902.0,
+      "refinery_util": 84.9
+    },
+    {
+      "date": "2025-02-21",
+      "gasoline": 248271.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2025-02-28",
+      "gasoline": 246838.0,
+      "refinery_util": 85.9
+    },
+    {
+      "date": "2025-03-07",
+      "gasoline": 241101.0,
+      "refinery_util": 86.5
+    },
+    {
+      "date": "2025-03-14",
+      "gasoline": 240574.0,
+      "refinery_util": 86.9
+    },
+    {
+      "date": "2025-03-21",
+      "gasoline": 239128.0,
+      "refinery_util": 87.0
+    },
+    {
+      "date": "2025-03-28",
+      "gasoline": 237577.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2025-04-04",
+      "gasoline": 235977.0,
+      "refinery_util": 86.7
+    },
+    {
+      "date": "2025-04-11",
+      "gasoline": 234019.0,
+      "refinery_util": 86.3
+    },
+    {
+      "date": "2025-04-18",
+      "gasoline": 229543.0,
+      "refinery_util": 88.1
+    },
+    {
+      "date": "2025-04-25",
+      "gasoline": 225540.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2025-05-02",
+      "gasoline": 225728.0,
+      "refinery_util": 89.0
+    },
+    {
+      "date": "2025-05-09",
+      "gasoline": 224706.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2025-05-16",
+      "gasoline": 225522.0,
+      "refinery_util": 90.7
+    },
+    {
+      "date": "2025-05-23",
+      "gasoline": 223081.0,
+      "refinery_util": 90.2
+    },
+    {
+      "date": "2025-05-30",
+      "gasoline": 228300.0,
+      "refinery_util": 93.4
+    },
+    {
+      "date": "2025-06-06",
+      "gasoline": 229804.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2025-06-13",
+      "gasoline": 230013.0,
+      "refinery_util": 93.2
+    },
+    {
+      "date": "2025-06-20",
+      "gasoline": 227938.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2025-06-27",
+      "gasoline": 232126.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "2025-07-04",
+      "gasoline": 229468.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2025-07-11",
+      "gasoline": 232867.0,
+      "refinery_util": 93.9
+    },
+    {
+      "date": "2025-07-18",
+      "gasoline": 231129.0,
+      "refinery_util": 95.5
+    },
+    {
+      "date": "2025-07-25",
+      "gasoline": 228405.0,
+      "refinery_util": 95.4
+    },
+    {
+      "date": "2025-08-01",
+      "gasoline": 227082.0,
+      "refinery_util": 96.9
+    },
+    {
+      "date": "2025-08-08",
+      "gasoline": 226290.0,
+      "refinery_util": 96.4
+    },
+    {
+      "date": "2025-08-15",
+      "gasoline": 223570.0,
+      "refinery_util": 96.6
+    },
+    {
+      "date": "2025-08-22",
+      "gasoline": 222334.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2025-08-29",
+      "gasoline": 218539.0,
+      "refinery_util": 94.3
+    },
+    {
+      "date": "2025-09-05",
+      "gasoline": 219997.0,
+      "refinery_util": 94.9
+    },
+    {
+      "date": "2025-09-12",
+      "gasoline": 217650.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2025-09-19",
+      "gasoline": 216569.0,
+      "refinery_util": 93.0
+    },
+    {
+      "date": "2025-09-26",
+      "gasoline": 220694.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2025-10-03",
+      "gasoline": 219093.0,
+      "refinery_util": 92.4
+    },
+    {
+      "date": "2025-10-10",
+      "gasoline": 218826.0,
+      "refinery_util": 85.7
+    },
+    {
+      "date": "2025-10-17",
+      "gasoline": 216679.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2025-10-24",
+      "gasoline": 210738.0,
+      "refinery_util": 86.6
+    },
+    {
+      "date": "2025-10-31",
+      "gasoline": 206009.0,
+      "refinery_util": 86.0
+    },
+    {
+      "date": "2025-11-07",
+      "gasoline": 205064.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2025-11-14",
+      "gasoline": 207391.0,
+      "refinery_util": 90.0
+    },
+    {
+      "date": "2025-11-21",
+      "gasoline": 209904.0,
+      "refinery_util": 92.3
+    },
+    {
+      "date": "2025-11-28",
+      "gasoline": 214422.0,
+      "refinery_util": 94.1
+    },
+    {
+      "date": "2025-12-05",
+      "gasoline": 220819.0,
+      "refinery_util": 94.5
+    },
+    {
+      "date": "2025-12-12",
+      "gasoline": 225627.0,
+      "refinery_util": 94.8
+    },
+    {
+      "date": "2025-12-19",
+      "gasoline": 228489.0,
+      "refinery_util": 94.6
+    },
+    {
+      "date": "2025-12-26",
+      "gasoline": 234334.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2026-01-02",
+      "gasoline": 242036.0,
+      "refinery_util": 94.7
+    },
+    {
+      "date": "2026-01-09",
+      "gasoline": 251013.0,
+      "refinery_util": 95.3
+    },
+    {
+      "date": "2026-01-16",
+      "gasoline": 256990.0,
+      "refinery_util": 93.3
+    },
+    {
+      "date": "2026-01-23",
+      "gasoline": 257213.0,
+      "refinery_util": 90.9
+    },
+    {
+      "date": "2026-01-30",
+      "gasoline": 257898.0,
+      "refinery_util": 90.5
+    },
+    {
+      "date": "2026-02-06",
+      "gasoline": 259058.0,
+      "refinery_util": 89.4
+    },
+    {
+      "date": "2026-02-13",
+      "gasoline": 255845.0,
+      "refinery_util": 91.0
+    },
+    {
+      "date": "2026-02-20",
+      "gasoline": 254834.0,
+      "refinery_util": 88.6
+    },
+    {
+      "date": "2026-02-27",
+      "gasoline": 253130.0,
+      "refinery_util": 89.2
+    }
+  ],
+  "latest": {
+    "date": "2026-02-27",
+    "gasoline": 253130.0,
+    "refinery_util": 89.2
+  },
+  "metadata": {
+    "source": "EIA",
+    "frequency": "weekly",
+    "series": {
+      "gasoline": "U.S. Ending Stocks of Total Gasoline (Thousand Barrels)",
+      "refinery_util": "U.S. Percent Utilization of Refinery Operable Capacity (%)"
+    },
+    "data_count": 1887,
+    "start_date": "1990-01-05",
+    "end_date": "2026-02-27"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-12T00:13:33.417307+09:00"
+}

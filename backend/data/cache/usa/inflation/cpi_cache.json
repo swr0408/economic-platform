@@ -2699,16 +2699,25 @@
       "index": 326.59,
       "annualized_3m": null,
       "annualized_6m": 2.76
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2.43,
+      "yoy": 2.43,
+      "mom": 0.27,
+      "index": 327.46,
+      "annualized_3m": 2.98,
+      "annualized_6m": 2.6
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 2.39,
-    "yoy": 2.39,
-    "mom": 0.17,
-    "index": 326.59,
-    "annualized_3m": null,
-    "annualized_6m": 2.76
+    "date": "2026-02-01",
+    "value": 2.43,
+    "yoy": 2.43,
+    "mom": 0.27,
+    "index": 327.46,
+    "annualized_3m": 2.98,
+    "annualized_6m": 2.6
   },
   "next_release": {
     "date": "2026-03-11",
@@ -2718,5 +2727,5 @@
     "label": "Inflation Rate YoY (Feb)",
     "estimate": 2.4
   },
-  "last_updated": "2026-03-10T23:02:21.820171+09:00"
+  "last_updated": "2026-03-11T23:02:04.563946+09:00"
 }

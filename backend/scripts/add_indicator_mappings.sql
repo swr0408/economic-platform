@@ -370,5 +370,29 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('taiwan_export_orders', '台湾輸出受注', 'TW', 'monthly', ARRAY['Export Orders YoY'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- 週間原油在庫（weekly_crude_oil_inventories）
+-- EIA Weekly Crude Oil Inventories - 毎週水曜 15:30 UTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('weekly_crude_oil_inventories', '週間原油在庫（EIA）', 'US', 'weekly', ARRAY['EIA Crude Oil Stocks Change'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- クッシング原油在庫（us_cushing_inventory）
+-- EIA Cushing Crude Oil Stocks Change - 毎週水曜 15:30 UTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('us_cushing_inventory', 'クッシング原油在庫（EIA）', 'US', 'weekly', ARRAY['EIA Cushing Crude Oil Stocks Change'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 米国蒸留燃料在庫（us_distillate_fuel_inventories）
+-- EIA Distillate Fuel Production Change - 毎週水曜 15:30 UTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('us_distillate_fuel_inventories', '蒸留燃料在庫（EIA）', 'US', 'weekly', ARRAY['EIA Distillate Fuel Production Change'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 米国ガソリン在庫/製油稼働率（us_gasoline_inventories_refinery_utilization_rate）
+-- EIA Gasoline Production Change - 毎週水曜 15:30 UTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('us_gasoline_inventories_refinery_utilization_rate', 'ガソリン在庫/製油稼働率（EIA）', 'US', 'weekly', ARRAY['EIA Gasoline Production Change'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country IN ('US', 'CN', 'TW', 'KR') ORDER BY country, econalpha_id;

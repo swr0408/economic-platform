@@ -222,6 +222,26 @@ FMP_INDICATOR_CONFIGS = [
             },
         ],
     },
+    {
+        "name_ja": "週間原油在庫（EIA）",
+        "fmp_event": "EIA Crude Oil Stocks Change",
+        "fmp_event_pattern": "EIA Crude Oil Stocks",
+        "country": "US",
+        "category": "energy",
+        "service_module": "services.market.weekly_crude_oil_inventories_service",
+        "service_instance": "weekly_crude_oil_inventories_service",
+        "fetch_method": "get_data",
+    },
+    {
+        "name_ja": "ガソリン在庫/製油稼働率（EIA）",
+        "fmp_event": "EIA Gasoline Production Change",
+        "fmp_event_pattern": "EIA Gasoline Production",
+        "country": "US",
+        "category": "energy",
+        "service_module": "services.market.us_gasoline_inventories_refinery_utilization_service",
+        "service_instance": "us_gasoline_inventories_refinery_utilization_service",
+        "fetch_method": "get_data",
+    },
     # ========== Eurozone ==========
     {
         "name_ja": "ユーロ圏PMI（HCOB）",

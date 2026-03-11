@@ -348,7 +348,19 @@
       "Bash(bash fix_periods.sh)",
       "WebFetch(domain:www.jpx.co.jp)",
       "WebFetch(domain:www.gold.org)",
-      "WebFetch(domain:fsapi.gold.org)"
+      "WebFetch(domain:fsapi.gold.org)",
+      "WebFetch(domain:www.sge.com.cn)",
+      "WebFetch(domain:www.sse.com.cn)",
+      "WebFetch(domain:query.sse.com.cn)",
+      "WebFetch(domain:fund.eastmoney.com)",
+      "WebFetch(domain:fundf10.eastmoney.com)",
+      "WebFetch(domain:blog.csdn.net)",
+      "WebFetch(domain:www.imtrq.com)",
+      "Bash(playwright install:*)",
+      "WebFetch(domain:www.lbma.org.uk)",
+      "Read(//c/tmp/**)",
+      "Bash(cygpath:*)",
+      "WebFetch(domain:www.blackrock.com)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

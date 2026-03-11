@@ -48,6 +48,14 @@ try:
     from backend.services.market.gold_etf_holdings_service import gold_etf_holdings_service
     from backend.services.market.wgc_gold_etf_service import wgc_gold_etf_service
     from backend.services.market.gold_premium_service import gold_premium_service
+    from backend.services.market.sge_gold_service import sge_gold_service
+    from backend.services.market.china_gold_etf_balance_service import china_gold_etf_balance_service
+    from backend.services.market.lbma_stock_service import lbma_stock_service
+    from backend.services.market.silver_etf_holdings_service import silver_etf_holdings_service
+    from backend.services.market.weekly_crude_oil_inventories_service import weekly_crude_oil_inventories_service
+    from backend.services.market.cushing_inventory_service import cushing_inventory_service
+    from backend.services.market.us_gasoline_inventories_refinery_utilization_service import us_gasoline_inventories_refinery_utilization_service
+    from backend.services.market.distillate_fuel_inventories_service import distillate_fuel_inventories_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -62,6 +70,14 @@ except ImportError:
     from services.market.gold_etf_holdings_service import gold_etf_holdings_service
     from services.market.wgc_gold_etf_service import wgc_gold_etf_service
     from services.market.gold_premium_service import gold_premium_service
+    from services.market.sge_gold_service import sge_gold_service
+    from services.market.china_gold_etf_balance_service import china_gold_etf_balance_service
+    from services.market.lbma_stock_service import lbma_stock_service
+    from services.market.silver_etf_holdings_service import silver_etf_holdings_service
+    from services.market.weekly_crude_oil_inventories_service import weekly_crude_oil_inventories_service
+    from services.market.cushing_inventory_service import cushing_inventory_service
+    from services.market.us_gasoline_inventories_refinery_utilization_service import us_gasoline_inventories_refinery_utilization_service
+    from services.market.distillate_fuel_inventories_service import distillate_fuel_inventories_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -319,6 +335,102 @@ def get_gold_premium(force_refresh: bool = Query(False)):
     """金プレミアム/ディスカウント（中国・インド）データを取得"""
     start_time = time.time()
     result = gold_premium_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/sge-gold")
+def get_sge_gold(force_refresh: bool = Query(False)):
+    """SGE Au(T+D) 日次取引データを取得"""
+    start_time = time.time()
+    result = sge_gold_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/china-gold-etf-balance")
+def get_china_gold_etf_balance(force_refresh: bool = Query(False)):
+    """中国金ETF残高（518880 華安黄金ETF）日次データを取得"""
+    start_time = time.time()
+    result = china_gold_etf_balance_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/lbma-stock")
+def get_lbma_stock(force_refresh: bool = Query(False)):
+    """LBMA London Vault Holdings 月次データを取得"""
+    start_time = time.time()
+    result = lbma_stock_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/silver-etf-holdings")
+def get_silver_etf_holdings(force_refresh: bool = Query(False)):
+    """銀ETF残高保有量（iShares Silver Trust）日次データを取得"""
+    start_time = time.time()
+    result = silver_etf_holdings_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/weekly-crude-oil-inventories")
+def get_weekly_crude_oil_inventories(force_refresh: bool = Query(False)):
+    """EIA 週間原油在庫データを取得"""
+    start_time = time.time()
+    result = weekly_crude_oil_inventories_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/cushing-inventory")
+def get_cushing_inventory(force_refresh: bool = Query(False)):
+    """EIA クッシング原油在庫データを取得"""
+    start_time = time.time()
+    result = cushing_inventory_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/gasoline-refinery")
+def get_gasoline_refinery(force_refresh: bool = Query(False)):
+    """EIA 米国ガソリン在庫 / 製油稼働率データを取得"""
+    start_time = time.time()
+    result = us_gasoline_inventories_refinery_utilization_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/distillate-fuel-inventories")
+def get_distillate_fuel_inventories(force_refresh: bool = Query(False)):
+    """EIA 米国蒸留燃料在庫データを取得"""
+    start_time = time.time()
+    result = distillate_fuel_inventories_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},
