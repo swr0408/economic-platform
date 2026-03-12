@@ -1,8 +1,14 @@
 import { Alert, Typography } from 'antd'
 import MarketPriceChart from '../MarketPriceChart'
 import WeeklyCrudeOilInventoriesChart from './WeeklyCrudeOilInventoriesChart'
+import ApiWeeklyCrudeOilInventoriesChart from './ApiWeeklyCrudeOilInventoriesChart'
 import CushingInventoryChart from './CushingInventoryChart'
 import DistillateFuelInventoriesChart from './DistillateFuelInventoriesChart'
+import AdjustmentsChart from './AdjustmentsChart'
+import UsShaleOilProductionChart from './UsShaleOilProductionChart'
+import NorthAmericaRigCountChart from './NorthAmericaRigCountChart'
+import CrudeOilNetDemandChart from './CrudeOilNetDemandChart'
+import ShortTermEnergyOutlookChart from './ShortTermEnergyOutlookChart'
 import UsGasolineRefineryChart from './UsGasolineRefineryChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
@@ -31,10 +37,16 @@ export default function EnergyCharts() {
       </div>
       <div id="wti"><MarketPriceChart title="WTI原油" symbolData={data?.crude_oil} color={COLORS.crude_oil} unit=" USD/bbl" /></div>
       <div id="brent"><MarketPriceChart title="ブレント原油" symbolData={data?.brent_oil} color={COLORS.brent_oil} unit=" USD/bbl" /></div>
+      <div id="api-weekly-crude-oil-inventories"><ApiWeeklyCrudeOilInventoriesChart /></div>
       <div id="weekly-crude-oil-inventories"><WeeklyCrudeOilInventoriesChart /></div>
       <div id="cushing-inventory"><CushingInventoryChart /></div>
       <div id="distillate-fuel-inventories"><DistillateFuelInventoriesChart /></div>
       <div id="gasoline-refinery"><UsGasolineRefineryChart /></div>
+      <div id="adjustments"><AdjustmentsChart /></div>
+      <div id="shale-oil-production"><UsShaleOilProductionChart /></div>
+      <div id="crude-oil-net-demand"><CrudeOilNetDemandChart /></div>
+      <div id="short-term-energy-outlook"><ShortTermEnergyOutlookChart /></div>
+      <div id="rig-count"><NorthAmericaRigCountChart /></div>
 
       {/* 天然ガス */}
       <div id="natural-gas">

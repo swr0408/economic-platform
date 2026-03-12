@@ -59,19 +59,36 @@ function MarketSidebarNavigation() {
     }
   }, [location.pathname, location.hash])
 
+  // パスとハッシュに基づいて開くキーを計算（カテゴリ + サブカテゴリ両方を展開）
   useEffect(() => {
     const path = location.pathname
+    const hash = location.hash?.replace('#', '')
     const parts = path.split('/').filter(Boolean)
 
     if (parts[0] === 'markets' && parts.length >= 2) {
-      const newOpenKeys: string[] = [`/markets/${parts[1]}`]
+      const categoryCode = parts[1]
+      const newOpenKeys: string[] = [`/markets/${categoryCode}`]
+
+      // ハッシュがある場合、対応するサブカテゴリも展開
+      if (hash) {
+        const category = MARKET_CATEGORIES_DATA.find(c => c.code === categoryCode)
+        if (category) {
+          for (const sub of category.subCategories) {
+            // ハッシュがサブカテゴリ自体、またはサブカテゴリ配下の指標に一致する場合
+            if (sub.code === hash || sub.indicators.some(ind => ind.code === hash)) {
+              newOpenKeys.push(`/markets/${categoryCode}#${sub.code}`)
+              break
+            }
+          }
+        }
+      }
 
       setOpenKeys((prev) => {
         const merged = [...new Set([...prev, ...newOpenKeys])]
         return merged
       })
     }
-  }, [location.pathname])
+  }, [location.pathname, location.hash])
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     const key = e.key

@@ -2,8 +2,8 @@
 週間原油在庫 (EIA Weekly Crude Oil Inventories) サービス
 
 データソース:
-  - EIA: 週次Excelファイル (XLS)
-  - URL: https://www.eia.gov/dnav/pet/xls/PET_STOC_WSTK_DCU_NUS_W.xls
+  - EIA API v2: 週次データ
+  - エンドポイント: /v2/petroleum/stoc/wstk/data/
   - 毎週水曜 15:30 UTC (木曜 00:30 JST)
 
 3系列:
@@ -15,13 +15,13 @@
 """
 import json
 import logging
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from zoneinfo import ZoneInfo
 
 import requests
-import xlrd
 
 from core.redis_client import redis_client
 
@@ -35,10 +35,9 @@ DATA_CACHE_FILE = CACHE_DIR / "weekly_crude_oil_inventories_cache.json"
 
 REDIS_KEY = "market:weekly_crude_oil_inventories:data"
 
-EIA_URL = "https://www.eia.gov/dnav/pet/xls/PET_STOC_WSTK_DCU_NUS_W.xls"
+EIA_API_URL = "https://api.eia.gov/v2/petroleum/stoc/wstk/data/"
 
-# Target series IDs and their column indices (0-indexed in the data sheet)
-# Row 1 contains source keys: col 0=date, col 1..N = series IDs
+# Target series IDs and their field names
 TARGET_SERIES = {
     "WCRSTUS1": "total",       # Crude Oil Total (incl SPR)
     "WCESTUS1": "ex_spr",      # Crude Oil excl SPR (commercial)
@@ -111,120 +110,59 @@ class WeeklyCrudeOilInventoriesService:
             return None
 
     def _build_data(self) -> Optional[Dict[str, Any]]:
-        """EIAからXLSをダウンロードしてパース"""
-        logger.info("[CrudeOilInv] Building data from EIA XLS...")
+        """EIA API v2からデータを取得"""
+        logger.info("[CrudeOilInv] Building data from EIA API v2...")
 
-        xls_bytes = self._download_xls()
-        if not xls_bytes:
-            logger.error("[CrudeOilInv] Failed to download XLS")
+        api_key = os.environ.get("EIA_API_KEY", "")
+        if not api_key:
+            logger.warning("[CrudeOilInv] EIA_API_KEY not set")
             return None
 
-        return self._parse_xls(xls_bytes)
-
-    def _download_xls(self) -> Optional[bytes]:
-        """EIAからXLSファイルをダウンロード"""
-        try:
-            logger.info(f"[CrudeOilInv] Downloading {EIA_URL}")
-            resp = requests.get(EIA_URL, timeout=30, headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            })
-            if resp.status_code == 200 and len(resp.content) > 10000:
-                logger.info(f"[CrudeOilInv] Downloaded {len(resp.content)} bytes")
-                return resp.content
-            else:
-                logger.error(
-                    f"[CrudeOilInv] Download failed: status={resp.status_code}, "
-                    f"size={len(resp.content)}"
-                )
-        except Exception as e:
-            logger.error(f"[CrudeOilInv] Download error: {e}")
-        return None
-
-    def _parse_xls(self, xls_bytes: bytes) -> Optional[Dict[str, Any]]:
-        """XLSファイルをパース
-
-        構造:
-          - Sheet "Data 1"
-          - Row 0: ナビゲーション
-          - Row 1: ソースキー (WCRSTUS1, WCESTUS1, ...)
-          - Row 2: 説明
-          - Row 3+: データ (col 0=日付, col N=値)
-        """
-        try:
-            wb = xlrd.open_workbook(file_contents=xls_bytes)
-        except Exception as e:
-            logger.error(f"[CrudeOilInv] XLS parse error: {e}")
+        # Fetch all 3 series in one request
+        series_ids = list(TARGET_SERIES.keys())
+        all_rows = self._fetch_from_eia(api_key, series_ids)
+        if not all_rows:
             return None
 
-        # Find "Data 1" sheet
-        try:
-            ws = wb.sheet_by_name("Data 1")
-        except xlrd.XLRDError:
-            if wb.nsheets > 1:
-                ws = wb.sheet_by_index(1)
-            else:
-                logger.error("[CrudeOilInv] 'Data 1' sheet not found")
-                return None
+        # Group by date, merge series
+        date_map: Dict[str, Dict[str, Any]] = {}
+        for row in all_rows:
+            period = row.get("period", "")
+            series = row.get("series", "")
+            value = row.get("value")
 
-        # Row 1: source keys → find column indices for target series
-        source_keys_row = ws.row_values(1)
-        col_map: Dict[str, int] = {}
-        for col_idx, key in enumerate(source_keys_row):
-            key_str = str(key).strip()
-            if key_str in TARGET_SERIES:
-                col_map[key_str] = col_idx
-
-        if len(col_map) < 3:
-            logger.error(
-                f"[CrudeOilInv] Missing series columns. Found: {list(col_map.keys())}"
-            )
-            return None
-
-        logger.info(f"[CrudeOilInv] Column mapping: {col_map}")
-
-        result_data: List[Dict[str, Any]] = []
-
-        for row_idx in range(3, ws.nrows):
-            # Date in col 0
-            date_cell_type = ws.cell_type(row_idx, 0)
-            if date_cell_type != xlrd.XL_CELL_DATE:
+            if not period or series not in TARGET_SERIES or value is None:
                 continue
 
-            date_tuple = xlrd.xldate_as_tuple(ws.cell_value(row_idx, 0), wb.datemode)
-            date_str = f"{date_tuple[0]:04d}-{date_tuple[1]:02d}-{date_tuple[2]:02d}"
-
-            item: Dict[str, Any] = {"date": date_str}
-
-            for series_id, field_name in TARGET_SERIES.items():
-                col = col_map.get(series_id)
-                if col is None:
-                    item[field_name] = None
-                    continue
-                cell_type = ws.cell_type(row_idx, col)
-                if cell_type in (xlrd.XL_CELL_NUMBER, xlrd.XL_CELL_TEXT):
-                    try:
-                        val = float(ws.cell_value(row_idx, col))
-                        item[field_name] = round(val, 0)
-                    except (ValueError, TypeError):
-                        item[field_name] = None
-                else:
-                    item[field_name] = None
-
-            # Skip rows with no values
-            if all(item.get(f) is None for f in TARGET_SERIES.values()):
+            try:
+                val = round(float(value), 0)
+            except (ValueError, TypeError):
                 continue
 
-            result_data.append(item)
+            field = TARGET_SERIES[series]
+            if period not in date_map:
+                date_map[period] = {"date": period}
+            date_map[period][field] = val
+
+        result_data = sorted(date_map.values(), key=lambda x: x["date"])
+
+        # Fill missing fields with None
+        for item in result_data:
+            for field in TARGET_SERIES.values():
+                if field not in item:
+                    item[field] = None
+
+        # Skip rows with no values
+        result_data = [
+            d for d in result_data
+            if any(d.get(f) is not None for f in TARGET_SERIES.values())
+        ]
 
         if not result_data:
-            logger.error("[CrudeOilInv] No data parsed from XLS")
+            logger.error("[CrudeOilInv] No data from EIA API")
             return None
 
-        # Sort ascending by date
-        result_data.sort(key=lambda x: x["date"])
-
         # Calculate YoY (前年比) for each series
-        # Build date index map for ~52 week lookback
         date_idx_map = {d["date"]: i for i, d in enumerate(result_data)}
         for i, item in enumerate(result_data):
             for field in TARGET_SERIES.values():
@@ -233,11 +171,9 @@ class WeeklyCrudeOilInventoriesService:
                     item[f"{field}_yoy"] = None
                     continue
 
-                # Find same week last year (52 weeks = 364 days back)
                 current_date = datetime.strptime(item["date"], "%Y-%m-%d")
                 target_date = current_date - timedelta(days=364)
 
-                # Search for closest date within ±7 days
                 best_match = None
                 best_diff = 999
                 for offset_days in range(-7, 8):
@@ -263,7 +199,7 @@ class WeeklyCrudeOilInventoriesService:
         now_str = datetime.now(JST).isoformat()
 
         logger.info(
-            f"[CrudeOilInv] Parsed {len(result_data)} data points "
+            f"[CrudeOilInv] {len(result_data)} data points "
             f"({result_data[0]['date']} ~ {result_data[-1]['date']}), "
             f"latest total={latest.get('total')}, "
             f"ex_spr={latest.get('ex_spr')}, spr={latest.get('spr')}"
@@ -289,6 +225,64 @@ class WeeklyCrudeOilInventoriesService:
             "source": "model",
             "last_updated": now_str,
         }
+
+    def _fetch_from_eia(
+        self, api_key: str, series_ids: List[str]
+    ) -> Optional[List[Dict[str, Any]]]:
+        """EIA API v2から週次データを取得（ページネーション対応）"""
+        all_rows: List[Dict[str, Any]] = []
+        offset = 0
+        length = 5000
+
+        while True:
+            params: Dict[str, Any] = {
+                "api_key": api_key,
+                "frequency": "weekly",
+                "data[0]": "value",
+                "sort[0][column]": "period",
+                "sort[0][direction]": "asc",
+                "offset": offset,
+                "length": length,
+            }
+            for i, sid in enumerate(series_ids):
+                params[f"facets[series][]"] = series_ids
+
+            try:
+                resp = requests.get(EIA_API_URL, params={
+                    "api_key": api_key,
+                    "frequency": "weekly",
+                    "data[0]": "value",
+                    "facets[series][]": series_ids,
+                    "sort[0][column]": "period",
+                    "sort[0][direction]": "asc",
+                    "offset": offset,
+                    "length": length,
+                }, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+
+                if resp.status_code != 200:
+                    logger.error(f"[CrudeOilInv] EIA API error: HTTP {resp.status_code}")
+                    return all_rows if all_rows else None
+
+                data = resp.json()
+                rows = data.get("response", {}).get("data", [])
+                total = int(data.get("response", {}).get("total", 0))
+
+                all_rows.extend(rows)
+                logger.info(
+                    f"[CrudeOilInv] Fetched {len(rows)} rows "
+                    f"(offset={offset}, total={total})"
+                )
+
+                if len(all_rows) >= total or len(rows) == 0:
+                    break
+                offset += length
+
+            except Exception as e:
+                logger.error(f"[CrudeOilInv] EIA API error: {e}")
+                return all_rows if all_rows else None
+
+        logger.info(f"[CrudeOilInv] Total rows fetched: {len(all_rows)}")
+        return all_rows
 
     def _save_to_cache(self, data: Dict[str, Any]) -> None:
         try:

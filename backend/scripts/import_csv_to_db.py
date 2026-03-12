@@ -654,6 +654,17 @@ CSV_CONFIGS = [
         "date_format": "monthly",
         "value_type": "comma_number",
     },
+    # API Weekly Crude Oil Stock Change
+    {
+        "file": "API週間原油在庫.csv",
+        "event_name": "API Crude Oil Stock Change",
+        "provider": "CSV_IMPORT",
+        "country": "US",
+        "currency": "USD",
+        "impact": "Medium",
+        "date_format": "investing_date",  # "Nov 29, 2017" 形式
+        "value_type": "million",  # 1.821M形式
+    },
 ]
 
 
@@ -772,6 +783,26 @@ def parse_date_cn_lpr_5y(date_str: str, time_str: str) -> datetime:
     return dt_cst.astimezone(UTC)
 
 
+def parse_date_investing(date_str: str, time_str: str) -> datetime:
+    """
+    Investing.com形式の日付をパース ("Nov 29, 2017" / "Jan 04, 2018" 形式)
+    時間は EST として解釈し、UTC に変換
+    """
+    date_str = date_str.strip().strip('"')
+    # "Nov 29, 2017" → datetime
+    dt = datetime.strptime(date_str, "%b %d, %Y")
+
+    hour, minute = 21, 30  # デフォルトは EST 21:30
+    if time_str and ":" in str(time_str):
+        tp = str(time_str).strip().split(":")
+        hour = int(tp[0])
+        minute = int(tp[1]) if len(tp) > 1 else 0
+
+    # JST として解釈（CSVの時間はJST）し UTC に変換
+    dt_jst = datetime(dt.year, dt.month, dt.day, hour, minute, tzinfo=JST)
+    return dt_jst.astimezone(UTC)
+
+
 def parse_date_boj(date_str: str, time_str: str) -> datetime:
     """
     日銀金利データの日付をパース (2010-01-26 形式)
@@ -886,6 +917,8 @@ def import_csv(config: dict, csv_dir: Path, dry_run: bool = False) -> dict:
                         dt_utc = parse_date_cn_lpr(date_str, time_str)
                     elif config["date_format"] == "cn_lpr_5y":
                         dt_utc = parse_date_cn_lpr_5y(date_str, time_str)
+                    elif config["date_format"] == "investing_date":
+                        dt_utc = parse_date_investing(date_str, time_str)
                     else:
                         dt_utc = parse_date_daily(date_str, time_str)
 

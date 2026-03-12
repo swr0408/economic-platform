@@ -360,7 +360,14 @@
       "WebFetch(domain:www.lbma.org.uk)",
       "Read(//c/tmp/**)",
       "Bash(cygpath:*)",
-      "WebFetch(domain:www.blackrock.com)"
+      "WebFetch(domain:www.blackrock.com)",
+      "Bash(PGCLIENTENCODING=UTF8 psql \"postgresql://postgres:postgres@localhost:5432/economic_platform\" -c \"INSERT INTO indicator_event_mapping \\(econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active\\) VALUES \\(''north_america_rig_count'', ''US Oil Rig Count'', ''US'', ''weekly'', ARRAY[''Baker Hughes Oil Rig Count''], TRUE\\) ON CONFLICT \\(econalpha_id\\) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW\\(\\);\")",
+      "WebFetch(domain:www.eia.gov)",
+      "WebFetch(domain:api.eia.gov)",
+      "Bash(export EIA_API_KEY=\"DRpbesYytK6pLRNcl7Av03a8vnFRxgg15ePnbcwv\")",
+      "WebFetch(domain:db.nomics.world)",
+      "WebFetch(domain:peakoilbarrel.com)",
+      "Bash(c:/Users/owner/Desktop/economic-platform/backend/temp_steo_analysis.py:*)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

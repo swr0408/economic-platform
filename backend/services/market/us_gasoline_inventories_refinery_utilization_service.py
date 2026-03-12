@@ -2,24 +2,22 @@
 米国ガソリン在庫 / 製油稼働率 サービス
 
 データソース:
-  - EIA: 週次Excelファイル (XLS)
-  - ガソリン在庫: https://www.eia.gov/dnav/pet/xls/PET_STOC_WSTK_DCU_NUS_W.xls
-    - WGTSTUS1: Total Gasoline (Thousand Barrels)
-  - 製油稼働率: https://www.eia.gov/dnav/pet/xls/PET_PNP_WIUP_DCU_NUS_W.xls
-    - WPULEUS3: Percent Utilization of Refinery Operable Capacity (%)
+  - EIA API v2: 週次データ
+  - ガソリン在庫: /v2/petroleum/stoc/wstk/data/ (WGTSTUS1)
+  - 製油稼働率: /v2/petroleum/sum/sndw/data/ (WPULEUS3)
   - 毎週水曜 15:30 UTC (木曜 00:30 JST)
 
 更新: 6時間TTL (Redis + ファイル)
 """
 import json
 import logging
+import os
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from zoneinfo import ZoneInfo
 
 import requests
-import xlrd
 
 from core.redis_client import redis_client
 
@@ -33,16 +31,12 @@ DATA_CACHE_FILE = CACHE_DIR / "us_gasoline_inventories_refinery_utilization_cach
 
 REDIS_KEY = "market:us_gasoline_inventories_refinery_utilization:data"
 
-# Two separate EIA XLS files
-GASOLINE_URL = "https://www.eia.gov/dnav/pet/xls/PET_STOC_WSTK_DCU_NUS_W.xls"
-REFINERY_URL = "https://www.eia.gov/dnav/pet/xls/PET_PNP_WIUP_DCU_NUS_W.xls"
+# Two different EIA API endpoints
+GASOLINE_API_URL = "https://api.eia.gov/v2/petroleum/stoc/wstk/data/"
+REFINERY_API_URL = "https://api.eia.gov/v2/petroleum/sum/sndw/data/"
 
 GASOLINE_SERIES_ID = "WGTSTUS1"
 REFINERY_SERIES_ID = "WPULEUS3"
-
-HTTP_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-}
 
 
 class UsGasolineInventoriesRefineryUtilizationService:
@@ -101,7 +95,6 @@ class UsGasolineInventoriesRefineryUtilizationService:
         }
 
     def _get_next_release(self) -> Optional[Dict[str, Any]]:
-        """FMPから次回EIA発表日を取得"""
         try:
             from services.usa.fmp_next_release_utils import get_next_release_from_fmp
             return get_next_release_from_fmp("us_gasoline_inventories_refinery_utilization_rate")
@@ -110,33 +103,24 @@ class UsGasolineInventoriesRefineryUtilizationService:
             return None
 
     def _build_data(self) -> Optional[Dict[str, Any]]:
-        """EIAから2つのXLSをダウンロードしてマージ"""
-        logger.info("[GasolineRefinery] Building data from EIA XLS...")
+        """EIA API v2から2つの系列を取得してマージ"""
+        logger.info("[GasolineRefinery] Building data from EIA API v2...")
 
-        # Download both XLS files
-        gasoline_bytes = self._download_xls(GASOLINE_URL, "Gasoline")
-        refinery_bytes = self._download_xls(REFINERY_URL, "Refinery")
-
-        if not gasoline_bytes and not refinery_bytes:
-            logger.error("[GasolineRefinery] Failed to download both XLS files")
+        api_key = os.environ.get("EIA_API_KEY", "")
+        if not api_key:
+            logger.warning("[GasolineRefinery] EIA_API_KEY not set")
             return None
 
-        # Parse each XLS
-        gasoline_map: Dict[str, float] = {}
-        refinery_map: Dict[str, float] = {}
-
-        if gasoline_bytes:
-            gasoline_map = self._parse_single_series(
-                gasoline_bytes, GASOLINE_SERIES_ID, "Gasoline"
-            )
-
-        if refinery_bytes:
-            refinery_map = self._parse_single_series(
-                refinery_bytes, REFINERY_SERIES_ID, "Refinery"
-            )
+        # Fetch both series
+        gasoline_map = self._fetch_single_series(
+            api_key, GASOLINE_API_URL, GASOLINE_SERIES_ID, "Gasoline"
+        )
+        refinery_map = self._fetch_single_series(
+            api_key, REFINERY_API_URL, REFINERY_SERIES_ID, "Refinery"
+        )
 
         if not gasoline_map and not refinery_map:
-            logger.error("[GasolineRefinery] No data parsed from either XLS")
+            logger.error("[GasolineRefinery] No data from either API")
             return None
 
         # Merge on date
@@ -165,7 +149,7 @@ class UsGasolineInventoriesRefineryUtilizationService:
         now_str = datetime.now(JST).isoformat()
 
         logger.info(
-            f"[GasolineRefinery] Parsed {len(result_data)} data points "
+            f"[GasolineRefinery] {len(result_data)} data points "
             f"({result_data[0]['date']} ~ {result_data[-1]['date']}), "
             f"latest gasoline={latest.get('gasoline')}, "
             f"refinery_util={latest.get('refinery_util')}"
@@ -190,76 +174,60 @@ class UsGasolineInventoriesRefineryUtilizationService:
             "last_updated": now_str,
         }
 
-    def _download_xls(self, url: str, label: str) -> Optional[bytes]:
-        """EIAからXLSファイルをダウンロード"""
-        try:
-            logger.info(f"[GasolineRefinery] Downloading {label}: {url}")
-            resp = requests.get(url, timeout=30, headers=HTTP_HEADERS)
-            if resp.status_code == 200 and len(resp.content) > 10000:
-                logger.info(f"[GasolineRefinery] {label}: {len(resp.content)} bytes")
-                return resp.content
-            else:
-                logger.error(
-                    f"[GasolineRefinery] {label} download failed: "
-                    f"status={resp.status_code}, size={len(resp.content)}"
-                )
-        except Exception as e:
-            logger.error(f"[GasolineRefinery] {label} download error: {e}")
-        return None
-
-    def _parse_single_series(
-        self, xls_bytes: bytes, series_id: str, label: str
+    def _fetch_single_series(
+        self, api_key: str, api_url: str, series_id: str, label: str
     ) -> Dict[str, float]:
-        """XLSファイルから単一系列を抽出してdate→valueのマップを返す"""
-        try:
-            wb = xlrd.open_workbook(file_contents=xls_bytes)
-        except Exception as e:
-            logger.error(f"[GasolineRefinery] {label} XLS parse error: {e}")
-            return {}
-
-        # Find "Data 1" sheet
-        try:
-            ws = wb.sheet_by_name("Data 1")
-        except xlrd.XLRDError:
-            if wb.nsheets > 1:
-                ws = wb.sheet_by_index(1)
-            else:
-                logger.error(f"[GasolineRefinery] {label}: 'Data 1' sheet not found")
-                return {}
-
-        # Row 1: source keys → find column index
-        source_keys_row = ws.row_values(1)
-        target_col: Optional[int] = None
-        for col_idx, key in enumerate(source_keys_row):
-            if str(key).strip() == series_id:
-                target_col = col_idx
-                break
-
-        if target_col is None:
-            logger.error(
-                f"[GasolineRefinery] {label}: series {series_id} not found in row 1"
-            )
-            return {}
-
-        logger.info(f"[GasolineRefinery] {label}: {series_id} at col {target_col}")
-
+        """EIA API v2から単一系列の date→value マップを取得"""
         result: Dict[str, float] = {}
-        for row_idx in range(3, ws.nrows):
-            if ws.cell_type(row_idx, 0) != xlrd.XL_CELL_DATE:
-                continue
+        offset = 0
+        length = 5000
 
-            date_tuple = xlrd.xldate_as_tuple(ws.cell_value(row_idx, 0), wb.datemode)
-            date_str = f"{date_tuple[0]:04d}-{date_tuple[1]:02d}-{date_tuple[2]:02d}"
+        while True:
+            try:
+                resp = requests.get(api_url, params={
+                    "api_key": api_key,
+                    "frequency": "weekly",
+                    "data[0]": "value",
+                    "facets[series][]": series_id,
+                    "sort[0][column]": "period",
+                    "sort[0][direction]": "asc",
+                    "offset": offset,
+                    "length": length,
+                }, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
 
-            cell_type = ws.cell_type(row_idx, target_col)
-            if cell_type in (xlrd.XL_CELL_NUMBER, xlrd.XL_CELL_TEXT):
-                try:
-                    val = float(ws.cell_value(row_idx, target_col))
-                    result[date_str] = val
-                except (ValueError, TypeError):
-                    pass
+                if resp.status_code != 200:
+                    logger.error(
+                        f"[GasolineRefinery] {label} EIA API error: HTTP {resp.status_code}"
+                    )
+                    return result
 
-        logger.info(f"[GasolineRefinery] {label}: parsed {len(result)} data points")
+                data = resp.json()
+                rows = data.get("response", {}).get("data", [])
+                total = int(data.get("response", {}).get("total", 0))
+
+                for row in rows:
+                    period = row.get("period", "")
+                    value = row.get("value")
+                    if period and value is not None:
+                        try:
+                            result[period] = float(value)
+                        except (ValueError, TypeError):
+                            pass
+
+                logger.info(
+                    f"[GasolineRefinery] {label}: fetched {len(rows)} rows "
+                    f"(offset={offset}, total={total})"
+                )
+
+                if offset + len(rows) >= total or len(rows) == 0:
+                    break
+                offset += length
+
+            except Exception as e:
+                logger.error(f"[GasolineRefinery] {label} EIA API error: {e}")
+                return result
+
+        logger.info(f"[GasolineRefinery] {label}: total {len(result)} data points")
         return result
 
     def _save_to_cache(self, data: Dict[str, Any]) -> None:

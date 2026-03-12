@@ -56,6 +56,12 @@ try:
     from backend.services.market.cushing_inventory_service import cushing_inventory_service
     from backend.services.market.us_gasoline_inventories_refinery_utilization_service import us_gasoline_inventories_refinery_utilization_service
     from backend.services.market.distillate_fuel_inventories_service import distillate_fuel_inventories_service
+    from backend.services.market.api_weekly_crude_oil_inventories_service import api_weekly_crude_oil_inventories_service
+    from backend.services.market.adjustments_service import adjustments_service
+    from backend.services.market.us_shale_oil_production_service import us_shale_oil_production_service
+    from backend.services.market.north_america_rig_count_service import north_america_rig_count_service
+    from backend.services.market.crude_oil_net_demand_service import crude_oil_net_demand_service
+    from backend.services.market.short_term_energy_outlook_service import short_term_energy_outlook_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -78,6 +84,12 @@ except ImportError:
     from services.market.cushing_inventory_service import cushing_inventory_service
     from services.market.us_gasoline_inventories_refinery_utilization_service import us_gasoline_inventories_refinery_utilization_service
     from services.market.distillate_fuel_inventories_service import distillate_fuel_inventories_service
+    from services.market.api_weekly_crude_oil_inventories_service import api_weekly_crude_oil_inventories_service
+    from services.market.adjustments_service import adjustments_service
+    from services.market.us_shale_oil_production_service import us_shale_oil_production_service
+    from services.market.north_america_rig_count_service import north_america_rig_count_service
+    from services.market.crude_oil_net_demand_service import crude_oil_net_demand_service
+    from services.market.short_term_energy_outlook_service import short_term_energy_outlook_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -426,11 +438,83 @@ def get_gasoline_refinery(force_refresh: bool = Query(False)):
     )
 
 
+@router.get("/api-weekly-crude-oil-inventories")
+def get_api_weekly_crude_oil_inventories(force_refresh: bool = Query(False)):
+    """API（米国石油協会）週間原油在庫データを取得"""
+    start_time = time.time()
+    result = api_weekly_crude_oil_inventories_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/adjustments")
+def get_adjustments(force_refresh: bool = Query(False)):
+    """EIA 商業在庫調整データを取得"""
+    start_time = time.time()
+    result = adjustments_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/shale-oil-production")
+def get_shale_oil_production(force_refresh: bool = Query(False)):
+    """米国シェールオイル生産量データを取得"""
+    start_time = time.time()
+    result = us_shale_oil_production_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
 @router.get("/distillate-fuel-inventories")
 def get_distillate_fuel_inventories(force_refresh: bool = Query(False)):
     """EIA 米国蒸留燃料在庫データを取得"""
     start_time = time.time()
     result = distillate_fuel_inventories_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/rig-count")
+def get_rig_count(force_refresh: bool = Query(False)):
+    """米石油採掘装置（リグ）稼働数データを取得"""
+    start_time = time.time()
+    result = north_america_rig_count_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/crude-oil-net-demand")
+def get_crude_oil_net_demand(force_refresh: bool = Query(False)):
+    """米国 原油純需要（STEO: 消費 - 生産）データを取得"""
+    start_time = time.time()
+    result = crude_oil_net_demand_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/short-term-energy-outlook")
+def get_short_term_energy_outlook(force_refresh: bool = Query(False)):
+    """EIA 短期エネルギー見通し（STEO）データを取得"""
+    start_time = time.time()
+    result = short_term_energy_outlook_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

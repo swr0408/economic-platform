@@ -212,10 +212,16 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
         indicators: [
           { code: 'wti', name: 'WTI原油', symbolIds: ['crude_oil'] },
           { code: 'brent', name: 'ブレント原油', symbolIds: ['brent_oil'] },
+          { code: 'api-weekly-crude-oil-inventories', name: 'API週間原油在庫', symbolIds: [] },
           { code: 'weekly-crude-oil-inventories', name: '週間原油在庫（EIA）', symbolIds: [] },
           { code: 'cushing-inventory', name: 'クッシング在庫（EIA）', symbolIds: [] },
           { code: 'distillate-fuel-inventories', name: '蒸留燃料在庫（EIA）', symbolIds: [] },
           { code: 'gasoline-refinery', name: 'ガソリン在庫/製油稼働率（EIA）', symbolIds: [] },
+          { code: 'adjustments', name: '商業在庫調整（EIA）', symbolIds: [] },
+          { code: 'shale-oil-production', name: 'シェールオイル生産量（EIA）', symbolIds: [] },
+          { code: 'crude-oil-net-demand', name: '原油純需要（EIA Weekly）', symbolIds: [] },
+          { code: 'short-term-energy-outlook', name: '短期エネルギー見通し（EIA STEO）', symbolIds: [] },
+          { code: 'rig-count', name: 'リグ稼働数（Baker Hughes）', symbolIds: [] },
         ],
       },
       {

@@ -394,5 +394,15 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('us_gasoline_inventories_refinery_utilization_rate', 'ガソリン在庫/製油稼働率（EIA）', 'US', 'weekly', ARRAY['EIA Gasoline Production Change'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- API（米国石油協会）週間原油在庫（api_weekly_crude_oil_inventories）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('api_weekly_crude_oil_inventories', 'API週間原油在庫', 'US', 'weekly', ARRAY['API Crude Oil Stock Change'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 米石油採掘装置（リグ）稼働数（north_america_rig_count）
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('north_america_rig_count', '米石油リグ稼働数', 'US', 'weekly', ARRAY['Baker Hughes Oil Rig Count'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country IN ('US', 'CN', 'TW', 'KR') ORDER BY country, econalpha_id;

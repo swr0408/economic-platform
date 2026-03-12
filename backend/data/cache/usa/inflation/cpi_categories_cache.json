@@ -2418,12 +2418,12 @@
     "shelter": 2.96
   },
   "next_release": {
-    "date": "2026-03-11",
-    "datetime_utc": "2026-03-11T12:30:00+00:00",
-    "datetime_jst": "2026-03-11T21:30:00+09:00",
+    "date": "2026-04-10",
+    "datetime_utc": "2026-04-10T12:30:00+00:00",
+    "datetime_jst": "2026-04-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Inflation Rate YoY (Feb)",
-    "estimate": 2.4
+    "label": "Core Inflation Rate MoM (Mar)",
+    "estimate": 0.2
   },
-  "last_updated": "2026-03-11T23:02:07.001848+09:00"
+  "last_updated": "2026-03-12T18:00:32.124643+09:00"
 }

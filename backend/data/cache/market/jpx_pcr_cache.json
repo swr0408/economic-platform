@@ -702,7 +702,7 @@
       "topix_vol_pcr": 4.1527,
       "topix_oi_pcr": 5.6192,
       "nikkei225": 19353.24,
-      "topix_idx": 1317.0
+      "topix_idx": 1316.99
     },
     {
       "date": "2020-04-09",
@@ -1318,7 +1318,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": 6.3527,
       "nikkei225": 22121.73,
-      "topix_idx": 1422.42
+      "topix_idx": 1422.43
     },
     {
       "date": "2020-07-02",
@@ -1835,7 +1835,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 23032.54,
-      "topix_idx": 1480.92
+      "topix_idx": 1480.91
     },
     {
       "date": "2020-09-10",
@@ -2088,7 +2088,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 23626.73,
-      "topix_idx": 1528.46
+      "topix_idx": 1528.45
     },
     {
       "date": "2020-10-15",
@@ -4750,7 +4750,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 28498.2,
-      "topix_idx": 1898.98
+      "topix_idx": 1898.97
     },
     {
       "date": "2021-10-12",
@@ -5179,7 +5179,7 @@
       "topix_vol_pcr": 7.4734,
       "topix_oi_pcr": 4.1785,
       "nikkei225": 28455.6,
-      "topix_idx": 1893.03
+      "topix_idx": 1893.04
     },
     {
       "date": "2021-12-08",
@@ -5410,7 +5410,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 28478.56,
-      "topix_idx": 1898.98
+      "topix_idx": 1898.97
     },
     {
       "date": "2022-01-11",
@@ -5630,7 +5630,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 27248.87,
-      "topix_idx": 1833.63
+      "topix_idx": 1833.64
     },
     {
       "date": "2022-02-08",
@@ -6037,7 +6037,7 @@
       "topix_vol_pcr": 2.006,
       "topix_oi_pcr": 5.1318,
       "nikkei225": 27736.47,
-      "topix_idx": 1881.16
+      "topix_idx": 1881.15
     },
     {
       "date": "2022-04-05",
@@ -6191,7 +6191,7 @@
       "topix_vol_pcr": 1.0,
       "topix_oi_pcr": 6.3598,
       "nikkei225": 27105.26,
-      "topix_idx": 1833.63
+      "topix_idx": 1833.64
     },
     {
       "date": "2022-04-25",
@@ -9205,7 +9205,7 @@
       "topix_vol_pcr": 1.6252,
       "topix_oi_pcr": 2.9586,
       "nikkei225": 31913.74,
-      "topix_idx": 2182.67
+      "topix_idx": 2182.66
     },
     {
       "date": "2023-06-08",
@@ -16589,5 +16589,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-12T00:29:50.407993+09:00"
+  "last_updated": "2026-03-12T17:06:48.886686+09:00"
 }
