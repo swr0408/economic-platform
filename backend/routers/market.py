@@ -11,7 +11,7 @@ yfinance を使用した銘柄データ取得エンドポイント
 import time
 from typing import List, Optional
 from fastapi import APIRouter, Path, Query, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 
 try:
     from backend.services.market.yfinance_service import yfinance_service
@@ -62,6 +62,28 @@ try:
     from backend.services.market.north_america_rig_count_service import north_america_rig_count_service
     from backend.services.market.crude_oil_net_demand_service import crude_oil_net_demand_service
     from backend.services.market.short_term_energy_outlook_service import short_term_energy_outlook_service
+    from backend.services.market.us_natural_gas_storage_service import us_natural_gas_storage_service
+    from backend.services.market.us_natural_gas_trade_service import us_natural_gas_trade_service
+    from backend.services.market.lng_exports_by_region_service import lng_exports_by_region_service
+    from backend.services.market.steo_natural_gas_service import steo_natural_gas_service
+    from backend.services.market.opec_momr_service import opec_momr_service
+    from backend.services.market.iea_oil_market_report_service import iea_oil_market_report_service
+    from backend.services.market.eu_natural_gas_storage_service import eu_natural_gas_storage_service
+    from backend.services.market.eu_natural_gas_production_service import eu_natural_gas_production_service
+    from backend.services.market.noaa_hdd_cdd_service import noaa_hdd_cdd_service
+    from backend.services.market.roni_service import roni_service
+    from backend.services.market.lme_copper_stock_service import lme_copper_stock_service
+    from backend.services.market.comex_gold_stock_service import comex_gold_stock_service
+    from backend.services.market.comex_silver_stock_service import comex_silver_stock_service
+    from backend.services.market.comex_copper_stock_service import comex_copper_stock_service
+    from backend.services.market.shfe_copper_stock_service import shfe_copper_stock_service
+    from backend.services.market.sp500_valuation_service import sp500_valuation_service
+    from backend.services.market.nasdaq100_valuation_service import nasdaq100_valuation_service
+    from backend.services.market.nikkei225_valuation_service import nikkei225_valuation_service
+    from backend.services.market.topix_valuation_service import topix_valuation_service
+    from backend.services.market.advance_decline_ratio_service import advance_decline_ratio_service
+    from backend.services.market.cftc_positioning_service import cftc_positioning_service
+    from backend.services.market.crack_spread_service import crack_spread_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -90,6 +112,28 @@ except ImportError:
     from services.market.north_america_rig_count_service import north_america_rig_count_service
     from services.market.crude_oil_net_demand_service import crude_oil_net_demand_service
     from services.market.short_term_energy_outlook_service import short_term_energy_outlook_service
+    from services.market.us_natural_gas_storage_service import us_natural_gas_storage_service
+    from services.market.us_natural_gas_trade_service import us_natural_gas_trade_service
+    from services.market.lng_exports_by_region_service import lng_exports_by_region_service
+    from services.market.steo_natural_gas_service import steo_natural_gas_service
+    from services.market.opec_momr_service import opec_momr_service
+    from services.market.iea_oil_market_report_service import iea_oil_market_report_service
+    from services.market.eu_natural_gas_storage_service import eu_natural_gas_storage_service
+    from services.market.eu_natural_gas_production_service import eu_natural_gas_production_service
+    from services.market.noaa_hdd_cdd_service import noaa_hdd_cdd_service
+    from services.market.roni_service import roni_service
+    from services.market.lme_copper_stock_service import lme_copper_stock_service
+    from services.market.comex_gold_stock_service import comex_gold_stock_service
+    from services.market.comex_silver_stock_service import comex_silver_stock_service
+    from services.market.comex_copper_stock_service import comex_copper_stock_service
+    from services.market.shfe_copper_stock_service import shfe_copper_stock_service
+    from services.market.sp500_valuation_service import sp500_valuation_service
+    from services.market.nasdaq100_valuation_service import nasdaq100_valuation_service
+    from services.market.nikkei225_valuation_service import nikkei225_valuation_service
+    from services.market.topix_valuation_service import topix_valuation_service
+    from services.market.advance_decline_ratio_service import advance_decline_ratio_service
+    from services.market.cftc_positioning_service import cftc_positioning_service
+    from services.market.crack_spread_service import crack_spread_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -522,6 +566,254 @@ def get_short_term_energy_outlook(force_refresh: bool = Query(False)):
     )
 
 
+@router.get("/steo-natural-gas")
+def get_steo_natural_gas(force_refresh: bool = Query(False)):
+    """EIA 短期エネルギー見通し（天然ガス）データを取得"""
+    start_time = time.time()
+    result = steo_natural_gas_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/opec-momr")
+def get_opec_momr(force_refresh: bool = Query(False)):
+    """OPEC MOMR (Monthly Oil Market Report) データを取得"""
+    start_time = time.time()
+    result = opec_momr_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/iea-oil-market-report")
+def get_iea_oil_market_report(force_refresh: bool = Query(False)):
+    """IEA Oil Market Report データを取得"""
+    start_time = time.time()
+    result = iea_oil_market_report_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/natural-gas-trade")
+def get_natural_gas_trade(force_refresh: bool = Query(False)):
+    """EIA 米国天然ガス輸出入データを取得"""
+    start_time = time.time()
+    result = us_natural_gas_trade_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/lng-exports-by-region")
+def get_lng_exports_by_region(force_refresh: bool = Query(False)):
+    """EIA 米国LNG輸出（国別・エリア別）データを取得"""
+    start_time = time.time()
+    result = lng_exports_by_region_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/natural-gas-storage")
+def get_natural_gas_storage(force_refresh: bool = Query(False)):
+    """EIA 米国天然ガス貯蔵量データを取得"""
+    start_time = time.time()
+    result = us_natural_gas_storage_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/eu-natural-gas-storage")
+def get_eu_natural_gas_storage(force_refresh: bool = Query(False)):
+    """EU天然ガス貯蔵量（AGSI+）データを取得"""
+    start_time = time.time()
+    result = eu_natural_gas_storage_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/eu-natural-gas-production")
+def get_eu_natural_gas_production(force_refresh: bool = Query(False)):
+    """EU天然ガス生産（Eurostat NRG_CB_GASM）データを取得"""
+    start_time = time.time()
+    result = eu_natural_gas_production_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/noaa-hdd-cdd")
+def get_noaa_hdd_cdd(force_refresh: bool = Query(False)):
+    """NOAA HDD/CDD & 気温見通しデータを取得"""
+    start_time = time.time()
+    result = noaa_hdd_cdd_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/roni")
+def get_roni(force_refresh: bool = Query(False)):
+    """RONI (Revised Oceanic Niño Index) データを取得"""
+    start_time = time.time()
+    result = roni_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/lme-copper-stock")
+def get_lme_copper_stock(force_refresh: bool = Query(False)):
+    """LME銅在庫データを取得"""
+    start_time = time.time()
+    result = lme_copper_stock_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/comex-gold-stock")
+def get_comex_gold_stock(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """COMEX Gold Warehouse Stock データを取得"""
+    result = comex_gold_stock_service.get_data(force_refresh=force_refresh)
+    return JSONResponse(
+        content=result,
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/comex-silver-stock")
+def get_comex_silver_stock(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """COMEX銀在庫データを取得（日次、troy oz）"""
+    import time as _time
+    t0 = _time.time()
+    data = comex_silver_stock_service.get_data(force_refresh=force_refresh)
+    data["response_time_ms"] = round((_time.time() - t0) * 1000, 2)
+    return data
+
+
+@router.get("/comex-copper-stock")
+def get_comex_copper_stock(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """COMEX Copper Warehouse Stock データを取得"""
+    result = comex_copper_stock_service.get_data(force_refresh=force_refresh)
+    return JSONResponse(
+        content=result,
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/shfe-copper-stock")
+def get_shfe_copper_stock(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """SHFE Copper Warehouse Stock データを取得"""
+    result = shfe_copper_stock_service.get_data(force_refresh=force_refresh)
+    return JSONResponse(
+        content=result,
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/sp500-valuation")
+def get_sp500_valuation(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """S&P 500 Valuation データ（予想PER/EPS/イールドスプレッド等）を取得"""
+    start_time = time.time()
+    result = sp500_valuation_service.get_data(force_refresh=force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/nasdaq100-valuation")
+def get_nasdaq100_valuation(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """Nasdaq 100 Valuation データ（予想PER/EPS/イールドスプレッド等）を取得"""
+    start_time = time.time()
+    result = nasdaq100_valuation_service.get_data(force_refresh=force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/nikkei225-valuation")
+def get_nikkei225_valuation(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """日経平均 Valuation データ（予想PER/EPS/イールドスプレッド等）を取得"""
+    start_time = time.time()
+    result = nikkei225_valuation_service.get_data(force_refresh=force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/topix-valuation")
+def get_topix_valuation(
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """TOPIX Valuation データ（予想PER/EPS/イールドスプレッド等）を取得"""
+    start_time = time.time()
+    result = topix_valuation_service.get_data(force_refresh=force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/advance-decline-ratio")
+def get_advance_decline_ratio(force_refresh: bool = Query(False)):
+    """東証プライム 騰落レシオ（25日）データを取得"""
+    start_time = time.time()
+    result = advance_decline_ratio_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
 @router.get("/{symbol_id}/daily")
 def get_symbol_daily_data(
     symbol_id: str = Path(..., description="銘柄ID（例: usdjpy, sp500）"),
@@ -637,3 +929,41 @@ def invalidate_all_cache():
         "success": True,
         "invalidated_count": count,
     }
+
+
+# ===== CFTC Positioning =====
+
+
+@router.get("/cftc-positioning")
+def get_cftc_positioning(
+    asset: str = Query(..., description="銘柄名 (gold, silver, sp500, usdjpy, etc.)"),
+    force_refresh: bool = Query(False, description="キャッシュを無視して再取得"),
+):
+    """CFTC建玉報告ポジションデータ取得"""
+    result = cftc_positioning_service.get_data(asset, force_refresh=force_refresh)
+    return JSONResponse(
+        content=result,
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/cftc-positioning/list")
+def get_cftc_positioning_list():
+    """CFTC建玉報告 利用可能銘柄一覧"""
+    assets = cftc_positioning_service.get_available_assets()
+    return JSONResponse(content={"assets": assets})
+
+
+# ===== Crack Spread =====
+
+
+@router.get("/crack-spread")
+def get_crack_spread(force_refresh: bool = Query(False)):
+    """クラックスプレッドデータを取得"""
+    start_time = time.time()
+    result = crack_spread_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )

@@ -193,12 +193,12 @@ export default function UsShaleOilProductionChart() {
               </div>
             )
           })}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* Tabs */}
@@ -243,7 +243,7 @@ export default function UsShaleOilProductionChart() {
                       stroke={DARK_THEME.textSecondary}
                       tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }}
                       width={40}
-                      label={{ value: 'mb/d', position: 'top', offset: 8, style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }}
+                      // label={{ value: 'mb/d', position: 'top', offset: 8, style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }}
                     />
 
                     <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} />} />

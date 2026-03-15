@@ -254,12 +254,12 @@ export default function ApiWeeklyCrudeOilInventoriesChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* Tabs */}
@@ -303,8 +303,8 @@ export default function ApiWeeklyCrudeOilInventoriesChart() {
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} />} />
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Bar yAxisId="left" dataKey="value" name="API在庫変化 (M bbl)" fill={COLOR_API} hide={hiddenSeries.has('value')} />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Bar yAxisId="left" dataKey="value" name="API在庫変化 (M bbl)" fill={COLOR_API} hide={hiddenSeries.has('value')} isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>

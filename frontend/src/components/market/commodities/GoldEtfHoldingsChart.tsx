@@ -166,10 +166,10 @@ export default function GoldEtfHoldingsChart() {
 
   return (
     <ChartContainer
-      title="金ETF保有残高（SPDR Gold Shares）"
-      dataSource="SPDR Gold Shares / yfinance"
+      title="金ETF保有残高"
+      dataSource="SPDR Gold Shares"
       showPeriodSelector={false}
-      sourceUrl="https://www.spdrgoldshares.com/"
+      sourceUrl="https://www.spdrgoldshares.com/ja/japan/gld/"
     >
       {/* 1. Latest values */}
       <div style={{

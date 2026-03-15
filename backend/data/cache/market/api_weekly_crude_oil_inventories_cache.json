@@ -2589,26 +2589,26 @@
     {
       "date": "2026-02-24",
       "value": 11.4,
-      "forecast": null,
+      "forecast": 1.85,
       "previous": -0.609
     },
     {
       "date": "2026-03-03",
       "value": 5.6,
-      "forecast": null,
+      "forecast": 2.19,
       "previous": 11.4
     },
     {
       "date": "2026-03-10",
       "value": -1.7,
-      "forecast": null,
+      "forecast": 1.4,
       "previous": 5.6
     }
   ],
   "latest": {
     "date": "2026-03-10",
     "value": -1.7,
-    "forecast": null,
+    "forecast": 1.4,
     "previous": 5.6
   },
   "metadata": {
@@ -2622,5 +2622,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-12T21:36:32.598676+09:00"
+  "last_updated": "2026-03-15T23:14:40.253694+09:00"
 }

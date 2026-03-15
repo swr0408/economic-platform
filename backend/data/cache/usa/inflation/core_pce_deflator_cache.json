@@ -2686,37 +2686,46 @@
       "date": "2025-11-01",
       "value": 2.83,
       "yoy": 2.83,
-      "mom": 0.17,
+      "mom": 0.18,
       "index": 127.47,
       "annualized_3m": 2.41,
       "annualized_6m": 2.69
     },
     {
       "date": "2025-12-01",
-      "value": 3.0,
-      "yoy": 3.0,
+      "value": 3.01,
+      "yoy": 3.01,
       "mom": 0.36,
-      "index": 127.92,
-      "annualized_3m": 3.08,
-      "annualized_6m": 2.87
+      "index": 127.93,
+      "annualized_3m": 3.11,
+      "annualized_6m": 2.89
+    },
+    {
+      "date": "2026-01-01",
+      "value": 3.06,
+      "yoy": 3.06,
+      "mom": 0.36,
+      "index": 128.39,
+      "annualized_3m": 3.65,
+      "annualized_6m": 3.12
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 3.0,
-    "yoy": 3.0,
+    "date": "2026-01-01",
+    "value": 3.06,
+    "yoy": 3.06,
     "mom": 0.36,
-    "index": 127.92,
-    "annualized_3m": 3.08,
-    "annualized_6m": 2.87
+    "index": 128.39,
+    "annualized_3m": 3.65,
+    "annualized_6m": 3.12
   },
   "next_release": {
-    "date": "2026-03-13",
-    "datetime_utc": "2026-03-13T12:30:00+00:00",
-    "datetime_jst": "2026-03-13T21:30:00+09:00",
+    "date": "2026-04-09",
+    "datetime_utc": "2026-04-09T12:30:00+00:00",
+    "datetime_jst": "2026-04-09T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core PCE Price Index YoY (Jan)",
+    "label": "Core PCE Price Index YoY (Feb)",
     "estimate": null
   },
-  "last_updated": "2026-02-28T13:22:10.122887+09:00"
+  "last_updated": "2026-03-15T23:02:21.781479+09:00"
 }

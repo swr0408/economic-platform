@@ -25014,12 +25014,27 @@
       "date": "2026-03-10",
       "silver_tons": 16762.68,
       "shares_outstanding": 555600000
+    },
+    {
+      "date": "2026-03-11",
+      "silver_tons": 16638.98,
+      "shares_outstanding": 551500000
+    },
+    {
+      "date": "2026-03-12",
+      "silver_tons": 16638.98,
+      "shares_outstanding": 551500000
+    },
+    {
+      "date": "2026-03-13",
+      "silver_tons": 16554.51,
+      "shares_outstanding": 548700000
     }
   ],
   "latest": {
-    "date": "2026-03-10",
-    "silver_tons": 16762.68,
-    "shares_outstanding": 555600000
+    "date": "2026-03-13",
+    "silver_tons": 16554.51,
+    "shares_outstanding": 548700000
   },
   "metadata": {
     "source": "iShares Silver Trust (BlackRock)",
@@ -25027,11 +25042,11 @@
     "unit": "トン",
     "silver_per_share_oz": 0.97,
     "frequency": "daily",
-    "data_count": 5003,
+    "data_count": 5006,
     "start_date": "2006-04-21",
-    "end_date": "2026-03-10"
+    "end_date": "2026-03-13"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-11T23:16:47.639246+09:00"
+  "last_updated": "2026-03-15T19:40:25.880054+09:00"
 }

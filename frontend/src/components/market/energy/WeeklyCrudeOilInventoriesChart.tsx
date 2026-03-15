@@ -317,7 +317,7 @@ export default function WeeklyCrudeOilInventoriesChart() {
 
   return (
     <ChartContainer
-      title="週間原油在庫（EIA）"
+      title="週間原油在庫"
       dataSource="EIA"
       sourceUrl="https://www.eia.gov/petroleum/"
       showPeriodSelector={false}
@@ -352,12 +352,12 @@ export default function WeeklyCrudeOilInventoriesChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* タブ切替 */}
@@ -413,9 +413,9 @@ export default function WeeklyCrudeOilInventoriesChart() {
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
                         {rawSeries.map((s) => (
-                          <Line key={s.key} yAxisId={s.yAxisId} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2} dot={false} hide={hiddenSeries.has(s.key)} connectNulls />
+                          <Line key={s.key} yAxisId={s.yAxisId} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2} dot={false} hide={hiddenSeries.has(s.key)} connectNulls isAnimationActive={false} />
                         ))}
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -435,9 +435,9 @@ export default function WeeklyCrudeOilInventoriesChart() {
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
                         {yoySeries.map((s) => (
-                          <Line key={s.key} yAxisId="left" type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2} dot={false} hide={hiddenSeries.has(s.key)} connectNulls />
+                          <Line key={s.key} yAxisId="left" type="monotone" dataKey={s.key} name={s.name} stroke={s.color} strokeWidth={2} dot={false} hide={hiddenSeries.has(s.key)} connectNulls isAnimationActive={false} />
                         ))}
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -458,7 +458,7 @@ export default function WeeklyCrudeOilInventoriesChart() {
                           formatter={(value: number) => [`${value >= 0 ? '+' : ''}${value.toFixed(2)}%`, '商業在庫 MoM']}
                         />
                         <ReferenceLine y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
-                        <Bar dataKey="mom" name="商業在庫 前月比 (%)" fill={COLOR_EX_SPR} />
+                        <Bar dataKey="mom" name="商業在庫 前月比 (%)" fill={COLOR_EX_SPR} isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>

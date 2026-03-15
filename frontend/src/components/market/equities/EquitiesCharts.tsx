@@ -11,6 +11,14 @@ import JpxPcrChart from './JpxPcrChart'
 import ChinaM2NikkeiYoyChart from './ChinaM2NikkeiYoyChart'
 import NikkeiDoubleInverseChart from './NikkeiDoubleInverseChart'
 import JpxInvestorTradingChart from './JpxInvestorTradingChart'
+import Sp500ValuationChart from './Sp500ValuationChart'
+import Nasdaq100ValuationChart from './Nasdaq100ValuationChart'
+import GrowthValueRatioChart from './GrowthValueRatioChart'
+import Sp500StockPortionChart from './Sp500StockPortionChart'
+import Nikkei225ValuationChart from './Nikkei225ValuationChart'
+import TopixValuationChart from './TopixValuationChart'
+import AdvanceDeclineRatioChart from './AdvanceDeclineRatioChart'
+import CftcPositioningChart from '../cot/CftcPositioningChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
 
@@ -65,6 +73,15 @@ export default function EquitiesCharts() {
       <div id="naaim"><NaaimChart /></div>
       <div id="gex-dix"><GexDixChart /></div>
       <div id="cboe-pcr"><CboePcrChart /></div>
+      <div id="sp500-valuation"><Sp500ValuationChart /></div>
+      <div id="nasdaq100-valuation"><Nasdaq100ValuationChart /></div>
+      <div id="growth-value-ratio"><GrowthValueRatioChart /></div>
+      <div id="sp500-stock-portion"><Sp500StockPortionChart /></div>
+      <div id="cot-sp500"><CftcPositioningChart asset="sp500" assetLabel="S&P 500" reportType="tff" compareId="cftc_sp500" /></div>
+      <div id="cot-dow"><CftcPositioningChart asset="dow" assetLabel="ダウ平均" reportType="tff" compareId="cftc_dow" /></div>
+      <div id="cot-nasdaq100"><CftcPositioningChart asset="nasdaq100" assetLabel="ナスダック100" reportType="tff" compareId="cftc_nasdaq100" /></div>
+      <div id="cot-russell2000"><CftcPositioningChart asset="russell2000" assetLabel="ラッセル2000" reportType="tff" compareId="cftc_russell2000" /></div>
+      <div id="cot-vix"><CftcPositioningChart asset="vix" assetLabel="VIX" reportType="tff" compareId="cftc_vix" /></div>
 
       {/* 日本株 */}
       <div id="jp-equities">
@@ -73,12 +90,16 @@ export default function EquitiesCharts() {
       <div id="nikkei225"><MarketPriceChart title="日経平均" symbolData={data?.nikkei225} color={COLORS.nikkei225} decimals={0} /></div>
       <div id="topix"><MarketPriceChart title="TOPIX" symbolData={data?.topix} color={COLORS.topix} decimals={0} /></div>
       <div id="nikkei-usd"><MarketPriceChart title="日経平均（ドル建て）" symbolData={data?.nikkei_usd} color={COLORS.nikkei_usd} decimals={0} /></div>
+      <div id="nikkei225-valuation"><Nikkei225ValuationChart /></div>
+      <div id="topix-valuation"><TopixValuationChart /></div>
       <div id="nikkei-regression"><NikkeiRegressionChart /></div>
       <div id="electronic-components-balance"><ElectronicComponentsBalanceChart /></div>
       <div id="jpx-pcr"><JpxPcrChart /></div>
       <div id="china-m2-nikkei-yoy"><ChinaM2NikkeiYoyChart /></div>
       <div id="nikkei-double-inverse"><NikkeiDoubleInverseChart /></div>
       <div id="jpx-investor-trading"><JpxInvestorTradingChart /></div>
+      <div id="advance-decline-ratio"><AdvanceDeclineRatioChart /></div>
+      <div id="cot-nikkei225"><CftcPositioningChart asset="nikkei225" assetLabel="日経225" reportType="tff" compareId="cftc_nikkei225" /></div>
 
       {/* 欧州株 */}
       <div id="eu-equities">

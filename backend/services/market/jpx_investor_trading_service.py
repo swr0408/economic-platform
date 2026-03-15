@@ -5,6 +5,7 @@
   - DB: jpx_investor_trading テーブル（週次ネット売買金額、千円単位）
   - 日経平均日足: yfinance (^N225)
 
+更新スケジュール: 毎週第4営業日（通常木曜）JST 15:30
 更新: 6時間TTL (Redis + ファイル)
 """
 import json

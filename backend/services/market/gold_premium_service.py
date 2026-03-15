@@ -5,6 +5,7 @@
   - DB: gold_premium テーブル（Excel初期インポート + GoldHub API週次積み上げ）
   - 全履歴: 2003~ (Excel) + 最新分 (GoldHub API)
 
+更新スケジュール: 日次（JST 8:30）
 キャッシュ: Redis 6h TTL + JSONファイル
 """
 import json

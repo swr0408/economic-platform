@@ -404,5 +404,73 @@ INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, freq
 VALUES ('north_america_rig_count', '米石油リグ稼働数', 'US', 'weekly', ARRAY['Baker Hughes Oil Rig Count'], TRUE)
 ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
 
+-- 米国天然ガス貯蔵量（us_natural_gas_storage）
+-- EIA Natural Gas Stocks Change - 毎週木曜 15:30 UTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('us_natural_gas_storage', '米国天然ガス貯蔵量（EIA）', 'US', 'weekly', ARRAY['EIA Natural Gas Stocks Change'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ===== CFTC Positioning (投機筋ポジション) =====
+
+-- 金 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_gold', '金 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC Gold Speculative net positions', 'CFTC Gold speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 銀 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_silver', '銀 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC Silver Speculative net positions', 'CFTC Silver speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 銅 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_copper', '銅 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC Copper speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 原油 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_crude_oil', '原油 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC Crude Oil speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 天然ガス CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_natural_gas', '天然ガス CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC Natural Gas speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- S&P 500 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_sp500', 'S&P 500 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC S&P 500 speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ナスダック100 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_nasdaq100', 'ナスダック100 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC Nasdaq 100 speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ドル/円 CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_usdjpy', '円 CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC JPY speculative net positions', 'CFTC Jpy speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ユーロ CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_eurusd', 'ユーロ CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC EUR speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- ポンド CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_gbpusd', 'ポンド CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC GBP speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- 豪ドル CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_audusd', '豪ドル CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC AUD speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
+-- NZドル CFTC
+INSERT INTO indicator_event_mapping (econalpha_id, econalpha_name, country, frequency, fmp_event_patterns, is_active)
+VALUES ('cftc_nzdusd', 'NZドル CFTC投機筋ポジション', 'US', 'weekly', ARRAY['CFTC NZD speculative net positions'], TRUE)
+ON CONFLICT (econalpha_id) DO UPDATE SET fmp_event_patterns = EXCLUDED.fmp_event_patterns, updated_at = NOW();
+
 -- 確認用クエリ
 SELECT econalpha_id, econalpha_name, fmp_event_patterns FROM indicator_event_mapping WHERE country IN ('US', 'CN', 'TW', 'KR') ORDER BY country, econalpha_id;

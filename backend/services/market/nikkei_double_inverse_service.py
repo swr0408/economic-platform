@@ -5,6 +5,7 @@
   - CSV: backend/data/csv_import/日経ダブルインバース.csv (週次 2014/7 ~ )
   - 日経平均日足: yfinance (^N225)
 
+更新スケジュール: 日次（JST 15:45）
 更新: 6時間TTL (Redis + ファイル)
 """
 import csv

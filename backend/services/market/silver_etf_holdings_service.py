@@ -7,6 +7,7 @@
   - Sheet: 基準価額履歴
   - 計算: 発行済口数 × 0.97oz / 32150.7 = 銀保有量（トン）
 
+更新スケジュール: 日次（JST 8:30）
 更新: 6時間TTL (Redis + ファイル)
 
 注意: BlackRockが返すxlsファイルはMicrosoft XML Spreadsheet 2003形式

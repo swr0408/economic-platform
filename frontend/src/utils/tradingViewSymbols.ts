@@ -60,6 +60,14 @@ export const TRADING_VIEW_SYMBOL_MAP: Record<string, string> = {
   // 海運指数
   'BDI': 'INDEX:BDI',
 
+  // Growth/Value
+  'GROWTH_VALUE_RATIO': 'AMEX:IVW/AMEX:IVE',
+
+  // S&P500 移動平均線上銘柄比率
+  'S5TW': 'S5TW',    // 20日線上
+  'S5FI': 'S5FI',    // 50日線上
+  'S5TH': 'S5TH',    // 200日線上
+
   // 商品
   'AUD建てゴールド': 'OANDA:XAUAUD',
   'CAD建てゴールド': 'OANDA:XAUCAD',

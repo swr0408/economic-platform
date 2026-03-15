@@ -2331,11 +2331,15 @@
     {
       "date": "2026-03-04",
       "value": 75382.0
+    },
+    {
+      "date": "2026-03-11",
+      "value": 65938.0
     }
   ],
   "latest": {
-    "date": "2026-03-04",
-    "value": 75382.0
+    "date": "2026-03-11",
+    "value": 65938.0
   },
   "metadata": {
     "source": "Bank of Canada",
@@ -2345,5 +2349,5 @@
     "series_id": "V36636",
     "frequency": "weekly"
   },
-  "last_updated": "2026-03-07T11:10:22.621160+09:00"
+  "last_updated": "2026-03-15T23:45:57.556467+09:00"
 }

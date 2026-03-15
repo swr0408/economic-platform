@@ -282,13 +282,14 @@ export default function ShortTermEnergyOutlookChart() {
         dot={false}
         hide={hiddenSeries.has(f.prevKey as SeriesKey)}
         connectNulls
+        isAnimationActive={false}
       />
     ))
   }
 
   return (
     <ChartContainer
-      title="短期エネルギー見通し（EIA STEO）"
+      title="短期エネルギー見通し（原油）"
       dataSource="EIA STEO"
       sourceUrl="https://www.eia.gov/outlooks/steo/"
       showPeriodSelector={false}
@@ -325,12 +326,12 @@ export default function ShortTermEnergyOutlookChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}
+          </span>
+        )}
       </div>
 
       {/* ViewMode + Previous toggle + Compare button */}
@@ -369,12 +370,12 @@ export default function ShortTermEnergyOutlookChart() {
           <ComposedChart data={filteredData} margin={CHART_MARGIN}>
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
-            <YAxis domain={['dataMin * 0.95', 'dataMax * 1.02']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50} label={{ value: 'mb/d', angle: -90, position: 'insideLeft', style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }} />
+            <YAxis domain={['dataMin * 0.95', 'dataMax * 1.02']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50}  />
             <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} showPrev={showPrev && hasPrev} prevLabel={prevLabel} />} />
             <ReferenceLine x={currentDateStr} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: '現在', position: 'top', fill: '#fbbf24', fontSize: 11 }} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-            <Line type="monotone" dataKey="us_production" name="米国生産 (mb/d)" stroke={COLORS.us_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('us_production')} connectNulls />
-            <Line type="monotone" dataKey="us_consumption" name="米国消費 (mb/d)" stroke={COLORS.us_consumption} strokeWidth={2} dot={false} hide={hiddenSeries.has('us_consumption')} connectNulls />
+            <Line type="monotone" dataKey="us_production" name="米国生産 (mb/d)" stroke={COLORS.us_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('us_production')} connectNulls isAnimationActive={false} />
+            <Line type="monotone" dataKey="us_consumption" name="米国消費 (mb/d)" stroke={COLORS.us_consumption} strokeWidth={2} dot={false} hide={hiddenSeries.has('us_consumption')} connectNulls isAnimationActive={false} />
             {renderPrevLines([
               { dataKey: 'us_production', prevKey: 'prev_us_production', color: COLORS.us_production, name: '米国生産' },
               { dataKey: 'us_consumption', prevKey: 'prev_us_consumption', color: COLORS.us_consumption, name: '米国消費' },
@@ -389,12 +390,12 @@ export default function ShortTermEnergyOutlookChart() {
           <ComposedChart data={filteredData} margin={CHART_MARGIN}>
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
-            <YAxis domain={['dataMin * 0.95', 'dataMax * 1.02']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50} label={{ value: 'mb/d', angle: -90, position: 'insideLeft', style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }} />
+            <YAxis domain={['dataMin * 0.95', 'dataMax * 1.02']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50}  />
             <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} showPrev={showPrev && hasPrev} prevLabel={prevLabel} />} />
             <ReferenceLine x={currentDateStr} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: '現在', position: 'top', fill: '#fbbf24', fontSize: 11 }} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-            <Line type="monotone" dataKey="opec_production" name="OPEC生産 (mb/d)" stroke={COLORS.opec_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('opec_production')} connectNulls />
-            <Line type="monotone" dataKey="opec_plus_production" name="OPEC+生産 (mb/d)" stroke={COLORS.opec_plus_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('opec_plus_production')} connectNulls />
+            <Line type="monotone" dataKey="opec_production" name="OPEC生産 (mb/d)" stroke={COLORS.opec_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('opec_production')} connectNulls isAnimationActive={false} />
+            <Line type="monotone" dataKey="opec_plus_production" name="OPEC+生産 (mb/d)" stroke={COLORS.opec_plus_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('opec_plus_production')} connectNulls isAnimationActive={false} />
             {renderPrevLines([
               { dataKey: 'opec_production', prevKey: 'prev_opec_production', color: COLORS.opec_production, name: 'OPEC生産' },
               { dataKey: 'opec_plus_production', prevKey: 'prev_opec_plus_production', color: COLORS.opec_plus_production, name: 'OPEC+生産' },
@@ -409,15 +410,15 @@ export default function ShortTermEnergyOutlookChart() {
           <ComposedChart data={filteredData} margin={CHART_MARGIN}>
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
-            <YAxis yAxisId="left" domain={['dataMin * 0.95', 'dataMax * 1.02']} tickFormatter={(v: number) => `${v.toFixed(0)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50} label={{ value: 'mb/d', angle: -90, position: 'insideLeft', style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }} />
+            <YAxis yAxisId="left" domain={['dataMin * 0.95', 'dataMax * 1.02']} tickFormatter={(v: number) => `${v.toFixed(0)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50}  />
             <YAxis yAxisId="right" orientation="right" domain={['dataMin - 2', 'dataMax + 2']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={COLORS.world_balance} tick={{ fill: COLORS.world_balance, fontSize: 11 }} width={50} label={{ value: 'バランス', angle: 90, position: 'insideRight', style: { fill: COLORS.world_balance, fontSize: 10 } }} />
             <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} showPrev={showPrev && hasPrev} prevLabel={prevLabel} />} />
             <ReferenceLine yAxisId="right" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
             <ReferenceLine yAxisId="left" x={currentDateStr} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: '現在', position: 'top', fill: '#fbbf24', fontSize: 11 }} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-            <Line yAxisId="left" type="monotone" dataKey="world_production" name="世界生産 (mb/d)" stroke={COLORS.world_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('world_production')} connectNulls />
-            <Line yAxisId="left" type="monotone" dataKey="world_consumption" name="世界消費 (mb/d)" stroke={COLORS.world_consumption} strokeWidth={2} dot={false} hide={hiddenSeries.has('world_consumption')} connectNulls />
-            <Area yAxisId="right" type="monotone" dataKey="world_balance" name="需給バランス (mb/d)" stroke={COLORS.world_balance} fill={COLORS.world_balance} fillOpacity={0.15} strokeWidth={1.5} hide={hiddenSeries.has('world_balance')} connectNulls />
+            <Line yAxisId="left" type="monotone" dataKey="world_production" name="世界生産 (mb/d)" stroke={COLORS.world_production} strokeWidth={2} dot={false} hide={hiddenSeries.has('world_production')} connectNulls isAnimationActive={false} />
+            <Line yAxisId="left" type="monotone" dataKey="world_consumption" name="世界消費 (mb/d)" stroke={COLORS.world_consumption} strokeWidth={2} dot={false} hide={hiddenSeries.has('world_consumption')} connectNulls isAnimationActive={false} />
+            <Area yAxisId="right" type="monotone" dataKey="world_balance" name="需給バランス (mb/d)" stroke={COLORS.world_balance} fill={COLORS.world_balance} fillOpacity={0.15} strokeWidth={1.5} hide={hiddenSeries.has('world_balance')} connectNulls isAnimationActive={false} />
             {renderPrevLines([
               { dataKey: 'world_production', prevKey: 'prev_world_production', color: COLORS.world_production, name: '世界生産', yAxisId: 'left' },
               { dataKey: 'world_consumption', prevKey: 'prev_world_consumption', color: COLORS.world_consumption, name: '世界消費', yAxisId: 'left' },
@@ -432,11 +433,11 @@ export default function ShortTermEnergyOutlookChart() {
           <ComposedChart data={filteredData} margin={CHART_MARGIN}>
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
-            <YAxis domain={['dataMin * 0.9', 'dataMax * 1.05']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50} label={{ value: 'mb/d', angle: -90, position: 'insideLeft', style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }} />
+            <YAxis domain={['dataMin * 0.9', 'dataMax * 1.05']} tickFormatter={(v: number) => `${v.toFixed(1)}`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50}  />
             <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} showPrev={showPrev && hasPrev} prevLabel={prevLabel} />} />
             <ReferenceLine x={currentDateStr} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: '現在', position: 'top', fill: '#fbbf24', fontSize: 11 }} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-            <Line type="monotone" dataKey="china_consumption" name="中国石油消費 (mb/d)" stroke={COLORS.china_consumption} strokeWidth={2} dot={false} hide={hiddenSeries.has('china_consumption')} connectNulls />
+            <Line type="monotone" dataKey="china_consumption" name="中国石油消費 (mb/d)" stroke={COLORS.china_consumption} strokeWidth={2} dot={false} hide={hiddenSeries.has('china_consumption')} connectNulls isAnimationActive={false} />
             {renderPrevLines([
               { dataKey: 'china_consumption', prevKey: 'prev_china_consumption', color: COLORS.china_consumption, name: '中国消費' },
             ])}
@@ -454,8 +455,8 @@ export default function ShortTermEnergyOutlookChart() {
             <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} showPrev={showPrev && hasPrev} prevLabel={prevLabel} />} />
             <ReferenceLine x={currentDateStr} stroke="#fbbf24" strokeDasharray="6 3" strokeWidth={1.5} label={{ value: '現在', position: 'top', fill: '#fbbf24', fontSize: 11 }} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-            <Line type="monotone" dataKey="wti_price" name="WTI ($/bbl)" stroke={COLORS.wti_price} strokeWidth={2} dot={false} hide={hiddenSeries.has('wti_price')} connectNulls />
-            <Line type="monotone" dataKey="brent_price" name="Brent ($/bbl)" stroke={COLORS.brent_price} strokeWidth={2} dot={false} hide={hiddenSeries.has('brent_price')} connectNulls />
+            <Line type="monotone" dataKey="wti_price" name="WTI ($/bbl)" stroke={COLORS.wti_price} strokeWidth={2} dot={false} hide={hiddenSeries.has('wti_price')} connectNulls isAnimationActive={false} />
+            <Line type="monotone" dataKey="brent_price" name="Brent ($/bbl)" stroke={COLORS.brent_price} strokeWidth={2} dot={false} hide={hiddenSeries.has('brent_price')} connectNulls isAnimationActive={false} />
             {renderPrevLines([
               { dataKey: 'wti_price', prevKey: 'prev_wti_price', color: COLORS.wti_price, name: 'WTI' },
               { dataKey: 'brent_price', prevKey: 'prev_brent_price', color: COLORS.brent_price, name: 'Brent' },

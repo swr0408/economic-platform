@@ -2724,8 +2724,8 @@
     "datetime_utc": "2026-04-10T12:30:00+00:00",
     "datetime_jst": "2026-04-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core Inflation Rate YoY (Mar)",
-    "estimate": 2.5
+    "label": "Core Inflation Rate MoM (Mar)",
+    "estimate": null
   },
-  "last_updated": "2026-03-12T18:00:30.890900+09:00"
+  "last_updated": "2026-03-15T23:02:21.779095+09:00"
 }

@@ -1,0 +1,726 @@
+{
+  "data": [
+    {
+      "date": "2022-01-01",
+      "us_production": 95.189,
+      "us_consumption": 115.55,
+      "us_storage": 2215.941,
+      "lng_exports": 11.413,
+      "hdd": 914.181,
+      "cdd": 8.436,
+      "henry_hub_price": 4.38
+    },
+    {
+      "date": "2022-02-01",
+      "us_production": 96.1,
+      "us_consumption": 109.015,
+      "us_storage": 1562.018,
+      "lng_exports": 11.313,
+      "hdd": 711.948,
+      "cdd": 11.282,
+      "henry_hub_price": 4.69
+    },
+    {
+      "date": "2022-03-01",
+      "us_production": 97.677,
+      "us_consumption": 89.734,
+      "us_storage": 1401.465,
+      "lng_exports": 11.746,
+      "hdd": 524.621,
+      "cdd": 26.931,
+      "henry_hub_price": 4.9
+    },
+    {
+      "date": "2022-04-01",
+      "us_production": 98.638,
+      "us_consumption": 78.606,
+      "us_storage": 1611.765,
+      "lng_exports": 11.015,
+      "hdd": 341.623,
+      "cdd": 48.813,
+      "henry_hub_price": 6.6
+    },
+    {
+      "date": "2022-05-01",
+      "us_production": 98.706,
+      "us_consumption": 72.265,
+      "us_storage": 2001.915,
+      "lng_exports": 11.337,
+      "hdd": 122.275,
+      "cdd": 147.355,
+      "henry_hub_price": 8.14
+    },
+    {
+      "date": "2022-06-01",
+      "us_production": 99.001,
+      "us_consumption": 77.236,
+      "us_storage": 2325.321,
+      "lng_exports": 10.022,
+      "hdd": 25.906,
+      "cdd": 269.863,
+      "henry_hub_price": 7.7
+    },
+    {
+      "date": "2022-07-01",
+      "us_production": 99.791,
+      "us_consumption": 83.536,
+      "us_storage": 2505.122,
+      "lng_exports": 9.691,
+      "hdd": 3.631,
+      "cdd": 393.808,
+      "henry_hub_price": 7.28
+    },
+    {
+      "date": "2022-08-01",
+      "us_production": 100.438,
+      "us_consumption": 82.797,
+      "us_storage": 2709.422,
+      "lng_exports": 9.684,
+      "hdd": 5.815,
+      "cdd": 358.909,
+      "henry_hub_price": 8.81
+    },
+    {
+      "date": "2022-09-01",
+      "us_production": 101.995,
+      "us_consumption": 76.451,
+      "us_storage": 3145.643,
+      "lng_exports": 9.846,
+      "hdd": 44.433,
+      "cdd": 201.981,
+      "henry_hub_price": 7.88
+    },
+    {
+      "date": "2022-10-01",
+      "us_production": 101.814,
+      "us_consumption": 76.207,
+      "us_storage": 3569.384,
+      "lng_exports": 9.994,
+      "hdd": 257.476,
+      "cdd": 55.186,
+      "henry_hub_price": 5.66
+    },
+    {
+      "date": "2022-11-01",
+      "us_production": 101.942,
+      "us_consumption": 92.298,
+      "us_storage": 3501.05,
+      "lng_exports": 10.087,
+      "hdd": 511.097,
+      "cdd": 23.289,
+      "henry_hub_price": 5.45
+    },
+    {
+      "date": "2022-12-01",
+      "us_production": 100.478,
+      "us_consumption": 108.998,
+      "us_storage": 2925.38,
+      "lng_exports": 10.966,
+      "hdd": 780.819,
+      "cdd": 10.863,
+      "henry_hub_price": 5.53
+    },
+    {
+      "date": "2023-01-01",
+      "us_production": 102.046,
+      "us_consumption": 107.186,
+      "us_storage": 2470.015,
+      "lng_exports": 10.876,
+      "hdd": 714.94,
+      "cdd": 16.792,
+      "henry_hub_price": 3.27
+    },
+    {
+      "date": "2023-02-01",
+      "us_production": 101.785,
+      "us_consumption": 105.876,
+      "us_storage": 2072.183,
+      "lng_exports": 11.653,
+      "hdd": 621.238,
+      "cdd": 19.845,
+      "henry_hub_price": 2.38
+    },
+    {
+      "date": "2023-03-01",
+      "us_production": 103.214,
+      "us_consumption": 97.628,
+      "us_storage": 1849.895,
+      "lng_exports": 11.824,
+      "hdd": 585.318,
+      "cdd": 31.575,
+      "henry_hub_price": 2.31
+    },
+    {
+      "date": "2023-04-01",
+      "us_production": 102.3,
+      "us_consumption": 80.943,
+      "us_storage": 2116.461,
+      "lng_exports": 12.528,
+      "hdd": 297.324,
+      "cdd": 43.886,
+      "henry_hub_price": 2.16
+    },
+    {
+      "date": "2023-05-01",
+      "us_production": 103.496,
+      "us_consumption": 74.846,
+      "us_storage": 2576.48,
+      "lng_exports": 11.831,
+      "hdd": 144.708,
+      "cdd": 109.452,
+      "henry_hub_price": 2.15
+    },
+    {
+      "date": "2023-06-01",
+      "us_production": 103.119,
+      "us_consumption": 78.971,
+      "us_storage": 2901.661,
+      "lng_exports": 10.929,
+      "hdd": 42.919,
+      "cdd": 210.015,
+      "henry_hub_price": 2.18
+    },
+    {
+      "date": "2023-07-01",
+      "us_production": 103.339,
+      "us_consumption": 86.207,
+      "us_storage": 3035.196,
+      "lng_exports": 11.267,
+      "hdd": 4.739,
+      "cdd": 390.289,
+      "henry_hub_price": 2.55
+    },
+    {
+      "date": "2023-08-01",
+      "us_production": 104.06,
+      "us_consumption": 86.409,
+      "us_storage": 3167.947,
+      "lng_exports": 11.389,
+      "hdd": 9.717,
+      "cdd": 349.788,
+      "henry_hub_price": 2.58
+    },
+    {
+      "date": "2023-09-01",
+      "us_production": 104.183,
+      "us_consumption": 79.386,
+      "us_storage": 3489.832,
+      "lng_exports": 11.553,
+      "hdd": 45.64,
+      "cdd": 203.66,
+      "henry_hub_price": 2.64
+    },
+    {
+      "date": "2023-10-01",
+      "us_production": 104.062,
+      "us_consumption": 78.919,
+      "us_storage": 3809.382,
+      "lng_exports": 12.4,
+      "hdd": 206.561,
+      "cdd": 72.786,
+      "henry_hub_price": 2.98
+    },
+    {
+      "date": "2023-11-01",
+      "us_production": 105.55,
+      "us_consumption": 94.373,
+      "us_storage": 3742.244,
+      "lng_exports": 12.875,
+      "hdd": 504.565,
+      "cdd": 20.433,
+      "henry_hub_price": 2.71
+    },
+    {
+      "date": "2023-12-01",
+      "us_production": 105.549,
+      "us_consumption": 102.505,
+      "us_storage": 3457.481,
+      "lng_exports": 13.643,
+      "hdd": 623.902,
+      "cdd": 11.089,
+      "henry_hub_price": 2.52
+    },
+    {
+      "date": "2024-01-01",
+      "us_production": 103.43,
+      "us_consumption": 120.408,
+      "us_storage": 2611.365,
+      "lng_exports": 12.783,
+      "hdd": 840.614,
+      "cdd": 9.392,
+      "henry_hub_price": 3.18
+    },
+    {
+      "date": "2024-02-01",
+      "us_production": 105.902,
+      "us_consumption": 102.523,
+      "us_storage": 2349.68,
+      "lng_exports": 12.399,
+      "hdd": 575.712,
+      "cdd": 12.781,
+      "henry_hub_price": 1.72
+    },
+    {
+      "date": "2024-03-01",
+      "us_production": 102.598,
+      "us_consumption": 90.45,
+      "us_storage": 2306.056,
+      "lng_exports": 11.932,
+      "hdd": 489.335,
+      "cdd": 31.234,
+      "henry_hub_price": 1.49
+    },
+    {
+      "date": "2024-04-01",
+      "us_production": 101.683,
+      "us_consumption": 80.132,
+      "us_storage": 2562.448,
+      "lng_exports": 10.126,
+      "hdd": 281.073,
+      "cdd": 46.461,
+      "henry_hub_price": 1.6
+    },
+    {
+      "date": "2024-05-01",
+      "us_production": 101.501,
+      "us_consumption": 75.592,
+      "us_storage": 2923.176,
+      "lng_exports": 11.862,
+      "hdd": 113.805,
+      "cdd": 157.223,
+      "henry_hub_price": 2.12
+    },
+    {
+      "date": "2024-06-01",
+      "us_production": 102.77,
+      "us_consumption": 81.08,
+      "us_storage": 3174.972,
+      "lng_exports": 11.881,
+      "hdd": 19.601,
+      "cdd": 292.055,
+      "henry_hub_price": 2.54
+    },
+    {
+      "date": "2024-07-01",
+      "us_production": 104.119,
+      "us_consumption": 88.603,
+      "us_storage": 3293.614,
+      "lng_exports": 10.448,
+      "hdd": 4.022,
+      "cdd": 390.583,
+      "henry_hub_price": 2.07
+    },
+    {
+      "date": "2024-08-01",
+      "us_production": 103.05,
+      "us_consumption": 87.942,
+      "us_storage": 3370.254,
+      "lng_exports": 11.728,
+      "hdd": 9.096,
+      "cdd": 341.948,
+      "henry_hub_price": 1.99
+    },
+    {
+      "date": "2024-09-01",
+      "us_production": 101.8,
+      "us_consumption": 80.62,
+      "us_storage": 3615.336,
+      "lng_exports": 12.101,
+      "hdd": 37.331,
+      "cdd": 210.215,
+      "henry_hub_price": 2.28
+    },
+    {
+      "date": "2024-10-01",
+      "us_production": 102.887,
+      "us_consumption": 78.624,
+      "us_storage": 3938.398,
+      "lng_exports": 12.135,
+      "hdd": 186.406,
+      "cdd": 96.577,
+      "henry_hub_price": 2.2
+    },
+    {
+      "date": "2024-11-01",
+      "us_production": 102.993,
+      "us_consumption": 90.418,
+      "us_storage": 3914.872,
+      "lng_exports": 12.536,
+      "hdd": 429.996,
+      "cdd": 32.367,
+      "henry_hub_price": 2.12
+    },
+    {
+      "date": "2024-12-01",
+      "us_production": 105.579,
+      "us_consumption": 108.591,
+      "us_storage": 3437.519,
+      "lng_exports": 13.251,
+      "hdd": 703.911,
+      "cdd": 12.614,
+      "henry_hub_price": 3.01
+    },
+    {
+      "date": "2025-01-01",
+      "us_production": 104.372,
+      "us_consumption": 126.553,
+      "us_storage": 2424.599,
+      "lng_exports": 13.386,
+      "hdd": 946.498,
+      "cdd": 5.291,
+      "henry_hub_price": 4.13
+    },
+    {
+      "date": "2025-02-01",
+      "us_production": 104.964,
+      "us_consumption": 115.605,
+      "us_storage": 1789.619,
+      "lng_exports": 14.615,
+      "hdd": 686.393,
+      "cdd": 17.063,
+      "henry_hub_price": 4.19
+    },
+    {
+      "date": "2025-03-01",
+      "us_production": 107.45,
+      "us_consumption": 89.091,
+      "us_storage": 1835.868,
+      "lng_exports": 14.773,
+      "hdd": 470.087,
+      "cdd": 31.334,
+      "henry_hub_price": 4.12
+    },
+    {
+      "date": "2025-04-01",
+      "us_production": 107.029,
+      "us_consumption": 79.397,
+      "us_storage": 2140.957,
+      "lng_exports": 14.937,
+      "hdd": 278.697,
+      "cdd": 58.58,
+      "henry_hub_price": 3.42
+    },
+    {
+      "date": "2025-05-01",
+      "us_production": 106.636,
+      "us_consumption": 74.543,
+      "us_storage": 2636.591,
+      "lng_exports": 14.042,
+      "hdd": 135.967,
+      "cdd": 127.95,
+      "henry_hub_price": 3.12
+    },
+    {
+      "date": "2025-06-01",
+      "us_production": 107.545,
+      "us_consumption": 80.626,
+      "us_storage": 2990.128,
+      "lng_exports": 13.533,
+      "hdd": 19.731,
+      "cdd": 278.644,
+      "henry_hub_price": 3.02
+    },
+    {
+      "date": "2025-07-01",
+      "us_production": 108.21,
+      "us_consumption": 87.785,
+      "us_storage": 3143.846,
+      "lng_exports": 14.06,
+      "hdd": 4.099,
+      "cdd": 391.545,
+      "henry_hub_price": 3.2
+    },
+    {
+      "date": "2025-08-01",
+      "us_production": 108.751,
+      "us_consumption": 85.296,
+      "us_storage": 3328.533,
+      "lng_exports": 14.553,
+      "hdd": 10.448,
+      "cdd": 310.46,
+      "henry_hub_price": 2.91
+    },
+    {
+      "date": "2025-09-01",
+      "us_production": 108.272,
+      "us_consumption": 80.85,
+      "us_storage": 3636.795,
+      "lng_exports": 15.058,
+      "hdd": 39.77,
+      "cdd": 202.957,
+      "henry_hub_price": 2.97
+    },
+    {
+      "date": "2025-10-01",
+      "us_production": 107.187,
+      "us_consumption": 78.724,
+      "us_storage": 3942.177,
+      "lng_exports": 16.231,
+      "hdd": 215.408,
+      "cdd": 80.481,
+      "henry_hub_price": 3.19
+    },
+    {
+      "date": "2025-11-01",
+      "us_production": 110.379,
+      "us_consumption": 91.73,
+      "us_storage": 3907.921,
+      "lng_exports": 17.408,
+      "hdd": 462.765,
+      "cdd": 26.287,
+      "henry_hub_price": 3.79
+    },
+    {
+      "date": "2025-12-01",
+      "us_production": 110.391,
+      "us_consumption": 110.025,
+      "us_storage": 3322.973,
+      "lng_exports": 17.865,
+      "hdd": 747.672,
+      "cdd": 14.994,
+      "henry_hub_price": 4.26
+    },
+    {
+      "date": "2026-01-01",
+      "us_production": 106.682,
+      "us_consumption": 121.904,
+      "us_storage": 2472.062,
+      "lng_exports": 17.439,
+      "hdd": 879.036,
+      "cdd": 7.599,
+      "henry_hub_price": 7.72
+    },
+    {
+      "date": "2026-02-01",
+      "us_production": 110.279,
+      "us_consumption": 112.931,
+      "us_storage": 1899.942,
+      "lng_exports": 16.356,
+      "hdd": 709.798,
+      "cdd": 10.263,
+      "henry_hub_price": 4.6
+    },
+    {
+      "date": "2026-03-01",
+      "us_production": 110.246,
+      "us_consumption": 93.138,
+      "us_storage": 1865.744,
+      "lng_exports": 16.601,
+      "hdd": 527.669,
+      "cdd": 26.949,
+      "henry_hub_price": 4.117
+    },
+    {
+      "date": "2026-04-01",
+      "us_production": 109.933,
+      "us_consumption": 80.304,
+      "us_storage": 2175.553,
+      "lng_exports": 15.591,
+      "hdd": 298.995,
+      "cdd": 45.148,
+      "henry_hub_price": 3.754
+    },
+    {
+      "date": "2026-05-01",
+      "us_production": 109.803,
+      "us_consumption": 73.394,
+      "us_storage": 2657.739,
+      "lng_exports": 16.448,
+      "hdd": 134.896,
+      "cdd": 134.496,
+      "henry_hub_price": 3.59
+    },
+    {
+      "date": "2026-06-01",
+      "us_production": 109.914,
+      "us_consumption": 79.354,
+      "us_storage": 3021.278,
+      "lng_exports": 14.606,
+      "hdd": 30.906,
+      "cdd": 271.602,
+      "henry_hub_price": 3.499
+    },
+    {
+      "date": "2026-07-01",
+      "us_production": 110.134,
+      "us_consumption": 87.281,
+      "us_storage": 3168.041,
+      "lng_exports": 15.387,
+      "hdd": 7.223,
+      "cdd": 400.875,
+      "henry_hub_price": 3.852
+    },
+    {
+      "date": "2026-08-01",
+      "us_production": 110.357,
+      "us_consumption": 87.143,
+      "us_storage": 3313.423,
+      "lng_exports": 15.665,
+      "hdd": 11.09,
+      "cdd": 369.288,
+      "henry_hub_price": 3.877
+    },
+    {
+      "date": "2026-09-01",
+      "us_production": 110.192,
+      "us_consumption": 81.232,
+      "us_storage": 3652.63,
+      "lng_exports": 15.636,
+      "hdd": 55.137,
+      "cdd": 208.447,
+      "henry_hub_price": 3.848
+    },
+    {
+      "date": "2026-10-01",
+      "us_production": 110.317,
+      "us_consumption": 79.906,
+      "us_storage": 3988.363,
+      "lng_exports": 16.575,
+      "hdd": 236.738,
+      "cdd": 73.121,
+      "henry_hub_price": 3.907
+    },
+    {
+      "date": "2026-11-01",
+      "us_production": 110.715,
+      "us_consumption": 93.82,
+      "us_storage": 3898.639,
+      "lng_exports": 17.7,
+      "hdd": 478.705,
+      "cdd": 22.083,
+      "henry_hub_price": 4.165
+    },
+    {
+      "date": "2026-12-01",
+      "us_production": 111.123,
+      "us_consumption": 110.387,
+      "us_storage": 3379.892,
+      "lng_exports": 18.762,
+      "hdd": 713.407,
+      "cdd": 11.955,
+      "henry_hub_price": 4.784
+    },
+    {
+      "date": "2027-01-01",
+      "us_production": 111.025,
+      "us_consumption": 116.648,
+      "us_storage": 2566.879,
+      "lng_exports": 18.745,
+      "hdd": 790.493,
+      "cdd": 11.513,
+      "henry_hub_price": 5.007
+    },
+    {
+      "date": "2027-02-01",
+      "us_production": 109.727,
+      "us_consumption": 108.756,
+      "us_storage": 2020.857,
+      "lng_exports": 18.425,
+      "hdd": 643.757,
+      "cdd": 13.102,
+      "henry_hub_price": 4.691
+    },
+    {
+      "date": "2027-03-01",
+      "us_production": 110.713,
+      "us_consumption": 92.365,
+      "us_storage": 1882.572,
+      "lng_exports": 18.965,
+      "hdd": 525.269,
+      "cdd": 27.178,
+      "henry_hub_price": 4.408
+    },
+    {
+      "date": "2027-04-01",
+      "us_production": 110.819,
+      "us_consumption": 80.766,
+      "us_storage": 2133.914,
+      "lng_exports": 17.785,
+      "hdd": 297.634,
+      "cdd": 45.541,
+      "henry_hub_price": 4.072
+    },
+    {
+      "date": "2027-05-01",
+      "us_production": 110.784,
+      "us_consumption": 73.706,
+      "us_storage": 2551.063,
+      "lng_exports": 18.658,
+      "hdd": 134.3,
+      "cdd": 135.568,
+      "henry_hub_price": 4.152
+    },
+    {
+      "date": "2027-06-01",
+      "us_production": 110.849,
+      "us_consumption": 80.057,
+      "us_storage": 2841.679,
+      "lng_exports": 17.358,
+      "hdd": 30.811,
+      "cdd": 273.632,
+      "henry_hub_price": 4.143
+    },
+    {
+      "date": "2027-07-01",
+      "us_production": 111.118,
+      "us_consumption": 88.662,
+      "us_storage": 2975.152,
+      "lng_exports": 16.008,
+      "hdd": 7.208,
+      "cdd": 403.803,
+      "henry_hub_price": 4.137
+    },
+    {
+      "date": "2027-08-01",
+      "us_production": 111.203,
+      "us_consumption": 88.644,
+      "us_storage": 3087.439,
+      "lng_exports": 17.195,
+      "hdd": 11.057,
+      "cdd": 372.024,
+      "henry_hub_price": 4.203
+    },
+    {
+      "date": "2027-09-01",
+      "us_production": 111.438,
+      "us_consumption": 82.71,
+      "us_storage": 3408.595,
+      "lng_exports": 17.096,
+      "hdd": 54.933,
+      "cdd": 210.074,
+      "henry_hub_price": 4.199
+    },
+    {
+      "date": "2027-10-01",
+      "us_production": 111.876,
+      "us_consumption": 81.034,
+      "us_storage": 3729.335,
+      "lng_exports": 17.843,
+      "hdd": 235.72,
+      "cdd": 73.752,
+      "henry_hub_price": 4.256
+    },
+    {
+      "date": "2027-11-01",
+      "us_production": 112.344,
+      "us_consumption": 94.723,
+      "us_storage": 3660.502,
+      "lng_exports": 18.854,
+      "hdd": 476.639,
+      "cdd": 22.277,
+      "henry_hub_price": 4.364
+    },
+    {
+      "date": "2027-12-01",
+      "us_production": 112.91,
+      "us_consumption": 111.154,
+      "us_storage": 3096.227,
+      "lng_exports": 20.296,
+      "hdd": 710.304,
+      "cdd": 12.055,
+      "henry_hub_price": 4.924
+    }
+  ],
+  "forecast_month": "feb26",
+  "saved_at": "2026-03-13T13:57:45.868862+09:00"
+}

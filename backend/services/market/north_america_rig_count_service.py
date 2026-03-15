@@ -9,6 +9,7 @@
     - FMPイベント: "Baker Hughes Oil Rig Count"
     - 月次データの最新月以降を補完
 
+更新スケジュール: 週次（FMPマッピング: Baker Hughes Oil Rig Count）
 更新: 6時間TTL (Redis + ファイル)
 """
 import json

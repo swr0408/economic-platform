@@ -4,6 +4,7 @@
 yfinance の ^N225 月足終値から前年比(%)を計算して返す。
 pct_change(periods=12) 方式（参考: 中国M2前年比.py）
 
+更新スケジュール: 日次（JST 7:00 / 15:30）
 更新: 6時間TTL (Redis + ファイル)
 """
 import json

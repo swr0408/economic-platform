@@ -5,6 +5,7 @@
   - DB: china_gold_etf_balance テーブル（日次）
   - CSVインポート + scheduler日次SSE API更新
 
+更新スケジュール: 日次（JST 8:30）
 更新: 6時間TTL (Redis + ファイル)
 """
 import json

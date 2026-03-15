@@ -265,7 +265,7 @@ export default function DistillateFuelInventoriesChart() {
 
   return (
     <ChartContainer
-      title="米国蒸留燃料在庫（EIA）"
+      title="米国蒸留燃料在庫"
       dataSource="EIA"
       sourceUrl="https://www.eia.gov/petroleum/"
       showPeriodSelector={false}
@@ -300,12 +300,12 @@ export default function DistillateFuelInventoriesChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* タブ切替 */}
@@ -359,8 +359,8 @@ export default function DistillateFuelInventoriesChart() {
                         <YAxis yAxisId="oil" orientation="right" reversed domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => `$${v.toFixed(0)}`} stroke={COLOR_OIL} tick={{ fill: COLOR_OIL, fontSize: 10 }} width={50} axisLine={{ stroke: COLOR_OIL, strokeDasharray: '4 3' }} />
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Line yAxisId="left" type="monotone" dataKey="value" name="蒸留燃料在庫 (千bbl)" stroke={COLOR_DISTILLATE} strokeWidth={2} dot={false} hide={hiddenSeries.has('value')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="left" type="monotone" dataKey="value" name="蒸留燃料在庫 (千bbl)" stroke={COLOR_DISTILLATE} strokeWidth={2} dot={false} hide={hiddenSeries.has('value')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -379,8 +379,8 @@ export default function DistillateFuelInventoriesChart() {
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Line yAxisId="left" type="monotone" dataKey="yoy" name="蒸留燃料在庫 YoY %" stroke={COLOR_DISTILLATE} strokeWidth={2} dot={false} hide={hiddenSeries.has('yoy')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="left" type="monotone" dataKey="yoy" name="蒸留燃料在庫 YoY %" stroke={COLOR_DISTILLATE} strokeWidth={2} dot={false} hide={hiddenSeries.has('yoy')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -401,7 +401,7 @@ export default function DistillateFuelInventoriesChart() {
                           formatter={(value: number) => [`${value >= 0 ? '+' : ''}${value.toFixed(2)}%`, '蒸留燃料在庫 MoM']}
                         />
                         <ReferenceLine y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
-                        <Bar dataKey="mom" name="蒸留燃料在庫 前月比 (%)" fill={COLOR_DISTILLATE} />
+                        <Bar dataKey="mom" name="蒸留燃料在庫 前月比 (%)" fill={COLOR_DISTILLATE} isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>

@@ -2,192 +2,191 @@
   "data": {
     "debt": [
       {
-        "fiscal_year": 2025,
-        "value": 30102.75
-      },
-      {
         "fiscal_year": 2026,
-        "value": 31882.63
+        "value": 32095.17
       },
       {
         "fiscal_year": 2027,
-        "value": 33636.11
+        "value": 34004.52
       },
       {
         "fiscal_year": 2028,
-        "value": 35600.64
+        "value": 36092.75
       },
       {
         "fiscal_year": 2029,
-        "value": 37580.5
+        "value": 38102.76
       },
       {
         "fiscal_year": 2030,
-        "value": 39747.65
+        "value": 40279.64
       },
       {
         "fiscal_year": 2031,
-        "value": 41992.39
+        "value": 42528.34
       },
       {
         "fiscal_year": 2032,
-        "value": 44371.75
+        "value": 44922.49
       },
       {
         "fiscal_year": 2033,
-        "value": 46985.03
+        "value": 47644.19
       },
       {
         "fiscal_year": 2034,
-        "value": 49555.5
+        "value": 50393.85
       },
       {
         "fiscal_year": 2035,
-        "value": 52055.87
+        "value": 53103.22
+      },
+      {
+        "fiscal_year": 2036,
+        "value": 56152.39
       }
     ],
     "deficit": [
       {
-        "fiscal_year": 2025,
-        "value": -1871.83
-      },
-      {
         "fiscal_year": 2026,
-        "value": -1709.09
+        "value": -1859.16
       },
       {
         "fiscal_year": 2027,
-        "value": -1680.7
+        "value": -1883.27
       },
       {
         "fiscal_year": 2028,
-        "value": -1903.93
+        "value": -2075.28
       },
       {
         "fiscal_year": 2029,
-        "value": -1931.36
+        "value": -2014.34
       },
       {
         "fiscal_year": 2030,
-        "value": -2132.62
+        "value": -2193.93
       },
       {
         "fiscal_year": 2031,
-        "value": -2225.19
+        "value": -2278.04
       },
       {
         "fiscal_year": 2032,
-        "value": -2362.47
+        "value": -2431.44
       },
       {
         "fiscal_year": 2033,
-        "value": -2626.99
+        "value": -2770.26
       },
       {
         "fiscal_year": 2034,
-        "value": -2585.56
+        "value": -2807.35
       },
       {
         "fiscal_year": 2035,
-        "value": -2518.55
+        "value": -2766.89
+      },
+      {
+        "fiscal_year": 2036,
+        "value": -3102.47
       }
     ],
     "revenue": [
       {
-        "fiscal_year": 2025,
-        "value": 5162.89
-      },
-      {
         "fiscal_year": 2026,
-        "value": 5580.34
+        "value": 5595.92
       },
       {
         "fiscal_year": 2027,
-        "value": 5934.84
+        "value": 5885.2
       },
       {
         "fiscal_year": 2028,
-        "value": 6108.4
+        "value": 6071.47
       },
       {
         "fiscal_year": 2029,
-        "value": 6289.9
+        "value": 6319.79
       },
       {
         "fiscal_year": 2030,
-        "value": 6549.5
+        "value": 6595.0
       },
       {
         "fiscal_year": 2031,
-        "value": 6834.13
+        "value": 6869.49
       },
       {
         "fiscal_year": 2032,
-        "value": 7106.35
+        "value": 7129.68
       },
       {
         "fiscal_year": 2033,
-        "value": 7404.52
+        "value": 7391.48
       },
       {
         "fiscal_year": 2034,
-        "value": 7708.29
+        "value": 7668.92
       },
       {
         "fiscal_year": 2035,
-        "value": 8031.42
+        "value": 7971.86
+      },
+      {
+        "fiscal_year": 2036,
+        "value": 8300.75
       }
     ],
     "outlay": [
       {
-        "fiscal_year": 2025,
-        "value": 7034.72
-      },
-      {
         "fiscal_year": 2026,
-        "value": 7289.43
+        "value": 7455.08
       },
       {
         "fiscal_year": 2027,
-        "value": 7615.54
+        "value": 7768.47
       },
       {
         "fiscal_year": 2028,
-        "value": 8012.33
+        "value": 8146.74
       },
       {
         "fiscal_year": 2029,
-        "value": 8221.26
+        "value": 8334.13
       },
       {
         "fiscal_year": 2030,
-        "value": 8682.11
+        "value": 8788.93
       },
       {
         "fiscal_year": 2031,
-        "value": 9059.32
+        "value": 9147.53
       },
       {
         "fiscal_year": 2032,
-        "value": 9468.82
+        "value": 9561.12
       },
       {
         "fiscal_year": 2033,
-        "value": 10031.5
+        "value": 10161.73
       },
       {
         "fiscal_year": 2034,
-        "value": 10293.84
+        "value": 10476.27
       },
       {
         "fiscal_year": 2035,
-        "value": 10549.97
+        "value": 10738.75
+      },
+      {
+        "fiscal_year": 2036,
+        "value": 11403.22
       }
     ]
   },
-  "latest_baseline_date": "2025-01-01",
+  "latest_baseline_date": "2026-02-01",
   "projection_years": [
-    2025,
     2026,
     2027,
     2028,
@@ -197,7 +196,8 @@
     2032,
     2033,
     2034,
-    2035
+    2035,
+    2036
   ],
   "metadata": {
     "source": "Congressional Budget Office (CBO)",
@@ -206,5 +206,5 @@
     "description": "CBO財政見通し（債務・赤字・歳入・歳出）",
     "github_repo": "US-CBO/eval-projections"
   },
-  "last_updated": "2026-02-11T04:05:00.480104"
+  "last_updated": "2026-03-15T14:02:25.751734"
 }

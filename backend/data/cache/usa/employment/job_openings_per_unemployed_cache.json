@@ -1449,364 +1449,370 @@
     {
       "date": "2021-01-01",
       "value": 0.7,
-      "jolts": 7204.0,
+      "jolts": 7162.0,
       "unemployed": 10260.0
     },
     {
       "date": "2021-02-01",
-      "value": 0.77,
-      "jolts": 7752.0,
+      "value": 0.78,
+      "jolts": 7827.0,
       "unemployed": 10013.0
     },
     {
       "date": "2021-03-01",
       "value": 0.87,
-      "jolts": 8470.0,
+      "jolts": 8499.0,
       "unemployed": 9772.0
     },
     {
       "date": "2021-04-01",
       "value": 0.96,
-      "jolts": 9356.0,
+      "jolts": 9346.0,
       "unemployed": 9754.0
     },
     {
       "date": "2021-05-01",
       "value": 1.07,
-      "jolts": 9905.0,
+      "jolts": 9954.0,
       "unemployed": 9260.0
     },
     {
       "date": "2021-06-01",
       "value": 1.09,
-      "jolts": 10298.0,
+      "jolts": 10319.0,
       "unemployed": 9481.0
     },
     {
       "date": "2021-07-01",
-      "value": 1.27,
-      "jolts": 11049.0,
+      "value": 1.26,
+      "jolts": 10983.0,
       "unemployed": 8731.0
     },
     {
       "date": "2021-08-01",
-      "value": 1.32,
-      "jolts": 10956.0,
+      "value": 1.31,
+      "jolts": 10872.0,
       "unemployed": 8269.0
     },
     {
       "date": "2021-09-01",
-      "value": 1.43,
-      "jolts": 10879.0,
+      "value": 1.42,
+      "jolts": 10834.0,
       "unemployed": 7610.0
     },
     {
       "date": "2021-10-01",
-      "value": 1.56,
-      "jolts": 11341.0,
+      "value": 1.55,
+      "jolts": 11238.0,
       "unemployed": 7267.0
     },
     {
       "date": "2021-11-01",
-      "value": 1.65,
-      "jolts": 11119.0,
+      "value": 1.66,
+      "jolts": 11199.0,
       "unemployed": 6729.0
     },
     {
       "date": "2021-12-01",
-      "value": 1.78,
-      "jolts": 11417.0,
+      "value": 1.8,
+      "jolts": 11520.0,
       "unemployed": 6413.0
     },
     {
       "date": "2022-01-01",
       "value": 1.72,
-      "jolts": 11238.0,
+      "jolts": 11210.0,
       "unemployed": 6533.0
     },
     {
       "date": "2022-02-01",
-      "value": 1.84,
-      "jolts": 11661.0,
+      "value": 1.85,
+      "jolts": 11698.0,
       "unemployed": 6323.0
     },
     {
       "date": "2022-03-01",
-      "value": 2.01,
-      "jolts": 12134.0,
+      "value": 2.04,
+      "jolts": 12301.0,
       "unemployed": 6033.0
     },
     {
       "date": "2022-04-01",
       "value": 1.98,
-      "jolts": 11881.0,
+      "jolts": 11861.0,
       "unemployed": 5995.0
     },
     {
       "date": "2022-05-01",
-      "value": 1.92,
-      "jolts": 11483.0,
+      "value": 1.93,
+      "jolts": 11535.0,
       "unemployed": 5979.0
     },
     {
       "date": "2022-06-01",
-      "value": 1.88,
-      "jolts": 11256.0,
+      "value": 1.89,
+      "jolts": 11283.0,
       "unemployed": 5975.0
     },
     {
       "date": "2022-07-01",
       "value": 2.01,
-      "jolts": 11610.0,
+      "jolts": 11576.0,
       "unemployed": 5770.0
     },
     {
       "date": "2022-08-01",
-      "value": 1.72,
-      "jolts": 10148.0,
+      "value": 1.71,
+      "jolts": 10092.0,
       "unemployed": 5909.0
     },
     {
       "date": "2022-09-01",
       "value": 1.88,
-      "jolts": 10812.0,
+      "jolts": 10800.0,
       "unemployed": 5747.0
     },
     {
       "date": "2022-10-01",
       "value": 1.76,
-      "jolts": 10488.0,
+      "jolts": 10447.0,
       "unemployed": 5949.0
     },
     {
       "date": "2022-11-01",
-      "value": 1.79,
-      "jolts": 10619.0,
+      "value": 1.8,
+      "jolts": 10632.0,
       "unemployed": 5918.0
     },
     {
       "date": "2022-12-01",
-      "value": 1.88,
-      "jolts": 10876.0,
+      "value": 1.89,
+      "jolts": 10902.0,
       "unemployed": 5781.0
     },
     {
       "date": "2023-01-01",
-      "value": 1.8,
-      "jolts": 10393.0,
+      "value": 1.79,
+      "jolts": 10318.0,
       "unemployed": 5770.0
     },
     {
       "date": "2023-02-01",
-      "value": 1.64,
-      "jolts": 9846.0,
+      "value": 1.65,
+      "jolts": 9857.0,
       "unemployed": 5987.0
     },
     {
       "date": "2023-03-01",
-      "value": 1.63,
-      "jolts": 9572.0,
+      "value": 1.65,
+      "jolts": 9655.0,
       "unemployed": 5859.0
     },
     {
       "date": "2023-04-01",
-      "value": 1.74,
-      "jolts": 9992.0,
+      "value": 1.73,
+      "jolts": 9966.0,
       "unemployed": 5747.0
     },
     {
       "date": "2023-05-01",
-      "value": 1.53,
-      "jolts": 9310.0,
+      "value": 1.54,
+      "jolts": 9368.0,
       "unemployed": 6084.0
     },
     {
       "date": "2023-06-01",
-      "value": 1.54,
-      "jolts": 9191.0,
+      "value": 1.53,
+      "jolts": 9180.0,
       "unemployed": 5985.0
     },
     {
       "date": "2023-07-01",
-      "value": 1.45,
-      "jolts": 8606.0,
+      "value": 1.46,
+      "jolts": 8657.0,
       "unemployed": 5923.0
     },
     {
       "date": "2023-08-01",
-      "value": 1.48,
-      "jolts": 9287.0,
+      "value": 1.47,
+      "jolts": 9254.0,
       "unemployed": 6275.0
     },
     {
       "date": "2023-09-01",
       "value": 1.48,
-      "jolts": 9279.0,
+      "jolts": 9259.0,
       "unemployed": 6274.0
     },
     {
       "date": "2023-10-01",
-      "value": 1.32,
-      "jolts": 8550.0,
+      "value": 1.33,
+      "jolts": 8580.0,
       "unemployed": 6463.0
     },
     {
       "date": "2023-11-01",
-      "value": 1.39,
-      "jolts": 8663.0,
+      "value": 1.38,
+      "jolts": 8602.0,
       "unemployed": 6226.0
     },
     {
       "date": "2023-12-01",
-      "value": 1.36,
-      "jolts": 8585.0,
+      "value": 1.35,
+      "jolts": 8520.0,
       "unemployed": 6329.0
     },
     {
       "date": "2024-01-01",
-      "value": 1.37,
-      "jolts": 8468.0,
+      "value": 1.36,
+      "jolts": 8378.0,
       "unemployed": 6175.0
     },
     {
       "date": "2024-02-01",
       "value": 1.3,
-      "jolts": 8445.0,
+      "jolts": 8440.0,
       "unemployed": 6486.0
     },
     {
       "date": "2024-03-01",
-      "value": 1.24,
-      "jolts": 8093.0,
+      "value": 1.26,
+      "jolts": 8206.0,
       "unemployed": 6521.0
     },
     {
       "date": "2024-04-01",
-      "value": 1.17,
-      "jolts": 7619.0,
+      "value": 1.16,
+      "jolts": 7529.0,
       "unemployed": 6486.0
     },
     {
       "date": "2024-05-01",
-      "value": 1.19,
-      "jolts": 7901.0,
+      "value": 1.17,
+      "jolts": 7782.0,
       "unemployed": 6627.0
     },
     {
       "date": "2024-06-01",
       "value": 1.08,
-      "jolts": 7412.0,
+      "jolts": 7416.0,
       "unemployed": 6881.0
     },
     {
       "date": "2024-07-01",
-      "value": 1.06,
-      "jolts": 7504.0,
+      "value": 1.05,
+      "jolts": 7426.0,
       "unemployed": 7098.0
     },
     {
       "date": "2024-08-01",
-      "value": 1.08,
-      "jolts": 7649.0,
+      "value": 1.06,
+      "jolts": 7520.0,
       "unemployed": 7063.0
     },
     {
       "date": "2024-09-01",
-      "value": 1.04,
-      "jolts": 7103.0,
+      "value": 1.01,
+      "jolts": 6943.0,
       "unemployed": 6849.0
     },
     {
       "date": "2024-10-01",
-      "value": 1.1,
-      "jolts": 7615.0,
+      "value": 1.06,
+      "jolts": 7379.0,
       "unemployed": 6951.0
     },
     {
       "date": "2024-11-01",
-      "value": 1.13,
-      "jolts": 8031.0,
+      "value": 1.07,
+      "jolts": 7566.0,
       "unemployed": 7089.0
     },
     {
       "date": "2024-12-01",
-      "value": 1.08,
-      "jolts": 7508.0,
+      "value": 1.05,
+      "jolts": 7295.0,
       "unemployed": 6920.0
     },
     {
       "date": "2025-01-01",
-      "value": 1.13,
-      "jolts": 7762.0,
+      "value": 1.08,
+      "jolts": 7431.0,
       "unemployed": 6865.0
     },
     {
       "date": "2025-02-01",
-      "value": 1.05,
-      "jolts": 7480.0,
+      "value": 1.02,
+      "jolts": 7242.0,
       "unemployed": 7104.0
     },
     {
       "date": "2025-03-01",
-      "value": 1.01,
-      "jolts": 7200.0,
+      "value": 0.97,
+      "jolts": 6952.0,
       "unemployed": 7132.0
     },
     {
       "date": "2025-04-01",
-      "value": 1.03,
-      "jolts": 7395.0,
+      "value": 0.99,
+      "jolts": 7098.0,
       "unemployed": 7155.0
     },
     {
       "date": "2025-05-01",
-      "value": 1.06,
-      "jolts": 7712.0,
+      "value": 1.01,
+      "jolts": 7310.0,
       "unemployed": 7248.0
     },
     {
       "date": "2025-06-01",
-      "value": 1.04,
-      "jolts": 7357.0,
+      "value": 1.02,
+      "jolts": 7204.0,
       "unemployed": 7054.0
     },
     {
       "date": "2025-07-01",
-      "value": 0.99,
-      "jolts": 7208.0,
+      "value": 0.97,
+      "jolts": 7089.0,
       "unemployed": 7272.0
     },
     {
       "date": "2025-08-01",
-      "value": 0.98,
-      "jolts": 7227.0,
+      "value": 0.94,
+      "jolts": 6919.0,
       "unemployed": 7380.0
     },
     {
       "date": "2025-09-01",
-      "value": 1.01,
-      "jolts": 7658.0,
+      "value": 0.94,
+      "jolts": 7169.0,
       "unemployed": 7605.0
     },
     {
       "date": "2025-11-01",
-      "value": 0.89,
-      "jolts": 6928.0,
+      "value": 0.88,
+      "jolts": 6846.0,
       "unemployed": 7781.0
     },
     {
       "date": "2025-12-01",
       "value": 0.87,
-      "jolts": 6542.0,
+      "jolts": 6550.0,
       "unemployed": 7503.0
+    },
+    {
+      "date": "2026-01-01",
+      "value": 0.94,
+      "jolts": 6946.0,
+      "unemployed": 7368.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 0.87,
-    "jolts": 6542.0,
-    "unemployed": 7503.0
+    "date": "2026-01-01",
+    "value": 0.94,
+    "jolts": 6946.0,
+    "unemployed": 7368.0
   },
-  "latest_data_date": "2025-12-01",
-  "last_updated": "2026-03-11T23:02:03.470589+09:00"
+  "latest_data_date": "2026-01-01",
+  "last_updated": "2026-03-15T23:02:19.075117+09:00"
 }

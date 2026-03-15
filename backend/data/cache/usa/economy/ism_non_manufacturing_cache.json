@@ -1077,14 +1077,14 @@
     {
       "date": "2026-02-01",
       "value": 56.1,
-      "forecast": 53.0,
+      "forecast": 53.5,
       "previous": 53.8
     }
   ],
   "latest": {
     "date": "2026-02-01",
     "value": 56.1,
-    "forecast": 53.0,
+    "forecast": 53.5,
     "previous": 53.8
   },
   "next_release": {
@@ -1092,8 +1092,8 @@
     "datetime_utc": "2026-04-03T14:00:00+00:00",
     "datetime_jst": "2026-04-03T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Services PMI (Mar)",
-    "estimate": 52
+    "label": "ISM Non-Manufacturing PMI (Mar)",
+    "estimate": null
   },
-  "last_updated": "2026-03-13T00:42:04.083844+09:00"
+  "last_updated": "2026-03-16T00:57:10.041108+09:00"
 }

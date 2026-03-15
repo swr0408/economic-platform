@@ -286,7 +286,7 @@ export default function CrudeOilNetDemandChart() {
 
   return (
     <ChartContainer
-      title="米国 原油純需要（EIA Weekly）"
+      title="米国 原油純需要"
       dataSource="EIA"
       sourceUrl="https://www.eia.gov/petroleum/supply/weekly/"
       showPeriodSelector={false}
@@ -329,12 +329,12 @@ export default function CrudeOilNetDemandChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* Tab */}
@@ -384,14 +384,14 @@ export default function CrudeOilNetDemandChart() {
                       <ComposedChart data={filteredData} margin={CHART_MARGIN}>
                         <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
                         <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
-                        <YAxis yAxisId="left" domain={['dataMin - 500', 'dataMax + 500']} tickFormatter={(v: number) => `${(v / 1000).toFixed(1)}K`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50} label={{ value: '千bbl/日', angle: -90, position: 'insideLeft', style: { fill: DARK_THEME.textSecondary, fontSize: 10 } }} />
+                        <YAxis yAxisId="left" domain={['dataMin - 500', 'dataMax + 500']} tickFormatter={(v: number) => `${(v / 1000).toFixed(1)}K`} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={50}  />
                         <YAxis yAxisId="oil" orientation="right" domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => `$${v.toFixed(0)}`} stroke={COLOR_OIL} tick={{ fill: COLOR_OIL, fontSize: 10 }} width={50} axisLine={{ stroke: COLOR_OIL, strokeDasharray: '4 3' }} />
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Bar yAxisId="left" dataKey="net_demand" name="純需要 (千bbl/日)" fill={COLOR_NET} opacity={0.5} hide={hiddenSeries.has('net_demand')} />
-                        <Line yAxisId="left" type="monotone" dataKey="ma4" name="4W移動平均 (千bbl/日)" stroke={COLOR_MA4} strokeWidth={2.5} dot={false} hide={hiddenSeries.has('ma4')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Bar yAxisId="left" dataKey="net_demand" name="純需要 (千bbl/日)" fill={COLOR_NET} opacity={0.5} hide={hiddenSeries.has('net_demand')} isAnimationActive={false} />
+                        <Line yAxisId="left" type="monotone" dataKey="ma4" name="4W移動平均 (千bbl/日)" stroke={COLOR_MA4} strokeWidth={2.5} dot={false} hide={hiddenSeries.has('ma4')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -409,10 +409,10 @@ export default function CrudeOilNetDemandChart() {
                         <YAxis yAxisId="oil" orientation="right" domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => `$${v.toFixed(0)}`} stroke={COLOR_OIL} tick={{ fill: COLOR_OIL, fontSize: 10 }} width={50} axisLine={{ stroke: COLOR_OIL, strokeDasharray: '4 3' }} />
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Line yAxisId="left" type="monotone" dataKey="products_supplied" name="製品供給 (千bbl/日)" stroke={COLOR_SUPPLIED} strokeWidth={2} dot={false} hide={hiddenSeries.has('products_supplied')} connectNulls />
-                        <Line yAxisId="left" type="monotone" dataKey="field_production" name="原油生産 (千bbl/日)" stroke={COLOR_PROD} strokeWidth={2} dot={false} hide={hiddenSeries.has('field_production')} connectNulls />
-                        <Line yAxisId="left" type="monotone" dataKey="net_demand" name="純需要 (千bbl/日)" stroke={COLOR_NET} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('net_demand')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="left" type="monotone" dataKey="products_supplied" name="製品供給 (千bbl/日)" stroke={COLOR_SUPPLIED} strokeWidth={2} dot={false} hide={hiddenSeries.has('products_supplied')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="left" type="monotone" dataKey="field_production" name="原油生産 (千bbl/日)" stroke={COLOR_PROD} strokeWidth={2} dot={false} hide={hiddenSeries.has('field_production')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="left" type="monotone" dataKey="net_demand" name="純需要 (千bbl/日)" stroke={COLOR_NET} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('net_demand')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -431,9 +431,9 @@ export default function CrudeOilNetDemandChart() {
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Bar yAxisId="left" dataKey="yoy" name="純需要 YoY (%)" fill={COLOR_NET} opacity={0.4} hide={hiddenSeries.has('yoy')} />
-                        <Line yAxisId="left" type="monotone" dataKey="ma4_yoy" name="4W MA YoY (%)" stroke={COLOR_MA4} strokeWidth={2.5} dot={false} hide={hiddenSeries.has('ma4_yoy')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Bar yAxisId="left" dataKey="yoy" name="純需要 YoY (%)" fill={COLOR_NET} opacity={0.4} hide={hiddenSeries.has('yoy')} isAnimationActive={false} />
+                        <Line yAxisId="left" type="monotone" dataKey="ma4_yoy" name="4W MA YoY (%)" stroke={COLOR_MA4} strokeWidth={2.5} dot={false} hide={hiddenSeries.has('ma4_yoy')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>

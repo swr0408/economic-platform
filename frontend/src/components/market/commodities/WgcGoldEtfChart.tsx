@@ -254,7 +254,7 @@ export default function WgcGoldEtfChart() {
 
   return (
     <ChartContainer
-      title="金ETFフロー/保有残高（WGC）"
+      title="金ETFフロー/保有残高"
       dataSource="World Gold Council"
       showPeriodSelector={false}
       sourceUrl="https://www.gold.org/goldhub/data/global-gold-backed-etf-holdings-and-flows"

@@ -82,6 +82,26 @@ notes: |
 
 ## 実装チェックリスト
 
+> ### ⚠️ 厳守: マーケットサービスのスケジューラー登録
+> **`backend/services/market/` に新しいサービスを追加した場合、必ず `backend/services/market/market_scheduler.py` にスケジュールジョブを登録すること。**
+> 登録漏れがあるとデータが自動更新されず、ユーザーがアクセスしない限り古いデータのままになる。
+>
+> **必須手順:**
+> 1. サービスのdocstringに `更新スケジュール:` を記載（例: `更新スケジュール: 日次（JST 8:30）`）
+> 2. `market_scheduler.py` の該当時間帯のジョブに `_import_service()` + `_safe_call()` を追加
+> 3. `market_scheduler.py` 冒頭のスケジュール一覧コメントを更新
+>
+> **スケジュール時間帯の目安:**
+> - JST 5:00: 気象データ (NOAA)
+> - JST 7:00: 朝の日次更新 (GEX/DIX, 日経YoY, 電子部品等)
+> - JST 8:00: CBOE PCR
+> - JST 8:30: 貴金属・銅 (Gold/Silver/Copper ETF & Stocks)
+> - JST 9:00: Fear & Greed, NAAIM(金曜)
+> - JST 15:30-16:00: 東証引け後 (騰落レシオ, JPX投資部門別, 日経ダブルインバース)
+> - JST 20:30: JPX PCR
+> - 土曜 9:00-10:00: 週次エネルギー (EIA, リグカウント, 天然ガス等)
+> - 毎月10日: TSMC Revenue
+
 ### Phase 1: バックエンド実装
 
 #### 1.1 サービスファイル作成
@@ -95,6 +115,7 @@ notes: |
   - [ ] ファイルキャッシュ（フォールバック用）
   - [ ] `next_release` 取得
   - [ ] シングルトンインスタンス
+  - [ ] docstringに `更新スケジュール:` を記載
 
 #### 1.2 ダッシュボードローダー更新
 - [ ] **ファイル**: `backend/services/dashboard/loaders/{country}_{category}.py`
@@ -109,6 +130,13 @@ notes: |
 #### 1.4 FMPマッピング確認（未登録の場合）
 - [ ] **ファイル**: `backend/scripts/add_indicator_mappings.sql`
 - [ ] indicator_event_mapping テーブルにレコード追加
+
+#### 1.5 スケジューラー登録（マーケットサービスの場合）
+- [ ] **ファイル**: `backend/services/market/market_scheduler.py`
+- [ ] 該当時間帯のジョブメソッドに追加、または新しいジョブを作成
+- [ ] `_import_service("xxx_service", "xxx_service")` + `_safe_call()` でラップ
+- [ ] 冒頭のスケジュール一覧コメントを更新
+- [ ] **⚠️ この手順を飛ばすとデータが自動更新されない**
 
 ---
 
@@ -194,6 +222,11 @@ notes: |
 ---
 
 ## よくある実装漏れ
+
+0. **マーケットサービスのデータが自動更新されない**
+   - `market_scheduler.py` にスケジュールジョブが登録されていない
+   - サービスのdocstringに `更新スケジュール:` が記載されていない
+   - **必ず Phase 1.5 のステップを実行すること**
 
 1. **画面表示されない**
    - ダッシュボードローダーに追加忘れ
@@ -828,6 +861,7 @@ notes: |
       dot={false}
       hide={hiddenSeries.has('oil_price')}
       connectNulls
+      isAnimationActive={false}   // ← 必須
     />
     ```
 
@@ -953,8 +987,8 @@ notes: |
                     <ResponsiveContainer width="100%" height={400}>
                       <ComposedChart data={filteredData} margin={CHART_MARGIN}>
                         {/* CartesianGrid, XAxis, YAxis(left), YAxis(oil, reversed), Tooltip, Legend */}
-                        <Line yAxisId="left" dataKey="value" name="在庫名 (千bbl)" ... />
-                        <Line yAxisId="oil" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" ... />
+                        <Line yAxisId="left" dataKey="value" name="在庫名 (千bbl)" ... isAnimationActive={false} />
+                        <Line yAxisId="oil" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" ... isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -968,8 +1002,8 @@ notes: |
                       <ComposedChart data={filteredData} margin={CHART_MARGIN}>
                         {/* CartesianGrid, XAxis, YAxis(left, %), YAxis(oil, reversed), Tooltip, Legend */}
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
-                        <Line yAxisId="left" dataKey="yoy" name="在庫名 YoY %" ... />
-                        <Line yAxisId="oil" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" ... />
+                        <Line yAxisId="left" dataKey="yoy" name="在庫名 YoY %" ... isAnimationActive={false} />
+                        <Line yAxisId="oil" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" ... isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -983,7 +1017,7 @@ notes: |
                       <ComposedChart data={filteredMomChartData} margin={CHART_MARGIN}>
                         {/* CartesianGrid, XAxis, YAxis(%) */}
                         <ReferenceLine y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
-                        <Bar dataKey="mom" name="在庫名 前月比 (%)" fill={COLOR_MAIN} />
+                        <Bar dataKey="mom" name="在庫名 前月比 (%)" fill={COLOR_MAIN} isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -1030,6 +1064,7 @@ notes: |
     - `heatmap`: ヒートマップボタン（purple系）
 
     #### 注意事項
+    - **全ての `<Line>`, `<Bar>`, `<Area>` に `isAnimationActive={false}` を必ず付ける**（→ 項目24参照）
     - **前年比ヒートマップは作成しない**（ユーザー明示: 不要）
     - **チャート/ヒートマップ切替は `viewMode === 'mom'` の時のみ表示**
     - **チャートmarginは `CHART_MARGIN` を使用**（`chartConstants.ts` からimport、ハードコード禁止）
@@ -1052,6 +1087,107 @@ notes: |
     - YoY計算: 364日前 ±7日のfuzzyマッチで前年同週を検索
     - 参考: `backend/services/market/distillate_fuel_inventories_service.py`
 
+24. **Rechartsの`<Line>` `<Bar>` `<Area>`に`isAnimationActive={false}`を付け忘れる**
+    - **問題**: Rechartsのデフォルトではアニメーションが有効。チャートが多い画面でアニメーションが動くとUX低下
+    - **症状**: チャート表示時に線やバーがアニメーション付きで描画される
+    - **ルール**: **全ての `<Line>`, `<Bar>`, `<Area>` 要素に `isAnimationActive={false}` を必ず付ける**
+    - **チェック方法**:
+      ```bash
+      # isAnimationActiveが付いていないLine/Bar/Area要素を検索
+      rg '<(Line|Bar|Area)\b' --glob '*.tsx' path/to/file.tsx | grep -v 'isAnimationActive'
+      ```
+    - **注意**: `.map()` で動的にLine/Barを生成する場合も忘れずに付ける
+      ```tsx
+      // ❌ 忘れがち
+      {series.map((s) => (
+        <Line key={s.key} dataKey={s.key} stroke={s.color} dot={false} connectNulls />
+      ))}
+
+      // ✅ 正しい
+      {series.map((s) => (
+        <Line key={s.key} dataKey={s.key} stroke={s.color} dot={false} connectNulls isAnimationActive={false} />
+      ))}
+      ```
+    - **ヘルパー関数で`<Line>`を返す場合も忘れずに付ける**:
+      ```tsx
+      // renderPrevLines等のヘルパー関数内のLineにも isAnimationActive={false} を付ける
+      const renderPrevLines = (fields) => {
+        return fields.map(f => (
+          <Line key={f.prevKey} dataKey={f.prevKey} ... isAnimationActive={false} />
+        ))
+      }
+      ```
+
+25. **正負スタック棒グラフで`stackOffset="sign"`を使わない**
+    - **問題**: 輸出（正値）と輸入（負値）のような正負のスタック棒グラフで、別々の`stackId`を使うとゼロ付近にギャップができる
+    - **症状**: 正の棒と負の棒がゼロラインで接しない、見た目が不自然
+    - **解決策**: `ComposedChart`に`stackOffset="sign"`を指定し、全バーを同一`stackId`にする
+      ```tsx
+      // ❌ NG: 別々のstackId → ゼロ付近にギャップ
+      <ComposedChart data={data}>
+        <Bar dataKey="export" stackId="export" />
+        <Bar dataKey="neg_import" stackId="import" />
+      </ComposedChart>
+
+      // ✅ OK: stackOffset="sign" + 同一stackId
+      <ComposedChart data={data} stackOffset="sign">
+        <Bar dataKey="export" stackId="a" />
+        <Bar dataKey="neg_import" stackId="a" />  {/* 負値は自動で下方向にスタック */}
+      </ComposedChart>
+      ```
+    - **データ準備**: 輸入値を負値に変換してフロントエンドで保持
+      ```tsx
+      const chartData = useMemo(() => {
+        return data.map(d => ({
+          ...d,
+          neg_import_pipeline: d.import_pipeline != null ? -d.import_pipeline : null,
+          neg_import_lng: d.import_lng != null ? -d.import_lng : null,
+        }))
+      }, [data])
+      ```
+    - **参考実装**:
+      - 天然ガス輸出入: `frontend/src/components/market/energy/UsNaturalGasTradeChart.tsx`
+      - 投資部門別売買: `frontend/src/components/market/equities/JpxInvestorTradingChart.tsx`
+
+26. **HTMLスクレイピングの正規表現でタグをまたいだマッチに`re.DOTALL`を忘れる**
+    - **問題**: EIAの次回発表日等のHTMLスクレイピングで、ラベルと値が別タグにまたがっている場合に正規表現がマッチしない
+    - **症状**: `next_release`が常に`None`を返す
+    - **原因**: HTMLが以下のように改行・タブ・別タグで分かれている:
+      ```html
+      Next Release Date:</span> <span class="date">
+      		March 26, 2026		</span>
+      ```
+    - **解決策**: `re.DOTALL`フラグを使い、`.`が改行にもマッチするようにする
+      ```python
+      # ❌ NG: re.DOTALLなし → 改行をまたげない
+      match = re.search(r'Next Release Date:\s*(\w+ \d+,\s*\d{4})', resp.text)
+
+      # ✅ OK: re.DOTALLあり + タグまたぎ対応
+      match = re.search(
+          r'Next Release Date:.*?<span[^>]*class="date"[^>]*>\s*'
+          r'(\w+ \d+,\s*\d{4})',
+          resp.text,
+          re.DOTALL,
+      )
+      ```
+    - **実装例**: `backend/services/market/us_natural_gas_trade_service.py`
+
+27. **市場カテゴリ（/markets）のナビゲーションは`marketData.tsx`に追加する**
+    - **問題**: `/markets`配下のチャートのナビゲーションを`countryData.tsx`に追加しようとしてしまう
+    - **正しいファイル**: `frontend/src/constants/marketData.tsx`
+    - **国別ダッシュボード（/country/...）**: `countryData.tsx` に追加
+    - **市場ダッシュボード（/markets）**: `marketData.tsx` に追加
+    - **追加例**:
+      ```tsx
+      // marketData.tsx の該当カテゴリ（energy, equities, commodities等）の subcategories に追加
+      { code: 'natural-gas-trade', name: '天然ガス輸出入' },
+      ```
+    - **`code`はチャートの`<div id="...">`と一致させる**:
+      ```tsx
+      // EnergyCharts.tsx
+      <div id="natural-gas-trade"><UsNaturalGasTradeChart /></div>
+      ```
+
 ---
 
 ## 参考ファイル
@@ -1064,3 +1200,6 @@ notes: |
 - 型定義: `frontend/src/hooks/useDashboardData.ts`
 - オーバーレイ: `frontend/src/constants/overlayConfig.ts`
 - EIAエネルギーチャート: `frontend/src/components/market/energy/WeeklyCrudeOilInventoriesChart.tsx`
+- 正負スタック棒グラフ: `frontend/src/components/market/energy/UsNaturalGasTradeChart.tsx`
+- 天然ガス貯蔵量（Pattern E + 天然ガス価格オーバーレイ）: `frontend/src/components/market/energy/UsNaturalGasStorageChart.tsx`
+- 市場ナビゲーション: `frontend/src/constants/marketData.tsx`

@@ -110,6 +110,7 @@ function getIndicatorMapping(indicatorId: string): {
     // Market個別API（TSMC売上高、Fear & Greed等）
     '/api/market/tsmc/',
     '/api/market/fear-greed',
+    '/api/market/advance-decline-ratio',
     '/api/market/nikkei-yoy',
     '/api/market/nikkei-double-inverse',
     '/api/market/jpx-investor-trading',
@@ -124,6 +125,21 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/cushing-inventory',
     '/api/market/distillate-fuel-inventories',
     '/api/market/gasoline-refinery',
+    '/api/market/natural-gas-trade',
+    '/api/market/natural-gas-storage',
+    '/api/market/eu-natural-gas-storage',
+    '/api/market/eu-natural-gas-production',
+    '/api/market/noaa-hdd-cdd',
+    '/api/market/roni',
+    '/api/market/lng-exports-by-region',
+    '/api/market/short-term-energy-outlook',
+    '/api/market/steo-natural-gas',
+    '/api/market/sp500-valuation',
+    '/api/market/nasdaq100-valuation',
+    '/api/market/nikkei225-valuation',
+    '/api/market/topix-valuation',
+    '/api/market/cftc-positioning',
+    '/api/market/crack-spread',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

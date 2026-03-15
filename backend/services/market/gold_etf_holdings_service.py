@@ -5,6 +5,7 @@
   - DB: gold_etf_holdings テーブル（日次、SPDR Gold Shares）
   - 金価格日足: yfinance (GC=F)
 
+更新スケジュール: 日次（JST 8:30）
 更新: 6時間TTL (Redis + ファイル)
 """
 import json

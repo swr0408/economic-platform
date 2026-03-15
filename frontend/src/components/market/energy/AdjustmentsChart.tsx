@@ -164,7 +164,7 @@ export default function AdjustmentsChart() {
 
   return (
     <ChartContainer
-      title="商業在庫調整（EIA）"
+      title="商業在庫調整"
       dataSource="EIA"
       sourceUrl="https://www.eia.gov/petroleum/supply/monthly/"
       showPeriodSelector={false}
@@ -191,12 +191,12 @@ export default function AdjustmentsChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* タブ切替 */}
@@ -231,8 +231,8 @@ export default function AdjustmentsChart() {
                     <YAxis yAxisId="oil" orientation="right" reversed domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => `$${v.toFixed(0)}`} stroke={COLOR_OIL} tick={{ fill: COLOR_OIL, fontSize: 10 }} width={50} axisLine={{ stroke: COLOR_OIL, strokeDasharray: '4 3' }} />
                     <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} />} />
                     <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                    <Line yAxisId="left" type="monotone" dataKey="value" name="在庫調整 (千bbl)" stroke={COLOR_MAIN} strokeWidth={2} dot={false} hide={hiddenSeries.has('value')} connectNulls />
-                    <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                    <Line yAxisId="left" type="monotone" dataKey="value" name="在庫調整 (千bbl)" stroke={COLOR_MAIN} strokeWidth={2} dot={false} hide={hiddenSeries.has('value')} connectNulls isAnimationActive={false} />
+                    <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                   </ComposedChart>
                 </ResponsiveContainer>
               </>

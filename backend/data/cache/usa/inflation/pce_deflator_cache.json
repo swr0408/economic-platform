@@ -2675,48 +2675,57 @@
     },
     {
       "date": "2025-10-01",
-      "value": 2.72,
-      "yoy": 2.72,
-      "mom": 0.2,
-      "index": 127.88,
-      "annualized_3m": 2.93,
-      "annualized_6m": 2.76
+      "value": 2.71,
+      "yoy": 2.71,
+      "mom": 0.19,
+      "index": 127.87,
+      "annualized_3m": 2.9,
+      "annualized_6m": 2.75
     },
     {
       "date": "2025-11-01",
       "value": 2.82,
       "yoy": 2.82,
-      "mom": 0.21,
-      "index": 128.15,
-      "annualized_3m": 2.72,
-      "annualized_6m": 2.82
+      "mom": 0.22,
+      "index": 128.16,
+      "annualized_3m": 2.75,
+      "annualized_6m": 2.84
     },
     {
       "date": "2025-12-01",
-      "value": 2.9,
-      "yoy": 2.9,
+      "value": 2.91,
+      "yoy": 2.91,
       "mom": 0.36,
-      "index": 128.6,
-      "annualized_3m": 3.09,
-      "annualized_6m": 2.95
+      "index": 128.62,
+      "annualized_3m": 3.16,
+      "annualized_6m": 2.98
+    },
+    {
+      "date": "2026-01-01",
+      "value": 2.83,
+      "yoy": 2.83,
+      "mom": 0.28,
+      "index": 128.97,
+      "annualized_3m": 3.48,
+      "annualized_6m": 3.19
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 2.9,
-    "yoy": 2.9,
-    "mom": 0.36,
-    "index": 128.6,
-    "annualized_3m": 3.09,
-    "annualized_6m": 2.95
+    "date": "2026-01-01",
+    "value": 2.83,
+    "yoy": 2.83,
+    "mom": 0.28,
+    "index": 128.97,
+    "annualized_3m": 3.48,
+    "annualized_6m": 3.19
   },
   "next_release": {
-    "date": "2026-03-13",
-    "datetime_utc": "2026-03-13T12:30:00+00:00",
-    "datetime_jst": "2026-03-13T21:30:00+09:00",
+    "date": "2026-04-09",
+    "datetime_utc": "2026-04-09T12:30:00+00:00",
+    "datetime_jst": "2026-04-09T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core PCE Price Index YoY (Jan)",
+    "label": "Core PCE Price Index YoY (Feb)",
     "estimate": null
   },
-  "last_updated": "2026-02-28T13:22:10.118860+09:00"
+  "last_updated": "2026-03-15T23:02:21.592811+09:00"
 }

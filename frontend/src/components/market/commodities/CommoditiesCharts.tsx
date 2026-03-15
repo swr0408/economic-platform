@@ -8,6 +8,12 @@ import ChinaGoldEtfBalanceChart from './ChinaGoldEtfBalanceChart'
 import CnGoldReservesChart from './CnGoldReservesChart'
 import LbmaStockChart from './LbmaStockChart'
 import SilverEtfHoldingsChart from './SilverEtfHoldingsChart'
+import ComexGoldStockChart from './ComexGoldStockChart'
+import ComexSilverStockChart from './ComexSilverStockChart'
+import ComexCopperStockChart from './ComexCopperStockChart'
+import ShfeCopperStockChart from './ShfeCopperStockChart'
+import LmeCopperStockChart from './LmeCopperStockChart'
+import CftcPositioningChart from '../cot/CftcPositioningChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
 
@@ -48,8 +54,12 @@ export default function CommoditiesCharts() {
       <div id="china-gold-etf-balance"><ChinaGoldEtfBalanceChart /></div>
       <div id="cn-gold-reserves"><CnGoldReservesChart /></div>
       <div id="lbma-stock"><LbmaStockChart /></div>
-      <div id="silver-etf-holdings"><SilverEtfHoldingsChart /></div>
+      <div id="comex-gold-inventory"><ComexGoldStockChart /></div>
+      <div id="cot-gold"><CftcPositioningChart asset="gold" assetLabel="金（ゴールド）" reportType="disagg" compareId="cftc_gold" /></div>
       <div id="silver"><MarketPriceChart title="銀" symbolData={data?.silver} color={COLORS.silver} unit=" USD/oz" /></div>
+      <div id="silver-etf-holdings"><SilverEtfHoldingsChart /></div>
+      <div id="comex-silver-inventory"><ComexSilverStockChart /></div>
+      <div id="cot-silver"><CftcPositioningChart asset="silver" assetLabel="銀（シルバー）" reportType="disagg" compareId="cftc_silver" /></div>
       <div id="platinum"><MarketPriceChart title="プラチナ" symbolData={data?.platinum} color={COLORS.platinum} unit=" USD/oz" /></div>
 
       {/* 工業用金属 */}
@@ -57,6 +67,10 @@ export default function CommoditiesCharts() {
         <Title level={4} style={{ color: '#f1f5f9', marginTop: 32, marginBottom: 16 }}>工業用金属</Title>
       </div>
       <div id="copper"><MarketPriceChart title="銅" symbolData={data?.copper} color={COLORS.copper} unit=" USD/lb" /></div>
+      <div id="lme-copper-stock"><LmeCopperStockChart /></div>
+      <div id="comex-copper-stock"><ComexCopperStockChart /></div>
+      <div id="shfe-copper-stock"><ShfeCopperStockChart /></div>
+      <div id="cot-copper"><CftcPositioningChart asset="copper" assetLabel="銅（カッパー）" reportType="disagg" compareId="cftc_copper" /></div>
       <div id="aluminum"><MarketPriceChart title="アルミニウム" symbolData={data?.aluminum} color={COLORS.aluminum} /></div>
     </div>
   )

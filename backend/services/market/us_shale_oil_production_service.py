@@ -18,7 +18,8 @@
   - TOPRWF: Woodford (→ Other に統合)
   - TOPRR48: Other U.S. formations (→ Other に統合)
 
-更新: 6時間TTL (Redis + ファイル)
+更新スケジュール: 月次（EIA STEO発表時）
+更新: 24時間TTL (Redis + ファイル)
 """
 import json
 import logging

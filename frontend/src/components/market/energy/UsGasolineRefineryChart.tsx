@@ -326,12 +326,12 @@ export default function UsGasolineRefineryChart() {
               </span>
             </div>
           )}
-          {nextRelease && (
-            <span style={{ fontSize: 11, color: TEXT_COLORS.secondary }}>
-              次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
-            </span>
-          )}
         </div>
+        {nextRelease && (
+          <span style={{ fontSize: 11, color: TEXT_COLORS.secondary, whiteSpace: 'nowrap' }}>
+            次回: {nextRelease.date}{nextRelease.time_jst && ` ${nextRelease.time_jst} JST`}
+          </span>
+        )}
       </div>
 
       {/* タブ切替 */}
@@ -386,9 +386,9 @@ export default function UsGasolineRefineryChart() {
                         <YAxis yAxisId="oil" orientation="right" reversed domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => `$${v.toFixed(0)}`} stroke={COLOR_OIL} tick={{ fill: COLOR_OIL, fontSize: 10 }} width={45} axisLine={{ stroke: COLOR_OIL, strokeDasharray: '4 3' }} />
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Line yAxisId="left" type="monotone" dataKey="gasoline" name="ガソリン在庫 (千bbl)" stroke={COLOR_GASOLINE} strokeWidth={2} dot={false} hide={hiddenSeries.has('gasoline')} connectNulls />
-                        <Line yAxisId="refinery" type="monotone" dataKey="refinery_util" name="製油稼働率 (%, 反転)" stroke={COLOR_REFINERY} strokeWidth={2} dot={false} hide={hiddenSeries.has('refinery_util')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="left" type="monotone" dataKey="gasoline" name="ガソリン在庫 (千bbl)" stroke={COLOR_GASOLINE} strokeWidth={2} dot={false} hide={hiddenSeries.has('gasoline')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="refinery" type="monotone" dataKey="refinery_util" name="製油稼働率 (%, 反転)" stroke={COLOR_REFINERY} strokeWidth={2} dot={false} hide={hiddenSeries.has('refinery_util')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -407,8 +407,8 @@ export default function UsGasolineRefineryChart() {
                         <RechartsTooltip content={<ChartTooltip hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
                         <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
                         <Legend onClick={(e) => handleLegendClick(e.dataKey as SeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as SeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
-                        <Line yAxisId="left" type="monotone" dataKey="gasoline_yoy" name="ガソリン在庫 YoY %" stroke={COLOR_GASOLINE} strokeWidth={2} dot={false} hide={hiddenSeries.has('gasoline_yoy')} connectNulls />
-                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls />
+                        <Line yAxisId="left" type="monotone" dataKey="gasoline_yoy" name="ガソリン在庫 YoY %" stroke={COLOR_GASOLINE} strokeWidth={2} dot={false} hide={hiddenSeries.has('gasoline_yoy')} connectNulls isAnimationActive={false} />
+                        <Line yAxisId="oil" type="monotone" dataKey="oil_price" name="WTI原油 (USD/bbl, 反転)" stroke={COLOR_OIL} strokeWidth={1.5} strokeDasharray="4 3" dot={false} hide={hiddenSeries.has('oil_price')} connectNulls isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>
@@ -429,7 +429,7 @@ export default function UsGasolineRefineryChart() {
                           formatter={(value: number) => [`${value >= 0 ? '+' : ''}${value.toFixed(2)}%`, 'ガソリン在庫 MoM']}
                         />
                         <ReferenceLine y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
-                        <Bar dataKey="mom" name="ガソリン在庫 前月比 (%)" fill={COLOR_GASOLINE} />
+                        <Bar dataKey="mom" name="ガソリン在庫 前月比 (%)" fill={COLOR_GASOLINE} isAnimationActive={false} />
                       </ComposedChart>
                     </ResponsiveContainer>
                   </>

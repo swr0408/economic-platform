@@ -5,6 +5,7 @@ WGC (World Gold Council) 金ETFフロー/保有残高 サービス
   - DB: wgc_gold_etf テーブル（月次、11カ国）
   - Excel初回インポート + scheduler週次API更新
 
+更新スケジュール: 日次（JST 8:30）
 更新: 6時間TTL (Redis + ファイル)
 """
 import json
