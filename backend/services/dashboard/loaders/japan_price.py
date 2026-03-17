@@ -153,25 +153,29 @@ class JapanPriceLoader(BaseDashboardLoader):
                 "national_cpi": {...},
                 "tokyo_cpi": {...},
                 "terms_of_trade": {...},
+                "price_pass_through_rate": {...},
             }
         """
         # 遅延インポート（循環参照回避）
         from services.japan.japan_national_cpi_service import japan_national_cpi_service
         from services.japan.japan_tokyo_cpi_service import japan_tokyo_cpi_service
         from services.japan.japan_terms_of_trade_service import japan_terms_of_trade_service
+        from services.japan.price_pass_through_rate_service import price_pass_through_rate_service
 
         result = {
             "national_cpi": None,
             "tokyo_cpi": None,
             "terms_of_trade": None,
+            "price_pass_through_rate": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=3) as executor:
+        with ThreadPoolExecutor(max_workers=4) as executor:
             futures = {
                 executor.submit(self._get_national_cpi, japan_national_cpi_service): "national_cpi",
                 executor.submit(self._get_tokyo_cpi, japan_tokyo_cpi_service): "tokyo_cpi",
                 executor.submit(self._get_terms_of_trade, japan_terms_of_trade_service): "terms_of_trade",
+                executor.submit(self._get_price_pass_through_rate, price_pass_through_rate_service): "price_pass_through_rate",
             }
 
             for future in as_completed(futures):
@@ -240,3 +244,21 @@ class JapanPriceLoader(BaseDashboardLoader):
             import traceback
             traceback.print_exc()
             return {"data": [], "latest": None, "next_release": None}
+
+    def _get_price_pass_through_rate(self, service) -> dict:
+        """価格転嫁率データを取得"""
+        try:
+            response = service.get_data(force_refresh=False)
+            data = response.get("data", [])
+            latest = response.get("latest") or (data[-1] if data else None)
+
+            return {
+                "data": data,
+                "latest": latest,
+                "metadata": response.get("metadata"),
+            }
+        except Exception as e:
+            print(f"Error getting Price Pass-Through Rate: {e}")
+            import traceback
+            traceback.print_exc()
+            return {"data": [], "latest": None, "metadata": None}

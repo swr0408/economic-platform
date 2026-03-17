@@ -1,0 +1,3066 @@
+{
+  "quarter_label": "2026-Q1",
+  "next_release": null,
+  "events": {
+    "financing_estimates": {
+      "published_at": "2025-12-23T21:15:00+00:00",
+      "title": "Financing Estimates: 2026 - 1st Quarter",
+      "source_url": "https://home.treasury.gov/news/press-releases/sb0377",
+      "metrics": {
+        "actual_borrowing_prev_qtr": {
+          "value": 550.0,
+          "unit": "billion_usd",
+          "label": "Oct-Dec 2025 Actual Borrowing"
+        },
+        "assumed_end_cash_balance_current_qtr": {
+          "value": 873.0,
+          "unit": "billion_usd",
+          "label": "Current Quarter End Cash Balance"
+        },
+        "assumed_end_cash_balance_next_qtr": {
+          "value": 900.0,
+          "unit": "billion_usd",
+          "label": "Assumed End-of-June Cash Balance"
+        },
+        "borrowing_estimate_current_qtr": {
+          "value": 550.0,
+          "unit": "billion_usd",
+          "label": "Current Quarter Borrowing Estimate"
+        },
+        "borrowing_estimate_next_qtr": {
+          "value": 109.0,
+          "unit": "billion_usd",
+          "label": "Apr-Jun 2026 Borrowing Estimate"
+        },
+        "prev_estimate_current_qtr": {
+          "value": 577.0,
+          "unit": "billion_usd",
+          "label": "Previous Estimate (Nov 2025)"
+        }
+      }
+    },
+    "policy_statement": {
+      "published_at": "2025-12-23T21:15:00+00:00",
+      "title": "Policy Statement: 2026 - 1st Quarter",
+      "source_url": "https://home.treasury.gov/news/press-releases/sb0384",
+      "metrics": {
+        "auction_size_10y_202511": {
+          "value": 42.0,
+          "unit": "billion_usd",
+          "label": "10Y Nov-25"
+        },
+        "auction_size_10y_202512": {
+          "value": 39.0,
+          "unit": "billion_usd",
+          "label": "10Y Dec-25"
+        },
+        "auction_size_10y_202601": {
+          "value": 39.0,
+          "unit": "billion_usd",
+          "label": "10Y Jan-26"
+        },
+        "auction_size_10y_202602": {
+          "value": 42.0,
+          "unit": "billion_usd",
+          "label": "10Y Feb-26"
+        },
+        "auction_size_10y_202603": {
+          "value": 39.0,
+          "unit": "billion_usd",
+          "label": "10Y Mar-26"
+        },
+        "auction_size_10y_202604": {
+          "value": 39.0,
+          "unit": "billion_usd",
+          "label": "10Y Apr-26"
+        },
+        "auction_size_20y_202511": {
+          "value": 16.0,
+          "unit": "billion_usd",
+          "label": "20Y Nov-25"
+        },
+        "auction_size_20y_202512": {
+          "value": 13.0,
+          "unit": "billion_usd",
+          "label": "20Y Dec-25"
+        },
+        "auction_size_20y_202601": {
+          "value": 13.0,
+          "unit": "billion_usd",
+          "label": "20Y Jan-26"
+        },
+        "auction_size_20y_202602": {
+          "value": 16.0,
+          "unit": "billion_usd",
+          "label": "20Y Feb-26"
+        },
+        "auction_size_20y_202603": {
+          "value": 13.0,
+          "unit": "billion_usd",
+          "label": "20Y Mar-26"
+        },
+        "auction_size_20y_202604": {
+          "value": 13.0,
+          "unit": "billion_usd",
+          "label": "20Y Apr-26"
+        },
+        "auction_size_2y_202511": {
+          "value": 69.0,
+          "unit": "billion_usd",
+          "label": "2Y Nov-25"
+        },
+        "auction_size_2y_202512": {
+          "value": 69.0,
+          "unit": "billion_usd",
+          "label": "2Y Dec-25"
+        },
+        "auction_size_2y_202601": {
+          "value": 69.0,
+          "unit": "billion_usd",
+          "label": "2Y Jan-26"
+        },
+        "auction_size_2y_202602": {
+          "value": 69.0,
+          "unit": "billion_usd",
+          "label": "2Y Feb-26"
+        },
+        "auction_size_2y_202603": {
+          "value": 69.0,
+          "unit": "billion_usd",
+          "label": "2Y Mar-26"
+        },
+        "auction_size_2y_202604": {
+          "value": 69.0,
+          "unit": "billion_usd",
+          "label": "2Y Apr-26"
+        },
+        "auction_size_30y_202511": {
+          "value": 25.0,
+          "unit": "billion_usd",
+          "label": "30Y Nov-25"
+        },
+        "auction_size_30y_202512": {
+          "value": 22.0,
+          "unit": "billion_usd",
+          "label": "30Y Dec-25"
+        },
+        "auction_size_30y_202601": {
+          "value": 22.0,
+          "unit": "billion_usd",
+          "label": "30Y Jan-26"
+        },
+        "auction_size_30y_202602": {
+          "value": 25.0,
+          "unit": "billion_usd",
+          "label": "30Y Feb-26"
+        },
+        "auction_size_30y_202603": {
+          "value": 22.0,
+          "unit": "billion_usd",
+          "label": "30Y Mar-26"
+        },
+        "auction_size_30y_202604": {
+          "value": 22.0,
+          "unit": "billion_usd",
+          "label": "30Y Apr-26"
+        },
+        "auction_size_3y_202511": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3Y Nov-25"
+        },
+        "auction_size_3y_202512": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3Y Dec-25"
+        },
+        "auction_size_3y_202601": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3Y Jan-26"
+        },
+        "auction_size_3y_202602": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3Y Feb-26"
+        },
+        "auction_size_3y_202603": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3Y Mar-26"
+        },
+        "auction_size_3y_202604": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3Y Apr-26"
+        },
+        "auction_size_5y_202511": {
+          "value": 70.0,
+          "unit": "billion_usd",
+          "label": "5Y Nov-25"
+        },
+        "auction_size_5y_202512": {
+          "value": 70.0,
+          "unit": "billion_usd",
+          "label": "5Y Dec-25"
+        },
+        "auction_size_5y_202601": {
+          "value": 70.0,
+          "unit": "billion_usd",
+          "label": "5Y Jan-26"
+        },
+        "auction_size_5y_202602": {
+          "value": 70.0,
+          "unit": "billion_usd",
+          "label": "5Y Feb-26"
+        },
+        "auction_size_5y_202603": {
+          "value": 70.0,
+          "unit": "billion_usd",
+          "label": "5Y Mar-26"
+        },
+        "auction_size_5y_202604": {
+          "value": 70.0,
+          "unit": "billion_usd",
+          "label": "5Y Apr-26"
+        },
+        "auction_size_7y_202511": {
+          "value": 44.0,
+          "unit": "billion_usd",
+          "label": "7Y Nov-25"
+        },
+        "auction_size_7y_202512": {
+          "value": 44.0,
+          "unit": "billion_usd",
+          "label": "7Y Dec-25"
+        },
+        "auction_size_7y_202601": {
+          "value": 44.0,
+          "unit": "billion_usd",
+          "label": "7Y Jan-26"
+        },
+        "auction_size_7y_202602": {
+          "value": 44.0,
+          "unit": "billion_usd",
+          "label": "7Y Feb-26"
+        },
+        "auction_size_7y_202603": {
+          "value": 44.0,
+          "unit": "billion_usd",
+          "label": "7Y Mar-26"
+        },
+        "auction_size_7y_202604": {
+          "value": 44.0,
+          "unit": "billion_usd",
+          "label": "7Y Apr-26"
+        },
+        "auction_size_frn_202511": {
+          "value": 28.0,
+          "unit": "billion_usd",
+          "label": "FRN Nov-25"
+        },
+        "auction_size_frn_202512": {
+          "value": 28.0,
+          "unit": "billion_usd",
+          "label": "FRN Dec-25"
+        },
+        "auction_size_frn_202601": {
+          "value": 30.0,
+          "unit": "billion_usd",
+          "label": "FRN Jan-26"
+        },
+        "auction_size_frn_202602": {
+          "value": 28.0,
+          "unit": "billion_usd",
+          "label": "FRN Feb-26"
+        },
+        "auction_size_frn_202603": {
+          "value": 28.0,
+          "unit": "billion_usd",
+          "label": "FRN Mar-26"
+        },
+        "auction_size_frn_202604": {
+          "value": 30.0,
+          "unit": "billion_usd",
+          "label": "FRN Apr-26"
+        },
+        "buyback_cash_mgmt_max": {
+          "value": 75.0,
+          "unit": "billion_usd",
+          "label": "Buyback Cash Management Max"
+        },
+        "buyback_liquidity_max": {
+          "value": 75.0,
+          "unit": "billion_usd",
+          "label": "Buyback Liquidity Support Max"
+        },
+        "cash_balance_eom": {
+          "value": 850.0,
+          "unit": "billion_usd",
+          "label": "Assumed End-of-March Cash Balance"
+        },
+        "maturing_securities": {
+          "value": 90.2,
+          "unit": "billion_usd",
+          "label": "Maturing Securities"
+        },
+        "new_cash_raised": {
+          "value": 34.8,
+          "unit": "billion_usd",
+          "label": "New Cash Raised"
+        },
+        "refunding_10y": {
+          "value": 42.0,
+          "unit": "billion_usd",
+          "label": "10-Year Note"
+        },
+        "refunding_30y": {
+          "value": 25.0,
+          "unit": "billion_usd",
+          "label": "30-Year Bond"
+        },
+        "refunding_3y": {
+          "value": 58.0,
+          "unit": "billion_usd",
+          "label": "3-Year Note"
+        },
+        "refunding_total": {
+          "value": 125.0,
+          "unit": "billion_usd",
+          "label": "Total Offering"
+        }
+      },
+      "auction_size_table": [
+        {
+          "month": "2025-11",
+          "10y": 42.0,
+          "20y": 16.0,
+          "2y": 69.0,
+          "30y": 25.0,
+          "3y": 58.0,
+          "5y": 70.0,
+          "7y": 44.0,
+          "frn": 28.0
+        },
+        {
+          "month": "2025-12",
+          "10y": 39.0,
+          "20y": 13.0,
+          "2y": 69.0,
+          "30y": 22.0,
+          "3y": 58.0,
+          "5y": 70.0,
+          "7y": 44.0,
+          "frn": 28.0
+        },
+        {
+          "month": "2026-01",
+          "10y": 39.0,
+          "20y": 13.0,
+          "2y": 69.0,
+          "30y": 22.0,
+          "3y": 58.0,
+          "5y": 70.0,
+          "7y": 44.0,
+          "frn": 30.0
+        },
+        {
+          "month": "2026-02",
+          "10y": 42.0,
+          "20y": 16.0,
+          "2y": 69.0,
+          "30y": 25.0,
+          "3y": 58.0,
+          "5y": 70.0,
+          "7y": 44.0,
+          "frn": 28.0
+        },
+        {
+          "month": "2026-03",
+          "10y": 39.0,
+          "20y": 13.0,
+          "2y": 69.0,
+          "30y": 22.0,
+          "3y": 58.0,
+          "5y": 70.0,
+          "7y": 44.0,
+          "frn": 28.0
+        },
+        {
+          "month": "2026-04",
+          "10y": 39.0,
+          "20y": 13.0,
+          "2y": 69.0,
+          "30y": 22.0,
+          "3y": 58.0,
+          "5y": 70.0,
+          "7y": 44.0,
+          "frn": 30.0
+        }
+      ],
+      "bill_guidance": "WASHINGTON — The U.S. Department of the Treasury is offering $125 billion of Treasury securities to refund approximately $90.2 billion of privately-held Treasury notes and bonds maturing on February 15, 2026.  This issuance will raise new cash from private investors of approximately $34.8 billion.  The securities are:\nA 3-year note in the amount of $58 billion, maturing February 15, 2029;\nA 10-year note in the amount of $42 billion, maturing February 15, 2036; and",
+      "tips_guidance": "The balance of Treasury financing requirements over the quarter will be met with regular weekly bill auctions, cash management bills (CMBs), and monthly note, bond, Treasury Inflation-Protected Securities (TIPS), and 2-year Floating Rate Note (FRN) auctions.\nOver the February to April 2026 quarter, Treasury plans to maintain TIPS auction sizes at current levels: the February 30-year TIPS new issue auction size at $9 billion, the March 10-year TIPS reopening auction size at $19 billion, and the April 5-year TIPS new issue auction size at $26 billion.",
+      "buyback_guidance": "Today, Treasury is releasing a tentative buyback\nOn January 14, 2026, Treasury released a notice of proposed rulemaking (NPR) regarding plans to offer direct buyback access to a limited number of additional counterparties based on their participation in Treasury auctions.  The NPR comment period closes on February 13, 2026.  The NPR and instructions for submitting comments are available at https://www.regulations.gov.  Treasury will evaluate the comments and anticipates publishing a final rule on this matter in the first half of 2026.  For information on eligibility criteria, please refer to the “Who may participate in a buyback operation?” section of Treasury’s\nIn the coming months, Treasury expects to transition its Treasury buyback operations to the Federal Reserve Bank of New York’s new trading platform,"
+    },
+    "tbac_minutes": {
+      "published_at": "2025-12-23T21:15:00+00:00",
+      "title": "TBAC Minutes: 2026 - 1st Quarter",
+      "source_url": "https://home.treasury.gov/news/press-releases/sb0386",
+      "metrics": {},
+      "raw_text": "The Committee convened in a closed session at the Department of the Treasury at 9:00 a.m.  All members except Jill Funk and Anastasia Titarchuk were present.  Rudy Gopinath from Citigroup was also present to assist the Committee Chair.  Director of Policy & Planning Hunter McMaster, Deputy Assistant Secretary for Federal Finance Brian Smith, Director of the Office of Debt Management Fred Pietrangeli, and Deputy Director of the Office of Debt Management Tom Katzenbach welcomed the Committee.  Other members of Treasury staff present were Abigail Brown, Chris Cameron, Dave Chung, Gabriella Csepe, Chris Furey, Liang Jensen, Gavin Ross, Joshua Stachura, Nick Steele, and Renee Tang.  Federal Reserve Bank of New York staff members Ellen Correia Golay, Oliver Giannotti, and Trevor Graney were also present.\nDeputy Assistant Secretary Smith opened the meeting by thanking outgoing member Gagan Singh for his service to the Committee and summarizing recent debt management developments.  Following his remarks, Treasury counsel presented the annual review of Committee guidelines.\nDirector of the Office of Fiscal Projections Steele highlighted changes in receipts and outlays during Q1 FY2026.  Within receipts, Steele emphasized a 315% (or $71 billion) increase in customs deposits reflecting higher tariff revenue, as well as growth in both withheld (+$47 billion) and non-withheld (+$45 billion) taxes.  Somewhat offsetting these gains, corporate taxes declined by 23% (or $27 billion), likely because corporate tax provisions in the OBBB that allow for accelerated expensing and depreciation.  In terms of outlays, Steele noted that the largest increase occurred at Treasury, which rose by 13% (or $48 billion), primarily due to interest on the public debt. Department of Education outlays decreased by 26% (or $11 billion), while a group of other outlays fell by 64% (or $68 billion), primarily due to a reduction in disbursements by the Environmental Protection Agency and the Federal Emergency Management Agency.\nDirector Pietrangeli then turned to deficit and privately-held net marketable borrowing projections, noting that the median primary dealer reduced its aggregate FY2026-28 privately-held marketable borrowing estimate by $258 billion.  The latest dealer estimates show that, at current issuance sizes, Treasury is slightly overfunded in FY2026.  However, looking ahead, the median primary dealer forecast for privately-held net marketable borrowing implies a $1.1 trillion funding shortfall in FY2027-28 based on current coupon auction sizes and bill supply.\nDeputy Director Katzenbach reviewed primary dealers’ expectations for coupon issuance.  The consensus remains that current coupon auction sizes leave Treasury well-positioned to meet its projected financing needs through FY2026, with changes in Treasury bill supply likely being adequate to address any changes in financing needs.  Respondents cited the Federal Reserve’s anticipated purchases of Treasury bills as supportive of demand in that sector of the market.  Dealers anticipate that nominal coupon auction sizes might next increase in late CY2026 or early CY2027.\nDebt Manager Jensen then summarized primary dealers’ views on Secured Overnight Financing Rate (SOFR)-indexed floating rate notes (FRNs).  The consensus was that the SOFR FRN market has expanded rapidly in the last five years, with demand focused primarily on money market mutual funds (MMFs) but also including bank treasury portfolios and foreign investors.  Most dealers expressed support for Treasury issuing SOFR-indexed FRNs.  Supporters argued that a Treasury SOFR FRN would diversify Treasury’s front-end issuance mix and potentially reduce funding costs, given the strong incremental demand.  Some dealers emphasized the risk of potentially cannibalizing demand for Treasury bills and for the existing 2-year Treasury FRN, while several dealers cautioned that Treasury could be exposed to spikes in SOFR during periods of funding market stress.  Most dealers pointed to a 1-year final maturity as particularly attractive in meeting demand from MMFs.  The Committee briefly discussed the feedback from dealers and the pros and cons of Treasury issuing a SOFR-linked FRN, and concluded that Treasury should study the idea further.\nDebt Manager Ross reviewed primary dealers’ thoughts on potential alternative buyback execution mechanisms.  Dealers noted that off-the-run Treasury securities typically trade on a yield spread basis relative to on-the-run benchmarks in the secondary market, and that exchange transactions are a well-established market practice. Allowing yield spread offers in buyback operations could attract broader participation among market participants, leading to more competitively priced offers in buyback operations. Exchange operations are viewed as marginally beneficial, but the impact would vary across market participants. While many dealers and certain leveraged investors may prefer some form of an exchange transaction due to their typical trading strategies, real-money investors could prefer outright cash transactions. From a Treasury supply perspective, exchanges would have a more neutral effect on the outstanding duration and the weighted average maturity of Treasury’s debt portfolio. However, they would also reduce Treasury’s flexibility in financing buybacks and result in changes to the supply of on-the-run securities. It is important to note that while Treasury values the feedback of market participants, either of these changes would require further exploration of key design details and significant time and effort to implement.\nDebt Manager Stachura then summarized primary dealers’ feedback on the potential to issue 7-year notes quarterly with two reopenings instead of a monthly new issue. Most dealers were supportive of this proposal, expecting it would improve liquidity in the secondary market, especially as the securities aged. Dealers estimated that billions of dollars in balance sheet space could be unlocked for intermediation under such a proposal. The potential impact on repo and futures markets was seen as largely benign.\nThe Committee then discussed the first charge, addressing bill purchases and the consolidated balance sheet.  The presenter noted that the concept of a consolidated balance sheet between the Federal Reserve and Treasury was previously addressed in a February 2020 Committee presentation. The Committee then discussed the circumstances where Treasury should focus on the composition of privately-held Treasury debt outstanding or the composition of total debt outstanding.  The presenter reviewed the key elements of the Federal Reserve’s balance sheet, and how they alter effective interest rate risk when considered on a consolidated basis. The presenter noted that, in the current environment, it would be reasonable for Treasury to meet some portion of the Federal Reserve’s System Open Market Account (SOMA) demand for Treasury bills through increased issuance in this sector of the curve.  The presentation also discussed how the results of the Committee’s optimal debt issuance model might change when separating the interest-bearing and non-interest-bearing components.  Lastly, the presenter advised that Fed policy inflection points are relevant times to consider the composition of privately-held Treasury securities when making issuance decisions.\nThe Committee adjourned at 11:45 a.m. for lunch.\nThe Committee reconvened at 1:15 p.m.\nThe Committee then discussed the second charge, which addressed trends in demand for Treasury securities.  The presenter highlighted several structural shifts shaping demand, including runoff from SOMA, growth in MMF assets, expanding bank portfolios, evolving pension plan structures, increasing Treasury holdings by foreign private investors, and potential demand associated with stablecoins.  The discussion also covered key considerations—such as collateral needs, duration management, diversification benefits, and central bank reserve management—that are influencing Treasury allocations in portfolios.  The presenter concluded by describing how incremental demand for Treasuries might evolve going forward, noting that the short and intermediate sectors of the curve were likely to experience the broadest growth.\nFinally, the Committee turned to its financing recommendation for the upcoming quarters and unanimously recommended that Treasury maintain nominal coupon, FRN, and TIPS auction sizes at current levels.\nThe Committee adjourned at 2:20 p.m.\nThe Committee reconvened at 3:00 p.m.\nThe Chair summarized key elements of the Committee report for Secretary Bessent and followed with a discussion of recent market developments.\nThe Committee adjourned at 3:55 p.m.\n_________________________________\nBrian Smith\nDeputy Assistant Secretary for Federal Finance\nUnited States Department of the Treasury\nFebruary 3, 2026\nCertified by:\n_________________________________\nDeirdre Dunn, Chair\nTreasury Borrowing Advisory Committee\nFebruary 3, 2026\nTreasury Borrowing Advisory Committee Quarterly Meeting\nCommittee Charge – February 3, 2026\nFiscal Outlook\nTaking into consideration Treasury's short, intermediate, and long-term financing requirements, as well as the variability in financing needs from quarter to quarter, what changes, if any, do you recommend to Treasury issuance?  Please also provide perspectives regarding market expectations for Treasury issuance, the effects of changes in SOMA holdings, the evolution of Treasury holdings by different types of investors, as well as auction calendar construction.\nBill Purchases and the Consolidated Balance Sheet\nIn December 2025, the Federal Reserve began purchasing Treasury bills through open market operations in order to reinvest principal payments on its holdings of agency mortgage-backed securities as well as maintain an ample supply of reserves on an ongoing basis. Building on previous work, including the TBAC presentation from February 2020 and analyses of the effect of Federal Reserve holdings on the maturity profile and timing of rate resets for the “consolidated” balance sheet, please assess to what extent Treasury issuance plans should be affected by expected Federal Reserve purchases of Treasury securities.  When evaluating its issuance mix, in what circumstances should Treasury focus on the composition of a) only privately-held Treasury securities or b) total Treasury debt outstanding (including holdings of the Federal Reserve System Open Market Account).\nInvestor Trends\nPlease discuss recent developments in investor demand for Treasury securities.  How do you expect structural demand for different Treasury products and tenors to evolve over the next several years?  What are the most promising sources of potential additional demand (either from new investors or additional demand from existing investors)?  What factors are most important in affecting demand from different investor types?\nFinancing this Quarter\nWe would like the Committee’s advice on the following:\nThe composition of Treasury notes and bonds to refund approximately $90.2 billion of privately-held notes and bonds maturing on February 15, 2026.\nThe composition of Treasury marketable financing for the remainder of the January-March 2026 quarter.\nThe composition of Treasury marketable financing for the April-June 2026 quarter."
+    },
+    "tbac_report": {
+      "published_at": "2025-12-23T21:15:00+00:00",
+      "title": "TBAC Report to Secretary: 2026 - 1st Quarter",
+      "source_url": "https://home.treasury.gov/news/press-releases/sb0385",
+      "metrics": {},
+      "raw_text": "February 3, 2026\nLetter to the Secretary\nDear Mr. Secretary,\nSince the TBAC last met in early November, Treasury yields are little changed. While domestic fixed-income markets were relatively stable, a sharp rise in Japan government bond yields in January rippled through global fixed-income markets. Equity prices continued to advance over the last three months, and the S&P 500 is now up 16% over the last year. Credit spreads remain tight. The VIX measure of implied volatility, at 16, is close to multi-year lows. Three-month expiry options on ten-year interest rate swaps imply just 66 basis points (bp) of annualized volatility, also a historically low reading.\nCurrency and commodity prices have exhibited higher volatility. The US dollar depreciated sharply against major currencies in late January, but that move partially reversed in recent days. Gold and silver prices have risen significantly – over the last year gold is up 67%. Prices for precious metals increased during the late-January dollar depreciation but fell sharply as the US dollar strengthened in recent days.  The recent decline in precious metals prices may have been exacerbated by changes in margin requirements. Copper prices have followed their own path higher and are up 21% over the last three months. Oil prices rose modestly in January, in part reacting to geopolitical tensions.\nEconomic data releases were substantially delayed, and in some cases distorted, by the government shutdown in October and November 2025. Most notable was the inability of the Bureau of Labor Statistics (BLS) to produce an October CPI inflation report. Measures of inflation were distorted lower as the BLS assumed that some prices were unchanged between September and October in the absence of data. Shelter inflation was effectively assumed to be zero in the month of October, likely resulting in a stronger reading come April. This is now well understood by market participants and a stronger April inflation reading will not come as a surprise.\nIn Q4 2025, upward pressure on short-term interest rates suggested reserve balances might be falling below levels consistent with the Fed’s desire to provide “ample” liquidity. Usage of the Fed’s Standing Repo Operation increased, though repo rates still exceeded the upper bound of the Fed Funds policy rate at times. Balance sheet reduction ended on December 1st and the Fed began buying $40 billion per month of Treasury bills, via “Reserve Management Purchases” (RMPs), on December 12th. These RMPs modestly grow the Fed’s balance sheet to help maintain an ample level of reserves and do not significantly affect longer-maturity yields.\nIn early January, President Trump indicated that his Administration intends to reduce costs for new homebuyers by bringing down mortgage rates, and as such that Fannie Mae and Freddie Mac would purchase $200 billion of mortgage-backed securities. This is a relatively small share of total MBS outstanding, but a meaningful share of expected net supply in 2026. Some investors viewed the development as signal that government institutions may take a more active role in keeping fixed-income yields in general, and mortgage rates in particular, lower.\nAfter delivering 25bp rate cuts at the last three FOMC meetings of 2025, Fed officials left policy rates unchanged in January. Chair Powell continued to guide toward potential further cuts should inflation slow further or labor markets loosen. Markets are aligned with this guidance, implying slightly less than 50 bps of rate cuts this year. Markets were little changed after President Trump announced he would nominate Kevin Warsh to be Fed Chair following the expiration of Chair Powell’s term in May.\nReal activity expanded strongly in 2025, with most forecasters and Fed officials expecting a continued expansion this year. Consumer spending has remained solid and is expected to be supported in Q1 2026 by larger tax refunds associated with last year’s One Big Beautiful Bill Act. Business investment has been supported by capital spending on electronics, consistent with corporate commitments to grow investments related to artificial intelligence. The housing sector remains weak as a consequence of elevated prices and mortgage rates, with single-family housing starts and permits falling in recent months.\nThe pace of job growth has slowed more significantly than other measures of economic activity. In the last three months of 2025, additions to private nonfarm payrolls averaged just 29,000 per month. The unemployment rate has remained relatively stable at 4.4% in recent months, suggesting that the “breakeven” pace of job growth required to keep the unemployment rate from rising has declined substantially due to reduced immigration flows and slower labor force growth. Other signs point to a still gradually loosening labor market. For instance, the number of individuals who report jobs as “hard to get” in the Conference Board’s consumer survey continues to increase.\nInflation remains elevated, with core PCE at 2.8% year over year in November. Goods price inflation has remained elevated as firms pass through tariff-related cost increases. Services inflation has slowed due to cooling shelter prices. Rising commodity prices present a new upside risk to inflation. Survey and market-based measures of inflation expectations are stable and consistent with inflation returning to target.\nThe balance between supply and demand for US Treasury securities remains a key focus for investors both domestically and abroad. The level of tariff revenue has become an important input into deficit projections, and markets are focused on how an upcoming Supreme Court decision related to  International Emergency Economic Powers Act tariffs could affect future revenue. Overall, demand at auctions remains robust, with bid-to-cover ratios in normal ranges. Guidance from Treasury regarding the potential timing of any increases in coupon auction sizes is also receiving attention.\nIn light of that backdrop, the Committee moved to review the quarter’s receipts and outlays, as well as the primary dealer feedback. Notably, the Committee supported Treasury’s efforts to explore the viability of a Secured Overnight Financing Rate (SOFR) Floating Rate Note (FRN) and echoed the results of Treasury’s primary dealer survey, where the majority of dealers supported exploring issuance. When considering money market mutual fund (MMF) interest, the group focused on weighing cannibalization of existing Treasury bill demand versus the value of introducing investment products that would facilitate management of weighted average maturity by MMFs and may help incrementally grow MMF balances. Most Committee members were of the view that net investment portfolios of non-financial corporates, high-net-worth individuals, and Treasury-only MMFs could absorb additional FRN issuance. When considering potential bank appetite for the product, the Committee deliberated the relative advantage of a SOFR FRN compared to other Treasury securities on asset swap. There was broad agreement that a SOFR FRN was likely more desirable from a margin, accounting, and operational perspective, especially for smaller banks.\nThe Committee moved to discuss the first charge, which focused on how Treasury should consider the composition of privately-held Treasury securities compared to total Treasury debt outstanding, including the holdings of the Federal Reserve’s System Open Market Account (SOMA), when evaluating its issuance mix.\nThe presenting member revisited the concept of the consolidated government balance sheet presented in the February 2020 charge. Treasury securities in the SOMA portfolio are offsetting liabilities of the Treasury and assets of the Fed. As a result, the liability side of the consolidated balance sheet consists of only those Treasury securities which are privately held. On the consolidated balance sheet, the SOMA portfolio can be thought of as effectively converting some Treasury securities into a perpetual zero-coupon liability (the component supporting currency in circulation, which pays no interest and has no obvious maturity), and converting other Treasury securities and mortgage backed securities (MBS) into overnight floating interest rate bearing liabilities (such as bank reserves and overnight Reverse Repo Program (ON RRP). While before the Great Financial Crisis (GFC) nearly all the SOMA portfolio was held against currency in circulation, nearly half of the SOMA portfolio is presently held against reserves and other interest-bearing liabilities, meaning the income of the Federal Reserve is more sensitive to an increase in interest rates.\nThe Committee was in broad agreement that Federal Reserve policy inflection points are relevant times to consider the composition of privately held Treasury securities when making issuance decisions. The rate of change of the difference between the Consolidated Weighted Median Next Rate Reset (WMNRR) and the total WMNRR can be used as an indicator of relevant timing for this consideration. The Fed has a recent history of meaningful Quantitative Easing (QE) actions over short periods of time, the effects of which Treasury could consider in due course. QE that has run its policy course changes the composition of private holdings. Treasury may find that it can make cost- and risk-efficient adjustments to its issuance mix due to the resulting changes in supply and demand, within its ever-important “regular and predictable” framework.  Present day considerations include increased demand for Treasury bills as part of Federal Reserve MBS run-off reinvestments and RMPs.  The separation of mandates for the Treasury and Fed is important, but it is well understood that there can be cross effects; Treasury could factor in the impact of these effects on privately-held Treasury balances when it evaluates its issuance mix.\nThe Committee then moved onto the second charge, reviewing trends in investor demand for  Treasury securities. The presenting member noted the shift in Treasury holdings since 2022 from the Federal Reserve’s SOMA portfolio to more price sensitive investors.  These include a broad range of other investors including MMFs, exchange-traded funds, banks, and broker-dealers.  While foreign investors continue to be the largest holders of Treasury securities in aggregate, nearly all of the growth in foreign demand in recent years has come from the private sector.\nWhen considering pension and insurance demand, the presenting member noted pensions shifting away from defined benefit (DB) funds in favor of defined contribution (DC) funds, perhaps hampering aggregate demand from the sector. However, looking forward, demographics may be more supportive in the future, given the increasingly concentrated household wealth in higher age cohorts, who have higher fixed-income allocations. A potential increase in the footprint of stablecoins was seen as another source of short-end Treasury demand.\nWhile the Committee was comfortable concluding that the demand function for Treasury securities  was presently healthy, several members felt that the distinction between buying Treasury securities for duration and buying Treasury securities on an asset swapped basis was meaningful. The Committee did note the reduction of demand for longer-duration sovereign debt in certain jurisdictions and, in some cases, the shift to shorter issuance from those respective debt management offices.\nThe Committee spent meaningful time discussing the evolution of the diversification value of Treasury securities. In recent years, the value of Treasury securities as a portfolio diversification tool has been more volatile, with Treasury securities at times being positively correlated with equity returns. Historically, this positive correlation is more evident in periods of high inflation. Reduced diversification value could be a headwind for some segments of Treasury demand, though some Committee members felt that the markets were returning to more typical countercyclical performance versus risky assets.\nIn terms of issuance, the Committee recommended keeping nominal coupon, FRN, and TIPS auctions sizes unchanged. The Committee continues to believe that current projections could warrant increases in coupon issuance in FY2027. The Committee had a robust discussion on the relative tradeoffs of increasing auction sizes more gradually, perhaps earlier than needed, compared to a more accelerated path of auction size increases when the financing gap is larger. The Committee also discussed the level of demand at various points on the curve, while noting that dynamics may continue to evolve prior to the need to raise coupon auction sizes. As always, the Committee felt strong communication to ensure a regular and predictable operating framework would help to facilitate any adjustment period for market participants.\nRespectfully,\nDeirdre K Dunn\nChair, Treasury Borrowing Advisory Committee\nJason S Granet\nVice Chair, Treasury Borrowing Advisory Committee"
+    }
+  },
+  "auction_schedule": [
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-05",
+      "auction_date": "2026-02-09",
+      "settlement_date": "2026-02-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-05",
+      "auction_date": "2026-02-09",
+      "settlement_date": "2026-02-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-05",
+      "auction_date": "2026-02-10",
+      "settlement_date": "2026-02-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "3-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-04",
+      "auction_date": "2026-02-10",
+      "settlement_date": "2026-02-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-10",
+      "auction_date": "2026-02-11",
+      "settlement_date": "2026-02-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-04",
+      "auction_date": "2026-02-11",
+      "settlement_date": "2026-02-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-10",
+      "auction_date": "2026-02-12",
+      "settlement_date": "2026-02-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-10",
+      "auction_date": "2026-02-12",
+      "settlement_date": "2026-02-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-04",
+      "auction_date": "2026-02-12",
+      "settlement_date": "2026-02-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-12",
+      "auction_date": "2026-02-17",
+      "settlement_date": "2026-02-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-12",
+      "auction_date": "2026-02-17",
+      "settlement_date": "2026-02-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-12",
+      "auction_date": "2026-02-17",
+      "settlement_date": "2026-02-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-12",
+      "auction_date": "2026-02-17",
+      "settlement_date": "2026-02-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-17",
+      "auction_date": "2026-02-18",
+      "settlement_date": "2026-02-24",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "20-Year",
+      "security_type": "BOND",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-12",
+      "auction_date": "2026-02-18",
+      "settlement_date": "2026-03-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-17",
+      "auction_date": "2026-02-19",
+      "settlement_date": "2026-02-24",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-17",
+      "auction_date": "2026-02-19",
+      "settlement_date": "2026-02-24",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": false,
+      "is_tips": true,
+      "is_frn": false,
+      "announcement_date": "2026-02-12",
+      "auction_date": "2026-02-19",
+      "settlement_date": "2026-02-27",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-23",
+      "settlement_date": "2026-02-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-23",
+      "settlement_date": "2026-02-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-24",
+      "settlement_date": "2026-02-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-24",
+      "settlement_date": "2026-03-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-24",
+      "auction_date": "2026-02-25",
+      "settlement_date": "2026-03-03",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": true,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-25",
+      "settlement_date": "2026-02-27",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-25",
+      "settlement_date": "2026-03-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-24",
+      "auction_date": "2026-02-26",
+      "settlement_date": "2026-03-03",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-24",
+      "auction_date": "2026-02-26",
+      "settlement_date": "2026-03-03",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "7-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-19",
+      "auction_date": "2026-02-26",
+      "settlement_date": "2026-03-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-26",
+      "auction_date": "2026-03-02",
+      "settlement_date": "2026-03-05",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-26",
+      "auction_date": "2026-03-02",
+      "settlement_date": "2026-03-05",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-02-26",
+      "auction_date": "2026-03-03",
+      "settlement_date": "2026-03-05",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-03",
+      "auction_date": "2026-03-04",
+      "settlement_date": "2026-03-10",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-03",
+      "auction_date": "2026-03-05",
+      "settlement_date": "2026-03-10",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-03",
+      "auction_date": "2026-03-05",
+      "settlement_date": "2026-03-10",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-05",
+      "auction_date": "2026-03-09",
+      "settlement_date": "2026-03-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-05",
+      "auction_date": "2026-03-09",
+      "settlement_date": "2026-03-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-05",
+      "auction_date": "2026-03-10",
+      "settlement_date": "2026-03-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "3-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-05",
+      "auction_date": "2026-03-10",
+      "settlement_date": "2026-03-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-10",
+      "auction_date": "2026-03-11",
+      "settlement_date": "2026-03-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-05",
+      "auction_date": "2026-03-11",
+      "settlement_date": "2026-03-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-10",
+      "auction_date": "2026-03-12",
+      "settlement_date": "2026-03-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-10",
+      "auction_date": "2026-03-12",
+      "settlement_date": "2026-03-17",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-05",
+      "auction_date": "2026-03-12",
+      "settlement_date": "2026-03-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-12",
+      "auction_date": "2026-03-16",
+      "settlement_date": "2026-03-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-12",
+      "auction_date": "2026-03-16",
+      "settlement_date": "2026-03-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-12",
+      "auction_date": "2026-03-17",
+      "settlement_date": "2026-03-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-12",
+      "auction_date": "2026-03-17",
+      "settlement_date": "2026-03-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "20-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-12",
+      "auction_date": "2026-03-17",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-17",
+      "auction_date": "2026-03-18",
+      "settlement_date": "2026-03-24",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-17",
+      "auction_date": "2026-03-19",
+      "settlement_date": "2026-03-24",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-17",
+      "auction_date": "2026-03-19",
+      "settlement_date": "2026-03-24",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": true,
+      "is_frn": false,
+      "announcement_date": "2026-03-12",
+      "auction_date": "2026-03-19",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-23",
+      "settlement_date": "2026-03-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-23",
+      "settlement_date": "2026-03-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-24",
+      "settlement_date": "2026-03-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-24",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-24",
+      "auction_date": "2026-03-25",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-25",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": true,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-25",
+      "settlement_date": "2026-03-27",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-24",
+      "auction_date": "2026-03-26",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-24",
+      "auction_date": "2026-03-26",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "7-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-19",
+      "auction_date": "2026-03-26",
+      "settlement_date": "2026-03-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-26",
+      "auction_date": "2026-03-30",
+      "settlement_date": "2026-04-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-26",
+      "auction_date": "2026-03-30",
+      "settlement_date": "2026-04-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-26",
+      "auction_date": "2026-03-31",
+      "settlement_date": "2026-04-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-31",
+      "auction_date": "2026-04-01",
+      "settlement_date": "2026-04-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-31",
+      "auction_date": "2026-04-02",
+      "settlement_date": "2026-04-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-03-31",
+      "auction_date": "2026-04-02",
+      "settlement_date": "2026-04-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-02",
+      "auction_date": "2026-04-06",
+      "settlement_date": "2026-04-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-02",
+      "auction_date": "2026-04-06",
+      "settlement_date": "2026-04-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-02",
+      "auction_date": "2026-04-07",
+      "settlement_date": "2026-04-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "3-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-02",
+      "auction_date": "2026-04-07",
+      "settlement_date": "2026-04-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-07",
+      "auction_date": "2026-04-08",
+      "settlement_date": "2026-04-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-02",
+      "auction_date": "2026-04-08",
+      "settlement_date": "2026-04-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-07",
+      "auction_date": "2026-04-09",
+      "settlement_date": "2026-04-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-07",
+      "auction_date": "2026-04-09",
+      "settlement_date": "2026-04-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-02",
+      "auction_date": "2026-04-09",
+      "settlement_date": "2026-04-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-09",
+      "auction_date": "2026-04-13",
+      "settlement_date": "2026-04-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-09",
+      "auction_date": "2026-04-13",
+      "settlement_date": "2026-04-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-09",
+      "auction_date": "2026-04-14",
+      "settlement_date": "2026-04-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-09",
+      "auction_date": "2026-04-14",
+      "settlement_date": "2026-04-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-14",
+      "auction_date": "2026-04-15",
+      "settlement_date": "2026-04-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-14",
+      "auction_date": "2026-04-16",
+      "settlement_date": "2026-04-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-14",
+      "auction_date": "2026-04-16",
+      "settlement_date": "2026-04-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-16",
+      "auction_date": "2026-04-20",
+      "settlement_date": "2026-04-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-16",
+      "auction_date": "2026-04-20",
+      "settlement_date": "2026-04-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-16",
+      "auction_date": "2026-04-21",
+      "settlement_date": "2026-04-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-21",
+      "auction_date": "2026-04-22",
+      "settlement_date": "2026-04-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "20-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-16",
+      "auction_date": "2026-04-22",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-21",
+      "auction_date": "2026-04-23",
+      "settlement_date": "2026-04-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-21",
+      "auction_date": "2026-04-23",
+      "settlement_date": "2026-04-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": true,
+      "is_frn": false,
+      "announcement_date": "2026-04-16",
+      "auction_date": "2026-04-23",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-27",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-27",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-27",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-27",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-28",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": true,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-28",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "7-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-23",
+      "auction_date": "2026-04-28",
+      "settlement_date": "2026-04-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-28",
+      "auction_date": "2026-04-29",
+      "settlement_date": "2026-05-05",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-28",
+      "auction_date": "2026-04-30",
+      "settlement_date": "2026-05-05",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-28",
+      "auction_date": "2026-04-30",
+      "settlement_date": "2026-05-05",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-30",
+      "auction_date": "2026-05-04",
+      "settlement_date": "2026-05-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-30",
+      "auction_date": "2026-05-04",
+      "settlement_date": "2026-05-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-04-30",
+      "auction_date": "2026-05-05",
+      "settlement_date": "2026-05-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-05",
+      "auction_date": "2026-05-06",
+      "settlement_date": "2026-05-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-05",
+      "auction_date": "2026-05-07",
+      "settlement_date": "2026-05-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-05",
+      "auction_date": "2026-05-07",
+      "settlement_date": "2026-05-12",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-07",
+      "auction_date": "2026-05-11",
+      "settlement_date": "2026-05-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-07",
+      "auction_date": "2026-05-11",
+      "settlement_date": "2026-05-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "3-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-06",
+      "auction_date": "2026-05-11",
+      "settlement_date": "2026-05-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-07",
+      "auction_date": "2026-05-12",
+      "settlement_date": "2026-05-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-07",
+      "auction_date": "2026-05-12",
+      "settlement_date": "2026-05-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-06",
+      "auction_date": "2026-05-12",
+      "settlement_date": "2026-05-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-12",
+      "auction_date": "2026-05-13",
+      "settlement_date": "2026-05-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-06",
+      "auction_date": "2026-05-13",
+      "settlement_date": "2026-05-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-12",
+      "auction_date": "2026-05-14",
+      "settlement_date": "2026-05-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-12",
+      "auction_date": "2026-05-14",
+      "settlement_date": "2026-05-19",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-14",
+      "auction_date": "2026-05-18",
+      "settlement_date": "2026-05-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-14",
+      "auction_date": "2026-05-18",
+      "settlement_date": "2026-05-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-14",
+      "auction_date": "2026-05-19",
+      "settlement_date": "2026-05-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-19",
+      "auction_date": "2026-05-20",
+      "settlement_date": "2026-05-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "20-Year",
+      "security_type": "BOND",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-14",
+      "auction_date": "2026-05-20",
+      "settlement_date": "2026-06-01",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-19",
+      "auction_date": "2026-05-21",
+      "settlement_date": "2026-05-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-19",
+      "auction_date": "2026-05-21",
+      "settlement_date": "2026-05-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": true,
+      "is_frn": false,
+      "announcement_date": "2026-05-14",
+      "auction_date": "2026-05-21",
+      "settlement_date": "2026-05-29",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-26",
+      "settlement_date": "2026-05-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-26",
+      "settlement_date": "2026-05-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-26",
+      "settlement_date": "2026-05-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-26",
+      "settlement_date": "2026-06-01",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-26",
+      "auction_date": "2026-05-27",
+      "settlement_date": "2026-06-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": true,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-27",
+      "settlement_date": "2026-05-29",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-27",
+      "settlement_date": "2026-06-01",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-26",
+      "auction_date": "2026-05-28",
+      "settlement_date": "2026-06-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-26",
+      "auction_date": "2026-05-28",
+      "settlement_date": "2026-06-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "7-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-21",
+      "auction_date": "2026-05-28",
+      "settlement_date": "2026-06-01",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-28",
+      "auction_date": "2026-06-01",
+      "settlement_date": "2026-06-04",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-28",
+      "auction_date": "2026-06-01",
+      "settlement_date": "2026-06-04",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-05-28",
+      "auction_date": "2026-06-02",
+      "settlement_date": "2026-06-04",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-02",
+      "auction_date": "2026-06-03",
+      "settlement_date": "2026-06-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-02",
+      "auction_date": "2026-06-04",
+      "settlement_date": "2026-06-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-02",
+      "auction_date": "2026-06-04",
+      "settlement_date": "2026-06-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-08",
+      "settlement_date": "2026-06-11",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-08",
+      "settlement_date": "2026-06-11",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-09",
+      "settlement_date": "2026-06-11",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-09",
+      "settlement_date": "2026-06-11",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "3-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-09",
+      "settlement_date": "2026-06-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-09",
+      "auction_date": "2026-06-10",
+      "settlement_date": "2026-06-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-10",
+      "settlement_date": "2026-06-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-09",
+      "auction_date": "2026-06-11",
+      "settlement_date": "2026-06-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-09",
+      "auction_date": "2026-06-11",
+      "settlement_date": "2026-06-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-04",
+      "auction_date": "2026-06-11",
+      "settlement_date": "2026-06-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-11",
+      "auction_date": "2026-06-15",
+      "settlement_date": "2026-06-18",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-11",
+      "auction_date": "2026-06-15",
+      "settlement_date": "2026-06-18",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-11",
+      "auction_date": "2026-06-16",
+      "settlement_date": "2026-06-18",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "20-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-11",
+      "auction_date": "2026-06-16",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-16",
+      "auction_date": "2026-06-17",
+      "settlement_date": "2026-06-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-16",
+      "auction_date": "2026-06-18",
+      "settlement_date": "2026-06-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-16",
+      "auction_date": "2026-06-18",
+      "settlement_date": "2026-06-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": true,
+      "is_frn": false,
+      "announcement_date": "2026-06-11",
+      "auction_date": "2026-06-18",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-22",
+      "settlement_date": "2026-06-25",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-22",
+      "settlement_date": "2026-06-25",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-23",
+      "settlement_date": "2026-06-25",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-23",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-23",
+      "auction_date": "2026-06-24",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-24",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": true,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-24",
+      "settlement_date": "2026-06-26",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-23",
+      "auction_date": "2026-06-25",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-23",
+      "auction_date": "2026-06-25",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "7-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-18",
+      "auction_date": "2026-06-25",
+      "settlement_date": "2026-06-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-25",
+      "auction_date": "2026-06-29",
+      "settlement_date": "2026-07-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-25",
+      "auction_date": "2026-06-29",
+      "settlement_date": "2026-07-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-25",
+      "auction_date": "2026-06-30",
+      "settlement_date": "2026-07-02",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-30",
+      "auction_date": "2026-07-01",
+      "settlement_date": "2026-07-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-30",
+      "auction_date": "2026-07-02",
+      "settlement_date": "2026-07-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-06-30",
+      "auction_date": "2026-07-02",
+      "settlement_date": "2026-07-07",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-06",
+      "settlement_date": "2026-07-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-06",
+      "settlement_date": "2026-07-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-07",
+      "settlement_date": "2026-07-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-07",
+      "settlement_date": "2026-07-09",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "3-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-07",
+      "settlement_date": "2026-07-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-07",
+      "auction_date": "2026-07-08",
+      "settlement_date": "2026-07-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-08",
+      "settlement_date": "2026-07-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-07",
+      "auction_date": "2026-07-09",
+      "settlement_date": "2026-07-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-07",
+      "auction_date": "2026-07-09",
+      "settlement_date": "2026-07-14",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "30-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-02",
+      "auction_date": "2026-07-09",
+      "settlement_date": "2026-07-15",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-09",
+      "auction_date": "2026-07-13",
+      "settlement_date": "2026-07-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-09",
+      "auction_date": "2026-07-13",
+      "settlement_date": "2026-07-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-09",
+      "auction_date": "2026-07-14",
+      "settlement_date": "2026-07-16",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-14",
+      "auction_date": "2026-07-15",
+      "settlement_date": "2026-07-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-14",
+      "auction_date": "2026-07-16",
+      "settlement_date": "2026-07-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-14",
+      "auction_date": "2026-07-16",
+      "settlement_date": "2026-07-21",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-16",
+      "auction_date": "2026-07-20",
+      "settlement_date": "2026-07-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-16",
+      "auction_date": "2026-07-20",
+      "settlement_date": "2026-07-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-16",
+      "auction_date": "2026-07-21",
+      "settlement_date": "2026-07-23",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-21",
+      "auction_date": "2026-07-22",
+      "settlement_date": "2026-07-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "20-Year",
+      "security_type": "BOND",
+      "reopening": true,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-16",
+      "auction_date": "2026-07-22",
+      "settlement_date": "2026-07-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-21",
+      "auction_date": "2026-07-23",
+      "settlement_date": "2026-07-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-21",
+      "auction_date": "2026-07-23",
+      "settlement_date": "2026-07-28",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "10-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": true,
+      "is_frn": false,
+      "announcement_date": "2026-07-16",
+      "auction_date": "2026-07-23",
+      "settlement_date": "2026-07-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-27",
+      "settlement_date": "2026-07-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-27",
+      "settlement_date": "2026-07-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-27",
+      "settlement_date": "2026-07-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "5-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-27",
+      "settlement_date": "2026-07-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-28",
+      "settlement_date": "2026-07-30",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "7-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-28",
+      "settlement_date": "2026-07-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "17-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-28",
+      "auction_date": "2026-07-29",
+      "settlement_date": "2026-08-04",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "2-Year",
+      "security_type": "NOTE",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": true,
+      "announcement_date": "2026-07-23",
+      "auction_date": "2026-07-29",
+      "settlement_date": "2026-07-31",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "4-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-28",
+      "auction_date": "2026-07-30",
+      "settlement_date": "2026-08-04",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "8-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-28",
+      "auction_date": "2026-07-30",
+      "settlement_date": "2026-08-04",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "13-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-30",
+      "auction_date": "2026-08-03",
+      "settlement_date": "2026-08-06",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "26-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-30",
+      "auction_date": "2026-08-03",
+      "settlement_date": "2026-08-06",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "6-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-30",
+      "auction_date": "2026-08-04",
+      "settlement_date": "2026-08-06",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    },
+    {
+      "security_term": "52-Week",
+      "security_type": "BILL",
+      "reopening": false,
+      "is_tips": false,
+      "is_frn": false,
+      "announcement_date": "2026-07-30",
+      "auction_date": "2026-08-04",
+      "settlement_date": "2026-08-06",
+      "source_url": "https://home.treasury.gov/system/files/221/TentativeAuctionScheduleQ12026.xml"
+    }
+  ],
+  "buyback_schedule": [
+    {
+      "purchase_bucket": "Nominal Coupons 5Y to 7Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 4000000000.0,
+      "maturity_range_start": "2031-02-20",
+      "maturity_range_end": "2033-02-19",
+      "announcement_date": "2026-02-18",
+      "operation_date": "2026-02-19",
+      "settlement_date": "2026-02-20",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 20Y to 30Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2046-02-25",
+      "maturity_range_end": "2056-02-24",
+      "announcement_date": "2026-02-23",
+      "operation_date": "2026-02-24",
+      "settlement_date": "2026-02-25",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "TIPS 1Y to 10Y",
+      "security_type": "TIPS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 750000000.0,
+      "maturity_range_start": "2027-02-26",
+      "maturity_range_end": "2036-02-25",
+      "announcement_date": "2026-02-24",
+      "operation_date": "2026-02-25",
+      "settlement_date": "2026-02-26",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 3Y to 5Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 4000000000.0,
+      "maturity_range_start": "2029-03-05",
+      "maturity_range_end": "2031-03-04",
+      "announcement_date": "2026-03-03",
+      "operation_date": "2026-03-04",
+      "settlement_date": "2026-03-05",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 10Y to 20Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2036-03-06",
+      "maturity_range_end": "2046-03-05",
+      "announcement_date": "2026-03-04",
+      "operation_date": "2026-03-05",
+      "settlement_date": "2026-03-06",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 1Mo to 2Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Cash Management",
+      "min_amount": null,
+      "max_amount": 15000000000.0,
+      "maturity_range_start": "2026-04-11",
+      "maturity_range_end": "2028-03-10",
+      "announcement_date": "2026-03-09",
+      "operation_date": "2026-03-10",
+      "settlement_date": "2026-03-11",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 7Y to 10Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 4000000000.0,
+      "maturity_range_start": "2033-03-13",
+      "maturity_range_end": "2036-03-12",
+      "announcement_date": "2026-03-11",
+      "operation_date": "2026-03-12",
+      "settlement_date": "2026-03-13",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 1Mo to 2Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Cash Management",
+      "min_amount": null,
+      "max_amount": 15000000000.0,
+      "maturity_range_start": "2026-04-18",
+      "maturity_range_end": "2028-03-17",
+      "announcement_date": "2026-03-16",
+      "operation_date": "2026-03-17",
+      "settlement_date": "2026-03-18",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 20Y to 30Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2046-03-20",
+      "maturity_range_end": "2056-03-19",
+      "announcement_date": "2026-03-18",
+      "operation_date": "2026-03-19",
+      "settlement_date": "2026-03-20",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "TIPS 10Y to 30Y",
+      "security_type": "TIPS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 500000000.0,
+      "maturity_range_start": "2036-03-26",
+      "maturity_range_end": "2056-03-25",
+      "announcement_date": "2026-03-24",
+      "operation_date": "2026-03-25",
+      "settlement_date": "2026-03-26",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 10Y to 20Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2036-03-27",
+      "maturity_range_end": "2046-03-26",
+      "announcement_date": "2026-03-25",
+      "operation_date": "2026-03-26",
+      "settlement_date": "2026-03-27",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 1Mo to 2Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Cash Management",
+      "min_amount": null,
+      "max_amount": 15000000000.0,
+      "maturity_range_start": "2026-05-02",
+      "maturity_range_end": "2028-04-01",
+      "announcement_date": "2026-03-31",
+      "operation_date": "2026-04-01",
+      "settlement_date": "2026-04-02",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 20Y to 30Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2046-04-10",
+      "maturity_range_end": "2056-04-09",
+      "announcement_date": "2026-04-08",
+      "operation_date": "2026-04-09",
+      "settlement_date": "2026-04-10",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 10Y to 20Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2036-04-16",
+      "maturity_range_end": "2046-04-15",
+      "announcement_date": "2026-04-14",
+      "operation_date": "2026-04-15",
+      "settlement_date": "2026-04-16",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 1Mo to 2Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Cash Management",
+      "min_amount": null,
+      "max_amount": 15000000000.0,
+      "maturity_range_start": "2026-05-17",
+      "maturity_range_end": "2028-04-16",
+      "announcement_date": "2026-04-15",
+      "operation_date": "2026-04-16",
+      "settlement_date": "2026-04-17",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 1Mo to 2Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Cash Management",
+      "min_amount": null,
+      "max_amount": 15000000000.0,
+      "maturity_range_start": "2026-05-23",
+      "maturity_range_end": "2028-04-22",
+      "announcement_date": "2026-04-21",
+      "operation_date": "2026-04-22",
+      "settlement_date": "2026-04-23",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 2Y to 3Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 4000000000.0,
+      "maturity_range_start": "2028-04-24",
+      "maturity_range_end": "2029-04-23",
+      "announcement_date": "2026-04-22",
+      "operation_date": "2026-04-23",
+      "settlement_date": "2026-04-24",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 20Y to 30Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2046-04-29",
+      "maturity_range_end": "2056-04-28",
+      "announcement_date": "2026-04-27",
+      "operation_date": "2026-04-28",
+      "settlement_date": "2026-04-29",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 10Y to 20Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 2000000000.0,
+      "maturity_range_start": "2036-05-07",
+      "maturity_range_end": "2046-05-06",
+      "announcement_date": "2026-05-05",
+      "operation_date": "2026-05-06",
+      "settlement_date": "2026-05-07",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "Nominal Coupons 1Mo to 2Y",
+      "security_type": "NOMINAL COUPONS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 4000000000.0,
+      "maturity_range_start": "2026-06-08",
+      "maturity_range_end": "2028-05-07",
+      "announcement_date": "2026-05-06",
+      "operation_date": "2026-05-07",
+      "settlement_date": "2026-05-08",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    },
+    {
+      "purchase_bucket": "TIPS 1Y to 10Y",
+      "security_type": "TIPS",
+      "operation_type": "Liquidity Support",
+      "min_amount": null,
+      "max_amount": 750000000.0,
+      "maturity_range_start": "2027-05-14",
+      "maturity_range_end": "2036-05-13",
+      "announcement_date": "2026-05-12",
+      "operation_date": "2026-05-13",
+      "settlement_date": "2026-05-14",
+      "source_url": "https://home.treasury.gov/system/files/221/Tentative-Buyback-ScheduleQ12026.xml"
+    }
+  ],
+  "metadata": {
+    "source": "U.S. Department of the Treasury",
+    "source_url": "https://home.treasury.gov/policy-issues/financing-the-government/quarterly-refunding/most-recent-quarterly-refunding-documents",
+    "frequency": "quarterly",
+    "description": "Treasury Quarterly Refunding Documents",
+    "documents": {
+      "policy_statement": "Policy Statement（入札サイズ・新規資金調達額）",
+      "financing_estimates": "Marketable Borrowing Estimates（借入見込み）",
+      "tbac_report": "TBAC Report to Secretary",
+      "tbac_minutes": "TBAC Minutes",
+      "auction_schedule": "Tentative Auction Schedule (XML)",
+      "buyback_schedule": "Tentative Buyback Schedule (XML)"
+    }
+  },
+  "last_updated": "2026-03-17T21:29:18.115464+09:00"
+}

@@ -1,0 +1,46 @@
+{
+  "backfill_at": "2026-03-17T10:57:36.347903",
+  "annual_totals": [
+    {
+      "ref_month": "2024-00",
+      "value_usd_billion": 142.086,
+      "yoy_pct": 42.5,
+      "source_report": "MOTIE_ANNUAL",
+      "published_at": null,
+      "source_url": "",
+      "raw_text": "2024 annual semiconductor exports $142.086B (KITA/ICT report)"
+    },
+    {
+      "ref_month": "2025-00",
+      "value_usd_billion": 173.4,
+      "yoy_pct": 22.2,
+      "source_report": "MOTIE_ANNUAL",
+      "published_at": null,
+      "source_url": "",
+      "raw_text": "2025 annual semiconductor exports $173.4B (MOTIE English annual report)"
+    }
+  ],
+  "monthly_records": [
+    {
+      "ref_month": "2026-01",
+      "value_usd_billion": 20.55,
+      "yoy_pct": 102.7,
+      "source_report": "VERIFIED_SEED",
+      "published_at": null,
+      "source_url": "",
+      "raw_text": "반도체 수출 205억5000만달러"
+    },
+    {
+      "ref_month": "2026-02",
+      "value_usd_billion": 25.2,
+      "yoy_pct": 160.9,
+      "source_report": "VERIFIED_SEED",
+      "published_at": null,
+      "source_url": "",
+      "raw_text": "반도체 252억달러 역대최대, 160.9%↑"
+    }
+  ],
+  "seed_count": 4,
+  "scraped_count": 0,
+  "merged_count": 2
+}

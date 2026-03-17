@@ -869,21 +869,24 @@
       "large_non_manufacturing": 5.1,
       "medium_all_industries": 4.7,
       "small_all_industries": -3.7
+    },
+    {
+      "date": "2026-03-01",
+      "year": 2026,
+      "quarter": "Q1",
+      "large_all_industries": 4.4,
+      "large_manufacturing": 3.8,
+      "large_non_manufacturing": 4.6,
+      "medium_all_industries": 0.2,
+      "small_all_industries": -12.9
     }
   ],
   "sheet_name": "ref1",
   "sheet_title": "貴社の景況",
   "sheet_description": "Business Conditions Index",
   "period_type": "actual",
-  "last_updated": "2026-02-28T00:50:08.029025",
+  "last_updated": "2026-03-17T10:24:48.230943",
   "cached": false,
   "source": "e-stat",
-  "next_release": {
-    "date": "2026-03-11",
-    "datetime_utc": "2026-03-11T23:50:00+00:00",
-    "datetime_jst": "2026-03-12T08:50:00+09:00",
-    "time_jst": "08:50",
-    "label": "BSI Large Manufacturing QoQ (Q1)",
-    "estimate": null
-  }
+  "next_release": null
 }

@@ -285,3 +285,32 @@ COMMENT ON TABLE provider_sync_state IS 'データプロバイダーとの同期
 COMMENT ON TABLE economic_indicator_candidates IS '国別イベントの集計結果（指標候補一覧）';
 COMMENT ON TABLE indicator_event_mapping IS 'EconAlpha指標IDとFMPイベント名の紐付け';
 COMMENT ON TABLE indicator_releases IS '正規化済みの指標発表履歴（1分足/5分足表示用）';
+
+-- ----------------------------------------------------------------------------
+-- 6. 価格転嫁率テーブル（中小企業庁 フォローアップ調査）
+-- 半年ごと（3月・9月調査）の価格転嫁率データ
+-- ----------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS price_pass_through_rate (
+    id                  SERIAL PRIMARY KEY,
+    survey_date         DATE NOT NULL UNIQUE,        -- 調査月の1日 (e.g. 2025-09-01)
+    survey_period       TEXT NOT NULL,               -- 表示用 (e.g. "2025年9月")
+    total               NUMERIC(5,1) NOT NULL,       -- コスト全般 %
+    raw_materials       NUMERIC(5,1),                -- 原材料費 %
+    energy              NUMERIC(5,1),                -- エネルギー費 %
+    labor               NUMERIC(5,1),                -- 労務費 %
+    zero_pass_through   NUMERIC(5,1),                -- 全く転嫁できず %
+    supply_chain        JSONB,                       -- {tier_1, tier_2, tier_3, tier_4_plus}
+    source              TEXT NOT NULL DEFAULT 'hardcoded',  -- hardcoded / pdf_extracted
+    created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS ix_price_pass_through_rate_date
+ON price_pass_through_rate(survey_date DESC);
+
+DROP TRIGGER IF EXISTS update_price_pass_through_rate_updated_at ON price_pass_through_rate;
+CREATE TRIGGER update_price_pass_through_rate_updated_at
+    BEFORE UPDATE ON price_pass_through_rate
+    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+COMMENT ON TABLE price_pass_through_rate IS '中小企業庁 価格交渉促進月間フォローアップ調査の転嫁率データ';

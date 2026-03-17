@@ -5,10 +5,10 @@
 
 ■ 毎日 5:00  - NOAA HDD/CDD
 ■ 毎日 6:00  - yfinance全銘柄日足データ
-■ 平日 7:00  - yfinance再試行 / GEX・DIX / 日経YoY / 電子部品受注残 / 日経回帰分析 / クラックスプレッド
+■ 平日 7:00  - yfinance再試行 / GEX・DIX / 日経YoY / 電子部品受注残 / 日経回帰分析 / クラックスプレッド / VIX期間構造 / HV(実現ボラ) / VIXクロスレシオ
 ■ 平日 8:00  - CBOE Put/Call Ratio
 ■ 平日 8:30  - 貴金属(Gold ETF, WGC, Gold Premium, SGE, China Gold ETF, COMEX Gold/Silver/Copper, Silver ETF, LME/SHFE銅)
-■ 平日 9:00  - Fear & Greed Index (前日7:10PM ET = JST 9:10)
+■ 平日 9:00  - Fear & Greed Index (前日7:10PM ET = JST 9:10) / MOF対外対内証券売買(木金月)
 ■ 平日 15:30 - 日経YoY(午後) / 日経ダブルインバース
 ■ 平日 16:00 - 東証プライム騰落レシオ / JPX投資部門別(木曜)
 ■ 平日 20:30 - JPX Put/Call Ratio
@@ -240,6 +240,42 @@ class MarketDataScheduler:
             replace_existing=True,
         )
 
+        # =============================================
+        # 毎月1-10日 毎日6:00 - WSTS Semiconductor Sales
+        # WSTSの発表日は月初第1週で変動するため、1-10日の間毎日チェック
+        # =============================================
+        self.scheduler.add_job(
+            self._update_semiconductor_sales,
+            CronTrigger(day="1-10", hour=6, minute=0, timezone=JST),
+            id="semiconductor_sales",
+            name="WSTS Semiconductor Sales (1st-10th daily check)",
+            replace_existing=True,
+        )
+
+        # =============================================
+        # 毎月8-14日 毎日6:00 - OECD CLI
+        # OECDのCLI発表日は月の10日前後で変動するため、8-14日の間毎日チェック
+        # =============================================
+        self.scheduler.add_job(
+            self._update_oecd_cli,
+            CronTrigger(day="8-14", hour=6, minute=0, timezone=JST),
+            id="oecd_cli",
+            name="OECD CLI Monthly Update (8th-14th daily check)",
+            replace_existing=True,
+        )
+
+        # =============================================
+        # 毎月16-22日 毎日9:00 - 日銀当座預金残高
+        # BOJデータ検索サイトは原則8:50頃更新。毎月18-20日頃に前月分公表
+        # =============================================
+        self.scheduler.add_job(
+            self._update_boj_current_account_balance,
+            CronTrigger(day="16-22", hour=9, minute=0, timezone=JST),
+            id="boj_current_account_balance",
+            name="BOJ Current Account Balance Monthly (16th-22nd)",
+            replace_existing=True,
+        )
+
         self.scheduler.start()
         self._is_running = True
         print("[MarketScheduler] Started - All jobs scheduled")
@@ -315,6 +351,18 @@ class MarketDataScheduler:
         svc = _import_service("crack_spread_service", "crack_spread_service")
         _safe_call("Crack Spread", lambda: svc.get_data(force_refresh=True))
 
+        svc = _import_service("vix_term_structure_service", "vix_term_structure_service")
+        _safe_call("VIX Term Structure", lambda: svc.get_data(force_refresh=True))
+
+        svc = _import_service("historical_volatility_service", "historical_volatility_service")
+        _safe_call("Historical Volatility", lambda: svc.get_data(force_refresh=True))
+
+        svc = _import_service("vix_cross_ratio_service", "vix_cross_ratio_service")
+        _safe_call("VIX Cross Ratio", lambda: svc.get_data(force_refresh=True))
+
+        svc = _import_service("sector_ratio_service", "sector_ratio_service")
+        _safe_call("Sector Ratio", lambda: svc.get_data(force_refresh=True))
+
     # =========================================================================
     # 平日 8:00 - CBOE PCR
     # =========================================================================
@@ -353,10 +401,13 @@ class MarketDataScheduler:
     # 平日 9:00 - Fear & Greed
     # =========================================================================
     def _update_fear_greed(self):
-        """Fear & Greed Index 日次更新"""
-        print(f"[MarketScheduler] Fear & Greed update at {datetime.now(JST).isoformat()}")
+        """Fear & Greed Index / MOF対外対内証券売買 日次更新"""
+        print(f"[MarketScheduler] Fear & Greed + MOF update at {datetime.now(JST).isoformat()}")
         svc = _import_service("fear_greed_service", "fear_greed_service")
         _safe_call("Fear & Greed", lambda: svc.get_fear_greed_data(force_refresh=True))
+
+        svc = _import_service("mof_securities_trading_service", "mof_securities_trading_service")
+        _safe_call("MOF Securities Trading", lambda: svc.get_data(force_refresh=True))
 
     # =========================================================================
     # 平日 15:45 - 午後の日本株サービス①
@@ -492,6 +543,51 @@ class MarketDataScheduler:
         print(f"[MarketScheduler] TSMC Revenue update at {datetime.now(JST).isoformat()}")
         svc = _import_service("tsmc_revenue_service", "tsmc_revenue_service")
         _safe_call("TSMC Revenue", lambda: svc.get_data(force_refresh=True))
+
+    # =========================================================================
+    # 毎月5日 - WSTS Semiconductor Sales
+    # =========================================================================
+    def _update_semiconductor_sales(self):
+        """WSTS 半導体売上高 月次更新（1-10日毎日チェック）"""
+        print(f"[MarketScheduler] WSTS Semiconductor Sales check at {datetime.now(JST).isoformat()}")
+        try:
+            import importlib
+            mod = importlib.import_module("services.global.semiconductor_sales_service")
+            svc = mod.semiconductor_sales_service
+            # URLキャッシュをクリアして最新URLを再検出（月初なので新しいファイルが出ている可能性）
+            from core.redis_client import redis_client as _rc
+            _rc.delete(svc.URL_CACHE_KEY)
+            _safe_call("WSTS Semiconductor Sales", lambda: svc.get_data(force_refresh=True))
+        except Exception as e:
+            print(f"[MarketScheduler] WSTS Semiconductor Sales error: {e}")
+
+    # =========================================================================
+    # 毎月8-14日 - OECD CLI
+    # =========================================================================
+    def _update_oecd_cli(self):
+        """OECD CLI（景気先行指数）月次更新（8-14日毎日チェック）"""
+        print(f"[MarketScheduler] OECD CLI check at {datetime.now(JST).isoformat()}")
+        try:
+            import importlib
+            mod = importlib.import_module("services.global.oecd_cli_service")
+            svc = mod.oecd_cli_service
+            _safe_call("OECD CLI", lambda: svc.get_data(force_refresh=True))
+        except Exception as e:
+            print(f"[MarketScheduler] OECD CLI error: {e}")
+
+    # =========================================================================
+    # 毎月16-22日 - 日銀当座預金残高
+    # =========================================================================
+    def _update_boj_current_account_balance(self):
+        """日銀当座預金残高月次更新（16-22日毎日チェック）"""
+        print(f"[MarketScheduler] BOJ Current Account Balance check at {datetime.now(JST).isoformat()}")
+        try:
+            import importlib
+            mod = importlib.import_module("services.japan.boj_current_account_balance_service")
+            svc = mod.boj_current_account_balance_service
+            _safe_call("BOJ Current Account Balance", lambda: svc.get_data(force_refresh=True))
+        except Exception as e:
+            print(f"[MarketScheduler] BOJ Current Account Balance error: {e}")
 
     # =========================================================================
     # 手動実行

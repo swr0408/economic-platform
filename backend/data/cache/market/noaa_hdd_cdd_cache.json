@@ -18626,12 +18626,6 @@
       "cdd": 1
     },
     {
-      "date": "2026-03-14",
-      "hdd": 14,
-      "cdd": 1,
-      "forecast": true
-    },
-    {
       "date": "2026-03-15",
       "hdd": 13,
       "cdd": 2,
@@ -18639,13 +18633,13 @@
     },
     {
       "date": "2026-03-16",
-      "hdd": 17,
+      "hdd": 18,
       "cdd": 2,
       "forecast": true
     },
     {
       "date": "2026-03-17",
-      "hdd": 24,
+      "hdd": 25,
       "cdd": 1,
       "forecast": true
     },
@@ -18657,13 +18651,19 @@
     },
     {
       "date": "2026-03-19",
-      "hdd": 14,
+      "hdd": 13,
       "cdd": 2,
       "forecast": true
     },
     {
       "date": "2026-03-20",
-      "hdd": 12,
+      "hdd": 10,
+      "cdd": 3,
+      "forecast": true
+    },
+    {
+      "date": "2026-03-21",
+      "hdd": 9,
       "cdd": 3,
       "forecast": true
     }
@@ -18675,7 +18675,7 @@
   },
   "outlook": {
     "6_10": {
-      "date_range": "Mar 20 - 24 2026",
+      "date_range": "Mar 21 - 25 2026",
       "states": [
         {
           "state": "WASHINGTON",
@@ -18775,7 +18775,7 @@
         {
           "state": "S TEXAS",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "W TEXAS",
@@ -18785,7 +18785,7 @@
         {
           "state": "MINNESOTA",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "IOWA",
@@ -18810,7 +18810,7 @@
         {
           "state": "WISCONSIN",
           "temp": "N",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "ILLINOIS",
@@ -18825,7 +18825,7 @@
         {
           "state": "MICHIGAN",
           "temp": "N",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "INDIANA",
@@ -18839,7 +18839,7 @@
         },
         {
           "state": "KENTUCKY",
-          "temp": "A",
+          "temp": "N",
           "precip": "B"
         },
         {
@@ -18855,41 +18855,41 @@
         {
           "state": "NEW YORK",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "VERMONT",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "NEW HAMP",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "MAINE",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "MASS",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "CONN",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "RHODE IS",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "PENN",
-          "temp": "B",
+          "temp": "N",
           "precip": "B"
         },
         {
@@ -18904,7 +18904,7 @@
         },
         {
           "state": "MARYLAND",
-          "temp": "B",
+          "temp": "N",
           "precip": "B"
         },
         {
@@ -18929,12 +18929,12 @@
         },
         {
           "state": "GEORGIA",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
           "state": "FL PNHDL",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
@@ -18980,11 +18980,11 @@
       ]
     },
     "8_14": {
-      "date_range": "Mar 22 - 28 2026",
+      "date_range": "Mar 23 - 29 2026",
       "states": [
         {
           "state": "WASHINGTON",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19005,7 +19005,7 @@
         {
           "state": "IDAHO",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "NEVADA",
@@ -19035,7 +19035,7 @@
         {
           "state": "ARIZONA",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "COLORADO",
@@ -19045,7 +19045,7 @@
         {
           "state": "NEW MEXICO",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "N DAKOTA",
@@ -19070,12 +19070,12 @@
         {
           "state": "OKLAHOMA",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "N TEXAS",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "S TEXAS",
@@ -19110,7 +19110,7 @@
         {
           "state": "LOUISIANA",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "WISCONSIN",
@@ -19119,7 +19119,7 @@
         },
         {
           "state": "ILLINOIS",
-          "temp": "A",
+          "temp": "N",
           "precip": "B"
         },
         {
@@ -19144,7 +19144,7 @@
         },
         {
           "state": "KENTUCKY",
-          "temp": "A",
+          "temp": "N",
           "precip": "B"
         },
         {
@@ -19229,7 +19229,7 @@
         },
         {
           "state": "S CAROLINA",
-          "temp": "A",
+          "temp": "N",
           "precip": "B"
         },
         {
@@ -19244,8 +19244,8 @@
         },
         {
           "state": "FL PENIN",
-          "temp": "A",
-          "precip": "B"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "AK N SLOPE",
@@ -19270,12 +19270,12 @@
         {
           "state": "AK S INT",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "AK SO COAST",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "AK PNHDL",
@@ -19298,10 +19298,10 @@
     "series": "Population-Weighted CONUS HDD/CDD",
     "data_count": 3732,
     "start_date": "2016-01-01",
-    "end_date": "2026-03-20",
-    "forecast_end_date": "2026-03-20"
+    "end_date": "2026-03-21",
+    "forecast_end_date": "2026-03-21"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-15T23:14:49.417851+09:00"
+  "last_updated": "2026-03-16T10:24:03.017245+09:00"
 }

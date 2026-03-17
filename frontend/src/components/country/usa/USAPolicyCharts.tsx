@@ -14,6 +14,7 @@ import ONRRPChart from './monetary_policy/ONRRPChart'
 import FederalBudgetChart from './monetary_policy/FederalBudgetChart'
 import CBOProjectionsChart from './monetary_policy/CBOProjectionsChart'
 import CRELoanDelinquencyChart from './monetary_policy/CRELoanDelinquencyChart'
+import QuarterlyRefundingChart from './monetary_policy/QuarterlyRefundingChart'
 
 /**
  * 米国金融政策チャート群
@@ -128,6 +129,11 @@ export default function USAPolicyCharts() {
       {/* CRE Loan Delinquency Rate Chart */}
       <div id="cre-loan-delinquency">
         <CRELoanDelinquencyChart data={dashboardData?.cre_loan_delinquency ?? null} />
+      </div>
+
+      {/* Treasury Quarterly Refunding */}
+      <div id="quarterly-refunding">
+        <QuarterlyRefundingChart />
       </div>
     </div>
   )

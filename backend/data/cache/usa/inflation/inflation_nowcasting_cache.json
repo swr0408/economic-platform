@@ -1,0 +1,21 @@
+{
+  "monthly_mom": [
+    {
+      "date": "March 2026",
+      "cpi": 0.47,
+      "core_cpi": 0.2,
+      "pce": 0.38,
+      "core_pce": 0.23
+    }
+  ],
+  "monthly_yoy": [
+    {
+      "date": "March 2026",
+      "cpi": 2.87,
+      "core_cpi": 2.6,
+      "pce": 3.05,
+      "core_pce": 2.97
+    }
+  ],
+  "last_updated": "2026-03-17T23:01:16.816772+09:00"
+}

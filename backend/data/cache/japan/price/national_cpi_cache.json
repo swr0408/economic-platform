@@ -1,18 +1,6 @@
 {
   "data": [
     {
-      "date": "2006-01-01",
-      "index": null,
-      "yoy": -0.1,
-      "mom": null,
-      "core_index": null,
-      "core_yoy": -0.1,
-      "core_mom": null,
-      "core_core_index": null,
-      "core_core_yoy": -0.6,
-      "core_core_mom": null
-    },
-    {
       "date": "2006-02-01",
       "index": null,
       "yoy": -0.1,
@@ -410,13 +398,13 @@
     },
     {
       "date": "2008-11-01",
-      "index": 96.8,
+      "index": null,
       "yoy": 1.0,
       "mom": null,
-      "core_index": 97.6,
+      "core_index": null,
       "core_yoy": 1.0,
       "core_mom": null,
-      "core_core_index": 98.2,
+      "core_core_index": null,
       "core_core_yoy": 1.1,
       "core_core_mom": null
     },
@@ -2879,27 +2867,39 @@
       "core_core_index": 111.5,
       "core_core_yoy": 2.9,
       "core_core_mom": 0.1
+    },
+    {
+      "date": "2026-01-01",
+      "index": 112.9,
+      "yoy": 1.5,
+      "mom": -0.2,
+      "core_index": 112.0,
+      "core_yoy": 2.0,
+      "core_mom": -0.1,
+      "core_core_index": 111.4,
+      "core_core_yoy": 2.6,
+      "core_core_mom": 0.1
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "index": 113.0,
-    "yoy": 2.1,
-    "mom": -0.1,
-    "core_index": 112.2,
-    "core_yoy": 2.4,
+    "date": "2026-01-01",
+    "index": 112.9,
+    "yoy": 1.5,
+    "mom": -0.2,
+    "core_index": 112.0,
+    "core_yoy": 2.0,
     "core_mom": -0.1,
-    "core_core_index": 111.5,
-    "core_core_yoy": 2.9,
+    "core_core_index": 111.4,
+    "core_core_yoy": 2.6,
     "core_core_mom": 0.1
   },
   "next_release": {
-    "date": "2026-02-19",
-    "datetime_utc": "2026-02-19T23:30:00+00:00",
-    "datetime_jst": "2026-02-20T08:30:00+09:00",
+    "date": "2026-03-30",
+    "datetime_utc": "2026-03-30T23:30:00+00:00",
+    "datetime_jst": "2026-03-31T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "CPI (Jan)",
-    "estimate": null
+    "label": "Core CPI YoY (Mar)",
+    "estimate": 2
   },
-  "last_updated": "2026-02-11T22:38:23.559106+09:00"
+  "last_updated": "2026-03-17T18:14:55.690483+09:00"
 }

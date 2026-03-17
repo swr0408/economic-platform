@@ -485,32 +485,46 @@
     },
     {
       "date": "2025-10-01",
-      "value": 88.97,
-      "terms_of_trade": 88.97,
-      "export_price_index": 141.9,
+      "value": 89.15,
+      "terms_of_trade": 89.15,
+      "export_price_index": 142.2,
       "import_price_index": 159.5
     },
     {
       "date": "2025-11-01",
-      "value": 89.25,
-      "terms_of_trade": 89.25,
-      "export_price_index": 144.5,
-      "import_price_index": 161.9
+      "value": 89.38,
+      "terms_of_trade": 89.38,
+      "export_price_index": 144.8,
+      "import_price_index": 162.0
     },
     {
       "date": "2025-12-01",
-      "value": 89.79,
-      "terms_of_trade": 89.79,
-      "export_price_index": 146.9,
-      "import_price_index": 163.6
+      "value": 89.7,
+      "terms_of_trade": 89.7,
+      "export_price_index": 147.1,
+      "import_price_index": 164.0
+    },
+    {
+      "date": "2026-01-01",
+      "value": 90.49,
+      "terms_of_trade": 90.49,
+      "export_price_index": 151.3,
+      "import_price_index": 167.2
+    },
+    {
+      "date": "2026-02-01",
+      "value": 91.51,
+      "terms_of_trade": 91.51,
+      "export_price_index": 153.1,
+      "import_price_index": 167.3
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 89.79,
-    "terms_of_trade": 89.79,
-    "export_price_index": 146.9,
-    "import_price_index": 163.6
+    "date": "2026-02-01",
+    "value": 91.51,
+    "terms_of_trade": 91.51,
+    "export_price_index": 153.1,
+    "import_price_index": 167.3
   },
   "metadata": {
     "source": "Bank of Japan (BOJ)",
@@ -520,12 +534,12 @@
     "frequency": "Monthly"
   },
   "next_release": {
-    "date": "2026-02-11",
-    "datetime_utc": "2026-02-11T23:50:00+00:00",
-    "datetime_jst": "2026-02-12T08:50:00+09:00",
+    "date": "2026-04-09",
+    "datetime_utc": "2026-04-09T23:50:00+00:00",
+    "datetime_jst": "2026-04-10T08:50:00+09:00",
     "time_jst": "08:50",
-    "label": "Producer Price Index MoM (Jan)",
-    "estimate": 0.2
+    "label": "Producer Price Index MoM (Mar)",
+    "estimate": null
   },
-  "last_updated": "2026-02-11T23:33:33.380893+09:00"
+  "last_updated": "2026-03-17T18:15:20.147301+09:00"
 }

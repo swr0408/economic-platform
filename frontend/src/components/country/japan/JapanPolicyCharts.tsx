@@ -6,6 +6,7 @@ import OISCurveChart from './monetary_policy/OISCurveChart'
 import BOJMeetingExpectationsTable from './monetary_policy/BOJMeetingExpectationsTable'
 import BOJOutlookReport from './monetary_policy/BOJOutlookReport'
 import BEIChart from './monetary_policy/BEIChart'
+import BojCurrentAccountBalanceChart from './monetary_policy/BojCurrentAccountBalanceChart'
 
 /**
  * 日本金融政策チャート群
@@ -52,6 +53,13 @@ export default function JapanPolicyCharts() {
       <div id="japan-balance-sheet">
         <JapanBalanceSheetChart
           data={dashboardData?.japan_balance_sheet ?? null}
+        />
+      </div>
+
+      {/* 日銀当座預金残高 */}
+      <div id="boj-current-account-balance">
+        <BojCurrentAccountBalanceChart
+          data={dashboardData?.boj_current_account_balance ?? null}
         />
       </div>
 

@@ -11,6 +11,7 @@ import JpxPcrChart from './JpxPcrChart'
 import ChinaM2NikkeiYoyChart from './ChinaM2NikkeiYoyChart'
 import NikkeiDoubleInverseChart from './NikkeiDoubleInverseChart'
 import JpxInvestorTradingChart from './JpxInvestorTradingChart'
+import MofSecuritiesTradingChart from './MofSecuritiesTradingChart'
 import Sp500ValuationChart from './Sp500ValuationChart'
 import Nasdaq100ValuationChart from './Nasdaq100ValuationChart'
 import GrowthValueRatioChart from './GrowthValueRatioChart'
@@ -18,6 +19,10 @@ import Sp500StockPortionChart from './Sp500StockPortionChart'
 import Nikkei225ValuationChart from './Nikkei225ValuationChart'
 import TopixValuationChart from './TopixValuationChart'
 import AdvanceDeclineRatioChart from './AdvanceDeclineRatioChart'
+import VixTermStructureChart from './VixTermStructureChart'
+import HistoricalVolatilityChart from './HistoricalVolatilityChart'
+import VixCrossRatioChart from './VixCrossRatioChart'
+import SectorRatioChart from './SectorRatioChart'
 import CftcPositioningChart from '../cot/CftcPositioningChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
@@ -68,6 +73,10 @@ export default function EquitiesCharts() {
       <div id="dow"><MarketPriceChart title="ダウ平均" symbolData={data?.dow} color={COLORS.dow} decimals={0} /></div>
       <div id="russell2000"><MarketPriceChart title="ラッセル2000" symbolData={data?.russell2000} color={COLORS.russell2000} decimals={0} /></div>
       <div id="vix"><MarketPriceChart title="VIX（恐怖指数）" symbolData={data?.vix} color={COLORS.vix} /></div>
+      <div id="vix-term-structure"><VixTermStructureChart /></div>
+      <div id="historical-volatility"><HistoricalVolatilityChart /></div>
+      <div id="vix-cross-ratio"><VixCrossRatioChart /></div>
+      <div id="sector-ratio"><SectorRatioChart /></div>
       <div id="sox"><MarketPriceChart title="SOX（半導体指数）" symbolData={data?.sox} color={COLORS.sox} decimals={0} /></div>
       <div id="fear-greed"><FearGreedChart /></div>
       <div id="naaim"><NaaimChart /></div>
@@ -98,6 +107,7 @@ export default function EquitiesCharts() {
       <div id="china-m2-nikkei-yoy"><ChinaM2NikkeiYoyChart /></div>
       <div id="nikkei-double-inverse"><NikkeiDoubleInverseChart /></div>
       <div id="jpx-investor-trading"><JpxInvestorTradingChart /></div>
+      <div id="mof-securities-trading"><MofSecuritiesTradingChart /></div>
       <div id="advance-decline-ratio"><AdvanceDeclineRatioChart /></div>
       <div id="cot-nikkei225"><CftcPositioningChart asset="nikkei225" assetLabel="日経225" reportType="tff" compareId="cftc_nikkei225" /></div>
 

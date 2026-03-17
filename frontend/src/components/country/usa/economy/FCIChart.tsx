@@ -166,13 +166,13 @@ export default function FCIChart({ data }: FCIChartProps) {
         <div style={LATEST_VALUE_BOX_STYLE}>
           {/* Baseline (3-year) */}
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 12, color: TEXT_COLORS.secondary, marginBottom: 4 }}>
+            <div style={{ fontSize: 11, color: TEXT_COLORS.secondary, marginBottom: 2 }}>
               Baseline (3-year)
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
               <span
                 style={{
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: 'bold',
                   color: '#1890ff',
                 }}
@@ -189,13 +189,13 @@ export default function FCIChart({ data }: FCIChartProps) {
 
           {/* One-year lookback */}
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 12, color: TEXT_COLORS.secondary, marginBottom: 4 }}>
+            <div style={{ fontSize: 11, color: TEXT_COLORS.secondary, marginBottom: 2 }}>
               One-year lookback
             </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
               <span
                 style={{
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: 'bold',
                   color: '#52c41a',
                 }}

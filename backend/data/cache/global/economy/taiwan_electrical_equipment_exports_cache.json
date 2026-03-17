@@ -796,14 +796,14 @@
       "date": "2026-01-01",
       "value": 59.8,
       "mom": 4.7,
-      "raw_value": 22359.039
+      "raw_value": 22359.0
     }
   ],
   "latest": {
     "date": "2026-01-01",
     "value": 59.8,
     "mom": 4.7,
-    "raw_value": 22359.039
+    "raw_value": 22359.0
   },
   "metadata": {
     "source": "MOF (Ministry of Finance, Taiwan)",
@@ -813,5 +813,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-03-08T15:44:11.130980+09:00"
+  "last_updated": "2026-03-17T14:06:42.786961+09:00"
 }

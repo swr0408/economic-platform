@@ -281,11 +281,20 @@ export interface PotentialGDPItem {
   value: number
 }
 
-// 銀行貸し出し態度データの型
+// 銀行貸し出し態度データの型（SLOOS マルチシリーズ）
 export interface BankLendingData {
   data: BankLendingItem[]
   latest: BankLendingItem | null
   next_release: BankLendingNextRelease | null
+  series?: Record<string, BankLendingSeriesData>
+}
+
+export interface BankLendingSeriesData {
+  data: BankLendingItem[]
+  latest: BankLendingItem | null
+  fred_id: string
+  name_ja: string
+  name_en: string
 }
 
 export interface BankLendingItem {
@@ -2607,10 +2616,25 @@ export interface JapanBalanceSheetData {
   next_release: JapanBalanceSheetNextRelease | null
 }
 
+// 日銀当座預金残高データの型
+export interface BojCurrentAccountBalanceItem {
+  date: string
+  value: number           // 億円
+  value_trillion: number  // 兆円
+}
+
+export interface BojCurrentAccountBalanceData {
+  data: BojCurrentAccountBalanceItem[]
+  latest: BojCurrentAccountBalanceItem | null
+  metadata: Record<string, unknown>
+  next_release: { date: string; time?: string; label?: string } | null
+}
+
 // 日本金融政策ダッシュボードデータの型
 export interface JapanPolicyData {
   boj_policy_rate: BOJPolicyRateData | null
   japan_balance_sheet: JapanBalanceSheetData | null
+  boj_current_account_balance: BojCurrentAccountBalanceData | null
 }
 
 /**
@@ -9806,6 +9830,29 @@ export interface SouthKoreanExportsData {
   next_release?: SouthKoreanExportsNextRelease | null
 }
 
+// 韓国半導体輸出
+export interface KrSemiconductorExportsItem {
+  date: string
+  value: number | null    // Billion USD
+  yoy: number | null      // YoY%
+  mom: number | null       // MoM%
+}
+
+export interface KrSemiconductorExportsNextRelease {
+  date: string
+  datetime_jst: string
+  time_jst: string
+  label: string
+  estimate: number | null
+}
+
+export interface KrSemiconductorExportsData {
+  data: KrSemiconductorExportsItem[]
+  latest: KrSemiconductorExportsItem | null
+  metadata: Record<string, unknown>
+  next_release?: KrSemiconductorExportsNextRelease | null
+}
+
 // 台湾輸出受注（前年比）
 export interface TaiwanExportOrdersItem {
   date: string
@@ -9857,6 +9904,28 @@ export interface ChinaShanghaiContainerFreightIndexData {
   next_release?: null
 }
 
+// OECD CLI（景気先行指数）
+export interface OecdCliItem {
+  date: string
+  g20: number | null
+  g7: number | null
+  a5m: number | null
+  usa: number | null
+  jpn: number | null
+  chn: number | null
+  deu: number | null
+  gbr: number | null
+  kor: number | null
+  aus: number | null
+  can: number | null
+}
+export interface OecdCliData {
+  data: OecdCliItem[]
+  latest: OecdCliItem | null
+  metadata: Record<string, unknown>
+  next_release?: { date: string } | null
+}
+
 // グローバル経済ダッシュボードデータの型
 export interface GlobalEconomyData {
   jpmorgan_global_manufacturing_pmi: GlobalManufacturingPmiData | null
@@ -9867,9 +9936,11 @@ export interface GlobalEconomyData {
   taiwan_pmi_outlook: TaiwanPmiOutlookData | null
   taiwan_manufacturing_pmi: TaiwanManufacturingPmiData | null
   south_korean_exports: SouthKoreanExportsData | null
+  kr_semiconductor_exports: KrSemiconductorExportsData | null
   taiwan_export_orders: TaiwanExportOrdersData | null
   taiwan_electrical_equipment_exports: TaiwanElectricalEquipmentExportsData | null
   china_shanghai_container_freight_index: ChinaShanghaiContainerFreightIndexData | null
+  oecd_cli: OecdCliData | null
 }
 
 /**

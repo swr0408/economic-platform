@@ -33,11 +33,15 @@ import {
 } from '../../usa/common/ChartComponents'
 import { MonthlyTableWithDataTypes } from '../../usa/common/MonthlyTable'
 
-import type { CnExportPricesData } from '../../../../hooks/useDashboardData'
-
 // =============================================================================
 // 型定義・定数
 // =============================================================================
+
+interface CnExportPricesData {
+  data: Array<{ date: string; index: number | null; yoy: number | null; mom: number | null }>
+  latest?: { date: string; index: number | null; yoy: number | null; mom: number | null }
+  next_release?: string | null
+}
 
 interface Props {
   data: CnExportPricesData | null
@@ -165,7 +169,7 @@ export default function CnExportPricesChart({ data }: Props) {
           decimals={viewMode === 'raw' ? 1 : 1}
           valueColor={COLOR_PRIMARY}
           dateFormatter={formatDateFull}
-          nextRelease={data.next_release ?? null}
+          nextRelease={data.next_release ? { date: data.next_release } : null}
         />
 
         {/* タブ切替 */}

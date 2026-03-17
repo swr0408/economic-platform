@@ -58,6 +58,8 @@ try:
     from backend.routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
     from backend.routers.japan.bei import router as japan_bei_router
     from backend.routers.japan.price_di_spread import router as japan_price_di_spread_router
+    from backend.routers.japan.price_pass_through_rate import router as japan_price_pass_through_rate_router
+    from backend.routers.japan.boj_current_account_balance import router as japan_boj_current_account_balance_router
     from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from backend.routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from backend.routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -122,7 +124,8 @@ try:
     from backend.scheduler.gold_premium_scheduler import gold_premium_scheduler
     from backend.scheduler.sge_gold_scheduler import sge_gold_scheduler
     from backend.scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
-except ImportError:
+except ImportError as _ie:
+    print(f"[main.py] Primary import failed ({_ie}), using fallback imports...")
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
     from routers.seasonality import router as seasonality_router
     from routers.usa.fed_h15 import router as fed_h15_router
@@ -135,6 +138,7 @@ except ImportError:
     from routers.usa.cme_fedwatch import router as cme_fedwatch_router
     from routers.usa.fomc_projections import router as fomc_projections_router
     from routers.usa.treasury import router as treasury_router
+    from routers.usa.quarterly_refunding import router as quarterly_refunding_router
     from routers.dashboard import router as dashboard_router
     from routers.market import router as market_router
     from routers.market_tsmc import router as market_tsmc_router
@@ -181,6 +185,8 @@ except ImportError:
     from routers.japan.balance_of_trade import router as japan_balance_of_trade_router
     from routers.japan.terms_of_trade import router as japan_terms_of_trade_router
     from routers.japan.price_di_spread import router as japan_price_di_spread_router
+    from routers.japan.price_pass_through_rate import router as japan_price_pass_through_rate_router
+    from routers.japan.boj_current_account_balance import router as japan_boj_current_account_balance_router
     from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
     from routers.eurozone.eurex_ois import router as eurozone_eurex_ois_router
     from routers.eurozone.ecb_rate_cuts_screenshot import router as eurozone_ecb_rate_cuts_screenshot_router
@@ -275,10 +281,12 @@ except ImportError:
     global_taiwan_pmi_outlook_router = _il.import_module("routers.global.taiwan_pmi_outlook").router
     global_taiwan_manufacturing_pmi_router = _il.import_module("routers.global.taiwan_manufacturing_pmi").router
     global_south_korean_exports_router = _il.import_module("routers.global.south_korean_exports").router
+    global_kr_semiconductor_exports_router = _il.import_module("routers.global.kr_semiconductor_exports").router
     global_taiwan_export_orders_router = _il.import_module("routers.global.taiwan_export_orders").router
     global_taiwan_electrical_equipment_exports_router = _il.import_module("routers.global.taiwan_electrical_equipment_exports").router
     global_container_freight_index_router = _il.import_module("routers.global.china_shanghai_container_freight_index").router
     global_usd_fundamental_index_router = _il.import_module("routers.global.usd_fundamental_index").router
+    global_oecd_cli_router = _il.import_module("routers.global.oecd_cli").router
     from services.usa.fomc_projections_scheduler import fomc_scheduler
     from services.usa.policy_rate_scheduler import policy_rate_scheduler
     from services.calendar.calendar_scheduler import calendar_scheduler
@@ -341,6 +349,7 @@ app.include_router(oas_router)
 app.include_router(cme_fedwatch_router)
 app.include_router(fomc_projections_router)
 app.include_router(treasury_router)
+app.include_router(quarterly_refunding_router)
 app.include_router(dashboard_router)
 app.include_router(market_router)
 app.include_router(market_tsmc_router)
@@ -387,6 +396,8 @@ app.include_router(japan_current_account_router)
 app.include_router(japan_balance_of_trade_router)
 app.include_router(japan_terms_of_trade_router)
 app.include_router(japan_price_di_spread_router)
+app.include_router(japan_price_pass_through_rate_router)
+app.include_router(japan_boj_current_account_balance_router)
 app.include_router(eurozone_ecb_rates_router)
 app.include_router(eurozone_eurex_ois_router)
 app.include_router(eurozone_ecb_rate_cuts_screenshot_router)
@@ -492,10 +503,12 @@ app.include_router(global_semiconductor_sales_router)
 app.include_router(global_taiwan_pmi_outlook_router)
 app.include_router(global_taiwan_manufacturing_pmi_router)
 app.include_router(global_south_korean_exports_router)
+app.include_router(global_kr_semiconductor_exports_router)
 app.include_router(global_taiwan_export_orders_router)
 app.include_router(global_taiwan_electrical_equipment_exports_router)
 app.include_router(global_container_freight_index_router)
 app.include_router(global_usd_fundamental_index_router)
+app.include_router(global_oecd_cli_router)
 
 
 @app.get("/health")

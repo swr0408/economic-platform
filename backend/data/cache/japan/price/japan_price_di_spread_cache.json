@@ -63,12 +63,12 @@
     "frequency": "Quarterly"
   },
   "next_release": {
-    "date": "2026-02-19",
-    "datetime_utc": "2026-02-19T00:00:00+00:00",
-    "datetime_jst": "2026-02-19T09:00:00+09:00",
+    "date": "2026-03-19",
+    "datetime_utc": "2026-03-19T00:00:00+00:00",
+    "datetime_jst": "2026-03-19T09:00:00+09:00",
     "time_jst": "09:00",
-    "label": "Reuters Tankan Index (Feb)",
-    "estimate": 9
+    "label": "Reuters Tankan Index (Mar)",
+    "estimate": 12
   },
-  "last_updated": "2026-02-11T23:55:27.099581+09:00"
+  "last_updated": "2026-03-17T18:15:21.917354+09:00"
 }

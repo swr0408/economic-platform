@@ -14,7 +14,7 @@ import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
 
 // 共通モジュールのインポート
-import { usePeriodFiltering, formatDateLabel, type PeriodType } from '../common/useChartData'
+import { usePeriodFiltering, formatDateLabel, formatDateLabelFull, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, SimpleLatestValueBox } from '../common/ChartComponents'
 import { CHART_COLORS, DARK_THEME } from '../common/chartConstants'
 
@@ -148,7 +148,7 @@ export default function TGAChart({ data }: TGAChartProps) {
                   }}
                 >
                   <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
-                    {formatDateLabel(String(label))}
+                    {formatDateLabelFull(String(label))}
                   </div>
                   {payload.map((item, index) => (
                     <div

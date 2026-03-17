@@ -3746,99 +3746,107 @@
     },
     {
       "date": "2025-01-01",
-      "worldwide": 50.8238,
-      "americas": 16.6316,
-      "europe": 3.9846,
-      "japan": 3.6586,
-      "asia_pacific": 26.549
+      "worldwide": 50.7684,
+      "americas": 16.6485,
+      "europe": 3.9864,
+      "japan": 3.6595,
+      "asia_pacific": 26.474
     },
     {
       "date": "2025-02-01",
-      "worldwide": 54.1119,
-      "americas": 18.0104,
-      "europe": 3.9356,
-      "japan": 3.5623,
-      "asia_pacific": 28.6036
+      "worldwide": 54.0742,
+      "americas": 18.0286,
+      "europe": 3.9375,
+      "japan": 3.5635,
+      "asia_pacific": 28.5446
     },
     {
       "date": "2025-03-01",
-      "worldwide": 61.7967,
-      "americas": 20.6887,
-      "europe": 4.7692,
-      "japan": 4.0881,
-      "asia_pacific": 32.2508
+      "worldwide": 61.7722,
+      "americas": 20.7137,
+      "europe": 4.7709,
+      "japan": 4.0899,
+      "asia_pacific": 32.1978
     },
     {
       "date": "2025-04-01",
-      "worldwide": 55.0655,
-      "americas": 16.065,
-      "europe": 4.1162,
-      "japan": 3.5226,
-      "asia_pacific": 31.3618
+      "worldwide": 55.0937,
+      "americas": 16.0889,
+      "europe": 4.1198,
+      "japan": 3.5283,
+      "asia_pacific": 31.3567
     },
     {
       "date": "2025-05-01",
-      "worldwide": 60.307,
-      "americas": 18.5157,
-      "europe": 4.3627,
-      "japan": 3.4839,
-      "asia_pacific": 33.9446
+      "worldwide": 60.4025,
+      "americas": 18.5695,
+      "europe": 4.3678,
+      "japan": 3.4918,
+      "asia_pacific": 33.9734
     },
     {
       "date": "2025-06-01",
-      "worldwide": 64.5489,
-      "americas": 20.6463,
-      "europe": 4.6365,
-      "japan": 3.7762,
-      "asia_pacific": 35.4899
+      "worldwide": 64.8556,
+      "americas": 20.7683,
+      "europe": 4.6459,
+      "japan": 3.7901,
+      "asia_pacific": 35.6513
     },
     {
       "date": "2025-07-01",
-      "worldwide": 61.5781,
-      "americas": 20.5223,
-      "europe": 4.1767,
-      "japan": 3.6907,
-      "asia_pacific": 33.1884
+      "worldwide": 62.1008,
+      "americas": 20.8717,
+      "europe": 4.1861,
+      "japan": 3.7082,
+      "asia_pacific": 33.3348
     },
     {
       "date": "2025-08-01",
-      "worldwide": 68.6152,
-      "americas": 21.1685,
-      "europe": 4.5049,
-      "japan": 3.7088,
-      "asia_pacific": 39.2331
+      "worldwide": 69.1737,
+      "americas": 21.4192,
+      "europe": 4.5239,
+      "japan": 3.7315,
+      "asia_pacific": 39.499
     },
     {
       "date": "2025-09-01",
-      "worldwide": 78.2019,
-      "americas": 25.3251,
-      "europe": 5.3807,
-      "japan": 3.9512,
-      "asia_pacific": 43.5449
+      "worldwide": 78.5207,
+      "americas": 25.1458,
+      "europe": 5.413,
+      "japan": 3.9771,
+      "asia_pacific": 43.9848
     },
     {
       "date": "2025-10-01",
-      "worldwide": 71.543,
-      "americas": 23.4224,
-      "europe": 4.7066,
-      "japan": 3.74,
-      "asia_pacific": 39.6739
+      "worldwide": 71.6473,
+      "americas": 23.5915,
+      "europe": 4.7061,
+      "japan": 3.8354,
+      "asia_pacific": 39.5143
     },
     {
       "date": "2025-11-01",
-      "worldwide": 80.6033,
-      "americas": 25.5274,
-      "europe": 4.8275,
-      "japan": 3.686,
-      "asia_pacific": 46.5624
+      "worldwide": 81.883,
+      "americas": 25.9368,
+      "europe": 4.9418,
+      "japan": 3.6883,
+      "asia_pacific": 47.3161
     },
     {
       "date": "2025-12-01",
-      "worldwide": 84.4992,
-      "americas": 28.2075,
-      "europe": 5.0543,
-      "japan": 3.6619,
-      "asia_pacific": 47.5754
+      "worldwide": 85.3483,
+      "americas": 28.6941,
+      "europe": 5.0948,
+      "japan": 3.6595,
+      "asia_pacific": 47.8998
+    },
+    {
+      "date": "2026-01-01",
+      "worldwide": 80.3845,
+      "americas": 24.5075,
+      "europe": 5.4931,
+      "japan": 3.6411,
+      "asia_pacific": 46.7428
     }
   ],
   "yoy_data": [
@@ -7492,99 +7500,107 @@
     },
     {
       "date": "2025-01-01",
-      "worldwide": 14.82,
-      "americas": 41.84,
-      "europe": -5.39,
-      "japan": 7.84,
-      "asia_pacific": 6.48
+      "worldwide": 14.7,
+      "americas": 41.99,
+      "europe": -5.35,
+      "japan": 7.86,
+      "asia_pacific": 6.18
     },
     {
       "date": "2025-02-01",
-      "worldwide": 20.73,
-      "americas": 47.11,
-      "europe": -6.56,
-      "japan": 0.26,
-      "asia_pacific": 15.27
+      "worldwide": 20.64,
+      "americas": 47.26,
+      "europe": -6.52,
+      "japan": 0.29,
+      "asia_pacific": 15.03
     },
     {
       "date": "2025-03-01",
-      "worldwide": 18.72,
-      "americas": 43.96,
-      "europe": 4.84,
-      "japan": 9.41,
-      "asia_pacific": 9.72
+      "worldwide": 18.68,
+      "americas": 44.14,
+      "europe": 4.88,
+      "japan": 9.46,
+      "asia_pacific": 9.54
     },
     {
       "date": "2025-04-01",
-      "worldwide": 23.02,
-      "americas": 28.26,
-      "europe": 2.37,
-      "japan": -2.13,
-      "asia_pacific": 27.4
+      "worldwide": 23.08,
+      "americas": 28.45,
+      "europe": 2.46,
+      "japan": -1.97,
+      "asia_pacific": 27.38
     },
     {
       "date": "2025-05-01",
-      "worldwide": 18.52,
-      "americas": 25.22,
-      "europe": 6.78,
-      "japan": -8.05,
-      "asia_pacific": 20.27
+      "worldwide": 18.71,
+      "americas": 25.58,
+      "europe": 6.9,
+      "japan": -7.84,
+      "asia_pacific": 20.38
     },
     {
       "date": "2025-06-01",
-      "worldwide": 18.09,
-      "americas": 21.36,
-      "europe": 4.73,
-      "japan": -4.12,
-      "asia_pacific": 21.2
+      "worldwide": 18.65,
+      "americas": 22.08,
+      "europe": 4.94,
+      "japan": -3.77,
+      "asia_pacific": 21.75
     },
     {
       "date": "2025-07-01",
-      "worldwide": 25.96,
-      "americas": 42.28,
-      "europe": 5.29,
-      "japan": -7.36,
-      "asia_pacific": 25.17
+      "worldwide": 27.03,
+      "americas": 44.71,
+      "europe": 5.53,
+      "japan": -6.92,
+      "asia_pacific": 25.73
     },
     {
       "date": "2025-08-01",
-      "worldwide": 21.77,
-      "americas": 16.03,
-      "europe": 2.86,
-      "japan": -8.97,
-      "asia_pacific": 32.32
+      "worldwide": 22.76,
+      "americas": 17.4,
+      "europe": 3.3,
+      "japan": -8.42,
+      "asia_pacific": 33.21
     },
     {
       "date": "2025-09-01",
-      "worldwide": 27.55,
-      "americas": 32.83,
-      "europe": 9.07,
-      "japan": -13.56,
-      "asia_pacific": 33.0
+      "worldwide": 28.07,
+      "americas": 31.88,
+      "europe": 9.73,
+      "japan": -12.99,
+      "asia_pacific": 34.34
     },
     {
       "date": "2025-10-01",
-      "worldwide": 32.99,
-      "americas": 25.07,
-      "europe": 13.71,
-      "japan": -7.65,
-      "asia_pacific": 47.6
+      "worldwide": 33.18,
+      "americas": 25.97,
+      "europe": 13.69,
+      "japan": -5.29,
+      "asia_pacific": 47.0
     },
     {
       "date": "2025-11-01",
-      "worldwide": 36.73,
-      "americas": 23.26,
-      "europe": 14.22,
-      "japan": -6.04,
-      "asia_pacific": 54.75
+      "worldwide": 38.9,
+      "americas": 25.24,
+      "europe": 16.93,
+      "japan": -5.98,
+      "asia_pacific": 57.25
     },
     {
       "date": "2025-12-01",
-      "worldwide": 41.27,
-      "americas": 32.51,
-      "europe": 23.31,
-      "japan": -11.3,
-      "asia_pacific": 57.02
+      "worldwide": 42.69,
+      "americas": 34.79,
+      "europe": 24.3,
+      "japan": -11.36,
+      "asia_pacific": 58.09
+    },
+    {
+      "date": "2026-01-01",
+      "worldwide": 58.34,
+      "americas": 47.21,
+      "europe": 37.8,
+      "japan": -0.5,
+      "asia_pacific": 76.56
     }
   ],
   "mma_data": [
@@ -11334,99 +11350,195 @@
     },
     {
       "date": "2025-01-01",
-      "worldwide": 56.5286,
-      "americas": 19.5431,
-      "europe": 4.1032,
-      "japan": 3.9033,
-      "asia_pacific": 28.979
+      "worldwide": 56.5101,
+      "americas": 19.5488,
+      "europe": 4.1038,
+      "japan": 3.9036,
+      "asia_pacific": 28.954
     },
     {
       "date": "2025-02-01",
-      "worldwide": 54.9162,
-      "americas": 18.6432,
-      "europe": 4.0063,
-      "japan": 3.7831,
-      "asia_pacific": 28.4836
+      "worldwide": 54.8852,
+      "americas": 18.6549,
+      "europe": 4.0075,
+      "japan": 3.7838,
+      "asia_pacific": 28.439
     },
     {
       "date": "2025-03-01",
-      "worldwide": 55.5775,
-      "americas": 18.4436,
-      "europe": 4.2298,
-      "japan": 3.7697,
-      "asia_pacific": 29.1344
+      "worldwide": 55.5383,
+      "americas": 18.4636,
+      "europe": 4.2316,
+      "japan": 3.771,
+      "asia_pacific": 29.0721
     },
     {
       "date": "2025-04-01",
-      "worldwide": 56.9914,
-      "americas": 18.2547,
-      "europe": 4.2736,
-      "japan": 3.7243,
-      "asia_pacific": 30.7387
+      "worldwide": 56.98,
+      "americas": 18.2771,
+      "europe": 4.2761,
+      "japan": 3.7272,
+      "asia_pacific": 30.6997
     },
     {
       "date": "2025-05-01",
-      "worldwide": 59.0564,
-      "americas": 18.4231,
-      "europe": 4.416,
-      "japan": 3.6982,
-      "asia_pacific": 32.5191
+      "worldwide": 59.0895,
+      "americas": 18.4573,
+      "europe": 4.4195,
+      "japan": 3.7033,
+      "asia_pacific": 32.5093
     },
     {
       "date": "2025-06-01",
-      "worldwide": 59.9738,
-      "americas": 18.409,
-      "europe": 4.3718,
-      "japan": 3.5942,
-      "asia_pacific": 33.5988
+      "worldwide": 60.1173,
+      "americas": 18.4755,
+      "europe": 4.3779,
+      "japan": 3.6034,
+      "asia_pacific": 33.6604
     },
     {
       "date": "2025-07-01",
-      "worldwide": 62.1446,
-      "americas": 19.8948,
-      "europe": 4.3919,
-      "japan": 3.6503,
-      "asia_pacific": 34.2077
+      "worldwide": 62.453,
+      "americas": 20.0698,
+      "europe": 4.3999,
+      "japan": 3.6634,
+      "asia_pacific": 34.3198
     },
     {
       "date": "2025-08-01",
-      "worldwide": 64.9141,
-      "americas": 20.779,
-      "europe": 4.4394,
-      "japan": 3.7252,
-      "asia_pacific": 35.9705
+      "worldwide": 65.3767,
+      "americas": 21.0197,
+      "europe": 4.452,
+      "japan": 3.7433,
+      "asia_pacific": 36.1617
     },
     {
       "date": "2025-09-01",
-      "worldwide": 69.4651,
-      "americas": 22.3386,
-      "europe": 4.6874,
-      "japan": 3.7836,
-      "asia_pacific": 38.6555
+      "worldwide": 69.9317,
+      "americas": 22.4789,
+      "europe": 4.7077,
+      "japan": 3.8056,
+      "asia_pacific": 38.9396
     },
     {
       "date": "2025-10-01",
-      "worldwide": 72.7867,
-      "americas": 23.3053,
-      "europe": 4.8641,
-      "japan": 3.8,
-      "asia_pacific": 40.8173
+      "worldwide": 73.1139,
+      "americas": 23.3855,
+      "europe": 4.881,
+      "japan": 3.848,
+      "asia_pacific": 40.9994
     },
     {
       "date": "2025-11-01",
-      "worldwide": 76.7827,
-      "americas": 24.7583,
-      "europe": 4.9716,
-      "japan": 3.7924,
-      "asia_pacific": 43.2604
+      "worldwide": 77.3503,
+      "americas": 24.8913,
+      "europe": 5.0203,
+      "japan": 3.8336,
+      "asia_pacific": 43.6051
     },
     {
       "date": "2025-12-01",
-      "worldwide": 78.8818,
-      "americas": 25.7191,
-      "europe": 4.8628,
-      "japan": 3.696,
-      "asia_pacific": 44.6039
+      "worldwide": 79.6262,
+      "americas": 26.0741,
+      "europe": 4.9142,
+      "japan": 3.7278,
+      "asia_pacific": 44.9101
+    },
+    {
+      "date": "2026-01-01",
+      "worldwide": 82.5386,
+      "americas": 26.3795,
+      "europe": 5.1766,
+      "japan": 3.663,
+      "asia_pacific": 47.3196
+    },
+    {
+      "date": "2026-02-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-03-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-04-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-05-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-06-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-07-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-08-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-09-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-10-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-11-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
+    },
+    {
+      "date": "2026-12-01",
+      "worldwide": 0.0,
+      "americas": 0.0,
+      "europe": 0.0,
+      "japan": 0.0,
+      "asia_pacific": 0.0
     }
   ],
   "mma_yoy_data": [
@@ -15080,108 +15192,204 @@
     },
     {
       "date": "2025-01-01",
-      "worldwide": 17.88,
-      "americas": 50.76,
-      "europe": -6.33,
+      "worldwide": 17.84,
+      "americas": 50.8,
+      "europe": -6.31,
       "japan": 5.65,
-      "asia_pacific": 7.66
+      "asia_pacific": 7.56
     },
     {
       "date": "2025-02-01",
-      "worldwide": 17.09,
-      "americas": 48.37,
-      "europe": -8.19,
-      "japan": 5.09,
-      "asia_pacific": 8.01
+      "worldwide": 17.02,
+      "americas": 48.46,
+      "europe": -8.16,
+      "japan": 5.11,
+      "asia_pacific": 7.84
     },
     {
       "date": "2025-03-01",
-      "worldwide": 18.14,
-      "americas": 44.32,
-      "europe": -2.18,
-      "japan": 5.87,
-      "asia_pacific": 10.44
+      "worldwide": 18.05,
+      "americas": 44.48,
+      "europe": -2.14,
+      "japan": 5.9,
+      "asia_pacific": 10.2
     },
     {
       "date": "2025-04-01",
-      "worldwide": 20.71,
-      "americas": 39.92,
-      "europe": 0.31,
-      "japan": 2.61,
-      "asia_pacific": 16.99
+      "worldwide": 20.69,
+      "americas": 40.1,
+      "europe": 0.36,
+      "japan": 2.69,
+      "asia_pacific": 16.84
     },
     {
       "date": "2025-05-01",
-      "worldwide": 19.95,
-      "americas": 32.59,
-      "europe": 4.68,
-      "japan": -0.27,
-      "asia_pacific": 18.63
+      "worldwide": 20.02,
+      "americas": 32.84,
+      "europe": 4.76,
+      "japan": -0.13,
+      "asia_pacific": 18.6
     },
     {
       "date": "2025-06-01",
-      "worldwide": 19.7,
-      "americas": 24.6,
-      "europe": 4.64,
-      "japan": -4.8,
-      "asia_pacific": 22.74
+      "worldwide": 19.99,
+      "americas": 25.05,
+      "europe": 4.79,
+      "japan": -4.56,
+      "asia_pacific": 22.96
     },
     {
       "date": "2025-07-01",
-      "worldwide": 20.72,
-      "americas": 29.12,
-      "europe": 5.58,
-      "japan": -6.49,
-      "asia_pacific": 22.14
+      "worldwide": 21.32,
+      "americas": 30.26,
+      "europe": 5.77,
+      "japan": -6.16,
+      "asia_pacific": 22.54
     },
     {
       "date": "2025-08-01",
-      "worldwide": 21.79,
-      "americas": 25.48,
-      "europe": 4.27,
-      "japan": -6.84,
-      "asia_pacific": 26.29
+      "worldwide": 22.66,
+      "americas": 26.93,
+      "europe": 4.56,
+      "japan": -6.39,
+      "asia_pacific": 26.96
     },
     {
       "date": "2025-09-01",
-      "worldwide": 25.13,
-      "americas": 29.54,
-      "europe": 5.89,
-      "japan": -10.12,
-      "asia_pacific": 30.44
+      "worldwide": 25.97,
+      "americas": 30.35,
+      "europe": 6.35,
+      "japan": -9.6,
+      "asia_pacific": 31.4
     },
     {
       "date": "2025-10-01",
-      "worldwide": 27.36,
-      "americas": 24.77,
-      "europe": 8.48,
-      "japan": -10.2,
-      "asia_pacific": 37.17
+      "worldwide": 27.93,
+      "americas": 25.19,
+      "europe": 8.85,
+      "japan": -9.07,
+      "asia_pacific": 37.78
     },
     {
       "date": "2025-11-01",
-      "worldwide": 32.34,
-      "americas": 26.96,
-      "europe": 12.15,
-      "japan": -9.3,
-      "asia_pacific": 44.67
+      "worldwide": 33.32,
+      "americas": 27.64,
+      "europe": 13.25,
+      "japan": -8.31,
+      "asia_pacific": 45.82
     },
     {
       "date": "2025-12-01",
-      "worldwide": 37.14,
-      "americas": 27.06,
-      "europe": 17.04,
-      "japan": -8.37,
-      "asia_pacific": 53.33
+      "worldwide": 38.43,
+      "americas": 28.81,
+      "europe": 18.28,
+      "japan": -7.58,
+      "asia_pacific": 54.39
+    },
+    {
+      "date": "2026-01-01",
+      "worldwide": 46.06,
+      "americas": 34.94,
+      "europe": 26.14,
+      "japan": -6.16,
+      "asia_pacific": 63.43
+    },
+    {
+      "date": "2026-02-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-03-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-04-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-05-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-06-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-07-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-08-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-09-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-10-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-11-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
+    },
+    {
+      "date": "2026-12-01",
+      "worldwide": -100.0,
+      "americas": -100.0,
+      "europe": -100.0,
+      "japan": -100.0,
+      "asia_pacific": -100.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "worldwide": 84.4992,
-    "americas": 28.2075,
-    "europe": 5.0543,
-    "japan": 3.6619,
-    "asia_pacific": 47.5754
+    "date": "2026-01-01",
+    "worldwide": 80.3845,
+    "americas": 24.5075,
+    "europe": 5.4931,
+    "japan": 3.6411,
+    "asia_pacific": 46.7428
   },
   "metadata": {
     "source": "WSTS (World Semiconductor Trade Statistics)",
@@ -15190,5 +15398,5 @@
     "frequency": "Monthly",
     "description": "Monthly semiconductor billings by region"
   },
-  "last_updated": "2026-03-08T00:32:54.223122+09:00"
+  "last_updated": "2026-03-17T00:56:28.441774+09:00"
 }

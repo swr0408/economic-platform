@@ -408,7 +408,16 @@
       "WebFetch(domain:blog.quantinsti.com)",
       "WebFetch(domain:docs.oilpriceapi.com)",
       "WebFetch(domain:www.tradingview.com)",
-      "WebFetch(domain:www.interactivebrokers.com)"
+      "WebFetch(domain:www.interactivebrokers.com)",
+      "WebFetch(domain:www.wsts.org)",
+      "WebFetch(domain:tickstory.com)",
+      "WebFetch(domain:eareview.net)",
+      "WebFetch(domain:www.dukascopy-node.app)",
+      "WebFetch(domain:www.dukascopy.com)",
+      "WebFetch(domain:www.chusho.meti.go.jp)",
+      "Bash(docker kill economic-platform-backend)",
+      "WebFetch(domain:www.oecd.org)",
+      "WebFetch(domain:sdmx.oecd.org)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

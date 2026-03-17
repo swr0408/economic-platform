@@ -84,6 +84,11 @@ try:
     from backend.services.market.advance_decline_ratio_service import advance_decline_ratio_service
     from backend.services.market.cftc_positioning_service import cftc_positioning_service
     from backend.services.market.crack_spread_service import crack_spread_service
+    from backend.services.market.vix_term_structure_service import vix_term_structure_service
+    from backend.services.market.historical_volatility_service import historical_volatility_service
+    from backend.services.market.vix_cross_ratio_service import vix_cross_ratio_service
+    from backend.services.market.sector_ratio_service import sector_ratio_service
+    from backend.services.market.mof_securities_trading_service import mof_securities_trading_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -134,6 +139,11 @@ except ImportError:
     from services.market.advance_decline_ratio_service import advance_decline_ratio_service
     from services.market.cftc_positioning_service import cftc_positioning_service
     from services.market.crack_spread_service import crack_spread_service
+    from services.market.vix_term_structure_service import vix_term_structure_service
+    from services.market.historical_volatility_service import historical_volatility_service
+    from services.market.vix_cross_ratio_service import vix_cross_ratio_service
+    from services.market.sector_ratio_service import sector_ratio_service
+    from services.market.mof_securities_trading_service import mof_securities_trading_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -962,6 +972,72 @@ def get_crack_spread(force_refresh: bool = Query(False)):
     """クラックスプレッドデータを取得"""
     start_time = time.time()
     result = crack_spread_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/vix-term-structure")
+def get_vix_term_structure(force_refresh: bool = Query(False)):
+    """VIX期間構造（VIX9D / VIX / VIX3M）データを取得"""
+    start_time = time.time()
+    result = vix_term_structure_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/historical-volatility")
+def get_historical_volatility(force_refresh: bool = Query(False)):
+    """ヒストリカルボラティリティ（HV20/HV30）データを取得"""
+    start_time = time.time()
+    result = historical_volatility_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/vix-cross-ratio")
+def get_vix_cross_ratio(force_refresh: bool = Query(False)):
+    """VIXクロスレシオ（VVIX/VIX, MOVE/VIX, VXN/VIX, OVX/VIX, GVZ/VIX）データを取得"""
+    start_time = time.time()
+    result = vix_cross_ratio_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== Sector Ratio =====
+
+
+@router.get("/sector-ratio")
+def get_sector_ratio(force_refresh: bool = Query(False)):
+    """セクターレシオ（XLY/XLP, XLF/XLU, HYG/LQD, HYG/IEF）データを取得"""
+    start_time = time.time()
+    result = sector_ratio_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== MOF Securities Trading =====
+
+
+@router.get("/mof-securities-trading")
+def get_mof_securities_trading(force_refresh: bool = Query(False)):
+    """MOF対外対内証券売買データを取得"""
+    start_time = time.time()
+    result = mof_securities_trading_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

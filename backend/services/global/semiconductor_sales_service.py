@@ -7,11 +7,14 @@ WSTS 半導体売上高サービス
 
 データソース:
 - WSTS (World Semiconductor Trade Statistics) - Excel
+- URL: 動的に https://www.wsts.org/67/Historical-Billings-Report ページから最新URLを取得
 
 キャッシュ方式: 24時間固定TTL方式
 """
 import json
 import io
+import re
+import logging
 import requests
 import pandas as pd
 from datetime import datetime, timedelta
@@ -21,6 +24,7 @@ from pathlib import Path
 
 from core.redis_client import redis_client
 
+logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
@@ -40,12 +44,59 @@ REGION_MAP = {
 REGIONS = ["worldwide", "americas", "europe", "japan", "asia_pacific"]
 
 
+WSTS_INDEX_URL = "https://www.wsts.org/67/Historical-Billings-Report"
+
+# フォールバック用: 最後に確認された有効URL（動的検出失敗時に使用）
+FALLBACK_XLSX_URL = "https://www.wsts.org/esraCMS/extension/media/f/WST/7499/WSTS-Historical-Billings-Report-Feb_2026.xlsx"
+
+
 class SemiconductorSalesService:
     """WSTS 半導体売上高サービス"""
 
     CACHE_KEY = "global:semiconductor_sales:data"
+    URL_CACHE_KEY = "global:semiconductor_sales:xlsx_url"
 
-    XLSX_URL = "https://www.wsts.org/esraCMS/extension/media/f/WST/7430/WSTS-Historical-Billings-Report-Dec_2025.xlsx"
+    def _discover_latest_xlsx_url(self) -> Optional[str]:
+        """WSTSページをスクレイプして最新のExcel URLを動的に取得"""
+        try:
+            logger.info("[SemiconductorSales] Discovering latest WSTS Excel URL...")
+            resp = requests.get(WSTS_INDEX_URL, timeout=30)
+            resp.raise_for_status()
+
+            # HTMLからExcelリンクを抽出
+            # パターン: /esraCMS/extension/media/f/WST/XXXX/WSTS-Historical-Billings-Report-*.xlsx
+            pattern = r'https?://www\.wsts\.org/esraCMS/extension/media/f/WST/\d+/WSTS-Historical-Billings-Report-[A-Za-z]+_\d{4}\.xlsx'
+            matches = re.findall(pattern, resp.text)
+
+            if matches:
+                # 最新のURLを返す（ページ上で最初に出現するものが最新）
+                url = matches[0]
+                logger.info(f"[SemiconductorSales] Found latest URL: {url}")
+                # URL をRedisにキャッシュ（7日間）
+                redis_client.set(self.URL_CACHE_KEY, {"url": url}, expire=604800)
+                return url
+
+            logger.warning("[SemiconductorSales] No Excel URL found on WSTS page")
+            return None
+        except Exception as e:
+            logger.error(f"[SemiconductorSales] URL discovery error: {e}")
+            return None
+
+    def _get_xlsx_url(self) -> str:
+        """最新のExcel URLを取得（キャッシュ → 動的検出 → フォールバック）"""
+        # 1. RedisキャッシュからURLを取得
+        cached_url = redis_client.get(self.URL_CACHE_KEY)
+        if cached_url and cached_url.get("url"):
+            return cached_url["url"]
+
+        # 2. 動的に検出
+        discovered = self._discover_latest_xlsx_url()
+        if discovered:
+            return discovered
+
+        # 3. フォールバック
+        logger.warning("[SemiconductorSales] Using fallback URL")
+        return FALLBACK_XLSX_URL
 
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """半導体売上高データを取得"""
@@ -131,14 +182,23 @@ class SemiconductorSalesService:
         }
 
     def _download_xlsx(self) -> Optional[bytes]:
-        """WSTS Excelファイルをダウンロード"""
+        """WSTS Excelファイルをダウンロード（動的URL検出）"""
         try:
-            print("[SemiconductorSales] Fetching WSTS Excel...")
-            response = requests.get(self.XLSX_URL, timeout=60)
+            url = self._get_xlsx_url()
+            logger.info(f"[SemiconductorSales] Fetching WSTS Excel from: {url}")
+            response = requests.get(url, timeout=60)
+            if response.status_code == 404:
+                # URLが古い可能性 → URLキャッシュをクリアして再検出
+                logger.warning("[SemiconductorSales] 404 - URL may be stale, re-discovering...")
+                redis_client.delete(self.URL_CACHE_KEY)
+                new_url = self._discover_latest_xlsx_url()
+                if new_url and new_url != url:
+                    logger.info(f"[SemiconductorSales] Retrying with new URL: {new_url}")
+                    response = requests.get(new_url, timeout=60)
             response.raise_for_status()
             return response.content
         except requests.exceptions.RequestException as e:
-            print(f"[SemiconductorSales] Excel request error: {e}")
+            logger.error(f"[SemiconductorSales] Excel request error: {e}")
             return None
 
     def _parse_sheet(self, xlsx_content: bytes, sheet_name: str) -> Optional[List[Dict]]:
@@ -205,11 +265,11 @@ class SemiconductorSalesService:
                 if record.get("worldwide") is not None:
                     result.append(record)
 
-            print(f"[SemiconductorSales] Fetched {len(result)} records from '{sheet_name}'")
+            logger.info(f"[SemiconductorSales] Fetched {len(result)} records from '{sheet_name}'")
             return result
 
         except Exception as e:
-            print(f"[SemiconductorSales] Error parsing sheet '{sheet_name}': {e}")
+            logger.error(f"[SemiconductorSales] Error parsing sheet '{sheet_name}': {e}")
             return None
 
     def _calculate_yoy(self, data: List[Dict]) -> List[Dict]:
@@ -272,7 +332,7 @@ class SemiconductorSalesService:
             with open(CACHE_FILE, "r", encoding="utf-8") as f:
                 return json.load(f)
         except Exception as e:
-            print(f"[SemiconductorSales] Failed to load file cache: {e}")
+            logger.error(f"[SemiconductorSales] Failed to load file cache: {e}")
             return None
 
     def _save_file_cache(self, data: Dict[str, Any]) -> None:
@@ -281,7 +341,7 @@ class SemiconductorSalesService:
             with open(CACHE_FILE, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
         except Exception as e:
-            print(f"[SemiconductorSales] Failed to save file cache: {e}")
+            logger.error(f"[SemiconductorSales] Failed to save file cache: {e}")
 
     def invalidate_cache(self) -> bool:
         return redis_client.delete(self.CACHE_KEY)

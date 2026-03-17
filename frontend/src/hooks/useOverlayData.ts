@@ -68,6 +68,7 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/balance-of-trade',
     '/api/japan/terms-of-trade',
     '/api/japan/price-di-spread',
+    '/api/japan/price-pass-through-rate',
     // UK個別API（BOE Bank Rate、ONS GDP/GVA/Production、UK QT等）
     '/api/uk/boe-',
     '/api/uk/ons-',
@@ -140,6 +141,10 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/topix-valuation',
     '/api/market/cftc-positioning',
     '/api/market/crack-spread',
+    '/api/market/vix-term-structure',
+    '/api/market/historical-volatility',
+    '/api/market/vix-cross-ratio',
+    '/api/market/sector-ratio',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 

@@ -77,6 +77,58 @@ NON_FMP_INDICATOR_CONFIGS = [
             "minute": 15,
         },
     },
+    {
+        # 発表: 半年ごと（3月調査・9月調査の結果を数ヶ月後にPDF公開）
+        # 毎週金曜 15:50 JST に新規PDF公開をチェック
+        # 出典: 中小企業庁 価格交渉促進月間フォローアップ調査
+        # ※ FMP未登録のため非FMPスケジューラーで管理
+        "name_ja": "価格転嫁率（中小企業庁）",
+        "country": "JP",
+        "category": "price",
+        "service_module": "services.japan.price_pass_through_rate_service",
+        "service_instance": "price_pass_through_rate_service",
+        "fetch_method": "get_data",
+        "schedule_type": "weekly",
+        "schedule_config": {
+            "day_of_week": 4,  # 金曜日
+            "hour": 15,
+            "minute": 50,
+        },
+    },
+    {
+        # 3月・9月は毎営業日もチェック（公表月のため）
+        "name_ja": "価格転嫁率（中小企業庁）3月チェック",
+        "country": "JP",
+        "category": "price",
+        "service_module": "services.japan.price_pass_through_rate_service",
+        "service_instance": "price_pass_through_rate_service",
+        "fetch_method": "get_data",
+        "schedule_type": "cron_range",
+        "schedule_config": {
+            "day_start": 1,
+            "day_end": 31,
+            "month": 3,
+            "hour": 15,
+            "minute": 50,
+        },
+    },
+    {
+        # 9月も毎営業日チェック
+        "name_ja": "価格転嫁率（中小企業庁）9月チェック",
+        "country": "JP",
+        "category": "price",
+        "service_module": "services.japan.price_pass_through_rate_service",
+        "service_instance": "price_pass_through_rate_service",
+        "fetch_method": "get_data",
+        "schedule_type": "cron_range",
+        "schedule_config": {
+            "day_start": 1,
+            "day_end": 30,
+            "month": 9,
+            "hour": 15,
+            "minute": 50,
+        },
+    },
     # ============================================================
     # 日本 - 経済
     # ============================================================
@@ -240,6 +292,44 @@ NON_FMP_INDICATOR_CONFIGS = [
             "minute": 0,
         },
     },
+    {
+        # Quarterly Refunding - Financing Estimates
+        # 発表: 2月/5月/8月/11月 第1週前半 15:00 ET = 翌5:00 JST
+        # 出典: U.S. Department of the Treasury
+        "name_ja": "Quarterly Refunding（Financing Estimates）",
+        "country": "US",
+        "category": "policy",
+        "service_module": "services.usa.quarterly_refunding_service",
+        "service_instance": "quarterly_refunding_service",
+        "fetch_method": "get_data",
+        "schedule_type": "cron_range",
+        "schedule_config": {
+            "day_start": 1,
+            "day_end": 7,
+            "month": "2,5,8,11",
+            "hour": 5,   # 15:00 ET = 翌5:00 JST
+            "minute": 0,
+        },
+    },
+    {
+        # Quarterly Refunding - Policy Statement / TBAC / Auction Schedule / Buyback Schedule
+        # 発表: 2月/5月/8月/11月 第1水曜 8:30 ET = 22:30 JST
+        # 出典: U.S. Department of the Treasury
+        "name_ja": "Quarterly Refunding（Policy Statement）",
+        "country": "US",
+        "category": "policy",
+        "service_module": "services.usa.quarterly_refunding_service",
+        "service_instance": "quarterly_refunding_service",
+        "fetch_method": "get_data",
+        "schedule_type": "cron_range",
+        "schedule_config": {
+            "day_start": 1,
+            "day_end": 7,
+            "month": "2,5,8,11",
+            "hour": 22,   # 8:30 ET = 22:30 JST
+            "minute": 31,
+        },
+    },
     # ============================================================
     # イギリス
     # ============================================================
@@ -377,14 +467,18 @@ class NonFMPReleaseScheduler:
             day_end = schedule_config["day_end"]
             hour = schedule_config["hour"]
             minute = schedule_config["minute"]
+            month = schedule_config.get("month")  # オプション: 特定月のみ
 
             # 発表期間中の毎日、発表時刻+1分にスケジュール
-            trigger = CronTrigger(
+            cron_kwargs = dict(
                 day=f"{day_start}-{day_end}",
                 hour=hour,
                 minute=minute + UPDATE_DELAY_MINUTES,
-                timezone=JST
+                timezone=JST,
             )
+            if month is not None:
+                cron_kwargs["month"] = month
+            trigger = CronTrigger(**cron_kwargs)
 
         elif schedule_type == "weekly":
             # 週次

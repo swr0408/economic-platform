@@ -25,6 +25,7 @@ class JapanPolicyLoader(BaseDashboardLoader):
     取得データ:
     - boj_policy_rate: 日銀政策金利
     - japan_balance_sheet: 日銀バランスシート（総資産）
+    - boj_current_account_balance: 日銀当座預金残高
 
     キャッシュ方式: 発表日時ベース判定
     - 日銀金融政策決定会合: 11:30-13:00 JST（発表時刻が変動するため5分おきにチェック）
@@ -148,10 +149,12 @@ class JapanPolicyLoader(BaseDashboardLoader):
         # 遅延インポート（循環参照回避）
         from services.japan.boj_policy_rate_service import boj_policy_rate_service
         from services.japan.japan_balance_sheet_service import japan_balance_sheet_service
+        from services.japan.boj_current_account_balance_service import boj_current_account_balance_service
 
         result = {
             "boj_policy_rate": None,
             "japan_balance_sheet": None,
+            "boj_current_account_balance": None,
         }
 
         # 並列でデータを取得
@@ -159,6 +162,7 @@ class JapanPolicyLoader(BaseDashboardLoader):
             futures = {
                 executor.submit(self._get_boj_policy_rate, boj_policy_rate_service): "boj_policy_rate",
                 executor.submit(self._get_japan_balance_sheet, japan_balance_sheet_service): "japan_balance_sheet",
+                executor.submit(self._get_boj_current_account_balance, boj_current_account_balance_service): "boj_current_account_balance",
             }
 
             for future in as_completed(futures):
@@ -198,4 +202,19 @@ class JapanPolicyLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Japan Balance Sheet: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_boj_current_account_balance(self, service) -> dict:
+        """日銀当座預金残高データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("boj_current_account_balance")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting BOJ Current Account Balance: {e}")
             return {"data": [], "latest": None, "metadata": {}, "next_release": None}

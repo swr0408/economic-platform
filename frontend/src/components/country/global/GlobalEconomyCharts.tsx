@@ -1,10 +1,12 @@
 import { useGlobalEconomyDashboard } from '../../../hooks/useDashboardData'
+import OecdCliChart from './economy/OecdCliChart'
 import GlobalManufacturingPmiChart from './economy/GlobalManufacturingPmiChart'
 import EconomicSurpriseIndexChart from './economy/EconomicSurpriseIndexChart'
 import KomtraxChart from './economy/KomtraxChart'
 import EpuChart from './economy/EpuChart'
 import SemiconductorSalesChart from './economy/SemiconductorSalesChart'
 import SouthKoreanExportsChart from './economy/SouthKoreanExportsChart'
+import SouthKoreanSemiconductorExportsChart from './economy/SouthKoreanSemiconductorExportsChart'
 import TaiwanManufacturingPmiChart from './economy/TaiwanManufacturingPmiChart'
 import TaiwanExportOrdersChart from './economy/TaiwanExportOrdersChart'
 import TaiwanElectricalEquipmentExportsChart from './economy/TaiwanElectricalEquipmentExportsChart'
@@ -18,6 +20,11 @@ export default function GlobalEconomyCharts() {
 
   return (
     <div>
+      {/* OECD CLI（景気先行指数） */}
+      <OecdCliChart
+        data={dashboardData?.oecd_cli ?? null}
+      />
+
       {/* J.P.Morgan グローバル製造業PMI */}
       <GlobalManufacturingPmiChart
         data={dashboardData?.jpmorgan_global_manufacturing_pmi ?? null}
@@ -42,6 +49,11 @@ export default function GlobalEconomyCharts() {
       {/* 韓国輸出（前年比） */}
       <SouthKoreanExportsChart
         data={dashboardData?.south_korean_exports ?? null}
+      />
+
+      {/* 韓国半導体輸出 */}
+      <SouthKoreanSemiconductorExportsChart
+        data={dashboardData?.kr_semiconductor_exports ?? null}
       />
 
       {/* 台湾輸出受注（前年比） */}

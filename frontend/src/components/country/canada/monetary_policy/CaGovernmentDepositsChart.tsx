@@ -37,6 +37,7 @@ interface CaGovernmentDepositsChartProps {
 
 interface ChartDataItem {
   date: string
+  value: number | null
   total: number | null
   boc: number | null
   ap: number | null
@@ -55,6 +56,7 @@ export default function CaGovernmentDepositsChart({ data }: CaGovernmentDeposits
 
     const formattedData: ChartDataItem[] = data.data.map((item) => ({
       date: item.date,
+      value: item.total,
       total: item.total,
       boc: item.boc,
       ap: item.ap,

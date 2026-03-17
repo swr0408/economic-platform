@@ -44,7 +44,7 @@ services:
       context: .
       dockerfile: backend/Dockerfile.simple
     container_name: economic-platform-backend
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir /app/backend --reload-exclude '*.json' --reload-exclude '*.xlsx' --reload-exclude '*.csv' --reload-exclude 'data/*'
     working_dir: /app/backend
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/economic_platform

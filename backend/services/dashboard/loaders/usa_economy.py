@@ -922,17 +922,22 @@ class USAEconomyLoader(BaseDashboardLoader):
             return None
 
     def _get_bank_lending(self, service) -> Optional[dict]:
-        """銀行貸し出し態度データを取得"""
+        """銀行貸し出し態度データを取得（マルチシリーズ版）"""
         try:
             force_refresh = self._should_force_refresh("bank_lending")
-            response = service.get_bank_lending_standards(force_refresh=force_refresh)
-            data = response.get("data", [])
-            if not data:
+            response = service.get_bank_lending_multi(force_refresh=force_refresh)
+            series = response.get("series", {})
+            if not series:
                 return None
+
+            # 後方互換: data/latest は ci_standards_large
+            ci_large = series.get("ci_standards_large", {})
+
             return {
-                "data": data,
-                "latest": response.get("latest"),
-                "next_release": response.get("next_release")
+                "data": ci_large.get("data", []),
+                "latest": ci_large.get("latest"),
+                "next_release": response.get("next_release"),
+                "series": series,
             }
         except Exception as e:
             print(f"Error getting bank lending standards: {e}")

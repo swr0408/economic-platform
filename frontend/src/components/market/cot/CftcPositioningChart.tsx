@@ -101,12 +101,6 @@ function ChartTooltipContent({ active, payload, hiddenSeries, viewMode }: any) {
   const dp = payload[0]?.payload as PositionItem | undefined
   if (!dp) return null
 
-  const specLabel = viewMode === 'speculative'
-    ? '投機筋'
-    : viewMode === 'commercial'
-    ? '実需筋'
-    : null
-
   return (
     <div style={{ background: DARK_THEME.tooltipBg, border: `1px solid ${DARK_THEME.tooltipBorder}`, borderRadius: 6, padding: '8px 12px', fontSize: 13 }}>
       <div style={{ color: DARK_THEME.textPrimary, fontWeight: 600, marginBottom: 4 }}>{dp.date}</div>
@@ -158,7 +152,7 @@ function ChartTooltipContent({ active, payload, hiddenSeries, viewMode }: any) {
 }
 
 
-export default function CftcPositioningChart({ asset, assetLabel, reportType, compareId }: Props) {
+export default function CftcPositioningChart({ asset, assetLabel, reportType: _reportType, compareId }: Props) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(5)
   const [viewMode, setViewMode] = useState<ViewMode>('speculative')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<AllSeriesKey>()
@@ -190,9 +184,9 @@ export default function CftcPositioningChart({ asset, assetLabel, reportType, co
     <ChartContainer
       title={`${assetLabel} CFTCポジション動向`}
       sourceUrl="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm"
-      sourceLabel="CFTC COT"
+      dataSource="CFTC COT"
       showPeriodSelector={false}
-      isLoading={isLoading}
+      loading={isLoading}
     >
       {/* Latest value box */}
       <div style={LATEST_VALUE_BOX_STYLE}>

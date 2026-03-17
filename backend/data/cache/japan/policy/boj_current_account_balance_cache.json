@@ -1,0 +1,1283 @@
+{
+  "data": [
+    {
+      "date": "2005-01-01",
+      "value": 316211.0,
+      "value_trillion": 31.62
+    },
+    {
+      "date": "2005-02-01",
+      "value": 331024.0,
+      "value_trillion": 33.1
+    },
+    {
+      "date": "2005-03-01",
+      "value": 357563.0,
+      "value_trillion": 35.76
+    },
+    {
+      "date": "2005-04-01",
+      "value": 317808.0,
+      "value_trillion": 31.78
+    },
+    {
+      "date": "2005-05-01",
+      "value": 315507.0,
+      "value_trillion": 31.55
+    },
+    {
+      "date": "2005-06-01",
+      "value": 335899.0,
+      "value_trillion": 33.59
+    },
+    {
+      "date": "2005-07-01",
+      "value": 298066.0,
+      "value_trillion": 29.81
+    },
+    {
+      "date": "2005-08-01",
+      "value": 331930.0,
+      "value_trillion": 33.19
+    },
+    {
+      "date": "2005-09-01",
+      "value": 341071.0,
+      "value_trillion": 34.11
+    },
+    {
+      "date": "2005-10-01",
+      "value": 334923.0,
+      "value_trillion": 33.49
+    },
+    {
+      "date": "2005-11-01",
+      "value": 343504.0,
+      "value_trillion": 34.35
+    },
+    {
+      "date": "2005-12-01",
+      "value": 328681.0,
+      "value_trillion": 32.87
+    },
+    {
+      "date": "2006-01-01",
+      "value": 329327.0,
+      "value_trillion": 32.93
+    },
+    {
+      "date": "2006-02-01",
+      "value": 326142.0,
+      "value_trillion": 32.61
+    },
+    {
+      "date": "2006-03-01",
+      "value": 312020.0,
+      "value_trillion": 31.2
+    },
+    {
+      "date": "2006-04-01",
+      "value": 188720.0,
+      "value_trillion": 18.87
+    },
+    {
+      "date": "2006-05-01",
+      "value": 146142.0,
+      "value_trillion": 14.61
+    },
+    {
+      "date": "2006-06-01",
+      "value": 158757.0,
+      "value_trillion": 15.88
+    },
+    {
+      "date": "2006-07-01",
+      "value": 104991.0,
+      "value_trillion": 10.5
+    },
+    {
+      "date": "2006-08-01",
+      "value": 91035.0,
+      "value_trillion": 9.1
+    },
+    {
+      "date": "2006-09-01",
+      "value": 117949.0,
+      "value_trillion": 11.79
+    },
+    {
+      "date": "2006-10-01",
+      "value": 86380.0,
+      "value_trillion": 8.64
+    },
+    {
+      "date": "2006-11-01",
+      "value": 94257.0,
+      "value_trillion": 9.43
+    },
+    {
+      "date": "2006-12-01",
+      "value": 104130.0,
+      "value_trillion": 10.41
+    },
+    {
+      "date": "2007-01-01",
+      "value": 77639.0,
+      "value_trillion": 7.76
+    },
+    {
+      "date": "2007-02-01",
+      "value": 100697.0,
+      "value_trillion": 10.07
+    },
+    {
+      "date": "2007-03-01",
+      "value": 116763.0,
+      "value_trillion": 11.68
+    },
+    {
+      "date": "2007-04-01",
+      "value": 84802.0,
+      "value_trillion": 8.48
+    },
+    {
+      "date": "2007-05-01",
+      "value": 82064.0,
+      "value_trillion": 8.21
+    },
+    {
+      "date": "2007-06-01",
+      "value": 96925.0,
+      "value_trillion": 9.69
+    },
+    {
+      "date": "2007-07-01",
+      "value": 88250.0,
+      "value_trillion": 8.82
+    },
+    {
+      "date": "2007-08-01",
+      "value": 82874.0,
+      "value_trillion": 8.29
+    },
+    {
+      "date": "2007-09-01",
+      "value": 118596.0,
+      "value_trillion": 11.86
+    },
+    {
+      "date": "2007-10-01",
+      "value": 87654.0,
+      "value_trillion": 8.77
+    },
+    {
+      "date": "2007-11-01",
+      "value": 87292.0,
+      "value_trillion": 8.73
+    },
+    {
+      "date": "2007-12-01",
+      "value": 101241.0,
+      "value_trillion": 10.12
+    },
+    {
+      "date": "2008-01-01",
+      "value": 78849.0,
+      "value_trillion": 7.88
+    },
+    {
+      "date": "2008-02-01",
+      "value": 87360.0,
+      "value_trillion": 8.74
+    },
+    {
+      "date": "2008-03-01",
+      "value": 142477.0,
+      "value_trillion": 14.25
+    },
+    {
+      "date": "2008-04-01",
+      "value": 78596.0,
+      "value_trillion": 7.86
+    },
+    {
+      "date": "2008-05-01",
+      "value": 76383.0,
+      "value_trillion": 7.64
+    },
+    {
+      "date": "2008-06-01",
+      "value": 101707.0,
+      "value_trillion": 10.17
+    },
+    {
+      "date": "2008-07-01",
+      "value": 83164.0,
+      "value_trillion": 8.32
+    },
+    {
+      "date": "2008-08-01",
+      "value": 83042.0,
+      "value_trillion": 8.3
+    },
+    {
+      "date": "2008-09-01",
+      "value": 132542.0,
+      "value_trillion": 13.25
+    },
+    {
+      "date": "2008-10-01",
+      "value": 97161.0,
+      "value_trillion": 9.72
+    },
+    {
+      "date": "2008-11-01",
+      "value": 98327.0,
+      "value_trillion": 9.83
+    },
+    {
+      "date": "2008-12-01",
+      "value": 151932.0,
+      "value_trillion": 15.19
+    },
+    {
+      "date": "2009-01-01",
+      "value": 113006.0,
+      "value_trillion": 11.3
+    },
+    {
+      "date": "2009-02-01",
+      "value": 135637.0,
+      "value_trillion": 13.56
+    },
+    {
+      "date": "2009-03-01",
+      "value": 221500.0,
+      "value_trillion": 22.15
+    },
+    {
+      "date": "2009-04-01",
+      "value": 137663.0,
+      "value_trillion": 13.77
+    },
+    {
+      "date": "2009-05-01",
+      "value": 133918.0,
+      "value_trillion": 13.39
+    },
+    {
+      "date": "2009-06-01",
+      "value": 157475.0,
+      "value_trillion": 15.75
+    },
+    {
+      "date": "2009-07-01",
+      "value": 122664.0,
+      "value_trillion": 12.27
+    },
+    {
+      "date": "2009-08-01",
+      "value": 119039.0,
+      "value_trillion": 11.9
+    },
+    {
+      "date": "2009-09-01",
+      "value": 175541.0,
+      "value_trillion": 17.55
+    },
+    {
+      "date": "2009-10-01",
+      "value": 122780.0,
+      "value_trillion": 12.28
+    },
+    {
+      "date": "2009-11-01",
+      "value": 130080.0,
+      "value_trillion": 13.01
+    },
+    {
+      "date": "2009-12-01",
+      "value": 203382.0,
+      "value_trillion": 20.34
+    },
+    {
+      "date": "2010-01-01",
+      "value": 152872.0,
+      "value_trillion": 15.29
+    },
+    {
+      "date": "2010-02-01",
+      "value": 157814.0,
+      "value_trillion": 15.78
+    },
+    {
+      "date": "2010-03-01",
+      "value": 234564.0,
+      "value_trillion": 23.46
+    },
+    {
+      "date": "2010-04-01",
+      "value": 162362.0,
+      "value_trillion": 16.24
+    },
+    {
+      "date": "2010-05-01",
+      "value": 181235.0,
+      "value_trillion": 18.12
+    },
+    {
+      "date": "2010-06-01",
+      "value": 198879.0,
+      "value_trillion": 19.89
+    },
+    {
+      "date": "2010-07-01",
+      "value": 171129.0,
+      "value_trillion": 17.11
+    },
+    {
+      "date": "2010-08-01",
+      "value": 174941.0,
+      "value_trillion": 17.49
+    },
+    {
+      "date": "2010-09-01",
+      "value": 201728.0,
+      "value_trillion": 20.17
+    },
+    {
+      "date": "2010-10-01",
+      "value": 178415.0,
+      "value_trillion": 17.84
+    },
+    {
+      "date": "2010-11-01",
+      "value": 201525.0,
+      "value_trillion": 20.15
+    },
+    {
+      "date": "2010-12-01",
+      "value": 226526.0,
+      "value_trillion": 22.65
+    },
+    {
+      "date": "2011-01-01",
+      "value": 181914.0,
+      "value_trillion": 18.19
+    },
+    {
+      "date": "2011-02-01",
+      "value": 184872.0,
+      "value_trillion": 18.49
+    },
+    {
+      "date": "2011-03-01",
+      "value": 407570.0,
+      "value_trillion": 40.76
+    },
+    {
+      "date": "2011-04-01",
+      "value": 347318.0,
+      "value_trillion": 34.73
+    },
+    {
+      "date": "2011-05-01",
+      "value": 291951.0,
+      "value_trillion": 29.2
+    },
+    {
+      "date": "2011-06-01",
+      "value": 332407.0,
+      "value_trillion": 33.24
+    },
+    {
+      "date": "2011-07-01",
+      "value": 279848.0,
+      "value_trillion": 27.98
+    },
+    {
+      "date": "2011-08-01",
+      "value": 285562.0,
+      "value_trillion": 28.56
+    },
+    {
+      "date": "2011-09-01",
+      "value": 346420.0,
+      "value_trillion": 34.64
+    },
+    {
+      "date": "2011-10-01",
+      "value": 297738.0,
+      "value_trillion": 29.77
+    },
+    {
+      "date": "2011-11-01",
+      "value": 320784.0,
+      "value_trillion": 32.08
+    },
+    {
+      "date": "2011-12-01",
+      "value": 365344.0,
+      "value_trillion": 36.53
+    },
+    {
+      "date": "2012-01-01",
+      "value": 298613.0,
+      "value_trillion": 29.86
+    },
+    {
+      "date": "2012-02-01",
+      "value": 280047.0,
+      "value_trillion": 28.0
+    },
+    {
+      "date": "2012-03-01",
+      "value": 344337.0,
+      "value_trillion": 34.43
+    },
+    {
+      "date": "2012-04-01",
+      "value": 363902.0,
+      "value_trillion": 36.39
+    },
+    {
+      "date": "2012-05-01",
+      "value": 309464.0,
+      "value_trillion": 30.95
+    },
+    {
+      "date": "2012-06-01",
+      "value": 431324.0,
+      "value_trillion": 43.13
+    },
+    {
+      "date": "2012-07-01",
+      "value": 368498.0,
+      "value_trillion": 36.85
+    },
+    {
+      "date": "2012-08-01",
+      "value": 369847.0,
+      "value_trillion": 36.98
+    },
+    {
+      "date": "2012-09-01",
+      "value": 439686.0,
+      "value_trillion": 43.97
+    },
+    {
+      "date": "2012-10-01",
+      "value": 427606.0,
+      "value_trillion": 42.76
+    },
+    {
+      "date": "2012-11-01",
+      "value": 396615.0,
+      "value_trillion": 39.66
+    },
+    {
+      "date": "2012-12-01",
+      "value": 472440.0,
+      "value_trillion": 47.24
+    },
+    {
+      "date": "2013-01-01",
+      "value": 437368.0,
+      "value_trillion": 43.74
+    },
+    {
+      "date": "2013-02-01",
+      "value": 438592.0,
+      "value_trillion": 43.86
+    },
+    {
+      "date": "2013-03-01",
+      "value": 581291.0,
+      "value_trillion": 58.13
+    },
+    {
+      "date": "2013-04-01",
+      "value": 661824.0,
+      "value_trillion": 66.18
+    },
+    {
+      "date": "2013-05-01",
+      "value": 716779.0,
+      "value_trillion": 71.68
+    },
+    {
+      "date": "2013-06-01",
+      "value": 846999.0,
+      "value_trillion": 84.7
+    },
+    {
+      "date": "2013-07-01",
+      "value": 851665.0,
+      "value_trillion": 85.17
+    },
+    {
+      "date": "2013-08-01",
+      "value": 886050.0,
+      "value_trillion": 88.61
+    },
+    {
+      "date": "2013-09-01",
+      "value": 974128.0,
+      "value_trillion": 97.41
+    },
+    {
+      "date": "2013-10-01",
+      "value": 1010682.0,
+      "value_trillion": 101.07
+    },
+    {
+      "date": "2013-11-01",
+      "value": 1023864.0,
+      "value_trillion": 102.39
+    },
+    {
+      "date": "2013-12-01",
+      "value": 1070778.0,
+      "value_trillion": 107.08
+    },
+    {
+      "date": "2014-01-01",
+      "value": 1104874.0,
+      "value_trillion": 110.49
+    },
+    {
+      "date": "2014-02-01",
+      "value": 1140307.0,
+      "value_trillion": 114.03
+    },
+    {
+      "date": "2014-03-01",
+      "value": 1286688.0,
+      "value_trillion": 128.67
+    },
+    {
+      "date": "2014-04-01",
+      "value": 1338000.0,
+      "value_trillion": 133.8
+    },
+    {
+      "date": "2014-05-01",
+      "value": 1362558.0,
+      "value_trillion": 136.26
+    },
+    {
+      "date": "2014-06-01",
+      "value": 1523168.0,
+      "value_trillion": 152.32
+    },
+    {
+      "date": "2014-07-01",
+      "value": 1520613.0,
+      "value_trillion": 152.06
+    },
+    {
+      "date": "2014-08-01",
+      "value": 1520574.0,
+      "value_trillion": 152.06
+    },
+    {
+      "date": "2014-09-01",
+      "value": 1615192.0,
+      "value_trillion": 161.52
+    },
+    {
+      "date": "2014-10-01",
+      "value": 1677029.0,
+      "value_trillion": 167.7
+    },
+    {
+      "date": "2014-11-01",
+      "value": 1702837.0,
+      "value_trillion": 170.28
+    },
+    {
+      "date": "2014-12-01",
+      "value": 1781379.0,
+      "value_trillion": 178.14
+    },
+    {
+      "date": "2015-01-01",
+      "value": 1849302.0,
+      "value_trillion": 184.93
+    },
+    {
+      "date": "2015-02-01",
+      "value": 1848601.0,
+      "value_trillion": 184.86
+    },
+    {
+      "date": "2015-03-01",
+      "value": 2015595.0,
+      "value_trillion": 201.56
+    },
+    {
+      "date": "2015-04-01",
+      "value": 2102189.0,
+      "value_trillion": 210.22
+    },
+    {
+      "date": "2015-05-01",
+      "value": 2130243.0,
+      "value_trillion": 213.02
+    },
+    {
+      "date": "2015-06-01",
+      "value": 2298436.0,
+      "value_trillion": 229.84
+    },
+    {
+      "date": "2015-07-01",
+      "value": 2300700.0,
+      "value_trillion": 230.07
+    },
+    {
+      "date": "2015-08-01",
+      "value": 2314296.0,
+      "value_trillion": 231.43
+    },
+    {
+      "date": "2015-09-01",
+      "value": 2422373.0,
+      "value_trillion": 242.24
+    },
+    {
+      "date": "2015-10-01",
+      "value": 2471799.0,
+      "value_trillion": 247.18
+    },
+    {
+      "date": "2015-11-01",
+      "value": 2458567.0,
+      "value_trillion": 245.86
+    },
+    {
+      "date": "2015-12-01",
+      "value": 2530193.0,
+      "value_trillion": 253.02
+    },
+    {
+      "date": "2016-01-01",
+      "value": 2592994.0,
+      "value_trillion": 259.3
+    },
+    {
+      "date": "2016-02-01",
+      "value": 2589948.0,
+      "value_trillion": 258.99
+    },
+    {
+      "date": "2016-03-01",
+      "value": 2754450.0,
+      "value_trillion": 275.44
+    },
+    {
+      "date": "2016-04-01",
+      "value": 2844106.0,
+      "value_trillion": 284.41
+    },
+    {
+      "date": "2016-05-01",
+      "value": 2867894.0,
+      "value_trillion": 286.79
+    },
+    {
+      "date": "2016-06-01",
+      "value": 3032814.0,
+      "value_trillion": 303.28
+    },
+    {
+      "date": "2016-07-01",
+      "value": 3027905.0,
+      "value_trillion": 302.79
+    },
+    {
+      "date": "2016-08-01",
+      "value": 3034965.0,
+      "value_trillion": 303.5
+    },
+    {
+      "date": "2016-09-01",
+      "value": 3118376.0,
+      "value_trillion": 311.84
+    },
+    {
+      "date": "2016-10-01",
+      "value": 3159553.0,
+      "value_trillion": 315.96
+    },
+    {
+      "date": "2016-11-01",
+      "value": 3177021.0,
+      "value_trillion": 317.7
+    },
+    {
+      "date": "2016-12-01",
+      "value": 3302370.0,
+      "value_trillion": 330.24
+    },
+    {
+      "date": "2017-01-01",
+      "value": 3318568.0,
+      "value_trillion": 331.86
+    },
+    {
+      "date": "2017-02-01",
+      "value": 3296662.0,
+      "value_trillion": 329.67
+    },
+    {
+      "date": "2017-03-01",
+      "value": 3428165.0,
+      "value_trillion": 342.82
+    },
+    {
+      "date": "2017-04-01",
+      "value": 3565129.0,
+      "value_trillion": 356.51
+    },
+    {
+      "date": "2017-05-01",
+      "value": 3516854.0,
+      "value_trillion": 351.69
+    },
+    {
+      "date": "2017-06-01",
+      "value": 3629482.0,
+      "value_trillion": 362.95
+    },
+    {
+      "date": "2017-07-01",
+      "value": 3629250.0,
+      "value_trillion": 362.93
+    },
+    {
+      "date": "2017-08-01",
+      "value": 3636147.0,
+      "value_trillion": 363.61
+    },
+    {
+      "date": "2017-09-01",
+      "value": 3691742.0,
+      "value_trillion": 369.17
+    },
+    {
+      "date": "2017-10-01",
+      "value": 3704121.0,
+      "value_trillion": 370.41
+    },
+    {
+      "date": "2017-11-01",
+      "value": 3648193.0,
+      "value_trillion": 364.82
+    },
+    {
+      "date": "2017-12-01",
+      "value": 3686064.0,
+      "value_trillion": 368.61
+    },
+    {
+      "date": "2018-01-01",
+      "value": 3686233.0,
+      "value_trillion": 368.62
+    },
+    {
+      "date": "2018-02-01",
+      "value": 3667996.0,
+      "value_trillion": 366.8
+    },
+    {
+      "date": "2018-03-01",
+      "value": 3782870.0,
+      "value_trillion": 378.29
+    },
+    {
+      "date": "2018-04-01",
+      "value": 3885695.0,
+      "value_trillion": 388.57
+    },
+    {
+      "date": "2018-05-01",
+      "value": 3842389.0,
+      "value_trillion": 384.24
+    },
+    {
+      "date": "2018-06-01",
+      "value": 3936456.0,
+      "value_trillion": 393.65
+    },
+    {
+      "date": "2018-07-01",
+      "value": 3937106.0,
+      "value_trillion": 393.71
+    },
+    {
+      "date": "2018-08-01",
+      "value": 3925244.0,
+      "value_trillion": 392.52
+    },
+    {
+      "date": "2018-09-01",
+      "value": 3955776.0,
+      "value_trillion": 395.58
+    },
+    {
+      "date": "2018-10-01",
+      "value": 3970253.0,
+      "value_trillion": 397.03
+    },
+    {
+      "date": "2018-11-01",
+      "value": 3912888.0,
+      "value_trillion": 391.29
+    },
+    {
+      "date": "2018-12-01",
+      "value": 3891461.0,
+      "value_trillion": 389.15
+    },
+    {
+      "date": "2019-01-01",
+      "value": 3887203.0,
+      "value_trillion": 388.72
+    },
+    {
+      "date": "2019-02-01",
+      "value": 3854702.0,
+      "value_trillion": 385.47
+    },
+    {
+      "date": "2019-03-01",
+      "value": 3940329.0,
+      "value_trillion": 394.03
+    },
+    {
+      "date": "2019-04-01",
+      "value": 3982786.0,
+      "value_trillion": 398.28
+    },
+    {
+      "date": "2019-05-01",
+      "value": 3998959.0,
+      "value_trillion": 399.9
+    },
+    {
+      "date": "2019-06-01",
+      "value": 4107933.0,
+      "value_trillion": 410.79
+    },
+    {
+      "date": "2019-07-01",
+      "value": 4059543.0,
+      "value_trillion": 405.95
+    },
+    {
+      "date": "2019-08-01",
+      "value": 4036495.0,
+      "value_trillion": 403.65
+    },
+    {
+      "date": "2019-09-01",
+      "value": 4084141.0,
+      "value_trillion": 408.41
+    },
+    {
+      "date": "2019-10-01",
+      "value": 4106130.0,
+      "value_trillion": 410.61
+    },
+    {
+      "date": "2019-11-01",
+      "value": 4046556.0,
+      "value_trillion": 404.66
+    },
+    {
+      "date": "2019-12-01",
+      "value": 4005522.0,
+      "value_trillion": 400.55
+    },
+    {
+      "date": "2020-01-01",
+      "value": 4032949.0,
+      "value_trillion": 403.29
+    },
+    {
+      "date": "2020-02-01",
+      "value": 4018446.0,
+      "value_trillion": 401.84
+    },
+    {
+      "date": "2020-03-01",
+      "value": 3952595.0,
+      "value_trillion": 395.26
+    },
+    {
+      "date": "2020-04-01",
+      "value": 4122014.0,
+      "value_trillion": 412.2
+    },
+    {
+      "date": "2020-05-01",
+      "value": 4271432.0,
+      "value_trillion": 427.14
+    },
+    {
+      "date": "2020-06-01",
+      "value": 4470233.0,
+      "value_trillion": 447.02
+    },
+    {
+      "date": "2020-07-01",
+      "value": 4574526.0,
+      "value_trillion": 457.45
+    },
+    {
+      "date": "2020-08-01",
+      "value": 4642235.0,
+      "value_trillion": 464.22
+    },
+    {
+      "date": "2020-09-01",
+      "value": 4874637.0,
+      "value_trillion": 487.46
+    },
+    {
+      "date": "2020-10-01",
+      "value": 4893224.0,
+      "value_trillion": 489.32
+    },
+    {
+      "date": "2020-11-01",
+      "value": 4867958.0,
+      "value_trillion": 486.8
+    },
+    {
+      "date": "2020-12-01",
+      "value": 4942308.0,
+      "value_trillion": 494.23
+    },
+    {
+      "date": "2021-01-01",
+      "value": 4959041.0,
+      "value_trillion": 495.9
+    },
+    {
+      "date": "2021-02-01",
+      "value": 4938732.0,
+      "value_trillion": 493.87
+    },
+    {
+      "date": "2021-03-01",
+      "value": 5225739.0,
+      "value_trillion": 522.57
+    },
+    {
+      "date": "2021-04-01",
+      "value": 5330653.0,
+      "value_trillion": 533.07
+    },
+    {
+      "date": "2021-05-01",
+      "value": 5299692.0,
+      "value_trillion": 529.97
+    },
+    {
+      "date": "2021-06-01",
+      "value": 5379142.0,
+      "value_trillion": 537.91
+    },
+    {
+      "date": "2021-07-01",
+      "value": 5388835.0,
+      "value_trillion": 538.88
+    },
+    {
+      "date": "2021-08-01",
+      "value": 5393092.0,
+      "value_trillion": 539.31
+    },
+    {
+      "date": "2021-09-01",
+      "value": 5416656.0,
+      "value_trillion": 541.67
+    },
+    {
+      "date": "2021-10-01",
+      "value": 5416208.0,
+      "value_trillion": 541.62
+    },
+    {
+      "date": "2021-11-01",
+      "value": 5377391.0,
+      "value_trillion": 537.74
+    },
+    {
+      "date": "2021-12-01",
+      "value": 5430454.0,
+      "value_trillion": 543.05
+    },
+    {
+      "date": "2022-01-01",
+      "value": 5390778.0,
+      "value_trillion": 539.08
+    },
+    {
+      "date": "2022-02-01",
+      "value": 5397111.0,
+      "value_trillion": 539.71
+    },
+    {
+      "date": "2022-03-01",
+      "value": 5631842.0,
+      "value_trillion": 563.18
+    },
+    {
+      "date": "2022-04-01",
+      "value": 5621790.0,
+      "value_trillion": 562.18
+    },
+    {
+      "date": "2022-05-01",
+      "value": 5487938.0,
+      "value_trillion": 548.79
+    },
+    {
+      "date": "2022-06-01",
+      "value": 5523106.0,
+      "value_trillion": 552.31
+    },
+    {
+      "date": "2022-07-01",
+      "value": 5407067.0,
+      "value_trillion": 540.71
+    },
+    {
+      "date": "2022-08-01",
+      "value": 5196580.0,
+      "value_trillion": 519.66
+    },
+    {
+      "date": "2022-09-01",
+      "value": 4930255.0,
+      "value_trillion": 493.03
+    },
+    {
+      "date": "2022-10-01",
+      "value": 4953108.0,
+      "value_trillion": 495.31
+    },
+    {
+      "date": "2022-11-01",
+      "value": 4941118.0,
+      "value_trillion": 494.11
+    },
+    {
+      "date": "2022-12-01",
+      "value": 5024899.0,
+      "value_trillion": 502.49
+    },
+    {
+      "date": "2023-01-01",
+      "value": 5247590.0,
+      "value_trillion": 524.76
+    },
+    {
+      "date": "2023-02-01",
+      "value": 5248795.0,
+      "value_trillion": 524.88
+    },
+    {
+      "date": "2023-03-01",
+      "value": 5490839.0,
+      "value_trillion": 549.08
+    },
+    {
+      "date": "2023-04-01",
+      "value": 5529200.0,
+      "value_trillion": 552.92
+    },
+    {
+      "date": "2023-05-01",
+      "value": 5464466.0,
+      "value_trillion": 546.45
+    },
+    {
+      "date": "2023-06-01",
+      "value": 5444505.0,
+      "value_trillion": 544.45
+    },
+    {
+      "date": "2023-07-01",
+      "value": 5428149.0,
+      "value_trillion": 542.81
+    },
+    {
+      "date": "2023-08-01",
+      "value": 5484876.0,
+      "value_trillion": 548.49
+    },
+    {
+      "date": "2023-09-01",
+      "value": 5471986.0,
+      "value_trillion": 547.2
+    },
+    {
+      "date": "2023-10-01",
+      "value": 5517079.0,
+      "value_trillion": 551.71
+    },
+    {
+      "date": "2023-11-01",
+      "value": 5440640.0,
+      "value_trillion": 544.06
+    },
+    {
+      "date": "2023-12-01",
+      "value": 5436843.0,
+      "value_trillion": 543.68
+    },
+    {
+      "date": "2024-01-01",
+      "value": 5436935.0,
+      "value_trillion": 543.69
+    },
+    {
+      "date": "2024-02-01",
+      "value": 5385351.0,
+      "value_trillion": 538.54
+    },
+    {
+      "date": "2024-03-01",
+      "value": 5611884.0,
+      "value_trillion": 561.19
+    },
+    {
+      "date": "2024-04-01",
+      "value": 5703435.0,
+      "value_trillion": 570.34
+    },
+    {
+      "date": "2024-05-01",
+      "value": 5515308.0,
+      "value_trillion": 551.53
+    },
+    {
+      "date": "2024-06-01",
+      "value": 5517780.0,
+      "value_trillion": 551.78
+    },
+    {
+      "date": "2024-07-01",
+      "value": 5484814.0,
+      "value_trillion": 548.48
+    },
+    {
+      "date": "2024-08-01",
+      "value": 5504401.0,
+      "value_trillion": 550.44
+    },
+    {
+      "date": "2024-09-01",
+      "value": 5494272.0,
+      "value_trillion": 549.43
+    },
+    {
+      "date": "2024-10-01",
+      "value": 5483611.0,
+      "value_trillion": 548.36
+    },
+    {
+      "date": "2024-11-01",
+      "value": 5431334.0,
+      "value_trillion": 543.13
+    },
+    {
+      "date": "2024-12-01",
+      "value": 5315165.0,
+      "value_trillion": 531.52
+    },
+    {
+      "date": "2025-01-01",
+      "value": 5284497.0,
+      "value_trillion": 528.45
+    },
+    {
+      "date": "2025-02-01",
+      "value": 5312628.0,
+      "value_trillion": 531.26
+    },
+    {
+      "date": "2025-03-01",
+      "value": 5304599.0,
+      "value_trillion": 530.46
+    },
+    {
+      "date": "2025-04-01",
+      "value": 5431832.0,
+      "value_trillion": 543.18
+    },
+    {
+      "date": "2025-05-01",
+      "value": 5322826.0,
+      "value_trillion": 532.28
+    },
+    {
+      "date": "2025-06-01",
+      "value": 5291498.0,
+      "value_trillion": 529.15
+    },
+    {
+      "date": "2025-07-01",
+      "value": 5244880.0,
+      "value_trillion": 524.49
+    },
+    {
+      "date": "2025-08-01",
+      "value": 5236749.0,
+      "value_trillion": 523.67
+    },
+    {
+      "date": "2025-09-01",
+      "value": 5021173.0,
+      "value_trillion": 502.12
+    },
+    {
+      "date": "2025-10-01",
+      "value": 4977141.0,
+      "value_trillion": 497.71
+    },
+    {
+      "date": "2025-11-01",
+      "value": 4870466.0,
+      "value_trillion": 487.05
+    },
+    {
+      "date": "2025-12-01",
+      "value": 4709731.0,
+      "value_trillion": 470.97
+    },
+    {
+      "date": "2026-01-01",
+      "value": 4681485.0,
+      "value_trillion": 468.15
+    }
+  ],
+  "latest": {
+    "date": "2026-01-01",
+    "value": 4681485.0,
+    "value_trillion": 468.15
+  },
+  "metadata": {
+    "source": "日本銀行 時系列統計データ検索サイト",
+    "indicator": "業態別の日銀当座預金残高（末残・合計）",
+    "unit": "億円",
+    "display_unit": "兆円",
+    "frequency": "Monthly",
+    "series_code": "MACAB2201"
+  },
+  "last_updated": "2026-03-18T01:13:11.168111+09:00"
+}

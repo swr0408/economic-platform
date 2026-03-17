@@ -55,6 +55,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'federal-budget', name: '連邦財政収支' },
           { code: 'cbo-projections', name: 'CBO経済見通し' },
           { code: 'cre-loan-delinquency', name: 'CRE貸出延滞率' },
+          { code: 'quarterly-refunding', name: 'Quarterly Refunding' },
         ],
       },
       {
@@ -202,6 +203,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         indicators: [
           { code: 'boj-policy-rate-chart', name: '政策金利' },
           { code: 'japan-balance-sheet', name: '日銀バランスシート' },
+          { code: 'boj-current-account-balance', name: '日銀当座預金残高' },
           { code: 'ois-curve-chart', name: 'OISカーブ' },
           { code: 'boj-meeting-expectations', name: '日銀政策金利期待' },
           { code: 'boj-outlook', name: '経済・物価情勢の展望' },
@@ -278,6 +280,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'cgpi-food-agriculture', name: '企業物価指数：飲食料品 / 農林水産物' },
           { code: 'import-export-price', name: '輸入・輸出物価指数' },
           { code: 'terms-of-trade', name: '交易条件' },
+          { code: 'price-pass-through-rate', name: '価格転嫁率' },
           { code: 'pos-uvpi', name: 'POS-UVPI（消費者購買単価指数）' },
           { code: 'gdp-gap', name: 'GDPギャップ（内閣府）' },
           { code: 'boj-gdp-gap', name: 'GDPギャップ（日銀）' },
@@ -946,6 +949,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#52c41a',
         indicators: [
           // グローバル指標
+          { code: 'oecd-cli', name: 'OECD CLI（景気先行指数）' },
           { code: 'global-manufacturing-pmi', name: 'グローバル製造業PMI' },
           { code: 'economic-surprise-index', name: 'エコノミックサプライズ指数' },
           { code: 'komatrax', name: 'Komatrax（車両稼働時間）' },
@@ -953,6 +957,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'semiconductor-sales', name: '半導体売上高' },
           // 韓国
           { code: 'korea-exports', name: '韓国輸出' },
+          { code: 'korea-semiconductor-exports', name: '韓国半導体輸出' },
           // 台湾
           { code: 'taiwan-manufacturing-pmi', name: '台湾製造業PMI' },
           { code: 'taiwan-pmi-outlook', name: '台湾PMI先行き（電子工学業）' },

@@ -23,6 +23,7 @@ import JapanImportExportPriceChart from './price/JapanImportExportPriceChart'
 import JapanSPPIChart from './price/JapanSPPIChart'
 import JapanPosUvpiChart from './price/JapanPosUvpiChart'
 import JapanTermsOfTradeChart from './price/JapanTermsOfTradeChart'
+import PricePassThroughRateChart from './price/PricePassThroughRateChart'
 import JapanPriceDISpreadChart from './price/JapanPriceDISpreadChart'
 import JapanGDPGapChart from './economy/JapanGDPGapChart'
 import BOJGDPGapChart from './price/BOJGDPGapChart'
@@ -68,6 +69,11 @@ export default function JapanInflationCharts() {
       {/* 交易条件（Terms of Trade） */}
       <div id="terms-of-trade">
         <JapanTermsOfTradeChart />
+      </div>
+
+      {/* 価格転嫁率（中小企業庁） */}
+      <div id="price-pass-through-rate">
+        <PricePassThroughRateChart />
       </div>
 
       {/* 価格DIスプレッド（日銀短観） */}

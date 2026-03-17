@@ -1,0 +1,264 @@
+{
+  "indicator": "kr_semiconductor_exports",
+  "description": "韓国半導体輸出（MOTIE/MSIT ICTレポート）",
+  "unit": "USD billion",
+  "source": "MOTIE ICT 수출입 동향",
+  "backfill_at": "2026-03-17T12:12:46.467972",
+  "total_months": 28,
+  "date_range": {
+    "start": "2023-11",
+    "end": "2026-03"
+  },
+  "data": [
+    {
+      "ref_month": "2023-11",
+      "value_usd_billion": 9.56,
+      "yoy_pct": 10.7,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170137/view?mno=&pageIndex=3&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('23.11월)95.6(10.7↑)"
+    },
+    {
+      "ref_month": "2023-12",
+      "value_usd_billion": 11.07,
+      "yoy_pct": 19.3,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/168482/view",
+      "raw_text": "('23.12월)110.7(19.3↑)"
+    },
+    {
+      "ref_month": "2024-01",
+      "value_usd_billion": 9.41,
+      "yoy_pct": 53.0,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170032/view?mno=&pageIndex=3&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.1월)94.1(53.0↑)"
+    },
+    {
+      "ref_month": "2024-02",
+      "value_usd_billion": 9.96,
+      "yoy_pct": 62.9,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/168763/view?mno=&pageIndex=5&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 99.6억불, 62.9%↑)"
+    },
+    {
+      "ref_month": "2024-03",
+      "value_usd_billion": 11.69,
+      "yoy_pct": 33.9,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/168906/view?mno=&pageIndex=5&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 116.9억불, 33.9%↑)"
+    },
+    {
+      "ref_month": "2024-04",
+      "value_usd_billion": 9.96,
+      "yoy_pct": 53.9,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/169048/view?mno=&pageIndex=5&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 99.6억불, 53.9%↑)"
+    },
+    {
+      "ref_month": "2024-05",
+      "value_usd_billion": 11.39,
+      "yoy_pct": 52.4,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/169186/view?mno=&pageIndex=5&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 113.9억불, 52.4%↑)"
+    },
+    {"ref_month": "2024-06", 
+    "value_usd_billion": 13.44, 
+    "yoy_pct": 49.4, 
+    "source_report": "ICT", 
+    "published_at": null, 
+    "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/169333/view?mno=&pageIndex=5&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+    "raw_text": "('24.6월)134.4(49.4↑)"},
+    {
+      "ref_month": "2024-07",
+      "value_usd_billion": 11.21,
+      "yoy_pct": 48.7,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170286/view?mno=&pageIndex=3&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.7월)112.1(48.7↑)"
+    },
+    {
+      "ref_month": "2024-08",
+      "value_usd_billion": 11.89,
+      "yoy_pct": 37.6,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/169525/view?mno=&pageIndex=4&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.8월)118.9(37.6↑)"
+    },
+    {
+      "ref_month": "2024-09",
+      "value_usd_billion": 13.63,
+      "yoy_pct": 36.3,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/169629/view?mno=&pageIndex=4&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.9월)136.3(36.3↑)"
+    },
+    {
+      "ref_month": "2024-10",
+      "value_usd_billion": 12.55,
+      "yoy_pct": 39.9,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/169783/view?mno=&pageIndex=4&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.10월)125.5(39.9↑)"
+    },
+    {
+      "ref_month": "2024-11",
+      "value_usd_billion": 12.46,
+      "yoy_pct": 30.3,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170603/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.11월)124.6(30.3↑)"
+    },
+    {
+      "ref_month": "2024-12",
+      "value_usd_billion": 14.51,
+      "yoy_pct": 31.1,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170137/view?mno=&pageIndex=3&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('24.12월)145.1(31.1↑)"
+    },
+    {
+      "ref_month": "2025-01",
+      "value_usd_billion": 10.14,
+      "yoy_pct": 7.7,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170137/view?mno=&pageIndex=3&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.1월)101.4(7.7↑)"
+    },
+    {
+      "ref_month": "2025-02", 
+      "value_usd_billion": 9.65, 
+      "yoy_pct": -3.0, 
+      "source_report": "ICT", 
+      "published_at": null, 
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170908/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5", 
+      "raw_text": "('25.2월)96.5(-3.0↓)"
+    },
+    {
+      "ref_month": "2025-03",
+      "value_usd_billion": 13.06,
+      "yoy_pct": 11.8,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170514/view?mno=&pageIndex=3&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.3월)130.6(11.8↑)"
+    },
+    {
+      "ref_month": "2025-04",
+      "value_usd_billion": 11.68,
+      "yoy_pct": 17.2,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170603/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.4월)116.8(17.2↑)"
+    },
+    {
+      "ref_month": "2025-05",
+      "value_usd_billion": 13.8,
+      "yoy_pct": 21.2,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170908/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.5월)138.0(21.2↑)"
+    },
+    {
+      "ref_month": "2025-06", 
+      "value_usd_billion": 14.98, 
+      "yoy_pct": 11.5, 
+      "source_report": "ICT", 
+      "published_at": null, 
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171067/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.6월)149.8(11.5↑)"
+    },
+    {
+      "ref_month": "2025-07",
+      "value_usd_billion": 14.72,
+      "yoy_pct": 31.2,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170798/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 147.2억 달러, 31.2%↑)"
+    },
+    {
+      "ref_month": "2025-08",
+      "value_usd_billion": 15.11,
+      "yoy_pct": 27.0,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/170908/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 151.1억 달러, 27.0%↑)"
+    },
+    {
+      "ref_month": "2025-09",
+      "value_usd_billion": 16.62,
+      "yoy_pct": 21.9,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171067/view?mno=&pageIndex=2&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "(반도체 : 166.2억 달러, 21.9%↑)"
+    },
+    {
+      "ref_month": "2025-10",
+      "value_usd_billion": 15.71,
+      "yoy_pct": 25.2,
+      "source_report": "ICT",
+      "published_at": null,
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171518/view?mno=&pageIndex=1&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.10월)157.1(25.2↑)"
+    },
+    {
+      "ref_month": "2025-11",
+      "value_usd_billion": 17.27,
+      "yoy_pct": 38.6,
+      "source_report": "ICT",
+      "published_at": "2026-03-12",
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171585/view?mno=&pageIndex=1&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.11월)172.7(38.6↑)"
+    },
+    {
+      "ref_month": "2025-12",
+      "value_usd_billion": 20.77,
+      "yoy_pct": 43.2,
+      "source_report": "ICT",
+      "published_at": "2026-03-12",
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171585/view?mno=&pageIndex=1&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('25.12월)207.7(43.2↑)"
+    },
+    {
+      "ref_month": "2026-01",
+      "value_usd_billion": 20.55,
+      "yoy_pct": 102.7,
+      "source_report": "ICT",
+      "published_at": "2026-03-12",
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171585/view?mno=&pageIndex=1&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('26.1월)205.5(102.7↑)"
+    },
+    {
+      "ref_month": "2026-02",
+      "value_usd_billion": 25.17,
+      "yoy_pct": 160.8,
+      "source_report": "ICT",
+      "published_at": "2026-03-12",
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171585/view?mno=&pageIndex=1&rowPageC=0&displayAuthor=&searchCategory=0&schClear=on&startDtD=&endDtD=&searchCondition=1&searchKeyword=%EC%88%98%EC%B6%9C%EC%9E%85+%EB%8F%99%ED%96%A5",
+      "raw_text": "('26.2월)251.7(160.8↑)"
+    }
+  ]
+}

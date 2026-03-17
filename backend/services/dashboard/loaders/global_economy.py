@@ -34,9 +34,11 @@ class GlobalEconomyLoader(BaseDashboardLoader):
         "taiwan_pmi_outlook",
         "taiwan_manufacturing_pmi",
         "south_korean_exports",
+        "kr_semiconductor_exports",
         "taiwan_export_orders",
         "taiwan_electrical_equipment_exports",
         "china_shanghai_container_freight_index",
+        "oecd_cli",
     ]
 
     # null値チェックをスキップするキー（スクリーンショットは存在しなくてもOK）
@@ -105,9 +107,11 @@ class GlobalEconomyLoader(BaseDashboardLoader):
             "taiwan_pmi_outlook": None,
             "taiwan_manufacturing_pmi": None,
             "south_korean_exports": None,
+            "kr_semiconductor_exports": None,
             "taiwan_export_orders": None,
             "taiwan_electrical_equipment_exports": None,
             "china_shanghai_container_freight_index": None,
+            "oecd_cli": None,
         }
 
         # PMI データ
@@ -186,6 +190,16 @@ class GlobalEconomyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"[GlobalEconomy] Error loading South Korean Exports module: {e}")
 
+        # KR Semiconductor Exports
+        try:
+            _kr_semi_mod = importlib.import_module("services.global.kr_semiconductor_exports_service")
+            svc = _kr_semi_mod.kr_semiconductor_exports_service
+            result["kr_semiconductor_exports"] = self._get_indicator(
+                svc, "kr_semiconductor_exports", "KR Semiconductor Exports"
+            )
+        except Exception as e:
+            print(f"[GlobalEconomy] Error loading KR Semiconductor Exports module: {e}")
+
         # Taiwan Export Orders YoY
         try:
             _tw_eo_mod = importlib.import_module("services.global.taiwan_export_orders_service")
@@ -215,6 +229,16 @@ class GlobalEconomyLoader(BaseDashboardLoader):
             )
         except Exception as e:
             print(f"[GlobalEconomy] Error loading Container Freight Index module: {e}")
+
+        # OECD CLI（景気先行指数）
+        try:
+            _oecd_cli_mod = importlib.import_module("services.global.oecd_cli_service")
+            svc = _oecd_cli_mod.oecd_cli_service
+            result["oecd_cli"] = self._get_indicator(
+                svc, "oecd_cli", "OECD CLI"
+            )
+        except Exception as e:
+            print(f"[GlobalEconomy] Error loading OECD CLI module: {e}")
 
         return result
 
