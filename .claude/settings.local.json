@@ -417,7 +417,8 @@
       "WebFetch(domain:www.chusho.meti.go.jp)",
       "Bash(docker kill economic-platform-backend)",
       "WebFetch(domain:www.oecd.org)",
-      "WebFetch(domain:sdmx.oecd.org)"
+      "WebFetch(domain:sdmx.oecd.org)",
+      "Bash(# Check the suspicious Australia service files cat /c/Users/owner/Desktop/economic-platform/backend/services/australia/au_household_saving_ratio_service.py)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

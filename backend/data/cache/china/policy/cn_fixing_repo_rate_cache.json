@@ -16163,16 +16163,25 @@
       "FDR001": 1.33,
       "FDR007": 1.45,
       "FDR014": 1.45
+    },
+    {
+      "date": "2026-03-18",
+      "FR001": 1.42,
+      "FR007": 1.5,
+      "FR014": 1.62,
+      "FDR001": 1.32,
+      "FDR007": 1.45,
+      "FDR014": 1.58
     }
   ],
   "latest": {
-    "date": "2026-03-17",
+    "date": "2026-03-18",
     "FR001": 1.42,
-    "FR007": 1.51,
-    "FR014": 1.54,
-    "FDR001": 1.33,
+    "FR007": 1.5,
+    "FR014": 1.62,
+    "FDR001": 1.32,
     "FDR007": 1.45,
-    "FDR014": 1.45
+    "FDR014": 1.58
   },
   "metadata": {
     "source": "China Foreign Exchange Trade System (CFETS) / chinamoney.com.cn",
@@ -16186,6 +16195,6 @@
       "FDR007",
       "FDR014"
     ],
-    "total_records": 1796
+    "total_records": 1797
   }
 }

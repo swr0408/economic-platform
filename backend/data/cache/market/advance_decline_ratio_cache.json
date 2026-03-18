@@ -1,17 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-02-20",
-      "ratio": 101.45,
-      "advances": 598,
-      "declines": 991,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38363.61,
-      "topix": 2645.17
-    },
-    {
       "date": "2024-02-21",
       "ratio": 107.64,
       "advances": 1082,
@@ -5543,28 +5532,39 @@
       "declines_25d": 0,
       "nikkei225": null,
       "topix": null
+    },
+    {
+      "date": "2026-03-16",
+      "ratio": 103.33,
+      "advances": 1007,
+      "declines": 524,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 53751.15,
+      "topix": 3790.0
     }
   ],
   "latest": {
-    "date": "2026-03-15",
-    "ratio": 101.92,
-    "advances": 616,
-    "declines": 901,
+    "date": "2026-03-16",
+    "ratio": 103.33,
+    "advances": 1007,
+    "declines": 524,
     "unchanged": 0,
     "advances_25d": 0,
     "declines_25d": 0,
-    "nikkei225": null,
-    "topix": null
+    "nikkei225": 53751.15,
+    "topix": 3790.0
   },
   "metadata": {
     "source": "nikkei225jp.com",
     "frequency": "daily",
     "data_count": 504,
-    "start_date": "2024-02-20",
-    "end_date": "2026-03-15",
+    "start_date": "2024-02-21",
+    "end_date": "2026-03-16",
     "window": 25
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-03-17T00:44:01.554859"
+  "last_updated": "2026-03-18T00:44:30.707587"
 }

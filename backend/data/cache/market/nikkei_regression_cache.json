@@ -1032,13 +1032,13 @@
     },
     {
       "date": "2026-03-01",
-      "actual": 53700.39,
+      "actual": 54442.88,
       "model": null
     }
   ],
   "latest": {
     "date": "2026-03-01",
-    "actual": 53700.39,
+    "actual": 54442.88,
     "model": null
   },
   "model_info": {
@@ -1062,5 +1062,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-17T15:53:37.196161+09:00"
+  "last_updated": "2026-03-18T09:44:28.230948+09:00"
 }

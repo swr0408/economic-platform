@@ -2724,8 +2724,8 @@
     "datetime_utc": "2026-04-10T12:30:00+00:00",
     "datetime_jst": "2026-04-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "CPI s.a (Mar)",
-    "estimate": null
+    "label": "Inflation Rate MoM (Mar)",
+    "estimate": 0.8
   },
-  "last_updated": "2026-03-15T23:02:21.740854+09:00"
+  "last_updated": "2026-03-18T12:00:08.910513+09:00"
 }

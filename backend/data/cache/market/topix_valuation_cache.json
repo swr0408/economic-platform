@@ -3217,9 +3217,9 @@
       "forward_pe": 18.2181,
       "forward_eps": 194.1,
       "earnings_yield": 0.05489,
-      "yield_10y": 0.0224,
-      "yield_spread": 0.03249,
-      "yield_ratio": 2.4505,
+      "yield_10y": 0.0211,
+      "yield_spread": 0.03379,
+      "yield_ratio": 2.6014,
       "forward_pe_yoy": 28.28,
       "forward_eps_yoy": 1.33,
       "earnings_yield_yoy": -22.04
@@ -3230,9 +3230,9 @@
       "forward_pe": 16.6657,
       "forward_eps": 233.92,
       "earnings_yield": 0.060004,
-      "yield_10y": 0.0224,
-      "yield_spread": 0.037604,
-      "yield_ratio": 2.6787,
+      "yield_10y": 0.0211,
+      "yield_spread": 0.038904,
+      "yield_ratio": 2.8438,
       "forward_pe_yoy": 19.02,
       "forward_eps_yoy": 20.0,
       "earnings_yield_yoy": -15.98
@@ -5962,7 +5962,7 @@
       "forward_eps": 194.1,
       "earnings_yield": 5.49,
       "close": 3536.13,
-      "yield_10y": 2.24,
+      "yield_10y": 2.11,
       "forward_pe_mom": 8.21,
       "forward_eps_mom": -6.03,
       "earnings_yield_mom": -7.59
@@ -5973,7 +5973,7 @@
       "forward_eps": 233.92,
       "earnings_yield": 6.0,
       "close": 3898.42,
-      "yield_10y": 2.24,
+      "yield_10y": 2.11,
       "forward_pe_mom": -8.52,
       "forward_eps_mom": 20.52,
       "earnings_yield_mom": 9.32
@@ -5985,9 +5985,9 @@
     "forward_pe": 16.6657,
     "forward_eps": 233.92,
     "earnings_yield": 0.060004,
-    "yield_10y": 0.0224,
-    "yield_spread": 0.037604,
-    "yield_ratio": 2.6787,
+    "yield_10y": 0.0211,
+    "yield_spread": 0.038904,
+    "yield_ratio": 2.8438,
     "forward_pe_yoy": 19.02,
     "forward_eps_yoy": 20.0,
     "earnings_yield_yoy": -15.98
@@ -6016,5 +6016,5 @@
   },
   "cached": false,
   "source": "csv+yfinance+fred",
-  "last_updated": "2026-03-16T20:08:46.544877+09:00"
+  "last_updated": "2026-03-18T09:44:28.270357+09:00"
 }

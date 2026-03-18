@@ -198,33 +198,6 @@ a:hover {
   color: var(--ea-accent-hover);
 }
 
-/* Loading animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-in;
-}
-
-/* Market Data Display Utilities */
-.positive-value {
-  color: var(--ea-success);
-}
-
-.negative-value {
-  color: var(--ea-error);
-}
-
-.neutral-value {
-  color: var(--ea-text-secondary);
-}
-
 /* Compact Table Styles for Pro Tools */
 .ant-table {
   font-size: 13px;
@@ -288,46 +261,3 @@ a:hover {
   border-color: var(--ea-border);
 }
 
-/* Stat Card Styles */
-.stat-card {
-  background: var(--ea-bg-secondary);
-  border: 1px solid var(--ea-border);
-  border-radius: var(--ea-radius-md);
-  padding: var(--ea-spacing-md);
-}
-
-.stat-card:hover {
-  border-color: var(--ea-accent);
-}
-
-/* Market Ticker Animation */
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.ticker-container {
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.ticker-content {
-  display: inline-block;
-  animation: ticker-scroll 30s linear infinite;
-}
-
-/* Glow Effect for Accent Elements */
-.glow-accent {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-}
-
-/* Alpha Symbol Styling */
-.alpha-symbol {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  color: var(--ea-accent);
-}

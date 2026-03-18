@@ -50,3 +50,16 @@ docker-compose.override.yml
 
 # TimescaleDB
 pgdata/
+
+# Temporary / debug files
+temp_*
+backend/temp_*
+frontend/temp_*
+backend/scripts/debug_*
+backend/scripts/test_*
+*_backup.py
+debug_*.html
+explore_*.py
+diagnose_*.py
+*_scraper.py
+*_scrape_log.txt

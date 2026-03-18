@@ -5288,7 +5288,7 @@
       "investment_trusts": null,
       "business_corps": null,
       "proprietary": null,
-      "nikkei_close": 53700.39
+      "nikkei_close": 54442.88
     }
   ],
   "latest": {
@@ -5302,8 +5302,8 @@
     "nikkei_close": 54452.96
   },
   "latest_nikkei": {
-    "date": "2026-03-17",
-    "close": 53700.39
+    "date": "2026-03-18",
+    "close": 54442.88
   },
   "metadata": {
     "source": "JPX + yfinance (^N225)",
@@ -5316,5 +5316,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-17T15:53:37.709726+09:00"
+  "last_updated": "2026-03-18T09:44:29.204802+09:00"
 }

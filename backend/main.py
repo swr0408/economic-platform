@@ -812,6 +812,11 @@ async def shutdown_event():
     except Exception as e:
         print(f"Warning: Error shutting down China Gold ETF Balance Scheduler: {e}")
 
+    try:
+        cn_baidu_migration_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down CN Baidu Migration Scheduler: {e}")
+
     print("Economic Platform API shutdown complete")
 
 
