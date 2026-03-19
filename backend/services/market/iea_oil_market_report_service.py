@@ -2,7 +2,7 @@
 IEA Oil Market Report サービス
 
 データソース:
-  - 手動配置CSV: backend/data/csv_import/IEA Oil Market Report.csv
+  - 手動配置CSV: backend/data/manual_update/monthly/iea/IEA Oil Market Report.csv
   - ヘッダー行: 項目, {月号1}, {月号2}, ... , {差分列}, 備考
   - 項目数は月号によって増減する（可変対応）
 
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "iea"
 CSV_FILE = CSV_DIR / "IEA Oil Market Report.csv"
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "market"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)

@@ -25,7 +25,7 @@ JST = ZoneInfo("Asia/Tokyo")
 
 # パス定義
 _BASE_DIR = Path(__file__).parent.parent.parent
-CSV_PATH = str(_BASE_DIR / "data" / "csv_import" / "beijing-air-quality.csv")
+CSV_PATH = str(_BASE_DIR / "data" / "manual_update" / "daily" / "beijing_pm25" / "beijing-air-quality.csv")
 _FILE_CACHE_DIR = _BASE_DIR / "data" / "cache" / "china" / "economy"
 FILE_CACHE_PATH = str(_FILE_CACHE_DIR / "cn_beijing_pm25_cache.json")
 

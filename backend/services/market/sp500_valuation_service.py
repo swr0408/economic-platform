@@ -2,7 +2,7 @@
 S&P 500 Valuation サービス
 
 データソース:
-  - 予想PER: backend/data/csv_import/sp500_pe.csv (MacroMicro由来)
+  - 予想PER: backend/data/manual_update/daily/stock_pe/sp500_pe.csv (MacroMicro由来)
     参照: https://en.macromicro.me/series/20052/sp500-forward-pe-ratio
   - S&P500価格: yfinance (^GSPC)
   - 米国10年債利回り: yfinance (^TNX)
@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "daily" / "stock_pe"
 CSV_FILE = CSV_DIR / "sp500_pe.csv"
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "market"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)

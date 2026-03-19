@@ -8,6 +8,7 @@ import CommoditiesCharts from '../components/market/commodities/CommoditiesChart
 import EnergyCharts from '../components/market/energy/EnergyCharts'
 import ForexCharts from '../components/market/forex/ForexCharts'
 import CotCharts from '../components/market/cot/CotCharts'
+import OptionsCharts from '../components/market/options/OptionsCharts'
 
 const { Title, Text } = Typography
 
@@ -25,6 +26,7 @@ const CATEGORY_CHARTS: Record<string, React.ComponentType> = {
   energy: EnergyCharts,
   forex: ForexCharts,
   cot: CotCharts,
+  options: OptionsCharts,
 }
 
 function MarketDataCategory() {

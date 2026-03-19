@@ -2,7 +2,7 @@
 OPEC MOMR (Monthly Oil Market Report) サービス
 
 データソース:
-  - 手動配置Excel: backend/data/excel/momr-appendix-{month}-{year}.xlsx
+  - 手動配置Excel: backend/data/manual_update/monthly/opec/momr-appendix-{month}-{year}.xlsx
   - Table 11-1: World oil demand and production balance (mb/d)
   - Table 11-2: Changes from last month's table (mb/d)
   - Table 11-3: OECD oil stocks and oil on water (mb)
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-EXCEL_DIR = Path(__file__).parent.parent.parent / "data" / "excel"
+EXCEL_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "opec"
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "market"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "opec_momr_cache.json"

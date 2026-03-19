@@ -8,7 +8,7 @@ DBからRICS House Price Balanceデータを取得し、PDFから最新データ
 データソース:
 - DB: economic_calendar_events（FMP蓄積データ）
 - CSV: 過去データインポート
-- PDF: 手動ダウンロード（backend/data/pdf/uk/YYYYMM-rics-house-price.pdf）
+- PDF: 手動ダウンロード（backend/data/manual_update/monthly/uk_rics/YYYYMM-rics-house-price.pdf）
 
 発表スケジュール:
 - 月次（不定期・FMPカレンダーから取得）
@@ -18,7 +18,7 @@ DBからRICS House Price Balanceデータを取得し、PDFから最新データ
 PDFインポート手順:
 1. https://www.rics.org/news-insights/research から UK Residential Market Survey をダウンロード
 2. ファイル名を YYYYMM-rics-house-price.pdf に変更（例: 202512-rics-house-price.pdf）
-3. backend/data/pdf/uk/ に配置
+3. backend/data/manual_update/monthly/uk_rics/ に配置
 4. PDFの最初のページに House Price Balance の数値がある
 """
 import json
@@ -46,7 +46,7 @@ DATA_CACHE_FILE = CACHE_DIR / "rics_house_price_cache.json"
 IMPORTED_PDF_FILE = CACHE_DIR / "rics_imported_pdfs.json"
 
 # PDFディレクトリ
-PDF_DIR = Path(__file__).parent.parent.parent / "data" / "pdf" / "uk"
+PDF_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "uk_rics"
 
 
 class RICSHousePriceService:

@@ -103,7 +103,7 @@ export default function NERPulseChart({ data }: NERPulseChartProps) {
         title="ADP雇用者数（NER Pulse）"
         showPeriodSelector={false}
         dataSource="ADP Media Center"
-        sourceUrl="https://mediacenter.adp.com/labor-market-data"
+        sourceUrl="https://www.adpresearch.com/"
       >
         {/* 最新値表示 */}
         <LatestValueBox

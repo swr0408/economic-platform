@@ -2,7 +2,7 @@
 日経平均 Valuation サービス
 
 データソース:
-  - 予想PER: backend/data/csv_import/nikkei225_per.csv (Nikkei Indexes由来)
+  - 予想PER: backend/data/manual_update/daily/stock_pe/nikkei225_per.csv (Nikkei Indexes由来)
     参照: https://indexes.nikkei.co.jp/en/nkave/archives/data?list=per
   - 日経平均価格: yfinance (^N225)
   - 日本10年国債利回り: FRED (IRLTLT01JPM156N) ※月次→日次前方充填
@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "daily" / "stock_pe"
 CSV_FILE = CSV_DIR / "nikkei225_per.csv"
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "market"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)

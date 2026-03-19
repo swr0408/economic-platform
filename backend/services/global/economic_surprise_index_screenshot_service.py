@@ -5,9 +5,9 @@
 画像ファイルの更新日時が変わると自動的に新しい画像が配信される。
 
 画像パス:
-- global: backend/data/picture/エコノミックサプライズ指数（global）.png
-- japan:  backend/data/picture/エコノミックサプライズ指数（japan）.png
-- china:  backend/data/picture/エコノミックサプライズ指数（china）.png
+- global: backend/data/manual_update/daily/economic_surprise/エコノミックサプライズ指数（global）.png
+- japan:  backend/data/manual_update/daily/economic_surprise/エコノミックサプライズ指数（japan）.png
+- china:  backend/data/manual_update/daily/economic_surprise/エコノミックサプライズ指数（china）.png
 """
 from pathlib import Path
 from datetime import datetime
@@ -18,7 +18,7 @@ from zoneinfo import ZoneInfo
 JST = ZoneInfo("Asia/Tokyo")
 
 # 画像ディレクトリ
-PICTURE_DIR = Path(__file__).parent.parent.parent / "data" / "picture"
+PICTURE_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "daily" / "economic_surprise"
 
 # 地域設定
 REGION_CONFIG = {

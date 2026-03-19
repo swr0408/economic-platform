@@ -1154,23 +1154,23 @@
     },
     {
       "date": "2026-01",
-      "plentiful": 0.1,
-      "hard": 0.1,
-      "differential": 0.0
+      "plentiful": 23.9,
+      "hard": 20.8,
+      "differential": 3.1
     },
     {
       "date": "2026-02",
-      "plentiful": 0.7,
-      "hard": 0.7,
-      "differential": 0.0
+      "plentiful": 28.0,
+      "hard": 20.6,
+      "differential": 7.4
     }
   ],
   "latest": {
     "date": "2026-02",
-    "plentiful": 0.7,
-    "hard": 0.7,
-    "differential": 0.0
+    "plentiful": 28.0,
+    "hard": 20.6,
+    "differential": 7.4
   },
   "latest_data_date": "2026-02",
-  "last_updated": "2026-03-02T15:41:14.572445+09:00"
+  "last_updated": "2026-03-18T19:04:17.641104+09:00"
 }

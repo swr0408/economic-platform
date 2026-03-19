@@ -9,7 +9,7 @@ DBからHalifax House Priceデータを取得し、PDFから最新データを�
 データソース:
 - DB: economic_calendar_events（CSV蓄積データ）
 - CSV: 過去データインポート
-- PDF: 手動ダウンロード（backend/data/pdf/uk/YYYYMM-halifax-house-price-index.pdf）
+- PDF: 手動ダウンロード（backend/data/manual_update/monthly/uk_halifax/YYYYMM-halifax-house-price-index.pdf）
 
 発表スケジュール:
 - 月次（毎月上旬、07:00 UK時間）
@@ -39,7 +39,7 @@ SCHEDULE_CACHE_FILE = CACHE_DIR / "halifax_schedule_cache.json"
 IMPORTED_PDF_FILE = CACHE_DIR / "halifax_imported_pdfs.json"
 
 # PDFディレクトリ
-PDF_DIR = Path(__file__).parent.parent.parent / "data" / "pdf" / "uk"
+PDF_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "uk_halifax"
 
 
 class HalifaxHousePriceService:

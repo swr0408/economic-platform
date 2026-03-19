@@ -51,7 +51,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 FILE_CACHE = CACHE_DIR / "cn_capital_flows_cache.json"
 
 # PDF ディレクトリ
-PDF_DIR = Path(__file__).parent.parent.parent / "data" / "pdf" / "china"
+PDF_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "yearly" / "china_capital_flows"
 
 # SAFE ページURL（Excelリンクが掲載されている）
 SAFE_PAGE_URL = "https://www.safe.gov.cn/safe/2018/0419/8806.html"

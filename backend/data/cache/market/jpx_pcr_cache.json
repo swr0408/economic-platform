@@ -834,7 +834,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 19262.0,
-      "topix_idx": 1310.84
+      "topix_idx": 1310.85
     },
     {
       "date": "2020-04-27",
@@ -1835,7 +1835,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 23032.54,
-      "topix_idx": 1480.91
+      "topix_idx": 1480.92
     },
     {
       "date": "2020-09-10",
@@ -2418,7 +2418,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 26644.71,
-      "topix_idx": 1662.11
+      "topix_idx": 1662.1
     },
     {
       "date": "2020-11-30",
@@ -4750,7 +4750,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 28498.2,
-      "topix_idx": 1898.98
+      "topix_idx": 1898.97
     },
     {
       "date": "2021-10-12",
@@ -5179,7 +5179,7 @@
       "topix_vol_pcr": 7.4734,
       "topix_oi_pcr": 4.1785,
       "nikkei225": 28455.6,
-      "topix_idx": 1893.03
+      "topix_idx": 1893.04
     },
     {
       "date": "2021-12-08",
@@ -5410,7 +5410,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 28478.56,
-      "topix_idx": 1898.98
+      "topix_idx": 1898.97
     },
     {
       "date": "2022-01-11",
@@ -6037,7 +6037,7 @@
       "topix_vol_pcr": 2.006,
       "topix_oi_pcr": 5.1318,
       "nikkei225": 27736.47,
-      "topix_idx": 1881.16
+      "topix_idx": 1881.15
     },
     {
       "date": "2022-04-05",
@@ -16607,31 +16607,42 @@
       "nk225mini_oi_pcr": null,
       "topix_vol_pcr": 0.6959,
       "topix_oi_pcr": null,
-      "nikkei225": null,
+      "nikkei225": 53700.39,
       "topix_idx": 3809.0
+    },
+    {
+      "date": "2026-03-18",
+      "nk225_vol_pcr": 2.0287,
+      "nk225_oi_pcr": null,
+      "nk225mini_vol_pcr": 1.2154,
+      "nk225mini_oi_pcr": null,
+      "topix_vol_pcr": 6.3616,
+      "topix_oi_pcr": null,
+      "nikkei225": 55239.4,
+      "topix_idx": 3907.0
     }
   ],
   "latest": {
-    "date": "2026-03-17",
-    "nk225_vol_pcr": 1.1282,
+    "date": "2026-03-18",
+    "nk225_vol_pcr": 2.0287,
     "nk225_oi_pcr": null,
-    "nk225mini_vol_pcr": 1.1991,
+    "nk225mini_vol_pcr": 1.2154,
     "nk225mini_oi_pcr": null,
-    "topix_vol_pcr": 0.6959,
+    "topix_vol_pcr": 6.3616,
     "topix_oi_pcr": null,
-    "nikkei225": null,
-    "topix_idx": 3809.0
+    "nikkei225": 55239.4,
+    "topix_idx": 3907.0
   },
   "metadata": {
     "source": "JPX / yfinance",
-    "data_count": 1510,
-    "nk225_count": 1510,
-    "nk225mini_count": 681,
-    "topix_count": 1028,
+    "data_count": 1511,
+    "nk225_count": 1511,
+    "nk225mini_count": 682,
+    "topix_count": 1029,
     "start_date": "2020-01-06",
-    "end_date": "2026-03-17"
+    "end_date": "2026-03-18"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-18T09:44:29.737136+09:00"
+  "last_updated": "2026-03-18T18:35:12.366185+09:00"
 }

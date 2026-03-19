@@ -9,7 +9,7 @@ PDFのPage 4からChart 18 (Cost Growth) とChart 20 (Output Price Growth) を�
 - Chart 20: Output Price Growth, SA (% Qtly Eq.) — Product Price + Retail Price
 
 データソース:
-- PDF: backend/data/pdf/australia/NAB-Monthly-Business-Survey-*.pdf（手動配置）
+- PDF: backend/data/manual_update/monthly/australia_nab/NAB-Monthly-Business-Survey-*.pdf（手動配置）
 - FMP API: next_release のみ（NAB Business Confidence パターン）
 
 発表スケジュール: 毎月（NAB Business Confidence と同時）
@@ -35,7 +35,7 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "australia"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # PDFディレクトリ
-PDF_DIR = Path(__file__).parent.parent.parent / "data" / "pdf" / "australia"
+PDF_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "australia_nab"
 
 # FMPパターン（next_release取得用）
 FMP_EVENT_PATTERN = "NAB Business Confidence"

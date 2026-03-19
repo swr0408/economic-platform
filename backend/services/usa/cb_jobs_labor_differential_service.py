@@ -53,11 +53,15 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "cb_jobs_labor_differential_cache.json"
 
 # 正規表現パターン
-RE_SOURCE = re.compile(r"Source:\s*([A-Za-z]+)\s+(\d{4})\s+Consumer Confidence Survey", re.I)
-RE_PLENTIFUL = re.compile(r'(\d+(?:\.\d+)?)\s*%.*?jobs\s+were\s+["""]plentiful', re.I | re.DOTALL)
-RE_PLENTIFUL_ALT = re.compile(r'jobs\s+were\s+["""]plentiful["""].*?(\d+(?:\.\d+)?)\s*%', re.I | re.DOTALL)
-RE_HARD = re.compile(r'(\d+(?:\.\d+)?)\s*%.*?jobs\s+were\s+["""]hard\s+to\s+get', re.I | re.DOTALL)
-RE_HARD_ALT = re.compile(r'jobs\s+were\s+["""]hard\s+to\s+get["""].*?(\d+(?:\.\d+)?)\s*%', re.I | re.DOTALL)
+# 引用符: ASCII " (U+0022) + Unicode smart quotes \u201c \u201d
+_Q = r'["\u201c\u201d\u2018\u2019]'
+RE_SOURCE = re.compile(r"Source:\s*([A-Za-z]+)\s+(\d{4})\s+Consumer Confidence Survey", re.I | re.DOTALL)
+# "28.0% of consumers said jobs were \u201cplentiful,\u201d" 形式（数値が先）
+RE_PLENTIFUL = re.compile(rf'(\d+(?:\.\d+)?)\s*%\s+of\s+consumers\s+said\s+jobs\s+were\s+{_Q}plentiful', re.I | re.DOTALL)
+# "jobs were \u201cplentiful,\u201d up from 25.8%" 形式（数値が後）
+RE_PLENTIFUL_ALT = re.compile(rf'jobs\s+were\s+{_Q}plentiful{_Q}.*?(\d+(?:\.\d+)?)\s*%', re.I | re.DOTALL)
+RE_HARD = re.compile(rf'(\d+(?:\.\d+)?)\s*%\s+of\s+consumers\s+said\s+jobs\s+were\s+{_Q}hard\s+to\s+get', re.I | re.DOTALL)
+RE_HARD_ALT = re.compile(rf'jobs\s+were\s+{_Q}hard\s+to\s+get{_Q}.*?(\d+(?:\.\d+)?)\s*%', re.I | re.DOTALL)
 
 # 月名マッピング
 MONTH_MAP = {
@@ -296,6 +300,11 @@ class CBJobsLaborDifferentialService:
             plentiful = float(p.group(1))
             hard = float(h.group(1))
             diff = round(plentiful - hard, 1)
+
+            # バリデーション: 歴史的に plentiful は5-60%, hard は5-55% の範囲
+            if plentiful < 3 or plentiful > 70 or hard < 3 or hard > 70:
+                print(f"Values out of expected range: Plentiful={plentiful}%, Hard={hard}% — skipping")
+                return None
 
             print(f"Extracted: {yyyymm}, Plentiful: {plentiful}%, Hard: {hard}%, Diff: {diff}")
 

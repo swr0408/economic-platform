@@ -124,6 +124,8 @@ try:
     from backend.scheduler.gold_premium_scheduler import gold_premium_scheduler
     from backend.scheduler.sge_gold_scheduler import sge_gold_scheduler
     from backend.scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
+    from backend.scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
+    from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
 except ImportError as _ie:
     print(f"[main.py] Primary import failed ({_ie}), using fallback imports...")
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
@@ -309,6 +311,8 @@ except ImportError as _ie:
     from scheduler.gold_premium_scheduler import gold_premium_scheduler
     from scheduler.sge_gold_scheduler import sge_gold_scheduler
     from scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
+    from scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
+    from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -697,6 +701,20 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start China Gold ETF Balance Scheduler: {e}")
 
+    # 日経225オプション 日次スケジューラーを開始
+    try:
+        nikkei225_options_scheduler.start()
+        print("Nikkei225 Options Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Nikkei225 Options Scheduler: {e}")
+
+    # NYオプションカット 日次スケジューラーを開始
+    try:
+        ny_option_cut_scheduler.start()
+        print("NY Option Cut Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start NY Option Cut Scheduler: {e}")
+
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:
         from services.canada.ca_settlement_balances_service import ca_settlement_balances_service
@@ -811,6 +829,11 @@ async def shutdown_event():
         china_gold_etf_balance_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down China Gold ETF Balance Scheduler: {e}")
+
+    try:
+        nikkei225_options_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Nikkei225 Options Scheduler: {e}")
 
     try:
         cn_baidu_migration_scheduler.shutdown()

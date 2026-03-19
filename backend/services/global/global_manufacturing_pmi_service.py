@@ -5,7 +5,7 @@ J.P.Morgan Global Manufacturing PMI サービス
 - J.P.Morgan Global Manufacturing PMI
 
 データソース:
-- CSV履歴データ (backend/data/csv_import/J.P.Morgan Global Manufacturing PMI.csv)
+- CSV履歴データ (backend/data/manual_update/monthly/global_pmi/J.P.Morgan Global Manufacturing PMI.csv)
 - 手動更新 → ファイルタイムスタンプ監視で自動リフレッシュ
 
 FMPマッピング: なし
@@ -32,7 +32,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "jpmorgan_global_manufacturing_pmi_cache.json"
 
 # CSVデータ
-CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "global_pmi"
 CSV_FILE = CSV_DIR / "J.P.Morgan Global Manufacturing PMI.csv"
 
 

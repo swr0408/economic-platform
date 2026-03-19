@@ -11,7 +11,7 @@ SNBのiCalendarフィードから発表スケジュールを取得
 2. SNB Data Portal Calendar (手動ダウンロード必要):
    - URL: https://data.snb.ch/en/calendar
    - 内容: 月次銀行統計、金利・為替統計、四半期銀行統計など
-   - 保存先: backend/data/ics_import/data_snb_ch_calendar_{year}.en.ics
+   - 保存先: backend/data/manual_update/monthly/switzerland_snb/data_snb_ch_calendar_{year}.en.ics
 
 カレンダーイベント例:
 - "Monthly banking statistics, {Month} {Year}" → 月次銀行統計
@@ -36,7 +36,7 @@ JST = ZoneInfo("Asia/Tokyo")
 ZURICH = ZoneInfo("Europe/Zurich")
 
 # ICSファイル保存ディレクトリ
-ICS_DIR = Path(__file__).parent.parent.parent / "data" / "ics_import"
+ICS_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "switzerland_snb"
 ICS_DIR.mkdir(parents=True, exist_ok=True)
 
 # キャッシュディレクトリ

@@ -307,9 +307,23 @@ class NERPulseService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        FMPスケジュールベースの3分方式で判定
+        FMPスケジュールベースの3分方式で判定。
+        FMPマッピングがない場合は24時間TTLフォールバック（週次データのため）。
         """
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        result = should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        if result:
+            return True
+        # FMPマッピングがないまたはDB未構築の場合のフォールバック: 24時間TTL
+        try:
+            last_updated = datetime.fromisoformat(last_updated_str)
+            if last_updated.tzinfo is None:
+                last_updated = last_updated.replace(tzinfo=JST)
+            elapsed = (datetime.now(JST) - last_updated).total_seconds()
+            if elapsed > 24 * 60 * 60:
+                return True
+        except Exception:
+            pass
+        return False
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:

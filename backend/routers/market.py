@@ -89,6 +89,8 @@ try:
     from backend.services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from backend.services.market.sector_ratio_service import sector_ratio_service
     from backend.services.market.mof_securities_trading_service import mof_securities_trading_service
+    from backend.services.market.nikkei225_options_service import nikkei225_options_service
+    from backend.services.market.ny_option_cut_service import ny_option_cut_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -144,6 +146,8 @@ except ImportError:
     from services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from services.market.sector_ratio_service import sector_ratio_service
     from services.market.mof_securities_trading_service import mof_securities_trading_service
+    from services.market.nikkei225_options_service import nikkei225_options_service
+    from services.market.ny_option_cut_service import ny_option_cut_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -822,6 +826,40 @@ def get_advance_decline_ratio(force_refresh: bool = Query(False)):
         content={**result, "response_time_ms": round(response_time_ms, 2)},
         headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
     )
+
+
+@router.get("/nikkei225-options")
+def get_nikkei225_options(force_refresh: bool = Query(False)):
+    """日経225オプション データを取得（IV、建玉、出来高、清算値）"""
+    start_time = time.time()
+    result = nikkei225_options_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/ny-option-cut")
+def get_ny_option_cut(force_refresh: bool = Query(False)):
+    """NYオプションカット（FXオプション期日）データを取得"""
+    start_time = time.time()
+    result = ny_option_cut_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/ny-option-cut/table-image")
+def get_ny_option_cut_table_image():
+    """NYオプションカット テーブル画像を配信"""
+    from pathlib import Path as _Path
+    img_path = _Path(__file__).parent.parent / "data" / "cache" / "market" / "ny_option_cut_table.png"
+    if not img_path.exists():
+        raise HTTPException(status_code=404, detail="Table image not found")
+    return FileResponse(str(img_path), media_type="image/png")
 
 
 @router.get("/{symbol_id}/daily")

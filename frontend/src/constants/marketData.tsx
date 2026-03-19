@@ -285,7 +285,7 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
   },
   {
     code: 'cot',
-    name: 'CFTCCFTCポジション動向動向',
+    name: 'CFTCポジション動向',
     icon: <BarChartOutlined />,
     color: '#8b5cf6',
     description: 'CFTC建玉報告に基づくCFTCポジション動向',
@@ -354,9 +354,22 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
     color: '#06b6d4',
     description: 'オプション市場の情報・指標',
     subCategories: [
-      { code: 'equity-options', name: '株式', indicators: [] },
-      { code: 'fx-options', name: '為替', indicators: [] },
-      { code: 'commodity-options', name: '商品', indicators: [] },
+      {
+        code: 'equity-options',
+        name: '株式オプション',
+        indicators: [
+          { code: 'nikkei225-options', name: '日経225オプション', symbolIds: [] },
+        ],
+      },
+      {
+        code: 'fx-options',
+        name: '為替オプション',
+        indicators: [
+          { code: 'forex-iv', name: '為替IV', symbolIds: [] },
+          { code: 'ny-option-cut', name: 'NYオプションカット', symbolIds: [] },
+        ],
+      },
+      { code: 'commodity-options', name: '商品オプション', indicators: [] },
     ],
   },
 ]

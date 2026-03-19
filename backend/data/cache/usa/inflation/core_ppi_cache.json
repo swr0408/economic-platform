@@ -1255,12 +1255,12 @@
     "index": 151.41
   },
   "next_release": {
-    "date": "2026-03-18",
-    "datetime_utc": "2026-03-18T12:30:00+00:00",
-    "datetime_jst": "2026-03-18T21:30:00+09:00",
+    "date": "2026-04-14",
+    "datetime_utc": "2026-04-14T12:30:00+00:00",
+    "datetime_jst": "2026-04-14T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Producer Price Index MoM (Feb)",
-    "estimate": null
+    "label": "Producer Price Index MoM (Mar)",
+    "estimate": 0.5
   },
-  "last_updated": "2026-02-28T13:22:10.776534+09:00"
+  "last_updated": "2026-03-18T23:00:03.261454+09:00"
 }

@@ -9,7 +9,7 @@ DBからRightmove House Priceデータを取得し、PDFから最新データを
 データソース:
 - DB: economic_calendar_events（CSV蓄積データ）
 - CSV: 過去データインポート
-- PDF: 手動ダウンロード（backend/data/pdf/uk/Rightmove-HPI-YYYYMMl.pdf）
+- PDF: 手動ダウンロード（backend/data/manual_update/monthly/uk_rightmove/Rightmove-HPI-YYYYMMl.pdf）
 
 発表スケジュール:
 - 月次（毎月11日～26日、08:01 UK時間）
@@ -19,7 +19,7 @@ DBからRightmove House Priceデータを取得し、PDFから最新データを
 PDFインポート手順:
 1. https://www.rightmove.co.uk/news/house-price-index/ からPDFをダウンロード
 2. ファイル名を Rightmove-HPI-YYYYMMl.pdf に変更（例: Rightmove-HPI-202601l.pdf）
-3. backend/data/pdf/uk/ に配置
+3. backend/data/manual_update/monthly/uk_rightmove/ に配置
 4. PDFの4ページ目に Monthly changes in average asking prices のグラフがある
 """
 import json
@@ -43,7 +43,7 @@ DATA_CACHE_FILE = CACHE_DIR / "rightmove_house_price_cache.json"
 IMPORTED_PDF_FILE = CACHE_DIR / "rightmove_imported_pdfs.json"
 
 # PDFディレクトリ
-PDF_DIR = Path(__file__).parent.parent.parent / "data" / "pdf" / "uk"
+PDF_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "uk_rightmove"
 
 
 class RightmoveHousePriceService:

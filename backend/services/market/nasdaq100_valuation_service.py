@@ -2,7 +2,7 @@
 Nasdaq 100 Valuation サービス
 
 データソース:
-  - 予想PER: backend/data/csv_import/nasdaq100_pe.csv (MacroMicro由来, 月次)
+  - 予想PER: backend/data/manual_update/daily/stock_pe/nasdaq100_pe.csv (MacroMicro由来, 月次)
     参照: https://en.macromicro.me/series/23955/nasdaq-100-pe
   - Nasdaq100価格: yfinance (^NDX)
   - 米国10年債利回り: yfinance (^TNX)
@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
 
-CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "daily" / "stock_pe"
 CSV_FILE = CSV_DIR / "nasdaq100_pe.csv"
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "market"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
