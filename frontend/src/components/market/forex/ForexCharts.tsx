@@ -54,17 +54,17 @@ export default function ForexCharts() {
   return (
     <div className="country-chart-stack">
       <div id="usdjpy"><MarketPriceChart title="USD/JPY" symbolData={data?.usdjpy} color={COLORS.usdjpy} decimals={3} /></div>
-      <div id="cot-usdjpy"><CftcPositioningChart asset="usdjpy" assetLabel="米ドル/円" reportType="tff" compareId="cftc_usdjpy" /></div>
+      <div id="cot-usdjpy"><CftcPositioningChart asset="usdjpy" assetLabel="米ドル/円" reportType="tff" compareId="cftc_usdjpy" handbookId="cot-usdjpy" /></div>
       <div id="eurusd"><MarketPriceChart title="EUR/USD" symbolData={data?.eurusd} color={COLORS.eurusd} decimals={4} /></div>
-      <div id="cot-eurusd"><CftcPositioningChart asset="eurusd" assetLabel="ユーロ/米ドル" reportType="tff" compareId="cftc_eurusd" /></div>
+      <div id="cot-eurusd"><CftcPositioningChart asset="eurusd" assetLabel="ユーロ/米ドル" reportType="tff" compareId="cftc_eurusd" handbookId="cot-eurusd" /></div>
       <div id="gbpusd"><MarketPriceChart title="GBP/USD" symbolData={data?.gbpusd} color={COLORS.gbpusd} decimals={4} /></div>
-      <div id="cot-gbpusd"><CftcPositioningChart asset="gbpusd" assetLabel="英ポンド/米ドル" reportType="tff" compareId="cftc_gbpusd" /></div>
+      <div id="cot-gbpusd"><CftcPositioningChart asset="gbpusd" assetLabel="英ポンド/米ドル" reportType="tff" compareId="cftc_gbpusd" handbookId="cot-gbpusd" /></div>
       <div id="audusd"><MarketPriceChart title="AUD/USD" symbolData={data?.audusd} color={COLORS.audusd} decimals={4} /></div>
-      <div id="cot-audusd"><CftcPositioningChart asset="audusd" assetLabel="豪ドル/米ドル" reportType="tff" compareId="cftc_audusd" /></div>
+      <div id="cot-audusd"><CftcPositioningChart asset="audusd" assetLabel="豪ドル/米ドル" reportType="tff" compareId="cftc_audusd" handbookId="cot-audusd" /></div>
       <div id="nzdusd"><MarketPriceChart title="NZD/USD" symbolData={data?.nzdusd} color={COLORS.nzdusd} decimals={4} /></div>
-      <div id="cot-nzdusd"><CftcPositioningChart asset="nzdusd" assetLabel="NZドル/米ドル" reportType="tff" compareId="cftc_nzdusd" /></div>
+      <div id="cot-nzdusd"><CftcPositioningChart asset="nzdusd" assetLabel="NZドル/米ドル" reportType="tff" compareId="cftc_nzdusd" handbookId="cot-nzdusd" /></div>
       <div id="usdcad"><MarketPriceChart title="USD/CAD" symbolData={data?.usdcad} color={COLORS.usdcad} decimals={4} /></div>
-      <div id="cot-usdcad"><CftcPositioningChart asset="usdcad" assetLabel="米ドル/カナダドル" reportType="tff" compareId="cftc_usdcad" /></div>
+      <div id="cot-usdcad"><CftcPositioningChart asset="usdcad" assetLabel="米ドル/カナダドル" reportType="tff" compareId="cftc_usdcad" handbookId="cot-usdcad" /></div>
       <div id="usdchf"><MarketPriceChart title="USD/CHF" symbolData={data?.usdchf} color={COLORS.usdchf} decimals={4} /></div>
       <div id="cot-usdchf"><CftcPositioningChart asset="usdchf" assetLabel="米ドル/スイスフラン" reportType="tff" compareId="cftc_usdchf" /></div>
       <div id="eurjpy"><MarketPriceChart title="EUR/JPY" symbolData={data?.eurjpy} color={COLORS.eurjpy} decimals={3} /></div>
@@ -75,7 +75,7 @@ export default function ForexCharts() {
       <div id="cadjpy"><MarketPriceChart title="CAD/JPY" symbolData={data?.cadjpy} color={COLORS.cadjpy} decimals={3} /></div>
       <div id="chfjpy"><MarketPriceChart title="CHF/JPY" symbolData={data?.chfjpy} color={COLORS.chfjpy} decimals={3} /></div>
       <div id="eurgbp"><MarketPriceChart title="EUR/GBP" symbolData={data?.eurgbp} color={COLORS.eurgbp} decimals={4} /></div>
-      <div id="cot-eurgbp"><CftcPositioningChart asset="eurgbp" assetLabel="ユーロ/ポンド" reportType="tff" compareId="cftc_eurgbp" /></div>
+      <div id="cot-eurgbp"><CftcPositioningChart asset="eurgbp" assetLabel="ユーロ/ポンド" reportType="tff" compareId="cftc_eurgbp" handbookId="cot-eurgbp" /></div>
       <div id="euraud"><MarketPriceChart title="EUR/AUD" symbolData={data?.euraud} color={COLORS.euraud} decimals={4} /></div>
       <div id="eurnzd"><MarketPriceChart title="EUR/NZD" symbolData={data?.eurnzd} color={COLORS.eurnzd} decimals={4} /></div>
       <div id="eurcad"><MarketPriceChart title="EUR/CAD" symbolData={data?.eurcad} color={COLORS.eurcad} decimals={4} /></div>
@@ -91,7 +91,7 @@ export default function ForexCharts() {
       <div id="nzdchf"><MarketPriceChart title="NZD/CHF" symbolData={data?.nzdchf} color={COLORS.nzdchf} decimals={4} /></div>
       <div id="cadchf"><MarketPriceChart title="CAD/CHF" symbolData={data?.cadchf} color={COLORS.cadchf} decimals={4} /></div>
       <div id="dxy"><MarketPriceChart title="ドルインデックス (DXY)" symbolData={data?.dxy} color={COLORS.dxy} decimals={3} /></div>
-      <div id="cot-usd-index"><CftcPositioningChart asset="usd_index" assetLabel="ドルインデックス" reportType="tff" compareId="cftc_usd_index" /></div>
+      <div id="cot-usd-index"><CftcPositioningChart asset="usd_index" assetLabel="ドルインデックス" reportType="tff" compareId="cftc_usd_index" handbookId="cot-usd-index" /></div>
     </div>
   )
 }

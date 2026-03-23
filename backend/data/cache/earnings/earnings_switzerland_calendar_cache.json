@@ -1,0 +1,112 @@
+{
+  "country": "switzerland",
+  "country_name": "Switzerland",
+  "provider_countries": [
+    "CH"
+  ],
+  "items": [
+    {
+      "symbol": "CFR",
+      "name": "Richemont",
+      "tier": "A",
+      "country_code": "switzerland",
+      "date": "2026-05-07",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.47,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "ROG",
+      "name": "Roche",
+      "tier": "S",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "NOVN",
+      "name": "Novartis",
+      "tier": "S",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "NESN",
+      "name": "Nestlé",
+      "tier": "S",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "UBSG",
+      "name": "UBS",
+      "tier": "A",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "ABBN",
+      "name": "ABB",
+      "tier": "A",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "ZURN",
+      "name": "Zurich Insurance",
+      "tier": "A",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    }
+  ],
+  "next_7d_count": 0,
+  "next_30d_count": 0,
+  "last_updated": "2026-03-20T17:28:04.399998+00:00",
+  "cached": false,
+  "status": "ok"
+}

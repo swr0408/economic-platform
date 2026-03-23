@@ -23,6 +23,7 @@ import VixTermStructureChart from './VixTermStructureChart'
 import HistoricalVolatilityChart from './HistoricalVolatilityChart'
 import VixCrossRatioChart from './VixCrossRatioChart'
 import SectorRatioChart from './SectorRatioChart'
+import SqAnalysisChart from './SqAnalysisChart'
 import CftcPositioningChart from '../cot/CftcPositioningChart'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import LoadingChart from '../../common/LoadingChart'
@@ -91,6 +92,9 @@ export default function EquitiesCharts() {
       <div id="cot-nasdaq100"><CftcPositioningChart asset="nasdaq100" assetLabel="ナスダック100" reportType="tff" compareId="cftc_nasdaq100" /></div>
       <div id="cot-russell2000"><CftcPositioningChart asset="russell2000" assetLabel="ラッセル2000" reportType="tff" compareId="cftc_russell2000" /></div>
       <div id="cot-vix"><CftcPositioningChart asset="vix" assetLabel="VIX" reportType="tff" compareId="cftc_vix" /></div>
+
+      {/* SQ/MSQ分析 */}
+      <div id="sq-analysis"><SqAnalysisChart /></div>
 
       {/* 日本株 */}
       <div id="jp-equities">

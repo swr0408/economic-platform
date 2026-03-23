@@ -1,0 +1,112 @@
+{
+  "country": "denmark",
+  "country_name": "Denmark",
+  "provider_countries": [
+    "DK"
+  ],
+  "items": [
+    {
+      "symbol": "GMAB",
+      "name": "Genmab",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": "2026-05-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.13,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "NOVO-B",
+      "name": "Novo Nordisk",
+      "tier": "S",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "DSV",
+      "name": "DSV",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "DANSKE",
+      "name": "Danske Bank",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "VWS",
+      "name": "Vestas",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "NZYM-B",
+      "name": "Novonesis",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "MAERSK-B",
+      "name": "AP Moller Maersk",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    }
+  ],
+  "next_7d_count": 0,
+  "next_30d_count": 0,
+  "last_updated": "2026-03-20T17:28:04.897053+00:00",
+  "cached": false,
+  "status": "ok"
+}

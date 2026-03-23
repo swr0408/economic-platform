@@ -20,8 +20,10 @@ try:
     from backend.routers.usa.fomc_projections import router as fomc_projections_router
     from backend.routers.dashboard import router as dashboard_router
     from backend.routers.market import router as market_router
+    from backend.routers.earnings import router as earnings_router
     from backend.routers.calendar import router as calendar_router
     from backend.routers.market_impact import router as market_impact_router
+    from backend.routers.sq_analysis import router as sq_analysis_router
     from backend.routers.japan.ois_curve import router as japan_ois_curve_router
     from backend.routers.japan.boj_meeting_expectations import router as japan_boj_expectations_router
     from backend.routers.japan.boj_outlook import router as japan_boj_outlook_router
@@ -126,6 +128,7 @@ try:
     from backend.scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
     from backend.scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
     from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
+    from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
 except ImportError as _ie:
     print(f"[main.py] Primary import failed ({_ie}), using fallback imports...")
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
@@ -143,9 +146,11 @@ except ImportError as _ie:
     from routers.usa.quarterly_refunding import router as quarterly_refunding_router
     from routers.dashboard import router as dashboard_router
     from routers.market import router as market_router
+    from routers.earnings import router as earnings_router
     from routers.market_tsmc import router as market_tsmc_router
     from routers.calendar import router as calendar_router
     from routers.market_impact import router as market_impact_router
+    from routers.sq_analysis import router as sq_analysis_router
     from routers.japan.ois_curve import router as japan_ois_curve_router
     from routers.japan.boj_meeting_expectations import router as japan_boj_expectations_router
     from routers.japan.boj_outlook import router as japan_boj_outlook_router
@@ -313,6 +318,7 @@ except ImportError as _ie:
     from scheduler.china_gold_etf_balance_scheduler import china_gold_etf_balance_scheduler
     from scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
     from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
+    from scheduler.comex_stock_scheduler import comex_stock_scheduler
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -356,9 +362,11 @@ app.include_router(treasury_router)
 app.include_router(quarterly_refunding_router)
 app.include_router(dashboard_router)
 app.include_router(market_router)
+app.include_router(earnings_router)
 app.include_router(market_tsmc_router)
 app.include_router(calendar_router)
 app.include_router(market_impact_router)
+app.include_router(sq_analysis_router)
 app.include_router(japan_ois_curve_router)
 app.include_router(japan_boj_expectations_router)
 app.include_router(japan_boj_outlook_router)
@@ -714,6 +722,13 @@ async def startup_event():
         print("NY Option Cut Scheduler started successfully")
     except Exception as e:
         print(f"Warning: Could not start NY Option Cut Scheduler: {e}")
+
+    # COMEX倉庫在庫（Gold/Silver/Copper）日次スケジューラーを開始
+    try:
+        comex_stock_scheduler.start()
+        print("COMEX Stock Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start COMEX Stock Scheduler: {e}")
 
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:

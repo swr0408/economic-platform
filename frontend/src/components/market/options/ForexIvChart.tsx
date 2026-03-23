@@ -25,6 +25,7 @@ export default function ForexIvChart() {
       dataSource="Sentry Derivatives"
       sourceUrl="https://sentryderivatives.com/"
       showPeriodSelector={false}
+      handbookId="forex-iv"
     >
       <div style={{ marginBottom: 8 }}>
         <ViewModeButtonGroup

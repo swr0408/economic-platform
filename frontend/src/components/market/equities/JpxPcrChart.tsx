@@ -11,6 +11,7 @@ import {
   CartesianGrid,
   Tooltip as RechartsTooltip,
   Legend,
+  ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
 import ChartContainer from '../../common/ChartContainer'
@@ -79,6 +80,11 @@ const PRODUCT_OPTIONS: { mode: ProductView; label: string }[] = [
   { mode: 'topix', label: 'TOPIX' },
 ]
 
+interface OiReferenceLine {
+  value: number
+  label: string
+}
+
 interface ProductConfig {
   label: string
   volKey: keyof JpxPcrItem
@@ -86,6 +92,7 @@ interface ProductConfig {
   indexKey: keyof JpxPcrItem
   indexLabel: string
   indexColor: string
+  oiRefLines?: OiReferenceLine[]
 }
 
 const PRODUCT_CONFIGS: Record<ProductView, ProductConfig> = {
@@ -96,6 +103,10 @@ const PRODUCT_CONFIGS: Record<ProductView, ProductConfig> = {
     indexKey: 'nikkei225',
     indexLabel: '日経平均',
     indexColor: COLOR_NIKKEI,
+    oiRefLines: [
+      { value: 1.5, label: '1.5' },
+      { value: 2.0, label: '2.0' },
+    ],
   },
   nk225mini: {
     label: '日経225ミニオプション',
@@ -104,6 +115,11 @@ const PRODUCT_CONFIGS: Record<ProductView, ProductConfig> = {
     indexKey: 'nikkei225',
     indexLabel: '日経平均',
     indexColor: COLOR_NIKKEI,
+    oiRefLines: [
+      { value: 0.8, label: '0.8' },
+      { value: 1.7, label: '1.7' },
+      { value: 1.9, label: '1.9' },
+    ],
   },
   topix: {
     label: 'TOPIXオプション',
@@ -275,7 +291,7 @@ function ProductChart({
           margin={{ top: 16, right: 60, bottom: 0, left: 0 }}
           style={{ backgroundColor: DARK_THEME.chartBg }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
+          <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} horizontal={false} />
 
           <XAxis
             type="category"
@@ -374,6 +390,25 @@ function ProductChart({
             isAnimationActive={false}
             hide={isHidden('index')}
           />
+
+          {config.oiRefLines?.map(({ value, label }) => (
+            <ReferenceLine
+              key={`oi-ref-${value}`}
+              yAxisId="right1"
+              y={value}
+              stroke="#c084fc"
+              strokeDasharray="8 4"
+              strokeWidth={1.5}
+              strokeOpacity={0.8}
+              label={{
+                value: label,
+                position: 'right',
+                fill: '#c084fc',
+                fontSize: 12,
+                fontWeight: 600,
+              }}
+            />
+          ))}
         </ComposedChart>
       </ResponsiveContainer>
     </div>
@@ -415,6 +450,7 @@ export default function JpxPcrChart() {
       dataSource="JPX / yfinance"
       sourceUrl="https://www.jpx.co.jp/markets/derivatives/trading-volume/index.html"
       showPeriodSelector={false}
+      handbookId="jpx-pcr"
     >
       {/* ViewModeButtonGroup + データ比較ボタン (same row) */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>

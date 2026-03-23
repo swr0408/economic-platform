@@ -157,7 +157,7 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="非農業部門雇用者数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="非農業部門雇用者数" showPeriodSelector={false} showDataSource={false} handbookId="nonfarm-payrolls">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -210,6 +210,7 @@ export default function NonfarmPayrollsChart({ data }: NonfarmPayrollsChartProps
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        handbookId="nonfarm-payrolls"
       >
         {/* 最新値表示 */}
         <LatestValueBox

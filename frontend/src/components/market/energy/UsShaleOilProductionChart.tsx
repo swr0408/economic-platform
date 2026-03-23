@@ -168,6 +168,7 @@ export default function UsShaleOilProductionChart() {
       dataSource="EIA STEO"
       sourceUrl="https://www.eia.gov/outlooks/steo/"
       showPeriodSelector={false}
+      handbookId="shale-oil-rig-count"
     >
       {/* Latest value box */}
       <div style={LATEST_VALUE_BOX_STYLE}>

@@ -34,22 +34,22 @@ export default function CotCharts() {
         <Title level={4} style={{ color: '#f1f5f9', marginTop: 32, marginBottom: 16 }}>為替</Title>
       </div>
       <div id="cot-usdjpy">
-        <CftcPositioningChart asset="usdjpy" assetLabel="米ドル/円" reportType="tff" compareId="cftc_usdjpy" />
+        <CftcPositioningChart asset="usdjpy" assetLabel="米ドル/円" reportType="tff" compareId="cftc_usdjpy" handbookId="cot-usdjpy" />
       </div>
       <div id="cot-eurusd">
-        <CftcPositioningChart asset="eurusd" assetLabel="ユーロ/米ドル" reportType="tff" compareId="cftc_eurusd" />
+        <CftcPositioningChart asset="eurusd" assetLabel="ユーロ/米ドル" reportType="tff" compareId="cftc_eurusd" handbookId="cot-eurusd" />
       </div>
       <div id="cot-gbpusd">
-        <CftcPositioningChart asset="gbpusd" assetLabel="英ポンド/米ドル" reportType="tff" compareId="cftc_gbpusd" />
+        <CftcPositioningChart asset="gbpusd" assetLabel="英ポンド/米ドル" reportType="tff" compareId="cftc_gbpusd" handbookId="cot-gbpusd" />
       </div>
       <div id="cot-audusd">
-        <CftcPositioningChart asset="audusd" assetLabel="豪ドル/米ドル" reportType="tff" compareId="cftc_audusd" />
+        <CftcPositioningChart asset="audusd" assetLabel="豪ドル/米ドル" reportType="tff" compareId="cftc_audusd" handbookId="cot-audusd" />
       </div>
       <div id="cot-nzdusd">
-        <CftcPositioningChart asset="nzdusd" assetLabel="NZドル/米ドル" reportType="tff" compareId="cftc_nzdusd" />
+        <CftcPositioningChart asset="nzdusd" assetLabel="NZドル/米ドル" reportType="tff" compareId="cftc_nzdusd" handbookId="cot-nzdusd" />
       </div>
       <div id="cot-usdcad">
-        <CftcPositioningChart asset="usdcad" assetLabel="米ドル/カナダドル" reportType="tff" compareId="cftc_usdcad" />
+        <CftcPositioningChart asset="usdcad" assetLabel="米ドル/カナダドル" reportType="tff" compareId="cftc_usdcad" handbookId="cot-usdcad" />
       </div>
       <div id="cot-usdchf">
         <CftcPositioningChart asset="usdchf" assetLabel="米ドル/スイスフラン" reportType="tff" compareId="cftc_usdchf" />
@@ -61,7 +61,7 @@ export default function CotCharts() {
         <CftcPositioningChart asset="eurjpy" assetLabel="ユーロ/円" reportType="tff" compareId="cftc_eurjpy" />
       </div>
       <div id="cot-eurgbp">
-        <CftcPositioningChart asset="eurgbp" assetLabel="ユーロ/ポンド" reportType="tff" compareId="cftc_eurgbp" />
+        <CftcPositioningChart asset="eurgbp" assetLabel="ユーロ/ポンド" reportType="tff" compareId="cftc_eurgbp" handbookId="cot-eurgbp" />
       </div>
 
       {/* 債券 */}
@@ -83,10 +83,10 @@ export default function CotCharts() {
         <Title level={4} style={{ color: '#f1f5f9', marginTop: 32, marginBottom: 16 }}>コモディティ</Title>
       </div>
       <div id="cot-gold">
-        <CftcPositioningChart asset="gold" assetLabel="金（ゴールド）" reportType="disagg" compareId="cftc_gold" />
+        <CftcPositioningChart asset="gold" assetLabel="金（ゴールド）" reportType="disagg" compareId="cftc_gold" handbookId="cot-gold" />
       </div>
       <div id="cot-silver">
-        <CftcPositioningChart asset="silver" assetLabel="銀（シルバー）" reportType="disagg" compareId="cftc_silver" />
+        <CftcPositioningChart asset="silver" assetLabel="銀（シルバー）" reportType="disagg" compareId="cftc_silver" handbookId="cot-silver" />
       </div>
       <div id="cot-copper">
         <CftcPositioningChart asset="copper" assetLabel="銅（カッパー）" reportType="disagg" compareId="cftc_copper" />
@@ -97,7 +97,7 @@ export default function CotCharts() {
         <Title level={4} style={{ color: '#f1f5f9', marginTop: 32, marginBottom: 16 }}>エネルギー</Title>
       </div>
       <div id="cot-crude-oil">
-        <CftcPositioningChart asset="crude_oil" assetLabel="原油（WTI）" reportType="disagg" compareId="cftc_crude_oil" />
+        <CftcPositioningChart asset="crude_oil" assetLabel="原油（WTI）" reportType="disagg" compareId="cftc_crude_oil" handbookId="cot-crude-oil" />
       </div>
       <div id="cot-brent">
         <CftcPositioningChart asset="brent" assetLabel="ブレント原油" reportType="disagg" compareId="cftc_brent" />

@@ -186,6 +186,7 @@ export default function ElectronicComponentsBalanceChart() {
       dataSource="経済産業省 / yfinance"
       sourceUrl="https://www.meti.go.jp/statistics/tyo/iip/index.html"
       showPeriodSelector={false}
+      handbookId="nikkei-225"
     >
       {/* 最新値 */}
       {latest && (

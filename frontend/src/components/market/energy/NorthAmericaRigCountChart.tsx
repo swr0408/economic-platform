@@ -116,7 +116,7 @@ export default function NorthAmericaRigCountChart() {
     const oilMap = new Map<string, number>()
     if (marketData?.crude_oil?.data) {
       for (const d of marketData.crude_oil.data) {
-        oilMap.set(d.date, d.close)
+        if (d.close != null) oilMap.set(d.date, d.close)
       }
     }
 
@@ -168,6 +168,7 @@ export default function NorthAmericaRigCountChart() {
       dataSource="EIA / Baker Hughes"
       sourceUrl="https://www.eia.gov/dnav/ng/ng_enr_drill_s1_m.htm"
       showPeriodSelector={false}
+      handbookId="shale-oil-rig-count"
     >
       {/* Latest value box */}
       <div style={LATEST_VALUE_BOX_STYLE}>
@@ -183,7 +184,7 @@ export default function NorthAmericaRigCountChart() {
               {latest?.value != null ? `${latest.value.toLocaleString()} 基` : '—'}
             </span>
           </div>
-          {latestOil && (
+          {latestOil?.close != null && (
             <div>
               <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>WTI: </span>
               <span style={{ fontSize: 16, fontWeight: 'bold', color: COLOR_OIL }}>

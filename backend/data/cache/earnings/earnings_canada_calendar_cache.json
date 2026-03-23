@@ -1,0 +1,112 @@
+{
+  "country": "canada",
+  "country_name": "Canada",
+  "provider_countries": [
+    "CA"
+  ],
+  "items": [
+    {
+      "symbol": "ENB",
+      "name": "Enbridge",
+      "tier": "A",
+      "country_code": "canada",
+      "date": "2026-05-08",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.717,
+      "eps_actual": null,
+      "revenue_estimate": 18669432310.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "SHOP",
+      "name": "Shopify",
+      "tier": "A",
+      "country_code": "canada",
+      "date": "2026-05-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.32,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "CNQ",
+      "name": "Canadian Natural Resources",
+      "tier": "A",
+      "country_code": "canada",
+      "date": "2026-05-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.46,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "RY",
+      "name": "Royal Bank of Canada",
+      "tier": "A",
+      "country_code": "canada",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "TD",
+      "name": "TD",
+      "tier": "A",
+      "country_code": "canada",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "AEM",
+      "name": "Agnico Eagle",
+      "tier": "A",
+      "country_code": "canada",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "BAM",
+      "name": "Brookfield",
+      "tier": "A",
+      "country_code": "canada",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    }
+  ],
+  "next_7d_count": 0,
+  "next_30d_count": 0,
+  "last_updated": "2026-03-20T17:28:06.443891+00:00",
+  "cached": false,
+  "status": "ok"
+}

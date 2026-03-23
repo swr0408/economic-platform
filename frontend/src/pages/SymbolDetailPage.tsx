@@ -246,15 +246,6 @@ export default function SymbolDetailPage() {
             <TradingViewWidget
               symbol={decodedSymbol}
               height={700}
-              theme="light"
-              interval="60"
-              timezone="Asia/Tokyo"
-              locale="ja"
-              hideTopToolbar={false}
-              hideSideToolbar={true}
-              hideLegend={false}
-              hideVolume={false}
-              allowSymbolChange={true}
             />
           </div>
         </Card>

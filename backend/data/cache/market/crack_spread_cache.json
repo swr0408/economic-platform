@@ -1,61 +1,6 @@
 {
   "data": [
     {
-      "date": "2011-03-21",
-      "wti": 102.33,
-      "rbob_crack_wti": 23.56,
-      "ulsd_crack_wti": 25.88,
-      "crack_321_wti": 24.33,
-      "brent": 114.96,
-      "rbob_crack_brent": 10.93,
-      "ulsd_crack_brent": 13.25,
-      "crack_321_brent": 11.7
-    },
-    {
-      "date": "2011-03-22",
-      "wti": 104.0,
-      "rbob_crack_wti": 22.19,
-      "ulsd_crack_wti": 25.2,
-      "crack_321_wti": 23.19,
-      "brent": 115.7,
-      "rbob_crack_brent": 10.49,
-      "ulsd_crack_brent": 13.5,
-      "crack_321_brent": 11.49
-    },
-    {
-      "date": "2011-03-23",
-      "wti": 105.75,
-      "rbob_crack_wti": 21.14,
-      "ulsd_crack_wti": 22.56,
-      "crack_321_wti": 21.62,
-      "brent": 115.55,
-      "rbob_crack_brent": 11.34,
-      "ulsd_crack_brent": 12.76,
-      "crack_321_brent": 11.82
-    },
-    {
-      "date": "2011-03-24",
-      "wti": 105.6,
-      "rbob_crack_wti": 22.28,
-      "ulsd_crack_wti": 23.0,
-      "crack_321_wti": 22.52,
-      "brent": 115.72,
-      "rbob_crack_brent": 12.16,
-      "ulsd_crack_brent": 12.88,
-      "crack_321_brent": 12.4
-    },
-    {
-      "date": "2011-03-25",
-      "wti": 105.4,
-      "rbob_crack_wti": 22.47,
-      "ulsd_crack_wti": 22.9,
-      "crack_321_wti": 22.61,
-      "brent": 115.59,
-      "rbob_crack_brent": 12.28,
-      "ulsd_crack_brent": 12.71,
-      "crack_321_brent": 12.42
-    },
-    {
       "date": "2011-03-28",
       "wti": 103.98,
       "rbob_crack_wti": 23.17,
@@ -41438,27 +41383,71 @@
       "crack_321_brent": 38.23
     },
     {
-      "date": "2026-03-15",
-      "wti": 98.06,
-      "rbob_crack_wti": 27.94,
-      "ulsd_crack_wti": 57.82,
-      "crack_321_wti": 37.9,
-      "brent": 98.79,
-      "rbob_crack_brent": 27.21,
-      "ulsd_crack_brent": 57.09,
-      "crack_321_brent": 37.17
+      "date": "2026-03-16",
+      "wti": 93.5,
+      "rbob_crack_wti": 32.51,
+      "ulsd_crack_wti": 67.67,
+      "crack_321_wti": 44.23,
+      "brent": 100.21,
+      "rbob_crack_brent": 25.8,
+      "ulsd_crack_brent": 60.96,
+      "crack_321_brent": 37.52
+    },
+    {
+      "date": "2026-03-17",
+      "wti": 96.21,
+      "rbob_crack_wti": 34.97,
+      "ulsd_crack_wti": 72.45,
+      "crack_321_wti": 47.47,
+      "brent": 103.42,
+      "rbob_crack_brent": 27.76,
+      "ulsd_crack_brent": 65.24,
+      "crack_321_brent": 40.26
+    },
+    {
+      "date": "2026-03-18",
+      "wti": 96.32,
+      "rbob_crack_wti": 33.82,
+      "ulsd_crack_wti": 79.99,
+      "crack_321_wti": 49.21,
+      "brent": 107.38,
+      "rbob_crack_brent": 22.76,
+      "ulsd_crack_brent": 68.93,
+      "crack_321_brent": 38.15
+    },
+    {
+      "date": "2026-03-19",
+      "wti": 96.14,
+      "rbob_crack_wti": 35.2,
+      "ulsd_crack_wti": 86.22,
+      "crack_321_wti": 52.21,
+      "brent": 108.65,
+      "rbob_crack_brent": 22.69,
+      "ulsd_crack_brent": 73.71,
+      "crack_321_brent": 39.7
+    },
+    {
+      "date": "2026-03-20",
+      "wti": 98.32,
+      "rbob_crack_wti": 39.7,
+      "ulsd_crack_wti": 95.23,
+      "crack_321_wti": 58.21,
+      "brent": 112.19,
+      "rbob_crack_brent": 25.83,
+      "ulsd_crack_brent": 81.36,
+      "crack_321_brent": 44.34
     }
   ],
   "latest": {
-    "date": "2026-03-15",
-    "wti": 98.06,
-    "rbob_crack_wti": 27.94,
-    "ulsd_crack_wti": 57.82,
-    "crack_321_wti": 37.9,
-    "brent": 98.79,
-    "rbob_crack_brent": 27.21,
-    "ulsd_crack_brent": 57.09,
-    "crack_321_brent": 37.17
+    "date": "2026-03-20",
+    "wti": 98.32,
+    "rbob_crack_wti": 39.7,
+    "ulsd_crack_wti": 95.23,
+    "crack_321_wti": 58.21,
+    "brent": 112.19,
+    "rbob_crack_brent": 25.83,
+    "ulsd_crack_brent": 81.36,
+    "crack_321_brent": 44.34
   },
   "metadata": {
     "source": "yfinance",
@@ -41478,11 +41467,11 @@
       "ulsd_crack_brent": "ULSD×42 - Brent",
       "crack_321_brent": "(2×RBOB×42 + ULSD×42 - 3×Brent) / 3"
     },
-    "data_count": 3768,
-    "start_date": "2011-03-21",
-    "end_date": "2026-03-15"
+    "data_count": 3767,
+    "start_date": "2011-03-28",
+    "end_date": "2026-03-20"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-16T10:23:55.369273+09:00"
+  "last_updated": "2026-03-23T23:09:44.519901+09:00"
 }

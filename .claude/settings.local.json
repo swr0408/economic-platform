@@ -421,7 +421,17 @@
       "Bash(# Check the suspicious Australia service files cat /c/Users/owner/Desktop/economic-platform/backend/services/australia/au_household_saving_ratio_service.py)",
       "WebFetch(domain:www.conference-board.org)",
       "WebFetch(domain:www.prnewswire.com)",
-      "WebFetch(domain:widget2.sentryd.com)"
+      "WebFetch(domain:widget2.sentryd.com)",
+      "WebFetch(domain:www.financialjuice.com)",
+      "WebFetch(domain:feed.financialjuice.com)",
+      "WebFetch(domain:live.financialjuice.com)",
+      "Bash(C:Usersowneranaconda3python.exe -m pip install dukascopy-python)",
+      "Bash(# 全てのポート8000のプロセスを特定 for pid in 115328 118196 140264 26740 51920 72928; do tasklist)",
+      "Bash(npm ls html2canvas)",
+      "WebFetch(domain:www.cboe.com)",
+      "WebFetch(domain:www.newyorkfed.org)",
+      "WebFetch(domain:libertystreeteconomics.newyorkfed.org)",
+      "Bash(do echo \"=== $ep ===\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

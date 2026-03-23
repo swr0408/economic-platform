@@ -408,6 +408,29 @@ class Nikkei225OptionsService:
 
         return mapping
 
+    def _extract_underlying_from_rb(self, rb_path: Path) -> Optional[float]:
+        """rb.csv から原資産価格のみを高速抽出"""
+        import pandas as pd
+
+        try:
+            try:
+                df = pd.read_csv(rb_path, encoding="shift_jis", skiprows=2, nrows=50)
+            except UnicodeDecodeError:
+                df = pd.read_csv(rb_path, encoding="cp932", skiprows=2, nrows=50)
+        except Exception:
+            return None
+
+        if df.empty or len(df.columns) < 8:
+            return None
+
+        col_issue = df.columns[1]
+        col_underlying = df.columns[7]
+        mask = df[col_issue].astype(str).str.contains("_225_", na=False)
+        vals = df.loc[mask, col_underlying].dropna()
+        if len(vals) > 0:
+            return _safe_float(vals.iloc[0])
+        return None
+
     def _parse_rb_csv_full(self, rb_path: Path) -> Optional[Dict[str, Any]]:
         """rb.csv をフルパースして構造化データを返す（ose*tp.csvがない場合のフォールバック）"""
         import pandas as pd
@@ -1004,9 +1027,16 @@ class Nikkei225OptionsService:
         expiries_dict = None
         expiry_mapping = None
 
-        # Priority 1: ose*tp.csv
-        if today_files.get("ose_tp"):
-            parsed = self._parse_ose_tp_csv(today_files["ose_tp"])
+        # Priority 1: ose*tp.csv (fall back to nearest date if missing)
+        ose_tp_file = today_files.get("ose_tp")
+        if not ose_tp_file:
+            for _, other_files in local_dates[1:]:
+                if other_files.get("ose_tp"):
+                    ose_tp_file = other_files["ose_tp"]
+                    logger.info(f"[NK225Options] ose_tp fallback: using {ose_tp_file.name}")
+                    break
+        if ose_tp_file:
+            parsed = self._parse_ose_tp_csv(ose_tp_file)
             if parsed:
                 underlying_price = parsed["underlying_price"]
                 interest_rate = parsed["interest_rate"]
@@ -1025,20 +1055,42 @@ class Nikkei225OptionsService:
                     expiries_dict = rb_parsed["expiries_dict"]
                     # rb.csv already has expiry_date in expiries_dict
                     expiry_mapping = None
+            else:
+                # ose_tp may be from an older date; use rb.csv's underlying
+                # price since rb is always the latest date slot
+                rb_underlying = self._extract_underlying_from_rb(today_files["rb"])
+                if rb_underlying:
+                    underlying_price = rb_underlying
 
         if expiries_dict is None or underlying_price is None:
             return None
 
         # Priority 3: OI data
-        if today_files.get("oi"):
-            oi_data = self._parse_oi_local(today_files["oi"])
+        # JPX OI files use previous business day's date, so the OI file
+        # for today's settlement may be in an earlier date slot.
+        oi_file = today_files.get("oi")
+        if not oi_file:
+            for _, other_files in local_dates[1:]:
+                if other_files.get("oi"):
+                    oi_file = other_files["oi"]
+                    logger.info(f"[NK225Options] OI fallback: using {oi_file.name}")
+                    break
+        if oi_file:
+            oi_data = self._parse_oi_local(oi_file)
             if oi_data:
                 self._merge_oi_data(expiries_dict, oi_data)
 
         # Priority 4: Market data volume
         market_vol = None
-        if today_files.get("market_data"):
-            market_vol = self._parse_market_data_volume(today_files["market_data"])
+        md_file = today_files.get("market_data")
+        if not md_file:
+            for _, other_files in local_dates[1:]:
+                if other_files.get("market_data"):
+                    md_file = other_files["market_data"]
+                    logger.info(f"[NK225Options] Market data fallback: using {md_file.name}")
+                    break
+        if md_file:
+            market_vol = self._parse_market_data_volume(md_file)
 
         # === 前日データ (IVのみ) ===
         prev_underlying_price = None

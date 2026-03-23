@@ -44,19 +44,10 @@ export default function Sp500StockPortionChart() {
           currentMode={symbolMode}
           onChange={(m) => setSymbolMode(m as SymbolMode)}
         />
-        <div style={{ height: 500, marginTop: 8 }}>
+        <div style={{ height: 610, marginTop: 8 }}>
           <TradingViewWidget
             symbol={SYMBOL_MAP[symbolMode]}
-            height={500}
-            theme="light"
-            interval="D"
-            timezone="Asia/Tokyo"
-            locale="ja"
-            hideTopToolbar={false}
-            hideSideToolbar={true}
-            hideLegend={false}
-            hideVolume={false}
-            allowSymbolChange={false}
+            height={610}
             chartStyle="2"
           />
         </div>

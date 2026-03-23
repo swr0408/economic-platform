@@ -149,7 +149,7 @@ export default function UsNaturalGasStorageChart() {
     const gasMap = new Map<string, number>()
     if (marketData?.natural_gas?.data) {
       for (const d of marketData.natural_gas.data) {
-        gasMap.set(d.date, d.close)
+        if (d.close != null) gasMap.set(d.date, d.close)
       }
     }
 
@@ -292,7 +292,7 @@ export default function UsNaturalGasStorageChart() {
               </span>
             </div>
           )}
-          {latestGas && (
+          {latestGas?.close != null && (
             <div>
               <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>天然ガス: </span>
               <span style={{ fontSize: 16, fontWeight: 'bold', color: COLOR_GAS }}>

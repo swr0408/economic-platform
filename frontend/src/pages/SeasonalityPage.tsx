@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Tabs, Typography, Spin, Alert, Badge } from "antd";
+import { Tabs, Typography, Spin, Alert, Badge, Tooltip } from "antd";
 import type { TabsProps } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { useHandbook } from "../contexts/HandbookContext";
 
 const { Title, Text } = Typography;
 
@@ -47,6 +49,7 @@ type IndexData = {
 
 export default function SeasonalityPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { openHandbook } = useHandbook();
   const [data, setData] = useState<IndexData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -173,9 +176,19 @@ export default function SeasonalityPage() {
   return (
     <div style={{ maxWidth: 1400, margin: "0 auto", padding: "4px 8px" }}>
       <div style={{ marginBottom: 20 }}>
-        <Title level={3} style={{ marginBottom: 4, color: colors.textPrimary }}>
-          シーズナリティ分析
-        </Title>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+          <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
+            シーズナリティ分析
+          </Title>
+          <Tooltip title="アノマリー活用ガイド - データハンドブック">
+            <QuestionCircleOutlined
+              onClick={() => openHandbook('anomaly-guide')}
+              style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+            />
+          </Tooltip>
+        </div>
         <Text style={{ fontSize: 13, color: colors.textSecondary }}>
           アセット別の季節性パターンを確認できます
         </Text>

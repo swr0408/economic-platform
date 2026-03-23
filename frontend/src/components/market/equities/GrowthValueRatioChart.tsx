@@ -17,20 +17,12 @@ export default function GrowthValueRatioChart() {
         showPeriodSelector={false}
         dataSource="TradingView"
         sourceUrl="https://www.tradingview.com/symbols/AMEX-IVW/AMEX-IVE/"
+        handbookId="growth-value-ratio"
       >
-        <div style={{ height: 500 }}>
+        <div style={{ height: 610 }}>
           <TradingViewWidget
             symbol="GROWTH_VALUE_RATIO"
-            height={500}
-            theme="light"
-            interval="D"
-            timezone="Asia/Tokyo"
-            locale="ja"
-            hideTopToolbar={false}
-            hideSideToolbar={true}
-            hideLegend={false}
-            hideVolume={false}
-            allowSymbolChange={false}
+            height={610}
             chartStyle="2"
           />
         </div>

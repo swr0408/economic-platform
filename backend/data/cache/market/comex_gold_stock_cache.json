@@ -50177,28 +50177,58 @@
       "registered_oz": 16695520.221,
       "eligible_oz": 15856041.95,
       "total_oz": 32551562.171
+    },
+    {
+      "date": "2026-03-13",
+      "registered_oz": 16660158.59,
+      "eligible_oz": 15791946.205,
+      "total_oz": 32396397.81
+    },
+    {
+      "date": "2026-03-16",
+      "registered_oz": 16624796.959,
+      "eligible_oz": 15727850.46,
+      "total_oz": 32236075.06
+    },
+    {
+      "date": "2026-03-17",
+      "registered_oz": 16589435.328,
+      "eligible_oz": 15663754.715,
+      "total_oz": 32140343.51
+    },
+    {
+      "date": "2026-03-18",
+      "registered_oz": 16554073.697,
+      "eligible_oz": 15599658.97,
+      "total_oz": 32054275.29
+    },
+    {
+      "date": "2026-03-19",
+      "registered_oz": 16518712.066,
+      "eligible_oz": 15535563.225,
+      "total_oz": 32054275.291
     }
   ],
   "latest": {
-    "date": "2026-03-12",
-    "registered_oz": 16695520.221,
-    "eligible_oz": 15856041.95,
-    "total_oz": 32551562.171
+    "date": "2026-03-19",
+    "registered_oz": 16518712.066,
+    "eligible_oz": 15535563.225,
+    "total_oz": 32054275.291
   },
   "latest_gold": {
-    "date": "2026-03-13",
-    "close": 5061.7002
+    "date": "2026-03-23",
+    "close": 4364.5
   },
   "metadata": {
     "source": "CME COMEX + yfinance (GC=F)",
     "indicator": "COMEX Gold Warehouse Stock",
     "unit": "troy oz",
     "frequency": "daily",
-    "data_count": 8363,
+    "data_count": 8368,
     "start_date": "1992-08-31",
-    "end_date": "2026-03-12"
+    "end_date": "2026-03-19"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-15T02:46:19.223201+09:00"
+  "last_updated": "2026-03-23T13:25:48.104443+09:00"
 }

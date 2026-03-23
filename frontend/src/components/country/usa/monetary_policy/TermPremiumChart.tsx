@@ -144,6 +144,7 @@ export default function TermPremiumChart({ data, kwData }: TermPremiumChartProps
         showPeriodSelector={false}
         source="NY Fed, FRED"
         sourceUrl="https://www.newyorkfed.org/research/data_indicators/term-premia-tabs#/interactive"
+        handbookId="term-premium"
       >
         {/* 期間セレクタ + 比較ボタン（横並び） */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>

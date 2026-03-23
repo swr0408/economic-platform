@@ -83,6 +83,7 @@ export default function GlobalManufacturingPmiChart({ data }: GlobalManufacturin
         showDataSource={true}
         dataSource="S&P Global / J.P.Morgan"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases?language=en"
+        handbookId="global-manufacturing-pmi"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

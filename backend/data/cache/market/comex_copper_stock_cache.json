@@ -49100,14 +49100,14 @@
     },
     {
       "date": "2026-03-10",
-      "registered_tons": null,
-      "eligible_tons": null,
+      "registered_tons": 376951.0,
+      "eligible_tons": 217211.0,
       "total_tons": 592489.0
     },
     {
       "date": "2026-03-11",
-      "registered_tons": null,
-      "eligible_tons": null,
+      "registered_tons": 376993.0,
+      "eligible_tons": 215911.0,
       "total_tons": 592243.0
     },
     {
@@ -49115,28 +49115,58 @@
       "registered_tons": 377035.0,
       "eligible_tons": 214610.0,
       "total_tons": 591645.0
+    },
+    {
+      "date": "2026-03-13",
+      "registered_tons": 376117.0,
+      "eligible_tons": 214940.0,
+      "total_tons": 591057.0
+    },
+    {
+      "date": "2026-03-16",
+      "registered_tons": 375199.0,
+      "eligible_tons": 215269.0,
+      "total_tons": 590469.0
+    },
+    {
+      "date": "2026-03-17",
+      "registered_tons": 374282.0,
+      "eligible_tons": 215599.0,
+      "total_tons": 589880.0
+    },
+    {
+      "date": "2026-03-18",
+      "registered_tons": 373364.0,
+      "eligible_tons": 215928.0,
+      "total_tons": 589292.0
+    },
+    {
+      "date": "2026-03-19",
+      "registered_tons": 372446.0,
+      "eligible_tons": 216258.0,
+      "total_tons": 588704.0
     }
   ],
   "latest": {
-    "date": "2026-03-12",
-    "registered_tons": 377035.0,
-    "eligible_tons": 214610.0,
-    "total_tons": 591645.0
+    "date": "2026-03-19",
+    "registered_tons": 372446.0,
+    "eligible_tons": 216258.0,
+    "total_tons": 588704.0
   },
   "latest_copper": {
-    "date": "2026-03-13",
-    "close": 5.757
+    "date": "2026-03-23",
+    "close": 5.309
   },
   "metadata": {
     "source": "CME COMEX + yfinance (HG=F)",
     "indicator": "COMEX Copper Warehouse Stock",
     "unit": "short tons",
     "frequency": "daily",
-    "data_count": 8186,
+    "data_count": 8191,
     "start_date": "1993-04-29",
-    "end_date": "2026-03-12"
+    "end_date": "2026-03-19"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-15T02:46:19.973696+09:00"
+  "last_updated": "2026-03-23T13:25:49.223780+09:00"
 }

@@ -192,7 +192,7 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false} handbookId="cpi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -208,6 +208,7 @@ export default function CPIChart({ cpiData, coreCpiData }: CPIChartProps) {
         showPeriodSelector={false}
         dataSource="FRED (BLS)"
         sourceUrl="https://www.bls.gov/cpi/"
+        handbookId="cpi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

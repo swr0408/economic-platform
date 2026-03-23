@@ -1,26 +1,6 @@
 {
   "data": [
     {
-      "date": "2023-03-20",
-      "value": 2098.39,
-      "value_raw": 2098393000000.0
-    },
-    {
-      "date": "2023-03-21",
-      "value": 2194.63,
-      "value_raw": 2194631000000.0
-    },
-    {
-      "date": "2023-03-22",
-      "value": 2279.61,
-      "value_raw": 2279608000000.0
-    },
-    {
-      "date": "2023-03-23",
-      "value": 2233.96,
-      "value_raw": 2233956000000.0
-    },
-    {
       "date": "2023-03-24",
       "value": 2218.46,
       "value_raw": 2218458000000.0
@@ -3734,12 +3714,27 @@
       "date": "2026-03-17",
       "value": 0.8,
       "value_raw": 797000000.0
+    },
+    {
+      "date": "2026-03-18",
+      "value": 0.7,
+      "value_raw": 698000000.0
+    },
+    {
+      "date": "2026-03-19",
+      "value": 0.64,
+      "value_raw": 637000000.0
+    },
+    {
+      "date": "2026-03-20",
+      "value": 0.82,
+      "value_raw": 822000000.0
     }
   ],
   "latest": {
-    "date": "2026-03-17",
-    "value": 0.8,
-    "value_raw": 797000000.0
+    "date": "2026-03-20",
+    "value": 0.82,
+    "value_raw": 822000000.0
   },
   "metadata": {
     "source": "NY Fed Markets API",
@@ -3747,5 +3742,5 @@
     "description": "ON RRP (Overnight Reverse Repo) 残高",
     "operation_time": "12:45-13:15 ET（毎営業日）"
   },
-  "last_updated": "2026-03-18T01:21:48.643451"
+  "last_updated": "2026-03-23T18:01:32.113660"
 }

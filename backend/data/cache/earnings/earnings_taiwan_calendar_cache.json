@@ -1,0 +1,56 @@
+{
+  "country": "taiwan",
+  "country_name": "Taiwan",
+  "provider_countries": [
+    "TW"
+  ],
+  "items": [
+    {
+      "symbol": "TSM",
+      "name": "TSMC",
+      "tier": "S",
+      "country_code": "taiwan",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "2317.TW",
+      "name": "Hon Hai",
+      "tier": "A",
+      "country_code": "taiwan",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "2454.TW",
+      "name": "MediaTek",
+      "tier": "A",
+      "country_code": "taiwan",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    }
+  ],
+  "next_7d_count": 0,
+  "next_30d_count": 0,
+  "last_updated": "2026-03-20T17:28:05.390713+00:00",
+  "cached": false,
+  "status": "ok"
+}

@@ -175,6 +175,7 @@ export default function NaaimChart() {
       dataSource="NAAIM"
       sourceUrl="https://naaim.org/programs/naaim-exposure-index/"
       showPeriodSelector={false}
+      handbookId="naaim"
     >
       {/* 最新値表示 */}
       {latest && (

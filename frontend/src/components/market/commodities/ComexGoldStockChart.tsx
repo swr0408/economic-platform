@@ -218,6 +218,7 @@ export default function ComexGoldStockChart() {
       dataSource="CME COMEX"
       sourceUrl="https://www.cmegroup.com/solutions/clearing/operations-and-deliveries/nymex-delivery-notices.html"
       showPeriodSelector={false}
+      handbookId="comex-gold-inventory"
     >
       {/* 最新値 */}
       {latest && (

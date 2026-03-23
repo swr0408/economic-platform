@@ -145,6 +145,11 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/historical-volatility',
     '/api/market/vix-cross-ratio',
     '/api/market/sector-ratio',
+    '/api/market/russell2000-russell1000',
+    '/api/market/financial-stress-index',
+    '/api/market/nt-magnification',
+    '/api/market/us-interest-rate-spread',
+    '/api/market/corporate-bond-market-distress-index',
   ];
   const isDirectApi = directApiPatterns.some(pattern => indicator.apiEndpoint.startsWith(pattern));
 
@@ -493,18 +498,16 @@ function extractIndicatorData(
 
     const sorted = [...data].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
     const points: DataPoint[] = [];
-    let prevValue: number | null = null;
+    const period = derived.period ?? 1;
 
-    for (const item of sorted) {
-      const rawValue = getNestedValue(item, derived.sourceField);
-      const currentValue = typeof rawValue === 'number' && !isNaN(rawValue) ? rawValue : null;
-      if (currentValue === null) {
-        continue;
+    for (let i = period; i < sorted.length; i++) {
+      const rawCurrent = getNestedValue(sorted[i], derived.sourceField);
+      const rawPrev = getNestedValue(sorted[i - period], derived.sourceField);
+      const currentValue = typeof rawCurrent === 'number' && !isNaN(rawCurrent) ? rawCurrent : null;
+      const prevValue = typeof rawPrev === 'number' && !isNaN(rawPrev) ? rawPrev : null;
+      if (currentValue !== null && prevValue !== null) {
+        points.push({ date: sorted[i].date, value: currentValue - prevValue });
       }
-      if (prevValue !== null) {
-        points.push({ date: item.date, value: currentValue - prevValue });
-      }
-      prevValue = currentValue;
     }
 
     return points;

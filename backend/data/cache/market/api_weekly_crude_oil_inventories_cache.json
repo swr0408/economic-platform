@@ -2603,24 +2603,30 @@
       "value": -1.7,
       "forecast": 1.4,
       "previous": 5.6
+    },
+    {
+      "date": "2026-03-17",
+      "value": 6.6,
+      "forecast": -0.6,
+      "previous": -1.7
     }
   ],
   "latest": {
-    "date": "2026-03-10",
-    "value": -1.7,
-    "forecast": 1.4,
-    "previous": 5.6
+    "date": "2026-03-17",
+    "value": 6.6,
+    "forecast": -0.6,
+    "previous": -1.7
   },
   "metadata": {
     "source": "API (American Petroleum Institute)",
     "frequency": "weekly",
     "unit": "M (Million Barrels)",
     "series": "API Weekly Crude Oil Stock Change",
-    "data_count": 434,
+    "data_count": 435,
     "start_date": "2017-11-28",
-    "end_date": "2026-03-10"
+    "end_date": "2026-03-17"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-16T10:23:54.800703+09:00"
+  "last_updated": "2026-03-23T23:08:15.062294+09:00"
 }

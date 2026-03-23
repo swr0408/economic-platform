@@ -4,7 +4,10 @@ JPX 日本株指数オプション Put/Call Ratio サービス
 データソース:
   - DB: jpx_put_call_ratio テーブル（SIOP月次 + 日次積み上げ）
   - 日経平均 / TOPIX: yfinance (^N225, TOPIX.T) 日足
-  - 日次更新: JPX market_data_whole_day.xlsx（取引高PCRのみ）
+  - 日次更新:
+    - market_data_whole_day.xlsx → 取引高PCR
+    - open_interest.xlsx → 建玉PCR（当日建玉残高）
+  - 月次バックフィル: SIOP_D_{yyyymm}.xlsx（前月＋当月）
 
 商品:
   - 日経225オプション (nikkei225)
@@ -12,6 +15,10 @@ JPX 日本株指数オプション Put/Call Ratio サービス
   - TOPIXオプション (topix)
 
 更新スケジュール: 日次 (JST 20:15)
+
+NOTE: JPXは2026年4月13日公表分からシート区分を
+  summary_data_Futures / summary_data_OP / market_data_Futures / market_data_OP
+  に変更すると案内している。変更後はシート名・列名の調整が必要。
 """
 import io
 import json
@@ -35,8 +42,9 @@ DATA_CACHE_FILE = CACHE_DIR / "jpx_pcr_cache.json"
 # Redis
 DATA_CACHE_KEY = "market:jpx_pcr:data"
 
-# JPX Daily file
+# JPX Daily files
 JPX_DAILY_URL = "https://www.jpx.co.jp/markets/derivatives/trading-volume/tvdivq00000014nn-att/{date}_market_data_whole_day.xlsx"
+JPX_DAILY_OI_URL = "https://www.jpx.co.jp/markets/derivatives/trading-volume/tvdivq00000014nn-att/{date}open_interest.xlsx"
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -66,6 +74,13 @@ PRODUCT_MAP_EN = {
     "Nikkei 225 Options": "nikkei225",
     "Nikkei 225 mini Options": "nikkei225_mini",
     "TOPIX Options": "topix",
+}
+
+# open_interest.xlsx summary sheet: col0 product name keywords → DB product key
+OI_PRODUCT_KEYWORDS = {
+    "日経225\nオプション": "nikkei225",
+    "日経225ミニ\nオプション": "nikkei225_mini",
+    "TOPIX\nオプション": "topix",
 }
 
 
@@ -124,22 +139,47 @@ class JpxPcrService:
             "last_updated": None,
         }
 
+    def _get_existing_daily_dates(self) -> set:
+        """DBに既に存在する JPX_DAILY ソースの日付を取得"""
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        try:
+            with SessionLocal() as session:
+                rows = session.execute(text("""
+                    SELECT DISTINCT date FROM jpx_put_call_ratio
+                    WHERE source = 'JPX_DAILY' OR source = 'SIOP'
+                    ORDER BY date DESC
+                    LIMIT 60
+                """)).fetchall()
+                return {row[0].strftime("%Y-%m-%d") for row in rows}
+        except Exception:
+            return set()
+
     def _fetch_daily_from_jpx(self) -> Optional[Dict[str, Dict[str, Any]]]:
-        """JPX daily market_data_whole_day.xlsx から当日の取引高PCRを取得しDBに保存"""
+        """JPX daily market_data_whole_day.xlsx から取引高PCRを取得しDBに保存。
+        DB未登録の営業日を直近30日分まで遡って取得する。"""
         import requests
         import pandas as pd
         from core.database import SessionLocal
         from sqlalchemy import text
 
         now_jst = datetime.now(JST)
-        inserted_count = 0
+        existing_dates = self._get_existing_daily_dates()
+        total_inserted = 0
 
-        # 直近5営業日を試行
-        for days_back in range(7):
+        # 直近30日を試行（欠落日を埋める）
+        for days_back in range(30):
             target_date = (now_jst - timedelta(days=days_back)).date()
 
             # 週末スキップ
             if target_date.weekday() >= 5:
+                continue
+
+            date_iso = target_date.strftime("%Y-%m-%d")
+
+            # 既にDBにあればスキップ
+            if date_iso in existing_dates:
                 continue
 
             date_str = target_date.strftime("%Y%m%d")
@@ -156,8 +196,7 @@ class JpxPcrService:
                     header=None,
                 )
 
-                date_iso = target_date.strftime("%Y-%m-%d")
-
+                inserted_count = 0
                 with SessionLocal() as session:
                     for product, pos in DAILY_POSITIONS.items():
                         try:
@@ -199,25 +238,149 @@ class JpxPcrService:
 
                     session.commit()
 
-                logger.info(f"[JpxPCR] Daily fetched {date_iso}: {inserted_count} products")
-                break  # 最新日を見つけたらbreak
+                if inserted_count > 0:
+                    total_inserted += inserted_count
+                    logger.info(f"[JpxPCR] Daily fetched {date_iso}: {inserted_count} products")
 
             except Exception as e:
                 logger.warning(f"[JpxPCR] Daily fetch failed {date_str}: {e}")
                 continue
 
+        if total_inserted > 0:
+            logger.info(f"[JpxPCR] Daily total inserted: {total_inserted}")
+
         return None
 
-    def _backfill_current_month_siop(self) -> None:
-        """当月のSIOPファイルからバックフィル（OIデータも取得）"""
+    def _fetch_daily_oi_from_jpx(self) -> None:
+        """JPX daily open_interest.xlsx から当日の建玉残高を取得しDBに保存。
+        ファイルは最新1日分のみ公開されるため、毎日確実に取得する必要がある。"""
         import requests
         import pandas as pd
         from core.database import SessionLocal
         from sqlalchemy import text
 
-        now = datetime.now(JST)
-        year = now.year
-        month = now.month
+        now_jst = datetime.now(JST)
+
+        # 直近5営業日を試行（通常は当日のみ存在）
+        for days_back in range(5):
+            target_date = (now_jst - timedelta(days=days_back)).date()
+            if target_date.weekday() >= 5:
+                continue
+
+            date_str = target_date.strftime("%Y%m%d")
+            url = JPX_DAILY_OI_URL.format(date=date_str)
+
+            try:
+                resp = requests.get(url, headers=HEADERS, timeout=30)
+                if resp.status_code != 200:
+                    continue
+
+                df = pd.read_excel(io.BytesIO(resp.content), sheet_name=0, header=None)
+                date_iso = target_date.strftime("%Y-%m-%d")
+
+                # col0 でオプション商品名を検索し、プット行(col1="プット")の col3 = put_oi、
+                # 次行(col1="コール")の col3 = call_oi を取得
+                inserted_count = 0
+                with SessionLocal() as session:
+                    for row_idx in range(df.shape[0]):
+                        cell = df.iloc[row_idx, 0]
+                        if pd.isna(cell):
+                            continue
+                        cell_str = str(cell)
+
+                        product = None
+                        for keyword, prod_key in OI_PRODUCT_KEYWORDS.items():
+                            if keyword in cell_str:
+                                product = prod_key
+                                break
+
+                        if product is None:
+                            continue
+
+                        # This row should be the put row (col1 = "プット")
+                        put_label = df.iloc[row_idx, 1] if pd.notna(df.iloc[row_idx, 1]) else ""
+                        if "プット" not in str(put_label):
+                            continue
+
+                        # Next row should be call (col1 = "コール")
+                        if row_idx + 1 >= df.shape[0]:
+                            continue
+                        call_label = df.iloc[row_idx + 1, 1] if pd.notna(df.iloc[row_idx + 1, 1]) else ""
+                        if "コール" not in str(call_label):
+                            continue
+
+                        try:
+                            put_oi = df.iloc[row_idx, 3]       # col3 = 当日建玉残高
+                            call_oi = df.iloc[row_idx + 1, 3]  # col3 = 当日建玉残高
+                            put_vol = df.iloc[row_idx, 2]      # col2 = 取引高
+                            call_vol = df.iloc[row_idx + 1, 2] # col2 = 取引高
+
+                            if pd.isna(put_oi) or pd.isna(call_oi):
+                                continue
+
+                            put_oi_int = int(put_oi)
+                            call_oi_int = int(call_oi)
+                            oi_pcr = round(put_oi_int / call_oi_int, 4) if call_oi_int > 0 else None
+
+                            # 取引高も取得（OIファイルにも含まれている）
+                            put_vol_int = int(put_vol) if pd.notna(put_vol) else None
+                            call_vol_int = int(call_vol) if pd.notna(call_vol) else None
+                            volume_pcr = None
+                            if put_vol_int is not None and call_vol_int is not None and call_vol_int > 0:
+                                volume_pcr = round(put_vol_int / call_vol_int, 4)
+
+                            session.execute(text("""
+                                INSERT INTO jpx_put_call_ratio
+                                    (date, product, put_volume, call_volume, put_oi, call_oi,
+                                     volume_pcr, oi_pcr, source)
+                                VALUES
+                                    (:date, :product, :put_volume, :call_volume, :put_oi, :call_oi,
+                                     :volume_pcr, :oi_pcr, 'JPX_OI_DAILY')
+                                ON CONFLICT (date, product) DO UPDATE SET
+                                    put_oi = EXCLUDED.put_oi,
+                                    call_oi = EXCLUDED.call_oi,
+                                    oi_pcr = EXCLUDED.oi_pcr,
+                                    put_volume = COALESCE(EXCLUDED.put_volume, jpx_put_call_ratio.put_volume),
+                                    call_volume = COALESCE(EXCLUDED.call_volume, jpx_put_call_ratio.call_volume),
+                                    volume_pcr = COALESCE(EXCLUDED.volume_pcr, jpx_put_call_ratio.volume_pcr),
+                                    source = CASE
+                                        WHEN jpx_put_call_ratio.source = 'SIOP'
+                                        THEN jpx_put_call_ratio.source
+                                        ELSE 'JPX_OI_DAILY'
+                                    END,
+                                    updated_at = NOW()
+                            """), {
+                                "date": date_iso,
+                                "product": product,
+                                "put_volume": put_vol_int,
+                                "call_volume": call_vol_int,
+                                "put_oi": put_oi_int,
+                                "call_oi": call_oi_int,
+                                "volume_pcr": volume_pcr,
+                                "oi_pcr": oi_pcr,
+                            })
+                            inserted_count += 1
+                            logger.info(f"[JpxPCR] OI daily {product} {date_iso}: put_oi={put_oi_int} call_oi={call_oi_int} oi_pcr={oi_pcr}")
+                        except Exception as e:
+                            logger.warning(f"[JpxPCR] OI daily parse error {product}: {e}")
+
+                    session.commit()
+
+                if inserted_count > 0:
+                    logger.info(f"[JpxPCR] OI daily fetched {date_iso}: {inserted_count} products")
+                    return  # OIファイルは1日分のみなので見つかったら終了
+
+            except Exception as e:
+                logger.warning(f"[JpxPCR] OI daily fetch failed {date_str}: {e}")
+                continue
+
+    def _backfill_siop_month(self, year: int, month: int) -> int:
+        """指定月のSIOPファイルからバックフィル（OIデータも取得）。
+        挿入レコード数を返す。"""
+        import requests
+        import pandas as pd
+        from core.database import SessionLocal
+        from sqlalchemy import text
 
         yyyymm = f"{year:04d}{month:02d}"
         url = SIOP_URL.format(yyyy=str(year), yyyymm=yyyymm)
@@ -226,7 +389,7 @@ class JpxPcrService:
             resp = requests.get(url, headers=HEADERS, timeout=60)
             if resp.status_code != 200:
                 logger.info(f"[JpxPCR] SIOP {yyyymm} not yet available (HTTP {resp.status_code})")
-                return
+                return 0
 
             df = pd.read_excel(io.BytesIO(resp.content), sheet_name="BO_DM0032", header=None)
             rows = df.shape[0]
@@ -335,9 +498,30 @@ class JpxPcrService:
                     session.commit()
 
                 logger.info(f"[JpxPCR] SIOP backfill {yyyymm}: {len(records)} records")
+                return len(records)
 
         except Exception as e:
-            logger.warning(f"[JpxPCR] SIOP backfill error: {e}")
+            logger.warning(f"[JpxPCR] SIOP backfill error {yyyymm}: {e}")
+
+        return 0
+
+    def _backfill_current_month_siop(self) -> None:
+        """当月＋前月のSIOPファイルからバックフィル（OIデータも取得）。
+        当月のSIOPが未公開の場合でも前月分で建玉PCRを補完する。"""
+        now = datetime.now(JST)
+        year = now.year
+        month = now.month
+
+        # 前月を計算
+        prev_month = month - 1
+        prev_year = year
+        if prev_month < 1:
+            prev_month = 12
+            prev_year = year - 1
+
+        # 前月 → 当月の順で取得（前月は確実に公開済み）
+        self._backfill_siop_month(prev_year, prev_month)
+        self._backfill_siop_month(year, month)
 
     def _load_from_db(self) -> Dict[str, List[Dict[str, Any]]]:
         """DBから全商品のPCRデータを取得"""
@@ -437,7 +621,10 @@ class JpxPcrService:
         # 1. JPX daily から最新取引高を取得
         self._fetch_daily_from_jpx()
 
-        # 2. 当月SIOPバックフィル（OIデータ含む）
+        # 2. JPX daily open_interest.xlsx から当日の建玉残高を取得
+        self._fetch_daily_oi_from_jpx()
+
+        # 3. 前月＋当月SIOPバックフィル（OIデータ含む）
         self._backfill_current_month_siop()
 
         # 3. DBから全データ取得

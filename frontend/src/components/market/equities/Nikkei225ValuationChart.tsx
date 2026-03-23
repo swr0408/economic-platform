@@ -268,6 +268,7 @@ export default function Nikkei225ValuationChart() {
       title="日経平均 Valuation"
       dataSource="Nikkei Indexes / yfinance"
       sourceUrl="https://indexes.nikkei.co.jp/en/nkave/archives/data?list=per"
+      handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}
     >
       {/* Latest values */}
@@ -378,7 +379,7 @@ export default function Nikkei225ValuationChart() {
                 tickLine={{ stroke: COLOR_EPS }}
                 tick={{ fill: COLOR_EPS, fontSize: 10 }}
                 width={55}
-                label={{ value: 'Forward EPS', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_EPS, fontSize: 10 }}
+                // label={{ value: 'Forward EPS', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_EPS, fontSize: 10 }}
               />
               <YAxis
                 yAxisId="pe"
@@ -388,7 +389,7 @@ export default function Nikkei225ValuationChart() {
                 tickLine={{ stroke: COLOR_PE }}
                 tick={{ fill: COLOR_PE, fontSize: 10 }}
                 width={40}
-                label={{ value: 'PE', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_PE, fontSize: 10 }}
+                // label={{ value: 'PE', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_PE, fontSize: 10 }}
               />
               <RechartsTooltip content={<ChartTooltip viewMode="raw" />} />
               <Legend wrapperStyle={{ paddingTop: 8 }} onClick={(e) => handleRawLegend(e.dataKey as RawSeriesKey)} />

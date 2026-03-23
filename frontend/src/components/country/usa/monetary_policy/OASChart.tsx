@@ -133,6 +133,7 @@ export default function OASChart({ data }: OASChartProps) {
         showPeriodSelector={false}
         dataSource="FRED"
         sourceUrl="https://fred.stlouisfed.org/series/BAMLH0A0HYM2"
+        handbookId="oas"
       >
         {/* シリーズ切り替えボタン */}
         <div style={{ marginBottom: 16 }}>

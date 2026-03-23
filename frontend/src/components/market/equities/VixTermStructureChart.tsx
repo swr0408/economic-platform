@@ -215,6 +215,7 @@ export default function VixTermStructureChart() {
       title="VIX期間構造"
       dataSource="yfinance"
       sourceUrl="https://finance.yahoo.com/quote/%5EVIX/"
+      handbookId="vix-term-structure"
       showPeriodSelector={false}
     >
       {/* 最新値 */}

@@ -179,7 +179,7 @@ export default function WeeklyCrudeOilInventoriesChart() {
     const oilMap = new Map<string, number>()
     if (marketData?.crude_oil?.data) {
       for (const d of marketData.crude_oil.data) {
-        oilMap.set(d.date, d.close)
+        if (d.close != null) oilMap.set(d.date, d.close)
       }
     }
 
@@ -321,6 +321,7 @@ export default function WeeklyCrudeOilInventoriesChart() {
       dataSource="EIA"
       sourceUrl="https://www.eia.gov/petroleum/"
       showPeriodSelector={false}
+      handbookId="weekly-crude-oil-inventories"
     >
       {/* Latest value box */}
       <div style={LATEST_VALUE_BOX_STYLE}>
@@ -344,7 +345,7 @@ export default function WeeklyCrudeOilInventoriesChart() {
               </span>
             </div>
           )}
-          {latestOil && (
+          {latestOil?.close != null && (
             <div>
               <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>WTI: </span>
               <span style={{ fontSize: 16, fontWeight: 'bold', color: COLOR_OIL }}>

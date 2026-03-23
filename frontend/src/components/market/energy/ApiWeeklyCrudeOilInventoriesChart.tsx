@@ -135,7 +135,7 @@ export default function ApiWeeklyCrudeOilInventoriesChart() {
     const oilMap = new Map<string, number>()
     if (marketData?.crude_oil?.data) {
       for (const d of marketData.crude_oil.data) {
-        oilMap.set(d.date, d.close)
+        if (d.close != null) oilMap.set(d.date, d.close)
       }
     }
 
@@ -246,7 +246,7 @@ export default function ApiWeeklyCrudeOilInventoriesChart() {
               </span>
             </div>
           )}
-          {latestOil && (
+          {latestOil?.close != null && (
             <div>
               <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>WTI: </span>
               <span style={{ fontSize: 16, fontWeight: 'bold', color: COLOR_OIL }}>

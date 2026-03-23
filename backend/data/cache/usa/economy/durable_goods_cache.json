@@ -2801,31 +2801,31 @@
     },
     {
       "date": "2025-12-01",
-      "value": 321327.0,
-      "ex_transport": 207012.0,
-      "mom": -0.92,
+      "value": 321342.0,
+      "ex_transport": 206966.0,
+      "mom": -0.91,
       "yoy": 10.59,
-      "ex_transport_mom": 1.26,
-      "ex_transport_yoy": 5.5
+      "ex_transport_mom": 1.24,
+      "ex_transport_yoy": 5.47
     },
     {
       "date": "2026-01-01",
-      "value": 321193.0,
-      "ex_transport": 207896.0,
-      "mom": -0.04,
-      "yoy": 10.3,
-      "ex_transport_mom": 0.43,
-      "ex_transport_yoy": 5.67
+      "value": 321314.0,
+      "ex_transport": 207839.0,
+      "mom": -0.01,
+      "yoy": 10.34,
+      "ex_transport_mom": 0.42,
+      "ex_transport_yoy": 5.64
     }
   ],
   "latest": {
     "date": "2026-01-01",
-    "value": 321193.0,
-    "ex_transport": 207896.0,
-    "mom": -0.04,
-    "yoy": 10.3,
-    "ex_transport_mom": 0.43,
-    "ex_transport_yoy": 5.67
+    "value": 321314.0,
+    "ex_transport": 207839.0,
+    "mom": -0.01,
+    "yoy": 10.34,
+    "ex_transport_mom": 0.42,
+    "ex_transport_yoy": 5.64
   },
-  "last_updated": "2026-03-18T21:31:15.917600+09:00"
+  "last_updated": "2026-03-23T21:31:20.893998+09:00"
 }

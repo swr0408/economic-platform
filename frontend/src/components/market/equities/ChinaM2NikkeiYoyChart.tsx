@@ -221,6 +221,7 @@ export default function ChinaM2NikkeiYoyChart() {
       title="中国M2前年比 / 日経平均前年比"
       dataSource="PBOC / yfinance"
       showPeriodSelector={false}
+      handbookId="nikkei-225"
     >
       {/* 1. Latest values */}
       <div

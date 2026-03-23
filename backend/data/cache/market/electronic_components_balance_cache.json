@@ -2498,107 +2498,107 @@
     },
     {
       "date": "2025-01-01",
-      "balance": 4.35,
-      "balance_3ma": 10.72,
+      "balance": 5.25,
+      "balance_3ma": 11.02,
       "nikkei_yoy": 9.05,
       "nikkei": 39572.0,
       "preliminary": false
     },
     {
       "date": "2025-02-01",
-      "balance": 8.63,
-      "balance_3ma": 8.35,
+      "balance": 10.1,
+      "balance_3ma": 9.14,
       "nikkei_yoy": -5.13,
       "nikkei": 37156.0,
       "preliminary": false
     },
     {
       "date": "2025-03-01",
-      "balance": -1.77,
-      "balance_3ma": 3.74,
+      "balance": 2.49,
+      "balance_3ma": 5.95,
       "nikkei_yoy": -11.77,
       "nikkei": 35618.0,
       "preliminary": false
     },
     {
       "date": "2025-04-01",
-      "balance": 12.72,
-      "balance_3ma": 6.53,
+      "balance": 19.52,
+      "balance_3ma": 10.7,
       "nikkei_yoy": -6.15,
       "nikkei": 36045.0,
       "preliminary": false
     },
     {
       "date": "2025-05-01",
-      "balance": 1.5,
-      "balance_3ma": 4.15,
+      "balance": 6.69,
+      "balance_3ma": 9.57,
       "nikkei_yoy": -1.36,
       "nikkei": 37965.0,
       "preliminary": false
     },
     {
       "date": "2025-06-01",
-      "balance": 4.89,
-      "balance_3ma": 6.37,
+      "balance": 10.57,
+      "balance_3ma": 12.26,
       "nikkei_yoy": 2.28,
       "nikkei": 40487.0,
       "preliminary": false
     },
     {
       "date": "2025-07-01",
-      "balance": 9.41,
-      "balance_3ma": 5.27,
+      "balance": 14.57,
+      "balance_3ma": 10.61,
       "nikkei_yoy": 5.03,
       "nikkei": 41070.0,
       "preliminary": false
     },
     {
       "date": "2025-08-01",
-      "balance": 6.2,
-      "balance_3ma": 6.83,
+      "balance": 11.74,
+      "balance_3ma": 12.29,
       "nikkei_yoy": 10.53,
       "nikkei": 42718.0,
       "preliminary": false
     },
     {
       "date": "2025-09-01",
-      "balance": -3.1,
-      "balance_3ma": 4.17,
+      "balance": 2.45,
+      "balance_3ma": 9.59,
       "nikkei_yoy": 18.49,
       "nikkei": 44933.0,
       "preliminary": false
     },
     {
       "date": "2025-10-01",
-      "balance": 12.18,
-      "balance_3ma": 5.09,
+      "balance": 16.88,
+      "balance_3ma": 10.36,
       "nikkei_yoy": 34.11,
       "nikkei": 52411.0,
       "preliminary": false
     },
     {
       "date": "2025-11-01",
-      "balance": -2.44,
-      "balance_3ma": 2.21,
+      "balance": 2.71,
+      "balance_3ma": 7.35,
       "nikkei_yoy": 31.53,
       "nikkei": 50254.0,
       "preliminary": false
     },
     {
       "date": "2025-12-01",
-      "balance": 4.56,
-      "balance_3ma": 4.77,
+      "balance": 10.28,
+      "balance_3ma": 9.96,
       "nikkei_yoy": 26.18,
       "nikkei": 50339.0,
       "preliminary": false
     },
     {
       "date": "2026-01-01",
-      "balance": 14.77,
-      "balance_3ma": 5.63,
+      "balance": 18.26,
+      "balance_3ma": 10.42,
       "nikkei_yoy": 34.75,
       "nikkei": 53323.0,
-      "preliminary": true
+      "preliminary": false
     },
     {
       "date": "2026-02-01",
@@ -2612,18 +2612,18 @@
       "date": "2026-03-01",
       "balance": null,
       "balance_3ma": null,
-      "nikkei_yoy": 55.09,
-      "nikkei": 55239.0,
+      "nikkei_yoy": 49.85,
+      "nikkei": 53373.0,
       "preliminary": false
     }
   ],
   "latest": {
     "date": "2026-01-01",
-    "balance": 14.77,
-    "balance_3ma": 5.63,
+    "balance": 18.26,
+    "balance_3ma": 10.42,
     "nikkei_yoy": 34.75,
     "nikkei": 53323.0,
-    "preliminary": true
+    "preliminary": false
   },
   "metadata": {
     "source": "METI IIP / yfinance",
@@ -2634,11 +2634,9 @@
     "balance_start": "1999-01",
     "balance_latest": "2026-01-01",
     "nikkei_latest": "2026-03",
-    "preliminary_months": [
-      "2026-01"
-    ]
+    "preliminary_months": []
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-18T18:35:13.277257+09:00"
+  "last_updated": "2026-03-22T11:10:00.462657+09:00"
 }

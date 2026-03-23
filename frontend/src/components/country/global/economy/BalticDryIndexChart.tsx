@@ -18,19 +18,10 @@ export default function BalticDryIndexChart() {
         dataSource="Baltic Exchange"
         sourceUrl="https://www.balticexchange.com/en/data-services/WeeklyRoundup.html"
       >
-        <div style={{ height: 500 }}>
+        <div style={{ height: 610 }}>
           <TradingViewWidget
             symbol="BDI"
-            height={500}
-            theme="light"
-            interval="D"
-            timezone="Asia/Tokyo"
-            locale="ja"
-            hideTopToolbar={false}
-            hideSideToolbar={true}
-            hideLegend={false}
-            hideVolume={false}
-            allowSymbolChange={false}
+            height={610}
             chartStyle="2"
           />
         </div>

@@ -268,6 +268,7 @@ export default function TopixValuationChart() {
       title="TOPIX Valuation"
       dataSource="MacroMicro / Stooq"
       sourceUrl="https://en.macromicro.me/charts/95007/japan-nikkei225"
+      handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}
     >
       {/* Latest values */}
@@ -378,7 +379,7 @@ export default function TopixValuationChart() {
                 tickLine={{ stroke: COLOR_EPS }}
                 tick={{ fill: COLOR_EPS, fontSize: 10 }}
                 width={50}
-                label={{ value: 'Forward EPS', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_EPS, fontSize: 10 }}
+                // label={{ value: 'Forward EPS', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_EPS, fontSize: 10 }}
               />
               <YAxis
                 yAxisId="pe"
@@ -388,7 +389,7 @@ export default function TopixValuationChart() {
                 tickLine={{ stroke: COLOR_PE }}
                 tick={{ fill: COLOR_PE, fontSize: 10 }}
                 width={40}
-                label={{ value: 'PE', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_PE, fontSize: 10 }}
+                // label={{ value: 'PE', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_PE, fontSize: 10 }}
               />
               <RechartsTooltip content={<ChartTooltip viewMode="raw" />} />
               <Legend wrapperStyle={{ paddingTop: 8 }} onClick={(e) => handleRawLegend(e.dataKey as RawSeriesKey)} />

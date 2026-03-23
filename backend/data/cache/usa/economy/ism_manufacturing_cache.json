@@ -1092,8 +1092,8 @@
     "datetime_utc": "2026-04-01T14:00:00+00:00",
     "datetime_jst": "2026-04-01T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Manufacturing PMI (Mar)",
-    "estimate": 49
+    "label": "ISM Manufacturing Prices (Mar)",
+    "estimate": null
   },
-  "last_updated": "2026-03-19T02:03:03.732793+09:00"
+  "last_updated": "2026-03-23T12:05:35.457949+09:00"
 }

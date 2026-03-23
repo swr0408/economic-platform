@@ -205,27 +205,37 @@ class AdvanceDeclineRatioService:
         }
 
     def _merge_indices(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """yfinanceで日経225・TOPIXを取得してマージ"""
+        """日経225(yfinance)・TOPIX(Stooq)を取得してマージ"""
         if not data:
             return data
         try:
             import yfinance as yf
+            import pandas as pd
 
             start_date = data[0]["date"]
             end_dt = datetime.strptime(data[-1]["date"], "%Y-%m-%d") + timedelta(days=5)
             end_date = end_dt.strftime("%Y-%m-%d")
 
+            # 日経平均: yfinance
             n225 = yf.Ticker("^N225")
             n225_hist = n225.history(start=start_date, end=end_date, interval="1d")
             n225_map: Dict[str, float] = {}
             for idx, row in n225_hist.iterrows():
                 n225_map[idx.strftime("%Y-%m-%d")] = round(float(row["Close"]), 2)
 
-            topix = yf.Ticker("1306.T")
-            topix_hist = topix.history(start=start_date, end=end_date, interval="1d")
+            # TOPIX: Stooq（正規インデックス値）
             topix_map: Dict[str, float] = {}
-            for idx, row in topix_hist.iterrows():
-                topix_map[idx.strftime("%Y-%m-%d")] = round(float(row["Close"]), 2)
+            try:
+                d1 = start_date.replace("-", "")
+                d2 = end_date.replace("-", "")
+                stooq_url = f"https://stooq.com/q/d/l/?s=^tpx&d1={d1}&d2={d2}&i=d"
+                df_topix = pd.read_csv(stooq_url)
+                if not df_topix.empty:
+                    for _, row in df_topix.iterrows():
+                        topix_map[str(row["Date"])] = round(float(row["Close"]), 2)
+                    logger.info(f"[AdvanceDeclineRatio] TOPIX (Stooq): {len(topix_map)}件")
+            except Exception as e:
+                logger.error(f"[AdvanceDeclineRatio] Stooq TOPIX error: {e}")
 
             for item in data:
                 item["nikkei225"] = n225_map.get(item["date"])

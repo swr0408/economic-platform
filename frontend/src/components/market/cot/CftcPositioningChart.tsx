@@ -88,6 +88,7 @@ interface Props {
   assetLabel: string
   reportType: 'disagg' | 'tff'
   compareId?: string
+  handbookId?: string
 }
 
 function formatContracts(v: number): string {
@@ -152,7 +153,7 @@ function ChartTooltipContent({ active, payload, hiddenSeries, viewMode }: any) {
 }
 
 
-export default function CftcPositioningChart({ asset, assetLabel, reportType: _reportType, compareId }: Props) {
+export default function CftcPositioningChart({ asset, assetLabel, reportType: _reportType, compareId, handbookId: handbookIdProp }: Props) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodValue>(5)
   const [viewMode, setViewMode] = useState<ViewMode>('speculative')
   const { hiddenSeries, handleLegendClick } = useHiddenSeries<AllSeriesKey>()
@@ -176,6 +177,17 @@ export default function CftcPositioningChart({ asset, assetLabel, reportType: _r
     return response.data.filter(d => d.date >= cutoffStr)
   }, [response, currentPeriod])
 
+  // Compute safe price domain to avoid Recharts crash with string domain expressions on null data
+  const priceDomain = useMemo<[number, number] | undefined>(() => {
+    if (!filteredData.length) return undefined
+    const prices = filteredData.map(d => d.price).filter((p): p is number => p != null)
+    if (prices.length === 0) return undefined
+    const min = Math.min(...prices)
+    const max = Math.max(...prices)
+    const padding = (max - min) * 0.1 || 1
+    return [min - padding, max + padding]
+  }, [filteredData])
+
   const latest = response?.latest
   const specLabel = 'Non-Commercial'
   const commLabel = 'Commercial'
@@ -187,6 +199,7 @@ export default function CftcPositioningChart({ asset, assetLabel, reportType: _r
       dataSource="CFTC COT"
       showPeriodSelector={false}
       loading={isLoading}
+      handbookId={handbookIdProp ?? "cftc-positioning"}
     >
       {/* Latest value box */}
       <div style={LATEST_VALUE_BOX_STYLE}>
@@ -240,7 +253,7 @@ export default function CftcPositioningChart({ asset, assetLabel, reportType: _r
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
             <YAxis yAxisId="left" domain={['auto', 'auto']} tickFormatter={(v: number) => formatContracts(v)} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={60} />
-            <YAxis yAxisId="price" orientation="right" domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 0 })} stroke={COLOR_PRICE} tick={{ fill: COLOR_PRICE, fontSize: 10 }} width={60} axisLine={{ stroke: COLOR_PRICE, strokeDasharray: '4 3' }} />
+            <YAxis yAxisId="price" orientation="right" domain={priceDomain || ['auto', 'auto']} tickFormatter={(v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 0 })} stroke={COLOR_PRICE} tick={{ fill: COLOR_PRICE, fontSize: 10 }} width={60} axisLine={{ stroke: COLOR_PRICE, strokeDasharray: '4 3' }} />
             <RechartsTooltip content={<ChartTooltipContent hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
             <ReferenceLine yAxisId="left" y={0} stroke="#e2e8f0" strokeWidth={2} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as AllSeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as AllSeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
@@ -259,7 +272,7 @@ export default function CftcPositioningChart({ asset, assetLabel, reportType: _r
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
             <YAxis yAxisId="left" domain={['auto', 'auto']} tickFormatter={(v: number) => formatContracts(v)} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={60} />
-            <YAxis yAxisId="price" orientation="right" domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 0 })} stroke={COLOR_PRICE} tick={{ fill: COLOR_PRICE, fontSize: 10 }} width={60} axisLine={{ stroke: COLOR_PRICE, strokeDasharray: '4 3' }} />
+            <YAxis yAxisId="price" orientation="right" domain={priceDomain || ['auto', 'auto']} tickFormatter={(v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 0 })} stroke={COLOR_PRICE} tick={{ fill: COLOR_PRICE, fontSize: 10 }} width={60} axisLine={{ stroke: COLOR_PRICE, strokeDasharray: '4 3' }} />
             <RechartsTooltip content={<ChartTooltipContent hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
             <ReferenceLine yAxisId="left" y={0} stroke="#e2e8f0" strokeWidth={2} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as AllSeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as AllSeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />
@@ -278,7 +291,7 @@ export default function CftcPositioningChart({ asset, assetLabel, reportType: _r
             <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
             <XAxis dataKey="date" tickFormatter={(v) => formatDayLabel(v)} stroke={DARK_THEME.axisLine} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} minTickGap={40} />
             <YAxis yAxisId="left" domain={['auto', 'auto']} tickFormatter={(v: number) => formatContracts(v)} stroke={DARK_THEME.textSecondary} tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }} width={60} />
-            <YAxis yAxisId="price" orientation="right" domain={['dataMin * 0.9', 'dataMax * 1.1']} tickFormatter={(v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 0 })} stroke={COLOR_PRICE} tick={{ fill: COLOR_PRICE, fontSize: 10 }} width={60} axisLine={{ stroke: COLOR_PRICE, strokeDasharray: '4 3' }} />
+            <YAxis yAxisId="price" orientation="right" domain={priceDomain || ['auto', 'auto']} tickFormatter={(v: number) => v.toLocaleString(undefined, { maximumFractionDigits: 0 })} stroke={COLOR_PRICE} tick={{ fill: COLOR_PRICE, fontSize: 10 }} width={60} axisLine={{ stroke: COLOR_PRICE, strokeDasharray: '4 3' }} />
             <RechartsTooltip content={<ChartTooltipContent hiddenSeries={hiddenSeries} viewMode={viewMode} />} />
             <ReferenceLine yAxisId="left" y={0} stroke="#e2e8f0" strokeWidth={2} />
             <Legend onClick={(e) => handleLegendClick(e.dataKey as AllSeriesKey)} wrapperStyle={{ cursor: 'pointer' }} formatter={(value: string, entry: any) => (<span style={{ color: hiddenSeries.has(entry.dataKey as AllSeriesKey) ? '#64748b' : entry.color, fontSize: 12 }}>{value}</span>)} />

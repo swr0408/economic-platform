@@ -253,6 +253,7 @@ export default function JpxInvestorTradingChart() {
       dataSource="JPX / yfinance"
       showPeriodSelector={false}
       sourceUrl="https://www.jpx.co.jp/markets/statistics-equities/investor-type/index.html"
+      handbookId="jpx-investor-trading"
     >
       {/* 1. Latest values */}
       <div style={{

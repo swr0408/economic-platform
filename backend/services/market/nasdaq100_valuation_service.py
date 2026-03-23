@@ -5,13 +5,14 @@ Nasdaq 100 Valuation サービス
   - 予想PER: backend/data/manual_update/daily/stock_pe/nasdaq100_pe.csv (MacroMicro由来, 月次)
     参照: https://en.macromicro.me/series/23955/nasdaq-100-pe
   - Nasdaq100価格: yfinance (^NDX)
-  - 米国10年債利回り: yfinance (^TNX)
+  - 米国10年債利回り（名目）: yfinance (^TNX)
+  - 米国10年実質利回り（TIPS）: FRED DFII10
 
 算出系列:
   - 予想EPS = 指数値 ÷ 予想PER
   - 予想株式益利回り = 1 ÷ 予想PER
-  - 予想イールドスプレッド = 予想株式益利回り − 10年国債利回り
-  - 予想イールドレシオ = 予想株式益利回り ÷ 10年国債利回り
+  - 予想イールドスプレッド（名目） = 予想株式益利回り − 名目10年国債利回り
+  - 予想イールドスプレッド（実質） = 予想株式益利回り − 実質10年国債利回り
 
 更新: CSVファイルのタイムスタンプ変更を検出して自動リフレッシュ
 """
@@ -27,6 +28,7 @@ import pandas as pd
 import yfinance as yf
 
 from core.redis_client import redis_client
+from services.usa.fred_utils import fetch_fred_series
 
 logger = logging.getLogger(__name__)
 
@@ -158,7 +160,21 @@ class Nasdaq100ValuationService:
             logger.error(f"[NDX-VAL] yfinance ^TNX error: {e}")
             return None
 
-        # 4. 月次PERと日次価格のマッチング
+        # 4. FRED DFII10（実質10年債利回り）を取得
+        logger.info("[NDX-VAL] Fetching DFII10 from FRED")
+        real_yield_df = pd.DataFrame()
+        try:
+            dfii10_data = fetch_fred_series("DFII10", start_date=start_date)
+            if dfii10_data:
+                real_yield_df = pd.DataFrame(dfii10_data)
+                real_yield_df["date"] = pd.to_datetime(real_yield_df["date"])
+                real_yield_df = real_yield_df.rename(columns={"value": "real_yield_10y"})
+                real_yield_df["real_yield_10y"] = real_yield_df["real_yield_10y"] / 100  # % → decimal
+                real_yield_df = real_yield_df.sort_values("date").reset_index(drop=True)
+        except Exception as e:
+            logger.warning(f"[NDX-VAL] DFII10 fetch failed (non-fatal): {e}")
+
+        # 5. 月次PERと日次価格のマッチング
         # 各PER日付に最も近い取引日（同日以降）の価格・金利を割り当て
         ndx_sorted = ndx.sort_values("date").reset_index(drop=True)
         tnx_sorted = tnx.sort_values("date").reset_index(drop=True)
@@ -179,11 +195,18 @@ class Nasdaq100ValuationService:
             tnx_match = tnx_sorted[tnx_sorted["date"] >= pe_date]
             yield_10y = tnx_match.iloc[0]["yield_10y"] if not tnx_match.empty else None
 
+            # 実質利回りのマッチング
+            real_yield_10y = None
+            if not real_yield_df.empty:
+                ry_match = real_yield_df[real_yield_df["date"] >= pe_date]
+                if not ry_match.empty:
+                    real_yield_10y = float(ry_match.iloc[0]["real_yield_10y"])
+
             close_val = float(closest_ndx["close"])
             forward_eps = close_val / pe_val
             earnings_yield = 1 / pe_val
             yield_spread = (earnings_yield - yield_10y) if yield_10y is not None else None
-            yield_ratio = (earnings_yield / yield_10y) if yield_10y is not None and yield_10y != 0 else None
+            real_yield_spread = (earnings_yield - real_yield_10y) if real_yield_10y is not None else None
 
             data_list.append({
                 "date": closest_ndx["date"].strftime("%Y-%m-%d"),
@@ -193,7 +216,8 @@ class Nasdaq100ValuationService:
                 "earnings_yield": round(earnings_yield, 6),
                 "yield_10y": round(float(yield_10y), 6) if yield_10y is not None else None,
                 "yield_spread": round(float(yield_spread), 6) if yield_spread is not None else None,
-                "yield_ratio": round(float(yield_ratio), 4) if yield_ratio is not None else None,
+                "real_yield_10y": round(real_yield_10y, 6) if real_yield_10y is not None else None,
+                "real_yield_spread": round(float(real_yield_spread), 6) if real_yield_spread is not None else None,
             })
 
         if not data_list:
@@ -230,7 +254,7 @@ class Nasdaq100ValuationService:
                 if prev["earnings_yield"] and prev["earnings_yield"] != 0:
                     mom_ey = round(((item["earnings_yield"] - prev["earnings_yield"]) / prev["earnings_yield"]) * 100, 2)
 
-            monthly_table.append({
+            mt_item = {
                 "date": ym,
                 "forward_pe": round(item["forward_pe"], 2),
                 "forward_eps": round(item["forward_eps"], 2),
@@ -240,7 +264,10 @@ class Nasdaq100ValuationService:
                 "forward_pe_mom": mom_pe,
                 "forward_eps_mom": mom_eps,
                 "earnings_yield_mom": mom_ey,
-            })
+            }
+            if item.get("real_yield_10y") is not None:
+                mt_item["real_yield_10y"] = round(item["real_yield_10y"] * 100, 2)
+            monthly_table.append(mt_item)
 
         latest = data_list[-1] if data_list else None
         file_mtime = self._get_file_mtime()
@@ -269,9 +296,10 @@ class Nasdaq100ValuationService:
                     "forward_pe (予想PER)",
                     "forward_eps (予想EPS = 指数値÷予想PER)",
                     "earnings_yield (予想株式益利回り = 1÷予想PER)",
-                    "yield_10y (米国10年債利回り)",
-                    "yield_spread (予想イールドスプレッド = 益利回り−10年債)",
-                    "yield_ratio (予想イールドレシオ = 益利回り÷10年債)",
+                    "yield_10y (米国10年名目債利回り)",
+                    "yield_spread (予想イールドスプレッド = 益利回り−名目10年債)",
+                    "real_yield_10y (米国10年実質利回り = FRED DFII10)",
+                    "real_yield_spread (実質イールドスプレッド = 益利回り−実質10年債)",
                 ],
             },
             "cached": False,

@@ -276,6 +276,7 @@ export default function GoldPremiumChart() {
       dataSource="World Gold Council"
       showPeriodSelector={false}
       sourceUrl="https://www.gold.org/goldhub/data/gold-premium"
+      handbookId="gold-premium"
     >
       {/* 1. Latest values */}
       <div style={{

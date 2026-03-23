@@ -32,7 +32,8 @@ const DARK_THEME = {
   chartBg: '#1e293b',
 }
 
-const COLOR_RATIO = '#f59e0b'
+const COLOR_RATIO_25 = '#f59e0b'   // amber - 25日
+const COLOR_RATIO_75 = '#a78bfa'   // violet - 75日
 const COLOR_NIKKEI = '#ef4444'
 const COLOR_TOPIX = '#3b82f6'
 
@@ -69,12 +70,35 @@ function useAdvanceDeclineRatioData() {
   })
 }
 
-type SeriesKey = 'ratio' | 'nikkei225' | 'topix'
+type SeriesKey = 'ratio' | 'ratio75' | 'nikkei225' | 'topix'
+
+/** 日次advances/declinesからN日騰落レシオを算出 */
+function computeRollingRatio(
+  data: { advances: number; declines: number }[],
+  window: number
+): (number | null)[] {
+  const result: (number | null)[] = []
+  for (let i = 0; i < data.length; i++) {
+    if (i < window - 1) {
+      result.push(null)
+      continue
+    }
+    let sumAdv = 0
+    let sumDec = 0
+    for (let j = i - window + 1; j <= i; j++) {
+      sumAdv += data[j].advances
+      sumDec += data[j].declines
+    }
+    result.push(sumDec > 0 ? Math.round((sumAdv / sumDec) * 1000) / 10 : null)
+  }
+  return result
+}
 
 const SERIES_CONFIG: { key: SeriesKey; label: string; color: string }[] = [
-  { key: 'ratio', label: '騰落レシオ (25日)', color: COLOR_RATIO },
+  { key: 'ratio', label: '騰落レシオ (25日)', color: COLOR_RATIO_25 },
+  { key: 'ratio75', label: '騰落レシオ (75日)', color: COLOR_RATIO_75 },
   { key: 'nikkei225', label: '日経平均', color: COLOR_NIKKEI },
-  { key: 'topix', label: 'TOPIX (ETF)', color: COLOR_TOPIX },
+  { key: 'topix', label: 'TOPIX', color: COLOR_TOPIX },
 ]
 
 function CustomTooltip({ active, payload, label, hiddenSeries }: {
@@ -87,7 +111,7 @@ function CustomTooltip({ active, payload, label, hiddenSeries }: {
   if (!active || !payload || payload.length === 0) return null
 
   const formattedLabel = formatDayLabel(String(label))
-  const rawData = payload[0]?.payload as AdRatioItem | undefined
+  const rawData = payload[0]?.payload as (AdRatioItem & { ratio75?: number | null }) | undefined
 
   return (
     <div
@@ -108,7 +132,7 @@ function CustomTooltip({ active, payload, label, hiddenSeries }: {
         const item = payload.find((p: { dataKey: string }) => p.dataKey === key)
         if (!item || typeof item.value !== 'number') return null
 
-        const formatted = key === 'ratio'
+        const formatted = (key === 'ratio' || key === 'ratio75')
           ? `${item.value.toFixed(1)}%`
           : item.value.toLocaleString(undefined, { maximumFractionDigits: 0 })
 
@@ -145,7 +169,7 @@ function CustomTooltip({ active, payload, label, hiddenSeries }: {
 export default function AdvanceDeclineRatioChart() {
   const { data: apiData, isLoading, error } = useAdvanceDeclineRatioData()
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(2)
-  const { hiddenSeries, handleLegendClick, isHidden } = useHiddenSeries<SeriesKey>()
+  const { hiddenSeries, handleLegendClick, isHidden } = useHiddenSeries<SeriesKey>(['topix'])
 
   const chartData = useMemo(() => {
     if (!apiData?.data) return []
@@ -164,18 +188,28 @@ export default function AdvanceDeclineRatioChart() {
       .sort((a, b) => a.date.localeCompare(b.date))
   }, [apiData])
 
+  // 75日騰落レシオを算出
+  const chartDataWith75 = useMemo(() => {
+    if (chartData.length === 0) return []
+    const ratio75Values = computeRollingRatio(chartData, 75)
+    return chartData.map((d, i) => ({
+      ...d,
+      ratio75: ratio75Values[i],
+    }))
+  }, [chartData])
+
   const filteredData = useMemo(() => {
-    if (selectedPeriod === 'all') return chartData
+    if (selectedPeriod === 'all') return chartDataWith75
     const years = typeof selectedPeriod === 'number' ? selectedPeriod : 2
     const cutoff = new Date()
     cutoff.setFullYear(cutoff.getFullYear() - years)
     const cutoffStr = cutoff.toISOString().slice(0, 10)
-    return chartData.filter((d) => d.date >= cutoffStr)
-  }, [chartData, selectedPeriod])
+    return chartDataWith75.filter((d) => d.date >= cutoffStr)
+  }, [chartDataWith75, selectedPeriod])
 
   if (isLoading) {
     return (
-      <ChartContainer title="東証プライム 騰落レシオ (25日)" loading showPeriodSelector={false}>
+      <ChartContainer title="東証プライム 騰落レシオ" loading showPeriodSelector={false}>
         <div />
       </ChartContainer>
     )
@@ -183,7 +217,7 @@ export default function AdvanceDeclineRatioChart() {
 
   if (error || !apiData || chartData.length === 0) {
     return (
-      <ChartContainer title="東証プライム 騰落レシオ (25日)" showPeriodSelector={false}>
+      <ChartContainer title="東証プライム 騰落レシオ" showPeriodSelector={false}>
         <div style={{ textAlign: 'center', padding: 40, color: DARK_THEME.textSecondary }}>
           データがありません
         </div>
@@ -192,12 +226,14 @@ export default function AdvanceDeclineRatioChart() {
   }
 
   const latest = apiData.latest
+  const latest75 = chartDataWith75.length > 0 ? chartDataWith75[chartDataWith75.length - 1].ratio75 : null
 
   return (
     <ChartContainer
-      title="東証プライム 騰落レシオ (25日)"
+      title="東証プライム 騰落レシオ"
       dataSource="nikkei225jp.com / yfinance"
       sourceUrl="https://nikkei225jp.com/data/touraku.php"
+      handbookId="advance-decline-ratio"
       showPeriodSelector={false}
     >
       {/* 最新値 */}
@@ -214,35 +250,51 @@ export default function AdvanceDeclineRatioChart() {
             flexWrap: 'wrap',
           }}
         >
-          {SERIES_CONFIG.map(({ key, label, color }) => {
-            const val = latest[key]
-            if (val == null) return null
-            const formatted = key === 'ratio'
-              ? `${val.toFixed(1)}%`
-              : val.toLocaleString(undefined, { maximumFractionDigits: 0 })
+          <div
+            style={{ display: 'flex', alignItems: 'baseline', gap: 6, opacity: isHidden('ratio') ? 0.3 : 1, cursor: 'pointer' }}
+            onClick={() => handleLegendClick('ratio')}
+          >
+            <Text style={{ color: DARK_THEME.textSecondary, fontSize: 12 }}>25日</Text>
+            <Text style={{ color: COLOR_RATIO_25, fontSize: 16, fontWeight: 700 }} className="tabular-nums">
+              {(latest.ratio ?? 0).toFixed(1)}%
+            </Text>
+          </div>
 
-            return (
-              <div
-                key={key}
-                style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: 6,
-                  opacity: isHidden(key) ? 0.3 : 1,
-                  cursor: 'pointer',
-                }}
-                onClick={() => handleLegendClick(key)}
-              >
-                <Text style={{ color: DARK_THEME.textSecondary, fontSize: 12 }}>{label}</Text>
-                <Text
-                  style={{ color, fontSize: 16, fontWeight: 700 }}
-                  className="tabular-nums"
-                >
-                  {formatted}
-                </Text>
-              </div>
-            )
-          })}
+          {latest75 != null && (
+            <div
+              style={{ display: 'flex', alignItems: 'baseline', gap: 6, opacity: isHidden('ratio75') ? 0.3 : 1, cursor: 'pointer' }}
+              onClick={() => handleLegendClick('ratio75')}
+            >
+              <Text style={{ color: DARK_THEME.textSecondary, fontSize: 12 }}>75日</Text>
+              <Text style={{ color: COLOR_RATIO_75, fontSize: 16, fontWeight: 700 }} className="tabular-nums">
+                {latest75.toFixed(1)}%
+              </Text>
+            </div>
+          )}
+
+          {latest.nikkei225 != null && (
+            <div
+              style={{ display: 'flex', alignItems: 'baseline', gap: 6, opacity: isHidden('nikkei225') ? 0.3 : 1, cursor: 'pointer' }}
+              onClick={() => handleLegendClick('nikkei225')}
+            >
+              <Text style={{ color: DARK_THEME.textSecondary, fontSize: 12 }}>日経平均</Text>
+              <Text style={{ color: COLOR_NIKKEI, fontSize: 13, fontWeight: 600 }} className="tabular-nums">
+                {(latest.nikkei225 ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </Text>
+            </div>
+          )}
+
+          {latest.topix != null && (
+            <div
+              style={{ display: 'flex', alignItems: 'baseline', gap: 6, opacity: isHidden('topix') ? 0.3 : 1, cursor: 'pointer' }}
+              onClick={() => handleLegendClick('topix')}
+            >
+              <Text style={{ color: DARK_THEME.textSecondary, fontSize: 12 }}>TOPIX</Text>
+              <Text style={{ color: COLOR_TOPIX, fontSize: 13, fontWeight: 600 }} className="tabular-nums">
+                {(latest.topix ?? 0).toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </Text>
+            </div>
+          )}
 
           <Text style={{ color: DARK_THEME.textSecondary, fontSize: 11 }}>
             ({latest.date})
@@ -295,7 +347,7 @@ export default function AdvanceDeclineRatioChart() {
             tickFormatter={(v: number) => `${v}%`}
             axisLine={{ stroke: DARK_THEME.axisLine }}
             tickLine={{ stroke: DARK_THEME.axisLine }}
-            tick={{ fill: COLOR_RATIO, fontSize: 11 }}
+            tick={{ fill: COLOR_RATIO_25, fontSize: 11 }}
             tickMargin={4}
             width={42}
           />
@@ -311,7 +363,6 @@ export default function AdvanceDeclineRatioChart() {
             tick={{ fill: COLOR_NIKKEI, fontSize: 11 }}
             tickMargin={4}
             width={50}
-            // label={{ value: '日経平均', angle: 90, position: 'insideRight', offset: -4, fill: COLOR_NIKKEI, fontSize: 11 }}
           />
 
           {/* 右Y軸②: TOPIX ETF */}
@@ -349,7 +400,7 @@ export default function AdvanceDeclineRatioChart() {
           <Line
             type="monotone"
             dataKey="ratio"
-            stroke={COLOR_RATIO}
+            stroke={COLOR_RATIO_25}
             strokeWidth={2}
             dot={false}
             name="騰落レシオ (25日)"
@@ -357,6 +408,19 @@ export default function AdvanceDeclineRatioChart() {
             connectNulls
             isAnimationActive={false}
             hide={isHidden('ratio')}
+          />
+          <Line
+            type="monotone"
+            dataKey="ratio75"
+            stroke={COLOR_RATIO_75}
+            strokeWidth={1.5}
+            strokeDasharray="4 2"
+            dot={false}
+            name="騰落レシオ (75日)"
+            yAxisId="left"
+            connectNulls
+            isAnimationActive={false}
+            hide={isHidden('ratio75')}
           />
           <Line
             type="monotone"
@@ -376,7 +440,7 @@ export default function AdvanceDeclineRatioChart() {
             stroke={COLOR_TOPIX}
             strokeWidth={1.5}
             dot={false}
-            name="TOPIX (ETF)"
+            name="TOPIX"
             yAxisId="right2"
             connectNulls
             isAnimationActive={false}

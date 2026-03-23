@@ -145,6 +145,7 @@ export default function NyOptionCutChart() {
       dataSource="investingLive"
       sourceUrl="https://investinglive.com/Orders"
       showPeriodSelector={false}
+      handbookId="ny-option-cut"
     >
       {isLoading && (
         <div style={{ textAlign: 'center', padding: 60 }}>

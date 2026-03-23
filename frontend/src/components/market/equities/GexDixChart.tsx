@@ -192,6 +192,7 @@ export default function GexDixChart() {
       dataSource="SqueezeMetrics"
       sourceUrl="https://squeezemetrics.com/monitor"
       showPeriodSelector={false}
+      handbookId="gex-dix"
     >
       {/* 最新値表示 */}
       {latest && (

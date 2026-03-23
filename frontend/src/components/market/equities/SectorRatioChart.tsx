@@ -286,6 +286,7 @@ export default function SectorRatioChart() {
       title="セクターレシオ"
       dataSource="yfinance"
       sourceUrl="https://finance.yahoo.com/"
+      handbookId="sector-ratio"
       showPeriodSelector={false}
     >
       {/* 最新値 */}

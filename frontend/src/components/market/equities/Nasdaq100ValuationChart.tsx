@@ -40,7 +40,6 @@ const COLOR_EPS = '#10b981'         // Green - Forward EPS
 const COLOR_EARNINGS_YIELD = '#a78bfa' // Light purple - Earnings yield
 const COLOR_YIELD_10Y = '#ef4444'   // Red - 10Y Treasury
 const COLOR_SPREAD = '#06b6d4'      // Cyan - Yield spread
-const COLOR_RATIO = '#f97316'       // Orange - Yield ratio
 
 interface DataItem {
   date: string
@@ -50,7 +49,8 @@ interface DataItem {
   earnings_yield: number
   yield_10y: number | null
   yield_spread: number | null
-  yield_ratio: number | null
+  real_yield_10y: number | null
+  real_yield_spread: number | null
   forward_pe_yoy: number | null
   forward_eps_yoy: number | null
   earnings_yield_yoy: number | null
@@ -85,19 +85,19 @@ interface ValuationResponse {
   last_updated: string | null
 }
 
-type ViewMode = 'raw' | 'yoy' | 'mom' | 'yield_spread' | 'yield_ratio'
+type ViewMode = 'raw' | 'yoy' | 'mom' | 'yield_spread' | 'real_yield_spread'
 const VIEW_MODE_OPTIONS = [
   { mode: 'raw' as ViewMode, label: '原数値' },
   { mode: 'yoy' as ViewMode, label: '前年比' },
   { mode: 'mom' as ViewMode, label: '前月比' },
   { mode: 'yield_spread' as ViewMode, label: 'スプレッド' },
-  { mode: 'yield_ratio' as ViewMode, label: 'レシオ' },
+  { mode: 'real_yield_spread' as ViewMode, label: '実質スプレッド' },
 ]
 
 type RawSeriesKey = 'close' | 'forward_pe' | 'forward_eps'
 type YoYSeriesKey = 'forward_pe_yoy' | 'forward_eps_yoy' | 'earnings_yield_yoy'
 type SpreadSeriesKey = 'earnings_yield_pct' | 'yield_10y_pct' | 'yield_spread_pct' | 'close'
-type RatioSeriesKey = 'earnings_yield_pct' | 'yield_10y_pct' | 'yield_ratio' | 'close'
+type RealSpreadSeriesKey = 'earnings_yield_pct' | 'real_yield_10y_pct' | 'real_yield_spread_pct' | 'close'
 
 function fmtPct(v: number, decimals = 2): string {
   return `${v >= 0 ? '+' : ''}${v.toFixed(decimals)}%`
@@ -132,11 +132,11 @@ function ChartTooltip({ active, payload, label, viewMode }: {
     if (dp.earnings_yield_pct != null) items.push({ label: '益利回り', value: `${dp.earnings_yield_pct.toFixed(2)}%`, color: COLOR_EARNINGS_YIELD })
     if (dp.yield_10y_pct != null) items.push({ label: '10年債利回り', value: `${dp.yield_10y_pct.toFixed(2)}%`, color: COLOR_YIELD_10Y })
     if (dp.yield_spread_pct != null) items.push({ label: 'スプレッド', value: `${dp.yield_spread_pct >= 0 ? '+' : ''}${dp.yield_spread_pct.toFixed(2)}%`, color: COLOR_SPREAD })
-  } else if (viewMode === 'yield_ratio') {
+  } else if (viewMode === 'real_yield_spread') {
     items.push({ label: 'Nasdaq 100', value: Number(dp.close).toLocaleString(undefined, { maximumFractionDigits: 0 }), color: COLOR_NDX })
     if (dp.earnings_yield_pct != null) items.push({ label: '益利回り', value: `${dp.earnings_yield_pct.toFixed(2)}%`, color: COLOR_EARNINGS_YIELD })
-    if (dp.yield_10y_pct != null) items.push({ label: '10年債利回り', value: `${dp.yield_10y_pct.toFixed(2)}%`, color: COLOR_YIELD_10Y })
-    if (dp.yield_ratio != null) items.push({ label: 'レシオ', value: dp.yield_ratio.toFixed(3), color: COLOR_RATIO })
+    if (dp.real_yield_10y_pct != null) items.push({ label: '実質10年債利回り', value: `${dp.real_yield_10y_pct.toFixed(2)}%`, color: COLOR_YIELD_10Y })
+    if (dp.real_yield_spread_pct != null) items.push({ label: '実質スプレッド', value: `${dp.real_yield_spread_pct >= 0 ? '+' : ''}${dp.real_yield_spread_pct.toFixed(2)}%`, color: COLOR_SPREAD })
   }
 
   return (
@@ -163,7 +163,7 @@ export default function Nasdaq100ValuationChart() {
   const { hiddenSeries: hiddenRaw, handleLegendClick: handleRawLegend } = useHiddenSeries<RawSeriesKey>()
   const { hiddenSeries: hiddenYoY, handleLegendClick: handleYoYLegend } = useHiddenSeries<YoYSeriesKey>()
   const { hiddenSeries: hiddenSpread, handleLegendClick: handleSpreadLegend } = useHiddenSeries<SpreadSeriesKey>()
-  const { hiddenSeries: hiddenRatio, handleLegendClick: handleRatioLegend } = useHiddenSeries<RatioSeriesKey>()
+  const { hiddenSeries: hiddenRealSpread, handleLegendClick: handleRealSpreadLegend } = useHiddenSeries<RealSpreadSeriesKey>()
 
   const { data: response } = useQuery<ValuationResponse>({
     queryKey: ['nasdaq100-valuation'],
@@ -196,6 +196,8 @@ export default function Nasdaq100ValuationChart() {
       earnings_yield_pct: d.earnings_yield != null ? d.earnings_yield * 100 : null,
       yield_10y_pct: d.yield_10y != null ? d.yield_10y * 100 : null,
       yield_spread_pct: d.yield_spread != null ? d.yield_spread * 100 : null,
+      real_yield_10y_pct: d.real_yield_10y != null ? d.real_yield_10y * 100 : null,
+      real_yield_spread_pct: d.real_yield_spread != null ? d.real_yield_spread * 100 : null,
     }))
   }, [filteredData])
 
@@ -241,6 +243,7 @@ export default function Nasdaq100ValuationChart() {
       title="Nasdaq 100 Valuation"
       dataSource="MacroMicro / yfinance"
       sourceUrl="https://en.macromicro.me/series/23955/nasdaq-100-pe"
+      handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}
     >
       {/* Latest values */}
@@ -294,15 +297,6 @@ export default function Nasdaq100ValuationChart() {
                 </span>
               </div>
             )}
-
-            {latest.yield_ratio != null && (
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                <span style={{ color: TEXT_COLORS.secondary, fontSize: 11 }}>Ratio</span>
-                <span style={{ color: COLOR_RATIO, fontSize: 15, fontWeight: 600 }} className="tabular-nums">
-                  {latest.yield_ratio.toFixed(3)}
-                </span>
-              </div>
-            )}
           </div>
         </div>
       )}
@@ -351,7 +345,7 @@ export default function Nasdaq100ValuationChart() {
                 tickLine={{ stroke: COLOR_EPS }}
                 tick={{ fill: COLOR_EPS, fontSize: 10 }}
                 width={50}
-                label={{ value: 'Forward EPS', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_EPS, fontSize: 10 }}
+                // label={{ value: 'Forward EPS', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_EPS, fontSize: 10 }}
               />
               <YAxis
                 yAxisId="pe"
@@ -361,7 +355,7 @@ export default function Nasdaq100ValuationChart() {
                 tickLine={{ stroke: COLOR_PE }}
                 tick={{ fill: COLOR_PE, fontSize: 10 }}
                 width={40}
-                label={{ value: 'PE', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_PE, fontSize: 10 }}
+                // label={{ value: 'PE', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_PE, fontSize: 10 }}
               />
               <RechartsTooltip content={<ChartTooltip viewMode="raw" />} />
               <Legend wrapperStyle={{ paddingTop: 8 }} onClick={(e) => handleRawLegend(e.dataKey as RawSeriesKey)} />
@@ -567,8 +561,8 @@ export default function Nasdaq100ValuationChart() {
         </>
       )}
 
-      {/* ===== Chart 5: Yield Ratio ===== */}
-      {viewMode === 'yield_ratio' && (
+      {/* ===== Chart 5: Real Yield Spread (Earnings Yield vs Real 10Y + Spread + Nasdaq100) ===== */}
+      {viewMode === 'real_yield_spread' && (
         <>
           <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
           <ResponsiveContainer width="100%" height={400}>
@@ -586,16 +580,6 @@ export default function Nasdaq100ValuationChart() {
                 label={{ value: '利回り (%)', angle: -90, position: 'insideLeft', offset: -5, fill: DARK_THEME.textSecondary, fontSize: 10 }}
               />
               <YAxis
-                yAxisId="ratio"
-                orientation="right"
-                domain={['dataMin * 0.9', 'dataMax * 1.1']}
-                axisLine={{ stroke: COLOR_RATIO }}
-                tickLine={{ stroke: COLOR_RATIO }}
-                tick={{ fill: COLOR_RATIO, fontSize: 10 }}
-                width={45}
-                label={{ value: 'Ratio', angle: 90, position: 'insideRight', offset: -5, fill: COLOR_RATIO, fontSize: 10 }}
-              />
-              <YAxis
                 yAxisId="right"
                 orientation="right"
                 domain={['dataMin * 0.9', 'dataMax * 1.05']}
@@ -604,11 +588,10 @@ export default function Nasdaq100ValuationChart() {
                 tickLine={{ stroke: COLOR_NDX }}
                 tick={{ fill: COLOR_NDX, fontSize: 10 }}
                 width={55}
-                hide
               />
-              <RechartsTooltip content={<ChartTooltip viewMode="yield_ratio" />} />
-              <ReferenceLine yAxisId="ratio" y={1} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
-              <Legend wrapperStyle={{ paddingTop: 8 }} onClick={(e) => handleRatioLegend(e.dataKey as RatioSeriesKey)} />
+              <RechartsTooltip content={<ChartTooltip viewMode="real_yield_spread" />} />
+              <ReferenceLine yAxisId="left" y={0} stroke={DARK_THEME.axisLine} strokeDasharray="3 3" />
+              <Legend wrapperStyle={{ paddingTop: 8 }} onClick={(e) => handleRealSpreadLegend(e.dataKey as RealSpreadSeriesKey)} />
               <Line
                 yAxisId="left"
                 type="monotone"
@@ -619,31 +602,33 @@ export default function Nasdaq100ValuationChart() {
                 dot={false}
                 connectNulls
                 isAnimationActive={false}
-                hide={hiddenRatio.has('earnings_yield_pct')}
+                hide={hiddenRealSpread.has('earnings_yield_pct')}
               />
               <Line
                 yAxisId="left"
                 type="monotone"
-                dataKey="yield_10y_pct"
-                name="米国10年債利回り (%)"
+                dataKey="real_yield_10y_pct"
+                name="米国実質10年債利回り (%)"
                 stroke={COLOR_YIELD_10Y}
                 strokeWidth={1.5}
                 dot={false}
                 connectNulls
                 isAnimationActive={false}
-                hide={hiddenRatio.has('yield_10y_pct')}
+                hide={hiddenRealSpread.has('real_yield_10y_pct')}
               />
-              <Line
-                yAxisId="ratio"
+              <Area
+                yAxisId="left"
                 type="monotone"
-                dataKey="yield_ratio"
-                name="イールドレシオ"
-                stroke={COLOR_RATIO}
-                strokeWidth={2}
+                dataKey="real_yield_spread_pct"
+                name="実質イールドスプレッド (%)"
+                stroke={COLOR_SPREAD}
+                fill={COLOR_SPREAD}
+                fillOpacity={0.15}
+                strokeWidth={1.5}
                 dot={false}
                 connectNulls
                 isAnimationActive={false}
-                hide={hiddenRatio.has('yield_ratio')}
+                hide={hiddenRealSpread.has('real_yield_spread_pct')}
               />
               <Line
                 yAxisId="right"
@@ -656,7 +641,7 @@ export default function Nasdaq100ValuationChart() {
                 dot={false}
                 connectNulls
                 isAnimationActive={false}
-                hide={hiddenRatio.has('close')}
+                hide={hiddenRealSpread.has('close')}
               />
             </ComposedChart>
           </ResponsiveContainer>

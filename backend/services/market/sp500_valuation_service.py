@@ -5,13 +5,14 @@ S&P 500 Valuation サービス
   - 予想PER: backend/data/manual_update/daily/stock_pe/sp500_pe.csv (MacroMicro由来)
     参照: https://en.macromicro.me/series/20052/sp500-forward-pe-ratio
   - S&P500価格: yfinance (^GSPC)
-  - 米国10年債利回り: yfinance (^TNX)
+  - 米国10年債利回り（名目）: yfinance (^TNX)
+  - 米国10年実質利回り（TIPS）: FRED DFII10
 
 算出系列:
   - 予想EPS = 指数値 ÷ 予想PER
   - 予想株式益利回り = 1 ÷ 予想PER
-  - 予想イールドスプレッド = 予想株式益利回り − 10年国債利回り
-  - 予想イールドレシオ = 予想株式益利回り ÷ 10年国債利回り
+  - 予想イールドスプレッド（名目） = 予想株式益利回り − 名目10年国債利回り
+  - 予想イールドスプレッド（実質） = 予想株式益利回り − 実質10年国債利回り
 
 更新: CSVファイルのタイムスタンプ変更を検出して自動リフレッシュ
 """
@@ -27,6 +28,7 @@ import pandas as pd
 import yfinance as yf
 
 from core.redis_client import redis_client
+from services.usa.fred_utils import fetch_fred_series
 
 logger = logging.getLogger(__name__)
 
@@ -158,29 +160,50 @@ class Sp500ValuationService:
             logger.error(f"[SP500-VAL] yfinance ^TNX error: {e}")
             return None
 
-        # 4. マージ（PER日次 + S&P500価格 + 10年債利回り）
+        # 4. FRED DFII10（実質10年債利回り）を取得
+        logger.info("[SP500-VAL] Fetching DFII10 from FRED")
+        real_yield_df = pd.DataFrame()
+        try:
+            dfii10_data = fetch_fred_series("DFII10", start_date=start_date)
+            if dfii10_data:
+                real_yield_df = pd.DataFrame(dfii10_data)
+                real_yield_df["date"] = pd.to_datetime(real_yield_df["date"])
+                real_yield_df = real_yield_df.rename(columns={"value": "real_yield_10y"})
+                real_yield_df["real_yield_10y"] = real_yield_df["real_yield_10y"] / 100  # % → decimal
+        except Exception as e:
+            logger.warning(f"[SP500-VAL] DFII10 fetch failed (non-fatal): {e}")
+
+        # 5. マージ（PER日次 + S&P500価格 + 10年債利回り + 実質利回り）
         merged = df_pe.merge(sp500, on="date", how="inner")
         merged = merged.merge(tnx, on="date", how="left")
         merged["yield_10y"] = merged["yield_10y"].ffill()
+        if not real_yield_df.empty:
+            merged = merged.merge(real_yield_df[["date", "real_yield_10y"]], on="date", how="left")
+            merged["real_yield_10y"] = merged["real_yield_10y"].ffill()
+        else:
+            merged["real_yield_10y"] = None
 
-        # 5. 各系列を算出
+        # 6. 各系列を算出
         merged["forward_eps"] = merged["close"] / merged["forward_pe"]
         merged["earnings_yield"] = 1 / merged["forward_pe"]
         merged["yield_spread"] = merged["earnings_yield"] - merged["yield_10y"]
-        merged["yield_ratio"] = merged["earnings_yield"] / merged["yield_10y"]
+        merged["real_yield_spread"] = merged["earnings_yield"] - merged["real_yield_10y"]
 
-        # 6. 前年比・前月比を算出
+        # 7. 前年比・前月比を算出
         merged["date_str"] = merged["date"].dt.strftime("%Y-%m-%d")
 
         # 月平均を計算（テーブル用）
         merged["year_month"] = merged["date"].dt.to_period("M")
-        monthly = merged.groupby("year_month").agg(
-            forward_pe=("forward_pe", "mean"),
-            forward_eps=("forward_eps", "mean"),
-            earnings_yield=("earnings_yield", "mean"),
-            close=("close", "mean"),
-            yield_10y=("yield_10y", "mean"),
-        ).reset_index()
+        agg_dict = {
+            "forward_pe": ("forward_pe", "mean"),
+            "forward_eps": ("forward_eps", "mean"),
+            "earnings_yield": ("earnings_yield", "mean"),
+            "close": ("close", "mean"),
+            "yield_10y": ("yield_10y", "mean"),
+        }
+        if "real_yield_10y" in merged.columns and merged["real_yield_10y"].notna().any():
+            agg_dict["real_yield_10y"] = ("real_yield_10y", "mean")
+        monthly = merged.groupby("year_month").agg(**agg_dict).reset_index()
         monthly["year_month_str"] = monthly["year_month"].astype(str)
 
         # 前年比（日次データから、252営業日前との比較）
@@ -206,7 +229,7 @@ class Sp500ValuationService:
                 else:
                     monthly_mom[ym][col] = None
 
-        # 7. JSONシリアライズ用にデータを構築
+        # 8. JSONシリアライズ用にデータを構築
         data_list: List[Dict[str, Any]] = []
         for _, row in merged.iterrows():
             item: Dict[str, Any] = {
@@ -217,7 +240,8 @@ class Sp500ValuationService:
                 "earnings_yield": round(float(row["earnings_yield"]), 6),
                 "yield_10y": round(float(row["yield_10y"]), 6) if pd.notna(row["yield_10y"]) else None,
                 "yield_spread": round(float(row["yield_spread"]), 6) if pd.notna(row["yield_spread"]) else None,
-                "yield_ratio": round(float(row["yield_ratio"]), 4) if pd.notna(row["yield_ratio"]) else None,
+                "real_yield_10y": round(float(row["real_yield_10y"]), 6) if pd.notna(row.get("real_yield_10y")) else None,
+                "real_yield_spread": round(float(row["real_yield_spread"]), 6) if pd.notna(row.get("real_yield_spread")) else None,
             }
             for col in ["forward_pe", "forward_eps", "earnings_yield"]:
                 yoy_val = row.get(f"{col}_yoy")
@@ -229,7 +253,7 @@ class Sp500ValuationService:
         for _, row in monthly_sorted.iterrows():
             ym = row["year_month_str"]
             mom = monthly_mom.get(ym, {})
-            monthly_table.append({
+            mt_item = {
                 "date": ym,
                 "forward_pe": round(float(row["forward_pe"]), 2),
                 "forward_eps": round(float(row["forward_eps"]), 2),
@@ -239,7 +263,10 @@ class Sp500ValuationService:
                 "forward_pe_mom": mom.get("forward_pe"),
                 "forward_eps_mom": mom.get("forward_eps"),
                 "earnings_yield_mom": mom.get("earnings_yield"),
-            })
+            }
+            if "real_yield_10y" in monthly_sorted.columns and pd.notna(row.get("real_yield_10y")):
+                mt_item["real_yield_10y"] = round(float(row["real_yield_10y"]) * 100, 2)
+            monthly_table.append(mt_item)
 
         latest = data_list[-1] if data_list else None
         file_mtime = self._get_file_mtime()
@@ -268,9 +295,10 @@ class Sp500ValuationService:
                     "forward_pe (予想PER)",
                     "forward_eps (予想EPS = 指数値÷予想PER)",
                     "earnings_yield (予想株式益利回り = 1÷予想PER)",
-                    "yield_10y (米国10年債利回り)",
-                    "yield_spread (予想イールドスプレッド = 益利回り−10年債)",
-                    "yield_ratio (予想イールドレシオ = 益利回り÷10年債)",
+                    "yield_10y (米国10年名目債利回り)",
+                    "yield_spread (予想イールドスプレッド = 益利回り−名目10年債)",
+                    "real_yield_10y (米国10年実質利回り = FRED DFII10)",
+                    "real_yield_spread (実質イールドスプレッド = 益利回り−実質10年債)",
                 ],
             },
             "cached": False,

@@ -301,6 +301,7 @@ export default function VixCrossRatioChart() {
       title="VIXクロスレシオ"
       dataSource="yfinance"
       sourceUrl="https://finance.yahoo.com/quote/%5EVIX/"
+      handbookId="vix-term-structure"
       showPeriodSelector={false}
     >
       {/* 最新値 */}

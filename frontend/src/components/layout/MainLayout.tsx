@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
 import { Layout, Menu, Space } from 'antd'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom'
 import {
   HomeOutlined,
   LineChartOutlined,
@@ -9,9 +9,15 @@ import {
   StockOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  CalendarOutlined,
+  BookOutlined,
 } from '@ant-design/icons'
 import SidebarNavigation from './SidebarNavigation'
 import MarketSidebarNavigation from './MarketSidebarNavigation'
+import EarningsSidebarNavigation from './EarningsSidebarNavigation'
+import HandbookSidebarNavigation from './HandbookSidebarNavigation'
+import HandbookDrawer from '../common/HandbookDrawer'
+import { useHandbook } from '../../contexts/HandbookContext'
 
 const { Header, Content, Sider } = Layout
 
@@ -36,6 +42,7 @@ const colors = {
 function MainLayout() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { activeHandbookId, closeHandbook } = useHandbook()
   const [collapsed, setCollapsed] = useState(false)
 
   // サイドバー幅をlocalStorageから復元、なければデフォルト
@@ -53,31 +60,43 @@ function MainLayout() {
   const [isResizing, setIsResizing] = useState(false)
   const siderRef = useRef<HTMLDivElement>(null)
 
+  const linkStyle = { color: 'inherit', textDecoration: 'none' }
+
   const menuItems = [
     {
       key: '/',
       icon: <HomeOutlined />,
-      label: 'ホーム',
+      label: <Link to="/" style={linkStyle}>ホーム</Link>,
     },
     {
       key: '/country',
       icon: <GlobalOutlined />,
-      label: 'マクロデータ',
+      label: <Link to="/country" style={linkStyle}>マクロデータ</Link>,
     },
     {
       key: '/markets',
       icon: <StockOutlined />,
-      label: 'マーケットデータ',
+      label: <Link to="/markets" style={linkStyle}>マーケットデータ</Link>,
+    },
+    {
+      key: '/earnings',
+      icon: <CalendarOutlined />,
+      label: <Link to="/earnings" style={linkStyle}>決算</Link>,
     },
     {
       key: '/compare',
       icon: <AreaChartOutlined />,
-      label: 'データ比較',
+      label: <Link to="/compare" style={linkStyle}>データ比較</Link>,
     },
     {
       key: '/seasonality',
       icon: <LineChartOutlined />,
-      label: 'シーズナリティ',
+      label: <Link to="/seasonality" style={linkStyle}>シーズナリティ</Link>,
+    },
+    {
+      key: '/handbook',
+      icon: <BookOutlined />,
+      label: <Link to="/handbook" style={linkStyle}>データハンドブック</Link>,
     },
   ]
 
@@ -87,11 +106,13 @@ function MainLayout() {
     if (path.startsWith('/seasonality')) return '/seasonality'
     if (path.startsWith('/country')) return '/country'
     if (path.startsWith('/markets')) return '/markets'
+    if (path.startsWith('/earnings')) return '/earnings'
     if (path.startsWith('/compare')) return '/compare'
+    if (path.startsWith('/handbook')) return '/handbook'
     return path
   }, [location.pathname])
 
-  const showSidebar = location.pathname.startsWith('/country') || location.pathname.startsWith('/markets')
+  const showSidebar = location.pathname.startsWith('/country') || location.pathname.startsWith('/markets') || location.pathname.startsWith('/earnings') || location.pathname.startsWith('/handbook')
 
   // リサイズハンドラー
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -203,7 +224,6 @@ function MainLayout() {
           mode="horizontal"
           selectedKeys={[selectedKey]}
           items={menuItems}
-          onClick={({ key }) => navigate(key)}
           style={{
             flex: 1,
             minWidth: 0,
@@ -248,7 +268,7 @@ function MainLayout() {
               >
                 {!collapsed && (
                   <span style={{ fontWeight: 600, color: colors.accent, fontSize: '13px' }}>
-                    {location.pathname.startsWith('/markets') ? 'マーケットデータ' : 'マクロデータ'}
+                    {location.pathname.startsWith('/markets') ? 'マーケットデータ' : location.pathname.startsWith('/earnings') ? '決算' : location.pathname.startsWith('/handbook') ? 'データハンドブック' : 'マクロデータ'}
                   </span>
                 )}
                 <span
@@ -258,7 +278,7 @@ function MainLayout() {
                   {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 </span>
               </div>
-              {location.pathname.startsWith('/markets') ? <MarketSidebarNavigation /> : <SidebarNavigation />}
+              {location.pathname.startsWith('/markets') ? <MarketSidebarNavigation /> : location.pathname.startsWith('/earnings') ? <EarningsSidebarNavigation /> : location.pathname.startsWith('/handbook') ? <HandbookSidebarNavigation /> : <SidebarNavigation />}
             </Sider>
             {/* リサイズハンドル */}
             {!collapsed && (
@@ -299,6 +319,8 @@ function MainLayout() {
           <Outlet />
         </Content>
       </Layout>
+      {/* データハンドブック Drawer（経済カレンダーの上にオーバーレイ） */}
+      <HandbookDrawer indicatorId={activeHandbookId} onClose={closeHandbook} />
     </Layout>
   )
 }

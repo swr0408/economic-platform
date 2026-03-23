@@ -4047,12 +4047,12 @@
     "date": "2026-02-01"
   },
   "next_release": {
-    "date": "2026-03-27",
-    "datetime_utc": "2026-03-27T14:00:00+00:00",
-    "datetime_jst": "2026-03-27T23:00:00+09:00",
+    "date": "2026-04-10",
+    "datetime_utc": "2026-04-10T14:00:00+00:00",
+    "datetime_jst": "2026-04-10T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "Michigan Inflation Expectations (Mar)",
-    "estimate": 3.4
+    "label": "Michigan Inflation Expectations (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-03-18T12:00:09.318202+09:00"
+  "last_updated": "2026-03-22T18:02:10.043249+09:00"
 }

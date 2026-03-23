@@ -84,7 +84,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
 
   if (!hasData) {
     return (
-      <ChartContainer title="政策金利" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="政策金利" showPeriodSelector={false} showDataSource={false} handbookId="policy-rate">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -97,6 +97,7 @@ export default function PolicyRateChart({ data, nextFomc }: PolicyRateChartProps
         showPeriodSelector={false}
         dataSource="Federal Reserve"
         sourceUrl="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+        handbookId="policy-rate"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

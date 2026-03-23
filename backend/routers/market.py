@@ -88,9 +88,14 @@ try:
     from backend.services.market.historical_volatility_service import historical_volatility_service
     from backend.services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from backend.services.market.sector_ratio_service import sector_ratio_service
+    from backend.services.market.russell2000_russell1000_service import russell2000_russell1000_service
+    from backend.services.market.financial_stress_index_service import financial_stress_index_service
+    from backend.services.market.nt_magnification_service import nt_magnification_service
+    from backend.services.market.us_interest_rate_spread_service import us_interest_rate_spread_service
     from backend.services.market.mof_securities_trading_service import mof_securities_trading_service
     from backend.services.market.nikkei225_options_service import nikkei225_options_service
     from backend.services.market.ny_option_cut_service import ny_option_cut_service
+    from backend.services.market.cmdi_service import cmdi_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -145,9 +150,14 @@ except ImportError:
     from services.market.historical_volatility_service import historical_volatility_service
     from services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from services.market.sector_ratio_service import sector_ratio_service
+    from services.market.russell2000_russell1000_service import russell2000_russell1000_service
+    from services.market.financial_stress_index_service import financial_stress_index_service
+    from services.market.nt_magnification_service import nt_magnification_service
+    from services.market.us_interest_rate_spread_service import us_interest_rate_spread_service
     from services.market.mof_securities_trading_service import mof_securities_trading_service
     from services.market.nikkei225_options_service import nikkei225_options_service
     from services.market.ny_option_cut_service import ny_option_cut_service
+    from services.market.cmdi_service import cmdi_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -1076,6 +1086,81 @@ def get_mof_securities_trading(force_refresh: bool = Query(False)):
     """MOF対外対内証券売買データを取得"""
     start_time = time.time()
     result = mof_securities_trading_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== Russell 2000 / Russell 1000 Ratio =====
+
+
+@router.get("/russell2000-russell1000")
+def get_russell2000_russell1000(force_refresh: bool = Query(False)):
+    """Russell 2000 / Russell 1000 レシオデータを取得"""
+    start_time = time.time()
+    result = russell2000_russell1000_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== Financial Stress Index (STLFSI4) =====
+
+
+@router.get("/financial-stress-index")
+def get_financial_stress_index(force_refresh: bool = Query(False)):
+    """セントルイス連銀金融ストレス指数（STLFSI4）データを取得"""
+    start_time = time.time()
+    result = financial_stress_index_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== NT Magnification =====
+
+
+@router.get("/nt-magnification")
+def get_nt_magnification(force_refresh: bool = Query(False)):
+    """NT倍率（日経平均/TOPIX）データを取得"""
+    start_time = time.time()
+    result = nt_magnification_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== US Interest Rate Spread =====
+
+
+@router.get("/us-interest-rate-spread")
+def get_us_interest_rate_spread(force_refresh: bool = Query(False)):
+    """米国長短金利差（イールドスプレッド）データを取得"""
+    start_time = time.time()
+    result = us_interest_rate_spread_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== Corporate Bond Market Distress Index (CMDI) =====
+
+
+@router.get("/corporate-bond-market-distress-index")
+def get_cmdi(force_refresh: bool = Query(False)):
+    """企業債券市場ディストレス指数（CMDI）データを取得"""
+    start_time = time.time()
+    result = cmdi_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

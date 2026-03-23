@@ -51197,28 +51197,58 @@
       "registered_oz": 78952350.289,
       "eligible_oz": 262770858.566,
       "total_oz": 341723208.855
+    },
+    {
+      "date": "2026-03-16",
+      "registered_oz": 78942455.989,
+      "eligible_oz": 260639806.535,
+      "total_oz": 339582262.524
+    },
+    {
+      "date": "2026-03-17",
+      "registered_oz": 78903367.869,
+      "eligible_oz": 258989325.115,
+      "total_oz": 337892692.984
+    },
+    {
+      "date": "2026-03-18",
+      "registered_oz": 78903367.869,
+      "eligible_oz": 256172267.235,
+      "total_oz": 335075635.104
+    },
+    {
+      "date": "2026-03-19",
+      "registered_oz": 79411720.469,
+      "eligible_oz": 255272997.975,
+      "total_oz": 334684718.444
+    },
+    {
+      "date": "2026-03-20",
+      "registered_oz": 79199547.639,
+      "eligible_oz": 253495706.985,
+      "total_oz": 332695254.624
     }
   ],
   "latest": {
-    "date": "2026-03-13",
-    "registered_oz": 78952350.289,
-    "eligible_oz": 262770858.566,
-    "total_oz": 341723208.855
+    "date": "2026-03-20",
+    "registered_oz": 79199547.639,
+    "eligible_oz": 253495706.985,
+    "total_oz": 332695254.624
   },
   "latest_silver": {
-    "date": "2026-03-13",
-    "close": 81.343
+    "date": "2026-03-23",
+    "close": 65.645
   },
   "metadata": {
     "source": "CME COMEX + yfinance (SI=F)",
     "indicator": "COMEX Silver Warehouse Stock",
     "unit": "troy oz",
     "frequency": "daily",
-    "data_count": 8533,
+    "data_count": 8538,
     "start_date": "1992-08-31",
-    "end_date": "2026-03-13"
+    "end_date": "2026-03-20"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-15T02:32:27.256157+09:00"
+  "last_updated": "2026-03-23T13:25:48.691201+09:00"
 }

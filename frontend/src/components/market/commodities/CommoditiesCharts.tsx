@@ -55,11 +55,11 @@ export default function CommoditiesCharts() {
       <div id="cn-gold-reserves"><CnGoldReservesChart /></div>
       <div id="lbma-stock"><LbmaStockChart /></div>
       <div id="comex-gold-inventory"><ComexGoldStockChart /></div>
-      <div id="cot-gold"><CftcPositioningChart asset="gold" assetLabel="金（ゴールド）" reportType="disagg" compareId="cftc_gold" /></div>
+      <div id="cot-gold"><CftcPositioningChart asset="gold" assetLabel="金（ゴールド）" reportType="disagg" compareId="cftc_gold" handbookId="cot-gold" /></div>
       <div id="silver"><MarketPriceChart title="銀" symbolData={data?.silver} color={COLORS.silver} unit=" USD/oz" /></div>
       <div id="silver-etf-holdings"><SilverEtfHoldingsChart /></div>
       <div id="comex-silver-inventory"><ComexSilverStockChart /></div>
-      <div id="cot-silver"><CftcPositioningChart asset="silver" assetLabel="銀（シルバー）" reportType="disagg" compareId="cftc_silver" /></div>
+      <div id="cot-silver"><CftcPositioningChart asset="silver" assetLabel="銀（シルバー）" reportType="disagg" compareId="cftc_silver" handbookId="cot-silver" /></div>
       <div id="platinum"><MarketPriceChart title="プラチナ" symbolData={data?.platinum} color={COLORS.platinum} unit=" USD/oz" /></div>
 
       {/* 工業用金属 */}

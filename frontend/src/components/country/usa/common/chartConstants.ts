@@ -215,6 +215,7 @@ const VIEW_MODE_BUTTON_CONFIGS: Record<string, ButtonStyleConfig> = {
   total: { color: '#10b981', bgColor: 'rgba(16, 185, 129, 0.15)' },
   ex_auto: { color: '#a855f7', bgColor: 'rgba(168, 85, 247, 0.15)' },
   control_group: { color: '#06b6d4', bgColor: 'rgba(6, 182, 212, 0.15)' },
+  '3m_change': { color: '#f97316', bgColor: 'rgba(249, 115, 22, 0.15)' },  // 3か月方向（オレンジ）
 }
 
 /**

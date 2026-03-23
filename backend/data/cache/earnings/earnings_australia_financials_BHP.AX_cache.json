@@ -1,0 +1,17 @@
+{
+  "ticker": "BHP.AX",
+  "name": "BHP",
+  "tier": "A",
+  "sector": "energy",
+  "country_code": "australia",
+  "country_name": "Australia",
+  "reported_currency": "",
+  "periods": [],
+  "ir_home": "https://www.bhp.com/investors",
+  "ir_results": "https://www.bhp.com/investors/financial-results-operational-reviews",
+  "ir_tdnet": "",
+  "ir_notes": "",
+  "last_updated": "2026-03-19T11:50:25.459362+00:00",
+  "cached": false,
+  "status": "ok"
+}

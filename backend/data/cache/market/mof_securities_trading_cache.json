@@ -13251,7 +13251,7 @@
     {
       "date": "2026-03-07",
       "assets_equity_net": 1631.0,
-      "assets_longterm_debt_net": 3998.0,
+      "assets_longterm_debt_net": 4025.0,
       "liabilities_equity_net": 3855.0,
       "liabilities_longterm_debt_net": -9636.0,
       "sp500": 6632.19,
@@ -13259,18 +13259,30 @@
       "usdjpy": 159.73,
       "us10y": 4.285,
       "jgb10y": 2.11
+    },
+    {
+      "date": "2026-03-14",
+      "assets_equity_net": 9507.0,
+      "assets_longterm_debt_net": -9920.0,
+      "liabilities_equity_net": -17726.0,
+      "liabilities_longterm_debt_net": 11941.0,
+      "sp500": 6506.48,
+      "nikkei225": 53372.53,
+      "usdjpy": 159.22,
+      "us10y": 4.391,
+      "jgb10y": 2.11
     }
   ],
   "latest": {
-    "date": "2026-03-07",
-    "assets_equity_net": 1631.0,
-    "assets_longterm_debt_net": 3998.0,
-    "liabilities_equity_net": 3855.0,
-    "liabilities_longterm_debt_net": -9636.0,
-    "sp500": 6632.19,
-    "nikkei225": 53819.61,
-    "usdjpy": 159.73,
-    "us10y": 4.285,
+    "date": "2026-03-14",
+    "assets_equity_net": 9507.0,
+    "assets_longterm_debt_net": -9920.0,
+    "liabilities_equity_net": -17726.0,
+    "liabilities_longterm_debt_net": 11941.0,
+    "sp500": 6506.48,
+    "nikkei225": 53372.53,
+    "usdjpy": 159.22,
+    "us10y": 4.391,
     "jgb10y": 2.11
   },
   "metadata": {
@@ -13279,9 +13291,9 @@
     "description": "対外及び対内証券売買等の状況（週次）",
     "unit": "億円",
     "frequency": "weekly",
-    "data_count": 1105,
+    "data_count": 1106,
     "start_date": "2005-01-08",
-    "end_date": "2026-03-07",
+    "end_date": "2026-03-14",
     "overlays": [
       "sp500",
       "nikkei225",
@@ -13290,5 +13302,5 @@
       "jgb10y"
     ]
   },
-  "last_updated": "2026-03-18T18:35:14.071827+09:00"
+  "last_updated": "2026-03-22T11:10:00.685528+09:00"
 }

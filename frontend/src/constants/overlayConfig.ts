@@ -20,6 +20,7 @@ export type DerivedValueType = 'diff';
 export interface DerivedValueConfig {
   type: DerivedValueType;
   sourceField: string;
+  period?: number;  // N期前との差分（デフォルト1）
 }
 
 export interface OverlayIndicator {
@@ -414,6 +415,19 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     subCategory: 'sentiment',
     apiEndpoint: '/api/usa/economy',
     dataKey: 'ism_manufacturing',
+  },
+  {
+    id: 'ism_manufacturing_3m_change',
+    name: 'ISM製造業景況指数（3か月方向）',
+    nameEn: 'ISM Manufacturing PMI (3M Change)',
+    frequency: 'monthly',
+    category: 'economy',
+    subCategory: 'sentiment',
+    apiEndpoint: '/api/usa/economy',
+    dataKey: 'ism_manufacturing',
+    derived: { type: 'diff', sourceField: 'value', period: 3 },
+    chartType: 'bar',
+    unit: 'pt',
   },
   {
     id: 'ism_order_inventory_balance',
@@ -2496,6 +2510,21 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
 
   // =========================================================================
+  // 市場 - NT倍率
+  // =========================================================================
+  {
+    id: 'nt_magnification',
+    name: 'NT倍率 (日経平均/TOPIX)',
+    nameEn: 'NT Magnification (Nikkei 225 / TOPIX)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_jp',
+    apiEndpoint: '/api/market/nt-magnification',
+    dataKey: 'data',
+    valueField: 'ratio',
+  },
+
+  // =========================================================================
   // 市場 - バリュエーション
   // =========================================================================
   {
@@ -3077,6 +3106,78 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
 
   // =========================================================================
+  // 市場 - Russell 2000 / Russell 1000 レシオ
+  // =========================================================================
+  {
+    id: 'russell2000_russell1000',
+    name: 'Russell 2000/1000 レシオ',
+    nameEn: 'Russell 2000 / Russell 1000 Ratio',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market/russell2000-russell1000',
+    dataKey: 'data',
+    valueField: 'ratio',
+    unit: 'ratio',
+  },
+
+  // =========================================================================
+  // 市場 - 金融ストレス指数（STLFSI4）
+  // =========================================================================
+  {
+    id: 'financial_stress_index',
+    name: '金融ストレス指数（STLFSI4）',
+    nameEn: 'St. Louis Fed Financial Stress Index',
+    frequency: 'weekly',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market/financial-stress-index',
+    dataKey: 'data',
+    valueField: 'value',
+    unit: 'index',
+  },
+
+  // =========================================================================
+  // 市場 - 企業債券市場ディストレス指数（CMDI）
+  // =========================================================================
+  {
+    id: 'cmdi_market',
+    name: 'CMDI（Market）',
+    nameEn: 'Corporate Bond Market Distress Index (Market)',
+    frequency: 'weekly',
+    category: 'market',
+    subCategory: 'policy',
+    apiEndpoint: '/api/market/corporate-bond-market-distress-index',
+    dataKey: 'data',
+    valueField: 'market',
+    unit: 'index',
+  },
+  {
+    id: 'cmdi_ig',
+    name: 'CMDI（IG）',
+    nameEn: 'Corporate Bond Market Distress Index (Investment Grade)',
+    frequency: 'weekly',
+    category: 'market',
+    subCategory: 'policy',
+    apiEndpoint: '/api/market/corporate-bond-market-distress-index',
+    dataKey: 'data',
+    valueField: 'ig',
+    unit: 'index',
+  },
+  {
+    id: 'cmdi_hy',
+    name: 'CMDI（HY）',
+    nameEn: 'Corporate Bond Market Distress Index (High Yield)',
+    frequency: 'weekly',
+    category: 'market',
+    subCategory: 'policy',
+    apiEndpoint: '/api/market/corporate-bond-market-distress-index',
+    dataKey: 'data',
+    valueField: 'hy',
+    unit: 'index',
+  },
+
+  // =========================================================================
   // 市場 - 日本・アジア株価指数
   // =========================================================================
   {
@@ -3442,6 +3543,71 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     dataKey: 'data',
     valueField: 'volatility_20d',
     unit: 'bps',
+  },
+  {
+    id: 'us_interest_rate_spread_2s10s',
+    name: '長短金利差 2s10s (10Y−2Y)',
+    nameEn: 'Yield Spread 2s10s (10Y−2Y)',
+    frequency: 'daily',
+    country: 'usa',
+    category: 'policy',
+    subCategory: 'interest_rate',
+    apiEndpoint: '/api/market/us-interest-rate-spread',
+    dataKey: 'data',
+    valueField: 'spread_2s10s',
+    unit: '%',
+  },
+  {
+    id: 'us_interest_rate_spread_3m10y',
+    name: '長短金利差 3m10y (10Y−3M)',
+    nameEn: 'Yield Spread 3m10y (10Y−3M)',
+    frequency: 'daily',
+    country: 'usa',
+    category: 'policy',
+    subCategory: 'interest_rate',
+    apiEndpoint: '/api/market/us-interest-rate-spread',
+    dataKey: 'data',
+    valueField: 'spread_3m10y',
+    unit: '%',
+  },
+  {
+    id: 'us_interest_rate_spread_5s30s',
+    name: '長短金利差 5s30s (30Y−5Y)',
+    nameEn: 'Yield Spread 5s30s (30Y−5Y)',
+    frequency: 'daily',
+    country: 'usa',
+    category: 'policy',
+    subCategory: 'interest_rate',
+    apiEndpoint: '/api/market/us-interest-rate-spread',
+    dataKey: 'data',
+    valueField: 'spread_5s30s',
+    unit: '%',
+  },
+  {
+    id: 'us_interest_rate_spread_10s30s',
+    name: '長短金利差 10s30s (30Y−10Y)',
+    nameEn: 'Yield Spread 10s30s (30Y−10Y)',
+    frequency: 'daily',
+    country: 'usa',
+    category: 'policy',
+    subCategory: 'interest_rate',
+    apiEndpoint: '/api/market/us-interest-rate-spread',
+    dataKey: 'data',
+    valueField: 'spread_10s30s',
+    unit: '%',
+  },
+  {
+    id: 'us_interest_rate_spread_3m2y',
+    name: '長短金利差 3m2y (2Y−3M)',
+    nameEn: 'Yield Spread 3m2y (2Y−3M)',
+    frequency: 'daily',
+    country: 'usa',
+    category: 'policy',
+    subCategory: 'interest_rate',
+    apiEndpoint: '/api/market/us-interest-rate-spread',
+    dataKey: 'data',
+    valueField: 'spread_3m2y',
+    unit: '%',
   },
   {
     id: 'on_rrp',
