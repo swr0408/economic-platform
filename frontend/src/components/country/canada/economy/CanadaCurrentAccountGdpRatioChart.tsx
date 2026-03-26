@@ -96,6 +96,7 @@ export default function CanadaCurrentAccountGdpRatioChart({ data }: CanadaCurren
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www.statcan.gc.ca/en/subjects-start/international_trade"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

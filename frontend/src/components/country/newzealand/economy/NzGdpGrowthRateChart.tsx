@@ -141,6 +141,7 @@ export default function NzGdpGrowthRateChart({ data }: NzGdpGrowthRateChartProps
         showPeriodSelector={false}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/indicators/gross-domestic-product-gdp/"
+        handbookId="gdp"
       >
         {/* 最新値表示 */}
         <LatestValueBox

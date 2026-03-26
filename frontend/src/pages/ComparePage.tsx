@@ -40,6 +40,7 @@ export default function ComparePage() {
     removeIndicator,
     setRange,
     setOptions,
+    setTimeShift,
     clearAll,
     maxSelections,
     canAddMore,
@@ -88,7 +89,9 @@ export default function ComparePage() {
       {/* 選択中の指標チップ */}
       <IndicatorChipList
         indicators={selectedIndicators}
+        timeShifts={options.timeShifts}
         onRemove={removeIndicator}
+        onShiftChange={setTimeShift}
         onClearAll={clearAll}
       />
 
@@ -107,6 +110,7 @@ export default function ComparePage() {
           isLoading={isLoading}
           range={range}
           index100={options.index100}
+          timeShifts={options.timeShifts}
         />
       </Content>
     </Layout>

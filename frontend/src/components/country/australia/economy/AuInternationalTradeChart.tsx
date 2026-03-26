@@ -372,6 +372,7 @@ export default function AuInternationalTradeChart({ data }: AuInternationalTrade
         showPeriodSelector={false}
         dataSource="Australian Bureau of Statistics"
         sourceUrl="https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods-and-services-australia"
+        handbookId="trade-balance"
       >
         {/* 最新値表示 */}
         <LatestValueBox

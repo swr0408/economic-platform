@@ -121,6 +121,7 @@ export default function NzCurrentAccountBalanceChart({ data }: NzCurrentAccountB
         showDataSource={true}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/information-releases/?filters=Balance%20of%20payments"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <LatestValueBox

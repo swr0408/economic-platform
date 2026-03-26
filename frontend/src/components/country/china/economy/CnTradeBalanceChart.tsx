@@ -367,6 +367,7 @@ export default function CnTradeBalanceChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="General Administration of Customs / NBS"
         sourceUrl="https://data.stats.gov.cn/english/easyquery.htm?cn=A01"
+        handbookId="trade-balance"
       >
         {/* 最新値表示 */}
         <LatestValueBox

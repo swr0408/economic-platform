@@ -145,6 +145,7 @@ export default function GermanyIndustrialProductionChart({ data }: GermanyIndust
         showPeriodSelector={false}
         dataSource="Destatis"
         sourceUrl="https://www.destatis.de/DE/Themen/Branchen-Unternehmen/Industrie-Verarbeitendes-Gewerbe/_inhalt.html#"
+        handbookId="industrial-production"
       >
         {/* 最新値表示 */}
         <LatestValueBox

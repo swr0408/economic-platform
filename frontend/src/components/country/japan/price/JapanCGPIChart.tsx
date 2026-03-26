@@ -167,7 +167,7 @@ export default function JapanCGPIChart() {
   // エラー状態
   if (error) {
     return (
-      <ChartContainer title="企業物価指数（CGPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="企業物価指数（CGPI）" showPeriodSelector={false} showDataSource={false} handbookId="cgpi">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
@@ -176,7 +176,7 @@ export default function JapanCGPIChart() {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="企業物価指数（CGPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="企業物価指数（CGPI）" showPeriodSelector={false} showDataSource={false} handbookId="cgpi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -207,6 +207,7 @@ export default function JapanCGPIChart() {
         showDataSource={true}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/statistics/pi/cgpi_release/index.htm"
+        handbookId="cgpi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -155,7 +155,7 @@ export default function AuQuarterlyPpiChart({ data }: AuQuarterlyPpiChartProps) 
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="四半期PPI" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="四半期PPI" showPeriodSelector={false} showDataSource={false} handbookId="au-ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -182,6 +182,7 @@ export default function AuQuarterlyPpiChart({ data }: AuQuarterlyPpiChartProps) 
         showDataSource={true}
         dataSource="Australian Bureau of Statistics"
         sourceUrl="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/producer-price-indexes-australia"
+        handbookId="au-ppi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

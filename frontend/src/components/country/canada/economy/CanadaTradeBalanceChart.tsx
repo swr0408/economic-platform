@@ -192,6 +192,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www.statcan.gc.ca/en/subjects-start/international_trade"
+        handbookId="trade-balance"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

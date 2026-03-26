@@ -77,6 +77,7 @@ export default function TaiwanPmiOutlookChart({ data }: TaiwanPmiOutlookChartPro
         showDataSource={true}
         dataSource="CIER (Chung-Hua Institution for Economic Research)"
         sourceUrl="https://www.cier.edu.tw/en/eco_cat/pmi-en/"
+        handbookId="taiwan-pmi-outlook"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

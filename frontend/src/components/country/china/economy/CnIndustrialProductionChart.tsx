@@ -103,6 +103,7 @@ export default function CnIndustrialProductionChart({ data }: Props) {
         showDataSource={true}
         dataSource="NBS"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/index.html"
+        handbookId="industrial-production"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -81,6 +81,7 @@ export default function TaiwanManufacturingPmiChart({ data }: TaiwanManufacturin
         showDataSource={true}
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
+        handbookId="taiwan-manufacturing-pmi"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

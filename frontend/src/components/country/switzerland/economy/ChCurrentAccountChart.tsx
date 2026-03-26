@@ -150,6 +150,7 @@ export default function ChCurrentAccountChart({ data }: ChCurrentAccountChartPro
         showPeriodSelector={false}
         dataSource="SNB"
         sourceUrl="https://data.snb.ch/en/topics/aube"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

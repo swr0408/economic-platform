@@ -94,6 +94,7 @@ export default function ECBCurrentAccountChart({ data }: ECBCurrentAccountChartP
         showPeriodSelector={false}
         dataSource="ECB"
         sourceUrl="https://www.ecb.europa.eu/press/stats/bop/html/index.en.html"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <LatestValueBox

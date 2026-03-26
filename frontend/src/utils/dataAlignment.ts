@@ -36,6 +36,28 @@ export interface DataPoint {
   value: number | null;
 }
 
+/**
+ * データの日付を月単位でシフトする（先行・遅行分析用）
+ * months > 0: 未来方向にシフト（先行表示）
+ * months < 0: 過去方向にシフト（遅行表示）
+ */
+export function shiftDataByMonths(
+  data: DataPoint[],
+  months: number
+): DataPoint[] {
+  if (months === 0) return data;
+
+  return data.map(point => {
+    const d = parseDate(point.date);
+    d.setMonth(d.getMonth() + months);
+    // YYYY-MM-DD形式に戻す
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return { ...point, date: `${yyyy}-${mm}-${dd}` };
+  });
+}
+
 export interface MergedDataPoint {
   date: string;
   value: number | null;

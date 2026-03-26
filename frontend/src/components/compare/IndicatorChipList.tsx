@@ -21,10 +21,30 @@ const DARK_THEME = {
 interface IndicatorChipProps {
   indicator: OverlayIndicator;
   color: string;
+  shift: number;
   onRemove: () => void;
+  onShiftChange: (months: number) => void;
 }
 
-function IndicatorChip({ indicator, color, onRemove }: IndicatorChipProps) {
+const shiftBtnStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 18,
+  height: 18,
+  borderRadius: '50%',
+  border: 'none',
+  backgroundColor: 'rgba(255,255,255,0.1)',
+  color: '#94a3b8',
+  fontSize: 12,
+  cursor: 'pointer',
+  padding: 0,
+  lineHeight: 1,
+};
+
+function IndicatorChip({ indicator, color, shift, onRemove, onShiftChange }: IndicatorChipProps) {
+  const shiftLabel = shift === 0 ? '' : (shift > 0 ? `+${shift}M` : `${shift}M`);
+
   return (
     <Tag
       closable
@@ -59,19 +79,64 @@ function IndicatorChip({ indicator, color, onRemove }: IndicatorChipProps) {
       <span style={{ color: DARK_THEME.textTertiary, fontSize: 11 }}>
         {getFrequencyLabel(indicator.frequency)}
       </span>
+      {/* タイムシフトコントロール */}
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 2, marginLeft: 2 }}>
+        <button
+          style={{
+            ...shiftBtnStyle,
+            opacity: shift <= -12 ? 0.3 : 1,
+          }}
+          onClick={(e) => { e.stopPropagation(); onShiftChange(shift - 1); }}
+          disabled={shift <= -12}
+          title="遅行（-1ヶ月）"
+        >
+          ◀
+        </button>
+        {shift !== 0 && (
+          <span
+            style={{
+              fontSize: 10,
+              fontWeight: 600,
+              color: shift > 0 ? '#4caf50' : '#ef5350',
+              minWidth: 28,
+              textAlign: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={(e) => { e.stopPropagation(); onShiftChange(0); }}
+            title="シフトをリセット"
+          >
+            {shiftLabel}
+          </span>
+        )}
+        <button
+          style={{
+            ...shiftBtnStyle,
+            opacity: shift >= 12 ? 0.3 : 1,
+          }}
+          onClick={(e) => { e.stopPropagation(); onShiftChange(shift + 1); }}
+          disabled={shift >= 12}
+          title="先行（+1ヶ月）"
+        >
+          ▶
+        </button>
+      </span>
     </Tag>
   );
 }
 
 interface IndicatorChipListProps {
   indicators: OverlayIndicator[];
+  timeShifts: Record<string, number>;
   onRemove: (indicatorId: string) => void;
+  onShiftChange: (indicatorId: string, months: number) => void;
   onClearAll: () => void;
 }
 
 export default function IndicatorChipList({
   indicators,
+  timeShifts,
   onRemove,
+  onShiftChange,
   onClearAll,
 }: IndicatorChipListProps) {
   if (indicators.length === 0) {
@@ -111,7 +176,9 @@ export default function IndicatorChipList({
             key={indicator.id}
             indicator={indicator}
             color={getOverlayColor(index)}
+            shift={timeShifts[indicator.id] || 0}
             onRemove={() => onRemove(indicator.id)}
+            onShiftChange={(months) => onShiftChange(indicator.id, months)}
           />
         ))}
       </Space>

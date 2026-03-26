@@ -165,6 +165,7 @@ export default function PotentialGDPChart({ data }: PotentialGDPChartProps) {
         showPeriodSelector={false}
         dataSource="FRED (CBO)"
         sourceUrl="https://www.cbo.gov/taxonomy/term/6/recurring-reports"
+        handbookId="potential-growth"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

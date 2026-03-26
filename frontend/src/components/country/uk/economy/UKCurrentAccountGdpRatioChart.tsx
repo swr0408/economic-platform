@@ -96,6 +96,7 @@ export default function UKCurrentAccountGdpRatioChart({ data }: UKCurrentAccount
         showPeriodSelector={false}
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/timeseries/aa6h/pnbp"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

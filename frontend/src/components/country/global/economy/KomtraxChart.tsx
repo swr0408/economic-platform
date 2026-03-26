@@ -8,8 +8,9 @@
  */
 
 import { useState, useEffect } from 'react'
-import { Card, Button, Spin, Typography, Image } from 'antd'
-import { ReloadOutlined } from '@ant-design/icons'
+import { Card, Button, Spin, Typography, Image, Tooltip } from 'antd'
+import { ReloadOutlined, QuestionCircleOutlined } from '@ant-design/icons'
+import { useHandbook } from '../../../../contexts/HandbookContext'
 
 const { Text } = Typography
 
@@ -22,6 +23,7 @@ interface ScreenshotData {
 }
 
 export default function KomtraxChart() {
+  const { openHandbook } = useHandbook()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -71,9 +73,17 @@ export default function KomtraxChart() {
   const cardTitle = (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
       <span>Komtrax（車両稼働時間）</span>
-      <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-        更新
-      </Button>
+      <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Tooltip title="データハンドブック">
+          <QuestionCircleOutlined
+            onClick={() => openHandbook('komatrax')}
+            style={{ cursor: 'pointer', fontSize: 15, color: 'rgba(255,255,255,0.45)' }}
+          />
+        </Tooltip>
+        <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+          更新
+        </Button>
+      </div>
     </div>
   )
 

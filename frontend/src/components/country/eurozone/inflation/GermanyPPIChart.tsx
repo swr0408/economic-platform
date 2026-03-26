@@ -157,7 +157,7 @@ export default function GermanyPPIChart({ data }: GermanyPPIChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="PPI（ドイツ）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="PPI（ドイツ）" showPeriodSelector={false} showDataSource={false} handbookId="germany-ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -168,6 +168,7 @@ export default function GermanyPPIChart({ data }: GermanyPPIChartProps) {
       <ChartContainer
         title="PPI（ドイツ）"
         showPeriodSelector={false}
+        handbookId="germany-ppi"
         dataSource="Destatis"
         sourceUrl="https://www.destatis.de/SiteGlobals/Forms/Suche/Presse/DE/Pressesuche_Formular_2.html?resourceId=245598&input_=250572&pageLocale=de&templateQueryString=Erzeugerpreise+&submit.x=0&submit.y=0"
       >

@@ -99,6 +99,7 @@ export default function ChinaShanghaiContainerFreightIndexChart({ data }: Props)
         showPeriodSelector={false}
         dataSource="Shanghai Shipping Exchange (SSE)"
         sourceUrl="https://en.sse.net.cn/indices/scfinew.jsp"
+        handbookId="container-freight-index"
       >
         {/* 最新値ボックス */}
         <div style={{ ...LATEST_VALUE_BOX_STYLE, justifyContent: 'space-between', alignItems: 'center' }}>

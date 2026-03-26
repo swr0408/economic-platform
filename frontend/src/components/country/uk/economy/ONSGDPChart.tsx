@@ -312,6 +312,7 @@ export default function ONSGDPChart({ data }: ONSGDPChartProps) {
         showPeriodSelector={false}
         dataSource="Office for National Statistics (ONS)"
         sourceUrl="https://www.ons.gov.uk/economy/grossdomesticproductgdp"
+        handbookId="gdp"
       >
         {/* 最新値表示（ダークテーマ） */}
         {latestValue && (

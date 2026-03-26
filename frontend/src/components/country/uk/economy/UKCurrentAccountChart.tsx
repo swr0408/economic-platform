@@ -144,6 +144,7 @@ export default function UKCurrentAccountChart({ data }: UKCurrentAccountChartPro
         showPeriodSelector={false}
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/timeseries/hbop/pnbp"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

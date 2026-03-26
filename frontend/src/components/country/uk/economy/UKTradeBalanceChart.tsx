@@ -142,6 +142,7 @@ export default function UKTradeBalanceChart({ data }: UKTradeBalanceChartProps) 
         showPeriodSelector={false}
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/economy/nationalaccounts/balanceofpayments/timeseries/ikbj/mret"
+        handbookId="trade-balance"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

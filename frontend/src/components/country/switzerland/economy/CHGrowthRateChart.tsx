@@ -310,6 +310,7 @@ export default function CHGrowthRateChart({ data }: CHGrowthRateChartProps) {
         showPeriodSelector={false}
         dataSource="SECO (State Secretariat for Economic Affairs)"
         sourceUrl="https://www.seco.admin.ch/seco/de/home/wirtschaftslage---wirtschaftspolitik/Wirtschaftslage/bip-quartalsschaetzungen-.html"
+        handbookId="gdp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

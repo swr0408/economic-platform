@@ -199,6 +199,7 @@ const BOJPotentialGrowthChart: React.FC = () => {
         showPeriodSelector={false}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/research/research_data/gap/index.htm"
+        handbookId="potential-growth"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

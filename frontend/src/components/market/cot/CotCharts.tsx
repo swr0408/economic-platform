@@ -103,7 +103,7 @@ export default function CotCharts() {
         <CftcPositioningChart asset="brent" assetLabel="ブレント原油" reportType="disagg" compareId="cftc_brent" />
       </div>
       <div id="cot-natural-gas">
-        <CftcPositioningChart asset="natural_gas" assetLabel="天然ガス" reportType="disagg" compareId="cftc_natural_gas" />
+        <CftcPositioningChart asset="natural_gas" assetLabel="天然ガス" reportType="disagg" compareId="cftc_natural_gas" handbookId="cot-natural-gas" />
       </div>
     </>
   )

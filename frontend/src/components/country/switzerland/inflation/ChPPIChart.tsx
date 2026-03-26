@@ -137,7 +137,7 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="PPI（スイス）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="PPI（スイス）" showPeriodSelector={false} showDataSource={false} handbookId="ch-ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -150,6 +150,7 @@ export default function ChPPIChart({ data }: ChPPIChartProps) {
         showPeriodSelector={false}
         dataSource="Swiss Federal Statistical Office (BFS)"
         sourceUrl="https://www.bfs.admin.ch/bfs/en/home/statistics/prices/producer-prices-import-prices.html"
+        handbookId="ch-ppi"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

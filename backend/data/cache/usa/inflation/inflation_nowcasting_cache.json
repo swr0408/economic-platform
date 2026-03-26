@@ -2,20 +2,20 @@
   "monthly_mom": [
     {
       "date": "March 2026",
-      "cpi": 0.62,
+      "cpi": 0.76,
       "core_cpi": 0.2,
-      "pce": 0.47,
+      "pce": 0.55,
       "core_pce": 0.23
     }
   ],
   "monthly_yoy": [
     {
       "date": "March 2026",
-      "cpi": 3.02,
+      "cpi": 3.16,
       "core_cpi": 2.6,
-      "pce": 3.14,
+      "pce": 3.23,
       "core_pce": 2.97
     }
   ],
-  "last_updated": "2026-03-23T00:03:43.070136+09:00"
+  "last_updated": "2026-03-26T00:03:42.383861+09:00"
 }

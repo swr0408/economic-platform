@@ -425,6 +425,7 @@ export default function CHIndustrialProductionChart({ data }: CHIndustrialProduc
         showPeriodSelector={false}
         dataSource="BFS (Federal Statistical Office)"
         sourceUrl="https://www.bfs.admin.ch/bfs/de/home/statistiken/industrie-dienstleistungen/produktion-auftraege-umsatz.html"
+        handbookId="industrial-production"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

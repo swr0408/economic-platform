@@ -196,7 +196,7 @@
       "index": 98.1,
       "trim": 2.2,
       "median": 2.2,
-      "common": 2.6
+      "common": 2.5
     },
     {
       "date": "2001-11-01",
@@ -295,7 +295,7 @@
       "index": 100.9,
       "trim": 2.1,
       "median": 2.2,
-      "common": 2.2
+      "common": 2.1
     },
     {
       "date": "2002-10-01",
@@ -349,7 +349,7 @@
       "index": 103.1,
       "trim": 2.2,
       "median": 2.4,
-      "common": 2.2
+      "common": 2.1
     },
     {
       "date": "2003-04-01",
@@ -547,7 +547,7 @@
       "index": 105.3,
       "trim": 1.7,
       "median": 1.8,
-      "common": 2.0
+      "common": 1.9
     },
     {
       "date": "2005-02-01",
@@ -1195,7 +1195,7 @@
       "index": 117.8,
       "trim": 1.3,
       "median": 1.6,
-      "common": 1.3
+      "common": 1.2
     },
     {
       "date": "2011-02-01",
@@ -1312,7 +1312,7 @@
       "index": 121.2,
       "trim": 2.2,
       "median": 2.1,
-      "common": 2.2
+      "common": 2.1
     },
     {
       "date": "2012-03-01",
@@ -1762,7 +1762,7 @@
       "index": 128.3,
       "trim": 1.9,
       "median": 2.1,
-      "common": 2.1
+      "common": 2.0
     },
     {
       "date": "2016-05-01",
@@ -2212,7 +2212,7 @@
       "index": 137.2,
       "trim": 1.7,
       "median": 1.8,
-      "common": 1.5
+      "common": 1.6
     },
     {
       "date": "2020-07-01",
@@ -2329,7 +2329,7 @@
       "index": 142.3,
       "trim": 3.2,
       "median": 2.9,
-      "common": 2.7
+      "common": 2.6
     },
     {
       "date": "2021-08-01",
@@ -2338,7 +2338,7 @@
       "index": 142.6,
       "trim": 3.4,
       "median": 3.0,
-      "common": 2.9
+      "common": 2.8
     },
     {
       "date": "2021-09-01",
@@ -2401,7 +2401,7 @@
       "index": 148.9,
       "trim": 5.0,
       "median": 4.4,
-      "common": 4.5
+      "common": 4.4
     },
     {
       "date": "2022-04-01",
@@ -2410,7 +2410,7 @@
       "index": 149.8,
       "trim": 5.3,
       "median": 4.9,
-      "common": 4.9
+      "common": 4.8
     },
     {
       "date": "2022-05-01",
@@ -2455,7 +2455,7 @@
       "index": 152.7,
       "trim": 5.5,
       "median": 5.2,
-      "common": 5.9
+      "common": 5.8
     },
     {
       "date": "2022-10-01",
@@ -2491,7 +2491,7 @@
       "index": 153.9,
       "trim": 5.0,
       "median": 4.9,
-      "common": 6.1
+      "common": 6.0
     },
     {
       "date": "2023-02-01",
@@ -2517,7 +2517,7 @@
       "mom": 0.71,
       "index": 156.4,
       "trim": 4.1,
-      "median": 4.1,
+      "median": 4.2,
       "common": 5.5
     },
     {
@@ -2580,7 +2580,7 @@
       "mom": 0.13,
       "index": 158.8,
       "trim": 3.5,
-      "median": 3.6,
+      "median": 3.7,
       "common": 3.8
     },
     {
@@ -2625,7 +2625,7 @@
       "mom": 0.5,
       "index": 160.6,
       "trim": 2.9,
-      "median": 3.1,
+      "median": 3.0,
       "common": 2.5
     },
     {
@@ -2633,7 +2633,7 @@
       "yoy": 2.87,
       "mom": 0.56,
       "index": 161.5,
-      "trim": 3.0,
+      "trim": 3.1,
       "median": 3.2,
       "common": 2.4
     },
@@ -2652,7 +2652,7 @@
       "mom": 0.43,
       "index": 162.1,
       "trim": 2.8,
-      "median": 2.7,
+      "median": 2.8,
       "common": 2.2
     },
     {
@@ -2669,7 +2669,7 @@
       "yoy": 1.64,
       "mom": -0.43,
       "index": 161.1,
-      "trim": 2.5,
+      "trim": 2.6,
       "median": 2.5,
       "common": 2.1
     },
@@ -2678,7 +2678,7 @@
       "yoy": 2.02,
       "mom": 0.43,
       "index": 161.8,
-      "trim": 2.7,
+      "trim": 2.8,
       "median": 2.7,
       "common": 2.2
     },
@@ -2688,7 +2688,7 @@
       "mom": 0.0,
       "index": 161.8,
       "trim": 2.7,
-      "median": 2.7,
+      "median": 2.6,
       "common": 2.0
     },
     {
@@ -2697,7 +2697,7 @@
       "mom": -0.37,
       "index": 161.2,
       "trim": 2.5,
-      "median": 2.5,
+      "median": 2.4,
       "common": 2.0
     },
     {
@@ -2706,7 +2706,7 @@
       "mom": 0.06,
       "index": 161.3,
       "trim": 2.8,
-      "median": 2.6,
+      "median": 2.5,
       "common": 2.2
     },
     {
@@ -2714,8 +2714,8 @@
       "yoy": 2.64,
       "mom": 1.05,
       "index": 163.0,
-      "trim": 3.0,
-      "median": 2.8,
+      "trim": 2.9,
+      "median": 2.7,
       "common": 2.5
     },
     {
@@ -2724,7 +2724,7 @@
       "mom": 0.31,
       "index": 163.5,
       "trim": 2.9,
-      "median": 2.8,
+      "median": 2.7,
       "common": 2.4
     },
     {
@@ -2732,7 +2732,7 @@
       "yoy": 1.74,
       "mom": -0.06,
       "index": 163.4,
-      "trim": 3.2,
+      "trim": 3.1,
       "median": 3.1,
       "common": 2.5
     },
@@ -2742,7 +2742,7 @@
       "mom": 0.55,
       "index": 164.3,
       "trim": 3.0,
-      "median": 3.0,
+      "median": 2.9,
       "common": 2.6
     },
     {
@@ -2750,8 +2750,8 @@
       "yoy": 1.86,
       "mom": 0.06,
       "index": 164.4,
-      "trim": 3.0,
-      "median": 3.0,
+      "trim": 3.1,
+      "median": 2.9,
       "common": 2.6
     },
     {
@@ -2769,7 +2769,7 @@
       "mom": -0.06,
       "index": 164.8,
       "trim": 3.0,
-      "median": 3.1,
+      "median": 3.0,
       "common": 2.6
     },
     {
@@ -2787,7 +2787,7 @@
       "mom": 0.24,
       "index": 165.3,
       "trim": 3.0,
-      "median": 3.0,
+      "median": 2.9,
       "common": 2.7
     },
     {
@@ -2805,18 +2805,36 @@
       "mom": -0.24,
       "index": 165.0,
       "trim": 2.7,
-      "median": 2.5,
+      "median": 2.6,
       "common": 2.8
+    },
+    {
+      "date": "2026-01-01",
+      "yoy": 2.29,
+      "mom": 0.0,
+      "index": 165.0,
+      "trim": 2.4,
+      "median": 2.5,
+      "common": 2.7
+    },
+    {
+      "date": "2026-02-01",
+      "yoy": 1.78,
+      "mom": 0.55,
+      "index": 165.9,
+      "trim": 2.3,
+      "median": 2.3,
+      "common": 2.4
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "yoy": 2.36,
-    "mom": -0.24,
-    "index": 165.0,
-    "trim": 2.7,
-    "median": 2.5,
-    "common": 2.8
+    "date": "2026-02-01",
+    "yoy": 1.78,
+    "mom": 0.55,
+    "index": 165.9,
+    "trim": 2.3,
+    "median": 2.3,
+    "common": 2.4
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2831,14 +2849,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-02-16",
-    "datetime_utc": "2026-02-16T13:30:00+00:00",
-    "datetime_jst": "2026-02-16T22:30:00+09:00",
-    "time_jst": "22:30",
-    "datetime_toronto": "2026-02-16T08:30:00-05:00",
+    "date": "2026-04-15",
+    "datetime_utc": "2026-04-15T12:30:00+00:00",
+    "datetime_jst": "2026-04-15T21:30:00+09:00",
+    "time_jst": "21:30",
+    "datetime_toronto": "2026-04-15T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "CPI (Jan)",
+    "label": "CPI (Mar)",
     "estimate": null
   },
-  "last_updated": "2026-02-13T09:34:53.238092+09:00"
+  "last_updated": "2026-03-27T00:30:09.651843+09:00"
 }

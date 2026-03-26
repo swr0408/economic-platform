@@ -115,6 +115,7 @@ export default function NzCurrentAccountGdpRatioChart({ data }: NzCurrentAccount
         showDataSource={true}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/topics/balance-of-payments"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <LatestValueBox

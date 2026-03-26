@@ -87,6 +87,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['タームプレミアム', 'NY Fed', '長期金利', '実質金利', 'QT', '国債', '需給', '財政'],
   },
 
+  // --- USA / 期待政策金利 ---
+  {
+    indicatorId: 'expected-policy-rate',
+    title: '期待政策金利',
+    country: 'usa',
+    category: 'policy',
+    summary: '市場が織り込む先行きの政策金利パス。GDPギャップとインフレ見通しを組み合わせ、中央銀行の反応関数に対する市場の解釈として読む。',
+    loadContent: loadMd('usa/expected-policy-rate.md'),
+    relatedIndicators: ['term-premium', 'policy-rate', 'neutral-rate', 'potential-growth', 'gdp-growth'],
+    tags: ['期待政策金利', 'OIS', '短期金利先物', 'GDPギャップ', '反応関数', '中立金利', '自然利子率', 'テイラールール'],
+  },
+
   // --- USA / 経済 ---
   {
     indicatorId: 'gdp-growth',
@@ -143,6 +155,17 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['CPI', 'インフレ', 'BLS', '物価'],
   },
 
+  {
+    indicatorId: 'ppi',
+    title: 'PPI（生産者物価指数）',
+    country: 'usa',
+    category: 'inflation',
+    summary: 'BLSが公表する生産者販売価格の体系。財＋サービス＋建設を含む広範なカバレッジで、CPIの約1ヶ月先行指標として機能。',
+    loadContent: loadMd('usa/ppi.md'),
+    relatedIndicators: ['cpi', 'pce-deflator', 'ism-manufacturing'],
+    tags: ['PPI', '生産者物価', 'BLS', 'インフレ', 'FD-ID', 'サービス'],
+  },
+
   // --- Japan / 金融政策 ---
   {
     indicatorId: 'boj-policy-rate-chart',
@@ -177,6 +200,17 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/national-cpi.md'),
     relatedIndicators: ['tokyo-cpi', 'sppi', 'cgpi'],
     tags: ['CPI', '物価', '総務省', 'インフレ'],
+  },
+
+  {
+    indicatorId: 'cgpi',
+    title: '企業物価指数（CGPI）',
+    country: 'japan',
+    category: 'inflation',
+    summary: '日本銀行が発表する企業間取引財の物価指数。米国PPIの財部分に相当し、CPI に約7ヶ月先行する。',
+    loadContent: loadMd('japan/cgpi.md'),
+    relatedIndicators: ['national-cpi', 'sppi', 'ppi'],
+    tags: ['CGPI', '企業物価', '日本銀行', '物価', 'インフレ'],
   },
 
   // --- グローバル / 経済 ---
@@ -509,6 +543,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['銀', 'シルバー', 'Silver', '工業金属', '貴金属', '太陽光', 'PV', 'ETF', '需給赤字'],
   },
 
+  // --- マーケット / 銅 ---
+  {
+    indicatorId: 'cot-copper',
+    title: '銅（カッパー）',
+    country: 'market',
+    category: 'commodities',
+    summary: '景気の体温計。中国需要58%。景気循環だけでなく電力網投資・EV・供給制約も価格形成に影響。',
+    loadContent: loadMd('market/copper.md'),
+    relatedIndicators: ['copper-to-gold-ratio', 'cot-gold', 'cot-silver', 'cftc-positioning'],
+    tags: ['銅', 'カッパー', 'Copper', '工業金属', '中国', '景気', 'EV', '電力網', 'LME', 'COMEX', 'SHFE'],
+  },
+
+  // --- マーケット / 銅金レシオ ---
+  {
+    indicatorId: 'copper-to-gold-ratio',
+    title: '銅金レシオ',
+    country: 'market',
+    category: 'commodities',
+    summary: '銅/金の比率。景気回復期待 vs 安全資産需要のバランスを映す温度計。単独判断は不可。',
+    loadContent: loadMd('market/copper-to-gold-ratio.md'),
+    relatedIndicators: ['cot-copper', 'cot-gold', 'global-manufacturing-pmi'],
+    tags: ['銅金レシオ', 'Copper Gold Ratio', '景気', 'リスクオン', 'リスクオフ', '金利', '中国'],
+  },
+
   // --- マーケット / 原油 ---
   {
     indicatorId: 'cot-crude-oil',
@@ -543,6 +601,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('market/shale-oil-rig-count.md'),
     relatedIndicators: ['cot-crude-oil', 'weekly-crude-oil-inventories'],
     tags: ['シェール', 'リグ', 'Baker Hughes', 'EIA', '生産量', '完了井戸'],
+  },
+
+  // --- マーケット / 天然ガス ---
+  {
+    indicatorId: 'cot-natural-gas',
+    title: '天然ガス',
+    country: 'market',
+    category: 'energy',
+    summary: '季節性とインフラ制約の強い地域型エネルギー。天候・在庫・LNG設備・地域間価格差が価格の中心。',
+    loadContent: loadMd('market/natural-gas.md'),
+    relatedIndicators: ['cot-crude-oil', 'shale-oil-rig-count'],
+    tags: ['天然ガス', 'Natural Gas', 'LNG', 'Henry Hub', 'TTF', 'JKM', '在庫', '暖房', 'EIA', 'メタン'],
+  },
+
+  // --- マーケット / S&P GSCI ---
+  {
+    indicatorId: 'sp-gsci',
+    title: 'S&P GSCI',
+    country: 'market',
+    category: 'commodities',
+    summary: 'エネルギー比重が大きい総合商品指数。エネルギー主導のインフレ圧力や商品市況の変化を広く把握する際の参考指標。',
+    loadContent: loadMd('market/sp-gsci.md'),
+    relatedIndicators: ['cot-crude-oil', 'cot-natural-gas', 'cot-copper'],
+    tags: ['GSCI', 'S&P', '商品指数', 'エネルギー', 'コモディティ', '原油', 'インフレ'],
+  },
+
+  // --- マーケット / MSCI中国 ---
+  {
+    indicatorId: 'msci-china',
+    title: 'MSCI中国株価指数',
+    country: 'market',
+    category: 'equities',
+    summary: '中国関連株式の値動きを把握する指数。中国景気・政策期待・不動産・信用環境を幅広く反映。',
+    loadContent: loadMd('market/msci-china.md'),
+    relatedIndicators: ['cot-copper', 'copper-to-gold-ratio'],
+    tags: ['MSCI', '中国', 'China', '中国株', '不動産', 'PMI', '新興国'],
+  },
+
+  // --- グローバル / バルチック海運指数 ---
+  {
+    indicatorId: 'baltic-dry-index',
+    title: 'バルチック海運指数（BDI）',
+    country: 'global',
+    category: 'economy',
+    summary: '乾貨物海上輸送のスポット運賃指数。原材料輸送需要を通じて世界景気や貿易活動の温度感を映す補助指標。',
+    loadContent: loadMd('global/baltic-dry-index.md'),
+    relatedIndicators: ['global-manufacturing-pmi', 'cot-copper'],
+    tags: ['BDI', 'バルチック', '海運', 'ドライバルク', '鉄鉱石', '中国', 'PPI', '景気先行'],
   },
 
   // --- マーケット / フロー ---
@@ -692,6 +798,450 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     relatedIndicators: ['jpx-investor-trading', 'nt-magnification', 'nikkei-225', 'topix'],
     tags: ['騰落レシオ', '市場breadth', '過熱感', '東証プライム', '日本株'],
   },
+
+  // --- マーケット / 相関関係 ---
+  {
+    indicatorId: 'correlation-guide',
+    title: '相関関係',
+    country: 'market',
+    category: 'correlation',
+    summary: 'ドル・ユーロ・金、株価と為替、資源国通貨と商品、金利と株式・債券など、主要資産間の相関関係の実務的な整理。',
+    loadContent: loadMd('market/correlation-guide.md'),
+    relatedIndicators: ['copper-to-gold-ratio', 'sp-gsci', 'growth-value-ratio', 'flow-knowledge'],
+    tags: ['相関', '逆相関', 'ドル', 'ユーロ', '金', '株式', '債券', '豪ドル', '加ドル', '資源国', '中国', 'リスクオフ'],
+  },
+
+  // --- マーケット / 景気サイクル ---
+  {
+    indicatorId: 'business-cycle',
+    title: '景気サイクル',
+    country: 'market',
+    category: 'economy',
+    summary: '回復→拡大→後期→後退の各局面で優位になりやすい資産・セクターの整理。イールドカーブとLEIの実務的な使い方。',
+    loadContent: loadMd('market/business-cycle.md'),
+    relatedIndicators: ['sector-cycle', 'sector-ratio', 'correlation-guide', 'growth-value-ratio'],
+    tags: ['景気サイクル', '景気循環', 'LEI', 'イールドカーブ', '逆イールド', 'ディフェンシブ', '景気敏感', '債券', 'セクターローテーション'],
+  },
+
+  // --- マーケット / 経済サイクルと主要資産 ---
+  {
+    indicatorId: 'economic-cycle-assets',
+    title: '経済サイクルと主要資産の関係',
+    country: 'market',
+    category: 'economy',
+    summary: '景気拡大・後退・インフレ・デフレの各局面で株式・債券・商品がどう動きやすいかの整理。ドルと商品、株債券の相関変化も解説。',
+    loadContent: loadMd('market/economic-cycle-assets.md'),
+    relatedIndicators: ['business-cycle', 'correlation-guide', 'sector-cycle', 'sp-gsci'],
+    tags: ['経済サイクル', '株式', '債券', '商品', 'インフレ', 'ディスインフレ', 'デフレ', 'ドル', '信用スプレッド', 'イールドカーブ'],
+  },
+
+  // --- マーケット / 相場サイクル ---
+  {
+    indicatorId: 'market-cycle',
+    title: '相場サイクル',
+    country: 'market',
+    category: 'economy',
+    summary: '金融相場→業績相場→逆金融相場→逆業績相場の4局面。金利・景気・業績・市場の織り込みから相場の現在地を判断する枠組み。',
+    loadContent: loadMd('market/market-cycle.md'),
+    relatedIndicators: ['business-cycle', 'economic-cycle-assets', 'correlation-guide', 'sector-cycle'],
+    tags: ['相場サイクル', '金融相場', '業績相場', '逆金融相場', '逆業績相場', '金利', '利下げ', '利上げ', '為替', 'PER'],
+  },
+
+  // --- マーケット / ファンダメンタルズ概要 ---
+  {
+    indicatorId: 'fundamentals-overview',
+    title: 'ファンダメンタルズ概要',
+    country: 'market',
+    category: 'economy',
+    summary: '金融政策と財政政策を軸にしたファンダメンタルズの見方。需要・供給インフレの区別、減税効果、政策レジーム、為替介入、原油減産の整理。',
+    loadContent: loadMd('market/fundamentals-overview.md'),
+    relatedIndicators: ['market-cycle', 'business-cycle', 'economic-cycle-assets', 'correlation-guide'],
+    tags: ['ファンダメンタルズ', '金融政策', '財政政策', '減税', 'インフレ', '為替介入', 'OPEC', '減産', '政策レジーム', '中央銀行'],
+  },
+
+  // --- グローバル / Komtrax ---
+  {
+    indicatorId: 'komatrax',
+    title: 'Komtrax（車両稼働時間）',
+    country: 'global',
+    category: 'economy',
+    summary: 'コマツ建機の地域別月次稼働時間。建設活動・インフラ投資・資源需要の現場感を把握する先行的な補助指標。',
+    loadContent: loadMd('global/komtrax.md'),
+    relatedIndicators: ['global-manufacturing-pmi', 'baltic-dry-index'],
+    tags: ['Komtrax', 'コマツ', '建設機械', '稼働時間', '建設投資', 'インフラ', '景気先行'],
+  },
+
+  // --- グローバル / OECD CLI ---
+  {
+    indicatorId: 'oecd-cli',
+    title: 'OECD景気先行指数（CLI）',
+    country: 'global',
+    category: 'economy',
+    summary: '景気循環の転換点を6～9か月先取りすることを目標とした先行指標。水準より方向と転換点を重視して読む。',
+    loadContent: loadMd('global/oecd-cli.md'),
+    relatedIndicators: ['global-manufacturing-pmi', 'baltic-dry-index', 'komatrax'],
+    tags: ['OECD', 'CLI', '景気先行指数', 'G20', 'G7', '転換点', '景気循環'],
+  },
+
+  // --- グローバル / コンテナ運賃指数 ---
+  {
+    indicatorId: 'container-freight-index',
+    title: 'コンテナ運賃指数',
+    country: 'global',
+    category: 'economy',
+    summary: '海上コンテナ輸送のスポット運賃指数。世界貿易・物流逼迫度・航路障害・環境規制の影響を映す補助指標。',
+    loadContent: loadMd('global/container-freight-index.md'),
+    relatedIndicators: ['baltic-dry-index', 'oecd-cli', 'global-manufacturing-pmi'],
+    tags: ['SCFI', 'コンテナ', '運賃', '海運', '物流', '紅海', 'スエズ', 'パナマ', '環境規制', 'IMO'],
+  },
+
+  // --- グローバル / 台湾製造業PMI ---
+  {
+    indicatorId: 'taiwan-manufacturing-pmi',
+    title: '台湾製造業PMI',
+    country: 'global',
+    category: 'economy',
+    summary: '電子部品・半導体比重の大きい台湾製造業の景況感指数。世界の半導体・AIハードウェア・アジア輸出製造業サイクルを読む補助指標。',
+    loadContent: loadMd('global/taiwan-manufacturing-pmi.md'),
+    relatedIndicators: ['taiwan-export-orders', 'korea-exports', 'global-manufacturing-pmi'],
+    tags: ['台湾', 'PMI', '製造業', '半導体', '電子部品', 'TSMC', 'AI'],
+  },
+
+  // --- グローバル / 台湾輸出受注 ---
+  {
+    indicatorId: 'taiwan-export-orders',
+    title: '台湾輸出受注',
+    country: 'global',
+    category: 'economy',
+    summary: '台湾経済部が月次公表する輸出受注統計。将来需要の先行的な手掛かりとして有用だが、海外生産分を含む点に注意。',
+    loadContent: loadMd('global/taiwan-export-orders.md'),
+    relatedIndicators: ['taiwan-manufacturing-pmi', 'korea-exports', 'global-manufacturing-pmi'],
+    tags: ['台湾', '輸出受注', '半導体', '電子部品', '先行指標', 'MOEA'],
+  },
+
+  // --- グローバル / 韓国輸出 ---
+  {
+    indicatorId: 'korea-exports',
+    title: '韓国輸出',
+    country: 'global',
+    category: 'economy',
+    summary: '韓国税関の月次輸出統計。半導体・ICT中心で世界の電子需要やアジア製造業の地合いを早期に確認できる。',
+    loadContent: loadMd('global/korea-exports.md'),
+    relatedIndicators: ['taiwan-manufacturing-pmi', 'taiwan-export-orders', 'global-manufacturing-pmi'],
+    tags: ['韓国', '輸出', '半導体', 'ICT', 'ディスプレー', 'アジア', '貿易'],
+  },
+
+  // --- マーケット / MMF ---
+  {
+    indicatorId: 'mmf',
+    title: 'MMF（マネー・マーケット・ファンド）',
+    country: 'market',
+    category: 'flow',
+    summary: '短期高流動性資産で運用される投資信託。残高の増減はリスク回避だけでなく金利環境・流動性需要も反映する。',
+    loadContent: loadMd('market/mmf.md'),
+    relatedIndicators: ['flow-knowledge', 'fundamentals-overview', 'correlation-guide'],
+    tags: ['MMF', 'マネーマーケット', '待機資金', 'リスク回避', '政府系', 'プライム', 'ON RRP', '流動性', '短期金利'],
+  },
+
+  // --- グローバル / 半導体売上高 ---
+  {
+    indicatorId: 'semiconductor-sales',
+    title: '半導体売上高（WSTS）',
+    country: 'global',
+    category: 'economy',
+    summary: 'TSMC月次売上・台湾PMI先行き・SOX前年比と世界半導体売上高の関係。半導体サイクルの先行・同時・遅行指標の使い分け。',
+    loadContent: loadMd('global/semiconductor-sales.md'),
+    relatedIndicators: ['tsmc-revenue', 'taiwan-pmi-outlook', 'sox-yoy', 'taiwan-manufacturing-pmi', 'taiwan-export-orders'],
+    tags: ['半導体', 'WSTS', 'TSMC', 'SOX', 'PMI', '台湾', '半導体サイクル', 'AI'],
+  },
+
+  // --- マーケット / TSMC売上高 ---
+  {
+    indicatorId: 'tsmc-revenue',
+    title: 'TSMC月次売上高',
+    country: 'market',
+    category: 'equities',
+    summary: 'TSMCの月次売上は半導体サイクルの同時確認～やや遅行する指標。先端ロジック・AI関連の影響が強い。',
+    loadContent: loadMd('market/tsmc-revenue.md'),
+    relatedIndicators: ['semiconductor-sales', 'taiwan-pmi-outlook', 'sox-yoy'],
+    tags: ['TSMC', '売上高', '半導体', 'ファウンドリー', '台湾', 'AI', '先端ロジック'],
+  },
+
+  // --- グローバル / 台湾PMI先行き ---
+  {
+    indicatorId: 'taiwan-pmi-outlook',
+    title: '台湾PMI先行き（電子工学業）',
+    country: 'global',
+    category: 'economy',
+    summary: '半導体・電子部品の受注見通しを比較的早く反映。世界半導体売上高に1～4か月先行しやすい先行確認指標。',
+    loadContent: loadMd('global/taiwan-pmi-outlook.md'),
+    relatedIndicators: ['semiconductor-sales', 'tsmc-revenue', 'sox-yoy'],
+    tags: ['台湾', 'PMI', '電子工学', '半導体', '先行指標', 'CIER'],
+  },
+
+  // --- マーケット / SOX前年比 ---
+  {
+    indicatorId: 'sox-yoy',
+    title: 'SOX前年比と世界半導体売上高',
+    country: 'market',
+    category: 'equities',
+    summary: 'SOX指数前年比は世界半導体売上高に2～4か月先行しやすい。市場が半導体サイクルの回復を先読みしているかを確認する指標。',
+    loadContent: loadMd('market/sox-yoy.md'),
+    relatedIndicators: ['semiconductor-sales', 'tsmc-revenue', 'taiwan-pmi-outlook'],
+    tags: ['SOX', '半導体', 'フィラデルフィア', '前年比', '先行指標', '株価指数'],
+  },
+
+  // --- マーケット / GDP ---
+  {
+    indicatorId: 'gdp',
+    title: 'GDP（国内総生産）',
+    country: 'market',
+    category: 'economy',
+    summary: '一定期間内に国内で生産された付加価値総額。実質GDPで景気の実勢を、内訳で成長の質と持続性を判断する基本指標。',
+    loadContent: loadMd('market/gdp.md'),
+    relatedIndicators: ['gdp-growth', 'quarterly-gdp', 'ism-manufacturing'],
+    tags: ['GDP', '国内総生産', '実質GDP', '名目GDP', 'GDPデフレーター', '景気後退', 'NBER', '個人消費', '設備投資'],
+  },
+
+  // --- マーケット / 鉱工業生産 ---
+  {
+    indicatorId: 'industrial-production',
+    title: '鉱工業生産',
+    country: 'market',
+    category: 'economy',
+    summary: '製造業・鉱業・公益の生産動向を指数化した一致系指標。景気の現状把握や転換点の確認に広く用いられる。',
+    loadContent: loadMd('market/industrial-production.md'),
+    relatedIndicators: ['gdp', 'ism-manufacturing'],
+    tags: ['鉱工業生産', 'Industrial Production', '製造業', '設備稼働率', '一致指標', '景気循環', 'FRB'],
+  },
+
+  // --- USA / 設備稼働率 ---
+  {
+    indicatorId: 'capacity-utilization',
+    title: '設備稼働率',
+    country: 'usa',
+    category: 'economy',
+    summary: '工業部門の生産能力に対する実際の生産比率。需給逼迫度、設備投資の先行き、インフレ圧力の強弱を確認する補助指標。',
+    loadContent: loadMd('usa/capacity-utilization.md'),
+    relatedIndicators: ['industrial-production', 'ism-manufacturing', 'gdp'],
+    tags: ['設備稼働率', 'Capacity Utilization', 'FRB', '製造業', '鉱業', '供給制約', 'インフレ圧力', '設備投資'],
+  },
+
+  // --- マーケット / 中立金利 ---
+  {
+    indicatorId: 'neutral-rate',
+    title: '中立金利',
+    country: 'market',
+    category: 'economy',
+    summary: '景気を過熱させも冷やしもしない金利水準。自然利子率＋期待インフレ率で捉え、金融政策の緩和・引き締め度合いを判断する目安。',
+    loadContent: loadMd('market/neutral-rate.md'),
+    relatedIndicators: ['policy-rate', 'boj-policy-rate-chart', 'term-premium'],
+    tags: ['中立金利', '自然利子率', 'r*', '金融政策', '日銀', 'ECB', 'FRB', '期待インフレ'],
+  },
+
+  // --- マーケット / 経常収支 ---
+  {
+    indicatorId: 'current-account',
+    title: '経常収支と財政収支',
+    country: 'market',
+    category: 'economy',
+    summary: '経常収支は海外との財・サービス・所得のやり取りを集約した指標。財政収支との関係（双子の赤字）や為替・金利への影響を確認する。',
+    loadContent: loadMd('market/current-account.md'),
+    relatedIndicators: ['gdp', 'trade-balance'],
+    tags: ['経常収支', 'Current Account', '財政収支', '双子の赤字', 'Twin Deficits', '貿易収支', '所得収支', 'GDP比'],
+  },
+
+  // --- マーケット / 潜在成長率 ---
+  {
+    indicatorId: 'potential-growth',
+    title: '潜在成長率',
+    country: 'market',
+    category: 'economy',
+    summary: '労働・資本・TFPに基づく中長期的な供給力の趨勢的成長率。金利耐性や金融引き締めの効き具合を考える土台となる指標。',
+    loadContent: loadMd('market/potential-growth.md'),
+    relatedIndicators: ['gdp', 'neutral-rate', 'capacity-utilization', 'ism-manufacturing'],
+    tags: ['潜在成長率', 'Potential Growth', 'TFP', '全要素生産性', '自然利子率', '供給力', 'CBO', '内閣府', '日銀'],
+  },
+
+  // --- マーケット / 貿易収支 ---
+  {
+    indicatorId: 'trade-balance',
+    title: '貿易収支',
+    country: 'market',
+    category: 'economy',
+    summary: '通貨の実需や中長期の外貨需給をみるための基本指標。輸出入の内訳・背景と経常収支全体の構造を合わせて読む。',
+    loadContent: loadMd('market/trade-balance.md'),
+    relatedIndicators: ['current-account', 'gdp'],
+    tags: ['貿易収支', 'Trade Balance', '輸出', '輸入', '経常収支', '為替', '交易条件', '資源価格'],
+  },
+
+  // --- マーケット / 中銀バランスシート ---
+  {
+    indicatorId: 'central-bank-balance-sheet',
+    title: '中銀バランスシート',
+    country: 'market',
+    category: 'policy',
+    summary: '中央銀行の総資産の増減で金融緩和・引き締めの規模感を把握する基本指標。QE/QTの進捗や流動性供給量を確認する。',
+    loadContent: loadMd('market/central-bank-balance-sheet.md'),
+    relatedIndicators: ['policy-rate', 'neutral-rate', 'fundamentals-overview'],
+    tags: ['中銀バランスシート', 'Central Bank Balance Sheet', 'QE', 'QT', '量的緩和', '量的引締め', '総資産', 'FRB', 'ECB', 'BOJ', 'SNB'],
+  },
+
+  // --- マーケット / 銀行バランスシート ---
+  {
+    indicatorId: 'bank-balance-sheet',
+    title: '銀行バランスシート',
+    country: 'market',
+    category: 'policy',
+    summary: '商業銀行の総資産の推移で民間の信用供給量とリスクテイク姿勢を把握する指標。景気・不動産・企業部門への波及を確認する。',
+    loadContent: loadMd('market/bank-balance-sheet.md'),
+    relatedIndicators: ['central-bank-balance-sheet', 'policy-rate'],
+    tags: ['銀行バランスシート', 'Bank Balance Sheet', '商業銀行', '信用供給', '貸出', '総資産', '民間信用'],
+  },
+
+  // --- マーケット / マネタリーベース ---
+  {
+    indicatorId: 'monetary-base',
+    title: 'マネタリーベース',
+    country: 'market',
+    category: 'policy',
+    summary: '中央銀行が直接供給する通貨の総量。金融緩和・引き締めの規模感と流動性供給の状況を把握する基本指標。',
+    loadContent: loadMd('market/monetary-base.md'),
+    relatedIndicators: ['central-bank-balance-sheet', 'policy-rate', 'neutral-rate'],
+    tags: ['マネタリーベース', 'Monetary Base', '日銀当座預金', '日本銀行券', '流動性', 'QE', 'QT', '公開市場操作', 'オペレーション'],
+  },
+
+  // --- マーケット / マネーストック ---
+  {
+    indicatorId: 'money-stock',
+    title: 'マネーストック（旧マネーサプライ）',
+    country: 'market',
+    category: 'policy',
+    summary: '金融部門から経済全体に供給されている通貨の総量。M1・M2・M3・広義流動性の定義差と各国の見方を整理。',
+    loadContent: loadMd('market/money-stock.md'),
+    relatedIndicators: ['monetary-base', 'central-bank-balance-sheet', 'ecb-m3', 'm1-m2'],
+    tags: ['マネーストック', 'マネーサプライ', 'Money Stock', 'M1', 'M2', 'M3', 'M4', '広義流動性', '信用', '貸出'],
+  },
+
+  // --- ユーロ圏 / PPI ---
+  {
+    indicatorId: 'ecb-ppi',
+    title: 'PPI（ユーロ圏・生産者物価指数）',
+    country: 'eurozone',
+    category: 'inflation',
+    summary: 'Eurostatが公表する工業生産者物価指数。工業製品の財価格が対象で、HICP に約5ヶ月先行する。',
+    loadContent: loadMd('eurozone/ecb-ppi.md'),
+    relatedIndicators: ['ppi', 'cgpi', 'ecb-m3'],
+    tags: ['PPI', 'ユーロ圏', 'Eurostat', '生産者物価', 'インフレ', '工業'],
+  },
+
+  // --- ユーロ圏 / ドイツPPI ---
+  {
+    indicatorId: 'germany-ppi',
+    title: 'PPI（ドイツ）',
+    country: 'eurozone',
+    category: 'inflation',
+    summary: 'Destatisが公表するドイツの工業生産者物価指数。ユーロ圏PPIより1〜2週間早く発表され、CPI に約5ヶ月先行する。',
+    loadContent: loadMd('eurozone/germany-ppi.md'),
+    relatedIndicators: ['ecb-ppi', 'ppi', 'cgpi'],
+    tags: ['PPI', 'ドイツ', 'Destatis', '生産者物価', 'インフレ', '工業'],
+  },
+
+  // --- 英国 / PPI ---
+  {
+    indicatorId: 'uk-ppi',
+    title: '生産者物価指数（PPI・英国）',
+    country: 'uk',
+    category: 'inflation',
+    summary: 'ONSが公表する製造業の出荷価格（Output）と投入価格（Input）。CPI に約4ヶ月先行し、PPI先行型の典型国。',
+    loadContent: loadMd('uk/uk-ppi.md'),
+    relatedIndicators: ['ecb-ppi', 'germany-ppi', 'ppi', 'cgpi'],
+    tags: ['PPI', '英国', 'ONS', '生産者物価', 'インフレ', 'Factory Gate'],
+  },
+
+  // --- カナダ / IPPI ---
+  {
+    indicatorId: 'ippi',
+    title: 'IPPI（カナダ・工業製品価格指数）',
+    country: 'canada',
+    category: 'inflation',
+    summary: 'Statistics Canadaが公表する製造業の産出価格指数。CPI に約7ヶ月先行し、半年先のインフレ圧力を読む補助指標。',
+    loadContent: loadMd('canada/ippi.md'),
+    relatedIndicators: ['ppi', 'cgpi', 'ecb-ppi', 'uk-ppi'],
+    tags: ['IPPI', 'RMPI', 'カナダ', 'Statistics Canada', '生産者物価', 'インフレ', '工業'],
+  },
+
+  // --- 中国 / PPI ---
+  {
+    indicatorId: 'cn-ppi',
+    title: 'PPI（中国・工業生産者物価指数）',
+    country: 'china',
+    category: 'inflation',
+    summary: 'NBSが公表する工業部門の産出・購入価格指数。CPIとの連動は弱く、工業部門の価格圧力を独立に評価する指標。',
+    loadContent: loadMd('china/cn-ppi.md'),
+    relatedIndicators: ['ecb-ppi', 'ppi', 'cgpi', 'uk-ppi'],
+    tags: ['PPI', '中国', 'NBS', '生産者物価', 'インフレ', '工業'],
+  },
+
+  // --- スイス / PPI ---
+  {
+    indicatorId: 'ch-ppi',
+    title: 'PPI（スイス・生産者輸入物価指数）',
+    country: 'switzerland',
+    category: 'inflation',
+    summary: 'FSOが公表する生産者価格＋輸入価格の統合指数。core2 CPIに約8ヶ月先行し、基調インフレの方向感を先読みする材料。',
+    loadContent: loadMd('switzerland/ch-ppi.md'),
+    relatedIndicators: ['ecb-ppi', 'ppi', 'cgpi', 'uk-ppi'],
+    tags: ['PPI', 'スイス', 'FSO', 'BFS', '生産者物価', '輸入物価', 'インフレ', 'CHF'],
+  },
+
+  // --- ニュージーランド / PPI ---
+  {
+    indicatorId: 'nz-ppi',
+    title: 'PPI（ニュージーランド・生産者物価指数）',
+    country: 'newzealand',
+    category: 'inflation',
+    summary: 'Stats NZが公表するOutput/Input型の四半期PPI。Output PPIの前年比がCPIに約1四半期先行し、インフレ基調の先行確認に有用。',
+    loadContent: loadMd('newzealand/nz-ppi.md'),
+    relatedIndicators: ['au-ppi', 'ppi', 'uk-ppi', 'cgpi'],
+    tags: ['PPI', 'ニュージーランド', 'Stats NZ', '生産者物価', 'インフレ', 'Output', 'Input', '四半期'],
+  },
+
+  // --- オーストラリア / PPI ---
+  {
+    indicatorId: 'au-ppi',
+    title: 'PPI（オーストラリア・生産者物価指数）',
+    country: 'australia',
+    category: 'inflation',
+    summary: 'ABSが公表する四半期ベースの生産者物価指数。財＋サービスの広いカバレッジを持ち、CPIとラグ0で同期的に動く。',
+    loadContent: loadMd('australia/au-ppi.md'),
+    relatedIndicators: ['ppi', 'cgpi', 'ecb-ppi', 'uk-ppi', 'cn-ppi'],
+    tags: ['PPI', 'オーストラリア', 'ABS', '生産者物価', 'インフレ', 'Final Demand', '四半期'],
+  },
+
+  // --- ユーロ圏 / ECB M3 ---
+  {
+    indicatorId: 'ecb-m3',
+    title: 'ユーロ圏M3マネーサプライ',
+    country: 'eurozone',
+    category: 'policy',
+    summary: 'ECBが重視する広義マネー指標。M3と民間向け貸出を並べて信用環境や政策波及の状況を確認する。',
+    loadContent: loadMd('eurozone/ecb-m3.md'),
+    relatedIndicators: ['money-stock', 'monetary-base', 'central-bank-balance-sheet'],
+    tags: ['M3', 'ECB', 'ユーロ圏', 'マネーサプライ', '信用', '貸出', 'Monetary developments'],
+  },
+
+  // --- 中国 / M1・M2 ---
+  {
+    indicatorId: 'm1-m2',
+    title: '中国M1・M2（貨幣供応量）',
+    country: 'china',
+    category: 'policy',
+    summary: 'M2で信用総量、M1で取引性・流動性の強弱を確認。2025年1月のM1定義改訂に注意。',
+    loadContent: loadMd('china/m1-m2.md'),
+    relatedIndicators: ['money-stock', 'monetary-base', 'central-bank-balance-sheet'],
+    tags: ['M1', 'M2', '中国', '貨幣供応量', 'PBOC', '人民銀行', '信用', '流動性', '統計改訂'],
+  },
 ]
 
 // --- ルックアップ用マップ ---
@@ -716,6 +1266,7 @@ export const HANDBOOK_CATEGORY_LABELS: Record<string, string> = {
   rebalance: 'リバランス',
   anomaly: 'アノマリー',
   options: 'オプション',
+  correlation: '相関関係',
 }
 
 export const HANDBOOK_COUNTRY_LABELS: Record<string, string> = {

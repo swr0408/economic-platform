@@ -129,7 +129,7 @@ export default function CnPpiChart({ data }: Props) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="PPI（生産者物価指数）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="PPI（生産者物価指数）" showPeriodSelector={false} showDataSource={false} handbookId="cn-ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -142,6 +142,7 @@ export default function CnPpiChart({ data }: Props) {
       <ChartContainer
         title="PPI（生産者物価指数）"
         showPeriodSelector={false}
+        handbookId="cn-ppi"
         showDataSource={true}
         dataSource="NBS"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/index.html"

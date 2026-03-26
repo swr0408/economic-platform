@@ -138,7 +138,7 @@ export default function NzPpiChart({ data }: NzPpiChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="PPI" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="PPI" showPeriodSelector={false} showDataSource={false} handbookId="nz-ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -153,6 +153,7 @@ export default function NzPpiChart({ data }: NzPpiChartProps) {
         showPeriodSelector={false}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/information-releases/business-price-indexes-december-2025-quarter/"
+        handbookId="nz-ppi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

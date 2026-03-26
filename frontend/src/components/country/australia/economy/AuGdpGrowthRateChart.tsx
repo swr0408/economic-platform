@@ -304,6 +304,7 @@ export default function AuGdpGrowthRateChart({ data }: AuGdpGrowthRateChartProps
         showPeriodSelector={false}
         dataSource="ABS (Australian Bureau of Statistics)"
         sourceUrl="https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product"
+        handbookId="gdp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

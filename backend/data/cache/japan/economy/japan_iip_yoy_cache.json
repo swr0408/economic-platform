@@ -5,104 +5,104 @@
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 96.6,
-      "yoy_change": 2.33
+      "index_value": 95.0,
+      "yoy_change": 0.74
     },
     {
       "date": "2025-12-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 106.8,
-      "yoy_change": 2.59
+      "index_value": 105.0,
+      "yoy_change": 0.86
     },
     {
       "date": "2025-11-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 101.1,
-      "yoy_change": -2.22
+      "index_value": 99.1,
+      "yoy_change": -4.16
     },
     {
       "date": "2025-10-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 108.9,
-      "yoy_change": 1.59
+      "index_value": 107.3,
+      "yoy_change": 0.09
     },
     {
       "date": "2025-09-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 107.5,
-      "yoy_change": 3.76
+      "index_value": 105.9,
+      "yoy_change": 2.22
     },
     {
       "date": "2025-08-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 89.9,
-      "yoy_change": -1.64
+      "index_value": 88.4,
+      "yoy_change": -3.28
     },
     {
       "date": "2025-07-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 107.4,
-      "yoy_change": -0.37
+      "index_value": 106.2,
+      "yoy_change": -1.48
     },
     {
       "date": "2025-06-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 103.7,
-      "yoy_change": 4.43
+      "index_value": 102.7,
+      "yoy_change": 3.42
     },
     {
       "date": "2025-05-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 95.0,
-      "yoy_change": -2.36
+      "index_value": 94.5,
+      "yoy_change": -2.88
     },
     {
       "date": "2025-04-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 101.0,
-      "yoy_change": 0.5
+      "index_value": 99.8,
+      "yoy_change": -0.7
     },
     {
       "date": "2025-03-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 111.1,
-      "yoy_change": 1.0
+      "index_value": 110.0,
+      "yoy_change": 0.0
     },
     {
       "date": "2025-02-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 97.3,
-      "yoy_change": 0.1
+      "index_value": 97.5,
+      "yoy_change": 0.31
     },
     {
       "date": "2025-01-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
       "category": "鉱工業",
-      "index_value": 94.4,
-      "yoy_change": 2.16
+      "index_value": 94.3,
+      "yoy_change": 2.06
     },
     {
       "date": "2024-12-01",
@@ -777,6 +777,6 @@
       "yoy_change": null
     }
   ],
-  "last_updated": "2026-03-17T19:24:35.527113+09:00",
+  "last_updated": "2026-03-26T01:50:54.640286+09:00",
   "source": "Ministry of Economy, Trade and Industry (METI) - Raw index (原指数)"
 }

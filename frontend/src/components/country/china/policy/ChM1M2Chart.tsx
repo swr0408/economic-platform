@@ -168,6 +168,7 @@ export default function ChM1M2Chart({ data }: ChM1M2ChartProps) {
         showDataSource={true}
         dataSource="中国人民銀行（PBOC）"
         sourceUrl="https://camlmac.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+        handbookId="m1-m2"
       >
         {/* 最新値表示 */}
         <LatestValueBox

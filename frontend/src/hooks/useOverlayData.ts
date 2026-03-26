@@ -145,6 +145,7 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/historical-volatility',
     '/api/market/vix-cross-ratio',
     '/api/market/sector-ratio',
+    '/api/market/copper-to-gold-ratio',
     '/api/market/russell2000-russell1000',
     '/api/market/financial-stress-index',
     '/api/market/nt-magnification',

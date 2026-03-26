@@ -105,6 +105,7 @@ export default function IndustrialProductionChart({ data }: IndustrialProduction
         showPeriodSelector={false}
         dataSource="FRED (FRB)"
         sourceUrl="https://www.federalreserve.gov/releases/G17/default.htm"
+        handbookId="industrial-production"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -67,6 +67,7 @@ export default function CapacityUtilizationChart({ data }: CapacityUtilizationCh
         showPeriodSelector={false}
         dataSource="FRED (FRB)"
         sourceUrl="https://www.federalreserve.gov/releases/G17/default.htm"
+        handbookId="capacity-utilization"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

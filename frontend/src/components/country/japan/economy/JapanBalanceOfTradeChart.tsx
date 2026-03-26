@@ -140,6 +140,7 @@ export default function JapanBalanceOfTradeChart({ data }: JapanBalanceOfTradeCh
         showPeriodSelector={false}
         dataSource="財務省貿易統計（税関）"
         sourceUrl="https://www.customs.go.jp/toukei/suii/html/time.htm"
+        handbookId="trade-balance"
       >
         {/* 最新値表示（億円単位） */}
         <SimpleLatestValueBox

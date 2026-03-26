@@ -159,6 +159,7 @@ export default function CanadaGdpGrowthChart({ data }: CanadaGdpGrowthChartProps
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www.statcan.gc.ca/en/subjects-start/economic_accounts"
+        handbookId="gdp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

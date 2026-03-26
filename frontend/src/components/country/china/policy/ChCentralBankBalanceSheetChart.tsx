@@ -96,6 +96,7 @@ export default function ChCentralBankBalanceSheetChart({ data }: ChCentralBankBa
         showDataSource={true}
         dataSource="中国人民銀行"
         sourceUrl="https://camlmac.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+        handbookId="central-bank-balance-sheet"
       >
         {/* 最新値: 兆元表示 */}
         <SimpleLatestValueBox

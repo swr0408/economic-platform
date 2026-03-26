@@ -108,6 +108,7 @@ export default function ECBM3Chart({ data }: ECBM3ChartProps) {
         showPeriodSelector={false}
         dataSource="European Central Bank"
         sourceUrl="https://data.ecb.europa.eu/data/datasets/BSI"
+        handbookId="ecb-m3"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -115,7 +115,7 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="カナダIPPI" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="カナダIPPI" showPeriodSelector={false} showDataSource={false} handbookId="ippi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -142,6 +142,7 @@ export default function CaIppiChart({ data }: CaIppiChartProps) {
       <ChartContainer
         title="カナダIPPI（工業製品価格指数）"
         showPeriodSelector={false}
+        handbookId="ippi"
         dataSource="Statistics Canada"
         sourceUrl="https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/producer_price_indexes"
       >

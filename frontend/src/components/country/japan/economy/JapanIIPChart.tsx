@@ -262,6 +262,7 @@ export default function JapanIIPChart() {
         showPeriodSelector={false}
         dataSource="経済産業省"
         sourceUrl="https://www.meti.go.jp/statistics/tyo/iip/"
+        handbookId="industrial-production"
       >
         {/* 最新値表示（統合ボックス） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

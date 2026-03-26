@@ -199,6 +199,7 @@ const PotentialGrowthChart: React.FC = () => {
         showPeriodSelector={false}
         dataSource="内閣府"
         sourceUrl="https://www5.cao.go.jp/keizai3/getsurei/getsurei-index.html#sonota"
+        handbookId="potential-growth"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

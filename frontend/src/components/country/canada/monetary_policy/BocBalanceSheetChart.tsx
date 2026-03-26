@@ -107,6 +107,7 @@ export default function BocBalanceSheetChart({ data }: BocBalanceSheetChartProps
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1010013601"
+        handbookId="central-bank-balance-sheet"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -2871,7 +2871,7 @@
     {
       "date": "2026-02-01",
       "index": 111.4,
-      "yoy": 1.6,
+      "yoy": 1.5,
       "mom": -0.1,
       "core_index": 110.5,
       "core_yoy": 1.8,
@@ -2884,7 +2884,7 @@
   "latest": {
     "date": "2026-02-01",
     "index": 111.4,
-    "yoy": 1.6,
+    "yoy": 1.5,
     "mom": -0.1,
     "core_index": 110.5,
     "core_yoy": 1.8,
@@ -2898,8 +2898,8 @@
     "datetime_utc": "2026-03-30T23:30:00+00:00",
     "datetime_jst": "2026-03-31T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "CPI (Mar)",
-    "estimate": 1.7
+    "label": "CPI MoM (Mar)",
+    "estimate": null
   },
-  "last_updated": "2026-03-17T18:15:19.462182+09:00"
+  "last_updated": "2026-03-26T23:03:20.421538+09:00"
 }

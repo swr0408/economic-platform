@@ -206,6 +206,7 @@ export default function GDPGrowthChart({ data, nextRelease }: GDPGrowthChartProp
         showPeriodSelector={false}
         dataSource="BEA / FRED"
         sourceUrl="https://www.bea.gov/data/gdp/gross-domestic-product"
+        handbookId="gdp"
       >
         {/* 最新値表示（ダークテーマ） */}
         {latestValue && (

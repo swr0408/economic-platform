@@ -79,6 +79,7 @@ export default function ECBBalanceSheetChart({ data }: ECBBalanceSheetChartProps
         showPeriodSelector={false}
         dataSource="ECB"
         sourceUrl="https://www.ecb.europa.eu/press/pr/wfs/html/index.en.html"
+        handbookId="central-bank-balance-sheet"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

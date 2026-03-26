@@ -173,7 +173,7 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="生産者物価指数（PPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="生産者物価指数（PPI）" showPeriodSelector={false} showDataSource={false} handbookId="ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -189,6 +189,7 @@ export default function PPIChart({ ppiData, corePpiData }: PPIChartProps) {
         showPeriodSelector={false}
         dataSource="FRED (BLS)"
         sourceUrl="https://www.bls.gov/ppi/"
+        handbookId="ppi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

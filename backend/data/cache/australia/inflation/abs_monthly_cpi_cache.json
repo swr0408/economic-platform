@@ -750,7 +750,7 @@
     {
       "date": "2024-09-01",
       "cpi_yoy": 2.2,
-      "cpi_mom": -0.2,
+      "cpi_mom": -0.1,
       "trimmed_mean_yoy": 3.2,
       "trimmed_mean_mom": 0.1,
       "weighted_median_yoy": null,
@@ -786,18 +786,18 @@
     {
       "date": "2025-01-01",
       "cpi_yoy": 2.6,
-      "cpi_mom": 0.6,
+      "cpi_mom": 0.5,
       "trimmed_mean_yoy": 2.8,
       "trimmed_mean_mom": 0.3,
       "weighted_median_yoy": null,
-      "weighted_median_mom": 0.3
+      "weighted_median_mom": 0.2
     },
     {
       "date": "2025-02-01",
       "cpi_yoy": 2.4,
       "cpi_mom": 0.3,
       "trimmed_mean_yoy": 2.7,
-      "trimmed_mean_mom": 0.2,
+      "trimmed_mean_mom": 0.3,
       "weighted_median_yoy": null,
       "weighted_median_mom": 0.3
     },
@@ -814,7 +814,7 @@
       "date": "2025-04-01",
       "cpi_yoy": 2.4,
       "cpi_mom": 0.3,
-      "trimmed_mean_yoy": 3.2,
+      "trimmed_mean_yoy": 3.1,
       "trimmed_mean_mom": 0.2,
       "weighted_median_yoy": 3.6,
       "weighted_median_mom": 0.3
@@ -825,7 +825,7 @@
       "cpi_mom": 0,
       "trimmed_mean_yoy": 3,
       "trimmed_mean_mom": 0.2,
-      "weighted_median_yoy": 3.5,
+      "weighted_median_yoy": 3.4,
       "weighted_median_mom": 0.2
     },
     {
@@ -852,7 +852,7 @@
       "cpi_mom": 0.2,
       "trimmed_mean_yoy": 3,
       "trimmed_mean_mom": 0.3,
-      "weighted_median_yoy": 3.3,
+      "weighted_median_yoy": 3.2,
       "weighted_median_mom": 0.3
     },
     {
@@ -861,8 +861,8 @@
       "cpi_mom": 0.3,
       "trimmed_mean_yoy": 3.2,
       "trimmed_mean_mom": 0.3,
-      "weighted_median_yoy": 3.5,
-      "weighted_median_mom": 0.3
+      "weighted_median_yoy": 3.4,
+      "weighted_median_mom": 0.4
     },
     {
       "date": "2025-10-01",
@@ -887,18 +887,36 @@
       "cpi_yoy": 3.7,
       "cpi_mom": 0.2,
       "trimmed_mean_yoy": 3.3,
-      "trimmed_mean_mom": 0.2,
+      "trimmed_mean_mom": 0.3,
+      "weighted_median_yoy": 3.5,
+      "weighted_median_mom": 0.3
+    },
+    {
+      "date": "2026-01-01",
+      "cpi_yoy": 3.8,
+      "cpi_mom": 0.5,
+      "trimmed_mean_yoy": 3.3,
+      "trimmed_mean_mom": 0.3,
       "weighted_median_yoy": 3.6,
+      "weighted_median_mom": 0.3
+    },
+    {
+      "date": "2026-02-01",
+      "cpi_yoy": 3.7,
+      "cpi_mom": 0.2,
+      "trimmed_mean_yoy": 3.3,
+      "trimmed_mean_mom": 0.2,
+      "weighted_median_yoy": 3.5,
       "weighted_median_mom": 0.2
     }
   ],
   "latest": {
-    "date": "2025-12-01",
+    "date": "2026-02-01",
     "cpi_yoy": 3.7,
     "cpi_mom": 0.2,
     "trimmed_mean_yoy": 3.3,
     "trimmed_mean_mom": 0.2,
-    "weighted_median_yoy": 3.6,
+    "weighted_median_yoy": 3.5,
     "weighted_median_mom": 0.2
   },
   "metadata": {
@@ -908,5 +926,5 @@
     "unit": "%"
   },
   "next_release": null,
-  "last_updated": "2026-02-15T18:54:13.690337+09:00"
+  "last_updated": "2026-03-27T00:36:02.322488+09:00"
 }

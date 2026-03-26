@@ -150,6 +150,7 @@ export default function ECBProductionChart({ data }: ECBProductionChartProps) {
         title="鉱工業生産（ユーロ圏）"
         showPeriodSelector={false}
         dataSource="Eurostat"
+        handbookId="industrial-production"
         sourceUrl="https://ec.europa.eu/eurostat/web/main/news/euro-indicators?p_p_id=estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageNumber=2&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_action=search&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageSize=11&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_collection=CAT_PREREL&p_auth=FdY2UEfx&text=Industrial+production"
       >
         {/* 最新値表示 */}

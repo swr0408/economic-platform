@@ -88,6 +88,7 @@ try:
     from backend.services.market.historical_volatility_service import historical_volatility_service
     from backend.services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from backend.services.market.sector_ratio_service import sector_ratio_service
+    from backend.services.market.copper_to_gold_ratio_service import copper_to_gold_ratio_service
     from backend.services.market.russell2000_russell1000_service import russell2000_russell1000_service
     from backend.services.market.financial_stress_index_service import financial_stress_index_service
     from backend.services.market.nt_magnification_service import nt_magnification_service
@@ -150,6 +151,7 @@ except ImportError:
     from services.market.historical_volatility_service import historical_volatility_service
     from services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from services.market.sector_ratio_service import sector_ratio_service
+    from services.market.copper_to_gold_ratio_service import copper_to_gold_ratio_service
     from services.market.russell2000_russell1000_service import russell2000_russell1000_service
     from services.market.financial_stress_index_service import financial_stress_index_service
     from services.market.nt_magnification_service import nt_magnification_service
@@ -1071,6 +1073,21 @@ def get_sector_ratio(force_refresh: bool = Query(False)):
     """セクターレシオ（XLY/XLP, XLF/XLU, HYG/LQD, HYG/IEF）データを取得"""
     start_time = time.time()
     result = sector_ratio_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+# ===== Copper-to-Gold Ratio =====
+
+
+@router.get("/copper-to-gold-ratio")
+def get_copper_to_gold_ratio(force_refresh: bool = Query(False)):
+    """銅金レシオ（Copper/Gold × 1000）データを取得"""
+    start_time = time.time()
+    result = copper_to_gold_ratio_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

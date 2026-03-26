@@ -141,6 +141,7 @@ export default function JapanCurrentAccountChart({ data }: JapanCurrentAccountCh
         showPeriodSelector={false}
         dataSource="財務省"
         sourceUrl="https://www.mof.go.jp/policy/international_policy/reference/balance_of_payments/"
+        handbookId="current-account"
       >
         {/* 最新値表示（兆円単位） */}
         <SimpleLatestValueBox

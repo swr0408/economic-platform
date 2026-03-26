@@ -94,6 +94,7 @@ export default function ChCurrentAccountGdpRatioChart({ data }: ChCurrentAccount
         showPeriodSelector={false}
         dataSource="SNB + SECO"
         sourceUrl="https://data.snb.ch/en/topics/aube"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

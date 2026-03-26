@@ -169,6 +169,7 @@ export default function AuCurrentAccountChart({ data }: AuCurrentAccountChartPro
         showPeriodSelector={false}
         dataSource="ABS"
         sourceUrl="https://www.abs.gov.au/statistics/economy/international-trade/balance-payments-and-international-investment-position-australia/latest-release"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

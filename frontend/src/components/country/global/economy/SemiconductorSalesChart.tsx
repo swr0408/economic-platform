@@ -157,6 +157,7 @@ export default function SemiconductorSalesChart({ data }: Props) {
         showDataSource={true}
         dataSource="WSTS"
         sourceUrl="https://www.wsts.org/"
+        handbookId="semiconductor-sales"
       >
         {/* 最新値ボックス */}
         <div style={{ ...LATEST_VALUE_BOX_STYLE, justifyContent: 'space-between', alignItems: 'center' }}>

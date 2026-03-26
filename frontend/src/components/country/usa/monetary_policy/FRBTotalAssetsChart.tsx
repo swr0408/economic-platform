@@ -96,6 +96,7 @@ export default function FRBTotalAssetsChart({ data }: FRBTotalAssetsChartProps) 
         showPeriodSelector={false}
         dataSource="FRB"
         sourceUrl="https://www.federalreserve.gov/releases/h41/"
+        handbookId="central-bank-balance-sheet"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

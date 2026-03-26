@@ -131,6 +131,7 @@ export default function OecdCliChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="OECD"
         sourceUrl="https://www.oecd.org/en/data/datasets/oecd-composite-leading-indicators-clis.html"
+        handbookId="oecd-cli"
       >
         {/* 最新値ボックス */}
         <div style={{ ...LATEST_VALUE_BOX_STYLE, justifyContent: 'flex-start' }}>

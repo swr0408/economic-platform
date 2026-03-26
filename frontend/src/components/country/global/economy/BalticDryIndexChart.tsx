@@ -17,6 +17,7 @@ export default function BalticDryIndexChart() {
         showPeriodSelector={false}
         dataSource="Baltic Exchange"
         sourceUrl="https://www.balticexchange.com/en/data-services/WeeklyRoundup.html"
+        handbookId="baltic-dry-index"
       >
         <div style={{ height: 610 }}>
           <TradingViewWidget

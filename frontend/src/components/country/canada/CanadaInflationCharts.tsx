@@ -40,28 +40,28 @@ export default function CanadaInflationCharts() {
   return (
     <div className="country-chart-stack">
       {/* CPI Chart */}
-      <div id="ca-cpi">
+      <div id="cpi">
         <CaCpiChart
           data={dashboardData?.ca_cpi ?? null}
         />
       </div>
 
       {/* CPI Service / Rent Chart */}
-      <div id="ca-cpi-service-rent">
+      <div id="cpi-service-rent">
         <CaCpiServiceRentChart
           data={dashboardData?.ca_cpi_service_rent ?? null}
         />
       </div>
 
       {/* IPPI Chart */}
-      <div id="ca-ippi">
+      <div id="ippi">
         <CaIppiChart
           data={dashboardData?.ca_ippi ?? null}
         />
       </div>
 
       {/* Inflation Expectations Chart */}
-      <div id="ca-inflation-expectations">
+      <div id="inflation-expectations">
         <CaInflationExpectationsChart
           data={dashboardData?.ca_inflation_expectations ?? null}
         />

@@ -654,13 +654,19 @@
         "value": 51.6,
         "forecast": 51.2,
         "previous": 52.4
+      },
+      {
+        "date": "2026-03-01",
+        "value": 52.4,
+        "forecast": 51.3,
+        "previous": 51.6
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "value": 51.6,
-      "forecast": 51.2,
-      "previous": 52.4
+      "date": "2026-03-01",
+      "value": 52.4,
+      "forecast": 51.3,
+      "previous": 51.6
     }
   },
   "services": {
@@ -1552,13 +1558,19 @@
         "value": 51.7,
         "forecast": 52.3,
         "previous": 52.7
+      },
+      {
+        "date": "2026-03-01",
+        "value": 51.1,
+        "forecast": 51.5,
+        "previous": 51.7
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "value": 51.7,
-      "forecast": 52.3,
-      "previous": 52.7
+      "date": "2026-03-01",
+      "value": 51.1,
+      "forecast": 51.5,
+      "previous": 51.7
     }
   },
   "composite": {
@@ -2378,22 +2390,28 @@
         "value": 51.9,
         "forecast": 52.3,
         "previous": 53.0
+      },
+      {
+        "date": "2026-03-01",
+        "value": 51.4,
+        "forecast": 50.5,
+        "previous": 51.9
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "value": 51.9,
-      "forecast": 52.3,
-      "previous": 53.0
+      "date": "2026-03-01",
+      "value": 51.4,
+      "forecast": 50.5,
+      "previous": 51.9
     }
   },
   "next_release": {
-    "date": "2026-03-24",
-    "datetime_utc": "2026-03-24T13:45:00+00:00",
-    "datetime_jst": "2026-03-24T22:45:00+09:00",
+    "date": "2026-04-23",
+    "datetime_utc": "2026-04-23T13:45:00+00:00",
+    "datetime_jst": "2026-04-23T22:45:00+09:00",
     "time_jst": "22:45",
-    "label": "S&P Global Manufacturing PMI (Mar)",
-    "estimate": 50.2
+    "label": "S&P Global Manufacturing PMI (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-03-23T18:00:00.171452+09:00"
+  "last_updated": "2026-03-26T10:16:35.175816+09:00"
 }

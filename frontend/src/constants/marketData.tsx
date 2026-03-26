@@ -179,6 +179,7 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
         code: 'industrial-metals',
         name: '工業用金属',
         indicators: [
+          { code: 'copper-to-gold-ratio', name: '銅金レシオ', symbolIds: [] },
           { code: 'lme-copper-stock', name: 'LME銅在庫', symbolIds: [] },
           { code: 'comex-copper-stock', name: 'COMEX銅在庫', symbolIds: [] },
           { code: 'shfe-copper-stock', name: 'SHFE銅在庫', symbolIds: [] },

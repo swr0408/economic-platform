@@ -78,7 +78,7 @@ export default function EnergyCharts() {
       <div id="eu-natural-gas-storage"><EuNaturalGasStorageChart /></div>
       <div id="eu-natural-gas-production"><EuNaturalGasProductionChart /></div>
       <div id="roni"><RoniChart /></div>
-      <div id="cot-natural-gas"><CftcPositioningChart asset="natural_gas" assetLabel="天然ガス" reportType="disagg" compareId="cftc_natural_gas" /></div>
+      <div id="cot-natural-gas"><CftcPositioningChart asset="natural_gas" assetLabel="天然ガス" reportType="disagg" compareId="cftc_natural_gas" handbookId="cot-natural-gas" /></div>
     </div>
   )
 }

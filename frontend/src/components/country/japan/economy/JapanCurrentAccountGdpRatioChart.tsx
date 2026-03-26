@@ -117,6 +117,7 @@ export default function JapanCurrentAccountGdpRatioChart({ data }: JapanCurrentA
         showPeriodSelector={false}
         dataSource="財務省 / 内閣府"
         sourceUrl="https://www.mof.go.jp/policy/international_policy/reference/balance_of_payments/"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

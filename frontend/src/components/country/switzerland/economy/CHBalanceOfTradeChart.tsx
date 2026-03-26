@@ -142,6 +142,7 @@ export default function CHBalanceOfTradeChart({ data }: CHBalanceOfTradeChartPro
         showPeriodSelector={false}
         dataSource="SNB"
         sourceUrl="https://data.snb.ch/en/topics/aube"
+        handbookId="trade-balance"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -804,13 +804,25 @@
         "value": 51.5,
         "forecast": 50.1,
         "previous": 50.0
+      },
+      {
+        "date": "2026-02-01",
+        "value": 53.0,
+        "forecast": 52.8,
+        "previous": 51.5
+      },
+      {
+        "date": "2026-03-01",
+        "value": 51.4,
+        "forecast": 52.8,
+        "previous": 53.0
       }
     ],
     "latest": {
-      "date": "2026-01-01",
-      "value": 51.5,
-      "forecast": 50.1,
-      "previous": 50.0
+      "date": "2026-03-01",
+      "value": 51.4,
+      "forecast": 52.8,
+      "previous": 53.0
     }
   },
   "services": {
@@ -1618,13 +1630,25 @@
         "value": 53.4,
         "forecast": 51.5,
         "previous": 51.6
+      },
+      {
+        "date": "2026-02-01",
+        "value": 53.8,
+        "forecast": 53.8,
+        "previous": 53.7
+      },
+      {
+        "date": "2026-03-01",
+        "value": 52.8,
+        "forecast": 51.5,
+        "previous": 53.8
       }
     ],
     "latest": {
-      "date": "2026-01-01",
-      "value": 53.4,
+      "date": "2026-03-01",
+      "value": 52.8,
       "forecast": 51.5,
-      "previous": 51.6
+      "previous": 53.8
     }
   },
   "composite": {
@@ -2072,22 +2096,34 @@
         "value": 52.8,
         "forecast": 50.9,
         "previous": 51.1
+      },
+      {
+        "date": "2026-02-01",
+        "value": 53.9,
+        "forecast": 53.8,
+        "previous": 53.1
+      },
+      {
+        "date": "2026-03-01",
+        "value": 52.5,
+        "forecast": 51.3,
+        "previous": 53.9
       }
     ],
     "latest": {
-      "date": "2026-01-01",
-      "value": 52.8,
-      "forecast": 50.9,
-      "previous": 51.1
+      "date": "2026-03-01",
+      "value": 52.5,
+      "forecast": 51.3,
+      "previous": 53.9
     }
   },
   "next_release": {
-    "date": "2026-02-02",
-    "datetime_utc": "2026-02-02T00:30:00+00:00",
-    "datetime_jst": "2026-02-02T09:30:00+09:00",
+    "date": "2026-04-23",
+    "datetime_utc": "2026-04-23T00:30:00+00:00",
+    "datetime_jst": "2026-04-23T09:30:00+09:00",
     "time_jst": "09:30",
-    "label": "S&P Global Manufacturing PMI (Jan)",
-    "estimate": 51.5
+    "label": "S&P Global Manufacturing PMI (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-01-29T18:28:06.240300+09:00"
+  "last_updated": "2026-03-26T14:03:03.201756+09:00"
 }

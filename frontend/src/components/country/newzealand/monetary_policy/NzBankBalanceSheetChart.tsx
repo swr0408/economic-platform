@@ -84,6 +84,7 @@ export default function NzBankBalanceSheetChart({ data }: NzBankBalanceSheetChar
         showPeriodSelector={false}
         dataSource="RBNZ"
         sourceUrl="https://www.rbnz.govt.nz/statistics/series/registered-banks/banks-balance-sheet"
+        handbookId="bank-balance-sheet"
       >
         <SimpleLatestValueBox
           label="Total Assets"

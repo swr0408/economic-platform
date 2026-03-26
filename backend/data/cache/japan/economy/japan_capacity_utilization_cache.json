@@ -1,40 +1,46 @@
 {
   "data": [
     {
+      "date": "2026-01-01",
+      "item_name": "製造工業",
+      "category": "製造工業",
+      "value": 105.1
+    },
+    {
       "date": "2025-12-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 101.3
+      "value": 102.1
     },
     {
       "date": "2025-11-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 100.0
+      "value": 101.6
     },
     {
       "date": "2025-10-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 105.6
+      "value": 105.5
     },
     {
       "date": "2025-09-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 102.2
+      "value": 102.8
     },
     {
       "date": "2025-08-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 99.7
+      "value": 101.5
     },
     {
       "date": "2025-07-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 102.0
+      "value": 102.2
     },
     {
       "date": "2025-06-01",
@@ -46,31 +52,31 @@
       "date": "2025-05-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 105.0
+      "value": 102.5
     },
     {
       "date": "2025-04-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 102.9
+      "value": 102.4
     },
     {
       "date": "2025-03-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 101.6
+      "value": 101.5
     },
     {
       "date": "2025-02-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 104.1
+      "value": 103.2
     },
     {
       "date": "2025-01-01",
       "item_name": "製造工業",
       "category": "製造工業",
-      "value": 105.3
+      "value": 102.1
     },
     {
       "date": "2024-12-01",
@@ -577,6 +583,6 @@
       "value": 115.4
     }
   ],
-  "last_updated": "2026-03-17T19:24:39.575338+09:00",
+  "last_updated": "2026-03-26T01:50:57.821034+09:00",
   "source": "Ministry of Economy, Trade and Industry (METI)"
 }

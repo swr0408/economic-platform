@@ -86,6 +86,7 @@ export default function SouthKoreanExportsChart({ data }: SouthKoreanExportsChar
         showDataSource={true}
         dataSource="MOTIR (Ministry of Trade, Industry and Resources)"
         sourceUrl="https://english.motir.go.kr/eng/article/EATCLdfa319ada"
+        handbookId="korea-exports"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -86,6 +86,7 @@ export default function TaiwanExportOrdersChart({ data }: TaiwanExportOrdersChar
         showDataSource={true}
         dataSource="MOEA (Ministry of Economic Affairs, Taiwan)"
         sourceUrl="https://www.moea.gov.tw/MNS/dos/home/Home.aspx"
+        handbookId="taiwan-export-orders"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

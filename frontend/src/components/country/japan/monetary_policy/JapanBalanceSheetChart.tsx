@@ -102,6 +102,7 @@ export default function JapanBalanceSheetChart({ data }: JapanBalanceSheetChartP
         showPeriodSelector={false}
         dataSource="Bank of Japan (via FRED)"
         sourceUrl="https://fred.stlouisfed.org/series/JPNASSETS"
+        handbookId="central-bank-balance-sheet"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

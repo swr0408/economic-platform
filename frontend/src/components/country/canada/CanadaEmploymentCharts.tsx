@@ -43,21 +43,21 @@ export default function CanadaEmploymentCharts() {
   return (
     <div className="country-chart-stack">
       {/* 失業率チャート */}
-      <div id="ca-unemployment-rate">
+      <div id="unemployment">
         <CaUnemploymentRateChart
           data={dashboardData?.ca_unemployment_rate ?? null}
         />
       </div>
 
       {/* 雇用者数チャート */}
-      <div id="ca-employment">
+      <div id="employment">
         <CaEmploymentChart
           data={dashboardData?.ca_employment ?? null}
         />
       </div>
 
       {/* フルタイム・パートタイム雇用チャート */}
-      <div id="ca-fulltime-parttime">
+      <div id="fulltime-parttime">
         <CaFulltimeParttimeChart
           data={dashboardData?.ca_employment ?? null}
         />

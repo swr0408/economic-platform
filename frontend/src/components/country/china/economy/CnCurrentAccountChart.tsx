@@ -161,6 +161,7 @@ export default function CnCurrentAccountChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="SAFE"
         sourceUrl="https://www.safe.gov.cn/en/SAFENews/index.html"
+        handbookId="current-account"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

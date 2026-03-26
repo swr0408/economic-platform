@@ -3106,6 +3106,22 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
 
   // =========================================================================
+  // 市場 - 銅金レシオ
+  // =========================================================================
+  {
+    id: 'copper_to_gold_ratio',
+    name: '銅金レシオ',
+    nameEn: 'Copper-to-Gold Ratio',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'commodities',
+    apiEndpoint: '/api/market/copper-to-gold-ratio',
+    dataKey: 'data',
+    valueField: 'value',
+    unit: 'index',
+  },
+
+  // =========================================================================
   // 市場 - Russell 2000 / Russell 1000 レシオ
   // =========================================================================
   {

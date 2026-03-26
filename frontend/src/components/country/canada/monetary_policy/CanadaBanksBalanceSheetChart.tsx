@@ -107,6 +107,7 @@ export default function CanadaBanksBalanceSheetChart({ data }: CanadaBanksBalanc
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1010010901"
+        handbookId="bank-balance-sheet"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

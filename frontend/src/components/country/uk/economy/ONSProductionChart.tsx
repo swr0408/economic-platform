@@ -333,6 +333,7 @@ export default function ONSProductionChart({ data }: ONSProductionChartProps) {
         showPeriodSelector={false}
         dataSource="Office for National Statistics (ONS)"
         sourceUrl="https://www.ons.gov.uk/economy/economicoutputandproductivity/output"
+        handbookId="industrial-production"
       >
         {/* 最新値表示（ダークテーマ） */}
         {latestValue && (

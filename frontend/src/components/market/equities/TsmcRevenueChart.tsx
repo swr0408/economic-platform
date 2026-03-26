@@ -240,6 +240,7 @@ export default function TsmcRevenueChart() {
         showPeriodSelector={false}
         dataSource="TSMC / TWSE MOPS"
         sourceUrl="https://investor.tsmc.com/english/monthly-revenue"
+        handbookId="tsmc-revenue"
       >
         {/* 最新値ボックス */}
         <div style={{ ...LATEST_VALUE_BOX_STYLE, justifyContent: 'space-between', alignItems: 'center' }}>

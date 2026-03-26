@@ -20,7 +20,7 @@ export default function NaturalGasCharts() {
       <LazyChart id="eu-natural-gas-storage"><EuNaturalGasStorageChart /></LazyChart>
       <LazyChart id="eu-natural-gas-production"><EuNaturalGasProductionChart /></LazyChart>
       <LazyChart id="roni"><RoniChart /></LazyChart>
-      <LazyChart id="cot-natural-gas"><CftcPositioningChart asset="natural_gas" assetLabel="天然ガス" reportType="disagg" compareId="cftc_natural_gas" /></LazyChart>
+      <LazyChart id="cot-natural-gas"><CftcPositioningChart asset="natural_gas" assetLabel="天然ガス" reportType="disagg" compareId="cftc_natural_gas" handbookId="cot-natural-gas" /></LazyChart>
     </div>
   )
 }

@@ -20,6 +20,7 @@ export type RangeType = '1Y' | '3Y' | '5Y' | '10Y' | 'Max';
 
 export interface CompareOptions {
   index100: boolean;
+  timeShifts: Record<string, number>; // indicatorId → シフト月数（正=先行、負=遅行）
 }
 
 export interface UseCompareStateResult {
@@ -36,6 +37,7 @@ export interface UseCompareStateResult {
   removeIndicator: (indicatorId: string) => void;
   setRange: (range: RangeType) => void;
   setOptions: (options: CompareOptions) => void;
+  setTimeShift: (indicatorId: string, months: number) => void;
   clearAll: () => void;
   // 最大選択数
   maxSelections: number;
@@ -76,11 +78,27 @@ export function useCompareState(): UseCompareStateResult {
     return searchParams.get('index100') === 'true';
   }, [searchParams]);
 
+  const getTimeShiftsFromUrl = useCallback(() => {
+    const shifts: Record<string, number> = {};
+    searchParams.getAll('shift').forEach(s => {
+      const colonIdx = s.lastIndexOf(':');
+      if (colonIdx > 0) {
+        const id = s.slice(0, colonIdx);
+        const months = parseInt(s.slice(colonIdx + 1), 10);
+        if (!isNaN(months) && months !== 0) {
+          shifts[id] = months;
+        }
+      }
+    });
+    return shifts;
+  }, [searchParams]);
+
   // State
   const [selectedIndicatorIds, setSelectedIndicatorIds] = useState<string[]>(() => getIndicatorIdsFromUrl());
   const [range, setRangeState] = useState<RangeType>(() => getRangeFromUrl());
   const [options, setOptionsState] = useState<CompareOptions>(() => ({
     index100: getIndex100FromUrl(),
+    timeShifts: getTimeShiftsFromUrl(),
   }));
 
   // 外部ナビゲーション時にURLパラメータからstateを更新
@@ -96,6 +114,7 @@ export function useCompareState(): UseCompareStateResult {
     const urlIndicatorIds = getIndicatorIdsFromUrl();
     const urlRange = getRangeFromUrl();
     const urlIndex100 = getIndex100FromUrl();
+    const urlTimeShifts = getTimeShiftsFromUrl();
 
     // URLと現在のstateが異なる場合のみ更新
     if (JSON.stringify(urlIndicatorIds) !== JSON.stringify(selectedIndicatorIds)) {
@@ -104,8 +123,8 @@ export function useCompareState(): UseCompareStateResult {
     if (urlRange !== range) {
       setRangeState(urlRange);
     }
-    if (urlIndex100 !== options.index100) {
-      setOptionsState({ index100: urlIndex100 });
+    if (urlIndex100 !== options.index100 || JSON.stringify(urlTimeShifts) !== JSON.stringify(options.timeShifts)) {
+      setOptionsState({ index100: urlIndex100, timeShifts: urlTimeShifts });
     }
   }, [searchParams]);
 
@@ -124,6 +143,13 @@ export function useCompareState(): UseCompareStateResult {
     // オプション（trueのみ）
     if (options.index100) {
       params.set('index100', 'true');
+    }
+
+    // タイムシフト（0以外のみ）
+    for (const [id, months] of Object.entries(options.timeShifts)) {
+      if (months !== 0) {
+        params.append('shift', `${id}:${months}`);
+      }
     }
 
     // 現在のURLパラメータと比較して異なる場合のみ更新
@@ -158,6 +184,14 @@ export function useCompareState(): UseCompareStateResult {
   // 指標削除
   const removeIndicator = useCallback((indicatorId: string) => {
     setSelectedIndicatorIds(prev => prev.filter(id => id !== indicatorId));
+    // タイムシフトもクリーンアップ
+    setOptionsState(prev => {
+      if (indicatorId in prev.timeShifts) {
+        const { [indicatorId]: _, ...rest } = prev.timeShifts;
+        return { ...prev, timeShifts: rest };
+      }
+      return prev;
+    });
   }, []);
 
   // 期間設定
@@ -170,9 +204,23 @@ export function useCompareState(): UseCompareStateResult {
     setOptionsState(newOptions);
   }, []);
 
+  // タイムシフト設定
+  const setTimeShift = useCallback((indicatorId: string, months: number) => {
+    setOptionsState(prev => {
+      const newShifts = { ...prev.timeShifts };
+      if (months === 0) {
+        delete newShifts[indicatorId];
+      } else {
+        newShifts[indicatorId] = Math.max(-12, Math.min(12, months));
+      }
+      return { ...prev, timeShifts: newShifts };
+    });
+  }, []);
+
   // 全解除
   const clearAll = useCallback(() => {
     setSelectedIndicatorIds([]);
+    setOptionsState(prev => ({ ...prev, timeShifts: {} }));
   }, []);
 
   // 選択中の指標オブジェクト
@@ -194,6 +242,7 @@ export function useCompareState(): UseCompareStateResult {
     removeIndicator,
     setRange,
     setOptions,
+    setTimeShift,
     clearAll,
     maxSelections: MAX_SELECTIONS,
     canAddMore,

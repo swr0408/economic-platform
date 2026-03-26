@@ -122,6 +122,7 @@ export default function CnGdpGrowthRateChart({ data }: Props) {
         showDataSource={true}
         dataSource="NBS"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/index.html"
+        handbookId="gdp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

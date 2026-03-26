@@ -117,6 +117,7 @@ export default function NzTradeBalanceChart({ data }: NzTradeBalanceChartProps) 
         showDataSource={true}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/information-releases/?filters=Balance%20of%20payments&topicFiltersID=635"
+        handbookId="trade-balance"
       >
         {/* 最新値表示 */}
         <LatestValueBox

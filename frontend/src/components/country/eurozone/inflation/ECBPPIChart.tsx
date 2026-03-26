@@ -155,7 +155,7 @@ export default function ECBPPIChart({ data }: ECBPPIChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="PPI（ユーロ圏・生産者物価指数）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="PPI（ユーロ圏・生産者物価指数）" showPeriodSelector={false} showDataSource={false} handbookId="ecb-ppi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -166,6 +166,7 @@ export default function ECBPPIChart({ data }: ECBPPIChartProps) {
       <ChartContainer
         title="PPI（ユーロ圏・生産者物価指数）"
         showPeriodSelector={false}
+        handbookId="ecb-ppi"
         dataSource="Eurostat"
         sourceUrl="https://ec.europa.eu/eurostat/en/web/main/news/euro-indicators?p_p_id=estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageNumber=1&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_action=search&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageSize=11&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_collection=CAT_PREREL&p_auth=ZIoPsCO4&text=Industrial+producer+prices"
       >

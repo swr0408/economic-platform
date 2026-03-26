@@ -168,6 +168,7 @@ export default function CanadaIndustrialProductionChart({ data }: CanadaIndustri
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www.statcan.gc.ca/en/subjects-start/economic_accounts"
+        handbookId="industrial-production"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

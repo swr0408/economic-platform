@@ -104,6 +104,7 @@ export default function SNBBalanceSheetChart({ data }: SNBBalanceSheetChartProps
         showPeriodSelector={false}
         dataSource="Swiss National Bank"
         sourceUrl="https://data.snb.ch/en/topics/snb"
+        handbookId="central-bank-balance-sheet"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

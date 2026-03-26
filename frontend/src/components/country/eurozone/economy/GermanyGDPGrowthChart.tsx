@@ -278,6 +278,7 @@ export default function GermanyGDPGrowthChart({ data }: GermanyGDPGrowthChartPro
         title="GDP成長率（ドイツ）"
         showPeriodSelector={false}
         dataSource="Destatis"
+        handbookId="gdp"
         sourceUrl="https://www.destatis.de/SiteGlobals/Forms/Suche/Presse/DE/Pressesuche_Formular_2.html?resourceId=245598&input_=250572&pageLocale=de&templateQueryString=Bruttoinlandsprodukt&submit.x=0&submit.y=0"
       >
         {/* 最新値表示 */}
