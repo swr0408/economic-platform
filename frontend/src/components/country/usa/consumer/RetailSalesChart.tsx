@@ -152,6 +152,7 @@ export default function RetailSalesChart({ data, controlData }: RetailSalesChart
         showPeriodSelector={false}
         dataSource="FRED (Census Bureau)"
         sourceUrl="https://www.census.gov/retail/index.html"
+        handbookId="retail-sales"
       >
         {/* 最新値表示 */}
         <LatestValueBox

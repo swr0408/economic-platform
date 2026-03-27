@@ -2312,6 +2312,10 @@
       {
         "date": "2026-02-01",
         "value": 3.4
+      },
+      {
+        "date": "2026-03-01",
+        "value": 3.8
       }
     ],
     "five_year": [
@@ -4038,13 +4042,17 @@
       {
         "date": "2026-02-01",
         "value": 3.3
+      },
+      {
+        "date": "2026-03-01",
+        "value": 3.2
       }
     ]
   },
   "latest": {
-    "one_year": 3.4,
-    "five_year": 3.3,
-    "date": "2026-02-01"
+    "one_year": 3.8,
+    "five_year": 3.2,
+    "date": "2026-03-01"
   },
   "next_release": {
     "date": "2026-03-27",
@@ -4054,5 +4062,5 @@
     "label": "Michigan Inflation Expectations (Mar)",
     "estimate": 3.4
   },
-  "last_updated": "2026-03-25T23:02:10.834737+09:00"
+  "last_updated": "2026-03-27T23:02:08.293785+09:00"
 }

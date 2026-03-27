@@ -806,11 +806,34 @@ class BaseMultiSeriesService:
 
         if api_data:
             latest = api_data[-1] if api_data else None
-            cache_payload = {
-                "data": api_data,
-                "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
-            }
+            now_str = datetime.now(JST).isoformat()
+
+            # FREDが更新遅延で古いデータを返した場合、last_updatedを更新しない
+            # これにより次回リクエストで再度FREDに問い合わせる
+            existing_cache = redis_client.get(self.REDIS_KEY)
+            existing_latest_date = None
+            if existing_cache and existing_cache.get("latest"):
+                existing_latest_date = existing_cache["latest"].get("date")
+
+            new_latest_date = latest.get("date") if latest else None
+
+            if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+                # APIデータがキャッシュより新しくない場合、last_updatedを維持
+                # ただしデータ自体は更新（既存値の修正がある可能性）
+                old_last_updated = existing_cache.get("last_updated", now_str)
+                cache_payload = {
+                    "data": api_data,
+                    "latest": latest,
+                    "last_updated": old_last_updated
+                }
+                print(f"  {self.INDICATOR_NAME}: FRED data not newer (latest={new_latest_date}), keeping last_updated={old_last_updated}")
+            else:
+                cache_payload = {
+                    "data": api_data,
+                    "latest": latest,
+                    "last_updated": now_str
+                }
+
             self._cache_manager.save(cache_payload)
 
             return build_single_series_response(

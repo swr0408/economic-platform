@@ -33,6 +33,7 @@ import UnitLaborCostChart from './employment/UnitLaborCostChart'
 import NFIBCompensationChart from './employment/NFIBCompensationChart'
 import NFIBCompensationUnemploymentChart from './employment/NFIBCompensationUnemploymentChart'
 import OvertimeHoursChart from './employment/OvertimeHoursChart'
+import UsAverageWeeklyWorkingHoursChart from './employment/UsAverageWeeklyWorkingHoursChart'
 import SahmRuleChart from './employment/SahmRuleChart'
 
 export default function USAEmploymentCharts() {
@@ -147,6 +148,10 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="overtime-hours">
             <OvertimeHoursChart data={dashboardData?.overtime_hours ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="average-weekly-working-hours">
+            <UsAverageWeeklyWorkingHoursChart data={dashboardData?.us_average_weekly_working_hours ?? null} />
           </ChartWrapper>
         </>
       )}

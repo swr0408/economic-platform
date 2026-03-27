@@ -4,7 +4,7 @@
 複数の仕事を持つ人 / 経済的理由によるパートタイム / JOLTS求人 / Indeed求人件数 / JOLTS採用数・解雇数 / 求人倍率 /
 ADP雇用者数 / NER Pulse（週次雇用変動）/ 新規失業保険申請件数 / 継続失業保険申請件数 / Challenger人員削減数 /
 平均時給 / 自発的離職率 / 労働参加率 / ADP賃金上昇率 / アトランタ連銀賃金トラッカー / Indeed賃金トラッカー / PCEデフレーター飲食宿泊・娯楽 /
-雇用コスト指数 / 単位労働コスト・労働生産性 / NFIB人件費・雇用計画 / NFIB労働報酬・失業率 / 平均残業時間を一括取得
+雇用コスト指数 / 単位労働コスト・労働生産性 / NFIB人件費・雇用計画 / NFIB労働報酬・失業率 / 平均残業時間 / 平均週労働時間を一括取得
 
 キャッシュ更新判定: 発表日時ベース方式
 - 発表日: BLSから自動取得（毎月第1金曜日）
@@ -64,6 +64,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - nfib_compensation: NFIB人件費・雇用計画 - NFIB PDF（毎月第2火曜日 6:00 ET）
     - nfib_compensation_unemployment: NFIB労働報酬・失業率 - NFIB PDF + FRED UNRATE（NFIB: 毎月第2火曜日 6:00 ET / UNRATE: 毎月第1金曜日 8:30 ET）
     - overtime_hours: 平均残業時間 - FRED AWOTMAN（毎月第1金曜日 8:30 ET）
+    - us_average_weekly_working_hours: 平均週労働時間 - FRED CES0500000002/CES3000000002（毎月第1金曜日 8:30 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - Employment Situation発表: 毎月第1金曜日 8:30 ET
@@ -629,6 +630,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("average_hourly_earnings")  # 平均時給
                 stale.add("labor_force_participation")  # 労働参加率
                 stale.add("overtime_hours")  # 平均残業時間
+                stale.add("us_average_weekly_working_hours")  # 平均週労働時間
                 print(f"[stale] Employment Situation release detected: {empsit_release.isoformat()}")
 
             # CB雇用機会業況判断発表
@@ -750,6 +752,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.unit_labor_cost_service import unit_labor_cost_service
         from services.usa.nfib_service import nfib_service
         from services.usa.overtime_hours_service import overtime_hours_service
+        from services.usa.us_average_weekly_working_hours_service import us_average_weekly_working_hours_service
         from services.usa.sahm_rule_service import sahm_rule_service
 
         result = {
@@ -778,6 +781,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "nfib_compensation": None,
             "nfib_compensation_unemployment": None,
             "overtime_hours": None,
+            "us_average_weekly_working_hours": None,
             "sahm_rule": None,
         }
 
@@ -809,6 +813,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_nfib_compensation, nfib_service): "nfib_compensation",
                 executor.submit(self._get_nfib_compensation_unemployment, nfib_service, unemployment_rate_service): "nfib_compensation_unemployment",
                 executor.submit(self._get_overtime_hours, overtime_hours_service): "overtime_hours",
+                executor.submit(self._get_us_average_weekly_working_hours, us_average_weekly_working_hours_service): "us_average_weekly_working_hours",
                 executor.submit(self._get_sahm_rule, sahm_rule_service): "sahm_rule",
             }
 
@@ -1321,6 +1326,25 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Overtime Hours data: {e}")
             return None
 
+    def _get_us_average_weekly_working_hours(self, service) -> Optional[dict]:
+        """平均週労働時間データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("us_average_weekly_working_hours")
+            response = service.get_us_average_weekly_working_hours_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "series_config": response.get("series_config"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Average Weekly Working Hours data: {e}")
+            return None
+
     def _get_sahm_rule(self, service) -> Optional[dict]:
         """サームルールデータを取得"""
         try:
@@ -1367,6 +1391,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.unit_labor_cost_service import unit_labor_cost_service
         from services.usa.nfib_service import nfib_service
         from services.usa.overtime_hours_service import overtime_hours_service
+        from services.usa.us_average_weekly_working_hours_service import us_average_weekly_working_hours_service
         from services.usa.sahm_rule_service import sahm_rule_service
 
         # 全サービスのキャッシュを無効化
@@ -1395,6 +1420,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (unit_labor_cost_service, "Unit Labor Cost"),
             (nfib_service, "NFIB Compensation"),
             (overtime_hours_service, "Overtime Hours"),
+            (us_average_weekly_working_hours_service, "Average Weekly Working Hours"),
             (sahm_rule_service, "Sahm Rule"),
         ]
         self._invalidate_service_caches(services)

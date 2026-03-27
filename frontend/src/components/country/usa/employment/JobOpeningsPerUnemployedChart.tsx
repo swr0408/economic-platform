@@ -194,6 +194,7 @@ export default function JobOpeningsPerUnemployedChart({ data }: JobOpeningsPerUn
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl=""
+        handbookId="job-openings-per-unemployed"
       >
         {/* 最新値表示 */}
         <LatestValueBox

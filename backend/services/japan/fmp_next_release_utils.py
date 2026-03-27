@@ -340,8 +340,9 @@ def should_refresh_by_fmp_schedule(
             return False
 
         with SessionLocal() as session:
-            # 直近の発表イベントをDBから取得
             pattern_conditions = " OR ".join([f"event ILIKE '%{p}%'" for p in patterns])
+
+            # 1. actual IS NOT NULLの直近イベント（従来の判定）
             query = text(f"""
                 SELECT datetime_utc, event, actual
                 FROM economic_calendar_events
@@ -354,27 +355,38 @@ def should_refresh_by_fmp_schedule(
             """)
             row = session.execute(query).fetchone()
 
-            if not row:
-                return False
+            if row:
+                dt_utc = row[0]
+                if dt_utc.tzinfo is None:
+                    dt_utc = dt_utc.replace(tzinfo=UTC)
 
-            dt_utc = row[0]
-            if dt_utc.tzinfo is None:
-                dt_utc = dt_utc.replace(tzinfo=UTC)
+                release_datetime = dt_utc.astimezone(JST)
 
-            release_datetime = dt_utc.astimezone(JST)
-
-            # 発表時刻より前なら更新不要
-            if now < release_datetime:
-                return False
-
-            # 更新ウィンドウ（日銀金利は発表が遅延することがあるため、長めに設定）
-            update_window_end = release_datetime + timedelta(minutes=UPDATE_WINDOW_MINUTES)
-
-            if now <= update_window_end:
-                if last_updated < release_datetime:
+                if now >= release_datetime and last_updated < release_datetime:
                     return True
-            else:
-                if last_updated < release_datetime:
+
+            # 2. actual IS NULLだが発表時刻を過ぎたイベントもチェック
+            #    FMPがactualを埋めていなくても、データソースには既にデータがある可能性
+            query_pending = text(f"""
+                SELECT datetime_utc, event
+                FROM economic_calendar_events
+                WHERE country = 'JP'
+                  AND ({pattern_conditions})
+                  AND actual IS NULL
+                  AND datetime_utc <= NOW()
+                ORDER BY datetime_utc DESC
+                LIMIT 1
+            """)
+            row_pending = session.execute(query_pending).fetchone()
+
+            if row_pending:
+                dt_utc_pending = row_pending[0]
+                if dt_utc_pending.tzinfo is None:
+                    dt_utc_pending = dt_utc_pending.replace(tzinfo=UTC)
+
+                pending_release = dt_utc_pending.astimezone(JST)
+
+                if now >= pending_release and last_updated < pending_release:
                     return True
 
             return False

@@ -431,7 +431,9 @@
       "WebFetch(domain:www.cboe.com)",
       "WebFetch(domain:www.newyorkfed.org)",
       "WebFetch(domain:libertystreeteconomics.newyorkfed.org)",
-      "Bash(do echo \"=== $ep ===\")"
+      "Bash(do echo \"=== $ep ===\")",
+      "WebFetch(domain:www.advisorperspectives.com)",
+      "WebFetch(domain:neilsethi.substack.com)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

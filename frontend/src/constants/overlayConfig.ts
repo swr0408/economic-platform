@@ -1002,6 +1002,18 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     unit: 'H',
   },
   {
+    id: 'us_average_weekly_working_hours',
+    name: '平均週労働時間',
+    nameEn: 'Average Weekly Working Hours',
+    frequency: 'monthly',
+    category: 'employment',
+    subCategory: 'jobs',
+    apiEndpoint: '/api/usa/employment',
+    dataKey: 'us_average_weekly_working_hours',
+    valueField: 'awhaetp',
+    unit: 'H',
+  },
+  {
     id: 'sahm_rule',
     name: 'サームルール',
     nameEn: 'Sahm Rule',

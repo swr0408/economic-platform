@@ -107,6 +107,7 @@ export default function SahmRuleChart({ data }: SahmRuleChartProps) {
         showPeriodSelector={false}
         dataSource="FRED"
         sourceUrl="https://fred.stlouisfed.org/series/SAHMCURRENT"
+        handbookId="sahm-rule"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -188,6 +188,7 @@ export default function ECBSPFChart({ data }: ECBSPFChartProps) {
         showPeriodSelector={false}
         dataSource="European Central Bank (ECB)"
         sourceUrl="https://www.ecb.europa.eu/stats/ecb_surveys/survey_of_professional_forecasters/html/index.en.html"
+        handbookId="ecb-spf"
       >
         {/* 最新値表示（3系列） */}
         <LatestValueBox

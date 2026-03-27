@@ -192,6 +192,9 @@ def should_refresh_by_pattern(
         now = datetime.now(JST)
 
         with SessionLocal() as session:
+            params = {"country": country, "pattern": f"%{event_pattern}%"}
+
+            # 1. actual IS NOT NULLの直近イベント（従来の判定）
             query = text("""
                 SELECT datetime_utc, event, actual
                 FROM economic_calendar_events
@@ -202,27 +205,35 @@ def should_refresh_by_pattern(
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row = session.execute(query, {"country": country, "pattern": f"%{event_pattern}%"}).fetchone()
+            row = session.execute(query, params).fetchone()
 
-            if not row:
-                return False
-
-            dt_utc = row[0]
-            if dt_utc.tzinfo is None:
-                dt_utc = dt_utc.replace(tzinfo=UTC)
-
-            release_datetime = dt_utc.astimezone(JST)
-
-            if now < release_datetime:
-                return False
-
-            update_window_end = release_datetime + timedelta(minutes=UPDATE_WINDOW_MINUTES)
-
-            if now <= update_window_end:
-                if last_updated < release_datetime:
+            if row:
+                dt_utc = row[0]
+                if dt_utc.tzinfo is None:
+                    dt_utc = dt_utc.replace(tzinfo=UTC)
+                release_datetime = dt_utc.astimezone(JST)
+                if now >= release_datetime and last_updated < release_datetime:
                     return True
-            else:
-                if last_updated < release_datetime:
+
+            # 2. actual IS NULLだが発表時刻を過ぎたイベントもチェック
+            query_pending = text("""
+                SELECT datetime_utc, event
+                FROM economic_calendar_events
+                WHERE country = :country
+                  AND event ILIKE :pattern
+                  AND actual IS NULL
+                  AND datetime_utc <= NOW()
+                ORDER BY datetime_utc DESC
+                LIMIT 1
+            """)
+            row_pending = session.execute(query_pending, params).fetchone()
+
+            if row_pending:
+                dt_utc_pending = row_pending[0]
+                if dt_utc_pending.tzinfo is None:
+                    dt_utc_pending = dt_utc_pending.replace(tzinfo=UTC)
+                pending_release = dt_utc_pending.astimezone(JST)
+                if now >= pending_release and last_updated < pending_release:
                     return True
 
             return False

@@ -178,6 +178,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/realer.toc.htm"
+        handbookId="average-hourly-earnings"
       >
         {/* 最新値表示 */}
         <LatestValueBox

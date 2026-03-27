@@ -77,6 +77,7 @@ export default function CBConsumerConfidenceChart({ data }: CBConsumerConfidence
         showPeriodSelector={false}
         dataSource="ConferenceBoard"
         sourceUrl="https://www.conference-board.org/topics/consumer-confidence/"
+        handbookId="cb-consumer-confidence"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

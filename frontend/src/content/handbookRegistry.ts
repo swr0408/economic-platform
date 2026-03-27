@@ -142,6 +142,86 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     relatedIndicators: ['unemployment', 'adp-employment', 'initial-claims'],
     tags: ['NFP', '雇用統計', 'BLS', '労働市場'],
   },
+  {
+    indicatorId: 'job-openings-per-unemployed',
+    title: '求人倍率（求人数÷失業者）',
+    country: 'usa',
+    category: 'employment',
+    summary: 'JOLTS求人件数÷失業者数で算出。労働市場の需給バランスを直接反映し、賃金・インフレ圧力の先行指標として有効。',
+    loadContent: loadMd('usa/job-openings-per-unemployed.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'unemployment', 'initial-claims'],
+    tags: ['求人倍率', 'JOLTS', '求人', '失業', '労働需給', '賃金', 'BLS'],
+  },
+  {
+    indicatorId: 'unemployment',
+    title: '失業率・U-6・採用率・離職率・レイオフ率',
+    country: 'usa',
+    category: 'employment',
+    summary: '失業率は労働市場の需給バランスを示す基本指標。U-6や採用率・離職率・レイオフ率と合わせて雇用の質を判断する。',
+    loadContent: loadMd('usa/unemployment.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'sahm-rule', 'labor-force-participation', 'initial-claims'],
+    tags: ['失業率', 'U-6', '採用率', '離職率', 'レイオフ', 'BLS', 'JOLTS'],
+  },
+  {
+    indicatorId: 'sahm-rule',
+    title: 'サームルール',
+    country: 'usa',
+    category: 'employment',
+    summary: '失業率3か月移動平均の直近底からの上昇幅で景気後退入りを判定する補助指標。0.50pt超で警戒シグナル。',
+    loadContent: loadMd('usa/sahm-rule.md'),
+    relatedIndicators: ['unemployment', 'nonfarm-payrolls', 'initial-claims'],
+    tags: ['サームルール', 'Sahm Rule', '景気後退', 'リセッション', '失業率'],
+  },
+  {
+    indicatorId: 'labor-force-participation',
+    title: '労働参加率',
+    country: 'usa',
+    category: 'employment',
+    summary: '労働力人口÷生産年齢人口。失業率では見えない労働供給面の構造変化を把握するのに重要。',
+    loadContent: loadMd('usa/labor-force-participation.md'),
+    relatedIndicators: ['unemployment', 'nonfarm-payrolls', 'fullpart-time'],
+    tags: ['労働参加率', 'LFPR', '労働供給', 'プライムエイジ', 'BLS'],
+  },
+  {
+    indicatorId: 'fullpart-time',
+    title: 'フルタイム・パートタイム就業',
+    country: 'usa',
+    category: 'employment',
+    summary: 'フルタイム/パートタイム就業の構成から雇用の質を判断。経済的理由によるパートタイム増は労働市場の弱さを示す初期サイン。',
+    loadContent: loadMd('usa/fullpart-time.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'unemployment', 'labor-force-participation'],
+    tags: ['フルタイム', 'パートタイム', '雇用の質', '不本意パート', 'BLS'],
+  },
+  {
+    indicatorId: 'average-hourly-earnings',
+    title: '平均時給',
+    country: 'usa',
+    category: 'employment',
+    summary: '賃金インフレ圧力の代表指標。サービス業の人件費を通じてインフレに波及しやすく、金融政策判断にも直結する。',
+    loadContent: loadMd('usa/average-hourly-earnings.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'job-openings-per-unemployed', 'average-weekly-working-hours'],
+    tags: ['平均時給', '賃金', 'AHE', '賃金インフレ', 'BLS'],
+  },
+  {
+    indicatorId: 'average-weekly-working-hours',
+    title: '平均週労働時間',
+    country: 'usa',
+    category: 'employment',
+    summary: '雇用者数より先に景気変化を映す先行指標。企業は人員削減の前にまず労働時間を調整するため、景気転換点の早期把握に有効。',
+    loadContent: loadMd('usa/average-weekly-working-hours.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'average-hourly-earnings', 'unemployment'],
+    tags: ['週労働時間', 'AWHAETP', 'AWHMAN', 'AWHNONAG', 'LEI', '景気先行指標', 'BLS'],
+  },
+  {
+    indicatorId: 'initial-claims',
+    title: '新規失業保険申請件数',
+    country: 'usa',
+    category: 'employment',
+    summary: 'レイオフや雇用悪化の初期変化を週次で捉える高頻度指標。雇用統計の前哨戦として重要。',
+    loadContent: loadMd('usa/initial-claims.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'unemployment', 'sahm-rule'],
+    tags: ['失業保険', '新規申請', 'Initial Claims', 'レイオフ', 'DOL'],
+  },
 
   // --- USA / 物価 ---
   {
@@ -153,6 +233,17 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('usa/cpi.md'),
     relatedIndicators: ['pce-deflator', 'ppi', 'median-cpi'],
     tags: ['CPI', 'インフレ', 'BLS', '物価'],
+  },
+
+  {
+    indicatorId: 'pce-deflator',
+    title: 'PCEデフレーター',
+    country: 'usa',
+    category: 'inflation',
+    summary: 'BEAが公表するFRB公式インフレ目標の対象指標。3か月・6か月年率換算で足元のインフレ基調を早期に捉える。',
+    loadContent: loadMd('usa/pce-deflator.md'),
+    relatedIndicators: ['cpi', 'ppi', 'median-cpi', 'trimmed-mean-pce'],
+    tags: ['PCE', 'デフレーター', 'コアPCE', 'BEA', 'インフレ', '年率', 'FRB'],
   },
 
   {
@@ -188,6 +279,17 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/gdp-growth.md'),
     relatedIndicators: ['gdp-components', 'gdp-deflator'],
     tags: ['GDP', '内閣府', '景気'],
+  },
+
+  {
+    indicatorId: 'gdp-deflator',
+    title: 'GDPデフレーター',
+    country: 'japan',
+    category: 'economy',
+    summary: '名目GDPを実質GDPで割ったインプリシットな物価指標。交易条件の影響を直接受け、国内付加価値の価格動向を把握する。',
+    loadContent: loadMd('japan/gdp-deflator.md'),
+    relatedIndicators: ['quarterly-gdp', 'national-cpi', 'cgpi'],
+    tags: ['GDPデフレーター', '物価', '内閣府', '交易条件', '付加価値', '四半期'],
   },
 
   // --- Japan / 物価 ---
@@ -1027,6 +1129,29 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['設備稼働率', 'Capacity Utilization', 'FRB', '製造業', '鉱業', '供給制約', 'インフレ圧力', '設備投資'],
   },
 
+  // --- USA / 消費 ---
+  {
+    indicatorId: 'retail-sales',
+    title: '小売売上高',
+    country: 'usa',
+    category: 'consumer',
+    summary: 'Census Bureauが公表する月次の名目小売売上高。コントロールグループが基調需要の把握に最も有用で、PCE・GDPの基礎データとしても重要。',
+    loadContent: loadMd('usa/retail-sales.md'),
+    relatedIndicators: ['pce-deflator', 'gdp'],
+    tags: ['小売売上高', 'Retail Sales', 'コントロールグループ', 'Census Bureau', '個人消費', 'PCE', '財消費'],
+  },
+
+  {
+    indicatorId: 'cb-consumer-confidence',
+    title: 'CB消費者信頼感指数',
+    country: 'usa',
+    category: 'consumer',
+    summary: 'The Conference Boardの消費者調査。現況指数と期待指数を分けて見ることで、家計心理の同時性と先行性の両面を把握できる。',
+    loadContent: loadMd('usa/cb-consumer-confidence.md'),
+    relatedIndicators: ['retail-sales', 'pce-deflator'],
+    tags: ['消費者信頼感', 'Consumer Confidence', 'Conference Board', '期待指数', '現況指数', '個人消費', '家計心理'],
+  },
+
   // --- マーケット / 中立金利 ---
   {
     indicatorId: 'neutral-rate',
@@ -1123,6 +1248,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['マネーストック', 'マネーサプライ', 'Money Stock', 'M1', 'M2', 'M3', 'M4', '広義流動性', '信用', '貸出'],
   },
 
+  // --- マーケット / 雇用・労働市場（総論） ---
+  {
+    indicatorId: 'employment-labor-market',
+    title: '雇用・労働市場の見方',
+    country: 'market',
+    category: 'employment',
+    summary: '雇用者数・労働時間・賃金・生産性を分けて見る枠組み。景気循環との先行・一致・遅行の違い、サービスインフレとの関係、失業率だけでは見誤るリスクを整理。',
+    loadContent: loadMd('market/employment-labor-market.md'),
+    relatedIndicators: ['nonfarm-payrolls'],
+    tags: ['雇用', '労働市場', '賃金', '生産性', 'サービスインフレ', '景気循環', '失業率', 'Conference Board'],
+  },
+
   // --- ユーロ圏 / PPI ---
   {
     indicatorId: 'ecb-ppi',
@@ -1147,6 +1284,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PPI', 'ドイツ', 'Destatis', '生産者物価', 'インフレ', '工業'],
   },
 
+  // --- ユーロ圏 / ECB SPF ---
+  {
+    indicatorId: 'ecb-spf',
+    title: 'ECB SPF インフレ期待（ユーロ圏）',
+    country: 'eurozone',
+    category: 'inflation',
+    summary: 'ECBの専門家予想（SPF）によるインフレ期待。期待インフレが賃金に半年〜9か月先行して波及しやすく、賃金圧力の先行指標として有用。',
+    loadContent: loadMd('eurozone/ecb-spf.md'),
+    relatedIndicators: ['ecb-ppi', 'germany-ppi'],
+    tags: ['ECB', 'SPF', 'インフレ期待', '賃金', 'ユーロ圏', '交渉賃金', 'サービスインフレ'],
+  },
+
   // --- 英国 / PPI ---
   {
     indicatorId: 'uk-ppi',
@@ -1157,6 +1306,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('uk/uk-ppi.md'),
     relatedIndicators: ['ecb-ppi', 'germany-ppi', 'ppi', 'cgpi'],
     tags: ['PPI', '英国', 'ONS', '生産者物価', 'インフレ', 'Factory Gate'],
+  },
+
+  // --- 英国 / BOE インフレ期待 ---
+  {
+    indicatorId: 'uk-boe-inflation-attitudes',
+    title: 'BOE インフレ期待調査（英国）',
+    country: 'uk',
+    category: 'inflation',
+    summary: 'BoEの家計インフレ期待調査。ユーロ圏ほど賃金との先行関係は安定せず、労働需給や最低賃金改定の影響も大きい。短期の期待インフレが実務上参考になりやすい。',
+    loadContent: loadMd('uk/uk-boe-inflation-attitudes.md'),
+    relatedIndicators: ['uk-ppi'],
+    tags: ['BOE', 'インフレ期待', '賃金', '英国', 'サービスCPI', 'ONS'],
   },
 
   // --- カナダ / IPPI ---

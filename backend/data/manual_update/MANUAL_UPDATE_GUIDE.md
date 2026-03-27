@@ -75,6 +75,20 @@
   - https://www.mtsinsights.com/events/4205/
 - **手順**: PDFをダウンロードしてファイル名を変更して配置
 
+### ISM製造業・非製造業構成指数（Components）
+- **フォルダ**: `monthly/ism_components/`
+- **ファイル名**:
+  - `ism_manufacturing_components.csv` — ISM製造業構成指数（6項目）
+  - `ism_non_manufacturing_components.csv` — ISM非製造業構成指数（6項目）
+- **取得元**: https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/
+- **形式**:
+  - 製造業: CSV (date, new_orders, production, employment, supplier_deliveries, prices, inventories)
+  - 非製造業: CSV (date, new_orders, business_activity, employment, supplier_deliveries, prices, inventories)
+- **日付形式**: YYYY/M（例: 2026/1）
+- **更新タイミング**: 製造業は月初第1営業日、非製造業は第3営業日
+- **手順**: DBnomicsが更新されていない月のデータを手動で追記。空欄フィールドはFMP DB/DBnomicsの既存値を保持。
+- **備考**: DBnomicsが復旧すれば手動更新は不要。FMP DBにある項目（New Orders, Employment, Prices、非製造業はBusiness Activityも）は自動補完されるため、手動更新が必須なのはProduction（製造業のみ）, Supplier Deliveries, Inventoriesの3項目。
+
 ### グローバル製造業PMI
 - **フォルダ**: `monthly/global_pmi/`
 - **ファイル**: `J.P.Morgan Global Manufacturing PMI.csv`
@@ -130,6 +144,7 @@ backend/data/manual_update/
 │   ├── economic_surprise/          # エコノミックサプライズ指数 PNG ×3
 │   └── stock_pe/                   # S&P500, NASDAQ100, 日経, TOPIX PER CSV
 ├── monthly/
+│   ├── ism_components/              # ISM構成指数 CSV ×2
 │   ├── uk_rics/                    # RICS住宅価格 PDF
 │   ├── uk_halifax/                 # ハリファックス住宅価格 PDF
 │   ├── uk_rightmove/               # ライトムーブ住宅価格 PDF

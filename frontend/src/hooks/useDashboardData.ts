@@ -1806,6 +1806,28 @@ export interface OvertimeHoursNextRelease {
   label: string
 }
 
+// 平均週労働時間データの型（FRED AWHAETP / AWHNONAG / AWHMAN）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface UsAverageWeeklyWorkingHoursData {
+  data: UsAverageWeeklyWorkingHoursItem[]
+  latest: UsAverageWeeklyWorkingHoursItem | null
+  series_config: Record<string, { series_id: string; name: string; color: string }>
+  next_release: UsAverageWeeklyWorkingHoursNextRelease | null
+  last_updated: string | null
+}
+
+export interface UsAverageWeeklyWorkingHoursItem {
+  date: string           // YYYY-MM-DD形式
+  awhaetp: number        // 民間全体・全従業員の平均週労働時間（時間）
+  awhnonag?: number      // 民間全体・生産労働者の平均週労働時間（時間）
+  awhman?: number        // 製造業・生産労働者の平均週労働時間（時間）
+}
+
+export interface UsAverageWeeklyWorkingHoursNextRelease {
+  date: string
+  label: string
+}
+
 // サームルールデータの型（FRED: SAHMCURRENT）
 // 毎月第1金曜日 8:30 ET発表（雇用統計と同時）
 export interface SahmRuleData {
@@ -1852,6 +1874,7 @@ export interface USAEmploymentData {
   nfib_compensation: NFIBCompensationData | null
   nfib_compensation_unemployment: NFIBCompensationUnemploymentData | null
   overtime_hours: OvertimeHoursData | null
+  us_average_weekly_working_hours: UsAverageWeeklyWorkingHoursData | null
   sahm_rule: SahmRuleData | null
 }
 

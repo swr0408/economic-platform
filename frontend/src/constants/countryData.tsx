@@ -145,6 +145,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'nfib-compensation', name: 'NFIB人件費 / 雇用計画' },
           { code: 'nfib-compensation-unemployment', name: 'NFIB労働報酬 / 失業率' },
           { code: 'overtime-hours', name: '平均残業時間' },
+          { code: 'average-weekly-working-hours', name: '平均週労働時間' },
         ],
       },
       {

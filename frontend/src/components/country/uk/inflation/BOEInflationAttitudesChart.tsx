@@ -203,6 +203,7 @@ export default function BOEInflationAttitudesChart({ data }: BOEInflationAttitud
         showPeriodSelector={false}
         dataSource="BOE"
         sourceUrl="https://www.bankofengland.co.uk/search#?cludoquery=Ipsos%20Inflation%20Attitudes%20Survey&cludopage=1&cludorefurl=https%3A%2F%2Fwww.bankofengland.co.uk%2Finflation-attitudes-survey%2F2025%2Ffebruary-2025&cludorefpt=Bank%20of%20England%2FIpsos%20Inflation%20Attitudes%20Survey%20-%20February%202025%20%7C%20Bank%20of%20England&cludoinputtype=standard"
+        handbookId="uk-boe-inflation-attitudes"
       >
         {/* 最新値表示 */}
         <LatestValueBox

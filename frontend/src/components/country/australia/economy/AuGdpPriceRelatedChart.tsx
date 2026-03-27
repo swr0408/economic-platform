@@ -239,7 +239,7 @@ export default function AuGdpPriceRelatedChart({ data }: AuGdpPriceRelatedChartP
 
   if (!hasData) {
     return (
-      <ChartContainer title="GDP詳細" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDP詳細" showPeriodSelector={false} showDataSource={false} handbookId="gdp-deflator">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -271,6 +271,7 @@ export default function AuGdpPriceRelatedChart({ data }: AuGdpPriceRelatedChartP
         showPeriodSelector={false}
         dataSource="ABS (Australian Bureau of Statistics)"
         sourceUrl="https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product"
+        handbookId="gdp-deflator"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

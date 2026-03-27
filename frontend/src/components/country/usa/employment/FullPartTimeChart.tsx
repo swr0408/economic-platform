@@ -212,6 +212,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        handbookId="fullpart-time"
       >
         {/* 最新値表示 */}
         <LatestValueBox

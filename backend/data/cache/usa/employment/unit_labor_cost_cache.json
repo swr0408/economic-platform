@@ -512,19 +512,19 @@
     },
     {
       "date": "2025-07-01",
-      "ulc_pch": -1.8,
+      "ulc_pch": 1.0,
       "productivity_pch": 5.2
     },
     {
       "date": "2025-10-01",
-      "ulc_pch": 2.8,
-      "productivity_pch": 2.8
+      "ulc_pch": 4.4,
+      "productivity_pch": 1.8
     }
   ],
   "latest": {
     "date": "2025-10-01",
-    "ulc_pch": 2.8,
-    "productivity_pch": 2.8
+    "ulc_pch": 4.4,
+    "productivity_pch": 1.8
   },
-  "last_updated": "2026-03-22T23:02:02.732588+09:00"
+  "last_updated": "2026-03-27T12:02:07.931909+09:00"
 }

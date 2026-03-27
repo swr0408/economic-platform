@@ -89,6 +89,7 @@ export default function LaborForceParticipationChart({ data }: LaborForcePartici
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        handbookId="labor-force-participation"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -18,8 +18,11 @@ DBnomics APIからISM製造業の構成要素データを取得
 キャッシュ方式: last_updated判定方式
 - ISM製造業景況指数の次回発表日で判定
 """
+import csv
+import os
 import requests
 from datetime import datetime, timedelta
+from pathlib import Path
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 
@@ -35,6 +38,10 @@ JST = ZoneInfo("Asia/Tokyo")
 
 # DBnomics API設定
 DBNOMICS_BASE_URL = "https://api.db.nomics.world/v22"
+
+# 手動更新CSV
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "monthly" / "ism_components"
+CSV_FILE = CSV_DIR / "ism_manufacturing_components.csv"
 
 # ISMサブインデックスのシリーズコード
 ISM_SERIES = {
@@ -107,6 +114,30 @@ class ISMComponentsService:
         fetched_result = self._fetch_from_dbnomics()
 
         if fetched_result and fetched_result.get("data"):
+            # 成功 → DBに保存（派生フィールドを除いた基礎データ）
+            self._save_to_db(fetched_result["data"], source="dbnomics")
+        else:
+            # 失敗 → DBからフォールバック読み込み
+            print("DBnomics failed, falling back to DB...")
+            db_data = self._load_from_db()
+            if db_data:
+                fetched_result = {"data": db_data}
+                print(f"  Loaded {len(db_data)} records from DB")
+
+        # DBnomicsデータをFMP DBの最新データで補完
+        if fetched_result and fetched_result.get("data"):
+            fetched_result["data"] = self._supplement_from_fmp_db(fetched_result["data"])
+            # FMPで取得できた値をCSVに自動書き込み
+            self._write_fmp_to_csv(fetched_result["data"])
+
+        # CSVデータで補完（最優先）
+        if fetched_result and fetched_result.get("data"):
+            fetched_result["data"] = self._supplement_from_csv(fetched_result["data"])
+            # CSV分もDBに保存
+            self._save_csv_to_db(fetched_result["data"])
+            fetched_result["data"] = self._recalculate_derived_fields(fetched_result["data"])
+
+        if fetched_result and fetched_result.get("data"):
             fetched_data = fetched_result["data"]
 
             # 日付でソート（昇順）
@@ -118,7 +149,8 @@ class ISMComponentsService:
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": datetime.now(JST).isoformat(),
+                "csv_mtime": self._get_csv_mtime(),
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
@@ -146,9 +178,30 @@ class ISMComponentsService:
         """
         キャッシュを更新すべきかどうかを判定
 
-        FMPスケジュールベースの3分方式で判定
+        FMPスケジュールベースの判定 OR CSVファイルの更新検知
         """
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        if should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str):
+            return True
+
+        # CSVファイルのタイムスタンプが変わっていればリフレッシュ
+        cached_data = redis_client.get(self.CACHE_KEY)
+        if cached_data:
+            cached_csv_mtime = cached_data.get("csv_mtime")
+            current_csv_mtime = self._get_csv_mtime()
+            if cached_csv_mtime != current_csv_mtime:
+                return True
+
+        return False
+
+    def _get_csv_mtime(self) -> Optional[str]:
+        """CSVファイルの最終更新時刻を取得"""
+        try:
+            if CSV_FILE.exists():
+                mtime = os.path.getmtime(CSV_FILE)
+                return datetime.fromtimestamp(mtime, tz=JST).isoformat()
+        except Exception:
+            pass
+        return None
 
     def _fetch_from_dbnomics(self) -> Optional[Dict[str, Any]]:
         """DBnomics APIからISMサブインデックスデータを取得"""
@@ -298,6 +351,347 @@ class ISMComponentsService:
         except Exception as e:
             print(f"Error combining series data: {e}")
             return []
+
+    def _supplement_from_csv(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        CSVファイルから手動更新データを読み込んでマージ
+
+        CSVの値はDBnomics/FMP DBの値を上書きする（最高優先度）。
+        CSVで空欄のフィールドは既存値を保持する。
+        """
+        try:
+            if not CSV_FILE.exists():
+                return data
+
+            csv_data = {}
+            with open(CSV_FILE, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    date_str = row.get("date", "").strip()
+                    if not date_str:
+                        continue
+
+                    # 日付パース: "YYYY/M" -> "YYYY-MM-01"
+                    try:
+                        parts = date_str.split("/")
+                        year = int(parts[0])
+                        month = int(parts[1])
+                        date_formatted = f"{year}-{month:02d}-01"
+                    except (ValueError, IndexError):
+                        continue
+
+                    csv_data[date_formatted] = {}
+                    for field in ["new_orders", "production", "employment",
+                                  "supplier_deliveries", "prices", "inventories"]:
+                        val_str = row.get(field, "").strip()
+                        if val_str:
+                            try:
+                                csv_data[date_formatted][field] = float(val_str)
+                            except ValueError:
+                                pass
+
+            if not csv_data:
+                return data
+
+            # 既存データをdate->indexマップに変換
+            date_index = {item["date"]: i for i, item in enumerate(data)}
+
+            for date_key, csv_fields in csv_data.items():
+                if date_key in date_index:
+                    # 既存月: CSVの値で上書き（空欄フィールドは保持）
+                    idx = date_index[date_key]
+                    for field, value in csv_fields.items():
+                        data[idx][field] = value
+                    print(f"  CSV override: {date_key} fields={list(csv_fields.keys())}")
+                else:
+                    # 新しい月: エントリ追加
+                    entry = {
+                        "date": date_key,
+                        "new_orders": csv_fields.get("new_orders"),
+                        "production": csv_fields.get("production"),
+                        "employment": csv_fields.get("employment"),
+                        "supplier_deliveries": csv_fields.get("supplier_deliveries"),
+                        "prices": csv_fields.get("prices"),
+                        "inventories": csv_fields.get("inventories"),
+                        "order_inventory_balance": None,
+                        "order_inventory_balance_3ma": None,
+                    }
+                    data.append(entry)
+                    print(f"  CSV supplement: {date_key} fields={list(csv_fields.keys())}")
+
+            data.sort(key=lambda x: x["date"])
+            return data
+
+        except Exception as e:
+            print(f"Error supplementing from CSV: {e}")
+            return data
+
+    def _recalculate_derived_fields(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """受注在庫バランスと3ヶ月移動平均を再計算"""
+        for item in data:
+            new_orders = item.get("new_orders")
+            inventories = item.get("inventories")
+            if new_orders is not None and inventories is not None:
+                item["order_inventory_balance"] = round(new_orders - inventories, 1)
+            else:
+                item["order_inventory_balance"] = None
+
+        for i, item in enumerate(data):
+            if i >= 2:
+                balances = [
+                    data[i - 2].get("order_inventory_balance"),
+                    data[i - 1].get("order_inventory_balance"),
+                    item.get("order_inventory_balance"),
+                ]
+                if all(b is not None for b in balances):
+                    item["order_inventory_balance_3ma"] = round(sum(balances) / 3, 1)
+                else:
+                    item["order_inventory_balance_3ma"] = None
+            else:
+                item["order_inventory_balance_3ma"] = None
+
+        return data
+
+    def _save_to_db(self, data: List[Dict[str, Any]], source: str = "dbnomics") -> None:
+        """基礎データをDBに保存（派生フィールドは除外）"""
+        try:
+            from services.usa.ism_components_db_utils import upsert_ism_components
+            count = upsert_ism_components("manufacturing", data, source=source)
+            if count > 0:
+                print(f"  Saved {count} records to DB (source={source})")
+        except Exception as e:
+            print(f"  DB save failed: {e}")
+
+    def _save_csv_to_db(self, data: List[Dict[str, Any]]) -> None:
+        """CSVで補完されたデータのうち、CSV由来の月のみDBに保存"""
+        try:
+            if not CSV_FILE.exists():
+                return
+
+            # CSVの日付一覧を取得
+            csv_dates = set()
+            with open(CSV_FILE, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    date_str = row.get("date", "").strip()
+                    if date_str:
+                        parts = date_str.split("/")
+                        csv_dates.add(f"{int(parts[0])}-{int(parts[1]):02d}-01")
+
+            if not csv_dates:
+                return
+
+            # CSV由来の月だけ抽出してDBに保存
+            csv_records = [item for item in data if item.get("date") in csv_dates]
+            if csv_records:
+                from services.usa.ism_components_db_utils import upsert_ism_components
+                count = upsert_ism_components("manufacturing", csv_records, source="csv")
+                if count > 0:
+                    print(f"  Saved {count} CSV records to DB")
+
+        except Exception as e:
+            print(f"  CSV-to-DB save failed: {e}")
+
+    def _write_fmp_to_csv(self, data: List[Dict[str, Any]]) -> None:
+        """FMP DBから取得できた値をCSVに自動書き込み
+
+        DBnomicsの最新月より新しい月のデータをCSVにマージする。
+        既存CSV行の空欄フィールドのみFMP値で補完し、既入力値は上書きしない。
+        """
+        try:
+            # DBnomics最新月を特定（source='dbnomics'のみ = 2025-12等）
+            from services.usa.ism_components_db_utils import get_latest_date
+            db_latest = get_latest_date("manufacturing", source="dbnomics")
+            if not db_latest:
+                return
+
+            # DBnomics最新月より新しい月のデータを抽出
+            new_month_data = {}
+            for item in data:
+                if item.get("date") and item["date"] > db_latest:
+                    date_str = item["date"]  # "YYYY-MM-01"
+                    parts = date_str.split("-")
+                    csv_date = f"{int(parts[0])}/{int(parts[1])}"  # "2026/1"
+                    new_month_data[csv_date] = item
+
+            if not new_month_data:
+                return
+
+            CSV_FIELDS = ["new_orders", "production", "employment",
+                          "supplier_deliveries", "prices", "inventories"]
+
+            # 既存CSVを読み込み
+            existing = {}  # {csv_date: {field: value_str}}
+            if CSV_FILE.exists():
+                with open(CSV_FILE, "r", encoding="utf-8") as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        d = row.get("date", "").strip()
+                        if d:
+                            existing[d] = {field: row.get(field, "").strip() for field in CSV_FIELDS}
+
+            # マージ: 既存行の空欄フィールドのみFMP値で補完、新しい月は追加
+            changed = False
+            for csv_date, item in new_month_data.items():
+                if csv_date in existing:
+                    # 既存行: 空欄フィールドのみ補完
+                    for field in CSV_FIELDS:
+                        if not existing[csv_date].get(field) and item.get(field) is not None:
+                            existing[csv_date][field] = str(item[field])
+                            changed = True
+                            print(f"  CSV auto-fill: {csv_date} {field}={item[field]}")
+                else:
+                    # 新しい月: FMP値で行追加
+                    row_data = {}
+                    has_value = False
+                    for field in CSV_FIELDS:
+                        val = item.get(field)
+                        if val is not None:
+                            row_data[field] = str(val)
+                            has_value = True
+                        else:
+                            row_data[field] = ""
+                    if has_value:
+                        existing[csv_date] = row_data
+                        changed = True
+                        filled = [f for f in CSV_FIELDS if row_data[f]]
+                        print(f"  CSV auto-add: {csv_date} fields={filled}")
+
+            if not changed:
+                return
+
+            # CSVを書き直し（日付順）
+            CSV_DIR.mkdir(parents=True, exist_ok=True)
+            sorted_dates = sorted(existing.keys(),
+                                  key=lambda d: (int(d.split("/")[0]), int(d.split("/")[1])))
+            with open(CSV_FILE, "w", encoding="utf-8", newline="") as f:
+                header = "date," + ",".join(CSV_FIELDS)
+                f.write(header + "\n")
+                for d in sorted_dates:
+                    vals = [existing[d].get(field, "") for field in CSV_FIELDS]
+                    f.write(d + "," + ",".join(vals) + "\n")
+
+            print(f"  CSV updated: {len(sorted_dates)} rows")
+
+        except Exception as e:
+            print(f"  FMP-to-CSV write failed: {e}")
+
+    def _load_from_db(self) -> List[Dict[str, Any]]:
+        """DBからフォールバック読み込み"""
+        try:
+            from services.usa.ism_components_db_utils import load_ism_components
+            db_data = load_ism_components("manufacturing")
+            # DB結果にはproduction/business_activityの両方が入るが、製造業ではproductionを使用
+            # order_inventory_balance等の派生フィールドは後で再計算される
+            return db_data
+        except Exception as e:
+            print(f"  DB fallback load failed: {e}")
+            return []
+
+    def _supplement_from_fmp_db(self, dbnomics_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        DBnomicsデータをFMP DB（economic_calendar_events）の最新データで補完
+
+        FMP DBにはNew Orders, Employment, Pricesが含まれる。
+        DBnomicsが遅延している場合、FMP DBからこれらを補完する。
+        """
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            # DBnomicsの最新日付を取得
+            if not dbnomics_data:
+                return dbnomics_data
+            latest_date = max(item["date"] for item in dbnomics_data)  # "YYYY-MM-01"
+            latest_month = latest_date[:7]  # "YYYY-MM"
+
+            # FMP DBからISM製造業コンポーネントを取得（DBnomics最新以降）
+            fmp_components = {
+                "new_orders": "ISM Manufacturing New Orders",
+                "employment": "ISM Manufacturing Employment",
+                "prices": "ISM Manufacturing Prices",
+            }
+
+            with SessionLocal() as session:
+                new_months = {}
+                for field, pattern in fmp_components.items():
+                    query = text("""
+                        SELECT event, datetime_utc, actual
+                        FROM economic_calendar_events
+                        WHERE country = 'US'
+                          AND event ILIKE :pattern
+                          AND actual IS NOT NULL
+                          AND datetime_utc > :since
+                        ORDER BY datetime_utc ASC
+                    """)
+                    rows = session.execute(query, {
+                        "pattern": f"%{pattern}%",
+                        "since": f"{latest_month}-01",
+                    }).fetchall()
+
+                    for row in rows:
+                        event_name = row[0]
+                        actual = float(row[2])
+                        # イベント名から月を抽出: "ISM Manufacturing New Orders (Feb)" → Feb
+                        import re
+                        month_match = re.search(r'\((\w+)\)', event_name)
+                        if not month_match:
+                            continue
+                        month_abbr = month_match.group(1)  # "Jan", "Feb", etc.
+
+                        # 月名→年月変換（発表年を推定）
+                        month_map = {
+                            'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
+                            'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+                            'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+                        }
+                        if month_abbr not in month_map:
+                            continue
+                        mm = month_map[month_abbr]
+
+                        # 年はdatetime_utcから推定
+                        event_year = row[1].year
+                        # 12月データが1月に発表される場合の補正
+                        if mm == '12' and row[1].month <= 2:
+                            event_year -= 1
+                        data_date = f"{event_year}-{mm}-01"
+
+                        if data_date <= latest_date:
+                            continue  # DBnomicsに既にある
+
+                        if data_date not in new_months:
+                            new_months[data_date] = {"date": data_date}
+                        new_months[data_date][field] = actual
+
+                if not new_months:
+                    return dbnomics_data
+
+                # 新しい月のデータをdbnomics_dataに追加
+                for date_key, new_data in sorted(new_months.items()):
+                    new_orders = new_data.get("new_orders")
+                    # inventoriesはFMPにないのでNone
+                    entry = {
+                        "date": date_key,
+                        "new_orders": new_orders,
+                        "production": None,
+                        "employment": new_data.get("employment"),
+                        "supplier_deliveries": None,
+                        "prices": new_data.get("prices"),
+                        "inventories": None,
+                        "order_inventory_balance": None,
+                        "order_inventory_balance_3ma": None,
+                    }
+                    dbnomics_data.append(entry)
+                    print(f"  Supplemented from FMP DB: {date_key} (new_orders={new_orders}, employment={new_data.get('employment')}, prices={new_data.get('prices')})")
+
+                # ソート
+                dbnomics_data.sort(key=lambda x: x["date"])
+
+                return dbnomics_data
+
+        except Exception as e:
+            print(f"Error supplementing from FMP DB: {e}")
+            return dbnomics_data
 
     def invalidate_cache(self) -> bool:
         """キャッシュを無効化"""

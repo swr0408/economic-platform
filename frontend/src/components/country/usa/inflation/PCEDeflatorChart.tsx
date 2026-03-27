@@ -187,7 +187,7 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="PCEデフレーター" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="PCEデフレーター" showPeriodSelector={false} showDataSource={false} handbookId="pce-deflator">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -203,6 +203,7 @@ export default function PCEDeflatorChart({ pceData, corePceData }: PCEDeflatorCh
         showPeriodSelector={false}
         dataSource="FRED (BEA)"
         sourceUrl="https://www.bea.gov/data/personal-consumption-expenditures-price-index"
+        handbookId="pce-deflator"
       >
         {/* 最新値表示 */}
         <LatestValueBox

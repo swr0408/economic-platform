@@ -103,6 +103,7 @@ export default function InitialClaimsChart({ data }: InitialClaimsChartProps) {
         showPeriodSelector={false}
         dataSource="FRED / DOL"
         sourceUrl="https://www.dol.gov/sites/dolgov/files/OPA/newsreleases/ui-claims/20251644.pdf"
+        handbookId="initial-claims"
       >
         {/* 最新値表示 */}
         <LatestValueBox

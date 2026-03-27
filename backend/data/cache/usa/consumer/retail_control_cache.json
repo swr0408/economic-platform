@@ -977,7 +977,7 @@
     "datetime_jst": "2026-04-01T21:30:00+09:00",
     "time_jst": "21:30",
     "label": "Retail Sales Ex Gas/Autos MoM (Feb)",
-    "estimate": null
+    "estimate": 0.2
   },
-  "last_updated": "2026-03-25T23:02:06.082211+09:00"
+  "last_updated": "2026-03-27T23:02:04.770903+09:00"
 }

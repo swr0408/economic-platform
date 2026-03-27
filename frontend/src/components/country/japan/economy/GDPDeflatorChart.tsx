@@ -167,7 +167,7 @@ const GDPDeflatorChart: React.FC = () => {
 
   if (loading) {
     return (
-      <ChartContainer title="GDPデフレーター（前年同期比）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPデフレーター（前年同期比）" showPeriodSelector={false} showDataSource={false} handbookId="gdp-deflator">
         <div style={{ textAlign: 'center', padding: '40px 0' }}>
           <Spin size="large" />
           <div style={{ marginTop: 16, color: DARK_THEME.textSecondary }}>
@@ -180,7 +180,7 @@ const GDPDeflatorChart: React.FC = () => {
 
   if (error) {
     return (
-      <ChartContainer title="GDPデフレーター（前年同期比）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPデフレーター（前年同期比）" showPeriodSelector={false} showDataSource={false} handbookId="gdp-deflator">
         <Alert message="エラー" description={error} type="error" showIcon />
       </ChartContainer>
     )
@@ -199,6 +199,7 @@ const GDPDeflatorChart: React.FC = () => {
         showPeriodSelector={false}
         dataSource="内閣府"
         sourceUrl="https://www.esri.cao.go.jp/jp/sna/menu.html"
+        handbookId="gdp-deflator"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

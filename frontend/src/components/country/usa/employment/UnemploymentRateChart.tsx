@@ -86,6 +86,7 @@ export default function UnemploymentRateChart({ data }: UnemploymentRateChartPro
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        handbookId="unemployment"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox
