@@ -213,6 +213,7 @@ export default function RedfinCaseShillerChart({
         showPeriodSelector={false}
         dataSource="Redfin, FRED"
         sourceUrl="https://www.redfin.com/news/data-center/"
+        handbookId="redfin-case-shiller"
       >
         {/* 最新値表示 */}
         <LatestValueBox

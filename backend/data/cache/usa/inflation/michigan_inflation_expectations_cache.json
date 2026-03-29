@@ -4055,12 +4055,12 @@
     "date": "2026-03-01"
   },
   "next_release": {
-    "date": "2026-03-27",
-    "datetime_utc": "2026-03-27T14:00:00+00:00",
-    "datetime_jst": "2026-03-27T23:00:00+09:00",
+    "date": "2026-04-10",
+    "datetime_utc": "2026-04-10T14:00:00+00:00",
+    "datetime_jst": "2026-04-10T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "Michigan Inflation Expectations (Mar)",
-    "estimate": 3.4
+    "label": "Michigan Consumer Sentiment (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-03-27T23:02:08.293785+09:00"
+  "last_updated": "2026-03-29T18:01:33.251157+09:00"
 }

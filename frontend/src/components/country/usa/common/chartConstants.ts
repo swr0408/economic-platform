@@ -299,12 +299,14 @@ export const RETAIL_DATA_TYPE_BUTTON_OPTIONS: { mode: RetailDataType; label: str
 ]
 
 /** 耐久財データタイプ */
-export type DurableGoodsDataType = 'total' | 'ex_transport'
+export type DurableGoodsDataType = 'total' | 'ex_transport' | 'core_orders' | 'core_shipments'
 
 /** 耐久財データタイプ設定 */
 export const DURABLE_GOODS_DATA_TYPE_OPTIONS: { type: DurableGoodsDataType; label: string }[] = [
   { type: 'total', label: '総合' },
   { type: 'ex_transport', label: '輸送除く' },
+  { type: 'core_orders', label: 'コア受注' },
+  { type: 'core_shipments', label: 'コア出荷' },
 ]
 
 /** 住宅着工/建設許可データタイプ */

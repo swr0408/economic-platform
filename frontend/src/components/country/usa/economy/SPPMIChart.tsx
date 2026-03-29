@@ -122,6 +122,7 @@ export default function SPPMIChart({ data }: SPPMIChartProps) {
         showPeriodSelector={false}
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
+        handbookId="sp-pmi-chart"
       >
         {/* 最新値表示（3系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

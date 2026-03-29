@@ -251,6 +251,7 @@ export default function BankLendingChart({ data }: BankLendingChartProps) {
         showPeriodSelector={false}
         dataSource="FRED (Federal Reserve)"
         sourceUrl="https://www.federalreserve.gov/data/sloos.htm"
+        handbookId="bank-lending"
       >
         {/* タブ切替 */}
         <Tabs
@@ -286,7 +287,7 @@ function LegacySingleSeriesChart({ data }: { data: BankLendingData }) {
 
   if (!chartData.length) {
     return (
-      <ChartContainer title="銀行貸し出し態度（SLOOS）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="銀行貸し出し態度（SLOOS）" showPeriodSelector={false} showDataSource={false} handbookId="bank-lending">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -299,6 +300,7 @@ function LegacySingleSeriesChart({ data }: { data: BankLendingData }) {
         showPeriodSelector={false}
         dataSource="FRED (Federal Reserve)"
         sourceUrl="https://www.federalreserve.gov/data/sloos.htm"
+        handbookId="bank-lending"
       >
         <SimpleLatestValueBox
           value={data.latest?.value}

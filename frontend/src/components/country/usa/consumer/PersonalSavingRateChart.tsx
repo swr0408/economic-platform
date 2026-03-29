@@ -86,6 +86,7 @@ export default function PersonalSavingRateChart({ data }: PersonalSavingRateChar
         showPeriodSelector={false}
         dataSource="BEA / FRED"
         sourceUrl="https://fred.stlouisfed.org/series/PSAVERT"
+        handbookId="personal-saving-rate"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -153,6 +153,7 @@ export default function NzPmiChart({ pmi, psi, pci }: NzPmiChartProps) {
         showDataSource={true}
         dataSource="BusinessNZ"
         sourceUrl="https://businessnz.org.nz/business-issues/manufacturing"
+        handbookId="nz-pmi"
       >
         {/* 最新値表示（3指標） */}
         <LatestValueBox

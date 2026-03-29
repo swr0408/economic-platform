@@ -131,6 +131,7 @@ export default function PCEChart({ data }: PCEChartProps) {
         showPeriodSelector={false}
         dataSource="FRED / BEA"
         sourceUrl="https://fred.stlouisfed.org/series/PCE"
+        handbookId="pce"
       >
         {/* 最新値表示 */}
         <LatestValueBoxDual

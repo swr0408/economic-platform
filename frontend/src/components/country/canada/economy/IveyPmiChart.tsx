@@ -102,6 +102,7 @@ export default function IveyPmiChart({ data }: IveyPmiChartProps) {
         showPeriodSelector={false}
         dataSource="Ivey Business School"
         sourceUrl="https://iveypmi.uwo.ca/"
+        handbookId="ivey-pmi"
       >
         <SimpleLatestValueBox
           label="Ivey PMI（季節調整済）"

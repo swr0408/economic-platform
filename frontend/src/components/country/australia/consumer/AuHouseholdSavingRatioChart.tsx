@@ -174,6 +174,7 @@ export default function AuHouseholdSavingRatioChart({ data }: AuHouseholdSavingR
         showDataSource={true}
         dataSource="Australian Bureau of Statistics"
         sourceUrl="https://www.abs.gov.au/statistics/economy/national-accounts/australian-national-accounts-national-income-expenditure-and-product"
+        handbookId="household-saving-ratio"
       >
         {/* 最新値表示 */}
         <LatestValueBox

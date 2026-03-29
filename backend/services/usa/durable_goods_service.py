@@ -1,10 +1,12 @@
 """
 耐久財受注（Durable Goods Orders）サービス
-FRED APIからDGORDER, ADXTNOデータを取得
+FRED APIからDGORDER, ADXTNO, NEWORDER, ANXAVSデータを取得
 
 シリーズID:
 - DGORDER: Manufacturers' New Orders: Durable Goods (Millions of Dollars)
 - ADXTNO: Manufacturers' New Orders: Durable Goods Excluding Transportation (Millions of Dollars)
+- NEWORDER: Manufacturers' New Orders: Nondefense Capital Goods Excluding Aircraft (Millions of Dollars)
+- ANXAVS: Value of Manufacturers' Shipments for Capital Goods: Nondefense Capital Goods Excluding Aircraft (Millions of Dollars)
 
 発表スケジュール:
 - Census.gov M3サーベイ Advance Report
@@ -29,8 +31,10 @@ class DurableGoodsService(BaseMultiSeriesService):
 
     # 必須設定
     SERIES_CONFIG = {
-        "value": "DGORDER",        # 耐久財新規受注
-        "ex_transport": "ADXTNO"   # 耐久財新規受注（輸送除外）
+        "value": "DGORDER",              # 耐久財新規受注
+        "ex_transport": "ADXTNO",        # 耐久財新規受注（輸送除外）
+        "core_orders": "NEWORDER",       # 非国防資本財受注（除く航空機）
+        "core_shipments": "ANXAVS",      # 非国防資本財出荷（除く航空機）
     }
     REDIS_KEY = "fred:series:durable_goods"
     ECONALPHA_ID = "durable_goods_mom"
@@ -51,6 +55,10 @@ class DurableGoodsService(BaseMultiSeriesService):
             item["yoy"] = None
             item["ex_transport_mom"] = None
             item["ex_transport_yoy"] = None
+            item["core_orders_mom"] = None
+            item["core_orders_yoy"] = None
+            item["core_shipments_mom"] = None
+            item["core_shipments_yoy"] = None
 
             # 前月比
             if i >= 1:
@@ -63,6 +71,16 @@ class DurableGoodsService(BaseMultiSeriesService):
                     item["ex_transport_mom"] = round(
                         (item["ex_transport"] - prev["ex_transport"]) / prev["ex_transport"] * 100, 2
                     )
+                # 非国防資本財受注（除く航空機）
+                if item.get("core_orders") and prev.get("core_orders") and prev["core_orders"] != 0:
+                    item["core_orders_mom"] = round(
+                        (item["core_orders"] - prev["core_orders"]) / prev["core_orders"] * 100, 2
+                    )
+                # 非国防資本財出荷（除く航空機）
+                if item.get("core_shipments") and prev.get("core_shipments") and prev["core_shipments"] != 0:
+                    item["core_shipments_mom"] = round(
+                        (item["core_shipments"] - prev["core_shipments"]) / prev["core_shipments"] * 100, 2
+                    )
 
             # 前年比
             if i >= 12:
@@ -74,6 +92,16 @@ class DurableGoodsService(BaseMultiSeriesService):
                 if item.get("ex_transport") and year_ago.get("ex_transport") and year_ago["ex_transport"] != 0:
                     item["ex_transport_yoy"] = round(
                         (item["ex_transport"] - year_ago["ex_transport"]) / year_ago["ex_transport"] * 100, 2
+                    )
+                # 非国防資本財受注（除く航空機）
+                if item.get("core_orders") and year_ago.get("core_orders") and year_ago["core_orders"] != 0:
+                    item["core_orders_yoy"] = round(
+                        (item["core_orders"] - year_ago["core_orders"]) / year_ago["core_orders"] * 100, 2
+                    )
+                # 非国防資本財出荷（除く航空機）
+                if item.get("core_shipments") and year_ago.get("core_shipments") and year_ago["core_shipments"] != 0:
+                    item["core_shipments_yoy"] = round(
+                        (item["core_shipments"] - year_ago["core_shipments"]) / year_ago["core_shipments"] * 100, 2
                     )
 
         return merged_data

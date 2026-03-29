@@ -106,6 +106,7 @@ export default function AuPmiChart({ data }: AuPmiChartProps) {
         showPeriodSelector={false}
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
+        handbookId="au-pmi"
       >
         {/* 最新値表示（3系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

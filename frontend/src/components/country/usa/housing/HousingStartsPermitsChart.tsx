@@ -239,6 +239,7 @@ export default function HousingStartsPermitsChart({ housingStartsPermitsData }: 
         showPeriodSelector={false}
         dataSource="Census Bureau"
         sourceUrl="https://www.census.gov/construction/nrc/index.html"
+        handbookId="housing-starts-permits"
       >
         {/* 最新値表示（2系列） */}
         <LatestValueBox

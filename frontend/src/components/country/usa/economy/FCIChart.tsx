@@ -161,6 +161,7 @@ export default function FCIChart({ data }: FCIChartProps) {
         showPeriodSelector={false}
         dataSource="Federal Reserve"
         sourceUrl="https://www.federalreserve.gov/econres/notes/feds-notes/a-new-index-to-measure-us-financial-conditions-20230630.html"
+        handbookId="fci"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

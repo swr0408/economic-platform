@@ -126,6 +126,7 @@ export default function DisposableIncomeChart({ data }: DisposableIncomeChartPro
         showPeriodSelector={false}
         dataSource="FRED / BEA"
         sourceUrl="https://fred.stlouisfed.org/series/DSPI"
+        handbookId="disposable-income"
       >
         {/* 最新値表示 */}
         <LatestValueBoxDual

@@ -117,6 +117,7 @@ export default function CnPmiHeadlineChart({ data }: Props) {
         showDataSource={true}
         dataSource="NBS"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/"
+        handbookId="cn-pmi"
       >
         <Tabs
           activeKey={activeTab}

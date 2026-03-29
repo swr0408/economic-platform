@@ -254,6 +254,7 @@ export default function JapanPMIChart() {
         showDataSource={true}
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
+        handbookId="pmi"
       >
         {/* 最新値表示（統合ボックス） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

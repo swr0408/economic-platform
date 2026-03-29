@@ -128,6 +128,7 @@ export default function ChPmiChart({ data }: ChPmiChartProps) {
         showPeriodSelector={false}
         dataSource="procure.ch"
         sourceUrl="https://www.procure.ch/magazin/themen/marktdaten"
+        handbookId="ch-pmi"
       >
         {/* 最新値表示（2系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

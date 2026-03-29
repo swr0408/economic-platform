@@ -147,6 +147,7 @@ export default function ExistingHomeSalesChart({ existingHomeSalesData }: Existi
         showPeriodSelector={false}
         dataSource="NAR"
         sourceUrl="https://www.nar.realtor/research-and-statistics/housing-statistics/existing-home-sales"
+        handbookId="existing-home-sales"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -47,7 +47,7 @@ export default function NFCIChart({ data }: NFCIChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="シカゴ連銀金融環境指数（NFCI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="シカゴ連銀金融環境指数（NFCI）" showPeriodSelector={false} showDataSource={false} handbookId="nfci">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -74,6 +74,7 @@ export default function NFCIChart({ data }: NFCIChartProps) {
         showPeriodSelector={false}
         dataSource="FRED (Chicago Fed)"
         sourceUrl="https://www.chicagofed.org/research/data/nfci/current-data"
+        handbookId="nfci"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

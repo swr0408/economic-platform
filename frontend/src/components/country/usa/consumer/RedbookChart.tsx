@@ -77,6 +77,7 @@ export default function RedbookChart({ data }: RedbookChartProps) {
         showPeriodSelector={false}
         dataSource="Redbook Research"
         sourceUrl="https://www.redbookresearch.com/"
+        handbookId="redbook"
       >
         {/* 最新値表示 */}
         {latest && (

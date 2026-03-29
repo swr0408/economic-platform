@@ -600,10 +600,16 @@ export interface DurableGoodsItem {
   date: string
   value: number           // 耐久財新規受注（百万ドル）
   ex_transport: number | null  // 輸送除外
+  core_orders: number | null   // 非国防資本財受注（除く航空機）
+  core_shipments: number | null // 非国防資本財出荷（除く航空機）
   mom: number | null      // 前月比
   yoy: number | null      // 前年比
   ex_transport_mom: number | null  // 輸送除外の前月比
   ex_transport_yoy: number | null  // 輸送除外の前年比
+  core_orders_mom: number | null   // 非国防資本財受注の前月比
+  core_orders_yoy: number | null   // 非国防資本財受注の前年比
+  core_shipments_mom: number | null // 非国防資本財出荷の前月比
+  core_shipments_yoy: number | null // 非国防資本財出荷の前年比
   [key: string]: string | number | null | undefined
 }
 

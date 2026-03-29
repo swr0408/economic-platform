@@ -149,6 +149,7 @@ export default function AffinitySpendChart({ data }: AffinitySpendChartProps) {
         showPeriodSelector={false}
         dataSource="Opportunity Insights Economic Tracker"
         sourceUrl="https://economictracker.org/"
+        handbookId="affinity-spend"
       >
         {/* 最新値表示 */}
         {latest && (

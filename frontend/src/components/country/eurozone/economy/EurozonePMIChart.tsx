@@ -122,6 +122,7 @@ export default function EurozonePMIChart({ data }: EurozonePMIChartProps) {
         showPeriodSelector={false}
         dataSource="S&P Global"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
+        handbookId="ez-pmi"
       >
         {/* 最新値表示（3系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

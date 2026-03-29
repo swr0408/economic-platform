@@ -66,23 +66,26 @@ export default function CompareChart({
       );
     }
 
-    // 最も粗い頻度を特定（ベースタイムラインの解像度）
-    let coarsestRank = 0;
+    // 最も細かい頻度を特定（ベースタイムラインの解像度）
+    let finestRank = Infinity;
     for (const indicator of indicators) {
       const rank = FREQ_RANK[indicator.frequency];
-      if (rank > coarsestRank) coarsestRank = rank;
+      if (rank < finestRank) finestRank = rank;
     }
 
-    // ベースタイムライン構築: 最も粗い頻度に合わせた日付union
-    // 月次以上の粗さの場合は月キー(YYYY-MM)でunion
-    // 四半期の場合は四半期キー(YYYY-QN)でunion
-    const useMonthKey = coarsestRank >= 3; // monthly, quarterly, yearly
-    const useQuarterKey = coarsestRank >= 4; // quarterly, yearly
+    // ベースタイムライン構築: 最も細かい頻度に合わせた日付union
+    // 月次の場合は月キー(YYYY-MM)でunion、日次/週次はそのまま
+    const useMonthKey = finestRank === 3; // monthly/irregular のみ
+    // finestRank >= 4 (全指標が四半期以上) の場合のみ四半期キー
+    const useQuarterKey = finestRank >= 4;
 
+    // タイムライン構築:
+    // - 解像度は finest 頻度に合わせる（日次/週次データの動きを保持）
+    // - 日付範囲は全指標をカバー（シフト含む）
+    // - finest指標の範囲外に粗い指標のデータがある場合、月次補間で拡張
     let unionDates: string[];
 
     if (useQuarterKey) {
-      // 四半期キーでunion
       const quarterDateMap = new Map<string, string>();
       for (const indicator of indicators) {
         for (const pt of shiftedSorted[indicator.id]) {
@@ -96,7 +99,6 @@ export default function CompareChart({
       }
       unionDates = [...quarterDateMap.values()].sort();
     } else if (useMonthKey) {
-      // 月キーでunion
       const monthDateMap = new Map<string, string>();
       for (const indicator of indicators) {
         for (const pt of shiftedSorted[indicator.id]) {
@@ -108,13 +110,80 @@ export default function CompareChart({
       }
       unionDates = [...monthDateMap.values()].sort();
     } else {
-      // 日次/週次: 日付そのままunion
+      // 日次/週次: まずfinest指標の日付でベースを構築
       const dateSet = new Set<string>();
-      for (const indicator of indicators) {
+      const finestIndicators = indicators.filter(i => FREQ_RANK[i.frequency] <= finestRank);
+      const coarserIndicators = indicators.filter(i => FREQ_RANK[i.frequency] > finestRank);
+
+      for (const indicator of finestIndicators) {
         for (const pt of shiftedSorted[indicator.id]) {
           dateSet.add(pt.date);
         }
       }
+      // finest指標がない場合は全指標を使う
+      if (dateSet.size === 0) {
+        for (const indicator of indicators) {
+          for (const pt of shiftedSorted[indicator.id]) {
+            dateSet.add(pt.date);
+          }
+        }
+      }
+
+      // finest指標の日付範囲を求める
+      const finestDates = [...dateSet].sort();
+      const finestMax = finestDates.length > 0 ? finestDates[finestDates.length - 1] : '';
+      const finestMin = finestDates.length > 0 ? finestDates[0] : '';
+
+      // 粗い指標がfinest範囲外にデータを持つ場合、月次で補間日付を生成
+      let allMax = finestMax;
+      let allMin = finestMin;
+      for (const indicator of coarserIndicators) {
+        const sorted = shiftedSorted[indicator.id];
+        if (sorted.length > 0) {
+          const last = sorted[sorted.length - 1].date;
+          const first = sorted[0].date;
+          if (last > allMax) allMax = last;
+          if (first < allMin) allMin = first;
+        }
+      }
+
+      // 左側の拡張（finestMin より前）
+      if (allMin < finestMin) {
+        const d = parseDate(allMin);
+        const end = parseDate(finestMin);
+        d.setDate(1); // 月初に揃える
+        while (d < end) {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          dateSet.add(`${yyyy}-${mm}-01`);
+          d.setMonth(d.getMonth() + 1);
+        }
+      }
+
+      // 右側の拡張（finestMax より後）
+      // 粗い指標の最終データを水平延長表示するため、allMaxの3ヶ月先まで補間
+      if (allMax > finestMax) {
+        const d = parseDate(finestMax);
+        const end = parseDate(allMax);
+        end.setMonth(end.getMonth() + 3); // 最終データの3ヶ月先まで拡張
+        d.setDate(1);
+        d.setMonth(d.getMonth() + 1); // finestMaxの翌月から開始
+        while (d <= end) {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          dateSet.add(`${yyyy}-${mm}-01`);
+          d.setMonth(d.getMonth() + 1);
+        }
+        // 粗い指標の実データ日付も追加（正確なポイントを含める）
+        for (const indicator of coarserIndicators) {
+          for (const pt of shiftedSorted[indicator.id]) {
+            if (pt.date > finestMax) {
+              dateSet.add(pt.date);
+            }
+          }
+        }
+      }
+
       unionDates = [...dateSet].sort();
     }
 
@@ -131,11 +200,13 @@ export default function CompareChart({
     for (const indicator of indicators) {
       const sorted = shiftedSorted[indicator.id];
       const freqRank = FREQ_RANK[indicator.frequency];
+      const shift = timeShifts[indicator.id] || 0;
+      // シフトなし指標: 実データの最終日付を超えたら前方充填しない
+      const lastDataDate = sorted.length > 0 ? sorted[sorted.length - 1].date : '';
 
-      if (freqRank >= coarsestRank) {
-        // 同じ粗さ or それ以上 → 月/四半期キーの厳密マッチ
+      if (freqRank <= finestRank) {
+        // 同じ細かさ or それ以上に細かい → 厳密マッチ
         if (useQuarterKey) {
-          // 四半期マッチ
           const byQuarter = new Map<string, number | null>();
           for (const pt of sorted) {
             const d = parseDate(pt.date);
@@ -148,7 +219,6 @@ export default function CompareChart({
             return byQuarter.get(`${d.getFullYear()}-Q${q}`) ?? null;
           });
         } else if (useMonthKey) {
-          // 月マッチ
           const byMonth = new Map<string, number | null>();
           for (const pt of sorted) {
             byMonth.set(pt.date.slice(0, 7), pt.value);
@@ -157,16 +227,20 @@ export default function CompareChart({
             return byMonth.get(date.slice(0, 7)) ?? null;
           });
         } else {
-          // 日付exact match
           const byDate = new Map<string, number | null>();
           for (const pt of sorted) byDate.set(pt.date, pt.value);
           indicatorValues[indicator.id] = unionDates.map(date => byDate.get(date) ?? null);
         }
       } else {
-        // より細かい頻度 → as-of join（ポインタ法）でベース日付にマッピング
+        // より粗い頻度 → as-of join（ポインタ法）でベース日付にマッピング（前方充填）
         const values: (number | null)[] = [];
         let idx = 0;
         for (const baseDate of unionDates) {
+          // シフトなし指標は実データの最終日付を超えたらnull（水平延長しない）
+          if (shift === 0 && lastDataDate && baseDate > lastDataDate) {
+            values.push(null);
+            continue;
+          }
           while (idx < sorted.length && sorted[idx].date <= baseDate) {
             idx++;
           }
@@ -317,6 +391,11 @@ export default function CompareChart({
         color={getOverlayColor(0)}
         name={indicators[0]?.name || ''}
         domain={['auto', 'auto']}
+        tooltipLabelFormatter={(dateStr) => {
+          const d = parseDate(dateStr);
+          if (isNaN(d.getTime())) return dateStr;
+          return `${d.getFullYear()}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')}`;
+        }}
         tickFormatter={(v) => {
           if (index100) return v.toFixed(0);
           if (Math.abs(v) >= 1000) return v.toLocaleString();

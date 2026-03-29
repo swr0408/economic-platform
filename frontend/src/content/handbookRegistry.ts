@@ -45,6 +45,18 @@ function loadMd(path: string): () => Promise<string> {
 // ====================================================================
 
 export const HANDBOOK_ENTRIES: HandbookEntry[] = [
+  // --- USA / 概要 ---
+  {
+    indicatorId: 'usa-overview',
+    title: 'アメリカ経済の概要',
+    country: 'usa',
+    category: 'economy',
+    summary: '個人消費主導の内需型経済。PCEがGDPの約68%を占め、景気判断は雇用・賃金・消費・住宅・金融環境が中心。FRB・米国債・貿易構造の基本も整理。',
+    loadContent: loadMd('usa/usa-overview.md'),
+    relatedIndicators: ['gdp-growth', 'policy-rate', 'pce', 'nonfarm-payrolls'],
+    tags: ['アメリカ', '経済構造', 'PCE', 'FRB', 'FOMC', '米国債', '貿易', '内需', '政治', '大統領選挙'],
+  },
+
   // --- USA / 金融政策 ---
   {
     indicatorId: 'policy-rate',
@@ -129,6 +141,28 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('usa/ism-non-manufacturing.md'),
     relatedIndicators: ['ism-non-manufacturing-components', 'sp-pmi-chart'],
     tags: ['ISM', 'PMI', 'サービス業', '非製造業'],
+  },
+
+  {
+    indicatorId: 'sp-pmi-chart',
+    title: 'S&P Global PMI（米国）',
+    country: 'usa',
+    category: 'economy',
+    summary: 'S&P Globalの製造業・サービス業・コンポジットPMI。GDPの方向感にはサービスPMIが有効で、財価格圧力には製造業の投入・産出価格指数を確認する。',
+    loadContent: loadMd('usa/sp-pmi.md'),
+    relatedIndicators: ['ism-manufacturing', 'ism-non-manufacturing', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'S&P Global', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  {
+    indicatorId: 'durable-goods',
+    title: '耐久財受注',
+    country: 'usa',
+    category: 'economy',
+    summary: 'Census BureauのM3調査に基づく製造業の新規受注額。コア資本財受注（非国防・除く航空機）が設備投資の先行指標として最も重要。',
+    loadContent: loadMd('usa/durable-goods.md'),
+    relatedIndicators: ['ism-manufacturing', 'gdp-growth', 'sp-pmi-chart'],
+    tags: ['耐久財受注', 'Durable Goods', 'Core Capital Goods', 'Census Bureau', '設備投資', '製造業', '非国防資本財'],
   },
 
   // --- USA / 雇用 ---
@@ -313,6 +347,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/cgpi.md'),
     relatedIndicators: ['national-cpi', 'sppi', 'ppi'],
     tags: ['CGPI', '企業物価', '日本銀行', '物価', 'インフレ'],
+  },
+
+  // --- Japan / 経済（PMI） ---
+  {
+    indicatorId: 'pmi',
+    title: 'S&P Global PMI（日本）',
+    country: 'japan',
+    category: 'economy',
+    summary: 'auじぶん銀行PMI。GDP全体にはサービスPMIが相対的に有効で、財価格・仕入れコストには製造業の投入・産出価格指数を確認する。',
+    loadContent: loadMd('japan/pmi.md'),
+    relatedIndicators: ['quarterly-gdp', 'cgpi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'S&P Global', 'auじぶん銀行', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
   },
 
   // --- グローバル / 経済 ---
@@ -1129,6 +1175,42 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['設備稼働率', 'Capacity Utilization', 'FRB', '製造業', '鉱業', '供給制約', 'インフレ圧力', '設備投資'],
   },
 
+  // --- USA / FCI-G ---
+  {
+    indicatorId: 'fci',
+    title: 'FCI-G（金融情勢指数）',
+    country: 'usa',
+    category: 'economy',
+    summary: 'FRBが7系列の金融変数から算出する成長インパルス指標。金融環境が今後1年のGDP成長率に与える追い風・逆風の方向と強さを把握する。',
+    loadContent: loadMd('usa/fci.md'),
+    relatedIndicators: ['nfci', 'bank-lending', 'gdp', 'oas'],
+    tags: ['FCI-G', '金融情勢指数', 'Financial Conditions', 'FRB', 'GDP', '金融環境', '金利', '社債', '株価', '住宅価格', 'ドル'],
+  },
+
+  // --- USA / NFCI ---
+  {
+    indicatorId: 'nfci',
+    title: 'シカゴ連銀金融環境指数（NFCI）',
+    country: 'usa',
+    category: 'economy',
+    summary: 'シカゴ連銀が週次で公表する総合金融環境指数。リスク・信用・レバレッジの3面から金融環境の引き締まり・緩和を総合的に把握する。',
+    loadContent: loadMd('usa/nfci.md'),
+    relatedIndicators: ['fci', 'bank-lending', 'gdp'],
+    tags: ['NFCI', 'シカゴ連銀', '金融環境指数', 'Financial Conditions', 'リスク', '信用', 'レバレッジ'],
+  },
+
+  // --- USA / 銀行貸し出し態度（SLOOS） ---
+  {
+    indicatorId: 'bank-lending',
+    title: '銀行貸し出し態度（SLOOS）',
+    country: 'usa',
+    category: 'economy',
+    summary: 'FRBが四半期ごとに公表する融資基準・融資需要の調査。信用供給と信用需要の変化から景気の先行きを把握する金融環境指標。',
+    loadContent: loadMd('usa/bank-lending.md'),
+    relatedIndicators: ['gdp', 'fci', 'nfci'],
+    tags: ['SLOOS', '銀行貸出態度', 'Senior Loan Officer', '融資基準', '信用供給', 'C&I', 'CRE', '商業不動産', 'FRB'],
+  },
+
   // --- USA / 消費 ---
   {
     indicatorId: 'retail-sales',
@@ -1142,6 +1224,28 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
   },
 
   {
+    indicatorId: 'redbook',
+    title: 'レッドブック（Johnson Redbook Index）',
+    country: 'usa',
+    category: 'consumer',
+    summary: '大手総合小売の同店売上高を週次で集計した民間指標。公式小売売上高に先行して個人消費の温度感を確認できる。',
+    loadContent: loadMd('usa/redbook.md'),
+    relatedIndicators: ['retail-sales', 'pce', 'cb-consumer-confidence'],
+    tags: ['レッドブック', 'Redbook', '小売', '同店売上', '週次', '個人消費', 'Johnson Redbook'],
+  },
+
+  {
+    indicatorId: 'affinity-spend',
+    title: '全米クレカ消費額（Affinity系列）',
+    country: 'usa',
+    category: 'consumer',
+    summary: 'Affinity Solutionsのカード支出データを基にした高頻度消費トラッカー。公式統計の公表前に消費の方向感を探る補助指標。',
+    loadContent: loadMd('usa/affinity-spend.md'),
+    relatedIndicators: ['retail-sales', 'pce', 'redbook'],
+    tags: ['Affinity', 'クレジットカード', 'デビットカード', 'カード支出', '高頻度', '個人消費', 'Economic Tracker', 'Opportunity Insights'],
+  },
+
+  {
     indicatorId: 'cb-consumer-confidence',
     title: 'CB消費者信頼感指数',
     country: 'usa',
@@ -1150,6 +1254,69 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('usa/cb-consumer-confidence.md'),
     relatedIndicators: ['retail-sales', 'pce-deflator'],
     tags: ['消費者信頼感', 'Consumer Confidence', 'Conference Board', '期待指数', '現況指数', '個人消費', '家計心理'],
+  },
+
+  {
+    indicatorId: 'personal-saving-rate',
+    title: '家計貯蓄率（米国）',
+    country: 'usa',
+    category: 'consumer',
+    summary: '可処分所得のうち消費に回さず残した割合。フロー（貯蓄率）とストック（貯蓄残高）の混同に注意。上昇は消費抑制、低下は支出姿勢の強まりを示唆。',
+    loadContent: loadMd('usa/personal-saving-rate.md'),
+    relatedIndicators: ['disposable-income', 'pce', 'cb-consumer-confidence'],
+    tags: ['貯蓄率', 'Personal Saving Rate', 'BEA', '可処分所得', '消費', '家計'],
+  },
+  {
+    indicatorId: 'disposable-income',
+    title: '可処分所得（米国）',
+    country: 'usa',
+    category: 'consumer',
+    summary: '家計が消費か貯蓄に配分できる所得。名目ではなく実質可処分所得で購買力の変化を見ることが重要。',
+    loadContent: loadMd('usa/disposable-income.md'),
+    relatedIndicators: ['personal-saving-rate', 'pce', 'cb-consumer-confidence'],
+    tags: ['可処分所得', 'Disposable Income', 'BEA', 'FRED', '実質所得', '購買力', '消費'],
+  },
+  {
+    indicatorId: 'pce',
+    title: '個人消費支出（PCE）',
+    country: 'usa',
+    category: 'consumer',
+    summary: 'BEAの個人消費支出。実質PCEで物価変動を除いた消費量の変化を確認でき、財消費とサービス消費のバランスまで見ると精度が高まる。',
+    loadContent: loadMd('usa/pce.md'),
+    relatedIndicators: ['pce-deflator', 'retail-sales', 'disposable-income', 'personal-saving-rate'],
+    tags: ['PCE', '個人消費', 'BEA', '実質消費', '財消費', 'サービス消費'],
+  },
+
+  // --- USA / 住宅 ---
+  {
+    indicatorId: 'existing-home-sales',
+    title: '中古住宅販売件数',
+    country: 'usa',
+    category: 'housing',
+    summary: '住宅市場の実需を映す指標。賃金だけでなく、住宅ローン金利・住宅価格・在庫・融資条件・既存保有者の住み替え行動が大きく左右する。',
+    loadContent: loadMd('usa/existing-home-sales.md'),
+    relatedIndicators: ['housing-starts-permits', 'redfin-case-shiller'],
+    tags: ['中古住宅', 'Existing Home Sales', 'NAR', '住宅ローン金利', '住宅在庫', '住み替え'],
+  },
+  {
+    indicatorId: 'housing-starts-permits',
+    title: '住宅着工件数 / 建設許可件数',
+    country: 'usa',
+    category: 'housing',
+    summary: '住宅着工は景気回復初期に動きやすい先行指標。建築許可は着工にさらに先行する。金利だけでなく雇用・信用環境の総合判断が必要。',
+    loadContent: loadMd('usa/housing-starts-permits.md'),
+    relatedIndicators: ['existing-home-sales', 'redfin-case-shiller'],
+    tags: ['住宅着工', 'Housing Starts', '建設許可', 'Building Permits', 'Census Bureau', '先行指標', '住宅投資'],
+  },
+  {
+    indicatorId: 'redfin-case-shiller',
+    title: '住宅価格指数',
+    country: 'usa',
+    category: 'housing',
+    summary: '住宅価格は資産効果を通じて消費に影響。上昇は既存保有者に追い風だが購入予定者には負担増で、家計全体への影響は一様ではない。',
+    loadContent: loadMd('usa/redfin-case-shiller.md'),
+    relatedIndicators: ['existing-home-sales', 'housing-starts-permits'],
+    tags: ['住宅価格', 'Case-Shiller', 'Redfin', '資産効果', '消費', '住宅市場'],
   },
 
   // --- マーケット / 中立金利 ---
@@ -1296,6 +1463,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['ECB', 'SPF', 'インフレ期待', '賃金', 'ユーロ圏', '交渉賃金', 'サービスインフレ'],
   },
 
+  // --- ユーロ圏 / PMI ---
+  {
+    indicatorId: 'ez-pmi',
+    title: 'HCOB PMI（ユーロ圏）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ユーロ圏のコンポジットPMIはGDPの方向感を同時～1四半期先行で捉えやすい。財価格との結び付きはECBも製造業価格系列で示しており最も使いやすい地域の一つ。',
+    loadContent: loadMd('eurozone/pmi.md'),
+    relatedIndicators: ['ecb-ppi', 'germany-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'HCOB', 'ユーロ圏', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- ユーロ圏 / ドイツPMI ---
+  {
+    indicatorId: 'germany-pmi',
+    title: 'HCOB PMI（ドイツ）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ドイツのコンポジットPMIは同四半期の現況確認に強い。製造業比重が高く、財価格・供給制約の把握にはドイツ製造業PMIが特に有用。',
+    loadContent: loadMd('eurozone/germany-pmi.md'),
+    relatedIndicators: ['ez-pmi', 'ecb-ppi', 'germany-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'HCOB', 'ドイツ', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
   // --- 英国 / PPI ---
   {
     indicatorId: 'uk-ppi',
@@ -1320,6 +1511,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['BOE', 'インフレ期待', '賃金', '英国', 'サービスCPI', 'ONS'],
   },
 
+  // --- 英国 / PMI ---
+  {
+    indicatorId: 'uk-pmi',
+    title: 'S&P Global PMI（英国）',
+    country: 'uk',
+    category: 'economy',
+    summary: 'サービスPMIとGDPの結び付きが強く、コンポジットPMIも高い整合性を示す。財価格は製造業の投入・産出価格で確認する。',
+    loadContent: loadMd('uk/pmi.md'),
+    relatedIndicators: ['uk-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'S&P Global', '英国', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
   // --- カナダ / IPPI ---
   {
     indicatorId: 'ippi',
@@ -1330,6 +1533,28 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('canada/ippi.md'),
     relatedIndicators: ['ppi', 'cgpi', 'ecb-ppi', 'uk-ppi'],
     tags: ['IPPI', 'RMPI', 'カナダ', 'Statistics Canada', '生産者物価', 'インフレ', '工業'],
+  },
+
+  // --- カナダ / PMI ---
+  {
+    indicatorId: 'ivey-pmi',
+    title: 'Ivey PMI（カナダ）',
+    country: 'canada',
+    category: 'economy',
+    summary: 'カナダ全産業型の景況感指数。月次GDPとの予測力が高く、Prices指数も別建てで存在する。景気全体はIvey、工業・財価格はS&P製造業PMIという使い分けが有効。',
+    loadContent: loadMd('canada/pmi.md'),
+    relatedIndicators: ['ca-sp-pmi', 'ippi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'Ivey', 'カナダ', '全産業', '景気', '月次GDP'],
+  },
+  {
+    indicatorId: 'sp-pmi',
+    title: 'S&P Global PMI（カナダ）',
+    country: 'canada',
+    category: 'economy',
+    summary: 'S&P Globalのカナダ製造業PMI。工業・財価格の把握に有用で、Ivey PMIと組み合わせて使う。',
+    loadContent: loadMd('canada/pmi.md'),
+    relatedIndicators: ['ivey-pmi', 'ippi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'S&P Global', 'カナダ', '製造業', '景気', '投入価格', '産出価格'],
   },
 
   // --- 中国 / PPI ---
@@ -1344,6 +1569,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PPI', '中国', 'NBS', '生産者物価', 'インフレ', '工業'],
   },
 
+  // --- 中国 / PMI ---
+  {
+    indicatorId: 'cn-pmi',
+    title: 'NBS PMI（中国）',
+    country: 'china',
+    category: 'economy',
+    summary: '公式非製造業PMIの方がGDP全体との整合性が高い。製造業PMIは工業・輸出・財循環の把握に使い、コスト上昇と価格転嫁は必ずしも一致しない点に注意。',
+    loadContent: loadMd('china/pmi.md'),
+    relatedIndicators: ['cn-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'NBS', '中国', '製造業', '非製造業', 'Caixin', '景気', '投入価格', '産出価格'],
+  },
+
   // --- スイス / PPI ---
   {
     indicatorId: 'ch-ppi',
@@ -1354,6 +1591,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('switzerland/ch-ppi.md'),
     relatedIndicators: ['ecb-ppi', 'ppi', 'cgpi', 'uk-ppi'],
     tags: ['PPI', 'スイス', 'FSO', 'BFS', '生産者物価', '輸入物価', 'インフレ', 'CHF'],
+  },
+
+  // --- スイス / PMI ---
+  {
+    indicatorId: 'ch-pmi',
+    title: 'PMI（スイス）',
+    country: 'switzerland',
+    category: 'economy',
+    summary: 'procure.ch/UBSのPMI。製造業PMIとGDP前年比の相関が高く同四半期の現況確認に有効。財価格は製造業、国内サービスコストはサービスPMIで使い分ける。',
+    loadContent: loadMd('switzerland/ch-pmi.md'),
+    relatedIndicators: ['ch-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'procure.ch', 'UBS', 'スイス', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
   },
 
   // --- ニュージーランド / PPI ---
@@ -1368,6 +1617,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PPI', 'ニュージーランド', 'Stats NZ', '生産者物価', 'インフレ', 'Output', 'Input', '四半期'],
   },
 
+  // --- ニュージーランド / PMI ---
+  {
+    indicatorId: 'nz-pmi',
+    title: 'PMI / PSI / PCI（ニュージーランド）',
+    country: 'newzealand',
+    category: 'economy',
+    summary: 'BusinessNZのPMI・PSI・PCI。GDP加重の総合PCIが最もGDPと整合的。財価格はPMI、内需・サービス価格はPSIという分担が適切。',
+    loadContent: loadMd('newzealand/pmi.md'),
+    relatedIndicators: ['nz-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'PSI', 'PCI', 'BusinessNZ', 'ニュージーランド', '製造業', 'サービス業', '景気'],
+  },
+
   // --- オーストラリア / PPI ---
   {
     indicatorId: 'au-ppi',
@@ -1378,6 +1639,40 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('australia/au-ppi.md'),
     relatedIndicators: ['ppi', 'cgpi', 'ecb-ppi', 'uk-ppi', 'cn-ppi'],
     tags: ['PPI', 'オーストラリア', 'ABS', '生産者物価', 'インフレ', 'Final Demand', '四半期'],
+  },
+
+  // --- オーストラリア / PMI ---
+  {
+    indicatorId: 'au-pmi',
+    title: 'S&P Global PMI（オーストラリア）',
+    country: 'australia',
+    category: 'economy',
+    summary: 'Judo Bank PMI。総合・サービスPMIが同四半期GDPとの整合性が高く、製造業PMIは一部で1四半期先行する。サービス投入価格は国内インフレ圧力も含む。',
+    loadContent: loadMd('australia/pmi.md'),
+    relatedIndicators: ['au-ppi', 'global-manufacturing-pmi'],
+    tags: ['PMI', 'S&P Global', 'Judo Bank', 'オーストラリア', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- オーストラリア / 消費 ---
+  {
+    indicatorId: 'household-saving-ratio',
+    title: '家計貯蓄率（オーストラリア）',
+    country: 'australia',
+    category: 'consumer',
+    summary: '可処分所得のうち消費に回さず残した割合。フロー（貯蓄率）とストック（貯蓄残高）の混同に注意。上昇は消費抑制、低下は支出姿勢の強まりを示唆。',
+    loadContent: loadMd('australia/household-saving-ratio.md'),
+    relatedIndicators: ['disposable-personal-income'],
+    tags: ['貯蓄率', 'Household Saving Ratio', 'ABS', '可処分所得', '消費', '家計'],
+  },
+  {
+    indicatorId: 'disposable-personal-income',
+    title: '可処分所得（オーストラリア）',
+    country: 'australia',
+    category: 'consumer',
+    summary: '家計が消費か貯蓄に配分できる所得。名目ではなく実質可処分所得で購買力の変化を見ることが重要。',
+    loadContent: loadMd('australia/disposable-personal-income.md'),
+    relatedIndicators: ['household-saving-ratio'],
+    tags: ['可処分所得', 'Disposable Income', 'ABS', '実質所得', '購買力', '消費'],
   },
 
   // --- ユーロ圏 / ECB M3 ---

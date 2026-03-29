@@ -14,6 +14,8 @@ import type { DurableGoodsData } from '../../../../hooks/useDashboardData'
 // 共通モジュールのインポート
 import {
   CHART_COLORS,
+  LATEST_VALUE_BOX_STYLE,
+  TEXT_COLORS,
   DURABLE_GOODS_DATA_TYPE_OPTIONS,
   type DurableGoodsDataType,
 } from '../common/chartConstants'
@@ -23,12 +25,13 @@ import {
   useViewModePeriodManagement,
   useMultiValueMonthlyTableData,
   useHiddenSeries,
+  formatPercent,
+  formatDateLabel,
 } from '../common/useChartData'
 import {
   ViewModeButtonGroup,
   DataTypeButtonGroup,
   NoDataMessage,
-  LatestValueBoxWithSub,
   StandardLineChart,
   StandardBarChart,
 } from '../common/ChartComponents'
@@ -63,8 +66,12 @@ const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
 const COLORS = {
   yoy: CHART_COLORS.primary,
   yoy_ex: CHART_COLORS.purple,
+  core_orders: CHART_COLORS.orange,
+  core_shipments: CHART_COLORS.cyan,
   mom: CHART_COLORS.positive,
-  mom_ex: CHART_COLORS.cyan,
+  mom_ex: CHART_COLORS.purple,
+  mom_core_orders: CHART_COLORS.orange,
+  mom_core_shipments: CHART_COLORS.cyan,
 }
 
 // =============================================================================
@@ -99,6 +106,8 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
     {
       total: (item) => item.mom,
       ex_transport: (item) => item.ex_transport_mom,
+      core_orders: (item) => item.core_orders_mom,
+      core_shipments: (item) => item.core_shipments_mom,
     },
     10
   )
@@ -126,25 +135,44 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
         showPeriodSelector={false}
         dataSource="FRED (Census Bureau)"
         sourceUrl="https://www.census.gov/manufacturing/m3/release_schedule.html"
+        handbookId="durable-goods"
       >
         {/* 最新値表示 */}
-        <LatestValueBoxWithSub
-          main={{
-            label: '総合',
-            yoyValue: latest?.yoy,
-            momValue: latest?.mom,
-            color: COLORS.yoy,
-          }}
-          sub={{
-            label: '輸送除外',
-            yoyValue: latest?.ex_transport_yoy,
-            momValue: latest?.ex_transport_mom,
-            color: COLORS.yoy_ex,
-          }}
-          date={latest?.date}
-          viewMode={dataKind}
-          nextRelease={data.next_release}
-        />
+        {(() => {
+          const getValue = (yoy: number | null | undefined, mom: number | null | undefined) =>
+            dataKind === 'yoy' ? yoy : mom
+          const items = [
+            { label: '総合', value: getValue(latest?.yoy, latest?.mom), color: COLORS.yoy },
+            { label: '輸送除外', value: getValue(latest?.ex_transport_yoy, latest?.ex_transport_mom), color: COLORS.yoy_ex },
+            { label: 'コア受注', value: getValue(latest?.core_orders_yoy, latest?.core_orders_mom), color: COLORS.core_orders },
+            { label: 'コア出荷', value: getValue(latest?.core_shipments_yoy, latest?.core_shipments_mom), color: COLORS.core_shipments },
+          ]
+          return (
+            <div style={LATEST_VALUE_BOX_STYLE}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 12, color: TEXT_COLORS.secondary, fontWeight: 'bold' }}>最新値</span>
+                {items.map((item) => (
+                  <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span style={{ fontSize: 12, color: TEXT_COLORS.secondary }}>{item.label}:</span>
+                    <span style={{ fontSize: 16, fontWeight: 'bold', color: item.color }}>
+                      {formatPercent(item.value)}
+                    </span>
+                  </div>
+                ))}
+                {latest?.date && (
+                  <span style={{ fontSize: 11, color: TEXT_COLORS.tertiary }}>
+                    ({formatDateLabel(latest.date)})
+                  </span>
+                )}
+              </div>
+              {data.next_release && (
+                <div style={{ fontSize: 11, color: TEXT_COLORS.tertiary, textAlign: 'right' }}>
+                  次回発表: {data.next_release.date}
+                </div>
+              )}
+            </div>
+          )
+        })()}
 
         {/* タブ切替 */}
         <Tabs
@@ -186,6 +214,8 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                         lines={[
                           { dataKey: 'yoy', color: COLORS.yoy, name: '耐久財受注（前年比）', hide: hiddenSeries.has('yoy') },
                           { dataKey: 'ex_transport_yoy', color: COLORS.yoy_ex, name: '輸送除外（前年比）', hide: hiddenSeries.has('ex_transport_yoy') },
+                          { dataKey: 'core_orders_yoy', color: COLORS.core_orders, name: 'コア受注（前年比）', hide: hiddenSeries.has('core_orders_yoy') },
+                          { dataKey: 'core_shipments_yoy', color: COLORS.core_shipments, name: 'コア出荷（前年比）', hide: hiddenSeries.has('core_shipments_yoy') },
                         ]}
                         yAxisFormatter={(v) => `${v}%`}
                         yDomain={['dataMin - 5', 'dataMax + 5']}
@@ -214,7 +244,11 @@ export default function DurableGoodsChart({ data }: DurableGoodsChartProps) {
                         bars={[
                           dataType === 'total'
                             ? { dataKey: 'mom', color: COLORS.mom, name: '耐久財受注（前月比）' }
-                            : { dataKey: 'ex_transport_mom', color: COLORS.mom_ex, name: '輸送除外（前月比）' },
+                            : dataType === 'ex_transport'
+                            ? { dataKey: 'ex_transport_mom', color: COLORS.mom_ex, name: '輸送除外（前月比）' }
+                            : dataType === 'core_orders'
+                            ? { dataKey: 'core_orders_mom', color: COLORS.mom_core_orders, name: 'コア受注（前月比）' }
+                            : { dataKey: 'core_shipments_mom', color: COLORS.mom_core_shipments, name: 'コア出荷（前月比）' },
                         ]}
                         yAxisFormatter={(v) => `${v}%`}
                         yDomain={['dataMin - 2', 'dataMax + 2']}
