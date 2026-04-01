@@ -5,7 +5,7 @@
  * - yoy: 电气机械和器材制造业存货 累計増減(%)
  *
  * オーバーレイ（右Y軸）:
- * - sox_yoy: SOX指数 前年比(%) ← 7ヶ月先行
+ * - sox_yoy: SOX指数 前年比(%) ← 8ヶ月先行
  *
  * データソース: NBS（国家統計局）CSVインポート + yfinance SOX
  *
@@ -143,6 +143,7 @@ export default function CnElectronicsStockChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="NBS（国家統計局）"
         sourceUrl="https://data.stats.gov.cn/english/easyquery.htm?cn=A01"
+        handbookId="cn-electronics-stock"
       >
         {/* 最新値ボックス */}
         <div style={{ ...LATEST_VALUE_BOX_STYLE, justifyContent: 'space-between', alignItems: 'center' }}>
@@ -160,7 +161,7 @@ export default function CnElectronicsStockChart({ data }: Props) {
               onClick={() => handleLegendClick('yoy')}
             />
             <_LatestBox
-              label="SOX YoY 7M Lead(R)"
+              label="SOX YoY 8M Lead(R)"
               value={latestSox?.sox_yoy}
               color={COLOR_SOX}
               hidden={hiddenSeries.has('sox_yoy')}
@@ -189,7 +190,7 @@ export default function CnElectronicsStockChart({ data }: Props) {
           data={filteredData}
           lines={[
             { dataKey: 'yoy', color: COLOR_ELEC_STOCK, name: '電気機器在庫(L)', hide: hiddenSeries.has('yoy') },
-            { dataKey: 'sox_yoy', color: COLOR_SOX, name: 'SOX YoY 7M Lead(R)', yAxisId: 'right', hide: hiddenSeries.has('sox_yoy'), strokeDasharray: '6 3' },
+            { dataKey: 'sox_yoy', color: COLOR_SOX, name: 'SOX YoY 8M Lead(R)', yAxisId: 'right', hide: hiddenSeries.has('sox_yoy'), strokeDasharray: '6 3' },
           ]}
           xAxisFormatter={formatDateLabel}
           yAxisFormatter={(v: number) => `${v.toFixed(0)}%`}

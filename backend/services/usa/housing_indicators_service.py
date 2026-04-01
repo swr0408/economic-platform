@@ -1,11 +1,11 @@
 """
 住宅関連指標サービス
 
-Zillow家賃指数、ケースシラー住宅価格指数、家賃CPIの前年比データを取得
+Zillow住宅価値指数、ケースシラー住宅価格指数、家賃CPIの前年比データを取得
 18か月先行させて家賃CPIと比較するための指標
 
 データソース:
-- Zillow家賃指数: FRED (USAUCSFRCONDOSMSAMID)
+- Zillow住宅価値指数: FRED (USAUCSFRCONDOSMSAMID)
 - ケースシラー住宅価格指数: FRED (SPCS20RSA)
 - 家賃CPI: FRED (CUUR0000SAH1) ※CPI項目別のshelterと同一
 
@@ -34,7 +34,7 @@ HOUSING_INDICATORS_CACHE_FILE = CACHE_DIR / "housing_indicators_cache.json"
 
 # FREDシリーズID
 FRED_SERIES = {
-    "zillow": "USAUCSFRCONDOSMSAMID",  # Zillow家賃指数
+    "zillow": "USAUCSFRCONDOSMSAMID",  # Zillow住宅価値指数
     "case_shiller": "SPCS20RSA",        # ケースシラー住宅価格指数
     "rent_cpi": "CUUR0000SAH1",         # 家賃CPI
 }

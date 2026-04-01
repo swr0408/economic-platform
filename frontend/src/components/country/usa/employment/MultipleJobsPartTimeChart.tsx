@@ -211,6 +211,7 @@ export default function MultipleJobsPartTimeChart({ data }: MultipleJobsPartTime
         showPeriodSelector={false}
         dataSource="FRED / BLS"
         sourceUrl="https://www.bls.gov/news.release/empsit.toc.htm"
+        handbookId="multiple-jobs-parttime"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -367,6 +367,7 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
         showPeriodSelector={false}
         dataSource="FRED / BLS / Indeed"
         sourceUrl="https://www.bls.gov/jlt/"
+        handbookId="jolts-indeed"
       >
         {/* 最新値表示 */}
         <LatestValueBox

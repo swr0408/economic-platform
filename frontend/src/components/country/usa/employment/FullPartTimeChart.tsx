@@ -42,13 +42,19 @@ import {
   CHART_MARGIN,
   AXIS_STYLE,
   CARTESIAN_GRID_PROPS,
-  VALUE_CHANGE_DATA_KIND_OPTIONS,
-  type ValueChangeDataKind,
   DISPLAY_MODE_OPTIONS,
   type DisplayMode,
   CHANGE_LEGEND_200K,
   getChangeCellColor200k,
 } from '../common/chartConstants'
+
+// 3モード切替（現数値 / 前月増減幅 / パートタイム比率）
+type DataKind3 = 'value' | 'change' | 'ratio'
+const DATA_KIND_3_OPTIONS: { mode: DataKind3; label: string }[] = [
+  { mode: 'value', label: '現数値' },
+  { mode: 'change', label: '前月増減幅' },
+  { mode: 'ratio', label: 'パートタイム比率' },
+]
 import {
   useSortedData,
   usePeriodFiltering,
@@ -101,14 +107,15 @@ const SERIES_NAMES = {
 // =============================================================================
 
 export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
-  const [dataKind, setDataKind] = useState<ValueChangeDataKind>('value')
+  const [dataKind, setDataKind] = useState<DataKind3>('value')
   const [displayMode, setDisplayMode] = useState<DisplayMode>('chart')
   const [dataType, setDataType] = useState<DataType>('fulltime')
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const { handleLegendClick, isHidden } = useHiddenSeries<'fulltime' | 'parttime' | 'fulltime_change' | 'parttime_change'>()
+  const { handleLegendClick, isHidden } = useHiddenSeries<'fulltime' | 'parttime' | 'fulltime_change' | 'parttime_change' | 'parttime_ratio'>()
 
   // データ種別毎の期間管理
-  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
+  const periodKey = dataKind === 'ratio' ? 'value' : dataKind
+  const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(periodKey, {
     value: 10,
     change: 3,
   })
@@ -122,6 +129,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
 
     return sortedData.map((item, index) => {
       const prevItem = index > 0 ? sortedData[index - 1] : null
+      const total = (item.fulltime ?? 0) + (item.parttime ?? 0)
       return {
         ...item,
         fulltime_change: prevItem && item.fulltime !== null && prevItem.fulltime !== null
@@ -129,6 +137,9 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
           : null,
         parttime_change: prevItem && item.parttime !== null && prevItem.parttime !== null
           ? Math.round(item.parttime - prevItem.parttime)
+          : null,
+        parttime_ratio: item.parttime !== null && item.fulltime !== null && total > 0
+          ? Math.round((item.parttime / total) * 10000) / 100
           : null,
       }
     })
@@ -179,12 +190,24 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
   const latestChange = chartData.length >= 2 ? chartData[chartData.length - 1] : null
 
   // 最新値の表示用アイテム
+  const latestRatio = chartData.length > 0 ? chartData[chartData.length - 1] : null
+
   const getLatestItems = () => {
     if (dataKind === 'value') {
       return latest ? [
         { label: SERIES_NAMES.fulltime, value: latest.fulltime, color: getColor('fulltime'), format: 'number' as const, unit: 'k', decimals: 0 },
         { label: SERIES_NAMES.parttime, value: latest.parttime, color: getColor('parttime'), format: 'number' as const, unit: 'k', decimals: 0 },
       ] : []
+    } else if (dataKind === 'ratio') {
+      if (!latestRatio) return []
+      const ratio = latestRatio.parttime_ratio
+      return [
+        {
+          label: 'パートタイム比率',
+          value: ratio !== null ? `${ratio.toFixed(2)}%` : 'N/A',
+          color: getColor('parttime'),
+        },
+      ]
     } else {
       // 前月増減幅モード
       if (!latestChange) return []
@@ -233,7 +256,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
               children: (
                 <>
                   {/* データ種別切り替え */}
-                  <ViewModeButtonGroup options={VALUE_CHANGE_DATA_KIND_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
+                  <ViewModeButtonGroup options={DATA_KIND_3_OPTIONS} currentMode={dataKind} onChange={setDataKind} />
 
                   {/* 表示形式切り替え（増減幅のときのみ） */}
                   {dataKind === 'change' && (
@@ -250,7 +273,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                         <AntTooltip title="比較ページを開く">
                           <Button
                             icon={<AreaChartOutlined />}
-                            onClick={() => window.open('/compare?s=fulltime_employment', '_blank')}
+                            onClick={() => window.open('/compare?s=fulltime_employment,parttime_ratio', '_blank')}
                           >
                             データ比較
                           </Button>
@@ -399,6 +422,48 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                       getCellBgColor={getChangeCellColor200k}
                       legendItems={CHANGE_LEGEND_200K}
                     />
+                  )}
+
+                  {/* パートタイム比率グラフ */}
+                  {dataKind === 'ratio' && (
+                    <>
+                      <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                      <ResponsiveContainer width="100%" height={450}>
+                        <ComposedChart data={filteredData} margin={CHART_MARGIN}>
+                          <CartesianGrid {...CARTESIAN_GRID_PROPS} />
+                          <XAxis
+                            dataKey="date"
+                            tickFormatter={formatDateLabel}
+                            tick={AXIS_STYLE.tick}
+                            interval={AXIS_STYLE.interval}
+                          />
+                          <YAxis
+                            tick={AXIS_STYLE.tick}
+                            tickFormatter={(v) => `${v.toFixed(1)}%`}
+                            domain={['dataMin - 0.5', 'dataMax + 0.5']}
+                          />
+                          <Tooltip
+                            labelFormatter={formatDateLabel}
+                            formatter={(value: unknown) => [`${(value as number).toFixed(2)}%`, 'パートタイム比率']}
+                          />
+                          <Legend
+                            onClick={(e) => handleLegendClick(e.dataKey as string)}
+                            wrapperStyle={{ cursor: 'pointer' }}
+                          />
+                          <Line
+                            type="monotone"
+                            dataKey="parttime_ratio"
+                            stroke={getColor('parttime')}
+                            strokeWidth={2}
+                            dot={false}
+                            name="パートタイム比率"
+                            hide={isHidden('parttime_ratio')}
+                            isAnimationActive={false}
+                            connectNulls={true}
+                          />
+                        </ComposedChart>
+                      </ResponsiveContainer>
+                    </>
                   )}
                 </>
               ),

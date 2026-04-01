@@ -7,7 +7,7 @@
 データソース:
 - DB蓄積: nbs_monthly_data テーブル（CSVインポート済み）
   indicator: cn_electronics_stock_yoy
-- SOX指数: yfinance ^SOX 月足から前年比を算出し、7ヶ月先行させて重ねて表示
+- SOX指数: yfinance ^SOX 月足から前年比を算出し、8ヶ月先行させて重ねて表示
 
 NBS APIでの自動取得は当該指標コードが不明のため未対応。
 CSVファイルを手動更新してインポートスクリプトで蓄積する。
@@ -52,7 +52,7 @@ def _build_data() -> List[Dict[str, Any]]:
 
 
 def _fetch_sox_yoy() -> List[Dict[str, Any]]:
-    """yfinanceからSOX指数の月足を取得し、前年比を計算して7ヶ月先行させる"""
+    """yfinanceからSOX指数の月足を取得し、前年比を計算して8ヶ月先行させる"""
     try:
         import yfinance as yf
         import pandas as pd
@@ -68,9 +68,9 @@ def _fetch_sox_yoy() -> List[Dict[str, Any]]:
         # 前年比を計算（12ヶ月前との変化率）
         sox_yoy = monthly_close.pct_change(periods=12) * 100
 
-        # 7ヶ月先行: インデックスを7ヶ月進める
+        # 8ヶ月先行: インデックスを8ヶ月進める
         sox_yoy_shifted = sox_yoy.copy()
-        sox_yoy_shifted.index = sox_yoy_shifted.index + pd.DateOffset(months=7)
+        sox_yoy_shifted.index = sox_yoy_shifted.index + pd.DateOffset(months=8)
 
         result = []
         for dt, val in sox_yoy_shifted.items():
@@ -84,7 +84,7 @@ def _fetch_sox_yoy() -> List[Dict[str, Any]]:
                     "sox_yoy": round(float(val), 2),
                 })
 
-        logger.info(f"[ElecStock] SOX YoY (7m lead): {len(result)} records")
+        logger.info(f"[ElecStock] SOX YoY (8m lead): {len(result)} records")
         return result
 
     except Exception as e:
@@ -161,7 +161,7 @@ class CnElectronicsStockService:
                 "series": {
                     "yoy": "电气机械和器材制造业 存货増減 (%)",
                 },
-                "sox_note": "SOX YoY (7-month lead)",
+                "sox_note": "SOX YoY (8-month lead)",
                 "total_records": len(data),
                 "sox_records": len(sox_data),
                 "last_fetched": datetime.now(JST).isoformat(),

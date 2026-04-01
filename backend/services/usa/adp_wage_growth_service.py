@@ -160,29 +160,36 @@ class ADPWageGrowthService:
             data_url = None
 
             # 直近数ヶ月のURLパターンを試す
+            # ADP URLは発表日ベース（YYYYMMDD）で、第1水曜日前後の日付が使われる
+            # 各月の1日〜10日を試す
             for months_ago in range(0, 6):
-                test_date = now.replace(day=1)
+                test_month = now.replace(day=1)
                 for _ in range(months_ago):
-                    if test_date.month == 1:
-                        test_date = test_date.replace(year=test_date.year - 1, month=12)
+                    if test_month.month == 1:
+                        test_month = test_month.replace(year=test_month.year - 1, month=12)
                     else:
-                        test_date = test_date.replace(month=test_date.month - 1)
+                        test_month = test_month.replace(month=test_month.month - 1)
 
-                version_str = test_date.strftime("%Y%m01")
-                test_url = f"{ADP_DATA_URL_BASE}{version_str}/ADP_PAY_history.zip"
+                found = False
+                for day in range(1, 11):
+                    version_str = test_month.strftime(f"%Y%m{day:02d}")
+                    test_url = f"{ADP_DATA_URL_BASE}{version_str}/ADP_PAY_history.zip"
 
-                try:
-                    response = requests.head(test_url, timeout=10)
-                    if response.status_code == 200:
-                        data_url = test_url
-                        print(f"Found ADP data at: {data_url}")
-                        break
-                except Exception:
-                    continue
+                    try:
+                        resp = requests.head(test_url, timeout=10)
+                        if resp.status_code == 200:
+                            data_url = test_url
+                            print(f"Found ADP data at: {data_url}")
+                            found = True
+                            break
+                    except Exception:
+                        continue
+                if found:
+                    break
 
             if not data_url:
                 # フォールバック: 固定URL
-                data_url = "https://adp-ri-nrip-static.adp.com/artifacts/us_wage/20251001/ADP_PAY_history.zip"
+                data_url = "https://adp-ri-nrip-static.adp.com/artifacts/us_wage/20260304/ADP_PAY_history.zip"
                 print(f"Using fallback URL: {data_url}")
 
             # ZIPファイルをダウンロード

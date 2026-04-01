@@ -284,6 +284,7 @@ export default function CBJobsLaborChart({ data, unemploymentData }: CBJobsLabor
     <div id="cb-jobs-labor">
       <ChartContainer
         title="CB雇用機会業況判断 / 失業率"
+        handbookId="cb-jobs-labor"
         showPeriodSelector={false}
         dataSource="ConferenceBoard"
         sourceUrl="https://www.conference-board.org/topics/consumer-confidence/"

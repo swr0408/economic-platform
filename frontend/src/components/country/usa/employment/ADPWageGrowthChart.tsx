@@ -100,6 +100,7 @@ export default function ADPWageGrowthChart({ data }: ADPWageGrowthChartProps) {
     <div id="adp-wage-growth">
       <ChartContainer
         title="ADP賃金上昇率中央値"
+        handbookId="adp-wage-growth"
         showPeriodSelector={false}
         dataSource="ADP Pay Insights"
         sourceUrl="https://adpemploymentreport.com/"
@@ -128,7 +129,7 @@ export default function ADPWageGrowthChart({ data }: ADPWageGrowthChartProps) {
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
-                        onClick={() => window.open('/compare?s=adp_employment', '_blank')}
+                        onClick={() => window.open('/compare?s=adp_wage_job_stayer,adp_wage_job_changer', '_blank')}
                       >
                         データ比較
                       </Button>

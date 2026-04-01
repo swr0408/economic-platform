@@ -78,7 +78,7 @@ type DataType = 'nonfarm' | 'civilian'
 // データタイプ設定
 const DATA_TYPE_OPTIONS: { type: DataType; label: string }[] = [
   { type: 'nonfarm', label: '非農業部門' },
-  { type: 'civilian', label: '民間雇用者' },
+  { type: 'civilian', label: '家計調査' },
 ]
 
 // カラー設定（サービスから取得したものを優先、フォールバック用）
@@ -90,7 +90,7 @@ const DEFAULT_COLORS = {
 // 系列名（日本語）
 const SERIES_NAMES = {
   nonfarm: '非農業部門雇用者数',
-  civilian: '民間雇用者数',
+  civilian: '家計調査就業者数',
 }
 
 // =============================================================================

@@ -94,6 +94,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
         showPeriodSelector={false}
         dataSource="ISM"
         sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
+        handbookId="order-inventory-balance"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

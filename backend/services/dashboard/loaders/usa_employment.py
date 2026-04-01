@@ -65,6 +65,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - nfib_compensation_unemployment: NFIB労働報酬・失業率 - NFIB PDF + FRED UNRATE（NFIB: 毎月第2火曜日 6:00 ET / UNRATE: 毎月第1金曜日 8:30 ET）
     - overtime_hours: 平均残業時間 - FRED AWOTMAN（毎月第1金曜日 8:30 ET）
     - us_average_weekly_working_hours: 平均週労働時間 - FRED CES0500000002/CES3000000002（毎月第1金曜日 8:30 ET）
+    - temporary_help_services: 臨時就業者数 - FRED TEMPHELPS（毎月第1金曜日 8:30 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - Employment Situation発表: 毎月第1金曜日 8:30 ET
@@ -631,6 +632,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("labor_force_participation")  # 労働参加率
                 stale.add("overtime_hours")  # 平均残業時間
                 stale.add("us_average_weekly_working_hours")  # 平均週労働時間
+                stale.add("temporary_help_services")  # 臨時就業者数
                 print(f"[stale] Employment Situation release detected: {empsit_release.isoformat()}")
 
             # CB雇用機会業況判断発表
@@ -754,6 +756,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.overtime_hours_service import overtime_hours_service
         from services.usa.us_average_weekly_working_hours_service import us_average_weekly_working_hours_service
         from services.usa.sahm_rule_service import sahm_rule_service
+        from services.usa.temporary_help_services_service import temporary_help_services_service
 
         result = {
             "unemployment_rate": None,
@@ -783,6 +786,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "overtime_hours": None,
             "us_average_weekly_working_hours": None,
             "sahm_rule": None,
+            "temporary_help_services": None,
         }
 
         # 並列でデータを取得（25ワーカー）
@@ -815,6 +819,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_overtime_hours, overtime_hours_service): "overtime_hours",
                 executor.submit(self._get_us_average_weekly_working_hours, us_average_weekly_working_hours_service): "us_average_weekly_working_hours",
                 executor.submit(self._get_sahm_rule, sahm_rule_service): "sahm_rule",
+                executor.submit(self._get_temporary_help_services, temporary_help_services_service): "temporary_help_services",
             }
 
             for future in as_completed(futures):
@@ -1363,6 +1368,24 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Sahm Rule data: {e}")
             return None
 
+    def _get_temporary_help_services(self, service) -> Optional[dict]:
+        """臨時就業者数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("temporary_help_services")
+            response = service.get_temporary_help_services_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Temporary Help Services data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -1393,6 +1416,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.overtime_hours_service import overtime_hours_service
         from services.usa.us_average_weekly_working_hours_service import us_average_weekly_working_hours_service
         from services.usa.sahm_rule_service import sahm_rule_service
+        from services.usa.temporary_help_services_service import temporary_help_services_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -1422,6 +1446,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (overtime_hours_service, "Overtime Hours"),
             (us_average_weekly_working_hours_service, "Average Weekly Working Hours"),
             (sahm_rule_service, "Sahm Rule"),
+            (temporary_help_services_service, "Temporary Help Services"),
         ]
         self._invalidate_service_caches(services)
 

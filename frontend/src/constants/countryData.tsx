@@ -146,6 +146,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'nfib-compensation-unemployment', name: 'NFIB労働報酬 / 失業率' },
           { code: 'overtime-hours', name: '平均残業時間' },
           { code: 'average-weekly-working-hours', name: '平均週労働時間' },
+          { code: 'temporary-help-services', name: '臨時就業者数' },
         ],
       },
       {
@@ -159,7 +160,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'median-cpi', name: 'Median CPI / 16% Trimmed Mean' },
           { code: 'pce-deflator', name: 'PCEデフレーター' },
           { code: 'trimmed-mean-pce', name: 'Trimmed Mean PCE' },
-          { code: 'housing-indicators', name: 'Zillow家賃指数 / ケースシラー住宅価格指数 / 家賃CPI' },
+          { code: 'housing-indicators', name: 'Zillow住宅価値指数 / ケースシラー住宅価格指数 / 家賃CPI' },
           { code: 'zillow-rent-cpi', name: 'Zillow家賃指数 / 家賃CPI' },
           { code: 'ppi', name: 'PPI' },
           { code: 'ppi-categories', name: 'PPI PCE関連項目' },
@@ -169,6 +170,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'retail-food-services-price', name: 'シカゴ連銀小売物価指数' },
           { code: 'ny-inflation-expectations', name: 'NYインフレ期待' },
           { code: 'michigan-inflation-expectations', name: 'ミシガンインフレ期待' },
+          { code: 'truflation-us-cpi', name: 'Truflation US CPI' },
 
         ],
       },

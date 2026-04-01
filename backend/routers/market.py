@@ -97,6 +97,8 @@ try:
     from backend.services.market.nikkei225_options_service import nikkei225_options_service
     from backend.services.market.ny_option_cut_service import ny_option_cut_service
     from backend.services.market.cmdi_service import cmdi_service
+    from backend.services.market.crude_oil_yoy_service import crude_oil_yoy_service
+    from backend.services.market.natural_gas_yoy_service import natural_gas_yoy_service
 except ImportError:
     from services.market.fear_greed_service import fear_greed_service
     from services.market.naaim_service import naaim_service
@@ -160,6 +162,8 @@ except ImportError:
     from services.market.nikkei225_options_service import nikkei225_options_service
     from services.market.ny_option_cut_service import ny_option_cut_service
     from services.market.cmdi_service import cmdi_service
+    from services.market.crude_oil_yoy_service import crude_oil_yoy_service
+    from services.market.natural_gas_yoy_service import natural_gas_yoy_service
 
 
 router = APIRouter(prefix="/api/market", tags=["Market"])
@@ -354,6 +358,30 @@ def get_nikkei_yoy(force_refresh: bool = Query(False)):
     """日経平均 前年比 (YoY) データを取得"""
     start_time = time.time()
     result = nikkei_yoy_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/crude-oil-yoy")
+def get_crude_oil_yoy(force_refresh: bool = Query(False)):
+    """原油（WTI） 前年比 (YoY) データを取得"""
+    start_time = time.time()
+    result = crude_oil_yoy_service.get_data(force_refresh)
+    response_time_ms = (time.time() - start_time) * 1000
+    return JSONResponse(
+        content={**result, "response_time_ms": round(response_time_ms, 2)},
+        headers={"X-Cache": "HIT" if result.get("cached") else "MISS"},
+    )
+
+
+@router.get("/natural-gas-yoy")
+def get_natural_gas_yoy(force_refresh: bool = Query(False)):
+    """天然ガス（ヘンリーハブ） 前年比 (YoY) データを取得"""
+    start_time = time.time()
+    result = natural_gas_yoy_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

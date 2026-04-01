@@ -144,6 +144,7 @@ except ImportError as _ie:
     from routers.usa.fomc_projections import router as fomc_projections_router
     from routers.usa.treasury import router as treasury_router
     from routers.usa.quarterly_refunding import router as quarterly_refunding_router
+    from routers.usa.truflation_screenshot import router as truflation_screenshot_router
     from routers.dashboard import router as dashboard_router
     from routers.market import router as market_router
     from routers.earnings import router as earnings_router
@@ -360,6 +361,7 @@ app.include_router(cme_fedwatch_router)
 app.include_router(fomc_projections_router)
 app.include_router(treasury_router)
 app.include_router(quarterly_refunding_router)
+app.include_router(truflation_screenshot_router)
 app.include_router(dashboard_router)
 app.include_router(market_router)
 app.include_router(earnings_router)

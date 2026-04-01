@@ -1,7 +1,7 @@
 /**
  * 住宅関連指標チャートコンポーネント
  *
- * Zillow家賃指数、ケースシラー住宅価格指数（18か月先行）と家賃CPIを比較
+ * Zillow住宅価値指数（16か月先行）、ケースシラー住宅価格指数（18か月先行）と家賃CPIを比較
  * 家賃CPIは右Y軸に表示
  */
 import { useState, useMemo } from 'react'
@@ -60,14 +60,14 @@ interface MergedDataPoint {
 
 // カラー設定
 const COLORS = {
-  zillow: '#22c55e',      // Zillow家賃指数（緑）
+  zillow: '#22c55e',      // Zillow住宅価値指数（緑）
   caseShiller: '#3b82f6', // ケースシラー（青）
   rentCPI: '#ef4444',     // 家賃CPI（赤）
 }
 
 // 項目の日本語名
 const LABELS: Record<string, string> = {
-  zillow: 'Zillow家賃指数',
+  zillow: 'Zillow住宅価値指数',
   caseShiller: 'ケースシラー住宅価格指数',
   rentCPI: '家賃CPI',
 }
@@ -109,7 +109,7 @@ function HousingTooltip({ active, payload, label }: {
         const isZillow = item.dataKey === 'zillow'
         const isCaseShiller = item.dataKey === 'caseShiller'
         let displayName = item.name
-        if (isZillow) displayName = `${LABELS.zillow}:18か月先行(L)`
+        if (isZillow) displayName = `${LABELS.zillow}:16か月先行(L)`
         else if (isCaseShiller) displayName = `${LABELS.caseShiller}:18か月先行(L)`
         else if (isRentCPI) displayName = `${LABELS.rentCPI}(R)`
 
@@ -154,15 +154,15 @@ function HousingTooltip({ active, payload, label }: {
 export default function HousingIndicatorsChart({ housingData }: HousingIndicatorsChartProps) {
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
 
-  // データをマージ（ZillowとケースシラーをR18か月先行させて家賃CPIと結合）
+  // データをマージ（Zillowを16か月、ケースシラーを18か月先行させて家賃CPIと結合）
   const mergedData = useMemo((): MergedDataPoint[] => {
     if (!housingData?.data) return []
 
     const { zillow, case_shiller, rent_cpi } = housingData.data
     if (!zillow || !case_shiller || !rent_cpi) return []
 
-    // ZillowとCase-Shillerを18か月先行させる
-    const zillowShifted = shiftDataForward(zillow, 18)
+    // Zillowを16か月、Case-Shillerを18か月先行させる
+    const zillowShifted = shiftDataForward(zillow, 16)
     const caseShillerShifted = shiftDataForward(case_shiller, 18)
 
     const map = new Map<string, MergedDataPoint>()
@@ -237,10 +237,11 @@ export default function HousingIndicatorsChart({ housingData }: HousingIndicator
   return (
     <div id="housing-indicators">
       <ChartContainer
-        title="Zillow家賃指数 / ケースシラー住宅価格指数 / 家賃CPI"
+        title="Zillow住宅価値指数 / ケースシラー住宅価格指数 / 家賃CPI"
         showPeriodSelector={false}
         dataSource="FRED / Zillow"
         sourceUrl="https://www.zillow.com/research/data/"
+        handbookId="housing-indicators"
       >
         {/* 最新値表示 */}
         <LatestValueBox
@@ -270,7 +271,7 @@ export default function HousingIndicatorsChart({ housingData }: HousingIndicator
         {/* 期間セレクタ + 比較ボタン */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
           <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-          <Tooltip title="比較ページを開く（Zillow家賃指数・ケースシラー・家賃CPI）">
+          <Tooltip title="比較ページを開く（Zillow住宅価値指数・ケースシラー・家賃CPI）">
             <Button
               icon={<AreaChartOutlined />}
               onClick={() => window.open('/compare?s=us_zillow_rent_yoy&s=us_case_shiller_yoy&s=us_rent_cpi_yoy', '_blank')}
@@ -316,7 +317,7 @@ export default function HousingIndicatorsChart({ housingData }: HousingIndicator
               stroke={COLORS.zillow}
               strokeWidth={2}
               dot={false}
-              name={`${LABELS.zillow}:18か月先行(L)`}
+              name={`${LABELS.zillow}:16か月先行(L)`}
               isAnimationActive={false}
               connectNulls={false}
             />

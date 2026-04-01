@@ -15,12 +15,15 @@ export type TransformOption = 'raw' | 'index100';
 
 export type DisplayOption = 'step' | 'dots';
 
-export type DerivedValueType = 'diff';
+export type DerivedValueType = 'diff' | 'ratio' | 'yoy';
 
 export interface DerivedValueConfig {
   type: DerivedValueType;
   sourceField: string;
-  period?: number;  // N期前との差分（デフォルト1）
+  /** N期前との差分（デフォルト1）- diff用 */
+  period?: number;
+  /** 比率計算の分母フィールド群 - ratio用: value = sourceField / sum(denominatorFields) * 100 */
+  denominatorFields?: string[];
 }
 
 export interface OverlayIndicator {
@@ -430,6 +433,19 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     unit: 'pt',
   },
   {
+    id: 'ism_manufacturing_yoy_diff',
+    name: 'ISM製造業景況指数（前年差）',
+    nameEn: 'ISM Manufacturing PMI (YoY Diff)',
+    frequency: 'monthly',
+    category: 'economy',
+    subCategory: 'sentiment',
+    apiEndpoint: '/api/usa/economy',
+    dataKey: 'ism_manufacturing',
+    derived: { type: 'diff', sourceField: 'value', period: 12 },
+    chartType: 'bar',
+    unit: 'pt',
+  },
+  {
     id: 'ism_order_inventory_balance',
     name: 'ISM製造業受注在庫バランス',
     nameEn: 'ISM Order-Inventory Balance',
@@ -450,6 +466,17 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/usa/economy',
     dataKey: 'ism_components',
     valueField: 'order_inventory_balance_3ma',
+  },
+  {
+    id: 'ism_prices',
+    name: 'ISM製造業仕入価格',
+    nameEn: 'ISM Manufacturing Prices Paid',
+    frequency: 'monthly',
+    category: 'economy',
+    subCategory: 'sentiment',
+    apiEndpoint: '/api/usa/economy',
+    dataKey: 'ism_components',
+    valueField: 'prices',
   },
   {
     id: 'ism_non_manufacturing',
@@ -766,6 +793,18 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     unit: 'K',
   },
   {
+    id: 'parttime_ratio',
+    name: 'パートタイム比率',
+    nameEn: 'Part-Time Employment Ratio',
+    frequency: 'monthly',
+    category: 'employment',
+    subCategory: 'jobs',
+    apiEndpoint: '/api/usa/employment',
+    dataKey: 'fullpart_time_employment',
+    derived: { type: 'ratio', sourceField: 'parttime', denominatorFields: ['fulltime', 'parttime'] },
+    unit: '%',
+  },
+  {
     id: 'multiple_jobs',
     name: '複数の仕事を持つ人（増減）',
     nameEn: 'Multiple Jobholders Change',
@@ -907,6 +946,42 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     unit: '%',
   },
   {
+    id: 'quits_rate',
+    name: '自発的離職率（JOLTS）',
+    nameEn: 'Quits Rate (JOLTS)',
+    frequency: 'monthly',
+    category: 'employment',
+    subCategory: 'wages',
+    apiEndpoint: '/api/usa/employment',
+    dataKey: 'average_hourly_earnings',
+    valueField: 'quits_rate',
+    unit: '%',
+  },
+  {
+    id: 'adp_wage_job_stayer',
+    name: 'ADP賃金上昇率（在職者）',
+    nameEn: 'ADP Wage Growth - Job Stayer',
+    frequency: 'monthly',
+    category: 'employment',
+    subCategory: 'wages',
+    apiEndpoint: '/api/usa/employment',
+    dataKey: 'adp_wage_growth',
+    valueField: 'job_stayer',
+    unit: '%',
+  },
+  {
+    id: 'adp_wage_job_changer',
+    name: 'ADP賃金上昇率（転職者）',
+    nameEn: 'ADP Wage Growth - Job Changer',
+    frequency: 'monthly',
+    category: 'employment',
+    subCategory: 'wages',
+    apiEndpoint: '/api/usa/employment',
+    dataKey: 'adp_wage_growth',
+    valueField: 'job_changer',
+    unit: '%',
+  },
+  {
     id: 'atlanta_fed_wage',
     name: 'アトランタ連銀賃金トラッカー',
     nameEn: 'Atlanta Fed Wage Tracker',
@@ -1024,6 +1099,18 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     dataKey: 'sahm_rule',
     valueField: 'value',
     unit: '%',
+  },
+  {
+    id: 'us_temporary_help_services',
+    name: '臨時就業者数',
+    nameEn: 'Temporary Help Services Employment',
+    frequency: 'monthly',
+    category: 'employment',
+    subCategory: 'jobs',
+    apiEndpoint: '/api/usa/employment',
+    dataKey: 'temporary_help_services',
+    valueField: 'value',
+    unit: 'K',
   },
 
   // =========================================================================
@@ -1426,6 +1513,75 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     dataKey: 'core_cpi',
     valueField: 'mom',
     chartType: 'bar',
+    unit: '%',
+  },
+
+  // =========================================================================
+  // 物価 - CPI項目別（前年比）
+  // =========================================================================
+  {
+    id: 'us_cpi_food_yoy',
+    name: 'CPI食品（前年比）',
+    nameEn: 'CPI Food YoY',
+    frequency: 'monthly',
+    country: 'usa',
+    category: 'prices',
+    subCategory: 'cpi',
+    apiEndpoint: '/api/usa/inflation',
+    dataKey: 'cpi_categories',
+    valueField: 'food',
+    unit: '%',
+  },
+  {
+    id: 'us_cpi_energy_yoy',
+    name: 'CPIエネルギー（前年比）',
+    nameEn: 'CPI Energy YoY',
+    frequency: 'monthly',
+    country: 'usa',
+    category: 'prices',
+    subCategory: 'cpi',
+    apiEndpoint: '/api/usa/inflation',
+    dataKey: 'cpi_categories',
+    valueField: 'energy',
+    unit: '%',
+  },
+  {
+    id: 'us_cpi_core_goods_yoy',
+    name: 'CPIコア財（前年比）',
+    nameEn: 'CPI Core Goods YoY',
+    frequency: 'monthly',
+    country: 'usa',
+    category: 'prices',
+    subCategory: 'cpi',
+    apiEndpoint: '/api/usa/inflation',
+    dataKey: 'cpi_categories',
+    valueField: 'core_goods',
+    unit: '%',
+  },
+  {
+    id: 'us_cpi_core_services_yoy',
+    name: 'CPIコアサービス（前年比）',
+    nameEn: 'CPI Core Services YoY',
+    frequency: 'monthly',
+    country: 'usa',
+    category: 'prices',
+    subCategory: 'cpi',
+    apiEndpoint: '/api/usa/inflation',
+    dataKey: 'cpi_categories',
+    valueField: 'core_services',
+    unit: '%',
+  },
+  {
+    id: 'us_cpi_shelter_yoy',
+    name: 'CPI住居費（前年比）',
+    nameEn: 'CPI Shelter YoY',
+    frequency: 'monthly',
+    country: 'usa',
+    category: 'prices',
+    subCategory: 'cpi',
+    apiEndpoint: '/api/usa/inflation',
+    dataKey: 'cpi_categories',
+    valueField: 'shelter',
     unit: '%',
   },
 
@@ -2087,9 +2243,9 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   // 物価 - 住宅関連指標
   // =========================================================================
   {
-    id: 'us_zillow_rent_yoy',
-    name: 'Zillow家賃指数（前年比）',
-    nameEn: 'Zillow Rent Index YoY',
+    id: 'us_zillow_home_value_yoy',
+    name: 'Zillow住宅価値指数（前年比）',
+    nameEn: 'Zillow Home Value Index YoY',
     frequency: 'monthly',
     country: 'usa',
     category: 'prices',
@@ -2131,7 +2287,7 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   // =========================================================================
   {
     id: 'us_zillow_rent_index_yoy',
-    name: 'Zillow家賃指数（前年比・CSV）',
+    name: 'Zillow家賃指数（前年比）',
     nameEn: 'Zillow Observed Rent Index YoY',
     frequency: 'monthly',
     country: 'usa',
@@ -2144,8 +2300,8 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
   {
     id: 'us_rent_cpi_standalone_yoy',
-    name: '家賃CPI（前年比・FRED）',
-    nameEn: 'Rent CPI YoY (FRED)',
+    name: '家賃CPI（前年比）',
+    nameEn: 'Rent CPI YoY',
     frequency: 'monthly',
     country: 'usa',
     category: 'prices',
@@ -2562,6 +2718,18 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'forward_eps',
   },
   {
+    id: 'sp500_valuation_eps_yoy',
+    name: 'S&P500 予想EPS（前年比）',
+    nameEn: 'S&P 500 Forward EPS (YoY %)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'valuation',
+    apiEndpoint: '/api/market/sp500-valuation',
+    dataKey: 'data',
+    valueField: 'forward_eps_yoy',
+    unit: '%',
+  },
+  {
     id: 'sp500_earnings_yield',
     name: 'S&P500 予想株式益利回り',
     nameEn: 'S&P 500 Earnings Yield',
@@ -2773,6 +2941,18 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/market',
     dataKey: 'sp500',
     valueField: 'close',
+  },
+  {
+    id: 'sp500_yoy',
+    name: 'S&P500（前年比）',
+    nameEn: 'S&P 500 (YoY %)',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_us',
+    apiEndpoint: '/api/market',
+    dataKey: 'sp500',
+    derived: { type: 'yoy', sourceField: 'close', period: 365 },
+    unit: '%',
   },
   {
     id: 'dow',
@@ -8203,6 +8383,30 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'close',
   },
   {
+    id: 'crude_oil_yoy',
+    name: '原油（WTI） 前年比',
+    nameEn: 'Crude Oil (WTI) YoY',
+    frequency: 'monthly',
+    category: 'market',
+    subCategory: 'commodity_energy',
+    apiEndpoint: '/api/market/crude-oil-yoy',
+    dataKey: 'data',
+    valueField: 'crude_oil_yoy',
+    unit: '%',
+  },
+  {
+    id: 'natural_gas_yoy',
+    name: '天然ガス（ヘンリーハブ） 前年比',
+    nameEn: 'Natural Gas (Henry Hub) YoY',
+    frequency: 'monthly',
+    category: 'market',
+    subCategory: 'commodity_energy',
+    apiEndpoint: '/api/market/natural-gas-yoy',
+    dataKey: 'data',
+    valueField: 'natural_gas_yoy',
+    unit: '%',
+  },
+  {
     id: 'weekly_crude_oil_inventories_total',
     name: '原油在庫 合計（EIA）',
     nameEn: 'U.S. Crude Oil Inventories (Total)',
@@ -12725,6 +12929,19 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/china/nbs/electronics-stock',
     dataKey: 'data',
     valueField: 'yoy',
+    unit: '%',
+  },
+  {
+    id: 'cn_electronics_stock_sox_yoy',
+    name: 'SOX YoY（8ヶ月先行）',
+    nameEn: 'SOX YoY (8M Lead)',
+    frequency: 'monthly',
+    country: 'china',
+    category: 'economy',
+    subCategory: 'economy',
+    apiEndpoint: '/api/china/nbs/electronics-stock',
+    dataKey: 'sox_data',
+    valueField: 'sox_yoy',
     unit: '%',
   },
   // --- 中国 地方政府債券 ---

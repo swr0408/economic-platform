@@ -668,70 +668,76 @@
     },
     {
       "date": "2025-04-01",
-      "value": 25.2,
-      "forecast": null,
-      "previous": null
+      "value": 19.8,
+      "forecast": 10.0,
+      "previous": 12.5
     },
     {
       "date": "2025-05-01",
-      "value": 24.2,
-      "forecast": null,
-      "previous": null
+      "value": 18.5,
+      "forecast": 11.0,
+      "previous": 19.8
     },
     {
       "date": "2025-06-01",
-      "value": 31.0,
-      "forecast": null,
-      "previous": null
+      "value": 24.6,
+      "forecast": 19.0,
+      "previous": 18.5
     },
     {
       "date": "2025-07-01",
-      "value": 20.8,
-      "forecast": null,
-      "previous": null
+      "value": 15.2,
+      "forecast": 15.0,
+      "previous": 24.6
     },
     {
       "date": "2025-08-01",
       "value": 19.5,
-      "forecast": null,
-      "previous": null
+      "forecast": 13.0,
+      "previous": 20.8
     },
     {
       "date": "2025-09-01",
-      "value": 30.6,
-      "forecast": null,
-      "previous": null
+      "value": 30.5,
+      "forecast": 17.8,
+      "previous": 19.5
     },
     {
       "date": "2025-10-01",
-      "value": 25.0,
-      "forecast": null,
-      "previous": null
+      "value": 25.1,
+      "forecast": 28.2,
+      "previous": 30.5
     },
     {
       "date": "2025-11-01",
       "value": 39.5,
-      "forecast": null,
-      "previous": null
+      "forecast": 33.0,
+      "previous": 25.1
     },
     {
       "date": "2025-12-01",
       "value": 43.8,
-      "forecast": null,
-      "previous": null
+      "forecast": 41.0,
+      "previous": 39.5
     },
     {
       "date": "2026-01-01",
       "value": 60.1,
-      "forecast": null,
-      "previous": null
+      "forecast": 50.9,
+      "previous": 43.8
+    },
+    {
+      "date": "2026-02-01",
+      "value": 23.8,
+      "forecast": 53.0,
+      "previous": 60.1
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 60.1,
-    "forecast": null,
-    "previous": null
+    "date": "2026-02-01",
+    "value": 23.8,
+    "forecast": 53.0,
+    "previous": 60.1
   },
   "metadata": {
     "source": "MOEA (Ministry of Economic Affairs, Taiwan)",
@@ -741,5 +747,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-03-08T13:28:44.150547+09:00"
+  "last_updated": "2026-04-01T14:51:54.524390+09:00"
 }

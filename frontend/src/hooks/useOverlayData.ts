@@ -113,6 +113,8 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/fear-greed',
     '/api/market/advance-decline-ratio',
     '/api/market/nikkei-yoy',
+    '/api/market/crude-oil-yoy',
+    '/api/market/natural-gas-yoy',
     '/api/market/nikkei-double-inverse',
     '/api/market/jpx-investor-trading',
     '/api/market/gold-etf-holdings',
@@ -258,7 +260,8 @@ interface MarketAPIResponse {
  */
 function extractMarketData(
   response: MarketAPIResponse,
-  valueField?: string
+  valueField?: string,
+  derived?: DerivedValueConfig
 ): DataPoint[] {
   if (!response.data || !Array.isArray(response.data)) {
     console.log('[useOverlayData] No market data in response');
@@ -266,6 +269,73 @@ function extractMarketData(
   }
 
   const field = valueField || 'close';
+
+  // derived指定がある場合はextractIndicatorDataと同じ変換ロジックを使う
+  if (derived) {
+    const sorted = [...response.data].sort(
+      (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
+    );
+    const points: DataPoint[] = [];
+
+    if (derived.type === 'yoy') {
+      const period = derived.period ?? 365;
+      if (period >= 100) {
+        // 日数ベース（日次データ向け）
+        const msWindow = period * 86400000;
+        const tolerance = 7 * 86400000;
+        const dateMap = new Map<number, number>();
+        for (const item of sorted) {
+          const val = item[derived.sourceField as keyof typeof item];
+          if (typeof val === 'number' && !isNaN(val)) {
+            dateMap.set(getDateTimestamp(item.date), val);
+          }
+        }
+        for (const item of sorted) {
+          const currentValue = item[derived.sourceField as keyof typeof item];
+          if (typeof currentValue !== 'number' || isNaN(currentValue)) continue;
+          const currentTs = getDateTimestamp(item.date);
+          const targetTs = currentTs - msWindow;
+          let bestPrev: number | null = null;
+          let bestDist = Infinity;
+          for (const [ts, val] of dateMap) {
+            const dist = Math.abs(ts - targetTs);
+            if (dist <= tolerance && dist < bestDist) {
+              bestDist = dist;
+              bestPrev = val;
+            }
+          }
+          if (bestPrev !== null && bestPrev !== 0) {
+            points.push({
+              date: item.date,
+              value: Math.round(((currentValue - bestPrev) / bestPrev) * 10000) / 100,
+            });
+          }
+        }
+      } else {
+        for (let i = period; i < sorted.length; i++) {
+          const cur = sorted[i][derived.sourceField as keyof typeof sorted[0]];
+          const prev = sorted[i - period][derived.sourceField as keyof typeof sorted[0]];
+          if (typeof cur === 'number' && typeof prev === 'number' && prev !== 0) {
+            points.push({
+              date: sorted[i].date,
+              value: Math.round(((cur - prev) / prev) * 10000) / 100,
+            });
+          }
+        }
+      }
+    } else if (derived.type === 'diff') {
+      const period = derived.period ?? 1;
+      for (let i = period; i < sorted.length; i++) {
+        const cur = sorted[i][derived.sourceField as keyof typeof sorted[0]];
+        const prev = sorted[i - period][derived.sourceField as keyof typeof sorted[0]];
+        if (typeof cur === 'number' && typeof prev === 'number') {
+          points.push({ date: sorted[i].date, value: cur - prev });
+        }
+      }
+    }
+
+    return points;
+  }
 
   return response.data
     .filter(item => {
@@ -499,15 +569,90 @@ function extractIndicatorData(
 
     const sorted = [...data].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
     const points: DataPoint[] = [];
-    const period = derived.period ?? 1;
 
-    for (let i = period; i < sorted.length; i++) {
-      const rawCurrent = getNestedValue(sorted[i], derived.sourceField);
-      const rawPrev = getNestedValue(sorted[i - period], derived.sourceField);
-      const currentValue = typeof rawCurrent === 'number' && !isNaN(rawCurrent) ? rawCurrent : null;
-      const prevValue = typeof rawPrev === 'number' && !isNaN(rawPrev) ? rawPrev : null;
-      if (currentValue !== null && prevValue !== null) {
-        points.push({ date: sorted[i].date, value: currentValue - prevValue });
+    if (derived.type === 'ratio' && derived.denominatorFields) {
+      // ratio: sourceField / sum(denominatorFields) * 100
+      for (const item of sorted) {
+        const rawNumerator = getNestedValue(item, derived.sourceField);
+        const numerator = typeof rawNumerator === 'number' && !isNaN(rawNumerator) ? rawNumerator : null;
+        if (numerator === null) continue;
+
+        let denominator = 0;
+        let valid = true;
+        for (const field of derived.denominatorFields) {
+          const rawVal = getNestedValue(item, field);
+          if (typeof rawVal !== 'number' || isNaN(rawVal)) { valid = false; break; }
+          denominator += rawVal;
+        }
+        if (!valid || denominator === 0) continue;
+
+        points.push({ date: item.date, value: Math.round((numerator / denominator) * 10000) / 100 });
+      }
+    } else if (derived.type === 'yoy') {
+      // yoy: (current - yearAgo) / yearAgo * 100
+      // 日次データの場合は日付ベースで約365日前を探す、月次データの場合はperiod(デフォルト12)で探す
+      const dateMap = new Map<number, { value: number; date: string }>();
+      for (const item of sorted) {
+        const rawVal = getNestedValue(item, derived.sourceField);
+        const val = typeof rawVal === 'number' && !isNaN(rawVal) ? rawVal : null;
+        if (val !== null) {
+          dateMap.set(getDateTimestamp(item.date), { value: val, date: item.date });
+        }
+      }
+      const period = derived.period ?? 12;
+      if (period >= 100) {
+        // 日数ベース（日次データ向け: period=365）
+        const msWindow = period * 86400000;
+        const tolerance = 7 * 86400000; // ±7日の許容範囲
+        for (const item of sorted) {
+          const rawCurrent = getNestedValue(item, derived.sourceField);
+          const currentValue = typeof rawCurrent === 'number' && !isNaN(rawCurrent) ? rawCurrent : null;
+          if (currentValue === null) continue;
+          const currentTs = getDateTimestamp(item.date);
+          const targetTs = currentTs - msWindow;
+          // targetTs ± tolerance 内で最も近いデータポイントを探す
+          let bestPrev: number | null = null;
+          let bestDist = Infinity;
+          for (const [ts, entry] of dateMap) {
+            const dist = Math.abs(ts - targetTs);
+            if (dist <= tolerance && dist < bestDist) {
+              bestDist = dist;
+              bestPrev = entry.value;
+            }
+          }
+          if (bestPrev !== null && bestPrev !== 0) {
+            points.push({
+              date: item.date,
+              value: Math.round(((currentValue - bestPrev) / bestPrev) * 10000) / 100,
+            });
+          }
+        }
+      } else {
+        // インデックスベース（月次データ向け: period=12）
+        for (let i = period; i < sorted.length; i++) {
+          const rawCurrent = getNestedValue(sorted[i], derived.sourceField);
+          const rawPrev = getNestedValue(sorted[i - period], derived.sourceField);
+          const currentValue = typeof rawCurrent === 'number' && !isNaN(rawCurrent) ? rawCurrent : null;
+          const prevValue = typeof rawPrev === 'number' && !isNaN(rawPrev) ? rawPrev : null;
+          if (currentValue !== null && prevValue !== null && prevValue !== 0) {
+            points.push({
+              date: sorted[i].date,
+              value: Math.round(((currentValue - prevValue) / prevValue) * 10000) / 100,
+            });
+          }
+        }
+      }
+    } else {
+      // diff: current - prev
+      const period = derived.period ?? 1;
+      for (let i = period; i < sorted.length; i++) {
+        const rawCurrent = getNestedValue(sorted[i], derived.sourceField);
+        const rawPrev = getNestedValue(sorted[i - period], derived.sourceField);
+        const currentValue = typeof rawCurrent === 'number' && !isNaN(rawCurrent) ? rawCurrent : null;
+        const prevValue = typeof rawPrev === 'number' && !isNaN(rawPrev) ? rawPrev : null;
+        if (currentValue !== null && prevValue !== null) {
+          points.push({ date: sorted[i].date, value: currentValue - prevValue });
+        }
       }
     }
 
@@ -628,7 +773,7 @@ export function useOverlayIndicatorData(indicator: OverlayIndicator | null) {
       // 市場データの場合は専用の抽出ロジックを使用
       if (mapping.isMarketData) {
         const data = await response.json() as MarketAPIResponse;
-        const result = extractMarketData(data, mapping.valueField);
+        const result = extractMarketData(data, mapping.valueField, mapping.derived);
         console.log('[useOverlayData] Extracted', result.length, 'market data points for', indicator.id);
         return result;
       }
@@ -772,7 +917,7 @@ async function fetchSingleIndicatorData(
 
   // 市場データの場合
   if (mapping.isMarketData) {
-    return extractMarketData(data as MarketAPIResponse, mapping.valueField);
+    return extractMarketData(data as MarketAPIResponse, mapping.valueField, mapping.derived);
   }
   // 個別API（nyfed, fed-h15等）の場合
   else if (mapping.isDirectApi) {

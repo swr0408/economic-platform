@@ -1163,14 +1163,20 @@
       "plentiful": 28.0,
       "hard": 20.6,
       "differential": 7.4
+    },
+    {
+      "date": "2026-03",
+      "plentiful": 27.3,
+      "hard": 21.5,
+      "differential": 5.8
     }
   ],
   "latest": {
-    "date": "2026-02",
-    "plentiful": 28.0,
-    "hard": 20.6,
-    "differential": 7.4
+    "date": "2026-03",
+    "plentiful": 27.3,
+    "hard": 21.5,
+    "differential": 5.8
   },
-  "latest_data_date": "2026-02",
-  "last_updated": "2026-03-29T23:01:06.402609+09:00"
+  "latest_data_date": "2026-03",
+  "last_updated": "2026-03-31T23:02:20.185107+09:00"
 }

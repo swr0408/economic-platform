@@ -69,6 +69,37 @@ def get_fmp_event_patterns(econalpha_id: str) -> Optional[List[str]]:
         return None
 
 
+def get_fmp_event_country(econalpha_id: str) -> str:
+    """
+    indicator_event_mappingから国コードを取得
+
+    Args:
+        econalpha_id: EconAlpha指標ID
+
+    Returns:
+        国コード。マッピングがなければ'US'（デフォルト）
+    """
+    try:
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        with SessionLocal() as session:
+            query = text("""
+                SELECT country
+                FROM indicator_event_mapping
+                WHERE econalpha_id = :id AND is_active = TRUE
+            """)
+            row = session.execute(query, {"id": econalpha_id}).fetchone()
+
+            if row and row[0]:
+                return row[0]
+            return "US"
+
+    except Exception as e:
+        print(f"Error fetching FMP event country for {econalpha_id}: {e}")
+        return "US"
+
+
 def get_next_release_from_fmp(
     econalpha_id: str,
     patterns: Optional[List[str]] = None,
@@ -397,7 +428,7 @@ def should_refresh_by_fmp_schedule(
 
         now = datetime.now(JST)
 
-        # マッピングからパターンを取得
+        # マッピングからパターンと国コードを取得
         patterns = get_fmp_event_patterns(econalpha_id)
         if not patterns:
             # FMPマッピングがない場合、24時間TTLフォールバック
@@ -406,6 +437,8 @@ def should_refresh_by_fmp_schedule(
                 return True
             return False
 
+        country = get_fmp_event_country(econalpha_id)
+
         with SessionLocal() as session:
             pattern_conditions = " OR ".join([f"event ILIKE '%{p}%'" for p in patterns])
 
@@ -413,14 +446,14 @@ def should_refresh_by_fmp_schedule(
             query = text(f"""
                 SELECT datetime_utc, event, actual
                 FROM economic_calendar_events
-                WHERE country = 'US'
+                WHERE country = :country
                   AND ({pattern_conditions})
                   AND actual IS NOT NULL
                   AND datetime_utc <= NOW()
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row = session.execute(query).fetchone()
+            row = session.execute(query, {"country": country}).fetchone()
 
             if row:
                 dt_utc = row[0]
@@ -437,14 +470,14 @@ def should_refresh_by_fmp_schedule(
             query_pending = text(f"""
                 SELECT datetime_utc, event
                 FROM economic_calendar_events
-                WHERE country = 'US'
+                WHERE country = :country
                   AND ({pattern_conditions})
                   AND actual IS NULL
                   AND datetime_utc <= NOW()
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row_pending = session.execute(query_pending).fetchone()
+            row_pending = session.execute(query_pending, {"country": country}).fetchone()
 
             if row_pending:
                 dt_utc_pending = row_pending[0]

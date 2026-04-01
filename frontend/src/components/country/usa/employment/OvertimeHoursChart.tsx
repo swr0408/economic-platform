@@ -98,6 +98,7 @@ export default function OvertimeHoursChart({ data }: OvertimeHoursChartProps) {
         showPeriodSelector={false}
         dataSource="FRED - BLS"
         sourceUrl="https://www.bls.gov/ces/"
+        handbookId="overtime-hours"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -113,6 +113,7 @@ export default function AtlantaFedWageGrowthChart({ data }: AtlantaFedWageGrowth
     <div id="atlanta-fed-wage">
       <ChartContainer
         title="アトランタ連銀賃金トラッカー"
+        handbookId="atlanta-fed-wage"
         showPeriodSelector={false}
         dataSource="Atlanta Fed - Wage Growth Tracker"
         sourceUrl="https://www.atlantafed.org/chcs/wage-growth-tracker"

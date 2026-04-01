@@ -211,7 +211,7 @@ export function useCompareState(): UseCompareStateResult {
       if (months === 0) {
         delete newShifts[indicatorId];
       } else {
-        newShifts[indicatorId] = Math.max(-12, Math.min(12, months));
+        newShifts[indicatorId] = Math.max(-24, Math.min(24, months));
       }
       return { ...prev, timeShifts: newShifts };
     });

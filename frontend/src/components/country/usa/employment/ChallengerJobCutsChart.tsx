@@ -405,6 +405,7 @@ export default function ChallengerJobCutsChart({ data }: ChallengerJobCutsChartP
         showPeriodSelector={false}
         dataSource="Challenger, Gray & Christmas"
         sourceUrl="https://www.challengergray.com/blog/category/job-cuts-report/"
+        handbookId="challenger-job-cuts"
       >
         {/* 最新値表示 */}
         <LatestValueBox

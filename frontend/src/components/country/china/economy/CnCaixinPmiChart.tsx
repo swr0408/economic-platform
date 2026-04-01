@@ -147,6 +147,7 @@ export default function CnCaixinPmiChart({ data }: Props) {
         showDataSource={true}
         dataSource="S&P Global / Caixin"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
+        handbookId="caixin-pmi"
       >
         <Tabs
           activeKey={activeTab}

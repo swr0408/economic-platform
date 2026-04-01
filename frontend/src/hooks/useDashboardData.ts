@@ -1853,6 +1853,25 @@ export interface SahmRuleNextRelease {
   label: string
 }
 
+// 臨時就業者数データの型（FRED TEMPHELPS）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
+export interface TemporaryHelpServicesData {
+  data: TemporaryHelpServicesItem[]
+  latest: TemporaryHelpServicesItem | null
+  next_release: TemporaryHelpServicesNextRelease | null
+  last_updated: string | null
+}
+
+export interface TemporaryHelpServicesItem {
+  date: string        // YYYY-MM-DD形式
+  value: number       // 臨時就業者数（千人）
+}
+
+export interface TemporaryHelpServicesNextRelease {
+  date: string
+  label: string
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
@@ -1882,6 +1901,7 @@ export interface USAEmploymentData {
   overtime_hours: OvertimeHoursData | null
   us_average_weekly_working_hours: UsAverageWeeklyWorkingHoursData | null
   sahm_rule: SahmRuleData | null
+  temporary_help_services: TemporaryHelpServicesData | null
 }
 
 /**
@@ -1976,7 +1996,7 @@ export interface CPICategoriesNextRelease {
 }
 
 // 住宅関連指標データの型（FRED）
-// Zillow家賃指数、ケースシラー住宅価格指数、家賃CPIの前年比
+// Zillow住宅価値指数、ケースシラー住宅価格指数、家賃CPIの前年比
 export interface HousingIndicatorsData {
   data: {
     zillow: HousingIndicatorItem[]

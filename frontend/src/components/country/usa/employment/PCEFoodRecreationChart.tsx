@@ -121,6 +121,7 @@ export default function PCEFoodRecreationChart({ data }: PCEFoodRecreationChartP
         showPeriodSelector={false}
         dataSource="BEA NIPA / FRED"
         sourceUrl="https://www.bea.gov/data/income-saving/personal-income"
+        handbookId="pce-food-recreation"
       >
         {/* 最新値表示 */}
         <LatestValueBox

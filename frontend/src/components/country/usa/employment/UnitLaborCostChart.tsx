@@ -196,6 +196,7 @@ export default function UnitLaborCostChart({ data }: UnitLaborCostChartProps) {
         showPeriodSelector={false}
         dataSource="FRED - BLS"
         sourceUrl="https://www.bls.gov/news.release/prod2.toc.htm"
+        handbookId="unit-labor-cost"
       >
         {/* 最新値表示 */}
         <LatestValueBox

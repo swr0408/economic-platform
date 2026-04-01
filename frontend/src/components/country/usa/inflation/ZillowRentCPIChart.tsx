@@ -196,6 +196,7 @@ export default function ZillowRentCPIChart({ zillowData, rentCPIData }: ZillowRe
         showPeriodSelector={false}
         dataSource="Zillow / FRED"
         sourceUrl="https://www.zillow.com/research/data/"
+        handbookId="zillow-rent-cpi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

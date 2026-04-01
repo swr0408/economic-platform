@@ -165,6 +165,7 @@ export default function CPICategoriesChart({ categoriesData }: CPICategoriesChar
         showPeriodSelector={false}
         dataSource="FRED (BLS)"
         sourceUrl="https://www.bls.gov/cpi/"
+        handbookId="cpi-categories"
       >
         {/* 最新値表示 */}
         <LatestValueBox

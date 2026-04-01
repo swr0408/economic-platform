@@ -157,6 +157,7 @@ export default function GSCPIChart({ gscpiData }: GSCPIChartProps) {
         showPeriodSelector={false}
         dataSource="NY Fed"
         sourceUrl="https://www.newyorkfed.org/research/policy/gscpi#/interactive"
+        handbookId="gscpi"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

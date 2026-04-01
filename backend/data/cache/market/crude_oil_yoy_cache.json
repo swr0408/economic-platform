@@ -1,0 +1,641 @@
+{
+  "data": [
+    {
+      "date": "2014-03-01",
+      "crude_oil_yoy": 4.2,
+      "crude_oil_close": 101.58
+    },
+    {
+      "date": "2014-04-01",
+      "crude_oil_yoy": 8.35,
+      "crude_oil_close": 99.74
+    },
+    {
+      "date": "2014-05-01",
+      "crude_oil_yoy": 5.64,
+      "crude_oil_close": 102.71
+    },
+    {
+      "date": "2014-07-01",
+      "crude_oil_yoy": 5.04,
+      "crude_oil_close": 98.17
+    },
+    {
+      "date": "2014-08-01",
+      "crude_oil_yoy": 4.34,
+      "crude_oil_close": 95.96
+    },
+    {
+      "date": "2014-09-01",
+      "crude_oil_yoy": -5.59,
+      "crude_oil_close": 91.16
+    },
+    {
+      "date": "2014-10-01",
+      "crude_oil_yoy": -23.32,
+      "crude_oil_close": 80.54
+    },
+    {
+      "date": "2014-11-01",
+      "crude_oil_yoy": -38.55,
+      "crude_oil_close": 66.15
+    },
+    {
+      "date": "2014-12-01",
+      "crude_oil_yoy": -44.73,
+      "crude_oil_close": 53.27
+    },
+    {
+      "date": "2015-01-01",
+      "crude_oil_yoy": -47.97,
+      "crude_oil_close": 48.24
+    },
+    {
+      "date": "2015-04-01",
+      "crude_oil_yoy": -38.83,
+      "crude_oil_close": 59.63
+    },
+    {
+      "date": "2015-05-01",
+      "crude_oil_yoy": -41.22,
+      "crude_oil_close": 60.3
+    },
+    {
+      "date": "2015-06-01",
+      "crude_oil_yoy": -41.46,
+      "crude_oil_close": 59.47
+    },
+    {
+      "date": "2015-07-01",
+      "crude_oil_yoy": -52.76,
+      "crude_oil_close": 47.12
+    },
+    {
+      "date": "2015-08-01",
+      "crude_oil_yoy": -52.1,
+      "crude_oil_close": 49.2
+    },
+    {
+      "date": "2015-09-01",
+      "crude_oil_yoy": -54.07,
+      "crude_oil_close": 45.09
+    },
+    {
+      "date": "2015-10-01",
+      "crude_oil_yoy": -51.45,
+      "crude_oil_close": 46.59
+    },
+    {
+      "date": "2015-12-01",
+      "crude_oil_yoy": -59.37,
+      "crude_oil_close": 37.04
+    },
+    {
+      "date": "2016-01-01",
+      "crude_oil_yoy": -58.26,
+      "crude_oil_close": 33.62
+    },
+    {
+      "date": "2016-02-01",
+      "crude_oil_yoy": -48.98,
+      "crude_oil_close": 33.75
+    },
+    {
+      "date": "2016-03-01",
+      "crude_oil_yoy": -28.03,
+      "crude_oil_close": 38.34
+    },
+    {
+      "date": "2016-04-01",
+      "crude_oil_yoy": -4.81,
+      "crude_oil_close": 45.92
+    },
+    {
+      "date": "2016-06-01",
+      "crude_oil_yoy": -18.95,
+      "crude_oil_close": 48.33
+    },
+    {
+      "date": "2016-07-01",
+      "crude_oil_yoy": -31.01,
+      "crude_oil_close": 41.6
+    },
+    {
+      "date": "2016-08-01",
+      "crude_oil_yoy": -24.84,
+      "crude_oil_close": 44.7
+    },
+    {
+      "date": "2016-09-01",
+      "crude_oil_yoy": 2.38,
+      "crude_oil_close": 48.24
+    },
+    {
+      "date": "2016-10-01",
+      "crude_oil_yoy": -4.76,
+      "crude_oil_close": 46.86
+    },
+    {
+      "date": "2016-11-01",
+      "crude_oil_yoy": 9.65,
+      "crude_oil_close": 49.44
+    },
+    {
+      "date": "2016-12-01",
+      "crude_oil_yoy": 15.3,
+      "crude_oil_close": 53.72
+    },
+    {
+      "date": "2017-02-01",
+      "crude_oil_yoy": 45.82,
+      "crude_oil_close": 54.01
+    },
+    {
+      "date": "2017-03-01",
+      "crude_oil_yoy": 50.51,
+      "crude_oil_close": 50.6
+    },
+    {
+      "date": "2017-04-01",
+      "crude_oil_yoy": 46.16,
+      "crude_oil_close": 49.33
+    },
+    {
+      "date": "2017-05-01",
+      "crude_oil_yoy": 26.03,
+      "crude_oil_close": 48.32
+    },
+    {
+      "date": "2017-06-01",
+      "crude_oil_yoy": 0.26,
+      "crude_oil_close": 46.04
+    },
+    {
+      "date": "2017-07-01",
+      "crude_oil_yoy": 3.81,
+      "crude_oil_close": 50.17
+    },
+    {
+      "date": "2017-08-01",
+      "crude_oil_yoy": 13.53,
+      "crude_oil_close": 47.23
+    },
+    {
+      "date": "2017-09-01",
+      "crude_oil_yoy": 15.59,
+      "crude_oil_close": 51.67
+    },
+    {
+      "date": "2017-11-01",
+      "crude_oil_yoy": 18.99,
+      "crude_oil_close": 57.4
+    },
+    {
+      "date": "2017-12-01",
+      "crude_oil_yoy": 28.94,
+      "crude_oil_close": 60.42
+    },
+    {
+      "date": "2018-01-01",
+      "crude_oil_yoy": 30.93,
+      "crude_oil_close": 64.73
+    },
+    {
+      "date": "2018-02-01",
+      "crude_oil_yoy": 14.74,
+      "crude_oil_close": 61.64
+    },
+    {
+      "date": "2018-03-01",
+      "crude_oil_yoy": 20.24,
+      "crude_oil_close": 64.94
+    },
+    {
+      "date": "2018-05-01",
+      "crude_oil_yoy": 32.49,
+      "crude_oil_close": 67.04
+    },
+    {
+      "date": "2018-06-01",
+      "crude_oil_yoy": 50.31,
+      "crude_oil_close": 74.15
+    },
+    {
+      "date": "2018-08-01",
+      "crude_oil_yoy": 44.45,
+      "crude_oil_close": 69.8
+    },
+    {
+      "date": "2018-09-01",
+      "crude_oil_yoy": 59.1,
+      "crude_oil_close": 73.25
+    },
+    {
+      "date": "2018-10-01",
+      "crude_oil_yoy": 30.18,
+      "crude_oil_close": 65.31
+    },
+    {
+      "date": "2018-11-01",
+      "crude_oil_yoy": 7.83,
+      "crude_oil_close": 50.93
+    },
+    {
+      "date": "2018-12-01",
+      "crude_oil_yoy": -12.12,
+      "crude_oil_close": 45.41
+    },
+    {
+      "date": "2019-01-01",
+      "crude_oil_yoy": -6.29,
+      "crude_oil_close": 53.79
+    },
+    {
+      "date": "2019-02-01",
+      "crude_oil_yoy": -5.3,
+      "crude_oil_close": 57.22
+    },
+    {
+      "date": "2019-03-01",
+      "crude_oil_yoy": -7.09,
+      "crude_oil_close": 60.14
+    },
+    {
+      "date": "2019-04-01",
+      "crude_oil_yoy": 3.68,
+      "crude_oil_close": 63.91
+    },
+    {
+      "date": "2019-05-01",
+      "crude_oil_yoy": -17.62,
+      "crude_oil_close": 53.5
+    },
+    {
+      "date": "2019-06-01",
+      "crude_oil_yoy": -12.78,
+      "crude_oil_close": 58.47
+    },
+    {
+      "date": "2019-07-01",
+      "crude_oil_yoy": -21.0,
+      "crude_oil_close": 58.58
+    },
+    {
+      "date": "2019-08-01",
+      "crude_oil_yoy": -21.06,
+      "crude_oil_close": 55.1
+    },
+    {
+      "date": "2019-10-01",
+      "crude_oil_yoy": -26.03,
+      "crude_oil_close": 54.18
+    },
+    {
+      "date": "2019-11-01",
+      "crude_oil_yoy": -15.53,
+      "crude_oil_close": 55.17
+    },
+    {
+      "date": "2020-01-01",
+      "crude_oil_yoy": 1.24,
+      "crude_oil_close": 51.56
+    },
+    {
+      "date": "2020-02-01",
+      "crude_oil_yoy": -1.43,
+      "crude_oil_close": 44.76
+    },
+    {
+      "date": "2020-04-01",
+      "crude_oil_yoy": -64.97,
+      "crude_oil_close": 18.84
+    },
+    {
+      "date": "2020-05-01",
+      "crude_oil_yoy": -37.98,
+      "crude_oil_close": 35.49
+    },
+    {
+      "date": "2020-06-01",
+      "crude_oil_yoy": -34.7,
+      "crude_oil_close": 39.27
+    },
+    {
+      "date": "2020-07-01",
+      "crude_oil_yoy": -36.99,
+      "crude_oil_close": 40.27
+    },
+    {
+      "date": "2020-08-01",
+      "crude_oil_yoy": -20.36,
+      "crude_oil_close": 42.61
+    },
+    {
+      "date": "2020-09-01",
+      "crude_oil_yoy": -31.21,
+      "crude_oil_close": 40.22
+    },
+    {
+      "date": "2020-10-01",
+      "crude_oil_yoy": -38.9,
+      "crude_oil_close": 35.79
+    },
+    {
+      "date": "2020-12-01",
+      "crude_oil_yoy": -11.94,
+      "crude_oil_close": 48.52
+    },
+    {
+      "date": "2021-01-01",
+      "crude_oil_yoy": -3.65,
+      "crude_oil_close": 52.2
+    },
+    {
+      "date": "2021-02-01",
+      "crude_oil_yoy": 11.47,
+      "crude_oil_close": 61.5
+    },
+    {
+      "date": "2021-03-01",
+      "crude_oil_yoy": 14.74,
+      "crude_oil_close": 59.16
+    },
+    {
+      "date": "2021-04-01",
+      "crude_oil_yoy": 42.05,
+      "crude_oil_close": 63.58
+    },
+    {
+      "date": "2021-05-01",
+      "crude_oil_yoy": 252.02,
+      "crude_oil_close": 66.32
+    },
+    {
+      "date": "2021-06-01",
+      "crude_oil_yoy": 107.02,
+      "crude_oil_close": 73.47
+    },
+    {
+      "date": "2021-07-01",
+      "crude_oil_yoy": 88.31,
+      "crude_oil_close": 73.95
+    },
+    {
+      "date": "2021-09-01",
+      "crude_oil_yoy": 86.32,
+      "crude_oil_close": 75.03
+    },
+    {
+      "date": "2021-10-01",
+      "crude_oil_yoy": 96.13,
+      "crude_oil_close": 83.57
+    },
+    {
+      "date": "2021-11-01",
+      "crude_oil_yoy": 64.54,
+      "crude_oil_close": 66.18
+    },
+    {
+      "date": "2021-12-01",
+      "crude_oil_yoy": 110.14,
+      "crude_oil_close": 75.21
+    },
+    {
+      "date": "2022-01-01",
+      "crude_oil_yoy": 81.68,
+      "crude_oil_close": 88.15
+    },
+    {
+      "date": "2022-02-01",
+      "crude_oil_yoy": 83.37,
+      "crude_oil_close": 95.72
+    },
+    {
+      "date": "2022-03-01",
+      "crude_oil_yoy": 63.06,
+      "crude_oil_close": 100.28
+    },
+    {
+      "date": "2022-04-01",
+      "crude_oil_yoy": 76.96,
+      "crude_oil_close": 104.69
+    },
+    {
+      "date": "2022-06-01",
+      "crude_oil_yoy": 66.34,
+      "crude_oil_close": 105.76
+    },
+    {
+      "date": "2022-07-01",
+      "crude_oil_yoy": 48.7,
+      "crude_oil_close": 98.62
+    },
+    {
+      "date": "2022-08-01",
+      "crude_oil_yoy": 21.89,
+      "crude_oil_close": 89.55
+    },
+    {
+      "date": "2022-09-01",
+      "crude_oil_yoy": 7.49,
+      "crude_oil_close": 79.49
+    },
+    {
+      "date": "2022-10-01",
+      "crude_oil_yoy": 15.33,
+      "crude_oil_close": 86.53
+    },
+    {
+      "date": "2022-11-01",
+      "crude_oil_yoy": -3.61,
+      "crude_oil_close": 80.55
+    },
+    {
+      "date": "2022-12-01",
+      "crude_oil_yoy": 21.28,
+      "crude_oil_close": 80.26
+    },
+    {
+      "date": "2023-02-01",
+      "crude_oil_yoy": 2.45,
+      "crude_oil_close": 77.05
+    },
+    {
+      "date": "2023-03-01",
+      "crude_oil_yoy": -14.16,
+      "crude_oil_close": 75.67
+    },
+    {
+      "date": "2023-04-01",
+      "crude_oil_yoy": -19.79,
+      "crude_oil_close": 76.78
+    },
+    {
+      "date": "2023-05-01",
+      "crude_oil_yoy": -32.1,
+      "crude_oil_close": 68.09
+    },
+    {
+      "date": "2023-06-01",
+      "crude_oil_yoy": -32.52,
+      "crude_oil_close": 70.64
+    },
+    {
+      "date": "2023-07-01",
+      "crude_oil_yoy": -22.66,
+      "crude_oil_close": 81.8
+    },
+    {
+      "date": "2023-08-01",
+      "crude_oil_yoy": -15.2,
+      "crude_oil_close": 83.63
+    },
+    {
+      "date": "2023-09-01",
+      "crude_oil_yoy": 1.38,
+      "crude_oil_close": 90.79
+    },
+    {
+      "date": "2023-11-01",
+      "crude_oil_yoy": -4.44,
+      "crude_oil_close": 75.96
+    },
+    {
+      "date": "2023-12-01",
+      "crude_oil_yoy": -17.2,
+      "crude_oil_close": 71.65
+    },
+    {
+      "date": "2024-01-01",
+      "crude_oil_yoy": -5.83,
+      "crude_oil_close": 75.85
+    },
+    {
+      "date": "2024-02-01",
+      "crude_oil_yoy": -2.49,
+      "crude_oil_close": 78.26
+    },
+    {
+      "date": "2024-03-01",
+      "crude_oil_yoy": 7.94,
+      "crude_oil_close": 83.17
+    },
+    {
+      "date": "2024-04-01",
+      "crude_oil_yoy": 8.27,
+      "crude_oil_close": 81.93
+    },
+    {
+      "date": "2024-05-01",
+      "crude_oil_yoy": 0.27,
+      "crude_oil_close": 76.99
+    },
+    {
+      "date": "2024-06-01",
+      "crude_oil_yoy": 19.75,
+      "crude_oil_close": 81.54
+    },
+    {
+      "date": "2024-07-01",
+      "crude_oil_yoy": 10.29,
+      "crude_oil_close": 77.91
+    },
+    {
+      "date": "2024-08-01",
+      "crude_oil_yoy": -10.09,
+      "crude_oil_close": 73.55
+    },
+    {
+      "date": "2024-10-01",
+      "crude_oil_yoy": -17.18,
+      "crude_oil_close": 69.26
+    },
+    {
+      "date": "2024-11-01",
+      "crude_oil_yoy": -25.1,
+      "crude_oil_close": 68.0
+    },
+    {
+      "date": "2025-01-01",
+      "crude_oil_yoy": -4.52,
+      "crude_oil_close": 72.53
+    },
+    {
+      "date": "2025-02-01",
+      "crude_oil_yoy": -2.64,
+      "crude_oil_close": 69.76
+    },
+    {
+      "date": "2025-03-01",
+      "crude_oil_yoy": -5.76,
+      "crude_oil_close": 71.48
+    },
+    {
+      "date": "2025-04-01",
+      "crude_oil_yoy": -25.62,
+      "crude_oil_close": 58.21
+    },
+    {
+      "date": "2025-05-01",
+      "crude_oil_yoy": -26.91,
+      "crude_oil_close": 60.79
+    },
+    {
+      "date": "2025-07-01",
+      "crude_oil_yoy": -15.46,
+      "crude_oil_close": 69.26
+    },
+    {
+      "date": "2025-08-01",
+      "crude_oil_yoy": -16.86,
+      "crude_oil_close": 64.01
+    },
+    {
+      "date": "2025-09-01",
+      "crude_oil_yoy": -23.51,
+      "crude_oil_close": 62.37
+    },
+    {
+      "date": "2025-10-01",
+      "crude_oil_yoy": -21.73,
+      "crude_oil_close": 60.98
+    },
+    {
+      "date": "2025-11-01",
+      "crude_oil_yoy": -20.39,
+      "crude_oil_close": 58.55
+    },
+    {
+      "date": "2025-12-01",
+      "crude_oil_yoy": -17.1,
+      "crude_oil_close": 57.42
+    },
+    {
+      "date": "2026-01-01",
+      "crude_oil_yoy": -4.1,
+      "crude_oil_close": 65.21
+    },
+    {
+      "date": "2026-03-31",
+      "crude_oil_yoy": 41.68,
+      "crude_oil_close": 102.76
+    }
+  ],
+  "latest": {
+    "date": "2026-03-31",
+    "crude_oil_yoy": 41.68,
+    "crude_oil_close": 102.76
+  },
+  "metadata": {
+    "source": "yfinance (CL=F)",
+    "indicator": "Crude Oil (WTI) YoY (Monthly)",
+    "unit": "%",
+    "frequency": "monthly",
+    "data_count": 124,
+    "start_date": "2014-03-01",
+    "end_date": "2026-03-31"
+  },
+  "cached": false,
+  "source": "model",
+  "last_updated": "2026-03-31T16:00:47.373510+09:00"
+}

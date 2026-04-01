@@ -23,6 +23,7 @@ import NYInflationExpectationsChart from './inflation/NYInflationExpectationsCha
 import MichiganInflationExpectationsChart from './inflation/MichiganInflationExpectationsChart'
 import TrimmedMeanPCEChart from './inflation/TrimmedMeanPCEChart'
 import MedianCPIChart from './inflation/MedianCPIChart'
+import TruflationUsCpiChart from './inflation/TruflationUsCpiChart'
 
 export default function USAInflationCharts() {
   const queryResult = useUSAInflationDashboard()
@@ -109,6 +110,9 @@ export default function USAInflationCharts() {
             <MichiganInflationExpectationsChart
               michiganInflationExpectationsData={dashboardData?.michigan_inflation_expectations ?? null}
             />
+          </ChartWrapper>
+          <ChartWrapper id="truflation-us-cpi">
+            <TruflationUsCpiChart />
           </ChartWrapper>
         </>
       )}

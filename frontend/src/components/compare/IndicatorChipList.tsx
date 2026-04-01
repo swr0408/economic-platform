@@ -84,10 +84,10 @@ function IndicatorChip({ indicator, color, shift, onRemove, onShiftChange }: Ind
         <button
           style={{
             ...shiftBtnStyle,
-            opacity: shift <= -12 ? 0.3 : 1,
+            opacity: shift <= -24 ? 0.3 : 1,
           }}
           onClick={(e) => { e.stopPropagation(); onShiftChange(shift - 1); }}
-          disabled={shift <= -12}
+          disabled={shift <= -24}
           title="遅行（-1ヶ月）"
         >
           ◀
@@ -111,10 +111,10 @@ function IndicatorChip({ indicator, color, shift, onRemove, onShiftChange }: Ind
         <button
           style={{
             ...shiftBtnStyle,
-            opacity: shift >= 12 ? 0.3 : 1,
+            opacity: shift >= 24 ? 0.3 : 1,
           }}
           onClick={(e) => { e.stopPropagation(); onShiftChange(shift + 1); }}
-          disabled={shift >= 12}
+          disabled={shift >= 24}
           title="先行（+1ヶ月）"
         >
           ▶

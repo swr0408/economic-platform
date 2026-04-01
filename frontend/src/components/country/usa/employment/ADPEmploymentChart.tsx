@@ -158,6 +158,7 @@ export default function ADPEmploymentChart({ data }: ADPEmploymentChartProps) {
     <div id="adp-employment">
       <ChartContainer
         title="ADP雇用者数"
+        handbookId="adp-employment"
         showPeriodSelector={false}
         dataSource="FRED / ADP"
         sourceUrl="https://adpemploymentreport.com/"

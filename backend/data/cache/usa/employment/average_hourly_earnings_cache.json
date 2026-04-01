@@ -1366,14 +1366,14 @@
       "date": "2026-02-01",
       "yoy": 3.84,
       "mom": 0.4,
-      "quits_rate": null
+      "quits_rate": 1.9
     }
   ],
   "latest": {
     "date": "2026-02-01",
     "yoy": 3.84,
     "mom": 0.4,
-    "quits_rate": null
+    "quits_rate": 1.9
   },
-  "last_updated": "2026-03-22T23:02:03.075144+09:00"
+  "last_updated": "2026-04-01T21:31:44.476928+09:00"
 }

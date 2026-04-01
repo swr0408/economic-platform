@@ -35,6 +35,7 @@ import NFIBCompensationUnemploymentChart from './employment/NFIBCompensationUnem
 import OvertimeHoursChart from './employment/OvertimeHoursChart'
 import UsAverageWeeklyWorkingHoursChart from './employment/UsAverageWeeklyWorkingHoursChart'
 import SahmRuleChart from './employment/SahmRuleChart'
+import UsTemporaryHelpServicesChart from './employment/UsTemporaryHelpServicesChart'
 
 export default function USAEmploymentCharts() {
   const queryResult = useUSAEmploymentDashboard()
@@ -152,6 +153,10 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="average-weekly-working-hours">
             <UsAverageWeeklyWorkingHoursChart data={dashboardData?.us_average_weekly_working_hours ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="temporary-help-services">
+            <UsTemporaryHelpServicesChart data={dashboardData?.temporary_help_services ?? null} />
           </ChartWrapper>
         </>
       )}

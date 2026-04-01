@@ -292,14 +292,39 @@
     },
     {
       "date": "2025-09-01",
+      "job_changer": 6.7,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2025-10-01",
+      "job_changer": 6.7,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2025-11-01",
+      "job_changer": 6.3,
+      "job_stayer": 4.4
+    },
+    {
+      "date": "2025-12-01",
       "job_changer": 6.6,
+      "job_stayer": 4.4
+    },
+    {
+      "date": "2026-01-01",
+      "job_changer": 6.4,
+      "job_stayer": 4.5
+    },
+    {
+      "date": "2026-02-01",
+      "job_changer": 6.3,
       "job_stayer": 4.5
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "job_changer": 6.6,
+    "date": "2026-02-01",
+    "job_changer": 6.3,
     "job_stayer": 4.5
   },
-  "last_updated": "2026-03-27T17:18:58.743709+09:00"
+  "last_updated": "2026-04-01T21:16:26.130558+09:00"
 }

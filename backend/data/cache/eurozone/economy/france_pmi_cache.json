@@ -1030,14 +1030,14 @@
       {
         "date": "2026-03",
         "value": 50.2,
-        "forecast": 49.5,
+        "forecast": 50.2,
         "previous": 50.1
       }
     ],
     "latest": {
       "date": "2026-03",
       "value": 50.2,
-      "forecast": 49.5,
+      "forecast": 50.2,
       "previous": 50.1
     }
   },
@@ -2919,5 +2919,5 @@
     "label": "HCOB Construction PMI (Mar)",
     "estimate": 45
   },
-  "last_updated": "2026-03-27T12:03:03.656916+01:00"
+  "last_updated": "2026-04-01T09:53:03.076406+02:00"
 }

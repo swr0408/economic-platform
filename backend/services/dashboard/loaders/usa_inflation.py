@@ -42,7 +42,7 @@ class USAInflationLoader(BaseDashboardLoader):
     - cpi: CPI（消費者物価指数）- FRED: CPIAUCSL（毎月10-15日頃 8:30 ET）
     - core_cpi: コアCPI（食品・エネルギー除く）- FRED: CPILFESL（毎月10-15日頃 8:30 ET）
     - cpi_categories: CPI項目別 - FRED: 食品, エネルギー, コア財, コアサービス, 住居費
-    - housing_indicators: 住宅関連指標 - FRED: Zillow家賃指数, ケースシラー住宅価格指数, 家賃CPI
+    - housing_indicators: 住宅関連指標 - FRED: Zillow住宅価値指数, ケースシラー住宅価格指数, 家賃CPI
     - zillow_rent_index: Zillow家賃指数（前年比）- Zillow CSV直接取得（毎月15日頃）
     - rent_cpi: 家賃CPI（前年比）- FRED: CUUR0000SAH1
     - pce_deflator: PCEデフレーター（前年比）- FRED: PCEPI（毎月20-31日頃 8:30 ET）

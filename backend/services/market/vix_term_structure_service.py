@@ -105,15 +105,19 @@ class VixTermStructureService:
         ticker_data: Dict[str, Dict[str, float]] = {}
         for key, ticker in TICKERS.items():
             try:
-                df = yf.download(ticker, start=start_str, end=end_str, progress=False, auto_adjust=True)
+                df = yf.download(ticker, start=start_str, end=end_str, progress=False, auto_adjust=False)
                 if df.empty:
                     ticker_data[key] = {}
                     continue
+                # MultiIndex列からClose値を安全に取得
+                if isinstance(df.columns, pd.MultiIndex):
+                    close_series = df[("Close", ticker)]
+                else:
+                    close_series = df["Close"]
                 result: Dict[str, float] = {}
-                for idx, row in df.iterrows():
+                for idx, val in close_series.items():
                     date_str = idx.strftime("%Y-%m-%d")
-                    close_val = float(row["Close"].iloc[0]) if hasattr(row["Close"], "iloc") else float(row["Close"])
-                    result[date_str] = round(close_val, 4)
+                    result[date_str] = round(float(val), 4)
                 ticker_data[key] = result
             except Exception as e:
                 logger.error(f"yfinance {ticker} ダウンロードエラー: {e}")

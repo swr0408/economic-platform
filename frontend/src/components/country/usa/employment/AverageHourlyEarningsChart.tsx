@@ -204,7 +204,7 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
                     <AntTooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
-                        onClick={() => window.open('/compare?s=average_hourly_earnings_yoy', '_blank')}
+                        onClick={() => window.open('/compare?s=average_hourly_earnings_yoy,quits_rate', '_blank')}
                       >
                         データ比較
                       </Button>

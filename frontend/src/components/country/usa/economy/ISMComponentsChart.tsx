@@ -95,6 +95,7 @@ export default function ISMComponentsChart({ data }: ISMComponentsChartProps) {
         showPeriodSelector={false}
         dataSource="ISM"
         sourceUrl="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
+        handbookId="ism-components"
       >
         {/* 最新値表示 */}
         {data.latest && (
