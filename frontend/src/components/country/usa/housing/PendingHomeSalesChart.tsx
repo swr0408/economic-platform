@@ -131,6 +131,7 @@ export default function PendingHomeSalesChart({ pendingHomeSalesData }: PendingH
         showPeriodSelector={false}
         dataSource="NAR"
         sourceUrl="https://www.nar.realtor/research-and-statistics/housing-statistics/pending-home-sales"
+        handbookId="pending-home-sales"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

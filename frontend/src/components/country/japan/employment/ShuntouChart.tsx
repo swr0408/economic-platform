@@ -337,6 +337,7 @@ export default function ShuntouChart({ data }: ShuntouChartProps) {
         showPeriodSelector={false}
         dataSource="連合（日本労働組合総連合会）"
         sourceUrl="https://www.jtuc-rengo.or.jp/activity/roudou/shuntou/"
+        handbookId="shuntou"
       >
         {/* 最新値表示（統合ボックス） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

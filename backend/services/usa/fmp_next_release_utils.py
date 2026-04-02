@@ -466,7 +466,11 @@ def should_refresh_by_fmp_schedule(
                     return True
 
             # 2. actual IS NULLだが発表時刻を過ぎたイベントもチェック
-            #    FMPがactualを埋めていなくても、FREDには既にデータがある可能性
+            #    FMPがactualを埋めていなくても、FREDやDBには既にデータがある可能性
+            #    発表後2時間以内は5分間隔でリフレッシュを繰り返す（FMP actual遅延対策）
+            PENDING_GRACE_PERIOD_SECONDS = 2 * 60 * 60  # 2時間
+            MIN_RETRY_INTERVAL_SECONDS = 5 * 60          # 5分
+
             query_pending = text(f"""
                 SELECT datetime_utc, event
                 FROM economic_calendar_events
@@ -485,10 +489,21 @@ def should_refresh_by_fmp_schedule(
                     dt_utc_pending = dt_utc_pending.replace(tzinfo=UTC)
 
                 pending_release = dt_utc_pending.astimezone(JST)
+                elapsed_since_release = (now - pending_release).total_seconds()
 
-                # 発表時刻を過ぎていて、その時刻以降にキャッシュ更新していなければ更新
-                if now >= pending_release and last_updated < pending_release:
-                    return True
+                if 0 <= elapsed_since_release <= PENDING_GRACE_PERIOD_SECONDS:
+                    # 猶予期間内: last_updatedから5分以上経過していればリフレッシュ
+                    elapsed_since_update = (now - last_updated).total_seconds()
+                    if elapsed_since_update >= MIN_RETRY_INTERVAL_SECONDS:
+                        print(f"[FMP Schedule] Pending release for {econalpha_id}: "
+                              f"release={pending_release.strftime('%H:%M')}, "
+                              f"elapsed={elapsed_since_release/60:.0f}min, "
+                              f"forcing refresh")
+                        return True
+                else:
+                    # 猶予期間外: 従来の判定（last_updatedが発表前なら更新）
+                    if now >= pending_release and last_updated < pending_release:
+                        return True
 
             return False
 

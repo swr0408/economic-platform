@@ -63,7 +63,8 @@ RUN pip install --no-cache-dir \
     dukascopy-python \
     selenium \
     webdriver-manager \
-    deep-translator
+    deep-translator \
+    discord.py
 
 # Playwrightブラウザをインストール（ChromiumとFirefox）
 RUN playwright install chromium firefox

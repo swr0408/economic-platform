@@ -657,14 +657,14 @@
       },
       {
         "date": "2026-03-01",
-        "value": 52.4,
+        "value": 52.3,
         "forecast": 52.4,
         "previous": 51.6
       }
     ],
     "latest": {
       "date": "2026-03-01",
-      "value": 52.4,
+      "value": 52.3,
       "forecast": 52.4,
       "previous": 51.6
     }
@@ -2413,5 +2413,5 @@
     "label": "S&P Global Manufacturing PMI (Apr)",
     "estimate": null
   },
-  "last_updated": "2026-04-01T18:00:00.283876+09:00"
+  "last_updated": "2026-04-02T23:00:00.236283+09:00"
 }

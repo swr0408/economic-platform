@@ -2702,29 +2702,29 @@
     },
     {
       "date": "2025-01-01",
-      "value": 711095.0,
-      "ex_auto": 574058.0,
-      "mom": -0.86,
-      "yoy": 4.5,
+      "value": 711260.0,
+      "ex_auto": 574070.0,
+      "mom": -0.84,
+      "yoy": 4.53,
       "ex_auto_mom": -0.55,
       "ex_auto_yoy": 4.17
     },
     {
       "date": "2025-02-01",
-      "value": 711757.0,
-      "ex_auto": 577383.0,
+      "value": 711922.0,
+      "ex_auto": 577951.0,
       "mom": 0.09,
-      "yoy": 3.86,
-      "ex_auto_mom": 0.58,
-      "ex_auto_yoy": 4.26
+      "yoy": 3.89,
+      "ex_auto_mom": 0.68,
+      "ex_auto_yoy": 4.36
     },
     {
       "date": "2025-03-01",
       "value": 722572.0,
       "ex_auto": 581041.0,
-      "mom": 1.52,
+      "mom": 1.5,
       "yoy": 5.08,
-      "ex_auto_mom": 0.63,
+      "ex_auto_mom": 0.53,
       "ex_auto_yoy": 4.24
     },
     {
@@ -2801,31 +2801,40 @@
     },
     {
       "date": "2025-12-01",
-      "value": 734685.0,
-      "ex_auto": 596287.0,
+      "value": 734717.0,
+      "ex_auto": 596072.0,
       "mom": -0.0,
       "yoy": 2.43,
-      "ex_auto_mom": 0.05,
-      "ex_auto_yoy": 3.3
+      "ex_auto_mom": 0.01,
+      "ex_auto_yoy": 3.26
     },
     {
       "date": "2026-01-01",
-      "value": 733537.0,
-      "ex_auto": 596320.0,
-      "mom": -0.16,
-      "yoy": 3.16,
-      "ex_auto_mom": 0.01,
-      "ex_auto_yoy": 3.88
+      "value": 733955.0,
+      "ex_auto": 596224.0,
+      "mom": -0.1,
+      "yoy": 3.19,
+      "ex_auto_mom": 0.03,
+      "ex_auto_yoy": 3.86
+    },
+    {
+      "date": "2026-02-01",
+      "value": 738366.0,
+      "ex_auto": 598988.0,
+      "mom": 0.6,
+      "yoy": 3.71,
+      "ex_auto_mom": 0.46,
+      "ex_auto_yoy": 3.64
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 733537.0,
-    "ex_auto": 596320.0,
-    "mom": -0.16,
-    "yoy": 3.16,
-    "ex_auto_mom": 0.01,
-    "ex_auto_yoy": 3.88
+    "date": "2026-02-01",
+    "value": 738366.0,
+    "ex_auto": 598988.0,
+    "mom": 0.6,
+    "yoy": 3.71,
+    "ex_auto_mom": 0.46,
+    "ex_auto_yoy": 3.64
   },
-  "last_updated": "2026-04-01T15:08:25.286761+09:00"
+  "last_updated": "2026-04-03T01:13:42.817557+09:00"
 }

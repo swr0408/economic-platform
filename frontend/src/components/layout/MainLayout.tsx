@@ -11,6 +11,7 @@ import {
   MenuUnfoldOutlined,
   CalendarOutlined,
   BookOutlined,
+  SoundOutlined,
 } from '@ant-design/icons'
 import SidebarNavigation from './SidebarNavigation'
 import MarketSidebarNavigation from './MarketSidebarNavigation'
@@ -69,6 +70,11 @@ function MainLayout() {
       label: <Link to="/" style={linkStyle}>ホーム</Link>,
     },
     {
+      key: '/inbox',
+      icon: <SoundOutlined />,
+      label: <Link to="/inbox" style={linkStyle}>ヘッドライン</Link>,
+    },
+    {
       key: '/country',
       icon: <GlobalOutlined />,
       label: <Link to="/country" style={linkStyle}>マクロデータ</Link>,
@@ -103,6 +109,9 @@ function MainLayout() {
   const selectedKey = useMemo(() => {
     const path = location.pathname
     if (path === '/') return '/'
+    if (path.startsWith('/inbox')) return '/inbox'
+    if (path.startsWith('/saved')) return '/inbox'
+    if (path.startsWith('/admin/headlines')) return '/inbox'
     if (path.startsWith('/seasonality')) return '/seasonality'
     if (path.startsWith('/country')) return '/country'
     if (path.startsWith('/markets')) return '/markets'

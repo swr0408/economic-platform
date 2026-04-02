@@ -129,6 +129,10 @@ try:
     from backend.scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
     from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
+    from backend.routers.headlines import router as headlines_router
+    from backend.services.discord.discord_news_listener import discord_news_listener
+    from backend.scheduler.headlines_rss_scheduler import headlines_rss_scheduler
+    from backend.services.headlines.translation_worker import translation_worker
 except ImportError as _ie:
     print(f"[main.py] Primary import failed ({_ie}), using fallback imports...")
     from config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
@@ -320,6 +324,10 @@ except ImportError as _ie:
     from scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
     from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from scheduler.comex_stock_scheduler import comex_stock_scheduler
+    from routers.headlines import router as headlines_router
+    from services.discord.discord_news_listener import discord_news_listener
+    from scheduler.headlines_rss_scheduler import headlines_rss_scheduler
+    from services.headlines.translation_worker import translation_worker
 
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
@@ -523,6 +531,7 @@ app.include_router(global_taiwan_electrical_equipment_exports_router)
 app.include_router(global_container_freight_index_router)
 app.include_router(global_usd_fundamental_index_router)
 app.include_router(global_oecd_cli_router)
+app.include_router(headlines_router)
 
 
 @app.get("/health")
@@ -739,6 +748,27 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not warm Canada Settlement Balances cache: {e}")
 
+    # Discord ニュースリスナーを開始
+    try:
+        discord_news_listener.start()
+        print("Discord News Listener started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Discord News Listener: {e}")
+
+    # ヘッドラインRSS補填スケジューラーを開始
+    try:
+        headlines_rss_scheduler.start()
+        print("Headlines RSS Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Headlines RSS Scheduler: {e}")
+
+    # 翻訳非同期ワーカーを開始
+    try:
+        translation_worker.start()
+        print("Translation Worker started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Translation Worker: {e}")
+
     print("=" * 60)
     print("Economic Platform API started")
     print("=" * 60)
@@ -856,6 +886,21 @@ async def shutdown_event():
         cn_baidu_migration_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down CN Baidu Migration Scheduler: {e}")
+
+    try:
+        discord_news_listener.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Discord News Listener: {e}")
+
+    try:
+        headlines_rss_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Headlines RSS Scheduler: {e}")
+
+    try:
+        translation_worker.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Translation Worker: {e}")
 
     print("Economic Platform API shutdown complete")
 

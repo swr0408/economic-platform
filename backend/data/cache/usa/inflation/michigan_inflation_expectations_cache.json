@@ -4059,8 +4059,8 @@
     "datetime_utc": "2026-04-10T14:00:00+00:00",
     "datetime_jst": "2026-04-10T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "Michigan Consumer Sentiment (Apr)",
-    "estimate": null
+    "label": "Michigan Inflation Expectations (Apr)",
+    "estimate": 3.9
   },
-  "last_updated": "2026-03-31T23:02:59.643393+09:00"
+  "last_updated": "2026-04-02T12:02:10.289208+09:00"
 }

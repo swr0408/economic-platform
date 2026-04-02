@@ -150,6 +150,7 @@ export default function MortgageRatesChart({ mortgageRatesData }: MortgageRatesC
         showPeriodSelector={false}
         dataSource="FreddieMac"
         sourceUrl="https://www.freddiemac.com/pmms"
+        handbookId="mortgage-rates"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

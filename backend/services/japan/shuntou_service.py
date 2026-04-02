@@ -98,6 +98,9 @@ class ShuntouService:
         next_release = self._get_next_release()
 
         if historical_data and (historical_data.get("wage_increase") or historical_data.get("union_member")):
+            # プレスリリースPDFから当年の賃上げ率を抽出してマージ
+            historical_data = self._merge_current_year_data(historical_data, press_releases)
+
             wage_increase_data = historical_data.get("wage_increase", [])
             union_member_data = historical_data.get("union_member", [])
 
@@ -149,6 +152,105 @@ class ShuntouService:
             "last_updated": None,
             "error": "No data available"
         }
+
+    def _parse_press_release_rate(self, pdf_path: Path) -> Optional[float]:
+        """
+        プレスリリースPDFから全体の賃上げ率（加重平均）を抽出
+
+        抽出戦略:
+        1. Page 1テキストから最初の妥当な賃上げ率を取得
+        2. チャートデータ（時系列）から最新値を取得（page 1が画像の場合）
+        """
+        try:
+            import pdfplumber
+        except ImportError:
+            logger.warning("pdfplumber not installed")
+            return None
+
+        try:
+            with pdfplumber.open(pdf_path) as pdf:
+                # Strategy 1: Page 1テキストから抽出
+                if pdf.pages:
+                    text = pdf.pages[0].extract_text() or ""
+                    numbers = re.findall(r'(\d+\.\d+)', text)
+                    for n in numbers:
+                        val = float(n)
+                        if 1.0 <= val <= 8.0:
+                            return val
+
+                # Strategy 2: チャートデータの時系列から最新値を取得
+                for pi in range(1, min(5, len(pdf.pages))):
+                    text = pdf.pages[pi].extract_text() or ""
+                    for line in text.split("\n"):
+                        # 日付行をスキップ（NN.N.NN パターン）
+                        if re.search(r'\d{2}\.\d{1,2}\.\d{1,2}', line):
+                            continue
+                        nums = re.findall(r'(\d+\.\d{2})', line)
+                        if len(nums) >= 8:
+                            vals = [float(n) for n in nums]
+                            if all(1.0 <= v <= 8.0 for v in vals):
+                                return vals[-1]
+        except Exception as e:
+            logger.error(f"Error parsing press release rate from {pdf_path}: {e}")
+
+        return None
+
+    def _merge_current_year_data(
+        self,
+        historical: Dict[str, List[Dict[str, Any]]],
+        press_releases: List[Dict[str, Any]],
+    ) -> Dict[str, List[Dict[str, Any]]]:
+        """
+        プレスリリースPDFから当年の賃上げ率を抽出し、経年データにマージ
+
+        最新の回答集計結果（最大番号）から当年の暫定値を取得し、
+        経年データの末尾に追加する。ZIPデータに当年分が含まれていない場合のみ追加。
+        """
+        now = datetime.now(JST)
+        year = now.year
+        date_str = f"{year}-01-01"
+
+        wage_data = historical.get("wage_increase", [])
+
+        # 既に当年データが経年データに含まれている場合はスキップ
+        if any(d.get("date") == date_str for d in wage_data):
+            logger.info(f"Historical data already contains {year}, skipping PDF merge")
+            return historical
+
+        # 当年のプレスリリースから最新の回答集計結果を取得
+        current_year_releases = [
+            pr for pr in press_releases
+            if pr.get("year") == year and pr.get("cached")
+        ]
+        if not current_year_releases:
+            return historical
+
+        # 最大番号（最新の集計回）を使用
+        latest_release = max(current_year_releases, key=lambda x: x.get("number", 0))
+        pdf_path = self._get_pdf_cache_path(year, latest_release["number"])
+
+        if not pdf_path.exists():
+            return historical
+
+        rate = self._parse_press_release_rate(pdf_path)
+        if rate is None:
+            logger.warning(f"Could not extract rate from {pdf_path}")
+            return historical
+
+        logger.info(
+            f"Extracted {year} wage increase rate from press_no{latest_release['number']}: {rate}%"
+        )
+
+        # 経年データに追加
+        wage_data.append({
+            "date": date_str,
+            "value": round(rate, 2),
+            "source": f"press_no{latest_release['number']}",
+            "preliminary": True,
+        })
+        historical["wage_increase"] = wage_data
+
+        return historical
 
     def _load_historical_data(self) -> Dict[str, List[Dict[str, Any]]]:
         """

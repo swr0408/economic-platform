@@ -1079,21 +1079,27 @@
       "value": 52.4,
       "forecast": 51.8,
       "previous": 52.6
+    },
+    {
+      "date": "2026-03-01",
+      "value": 52.7,
+      "forecast": 52.5,
+      "previous": 52.4
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 52.4,
-    "forecast": 51.8,
-    "previous": 52.6
+    "date": "2026-03-01",
+    "value": 52.7,
+    "forecast": 52.5,
+    "previous": 52.4
   },
   "next_release": {
-    "date": "2026-04-01",
-    "datetime_utc": "2026-04-01T14:00:00+00:00",
-    "datetime_jst": "2026-04-01T23:00:00+09:00",
+    "date": "2026-05-01",
+    "datetime_utc": "2026-05-01T14:00:00+00:00",
+    "datetime_jst": "2026-05-01T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Manufacturing New Orders (Mar)",
-    "estimate": 55
+    "label": "ISM Manufacturing Employment (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-04-01T15:08:24.664388+09:00"
+  "last_updated": "2026-04-03T01:13:42.230813+09:00"
 }

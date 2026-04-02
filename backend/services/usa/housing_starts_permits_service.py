@@ -215,14 +215,15 @@ class HousingStartsPermitsService:
             return []
 
     def _calculate_changes(self, raw_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """前月比・前年比を計算"""
+        """前月比・前年比・四半期比を計算"""
         result = []
         for i, item in enumerate(raw_data):
             entry = {
                 "date": item["date"],
                 "value": item["value"],
                 "mom": None,
-                "yoy": None
+                "yoy": None,
+                "qoq": None,
             }
 
             # 前月比
@@ -239,7 +240,57 @@ class HousingStartsPermitsService:
 
             result.append(entry)
 
+        # 四半期比（QoQ）を計算
+        self._calculate_quarterly_qoq(result)
+
         return result
+
+    def _calculate_quarterly_qoq(self, data: List[Dict[str, Any]]) -> None:
+        """四半期平均のQoQ変化率を計算し、各月のqoqフィールドに設定
+
+        手順:
+        1. 月次データを四半期ごとにグループ化
+        2. 各四半期の平均値を算出
+        3. QoQ(%) = (当四半期平均 / 前四半期平均 - 1) × 100
+        4. 四半期に属する全3ヶ月にQoQ値を設定
+        """
+        from collections import defaultdict
+
+        # 四半期ごとにグループ化
+        quarters: Dict[str, List[float]] = defaultdict(list)
+        month_to_quarter: Dict[str, str] = {}
+
+        for item in data:
+            dt = datetime.strptime(item["date"], "%Y-%m-%d")
+            q = (dt.month - 1) // 3 + 1
+            quarter_key = f"{dt.year}Q{q}"
+            quarters[quarter_key].append(item["value"])
+            month_to_quarter[item["date"]] = quarter_key
+
+        # 四半期平均を計算
+        quarter_avg: Dict[str, float] = {}
+        for qk, values in quarters.items():
+            if len(values) == 3:
+                quarter_avg[qk] = sum(values) / 3
+            # 不完全な四半期（3ヶ月揃っていない）はスキップ
+
+        # ソートされた四半期リスト
+        sorted_quarters = sorted(quarter_avg.keys())
+
+        # QoQを計算
+        quarter_qoq: Dict[str, float] = {}
+        for i, qk in enumerate(sorted_quarters):
+            if i >= 1:
+                prev_avg = quarter_avg[sorted_quarters[i - 1]]
+                if prev_avg and prev_avg != 0:
+                    qoq_val = ((quarter_avg[qk] / prev_avg) - 1) * 100
+                    quarter_qoq[qk] = round(qoq_val, 2)
+
+        # 各月にQoQ値を設定
+        for item in data:
+            qk = month_to_quarter.get(item["date"])
+            if qk and qk in quarter_qoq:
+                item["qoq"] = quarter_qoq[qk]
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュ更新判定（FMP 3分方式）"""

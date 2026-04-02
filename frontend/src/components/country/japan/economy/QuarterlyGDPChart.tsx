@@ -268,7 +268,7 @@ const QuarterlyGDPChart: React.FC = () => {
         showPeriodSelector={false}
         dataSource="内閣府"
         sourceUrl="https://www.esri.cao.go.jp/jp/sna/menu.html"
-        handbookId="gdp"
+        handbookId="quarterly-gdp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

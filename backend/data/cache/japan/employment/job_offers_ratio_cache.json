@@ -53,21 +53,27 @@
       "value": 1.19,
       "forecast": 1.18,
       "previous": 1.18
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1.18,
+      "forecast": 1.19,
+      "previous": 1.2
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 1.19,
-    "forecast": 1.18,
-    "previous": 1.18
+    "date": "2026-03-01",
+    "value": 1.18,
+    "forecast": 1.19,
+    "previous": 1.2
   },
   "next_release": {
-    "date": "2026-03-02",
-    "datetime_utc": "2026-03-02T23:30:00+00:00",
-    "datetime_jst": "2026-03-03T08:30:00+09:00",
+    "date": "2026-05-01",
+    "datetime_utc": "2026-05-01T23:30:00+00:00",
+    "datetime_jst": "2026-05-02T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "Jobs/applications ratio (Jan)",
-    "estimate": 1.19
+    "label": "Jobs/applications ratio (Mar)",
+    "estimate": null
   },
-  "last_updated": "2026-02-28T09:52:34.059346+09:00"
+  "last_updated": "2026-04-02T20:21:15.474556+09:00"
 }

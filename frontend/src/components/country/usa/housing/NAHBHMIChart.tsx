@@ -88,6 +88,7 @@ export default function NAHBHMIChart({ nahbHMIData }: NAHBHMIChartProps) {
         showPeriodSelector={false}
         dataSource="NAHB"
         sourceUrl="https://www.nahb.org/news-and-economics/housing-economics/indices/housing-market-index"
+        handbookId="nahb-hmi"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

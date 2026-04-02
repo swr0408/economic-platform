@@ -47,6 +47,9 @@ webdriver-manager==4.0.1
 # Translation
 deep-translator==1.11.4
 
+# Discord
+discord.py>=2.3.0
+
 # Financial Data
 yfinance==0.2.35
 dukascopy-python>=4.0.1

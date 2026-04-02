@@ -417,9 +417,9 @@ function extractIndicatorData(
   }
 
   // パターン: housing_starts_permits のようなネスト構造
-  // { housing_starts: { data: [{date, value, mom, yoy}], latest: {...} }, building_permits: { data: [...], latest: {...} } }
+  // { housing_starts: { data: [{date, value, mom, yoy, qoq}], latest: {...} }, building_permits: { data: [...], latest: {...} } }
   if (nestedKey && dataKey === 'housing_starts_permits') {
-    const dataObj = indicatorData as Record<string, { data?: Array<{ date: string; value: number | null; mom: number | null; yoy: number | null }> }>;
+    const dataObj = indicatorData as Record<string, { data?: Array<{ date: string; value: number | null; mom: number | null; yoy: number | null; qoq: number | null }> }>;
     const nestedData = dataObj[nestedKey];
     if (nestedData && nestedData.data && Array.isArray(nestedData.data)) {
       const field = valueField || 'value';

@@ -12,6 +12,9 @@ import EarningsIndex from './pages/EarningsIndex'
 import EarningsCategory from './pages/EarningsCategory'
 import ComparePage from './pages/ComparePage'
 import DataHandbookPage from './pages/DataHandbookPage'
+import HeadlinesInboxPage from './pages/HeadlinesInboxPage'
+import HeadlinesSavedPage from './pages/HeadlinesSavedPage'
+import HeadlinesAdminPage from './pages/HeadlinesAdminPage'
 import { HandbookProvider } from './contexts/HandbookContext'
 
 function App() {
@@ -34,6 +37,10 @@ function App() {
             <Route path="earnings/:categoryCode/:countryCode" element={<EarningsCategory />} />
             <Route path="compare" element={<ComparePage />} />
             <Route path="handbook" element={<DataHandbookPage />} />
+            <Route path="inbox" element={<HeadlinesInboxPage />} />
+            <Route path="saved" element={<HeadlinesSavedPage />} />
+            <Route path="saved/:categoryId" element={<HeadlinesSavedPage />} />
+            <Route path="admin/headlines" element={<HeadlinesAdminPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

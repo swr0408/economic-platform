@@ -67248,6 +67248,58 @@
       "forward_pe_yoy": 22.78,
       "forward_eps_yoy": 16.01,
       "earnings_yield_yoy": -18.55
+    },
+    {
+      "date": "2026-03-16",
+      "close": 53751.15,
+      "forward_pe": 23.85,
+      "forward_eps": 2253.72,
+      "earnings_yield": 0.041929,
+      "yield_10y": 0.0206,
+      "yield_spread": 0.021329,
+      "yield_ratio": 2.0354,
+      "forward_pe_yoy": 24.09,
+      "forward_eps_yoy": 16.03,
+      "earnings_yield_yoy": -19.41
+    },
+    {
+      "date": "2026-03-17",
+      "close": 53700.39,
+      "forward_pe": 23.82,
+      "forward_eps": 2254.42,
+      "earnings_yield": 0.041982,
+      "yield_10y": 0.0206,
+      "yield_spread": 0.021382,
+      "yield_ratio": 2.0379,
+      "forward_pe_yoy": 23.68,
+      "forward_eps_yoy": 16.04,
+      "earnings_yield_yoy": -19.14
+    },
+    {
+      "date": "2026-03-18",
+      "close": 55239.4,
+      "forward_pe": 24.51,
+      "forward_eps": 2253.75,
+      "earnings_yield": 0.0408,
+      "yield_10y": 0.0206,
+      "yield_spread": 0.0202,
+      "yield_ratio": 1.9806,
+      "forward_pe_yoy": 26.41,
+      "forward_eps_yoy": 15.9,
+      "earnings_yield_yoy": -20.89
+    },
+    {
+      "date": "2026-03-19",
+      "close": 53372.53,
+      "forward_pe": 23.68,
+      "forward_eps": 2253.91,
+      "earnings_yield": 0.04223,
+      "yield_10y": 0.0206,
+      "yield_spread": 0.02163,
+      "yield_ratio": 2.05,
+      "forward_pe_yoy": 24.89,
+      "forward_eps_yoy": 15.85,
+      "earnings_yield_yoy": -19.93
     }
   ],
   "monthly_table": [
@@ -70047,28 +70099,28 @@
     },
     {
       "date": "2026-03",
-      "forward_pe": 23.91,
-      "forward_eps": 2299.18,
+      "forward_pe": 23.93,
+      "forward_eps": 2286.26,
       "earnings_yield": 4.18,
-      "close": 54975.58,
+      "close": 54701.37,
       "yield_10y": 2.06,
-      "forward_pe_mom": -4.44,
-      "forward_eps_mom": 1.87,
-      "earnings_yield_mom": 4.68
+      "forward_pe_mom": -4.38,
+      "forward_eps_mom": 1.3,
+      "earnings_yield_mom": 4.6
     }
   ],
   "latest": {
-    "date": "2026-03-13",
-    "close": 53819.61,
-    "forward_pe": 23.88,
-    "forward_eps": 2253.75,
-    "earnings_yield": 0.041876,
+    "date": "2026-03-19",
+    "close": 53372.53,
+    "forward_pe": 23.68,
+    "forward_eps": 2253.91,
+    "earnings_yield": 0.04223,
     "yield_10y": 0.0206,
-    "yield_spread": 0.021276,
-    "yield_ratio": 2.0328,
-    "forward_pe_yoy": 22.78,
-    "forward_eps_yoy": 16.01,
-    "earnings_yield_yoy": -18.55
+    "yield_spread": 0.02163,
+    "yield_ratio": 2.05,
+    "forward_pe_yoy": 24.89,
+    "forward_eps_yoy": 15.85,
+    "earnings_yield_yoy": -19.93
   },
   "metadata": {
     "source": "Nikkei 225 Valuation",
@@ -70077,11 +70129,11 @@
     "pe_source": "Nikkei Indexes",
     "yield_source": "FRED (IRLTLT01JPM156N)",
     "file_name": "nikkei225_per.csv",
-    "file_mtime": 1773546372.8428624,
-    "data_count": 5173,
+    "file_mtime": 1774146817.2460947,
+    "data_count": 5177,
     "date_range": {
       "start": "2005-01-04",
-      "end": "2026-03-13"
+      "end": "2026-03-19"
     },
     "series": [
       "forward_pe (予想PER: 指数ウェイトベース)",
@@ -70094,5 +70146,5 @@
   },
   "cached": false,
   "source": "csv+yfinance+fred",
-  "last_updated": "2026-03-21T22:54:40.374289+09:00"
+  "last_updated": "2026-04-02T18:03:32.334886+09:00"
 }

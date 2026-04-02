@@ -435,13 +435,13 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
 
   {
     indicatorId: 'housing-indicators',
-    title: 'Zillow住宅価値指数 / ケースシラー住宅価格指数 / 家賃CPI',
+    title: 'CPI住居関連 / Zillow住宅価値指数 / ケースシラー住宅価格指数 / 家賃CPI',
     country: 'usa',
     category: 'inflation',
-    summary: '住宅価格指標（Zillow住宅価値指数・ケースシラー）と家賃CPIの先行・遅行関係。住居費インフレの方向を中期的に読むための指標比較。',
+    summary: 'ShelterはCPIの約36%。OER（約74%）と家賃CPI（約22%）の構造、BLS調査の遅行特性、住宅価格指標との先行・遅行関係を含む住居費インフレの総合解説。',
     loadContent: loadMd('usa/housing-indicators.md'),
-    relatedIndicators: ['cpi', 'zillow-rent-cpi', 'cpi-categories'],
-    tags: ['Zillow', 'ZHVI', '住宅価値', 'ケースシラー', 'Case-Shiller', '家賃CPI', '住居費', 'Shelter', '先行指標'],
+    relatedIndicators: ['cpi', 'zillow-rent-cpi', 'cpi-categories', 'existing-home-sales', 'redfin-case-shiller'],
+    tags: ['Zillow', 'ZHVI', '住宅価値', 'ケースシラー', 'Case-Shiller', '家賃CPI', '住居費', 'Shelter', 'OER', '帰属家賃', 'BLS', '先行指標'],
   },
 
   {
@@ -495,10 +495,10 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     title: 'GDP成長率（日本）',
     country: 'japan',
     category: 'economy',
-    summary: '内閣府が四半期ごとに発表する国内総生産の成長率。速報値と改定値がある。',
+    summary: '内閣府が四半期ごとに発表する国内総生産の成長率。GDPは付加価値ベースの統計であり、個人消費は居住者家計ベースで整理される。小売販売額やインバウンド消費との統計概念の違いに注意が必要。',
     loadContent: loadMd('japan/gdp-growth.md'),
-    relatedIndicators: ['gdp-components', 'gdp-deflator'],
-    tags: ['GDP', '内閣府', '景気'],
+    relatedIndicators: ['gdp-components', 'gdp-deflator', 'retail-sales'],
+    tags: ['GDP', '内閣府', '景気', '個人消費', '付加価値', '帰属家賃', 'インバウンド', '小売販売'],
   },
 
   {
@@ -545,6 +545,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/pmi.md'),
     relatedIndicators: ['quarterly-gdp', 'cgpi', 'global-manufacturing-pmi'],
     tags: ['PMI', 'S&P Global', 'auじぶん銀行', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- Japan / 雇用 ---
+  {
+    indicatorId: 'shuntou',
+    title: '春闘賃上げ率',
+    country: 'japan',
+    category: 'employment',
+    summary: '連合の要求集計結果は春闘賃上げ率の先行材料。要求水準だけでなく中小企業への波及が重要。連合集計と厚労省集計は対象が異なるため数字に差がある。',
+    loadContent: loadMd('japan/shuntou.md'),
+    relatedIndicators: ['boj-policy-rate-chart', 'national-cpi', 'japan-fundamentals-yen'],
+    tags: ['春闘', '賃上げ', '連合', 'Rengo', '要求集計', '中小企業', '賃金', '物価循環', 'BOJ', '厚生労働省'],
   },
 
   // --- グローバル / 経済 ---
@@ -717,8 +729,20 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     category: 'forex',
     summary: '安全資産通貨と低金利・資源輸入国通貨の両面。年度末フロー、原油価格との関係、リスクオフ時の条件付き円高など。',
     loadContent: loadMd('market/jpy.md'),
-    relatedIndicators: ['cot-usdjpy', 'cot-usd-index', 'flow-knowledge', 'rebalance'],
+    relatedIndicators: ['japan-fundamentals-yen', 'cot-usdjpy', 'cot-usd-index', 'flow-knowledge', 'rebalance'],
     tags: ['円', 'JPY', '安全資産', 'リスクオフ', '年度末', 'レパトリ', '原油', '交易条件', '日米金利差'],
+  },
+
+  // --- マーケット / 日本のファンダメンタルズと円 ---
+  {
+    indicatorId: 'japan-fundamentals-yen',
+    title: '日本のファンダメンタルズと円相場',
+    country: 'market',
+    category: 'forex',
+    summary: 'エネルギー・食料の輸入依存構造、円安の両面性、貿易赤字と経常黒字の関係、BOJ展望レポートの公表スケジュール、為替介入の仕組み・口先介入の表現強度・委託介入・実績公表まで。',
+    loadContent: loadMd('market/japan-fundamentals-yen.md'),
+    relatedIndicators: ['jpy', 'cot-usdjpy', 'boj-policy-rate-chart', 'terms-of-trade'],
+    tags: ['日本', 'ファンダメンタルズ', '円', 'JPY', 'エネルギー依存', '食料自給率', '円安', '貿易赤字', '経常黒字', '為替介入', '外国為替平衡操作', '委託介入', '口先介入', 'BOJ', '展望レポート'],
   },
 
   // --- マーケット / ドル円 ---
@@ -727,10 +751,10 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     title: 'ドル円（USD/JPY）の見方',
     country: 'market',
     category: 'forex',
-    summary: '仲値・五十日フロー、日米金利差、米国債利回りとの関係、キャリートレード巻き戻しなど、ドル円を見るための実務的な整理。',
+    summary: '仲値・五十日フロー、日米金利差、米国債利回りとの関係、キャリートレード巻き戻しに加え、投機筋の円ショート水準別（12万/14万/16万枚）の過熱判断とピークアウトの見方。',
     loadContent: loadMd('market/usdjpy.md'),
-    relatedIndicators: ['jpy', 'cot-usd-index', 'cftc-positioning', 'us-interest-rate-spread', 'flow-knowledge'],
-    tags: ['ドル円', 'USD/JPY', 'USDJPY', '仲値', '五十日', '日米金利差', 'キャリートレード', '円安', '円高', '為替'],
+    relatedIndicators: ['jpy', 'japan-fundamentals-yen', 'cot-usd-index', 'cftc-positioning', 'us-interest-rate-spread', 'flow-knowledge'],
+    tags: ['ドル円', 'USD/JPY', 'USDJPY', '仲値', '五十日', '日米金利差', 'キャリートレード', '円安', '円高', '為替', '円ショート', 'CFTC', 'IMM', 'ポジション', 'ピークアウト'],
   },
 
   // --- マーケット / ユーロ (EUR/USD) ---
@@ -1475,13 +1499,23 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
 
   // --- USA / 住宅 ---
   {
+    indicatorId: 'mortgage-rates',
+    title: '住宅ローン金利（フレディ・マック30年固定）',
+    country: 'usa',
+    category: 'housing',
+    summary: '住宅ローン金利は住宅需要を大きく左右する。6％前後がaffordabilityの節目。PMMS調査の前提条件、rate lock-in effectによる在庫への影響も含む。',
+    loadContent: loadMd('usa/mortgage-rates.md'),
+    relatedIndicators: ['existing-home-sales', 'housing-starts-permits', 'redfin-case-shiller'],
+    tags: ['住宅ローン金利', 'Mortgage Rate', 'Freddie Mac', 'PMMS', '30年固定', 'Affordability', 'Rate Lock-in'],
+  },
+  {
     indicatorId: 'existing-home-sales',
     title: '中古住宅販売件数',
     country: 'usa',
     category: 'housing',
     summary: '住宅市場の実需を映す指標。賃金だけでなく、住宅ローン金利・住宅価格・在庫・融資条件・既存保有者の住み替え行動が大きく左右する。',
     loadContent: loadMd('usa/existing-home-sales.md'),
-    relatedIndicators: ['housing-starts-permits', 'redfin-case-shiller'],
+    relatedIndicators: ['mortgage-rates', 'housing-starts-permits', 'redfin-case-shiller', 'pending-home-sales'],
     tags: ['中古住宅', 'Existing Home Sales', 'NAR', '住宅ローン金利', '住宅在庫', '住み替え'],
   },
   {
@@ -1489,10 +1523,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     title: '住宅着工件数 / 建設許可件数',
     country: 'usa',
     category: 'housing',
-    summary: '住宅着工は景気回復初期に動きやすい先行指標。建築許可は着工にさらに先行する。金利だけでなく雇用・信用環境の総合判断が必要。',
+    summary: '住宅着工は金利感応度が高く景気回復初期に動きやすい先行指標。建築許可は着工にさらに先行する。金利・雇用・信用環境の総合判断が必要で、GDPには住宅投資を通じて影響。戸建てと集合住宅の区分や四半期平均での把握も重要。',
     loadContent: loadMd('usa/housing-starts-permits.md'),
-    relatedIndicators: ['existing-home-sales', 'redfin-case-shiller'],
-    tags: ['住宅着工', 'Housing Starts', '建設許可', 'Building Permits', 'Census Bureau', '先行指標', '住宅投資'],
+    relatedIndicators: ['mortgage-rates', 'existing-home-sales', 'redfin-case-shiller', 'bank-lending', 'nahb-hmi'],
+    tags: ['住宅着工', 'Housing Starts', '建設許可', 'Building Permits', 'Census Bureau', '先行指標', '住宅投資', 'GDP', '景気循環', '金利', '戸建て', '集合住宅'],
+  },
+  {
+    indicatorId: 'nahb-hmi',
+    title: 'NAHB住宅市場指数（HMI）',
+    country: 'usa',
+    category: 'housing',
+    summary: '新築一戸建て市場に対する住宅会社の景況感を示す月次指数。50が強気・弱気の分岐点。金利に敏感だが、建設コスト・労働力・土地不足など供給側要因も影響。サブ指数（販売見通し・来場状況）の先行変化に注目。',
+    loadContent: loadMd('usa/nahb-hmi.md'),
+    relatedIndicators: ['housing-starts-permits', 'mortgage-rates', 'existing-home-sales', 'new-home-sales'],
+    tags: ['NAHB', 'HMI', '住宅市場指数', '景況感', '新築一戸建て', '住宅ローン金利', 'センチメント', '先行指標'],
+  },
+  {
+    indicatorId: 'pending-home-sales',
+    title: '中古住宅販売保留数',
+    country: 'usa',
+    category: 'housing',
+    summary: '中古住宅の売買契約成立段階を示す指標。中古住宅販売件数に1〜2か月先行しやすい。住宅ローン金利・住宅価格・所得環境・在庫・購入可能性の影響を強く受ける。',
+    loadContent: loadMd('usa/pending-home-sales.md'),
+    relatedIndicators: ['existing-home-sales', 'mortgage-rates', 'redfin-case-shiller', 'housing-starts-permits'],
+    tags: ['中古住宅販売保留', 'Pending Home Sales', 'NAR', '先行指標', '住宅ローン金利', 'Affordability', '契約'],
   },
   {
     indicatorId: 'redfin-case-shiller',
@@ -1501,7 +1555,7 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     category: 'housing',
     summary: '住宅価格は資産効果を通じて消費に影響。上昇は既存保有者に追い風だが購入予定者には負担増で、家計全体への影響は一様ではない。',
     loadContent: loadMd('usa/redfin-case-shiller.md'),
-    relatedIndicators: ['existing-home-sales', 'housing-starts-permits'],
+    relatedIndicators: ['mortgage-rates', 'existing-home-sales', 'housing-starts-permits'],
     tags: ['住宅価格', 'Case-Shiller', 'Redfin', '資産効果', '消費', '住宅市場'],
   },
 

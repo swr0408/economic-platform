@@ -2602,41 +2602,51 @@
     },
     {
       "date": "2026-02-01",
-      "balance": null,
-      "balance_3ma": null,
+      "balance": 4.58,
+      "balance_3ma": 11.04,
       "nikkei_yoy": 58.39,
       "nikkei": 58850.0,
-      "preliminary": false
+      "preliminary": true
     },
     {
       "date": "2026-03-01",
       "balance": null,
       "balance_3ma": null,
-      "nikkei_yoy": 49.85,
-      "nikkei": 53373.0,
+      "nikkei_yoy": 43.37,
+      "nikkei": 51064.0,
+      "preliminary": false
+    },
+    {
+      "date": "2026-04-01",
+      "balance": null,
+      "balance_3ma": null,
+      "nikkei_yoy": 45.55,
+      "nikkei": 52463.0,
       "preliminary": false
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "balance": 18.26,
-    "balance_3ma": 10.42,
-    "nikkei_yoy": 34.75,
-    "nikkei": 53323.0,
-    "preliminary": false
+    "date": "2026-02-01",
+    "balance": 4.58,
+    "balance_3ma": 11.04,
+    "nikkei_yoy": 58.39,
+    "nikkei": 58850.0,
+    "preliminary": true
   },
   "metadata": {
     "source": "METI IIP / yfinance",
-    "data_count": 327,
+    "data_count": 328,
     "start_date": "1999-01-01",
-    "end_date": "2026-03-01",
-    "balance_count": 325,
+    "end_date": "2026-04-01",
+    "balance_count": 326,
     "balance_start": "1999-01",
-    "balance_latest": "2026-01-01",
-    "nikkei_latest": "2026-03",
-    "preliminary_months": []
+    "balance_latest": "2026-02-01",
+    "nikkei_latest": "2026-04",
+    "preliminary_months": [
+      "2026-02"
+    ]
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-22T11:10:00.462657+09:00"
+  "last_updated": "2026-04-02T18:03:34.998844+09:00"
 }

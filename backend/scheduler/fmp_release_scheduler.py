@@ -807,6 +807,81 @@ class FMPReleaseScheduler:
 
         print(f"[FMPScheduler] Completed update cycle for: {name_ja}")
 
+    async def _retry_if_still_pending(self, config: Dict[str, Any]):
+        """
+        発表後の遅延リトライ: FMPのactualがまだNULLの場合のみ再取得
+
+        FMPがactualを既に埋めている場合はスキップ（無駄な処理を回避）
+        """
+        name_ja = config["name_ja"]
+        fmp_event = config["fmp_event"]
+        fmp_event_pattern = config.get("fmp_event_pattern", fmp_event)
+        country = config.get("country", "US")
+
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            # DBで当該イベントのactualがまだNULLかチェック
+            with SessionLocal() as session:
+                query = text("""
+                    SELECT actual
+                    FROM economic_calendar_events
+                    WHERE country = :country
+                      AND event ILIKE :pattern
+                      AND datetime_utc >= NOW() - INTERVAL '1 day'
+                      AND datetime_utc <= NOW()
+                    ORDER BY datetime_utc DESC
+                    LIMIT 1
+                """)
+                row = session.execute(query, {
+                    "country": country,
+                    "pattern": f"%{fmp_event_pattern}%"
+                }).fetchone()
+
+                if row and row[0] is not None:
+                    print(f"[FMPScheduler] Retry skipped for {name_ja}: actual already populated")
+                    return
+
+            print(f"[FMPScheduler] Retry triggered for {name_ja}: actual still NULL")
+
+            # FMPから再同期 → サービス再取得
+            self._sync_fmp_indicator_data(fmp_event, name_ja, country)
+
+            service = self._get_service_instance(config)
+            if not service:
+                return
+
+            if hasattr(service, 'invalidate_cache'):
+                service.invalidate_cache()
+
+            fetch_method = getattr(service, config['fetch_method'], None)
+            if fetch_method:
+                result = fetch_method(force_refresh=True)
+                if result and not result.get("error"):
+                    latest = result.get("latest", {})
+                    print(f"[FMPScheduler] Retry success for {name_ja}: "
+                          f"date={latest.get('date')}, value={latest.get('value')}")
+
+                    # 関連サービスも更新
+                    for related in config.get("related_services", []):
+                        try:
+                            related_service = self._get_service_instance(related)
+                            if related_service:
+                                related_method = getattr(related_service, related['fetch_method'], None)
+                                if related_method:
+                                    related_method(force_refresh=True)
+                        except Exception as e:
+                            print(f"[FMPScheduler] Retry related error {related.get('service_instance')}: {e}")
+
+                    # ダッシュボードキャッシュも無効化
+                    category = config.get("category")
+                    if category:
+                        invalidate_dashboard_cache(country, category)
+
+        except Exception as e:
+            print(f"[FMPScheduler] Retry error for {name_ja}: {e}")
+
     def schedule_release_jobs(self):
         """
         全発表日のジョブをスケジュール（各指標ごとにFMP APIを呼び出し）
@@ -851,6 +926,22 @@ class FMPReleaseScheduler:
             self._scheduled_jobs.add(job_id)
             scheduled_count += 1
             print(f"[FMPScheduler] Scheduled: {name_ja} at {trigger_time.strftime('%Y-%m-%d %H:%M JST')}")
+
+            # 遅延リトライジョブ（FMP actual遅延対策）
+            # 発表後15分・30分にactualがまだNULLなら再取得
+            for retry_delay in [15, 30]:
+                retry_time = dt_jst + timedelta(minutes=retry_delay)
+                if retry_time <= now_jst:
+                    continue
+                retry_job_id = f"fmp_retry_{name_ja}_{dt_jst.strftime('%Y%m%d_%H%M')}_{retry_delay}m"
+                self.scheduler.add_job(
+                    self._retry_if_still_pending,
+                    trigger=DateTrigger(run_date=retry_time),
+                    args=[config],
+                    id=retry_job_id,
+                    replace_existing=True
+                )
+                self._scheduled_jobs.add(retry_job_id)
 
         print(f"[FMPScheduler] Total jobs scheduled: {scheduled_count}")
 
