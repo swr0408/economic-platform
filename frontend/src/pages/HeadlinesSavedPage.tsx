@@ -1,24 +1,19 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
-  Typography, Tag, Button, Empty, Spin, Space, Tooltip, Popconfirm, Input,
+  Typography, Tag, Button, Empty, Spin, Tooltip, Popconfirm, Input,
   ColorPicker, message, Modal,
 } from 'antd'
 import {
   FolderOutlined, StarFilled, DeleteOutlined, EditOutlined,
-  PlusOutlined, LinkOutlined,
+  PlusOutlined, LinkOutlined, MinusCircleOutlined,
 } from '@ant-design/icons'
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/ja'
 import {
   useHeadlines, useCategories, useUnsaveHeadline,
   useCreateCategory, useDeleteCategory,
 } from '../hooks/useHeadlines'
-import type { Category } from '../api/headlinesApi'
-
-dayjs.extend(relativeTime)
-dayjs.locale('ja')
+import type { Category, Headline } from '../api/headlinesApi'
 
 const { Text } = Typography
 
@@ -33,11 +28,51 @@ const colors = {
   border: '#334155',
 }
 
+/** カテゴリを国グループ→親→子のツリーで整理 */
+interface CategoryNode {
+  category: Category
+  children: Category[]
+}
+interface CategoryGroup {
+  groupName: string
+  nodes: CategoryNode[]
+}
+
+function buildCategoryGroups(categories: Category[]): CategoryGroup[] {
+  const roots = categories.filter(c => c.parent_id === null)
+  const childMap = new Map<number, Category[]>()
+  for (const c of categories) {
+    if (c.parent_id !== null) {
+      const arr = childMap.get(c.parent_id) || []
+      arr.push(c)
+      childMap.set(c.parent_id, arr)
+    }
+  }
+
+  const groupMap = new Map<string, CategoryNode[]>()
+  for (const cat of roots) {
+    const colonIdx = cat.name.indexOf(':')
+    const group = colonIdx > 0 ? cat.name.substring(0, colonIdx).trim() : 'その他'
+    if (!groupMap.has(group)) groupMap.set(group, [])
+    groupMap.get(group)!.push({
+      category: cat,
+      children: childMap.get(cat.id) || [],
+    })
+  }
+
+  return Array.from(groupMap.entries()).map(([groupName, nodes]) => ({
+    groupName,
+    nodes,
+  }))
+}
+
 function HeadlinesSavedPage() {
   const { categoryId } = useParams<{ categoryId?: string }>()
   const navigate = useNavigate()
   const { data: categories = [], isLoading: catLoading } = useCategories()
   const selectedCatId = categoryId ? parseInt(categoryId) : null
+
+  const groups = buildCategoryGroups(categories)
 
   if (catLoading) {
     return <div style={{ textAlign: 'center', padding: 60 }}><Spin size="large" /></div>
@@ -53,39 +88,82 @@ function HeadlinesSavedPage() {
         </Typography.Title>
       </div>
 
-      {/* Category tabs */}
+      {/* Category tabs - 階層表示 */}
       <div style={{
-        display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16,
+        marginBottom: 16,
         background: colors.bgSecondary, borderRadius: 8, padding: '12px 16px',
         border: `1px solid ${colors.border}`,
       }}>
-        <Tag
-          style={{
-            cursor: 'pointer',
-            background: !selectedCatId ? colors.accent : colors.bgTertiary,
-            color: !selectedCatId ? '#fff' : colors.textSecondary,
-            borderColor: !selectedCatId ? colors.accent : colors.border,
-            fontSize: 12,
-          }}
-          onClick={() => navigate('/saved')}
-        >
-          すべて
-        </Tag>
-        {categories.map(cat => (
+        {/* すべてボタン */}
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 8 }}>
           <Tag
-            key={cat.id}
             style={{
               cursor: 'pointer',
-              background: selectedCatId === cat.id ? cat.color : colors.bgTertiary,
-              color: selectedCatId === cat.id ? '#fff' : colors.textSecondary,
-              borderColor: selectedCatId === cat.id ? cat.color : colors.border,
+              background: !selectedCatId ? colors.accent : colors.bgTertiary,
+              color: !selectedCatId ? '#fff' : colors.textSecondary,
+              borderColor: !selectedCatId ? colors.accent : colors.border,
               fontSize: 12,
             }}
-            onClick={() => navigate(`/saved/${cat.id}`)}
+            onClick={() => navigate('/saved')}
           >
-            {cat.name} ({cat.headline_count})
+            すべて
           </Tag>
+        </div>
+
+        {/* 国グループごとに表示 */}
+        {groups.map(group => (
+          <div key={group.groupName} style={{ marginBottom: 8 }}>
+            <Text style={{ color: colors.textTertiary, fontSize: 10, display: 'block', marginBottom: 4 }}>
+              {group.groupName}
+            </Text>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              {group.nodes.map(node => {
+                const cat = node.category
+                const shortName = cat.name.includes(':') ? cat.name.split(':')[1].trim() : cat.name
+                const totalCount = cat.headline_count + node.children.reduce((sum, c) => sum + c.headline_count, 0)
+
+                return (
+                  <div key={cat.id}>
+                    {/* 第2層 カテゴリ */}
+                    <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center' }}>
+                      <Tag
+                        style={{
+                          cursor: 'pointer',
+                          background: selectedCatId === cat.id ? cat.color : colors.bgTertiary,
+                          color: selectedCatId === cat.id ? '#fff' : colors.textSecondary,
+                          borderColor: selectedCatId === cat.id ? cat.color : colors.border,
+                          fontSize: 11,
+                        }}
+                        onClick={() => navigate(selectedCatId === cat.id ? '/saved' : `/saved/${cat.id}`)}
+                      >
+                        {shortName} ({totalCount})
+                      </Tag>
+
+                      {/* 第3層 子カテゴリ */}
+                      {node.children.map(child => (
+                        <Tag
+                          key={child.id}
+                          style={{
+                            cursor: 'pointer',
+                            background: selectedCatId === child.id ? child.color : 'transparent',
+                            color: selectedCatId === child.id ? '#fff' : colors.textTertiary,
+                            borderColor: selectedCatId === child.id ? child.color : colors.border,
+                            borderStyle: 'dashed',
+                            fontSize: 10,
+                          }}
+                          onClick={() => navigate(selectedCatId === child.id ? '/saved' : `/saved/${child.id}`)}
+                        >
+                          {child.name} ({child.headline_count})
+                        </Tag>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         ))}
+
         <CategoryManager categories={categories} />
       </div>
 
@@ -99,28 +177,34 @@ function HeadlinesSavedPage() {
 
 function SavedHeadlinesList({ categoryId }: { categoryId: number | null }) {
   const params = categoryId
-    ? { savedOnly: true, limit: 50 }
+    ? { savedOnly: true, savedCategoryId: categoryId, limit: 50 }
     : { savedOnly: true, limit: 50 }
-  // Note: backend filters by savedOnly; category filtering is done client-side for now
   const { data, isLoading } = useHeadlines(params)
   const unsaveMutation = useUnsaveHeadline()
+  const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null)
 
   if (isLoading) {
     return <div style={{ textAlign: 'center', padding: 40 }}><Spin /></div>
   }
 
   const items = data?.items || []
-  const filtered = categoryId
-    ? items.filter(h => h.saved_categories?.some(sc => sc.category_id === categoryId))
-    : items
 
-  if (filtered.length === 0) {
+  if (items.length === 0) {
     return <Empty description="保存済みヘッドラインがありません" style={{ padding: 40 }} />
+  }
+
+  const handleDelete = (headlineId: number, savedId: number) => {
+    if (confirmDeleteId === savedId) {
+      unsaveMutation.mutate({ headlineId, savedId })
+      setConfirmDeleteId(null)
+    } else {
+      setConfirmDeleteId(savedId)
+    }
   }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      {filtered.map(item => (
+      {items.map((item: Headline) => (
         <div
           key={item.id}
           style={{
@@ -132,6 +216,7 @@ function SavedHeadlinesList({ categoryId }: { categoryId: number | null }) {
             gap: 10,
             alignItems: 'flex-start',
           }}
+          onMouseLeave={() => setConfirmDeleteId(null)}
         >
           <StarFilled style={{ color: '#f59e0b', fontSize: 14, marginTop: 3 }} />
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -144,6 +229,9 @@ function SavedHeadlinesList({ categoryId }: { categoryId: number | null }) {
               </div>
             )}
             <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginTop: 4, flexWrap: 'wrap' }}>
+              <Text style={{ color: colors.textTertiary, fontSize: 10 }}>
+                {item.published_at ? dayjs(item.published_at).format('YYYY/MM/DD HH:mm') : ''}
+              </Text>
               {item.speaker_name && (
                 <Text style={{ color: colors.accent, fontSize: 11 }}>{item.speaker_name}</Text>
               )}
@@ -153,31 +241,35 @@ function SavedHeadlinesList({ categoryId }: { categoryId: number | null }) {
                 </a>
               )}
               {item.saved_categories?.map(sc => (
-                <Tag key={sc.saved_id} color={sc.category_color} style={{ margin: 0, fontSize: 10 }}>
-                  {sc.category_name}
-                  {sc.note && <Tooltip title={sc.note}> *</Tooltip>}
-                </Tag>
+                <span key={sc.saved_id} style={{ display: 'inline-flex', alignItems: 'center', gap: 2 }}>
+                  <Tag color={sc.category_color} style={{ margin: 0, fontSize: 10 }}>
+                    {sc.category_name}
+                    {sc.note && <Tooltip title={sc.note}> *</Tooltip>}
+                  </Tag>
+                  <MinusCircleOutlined
+                    onClick={() => handleDelete(item.id, sc.saved_id)}
+                    style={{
+                      fontSize: 10,
+                      color: confirmDeleteId === sc.saved_id ? '#ef4444' : colors.textTertiary,
+                      cursor: 'pointer',
+                      transition: 'color 0.15s',
+                    }}
+                    title={confirmDeleteId === sc.saved_id ? 'もう一度クリックで削除' : '保存を解除'}
+                  />
+                </span>
               ))}
             </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'flex-end', minWidth: 80 }}>
-            <Text style={{ color: colors.textTertiary, fontSize: 11 }}>
-              {item.published_at ? dayjs(item.published_at).format('MM/DD HH:mm') : ''}
-            </Text>
-            <Space size={2}>
-              {item.saved_categories?.map(sc => (
-                <Popconfirm
-                  key={sc.saved_id}
-                  title="保存を解除しますか？"
-                  onConfirm={() => unsaveMutation.mutate({ headlineId: item.id, savedId: sc.saved_id })}
-                  okText="解除"
-                  cancelText="キャンセル"
+            {confirmDeleteId !== null && item.saved_categories?.some(sc => sc.saved_id === confirmDeleteId) && (
+              <div style={{ marginTop: 4, fontSize: 10, color: '#ef4444', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span>もう一度 - をクリックで削除</span>
+                <span
+                  onClick={() => setConfirmDeleteId(null)}
+                  style={{ color: colors.textTertiary, cursor: 'pointer', textDecoration: 'underline' }}
                 >
-                  <Button type="text" size="small" icon={<DeleteOutlined />}
-                    style={{ color: colors.textTertiary, padding: '0 4px' }} />
-                </Popconfirm>
-              ))}
-            </Space>
+                  キャンセル
+                </span>
+              </div>
+            )}
           </div>
         </div>
       ))}
@@ -208,7 +300,7 @@ function CategoryManager({ categories }: { categories: Category[] }) {
   return (
     <>
       <Tag
-        style={{ cursor: 'pointer', borderStyle: 'dashed', background: 'transparent', color: colors.textSecondary }}
+        style={{ cursor: 'pointer', borderStyle: 'dashed', background: 'transparent', color: colors.textSecondary, marginTop: 8 }}
         onClick={() => setOpen(true)}
       >
         <EditOutlined /> 管理

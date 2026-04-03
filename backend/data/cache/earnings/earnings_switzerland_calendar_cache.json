@@ -6,20 +6,6 @@
   ],
   "items": [
     {
-      "symbol": "CFR",
-      "name": "Richemont",
-      "tier": "A",
-      "country_code": "switzerland",
-      "date": "2026-05-07",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 2.47,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": ""
-    },
-    {
       "symbol": "ROG",
       "name": "Roche",
       "tier": "S",
@@ -102,11 +88,25 @@
       "revenue_estimate": null,
       "revenue_actual": null,
       "updated_from_date": null
+    },
+    {
+      "symbol": "CFR",
+      "name": "Richemont",
+      "tier": "A",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-03-20T17:28:04.399998+00:00",
+  "last_updated": "2026-04-03T00:04:08.157105+00:00",
   "cached": false,
   "status": "ok"
 }

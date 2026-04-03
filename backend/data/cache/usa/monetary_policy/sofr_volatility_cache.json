@@ -1,12 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-04-30",
-      "sofr": 5.34,
-      "sofr_change": 2.0,
-      "volatility_20d": 0.8584
-    },
-    {
       "date": "2024-05-01",
       "sofr": 5.32,
       "sofr_change": -2.0,
@@ -2888,5 +2882,5 @@
     "description": "SOFR 20日ローリングボラティリティ（日次変化の標準偏差）",
     "release_time": "08:00 ET（毎営業日）"
   },
-  "last_updated": "2026-04-02T23:01:48.734342"
+  "last_updated": "2026-04-03T00:00:58.356090"
 }

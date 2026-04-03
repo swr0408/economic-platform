@@ -6,20 +6,6 @@
   ],
   "items": [
     {
-      "symbol": "ENB",
-      "name": "Enbridge",
-      "tier": "A",
-      "country_code": "canada",
-      "date": "2026-05-08",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 0.717,
-      "eps_actual": null,
-      "revenue_estimate": 18669432310.0,
-      "revenue_actual": null,
-      "updated_from_date": ""
-    },
-    {
       "symbol": "SHOP",
       "name": "Shopify",
       "tier": "A",
@@ -29,7 +15,7 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.32,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 3024902000.0,
       "revenue_actual": null,
       "updated_from_date": ""
     },
@@ -41,9 +27,23 @@
       "date": "2026-05-14",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.46,
+      "eps_estimate": 0.609,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 6891669000.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "TD",
+      "name": "TD",
+      "tier": "A",
+      "country_code": "canada",
+      "date": "2026-05-28",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.6,
+      "eps_actual": null,
+      "revenue_estimate": 10318890000.0,
       "revenue_actual": null,
       "updated_from_date": ""
     },
@@ -62,8 +62,8 @@
       "updated_from_date": null
     },
     {
-      "symbol": "TD",
-      "name": "TD",
+      "symbol": "AEM",
+      "name": "Agnico Eagle",
       "tier": "A",
       "country_code": "canada",
       "date": null,
@@ -76,8 +76,8 @@
       "updated_from_date": null
     },
     {
-      "symbol": "AEM",
-      "name": "Agnico Eagle",
+      "symbol": "ENB",
+      "name": "Enbridge",
       "tier": "A",
       "country_code": "canada",
       "date": null,
@@ -106,7 +106,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-03-20T17:28:06.443891+00:00",
+  "last_updated": "2026-04-03T00:04:10.129410+00:00",
   "cached": false,
   "status": "ok"
 }

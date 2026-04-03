@@ -56,6 +56,32 @@ def ingest_headline(
 
     with get_db_connection() as conn:
         with conn.cursor() as cur:
+            # クロスソース重複排除（Discord/RSS 間）
+            if normalized and source_type == "rss_backfill":
+                # RSS取り込み時: 正規化テキストがDiscord側レコードに含まれるかチェック
+                # （Discordは複数ヘッドラインを1メッセージに連結するため、ハッシュ一致ではなく含有チェック）
+                cur.execute("""
+                    SELECT id FROM headlines
+                    WHERE source_type = 'discord'
+                    AND (normalized_text_hash = %s
+                         OR normalized_text ILIKE '%%' || %s || '%%')
+                    LIMIT 1
+                """, (n_hash, normalized[:100]))
+                if cur.fetchone():
+                    return None
+            elif normalized and source_type == "discord":
+                # Discord取り込み時: 同内容のRSSレコードがあればcanonical_sourceを更新して削除
+                cur.execute("""
+                    SELECT id FROM headlines
+                    WHERE source_type = 'rss_backfill'
+                    AND normalized_text_hash = %s
+                    LIMIT 1
+                """, (n_hash,))
+                rss_row = cur.fetchone()
+                if rss_row:
+                    cur.execute("DELETE FROM headlines WHERE id = %s AND NOT EXISTS (SELECT 1 FROM saved_headlines WHERE headline_id = %s)", (rss_row[0], rss_row[0]))
+                    conn.commit()
+
             cur.execute("""
                 INSERT INTO headlines (
                     source_type, source_message_id, source_channel_id,
@@ -111,6 +137,9 @@ def get_headlines(
     rough_category: str = None,
     speaker: str = None,
     saved_only: bool = False,
+    saved_category_name: str = None,
+    saved_category_id: int = None,
+    saved_category_prefix: str = None,
     date_from: str = None,
     date_to: str = None,
     q: str = None,
@@ -130,6 +159,33 @@ def get_headlines(
         params["speaker"] = f"%{speaker}%"
     if saved_only:
         conditions.append("EXISTS (SELECT 1 FROM saved_headlines sh WHERE sh.headline_id = h.id)")
+    if saved_category_name:
+        conditions.append("""EXISTS (
+            SELECT 1 FROM saved_headlines sh
+            JOIN categories c ON c.id = sh.category_id
+            WHERE sh.headline_id = h.id AND c.name = %(saved_category_name)s
+        )""")
+        params["saved_category_name"] = saved_category_name
+    if saved_category_id:
+        # 指定カテゴリ自身 + その子カテゴリに保存されたヘッドラインを含む
+        conditions.append("""EXISTS (
+            SELECT 1 FROM saved_headlines sh
+            WHERE sh.headline_id = h.id
+            AND sh.category_id IN (
+                SELECT id FROM categories WHERE id = %(saved_category_id)s OR parent_id = %(saved_category_id)s
+            )
+        )""")
+        params["saved_category_id"] = saved_category_id
+    if saved_category_prefix:
+        # カテゴリ名が指定プレフィックスで始まるもの、またはその子カテゴリに保存されたヘッドライン
+        conditions.append("""EXISTS (
+            SELECT 1 FROM saved_headlines sh
+            JOIN categories c ON c.id = sh.category_id
+            WHERE sh.headline_id = h.id
+            AND (c.name LIKE %(saved_category_prefix)s
+                 OR c.parent_id IN (SELECT id FROM categories WHERE name LIKE %(saved_category_prefix)s))
+        )""")
+        params["saved_category_prefix"] = f"{saved_category_prefix}%"
     if date_from:
         conditions.append("h.published_at >= %(date_from)s")
         params["date_from"] = date_from
@@ -158,6 +214,31 @@ def get_headlines(
             cur.execute(f"SELECT COUNT(*) FROM headlines h {where}", params)
             total = cur.fetchone()[0]
 
+            # 保存カテゴリ情報を一括取得
+            if rows:
+                headline_ids = [r["id"] for r in rows]
+                cur.execute("""
+                    SELECT sh.headline_id, sh.id as saved_id, sh.category_id,
+                           c.name as category_name, c.color as category_color,
+                           c.parent_id as category_parent_id,
+                           sh.saved_note as note, sh.saved_at
+                    FROM saved_headlines sh
+                    JOIN categories c ON c.id = sh.category_id
+                    WHERE sh.headline_id = ANY(%s)
+                """, (headline_ids,))
+                sc_cols = [desc[0] for desc in cur.description]
+                sc_rows = [dict(zip(sc_cols, r)) for r in cur.fetchall()]
+
+                sc_map: dict[int, list] = {}
+                for sc in sc_rows:
+                    hid = sc.pop("headline_id")
+                    if sc.get("saved_at"):
+                        sc["saved_at"] = sc["saved_at"].isoformat()
+                    sc_map.setdefault(hid, []).append(sc)
+
+                for row in rows:
+                    row["saved_categories"] = sc_map.get(row["id"], [])
+
     for row in rows:
         for key in ("published_at", "ingested_at", "expires_at"):
             if row.get(key):
@@ -183,7 +264,8 @@ def get_headline_by_id(headline_id: int) -> dict | None:
             # 保存カテゴリも取得
             cur.execute("""
                 SELECT sh.id as saved_id, sh.category_id, c.name as category_name,
-                       c.color, sh.saved_note, sh.saved_at
+                       c.color as category_color, c.parent_id as category_parent_id,
+                       sh.saved_note as note, sh.saved_at
                 FROM saved_headlines sh
                 JOIN categories c ON c.id = sh.category_id
                 WHERE sh.headline_id = %s
@@ -269,17 +351,17 @@ def get_categories() -> list[dict]:
             return rows
 
 
-def create_category(name: str, color: str = "#3b82f6") -> dict:
+def create_category(name: str, color: str = "#3b82f6", parent_id: int = None) -> dict:
     """カテゴリ作成"""
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                INSERT INTO categories (name, color) VALUES (%s, %s)
-                RETURNING id, name, color, sort_order
-            """, (name, color))
+                INSERT INTO categories (name, color, parent_id) VALUES (%s, %s, %s)
+                RETURNING id, name, color, sort_order, parent_id
+            """, (name, color, parent_id))
             row = cur.fetchone()
             conn.commit()
-            return {"id": row[0], "name": row[1], "color": row[2], "sort_order": row[3]}
+            return {"id": row[0], "name": row[1], "color": row[2], "sort_order": row[3], "parent_id": row[4]}
 
 
 def update_category(category_id: int, name: str = None, color: str = None, sort_order: int = None) -> bool:
@@ -311,6 +393,120 @@ def delete_category(category_id: int) -> bool:
             cur.execute("DELETE FROM categories WHERE id = %s", (category_id,))
             conn.commit()
             return cur.rowcount > 0
+
+
+def _upsert_category(cur, name: str, color: str, sort_order: int, parent_id: int = None) -> int:
+    """カテゴリをUPSERT（既存ならIDを返す、なければ作成）"""
+    cur.execute("""
+        INSERT INTO categories (name, color, sort_order, parent_id)
+        VALUES (%s, %s, %s, %s)
+        ON CONFLICT (name) DO UPDATE SET parent_id = COALESCE(categories.parent_id, EXCLUDED.parent_id)
+        RETURNING id
+    """, (name, color, sort_order, parent_id))
+    return cur.fetchone()[0]
+
+
+def seed_country_categories() -> list[dict]:
+    """各国×カテゴリ + マーケットセクションのデフォルトカテゴリを一括作成"""
+    # (name, color, sort_order) - 第1・2階層
+    COUNTRY_CATEGORIES = [
+        # USA
+        ("USA: 金融政策", "#1890ff", 1),
+        ("USA: 経済", "#52c41a", 2),
+        ("USA: 消費", "#13c2c2", 3),
+        ("USA: 雇用", "#faad14", 4),
+        ("USA: 物価", "#ff4d4f", 5),
+        ("USA: 住宅", "#722ed1", 6),
+        # Japan
+        ("日本: 金融政策", "#1890ff", 10),
+        ("日本: 経済", "#52c41a", 11),
+        ("日本: 消費", "#13c2c2", 12),
+        ("日本: 雇用", "#faad14", 13),
+        ("日本: 物価", "#ff4d4f", 14),
+        # Eurozone
+        ("ユーロ圏: 金融政策", "#1890ff", 20),
+        ("ユーロ圏: 経済", "#52c41a", 21),
+        ("ユーロ圏: 消費", "#13c2c2", 22),
+        ("ユーロ圏: 雇用", "#faad14", 23),
+        ("ユーロ圏: 物価", "#ff4d4f", 24),
+        # UK
+        ("UK: 金融政策", "#1890ff", 30),
+        ("UK: 経済", "#52c41a", 31),
+        ("UK: 消費", "#13c2c2", 32),
+        ("UK: 雇用", "#faad14", 33),
+        ("UK: 物価", "#ff4d4f", 34),
+        ("UK: 住宅", "#722ed1", 35),
+        # China
+        ("中国: 金融政策", "#1890ff", 40),
+        ("中国: 経済", "#52c41a", 41),
+        ("中国: 消費", "#13c2c2", 42),
+        ("中国: 雇用", "#faad14", 43),
+        ("中国: 物価", "#ff4d4f", 44),
+        ("中国: 住宅", "#722ed1", 45),
+        # Australia
+        ("豪州: 金融政策", "#1890ff", 50),
+        ("豪州: 経済", "#52c41a", 51),
+        ("豪州: 消費", "#13c2c2", 52),
+        ("豪州: 雇用", "#faad14", 53),
+        ("豪州: 物価", "#ff4d4f", 54),
+        ("豪州: 住宅", "#722ed1", 55),
+        # New Zealand
+        ("NZ: 金融政策", "#1890ff", 60),
+        ("NZ: 経済", "#52c41a", 61),
+        ("NZ: 消費", "#13c2c2", 62),
+        ("NZ: 雇用", "#faad14", 63),
+        ("NZ: 物価", "#ff4d4f", 64),
+        # Canada
+        ("カナダ: 金融政策", "#1890ff", 70),
+        ("カナダ: 経済", "#52c41a", 71),
+        ("カナダ: 消費", "#13c2c2", 72),
+        ("カナダ: 雇用", "#faad14", 73),
+        ("カナダ: 物価", "#ff4d4f", 74),
+        ("カナダ: 住宅", "#722ed1", 75),
+        # Switzerland
+        ("スイス: 金融政策", "#1890ff", 80),
+        ("スイス: 経済", "#52c41a", 81),
+        ("スイス: 消費", "#13c2c2", 82),
+        ("スイス: 雇用", "#faad14", 83),
+        ("スイス: 物価", "#ff4d4f", 84),
+        ("スイス: 住宅", "#722ed1", 85),
+        # Global
+        ("グローバル: 経済", "#52c41a", 90),
+    ]
+
+    # マーケットデータセクション（グローバル配下の子カテゴリ）
+    MARKET_CHILDREN = [
+        ("日本株", "#ef4444", 91),
+        ("米国株", "#3b82f6", 92),
+        ("欧州株", "#8b5cf6", 93),
+        ("為替", "#06b6d4", 94),
+        ("コモディティ", "#f59e0b", 95),
+        ("エネルギー", "#ef4444", 96),
+        ("債券/金利", "#10b981", 97),
+        ("オプション", "#a855f7", 98),
+    ]
+
+    created = []
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            # 第1・2階層
+            for name, color, sort_order in COUNTRY_CATEGORIES:
+                cat_id = _upsert_category(cur, name, color, sort_order)
+                created.append({"id": cat_id, "name": name})
+
+            # グローバル: 経済のIDを取得
+            cur.execute("SELECT id FROM categories WHERE name = 'グローバル: 経済'")
+            global_row = cur.fetchone()
+            global_parent_id = global_row[0] if global_row else None
+
+            # マーケットデータ子カテゴリ
+            if global_parent_id:
+                for name, color, sort_order in MARKET_CHILDREN:
+                    cat_id = _upsert_category(cur, name, color, sort_order, global_parent_id)
+                    created.append({"id": cat_id, "name": name, "parent_id": global_parent_id})
+
+            conn.commit()
+    return created
 
 
 def cleanup_expired() -> int:

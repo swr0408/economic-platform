@@ -3,7 +3,9 @@ import { Input, Select, Tag, Button, Pagination, Spin, Space, DatePicker, Switch
 import {
   SearchOutlined, ReloadOutlined, SoundOutlined,
   StarOutlined, StarFilled, TranslationOutlined, LinkOutlined,
+  SettingOutlined, FolderOutlined,
 } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ja'
@@ -27,12 +29,6 @@ const colors = {
   textTertiary: '#64748b',
   border: '#334155',
 }
-
-const SOURCE_OPTIONS = [
-  { value: '', label: '全ソース' },
-  { value: 'discord', label: 'Discord' },
-  { value: 'rss_backfill', label: 'RSS' },
-]
 
 const CATEGORY_OPTIONS = [
   { value: '', label: '全カテゴリ' },
@@ -68,7 +64,6 @@ const CATEGORY_LABELS: Record<string, string> = {
 function HeadlinesInboxPage() {
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(30)
-  const [source, setSource] = useState('')
   const [roughCategory, setRoughCategory] = useState('')
   const [savedOnly, setSavedOnly] = useState(false)
   const [search, setSearch] = useState('')
@@ -79,14 +74,14 @@ function HeadlinesInboxPage() {
   const params = useMemo(() => ({
     limit: pageSize,
     offset: (page - 1) * pageSize,
-    source: source || undefined,
     roughCategory: roughCategory || undefined,
     savedOnly: savedOnly || undefined,
     q: search || undefined,
     from: dateRange?.[0]?.format('YYYY-MM-DD') || undefined,
     to: dateRange?.[1]?.format('YYYY-MM-DD') || undefined,
-  }), [page, pageSize, source, roughCategory, savedOnly, search, dateRange])
+  }), [page, pageSize, roughCategory, savedOnly, search, dateRange])
 
+  const navigate = useNavigate()
   const { data, isLoading, refetch, isFetching } = useHeadlines(params)
   const retranslate = useRetranslate()
 
@@ -108,13 +103,29 @@ function HeadlinesInboxPage() {
             {data ? `${data.total}件` : ''}
           </Text>
         </div>
-        <Button
-          icon={<ReloadOutlined spin={isFetching} />}
-          onClick={() => refetch()}
-          style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
-        >
-          更新
-        </Button>
+        <Space size={8}>
+          <Button
+            icon={<FolderOutlined />}
+            onClick={() => navigate('/saved')}
+            style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
+          >
+            保存済み
+          </Button>
+          <Button
+            icon={<SettingOutlined />}
+            onClick={() => navigate('/admin/headlines')}
+            style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
+          >
+            管理
+          </Button>
+          <Button
+            icon={<ReloadOutlined spin={isFetching} />}
+            onClick={() => refetch()}
+            style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
+          >
+            更新
+          </Button>
+        </Space>
       </div>
 
       {/* Filters */}
@@ -135,13 +146,6 @@ function HeadlinesInboxPage() {
             style={{ width: 200, background: colors.bgTertiary, borderColor: colors.border }}
             allowClear
             onClear={() => { setSearchInput(''); setSearch(''); setPage(1) }}
-          />
-          <Select
-            value={source}
-            onChange={v => { setSource(v); setPage(1) }}
-            options={SOURCE_OPTIONS}
-            style={{ width: 120 }}
-            popupMatchSelectWidth={false}
           />
           <Select
             value={roughCategory}
@@ -239,14 +243,8 @@ function HeadlineRow({
       onMouseEnter={e => (e.currentTarget.style.borderColor = colors.accent + '60')}
       onMouseLeave={e => (e.currentTarget.style.borderColor = colors.border)}
     >
-      {/* Left: source + category badges */}
+      {/* Left: category badge */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 60, paddingTop: 2 }}>
-        <Tag
-          color={item.source_type === 'discord' ? 'purple' : 'blue'}
-          style={{ margin: 0, fontSize: 10, lineHeight: '18px', padding: '0 4px' }}
-        >
-          {item.source_type === 'discord' ? 'DC' : 'RSS'}
-        </Tag>
         {item.rough_category && (
           <Tag
             color={CATEGORY_COLORS[item.rough_category] || '#64748b'}

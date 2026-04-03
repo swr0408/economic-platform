@@ -14,6 +14,8 @@ def normalize_text(text: str) -> str:
         return ""
     t = text.strip()
     t = unescape(t)
+    # ソースプレフィックスを除去（RSS版 "FinancialJuice: ..." → 元テキスト）
+    t = re.sub(r'^FinancialJuice:\s*', '', t)
     # 連続空白を1個に
     t = re.sub(r'\s+', ' ', t)
     # 全角英数を半角に

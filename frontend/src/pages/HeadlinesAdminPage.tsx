@@ -2,10 +2,11 @@ import { Card, Typography, Tag, Button, Table, Space, Spin, message } from 'antd
 import {
   CheckCircleOutlined, CloseCircleOutlined,
   ApiOutlined, CloudDownloadOutlined, TranslationOutlined,
-  PlayCircleOutlined,
+  PlayCircleOutlined, ArrowLeftOutlined, DatabaseOutlined,
 } from '@ant-design/icons'
+import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
-import { useAdminStatus, useRSSLogs, useRunRSSBackfill } from '../hooks/useHeadlines'
+import { useAdminStatus, useRSSLogs, useRunRSSBackfill, useSeedCategories } from '../hooks/useHeadlines'
 
 const { Text, Title } = Typography
 
@@ -33,14 +34,25 @@ function StatusBadge({ ok, label }: { ok: boolean; label: string }) {
 }
 
 function HeadlinesAdminPage() {
+  const navigate = useNavigate()
   const { data: status, isLoading } = useAdminStatus()
   const { data: logs = [] } = useRSSLogs(20)
   const rssRun = useRunRSSBackfill()
+  const seedMutation = useSeedCategories()
 
   const handleRSSRun = async () => {
     try {
       const result = await rssRun.mutateAsync()
       message.success(`RSS取得完了: ${result.items_seen || 0}件取得, ${result.items_inserted || 0}件挿入`)
+    } catch (e: any) {
+      message.error(e.message)
+    }
+  }
+
+  const handleSeedCategories = async () => {
+    try {
+      const result = await seedMutation.mutateAsync()
+      message.success(`カテゴリ初期データ投入完了: ${result.length}件作成`)
     } catch (e: any) {
       message.error(e.message)
     }
@@ -52,10 +64,29 @@ function HeadlinesAdminPage() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto' }}>
-      <Title level={4} style={{ color: colors.textPrimary, marginBottom: 16 }}>
-        <ApiOutlined style={{ marginRight: 8, color: colors.accent }} />
-        ヘッドライン管理
-      </Title>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <Title level={4} style={{ color: colors.textPrimary, margin: 0 }}>
+          <ApiOutlined style={{ marginRight: 8, color: colors.accent }} />
+          ヘッドライン管理
+        </Title>
+        <Space size={8}>
+          <Button
+            icon={<DatabaseOutlined />}
+            onClick={handleSeedCategories}
+            loading={seedMutation.isPending}
+            style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
+          >
+            カテゴリ初期投入
+          </Button>
+          <Button
+            icon={<ArrowLeftOutlined />}
+            onClick={() => navigate('/inbox')}
+            style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
+          >
+            Inbox
+          </Button>
+        </Space>
+      </div>
 
       {/* Status Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 20 }}>

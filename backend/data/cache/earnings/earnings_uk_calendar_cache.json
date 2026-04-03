@@ -6,6 +6,20 @@
   ],
   "items": [
     {
+      "symbol": "RR",
+      "name": "Rolls-Royce",
+      "tier": "A",
+      "country_code": "uk",
+      "date": "2026-05-13",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": -0.03,
+      "eps_actual": null,
+      "revenue_estimate": 1890000.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
       "symbol": "AZN",
       "name": "AstraZeneca",
       "tier": "S",
@@ -50,20 +64,6 @@
     {
       "symbol": "ULVR",
       "name": "Unilever",
-      "tier": "A",
-      "country_code": "uk",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "RR",
-      "name": "Rolls-Royce",
       "tier": "A",
       "country_code": "uk",
       "date": null,
@@ -134,7 +134,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-03-20T17:28:04.156328+00:00",
+  "last_updated": "2026-04-03T00:04:07.917149+00:00",
   "cached": false,
   "status": "ok"
 }

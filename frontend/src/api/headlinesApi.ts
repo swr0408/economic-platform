@@ -28,6 +28,7 @@ export interface SavedCategory {
   category_id: number
   category_name: string
   category_color: string
+  category_parent_id: number | null
   note: string | null
   saved_at: string
 }
@@ -44,6 +45,7 @@ export interface Category {
   name: string
   color: string
   sort_order: number
+  parent_id: number | null
   headline_count: number
   created_at: string
 }
@@ -88,6 +90,9 @@ export interface HeadlinesParams {
   roughCategory?: string
   speaker?: string
   savedOnly?: boolean
+  savedCategoryName?: string
+  savedCategoryId?: number
+  savedCategoryPrefix?: string
   from?: string
   to?: string
   q?: string
@@ -101,6 +106,9 @@ export async function fetchHeadlines(params: HeadlinesParams = {}): Promise<Head
   if (params.roughCategory) searchParams.set('roughCategory', params.roughCategory)
   if (params.speaker) searchParams.set('speaker', params.speaker)
   if (params.savedOnly) searchParams.set('savedOnly', 'true')
+  if (params.savedCategoryName) searchParams.set('savedCategoryName', params.savedCategoryName)
+  if (params.savedCategoryId) searchParams.set('savedCategoryId', String(params.savedCategoryId))
+  if (params.savedCategoryPrefix) searchParams.set('savedCategoryPrefix', params.savedCategoryPrefix)
   if (params.from) searchParams.set('from', params.from)
   if (params.to) searchParams.set('to', params.to)
   if (params.q) searchParams.set('q', params.q)
@@ -159,11 +167,11 @@ export async function fetchCategories(): Promise<Category[]> {
   return resp.json()
 }
 
-export async function createCategory(name: string, color: string = '#3b82f6'): Promise<Category> {
+export async function createCategory(name: string, color: string = '#3b82f6', parent_id?: number): Promise<Category> {
   const resp = await fetch(`${API_BASE_URL}/api/categories`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, color }),
+    body: JSON.stringify({ name, color, parent_id }),
   })
   if (!resp.ok) throw new Error(`Failed to create category: ${resp.status}`)
   return resp.json()
@@ -205,5 +213,11 @@ export async function runRSSBackfill(): Promise<any> {
 export async function fetchRSSLogs(limit: number = 20): Promise<RSSLog[]> {
   const resp = await fetch(`${API_BASE_URL}/api/admin/rss-backfill/logs?limit=${limit}`)
   if (!resp.ok) throw new Error(`Failed to fetch RSS logs: ${resp.status}`)
+  return resp.json()
+}
+
+export async function seedCategories(): Promise<Category[]> {
+  const resp = await fetch(`${API_BASE_URL}/api/admin/seed-categories`, { method: 'POST' })
+  if (!resp.ok) throw new Error(`Failed to seed categories: ${resp.status}`)
   return resp.json()
 }

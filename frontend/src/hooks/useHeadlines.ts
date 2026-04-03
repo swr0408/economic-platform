@@ -3,6 +3,7 @@ import {
   fetchHeadlines, fetchHeadlineById, saveHeadline, unsaveHeadline,
   retranslateHeadline, fetchCategories, createCategory, updateCategory,
   deleteCategory, fetchAdminStatus, runRSSBackfill, fetchRSSLogs,
+  seedCategories,
   type HeadlinesParams, type SaveHeadlineParams,
 } from '../api/headlinesApi'
 
@@ -75,8 +76,8 @@ export function useCategories() {
 export function useCreateCategory() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: ({ name, color }: { name: string; color?: string }) =>
-      createCategory(name, color),
+    mutationFn: ({ name, color, parent_id }: { name: string; color?: string; parent_id?: number }) =>
+      createCategory(name, color, parent_id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['categories'] })
     },
@@ -130,5 +131,15 @@ export function useRSSLogs(limit: number = 20) {
   return useQuery({
     queryKey: ['rss-logs', limit],
     queryFn: () => fetchRSSLogs(limit),
+  })
+}
+
+export function useSeedCategories() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: seedCategories,
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['categories'] })
+    },
   })
 }

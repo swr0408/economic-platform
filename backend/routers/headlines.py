@@ -10,6 +10,7 @@ try:
     from backend.services.headlines.headlines_service import (
         get_headlines, get_headline_by_id, save_headline, unsave_headline,
         get_categories, create_category, update_category, delete_category,
+        seed_country_categories,
     )
     from backend.services.headlines.translation_worker import translation_worker
     from backend.services.discord.discord_news_listener import discord_news_listener
@@ -18,6 +19,7 @@ except ImportError:
     from services.headlines.headlines_service import (
         get_headlines, get_headline_by_id, save_headline, unsave_headline,
         get_categories, create_category, update_category, delete_category,
+        seed_country_categories,
     )
     from services.headlines.translation_worker import translation_worker
     from services.discord.discord_news_listener import discord_news_listener
@@ -36,6 +38,9 @@ def api_get_headlines(
     roughCategory: Optional[str] = Query(None),
     speaker: Optional[str] = Query(None),
     savedOnly: bool = Query(False),
+    savedCategoryName: Optional[str] = Query(None),
+    savedCategoryId: Optional[int] = Query(None),
+    savedCategoryPrefix: Optional[str] = Query(None),
     date_from: Optional[str] = Query(None, alias="from"),
     date_to: Optional[str] = Query(None, alias="to"),
     q: Optional[str] = Query(None),
@@ -44,7 +49,10 @@ def api_get_headlines(
     return get_headlines(
         limit=limit, offset=offset, source=source,
         rough_category=roughCategory, speaker=speaker,
-        saved_only=savedOnly, date_from=date_from, date_to=date_to, q=q,
+        saved_only=savedOnly, saved_category_name=savedCategoryName,
+        saved_category_id=savedCategoryId,
+        saved_category_prefix=savedCategoryPrefix,
+        date_from=date_from, date_to=date_to, q=q,
     )
 
 
@@ -104,12 +112,13 @@ def api_get_categories():
 class CategoryRequest(BaseModel):
     name: str
     color: str = "#3b82f6"
+    parent_id: Optional[int] = None
 
 
 @router.post("/categories")
 def api_create_category(body: CategoryRequest):
     """カテゴリ作成"""
-    return create_category(name=body.name, color=body.color)
+    return create_category(name=body.name, color=body.color, parent_id=body.parent_id)
 
 
 class CategoryUpdateRequest(BaseModel):
@@ -164,3 +173,9 @@ def api_admin_status():
         "rss": headlines_rss_scheduler.get_status(),
         "translation": translation_worker.get_status(),
     }
+
+
+@router.post("/admin/seed-categories")
+def api_seed_categories():
+    """各国カテゴリの初期データ投入"""
+    return seed_country_categories()

@@ -13,6 +13,7 @@ import {
   CalendarOutlined,
   MenuFoldOutlined,
   GlobalOutlined,
+  SoundOutlined,
 } from '@ant-design/icons'
 import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
 import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
@@ -67,6 +68,7 @@ import NewZealandConsumerCharts from '../components/country/newzealand/NewZealan
 import NewZealandEconomyCharts from '../components/country/newzealand/NewZealandEconomyCharts'
 import GlobalEconomyCharts from '../components/country/global/GlobalEconomyCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
+import HeadlinePanel from '../components/headlines/HeadlinePanel'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
 
 const { Title, Text } = Typography
@@ -135,6 +137,20 @@ const CATEGORY_INFO: Record<
   },
 }
 
+// 各国コード → ヘッドラインカテゴリ名のプレフィックス（seed_country_categories に対応）
+const COUNTRY_HEADLINE_PREFIX: Record<string, string> = {
+  usa: 'USA:',
+  japan: '日本:',
+  eurozone: 'ユーロ圏:',
+  uk: 'UK:',
+  china: '中国:',
+  australia: '豪州:',
+  newzealand: 'NZ:',
+  canada: 'カナダ:',
+  switzerland: 'スイス:',
+  global: 'グローバル:',
+}
+
 // 各国・カテゴリごとの経済指標リスト
 const INDICATORS_BY_COUNTRY_CATEGORY = COUNTRIES_DATA.reduce<
   Record<string, Record<string, Indicator[]>>
@@ -188,6 +204,7 @@ function CountryDataCategory() {
   const { countryCode, categoryCode } = useParams()
   const location = useLocation()
   const [calendarOpen, setCalendarOpen] = useState(true)
+  const [sidebarTab, setSidebarTab] = useState<'calendar' | 'headlines'>('calendar')
   const [sidebarWidth, setSidebarWidth] = useState(CALENDAR_SIDEBAR_DEFAULT_WIDTH)
   const [isResizing, setIsResizing] = useState(false)
 
@@ -601,6 +618,7 @@ function CountryDataCategory() {
             }}
           />
           <div style={{ padding: '16px' }}>
+            {/* タブヘッダー */}
             <div
               style={{
                 display: 'flex',
@@ -611,11 +629,37 @@ function CountryDataCategory() {
                 borderBottom: `1px solid ${colors.border}`,
               }}
             >
-              <Space>
-                <CalendarOutlined style={{ fontSize: 18, color: colors.accent }} />
-                <Text strong style={{ fontSize: 16, color: colors.textPrimary }}>
-                  経済カレンダー
-                </Text>
+              <Space size={4}>
+                <Button
+                  type="text"
+                  size="small"
+                  icon={<CalendarOutlined />}
+                  onClick={() => setSidebarTab('calendar')}
+                  style={{
+                    color: sidebarTab === 'calendar' ? colors.accent : colors.textSecondary,
+                    fontWeight: sidebarTab === 'calendar' ? 600 : 400,
+                    background: sidebarTab === 'calendar' ? colors.bgTertiary : 'transparent',
+                    borderRadius: 6,
+                    padding: '4px 10px',
+                  }}
+                >
+                  カレンダー
+                </Button>
+                <Button
+                  type="text"
+                  size="small"
+                  icon={<SoundOutlined />}
+                  onClick={() => setSidebarTab('headlines')}
+                  style={{
+                    color: sidebarTab === 'headlines' ? colors.accent : colors.textSecondary,
+                    fontWeight: sidebarTab === 'headlines' ? 600 : 400,
+                    background: sidebarTab === 'headlines' ? colors.bgTertiary : 'transparent',
+                    borderRadius: 6,
+                    padding: '4px 10px',
+                  }}
+                >
+                  ヘッドライン
+                </Button>
               </Space>
               <Button
                 type="text"
@@ -624,7 +668,19 @@ function CountryDataCategory() {
                 size="small"
               />
             </div>
-            <EconomicCalendarWidgets countryCode={countryCode} />
+
+            {/* タブコンテンツ */}
+            {sidebarTab === 'calendar' && (
+              <EconomicCalendarWidgets countryCode={countryCode} />
+            )}
+            {sidebarTab === 'headlines' && countryCode && (
+              <HeadlinePanel
+                params={{ savedOnly: true, savedCategoryPrefix: COUNTRY_HEADLINE_PREFIX[countryCode] }}
+                title="ヘッドライン（抜粋）"
+                limit={20}
+                compact
+              />
+            )}
           </div>
         </div>
       )}
