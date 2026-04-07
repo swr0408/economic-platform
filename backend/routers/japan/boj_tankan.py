@@ -27,7 +27,7 @@ async def get_tankan_data(
     Get BOJ Tankan DI data (大企業業況判断指数)
 
     Data source: Bank of Japan
-    Excel URL pattern: https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all{YY}{QQ}a.xlsx
+    Excel URL pattern: https://www.boj.or.jp/statistics/tk/zenyo/{YYYY}/data/all{YY}{QQ}a.xlsx
 
     Returns:
         - data: List of DI data with manufacturing/non-manufacturing current/outlook values

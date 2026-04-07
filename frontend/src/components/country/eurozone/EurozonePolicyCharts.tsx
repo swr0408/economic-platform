@@ -42,6 +42,9 @@ export default function EurozonePolicyCharts() {
 
   return (
     <div className="country-chart-stack">
+      {/* ECB政策枠組み（ハンドブックのみ） */}
+      <div id="ecb-policy-framework" />
+
       {/* ECB Rates Chart */}
       <div id="ecb-rates">
         <ECBRatesChart
@@ -88,6 +91,9 @@ export default function EurozonePolicyCharts() {
           data={dashboardData?.ecb_balance_sheet ?? null}
         />
       </div>
+
+      {/* 伊独スプレッド（ハンドブックのみ） */}
+      <div id="btp-bund-spread" />
     </div>
   )
 }

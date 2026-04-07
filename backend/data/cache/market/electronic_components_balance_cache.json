@@ -2620,8 +2620,8 @@
       "date": "2026-04-01",
       "balance": null,
       "balance_3ma": null,
-      "nikkei_yoy": 45.55,
-      "nikkei": 52463.0,
+      "nikkei_yoy": 47.38,
+      "nikkei": 53123.0,
       "preliminary": false
     }
   ],
@@ -2648,5 +2648,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-02T18:03:34.998844+09:00"
+  "last_updated": "2026-04-03T18:18:16.942364+09:00"
 }

@@ -205,7 +205,7 @@ export default function MachineryOrdersChart() {
 
   if (error) {
     return (
-      <ChartContainer title="機械受注" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="機械受注" showPeriodSelector={false} showDataSource={false} handbookId="machinery-orders">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>
           {error}
         </div>
@@ -215,7 +215,7 @@ export default function MachineryOrdersChart() {
 
   if (!hasData) {
     return (
-      <ChartContainer title="機械受注" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="機械受注" showPeriodSelector={false} showDataSource={false} handbookId="machinery-orders">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -228,6 +228,7 @@ export default function MachineryOrdersChart() {
         showPeriodSelector={false}
         dataSource="内閣府"
         sourceUrl="https://www.esri.cao.go.jp/jp/stat/juchu/juchu.html"
+        handbookId="machinery-orders"
       >
         {/* 最新値表示（統合ボックス） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

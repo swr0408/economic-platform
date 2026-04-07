@@ -221,7 +221,10 @@ class USAEmploymentLoader(BaseDashboardLoader):
 
     def _get_empsit_release_datetime(self) -> Optional[datetime]:
         """
-        Employment Situation発表日時を取得
+        Employment Situation発表日時を取得（next_release + last_release フォールバック）
+
+        next_releaseは発表直後に次回日付へ切り替わるため、
+        直近の過去リリースも確認して見逃しを防ぐ。
 
         Returns:
             発表日時（JST）、取得できない場合はNone
@@ -233,32 +236,60 @@ class USAEmploymentLoader(BaseDashboardLoader):
             data = unemployment_rate_service.get_unemployment_rate_data()
             next_release = data.get("next_release")
 
-            if not next_release:
+            if next_release:
+                date_str = next_release.get("date")
+                if date_str:
+                    try:
+                        base_date = datetime.strptime(date_str, "%Y-%m-%d")
+                        release_et = datetime(
+                            base_date.year, base_date.month, base_date.day,
+                            self.EMPSIT_RELEASE_HOUR_ET,
+                            self.EMPSIT_RELEASE_MINUTE_ET,
+                            tzinfo=ET
+                        )
+                        return release_et.astimezone(JST)
+                    except ValueError:
+                        pass
+
+            return None
+
+        except Exception as e:
+            print(f"Error getting Employment Situation release datetime: {e}")
+            return None
+
+    def _get_empsit_last_release_datetime(self) -> Optional[datetime]:
+        """
+        Employment Situation直近の過去発表日時を取得（FMP経由）
+
+        Returns:
+            直近の過去発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            from services.usa.fmp_next_release_utils import get_last_release_from_fmp
+
+            last_release = get_last_release_from_fmp("unemployment_rate")
+            if not last_release:
                 return None
 
-            date_str = next_release.get("date")
+            date_str = last_release.get("date")
             if not date_str:
                 return None
 
-            # YYYY-MM-DD形式をパース
             try:
                 base_date = datetime.strptime(date_str, "%Y-%m-%d")
             except ValueError:
                 return None
 
-            # 発表時刻（8:30 ET）をJSTに変換
             release_et = datetime(
                 base_date.year, base_date.month, base_date.day,
                 self.EMPSIT_RELEASE_HOUR_ET,
                 self.EMPSIT_RELEASE_MINUTE_ET,
                 tzinfo=ET
             )
-            release_jst = release_et.astimezone(JST)
-
-            return release_jst
+            return release_et.astimezone(JST)
 
         except Exception as e:
-            print(f"Error getting Employment Situation release datetime: {e}")
+            print(f"Error getting Employment Situation last release datetime: {e}")
             return None
 
     def _get_jolts_release_datetime(self) -> Optional[datetime]:
@@ -620,8 +651,16 @@ class USAEmploymentLoader(BaseDashboardLoader):
             stale = set()
 
             # Employment Situation発表（失業率・失業率内訳・非農業部門雇用者数・フルタイム/パートタイム・複数の仕事を持つ人/経済的理由によるパートタイム・求人倍率・平均残業時間）
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             empsit_release = self._get_empsit_release_datetime()
+            empsit_last_release = self._get_empsit_last_release_datetime()
+            empsit_stale = False
             if empsit_release and last_updated_dt < empsit_release <= now:
+                empsit_stale = True
+            elif empsit_last_release and last_updated_dt < empsit_last_release <= now:
+                empsit_stale = True
+
+            if empsit_stale:
                 stale.add("unemployment_rate")
                 stale.add("unemployment_by_reason")
                 stale.add("nonfarm_payrolls")
@@ -633,66 +672,99 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("overtime_hours")  # 平均残業時間
                 stale.add("us_average_weekly_working_hours")  # 平均週労働時間
                 stale.add("temporary_help_services")  # 臨時就業者数
-                print(f"[stale] Employment Situation release detected: {empsit_release.isoformat()}")
+                release_info = empsit_release or empsit_last_release
+                print(f"[stale] Employment Situation release detected: {release_info.isoformat()}")
 
-            # CB雇用機会業況判断発表
+            # CB雇用機会業況判断発表（カスタム計算のためlast_releaseなし）
             cb_release = self._get_cb_jobs_labor_release_datetime()
             if cb_release and last_updated_dt < cb_release <= now:
                 stale.add("cb_jobs_labor")
                 print(f"[stale] CB Jobs Labor release detected: {cb_release.isoformat()}")
 
             # JOLTS発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             jolts_release = self._get_jolts_release_datetime()
-            if jolts_release and last_updated_dt < jolts_release <= now:
+            jolts_last_release = self._get_last_release_datetime_from_fmp(
+                "jolts_openings", release_hour_et=10, release_minute_et=0, indicator_name="JOLTS"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, jolts_release, jolts_last_release):
                 stale.add("jolts_indeed")
                 stale.add("jolts_hires_layoffs")
                 stale.add("job_openings_per_unemployed")  # 求人倍率（JTSJOL使用）
-                print(f"[stale] JOLTS release detected: {jolts_release.isoformat()}")
+                print(f"[stale] JOLTS release detected")
 
             # ADP雇用者数発表（賃金上昇率も同時発表）
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             adp_release = self._get_adp_release_datetime()
-            if adp_release and last_updated_dt < adp_release <= now:
+            adp_last_release = self._get_last_release_datetime_from_fmp(
+                "adp_employment", release_hour_et=8, release_minute_et=15, indicator_name="ADP"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, adp_release, adp_last_release):
                 stale.add("adp_employment")
                 stale.add("adp_wage_growth")  # ADP賃金上昇率も同時発表
-                print(f"[stale] ADP release detected: {adp_release.isoformat()}")
+                print(f"[stale] ADP release detected")
 
             # NER Pulse発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             ner_pulse_release = self._get_ner_pulse_release_datetime()
-            if ner_pulse_release and last_updated_dt < ner_pulse_release <= now:
+            ner_pulse_last_release = self._get_last_release_datetime_from_fmp(
+                "ner_pulse", release_hour_et=8, release_minute_et=15, indicator_name="NER Pulse"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, ner_pulse_release, ner_pulse_last_release):
                 stale.add("ner_pulse")
-                print(f"[stale] NER Pulse release detected: {ner_pulse_release.isoformat()}")
+                print(f"[stale] NER Pulse release detected")
 
             # 新規失業保険申請件数発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             initial_claims_release = self._get_initial_claims_release_datetime()
-            if initial_claims_release and last_updated_dt < initial_claims_release <= now:
+            initial_claims_last_release = self._get_last_release_datetime_from_fmp(
+                "initial_claims", release_hour_et=8, release_minute_et=30, indicator_name="Initial Claims"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, initial_claims_release, initial_claims_last_release):
                 stale.add("initial_claims")
                 stale.add("continued_claims")  # 継続失業保険申請件数も同時発表
-                print(f"[stale] Initial Claims release detected: {initial_claims_release.isoformat()}")
+                print(f"[stale] Initial Claims release detected")
 
             # Challenger人員削減数発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             challenger_release = self._get_challenger_release_datetime()
-            if challenger_release and last_updated_dt < challenger_release <= now:
+            challenger_last_release = self._get_last_release_datetime_from_fmp(
+                "challenger_job_cuts", release_hour_et=7, release_minute_et=30, indicator_name="Challenger"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, challenger_release, challenger_last_release):
                 stale.add("challenger_job_cuts")
-                print(f"[stale] Challenger release detected: {challenger_release.isoformat()}")
+                print(f"[stale] Challenger release detected")
 
             # 雇用コスト指数発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             eci_release = self._get_eci_release_datetime()
-            if eci_release and last_updated_dt < eci_release <= now:
+            eci_last_release = self._get_last_release_datetime_from_fmp(
+                "employment_cost_index", release_hour_et=8, release_minute_et=30, indicator_name="ECI"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, eci_release, eci_last_release):
                 stale.add("employment_cost_index")
-                print(f"[stale] Employment Cost Index release detected: {eci_release.isoformat()}")
+                print(f"[stale] Employment Cost Index release detected")
 
             # 単位労働コスト・労働生産性発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             ulc_release = self._get_ulc_release_datetime()
-            if ulc_release and last_updated_dt < ulc_release <= now:
+            ulc_last_release = self._get_last_release_datetime_from_fmp(
+                "unit_labor_cost", release_hour_et=8, release_minute_et=30, indicator_name="ULC"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, ulc_release, ulc_last_release):
                 stale.add("unit_labor_cost")
-                print(f"[stale] Unit Labor Cost release detected: {ulc_release.isoformat()}")
+                print(f"[stale] Unit Labor Cost release detected")
 
             # NFIB人件費・雇用計画発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             nfib_release = self._get_nfib_release_datetime()
-            if nfib_release and last_updated_dt < nfib_release <= now:
+            nfib_last_release = self._get_last_release_datetime_from_fmp(
+                "nfib", release_hour_et=6, release_minute_et=0, indicator_name="NFIB"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, nfib_release, nfib_last_release):
                 stale.add("nfib_compensation")
                 stale.add("nfib_compensation_unemployment")  # NFIB労働報酬・失業率も同時に更新
-                print(f"[stale] NFIB Compensation release detected: {nfib_release.isoformat()}")
+                print(f"[stale] NFIB Compensation release detected")
 
             return stale
 

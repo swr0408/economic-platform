@@ -155,8 +155,12 @@ class USAInflationLoader(BaseDashboardLoader):
             stale = set()
 
             # CPI発表日時をチェック
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             cpi_release = self._get_cpi_release_datetime()
-            if cpi_release and last_updated_dt < cpi_release <= now:
+            cpi_last_release = self._get_last_release_datetime_from_fmp(
+                "us_cpi", release_hour_et=8, release_minute_et=30, indicator_name="CPI"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, cpi_release, cpi_last_release):
                 stale.add("cpi")
                 stale.add("core_cpi")  # 同時発表
                 stale.add("cpi_categories")  # 同時発表

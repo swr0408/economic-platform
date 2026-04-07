@@ -23,7 +23,6 @@ import {
   useSortedData,
   usePeriodFiltering,
   formatDateLabelJP,
-  createUnitFormatter,
   useHiddenSeries,
 } from '../common/useChartData'
 import {
@@ -176,7 +175,7 @@ export default function UnemploymentByReasonChart({ data }: UnemploymentByReason
                     yAxisFormatter={(v) => `${(v / 1000).toFixed(0)}M`}
                     yDomain={['dataMin - 100', 'dataMax + 100']}
                     tooltipLabelFormatter={formatDateLabelJP}
-                    tooltipFormatter={createUnitFormatter('k', 0)}
+                    tooltipValueFormatter={(v) => v != null ? `${v.toFixed(0)}k` : 'N/A'}
                     showZeroLine={false}
                     onLegendClick={handleLegendClick}
                   />

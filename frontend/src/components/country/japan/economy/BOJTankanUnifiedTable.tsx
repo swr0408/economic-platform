@@ -334,7 +334,7 @@ export default function BOJTankanUnifiedTable() {
 
   if (error) {
     return (
-      <ChartContainer title="日銀短観" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="日銀短観" showPeriodSelector={false} showDataSource={false} handbookId="boj-tankan">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
@@ -342,7 +342,7 @@ export default function BOJTankanUnifiedTable() {
 
   if (tableData.length === 0) {
     return (
-      <ChartContainer title="日銀短観" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="日銀短観" showPeriodSelector={false} showDataSource={false} handbookId="boj-tankan">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>データがありません</div>
       </ChartContainer>
     )
@@ -357,6 +357,7 @@ export default function BOJTankanUnifiedTable() {
         showPeriodSelector={false}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/statistics/tk/index.htm"
+        handbookId="boj-tankan"
         extra={
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             {/* ページング */}

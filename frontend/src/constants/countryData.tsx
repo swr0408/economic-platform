@@ -310,6 +310,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         icon: <BankOutlined />,
         color: '#1890ff',
         indicators: [
+          { code: 'ecb-policy-framework', name: 'ECB政策枠組み' },
           { code: 'ecb-rates', name: 'ECB預金ファシリティ金利' },
           { code: 'eurex-ois', name: '3ヶ月ユーロSTR先物カーブ' },
           { code: 'ecb-rate-cuts', name: 'ECB利上げ・利下げ期待' },
@@ -317,6 +318,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-m3', name: 'M3マネーサプライ' },
           { code: 'ecb-bank-interest-rates', name: '銀行金利' },
           { code: 'ecb-balance-sheet', name: 'ECBバランスシート' },
+          { code: 'btp-bund-spread', name: '伊独スプレッド' },
         ],
       },
       {

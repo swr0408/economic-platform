@@ -135,6 +135,45 @@ NON_FMP_INDICATOR_CONFIGS = [
     # ※ 機械受注はFMPマッピング済み → "Machinery Orders MoM/YoY"
     # ※ 第3次産業活動指数はFMPマッピング済み → "Tertiary Industry Index MoM"
     {
+        # 発表: 四半期（4/7/10月初旬、12月中旬）8:50 JST
+        # 出典: 日本銀行 短観
+        # ※ FMPにはTankan Large Manufacturers Indexとして登録あり（next_release用）
+        #    Excel公開タイミングはFMPイベントと同日だが、自動取得は非FMPスケジューラーで管理
+        "name_ja": "日銀短観（DI）",
+        "country": "JP",
+        "category": "economy",
+        "service_module": "services.japan.boj_tankan_service",
+        "service_instance": "boj_tankan_service",
+        "fetch_method": "get_tankan_data",
+        "schedule_type": "quarterly",
+        "schedule_config": {
+            "months": [1, 4, 7, 10],
+            "day_start": 1,
+            "day_end": 5,
+            "hour": 9,
+            "minute": 0,
+        },
+    },
+    {
+        # 発表: 日銀短観DIと同時
+        # 出典: 日本銀行 短観（包括的データ - 設備投資額）
+        "name_ja": "日銀短観（設備投資）",
+        "country": "JP",
+        "category": "economy",
+        "service_module": "services.japan.boj_tankan_comprehensive_service",
+        "service_instance": "boj_tankan_comprehensive_service",
+        "fetch_method": "get_comprehensive_data",
+        "schedule_type": "quarterly",
+        "schedule_config": {
+            "months": [1, 4, 7, 10],
+            "day_start": 1,
+            "day_end": 5,
+            "hour": 9,
+            "minute": 0,
+        },
+        "fetch_kwargs": {"data_type": "capital_investment"},
+    },
+    {
         # 発表: 四半期（1/4/7/10月）3-8日頃 15:00 JST
         # 出典: 日本銀行
         # ※ FMP未登録のため非FMPスケジューラーで管理
@@ -597,7 +636,8 @@ class NonFMPReleaseScheduler:
             fetch_method = getattr(service, fetch_method_name)
 
             # データを取得（force_refresh=True）
-            result = fetch_method(force_refresh=True)
+            extra_kwargs = config.get("fetch_kwargs", {})
+            result = fetch_method(force_refresh=True, **extra_kwargs)
 
             if result and not result.get("error"):
                 latest = result.get("latest", {})

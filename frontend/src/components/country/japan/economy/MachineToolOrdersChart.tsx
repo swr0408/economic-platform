@@ -182,7 +182,7 @@ export default function MachineToolOrdersChart() {
 
   if (error) {
     return (
-      <ChartContainer title="工作機械受注" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="工作機械受注" showPeriodSelector={false} showDataSource={false} handbookId="machine-tool-orders">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>
           {error}
         </div>
@@ -192,7 +192,7 @@ export default function MachineToolOrdersChart() {
 
   if (!hasData) {
     return (
-      <ChartContainer title="工作機械受注" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="工作機械受注" showPeriodSelector={false} showDataSource={false} handbookId="machine-tool-orders">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -205,6 +205,7 @@ export default function MachineToolOrdersChart() {
         showPeriodSelector={false}
         dataSource="日本工作機械工業会"
         sourceUrl="https://www.jmtba.or.jp/statistics/"
+        handbookId="machine-tool-orders"
       >
         {/* 最新値表示（統合ボックス） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

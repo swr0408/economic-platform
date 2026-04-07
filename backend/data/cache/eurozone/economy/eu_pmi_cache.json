@@ -754,7 +754,7 @@
       {
         "date": "2025-05",
         "value": 49.4,
-        "forecast": 49.4,
+        "forecast": 48.4,
         "previous": 49.0
       },
       {
@@ -802,15 +802,27 @@
       {
         "date": "2026-01",
         "value": 49.4,
-        "forecast": 49.7,
+        "forecast": 49.1,
         "previous": 48.8
+      },
+      {
+        "date": "2026-02",
+        "value": 50.8,
+        "forecast": 50.8,
+        "previous": 49.5
+      },
+      {
+        "date": "2026-03",
+        "value": 51.6,
+        "forecast": 51.4,
+        "previous": 50.8
       }
     ],
     "latest": {
-      "date": "2026-01",
-      "value": 49.4,
-      "forecast": 49.7,
-      "previous": 48.8
+      "date": "2026-03",
+      "value": 51.6,
+      "forecast": 51.4,
+      "previous": 50.8
     }
   },
   "services": {
@@ -1616,15 +1628,27 @@
       {
         "date": "2026-01",
         "value": 51.9,
-        "forecast": 52.9,
+        "forecast": 52.6,
         "previous": 52.4
+      },
+      {
+        "date": "2026-02",
+        "value": 51.9,
+        "forecast": 51.8,
+        "previous": 51.8
+      },
+      {
+        "date": "2026-03",
+        "value": 50.1,
+        "forecast": 51.1,
+        "previous": 51.9
       }
     ],
     "latest": {
-      "date": "2026-01",
-      "value": 51.9,
-      "forecast": 52.9,
-      "previous": 52.4
+      "date": "2026-03",
+      "value": 50.1,
+      "forecast": 51.1,
+      "previous": 51.9
     }
   },
   "composite": {
@@ -2432,15 +2456,21 @@
         "value": 51.5,
         "forecast": 52.3,
         "previous": 51.5
+      },
+      {
+        "date": "2026-02",
+        "value": 51.9,
+        "forecast": 51.9,
+        "previous": 51.3
       }
     ],
     "latest": {
-      "date": "2026-01",
-      "value": 51.5,
-      "forecast": 52.3,
-      "previous": 51.5
+      "date": "2026-02",
+      "value": 51.9,
+      "forecast": 51.9,
+      "previous": 51.3
     }
   },
   "next_release": null,
-  "last_updated": "2026-01-29T18:32:29.163816+01:00"
+  "last_updated": "2026-04-05T15:34:00.672487+02:00"
 }

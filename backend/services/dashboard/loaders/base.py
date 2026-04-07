@@ -490,3 +490,107 @@ class BaseDashboardLoader(ABC):
         except Exception as e:
             print(f"Error getting {indicator_name} release datetime: {e}")
             return None
+
+    def _get_last_release_datetime_from_fmp(
+        self,
+        econalpha_id: str,
+        release_hour_et: int = 8,
+        release_minute_et: int = 30,
+        indicator_name: str = "unknown",
+        country: str = "usa"
+    ) -> Optional[datetime]:
+        """
+        FMP APIから直近の過去発表日時（JST）を取得
+
+        next_releaseは発表直後に次回日付へ切り替わるため、
+        直近の過去リリースも確認してstale検出の見逃しを防ぐ。
+
+        Args:
+            econalpha_id: FMPマッピングID
+            release_hour_et: 発表時刻の時（ET）— country="usa"の場合のみ使用
+            release_minute_et: 発表時刻の分（ET）— country="usa"の場合のみ使用
+            indicator_name: エラーログ用の指標名
+            country: 国コード ("usa", "japan", "eurozone")
+
+        Returns:
+            直近の過去発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            if country == "japan":
+                from services.japan.fmp_next_release_utils import get_last_release_from_fmp
+            elif country == "eurozone":
+                from services.eurozone.fmp_next_release_utils import get_last_release_from_fmp
+            else:
+                from services.usa.fmp_next_release_utils import get_last_release_from_fmp
+
+            last_release = get_last_release_from_fmp(econalpha_id)
+            if not last_release:
+                return None
+
+            # JP/EU: datetime_jstフィールドを直接使用
+            if country in ("japan", "eurozone"):
+                datetime_jst_str = last_release.get("datetime_jst")
+                if datetime_jst_str:
+                    return datetime.fromisoformat(datetime_jst_str)
+                # datetime_jstがない場合はdateフィールドにフォールバック
+                date_str = last_release.get("date")
+                if not date_str:
+                    return None
+                try:
+                    base_date = datetime.strptime(date_str, "%Y-%m-%d")
+                except ValueError:
+                    return None
+                # JP/EUはデフォルト8:30 JSTとする
+                return datetime(
+                    base_date.year, base_date.month, base_date.day,
+                    8, 30, tzinfo=JST
+                )
+
+            # USA: dateフィールド + ET時刻で構築
+            date_str = last_release.get("date")
+            if not date_str:
+                return None
+
+            try:
+                base_date = datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                return None
+
+            release_et = datetime(
+                base_date.year, base_date.month, base_date.day,
+                release_hour_et, release_minute_et,
+                tzinfo=ET
+            )
+            return release_et.astimezone(JST)
+
+        except Exception as e:
+            print(f"Error getting {indicator_name} last release datetime: {e}")
+            return None
+
+    def _is_stale_by_release(
+        self,
+        last_updated_dt: datetime,
+        now: datetime,
+        next_release: Optional[datetime],
+        last_release: Optional[datetime] = None
+    ) -> bool:
+        """
+        next_release と last_release の両方を使ってstale判定
+
+        next_releaseだけでは発表直後に次回日付へ切り替わった場合に
+        stale検出窓を見逃すため、last_releaseもフォールバックとして使う。
+
+        Args:
+            last_updated_dt: ダッシュボードキャッシュの最終更新日時
+            now: 現在日時
+            next_release: 次回発表日時（JST）
+            last_release: 直近の過去発表日時（JST）
+
+        Returns:
+            staleならTrue
+        """
+        if next_release and last_updated_dt < next_release <= now:
+            return True
+        if last_release and last_updated_dt < last_release <= now:
+            return True
+        return False

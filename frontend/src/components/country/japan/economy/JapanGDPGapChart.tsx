@@ -155,7 +155,7 @@ export default function JapanGDPGapChart() {
   // エラー状態
   if (error) {
     return (
-      <ChartContainer title="GDPギャップ（内閣府）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPギャップ（内閣府）" showPeriodSelector={false} showDataSource={false} handbookId="gdp-gap">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
@@ -164,7 +164,7 @@ export default function JapanGDPGapChart() {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="GDPギャップ（内閣府）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPギャップ（内閣府）" showPeriodSelector={false} showDataSource={false} handbookId="gdp-gap">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -195,6 +195,7 @@ export default function JapanGDPGapChart() {
         showDataSource={true}
         dataSource="内閣府"
         sourceUrl="https://www5.cao.go.jp/keizai3/getsurei/getsurei-index.html"
+        handbookId="gdp-gap"
       >
         {/* 最新値表示 */}
         <LatestValueBox

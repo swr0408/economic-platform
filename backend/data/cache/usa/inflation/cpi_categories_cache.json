@@ -2422,8 +2422,8 @@
     "datetime_utc": "2026-04-10T12:30:00+00:00",
     "datetime_jst": "2026-04-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core Inflation Rate MoM (Mar)",
-    "estimate": 0.2
+    "label": "Inflation Rate MoM (Mar)",
+    "estimate": 0.8
   },
-  "last_updated": "2026-04-02T23:01:34.220424+09:00"
+  "last_updated": "2026-04-04T18:01:36.317641+09:00"
 }

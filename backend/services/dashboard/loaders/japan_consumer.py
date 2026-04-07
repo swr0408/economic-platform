@@ -113,16 +113,24 @@ class JapanConsumerLoader(BaseDashboardLoader):
             now = datetime.now(JST)
 
             # 消費支出発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             consumption_release = self._get_consumption_release_datetime()
-            if consumption_release and last_updated_dt < consumption_release <= now:
+            consumption_last = self._get_last_release_datetime_from_fmp(
+                "jp_household_spending_yoy", indicator_name="Consumption", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, consumption_release, consumption_last):
                 stale.add("consumption_expenditure")
-                print(f"[stale] Consumption release detected: {consumption_release.isoformat()}")
+                print(f"[stale] Consumption release detected")
 
             # 小売販売額発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             retail_release = self._get_retail_sales_release_datetime()
-            if retail_release and last_updated_dt < retail_release <= now:
+            retail_last = self._get_last_release_datetime_from_fmp(
+                "jp_retail_sales_yoy", indicator_name="Retail Sales", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, retail_release, retail_last):
                 stale.add("retail_sales")
-                print(f"[stale] Retail sales release detected: {retail_release.isoformat()}")
+                print(f"[stale] Retail sales release detected")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")

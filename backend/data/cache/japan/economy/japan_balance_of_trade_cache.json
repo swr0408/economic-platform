@@ -3314,82 +3314,154 @@
     },
     {
       "date": "2025-01-01",
-      "trade_balance": -27417.0,
-      "exports": 78652.0,
-      "imports": 106069.0
+      "trade_balance": -27587.0,
+      "exports": 78648.0,
+      "imports": 106235.0
     },
     {
       "date": "2025-02-01",
-      "trade_balance": 5855.0,
-      "exports": 91901.0,
-      "imports": 86046.0
+      "trade_balance": 5592.0,
+      "exports": 91898.0,
+      "imports": 86306.0
     },
     {
       "date": "2025-03-01",
-      "trade_balance": 5543.0,
-      "exports": 98526.0,
-      "imports": 92983.0
+      "trade_balance": 5299.0,
+      "exports": 98516.0,
+      "imports": 93217.0
     },
     {
       "date": "2025-04-01",
-      "trade_balance": -1283.0,
-      "exports": 91572.0,
-      "imports": 92855.0
+      "trade_balance": -1495.0,
+      "exports": 91499.0,
+      "imports": 92994.0
     },
     {
       "date": "2025-05-01",
-      "trade_balance": -6425.0,
-      "exports": 81345.0,
-      "imports": 87770.0
+      "trade_balance": -6625.0,
+      "exports": 81295.0,
+      "imports": 87920.0
     },
     {
       "date": "2025-06-01",
-      "trade_balance": 1477.0,
-      "exports": 91627.0,
-      "imports": 90150.0
+      "trade_balance": 1222.0,
+      "exports": 91623.0,
+      "imports": 90401.0
     },
     {
       "date": "2025-07-01",
-      "trade_balance": -1232.0,
-      "exports": 93595.0,
-      "imports": 94827.0
+      "trade_balance": -1563.0,
+      "exports": 93448.0,
+      "imports": 95011.0
     },
     {
       "date": "2025-08-01",
-      "trade_balance": -2502.0,
-      "exports": 84258.0,
-      "imports": 86760.0
+      "trade_balance": -2941.0,
+      "exports": 84201.0,
+      "imports": 87142.0
     },
     {
       "date": "2025-09-01",
-      "trade_balance": -2424.0,
-      "exports": 94133.0,
-      "imports": 96557.0
+      "trade_balance": -2777.0,
+      "exports": 94049.0,
+      "imports": 96826.0
     },
     {
       "date": "2025-10-01",
-      "trade_balance": -2321.0,
+      "trade_balance": -2429.0,
       "exports": 97662.0,
-      "imports": 99983.0
+      "imports": 100091.0
     },
     {
       "date": "2025-11-01",
-      "trade_balance": 3111.0,
-      "exports": 97095.0,
-      "imports": 93984.0
+      "trade_balance": 3060.0,
+      "exports": 97089.0,
+      "imports": 94029.0
     },
     {
       "date": "2025-12-01",
-      "trade_balance": 1135.0,
-      "exports": 104083.0,
-      "imports": 102948.0
+      "trade_balance": 948.0,
+      "exports": 104077.0,
+      "imports": 103129.0
+    },
+    {
+      "date": "2026-01-01",
+      "trade_balance": -11658.0,
+      "exports": 91851.0,
+      "imports": 103509.0
+    },
+    {
+      "date": "2026-02-01",
+      "trade_balance": 443.0,
+      "exports": 95596.0,
+      "imports": 95153.0
+    },
+    {
+      "date": "2026-03-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-04-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-05-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-06-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-07-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-08-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-09-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-10-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-11-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
+    },
+    {
+      "date": "2026-12-01",
+      "trade_balance": 0.0,
+      "exports": 0.0,
+      "imports": 0.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "trade_balance": 1135.0,
-    "exports": 104083.0,
-    "imports": 102948.0
+    "date": "2026-12-01",
+    "trade_balance": 0.0,
+    "exports": 0.0,
+    "imports": 0.0
   },
   "metadata": {
     "source": "財務省貿易統計（税関）",
@@ -3399,5 +3471,5 @@
     "frequency": "Monthly",
     "basis": "Customs (通関ベース)"
   },
-  "last_updated": "2026-02-11T23:18:04.384562+09:00"
+  "last_updated": "2026-04-03T12:42:06.910158+09:00"
 }

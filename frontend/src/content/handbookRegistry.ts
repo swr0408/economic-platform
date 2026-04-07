@@ -489,6 +489,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['日銀', 'BOJ', '金利', 'YCC'],
   },
 
+  // --- Japan / 金融政策（日銀当座預金） ---
+  {
+    indicatorId: 'boj-current-account-balance',
+    title: '日銀当座預金と資金過不足',
+    country: 'japan',
+    category: 'policy',
+    summary: '民間金融機関が日銀に保有する決済用預金。銀行券要因と財政等要因による資金過不足は短期金利の需給圧力を示す。季節性が強いが制度変更で崩れることもある。',
+    loadContent: loadMd('japan/boj-current-account-balance.md'),
+    relatedIndicators: ['boj-policy-rate-chart', 'boj-meeting-expectations', 'ois-curve-chart'],
+    tags: ['日銀当座預金', '資金過不足', '銀行券要因', '財政等要因', '短期金利', 'コールレート', '日本銀行', '金融調節'],
+  },
+
   // --- Japan / 経済 ---
   {
     indicatorId: 'quarterly-gdp',
@@ -525,6 +537,28 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
   },
 
   {
+    indicatorId: 'cpi-categories',
+    title: '全国CPI 10大費目（日本）',
+    country: 'japan',
+    category: 'inflation',
+    summary: '食料・エネルギーの家計影響と輸入物価からCPIへの波及ラグ。エネルギー5項目の構成、食料価格の国内供給要因、政策要因による振れを整理。',
+    loadContent: loadMd('japan/cpi-categories.md'),
+    relatedIndicators: ['national-cpi', 'tokyo-cpi', 'cgpi'],
+    tags: ['CPI', '食料', 'エネルギー', '10大費目', '物価', '総務省', '輸入物価', '為替', '波及ラグ', '電気代', 'ガソリン'],
+  },
+
+  {
+    indicatorId: 'tokyo-cpi',
+    title: '東京都区部CPI',
+    country: 'japan',
+    category: 'inflation',
+    summary: '全国CPIより先に公表される速報的な物価指標。総合・コア・コアコアのいずれでも全国CPIと高い連動性を持ち、物価モメンタムの強弱を把握する先行材料として重要。',
+    loadContent: loadMd('japan/tokyo-cpi.md'),
+    relatedIndicators: ['national-cpi', 'cgpi', 'boj-policy-rate-chart'],
+    tags: ['東京CPI', 'CPI', '物価', '総務省', 'インフレ', 'コアCPI', 'コアコアCPI', '先行指標'],
+  },
+
+  {
     indicatorId: 'cgpi',
     title: '企業物価指数（CGPI）',
     country: 'japan',
@@ -533,6 +567,51 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/cgpi.md'),
     relatedIndicators: ['national-cpi', 'sppi', 'ppi'],
     tags: ['CGPI', '企業物価', '日本銀行', '物価', 'インフレ'],
+  },
+
+  {
+    indicatorId: 'import-export-price',
+    title: '輸入・輸出物価指数（日本）',
+    country: 'japan',
+    category: 'inflation',
+    summary: '輸入物価から食品・エネルギーCPIへの波及経路とラグ。食品は12〜13か月、エネルギーは品目別に3〜5か月のラグ。為替・国際市況・政策要因の切り分けが重要。',
+    loadContent: loadMd('japan/import-export-price.md'),
+    relatedIndicators: ['national-cpi', 'cpi-categories', 'cgpi', 'terms-of-trade'],
+    tags: ['輸入物価', '輸出物価', '為替', '円安', '食品', 'エネルギー', '原油', 'LNG', '価格転嫁', '日本銀行', 'CPI'],
+  },
+
+  {
+    indicatorId: 'sppi',
+    title: '企業向けサービス価格指数（SPPI / CSPI）',
+    country: 'japan',
+    category: 'inflation',
+    summary: '日本銀行が公表する企業間サービス価格指数。7大類別146品目で構成され、財価格では捉えにくいサービスコスト圧力・価格転嫁の動きを補足する。',
+    loadContent: loadMd('japan/sppi.md'),
+    relatedIndicators: ['cgpi', 'national-cpi', 'import-export-price'],
+    tags: ['SPPI', 'CSPI', 'サービス価格', '企業向け', '日本銀行', '物価', '価格転嫁', '運輸', '情報通信'],
+  },
+
+  {
+    indicatorId: 'pos-uvpi',
+    title: 'POS-UVPI（消費者購買単価指数）',
+    country: 'japan',
+    category: 'inflation',
+    summary: '全国約6000店舗のPOSデータによる週次購買単価指数。容量変化・商品入替を反映し、日用品・加工食品の価格動向を月次CPI より早く確認できる。',
+    loadContent: loadMd('japan/pos-uvpi.md'),
+    relatedIndicators: ['national-cpi', 'cpi-categories', 'cgpi'],
+    tags: ['POS-UVPI', '購買単価', 'POSデータ', '一橋大学', '食料品', '日用品', '実質値上げ', '週次'],
+  },
+
+  // --- Japan / 物価（GDPギャップ） ---
+  {
+    indicatorId: 'gdp-gap',
+    title: '日本GDPギャップ',
+    country: 'japan',
+    category: 'inflation',
+    summary: '実際のGDPと潜在GDPの乖離を示す需給バランス指標。プラスは需要超過、マイナスは需要不足。物価・雇用との関係が深く、日銀の政策判断材料としても重要。',
+    loadContent: loadMd('japan/gdp-gap.md'),
+    relatedIndicators: ['quarterly-gdp', 'potential-growth', 'national-cpi', 'boj-policy-rate-chart'],
+    tags: ['GDPギャップ', '需給ギャップ', '潜在GDP', '内閣府', '日本銀行', '物価', '雇用', 'フィリップス曲線'],
   },
 
   // --- Japan / 経済（PMI） ---
@@ -545,6 +624,78 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/pmi.md'),
     relatedIndicators: ['quarterly-gdp', 'cgpi', 'global-manufacturing-pmi'],
     tags: ['PMI', 'S&P Global', 'auじぶん銀行', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- Japan / 経済（日銀短観） ---
+  {
+    indicatorId: 'boj-tankan',
+    title: '日銀短観',
+    country: 'japan',
+    category: 'economy',
+    summary: '日本銀行が四半期ごとに実施する企業アンケート。業況判断DI・設備判断DI・価格判断DI・設備投資計画など、景況感から事業計画まで幅広く把握できる。',
+    loadContent: loadMd('japan/boj-tankan.md'),
+    relatedIndicators: ['quarterly-gdp', 'pmi', 'cgpi', 'boj-policy-rate-chart'],
+    tags: ['短観', '日銀', 'BOJ', 'Tankan', 'DI', '業況判断', '設備投資', '販売価格', '仕入価格', '雇用', '景況感', '四半期'],
+  },
+
+  // --- Japan / 経済（鉱工業生産） ---
+  {
+    indicatorId: 'iip',
+    title: '鉱工業生産指数',
+    country: 'japan',
+    category: 'economy',
+    summary: '鉱業・製造工業の生産活動を指数化した指標。関連産業への波及が大きく、GDP成長率と連動しやすいため、景気の強弱を判断する基礎指標として使われる。',
+    loadContent: loadMd('japan/iip.md'),
+    relatedIndicators: ['japan-capacity-utilization', 'boj-tankan', 'pmi', 'quarterly-gdp'],
+    tags: ['鉱工業生産', 'IIP', '製造業', '景気', 'GDP', '在庫循環', '経済産業省'],
+  },
+
+  // --- Japan / 経済（稼働率指数） ---
+  {
+    indicatorId: 'japan-capacity-utilization',
+    title: '鉱工業生産稼働率指数',
+    country: 'japan',
+    category: 'economy',
+    summary: '製造業の設備がどの程度使われているかを示す指標。稼働率上昇は需給逼迫や設備投資拡大の方向性を示す材料として注目される。',
+    loadContent: loadMd('japan/capacity-utilization.md'),
+    relatedIndicators: ['iip', 'boj-tankan', 'pmi', 'quarterly-gdp'],
+    tags: ['稼働率', '設備稼働率', '製造業', '設備投資', '需給', 'インフレ', '経済産業省'],
+  },
+
+  // --- Japan / 経済（機械受注） ---
+  {
+    indicatorId: 'machinery-orders',
+    title: '機械受注',
+    country: 'japan',
+    category: 'economy',
+    summary: '船舶・電力を除く民需が設備投資の先行指標。単月のブレが大きいため3か月移動平均や四半期ベースで基調を確認する。四半期見通しの達成率も投資マインドの把握に有効。',
+    loadContent: loadMd('japan/machinery-orders.md'),
+    relatedIndicators: ['boj-tankan', 'iip', 'japan-capacity-utilization', 'quarterly-gdp'],
+    tags: ['機械受注', '設備投資', '民需', '船舶電力除く', '内閣府', 'ESRI', '先行指標', '達成率'],
+  },
+
+  // --- Japan / 経済（工作機械受注） ---
+  {
+    indicatorId: 'machine-tool-orders',
+    title: '工作機械受注',
+    country: 'japan',
+    category: 'economy',
+    summary: '企業の設備投資意欲を反映する代表的な指標。グローバル製造業PMIと強い正の相関を持ち、TOPIX予想EPSの前年比に2～4か月先行する傾向がある。',
+    loadContent: loadMd('japan/machine-tool-orders.md'),
+    relatedIndicators: ['machinery-orders', 'boj-tankan', 'global-manufacturing-pmi', 'topix_valuation_eps'],
+    tags: ['工作機械受注', '設備投資', '製造業', 'PMI', 'EPS', '日本工作機械工業会', '先行指標'],
+  },
+
+  // --- Japan / 消費者（景気ウォッチャー調査） ---
+  {
+    indicatorId: 'economy-watcher',
+    title: '景気ウォッチャー調査',
+    country: 'japan',
+    category: 'consumer',
+    summary: '内閣府が毎月実施する「街角景気」のアンケート調査。現状判断DIと先行き判断DIから、家計・企業・雇用の現場感覚を月次で早期に把握できる。',
+    loadContent: loadMd('japan/economy-watcher.md'),
+    relatedIndicators: ['quarterly-gdp', 'boj-tankan', 'pmi', 'national-cpi'],
+    tags: ['景気ウォッチャー', '内閣府', 'DI', '街角景気', '現状判断', '先行き判断', '家計', '雇用', '景況感'],
   },
 
   // --- Japan / 雇用 ---
@@ -1939,6 +2090,42 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['可処分所得', 'Disposable Income', 'ABS', '実質所得', '購買力', '消費'],
   },
 
+  // --- ユーロ圏 / 伊独スプレッド ---
+  {
+    indicatorId: 'btp-bund-spread',
+    title: '伊独国債利回りスプレッド',
+    country: 'eurozone',
+    category: 'policy',
+    summary: 'BTP-Bundスプレッドはユーロ圏の分断リスクを映す温度計。175-200bpで注意、250bp超でECBの痛みの閾値。スプレッド縮小はユーロ高、拡大はユーロ安に作用しやすい。',
+    loadContent: loadMd('eurozone/btp-bund-spread.md'),
+    relatedIndicators: ['ecb-rates', 'ecb-policy-framework'],
+    tags: ['伊独スプレッド', 'BTP', 'Bund', 'イタリア', 'ドイツ', '国債', 'TPI', 'ユーロ', 'EUR/USD', '分断リスク', '信用リスク'],
+  },
+
+  // --- ユーロ圏 / ECB政策枠組み ---
+  {
+    indicatorId: 'ecb-policy-framework',
+    title: 'ECB政策枠組み',
+    country: 'eurozone',
+    category: 'policy',
+    summary: 'ECBの最優先目標は中期的にHICP2％。基調インフレ（HICPX）・賃金・政策伝達を重視。非ユーロ圏中銀との連動性の違いも整理。',
+    loadContent: loadMd('eurozone/ecb-policy-framework.md'),
+    relatedIndicators: ['ecb-rates', 'ecb-spf', 'ecb-m3'],
+    tags: ['ECB', 'HICP', 'HICPX', '基調インフレ', '物価安定', '2％目標', 'デンマーク', 'スウェーデン', 'スイス', 'SNB', 'リクスバンク', 'ユーロ圏'],
+  },
+
+  // --- ユーロ圏 / ECB預金ファシリティ金利 ---
+  {
+    indicatorId: 'ecb-rates',
+    title: 'ECB預金ファシリティ金利',
+    country: 'eurozone',
+    category: 'policy',
+    summary: 'ECBの3つの主要金利（預金ファシリティ・主要リファイナンスオペ・限界貸付ファシリティ）の役割と、理事会後の会見・関係者報道の見方。',
+    loadContent: loadMd('eurozone/ecb-rates.md'),
+    relatedIndicators: ['ecb-m3', 'ecb-spf', 'ez-pmi'],
+    tags: ['ECB', '預金ファシリティ', 'リファイナンスオペ', '限界貸付', 'ラガルド', '記者会見', '関係者報道', '利下げ', '金融政策', 'ユーロ圏'],
+  },
+
   // --- ユーロ圏 / ECB M3 ---
   {
     indicatorId: 'ecb-m3',
@@ -1949,6 +2136,114 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('eurozone/ecb-m3.md'),
     relatedIndicators: ['money-stock', 'monetary-base', 'central-bank-balance-sheet'],
     tags: ['M3', 'ECB', 'ユーロ圏', 'マネーサプライ', '信用', '貸出', 'Monetary developments'],
+  },
+
+  // --- ユーロ圏 / ECBマクロ経済予測 ---
+  {
+    indicatorId: 'ecb-macro-projections',
+    title: 'ECBマクロ経済予測',
+    country: 'eurozone',
+    category: 'policy',
+    summary: 'ECBスタッフが年4回公表するGDP・HICP・失業率・賃金の見通し。民間消費と外需がGDP見通しの中心要因であり、修正方向が政策金利期待とユーロの方向感に影響しやすい。',
+    loadContent: loadMd('eurozone/ecb-macro-projections.md'),
+    relatedIndicators: ['ecb-rates', 'ecb-policy-framework', 'ecb-gdp', 'ez-pmi'],
+    tags: ['ECB', 'マクロ経済予測', 'GDP', 'HICP', '失業率', '賃金', '民間消費', '外需', 'ユーロ圏', '見通し'],
+  },
+
+  // --- ユーロ圏 / GDP ---
+  {
+    indicatorId: 'ecb-gdp',
+    title: 'GDP（ユーロ圏）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'Eurostatが四半期公表するユーロ圏GDP。PMI→小売売上・鉱工業生産→GDPの順で景気を確認する流れの最終段階。成長見通しの下方修正はECB緩和観測とユーロ安に作用しやすい。',
+    loadContent: loadMd('eurozone/ecb-gdp.md'),
+    relatedIndicators: ['ez-pmi', 'ecb-production', 'ecb-retail-trade', 'ecb-macro-projections'],
+    tags: ['GDP', 'ユーロ圏', 'Eurostat', '成長率', '景気', '速報値'],
+  },
+
+  // --- ユーロ圏 / 銀行貸出調査（BLS） ---
+  {
+    indicatorId: 'ecb-bls',
+    title: '銀行貸出調査（ユーロ圏・BLS）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ECBが四半期公表する貸出基準・資金需要のサーベイ。企業向け融資需要DIはGDPにやや先行しやすく、特に見通しDIは景気の底打ちや減速の初期変化を示しやすい。',
+    loadContent: loadMd('eurozone/ecb-bls.md'),
+    relatedIndicators: ['ecb-gdp', 'ecb-m3', 'ecb-rates', 'ez-pmi'],
+    tags: ['BLS', 'ECB', '銀行貸出調査', '資金需要', '貸出基準', '信用環境', 'ユーロ圏', '四半期'],
+  },
+
+  // --- ユーロ圏 / 鉱工業生産 ---
+  {
+    indicatorId: 'ecb-production',
+    title: '鉱工業生産（ユーロ圏）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'Eurostatが月次公表する製造業中心の実体経済指標。前年比ではGDPと同時性が強く、前月比は変化点をやや早く捉えることがある。',
+    loadContent: loadMd('eurozone/ecb-production.md'),
+    relatedIndicators: ['ecb-gdp', 'ez-pmi', 'ecb-retail-trade'],
+    tags: ['鉱工業生産', 'ユーロ圏', 'Eurostat', '製造業', '実体経済', '月次'],
+  },
+
+  // --- ユーロ圏 / 国際貿易 ---
+  {
+    indicatorId: 'eu-international-trade',
+    title: '国際貿易（ユーロ圏）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ユーロ高は域外輸出の逆風だが輸入コスト抑制の二面性を持つ。ドイツは輸出GDP比42%と高く為替感応度が特に高い。実効為替レートと国別輸出構造の確認が重要。',
+    loadContent: loadMd('eurozone/eu-international-trade.md'),
+    relatedIndicators: ['ecb-gdp', 'ez-pmi', 'germany-pmi', 'ecb-production'],
+    tags: ['国際貿易', 'ユーロ圏', 'Eurostat', '輸出', '輸入', 'ユーロ高', 'ドイツ', '実効為替レート', '為替'],
+  },
+
+  // --- ユーロ圏 / 小売売上高 ---
+  {
+    indicatorId: 'ecb-retail-trade',
+    title: '小売売上高（ユーロ圏）',
+    country: 'eurozone',
+    category: 'consumer',
+    summary: 'Eurostatが月次公表する家計消費の実体指標。GDPと同四半期に強く連動し、個人消費の強弱を月次で確認する役割が大きい。',
+    loadContent: loadMd('eurozone/ecb-retail-trade.md'),
+    relatedIndicators: ['ecb-gdp', 'ez-pmi', 'ecb-production'],
+    tags: ['小売売上', 'ユーロ圏', 'Eurostat', '消費', '家計', '月次'],
+  },
+
+  // --- ユーロ圏 / 失業率 ---
+  {
+    indicatorId: 'ecb-unemployment-chart',
+    title: '失業率（ユーロ圏）',
+    country: 'eurozone',
+    category: 'employment',
+    summary: 'ユーロ圏は雇用保護が厚く、景気悪化→失業率悪化に時間差が生じやすい。labour hoardingや労働時間調整が先行するため、PMI雇用指数や平均労働時間も併せて確認が必要。',
+    loadContent: loadMd('eurozone/ecb-unemployment.md'),
+    relatedIndicators: ['ez-pmi', 'ecb-gdp', 'ecb-macro-projections'],
+    tags: ['失業率', 'ユーロ圏', 'Eurostat', '雇用保護', 'レイオフ', 'labour hoarding', '労働時間', 'PMI雇用指数'],
+  },
+
+  // --- ユーロ圏 / 賃金上昇率 ---
+  {
+    indicatorId: 'eurostat-wages',
+    title: '賃金上昇率（ユーロ圏）',
+    country: 'eurozone',
+    category: 'employment',
+    summary: 'ユーロ圏の賃金はインフレに対して数四半期遅れて反応しやすい。CPE・CPH・妥結賃金・Labour Cost Indexなど複数系列の併用が重要。',
+    loadContent: loadMd('eurozone/eurostat-wages.md'),
+    relatedIndicators: ['ecb-negotiated-wages', 'ecb-unemployment-chart', 'ecb-spf'],
+    tags: ['賃金', 'ユーロ圏', 'Eurostat', 'Labour Cost Index', 'CPE', 'CPH', 'インフレ', 'HICP'],
+  },
+
+  // --- ユーロ圏 / 交渉妥結賃金 ---
+  {
+    indicatorId: 'ecb-negotiated-wages',
+    title: '交渉妥結賃金（ユーロ圏）',
+    country: 'eurozone',
+    category: 'employment',
+    summary: 'ECBが重視する集団賃金交渉の結果指標。コアHICPに対して数四半期遅行しやすく、real wage catch-upが賃金上昇の持続性を高めやすい。',
+    loadContent: loadMd('eurozone/ecb-negotiated-wages.md'),
+    relatedIndicators: ['eurostat-wages', 'ecb-spf', 'ecb-unemployment-chart', 'ecb-macro-projections'],
+    tags: ['妥結賃金', 'ECB', 'ユーロ圏', '賃金交渉', 'real wage catch-up', 'コアHICP', 'インフレ期待', 'wage tracker'],
   },
 
   // --- 中国 / M1・M2 ---

@@ -29,11 +29,11 @@ class BOJTankanService:
     CACHE_KEY = "japan:boj_tankan_di"
     CACHE_TTL = 60 * 60 * 24 * 7  # 7 days (quarterly data)
 
-    # FMP event pattern for next release
-    INDICATOR_ID = "boj_tankan"
+    # FMP event pattern for next release (matches indicator_event_mapping.econalpha_id)
+    INDICATOR_ID = "jp_tankan"
 
-    # BOJ Excel URL pattern
-    BASE_URL = "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/"
+    # BOJ Excel URL pattern - year-based path (e.g., /2026/data/ for 2026)
+    BASE_URL_TEMPLATE = "https://www.boj.or.jp/statistics/tk/zenyo/{year}/data/"
 
     # Quarter to month mapping
     QUARTER_MONTHS = {1: "03", 2: "06", 3: "09", 4: "12"}
@@ -121,9 +121,14 @@ class BOJTankanService:
         return False
 
     def _get_latest_excel_url(self) -> str:
-        """Get URL for the latest Tankan Excel file"""
+        """Get URL for the latest Tankan Excel file
+
+        BOJ URL pattern: /statistics/tk/zenyo/{full_year}/data/all{YY}{QQ}a.xlsx
+        e.g. /statistics/tk/zenyo/2026/data/all2603a.xlsx for Q1 2026 (March)
+        """
         now = datetime.now()
-        year = now.year % 100  # Get last 2 digits
+        full_year = now.year
+        year = full_year % 100  # Get last 2 digits
 
         # Determine the most recent quarter based on release schedule
         # Release months: 4, 7, 10, 12 (for Q1, Q2, Q3, Q4 respectively)
@@ -139,11 +144,13 @@ class BOJTankanService:
             quarter = 3
         else:
             # If before April, use previous year's Q4
-            year = (now.year - 1) % 100
+            full_year -= 1
+            year = full_year % 100
             quarter = 12
 
         # Try current quarter first, then previous quarters
         for q_offset in range(8):
+            try_full_year = full_year
             try_year = year
             try_quarter = quarter
 
@@ -152,9 +159,11 @@ class BOJTankanService:
                 try_quarter -= 3
                 if try_quarter <= 0:
                     try_quarter += 12
-                    try_year -= 1
+                    try_full_year -= 1
+                    try_year = try_full_year % 100
 
-            url = f"{self.BASE_URL}all{try_year:02d}{try_quarter:02d}a.xlsx"
+            base_url = self.BASE_URL_TEMPLATE.format(year=try_full_year)
+            url = f"{base_url}all{try_year:02d}{try_quarter:02d}a.xlsx"
 
             try:
                 response = requests.head(url, timeout=5)
@@ -164,7 +173,7 @@ class BOJTankanService:
                 continue
 
         # Fallback
-        return f"{self.BASE_URL}all2412a.xlsx"
+        return self.BASE_URL_TEMPLATE.format(year=2024) + "all2412a.xlsx"
 
     def _parse_date_from_header(self, ws, col: int) -> Optional[str]:
         """

@@ -15,7 +15,7 @@ export type TransformOption = 'raw' | 'index100';
 
 export type DisplayOption = 'step' | 'dots';
 
-export type DerivedValueType = 'diff' | 'ratio' | 'yoy';
+export type DerivedValueType = 'diff' | 'ratio' | 'yoy' | 'qoq_pct' | 'yoy_pct';
 
 export interface DerivedValueConfig {
   type: DerivedValueType;
@@ -2749,6 +2749,52 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
   },
 
   // =========================================================================
+  // 市場 - 日経平均回帰モデル
+  // =========================================================================
+  {
+    id: 'nikkei_regression_model',
+    name: '日経平均 回帰モデル',
+    nameEn: 'Nikkei 225 Regression Model',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_jp',
+    apiEndpoint: '/api/market/nikkei-regression',
+    dataKey: 'data',
+    valueField: 'actual',
+  },
+
+  // =========================================================================
+  // 市場 - 電子部品出荷在庫バランス
+  // =========================================================================
+  {
+    id: 'electronic_components_balance',
+    name: '電子部品 出荷在庫バランス',
+    nameEn: 'Electronic Components Shipment-Inventory Balance',
+    frequency: 'monthly',
+    category: 'market',
+    subCategory: 'index_jp',
+    apiEndpoint: '/api/market/electronic-components-balance',
+    dataKey: 'data',
+    valueField: 'balance',
+    unit: '%pt',
+  },
+
+  // =========================================================================
+  // 市場 - JPX プットコールレシオ
+  // =========================================================================
+  {
+    id: 'jpx_put_call_ratios',
+    name: 'JPX 日経225 取引高PCR',
+    nameEn: 'JPX Nikkei 225 Volume Put/Call Ratio',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'index_jp',
+    apiEndpoint: '/api/market/jpx-pcr',
+    dataKey: 'data',
+    valueField: 'nk225_vol_pcr',
+  },
+
+  // =========================================================================
   // 市場 - バリュエーション
   // =========================================================================
   {
@@ -2874,6 +2920,17 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'yield_ratio',
   },
   {
+    id: 'nikkei225_valuation',
+    name: '日経平均 予想PER',
+    nameEn: 'Nikkei 225 Forward PE',
+    frequency: 'daily',
+    category: 'market',
+    subCategory: 'valuation',
+    apiEndpoint: '/api/market/nikkei225-valuation',
+    dataKey: 'data',
+    valueField: 'forward_pe',
+  },
+  {
     id: 'nikkei225_valuation_pe',
     name: '日経平均 予想PER',
     nameEn: 'Nikkei 225 Forward PE',
@@ -2927,6 +2984,17 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/market/nikkei225-valuation',
     dataKey: 'data',
     valueField: 'yield_ratio',
+  },
+  {
+    id: 'topix_valuation',
+    name: 'TOPIX 予想PER',
+    nameEn: 'TOPIX Forward PE',
+    frequency: 'monthly',
+    category: 'market',
+    subCategory: 'valuation',
+    apiEndpoint: '/api/market/topix-valuation',
+    dataKey: 'data',
+    valueField: 'forward_pe',
   },
   {
     id: 'topix_valuation_pe',
@@ -7246,6 +7314,21 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     unit: '%',
   },
   {
+    id: 'japan_iip_qoq',
+    name: '日本鉱工業生産（前期比）',
+    nameEn: 'Japan Industrial Production (QoQ)',
+    frequency: 'quarterly',
+    country: 'japan',
+    category: 'economy',
+    subCategory: 'production',
+    chartType: 'bar',
+    apiEndpoint: '/api/japan/iip',
+    dataKey: 'data',
+    valueField: 'value',
+    derived: { type: 'qoq_pct', sourceField: 'value' },
+    unit: '%',
+  },
+  {
     id: 'japan_tertiary_industry_mom',
     name: '日本第三次産業活動指数（前月比）',
     nameEn: 'Japan Tertiary Industry Index (MoM)',
@@ -7321,6 +7404,51 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/japan/capacity-utilization',
     dataKey: 'data',
     valueField: 'value',
+    unit: '%',
+  },
+  {
+    id: 'japan_capacity_utilization_qoq',
+    name: '日本製造工業稼働率指数（前期比）',
+    nameEn: 'Japan Manufacturing Capacity Utilization (QoQ)',
+    frequency: 'quarterly',
+    country: 'japan',
+    category: 'economy',
+    subCategory: 'production',
+    chartType: 'bar',
+    apiEndpoint: '/api/japan/capacity-utilization',
+    dataKey: 'data',
+    valueField: 'value',
+    derived: { type: 'qoq_pct', sourceField: 'value' },
+    unit: '%',
+  },
+  {
+    id: 'japan_capacity_utilization_yoy',
+    name: '日本製造工業稼働率指数（前年比）',
+    nameEn: 'Japan Manufacturing Capacity Utilization (YoY)',
+    frequency: 'quarterly',
+    country: 'japan',
+    category: 'economy',
+    subCategory: 'production',
+    chartType: 'bar',
+    apiEndpoint: '/api/japan/capacity-utilization',
+    dataKey: 'data',
+    valueField: 'value',
+    derived: { type: 'yoy_pct', sourceField: 'value' },
+    unit: '%',
+  },
+  {
+    id: 'japan_capacity_utilization_yoy_monthly',
+    name: '日本製造工業稼働率指数（前年同月比）',
+    nameEn: 'Japan Manufacturing Capacity Utilization (YoY Monthly)',
+    frequency: 'monthly',
+    country: 'japan',
+    category: 'economy',
+    subCategory: 'production',
+    chartType: 'bar',
+    apiEndpoint: '/api/japan/capacity-utilization',
+    dataKey: 'data',
+    valueField: 'value',
+    derived: { type: 'yoy', sourceField: 'value', period: 12 },
     unit: '%',
   },
   {

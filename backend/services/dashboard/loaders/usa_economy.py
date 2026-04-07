@@ -155,8 +155,10 @@ class USAEconomyLoader(BaseDashboardLoader):
             stale = set()
             check_results = {}
 
-            with ThreadPoolExecutor(max_workers=12) as executor:
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも並列取得する
+            with ThreadPoolExecutor(max_workers=20) as executor:
                 futures = {
+                    # next_release
                     executor.submit(self._get_gdp_release_datetimes): "gdp",
                     executor.submit(self._get_ism_manufacturing_release_datetime): "ism_manufacturing",
                     executor.submit(self._get_ism_non_manufacturing_release_datetime): "ism_non_manufacturing",
@@ -169,6 +171,14 @@ class USAEconomyLoader(BaseDashboardLoader):
                     executor.submit(self._get_nfci_release_datetimes): "nfci",
                     executor.submit(self._get_fci_gdpnow_release_datetimes): "fci_gdpnow",
                     executor.submit(self._get_daily_release_datetimes): "daily",
+                    # last_release（FMPから直近の過去発表を取得）
+                    executor.submit(self._get_last_release_datetime_from_fmp, "ism_manufacturing", 10, 0, "ISM Mfg"): "ism_manufacturing_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "ism_non_manufacturing", 10, 0, "ISM Non-Mfg"): "ism_non_manufacturing_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "empire_state", 8, 30, "Empire State"): "empire_state_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "philadelphia_fed", 8, 30, "Philly Fed"): "philadelphia_fed_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "nfib", 6, 0, "NFIB"): "nfib_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "industrial_production", 9, 15, "Industrial"): "industrial_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "durable_goods_mom", 8, 30, "Durable Goods"): "durable_goods_last",
                 }
 
                 for future in as_completed(futures):
@@ -182,7 +192,7 @@ class USAEconomyLoader(BaseDashboardLoader):
             def is_stale(release_dt):
                 return release_dt and last_updated_dt < release_dt <= now
 
-            # GDP関連
+            # GDP関連（BEAスケジュールベース、last_releaseなし）
             gdp_releases = check_results.get("gdp") or []
             for release_dt in (gdp_releases if isinstance(gdp_releases, list) else [gdp_releases]):
                 if is_stale(release_dt):
@@ -190,58 +200,76 @@ class USAEconomyLoader(BaseDashboardLoader):
                     break
 
             # ISM製造業
-            if is_stale(check_results.get("ism_manufacturing")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("ism_manufacturing"), check_results.get("ism_manufacturing_last")):
                 stale.add("ism_manufacturing")
 
             # ISM非製造業
-            if is_stale(check_results.get("ism_non_manufacturing")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("ism_non_manufacturing"), check_results.get("ism_non_manufacturing_last")):
                 stale.add("ism_non_manufacturing")
 
             # NY連銀
-            if is_stale(check_results.get("empire_state")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("empire_state"), check_results.get("empire_state_last")):
                 stale.add("empire_state")
 
             # フィラデルフィア連銀
-            if is_stale(check_results.get("philadelphia_fed")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("philadelphia_fed"), check_results.get("philadelphia_fed_last")):
                 stale.add("philadelphia_fed")
 
             # NFIB
             nfib_releases = check_results.get("nfib") or []
+            nfib_last = check_results.get("nfib_last")
+            nfib_stale = False
             for release_dt in (nfib_releases if isinstance(nfib_releases, list) else [nfib_releases]):
                 if is_stale(release_dt):
-                    stale.add("nfib")
+                    nfib_stale = True
                     break
+            if not nfib_stale and nfib_last and last_updated_dt < nfib_last <= now:
+                nfib_stale = True
+            if nfib_stale:
+                stale.add("nfib")
 
             # 鉱工業生産・設備稼働率（同時発表）
             industrial_releases = check_results.get("industrial") or []
+            industrial_last = check_results.get("industrial_last")
+            industrial_stale = False
             for release_dt in (industrial_releases if isinstance(industrial_releases, list) else [industrial_releases]):
                 if is_stale(release_dt):
-                    stale.add("industrial_production")
-                    stale.add("capacity_utilization")
+                    industrial_stale = True
                     break
+            if not industrial_stale and industrial_last and last_updated_dt < industrial_last <= now:
+                industrial_stale = True
+            if industrial_stale:
+                stale.add("industrial_production")
+                stale.add("capacity_utilization")
 
             # 耐久財受注
             durable_releases = check_results.get("durable_goods") or []
+            durable_last = check_results.get("durable_goods_last")
+            durable_stale = False
             for release_dt in (durable_releases if isinstance(durable_releases, list) else [durable_releases]):
                 if is_stale(release_dt):
-                    stale.add("durable_goods")
+                    durable_stale = True
                     break
+            if not durable_stale and durable_last and last_updated_dt < durable_last <= now:
+                durable_stale = True
+            if durable_stale:
+                stale.add("durable_goods")
 
-            # 銀行貸し出し態度（SLOOS）
+            # 銀行貸し出し態度（SLOOS）（独自スケジュール、last_releaseなし）
             bank_releases = check_results.get("bank_lending") or []
             for release_dt in (bank_releases if isinstance(bank_releases, list) else [bank_releases]):
                 if is_stale(release_dt):
                     stale.add("bank_lending")
                     break
 
-            # NFCI
+            # NFCI（独自スケジュール、last_releaseなし）
             nfci_releases = check_results.get("nfci") or []
             for release_dt in (nfci_releases if isinstance(nfci_releases, list) else [nfci_releases]):
                 if is_stale(release_dt):
                     stale.add("nfci")
                     break
 
-            # FCI-G, GDPNow（日次）
+            # FCI-G, GDPNow（日次、last_releaseなし）
             fci_releases = check_results.get("fci_gdpnow") or []
             for release_dt in (fci_releases if isinstance(fci_releases, list) else [fci_releases]):
                 if is_stale(release_dt):
@@ -249,7 +277,7 @@ class USAEconomyLoader(BaseDashboardLoader):
                     stale.add("gdpnow")
                     break
 
-            # 日次指標（TSA, OpenTable, 航空便）
+            # 日次指標（TSA, OpenTable, 航空便、last_releaseなし）
             daily_releases = check_results.get("daily") or []
             for release_dt in (daily_releases if isinstance(daily_releases, list) else [daily_releases]):
                 if is_stale(release_dt):

@@ -109,10 +109,14 @@ class JapanPolicyLoader(BaseDashboardLoader):
             now = datetime.now(JST)
 
             # 日銀発表（政策金利）
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             boj_release = self._get_boj_release_datetime()
-            if boj_release and last_updated_dt < boj_release <= now:
+            boj_last = self._get_last_release_datetime_from_fmp(
+                "boj_policy_rate", indicator_name="BOJ", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, boj_release, boj_last):
                 stale.add("boj_policy_rate")
-                print(f"[stale] BOJ release detected: {boj_release.isoformat()}")
+                print(f"[stale] BOJ release detected")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")

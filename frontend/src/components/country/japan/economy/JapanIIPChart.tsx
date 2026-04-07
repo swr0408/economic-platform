@@ -239,7 +239,7 @@ export default function JapanIIPChart() {
 
   if (error) {
     return (
-      <ChartContainer title="鉱工業生産（Industrial Production）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="鉱工業生産（Industrial Production）" showPeriodSelector={false} showDataSource={false} handbookId="iip">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>
           {error}
         </div>
@@ -249,7 +249,7 @@ export default function JapanIIPChart() {
 
   if (!hasData) {
     return (
-      <ChartContainer title="鉱工業生産（Industrial Production）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="鉱工業生産（Industrial Production）" showPeriodSelector={false} showDataSource={false} handbookId="iip">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -262,7 +262,7 @@ export default function JapanIIPChart() {
         showPeriodSelector={false}
         dataSource="経済産業省"
         sourceUrl="https://www.meti.go.jp/statistics/tyo/iip/"
-        handbookId="industrial-production"
+        handbookId="iip"
       >
         {/* 最新値表示（統合ボックス） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

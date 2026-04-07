@@ -166,6 +166,7 @@ export default function JapanSPPIChart() {
         showDataSource={true}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/statistics/pi/cspi_release/index.htm"
+        handbookId="sppi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

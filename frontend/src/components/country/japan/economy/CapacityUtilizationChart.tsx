@@ -135,7 +135,7 @@ export default function CapacityUtilizationChart() {
 
   if (error) {
     return (
-      <ChartContainer title="稼働率指数（Capacity Utilization）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="稼働率指数（Capacity Utilization）" showPeriodSelector={false} showDataSource={false} handbookId="japan-capacity-utilization">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>
           {error}
         </div>
@@ -145,7 +145,7 @@ export default function CapacityUtilizationChart() {
 
   if (!hasData) {
     return (
-      <ChartContainer title="稼働率指数（Capacity Utilization）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="稼働率指数（Capacity Utilization）" showPeriodSelector={false} showDataSource={false} handbookId="japan-capacity-utilization">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -158,6 +158,7 @@ export default function CapacityUtilizationChart() {
         showPeriodSelector={false}
         dataSource="経済産業省"
         sourceUrl="https://www.meti.go.jp/statistics/tyo/iip/"
+        handbookId="japan-capacity-utilization"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

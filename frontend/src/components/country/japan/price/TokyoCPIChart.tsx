@@ -197,7 +197,7 @@ export default function TokyoCPIChart() {
   // エラー状態
   if (error) {
     return (
-      <ChartContainer title="東京都区部消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="東京都区部消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false} handbookId="tokyo-cpi">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
@@ -206,7 +206,7 @@ export default function TokyoCPIChart() {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="東京都区部消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="東京都区部消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false} handbookId="tokyo-cpi">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -237,6 +237,7 @@ export default function TokyoCPIChart() {
         showDataSource={true}
         dataSource="総務省統計局"
         sourceUrl="https://www.stat.go.jp/data/cpi/"
+        handbookId="tokyo-cpi"
       >
         {/* 最新値表示 */}
         <LatestValueBox

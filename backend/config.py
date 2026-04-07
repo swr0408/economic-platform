@@ -31,7 +31,11 @@ IMG_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif")
 ASSET_CATEGORIES: Dict[str, Dict] = {
     "interest_rates": {
         "name": "金利",
-        "symbols": ["US10Y", "US02Y", "US30Y"],
+        "symbols": [
+            "US10Y", 
+            "US02Y", 
+            "US30Y"
+            ],
     },
     "equities": {
         "name": "株式",

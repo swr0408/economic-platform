@@ -2519,14 +2519,21 @@
       "goods_services": -2052.0,
       "primary_income": 11894.0,
       "secondary_income": -2554.0
+    },
+    {
+      "date": "2026-01-01",
+      "current_account": 9416.0,
+      "goods_services": -13157.0,
+      "primary_income": 27466.0,
+      "secondary_income": -4893.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "current_account": 7288.0,
-    "goods_services": -2052.0,
-    "primary_income": 11894.0,
-    "secondary_income": -2554.0
+    "date": "2026-01-01",
+    "current_account": 9416.0,
+    "goods_services": -13157.0,
+    "primary_income": 27466.0,
+    "secondary_income": -4893.0
   },
   "metadata": {
     "source": "財務省国際収支統計",
@@ -2535,5 +2542,5 @@
     "unit": "100 Million Yen (億円)",
     "frequency": "Monthly"
   },
-  "last_updated": "2026-02-11T23:18:01.555878+09:00"
+  "last_updated": "2026-04-03T12:42:06.992697+09:00"
 }

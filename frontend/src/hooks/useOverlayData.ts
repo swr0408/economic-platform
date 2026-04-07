@@ -10,6 +10,61 @@ import { type DataPoint, getDateTimestamp } from '../utils/dataAlignment';
 // APIベースURL
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
+/**
+ * 月次データを四半期平均に変換し、前期比（QoQ%）または前年比（YoY%）を計算する共通ヘルパー
+ *
+ * qoq_pct: 月次指数 → 四半期平均 → (Q_t / Q_{t-1} - 1) × 100
+ * yoy_pct: 月次指数 → 四半期平均 → (Q_t / Q_{t-4} - 1) × 100
+ */
+function computeQuarterlyPctChange(
+  data: DataPoint[],
+  mode: 'qoq' | 'yoy',
+): DataPoint[] {
+  // 四半期キー (YYYY-Q1..Q4) でグルーピング
+  const qMap = new Map<string, { sum: number; count: number; lastDate: string }>();
+
+  for (const pt of data) {
+    if (pt.value === null || pt.value === undefined) continue;
+    const d = new Date(pt.date);
+    const y = d.getUTCFullYear();
+    const m = d.getUTCMonth(); // 0-11
+    const q = Math.floor(m / 3) + 1; // 1-4
+    const key = `${y}-Q${q}`;
+
+    const entry = qMap.get(key);
+    if (entry) {
+      entry.sum += pt.value;
+      entry.count += 1;
+      if (pt.date > entry.lastDate) entry.lastDate = pt.date;
+    } else {
+      qMap.set(key, { sum: pt.value, count: 1, lastDate: pt.date });
+    }
+  }
+
+  // 3ヵ月揃った四半期のみ採用し、平均を計算
+  const quarters: { key: string; avg: number; date: string }[] = [];
+  for (const [key, v] of qMap) {
+    if (v.count === 3) {
+      quarters.push({ key, avg: v.sum / v.count, date: v.lastDate });
+    }
+  }
+  quarters.sort((a, b) => a.key.localeCompare(b.key));
+
+  const lag = mode === 'qoq' ? 1 : 4;
+  const points: DataPoint[] = [];
+  for (let i = lag; i < quarters.length; i++) {
+    const cur = quarters[i].avg;
+    const prev = quarters[i - lag].avg;
+    if (prev !== 0) {
+      points.push({
+        date: quarters[i].date,
+        value: Math.round(((cur / prev) - 1) * 10000) / 100,
+      });
+    }
+  }
+  return points;
+}
+
 // OVERLAY_INDICATORSからマッピングを動的に生成
 function getIndicatorMapping(indicatorId: string): {
   endpoint: string;
@@ -69,6 +124,7 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/terms-of-trade',
     '/api/japan/price-di-spread',
     '/api/japan/price-pass-through-rate',
+    '/api/japan/economy-watcher/',
     // UK個別API（BOE Bank Rate、ONS GDP/GVA/Production、UK QT等）
     '/api/uk/boe-',
     '/api/uk/ons-',
@@ -141,6 +197,9 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/market/nasdaq100-valuation',
     '/api/market/nikkei225-valuation',
     '/api/market/topix-valuation',
+    '/api/market/nikkei-regression',
+    '/api/market/electronic-components-balance',
+    '/api/market/jpx-pcr',
     '/api/market/cftc-positioning',
     '/api/market/crack-spread',
     '/api/market/vix-term-structure',
@@ -921,7 +980,47 @@ async function fetchSingleIndicatorData(
   }
   // 個別API（nyfed, fed-h15等）の場合
   else if (mapping.isDirectApi) {
-    return extractDirectApiData(data, mapping.dataKey, mapping.valueField, mapping.nestedKey);
+    const points = extractDirectApiData(data, mapping.dataKey, mapping.valueField, mapping.nestedKey);
+    // derived変換を適用
+    if (mapping.derived && points.length > 0) {
+      if (mapping.derived.type === 'qoq_pct') {
+        return computeQuarterlyPctChange(points, 'qoq');
+      }
+      if (mapping.derived.type === 'yoy_pct') {
+        return computeQuarterlyPctChange(points, 'yoy');
+      }
+      if (mapping.derived.type === 'yoy') {
+        // (current - prev) / prev * 100 : period個前との前年比
+        const period = mapping.derived.period ?? 12;
+        const sorted = [...points].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+        const result: DataPoint[] = [];
+        for (let i = period; i < sorted.length; i++) {
+          const cur = sorted[i].value;
+          const prev = sorted[i - period].value;
+          if (cur !== null && prev !== null && prev !== 0) {
+            result.push({
+              date: sorted[i].date,
+              value: Math.round(((cur - prev) / prev) * 10000) / 100,
+            });
+          }
+        }
+        return result;
+      }
+      if (mapping.derived.type === 'diff') {
+        const period = mapping.derived.period ?? 1;
+        const sorted = [...points].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+        const result: DataPoint[] = [];
+        for (let i = period; i < sorted.length; i++) {
+          const cur = sorted[i].value;
+          const prev = sorted[i - period].value;
+          if (cur !== null && prev !== null) {
+            result.push({ date: sorted[i].date, value: cur - prev });
+          }
+        }
+        return result;
+      }
+    }
+    return points;
   }
   // 通常の指標データ（/dashboard形式）
   else {

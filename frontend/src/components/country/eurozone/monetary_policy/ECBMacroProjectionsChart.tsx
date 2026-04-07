@@ -266,6 +266,7 @@ export default function ECBMacroProjectionsChart({ data }: ECBMacroProjectionsCh
             showDataSource={true}
             dataSource="European Central Bank (ECB)"
             sourceUrl="https://www.ecb.europa.eu/press/projections/html/index.en.html"
+            handbookId="ecb-macro-projections"
           >
             <ZoomableChart
               data={annualChartData}

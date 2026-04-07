@@ -169,6 +169,7 @@ export default function JapanImportExportPriceChart() {
         showDataSource={true}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/statistics/pi/cgpi_release/index.htm"
+        handbookId="import-export-price"
       >
         {/* 最新値表示 */}
         <LatestValueBox

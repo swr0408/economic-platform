@@ -27,13 +27,20 @@
       "all_industries_forecast": 44.0,
       "large_manufacturing_current": 40.0,
       "large_manufacturing_forecast": 43.0
+    },
+    {
+      "date": "2026-03-31",
+      "all_industries_current": 47.0,
+      "all_industries_forecast": 52.0,
+      "large_manufacturing_current": 46.0,
+      "large_manufacturing_forecast": 52.0
     }
   ],
   "data_type": "purchase_price",
   "name": "仕入価格判断指数（DI）",
   "unit": "%ポイント",
-  "last_updated": "2026-03-26T14:03:29.992873",
-  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/all2512a.xlsx",
+  "last_updated": "2026-04-03T11:52:27.305614",
+  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2026/data/all2603a.xlsx",
   "cached": false,
   "source": "boj"
 }

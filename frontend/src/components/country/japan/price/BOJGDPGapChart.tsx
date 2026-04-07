@@ -155,7 +155,7 @@ export default function BOJGDPGapChart() {
   // エラー状態
   if (error) {
     return (
-      <ChartContainer title="GDPギャップ（日銀）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPギャップ（日銀）" showPeriodSelector={false} showDataSource={false} handbookId="gdp-gap">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
@@ -164,7 +164,7 @@ export default function BOJGDPGapChart() {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="GDPギャップ（日銀）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GDPギャップ（日銀）" showPeriodSelector={false} showDataSource={false} handbookId="gdp-gap">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -195,6 +195,7 @@ export default function BOJGDPGapChart() {
         showDataSource={true}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/research/research_data/gap/index.htm"
+        handbookId="gdp-gap"
       >
         {/* 最新値表示 */}
         <LatestValueBox

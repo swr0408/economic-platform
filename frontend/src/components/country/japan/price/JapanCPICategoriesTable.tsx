@@ -178,6 +178,7 @@ export default function JapanCPICategoriesCard() {
         showDataSource={true}
         dataSource="総務省統計局"
         sourceUrl="https://www.stat.go.jp/data/cpi/"
+        handbookId="cpi-categories"
       >
         {/* 次回発表日 */}
         {response?.next_release && (

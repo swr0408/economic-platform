@@ -111,10 +111,14 @@ class EurozonePolicyLoader(BaseDashboardLoader):
             now = datetime.now(JST)
 
             # ECB発表（政策金利）
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             ecb_release = self._get_ecb_release_datetime()
-            if ecb_release and last_updated_dt < ecb_release <= now:
+            ecb_last = self._get_last_release_datetime_from_fmp(
+                "eu_ecb_rate", indicator_name="ECB", country="eurozone"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, ecb_release, ecb_last):
                 stale.add("ecb_rates")
-                print(f"[stale] ECB release detected: {ecb_release.isoformat()}")
+                print(f"[stale] ECB release detected")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")

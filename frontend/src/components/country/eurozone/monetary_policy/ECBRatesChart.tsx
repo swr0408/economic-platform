@@ -96,6 +96,7 @@ export default function ECBRatesChart({ data }: ECBRatesChartProps) {
         showPeriodSelector={false}
         dataSource="European Central Bank"
         sourceUrl="https://www.ecb.europa.eu/press/press_conference/html/index.en.html"
+        handbookId="ecb-rates"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

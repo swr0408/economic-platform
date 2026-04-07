@@ -12,6 +12,7 @@ import { shiftDataByMonths, getDateTimestamp, parseDate, type MergedDataPoint } 
 import type { IndicatorFrequency } from '../../constants/overlayConfig';
 import { transformToIndex100 } from '../../utils/transforms';
 import { filterDataByRange, type RangeType } from '../../hooks/useCompareState';
+import { formatQuarterLabel } from '../../utils/dateFormatters';
 
 // テーマカラー
 const DARK_THEME = {
@@ -40,11 +41,11 @@ export default function CompareChart({
   timeShifts,
 }: CompareChartProps) {
   // データマージ
-  const { mergedData, additionalLines, rightYAxes } = useMemo(() => {
+  const { mergedData, useQuarterKey, additionalLines, rightYAxes } = useMemo(() => {
     if (indicators.length === 0 || Object.keys(dataMap).length === 0) {
       return {
         mergedData: [] as MergedDataPoint[],
-        baseFrequency: 'monthly' as const,
+        useQuarterKey: false,
         additionalLines: [],
         rightYAxes: undefined,
       };
@@ -56,12 +57,25 @@ export default function CompareChart({
     };
 
     // 各指標のデータをタイムシフト適用済みで準備（ソート済み）
+    // 全日付をYYYY-MM-DD形式に正規化（YYYY-Q# → YYYY-MM-DD 変換含む）
+    const normalizeDateStr = (dateStr: string): string => {
+      const d = parseDate(dateStr);
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
+      const dd = String(d.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    };
     const shiftedSorted: Record<string, { date: string; value: number | null }[]> = {};
     for (const indicator of indicators) {
       const shift = timeShifts[indicator.id] || 0;
       const raw = dataMap[indicator.id] || [];
       const shifted = shift !== 0 ? shiftDataByMonths(raw, shift) : raw;
-      shiftedSorted[indicator.id] = [...shifted].sort(
+      // 四半期形式(YYYY-Q#)等を常にYYYY-MM-DD形式に正規化
+      const normalized = shifted.map(pt => ({
+        ...pt,
+        date: normalizeDateStr(pt.date),
+      }));
+      shiftedSorted[indicator.id] = normalized.sort(
         (a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date)
       );
     }
@@ -99,16 +113,30 @@ export default function CompareChart({
       }
       unionDates = [...quarterDateMap.values()].sort();
     } else if (useMonthKey) {
-      const monthDateMap = new Map<string, string>();
+      // 全指標の最小・最大日付を求め、連続した月次タイムラインを生成
+      let minDate = '';
+      let maxDate = '';
       for (const indicator of indicators) {
         for (const pt of shiftedSorted[indicator.id]) {
-          const mk = pt.date.slice(0, 7);
-          if (!monthDateMap.has(mk) || pt.date > monthDateMap.get(mk)!) {
-            monthDateMap.set(mk, pt.date);
-          }
+          if (!minDate || pt.date < minDate) minDate = pt.date;
+          if (!maxDate || pt.date > maxDate) maxDate = pt.date;
         }
       }
-      unionDates = [...monthDateMap.values()].sort();
+      if (minDate && maxDate) {
+        const d = parseDate(minDate);
+        d.setDate(1);
+        const end = parseDate(maxDate);
+        const dates: string[] = [];
+        while (d <= end) {
+          const yyyy = d.getFullYear();
+          const mm = String(d.getMonth() + 1).padStart(2, '0');
+          dates.push(`${yyyy}-${mm}-01`);
+          d.setMonth(d.getMonth() + 1);
+        }
+        unionDates = dates;
+      } else {
+        unionDates = [];
+      }
     } else {
       // 日次/週次: まずfinest指標の日付でベースを構築
       const dateSet = new Set<string>();
@@ -288,6 +316,7 @@ export default function CompareChart({
 
     return {
       mergedData: renamedData,
+      useQuarterKey,
       additionalLines: lines,
       rightYAxes: axes.length > 0 ? axes : undefined,
     };
@@ -391,9 +420,14 @@ export default function CompareChart({
         color={getOverlayColor(0)}
         name={indicators[0]?.name || ''}
         domain={['auto', 'auto']}
+        xAxisTickFormatter={useQuarterKey ? formatQuarterLabel : undefined}
         tooltipLabelFormatter={(dateStr) => {
           const d = parseDate(dateStr);
           if (isNaN(d.getTime())) return dateStr;
+          if (useQuarterKey) {
+            const q = Math.floor(d.getMonth() / 3) + 1;
+            return `${d.getFullYear()}-Q${q}`;
+          }
           return `${d.getFullYear()}/${(d.getMonth() + 1).toString().padStart(2, '0')}/${d.getDate().toString().padStart(2, '0')}`;
         }}
         tickFormatter={(v) => {

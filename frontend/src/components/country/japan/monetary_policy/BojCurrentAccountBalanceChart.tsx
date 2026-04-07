@@ -77,7 +77,7 @@ export default function BojCurrentAccountBalanceChart({ data }: Props) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="日銀当座預金残高" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="日銀当座預金残高" showPeriodSelector={false} showDataSource={false} handbookId="boj-current-account-balance">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -90,6 +90,7 @@ export default function BojCurrentAccountBalanceChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="日本銀行"
         sourceUrl="https://www.boj.or.jp/statistics/boj/other/cabs/index.htm"
+        handbookId="boj-current-account-balance"
       >
         <SimpleLatestValueBox
           label="当座預金残高（末残・合計）"

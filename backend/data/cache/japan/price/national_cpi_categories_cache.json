@@ -146,12 +146,12 @@
     ]
   },
   "next_release": {
-    "date": "2026-03-30",
-    "datetime_utc": "2026-03-30T23:30:00+00:00",
-    "datetime_jst": "2026-03-31T08:30:00+09:00",
+    "date": "2026-04-24",
+    "datetime_utc": "2026-04-24T23:30:00+00:00",
+    "datetime_jst": "2026-04-25T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "Core CPI YoY (Mar)",
-    "estimate": 2
+    "label": "CPI YoY (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-03-26T23:03:11.065144+09:00"
+  "last_updated": "2026-04-03T20:52:16.870023+09:00"
 }

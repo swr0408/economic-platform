@@ -281,8 +281,10 @@ class USAConsumerLoader(BaseDashboardLoader):
             stale = set()
             check_results = {}
 
-            with ThreadPoolExecutor(max_workers=10) as executor:
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも並列取得する
+            with ThreadPoolExecutor(max_workers=20) as executor:
                 futures = {
+                    # next_release
                     executor.submit(self._get_retail_sales_release_datetime): "retail",
                     executor.submit(self._get_carts_release_datetime): "carts",
                     executor.submit(self._get_visa_spending_release_datetime): "visa_spending",
@@ -293,6 +295,16 @@ class USAConsumerLoader(BaseDashboardLoader):
                     executor.submit(self._get_cb_consumer_confidence_release_datetime): "cb_consumer_confidence",
                     executor.submit(self._get_michigan_consumer_sentiment_release_datetime): "michigan_consumer_sentiment",
                     executor.submit(self._get_personal_saving_rate_release_datetime): "bea_personal_income",
+                    # last_release（FMPから直近の過去発表を取得）
+                    executor.submit(self._get_last_release_datetime_from_fmp, "retail_sales_mom", 8, 30, "Retail Sales"): "retail_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "visa_spending", 8, 30, "Visa Spending"): "visa_spending_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "total_vehicle_sales", 8, 30, "Vehicle Sales"): "total_vehicle_sales_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "redbook", 8, 55, "Redbook"): "redbook_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "consumer_credit", 16, 15, "Consumer Credit"): "consumer_credit_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "delinquency_rate", 10, 0, "Delinquency Rate"): "delinquency_rate_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "cb_consumer_confidence", 10, 0, "CB Consumer Confidence"): "cb_consumer_confidence_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "michigan_consumer_sentiment", 10, 0, "Michigan"): "michigan_consumer_sentiment_last",
+                    executor.submit(self._get_last_release_datetime_from_fmp, "personal_saving_rate", 8, 30, "Personal Saving Rate"): "bea_personal_income_last",
                 }
 
                 for future in as_completed(futures):
@@ -302,50 +314,46 @@ class USAConsumerLoader(BaseDashboardLoader):
                     except Exception:
                         check_results[key] = None
 
-            # 結果を判定
-            def is_stale(release_dt):
-                return release_dt and last_updated_dt < release_dt <= now
-
             # 小売売上高・コントロールグループ（同時発表）
-            if is_stale(check_results.get("retail")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("retail"), check_results.get("retail_last")):
                 stale.add("retail_sales")
                 stale.add("retail_control")
 
-            # CARTS
-            if is_stale(check_results.get("carts")):
+            # CARTS（カスタム計算のためlast_releaseなし）
+            if check_results.get("carts") and last_updated_dt < check_results["carts"] <= now:
                 stale.add("carts")
 
             # Visa支出
-            if is_stale(check_results.get("visa_spending")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("visa_spending"), check_results.get("visa_spending_last")):
                 stale.add("visa_spending")
 
             # 自動車販売台数
-            if is_stale(check_results.get("total_vehicle_sales")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("total_vehicle_sales"), check_results.get("total_vehicle_sales_last")):
                 stale.add("total_vehicle_sales")
 
             # Redbook
-            if is_stale(check_results.get("redbook")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("redbook"), check_results.get("redbook_last")):
                 stale.add("redbook")
 
             # クレジットカードローン残高
-            if is_stale(check_results.get("consumer_credit")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("consumer_credit"), check_results.get("consumer_credit_last")):
                 stale.add("consumer_credit")
 
             # クレジットカードローン延滞率
-            if is_stale(check_results.get("delinquency_rate")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("delinquency_rate"), check_results.get("delinquency_rate_last")):
                 stale.add("delinquency_rate")
 
             # CB消費者信頼感
-            if is_stale(check_results.get("cb_consumer_confidence")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("cb_consumer_confidence"), check_results.get("cb_consumer_confidence_last")):
                 stale.add("cb_consumer_confidence")
                 stale.add("cb_jobs_labor")  # 同時発表
 
             # ミシガン消費者信頼感
-            if is_stale(check_results.get("michigan_consumer_sentiment")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("michigan_consumer_sentiment"), check_results.get("michigan_consumer_sentiment_last")):
                 stale.add("michigan_consumer_sentiment")
 
             # 家計貯蓄率/個人所得/可処分所得/個人消費支出（毎月月末、同時発表）
-            if is_stale(check_results.get("bea_personal_income")):
+            if self._is_stale_by_release(last_updated_dt, now, check_results.get("bea_personal_income"), check_results.get("bea_personal_income_last")):
                 stale.add("personal_saving_rate")
                 stale.add("personal_income")
                 stale.add("disposable_income")

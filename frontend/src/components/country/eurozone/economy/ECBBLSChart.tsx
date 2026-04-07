@@ -253,6 +253,7 @@ export default function ECBBLSChart({ data }: ECBBLSChartProps) {
         showPeriodSelector={false}
         dataSource="European Central Bank (ECB)"
         sourceUrl="https://www.ecb.europa.eu/stats/ecb_surveys/bank_lending_survey/html/index.en.html"
+        handbookId="ecb-bls"
       >
         {/* 最新値表示 */}
         {latestData && (

@@ -167,6 +167,7 @@ export default function EurostatWagesChart({ data }: EurostatWagesChartProps) {
         title="賃金上昇率（ユーロ圏・前年比）"
         showPeriodSelector={false}
         dataSource="Eurostat"
+        handbookId="eurostat-wages"
         sourceUrl="https://ec.europa.eu/eurostat/en/web/main/news/euro-indicators?p_p_id=estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageNumber=1&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_action=search&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_pageSize=11&_estatsearchportlet_WAR_estatsearchportlet_INSTANCE_OaTpFrwlabNK_collection=CAT_PREREL&p_auth=ElGw9c6n&text=labour+costs"
       >
         {/* 最新値表示 */}

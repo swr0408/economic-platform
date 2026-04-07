@@ -1092,8 +1092,8 @@
     "datetime_utc": "2026-04-06T14:00:00+00:00",
     "datetime_jst": "2026-04-06T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Non-Manufacturing Business Activity (Mar)",
-    "estimate": null
+    "label": "ISM Non-Manufacturing PMI (Mar)",
+    "estimate": 54.8
   },
-  "last_updated": "2026-04-03T11:10:20.462410+09:00"
+  "last_updated": "2026-04-06T23:02:34.970929+09:00"
 }

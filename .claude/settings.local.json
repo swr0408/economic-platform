@@ -433,7 +433,15 @@
       "WebFetch(domain:libertystreeteconomics.newyorkfed.org)",
       "Bash(do echo \"=== $ep ===\")",
       "WebFetch(domain:www.advisorperspectives.com)",
-      "WebFetch(domain:neilsethi.substack.com)"
+      "WebFetch(domain:neilsethi.substack.com)",
+      "Bash(stat /c/Users/owner/Desktop/economic-platform/backend/data/cache/boj_tankan/*.json)",
+      "Bash(if grep -q \"_get_.*_release_datetime\" \"$file\")",
+      "Bash(then)",
+      "Bash(if grep -q 'next_release' \"$file\")",
+      "Bash(du -sh /c/Users/owner/Desktop/economic-platform/backend/data/*)",
+      "Read(//c/Users/owner/Desktop/economic-platform/**)",
+      "Read(//tmp/**)",
+      "Bash(du -sh backend/data/ backend/data/*/)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

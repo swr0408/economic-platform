@@ -1,24 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-05-01",
-      "sofr": 5.32,
-      "sofr_change": -2.0,
-      "volatility_20d": 0.8584
-    },
-    {
-      "date": "2024-05-02",
-      "sofr": 5.31,
-      "sofr_change": -1.0,
-      "volatility_20d": 0.887
-    },
-    {
-      "date": "2024-05-03",
-      "sofr": 5.31,
-      "sofr_change": 0.0,
-      "volatility_20d": 0.887
-    },
-    {
       "date": "2024-05-06",
       "sofr": 5.31,
       "sofr_change": 0.0,
@@ -2867,13 +2849,19 @@
       "sofr": 3.65,
       "sofr_change": -3.0,
       "volatility_20d": 2.3373
+    },
+    {
+      "date": "2026-04-02",
+      "sofr": 3.66,
+      "sofr_change": 1.0,
+      "volatility_20d": 2.3396
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "sofr": 3.65,
-    "sofr_change": -3.0,
-    "volatility_20d": 2.3373
+    "date": "2026-04-02",
+    "sofr": 3.66,
+    "sofr_change": 1.0,
+    "volatility_20d": 2.3396
   },
   "metadata": {
     "source": "NY Fed Markets API",
@@ -2882,5 +2870,5 @@
     "description": "SOFR 20日ローリングボラティリティ（日次変化の標準偏差）",
     "release_time": "08:00 ET（毎営業日）"
   },
-  "last_updated": "2026-04-03T00:00:58.356090"
+  "last_updated": "2026-04-06T23:02:15.862981"
 }

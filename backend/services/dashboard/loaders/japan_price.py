@@ -113,16 +113,24 @@ class JapanPriceLoader(BaseDashboardLoader):
             now = datetime.now(JST)
 
             # 全国CPI発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             national_release = self._get_national_cpi_release_datetime()
-            if national_release and last_updated_dt < national_release <= now:
+            national_last = self._get_last_release_datetime_from_fmp(
+                "jp_national_cpi", indicator_name="National CPI", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, national_release, national_last):
                 stale.add("national_cpi")
-                print(f"[stale] National CPI release detected: {national_release.isoformat()}")
+                print(f"[stale] National CPI release detected")
 
             # 東京CPI発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             tokyo_release = self._get_tokyo_cpi_release_datetime()
-            if tokyo_release and last_updated_dt < tokyo_release <= now:
+            tokyo_last = self._get_last_release_datetime_from_fmp(
+                "jp_tokyo_cpi", indicator_name="Tokyo CPI", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, tokyo_release, tokyo_last):
                 stale.add("tokyo_cpi")
-                print(f"[stale] Tokyo CPI release detected: {tokyo_release.isoformat()}")
+                print(f"[stale] Tokyo CPI release detected")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")

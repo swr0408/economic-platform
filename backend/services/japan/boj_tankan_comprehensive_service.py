@@ -7,7 +7,7 @@ Fetches comprehensive Tankan survey data from Bank of Japan:
 4. Purchase Price (仕入価格) - from all{YY}{QQ}a.xlsx
 5. Selling Price (販売価格) - from all{YY}{QQ}a.xlsx
 
-Source: https://www.boj.or.jp/statistics/tk/zenyo/2021/data/
+Source: https://www.boj.or.jp/statistics/tk/zenyo/{year}/data/
 Updated: 4th, 7th, 10th, 12th month of each quarter
 """
 
@@ -35,8 +35,8 @@ class BOJTankanComprehensiveService:
     CACHE_KEY_PREFIX = "japan:boj_tankan_comprehensive"
     CACHE_TTL = 60 * 60 * 24 * 7  # 7 days (quarterly data)
 
-    # BOJ Excel URL patterns
-    BASE_URL = "https://www.boj.or.jp/statistics/tk/zenyo/2021/data/"
+    # BOJ Excel URL patterns - year-based path (e.g., /2026/data/ for 2026)
+    BASE_URL_TEMPLATE = "https://www.boj.or.jp/statistics/tk/zenyo/{year}/data/"
 
     # Data configurations for each data type
     # Based on old environment configuration
@@ -163,9 +163,14 @@ class BOJTankanComprehensiveService:
         return False
 
     def _get_excel_url(self, url_type: str) -> str:
-        """Get URL for the latest Tankan Excel file"""
+        """Get URL for the latest Tankan Excel file
+
+        BOJ URL pattern: /statistics/tk/zenyo/{full_year}/data/all{YY}{QQ}{type}.xlsx
+        e.g. /statistics/tk/zenyo/2026/data/all2603c.xlsx for Q1 2026 capital_investment
+        """
         now = datetime.now()
-        year = now.year % 100  # Get last 2 digits
+        full_year = now.year
+        year = full_year % 100  # Get last 2 digits
 
         # Determine the most recent quarter based on release schedule
         current_month = now.month
@@ -180,11 +185,13 @@ class BOJTankanComprehensiveService:
             quarter = 3
         else:
             # If before April, use previous year's Q4
-            year = (now.year - 1) % 100
+            full_year -= 1
+            year = full_year % 100
             quarter = 12
 
         # Try current quarter first, then previous quarters
         for q_offset in range(8):
+            try_full_year = full_year
             try_year = year
             try_quarter = quarter
 
@@ -193,9 +200,11 @@ class BOJTankanComprehensiveService:
                 try_quarter -= 3
                 if try_quarter <= 0:
                     try_quarter += 12
-                    try_year -= 1
+                    try_full_year -= 1
+                    try_year = try_full_year % 100
 
-            url = f"{self.BASE_URL}all{try_year:02d}{try_quarter:02d}{url_type}.xlsx"
+            base_url = self.BASE_URL_TEMPLATE.format(year=try_full_year)
+            url = f"{base_url}all{try_year:02d}{try_quarter:02d}{url_type}.xlsx"
 
             try:
                 response = requests.head(url, timeout=5)
@@ -205,7 +214,7 @@ class BOJTankanComprehensiveService:
                 continue
 
         # Fallback
-        return f"{self.BASE_URL}all2412{url_type}.xlsx"
+        return self.BASE_URL_TEMPLATE.format(year=2024) + f"all2412{url_type}.xlsx"
 
     def _col_to_index(self, col_letter: str) -> int:
         """Convert column letter(s) to index (A=1, B=2, ..., AA=27, etc.)"""

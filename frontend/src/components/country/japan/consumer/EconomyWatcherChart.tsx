@@ -215,7 +215,7 @@ export default function EconomyWatcherChart() {
 
   if (error) {
     return (
-      <ChartContainer title="景気ウォッチャー調査" showDataSource={false} showPeriodSelector={false}>
+      <ChartContainer title="景気ウォッチャー調査" showDataSource={false} showPeriodSelector={false} handbookId="economy-watcher">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
@@ -226,7 +226,7 @@ export default function EconomyWatcherChart() {
 
   if (!hasData) {
     return (
-      <ChartContainer title="景気ウォッチャー調査" showDataSource={false} showPeriodSelector={false}>
+      <ChartContainer title="景気ウォッチャー調査" showDataSource={false} showPeriodSelector={false} handbookId="economy-watcher">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
           データが利用できません
         </div>
@@ -245,6 +245,7 @@ export default function EconomyWatcherChart() {
         showDataSource={true}
         dataSource="内閣府"
         sourceUrl="https://www5.cao.go.jp/keizai3/watcher/watcher_menu.html"
+        handbookId="economy-watcher"
       >
         {/* データタイプ切り替えタブ */}
         <Tabs

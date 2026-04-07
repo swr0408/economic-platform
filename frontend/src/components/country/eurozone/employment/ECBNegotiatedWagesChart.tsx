@@ -163,6 +163,7 @@ export default function ECBNegotiatedWagesChart({ data }: ECBNegotiatedWagesChar
         title="交渉妥結賃金（ユーロ圏・前年比）"
         showPeriodSelector={false}
         dataSource="European Central Bank (ECB)"
+        handbookId="ecb-negotiated-wages"
         sourceUrl="https://data.ecb.europa.eu/data/datasets/STS/STS.Q.I9.N.INWR.000000.3.ANR"
       >
         {/* 最新値表示 */}

@@ -158,22 +158,34 @@ class JapanEmploymentLoader(BaseDashboardLoader):
             now = datetime.now(JST)
 
             # 所定内給与発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             scheduled_wage_release = self._get_scheduled_wage_release_datetime()
-            if scheduled_wage_release and last_updated_dt < scheduled_wage_release <= now:
+            scheduled_wage_last = self._get_last_release_datetime_from_fmp(
+                "jp_average_cash_earnings_yoy", indicator_name="Scheduled Wage", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, scheduled_wage_release, scheduled_wage_last):
                 stale.add("scheduled_wage")
-                print(f"[stale] Scheduled wage release detected: {scheduled_wage_release.isoformat()}")
+                print(f"[stale] Scheduled wage release detected")
 
             # 失業率発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             unemployment_release = self._get_unemployment_release_datetime()
-            if unemployment_release and last_updated_dt < unemployment_release <= now:
+            unemployment_last = self._get_last_release_datetime_from_fmp(
+                "jp_unemployment_rate", indicator_name="Unemployment", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, unemployment_release, unemployment_last):
                 stale.add("unemployment")
-                print(f"[stale] Unemployment release detected: {unemployment_release.isoformat()}")
+                print(f"[stale] Unemployment release detected")
 
             # 有効求人倍率発表
+            # next_releaseは発表直後に次回日付へ切り替わるため、last_releaseも確認する
             job_offers_ratio_release = self._get_job_offers_ratio_release_datetime()
-            if job_offers_ratio_release and last_updated_dt < job_offers_ratio_release <= now:
+            job_offers_ratio_last = self._get_last_release_datetime_from_fmp(
+                "jp_job_offers_ratio", indicator_name="Job Offers Ratio", country="japan"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, job_offers_ratio_release, job_offers_ratio_last):
                 stale.add("job_offers_ratio")
-                print(f"[stale] Job offers ratio release detected: {job_offers_ratio_release.isoformat()}")
+                print(f"[stale] Job offers ratio release detected")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")

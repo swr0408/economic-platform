@@ -159,6 +159,7 @@ export default function JapanPosUvpiChart() {
         showDataSource={true}
         dataSource="一橋大学経済研究所"
         sourceUrl="https://risk.ier.hit-u.ac.jp/Japanese/nei/posuvpi.html"
+        handbookId="pos-uvpi"
       >
         {/* 最新値表示 */}
         <LatestValueBox
