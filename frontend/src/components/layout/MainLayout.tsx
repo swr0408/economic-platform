@@ -1,5 +1,5 @@
 import { useMemo, useState, useCallback, useEffect, useRef } from 'react'
-import { Layout, Menu, Space } from 'antd'
+import { Layout, Menu, Space, Button, Tag, Dropdown, type MenuProps } from 'antd'
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom'
 import {
   HomeOutlined,
@@ -12,6 +12,11 @@ import {
   CalendarOutlined,
   BookOutlined,
   SoundOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  LoginOutlined,
+  LockOutlined,
+  TeamOutlined,
 } from '@ant-design/icons'
 import SidebarNavigation from './SidebarNavigation'
 import MarketSidebarNavigation from './MarketSidebarNavigation'
@@ -19,6 +24,19 @@ import EarningsSidebarNavigation from './EarningsSidebarNavigation'
 import HandbookSidebarNavigation from './HandbookSidebarNavigation'
 import HandbookDrawer from '../common/HandbookDrawer'
 import { useHandbook } from '../../contexts/HandbookContext'
+import { useAuth, type UserRole } from '../../contexts/AuthContext'
+
+const ROLE_COLORS: Record<UserRole, string> = {
+  master: 'gold',
+  special: 'geekblue',
+  general: 'default',
+}
+
+const ROLE_LABELS: Record<UserRole, string> = {
+  master: 'MASTER',
+  special: 'SPECIAL',
+  general: 'GENERAL',
+}
 
 const { Header, Content, Sider } = Layout
 
@@ -44,7 +62,37 @@ function MainLayout() {
   const navigate = useNavigate()
   const location = useLocation()
   const { activeHandbookId, closeHandbook } = useHandbook()
+  const { user, logout } = useAuth()
   const [collapsed, setCollapsed] = useState(false)
+
+  const userMenuItems: MenuProps['items'] = [
+    {
+      key: 'change-password',
+      icon: <LockOutlined />,
+      label: 'パスワード変更',
+      onClick: () => navigate('/account/password'),
+    },
+    ...(user?.role === 'master'
+      ? [
+          {
+            key: 'admin-users',
+            icon: <TeamOutlined />,
+            label: 'ユーザー管理',
+            onClick: () => navigate('/admin/users'),
+          } as const,
+          { type: 'divider' as const },
+        ]
+      : []),
+    {
+      key: 'logout',
+      icon: <LogoutOutlined />,
+      label: 'ログアウト',
+      onClick: async () => {
+        await logout()
+        navigate('/login')
+      },
+    },
+  ]
 
   // サイドバー幅をlocalStorageから復元、なければデフォルト
   const [sidebarWidth, setSidebarWidth] = useState(() => {
@@ -240,6 +288,29 @@ function MainLayout() {
             borderBottom: 'none',
           }}
         />
+        {/* 認証ステータス */}
+        <div style={{ display: 'flex', alignItems: 'center', marginLeft: 16 }}>
+          {user ? (
+            <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+              <Space size={8} style={{ cursor: 'pointer', color: colors.textPrimary }}>
+                <UserOutlined />
+                <span style={{ fontSize: 13 }}>{user.username}</span>
+                <Tag color={ROLE_COLORS[user.role]} style={{ marginRight: 0, fontSize: 10 }}>
+                  {ROLE_LABELS[user.role]}
+                </Tag>
+              </Space>
+            </Dropdown>
+          ) : (
+            <Button
+              type="text"
+              icon={<LoginOutlined />}
+              onClick={() => navigate('/login')}
+              style={{ color: colors.textPrimary }}
+            >
+              ログイン
+            </Button>
+          )}
+        </div>
       </Header>
       <Layout style={{ marginTop: 64 }}>
         {showSidebar && (

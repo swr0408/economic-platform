@@ -64,7 +64,8 @@ RUN pip install --no-cache-dir \
     selenium \
     webdriver-manager \
     deep-translator \
-    discord.py
+    discord.py \
+    PyJWT
 
 # Playwrightブラウザをインストール（ChromiumとFirefox）
 RUN playwright install chromium firefox

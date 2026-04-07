@@ -130,6 +130,8 @@ try:
     from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
     from backend.routers.headlines import router as headlines_router
+    from backend.routers.auth import router as auth_router
+    from backend.core.auth.schema_init import init_auth_schema
     from backend.services.discord.discord_news_listener import discord_news_listener
     from backend.scheduler.headlines_rss_scheduler import headlines_rss_scheduler
     from backend.services.headlines.translation_worker import translation_worker
@@ -325,6 +327,8 @@ except ImportError as _ie:
     from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from scheduler.comex_stock_scheduler import comex_stock_scheduler
     from routers.headlines import router as headlines_router
+    from routers.auth import router as auth_router
+    from core.auth.schema_init import init_auth_schema
     from services.discord.discord_news_listener import discord_news_listener
     from scheduler.headlines_rss_scheduler import headlines_rss_scheduler
     from services.headlines.translation_worker import translation_worker
@@ -532,6 +536,7 @@ app.include_router(global_container_freight_index_router)
 app.include_router(global_usd_fundamental_index_router)
 app.include_router(global_oecd_cli_router)
 app.include_router(headlines_router)
+app.include_router(auth_router)
 
 
 @app.get("/health")
@@ -564,6 +569,12 @@ async def scheduler_status():
 @app.on_event("startup")
 async def startup_event():
     """起動時の処理"""
+    # 認証用スキーマ初期化 (users テーブル作成 + 初期 master seed)
+    try:
+        init_auth_schema()
+    except Exception as e:
+        print(f"[startup] init_auth_schema failed: {e}")
+
     print(f"SEASONALITY_DIR: {SEASONALITY_DIR}")
     print(f"SEASONALITY_DIR exists: {SEASONALITY_DIR.exists()}")
 

@@ -2,11 +2,13 @@
 ヘッドライン API エンドポイント
 """
 
-from fastapi import APIRouter, Query, HTTPException
+from fastapi import APIRouter, Depends, Query, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 
 try:
+    from backend.core.auth.dependencies import require_role
+    from backend.core.auth.models import ROLE_MASTER
     from backend.services.headlines.headlines_service import (
         get_headlines, get_headline_by_id, save_headline, unsave_headline,
         get_categories, create_category, update_category, delete_category,
@@ -16,6 +18,8 @@ try:
     from backend.services.discord.discord_news_listener import discord_news_listener
     from backend.scheduler.headlines_rss_scheduler import headlines_rss_scheduler
 except ImportError:
+    from core.auth.dependencies import require_role
+    from core.auth.models import ROLE_MASTER
     from services.headlines.headlines_service import (
         get_headlines, get_headline_by_id, save_headline, unsave_headline,
         get_categories, create_category, update_category, delete_category,
@@ -24,6 +28,9 @@ except ImportError:
     from services.headlines.translation_worker import translation_worker
     from services.discord.discord_news_listener import discord_news_listener
     from scheduler.headlines_rss_scheduler import headlines_rss_scheduler
+
+# master ロール要求の依存オブジェクト (ファクトリを一度呼んで使い回す)
+_require_master = require_role(ROLE_MASTER)
 
 router = APIRouter(prefix="/api", tags=["Headlines"])
 
@@ -145,29 +152,32 @@ def api_delete_category(category_id: int):
     return {"success": True}
 
 
-# ========== Admin ==========
+# ========== Admin (master ロール限定) ==========
 
 @router.post("/admin/rss-backfill/run")
-def api_rss_run():
-    """RSS手動実行"""
+def api_rss_run(_master=Depends(_require_master)):
+    """RSS手動実行 (master 限定)"""
     return headlines_rss_scheduler.run_now()
 
 
 @router.get("/admin/rss-backfill/logs")
-def api_rss_logs(limit: int = Query(20, ge=1, le=100)):
-    """RSS取得ログ"""
+def api_rss_logs(
+    limit: int = Query(20, ge=1, le=100),
+    _master=Depends(_require_master),
+):
+    """RSS取得ログ (master 限定)"""
     return headlines_rss_scheduler.get_logs(limit)
 
 
 @router.get("/admin/discord/status")
-def api_discord_status():
-    """Discord接続状態"""
+def api_discord_status(_master=Depends(_require_master)):
+    """Discord接続状態 (master 限定)"""
     return discord_news_listener.get_status()
 
 
 @router.get("/admin/status")
-def api_admin_status():
-    """全体ステータス"""
+def api_admin_status(_master=Depends(_require_master)):
+    """全体ステータス (master 限定)"""
     return {
         "discord": discord_news_listener.get_status(),
         "rss": headlines_rss_scheduler.get_status(),
@@ -176,6 +186,6 @@ def api_admin_status():
 
 
 @router.post("/admin/seed-categories")
-def api_seed_categories():
-    """各国カテゴリの初期データ投入"""
+def api_seed_categories(_master=Depends(_require_master)):
+    """各国カテゴリの初期データ投入 (master 限定)"""
     return seed_country_categories()
