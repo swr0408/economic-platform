@@ -20,6 +20,7 @@ import {
   searchIndicators,
   type OverlayIndicator,
 } from '../../constants/overlayConfig';
+import { useBlockedIndicatorCodes } from '../../hooks/useVisibleIndicators';
 
 const { Text } = Typography;
 const { TabPane } = Tabs;
@@ -156,23 +157,47 @@ export function ComparePopover({
   const [activeTopTab, setActiveTopTab] = useState<string>('usa');
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
+  // 可視性フィルタ (special/master しか見られない指標は候補から除外)
+  const blockedCodes = useBlockedIndicatorCodes();
+  const filterByVisibility = useMemo(
+    () => (items: OverlayIndicator[]) =>
+      blockedCodes.size === 0 ? items : items.filter((it) => !blockedCodes.has(it.id)),
+    [blockedCodes]
+  );
+
   // 検索結果
   const filteredIndicators = useMemo(() => {
     if (!searchQuery.trim()) {
       return null;
     }
-    return searchIndicators(searchQuery);
-  }, [searchQuery]);
+    return filterByVisibility(searchIndicators(searchQuery));
+  }, [searchQuery, filterByVisibility]);
 
-  // 経済指標を国別にグループ化（市場データを除く）
-  const indicatorsByCountry = useMemo(() => getEconomicIndicatorsByCountry(), []);
+  // 経済指標を国別にグループ化（市場データを除く）+ 可視性フィルタ
+  const indicatorsByCountry = useMemo(() => {
+    const raw = getEconomicIndicatorsByCountry();
+    if (blockedCodes.size === 0) return raw;
+    const out: typeof raw = {} as typeof raw;
+    for (const [country, indicators] of Object.entries(raw)) {
+      (out as any)[country] = (indicators as OverlayIndicator[]).filter((it) => !blockedCodes.has(it.id));
+    }
+    return out;
+  }, [blockedCodes]);
   const countryEntries = useMemo(
-    () => Object.entries(indicatorsByCountry).filter(([, indicators]) => indicators.length > 0),
+    () => Object.entries(indicatorsByCountry).filter(([, indicators]) => (indicators as OverlayIndicator[]).length > 0),
     [indicatorsByCountry]
   );
 
-  // 市場データをサブカテゴリ別にグループ化
-  const marketBySubCategory = useMemo(() => getMarketIndicatorsBySubCategory(), []);
+  // 市場データをサブカテゴリ別にグループ化 + 可視性フィルタ
+  const marketBySubCategory = useMemo(() => {
+    const raw = getMarketIndicatorsBySubCategory();
+    if (blockedCodes.size === 0) return raw;
+    const out: typeof raw = {};
+    for (const [sub, indicators] of Object.entries(raw)) {
+      out[sub] = (indicators as OverlayIndicator[]).filter((it) => !blockedCodes.has(it.id));
+    }
+    return out;
+  }, [blockedCodes]);
 
   useEffect(() => {
     // 初期タブの設定
@@ -286,10 +311,16 @@ export function ComparePopover({
                   {Object.entries(INDICATOR_CATEGORIES)
                     .filter(([key]) => key !== 'market') // 市場カテゴリを除外
                     .map(([categoryKey, categoryLabel]) => {
-                      const subCategoryGroups = getIndicatorsBySubCategory(
+                      const rawGroups = getIndicatorsBySubCategory(
                         categoryKey,
                         countryKey as keyof typeof INDICATOR_COUNTRIES
                       );
+                      // 可視性フィルタを適用
+                      const subCategoryGroups: Record<string, OverlayIndicator[]> = {};
+                      for (const [k, v] of Object.entries(rawGroups)) {
+                        const filtered = filterByVisibility(v as OverlayIndicator[]);
+                        if (filtered.length > 0) subCategoryGroups[k] = filtered;
+                      }
                       const subCategoryKeys = Object.keys(subCategoryGroups);
                       if (subCategoryKeys.length === 0) return null;
 
@@ -359,7 +390,7 @@ export function ComparePopover({
                 <div style={{ maxHeight: 300, overflowY: 'auto' }}>
                   <List
                     size="small"
-                    dataSource={getMarketIndicators()}
+                    dataSource={filterByVisibility(getMarketIndicators())}
                     renderItem={(indicator) => (
                       <IndicatorItem
                         indicator={indicator}

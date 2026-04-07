@@ -17,6 +17,7 @@ import {
   LoginOutlined,
   LockOutlined,
   TeamOutlined,
+  EyeOutlined,
 } from '@ant-design/icons'
 import SidebarNavigation from './SidebarNavigation'
 import MarketSidebarNavigation from './MarketSidebarNavigation'
@@ -80,6 +81,12 @@ function MainLayout() {
             label: 'ユーザー管理',
             onClick: () => navigate('/admin/users'),
           } as const,
+          {
+            key: 'admin-visibility',
+            icon: <EyeOutlined />,
+            label: '可視性管理',
+            onClick: () => navigate('/admin/visibility'),
+          } as const,
           { type: 'divider' as const },
         ]
       : []),
@@ -111,48 +118,64 @@ function MainLayout() {
 
   const linkStyle = { color: 'inherit', textDecoration: 'none' }
 
-  const menuItems = [
-    {
-      key: '/',
-      icon: <HomeOutlined />,
-      label: <Link to="/" style={linkStyle}>ホーム</Link>,
-    },
-    {
-      key: '/inbox',
-      icon: <SoundOutlined />,
-      label: <Link to="/inbox" style={linkStyle}>ヘッドライン</Link>,
-    },
-    {
-      key: '/country',
-      icon: <GlobalOutlined />,
-      label: <Link to="/country" style={linkStyle}>マクロデータ</Link>,
-    },
-    {
-      key: '/markets',
-      icon: <StockOutlined />,
-      label: <Link to="/markets" style={linkStyle}>マーケットデータ</Link>,
-    },
-    {
-      key: '/earnings',
-      icon: <CalendarOutlined />,
-      label: <Link to="/earnings" style={linkStyle}>決算</Link>,
-    },
-    {
-      key: '/compare',
-      icon: <AreaChartOutlined />,
-      label: <Link to="/compare" style={linkStyle}>データ比較</Link>,
-    },
-    {
-      key: '/seasonality',
-      icon: <LineChartOutlined />,
-      label: <Link to="/seasonality" style={linkStyle}>シーズナリティ</Link>,
-    },
-    {
-      key: '/handbook',
-      icon: <BookOutlined />,
-      label: <Link to="/handbook" style={linkStyle}>データハンドブック</Link>,
-    },
-  ]
+  // ロールベースのメニュー組み立て:
+  // - ヘッドライン (/inbox) は special/master のみ
+  // - 一般公開ヘッドライン (/headlines) は全ロールに見える (今後の追加用に用意)
+  // - その他は全員見える
+  const isPrivileged = user?.role === 'special' || user?.role === 'master'
+
+  const menuItems = useMemo(() => {
+    const items: NonNullable<MenuProps['items']> = [
+      {
+        key: '/',
+        icon: <HomeOutlined />,
+        label: <Link to="/" style={linkStyle}>ホーム</Link>,
+      },
+    ]
+
+    if (isPrivileged) {
+      items.push({
+        key: '/inbox',
+        icon: <SoundOutlined />,
+        label: <Link to="/inbox" style={linkStyle}>ヘッドライン</Link>,
+      })
+    }
+
+    items.push(
+      {
+        key: '/country',
+        icon: <GlobalOutlined />,
+        label: <Link to="/country" style={linkStyle}>マクロデータ</Link>,
+      },
+      {
+        key: '/markets',
+        icon: <StockOutlined />,
+        label: <Link to="/markets" style={linkStyle}>マーケットデータ</Link>,
+      },
+      {
+        key: '/earnings',
+        icon: <CalendarOutlined />,
+        label: <Link to="/earnings" style={linkStyle}>決算</Link>,
+      },
+      {
+        key: '/compare',
+        icon: <AreaChartOutlined />,
+        label: <Link to="/compare" style={linkStyle}>データ比較</Link>,
+      },
+      {
+        key: '/seasonality',
+        icon: <LineChartOutlined />,
+        label: <Link to="/seasonality" style={linkStyle}>シーズナリティ</Link>,
+      },
+      {
+        key: '/handbook',
+        icon: <BookOutlined />,
+        label: <Link to="/handbook" style={linkStyle}>データハンドブック</Link>,
+      },
+    )
+
+    return items
+  }, [isPrivileged])
 
   const selectedKey = useMemo(() => {
     const path = location.pathname

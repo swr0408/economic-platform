@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
-import { Modal, Input, Tag, Typography, message, Spin } from 'antd'
-import { PlusOutlined, RightOutlined, DownOutlined } from '@ant-design/icons'
+import { Modal, Input, Tag, Typography, message, Spin, Switch } from 'antd'
+import { PlusOutlined, RightOutlined, DownOutlined, GlobalOutlined } from '@ant-design/icons'
 import { useCategories, useSaveHeadline, useCreateCategory } from '../../hooks/useHeadlines'
+import { useIsMaster } from '../../hooks/useIsMaster'
 import type { Headline, Category } from '../../api/headlinesApi'
 
 const { Text } = Typography
@@ -64,12 +65,15 @@ function SaveToCategoryModal({ headline, onClose }: Props) {
   const { data: categories = [], isLoading: categoriesLoading } = useCategories()
   const saveMutation = useSaveHeadline()
   const createCategoryMutation = useCreateCategory()
+  const isMaster = useIsMaster()
   const [selectedIds, setSelectedIds] = useState<number[]>(
     headline.saved_categories?.map(sc => sc.category_id) || []
   )
   const [newCategoryName, setNewCategoryName] = useState('')
   const [note, setNote] = useState('')
   const [showNewInput, setShowNewInput] = useState(false)
+  // 一般公開フラグ (master のみ操作可能)
+  const [isPublicVisible, setIsPublicVisible] = useState(false)
   // 第3層追加用: どの親カテゴリの下に追加するか
   const [addChildParentId, setAddChildParentId] = useState<number | null>(null)
   const [newChildName, setNewChildName] = useState('')
@@ -99,6 +103,7 @@ function SaveToCategoryModal({ headline, onClose }: Props) {
           categoryIds: selectedIds,
           newCategoryName: newCategoryName.trim() || undefined,
           note: note.trim() || undefined,
+          isPublicVisible: isMaster ? isPublicVisible : false,
         },
       })
       message.success('保存しました')
@@ -407,6 +412,38 @@ function SaveToCategoryModal({ headline, onClose }: Props) {
           style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}
         />
       </div>
+
+      {/* Public visibility toggle (master only) */}
+      {isMaster && (
+        <div style={{
+          marginTop: 12,
+          padding: '8px 12px',
+          background: colors.bgTertiary,
+          borderRadius: 6,
+          border: `1px solid ${colors.border}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 12,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <GlobalOutlined style={{ color: isPublicVisible ? colors.accent : colors.textTertiary, fontSize: 14 }} />
+            <div>
+              <Text style={{ color: colors.textPrimary, fontSize: 12, display: 'block' }}>
+                一般公開
+              </Text>
+              <Text style={{ color: colors.textTertiary, fontSize: 10 }}>
+                すべてのユーザー (general/special) がこのヘッドラインを閲覧できます
+              </Text>
+            </div>
+          </div>
+          <Switch
+            size="small"
+            checked={isPublicVisible}
+            onChange={setIsPublicVisible}
+          />
+        </div>
+      )}
     </Modal>
   )
 }

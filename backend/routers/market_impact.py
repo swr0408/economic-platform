@@ -14,7 +14,7 @@ from datetime import date, datetime, timedelta
 from typing import Optional, List, Dict
 from zoneinfo import ZoneInfo
 
-from fastapi import APIRouter, Query, HTTPException
+from fastapi import APIRouter, Depends, Query, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
@@ -31,6 +31,8 @@ try:
         get_dukascopy_symbols_by_category,
         search_dukascopy_symbols,
     )
+    from core.auth.dependencies import require_role
+    from core.auth.models import ROLE_MASTER
 except ImportError:
     from backend.services.calendar.calendar_repository import calendar_repository
     from backend.services.market.market_repository import market_repository
@@ -44,6 +46,11 @@ except ImportError:
         get_dukascopy_symbols_by_category,
         search_dukascopy_symbols,
     )
+    from backend.core.auth.dependencies import require_role
+    from backend.core.auth.models import ROLE_MASTER
+
+# master ロール要求の依存オブジェクト
+_require_master = require_role(ROLE_MASTER)
 
 
 router = APIRouter(prefix="/api/market-impact", tags=["MarketImpact"])
@@ -122,9 +129,10 @@ async def get_sync_status(
 async def sync_symbol_data(
     symbol_id: str,
     intervals: Optional[str] = Query("1m,5m", description="同期する足種（カンマ区切り）"),
+    _master = Depends(_require_master),
 ):
     """
-    銘柄の分足データを同期
+    銘柄の分足データを同期 (master 限定).
 
     1年分のデータを取得してDBに保存する（同期的に実行）
 
@@ -565,9 +573,12 @@ def _normalize_compare_data(data: List[Dict], release_dt: datetime) -> List[Dict
 
 
 @router.post("/fetch")
-async def fetch_dukascopy_data(request: FetchRequest):
+async def fetch_dukascopy_data(
+    request: FetchRequest,
+    _master = Depends(_require_master),
+):
     """
-    Dukascopyから分足データを取得してDBに保存
+    Dukascopyから分足データを取得してDBに保存 (master 限定).
 
     指標の発表履歴を元に、各発表時刻周辺のデータを取得
 
@@ -621,9 +632,12 @@ async def fetch_dukascopy_data(request: FetchRequest):
 
 
 @router.delete("/cleanup")
-async def cleanup_old_data(days: int = Query(365, ge=30, le=730)):
+async def cleanup_old_data(
+    days: int = Query(365, ge=30, le=730),
+    _master = Depends(_require_master),
+):
     """
-    古い分足データを削除
+    古い分足データを削除 (master 限定).
 
     Args:
         days: 保持する日数（デフォルト365日）

@@ -10,8 +10,18 @@ yfinance を使用した銘柄データ取得エンドポイント
 """
 import time
 from typing import List, Optional
-from fastapi import APIRouter, Path, Query, HTTPException
+from fastapi import APIRouter, Depends, Path, Query, HTTPException
 from fastapi.responses import JSONResponse, FileResponse
+
+try:
+    from backend.core.auth.dependencies import require_role
+    from backend.core.auth.models import ROLE_MASTER
+except ImportError:
+    from core.auth.dependencies import require_role
+    from core.auth.models import ROLE_MASTER
+
+# master ロール要求の依存オブジェクト
+_require_master = require_role(ROLE_MASTER)
 
 try:
     from backend.services.market.yfinance_service import yfinance_service
@@ -973,9 +983,10 @@ def get_symbol_cache_status(
 @router.post("/{symbol_id}/refresh")
 def refresh_symbol_cache(
     symbol_id: str = Path(..., description="銘柄ID"),
+    _master = Depends(_require_master),
 ):
     """
-    銘柄のキャッシュを強制更新
+    銘柄のキャッシュを強制更新 (master 限定)
 
     Returns:
         {
@@ -1002,9 +1013,9 @@ def refresh_symbol_cache(
 
 
 @router.delete("/cache")
-def invalidate_all_cache():
+def invalidate_all_cache(_master = Depends(_require_master)):
     """
-    全銘柄のキャッシュを無効化
+    全銘柄のキャッシュを無効化 (master 限定)
 
     Returns:
         {

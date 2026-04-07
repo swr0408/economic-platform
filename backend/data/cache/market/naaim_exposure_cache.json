@@ -5144,21 +5144,26 @@
       "date": "2026-03-25",
       "naaim_number": 68.52,
       "sp500": 6591.9
+    },
+    {
+      "date": "2026-04-01",
+      "naaim_number": 68.36,
+      "sp500": 6575.32
     }
   ],
   "latest": {
-    "date": "2026-03-25",
-    "naaim_number": 68.52,
-    "sp500": 6591.9
+    "date": "2026-04-01",
+    "naaim_number": 68.36,
+    "sp500": 6575.32
   },
   "metadata": {
     "source": "NAAIM",
-    "excel_url": "https://naaim.org/wp-content/uploads/2026/03/USE_Data-since-Inception_2026-03-25.xlsx",
-    "data_count": 1029,
+    "excel_url": "https://naaim.org/wp-content/uploads/2026/04/USE_Data-since-Inception_2026-04-01.xlsx",
+    "data_count": 1030,
     "start_date": "2006-07-05",
-    "end_date": "2026-03-25"
+    "end_date": "2026-04-01"
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-04-01T00:04:26.095627+09:00"
+  "last_updated": "2026-04-07T19:20:46.111437+09:00"
 }

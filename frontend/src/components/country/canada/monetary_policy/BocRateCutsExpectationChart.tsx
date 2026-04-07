@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Card, Button, Spin, Typography, Row, Col, Image } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 const { Text } = Typography
 
@@ -17,9 +19,10 @@ interface ScreenshotData {
   refreshed?: boolean
 }
 
-export default function BocRateCutsExpectationChart({
+function BocRateCutsExpectationChart({
   title = 'BOC利上げ・利下げ期待（2026年）'
 }: BocRateCutsExpectationChartProps) {
+  const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -83,15 +86,17 @@ export default function BocRateCutsExpectationChart({
         title={
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>{title}</span>
-            <Button
-              size="small"
-              icon={<ReloadOutlined />}
-              onClick={handleRefresh}
-              loading={refreshing}
-              style={{ position: 'absolute', right: 0 }}
-            >
-              再取得
-            </Button>
+            {isMaster && (
+              <Button
+                size="small"
+                icon={<ReloadOutlined />}
+                onClick={handleRefresh}
+                loading={refreshing}
+                style={{ position: 'absolute', right: 0 }}
+              >
+                再取得
+              </Button>
+            )}
           </div>
         }
       >
@@ -107,14 +112,16 @@ export default function BocRateCutsExpectationChart({
       title={
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span>{title}</span>
-          <Button
-            size="small"
-            icon={<ReloadOutlined />}
-            onClick={handleRefresh}
-            loading={refreshing}
-          >
-            更新
-          </Button>
+          {isMaster && (
+            <Button
+              size="small"
+              icon={<ReloadOutlined />}
+              onClick={handleRefresh}
+              loading={refreshing}
+            >
+              更新
+            </Button>
+          )}
         </div>
       }
     >
@@ -187,3 +194,6 @@ export default function BocRateCutsExpectationChart({
     </Card>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(BocRateCutsExpectationChart, 'special')

@@ -15,7 +15,7 @@ export type TransformOption = 'raw' | 'index100';
 
 export type DisplayOption = 'step' | 'dots';
 
-export type DerivedValueType = 'diff' | 'ratio' | 'yoy' | 'qoq_pct' | 'yoy_pct';
+export type DerivedValueType = 'diff' | 'ratio' | 'yoy' | 'qoq_pct' | 'yoy_pct' | 'qoq_diff';
 
 export interface DerivedValueConfig {
   type: DerivedValueType;
@@ -9837,6 +9837,52 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     apiEndpoint: '/api/eurozone/economy',
     dataKey: 'ifo_business_climate.expectations',
     valueField: 'value',
+    unit: 'pt',
+  },
+  // IFO景況感指数 四半期比（ΔĪ_Q = Ī_Q − Ī_{Q-1}）
+  {
+    id: 'ifo_business_climate_qoq_diff',
+    name: 'IFO景況感指数（景況感・四半期比）',
+    nameEn: 'IFO Business Climate Index (QoQ diff)',
+    frequency: 'quarterly',
+    country: 'eurozone',
+    category: 'economy',
+    subCategory: 'sentiment',
+    chartType: 'bar',
+    apiEndpoint: '/api/eurozone/economy',
+    dataKey: 'ifo_business_climate.climate',
+    valueField: 'value',
+    derived: { type: 'qoq_diff', sourceField: 'value' },
+    unit: 'pt',
+  },
+  {
+    id: 'ifo_current_conditions_qoq_diff',
+    name: 'IFO景況感指数（現況・四半期比）',
+    nameEn: 'IFO Current Conditions Index (QoQ diff)',
+    frequency: 'quarterly',
+    country: 'eurozone',
+    category: 'economy',
+    subCategory: 'sentiment',
+    chartType: 'bar',
+    apiEndpoint: '/api/eurozone/economy',
+    dataKey: 'ifo_business_climate.current',
+    valueField: 'value',
+    derived: { type: 'qoq_diff', sourceField: 'value' },
+    unit: 'pt',
+  },
+  {
+    id: 'ifo_expectations_qoq_diff',
+    name: 'IFO景況感指数（期待・四半期比）',
+    nameEn: 'IFO Expectations Index (QoQ diff)',
+    frequency: 'quarterly',
+    country: 'eurozone',
+    category: 'economy',
+    subCategory: 'sentiment',
+    chartType: 'bar',
+    apiEndpoint: '/api/eurozone/economy',
+    dataKey: 'ifo_business_climate.expectations',
+    valueField: 'value',
+    derived: { type: 'qoq_diff', sourceField: 'value' },
     unit: 'pt',
   },
   // 欧州経済政策不確実性指数

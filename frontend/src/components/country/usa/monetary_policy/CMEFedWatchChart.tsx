@@ -2,6 +2,8 @@ import { useState, useRef } from 'react'
 import { Spin, Button, Modal } from 'antd'
 import { ReloadOutlined, ExpandOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 // Props型定義
 interface CMEFedWatchChartProps {
@@ -10,7 +12,8 @@ interface CMEFedWatchChartProps {
   cached?: boolean
 }
 
-export default function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }: CMEFedWatchChartProps) {
+function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }: CMEFedWatchChartProps) {
+  const isMaster = useIsMaster()
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [imageTimestamp, setImageTimestamp] = useState(Date.now())
@@ -106,14 +109,16 @@ export default function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }:
             >
               拡大
             </Button>
-            <Button
-              icon={<ReloadOutlined spin={refreshing} />}
-              onClick={handleRefresh}
-              loading={refreshing}
-              size="small"
-            >
-              更新
-            </Button>
+            {isMaster && (
+              <Button
+                icon={<ReloadOutlined spin={refreshing} />}
+                onClick={handleRefresh}
+                loading={refreshing}
+                size="small"
+              >
+                更新
+              </Button>
+            )}
           </div>
         }
       >
@@ -251,3 +256,6 @@ export default function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }:
     </div>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(CMEFedWatchChart, 'special')

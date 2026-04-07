@@ -17,6 +17,7 @@ import {
 import ChartContainer from '../../common/ChartContainer'
 import PeriodSelector, { type PeriodValue } from '../../common/PeriodSelector'
 import { formatMonthLabel, formatDayLabel } from '../../../utils/dateFormatters'
+import { withVisibility } from '../../common/withVisibility'
 
 const { Text } = Typography
 
@@ -176,7 +177,7 @@ function CustomTooltip({ active, payload, label }: {
   )
 }
 
-export default function FearGreedChart() {
+function FearGreedChart() {
   const { data: apiData, isLoading } = useFearGreedData()
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodValue>(2)
 
@@ -449,3 +450,6 @@ export default function FearGreedChart() {
     </ChartContainer>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(FearGreedChart, 'special')

@@ -2,1515 +2,1515 @@
   "data": [
     {
       "date": "2001-01-01",
-      "import_yoy": null,
+      "import_yoy": 2.76,
       "export_yoy": 1.11
     },
     {
       "date": "2001-02-01",
-      "import_yoy": null,
+      "import_yoy": 0.2,
       "export_yoy": 0.6
     },
     {
       "date": "2001-03-01",
-      "import_yoy": null,
+      "import_yoy": -1.6,
       "export_yoy": 0.0
     },
     {
       "date": "2001-04-01",
-      "import_yoy": null,
+      "import_yoy": -0.71,
       "export_yoy": -0.1
     },
     {
       "date": "2001-05-01",
-      "import_yoy": null,
+      "import_yoy": -0.81,
       "export_yoy": -0.6
     },
     {
       "date": "2001-06-01",
-      "import_yoy": null,
+      "import_yoy": -2.59,
       "export_yoy": -0.7
     },
     {
       "date": "2001-07-01",
-      "import_yoy": null,
+      "import_yoy": -4.09,
       "export_yoy": -1.0
     },
     {
       "date": "2001-08-01",
-      "import_yoy": null,
+      "import_yoy": -4.38,
       "export_yoy": -1.0
     },
     {
       "date": "2001-09-01",
-      "import_yoy": null,
+      "import_yoy": -5.61,
       "export_yoy": -1.39
     },
     {
       "date": "2001-10-01",
-      "import_yoy": null,
+      "import_yoy": -7.41,
       "export_yoy": -1.99
     },
     {
       "date": "2001-11-01",
-      "import_yoy": null,
+      "import_yoy": -8.79,
       "export_yoy": -2.49
     },
     {
       "date": "2001-12-01",
-      "import_yoy": null,
+      "import_yoy": -9.05,
       "export_yoy": -2.5
     },
     {
       "date": "2002-01-01",
-      "import_yoy": null,
+      "import_yoy": -8.86,
       "export_yoy": -2.79
     },
     {
       "date": "2002-02-01",
-      "import_yoy": null,
+      "import_yoy": -8.31,
       "export_yoy": -2.89
     },
     {
       "date": "2002-03-01",
-      "import_yoy": null,
+      "import_yoy": -5.6,
       "export_yoy": -2.4
     },
     {
       "date": "2002-04-01",
-      "import_yoy": null,
+      "import_yoy": -3.58,
       "export_yoy": -1.9
     },
     {
       "date": "2002-05-01",
-      "import_yoy": null,
+      "import_yoy": -3.67,
       "export_yoy": -1.61
     },
     {
       "date": "2002-06-01",
-      "import_yoy": null,
+      "import_yoy": -3.59,
       "export_yoy": -1.41
     },
     {
       "date": "2002-07-01",
-      "import_yoy": null,
+      "import_yoy": -1.66,
       "export_yoy": -0.71
     },
     {
       "date": "2002-08-01",
-      "import_yoy": null,
+      "import_yoy": -1.25,
       "export_yoy": -0.3
     },
     {
       "date": "2002-09-01",
-      "import_yoy": null,
+      "import_yoy": -0.42,
       "export_yoy": -0.2
     },
     {
       "date": "2002-10-01",
-      "import_yoy": null,
+      "import_yoy": 1.92,
       "export_yoy": 0.41
     },
     {
       "date": "2002-11-01",
-      "import_yoy": null,
+      "import_yoy": 2.49,
       "export_yoy": 1.02
     },
     {
       "date": "2002-12-01",
-      "import_yoy": null,
+      "import_yoy": 4.16,
       "export_yoy": 1.02
     },
     {
       "date": "2003-01-01",
-      "import_yoy": null,
+      "import_yoy": 5.79,
       "export_yoy": 1.44
     },
     {
       "date": "2003-02-01",
-      "import_yoy": null,
+      "import_yoy": 7.53,
       "export_yoy": 2.26
     },
     {
       "date": "2003-03-01",
-      "import_yoy": null,
+      "import_yoy": 6.79,
       "export_yoy": 2.15
     },
     {
       "date": "2003-04-01",
-      "import_yoy": null,
+      "import_yoy": 1.8,
       "export_yoy": 1.63
     },
     {
       "date": "2003-05-01",
-      "import_yoy": null,
+      "import_yoy": 0.95,
       "export_yoy": 1.73
     },
     {
       "date": "2003-06-01",
-      "import_yoy": null,
+      "import_yoy": 2.23,
       "export_yoy": 1.53
     },
     {
       "date": "2003-07-01",
-      "import_yoy": null,
+      "import_yoy": 2.33,
       "export_yoy": 1.12
     },
     {
       "date": "2003-08-01",
-      "import_yoy": null,
+      "import_yoy": 2.0,
       "export_yoy": 0.91
     },
     {
       "date": "2003-09-01",
-      "import_yoy": null,
+      "import_yoy": 0.73,
       "export_yoy": 1.01
     },
     {
       "date": "2003-10-01",
-      "import_yoy": null,
+      "import_yoy": 0.84,
       "export_yoy": 1.32
     },
     {
       "date": "2003-11-01",
-      "import_yoy": null,
+      "import_yoy": 2.33,
       "export_yoy": 1.72
     },
     {
       "date": "2003-12-01",
-      "import_yoy": null,
+      "import_yoy": 2.42,
       "export_yoy": 2.23
     },
     {
       "date": "2004-01-01",
-      "import_yoy": null,
+      "import_yoy": 2.17,
       "export_yoy": 2.63
     },
     {
       "date": "2004-02-01",
-      "import_yoy": null,
+      "import_yoy": 0.91,
       "export_yoy": 2.71
     },
     {
       "date": "2004-03-01",
-      "import_yoy": null,
+      "import_yoy": 1.11,
       "export_yoy": 3.31
     },
     {
       "date": "2004-04-01",
-      "import_yoy": null,
+      "import_yoy": 4.58,
       "export_yoy": 4.12
     },
     {
       "date": "2004-05-01",
-      "import_yoy": null,
+      "import_yoy": 6.93,
       "export_yoy": 4.41
     },
     {
       "date": "2004-06-01",
-      "import_yoy": null,
+      "import_yoy": 5.72,
       "export_yoy": 3.92
     },
     {
       "date": "2004-07-01",
-      "import_yoy": null,
+      "import_yoy": 5.58,
       "export_yoy": 4.53
     },
     {
       "date": "2004-08-01",
-      "import_yoy": null,
+      "import_yoy": 7.14,
       "export_yoy": 4.02
     },
     {
       "date": "2004-09-01",
-      "import_yoy": null,
+      "import_yoy": 8.21,
       "export_yoy": 4.01
     },
     {
       "date": "2004-10-01",
-      "import_yoy": null,
+      "import_yoy": 9.87,
       "export_yoy": 4.4
     },
     {
       "date": "2004-11-01",
-      "import_yoy": null,
+      "import_yoy": 8.99,
       "export_yoy": 4.18
     },
     {
       "date": "2004-12-01",
-      "import_yoy": null,
+      "import_yoy": 6.67,
       "export_yoy": 3.97
     },
     {
       "date": "2005-01-01",
-      "import_yoy": null,
+      "import_yoy": 5.66,
       "export_yoy": 4.04
     },
     {
       "date": "2005-02-01",
-      "import_yoy": null,
+      "import_yoy": 6.14,
       "export_yoy": 3.42
     },
     {
       "date": "2005-03-01",
-      "import_yoy": null,
+      "import_yoy": 7.58,
       "export_yoy": 3.3
     },
     {
       "date": "2005-04-01",
-      "import_yoy": null,
+      "import_yoy": 8.37,
       "export_yoy": 3.09
     },
     {
       "date": "2005-05-01",
-      "import_yoy": null,
+      "import_yoy": 5.89,
       "export_yoy": 2.5
     },
     {
       "date": "2005-06-01",
-      "import_yoy": null,
+      "import_yoy": 7.37,
       "export_yoy": 3.19
     },
     {
       "date": "2005-07-01",
-      "import_yoy": null,
+      "import_yoy": 8.23,
       "export_yoy": 2.79
     },
     {
       "date": "2005-08-01",
-      "import_yoy": null,
+      "import_yoy": 8.2,
       "export_yoy": 3.09
     },
     {
       "date": "2005-09-01",
-      "import_yoy": null,
+      "import_yoy": 9.89,
       "export_yoy": 3.56
     },
     {
       "date": "2005-10-01",
-      "import_yoy": null,
+      "import_yoy": 8.22,
       "export_yoy": 3.74
     },
     {
       "date": "2005-11-01",
-      "import_yoy": null,
+      "import_yoy": 6.45,
       "export_yoy": 2.77
     },
     {
       "date": "2005-12-01",
-      "import_yoy": null,
+      "import_yoy": 7.98,
       "export_yoy": 2.77
     },
     {
       "date": "2006-01-01",
-      "import_yoy": null,
+      "import_yoy": 8.7,
       "export_yoy": 2.75
     },
     {
       "date": "2006-02-01",
-      "import_yoy": null,
+      "import_yoy": 6.92,
       "export_yoy": 2.74
     },
     {
       "date": "2006-03-01",
-      "import_yoy": null,
+      "import_yoy": 4.55,
       "export_yoy": 2.26
     },
     {
       "date": "2006-04-01",
-      "import_yoy": null,
+      "import_yoy": 5.79,
       "export_yoy": 2.53
     },
     {
       "date": "2006-05-01",
-      "import_yoy": null,
+      "import_yoy": 8.62,
       "export_yoy": 3.47
     },
     {
       "date": "2006-06-01",
-      "import_yoy": null,
+      "import_yoy": 7.42,
       "export_yoy": 4.22
     },
     {
       "date": "2006-07-01",
-      "import_yoy": null,
+      "import_yoy": 6.97,
       "export_yoy": 4.49
     },
     {
       "date": "2006-08-01",
-      "import_yoy": null,
+      "import_yoy": 5.98,
       "export_yoy": 5.16
     },
     {
       "date": "2006-09-01",
-      "import_yoy": null,
+      "import_yoy": 1.57,
       "export_yoy": 3.91
     },
     {
       "date": "2006-10-01",
-      "import_yoy": null,
+      "import_yoy": -1.05,
       "export_yoy": 2.86
     },
     {
       "date": "2006-11-01",
-      "import_yoy": null,
+      "import_yoy": 1.34,
       "export_yoy": 3.9
     },
     {
       "date": "2006-12-01",
-      "import_yoy": null,
+      "import_yoy": 2.49,
       "export_yoy": 4.46
     },
     {
       "date": "2007-01-01",
-      "import_yoy": null,
+      "import_yoy": 0.0,
       "export_yoy": 4.15
     },
     {
       "date": "2007-02-01",
-      "import_yoy": null,
+      "import_yoy": 1.15,
       "export_yoy": 4.88
     },
     {
       "date": "2007-03-01",
-      "import_yoy": null,
+      "import_yoy": 2.84,
       "export_yoy": 5.42
     },
     {
       "date": "2007-04-01",
-      "import_yoy": null,
+      "import_yoy": 2.09,
       "export_yoy": 5.11
     },
     {
       "date": "2007-05-01",
-      "import_yoy": null,
+      "import_yoy": 1.19,
       "export_yoy": 4.62
     },
     {
       "date": "2007-06-01",
-      "import_yoy": null,
+      "import_yoy": 2.3,
       "export_yoy": 4.32
     },
     {
       "date": "2007-07-01",
-      "import_yoy": null,
+      "import_yoy": 2.79,
       "export_yoy": 4.03
     },
     {
       "date": "2007-08-01",
-      "import_yoy": null,
+      "import_yoy": 1.94,
       "export_yoy": 3.75
     },
     {
       "date": "2007-09-01",
-      "import_yoy": null,
+      "import_yoy": 4.82,
       "export_yoy": 4.48
     },
     {
       "date": "2007-10-01",
-      "import_yoy": null,
+      "import_yoy": 9.09,
       "export_yoy": 5.57
     },
     {
       "date": "2007-11-01",
-      "import_yoy": null,
+      "import_yoy": 12.04,
       "export_yoy": 6.17
     },
     {
       "date": "2007-12-01",
-      "import_yoy": null,
+      "import_yoy": 10.6,
       "export_yoy": 6.04
     },
     {
       "date": "2008-01-01",
-      "import_yoy": null,
+      "import_yoy": 13.63,
       "export_yoy": 6.81
     },
     {
       "date": "2008-02-01",
-      "import_yoy": null,
+      "import_yoy": 13.5,
       "export_yoy": 6.94
     },
     {
       "date": "2008-03-01",
-      "import_yoy": null,
+      "import_yoy": 15.19,
       "export_yoy": 7.93
     },
     {
       "date": "2008-04-01",
-      "import_yoy": null,
+      "import_yoy": 16.85,
       "export_yoy": 7.99
     },
     {
       "date": "2008-05-01",
-      "import_yoy": null,
+      "import_yoy": 19.06,
       "export_yoy": 8.05
     },
     {
       "date": "2008-06-01",
-      "import_yoy": null,
+      "import_yoy": 21.25,
       "export_yoy": 8.71
     },
     {
       "date": "2008-07-01",
-      "import_yoy": null,
+      "import_yoy": 21.4,
       "export_yoy": 10.25
     },
     {
       "date": "2008-08-01",
-      "import_yoy": null,
+      "import_yoy": 18.08,
       "export_yoy": 8.25
     },
     {
       "date": "2008-09-01",
-      "import_yoy": null,
+      "import_yoy": 13.14,
       "export_yoy": 7.03
     },
     {
       "date": "2008-10-01",
-      "import_yoy": null,
+      "import_yoy": 4.85,
       "export_yoy": 4.0
     },
     {
       "date": "2008-11-01",
-      "import_yoy": null,
+      "import_yoy": -5.88,
       "export_yoy": -0.25
     },
     {
       "date": "2008-12-01",
-      "import_yoy": null,
+      "import_yoy": -10.05,
       "export_yoy": -2.93
     },
     {
       "date": "2009-01-01",
-      "import_yoy": null,
+      "import_yoy": -12.54,
       "export_yoy": -3.4
     },
     {
       "date": "2009-02-01",
-      "import_yoy": null,
+      "import_yoy": -12.74,
       "export_yoy": -4.52
     },
     {
       "date": "2009-03-01",
-      "import_yoy": null,
+      "import_yoy": -14.91,
       "export_yoy": -6.7
     },
     {
       "date": "2009-04-01",
-      "import_yoy": null,
+      "import_yoy": -16.39,
       "export_yoy": -6.67
     },
     {
       "date": "2009-05-01",
-      "import_yoy": null,
+      "import_yoy": -17.28,
       "export_yoy": -6.57
     },
     {
       "date": "2009-06-01",
-      "import_yoy": null,
+      "import_yoy": -17.53,
       "export_yoy": -6.58
     },
     {
       "date": "2009-07-01",
-      "import_yoy": null,
+      "import_yoy": -19.12,
       "export_yoy": -8.28
     },
     {
       "date": "2009-08-01",
-      "import_yoy": null,
+      "import_yoy": -15.31,
       "export_yoy": -6.2
     },
     {
       "date": "2009-09-01",
-      "import_yoy": null,
+      "import_yoy": -11.97,
       "export_yoy": -5.6
     },
     {
       "date": "2009-10-01",
-      "import_yoy": null,
+      "import_yoy": -5.63,
       "export_yoy": -3.6
     },
     {
       "date": "2009-11-01",
-      "import_yoy": null,
+      "import_yoy": 3.42,
       "export_yoy": 0.42
     },
     {
       "date": "2009-12-01",
-      "import_yoy": null,
+      "import_yoy": 8.65,
       "export_yoy": 3.37
     },
     {
       "date": "2010-01-01",
-      "import_yoy": null,
+      "import_yoy": 11.42,
       "export_yoy": 3.52
     },
     {
       "date": "2010-02-01",
-      "import_yoy": null,
+      "import_yoy": 11.33,
       "export_yoy": 3.44
     },
     {
       "date": "2010-03-01",
-      "import_yoy": null,
+      "import_yoy": 11.18,
       "export_yoy": 4.94
     },
     {
       "date": "2010-04-01",
-      "import_yoy": null,
+      "import_yoy": 11.24,
       "export_yoy": 5.51
     },
     {
       "date": "2010-05-01",
-      "import_yoy": null,
+      "import_yoy": 8.48,
       "export_yoy": 5.57
     },
     {
       "date": "2010-06-01",
-      "import_yoy": null,
+      "import_yoy": 4.33,
       "export_yoy": 3.74
     },
     {
       "date": "2010-07-01",
-      "import_yoy": null,
+      "import_yoy": 4.95,
       "export_yoy": 3.92
     },
     {
       "date": "2010-08-01",
-      "import_yoy": null,
+      "import_yoy": 3.8,
       "export_yoy": 4.15
     },
     {
       "date": "2010-09-01",
-      "import_yoy": null,
+      "import_yoy": 3.63,
       "export_yoy": 4.92
     },
     {
       "date": "2010-10-01",
-      "import_yoy": null,
+      "import_yoy": 3.92,
       "export_yoy": 5.77
     },
     {
       "date": "2010-11-01",
-      "import_yoy": null,
+      "import_yoy": 4.11,
       "export_yoy": 6.48
     },
     {
       "date": "2010-12-01",
-      "import_yoy": null,
+      "import_yoy": 5.31,
       "export_yoy": 6.52
     },
     {
       "date": "2011-01-01",
-      "import_yoy": null,
+      "import_yoy": 5.64,
       "export_yoy": 6.96
     },
     {
       "date": "2011-02-01",
-      "import_yoy": null,
+      "import_yoy": 7.55,
       "export_yoy": 8.73
     },
     {
       "date": "2011-03-01",
-      "import_yoy": null,
+      "import_yoy": 10.29,
       "export_yoy": 9.49
     },
     {
       "date": "2011-04-01",
-      "import_yoy": null,
+      "import_yoy": 11.9,
       "export_yoy": 9.22
     },
     {
       "date": "2011-05-01",
-      "import_yoy": null,
+      "import_yoy": 12.94,
       "export_yoy": 9.1
     },
     {
       "date": "2011-06-01",
-      "import_yoy": null,
+      "import_yoy": 13.58,
       "export_yoy": 10.07
     },
     {
       "date": "2011-07-01",
-      "import_yoy": null,
+      "import_yoy": 13.74,
       "export_yoy": 9.84
     },
     {
       "date": "2011-08-01",
-      "import_yoy": null,
+      "import_yoy": 12.89,
       "export_yoy": 9.43
     },
     {
       "date": "2011-09-01",
-      "import_yoy": null,
+      "import_yoy": 12.73,
       "export_yoy": 9.38
     },
     {
       "date": "2011-10-01",
-      "import_yoy": null,
+      "import_yoy": 11.09,
       "export_yoy": 6.34
     },
     {
       "date": "2011-11-01",
-      "import_yoy": null,
+      "import_yoy": 10.06,
       "export_yoy": 4.82
     },
     {
       "date": "2011-12-01",
-      "import_yoy": null,
+      "import_yoy": 8.55,
       "export_yoy": 3.61
     },
     {
       "date": "2012-01-01",
-      "import_yoy": null,
+      "import_yoy": 6.92,
       "export_yoy": 2.63
     },
     {
       "date": "2012-02-01",
-      "import_yoy": null,
+      "import_yoy": 5.1,
       "export_yoy": 1.76
     },
     {
       "date": "2012-03-01",
-      "import_yoy": null,
+      "import_yoy": 3.52,
       "export_yoy": 1.06
     },
     {
       "date": "2012-04-01",
-      "import_yoy": null,
+      "import_yoy": 0.84,
       "export_yoy": 0.67
     },
     {
       "date": "2012-05-01",
-      "import_yoy": null,
+      "import_yoy": -0.77,
       "export_yoy": -0.22
     },
     {
       "date": "2012-06-01",
-      "import_yoy": null,
+      "import_yoy": -2.46,
       "export_yoy": -2.08
     },
     {
       "date": "2012-07-01",
-      "import_yoy": null,
+      "import_yoy": -3.3,
       "export_yoy": -1.34
     },
     {
       "date": "2012-08-01",
-      "import_yoy": null,
+      "import_yoy": -1.76,
       "export_yoy": -0.89
     },
     {
       "date": "2012-09-01",
-      "import_yoy": null,
+      "import_yoy": -0.64,
       "export_yoy": -0.59
     },
     {
       "date": "2012-10-01",
-      "import_yoy": null,
+      "import_yoy": 0.0,
       "export_yoy": 1.51
     },
     {
       "date": "2012-11-01",
-      "import_yoy": null,
+      "import_yoy": -1.41,
       "export_yoy": 0.83
     },
     {
       "date": "2012-12-01",
-      "import_yoy": null,
+      "import_yoy": -1.97,
       "export_yoy": 1.14
     },
     {
       "date": "2013-01-01",
-      "import_yoy": null,
+      "import_yoy": -1.48,
       "export_yoy": 1.21
     },
     {
       "date": "2013-02-01",
-      "import_yoy": null,
+      "import_yoy": -0.63,
       "export_yoy": 1.5
     },
     {
       "date": "2013-03-01",
-      "import_yoy": null,
+      "import_yoy": -2.08,
       "export_yoy": 0.22
     },
     {
       "date": "2013-04-01",
-      "import_yoy": null,
+      "import_yoy": -2.71,
       "export_yoy": -0.82
     },
     {
       "date": "2013-05-01",
-      "import_yoy": null,
+      "import_yoy": -1.83,
       "export_yoy": -0.82
     },
     {
       "date": "2013-06-01",
-      "import_yoy": null,
+      "import_yoy": 0.07,
       "export_yoy": 0.84
     },
     {
       "date": "2013-07-01",
-      "import_yoy": null,
+      "import_yoy": 0.87,
       "export_yoy": 0.3
     },
     {
       "date": "2013-08-01",
-      "import_yoy": null,
+      "import_yoy": 0.0,
       "export_yoy": -1.12
     },
     {
       "date": "2013-09-01",
-      "import_yoy": null,
+      "import_yoy": -0.71,
       "export_yoy": -1.56
     },
     {
       "date": "2013-10-01",
-      "import_yoy": null,
+      "import_yoy": -1.63,
       "export_yoy": -2.23
     },
     {
       "date": "2013-11-01",
-      "import_yoy": null,
+      "import_yoy": -1.78,
       "export_yoy": -1.49
     },
     {
       "date": "2013-12-01",
-      "import_yoy": null,
+      "import_yoy": -1.15,
       "export_yoy": -0.97
     },
     {
       "date": "2014-01-01",
-      "import_yoy": null,
+      "import_yoy": -1.28,
       "export_yoy": -1.04
     },
     {
       "date": "2014-02-01",
-      "import_yoy": null,
+      "import_yoy": -1.06,
       "export_yoy": -1.04
     },
     {
       "date": "2014-03-01",
-      "import_yoy": null,
+      "import_yoy": -0.5,
       "export_yoy": 0.37
     },
     {
       "date": "2014-04-01",
-      "import_yoy": null,
+      "import_yoy": -0.36,
       "export_yoy": -0.07
     },
     {
       "date": "2014-05-01",
-      "import_yoy": null,
+      "import_yoy": 0.5,
       "export_yoy": 0.6
     },
     {
       "date": "2014-06-01",
-      "import_yoy": null,
+      "import_yoy": 1.22,
       "export_yoy": 0.15
     },
     {
       "date": "2014-07-01",
-      "import_yoy": null,
+      "import_yoy": 0.86,
       "export_yoy": 0.38
     },
     {
       "date": "2014-08-01",
-      "import_yoy": null,
+      "import_yoy": -0.29,
       "export_yoy": 0.38
     },
     {
       "date": "2014-09-01",
-      "import_yoy": null,
+      "import_yoy": -1.36,
       "export_yoy": -0.38
     },
     {
       "date": "2014-10-01",
-      "import_yoy": null,
+      "import_yoy": -2.09,
       "export_yoy": -0.68
     },
     {
       "date": "2014-11-01",
-      "import_yoy": null,
+      "import_yoy": -3.05,
       "export_yoy": -1.75
     },
     {
       "date": "2014-12-01",
-      "import_yoy": null,
+      "import_yoy": -5.59,
       "export_yoy": -3.02
     },
     {
       "date": "2015-01-01",
-      "import_yoy": null,
+      "import_yoy": -8.89,
       "export_yoy": -4.97
     },
     {
       "date": "2015-02-01",
-      "import_yoy": null,
+      "import_yoy": -10.23,
       "export_yoy": -5.83
     },
     {
       "date": "2015-03-01",
-      "import_yoy": null,
+      "import_yoy": -10.82,
       "export_yoy": -6.67
     },
     {
       "date": "2015-04-01",
-      "import_yoy": null,
+      "import_yoy": -10.45,
       "export_yoy": -6.29
     },
     {
       "date": "2015-05-01",
-      "import_yoy": null,
+      "import_yoy": -9.71,
       "export_yoy": -5.98
     },
     {
       "date": "2015-06-01",
-      "import_yoy": null,
+      "import_yoy": -9.89,
       "export_yoy": -5.79
     },
     {
       "date": "2015-07-01",
-      "import_yoy": null,
+      "import_yoy": -10.49,
       "export_yoy": -6.24
     },
     {
       "date": "2015-08-01",
-      "import_yoy": null,
+      "import_yoy": -11.37,
       "export_yoy": -7.1
     },
     {
       "date": "2015-09-01",
-      "import_yoy": null,
+      "import_yoy": -11.6,
       "export_yoy": -7.28
     },
     {
       "date": "2015-10-01",
-      "import_yoy": null,
+      "import_yoy": -10.66,
       "export_yoy": -6.66
     },
     {
       "date": "2015-11-01",
-      "import_yoy": null,
+      "import_yoy": -9.51,
       "export_yoy": -6.49
     },
     {
       "date": "2015-12-01",
-      "import_yoy": null,
+      "import_yoy": -8.3,
       "export_yoy": -6.63
     },
     {
       "date": "2016-01-01",
-      "import_yoy": null,
+      "import_yoy": -6.51,
       "export_yoy": -5.87
     },
     {
       "date": "2016-02-01",
-      "import_yoy": null,
+      "import_yoy": -6.61,
       "export_yoy": -6.12
     },
     {
       "date": "2016-03-01",
-      "import_yoy": null,
+      "import_yoy": -6.07,
       "export_yoy": -6.2
     },
     {
       "date": "2016-04-01",
-      "import_yoy": null,
+      "import_yoy": -5.28,
       "export_yoy": -5.12
     },
     {
       "date": "2016-05-01",
-      "import_yoy": null,
+      "import_yoy": -5.22,
       "export_yoy": -4.53
     },
     {
       "date": "2016-06-01",
-      "import_yoy": null,
+      "import_yoy": -4.66,
       "export_yoy": -3.51
     },
     {
       "date": "2016-07-01",
-      "import_yoy": null,
+      "import_yoy": -3.67,
       "export_yoy": -2.96
     },
     {
       "date": "2016-08-01",
-      "import_yoy": null,
+      "import_yoy": -2.19,
       "export_yoy": -2.36
     },
     {
       "date": "2016-09-01",
-      "import_yoy": null,
+      "import_yoy": -1.07,
       "export_yoy": -1.47
     },
     {
       "date": "2016-10-01",
-      "import_yoy": null,
+      "import_yoy": -0.25,
       "export_yoy": -1.07
     },
     {
       "date": "2016-11-01",
-      "import_yoy": null,
+      "import_yoy": 0.25,
       "export_yoy": -0.25
     },
     {
       "date": "2016-12-01",
-      "import_yoy": null,
+      "import_yoy": 1.93,
       "export_yoy": 1.25
     },
     {
       "date": "2017-01-01",
-      "import_yoy": null,
+      "import_yoy": 3.82,
       "export_yoy": 2.44
     },
     {
       "date": "2017-02-01",
-      "import_yoy": null,
+      "import_yoy": 4.69,
       "export_yoy": 3.21
     },
     {
       "date": "2017-03-01",
-      "import_yoy": null,
+      "import_yoy": 4.08,
       "export_yoy": 3.39
     },
     {
       "date": "2017-04-01",
-      "import_yoy": null,
+      "import_yoy": 3.63,
       "export_yoy": 3.12
     },
     {
       "date": "2017-05-01",
-      "import_yoy": null,
+      "import_yoy": 2.34,
       "export_yoy": 1.42
     },
     {
       "date": "2017-06-01",
-      "import_yoy": null,
+      "import_yoy": 1.41,
       "export_yoy": 0.58
     },
     {
       "date": "2017-07-01",
-      "import_yoy": null,
+      "import_yoy": 1.16,
       "export_yoy": 0.91
     },
     {
       "date": "2017-08-01",
-      "import_yoy": null,
+      "import_yoy": 1.99,
       "export_yoy": 2.33
     },
     {
       "date": "2017-09-01",
-      "import_yoy": null,
+      "import_yoy": 2.74,
       "export_yoy": 2.82
     },
     {
       "date": "2017-10-01",
-      "import_yoy": null,
+      "import_yoy": 2.39,
       "export_yoy": 2.73
     },
     {
       "date": "2017-11-01",
-      "import_yoy": null,
+      "import_yoy": 3.47,
       "export_yoy": 3.15
     },
     {
       "date": "2017-12-01",
-      "import_yoy": null,
+      "import_yoy": 3.21,
       "export_yoy": 2.8
     },
     {
       "date": "2018-01-01",
-      "import_yoy": null,
+      "import_yoy": 3.43,
       "export_yoy": 3.29
     },
     {
       "date": "2018-02-01",
-      "import_yoy": null,
+      "import_yoy": 3.34,
       "export_yoy": 3.11
     },
     {
       "date": "2018-03-01",
-      "import_yoy": null,
+      "import_yoy": 3.27,
       "export_yoy": 3.44
     },
     {
       "date": "2018-04-01",
-      "import_yoy": null,
+      "import_yoy": 3.5,
       "export_yoy": 3.68
     },
     {
       "date": "2018-05-01",
-      "import_yoy": null,
+      "import_yoy": 4.48,
       "export_yoy": 5.01
     },
     {
       "date": "2018-06-01",
-      "import_yoy": null,
+      "import_yoy": 4.74,
       "export_yoy": 5.26
     },
     {
       "date": "2018-07-01",
-      "import_yoy": null,
+      "import_yoy": 4.83,
       "export_yoy": 4.26
     },
     {
       "date": "2018-08-01",
-      "import_yoy": null,
+      "import_yoy": 3.82,
       "export_yoy": 3.58
     },
     {
       "date": "2018-09-01",
-      "import_yoy": null,
+      "import_yoy": 3.07,
       "export_yoy": 2.74
     },
     {
       "date": "2018-10-01",
-      "import_yoy": null,
+      "import_yoy": 3.38,
       "export_yoy": 3.15
     },
     {
       "date": "2018-11-01",
-      "import_yoy": null,
+      "import_yoy": 0.72,
       "export_yoy": 1.85
     },
     {
       "date": "2018-12-01",
-      "import_yoy": null,
+      "import_yoy": -0.88,
       "export_yoy": 1.12
     },
     {
       "date": "2019-01-01",
-      "import_yoy": null,
+      "import_yoy": -1.5,
       "export_yoy": -0.24
     },
     {
       "date": "2019-02-01",
-      "import_yoy": null,
+      "import_yoy": -0.71,
       "export_yoy": 0.24
     },
     {
       "date": "2019-03-01",
-      "import_yoy": null,
+      "import_yoy": 0.08,
       "export_yoy": 0.55
     },
     {
       "date": "2019-04-01",
-      "import_yoy": null,
+      "import_yoy": -0.24,
       "export_yoy": 0.16
     },
     {
       "date": "2019-05-01",
-      "import_yoy": null,
+      "import_yoy": -0.94,
       "export_yoy": -0.86
     },
     {
       "date": "2019-06-01",
-      "import_yoy": null,
+      "import_yoy": -2.03,
       "export_yoy": -1.56
     },
     {
       "date": "2019-07-01",
-      "import_yoy": null,
+      "import_yoy": -1.95,
       "export_yoy": -0.94
     },
     {
       "date": "2019-08-01",
-      "import_yoy": null,
+      "import_yoy": -2.12,
       "export_yoy": -1.41
     },
     {
       "date": "2019-09-01",
-      "import_yoy": null,
+      "import_yoy": -2.11,
       "export_yoy": -1.73
     },
     {
       "date": "2019-10-01",
-      "import_yoy": null,
+      "import_yoy": -2.96,
       "export_yoy": -2.19
     },
     {
       "date": "2019-11-01",
-      "import_yoy": null,
+      "import_yoy": -1.19,
       "export_yoy": -1.34
     },
     {
       "date": "2019-12-01",
-      "import_yoy": null,
+      "import_yoy": 0.48,
       "export_yoy": -0.87
     },
     {
       "date": "2020-01-01",
-      "import_yoy": null,
+      "import_yoy": 0.48,
       "export_yoy": 0.4
     },
     {
       "date": "2020-02-01",
-      "import_yoy": null,
+      "import_yoy": -1.27,
       "export_yoy": -1.43
     },
     {
       "date": "2020-03-01",
-      "import_yoy": null,
+      "import_yoy": -4.19,
       "export_yoy": -3.54
     },
     {
       "date": "2020-04-01",
-      "import_yoy": null,
+      "import_yoy": -6.78,
       "export_yoy": -7.0
     },
     {
       "date": "2020-05-01",
-      "import_yoy": null,
+      "import_yoy": -6.3,
       "export_yoy": -6.71
     },
     {
       "date": "2020-06-01",
-      "import_yoy": null,
+      "import_yoy": -3.98,
       "export_yoy": -4.52
     },
     {
       "date": "2020-07-01",
-      "import_yoy": null,
+      "import_yoy": -2.79,
       "export_yoy": -3.72
     },
     {
       "date": "2020-08-01",
-      "import_yoy": null,
+      "import_yoy": -1.36,
       "export_yoy": -2.71
     },
     {
       "date": "2020-09-01",
-      "import_yoy": null,
+      "import_yoy": -1.28,
       "export_yoy": -1.84
     },
     {
       "date": "2020-10-01",
-      "import_yoy": null,
+      "import_yoy": -0.96,
       "export_yoy": -1.68
     },
     {
       "date": "2020-11-01",
-      "import_yoy": null,
+      "import_yoy": -1.04,
       "export_yoy": -0.96
     },
     {
       "date": "2020-12-01",
-      "import_yoy": null,
+      "import_yoy": -0.32,
       "export_yoy": 0.4
     },
     {
       "date": "2021-01-01",
-      "import_yoy": null,
+      "import_yoy": 1.04,
       "export_yoy": 2.46
     },
     {
       "date": "2021-02-01",
-      "import_yoy": null,
+      "import_yoy": 2.98,
       "export_yoy": 5.39
     },
     {
       "date": "2021-03-01",
-      "import_yoy": null,
+      "import_yoy": 7.09,
       "export_yoy": 9.63
     },
     {
       "date": "2021-04-01",
-      "import_yoy": null,
+      "import_yoy": 10.91,
       "export_yoy": 14.97
     },
     {
       "date": "2021-05-01",
-      "import_yoy": null,
+      "import_yoy": 11.6,
       "export_yoy": 17.6
     },
     {
       "date": "2021-06-01",
-      "import_yoy": null,
+      "import_yoy": 11.28,
       "export_yoy": 16.87
     },
     {
       "date": "2021-07-01",
-      "import_yoy": null,
+      "import_yoy": 10.24,
       "export_yoy": 16.95
     },
     {
       "date": "2021-08-01",
-      "import_yoy": null,
+      "import_yoy": 9.01,
       "export_yoy": 16.63
     },
     {
       "date": "2021-09-01",
-      "import_yoy": null,
+      "import_yoy": 9.32,
       "export_yoy": 16.29
     },
     {
       "date": "2021-10-01",
-      "import_yoy": null,
+      "import_yoy": 11.03,
       "export_yoy": 18.29
     },
     {
       "date": "2021-11-01",
-      "import_yoy": null,
+      "import_yoy": 11.75,
       "export_yoy": 18.15
     },
     {
       "date": "2021-12-01",
-      "import_yoy": null,
+      "import_yoy": 10.27,
       "export_yoy": 14.9
     },
     {
       "date": "2022-01-01",
-      "import_yoy": null,
+      "import_yoy": 10.75,
       "export_yoy": 14.97
     },
     {
       "date": "2022-02-01",
-      "import_yoy": null,
+      "import_yoy": 11.41,
       "export_yoy": 16.79
     },
     {
       "date": "2022-03-01",
-      "import_yoy": null,
+      "import_yoy": 13.01,
       "export_yoy": 18.39
     },
     {
       "date": "2022-04-01",
-      "import_yoy": null,
+      "import_yoy": 12.51,
       "export_yoy": 18.18
     },
     {
       "date": "2022-05-01",
-      "import_yoy": null,
+      "import_yoy": 11.6,
       "export_yoy": 18.63
     },
     {
       "date": "2022-06-01",
-      "import_yoy": null,
+      "import_yoy": 10.66,
       "export_yoy": 18.56
     },
     {
       "date": "2022-07-01",
-      "import_yoy": null,
+      "import_yoy": 8.77,
       "export_yoy": 12.95
     },
     {
       "date": "2022-08-01",
-      "import_yoy": null,
+      "import_yoy": 7.67,
       "export_yoy": 11.17
     },
     {
       "date": "2022-09-01",
-      "import_yoy": null,
+      "import_yoy": 6.08,
       "export_yoy": 9.8
     },
     {
       "date": "2022-10-01",
-      "import_yoy": null,
+      "import_yoy": 4.24,
       "export_yoy": 7.22
     },
     {
       "date": "2022-11-01",
-      "import_yoy": null,
+      "import_yoy": 2.68,
       "export_yoy": 6.08
     },
     {
       "date": "2022-12-01",
-      "import_yoy": null,
+      "import_yoy": 3.2,
       "export_yoy": 4.58
     },
     {
       "date": "2023-01-01",
-      "import_yoy": null,
+      "import_yoy": 0.86,
       "export_yoy": 1.96
     },
     {
       "date": "2023-02-01",
-      "import_yoy": null,
+      "import_yoy": -1.12,
       "export_yoy": -0.85
     },
     {
       "date": "2023-03-01",
-      "import_yoy": null,
+      "import_yoy": -4.7,
       "export_yoy": -4.97
     },
     {
       "date": "2023-04-01",
-      "import_yoy": null,
+      "import_yoy": -4.88,
       "export_yoy": -5.98
     },
     {
       "date": "2023-05-01",
-      "import_yoy": null,
+      "import_yoy": -5.74,
       "export_yoy": -10.31
     },
     {
       "date": "2023-06-01",
-      "import_yoy": null,
+      "import_yoy": -6.13,
       "export_yoy": -11.82
     },
     {
       "date": "2023-07-01",
-      "import_yoy": null,
+      "import_yoy": -4.78,
       "export_yoy": -8.1
     },
     {
       "date": "2023-08-01",
-      "import_yoy": null,
+      "import_yoy": -2.97,
       "export_yoy": -5.75
     },
     {
       "date": "2023-09-01",
-      "import_yoy": null,
+      "import_yoy": -1.47,
       "export_yoy": -4.34
     },
     {
       "date": "2023-10-01",
-      "import_yoy": null,
+      "import_yoy": -1.82,
       "export_yoy": -4.74
     },
     {
       "date": "2023-11-01",
-      "import_yoy": null,
+      "import_yoy": -1.55,
       "export_yoy": -5.08
     },
     {
       "date": "2023-12-01",
-      "import_yoy": null,
+      "import_yoy": -2.4,
       "export_yoy": -2.85
     },
     {
       "date": "2024-01-01",
-      "import_yoy": null,
+      "import_yoy": -1.34,
       "export_yoy": -2.38
     },
     {
       "date": "2024-02-01",
-      "import_yoy": null,
+      "import_yoy": -0.92,
       "export_yoy": -2.04
     },
     {
       "date": "2024-03-01",
-      "import_yoy": null,
+      "import_yoy": 0.43,
       "export_yoy": -1.52
     },
     {
       "date": "2024-04-01",
-      "import_yoy": null,
+      "import_yoy": 1.0,
       "export_yoy": -0.79
     },
     {
       "date": "2024-05-01",
-      "import_yoy": null,
+      "import_yoy": 1.29,
       "export_yoy": 0.61
     },
     {
       "date": "2024-06-01",
-      "import_yoy": null,
+      "import_yoy": 1.58,
       "export_yoy": 0.95
     },
     {
       "date": "2024-07-01",
-      "import_yoy": null,
+      "import_yoy": 1.72,
       "export_yoy": 1.15
     },
     {
       "date": "2024-08-01",
-      "import_yoy": null,
+      "import_yoy": 0.78,
       "export_yoy": -0.67
     },
     {
       "date": "2024-09-01",
-      "import_yoy": null,
+      "import_yoy": -0.07,
       "export_yoy": -1.8
     },
     {
       "date": "2024-10-01",
-      "import_yoy": null,
+      "import_yoy": 0.71,
       "export_yoy": 0.13
     },
     {
       "date": "2024-11-01",
-      "import_yoy": null,
+      "import_yoy": 1.36,
       "export_yoy": 0.88
     },
     {
       "date": "2024-12-01",
-      "import_yoy": null,
+      "import_yoy": 2.17,
       "export_yoy": 2.05
     },
     {
       "date": "2025-01-01",
-      "import_yoy": null,
+      "import_yoy": 1.72,
       "export_yoy": 2.78
     },
     {
       "date": "2025-02-01",
-      "import_yoy": null,
+      "import_yoy": 1.72,
       "export_yoy": 2.69
     },
     {
       "date": "2025-03-01",
-      "import_yoy": null,
+      "import_yoy": 0.78,
       "export_yoy": 2.49
     },
     {
       "date": "2025-04-01",
-      "import_yoy": null,
+      "import_yoy": 0.0,
       "export_yoy": 1.87
     },
     {
       "date": "2025-05-01",
-      "import_yoy": null,
+      "import_yoy": -0.35,
       "export_yoy": 1.88
     },
     {
       "date": "2025-06-01",
-      "import_yoy": null,
+      "import_yoy": -0.56,
       "export_yoy": 2.63
     },
     {
       "date": "2025-07-01",
-      "import_yoy": null,
+      "import_yoy": -0.42,
       "export_yoy": 2.41
     },
     {
       "date": "2025-08-01",
-      "import_yoy": null,
+      "import_yoy": -0.28,
       "export_yoy": 3.24
     },
     {
       "date": "2025-09-01",
-      "import_yoy": null,
+      "import_yoy": -0.07,
       "export_yoy": 3.87
     },
     {
       "date": "2025-11-01",
-      "import_yoy": null,
+      "import_yoy": -0.07,
       "export_yoy": 3.29
     },
     {
       "date": "2025-12-01",
-      "import_yoy": null,
+      "import_yoy": 0.0,
       "export_yoy": 3.41
     },
     {
       "date": "2026-01-01",
-      "import_yoy": null,
+      "import_yoy": 0.28,
       "export_yoy": 2.64
     },
     {
       "date": "2026-02-01",
-      "import_yoy": null,
+      "import_yoy": 1.34,
       "export_yoy": 3.54
     }
   ],
   "latest": {
     "date": "2026-02-01",
-    "import_yoy": null,
+    "import_yoy": 1.34,
     "export_yoy": 3.54
   },
   "next_release": null,
-  "last_updated": "2026-04-06T23:02:08.323702+09:00"
+  "last_updated": "2026-04-07T23:02:24.300119+09:00"
 }

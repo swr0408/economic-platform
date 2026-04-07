@@ -23,6 +23,7 @@ import {
 } from 'recharts'
 import CandlestickChart from '../common/CandlestickChart'
 import LineChart from '../common/LineChart'
+import { withVisibility } from '../common/withVisibility'
 
 // ダークテーマカラー
 const DARK_THEME = {
@@ -150,7 +151,7 @@ interface DukascopySymbol {
 const CHART_REQUEST_TIMEOUT = 30000  // 30秒
 const RELEASES_REQUEST_TIMEOUT = 10000  // 10秒
 
-export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
+function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
   const [mode, setMode] = useState<'single' | 'compare'>('single')
   const [selectedRelease, setSelectedRelease] = useState<string | null>(null)
   const [selectedReleases, setSelectedReleases] = useState<string[]>([])
@@ -923,3 +924,6 @@ export default function MarketImpactTab({ indicatorId }: MarketImpactTabProps) {
     </div>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(MarketImpactTab, 'special')

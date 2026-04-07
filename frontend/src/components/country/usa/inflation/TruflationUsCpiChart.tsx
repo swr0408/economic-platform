@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react'
 import { Button, Spin, Image } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
+import { withVisibility } from '../../../common/withVisibility'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
@@ -24,7 +25,7 @@ interface ScreenshotData {
   screenshots: ScreenshotItem[]
 }
 
-export default function TruflationUsCpiChart() {
+function TruflationUsCpiChart() {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<ScreenshotData | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -160,3 +161,6 @@ export default function TruflationUsCpiChart() {
     </ChartContainer>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(TruflationUsCpiChart, 'special')

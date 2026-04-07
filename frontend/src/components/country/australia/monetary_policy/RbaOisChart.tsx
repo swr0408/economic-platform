@@ -10,6 +10,8 @@
 import { useState, useEffect } from 'react'
 import { Card, Button, Spin, Typography, Image } from 'antd'
 import { ReloadOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 const { Text } = Typography
 
@@ -28,7 +30,8 @@ interface ScreenshotData {
   refreshed?: boolean
 }
 
-export default function RbaOisChart() {
+function RbaOisChart() {
+  const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -110,9 +113,11 @@ export default function RbaOisChart() {
         title={
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>OIS (Overnight Indexed Swaps)</span>
-            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-              再取得
-            </Button>
+            {isMaster && (
+              <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
+                再取得
+              </Button>
+            )}
           </div>
         }
       >
@@ -126,9 +131,11 @@ export default function RbaOisChart() {
       title={
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span>OIS (Overnight Indexed Swaps)</span>
-          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
-            更新
-          </Button>
+          {isMaster && (
+            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+              更新
+            </Button>
+          )}
         </div>
       }
     >
@@ -220,3 +227,6 @@ export default function RbaOisChart() {
     </Card>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(RbaOisChart, 'special')

@@ -12,6 +12,8 @@ import { useState } from 'react'
 import { Card, Button, Spin, Typography, Image } from 'antd'
 import { ReloadOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons'
 import type { NabCostPriceData } from '../../../../hooks/useDashboardData'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 const { Text } = Typography
 
@@ -21,7 +23,8 @@ interface Props {
   data: NabCostPriceData | null
 }
 
-export default function AuNabBusinessConfidenceIndexCostPriceChart({ data }: Props) {
+function AuNabBusinessConfidenceIndexCostPriceChart({ data }: Props) {
+  const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -68,9 +71,11 @@ export default function AuNabBusinessConfidenceIndexCostPriceChart({ data }: Pro
       title={
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <span>NAB企業調査（コスト・価格）</span>
-          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-            更新
-          </Button>
+          {isMaster && (
+            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
+              更新
+            </Button>
+          )}
         </div>
       }
     >
@@ -174,3 +179,6 @@ export default function AuNabBusinessConfidenceIndexCostPriceChart({ data }: Pro
     </Card>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(AuNabBusinessConfidenceIndexCostPriceChart, 'special')

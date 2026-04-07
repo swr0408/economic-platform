@@ -10,6 +10,10 @@ import './styles/index.css'
 
 // Axios グローバル設定をインポート（タイムアウト、インターセプター）
 import './utils/axiosConfig'
+// グローバル fetch ラッパ (Cookie + Bearer 自動付与)
+import { installAuthFetch } from './utils/fetchAuth'
+
+installAuthFetch()
 
 // EconAlpha ダークテーマ設定
 const econAlphaTheme = {

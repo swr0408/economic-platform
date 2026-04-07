@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Card, Button, Spin, Typography, Row, Col, Image } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 const { Text } = Typography
 
@@ -17,9 +19,10 @@ interface ScreenshotData {
   refreshed?: boolean
 }
 
-export default function ECBRateCutsExpectationChart({
+function ECBRateCutsExpectationChart({
   title = 'ECB利上げ・利下げ期待（2026年）'
 }: ECBRateCutsExpectationChartProps) {
+  const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -71,9 +74,11 @@ export default function ECBRateCutsExpectationChart({
       <Card title={
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <span>{title}</span>
-          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-            更新
-          </Button>
+          {isMaster && (
+            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
+              更新
+            </Button>
+          )}
         </div>
       }>
         <div style={{ textAlign: 'center', padding: '60px 0' }}>
@@ -90,15 +95,17 @@ export default function ECBRateCutsExpectationChart({
         title={
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>{title}</span>
-            <Button
-              size="small"
-              icon={<ReloadOutlined />}
-              onClick={handleRefresh}
-              loading={refreshing}
-              style={{ position: 'absolute', right: 0 }}
-            >
-              再取得
-            </Button>
+            {isMaster && (
+              <Button
+                size="small"
+                icon={<ReloadOutlined />}
+                onClick={handleRefresh}
+                loading={refreshing}
+                style={{ position: 'absolute', right: 0 }}
+              >
+                再取得
+              </Button>
+            )}
           </div>
         }
       >
@@ -114,15 +121,17 @@ export default function ECBRateCutsExpectationChart({
       title={
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <span>{title}</span>
-          <Button
-            size="small"
-            icon={<ReloadOutlined />}
-            onClick={handleRefresh}
-            loading={refreshing}
-            style={{ position: 'absolute', right: 0 }}
-          >
-            更新
-          </Button>
+          {isMaster && (
+            <Button
+              size="small"
+              icon={<ReloadOutlined />}
+              onClick={handleRefresh}
+              loading={refreshing}
+              style={{ position: 'absolute', right: 0 }}
+            >
+              更新
+            </Button>
+          )}
         </div>
       }
     >
@@ -195,3 +204,6 @@ export default function ECBRateCutsExpectationChart({
     </Card>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(ECBRateCutsExpectationChart, 'special')

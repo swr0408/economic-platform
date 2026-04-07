@@ -17,12 +17,16 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.orm import Session
 
 try:
+    from backend.core.auth.cookies import (
+        clear_access_token_cookie,
+        set_access_token_cookie,
+    )
     from backend.core.auth.dependencies import (
         get_current_token_claims,
         get_current_user,
@@ -47,6 +51,10 @@ try:
     )
     from backend.core.database import get_db
 except ImportError:
+    from core.auth.cookies import (
+        clear_access_token_cookie,
+        set_access_token_cookie,
+    )
     from core.auth.dependencies import (
         get_current_token_claims,
         get_current_user,
@@ -75,16 +83,21 @@ except ImportError:
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
 
 
-def _issue_token(user: User) -> TokenResponse:
+def _issue_token(user: User, response: Optional[Response] = None) -> TokenResponse:
     token = create_access_token(
         user_id=user.id,
         username=user.username,
         role=user.role,
     )
+    expires_in = get_token_expire_seconds()
+    # 併用: httpOnly Cookie にも同じ token を載せる。
+    # <img src> 等 Authorization ヘッダを送れない経路のため。
+    if response is not None:
+        set_access_token_cookie(response, token, expires_in)
     return TokenResponse(
         access_token=token,
         token_type="bearer",
-        expires_in=get_token_expire_seconds(),
+        expires_in=expires_in,
         user=UserResponse.model_validate(user),
     )
 
@@ -97,7 +110,11 @@ def _issue_token(user: User) -> TokenResponse:
     response_model=TokenResponse,
     status_code=status.HTTP_201_CREATED,
 )
-def register(payload: RegisterRequest, db: Session = Depends(get_db)):
+def register(
+    payload: RegisterRequest,
+    response: Response,
+    db: Session = Depends(get_db),
+):
     """新規登録。常に role='general' で作成する。"""
     if db.query(User).filter(User.username == payload.username).first():
         raise HTTPException(
@@ -122,11 +139,15 @@ def register(payload: RegisterRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
 
-    return _issue_token(user)
+    return _issue_token(user, response)
 
 
 @router.post("/login", response_model=TokenResponse)
-def login(payload: LoginRequest, db: Session = Depends(get_db)):
+def login(
+    payload: LoginRequest,
+    response: Response,
+    db: Session = Depends(get_db),
+):
     """ログイン。ユーザー名+パスワードで JWT を発行する。"""
     user = db.query(User).filter(User.username == payload.username).first()
 
@@ -147,7 +168,7 @@ def login(payload: LoginRequest, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(user)
 
-    return _issue_token(user)
+    return _issue_token(user, response)
 
 
 @router.get("/me", response_model=UserResponse)
@@ -158,17 +179,21 @@ def me(user: User = Depends(get_current_user)):
 
 @router.post("/logout", status_code=status.HTTP_204_NO_CONTENT)
 def logout(
+    response: Response,
     claims: Dict[str, Any] = Depends(get_current_token_claims),
 ):
     """ログアウト。現在のトークンの jti を Redis ブラックリストに登録して即時失効させる。
 
     Redis が落ちている場合は書き込み失敗となり、フロントエンド側のトークン破棄のみが
     効く (従来の挙動と同じ)。このレベルでは 204 を返す。
+
+    httpOnly Cookie 併用版では access_token Cookie も破棄する。
     """
     jti = claims.get("jti")
     exp = claims.get("exp")
     if jti:
         revoke_jti(jti, exp if isinstance(exp, int) else None)
+    clear_access_token_cookie(response)
     return None
 
 
@@ -178,6 +203,7 @@ def logout(
 @router.post("/change-password", status_code=status.HTTP_204_NO_CONTENT)
 def change_password(
     payload: ChangePasswordRequest,
+    response: Response,
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
@@ -203,6 +229,8 @@ def change_password(
 
     # パスワード変更以前に発行された全トークンを強制失効
     revoke_all_for_user(user.id)
+    # 同時に Cookie 経由のセッションも破棄
+    clear_access_token_cookie(response)
     return None
 
 

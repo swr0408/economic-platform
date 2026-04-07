@@ -34,6 +34,9 @@ _require_master = require_role(ROLE_MASTER)
 
 router = APIRouter(prefix="/api", tags=["Headlines"])
 
+# special または master のみ閲覧可 (FinancialJuice 由来は special 以上)
+_require_special_or_master = require_role("special", ROLE_MASTER)
+
 
 # ========== Headlines ==========
 
@@ -51,8 +54,9 @@ def api_get_headlines(
     date_from: Optional[str] = Query(None, alias="from"),
     date_to: Optional[str] = Query(None, alias="to"),
     q: Optional[str] = Query(None),
+    _user=Depends(_require_special_or_master),
 ):
-    """ヘッドライン一覧"""
+    """ヘッドライン一覧 (special/master 限定)"""
     return get_headlines(
         limit=limit, offset=offset, source=source,
         rough_category=roughCategory, speaker=speaker,
@@ -64,8 +68,8 @@ def api_get_headlines(
 
 
 @router.get("/headlines/{headline_id}")
-def api_get_headline(headline_id: int):
-    """ヘッドライン詳細"""
+def api_get_headline(headline_id: int, _user=Depends(_require_special_or_master)):
+    """ヘッドライン詳細 (special/master 限定)"""
     result = get_headline_by_id(headline_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Headline not found")
@@ -76,16 +80,22 @@ class SaveRequest(BaseModel):
     categoryIds: list[int] = []
     newCategoryName: Optional[str] = None
     note: Optional[str] = None
+    isPublicVisible: bool = False
 
 
 @router.post("/headlines/{headline_id}/save")
-def api_save_headline(headline_id: int, body: SaveRequest):
-    """ヘッドラインを保存"""
+def api_save_headline(
+    headline_id: int,
+    body: SaveRequest,
+    _master=Depends(_require_master),
+):
+    """ヘッドラインを保存 (master 限定)"""
     result = save_headline(
         headline_id=headline_id,
         category_ids=body.categoryIds,
         new_category_name=body.newCategoryName,
         note=body.note,
+        is_public_visible=body.isPublicVisible,
     )
     if "error" in result:
         raise HTTPException(status_code=400, detail=result["error"])
@@ -93,8 +103,12 @@ def api_save_headline(headline_id: int, body: SaveRequest):
 
 
 @router.delete("/headlines/{headline_id}/save/{saved_id}")
-def api_unsave_headline(headline_id: int, saved_id: int):
-    """保存解除"""
+def api_unsave_headline(
+    headline_id: int,
+    saved_id: int,
+    _master=Depends(_require_master),
+):
+    """保存解除 (master 限定)"""
     success = unsave_headline(saved_id)
     if not success:
         raise HTTPException(status_code=404, detail="Saved record not found")
@@ -102,17 +116,17 @@ def api_unsave_headline(headline_id: int, saved_id: int):
 
 
 @router.post("/headlines/{headline_id}/retranslate")
-def api_retranslate(headline_id: int):
-    """再翻訳"""
+def api_retranslate(headline_id: int, _master=Depends(_require_master)):
+    """再翻訳 (master 限定)"""
     translation_worker.retranslate(headline_id)
     return {"success": True}
 
 
-# ========== Categories ==========
+# ========== Categories (master 限定) ==========
 
 @router.get("/categories")
-def api_get_categories():
-    """カテゴリ一覧"""
+def api_get_categories(_master=Depends(_require_master)):
+    """カテゴリ一覧 (master 限定)"""
     return get_categories()
 
 
@@ -123,8 +137,8 @@ class CategoryRequest(BaseModel):
 
 
 @router.post("/categories")
-def api_create_category(body: CategoryRequest):
-    """カテゴリ作成"""
+def api_create_category(body: CategoryRequest, _master=Depends(_require_master)):
+    """カテゴリ作成 (master 限定)"""
     return create_category(name=body.name, color=body.color, parent_id=body.parent_id)
 
 
@@ -135,8 +149,12 @@ class CategoryUpdateRequest(BaseModel):
 
 
 @router.patch("/categories/{category_id}")
-def api_update_category(category_id: int, body: CategoryUpdateRequest):
-    """カテゴリ更新"""
+def api_update_category(
+    category_id: int,
+    body: CategoryUpdateRequest,
+    _master=Depends(_require_master),
+):
+    """カテゴリ更新 (master 限定)"""
     success = update_category(category_id, name=body.name, color=body.color, sort_order=body.sort_order)
     if not success:
         raise HTTPException(status_code=404, detail="Category not found")
@@ -144,8 +162,8 @@ def api_update_category(category_id: int, body: CategoryUpdateRequest):
 
 
 @router.delete("/categories/{category_id}")
-def api_delete_category(category_id: int):
-    """カテゴリ削除"""
+def api_delete_category(category_id: int, _master=Depends(_require_master)):
+    """カテゴリ削除 (master 限定)"""
     success = delete_category(category_id)
     if not success:
         raise HTTPException(status_code=404, detail="Category not found")

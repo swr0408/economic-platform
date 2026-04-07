@@ -65,6 +65,58 @@ function computeQuarterlyPctChange(
   return points;
 }
 
+/**
+ * 月次データを四半期平均に変換し、前期差（first difference）を計算する共通ヘルパー
+ *
+ * qoq_diff: 月次指数 → 四半期平均 → ΔĪ_Q = Ī_Q − Ī_{Q-1}
+ *
+ * Ifo景況感指数のように、四半期GDPと整合的に比較したい指数で利用する。
+ * 単純平均で四半期平均を算出し、前期差を絶対値（pt差分）で返す。
+ */
+function computeQuarterlyDiff(data: DataPoint[]): DataPoint[] {
+  // 四半期キー (YYYY-Q1..Q4) でグルーピング
+  const qMap = new Map<string, { sum: number; count: number; lastDate: string }>();
+
+  for (const pt of data) {
+    if (pt.value === null || pt.value === undefined) continue;
+    const d = new Date(pt.date);
+    const y = d.getUTCFullYear();
+    const m = d.getUTCMonth(); // 0-11
+    const q = Math.floor(m / 3) + 1; // 1-4
+    const key = `${y}-Q${q}`;
+
+    const entry = qMap.get(key);
+    if (entry) {
+      entry.sum += pt.value;
+      entry.count += 1;
+      if (pt.date > entry.lastDate) entry.lastDate = pt.date;
+    } else {
+      qMap.set(key, { sum: pt.value, count: 1, lastDate: pt.date });
+    }
+  }
+
+  // 3ヵ月揃った四半期のみ採用し、単純平均を計算
+  const quarters: { key: string; avg: number; date: string }[] = [];
+  for (const [key, v] of qMap) {
+    if (v.count === 3) {
+      quarters.push({ key, avg: v.sum / v.count, date: v.lastDate });
+    }
+  }
+  quarters.sort((a, b) => a.key.localeCompare(b.key));
+
+  // 1期ラグ差分: ΔĪ_Q = Ī_Q − Ī_{Q-1}
+  const points: DataPoint[] = [];
+  for (let i = 1; i < quarters.length; i++) {
+    const cur = quarters[i].avg;
+    const prev = quarters[i - 1].avg;
+    points.push({
+      date: quarters[i].date,
+      value: Math.round((cur - prev) * 100) / 100,
+    });
+  }
+  return points;
+}
+
 // OVERLAY_INDICATORSからマッピングを動的に生成
 function getIndicatorMapping(indicatorId: string): {
   endpoint: string;
@@ -604,7 +656,7 @@ function extractIndicatorData(
     // valueFieldが指定されている場合はそのフィールドを使用、なければ'value'
     const field = valueField || 'value';
     console.log('[useOverlayData] Direct array pattern for:', dataKey, 'valueField:', field, 'length:', indicatorData.length);
-    return (indicatorData as APIDataItem[])
+    const rawPoints = (indicatorData as APIDataItem[])
       .filter(item => {
         const val = item[field];
         return val !== undefined && val !== null && typeof val === 'number';
@@ -613,6 +665,46 @@ function extractIndicatorData(
         date: item.date,
         value: item[field] as number,
       }));
+
+    // derived変換を適用（qoq_pct / yoy_pct / qoq_diff など）
+    if (derived && rawPoints.length > 0) {
+      if (derived.type === 'qoq_pct') {
+        return computeQuarterlyPctChange(rawPoints, 'qoq');
+      }
+      if (derived.type === 'yoy_pct') {
+        return computeQuarterlyPctChange(rawPoints, 'yoy');
+      }
+      if (derived.type === 'qoq_diff') {
+        return computeQuarterlyDiff(rawPoints);
+      }
+      if (derived.type === 'diff') {
+        const period = derived.period ?? 1;
+        const sorted = [...rawPoints].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+        const result: DataPoint[] = [];
+        for (let i = period; i < sorted.length; i++) {
+          result.push({ date: sorted[i].date, value: sorted[i].value - sorted[i - period].value });
+        }
+        return result;
+      }
+      if (derived.type === 'yoy') {
+        const period = derived.period ?? 12;
+        const sorted = [...rawPoints].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+        const result: DataPoint[] = [];
+        for (let i = period; i < sorted.length; i++) {
+          const cur = sorted[i].value;
+          const prev = sorted[i - period].value;
+          if (prev !== 0) {
+            result.push({
+              date: sorted[i].date,
+              value: Math.round(((cur - prev) / prev) * 10000) / 100,
+            });
+          }
+        }
+        return result;
+      }
+    }
+
+    return rawPoints;
   }
 
   const dataObj = indicatorData as {
@@ -988,6 +1080,9 @@ async function fetchSingleIndicatorData(
       }
       if (mapping.derived.type === 'yoy_pct') {
         return computeQuarterlyPctChange(points, 'yoy');
+      }
+      if (mapping.derived.type === 'qoq_diff') {
+        return computeQuarterlyDiff(points);
       }
       if (mapping.derived.type === 'yoy') {
         // (current - prev) / prev * 100 : period個前との前年比

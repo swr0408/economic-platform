@@ -9,9 +9,21 @@ import {
   GlobalOutlined,
 } from '@ant-design/icons'
 
+/**
+ * visibility:
+ *   - 未指定 (= 'public'): 全員が閲覧可能
+ *   - 'special': special / master のみ閲覧可能 (一般・未ログインは非表示)
+ *   - 'master':  master のみ閲覧可能
+ *
+ * backend 側 services/visibility/visibility_seed.py と
+ * services/visibility/path_resolver.py の分類に揃えること。
+ */
+export type IndicatorVisibility = 'special' | 'master'
+
 export type IndicatorItem = {
   code: string
   name: string
+  visibility?: IndicatorVisibility
 }
 
 export type CategoryItem = {
@@ -42,7 +54,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'policy-rate', name: '政策金利' },
-          { code: 'fed-watch', name: 'Fed Watch' },
+          { code: 'fed-watch', name: 'Fed Watch', visibility: 'special' },
           { code: 'term-premium', name: 'タームプレミアム' },
           { code: 'dot-plot', name: 'Dot Plot' },
           { code: 'fomc-projections', name: 'FOMC経済見通し' },
@@ -170,7 +182,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'retail-food-services-price', name: 'シカゴ連銀小売物価指数' },
           { code: 'ny-inflation-expectations', name: 'NYインフレ期待' },
           { code: 'michigan-inflation-expectations', name: 'ミシガンインフレ期待' },
-          { code: 'truflation-us-cpi', name: 'Truflation US CPI' },
+          { code: 'truflation-us-cpi', name: 'Truflation US CPI', visibility: 'special' },
 
         ],
       },
@@ -313,12 +325,12 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'ecb-policy-framework', name: 'ECB政策枠組み' },
           { code: 'ecb-rates', name: 'ECB預金ファシリティ金利' },
           { code: 'eurex-ois', name: '3ヶ月ユーロSTR先物カーブ' },
-          { code: 'ecb-rate-cuts', name: 'ECB利上げ・利下げ期待' },
+          { code: 'ecb-rate-cuts', name: 'ECB利上げ・利下げ期待', visibility: 'special' },
           { code: 'ecb-macro-projections', name: 'マクロ経済予測' },
           { code: 'ecb-m3', name: 'M3マネーサプライ' },
           { code: 'ecb-bank-interest-rates', name: '銀行金利' },
           { code: 'ecb-balance-sheet', name: 'ECBバランスシート' },
-          { code: 'btp-bund-spread', name: '伊独スプレッド' },
+          // { code: 'btp-bund-spread', name: '伊独スプレッド' },
         ],
       },
       {
@@ -518,15 +530,15 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'reverse-repo-rate', name: 'リバースレポ金利' },
           { code: 'rrr', name: '預金準備率' },
           { code: 'central-bank-balance-sheet', name: '中銀バランスシート' },
-          { code: 'fixing-repo-rate', name: 'Fixing Repo Rate' },
-          { code: 'central-parity', name: 'Central Parity Rate' },
-          { code: 'shibor', name: 'SHIBOR' },
+          { code: 'fixing-repo-rate', name: 'Fixing Repo Rate', visibility: 'special' },
+          { code: 'central-parity', name: 'Central Parity Rate', visibility: 'special' },
+          { code: 'shibor', name: 'SHIBOR', visibility: 'special' },
           { code: 'm1-m2', name: 'M1/M2' },
           { code: 'aggregate-financing', name: '社会融資総量' },
           { code: 'new-rmb-loans', name: '新規人民元貸出' },
           { code: 'forex-reserves', name: '外貨準備' },
-          { code: 'credit-impulse', name: 'クレジットインパルス' },
-          { code: 'bond-issuance', name: '国債発行' },
+          { code: 'credit-impulse', name: 'クレジットインパルス', visibility: 'special' },
+          { code: 'bond-issuance', name: '国債発行', visibility: 'special' },
           { code: 'cn-local-bonds', name: '地方債' },
           { code: 'capital-flows', name: '資本フロー' },
           { code: 'overseas-investor-flow', name: '海外投資家フロー' },
@@ -551,9 +563,9 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'cn-electronics-stock', name: '電気機器在庫' },
           { code: 'industrial-production', name: '鉱工業生産' },
           { code: 'fixed-asset-investment', name: '固定資産投資' },
-          { code: 'li-keqiang-index', name: '李克強指数' },
+          { code: 'li-keqiang-index', name: '李克強指数', visibility: 'special' },
           { code: 'beijing-pm25', name: '北京PM2.5濃度' },
-          { code: 'total-number-of-people', name: '人流総量' },
+          { code: 'total-number-of-people', name: '人流総量', visibility: 'special' },
         ],
       },
       {
@@ -610,8 +622,8 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'policy-rate', name: '政策金利' },
           { code: 'asx-rate-tracker', name: 'Rate Tracker' },
           { code: 'rba-monetary-policy', name: 'RBA経済予測' },
-          { code: 'rba-ois', name: 'OIS' },
-          { code: 'rba-expectations', name: '利上げ・利下げ期待' },
+          { code: 'rba-ois', name: 'OIS', visibility: 'special' },
+          { code: 'rba-expectations', name: '利上げ・利下げ期待', visibility: 'special' },
           { code: 'rba-statement', name: 'RBA声明' },
           { code: 'housing-lending-rates', name: '住宅ローン金利' },
           { code: 'housing-loan-arrears', name: '住宅ローン延滞率' },
@@ -674,7 +686,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'quarterly-cpi', name: '四半期CPI' },
           { code: 'ppi', name: 'PPI' },
           { code: 'inflation-expectations', name: 'インフレ期待' },
-          { code: 'nab-cost-price', name: 'NAB企業調査（コスト・価格）' },
+          { code: 'nab-cost-price', name: 'NAB企業調査（コスト・価格）', visibility: 'special' },
         ],
       },
       {
@@ -759,7 +771,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'traded-nontraded', name: '貿易財 / 非貿易財' },
           { code: 'ppi', name: 'PPI' },
           { code: 'inflation-expectations', name: 'インフレ期待' },
-          { code: 'anz-business-sentiment-price', name: 'ANZ企業景況感物価関連' },
+          { code: 'anz-business-sentiment-price', name: 'ANZ企業景況感物価関連', visibility: 'special' },
         ],
       },
       {
@@ -785,7 +797,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
         color: '#1890ff',
         indicators: [
           { code: 'policy-rate', name: '政策金利' },
-          { code: 'boc-rate-cuts', name: 'BOC利上げ・利下げ期待' },
+          { code: 'boc-rate-cuts', name: 'BOC利上げ・利下げ期待', visibility: 'special' },
           { code: 'boc-mpr', name: 'BOC金融政策報告書' },
           { code: 'boc-balance-sheet', name: 'BOCバランスシート' },
           { code: 'canada-banks-balance-sheet', name: 'カナダ銀行バランスシート（チャータード銀行）' },
@@ -957,7 +969,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'oecd-cli', name: 'OECD CLI（景気先行指数）' },
           { code: 'global-manufacturing-pmi', name: 'グローバル製造業PMI' },
           { code: 'economic-surprise-index', name: 'エコノミックサプライズ指数' },
-          { code: 'komatrax', name: 'Komatrax（車両稼働時間）' },
+          { code: 'komatrax', name: 'Komatrax（車両稼働時間）', visibility: 'special' },
           { code: 'epu', name: '経済政策不確実性指数（EPU）' },
           { code: 'semiconductor-sales', name: '半導体売上高' },
           // 韓国

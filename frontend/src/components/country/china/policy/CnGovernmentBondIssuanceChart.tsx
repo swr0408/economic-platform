@@ -15,6 +15,8 @@ import type { ColumnsType } from 'antd/es/table'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 import {
   usePeriodFiltering,
@@ -259,7 +261,8 @@ const resultColumns: ColumnsType<RecentResult> = [
 // メインコンポーネント
 // =============================================================================
 
-export default function CnGovernmentBondIssuanceChart() {
+function CnGovernmentBondIssuanceChart() {
+  const isMaster = useIsMaster()
   const [viewMode, setViewMode] = useState<ViewMode>('upcoming')
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(3)
   const [loading, setLoading] = useState(true)
@@ -317,9 +320,11 @@ export default function CnGovernmentBondIssuanceChart() {
         <ChartContainer title="国債発行（Government Bond Issuance）" showPeriodSelector={false} showDataSource={false}>
           <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
             {error}
-            <div style={{ marginTop: 12 }}>
-              <Button size="small" onClick={() => fetchData(true)}>再取得</Button>
-            </div>
+            {isMaster && (
+              <div style={{ marginTop: 12 }}>
+                <Button size="small" onClick={() => fetchData(true)}>再取得</Button>
+              </div>
+            )}
           </div>
         </ChartContainer>
       </div>
@@ -429,3 +434,6 @@ export default function CnGovernmentBondIssuanceChart() {
     </div>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(CnGovernmentBondIssuanceChart, 'special')

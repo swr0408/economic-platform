@@ -4,6 +4,7 @@ import type { MenuProps } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { COUNTRIES_DATA } from '../../constants/countryData'
+import { useCanViewFn } from '../../hooks/useCanView'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -24,56 +25,99 @@ function SidebarNavigation() {
   const location = useLocation()
   const [openKeys, setOpenKeys] = useState<string[]>([])
   const [selectedIndicator, setSelectedIndicator] = useState<string>('')
+  const canView = useCanViewFn()
 
   // 3階層メニュー: 国 > カテゴリ > 経済指標
   // 小見出し（経済指標）はカテゴリページ + ハッシュで遷移
+  // visibility に応じて閲覧できない指標 / カテゴリ / 国は丸ごと非表示にする
   const menuItems: MenuItem[] = useMemo(() => {
-    return COUNTRIES_DATA.map((country) => ({
-      key: `/country/${country.code}`,
-      icon: country.isoCode === 'globe' ? (
-        <GlobalOutlined style={{ fontSize: '16px', color: '#10b981' }} />
-      ) : (
-        <span
-          className={`fi fi-${country.isoCode}`}
-          style={{
-            fontSize: '16px',
-            borderRadius: '2px',
-          }}
-        />
-      ),
-      label: (
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          {country.isoCode === 'globe' ? (
-            <GlobalOutlined style={{ fontSize: '14px', color: '#10b981' }} />
+    return COUNTRIES_DATA.flatMap((country) => {
+      // グローバル: 単一カテゴリ + 指標フラット
+      if (country.code === 'global') {
+        const visibleIndicators = country.categories[0].indicators.filter((i) =>
+          canView(i.visibility),
+        )
+        if (visibleIndicators.length === 0) return []
+        return [{
+          key: `/country/${country.code}`,
+          icon: country.isoCode === 'globe' ? (
+            <GlobalOutlined style={{ fontSize: '16px', color: '#10b981' }} />
           ) : (
             <span
               className={`fi fi-${country.isoCode}`}
-              style={{ fontSize: '14px', borderRadius: '2px' }}
+              style={{ fontSize: '16px', borderRadius: '2px' }}
             />
-          )}
-          {country.name}
-        </span>
-      ),
-      children: country.code === 'global'
-        // グローバルはカテゴリが1つだけなので、カテゴリ階層をスキップして直接指標を表示
-        ? country.categories[0].indicators.map((indicator) => ({
+          ),
+          label: (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              {country.isoCode === 'globe' ? (
+                <GlobalOutlined style={{ fontSize: '14px', color: '#10b981' }} />
+              ) : (
+                <span
+                  className={`fi fi-${country.isoCode}`}
+                  style={{ fontSize: '14px', borderRadius: '2px' }}
+                />
+              )}
+              {country.name}
+            </span>
+          ),
+          children: visibleIndicators.map((indicator) => ({
             key: `/country/global/economy#${indicator.code}`,
             label: indicator.name,
-          }))
-        : country.categories.map((category) => ({
+          })),
+        }]
+      }
+
+      // 通常国: カテゴリ → 指標
+      const visibleCategories = country.categories
+        .map((category) => {
+          const visibleIndicators = category.indicators.filter((i) =>
+            canView(i.visibility),
+          )
+          if (visibleIndicators.length === 0) return null
+          return {
             key: `/country/${country.code}/${category.code}`,
             icon: React.cloneElement(category.icon as React.ReactElement, {
               style: { color: category.color },
             }),
             label: category.name,
-            children: category.indicators.map((indicator) => ({
+            children: visibleIndicators.map((indicator) => ({
               // 小見出しはカテゴリページ + ハッシュ
               key: `/country/${country.code}/${category.code}#${indicator.code}`,
               label: indicator.name,
             })),
-          })),
-    }))
-  }, [])
+          }
+        })
+        .filter((c): c is NonNullable<typeof c> => c !== null)
+
+      if (visibleCategories.length === 0) return []
+      return [{
+        key: `/country/${country.code}`,
+        icon: country.isoCode === 'globe' ? (
+          <GlobalOutlined style={{ fontSize: '16px', color: '#10b981' }} />
+        ) : (
+          <span
+            className={`fi fi-${country.isoCode}`}
+            style={{ fontSize: '16px', borderRadius: '2px' }}
+          />
+        ),
+        label: (
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            {country.isoCode === 'globe' ? (
+              <GlobalOutlined style={{ fontSize: '14px', color: '#10b981' }} />
+            ) : (
+              <span
+                className={`fi fi-${country.isoCode}`}
+                style={{ fontSize: '14px', borderRadius: '2px' }}
+              />
+            )}
+            {country.name}
+          </span>
+        ),
+        children: visibleCategories,
+      }]
+    })
+  }, [canView])
 
   // 選択キー: 現在のパス + ハッシュ または selectedIndicator
   const selectedKeys = useMemo(() => {

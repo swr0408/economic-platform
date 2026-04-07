@@ -2162,6 +2162,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['GDP', 'ユーロ圏', 'Eurostat', '成長率', '景気', '速報値'],
   },
 
+  // --- ユーロ圏 / ドイツとユーロ圏の関係 ---
+  {
+    indicatorId: 'germany-eurozone-relationship',
+    title: 'ドイツ経済とユーロ圏の関係',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ドイツはユーロ圏GDPの約4分の1を占める最大経済国。製造業比重が高く、外需・機械設備投資の変動を受けやすい。域外輸出の33.7%・輸入の26.7%を占め、ユーロ圏貿易統計を大きく左右する一方、ユーロ圏全体ではサービス部門の比重も高くドイツ製造業だけでは判断できない。',
+    loadContent: loadMd('eurozone/germany-eurozone-relationship.md'),
+    relatedIndicators: ['ecb-gdp', 'germany-pmi', 'ez-pmi', 'eu-international-trade', 'ecb-production'],
+    tags: ['ドイツ', 'ユーロ圏', '製造業', 'GDP', 'Eurostat', 'Destatis', '輸出', '設備投資', '機械', '自動車', 'サービス', '構造'],
+  },
+
+  // --- ユーロ圏 / IFO景況感指数（ドイツ） ---
+  {
+    indicatorId: 'ifo-business-climate',
+    title: 'IFO企業景況感指数（ドイツ）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'Ifo研究所が月次公表するドイツ企業景況感指数。約9,000社対象、2015=100の季節調整済指数。総合指数は現状判断と期待の2成分から構成され、期待がGDPに先行しやすい。月次→四半期平均→前期差（ΔĪ_Q）でGDPと比較する使い方が実務的。',
+    loadContent: loadMd('eurozone/ifo-business-climate.md'),
+    relatedIndicators: ['ecb-gdp', 'germany-pmi', 'ez-pmi', 'germany-eurozone-relationship'],
+    tags: ['Ifo', 'IFO', '景況感', 'ドイツ', '企業マインド', '現状判断', '期待', 'GDP', '四半期平均', '先行指標', '製造業', 'サービス業'],
+  },
+
+  // --- ユーロ圏 / ZEW景況感指数（ドイツ） ---
+  {
+    indicatorId: 'zew-economic-sentiment',
+    title: 'ZEW景況感指数（ドイツ）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ZEW金融市場調査に基づくドイツ景気期待指数。最大300人規模の金融市場専門家を対象に今後6か月の景気・インフレ・金利・株式・為替の見通しを問う。楽観派比率−悲観派比率で表され、0が中立。Ifoより早く公表され、6か月先の期待を測る点で先行指標として使われやすい。',
+    loadContent: loadMd('eurozone/zew-economic-sentiment.md'),
+    relatedIndicators: ['ifo-business-climate', 'ecb-gdp', 'germany-pmi', 'germany-eurozone-relationship'],
+    tags: ['ZEW', '景況感', 'ドイツ', '金融市場専門家', 'センチメント', '期待', '先行指標', 'Ifo', '6か月先', '金利', '株式', '為替'],
+  },
+
+  // --- ユーロ圏 / 製造業新規受注（ドイツ） ---
+  {
+    indicatorId: 'germany-factory-orders',
+    title: '製造業新規受注（ドイツ）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'Destatisが月次公表するドイツ製造業の新規受注統計。国内受注は国内需要の流れを示す指標で、設備投資との結び付きは資本財受注の方が直接的。海外受注は輸出の先行～同時指標として相関が高いが、大型受注で振れやすく3か月平均で読むのが実務的。',
+    loadContent: loadMd('eurozone/germany-factory-orders.md'),
+    relatedIndicators: ['ecb-production', 'germany-pmi', 'eu-international-trade', 'ifo-business-climate', 'germany-eurozone-relationship'],
+    tags: ['製造業新規受注', 'Factory Orders', 'ドイツ', 'Destatis', 'Bundesbank', '国内受注', '海外受注', '資本財', '機械設備投資', '輸出', '先行指標'],
+  },
+
   // --- ユーロ圏 / 銀行貸出調査（BLS） ---
   {
     indicatorId: 'ecb-bls',
@@ -2244,6 +2292,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('eurozone/ecb-negotiated-wages.md'),
     relatedIndicators: ['eurostat-wages', 'ecb-spf', 'ecb-unemployment-chart', 'ecb-macro-projections'],
     tags: ['妥結賃金', 'ECB', 'ユーロ圏', '賃金交渉', 'real wage catch-up', 'コアHICP', 'インフレ期待', 'wage tracker'],
+  },
+
+  // --- ユーロ圏 / IGメタルとドイツ賃金動向 ---
+  {
+    indicatorId: 'ig-metall-germany-wages',
+    title: 'IGメタルとドイツ賃金動向',
+    country: 'eurozone',
+    category: 'employment',
+    summary: 'IGメタル（約220万人）はドイツ最大級の労組で金属・電機産業の賃金交渉トレンドセッター。パイロット協約として他地域に波及する一方、産業別協約は全体の49%・企業別7%に留まる。協約賃金と実際賃金のwage drift、一時金の有無を併せて確認する必要がある。',
+    loadContent: loadMd('eurozone/ig-metall-germany-wages.md'),
+    relatedIndicators: ['ecb-negotiated-wages', 'eurostat-wages', 'ecb-spf', 'germany-eurozone-relationship'],
+    tags: ['IGメタル', 'IG Metall', 'ドイツ', '賃金', '労働組合', 'パイロット協約', '協約賃金', 'wage drift', '金属', '電機', 'Destatis', 'ECB'],
   },
 
   // --- 中国 / M1・M2 ---

@@ -1,5 +1,6 @@
 import { Spin, Alert, Button } from 'antd'
 import { useEurozonePolicyDashboard } from '../../../hooks/useDashboardData'
+import RestrictedSection from '../../common/RestrictedSection'
 import ECBRatesChart from './monetary_policy/ECBRatesChart'
 import EurexOISChart from './monetary_policy/EurexOISChart'
 import ECBRateCutsExpectationChart from './monetary_policy/ECBRateCutsExpectationChart'
@@ -59,10 +60,12 @@ export default function EurozonePolicyCharts() {
         />
       </div>
 
-      {/* ECB Rate Cuts Expectation Chart */}
-      <div id="ecb-rate-cuts">
-        <ECBRateCutsExpectationChart />
-      </div>
+      {/* ECB Rate Cuts Expectation Chart (special) */}
+      <RestrictedSection visibility="special">
+        <div id="ecb-rate-cuts">
+          <ECBRateCutsExpectationChart />
+        </div>
+      </RestrictedSection>
 
       {/* ECB Macro Projections Chart */}
       <div id="ecb-macro-projections">

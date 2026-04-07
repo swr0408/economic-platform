@@ -1,11 +1,18 @@
 """Earnings API router."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 
 try:
     from backend.services.earnings.earnings_service import earnings_service
+    from backend.core.auth.dependencies import require_role
+    from backend.core.auth.models import ROLE_MASTER
 except ImportError:
     from services.earnings.earnings_service import earnings_service
+    from core.auth.dependencies import require_role
+    from core.auth.models import ROLE_MASTER
+
+# master ロール要求の依存オブジェクト
+_require_master = require_role(ROLE_MASTER)
 
 
 router = APIRouter(prefix="/api/earnings", tags=["Earnings"])
@@ -56,7 +63,11 @@ def get_earnings_financials(country_code: str, ticker: str):
 
 
 @router.delete("/{country_code}/cache")
-def invalidate_earnings_cache(country_code: str):
+def invalidate_earnings_cache(
+    country_code: str,
+    _master = Depends(_require_master),
+):
+    """Earnings キャッシュを削除 (master 限定)."""
     try:
         return earnings_service.invalidate_cache(country_code)
     except ValueError as exc:

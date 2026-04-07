@@ -15,6 +15,8 @@ import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 import {
   usePeriodFiltering,
@@ -81,7 +83,8 @@ const formatDateFull = (dateStr: string): string => {
 // メインコンポーネント
 // =============================================================================
 
-export default function CnFixingRepoRateChart() {
+function CnFixingRepoRateChart() {
+  const isMaster = useIsMaster()
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(3)
   const [group, setGroup] = useState<GroupMode>('fr')
   const [loading, setLoading] = useState(true)
@@ -131,9 +134,11 @@ export default function CnFixingRepoRateChart() {
           {error ? (
             <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
               {error}
-              <div style={{ marginTop: 12 }}>
-                <Button size="small" onClick={() => fetchData(true)}>再取得</Button>
-              </div>
+              {isMaster && (
+                <div style={{ marginTop: 12 }}>
+                  <Button size="small" onClick={() => fetchData(true)}>再取得</Button>
+                </div>
+              )}
             </div>
           ) : (
             <NoDataMessage />
@@ -227,3 +232,6 @@ export default function CnFixingRepoRateChart() {
     </div>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(CnFixingRepoRateChart, 'special')

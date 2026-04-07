@@ -1094,12 +1094,12 @@
     "previous": 56.1
   },
   "next_release": {
-    "date": "2026-04-06",
-    "datetime_utc": "2026-04-06T14:00:00+00:00",
-    "datetime_jst": "2026-04-06T23:00:00+09:00",
+    "date": "2026-05-05",
+    "datetime_utc": "2026-05-05T14:00:00+00:00",
+    "datetime_jst": "2026-05-05T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Non-Manufacturing PMI (Mar)",
-    "estimate": 54.8
+    "label": "ISM Services PMI (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-04-07T10:38:49.041784+09:00"
+  "last_updated": "2026-04-07T23:01:55.167315+09:00"
 }

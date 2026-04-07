@@ -131,7 +131,11 @@ try:
     from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
     from backend.routers.headlines import router as headlines_router
     from backend.routers.auth import router as auth_router
+    from backend.routers.visibility import router as visibility_router
     from backend.core.auth.schema_init import init_auth_schema
+    from backend.core.auth.visibility_schema_init import init_visibility_schema
+    from backend.core.auth.write_guard import WriteOperationGuardMiddleware
+    from backend.core.auth.read_visibility_guard import ReadVisibilityGuardMiddleware
     from backend.services.discord.discord_news_listener import discord_news_listener
     from backend.scheduler.headlines_rss_scheduler import headlines_rss_scheduler
     from backend.services.headlines.translation_worker import translation_worker
@@ -328,7 +332,11 @@ except ImportError as _ie:
     from scheduler.comex_stock_scheduler import comex_stock_scheduler
     from routers.headlines import router as headlines_router
     from routers.auth import router as auth_router
+    from routers.visibility import router as visibility_router
     from core.auth.schema_init import init_auth_schema
+    from core.auth.visibility_schema_init import init_visibility_schema
+    from core.auth.write_guard import WriteOperationGuardMiddleware
+    from core.auth.read_visibility_guard import ReadVisibilityGuardMiddleware
     from services.discord.discord_news_listener import discord_news_listener
     from scheduler.headlines_rss_scheduler import headlines_rss_scheduler
     from services.headlines.translation_worker import translation_worker
@@ -343,6 +351,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 更新系 endpoint を master ロールに制限するミドルウェア
+# (個別 router を変更せず、データ書き込み系を一括で master only にする)
+# 詳細は backend/core/auth/write_guard.py を参照
+app.add_middleware(WriteOperationGuardMiddleware)
+
+# 読み取り系の可視性 (special/master 限定指標) を制御するミドルウェア
+# 詳細は backend/core/auth/read_visibility_guard.py を参照
+app.add_middleware(ReadVisibilityGuardMiddleware)
 
 # 静的ファイル配信（シーズナリティ画像）
 if SEASONALITY_DIR.exists():
@@ -537,6 +554,7 @@ app.include_router(global_usd_fundamental_index_router)
 app.include_router(global_oecd_cli_router)
 app.include_router(headlines_router)
 app.include_router(auth_router)
+app.include_router(visibility_router)
 
 
 @app.get("/health")
@@ -574,6 +592,12 @@ async def startup_event():
         init_auth_schema()
     except Exception as e:
         print(f"[startup] init_auth_schema failed: {e}")
+
+    # 可視性スキーマ初期化 (indicator_visibility テーブル + seed)
+    try:
+        init_visibility_schema()
+    except Exception as e:
+        print(f"[startup] init_visibility_schema failed: {e}")
 
     print(f"SEASONALITY_DIR: {SEASONALITY_DIR}")
     print(f"SEASONALITY_DIR exists: {SEASONALITY_DIR.exists()}")

@@ -7,7 +7,7 @@
     GET /api/japan/policy/dashboard → 日本金融政策データを一括取得
 """
 import time
-from fastapi import APIRouter, Path, HTTPException
+from fastapi import APIRouter, Depends, Path, HTTPException
 from fastapi.responses import JSONResponse
 from typing import Literal
 
@@ -19,6 +19,8 @@ try:
         AVAILABLE_COUNTRIES,
         AVAILABLE_CATEGORIES,
     )
+    from backend.core.auth.dependencies import require_role
+    from backend.core.auth.models import ROLE_MASTER
 except ImportError:
     from services.dashboard.registry import (
         get_dashboard_loader,
@@ -27,6 +29,11 @@ except ImportError:
         AVAILABLE_COUNTRIES,
         AVAILABLE_CATEGORIES,
     )
+    from core.auth.dependencies import require_role
+    from core.auth.models import ROLE_MASTER
+
+# master ロール要求の依存オブジェクト (ファクトリを一度呼んで使い回す)
+_require_master = require_role(ROLE_MASTER)
 
 router = APIRouter(prefix="/api", tags=["Dashboard"])
 
@@ -249,9 +256,10 @@ async def get_dashboard_status(
 async def refresh_dashboard_cache(
     country: str = Path(..., description="国コード"),
     category: str = Path(..., description="カテゴリコード"),
+    _master = Depends(_require_master),
 ):
     """
-    ダッシュボードキャッシュを強制更新
+    ダッシュボードキャッシュを強制更新 (master 限定)
 
     管理用エンドポイント。発表日時ベースの自動判定により通常は手動更新不要。
 
@@ -286,9 +294,10 @@ async def refresh_dashboard_cache(
 async def invalidate_dashboard_cache(
     country: str = Path(..., description="国コード"),
     category: str = Path(..., description="カテゴリコード"),
+    _master = Depends(_require_master),
 ):
     """
-    ダッシュボードキャッシュを削除
+    ダッシュボードキャッシュを削除 (master 限定)
 
     Returns:
         {

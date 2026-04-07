@@ -3778,5 +3778,275 @@
     "atm_iv_call": 27.8262,
     "atm_iv_put": 22.0173,
     "underlying": 53413.68
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-04-09",
+    "contract_month": "202604",
+    "dte": 3,
+    "atm_iv_mid": 47.1046,
+    "atm_iv_call": 47.6815,
+    "atm_iv_put": 46.5276,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-05-07",
+    "contract_month": "202605",
+    "dte": 31,
+    "atm_iv_mid": 33.8041,
+    "atm_iv_call": 34.6006,
+    "atm_iv_put": 33.0077,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-06-11",
+    "contract_month": "202606",
+    "dte": 66,
+    "atm_iv_mid": 31.1427,
+    "atm_iv_call": 31.4842,
+    "atm_iv_put": 30.8013,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-07-09",
+    "contract_month": "202607",
+    "dte": 94,
+    "atm_iv_mid": 30.0234,
+    "atm_iv_call": 30.3109,
+    "atm_iv_put": 29.7359,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-08-13",
+    "contract_month": "202608",
+    "dte": 129,
+    "atm_iv_mid": 29.5344,
+    "atm_iv_call": 29.7933,
+    "atm_iv_put": 29.2756,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-09-10",
+    "contract_month": "202609",
+    "dte": 157,
+    "atm_iv_mid": 29.1631,
+    "atm_iv_call": 29.1631,
+    "atm_iv_put": 29.1631,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-10-08",
+    "contract_month": "202610",
+    "dte": 185,
+    "atm_iv_mid": 28.7477,
+    "atm_iv_call": 28.9567,
+    "atm_iv_put": 28.5386,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-11-12",
+    "contract_month": "202611",
+    "dte": 220,
+    "atm_iv_mid": 28.6274,
+    "atm_iv_call": 28.8249,
+    "atm_iv_put": 28.43,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2026-12-10",
+    "contract_month": "202612",
+    "dte": 248,
+    "atm_iv_mid": 27.8424,
+    "atm_iv_call": 27.7569,
+    "atm_iv_put": 27.928,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2027-01-07",
+    "contract_month": "202701",
+    "dte": 276,
+    "atm_iv_mid": 28.1865,
+    "atm_iv_call": 28.3642,
+    "atm_iv_put": 28.0087,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2027-02-10",
+    "contract_month": "202702",
+    "dte": 311,
+    "atm_iv_mid": 28.0306,
+    "atm_iv_call": 28.1979,
+    "atm_iv_put": 27.8633,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2027-03-11",
+    "contract_month": "202703",
+    "dte": 339,
+    "atm_iv_mid": 27.8857,
+    "atm_iv_call": 27.9358,
+    "atm_iv_put": 27.8356,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2027-06-10",
+    "contract_month": "202706",
+    "dte": 430,
+    "atm_iv_mid": 27.4864,
+    "atm_iv_call": 27.5583,
+    "atm_iv_put": 27.4145,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2027-09-09",
+    "contract_month": "202709",
+    "dte": 521,
+    "atm_iv_mid": 27.2047,
+    "atm_iv_call": 27.4066,
+    "atm_iv_put": 27.0027,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2027-12-09",
+    "contract_month": "202712",
+    "dte": 612,
+    "atm_iv_mid": 26.9419,
+    "atm_iv_call": 27.1888,
+    "atm_iv_put": 26.695,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2028-06-08",
+    "contract_month": "202806",
+    "dte": 794,
+    "atm_iv_mid": 26.5941,
+    "atm_iv_call": 27.0828,
+    "atm_iv_put": 26.1054,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2028-12-07",
+    "contract_month": "202812",
+    "dte": 976,
+    "atm_iv_mid": 26.2951,
+    "atm_iv_call": 26.9986,
+    "atm_iv_put": 25.5916,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2029-06-07",
+    "contract_month": "202906",
+    "dte": 1158,
+    "atm_iv_mid": 26.1037,
+    "atm_iv_call": 27.0691,
+    "atm_iv_put": 25.1383,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2029-12-13",
+    "contract_month": "202912",
+    "dte": 1347,
+    "atm_iv_mid": 25.9154,
+    "atm_iv_call": 27.1216,
+    "atm_iv_put": 24.7092,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2030-06-13",
+    "contract_month": "203006",
+    "dte": 1529,
+    "atm_iv_mid": 25.7161,
+    "atm_iv_call": 27.132,
+    "atm_iv_put": 24.3002,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2030-12-12",
+    "contract_month": "203012",
+    "dte": 1711,
+    "atm_iv_mid": 25.5347,
+    "atm_iv_call": 27.141,
+    "atm_iv_put": 23.9284,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2031-06-12",
+    "contract_month": "203106",
+    "dte": 1893,
+    "atm_iv_mid": 25.4139,
+    "atm_iv_call": 27.253,
+    "atm_iv_put": 23.5747,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2031-12-11",
+    "contract_month": "203112",
+    "dte": 2075,
+    "atm_iv_mid": 25.2672,
+    "atm_iv_call": 27.3067,
+    "atm_iv_put": 23.2276,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2032-06-10",
+    "contract_month": "203206",
+    "dte": 2257,
+    "atm_iv_mid": 25.1686,
+    "atm_iv_call": 27.4221,
+    "atm_iv_put": 22.9152,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2032-12-09",
+    "contract_month": "203212",
+    "dte": 2439,
+    "atm_iv_mid": 25.0896,
+    "atm_iv_call": 27.541,
+    "atm_iv_put": 22.6381,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2033-06-09",
+    "contract_month": "203306",
+    "dte": 2621,
+    "atm_iv_mid": 25.0395,
+    "atm_iv_call": 27.7134,
+    "atm_iv_put": 22.3656,
+    "underlying": 53429.56
+  },
+  {
+    "date": "2026-04-07",
+    "expiry": "2033-12-08",
+    "contract_month": "203312",
+    "dte": 2803,
+    "atm_iv_mid": 25.0643,
+    "atm_iv_call": 27.9487,
+    "atm_iv_put": 22.1799,
+    "underlying": 53429.56
   }
 ]

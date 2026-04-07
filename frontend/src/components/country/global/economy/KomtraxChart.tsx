@@ -11,6 +11,8 @@ import { useState, useEffect } from 'react'
 import { Card, Button, Spin, Typography, Image, Tooltip } from 'antd'
 import { ReloadOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { useHandbook } from '../../../../contexts/HandbookContext'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 const { Text } = Typography
 
@@ -22,8 +24,9 @@ interface ScreenshotData {
   refreshed?: boolean
 }
 
-export default function KomtraxChart() {
+function KomtraxChart() {
   const { openHandbook } = useHandbook()
+  const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -80,9 +83,11 @@ export default function KomtraxChart() {
             style={{ cursor: 'pointer', fontSize: 15, color: 'rgba(255,255,255,0.45)' }}
           />
         </Tooltip>
-        <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
-          更新
-        </Button>
+        {isMaster && (
+          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+            更新
+          </Button>
+        )}
       </div>
     </div>
   )
@@ -155,3 +160,6 @@ export default function KomtraxChart() {
     </div>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(KomtraxChart, 'special')

@@ -283,8 +283,19 @@ def get_headline_by_id(headline_id: int) -> dict | None:
     return row
 
 
-def save_headline(headline_id: int, category_ids: list[int] = None, new_category_name: str = None, note: str = None) -> dict:
-    """ヘッドラインをカテゴリに保存（snapshot付き）"""
+def save_headline(
+    headline_id: int,
+    category_ids: list[int] = None,
+    new_category_name: str = None,
+    note: str = None,
+    is_public_visible: bool = False,
+) -> dict:
+    """ヘッドラインをカテゴリに保存（snapshot付き）
+
+    Args:
+        is_public_visible: True の場合、/api/headlines/public で全ロール (general 含む)
+            に公開される。master のみが指定可能 (router 側で保証)。
+    """
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             # 元ヘッドラインを取得
@@ -312,11 +323,14 @@ def save_headline(headline_id: int, category_ids: list[int] = None, new_category
             for cid in ids:
                 cur.execute("""
                     INSERT INTO saved_headlines (headline_id, category_id, saved_note,
-                        snapshot_raw, snapshot_ja, snapshot_source_type, snapshot_published_at)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-                    ON CONFLICT (headline_id, category_id) DO UPDATE SET saved_note = EXCLUDED.saved_note
+                        snapshot_raw, snapshot_ja, snapshot_source_type, snapshot_published_at,
+                        is_public_visible)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (headline_id, category_id) DO UPDATE SET
+                        saved_note = EXCLUDED.saved_note,
+                        is_public_visible = EXCLUDED.is_public_visible
                     RETURNING id
-                """, (headline_id, cid, note, raw, ja, src, pub))
+                """, (headline_id, cid, note, raw, ja, src, pub, is_public_visible))
                 saved.append(cur.fetchone()[0])
 
             conn.commit()

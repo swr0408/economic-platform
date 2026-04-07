@@ -15,15 +15,22 @@ import time
 from datetime import date, datetime
 from typing import Optional
 
-from fastapi import APIRouter, Query, HTTPException, BackgroundTasks
+from fastapi import APIRouter, Depends, Query, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse
 
 try:
     from backend.services.calendar.calendar_repository import calendar_repository
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
+    from backend.core.auth.dependencies import require_role
+    from backend.core.auth.models import ROLE_MASTER
 except ImportError:
     from services.calendar.calendar_repository import calendar_repository
     from services.calendar.calendar_scheduler import calendar_scheduler
+    from core.auth.dependencies import require_role
+    from core.auth.models import ROLE_MASTER
+
+# master ロール要求の依存オブジェクト
+_require_master = require_role(ROLE_MASTER)
 
 
 router = APIRouter(prefix="/api/calendar", tags=["Calendar"])
@@ -280,9 +287,10 @@ async def run_sync(
     background_tasks: BackgroundTasks,
     days: int = Query(14, ge=1, le=365, description="同期日数（過去）"),
     future_days: int = Query(7, ge=0, le=90, description="同期日数（将来）"),
+    _master = Depends(_require_master),
 ):
     """
-    手動で同期を実行（直近N日+将来M日）
+    手動で同期を実行（直近N日+将来M日） (master 限定)
 
     バックグラウンドで実行し、即座にレスポンスを返す
     """
@@ -313,9 +321,10 @@ async def run_sync(
 async def run_future_sync(
     background_tasks: BackgroundTasks,
     days: int = Query(90, ge=1, le=180, description="将来の取得日数"),
+    _master = Depends(_require_master),
 ):
     """
-    将来のカレンダーデータを同期（次回発表日の予想値・発表時刻取得用）
+    将来のカレンダーデータを同期（次回発表日の予想値・発表時刻取得用） (master 限定)
 
     バックグラウンドで実行し、即座にレスポンスを返す
     """
@@ -344,9 +353,10 @@ async def run_future_sync(
 async def run_backfill(
     background_tasks: BackgroundTasks,
     days: int = Query(365, ge=1, le=365, description="バックフィル日数"),
+    _master = Depends(_require_master),
 ):
     """
-    バックフィルを実行（過去N日分を取得）
+    バックフィルを実行（過去N日分を取得） (master 限定)
 
     初回セットアップ時に使用
     バックグラウンドで実行し、即座にレスポンスを返す
@@ -370,9 +380,12 @@ async def run_backfill(
 
 
 @router.post("/releases/sync/{econalpha_id}")
-async def sync_indicator_releases(econalpha_id: str):
+async def sync_indicator_releases(
+    econalpha_id: str,
+    _master = Depends(_require_master),
+):
     """
-    指標発表履歴を同期
+    指標発表履歴を同期 (master 限定)
 
     economic_calendar_eventsからindicator_releasesへコピー
     """
@@ -396,9 +409,10 @@ async def sync_specific_event(
     country: str = Query(..., description="国コード（US, EU, DE, JP, GB等）"),
     event: str = Query(..., description="イベント名パターン（例: HCOB Manufacturing PMI）"),
     days: int = Query(30, ge=1, le=90, description="取得日数（過去+将来）"),
+    _master = Depends(_require_master),
 ):
     """
-    特定イベントのみFMPから個別取得してDBに保存
+    特定イベントのみFMPから個別取得してDBに保存 (master 限定)
 
     発表直後に最新データを取得したい場合に使用
     """
@@ -480,9 +494,10 @@ async def sync_fmp_indicator(
     indicator_name: str,
     background_tasks: BackgroundTasks,
     days: int = Query(7, ge=1, le=30, description="取得日数（過去）"),
+    _master = Depends(_require_master),
 ):
     """
-    特定の指標をFMPから個別取得してサービスキャッシュを更新
+    特定の指標をFMPから個別取得してサービスキャッシュを更新 (master 限定)
 
     indicator_name: 指標名（日本語、例: "ユーロ圏PMI（HCOB）"）または部分一致
     """
@@ -530,9 +545,10 @@ async def sync_fmp_indicator(
 async def sync_all_fmp_indicators(
     background_tasks: BackgroundTasks,
     country: Optional[str] = Query(None, description="国コード（US, EU, DE, JP, GB等）でフィルタ"),
+    _master = Depends(_require_master),
 ):
     """
-    登録されている全指標（または特定国の指標）をFMPから個別取得
+    登録されている全指標（または特定国の指標）をFMPから個別取得 (master 限定)
     """
     try:
         from scheduler.fmp_release_scheduler import FMP_INDICATOR_CONFIGS, fmp_release_scheduler

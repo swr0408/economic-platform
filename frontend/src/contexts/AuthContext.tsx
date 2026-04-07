@@ -2,12 +2,17 @@
  * 認証コンテキスト
  *
  * - JWT (Bearer) を localStorage に保持
+ * - 同時にバックエンドが httpOnly Cookie (access_token) も併用発行している
  * - 起動時に /api/auth/me で現在ユーザーを取得し整合性を確認
  * - login / register / logout を提供
  *
+ * Cookie 併用の理由:
+ * - <img src> や <video src> など Authorization ヘッダを送れない経路があるため
+ * - すべての fetch / axios 呼び出しに credentials: 'include' を付与し、
+ *   Cookie が常に backend に届くようにする
+ *
  * 備考:
  * - backend 側で role 判定を強制しているため、frontend の role 表示は UX のみ
- * - 将来 httpOnly cookie に差し替える場合はこのファイルに閉じ込めて変更可能
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 
@@ -91,6 +96,7 @@ async function postJson<T>(url: string, body: unknown, token?: string | null): P
     method: 'POST',
     headers,
     body: JSON.stringify(body),
+    credentials: 'include',
   })
   if (!res.ok) {
     let detail = `HTTP ${res.status}`
@@ -108,7 +114,7 @@ async function postJson<T>(url: string, body: unknown, token?: string | null): P
 async function getJson<T>(url: string, token?: string | null): Promise<T> {
   const headers: Record<string, string> = {}
   if (token) headers['Authorization'] = `Bearer ${token}`
-  const res = await fetch(url, { headers })
+  const res = await fetch(url, { headers, credentials: 'include' })
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`)
   }
@@ -176,6 +182,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await fetch('/api/auth/logout', {
           method: 'POST',
           headers: { Authorization: `Bearer ${currentToken}` },
+          credentials: 'include',
         })
       } catch {
         /* ネットワーク障害時はローカル破棄だけ行う */
@@ -222,6 +229,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           current_password: currentPassword,
           new_password: newPassword,
         }),
+        credentials: 'include',
       })
       if (!res.ok) {
         let detail = `HTTP ${res.status}`
@@ -249,7 +257,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (init?.body && !headers.has('Content-Type')) {
         headers.set('Content-Type', 'application/json')
       }
-      const res = await fetch(input, { ...init, headers })
+      const res = await fetch(input, {
+        ...init,
+        headers,
+        credentials: init?.credentials ?? 'include',
+      })
       // 401 が返ったらローカルのトークンも破棄する (サーバー側 revoke 済み等)
       if (res.status === 401) {
         setToken(null)

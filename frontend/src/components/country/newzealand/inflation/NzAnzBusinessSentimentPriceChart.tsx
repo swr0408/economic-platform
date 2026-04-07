@@ -11,6 +11,8 @@ import { useState } from 'react'
 import { Card, Button, Spin, Typography, Image, Tabs } from 'antd'
 import { ReloadOutlined } from '@ant-design/icons'
 import type { NzAnzBusinessOutlookPriceData } from '../../../../hooks/useDashboardData'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
 
 const { Text } = Typography
@@ -21,7 +23,8 @@ interface Props {
   data: NzAnzBusinessOutlookPriceData | null
 }
 
-export default function NzAnzBusinessSentimentPriceChart({ data }: Props) {
+function NzAnzBusinessSentimentPriceChart({ data }: Props) {
+  const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(Date.now())
   const [refreshing, setRefreshing] = useState(false)
   const [activeTab, setActiveTab] = useState('chart')
@@ -56,9 +59,11 @@ export default function NzAnzBusinessSentimentPriceChart({ data }: Props) {
       title={
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
           <span>ANZ企業景況感（物価関連）</span>
-          <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-            更新
-          </Button>
+          {isMaster && (
+            <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
+              更新
+            </Button>
+          )}
         </div>
       }
     >
@@ -139,3 +144,6 @@ export default function NzAnzBusinessSentimentPriceChart({ data }: Props) {
     </Card>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(NzAnzBusinessSentimentPriceChart, 'special')

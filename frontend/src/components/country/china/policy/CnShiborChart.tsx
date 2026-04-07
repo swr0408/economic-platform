@@ -15,6 +15,8 @@ import { Button } from 'antd'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
+import { useIsMaster } from '../../../../hooks/useIsMaster'
+import { withVisibility } from '../../../common/withVisibility'
 
 import {
   usePeriodFiltering,
@@ -86,7 +88,8 @@ const formatDateFull = (dateStr: string): string => {
 // メインコンポーネント
 // =============================================================================
 
-export default function CnShiborChart() {
+function CnShiborChart() {
+  const isMaster = useIsMaster()
   const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(3)
   const [group, setGroup] = useState<GroupMode>('short')
   const [loading, setLoading] = useState(true)
@@ -133,9 +136,11 @@ export default function CnShiborChart() {
           {error ? (
             <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>
               {error}
-              <div style={{ marginTop: 12 }}>
-                <Button size="small" onClick={() => fetchData(true)}>再取得</Button>
-              </div>
+              {isMaster && (
+                <div style={{ marginTop: 12 }}>
+                  <Button size="small" onClick={() => fetchData(true)}>再取得</Button>
+                </div>
+              )}
             </div>
           ) : (
             <NoDataMessage />
@@ -222,3 +227,6 @@ export default function CnShiborChart() {
     </div>
   )
 }
+
+// special 限定 (一般ユーザには非表示)
+export default withVisibility(CnShiborChart, 'special')
