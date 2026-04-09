@@ -13,6 +13,15 @@ URL: https://www.tokyotanshi.co.jp/archives/15647
 - 政策金利変更織込み比率（%）
 
 OCR: Tesseract OCR (primary) / Google Cloud Vision API (fallback)
+
+[移行ノート]
+このサービスの Playwright 部分は backend.services.browser.PlaywrightRunner
+経由に統一済み (ARM64 / OCI 対応)。以前の sync_playwright 直接利用 +
+ThreadPoolExecutor ラッパーはすべて削除。
+- テーブル画像 (uploads/image-*, aspect ratio > 2) を `pre_screenshot_js`
+  でブラウザ内 JS で検出し data-boj-table="1" 属性を付与
+- ScreenshotRequest を bytes モード (output_path=None) で実行し
+  ScreenshotResult.data から PNG バイト列を取得して OCR に渡す
 """
 import base64
 import io
@@ -20,7 +29,6 @@ import json
 import logging
 import os
 import re
-import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Any
@@ -36,6 +44,12 @@ try:
 except ImportError:
     TESSERACT_AVAILABLE = False
 
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    take_screenshot,
+)
 from services.usa.fred_utils import load_file_cache, save_file_cache
 from core.redis_client import redis_client
 
@@ -166,51 +180,78 @@ class BOJMeetingExpectationsService:
             logger.error(f"Error downloading image: {e}")
             return None
 
+    # 旧 sync_playwright 実装の以下ロジックをブラウザ内 JS で再現する:
+    #   1. ページ内 <img> を全走査
+    #   2. src に 'uploads' と 'image-' を含むもののうち
+    #      bounding rect の aspect ratio > 2 (テーブル画像) の最初の要素を採用
+    #   3. data-boj-table="1" 属性を付与
+    # スクショは ScreenshotRequest.clip_selector で参照し bytes モードで取得。
+    _PRE_SCREENSHOT_JS = r"""
+    (() => {
+      document.querySelectorAll('[data-boj-table]')
+        .forEach(el => el.removeAttribute('data-boj-table'));
+      const imgs = Array.from(document.querySelectorAll('img'));
+      for (const img of imgs) {
+        const src = img.getAttribute('src') || '';
+        if (src.indexOf('uploads') === -1) continue;
+        if (src.indexOf('image-') === -1) continue;
+        const r = img.getBoundingClientRect();
+        if (r.width <= 0 || r.height <= 0) continue;
+        const aspect = r.width / r.height;
+        if (aspect > 2) {
+          img.setAttribute('data-boj-table', '1');
+          img.scrollIntoView({block: 'center'});
+          return true;
+        }
+      }
+      return false;
+    })();
+    """
+
     def _capture_table_with_playwright(self) -> Optional[bytes]:
-        """Capture table image using Playwright in a separate thread to bypass CDN cache"""
-        import concurrent.futures
+        """Capture table image using PlaywrightRunner (bytes mode).
 
-        def run_playwright():
-            from playwright.sync_api import sync_playwright
-
-            with sync_playwright() as p:
-                browser = p.chromium.launch()
-                page = browser.new_page()
-                page.goto(self.TOKYO_TANSHI_URL, wait_until='networkidle', timeout=30000)
-
-                # Find the table image element (the one with aspect ratio > 2)
-                images = page.query_selector_all('img')
-                table_img = None
-
-                for img in images:
-                    src = img.get_attribute('src')
-                    if src and 'uploads' in src and 'image-' in src:
-                        bbox = img.bounding_box()
-                        if bbox and bbox['width'] > 0 and bbox['height'] > 0:
-                            aspect_ratio = bbox['width'] / bbox['height']
-                            # Table images are wide (aspect ratio > 2)
-                            if aspect_ratio > 2:
-                                table_img = img
-                                logger.info(f"Found table image: {src} (aspect ratio: {aspect_ratio:.2f})")
-                                break
-
-                screenshot_bytes = None
-                if table_img:
-                    screenshot_bytes = table_img.screenshot()
-                    logger.info(f"Captured table screenshot: {len(screenshot_bytes)} bytes")
-
-                browser.close()
-                return screenshot_bytes
+        旧実装は sync_playwright + ThreadPoolExecutor だったが、
+        BrowserRunner 経由 (output_path=None で bytes 返却) に統一。
+        テーブル画像の検出は `pre_screenshot_js` でブラウザ内 JS にて行い、
+        data-boj-table="1" を付与した要素をクリップで撮影する。
+        """
+        request = ScreenshotRequest(
+            url=self.TOKYO_TANSHI_URL,
+            output_path=None,  # bytes モード
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=1_000,
+            pre_screenshot_js=self._PRE_SCREENSHOT_JS,
+            wait_after_pre_js_ms=500,
+            clip_selector="[data-boj-table='1']",
+            scroll_into_view=True,
+            viewport_override=(1400, 900),
+        )
+        config = BrowserConfig(
+            viewport=(1400, 900),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
 
         try:
-            # Run Playwright in a separate thread to avoid asyncio conflicts
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(run_playwright)
-                return future.result(timeout=60)
-
+            result = take_screenshot(request, config=config)
+        except BrowserRunnerError as e:
+            logger.error(f"Error capturing with Playwright: {e}")
+            return None
         except Exception as e:
             logger.error(f"Error capturing with Playwright: {e}")
             return None
+
+        if result.data:
+            logger.info(
+                f"Captured table screenshot: {result.size_bytes} bytes"
+            )
+            return result.data
+        logger.warning("PlaywrightRunner returned no screenshot data")
+        return None
 
     def _preprocess_image(self, image_data: bytes) -> Image.Image:
         """Preprocess image for better OCR accuracy"""

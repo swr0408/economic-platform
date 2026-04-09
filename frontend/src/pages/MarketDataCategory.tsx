@@ -1,8 +1,8 @@
 import React, { Suspense, useEffect, useState, useCallback } from 'react'
 import { useParams, useNavigate, useLocation, Link } from 'react-router-dom'
-import { Button, Space, Typography, Tooltip } from 'antd'
-import { ArrowLeftOutlined, QuestionCircleOutlined, CalendarOutlined, MenuFoldOutlined, SoundOutlined } from '@ant-design/icons'
-import { getMarketCategory, getFirstSubCategoryCode, getMarketSubCategory } from '../constants/marketData'
+import { Button, Space, Typography, Tooltip, Card, Row, Col, Tag } from 'antd'
+import { ArrowLeftOutlined, QuestionCircleOutlined, CalendarOutlined, MenuFoldOutlined, SoundOutlined, RightOutlined } from '@ant-design/icons'
+import { getMarketCategory, getMarketSubCategory } from '../constants/marketData'
 import { useHandbook } from '../contexts/HandbookContext'
 import LoadingChart from '../components/common/LoadingChart'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
@@ -26,6 +26,54 @@ const CALENDAR_SIDEBAR_MAX_WIDTH = 700
 const CATEGORY_HANDBOOK_MAP: Record<string, string> = {
   cot: 'cftc-positioning',
   options: 'options-guide',
+}
+
+// サブカテゴリ → ヘッドライン保存カテゴリ名（第3層）の厳密マッピング
+// 対応するキーが無いページではヘッドラインが表示されない
+const SUBCATEGORY_HEADLINE_CATEGORY: Record<string, string> = {
+  // 株式
+  'equities/us-equities': '米国株',
+  'equities/jp-equities': '日本株',
+  'equities/eu-equities': '欧州株',
+  'equities/tw-semiconductor': '米国株',
+  // 為替
+  'forex/usd-pairs': '為替',
+  'forex/jpy-crosses': '為替',
+  'forex/eur-crosses': '為替',
+  'forex/gbp-crosses': '為替',
+  'forex/other-crosses': '為替',
+  'forex/currency-index': '為替',
+  // コモディティ
+  'commodities/precious-metals': 'コモディティ',
+  'commodities/industrial-metals': 'コモディティ',
+  // エネルギー
+  'energy/crude-oil': 'エネルギー',
+  'energy/natural-gas': 'エネルギー',
+  // CFTCポジション動向
+  'cot/cot-equities': '米国株',
+  'cot/cot-forex': '為替',
+  'cot/cot-bonds': '債券/金利',
+  'cot/cot-commodities': 'コモディティ',
+  'cot/cot-energy': 'エネルギー',
+  // オプション
+  'options/equity-options': 'オプション',
+  'options/fx-options': 'オプション',
+  'options/commodity-options': 'オプション',
+}
+
+// サブカテゴリ別に追加表示するハンドブックヘルプアイコン（複数可）
+type SubCategoryHandbookEntry = { id: string; tooltip: string }
+const SUBCATEGORY_HANDBOOK_MAP: Record<string, SubCategoryHandbookEntry[]> = {
+  'equities/us-equities': [
+    { id: 'sector-cycle', tooltip: '米株サイクル - データハンドブック' },
+    { id: 'sector-ratio', tooltip: '米株セクター別の見方 - データハンドブック' },
+  ],
+  'options/equity-options': [
+    { id: 'options-tradingview', tooltip: 'オプションの見方（TradingView） - データハンドブック' },
+  ],
+  'energy/crude-oil': [
+    { id: 'cot-crude-oil', tooltip: '原油 - データハンドブック' },
+  ],
 }
 
 // React.lazy で各サブカテゴリチャートをコード分割
@@ -111,33 +159,26 @@ function MarketDataCategory() {
 
   const category = categoryCode ? getMarketCategory(categoryCode) : undefined
 
-  // リダイレクト: /markets/equities → /markets/equities/us-equities
-  // 後方互換: /markets/equities#sp500 → /markets/equities/us-equities#sp500
+  // 後方互換リダイレクト: /markets/equities#sp500 → /markets/equities/us-equities#sp500
+  // ハッシュなしの /markets/equities はサブカテゴリ選択ページを表示する
   useEffect(() => {
     if (!categoryCode || !category || subCategoryCode) return
 
     const hash = location.hash?.replace('#', '')
+    if (!hash) return
 
-    if (hash) {
-      // ハッシュがサブカテゴリコード自体の場合
-      const sub = category.subCategories.find((s) => s.code === hash)
-      if (sub) {
-        navigate(`/markets/${categoryCode}/${sub.code}`, { replace: true })
+    // ハッシュがサブカテゴリコード自体の場合
+    const sub = category.subCategories.find((s) => s.code === hash)
+    if (sub) {
+      navigate(`/markets/${categoryCode}/${sub.code}`, { replace: true })
+      return
+    }
+    // ハッシュがインジケーターコードの場合、所属サブカテゴリを検索
+    for (const sub of category.subCategories) {
+      if (sub.indicators.some((ind) => ind.code === hash)) {
+        navigate(`/markets/${categoryCode}/${sub.code}#${hash}`, { replace: true })
         return
       }
-      // ハッシュがインジケーターコードの場合、所属サブカテゴリを検索
-      for (const sub of category.subCategories) {
-        if (sub.indicators.some((ind) => ind.code === hash)) {
-          navigate(`/markets/${categoryCode}/${sub.code}#${hash}`, { replace: true })
-          return
-        }
-      }
-    }
-
-    // デフォルト: 最初のサブカテゴリへリダイレクト
-    const firstSub = getFirstSubCategoryCode(categoryCode)
-    if (firstSub) {
-      navigate(`/markets/${categoryCode}/${firstSub}`, { replace: true })
     }
   }, [categoryCode, subCategoryCode, category, navigate, location.hash])
 
@@ -171,8 +212,12 @@ function MarketDataCategory() {
     )
   }
 
-  // リダイレクト待ち
-  if (!subCategoryCode) return null
+  // サブカテゴリ未指定 → サブカテゴリ選択ページを表示
+  if (!subCategoryCode) {
+    // ハッシュ付きの場合はリダイレクト処理が走るので何も表示しない
+    if (location.hash) return null
+    return <SubCategorySelectionPage category={category} categoryCode={categoryCode} openHandbook={openHandbook} />
+  }
 
   const subCategory = getMarketSubCategory(categoryCode, subCategoryCode)
   const SubCategoryCharts = SUBCATEGORY_CHARTS[categoryCode]?.[subCategoryCode]
@@ -221,6 +266,16 @@ function MarketDataCategory() {
                 />
               </Tooltip>
             )}
+            {categoryCode && subCategoryCode && (SUBCATEGORY_HANDBOOK_MAP[`${categoryCode}/${subCategoryCode}`] ?? []).map((entry) => (
+              <Tooltip key={entry.id} title={entry.tooltip}>
+                <QuestionCircleOutlined
+                  onClick={() => openHandbook(entry.id)}
+                  style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+                  onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+                  onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+                />
+              </Tooltip>
+            ))}
           </Space>
           <Text
             style={{
@@ -338,7 +393,12 @@ function MarketDataCategory() {
             )}
             {sidebarTab === 'headlines' && (
               <HeadlinePanel
-                params={{ savedOnly: true }}
+                params={{
+                  savedOnly: true,
+                  // サブカテゴリに対応する第3層タグのみ表示（未マッピング時はマッチ0）
+                  savedCategoryName:
+                    SUBCATEGORY_HEADLINE_CATEGORY[`${categoryCode}/${subCategoryCode}`] ?? '__NO_MATCH__',
+                }}
                 title="ヘッドライン（抜粋）"
                 limit={20}
                 compact
@@ -370,3 +430,117 @@ function MarketDataCategory() {
 }
 
 export default MarketDataCategory
+
+// ============================================================================
+// サブカテゴリ選択ページ
+// ============================================================================
+function SubCategorySelectionPage({
+  category,
+  categoryCode,
+  openHandbook,
+}: {
+  category: ReturnType<typeof getMarketCategory> & {}
+  categoryCode: string
+  openHandbook: (id: string) => void
+}) {
+  return (
+    <div style={{ padding: '20px 24px', maxWidth: 1400, margin: '0 auto' }}>
+      <Space style={{ marginBottom: 24 }} wrap>
+        <Link to="/markets">
+          <Button type="default" icon={<ArrowLeftOutlined />}>
+            マーケットデータ一覧
+          </Button>
+        </Link>
+      </Space>
+
+      <div style={{ marginBottom: 24 }}>
+        <Space size={12} align="center">
+          {React.cloneElement(category.icon as React.ReactElement, {
+            style: { fontSize: 24, color: category.color },
+          })}
+          <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
+            {category.name}
+          </Title>
+          {CATEGORY_HANDBOOK_MAP[categoryCode] && (
+            <Tooltip title="データハンドブック">
+              <QuestionCircleOutlined
+                onClick={() => openHandbook(CATEGORY_HANDBOOK_MAP[categoryCode])}
+                style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+                onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+                onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+              />
+            </Tooltip>
+          )}
+        </Space>
+        <Text
+          style={{
+            fontSize: 13,
+            color: colors.textSecondary,
+            display: 'block',
+            marginTop: 4,
+            marginLeft: 36,
+          }}
+        >
+          {category.description}
+        </Text>
+      </div>
+
+      <Row gutter={[16, 16]}>
+        {category.subCategories.map((sub) => {
+          const indicatorCount = sub.indicators.length
+          const hasData = indicatorCount > 0
+          const cardContent = (
+            <Card
+              hoverable={hasData}
+              style={{
+                borderRadius: 10,
+                border: `1px solid ${colors.border}`,
+                background: colors.bgSecondary,
+                height: '100%',
+                transition: 'all 0.2s ease',
+                opacity: hasData ? 1 : 0.5,
+                cursor: hasData ? 'pointer' : 'default',
+              }}
+              styles={{ body: { padding: 20 } }}
+            >
+              <Space direction="vertical" size={10} style={{ width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <Space size={10} align="center">
+                    {React.cloneElement(category.icon as React.ReactElement, {
+                      style: { fontSize: 22, color: category.color },
+                    })}
+                    <Title level={5} style={{ margin: 0, color: colors.textPrimary }}>
+                      {sub.name}
+                    </Title>
+                  </Space>
+                  {hasData && (
+                    <RightOutlined style={{ color: colors.textSecondary, fontSize: 12 }} />
+                  )}
+                </div>
+                {hasData ? (
+                  <Text style={{ fontSize: 12, color: colors.textSecondary, display: 'block' }}>
+                    {indicatorCount} 銘柄
+                  </Text>
+                ) : (
+                  <Tag color="default">準備中</Tag>
+                )}
+              </Space>
+            </Card>
+          )
+
+          return (
+            <Col xs={24} sm={12} md={8} lg={6} key={sub.code}>
+              {hasData ? (
+                <Link to={`/markets/${categoryCode}/${sub.code}`} style={{ textDecoration: 'none' }}>
+                  {cardContent}
+                </Link>
+              ) : (
+                cardContent
+              )}
+            </Col>
+          )
+        })}
+      </Row>
+    </div>
+  )
+}

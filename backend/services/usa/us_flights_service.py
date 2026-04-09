@@ -9,15 +9,32 @@ Airportiaからフライトモニターチャートのスクリーンショッ�
 - 日次データなので頻繁な更新は不要
 
 キャッシュ方式: last_updated判定（24時間有効）
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Playwright 直接利用はすべて削除。
+旧実装の「複数候補セレクタを順に試して最初に見つかったチャート要素を
+要素スクショ」ロジックを `pre_screenshot_js` でブラウザ内に再現し、
+対象要素に data-us-flights-target="1" 属性を付与した上で
+`clip_selector` で要素クリップする。
 """
-import os
 import base64
+import logging
+import os
 from datetime import datetime, date, timedelta
 from pathlib import Path
 from typing import Dict, Any, Optional
 from zoneinfo import ZoneInfo
 
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    take_screenshot_with_retry,
+)
+
+logger = logging.getLogger(__name__)
 
 
 # タイムゾーン
@@ -42,6 +59,39 @@ class USFlightsService:
     SCHEDULE_CACHE_KEY = "usa:flights:schedule"
     # キャッシュTTL: 24時間（日次データ）
     CACHE_TTL = 24 * 60 * 60  # 86400秒
+
+    # 旧 Playwright 実装 (複数候補セレクタを順に試して最初に見つかった
+    # 300x200 以上のチャート要素を採用) をブラウザ内 JS で再現する。
+    # 対象要素には data-us-flights-target="1" 属性を付与し、
+    # ScreenshotRequest.clip_selector でそれをクリップする。
+    _PRE_SCREENSHOT_JS = r"""
+    (() => {
+      const selectors = [
+        '#chart',
+        '.flight-chart',
+        '[class*="chart"]',
+        'canvas',
+        '.highcharts-container',
+        '[id*="highcharts"]',
+        '.chart-container',
+      ];
+      // 既存タグを掃除
+      document.querySelectorAll('[data-us-flights-target]')
+        .forEach(el => el.removeAttribute('data-us-flights-target'));
+      for (const sel of selectors) {
+        const els = document.querySelectorAll(sel);
+        for (const el of els) {
+          const r = el.getBoundingClientRect();
+          if (r.width > 300 && r.height > 200) {
+            el.setAttribute('data-us-flights-target', '1');
+            el.scrollIntoView({block: 'center'});
+            return true;
+          }
+        }
+      }
+      return false;
+    })();
+    """
 
     def __init__(self):
         self.screenshot_path = SCREENSHOT_DIR / "us_flights_chart.png"
@@ -166,7 +216,7 @@ class USFlightsService:
             return False
 
         except Exception as e:
-            print(f"Error checking refresh status: {e}")
+            logger.warning(f"[USFlights] Error checking refresh status: {e}")
             return True
 
     def _get_latest_info(self) -> Dict[str, Any]:
@@ -202,130 +252,56 @@ class USFlightsService:
         }
 
     def _capture_screenshot(self) -> bool:
-        """
-        Playwrightを使用してスクリーンショットを取得
-        """
-        # まずChromiumで試行
-        if self._capture_with_browser('chromium'):
-            return True
+        """PlaywrightRunner 経由でチャート要素のスクリーンショットを取得.
 
-        # Chromiumが失敗した場合はFirefoxで試行
-        print("Chromium failed, trying Firefox...")
-        return self._capture_with_browser('firefox')
+        旧 Playwright 直接実装と同等:
+            - viewport 1400x900
+            - Cookie banner クローズ (pre_click_selectors)
+            - ロード後 5 秒待機 (チャート描画用)
+            - 候補セレクタを順に試して 300x200 以上の要素を検出
+            - クリップで要素スクショ
+        """
+        target_selector = "[data-us-flights-target='1']"
+        request = ScreenshotRequest(
+            url=AIRPORTIA_URL,
+            output_path=str(self.screenshot_path),
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=5_000,
+            pre_click_selectors=(
+                'button:has-text("Accept")',
+                'button:has-text("Agree")',
+                '[id*="cookie"] button',
+                '.cookie-consent button',
+            ),
+            pre_screenshot_js=self._PRE_SCREENSHOT_JS,
+            wait_after_pre_js_ms=1_000,
+            clip_selector=target_selector,
+            scroll_into_view=True,
+            viewport_override=(1400, 900),
+        )
+        config = BrowserConfig(
+            viewport=(1400, 900),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
 
-    def _capture_with_browser(self, browser_type: str) -> bool:
-        """
-        指定されたブラウザでスクリーンショットを取得
-        """
         try:
-            from playwright.sync_api import sync_playwright
-
-            print(f"Capturing US Flights chart with {browser_type}...")
-            print(f"URL: {AIRPORTIA_URL}")
-
-            with sync_playwright() as p:
-                # ブラウザを選択
-                if browser_type == 'firefox':
-                    browser = p.firefox.launch(headless=True)
-                else:
-                    browser = p.chromium.launch(
-                        headless=True,
-                        args=[
-                            '--no-sandbox',
-                            '--disable-setuid-sandbox',
-                            '--disable-dev-shm-usage',
-                            '--disable-gpu',
-                        ]
-                    )
-
-                # ビューポート設定
-                context = browser.new_context(
-                    viewport={'width': 1400, 'height': 900},
-                    user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                )
-
-                page = context.new_page()
-
-                # ページにアクセス
-                page.goto(AIRPORTIA_URL, wait_until='networkidle', timeout=60000)
-
-                # チャートが読み込まれるまで待機
-                page.wait_for_timeout(5000)
-
-                # Cookie同意バナーを閉じる
-                try:
-                    cookie_selectors = [
-                        'button:has-text("Accept")',
-                        'button:has-text("Agree")',
-                        '[id*="cookie"] button',
-                        '.cookie-consent button',
-                    ]
-                    for selector in cookie_selectors:
-                        try:
-                            btn = page.locator(selector).first
-                            if btn.is_visible(timeout=2000):
-                                btn.click()
-                                page.wait_for_timeout(1000)
-                                print("Cookie banner closed")
-                                break
-                        except Exception:
-                            continue
-                except Exception:
-                    pass
-
-                # チャート要素を探す
-                screenshot_taken = False
-
-                # Airportiaのフライトチャートセレクタ
-                chart_selectors = [
-                    '#chart',
-                    '.flight-chart',
-                    '[class*="chart"]',
-                    'canvas',
-                    '.highcharts-container',
-                    '[id*="highcharts"]',
-                    '.chart-container',
-                ]
-
-                for selector in chart_selectors:
-                    try:
-                        element = page.locator(selector).first
-                        if element.is_visible(timeout=3000):
-                            box = element.bounding_box()
-                            if box and box['width'] > 300 and box['height'] > 200:
-                                element.screenshot(path=str(self.screenshot_path))
-                                print(f"Chart screenshot saved using: {selector}")
-                                screenshot_taken = True
-                                break
-                    except Exception:
-                        continue
-
-                # 要素が見つからない場合はメインコンテンツをキャプチャ
-                if not screenshot_taken:
-                    print("Chart element not found, capturing main content...")
-                    # ヘッダーを除いたメインコンテンツエリア
-                    page.screenshot(
-                        path=str(self.screenshot_path),
-                        clip={
-                            'x': 0,
-                            'y': 100,
-                            'width': 1400,
-                            'height': 700
-                        }
-                    )
-                    print(f"Clipped screenshot saved to {self.screenshot_path}")
-
-                browser.close()
-
-            return self.screenshot_path.exists()
-
-        except ImportError:
-            print(f"Playwright not installed for {browser_type}")
-            return False
-        except Exception as e:
-            print(f"Error capturing screenshot with {browser_type}: {e}")
-            import traceback
-            traceback.print_exc()
+            result = take_screenshot_with_retry(
+                request,
+                config=config,
+                max_attempts=2,
+                initial_backoff_seconds=5.0,
+            )
+            logger.info(
+                f"[USFlights] Chart screenshot saved: {result.path} "
+                f"({result.size_bytes} bytes)"
+            )
+            return True
+        except BrowserRunnerError as e:
+            logger.error(f"[USFlights] Screenshot capture failed: {e}")
             return False
 
     def get_screenshot_base64(self) -> Optional[str]:
@@ -337,7 +313,7 @@ class USFlightsService:
             with open(self.screenshot_path, 'rb') as f:
                 return base64.b64encode(f.read()).decode('utf-8')
         except Exception as e:
-            print(f"Error encoding screenshot: {e}")
+            logger.warning(f"[USFlights] Error encoding screenshot: {e}")
             return None
 
     def get_cache_status(self) -> Dict[str, Any]:

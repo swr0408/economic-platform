@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 import { Menu, Input } from 'antd'
 import type { MenuProps } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
@@ -7,6 +7,8 @@ import {
   HANDBOOK_ENTRIES,
   HANDBOOK_COUNTRY_LABELS,
   HANDBOOK_CATEGORY_LABELS,
+  HANDBOOK_COUNTRY_ORDER,
+  HANDBOOK_CATEGORY_ORDER,
 } from '../../content/handbookRegistry'
 
 type MenuItem = Required<MenuProps>['items'][number]
@@ -46,19 +48,25 @@ function buildMenuTree(searchQuery: string): MenuItem[] {
     categoryMap.get(entry.category)!.push(entry)
   }
 
-  const countryOrder = ['usa', 'japan', 'eurozone', 'uk', 'china', 'australia', 'newzealand', 'canada', 'switzerland', 'global', 'market']
+  // 国順序になく登録された国があれば末尾に追加
+  const orderedCountries = [
+    ...HANDBOOK_COUNTRY_ORDER.filter((c) => byCountry.has(c)),
+    ...[...byCountry.keys()].filter((c) => !HANDBOOK_COUNTRY_ORDER.includes(c)),
+  ]
 
-  return countryOrder
-    .filter((code) => byCountry.has(code))
+  return orderedCountries
     .map((countryCode) => {
       const categoryMap = byCountry.get(countryCode)!
-      const categoryOrder = ['policy', 'economy', 'consumer', 'employment', 'inflation', 'housing', 'equities', 'forex', 'commodities', 'energy', 'cot', 'flow', 'rebalance', 'anomaly', 'options']
+      // カテゴリ順序になく登録されたカテゴリがあれば末尾に追加
+      const orderedCategories = [
+        ...HANDBOOK_CATEGORY_ORDER.filter((c) => categoryMap.has(c)),
+        ...[...categoryMap.keys()].filter((c) => !HANDBOOK_CATEGORY_ORDER.includes(c)),
+      ]
 
       return {
         key: `handbook-${countryCode}`,
         label: HANDBOOK_COUNTRY_LABELS[countryCode] || countryCode,
-        children: categoryOrder
-          .filter((cat) => categoryMap.has(cat))
+        children: orderedCategories
           .map((categoryCode) => {
             const entries = categoryMap.get(categoryCode)!
             return {
@@ -79,6 +87,7 @@ export default function HandbookSidebarNavigation() {
   const location = useLocation()
   const [searchQuery, setSearchQuery] = useState('')
   const [openKeys, setOpenKeys] = useState<string[]>([])
+  const menuScrollRef = useRef<HTMLDivElement>(null)
 
   const menuItems = useMemo(() => buildMenuTree(searchQuery), [searchQuery])
 
@@ -107,6 +116,44 @@ export default function HandbookSidebarNavigation() {
     }
     return []
   }, [location.hash])
+
+  // ハッシュに対応する国・カテゴリの SubMenu を自動展開
+  useEffect(() => {
+    if (searchQuery) return // 検索中は別ロジックで全展開
+    if (!location.hash) return
+    const indicatorId = location.hash.slice(1)
+    const entry = HANDBOOK_ENTRIES.find((e) => e.indicatorId === indicatorId)
+    if (!entry) return
+    const countryKey = `handbook-${entry.country}`
+    const categoryKey = `handbook-${entry.country}-${entry.category}`
+    setOpenKeys((prev) => {
+      const merged = new Set(prev)
+      merged.add(countryKey)
+      merged.add(categoryKey)
+      return Array.from(merged)
+    })
+  }, [location.hash, searchQuery])
+
+  // ページ遷移時に選択中のメニュー項目をサイドバー内で表示位置までスクロール
+  // 既に視界内にある場合は何もしない（block: 'nearest'）ので手動スクロールを邪魔しない
+  useEffect(() => {
+    if (selectedKeys.length === 0) return
+    const wrapper = menuScrollRef.current
+    if (!wrapper) return
+
+    const timer = setTimeout(() => {
+      const targetKey = selectedKeys[0]
+      const safeKey = targetKey.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      const el = wrapper.querySelector<HTMLElement>(
+        `[data-menu-id$="${safeKey}"]`,
+      )
+      if (el) {
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      }
+    }, 250)
+
+    return () => clearTimeout(timer)
+  }, [selectedKeys, openKeys])
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     if (key.includes('#')) {
@@ -144,7 +191,7 @@ export default function HandbookSidebarNavigation() {
       </div>
 
       {/* メニュー */}
-      <div style={{ flex: 1, overflow: 'auto' }}>
+      <div ref={menuScrollRef} style={{ flex: 1, overflow: 'auto' }}>
         <Menu
           mode="inline"
           theme="dark"

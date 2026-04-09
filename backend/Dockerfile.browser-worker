@@ -1,0 +1,101 @@
+# ============================================================================
+# backend/Dockerfile.browser-worker
+# ----------------------------------------------------------------------------
+# Playwright 公式イメージを土台にした、ブラウザ自動化用のバックエンドコンテナ。
+#
+# 目的:
+#   - 既存の Dockerfile.simple は selenium + playwright + chromium-driver +
+#     chromium + firefox を全部入れていて、ARM64 (OCI Always Free) で
+#     chromedriver の公式バイナリが無いため詰む。
+#   - 本 Dockerfile は Playwright 公式 multi-arch イメージ
+#     (linux/amd64 + linux/arm64) を base にして、Selenium と
+#     chromium-driver を完全に排除する。
+#   - backend.services.browser パッケージ経由でしか browser を起動しない
+#     前提のサービス (新規 / 移行済み) に向けた選択肢。
+#
+# 使い分け:
+#   Dockerfile.simple         → 既存 Selenium 依存サービスを残したまま動かす
+#                               (amd64 開発機・現行本番)
+#   Dockerfile.browser-worker → ARM64 (OCI) / Selenium 廃止後 / browser ワーカー
+#                               専用コンテナとして将来分離したいケース
+#
+# OCI Always Free (Ampere A1, ARM64) で動くことをゴールとする。
+# ============================================================================
+
+# Playwright python の公式イメージ。multi-arch (amd64/arm64) で配布されている。
+# - chromium / firefox / webkit と全依存ライブラリが入っている
+# - playwright python パッケージもプリインストール済み
+# バージョンはローカルでテスト済みのものに固定 (素の latest は再現性が悪い)
+FROM mcr.microsoft.com/playwright/python:v1.41.0-jammy
+
+WORKDIR /app/backend
+
+# ----------------------------------------------------------------------------
+# 追加システムライブラリ
+# - libpq-dev: psycopg2-binary を使うが、ビルド時 fallback 用に保険で入れる
+# - tesseract-ocr (+jpn / jpn-vert): boj_meeting_expectations_service の OCR
+# - fonts-noto-cjk: 中国語/日本語ページのスクショで文字化け防止
+# 注: Playwright の base image にはすでに大半の Chromium 依存が入っている
+# ----------------------------------------------------------------------------
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq-dev \
+    gcc \
+    tesseract-ocr \
+    tesseract-ocr-jpn \
+    tesseract-ocr-jpn-vert \
+    fonts-noto-cjk \
+    && rm -rf /var/lib/apt/lists/*
+
+# ----------------------------------------------------------------------------
+# Python 依存関係
+# Selenium / webdriver-manager は **入れない** (browser-worker では廃止)
+# ----------------------------------------------------------------------------
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    pandas \
+    requests \
+    redis \
+    psycopg2-binary \
+    asyncpg \
+    sqlalchemy \
+    xlrd \
+    openpyxl \
+    beautifulsoup4 \
+    lxml \
+    PyMuPDF \
+    pdfplumber \
+    PyPDF2 \
+    Pillow \
+    pytesseract \
+    APScheduler \
+    pytz \
+    yfinance \
+    httpx \
+    python-dotenv \
+    dukascopy-python \
+    deep-translator \
+    discord.py \
+    PyJWT
+
+# Playwright のブラウザは base image に同梱済みなので playwright install は不要。
+# ただし念の為 chromium だけ最新化したい場合は次行を有効化:
+# RUN playwright install chromium
+
+# アプリケーションコード
+COPY backend/ /app/backend/
+
+# データディレクトリ
+RUN mkdir -p /app/data /app/screenshots
+
+EXPOSE 8000
+
+ENV PYTHONPATH=/app/backend
+ENV SEASONALITY_DIR=/app/data/seasonality
+ENV SCREENSHOT_DIR=/app/screenshots
+# 1 プロセス内のブラウザ並列上限 (services/browser/concurrency.py が参照)
+ENV BROWSER_RUNNER_CONCURRENCY=2
+# Playwright が sandbox を切ることを許可
+ENV PLAYWRIGHT_NO_SANDBOX=1
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -41,6 +41,9 @@ export const MARKET_CATEGORIES_DATA: MarketCategoryItem[] = [
         code: 'us-equities',
         name: '米国株',
         indicators: [
+          { code: 'sp500-heatmap', name: 'S&P 500 ヒートマップ', symbolIds: [] },
+          { code: 'nasdaq100-heatmap', name: 'NASDAQ 100 ヒートマップ', symbolIds: [] },
+          { code: 'dow-heatmap', name: 'ダウ平均 ヒートマップ', symbolIds: [] },
           { code: 'vix-term-structure', name: 'VIX期間構造', symbolIds: [] },
           { code: 'historical-volatility', name: 'インプライドボラプレミアム', symbolIds: [] },
           { code: 'vix-cross-ratio', name: 'VIXクロスレシオ', symbolIds: [] },

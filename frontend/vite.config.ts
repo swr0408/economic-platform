@@ -2,15 +2,16 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(() => ({
   plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
-  // 開発時のみ親ディレクトリを公開（静的ファイル用）
-  publicDir: command === 'serve' ? path.resolve(__dirname, '../') : 'public',
+  // 静的アセットは frontend/public/ に集約。
+  // バックエンドが提供する画像は /static proxy 経由で配信される。
+  publicDir: 'public',
   server: {
     port: 3000,
     proxy: {

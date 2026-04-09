@@ -725,6 +725,13 @@
     "date": "2026-03-01",
     "value": 91.8
   },
-  "next_release": null,
-  "last_updated": "2026-04-07T23:02:16.569880+09:00"
+  "next_release": {
+    "date": "2026-04-28",
+    "datetime_utc": "2026-04-28T14:00:00+00:00",
+    "datetime_jst": "2026-04-28T23:00:00+09:00",
+    "time_jst": "23:00",
+    "label": "CB Consumer Confidence (Apr)",
+    "estimate": null
+  },
+  "last_updated": "2026-04-09T18:02:05.169621+09:00"
 }

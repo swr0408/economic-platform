@@ -4,19 +4,25 @@ NYオプションカット（FXオプション期日）サービス
 データ項目:
 - expiry_data: 通貨ペア別のストライク価格と想定元本
 - article_body: 市場分析テキスト
-- table_image_url: オプション期日テーブル画像（Seleniumでスクリーンショット取得）
+- table_image_url: オプション期日テーブル画像（PlaywrightRunner経由でスクショ取得）
 
 データソース:
 - investinglive.com: https://investinglive.com/Orders
 
 更新スケジュール: 毎営業日 JST 15:30, 16:00, 16:30, 17:00 にチェック
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Selenium / webdriver_manager / chromium-driver
+依存はすべて削除。記事内の「テーブル画像」要素を特定する旧 Selenium ロジック
+を `pre_screenshot_js` でブラウザ内に再現し、対象 <img> に
+data-ny-option-cut-target="1" 属性を付与した上で
+`clip_selector` で要素クリップする。
 """
 import calendar
 import json
 import logging
-import os
 import re
-import time as time_module
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -26,6 +32,12 @@ import requests
 from bs4 import BeautifulSoup
 
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    take_screenshot_with_retry,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -300,118 +312,101 @@ class NyOptionCutService:
 
     # ──── スクリーンショット ────
 
+    # 旧 Selenium ロジック (テーブル画像 = 記事内の十分なサイズの最初の <img>
+    # でヘッダー/ロゴ/広告を除外したもの) をブラウザ内 JS で再現する。
+    # 対象要素には ``data-ny-option-cut-target="1"`` 属性を付与し、
+    # ScreenshotRequest.clip_selector でそれをクリップする。
+    _PRE_SCREENSHOT_JS = r"""
+    (() => {
+      const sel = "article figure img, article img, .article-body img, .html-content__general-styles img";
+      const figSel = "article figure, .article-body figure, .html-content__general-styles figure";
+
+      // 既存タグを掃除
+      document.querySelectorAll('[data-ny-option-cut-target]')
+        .forEach(el => el.removeAttribute('data-ny-option-cut-target'));
+
+      const isExcluded = (src) => {
+        if (!src) return true;
+        if (src.indexOf('FXO%20FX%20OPTION%20EXPIRIES') !== -1) return true;
+        if (src.indexOf('il-logo') !== -1) return true;
+        if (src.indexOf('advertisement') !== -1) return true;
+        return false;
+      };
+
+      // <img> 走査
+      const imgs = Array.from(document.querySelectorAll(sel));
+      for (const img of imgs) {
+        const src = img.getAttribute('src') || img.currentSrc || '';
+        if (isExcluded(src)) continue;
+        const r = img.getBoundingClientRect();
+        if (r.width > 200 && r.height > 100) {
+          img.setAttribute('data-ny-option-cut-target', '1');
+          img.scrollIntoView({block: 'center'});
+          return true;
+        }
+      }
+
+      // フォールバック: <figure> 走査
+      const figs = Array.from(document.querySelectorAll(figSel));
+      for (const fig of figs) {
+        const r = fig.getBoundingClientRect();
+        if (r.width > 200 && r.height > 100) {
+          fig.setAttribute('data-ny-option-cut-target', '1');
+          fig.scrollIntoView({block: 'center'});
+          return true;
+        }
+      }
+      return false;
+    })();
+    """
+
     def _capture_table_screenshot(self, article_url: str) -> Optional[str]:
-        """Seleniumで記事ページにアクセスし、テーブル画像のスクリーンショットを取得"""
+        """記事ページにアクセスしテーブル画像のスクショを取得 (PlaywrightRunner 経由).
+
+        旧 Selenium 実装と同等:
+            - viewport 1920x1400
+            - 記事内 <img>/<figure> を走査
+            - ヘッダーバナー/ロゴ/広告を除外
+            - 200x100 px 以上の最初の要素を対象
+            - scrollIntoView してから要素クリップでスクショ
+        """
+        target_selector = "[data-ny-option-cut-target='1']"
+        request = ScreenshotRequest(
+            url=article_url,
+            output_path=str(SCREENSHOT_PATH),
+            wait_selector="article figure img, article img, .article-body img",
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=8_000,
+            pre_screenshot_js=self._PRE_SCREENSHOT_JS,
+            wait_after_pre_js_ms=1_000,
+            clip_selector=target_selector,
+            scroll_into_view=True,
+            viewport_override=(1920, 1400),
+        )
+        config = BrowserConfig(
+            viewport=(1920, 1400),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
+
         try:
-            from selenium import webdriver
-            from selenium.webdriver.chrome.options import Options
-            from selenium.webdriver.chrome.service import Service
-            from selenium.webdriver.common.by import By
-            from selenium.webdriver.support.ui import WebDriverWait
-            from selenium.webdriver.support import expected_conditions as EC
-            from webdriver_manager.chrome import ChromeDriverManager
-        except ImportError:
-            logger.warning("[NYOptionCut] Selenium not available, skipping screenshot")
-            return None
-
-        driver = None
-        try:
-            chrome_options = Options()
-            chrome_options.add_argument("--headless")
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
-            chrome_options.add_argument("--disable-gpu")
-            chrome_options.add_argument("--window-size=1920,1400")
-            chrome_options.add_argument(
-                "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            result = take_screenshot_with_retry(
+                request,
+                config=config,
+                max_attempts=2,
+                initial_backoff_seconds=5.0,
             )
-
-            if os.path.exists("/usr/bin/chromium"):
-                chrome_options.binary_location = "/usr/bin/chromium"
-                from webdriver_manager.core.os_manager import ChromeType
-                service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-            else:
-                service = Service(ChromeDriverManager().install())
-
-            driver = webdriver.Chrome(service=service, options=chrome_options)
-            logger.info(f"[NYOptionCut] Accessing {article_url} for screenshot")
-            driver.get(article_url)
-
-            # ページ読み込み待ち
-            time_module.sleep(8)
-
-            # 記事本文内の画像を探す（article-body内の2番目のfigure/img）
-            # 1番目はヘッダーバナー、2番目がテーブル画像
-            try:
-                wait = WebDriverWait(driver, 15)
-                wait.until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, "article figure img, article img, .article-body img")
-                    )
-                )
-                time_module.sleep(2)
-            except Exception:
-                logger.info("[NYOptionCut] Waiting for images with fallback...")
-                time_module.sleep(5)
-
-            # 記事内の全画像を取得
-            images = driver.find_elements(
-                By.CSS_SELECTOR,
-                "article figure img, article img, .article-body img, "
-                ".html-content__general-styles img"
+            logger.info(
+                f"[NYOptionCut] Table screenshot saved: {result.path} "
+                f"({result.size_bytes} bytes)"
             )
-
-            target_img = None
-            for img in images:
-                src = img.get_attribute("src") or ""
-                # ヘッダーバナー・ロゴ・広告を除外
-                if "FXO%20FX%20OPTION%20EXPIRIES" in src:
-                    continue
-                if "il-logo" in src or "advertisement" in src:
-                    continue
-                # 十分なサイズがある画像（テーブル画像）を対象
-                width = img.size.get("width", 0)
-                height = img.size.get("height", 0)
-                if width > 200 and height > 100:
-                    target_img = img
-                    break
-
-            # 画像が見つからない場合、figure要素を試す
-            if not target_img:
-                figures = driver.find_elements(
-                    By.CSS_SELECTOR,
-                    "article figure, .article-body figure, "
-                    ".html-content__general-styles figure"
-                )
-                for fig in figures:
-                    width = fig.size.get("width", 0)
-                    height = fig.size.get("height", 0)
-                    if width > 200 and height > 100:
-                        target_img = fig
-                        break
-
-            if not target_img:
-                logger.warning("[NYOptionCut] Could not find table image element")
-                return None
-
-            # スクロールして表示
-            driver.execute_script(
-                "arguments[0].scrollIntoView({block: 'center'});", target_img
-            )
-            time_module.sleep(1)
-
-            # 要素スクリーンショット
-            target_img.screenshot(str(SCREENSHOT_PATH))
-            logger.info(f"[NYOptionCut] Table screenshot saved to {SCREENSHOT_PATH}")
             return f"/cache/market/{SCREENSHOT_FILENAME}"
-
-        except Exception as e:
-            logger.error(f"[NYOptionCut] Screenshot error: {e}")
+        except BrowserRunnerError as e:
+            logger.error(f"[NYOptionCut] Screenshot capture failed: {e}")
             return None
-        finally:
-            if driver:
-                driver.quit()
 
     # ──── キャッシュ ────
 

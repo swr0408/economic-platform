@@ -9,15 +9,34 @@ OpenTableからレストラン予約件数前年比チャートのスクリー�
 - 日次データ
 
 キャッシュ方式: last_updated判定（24時間有効、データ更新時に自動リフレッシュ）
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Playwright 直接利用はすべて削除。
+旧実装の以下ロジックを `pre_screenshot_js` でブラウザ内 JS に集約:
+    1. 地域セレクタ <select aria-label="Select location for data"> を
+       value="840" (United States) に切り替え + change イベント発火
+    2. ページ中央までスクロール (Seated Diners セクション表示用)
+    3. 候補セレクタ列を順に試して 300x200 以上の最初のチャート要素を
+       data-opentable-target="1" 属性で印を付ける
 """
-import os
 import base64
+import logging
+import os
 from datetime import datetime, date, timedelta
 from pathlib import Path
 from typing import Dict, Any, Optional
 from zoneinfo import ZoneInfo
 
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    take_screenshot_with_retry,
+)
+
+logger = logging.getLogger(__name__)
 
 
 # タイムゾーン
@@ -42,6 +61,76 @@ class OpenTableService:
     CACHE_KEY = "usa:opentable:screenshot"
     # キャッシュTTL: 24時間（日次データ）
     CACHE_TTL = 24 * 60 * 60  # 86400秒
+
+    # 旧 Playwright 実装の以下ロジックをブラウザ内 JS で再現する:
+    #   1. select[aria-label="Select location for data"] を value="840"
+    #      (United States) に変更し change イベントを発火
+    #   2. ページ高さ * 0.5 まで scrollTo
+    #   3. 候補セレクタを順に試して 300x200 以上の要素を
+    #      data-opentable-target="1" でマーキング
+    # スクショ対象は ScreenshotRequest.clip_selector で参照する。
+    _PRE_SCREENSHOT_JS = r"""
+    (() => {
+      // Step 1: 地域セレクタを United States に切り替え
+      try {
+        let geoSelect = document.querySelector(
+          'select[aria-label="Select location for data"]'
+        );
+        if (!geoSelect) {
+          // フォールバック: United States option を持つ select を探す
+          const allSelects = Array.from(document.querySelectorAll('select'));
+          for (const sel of allSelects) {
+            const opts = Array.from(sel.options || []).map(o => o.text);
+            if (opts.indexOf('United States') !== -1) {
+              geoSelect = sel;
+              break;
+            }
+          }
+        }
+        if (geoSelect) {
+          // value="840" を試行、無ければ label "United States" を選択
+          const opts = Array.from(geoSelect.options || []);
+          let target = opts.find(o => o.value === '840');
+          if (!target) target = opts.find(o => (o.text || '').trim() === 'United States');
+          if (target) {
+            geoSelect.value = target.value;
+            geoSelect.dispatchEvent(new Event('change', {bubbles: true}));
+            geoSelect.dispatchEvent(new Event('input', {bubbles: true}));
+          }
+        }
+      } catch (e) { /* noop */ }
+
+      // Step 2: ページ中央までスクロール
+      try {
+        window.scrollTo(0, document.body.scrollHeight * 0.5);
+      } catch (e) { /* noop */ }
+
+      // Step 3: チャート候補要素をマーキング
+      const selectors = [
+        '#seated-diners-chart',
+        '[class*="seated-diners"]',
+        '.r9-soti-controls',
+        '[class*="chart"]',
+        'canvas',
+        '.highcharts-container',
+        '[id*="highcharts"]',
+      ];
+      document.querySelectorAll('[data-opentable-target]')
+        .forEach(el => el.removeAttribute('data-opentable-target'));
+      for (const sel of selectors) {
+        const els = document.querySelectorAll(sel);
+        for (const el of els) {
+          const r = el.getBoundingClientRect();
+          if (r.width > 300 && r.height > 200) {
+            el.setAttribute('data-opentable-target', '1');
+            el.scrollIntoView({block: 'center'});
+            return true;
+          }
+        }
+      }
+      return false;
+    })();
+    """
 
     def __init__(self):
         self.screenshot_path = SCREENSHOT_DIR / "opentable_seated_diners.png"
@@ -159,7 +248,7 @@ class OpenTableService:
             return False
 
         except Exception as e:
-            print(f"Error checking refresh status: {e}")
+            logger.warning(f"[OpenTable] Error checking refresh status: {e}")
             return True
 
     def _get_latest_info(self) -> Dict[str, Any]:
@@ -172,175 +261,58 @@ class OpenTableService:
         }
 
     def _capture_screenshot(self) -> bool:
-        """
-        Playwrightを使用してスクリーンショットを取得
-        """
-        # まずChromiumで試行
-        if self._capture_with_browser('chromium'):
-            return True
+        """PlaywrightRunner 経由でチャート要素のスクリーンショットを取得.
 
-        # Chromiumが失敗した場合はFirefoxで試行
-        print("Chromium failed, trying Firefox...")
-        return self._capture_with_browser('firefox')
+        旧 Playwright 直接実装と同等:
+            - viewport 1400x1200
+            - Cookie banner クローズ (pre_click_selectors)
+            - ロード後 5 秒待機
+            - 地域セレクタを United States へ + 中央スクロール (pre_screenshot_js)
+            - 候補セレクタを順に試して 300x200 以上の要素を要素クリップ
+        """
+        target_selector = "[data-opentable-target='1']"
+        request = ScreenshotRequest(
+            url=OPENTABLE_URL,
+            output_path=str(self.screenshot_path),
+            wait_for_load_state="domcontentloaded",
+            wait_after_load_ms=5_000,
+            pre_click_selectors=(
+                'button:has-text("Accept All")',
+                'button:has-text("Accept")',
+                'button:has-text("Agree")',
+                '#onetrust-accept-btn-handler',
+                '[id*="cookie"] button',
+                '.cookie-consent button',
+            ),
+            pre_screenshot_js=self._PRE_SCREENSHOT_JS,
+            wait_after_pre_js_ms=3_000,  # チャート再描画を待つ
+            clip_selector=target_selector,
+            scroll_into_view=True,
+            viewport_override=(1400, 1200),
+        )
+        config = BrowserConfig(
+            viewport=(1400, 1200),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
 
-    def _capture_with_browser(self, browser_type: str) -> bool:
-        """
-        指定されたブラウザでスクリーンショットを取得
-        """
         try:
-            from playwright.sync_api import sync_playwright
-
-            print(f"Capturing OpenTable chart with {browser_type}...")
-            print(f"URL: {OPENTABLE_URL}")
-
-            with sync_playwright() as p:
-                # ブラウザを選択
-                if browser_type == 'firefox':
-                    browser = p.firefox.launch(headless=True)
-                else:
-                    browser = p.chromium.launch(
-                        headless=True,
-                        args=[
-                            '--no-sandbox',
-                            '--disable-setuid-sandbox',
-                            '--disable-dev-shm-usage',
-                            '--disable-gpu',
-                            '--disable-http2',  # HTTP2エラー対策
-                        ]
-                    )
-
-                # ビューポート設定
-                context = browser.new_context(
-                    viewport={'width': 1400, 'height': 1200},
-                    user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                )
-
-                page = context.new_page()
-
-                # ページにアクセス（HTTP2エラー対策でwait_untilを変更）
-                try:
-                    page.goto(OPENTABLE_URL, wait_until='domcontentloaded', timeout=60000)
-                except Exception as goto_error:
-                    print(f"First goto attempt failed: {goto_error}")
-                    # リトライ
-                    page.goto(OPENTABLE_URL, wait_until='load', timeout=60000)
-
-                # チャートが読み込まれるまで待機
-                page.wait_for_timeout(5000)
-
-                # ページタイトルを確認（デバッグ用）
-                print(f"Page title: {page.title()}")
-
-                # Cookie同意バナーを閉じる
-                try:
-                    cookie_selectors = [
-                        'button:has-text("Accept")',
-                        'button:has-text("Agree")',
-                        'button:has-text("Accept All")',
-                        '[id*="cookie"] button',
-                        '.cookie-consent button',
-                        '#onetrust-accept-btn-handler',
-                    ]
-                    for selector in cookie_selectors:
-                        try:
-                            btn = page.locator(selector).first
-                            if btn.is_visible(timeout=2000):
-                                btn.click()
-                                page.wait_for_timeout(1000)
-                                print("Cookie banner closed")
-                                break
-                        except Exception:
-                            continue
-                except Exception:
-                    pass
-
-                # 地域セレクタを "United States" に変更
-                try:
-                    # aria-label="Select location for data" のselect要素を使用
-                    geography_selector = page.locator('select[aria-label="Select location for data"]').first
-
-                    if geography_selector.is_visible(timeout=5000):
-                        # United States を選択（value="840"）
-                        geography_selector.select_option(value="840")
-                        page.wait_for_timeout(3000)  # チャート更新を待つ
-                        print("Changed geography to United States")
-                    else:
-                        # フォールバック: すべてのselectを探してUnited Statesオプションがあるものを選択
-                        all_selects = page.locator('select').all()
-                        for sel in all_selects:
-                            try:
-                                options = sel.evaluate("el => Array.from(el.options).map(o => o.text)")
-                                if 'United States' in options:
-                                    sel.select_option(label="United States")
-                                    page.wait_for_timeout(3000)
-                                    print("Changed geography to United States (fallback)")
-                                    break
-                            except Exception:
-                                continue
-                except Exception as e:
-                    print(f"Warning: Could not change geography to United States: {e}")
-
-                # Seated Dinersチャートまでスクロール
-                try:
-                    # seated-dinersセクションへスクロール
-                    page.evaluate("window.scrollTo(0, document.body.scrollHeight * 0.5);")
-                    page.wait_for_timeout(2000)
-                except Exception:
-                    pass
-
-                # チャート要素を探す
-                screenshot_taken = False
-
-                # OpenTableのチャートセレクタ
-                chart_selectors = [
-                    '#seated-diners-chart',
-                    '[class*="seated-diners"]',
-                    '.r9-soti-controls',
-                    '[class*="chart"]',
-                    'canvas',
-                    '.highcharts-container',
-                    '[id*="highcharts"]',
-                ]
-
-                for selector in chart_selectors:
-                    try:
-                        element = page.locator(selector).first
-                        if element.is_visible(timeout=3000):
-                            box = element.bounding_box()
-                            if box and box['width'] > 300 and box['height'] > 200:
-                                element.screenshot(path=str(self.screenshot_path))
-                                print(f"Chart screenshot saved using: {selector}")
-                                screenshot_taken = True
-                                break
-                    except Exception:
-                        continue
-
-                # 要素が見つからない場合はメインコンテンツをキャプチャ
-                if not screenshot_taken:
-                    print("Chart element not found, capturing main content...")
-                    # ヘッダーを除いたメインコンテンツエリア
-                    page.screenshot(
-                        path=str(self.screenshot_path),
-                        clip={
-                            'x': 0,
-                            'y': 200,
-                            'width': 1400,
-                            'height': 800
-                        }
-                    )
-                    print(f"Clipped screenshot saved to {self.screenshot_path}")
-
-                browser.close()
-
-            return self.screenshot_path.exists()
-
-        except ImportError:
-            print(f"Playwright not installed for {browser_type}")
-            return False
-        except Exception as e:
-            print(f"Error capturing screenshot with {browser_type}: {e}")
-            import traceback
-            traceback.print_exc()
+            result = take_screenshot_with_retry(
+                request,
+                config=config,
+                max_attempts=2,
+                initial_backoff_seconds=5.0,
+            )
+            logger.info(
+                f"[OpenTable] Chart screenshot saved: {result.path} "
+                f"({result.size_bytes} bytes)"
+            )
+            return True
+        except BrowserRunnerError as e:
+            logger.error(f"[OpenTable] Screenshot capture failed: {e}")
             return False
 
     def get_screenshot_base64(self) -> Optional[str]:
@@ -352,7 +324,7 @@ class OpenTableService:
             with open(self.screenshot_path, 'rb') as f:
                 return base64.b64encode(f.read()).decode('utf-8')
         except Exception as e:
-            print(f"Error encoding screenshot: {e}")
+            logger.warning(f"[OpenTable] Error encoding screenshot: {e}")
             return None
 
     def get_cache_status(self) -> Dict[str, Any]:

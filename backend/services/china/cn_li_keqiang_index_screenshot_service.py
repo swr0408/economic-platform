@@ -1,28 +1,33 @@
 """
 中国 李克強指数（Li Keqiang Index）Screenshot Service
-MacroMicro のチャートをSeleniumでスクリーンショット取得
+MacroMicro のチャートのスクリーンショット取得
 
 URL:
 - https://en.macromicro.me/series/28284/china-keqiang-index-new
 
 Target CSS: .mm-cc-bd .container.chart-theater.is-stat
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Selenium / webdriver_manager / chromium-driver
+依存はすべて削除。public API (capture_screenshot / get_screenshot_url /
+get_cache_status / invalidate_cache) は完全互換。
 """
-import time
-import os
+import logging
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
 from zoneinfo import ZoneInfo
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    take_screenshot_with_retry,
+)
+
+logger = logging.getLogger(__name__)
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -47,87 +52,50 @@ class CnLiKeqiangIndexScreenshotService:
     def __init__(self):
         pass
 
-    def _create_driver(self) -> webdriver.Chrome:
-        """Create Chrome WebDriver with appropriate options"""
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--window-size=1920,1400')
-        chrome_options.add_argument(
-            '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    def _capture_screenshot(self, url: str, output_path: Path) -> bool:
+        """Capture screenshot from MacroMicro chart page via PlaywrightRunner.
+
+        以前の Selenium 実装と同等の挙動:
+            - viewport 1920x1400
+            - .mm-cc-bd .container.chart-theater.is-stat 出現を待ち
+              追加で計 5 秒待機 (描画完了用)
+            - 対象要素に scrollIntoView してから要素クリップでスクショ
+        """
+        target_selector = ".mm-cc-bd .container.chart-theater.is-stat"
+        request = ScreenshotRequest(
+            url=url,
+            output_path=str(output_path),
+            wait_selector=target_selector,
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=5_000,  # 旧実装の time.sleep(3) + α
+            clip_selector=target_selector,
+            scroll_into_view=True,
+            viewport_override=(1920, 1400),
+        )
+        config = BrowserConfig(
+            viewport=(1920, 1400),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
         )
 
-        if os.path.exists('/usr/bin/chromium'):
-            from webdriver_manager.core.os_manager import ChromeType
-            service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-        else:
-            service = Service(ChromeDriverManager().install())
-
-        return webdriver.Chrome(service=service, options=chrome_options)
-
-    def _capture_screenshot(self, url: str, output_path: Path) -> bool:
-        """Capture screenshot from MacroMicro chart page"""
-        driver = None
         try:
-            driver = self._create_driver()
-
-            print(f"[LiKeqiangIndex] Accessing {url}")
-            driver.get(url)
-
-            print("[LiKeqiangIndex] Waiting for page to load...")
-            time.sleep(5)
-
-            # チャートコンテナが読み込まれるのを待つ
-            try:
-                wait = WebDriverWait(driver, 15)
-                wait.until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat")
-                    )
-                )
-                print("[LiKeqiangIndex] Chart container found")
-                time.sleep(3)
-            except Exception as e:
-                print(f"[LiKeqiangIndex] Could not find chart container: {e}")
-
-            # スクロールして表示
-            try:
-                chart_element = driver.find_element(
-                    By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat"
-                )
-                driver.execute_script(
-                    "arguments[0].scrollIntoView({block: 'center'});", chart_element
-                )
-                print("[LiKeqiangIndex] Scrolled to chart")
-                time.sleep(2)
-            except Exception as e:
-                print(f"[LiKeqiangIndex] Could not scroll to chart: {e}")
-
-            # 要素スクリーンショット
-            try:
-                chart_element = driver.find_element(
-                    By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat"
-                )
-                chart_element.screenshot(str(output_path))
-                print(f"[LiKeqiangIndex] Screenshot saved to {output_path}")
-                return True
-            except Exception as e:
-                print(f"[LiKeqiangIndex] Failed to capture element screenshot: {e}")
-                print("[LiKeqiangIndex] Falling back to full page screenshot")
-                driver.save_screenshot(str(output_path))
-                return True
-
-        except Exception as e:
-            print(f"[LiKeqiangIndex] Error capturing screenshot from {url}: {e}")
+            result = take_screenshot_with_retry(
+                request,
+                config=config,
+                max_attempts=2,
+                initial_backoff_seconds=5.0,
+            )
+            logger.info(
+                f"[LiKeqiangIndex] screenshot saved: {result.path} "
+                f"({result.size_bytes} bytes)"
+            )
+            return True
+        except BrowserRunnerError as e:
+            logger.error(f"[LiKeqiangIndex] capture failed: {e}")
             return False
-
-        finally:
-            if driver:
-                driver.quit()
-                print("[LiKeqiangIndex] Browser closed")
 
     def capture_screenshot(self, force_refresh: bool = False) -> Dict[str, Any]:
         """Capture Li Keqiang Index screenshot"""

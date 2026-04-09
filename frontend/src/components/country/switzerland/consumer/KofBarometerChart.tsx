@@ -98,7 +98,7 @@ export default function KofBarometerChart({ data }: KofBarometerChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="KOF経済バロメーター" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="KOF経済バロメーター" showPeriodSelector={false} showDataSource={false} handbookId="kof-barometer">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -111,6 +111,7 @@ export default function KofBarometerChart({ data }: KofBarometerChartProps) {
         showPeriodSelector={false}
         dataSource="KOF Swiss Economic Institute"
         sourceUrl="https://kof.ethz.ch/en/forecasts-and-indicators/indicators/kof-economic-barometer.html"
+        handbookId="kof-barometer"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

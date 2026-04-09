@@ -9,6 +9,7 @@ import {
   HANDBOOK_MAP,
   HANDBOOK_COUNTRY_LABELS,
   HANDBOOK_CATEGORY_LABELS,
+  sortHandbookEntries,
   type HandbookEntry,
 } from '../content/handbookRegistry'
 
@@ -164,9 +165,12 @@ export default function DataHandbookPage() {
     }
   }, [location.hash])
 
+  // サイドバーと一致する順序でソートされた全エントリー
+  const sortedEntries = useMemo(() => sortHandbookEntries(HANDBOOK_ENTRIES), [])
+
   // フィルタリング
   const filteredEntries = useMemo(() => {
-    return HANDBOOK_ENTRIES.filter((entry) => {
+    return sortedEntries.filter((entry) => {
       // 国フィルタ
       if (selectedCountry && entry.country !== selectedCountry) return false
       // カテゴリフィルタ
@@ -182,16 +186,16 @@ export default function DataHandbookPage() {
       }
       return true
     })
-  }, [searchQuery, selectedCountry, selectedCategory])
+  }, [sortedEntries, searchQuery, selectedCountry, selectedCategory])
 
-  // 利用可能な国・カテゴリ一覧
+  // 利用可能な国・カテゴリ一覧（ソート済みエントリー順を反映）
   const availableCountries = useMemo(
-    () => [...new Set(HANDBOOK_ENTRIES.map((e) => e.country))],
-    []
+    () => [...new Set(sortedEntries.map((e) => e.country))],
+    [sortedEntries]
   )
   const availableCategories = useMemo(
-    () => [...new Set(HANDBOOK_ENTRIES.map((e) => e.category))],
-    []
+    () => [...new Set(sortedEntries.map((e) => e.category))],
+    [sortedEntries]
   )
 
   return (

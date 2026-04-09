@@ -1,29 +1,37 @@
 """
 BOC Rate Cuts Expectation Screenshot Service
-Captures screenshots from MacroMicro charts using Selenium
+Captures screenshots from MacroMicro charts via PlaywrightRunner
 
 URLs (2026年):
 - 年末金利予想: https://en.macromicro.me/series/78281/canada-boc-year-end-interest-rate-expectation-2026
 - 利上げ・利下げ回数: https://en.macromicro.me/series/78287/canada-boc-interest-rate-cuts-expectation-2026
 
 Target: main tab > class="mm-cc-bd" > class="container chart-theater is-stat"
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Selenium / webdriver_manager / chromium-driver
+依存はすべて削除。2 URL を 1 ブラウザで連続撮影するため
+`get_default_runner` + `browser_semaphore` を直接使うパターン。public API
+(capture_all_screenshots / get_screenshot_urls / get_cache_status /
+invalidate_cache) は完全互換。
 """
-import time
-import os
+import logging
 from pathlib import Path
 from datetime import datetime
-from typing import Optional, Dict, Any
+from typing import Dict, Any
 from zoneinfo import ZoneInfo
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    get_default_runner,
+)
+from services.browser.concurrency import browser_semaphore
+
+logger = logging.getLogger(__name__)
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -49,160 +57,113 @@ class BocRateCutsScreenshotService:
 
     CACHE_KEY = "canada:boc_rate_cuts_screenshot:metadata"
 
+    # MacroMicro 共通のチャートコンテナ
+    TARGET_SELECTOR = ".mm-cc-bd .container.chart-theater.is-stat"
+
     def __init__(self):
         pass
 
-    def _create_driver(self) -> webdriver.Chrome:
-        """Create Chrome WebDriver with appropriate options"""
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--window-size=1920,1400')
-        chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+    def _build_request(self, url: str, output_path: Path) -> ScreenshotRequest:
+        return ScreenshotRequest(
+            url=url,
+            output_path=str(output_path),
+            wait_selector=self.TARGET_SELECTOR,
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=5_000,
+            clip_selector=self.TARGET_SELECTOR,
+            scroll_into_view=True,
+            viewport_override=(1920, 1400),
+        )
 
-        # Docker環境では/usr/bin/chromiumを使用
-        if os.path.exists('/usr/bin/chromium'):
-            chrome_options.binary_location = '/usr/bin/chromium'
-            from webdriver_manager.core.os_manager import ChromeType
-            service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-        else:
-            service = Service(ChromeDriverManager().install())
-
-        return webdriver.Chrome(service=service, options=chrome_options)
-
-    def _capture_screenshot(self, url: str, output_path: Path) -> bool:
-        """
-        Capture screenshot from MacroMicro chart page
-
-        Args:
-            url: Target URL
-            output_path: Path to save screenshot
-
-        Returns:
-            True if successful, False otherwise
-        """
-        driver = None
-        try:
-            driver = self._create_driver()
-
-            print(f"Accessing {url}")
-            driver.get(url)
-
-            # ページが完全に読み込まれるまで待機
-            print("Waiting for page to load...")
-            time.sleep(5)
-
-            # チャートコンテナが読み込まれるのを待つ
-            try:
-                wait = WebDriverWait(driver, 15)
-                chart_container = wait.until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat"))
-                )
-                print("Chart container found")
-                time.sleep(3)  # チャートの描画完了を待つ
-            except Exception as e:
-                print(f"Could not find chart container: {e}")
-
-            # チャートを画面内に収める
-            try:
-                chart_element = driver.find_element(By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat")
-                driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", chart_element)
-                print("Scrolled to chart")
-                time.sleep(2)
-            except Exception as e:
-                print(f"Could not scroll to chart: {e}")
-
-            # 対象要素のスクリーンショットを取得
-            try:
-                chart_element = driver.find_element(By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat")
-                chart_element.screenshot(str(output_path))
-                print(f"Screenshot saved to {output_path}")
-                return True
-            except Exception as e:
-                print(f"Failed to capture element screenshot: {e}")
-                # フォールバック: ページ全体のスクリーンショット
-                print("Falling back to full page screenshot")
-                driver.save_screenshot(str(output_path))
-                return True
-
-        except Exception as e:
-            print(f"Error capturing screenshot from {url}: {e}")
-            return False
-
-        finally:
-            if driver:
-                driver.quit()
-                print("Browser closed")
+    def _build_config(self) -> BrowserConfig:
+        return BrowserConfig(
+            viewport=(1920, 1400),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
 
     def capture_all_screenshots(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
-        Capture all BOC rate expectation screenshots
+        Capture all BOC rate expectation screenshots.
 
-        Args:
-            force_refresh: Force new screenshots even if cache is recent
-
-        Returns:
-            Status dictionary with screenshot URLs
+        2 枚を 1 ブラウザで連続撮影 (起動コスト削減)。プロセス共有セマフォ
+        (`browser_semaphore`) を 1 度だけ取得する。
         """
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
         now = datetime.now(JST)
-        results = {
+        results: Dict[str, Any] = {
             "yearend": {"success": False, "url": None, "cached": False},
             "rate_cuts": {"success": False, "url": None, "cached": False},
-            "last_updated": None
+            "last_updated": None,
         }
 
-        # キャッシュチェック
-        if not force_refresh:
-            # 24時間以内のキャッシュがあれば再利用
-            if YEAREND_SCREENSHOT_PATH.exists():
-                file_age = now.timestamp() - YEAREND_SCREENSHOT_PATH.stat().st_mtime
-                if file_age < 86400:  # 24時間
-                    results["yearend"] = {
-                        "success": True,
-                        "url": f"/cache/canada/policy/{YEAREND_SCREENSHOT_FILENAME}",
-                        "cached": True
-                    }
-                    print(f"Using cached yearend screenshot (age: {file_age/3600:.1f} hours)")
+        items = [
+            ("yearend", YEAREND_URL, YEAREND_SCREENSHOT_PATH, YEAREND_SCREENSHOT_FILENAME),
+            ("rate_cuts", RATE_CUTS_URL, RATE_CUTS_SCREENSHOT_PATH, RATE_CUTS_SCREENSHOT_FILENAME),
+        ]
 
-            if RATE_CUTS_SCREENSHOT_PATH.exists():
-                file_age = now.timestamp() - RATE_CUTS_SCREENSHOT_PATH.stat().st_mtime
+        # キャッシュ済みは即決、撮影が必要なものを抽出
+        to_capture: list[tuple[str, str, Path, str]] = []
+        for key, url, path, filename in items:
+            if not force_refresh and path.exists():
+                file_age = now.timestamp() - path.stat().st_mtime
                 if file_age < 86400:
-                    results["rate_cuts"] = {
+                    results[key] = {
                         "success": True,
-                        "url": f"/cache/canada/policy/{RATE_CUTS_SCREENSHOT_FILENAME}",
-                        "cached": True
+                        "url": f"/cache/canada/policy/{filename}",
+                        "cached": True,
                     }
-                    print(f"Using cached rate_cuts screenshot (age: {file_age/3600:.1f} hours)")
+                    logger.info(
+                        f"[BOCRateCuts] Using cached {key} screenshot "
+                        f"(age: {file_age/3600:.1f} hours)"
+                    )
+                    continue
+            to_capture.append((key, url, path, filename))
 
-            # 両方キャッシュがあればそのまま返す
-            if results["yearend"]["cached"] and results["rate_cuts"]["cached"]:
-                cached_meta = redis_client.get(self.CACHE_KEY)
-                results["last_updated"] = cached_meta.get("last_updated") if cached_meta else now.isoformat()
-                return results
+        # 両方キャッシュ済みなら即返す
+        if not to_capture:
+            cached_meta = redis_client.get(self.CACHE_KEY)
+            results["last_updated"] = (
+                cached_meta.get("last_updated") if cached_meta else now.isoformat()
+            )
+            return results
 
-        # 年末金利予想スクリーンショット
-        if not results["yearend"]["cached"]:
-            print("Capturing BOC yearend rate expectations screenshot...")
-            success = self._capture_screenshot(YEAREND_URL, YEAREND_SCREENSHOT_PATH)
-            results["yearend"] = {
-                "success": success,
-                "url": f"/cache/canada/policy/{YEAREND_SCREENSHOT_FILENAME}" if success else None,
-                "cached": False
-            }
-
-        # 利上げ・利下げ回数スクリーンショット
-        if not results["rate_cuts"]["cached"]:
-            print("Capturing BOC rate cuts expectations screenshot...")
-            success = self._capture_screenshot(RATE_CUTS_URL, RATE_CUTS_SCREENSHOT_PATH)
-            results["rate_cuts"] = {
-                "success": success,
-                "url": f"/cache/canada/policy/{RATE_CUTS_SCREENSHOT_FILENAME}" if success else None,
-                "cached": False
-            }
+        # 1 ブラウザで複数枚連続撮影
+        try:
+            with browser_semaphore:
+                with get_default_runner(config=self._build_config()) as runner:
+                    for key, url, path, filename in to_capture:
+                        try:
+                            logger.info(f"[BOCRateCuts] Capturing {key}...")
+                            result = runner.screenshot(self._build_request(url, path))
+                            logger.info(
+                                f"[BOCRateCuts] saved {key}: "
+                                f"{result.path} ({result.size_bytes} bytes)"
+                            )
+                            results[key] = {
+                                "success": True,
+                                "url": f"/cache/canada/policy/{filename}",
+                                "cached": False,
+                            }
+                        except BrowserRunnerError as e:
+                            logger.error(f"[BOCRateCuts] {key} capture failed: {e}")
+                            results[key] = {
+                                "success": False,
+                                "url": None,
+                                "cached": False,
+                            }
+        except BrowserRunnerError as e:
+            logger.error(f"[BOCRateCuts] runner setup failed: {e}")
+            for key, _url, _path, _filename in to_capture:
+                results[key] = {
+                    "success": False,
+                    "url": None,
+                    "cached": False,
+                }
 
         results["last_updated"] = now.isoformat()
 

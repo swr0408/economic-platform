@@ -1,0 +1,150 @@
+# ============================================================================
+# docker-compose.oci.yml
+# ----------------------------------------------------------------------------
+# OCI Always Free (Ampere A1, ARM64, 1 OCPU / 6GB) 向け compose ファイル。
+#
+# 既存 docker-compose.yml との違い:
+#   - backend は Dockerfile.browser-worker を使用 (Playwright 公式 multi-arch
+#     base image, Selenium / chromedriver なし)
+#   - platform: linux/arm64 を明示 (誤って amd64 build しないよう保険)
+#   - mem_limit / cpus でリソース上限を明示
+#   - BROWSER_RUNNER_CONCURRENCY=1 (Chromium 同時起動を 1 本に絞る)
+#   - frontend (dev) プロファイルは外す。frontend-prod (Nginx) のみ想定
+#
+# 使い方:
+#   docker-compose -f docker-compose.oci.yml up -d
+#
+# 既存 docker-compose.yml と併用したい場合は --project-name を分けること:
+#   docker-compose -f docker-compose.oci.yml --project-name econalpha-oci up -d
+# ============================================================================
+
+services:
+  # PostgreSQL + TimescaleDB (multi-arch image)
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    platform: linux/arm64
+    container_name: econalpha-oci-db
+    environment:
+      POSTGRES_DB: economic_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql:ro
+    networks:
+      - econalpha-oci-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d economic_platform"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # OCI Always Free の 6GB のうち PG に最大 1.5GB
+    mem_limit: 1536m
+    cpus: 0.5
+
+  # Redis (multi-arch image)
+  redis:
+    image: redis:7-alpine
+    platform: linux/arm64
+    container_name: econalpha-oci-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - econalpha-oci-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    mem_limit: 384m
+    cpus: 0.25
+
+  # Backend (FastAPI + Playwright, ARM64)
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.browser-worker
+      platforms:
+        - linux/arm64
+    platform: linux/arm64
+    container_name: econalpha-oci-backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1
+    working_dir: /app/backend
+    environment:
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/economic_platform
+      REDIS_URL: redis://redis:6379/0
+      SEASONALITY_DIR: /app/data/seasonality
+      SCREENSHOT_DIR: /app/screenshots
+      # ブラウザ並列上限を 1 に絞る (Chromium のメモリ消費が大きいため)
+      BROWSER_RUNNER_CONCURRENCY: "1"
+      PLAYWRIGHT_NO_SANDBOX: "1"
+      # API キー類 (.env から渡す)
+      FRED_API_KEY: ${FRED_API_KEY:-}
+      BEA_API_KEY: ${BEA_API_KEY:-}
+      BLS_API_KEY: ${BLS_API_KEY:-}
+      ALPHA_VANTAGE_API_KEY: ${ALPHA_VANTAGE_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      TWITTER_BEARER_TOKEN: ${TWITTER_BEARER_TOKEN:-}
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-}
+      LINE_CHANNEL_ACCESS_TOKEN: ${LINE_CHANNEL_ACCESS_TOKEN:-}
+      FMP_API_KEY: ${FMP_API_KEY:-}
+      GOOGLE_CLOUD_VISION_API_KEY: ${GOOGLE_CLOUD_VISION_API_KEY:-}
+      ESTAT_API_KEY: ${ESTAT_API_KEY:-}
+      DESTATIS_USERNAME: ${DESTATIS_USERNAME:-}
+      DESTATIS_PASSWORD: ${DESTATIS_PASSWORD:-}
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+      DISCORD_FJ_CHANNEL_ID: ${DISCORD_FJ_CHANNEL_ID:-}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./data:/app/data:ro
+      - screenshots_data:/app/screenshots
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - econalpha-oci-network
+    restart: unless-stopped
+    # OCI Always Free 6GB のうち backend に最大 3GB
+    mem_limit: 3072m
+    cpus: 1.0
+    # Playwright/Chromium が CFS throttling で詰むのを避ける
+    shm_size: 512m
+
+  # Frontend (Nginx, 本番用のみ)
+  frontend-prod:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      platforms:
+        - linux/arm64
+    platform: linux/arm64
+    container_name: econalpha-oci-frontend-prod
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - econalpha-oci-network
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.25
+
+networks:
+  econalpha-oci-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  screenshots_data:

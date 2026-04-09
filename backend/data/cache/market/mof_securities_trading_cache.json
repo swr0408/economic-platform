@@ -13280,7 +13280,7 @@
       "liabilities_longterm_debt_net": 5118.0,
       "sp500": 6368.85,
       "nikkei225": 53373.07,
-      "usdjpy": 158.579,
+      "usdjpy": 160.284,
       "us10y": 4.44,
       "jgb10y": 2.11
     },
@@ -13290,10 +13290,10 @@
       "assets_longterm_debt_net": -9454.0,
       "liabilities_equity_net": -44481.0,
       "liabilities_longterm_debt_net": -26463.0,
-      "sp500": 6575.32,
-      "nikkei225": 52463.27,
-      "usdjpy": 158.579,
-      "us10y": 4.319,
+      "sp500": 6582.69,
+      "nikkei225": 53123.49,
+      "usdjpy": 159.649,
+      "us10y": 4.313,
       "jgb10y": 2.11
     }
   ],
@@ -13303,10 +13303,10 @@
     "assets_longterm_debt_net": -9454.0,
     "liabilities_equity_net": -44481.0,
     "liabilities_longterm_debt_net": -26463.0,
-    "sp500": 6575.32,
-    "nikkei225": 52463.27,
-    "usdjpy": 158.579,
-    "us10y": 4.319,
+    "sp500": 6582.69,
+    "nikkei225": 53123.49,
+    "usdjpy": 159.649,
+    "us10y": 4.313,
     "jgb10y": 2.11
   },
   "metadata": {
@@ -13326,5 +13326,5 @@
       "jgb10y"
     ]
   },
-  "last_updated": "2026-04-02T18:03:33.072033+09:00"
+  "last_updated": "2026-04-08T11:06:56.848467+09:00"
 }

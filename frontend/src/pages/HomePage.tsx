@@ -1,21 +1,22 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Card, Typography, Button, Row, Col, Space, Divider } from 'antd'
-import {
-  LineChartOutlined,
-  GlobalOutlined,
-  CalendarOutlined,
-  MenuFoldOutlined,
-  RiseOutlined,
-  FallOutlined,
-  StockOutlined,
-  PercentageOutlined,
-  ThunderboltOutlined,
-  AreaChartOutlined,
-} from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
+import { Button, Space } from 'antd'
+import { CalendarOutlined, LinkOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
+import TickerTape from '../components/common/TickerTape'
+import RecentPagesCard from '../components/home/RecentPagesCard'
+import RecentUpdatesCard from '../components/home/RecentUpdatesCard'
+import { useIsMaster } from '../hooks/useIsMaster'
 
-const { Title, Text } = Typography
+const EXTERNAL_LINKS = [
+  { label: '世界の株価', url: 'https://sekai-kabuka.com/pc-index.html' },
+  { label: 'ソニーファイナンシャルグループ', url: 'https://www.sonyfg.co.jp/ja/market_report/' },
+  { label: '第一ライフ資産運用経済研究所', url: 'https://www.dlri.co.jp/report_index.html' },
+  { label: 'ANZオーストラリア経済ウィークリー', url: 'https://www.anz.com/institutional/global/japan/jpn/market-report/' },
+  { label: 'セントラル短資ＦＸ', url: 'https://www.central-tanshifx.com/market/marketview/?morecnt=0&itemtype=3#' },
+  { label: 'フィリップ証券', url: 'https://my-sso.phillip-sec-online.jp/login' },
+  { label: '中東レート', url: 'https://www.xe.com/ja/currencycharts/' },
+  { label: 'Weekend trading', url: 'https://www.ig.com/uk/weekend-trading' },
+]
 
 // 右サイドバー（経済カレンダー）のデフォルト幅と範囲
 const CALENDAR_SIDEBAR_DEFAULT_WIDTH = 380
@@ -28,48 +29,19 @@ const colors = {
   bgSecondary: '#1e293b',
   bgTertiary: '#334155',
   accent: '#10b981',
-  accentHover: '#34d399',
-  accentMuted: 'rgba(16, 185, 129, 0.15)',
   textPrimary: '#f1f5f9',
   textSecondary: '#94a3b8',
-  textTertiary: '#64748b',
   border: '#334155',
-  success: '#10b981',
-  error: '#ef4444',
-  warning: '#f59e0b',
-  info: '#3b82f6',
-  gold: '#f59e0b',
 }
 
-// マーケットデータ（デモ用）
-const marketData = [
-  { symbol: 'S&P 500', value: '5,998.45', change: '+0.85%', positive: true },
-  { symbol: 'NASDAQ', value: '19,234.12', change: '+1.12%', positive: true },
-  { symbol: 'USD/JPY', value: '157.82', change: '-0.23%', positive: false },
-  { symbol: 'EUR/USD', value: '1.0423', change: '+0.15%', positive: true },
-  { symbol: 'US 10Y', value: '4.58%', change: '+0.02', positive: false },
-  { symbol: 'Gold', value: '2,635.40', change: '+0.45%', positive: true },
-]
-
-// シーズナリティシグナル（デモ用）
-const seasonalitySignals = [
-  { asset: 'S&P 500', signal: '12月は歴史的に強気', trend: 'bullish', strength: 78 },
-  { asset: 'Gold', signal: '年末にかけて上昇傾向', trend: 'bullish', strength: 65 },
-  { asset: 'USD/JPY', signal: '1月は円高傾向', trend: 'bearish', strength: 72 },
-]
-
-// 注目経済指標（デモ用）
-const upcomingEvents = [
-  { time: '22:30', event: '米雇用統計', importance: 'high', country: 'us' },
-  { time: '24:00', event: 'ISM製造業景況指数', importance: 'high', country: 'us' },
-  { time: '08:50', event: '日銀短観', importance: 'medium', country: 'jp' },
-]
+type SidebarTab = 'calendar' | 'links'
 
 function HomePage() {
-  const navigate = useNavigate()
   const [calendarOpen, setCalendarOpen] = useState(true)
   const [sidebarWidth, setSidebarWidth] = useState(CALENDAR_SIDEBAR_DEFAULT_WIDTH)
   const [isResizing, setIsResizing] = useState(false)
+  const [sidebarTab, setSidebarTab] = useState<SidebarTab>('calendar')
+  const isMaster = useIsMaster()
 
   // リサイズハンドラー
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -114,507 +86,31 @@ function HomePage() {
       <div
         style={{
           flex: 1,
+          minWidth: 0,
           maxWidth: calendarOpen ? `calc(100% - ${sidebarWidth}px)` : '100%',
           padding: '0',
           transition: 'max-width 0.3s ease',
-          overflow: 'auto',
+          overflowY: 'auto',
+          overflowX: 'hidden',
         }}
       >
-        {/* マーケットティッカー */}
+        {/* マーケットティッカー (TradingView) */}
         <div
           style={{
             background: colors.bgSecondary,
             borderBottom: `1px solid ${colors.border}`,
-            padding: '10px 16px',
-            display: 'flex',
-            gap: '24px',
-            overflowX: 'auto',
           }}
         >
-          {marketData.map((item) => (
-            <div
-              key={item.symbol}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              <Text style={{ color: colors.textSecondary, fontSize: '12px' }}>
-                {item.symbol}
-              </Text>
-              <Text
-                strong
-                style={{ color: colors.textPrimary, fontSize: '13px' }}
-                className="tabular-nums"
-              >
-                {item.value}
-              </Text>
-              <Text
-                style={{
-                  color: item.positive ? colors.success : colors.error,
-                  fontSize: '12px',
-                }}
-                className="tabular-nums"
-              >
-                {item.positive ? <RiseOutlined /> : <FallOutlined />} {item.change}
-              </Text>
-            </div>
-          ))}
-        </div>
-
-        {/* ヘッダーセクション */}
-        <div style={{ padding: '20px 24px 16px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px' }}>
-            <img
-              src="/econAlpha_icon.svg"
-              alt="EconAlpha"
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '10px',
-                boxShadow: '0 0 24px rgba(16, 185, 129, 0.4)',
-              }}
-            />
-            <div>
-              <Title
-                level={3}
-                style={{ margin: 0, color: colors.textPrimary, fontWeight: 600 }}
-              >
-                Econ<span style={{ color: colors.accent }}>Alpha</span>
-              </Title>
-              <Text style={{ color: colors.textSecondary, fontSize: '12px' }}>
-                MARKET GEOMETRY
-              </Text>
-            </div>
-          </div>
+          <TickerTape />
         </div>
 
         {/* メインダッシュボード */}
-        <div style={{ padding: '0 24px 24px' }}>
-          <Row gutter={[16, 16]}>
-            {/* 左側: 機能カード */}
-            <Col xs={24} lg={14}>
-              <Row gutter={[16, 16]}>
-                {/* シーズナリティ分析カード */}
-                <Col xs={24} sm={12}>
-                  <Card
-                    hoverable
-                    style={{
-                      background: colors.bgSecondary,
-                      border: `1px solid ${colors.border}`,
-                      height: '100%',
-                    }}
-                    bodyStyle={{ padding: '16px' }}
-                    onClick={() => navigate('/seasonality')}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <div
-                        style={{
-                          width: '44px',
-                          height: '44px',
-                          background: colors.accentMuted,
-                          borderRadius: '10px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}
-                      >
-                        <LineChartOutlined style={{ fontSize: '22px', color: colors.accent }} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
-                          シーズナリティ分析
-                        </Text>
-                        <Text
-                          style={{
-                            color: colors.textSecondary,
-                            fontSize: '12px',
-                            display: 'block',
-                            marginTop: '4px',
-                          }}
-                        >
-                          金利・株式・商品・為替の季節性パターンを分析
-                        </Text>
-                      </div>
-                    </div>
-                  </Card>
-                </Col>
+        <div style={{ padding: '16px 24px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          {/* 最近見たページ */}
+          <RecentPagesCard />
 
-                {/* マクロデータカード */}
-                <Col xs={24} sm={12}>
-                  <Card
-                    hoverable
-                    style={{
-                      background: colors.bgSecondary,
-                      border: `1px solid ${colors.border}`,
-                      height: '100%',
-                    }}
-                    bodyStyle={{ padding: '16px' }}
-                    onClick={() => navigate('/country')}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <div
-                        style={{
-                          width: '44px',
-                          height: '44px',
-                          background: 'rgba(59, 130, 246, 0.15)',
-                          borderRadius: '10px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}
-                      >
-                        <GlobalOutlined style={{ fontSize: '22px', color: colors.info }} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
-                          マクロデータ
-                        </Text>
-                        <Text
-                          style={{
-                            color: colors.textSecondary,
-                            fontSize: '12px',
-                            display: 'block',
-                            marginTop: '4px',
-                          }}
-                        >
-                          主要各国の経済指標をリアルタイムで分析
-                        </Text>
-                      </div>
-                    </div>
-                  </Card>
-                </Col>
-
-                {/* マーケットデータカード */}
-                <Col xs={24} sm={12}>
-                  <Card
-                    hoverable
-                    style={{
-                      background: colors.bgSecondary,
-                      border: `1px solid ${colors.border}`,
-                      height: '100%',
-                    }}
-                    bodyStyle={{ padding: '16px' }}
-                    onClick={() => navigate('/markets')}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <div
-                        style={{
-                          width: '44px',
-                          height: '44px',
-                          background: 'rgba(16, 185, 129, 0.15)',
-                          borderRadius: '10px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}
-                      >
-                        <StockOutlined style={{ fontSize: '22px', color: colors.accent }} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
-                          マーケットデータ
-                        </Text>
-                        <Text
-                          style={{
-                            color: colors.textSecondary,
-                            fontSize: '12px',
-                            display: 'block',
-                            marginTop: '4px',
-                          }}
-                        >
-                          株式・コモディティ・エネルギー市場の分析
-                        </Text>
-                      </div>
-                    </div>
-                  </Card>
-                </Col>
-
-                {/* データ比較カード */}
-                <Col xs={24} sm={12}>
-                  <Card
-                    hoverable
-                    style={{
-                      background: colors.bgSecondary,
-                      border: `1px solid ${colors.border}`,
-                      height: '100%',
-                    }}
-                    bodyStyle={{ padding: '16px' }}
-                    onClick={() => window.open('/compare', '_blank')}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                      <div
-                        style={{
-                          width: '44px',
-                          height: '44px',
-                          background: 'rgba(245, 158, 11, 0.15)',
-                          borderRadius: '10px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                        }}
-                      >
-                        <AreaChartOutlined style={{ fontSize: '22px', color: colors.gold }} />
-                      </div>
-                      <div style={{ flex: 1 }}>
-                        <Text strong style={{ color: colors.textPrimary, fontSize: '15px' }}>
-                          データ比較
-                        </Text>
-                        <Text
-                          style={{
-                            color: colors.textSecondary,
-                            fontSize: '12px',
-                            display: 'block',
-                            marginTop: '4px',
-                          }}
-                        >
-                          複数の経済指標を重ねて相関を分析
-                        </Text>
-                      </div>
-                    </div>
-                  </Card>
-                </Col>
-
-                {/* シーズナリティシグナル */}
-                <Col xs={24}>
-                  <Card
-                    style={{
-                      background: colors.bgSecondary,
-                      border: `1px solid ${colors.border}`,
-                    }}
-                    bodyStyle={{ padding: '16px' }}
-                  >
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginBottom: '12px',
-                      }}
-                    >
-                      <Space>
-                        <ThunderboltOutlined style={{ color: colors.gold }} />
-                        <Text strong style={{ color: colors.textPrimary, fontSize: '14px' }}>
-                          シーズナリティシグナル
-                        </Text>
-                      </Space>
-                      <Text style={{ color: colors.textTertiary, fontSize: '11px' }}>
-                        過去20年データに基づく
-                      </Text>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {seasonalitySignals.map((item, index) => (
-                        <div
-                          key={index}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding: '10px 12px',
-                            background: colors.bgTertiary,
-                            borderRadius: '8px',
-                            borderLeft: `3px solid ${
-                              item.trend === 'bullish' ? colors.success : colors.error
-                            }`,
-                          }}
-                        >
-                          <div>
-                            <Text
-                              strong
-                              style={{ color: colors.textPrimary, fontSize: '13px' }}
-                            >
-                              {item.asset}
-                            </Text>
-                            <Text
-                              style={{
-                                color: colors.textSecondary,
-                                fontSize: '12px',
-                                marginLeft: '12px',
-                              }}
-                            >
-                              {item.signal}
-                            </Text>
-                          </div>
-                          <div
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '6px',
-                            }}
-                          >
-                            <div
-                              style={{
-                                width: '60px',
-                                height: '4px',
-                                background: colors.bgPrimary,
-                                borderRadius: '2px',
-                                overflow: 'hidden',
-                              }}
-                            >
-                              <div
-                                style={{
-                                  width: `${item.strength}%`,
-                                  height: '100%',
-                                  background:
-                                    item.trend === 'bullish' ? colors.success : colors.error,
-                                }}
-                              />
-                            </div>
-                            <Text
-                              style={{
-                                color:
-                                  item.trend === 'bullish' ? colors.success : colors.error,
-                                fontSize: '12px',
-                                fontWeight: 600,
-                              }}
-                              className="tabular-nums"
-                            >
-                              {item.strength}%
-                            </Text>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </Card>
-                </Col>
-              </Row>
-            </Col>
-
-            {/* 右側: 本日の注目イベント */}
-            <Col xs={24} lg={10}>
-              <Card
-                style={{
-                  background: colors.bgSecondary,
-                  border: `1px solid ${colors.border}`,
-                  height: '100%',
-                }}
-                bodyStyle={{ padding: '16px' }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '16px',
-                  }}
-                >
-                  <Space>
-                    <CalendarOutlined style={{ color: colors.accent }} />
-                    <Text strong style={{ color: colors.textPrimary, fontSize: '14px' }}>
-                      本日の注目イベント
-                    </Text>
-                  </Space>
-                  <Button
-                    type="link"
-                    size="small"
-                    style={{ color: colors.accent, padding: 0 }}
-                    onClick={() => navigate('/country/usa/economy')}
-                  >
-                    すべて見る
-                  </Button>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {upcomingEvents.map((event, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '12px',
-                        padding: '10px 12px',
-                        background: colors.bgTertiary,
-                        borderRadius: '8px',
-                      }}
-                    >
-                      <span
-                        className={`fi fi-${event.country}`}
-                        style={{ fontSize: '16px', borderRadius: '2px' }}
-                      />
-                      <Text
-                        style={{ color: colors.textSecondary, fontSize: '12px', width: '45px' }}
-                        className="tabular-nums"
-                      >
-                        {event.time}
-                      </Text>
-                      <Text style={{ color: colors.textPrimary, fontSize: '13px', flex: 1 }}>
-                        {event.event}
-                      </Text>
-                      <div
-                        style={{
-                          width: '8px',
-                          height: '8px',
-                          borderRadius: '50%',
-                          background:
-                            event.importance === 'high' ? colors.error : colors.warning,
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <Divider style={{ margin: '16px 0', borderColor: colors.border }} />
-
-                {/* クイック統計 */}
-                <Row gutter={[12, 12]}>
-                  <Col span={8}>
-                    <div style={{ textAlign: 'center' }}>
-                      <StockOutlined style={{ fontSize: '20px', color: colors.accent }} />
-                      <div style={{ marginTop: '4px' }}>
-                        <Text
-                          style={{ color: colors.textPrimary, fontSize: '18px', fontWeight: 600 }}
-                          className="tabular-nums"
-                        >
-                          156
-                        </Text>
-                      </div>
-                      <Text style={{ color: colors.textTertiary, fontSize: '11px' }}>
-                        資産分析
-                      </Text>
-                    </div>
-                  </Col>
-                  <Col span={8}>
-                    <div style={{ textAlign: 'center' }}>
-                      <GlobalOutlined style={{ fontSize: '20px', color: colors.info }} />
-                      <div style={{ marginTop: '4px' }}>
-                        <Text
-                          style={{ color: colors.textPrimary, fontSize: '18px', fontWeight: 600 }}
-                          className="tabular-nums"
-                        >
-                          9
-                        </Text>
-                      </div>
-                      <Text style={{ color: colors.textTertiary, fontSize: '11px' }}>
-                        対象国
-                      </Text>
-                    </div>
-                  </Col>
-                  <Col span={8}>
-                    <div style={{ textAlign: 'center' }}>
-                      <PercentageOutlined style={{ fontSize: '20px', color: colors.gold }} />
-                      <div style={{ marginTop: '4px' }}>
-                        <Text
-                          style={{ color: colors.textPrimary, fontSize: '18px', fontWeight: 600 }}
-                          className="tabular-nums"
-                        >
-                          80+
-                        </Text>
-                      </div>
-                      <Text style={{ color: colors.textTertiary, fontSize: '11px' }}>
-                        経済指標
-                      </Text>
-                    </div>
-                  </Col>
-                </Row>
-              </Card>
-            </Col>
-          </Row>
+          {/* 直近更新された指標 */}
+          <RecentUpdatesCard />
         </div>
       </div>
 
@@ -685,11 +181,39 @@ function HomePage() {
                 borderBottom: `1px solid ${colors.border}`,
               }}
             >
-              <Space>
-                <CalendarOutlined style={{ fontSize: 16, color: colors.accent }} />
-                <Text strong style={{ fontSize: 14, color: colors.textPrimary }}>
-                  経済カレンダー
-                </Text>
+              <Space size={4}>
+                <Button
+                  type="text"
+                  size="small"
+                  icon={<CalendarOutlined />}
+                  onClick={() => setSidebarTab('calendar')}
+                  style={{
+                    color: sidebarTab === 'calendar' ? colors.accent : colors.textSecondary,
+                    fontWeight: sidebarTab === 'calendar' ? 600 : 400,
+                    background: sidebarTab === 'calendar' ? colors.bgTertiary : 'transparent',
+                    borderRadius: 6,
+                    padding: '4px 10px',
+                  }}
+                >
+                  カレンダー
+                </Button>
+                {isMaster && (
+                  <Button
+                    type="text"
+                    size="small"
+                    icon={<LinkOutlined />}
+                    onClick={() => setSidebarTab('links')}
+                    style={{
+                      color: sidebarTab === 'links' ? colors.accent : colors.textSecondary,
+                      fontWeight: sidebarTab === 'links' ? 600 : 400,
+                      background: sidebarTab === 'links' ? colors.bgTertiary : 'transparent',
+                      borderRadius: 6,
+                      padding: '4px 10px',
+                    }}
+                  >
+                    リンク集
+                  </Button>
+                )}
               </Space>
               <Button
                 type="text"
@@ -698,7 +222,36 @@ function HomePage() {
                 size="small"
               />
             </div>
-            <EconomicCalendarWidgets countryCode="all" />
+            {sidebarTab === 'calendar' && <EconomicCalendarWidgets countryCode="all" />}
+            {sidebarTab === 'links' && isMaster && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {EXTERNAL_LINKS.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'block',
+                      padding: '10px 12px',
+                      borderRadius: 6,
+                      color: colors.textPrimary,
+                      textDecoration: 'none',
+                      fontSize: 13,
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = colors.bgTertiary
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'transparent'
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

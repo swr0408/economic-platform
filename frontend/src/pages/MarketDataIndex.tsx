@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Row, Col, Typography, Space, Tag } from 'antd'
+import { Card, Row, Col, Typography, Space, Tag, Tooltip } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
 import { MARKET_CATEGORIES_DATA } from '../constants/marketData'
+import { useHandbook } from '../contexts/HandbookContext'
 
 const { Title, Text } = Typography
 
@@ -13,11 +15,31 @@ const colors = {
 }
 
 function MarketDataIndex() {
+  const { openHandbook } = useHandbook()
   return (
     <div style={{ padding: '20px 24px' }}>
-      <Title level={3} style={{ marginBottom: 4, color: colors.textPrimary }}>
-        マーケットデータ
-      </Title>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+        <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
+          マーケットデータ
+        </Title>
+        <Tooltip title="相関関係 - データハンドブック">
+          <QuestionCircleOutlined
+            onClick={() => openHandbook('correlation-guide')}
+            style={{
+              fontSize: 18,
+              color: colors.textSecondary,
+              cursor: 'pointer',
+              transition: 'color 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              ;(e.target as HTMLElement).style.color = '#10b981'
+            }}
+            onMouseLeave={(e) => {
+              ;(e.target as HTMLElement).style.color = colors.textSecondary
+            }}
+          />
+        </Tooltip>
+      </div>
       <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 24, display: 'block' }}>
         株式・コモディティ・エネルギー・投機筋ポジション・オプション市場の情報
       </Text>

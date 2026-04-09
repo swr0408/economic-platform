@@ -12,15 +12,23 @@ This URL pattern is predictable and stable.
 
 Note: This service requires optional dependencies (beautifulsoup4, deep-translator, playwright).
 If not available, it will return cached data or an error message.
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の async_playwright 直接利用 + ThreadPoolExecutor
+ラッパーはすべて削除。
+- URL 存在チェック: 軽量な requests.head() に置き換え (browser 起動不要)
+- 記事スクレイピング: ExtractRequest + html_selectors=("blockquote",) で
+  outerHTML を取得 → BeautifulSoup で blockquote テキストを抽出
 """
 
-import asyncio
 import json
 import logging
-import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +51,12 @@ MONTH_NAMES_FULL = {
     5: "may", 6: "june", 7: "july", 8: "august",
     9: "september", 10: "october", 11: "november", 12: "december"
 }
+
+# 共通 UA (旧実装と同等)
+_USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+)
 
 
 def _build_report_url(data_year: int, data_month: int) -> str:
@@ -91,59 +105,42 @@ def _get_expected_data_period() -> Tuple[int, int]:
 def _check_dependencies() -> bool:
     """依存パッケージが利用可能かチェック"""
     try:
-        import bs4
-        import deep_translator
-        import playwright
+        import bs4  # noqa: F401
+        import deep_translator  # noqa: F401
         return True
     except ImportError:
         return False
 
 
-async def _check_url_exists_async(url: str) -> bool:
-    """
-    Check if a URL is accessible.
-
-    Returns:
-        True if the page exists (status 200), False otherwise
-    """
-    from playwright.async_api import async_playwright
-
-    try:
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                           "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            )
-            page = await context.new_page()
-
-            response = await page.goto(url, wait_until="domcontentloaded", timeout=15000)
-            status = response.status if response else 0
-
-            await browser.close()
-
-            return status == 200
-
-    except Exception as exc:
-        logger.warning("Failed to check URL: %s - %s", url, exc)
-        return False
-
-
 def _check_url_exists(url: str) -> bool:
     """
-    Wrapper to check if URL exists.
+    Check if a URL is accessible (returns HTTP 200).
+
+    旧実装は Playwright で page.goto してステータスを見ていたが、
+    ブラウザ起動コストを避けるため軽量な requests.head に差し替え。
+    HEAD が拒否されるケースに備えて 405/403 のときは GET にフォールバック。
     """
     try:
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            import concurrent.futures
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(asyncio.run, _check_url_exists_async(url))
-                return future.result(timeout=30)
-        else:
-            return asyncio.run(_check_url_exists_async(url))
+        resp = requests.head(
+            url,
+            headers={"User-Agent": _USER_AGENT},
+            timeout=15,
+            allow_redirects=True,
+        )
+        if resp.status_code == 200:
+            return True
+        if resp.status_code in (403, 405):
+            # HEAD が許可されていない可能性 → GET で確認
+            resp = requests.get(
+                url,
+                headers={"User-Agent": _USER_AGENT},
+                timeout=15,
+                allow_redirects=True,
+            )
+            return resp.status_code == 200
+        return False
     except Exception as exc:
-        logger.error("Failed to check URL: %s", exc)
+        logger.warning("Failed to check URL: %s - %s", url, exc)
         return False
 
 
@@ -181,9 +178,13 @@ def _find_latest_report_url() -> Optional[Tuple[str, int, int]]:
     return None
 
 
-async def _scrape_report_commentary_async(url: str) -> Optional[List[str]]:
+def _scrape_report_commentary(url: str) -> Optional[List[str]]:
     """
-    Scrape all blockquote contents from the BRC report page using Playwright (async).
+    Scrape all blockquote contents from the BRC report page using PlaywrightRunner.
+
+    旧実装は async_playwright で page.content() → BeautifulSoup だったが、
+    ExtractRequest.html_selectors=("blockquote",) で outerHTML を取得し、
+    BeautifulSoup で同等のテキスト抽出を行う形に置き換え。
 
     Args:
         url: URL to scrape
@@ -192,62 +193,58 @@ async def _scrape_report_commentary_async(url: str) -> Optional[List[str]]:
         List of blockquote text contents, or None if not found
     """
     from bs4 import BeautifulSoup
-    from playwright.async_api import async_playwright
+
+    from services.browser import (
+        BrowserConfig,
+        BrowserRunnerError,
+        ExtractRequest,
+        extract_page,
+    )
 
     logger.info("Scraping BRC report commentary from %s", url)
 
+    request = ExtractRequest(
+        url=url,
+        wait_selector="blockquote",
+        wait_for_load_state="networkidle",
+        wait_after_load_ms=1_000,
+        html_selectors=("blockquote",),
+        viewport_override=(1400, 900),
+    )
+    config = BrowserConfig(
+        viewport=(1400, 900),
+        user_agent=_USER_AGENT,
+    )
+
     try:
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                           "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            )
-            page = await context.new_page()
-
-            await page.goto(url, wait_until="networkidle", timeout=30000)
-            await page.wait_for_selector("blockquote", timeout=15000)
-
-            html = await page.content()
-            await browser.close()
-
-            soup = BeautifulSoup(html, "html.parser")
-            blockquotes = soup.find_all("blockquote")
-
-            if not blockquotes:
-                logger.warning("No blockquote found on page")
-                return None
-
-            comments = []
-            for bq in blockquotes:
-                text = bq.get_text(strip=True, separator=" ")
-                if text and text != "Overview" and len(text) > 20:
-                    comments.append(text)
-
-            logger.info("Successfully extracted %d commentaries from report page", len(comments))
-            return comments if comments else None
-
+        result = extract_page(request, config=config)
+    except BrowserRunnerError as exc:
+        logger.error("Failed to scrape report commentary: %s", exc, exc_info=True)
+        return None
     except Exception as exc:
         logger.error("Failed to scrape report commentary: %s", exc, exc_info=True)
         return None
 
-
-def _scrape_report_commentary(url: str) -> Optional[List[str]]:
-    """
-    Wrapper to run async report scraping function.
-    """
-    try:
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            import concurrent.futures
-            with concurrent.futures.ThreadPoolExecutor() as executor:
-                future = executor.submit(asyncio.run, _scrape_report_commentary_async(url))
-                return future.result(timeout=60)
-        else:
-            return asyncio.run(_scrape_report_commentary_async(url))
-    except Exception as exc:
-        logger.error("Failed to run async report scraping: %s", exc, exc_info=True)
+    blockquote_htmls = result.html.get("blockquote", [])
+    if not blockquote_htmls:
+        logger.warning("No blockquote found on page")
         return None
+
+    comments: List[str] = []
+    for bq_html in blockquote_htmls:
+        try:
+            soup = BeautifulSoup(bq_html, "html.parser")
+            bq = soup.find("blockquote")
+            target = bq if bq is not None else soup
+            text = target.get_text(strip=True, separator=" ")
+            if text and text != "Overview" and len(text) > 20:
+                comments.append(text)
+        except Exception as exc:
+            logger.warning("Failed to parse blockquote html: %s", exc)
+            continue
+
+    logger.info("Successfully extracted %d commentaries from report page", len(comments))
+    return comments if comments else None
 
 
 def _translate_to_japanese(text: str) -> str:

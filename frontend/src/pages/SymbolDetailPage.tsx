@@ -1,43 +1,40 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, Link, useSearchParams } from "react-router-dom";
-import { Card, Tabs, Spin, Typography, Button, Image, Alert, Breadcrumb } from "antd";
-import { ArrowLeftOutlined, PictureOutlined, BarChartOutlined, LineChartOutlined, CalendarOutlined } from "@ant-design/icons";
+import { Card, Spin, Typography, Button, Image, Alert, Breadcrumb } from "antd";
+import { ArrowLeftOutlined, LineChartOutlined, FundOutlined, AppstoreOutlined, FallOutlined, TableOutlined } from "@ant-design/icons";
 import axios from "axios";
 import TradingViewWidget from "../components/common/TradingViewWidget";
+import MonthlyStatsChart from "../components/seasonality/MonthlyStatsChart";
+import MonthlyMedianChart from "../components/seasonality/MonthlyMedianChart";
+import MonthlyNegRateChart from "../components/seasonality/MonthlyNegRateChart";
+import MonthlyStatsTable from "../components/seasonality/MonthlyStatsTable";
+import IntramonthPathChart from "../components/seasonality/IntramonthPathChart";
+import DailyHeatmapChart from "../components/seasonality/DailyHeatmapChart";
 
 const { Title, Text } = Typography;
+
+// EconAlpha ダークテーマ
+const COLORS = {
+  bgPrimary: "#0f172a",
+  bgSecondary: "#1e293b",
+  textPrimary: "#f1f5f9",
+  textSecondary: "#94a3b8",
+  border: "#334155",
+};
 
 type Img = { name: string; url: string };
 
 type ManifestData = {
   symbol: string;
   seasonalityCharts: Img[];
-  monthlyReturns: Img[];
-  dailyByMonth: Record<string, Img[]>;
 };
-
-const MONTHS = [
-  { mm: "01", label: "1月" },
-  { mm: "02", label: "2月" },
-  { mm: "03", label: "3月" },
-  { mm: "04", label: "4月" },
-  { mm: "05", label: "5月" },
-  { mm: "06", label: "6月" },
-  { mm: "07", label: "7月" },
-  { mm: "08", label: "8月" },
-  { mm: "09", label: "9月" },
-  { mm: "10", label: "10月" },
-  { mm: "11", label: "11月" },
-  { mm: "12", label: "12月" },
-];
 
 export default function SymbolDetailPage() {
   const { symbol } = useParams();
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
   const [data, setData] = useState<ManifestData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeMonth, setActiveMonth] = useState("01");
 
   const category = params.get("category") || "interest_rates";
   const decodedSymbol = symbol ? decodeURIComponent(symbol) : "";
@@ -66,25 +63,11 @@ export default function SymbolDetailPage() {
     fetchData();
   }, [decodedSymbol]);
 
-  useEffect(() => {
-    const m = params.get("month");
-    if (m && MONTHS.some((x) => x.mm === m)) {
-      setActiveMonth(m);
-    }
-  }, [params]);
-
-  const onSelectMonth = (mm: string) => {
-    setActiveMonth(mm);
-    const newParams = new URLSearchParams(params);
-    newParams.set("month", mm);
-    setParams(newParams, { replace: true });
-  };
-
   if (loading) {
     return (
       <div style={{ textAlign: "center", padding: "80px 20px" }}>
         <Spin size="large" />
-        <p style={{ marginTop: 16, color: "#666" }}>読み込み中...</p>
+        <p style={{ marginTop: 16, color: COLORS.textSecondary }}>読み込み中...</p>
       </div>
     );
   }
@@ -109,29 +92,6 @@ export default function SymbolDetailPage() {
     );
   }
 
-  const hasMonthlyData = Object.values(data.dailyByMonth).some(
-    (imgs) => imgs.length > 0
-  );
-
-  const monthTabItems = MONTHS.map((m) => ({
-    key: m.mm,
-    label: m.label,
-    children: (
-      <div style={{ marginTop: 16 }}>
-        {(data.dailyByMonth[m.mm] || []).map((img) => (
-          <ImageCard key={img.url} img={img} />
-        ))}
-        {(!data.dailyByMonth[m.mm] || data.dailyByMonth[m.mm].length === 0) && (
-          <div style={{ textAlign: "center", color: "#999", padding: "60px 20px" }}>
-            <PictureOutlined style={{ fontSize: 48, marginBottom: 16, opacity: 0.5 }} />
-            <br />
-            <Text type="secondary">この月のデータはありません</Text>
-          </div>
-        )}
-      </div>
-    ),
-  }));
-
   return (
     <div style={{ maxWidth: 1200, margin: "0 auto" }}>
       {/* ヘッダー */}
@@ -139,17 +99,17 @@ export default function SymbolDetailPage() {
         <Breadcrumb
           items={[
             { title: <Link to="/seasonality">シーズナリティ</Link> },
-            { title: decodedSymbol },
+            { title: <span style={{ color: COLORS.textSecondary }}>{decodedSymbol}</span> },
           ]}
           style={{ marginBottom: 16 }}
         />
 
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
           <div>
-            <Title level={2} style={{ margin: 0, color: "#1a1a1a" }}>
+            <Title level={2} style={{ margin: 0, color: COLORS.textPrimary }}>
               {decodedSymbol}
             </Title>
-            <Text type="secondary" style={{ fontSize: 15 }}>
+            <Text style={{ fontSize: 15, color: COLORS.textSecondary }}>
               季節性パターン分析
             </Text>
           </div>
@@ -161,74 +121,130 @@ export default function SymbolDetailPage() {
         </div>
       </div>
 
-      {/* シーズナリティ・チャート */}
-      <Card
-        title={
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <LineChartOutlined style={{ color: "#1890ff" }} />
-            <span>シーズナリティチャート</span>
-          </div>
-        }
-        style={{ marginBottom: 24, borderRadius: 12 }}
-        styles={{ header: { borderBottom: "1px solid #f0f0f0" } }}
-      >
-        {data.seasonalityCharts.length === 0 ? (
-          <div style={{ textAlign: "center", color: "#999", padding: "60px 20px" }}>
-            <PictureOutlined style={{ fontSize: 48, marginBottom: 16, opacity: 0.5 }} />
-            <br />
-            <Text type="secondary">チャートデータがありません</Text>
-          </div>
-        ) : (
+      {/* シーズナリティ・チャート（EquityClock 画像） */}
+      {data.seasonalityCharts.length > 0 && (
+        <Card
+          title={
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <LineChartOutlined style={{ color: "#1890ff" }} />
+              <span style={{ color: COLORS.textPrimary }}>シーズナリティチャート</span>
+            </div>
+          }
+          style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+          styles={{
+            header: { borderBottom: `1px solid ${COLORS.border}` },
+            body: { background: COLORS.bgPrimary },
+          }}
+        >
           <div>
             {data.seasonalityCharts.map((img) => (
               <ImageCard key={img.url} img={img} />
             ))}
           </div>
-        )}
+        </Card>
+      )}
+
+      {/* 平均騰落率（平均バー＋95% CI＋p値） */}
+      <Card
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <FundOutlined style={{ color: "#3b82f6" }} />
+            <span style={{ color: COLORS.textPrimary }}>平均騰落率</span>
+          </div>
+        }
+        style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+        styles={{
+          header: { borderBottom: `1px solid ${COLORS.border}` },
+          body: { background: COLORS.bgPrimary },
+        }}
+      >
+        <MonthlyStatsChart symbol={decodedSymbol} />
       </Card>
 
-      {/* 月別騰落率 */}
-      {data.monthlyReturns.length > 0 && (
-        <Card
-          title={
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <BarChartOutlined style={{ color: "#52c41a" }} />
-              <span>月別騰落率</span>
-            </div>
-          }
-          style={{ marginBottom: 24, borderRadius: 12 }}
-          styles={{ header: { borderBottom: "1px solid #f0f0f0" } }}
-        >
-          <div>
-            {data.monthlyReturns.map((img) => (
-              <ImageCard key={img.url} img={img} />
-            ))}
+      {/* 月別中央値（外れ値に頑健な代表値） */}
+      <Card
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <FundOutlined style={{ color: "#06b6d4" }} />
+            <span style={{ color: COLORS.textPrimary }}>月別中央値</span>
           </div>
-        </Card>
-      )}
+        }
+        style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+        styles={{
+          header: { borderBottom: `1px solid ${COLORS.border}` },
+          body: { background: COLORS.bgPrimary },
+        }}
+      >
+        <MonthlyMedianChart symbol={decodedSymbol} />
+      </Card>
 
-      {/* 日別騰落率 */}
-      {hasMonthlyData && (
-        <Card
-          title={
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <CalendarOutlined style={{ color: "#fa8c16" }} />
-              <span>日別騰落率</span>
-            </div>
-          }
-          style={{ marginBottom: 24, borderRadius: 12 }}
-          styles={{ header: { borderBottom: "1px solid #f0f0f0" } }}
-        >
-          <Tabs
-            activeKey={activeMonth}
-            onChange={onSelectMonth}
-            items={monthTabItems}
-            type="card"
-            size="middle"
-            tabBarStyle={{ marginBottom: 0 }}
-          />
-        </Card>
-      )}
+      {/* 月別下落率（マイナス年の割合） */}
+      <Card
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <FallOutlined style={{ color: "#ef4444" }} />
+            <span style={{ color: COLORS.textPrimary }}>月別下落率</span>
+          </div>
+        }
+        style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+        styles={{
+          header: { borderBottom: `1px solid ${COLORS.border}` },
+          body: { background: COLORS.bgPrimary },
+        }}
+      >
+        <MonthlyNegRateChart symbol={decodedSymbol} />
+      </Card>
+
+      {/* 月別詳細テーブル（σ・p値・乖離を一覧で比較） */}
+      <Card
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <TableOutlined style={{ color: "#8b5cf6" }} />
+            <span style={{ color: COLORS.textPrimary }}>月別詳細テーブル</span>
+          </div>
+        }
+        style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+        styles={{
+          header: { borderBottom: `1px solid ${COLORS.border}` },
+          body: { background: COLORS.bgPrimary },
+        }}
+      >
+        <MonthlyStatsTable symbol={decodedSymbol} />
+      </Card>
+
+      {/* 月内累積パス（Recharts: 営業日インデックス × 累積平均） */}
+      <Card
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <LineChartOutlined style={{ color: "#f59e0b" }} />
+            <span style={{ color: COLORS.textPrimary }}>月内累積パス</span>
+          </div>
+        }
+        style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+        styles={{
+          header: { borderBottom: `1px solid ${COLORS.border}` },
+          body: { background: COLORS.bgPrimary },
+        }}
+      >
+        <IntramonthPathChart symbol={decodedSymbol} />
+      </Card>
+
+      {/* 日別ヒートマップ（月 × 営業日インデックス） */}
+      <Card
+        title={
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <AppstoreOutlined style={{ color: "#10b981" }} />
+            <span style={{ color: COLORS.textPrimary }}>日別ヒートマップ</span>
+          </div>
+        }
+        style={{ marginBottom: 24, borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+        styles={{
+          header: { borderBottom: `1px solid ${COLORS.border}` },
+          body: { background: COLORS.bgPrimary },
+        }}
+      >
+        <DailyHeatmapChart symbol={decodedSymbol} />
+      </Card>
 
       {/* リアルタイムチャート（通貨インデックスは埋め込み不可のため非表示） */}
       {category !== "currency_index" && (
@@ -236,11 +252,14 @@ export default function SymbolDetailPage() {
           title={
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <LineChartOutlined style={{ color: "#722ed1" }} />
-              <span>リアルタイムチャート</span>
+              <span style={{ color: COLORS.textPrimary }}>リアルタイムチャート</span>
             </div>
           }
-          style={{ borderRadius: 12 }}
-          styles={{ header: { borderBottom: "1px solid #f0f0f0" } }}
+          style={{ borderRadius: 12, background: COLORS.bgPrimary, border: `1px solid ${COLORS.border}` }}
+          styles={{
+            header: { borderBottom: `1px solid ${COLORS.border}` },
+            body: { background: COLORS.bgPrimary },
+          }}
         >
           <div style={{ height: 700 }}>
             <TradingViewWidget
@@ -290,6 +309,9 @@ function ImageCard({ img }: { img: Img }) {
           border: "1px solid #e8e8e8",
           position: "relative",
           minHeight: 200,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         {isVisible ? (
@@ -310,11 +332,20 @@ function ImageCard({ img }: { img: Img }) {
               src={img.url}
               alt={img.name}
               onLoad={() => setImageLoaded(true)}
-              style={{
+              wrapperStyle={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 width: "100%",
+              }}
+              style={{
+                maxWidth: "100%",
                 maxHeight: 600,
+                width: "auto",
+                height: "auto",
                 objectFit: "contain",
                 background: "white",
+                display: "block",
                 opacity: imageLoaded ? 1 : 0,
                 transition: "opacity 0.3s ease",
               }}

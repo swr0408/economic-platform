@@ -441,7 +441,13 @@
       "Bash(du -sh /c/Users/owner/Desktop/economic-platform/backend/data/*)",
       "Read(//c/Users/owner/Desktop/economic-platform/**)",
       "Read(//tmp/**)",
-      "Bash(du -sh backend/data/ backend/data/*/)"
+      "Bash(du -sh backend/data/ backend/data/*/)",
+      "Bash(git log:*)",
+      "Bash(rmdir \"backend;C\")",
+      "Bash(rmdir \"data;C\")",
+      "Bash(rmdir \"cUsersownerDesktopeconomic-platformbackenddatacachenewzealandpolicy\")",
+      "Bash(rmdir \"cUsersownerDesktopeconomic-platformbackendroutersnewzealand\")",
+      "Bash(rmdir \"cUsersownerDesktopeconomic-platformbackendservicesnewzealand\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { Card, Row, Col, Typography, Space, Button } from 'antd'
+import { Card, Row, Col, Typography, Space, Button, Tooltip } from 'antd'
 import {
   ArrowLeftOutlined,
   BankOutlined,
@@ -9,9 +9,24 @@ import {
   HomeOutlined,
   ShoppingOutlined,
   GlobalOutlined,
+  QuestionCircleOutlined,
 } from '@ant-design/icons'
+import { useHandbook } from '../contexts/HandbookContext'
 
 const { Title, Text } = Typography
+
+// 国コード → 国概要ハンドブックエントリ（ハンドブックに概要エントリがある国のみ登録）
+type CountryHandbookEntry = { id: string; tooltip: string }
+const COUNTRY_OVERVIEW_HANDBOOKS: Record<string, CountryHandbookEntry[]> = {
+  usa: [{ id: 'usa-overview', tooltip: 'アメリカ経済の概要 - データハンドブック' }],
+  switzerland: [{ id: 'ch-overview', tooltip: 'スイス経済とスイスフランの見方 - データハンドブック' }],
+  japan: [{ id: 'japan-fundamentals-yen', tooltip: '日本のファンダメンタルズと円相場 - データハンドブック' }],
+  uk: [{ id: 'uk-boe-overview', tooltip: 'イギリスとBOEの見方 - データハンドブック' }],
+  eurozone: [
+    { id: 'germany-eurozone-relationship', tooltip: 'ドイツ経済とユーロ圏の関係 - データハンドブック' },
+    { id: 'ig-metall-germany-wages', tooltip: 'IGメタルとドイツ賃金動向 - データハンドブック' },
+  ],
+}
 
 // EconAlpha カラーパレット
 const colors = {
@@ -134,6 +149,7 @@ const COUNTRY_INFO: Record<string, { name: string; isoCode: string; description:
 
 function CountryDetail() {
   const { countryCode } = useParams()
+  const { openHandbook } = useHandbook()
 
   if (!countryCode || !COUNTRY_INFO[countryCode]) {
     return (
@@ -155,6 +171,7 @@ function CountryDetail() {
   }
 
   const country = COUNTRY_INFO[countryCode]
+  const overviewHandbooks = COUNTRY_OVERVIEW_HANDBOOKS[countryCode] ?? []
 
   return (
     <div style={{ padding: '20px 24px' }}>
@@ -189,9 +206,30 @@ function CountryDetail() {
             />
           )}
           <div>
-            <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
-              {country.name}のデータ
-            </Title>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+              <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
+                {country.name}のデータ
+              </Title>
+              {overviewHandbooks.map((entry) => (
+                <Tooltip key={entry.id} title={entry.tooltip}>
+                  <QuestionCircleOutlined
+                    onClick={() => openHandbook(entry.id)}
+                    style={{
+                      fontSize: 18,
+                      color: colors.textSecondary,
+                      cursor: 'pointer',
+                      transition: 'color 0.2s',
+                    }}
+                    onMouseEnter={(e) => {
+                      ;(e.target as HTMLElement).style.color = '#10b981'
+                    }}
+                    onMouseLeave={(e) => {
+                      ;(e.target as HTMLElement).style.color = colors.textSecondary
+                    }}
+                  />
+                </Tooltip>
+              ))}
+            </div>
             <Text style={{ fontSize: 14, color: colors.textSecondary }}>
               {country.description}
             </Text>

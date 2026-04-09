@@ -270,6 +270,7 @@ export default function GermanyFactoryOrdersChart({ data }: GermanyFactoryOrders
         showPeriodSelector={false}
         dataSource="Destatis"
         sourceUrl="https://www.destatis.de/DE/Themen/Branchen-Unternehmen/Industrie-Verarbeitendes-Gewerbe/_inhalt.html#"
+        handbookId="germany-factory-orders"
       >
         {/* 最新値表示 */}
         <LatestValueBox

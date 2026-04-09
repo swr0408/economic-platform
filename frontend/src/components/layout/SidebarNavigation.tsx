@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo, useState, useEffect, useRef } from 'react'
 import { Menu } from 'antd'
 import type { MenuProps } from 'antd'
 import { GlobalOutlined } from '@ant-design/icons'
@@ -26,6 +26,7 @@ function SidebarNavigation() {
   const [openKeys, setOpenKeys] = useState<string[]>([])
   const [selectedIndicator, setSelectedIndicator] = useState<string>('')
   const canView = useCanViewFn()
+  const menuWrapperRef = useRef<HTMLDivElement>(null)
 
   // 3階層メニュー: 国 > カテゴリ > 経済指標
   // 小見出し（経済指標）はカテゴリページ + ハッシュで遷移
@@ -165,6 +166,30 @@ function SidebarNavigation() {
     }
   }, [location.pathname])
 
+  // ページ遷移時に選択中のメニュー項目をサイドバー内で表示位置までスクロール
+  // 既に視界内にある場合は何もしない（block: 'nearest'）ので手動スクロールを邪魔しない
+  useEffect(() => {
+    if (selectedKeys.length === 0) return
+    const wrapper = menuWrapperRef.current
+    if (!wrapper) return
+
+    // サブメニューの展開アニメーション完了後にスクロール
+    const timer = setTimeout(() => {
+      const targetKey = selectedKeys[0]
+      // antd Menu の data-menu-id は `${uuid}-${eventKey}` の形式
+      // CSS 引用符内では `/` や `#` などはエスケープ不要だが、`"` と `\` は不可
+      const safeKey = targetKey.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      const el = wrapper.querySelector<HTMLElement>(
+        `[data-menu-id$="${safeKey}"]`,
+      )
+      if (el) {
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      }
+    }, 250)
+
+    return () => clearTimeout(timer)
+  }, [selectedKeys, openKeys])
+
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     const key = e.key
     // ハッシュ付きの場合は分解して遷移
@@ -199,21 +224,23 @@ function SidebarNavigation() {
   }
 
   return (
-    <Menu
-      mode="inline"
-      theme="dark"
-      selectedKeys={selectedKeys}
-      openKeys={openKeys}
-      onOpenChange={handleOpenChange}
-      items={menuItems}
-      onClick={handleMenuClick}
-      style={{
-        height: '100%',
-        borderRight: 0,
-        background: colors.bgSecondary,
-        fontSize: '13px',
-      }}
-    />
+    <div ref={menuWrapperRef} style={{ height: '100%' }}>
+      <Menu
+        mode="inline"
+        theme="dark"
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={handleOpenChange}
+        items={menuItems}
+        onClick={handleMenuClick}
+        style={{
+          height: '100%',
+          borderRight: 0,
+          background: colors.bgSecondary,
+          fontSize: '13px',
+        }}
+      />
+    </div>
   )
 }
 

@@ -222,6 +222,7 @@ export default function ZEWEconomicSentimentChart({ data }: ZEWEconomicSentiment
         showPeriodSelector={false}
         dataSource="ZEW"
         sourceUrl="https://www.zew.de/en/publications/zew-expertises-research-reports/research-reports/business-cycle/zew-financial-market-survey"
+        handbookId="zew-economic-sentiment"
       >
         <Tabs
           defaultActiveKey="chart"

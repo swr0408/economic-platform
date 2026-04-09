@@ -13,15 +13,29 @@ Cleveland FedのInflation Nowcastingデータを取得
 - 毎営業日 10:00 ET頃
 
 キャッシュ方式: 毎日更新（営業日に3分間隔でチェック）
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Selenium / webdriver_manager / chromium-driver
+依存はすべて削除。テーブル要素のテキストを `evaluate_js` で 1 ページ走査・
+JSON で取得し、既存のテキストパーサ (_parse_table_text_lines) に渡す。
 """
 import json
-import time
+import logging
 from datetime import datetime, date
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ExtractRequest,
+    extract_page,
+)
+
+logger = logging.getLogger(__name__)
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -107,73 +121,65 @@ class InflationNowcastingService:
         }
 
     def _scrape_cleveland_fed(self) -> Optional[Dict[str, Any]]:
-        """Cleveland FedのページからSeleniumでデータをスクレイピング"""
+        """Cleveland Fed ページから PlaywrightRunner 経由でデータをスクレイピング.
+
+        テーブルの ``innerText`` を `evaluate_js` で配列として取得し、
+        既存の行ベースパーサ (_parse_table_text_lines) に渡す。
+        旧 Selenium 実装と同等の挙動 (1 番目=MoM, 2 番目=YoY)。
+        """
+        logger.info(
+            f"[InflationNowcasting] Fetching Cleveland Fed via PlaywrightRunner: "
+            f"{CLEVELAND_FED_URL}"
+        )
+
+        evaluate_js = (
+            "(() => Array.from(document.querySelectorAll('table'))"
+            ".map(t => t.innerText || ''))()"
+        )
+        request = ExtractRequest(
+            url=CLEVELAND_FED_URL,
+            wait_selector="table",
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=2_000,
+            evaluate_js=evaluate_js,
+            viewport_override=(1920, 1080),
+        )
+        config = BrowserConfig(
+            viewport=(1920, 1080),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
+
         try:
-            from selenium import webdriver
-            from selenium.webdriver.chrome.options import Options
-            from selenium.webdriver.chrome.service import Service
-            from selenium.webdriver.common.by import By
-            from selenium.webdriver.support.ui import WebDriverWait
-            from selenium.webdriver.support import expected_conditions as EC
-
-            print(f"Fetching Cleveland Fed Inflation Nowcasting: {CLEVELAND_FED_URL}")
-
-            options = Options()
-            options.add_argument('--headless')
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--disable-gpu')
-
-            driver = None
-            try:
-                # Docker環境用: chromedriverのパスを指定
-                try:
-                    from webdriver_manager.chrome import ChromeDriverManager
-                    service = Service(ChromeDriverManager().install())
-                except Exception:
-                    # Docker環境ではchromedriverがインストール済み
-                    service = Service('/usr/bin/chromedriver')
-
-                driver = webdriver.Chrome(service=service, options=options)
-                driver.get(CLEVELAND_FED_URL)
-
-                # ページの読み込みを待つ
-                wait = WebDriverWait(driver, 20)
-                wait.until(EC.presence_of_element_located((By.TAG_NAME, "table")))
-                time.sleep(2)  # JavaScriptの実行を待つ
-
-                # テーブルを取得
-                tables = driver.find_elements(By.TAG_NAME, "table")
-
-                mom_data = []
-                yoy_data = []
-
-                if len(tables) >= 2:
-                    # Table 0: Month-over-Month
-                    mom_data = self._parse_table_element(tables[0])
-                    # Table 1: Year-over-Year
-                    yoy_data = self._parse_table_element(tables[1])
-
-                print(f"Parsed MoM data: {len(mom_data)} rows")
-                print(f"Parsed YoY data: {len(yoy_data)} rows")
-
-                return {
-                    "monthly_mom": mom_data,
-                    "monthly_yoy": yoy_data
-                }
-
-            finally:
-                if driver:
-                    driver.quit()
-
-        except ImportError:
-            print("Selenium not available, trying requests fallback")
+            result = extract_page(request, config=config)
+        except BrowserRunnerError as e:
+            logger.error(f"[InflationNowcasting] extract failed: {e}")
             return self._scrape_with_requests()
-        except Exception as e:
-            print(f"Error scraping Cleveland Fed: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
+
+        tables = result.evaluated or []
+        if not isinstance(tables, list) or len(tables) < 2:
+            logger.warning(
+                f"[InflationNowcasting] Not enough tables found "
+                f"(got {len(tables) if isinstance(tables, list) else 'invalid'})"
+            )
+            return self._scrape_with_requests()
+
+        # Table 0: Month-over-Month, Table 1: Year-over-Year
+        mom_data = self._parse_table_text_lines(str(tables[0]))
+        yoy_data = self._parse_table_text_lines(str(tables[1]))
+
+        logger.info(
+            f"[InflationNowcasting] Parsed MoM={len(mom_data)} rows, "
+            f"YoY={len(yoy_data)} rows"
+        )
+
+        return {
+            "monthly_mom": mom_data,
+            "monthly_yoy": yoy_data,
+        }
 
     def _scrape_with_requests(self) -> Optional[Dict[str, Any]]:
         """requestsを使用したフォールバック（JavaScriptレンダリング不要な場合）"""
@@ -203,12 +209,13 @@ class InflationNowcastingService:
             print(f"Error with requests fallback: {e}")
             return None
 
-    def _parse_table_element(self, table_element) -> List[Dict[str, Any]]:
+    def _parse_table_text_lines(self, table_text: str) -> List[Dict[str, Any]]:
         """
-        Selenium WebElementからテーブルデータを解析
+        テーブルの innerText (改行区切り) からデータを解析
 
         Args:
-            table_element: Selenium WebElement (table)
+            table_text: テーブル要素の innerText 文字列
+                        (旧 Selenium 実装の `WebElement.text` と等価)
 
         Returns:
             List[Dict]: 解析されたデータ
@@ -216,8 +223,7 @@ class InflationNowcastingService:
         result = []
 
         try:
-            table_text = table_element.text
-            lines = table_text.strip().split('\n')
+            lines = (table_text or "").strip().split('\n')
 
             if len(lines) < 3:
                 return result
@@ -290,9 +296,7 @@ class InflationNowcastingService:
                         result.append(row_data)
 
         except Exception as e:
-            print(f"Error parsing table element: {e}")
-            import traceback
-            traceback.print_exc()
+            logger.error(f"[InflationNowcasting] Error parsing table text: {e}")
 
         return result
 

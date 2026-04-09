@@ -12,23 +12,31 @@ Update check: Every 10 minutes during 20:00-21:10 JST
 データソース:
 - Eurex (Three-Month Euro STR Futures)
 - URL: https://www.eurex.com/ex-en/markets/int/mon/3m-euro-str-futures/estr/Three-Month-Euro-STR-Futures-3402480
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Selenium / webdriver_manager / chromium-driver
+依存はすべて削除。react-table の行抽出は `evaluate_js` でブラウザ内 JS
+として実行し、JSON 配列 (各要素は [contract_date_str, settle_value_str])
+として返す。Python 側は日付パース / implied_rate 計算 / ソート / 12 件制限
+を行う (旧実装と同等)。
 """
 import json
-import time
+import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 from zoneinfo import ZoneInfo
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ExtractRequest,
+    extract_page,
+)
+
+logger = logging.getLogger(__name__)
 
 
 # タイムゾーン
@@ -101,179 +109,168 @@ class EurexOISService:
 
         return start_time <= current_time <= end_time
 
+    # ブラウザ内で react-table の行を抽出する JS。
+    # 旧 Selenium 実装の Strategy 1 / Strategy 2 を JS 内に集約。
+    # 戻り値: [{date, settle}, ...]
+    _EXTRACT_ROWS_JS = r"""
+    (() => {
+      const isDataRow = (row) => {
+        const tds = row.querySelectorAll('td');
+        return tds && tds.length > 6;
+      };
+
+      const extractRows = (tbody) => {
+        const out = [];
+        const rows = tbody.querySelectorAll('tr');
+        for (const row of rows) {
+          if (!isDataRow(row)) continue;
+          const cells = row.querySelectorAll('td');
+          // [0] Contract Type, [1] Contract Date, [2..5] OHLC, [6] D. Settle ...
+          const dateText = (cells[1].textContent || '').trim();
+          const settleText = (cells[6].textContent || '').trim();
+          if (!dateText || !settleText) continue;
+          out.push({date: dateText, settle: settleText});
+        }
+        return out;
+      };
+
+      // Strategy 1: overflow container 内の最初の react-table
+      const containers = document.querySelectorAll(
+        'div.overflow-x-auto.scrollbar-d-none.position-relative.d-flex.flex-grow-1'
+      );
+      if (containers.length > 0) {
+        const t = containers[0].querySelector('.flex-grow-1 .react-table');
+        if (t) {
+          const tb = t.querySelector('tbody');
+          if (tb) {
+            const rows = extractRows(tb);
+            if (rows.length > 0) return {strategy: 1, rows: rows};
+          }
+        }
+      }
+
+      // Strategy 2: ヘッダーに 'Settle' を含む任意の react-table
+      const tables = document.querySelectorAll('.react-table');
+      for (const t of tables) {
+        const thead = t.querySelector('thead');
+        if (!thead) continue;
+        const headerText = (thead.textContent || '').toUpperCase();
+        if (headerText.indexOf('SETTLE') === -1) continue;
+        const tb = t.querySelector('tbody');
+        if (!tb) continue;
+        const rows = extractRows(tb);
+        if (rows.length > 0) return {strategy: 2, rows: rows};
+      }
+
+      return {strategy: 0, rows: []};
+    })();
+    """
+
     def _fetch_eurex_data(self) -> Optional[List[Dict]]:
         """
-        Fetch Eurex STR Futures data using Selenium
+        Fetch Eurex STR Futures data via PlaywrightRunner.
+
+        旧 Selenium 実装と同等の戦略 (Strategy 1 → Strategy 2) を `evaluate_js`
+        でブラウザ内 JS として実行し、行データを JSON 配列で取得する。
+        日付パースと implied_rate 計算は Python 側で行う。
         """
-        driver = None
+        logger.info(f"[EurexOIS] Fetching Eurex data via PlaywrightRunner: {self.EUREX_URL}")
+
+        request = ExtractRequest(
+            url=self.EUREX_URL,
+            wait_selector=".react-table",
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=15_000,  # 動的レンダ完了用 (旧実装と同等)
+            evaluate_js=self._EXTRACT_ROWS_JS,
+            viewport_override=(1920, 1080),
+        )
+        config = BrowserConfig(
+            viewport=(1920, 1080),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+            default_navigation_timeout_ms=60_000,
+        )
+
         try:
-            # Chrome options
-            chrome_options = Options()
-            chrome_options.add_argument('--headless')
-            chrome_options.add_argument('--no-sandbox')
-            chrome_options.add_argument('--disable-dev-shm-usage')
-            chrome_options.add_argument('--disable-gpu')
-            chrome_options.add_argument('--window-size=1920,1080')
-            chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-
-            print(f"Fetching Eurex data from {self.EUREX_URL}")
-
-            # Initialize Chrome driver
-            # Docker環境では/usr/bin/chromiumを使用
-            import os
-            if os.path.exists('/usr/bin/chromium'):
-                chrome_options.binary_location = '/usr/bin/chromium'
-                # chromiumdriverの代わりにwebdriver-managerで自動取得
-                from webdriver_manager.chrome import ChromeDriverManager
-                from webdriver_manager.core.os_manager import ChromeType
-                service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-            else:
-                service = Service(ChromeDriverManager().install())
-            driver = webdriver.Chrome(service=service, options=chrome_options)
-
-            # Navigate to page
-            driver.get(self.EUREX_URL)
-
-            # Wait for React table to load
-            wait = WebDriverWait(driver, 45)
-
-            # Wait for react-table
-            try:
-                wait.until(EC.presence_of_element_located((By.CLASS_NAME, "react-table")))
-                print("React table found")
-            except Exception as e:
-                print(f"React table not found: {e}")
-
-            # Additional wait for dynamic content
-            time.sleep(15)
-
-            # Try to find the table
-            table_found = False
-            data_rows = []
-
-            # Strategy 1: Find overflow container
-            try:
-                overflow_containers = driver.find_elements(
-                    By.CSS_SELECTOR,
-                    "div.overflow-x-auto.scrollbar-d-none.position-relative.d-flex.flex-grow-1"
-                )
-
-                if len(overflow_containers) >= 1:
-                    print(f"Found {len(overflow_containers)} overflow containers")
-                    first_container = overflow_containers[0]
-                    react_table = first_container.find_element(By.CSS_SELECTOR, ".flex-grow-1 .react-table")
-
-                    if react_table:
-                        tbody = react_table.find_element(By.TAG_NAME, "tbody")
-                        data_rows = tbody.find_elements(By.TAG_NAME, "tr")
-                        table_found = True
-                        print(f"Found {len(data_rows)} data rows")
-            except Exception as e:
-                print(f"Strategy 1 failed: {e}")
-
-            # Strategy 2: Find any react-table
-            if not table_found:
-                try:
-                    react_tables = driver.find_elements(By.CLASS_NAME, "react-table")
-                    for idx, table in enumerate(react_tables):
-                        try:
-                            tbody = table.find_element(By.TAG_NAME, "tbody")
-                            rows = tbody.find_elements(By.TAG_NAME, "tr")
-                            if len(rows) > 1:
-                                thead = table.find_element(By.TAG_NAME, "thead")
-                                header_text = thead.text
-                                if 'Settle' in header_text or 'SETTLE' in header_text.upper():
-                                    data_rows = rows
-                                    table_found = True
-                                    break
-                        except Exception:
-                            continue
-                except Exception as e:
-                    print(f"Strategy 2 failed: {e}")
-
-            if not table_found or not data_rows:
-                print("Could not find settlement data table")
-                return None
-
-            # Parse table data
-            # テーブル構造（2025年1月時点）:
-            # [0] Contract Type, [1] Contract Date, [2] Open, [3] High, [4] Low,
-            # [5] Last, [6] D. Settle, [7] Volume, [8] OI adj
-            result = []
-            contract_date_col = 1
-            settle_col = 6
-
-            for row in data_rows:
-                cells = row.find_elements(By.TAG_NAME, "td")
-                if not cells:
-                    continue
-
-                cell_texts = []
-                for cell in cells:
-                    text = cell.get_attribute('textContent')
-                    if not text:
-                        text = cell.text
-                    cell_texts.append(text.strip() if text else '')
-
-                if len(cell_texts) <= max(contract_date_col, settle_col):
-                    continue
-
-                contract_date_str = cell_texts[contract_date_col]
-                settle_value_str = cell_texts[settle_col]
-
-                try:
-                    if not contract_date_str or not settle_value_str:
-                        continue
-
-                    settle_value = float(settle_value_str.replace(',', '').replace(' ', ''))
-
-                    if settle_value == 0.0:
-                        continue
-
-                    implied_rate = round(100 - settle_value, 4)
-
-                    if '/' in contract_date_str:
-                        parts = contract_date_str.split('/')
-                        if len(parts) == 3:
-                            day, month, year = parts
-                            date_str = f"{year}-{month.zfill(2)}-{day.zfill(2)}"
-
-                            month_names = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-                                           'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
-                            month_idx = int(month) - 1
-                            if 0 <= month_idx < 12:
-                                month_abbr = month_names[month_idx]
-                                year_short = year[-2:] if len(year) >= 2 else year
-                                contract_label = f"{month_abbr} {year_short}"
-
-                                result.append({
-                                    'date': contract_date_str,
-                                    'sort_date': date_str,
-                                    'contract': contract_label,
-                                    'settle': settle_value,
-                                    'implied_rate': implied_rate
-                                })
-
-                except (ValueError, IndexError) as e:
-                    continue
-
-            print(f"Fetched {len(result)} Eurex OIS data points")
-
-            # Sort by date and limit to 12 months
-            if result:
-                result.sort(key=lambda x: x['sort_date'])
-                result = result[:12]
-
-            return result
-
-        except Exception as e:
-            print(f"Error fetching Eurex data: {e}")
-            import traceback
-            traceback.print_exc()
+            extract_result = extract_page(request, config=config)
+        except BrowserRunnerError as e:
+            logger.error(f"[EurexOIS] extract failed: {e}")
             return None
-        finally:
-            if driver:
-                driver.quit()
+
+        evaluated = extract_result.evaluated or {}
+        if not isinstance(evaluated, dict):
+            logger.warning(
+                f"[EurexOIS] Unexpected evaluate_js result type: {type(evaluated).__name__}"
+            )
+            return None
+
+        rows = evaluated.get("rows") or []
+        strategy = evaluated.get("strategy", 0)
+        if not rows:
+            logger.warning("[EurexOIS] Could not find settlement data table (no rows)")
+            return None
+
+        logger.info(
+            f"[EurexOIS] Strategy {strategy}: extracted {len(rows)} candidate rows"
+        )
+
+        # Parse rows in Python (日付/implied_rate 計算)
+        result: List[Dict] = []
+        month_names = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+                       'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+
+        for row in rows:
+            try:
+                contract_date_str = (row.get("date") or "").strip()
+                settle_value_str = (row.get("settle") or "").strip()
+                if not contract_date_str or not settle_value_str:
+                    continue
+
+                settle_value = float(
+                    settle_value_str.replace(',', '').replace(' ', '')
+                )
+                if settle_value == 0.0:
+                    continue
+
+                implied_rate = round(100 - settle_value, 4)
+
+                if '/' not in contract_date_str:
+                    continue
+                parts = contract_date_str.split('/')
+                if len(parts) != 3:
+                    continue
+                day, month, year = parts
+                date_str = f"{year}-{month.zfill(2)}-{day.zfill(2)}"
+
+                month_idx = int(month) - 1
+                if not (0 <= month_idx < 12):
+                    continue
+
+                month_abbr = month_names[month_idx]
+                year_short = year[-2:] if len(year) >= 2 else year
+                contract_label = f"{month_abbr} {year_short}"
+
+                result.append({
+                    'date': contract_date_str,
+                    'sort_date': date_str,
+                    'contract': contract_label,
+                    'settle': settle_value,
+                    'implied_rate': implied_rate,
+                })
+            except (ValueError, IndexError, AttributeError):
+                continue
+
+        logger.info(f"[EurexOIS] Parsed {len(result)} Eurex OIS data points")
+
+        # Sort by date and limit to 12 months
+        if result:
+            result.sort(key=lambda x: x['sort_date'])
+            result = result[:12]
+
+        return result if result else None
 
     def _save_daily_snapshot(self, data: Dict) -> None:
         """Save daily snapshot to history (keeps last 30 days)"""

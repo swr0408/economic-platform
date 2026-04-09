@@ -1,29 +1,37 @@
 """
 RBA 利上げ・利下げ期待 Screenshot Service
-Captures screenshots from MacroMicro charts using Selenium
+Captures screenshots from MacroMicro charts via PlaywrightRunner
 
 2枚のスクリーンショット:
 - Year-End Rate Expectation: https://en.macromicro.me/series/78282/australia-rba-year-end-interest-rate-expectation-2026
 - Rate Cuts Expectation: https://en.macromicro.me/series/78288/australia-rba-interest-rate-cuts-expectation-2026
 
 Target CSS: .mm-cc-bd .container.chart-theater.is-stat
+
+[移行ノート]
+このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
+(ARM64 / OCI 対応)。以前の Selenium / webdriver_manager / chromium-driver
+依存はすべて削除。複数 URL を 1 ブラウザで撮るため、`get_default_runner`
++ `browser_semaphore` を直接使うパターン。public API
+(capture_all_screenshots / get_screenshot_urls / get_cache_status /
+invalidate_cache) は完全互換。
 """
-import time
-import os
+import logging
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
 from zoneinfo import ZoneInfo
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-
 from core.redis_client import redis_client
+from services.browser import (
+    BrowserConfig,
+    BrowserRunnerError,
+    ScreenshotRequest,
+    get_default_runner,
+)
+from services.browser.concurrency import browser_semaphore
+
+logger = logging.getLogger(__name__)
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -52,99 +60,47 @@ class RbaExpectationsScreenshotService:
 
     CACHE_KEY = "australia:rba_expectations_screenshot:metadata"
 
+    # MacroMicro 共通のチャートコンテナ
+    TARGET_SELECTOR = ".mm-cc-bd .container.chart-theater.is-stat"
+
     def __init__(self):
         pass
 
-    def _create_driver(self) -> webdriver.Chrome:
-        """Create Chrome WebDriver with appropriate options"""
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')
-        chrome_options.add_argument('--no-sandbox')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--disable-gpu')
-        chrome_options.add_argument('--window-size=1920,1400')
-        chrome_options.add_argument(
-            '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-            'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    def _build_request(self, url: str, output_path: Path) -> ScreenshotRequest:
+        return ScreenshotRequest(
+            url=url,
+            output_path=str(output_path),
+            wait_selector=self.TARGET_SELECTOR,
+            wait_for_load_state="networkidle",
+            wait_after_load_ms=5_000,
+            clip_selector=self.TARGET_SELECTOR,
+            scroll_into_view=True,
+            viewport_override=(1920, 1400),
         )
 
-        if os.path.exists('/usr/bin/chromium'):
-            chrome_options.binary_location = '/usr/bin/chromium'
-            from webdriver_manager.core.os_manager import ChromeType
-            service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
-        else:
-            service = Service(ChromeDriverManager().install())
-
-        return webdriver.Chrome(service=service, options=chrome_options)
-
-    def _capture_screenshot(self, url: str, output_path: Path) -> bool:
-        """Capture screenshot from MacroMicro chart page"""
-        driver = None
-        try:
-            driver = self._create_driver()
-
-            print(f"[RbaExpectations] Accessing {url}")
-            driver.get(url)
-
-            print("[RbaExpectations] Waiting for page to load...")
-            time.sleep(5)
-
-            # チャートコンテナが読み込まれるのを待つ
-            try:
-                wait = WebDriverWait(driver, 15)
-                wait.until(
-                    EC.presence_of_element_located(
-                        (By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat")
-                    )
-                )
-                print("[RbaExpectations] Chart container found")
-                time.sleep(3)
-            except Exception as e:
-                print(f"[RbaExpectations] Could not find chart container: {e}")
-
-            # スクロールして表示
-            try:
-                chart_element = driver.find_element(
-                    By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat"
-                )
-                driver.execute_script(
-                    "arguments[0].scrollIntoView({block: 'center'});", chart_element
-                )
-                print("[RbaExpectations] Scrolled to chart")
-                time.sleep(2)
-            except Exception as e:
-                print(f"[RbaExpectations] Could not scroll to chart: {e}")
-
-            # 要素スクリーンショット
-            try:
-                chart_element = driver.find_element(
-                    By.CSS_SELECTOR, ".mm-cc-bd .container.chart-theater.is-stat"
-                )
-                chart_element.screenshot(str(output_path))
-                print(f"[RbaExpectations] Screenshot saved to {output_path}")
-                return True
-            except Exception as e:
-                print(f"[RbaExpectations] Failed to capture element screenshot: {e}")
-                print("[RbaExpectations] Falling back to full page screenshot")
-                driver.save_screenshot(str(output_path))
-                return True
-
-        except Exception as e:
-            print(f"[RbaExpectations] Error capturing screenshot from {url}: {e}")
-            return False
-
-        finally:
-            if driver:
-                driver.quit()
-                print("[RbaExpectations] Browser closed")
+    def _build_config(self) -> BrowserConfig:
+        return BrowserConfig(
+            viewport=(1920, 1400),
+            user_agent=(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            ),
+        )
 
     def capture_all_screenshots(self, force_refresh: bool = False) -> Dict[str, Any]:
-        """Capture all expectations screenshots"""
+        """Capture all expectations screenshots.
+
+        2 枚を 1 ブラウザで連続撮影 (起動コスト削減)。プロセス共有セマフォ
+        (`browser_semaphore`) を 1 度だけ取得する。
+        """
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
         now = datetime.now(JST)
-        results = {}
+        results: Dict[str, Any] = {}
 
+        # まず、撮影が必要なものだけ抽出 (キャッシュ済みは即決)
+        to_capture: list[tuple[str, dict, Path]] = []
         for key, config in SCREENSHOTS.items():
             screenshot_path = CACHE_DIR / config["filename"]
             results[key] = {"success": False, "url": None, "cached": False}
@@ -158,17 +114,53 @@ class RbaExpectationsScreenshotService:
                         "url": f"/cache/australia/policy/{config['filename']}",
                         "cached": True,
                     }
-                    print(f"[RbaExpectations] Using cached {key} screenshot (age: {file_age/3600:.1f} hours)")
+                    logger.info(
+                        f"[RbaExpectations] Using cached {key} screenshot "
+                        f"(age: {file_age/3600:.1f} hours)"
+                    )
                     continue
+            to_capture.append((key, config, screenshot_path))
 
-            # スクリーンショット取得
-            print(f"[RbaExpectations] Capturing {config['label']} screenshot...")
-            success = self._capture_screenshot(config["url"], screenshot_path)
-            results[key] = {
-                "success": success,
-                "url": f"/cache/australia/policy/{config['filename']}" if success else None,
-                "cached": False,
-            }
+        # 1 ブラウザで複数枚連続撮影
+        if to_capture:
+            try:
+                with browser_semaphore:
+                    with get_default_runner(config=self._build_config()) as runner:
+                        for key, config, screenshot_path in to_capture:
+                            try:
+                                logger.info(
+                                    f"[RbaExpectations] Capturing {config['label']}..."
+                                )
+                                result = runner.screenshot(
+                                    self._build_request(config["url"], screenshot_path)
+                                )
+                                logger.info(
+                                    f"[RbaExpectations] saved {key}: "
+                                    f"{result.path} ({result.size_bytes} bytes)"
+                                )
+                                results[key] = {
+                                    "success": True,
+                                    "url": f"/cache/australia/policy/{config['filename']}",
+                                    "cached": False,
+                                }
+                            except BrowserRunnerError as e:
+                                logger.error(
+                                    f"[RbaExpectations] {key} capture failed: {e}"
+                                )
+                                results[key] = {
+                                    "success": False,
+                                    "url": None,
+                                    "cached": False,
+                                }
+            except BrowserRunnerError as e:
+                # ブラウザ起動自体の失敗 (playwright 未インストール等)
+                logger.error(f"[RbaExpectations] runner setup failed: {e}")
+                for key, config, _ in to_capture:
+                    results[key] = {
+                        "success": False,
+                        "url": None,
+                        "cached": False,
+                    }
 
         results["last_updated"] = now.isoformat()
 

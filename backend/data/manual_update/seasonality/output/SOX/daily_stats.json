@@ -1,0 +1,3770 @@
+{
+  "symbol": "SOX",
+  "generated_at": "2026-04-08T16:42:33.377664+00:00",
+  "periods": {
+    "full": {
+      "start_year": 2004,
+      "end_year": 2024,
+      "label": "2004-2024"
+    },
+    "recent": {
+      "start_year": 2015,
+      "end_year": 2024,
+      "label": "直近10年"
+    }
+  },
+  "months": [
+    {
+      "month": 1,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 0.1331,
+          "median_pct": -0.3799,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": -0.0036,
+          "median_pct": 0.0575,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": -0.0762,
+          "median_pct": -0.0191,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.5354,
+          "median_pct": 0.4342,
+          "neg_rate": 0.2381
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": 0.253,
+          "median_pct": 0.672,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.2578,
+          "median_pct": 0.304,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.0011,
+          "median_pct": -0.036,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.15,
+          "median_pct": 0.3811,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": -0.0579,
+          "median_pct": 0.0683,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": -0.0765,
+          "median_pct": -0.1287,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.4067,
+          "median_pct": 1.1804,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": -0.4116,
+          "median_pct": -0.0286,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": 0.0683,
+          "median_pct": 0.2641,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.4192,
+          "median_pct": -0.2367,
+          "neg_rate": 0.7143
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": 0.6903,
+          "median_pct": 0.5536,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": 0.2763,
+          "median_pct": 0.2444,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.2885,
+          "median_pct": -0.5057,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": 0.022,
+          "median_pct": 0.6769,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.5206,
+          "median_pct": -0.3951,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 20,
+          "n": 18,
+          "mean_pct": 0.2115,
+          "median_pct": 0.2503,
+          "neg_rate": 0.3889
+        },
+        {
+          "day": 21,
+          "n": 7,
+          "mean_pct": -0.2686,
+          "median_pct": 0.229,
+          "neg_rate": 0.4286
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": 0.0993,
+          "median_pct": 0.1452,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": -0.2995,
+          "median_pct": -0.013,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": -0.357,
+          "median_pct": -0.3179,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.9934,
+          "median_pct": 0.7599,
+          "neg_rate": 0.1
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": -0.1522,
+          "median_pct": 0.0882,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": 0.6153,
+          "median_pct": 0.6793,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": 0.259,
+          "median_pct": -0.0414,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.2794,
+          "median_pct": 0.0986,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.0577,
+          "median_pct": 0.4828,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": -0.1467,
+          "median_pct": -0.5366,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": -0.0095,
+          "median_pct": 0.4635,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": -0.2716,
+          "median_pct": 0.2341,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": 0.543,
+          "median_pct": 0.5437,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": 0.1115,
+          "median_pct": -0.1487,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": 0.4062,
+          "median_pct": 0.4561,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": 0.0761,
+          "median_pct": 0.214,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.8633,
+          "median_pct": -0.8071,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.152,
+          "median_pct": 0.3725,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.0951,
+          "median_pct": 0.2191,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 20,
+          "n": 8,
+          "mean_pct": 0.6539,
+          "median_pct": 0.1496,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 21,
+          "n": 4,
+          "mean_pct": -0.5664,
+          "median_pct": -0.0129,
+          "neg_rate": 0.5
+        }
+      ]
+    },
+    {
+      "month": 2,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 1.1945,
+          "median_pct": 0.9864,
+          "neg_rate": 0.0952
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": 0.1249,
+          "median_pct": 0.498,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": -0.5991,
+          "median_pct": 0.0599,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.8654,
+          "median_pct": 0.9024,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": 0.3442,
+          "median_pct": 0.043,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.2638,
+          "median_pct": 0.5998,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.015,
+          "median_pct": 0.2977,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.1431,
+          "median_pct": -0.1345,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": 0.6613,
+          "median_pct": 0.8945,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": 0.6412,
+          "median_pct": 0.7188,
+          "neg_rate": 0.2381
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.2798,
+          "median_pct": 0.4574,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.2438,
+          "median_pct": 0.0795,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.4796,
+          "median_pct": -0.7352,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.4498,
+          "median_pct": -0.5317,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": -0.3932,
+          "median_pct": 0.0172,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.5998,
+          "median_pct": -0.61,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": 1.3432,
+          "median_pct": 1.4442,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": 0.0163,
+          "median_pct": 0.4342,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.0642,
+          "median_pct": -0.0528,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 20,
+          "n": 4,
+          "mean_pct": -0.8689,
+          "median_pct": -1.066,
+          "neg_rate": 0.75
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": 1.1229,
+          "median_pct": 0.6927,
+          "neg_rate": 0.0
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.2495,
+          "median_pct": 0.5473,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": -0.6572,
+          "median_pct": 0.0805,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.9448,
+          "median_pct": 0.7637,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": -0.5302,
+          "median_pct": -0.7119,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": 0.1769,
+          "median_pct": 0.5601,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": 0.4829,
+          "median_pct": 0.7001,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.2018,
+          "median_pct": -0.2977,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.2421,
+          "median_pct": 0.8256,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": 0.9398,
+          "median_pct": 0.6568,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.7516,
+          "median_pct": 0.4804,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 0.1936,
+          "median_pct": 0.0511,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.2604,
+          "median_pct": -0.2952,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.3563,
+          "median_pct": -0.126,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": -0.2098,
+          "median_pct": 0.1407,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": -0.8989,
+          "median_pct": -0.8592,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": 1.597,
+          "median_pct": 0.7908,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.4649,
+          "median_pct": -0.4257,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.5232,
+          "median_pct": 0.2122,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 20,
+          "n": 2,
+          "mean_pct": 0.4556,
+          "median_pct": 0.4556,
+          "neg_rate": 0.5
+        }
+      ]
+    },
+    {
+      "month": 3,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 0.4819,
+          "median_pct": 0.3589,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": -0.1529,
+          "median_pct": -0.3707,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": -0.0959,
+          "median_pct": 0.0092,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": -0.4907,
+          "median_pct": -0.2396,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": -0.3122,
+          "median_pct": 0.0276,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": -0.665,
+          "median_pct": -0.2578,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": 0.6234,
+          "median_pct": 0.2587,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.2722,
+          "median_pct": -0.068,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": -0.2476,
+          "median_pct": -0.056,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": 0.1741,
+          "median_pct": 0.0625,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": -0.3836,
+          "median_pct": 0.1074,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.9402,
+          "median_pct": 0.0379,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": 0.293,
+          "median_pct": 0.2134,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": 0.3862,
+          "median_pct": 0.3951,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": -0.4403,
+          "median_pct": -0.2197,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": 0.2348,
+          "median_pct": 0.0483,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.0624,
+          "median_pct": -0.1062,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": -0.2072,
+          "median_pct": -0.1044,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": 0.3071,
+          "median_pct": -0.1538,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 20,
+          "n": 21,
+          "mean_pct": 0.0099,
+          "median_pct": -0.4615,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 21,
+          "n": 18,
+          "mean_pct": 0.6519,
+          "median_pct": 0.6936,
+          "neg_rate": 0.2222
+        },
+        {
+          "day": 22,
+          "n": 15,
+          "mean_pct": -0.396,
+          "median_pct": -0.1442,
+          "neg_rate": 0.7333
+        },
+        {
+          "day": 23,
+          "n": 8,
+          "mean_pct": -0.1385,
+          "median_pct": -0.0426,
+          "neg_rate": 0.5
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": 0.566,
+          "median_pct": 1.0404,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": -0.0773,
+          "median_pct": -0.2596,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": -0.0225,
+          "median_pct": 0.0334,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": -0.7274,
+          "median_pct": -0.3974,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": -0.1599,
+          "median_pct": 0.6072,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": -0.612,
+          "median_pct": -0.2115,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": 0.6709,
+          "median_pct": 0.5509,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.733,
+          "median_pct": -0.1673,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": -0.6001,
+          "median_pct": 0.1278,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": 0.1515,
+          "median_pct": 0.0488,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": -0.1023,
+          "median_pct": 0.5661,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 1.4216,
+          "median_pct": 0.2149,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": 0.3907,
+          "median_pct": 0.625,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": 0.8777,
+          "median_pct": 0.8126,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": -0.4001,
+          "median_pct": 0.3028,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": 0.0477,
+          "median_pct": 0.5568,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.3994,
+          "median_pct": -0.621,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.6025,
+          "median_pct": -0.869,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.1536,
+          "median_pct": -0.0326,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean_pct": 0.7017,
+          "median_pct": 0.3059,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 21,
+          "n": 9,
+          "mean_pct": 0.7217,
+          "median_pct": 0.6306,
+          "neg_rate": 0.2222
+        },
+        {
+          "day": 22,
+          "n": 7,
+          "mean_pct": -0.638,
+          "median_pct": -0.3269,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 23,
+          "n": 4,
+          "mean_pct": 0.2794,
+          "median_pct": 0.788,
+          "neg_rate": 0.25
+        }
+      ]
+    },
+    {
+      "month": 4,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 0.0426,
+          "median_pct": -0.1438,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": 0.4324,
+          "median_pct": 0.0692,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": 0.3416,
+          "median_pct": -0.0122,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.0004,
+          "median_pct": 0.402,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": -0.2462,
+          "median_pct": -0.0047,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.0192,
+          "median_pct": -0.2084,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.1756,
+          "median_pct": -0.063,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.035,
+          "median_pct": 0.0088,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": 0.0018,
+          "median_pct": -0.1529,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": -0.4727,
+          "median_pct": 0.0406,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": -0.0864,
+          "median_pct": -0.3067,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.8026,
+          "median_pct": 0.5525,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.6372,
+          "median_pct": -0.5997,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.4585,
+          "median_pct": -0.1769,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": 0.2795,
+          "median_pct": 0.07,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": 0.059,
+          "median_pct": 0.2758,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": 0.2179,
+          "median_pct": 0.4259,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": -0.1079,
+          "median_pct": 0.2825,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.0241,
+          "median_pct": -0.1623,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 20,
+          "n": 18,
+          "mean_pct": -0.2473,
+          "median_pct": -0.1619,
+          "neg_rate": 0.6111
+        },
+        {
+          "day": 21,
+          "n": 14,
+          "mean_pct": -0.5695,
+          "median_pct": -0.2159,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 22,
+          "n": 3,
+          "mean_pct": -0.7902,
+          "median_pct": -1.5616,
+          "neg_rate": 0.6667
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.3905,
+          "median_pct": -0.2868,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.3634,
+          "median_pct": 0.1302,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": 0.0186,
+          "median_pct": -0.3017,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.2164,
+          "median_pct": 0.3115,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": -0.1376,
+          "median_pct": 0.2189,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": 0.0424,
+          "median_pct": -0.3443,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": -0.7131,
+          "median_pct": -0.4434,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.1693,
+          "median_pct": -0.1712,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.6145,
+          "median_pct": 0.5134,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": -0.2736,
+          "median_pct": 0.2767,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": -0.1119,
+          "median_pct": -0.4089,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 0.4021,
+          "median_pct": 0.3881,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.698,
+          "median_pct": -0.6091,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.7445,
+          "median_pct": -0.3305,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": -0.607,
+          "median_pct": -0.4494,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": 0.1552,
+          "median_pct": 0.4904,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.203,
+          "median_pct": -0.4859,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.2118,
+          "median_pct": 0.237,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.4723,
+          "median_pct": 0.7397,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 20,
+          "n": 8,
+          "mean_pct": -0.2221,
+          "median_pct": -0.3112,
+          "neg_rate": 0.625
+        },
+        {
+          "day": 21,
+          "n": 7,
+          "mean_pct": -0.9454,
+          "median_pct": -1.1608,
+          "neg_rate": 0.7143
+        },
+        {
+          "day": 22,
+          "n": 1,
+          "mean_pct": -1.7542,
+          "median_pct": -1.7542,
+          "neg_rate": 1.0
+        }
+      ]
+    },
+    {
+      "month": 5,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 0.1479,
+          "median_pct": -0.1199,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": 0.3215,
+          "median_pct": 0.0643,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": 0.1723,
+          "median_pct": 0.1566,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.1642,
+          "median_pct": 0.1554,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": -0.2944,
+          "median_pct": -0.1101,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": -0.0581,
+          "median_pct": 0.4135,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": 0.5723,
+          "median_pct": 0.6962,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.5318,
+          "median_pct": -0.2036,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": -0.3762,
+          "median_pct": -0.2438,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": 0.5701,
+          "median_pct": 0.1619,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.3492,
+          "median_pct": 0.2651,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.1412,
+          "median_pct": 0.1401,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": 0.0993,
+          "median_pct": -0.0696,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.0692,
+          "median_pct": -0.3253,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": 0.2883,
+          "median_pct": -0.0854,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.0907,
+          "median_pct": 0.2314,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": 0.4056,
+          "median_pct": -0.3369,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": 0.4194,
+          "median_pct": 0.403,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": 0.6992,
+          "median_pct": 0.6026,
+          "neg_rate": 0.1905
+        },
+        {
+          "day": 20,
+          "n": 21,
+          "mean_pct": 0.7008,
+          "median_pct": 0.6001,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 21,
+          "n": 15,
+          "mean_pct": -0.1514,
+          "median_pct": -0.0733,
+          "neg_rate": 0.5333
+        },
+        {
+          "day": 22,
+          "n": 9,
+          "mean_pct": -0.1993,
+          "median_pct": -0.6593,
+          "neg_rate": 0.7778
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": 0.0885,
+          "median_pct": 0.4453,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.1409,
+          "median_pct": -0.2566,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": 0.2391,
+          "median_pct": 0.1559,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.3518,
+          "median_pct": 0.0744,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": 0.1356,
+          "median_pct": 0.2322,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": -0.3006,
+          "median_pct": 0.2119,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": 0.6614,
+          "median_pct": 0.7378,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.5714,
+          "median_pct": -0.1729,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": -0.4666,
+          "median_pct": -0.223,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": 1.1615,
+          "median_pct": 0.8984,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.9242,
+          "median_pct": 1.1749,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 0.4082,
+          "median_pct": 0.4703,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.125,
+          "median_pct": -0.268,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": 0.7809,
+          "median_pct": 0.6401,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": -0.2756,
+          "median_pct": -0.2252,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": 0.5351,
+          "median_pct": 0.4159,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.2801,
+          "median_pct": -0.4448,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": 0.7676,
+          "median_pct": 0.3868,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.5751,
+          "median_pct": 0.3817,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean_pct": 1.1333,
+          "median_pct": 0.6192,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 21,
+          "n": 7,
+          "mean_pct": -0.2698,
+          "median_pct": 0.1095,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 22,
+          "n": 5,
+          "mean_pct": -0.6745,
+          "median_pct": -0.8809,
+          "neg_rate": 1.0
+        }
+      ]
+    },
+    {
+      "month": 6,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": -0.1919,
+          "median_pct": -0.1481,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": 0.3924,
+          "median_pct": 0.1204,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": -0.305,
+          "median_pct": -0.5876,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.2495,
+          "median_pct": 0.5401,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": -0.4865,
+          "median_pct": -0.1339,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.159,
+          "median_pct": 0.1332,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.6657,
+          "median_pct": -0.582,
+          "neg_rate": 0.7143
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.2581,
+          "median_pct": -0.0997,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": -0.3299,
+          "median_pct": -0.1574,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": 0.2173,
+          "median_pct": 0.1746,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.8855,
+          "median_pct": 0.5068,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": -0.2972,
+          "median_pct": 0.0398,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.4194,
+          "median_pct": -0.3681,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.3687,
+          "median_pct": -0.3815,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": -0.0003,
+          "median_pct": 0.1387,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.3853,
+          "median_pct": -0.23,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.1582,
+          "median_pct": -0.3366,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": -0.1362,
+          "median_pct": -0.2619,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.6921,
+          "median_pct": -0.2809,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 20,
+          "n": 20,
+          "mean_pct": 0.2033,
+          "median_pct": 0.365,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 21,
+          "n": 18,
+          "mean_pct": 0.2742,
+          "median_pct": 0.1056,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 22,
+          "n": 10,
+          "mean_pct": 0.1292,
+          "median_pct": -0.2419,
+          "neg_rate": 0.6
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.2466,
+          "median_pct": -0.2583,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.7916,
+          "median_pct": 0.5151,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": -0.154,
+          "median_pct": -0.5451,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.3261,
+          "median_pct": 0.6127,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": 0.1799,
+          "median_pct": 0.2176,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": -0.0023,
+          "median_pct": 0.1277,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": -0.7511,
+          "median_pct": -0.4295,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": 0.1879,
+          "median_pct": 0.5298,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": -0.6779,
+          "median_pct": -0.1826,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": 0.1103,
+          "median_pct": 0.2308,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.5386,
+          "median_pct": 0.4639,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": -0.2031,
+          "median_pct": -0.2193,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.1833,
+          "median_pct": -0.1236,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.5388,
+          "median_pct": -0.3098,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": -0.3357,
+          "median_pct": -0.1137,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": -0.0341,
+          "median_pct": -0.042,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.0483,
+          "median_pct": -0.3267,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.1904,
+          "median_pct": -0.5674,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": -0.913,
+          "median_pct": -0.5536,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 20,
+          "n": 9,
+          "mean_pct": -0.0666,
+          "median_pct": -0.3534,
+          "neg_rate": 0.5556
+        },
+        {
+          "day": 21,
+          "n": 8,
+          "mean_pct": -0.0126,
+          "median_pct": 0.4,
+          "neg_rate": 0.375
+        },
+        {
+          "day": 22,
+          "n": 5,
+          "mean_pct": 0.4367,
+          "median_pct": -0.0376,
+          "neg_rate": 0.6
+        }
+      ]
+    },
+    {
+      "month": 7,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": -0.28,
+          "median_pct": -0.0143,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": -0.2029,
+          "median_pct": -0.1477,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": -0.0532,
+          "median_pct": 0.2898,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.1603,
+          "median_pct": 0.4792,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": 0.1907,
+          "median_pct": 0.107,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.2019,
+          "median_pct": 0.6178,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": 0.0278,
+          "median_pct": 0.4521,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.0453,
+          "median_pct": -0.1504,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": -0.0375,
+          "median_pct": -0.0621,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": 0.0191,
+          "median_pct": -0.1508,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.175,
+          "median_pct": 0.1115,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.6598,
+          "median_pct": 0.4149,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": 0.5124,
+          "median_pct": 0.7846,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.8146,
+          "median_pct": -0.4205,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": 0.4832,
+          "median_pct": 0.6057,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.1643,
+          "median_pct": 0.0995,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.2416,
+          "median_pct": 0.2522,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": -0.1818,
+          "median_pct": -0.6291,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": 0.061,
+          "median_pct": -0.0298,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 20,
+          "n": 21,
+          "mean_pct": 0.2275,
+          "median_pct": 0.114,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 21,
+          "n": 14,
+          "mean_pct": 0.0962,
+          "median_pct": 0.5569,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 22,
+          "n": 8,
+          "mean_pct": -0.3352,
+          "median_pct": -0.2821,
+          "neg_rate": 0.625
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.6882,
+          "median_pct": -1.0147,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.1422,
+          "median_pct": -0.1255,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": 0.5323,
+          "median_pct": 0.5937,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.1649,
+          "median_pct": 0.2169,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": 0.8112,
+          "median_pct": 0.9448,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": 0.1254,
+          "median_pct": 0.5784,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": 0.1682,
+          "median_pct": 0.3957,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.3038,
+          "median_pct": -0.2028,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.5089,
+          "median_pct": 0.6625,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": -0.0234,
+          "median_pct": -0.2801,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.1386,
+          "median_pct": 0.1861,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 0.0299,
+          "median_pct": 0.0485,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": 0.4856,
+          "median_pct": 0.6948,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.232,
+          "median_pct": -0.2532,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": 0.2205,
+          "median_pct": 0.389,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": -0.0268,
+          "median_pct": 0.2214,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.104,
+          "median_pct": 0.2795,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.0717,
+          "median_pct": -0.7425,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.1491,
+          "median_pct": -0.0209,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean_pct": 0.1358,
+          "median_pct": 0.1003,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 21,
+          "n": 6,
+          "mean_pct": 0.1459,
+          "median_pct": 0.8753,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 22,
+          "n": 4,
+          "mean_pct": -0.5264,
+          "median_pct": -0.8335,
+          "neg_rate": 0.75
+        }
+      ]
+    },
+    {
+      "month": 8,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": -0.2682,
+          "median_pct": -0.0143,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": -0.2114,
+          "median_pct": -0.124,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": 0.6338,
+          "median_pct": 0.6948,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": -0.2897,
+          "median_pct": 0.071,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": -0.4049,
+          "median_pct": 0.2248,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.3336,
+          "median_pct": 0.1629,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.0879,
+          "median_pct": -0.201,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.1024,
+          "median_pct": 0.0851,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": 0.2895,
+          "median_pct": -0.0575,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": -0.0432,
+          "median_pct": -0.3109,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.4222,
+          "median_pct": 0.5539,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.0596,
+          "median_pct": -0.1618,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": 0.0823,
+          "median_pct": -0.4051,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.0349,
+          "median_pct": -0.0539,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": 0.0625,
+          "median_pct": 0.0183,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.0169,
+          "median_pct": 0.0422,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.18,
+          "median_pct": -0.0972,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": -0.1044,
+          "median_pct": 0.2183,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.1364,
+          "median_pct": 0.0601,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 20,
+          "n": 21,
+          "mean_pct": 0.2483,
+          "median_pct": 0.51,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 21,
+          "n": 21,
+          "mean_pct": 0.2438,
+          "median_pct": 0.0805,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 22,
+          "n": 16,
+          "mean_pct": -0.2438,
+          "median_pct": -0.4165,
+          "neg_rate": 0.625
+        },
+        {
+          "day": 23,
+          "n": 10,
+          "mean_pct": 0.1775,
+          "median_pct": 0.6321,
+          "neg_rate": 0.4
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.472,
+          "median_pct": -0.1059,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": -0.2231,
+          "median_pct": -0.5583,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": 0.8943,
+          "median_pct": 0.6659,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.0711,
+          "median_pct": 0.2243,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": -0.0124,
+          "median_pct": 0.6819,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": 0.6327,
+          "median_pct": 0.1117,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": -0.7758,
+          "median_pct": -0.9256,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": 0.1045,
+          "median_pct": -0.4207,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.3238,
+          "median_pct": -0.263,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": 0.5447,
+          "median_pct": 0.0809,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.4339,
+          "median_pct": 0.3409,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": -0.4639,
+          "median_pct": -0.6238,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.4999,
+          "median_pct": -0.8558,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": 0.1825,
+          "median_pct": 0.1542,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": 0.2807,
+          "median_pct": 0.492,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": -0.0649,
+          "median_pct": 0.0396,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": -0.101,
+          "median_pct": 0.2591,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.4945,
+          "median_pct": -0.1009,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": 0.5144,
+          "median_pct": 0.3643,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean_pct": -0.0795,
+          "median_pct": 0.2523,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 21,
+          "n": 10,
+          "mean_pct": 0.3583,
+          "median_pct": 0.1738,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 22,
+          "n": 8,
+          "mean_pct": -0.2846,
+          "median_pct": -0.4165,
+          "neg_rate": 0.625
+        },
+        {
+          "day": 23,
+          "n": 5,
+          "mean_pct": 0.1827,
+          "median_pct": 0.6522,
+          "neg_rate": 0.4
+        }
+      ]
+    },
+    {
+      "month": 9,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": -0.4336,
+          "median_pct": -0.5341,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": -0.0418,
+          "median_pct": -0.0592,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": -0.41,
+          "median_pct": 0.195,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": -0.0997,
+          "median_pct": -0.1218,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": 0.2315,
+          "median_pct": 0.1507,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": 0.2292,
+          "median_pct": 0.5715,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": 0.7915,
+          "median_pct": 0.2071,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": 0.214,
+          "median_pct": 0.1849,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": 0.2729,
+          "median_pct": 0.2629,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": -0.3702,
+          "median_pct": -0.1551,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.5533,
+          "median_pct": 0.4698,
+          "neg_rate": 0.1905
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": -0.1075,
+          "median_pct": -0.3177,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.031,
+          "median_pct": -0.2303,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.4253,
+          "median_pct": -0.4836,
+          "neg_rate": 0.7143
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": -0.5849,
+          "median_pct": -0.6281,
+          "neg_rate": 0.7143
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.154,
+          "median_pct": 0.2107,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.0246,
+          "median_pct": -0.2542,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": 0.0207,
+          "median_pct": -0.0202,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": 0.0101,
+          "median_pct": 0.389,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 20,
+          "n": 18,
+          "mean_pct": -0.4619,
+          "median_pct": 0.4434,
+          "neg_rate": 0.3889
+        },
+        {
+          "day": 21,
+          "n": 12,
+          "mean_pct": 0.4682,
+          "median_pct": 0.4984,
+          "neg_rate": 0.4167
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.4924,
+          "median_pct": -0.0889,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.0011,
+          "median_pct": 0.163,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": -0.58,
+          "median_pct": -0.3562,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": -0.3783,
+          "median_pct": -0.1519,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": 0.2661,
+          "median_pct": 0.0025,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": -0.1533,
+          "median_pct": 0.4227,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": 0.6948,
+          "median_pct": 0.2701,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.177,
+          "median_pct": -0.1039,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.1999,
+          "median_pct": 0.1113,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": 0.1888,
+          "median_pct": 0.4423,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.2517,
+          "median_pct": 0.5071,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 0.0615,
+          "median_pct": -0.2027,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.7809,
+          "median_pct": -0.7493,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.3421,
+          "median_pct": -0.4207,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": 0.1166,
+          "median_pct": 0.2892,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": -0.7281,
+          "median_pct": -0.9216,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": 0.2416,
+          "median_pct": 0.1766,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": 0.2926,
+          "median_pct": 0.1154,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": -0.0351,
+          "median_pct": 0.3721,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 20,
+          "n": 9,
+          "mean_pct": -0.0769,
+          "median_pct": 0.3605,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 21,
+          "n": 5,
+          "mean_pct": 0.3858,
+          "median_pct": 0.4846,
+          "neg_rate": 0.4
+        }
+      ]
+    },
+    {
+      "month": 10,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": -0.5006,
+          "median_pct": -0.4305,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": -0.0108,
+          "median_pct": -0.0218,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": 0.622,
+          "median_pct": 0.7029,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": -0.1718,
+          "median_pct": -0.2432,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": -0.4161,
+          "median_pct": -0.1992,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": -0.34,
+          "median_pct": -0.4065,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.3614,
+          "median_pct": -0.3585,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.2498,
+          "median_pct": 0.0016,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": 0.8606,
+          "median_pct": -0.1455,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": -0.4876,
+          "median_pct": 0.0018,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": -0.4845,
+          "median_pct": 0.0392,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.3855,
+          "median_pct": 0.0777,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.1198,
+          "median_pct": 0.1125,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.0135,
+          "median_pct": -0.0935,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": -0.2706,
+          "median_pct": -0.3319,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": -0.068,
+          "median_pct": 0.0712,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": 0.006,
+          "median_pct": 0.1966,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": -0.7398,
+          "median_pct": -0.4277,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.0162,
+          "median_pct": 0.0968,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 20,
+          "n": 21,
+          "mean_pct": 0.7028,
+          "median_pct": 0.6407,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 21,
+          "n": 21,
+          "mean_pct": 0.1477,
+          "median_pct": 0.3488,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 22,
+          "n": 13,
+          "mean_pct": 0.3352,
+          "median_pct": 0.0939,
+          "neg_rate": 0.4615
+        },
+        {
+          "day": 23,
+          "n": 7,
+          "mean_pct": 0.1232,
+          "median_pct": 0.3364,
+          "neg_rate": 0.4286
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.4074,
+          "median_pct": -0.2331,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": 0.089,
+          "median_pct": -0.1553,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": 1.0475,
+          "median_pct": 0.8945,
+          "neg_rate": 0.1
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.03,
+          "median_pct": -0.3306,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": -0.1393,
+          "median_pct": 0.1505,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": -0.4165,
+          "median_pct": -0.0301,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": -0.1531,
+          "median_pct": -0.1125,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": -0.2799,
+          "median_pct": 0.1591,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.6411,
+          "median_pct": -0.1975,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": -0.4051,
+          "median_pct": 0.0337,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": -0.2251,
+          "median_pct": -0.0125,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": -0.0233,
+          "median_pct": -0.0298,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.1869,
+          "median_pct": 0.036,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.476,
+          "median_pct": -0.3432,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": 0.1017,
+          "median_pct": -0.0509,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": 0.1593,
+          "median_pct": 0.0106,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": 0.6057,
+          "median_pct": 0.3403,
+          "neg_rate": 0.1
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.9615,
+          "median_pct": -0.6982,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": -0.3114,
+          "median_pct": -0.0753,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean_pct": 0.5624,
+          "median_pct": 0.7944,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 21,
+          "n": 10,
+          "mean_pct": 0.0114,
+          "median_pct": -0.3238,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 22,
+          "n": 7,
+          "mean_pct": 0.6571,
+          "median_pct": 0.5509,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 23,
+          "n": 3,
+          "mean_pct": -1.0342,
+          "median_pct": -0.2721,
+          "neg_rate": 1.0
+        }
+      ]
+    },
+    {
+      "month": 11,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 0.1278,
+          "median_pct": -0.411,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": 0.0201,
+          "median_pct": 0.1257,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": 0.3106,
+          "median_pct": 0.347,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": 0.4216,
+          "median_pct": 0.6095,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": 0.2658,
+          "median_pct": 0.4725,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": -0.195,
+          "median_pct": 0.1866,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": -0.5928,
+          "median_pct": -0.6713,
+          "neg_rate": 0.7143
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": -0.1406,
+          "median_pct": -0.2023,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": 0.9196,
+          "median_pct": 0.6998,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": -0.2106,
+          "median_pct": -0.174,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": 0.1967,
+          "median_pct": 0.0483,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": 0.3032,
+          "median_pct": 0.3573,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.5013,
+          "median_pct": -0.5159,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": 0.2337,
+          "median_pct": 0.1772,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": -0.0201,
+          "median_pct": 0.026,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": 0.5343,
+          "median_pct": 0.3536,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": -0.1806,
+          "median_pct": 0.0623,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": 0.6307,
+          "median_pct": 0.1473,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": 0.1628,
+          "median_pct": 0.1372,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 20,
+          "n": 19,
+          "mean_pct": -0.2412,
+          "median_pct": -0.07,
+          "neg_rate": 0.6842
+        },
+        {
+          "day": 21,
+          "n": 13,
+          "mean_pct": 0.3961,
+          "median_pct": -0.1882,
+          "neg_rate": 0.6154
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": 0.5822,
+          "median_pct": 0.591,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": -0.2229,
+          "median_pct": 0.4619,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": 0.6371,
+          "median_pct": 0.7359,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": 0.4729,
+          "median_pct": 0.4269,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": 0.7614,
+          "median_pct": 0.7455,
+          "neg_rate": 0.1
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": -0.0993,
+          "median_pct": 0.1536,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": -0.6965,
+          "median_pct": -0.8321,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": 0.1568,
+          "median_pct": -0.245,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": 0.4059,
+          "median_pct": 0.4844,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": -0.2274,
+          "median_pct": -0.3442,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.4556,
+          "median_pct": -0.0826,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": 0.687,
+          "median_pct": 0.8952,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": 0.0432,
+          "median_pct": 0.2034,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": 0.544,
+          "median_pct": 0.3062,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": -0.1793,
+          "median_pct": -0.1239,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": -0.0589,
+          "median_pct": -0.2404,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": 0.4966,
+          "median_pct": 0.2094,
+          "neg_rate": 0.2
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": -0.0468,
+          "median_pct": -0.0806,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": -0.1122,
+          "median_pct": -0.0225,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean_pct": -0.1405,
+          "median_pct": -0.2384,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 21,
+          "n": 6,
+          "mean_pct": 0.593,
+          "median_pct": -0.5264,
+          "neg_rate": 0.6667
+        }
+      ]
+    },
+    {
+      "month": 12,
+      "full": [
+        {
+          "day": 1,
+          "n": 21,
+          "mean_pct": 0.2874,
+          "median_pct": 0.0796,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 2,
+          "n": 21,
+          "mean_pct": 0.1606,
+          "median_pct": 0.5227,
+          "neg_rate": 0.3333
+        },
+        {
+          "day": 3,
+          "n": 21,
+          "mean_pct": 0.5563,
+          "median_pct": 0.2436,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 4,
+          "n": 21,
+          "mean_pct": -0.0199,
+          "median_pct": 0.1276,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 5,
+          "n": 21,
+          "mean_pct": 0.5402,
+          "median_pct": 0.372,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 6,
+          "n": 21,
+          "mean_pct": -0.11,
+          "median_pct": 0.1225,
+          "neg_rate": 0.4286
+        },
+        {
+          "day": 7,
+          "n": 21,
+          "mean_pct": 0.2384,
+          "median_pct": -0.1783,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 8,
+          "n": 21,
+          "mean_pct": 0.03,
+          "median_pct": -0.1342,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 9,
+          "n": 21,
+          "mean_pct": -0.5751,
+          "median_pct": -0.7117,
+          "neg_rate": 0.6667
+        },
+        {
+          "day": 10,
+          "n": 21,
+          "mean_pct": 0.1775,
+          "median_pct": -0.242,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 11,
+          "n": 21,
+          "mean_pct": -0.0946,
+          "median_pct": -0.1024,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 12,
+          "n": 21,
+          "mean_pct": -0.1948,
+          "median_pct": -0.0635,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean_pct": -0.521,
+          "median_pct": -0.216,
+          "neg_rate": 0.619
+        },
+        {
+          "day": 14,
+          "n": 21,
+          "mean_pct": -0.3792,
+          "median_pct": -0.1231,
+          "neg_rate": 0.5238
+        },
+        {
+          "day": 15,
+          "n": 21,
+          "mean_pct": 0.3213,
+          "median_pct": 0.5934,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 16,
+          "n": 21,
+          "mean_pct": 0.4507,
+          "median_pct": 0.1749,
+          "neg_rate": 0.4762
+        },
+        {
+          "day": 17,
+          "n": 21,
+          "mean_pct": 0.1632,
+          "median_pct": 0.2221,
+          "neg_rate": 0.2857
+        },
+        {
+          "day": 18,
+          "n": 21,
+          "mean_pct": 0.1376,
+          "median_pct": 0.1442,
+          "neg_rate": 0.381
+        },
+        {
+          "day": 19,
+          "n": 21,
+          "mean_pct": -0.5494,
+          "median_pct": -0.431,
+          "neg_rate": 0.8571
+        },
+        {
+          "day": 20,
+          "n": 20,
+          "mean_pct": 0.0638,
+          "median_pct": -0.1369,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 21,
+          "n": 15,
+          "mean_pct": 0.2439,
+          "median_pct": 0.1718,
+          "neg_rate": 0.4667
+        },
+        {
+          "day": 22,
+          "n": 8,
+          "mean_pct": -0.1808,
+          "median_pct": -0.2108,
+          "neg_rate": 0.625
+        }
+      ],
+      "recent": [
+        {
+          "day": 1,
+          "n": 10,
+          "mean_pct": -0.5682,
+          "median_pct": -0.3942,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 2,
+          "n": 10,
+          "mean_pct": -0.2468,
+          "median_pct": 0.3299,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 3,
+          "n": 10,
+          "mean_pct": -0.1567,
+          "median_pct": -0.0629,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 4,
+          "n": 10,
+          "mean_pct": -0.2934,
+          "median_pct": -0.0061,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 5,
+          "n": 10,
+          "mean_pct": 0.9914,
+          "median_pct": 0.84,
+          "neg_rate": 0.1
+        },
+        {
+          "day": 6,
+          "n": 10,
+          "mean_pct": 0.123,
+          "median_pct": 0.3298,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 7,
+          "n": 10,
+          "mean_pct": -0.6892,
+          "median_pct": -0.8695,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 8,
+          "n": 10,
+          "mean_pct": 0.5461,
+          "median_pct": 0.6944,
+          "neg_rate": 0.4
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean_pct": -0.2159,
+          "median_pct": -0.0918,
+          "neg_rate": 0.5
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean_pct": -0.0924,
+          "median_pct": -0.1806,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean_pct": 0.6073,
+          "median_pct": 0.6224,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 12,
+          "n": 10,
+          "mean_pct": -0.9617,
+          "median_pct": -0.3178,
+          "neg_rate": 0.8
+        },
+        {
+          "day": 13,
+          "n": 10,
+          "mean_pct": -0.8093,
+          "median_pct": -0.3456,
+          "neg_rate": 0.7
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean_pct": -0.6746,
+          "median_pct": -0.4821,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 15,
+          "n": 10,
+          "mean_pct": 0.4944,
+          "median_pct": 0.9202,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 16,
+          "n": 10,
+          "mean_pct": 0.4921,
+          "median_pct": -0.0789,
+          "neg_rate": 0.6
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean_pct": 0.6212,
+          "median_pct": 0.6057,
+          "neg_rate": 0.1
+        },
+        {
+          "day": 18,
+          "n": 10,
+          "mean_pct": 0.4248,
+          "median_pct": 0.3766,
+          "neg_rate": 0.3
+        },
+        {
+          "day": 19,
+          "n": 10,
+          "mean_pct": -0.8279,
+          "median_pct": -0.5796,
+          "neg_rate": 1.0
+        },
+        {
+          "day": 20,
+          "n": 9,
+          "mean_pct": -0.0024,
+          "median_pct": -0.1181,
+          "neg_rate": 0.5556
+        },
+        {
+          "day": 21,
+          "n": 7,
+          "mean_pct": -0.2574,
+          "median_pct": -0.9113,
+          "neg_rate": 0.5714
+        },
+        {
+          "day": 22,
+          "n": 3,
+          "mean_pct": -0.4024,
+          "median_pct": -0.3609,
+          "neg_rate": 0.6667
+        }
+      ]
+    }
+  ]
+}

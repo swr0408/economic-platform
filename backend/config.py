@@ -20,6 +20,11 @@ ALLOWED_ORIGINS: List[str] = [
 _root = os.getenv("SEASONALITY_DIR")
 SEASONALITY_DIR: Path = Path(_root) if _root else Path(__file__).parent.parent / "data" / "seasonality"
 
+# Seasonality 統計JSON出力ディレクトリ（手動更新）
+SEASONALITY_STATS_DIR: Path = (
+    Path(__file__).parent / "data" / "manual_update" / "seasonality" / "output"
+)
+
 # Screenshots データディレクトリ
 _screenshot_root = os.getenv("SCREENSHOT_DIR")
 SCREENSHOT_DIR: Path = Path(_screenshot_root) if _screenshot_root else Path(__file__).parent.parent / "screenshots"
@@ -55,17 +60,10 @@ ASSET_CATEGORIES: Dict[str, Dict] = {
     "commodities": {
         "name": "商品",
         "symbols": [
-            "AUD建てゴールド",
-            "CAD建てゴールド",
-            "CHF建てゴールド",
-            "EUR建てゴールド",
-            "GBP建てゴールド",
-            "NZD建てゴールド",
             "シルバー",
             "ドル建てゴールド",
             "ブレント原油",
-            "円建てゴールド",
-            "原油",
+            "WTI原油",
             "天然ガス",
             "銅",
         ],

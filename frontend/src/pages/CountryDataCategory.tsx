@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { Card, Typography, Space, Button, Empty } from 'antd'
+import { Card, Typography, Space, Button, Empty, Tooltip } from 'antd'
 import {
   ArrowLeftOutlined,
   BankOutlined,
@@ -14,7 +14,9 @@ import {
   MenuFoldOutlined,
   GlobalOutlined,
   SoundOutlined,
+  QuestionCircleOutlined,
 } from '@ant-design/icons'
+import { useHandbook } from '../contexts/HandbookContext'
 import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
 import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
 import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
@@ -137,6 +139,24 @@ const CATEGORY_INFO: Record<
   },
 }
 
+// 国×カテゴリ → データハンドブックのヘルプアイコン（複数可）
+type CountryCategoryHandbook = { id: string; tooltip: string }
+const COUNTRY_CATEGORY_HANDBOOKS: Record<string, CountryCategoryHandbook[]> = {
+  'usa/policy': [
+    { id: 'neutral-rate', tooltip: '中立金利 - データハンドブック' },
+  ],
+  'usa/employment': [
+    { id: 'btp-bund-spread', tooltip: '伊独国債利回りスプレッド - データハンドブック' },
+  ],
+  'eurozone/policy': [
+    { id: 'ecb-policy-framework', tooltip: 'ECB政策枠組み - データハンドブック' },
+    { id: 'btp-bund-spread', tooltip: '伊独国債利回りスプレッド - データハンドブック' },
+  ],
+  'uk/housing': [
+    { id: 'uk-housing-market', tooltip: '英国住宅市場 - データハンドブック' },
+  ],
+}
+
 // 各国コード → ヘッドラインカテゴリ名のプレフィックス（seed_country_categories に対応）
 const COUNTRY_HEADLINE_PREFIX: Record<string, string> = {
   usa: 'USA:',
@@ -203,6 +223,7 @@ const CALENDAR_SIDEBAR_MAX_WIDTH = 800
 function CountryDataCategory() {
   const { countryCode, categoryCode } = useParams()
   const location = useLocation()
+  const { openHandbook } = useHandbook()
   const [calendarOpen, setCalendarOpen] = useState(true)
   const [sidebarTab, setSidebarTab] = useState<'calendar' | 'headlines'>('calendar')
   const [sidebarWidth, setSidebarWidth] = useState(CALENDAR_SIDEBAR_DEFAULT_WIDTH)
@@ -283,6 +304,7 @@ function CountryDataCategory() {
   const country = COUNTRY_INFO[countryCode]
   const category = CATEGORY_INFO[categoryCode]
   const indicators = INDICATORS_BY_COUNTRY_CATEGORY[countryCode]?.[categoryCode] || []
+  const categoryHandbooks = COUNTRY_CATEGORY_HANDBOOKS[`${countryCode}/${categoryCode}`] ?? []
 
   // USA金融政策・経済・消費・雇用・物価・住宅の場合はチャートを表示
   const isUSAPolicy = countryCode === 'usa' && categoryCode === 'policy'
@@ -548,9 +570,30 @@ function CountryDataCategory() {
               {category.icon}
             </div>
             <div>
-              <Title level={2} style={{ margin: 0 }}>
-                {country.name} - {category.name}
-              </Title>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <Title level={2} style={{ margin: 0 }}>
+                  {country.name} - {category.name}
+                </Title>
+                {categoryHandbooks.map((entry) => (
+                  <Tooltip key={entry.id} title={entry.tooltip}>
+                    <QuestionCircleOutlined
+                      onClick={() => openHandbook(entry.id)}
+                      style={{
+                        fontSize: 18,
+                        color: colors.textSecondary,
+                        cursor: 'pointer',
+                        transition: 'color 0.2s',
+                      }}
+                      onMouseEnter={(e) => {
+                        ;(e.target as HTMLElement).style.color = '#10b981'
+                      }}
+                      onMouseLeave={(e) => {
+                        ;(e.target as HTMLElement).style.color = colors.textSecondary
+                      }}
+                    />
+                  </Tooltip>
+                ))}
+              </div>
               <Text type="secondary" style={{ fontSize: 16 }}>
                 {category.description}
               </Text>

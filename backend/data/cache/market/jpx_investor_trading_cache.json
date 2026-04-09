@@ -5309,6 +5309,16 @@
       "business_corps": null,
       "proprietary": null,
       "nikkei_close": 52463.27
+    },
+    {
+      "date": "2026-04-03",
+      "individuals": null,
+      "foreigners": null,
+      "trust_banks": null,
+      "investment_trusts": null,
+      "business_corps": null,
+      "proprietary": null,
+      "nikkei_close": 56225.77
     }
   ],
   "latest": {
@@ -5322,19 +5332,19 @@
     "nikkei_close": 52463.27
   },
   "latest_nikkei": {
-    "date": "2026-04-02",
-    "close": 52463.27
+    "date": "2026-04-08",
+    "close": 56225.77
   },
   "metadata": {
     "source": "JPX + yfinance (^N225)",
     "indicator": "Investor Type Weekly Trading (Net)",
     "unit": "億円",
     "frequency": "weekly",
-    "data_count": 531,
+    "data_count": 532,
     "start_date": "2016-01-04",
-    "end_date": "2026-03-27"
+    "end_date": "2026-04-03"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-02T18:03:33.027225+09:00"
+  "last_updated": "2026-04-08T11:06:54.326777+09:00"
 }

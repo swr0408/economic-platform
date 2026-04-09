@@ -248,6 +248,7 @@ export default function IfoBusinessClimateChart({ data }: IfoBusinessClimateChar
         showPeriodSelector={false}
         dataSource="IFO"
         sourceUrl="https://www.ifo.de/fakten/2025-12-17/ifo-geschaeftsklimaindex-gesunken-dezember-2025"
+        handbookId="ifo-business-climate"
       >
         <Tabs
           defaultActiveKey="chart"

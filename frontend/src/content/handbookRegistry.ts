@@ -1878,6 +1878,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PMI', 'HCOB', 'ドイツ', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
   },
 
+  // --- 英国 / BOEの見方（概要） ---
+  {
+    indicatorId: 'uk-boe-overview',
+    title: 'イギリスとBOEの見方',
+    country: 'uk',
+    category: 'policy',
+    summary: 'BOEはCPI2％の対称目標を最優先。FRB・ECBへの機械的追随ではなく国内インフレ・需要への波及で判断。サービスインフレ・賃金・家計消費の弱さ・労働需給が重要な確認項目。',
+    loadContent: loadMd('uk/uk-boe-overview.md'),
+    relatedIndicators: ['uk-ppi', 'uk-boe-inflation-attitudes', 'uk-pmi'],
+    tags: ['BOE', 'イングランド銀行', '英国', 'ポンド', 'GBP', 'MPC', 'CPI', 'サービスインフレ', '賃金', '家計消費', 'Dhingra', 'OIS', 'FRB', 'ECB'],
+  },
+
   // --- 英国 / PPI ---
   {
     indicatorId: 'uk-ppi',
@@ -1912,6 +1924,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('uk/pmi.md'),
     relatedIndicators: ['uk-ppi', 'global-manufacturing-pmi'],
     tags: ['PMI', 'S&P Global', '英国', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- 英国 / 住宅市場 ---
+  {
+    indicatorId: 'uk-housing-market',
+    title: '英国住宅市場',
+    country: 'uk',
+    category: 'housing',
+    summary: '英国は家計債務に占める住宅ローンの比重が大きく、BOEも住宅市場を金利政策・金融安定・家計行動と結びつけて重視。需要は承認件数→価格→着工の順で遅れて波及し、affordability悪化時は追い風とは限らない。',
+    loadContent: loadMd('uk/uk-housing-market.md'),
+    relatedIndicators: ['uk-boe-overview', 'uk-boe-inflation-attitudes'],
+    tags: ['英国', '住宅', 'BOE', 'イングランド銀行', '住宅ローン', 'Mortgage', 'affordability', '住宅価格', 'HMRC', '家計消費', '信用循環', '建設', 'ポンド', 'GBP'],
   },
 
   // --- カナダ / IPPI ---
@@ -1996,6 +2020,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['中国', '在庫', '電気機器', 'NBS', 'SOX', '半導体', 'エレクトロニクス循環', '遅行指標'],
   },
 
+  // --- スイス / 概要 ---
+  {
+    indicatorId: 'ch-overview',
+    title: 'スイス経済とスイスフランの見方',
+    country: 'switzerland',
+    category: 'economy',
+    summary: '小規模な開放経済でEUが最重要の貿易相手。SNBは0〜2%の物価安定を最優先とし、フラン高/安の双方に対応。輸出の中核は化学・医薬品（52.7%）で、就業者の77.8%は第3次産業。フランは安全資産として有事に買われやすいが、SNBの姿勢と金利差まで含めて判断する必要がある。',
+    loadContent: loadMd('switzerland/ch-overview.md'),
+    relatedIndicators: ['ch-pmi', 'ch-ppi'],
+    tags: ['スイス', 'CHF', 'スイスフラン', 'SNB', '物価安定', '化学', '医薬品', 'サービス業', 'EU', '安全資産', '有事', '為替', 'SECO', 'FSO'],
+  },
+
   // --- スイス / PPI ---
   {
     indicatorId: 'ch-ppi',
@@ -2018,6 +2054,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('switzerland/ch-pmi.md'),
     relatedIndicators: ['ch-ppi', 'global-manufacturing-pmi'],
     tags: ['PMI', 'procure.ch', 'UBS', 'スイス', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- スイス / KOF先行指数 ---
+  {
+    indicatorId: 'kof-barometer',
+    title: 'KOF先行指数（KOF Economic Barometer）',
+    country: 'switzerland',
+    category: 'consumer',
+    summary: 'KOF Swiss Economic Instituteが毎月公表するスイスの景気先行総合指数。GDP月次成長率を参照系列に300超の経済系列を合成。100が平均で、上下から景気モメンタムを先回り把握する。',
+    loadContent: loadMd('switzerland/kof-barometer.md'),
+    relatedIndicators: ['ch-pmi', 'ch-overview'],
+    tags: ['KOF', 'KOF Barometer', '先行指標', '景気', 'スイス', 'ETH Zurich', 'GDP', '景気循環', 'モメンタム', '製造業', '輸出'],
   },
 
   // --- ニュージーランド / PPI ---
@@ -2356,4 +2404,61 @@ export const HANDBOOK_COUNTRY_LABELS: Record<string, string> = {
   switzerland: 'スイス',
   global: 'グローバル',
   market: 'マーケット',
+}
+
+// --- 表示順序定義（サイドバーとページ本文で共有） ---
+export const HANDBOOK_COUNTRY_ORDER = [
+  'usa',
+  'japan',
+  'eurozone',
+  'uk',
+  'china',
+  'australia',
+  'newzealand',
+  'canada',
+  'switzerland',
+  'global',
+  'market',
+]
+
+export const HANDBOOK_CATEGORY_ORDER = [
+  'policy',
+  'economy',
+  'consumer',
+  'employment',
+  'inflation',
+  'housing',
+  'equities',
+  'forex',
+  'commodities',
+  'energy',
+  'cot',
+  'flow',
+  'rebalance',
+  'anomaly',
+  'options',
+  'correlation',
+]
+
+/** ハンドブックエントリーをサイドバーと同じ順序でソート */
+export function sortHandbookEntries(entries: HandbookEntry[]): HandbookEntry[] {
+  const countryRank = (c: string) => {
+    const i = HANDBOOK_COUNTRY_ORDER.indexOf(c)
+    return i === -1 ? HANDBOOK_COUNTRY_ORDER.length : i
+  }
+  const categoryRank = (c: string) => {
+    const i = HANDBOOK_CATEGORY_ORDER.indexOf(c)
+    return i === -1 ? HANDBOOK_CATEGORY_ORDER.length : i
+  }
+  // 元のインデックスを保持して安定ソート
+  return entries
+    .map((entry, idx) => ({ entry, idx }))
+    .sort((a, b) => {
+      const cd = countryRank(a.entry.country) - countryRank(b.entry.country)
+      if (cd !== 0) return cd
+      const cat = categoryRank(a.entry.category) - categoryRank(b.entry.category)
+      if (cat !== 0) return cat
+      return a.idx - b.idx
+    })
+    .map((x) => x.entry)
 }

@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas'
 import PeriodSelector, { type PeriodValue } from './PeriodSelector'
 import { useHandbook } from '../../contexts/HandbookContext'
 import { HANDBOOK_MAP } from '../../content/handbookRegistry'
+import { useIsMaster } from '../../hooks/useIsMaster'
 
 const { Title } = Typography
 
@@ -58,8 +59,13 @@ export default function ChartContainer({
   const hasHandbook = handbookId && HANDBOOK_MAP.has(handbookId)
   const cardRef = useRef<HTMLDivElement>(null)
   const [copying, setCopying] = useState(false)
+  // チャートキャプチャ (html2canvas) 機能は master 限定
+  // (非 master には 📷 アイコンを一切描画しない。万一 DOM から強引に発火された
+  //  場合の二重防御として handleCopyChart 先頭でも role を再チェックする)
+  const isMaster = useIsMaster()
 
   const handleCopyChart = useCallback(async () => {
+    if (!isMaster) return
     if (!cardRef.current || copying) return
     setCopying(true)
     try {
@@ -96,7 +102,7 @@ export default function ChartContainer({
       message.error('画像の生成に失敗しました')
       setCopying(false)
     }
-  }, [copying, title])
+  }, [copying, title, isMaster])
 
   // チャートカードのスタイル（ダークテーマ・ページ背景より少し明るく階層感を出す）
   const cardStyle: React.CSSProperties = {
@@ -120,28 +126,30 @@ export default function ChartContainer({
   return (
     <Card style={cardStyle} ref={cardRef}>
       <div style={{ position: 'relative', marginBottom: 8 }}>
-        <Tooltip title={copying ? 'コピー中...' : '画像をコピー'}>
-          <span
-            onClick={handleCopyChart}
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              fontSize: 16,
-              color: copying ? DARK_THEME.accent : DARK_THEME.textSecondary,
-              cursor: copying ? 'wait' : 'pointer',
-              transition: 'color 0.2s',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-            }}
-            onMouseEnter={(e) => { if (!copying) (e.currentTarget as HTMLElement).style.color = DARK_THEME.accent }}
-            onMouseLeave={(e) => { if (!copying) (e.currentTarget as HTMLElement).style.color = DARK_THEME.textSecondary }}
-          >
-            {copying ? <CheckOutlined /> : <CameraOutlined />}
-          </span>
-        </Tooltip>
+        {isMaster && (
+          <Tooltip title={copying ? 'コピー中...' : '画像をコピー'}>
+            <span
+              onClick={handleCopyChart}
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                fontSize: 16,
+                color: copying ? DARK_THEME.accent : DARK_THEME.textSecondary,
+                cursor: copying ? 'wait' : 'pointer',
+                transition: 'color 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+              }}
+              onMouseEnter={(e) => { if (!copying) (e.currentTarget as HTMLElement).style.color = DARK_THEME.accent }}
+              onMouseLeave={(e) => { if (!copying) (e.currentTarget as HTMLElement).style.color = DARK_THEME.textSecondary }}
+            >
+              {copying ? <CheckOutlined /> : <CameraOutlined />}
+            </span>
+          </Tooltip>
+        )}
         <Title level={titleLevel} style={{ marginBottom: 0, textAlign: 'center', color: DARK_THEME.textPrimary }}>
           {title}
         </Title>

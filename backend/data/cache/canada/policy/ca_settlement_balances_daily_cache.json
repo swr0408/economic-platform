@@ -6291,11 +6291,19 @@
     {
       "date": "2026-04-06",
       "value": 79227.0
+    },
+    {
+      "date": "2026-04-07",
+      "value": 67349.0
+    },
+    {
+      "date": "2026-04-08",
+      "value": 67580.0
     }
   ],
   "latest": {
-    "date": "2026-04-06",
-    "value": 79227.0
+    "date": "2026-04-08",
+    "value": 67580.0
   },
   "metadata": {
     "source": "Bank of Canada",
@@ -6305,5 +6313,5 @@
     "series_id": "ACTUAL",
     "frequency": "daily"
   },
-  "last_updated": "2026-04-07T09:25:04.336888+09:00"
+  "last_updated": "2026-04-09T11:06:53.442288+09:00"
 }

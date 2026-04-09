@@ -1,5 +1,8 @@
 import { Alert } from 'antd'
 import MarketPriceChart from '../MarketPriceChart'
+import Sp500HeatmapChart from './Sp500HeatmapChart'
+import Nasdaq100HeatmapChart from './Nasdaq100HeatmapChart'
+import DowHeatmapChart from './DowHeatmapChart'
 import FearGreedChart from './FearGreedChart'
 import NaaimChart from './NaaimChart'
 import GexDixChart from './GexDixChart'
@@ -32,6 +35,9 @@ export default function UsEquitiesCharts() {
 
   return (
     <div className="country-chart-stack">
+      <LazyChart id="sp500-heatmap"><Sp500HeatmapChart /></LazyChart>
+      <LazyChart id="nasdaq100-heatmap"><Nasdaq100HeatmapChart /></LazyChart>
+      <LazyChart id="dow-heatmap"><DowHeatmapChart /></LazyChart>
       <LazyChart id="vix-term-structure"><VixTermStructureChart /></LazyChart>
       <LazyChart id="historical-volatility"><HistoricalVolatilityChart /></LazyChart>
       <LazyChart id="vix-cross-ratio"><VixCrossRatioChart /></LazyChart>

@@ -1,8 +1,22 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Row, Col, Typography, Space, Button } from 'antd'
-import { CalendarOutlined, MenuFoldOutlined, GlobalOutlined } from '@ant-design/icons'
+import { Card, Row, Col, Typography, Space, Button, Tooltip } from 'antd'
+import {
+  CalendarOutlined,
+  MenuFoldOutlined,
+  GlobalOutlined,
+  QuestionCircleOutlined,
+} from '@ant-design/icons'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
+import { useHandbook } from '../contexts/HandbookContext'
+
+// データハンドブックのヘルプアイコン（タイトル横に複数表示）
+const PAGE_HANDBOOKS: { id: string; tooltip: string }[] = [
+  { id: 'fundamentals-overview', tooltip: 'ファンダメンタルズ概要 - データハンドブック' },
+  { id: 'market-cycle', tooltip: '相場サイクル - データハンドブック' },
+  { id: 'economic-cycle-assets', tooltip: '経済サイクルと主要資産の関係 - データハンドブック' },
+  { id: 'business-cycle', tooltip: '景気サイクル - データハンドブック' },
+]
 
 const { Title, Text } = Typography
 
@@ -98,6 +112,7 @@ function CountryDataIndex() {
   const [calendarOpen, setCalendarOpen] = useState(true)
   const [sidebarWidth, setSidebarWidth] = useState(CALENDAR_SIDEBAR_DEFAULT_WIDTH)
   const [isResizing, setIsResizing] = useState(false)
+  const { openHandbook } = useHandbook()
 
   // リサイズハンドラー
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -147,9 +162,30 @@ function CountryDataIndex() {
           transition: 'margin-right 0.3s ease',
         }}
       >
-        <Title level={3} style={{ marginBottom: 4, color: colors.textPrimary }}>
-          マクロデータ
-        </Title>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+          <Title level={3} style={{ margin: 0, color: colors.textPrimary }}>
+            マクロデータ
+          </Title>
+          {PAGE_HANDBOOKS.map((entry) => (
+            <Tooltip key={entry.id} title={entry.tooltip}>
+              <QuestionCircleOutlined
+                onClick={() => openHandbook(entry.id)}
+                style={{
+                  fontSize: 18,
+                  color: colors.textSecondary,
+                  cursor: 'pointer',
+                  transition: 'color 0.2s',
+                }}
+                onMouseEnter={(e) => {
+                  ;(e.target as HTMLElement).style.color = '#10b981'
+                }}
+                onMouseLeave={(e) => {
+                  ;(e.target as HTMLElement).style.color = colors.textSecondary
+                }}
+              />
+            </Tooltip>
+          ))}
+        </div>
         <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 24, display: 'block' }}>
           主要国の経済指標とデータを国別に閲覧できます
         </Text>

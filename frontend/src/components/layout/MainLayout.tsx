@@ -26,6 +26,7 @@ import HandbookSidebarNavigation from './HandbookSidebarNavigation'
 import HandbookDrawer from '../common/HandbookDrawer'
 import { useHandbook } from '../../contexts/HandbookContext'
 import { useAuth, type UserRole } from '../../contexts/AuthContext'
+import { useRecentPageTracker } from '../../hooks/useRecentPageTracker'
 
 const ROLE_COLORS: Record<UserRole, string> = {
   master: 'gold',
@@ -65,6 +66,9 @@ function MainLayout() {
   const { activeHandbookId, closeHandbook } = useHandbook()
   const { user, logout } = useAuth()
   const [collapsed, setCollapsed] = useState(false)
+
+  // ルート遷移時に最近見たページの履歴を記録 (localStorage)
+  useRecentPageTracker()
 
   const userMenuItems: MenuProps['items'] = [
     {
@@ -264,7 +268,7 @@ function MainLayout() {
           <Space size={8} align="center" style={{ display: 'flex', alignItems: 'center' }}>
             {/* EconAlpha Icon */}
             <img
-              src="/econAlpha_icon.svg"
+              src="/econalpha_icon_2.png"
               alt="EconAlpha"
               style={{
                 width: '36px',
@@ -294,7 +298,7 @@ function MainLayout() {
                   textTransform: 'uppercase',
                 }}
               >
-                Seasonal Analytics
+                Market Geometry
               </span>
             </div>
           </Space>

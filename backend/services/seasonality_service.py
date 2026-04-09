@@ -7,9 +7,9 @@ from typing import Dict, List, Optional
 import time
 
 try:
-    from backend.config import SEASONALITY_DIR, ASSET_CATEGORIES, IMG_EXTS
+    from backend.config import SEASONALITY_DIR, SEASONALITY_STATS_DIR, ASSET_CATEGORIES, IMG_EXTS
 except ImportError:
-    from config import SEASONALITY_DIR, ASSET_CATEGORIES, IMG_EXTS
+    from config import SEASONALITY_DIR, SEASONALITY_STATS_DIR, ASSET_CATEGORIES, IMG_EXTS
 
 
 # インデックスキャッシュ（起動時に1回だけ構築）
@@ -42,16 +42,6 @@ def list_images(dirpath: Path) -> List[Dict[str, str]]:
     return rows
 
 
-def count_images(dirpath: Path) -> int:
-    """指定ディレクトリ直下の画像ファイル数をカウントする（高速版）。"""
-    if not dirpath.exists():
-        return 0
-    count = 0
-    for p in dirpath.iterdir():
-        if p.is_file() and p.suffix.lower() in IMG_EXTS:
-            count += 1
-    return count
-
 
 def get_first_image(dirpath: Path) -> Optional[str]:
     """指定ディレクトリから最初の画像URLを取得する（高速版）。"""
@@ -83,35 +73,16 @@ def build_index() -> Dict[str, Dict]:
             continue
         symbol = sym_dir.name
 
-        # 高速版: カウントのみ取得
-        sc_count = count_images(sym_dir / "seasonality_charts")
-        mr_count = count_images(sym_dir / "monthly_returns")
-
-        daily_count = 0
-        daily_dir = sym_dir / "daily_returns"
-        if daily_dir.exists():
-            for m in range(1, 13):
-                mm = f"{m:02d}"
-                daily_count += count_images(daily_dir / mm)
-
-        # カバー画像: 季節性→月次→日次の順で先頭を採用（高速版）
-        cover: Optional[str] = None
         cover = get_first_image(sym_dir / "seasonality_charts")
-        if not cover:
-            cover = get_first_image(sym_dir / "monthly_returns")
-        if not cover and daily_dir.exists():
-            for m in range(1, 13):
-                mm = f"{m:02d}"
-                cover = get_first_image(daily_dir / mm)
-                if cover:
-                    break
+        has_stats = (SEASONALITY_STATS_DIR / symbol / "monthly_stats.json").exists()
+        if not cover and not has_stats:
+            continue
 
         category_info = get_symbol_category(symbol)
 
         all_items.append(
             {
                 "symbol": symbol,
-                "counts": {"seasonality": sc_count, "monthly": mr_count, "daily": daily_count},
                 "coverUrl": cover,
                 "category": category_info["category"],
                 "subcategory": category_info["subcategory"],
@@ -152,16 +123,8 @@ def build_manifest(symbol: str) -> Dict:
     """指定シンボルフォルダ内の画像群をマニフェスト形式で返す。"""
     sym_dir = SEASONALITY_DIR / symbol
     seasonality = list_images(sym_dir / "seasonality_charts")
-    monthly = list_images(sym_dir / "monthly_returns")
-
-    daily_by_month: Dict[str, List[Dict[str, str]]] = {}
-    for m in range(1, 13):
-        mm = f"{m:02d}"
-        daily_by_month[mm] = list_images(sym_dir / "daily_returns" / mm)
 
     return {
         "symbol": symbol,
         "seasonalityCharts": seasonality,
-        "monthlyReturns": monthly,
-        "dailyByMonth": daily_by_month,
     }

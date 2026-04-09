@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react'
+import React, { useMemo, useState, useEffect, useRef } from 'react'
 import { Menu } from 'antd'
 import type { MenuProps } from 'antd'
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -15,6 +15,7 @@ function MarketSidebarNavigation() {
   const location = useLocation()
   const [openKeys, setOpenKeys] = useState<string[]>([])
   const [selectedIndicator, setSelectedIndicator] = useState<string>('')
+  const menuWrapperRef = useRef<HTMLDivElement>(null)
 
   // 3階層メニュー: カテゴリ > サブカテゴリ > 銘柄
   // キー構造: カテゴリ=/markets/{cat}, サブカテゴリ=/markets/{cat}/{sub}, 銘柄=/markets/{cat}/{sub}#{indicator}
@@ -81,6 +82,27 @@ function MarketSidebarNavigation() {
     }
   }, [location.pathname])
 
+  // ページ遷移時に選択中のメニュー項目をサイドバー内で表示位置までスクロール
+  // 既に視界内にある場合は何もしない（block: 'nearest'）ので手動スクロールを邪魔しない
+  useEffect(() => {
+    if (selectedKeys.length === 0) return
+    const wrapper = menuWrapperRef.current
+    if (!wrapper) return
+
+    const timer = setTimeout(() => {
+      const targetKey = selectedKeys[0]
+      const safeKey = targetKey.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      const el = wrapper.querySelector<HTMLElement>(
+        `[data-menu-id$="${safeKey}"]`,
+      )
+      if (el) {
+        el.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      }
+    }, 250)
+
+    return () => clearTimeout(timer)
+  }, [selectedKeys, openKeys])
+
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     const key = e.key
     if (key.includes('#')) {
@@ -109,21 +131,23 @@ function MarketSidebarNavigation() {
   }
 
   return (
-    <Menu
-      mode="inline"
-      theme="dark"
-      selectedKeys={selectedKeys}
-      openKeys={openKeys}
-      onOpenChange={handleOpenChange}
-      items={menuItems}
-      onClick={handleMenuClick}
-      style={{
-        height: '100%',
-        borderRight: 0,
-        background: colors.bgSecondary,
-        fontSize: '13px',
-      }}
-    />
+    <div ref={menuWrapperRef} style={{ height: '100%' }}>
+      <Menu
+        mode="inline"
+        theme="dark"
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        onOpenChange={handleOpenChange}
+        items={menuItems}
+        onClick={handleMenuClick}
+        style={{
+          height: '100%',
+          borderRight: 0,
+          background: colors.bgSecondary,
+          fontSize: '13px',
+        }}
+      />
+    </div>
   )
 }
 

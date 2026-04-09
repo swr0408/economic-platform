@@ -2,7 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Tabs, Typography, Spin, Alert, Badge, Tooltip } from "antd";
 import type { TabsProps } from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined, BarChartOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useHandbook } from "../contexts/HandbookContext";
 
@@ -25,11 +25,6 @@ const colors = {
 type Item = {
   symbol: string;
   coverUrl?: string;
-  counts?: {
-    seasonality: number;
-    monthly: number;
-    daily: number;
-  };
 };
 
 type Subcategory = {
@@ -188,6 +183,22 @@ export default function SeasonalityPage() {
               onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
             />
           </Tooltip>
+          <Tooltip title="リバランス（月末・四半期末・半期末） - データハンドブック">
+            <QuestionCircleOutlined
+              onClick={() => openHandbook('rebalance')}
+              style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+            />
+          </Tooltip>
+          <Tooltip title="フロー（資金フロー・市場のクセ） - データハンドブック">
+            <QuestionCircleOutlined
+              onClick={() => openHandbook('flow-knowledge')}
+              style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+            />
+          </Tooltip>
         </div>
         <Text style={{ fontSize: 13, color: colors.textSecondary }}>
           アセット別の季節性パターンを確認できます
@@ -293,14 +304,16 @@ function SymbolCard({ item, activeCategory }: { item: Item; activeCategory: stri
               <div
                 style={{
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
                   height: "100%",
-                  color: colors.textTertiary,
-                  fontSize: 13,
+                  color: colors.textSecondary,
+                  gap: 8,
                 }}
               >
-                {isVisible ? "No Image" : ""}
+                <BarChartOutlined style={{ fontSize: 28, color: colors.accent }} />
+                <span style={{ fontSize: 12 }}>統計データのみ</span>
               </div>
             )}
           </div>
@@ -318,19 +331,6 @@ function SymbolCard({ item, activeCategory }: { item: Item; activeCategory: stri
               {item.symbol}
             </div>
 
-            {item.counts && (
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <Text style={{ fontSize: 12, color: colors.textSecondary }}>
-                  シーズナリティ: <span style={{ color: colors.info, fontWeight: 500 }}>{item.counts.seasonality}</span>
-                </Text>
-                <Text style={{ fontSize: 12, color: colors.textSecondary }}>
-                  月次: <span style={{ color: colors.info, fontWeight: 500 }}>{item.counts.monthly}</span>
-                </Text>
-                <Text style={{ fontSize: 12, color: colors.textSecondary }}>
-                  日次: <span style={{ color: colors.accent, fontWeight: 500 }}>{item.counts.daily}</span>
-                </Text>
-              </div>
-            )}
           </div>
         </div>
       </Link>

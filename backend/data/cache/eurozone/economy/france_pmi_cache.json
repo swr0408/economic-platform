@@ -2071,15 +2071,15 @@
       },
       {
         "date": "2026-03",
-        "value": 48.3,
-        "forecast": 49.0,
+        "value": 48.8,
+        "forecast": 48.3,
         "previous": 49.6
       }
     ],
     "latest": {
       "date": "2026-03",
-      "value": 48.3,
-      "forecast": 49.0,
+      "value": 48.8,
+      "forecast": 48.3,
       "previous": 49.6
     }
   },
@@ -2897,27 +2897,18 @@
       },
       {
         "date": "2026-03",
-        "value": 48.3,
-        "forecast": 49.3,
+        "value": 48.8,
+        "forecast": 48.3,
         "previous": 49.9
       }
     ],
     "latest": {
       "date": "2026-03",
-      "value": 48.3,
-      "forecast": 49.3,
+      "value": 48.8,
+      "forecast": 48.3,
       "previous": 49.9
     }
   },
-  "next_release": {
-    "date": "2026-04-08",
-    "datetime_utc": "2026-04-08T07:30:00+00:00",
-    "datetime_jst": "2026-04-08T16:30:00+09:00",
-    "time_jst": "16:30",
-    "datetime_cet": "2026-04-08T09:30:00+02:00",
-    "time_cet": "09:30",
-    "label": "HCOB Construction PMI (Mar)",
-    "estimate": 45
-  },
-  "last_updated": "2026-04-06T15:03:05.432231+02:00"
+  "next_release": null,
+  "last_updated": "2026-04-08T09:33:04.068576+02:00"
 }

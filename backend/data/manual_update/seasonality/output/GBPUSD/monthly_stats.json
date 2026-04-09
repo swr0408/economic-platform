@@ -1,0 +1,414 @@
+{
+  "symbol": "GBPUSD",
+  "generated_at": "2026-04-08T16:42:25.483649+00:00",
+  "periods": {
+    "full": {
+      "start_year": 2004,
+      "end_year": 2024,
+      "label": "2004-2024"
+    },
+    "recent": {
+      "start_year": 2015,
+      "end_year": 2024,
+      "label": "直近10年"
+    }
+  },
+  "months": [
+    {
+      "month": 1,
+      "full": {
+        "n": 21,
+        "mean": 0.3809,
+        "median": 0.1714,
+        "std": 2.2288,
+        "se": 0.4864,
+        "ci95_low": -0.6336,
+        "ci95_high": 1.3955,
+        "neg_rate": 0.4762,
+        "mean_median_gap": 0.2095,
+        "t_stat": 0.7832,
+        "p_value": 0.442687
+      },
+      "recent": {
+        "n": 10,
+        "mean": 0.4204,
+        "median": -0.0035,
+        "std": 2.6472,
+        "se": 0.8371,
+        "ci95_low": -1.4731,
+        "ci95_high": 2.314,
+        "neg_rate": 0.5,
+        "mean_median_gap": 0.424,
+        "t_stat": 0.5022,
+        "p_value": 0.627561
+      },
+      "diff": {
+        "mean_diff": 0.0395,
+        "neg_rate_diff": 0.0238
+      }
+    },
+    {
+      "month": 2,
+      "full": {
+        "n": 21,
+        "mean": -0.5149,
+        "median": -0.2127,
+        "std": 2.1661,
+        "se": 0.4727,
+        "ci95_low": -1.5009,
+        "ci95_high": 0.4711,
+        "neg_rate": 0.619,
+        "mean_median_gap": -0.3022,
+        "t_stat": -1.0894,
+        "p_value": 0.288943
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.7755,
+        "median": -1.0228,
+        "std": 1.9258,
+        "se": 0.609,
+        "ci95_low": -2.153,
+        "ci95_high": 0.6021,
+        "neg_rate": 0.7,
+        "mean_median_gap": 0.2473,
+        "t_stat": -1.2734,
+        "p_value": 0.234792
+      },
+      "diff": {
+        "mean_diff": -0.2606,
+        "neg_rate_diff": 0.081
+      }
+    },
+    {
+      "month": 3,
+      "full": {
+        "n": 21,
+        "mean": -0.3596,
+        "median": -0.3094,
+        "std": 1.7267,
+        "se": 0.3768,
+        "ci95_low": -1.1456,
+        "ci95_high": 0.4264,
+        "neg_rate": 0.619,
+        "mean_median_gap": -0.0502,
+        "t_stat": -0.9543,
+        "p_value": 0.351338
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.272,
+        "median": -0.5704,
+        "std": 2.4513,
+        "se": 0.7752,
+        "ci95_low": -2.0254,
+        "ci95_high": 1.4814,
+        "neg_rate": 0.6,
+        "mean_median_gap": 0.2984,
+        "t_stat": -0.3509,
+        "p_value": 0.73374
+      },
+      "diff": {
+        "mean_diff": 0.0876,
+        "neg_rate_diff": -0.019
+      }
+    },
+    {
+      "month": 4,
+      "full": {
+        "n": 21,
+        "mean": 1.0508,
+        "median": 1.3901,
+        "std": 2.3726,
+        "se": 0.5177,
+        "ci95_low": -0.0292,
+        "ci95_high": 2.1309,
+        "neg_rate": 0.2381,
+        "mean_median_gap": -0.3393,
+        "t_stat": 2.0296,
+        "p_value": 0.05591
+      },
+      "recent": {
+        "n": 10,
+        "mean": 0.4955,
+        "median": 0.8735,
+        "std": 2.4357,
+        "se": 0.7702,
+        "ci95_low": -1.2468,
+        "ci95_high": 2.2377,
+        "neg_rate": 0.4,
+        "mean_median_gap": -0.378,
+        "t_stat": 0.6433,
+        "p_value": 0.536101
+      },
+      "diff": {
+        "mean_diff": -0.5553,
+        "neg_rate_diff": 0.1619
+      }
+    },
+    {
+      "month": 5,
+      "full": {
+        "n": 21,
+        "mean": -0.5418,
+        "median": -0.7042,
+        "std": 3.2784,
+        "se": 0.7154,
+        "ci95_low": -2.0341,
+        "ci95_high": 0.9506,
+        "neg_rate": 0.7143,
+        "mean_median_gap": 0.1624,
+        "t_stat": -0.7573,
+        "p_value": 0.457712
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.5671,
+        "median": -0.5473,
+        "std": 1.9721,
+        "se": 0.6236,
+        "ci95_low": -1.9778,
+        "ci95_high": 0.8435,
+        "neg_rate": 0.7,
+        "mean_median_gap": -0.0198,
+        "t_stat": -0.9094,
+        "p_value": 0.386855
+      },
+      "diff": {
+        "mean_diff": -0.0253,
+        "neg_rate_diff": -0.0143
+      }
+    },
+    {
+      "month": 6,
+      "full": {
+        "n": 21,
+        "mean": -0.1608,
+        "median": 0.5449,
+        "std": 2.5341,
+        "se": 0.553,
+        "ci95_low": -1.3143,
+        "ci95_high": 0.9927,
+        "neg_rate": 0.4286,
+        "mean_median_gap": -0.7057,
+        "t_stat": -0.2908,
+        "p_value": 0.774216
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.8403,
+        "median": -0.0591,
+        "std": 3.187,
+        "se": 1.0078,
+        "ci95_low": -3.12,
+        "ci95_high": 1.4394,
+        "neg_rate": 0.5,
+        "mean_median_gap": -0.7811,
+        "t_stat": -0.8338,
+        "p_value": 0.425991
+      },
+      "diff": {
+        "mean_diff": -0.6795,
+        "neg_rate_diff": 0.0714
+      }
+    },
+    {
+      "month": 7,
+      "full": {
+        "n": 21,
+        "mean": 0.5592,
+        "median": 0.0533,
+        "std": 2.1182,
+        "se": 0.4622,
+        "ci95_low": -0.405,
+        "ci95_high": 1.5234,
+        "neg_rate": 0.4286,
+        "mean_median_gap": 0.5059,
+        "t_stat": 1.2098,
+        "p_value": 0.240451
+      },
+      "recent": {
+        "n": 10,
+        "mean": 0.4398,
+        "median": 0.2561,
+        "std": 2.4533,
+        "se": 0.7758,
+        "ci95_low": -1.3151,
+        "ci95_high": 2.1946,
+        "neg_rate": 0.5,
+        "mean_median_gap": 0.1836,
+        "t_stat": 0.5668,
+        "p_value": 0.584685
+      },
+      "diff": {
+        "mean_diff": -0.1194,
+        "neg_rate_diff": 0.0714
+      }
+    },
+    {
+      "month": 8,
+      "full": {
+        "n": 21,
+        "mean": -0.8669,
+        "median": -1.0762,
+        "std": 2.5106,
+        "se": 0.5479,
+        "ci95_low": -2.0097,
+        "ci95_high": 0.276,
+        "neg_rate": 0.6667,
+        "mean_median_gap": 0.2093,
+        "t_stat": -1.5823,
+        "p_value": 0.129271
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.8511,
+        "median": -1.1591,
+        "std": 1.9791,
+        "se": 0.6259,
+        "ci95_low": -2.2668,
+        "ci95_high": 0.5646,
+        "neg_rate": 0.7,
+        "mean_median_gap": 0.308,
+        "t_stat": -1.3599,
+        "p_value": 0.206949
+      },
+      "diff": {
+        "mean_diff": 0.0158,
+        "neg_rate_diff": 0.0333
+      }
+    },
+    {
+      "month": 9,
+      "full": {
+        "n": 21,
+        "mean": -0.5827,
+        "median": -1.4034,
+        "std": 2.5358,
+        "se": 0.5533,
+        "ci95_low": -1.7369,
+        "ci95_high": 0.5716,
+        "neg_rate": 0.5714,
+        "mean_median_gap": 0.8207,
+        "t_stat": -1.053,
+        "p_value": 0.304914
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.8297,
+        "median": -1.3252,
+        "std": 2.6072,
+        "se": 0.8245,
+        "ci95_low": -2.6946,
+        "ci95_high": 1.0353,
+        "neg_rate": 0.6,
+        "mean_median_gap": 0.4955,
+        "t_stat": -1.0063,
+        "p_value": 0.340568
+      },
+      "diff": {
+        "mean_diff": -0.247,
+        "neg_rate_diff": 0.0286
+      }
+    },
+    {
+      "month": 10,
+      "full": {
+        "n": 21,
+        "mean": 0.0517,
+        "median": 0.3914,
+        "std": 3.2458,
+        "se": 0.7083,
+        "ci95_low": -1.4258,
+        "ci95_high": 1.5292,
+        "neg_rate": 0.4286,
+        "mean_median_gap": -0.3397,
+        "t_stat": 0.073,
+        "p_value": 0.942538
+      },
+      "recent": {
+        "n": 10,
+        "mean": -0.0038,
+        "median": -0.0328,
+        "std": 3.1035,
+        "se": 0.9814,
+        "ci95_low": -2.2238,
+        "ci95_high": 2.2161,
+        "neg_rate": 0.5,
+        "mean_median_gap": 0.029,
+        "t_stat": -0.0039,
+        "p_value": 0.996983
+      },
+      "diff": {
+        "mean_diff": -0.0555,
+        "neg_rate_diff": 0.0714
+      }
+    },
+    {
+      "month": 11,
+      "full": {
+        "n": 21,
+        "mean": 0.1253,
+        "median": -0.1363,
+        "std": 2.7134,
+        "se": 0.5921,
+        "ci95_low": -1.1099,
+        "ci95_high": 1.3604,
+        "neg_rate": 0.5714,
+        "mean_median_gap": 0.2616,
+        "t_stat": 0.2115,
+        "p_value": 0.834603
+      },
+      "recent": {
+        "n": 10,
+        "mean": 0.9206,
+        "median": 0.8614,
+        "std": 2.7302,
+        "se": 0.8634,
+        "ci95_low": -1.0324,
+        "ci95_high": 2.8735,
+        "neg_rate": 0.5,
+        "mean_median_gap": 0.0592,
+        "t_stat": 1.0663,
+        "p_value": 0.314073
+      },
+      "diff": {
+        "mean_diff": 0.7953,
+        "neg_rate_diff": -0.0714
+      }
+    },
+    {
+      "month": 12,
+      "full": {
+        "n": 21,
+        "mean": -0.3432,
+        "median": -0.2029,
+        "std": 1.949,
+        "se": 0.4253,
+        "ci95_low": -1.2304,
+        "ci95_high": 0.544,
+        "neg_rate": 0.5714,
+        "mean_median_gap": -0.1403,
+        "t_stat": -0.807,
+        "p_value": 0.429176
+      },
+      "recent": {
+        "n": 10,
+        "mean": 0.2458,
+        "median": 0.0451,
+        "std": 1.7007,
+        "se": 0.5378,
+        "ci95_low": -0.9708,
+        "ci95_high": 1.4623,
+        "neg_rate": 0.5,
+        "mean_median_gap": 0.2007,
+        "t_stat": 0.457,
+        "p_value": 0.658505
+      },
+      "diff": {
+        "mean_diff": 0.589,
+        "neg_rate_diff": -0.0714
+      }
+    }
+  ]
+}
