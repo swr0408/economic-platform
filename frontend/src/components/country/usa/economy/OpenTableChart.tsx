@@ -5,6 +5,7 @@ import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import type { OpenTableData } from '../../../../hooks/useDashboardData'
 import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
+import { apiUrl } from '../../../../utils/apiConfig'
 
 interface OpenTableChartProps {
   data: OpenTableData | null
@@ -104,7 +105,7 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
           onClick={openModal}
         >
           <img
-            src={data.image_url}
+            src={apiUrl(data.image_url)}
             alt="OpenTable Seated Diners Chart"
             style={{
               maxWidth: '100%',
@@ -187,7 +188,7 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
           }}
         >
           <img
-            src={data.image_url}
+            src={apiUrl(data.image_url)}
             alt="OpenTable Seated Diners Chart"
             style={{
               transform: `scale(${zoomLevel})`,

@@ -1157,13 +1157,25 @@
       "value": -24.1,
       "forecast": -26.0,
       "previous": -26.9
+    },
+    {
+      "date": "2026-03-01",
+      "value": -24.7,
+      "forecast": -23.1,
+      "previous": -24.2
+    },
+    {
+      "date": "2026-04-01",
+      "value": -28.0,
+      "forecast": -26.5,
+      "previous": -24.8
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": -24.1,
-    "forecast": -26.0,
-    "previous": -26.9
+    "date": "2026-04-01",
+    "value": -28.0,
+    "forecast": -26.5,
+    "previous": -24.8
   },
   "metadata": {
     "source": "GfK",
@@ -1173,14 +1185,14 @@
     "note": "翌月の消費者信頼感予測値。0を上回ると消費意欲が高い状態を示す。"
   },
   "next_release": {
-    "date": "2026-01-29",
-    "datetime_utc": "2026-01-29T07:00:00+00:00",
-    "datetime_jst": "2026-01-29T16:00:00+09:00",
-    "time_jst": "16:00",
-    "datetime_cet": "2026-01-29T08:00:00+01:00",
+    "date": "2026-04-27",
+    "datetime_utc": "2026-04-27T06:00:00+00:00",
+    "datetime_jst": "2026-04-27T15:00:00+09:00",
+    "time_jst": "15:00",
+    "datetime_cet": "2026-04-27T08:00:00+02:00",
     "time_cet": "08:00",
-    "label": "Consumer Confidence (Feb)",
-    "estimate": -26
+    "label": "Consumer Confidence (May)",
+    "estimate": null
   },
-  "last_updated": "2026-01-29T01:06:04.146791+09:00"
+  "last_updated": "2026-04-10T18:01:26.737385+09:00"
 }

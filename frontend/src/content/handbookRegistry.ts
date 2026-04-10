@@ -1890,6 +1890,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['BOE', 'イングランド銀行', '英国', 'ポンド', 'GBP', 'MPC', 'CPI', 'サービスインフレ', '賃金', '家計消費', 'Dhingra', 'OIS', 'FRB', 'ECB'],
   },
 
+  // --- 英国 / 小売売上高 ---
+  {
+    indicatorId: 'uk-retail-sales',
+    title: '小売売上高（英国）',
+    country: 'uk',
+    category: 'consumer',
+    summary: 'ONSの数量ベース小売売上高。GfK消費者信頼感と組み合わせて家計部門の景況感と消費動向を整理する。前年比では一定の連動性があるが、前月比では短期要因が大きく相関は弱い。',
+    loadContent: loadMd('uk/uk-retail-sales.md'),
+    relatedIndicators: ['uk-gfk-consumer-confidence'],
+    tags: ['英国', '小売売上', 'ONS', 'Retail Sales', 'GfK', '消費者信頼感', '家計', '消費', 'ポンド', 'GBP'],
+  },
+
+  // --- 英国 / CPIH ---
+  {
+    indicatorId: 'uk-cpih',
+    title: 'CPIH（英国）',
+    country: 'uk',
+    category: 'inflation',
+    summary: 'ONSが主たるインフレ指標と位置づける包括的物価指数。CPIに持ち家居住者住宅費とCouncil Taxを加えたもの。BOEの政策目標はCPIだが、家計の物価実感把握にはCPIHが有用。',
+    loadContent: loadMd('uk/uk-cpih.md'),
+    relatedIndicators: ['uk-ppi', 'uk-boe-inflation-attitudes', 'uk-boe-overview'],
+    tags: ['英国', 'CPIH', 'CPI', 'ONS', 'OOH', 'Council Tax', '住宅費', 'インフレ', 'BOE', 'ポンド', 'GBP'],
+  },
+
   // --- 英国 / PPI ---
   {
     indicatorId: 'uk-ppi',
@@ -1908,10 +1932,10 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     title: 'BOE インフレ期待調査（英国）',
     country: 'uk',
     category: 'inflation',
-    summary: 'BoEの家計インフレ期待調査。ユーロ圏ほど賃金との先行関係は安定せず、労働需給や最低賃金改定の影響も大きい。短期の期待インフレが実務上参考になりやすい。',
+    summary: '消費者のインフレ懸念が賃上げ圧力を強める経路がある。期待インフレ・実際の物価・賃金の3点を合わせて確認するのが基本。サービスCPIとの関係も重要。',
     loadContent: loadMd('uk/uk-boe-inflation-attitudes.md'),
-    relatedIndicators: ['uk-ppi'],
-    tags: ['BOE', 'インフレ期待', '賃金', '英国', 'サービスCPI', 'ONS'],
+    relatedIndicators: ['uk-ppi', 'uk-wages', 'uk-boe-overview'],
+    tags: ['BOE', 'インフレ期待', '賃金', '英国', 'サービスCPI', 'ONS', '賃上げ圧力', 'CPI', 'ポンド', 'GBP'],
   },
 
   // --- 英国 / PMI ---
@@ -1936,6 +1960,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('uk/uk-housing-market.md'),
     relatedIndicators: ['uk-boe-overview', 'uk-boe-inflation-attitudes'],
     tags: ['英国', '住宅', 'BOE', 'イングランド銀行', '住宅ローン', 'Mortgage', 'affordability', '住宅価格', 'HMRC', '家計消費', '信用循環', '建設', 'ポンド', 'GBP'],
+  },
+
+  // --- 英国 / 住宅ローン承認件数 ---
+  {
+    indicatorId: 'boe-mortgage-lending',
+    title: '住宅ローン承認件数（英国）',
+    country: 'uk',
+    category: 'housing',
+    summary: '住宅価格指数に1〜7か月先行しやすい需要指標。3か月平均で見ると Halifax・Nationwide・UK HPI との相関0.48〜0.56。増加率は価格前年比に半年超先行。',
+    loadContent: loadMd('uk/uk-boe-mortgage-lending.md'),
+    relatedIndicators: ['uk-housing-market', 'uk-house-price', 'halifax-house-price', 'nationwide-hpi'],
+    tags: ['英国', '住宅ローン', 'Mortgage', 'BoE', '承認件数', '住宅価格', '先行指標', 'Halifax', 'Nationwide'],
+  },
+
+  // --- 英国 / 平均週給（賃金） ---
+  {
+    indicatorId: 'uk-wages',
+    title: '平均週給（英国）',
+    country: 'uk',
+    category: 'employment',
+    summary: 'BOEが賃金をサービス価格の持続性や国内コスト圧力の核心指標として重視。民間部門の通常賃金（賞与除く）が特に注目される。',
+    loadContent: loadMd('uk/uk-wages.md'),
+    relatedIndicators: ['uk-unemployment', 'uk-unit-labour-costs', 'uk-boe-overview'],
+    tags: ['英国', '賃金', 'BOE', 'ONS', '平均週給', 'Average Weekly Earnings', 'AWE', 'サービスインフレ', 'ポンド', 'GBP', 'MPC'],
+  },
+
+  // --- 英国 / 失業率 ---
+  {
+    indicatorId: 'uk-unemployment',
+    title: '失業率（英国）',
+    country: 'uk',
+    category: 'employment',
+    summary: '均衡失業率は固定的な境界線ではなく、賃金・求人・雇用者数・労働参加と総合的に判断する必要がある。LFS単独ではなくClaimant Count・PAYE RTIと併用。',
+    loadContent: loadMd('uk/uk-unemployment.md'),
+    relatedIndicators: ['uk-wages', 'uk-claimant-count', 'uk-employment', 'uk-economic-activity'],
+    tags: ['英国', '失業率', 'BOE', 'ONS', 'LFS', 'Claimant Count', 'PAYE', '労働市場', '均衡失業率', 'ポンド', 'GBP'],
+  },
+
+  // --- 英国 / 単位労働コスト ---
+  {
+    indicatorId: 'uk-unit-labour-costs',
+    title: '単位労働コスト（英国）',
+    country: 'uk',
+    category: 'employment',
+    summary: 'サービスインフレの背景にあるコスト圧力を見る補助指標。賃金上昇が生産性改善を上回るとき企業コスト圧力が高まる。',
+    loadContent: loadMd('uk/uk-unit-labour-costs.md'),
+    relatedIndicators: ['uk-wages', 'uk-productivity', 'uk-boe-overview'],
+    tags: ['英国', 'ULC', '単位労働コスト', 'Unit Labour Costs', 'BOE', '生産性', 'サービスインフレ', '賃金', 'ポンド', 'GBP'],
   },
 
   // --- カナダ / IPPI ---

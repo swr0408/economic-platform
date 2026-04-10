@@ -2270,270 +2270,277 @@
     },
     {
       "date": "2023-01-01",
-      "current_account": -20742.0,
+      "current_account": -20691.0,
       "goods_services": -39363.0,
-      "primary_income": 21899.0,
+      "primary_income": 21950.0,
       "secondary_income": -3278.0
     },
     {
       "date": "2023-02-01",
-      "current_account": 22770.0,
+      "current_account": 22821.0,
       "goods_services": -7803.0,
-      "primary_income": 34717.0,
+      "primary_income": 34768.0,
       "secondary_income": -4144.0
     },
     {
       "date": "2023-03-01",
-      "current_account": 23404.0,
+      "current_account": 23455.0,
       "goods_services": -5100.0,
-      "primary_income": 34212.0,
+      "primary_income": 34264.0,
       "secondary_income": -5708.0
     },
     {
       "date": "2023-04-01",
-      "current_account": 18691.0,
+      "current_account": 18892.0,
       "goods_services": -8088.0,
-      "primary_income": 31015.0,
+      "primary_income": 31216.0,
       "secondary_income": -4236.0
     },
     {
       "date": "2023-05-01",
-      "current_account": 21570.0,
+      "current_account": 21771.0,
       "goods_services": -13824.0,
-      "primary_income": 38648.0,
+      "primary_income": 38849.0,
       "secondary_income": -3253.0
     },
     {
       "date": "2023-06-01",
-      "current_account": 16836.0,
+      "current_account": 17037.0,
       "goods_services": -425.0,
-      "primary_income": 18600.0,
+      "primary_income": 18801.0,
       "secondary_income": -1339.0
     },
     {
       "date": "2023-07-01",
-      "current_account": 29161.0,
+      "current_account": 29382.0,
       "goods_services": -4763.0,
-      "primary_income": 37343.0,
+      "primary_income": 37563.0,
       "secondary_income": -3418.0
     },
     {
       "date": "2023-08-01",
-      "current_account": 23710.0,
+      "current_account": 23931.0,
       "goods_services": -10524.0,
-      "primary_income": 37315.0,
+      "primary_income": 37535.0,
       "secondary_income": -3080.0
     },
     {
       "date": "2023-09-01",
-      "current_account": 29460.0,
+      "current_account": 29655.0,
       "goods_services": 437.0,
-      "primary_income": 32992.0,
+      "primary_income": 33187.0,
       "secondary_income": -3969.0
     },
     {
       "date": "2023-10-01",
-      "current_account": 27709.0,
+      "current_account": 27901.0,
       "goods_services": -1156.0,
-      "primary_income": 32243.0,
+      "primary_income": 32435.0,
       "secondary_income": -3378.0
     },
     {
       "date": "2023-11-01",
-      "current_account": 21103.0,
+      "current_account": 21296.0,
       "goods_services": -6910.0,
-      "primary_income": 30889.0,
+      "primary_income": 31082.0,
       "secondary_income": -2876.0
     },
     {
       "date": "2023-12-01",
-      "current_account": 9110.0,
+      "current_account": 9304.0,
       "goods_services": -2002.0,
-      "primary_income": 13817.0,
+      "primary_income": 14011.0,
       "secondary_income": -2705.0
     },
     {
       "date": "2024-01-01",
-      "current_account": 2988.0,
-      "goods_services": -22348.0,
-      "primary_income": 29979.0,
-      "secondary_income": -4643.0
+      "current_account": 3118.0,
+      "goods_services": -21692.0,
+      "primary_income": 29929.0,
+      "secondary_income": -5120.0
     },
     {
       "date": "2024-02-01",
-      "current_account": 27344.0,
-      "goods_services": -4160.0,
-      "primary_income": 34970.0,
-      "secondary_income": -3467.0
+      "current_account": 27498.0,
+      "goods_services": -3450.0,
+      "primary_income": 34886.0,
+      "secondary_income": -3938.0
     },
     {
       "date": "2024-03-01",
-      "current_account": 34373.0,
-      "goods_services": 4590.0,
-      "primary_income": 35968.0,
-      "secondary_income": -6186.0
+      "current_account": 34426.0,
+      "goods_services": 5171.0,
+      "primary_income": 35847.0,
+      "secondary_income": -6592.0
     },
     {
       "date": "2024-04-01",
-      "current_account": 21133.0,
-      "goods_services": -13685.0,
-      "primary_income": 38957.0,
-      "secondary_income": -4139.0
+      "current_account": 20961.0,
+      "goods_services": -12963.0,
+      "primary_income": 38461.0,
+      "secondary_income": -4537.0
     },
     {
       "date": "2024-05-01",
-      "current_account": 28750.0,
-      "goods_services": -11497.0,
-      "primary_income": 42980.0,
-      "secondary_income": -2733.0
+      "current_account": 29178.0,
+      "goods_services": -10870.0,
+      "primary_income": 43210.0,
+      "secondary_income": -3163.0
     },
     {
       "date": "2024-06-01",
-      "current_account": 16891.0,
-      "goods_services": 2415.0,
-      "primary_income": 15860.0,
-      "secondary_income": -1384.0
+      "current_account": 19153.0,
+      "goods_services": 2923.0,
+      "primary_income": 18125.0,
+      "secondary_income": -1895.0
     },
     {
       "date": "2024-07-01",
-      "current_account": 32453.0,
-      "goods_services": -10408.0,
-      "primary_income": 45348.0,
-      "secondary_income": -2488.0
+      "current_account": 35704.0,
+      "goods_services": -9841.0,
+      "primary_income": 48541.0,
+      "secondary_income": -2996.0
     },
     {
       "date": "2024-08-01",
-      "current_account": 38917.0,
-      "goods_services": -4645.0,
-      "primary_income": 47851.0,
-      "secondary_income": -4289.0
+      "current_account": 38454.0,
+      "goods_services": -4470.0,
+      "primary_income": 47603.0,
+      "secondary_income": -4679.0
     },
     {
       "date": "2024-09-01",
-      "current_account": 15374.0,
-      "goods_services": -6757.0,
-      "primary_income": 27153.0,
-      "secondary_income": -5021.0
+      "current_account": 17075.0,
+      "goods_services": -5806.0,
+      "primary_income": 28369.0,
+      "secondary_income": -5487.0
     },
     {
       "date": "2024-10-01",
-      "current_account": 24538.0,
-      "goods_services": -2393.0,
-      "primary_income": 31900.0,
-      "secondary_income": -4968.0
+      "current_account": 23538.0,
+      "goods_services": -2885.0,
+      "primary_income": 31858.0,
+      "secondary_income": -5435.0
     },
     {
       "date": "2024-11-01",
-      "current_account": 33389.0,
-      "goods_services": 3868.0,
-      "primary_income": 33745.0,
-      "secondary_income": -4224.0
+      "current_account": 33061.0,
+      "goods_services": 4000.0,
+      "primary_income": 33755.0,
+      "secondary_income": -4694.0
     },
     {
       "date": "2024-12-01",
-      "current_account": 10718.0,
-      "goods_services": 652.0,
-      "primary_income": 12489.0,
-      "secondary_income": -2423.0
+      "current_account": 10607.0,
+      "goods_services": 796.0,
+      "primary_income": 12700.0,
+      "secondary_income": -2888.0
     },
     {
       "date": "2025-01-01",
-      "current_account": -3446.0,
-      "goods_services": -34328.0,
-      "primary_income": 35290.0,
-      "secondary_income": -4408.0
+      "current_account": -3053.0,
+      "goods_services": -33517.0,
+      "primary_income": 35150.0,
+      "secondary_income": -4686.0
     },
     {
       "date": "2025-02-01",
-      "current_account": 40087.0,
-      "goods_services": 5540.0,
-      "primary_income": 38060.0,
-      "secondary_income": -3512.0
+      "current_account": 39384.0,
+      "goods_services": 5242.0,
+      "primary_income": 37986.0,
+      "secondary_income": -3844.0
     },
     {
       "date": "2025-03-01",
-      "current_account": 36688.0,
-      "goods_services": 5487.0,
-      "primary_income": 38623.0,
-      "secondary_income": -7422.0
+      "current_account": 36253.0,
+      "goods_services": 5716.0,
+      "primary_income": 38326.0,
+      "secondary_income": -7789.0
     },
     {
       "date": "2025-04-01",
-      "current_account": 21396.0,
-      "goods_services": -7754.0,
-      "primary_income": 34697.0,
-      "secondary_income": -5547.0
+      "current_account": 23700.0,
+      "goods_services": -7267.0,
+      "primary_income": 36498.0,
+      "secondary_income": -5531.0
     },
     {
       "date": "2025-05-01",
-      "current_account": 33221.0,
-      "goods_services": -3710.0,
-      "primary_income": 41918.0,
-      "secondary_income": -4986.0
+      "current_account": 33205.0,
+      "goods_services": -3662.0,
+      "primary_income": 41802.0,
+      "secondary_income": -4935.0
     },
     {
       "date": "2025-06-01",
-      "current_account": 12566.0,
-      "goods_services": 2831.0,
-      "primary_income": 14402.0,
-      "secondary_income": -4668.0
+      "current_account": 12818.0,
+      "goods_services": 3067.0,
+      "primary_income": 14449.0,
+      "secondary_income": -4698.0
     },
     {
       "date": "2025-07-01",
-      "current_account": 25647.0,
-      "goods_services": -9917.0,
-      "primary_income": 40626.0,
-      "secondary_income": -5061.0
+      "current_account": 25863.0,
+      "goods_services": -9588.0,
+      "primary_income": 40539.0,
+      "secondary_income": -5089.0
     },
     {
       "date": "2025-08-01",
-      "current_account": 36003.0,
-      "goods_services": -1952.0,
-      "primary_income": 42357.0,
-      "secondary_income": -4402.0
+      "current_account": 36281.0,
+      "goods_services": -1529.0,
+      "primary_income": 42227.0,
+      "secondary_income": -4417.0
     },
     {
       "date": "2025-09-01",
-      "current_account": 44273.0,
-      "goods_services": -409.0,
-      "primary_income": 49581.0,
-      "secondary_income": -4899.0
+      "current_account": 44447.0,
+      "goods_services": -75.0,
+      "primary_income": 49437.0,
+      "secondary_income": -4915.0
     },
     {
       "date": "2025-10-01",
-      "current_account": 28335.0,
-      "goods_services": -1963.0,
-      "primary_income": 34646.0,
-      "secondary_income": -4348.0
+      "current_account": 27435.0,
+      "goods_services": -2785.0,
+      "primary_income": 34580.0,
+      "secondary_income": -4360.0
     },
     {
       "date": "2025-11-01",
-      "current_account": 36741.0,
-      "goods_services": 5812.0,
-      "primary_income": 33809.0,
-      "secondary_income": -2880.0
+      "current_account": 36764.0,
+      "goods_services": 5973.0,
+      "primary_income": 33684.0,
+      "secondary_income": -2893.0
     },
     {
       "date": "2025-12-01",
-      "current_account": 7288.0,
-      "goods_services": -2052.0,
-      "primary_income": 11894.0,
-      "secondary_income": -2554.0
+      "current_account": 9254.0,
+      "goods_services": -1683.0,
+      "primary_income": 13524.0,
+      "secondary_income": -2587.0
     },
     {
       "date": "2026-01-01",
-      "current_account": 9416.0,
+      "current_account": 9310.0,
       "goods_services": -13157.0,
-      "primary_income": 27466.0,
+      "primary_income": 27360.0,
       "secondary_income": -4893.0
+    },
+    {
+      "date": "2026-02-01",
+      "current_account": 39327.0,
+      "goods_services": -168.0,
+      "primary_income": 42403.0,
+      "secondary_income": -2908.0
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "current_account": 9416.0,
-    "goods_services": -13157.0,
-    "primary_income": 27466.0,
-    "secondary_income": -4893.0
+    "date": "2026-02-01",
+    "current_account": 39327.0,
+    "goods_services": -168.0,
+    "primary_income": 42403.0,
+    "secondary_income": -2908.0
   },
   "metadata": {
     "source": "財務省国際収支統計",
@@ -2542,5 +2549,5 @@
     "unit": "100 Million Yen (億円)",
     "frequency": "Monthly"
   },
-  "last_updated": "2026-04-03T12:42:06.992697+09:00"
+  "last_updated": "2026-04-10T18:00:40.997266+09:00"
 }

@@ -12,7 +12,9 @@ import { ViewModeButtonGroup } from '../../usa/common/ChartComponents'
 
 const { Text } = Typography
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+import { fetchWithTimeout } from '../../../../utils/apiConfig'
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 type Region = 'global' | 'japan' | 'china'
 
@@ -47,7 +49,7 @@ export default function EconomicSurpriseIndexChart() {
     try {
       setLoading(true)
       setError(null)
-      const response = await fetch(`${API_BASE_URL}/api/global/economic-surprise-index-screenshot?region=${r}`)
+      const response = await fetchWithTimeout(`${API_BASE_URL}/api/global/economic-surprise-index-screenshot?region=${r}`, undefined, 30_000)
       if (!response.ok) {
         throw new Error('Failed to load screenshot URL')
       }

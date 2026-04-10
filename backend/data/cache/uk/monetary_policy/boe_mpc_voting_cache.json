@@ -1903,6 +1903,21 @@
         "Dave Ramsden": 0.035,
         "Alan Taylor": 0.035
       }
+    },
+    {
+      "date": "2026-03-19",
+      "bank_rate": 0.0375,
+      "member_votes": {
+        "Andrew Bailey": 0.0375,
+        "Sarah Breeden": 0.0375,
+        "Swati Dhingra": 0.0375,
+        "Megan Greene": 0.0375,
+        "Clare Lombardelli": 0.0375,
+        "Catherine L Mann": 0.0375,
+        "Huw Pill": 0.0375,
+        "Dave Ramsden": 0.0375,
+        "Alan Taylor": 0.0375
+      }
     }
   ],
   "members": [
@@ -1917,18 +1932,9 @@
     "Alan Taylor"
   ],
   "latest": {
-    "date": "2026-02-05",
+    "date": "2026-03-19",
     "bank_rate": 0.0375
   },
-  "next_release": {
-    "date": "2026-03-19",
-    "datetime_utc": "2026-03-19T11:00:00+00:00",
-    "datetime_jst": "2026-03-19T20:00:00+09:00",
-    "time_jst": "20:00",
-    "datetime_london": "2026-03-19T11:00:00+00:00",
-    "time_london": "11:00",
-    "label": "BoE Interest Rate Decision",
-    "estimate": 3.5
-  },
-  "last_updated": "2026-02-14T14:13:34.419706+09:00"
+  "next_release": null,
+  "last_updated": "2026-04-10T20:50:07.087854+09:00"
 }

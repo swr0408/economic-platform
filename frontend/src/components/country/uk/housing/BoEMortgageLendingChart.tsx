@@ -126,6 +126,7 @@ export default function BoEMortgageLendingChart({ data }: BoEMortgageLendingChar
         showPeriodSelector={false}
         dataSource="Bank of England"
         sourceUrl="https://www.bankofengland.co.uk/statistics"
+        handbookId="boe-mortgage-lending"
       >
         {/* 最新値表示 */}
         <LatestValueBox

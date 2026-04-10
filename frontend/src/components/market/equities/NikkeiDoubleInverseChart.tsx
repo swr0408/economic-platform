@@ -202,7 +202,7 @@ export default function NikkeiDoubleInverseChart() {
   return (
     <ChartContainer
       title="日経ダブルインバース 信用残"
-      dataSource="JPX / yfinance"
+      dataSource="JPX"
       showPeriodSelector={false}
       sourceUrl="https://www.nikkei.com/nkd/company/history/trust/?scode=1357"
       // https://www.jpx.co.jp/markets/statistics-equities/margin/05.html

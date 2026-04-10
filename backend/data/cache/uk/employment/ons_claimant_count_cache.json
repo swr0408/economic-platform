@@ -4622,27 +4622,34 @@
     },
     {
       "date": "2026-01-01",
-      "value": 1690.8,
+      "value": 1666.9,
       "period": "2026 JAN",
-      "mom": 28.6,
-      "yoy": -1.73
+      "mom": 4.7,
+      "yoy": -3.12
+    },
+    {
+      "date": "2026-02-01",
+      "value": 1691.6,
+      "period": "2026 FEB",
+      "mom": 24.7,
+      "yoy": -2.18
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 1690.8,
-    "period": "2026 JAN",
-    "mom": 28.6,
-    "yoy": -1.73
+    "date": "2026-02-01",
+    "value": 1691.6,
+    "period": "2026 FEB",
+    "mom": 24.7,
+    "yoy": -2.18
   },
   "metadata": {
     "title": "Claimant Count : K02000001 UK : People : SA : Thousands",
     "cdid": "BCJD",
     "unit": "",
-    "release_date": "17-02-2026",
-    "next_release_ons": "19 March 2026",
+    "release_date": "19-03-2026",
+    "next_release_ons": "21 April  2026",
     "source": "Office for National Statistics",
     "description": "イギリス失業給付申請件数（季節調整済み、千人）"
   },
-  "last_updated": "2026-02-28T09:57:52.218632+09:00"
+  "last_updated": "2026-04-10T21:20:20.027298+09:00"
 }

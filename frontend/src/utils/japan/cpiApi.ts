@@ -3,7 +3,7 @@
  * 全国消費者物価指数 & 東京都区部消費者物価指数
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export interface CPIDataPoint {
   date: string // YYYY-MM-01 format

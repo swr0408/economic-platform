@@ -478,7 +478,7 @@
     },
     {
       "date": "2024-12-01",
-      "value": 6.2
+      "value": 6.1
     },
     {
       "date": "2025-01-01",
@@ -527,6 +527,18 @@
     {
       "date": "2025-12-01",
       "value": 6.3
+    },
+    {
+      "date": "2026-01-01",
+      "value": 6.3
+    },
+    {
+      "date": "2026-02-01",
+      "value": 6.3
+    },
+    {
+      "date": "2026-03-01",
+      "value": 6.3
     }
   ],
   "metadata": {
@@ -538,14 +550,14 @@
     "description": "失業率（ドイツ、季節調整済み）"
   },
   "next_release": {
-    "date": "2026-01-30",
-    "datetime_utc": "2026-01-30T08:55:00+00:00",
-    "datetime_jst": "2026-01-30T17:55:00+09:00",
-    "time_jst": "17:55",
-    "datetime_cet": "2026-01-30T09:55:00+01:00",
+    "date": "2026-04-30",
+    "datetime_utc": "2026-04-30T07:55:00+00:00",
+    "datetime_jst": "2026-04-30T16:55:00+09:00",
+    "time_jst": "16:55",
+    "datetime_cet": "2026-04-30T09:55:00+02:00",
     "time_cet": "09:55",
-    "label": "Unemployment Rate (Jan)",
+    "label": "Unemployment Rate (Apr)",
     "estimate": 6.3
   },
-  "last_updated": "2026-01-29T12:23:19.158807+09:00"
+  "last_updated": "2026-04-10T20:48:48.695529+09:00"
 }

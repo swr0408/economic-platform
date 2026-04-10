@@ -4143,7 +4143,7 @@
     "dataset": "gov_10q_ggdebt",
     "unit": "% of GDP",
     "description": "General government consolidated gross debt as a percentage of GDP",
-    "updated": "2026-02-02T23:00:00+0100"
+    "updated": "2026-03-13T11:00:00+0100"
   },
   "next_release": {
     "date": "2026-01-22",
@@ -4151,5 +4151,5 @@
     "time_jst": "19:00",
     "label": "Eurostat Govt Debt (Jan 2026)"
   },
-  "last_updated": "2026-02-28T09:54:09.530837+09:00"
+  "last_updated": "2026-04-10T18:00:58.426235+09:00"
 }

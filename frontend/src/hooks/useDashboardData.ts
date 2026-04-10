@@ -3,6 +3,7 @@
  * 国・カテゴリ別のバッチAPIを呼び出し、React Queryでキャッシュ管理
  */
 import { useQuery, UseQueryResult } from '@tanstack/react-query'
+import { fetchWithTimeout } from '../utils/apiConfig'
 
 // ダッシュボードAPIレスポンスの型
 export interface DashboardResponse<T = Record<string, unknown>> {
@@ -1083,7 +1084,11 @@ async function fetchDashboardData<T>(
   country: string,
   category: string
 ): Promise<DashboardResponse<T>> {
-  const response = await fetch(`/api/${country}/${category}/dashboard`)
+  const response = await fetchWithTimeout(
+    `/api/${country}/${category}/dashboard`,
+    undefined,
+    30_000,  // 30秒タイムアウト
+  )
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}))
@@ -1100,7 +1105,11 @@ async function fetchDashboardLightData<T>(
   country: string,
   category: string
 ): Promise<DashboardResponse<T>> {
-  const response = await fetch(`/api/${country}/${category}/dashboard/light`)
+  const response = await fetchWithTimeout(
+    `/api/${country}/${category}/dashboard/light`,
+    undefined,
+    15_000,  // 15秒タイムアウト（軽量指標は速いはず）
+  )
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}))
@@ -1117,7 +1126,11 @@ async function fetchDashboardHeavyData<T>(
   country: string,
   category: string
 ): Promise<DashboardResponse<T>> {
-  const response = await fetch(`/api/${country}/${category}/dashboard/heavy`)
+  const response = await fetchWithTimeout(
+    `/api/${country}/${category}/dashboard/heavy`,
+    undefined,
+    60_000,  // 60秒タイムアウト（スクショ等の重い処理を許容）
+  )
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({}))

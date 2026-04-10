@@ -713,6 +713,24 @@
       "value": 3.9,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2025-12-01",
+      "value": 3.92,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-01-01",
+      "value": 3.9,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-02-01",
+      "value": 3.95,
+      "forecast": null,
+      "previous": null
     }
   ],
   "cfmz6jv": [
@@ -1433,6 +1451,18 @@
     {
       "date": "2025-12-01",
       "value": 4.12,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-01-01",
+      "value": 4.07,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-02-01",
+      "value": 4.08,
       "forecast": null,
       "previous": null
     }
@@ -2436,7 +2466,7 @@
     },
     {
       "date": "2025-11-01",
-      "value": 6.81,
+      "value": 6.82,
       "forecast": null,
       "previous": null
     },
@@ -2445,26 +2475,44 @@
       "value": 6.77,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-01-01",
+      "value": 6.62,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-02-01",
+      "value": 6.59,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-03-01",
+      "value": 6.6,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest_cfmz6k6": {
-    "date": "2025-11-01",
-    "value": 3.9,
+    "date": "2026-02-01",
+    "value": 3.95,
     "forecast": null,
     "previous": null
   },
   "latest_cfmz6jv": {
-    "date": "2025-12-01",
-    "value": 4.12,
+    "date": "2026-02-01",
+    "value": 4.08,
     "forecast": null,
     "previous": null
   },
   "latest_iumtlmv": {
-    "date": "2025-12-01",
-    "value": 6.77,
+    "date": "2026-03-01",
+    "value": 6.6,
     "forecast": null,
     "previous": null
   },
   "next_release": null,
-  "last_updated": "2026-02-08T23:01:50.912818+09:00"
+  "last_updated": "2026-04-09T23:38:01.818549+09:00"
 }

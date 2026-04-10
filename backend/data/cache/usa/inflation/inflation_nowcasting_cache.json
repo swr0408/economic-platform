@@ -2,34 +2,20 @@
   "monthly_mom": [
     {
       "date": "April 2026",
-      "cpi": 0.45,
-      "core_cpi": 0.22,
-      "pce": 0.37,
-      "core_pce": 0.24
-    },
-    {
-      "date": "March 2026",
-      "cpi": 0.84,
-      "core_cpi": 0.2,
-      "pce": 0.61,
-      "core_pce": 0.23
+      "cpi": 0.46,
+      "core_cpi": 0.21,
+      "pce": 0.39,
+      "core_pce": 0.26
     }
   ],
   "monthly_yoy": [
     {
       "date": "April 2026",
-      "cpi": 3.56,
+      "cpi": 3.58,
       "core_cpi": 2.56,
-      "pce": 3.5,
-      "core_pce": 3.03
-    },
-    {
-      "date": "March 2026",
-      "cpi": 3.25,
-      "core_cpi": 2.6,
-      "pce": 3.28,
-      "core_pce": 2.97
+      "pce": 3.61,
+      "core_pce": 3.17
     }
   ],
-  "last_updated": "2026-04-09T00:03:42.113079+09:00"
+  "last_updated": "2026-04-10T23:01:40.437346+09:00"
 }

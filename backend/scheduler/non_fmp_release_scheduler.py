@@ -29,9 +29,12 @@ JST = ZoneInfo("Asia/Tokyo")
 UTC = ZoneInfo("UTC")
 
 # 発表後の更新設定
-UPDATE_DELAY_MINUTES = 1  # 発表から1分後に取得開始
+UPDATE_DELAY_MINUTES = 5  # 発表から5分後に取得開始（データソース反映ラグ考慮）
 UPDATE_ITERATIONS = 3     # 3回取得
 UPDATE_INTERVAL_SECONDS = 60
+
+# ポーリングリトライ設定（FRED/e-Stat等の反映ラグ対策）
+POLLING_RETRY_MINUTES = [15, 30, 45, 60]
 
 # ============================================================
 # 非FMP指標設定
@@ -588,13 +591,16 @@ class NonFMPReleaseScheduler:
 
     async def _update_indicator(self, config: Dict[str, Any]):
         """
-        指標データを更新（3回取得方式）
+        指標データを更新（3回取得方式 + ポーリングリトライ）
 
         Args:
             config: 指標設定
         """
         name_ja = config["name_ja"]
         print(f"[NonFMPScheduler] Starting update: {name_ja}")
+
+        # 初回取得前のサービス最新日付を記録
+        latest_before = self._get_service_latest_date(config)
 
         for iteration in range(1, UPDATE_ITERATIONS + 1):
             try:
@@ -605,6 +611,101 @@ class NonFMPReleaseScheduler:
 
             except Exception as e:
                 print(f"[NonFMPScheduler] Error in iteration {iteration} for {name_ja}: {e}")
+
+        # 初回取得後のサービス最新日付を確認
+        latest_after = self._get_service_latest_date(config)
+
+        # データが更新されなかった場合、ポーリングリトライをスケジュール
+        if latest_before == latest_after and latest_before is not None:
+            print(f"[NonFMPScheduler] Data unchanged for {name_ja} "
+                  f"(latest={latest_before}), scheduling polling retries...")
+            now_jst = datetime.now(JST)
+            for delay_min in POLLING_RETRY_MINUTES:
+                retry_time = now_jst + timedelta(minutes=delay_min)
+                retry_job_id = f"nonfmp_retry_{name_ja}_{now_jst.strftime('%Y%m%d_%H%M')}_{delay_min}m"
+                try:
+                    self.scheduler.add_job(
+                        self._polling_retry,
+                        trigger=DateTrigger(run_date=retry_time),
+                        args=[config, latest_before],
+                        id=retry_job_id,
+                        replace_existing=True,
+                    )
+                except Exception as e:
+                    print(f"[NonFMPScheduler] Failed to schedule retry: {e}")
+
+    async def _polling_retry(self, config: Dict[str, Any], latest_before: str):
+        """
+        ポーリングリトライ: データが更新されるまで再取得を試みる
+
+        Args:
+            config: 指標設定
+            latest_before: 更新前のサービス最新日付
+        """
+        name_ja = config["name_ja"]
+        country = config["country"]
+        category = config["category"]
+
+        # 現在の最新日付を確認
+        current_latest = self._get_service_latest_date(config)
+        if current_latest and current_latest != latest_before:
+            print(f"[NonFMPScheduler] Polling skip for {name_ja}: "
+                  f"already updated ({latest_before} -> {current_latest})")
+            return
+
+        print(f"[NonFMPScheduler] Polling retry for {name_ja}: "
+              f"latest still {current_latest}, retrying...")
+
+        try:
+            service = self._get_service_instance(config)
+            if not service:
+                return
+
+            fetch_method = getattr(service, config["fetch_method"], None)
+            if not fetch_method:
+                return
+
+            extra_kwargs = config.get("fetch_kwargs", {})
+            result = fetch_method(force_refresh=True, **extra_kwargs)
+
+            if result and not result.get("error"):
+                new_latest = result.get("latest", {})
+                new_date = new_latest.get("date") if new_latest else None
+                if new_date and new_date != latest_before:
+                    print(f"[NonFMPScheduler] Polling success for {name_ja}: "
+                          f"{latest_before} -> {new_date}")
+                    if category:
+                        invalidate_dashboard_cache(country, category)
+                else:
+                    print(f"[NonFMPScheduler] Polling: {name_ja} still at {new_date}")
+
+        except Exception as e:
+            print(f"[NonFMPScheduler] Polling error for {name_ja}: {e}")
+
+    def _get_service_latest_date(self, config: Dict[str, Any]) -> Optional[str]:
+        """サービスのキャッシュから最新データ日付を取得"""
+        try:
+            service = self._get_service_instance(config)
+            if not service:
+                return None
+
+            # redis_client経由でキャッシュを取得
+            try:
+                from core.redis_client import redis_client
+            except ImportError:
+                from backend.core.redis_client import redis_client
+
+            for key_attr in ['REDIS_KEY', 'DATA_CACHE_KEY', 'CACHE_KEY']:
+                key = getattr(service, key_attr, None)
+                if key:
+                    data = redis_client.get(key)
+                    if data and isinstance(data, dict):
+                        latest = data.get("latest", {})
+                        if isinstance(latest, dict):
+                            return latest.get("date")
+            return None
+        except Exception:
+            return None
 
     async def _fetch_indicator_data(self, config: Dict[str, Any], iteration: int):
         """

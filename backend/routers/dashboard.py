@@ -6,10 +6,14 @@
     GET /api/usa/policy/dashboard  → 米国金融政策データを一括取得
     GET /api/japan/policy/dashboard → 日本金融政策データを一括取得
 """
+import asyncio
+import logging
 import time
 from fastapi import APIRouter, Depends, Path, HTTPException
 from fastapi.responses import JSONResponse
 from typing import Literal
+
+logger = logging.getLogger(__name__)
 
 try:
     from backend.services.dashboard.registry import (
@@ -53,6 +57,8 @@ async def get_dashboard(
     ページ読み込み高速化のためのバッチAPI。
     Redis キャッシュ → DB の順でデータを取得し、外部APIは叩かない。
 
+    30秒タイムアウト: 超過時はキャッシュデータで応答。
+
     Args:
         country: 国コード
         category: カテゴリコード
@@ -72,13 +78,61 @@ async def get_dashboard(
     Raises:
         404: 指定された国・カテゴリのダッシュボードが存在しない
     """
+    DASHBOARD_TIMEOUT_SECONDS = 30
+
     start_time = time.time()
 
     # ローダーを取得（存在しない場合は404）
     loader = get_dashboard_loader(country, category)
 
-    # データを取得（非同期）
-    result = await loader.get_data_async()
+    try:
+        # データを取得（非同期 + タイムアウト）
+        # 注: run_in_executor 内のスレッドはタイムアウト後も走り続け、
+        # 結果は Redis キャッシュに書かれる（次回アクセスで反映される）
+        result = await asyncio.wait_for(
+            loader.get_data_async(),
+            timeout=DASHBOARD_TIMEOUT_SECONDS,
+        )
+    except asyncio.TimeoutError:
+        response_time_ms = (time.time() - start_time) * 1000
+        logger.warning(
+            f"Dashboard timeout ({DASHBOARD_TIMEOUT_SECONDS}s) for {country}/{category}, "
+            f"falling back to cache"
+        )
+
+        cached = loader.get_cached()
+        if cached:
+            return JSONResponse(
+                content={
+                    "data": cached.get("data", {}),
+                    "cached": True,
+                    "last_updated": cached.get("last_updated"),
+                    "response_time_ms": round(response_time_ms, 2),
+                    "country": country,
+                    "category": category,
+                    "timeout_fallback": True,
+                },
+                headers={
+                    "X-Cache": "TIMEOUT-FALLBACK",
+                    "X-Response-Time": f"{response_time_ms:.2f}ms",
+                }
+            )
+
+        return JSONResponse(
+            content={
+                "data": {},
+                "cached": False,
+                "last_updated": None,
+                "response_time_ms": round(response_time_ms, 2),
+                "country": country,
+                "category": category,
+                "timeout_fallback": True,
+            },
+            headers={
+                "X-Cache": "TIMEOUT-EMPTY",
+                "X-Response-Time": f"{response_time_ms:.2f}ms",
+            }
+        )
 
     response_time_ms = (time.time() - start_time) * 1000
 
@@ -140,10 +194,61 @@ async def get_dashboard_light(
             "response_time_ms": float
         }
     """
+    LIGHT_TIMEOUT_SECONDS = 15
+
     start_time = time.time()
 
     loader = get_dashboard_loader(country, category)
-    result = await loader.get_data_light_async()
+
+    try:
+        result = await asyncio.wait_for(
+            loader.get_data_light_async(),
+            timeout=LIGHT_TIMEOUT_SECONDS,
+        )
+    except asyncio.TimeoutError:
+        response_time_ms = (time.time() - start_time) * 1000
+        logger.warning(
+            f"Light dashboard timeout ({LIGHT_TIMEOUT_SECONDS}s) for {country}/{category}, "
+            f"falling back to cache"
+        )
+
+        cached = loader.get_cached()
+        if cached:
+            return JSONResponse(
+                content={
+                    "data": cached.get("data", {}),
+                    "cached": True,
+                    "last_updated": cached.get("last_updated"),
+                    "partial": True,
+                    "response_time_ms": round(response_time_ms, 2),
+                    "country": country,
+                    "category": category,
+                    "timeout_fallback": True,
+                },
+                headers={
+                    "X-Cache": "TIMEOUT-FALLBACK",
+                    "X-Response-Time": f"{response_time_ms:.2f}ms",
+                    "X-Partial": "true",
+                }
+            )
+
+        return JSONResponse(
+            content={
+                "data": {},
+                "cached": False,
+                "last_updated": None,
+                "partial": True,
+                "response_time_ms": round(response_time_ms, 2),
+                "country": country,
+                "category": category,
+                "timeout_fallback": True,
+            },
+            headers={
+                "X-Cache": "TIMEOUT-EMPTY",
+                "X-Response-Time": f"{response_time_ms:.2f}ms",
+                "X-Partial": "true",
+            }
+        )
 
     response_time_ms = (time.time() - start_time) * 1000
 
@@ -176,6 +281,9 @@ async def get_dashboard_heavy(
     スクリーンショット取得、PDF解析等の重い処理を含む指標のみを取得。
     フロントエンドで遅延ロードするデータ用。
 
+    45秒タイムアウト: 超過時はキャッシュデータで応答。
+    キャッシュもなければ空データを返す（画面が固まるのを防ぐ）。
+
     Returns:
         {
             "data": {...},  # 重い指標のみ
@@ -185,10 +293,63 @@ async def get_dashboard_heavy(
             "response_time_ms": float
         }
     """
+    HEAVY_TIMEOUT_SECONDS = 45
+
     start_time = time.time()
 
     loader = get_dashboard_loader(country, category)
-    result = await loader.get_data_heavy_async()
+
+    try:
+        result = await asyncio.wait_for(
+            loader.get_data_heavy_async(),
+            timeout=HEAVY_TIMEOUT_SECONDS,
+        )
+    except asyncio.TimeoutError:
+        response_time_ms = (time.time() - start_time) * 1000
+        logger.warning(
+            f"Heavy dashboard timeout ({HEAVY_TIMEOUT_SECONDS}s) for {country}/{category}, "
+            f"falling back to cache"
+        )
+
+        # タイムアウト → キャッシュがあればそれを返す
+        cached = loader.get_cached()
+        if cached:
+            return JSONResponse(
+                content={
+                    "data": cached.get("data", {}),
+                    "cached": True,
+                    "last_updated": cached.get("last_updated"),
+                    "partial": True,
+                    "response_time_ms": round(response_time_ms, 2),
+                    "country": country,
+                    "category": category,
+                    "timeout_fallback": True,
+                },
+                headers={
+                    "X-Cache": "TIMEOUT-FALLBACK",
+                    "X-Response-Time": f"{response_time_ms:.2f}ms",
+                    "X-Partial": "true",
+                }
+            )
+
+        # キャッシュもない → 空データを返す（画面が止まるよりマシ）
+        return JSONResponse(
+            content={
+                "data": {},
+                "cached": False,
+                "last_updated": None,
+                "partial": True,
+                "response_time_ms": round(response_time_ms, 2),
+                "country": country,
+                "category": category,
+                "timeout_fallback": True,
+            },
+            headers={
+                "X-Cache": "TIMEOUT-EMPTY",
+                "X-Response-Time": f"{response_time_ms:.2f}ms",
+                "X-Partial": "true",
+            }
+        )
 
     response_time_ms = (time.time() - start_time) * 1000
 

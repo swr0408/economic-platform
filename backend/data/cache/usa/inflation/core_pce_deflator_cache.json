@@ -2675,12 +2675,12 @@
     },
     {
       "date": "2025-10-01",
-      "value": 2.76,
-      "yoy": 2.76,
+      "value": 2.75,
+      "yoy": 2.75,
       "mom": 0.23,
-      "index": 127.25,
-      "annualized_3m": 2.62,
-      "annualized_6m": 2.81
+      "index": 127.24,
+      "annualized_3m": 2.59,
+      "annualized_6m": 2.79
     },
     {
       "date": "2025-11-01",
@@ -2693,39 +2693,48 @@
     },
     {
       "date": "2025-12-01",
-      "value": 3.01,
-      "yoy": 3.01,
-      "mom": 0.36,
-      "index": 127.93,
-      "annualized_3m": 3.11,
-      "annualized_6m": 2.89
+      "value": 2.97,
+      "yoy": 2.97,
+      "mom": 0.33,
+      "index": 127.89,
+      "annualized_3m": 2.98,
+      "annualized_6m": 2.82
     },
     {
       "date": "2026-01-01",
-      "value": 3.06,
-      "yoy": 3.06,
-      "mom": 0.36,
+      "value": 3.05,
+      "yoy": 3.05,
+      "mom": 0.39,
       "index": 128.39,
       "annualized_3m": 3.65,
       "annualized_6m": 3.12
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2.97,
+      "yoy": 2.97,
+      "mom": 0.37,
+      "index": 128.86,
+      "annualized_3m": 4.44,
+      "annualized_6m": 3.42
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 3.06,
-    "yoy": 3.06,
-    "mom": 0.36,
-    "index": 128.39,
-    "annualized_3m": 3.65,
-    "annualized_6m": 3.12
+    "date": "2026-02-01",
+    "value": 2.97,
+    "yoy": 2.97,
+    "mom": 0.37,
+    "index": 128.86,
+    "annualized_3m": 4.44,
+    "annualized_6m": 3.42
   },
   "next_release": {
-    "date": "2026-04-09",
-    "datetime_utc": "2026-04-09T12:30:00+00:00",
-    "datetime_jst": "2026-04-09T21:30:00+09:00",
+    "date": "2026-04-30",
+    "datetime_utc": "2026-04-30T12:30:00+00:00",
+    "datetime_jst": "2026-04-30T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core PCE Price Index YoY (Feb)",
-    "estimate": null
+    "label": "PCE Price Index YoY (Mar)",
+    "estimate": 3.3
   },
-  "last_updated": "2026-03-15T23:02:21.781479+09:00"
+  "last_updated": "2026-04-10T12:02:08.353073+09:00"
 }

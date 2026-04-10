@@ -7081,6 +7081,34 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'value',
     unit: '£millions',
   },
+  // 住宅ローン承認件数（3ヶ月移動平均）
+  {
+    id: 'uk_boe_mortgage_lending_ma3',
+    name: 'UK 住宅ローン承認件数（3ヶ月平均）',
+    nameEn: 'UK BoE Mortgage Lending (3M Avg)',
+    frequency: 'monthly',
+    country: 'uk',
+    category: 'housing',
+    subCategory: 'boe_mortgage_lending',
+    apiEndpoint: '/api/uk/housing',
+    dataKey: 'boe_mortgage_lending.data',
+    valueField: 'ma3',
+    unit: '£millions',
+  },
+  // 住宅ローン承認件数（3ヶ月平均 前年比）
+  {
+    id: 'uk_boe_mortgage_lending_ma3_yoy',
+    name: 'UK 住宅ローン承認件数（3ヶ月平均 前年比）',
+    nameEn: 'UK BoE Mortgage Lending (3M Avg YoY)',
+    frequency: 'monthly',
+    country: 'uk',
+    category: 'housing',
+    subCategory: 'boe_mortgage_lending',
+    apiEndpoint: '/api/uk/housing',
+    dataKey: 'boe_mortgage_lending.data',
+    valueField: 'ma3_yoy',
+    unit: '%',
+  },
   // 住宅ローン金利（残高）
   {
     id: 'uk_boe_mortgage_rates_cfmz6k6',

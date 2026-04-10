@@ -1,28 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-03-13",
-      "ratio": 105.74,
-      "advances": 1236,
-      "declines": 382,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38695.97,
-      "topix": null
-    },
-    {
-      "date": "2024-03-14",
-      "ratio": 106.78,
-      "advances": 977,
-      "declines": 632,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38807.38,
-      "topix": null
-    },
-    {
       "date": "2024-03-17",
       "ratio": 114.24,
       "advances": 1267,
@@ -5543,28 +5521,61 @@
       "declines_25d": 0,
       "nikkei225": 53413.68,
       "topix": null
+    },
+    {
+      "date": "2026-04-07",
+      "ratio": 112.2,
+      "advances": 1383,
+      "declines": 168,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 53429.56,
+      "topix": null
+    },
+    {
+      "date": "2026-04-08",
+      "ratio": 114.25,
+      "advances": 287,
+      "declines": 1263,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 56308.42,
+      "topix": null
+    },
+    {
+      "date": "2026-04-09",
+      "ratio": 103.84,
+      "advances": 469,
+      "declines": 1050,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 55895.32,
+      "topix": null
     }
   ],
   "latest": {
-    "date": "2026-04-06",
-    "ratio": 97.79,
-    "advances": 1129,
-    "declines": 411,
+    "date": "2026-04-09",
+    "ratio": 103.84,
+    "advances": 469,
+    "declines": 1050,
     "unchanged": 0,
     "advances_25d": 0,
     "declines_25d": 0,
-    "nikkei225": 53413.68,
+    "nikkei225": 55895.32,
     "topix": null
   },
   "metadata": {
     "source": "nikkei225jp.com",
     "frequency": "daily",
-    "data_count": 504,
-    "start_date": "2024-03-13",
-    "end_date": "2026-04-06",
+    "data_count": 505,
+    "start_date": "2024-03-17",
+    "end_date": "2026-04-09",
     "window": 25
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-04-08T02:06:55.550877"
+  "last_updated": "2026-04-10T11:44:38.024149"
 }

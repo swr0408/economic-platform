@@ -18666,141 +18666,231 @@
       "cdd": 2
     },
     {
+      "date": "2026-03-22",
+      "hdd": 8,
+      "cdd": 2
+    },
+    {
       "date": "2026-03-23",
       "hdd": 13,
-      "cdd": 2,
-      "forecast": true
+      "cdd": 1
     },
     {
       "date": "2026-03-24",
-      "hdd": 14,
-      "cdd": 2,
-      "forecast": true
+      "hdd": 15,
+      "cdd": 1
     },
     {
       "date": "2026-03-25",
-      "hdd": 10,
-      "cdd": 2,
-      "forecast": true
+      "hdd": 11,
+      "cdd": 1
     },
     {
       "date": "2026-03-26",
       "hdd": 7,
-      "cdd": 3,
-      "forecast": true
+      "cdd": 2
     },
     {
       "date": "2026-03-27",
       "hdd": 12,
-      "cdd": 3,
-      "forecast": true
+      "cdd": 2
     },
     {
       "date": "2026-03-28",
       "hdd": 17,
+      "cdd": 1
+    },
+    {
+      "date": "2026-03-29",
+      "hdd": 14,
+      "cdd": 1
+    },
+    {
+      "date": "2026-03-30",
+      "hdd": 8,
+      "cdd": 1
+    },
+    {
+      "date": "2026-03-31",
+      "hdd": 5,
+      "cdd": 2
+    },
+    {
+      "date": "2026-04-01",
+      "hdd": 8,
+      "cdd": 3
+    },
+    {
+      "date": "2026-04-02",
+      "hdd": 10,
+      "cdd": 2
+    },
+    {
+      "date": "2026-04-03",
+      "hdd": 8,
+      "cdd": 2
+    },
+    {
+      "date": "2026-04-04",
+      "hdd": 7,
+      "cdd": 2
+    },
+    {
+      "date": "2026-04-05",
+      "hdd": 10,
+      "cdd": 1
+    },
+    {
+      "date": "2026-04-06",
+      "hdd": 13,
+      "cdd": 0
+    },
+    {
+      "date": "2026-04-07",
+      "hdd": 15,
+      "cdd": 0
+    },
+    {
+      "date": "2026-04-08",
+      "hdd": 13,
+      "cdd": 0
+    },
+    {
+      "date": "2026-04-09",
+      "hdd": 9,
       "cdd": 1,
       "forecast": true
     },
     {
-      "date": "2026-03-29",
-      "hdd": 13,
+      "date": "2026-04-10",
+      "hdd": 8,
       "cdd": 1,
+      "forecast": true
+    },
+    {
+      "date": "2026-04-11",
+      "hdd": 8,
+      "cdd": 2,
+      "forecast": true
+    },
+    {
+      "date": "2026-04-12",
+      "hdd": 7,
+      "cdd": 2,
+      "forecast": true
+    },
+    {
+      "date": "2026-04-13",
+      "hdd": 5,
+      "cdd": 4,
+      "forecast": true
+    },
+    {
+      "date": "2026-04-14",
+      "hdd": 4,
+      "cdd": 5,
+      "forecast": true
+    },
+    {
+      "date": "2026-04-15",
+      "hdd": 6,
+      "cdd": 4,
       "forecast": true
     }
   ],
   "latest": {
-    "date": "2026-03-21",
-    "hdd": 8,
-    "cdd": 2
+    "date": "2026-04-08",
+    "hdd": 13,
+    "cdd": 0
   },
   "outlook": {
     "6_10": {
-      "date_range": "Mar 29 - Apr 02, 2026",
+      "date_range": "Apr 15 - 19 2026",
       "states": [
         {
           "state": "WASHINGTON",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "OREGON",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "NRN CALIF",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "SRN CALIF",
-          "temp": "A",
+          "temp": "N",
           "precip": "N"
         },
         {
           "state": "IDAHO",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "NEVADA",
-          "temp": "A",
-          "precip": "A"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "W MONTANA",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "E MONTANA",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "WYOMING",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "UTAH",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "ARIZONA",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "COLORADO",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "NEW MEXICO",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "N DAKOTA",
-          "temp": "A",
-          "precip": "A"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "S DAKOTA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "NEBRASKA",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "KANSAS",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "OKLAHOMA",
@@ -18885,86 +18975,86 @@
         {
           "state": "TENNESSEE",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "ALABAMA",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "NEW YORK",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "VERMONT",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "NEW HAMP",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "MAINE",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "MASS",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "CONN",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "RHODE IS",
-          "temp": "B",
-          "precip": "B"
+          "temp": "A",
+          "precip": "N"
         },
         {
           "state": "PENN",
-          "temp": "N",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "NEW JERSEY",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
           "state": "W VIRGINIA",
-          "temp": "N",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "MARYLAND",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
           "state": "DELAWARE",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
           "state": "VIRGINIA",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
           "state": "N CAROLINA",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
           "state": "S CAROLINA",
-          "temp": "N",
+          "temp": "A",
           "precip": "B"
         },
         {
@@ -18974,33 +19064,33 @@
         },
         {
           "state": "FL PNHDL",
-          "temp": "N",
-          "precip": "B"
-        },
-        {
-          "state": "FL PENIN",
-          "temp": "N",
-          "precip": "A"
-        },
-        {
-          "state": "AK N SLOPE",
           "temp": "A",
           "precip": "B"
         },
         {
-          "state": "AK ALEUTIAN",
-          "temp": "B",
+          "state": "FL PENIN",
+          "temp": "A",
           "precip": "B"
         },
         {
-          "state": "AK WESTERN",
+          "state": "AK N SLOPE",
           "temp": "B",
-          "precip": "B"
+          "precip": "A"
+        },
+        {
+          "state": "AK ALEUTIAN",
+          "temp": "A",
+          "precip": "N"
+        },
+        {
+          "state": "AK WESTERN",
+          "temp": "N",
+          "precip": "A"
         },
         {
           "state": "AK INT BSN",
           "temp": "B",
-          "precip": "B"
+          "precip": "A"
         },
         {
           "state": "AK S INT",
@@ -19015,36 +19105,36 @@
         {
           "state": "AK PNHDL",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         }
       ]
     },
     "8_14": {
-      "date_range": "Mar 31 - Apr 06, 2026",
+      "date_range": "Apr 17 - 23 2026",
       "states": [
         {
           "state": "WASHINGTON",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "OREGON",
-          "temp": "A",
-          "precip": "A"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "NRN CALIF",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "SRN CALIF",
           "temp": "A",
-          "precip": "N"
+          "precip": "A"
         },
         {
           "state": "IDAHO",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19054,48 +19144,48 @@
         },
         {
           "state": "W MONTANA",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "E MONTANA",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "WYOMING",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "UTAH",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "ARIZONA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "COLORADO",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "NEW MEXICO",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "N DAKOTA",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "S DAKOTA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "NEBRASKA",
@@ -19129,7 +19219,7 @@
         },
         {
           "state": "MINNESOTA",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
@@ -19150,7 +19240,7 @@
         {
           "state": "LOUISIANA",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "WISCONSIN",
@@ -19165,7 +19255,7 @@
         {
           "state": "MISSISSIPPI",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "MICHIGAN",
@@ -19195,7 +19285,7 @@
         {
           "state": "ALABAMA",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "NEW YORK",
@@ -19204,22 +19294,22 @@
         },
         {
           "state": "VERMONT",
-          "temp": "N",
+          "temp": "A",
           "precip": "A"
         },
         {
           "state": "NEW HAMP",
-          "temp": "N",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "MAINE",
-          "temp": "B",
-          "precip": "N"
+          "temp": "A",
+          "precip": "A"
         },
         {
           "state": "MASS",
-          "temp": "N",
+          "temp": "A",
           "precip": "N"
         },
         {
@@ -19265,47 +19355,47 @@
         {
           "state": "N CAROLINA",
           "temp": "A",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "S CAROLINA",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "GEORGIA",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "FL PNHDL",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "FL PENIN",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "AK N SLOPE",
-          "temp": "N",
-          "precip": "N"
+          "temp": "B",
+          "precip": "A"
         },
         {
           "state": "AK ALEUTIAN",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "AK WESTERN",
-          "temp": "B",
-          "precip": "B"
+          "temp": "N",
+          "precip": "A"
         },
         {
           "state": "AK INT BSN",
           "temp": "B",
-          "precip": "N"
+          "precip": "A"
         },
         {
           "state": "AK S INT",
@@ -19320,15 +19410,15 @@
         {
           "state": "AK PNHDL",
           "temp": "B",
-          "precip": "A"
+          "precip": "N"
         }
       ]
     },
     "3_4": {
-      "date_range": "Sat Apr 04 2026 - Fri Apr 17 2026",
-      "forecaster": "Johnna Infanti",
-      "temp_summary": "",
-      "precip_summary": "is largely consistent with last week’s Outlook. Below-normal precipitation is favored over Northern California and Oregon, given model agreement. Models also point to increased chances of below-normal precipitation over the Southwest, but this is consistent with the dry climatology for the region, and thus EC is indicated. A broad region of above-normal precipitation is forecast from the southern Four Corners to the Great Lakes and Mid Atlantic, which is a consistent feature among the tools. Above-normal precipitation is also favored over southeastern mainland and southeast Alaska slightly downstream of troughing. Over Hawaii, above-normal temperatures are forecast given above-average SSTs. Model guidance is also consistent on enhanced chances of above-normal precipitation across the islands."
+      "date_range": "Sat Apr 18 2026 - Fri May 01 2026",
+      "forecaster": "Laura Ciasto",
+      "temp_summary": "tilts toward slightly above-normal probabilities for large portions of the CONUS including the western states where confidence is highest under the large-scale ridging. Above-normal temperatures are also favored for the Southeast and Mid-Atlantic. Equal Chances (EC) of above-, near- or below-normal temperatures are predicted for much of the Plains, Upper Midwest, and New England. While the CFS, GEFS, and ECMWF maintain above-normal temperatures throughout the forecast period, the signal diminishes across the Plains during Week 4. The JMA remains a notable outlier, tilting toward below-normal temperatures for much of the Plains and Eastern US except Florida and portions of the Mid-Atlantic. This discrepancy arises from the aforementioned Week-4 troughing seen in the JMA. The",
+      "precip_summary": "highlights enhanced probabilities for above-normal precipitation over the Southwest with highest probabilities over New Mexico. This wet signal is supported by consistent model guidance likely related to an injection of moisture from the Gulf. Furthermore, backdoor cold fronts common in the spring can promote additional moisture in New Mexico. EC of above-, near-, or below- normal precipitation is forecast for the rest of CONUS due to weak model guidance. In Alaska, anomalous troughing is predicted off the west coast, but models vary on the placement and depth of this feature. The CFS is the most aggressive solution, depicting negative height anomalies across much of the state, whereas the GEFS maintains a nearly negligible signal. These discrepancies result in a mixed temperature outlook; however, a slight tilt toward above-normal temperatures is forecast, supported primarily by statistical guidance that outweighs the uncertain dynamical guidance. Regarding precipitation, the outlook favors above-normal precipitation along the South Coast, where the anomalous onshore flow gives rise to enhanced moisture flux. Sea surface temperatures around the Hawaiian Islands are near normal, but model guidance consistently favors above normal temperatures as well as continued above normal precipitation."
     }
   },
   "metadata": {
@@ -19336,12 +19426,12 @@
     "frequency": "daily",
     "unit": "degree days",
     "series": "Population-Weighted CONUS HDD/CDD",
-    "data_count": 3740,
+    "data_count": 3758,
     "start_date": "2016-01-01",
-    "end_date": "2026-03-29",
-    "forecast_end_date": "2026-03-29"
+    "end_date": "2026-04-15",
+    "forecast_end_date": "2026-04-15"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-24T11:16:05.087476+09:00"
+  "last_updated": "2026-04-10T20:44:32.176016+09:00"
 }

@@ -272,7 +272,7 @@ export default function MofSecuritiesTradingChart() {
   return (
     <ChartContainer
       title="対外対内証券売買"
-      dataSource="MOF / yfinance / FRED"
+      dataSource="MOF / FRED"
       sourceUrl="https://www.mof.go.jp/policy/international_policy/reference/itn_transactions_in_securities/week.csv"
       showPeriodSelector={false}
     >

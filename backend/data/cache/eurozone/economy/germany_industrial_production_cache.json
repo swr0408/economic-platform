@@ -76,6 +76,20 @@
       "forecast": 0.3,
       "previous": 0.2,
       "source": "fmp"
+    },
+    {
+      "date": "2026-01-01",
+      "value": -0.5,
+      "forecast": 0.9,
+      "previous": -1.0,
+      "source": "fmp"
+    },
+    {
+      "date": "2026-02-01",
+      "value": -0.3,
+      "forecast": 0.9,
+      "previous": null,
+      "source": "fmp"
     }
   ],
   "yoy": [
@@ -155,31 +169,45 @@
       "forecast": null,
       "previous": 0.43,
       "source": "fmp"
+    },
+    {
+      "date": "2026-01-01",
+      "value": -1.09,
+      "forecast": null,
+      "previous": 0.44,
+      "source": "fmp"
+    },
+    {
+      "date": "2026-02-01",
+      "value": null,
+      "forecast": null,
+      "previous": -0.65,
+      "source": "fmp"
     }
   ],
   "latest_mom": {
-    "date": "2025-12-01",
-    "value": -1.9,
-    "forecast": 0.3,
-    "previous": 0.2,
+    "date": "2026-02-01",
+    "value": -0.3,
+    "forecast": 0.9,
+    "previous": null,
     "source": "fmp"
   },
   "latest_yoy": {
-    "date": "2025-12-01",
-    "value": -0.55,
+    "date": "2026-02-01",
+    "value": null,
     "forecast": null,
-    "previous": 0.43,
+    "previous": -0.65,
     "source": "fmp"
   },
   "next_release": {
-    "date": "2026-03-09",
-    "datetime_utc": "2026-03-09T07:00:00+00:00",
-    "datetime_jst": "2026-03-09T16:00:00+09:00",
-    "time_jst": "16:00",
-    "datetime_cet": "2026-03-09T08:00:00+01:00",
+    "date": "2026-05-08",
+    "datetime_utc": "2026-05-08T06:00:00+00:00",
+    "datetime_jst": "2026-05-08T15:00:00+09:00",
+    "time_jst": "15:00",
+    "datetime_cet": "2026-05-08T08:00:00+02:00",
     "time_cet": "08:00",
-    "label": "Industrial Production MoM (Jan)",
-    "estimate": 3.2
+    "label": "Industrial Production MoM (Mar)",
+    "estimate": -0.7
   },
-  "last_updated": "2026-02-14T19:56:25.979420+09:00"
+  "last_updated": "2026-04-10T23:02:10.942194+09:00"
 }

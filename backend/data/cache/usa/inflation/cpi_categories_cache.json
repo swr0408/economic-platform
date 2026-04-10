@@ -2407,23 +2407,31 @@
       "core_goods": 0.99,
       "core_services": 2.92,
       "shelter": 2.96
+    },
+    {
+      "date": "2026-03-01",
+      "food": 2.68,
+      "energy": 12.53,
+      "core_goods": 1.18,
+      "core_services": 3.05,
+      "shelter": 3.02
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "food": 3.06,
-    "energy": 0.48,
-    "core_goods": 0.99,
-    "core_services": 2.92,
-    "shelter": 2.96
+    "date": "2026-03-01",
+    "food": 2.68,
+    "energy": 12.53,
+    "core_goods": 1.18,
+    "core_services": 3.05,
+    "shelter": 3.02
   },
   "next_release": {
     "date": "2026-04-10",
     "datetime_utc": "2026-04-10T12:30:00+00:00",
     "datetime_jst": "2026-04-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core Inflation Rate MoM (Mar)",
-    "estimate": 0.3
+    "label": "CPI s.a (Mar)",
+    "estimate": 330.1
   },
-  "last_updated": "2026-04-07T18:01:33.169238+09:00"
+  "last_updated": "2026-04-10T23:42:56.240020+09:00"
 }

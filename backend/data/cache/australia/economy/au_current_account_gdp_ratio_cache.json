@@ -1215,7 +1215,7 @@
     {
       "date": "2010-03-01",
       "value": -5.74,
-      "current_account": -18.138,
+      "current_account": -18.139,
       "gdp": 315.864
     },
     {
@@ -1227,7 +1227,7 @@
     {
       "date": "2010-09-01",
       "value": -2.99,
-      "current_account": -10.362,
+      "current_account": -10.361,
       "gdp": 346.53
     },
     {
@@ -1251,7 +1251,7 @@
     {
       "date": "2011-09-01",
       "value": -2.68,
-      "current_account": -10.011,
+      "current_account": -10.01,
       "gdp": 374.096
     },
     {
@@ -1263,163 +1263,163 @@
     {
       "date": "2012-03-01",
       "value": -4.87,
-      "current_account": -17.501,
+      "current_account": -17.509,
       "gdp": 359.693
     },
     {
       "date": "2012-06-01",
       "value": -3.7,
-      "current_account": -14.144,
+      "current_account": -14.14,
       "gdp": 382.191
     },
     {
       "date": "2012-09-01",
       "value": -4.27,
-      "current_account": -16.278,
+      "current_account": -16.275,
       "gdp": 381.355
     },
     {
       "date": "2012-12-01",
       "value": -4.59,
-      "current_account": -18.292,
+      "current_account": -18.29,
       "gdp": 398.2
     },
     {
       "date": "2013-03-01",
       "value": -3.63,
-      "current_account": -13.47,
+      "current_account": -13.48,
       "gdp": 371.263
     },
     {
       "date": "2013-06-01",
       "value": -3.56,
-      "current_account": -14.002,
+      "current_account": -13.998,
       "gdp": 392.9
     },
     {
       "date": "2013-09-01",
       "value": -3.73,
-      "current_account": -14.712,
+      "current_account": -14.71,
       "gdp": 394.739
     },
     {
       "date": "2013-12-01",
-      "value": -2.68,
-      "current_account": -11.178,
+      "value": -2.67,
+      "current_account": -11.175,
       "gdp": 417.782
     },
     {
       "date": "2014-03-01",
-      "value": -2.77,
-      "current_account": -10.78,
+      "value": -2.78,
+      "current_account": -10.793,
       "gdp": 388.473
     },
     {
       "date": "2014-06-01",
       "value": -3.17,
-      "current_account": -12.869,
+      "current_account": -12.863,
       "gdp": 405.323
     },
     {
       "date": "2014-09-01",
       "value": -3.39,
-      "current_account": -13.677,
+      "current_account": -13.675,
       "gdp": 403.647
     },
     {
       "date": "2014-12-01",
       "value": -3.0,
-      "current_account": -12.68,
+      "current_account": -12.677,
       "gdp": 423.154
     },
     {
       "date": "2015-03-01",
       "value": -3.47,
-      "current_account": -13.663,
+      "current_account": -13.672,
       "gdp": 393.724
     },
     {
       "date": "2015-06-01",
       "value": -5.17,
-      "current_account": -21.22,
+      "current_account": -21.215,
       "gdp": 410.262
     },
     {
       "date": "2015-09-01",
       "value": -4.97,
-      "current_account": -20.495,
+      "current_account": -20.493,
       "gdp": 412.72
     },
     {
       "date": "2015-12-01",
       "value": -5.16,
-      "current_account": -22.137,
+      "current_account": -22.135,
       "gdp": 429.219
     },
     {
       "date": "2016-03-01",
       "value": -4.63,
-      "current_account": -18.484,
+      "current_account": -18.49,
       "gdp": 399.306
     },
     {
       "date": "2016-06-01",
       "value": -4.41,
-      "current_account": -18.655,
+      "current_account": -18.652,
       "gdp": 423.195
     },
     {
       "date": "2016-09-01",
       "value": -3.54,
-      "current_account": -15.068,
+      "current_account": -15.066,
       "gdp": 425.062
     },
     {
       "date": "2016-12-01",
       "value": -1.46,
-      "current_account": -6.664,
+      "current_account": -6.662,
       "gdp": 457.845
     },
     {
       "date": "2017-03-01",
       "value": -2.39,
-      "current_account": -10.313,
+      "current_account": -10.323,
       "gdp": 431.088
     },
     {
       "date": "2017-06-01",
       "value": -2.74,
-      "current_account": -12.354,
+      "current_account": -12.352,
       "gdp": 450.698
     },
     {
       "date": "2017-09-01",
       "value": -2.82,
-      "current_account": -12.775,
+      "current_account": -12.771,
       "gdp": 453.174
     },
     {
       "date": "2017-12-01",
       "value": -3.42,
-      "current_account": -16.203,
+      "current_account": -16.202,
       "gdp": 473.437
     },
     {
       "date": "2018-03-01",
       "value": -3.21,
-      "current_account": -14.377,
+      "current_account": -14.385,
       "gdp": 447.766
     },
     {
       "date": "2018-06-01",
       "value": -3.2,
-      "current_account": -15.202,
+      "current_account": -15.205,
       "gdp": 474.551
     },
     {
       "date": "2018-09-01",
       "value": -2.39,
-      "current_account": -11.428,
+      "current_account": -11.422,
       "gdp": 477.892
     },
     {
@@ -1431,171 +1431,177 @@
     {
       "date": "2019-03-01",
       "value": -1.38,
-      "current_account": -6.514,
+      "current_account": -6.507,
       "gdp": 473.135
     },
     {
       "date": "2019-06-01",
       "value": 0.06,
-      "current_account": 0.319,
+      "current_account": 0.297,
       "gdp": 501.431
     },
     {
       "date": "2019-09-01",
       "value": 0.97,
-      "current_account": 4.869,
+      "current_account": 4.876,
       "gdp": 504.556
     },
     {
       "date": "2019-12-01",
       "value": -0.24,
-      "current_account": -1.278,
+      "current_account": -1.265,
       "gdp": 523.889
     },
     {
       "date": "2020-03-01",
       "value": 0.58,
-      "current_account": 2.828,
+      "current_account": 2.844,
       "gdp": 488.822
     },
     {
       "date": "2020-06-01",
-      "value": 2.49,
-      "current_account": 11.732,
+      "value": 2.48,
+      "current_account": 11.685,
       "gdp": 471.739
     },
     {
       "date": "2020-09-01",
-      "value": 1.23,
-      "current_account": 6.035,
+      "value": 1.24,
+      "current_account": 6.071,
       "gdp": 488.8
     },
     {
       "date": "2020-12-01",
       "value": 1.94,
-      "current_account": 10.321,
+      "current_account": 10.312,
       "gdp": 532.589
     },
     {
       "date": "2021-03-01",
       "value": 2.81,
-      "current_account": 14.447,
+      "current_account": 14.463,
       "gdp": 513.891
     },
     {
       "date": "2021-06-01",
-      "value": 3.01,
-      "current_account": 16.704,
+      "value": 2.99,
+      "current_account": 16.624,
       "gdp": 555.744
     },
     {
       "date": "2021-09-01",
       "value": 3.36,
-      "current_account": 18.382,
+      "current_account": 18.408,
       "gdp": 547.56
     },
     {
       "date": "2021-12-01",
-      "value": 0.12,
-      "current_account": 0.706,
+      "value": 0.15,
+      "current_account": 0.875,
       "gdp": 591.126
     },
     {
       "date": "2022-03-01",
-      "value": -0.22,
-      "current_account": -1.234,
+      "value": -0.21,
+      "current_account": -1.186,
       "gdp": 573.527
     },
     {
       "date": "2022-06-01",
-      "value": 1.57,
-      "current_account": 9.807,
+      "value": 1.52,
+      "current_account": 9.517,
       "gdp": 624.69
     },
     {
       "date": "2022-09-01",
-      "value": -0.68,
-      "current_account": -4.306,
+      "value": -0.7,
+      "current_account": -4.402,
       "gdp": 628.632
     },
     {
       "date": "2022-12-01",
-      "value": 0.46,
-      "current_account": 3.074,
-      "gdp": 664.994
+      "value": 0.54,
+      "current_account": 3.558,
+      "gdp": 664.991
     },
     {
       "date": "2023-03-01",
       "value": 0.23,
-      "current_account": 1.439,
+      "current_account": 1.451,
       "gdp": 630.85
     },
     {
       "date": "2023-06-01",
-      "value": -0.25,
-      "current_account": -1.627,
-      "gdp": 652.537
+      "value": -0.28,
+      "current_account": -1.856,
+      "gdp": 652.54
     },
     {
       "date": "2023-09-01",
-      "value": -1.27,
-      "current_account": -8.328,
-      "gdp": 655.453
+      "value": -1.3,
+      "current_account": -8.516,
+      "gdp": 655.454
     },
     {
       "date": "2023-12-01",
-      "value": -0.4,
-      "current_account": -2.755,
-      "gdp": 692.42
+      "value": -0.29,
+      "current_account": -2.031,
+      "gdp": 692.431
     },
     {
       "date": "2024-03-01",
-      "value": -1.61,
-      "current_account": -10.531,
-      "gdp": 653.155
+      "value": -1.63,
+      "current_account": -10.619,
+      "gdp": 653.157
     },
     {
       "date": "2024-06-01",
-      "value": -2.4,
-      "current_account": -16.285,
-      "gdp": 678.996
+      "value": -2.43,
+      "current_account": -16.489,
+      "gdp": 678.982
     },
     {
       "date": "2024-09-01",
-      "value": -2.3,
-      "current_account": -15.608,
-      "gdp": 678.516
+      "value": -2.43,
+      "current_account": -16.459,
+      "gdp": 678.564
     },
     {
       "date": "2024-12-01",
-      "value": -2.38,
-      "current_account": -17.055,
-      "gdp": 716.381
+      "value": -2.46,
+      "current_account": -17.625,
+      "gdp": 716.38
     },
     {
       "date": "2025-03-01",
-      "value": -2.35,
-      "current_account": -15.924,
-      "gdp": 676.832
+      "value": -2.59,
+      "current_account": -17.535,
+      "gdp": 676.484
     },
     {
       "date": "2025-06-01",
-      "value": -2.29,
-      "current_account": -16.153,
-      "gdp": 705.936
+      "value": -2.44,
+      "current_account": -17.205,
+      "gdp": 705.999
     },
     {
       "date": "2025-09-01",
-      "value": -2.33,
-      "current_account": -16.646,
-      "gdp": 714.977
+      "value": -2.57,
+      "current_account": -18.34,
+      "gdp": 714.841
+    },
+    {
+      "date": "2025-12-01",
+      "value": -2.78,
+      "current_account": -21.093,
+      "gdp": 758.337
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "value": -2.33,
-    "current_account": -16.646,
-    "gdp": 714.977
+    "date": "2025-12-01",
+    "value": -2.78,
+    "current_account": -21.093,
+    "gdp": 758.337
   },
   "metadata": {
     "source": "Australian Bureau of Statistics",
@@ -1606,5 +1612,5 @@
     "ca_source": "ABS 5302.0 Table 4 (A3535187L, $ Millions)",
     "gdp_source": "ABS 5206.0 Table 1 (A2302467A, Current Prices, $ Millions)"
   },
-  "last_updated": "2026-02-22T00:51:39.647630+09:00"
+  "last_updated": "2026-04-10T20:50:47.149744+09:00"
 }

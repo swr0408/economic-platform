@@ -241,8 +241,8 @@ export default function Nasdaq100ValuationChart() {
   return (
     <ChartContainer
       title="Nasdaq 100 Valuation"
-      dataSource="MacroMicro / yfinance"
-      sourceUrl="https://en.macromicro.me/series/23955/nasdaq-100-pe"
+      dataSource="cboe"
+      sourceUrl="https://www.cboe.com/"
       handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}
     >

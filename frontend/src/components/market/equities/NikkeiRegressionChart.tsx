@@ -182,7 +182,7 @@ export default function NikkeiRegressionChart() {
   return (
     <ChartContainer
       title="日経平均株価回帰モデル"
-      dataSource="PBOC / yfinance"
+      dataSource="PBOC"
       sourceUrl="https://camlmac.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
       showPeriodSelector={false}
     >

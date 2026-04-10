@@ -30,6 +30,7 @@ from services.browser import (
     get_default_runner,
 )
 from services.browser.concurrency import browser_semaphore
+from services.browser.stale_while_revalidate import background_revalidate
 
 logger = logging.getLogger(__name__)
 
@@ -129,6 +130,26 @@ class BocRateCutsScreenshotService:
             cached_meta = redis_client.get(self.CACHE_KEY)
             results["last_updated"] = (
                 cached_meta.get("last_updated") if cached_meta else now.isoformat()
+            )
+            return results
+
+        # SWR: all files exist (but stale) → return stale URLs, update in background
+        all_files_exist = all(path.exists() for _, _, path, _ in to_capture)
+        if all_files_exist:
+            for key, url, path, filename in to_capture:
+                results[key] = {
+                    "success": True,
+                    "url": f"/cache/canada/policy/{filename}",
+                    "cached": True,
+                }
+            cached_meta = redis_client.get(self.CACHE_KEY)
+            results["last_updated"] = (
+                cached_meta.get("last_updated") if cached_meta else now.isoformat()
+            )
+            results["revalidating"] = True
+            background_revalidate(
+                f"swr:{self.CACHE_KEY}",
+                lambda: self.capture_all_screenshots(force_refresh=True),
             )
             return results
 

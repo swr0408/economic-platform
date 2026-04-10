@@ -20,6 +20,20 @@
       "updated_from_date": ""
     },
     {
+      "symbol": "AVGO",
+      "name": "Broadcom",
+      "tier": "S",
+      "country_code": "usa",
+      "date": "2026-06-04",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.35,
+      "eps_actual": null,
+      "revenue_estimate": 22019050000.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
       "symbol": "AAPL",
       "name": "Apple",
       "tier": "S",
@@ -78,20 +92,6 @@
     {
       "symbol": "META",
       "name": "Meta",
-      "tier": "S",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "AVGO",
-      "name": "Broadcom",
       "tier": "S",
       "country_code": "usa",
       "date": null,
@@ -386,7 +386,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-04-03T00:04:06.625898+00:00",
+  "last_updated": "2026-04-09T11:23:57.024452+00:00",
   "cached": false,
   "status": "ok"
 }

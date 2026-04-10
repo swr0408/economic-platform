@@ -1,15 +1,6 @@
 {
   "data": [
     {
-      "date": "2022-09-01",
-      "terms_of_trade_qoq": -3.9,
-      "export_price_qoq": 2.9,
-      "import_price_qoq": 7.1,
-      "terms_of_trade_yoy": null,
-      "export_price_yoy": null,
-      "import_price_yoy": null
-    },
-    {
       "date": "2022-12-01",
       "terms_of_trade_qoq": 1.5,
       "export_price_qoq": -0.6,
@@ -41,9 +32,9 @@
       "terms_of_trade_qoq": -0.6,
       "export_price_qoq": -1.4,
       "import_price_qoq": -0.9,
-      "terms_of_trade_yoy": -1.7,
-      "export_price_yoy": -9.3,
-      "import_price_yoy": -7.8
+      "terms_of_trade_yoy": null,
+      "export_price_yoy": null,
+      "import_price_yoy": null
     },
     {
       "date": "2023-12-01",
@@ -116,16 +107,25 @@
       "terms_of_trade_yoy": 7.2,
       "export_price_yoy": 9.1,
       "import_price_yoy": 1.7
+    },
+    {
+      "date": "2025-12-01",
+      "terms_of_trade_qoq": 3.7,
+      "export_price_qoq": 5.3,
+      "import_price_qoq": 1.5,
+      "terms_of_trade_yoy": 7.8,
+      "export_price_yoy": 11.3,
+      "import_price_yoy": 3.2
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "terms_of_trade_qoq": -2.1,
-    "export_price_qoq": -1.6,
-    "import_price_qoq": 0.5,
-    "terms_of_trade_yoy": 7.2,
-    "export_price_yoy": 9.1,
-    "import_price_yoy": 1.7
+    "date": "2025-12-01",
+    "terms_of_trade_qoq": 3.7,
+    "export_price_qoq": 5.3,
+    "import_price_qoq": 1.5,
+    "terms_of_trade_yoy": 7.8,
+    "export_price_yoy": 11.3,
+    "import_price_yoy": 3.2
   },
   "metadata": {
     "source": "Stats NZ",
@@ -135,5 +135,5 @@
     "frequency": "quarterly",
     "sheet": "Table 1.01"
   },
-  "last_updated": "2026-03-01T14:03:49.723704+09:00"
+  "last_updated": "2026-04-10T20:58:29.255623+09:00"
 }

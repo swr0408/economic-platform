@@ -189,7 +189,7 @@ export default function ONSRetailSalesChart({ data }: ONSRetailSalesChartProps) 
 
   if (!hasData) {
     return (
-      <ChartContainer title="小売売上高（イギリス）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="小売売上高（イギリス）" showPeriodSelector={false} showDataSource={false} handbookId="uk-retail-sales">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -204,6 +204,7 @@ export default function ONSRetailSalesChart({ data }: ONSRetailSalesChartProps) 
       <ChartContainer
         title="小売売上高"
         showPeriodSelector={false}
+        handbookId="uk-retail-sales"
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/businessindustryandtrade/retailindustry"
       >

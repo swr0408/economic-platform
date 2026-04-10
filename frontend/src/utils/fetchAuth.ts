@@ -88,6 +88,9 @@ function mergeHeaders(
   return { ...headers, Authorization: authHeader }
 }
 
+/** /api/ リクエストのデフォルトタイムアウト (ms) */
+const DEFAULT_API_TIMEOUT_MS = 30_000
+
 let installed = false
 
 export function installAuthFetch(): void {
@@ -115,6 +118,27 @@ export function installAuthFetch(): void {
       if (token) {
         merged.headers = mergeHeaders(merged.headers, `Bearer ${token}`)
       }
+    }
+
+    // タイムアウト自動付与 (signal が未設定の場合のみ)
+    // fetchWithTimeout 等で既に signal を設定済みなら介入しない
+    if (!merged.signal) {
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), DEFAULT_API_TIMEOUT_MS)
+      merged.signal = controller.signal
+
+      return originalFetch(input, merged)
+        .then((response) => {
+          clearTimeout(timer)
+          return response
+        })
+        .catch((err) => {
+          clearTimeout(timer)
+          if (err instanceof DOMException && err.name === 'AbortError') {
+            throw new Error(`Request timed out after ${DEFAULT_API_TIMEOUT_MS}ms: ${url}`)
+          }
+          throw err
+        })
     }
 
     return originalFetch(input, merged)

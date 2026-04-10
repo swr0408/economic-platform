@@ -1,46 +1,109 @@
 """
-ダッシュボードキャッシュ事前更新スケジューラー
+ダッシュボードキャッシュ更新スケジューラー
 
-定期的にダッシュボードのキャッシュを更新することで、
-ユーザーのアクセス時の待ち時間を最小化する。
+2つの方式を組み合わせて、全指標を適切なタイミングで更新する。
 
-更新スケジュール:
-- 日本時間 6:00, 12:00, 18:00, 23:00 に各ダッシュボードのキャッシュを更新
-- 起動時にも一度キャッシュを更新（バックグラウンドで実行）
+A. イベント駆動ポーリング（15分ごと）:
+   - FMPカレンダーDBをスキャンし、直近に発表があった国のダッシュボードのみ更新
+   - 各ローダーの _is_cache_stale() が発表を検知した場合のみ load_all() 実行
+   - 発表なしの国は DBクエリだけで即スキップ（軽量）
+
+B. 発表集中帯スケジュール（フォールバック、全ダッシュボード対象）:
+   JST
+   07:30  NZ/AU 朝の発表後（NZ 06:45, AU 09:30 AEST = 07:30 JST 冬時間）
+   09:30  JP 午前（統計局 08:30, 日銀 08:50）
+   11:30  CN/AU/JP 昼前（CN 10:30-11:00, AU 11:00, JP 日銀 11:30）
+   14:00  JP 午後（13:30 含む）
+   17:30  EU 夕方（EU 16:00-17:00 夏時間）
+   20:00  EU 夜（EU 19:00 夏時間, ECB）
+   22:00  US 21:30 発表後
+   00:30  US 0:00 発表後
+   04:00  US 深夜（03:00 含む）+ 翌朝前の最終チェック
 """
 
 import asyncio
-from datetime import datetime
-from typing import Dict, Any, List
+import logging
+from datetime import datetime, timedelta
+from typing import Dict, Any, List, Set
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
+logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
+UTC = ZoneInfo("UTC")
+
+# FMP国コード → ダッシュボード国コード
+_FMP_TO_DASHBOARD = {
+    "US": "usa",
+    "JP": "japan",
+    "GB": "uk", "UK": "uk",
+    "EU": "eurozone", "DE": "eurozone", "FR": "eurozone", "ES": "eurozone",
+    "CN": "china",
+    "AU": "australia",
+    "CA": "canada",
+    "NZ": "newzealand",
+    "CH": "switzerland",
+    "IT": "eurozone",
+    "TW": "global", "KR": "global",
+}
 
 
 class DashboardCacheScheduler:
-    """ダッシュボードキャッシュ事前更新スケジューラー"""
+    """ダッシュボードキャッシュ更新スケジューラー"""
 
-    # 更新対象のダッシュボード
+    # 更新対象のダッシュボード（全国・全カテゴリ）
     DASHBOARDS = [
-        ("usa", "economy"),
-        ("usa", "consumer"),
-        ("usa", "employment"),
-        ("usa", "inflation"),
-        ("usa", "housing"),
-        ("usa", "policy"),
+        # 米国
+        ("usa", "economy"), ("usa", "consumer"), ("usa", "employment"),
+        ("usa", "inflation"), ("usa", "housing"), ("usa", "policy"),
+        # 日本
+        ("japan", "economy"), ("japan", "consumer"), ("japan", "employment"),
+        ("japan", "inflation"), ("japan", "policy"),
+        # ユーロ圏
+        ("eurozone", "economy"), ("eurozone", "consumer"), ("eurozone", "employment"),
+        ("eurozone", "inflation"), ("eurozone", "policy"),
+        # イギリス
+        ("uk", "economy"), ("uk", "consumer"), ("uk", "employment"),
+        ("uk", "inflation"), ("uk", "housing"), ("uk", "policy"),
+        # オーストラリア
+        ("australia", "economy"), ("australia", "consumer"), ("australia", "employment"),
+        ("australia", "inflation"), ("australia", "housing"), ("australia", "policy"),
+        # カナダ
+        ("canada", "economy"), ("canada", "consumer"), ("canada", "employment"),
+        ("canada", "inflation"), ("canada", "housing"), ("canada", "policy"),
+        # 中国
+        ("china", "economy"), ("china", "consumer"), ("china", "employment"),
+        ("china", "inflation"), ("china", "housing"), ("china", "policy"),
+        # スイス
+        ("switzerland", "economy"), ("switzerland", "consumer"), ("switzerland", "employment"),
+        ("switzerland", "inflation"), ("switzerland", "housing"), ("switzerland", "policy"),
+        # ニュージーランド
+        ("newzealand", "economy"), ("newzealand", "consumer"), ("newzealand", "employment"),
+        ("newzealand", "inflation"), ("newzealand", "policy"),
+        # グローバル
+        ("global", "economy"),
     ]
 
-    # 更新時刻（JST）
-    UPDATE_HOURS = [6, 12, 18, 23]
+    # 発表集中帯スケジュール (JST hour, minute)
+    RELEASE_WAVE_HOURS = [
+        (7, 30),   # NZ/AU 朝
+        (9, 30),   # JP 午前
+        (11, 30),  # CN/AU/JP 昼前
+        (14, 0),   # JP 午後
+        (17, 30),  # EU 夕方
+        (20, 0),   # EU 夜
+        (22, 0),   # US 21:30後
+        (0, 30),   # US 0:00後
+        (4, 0),    # US 深夜 + 翌朝最終
+    ]
 
     def __init__(self):
         self.scheduler = AsyncIOScheduler(timezone=JST)
-        self._executor = ThreadPoolExecutor(max_workers=3)
+        self._executor = ThreadPoolExecutor(max_workers=4)
         self._is_running = False
 
     def _get_loader(self, country: str, category: str):
@@ -52,111 +115,174 @@ class DashboardCacheScheduler:
             from backend.services.dashboard.registry import get_dashboard_loader
             return get_dashboard_loader(country, category)
 
+    # ------------------------------------------------------------------
+    # コア: 1ダッシュボードの更新
+    # ------------------------------------------------------------------
+
     def _update_dashboard_cache(self, country: str, category: str) -> Dict[str, Any]:
-        """
-        ダッシュボードのキャッシュを更新（同期）
-
-        Args:
-            country: 国コード
-            category: カテゴリコード
-
-        Returns:
-            更新結果
-        """
+        """ダッシュボードのキャッシュを更新（同期）"""
         start_time = datetime.now(JST)
-        print(f"[DashboardCache] Updating {country}/{category} cache...")
 
         try:
             loader = self._get_loader(country, category)
             if loader is None:
-                return {
-                    "success": False,
-                    "country": country,
-                    "category": category,
-                    "error": "Loader not found",
-                }
+                return {"success": False, "country": country, "category": category,
+                        "error": "Loader not found"}
 
-            # キャッシュを無効化せずに強制更新
-            # ローダーのget_dataは内部でキャッシュ判定を行うが、
-            # ここではキャッシュを先に無効化して新規取得させる
-            loader.invalidate_cache()
+            # get_data() 内で _is_cache_stale() が判定 → 発表なしならキャッシュ返却
             result = loader.get_data()
 
             elapsed = (datetime.now(JST) - start_time).total_seconds()
-            print(f"[DashboardCache] {country}/{category} updated in {elapsed:.1f}s")
+            was_stale = not result.get("cached", True)
 
-            return {
-                "success": True,
-                "country": country,
-                "category": category,
-                "cached": result.get("cached", False),
-                "elapsed_seconds": elapsed,
-            }
+            if was_stale:
+                logger.info(f"[DashboardCache] {country}/{category} refreshed in {elapsed:.1f}s")
+            return {"success": True, "country": country, "category": category,
+                    "refreshed": was_stale, "elapsed_seconds": elapsed}
 
         except Exception as e:
             elapsed = (datetime.now(JST) - start_time).total_seconds()
-            print(f"[DashboardCache] Error updating {country}/{category}: {e}")
-            return {
-                "success": False,
-                "country": country,
-                "category": category,
-                "error": str(e),
-                "elapsed_seconds": elapsed,
-            }
+            logger.error(f"[DashboardCache] Error {country}/{category}: {e}")
+            return {"success": False, "country": country, "category": category,
+                    "error": str(e), "elapsed_seconds": elapsed}
+
+    # ------------------------------------------------------------------
+    # A. イベント駆動ポーリング (15分ごと)
+    # ------------------------------------------------------------------
+
+    def _find_countries_with_recent_releases(self) -> Set[str]:
+        """直近16分以内にFMPカレンダーで発表があった国を検出
+        （15分間隔ポーリングに対して1分のオーバーラップで取り逃がし防止）"""
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+        except ImportError:
+            from backend.core.database import SessionLocal
+            from sqlalchemy import text
+
+        try:
+            now_utc = datetime.now(UTC)
+            since_utc = now_utc - timedelta(minutes=16)
+
+            with SessionLocal() as session:
+                rows = session.execute(text("""
+                    SELECT DISTINCT country
+                    FROM economic_calendar_events
+                    WHERE datetime_utc > :since
+                      AND datetime_utc <= :now
+                """), {"since": since_utc, "now": now_utc}).fetchall()
+
+            fmp_countries = {row[0] for row in rows}
+            dashboard_countries = set()
+            for fc in fmp_countries:
+                dc = _FMP_TO_DASHBOARD.get(fc)
+                if dc:
+                    dashboard_countries.add(dc)
+
+            return dashboard_countries
+
+        except Exception as e:
+            logger.warning(f"[DashboardCache] Event scan error: {e}")
+            return set()
+
+    async def _event_driven_poll(self):
+        """イベント駆動ポーリング: 直近に発表があった国のダッシュボードのみ更新"""
+        countries = self._find_countries_with_recent_releases()
+        if not countries:
+            return
+
+        logger.info(f"[DashboardCache] Event-driven: releases detected for {countries}")
+
+        loop = asyncio.get_event_loop()
+        refreshed = 0
+        for country, category in self.DASHBOARDS:
+            if country not in countries:
+                continue
+            try:
+                result = await loop.run_in_executor(
+                    self._executor, self._update_dashboard_cache, country, category
+                )
+                if result.get("refreshed"):
+                    refreshed += 1
+            except Exception as e:
+                logger.warning(f"[DashboardCache] Event poll error {country}/{category}: {e}")
+
+        if refreshed > 0:
+            logger.info(f"[DashboardCache] Event-driven: {refreshed} dashboards refreshed")
+
+    # ------------------------------------------------------------------
+    # B. 発表集中帯フォールバック (全ダッシュボード)
+    # ------------------------------------------------------------------
 
     async def _update_all_dashboards(self):
         """全ダッシュボードのキャッシュを更新（非同期）"""
-        print(f"[DashboardCache] Starting scheduled cache update at {datetime.now(JST).isoformat()}")
+        logger.info(f"[DashboardCache] Release-wave update at {datetime.now(JST).strftime('%H:%M')}")
 
         loop = asyncio.get_event_loop()
-        results = []
+        refreshed = 0
+        errors = 0
 
-        # 順番に更新（並列だと外部API制限に引っかかる可能性があるため）
         for country, category in self.DASHBOARDS:
             try:
                 result = await loop.run_in_executor(
-                    self._executor,
-                    self._update_dashboard_cache,
-                    country,
-                    category
+                    self._executor, self._update_dashboard_cache, country, category
                 )
-                results.append(result)
+                if result.get("refreshed"):
+                    refreshed += 1
+                if not result.get("success"):
+                    errors += 1
             except Exception as e:
-                print(f"[DashboardCache] Exception updating {country}/{category}: {e}")
-                results.append({
-                    "success": False,
-                    "country": country,
-                    "category": category,
-                    "error": str(e),
-                })
+                logger.warning(f"[DashboardCache] Error {country}/{category}: {e}")
+                errors += 1
 
-        # 結果サマリー
-        success_count = sum(1 for r in results if r.get("success"))
-        print(f"[DashboardCache] Update complete: {success_count}/{len(results)} succeeded")
+        logger.info(
+            f"[DashboardCache] Release-wave complete: "
+            f"{refreshed} refreshed, {errors} errors, "
+            f"{len(self.DASHBOARDS) - refreshed - errors} cache-hit"
+        )
 
-        return results
+    # ------------------------------------------------------------------
+    # 起動 / 停止
+    # ------------------------------------------------------------------
 
     def start(self):
         """スケジューラーを開始"""
         if self._is_running:
-            print("[DashboardCache] Scheduler already running")
+            logger.info("[DashboardCache] Already running")
             return
 
-        # 定期更新ジョブを追加（6:00, 12:00, 18:00, 23:00 JST）
-        for hour in self.UPDATE_HOURS:
+        # A. イベント駆動ポーリング: 毎時 00, 15, 30, 45分
+        self.scheduler.add_job(
+            self._event_driven_poll,
+            CronTrigger(minute="0,15,30,45", timezone=JST),
+            id="dashboard_event_poll",
+            name="Dashboard Event-Driven Poll (every 15min)",
+            replace_existing=True,
+            misfire_grace_time=300,
+        )
+
+        # B. 発表集中帯スケジュール: 各時間帯に全ダッシュボード
+        for hour, minute in self.RELEASE_WAVE_HOURS:
             self.scheduler.add_job(
                 self._update_all_dashboards,
-                CronTrigger(hour=hour, minute=0, timezone=JST),
-                id=f"dashboard_cache_update_{hour}",
-                name=f"Dashboard Cache Update ({hour}:00 JST)",
+                CronTrigger(hour=hour, minute=minute, timezone=JST),
+                id=f"dashboard_wave_{hour:02d}{minute:02d}",
+                name=f"Dashboard Release Wave ({hour:02d}:{minute:02d} JST)",
                 replace_existing=True,
+                misfire_grace_time=1800,
             )
 
         self.scheduler.start()
         self._is_running = True
-        print(f"[DashboardCache] Scheduler started with updates at {self.UPDATE_HOURS} JST")
 
-        # 起動時にバックグラウンドで初回更新を実行（5秒後に開始）
+        wave_times = ", ".join(f"{h:02d}:{m:02d}" for h, m in self.RELEASE_WAVE_HOURS)
+        logger.info(
+            f"[DashboardCache] Started — "
+            f"event poll: 15min interval, "
+            f"release waves: {wave_times} JST"
+        )
+
+        # 起動時にバックグラウンドで初回更新
         self.scheduler.add_job(
             self._update_all_dashboards,
             "date",
@@ -170,7 +296,7 @@ class DashboardCacheScheduler:
         if self._is_running:
             self.scheduler.shutdown(wait=False)
             self._is_running = False
-            print("[DashboardCache] Scheduler shutdown")
+            logger.info("[DashboardCache] Shutdown")
 
     def get_status(self) -> Dict[str, Any]:
         """スケジューラーのステータスを取得"""
@@ -185,33 +311,19 @@ class DashboardCacheScheduler:
         return {
             "running": self._is_running,
             "jobs": jobs,
-            "dashboards": self.DASHBOARDS,
-            "update_hours": self.UPDATE_HOURS,
+            "dashboards_count": len(self.DASHBOARDS),
+            "release_wave_hours": self.RELEASE_WAVE_HOURS,
         }
 
     async def trigger_update(self, country: str = None, category: str = None) -> Dict[str, Any]:
-        """
-        手動でキャッシュ更新をトリガー
-
-        Args:
-            country: 国コード（省略時は全ダッシュボード）
-            category: カテゴリコード（省略時は全ダッシュボード）
-
-        Returns:
-            更新結果
-        """
+        """手動でキャッシュ更新をトリガー"""
         if country and category:
-            # 特定のダッシュボードのみ更新
             loop = asyncio.get_event_loop()
             result = await loop.run_in_executor(
-                self._executor,
-                self._update_dashboard_cache,
-                country,
-                category
+                self._executor, self._update_dashboard_cache, country, category
             )
             return {"results": [result]}
         else:
-            # 全ダッシュボード更新
             results = await self._update_all_dashboards()
             return {"results": results}
 

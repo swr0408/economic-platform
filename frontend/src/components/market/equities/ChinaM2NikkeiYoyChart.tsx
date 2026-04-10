@@ -219,7 +219,7 @@ export default function ChinaM2NikkeiYoyChart() {
   return (
     <ChartContainer
       title="中国M2前年比 / 日経平均前年比"
-      dataSource="PBOC / yfinance"
+      dataSource="PBOC"
       showPeriodSelector={false}
       handbookId="nikkei-225"
     >

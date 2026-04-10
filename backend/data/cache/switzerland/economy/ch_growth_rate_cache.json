@@ -358,7 +358,7 @@
       "date": "1995-01-01",
       "qoq": -0.36,
       "yoy": -0.21,
-      "annualized": -1.45
+      "annualized": -1.44
     },
     {
       "date": "1995-04-01",
@@ -370,49 +370,49 @@
       "date": "1995-07-01",
       "qoq": 0.52,
       "yoy": 0.62,
-      "annualized": 2.11
+      "annualized": 2.09
     },
     {
       "date": "1995-10-01",
       "qoq": -0.21,
       "yoy": 0.31,
-      "annualized": -0.83
+      "annualized": -0.84
     },
     {
       "date": "1996-01-01",
-      "qoq": 0.75,
+      "qoq": 0.76,
       "yoy": 1.29,
-      "annualized": 3.05
+      "annualized": 3.06
     },
     {
       "date": "1996-04-01",
-      "qoq": -0.62,
+      "qoq": -0.61,
       "yoy": 0.59,
-      "annualized": -2.45
+      "annualized": -2.44
     },
     {
       "date": "1996-07-01",
       "qoq": -0.22,
       "yoy": -0.16,
-      "annualized": -0.87
+      "annualized": -0.88
     },
     {
       "date": "1996-10-01",
       "qoq": 0.47,
       "yoy": 0.54,
-      "annualized": 1.89
+      "annualized": 1.88
     },
     {
       "date": "1997-01-01",
       "qoq": 0.56,
       "yoy": -0.2,
-      "annualized": 2.24
+      "annualized": 2.25
     },
     {
       "date": "1997-04-01",
-      "qoq": 0.93,
+      "qoq": 0.94,
       "yoy": 1.84,
-      "annualized": 3.79
+      "annualized": 3.8
     },
     {
       "date": "1997-07-01",
@@ -424,13 +424,13 @@
       "date": "1997-10-01",
       "qoq": 0.39,
       "yoy": 3.58,
-      "annualized": 1.58
+      "annualized": 1.55
     },
     {
       "date": "1998-01-01",
       "qoq": 0.74,
       "yoy": 3.99,
-      "annualized": 2.98
+      "annualized": 3.01
     },
     {
       "date": "1998-04-01",
@@ -452,39 +452,39 @@
     },
     {
       "date": "1999-01-01",
-      "qoq": 0.57,
+      "qoq": 0.58,
       "yoy": 0.96,
-      "annualized": 2.31
+      "annualized": 2.32
     },
     {
       "date": "1999-04-01",
       "qoq": 0.55,
       "yoy": 0.27,
-      "annualized": 2.22
+      "annualized": 2.23
     },
     {
       "date": "1999-07-01",
       "qoq": 0.74,
       "yoy": 1.11,
-      "annualized": 3.01
+      "annualized": 3.0
     },
     {
       "date": "1999-10-01",
       "qoq": 2.35,
       "yoy": 4.29,
-      "annualized": 9.73
+      "annualized": 9.72
     },
     {
       "date": "2000-01-01",
       "qoq": 0.44,
       "yoy": 4.52,
-      "annualized": 1.75
+      "annualized": 1.77
     },
     {
       "date": "2000-04-01",
       "qoq": 0.19,
       "yoy": 3.78,
-      "annualized": 0.76
+      "annualized": 0.75
     },
     {
       "date": "2000-07-01",
@@ -502,19 +502,19 @@
       "date": "2001-01-01",
       "qoq": 0.05,
       "yoy": 2.2,
-      "annualized": 0.2
+      "annualized": 0.21
     },
     {
       "date": "2001-04-01",
-      "qoq": 0.45,
+      "qoq": 0.44,
       "yoy": 2.48,
-      "annualized": 1.8
+      "annualized": 1.79
     },
     {
       "date": "2001-07-01",
       "qoq": -0.03,
       "yoy": 1.63,
-      "annualized": -0.11
+      "annualized": -0.1
     },
     {
       "date": "2001-10-01",
@@ -526,25 +526,25 @@
       "date": "2002-01-01",
       "qoq": -0.09,
       "yoy": 0.21,
-      "annualized": -0.38
+      "annualized": -0.37
     },
     {
       "date": "2002-04-01",
-      "qoq": 0.29,
+      "qoq": 0.28,
       "yoy": 0.65,
-      "annualized": 1.15
+      "annualized": 1.14
     },
     {
       "date": "2002-07-01",
       "qoq": 0.23,
       "yoy": 0.81,
-      "annualized": 0.93
+      "annualized": 0.91
     },
     {
       "date": "2002-10-01",
       "qoq": -0.51,
       "yoy": -0.13,
-      "annualized": -2.03
+      "annualized": -2.01
     },
     {
       "date": "2003-01-01",
@@ -556,25 +556,25 @@
       "date": "2003-04-01",
       "qoq": -0.12,
       "yoy": -1.45,
-      "annualized": -0.47
+      "annualized": -0.48
     },
     {
       "date": "2003-07-01",
       "qoq": 0.9,
       "yoy": -0.5,
-      "annualized": 3.63
+      "annualized": 3.64
     },
     {
       "date": "2003-10-01",
       "qoq": 1.03,
       "yoy": 1.23,
-      "annualized": 4.2
+      "annualized": 4.19
     },
     {
       "date": "2004-01-01",
-      "qoq": 0.58,
+      "qoq": 0.59,
       "yoy": 2.67,
-      "annualized": 2.35
+      "annualized": 2.36
     },
     {
       "date": "2004-04-01",
@@ -584,7 +584,7 @@
     },
     {
       "date": "2004-07-01",
-      "qoq": -0.07,
+      "qoq": -0.08,
       "yoy": 2.57,
       "annualized": -0.3
     },
@@ -608,9 +608,9 @@
     },
     {
       "date": "2005-07-01",
-      "qoq": 1.0,
+      "qoq": 0.99,
       "yoy": 3.44,
-      "annualized": 4.04
+      "annualized": 4.03
     },
     {
       "date": "2005-10-01",
@@ -620,27 +620,27 @@
     },
     {
       "date": "2006-01-01",
-      "qoq": 1.06,
+      "qoq": 1.07,
       "yoy": 4.73,
-      "annualized": 4.32
+      "annualized": 4.33
     },
     {
       "date": "2006-04-01",
       "qoq": 0.67,
       "yoy": 3.77,
-      "annualized": 2.71
+      "annualized": 2.69
     },
     {
       "date": "2006-07-01",
       "qoq": 0.89,
       "yoy": 3.94,
-      "annualized": 3.62
+      "annualized": 3.6
     },
     {
       "date": "2006-10-01",
       "qoq": 1.52,
       "yoy": 4.11,
-      "annualized": 6.22
+      "annualized": 6.23
     },
     {
       "date": "2007-01-01",
@@ -650,7 +650,7 @@
     },
     {
       "date": "2007-04-01",
-      "qoq": 1.4,
+      "qoq": 1.39,
       "yoy": 4.4,
       "annualized": 5.7
     },
@@ -664,13 +664,13 @@
       "date": "2007-10-01",
       "qoq": 0.58,
       "yoy": 3.52,
-      "annualized": 2.33
+      "annualized": 2.34
     },
     {
       "date": "2008-01-01",
       "qoq": 0.6,
       "yoy": 3.19,
-      "annualized": 2.42
+      "annualized": 2.41
     },
     {
       "date": "2008-04-01",
@@ -682,7 +682,7 @@
       "date": "2008-07-01",
       "qoq": 0.45,
       "yoy": 3.26,
-      "annualized": 1.83
+      "annualized": 1.82
     },
     {
       "date": "2008-10-01",
@@ -692,15 +692,15 @@
     },
     {
       "date": "2009-01-01",
-      "qoq": -1.48,
+      "qoq": -1.47,
       "yoy": -2.08,
-      "annualized": -5.78
+      "annualized": -5.77
     },
     {
       "date": "2009-04-01",
-      "qoq": 0.32,
+      "qoq": 0.31,
       "yoy": -3.31,
-      "annualized": 1.28
+      "annualized": 1.26
     },
     {
       "date": "2009-07-01",
@@ -712,25 +712,25 @@
       "date": "2009-10-01",
       "qoq": 0.59,
       "yoy": 0.2,
-      "annualized": 2.36
+      "annualized": 2.4
     },
     {
       "date": "2010-01-01",
-      "qoq": 1.01,
+      "qoq": 1.0,
       "yoy": 3.14,
-      "annualized": 4.1
+      "annualized": 4.07
     },
     {
       "date": "2010-04-01",
       "qoq": 0.53,
       "yoy": 3.69,
-      "annualized": 2.12
+      "annualized": 2.13
     },
     {
       "date": "2010-07-01",
       "qoq": 0.67,
       "yoy": 2.96,
-      "annualized": 2.72
+      "annualized": 2.71
     },
     {
       "date": "2010-10-01",
@@ -748,7 +748,7 @@
       "date": "2011-04-01",
       "qoq": 0.8,
       "yoy": 2.06,
-      "annualized": 3.23
+      "annualized": 3.22
     },
     {
       "date": "2011-07-01",
@@ -766,7 +766,7 @@
       "date": "2012-01-01",
       "qoq": 0.29,
       "yoy": 0.86,
-      "annualized": 1.18
+      "annualized": 1.17
     },
     {
       "date": "2012-04-01",
@@ -776,67 +776,67 @@
     },
     {
       "date": "2012-07-01",
-      "qoq": 0.69,
+      "qoq": 0.7,
       "yoy": 1.6,
-      "annualized": 2.8
+      "annualized": 2.81
     },
     {
       "date": "2012-10-01",
       "qoq": 0.29,
       "yoy": 1.6,
-      "annualized": 1.16
+      "annualized": 1.17
     },
     {
       "date": "2013-01-01",
-      "qoq": 0.54,
+      "qoq": 0.53,
       "yoy": 1.13,
-      "annualized": 2.16
+      "annualized": 2.15
     },
     {
       "date": "2013-04-01",
       "qoq": 0.7,
       "yoy": 2.1,
-      "annualized": 2.82
+      "annualized": 2.83
     },
     {
       "date": "2013-07-01",
       "qoq": 0.7,
       "yoy": 2.05,
-      "annualized": 2.83
+      "annualized": 2.82
     },
     {
       "date": "2013-10-01",
-      "qoq": 0.22,
+      "qoq": 0.23,
       "yoy": 2.05,
-      "annualized": 0.89
+      "annualized": 0.93
     },
     {
       "date": "2014-01-01",
       "qoq": 0.48,
       "yoy": 2.49,
-      "annualized": 1.95
+      "annualized": 1.94
     },
     {
       "date": "2014-04-01",
       "qoq": 0.66,
       "yoy": 2.33,
-      "annualized": 2.68
+      "annualized": 2.65
     },
     {
       "date": "2014-07-01",
-      "qoq": 0.76,
+      "qoq": 0.77,
       "yoy": 2.36,
-      "annualized": 3.09
+      "annualized": 3.1
     },
     {
       "date": "2014-10-01",
       "qoq": 0.7,
       "yoy": 2.98,
-      "annualized": 2.83
+      "annualized": 2.84
     },
     {
       "date": "2015-01-01",
-      "qoq": -0.06,
+      "qoq": -0.05,
       "yoy": 1.85,
       "annualized": -0.22
     },
@@ -844,7 +844,7 @@
       "date": "2015-04-01",
       "qoq": 0.17,
       "yoy": 1.24,
-      "annualized": 0.7
+      "annualized": 0.67
     },
     {
       "date": "2015-07-01",
@@ -854,250 +854,256 @@
     },
     {
       "date": "2015-10-01",
-      "qoq": 0.73,
+      "qoq": 0.74,
       "yoy": 1.42,
-      "annualized": 2.94
+      "annualized": 3.0
     },
     {
       "date": "2016-01-01",
-      "qoq": 0.35,
+      "qoq": 0.34,
       "yoy": 2.22,
-      "annualized": 1.4
+      "annualized": 1.38
     },
     {
       "date": "2016-04-01",
-      "qoq": 0.28,
+      "qoq": 0.27,
       "yoy": 2.71,
-      "annualized": 1.14
+      "annualized": 1.09
     },
     {
       "date": "2016-07-01",
       "qoq": 0.23,
       "yoy": 1.95,
-      "annualized": 0.91
+      "annualized": 0.94
     },
     {
       "date": "2016-10-01",
-      "qoq": 0.04,
+      "qoq": 0.05,
       "yoy": 0.81,
-      "annualized": 0.15
+      "annualized": 0.2
     },
     {
       "date": "2017-01-01",
-      "qoq": 0.27,
+      "qoq": 0.26,
       "yoy": 1.07,
-      "annualized": 1.07
+      "annualized": 1.05
     },
     {
       "date": "2017-04-01",
-      "qoq": 0.82,
+      "qoq": 0.81,
       "yoy": 0.67,
-      "annualized": 3.33
+      "annualized": 3.26
     },
     {
       "date": "2017-07-01",
-      "qoq": 0.79,
+      "qoq": 0.8,
       "yoy": 1.36,
-      "annualized": 3.2
+      "annualized": 3.22
     },
     {
       "date": "2017-10-01",
-      "qoq": 0.99,
+      "qoq": 1.01,
       "yoy": 2.56,
-      "annualized": 4.02
+      "annualized": 4.09
     },
     {
       "date": "2018-01-01",
-      "qoq": 1.05,
+      "qoq": 1.04,
       "yoy": 3.6,
-      "annualized": 4.25
+      "annualized": 4.23
     },
     {
       "date": "2018-04-01",
-      "qoq": 0.75,
+      "qoq": 0.74,
       "yoy": 4.45,
-      "annualized": 3.04
+      "annualized": 2.98
     },
     {
       "date": "2018-07-01",
-      "qoq": -0.15,
+      "qoq": -0.14,
       "yoy": 2.95,
-      "annualized": -0.61
+      "annualized": -0.56
     },
     {
       "date": "2018-10-01",
-      "qoq": 0.52,
+      "qoq": 0.53,
       "yoy": 2.36,
-      "annualized": 2.09
+      "annualized": 2.13
     },
     {
       "date": "2019-01-01",
       "qoq": 0.2,
       "yoy": 1.18,
-      "annualized": 0.82
+      "annualized": 0.81
     },
     {
       "date": "2019-04-01",
-      "qoq": 0.67,
+      "qoq": 0.65,
       "yoy": 0.41,
-      "annualized": 2.7
+      "annualized": 2.64
     },
     {
       "date": "2019-07-01",
       "qoq": 0.3,
       "yoy": 1.55,
-      "annualized": 1.21
+      "annualized": 1.22
     },
     {
       "date": "2019-10-01",
-      "qoq": 0.18,
+      "qoq": 0.2,
       "yoy": 1.33,
-      "annualized": 0.73
+      "annualized": 0.8
     },
     {
       "date": "2020-01-01",
-      "qoq": -1.06,
+      "qoq": -1.07,
       "yoy": 0.0,
-      "annualized": -4.19
+      "annualized": -4.21
     },
     {
       "date": "2020-04-01",
-      "qoq": -6.35,
+      "qoq": -6.37,
       "yoy": -6.96,
-      "annualized": -23.09
+      "annualized": -23.14
     },
     {
       "date": "2020-07-01",
       "qoq": 6.08,
       "yoy": -1.41,
-      "annualized": 26.61
+      "annualized": 26.63
     },
     {
       "date": "2020-10-01",
-      "qoq": 0.89,
+      "qoq": 0.91,
       "yoy": -0.66,
-      "annualized": 3.61
+      "annualized": 3.71
     },
     {
       "date": "2021-01-01",
-      "qoq": 0.61,
+      "qoq": 0.6,
       "yoy": 1.02,
-      "annualized": 2.48
+      "annualized": 2.42
     },
     {
       "date": "2021-04-01",
-      "qoq": 2.58,
+      "qoq": 2.57,
       "yoy": 11.11,
-      "annualized": 10.74
+      "annualized": 10.68
     },
     {
       "date": "2021-07-01",
       "qoq": 2.0,
       "yoy": 6.69,
-      "annualized": 8.22
+      "annualized": 8.23
     },
     {
       "date": "2021-10-01",
-      "qoq": 0.98,
+      "qoq": 1.02,
       "yoy": 6.15,
-      "annualized": 3.96
+      "annualized": 4.12
     },
     {
       "date": "2022-01-01",
-      "qoq": 0.26,
+      "qoq": 0.24,
       "yoy": 6.32,
-      "annualized": 1.04
+      "annualized": 0.95
     },
     {
       "date": "2022-04-01",
-      "qoq": 0.71,
+      "qoq": 0.68,
       "yoy": 4.01,
-      "annualized": 2.89
+      "annualized": 2.76
     },
     {
       "date": "2022-07-01",
-      "qoq": 0.49,
+      "qoq": 0.5,
       "yoy": 2.3,
-      "annualized": 1.96
+      "annualized": 2.02
     },
     {
       "date": "2022-10-01",
-      "qoq": 0.16,
+      "qoq": 0.21,
       "yoy": 1.73,
-      "annualized": 0.62
+      "annualized": 0.83
     },
     {
       "date": "2023-01-01",
-      "qoq": 0.66,
+      "qoq": 0.62,
       "yoy": 1.81,
-      "annualized": 2.65
+      "annualized": 2.51
     },
     {
       "date": "2023-04-01",
-      "qoq": -0.32,
+      "qoq": -0.36,
       "yoy": 0.56,
-      "annualized": -1.28
+      "annualized": -1.44
     },
     {
       "date": "2023-07-01",
-      "qoq": 0.44,
+      "qoq": 0.46,
       "yoy": 0.32,
-      "annualized": 1.78
+      "annualized": 1.84
     },
     {
       "date": "2023-10-01",
-      "qoq": 0.3,
+      "qoq": 0.37,
       "yoy": 0.63,
-      "annualized": 1.21
+      "annualized": 1.48
     },
     {
       "date": "2024-01-01",
-      "qoq": -0.07,
+      "qoq": -0.12,
       "yoy": 0.19,
-      "annualized": -0.26
+      "annualized": -0.47
     },
     {
       "date": "2024-04-01",
-      "qoq": 0.84,
+      "qoq": 0.79,
       "yoy": 1.88,
-      "annualized": 3.39
+      "annualized": 3.19
     },
     {
       "date": "2024-07-01",
-      "qoq": 0.26,
+      "qoq": 0.29,
       "yoy": 2.0,
-      "annualized": 1.02
+      "annualized": 1.17
     },
     {
       "date": "2024-10-01",
-      "qoq": 0.42,
+      "qoq": 0.52,
       "yoy": 1.49,
-      "annualized": 1.71
+      "annualized": 2.09
     },
     {
       "date": "2025-01-01",
       "qoq": 0.79,
-      "yoy": 2.53,
-      "annualized": 3.22
+      "yoy": 2.59,
+      "annualized": 3.19
     },
     {
       "date": "2025-04-01",
-      "qoq": 0.16,
-      "yoy": 1.28,
-      "annualized": 0.64
+      "qoq": 0.12,
+      "yoy": 1.38,
+      "annualized": 0.49
     },
     {
       "date": "2025-07-01",
-      "qoq": -0.52,
-      "yoy": 0.47,
-      "annualized": -2.08
+      "qoq": -0.44,
+      "yoy": 0.56,
+      "annualized": -1.74
+    },
+    {
+      "date": "2025-10-01",
+      "qoq": 0.15,
+      "yoy": 0.71,
+      "annualized": 0.6
     }
   ],
   "latest": {
-    "date": "2025-07-01",
-    "qoq": -0.52,
-    "yoy": 0.47,
-    "annualized": -2.08
+    "date": "2025-10-01",
+    "qoq": 0.15,
+    "yoy": 0.71,
+    "annualized": 0.6
   },
   "metadata": {
     "source": "SECO",
@@ -1105,5 +1111,5 @@
     "description": "スイスGDP成長率",
     "unit": "%"
   },
-  "last_updated": "2026-02-06T14:09:49.584865+09:00"
+  "last_updated": "2026-04-10T20:57:39.723500+09:00"
 }

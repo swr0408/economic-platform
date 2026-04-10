@@ -2163,23 +2163,37 @@
       "value_chf": 1248741896.28,
       "mom": 0.16,
       "yoy": 3.14
+    },
+    {
+      "date": "2025-12-01",
+      "value": 12.51,
+      "value_chf": 1250727237.89,
+      "mom": 0.16,
+      "yoy": 3.05
+    },
+    {
+      "date": "2026-01-01",
+      "value": 12.55,
+      "value_chf": 1254935229.45,
+      "mom": 0.32,
+      "yoy": 3.04
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "value": 12.49,
-    "value_chf": 1248741896.28,
-    "mom": 0.16,
-    "yoy": 3.14
+    "date": "2026-01-01",
+    "value": 12.55,
+    "value_chf": 1254935229.45,
+    "mom": 0.32,
+    "yoy": 3.04
   },
   "metadata": {
     "unit": "100 million CHF",
     "description": "Mortgage claims, domestic, CHF, all banks",
     "source_url": "https://data.snb.ch/en/topics/banken/cube/BSTA.SNB.MONA_U.BIL.AKT.HYP"
   },
-  "next_release": "2026-02-23 09:00",
-  "last_publishing_date": "2026-01-21",
+  "next_release": "2026-04-21 09:00",
+  "last_publishing_date": "2026-03-23",
   "cached": false,
   "source": "SNB Data Portal",
-  "last_updated": "2026-02-06T01:20:58.373630+09:00"
+  "last_updated": "2026-04-10T20:58:14.152589+09:00"
 }

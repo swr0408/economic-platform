@@ -133,6 +133,18 @@ class PlaywrightRunner(BrowserRunner):
         self._browser = None
         self._playwright = None
 
+    # ------------------------------------------------------------------ public context
+
+    @property
+    def context(self) -> Any:
+        """Playwright BrowserContext を公開する。
+
+        multi-window フロー等、screenshot() / extract() では表現できない
+        複雑な操作を行うサービス向け。run_custom_flow() 経由で使う。
+        """
+        self._ensure_started()
+        return self._context
+
     # ------------------------------------------------------------------ helpers
 
     def _ensure_started(self) -> None:

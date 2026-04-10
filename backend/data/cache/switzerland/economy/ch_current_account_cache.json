@@ -402,15 +402,19 @@
     },
     {
       "date": "2025-03-01",
-      "value": 26.7
+      "value": 27.17
     },
     {
       "date": "2025-06-01",
-      "value": 12.51
+      "value": 11.76
     },
     {
       "date": "2025-09-01",
-      "value": 15.37
+      "value": 15.78
+    },
+    {
+      "date": "2025-12-01",
+      "value": 6.96
     }
   ],
   "qoq_change": [
@@ -812,20 +816,24 @@
     },
     {
       "date": "2025-03-01",
-      "value": 3.23
+      "value": 3.7
     },
     {
       "date": "2025-06-01",
-      "value": -14.19
+      "value": -15.41
     },
     {
       "date": "2025-09-01",
-      "value": 2.86
+      "value": 4.02
+    },
+    {
+      "date": "2025-12-01",
+      "value": -8.82
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "value": 15.37
+    "date": "2025-12-01",
+    "value": 6.96
   },
   "metadata": {
     "source": "Swiss National Bank (SNB Data Portal)",
@@ -833,7 +841,7 @@
     "description": "経常収支（ネット）",
     "unit": "B CHF",
     "cube": "bopoverq",
-    "publishing_date": "2025-12-19T09:00:00+01:00"
+    "publishing_date": "2026-03-24T09:00:00+01:00"
   },
-  "last_updated": "2026-02-14T23:05:58.021617+09:00"
+  "last_updated": "2026-04-10T20:57:32.825822+09:00"
 }

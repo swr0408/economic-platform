@@ -88,7 +88,9 @@ class JpxPcrService:
     """JPX 日本株指数オプション Put/Call Ratio サービス"""
 
     def _should_refresh(self) -> bool:
-        """キャッシュの更新が必要かどうか判定"""
+        """キャッシュの更新が必要かどうか判定
+        - 6時間以内に更新済み → スキップ（ただしデータが古すぎる場合は更新）
+        """
         try:
             cached = redis_client.get(DATA_CACHE_KEY)
             if not cached:
@@ -99,6 +101,12 @@ class JpxPcrService:
             last_updated = datetime.fromisoformat(last_updated_str)
             now = datetime.now(JST)
             if (now - last_updated).total_seconds() < 6 * 3600:
+                # データの最終日が3日以上古い場合は更新
+                end_date = cached.get("metadata", {}).get("end_date")
+                if end_date:
+                    end_dt = datetime.strptime(end_date, "%Y-%m-%d").date()
+                    if (now.date() - end_dt).days > 3:
+                        return True
                 return False
             return True
         except Exception:

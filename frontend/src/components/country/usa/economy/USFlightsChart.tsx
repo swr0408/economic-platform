@@ -5,6 +5,7 @@ import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import type { USFlightsData } from '../../../../hooks/useDashboardData'
 import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
+import { apiUrl } from '../../../../utils/apiConfig'
 
 interface USFlightsChartProps {
   data: USFlightsData | null
@@ -106,7 +107,7 @@ export default function USFlightsChart({ data }: USFlightsChartProps) {
           onClick={openModal}
         >
           <img
-            src={data.image_url}
+            src={apiUrl(data.image_url)}
             alt="US Flights Monitor Chart"
             style={{
               maxWidth: '100%',
@@ -189,7 +190,7 @@ export default function USFlightsChart({ data }: USFlightsChartProps) {
           }}
         >
           <img
-            src={data.image_url}
+            src={apiUrl(data.image_url)}
             alt="US Flights Monitor Chart"
             style={{
               transform: `scale(${zoomLevel})`,

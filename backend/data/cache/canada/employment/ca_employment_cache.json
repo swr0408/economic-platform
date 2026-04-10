@@ -5405,16 +5405,25 @@
       "employment_change": -24.8,
       "fulltime_change": 44.9,
       "parttime_change": -69.7
+    },
+    {
+      "date": "2026-02-01",
+      "employment": 21037.3,
+      "fulltime": 17216.2,
+      "parttime": 3821.1,
+      "employment_change": -83.9,
+      "fulltime_change": -108.4,
+      "parttime_change": 24.5
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "employment": 21121.2,
-    "fulltime": 17324.6,
-    "parttime": 3796.6,
-    "employment_change": -24.8,
-    "fulltime_change": 44.9,
-    "parttime_change": -69.7
+    "date": "2026-02-01",
+    "employment": 21037.3,
+    "fulltime": 17216.2,
+    "parttime": 3821.1,
+    "employment_change": -83.9,
+    "fulltime_change": -108.4,
+    "parttime_change": 24.5
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -5425,14 +5434,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-03-13",
-    "datetime_utc": "2026-03-13T13:30:00+00:00",
-    "datetime_jst": "2026-03-13T22:30:00+09:00",
-    "time_jst": "22:30",
-    "datetime_toronto": "2026-03-13T09:30:00-04:00",
-    "time_toronto": "09:30",
-    "label": "Employment Change (Feb)",
-    "estimate": null
+    "date": "2026-04-10",
+    "datetime_utc": "2026-04-10T12:30:00+00:00",
+    "datetime_jst": "2026-04-10T21:30:00+09:00",
+    "time_jst": "21:30",
+    "datetime_toronto": "2026-04-10T08:30:00-04:00",
+    "time_toronto": "08:30",
+    "label": "Employment Change (Mar)",
+    "estimate": 15
   },
-  "last_updated": "2026-02-28T10:07:01.403315+09:00"
+  "last_updated": "2026-04-10T20:53:16.268042+09:00"
 }

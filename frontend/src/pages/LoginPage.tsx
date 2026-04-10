@@ -119,6 +119,14 @@ function LoginPage() {
               </Link>
             </Text>
           </div>
+
+          <div style={{ textAlign: 'center', paddingTop: 8, borderTop: `1px solid ${colors.border}` }}>
+            <Text style={{ color: colors.textSecondary, fontSize: 12 }}>
+              <Link to="/terms" style={{ color: colors.textSecondary }}>利用規約</Link>
+              {' | '}
+              <Link to="/privacy" style={{ color: colors.textSecondary }}>プライバシーポリシー</Link>
+            </Text>
+          </div>
         </Space>
       </Card>
     </div>

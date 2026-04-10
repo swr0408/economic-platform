@@ -54,11 +54,6 @@ class USAHousingLoader(BaseDashboardLoader):
     MORTGAGE_RELEASE_MINUTE_ET = 0
     MORTGAGE_RELEASE_DAY = 3  # 木曜日
 
-    def get_release_datetimes(self):
-        """
-        各指標の発表日時リストを返す
-        """
-        return []
 
     def _should_force_refresh(self, indicator: str) -> bool:
         """指標が強制更新対象かどうかを判定"""

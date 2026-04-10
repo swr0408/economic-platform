@@ -169,7 +169,7 @@ export default function ONSUnitLabourCostsChart({ data }: ONSUnitLabourCostsChar
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="単位労働コスト" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="単位労働コスト" showPeriodSelector={false} showDataSource={false} handbookId="uk-unit-labour-costs">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -210,6 +210,7 @@ export default function ONSUnitLabourCostsChart({ data }: ONSUnitLabourCostsChar
       <ChartContainer
         title="単位労働コスト"
         showPeriodSelector={false}
+        handbookId="uk-unit-labour-costs"
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/labourproductivity"
       >

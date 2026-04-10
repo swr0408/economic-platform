@@ -1446,13 +1446,25 @@
         "value": -2.0,
         "forecast": 0.3,
         "previous": null
+      },
+      {
+        "date": "2026-01-01",
+        "value": 4.1,
+        "forecast": 1.5,
+        "previous": -2.0
+      },
+      {
+        "date": "2026-02-01",
+        "value": -2.0,
+        "forecast": -0.9,
+        "previous": 4.1
       }
     ],
     "latest": {
-      "date": "2025-12-01",
+      "date": "2026-02-01",
       "value": -2.0,
-      "forecast": 0.3,
-      "previous": null
+      "forecast": -0.9,
+      "previous": 4.1
     }
   },
   "yoy": {
@@ -4227,22 +4239,34 @@
         "value": -0.9,
         "forecast": 0.9,
         "previous": 5.0
+      },
+      {
+        "date": "2026-01-01",
+        "value": 1.8,
+        "forecast": -0.4,
+        "previous": -0.9
+      },
+      {
+        "date": "2026-02-01",
+        "value": -0.2,
+        "forecast": 0.8,
+        "previous": 1.8
       }
     ],
     "latest": {
-      "date": "2025-12-01",
-      "value": -0.9,
-      "forecast": 0.9,
-      "previous": 5.0
+      "date": "2026-02-01",
+      "value": -0.2,
+      "forecast": 0.8,
+      "previous": 1.8
     }
   },
   "next_release": {
-    "date": "2026-03-30",
-    "datetime_utc": "2026-03-30T23:50:00+00:00",
-    "datetime_jst": "2026-03-31T08:50:00+09:00",
+    "date": "2026-04-29",
+    "datetime_utc": "2026-04-29T23:50:00+00:00",
+    "datetime_jst": "2026-04-30T08:50:00+09:00",
     "time_jst": "08:50",
-    "label": "Retail Sales YoY (Feb)",
-    "estimate": null
+    "label": "Retail Sales YoY (Mar)",
+    "estimate": 2.1
   },
-  "last_updated": "2026-02-28T09:52:05.318684+09:00"
+  "last_updated": "2026-04-10T23:01:23.224728+09:00"
 }

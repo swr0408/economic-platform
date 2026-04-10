@@ -100,7 +100,7 @@ export default function ONSWagesChart({ data }: ONSWagesChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="ONS平均週給（前年比）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="ONS平均週給（前年比）" showPeriodSelector={false} showDataSource={false} handbookId="uk-wages">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -129,6 +129,7 @@ export default function ONSWagesChart({ data }: ONSWagesChartProps) {
       <ChartContainer
         title="平均週給（前年比）"
         showPeriodSelector={false}
+        handbookId="uk-wages"
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours"
       >

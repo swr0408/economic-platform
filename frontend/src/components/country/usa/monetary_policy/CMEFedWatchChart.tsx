@@ -4,6 +4,7 @@ import { ReloadOutlined, ExpandOutlined, ZoomInOutlined, ZoomOutOutlined } from 
 import ChartContainer from '../../../common/ChartContainer'
 import { useIsMaster } from '../../../../hooks/useIsMaster'
 import { withVisibility } from '../../../common/withVisibility'
+import { apiUrl, fetchWithTimeout } from '../../../../utils/apiConfig'
 
 // Props型定義
 interface CMEFedWatchChartProps {
@@ -16,7 +17,9 @@ function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }: CMEFedWatchCha
   const isMaster = useIsMaster()
   const [refreshing, setRefreshing] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [imageTimestamp, setImageTimestamp] = useState(Date.now())
+  const [imageTimestamp, setImageTimestamp] = useState(() =>
+    lastUpdated ? new Date(lastUpdated).getTime() : 0
+  )
   // ローカルで管理する更新時刻（更新ボタン押下時に更新）
   const [localLastUpdated, setLocalLastUpdated] = useState<string | null>(null)
   const [localCached, setLocalCached] = useState<boolean | undefined>(cached)
@@ -30,7 +33,7 @@ function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }: CMEFedWatchCha
     setRefreshing(true)
     try {
       // スクリーンショットを強制更新
-      await fetch('/api/fedwatch/screenshot?refresh=true')
+      await fetchWithTimeout('/api/fedwatch/screenshot?refresh=true', undefined, 90_000)
       setImageTimestamp(Date.now())
       setLocalLastUpdated(new Date().toISOString())
       setLocalCached(false)
@@ -90,7 +93,7 @@ function CMEFedWatchChart({ screenshotUrl, lastUpdated, cached }: CMEFedWatchCha
   }
 
   // 画像URLにタイムスタンプを付与（キャッシュ回避用）
-  const imageUrl = `${screenshotUrl}?t=${imageTimestamp}`
+  const imageUrl = `${apiUrl(screenshotUrl ?? '')}?t=${imageTimestamp}`
 
   return (
     <div id="fedwatch-chart">

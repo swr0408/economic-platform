@@ -4,6 +4,7 @@ import { LinkOutlined, ClockCircleOutlined } from '@ant-design/icons'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import ChartContainer from '../../common/ChartContainer'
+import { apiUrl } from '../../../utils/apiConfig'
 
 const { Text } = Typography
 
@@ -217,7 +218,7 @@ export default function NyOptionCutChart() {
           {response.data.table_image_url && (
             <div style={{ textAlign: 'center', marginBottom: 16 }}>
               <Image
-                src={`/api/market/ny-option-cut/table-image?t=${response.data.date}`}
+                src={apiUrl(`/api/market/ny-option-cut/table-image?t=${response.data.date}`)}
                 alt="FX Option Expiries Table"
                 style={{
                   maxWidth: '100%',

@@ -881,24 +881,29 @@
     },
     {
       "date": "2025-01-01",
-      "value": -3048.0,
-      "qoq_change": -2250.0
+      "value": -3394.0,
+      "qoq_change": -2596.0
     },
     {
       "date": "2025-04-01",
-      "value": -21557.0,
-      "qoq_change": -18509.0
+      "value": -21034.0,
+      "qoq_change": -17640.0
     },
     {
       "date": "2025-07-01",
-      "value": -9680.0,
-      "qoq_change": 11877.0
+      "value": -5272.0,
+      "qoq_change": 15762.0
+    },
+    {
+      "date": "2025-10-01",
+      "value": -706.0,
+      "qoq_change": 4566.0
     }
   ],
   "latest": {
-    "date": "2025-07-01",
-    "value": -9680.0,
-    "qoq_change": 11877.0
+    "date": "2025-10-01",
+    "value": -706.0,
+    "qoq_change": 4566.0
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -909,14 +914,14 @@
     "frequency": "quarterly"
   },
   "next_release": {
-    "date": "2026-02-26",
-    "datetime_utc": "2026-02-26T13:30:00+00:00",
-    "datetime_jst": "2026-02-26T22:30:00+09:00",
-    "time_jst": "22:30",
-    "datetime_toronto": "2026-02-26T08:30:00-05:00",
+    "date": "2026-05-28",
+    "datetime_utc": "2026-05-28T12:30:00+00:00",
+    "datetime_jst": "2026-05-28T21:30:00+09:00",
+    "time_jst": "21:30",
+    "datetime_toronto": "2026-05-28T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Current Account (Q4)",
-    "estimate": null
+    "label": "Current Account (Q1)",
+    "estimate": -3.4
   },
-  "last_updated": "2026-02-13T22:58:16.322221+09:00"
+  "last_updated": "2026-04-10T20:51:45.476766+09:00"
 }

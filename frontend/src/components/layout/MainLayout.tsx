@@ -426,6 +426,21 @@ function MainLayout() {
           <Outlet />
         </Content>
       </Layout>
+      {/* フッター */}
+      <div
+        style={{
+          textAlign: 'center',
+          padding: '12px 24px',
+          background: colors.bgPrimary,
+          borderTop: `1px solid ${colors.border}`,
+          fontSize: 12,
+          color: colors.textSecondary,
+        }}
+      >
+        <Link to="/terms" style={{ color: colors.textSecondary, marginRight: 16 }}>利用規約</Link>
+        <Link to="/privacy" style={{ color: colors.textSecondary }}>プライバシーポリシー</Link>
+        <span style={{ marginLeft: 16 }}>&copy; {new Date().getFullYear()} EconAlpha</span>
+      </div>
       {/* データハンドブック Drawer（経済カレンダーの上にオーバーレイ） */}
       <HandbookDrawer indicatorId={activeHandbookId} onClose={closeHandbook} />
     </Layout>

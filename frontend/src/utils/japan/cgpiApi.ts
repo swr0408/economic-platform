@@ -3,7 +3,7 @@
  * 企業物価指数
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export interface CGPIDataPoint {
   date: string // YYYY-MM-01 format

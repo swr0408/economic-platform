@@ -27,6 +27,7 @@ from services.browser import (
     ScreenshotRequest,
     take_screenshot_with_retry,
 )
+from services.browser.stale_while_revalidate import background_revalidate
 
 logger = logging.getLogger(__name__)
 
@@ -164,6 +165,18 @@ class CnBaiduMigrationScreenshotService:
                     "cached": True,
                     "last_updated": self._get_last_updated(),
                 }
+            # SWR: stale cache exists → return it immediately, update in background
+            background_revalidate(
+                f"swr:{self.CACHE_KEY}",
+                lambda: self.capture_screenshot(force_refresh=True),
+            )
+            return {
+                "success": True,
+                "url": f"/cache/china/economy/{SCREENSHOT_FILENAME}",
+                "cached": True,
+                "last_updated": self._get_last_updated(),
+                "revalidating": True,
+            }
 
         # スクリーンショット取得
         print("[BaiduMigration] Capturing Baidu Migration screenshot...")

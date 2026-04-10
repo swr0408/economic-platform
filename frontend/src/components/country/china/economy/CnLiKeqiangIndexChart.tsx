@@ -15,7 +15,9 @@ import { withVisibility } from '../../../common/withVisibility'
 
 const { Text } = Typography
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+import { fetchWithTimeout } from '../../../../utils/apiConfig'
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 interface ScreenshotData {
   screenshot_url: string | null
@@ -25,7 +27,7 @@ interface ScreenshotData {
 
 function CnLiKeqiangIndexChart() {
   const isMaster = useIsMaster()
-  const [imageKey, setImageKey] = useState(Date.now())
+  const [imageKey, setImageKey] = useState(0)
   const [refreshing, setRefreshing] = useState(false)
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<ScreenshotData | null>(null)
@@ -39,7 +41,7 @@ function CnLiKeqiangIndexChart() {
     try {
       setLoading(true)
       setError(null)
-      const response = await fetch(`${API_BASE_URL}/api/china/li-keqiang-index-screenshot`)
+      const response = await fetchWithTimeout(`${API_BASE_URL}/api/china/li-keqiang-index-screenshot`, undefined, 30_000)
       if (!response.ok) {
         throw new Error('Failed to load screenshot URL')
       }
@@ -56,7 +58,7 @@ function CnLiKeqiangIndexChart() {
   const handleRefresh = async () => {
     setRefreshing(true)
     try {
-      const response = await fetch(`${API_BASE_URL}/api/china/li-keqiang-index-screenshot?force_refresh=true`)
+      const response = await fetchWithTimeout(`${API_BASE_URL}/api/china/li-keqiang-index-screenshot?force_refresh=true`, undefined, 90_000)
       if (!response.ok) {
         throw new Error('Failed to refresh screenshot')
       }

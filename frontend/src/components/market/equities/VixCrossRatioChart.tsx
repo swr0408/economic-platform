@@ -299,7 +299,7 @@ export default function VixCrossRatioChart() {
   return (
     <ChartContainer
       title="VIXクロスレシオ"
-      dataSource="yfinance"
+      dataSource="cboe"
       sourceUrl="https://finance.yahoo.com/quote/%5EVIX/"
       handbookId="vix-term-structure"
       showPeriodSelector={false}

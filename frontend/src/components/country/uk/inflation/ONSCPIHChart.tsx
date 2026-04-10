@@ -223,7 +223,7 @@ export default function ONSCPIHChart({ data }: ONSCPIHChartProps) {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="消費者物価指数（CPI）" showPeriodSelector={false} showDataSource={false} handbookId="uk-cpih">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -275,6 +275,7 @@ export default function ONSCPIHChart({ data }: ONSCPIHChartProps) {
       <ChartContainer
         title="消費者物価指数（CPI）"
         showPeriodSelector={false}
+        handbookId="uk-cpih"
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/economy/inflationandpriceindices"
       >

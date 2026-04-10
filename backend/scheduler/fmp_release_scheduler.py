@@ -33,8 +33,12 @@ JST = ZoneInfo("Asia/Tokyo")
 UTC = ZoneInfo("UTC")
 
 # 発表後の更新設定
-UPDATE_DELAY_MINUTES = 1  # 発表から1分後に取得開始
+UPDATE_DELAY_MINUTES = 5  # 発表から5分後に取得開始（FRED反映ラグ考慮）
 UPDATE_ITERATIONS = 3     # 3回取得（3分方式）
+
+# ポーリングリトライ設定（FRED反映ラグ対策）
+# 発表後 10, 20, 30, 45, 60 分にデータ鮮度を確認し、未更新なら再取得
+POLLING_RETRY_MINUTES = [10, 20, 30, 45, 60]
 UPDATE_INTERVAL_SECONDS = 60
 
 # FMP発表日取得設定
@@ -807,11 +811,52 @@ class FMPReleaseScheduler:
 
         print(f"[FMPScheduler] Completed update cycle for: {name_ja}")
 
+    def _get_service_latest_date(self, config: Dict[str, Any]) -> Optional[str]:
+        """サービスのキャッシュから最新データ日付を取得（Redisから読むだけ、APIは叩かない）"""
+        try:
+            service = self._get_service_instance(config)
+            if not service:
+                return None
+
+            # Redis/ファイルキャッシュから最新値を取得
+            for attr in ['_load_from_redis', 'get_cached']:
+                loader = getattr(service, attr, None)
+                if loader:
+                    cached = loader()
+                    if cached:
+                        latest = cached.get("latest", {})
+                        if isinstance(latest, dict):
+                            return latest.get("date")
+                        break
+
+            # redis_client経由で直接取得を試みる
+            try:
+                from core.redis_client import redis_client
+                # サービスのRedisキーパターンを推定
+                for key_attr in ['REDIS_KEY', 'DATA_CACHE_KEY', 'CACHE_KEY']:
+                    key = getattr(service, key_attr, None)
+                    if key:
+                        data = redis_client.get(key)
+                        if data and isinstance(data, dict):
+                            latest = data.get("latest", {})
+                            if isinstance(latest, dict):
+                                return latest.get("date")
+            except Exception:
+                pass
+
+            return None
+        except Exception:
+            return None
+
     async def _retry_if_still_pending(self, config: Dict[str, Any]):
         """
-        発表後の遅延リトライ: FMPのactualがまだNULLの場合のみ再取得
+        発表後のポーリングリトライ: データソース（FRED等）の反映を検知して再取得
 
-        FMPがactualを既に埋めている場合はスキップ（無駄な処理を回避）
+        判定ロジック:
+        1. FMP actual がまだ NULL → FMPを同期してから再取得
+        2. FMP actual は入っているが、サービスの最新データ日付が
+           発表月に届いていない → データソース（FRED等）未反映 → 再取得
+        3. 両方OKならスキップ
         """
         name_ja = config["name_ja"]
         fmp_event = config["fmp_event"]
@@ -822,10 +867,13 @@ class FMPReleaseScheduler:
             from core.database import SessionLocal
             from sqlalchemy import text
 
-            # DBで当該イベントのactualがまだNULLかチェック
+            fmp_actual = None
+            fmp_event_date = None
+
+            # FMP actual値を確認
             with SessionLocal() as session:
                 query = text("""
-                    SELECT actual
+                    SELECT actual, datetime_utc
                     FROM economic_calendar_events
                     WHERE country = :country
                       AND event ILIKE :pattern
@@ -839,15 +887,36 @@ class FMPReleaseScheduler:
                     "pattern": f"%{fmp_event_pattern}%"
                 }).fetchone()
 
-                if row and row[0] is not None:
-                    print(f"[FMPScheduler] Retry skipped for {name_ja}: actual already populated")
-                    return
+                if row:
+                    fmp_actual = row[0]
+                    fmp_event_date = row[1]
 
-            print(f"[FMPScheduler] Retry triggered for {name_ja}: actual still NULL")
+            # FMP actualがまだNULL → FMPを同期
+            if fmp_actual is None:
+                print(f"[FMPScheduler] Retry: {name_ja} — FMP actual still NULL, syncing...")
+                self._sync_fmp_indicator_data(fmp_event, name_ja, country)
 
-            # FMPから再同期 → サービス再取得
-            self._sync_fmp_indicator_data(fmp_event, name_ja, country)
+            # サービスの最新データ日付を確認（キャッシュから読むだけ）
+            service_latest = self._get_service_latest_date(config)
 
+            # FMP actualが入っていて、サービスのデータも新しければスキップ
+            if fmp_actual is not None and service_latest:
+                # 発表日の月とサービスの最新月を比較
+                # 例: CPI 3月分発表 → サービスの latest_date が 2026-03-01 以降ならOK
+                if fmp_event_date:
+                    # 発表対象月 = 発表日の前月（経済指標は前月分を発表）
+                    target_month = (fmp_event_date.replace(day=1) - timedelta(days=1)).strftime("%Y-%m")
+                    service_month = service_latest[:7] if len(service_latest) >= 7 else ""
+                    if service_month >= target_month:
+                        print(f"[FMPScheduler] Retry skipped for {name_ja}: "
+                              f"service data up to date (latest={service_latest})")
+                        return
+
+            print(f"[FMPScheduler] Retry triggered for {name_ja}: "
+                  f"fmp_actual={'set' if fmp_actual is not None else 'NULL'}, "
+                  f"service_latest={service_latest}")
+
+            # サービスを force_refresh
             service = self._get_service_instance(config)
             if not service:
                 return
@@ -927,9 +996,9 @@ class FMPReleaseScheduler:
             scheduled_count += 1
             print(f"[FMPScheduler] Scheduled: {name_ja} at {trigger_time.strftime('%Y-%m-%d %H:%M JST')}")
 
-            # 遅延リトライジョブ（FMP actual遅延対策）
-            # 発表後15分・30分にactualがまだNULLなら再取得
-            for retry_delay in [15, 30]:
+            # ポーリングリトライ（FRED等の反映ラグ対策）
+            # 発表後 10, 20, 30, 45, 60分にデータ鮮度を確認し、未更新なら再取得
+            for retry_delay in POLLING_RETRY_MINUTES:
                 retry_time = dt_jst + timedelta(minutes=retry_delay)
                 if retry_time <= now_jst:
                     continue

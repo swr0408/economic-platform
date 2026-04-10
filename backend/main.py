@@ -5,6 +5,12 @@ Economic Platform API - メインエントリーポイント
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.requests import Request
+from starlette.responses import Response
+
+# requests ライブラリにデフォルトタイムアウトを設定（import するだけで有効化）
+import core.http_defaults  # noqa: F401
 
 try:
     from backend.config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
@@ -130,6 +136,7 @@ try:
     from backend.scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
     from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
+    from backend.scheduler.market_data_scheduler import market_data_scheduler
     from backend.routers.headlines import router as headlines_router
     from backend.routers.auth import router as auth_router
     from backend.routers.visibility import router as visibility_router
@@ -332,6 +339,7 @@ except ImportError as _ie:
     from scheduler.nikkei225_options_scheduler import nikkei225_options_scheduler
     from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from scheduler.comex_stock_scheduler import comex_stock_scheduler
+    from scheduler.market_data_scheduler import market_data_scheduler
     from routers.headlines import router as headlines_router
     from routers.auth import router as auth_router
     from routers.visibility import router as visibility_router
@@ -343,6 +351,25 @@ except ImportError as _ie:
     from scheduler.headlines_rss_scheduler import headlines_rss_scheduler
     from services.headlines.translation_worker import translation_worker
 
+class StaticCacheHeaderMiddleware(BaseHTTPMiddleware):
+    """スクリーンショット・キャッシュ画像に Cache-Control ヘッダーを付与。
+
+    ブラウザキャッシュを活用し、同じ画像の重複リクエストを削減する。
+    SWR パターンと組み合わせ: スクショは定期的にバックグラウンドで更新されるため、
+    ブラウザ側は短めの max-age でキャッシュし、stale-while-revalidate で古い画像を
+    表示しつつ裏で更新確認する。
+    """
+    async def dispatch(self, request: Request, call_next):
+        response: Response = await call_next(request)
+        path = request.url.path
+
+        if path.startswith("/static/screenshots/") or path.startswith("/cache/"):
+            # 5分キャッシュ + 1時間は stale でも使ってよい
+            response.headers["Cache-Control"] = "public, max-age=300, stale-while-revalidate=3600"
+
+        return response
+
+
 app = FastAPI(title="Economic Platform API", version="1.0.0")
 
 # CORS設定
@@ -353,6 +380,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# 静的ファイル（スクリーンショット/キャッシュ画像）にブラウザキャッシュヘッダーを付与
+app.add_middleware(StaticCacheHeaderMiddleware)
 
 # 更新系 endpoint を master ロールに制限するミドルウェア
 # (個別 router を変更せず、データ書き込み系を一括で master only にする)
@@ -779,6 +809,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start COMEX Stock Scheduler: {e}")
 
+    # マーケットデータ一括スケジューラーを開始
+    try:
+        market_data_scheduler.start()
+        print("Market Data Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Market Data Scheduler: {e}")
+
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:
         from services.canada.ca_settlement_balances_service import ca_settlement_balances_service
@@ -926,6 +963,11 @@ async def shutdown_event():
         print(f"Warning: Error shutting down CN Baidu Migration Scheduler: {e}")
 
     try:
+        market_data_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Market Data Scheduler: {e}")
+
+    try:
         discord_news_listener.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Discord News Listener: {e}")
@@ -944,5 +986,7 @@ async def shutdown_event():
 
 
 if __name__ == '__main__':
+    import os as _os
     import uvicorn
-    uvicorn.run('backend.main:app', host='0.0.0.0', port=8000, reload=True)
+    _reload = _os.getenv("UVICORN_RELOAD", "false").lower() in ("1", "true", "yes")
+    uvicorn.run('backend.main:app', host='0.0.0.0', port=8000, reload=_reload)

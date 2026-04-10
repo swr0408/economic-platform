@@ -242,8 +242,8 @@ export default function Sp500ValuationChart() {
   return (
     <ChartContainer
       title="S&P 500 Valuation"
-      dataSource="MacroMicro / yfinance"
-      sourceUrl="https://en.macromicro.me/series/20052/sp500-forward-pe-ratio"
+      dataSource="cboe"
+      sourceUrl="https://www.cboe.com/"
       handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}
     >

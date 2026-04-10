@@ -7,7 +7,10 @@ import os
 from typing import Dict, List
 
 # CORS 許可オリジン
-ALLOWED_ORIGINS: List[str] = [
+# ローカル開発用 origin は常に含める。
+# 本番 origin は環境変数 ALLOWED_ORIGINS_EXTRA で追加する (カンマ区切り)。
+# 例: ALLOWED_ORIGINS_EXTRA=https://app.example.com,https://staging.example.com
+_LOCAL_ORIGINS: List[str] = [
     "http://localhost:3000",
     "http://localhost:3001",
     "http://localhost:3002",
@@ -15,6 +18,11 @@ ALLOWED_ORIGINS: List[str] = [
     "http://127.0.0.1:3001",
     "http://127.0.0.1:3002",
 ]
+_extra_raw = os.getenv("ALLOWED_ORIGINS_EXTRA", "")
+_extra_origins: List[str] = [
+    o.strip() for o in _extra_raw.split(",") if o.strip()
+]
+ALLOWED_ORIGINS: List[str] = _LOCAL_ORIGINS + _extra_origins
 
 # Seasonality データディレクトリ
 _root = os.getenv("SEASONALITY_DIR")

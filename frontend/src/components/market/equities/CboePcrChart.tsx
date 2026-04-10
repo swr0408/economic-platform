@@ -171,7 +171,7 @@ export default function CboePcrChart() {
   return (
     <ChartContainer
       title="CBOE Total Put/Call Ratio"
-      dataSource="CBOE / yfinance"
+      dataSource="CBOE"
       sourceUrl="https://www.cboe.com/us/options/market_statistics/daily/"
       showPeriodSelector={false}
     >

@@ -31,6 +31,7 @@ from services.browser import (
     get_default_runner,
 )
 from services.browser.concurrency import browser_semaphore
+from services.browser.stale_while_revalidate import background_revalidate
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +126,27 @@ class RbaOisScreenshotService:
                     )
                     continue
             to_capture.append((key, config, screenshot_path))
+
+        # SWR: all files exist (but stale) → return stale URLs, update in background
+        if to_capture:
+            all_files_exist = all(sp.exists() for _, _, sp in to_capture)
+            if all_files_exist:
+                for key, config, screenshot_path in to_capture:
+                    results[key] = {
+                        "success": True,
+                        "url": f"/cache/australia/policy/{config['filename']}",
+                        "cached": True,
+                    }
+                cached_meta = redis_client.get(self.CACHE_KEY)
+                results["last_updated"] = (
+                    cached_meta.get("last_updated") if cached_meta else now.isoformat()
+                )
+                results["revalidating"] = True
+                background_revalidate(
+                    f"swr:{self.CACHE_KEY}",
+                    lambda: self.capture_all_screenshots(force_refresh=True),
+                )
+                return results
 
         # 1 ブラウザで複数枚連続撮影
         if to_capture:

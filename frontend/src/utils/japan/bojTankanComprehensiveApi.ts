@@ -3,7 +3,7 @@
  * 日銀短観 包括的データ（設備投資、生産・営業用設備、雇用人員、仕入価格、販売価格）
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export type DataType = 'capital_investment' | 'production_facilities' | 'employment' | 'purchase_price' | 'selling_price'
 

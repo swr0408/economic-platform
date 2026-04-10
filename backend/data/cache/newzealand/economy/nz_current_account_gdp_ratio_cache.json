@@ -622,7 +622,7 @@
       "date": "2013-03-01",
       "ratio": -3.85,
       "ca_value": 0.107,
-      "gdp_value": 52.239
+      "gdp_value": 52.238
     },
     {
       "date": "2013-06-01",
@@ -640,7 +640,7 @@
       "date": "2013-12-01",
       "ratio": -3.45,
       "ca_value": -1.448,
-      "gdp_value": 52.76
+      "gdp_value": 52.759
     },
     {
       "date": "2014-03-01",
@@ -664,19 +664,19 @@
       "date": "2014-12-01",
       "ratio": -3.49,
       "ca_value": -2.912,
-      "gdp_value": 54.983
+      "gdp_value": 54.982
     },
     {
       "date": "2015-03-01",
       "ratio": -3.73,
       "ca_value": 0.874,
-      "gdp_value": 55.422
+      "gdp_value": 55.423
     },
     {
       "date": "2015-06-01",
       "ratio": -3.72,
       "ca_value": -1.155,
-      "gdp_value": 55.874
+      "gdp_value": 55.875
     },
     {
       "date": "2015-09-01",
@@ -688,248 +688,254 @@
       "date": "2015-12-01",
       "ratio": -3.15,
       "ca_value": -2.37,
-      "gdp_value": 57.214
+      "gdp_value": 57.213
     },
     {
       "date": "2016-03-01",
       "ratio": -2.73,
       "ca_value": 1.767,
-      "gdp_value": 57.781
+      "gdp_value": 57.782
     },
     {
       "date": "2016-06-01",
       "ratio": -2.35,
       "ca_value": -0.348,
-      "gdp_value": 58.46
+      "gdp_value": 58.461
     },
     {
       "date": "2016-09-01",
       "ratio": -2.5,
       "ca_value": -4.858,
-      "gdp_value": 58.927
+      "gdp_value": 58.926
     },
     {
       "date": "2016-12-01",
       "ratio": -2.37,
       "ca_value": -2.101,
-      "gdp_value": 59.032
+      "gdp_value": 59.029
     },
     {
       "date": "2017-03-01",
       "ratio": -2.94,
       "ca_value": 0.358,
-      "gdp_value": 59.894
+      "gdp_value": 59.9
     },
     {
       "date": "2017-06-01",
       "ratio": -2.99,
       "ca_value": -0.534,
-      "gdp_value": 60.54
+      "gdp_value": 60.539
     },
     {
       "date": "2017-09-01",
       "ratio": -3.09,
       "ca_value": -5.166,
-      "gdp_value": 61.183
+      "gdp_value": 61.181
     },
     {
       "date": "2017-12-01",
       "ratio": -3.45,
       "ca_value": -3.072,
-      "gdp_value": 61.97
+      "gdp_value": 61.964
     },
     {
       "date": "2018-03-01",
       "ratio": -3.71,
       "ca_value": -0.363,
-      "gdp_value": 62.646
+      "gdp_value": 62.658
     },
     {
       "date": "2018-06-01",
       "ratio": -4.33,
       "ca_value": -2.176,
-      "gdp_value": 63.195
+      "gdp_value": 63.192
     },
     {
       "date": "2018-09-01",
       "ratio": -4.9,
       "ca_value": -6.693,
-      "gdp_value": 63.234
+      "gdp_value": 63.23
     },
     {
       "date": "2018-12-01",
       "ratio": -5.14,
       "ca_value": -3.797,
-      "gdp_value": 64.251
+      "gdp_value": 64.243
     },
     {
       "date": "2019-03-01",
       "ratio": -4.74,
       "ca_value": 0.537,
-      "gdp_value": 65.042
+      "gdp_value": 65.06
     },
     {
       "date": "2019-06-01",
       "ratio": -4.35,
       "ca_value": -1.255,
-      "gdp_value": 65.037
+      "gdp_value": 65.03
     },
     {
       "date": "2019-09-01",
       "ratio": -4.09,
       "ca_value": -6.111,
-      "gdp_value": 65.577
+      "gdp_value": 65.576
     },
     {
       "date": "2019-12-01",
       "ratio": -3.55,
       "ca_value": -2.457,
-      "gdp_value": 66.042
+      "gdp_value": 66.032
     },
     {
       "date": "2020-03-01",
       "ratio": -2.99,
       "ca_value": 1.978,
-      "gdp_value": 65.502
+      "gdp_value": 65.52
     },
     {
       "date": "2020-06-01",
       "ratio": -2.02,
       "ca_value": 1.428,
-      "gdp_value": 58.968
+      "gdp_value": 58.961
     },
     {
       "date": "2020-09-01",
       "ratio": -1.16,
       "ca_value": -3.926,
-      "gdp_value": 67.227
+      "gdp_value": 67.229
     },
     {
       "date": "2020-12-01",
       "ratio": -1.24,
       "ca_value": -2.695,
-      "gdp_value": 67.548
+      "gdp_value": 67.535
     },
     {
       "date": "2021-03-01",
       "ratio": -3.24,
       "ca_value": -3.315,
-      "gdp_value": 68.916
+      "gdp_value": 68.933
     },
     {
       "date": "2021-06-01",
       "ratio": -4.02,
       "ca_value": -1.042,
-      "gdp_value": 69.458
+      "gdp_value": 69.451
     },
     {
       "date": "2021-09-01",
       "ratio": -5.73,
       "ca_value": -8.543,
-      "gdp_value": 66.392
+      "gdp_value": 66.398
     },
     {
       "date": "2021-12-01",
       "ratio": -7.45,
       "ca_value": -7.513,
-      "gdp_value": 69.099
+      "gdp_value": 69.088
     },
     {
       "date": "2022-03-01",
       "ratio": -8.62,
       "ca_value": -6.523,
-      "gdp_value": 69.143
+      "gdp_value": 69.147
     },
     {
       "date": "2022-06-01",
       "ratio": -10.57,
       "ca_value": -6.459,
-      "gdp_value": 70.031
+      "gdp_value": 70.032
     },
     {
       "date": "2022-09-01",
       "ratio": -11.43,
       "ca_value": -11.493,
-      "gdp_value": 71.582
+      "gdp_value": 71.628
     },
     {
       "date": "2022-12-01",
       "ratio": -12.3,
       "ca_value": -10.293,
-      "gdp_value": 71.797
+      "gdp_value": 71.809
     },
     {
       "date": "2023-03-01",
       "ratio": -11.45,
       "ca_value": -4.404,
-      "gdp_value": 71.675
+      "gdp_value": 71.665
     },
     {
       "date": "2023-06-01",
       "ratio": -10.46,
       "ca_value": -3.868,
-      "gdp_value": 72.201
+      "gdp_value": 72.21
     },
     {
       "date": "2023-09-01",
       "ratio": -10.13,
       "ca_value": -10.592,
-      "gdp_value": 72.11
+      "gdp_value": 72.167
     },
     {
       "date": "2023-12-01",
       "ratio": -8.95,
       "ca_value": -6.948,
-      "gdp_value": 72.428
+      "gdp_value": 72.447
     },
     {
       "date": "2024-03-01",
       "ratio": -8.23,
       "ca_value": -2.389,
-      "gdp_value": 72.522
+      "gdp_value": 72.492
     },
     {
       "date": "2024-06-01",
       "ratio": -8.04,
       "ca_value": -3.327,
-      "gdp_value": 72.228
+      "gdp_value": 72.235
     },
     {
       "date": "2024-09-01",
-      "ratio": -7.61,
+      "ratio": -7.6,
       "ca_value": -9.278,
-      "gdp_value": 71.288
+      "gdp_value": 71.368
     },
     {
       "date": "2024-12-01",
       "ratio": -6.95,
       "ca_value": -4.998,
-      "gdp_value": 71.423
+      "gdp_value": 71.462
     },
     {
       "date": "2025-03-01",
-      "ratio": -6.38,
+      "ratio": -6.37,
       "ca_value": -0.709,
-      "gdp_value": 72.271
+      "gdp_value": 72.244
     },
     {
       "date": "2025-06-01",
       "ratio": -5.68,
       "ca_value": -1.297,
-      "gdp_value": 71.671
+      "gdp_value": 71.768
     },
     {
       "date": "2025-09-01",
       "ratio": -5.34,
-      "ca_value": -8.365,
-      "gdp_value": 72.607
+      "ca_value": -8.357,
+      "gdp_value": 72.406
+    },
+    {
+      "date": "2025-12-01",
+      "ratio": -5.66,
+      "ca_value": -5.984,
+      "gdp_value": 72.457
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "ratio": -5.34,
-    "ca_value": -8.365,
-    "gdp_value": 72.607
+    "date": "2025-12-01",
+    "ratio": -5.66,
+    "ca_value": -5.984,
+    "gdp_value": 72.457
   },
   "metadata": {
     "source": "Stats NZ (BOP CSV + GDP Excel)",
@@ -940,5 +946,5 @@
     "gdp_series": "SG02RSC00B15 (SA expenditure GDP, millions NZD)",
     "ca_series": "BOPQ.S06AC100000000D (Current Account Balance, millions NZD)"
   },
-  "last_updated": "2026-03-01T21:19:47.654243+09:00"
+  "last_updated": "2026-04-10T20:58:45.751718+09:00"
 }

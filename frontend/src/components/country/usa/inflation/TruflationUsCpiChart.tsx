@@ -12,7 +12,9 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import { withVisibility } from '../../../common/withVisibility'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+import { fetchWithTimeout } from '../../../../utils/apiConfig'
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 interface ScreenshotItem {
   key: string
@@ -30,7 +32,7 @@ function TruflationUsCpiChart() {
   const [data, setData] = useState<ScreenshotData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [imageKey] = useState(Date.now())
+  const [imageKey] = useState(0)
 
   useEffect(() => {
     loadScreenshotUrls()
@@ -40,7 +42,7 @@ function TruflationUsCpiChart() {
     try {
       setLoading(true)
       setError(null)
-      const response = await fetch(`${API_BASE_URL}/api/usa/truflation-screenshot`)
+      const response = await fetchWithTimeout(`${API_BASE_URL}/api/usa/truflation-screenshot`, undefined, 30_000)
       if (!response.ok) {
         throw new Error('Failed to load screenshot URLs')
       }

@@ -26,6 +26,7 @@ except ImportError:
     HAS_PYMUPDF = False
 
 from core.redis_client import redis_client
+from services.browser.stale_while_revalidate import background_revalidate
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -137,6 +138,18 @@ class KomtraxScreenshotService:
                     "cached": True,
                     "last_updated": self._get_last_updated(),
                 }
+            # SWR: stale cache exists → return it immediately, update in background
+            background_revalidate(
+                f"swr:{self.CACHE_KEY}",
+                lambda: self.capture_screenshot(force_refresh=True),
+            )
+            return {
+                "success": True,
+                "url": f"/cache/global/economy/{SCREENSHOT_FILENAME}",
+                "cached": True,
+                "last_updated": self._get_last_updated(),
+                "revalidating": True,
+            }
 
         # PDFリンクを取得
         pdf_url = self._find_pdf_url()

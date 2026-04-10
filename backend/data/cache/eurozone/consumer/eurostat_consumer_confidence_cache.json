@@ -542,14 +542,14 @@
     "description": "消費者信頼感指数（ユーロ圏20カ国）"
   },
   "next_release": {
-    "date": "2026-01-29",
-    "datetime_utc": "2026-01-29T10:00:00+00:00",
-    "datetime_jst": "2026-01-29T19:00:00+09:00",
-    "time_jst": "19:00",
-    "datetime_cet": "2026-01-29T11:00:00+01:00",
+    "date": "2026-04-29",
+    "datetime_utc": "2026-04-29T09:00:00+00:00",
+    "datetime_jst": "2026-04-29T18:00:00+09:00",
+    "time_jst": "18:00",
+    "datetime_cet": "2026-04-29T11:00:00+02:00",
     "time_cet": "11:00",
-    "label": "Consumer Confidence",
+    "label": "Consumer Confidence (Apr)",
     "estimate": null
   },
-  "last_updated": "2026-01-29T01:06:04.939876+09:00"
+  "last_updated": "2026-04-10T18:01:33.821229+09:00"
 }

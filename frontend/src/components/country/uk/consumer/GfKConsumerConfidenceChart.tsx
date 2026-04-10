@@ -96,7 +96,7 @@ export default function GfKConsumerConfidenceChart({ data }: GfKConsumerConfiden
 
   if (!hasData) {
     return (
-      <ChartContainer title="GfK消費者信頼感指数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="GfK消費者信頼感指数" showPeriodSelector={false} showDataSource={false} handbookId="uk-gfk-consumer-confidence">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -107,6 +107,7 @@ export default function GfKConsumerConfidenceChart({ data }: GfKConsumerConfiden
       <ChartContainer
         title="GfK消費者信頼感指数"
         showPeriodSelector={false}
+        handbookId="uk-gfk-consumer-confidence"
         dataSource="NIQ"
         sourceUrl="https://nielseniq.com/?s=%E2%80%8B%E2%80%8BConsumer%2Bconfidence&market=global&language=en&orderby&order&date_range&date&post_type=news_center&topics&industries&roles&brand_architecture&formats&insight_categories"
       >

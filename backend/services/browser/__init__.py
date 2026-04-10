@@ -56,6 +56,7 @@ from .runner import (
 from .screenshot_helper import (
     extract_page,
     get_default_runner,
+    run_custom_flow,
     take_screenshot,
     take_screenshot_with_retry,
 )
@@ -72,6 +73,7 @@ __all__ = [
     "ScreenshotResult",
     "extract_page",
     "get_default_runner",
+    "run_custom_flow",
     "take_screenshot",
     "take_screenshot_with_retry",
 ]

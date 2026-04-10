@@ -173,8 +173,8 @@ export default function Russell2000Russell1000Chart() {
   return (
     <ChartContainer
       title="Russell 2000 / Russell 1000 レシオ"
-      dataSource="yfinance"
-      sourceUrl="https://finance.yahoo.com/"
+      dataSource="cboe"
+      sourceUrl="https://www.cboe.com/"
       showPeriodSelector={false}
       handbookId="russell2000-russell1000"
     >

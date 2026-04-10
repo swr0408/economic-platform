@@ -213,7 +213,7 @@ export default function VixTermStructureChart() {
   return (
     <ChartContainer
       title="VIX期間構造"
-      dataSource="yfinance"
+      dataSource="cboe"
       sourceUrl="https://finance.yahoo.com/quote/%5EVIX/"
       handbookId="vix-term-structure"
       showPeriodSelector={false}

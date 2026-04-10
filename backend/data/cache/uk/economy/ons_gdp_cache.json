@@ -2205,23 +2205,23 @@
       "period": "2024 Q1",
       "year": 2024,
       "quarter": 1,
-      "value": 691198.0,
-      "qoq_change": 0.81
+      "value": 690904.0,
+      "qoq_change": 0.77
     },
     {
       "date": "2024-06-01",
       "period": "2024 Q2",
       "year": 2024,
       "quarter": 2,
-      "value": 695280.0,
-      "qoq_change": 0.59
+      "value": 695145.0,
+      "qoq_change": 0.61
     },
     {
       "date": "2024-09-01",
       "period": "2024 Q3",
       "year": 2024,
       "quarter": 3,
-      "value": 696853.0,
+      "value": 696752.0,
       "qoq_change": 0.23
     },
     {
@@ -2229,32 +2229,40 @@
       "period": "2024 Q4",
       "year": 2024,
       "quarter": 4,
-      "value": 698780.0,
-      "qoq_change": 0.28
+      "value": 699094.0,
+      "qoq_change": 0.34
     },
     {
       "date": "2025-03-01",
       "period": "2025 Q1",
       "year": 2025,
       "quarter": 1,
-      "value": 703435.0,
-      "qoq_change": 0.67
+      "value": 703655.0,
+      "qoq_change": 0.65
     },
     {
       "date": "2025-06-01",
       "period": "2025 Q2",
       "year": 2025,
       "quarter": 2,
-      "value": 704973.0,
-      "qoq_change": 0.22
+      "value": 705117.0,
+      "qoq_change": 0.21
     },
     {
       "date": "2025-09-01",
       "period": "2025 Q3",
       "year": 2025,
       "quarter": 3,
-      "value": 705603.0,
-      "qoq_change": 0.09
+      "value": 705681.0,
+      "qoq_change": 0.08
+    },
+    {
+      "date": "2025-12-01",
+      "period": "2025 Q4",
+      "year": 2025,
+      "quarter": 4,
+      "value": 706067.0,
+      "qoq_change": 0.05
     }
   ],
   "yoy": [
@@ -3893,44 +3901,50 @@
     {
       "date": "2024-03-01",
       "period": "2024 Q1",
-      "value": 691198.0,
-      "yoy_change": 0.29
+      "value": 690904.0,
+      "yoy_change": 0.25
     },
     {
       "date": "2024-06-01",
       "period": "2024 Q2",
-      "value": 695280.0,
-      "yoy_change": 0.84
+      "value": 695145.0,
+      "yoy_change": 0.82
     },
     {
       "date": "2024-09-01",
       "period": "2024 Q3",
-      "value": 696853.0,
-      "yoy_change": 1.31
+      "value": 696752.0,
+      "yoy_change": 1.3
     },
     {
       "date": "2024-12-01",
       "period": "2024 Q4",
-      "value": 698780.0,
-      "yoy_change": 1.92
+      "value": 699094.0,
+      "yoy_change": 1.96
     },
     {
       "date": "2025-03-01",
       "period": "2025 Q1",
-      "value": 703435.0,
-      "yoy_change": 1.77
+      "value": 703655.0,
+      "yoy_change": 1.85
     },
     {
       "date": "2025-06-01",
       "period": "2025 Q2",
-      "value": 704973.0,
-      "yoy_change": 1.39
+      "value": 705117.0,
+      "yoy_change": 1.43
     },
     {
       "date": "2025-09-01",
       "period": "2025 Q3",
-      "value": 705603.0,
-      "yoy_change": 1.26
+      "value": 705681.0,
+      "yoy_change": 1.28
+    },
+    {
+      "date": "2025-12-01",
+      "period": "2025 Q4",
+      "value": 706067.0,
+      "yoy_change": 1.0
     }
   ],
   "quarterly_data": [
@@ -5868,62 +5882,69 @@
     },
     {
       "date": "2024-03-01",
-      "value": 691198.0,
+      "value": 690904.0,
       "period": "2024 Q1",
       "year": 2024,
       "quarter": 1
     },
     {
       "date": "2024-06-01",
-      "value": 695280.0,
+      "value": 695145.0,
       "period": "2024 Q2",
       "year": 2024,
       "quarter": 2
     },
     {
       "date": "2024-09-01",
-      "value": 696853.0,
+      "value": 696752.0,
       "period": "2024 Q3",
       "year": 2024,
       "quarter": 3
     },
     {
       "date": "2024-12-01",
-      "value": 698780.0,
+      "value": 699094.0,
       "period": "2024 Q4",
       "year": 2024,
       "quarter": 4
     },
     {
       "date": "2025-03-01",
-      "value": 703435.0,
+      "value": 703655.0,
       "period": "2025 Q1",
       "year": 2025,
       "quarter": 1
     },
     {
       "date": "2025-06-01",
-      "value": 704973.0,
+      "value": 705117.0,
       "period": "2025 Q2",
       "year": 2025,
       "quarter": 2
     },
     {
       "date": "2025-09-01",
-      "value": 705603.0,
+      "value": 705681.0,
       "period": "2025 Q3",
       "year": 2025,
       "quarter": 3
+    },
+    {
+      "date": "2025-12-01",
+      "value": 706067.0,
+      "period": "2025 Q4",
+      "year": 2025,
+      "quarter": 4
     }
   ],
   "metadata": {
     "title": "Gross Domestic Product: chained volume measures: Seasonally adjusted £m",
     "cdid": "ABMI",
     "unit": "m",
-    "release_date": "22-12-2025",
-    "next_release_ons": "31 March 2026",
+    "release_date": "31-03-2026",
+    "next_release_ons": "30 June 2026",
     "source": "Office for National Statistics",
     "description": "イギリス実質GDP（季節調整済み）"
   },
-  "last_updated": "2026-02-14T15:02:16.831908+09:00"
+  "last_updated": "2026-04-09T23:38:16.262570+09:00"
 }

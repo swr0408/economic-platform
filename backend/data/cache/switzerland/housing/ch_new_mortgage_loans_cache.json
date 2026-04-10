@@ -171,15 +171,15 @@
     {
       "date": "2024-01-01",
       "quarter": "2024-Q1",
-      "value": 17.55,
-      "qoq": -12.21,
-      "yoy": -7.53
+      "value": 17.56,
+      "qoq": -12.16,
+      "yoy": -7.48
     },
     {
       "date": "2024-04-01",
       "quarter": "2024-Q2",
       "value": 19.13,
-      "qoq": 9.0,
+      "qoq": 8.94,
       "yoy": -2.4
     },
     {
@@ -199,31 +199,38 @@
     {
       "date": "2025-01-01",
       "quarter": "2025-Q1",
-      "value": 18.68,
-      "qoq": -16.46,
+      "value": 18.69,
+      "qoq": -16.41,
       "yoy": 6.44
     },
     {
       "date": "2025-04-01",
       "quarter": "2025-Q2",
-      "value": 21.3,
-      "qoq": 14.03,
-      "yoy": 11.34
+      "value": 21.31,
+      "qoq": 14.02,
+      "yoy": 11.4
     },
     {
       "date": "2025-07-01",
       "quarter": "2025-Q3",
       "value": 21.11,
-      "qoq": -0.89,
+      "qoq": -0.94,
       "yoy": 5.66
+    },
+    {
+      "date": "2025-10-01",
+      "quarter": "2025-Q4",
+      "value": 22.11,
+      "qoq": 4.74,
+      "yoy": -1.12
     }
   ],
   "latest": {
-    "date": "2025-07-01",
-    "quarter": "2025-Q3",
-    "value": 21.11,
-    "qoq": -0.89,
-    "yoy": 5.66
+    "date": "2025-10-01",
+    "quarter": "2025-Q4",
+    "value": 22.11,
+    "qoq": 4.74,
+    "yoy": -1.12
   },
   "metadata": {
     "source": "Swiss National Bank",
@@ -232,6 +239,6 @@
     "unit": "billion CHF",
     "frequency": "quarterly"
   },
-  "publishing_date": "2025-12-22 09:00",
-  "last_updated": "2026-02-06T01:20:58.183251+09:00"
+  "publishing_date": "2026-03-23 09:00",
+  "last_updated": "2026-04-10T20:58:13.182341+09:00"
 }

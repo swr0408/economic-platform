@@ -1248,11 +1248,15 @@
       {
         "date": "2025-12-01",
         "value": 2.1
+      },
+      {
+        "date": "2026-01-01",
+        "value": 3.0
       }
     ],
     "latest": {
-      "date": "2025-12-01",
-      "value": 2.1
+      "date": "2026-01-01",
+      "value": 3.0
     }
   },
   "general": {
@@ -2504,11 +2508,15 @@
       {
         "date": "2025-12-01",
         "value": 2.4
+      },
+      {
+        "date": "2026-01-01",
+        "value": 3.4
       }
     ],
     "latest": {
-      "date": "2025-12-01",
-      "value": 2.4
+      "date": "2026-01-01",
+      "value": 3.4
     }
   },
   "part_time_wage": {
@@ -3760,19 +3768,19 @@
       {
         "date": "2025-12-01",
         "value": 2.0
+      },
+      {
+        "date": "2026-01-01",
+        "value": 2.4
       }
     ],
     "latest": {
-      "date": "2025-12-01",
-      "value": 2.0
+      "date": "2026-01-01",
+      "value": 2.4
     }
   },
   "part_time_hourly": {
     "data": [
-      {
-        "date": "2024-12-01",
-        "value": 4.7
-      },
       {
         "date": "2025-01-01",
         "value": 4.3
@@ -3824,20 +3832,24 @@
       {
         "date": "2026-01-01",
         "value": 3.7
+      },
+      {
+        "date": "2026-02-01",
+        "value": 4.2
       }
     ],
     "latest": {
-      "date": "2026-01-01",
-      "value": 3.7
+      "date": "2026-02-01",
+      "value": 4.2
     }
   },
   "next_release": {
-    "date": "2026-04-06",
-    "datetime_utc": "2026-04-06T23:30:00+00:00",
-    "datetime_jst": "2026-04-07T08:30:00+09:00",
+    "date": "2026-05-08",
+    "datetime_utc": "2026-05-08T23:30:00+00:00",
+    "datetime_jst": "2026-05-09T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "Average Cash Earnings YoY (Feb)",
-    "estimate": 2.5
+    "label": "Average Cash Earnings YoY (Mar)",
+    "estimate": 2.1
   },
-  "last_updated": "2026-04-02T20:21:15.909651+09:00"
+  "last_updated": "2026-04-10T18:00:48.060038+09:00"
 }

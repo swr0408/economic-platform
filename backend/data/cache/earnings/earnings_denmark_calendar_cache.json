@@ -15,7 +15,7 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.14,
       "eps_actual": null,
-      "revenue_estimate": 924349000.0,
+      "revenue_estimate": 924553000.0,
       "revenue_actual": null,
       "updated_from_date": ""
     },
@@ -106,7 +106,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-04-03T00:04:08.652245+00:00",
+  "last_updated": "2026-04-09T11:24:00.229428+00:00",
   "cached": false,
   "status": "ok"
 }

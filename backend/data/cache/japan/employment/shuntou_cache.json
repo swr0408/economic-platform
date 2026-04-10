@@ -151,15 +151,15 @@
       },
       {
         "date": "2026-01-01",
-        "value": 5.12,
-        "source": "press_no2",
+        "value": 5.09,
+        "source": "press_no3",
         "preliminary": true
       }
     ],
     "latest": {
       "date": "2026-01-01",
-      "value": 5.12,
-      "source": "press_no2",
+      "value": 5.09,
+      "source": "press_no3",
       "preliminary": true
     }
   },
@@ -333,11 +333,19 @@
       "year": 2026,
       "title": "第2回回答集計結果",
       "cached": true
+    },
+    {
+      "number": 3,
+      "url": "https://www.jtuc-rengo.or.jp/activity/roudou/shuntou/2026/yokyu_kaito/kaito/press_no3.pdf",
+      "year": 2026,
+      "title": "第3回回答集計結果",
+      "cached": true
     }
   ],
   "next_release": {
-    "date": "2026-04-03T16:00:00+09:00",
-    "label": "第3回速報"
+    "date": "2026-04-17T16:00:00+09:00",
+    "label": "推定",
+    "estimated": true
   },
-  "last_updated": "2026-04-02T19:42:09.678952+09:00"
+  "last_updated": "2026-04-10T18:00:49.846056+09:00"
 }

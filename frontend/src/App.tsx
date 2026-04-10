@@ -17,6 +17,8 @@ import HeadlinesSavedPage from './pages/HeadlinesSavedPage'
 import HeadlinesAdminPage from './pages/HeadlinesAdminPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import TermsPage from './pages/TermsPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import ChangePasswordPage from './pages/ChangePasswordPage'
 import AdminUsersPage from './pages/AdminUsersPage'
 import AdminVisibilityPage from './pages/AdminVisibilityPage'
@@ -33,6 +35,8 @@ function App() {
             {/* 認証画面 (MainLayout の外に配置) */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
 
             {/*
               EconAlpha は会員制サイト。MainLayout 配下は全てログイン必須。

@@ -209,8 +209,8 @@ export default function CrackSpreadChart() {
   return (
     <ChartContainer
       title={`クラックスプレッド${titleSuffix}`}
-      dataSource="yfinance (CL=F, BZ=F, RB=F, HO=F)"
-      sourceUrl="https://finance.yahoo.com/quote/CL=F/"
+      dataSource="CME (CL=F, BZ=F, RB=F, HO=F)"
+      sourceUrl="https://www.cmegroup.com/markets/energy/crude-oil/light-sweet-crude.html"
       showPeriodSelector={false}
     >
       {/* 最新値 */}

@@ -76,7 +76,7 @@ const COLOR_GLOBAL = '#722ed1'
 const COLOR_US_MONTHLY = '#1890ff'
 const COLOR_US_DAILY = '#1890ff'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 // =============================================================================
 // 日次データを月次データにマージするユーティリティ

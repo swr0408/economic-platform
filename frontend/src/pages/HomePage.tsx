@@ -16,6 +16,10 @@ const EXTERNAL_LINKS = [
   { label: 'フィリップ証券', url: 'https://my-sso.phillip-sec-online.jp/login' },
   { label: '中東レート', url: 'https://www.xe.com/ja/currencycharts/' },
   { label: 'Weekend trading', url: 'https://www.ig.com/uk/weekend-trading' },
+  { label: 'IG証券', url: 'https://www.ig.com/jp/login?next=/jp/myig/dashboard' },
+  { label: 'Mataf 通貨インデックス', url: 'https://www.mataf.net/en/forex/tools/currency-index' },
+  { label: 'Investing.com 経済カレンダー', url: 'https://jp.investing.com/economic-calendar/' },
+  { label: 'MINKABU FX 経済指標', url: 'https://fx.minkabu.jp/indicators' },
 ]
 
 // 右サイドバー（経済カレンダー）のデフォルト幅と範囲

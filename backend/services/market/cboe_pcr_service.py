@@ -42,7 +42,10 @@ class CboePcrService:
     """CBOE Total Put/Call Ratio サービス"""
 
     def _should_refresh(self) -> bool:
-        """キャッシュの更新が必要かどうか判定"""
+        """キャッシュの更新が必要かどうか判定
+        - 6時間以内に更新済み → スキップ
+        - PCRデータが2営業日以上古い → 強制更新
+        """
         try:
             cached = redis_client.get(DATA_CACHE_KEY)
             if not cached:
@@ -57,6 +60,14 @@ class CboePcrService:
 
             # 6時間以内に更新されていればスキップ
             if (now - last_updated).total_seconds() < 6 * 3600:
+                # ただし、PCRデータが古すぎる場合は更新する
+                pcr_latest = cached.get("metadata", {}).get("pcr_latest")
+                if pcr_latest:
+                    pcr_date = datetime.strptime(pcr_latest, "%Y-%m-%d").date()
+                    today = now.date()
+                    # 3日以上古い場合は更新を試みる（週末考慮）
+                    if (today - pcr_date).days > 3:
+                        return True
                 return False
 
             return True
@@ -98,22 +109,55 @@ class CboePcrService:
             "last_updated": None,
         }
 
+    def _get_last_db_date(self) -> Optional[date]:
+        """DBに保存されている最新のPCR日付を取得"""
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        try:
+            with SessionLocal() as session:
+                row = session.execute(text(
+                    "SELECT MAX(date) FROM cboe_put_call_ratio"
+                )).fetchone()
+                if row and row[0]:
+                    return row[0]
+        except Exception as e:
+            logger.warning(f"[CboePCR] Failed to get last DB date: {e}")
+        return None
+
     def _fetch_latest_from_cboe(self) -> Optional[Dict[str, Any]]:
-        """CBOE CDN APIから最新のPCRデータを取得し、DBに保存"""
+        """CBOE CDN APIから最新のPCRデータを取得し、DBに保存。
+        DBの最終日から今日まで全営業日を埋める（最大90日）。"""
         import requests
         from core.database import SessionLocal
         from sqlalchemy import text
 
         inserted_count = 0
+        consecutive_failures = 0
 
-        # 直近5営業日分を試行（週末スキップ）
         now_est = datetime.now(EST)
-        for days_back in range(7):
-            target_date = (now_est - timedelta(days=days_back)).date()
+        today = now_est.date()
+
+        # DBの最終日を取得し、そこから今日まで埋める
+        last_db_date = self._get_last_db_date()
+        if last_db_date:
+            gap_days = (today - last_db_date).days
+            # 最大90日まで遡る（それ以上はCSVインポートが必要）
+            max_days = min(gap_days + 1, 90)
+        else:
+            max_days = 7  # DB空の場合は直近7日
+
+        for days_back in range(max_days):
+            target_date = (today - timedelta(days=days_back))
 
             # 週末スキップ
             if target_date.weekday() >= 5:
+                consecutive_failures = 0  # 週末はカウントリセット
                 continue
+
+            # DBに既にある日はスキップ（last_db_date以前）
+            if last_db_date and target_date <= last_db_date:
+                break
 
             date_str = target_date.strftime("%Y-%m-%d")
             url = CBOE_CDN_URL.format(date=date_str)
@@ -121,8 +165,14 @@ class CboePcrService:
             try:
                 resp = requests.get(url, headers=HEADERS, timeout=15)
                 if resp.status_code != 200:
+                    consecutive_failures += 1
+                    # 5連続失敗で古い日付の試行を打ち切り
+                    if consecutive_failures >= 5:
+                        logger.info(f"[CboePCR] 5 consecutive failures, stopping at {date_str}")
+                        break
                     continue
 
+                consecutive_failures = 0
                 data = resp.json()
                 ratios = data.get("ratios", [])
                 total_pcr = None
@@ -151,6 +201,9 @@ class CboePcrService:
 
             except Exception as e:
                 logger.warning(f"[CboePCR] Failed to fetch {date_str}: {e}")
+                consecutive_failures += 1
+                if consecutive_failures >= 5:
+                    break
                 continue
 
         if inserted_count > 0:

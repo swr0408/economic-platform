@@ -602,28 +602,34 @@
     },
     {
       "date": "2025-03-01",
-      "value": 12.36,
-      "current_account": 26698.11,
-      "gdp": 215928.91
+      "value": 12.57,
+      "current_account": 27166.93,
+      "gdp": 216066.6
     },
     {
       "date": "2025-06-01",
-      "value": 5.76,
-      "current_account": 12510.05,
-      "gdp": 217322.36
+      "value": 5.41,
+      "current_account": 11758.96,
+      "gdp": 217475.02
     },
     {
       "date": "2025-09-01",
-      "value": 7.14,
-      "current_account": 15369.5,
-      "gdp": 215197.09
+      "value": 7.34,
+      "current_account": 15784.96,
+      "gdp": 215131.54
+    },
+    {
+      "date": "2025-12-01",
+      "value": 3.18,
+      "current_account": 6962.68,
+      "gdp": 218871.5
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "value": 7.14,
-    "current_account": 15369.5,
-    "gdp": 215197.09
+    "date": "2025-12-01",
+    "value": 3.18,
+    "current_account": 6962.68,
+    "gdp": 218871.5
   },
   "metadata": {
     "source": "SNB + SECO",
@@ -634,5 +640,5 @@
     "ca_source": "SNB bopoverq (M CHF)",
     "gdp_source": "SECO qna_p_na.xlsx nom_q (M CHF)"
   },
-  "last_updated": "2026-02-14T23:25:23.724827+09:00"
+  "last_updated": "2026-04-10T20:57:36.146869+09:00"
 }

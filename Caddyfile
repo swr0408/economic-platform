@@ -1,0 +1,37 @@
+# ============================================================================
+# Caddyfile - EconAlpha 本番向け最小構成
+# ============================================================================
+# api.example.com → backend (FastAPI) へのリバースプロキシ。
+# Caddy は自動 HTTPS (Let's Encrypt) を提供する。
+#
+# 使い方:
+#   1. DNS で api.example.com を Lightsail VM の Static IP に向ける
+#   2. {$API_DOMAIN} を .env で設定する (例: API_DOMAIN=api.example.com)
+#   3. docker compose -f docker-compose.prod.yml up -d
+#
+# ローカルテスト (HTTPS なし):
+#   API_DOMAIN=:80 docker compose -f docker-compose.prod.yml up caddy backend
+# ============================================================================
+
+{$API_DOMAIN:localhost} {
+	# FastAPI (backend コンテナ) へプロキシ
+	reverse_proxy backend:8000 {
+		# ヘルスチェック (オプション)
+		health_uri /health
+		health_interval 30s
+	}
+
+	# リクエストヘッダ付与
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	# アクセスログ
+	log {
+		output stdout
+		format console
+	}
+}

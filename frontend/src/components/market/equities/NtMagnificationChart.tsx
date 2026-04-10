@@ -186,7 +186,7 @@ export default function NtMagnificationChart() {
   return (
     <ChartContainer
       title="NT倍率"
-      dataSource="yfinance / Stooq"
+      dataSource="Stooq"
       sourceUrl="https://stooq.com/"
       handbookId="nt-magnification"
       showPeriodSelector={false}

@@ -28,7 +28,7 @@ from __future__ import annotations
 
 import logging
 import time
-from typing import Optional
+from typing import Callable, Optional, TypeVar
 
 from .concurrency import browser_semaphore
 from .exceptions import BrowserNavigationError, BrowserRunnerError, BrowserTimeoutError
@@ -43,6 +43,8 @@ from .runner import (
 )
 
 logger = logging.getLogger(__name__)
+
+_T = TypeVar("_T")
 
 
 def get_default_runner(
@@ -90,6 +92,35 @@ def extract_page(
     with browser_semaphore:
         with get_default_runner(config=config, browser_type=browser_type) as runner:
             return runner.extract(request)
+
+
+def run_custom_flow(
+    flow_fn: Callable[..., _T],
+    config: Optional[BrowserConfig] = None,
+    browser_type: str = "chromium",
+) -> _T:
+    """multi-window / form 入力など、screenshot() / extract() では表現できない
+    複雑なブラウザフローを実行する高レベルヘルパー。
+
+    ``flow_fn`` には Playwright ``BrowserContext`` が渡される。コールバック内で
+    page 作成・ポップアップ待ち・click / fill 等を自由に行える。
+
+    並列実行数は ``concurrency.browser_semaphore`` で抑制される。
+
+    Usage::
+
+        def my_flow(context):
+            page = context.new_page()
+            page.goto("https://example.com")
+            # ... multi-step flow ...
+            return result
+
+        data = run_custom_flow(my_flow, config=BrowserConfig(locale="ja-JP"))
+    """
+    with browser_semaphore:
+        with get_default_runner(config=config, browser_type=browser_type) as runner:
+            ctx = runner.context  # type: ignore[attr-defined]
+            return flow_fn(ctx)
 
 
 # 一時的なエラー (ネットワーク / タイムアウト) でリトライ可能な例外型

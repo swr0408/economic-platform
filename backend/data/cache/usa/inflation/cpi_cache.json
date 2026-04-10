@@ -2708,24 +2708,33 @@
       "index": 327.46,
       "annualized_3m": 2.98,
       "annualized_6m": 2.6
+    },
+    {
+      "date": "2026-03-01",
+      "value": 3.29,
+      "yoy": 3.29,
+      "mom": 0.87,
+      "index": 330.29,
+      "annualized_3m": 5.33,
+      "annualized_6m": 3.76
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 2.43,
-    "yoy": 2.43,
-    "mom": 0.27,
-    "index": 327.46,
-    "annualized_3m": 2.98,
-    "annualized_6m": 2.6
+    "date": "2026-03-01",
+    "value": 3.29,
+    "yoy": 3.29,
+    "mom": 0.87,
+    "index": 330.29,
+    "annualized_3m": 5.33,
+    "annualized_6m": 3.76
   },
   "next_release": {
     "date": "2026-04-10",
     "datetime_utc": "2026-04-10T12:30:00+00:00",
     "datetime_jst": "2026-04-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core CPI (Mar)",
-    "estimate": null
+    "label": "CPI s.a (Mar)",
+    "estimate": 330.1
   },
-  "last_updated": "2026-04-09T18:02:07.322280+09:00"
+  "last_updated": "2026-04-11T00:30:13.465699+09:00"
 }

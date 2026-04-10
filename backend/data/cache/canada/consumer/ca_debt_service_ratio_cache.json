@@ -842,27 +842,33 @@
     },
     {
       "date": "2025-01-01",
-      "value": 14.71,
-      "mortgage": 7.9,
-      "non_mortgage": 6.81
+      "value": 14.66,
+      "mortgage": 7.87,
+      "non_mortgage": 6.8
     },
     {
       "date": "2025-04-01",
-      "value": 14.68,
-      "mortgage": 7.87,
+      "value": 14.7,
+      "mortgage": 7.88,
       "non_mortgage": 6.82
     },
     {
       "date": "2025-07-01",
-      "value": 14.64,
-      "mortgage": 7.83,
+      "value": 14.61,
+      "mortgage": 7.81,
+      "non_mortgage": 6.8
+    },
+    {
+      "date": "2025-10-01",
+      "value": 14.57,
+      "mortgage": 7.77,
       "non_mortgage": 6.81
     }
   ],
   "latest": {
-    "date": "2025-07-01",
-    "value": 14.64,
-    "mortgage": 7.83,
+    "date": "2025-10-01",
+    "value": 14.57,
+    "mortgage": 7.77,
     "non_mortgage": 6.81
   },
   "metadata": {
@@ -874,5 +880,5 @@
     "frequency": "quarterly"
   },
   "next_release": null,
-  "last_updated": "2026-02-12T20:14:09.934172+09:00"
+  "last_updated": "2026-04-10T20:53:33.658507+09:00"
 }

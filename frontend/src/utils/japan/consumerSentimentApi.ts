@@ -2,7 +2,7 @@
  * API utility for Japan Consumer Sentiment data (消費動向調査 - 消費者態度指数)
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export interface ConsumerSentimentDataPoint {
   date: string // YYYY-MM-01 format

@@ -3506,35 +3506,41 @@
     },
     {
       "date": "2025-10-01",
-      "one_month": 1.6,
-      "six_month": 2.37,
+      "one_month": 1.57,
+      "six_month": 2.36,
       "twelve_month": 2.55
     },
     {
       "date": "2025-11-01",
-      "one_month": 1.72,
+      "one_month": 1.73,
       "six_month": 2.32,
       "twelve_month": 2.51
     },
     {
       "date": "2025-12-01",
-      "one_month": 2.27,
-      "six_month": 2.11,
-      "twelve_month": 2.45
+      "one_month": 2.19,
+      "six_month": 2.09,
+      "twelve_month": 2.44
     },
     {
       "date": "2026-01-01",
-      "one_month": 2.72,
-      "six_month": 2.24,
-      "twelve_month": 2.43
+      "one_month": 2.71,
+      "six_month": 2.22,
+      "twelve_month": 2.42
+    },
+    {
+      "date": "2026-02-01",
+      "one_month": 1.82,
+      "six_month": 1.99,
+      "twelve_month": 2.33
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "one_month": 2.72,
-    "six_month": 2.24,
-    "twelve_month": 2.43
+    "date": "2026-02-01",
+    "one_month": 1.82,
+    "six_month": 1.99,
+    "twelve_month": 2.33
   },
-  "latest_data_date": "2026-01-01",
-  "last_updated": "2026-03-15T23:02:22.480527+09:00"
+  "latest_data_date": "2026-02-01",
+  "last_updated": "2026-04-10T12:02:08.163679+09:00"
 }

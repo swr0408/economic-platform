@@ -53,18 +53,11 @@ class UKInflationLoader(BaseDashboardLoader):
             "boe_inflation_attitudes",
         ]
 
-    def get_release_datetimes(self) -> List[Optional[datetime]]:
-        """
-        各指標の発表日時リストを返す
-        """
-        return []
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
-        発表日時を過ぎた指標を検出
+        発表日時を過ぎた指標を検出（FMPカレンダー自動判定）
         """
-        stale = set()
-
         if last_updated is None:
             return set()
 
@@ -74,15 +67,17 @@ class UKInflationLoader(BaseDashboardLoader):
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
 
             now = datetime.now(JST)
+            release_datetimes = self.get_release_datetimes()
 
-            # 発表日時ベースの判定のみ
-            # 各サービスが自身のキャッシュ判定を行う
+            for release_dt in release_datetimes:
+                if release_dt and last_updated_dt < release_dt <= now:
+                    return {"all"}
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
             return {"all"}
 
-        return stale
+        return set()
 
     def _should_force_refresh(self, indicator: str) -> bool:
         """指標が強制更新対象かどうかを判定"""

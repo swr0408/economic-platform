@@ -708,7 +708,7 @@ export default function SqAnalysisChart() {
   return (
     <ChartContainer
       title="SQ/MSQ 検証分析"
-      dataSource="yfinance / Dukascopy"
+      dataSource="nikkei225jp.com"
       showPeriodSelector={false}
       handbookId="sq-settlement"
     >

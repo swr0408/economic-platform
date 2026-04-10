@@ -8,7 +8,7 @@
  * - POST /api/japan/capital-investment/refresh - データ強制更新
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export interface NextRelease {
   date: string;

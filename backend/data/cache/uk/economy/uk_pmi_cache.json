@@ -16,16 +16,16 @@
     },
     {
       "date": "2010-03-01",
-      "value": 57.2,
+      "value": 56.5,
       "forecast": null,
-      "previous": 56.6,
+      "previous": 58.4,
       "is_flash": false
     },
     {
       "date": "2010-04-01",
-      "value": 58.0,
+      "value": 55.3,
       "forecast": null,
-      "previous": 57.2,
+      "previous": 56.5,
       "is_flash": false
     },
     {
@@ -37,16 +37,16 @@
     },
     {
       "date": "2010-06-01",
-      "value": 57.5,
+      "value": 54.4,
       "forecast": null,
-      "previous": 58.0,
+      "previous": 55.4,
       "is_flash": false
     },
     {
       "date": "2010-07-01",
-      "value": 56.9,
+      "value": 53.1,
       "forecast": null,
-      "previous": 57.5,
+      "previous": 54.4,
       "is_flash": false
     },
     {
@@ -65,9 +65,9 @@
     },
     {
       "date": "2010-10-01",
-      "value": 55.4,
+      "value": 53.2,
       "forecast": null,
-      "previous": 53.4,
+      "previous": 52.8,
       "is_flash": false
     },
     {
@@ -79,23 +79,23 @@
     },
     {
       "date": "2010-12-01",
-      "value": 58.7,
+      "value": 49.7,
       "forecast": null,
-      "previous": 58.0,
+      "previous": 53.0,
       "is_flash": false
     },
     {
       "date": "2011-01-01",
-      "value": 61.5,
+      "value": 54.5,
       "forecast": null,
-      "previous": 58.7,
+      "previous": 49.7,
       "is_flash": false
     },
     {
       "date": "2011-02-01",
-      "value": 60.9,
+      "value": 52.6,
       "forecast": null,
-      "previous": 62.0,
+      "previous": 54.5,
       "is_flash": false
     },
     {
@@ -107,7 +107,7 @@
     },
     {
       "date": "2011-04-01",
-      "value": 54.4,
+      "value": 54.3,
       "forecast": null,
       "previous": 57.1,
       "is_flash": false
@@ -135,23 +135,23 @@
     },
     {
       "date": "2011-08-01",
-      "value": 49.4,
+      "value": 51.1,
       "forecast": null,
-      "previous": 49.1,
+      "previous": 55.4,
       "is_flash": false
     },
     {
       "date": "2011-09-01",
-      "value": 50.8,
+      "value": 52.9,
       "forecast": null,
-      "previous": 49.0,
+      "previous": 51.1,
       "is_flash": false
     },
     {
       "date": "2011-10-01",
-      "value": 47.8,
+      "value": 51.3,
       "forecast": null,
-      "previous": 51.1,
+      "previous": 52.9,
       "is_flash": false
     },
     {
@@ -163,23 +163,23 @@
     },
     {
       "date": "2011-12-01",
-      "value": 49.7,
+      "value": 54.0,
       "forecast": null,
-      "previous": 47.6,
+      "previous": 52.1,
       "is_flash": false
     },
     {
       "date": "2012-01-01",
-      "value": 52.0,
+      "value": 56.0,
       "forecast": null,
-      "previous": 49.6,
+      "previous": 54.0,
       "is_flash": false
     },
     {
       "date": "2012-02-01",
-      "value": 51.5,
+      "value": 53.8,
       "forecast": null,
-      "previous": 52.1,
+      "previous": 56.0,
       "is_flash": false
     },
     {
@@ -191,16 +191,16 @@
     },
     {
       "date": "2012-04-01",
-      "value": 50.2,
+      "value": 53.3,
       "forecast": null,
-      "previous": 52.1,
+      "previous": 55.3,
       "is_flash": false
     },
     {
       "date": "2012-05-01",
-      "value": 45.9,
+      "value": 53.3,
       "forecast": null,
-      "previous": 50.5,
+      "previous": 53.3,
       "is_flash": false
     },
     {
@@ -212,16 +212,16 @@
     },
     {
       "date": "2012-07-01",
-      "value": 45.2,
+      "value": 51.0,
       "forecast": null,
-      "previous": 48.6,
+      "previous": 51.3,
       "is_flash": false
     },
     {
       "date": "2012-08-01",
-      "value": 49.5,
+      "value": 53.7,
       "forecast": null,
-      "previous": 45.4,
+      "previous": 51.0,
       "is_flash": false
     },
     {
@@ -254,9 +254,9 @@
     },
     {
       "date": "2013-01-01",
-      "value": 50.5,
+      "value": 51.5,
       "forecast": null,
-      "previous": 51.4,
+      "previous": 48.9,
       "is_flash": false
     },
     {
@@ -275,9 +275,9 @@
     },
     {
       "date": "2013-04-01",
-      "value": 50.2,
+      "value": 52.9,
       "forecast": null,
-      "previous": 48.3,
+      "previous": 52.4,
       "is_flash": false
     },
     {
@@ -296,9 +296,9 @@
     },
     {
       "date": "2013-07-01",
-      "value": 54.8,
+      "value": 60.2,
       "forecast": null,
-      "previous": 52.5,
+      "previous": 56.9,
       "is_flash": false
     },
     {
@@ -317,23 +317,23 @@
     },
     {
       "date": "2013-10-01",
-      "value": 56.5,
+      "value": 62.5,
       "forecast": null,
-      "previous": 56.7,
+      "previous": 60.3,
       "is_flash": false
     },
     {
       "date": "2013-11-01",
-      "value": 58.1,
+      "value": 60.0,
       "forecast": null,
-      "previous": 56.0,
+      "previous": 62.5,
       "is_flash": false
     },
     {
       "date": "2013-12-01",
-      "value": 57.2,
+      "value": 58.8,
       "forecast": null,
-      "previous": 58.4,
+      "previous": 60.0,
       "is_flash": false
     },
     {
@@ -345,23 +345,23 @@
     },
     {
       "date": "2014-02-01",
-      "value": 56.2,
+      "value": 58.2,
       "forecast": null,
-      "previous": 56.7,
+      "previous": 58.3,
       "is_flash": false
     },
     {
       "date": "2014-03-01",
-      "value": 55.8,
+      "value": 57.6,
       "forecast": null,
-      "previous": 56.9,
+      "previous": 58.2,
       "is_flash": false
     },
     {
       "date": "2014-04-01",
-      "value": 57.3,
+      "value": 58.7,
       "forecast": null,
-      "previous": 55.3,
+      "previous": 57.6,
       "is_flash": false
     },
     {
@@ -373,23 +373,23 @@
     },
     {
       "date": "2014-06-01",
-      "value": 57.5,
+      "value": 57.7,
       "forecast": null,
-      "previous": 57.0,
+      "previous": 58.6,
       "is_flash": false
     },
     {
       "date": "2014-07-01",
-      "value": 54.8,
+      "value": 59.1,
       "forecast": null,
-      "previous": 57.5,
+      "previous": 57.7,
       "is_flash": false
     },
     {
       "date": "2014-08-01",
-      "value": 52.2,
+      "value": 60.5,
       "forecast": null,
-      "previous": 55.4,
+      "previous": 59.1,
       "is_flash": false
     },
     {
@@ -401,16 +401,16 @@
     },
     {
       "date": "2014-10-01",
-      "value": 53.3,
+      "value": 56.2,
       "forecast": null,
-      "previous": 51.6,
+      "previous": 58.7,
       "is_flash": false
     },
     {
       "date": "2014-11-01",
-      "value": 53.3,
+      "value": 58.6,
       "forecast": null,
-      "previous": 53.2,
+      "previous": 56.2,
       "is_flash": false
     },
     {
@@ -429,9 +429,9 @@
     },
     {
       "date": "2015-02-01",
-      "value": 54.1,
+      "value": 56.7,
       "forecast": null,
-      "previous": 53.0,
+      "previous": 57.2,
       "is_flash": false
     },
     {
@@ -443,23 +443,23 @@
     },
     {
       "date": "2015-04-01",
-      "value": 51.9,
+      "value": 59.5,
       "forecast": null,
-      "previous": 54.4,
+      "previous": 58.9,
       "is_flash": false
     },
     {
       "date": "2015-05-01",
-      "value": 52.0,
+      "value": 56.5,
       "forecast": null,
-      "previous": 51.8,
+      "previous": 59.5,
       "is_flash": false
     },
     {
       "date": "2015-06-01",
-      "value": 51.4,
+      "value": 58.5,
       "forecast": null,
-      "previous": 51.9,
+      "previous": 56.5,
       "is_flash": false
     },
     {
@@ -485,9 +485,9 @@
     },
     {
       "date": "2015-10-01",
-      "value": 55.5,
+      "value": 54.9,
       "forecast": null,
-      "previous": 51.5,
+      "previous": 53.3,
       "is_flash": false
     },
     {
@@ -506,9 +506,9 @@
     },
     {
       "date": "2016-01-01",
-      "value": 52.9,
+      "value": 55.6,
       "forecast": null,
-      "previous": 52.1,
+      "previous": 55.5,
       "is_flash": false
     },
     {
@@ -527,16 +527,16 @@
     },
     {
       "date": "2016-04-01",
-      "value": 49.2,
+      "value": 52.3,
       "forecast": null,
-      "previous": 51.0,
+      "previous": 53.7,
       "is_flash": false
     },
     {
       "date": "2016-05-01",
-      "value": 50.1,
+      "value": 53.5,
       "forecast": null,
-      "previous": 49.2,
+      "previous": 52.3,
       "is_flash": false
     },
     {
@@ -548,9 +548,9 @@
     },
     {
       "date": "2016-07-01",
-      "value": 48.2,
+      "value": 47.4,
       "forecast": null,
-      "previous": 52.1,
+      "previous": 52.3,
       "is_flash": false
     },
     {
@@ -569,9 +569,9 @@
     },
     {
       "date": "2016-10-01",
-      "value": 54.3,
+      "value": 54.5,
       "forecast": null,
-      "previous": 55.5,
+      "previous": 52.6,
       "is_flash": false
     },
     {
@@ -597,37 +597,37 @@
     },
     {
       "date": "2017-02-01",
-      "value": 54.6,
-      "forecast": null,
-      "previous": 55.9,
-      "is_flash": false
-    },
-    {
-      "date": "2017-03-01",
-      "value": 54.2,
+      "value": 53.3,
       "forecast": null,
       "previous": 54.5,
       "is_flash": false
     },
     {
-      "date": "2017-04-01",
-      "value": 57.3,
+      "date": "2017-03-01",
+      "value": 55.0,
       "forecast": null,
-      "previous": 54.2,
+      "previous": 53.3,
+      "is_flash": false
+    },
+    {
+      "date": "2017-04-01",
+      "value": 55.8,
+      "forecast": null,
+      "previous": 55.0,
       "is_flash": false
     },
     {
       "date": "2017-05-01",
-      "value": 56.7,
+      "value": 53.8,
       "forecast": null,
-      "previous": 57.3,
+      "previous": 55.8,
       "is_flash": false
     },
     {
       "date": "2017-06-01",
-      "value": 54.3,
+      "value": 53.4,
       "forecast": null,
-      "previous": 56.3,
+      "previous": 53.8,
       "is_flash": false
     },
     {
@@ -646,23 +646,23 @@
     },
     {
       "date": "2017-09-01",
-      "value": 56.0,
-      "forecast": 56.9,
-      "previous": null,
+      "value": 53.6,
+      "forecast": 54.8,
+      "previous": 53.2,
       "is_flash": false
     },
     {
       "date": "2017-10-01",
-      "value": 54.9,
-      "forecast": 55.9,
-      "previous": null,
+      "value": 55.6,
+      "forecast": 54.3,
+      "previous": 53.6,
       "is_flash": false
     },
     {
       "date": "2017-11-01",
-      "value": 56.1,
-      "forecast": 56.3,
-      "previous": null,
+      "value": 53.8,
+      "forecast": 54.1,
+      "previous": 55.6,
       "is_flash": false
     },
     {
@@ -702,16 +702,16 @@
     },
     {
       "date": "2018-05-01",
-      "value": 53.3,
-      "forecast": 53.9,
-      "previous": null,
+      "value": 54.0,
+      "forecast": 52.2,
+      "previous": 52.8,
       "is_flash": false
     },
     {
       "date": "2018-06-01",
-      "value": 54.0,
-      "forecast": 54.4,
-      "previous": null,
+      "value": 55.1,
+      "forecast": 53.4,
+      "previous": 54.0,
       "is_flash": false
     },
     {
@@ -723,16 +723,16 @@
     },
     {
       "date": "2018-08-01",
-      "value": 55.0,
-      "forecast": 54.0,
-      "previous": null,
+      "value": 54.3,
+      "forecast": 54.3,
+      "previous": 53.5,
       "is_flash": false
     },
     {
       "date": "2018-09-01",
-      "value": 53.2,
-      "forecast": 52.8,
-      "previous": null,
+      "value": 53.9,
+      "forecast": 53.9,
+      "previous": 54.3,
       "is_flash": false
     },
     {
@@ -779,16 +779,16 @@
     },
     {
       "date": "2019-04-01",
-      "value": 53.2,
-      "forecast": 55.1,
-      "previous": null,
+      "value": 50.4,
+      "forecast": 50.0,
+      "previous": 48.9,
       "is_flash": false
     },
     {
       "date": "2019-05-01",
-      "value": 53.4,
-      "forecast": 53.1,
-      "previous": null,
+      "value": 51.0,
+      "forecast": 49.6,
+      "previous": 50.4,
       "is_flash": false
     },
     {
@@ -800,23 +800,23 @@
     },
     {
       "date": "2019-07-01",
-      "value": 50.7,
-      "forecast": 48.0,
-      "previous": null,
+      "value": 51.4,
+      "forecast": 50.5,
+      "previous": 50.2,
       "is_flash": false
     },
     {
       "date": "2019-08-01",
-      "value": 48.8,
-      "forecast": 48.0,
-      "previous": null,
+      "value": 50.6,
+      "forecast": 50.7,
+      "previous": 51.4,
       "is_flash": false
     },
     {
       "date": "2019-09-01",
-      "value": 47.9,
-      "forecast": 47.4,
-      "previous": null,
+      "value": 49.5,
+      "forecast": 50.9,
+      "previous": 50.6,
       "is_flash": false
     },
     {
@@ -828,9 +828,9 @@
     },
     {
       "date": "2019-11-01",
-      "value": 48.3,
-      "forecast": 48.3,
-      "previous": null,
+      "value": 49.3,
+      "forecast": 48.6,
+      "previous": 48.6,
       "is_flash": false
     },
     {
@@ -842,9 +842,9 @@
     },
     {
       "date": "2020-01-01",
-      "value": 49.8,
-      "forecast": 49.8,
-      "previous": null,
+      "value": 53.3,
+      "forecast": null,
+      "previous": 52.4,
       "is_flash": false
     },
     {
@@ -863,16 +863,16 @@
     },
     {
       "date": "2020-04-01",
-      "value": 32.9,
-      "forecast": 32.9,
-      "previous": null,
+      "value": 13.8,
+      "forecast": null,
+      "previous": 12.9,
       "is_flash": false
     },
     {
       "date": "2020-05-01",
-      "value": 40.6,
-      "forecast": 40.6,
-      "previous": null,
+      "value": 30.0,
+      "forecast": null,
+      "previous": 28.9,
       "is_flash": false
     },
     {
@@ -884,9 +884,9 @@
     },
     {
       "date": "2020-07-01",
-      "value": 53.6,
-      "forecast": 53.6,
-      "previous": null,
+      "value": 57.0,
+      "forecast": null,
+      "previous": 57.1,
       "is_flash": false
     },
     {
@@ -905,30 +905,30 @@
     },
     {
       "date": "2020-10-01",
-      "value": 53.3,
-      "forecast": 53.3,
-      "previous": null,
+      "value": 52.1,
+      "forecast": null,
+      "previous": 52.9,
       "is_flash": false
     },
     {
       "date": "2020-11-01",
-      "value": 55.2,
-      "forecast": 55.2,
-      "previous": null,
+      "value": 47.6,
+      "forecast": 45.8,
+      "previous": 45.8,
       "is_flash": false
     },
     {
       "date": "2020-12-01",
-      "value": 57.3,
-      "forecast": 57.3,
-      "previous": null,
+      "value": 50.4,
+      "forecast": null,
+      "previous": 50.7,
       "is_flash": false
     },
     {
       "date": "2021-01-01",
-      "value": 52.9,
-      "forecast": 52.9,
-      "previous": null,
+      "value": 41.2,
+      "forecast": null,
+      "previous": 40.6,
       "is_flash": false
     },
     {
@@ -948,29 +948,29 @@
     {
       "date": "2021-04-01",
       "value": 60.7,
-      "forecast": 60.7,
-      "previous": null,
+      "forecast": null,
+      "previous": 60.0,
       "is_flash": false
     },
     {
       "date": "2021-05-01",
-      "value": 66.1,
-      "forecast": 66.1,
-      "previous": null,
+      "value": 62.9,
+      "forecast": 61.8,
+      "previous": 61.8,
       "is_flash": false
     },
     {
       "date": "2021-06-01",
-      "value": 64.2,
-      "forecast": 64.2,
-      "previous": null,
+      "value": 62.2,
+      "forecast": null,
+      "previous": 61.7,
       "is_flash": false
     },
     {
       "date": "2021-07-01",
-      "value": 60.4,
-      "forecast": 60.4,
-      "previous": null,
+      "value": 59.6,
+      "forecast": 57.8,
+      "previous": 57.8,
       "is_flash": false
     },
     {
@@ -982,9 +982,9 @@
     },
     {
       "date": "2021-09-01",
-      "value": 56.3,
-      "forecast": 56.3,
-      "previous": null,
+      "value": 55.4,
+      "forecast": 54.6,
+      "previous": 54.6,
       "is_flash": false
     },
     {
@@ -996,37 +996,37 @@
     },
     {
       "date": "2021-11-01",
-      "value": 58.2,
-      "forecast": 58.2,
-      "previous": null,
+      "value": 57.6,
+      "forecast": null,
+      "previous": 57.7,
       "is_flash": false
     },
     {
       "date": "2021-12-01",
-      "value": 57.6,
-      "forecast": 57.6,
-      "previous": null,
+      "value": 53.6,
+      "forecast": 53.2,
+      "previous": 53.2,
       "is_flash": false
     },
     {
       "date": "2022-01-01",
-      "value": 56.9,
-      "forecast": 56.9,
-      "previous": null,
+      "value": 54.2,
+      "forecast": null,
+      "previous": 53.4,
       "is_flash": false
     },
     {
       "date": "2022-02-01",
-      "value": 57.3,
-      "forecast": 57.3,
-      "previous": null,
+      "value": 59.9,
+      "forecast": null,
+      "previous": 60.2,
       "is_flash": false
     },
     {
       "date": "2022-03-01",
-      "value": 55.5,
-      "forecast": 55.5,
-      "previous": null,
+      "value": 62.6,
+      "forecast": 61.0,
+      "previous": 61.0,
       "is_flash": false
     },
     {
@@ -1038,86 +1038,86 @@
     },
     {
       "date": "2022-05-01",
-      "value": 54.6,
-      "forecast": 54.6,
-      "previous": null,
+      "value": 53.4,
+      "forecast": 51.8,
+      "previous": 51.8,
       "is_flash": false
     },
     {
       "date": "2022-06-01",
-      "value": 53.4,
+      "value": 54.3,
       "forecast": 53.4,
-      "previous": null,
+      "previous": 53.4,
       "is_flash": false
     },
     {
       "date": "2022-07-01",
-      "value": 52.2,
-      "forecast": 52.2,
-      "previous": null,
+      "value": 52.6,
+      "forecast": 53.3,
+      "previous": 53.3,
       "is_flash": false
     },
     {
       "date": "2022-08-01",
-      "value": 46.0,
-      "forecast": 46.0,
-      "previous": null,
+      "value": 50.9,
+      "forecast": 52.5,
+      "previous": 52.5,
       "is_flash": false
     },
     {
       "date": "2022-09-01",
-      "value": 48.5,
-      "forecast": 48.5,
-      "previous": null,
+      "value": 49.1,
+      "forecast": null,
+      "previous": 48.4,
       "is_flash": false
     },
     {
       "date": "2022-10-01",
-      "value": 45.8,
-      "forecast": 45.8,
-      "previous": null,
+      "value": 48.2,
+      "forecast": null,
+      "previous": 47.2,
       "is_flash": false
     },
     {
       "date": "2022-11-01",
-      "value": 46.2,
-      "forecast": 46.2,
-      "previous": null,
+      "value": 48.2,
+      "forecast": null,
+      "previous": 48.3,
       "is_flash": false
     },
     {
       "date": "2022-12-01",
-      "value": 44.7,
-      "forecast": 44.7,
-      "previous": null,
+      "value": 49.9,
+      "forecast": 50.0,
+      "previous": 50.0,
       "is_flash": false
     },
     {
       "date": "2023-01-01",
-      "value": 46.7,
-      "forecast": 46.7,
-      "previous": null,
+      "value": 48.5,
+      "forecast": null,
+      "previous": 47.8,
       "is_flash": false
     },
     {
       "date": "2023-02-01",
-      "value": 49.2,
-      "forecast": 49.2,
-      "previous": null,
+      "value": 53.1,
+      "forecast": null,
+      "previous": 53.0,
       "is_flash": false
     },
     {
       "date": "2023-03-01",
-      "value": 48.0,
-      "forecast": 48.0,
-      "previous": null,
+      "value": 52.2,
+      "forecast": null,
+      "previous": 52.2,
       "is_flash": false
     },
     {
       "date": "2023-04-01",
-      "value": 46.6,
-      "forecast": 46.6,
-      "previous": null,
+      "value": 55.9,
+      "forecast": 54.9,
+      "previous": 54.9,
       "is_flash": false
     },
     {
@@ -1129,9 +1129,9 @@
     },
     {
       "date": "2023-06-01",
-      "value": 46.2,
-      "forecast": 46.2,
-      "previous": null,
+      "value": 53.7,
+      "forecast": 53.7,
+      "previous": 53.7,
       "is_flash": false
     },
     {
@@ -1150,9 +1150,9 @@
     },
     {
       "date": "2023-09-01",
-      "value": 44.2,
-      "forecast": 44.2,
-      "previous": null,
+      "value": 49.3,
+      "forecast": 47.2,
+      "previous": 47.2,
       "is_flash": false
     },
     {
@@ -1171,37 +1171,37 @@
     },
     {
       "date": "2023-12-01",
-      "value": 46.4,
-      "forecast": 46.4,
-      "previous": null,
+      "value": 53.4,
+      "forecast": 52.7,
+      "previous": 52.7,
       "is_flash": false
     },
     {
       "date": "2024-01-01",
-      "value": 47.3,
-      "forecast": 47.3,
-      "previous": null,
+      "value": 54.3,
+      "forecast": 53.8,
+      "previous": 53.8,
       "is_flash": false
     },
     {
       "date": "2024-02-01",
-      "value": 47.1,
-      "forecast": 47.1,
-      "previous": null,
+      "value": 53.8,
+      "forecast": 54.3,
+      "previous": 54.3,
       "is_flash": false
     },
     {
       "date": "2024-03-01",
-      "value": 49.9,
-      "forecast": 49.9,
-      "previous": null,
+      "value": 52.8,
+      "forecast": null,
+      "previous": 52.9,
       "is_flash": false
     },
     {
       "date": "2024-04-01",
-      "value": 48.7,
-      "forecast": 48.7,
-      "previous": null,
+      "value": 54.1,
+      "forecast": null,
+      "previous": 54.0,
       "is_flash": false
     },
     {
@@ -1213,16 +1213,16 @@
     },
     {
       "date": "2024-06-01",
-      "value": 51.4,
-      "forecast": 51.4,
-      "previous": null,
+      "value": 52.1,
+      "forecast": 51.2,
+      "previous": 51.2,
       "is_flash": false
     },
     {
       "date": "2024-07-01",
-      "value": 51.8,
-      "forecast": 51.8,
-      "previous": null,
+      "value": 52.5,
+      "forecast": 52.4,
+      "previous": 52.4,
       "is_flash": false
     },
     {
@@ -1234,9 +1234,9 @@
     },
     {
       "date": "2024-09-01",
-      "value": 51.5,
-      "forecast": 51.5,
-      "previous": null,
+      "value": 52.4,
+      "forecast": 52.8,
+      "previous": 52.8,
       "is_flash": false
     },
     {
@@ -1255,66 +1255,66 @@
     },
     {
       "date": "2024-12-01",
-      "value": 47.3,
-      "forecast": 47.3,
-      "previous": null,
+      "value": 51.1,
+      "forecast": 51.4,
+      "previous": 51.4,
       "is_flash": false
     },
     {
       "date": "2025-01-01",
-      "value": 48.2,
-      "forecast": 48.2,
-      "previous": null,
+      "value": 50.6,
+      "forecast": null,
+      "previous": 50.9,
       "is_flash": false
     },
     {
       "date": "2025-02-01",
-      "value": 46.4,
-      "forecast": 46.4,
-      "previous": null,
+      "value": 50.5,
+      "forecast": null,
+      "previous": 50.5,
       "is_flash": false
     },
     {
       "date": "2025-03-01",
-      "value": 44.6,
-      "forecast": 44.6,
-      "previous": null,
+      "value": 51.5,
+      "forecast": null,
+      "previous": 52.0,
       "is_flash": false
     },
     {
       "date": "2025-04-01",
-      "value": 44.0,
-      "forecast": 44.0,
-      "previous": 44.9,
-      "is_flash": false
+      "value": 48.9,
+      "forecast": 52.0,
+      "previous": 52.5,
+      "is_flash": true
     },
     {
       "date": "2025-05-01",
-      "value": 45.4,
-      "forecast": 44.0,
-      "previous": 44.9,
+      "value": 50.2,
+      "forecast": 50.0,
+      "previous": 49.0,
       "is_flash": false
     },
     {
       "date": "2025-06-01",
-      "value": 46.4,
-      "forecast": 45.1,
-      "previous": 45.4,
+      "value": 51.3,
+      "forecast": 51.3,
+      "previous": 50.9,
       "is_flash": false
     },
     {
       "date": "2025-07-01",
-      "value": 48.2,
-      "forecast": 48.0,
-      "previous": 47.7,
+      "value": 51.0,
+      "forecast": 51.8,
+      "previous": 52.0,
       "is_flash": false
     },
     {
       "date": "2025-08-01",
       "value": 47.3,
-      "forecast": 48.3,
+      "forecast": 48.6,
       "previous": 48.0,
-      "is_flash": false
+      "is_flash": true
     },
     {
       "date": "2025-09-01",
@@ -1325,31 +1325,31 @@
     },
     {
       "date": "2025-10-01",
-      "value": 49.6,
-      "forecast": 46.7,
-      "previous": 46.2,
-      "is_flash": true
+      "value": 51.1,
+      "forecast": 51.0,
+      "previous": 50.8,
+      "is_flash": false
     },
     {
       "date": "2025-11-01",
-      "value": 50.2,
-      "forecast": 49.5,
-      "previous": 49.7,
+      "value": 50.5,
+      "forecast": 52.6,
+      "previous": 52.2,
       "is_flash": true
     },
     {
       "date": "2025-12-01",
-      "value": 51.2,
-      "forecast": 51.2,
-      "previous": 50.2,
-      "is_flash": true
+      "value": 52.1,
+      "forecast": 51.6,
+      "previous": 51.3,
+      "is_flash": false
     },
     {
       "date": "2026-01-01",
-      "value": 51.6,
-      "forecast": 50.8,
-      "previous": 50.6,
-      "is_flash": true
+      "value": 54.3,
+      "forecast": 51.7,
+      "previous": 51.4,
+      "is_flash": false
     }
   ],
   "services": [
@@ -3218,5 +3218,5 @@
       "is_flash": false
     }
   ],
-  "last_updated": "2026-02-14T15:02:15.264851+09:00"
+  "last_updated": "2026-04-10T20:49:57.229704+09:00"
 }

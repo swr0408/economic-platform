@@ -9,25 +9,22 @@ URL: https://www.stat-search.boj.or.jp/ssi/cgi-bin/famecgi2?cgi=$nme_a000&lstSel
 更新: 毎月（月末から翌月初に公表）
 スケジュール: 毎月1日から毎日9:30 JSTにチェック、更新したら以降スキップ
 
-Selenium WebDriverを使用してBOJ統計検索サイトからデータを取得
+Playwright (BrowserRunner) を使用して BOJ 統計検索サイトからデータを取得。
+multi-window フロー (チェックボックス → 抽出条件追加 → 抽出 → ダウンロード →
+CSV リンク取得) を run_custom_flow 経由で実行する。
 """
 import json
 import logging
-import os
-import time
-import tempfile
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+try:
+    from backend.services.browser import BrowserConfig, run_custom_flow
+except ImportError:
+    from services.browser import BrowserConfig, run_custom_flow
 
 from core.redis_client import redis_client
 
@@ -57,53 +54,15 @@ class BOJLendingService:
         """Initialize BOJ Lending service"""
         pass
 
-    def _get_chrome_driver(self, download_dir: str) -> webdriver.Chrome:
+    def _fetch_lending_data(self) -> Optional[List[Dict[str, Any]]]:
         """
-        Create Chrome WebDriver with appropriate settings
+        Playwright (run_custom_flow) を使って BOJ 統計検索サイトからデータを取得。
 
-        Args:
-            download_dir: Directory for downloaded files
-
-        Returns:
-            Chrome WebDriver instance
-        """
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument("--window-size=1920,1080")
-        chrome_options.add_argument("--lang=ja-JP")
-
-        # Download settings
-        prefs = {
-            "download.default_directory": download_dir,
-            "download.prompt_for_download": False,
-            "download.directory_upgrade": True,
-            "safebrowsing.enabled": True
-        }
-        chrome_options.add_experimental_option("prefs", prefs)
-
-        # Try to use chromedriver from PATH or common locations
-        try:
-            driver = webdriver.Chrome(options=chrome_options)
-        except Exception as e:
-            logger.warning(f"Could not create Chrome driver with default settings: {e}")
-            # Try with explicit service
-            try:
-                service = Service()
-                driver = webdriver.Chrome(service=service, options=chrome_options)
-            except Exception as e2:
-                logger.error(f"Failed to create Chrome driver: {e2}")
-                raise
-
-        driver.implicitly_wait(10)
-        return driver
-
-    def _fetch_lending_data_selenium(self) -> Optional[List[Dict[str, Any]]]:
-        """
-        Fetch BOJ Lending data using Selenium WebDriver
-        Based on reference implementation from seasonality-app
+        multi-window フロー:
+          1. メインページ → 展開 → チェックボックス選択
+          2. 抽出条件追加 → 開始年設定 → 抽出ボタン → 新しいウィンドウ
+          3. ダウンロードボタン → 3 つ目のウィンドウ → CSV リンク取得
+          4. requests.get() で CSV ダウンロード → pandas で解析
 
         Returns:
             List of data points with date and value, or None if failed
@@ -112,282 +71,175 @@ class BOJLendingService:
         from io import StringIO
         import pandas as pd
 
-        download_dir = tempfile.mkdtemp()
-        driver = None
-        original_window = None
+        config = BrowserConfig(
+            viewport=(1920, 1080),
+            locale="ja-JP",
+        )
 
-        try:
-            logger.info("Starting Selenium data fetch for BOJ Lending")
-            driver = self._get_chrome_driver(download_dir)
+        def _boj_flow(context) -> Optional[str]:
+            """BrowserContext を使って CSV ダウンロード URL を返す。"""
+            page = context.new_page()
 
-            # Step 1: Navigate to BOJ Statistical Search Site - Lending page
-            logger.info(f"Navigating to {self.BOJ_STAT_LENDING_URL}")
-            driver.get(self.BOJ_STAT_LENDING_URL)
-
-            # Wait for page to load
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "searchCondition"))
-            )
-            logger.info("Page loaded successfully")
-
-            original_window = driver.current_window_handle
-
-            # Step 2: Click expand button to show all data series
-            logger.info("Clicking expand button")
             try:
-                expand_button = WebDriverWait(driver, 10).until(
-                    EC.element_to_be_clickable((
-                        By.XPATH,
-                        '//*[@id="menuSearchTabpanel"]/div[2]/div[1]/div[2]/input'
-                    ))
-                )
-                expand_button.click()
-            except Exception as e:
-                logger.warning(f"Could not find expand button: {e}")
+                # Step 1: Navigate
+                logger.info(f"Navigating to {self.BOJ_STAT_LENDING_URL}")
+                page.goto(self.BOJ_STAT_LENDING_URL, wait_until="networkidle")
+                page.wait_for_selector(".searchCondition")
+                logger.info("Page loaded successfully")
 
-            # Wait for data list to appear
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "tableDataCode"))
-            )
-            logger.info("Data list loaded")
-
-            # Step 3: Find and select FAAPOBAL1 checkbox
-            logger.info(f"Looking for data code: {self.DATA_CODE}")
-
-            # BOJ uses format "MD13'FAAPOBAL1" as the value
-            full_code = f"MD13'{self.DATA_CODE}"
-            logger.info(f"Full code to search: {full_code}")
-
-            checkbox = None
-            # Method 1: Try to find checkbox by value
-            try:
-                checkbox = driver.find_element(By.CSS_SELECTOR, f'input[value="{full_code}"]')
-                logger.info(f"Found checkbox with value: {full_code}")
-            except NoSuchElementException:
-                logger.warning(f"Could not find checkbox with exact value: {full_code}")
-
-            # Method 2: Try finding by ID
-            if not checkbox:
+                # Step 2: Click expand button
+                logger.info("Clicking expand button")
                 try:
-                    checkbox = driver.find_element(By.ID, full_code)
-                    logger.info(f"Found checkbox with ID: {full_code}")
-                except NoSuchElementException:
-                    pass
+                    expand_sel = '#menuSearchTabpanel >> xpath=div[2]/div[1]/div[2]/input'
+                    page.click(expand_sel, timeout=10_000)
+                except Exception:
+                    # フォールバック: input[type="button"] で展開ボタンを探す
+                    try:
+                        page.click(
+                            '#menuSearchTabpanel input[type="button"]',
+                            timeout=5_000,
+                        )
+                    except Exception as e:
+                        logger.warning(f"Could not find expand button: {e}")
 
-            # Method 3: Search all searchDataCode checkboxes
-            if not checkbox:
-                try:
-                    checkboxes = driver.find_elements(By.CSS_SELECTOR, 'input[type="checkbox"].searchDataCode')
-                    logger.info(f"Found {len(checkboxes)} searchDataCode checkboxes")
-                    for cb in checkboxes:
-                        value = cb.get_attribute('value')
-                        if value and self.DATA_CODE in value:
+                page.wait_for_selector(".tableDataCode", timeout=10_000)
+                logger.info("Data list loaded")
+
+                # Step 3: Find and check FAAPOBAL1
+                full_code = f"MD13'{self.DATA_CODE}"
+                logger.info(f"Looking for data code: {full_code}")
+
+                checkbox = page.query_selector(f'input[value="{full_code}"]')
+                if not checkbox:
+                    checkbox = page.query_selector(f'#{full_code}')
+                if not checkbox:
+                    # 全 searchDataCode チェックボックスを走査
+                    for cb in page.query_selector_all('input[type="checkbox"].searchDataCode'):
+                        val = cb.get_attribute("value") or ""
+                        if self.DATA_CODE in val:
                             checkbox = cb
-                            logger.info(f"Found checkbox with value containing {self.DATA_CODE}: {value}")
                             break
-                except Exception as e:
-                    logger.warning(f"Error searching checkboxes: {e}")
 
-            if not checkbox:
-                logger.error(f"Could not find checkbox for {self.DATA_CODE}")
-                return None
-
-            # Scroll to checkbox and click using JavaScript
-            driver.execute_script("arguments[0].scrollIntoView(true);", checkbox)
-            driver.execute_script("arguments[0].click();", checkbox)
-            logger.info(f"Selected {self.DATA_CODE}")
-
-            # Step 4: Click "抽出条件に追加" (Add to extraction conditions) button
-            logger.info("Adding to extraction conditions")
-            add_button = None
-
-            # Method 1: Find by onclick attribute
-            try:
-                add_button = driver.find_element(By.CSS_SELECTOR, 'a[onclick*="addAbstractCondition"]')
-                logger.info("Found add button by onclick attribute")
-            except NoSuchElementException:
-                pass
-
-            # Method 2: Find by link text
-            if not add_button:
-                try:
-                    add_button = driver.find_element(By.LINK_TEXT, '抽出条件に追加')
-                    logger.info("Found add button by link text")
-                except NoSuchElementException:
-                    pass
-
-            # Method 3: Find by class
-            if not add_button:
-                try:
-                    buttons = driver.find_elements(By.CSS_SELECTOR, 'a.largeButton')
-                    for btn in buttons:
-                        if '抽出条件に追加' in btn.text:
-                            add_button = btn
-                            logger.info("Found add button by searching largeButton elements")
-                            break
-                except Exception as e:
-                    logger.warning(f"Error searching for add button: {e}")
-
-            if not add_button:
-                logger.error("Could not find '抽出条件に追加' button")
-                return None
-
-            driver.execute_script("arguments[0].click();", add_button)
-
-            # Wait for result area
-            WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.ID, "resultArea"))
-            )
-            logger.info("Added to extraction conditions")
-
-            # Step 5: Set date range (from 2010)
-            start_year = 2010
-            logger.info(f"Setting date range from {start_year}")
-            try:
-                from_year = driver.find_element(By.ID, "fromYear")
-                from_year.clear()
-                from_year.send_keys(str(start_year))
-                logger.info(f"Set start year to {start_year}")
-            except NoSuchElementException:
-                logger.warning("Could not find fromYear field")
-
-            # Step 6: Click extraction button (opens new window)
-            logger.info("Clicking extraction button")
-            extract_button = None
-
-            try:
-                extract_button = driver.find_element(By.CSS_SELECTOR, 'a[onclick*="submit_code_main"]')
-                logger.info("Found extraction button by onclick")
-            except NoSuchElementException:
-                pass
-
-            if not extract_button:
-                try:
-                    links = driver.find_elements(By.TAG_NAME, "a")
-                    for link in links:
-                        if '抽出' in link.text:
-                            class_attr = link.get_attribute('class') or ''
-                            if 'middleButton' in class_attr:
-                                extract_button = link
-                                logger.info("Found extraction button by text and class")
-                                break
-                except Exception as e:
-                    logger.warning(f"Error finding extraction button: {e}")
-
-            if not extract_button:
-                logger.error("Could not find '抽出' button")
-                return None
-
-            driver.execute_script("arguments[0].click();", extract_button)
-
-            # Wait for new window to open
-            WebDriverWait(driver, 10).until(lambda d: len(d.window_handles) > 1)
-
-            # Switch to new window
-            for window_handle in driver.window_handles:
-                if window_handle != original_window:
-                    driver.switch_to.window(window_handle)
-                    break
-
-            logger.info("Switched to extraction window")
-            download_window = driver.current_window_handle
-
-            # Step 7: Click download button (opens another window)
-            logger.info("Looking for download button")
-            download_button = None
-
-            try:
-                download_button = driver.find_element(By.CSS_SELECTOR, 'a[onclick*="DLform_MM.submit"]')
-                logger.info("Found download button")
-            except NoSuchElementException:
-                pass
-
-            if not download_button:
-                try:
-                    download_button = driver.find_element(By.PARTIAL_LINK_TEXT, "ダウンロード")
-                    logger.info("Found download button by text")
-                except NoSuchElementException:
-                    logger.error("Could not find download button")
+                if not checkbox:
+                    logger.error(f"Could not find checkbox for {self.DATA_CODE}")
                     return None
 
-            driver.execute_script("arguments[0].click();", download_button)
-            logger.info("Clicked download button")
+                checkbox.scroll_into_view_if_needed()
+                checkbox.click()
+                logger.info(f"Selected {self.DATA_CODE}")
 
-            # Wait for third window to open
-            time.sleep(2)
+                # Step 4: Click "抽出条件に追加"
+                add_btn = page.query_selector('a[onclick*="addAbstractCondition"]')
+                if not add_btn:
+                    add_btn = page.query_selector('a:has-text("抽出条件に追加")')
+                if not add_btn:
+                    for btn in page.query_selector_all("a.largeButton"):
+                        if "抽出条件に追加" in (btn.inner_text() or ""):
+                            add_btn = btn
+                            break
 
-            all_windows = driver.window_handles
-            logger.info(f"Total windows after download click: {len(all_windows)}")
+                if not add_btn:
+                    logger.error("Could not find '抽出条件に追加' button")
+                    return None
 
-            if len(all_windows) > 2:
-                # Switch to the newest window
-                for window_handle in all_windows:
-                    if window_handle not in [original_window, download_window]:
-                        driver.switch_to.window(window_handle)
-                        logger.info("Switched to download link window")
-                        logger.info(f"Download window URL: {driver.current_url}")
-                        break
+                add_btn.click()
+                page.wait_for_selector("#resultArea", timeout=5_000)
+                logger.info("Added to extraction conditions")
 
-                # Step 8: Get CSV download link
-                csv_url = None
+                # Step 5: Set start year
                 try:
-                    csv_links = driver.find_elements(By.PARTIAL_LINK_TEXT, "CSV")
-                    logger.info(f"Found {len(csv_links)} CSV links")
-
-                    if csv_links:
-                        csv_url = csv_links[0].get_attribute('href')
-                        logger.info(f"CSV download URL: {csv_url}")
-                    else:
-                        links = driver.find_elements(By.TAG_NAME, "a")
-                        for link in links:
-                            href = link.get_attribute('href')
-                            if href and ('download' in href.lower() or 'dl' in href.lower()):
-                                csv_url = href
-                                logger.info(f"Found download link: {href}")
-                                break
+                    page.fill("#fromYear", "2010")
+                    logger.info("Set start year to 2010")
                 except Exception as e:
-                    logger.error(f"Error finding CSV link: {e}")
+                    logger.warning(f"Could not set fromYear: {e}")
+
+                # Step 6: Click extraction → opens new window (popup)
+                extract_btn = page.query_selector('a[onclick*="submit_code_main"]')
+                if not extract_btn:
+                    for link in page.query_selector_all("a.middleButton"):
+                        if "抽出" in (link.inner_text() or ""):
+                            extract_btn = link
+                            break
+
+                if not extract_btn:
+                    logger.error("Could not find '抽出' button")
+                    return None
+
+                with context.expect_page() as popup_info:
+                    extract_btn.click()
+                extract_page = popup_info.value
+                extract_page.wait_for_load_state("networkidle")
+                logger.info("Switched to extraction window")
+
+                # Step 7: Click download → opens third window
+                dl_btn = extract_page.query_selector('a[onclick*="DLform_MM.submit"]')
+                if not dl_btn:
+                    dl_btn = extract_page.locator('a:has-text("ダウンロード")').first
+                    if not dl_btn:
+                        logger.error("Could not find download button")
+                        extract_page.close()
+                        return None
+
+                with context.expect_page() as dl_popup_info:
+                    dl_btn.click()
+                dl_page = dl_popup_info.value
+                dl_page.wait_for_load_state("networkidle")
+                logger.info(f"Download window URL: {dl_page.url}")
+
+                # Step 8: Get CSV link
+                csv_link = dl_page.query_selector('a:has-text("CSV")')
+                if not csv_link:
+                    # フォールバック: download / dl を含むリンク
+                    for a in dl_page.query_selector_all("a"):
+                        href = a.get_attribute("href") or ""
+                        if "download" in href.lower() or "dl" in href.lower():
+                            csv_link = a
+                            break
+
+                csv_url = None
+                if csv_link:
+                    href = csv_link.get_attribute("href")
+                    csv_url = urljoin(dl_page.url, href) if href else None
+
+                # cleanup
+                dl_page.close()
+                extract_page.close()
 
                 if not csv_url:
                     logger.error("Could not find CSV download URL")
                     return None
 
-                # Step 9: Download CSV using requests
-                logger.info(f"Downloading CSV from: {csv_url}")
-                response = requests.get(csv_url, timeout=30)
-                response.encoding = 'shift_jis'
+                logger.info(f"CSV download URL: {csv_url}")
+                return csv_url
 
-                # Parse CSV
-                df = pd.read_csv(StringIO(response.text))
-                logger.info(f"Downloaded CSV with {len(df)} rows, {len(df.columns)} columns")
+            except Exception as e:
+                logger.error(f"Error in BOJ flow: {e}", exc_info=True)
+                return None
+            finally:
+                try:
+                    page.close()
+                except Exception:
+                    pass
 
-                # Process the data
-                return self._process_dataframe(df)
+        try:
+            logger.info("Starting Playwright data fetch for BOJ Lending")
+            csv_url = run_custom_flow(_boj_flow, config=config)
 
-            else:
-                logger.error(f"Third window did not open. Total windows: {len(all_windows)}")
+            if not csv_url:
                 return None
 
-        except TimeoutException as e:
-            logger.error(f"Timeout during Selenium operation: {e}")
-            return None
+            # Step 9: Download CSV using requests
+            logger.info(f"Downloading CSV from: {csv_url}")
+            response = requests.get(csv_url, timeout=30)
+            response.encoding = "shift_jis"
+
+            df = pd.read_csv(StringIO(response.text))
+            logger.info(f"Downloaded CSV with {len(df)} rows, {len(df.columns)} columns")
+            return self._process_dataframe(df)
+
         except Exception as e:
             logger.error(f"Error fetching BOJ Lending data: {e}", exc_info=True)
             return None
-        finally:
-            if driver:
-                try:
-                    driver.quit()
-                    logger.info("WebDriver closed")
-                except Exception as e:
-                    logger.warning(f"Error closing driver: {e}")
-
-            # Cleanup download directory
-            try:
-                import shutil
-                shutil.rmtree(download_dir, ignore_errors=True)
-            except Exception:
-                pass
 
     def _process_dataframe(self, df) -> Optional[List[Dict[str, Any]]]:
         """
@@ -590,7 +442,7 @@ class BOJLendingService:
                 }
 
         # Fetch from BOJ
-        fetched_data = self._fetch_lending_data_selenium()
+        fetched_data = self._fetch_lending_data()
         if fetched_data:
             cache_payload = {
                 "data": fetched_data,

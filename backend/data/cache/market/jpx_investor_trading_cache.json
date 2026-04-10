@@ -5301,14 +5301,14 @@
       "nikkei_close": 52463.27
     },
     {
-      "date": "2026-03-27",
-      "individuals": null,
-      "foreigners": null,
-      "trust_banks": null,
-      "investment_trusts": null,
-      "business_corps": null,
-      "proprietary": null,
-      "nikkei_close": 52463.27
+      "date": "2026-03-30",
+      "individuals": -4396.1,
+      "foreigners": 19149.9,
+      "trust_banks": 1426.1,
+      "investment_trusts": 1031.1,
+      "business_corps": 229.0,
+      "proprietary": -15984.3,
+      "nikkei_close": 55895.32
     },
     {
       "date": "2026-04-03",
@@ -5318,22 +5318,22 @@
       "investment_trusts": null,
       "business_corps": null,
       "proprietary": null,
-      "nikkei_close": 56225.77
+      "nikkei_close": 55895.32
     }
   ],
   "latest": {
-    "date": "2026-03-23",
-    "individuals": -145.8,
-    "foreigners": -15090.5,
-    "trust_banks": -1034.5,
-    "investment_trusts": 3563.3,
-    "business_corps": null,
-    "proprietary": 12767.2,
-    "nikkei_close": 52463.27
+    "date": "2026-03-30",
+    "individuals": -4396.1,
+    "foreigners": 19149.9,
+    "trust_banks": 1426.1,
+    "investment_trusts": 1031.1,
+    "business_corps": 229.0,
+    "proprietary": -15984.3,
+    "nikkei_close": 55895.32
   },
   "latest_nikkei": {
-    "date": "2026-04-08",
-    "close": 56225.77
+    "date": "2026-04-10",
+    "close": 56924.11
   },
   "metadata": {
     "source": "JPX + yfinance (^N225)",
@@ -5346,5 +5346,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-08T11:06:54.326777+09:00"
+  "last_updated": "2026-04-10T20:46:33.695845+09:00"
 }

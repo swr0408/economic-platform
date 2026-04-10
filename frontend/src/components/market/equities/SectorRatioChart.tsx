@@ -284,8 +284,8 @@ export default function SectorRatioChart() {
   return (
     <ChartContainer
       title="セクターレシオ"
-      dataSource="yfinance"
-      sourceUrl="https://finance.yahoo.com/"
+      dataSource="cboe"
+      sourceUrl="https://www.cboe.com/"
       handbookId="sector-ratio"
       showPeriodSelector={false}
     >

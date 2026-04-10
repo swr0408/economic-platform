@@ -14,10 +14,11 @@ import type { NzAnzBusinessOutlookPriceData } from '../../../../hooks/useDashboa
 import { useIsMaster } from '../../../../hooks/useIsMaster'
 import { withVisibility } from '../../../common/withVisibility'
 import MarketImpactTab from '../../../indicator/MarketImpactTab'
+import { fetchWithTimeout } from '../../../../utils/apiConfig'
 
 const { Text } = Typography
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 interface Props {
   data: NzAnzBusinessOutlookPriceData | null
@@ -25,14 +26,14 @@ interface Props {
 
 function NzAnzBusinessSentimentPriceChart({ data }: Props) {
   const isMaster = useIsMaster()
-  const [imageKey, setImageKey] = useState(Date.now())
+  const [imageKey, setImageKey] = useState(0)
   const [refreshing, setRefreshing] = useState(false)
   const [activeTab, setActiveTab] = useState('chart')
 
   const handleRefresh = async () => {
     setRefreshing(true)
     try {
-      await fetch(`${API_BASE_URL}/api/newzealand/anz/business-outlook-price/refresh`, { method: 'POST' })
+      await fetchWithTimeout(`${API_BASE_URL}/api/newzealand/anz/business-outlook-price/refresh`, { method: 'POST' }, 90_000)
       setImageKey(Date.now())
     } catch (err) {
       console.error('Failed to refresh ANZ Business Outlook:', err)

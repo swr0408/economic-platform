@@ -250,7 +250,7 @@ export default function JpxInvestorTradingChart() {
   return (
     <ChartContainer
       title="投資部門別売買状況"
-      dataSource="JPX / yfinance"
+      dataSource="JPX"
       showPeriodSelector={false}
       sourceUrl="https://www.jpx.co.jp/markets/statistics-equities/investor-type/index.html"
       handbookId="jpx-investor-trading"

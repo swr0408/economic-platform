@@ -266,7 +266,7 @@ export default function Nikkei225ValuationChart() {
   return (
     <ChartContainer
       title="日経平均 Valuation"
-      dataSource="Nikkei Indexes / yfinance"
+      dataSource="Nikkei Indexes"
       sourceUrl="https://indexes.nikkei.co.jp/en/nkave/archives/data?list=per"
       handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}

@@ -447,7 +447,7 @@ export default function JpxPcrChart() {
   return (
     <ChartContainer
       title="日本株指数 Put/Call Ratio"
-      dataSource="JPX / yfinance"
+      dataSource="JPX"
       sourceUrl="https://www.jpx.co.jp/markets/derivatives/trading-volume/index.html"
       showPeriodSelector={false}
       handbookId="jpx-pcr"

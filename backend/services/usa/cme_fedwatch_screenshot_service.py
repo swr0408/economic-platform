@@ -1,7 +1,12 @@
 """
 CME FedWatch Tool スクリーンショットサービス
-Playwrightを使用してCME FedWatchページのスクリーンショットを取得
+
+Playwright (BrowserRunner / run_custom_flow) を使用して
+CME FedWatch ページのスクリーンショットを取得。
+iframe 内の Aggregated テーブルをキャプチャする。
+Chromium 失敗時は Firefox にフォールバック。
 """
+import logging
 import os
 import base64
 from datetime import datetime, timezone, timedelta
@@ -11,7 +16,16 @@ from typing import Dict, Any, Optional
 # 日本時間 (JST = UTC+9)
 JST = timezone(timedelta(hours=9))
 
+try:
+    from backend.services.browser import BrowserConfig, run_custom_flow
+    from backend.services.browser.stale_while_revalidate import background_revalidate
+except ImportError:
+    from services.browser import BrowserConfig, run_custom_flow
+    from services.browser.stale_while_revalidate import background_revalidate
+
 from core.redis_client import redis_client
+
+logger = logging.getLogger(__name__)
 
 # スクリーンショット保存ディレクトリ
 SCREENSHOT_DIR = Path(os.getenv("SCREENSHOT_DIR", "/app/screenshots"))
@@ -39,17 +53,22 @@ class CMEFedWatchScreenshotService:
         """
         FedWatchスクリーンショットを取得
 
+        Stale-While-Revalidate パターン:
+        - キャッシュがあれば（古くても）即座に返す
+        - Redisキャッシュ期限切れの場合、バックグラウンドで更新を起動
+        - force_refresh=True の場合のみ同期で取得
+
         Returns:
             {
-                "image_url": str,  # 画像へのパス
-                "image_base64": str,  # Base64エンコードされた画像（オプション）
+                "image_url": str,
                 "last_updated": str,
                 "cached": bool
             }
         """
         # 1. キャッシュをチェック
+        cached = redis_client.get(self.CACHE_KEY)
+
         if not force_refresh:
-            cached = redis_client.get(self.CACHE_KEY)
             if cached and self.screenshot_path.exists():
                 return {
                     "image_url": f"/static/screenshots/fedwatch_latest.png",
@@ -58,7 +77,21 @@ class CMEFedWatchScreenshotService:
                     "source": "redis"
                 }
 
-        # 2. 新しいスクリーンショットを取得
+            # Redisキャッシュ切れだがファイルは残っている → SWR
+            if self.screenshot_path.exists():
+                background_revalidate(
+                    f"swr:{self.CACHE_KEY}",
+                    self._capture_and_cache,
+                )
+                return {
+                    "image_url": f"/static/screenshots/fedwatch_latest.png",
+                    "last_updated": None,
+                    "cached": True,
+                    "source": "file_swr",
+                    "revalidating": True,
+                }
+
+        # 2. force_refresh または初回（ファイルなし） → 同期で取得
         success = self._capture_screenshot()
 
         if success:
@@ -93,219 +126,189 @@ class CMEFedWatchScreenshotService:
             "error": "No screenshot available"
         }
 
+    def _capture_and_cache(self) -> None:
+        """バックグラウンド更新用: スクショ取得 + Redisキャッシュ保存"""
+        success = self._capture_screenshot()
+        if success:
+            cache_data = {
+                "last_updated": datetime.now(JST).isoformat(),
+                "path": str(self.screenshot_path)
+            }
+            redis_client.set(self.CACHE_KEY, cache_data, expire=self.CACHE_TTL)
+            logger.info("FedWatch screenshot updated via SWR")
+
     def _capture_screenshot(self) -> bool:
         """
-        Playwrightを使用してスクリーンショットを取得
-        Chromiumが失敗した場合はFirefoxにフォールバック
+        run_custom_flow 経由でスクリーンショットを取得。
+        Chromium が失敗した場合は Firefox にフォールバック。
         """
-        # まずChromiumで試行
-        if self._capture_with_browser('chromium'):
+        if self._capture_with_browser("chromium"):
             return True
 
-        # Chromiumが失敗した場合はFirefoxで試行
-        print("Chromium failed, trying Firefox...")
-        return self._capture_with_browser('firefox')
+        logger.info("Chromium failed, trying Firefox...")
+        return self._capture_with_browser("firefox")
 
     def _capture_with_browser(self, browser_type: str) -> bool:
         """
-        指定されたブラウザでスクリーンショットを取得
-        QuikStrikeページの特定要素（チャート）のみをキャプチャ
+        run_custom_flow 経由で指定ブラウザでスクリーンショットを取得。
+        QuikStrike iframe 内の Aggregated テーブルをキャプチャする。
         """
-        try:
-            from playwright.sync_api import sync_playwright
+        ua = (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0"
+            if browser_type == "firefox"
+            else "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        )
+        config = BrowserConfig(
+            viewport=(1920, 1080),
+            user_agent=ua,
+            default_navigation_timeout_ms=60_000,
+        )
+        screenshot_path = str(self.screenshot_path)
 
-            print(f"Capturing FedWatch screenshot with {browser_type}...")
-            print(f"URL: {FEDWATCH_URL}")
+        def _fedwatch_flow(context) -> bool:
+            page = context.new_page()
+            try:
+                logger.info(f"Capturing FedWatch screenshot with {browser_type}...")
+                page.goto(FEDWATCH_URL, wait_until="domcontentloaded")
 
-            with sync_playwright() as p:
-                # ブラウザを選択
-                if browser_type == 'firefox':
-                    browser = p.firefox.launch(
-                        headless=True,
-                    )
-                else:
-                    browser = p.chromium.launch(
-                        headless=True,
-                        args=[
-                            '--no-sandbox',
-                            '--disable-setuid-sandbox',
-                            '--disable-dev-shm-usage',
-                            '--disable-gpu',
-                        ]
-                    )
+                # iframe が読み込まれるまで待機
+                page.wait_for_timeout(15_000)
 
-                # ビューポート設定
-                context = browser.new_context(
-                    viewport={'width': 1920, 'height': 1080},
-                    user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0' if browser_type == 'firefox' else 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                )
-
-                page = context.new_page()
-
-                # ページにアクセス（domcontentloadedで待機し、その後追加で待つ）
-                page.goto(FEDWATCH_URL, wait_until='domcontentloaded', timeout=60000)
-
-                # iframeが読み込まれるまで待機
-                page.wait_for_timeout(15000)
-
-                # Cookie同意バナーを閉じる（存在する場合）
+                # Cookie 同意バナーを閉じる
                 try:
-                    cookie_btn = page.locator('button:has-text("Accept"), button:has-text("Agree"), [id*="onetrust-accept"]').first
+                    cookie_btn = page.locator(
+                        'button:has-text("Accept"), button:has-text("Agree"), [id*="onetrust-accept"]'
+                    ).first
                     if cookie_btn.is_visible(timeout=3000):
                         cookie_btn.click()
                         page.wait_for_timeout(1000)
-                        print("Cookie banner closed")
+                        logger.info("Cookie banner closed")
                 except Exception:
                     pass
 
-                # スクリーンショット取得
                 screenshot_taken = False
 
-                # iframeを確認
+                # iframe を確認
                 try:
                     frames = page.frames
-                    print(f"Found {len(frames)} frames")
+                    logger.info(f"Found {len(frames)} frames")
                     for i, frame in enumerate(frames):
-                        frame_url = frame.url[:100] if frame.url else 'about:blank'
-                        print(f"  Frame {i}: {frame_url}")
+                        frame_url = frame.url[:100] if frame.url else "about:blank"
+                        logger.debug(f"  Frame {i}: {frame_url}")
 
-                        # QuikStrike iframe内でAggregatedテーブルを探す
-                        if 'quikstrike' in frame_url.lower() and 'IntegratedFedWatchTool' in frame_url:
-                            print(f"Found QuikStrike FedWatch iframe: {frame_url[:80]}...")
-                            try:
-                                # iframe内の全ての要素を確認
-                                print("Looking for Aggregated tab in iframe...")
+                        if "quikstrike" in frame_url.lower() and "IntegratedFedWatchTool" in frame_url:
+                            logger.info(f"Found QuikStrike FedWatch iframe: {frame_url[:80]}...")
 
-                                # 「Aggregated」タブをクリック
-                                tab_clicked = False
-                                aggregated_tab_selectors = [
-                                    '#ctl00_MainContent_ucViewControl_IntegratedFedWatchTool_uccv_lbAggregate',
-                                    'a:has-text("Aggregated")',
-                                    '[id*="lbAggregate"]',
-                                    'text=Aggregated',
-                                    'span:has-text("Aggregated")',
-                                ]
-                                for tab_sel in aggregated_tab_selectors:
-                                    try:
-                                        tab = frame.locator(tab_sel).first
-                                        if tab.is_visible(timeout=3000):
-                                            tab.click()
-                                            print(f"Clicked Aggregated tab using: {tab_sel}")
-                                            page.wait_for_timeout(4000)  # タブ切り替え後の描画を待つ
-                                            tab_clicked = True
-                                            break
-                                    except Exception as e:
-                                        print(f"  Tab selector {tab_sel} failed: {e}")
-                                        continue
+                            # 「Aggregated」タブをクリック
+                            tab_clicked = False
+                            aggregated_tab_selectors = [
+                                "#ctl00_MainContent_ucViewControl_IntegratedFedWatchTool_uccv_lbAggregate",
+                                'a:has-text("Aggregated")',
+                                "[id*='lbAggregate']",
+                                "text=Aggregated",
+                                'span:has-text("Aggregated")',
+                            ]
+                            for tab_sel in aggregated_tab_selectors:
+                                try:
+                                    tab = frame.locator(tab_sel).first
+                                    if tab.is_visible(timeout=3000):
+                                        tab.click()
+                                        logger.info(f"Clicked Aggregated tab using: {tab_sel}")
+                                        page.wait_for_timeout(4000)
+                                        tab_clicked = True
+                                        break
+                                except Exception as e:
+                                    logger.debug(f"  Tab selector {tab_sel} failed: {e}")
+                                    continue
 
-                                if not tab_clicked:
-                                    print("Could not click Aggregated tab, trying to find content anyway...")
-                                else:
-                                    # タブクリック後、さらに待機してコンテンツ更新を待つ
-                                    page.wait_for_timeout(2000)
+                            if not tab_clicked:
+                                logger.info("Could not click Aggregated tab, trying to find content anyway...")
+                            else:
+                                page.wait_for_timeout(2000)
 
-                                # Aggregatedテーブルのスクリーンショットを取得
-                                # まずテーブル全体を含むdivを探す
-                                table_selectors = [
-                                    f'#{AGGREGATED_TABLE_ID}',
-                                    '[id*="uc1Chart_divChart"]',
-                                    '[id*="divChart"]',
-                                    '[id*="Chart_div"]',
-                                ]
-
-                                for table_sel in table_selectors:
-                                    try:
-                                        aggregated_table = frame.locator(table_sel).first
-                                        if aggregated_table.is_visible(timeout=3000):
-                                            box = aggregated_table.bounding_box()
-                                            if box and box['width'] > 300 and box['height'] > 200:
-                                                aggregated_table.screenshot(path=str(self.screenshot_path))
-                                                print(f"Screenshot saved from iframe using: {table_sel}")
-                                                screenshot_taken = True
-                                                break
-                                    except Exception as e:
-                                        print(f"  Table selector {table_sel} failed: {e}")
-                                        continue
-
-                                # まだ見つからない場合、Aggregatedテーブル（MEETING DATEを含むテーブル）を探す
-                                if not screenshot_taken:
-                                    print("Looking for Aggregated table with MEETING DATE...")
-                                    try:
-                                        # MEETING DATEヘッダーを含むテーブルを探す（Aggregatedテーブルの特徴）
-                                        meeting_date_cell = frame.locator('text=MEETING DATE').first
-                                        if meeting_date_cell.is_visible(timeout=3000):
-                                            # 親テーブル要素を探す
-                                            parent_table = frame.locator('table:has(th:has-text("MEETING DATE"))').first
-                                            if parent_table.is_visible(timeout=2000):
-                                                box = parent_table.bounding_box()
-                                                if box and box['width'] > 300 and box['height'] > 200:
-                                                    parent_table.screenshot(path=str(self.screenshot_path))
-                                                    print(f"Screenshot saved: Aggregated table with MEETING DATE")
-                                                    screenshot_taken = True
-                                    except Exception as e:
-                                        print(f"MEETING DATE table not found: {e}")
-
-                                # それでも見つからない場合、最も縦に長いテーブルを選択
-                                if not screenshot_taken:
-                                    print("Looking for largest table...")
-                                    try:
-                                        tables = frame.locator('table').all()
-                                        print(f"Found {len(tables)} tables in iframe")
-                                        best_table = None
-                                        best_height = 0
-                                        for idx, table in enumerate(tables):
-                                            if table.is_visible(timeout=1000):
-                                                box = table.bounding_box()
-                                                if box:
-                                                    print(f"  Table #{idx}: {box['width']:.0f}x{box['height']:.0f}")
-                                                    # Aggregatedテーブルは縦長（height > 400）のはず
-                                                    if box['height'] > best_height and box['height'] > 400:
-                                                        best_height = box['height']
-                                                        best_table = table
-                                        if best_table:
-                                            best_table.screenshot(path=str(self.screenshot_path))
-                                            print(f"Screenshot saved: largest table (height={best_height:.0f})")
+                            # Aggregated テーブルのスクリーンショット
+                            table_selectors = [
+                                f"#{AGGREGATED_TABLE_ID}",
+                                "[id*='uc1Chart_divChart']",
+                                "[id*='divChart']",
+                                "[id*='Chart_div']",
+                            ]
+                            for table_sel in table_selectors:
+                                try:
+                                    aggregated_table = frame.locator(table_sel).first
+                                    if aggregated_table.is_visible(timeout=3000):
+                                        box = aggregated_table.bounding_box()
+                                        if box and box["width"] > 300 and box["height"] > 200:
+                                            aggregated_table.screenshot(path=screenshot_path)
+                                            logger.info(f"Screenshot saved from iframe using: {table_sel}")
                                             screenshot_taken = True
-                                    except Exception as e:
-                                        print(f"Error finding tables: {e}")
-                            except Exception as e:
-                                print(f"Error finding Aggregated table in iframe: {e}")
+                                            break
+                                except Exception as e:
+                                    logger.debug(f"  Table selector {table_sel} failed: {e}")
+                                    continue
+
+                            # MEETING DATE テーブルを探す
+                            if not screenshot_taken:
+                                try:
+                                    meeting_date_cell = frame.locator("text=MEETING DATE").first
+                                    if meeting_date_cell.is_visible(timeout=3000):
+                                        parent_table = frame.locator('table:has(th:has-text("MEETING DATE"))').first
+                                        if parent_table.is_visible(timeout=2000):
+                                            box = parent_table.bounding_box()
+                                            if box and box["width"] > 300 and box["height"] > 200:
+                                                parent_table.screenshot(path=screenshot_path)
+                                                logger.info("Screenshot saved: Aggregated table with MEETING DATE")
+                                                screenshot_taken = True
+                                except Exception as e:
+                                    logger.debug(f"MEETING DATE table not found: {e}")
+
+                            # 最も縦に長いテーブルを選択
+                            if not screenshot_taken:
+                                try:
+                                    tables = frame.locator("table").all()
+                                    logger.info(f"Found {len(tables)} tables in iframe")
+                                    best_table = None
+                                    best_height = 0
+                                    for idx, table in enumerate(tables):
+                                        if table.is_visible(timeout=1000):
+                                            box = table.bounding_box()
+                                            if box:
+                                                logger.debug(f"  Table #{idx}: {box['width']:.0f}x{box['height']:.0f}")
+                                                if box["height"] > best_height and box["height"] > 400:
+                                                    best_height = box["height"]
+                                                    best_table = table
+                                    if best_table:
+                                        best_table.screenshot(path=screenshot_path)
+                                        logger.info(f"Screenshot saved: largest table (height={best_height:.0f})")
+                                        screenshot_taken = True
+                                except Exception as e:
+                                    logger.warning(f"Error finding tables: {e}")
+
                         if screenshot_taken:
                             break
                 except Exception as e:
-                    print(f"Error checking frames: {e}")
+                    logger.warning(f"Error checking frames: {e}")
 
-                # iframe内で見つからない場合、メインページでFedWatchコンテンツを探す
+                # iframe 内で見つからない場合、メインページで探す
                 if not screenshot_taken:
-                    print("Trying to find FedWatch content in main page...")
-
-                    # CME FedWatch Tool専用のセレクタ
+                    logger.info("Trying to find FedWatch content in main page...")
                     main_selectors = [
-                        # FedWatch Tool埋め込みコンテナ
-                        '[class*="fedwatch"]',
-                        '[class*="FedWatch"]',
-                        '[id*="fedwatch"]',
-                        '[id*="FedWatch"]',
-                        # 確率テーブル
+                        '[class*="fedwatch"]', '[class*="FedWatch"]',
+                        '[id*="fedwatch"]', '[id*="FedWatch"]',
                         '[class*="probability"]',
-                        # ツール全体のコンテナ
-                        '.cme-fedwatch-tool',
-                        '.tool-container',
+                        ".cme-fedwatch-tool", ".tool-container",
                         '[class*="tool-wrapper"]',
-                        # iframe自体
-                        'iframe[src*="quikstrike"]',
-                        'iframe[src*="fedwatch"]',
+                        'iframe[src*="quikstrike"]', 'iframe[src*="fedwatch"]',
                     ]
-
                     for selector in main_selectors:
                         try:
                             elements = page.locator(selector).all()
                             for element in elements:
                                 if element.is_visible(timeout=2000):
                                     box = element.bounding_box()
-                                    if box and box['width'] > 400 and box['height'] > 200:
-                                        element.screenshot(path=str(self.screenshot_path))
-                                        print(f"Screenshot saved using main page selector: {selector}")
+                                    if box and box["width"] > 400 and box["height"] > 200:
+                                        element.screenshot(path=screenshot_path)
+                                        logger.info(f"Screenshot saved using main page selector: {selector}")
                                         screenshot_taken = True
                                         break
                         except Exception:
@@ -313,30 +316,30 @@ class CMEFedWatchScreenshotService:
                         if screenshot_taken:
                             break
 
-                # ページの中央部分をクリップしてキャプチャ（最後の手段）
+                # 最後の手段: ページ中央部分をクリップ
                 if not screenshot_taken:
-                    print("Using clip region for main content area...")
-                    # ヘッダーとフッターを除いた中央部分をキャプチャ
+                    logger.info("Using clip region for main content area...")
                     page.screenshot(
-                        path=str(self.screenshot_path),
-                        clip={
-                            'x': 0,
-                            'y': 150,  # ヘッダーをスキップ
-                            'width': 1920,
-                            'height': 900  # メインコンテンツエリア
-                        }
+                        path=screenshot_path,
+                        clip={"x": 0, "y": 150, "width": 1920, "height": 900},
                     )
-                    print(f"Clipped screenshot saved to {self.screenshot_path}")
+                    logger.info(f"Clipped screenshot saved to {screenshot_path}")
 
-                browser.close()
+                return True
+            except Exception as e:
+                logger.error(f"Error in FedWatch flow: {e}", exc_info=True)
+                return False
+            finally:
+                try:
+                    page.close()
+                except Exception:
+                    pass
 
-            return self.screenshot_path.exists()
-
-        except ImportError:
-            print(f"Playwright not installed for {browser_type}")
-            return False
+        try:
+            result = run_custom_flow(_fedwatch_flow, config=config, browser_type=browser_type)
+            return result and self.screenshot_path.exists()
         except Exception as e:
-            print(f"Error capturing screenshot with {browser_type}: {e}")
+            logger.error(f"Error capturing screenshot with {browser_type}: {e}")
             return False
 
     def get_screenshot_base64(self) -> Optional[str]:

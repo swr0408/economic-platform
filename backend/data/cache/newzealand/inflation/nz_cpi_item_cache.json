@@ -855,6 +855,15 @@
       "gas": "CPIQ.SE9TN04502"
     }
   },
-  "next_release": null,
-  "last_updated": "2026-02-25T01:22:33.946409+09:00"
+  "next_release": {
+    "date": "2026-04-20",
+    "datetime_utc": "2026-04-20T22:45:00+00:00",
+    "datetime_jst": "2026-04-21T07:45:00+09:00",
+    "time_jst": "07:45",
+    "datetime_auckland": "2026-04-21T10:45:00+12:00",
+    "time_auckland": "10:45",
+    "label": "Consumer Price Index (Q4)",
+    "estimate": null
+  },
+  "last_updated": "2026-04-10T20:59:14.891061+09:00"
 }

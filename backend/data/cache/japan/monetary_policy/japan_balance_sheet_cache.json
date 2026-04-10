@@ -1669,12 +1669,22 @@
       "date": "2026-01-01",
       "value": 6828680.0,
       "value_trillion": 682.87
+    },
+    {
+      "date": "2026-02-01",
+      "value": 6837705.0,
+      "value_trillion": 683.77
+    },
+    {
+      "date": "2026-03-01",
+      "value": 6621318.0,
+      "value_trillion": 662.13
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 6828680.0,
-    "value_trillion": 682.87
+    "date": "2026-03-01",
+    "value": 6621318.0,
+    "value_trillion": 662.13
   },
   "metadata": {
     "source": "Bank of Japan (via FRED)",
@@ -1684,5 +1694,5 @@
     "frequency": "Monthly",
     "series_id": "JPNASSETS"
   },
-  "last_updated": "2026-02-11T16:47:16.900509+09:00"
+  "last_updated": "2026-04-10T20:46:51.876516+09:00"
 }

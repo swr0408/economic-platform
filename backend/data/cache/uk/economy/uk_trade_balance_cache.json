@@ -1739,6 +1739,11 @@
       "date": "2025-12-01",
       "value": -4.34,
       "value_millions": -4340.0
+    },
+    {
+      "date": "2026-01-01",
+      "value": 3.92,
+      "value_millions": 3922.0
     }
   ],
   "mom_change": [
@@ -3129,12 +3134,16 @@
     {
       "date": "2025-12-01",
       "value": 1.22
+    },
+    {
+      "date": "2026-01-01",
+      "value": 8.26
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": -4.34,
-    "value_millions": -4340.0
+    "date": "2026-01-01",
+    "value": 3.92,
+    "value_millions": 3922.0
   },
   "metadata": {
     "title": "Total Trade (TT): WW: Balance: BOP: CP: SA",
@@ -3142,9 +3151,9 @@
     "unit": "£ billions",
     "unit_raw": "m",
     "source": "Office for National Statistics",
-    "release_date": "2026-02-12T00:00:00.000Z",
+    "release_date": "2026-03-13T00:00:00.000Z",
     "description": "Total Trade Balance (Goods + Services), BOP, Current Prices, SA"
   },
-  "ons_next_release": "13 March 2026",
-  "last_updated": "2026-02-14T14:54:12.443003+09:00"
+  "ons_next_release": "16 April 2026",
+  "last_updated": "2026-04-10T20:49:58.174923+09:00"
 }

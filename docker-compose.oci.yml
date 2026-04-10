@@ -29,8 +29,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - "5432:5432"
+    # 本番ではホストに公開しない (コンテナ間通信のみ)
+    # ローカルデバッグ時は ports: ["5432:5432"] を手動で追加する
+    expose:
+      - "5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backend/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql:ro
@@ -50,9 +52,15 @@ services:
     image: redis:7-alpine
     platform: linux/arm64
     container_name: econalpha-oci-redis
-    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
-    ports:
-      - "6379:6379"
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --requirepass ${REDIS_PASSWORD:-}
+    # 本番ではホストに公開しない
+    expose:
+      - "6379"
     volumes:
       - redis_data:/data
     networks:
@@ -78,12 +86,15 @@ services:
     working_dir: /app/backend
     environment:
       DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/economic_platform
-      REDIS_URL: redis://redis:6379/0
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
       SEASONALITY_DIR: /app/data/seasonality
       SCREENSHOT_DIR: /app/screenshots
       # ブラウザ並列上限を 1 に絞る (Chromium のメモリ消費が大きいため)
       BROWSER_RUNNER_CONCURRENCY: "1"
       PLAYWRIGHT_NO_SANDBOX: "1"
+      # CORS / Cookie (本番用)
+      ALLOWED_ORIGINS_EXTRA: ${ALLOWED_ORIGINS_EXTRA:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
       # API キー類 (.env から渡す)
       FRED_API_KEY: ${FRED_API_KEY:-}
       BEA_API_KEY: ${BEA_API_KEY:-}
@@ -101,8 +112,9 @@ services:
       DESTATIS_PASSWORD: ${DESTATIS_PASSWORD:-}
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
       DISCORD_FJ_CHANNEL_ID: ${DISCORD_FJ_CHANNEL_ID:-}
-    ports:
-      - "8000:8000"
+    # Caddy 経由でアクセスするためホストには公開しない
+    expose:
+      - "8000"
     volumes:
       - ./backend:/app/backend
       - ./data:/app/data:ro
@@ -122,6 +134,8 @@ services:
     shm_size: 512m
 
   # Frontend (Nginx, 本番用のみ)
+  # NOTE: Vercel に frontend を移す場合はこのサービスは不要。
+  #        OCI VM 上で frontend も動かす場合のみ使う。
   frontend-prod:
     build:
       context: ./frontend
@@ -140,6 +154,26 @@ services:
     mem_limit: 256m
     cpus: 0.25
 
+  # Caddy (HTTPS リバースプロキシ)
+  caddy:
+    image: caddy:2-alpine
+    platform: linux/arm64
+    container_name: econalpha-oci-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+    networks:
+      - econalpha-oci-network
+    restart: unless-stopped
+    mem_limit: 128m
+    cpus: 0.25
+
 networks:
   econalpha-oci-network:
     driver: bridge
@@ -148,3 +182,5 @@ volumes:
   postgres_data:
   redis_data:
   screenshots_data:
+  caddy_data:
+  caddy_config:

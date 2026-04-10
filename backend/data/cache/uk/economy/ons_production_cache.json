@@ -1680,14 +1680,19 @@
         "date": "2025-12-01",
         "value": 0.5,
         "period": "2025 DEC"
+      },
+      {
+        "date": "2026-01-01",
+        "value": 0.4,
+        "period": "2026 JAN"
       }
     ],
     "metadata": {
       "title": "Production Industries - Total (period on period 1 year ago growth) :CVM SA",
       "cdid": "ED2T",
       "unit": "",
-      "release_date": "12-02-2026",
-      "next_release_ons": "13 March 2026"
+      "release_date": "13-03-2026",
+      "next_release_ons": "16 April 2026"
     }
   },
   "ecyz": {
@@ -3426,14 +3431,19 @@
         "date": "2025-12-01",
         "value": -0.9,
         "period": "2025 DEC"
+      },
+      {
+        "date": "2026-01-01",
+        "value": -0.1,
+        "period": "2026 JAN"
       }
     ],
     "metadata": {
       "title": "Production Industries - Total (period on period growth) :CVM SA",
       "cdid": "ECYZ",
       "unit": "",
-      "release_date": "12-02-2026",
-      "next_release_ons": "13 March 2026"
+      "release_date": "13-03-2026",
+      "next_release_ons": "16 April 2026"
     }
   },
   "metadata": {
@@ -3442,5 +3452,5 @@
     "ed2t_title": "Production Industries - Total (period on period 1 year ago growth) :CVM SA",
     "ecyz_title": "Production Industries - Total (period on period growth) :CVM SA"
   },
-  "last_updated": "2026-02-14T15:02:16.691857+09:00"
+  "last_updated": "2026-04-10T20:49:58.415866+09:00"
 }

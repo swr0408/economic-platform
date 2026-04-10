@@ -231,7 +231,7 @@ export default function AdvanceDeclineRatioChart() {
   return (
     <ChartContainer
       title="東証プライム 騰落レシオ"
-      dataSource="nikkei225jp.com / yfinance"
+      dataSource="nikkei225jp.com"
       sourceUrl="https://nikkei225jp.com/data/touraku.php"
       handbookId="advance-decline-ratio"
       showPeriodSelector={false}

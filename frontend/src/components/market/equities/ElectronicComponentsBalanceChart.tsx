@@ -183,7 +183,7 @@ export default function ElectronicComponentsBalanceChart() {
   return (
     <ChartContainer
       title="電子部品・デバイス工業 出荷在庫バランス"
-      dataSource="経済産業省 / yfinance"
+      dataSource="経済産業省"
       sourceUrl="https://www.meti.go.jp/statistics/tyo/iip/index.html"
       showPeriodSelector={false}
       handbookId="nikkei-225"

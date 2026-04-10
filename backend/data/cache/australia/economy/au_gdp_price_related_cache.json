@@ -12,7 +12,7 @@
       "gfcf_level": 12758.0,
       "consumption_qoq": 2.8,
       "consumption_yoy": null,
-      "consumption_level": 41243.0
+      "consumption_level": 41242.0
     },
     {
       "date": "1960-01-01",
@@ -376,7 +376,7 @@
       "gfcf_level": 18825.0,
       "consumption_qoq": 1.2,
       "consumption_yoy": 2.82,
-      "consumption_level": 53421.0
+      "consumption_level": 53420.0
     },
     {
       "date": "1966-07-01",
@@ -544,7 +544,7 @@
       "gfcf_level": 23154.0,
       "consumption_qoq": 1.2,
       "consumption_yoy": 6.53,
-      "consumption_level": 62795.0
+      "consumption_level": 62794.0
     },
     {
       "date": "1969-07-01",
@@ -614,7 +614,7 @@
       "gfcf_level": 23416.0,
       "consumption_qoq": 1.3,
       "consumption_yoy": 4.66,
-      "consumption_level": 66975.0
+      "consumption_level": 66974.0
     },
     {
       "date": "1970-10-01",
@@ -1048,7 +1048,7 @@
       "gfcf_level": 28790.0,
       "consumption_qoq": 2.2,
       "consumption_yoy": 2.89,
-      "consumption_level": 90061.0
+      "consumption_level": 90060.0
     },
     {
       "date": "1978-07-01",
@@ -1244,7 +1244,7 @@
       "gfcf_level": 38569.0,
       "consumption_qoq": 0.3,
       "consumption_yoy": 5.22,
-      "consumption_level": 98759.0
+      "consumption_level": 98758.0
     },
     {
       "date": "1982-01-01",
@@ -1356,7 +1356,7 @@
       "gfcf_level": 35503.0,
       "consumption_qoq": 0.1,
       "consumption_yoy": 0.16,
-      "consumption_level": 102550.0
+      "consumption_level": 102549.0
     },
     {
       "date": "1984-01-01",
@@ -1454,7 +1454,7 @@
       "gfcf_level": 42978.0,
       "consumption_qoq": 2.2,
       "consumption_yoy": 5.75,
-      "consumption_level": 107699.0
+      "consumption_level": 107698.0
     },
     {
       "date": "1985-10-01",
@@ -1860,7 +1860,7 @@
       "gfcf_level": 48248.0,
       "consumption_qoq": 0.4,
       "consumption_yoy": 2.63,
-      "consumption_level": 131425.0
+      "consumption_level": 131424.0
     },
     {
       "date": "1993-01-01",
@@ -1874,7 +1874,7 @@
       "gfcf_level": 46967.0,
       "consumption_qoq": -0.1,
       "consumption_yoy": 1.33,
-      "consumption_level": 131270.0
+      "consumption_level": 131269.0
     },
     {
       "date": "1993-04-01",
@@ -2000,7 +2000,7 @@
       "gfcf_level": 53307.0,
       "consumption_qoq": 1.2,
       "consumption_yoy": 4.93,
-      "consumption_level": 142566.0
+      "consumption_level": 142565.0
     },
     {
       "date": "1995-07-01",
@@ -2028,7 +2028,7 @@
       "gfcf_level": 53901.0,
       "consumption_qoq": 1.1,
       "consumption_yoy": 3.81,
-      "consumption_level": 144520.0
+      "consumption_level": 144519.0
     },
     {
       "date": "1996-01-01",
@@ -2038,8 +2038,8 @@
       "exports_contribution": 1.2,
       "imports_contribution": -0.8,
       "gfcf_qoq": 3.6,
-      "gfcf_yoy": 2.08,
-      "gfcf_level": 55842.0,
+      "gfcf_yoy": 2.07,
+      "gfcf_level": 55841.0,
       "consumption_qoq": 0.9,
       "consumption_yoy": 3.56,
       "consumption_level": 145821.0
@@ -2094,7 +2094,7 @@
       "exports_contribution": 0.6,
       "imports_contribution": -0.2,
       "gfcf_qoq": 7.0,
-      "gfcf_yoy": 11.46,
+      "gfcf_yoy": 11.47,
       "gfcf_level": 62244.0,
       "consumption_qoq": 1.0,
       "consumption_yoy": 2.56,
@@ -2238,7 +2238,7 @@
       "gfcf_level": 72824.0,
       "consumption_qoq": 1.1,
       "consumption_yoy": 4.61,
-      "consumption_level": 170138.0
+      "consumption_level": 170137.0
     },
     {
       "date": "1999-10-01",
@@ -2392,7 +2392,7 @@
       "gfcf_level": 79660.0,
       "consumption_qoq": 1.6,
       "consumption_yoy": 3.91,
-      "consumption_level": 187101.0
+      "consumption_level": 187100.0
     },
     {
       "date": "2002-07-01",
@@ -2630,7 +2630,7 @@
       "gfcf_level": 106842.0,
       "consumption_qoq": 1.1,
       "consumption_yoy": 4.15,
-      "consumption_level": 223975.0
+      "consumption_level": 223974.0
     },
     {
       "date": "2006-10-01",
@@ -2672,7 +2672,7 @@
       "gfcf_level": 115598.0,
       "consumption_qoq": 0.8,
       "consumption_yoy": 5.52,
-      "consumption_level": 233696.0
+      "consumption_level": 233695.0
     },
     {
       "date": "2007-07-01",
@@ -2851,7 +2851,7 @@
       "imports_contribution": 0.3,
       "gfcf_qoq": 0.8,
       "gfcf_yoy": 5.62,
-      "gfcf_level": 125917.0,
+      "gfcf_level": 125918.0,
       "consumption_qoq": 1.0,
       "consumption_yoy": 4.34,
       "consumption_level": 256335.0
@@ -2868,7 +2868,7 @@
       "gfcf_level": 126147.0,
       "consumption_qoq": 1.1,
       "consumption_yoy": 4.11,
-      "consumption_level": 259200.0
+      "consumption_level": 259199.0
     },
     {
       "date": "2011-01-01",
@@ -2949,7 +2949,7 @@
       "imports_contribution": 0.1,
       "gfcf_qoq": 3.3,
       "gfcf_yoy": 14.35,
-      "gfcf_level": 148878.0,
+      "gfcf_level": 148879.0,
       "consumption_qoq": 0.4,
       "consumption_yoy": 3.05,
       "consumption_level": 270480.0
@@ -2977,10 +2977,10 @@
       "imports_contribution": -0.3,
       "gfcf_qoq": 0.3,
       "gfcf_yoy": 7.24,
-      "gfcf_level": 149572.0,
+      "gfcf_level": 149571.0,
       "consumption_qoq": 0.2,
       "consumption_yoy": 2.45,
-      "consumption_level": 271887.0
+      "consumption_level": 271886.0
     },
     {
       "date": "2013-01-01",
@@ -3005,10 +3005,10 @@
       "imports_contribution": -0.8,
       "gfcf_qoq": -2.0,
       "gfcf_yoy": -3.56,
-      "gfcf_level": 143585.0,
+      "gfcf_level": 143586.0,
       "consumption_qoq": 0.3,
       "consumption_yoy": 1.41,
-      "consumption_level": 274291.0
+      "consumption_level": 274290.0
     },
     {
       "date": "2013-07-01",
@@ -3033,7 +3033,7 @@
       "imports_contribution": 0.3,
       "gfcf_qoq": -0.8,
       "gfcf_yoy": -3.31,
-      "gfcf_level": 144625.0,
+      "gfcf_level": 144624.0,
       "consumption_qoq": 0.5,
       "consumption_yoy": 2.22,
       "consumption_level": 277930.0
@@ -3061,7 +3061,7 @@
       "imports_contribution": -0.5,
       "gfcf_qoq": -1.1,
       "gfcf_yoy": -0.54,
-      "gfcf_level": 142815.0,
+      "gfcf_level": 142816.0,
       "consumption_qoq": 0.4,
       "consumption_yoy": 2.58,
       "consumption_level": 281366.0
@@ -3075,7 +3075,7 @@
       "imports_contribution": -0.2,
       "gfcf_qoq": -1.5,
       "gfcf_yoy": -3.57,
-      "gfcf_level": 140638.0,
+      "gfcf_level": 140637.0,
       "consumption_qoq": 0.9,
       "consumption_yoy": 2.63,
       "consumption_level": 283963.0
@@ -3117,7 +3117,7 @@
       "imports_contribution": -0.2,
       "gfcf_qoq": -1.2,
       "gfcf_yoy": -3.88,
-      "gfcf_level": 137269.0,
+      "gfcf_level": 137270.0,
       "consumption_qoq": 0.6,
       "consumption_yoy": 2.57,
       "consumption_level": 288596.0
@@ -3145,10 +3145,10 @@
       "imports_contribution": 0.1,
       "gfcf_qoq": -0.7,
       "gfcf_yoy": -3.93,
-      "gfcf_level": 134134.0,
+      "gfcf_level": 134133.0,
       "consumption_qoq": 0.5,
       "consumption_yoy": 2.44,
-      "consumption_level": 292694.0
+      "consumption_level": 292695.0
     },
     {
       "date": "2016-01-01",
@@ -3159,10 +3159,10 @@
       "imports_contribution": 0.4,
       "gfcf_qoq": 0.4,
       "gfcf_yoy": -3.08,
-      "gfcf_level": 134611.0,
+      "gfcf_level": 134610.0,
       "consumption_qoq": 0.8,
       "consumption_yoy": 2.91,
-      "consumption_level": 295148.0
+      "consumption_level": 295147.0
     },
     {
       "date": "2016-04-01",
@@ -3173,7 +3173,7 @@
       "imports_contribution": -0.3,
       "gfcf_qoq": -1.2,
       "gfcf_yoy": -3.08,
-      "gfcf_level": 133035.0,
+      "gfcf_level": 133036.0,
       "consumption_qoq": 0.5,
       "consumption_yoy": 2.77,
       "consumption_level": 296579.0
@@ -3187,7 +3187,7 @@
       "imports_contribution": -0.5,
       "gfcf_qoq": -1.9,
       "gfcf_yoy": -3.32,
-      "gfcf_level": 130559.0,
+      "gfcf_level": 130562.0,
       "consumption_qoq": 0.6,
       "consumption_yoy": 2.46,
       "consumption_level": 298415.0
@@ -3201,7 +3201,7 @@
       "imports_contribution": -0.3,
       "gfcf_qoq": 3.2,
       "gfcf_yoy": 0.49,
-      "gfcf_level": 134794.0,
+      "gfcf_level": 134791.0,
       "consumption_qoq": 0.7,
       "consumption_yoy": 2.66,
       "consumption_level": 300483.0
@@ -3215,7 +3215,7 @@
       "imports_contribution": -0.9,
       "gfcf_qoq": 0.4,
       "gfcf_yoy": 0.56,
-      "gfcf_level": 135362.0,
+      "gfcf_level": 135361.0,
       "consumption_qoq": 0.5,
       "consumption_yoy": 2.34,
       "consumption_level": 302060.0
@@ -3228,25 +3228,25 @@
       "exports_contribution": 0.5,
       "imports_contribution": 0.1,
       "gfcf_qoq": 0.7,
-      "gfcf_yoy": 2.45,
-      "gfcf_level": 136289.0,
+      "gfcf_yoy": 2.44,
+      "gfcf_level": 136288.0,
       "consumption_qoq": 0.6,
       "consumption_yoy": 2.43,
-      "consumption_level": 303777.0
+      "consumption_level": 303776.0
     },
     {
       "date": "2017-07-01",
-      "deflator_qoq": 0.3,
-      "deflator_yoy": 3.31,
+      "deflator_qoq": 0.4,
+      "deflator_yoy": 3.44,
       "net_exports_contribution": -0.1,
       "exports_contribution": 0.4,
       "imports_contribution": -0.5,
       "gfcf_qoq": 2.9,
       "gfcf_yoy": 7.43,
-      "gfcf_level": 140257.0,
+      "gfcf_level": 140266.0,
       "consumption_qoq": 0.7,
       "consumption_yoy": 2.5,
-      "consumption_level": 305889.0
+      "consumption_level": 305890.0
     },
     {
       "date": "2017-10-01",
@@ -3256,11 +3256,11 @@
       "exports_contribution": -0.4,
       "imports_contribution": -0.2,
       "gfcf_qoq": -0.1,
-      "gfcf_yoy": 3.99,
-      "gfcf_level": 140166.0,
+      "gfcf_yoy": 3.98,
+      "gfcf_level": 140162.0,
       "consumption_qoq": 1.0,
       "consumption_yoy": 2.79,
-      "consumption_level": 308865.0
+      "consumption_level": 308866.0
     },
     {
       "date": "2018-01-01",
@@ -3271,10 +3271,10 @@
       "imports_contribution": -0.8,
       "gfcf_qoq": 1.4,
       "gfcf_yoy": 4.98,
-      "gfcf_level": 142103.0,
+      "gfcf_level": 142100.0,
       "consumption_qoq": 0.7,
       "consumption_yoy": 2.94,
-      "consumption_level": 310945.0
+      "consumption_level": 310944.0
     },
     {
       "date": "2018-04-01",
@@ -3285,24 +3285,24 @@
       "imports_contribution": -0.1,
       "gfcf_qoq": -0.7,
       "gfcf_yoy": 3.5,
-      "gfcf_level": 141058.0,
+      "gfcf_level": 141056.0,
       "consumption_qoq": 0.7,
-      "consumption_yoy": 3.04,
-      "consumption_level": 313027.0
+      "consumption_yoy": 3.05,
+      "consumption_level": 313026.0
     },
     {
       "date": "2018-07-01",
       "deflator_qoq": 1.2,
-      "deflator_yoy": 2.95,
+      "deflator_yoy": 2.82,
       "net_exports_contribution": 0.5,
       "exports_contribution": 0.1,
       "imports_contribution": 0.4,
       "gfcf_qoq": 0.7,
       "gfcf_yoy": 1.28,
-      "gfcf_level": 142047.0,
+      "gfcf_level": 142061.0,
       "consumption_qoq": 0.2,
       "consumption_yoy": 2.49,
-      "consumption_level": 313507.0
+      "consumption_level": 313509.0
     },
     {
       "date": "2018-10-01",
@@ -3311,12 +3311,12 @@
       "net_exports_contribution": -0.1,
       "exports_contribution": 0.0,
       "imports_contribution": -0.1,
-      "gfcf_qoq": -1.6,
+      "gfcf_qoq": -1.7,
       "gfcf_yoy": -0.32,
-      "gfcf_level": 139718.0,
+      "gfcf_level": 139713.0,
       "consumption_qoq": 0.3,
       "consumption_yoy": 1.77,
-      "consumption_level": 314327.0
+      "consumption_level": 314328.0
     },
     {
       "date": "2019-01-01",
@@ -3326,11 +3326,11 @@
       "exports_contribution": 0.1,
       "imports_contribution": 0.1,
       "gfcf_qoq": -0.5,
-      "gfcf_yoy": -2.13,
-      "gfcf_level": 139073.0,
+      "gfcf_yoy": -2.14,
+      "gfcf_level": 139065.0,
       "consumption_qoq": 0.4,
       "consumption_yoy": 1.45,
-      "consumption_level": 315458.0
+      "consumption_level": 315454.0
     },
     {
       "date": "2019-04-01",
@@ -3341,10 +3341,10 @@
       "imports_contribution": -0.1,
       "gfcf_qoq": -2.0,
       "gfcf_yoy": -3.41,
-      "gfcf_level": 136254.0,
+      "gfcf_level": 136253.0,
       "consumption_qoq": 0.3,
       "consumption_yoy": 1.08,
-      "consumption_level": 316421.0
+      "consumption_level": 316422.0
     },
     {
       "date": "2019-07-01",
@@ -3355,10 +3355,10 @@
       "imports_contribution": 0.1,
       "gfcf_qoq": 1.7,
       "gfcf_yoy": -2.41,
-      "gfcf_level": 138618.0,
+      "gfcf_level": 138636.0,
       "consumption_qoq": -0.2,
       "consumption_yoy": 0.77,
-      "consumption_level": 315906.0
+      "consumption_level": 315911.0
     },
     {
       "date": "2019-10-01",
@@ -3369,10 +3369,10 @@
       "imports_contribution": 0.1,
       "gfcf_qoq": -0.2,
       "gfcf_yoy": -0.99,
-      "gfcf_level": 138336.0,
+      "gfcf_level": 138324.0,
       "consumption_qoq": 0.3,
       "consumption_yoy": 0.83,
-      "consumption_level": 316939.0
+      "consumption_level": 316935.0
     },
     {
       "date": "2020-01-01",
@@ -3383,10 +3383,10 @@
       "imports_contribution": 1.2,
       "gfcf_qoq": -0.4,
       "gfcf_yoy": -0.93,
-      "gfcf_level": 137780.0,
+      "gfcf_level": 137776.0,
       "consumption_qoq": -1.3,
       "consumption_yoy": -0.86,
-      "consumption_level": 312742.0
+      "consumption_level": 312738.0
     },
     {
       "date": "2020-04-01",
@@ -3397,38 +3397,38 @@
       "imports_contribution": 2.8,
       "gfcf_qoq": -5.5,
       "gfcf_yoy": -4.49,
-      "gfcf_level": 130138.0,
+      "gfcf_level": 130136.0,
       "consumption_qoq": -12.7,
       "consumption_yoy": -13.76,
-      "consumption_level": 272882.0
+      "consumption_level": 272884.0
     },
     {
       "date": "2020-07-01",
       "deflator_qoq": 0.8,
       "deflator_yoy": 0.0,
-      "net_exports_contribution": -2.1,
+      "net_exports_contribution": -2.2,
       "exports_contribution": -1.0,
-      "imports_contribution": -1.1,
+      "imports_contribution": -1.2,
       "gfcf_qoq": 1.9,
-      "gfcf_yoy": -4.37,
-      "gfcf_level": 132560.0,
+      "gfcf_yoy": -4.36,
+      "gfcf_level": 132596.0,
       "consumption_qoq": 7.6,
       "consumption_yoy": -7.06,
-      "consumption_level": 293594.0
+      "consumption_level": 293603.0
     },
     {
       "date": "2020-10-01",
       "deflator_qoq": 1.1,
       "deflator_yoy": 2.06,
-      "net_exports_contribution": 0.0,
+      "net_exports_contribution": 0.1,
       "exports_contribution": 1.1,
-      "imports_contribution": -1.1,
+      "imports_contribution": -1.0,
       "gfcf_qoq": 4.8,
-      "gfcf_yoy": 0.47,
-      "gfcf_level": 138980.0,
+      "gfcf_yoy": 0.44,
+      "gfcf_level": 138937.0,
       "consumption_qoq": 4.6,
-      "consumption_yoy": -3.07,
-      "consumption_level": 307199.0
+      "consumption_yoy": -3.08,
+      "consumption_level": 307181.0
     },
     {
       "date": "2021-01-01",
@@ -3439,10 +3439,10 @@
       "imports_contribution": -0.3,
       "gfcf_qoq": 5.1,
       "gfcf_yoy": 5.97,
-      "gfcf_level": 146005.0,
+      "gfcf_level": 146003.0,
       "consumption_qoq": 1.4,
-      "consumption_yoy": -0.36,
-      "consumption_level": 311621.0
+      "consumption_yoy": -0.35,
+      "consumption_level": 311628.0
     },
     {
       "date": "2021-04-01",
@@ -3452,11 +3452,11 @@
       "exports_contribution": -0.8,
       "imports_contribution": -0.4,
       "gfcf_qoq": 2.2,
-      "gfcf_yoy": 14.68,
-      "gfcf_level": 149247.0,
+      "gfcf_yoy": 14.69,
+      "gfcf_level": 149256.0,
       "consumption_qoq": 1.0,
       "consumption_yoy": 15.37,
-      "consumption_level": 314834.0
+      "consumption_level": 314835.0
     },
     {
       "date": "2021-07-01",
@@ -3465,26 +3465,26 @@
       "net_exports_contribution": 0.6,
       "exports_contribution": 0.0,
       "imports_contribution": 0.6,
-      "gfcf_qoq": 0.7,
-      "gfcf_yoy": 13.42,
-      "gfcf_level": 150347.0,
+      "gfcf_qoq": 0.8,
+      "gfcf_yoy": 13.43,
+      "gfcf_level": 150409.0,
       "consumption_qoq": -4.7,
       "consumption_yoy": 2.17,
-      "consumption_level": 299953.0
+      "consumption_level": 299980.0
     },
     {
       "date": "2021-10-01",
       "deflator_qoq": -0.3,
       "deflator_yoy": 5.82,
-      "net_exports_contribution": -0.7,
+      "net_exports_contribution": -0.6,
       "exports_contribution": -0.2,
-      "imports_contribution": -0.5,
+      "imports_contribution": -0.4,
       "gfcf_qoq": 0.4,
-      "gfcf_yoy": 8.66,
-      "gfcf_level": 151019.0,
+      "gfcf_yoy": 8.64,
+      "gfcf_level": 150944.0,
       "consumption_qoq": 6.5,
       "consumption_yoy": 3.97,
-      "consumption_level": 319407.0
+      "consumption_level": 319365.0
     },
     {
       "date": "2022-01-01",
@@ -3493,12 +3493,12 @@
       "net_exports_contribution": -1.5,
       "exports_contribution": 0.1,
       "imports_contribution": -1.6,
-      "gfcf_qoq": 0.8,
+      "gfcf_qoq": 0.9,
       "gfcf_yoy": 4.29,
-      "gfcf_level": 152264.0,
+      "gfcf_level": 152268.0,
       "consumption_qoq": 2.4,
-      "consumption_yoy": 4.98,
-      "consumption_level": 327146.0
+      "consumption_yoy": 4.99,
+      "consumption_level": 327177.0
     },
     {
       "date": "2022-04-01",
@@ -3509,24 +3509,24 @@
       "imports_contribution": -0.5,
       "gfcf_qoq": 0.2,
       "gfcf_yoy": 2.21,
-      "gfcf_level": 152541.0,
+      "gfcf_level": 152550.0,
       "consumption_qoq": 1.9,
-      "consumption_yoy": 5.94,
-      "consumption_level": 333524.0
+      "consumption_yoy": 5.93,
+      "consumption_level": 333509.0
     },
     {
       "date": "2022-07-01",
-      "deflator_qoq": 0.8,
+      "deflator_qoq": 0.9,
       "deflator_yoy": 8.05,
       "net_exports_contribution": -0.8,
       "exports_contribution": 0.1,
       "imports_contribution": -0.9,
-      "gfcf_qoq": 0.1,
-      "gfcf_yoy": 1.58,
-      "gfcf_level": 152728.0,
-      "consumption_qoq": 1.0,
-      "consumption_yoy": 12.32,
-      "consumption_level": 336902.0
+      "gfcf_qoq": 0.2,
+      "gfcf_yoy": 1.64,
+      "gfcf_level": 152879.0,
+      "consumption_qoq": 1.1,
+      "consumption_yoy": 12.35,
+      "consumption_level": 337013.0
     },
     {
       "date": "2022-10-01",
@@ -3535,26 +3535,26 @@
       "net_exports_contribution": 1.1,
       "exports_contribution": 0.6,
       "imports_contribution": 0.5,
-      "gfcf_qoq": -0.2,
-      "gfcf_yoy": 0.97,
-      "gfcf_level": 152487.0,
+      "gfcf_qoq": -0.4,
+      "gfcf_yoy": 0.92,
+      "gfcf_level": 152327.0,
       "consumption_qoq": 1.0,
-      "consumption_yoy": 6.57,
-      "consumption_level": 340383.0
+      "consumption_yoy": 6.55,
+      "consumption_level": 340272.0
     },
     {
       "date": "2023-01-01",
-      "deflator_qoq": 1.3,
+      "deflator_qoq": 1.4,
       "deflator_yoy": 6.72,
       "net_exports_contribution": -0.3,
       "exports_contribution": 0.4,
       "imports_contribution": -0.7,
-      "gfcf_qoq": 2.1,
+      "gfcf_qoq": 2.2,
       "gfcf_yoy": 2.26,
-      "gfcf_level": 155711.0,
+      "gfcf_level": 155707.0,
       "consumption_qoq": 0.7,
-      "consumption_yoy": 4.75,
-      "consumption_level": 342701.0
+      "consumption_yoy": 4.76,
+      "consumption_level": 342752.0
     },
     {
       "date": "2023-04-01",
@@ -3565,10 +3565,10 @@
       "imports_contribution": -0.5,
       "gfcf_qoq": 3.0,
       "gfcf_yoy": 5.11,
-      "gfcf_level": 160338.0,
-      "consumption_qoq": 0.5,
-      "consumption_yoy": 3.23,
-      "consumption_level": 344286.0
+      "gfcf_level": 160351.0,
+      "consumption_qoq": 0.4,
+      "consumption_yoy": 3.22,
+      "consumption_level": 344234.0
     },
     {
       "date": "2023-07-01",
@@ -3577,139 +3577,153 @@
       "net_exports_contribution": -0.3,
       "exports_contribution": 0.3,
       "imports_contribution": -0.6,
-      "gfcf_qoq": 0.7,
-      "gfcf_yoy": 5.75,
-      "gfcf_level": 161507.0,
-      "consumption_qoq": -0.2,
-      "consumption_yoy": 1.97,
-      "consumption_level": 343537.0
+      "gfcf_qoq": 0.9,
+      "gfcf_yoy": 5.82,
+      "gfcf_level": 161769.0,
+      "consumption_qoq": -0.1,
+      "consumption_yoy": 1.99,
+      "consumption_level": 343722.0
     },
     {
       "date": "2023-10-01",
-      "deflator_qoq": 1.4,
+      "deflator_qoq": 1.3,
       "deflator_yoy": 2.78,
-      "net_exports_contribution": 0.1,
-      "exports_contribution": -0.5,
+      "net_exports_contribution": -0.1,
+      "exports_contribution": -0.7,
       "imports_contribution": 0.6,
-      "gfcf_qoq": 0.1,
-      "gfcf_yoy": 5.97,
-      "gfcf_level": 161596.0,
-      "consumption_qoq": 0.1,
-      "consumption_yoy": 1.08,
-      "consumption_level": 344052.0
+      "gfcf_qoq": -0.3,
+      "gfcf_yoy": 5.92,
+      "gfcf_level": 161347.0,
+      "consumption_qoq": 0.0,
+      "consumption_yoy": 1.06,
+      "consumption_level": 343878.0
     },
     {
       "date": "2024-01-01",
       "deflator_qoq": 1.0,
       "deflator_yoy": 2.44,
-      "net_exports_contribution": -0.9,
-      "exports_contribution": 0.4,
+      "net_exports_contribution": -0.8,
+      "exports_contribution": 0.5,
       "imports_contribution": -1.3,
-      "gfcf_qoq": -0.6,
+      "gfcf_qoq": -0.4,
       "gfcf_yoy": 3.18,
-      "gfcf_level": 160669.0,
-      "consumption_qoq": 0.5,
+      "gfcf_level": 160660.0,
+      "consumption_qoq": 0.6,
       "consumption_yoy": 0.93,
-      "consumption_level": 345874.0
+      "consumption_level": 345941.0
     },
     {
       "date": "2024-04-01",
-      "deflator_qoq": 0.2,
-      "deflator_yoy": 3.38,
+      "deflator_qoq": 0.1,
+      "deflator_yoy": 3.28,
       "net_exports_contribution": -0.2,
       "exports_contribution": -0.1,
       "imports_contribution": -0.1,
       "gfcf_qoq": 0.8,
-      "gfcf_yoy": 0.97,
-      "gfcf_level": 161899.0,
+      "gfcf_yoy": 0.96,
+      "gfcf_level": 161894.0,
       "consumption_qoq": -0.3,
       "consumption_yoy": 0.19,
-      "consumption_level": 344952.0
+      "consumption_level": 344875.0
     },
     {
       "date": "2024-07-01",
-      "deflator_qoq": 0.0,
-      "deflator_yoy": 2.54,
-      "net_exports_contribution": 0.0,
-      "exports_contribution": 0.0,
+      "deflator_qoq": 0.2,
+      "deflator_yoy": 2.64,
+      "net_exports_contribution": 0.1,
+      "exports_contribution": 0.1,
       "imports_contribution": 0.0,
-      "gfcf_qoq": 1.1,
-      "gfcf_yoy": 1.37,
-      "gfcf_level": 163725.0,
-      "consumption_qoq": 0.1,
-      "consumption_yoy": 0.5,
-      "consumption_level": 345261.0
+      "gfcf_qoq": 1.4,
+      "gfcf_yoy": 1.44,
+      "gfcf_level": 164099.0,
+      "consumption_qoq": 0.2,
+      "consumption_yoy": 0.58,
+      "consumption_level": 345703.0
     },
     {
       "date": "2024-10-01",
-      "deflator_qoq": 1.0,
+      "deflator_qoq": 0.9,
       "deflator_yoy": 2.2,
-      "net_exports_contribution": 0.0,
-      "exports_contribution": 0.1,
-      "imports_contribution": -0.1,
-      "gfcf_qoq": 0.5,
-      "gfcf_yoy": 1.84,
-      "gfcf_level": 164567.0,
-      "consumption_qoq": 0.5,
-      "consumption_yoy": 0.88,
-      "consumption_level": 347085.0
+      "net_exports_contribution": -0.1,
+      "exports_contribution": -0.1,
+      "imports_contribution": 0.0,
+      "gfcf_qoq": 0.1,
+      "gfcf_yoy": 1.77,
+      "gfcf_level": 164204.0,
+      "consumption_qoq": 0.4,
+      "consumption_yoy": 0.98,
+      "consumption_level": 347257.0
     },
     {
       "date": "2025-01-01",
-      "deflator_qoq": 0.9,
-      "deflator_yoy": 2.08,
-      "net_exports_contribution": 0.0,
+      "deflator_qoq": 1.0,
+      "deflator_yoy": 2.18,
+      "net_exports_contribution": -0.1,
       "exports_contribution": 0.0,
-      "imports_contribution": 0.0,
-      "gfcf_qoq": 0.0,
-      "gfcf_yoy": 2.45,
-      "gfcf_level": 164600.0,
-      "consumption_qoq": 0.5,
-      "consumption_yoy": 0.83,
-      "consumption_level": 348751.0
+      "imports_contribution": -0.1,
+      "gfcf_qoq": 0.3,
+      "gfcf_yoy": 2.52,
+      "gfcf_level": 164702.0,
+      "consumption_qoq": 0.6,
+      "consumption_yoy": 0.94,
+      "consumption_level": 349186.0
     },
     {
       "date": "2025-04-01",
-      "deflator_qoq": 0.0,
-      "deflator_yoy": 1.88,
+      "deflator_qoq": -0.1,
+      "deflator_yoy": 1.98,
       "net_exports_contribution": 0.1,
       "exports_contribution": 0.6,
       "imports_contribution": -0.5,
-      "gfcf_qoq": -0.7,
-      "gfcf_yoy": 0.97,
-      "gfcf_level": 163467.0,
-      "consumption_qoq": 0.9,
-      "consumption_yoy": 2.06,
-      "consumption_level": 352059.0
+      "gfcf_qoq": -0.6,
+      "gfcf_yoy": 1.11,
+      "gfcf_level": 163689.0,
+      "consumption_qoq": 1.0,
+      "consumption_yoy": 2.29,
+      "consumption_level": 352766.0
     },
     {
       "date": "2025-07-01",
-      "deflator_qoq": 1.3,
-      "deflator_yoy": 3.27,
-      "net_exports_contribution": 0.0,
+      "deflator_qoq": 1.4,
+      "deflator_yoy": 3.26,
+      "net_exports_contribution": -0.2,
       "exports_contribution": 0.3,
-      "imports_contribution": -0.3,
-      "gfcf_qoq": 3.0,
-      "gfcf_yoy": 2.8,
-      "gfcf_level": 168315.0,
+      "imports_contribution": -0.5,
+      "gfcf_qoq": 3.2,
+      "gfcf_yoy": 2.91,
+      "gfcf_level": 168877.0,
       "consumption_qoq": 0.5,
-      "consumption_yoy": 2.49,
-      "consumption_level": 353842.0
+      "consumption_yoy": 2.6,
+      "consumption_level": 354706.0
+    },
+    {
+      "date": "2025-10-01",
+      "deflator_qoq": 1.0,
+      "deflator_yoy": 3.33,
+      "net_exports_contribution": -0.1,
+      "exports_contribution": 0.3,
+      "imports_contribution": -0.4,
+      "gfcf_qoq": 0.7,
+      "gfcf_yoy": 3.61,
+      "gfcf_level": 170135.0,
+      "consumption_qoq": 0.3,
+      "consumption_yoy": 2.43,
+      "consumption_level": 355694.0
     }
   ],
   "latest": {
-    "date": "2025-07-01",
-    "deflator_qoq": 1.3,
-    "deflator_yoy": 3.27,
-    "net_exports_contribution": 0.0,
+    "date": "2025-10-01",
+    "deflator_qoq": 1.0,
+    "deflator_yoy": 3.33,
+    "net_exports_contribution": -0.1,
     "exports_contribution": 0.3,
-    "imports_contribution": -0.3,
-    "gfcf_qoq": 3.0,
-    "gfcf_yoy": 2.8,
-    "gfcf_level": 168315.0,
-    "consumption_qoq": 0.5,
-    "consumption_yoy": 2.49,
-    "consumption_level": 353842.0
+    "imports_contribution": -0.4,
+    "gfcf_qoq": 0.7,
+    "gfcf_yoy": 3.61,
+    "gfcf_level": 170135.0,
+    "consumption_qoq": 0.3,
+    "consumption_yoy": 2.43,
+    "consumption_level": 355694.0
   },
   "metadata": {
     "source": "Australian Bureau of Statistics",
@@ -3717,15 +3731,6 @@
     "frequency": "quarterly",
     "unit": "% / ppt / $m"
   },
-  "next_release": {
-    "date": "2026-03-04",
-    "datetime_utc": "2026-03-04T00:30:00+00:00",
-    "datetime_jst": "2026-03-04T09:30:00+09:00",
-    "time_jst": "09:30",
-    "datetime_sydney": "2026-03-04T11:30:00+11:00",
-    "time_sydney": "11:30",
-    "label": "GDP詳細 (Q4)",
-    "estimate": null
-  },
-  "last_updated": "2026-02-20T01:29:24.403138+09:00"
+  "next_release": null,
+  "last_updated": "2026-04-10T20:50:38.906015+09:00"
 }

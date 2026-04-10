@@ -7,7 +7,7 @@
  * - POST /api/japan/machinery-orders-forecast/refresh - データ強制更新
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export interface MachineryOrdersForecastDataPoint {
   date: string;                    // YYYY-MM-01 format (quarter end month)

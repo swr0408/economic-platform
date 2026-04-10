@@ -7139,14 +7139,14 @@
     }
   },
   "next_release": {
-    "date": "2026-01-30",
-    "datetime_utc": "2026-01-30T08:00:00+00:00",
-    "datetime_jst": "2026-01-30T17:00:00+09:00",
-    "time_jst": "17:00",
-    "datetime_cet": "2026-01-30T09:00:00+01:00",
+    "date": "2026-04-14",
+    "datetime_utc": "2026-04-14T07:00:00+00:00",
+    "datetime_jst": "2026-04-14T16:00:00+09:00",
+    "time_jst": "16:00",
+    "datetime_cet": "2026-04-14T09:00:00+02:00",
     "time_cet": "09:00",
-    "label": "HICP YoY",
-    "estimate": 2.4
+    "label": "HICP YoY (Mar)",
+    "estimate": 3.3
   },
-  "last_updated": "2026-01-30T10:40:53.599035+09:00"
+  "last_updated": "2026-04-10T20:48:58.999752+09:00"
 }

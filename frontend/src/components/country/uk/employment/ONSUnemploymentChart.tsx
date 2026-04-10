@@ -96,7 +96,7 @@ export default function ONSUnemploymentChart({ data }: ONSUnemploymentChartProps
 
   if (!hasData) {
     return (
-      <ChartContainer title="ONS失業率" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="ONS失業率" showPeriodSelector={false} showDataSource={false} handbookId="uk-unemployment">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -107,6 +107,7 @@ export default function ONSUnemploymentChart({ data }: ONSUnemploymentChartProps
       <ChartContainer
         title="失業率"
         showPeriodSelector={false}
+        handbookId="uk-unemployment"
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/bulletins/uklabourmarket/latest"
       >

@@ -557,14 +557,14 @@
     },
     {
       "date": "2026-01-01",
-      "value": 2846.774,
-      "yoy": -0.5
+      "value": 2838.774,
+      "yoy": -0.78
     }
   ],
   "latest": {
     "date": "2026-01-01",
-    "value": 2846.774,
-    "yoy": -0.5
+    "value": 2838.774,
+    "yoy": -0.78
   },
   "next_release": null,
   "metadata": {
@@ -579,5 +579,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-24T11:16:03.161157+09:00"
+  "last_updated": "2026-04-10T20:45:12.853804+09:00"
 }

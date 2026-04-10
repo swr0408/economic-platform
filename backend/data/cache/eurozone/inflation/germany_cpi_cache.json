@@ -1446,9 +1446,42 @@
       "cpi_index": 122.7,
       "cpi_yoy_change": 1.8,
       "cpi_mom_change": 0.0,
-      "hicp_index": 132.8,
+      "hicp_index": null,
+      "hicp_yoy_change": null,
+      "hicp_mom_change": null,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2026-01-01",
+      "cpi_index": 122.8,
+      "cpi_yoy_change": 2.1,
+      "cpi_mom_change": 0.1,
+      "hicp_index": 100.6,
+      "hicp_yoy_change": 2.1,
+      "hicp_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2026-02-01",
+      "cpi_index": 123.1,
+      "cpi_yoy_change": 1.9,
+      "cpi_mom_change": 0.2,
+      "hicp_index": 100.9,
       "hicp_yoy_change": 2.0,
-      "hicp_mom_change": 0.2,
+      "hicp_mom_change": 0.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2026-03-01",
+      "cpi_index": 124.5,
+      "cpi_yoy_change": 2.7,
+      "cpi_mom_change": 1.1,
+      "hicp_index": 102.1,
+      "hicp_yoy_change": 2.8,
+      "hicp_mom_change": 1.2,
       "source": "destatis",
       "is_preliminary": false
     }
@@ -1463,14 +1496,14 @@
     "description": "ドイツ消費者物価指数 / 調和消費者物価指数"
   },
   "next_release": {
-    "date": "2026-01-30",
-    "datetime_utc": "2026-01-30T13:00:00+00:00",
-    "datetime_jst": "2026-01-30T22:00:00+09:00",
-    "time_jst": "22:00",
-    "datetime_cet": "2026-01-30T14:00:00+01:00",
-    "time_cet": "14:00",
-    "label": "Harmonised Inflation Rate YoY (Jan)",
-    "estimate": 2.1
+    "date": "2026-05-12",
+    "datetime_utc": "2026-05-12T06:00:00+00:00",
+    "datetime_jst": "2026-05-12T15:00:00+09:00",
+    "time_jst": "15:00",
+    "datetime_cet": "2026-05-12T08:00:00+02:00",
+    "time_cet": "08:00",
+    "label": "Inflation Rate YoY (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-01-30T10:40:58.462291+09:00"
+  "last_updated": "2026-04-10T20:48:59.322972+09:00"
 }

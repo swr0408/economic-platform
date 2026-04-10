@@ -3,7 +3,7 @@
  * 日本PMI（製造業/サービス業/総合）API
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export interface JapanPMIDataPoint {
   date: string // YYYY-MM-DD format

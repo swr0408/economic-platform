@@ -1162,7 +1162,7 @@
       {
         "date": "2026-01",
         "value": 48.7,
-        "forecast": 47.8,
+        "forecast": 48.5,
         "previous": 47.0
       },
       {
@@ -1170,13 +1170,19 @@
         "value": 50.9,
         "forecast": 50.7,
         "previous": 49.1
+      },
+      {
+        "date": "2026-03",
+        "value": 52.2,
+        "forecast": 51.7,
+        "previous": 50.9
       }
     ],
     "latest": {
-      "date": "2026-02",
-      "value": 50.9,
-      "forecast": 50.7,
-      "previous": 49.1
+      "date": "2026-03",
+      "value": 52.2,
+      "forecast": 51.7,
+      "previous": 50.9
     }
   },
   "services": {
@@ -2350,13 +2356,19 @@
         "value": 53.5,
         "forecast": 53.4,
         "previous": 53.4
+      },
+      {
+        "date": "2026-03",
+        "value": 50.9,
+        "forecast": 51.2,
+        "previous": 53.5
       }
     ],
     "latest": {
-      "date": "2026-02",
-      "value": 53.5,
-      "forecast": 53.4,
-      "previous": 53.4
+      "date": "2026-03",
+      "value": 50.9,
+      "forecast": 51.2,
+      "previous": 53.5
     }
   },
   "composite": {
@@ -3169,25 +3181,31 @@
         "date": "2026-02",
         "value": 53.2,
         "forecast": 53.1,
-        "previous": 52.1
+        "previous": 53.1
+      },
+      {
+        "date": "2026-03",
+        "value": 51.9,
+        "forecast": 51.9,
+        "previous": 53.2
       }
     ],
     "latest": {
-      "date": "2026-02",
-      "value": 53.2,
-      "forecast": 53.1,
-      "previous": 52.1
+      "date": "2026-03",
+      "value": 51.9,
+      "forecast": 51.9,
+      "previous": 53.2
     }
   },
   "next_release": {
-    "date": "2026-03-24",
-    "datetime_utc": "2026-03-24T07:30:00+00:00",
-    "datetime_jst": "2026-03-24T16:30:00+09:00",
+    "date": "2026-04-23",
+    "datetime_utc": "2026-04-23T07:30:00+00:00",
+    "datetime_jst": "2026-04-23T16:30:00+09:00",
     "time_jst": "16:30",
-    "datetime_cet": "2026-03-24T08:30:00+01:00",
-    "time_cet": "08:30",
-    "label": "Services PMI (Mar)",
-    "estimate": null
+    "datetime_cet": "2026-04-23T09:30:00+02:00",
+    "time_cet": "09:30",
+    "label": "S&P Global Composite PMI (Apr)",
+    "estimate": 51.4
   },
-  "last_updated": "2026-03-08T15:43:03.833286+01:00"
+  "last_updated": "2026-04-10T16:01:24.684064+02:00"
 }

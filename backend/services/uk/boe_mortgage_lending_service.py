@@ -80,6 +80,9 @@ class BoEMortgageLendingService:
             data = self._load_from_db()
 
         if data:
+            # 3ヶ月移動平均・前年比を計算
+            data = self._compute_derived_fields(data)
+
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             latest = data[-1] if data else None
 
@@ -239,6 +242,24 @@ class BoEMortgageLendingService:
         except Exception as e:
             logger.error(f"[BoE Mortgage Lending] Error loading from DB: {e}")
             return []
+
+    def _compute_derived_fields(self, data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """3ヶ月移動平均・前年比を計算して各データポイントに追加"""
+        # Pass 1: 3ヶ月移動平均
+        for i, dp in enumerate(data):
+            if i >= 2 and all(data[j].get("value") is not None for j in range(i - 2, i + 1)):
+                dp["ma3"] = round(sum(data[j]["value"] for j in range(i - 2, i + 1)) / 3, 1)
+            else:
+                dp["ma3"] = None
+
+        # Pass 2: 3ヶ月移動平均の前年比（%）
+        for i, dp in enumerate(data):
+            if i >= 12 and dp.get("ma3") is not None and data[i - 12].get("ma3") is not None and data[i - 12]["ma3"] != 0:
+                dp["ma3_yoy"] = round((dp["ma3"] / data[i - 12]["ma3"] - 1) * 100, 2)
+            else:
+                dp["ma3_yoy"] = None
+
+        return data
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""

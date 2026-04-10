@@ -7808,33 +7808,45 @@
     },
     {
       "date": "2026-04-07",
-      "score": 22.5,
-      "rating": "extreme fear",
+      "score": 27.6,
+      "rating": "fear",
       "sp500": 6616.85
     },
     {
       "date": "2026-04-08",
-      "score": 22.5,
-      "rating": "extreme fear",
+      "score": 34.4,
+      "rating": "fear",
+      "sp500": 6782.81
+    },
+    {
+      "date": "2026-04-09",
+      "score": 37.2,
+      "rating": "fear",
+      "sp500": 6824.66
+    },
+    {
+      "date": "2026-04-10",
+      "score": 37.2,
+      "rating": "fear",
       "sp500": null
     }
   ],
   "latest": {
-    "date": "2026-04-08",
-    "score": 22.5,
-    "rating": "extreme fear",
-    "previous_close": 22.2,
-    "previous_1_week": 13.8,
-    "previous_1_month": 25.3,
-    "previous_1_year": 2.9
+    "date": "2026-04-10",
+    "score": 37.2,
+    "rating": "fear",
+    "previous_close": 36.1,
+    "previous_1_week": 23.7,
+    "previous_1_month": 20.3,
+    "previous_1_year": 5.6
   },
   "metadata": {
     "source": "CNN Fear & Greed Index",
-    "data_count": 1303,
+    "data_count": 1305,
     "start_date": "2021-02-01",
-    "end_date": "2026-04-08"
+    "end_date": "2026-04-10"
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-04-08T18:54:25.934666+09:00"
+  "last_updated": "2026-04-10T20:43:45.798184+09:00"
 }

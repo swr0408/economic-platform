@@ -2708,16 +2708,25 @@
       "index": 333.51,
       "annualized_3m": 3.01,
       "annualized_6m": 2.32
+    },
+    {
+      "date": "2026-03-01",
+      "value": 2.6,
+      "yoy": 2.6,
+      "mom": 0.2,
+      "index": 334.17,
+      "annualized_3m": 2.87,
+      "annualized_6m": 2.28
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 2.47,
-    "yoy": 2.47,
-    "mom": 0.22,
-    "index": 333.51,
-    "annualized_3m": 3.01,
-    "annualized_6m": 2.32
+    "date": "2026-03-01",
+    "value": 2.6,
+    "yoy": 2.6,
+    "mom": 0.2,
+    "index": 334.17,
+    "annualized_3m": 2.87,
+    "annualized_6m": 2.28
   },
   "next_release": {
     "date": "2026-04-10",
@@ -2727,5 +2736,5 @@
     "label": "Core Inflation Rate YoY (Mar)",
     "estimate": 2.7
   },
-  "last_updated": "2026-04-09T18:02:07.248943+09:00"
+  "last_updated": "2026-04-10T23:42:55.173824+09:00"
 }

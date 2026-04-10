@@ -987,6 +987,24 @@ function extractDirectApiData(
           value: item[field] as number,
         }));
     }
+    // パターン: 並列配列構造（DMP等）
+    // { date: ["2022-05", ...], expected_3mo_avg: [0.057, ...] }
+    const parallelData = indicatorData as Record<string, unknown> | undefined;
+    if (parallelData && Array.isArray(parallelData.date)) {
+      const field = valueField || 'value';
+      const dates = parallelData.date as string[];
+      const values = parallelData[field] as number[] | undefined;
+      if (values && Array.isArray(values)) {
+        console.log('[useOverlayData] Direct API parallel arrays pattern for:', dataKey, 'field:', field, 'length:', dates.length);
+        const result: DataPoint[] = [];
+        for (let i = 0; i < dates.length; i++) {
+          if (values[i] !== undefined && values[i] !== null && typeof values[i] === 'number') {
+            result.push({ date: dates[i], value: values[i] });
+          }
+        }
+        return result;
+      }
+    }
     console.log('[useOverlayData] No data found for dot notation dataKey:', dataKey);
     return [];
   }

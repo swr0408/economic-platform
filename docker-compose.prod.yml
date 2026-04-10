@@ -1,0 +1,172 @@
+# ============================================================================
+# docker-compose.prod.yml
+# ----------------------------------------------------------------------------
+# AWS Lightsail (amd64) 本番用 compose ファイル。
+#
+# docker-compose.oci.yml (ARM64) からの変更点:
+#   - platform: linux/amd64 (Lightsail は x86_64)
+#   - コンテナ名を econalpha-prod-* に統一
+#   - リソース制限を Lightsail プランに合わせて調整
+#     (2GB プラン想定。4GB プランなら mem_limit を引き上げ可)
+#
+# 使い方:
+#   cp .env.production.example .env   # 値を埋める
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Caddy + frontend-prod は port 80/443 が競合するため同時に使わないこと。
+# 推奨構成:
+#   A) Caddy (API のみ公開) + フロントエンドは Vercel 等の外部ホスト
+#   B) frontend-prod (Nginx) のみ使い、Nginx 内で /api/ をプロキシ
+# ============================================================================
+
+services:
+  # ---------- PostgreSQL + TimescaleDB ----------
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    container_name: econalpha-prod-db
+    environment:
+      POSTGRES_DB: economic_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    expose:
+      - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql:ro
+    networks:
+      - econalpha-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d economic_platform"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    mem_limit: 768m
+    cpus: 0.5
+    restart: unless-stopped
+
+  # ---------- Redis ----------
+  redis:
+    image: redis:7-alpine
+    container_name: econalpha-prod-redis
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 192mb
+      --maxmemory-policy allkeys-lru
+      --requirepass ${REDIS_PASSWORD:-}
+    expose:
+      - "6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - econalpha-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    mem_limit: 256m
+    cpus: 0.25
+    restart: unless-stopped
+
+  # ---------- Backend (FastAPI + Playwright) ----------
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.browser-worker
+    container_name: econalpha-prod-backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1
+    working_dir: /app/backend
+    environment:
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/economic_platform
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      SEASONALITY_DIR: /app/data/seasonality
+      SCREENSHOT_DIR: /app/screenshots
+      BROWSER_RUNNER_CONCURRENCY: ${BROWSER_RUNNER_CONCURRENCY:-1}
+      PLAYWRIGHT_NO_SANDBOX: "1"
+      ALLOWED_ORIGINS_EXTRA: ${ALLOWED_ORIGINS_EXTRA:-}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      # API Keys
+      FRED_API_KEY: ${FRED_API_KEY:-}
+      FMP_API_KEY: ${FMP_API_KEY:-}
+      BEA_API_KEY: ${BEA_API_KEY:-}
+      BLS_API_KEY: ${BLS_API_KEY:-}
+      ALPHA_VANTAGE_API_KEY: ${ALPHA_VANTAGE_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      TWITTER_BEARER_TOKEN: ${TWITTER_BEARER_TOKEN:-}
+      DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-}
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
+      DISCORD_FJ_CHANNEL_ID: ${DISCORD_FJ_CHANNEL_ID:-}
+      LINE_CHANNEL_ACCESS_TOKEN: ${LINE_CHANNEL_ACCESS_TOKEN:-}
+      GOOGLE_CLOUD_VISION_API_KEY: ${GOOGLE_CLOUD_VISION_API_KEY:-}
+      ESTAT_API_KEY: ${ESTAT_API_KEY:-}
+      DESTATIS_USERNAME: ${DESTATIS_USERNAME:-}
+      DESTATIS_PASSWORD: ${DESTATIS_PASSWORD:-}
+      TRADING_ECONOMICS_API_KEY: ${TRADING_ECONOMICS_API_KEY:-}
+    expose:
+      - "8000"
+    volumes:
+      - ./backend:/app/backend
+      - ./data:/app/data:ro
+      - screenshots_data:/app/screenshots
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - econalpha-network
+    restart: unless-stopped
+    mem_limit: 768m
+    cpus: 1.0
+    shm_size: 256m
+
+  # ---------- Frontend (Nginx) ----------
+  # Nginx 同一 VM 構成の場合のみ使う。Vercel 等にデプロイする場合は不要。
+  frontend-prod:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: econalpha-prod-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - econalpha-network
+    restart: unless-stopped
+    mem_limit: 128m
+    cpus: 0.25
+
+  # ---------- Caddy (HTTPS リバースプロキシ) ----------
+  # API を HTTPS で公開する場合に使う。frontend-prod と port 80 が競合するため同時不可。
+  caddy:
+    image: caddy:2-alpine
+    container_name: econalpha-prod-caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+    networks:
+      - econalpha-network
+    restart: unless-stopped
+    mem_limit: 128m
+    cpus: 0.25
+
+networks:
+  econalpha-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  screenshots_data:
+  caddy_data:
+  caddy_config:

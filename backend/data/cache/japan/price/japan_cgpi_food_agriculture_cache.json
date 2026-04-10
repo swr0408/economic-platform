@@ -307,19 +307,24 @@
     },
     {
       "date": "2026-02-01",
-      "food_yoy": 4.62,
-      "agriculture_yoy": 18.48
+      "food_yoy": 4.79,
+      "agriculture_yoy": 18.27
+    },
+    {
+      "date": "2026-03-01",
+      "food_yoy": 4.26,
+      "agriculture_yoy": 18.87
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "food_yoy": 4.62,
-    "agriculture_yoy": 18.48
+    "date": "2026-03-01",
+    "food_yoy": 4.26,
+    "agriculture_yoy": 18.87
   },
   "next_release": {
     "date": "2026-04-10",
     "datetime_jst": "2026-04-10T08:50:00+09:00",
     "label": "企業物価指数 - 2026/04/10 8:50 JST（予定）"
   },
-  "last_updated": "2026-03-18T22:31:06.552360+09:00"
+  "last_updated": "2026-04-10T09:35:18.139162+09:00"
 }

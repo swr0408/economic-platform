@@ -251,11 +251,11 @@ APScheduler の現状 (browser を使うジョブのみ抜粋):
 | 4 | ✅ DONE | `extract()` API 追加 (DOM テキスト / HTML / evaluate) |
 | 5 | ✅ DONE | `pre_screenshot_js` フィールド追加 (レイアウト調整用) |
 | 6 | ✅ DONE | `take_screenshot_with_retry` ヘルパー |
-| 7 | 🟡 進行中 | 既存 18 サービスの段階移行 (14/18 完了 — Selenium 系の大半 + extract 型 3 件 + 既 Playwright 4 件 移行) |
-| 8 | ⏳ 未着手 | Selenium を `Dockerfile.simple` から削除 (全移行完了後 / boj_lending を残す間は据え置き) |
+| 7 | ✅ DONE | 既存 18 サービスの段階移行 (16/16 完了 — 全サービスが BrowserRunner 経由に統一) |
+| 8 | ⏳ 未着手 | Selenium を `Dockerfile.simple` から削除 (全移行完了 — 削除可能) |
 | 9 | ✅ 不要 | APScheduler ジョブの時刻分散 (cn_shibor 系は HTTP のみで browser を使わないと判明) |
 | 10 | ⏳ 未着手 | `Dockerfile.simple` を `Dockerfile.browser-worker` に統合 or backend/browser-worker 分離 |
-| 11 | ⏳ 未着手 | `BrowserRunner` 拡張 (iframe / multi-window / file download) — boj_lending / cme_fedwatch 用 |
+| 11 | ✅ DONE | `BrowserRunner` 拡張 (`run_custom_flow` + `context` プロパティ) — boj_lending / cme_fedwatch で使用 |
 
 ### 移行進捗 (services/)
 
@@ -269,10 +269,10 @@ APScheduler の現状 (browser を使うジョブのみ抜粋):
 | 6 | canada/boc_rate_cuts_screenshot_service.py | Selenium → Playwright | ✅ 完了 |
 | 7 | eurozone/ecb_rate_cuts_screenshot_service.py | Selenium → Playwright | ✅ 完了 |
 | 8 | eurozone/eurex_ois_service.py | Selenium (extract 型) | ✅ 完了 (evaluate_js) |
-| 9 | japan/boj_lending_service.py | Selenium (multi-window CSV) | 🚫 deferred (要 BrowserRunner 拡張) |
+| 9 | japan/boj_lending_service.py | Selenium (multi-window CSV) | ✅ 完了 (run_custom_flow / multi-window) |
 | 10 | usa/inflation_nowcasting_service.py | Selenium (extract 型) | ✅ 完了 (evaluate_js) |
 | 11 | market/ny_option_cut_service.py | Selenium (要素スクショ) | ✅ 完了 (pre_screenshot_js) |
-| 12 | usa/cme_fedwatch_screenshot_service.py | Playwright (iframe + Firefox fallback) | 🚫 deferred (要 iframe API) |
+| 12 | usa/cme_fedwatch_screenshot_service.py | Playwright (iframe + Firefox fallback) | ✅ 完了 (run_custom_flow / iframe + Firefox fallback) |
 | 13 | usa/opentable_service.py | Playwright (直接利用) | ✅ 完了 (pre_screenshot_js / pre_click_selectors) |
 | 14 | usa/us_flights_service.py | Playwright (直接利用) | ✅ 完了 (pre_screenshot_js / pre_click_selectors) |
 | 15 | uk/brc_commentary_service.py | Playwright async (直接利用) | ✅ 完了 (extract_page + html_selectors) |
@@ -319,21 +319,50 @@ png_bytes = result.data  # bytes (Pillow / Tesseract に渡せる)
 実例: [services/japan/boj_meeting_expectations_service.py](../japan/boj_meeting_expectations_service.py)
 (Tesseract OCR にそのまま渡す)
 
-### Deferred 項目: BrowserRunner 拡張が必要なケース
+### カスタムフロー (multi-window / form / iframe)
 
-以下 2 サービスは現状の `BrowserRunner` API では表現できないため移行を保留:
+`screenshot()` / `extract()` では表現できない複雑なフロー用。
+`run_custom_flow` でコールバックに Playwright `BrowserContext` を渡す:
 
-**`japan/boj_lending_service.py`** (Selenium のまま):
-- 複数 window を跨ぐフロー (チェックボックス → 抽出条件追加 → 抽出ボタン →
-  別ウィンドウへ遷移 → ダウンロードボタン → さらに別ウィンドウ → CSV リンク →
-  `requests.get()` で CSV 取得) を必要とする
-- 必要な追加 API: `flow()` ライク (click → wait → switch → click → 最終 URL を返す)
+```python
+from services.browser import BrowserConfig, run_custom_flow
 
-**`usa/cme_fedwatch_screenshot_service.py`** (Playwright 直接利用のまま):
-- `page.frames` で QuikStrike iframe を特定し、iframe 内の要素クリックと
-  要素スクショが必要 (Cookie banner 操作 + Firefox フォールバックも併用)
-- 必要な追加 API: `frame_selector` フィールド (clip_selector を iframe スコープ内で
-  解決できるようにする) + `pre_click_selectors` の iframe 対応
+def my_flow(context):
+    page = context.new_page()
+    page.goto("https://example.com")
+    page.fill("#search", "query")
+    page.click("button[type=submit]")
 
-これらは「移行は可能だが API 拡張が必要」な状態。
-当面は Selenium / Playwright を直接呼び続け、抽象側を拡張するのは別タスクで扱う。
+    # ポップアップを捕捉
+    with context.expect_page() as popup_info:
+        page.click("a[target=_blank]")
+    popup = popup_info.value
+    popup.wait_for_load_state("networkidle")
+
+    result = popup.locator("h1").inner_text()
+    popup.close()
+    page.close()
+    return result
+
+data = run_custom_flow(my_flow, config=BrowserConfig(locale="ja-JP"))
+```
+
+セマフォ管理・ブラウザのライフサイクル管理は `run_custom_flow` が担当。
+
+実例:
+- [services/japan/boj_lending_service.py](../japan/boj_lending_service.py) (multi-window CSV 取得)
+- [services/usa/cme_fedwatch_screenshot_service.py](../usa/cme_fedwatch_screenshot_service.py) (iframe 内要素スクショ)
+
+### 解決済み: run_custom_flow による複雑フロー対応
+
+以下 2 サービスは `run_custom_flow()` API の追加により移行完了:
+
+**`japan/boj_lending_service.py`** (Selenium → Playwright 移行完了):
+- `run_custom_flow` で `BrowserContext` を直接操作し、複数 window フロー
+  (`context.expect_page()` でポップアップを捕捉) を実現
+- CSV URL 取得後は従来通り `requests.get()` でダウンロード
+
+**`usa/cme_fedwatch_screenshot_service.py`** (Playwright 直接 → run_custom_flow 移行完了):
+- `run_custom_flow` で `page.frames` を使い iframe 内の操作を実現
+- Chromium → Firefox フォールバックは `browser_type` パラメータで切替
+- iframe 内の Aggregated タブクリック + 要素スクショのロジックはそのまま維持

@@ -12,10 +12,26 @@ from typing import Dict, Any, Optional, List
 from datetime import datetime, time, timedelta
 from zoneinfo import ZoneInfo
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
+import logging
+from concurrent.futures import ThreadPoolExecutor, Future, as_completed
 
 from core.redis_client import redis_client
 
+logger = logging.getLogger(__name__)
+
+# ダッシュボード国コード → FMP 経済カレンダー国コードのマッピング
+_DASHBOARD_TO_FMP_COUNTRY: Dict[str, List[str]] = {
+    "usa": ["US"],
+    "japan": ["JP"],
+    "uk": ["GB", "UK"],
+    "eurozone": ["EU", "DE", "FR", "ES"],
+    "china": ["CN"],
+    "australia": ["AU"],
+    "canada": ["CA"],
+    "newzealand": ["NZ"],
+    "switzerland": ["CH"],
+    "global": ["US", "JP", "EU", "CN", "GB"],  # 主要国の代表指標
+}
 
 # タイムゾーン
 JST = ZoneInfo("Asia/Tokyo")
@@ -53,10 +69,13 @@ class BaseDashboardLoader(ABC):
         各サービスが持つnext_release情報を元に、発表日時のリストを返す。
         発表日時が不明な指標はNoneを含めてよい。
 
+        デフォルト実装: FMP経済カレンダーDBから該当国の直近発表日時を自動取得。
+        サブクラスで個別指標ごとの精密な判定が必要な場合はオーバーライドする。
+
         Returns:
             List[Optional[datetime]]: 発表日時のリスト（JST）
         """
-        return []
+        return self._get_release_datetimes_from_fmp_calendar()
 
     def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
         """
@@ -100,6 +119,19 @@ class BaseDashboardLoader(ABC):
                 if last_updated_dt < release_dt <= now:
                     print(f"New release detected: {release_dt.isoformat()}")
                     return True
+
+                # データソース反映ラグ対策:
+                # 発表後60分以内にキャッシュが更新されている場合、
+                # データソース（FRED等）がまだ反映されていない可能性がある。
+                # 発表から60分経過するまでは再取得を試みる。
+                if release_dt <= last_updated_dt <= now:
+                    minutes_since_release = (last_updated_dt - release_dt).total_seconds() / 60
+                    minutes_since_update = (now - last_updated_dt).total_seconds() / 60
+                    if minutes_since_release < 60 and minutes_since_update > 10:
+                        print(f"Post-release recheck: {release_dt.isoformat()} "
+                              f"(updated {minutes_since_release:.0f}min after release, "
+                              f"{minutes_since_update:.0f}min ago)")
+                        return True
 
             return False
 
@@ -256,10 +288,15 @@ class BaseDashboardLoader(ABC):
         発表日時を過ぎた指標を検出し、force_refresh対象を設定する等の
         前処理を行う。
 
+        デフォルト実装: _stale_indicators 属性が存在すれば {"all"} を設定し、
+        全指標を force_refresh 対象にする。サブクラスが _detect_stale_indicators()
+        で個別判定する場合はオーバーライドする。
+
         Args:
             last_updated: 前回のキャッシュ更新日時（ISO形式）
         """
-        pass
+        if hasattr(self, '_stale_indicators'):
+            self._stale_indicators = {"all"}
 
     async def get_data_async(self) -> Dict[str, Any]:
         """
@@ -275,6 +312,7 @@ class BaseDashboardLoader(ABC):
         軽量指標のみを取得（プログレッシブレンダリング用）
 
         サブクラスでload_light()が実装されている場合のみ使用可能。
+        未実装の場合はキャッシュを優先し、なければ通常の get_data() を使用。
 
         Returns:
             {
@@ -284,8 +322,40 @@ class BaseDashboardLoader(ABC):
                 "partial": True
             }
         """
-        # サブクラスにload_lightがなければ通常のget_dataを使用
+        # サブクラスにload_lightがない場合:
+        # キャッシュが新鮮ならそのまま返す
+        # キャッシュが古い → SWR: 古いデータを即返し + バックグラウンドで get_data 実行
+        # キャッシュなし → 通常の get_data を使用（初回のみブロック）
         if not hasattr(self, 'load_light'):
+            cached = self.get_cached()
+            if cached:
+                last_updated = cached.get("last_updated")
+                is_stale = self._is_cache_stale(last_updated)
+                has_nulls = self._has_null_values(cached)
+
+                if not is_stale and not has_nulls:
+                    # 新鮮なキャッシュ → そのまま返す
+                    return {
+                        "data": cached.get("data", {}),
+                        "cached": True,
+                        "last_updated": last_updated,
+                        "partial": True,
+                    }
+
+                # SWR: 古い or null値あり → 即返し + バックグラウンドで更新
+                from services.browser.stale_while_revalidate import background_revalidate
+                background_revalidate(
+                    f"swr:{self.cache_key}:light-fallback",
+                    lambda: self.get_data(),  # invalidate + load_all + save
+                )
+                return {
+                    "data": cached.get("data", {}),
+                    "cached": True,
+                    "last_updated": last_updated,
+                    "partial": True,
+                    "revalidating": True,
+                }
+            # キャッシュなし → 通常の get_data を使用（初回のみブロック）
             return self.get_data()
 
         # 1. キャッシュをチェック（軽量指標用）
@@ -329,7 +399,10 @@ class BaseDashboardLoader(ABC):
         """
         重い指標のみを取得（プログレッシブレンダリング用）
 
-        サブクラスでload_heavy()が実装されている場合のみ使用可能。
+        Stale-While-Revalidate パターン:
+        - キャッシュが新鮮ならそのまま返す
+        - キャッシュが古い（stale）がデータは存在する → 古いデータを即返し、バックグラウンドで更新
+        - キャッシュが存在しない → 同期で取得
 
         Returns:
             {
@@ -357,9 +430,10 @@ class BaseDashboardLoader(ABC):
             last_updated = cached.get("last_updated")
             cached_wrapper = {"data": cached.get("data", {})}
             has_nulls = self._has_null_values(cached_wrapper)
-            if has_nulls:
-                print(f"Heavy cache has null values for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
-            elif not self._is_cache_stale(last_updated):
+            is_stale = self._is_cache_stale(last_updated)
+
+            if not has_nulls and not is_stale:
+                # キャッシュが新鮮かつ完全 → そのまま返す
                 return {
                     "data": cached.get("data", {}),
                     "cached": True,
@@ -367,7 +441,27 @@ class BaseDashboardLoader(ABC):
                     "partial": True,
                 }
 
-        # 2. データを取得
+            # SWR: キャッシュが古い or null値あり → 古いデータを即返し + バックグラウンド更新
+            from services.browser.stale_while_revalidate import background_revalidate
+            reason = "null values" if has_nulls else "stale"
+            launched = background_revalidate(
+                f"swr:{heavy_cache_key}",
+                lambda: self._refresh_heavy_cache(heavy_cache_key, last_updated),
+            )
+            if launched:
+                logger.info(
+                    f"[SWR] heavy cache {reason} for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, "
+                    f"returning cached data and revalidating in background"
+                )
+            return {
+                "data": cached.get("data", {}),
+                "cached": True,
+                "last_updated": last_updated,
+                "partial": True,
+                "revalidating": True,
+            }
+
+        # 2. キャッシュなし → 同期で取得
         self._prepare_for_refresh(last_updated)
         data = self.load_heavy()
 
@@ -385,6 +479,17 @@ class BaseDashboardLoader(ABC):
             "partial": True,
         }
 
+    def _refresh_heavy_cache(self, heavy_cache_key: str, last_updated: Optional[str]) -> None:
+        """バックグラウンドで heavy キャッシュを更新する"""
+        self._prepare_for_refresh(last_updated)
+        data = self.load_heavy()
+        cache_payload = {
+            "data": data,
+            "last_updated": datetime.now(JST).isoformat(),
+        }
+        redis_client.set(heavy_cache_key, cache_payload, expire=0)
+        logger.info(f"[SWR] heavy cache updated for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}")
+
     async def get_data_light_async(self) -> Dict[str, Any]:
         """軽量指標を非同期で取得"""
         loop = asyncio.get_event_loop()
@@ -394,6 +499,107 @@ class BaseDashboardLoader(ABC):
         """重い指標を非同期で取得"""
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(self._executor, self.get_data_heavy)
+
+    # future.result() のデフォルトタイムアウト (秒)
+    FUTURE_TIMEOUT_SECONDS: int = 45
+
+    def _collect_futures(
+        self,
+        futures: Dict[Future, str],
+        result: Dict[str, Any],
+        timeout: Optional[int] = None,
+    ) -> None:
+        """ThreadPoolExecutor の futures を収集し、result dict に格納する。
+
+        個々の future にタイムアウトを適用し、1 つのタスクがハングしても
+        他のタスクを待たずに先に進めるようにする。
+
+        Args:
+            futures: {future: key_name} のマッピング
+            result: 結果を格納する辞書（key_name → value）
+            timeout: future ごとのタイムアウト秒。None の場合はクラスデフォルト。
+        """
+        t = timeout or self.FUTURE_TIMEOUT_SECONDS
+        for future in as_completed(futures, timeout=t + 5):
+            key = futures[future]
+            try:
+                result[key] = future.result(timeout=t)
+            except TimeoutError:
+                logger.warning(
+                    f"[{self.COUNTRY_CODE}:{self.CATEGORY_CODE}] "
+                    f"future timeout for '{key}' after {t}s"
+                )
+                result[key] = None
+            except Exception as e:
+                logger.warning(
+                    f"[{self.COUNTRY_CODE}:{self.CATEGORY_CODE}] "
+                    f"error fetching '{key}': {e}"
+                )
+                result[key] = None
+
+    def _get_release_datetimes_from_fmp_calendar(self) -> List[Optional[datetime]]:
+        """FMP 経済カレンダー DB から、この国の直近の発表日時を取得する。
+
+        get_release_datetimes() が未実装のローダーで、FMP カレンダーにある
+        発表イベントを自動検知するための汎用メソッド。
+
+        過去7日以内に発表時刻を過ぎたイベントの日時を返す。
+        actual IS NULL でも発表時刻を過ぎていれば対象に含める
+        （FMP が actual を遅延して入れるケースに対応）。
+
+        _is_cache_stale() は「last_updated < release_dt <= now」で判定するため、
+        last_updated 以降に発表時刻を過ぎたイベントがあれば stale と判定される。
+
+        Returns:
+            発表日時（JST）のリスト
+        """
+        fmp_countries = _DASHBOARD_TO_FMP_COUNTRY.get(self.COUNTRY_CODE)
+        if not fmp_countries:
+            return []
+
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            now = datetime.now(JST)
+            seven_days_ago = now - timedelta(days=7)
+
+            placeholders = ", ".join([f":c{i}" for i in range(len(fmp_countries))])
+            params = {f"c{i}": c for i, c in enumerate(fmp_countries)}
+            params["since"] = seven_days_ago.astimezone(ZoneInfo("UTC"))
+
+            with SessionLocal() as session:
+                rows = session.execute(
+                    text(f"""
+                        SELECT DISTINCT datetime_utc
+                        FROM economic_calendar_events
+                        WHERE country IN ({placeholders})
+                          AND datetime_utc >= :since
+                          AND datetime_utc <= NOW()
+                        ORDER BY datetime_utc DESC
+                        LIMIT 50
+                    """),
+                    params,
+                ).fetchall()
+
+            result: List[Optional[datetime]] = []
+            utc = ZoneInfo("UTC")
+            for row in rows:
+                dt = row[0]
+                if dt is None:
+                    continue
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=utc)
+                result.append(dt.astimezone(JST))
+
+            return result
+
+        except Exception as e:
+            logger.warning(
+                f"[{self.COUNTRY_CODE}:{self.CATEGORY_CODE}] "
+                f"Failed to fetch FMP calendar release datetimes: {e}"
+            )
+            return []
 
     def _safe_get(self, func, default=None) -> Any:
         """

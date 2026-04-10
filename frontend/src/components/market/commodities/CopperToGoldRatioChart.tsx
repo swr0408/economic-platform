@@ -82,7 +82,7 @@ export default function CopperToGoldRatioChart() {
       <ChartContainer
         title="銅金レシオ (Copper/Gold)"
         showPeriodSelector={false}
-        dataSource="yfinance"
+        dataSource="CME (HG=F, GC=F)"
         handbookId="copper-to-gold-ratio"
       >
         {/* 最新値 */}

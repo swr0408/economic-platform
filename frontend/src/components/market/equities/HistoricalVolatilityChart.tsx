@@ -247,8 +247,8 @@ export default function HistoricalVolatilityChart() {
   return (
     <ChartContainer
       title="インプライドボラプレミアム"
-      dataSource="yfinance"
-      sourceUrl="https://finance.yahoo.com/quote/%5EGSPC/"
+      dataSource="cboe"
+      sourceUrl="https://www.cboe.com/"
       showPeriodSelector={false}
     >
       {/* 最新値 */}

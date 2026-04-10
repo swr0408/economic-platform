@@ -616,15 +616,15 @@
       "crude_oil_close": 65.21
     },
     {
-      "date": "2026-03-31",
-      "crude_oil_yoy": 41.68,
-      "crude_oil_close": 102.76
+      "date": "2026-04-01",
+      "crude_oil_yoy": 35.08,
+      "crude_oil_close": 97.97
     }
   ],
   "latest": {
-    "date": "2026-03-31",
-    "crude_oil_yoy": 41.68,
-    "crude_oil_close": 102.76
+    "date": "2026-04-01",
+    "crude_oil_yoy": 35.08,
+    "crude_oil_close": 97.97
   },
   "metadata": {
     "source": "yfinance (CL=F)",
@@ -633,9 +633,9 @@
     "frequency": "monthly",
     "data_count": 124,
     "start_date": "2014-03-01",
-    "end_date": "2026-03-31"
+    "end_date": "2026-04-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-31T16:00:47.373510+09:00"
+  "last_updated": "2026-04-10T20:44:24.321104+09:00"
 }

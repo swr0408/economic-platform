@@ -25054,12 +25054,77 @@
       "date": "2026-03-20",
       "silver_tons": 16328.23,
       "shares_outstanding": 541200000
+    },
+    {
+      "date": "2026-03-23",
+      "silver_tons": 16611.83,
+      "shares_outstanding": 550600000
+    },
+    {
+      "date": "2026-03-24",
+      "silver_tons": 16611.83,
+      "shares_outstanding": 550600000
+    },
+    {
+      "date": "2026-03-25",
+      "silver_tons": 16611.83,
+      "shares_outstanding": 550600000
+    },
+    {
+      "date": "2026-03-26",
+      "silver_tons": 16500.2,
+      "shares_outstanding": 546900000
+    },
+    {
+      "date": "2026-03-27",
+      "silver_tons": 16500.2,
+      "shares_outstanding": 546900000
+    },
+    {
+      "date": "2026-03-30",
+      "silver_tons": 16370.47,
+      "shares_outstanding": 542600000
+    },
+    {
+      "date": "2026-03-31",
+      "silver_tons": 16355.38,
+      "shares_outstanding": 542100000
+    },
+    {
+      "date": "2026-04-01",
+      "silver_tons": 16352.37,
+      "shares_outstanding": 542000000
+    },
+    {
+      "date": "2026-04-02",
+      "silver_tons": 16352.37,
+      "shares_outstanding": 542000000
+    },
+    {
+      "date": "2026-04-06",
+      "silver_tons": 16352.37,
+      "shares_outstanding": 542000000
+    },
+    {
+      "date": "2026-04-07",
+      "silver_tons": 16352.37,
+      "shares_outstanding": 542000000
+    },
+    {
+      "date": "2026-04-08",
+      "silver_tons": 16424.77,
+      "shares_outstanding": 544400000
+    },
+    {
+      "date": "2026-04-09",
+      "silver_tons": 16400.64,
+      "shares_outstanding": 543600000
     }
   ],
   "latest": {
-    "date": "2026-03-20",
-    "silver_tons": 16328.23,
-    "shares_outstanding": 541200000
+    "date": "2026-04-09",
+    "silver_tons": 16400.64,
+    "shares_outstanding": 543600000
   },
   "metadata": {
     "source": "iShares Silver Trust (BlackRock)",
@@ -25067,11 +25132,11 @@
     "unit": "トン",
     "silver_per_share_oz": 0.97,
     "frequency": "daily",
-    "data_count": 5011,
+    "data_count": 5024,
     "start_date": "2006-04-21",
-    "end_date": "2026-03-20"
+    "end_date": "2026-04-09"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-23T20:33:06.814064+09:00"
+  "last_updated": "2026-04-10T20:44:24.160379+09:00"
 }
