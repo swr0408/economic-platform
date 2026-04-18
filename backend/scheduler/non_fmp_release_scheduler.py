@@ -244,6 +244,22 @@ NON_FMP_INDICATOR_CONFIGS = [
             "minute": 0,
         },
     },
+    {
+        # 発表: 毎営業日 16:00頃 JST（市場終了後）
+        # 出典: JSCC (Japan Securities Clearing Corporation) Settlement Rates PDF
+        # ※ FMP未登録のため非FMPスケジューラーで管理
+        "name_ja": "JSCC OISカーブ",
+        "country": "JP",
+        "category": "policy",
+        "service_module": "services.japan.ois_curve_service",
+        "service_instance": "ois_curve_service",
+        "fetch_method": "get_ois_curve",
+        "schedule_type": "business_day",
+        "schedule_config": {
+            "hour": 16,
+            "minute": 0,
+        },
+    },
     # ============================================================
     # 米国 - FRED系
     # ============================================================

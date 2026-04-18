@@ -77,7 +77,7 @@ export default function CaCpiServiceRentChart({ data }: CaCpiServiceRentChartPro
 
   if (!hasData) {
     return (
-      <ChartContainer title="CPI サービス/家賃（粘着性CPI）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="CPI サービス/家賃（粘着性CPI）" showPeriodSelector={false} showDataSource={false} handbookId="cpi-service-rent">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -98,6 +98,7 @@ export default function CaCpiServiceRentChart({ data }: CaCpiServiceRentChartPro
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1810000401"
+        handbookId="cpi-service-rent"
       >
         <SimpleLatestValueBox
           label="CPI サービス（YoY）"

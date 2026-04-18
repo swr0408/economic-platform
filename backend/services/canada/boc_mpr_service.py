@@ -70,7 +70,12 @@ class BocMprService:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
+                # comparison または previous_report が欠けている場合は不完全とみなして再取得
+                cache_complete = (
+                    cached_data.get("comparison") is not None
+                    and cached_data.get("previous_report") is not None
+                )
+                if last_updated_str and cache_complete and not self._should_refresh(last_updated_str):
                     return {
                         "latest_report": cached_data.get("latest_report"),
                         "previous_report": cached_data.get("previous_report"),
@@ -132,39 +137,45 @@ class BocMprService:
             "error": "No data available",
         }
 
-    def _get_recent_mpr_periods(self) -> List[str]:
-        """直近のMPR発表期間を取得（最新と前回）"""
-        today = date.today()
-        periods = []
+    def _get_recent_mpr_periods(self, lookback_quarters: int = 6) -> List[str]:
+        """
+        直近のMPR発表期間候補を新しい順に取得
 
-        # 過去2年分のMPR期間を生成
-        for year in range(today.year, today.year - 2, -1):
+        Valet API に未公開（404）の期間が混じる可能性があるため、
+        latest/previous の2件を確保できるよう余裕をもって候補を返す。
+        """
+        today = date.today()
+        periods: List[str] = []
+
+        for year in range(today.year, today.year - 3, -1):
             for month in reversed(MPR_MONTHS):
                 period_date = date(year, month, 1)
                 if period_date <= today:
                     periods.append(f"{year}M{month:02d}")
-                if len(periods) >= 2:
+                if len(periods) >= lookback_quarters:
                     return periods
 
         return periods
 
     def _load_from_source(self) -> Optional[Dict[str, Any]]:
-        """BOC Valet APIからMPRデータを取得"""
+        """BOC Valet APIからMPRデータを取得（先頭2件の成功分を採用）"""
         try:
             periods = self._get_recent_mpr_periods()
-            print(f"[BocMpr] Fetching MPR periods: {periods}")
+            print(f"[BocMpr] Fetching MPR periods (candidates): {periods}")
 
             reports = []
             for period in periods:
                 report_data = self._fetch_mpr_report(period)
                 if report_data:
                     reports.append(report_data)
+                    if len(reports) >= 2:
+                        break
 
             if not reports:
                 print("[BocMpr] No MPR data available")
                 return None
 
-            latest_report = reports[0] if reports else None
+            latest_report = reports[0]
             previous_report = reports[1] if len(reports) > 1 else None
 
             # 比較データを生成

@@ -362,82 +362,150 @@ class BOJMeetingExpectationsService:
             logger.error(f"Error calling Vision API: {e}")
             return None
 
+    # 東京短資テーブルは通常 5〜7 行の会合データを含む。
+    # OCR 結果がこの閾値未満の場合はパース失敗とみなしフォールバックへ。
+    MIN_EXPECTED_MEETINGS = 3
+
     def _parse_ocr_text(self, text: str) -> Optional[List[Dict[str, Any]]]:
-        """Parse OCR text to extract meeting expectations data"""
+        """Parse OCR text to extract meeting expectations data.
+
+        東京短資の画像テーブル構造 (2026-04 時点):
+        ---------------------------------------------------------------
+        2026/04  会合   0.7713   0.0443   18%   0.18   26/04/30 ~ 26/06/16
+                BOJ MTG
+        2026/06  会合   0.9113   0.1400   56%   0.74   26/06/17 ~ 26/07/31
+                BOJ MTG
+        ...
+        ---------------------------------------------------------------
+        OCR は行が分割されることがあるため、
+        「4桁年/月」を含む行のみデータ行として扱い、
+        ヘッダーは「4桁年/月」を含まない行として除外する。
+        """
         try:
             logger.info(f"Parsing OCR text:\n{text}")
 
+            # ── 全テキストを1つにまとめてから行分割 ──
+            # OCR が同じデータ行を複数行に分ける場合があるため、
+            # まず「4桁年/月」を含む行を起点にチャンク化する
             lines = text.strip().split('\n')
-            meeting_data = []
 
-            # Pattern to match date like "2026/01" or "2026/03" anywhere in line
-            date_pattern = re.compile(r'(\d{4})/(\d{1,2})')
-            # Pattern to match decimal numbers with at least 2 digits after decimal (like 0.7275, 0.0725)
-            # This excludes dates like 26/01/26 from being parsed as decimals
-            decimal_pattern = re.compile(r'(\d+\.\d{2,})')
-            # Pattern to match percentage (like 29%, 0%, 8%)
-            percent_pattern = re.compile(r'(\d+)%')
+            # 4桁年 + /月 のパターン (例: 2026/04)
+            meeting_date_re = re.compile(r'(20\d{2})/(\d{1,2})')
+            # 小数 (2桁以上の小数部)
+            decimal_re = re.compile(r'(\d+\.\d{2,})')
+            # パーセント (例: 18%, 56 %)
+            percent_re = re.compile(r'(\d+)\s*%')
 
+            # チャンク化: 日付行 + 続く非日付行をまとめる
+            chunks: list[str] = []
             for line in lines:
                 line = line.strip()
+                if not line:
+                    continue
+                if meeting_date_re.search(line):
+                    chunks.append(line)
+                elif chunks:
+                    # 直前の日付行チャンクに追記
+                    chunks[-1] += " " + line
 
-                # Skip header lines and footer
-                if any(skip in line.lower() for skip in ['meeting', 'ois', '気配', 'courtesy', 'totan', '提供']):
+            meeting_data = []
+            for chunk in chunks:
+                date_match = meeting_date_re.search(chunk)
+                if not date_match:
                     continue
 
-                date_match = date_pattern.search(line)
+                year = int(date_match.group(1))
+                month = int(date_match.group(2))
+                if not (2020 <= year <= 2030 and 1 <= month <= 12):
+                    continue
 
-                if date_match:
-                    year = int(date_match.group(1))
-                    month = int(date_match.group(2))
+                meeting_date = f"{year}-{month:02d}-01"
 
-                    # Validate year/month
-                    if 2020 <= year <= 2030 and 1 <= month <= 12:
-                        meeting_date = f"{year}-{month:02d}-01"
+                # ── 数値抽出 ──
+                # 対象期間の短縮日付 (26/04/30) を除外するため、
+                # 4桁年の日付部分より後ろの短縮日付を除去してからパース
+                # 例: "26/04/30 ~ 26/06/16" → 除外
+                chunk_clean = re.sub(
+                    r'\d{2}/\d{2}/\d{2}\s*~\s*\d{2}/\d{2}/\d{2}', '', chunk
+                )
 
-                        # Find all decimal numbers in this line
-                        decimals = decimal_pattern.findall(line)
-                        # Find percentage
-                        percents = percent_pattern.findall(line)
+                all_decimals = [float(d) for d in decimal_re.findall(chunk_clean)]
+                all_percents = [int(p) for p in percent_re.findall(chunk_clean)]
 
-                        logger.info(f"Line: {line}")
-                        logger.info(f"  Decimals: {decimals}, Percents: {percents}")
+                logger.info(f"Chunk: {chunk_clean}")
+                logger.info(f"  Decimals: {all_decimals}, Percents: {all_percents}")
 
-                        # Filter decimals to find OIS rate (should be 0.5-2.0 range typically)
-                        ois_candidates = [float(d) for d in decimals if 0.4 < float(d) < 2.5]
-                        diff_candidates = [float(d) for d in decimals if 0 < float(d) < 0.2]
+                if not all_decimals:
+                    continue
 
-                        if ois_candidates:
-                            ois_rate = ois_candidates[0]
+                # 降順ソートして役割を割り当て:
+                # 1番目 (最大): OIS rate (0.5 ~ 3.0 程度)
+                # 2番目: 利上げ織込み回数 (frequency) or difference
+                # 3番目 (最小): difference (0.0xxx)
+                # ※ 利上げ織込み回数は frequency として別途保持
+                desc = sorted(all_decimals, reverse=True)
 
-                            # Difference is the small value (0.0xxx)
-                            difference = diff_candidates[0] if diff_candidates else 0.0
+                ois_rate = desc[0] if desc else None
+                if ois_rate is None or not (0.3 <= ois_rate <= 3.0):
+                    continue
 
-                            # Probability from percentage pattern
-                            probability = float(percents[0]) if percents else 0.0
+                # difference と frequency を分離:
+                # difference は通常 0.01〜0.15 程度、frequency は 0.1〜5.0 程度
+                # テーブル上の順序: OIS → difference → probability → frequency
+                # ただし OCR の順序は保証されないので、サイズで判別
+                remaining = [v for v in desc if v != ois_rate]
 
-                            meeting_data.append({
-                                "meeting_date": meeting_date,
-                                "ois_rate": round(ois_rate, 4),
-                                "difference": round(difference, 4),
-                                "probability": round(probability, 1)
-                            })
+                difference = 0.0
+                frequency = None
+                if len(remaining) >= 2:
+                    # 小さい方が difference、大きい方が frequency
+                    difference = min(remaining)
+                    frequency = max(remaining)
+                elif len(remaining) == 1:
+                    v = remaining[0]
+                    # 0.2 未満なら difference、それ以上なら frequency
+                    if v < 0.2:
+                        difference = v
+                    else:
+                        frequency = v
 
-            if meeting_data:
-                # Remove duplicates and sort by date
-                seen_dates = set()
-                unique_data = []
-                for item in meeting_data:
-                    if item["meeting_date"] not in seen_dates:
-                        seen_dates.add(item["meeting_date"])
-                        unique_data.append(item)
+                probability = float(all_percents[0]) if all_percents else 0.0
 
-                unique_data.sort(key=lambda x: x["meeting_date"])
-                logger.info(f"Parsed {len(unique_data)} meeting expectations from OCR")
-                return unique_data
+                entry: Dict[str, Any] = {
+                    "meeting_date": meeting_date,
+                    "ois_rate": round(ois_rate, 4),
+                    "difference": round(difference, 4),
+                    "probability": round(probability, 1),
+                }
+                if frequency is not None:
+                    entry["frequency"] = round(frequency, 2)
 
-            logger.warning("Could not parse meeting data from OCR text")
-            return None
+                meeting_data.append(entry)
+
+            if not meeting_data:
+                logger.warning("Could not parse meeting data from OCR text")
+                return None
+
+            # Remove duplicates and sort by date
+            seen_dates: set[str] = set()
+            unique_data: list[Dict[str, Any]] = []
+            for item in meeting_data:
+                if item["meeting_date"] not in seen_dates:
+                    seen_dates.add(item["meeting_date"])
+                    unique_data.append(item)
+
+            unique_data.sort(key=lambda x: x["meeting_date"])
+            logger.info(f"Parsed {len(unique_data)} meeting expectations from OCR")
+
+            # Quality gate: OCR がほとんどの行を取りこぼした場合は失敗扱い
+            if len(unique_data) < self.MIN_EXPECTED_MEETINGS:
+                logger.warning(
+                    f"OCR parsed only {len(unique_data)} meetings "
+                    f"(min {self.MIN_EXPECTED_MEETINGS}), treating as failure"
+                )
+                return None
+
+            return unique_data
 
         except Exception as e:
             logger.error(f"Error parsing OCR text: {e}")
@@ -445,41 +513,45 @@ class BOJMeetingExpectationsService:
 
     def _get_fallback_data(self) -> List[Dict[str, Any]]:
         """
-        Return fallback hardcoded data when scraping fails
-        This data should be updated periodically from the Tokyo Tanshi website
+        Return fallback data when scraping fails and no cache exists.
+        初回起動時のみ使用される。以降は品質 OK キャッシュが優先される。
         """
-        # 最新のデータ（2026年1月時点の想定データ）
         return [
             {
-                "meeting_date": "2026-01-01",
-                "ois_rate": 0.7500,
-                "difference": 0.0000,
-                "probability": 0.0
-            },
-            {
-                "meeting_date": "2026-03-01",
-                "ois_rate": 0.8125,
-                "difference": 0.0625,
-                "probability": 25.0
-            },
-            {
                 "meeting_date": "2026-04-01",
-                "ois_rate": 0.8750,
-                "difference": 0.0625,
-                "probability": 25.0
+                "ois_rate": 0.7713,
+                "difference": 0.0443,
+                "probability": 18.0,
+                "frequency": 0.18,
             },
             {
                 "meeting_date": "2026-06-01",
-                "ois_rate": 0.9375,
-                "difference": 0.0625,
-                "probability": 25.0
+                "ois_rate": 0.9113,
+                "difference": 0.1400,
+                "probability": 56.0,
+                "frequency": 0.74,
             },
             {
                 "meeting_date": "2026-07-01",
-                "ois_rate": 1.0000,
-                "difference": 0.0625,
-                "probability": 25.0
-            }
+                "ois_rate": 0.9813,
+                "difference": 0.0700,
+                "probability": 28.0,
+                "frequency": 1.02,
+            },
+            {
+                "meeting_date": "2026-09-01",
+                "ois_rate": 1.0613,
+                "difference": 0.0800,
+                "probability": 32.0,
+                "frequency": 1.34,
+            },
+            {
+                "meeting_date": "2026-10-01",
+                "ois_rate": 1.1388,
+                "difference": 0.0775,
+                "probability": 31.0,
+                "frequency": 1.65,
+            },
         ]
 
     def _fetch_with_ocr(self, html: str) -> tuple[Optional[List[Dict[str, Any]]], str]:
@@ -569,85 +641,95 @@ class BOJMeetingExpectationsService:
             logger.error(f"Error parsing table data: {e}")
             return None, "fallback"
 
+    def _is_data_quality_ok(self, meetings: List[Dict[str, Any]]) -> bool:
+        """Check if meeting data passes quality gate"""
+        if not meetings or len(meetings) < self.MIN_EXPECTED_MEETINGS:
+            return False
+        return True
+
+    def _load_existing_cache(self) -> Optional[Dict[str, Any]]:
+        """品質 OK な既存キャッシュを返す（Redis → ファイルの順）"""
+        cached = redis_client.get(REDIS_KEY)
+        if cached and self._is_data_quality_ok(cached.get("meetings", [])):
+            return cached
+
+        file_cache = load_file_cache(CACHE_FILE)
+        if file_cache and self._is_data_quality_ok(file_cache.get("meetings", [])):
+            return file_cache
+
+        return None
+
+    def _save_cache(self, data: Dict[str, Any]) -> None:
+        """Redis + ファイルキャッシュに保存"""
+        redis_client.set(REDIS_KEY, data, expire=0)
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        save_file_cache(CACHE_FILE, data)
+
     def _fetch_boj_expectations(self) -> Optional[Dict[str, Any]]:
-        """Fetch BOJ meeting expectations data"""
+        """東京短資からデータを取得。品質 OK のデータのみ返す。"""
         html = self._fetch_html()
 
-        meeting_data = None
-        data_source = "fallback"
+        if not html:
+            return None
 
-        if html:
-            meeting_data, data_source = self._parse_table_data(html)
+        meeting_data, data_source = self._parse_table_data(html)
 
-        # Use fallback data if parsing failed
-        if not meeting_data:
-            logger.info("Using fallback data for BOJ meeting expectations")
-            meeting_data = self._get_fallback_data()
-            data_source = "fallback"
+        if not meeting_data or not self._is_data_quality_ok(meeting_data):
+            logger.warning(
+                f"Parsed data insufficient "
+                f"({len(meeting_data) if meeting_data else 0} meetings), "
+                f"returning None"
+            )
+            return None
 
         return {
             "meetings": meeting_data,
             "last_updated": datetime.now(JST).isoformat(),
             "source": self.TOKYO_TANSHI_URL,
-            "data_source": data_source
+            "data_source": data_source,
         }
 
     def get_boj_expectations(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
         Get BOJ meeting expectations data with caching
 
-        Args:
-            force_refresh: キャッシュを無視して強制的に最新データを取得
+        戦略:
+        1. キャッシュが品質 OK かつ fresh → そのまま返す
+        2. 東京短資から取得 → 品質 OK ならキャッシュ更新して返す
+        3. 取得失敗 → 既存の品質 OK キャッシュを返す（古くても）
+        4. キャッシュも無い → 初期化用 fallback
 
-        Returns:
-            {
-                "meetings": [{meeting_date, ois_rate, difference, probability}, ...],
-                "last_updated": "ISO datetime",
-                "source": "URL",
-                "data_source": "tesseract" | "vision_api" | "html" | "fallback",
-                "cached": bool
-            }
+        重要: 品質 NG のデータでキャッシュを上書きしない
         """
-        # キャッシュチェック
+        # 1. キャッシュチェック（品質 OK のもののみ）
         if not force_refresh:
-            # Redisキャッシュチェック
-            cached_data = redis_client.get(REDIS_KEY)
-            if cached_data:
-                last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self.should_refresh():
-                    logger.info("Returning cached BOJ expectations from Redis")
-                    return {**cached_data, "cached": True}
+            existing = self._load_existing_cache()
+            if existing and not self.should_refresh():
+                logger.info("Returning cached BOJ expectations")
+                return {**existing, "cached": True}
 
-            # ファイルキャッシュチェック
-            file_cache = load_file_cache(CACHE_FILE)
-            if file_cache:
-                if not self.should_refresh():
-                    logger.info("Returning cached BOJ expectations from file")
-                    redis_client.set(REDIS_KEY, file_cache, expire=0)
-                    return {**file_cache, "cached": True}
+        # 2. 新規データ取得
+        fresh = self._fetch_boj_expectations()
+        if fresh:
+            self._save_cache(fresh)
+            return {**fresh, "cached": False}
 
-        # 新規データ取得
-        data = self._fetch_boj_expectations()
-        if data:
-            # キャッシュに保存
-            redis_client.set(REDIS_KEY, data, expire=0)
-            CACHE_DIR.mkdir(parents=True, exist_ok=True)
-            save_file_cache(CACHE_FILE, data)
-            return {**data, "cached": False}
+        # 3. 取得失敗 → 既存キャッシュ（古くても品質 OK なら返す）
+        existing = self._load_existing_cache()
+        if existing:
+            logger.warning(
+                "Fresh fetch failed, returning stale but quality-OK cache"
+            )
+            return {**existing, "cached": True}
 
-        # フォールバック
-        file_cache = load_file_cache(CACHE_FILE)
-        if file_cache:
-            logger.warning("Returning fallback data from file cache")
-            return {**file_cache, "cached": True, "source": "file (fallback)"}
-
+        # 4. 初回起動等でキャッシュが一切無い場合のみ fallback
+        logger.warning("No cache available, using initial fallback data")
         return {
             "meetings": self._get_fallback_data(),
             "last_updated": datetime.now(JST).isoformat(),
             "source": "fallback",
             "data_source": "fallback",
             "cached": False,
-            "error": "Failed to fetch BOJ meeting expectations data"
         }
 
     def should_refresh(self) -> bool:

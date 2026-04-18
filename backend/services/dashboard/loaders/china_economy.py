@@ -4,11 +4,18 @@ GDP成長率（前年比・前期比）、鉱工業生産（前年比）、固�
 
 キャッシュ更新判定: NBS発表日時ベース
 """
+import os
 from typing import Dict, Any, Optional, List
 from datetime import datetime
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from services.dashboard.loaders.base import BaseDashboardLoader
+
+_BEIJING_PM25_CSV = (
+    Path(__file__).parent.parent.parent.parent
+    / "data" / "manual_update" / "daily" / "beijing_pm25" / "beijing-air-quality.csv"
+)
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -51,17 +58,45 @@ class ChinaEconomyLoader(BaseDashboardLoader):
         return self.EXPECTED_KEYS
 
 
+    def _is_beijing_pm25_csv_newer_than(self, last_updated_dt: datetime) -> bool:
+        """Beijing PM2.5 の手動更新CSVがキャッシュより新しければ True"""
+        try:
+            if not _BEIJING_PM25_CSV.exists():
+                return False
+            csv_mtime = datetime.fromtimestamp(os.path.getmtime(_BEIJING_PM25_CSV), tz=JST)
+            return csv_mtime > last_updated_dt
+        except Exception:
+            return False
+
+    def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
+        if super()._is_cache_stale(last_updated):
+            return True
+        if last_updated is None:
+            return True
+        try:
+            last_updated_dt = datetime.fromisoformat(last_updated)
+            if last_updated_dt.tzinfo is None:
+                last_updated_dt = last_updated_dt.replace(tzinfo=JST)
+        except Exception:
+            return True
+        return self._is_beijing_pm25_csv_newer_than(last_updated_dt)
+
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
-        発表日時を過ぎた指標を検出（FMPカレンダー自動判定）
+        発表日時を過ぎた指標を検出（FMPカレンダー自動判定 + 手動CSV更新検出）
         """
+        stale: set = set()
+
         if last_updated is None:
-            return set()
+            return stale
 
         try:
             last_updated_dt = datetime.fromisoformat(last_updated)
             if last_updated_dt.tzinfo is None:
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
+
+            if self._is_beijing_pm25_csv_newer_than(last_updated_dt):
+                stale.add("cn_beijing_pm25")
 
             now = datetime.now(JST)
             release_datetimes = self.get_release_datetimes()
@@ -74,7 +109,7 @@ class ChinaEconomyLoader(BaseDashboardLoader):
             print(f"Error detecting stale indicators: {e}")
             return {"all"}
 
-        return set()
+        return stale
 
     def _should_force_refresh(self, indicator: str) -> bool:
         if "all" in self._stale_indicators:

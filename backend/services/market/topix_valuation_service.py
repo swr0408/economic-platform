@@ -27,6 +27,7 @@ import pandas as pd
 import requests
 
 from core.redis_client import redis_client
+from services.market._stooq_utils import fetch_stooq_daily
 
 logger = logging.getLogger(__name__)
 
@@ -181,21 +182,14 @@ class TopixValuationService:
         end_date = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
 
         # 2. StooqからTOPIX価格を取得（日次）
-        # yfinanceの^TPXはデータが不完全なため、Stooqを使用
         start_stooq = df_pe["date"].min().strftime("%Y%m%d")
         end_stooq = datetime.now().strftime("%Y%m%d")
         logger.info(f"[TOPIX-VAL] Fetching TOPIX from Stooq: {start_stooq} to {end_stooq}")
-        try:
-            stooq_url = f"https://stooq.com/q/d/l/?s=^tpx&d1={start_stooq}&d2={end_stooq}&i=d"
-            topix = pd.read_csv(stooq_url)
-            if topix.empty:
-                logger.error("[TOPIX-VAL] No TOPIX price data from Stooq")
-                return None
-            topix["date"] = pd.to_datetime(topix["Date"])
-            topix = topix[["date", "Close"]].rename(columns={"Close": "close"})
-        except Exception as e:
-            logger.error(f"[TOPIX-VAL] Stooq TOPIX error: {e}")
+        topix_df = fetch_stooq_daily("^tpx", start_stooq, end_stooq)
+        if topix_df is None or topix_df.empty:
+            logger.error("[TOPIX-VAL] No TOPIX price data from Stooq")
             return None
+        topix = topix_df[["Date", "Close"]].rename(columns={"Date": "date", "Close": "close"})
 
         # 3. FREDから日本10年国債利回りを取得（月次）
         df_jgb = self._fetch_jgb_yield(start_date)

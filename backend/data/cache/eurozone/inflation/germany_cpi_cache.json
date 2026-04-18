@@ -1496,14 +1496,14 @@
     "description": "ドイツ消費者物価指数 / 調和消費者物価指数"
   },
   "next_release": {
-    "date": "2026-05-12",
-    "datetime_utc": "2026-05-12T06:00:00+00:00",
-    "datetime_jst": "2026-05-12T15:00:00+09:00",
-    "time_jst": "15:00",
-    "datetime_cet": "2026-05-12T08:00:00+02:00",
-    "time_cet": "08:00",
-    "label": "Inflation Rate YoY (Apr)",
-    "estimate": null
+    "date": "2026-04-29",
+    "datetime_utc": "2026-04-29T12:00:00+00:00",
+    "datetime_jst": "2026-04-29T21:00:00+09:00",
+    "time_jst": "21:00",
+    "datetime_cet": "2026-04-29T14:00:00+02:00",
+    "time_cet": "14:00",
+    "label": "Harmonised Inflation Rate YoY (Apr)",
+    "estimate": 3.3
   },
-  "last_updated": "2026-04-10T20:48:59.322972+09:00"
+  "last_updated": "2026-04-18T11:32:47.899473+09:00"
 }

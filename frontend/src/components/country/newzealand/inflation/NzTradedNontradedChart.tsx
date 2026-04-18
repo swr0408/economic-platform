@@ -94,7 +94,7 @@ export default function NzTradedNontradedChart({ data }: NzTradedNontradedChartP
 
   if (!hasData) {
     return (
-      <ChartContainer title="貿易財 / 非貿易財" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="貿易財 / 非貿易財" showPeriodSelector={false} showDataSource={false} handbookId="traded-nontraded">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -109,6 +109,7 @@ export default function NzTradedNontradedChart({ data }: NzTradedNontradedChartP
         showPeriodSelector={false}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/indicators/consumers-price-index-cpi/"
+        handbookId="traded-nontraded"
       >
         {/* 最新値表示 */}
         <LatestValueBox

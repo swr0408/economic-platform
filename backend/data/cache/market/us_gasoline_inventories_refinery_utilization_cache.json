@@ -9439,12 +9439,37 @@
       "date": "2026-03-06",
       "gasoline": 249476.0,
       "refinery_util": 90.8
+    },
+    {
+      "date": "2026-03-13",
+      "gasoline": 244040.0,
+      "refinery_util": 91.4
+    },
+    {
+      "date": "2026-03-20",
+      "gasoline": 241447.0,
+      "refinery_util": 92.9
+    },
+    {
+      "date": "2026-03-27",
+      "gasoline": 240861.0,
+      "refinery_util": 92.1
+    },
+    {
+      "date": "2026-04-03",
+      "gasoline": 239272.0,
+      "refinery_util": 92.0
+    },
+    {
+      "date": "2026-04-10",
+      "gasoline": 232944.0,
+      "refinery_util": 89.6
     }
   ],
   "latest": {
-    "date": "2026-03-06",
-    "gasoline": 249476.0,
-    "refinery_util": 90.8
+    "date": "2026-04-10",
+    "gasoline": 232944.0,
+    "refinery_util": 89.6
   },
   "metadata": {
     "source": "EIA",
@@ -9453,11 +9478,11 @@
       "gasoline": "U.S. Ending Stocks of Total Gasoline (Thousand Barrels)",
       "refinery_util": "U.S. Percent Utilization of Refinery Operable Capacity (%)"
     },
-    "data_count": 1888,
+    "data_count": 1893,
     "start_date": "1990-01-05",
-    "end_date": "2026-03-06"
+    "end_date": "2026-04-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-12T17:39:05.508610+09:00"
+  "last_updated": "2026-04-18T16:45:14.472401+09:00"
 }

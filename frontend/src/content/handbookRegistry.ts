@@ -1890,6 +1890,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['BOE', 'イングランド銀行', '英国', 'ポンド', 'GBP', 'MPC', 'CPI', 'サービスインフレ', '賃金', '家計消費', 'Dhingra', 'OIS', 'FRB', 'ECB'],
   },
 
+  // --- 英国 / SONIA ---
+  {
+    indicatorId: 'sonia',
+    title: 'SONIA（英国）',
+    country: 'uk',
+    category: 'policy',
+    summary: 'BoE管理の無担保翌日物RFR。Bank Rate近辺で推移し、政策金利の市場伝播を確認する基礎指標。SONIA OISを通じた将来の利下げ・利上げ期待の把握が実務上重要。',
+    loadContent: loadMd('uk/uk-sonia.md'),
+    relatedIndicators: ['uk-boe-overview', 'boe-mortgage-rates', 'uk-boe-inflation-attitudes'],
+    tags: ['英国', 'SONIA', 'BoE', 'Bank Rate', 'OIS', 'RFR', '翌日物', '短期金利', 'LIBOR', 'ポンド', 'GBP'],
+  },
+
   // --- 英国 / 小売売上高 ---
   {
     indicatorId: 'uk-retail-sales',
@@ -1912,6 +1924,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('uk/uk-cpih.md'),
     relatedIndicators: ['uk-ppi', 'uk-boe-inflation-attitudes', 'uk-boe-overview'],
     tags: ['英国', 'CPIH', 'CPI', 'ONS', 'OOH', 'Council Tax', '住宅費', 'インフレ', 'BOE', 'ポンド', 'GBP'],
+  },
+
+  // --- 英国 / BRC店頭価格指数 ---
+  {
+    indicatorId: 'uk-brc-shop-price',
+    title: 'BRC店頭価格指数（SPM・英国）',
+    country: 'uk',
+    category: 'inflation',
+    summary: 'BRCが毎月公表する500品目ベースの店頭価格指標。ONS公式CPIより約10日早く、食品・非食品の財価格圧力を先行的に把握できる。サービス価格や住宅費は捉えない。',
+    loadContent: loadMd('uk/uk-brc-shop-price.md'),
+    relatedIndicators: ['uk-cpih', 'uk-ppi', 'uk-boe-overview'],
+    tags: ['英国', 'BRC', 'Shop Price', 'SPM', '店頭価格', 'インフレ', '食品', '非食品', 'CPI', '先行指標', 'ポンド', 'GBP'],
   },
 
   // --- 英国 / PPI ---
@@ -1974,6 +1998,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['英国', '住宅ローン', 'Mortgage', 'BoE', '承認件数', '住宅価格', '先行指標', 'Halifax', 'Nationwide'],
   },
 
+  // --- 英国 / 住宅ローン金利 ---
+  {
+    indicatorId: 'boe-mortgage-rates',
+    title: '住宅ローン金利（英国）',
+    country: 'uk',
+    category: 'housing',
+    summary: 'BoEの実効金利（残高ベース・新規固定）と提示金利（SVR/revert-to rate）の3系列。new businessとoutstandingの違い、実効vs提示の使い分けが重要。',
+    loadContent: loadMd('uk/uk-boe-mortgage-rates.md'),
+    relatedIndicators: ['boe-mortgage-lending', 'uk-housing-market', 'uk-boe-overview'],
+    tags: ['英国', '住宅ローン', 'Mortgage', 'BoE', '実効金利', 'SVR', '固定金利', '変動金利', '住宅', 'ポンド', 'GBP'],
+  },
+
   // --- 英国 / 平均週給（賃金） ---
   {
     indicatorId: 'uk-wages',
@@ -2010,6 +2046,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['英国', 'ULC', '単位労働コスト', 'Unit Labour Costs', 'BOE', '生産性', 'サービスインフレ', '賃金', 'ポンド', 'GBP'],
   },
 
+  // --- 英国 / 経済活動率 ---
+  {
+    indicatorId: 'uk-economic-activity',
+    title: '経済活動率（英国）',
+    country: 'uk',
+    category: 'employment',
+    summary: '労働力人口の人口比。失業率だけでは見えない労働市場への参加・退出を把握する指標。経済非活動率の内訳（長期疾病等）も重要。LFS単独ではなくClaimant Count・PAYE RTIと併用。',
+    loadContent: loadMd('uk/uk-economic-activity.md'),
+    relatedIndicators: ['uk-unemployment', 'uk-wages', 'uk-boe-overview'],
+    tags: ['英国', '経済活動率', 'ONS', 'LFS', '労働参加', '非活動', '長期疾病', '労働供給', '賃金圧力', 'BOE', 'ポンド', 'GBP'],
+  },
+
+  // --- カナダ / 経済概要 ---
+  {
+    indicatorId: 'canada-overview',
+    title: 'カナダ経済の特徴',
+    country: 'canada',
+    category: 'economy',
+    summary: '資源国かつサービス経済の二面性。輸出の約4分の3が米国向けで対米関係が最重要。オイルサンド、自動車産業、移民による人口増加、量子技術など多面的な構造を持つ。',
+    loadContent: loadMd('canada/canada-overview.md'),
+    relatedIndicators: ['ivey-pmi', 'ippi', 'ca-sp-pmi'],
+    tags: ['カナダ', '経済概要', '資源国', 'オイルサンド', '自動車', '移民', '量子技術', 'CAD', 'アメリカ', 'アルバータ', 'オンタリオ'],
+  },
+
+  // --- カナダ / 貿易構造 ---
+  {
+    indicatorId: 'ca-trade-balance',
+    title: '貿易構造の見方（カナダ）',
+    country: 'canada',
+    category: 'economy',
+    summary: '輸出の75.9%が米国向け。エネルギー（88%米国向け）と自動車（94%米国向け）が中核。Trade/GDPは約65%で外需感応度が高い。統計の定義差にも注意。',
+    loadContent: loadMd('canada/canada-trade.md'),
+    relatedIndicators: ['canada-overview', 'trade-balance'],
+    tags: ['カナダ', '貿易', '輸出', '輸入', 'エネルギー', '自動車', '米国', '対米依存', 'Statistics Canada', 'CAD', '原油', 'オイルサンド'],
+  },
+
+  // --- カナダ / CPI住居費・輸送費 ---
+  {
+    indicatorId: 'cpi-service-rent',
+    title: 'CPI住居費・輸送費の位置づけ（カナダ）',
+    country: 'canada',
+    category: 'inflation',
+    summary: '住居（約29%）と輸送（約17%）がCPIバスケットの主要項目。住居は粘着的で基調インフレを映し、輸送はガソリン等で短期変動を生みやすい。両者を分けて見ることが重要。',
+    loadContent: loadMd('canada/canada-cpi-shelter-transport.md'),
+    relatedIndicators: ['ippi', 'canada-overview'],
+    tags: ['カナダ', 'CPI', '住居費', 'Shelter', '輸送', 'Transportation', 'ガソリン', '家賃', 'インフレ', 'Statistics Canada', 'CAD'],
+  },
+
   // --- カナダ / IPPI ---
   {
     indicatorId: 'ippi',
@@ -2042,6 +2126,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('canada/pmi.md'),
     relatedIndicators: ['ivey-pmi', 'ippi', 'global-manufacturing-pmi'],
     tags: ['PMI', 'S&P Global', 'カナダ', '製造業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- 中国 / 7日物リバースレポ金利 ---
+  {
+    indicatorId: 'reverse-repo-rate',
+    title: '7日物リバースレポ金利（中国）',
+    country: 'china',
+    category: 'policy',
+    summary: 'PBoCが2024年7月に政策利率として明確化した中核金利。LPRはこれを上流として参照、MLFは中期流動性供給手段へ役割分担。DR007の政策金利周辺での推移が伝達効果の確認材料。',
+    loadContent: loadMd('china/cn-reverse-repo-rate.md'),
+    relatedIndicators: ['cn-overview', 'cn-gdp'],
+    tags: ['中国', 'リバースレポ', '7日物', '逆回购', 'PBoC', '人民銀行', '政策金利', 'LPR', 'MLF', 'DR007', '短期金利', 'CNY'],
+  },
+
+  // --- 中国 / 政策運営と景気の見方 ---
+  {
+    indicatorId: 'cn-overview',
+    title: '中国の政策運営と景気の見方',
+    country: 'china',
+    category: 'policy',
+    summary: '中央政治局会議（4・7・12月が節目）の文言変化が重要な政策シグナル。米国景気は外需改善要因だが、国内の不動産・消費・信用が決定的。PBoCの「穏健」は中立を意味せず、RRR・政策金利・信用支援の実務で判断。',
+    loadContent: loadMd('china/cn-overview.md'),
+    relatedIndicators: ['cn-ppi', 'cn-pmi', 'cn-m1-m2'],
+    tags: ['中国', '政治局会議', 'PBoC', '中国人民銀行', 'RRR', '預金準備率', '政策金利', '不動産', '内需', '外需', 'CNY', '共産党'],
+  },
+
+  // --- 中国 / GDPの見方 ---
+  {
+    indicatorId: 'cn-gdp',
+    title: 'GDPの見方（中国）',
+    country: 'china',
+    category: 'economy',
+    summary: '2024年産業構成は第1次6.8%・第2次36.4%・第3次56.8%。サービス業中心だが工業が約3割で製造業・建設・輸出の影響大。不動産関連は広義でGDP約20%規模。2024年実質成長率5.0%。中身の分析が重要。',
+    loadContent: loadMd('china/cn-gdp.md'),
+    relatedIndicators: ['cn-overview', 'cn-ppi', 'cn-pmi', 'gdp'],
+    tags: ['中国', 'GDP', '実質成長率', 'NBS', '国家統計局', 'サービス業', '工業', '不動産', '第3次産業', '最終消費', '固定資産投資', 'IMF', 'CNY'],
+  },
+
+  // --- 中国 / 固定資産投資 ---
+  {
+    indicatorId: 'fixed-asset-investment',
+    title: '固定資産投資（中国）',
+    country: 'china',
+    category: 'economy',
+    summary: 'GDP構成項目ではなく、投資需要を月次で測る景気指標。固定資本形成総額とは口径が異なる（土地取得費・500万元以上プロジェクトなど）。インフラ・製造業・不動産・民間の内訳確認が重要。',
+    loadContent: loadMd('china/cn-fixed-asset-investment.md'),
+    relatedIndicators: ['cn-gdp', 'cn-overview'],
+    tags: ['中国', '固定資産投資', 'FAI', 'NBS', 'インフラ投資', '製造業投資', '不動産開発投資', '民間投資', '資本形成', '月次指標', 'CNY'],
   },
 
   // --- 中国 / PPI ---
@@ -2140,6 +2272,42 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['KOF', 'KOF Barometer', '先行指標', '景気', 'スイス', 'ETH Zurich', 'GDP', '景気循環', 'モメンタム', '製造業', '輸出'],
   },
 
+  // --- ニュージーランド / 中銀制度概要 ---
+  {
+    indicatorId: 'nz-rbnz-overview',
+    title: 'ニュージーランド中銀制度の見方',
+    country: 'newzealand',
+    category: 'policy',
+    summary: 'RBNZはRemitに基づきMPCがOCRを決定。2023年12月に雇用目標を外し物価安定に再集中。インフレ目標は中期1〜3%・中心2%。雇用は引き続きインフレ判断の重要材料。',
+    loadContent: loadMd('newzealand/nz-rbnz-overview.md'),
+    relatedIndicators: ['nz-ppi', 'nz-pmi'],
+    tags: ['ニュージーランド', 'RBNZ', 'OCR', 'MPC', 'Remit', 'インフレ目標', 'デュアルマンデート', '物価安定', '雇用', 'NZD'],
+  },
+
+  // --- ニュージーランド / 貿易構造 ---
+  {
+    indicatorId: 'nz-trade',
+    title: '貿易構造（ニュージーランド）',
+    country: 'newzealand',
+    category: 'economy',
+    summary: '中国が最大の輸出先（26.85%）。乳製品・食肉・木材が輸出中核で、機械・燃料は輸入依存。サービス輸出（観光・教育）も重要。中国景気・乳製品価格・木材市況が貿易環境を左右。',
+    loadContent: loadMd('newzealand/nz-trade.md'),
+    relatedIndicators: ['nz-rbnz-overview', 'nz-pmi', 'trade-balance'],
+    tags: ['ニュージーランド', '貿易', '中国', '乳製品', '木材', '食肉', '観光', '教育', 'MFAT', 'Stats NZ', 'NZD'],
+  },
+
+  // --- ニュージーランド / 貿易財・非貿易財インフレ ---
+  {
+    indicatorId: 'traded-nontraded',
+    title: '貿易財・非貿易財インフレ（ニュージーランド）',
+    country: 'newzealand',
+    category: 'inflation',
+    summary: '非貿易財は国内の需給・賃金・サービス価格を映す基調的物価圧力。RBNZが国内インフレ圧力の把握で重視。貿易財は為替・国際価格で振れやすい。2025年12月は非貿易3.5%・貿易2.6%。',
+    loadContent: loadMd('newzealand/nz-traded-nontraded.md'),
+    relatedIndicators: ['nz-rbnz-overview', 'nz-ppi'],
+    tags: ['ニュージーランド', '貿易財', '非貿易財', 'Traded', 'Non-tradables', 'CPI', 'RBNZ', 'Stats NZ', '基調インフレ', '国内需給', 'サービス価格', 'NZD'],
+  },
+
   // --- ニュージーランド / PPI ---
   {
     indicatorId: 'nz-ppi',
@@ -2164,6 +2332,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PMI', 'PSI', 'PCI', 'BusinessNZ', 'ニュージーランド', '製造業', 'サービス業', '景気'],
   },
 
+  // --- オーストラリア / 経済概要・RBA ---
+  {
+    indicatorId: 'au-rba-overview',
+    title: 'オーストラリア経済とRBAの見方',
+    country: 'australia',
+    category: 'policy',
+    summary: 'RBAはCPI 2〜3%レンジのデュアルマンデート。trimmed meanを基調インフレの中心指標として重視。国内はサービス主導、輸出は資源（57%）中心で中国向け30%が最大。',
+    loadContent: loadMd('australia/au-rba-overview.md'),
+    relatedIndicators: ['au-ppi', 'au-pmi'],
+    tags: ['オーストラリア', 'RBA', 'デュアルマンデート', 'CPI', 'trimmed mean', '資源', '鉄鉱石', '石炭', 'LNG', '中国', '豪ドル', 'AUD'],
+  },
+
+  // --- オーストラリア / 貿易構造 ---
+  {
+    indicatorId: 'au-trade',
+    title: '貿易構造（オーストラリア）',
+    country: 'australia',
+    category: 'economy',
+    summary: '中国向け輸出比率が約30%で最大。資源輸出の45%が中国向け。鉄鉱石・石炭・LNGが輸出中核だが、教育・観光のサービス輸出も重要。中国景気と資源価格が豪州経済・豪ドルに強く影響。',
+    loadContent: loadMd('australia/au-trade.md'),
+    relatedIndicators: ['au-rba-overview', 'au-ppi'],
+    tags: ['オーストラリア', '貿易', '中国', '鉄鉱石', '石炭', 'LNG', '教育', '観光', '資源', '豪ドル', 'AUD', 'RBA'],
+  },
+
   // --- オーストラリア / PPI ---
   {
     indicatorId: 'au-ppi',
@@ -2176,6 +2368,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PPI', 'オーストラリア', 'ABS', '生産者物価', 'インフレ', 'Final Demand', '四半期'],
   },
 
+  // --- オーストラリア / ANZ求人広告 ---
+  {
+    indicatorId: 'anz-job-advertisements',
+    title: 'ANZ求人広告件数（オーストラリア）',
+    country: 'australia',
+    category: 'employment',
+    summary: '企業の採用意欲を月次で早期に捉える先行指標。失業率に1か月程度先行し逆相関。就業者数・フルタイム雇用とも正相関。ABS Job Vacanciesと相互補完的に使える。',
+    loadContent: loadMd('australia/au-anz-job-advertisements.md'),
+    relatedIndicators: ['au-rba-overview', 'au-trade'],
+    tags: ['オーストラリア', 'ANZ', '求人広告', '失業率', '就業者数', 'フルタイム', 'ABS', 'Job Vacancies', '労働市場', '先行指標', 'AUD'],
+  },
+
   // --- オーストラリア / PMI ---
   {
     indicatorId: 'au-pmi',
@@ -2186,6 +2390,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('australia/pmi.md'),
     relatedIndicators: ['au-ppi', 'global-manufacturing-pmi'],
     tags: ['PMI', 'S&P Global', 'Judo Bank', 'オーストラリア', '製造業', 'サービス業', '景気', '投入価格', '産出価格'],
+  },
+
+  // --- オーストラリア / 家計消費とCPI ---
+  {
+    indicatorId: 'household-spending',
+    title: '家計消費とCPIの関係（オーストラリア）',
+    country: 'australia',
+    category: 'consumer',
+    summary: '家計消費の鈍化はインフレ率低下に1〜2か月先行しやすい。前年比で有効、前月比はノイズ大。trimmed meanはヘッドラインCPIよりさらに遅れて反応。需要主導の物価圧力を見る指標。',
+    loadContent: loadMd('australia/au-household-spending-cpi.md'),
+    relatedIndicators: ['au-rba-overview', 'household-saving-ratio', 'au-ppi'],
+    tags: ['オーストラリア', '家計消費', 'Household Spending', 'CPI', 'trimmed mean', 'インフレ', 'ABS', 'RBA', '需要', '先行指標', 'AUD'],
   },
 
   // --- オーストラリア / 消費 ---

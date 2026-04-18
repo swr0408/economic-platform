@@ -143,7 +143,7 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="家計支出" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="家計支出" showPeriodSelector={false} showDataSource={false} handbookId="household-spending">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -159,6 +159,7 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
         showDataSource={true}
         dataSource="Australian Bureau of Statistics"
         sourceUrl="https://www.abs.gov.au/statistics/economy/finance/monthly-household-spending-indicator"
+        handbookId="household-spending"
       >
         {/* 最新値表示 */}
         <LatestValueBox

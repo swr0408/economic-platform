@@ -1907,7 +1907,7 @@
     },
     {
       "date": "2024-12-01",
-      "value": 94.6,
+      "value": 94.7,
       "period": "2024 DEC"
     },
     {
@@ -1917,7 +1917,7 @@
     },
     {
       "date": "2025-02-01",
-      "value": 93.2,
+      "value": 93.3,
       "period": "2025 FEB"
     },
     {
@@ -1937,17 +1937,17 @@
     },
     {
       "date": "2025-06-01",
-      "value": 94.5,
+      "value": 94.4,
       "period": "2025 JUN"
     },
     {
       "date": "2025-07-01",
-      "value": 95.0,
+      "value": 94.9,
       "period": "2025 JUL"
     },
     {
       "date": "2025-08-01",
-      "value": 95.4,
+      "value": 95.3,
       "period": "2025 AUG"
     },
     {
@@ -1967,8 +1967,18 @@
     },
     {
       "date": "2025-12-01",
-      "value": 95.5,
+      "value": 95.1,
       "period": "2025 DEC"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 93.1,
+      "period": "2026 JAN"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 93.1,
+      "period": "2026 FEB"
     }
   ],
   "cgnb": [
@@ -3634,12 +3644,12 @@
     },
     {
       "date": "2024-12-01",
-      "value": 87.8,
+      "value": 87.9,
       "period": "2024 DEC"
     },
     {
       "date": "2025-01-01",
-      "value": 87.0,
+      "value": 87.1,
       "period": "2025 JAN"
     },
     {
@@ -3654,7 +3664,7 @@
     },
     {
       "date": "2025-04-01",
-      "value": 87.8,
+      "value": 87.9,
       "period": "2025 APR"
     },
     {
@@ -3664,12 +3674,12 @@
     },
     {
       "date": "2025-06-01",
-      "value": 89.2,
+      "value": 89.1,
       "period": "2025 JUN"
     },
     {
       "date": "2025-07-01",
-      "value": 89.1,
+      "value": 89.0,
       "period": "2025 JUL"
     },
     {
@@ -3689,13 +3699,23 @@
     },
     {
       "date": "2025-11-01",
-      "value": 90.5,
+      "value": 90.4,
       "period": "2025 NOV"
     },
     {
       "date": "2025-12-01",
       "value": 90.9,
       "period": "2025 DEC"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 89.2,
+      "period": "2026 JAN"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 89.3,
+      "period": "2026 FEB"
     }
   ],
   "psnd_ex": [
@@ -5021,17 +5041,17 @@
     },
     {
       "date": "2019-04-01",
-      "value": 11140.0,
+      "value": 11139.0,
       "period": "2019 APR"
     },
     {
       "date": "2019-05-01",
-      "value": 4672.0,
+      "value": 4671.0,
       "period": "2019 MAY"
     },
     {
       "date": "2019-06-01",
-      "value": 6788.0,
+      "value": 6789.0,
       "period": "2019 JUN"
     },
     {
@@ -5046,7 +5066,7 @@
     },
     {
       "date": "2019-09-01",
-      "value": 8707.0,
+      "value": 8706.0,
       "period": "2019 SEP"
     },
     {
@@ -5061,368 +5081,378 @@
     },
     {
       "date": "2019-12-01",
-      "value": 6045.0,
+      "value": 6044.0,
       "period": "2019 DEC"
     },
     {
       "date": "2020-01-01",
-      "value": -8195.0,
+      "value": -8196.0,
       "period": "2020 JAN"
     },
     {
       "date": "2020-02-01",
-      "value": 1935.0,
+      "value": 1934.0,
       "period": "2020 FEB"
     },
     {
       "date": "2020-03-01",
-      "value": 6847.0,
+      "value": 6848.0,
       "period": "2020 MAR"
     },
     {
       "date": "2020-04-01",
-      "value": 49002.0,
+      "value": 49006.0,
       "period": "2020 APR"
     },
     {
       "date": "2020-05-01",
-      "value": 51122.0,
+      "value": 51126.0,
       "period": "2020 MAY"
     },
     {
       "date": "2020-06-01",
-      "value": 32161.0,
+      "value": 32165.0,
       "period": "2020 JUN"
     },
     {
       "date": "2020-07-01",
-      "value": 21840.0,
+      "value": 21844.0,
       "period": "2020 JUL"
     },
     {
       "date": "2020-08-01",
-      "value": 24017.0,
+      "value": 24021.0,
       "period": "2020 AUG"
     },
     {
       "date": "2020-09-01",
-      "value": 27979.0,
+      "value": 27983.0,
       "period": "2020 SEP"
     },
     {
       "date": "2020-10-01",
-      "value": 17910.0,
+      "value": 17914.0,
       "period": "2020 OCT"
     },
     {
       "date": "2020-11-01",
-      "value": 21412.0,
+      "value": 21416.0,
       "period": "2020 NOV"
     },
     {
       "date": "2020-12-01",
-      "value": 23926.0,
+      "value": 23930.0,
       "period": "2020 DEC"
     },
     {
       "date": "2021-01-01",
-      "value": 1247.0,
+      "value": 1251.0,
       "period": "2021 JAN"
     },
     {
       "date": "2021-02-01",
-      "value": 15473.0,
+      "value": 15477.0,
       "period": "2021 FEB"
     },
     {
       "date": "2021-03-01",
-      "value": 24838.0,
+      "value": 24841.0,
       "period": "2021 MAR"
     },
     {
       "date": "2021-04-01",
-      "value": 23528.0,
+      "value": 23520.0,
       "period": "2021 APR"
     },
     {
       "date": "2021-05-01",
-      "value": 17137.0,
+      "value": 17129.0,
       "period": "2021 MAY"
     },
     {
       "date": "2021-06-01",
-      "value": 18732.0,
+      "value": 18719.0,
       "period": "2021 JUN"
     },
     {
       "date": "2021-07-01",
-      "value": 4306.0,
+      "value": 4301.0,
       "period": "2021 JUL"
     },
     {
       "date": "2021-08-01",
-      "value": 13902.0,
+      "value": 13897.0,
       "period": "2021 AUG"
     },
     {
       "date": "2021-09-01",
-      "value": 16787.0,
+      "value": 16779.0,
       "period": "2021 SEP"
     },
     {
       "date": "2021-10-01",
-      "value": 8022.0,
+      "value": 8015.0,
       "period": "2021 OCT"
     },
     {
       "date": "2021-11-01",
-      "value": 7368.0,
+      "value": 7361.0,
       "period": "2021 NOV"
     },
     {
       "date": "2021-12-01",
-      "value": 9837.0,
+      "value": 9826.0,
       "period": "2021 DEC"
     },
     {
       "date": "2022-01-01",
-      "value": -11957.0,
+      "value": -11959.0,
       "period": "2022 JAN"
     },
     {
       "date": "2022-02-01",
-      "value": 7097.0,
+      "value": 7095.0,
       "period": "2022 FEB"
     },
     {
       "date": "2022-03-01",
-      "value": 5535.0,
+      "value": 5537.0,
       "period": "2022 MAR"
     },
     {
       "date": "2022-04-01",
-      "value": 13409.0,
+      "value": 13430.0,
       "period": "2022 APR"
     },
     {
       "date": "2022-05-01",
-      "value": 8709.0,
+      "value": 8730.0,
       "period": "2022 MAY"
     },
     {
       "date": "2022-06-01",
-      "value": 18851.0,
+      "value": 18867.0,
       "period": "2022 JUN"
     },
     {
       "date": "2022-07-01",
-      "value": 586.0,
+      "value": 603.0,
       "period": "2022 JUL"
     },
     {
       "date": "2022-08-01",
-      "value": 7848.0,
+      "value": 7867.0,
       "period": "2022 AUG"
     },
     {
       "date": "2022-09-01",
-      "value": 15333.0,
+      "value": 15351.0,
       "period": "2022 SEP"
     },
     {
       "date": "2022-10-01",
-      "value": 11064.0,
+      "value": 11093.0,
       "period": "2022 OCT"
     },
     {
       "date": "2022-11-01",
-      "value": 15533.0,
+      "value": 15563.0,
       "period": "2022 NOV"
     },
     {
       "date": "2022-12-01",
-      "value": 15918.0,
+      "value": 15941.0,
       "period": "2022 DEC"
     },
     {
       "date": "2023-01-01",
-      "value": -8631.0,
+      "value": -8611.0,
       "period": "2023 JAN"
     },
     {
       "date": "2023-02-01",
-      "value": 10916.0,
+      "value": 10937.0,
       "period": "2023 FEB"
     },
     {
       "date": "2023-03-01",
-      "value": 17569.0,
+      "value": 17589.0,
       "period": "2023 MAR"
     },
     {
       "date": "2023-04-01",
-      "value": 19949.0,
+      "value": 19988.0,
       "period": "2023 APR"
     },
     {
       "date": "2023-05-01",
-      "value": 15330.0,
+      "value": 15370.0,
       "period": "2023 MAY"
     },
     {
       "date": "2023-06-01",
-      "value": 19038.0,
+      "value": 19080.0,
       "period": "2023 JUN"
     },
     {
       "date": "2023-07-01",
-      "value": 2667.0,
+      "value": 2703.0,
       "period": "2023 JUL"
     },
     {
       "date": "2023-08-01",
-      "value": 11414.0,
+      "value": 11450.0,
       "period": "2023 AUG"
     },
     {
       "date": "2023-09-01",
-      "value": 15417.0,
+      "value": 15459.0,
       "period": "2023 SEP"
     },
     {
       "date": "2023-10-01",
-      "value": 16443.0,
+      "value": 16466.0,
       "period": "2023 OCT"
     },
     {
       "date": "2023-11-01",
-      "value": 14977.0,
+      "value": 15000.0,
       "period": "2023 NOV"
     },
     {
       "date": "2023-12-01",
-      "value": 8091.0,
+      "value": 8117.0,
       "period": "2023 DEC"
     },
     {
       "date": "2024-01-01",
-      "value": -14331.0,
+      "value": -14310.0,
       "period": "2024 JAN"
     },
     {
       "date": "2024-02-01",
-      "value": 11330.0,
+      "value": 11353.0,
       "period": "2024 FEB"
     },
     {
       "date": "2024-03-01",
-      "value": 14247.0,
+      "value": 14282.0,
       "period": "2024 MAR"
     },
     {
       "date": "2024-04-01",
-      "value": 19364.0,
+      "value": 19329.0,
       "period": "2024 APR"
     },
     {
       "date": "2024-05-01",
-      "value": 17551.0,
+      "value": 17500.0,
       "period": "2024 MAY"
     },
     {
       "date": "2024-06-01",
-      "value": 14638.0,
+      "value": 14586.0,
       "period": "2024 JUN"
     },
     {
       "date": "2024-07-01",
-      "value": 3973.0,
+      "value": 3895.0,
       "period": "2024 JUL"
     },
     {
       "date": "2024-08-01",
-      "value": 14882.0,
+      "value": 14803.0,
       "period": "2024 AUG"
     },
     {
       "date": "2024-09-01",
-      "value": 18793.0,
+      "value": 18705.0,
       "period": "2024 SEP"
     },
     {
       "date": "2024-10-01",
-      "value": 19371.0,
+      "value": 19298.0,
       "period": "2024 OCT"
     },
     {
       "date": "2024-11-01",
-      "value": 13529.0,
+      "value": 13446.0,
       "period": "2024 NOV"
     },
     {
       "date": "2024-12-01",
-      "value": 18663.0,
+      "value": 18568.0,
       "period": "2024 DEC"
     },
     {
       "date": "2025-01-01",
-      "value": -14499.0,
+      "value": -14455.0,
       "period": "2025 JAN"
     },
     {
       "date": "2025-02-01",
-      "value": 12081.0,
+      "value": 12125.0,
       "period": "2025 FEB"
     },
     {
       "date": "2025-03-01",
-      "value": 13926.0,
+      "value": 13964.0,
       "period": "2025 MAR"
     },
     {
       "date": "2025-04-01",
-      "value": 19949.0,
+      "value": 20023.0,
       "period": "2025 APR"
     },
     {
       "date": "2025-05-01",
-      "value": 18890.0,
+      "value": 18554.0,
       "period": "2025 MAY"
     },
     {
       "date": "2025-06-01",
-      "value": 24672.0,
+      "value": 24325.0,
       "period": "2025 JUN"
     },
     {
       "date": "2025-07-01",
-      "value": 998.0,
+      "value": 1710.0,
       "period": "2025 JUL"
     },
     {
       "date": "2025-08-01",
-      "value": 14721.0,
+      "value": 15545.0,
       "period": "2025 AUG"
     },
     {
       "date": "2025-09-01",
-      "value": 21793.0,
+      "value": 22748.0,
       "period": "2025 SEP"
     },
     {
       "date": "2025-10-01",
-      "value": 16874.0,
+      "value": 16424.0,
       "period": "2025 OCT"
     },
     {
       "date": "2025-11-01",
-      "value": 10941.0,
+      "value": 10369.0,
       "period": "2025 NOV"
     },
     {
       "date": "2025-12-01",
-      "value": 11578.0,
+      "value": 13692.0,
       "period": "2025 DEC"
+    },
+    {
+      "date": "2026-01-01",
+      "value": -31855.0,
+      "period": "2026 JAN"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 14329.0,
+      "period": "2026 FEB"
     }
   ],
   "psnd_gdp": [
@@ -6983,97 +7013,97 @@
     },
     {
       "date": "2021-04-01",
-      "value": 2191686.0,
+      "value": 2191679.0,
       "period": "2021 APR"
     },
     {
       "date": "2021-05-01",
-      "value": 2218151.0,
+      "value": 2218137.0,
       "period": "2021 MAY"
     },
     {
       "date": "2021-06-01",
-      "value": 2225432.0,
+      "value": 2225413.0,
       "period": "2021 JUN"
     },
     {
       "date": "2021-07-01",
-      "value": 2239054.0,
+      "value": 2239029.0,
       "period": "2021 JUL"
     },
     {
       "date": "2021-08-01",
-      "value": 2229171.0,
+      "value": 2229140.0,
       "period": "2021 AUG"
     },
     {
       "date": "2021-09-01",
-      "value": 2236639.0,
+      "value": 2236601.0,
       "period": "2021 SEP"
     },
     {
       "date": "2021-10-01",
-      "value": 2321376.0,
+      "value": 2321332.0,
       "period": "2021 OCT"
     },
     {
       "date": "2021-11-01",
-      "value": 2352113.0,
+      "value": 2352063.0,
       "period": "2021 NOV"
     },
     {
       "date": "2021-12-01",
-      "value": 2364767.0,
+      "value": 2364710.0,
       "period": "2021 DEC"
     },
     {
       "date": "2022-01-01",
-      "value": 2351636.0,
+      "value": 2351573.0,
       "period": "2022 JAN"
     },
     {
       "date": "2022-02-01",
-      "value": 2353111.0,
+      "value": 2353042.0,
       "period": "2022 FEB"
     },
     {
       "date": "2022-03-01",
-      "value": 2380920.0,
+      "value": 2380844.0,
       "period": "2022 MAR"
     },
     {
       "date": "2022-04-01",
-      "value": 2384425.0,
+      "value": 2384358.0,
       "period": "2022 APR"
     },
     {
       "date": "2022-05-01",
-      "value": 2401635.0,
+      "value": 2401577.0,
       "period": "2022 MAY"
     },
     {
       "date": "2022-06-01",
-      "value": 2425962.0,
+      "value": 2425914.0,
       "period": "2022 JUN"
     },
     {
       "date": "2022-07-01",
-      "value": 2420896.0,
+      "value": 2420858.0,
       "period": "2022 JUL"
     },
     {
       "date": "2022-08-01",
-      "value": 2430454.0,
+      "value": 2430426.0,
       "period": "2022 AUG"
     },
     {
       "date": "2022-09-01",
-      "value": 2443774.0,
+      "value": 2443754.0,
       "period": "2022 SEP"
     },
     {
       "date": "2022-10-01",
-      "value": 2455394.0,
+      "value": 2455384.0,
       "period": "2022 OCT"
     },
     {
@@ -7083,209 +7113,219 @@
     },
     {
       "date": "2022-12-01",
-      "value": 2501277.0,
+      "value": 2501285.0,
       "period": "2022 DEC"
     },
     {
       "date": "2023-01-01",
-      "value": 2489105.0,
+      "value": 2489122.0,
       "period": "2023 JAN"
     },
     {
       "date": "2023-02-01",
-      "value": 2513479.0,
+      "value": 2513505.0,
       "period": "2023 FEB"
     },
     {
       "date": "2023-03-01",
-      "value": 2545473.0,
+      "value": 2545506.0,
       "period": "2023 MAR"
     },
     {
       "date": "2023-04-01",
-      "value": 2552242.0,
+      "value": 2552280.0,
       "period": "2023 APR"
     },
     {
       "date": "2023-05-01",
-      "value": 2581617.0,
+      "value": 2581660.0,
       "period": "2023 MAY"
     },
     {
       "date": "2023-06-01",
-      "value": 2610316.0,
+      "value": 2610362.0,
       "period": "2023 JUN"
     },
     {
       "date": "2023-07-01",
-      "value": 2591822.0,
+      "value": 2591873.0,
       "period": "2023 JUL"
     },
     {
       "date": "2023-08-01",
-      "value": 2606932.0,
+      "value": 2606988.0,
       "period": "2023 AUG"
     },
     {
       "date": "2023-09-01",
-      "value": 2609592.0,
+      "value": 2609651.0,
       "period": "2023 SEP"
     },
     {
       "date": "2023-10-01",
-      "value": 2650643.0,
+      "value": 2650706.0,
       "period": "2023 OCT"
     },
     {
       "date": "2023-11-01",
-      "value": 2677318.0,
+      "value": 2677385.0,
       "period": "2023 NOV"
     },
     {
       "date": "2023-12-01",
-      "value": 2695634.0,
+      "value": 2695706.0,
       "period": "2023 DEC"
     },
     {
       "date": "2024-01-01",
-      "value": 2654131.0,
+      "value": 2654200.0,
       "period": "2024 JAN"
     },
     {
       "date": "2024-02-01",
-      "value": 2670447.0,
+      "value": 2670513.0,
       "period": "2024 FEB"
     },
     {
       "date": "2024-03-01",
-      "value": 2685527.0,
+      "value": 2685592.0,
       "period": "2024 MAR"
     },
     {
       "date": "2024-04-01",
-      "value": 2675576.0,
+      "value": 2675650.0,
       "period": "2024 APR"
     },
     {
       "date": "2024-05-01",
-      "value": 2719982.0,
+      "value": 2720065.0,
       "period": "2024 MAY"
     },
     {
       "date": "2024-06-01",
-      "value": 2730830.0,
+      "value": 2730925.0,
       "period": "2024 JUN"
     },
     {
       "date": "2024-07-01",
-      "value": 2736185.0,
+      "value": 2736287.0,
       "period": "2024 JUL"
     },
     {
       "date": "2024-08-01",
-      "value": 2758593.0,
+      "value": 2758702.0,
       "period": "2024 AUG"
     },
     {
       "date": "2024-09-01",
-      "value": 2757651.0,
+      "value": 2757768.0,
       "period": "2024 SEP"
     },
     {
       "date": "2024-10-01",
-      "value": 2780707.0,
+      "value": 2780831.0,
       "period": "2024 OCT"
     },
     {
       "date": "2024-11-01",
-      "value": 2815423.0,
+      "value": 2815554.0,
       "period": "2024 NOV"
     },
     {
       "date": "2024-12-01",
-      "value": 2815220.0,
+      "value": 2815358.0,
       "period": "2024 DEC"
     },
     {
       "date": "2025-01-01",
-      "value": 2774236.0,
+      "value": 2774384.0,
       "period": "2025 JAN"
     },
     {
       "date": "2025-02-01",
-      "value": 2794691.0,
+      "value": 2794849.0,
       "period": "2025 FEB"
     },
     {
       "date": "2025-03-01",
-      "value": 2804675.0,
+      "value": 2804843.0,
       "period": "2025 MAR"
     },
     {
       "date": "2025-04-01",
-      "value": 2824491.0,
+      "value": 2824853.0,
       "period": "2025 APR"
     },
     {
       "date": "2025-05-01",
-      "value": 2867107.0,
+      "value": 2867663.0,
       "period": "2025 MAY"
     },
     {
       "date": "2025-06-01",
-      "value": 2866956.0,
+      "value": 2867706.0,
       "period": "2025 JUN"
     },
     {
       "date": "2025-07-01",
-      "value": 2888047.0,
+      "value": 2889108.0,
       "period": "2025 JUL"
     },
     {
       "date": "2025-08-01",
-      "value": 2905565.0,
+      "value": 2906934.0,
       "period": "2025 AUG"
     },
     {
       "date": "2025-09-01",
-      "value": 2911837.0,
+      "value": 2913510.0,
       "period": "2025 SEP"
     },
     {
       "date": "2025-10-01",
-      "value": 2895345.0,
+      "value": 2897125.0,
       "period": "2025 OCT"
     },
     {
       "date": "2025-11-01",
-      "value": 2925367.0,
+      "value": 2927259.0,
       "period": "2025 NOV"
     },
     {
       "date": "2025-12-01",
-      "value": 2935795.0,
+      "value": 2925730.0,
       "period": "2025 DEC"
+    },
+    {
+      "date": "2026-01-01",
+      "value": 2871186.0,
+      "period": "2026 JAN"
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2879505.0,
+      "period": "2026 FEB"
     }
   ],
   "latest_psnb_ex": {
-    "date": "2025-12-01",
-    "value": 95.5,
-    "period": "2025 DEC"
+    "date": "2026-02-01",
+    "value": 93.1,
+    "period": "2026 FEB"
   },
   "latest_cgnb": {
-    "date": "2025-12-01",
-    "value": 90.9,
-    "period": "2025 DEC"
+    "date": "2026-02-01",
+    "value": 89.3,
+    "period": "2026 FEB"
   },
   "latest_psnd_ex": {
-    "date": "2025-12-01",
-    "value": 11578.0,
-    "period": "2025 DEC"
+    "date": "2026-02-01",
+    "value": 14329.0,
+    "period": "2026 FEB"
   },
   "latest_psnd_gdp": {
-    "date": "2025-12-01",
-    "value": 2935795.0,
-    "period": "2025 DEC"
+    "date": "2026-02-01",
+    "value": 2879505.0,
+    "period": "2026 FEB"
   },
   "metadata": {
     "source": "Office for National Statistics",
@@ -7294,5 +7334,5 @@
     "unit_debt_gdp": "%",
     "frequency": "Monthly"
   },
-  "last_updated": "2026-01-30T21:02:20.065066+09:00"
+  "last_updated": "2026-04-18T01:37:15.601019+09:00"
 }

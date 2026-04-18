@@ -7,6 +7,8 @@ import BOJMeetingExpectationsTable from './monetary_policy/BOJMeetingExpectation
 import BOJOutlookReport from './monetary_policy/BOJOutlookReport'
 import BEIChart from './monetary_policy/BEIChart'
 import BojCurrentAccountBalanceChart from './monetary_policy/BojCurrentAccountBalanceChart'
+import RestrictedSection from '../../common/RestrictedSection'
+import BOJRateCutsExpectationChart from './monetary_policy/BOJRateCutsExpectationChart'
 
 /**
  * 日本金融政策チャート群
@@ -49,6 +51,23 @@ export default function JapanPolicyCharts() {
         />
       </div>
 
+      {/* BOJ Rate Cuts Expectation Chart (special) */}
+      <RestrictedSection visibility="special">
+        <div id="boj-rate-cuts">
+          <BOJRateCutsExpectationChart />
+        </div>
+      </RestrictedSection>
+
+      {/* JSCC OIS Curve Chart */}
+      <div id="ois-curve">
+        <OISCurveChart />
+      </div>
+
+      {/* BOJ Meeting Expectations Table */}
+      <div id="boj-meeting-expectations">
+        <BOJMeetingExpectationsTable />
+      </div>
+
       {/* Japan Balance Sheet (BOJ Total Assets) */}
       <div id="japan-balance-sheet">
         <JapanBalanceSheetChart
@@ -61,16 +80,6 @@ export default function JapanPolicyCharts() {
         <BojCurrentAccountBalanceChart
           data={dashboardData?.boj_current_account_balance ?? null}
         />
-      </div>
-
-      {/* JSCC OIS Curve Chart */}
-      <div id="ois-curve">
-        <OISCurveChart />
-      </div>
-
-      {/* BOJ Meeting Expectations Table */}
-      <div id="boj-meeting-expectations">
-        <BOJMeetingExpectationsTable />
       </div>
 
       {/* BOJ Outlook Report */}

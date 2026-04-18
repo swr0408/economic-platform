@@ -9,16 +9,16 @@
  *   - index100: Index100変換（true/false）
  */
 
-import { useEffect } from 'react';
-import { Layout } from 'antd';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { Layout, message } from 'antd';
+import html2canvas from 'html2canvas';
 import { useCompareState } from '../hooks/useCompareState';
+import { useIsMaster } from '../hooks/useIsMaster';
 import { useMultipleOverlayData } from '../hooks/useOverlayData';
 import CompareControlBar from '../components/compare/CompareControlBar';
 import IndicatorChipList from '../components/compare/IndicatorChipList';
 import CompareChart from '../components/compare/CompareChart';
 import type { OverlayIndicator } from '../constants/overlayConfig';
-
-const { Content } = Layout;
 
 // テーマカラー
 const DARK_THEME = {
@@ -31,6 +31,49 @@ const DARK_THEME = {
 };
 
 export default function ComparePage() {
+  const captureRef = useRef<HTMLDivElement>(null);
+  const [copying, setCopying] = useState(false);
+  const isMaster = useIsMaster();
+
+  const handleCapture = useCallback(async () => {
+    if (!isMaster) return;
+    if (!captureRef.current || copying) return;
+    setCopying(true);
+    try {
+      const canvas = await html2canvas(captureRef.current, {
+        backgroundColor: DARK_THEME.bgSecondary,
+        scale: 2,
+        useCORS: true,
+        logging: false,
+      });
+      canvas.toBlob(async (blob) => {
+        if (!blob) {
+          message.error('画像の生成に失敗しました');
+          setCopying(false);
+          return;
+        }
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob }),
+          ]);
+          message.success('クリップボードにコピーしました');
+        } catch {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'データ比較.png';
+          a.click();
+          URL.revokeObjectURL(url);
+          message.success('画像をダウンロードしました');
+        }
+        setCopying(false);
+      }, 'image/png');
+    } catch {
+      message.error('画像の生成に失敗しました');
+      setCopying(false);
+    }
+  }, [copying, isMaster]);
+
   const {
     selectedIndicatorIds,
     selectedIndicators,
@@ -84,6 +127,8 @@ export default function ComparePage() {
         options={options}
         onOptionsChange={setOptions}
         canAddMore={canAddMore}
+        onCapture={isMaster && selectedIndicators.length > 0 ? handleCapture : undefined}
+        copying={copying}
       />
 
       {/* 選択中の指標チップ */}
@@ -95,8 +140,9 @@ export default function ComparePage() {
         onClearAll={clearAll}
       />
 
-      {/* チャートエリア */}
-      <Content
+      {/* チャートエリア（キャプチャ対象） */}
+      <div
+        ref={captureRef}
         style={{
           flex: 1,
           display: 'flex',
@@ -112,7 +158,7 @@ export default function ComparePage() {
           index100={options.index100}
           timeShifts={options.timeShifts}
         />
-      </Content>
+      </div>
     </Layout>
   );
 }

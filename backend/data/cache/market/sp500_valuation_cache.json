@@ -64161,6 +64161,118 @@
       "forward_pe_yoy": -1.93,
       "forward_eps_yoy": 18.7,
       "earnings_yield_yoy": 1.97
+    },
+    {
+      "date": "2026-03-20",
+      "close": 6506.48,
+      "forward_pe": 21.21,
+      "forward_eps": 306.76,
+      "earnings_yield": 0.047148,
+      "yield_10y": 0.04391,
+      "yield_spread": 0.003238,
+      "real_yield_10y": 0.0201,
+      "real_yield_spread": 0.027048,
+      "forward_pe_yoy": -0.59,
+      "forward_eps_yoy": 15.58,
+      "earnings_yield_yoy": 0.59
+    },
+    {
+      "date": "2026-03-23",
+      "close": 6581.0,
+      "forward_pe": 21.13,
+      "forward_eps": 311.45,
+      "earnings_yield": 0.047326,
+      "yield_10y": 0.04334,
+      "yield_spread": 0.003986,
+      "real_yield_10y": 0.0201,
+      "real_yield_spread": 0.027226,
+      "forward_pe_yoy": -1.05,
+      "forward_eps_yoy": 17.34,
+      "earnings_yield_yoy": 1.06
+    },
+    {
+      "date": "2026-03-24",
+      "close": 6556.37,
+      "forward_pe": 21.25,
+      "forward_eps": 308.54,
+      "earnings_yield": 0.047059,
+      "yield_10y": 0.04392,
+      "yield_spread": 0.003139,
+      "real_yield_10y": 0.0206,
+      "real_yield_spread": 0.026459,
+      "forward_pe_yoy": -2.21,
+      "forward_eps_yoy": 16.24,
+      "earnings_yield_yoy": 2.26
+    },
+    {
+      "date": "2026-03-25",
+      "close": 6591.9,
+      "forward_pe": 20.88,
+      "forward_eps": 315.7,
+      "earnings_yield": 0.047893,
+      "yield_10y": 0.04328,
+      "yield_spread": 0.004613,
+      "real_yield_10y": 0.0202,
+      "real_yield_spread": 0.027693,
+      "forward_pe_yoy": -4.06,
+      "forward_eps_yoy": 18.95,
+      "earnings_yield_yoy": 4.23
+    },
+    {
+      "date": "2026-03-26",
+      "close": 6477.16,
+      "forward_pe": 20.53,
+      "forward_eps": 315.5,
+      "earnings_yield": 0.048709,
+      "yield_10y": 0.04416,
+      "yield_spread": 0.004549,
+      "real_yield_10y": 0.0208,
+      "real_yield_spread": 0.027909,
+      "forward_pe_yoy": -4.61,
+      "forward_eps_yoy": 18.87,
+      "earnings_yield_yoy": 4.83
+    },
+    {
+      "date": "2026-03-27",
+      "close": 6368.85,
+      "forward_pe": 20.45,
+      "forward_eps": 311.44,
+      "earnings_yield": 0.0489,
+      "yield_10y": 0.0444,
+      "yield_spread": 0.0045,
+      "real_yield_10y": 0.0213,
+      "real_yield_spread": 0.0276,
+      "forward_pe_yoy": -4.66,
+      "forward_eps_yoy": 17.34,
+      "earnings_yield_yoy": 4.89
+    },
+    {
+      "date": "2026-03-30",
+      "close": 6343.72,
+      "forward_pe": 21.04,
+      "forward_eps": 301.51,
+      "earnings_yield": 0.047529,
+      "yield_10y": 0.04342,
+      "yield_spread": 0.004109,
+      "real_yield_10y": 0.0204,
+      "real_yield_spread": 0.027129,
+      "forward_pe_yoy": 0.06,
+      "forward_eps_yoy": 13.6,
+      "earnings_yield_yoy": -0.06
+    },
+    {
+      "date": "2026-03-31",
+      "close": 6528.52,
+      "forward_pe": 21.19,
+      "forward_eps": 308.09,
+      "earnings_yield": 0.047192,
+      "yield_10y": 0.04311,
+      "yield_spread": 0.004082,
+      "real_yield_10y": 0.02,
+      "real_yield_spread": 0.027192,
+      "forward_pe_yoy": 0.22,
+      "forward_eps_yoy": 16.08,
+      "earnings_yield_yoy": -0.22
     }
   ],
   "monthly_table": [
@@ -66782,30 +66894,30 @@
     },
     {
       "date": "2026-03",
-      "forward_pe": 21.69,
-      "forward_eps": 310.57,
-      "earnings_yield": 4.61,
-      "close": 6736.65,
-      "yield_10y": 4.18,
-      "forward_pe_mom": -2.38,
-      "forward_eps_mom": 0.11,
-      "earnings_yield_mom": 2.46,
-      "real_yield_10y": 1.84
+      "forward_pe": 21.44,
+      "forward_eps": 310.33,
+      "earnings_yield": 4.67,
+      "close": 6652.34,
+      "yield_10y": 4.25,
+      "forward_pe_mom": -3.53,
+      "forward_eps_mom": 0.03,
+      "earnings_yield_mom": 3.7,
+      "real_yield_10y": 1.91
     }
   ],
   "latest": {
-    "date": "2026-03-19",
-    "close": 6606.49,
-    "forward_pe": 20.97,
-    "forward_eps": 315.04,
-    "earnings_yield": 0.047687,
-    "yield_10y": 0.04281,
-    "yield_spread": 0.004877,
-    "real_yield_10y": 0.0188,
-    "real_yield_spread": 0.028887,
-    "forward_pe_yoy": -1.93,
-    "forward_eps_yoy": 18.7,
-    "earnings_yield_yoy": 1.97
+    "date": "2026-03-31",
+    "close": 6528.52,
+    "forward_pe": 21.19,
+    "forward_eps": 308.09,
+    "earnings_yield": 0.047192,
+    "yield_10y": 0.04311,
+    "yield_spread": 0.004082,
+    "real_yield_10y": 0.02,
+    "real_yield_spread": 0.027192,
+    "forward_pe_yoy": 0.22,
+    "forward_eps_yoy": 16.08,
+    "earnings_yield_yoy": -0.22
   },
   "metadata": {
     "source": "S&P 500 Valuation",
@@ -66813,11 +66925,11 @@
     "pe_source_url": "https://en.macromicro.me/series/20052/sp500-forward-pe-ratio",
     "pe_source": "MacroMicro",
     "file_name": "sp500_pe.csv",
-    "file_mtime": 1774146466.4920244,
-    "data_count": 4583,
+    "file_mtime": 1775913905.0149226,
+    "data_count": 4591,
     "date_range": {
       "start": "2008-01-02",
-      "end": "2026-03-19"
+      "end": "2026-03-31"
     },
     "series": [
       "forward_pe (予想PER)",
@@ -66831,5 +66943,5 @@
   },
   "cached": false,
   "source": "csv+yfinance",
-  "last_updated": "2026-04-10T20:44:13.991728+09:00"
+  "last_updated": "2026-04-18T15:04:13.093153+09:00"
 }

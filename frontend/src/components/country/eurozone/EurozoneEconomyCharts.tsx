@@ -119,6 +119,34 @@ export default function EurozoneEconomyCharts() {
         />
       </div>
 
+      {/* EU Terms of Trade Chart */}
+      <div id="eu-terms-of-trade">
+        <EUTermsOfTradeChart
+          data={dashboardData?.eu_terms_of_trade ?? null}
+        />
+      </div>
+
+      {/* EU International Trade Chart */}
+      <div id="eu-international-trade">
+        <EUInternationalTradeChart
+          data={dashboardData?.eu_international_trade ?? null}
+        />
+      </div>
+
+      {/* ECB Current Account Chart */}
+      <div id="ecb-current-account">
+        <ECBCurrentAccountChart
+          data={dashboardData?.ecb_current_account ?? null}
+        />
+      </div>
+
+      {/* EU政府債務残高対GDP比 */}
+      <div id="eu-government-debt-to-gdp-ratio">
+        <EuGovernmentDebtToGdpRatioChart
+          data={dashboardData?.eu_government_debt_to_gdp_ratio ?? null}
+        />
+      </div>
+
       {/* Germany GDP Growth Chart */}
       <div id="germany-gdp-growth">
         <GermanyGDPGrowthChart
@@ -172,34 +200,6 @@ export default function EurozoneEconomyCharts() {
       <div id="france-business-confidence">
         <FranceBusinessConfidenceChart
           data={dashboardData?.france_business_confidence ?? null}
-        />
-      </div>
-
-      {/* EU International Trade Chart */}
-      <div id="eu-international-trade">
-        <EUInternationalTradeChart
-          data={dashboardData?.eu_international_trade ?? null}
-        />
-      </div>
-
-      {/* EU Terms of Trade Chart */}
-      <div id="eu-terms-of-trade">
-        <EUTermsOfTradeChart
-          data={dashboardData?.eu_terms_of_trade ?? null}
-        />
-      </div>
-
-      {/* ECB Current Account Chart */}
-      <div id="ecb-current-account">
-        <ECBCurrentAccountChart
-          data={dashboardData?.ecb_current_account ?? null}
-        />
-      </div>
-
-      {/* EU政府債務残高対GDP比 */}
-      <div id="eu-government-debt-to-gdp-ratio">
-        <EuGovernmentDebtToGdpRatioChart
-          data={dashboardData?.eu_government_debt_to_gdp_ratio ?? null}
         />
       </div>
     </div>

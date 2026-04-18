@@ -6,6 +6,7 @@ ECB Rate Cuts Expectation Screenshot APIルーター
 - GET /api/eurozone/ecb-rate-cuts-screenshot/refresh - スクリーンショットを強制更新
 - GET /api/eurozone/ecb-rate-cuts-screenshot/cache/status - キャッシュ状態を取得
 """
+import asyncio
 from fastapi import APIRouter, Query
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -43,21 +44,17 @@ async def get_screenshot_urls(
     Returns:
         スクリーンショットURL情報
     """
-    if force_refresh:
-        result = ecb_rate_cuts_screenshot_service.capture_all_screenshots(force_refresh=True)
-        return {
-            "yearend_url": result["yearend"]["url"],
-            "rate_cuts_url": result["rate_cuts"]["url"],
-            "last_updated": result["last_updated"],
-            "refreshed": True
-        }
-
-    urls = ecb_rate_cuts_screenshot_service.get_screenshot_urls()
+    # capture_all_screenshots はブラウザ起動を含む重い同期処理のため
+    # asyncio.to_thread でイベントループをブロックしないようにする
+    result = await asyncio.to_thread(
+        ecb_rate_cuts_screenshot_service.capture_all_screenshots,
+        force_refresh=force_refresh,
+    )
     return {
-        "yearend_url": urls["yearend_url"],
-        "rate_cuts_url": urls["rate_cuts_url"],
-        "last_updated": urls["last_updated"],
-        "refreshed": False
+        "yearend_url": result["yearend"]["url"],
+        "rate_cuts_url": result["rate_cuts"]["url"],
+        "last_updated": result["last_updated"],
+        "refreshed": force_refresh,
     }
 
 
@@ -71,7 +68,9 @@ async def get_yearend_screenshot():
     """
     if not YEAREND_SCREENSHOT_PATH.exists():
         # キャッシュがない場合は取得を試みる
-        ecb_rate_cuts_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(
+            ecb_rate_cuts_screenshot_service.capture_all_screenshots
+        )
 
     if YEAREND_SCREENSHOT_PATH.exists():
         return FileResponse(
@@ -93,7 +92,9 @@ async def get_rate_cuts_screenshot():
     """
     if not RATE_CUTS_SCREENSHOT_PATH.exists():
         # キャッシュがない場合は取得を試みる
-        ecb_rate_cuts_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(
+            ecb_rate_cuts_screenshot_service.capture_all_screenshots
+        )
 
     if RATE_CUTS_SCREENSHOT_PATH.exists():
         return FileResponse(
@@ -113,7 +114,10 @@ async def refresh_screenshots():
     Returns:
         更新結果
     """
-    result = ecb_rate_cuts_screenshot_service.capture_all_screenshots(force_refresh=True)
+    result = await asyncio.to_thread(
+        ecb_rate_cuts_screenshot_service.capture_all_screenshots,
+        force_refresh=True,
+    )
     return {
         "success": result["yearend"]["success"] and result["rate_cuts"]["success"],
         "yearend": result["yearend"],

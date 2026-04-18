@@ -4559,12 +4559,22 @@
       "date": "2025-12-01",
       "value": -1.0,
       "season": "NDJ"
+    },
+    {
+      "date": "2026-01-01",
+      "value": -0.9,
+      "season": "DJF"
+    },
+    {
+      "date": "2026-02-01",
+      "value": -0.7,
+      "season": "JFM"
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": -1.0,
-    "season": "NDJ"
+    "date": "2026-02-01",
+    "value": -0.7,
+    "season": "JFM"
   },
   "metadata": {
     "source": "NOAA CPC",
@@ -4572,11 +4582,11 @@
     "frequency": "monthly",
     "unit": "°C",
     "base_period": "1991-2020",
-    "data_count": 912,
+    "data_count": 914,
     "start_date": "1950-01-01",
-    "end_date": "2025-12-01"
+    "end_date": "2026-02-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-10T20:44:49.381991+09:00"
+  "last_updated": "2026-04-18T16:50:01.680880+09:00"
 }

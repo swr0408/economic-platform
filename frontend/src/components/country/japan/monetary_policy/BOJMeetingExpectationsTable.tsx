@@ -81,7 +81,16 @@ const BOJMeetingExpectationsTable: React.FC = () => {
       key: 'probability',
       render: (value: number | null) => formatProbability(value),
       align: 'right',
-      width: 220,
+      width: 180,
+    },
+    {
+      title: '利上げ織込み回数',
+      dataIndex: 'frequency',
+      key: 'frequency',
+      render: (value: number | null | undefined) =>
+        value != null ? value.toFixed(2) : '-',
+      align: 'right',
+      width: 150,
     },
   ]
 
@@ -122,7 +131,7 @@ const BOJMeetingExpectationsTable: React.FC = () => {
         pagination={false}
         bordered
         size="small"
-        scroll={{ x: 700 }}
+        scroll={{ x: 850 }}
       />
     </ChartContainer>
   )

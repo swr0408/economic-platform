@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tasklist.exe)",
+      "Bash(env)",
+      "Read(//c/Users/owner/Desktop/**)",
+      "Bash(docker stats *)"
+    ]
+  }
+}

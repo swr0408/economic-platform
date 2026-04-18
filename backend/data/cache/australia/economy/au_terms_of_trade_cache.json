@@ -1610,6 +1610,15 @@
     "unit_index": "Index",
     "unit_change": "%"
   },
-  "next_release": null,
-  "last_updated": "2026-04-10T20:50:48.628447+09:00"
+  "next_release": {
+    "date": "2026-06-03",
+    "datetime_utc": "2026-06-03T01:30:00+00:00",
+    "datetime_jst": "2026-06-03T10:30:00+09:00",
+    "time_jst": "10:30",
+    "datetime_sydney": "2026-06-03T11:30:00+10:00",
+    "time_sydney": "11:30",
+    "label": "交易条件 (Q1)",
+    "estimate": 0.6
+  },
+  "last_updated": "2026-04-18T04:02:24.450467+09:00"
 }

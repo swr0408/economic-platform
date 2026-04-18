@@ -892,7 +892,7 @@
     ]
   },
   "metadata": {
-    "last_updated": "2026-04-10T18:00:58.140735+09:00",
+    "last_updated": "2026-04-18T11:30:39.708225+09:00",
     "source": "European Central Bank (ECB) - Main National Accounts",
     "data_start": "2015-01-01",
     "unit": "Contribution to GDP growth (percentage points)",
@@ -905,5 +905,5 @@
       "net_exports": "Net Exports (純輸出)"
     }
   },
-  "last_updated": "2026-04-10T18:00:58.140753+09:00"
+  "last_updated": "2026-04-18T11:30:39.708243+09:00"
 }

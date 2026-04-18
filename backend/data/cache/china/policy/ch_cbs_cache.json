@@ -526,10 +526,10 @@
     "indicator": "Total Assets of Monetary Authority",
     "source": "PBOC",
     "total_records": 129,
-    "last_fetched": "2026-03-03T09:56:58.283773+09:00"
+    "last_fetched": "2026-04-18T01:46:35.333414+09:00"
   },
   "next_release": {
-    "date": "2026-03-16",
-    "label": "Central Bank Balance Sheet (Mar)"
+    "date": "2026-05-14",
+    "label": "Central Bank Balance Sheet (May)"
   }
 }

@@ -3,7 +3,8 @@
  * 指標追加、期間選択、オプション設定
  */
 
-import { Segmented, Switch, Space, Typography } from 'antd';
+import { Segmented, Switch, Space, Typography, Tooltip } from 'antd';
+import { CameraOutlined, CheckOutlined } from '@ant-design/icons';
 import { ComparePopover } from '../charts/ComparePopover';
 import type { OverlayIndicator } from '../../constants/overlayConfig';
 import type { RangeType, CompareOptions } from '../../hooks/useCompareState';
@@ -30,6 +31,8 @@ interface CompareControlBarProps {
   options: CompareOptions;
   onOptionsChange: (options: CompareOptions) => void;
   canAddMore: boolean;
+  onCapture?: () => void;
+  copying?: boolean;
 }
 
 export default function CompareControlBar({
@@ -41,6 +44,8 @@ export default function CompareControlBar({
   options,
   onOptionsChange,
   canAddMore,
+  onCapture,
+  copying = false,
 }: CompareControlBarProps) {
   return (
     <div
@@ -103,6 +108,27 @@ export default function CompareControlBar({
             }}
           />
         </Space>
+
+        {/* キャプチャボタン（master限定） */}
+        {onCapture && (
+          <Tooltip title={copying ? 'コピー中...' : '画像をコピー'}>
+            <span
+              onClick={onCapture}
+              style={{
+                fontSize: 16,
+                color: copying ? DARK_THEME.accent : DARK_THEME.textSecondary,
+                cursor: copying ? 'wait' : 'pointer',
+                transition: 'color 0.2s',
+                display: 'inline-flex',
+                alignItems: 'center',
+              }}
+              onMouseEnter={(e) => { if (!copying) (e.currentTarget as HTMLElement).style.color = DARK_THEME.accent }}
+              onMouseLeave={(e) => { if (!copying) (e.currentTarget as HTMLElement).style.color = DARK_THEME.textSecondary }}
+            >
+              {copying ? <CheckOutlined /> : <CameraOutlined />}
+            </span>
+          </Tooltip>
+        )}
       </Space>
     </div>
   );

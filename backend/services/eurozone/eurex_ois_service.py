@@ -178,7 +178,7 @@ class EurexOISService:
 
         request = ExtractRequest(
             url=self.EUREX_URL,
-            wait_selector=".react-table",
+            wait_selector="table.react-table",
             wait_for_load_state="networkidle",
             wait_after_load_ms=15_000,  # 動的レンダ完了用 (旧実装と同等)
             evaluate_js=self._EXTRACT_ROWS_JS,
@@ -490,22 +490,12 @@ class EurexOISService:
             if now.weekday() >= 5:
                 return False
 
-            # If cached data is from today after update window, no refresh needed
-            is_summer = self._is_dst(now)
-            update_hour = 20 if is_summer else 21
-
-            if (last_updated.date() == now.date() and last_updated.hour >= update_hour):
+            # If cached data is from today, no refresh needed
+            if last_updated.date() == now.date():
                 return False
 
-            # If in update window and cache is old, refresh
-            if self.is_update_time():
-                return True
-
-            # If after update window today and cache is from before today
-            if now.hour >= update_hour and last_updated.date() < now.date():
-                return True
-
-            return False
+            # Cache is from a previous day — refresh needed
+            return True
 
         except Exception as e:
             print(f"Error checking refresh: {e}")

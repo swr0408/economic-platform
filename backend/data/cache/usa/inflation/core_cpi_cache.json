@@ -2729,12 +2729,12 @@
     "annualized_6m": 2.28
   },
   "next_release": {
-    "date": "2026-04-10",
-    "datetime_utc": "2026-04-10T12:30:00+00:00",
-    "datetime_jst": "2026-04-10T21:30:00+09:00",
+    "date": "2026-05-12",
+    "datetime_utc": "2026-05-12T12:30:00+00:00",
+    "datetime_jst": "2026-05-12T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core Inflation Rate YoY (Mar)",
-    "estimate": 2.7
+    "label": "Core Inflation Rate YoY (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-04-10T23:42:55.173824+09:00"
+  "last_updated": "2026-04-18T00:39:45.482847+09:00"
 }

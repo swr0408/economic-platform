@@ -347,9 +347,10 @@ function CnGovernmentBondIssuanceChart() {
             gap: 16,
             marginBottom: 12,
             padding: '8px 12px',
-            background: '#f8f9fa',
+            background: 'var(--ea-bg-tertiary, #f8f9fa)',
             borderRadius: 8,
             fontSize: 13,
+            color: 'var(--ea-text-primary, #333)',
           }}>
             <span>
               今後の入札: <strong style={{ color: upcoming.length > 0 ? '#1890ff' : '#999' }}>{summary.upcomingCount}件</strong>

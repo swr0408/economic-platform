@@ -94,13 +94,6 @@ export default function EurozoneEmploymentCharts() {
         />
       </div>
 
-      {/* Germany Unemployment Chart */}
-      <div id="germany-unemployment">
-        <GermanyUnemploymentChart
-          data={dashboardData?.germany_unemployment ?? null}
-        />
-      </div>
-
       {/* Eurostat Job Vacancy Chart */}
       <div id="eurostat-job-vacancy">
         <EurostatJobVacancyChart
@@ -112,6 +105,13 @@ export default function EurozoneEmploymentCharts() {
       <div id="ecb-ces-wage-expectations">
         <EcbCesWageExpectationsChart
           data={dashboardData?.ecb_ces_wage_expectations ?? null}
+        />
+      </div>
+
+      {/* Germany Unemployment Chart */}
+      <div id="germany-unemployment">
+        <GermanyUnemploymentChart
+          data={dashboardData?.germany_unemployment ?? null}
         />
       </div>
     </div>

@@ -57,6 +57,11 @@ export default function UKEconomyCharts() {
         <ONSGVAChart data={dashboardData?.ons_gva ?? null} />
       </div>
 
+      {/* UK PMI */}
+      <div id="uk-pmi">
+        <UKPMIChart data={dashboardData?.uk_pmi ?? null} />
+      </div>
+
       {/* ONS Production Industries（鉱工業生産） */}
       <div id="ons-production">
         <ONSProductionChart data={dashboardData?.ons_production ?? null} />
@@ -65,11 +70,6 @@ export default function UKEconomyCharts() {
       {/* CBI製造業受注指数 */}
       <div id="cbi-industrial-trends">
         <CBIIndustrialTrendsChart data={dashboardData?.cbi_industrial_trends ?? null} />
-      </div>
-
-      {/* UK PMI */}
-      <div id="uk-pmi">
-        <UKPMIChart data={dashboardData?.uk_pmi ?? null} />
       </div>
 
       {/* UK貿易収支 */}

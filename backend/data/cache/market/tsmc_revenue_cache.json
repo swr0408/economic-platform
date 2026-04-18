@@ -1163,6 +1163,12 @@
       "revenue": 317657.0,
       "yoy": 22.17,
       "mom": -20.83
+    },
+    {
+      "date": "2026-03-01",
+      "revenue": 415192.0,
+      "yoy": 45.19,
+      "mom": 30.7
     }
   ],
   "quarterly": [
@@ -1677,20 +1683,28 @@
       "yoy": 20.45,
       "qoq": 5.67,
       "months_count": 3
+    },
+    {
+      "date": "2026-03-01",
+      "quarter_label": "2026 Q1",
+      "revenue": 1134104.0,
+      "yoy": 35.13,
+      "qoq": 8.41,
+      "months_count": 3
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "revenue": 317657.0,
-    "yoy": 22.17,
-    "mom": -20.83
+    "date": "2026-03-01",
+    "revenue": 415192.0,
+    "yoy": 45.19,
+    "mom": 30.7
   },
   "latest_quarterly": {
-    "date": "2025-12-01",
-    "quarter_label": "2025 Q4",
-    "revenue": 1046090.0,
-    "yoy": 20.45,
-    "qoq": 5.67,
+    "date": "2026-03-01",
+    "quarter_label": "2026 Q1",
+    "revenue": 1134104.0,
+    "yoy": 35.13,
+    "qoq": 8.41,
     "months_count": 3
   },
   "metadata": {
@@ -1700,6 +1714,6 @@
     "unit": "百万台湾ドル (M TWD)",
     "frequency": "monthly"
   },
-  "last_updated": "2026-04-10T20:44:53.741264+09:00",
+  "last_updated": "2026-04-18T15:15:49.941963+09:00",
   "csv_mtime": "2026-03-08T23:06:41.659855+09:00"
 }

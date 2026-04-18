@@ -10,13 +10,12 @@
 + 前月増減幅（貿易収支のlevelから計算）
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート）
   indicators: cn_trade_balance, cn_exports, cn_imports, cn_exports_yoy, cn_imports_yoy
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
-CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
+貿易収支データは税関（海关总署）が公表するため、NBSプレスリリースには含まれない。
+DB蓄積データ（CSVインポート）のみで運用する。
 レベル指標は1000 USD → 億USDに変換済み（CSVインポート時）。
 """
 import os
@@ -26,8 +25,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -52,137 +49,9 @@ DB_INDICATORS = {
     "imports_yoy": "cn_imports_yoy",
 }
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-
-# NBS APIコード
-# A0801配下: 進出口関連指標（当月値・累計・YoY等）
-#   A080101: 進出口総額(当月)    A080102: 進出口総額(当月YoY%)
-#   A080103: 進出口総額(累計)    A080104: 進出口総額(累計YoY%)
-#   A080105: 輸出(当月)          A080106: 輸出(当月YoY%)
-#   A080107: 輸出(累計)          A080108: 輸出(累計YoY%)
-#   A080109: 輸入(当月)          A08010A: 輸入(当月YoY%)
-#   A08010B: 輸入(累計)          A08010C: 輸入(累計YoY%)
-#   A08010D: 貿易収支(当月)      A08010E: 貿易収支(累計)
-NBS_API_CODES = {
-    # Level: 当月値 (1000 USD)
-    "balance_level": ["A08010D"],    # 進出口差額（当月）
-    "exports_level": ["A080105"],    # 輸出（当月）
-    "imports_level": ["A080109"],    # 輸入（当月）
-    # YoY: 前年同期比 (%)
-    "exports_yoy": ["A080106"],      # 輸出 当月YoY%
-    "imports_yoy": ["A08010A"],      # 輸入 当月YoY%
-}
-
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
-
-
-def _fetch_nbs_single(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから単一指標データを取得"""
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            return {}
-
-        data = resp.json()
-        if data.get("returncode") != 200:
-            return {}
-
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
-
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
-            date_str = f"{year}-{month:02d}-01"
-            result[date_str] = value
-
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-Trade] API fetch failed for {indicator_code}: {e}")
-        return {}
-
-
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
-
-    # レベル指標（1000 USD → 億USD変換が必要）
-    for key in ["balance_level", "exports_level", "imports_level"]:
-        db_key = key.replace("_level", "")
-        db_indicator = DB_INDICATORS.get(db_key)
-        if not db_indicator:
-            continue
-
-        for code in NBS_API_CODES.get(key, []):
-            raw = _fetch_nbs_single(code, periods=24)
-            if raw:
-                # 1000 USD → 億USD
-                converted = {k: round(v / 100_000, 2) for k, v in raw.items()}
-                count = upsert_nbs_data(db_indicator, converted, source="api")
-                logger.info(f"[NBS-Trade] {db_indicator} ({code}): {len(raw)} fetched, {count} upserted")
-
-    # YoY指標（%値をそのまま使用）
-    for key in ["exports_yoy", "imports_yoy"]:
-        db_indicator = DB_INDICATORS.get(key)
-        if not db_indicator:
-            continue
-
-        for code in NBS_API_CODES.get(key, []):
-            raw = _fetch_nbs_single(code, periods=24)
-            if raw:
-                rounded = {k: round(v, 1) for k, v in raw.items()}
-                count = upsert_nbs_data(db_indicator, rounded, source="api")
-                logger.info(f"[NBS-Trade] {db_indicator} ({code}): {len(raw)} fetched, {count} upserted")
-
-
 def _build_data() -> Dict[str, Any]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積"""
+    """DBからデータを読み込み（DB蓄積データのみで運用）"""
     from services.china.nbs_db_utils import load_nbs_multi
-
-    # --- NBS API → DB蓄積 ---
-    try:
-        _fetch_and_upsert_nbs()
-    except Exception as e:
-        logger.warning(f"[Trade] NBS API fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     all_indicators = list(DB_INDICATORS.values())

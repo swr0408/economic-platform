@@ -2426,12 +2426,12 @@
     "shelter": 3.02
   },
   "next_release": {
-    "date": "2026-04-10",
-    "datetime_utc": "2026-04-10T12:30:00+00:00",
-    "datetime_jst": "2026-04-10T21:30:00+09:00",
+    "date": "2026-05-12",
+    "datetime_utc": "2026-05-12T12:30:00+00:00",
+    "datetime_jst": "2026-05-12T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "CPI s.a (Mar)",
-    "estimate": 330.1
+    "label": "Inflation Rate YoY (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-04-10T23:42:56.240020+09:00"
+  "last_updated": "2026-04-18T00:39:45.654195+09:00"
 }

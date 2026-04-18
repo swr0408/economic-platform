@@ -87,9 +87,11 @@ export default function CnIndustrialProductionChart({ data }: Props) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="鉱工業生産" showPeriodSelector={false} showDataSource={false}>
-        <NoDataMessage />
-      </ChartContainer>
+      <div id="industrial-production">
+        <ChartContainer title="鉱工業生産" showPeriodSelector={false} showDataSource={false}>
+          <NoDataMessage />
+        </ChartContainer>
+      </div>
     )
   }
 

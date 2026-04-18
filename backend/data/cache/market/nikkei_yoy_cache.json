@@ -737,14 +737,14 @@
     },
     {
       "date": "2026-04-01",
-      "nikkei_yoy": 57.92,
-      "nikkei_close": 56924.11
+      "nikkei_yoy": 62.23,
+      "nikkei_close": 58475.9
     }
   ],
   "latest": {
     "date": "2026-04-01",
-    "nikkei_yoy": 57.92,
-    "nikkei_close": 56924.11
+    "nikkei_yoy": 62.23,
+    "nikkei_close": 58475.9
   },
   "metadata": {
     "source": "yfinance (^N225)",
@@ -757,5 +757,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-10T20:44:38.395510+09:00"
+  "last_updated": "2026-04-18T15:10:00.942035+09:00"
 }

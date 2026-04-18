@@ -885,8 +885,15 @@
   "sheet_title": "貴社の景況",
   "sheet_description": "Business Conditions Index",
   "period_type": "actual",
-  "last_updated": "2026-04-02T12:04:30.803140",
+  "last_updated": "2026-04-17T15:49:16.529791",
   "cached": false,
   "source": "e-stat",
-  "next_release": null
+  "next_release": {
+    "date": "2026-06-10",
+    "datetime_utc": "2026-06-10T23:50:00+00:00",
+    "datetime_jst": "2026-06-11T08:50:00+09:00",
+    "time_jst": "08:50",
+    "label": "BSI Large Manufacturing QoQ (Q2)",
+    "estimate": null
+  }
 }

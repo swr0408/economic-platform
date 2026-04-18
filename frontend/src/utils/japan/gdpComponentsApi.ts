@@ -62,12 +62,13 @@ export interface GDPComponentsTableData {
 export const fetchGDPComponentsData = async (
   forceRefresh: boolean = false
 ): Promise<GDPComponentsData> => {
-  const url = new URL(`${API_BASE_URL}/api/japan/gdp-components`);
+  const params = new URLSearchParams();
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true');
+    params.append('force_refresh', 'true');
   }
+  const qs = params.toString() ? `?${params.toString()}` : '';
 
-  const response = await fetch(url.toString());
+  const response = await fetch(`${API_BASE_URL}/api/japan/gdp-components${qs}`);
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);

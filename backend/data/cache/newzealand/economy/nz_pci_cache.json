@@ -907,11 +907,15 @@
     {
       "date": "2026-02-01",
       "value": 50.5
+    },
+    {
+      "date": "2026-03-01",
+      "value": 48.8
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 50.5
+    "date": "2026-03-01",
+    "value": 48.8
   },
   "metadata": {
     "source": "BusinessNZ",
@@ -920,5 +924,5 @@
     "unit": "index",
     "frequency": "monthly"
   },
-  "last_updated": "2026-04-10T20:58:27.528463+09:00"
+  "last_updated": "2026-04-18T04:09:13.584044+09:00"
 }

@@ -277,61 +277,8 @@ class CnCurrentAccountGdpRatioService:
         except Exception as e:
             logger.warning(f"[CN CA/GDP] Error reading GDP CSV: {e}")
 
-        # 2. NBS APIから直近8四半期を取得（増分更新）
-        now = datetime.now()
-        api_data: Dict[str, float] = {}
-        try:
-            for offset in range(8):
-                # 直近8四半期のperiodコードを生成
-                q_offset_year = now.year - (offset // 4)
-                q_offset_q = ((now.month - 1) // 3) - (offset % 4)
-                while q_offset_q < 0:
-                    q_offset_q += 4
-                    q_offset_year -= 1
-                q_letter = ["A", "B", "C", "D"][q_offset_q]
-                period = f"{q_offset_year}{q_letter}"
-
-                params = {
-                    "m": "QueryData",
-                    "dbcode": "hgjd",
-                    "rowcode": "zb",
-                    "colcode": "sj",
-                    "wds": json.dumps([]),
-                    "dfwds": json.dumps([
-                        {"wdcode": "sj", "valuecode": period},
-                        {"wdcode": "zb", "valuecode": NBS_GDP_CODE},
-                    ]),
-                    "k1": "1",
-                }
-                resp = requests.get(NBS_API_URL, params=params, timeout=15)
-                if "json" not in resp.headers.get("content-type", "") and not resp.text.startswith("{"):
-                    logger.warning("[CN CA/GDP] NBS returned non-JSON (anti-bot), skipping API")
-                    break
-
-                result = resp.json()
-                rd = result.get("returndata", {})
-                if not isinstance(rd, dict):
-                    continue
-
-                for dn in rd.get("datanodes", []):
-                    if not dn.get("data", {}).get("hasdata", False):
-                        continue
-                    val = dn.get("data", {}).get("data")
-                    if val is None:
-                        continue
-                    date_str = _nbs_period_to_date(period)
-                    if date_str:
-                        api_data[date_str] = float(val)
-
-            if api_data:
-                logger.info(f"[CN CA/GDP] Got {len(api_data)} quarters from NBS API")
-                data.update(api_data)
-
-                # CSVに書き戻し（新しいデータを含む）
-                self._update_gdp_csv(data)
-
-        except Exception as e:
-            logger.warning(f"[CN CA/GDP] NBS API fetch failed (using CSV only): {e}")
+        # 2. NBS APIはWAFでブロックされているため、CSVのみで運用
+        # 新しいGDPデータはCSVを手動更新してください
 
         logger.info(f"[CN CA/GDP] Total GDP data: {len(data)} quarters")
         return data

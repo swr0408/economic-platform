@@ -2729,12 +2729,12 @@
     "annualized_6m": 3.76
   },
   "next_release": {
-    "date": "2026-04-10",
-    "datetime_utc": "2026-04-10T12:30:00+00:00",
-    "datetime_jst": "2026-04-10T21:30:00+09:00",
+    "date": "2026-05-12",
+    "datetime_utc": "2026-05-12T12:30:00+00:00",
+    "datetime_jst": "2026-05-12T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "CPI s.a (Mar)",
-    "estimate": 330.1
+    "label": "Inflation Rate YoY (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-04-11T00:30:13.465699+09:00"
+  "last_updated": "2026-04-18T17:25:49.969746+09:00"
 }

@@ -10,7 +10,7 @@ DB未登録の新しいデータを取得・登録する。
 import io
 import re
 import logging
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from typing import Optional
 from zoneinfo import ZoneInfo
 
@@ -250,6 +250,7 @@ class GoldEtfHoldingsScheduler:
         """スケジューラーを開始
         - 毎日 08:00 JST（NY営業日終了後のデータ取得）
         - 毎日 12:00 JST（リトライ）
+        - 起動時にDBが2日以上古ければ即時キャッチアップ
         """
         self.scheduler.add_job(
             self._run,
@@ -265,6 +266,28 @@ class GoldEtfHoldingsScheduler:
             replace_existing=True,
             misfire_grace_time=3600,
         )
+
+        # 起動時キャッチアップ
+        latest_db_str = _get_latest_date_in_db()
+        should_catchup = True
+        if latest_db_str:
+            try:
+                latest_dt = datetime.strptime(latest_db_str, "%Y-%m-%d").date()
+                age_days = (date.today() - latest_dt).days
+                should_catchup = age_days >= 2
+                logger.info(f"[GoldEtfScheduler] DB latest: {latest_db_str} ({age_days}d old)")
+            except ValueError:
+                pass
+        if should_catchup:
+            self.scheduler.add_job(
+                self._run,
+                "date",
+                run_date=datetime.now(JST) + timedelta(seconds=30),
+                id="gold_etf_holdings_startup_catchup",
+                replace_existing=True,
+            )
+            logger.info("[GoldEtfScheduler] Startup catch-up scheduled (in 30s)")
+
         self.scheduler.start()
         logger.info("[GoldEtfScheduler] Started (08:00 + 12:00 JST)")
 

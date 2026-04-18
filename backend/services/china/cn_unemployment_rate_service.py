@@ -6,15 +6,12 @@
 - youth: 全国城鎮16-24歳労働力失業率 (%)
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース蓄積）
   indicator: cn_unemployment_total, cn_unemployment_youth
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  https://data.stats.gov.cn/easyquery.htm
-  A0E0101: 全国城镇调查失业率
-  A0E0105: 全国城镇16-24岁劳动力失业率
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース HTML 本文からスクレイピング
+  「国民经済」記事に含まれる失業率テキストを正規表現で抽出
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
 CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
 """
 import os
@@ -24,8 +21,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -47,125 +42,59 @@ DB_INDICATORS = {
     "youth": "cn_unemployment_youth",
 }
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_INDICATORS = {
-    "total": "A0E0101",  # 全国城镇调查失业率
-    "youth": "A0E0105",  # 全国城镇16-24岁劳动力失业率
-}
-
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
-
-
-def _fetch_nbs_api(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから指標データを取得
-
-    Args:
-        indicator_code: A0E0101 等の指標コード
-        periods: 取得期間数（月数）
-
-    Returns:
-        {date_str: value, ...} e.g. {"2026-01-01": 5.2, ...}
-    """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-Unemployment] API HTTP {resp.status_code}")
-            return {}
-
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-Unemployment] API returncode: {data.get('returncode')}")
-            return {}
-
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
-
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
-            date_str = f"{year}-{month:02d}-01"
-            result[date_str] = round(value, 1)
-
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-Unemployment] API fetch failed: {e}")
-        return {}
-
-
-def _fetch_and_upsert_nbs() -> Dict[str, Dict[str, float]]:
-    """NBS APIから全指標の最新データを取得し、DBにUPSERT
-
-    Returns:
-        {"total": {date_str: value, ...}, "youth": {date_str: value, ...}}
-    """
+def _fetch_and_upsert_from_press_release() -> None:
+    """「国民経済」プレスリリースの HTML から失業率をスクレイピングし、DB に UPSERT"""
+    from services.china.nbs_press_release_utils import (
+        find_latest_release,
+        scrape_unemployment_from_html,
+    )
     from services.china.nbs_db_utils import upsert_nbs_data
 
-    result = {}
-    for key, code in NBS_INDICATORS.items():
-        data = _fetch_nbs_api(code, periods=24)
-        if data:
-            result[key] = data
-            count = upsert_nbs_data(DB_INDICATORS[key], data, source="api")
-            logger.info(f"[NBS-Unemployment] API {key}: {len(data)} records, DB upserted {count}")
-        else:
-            result[key] = {}
-    return result
+    release = find_latest_release("unemployment", max_pages=2)
+    if not release:
+        logger.warning("[Unemployment] No press release found")
+        return
+
+    title = release["title"]
+    period = release["period"]
+    logger.info(f"[Unemployment] Found release: {title} (period={period})")
+
+    if not period:
+        logger.warning("[Unemployment] Could not parse period from title")
+        return
+
+    year, month = period
+    date_str = f"{year}-{month:02d}-01"
+
+    scraped = scrape_unemployment_from_html(release["url"])
+    if not scraped:
+        logger.warning("[Unemployment] No data scraped from HTML")
+        return
+
+    for key in ("total", "youth"):
+        val = scraped.get(key)
+        if val is not None:
+            count = upsert_nbs_data(
+                DB_INDICATORS[key], {date_str: val}, source="api",
+            )
+            logger.info(f"[Unemployment] {key}={val} for {date_str}, DB upserted {count}")
 
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積
+    """DBからデータを読み込み + プレスリリース HTML で最新取得→DB蓄積
 
     手順:
-    1. NBS APIから最新データ取得 → DB UPSERT
+    1. プレスリリース HTML から失業率をスクレイピング → DB UPSERT
     2. DBから全データを読み込み
     3. 日付をキーにマージして時系列構築
     """
     from services.china.nbs_db_utils import load_nbs_multi
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース HTML → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        _fetch_and_upsert_from_press_release()
     except Exception as e:
-        logger.warning(f"[Unemployment] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[Unemployment] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     db_data = load_nbs_multi([DB_INDICATORS["total"], DB_INDICATORS["youth"]])

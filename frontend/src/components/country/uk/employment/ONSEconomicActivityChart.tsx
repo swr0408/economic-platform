@@ -95,7 +95,7 @@ export default function ONSEconomicActivityChart({ data }: ONSEconomicActivityCh
 
   if (!hasData) {
     return (
-      <ChartContainer title="ONS経済活動率" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="ONS経済活動率" showPeriodSelector={false} showDataSource={false} handbookId="uk-economic-activity">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -108,6 +108,7 @@ export default function ONSEconomicActivityChart({ data }: ONSEconomicActivityCh
         showPeriodSelector={false}
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes"
+        handbookId="uk-economic-activity"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

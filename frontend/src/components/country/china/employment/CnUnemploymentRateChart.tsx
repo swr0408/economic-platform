@@ -101,7 +101,7 @@ export default function CnUnemploymentRateChart({ data }: Props) {
         showPeriodSelector={false}
         showDataSource={true}
         dataSource="NBS"
-        sourceUrl="https://data.stats.gov.cn/english/"
+        sourceUrl="https://data.stats.gov.cn/dg/website/page.html#/pc/national/home"
       >
         {/* 最新値表示 */}
         <LatestValueBox

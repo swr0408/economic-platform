@@ -92,8 +92,7 @@ class HalifaxHousePriceService:
         new_pdfs = self._check_new_pdfs()
         for pdf_path in new_pdfs:
             pdf_data = self._extract_data_from_pdf(pdf_path)
-            if pdf_data:
-                self._save_pdf_data_to_db(pdf_data)
+            if pdf_data and self._save_pdf_data_to_db(pdf_data):
                 self._mark_pdf_as_imported(pdf_path)
                 # メモリ上でもマージ（最新月）
                 mom_data = self._merge_pdf_data(mom_data, pdf_data.get("mom"))
@@ -372,6 +371,12 @@ class HalifaxHousePriceService:
         """
         指定されたPDFファイルからデータを抽出
 
+        Halifax の PDF は発行日ベースで命名され、通常前月データを報告する。
+        例) 20260408-halifax-...pdf → 2026年3月データ
+
+        対象月は PDF カバーの月名 (例: "March 2026") から読み取り、
+        取れなければ発行日から -1 ヶ月で推定する。
+
         Args:
             pdf_path: PDFファイルパス
 
@@ -379,24 +384,19 @@ class HalifaxHousePriceService:
             抽出されたデータ {"mom": {...}, "yoy": {...}}
         """
         try:
-            # ファイル名から対象月を抽出
-            # 対応形式: YYYYMMDD(8桁), YYYYMM(6桁)
-            match = re.search(r'(\d{8}|\d{6})', pdf_path.name)
-            if not match:
-                logger.warning(f"Could not extract date from PDF filename: {pdf_path.name}")
-                return None
-
-            date_str = match.group(1)
-            year = int(date_str[:4])
-            month = int(date_str[4:6])
-            data_date = f"{year}-{month:02d}-01"
-
             try:
                 import pdfplumber
             except ImportError:
                 logger.warning("pdfplumber not installed, cannot read PDF")
                 return None
 
+            month_names = {
+                'january': 1, 'february': 2, 'march': 3, 'april': 4,
+                'may': 5, 'june': 6, 'july': 7, 'august': 8,
+                'september': 9, 'october': 10, 'november': 11, 'december': 12,
+            }
+
+            data_date: Optional[str] = None
             mom_value = None
             yoy_value = None
 
@@ -406,6 +406,13 @@ class HalifaxHousePriceService:
                     text = page.extract_text()
 
                     if text:
+                        # 対象月を PDF カバーテキストから抽出
+                        month_pattern = r'(' + '|'.join(month_names.keys()) + r')\s+(\d{4})'
+                        m = re.search(month_pattern, text, re.IGNORECASE)
+                        if m:
+                            data_date = f"{int(m.group(2))}-{month_names[m.group(1).lower()]:02d}-01"
+                            logger.info(f"[Halifax] Data month from cover: {data_date}")
+
                         # Monthly change を探す
                         mom_patterns = [
                             r'Monthly\s*change[:\s]*([+-]?\d+\.?\d*)\s*%',
@@ -445,6 +452,24 @@ class HalifaxHousePriceService:
                                 if yoy_value is None:
                                     yoy_value = float(m.group(3))
                                     logger.info(f"Found Halifax YoY from header-row format: {yoy_value}%")
+
+            # カバーから取れなければ発行日 -1 ヶ月で推定
+            if not data_date:
+                match = re.search(r'(\d{8}|\d{6})', pdf_path.name)
+                if match:
+                    date_str = match.group(1)
+                    year = int(date_str[:4])
+                    month = int(date_str[4:6])
+                    if month == 1:
+                        data_year, data_month = year - 1, 12
+                    else:
+                        data_year, data_month = year, month - 1
+                    data_date = f"{data_year}-{data_month:02d}-01"
+                    logger.info(f"[Halifax] Data month from filename fallback: {data_date}")
+
+            if not data_date:
+                logger.warning(f"[Halifax] Could not determine data month for: {pdf_path.name}")
+                return None
 
             if mom_value is None and yoy_value is None:
                 logger.warning(f"Could not extract values from PDF: {pdf_path.name}")
@@ -585,21 +610,20 @@ class HalifaxHousePriceService:
         """
         PDFデータをDBに保存（UPSERT方式）
 
-        ハリファックスは前回分の修正が入る可能性があるため、
-        同じ日付のデータがあれば更新する
+        最新月の mom/yoy に加え、履歴テーブル由来の修正値（revisions）も DB に保存する。
+        これにより次回 DB ロード時にも過去月の最新値が保持される。
         """
         if not pdf_data:
             return False
 
         try:
             from core.database import SessionLocal
-            from sqlalchemy import text
 
             mom_data = pdf_data.get("mom")
             yoy_data = pdf_data.get("yoy")
+            revisions = pdf_data.get("revisions") or []
 
             with SessionLocal() as session:
-                # MoMデータをUPSERT
                 if mom_data:
                     self._upsert_event(
                         session,
@@ -608,7 +632,6 @@ class HalifaxHousePriceService:
                         value=mom_data["value"]
                     )
 
-                # YoYデータをUPSERT
                 if yoy_data:
                     self._upsert_event(
                         session,
@@ -617,8 +640,22 @@ class HalifaxHousePriceService:
                         value=yoy_data["value"]
                     )
 
+                for rev in revisions:
+                    self._upsert_event(
+                        session,
+                        event_name="Halifax House Price Index MoM",
+                        date_str=rev["date"],
+                        value=rev["mom"],
+                    )
+                    self._upsert_event(
+                        session,
+                        event_name="Halifax House Price Index YoY",
+                        date_str=rev["date"],
+                        value=rev["yoy"],
+                    )
+
                 session.commit()
-                logger.info(f"[Halifax] Saved PDF data to DB: MoM={mom_data}, YoY={yoy_data}")
+                logger.info(f"[Halifax] Saved PDF data to DB: MoM={mom_data}, YoY={yoy_data}, revisions={len(revisions)}")
                 return True
 
         except Exception as e:
@@ -628,19 +665,22 @@ class HalifaxHousePriceService:
     def _upsert_event(self, session, event_name: str, date_str: str, value: float) -> None:
         """
         イベントをUPSERT（既存なら更新、なければ挿入）
+
+        PDFはデータ対象月ベースで保存するため CSV_IMPORT と同じ形式で格納する。
         """
         from sqlalchemy import text
         from datetime import datetime
 
-        # 日付をdatetime_utcに変換（07:00 UK時間）
         date_obj = datetime.strptime(date_str, "%Y-%m-%d")
         datetime_utc = date_obj.replace(hour=7, minute=0, second=0)
+        event_key = f"UK_{event_name}_{date_obj.strftime('%Y%m%d')}"
 
-        # 既存レコードを検索
+        # データ対象月ベースの既存レコード（CSV/PDF Import）を検索
         check_query = text("""
             SELECT id, actual FROM economic_calendar_events
             WHERE country = 'UK'
               AND event ILIKE :event_pattern
+              AND provider IN ('CSV_IMPORT', 'PDF_IMPORT')
               AND datetime_utc::date = :target_date
             ORDER BY datetime_utc DESC
             LIMIT 1
@@ -651,9 +691,8 @@ class HalifaxHousePriceService:
         ).fetchone()
 
         if existing:
-            # 既存レコードがあり、値が異なる場合のみ更新
             existing_id, existing_value = existing
-            if existing_value != value:
+            if existing_value is None or float(existing_value) != value:
                 update_query = text("""
                     UPDATE economic_calendar_events
                     SET actual = :value, updated_at = NOW()
@@ -662,16 +701,22 @@ class HalifaxHousePriceService:
                 session.execute(update_query, {"value": value, "id": existing_id})
                 logger.info(f"[Halifax] Updated {event_name}: {date_str} {existing_value} -> {value}")
         else:
-            # 新規挿入
             insert_query = text("""
                 INSERT INTO economic_calendar_events
-                (country, event, datetime_utc, actual, estimate, previous, impact, source, created_at, updated_at)
-                VALUES ('UK', :event, :datetime_utc, :actual, NULL, NULL, 'Medium', 'PDF Import', NOW(), NOW())
+                (provider, event_key, country, currency, event,
+                 datetime_utc, datetime_raw, has_time, impact, actual,
+                 raw_json, ingested_at, updated_at)
+                VALUES ('PDF_IMPORT', :event_key, 'UK', 'GBP', :event,
+                        :datetime_utc, :datetime_raw, TRUE, 'Medium', :actual,
+                        :raw_json, NOW(), NOW())
             """)
             session.execute(insert_query, {
+                "event_key": event_key,
                 "event": event_name,
                 "datetime_utc": datetime_utc,
-                "actual": value
+                "datetime_raw": datetime_utc.strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+                "actual": value,
+                "raw_json": json.dumps({"source": "PDF", "data_month": date_str}),
             })
             logger.info(f"[Halifax] Inserted {event_name}: {date_str} = {value}")
 

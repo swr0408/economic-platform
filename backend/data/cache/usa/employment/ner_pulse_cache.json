@@ -1,6 +1,10 @@
 {
   "data": [
     {
+      "week_ending": "2026-03-28",
+      "change": 39250.0
+    },
+    {
       "week_ending": "2026-03-21",
       "change": 26000.0
     },
@@ -43,15 +47,11 @@
     {
       "week_ending": "2026-01-10",
       "change": 4250.0
-    },
-    {
-      "week_ending": "2026-01-03",
-      "change": 8000.0
     }
   ],
   "latest": {
-    "week_ending": "2026-03-21",
-    "change": 26000.0
+    "week_ending": "2026-03-28",
+    "change": 39250.0
   },
-  "last_updated": "2026-04-10T12:02:07.080611+09:00"
+  "last_updated": "2026-04-18T00:00:28.924237+09:00"
 }

@@ -34,6 +34,10 @@ from services.japan.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
 )
+from services.japan.estat_monthly_release import (
+    get_monthly_release_supplement,
+    merge_supplement,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -104,6 +108,24 @@ class ScheduledWageService:
 
         # データをマージ（e-Stat > DB）
         merged_data = self._merge_data(db_data, estat_data)
+
+        # 月次リリースファイルから最新月データを補完
+        # （時系列ファイルがe-Stat側で未更新の場合に速報値を取得）
+        if merged_data:
+            supplement = get_monthly_release_supplement(force_refresh=force_refresh)
+            if supplement:
+                for key, sup_key in [
+                    ("scheduled_wage", "scheduled_wage"),
+                    ("general", "general"),
+                    ("part_time_wage", "part_time_wage"),
+                ]:
+                    series = merged_data.get(key)
+                    sup_data = supplement.get(sup_key, [])
+                    if series and sup_data:
+                        base = series.get("data", [])
+                        merged_list = merge_supplement(base, sup_data)
+                        series["data"] = merged_list
+                        series["latest"] = merged_list[-1] if merged_list else None
 
         if merged_data:
             # e-Statで新しいデータがあれば、DBにも保存

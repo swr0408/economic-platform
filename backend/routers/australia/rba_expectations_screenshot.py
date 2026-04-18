@@ -8,6 +8,7 @@ RBA 利上げ・利下げ期待 Screenshot APIルーター
 - POST /api/australia/rba-expectations-screenshot/refresh - 強制更新
 - GET /api/australia/rba-expectations-screenshot/cache/status - キャッシュ状態
 """
+import asyncio
 from fastapi import APIRouter, Query
 from fastapi.responses import FileResponse
 
@@ -30,8 +31,12 @@ async def get_screenshot_urls(
     """
     RBA 利上げ・利下げ期待スクリーンショットのURL一覧を取得
     """
+    # capture_all_screenshots はブラウザ起動を含む重い同期処理のため
+    # asyncio.to_thread でイベントループをブロックしないようにする
     if force_refresh:
-        result = rba_expectations_screenshot_service.capture_all_screenshots(force_refresh=True)
+        result = await asyncio.to_thread(
+            rba_expectations_screenshot_service.capture_all_screenshots, force_refresh=True
+        )
         return {
             "screenshots": [
                 {
@@ -60,7 +65,7 @@ async def get_year_end_rate_screenshot():
     """Year-End Rate Expectation スクリーンショット画像を取得"""
     path = SCREENSHOT_PATHS["year_end_rate"]
     if not path.exists():
-        rba_expectations_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(rba_expectations_screenshot_service.capture_all_screenshots)
     if path.exists():
         return FileResponse(path, media_type="image/png", filename="au_rba_year_end_rate_expectation.png")
     return {"error": "Screenshot not available"}
@@ -71,7 +76,7 @@ async def get_rate_cuts_screenshot():
     """Rate Cuts Expectation スクリーンショット画像を取得"""
     path = SCREENSHOT_PATHS["rate_cuts"]
     if not path.exists():
-        rba_expectations_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(rba_expectations_screenshot_service.capture_all_screenshots)
     if path.exists():
         return FileResponse(path, media_type="image/png", filename="au_rba_rate_cuts_expectation.png")
     return {"error": "Screenshot not available"}
@@ -80,7 +85,9 @@ async def get_rate_cuts_screenshot():
 @router.post("/refresh")
 async def refresh_screenshots():
     """スクリーンショットを強制更新"""
-    result = rba_expectations_screenshot_service.capture_all_screenshots(force_refresh=True)
+    result = await asyncio.to_thread(
+        rba_expectations_screenshot_service.capture_all_screenshots, force_refresh=True
+    )
     return {
         "success": all(result[k]["success"] for k in ["year_end_rate", "rate_cuts"] if k in result),
         "results": {k: result[k] for k in ["year_end_rate", "rate_cuts"] if k in result},

@@ -30,14 +30,53 @@
 """
 import logging
 import time
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
+try:
+    from backend.core.redis_client import redis_client
+except ImportError:
+    from core.redis_client import redis_client
+
 logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
+
+# 起動時キャッチアップ判定用 Redis マーカー
+_CATCHUP_MARKER_PREFIX = "market_data_scheduler:last_run:"
+
+
+def _set_run_marker(label: str) -> None:
+    """バッチ実行完了後に呼ぶ。次回起動時の age 判定に使う。"""
+    try:
+        redis_client.set(
+            f"{_CATCHUP_MARKER_PREFIX}{label}",
+            {"ts": datetime.now(JST).isoformat()},
+            expire=0,
+        )
+    except Exception as e:
+        logger.warning(f"[MarketScheduler] Failed to set marker {label}: {e}")
+
+
+def _get_run_marker_age_hours(label: str) -> float | None:
+    """マーカーから前回実行からの経過時間 (h) を返す。マーカーなしは None。"""
+    try:
+        cached = redis_client.get(f"{_CATCHUP_MARKER_PREFIX}{label}")
+        if not cached:
+            return None
+        ts_str = cached.get("ts") if isinstance(cached, dict) else None
+        if not ts_str:
+            return None
+        last_run = datetime.fromisoformat(ts_str)
+        if last_run.tzinfo is None:
+            last_run = last_run.replace(tzinfo=JST)
+        return (datetime.now(JST) - last_run).total_seconds() / 3600
+    except Exception as e:
+        logger.warning(f"[MarketScheduler] Failed to read marker {label}: {e}")
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -66,6 +105,8 @@ US_CLOSE_SERVICES = [
     ("services.market.us_interest_rate_spread_service", "us_interest_rate_spread_service", "get_data"),
     ("services.market.financial_stress_index_service", "financial_stress_index_service", "get_data"),
     # Metals (LME ロンドン17:00 GMT = 02:00 JST、Silver ETF)
+    # NOTE: COMEX copper は CME XLS が 403 のため JSON サービスは停滞中。
+    # 表示は comex_warehouse_screenshot_service (MacroMicro) に切替済み。
     ("services.market.lme_copper_stock_service", "lme_copper_stock_service", "get_data"),
     ("services.market.silver_etf_holdings_service", "silver_etf_holdings_service", "get_data"),
     # Energy (yfinance daily)
@@ -191,17 +232,22 @@ def _refresh_service(module_path: str, singleton_name: str, method_name: str) ->
 
 
 def _refresh_cftc():
-    """CFTC Positioningは asset 引数が必要 — 主要8通貨ペアを更新"""
-    assets = [
-        "usdjpy", "eurusd", "gbpusd", "audusd",
-        "nzdusd", "eurjpy", "eurgbp", "usd_index",
-    ]
+    """CFTC Positioning: DisAgg/TFF/Legacy 全銘柄の最新週データをDB追記 → 全25銘柄のキャッシュを再構築"""
     try:
         svc = _import_service(
             "services.market.cftc_positioning_service",
             "cftc_positioning_service",
         )
-        for asset in assets:
+        # CFTC APIから最新週データを取得しDBに追記 (update_all_latestがキャッシュも削除)
+        try:
+            counts = svc.update_all_latest()
+            logger.info(f"[MarketScheduler] CFTC update_all_latest: {counts}")
+        except Exception as e:
+            logger.warning(f"[MarketScheduler] CFTC update_all_latest failed: {e}")
+
+        # 全25銘柄のキャッシュを再構築 (1週間アクセスが無くても最新データが反映されるように)
+        from services.market.cftc_positioning_service import ALL_ASSETS
+        for asset in ALL_ASSETS:
             try:
                 svc.get_data(asset=asset, force_refresh=True)
             except Exception as e:
@@ -232,6 +278,8 @@ def _run_batch(services: list, label: str):
         f"[MarketScheduler] {label} complete: {ok} ok, {fail} fail, "
         f"{elapsed:.1f}s"
     )
+    # 起動時キャッチアップ判定用にマーカーを書き込み
+    _set_run_marker(label)
 
 
 # ---------------------------------------------------------------------------
@@ -374,6 +422,40 @@ class MarketDataScheduler:
             CronTrigger(day="20-28", hour=8, minute=0, day_of_week="mon-fri", timezone=JST),
             id="mkt_monthly_late", replace_existing=True, misfire_grace_time=3600,
         )
+
+        # 起動時キャッチアップ:
+        # 各バッチの (label, handler, threshold_hours, delay_seconds) を登録。
+        # マーカー (前回実行 ts) が threshold_hours を超えていたら 1回 即時実行。
+        # delay は他バッチと衝突しないように段階的に増やす。
+        catchup_specs = [
+            ("US_CLOSE",      self._run_us_close,      24,  30),
+            ("JP_CLOSE",      self._run_jp_close,      24,  90),
+            ("EIA_WEEKLY",    self._run_eia_weekly,    168, 150),  # 7d
+            ("EIA_GAS",       self._run_eia_gas,       168, 210),
+            ("NAAIM",         self._run_naaim,         168, 270),
+            ("API_CRUDE",     self._run_api_crude,     168, 330),
+            ("CFTC",          self._run_cftc,          168, 390),  # 重い (~5min)
+            ("MONTHLY_EARLY", self._run_monthly_early, 720, 720),  # 30d
+            ("MONTHLY_MID",   self._run_monthly_mid,   720, 780),
+            ("MONTHLY_LATE",  self._run_monthly_late,  720, 840),
+        ]
+
+        for label, handler, threshold_hours, delay_seconds in catchup_specs:
+            age_hours = _get_run_marker_age_hours(label)
+            should_catchup = age_hours is None or age_hours >= threshold_hours
+            age_str = f"{age_hours:.1f}h" if age_hours is not None else "no marker"
+            logger.info(
+                f"[MarketScheduler] {label} marker age: {age_str}, "
+                f"catchup={should_catchup}"
+            )
+            if should_catchup:
+                self.scheduler.add_job(
+                    handler,
+                    "date",
+                    run_date=datetime.now(JST) + timedelta(seconds=delay_seconds),
+                    id=f"mkt_catchup_{label}",
+                    replace_existing=True,
+                )
 
         self.scheduler.start()
 

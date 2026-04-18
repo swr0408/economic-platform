@@ -186,8 +186,7 @@ export default function NtMagnificationChart() {
   return (
     <ChartContainer
       title="NT倍率"
-      dataSource="Stooq"
-      sourceUrl="https://stooq.com/"
+      dataSource="J-Quants"
       handbookId="nt-magnification"
       showPeriodSelector={false}
     >

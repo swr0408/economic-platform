@@ -29839,26 +29839,151 @@
       "date": "2026-03-06",
       "china": 22.05,
       "india": -12.91
+    },
+    {
+      "date": "2026-03-09",
+      "china": 30.47,
+      "india": -18.33
+    },
+    {
+      "date": "2026-03-10",
+      "china": 27.55,
+      "india": -22.28
+    },
+    {
+      "date": "2026-03-11",
+      "china": 29.75,
+      "india": -30.73
+    },
+    {
+      "date": "2026-03-12",
+      "china": 26.47,
+      "india": -45.27
+    },
+    {
+      "date": "2026-03-13",
+      "china": 18.8,
+      "india": -52.77
+    },
+    {
+      "date": "2026-03-16",
+      "china": 23.41,
+      "india": -63.7
+    },
+    {
+      "date": "2026-03-17",
+      "china": 24.0,
+      "india": -64.5
+    },
+    {
+      "date": "2026-03-18",
+      "china": 28.43,
+      "india": -67.71
+    },
+    {
+      "date": "2026-03-19",
+      "china": 50.24,
+      "india": -52.52
+    },
+    {
+      "date": "2026-03-20",
+      "china": 52.57,
+      "india": -49.07
+    },
+    {
+      "date": "2026-03-23",
+      "china": 37.05,
+      "india": -38.25
+    },
+    {
+      "date": "2026-03-24",
+      "china": 28.81,
+      "india": -30.3
+    },
+    {
+      "date": "2026-03-25",
+      "china": 23.36,
+      "india": -20.58
+    },
+    {
+      "date": "2026-03-26",
+      "china": 5.62,
+      "india": 0.14
+    },
+    {
+      "date": "2026-03-27",
+      "china": 9.98,
+      "india": 6.17
+    },
+    {
+      "date": "2026-03-30",
+      "china": 19.41,
+      "india": 13.9
+    },
+    {
+      "date": "2026-03-31",
+      "china": 28.14,
+      "india": 18.9
+    },
+    {
+      "date": "2026-04-01",
+      "china": 30.44,
+      "india": 15.42
+    },
+    {
+      "date": "2026-04-02",
+      "china": 23.85,
+      "india": -3.3
+    },
+    {
+      "date": "2026-04-03",
+      "china": 21.58,
+      "india": -4.98
+    },
+    {
+      "date": "2026-04-06",
+      "china": 24.71,
+      "india": 4.97
+    },
+    {
+      "date": "2026-04-07",
+      "china": 16.48,
+      "india": 0.25
+    },
+    {
+      "date": "2026-04-08",
+      "china": 15.86,
+      "india": 6.59
+    },
+    {
+      "date": "2026-04-09",
+      "china": 18.26,
+      "india": 10.75
+    },
+    {
+      "date": "2026-04-10",
+      "china": 13.31,
+      "india": 16.09
     }
   ],
   "latest_china": {
-    "date": "2026-03-06",
-    "value": 22.05
+    "date": "2026-04-10",
+    "value": 13.31
   },
   "latest_india": {
-    "date": "2026-03-06",
-    "value": -12.91
+    "date": "2026-04-10",
+    "value": 16.09
   },
   "metadata": {
     "source": "World Gold Council (DB)",
     "indicator": "Gold Premium/Discount (China & India)",
     "unit": "US$/oz (5-day moving average)",
     "frequency": "daily (business days)",
-    "data_count": 5968,
+    "data_count": 5993,
     "start_date": "2003-04-25",
-    "end_date": "2026-03-06"
+    "end_date": "2026-04-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-11T00:44:55.819122+09:00"
+  "last_updated": "2026-04-18T15:57:18.183284+09:00"
 }

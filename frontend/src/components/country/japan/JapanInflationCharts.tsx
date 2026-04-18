@@ -46,11 +46,6 @@ export default function JapanInflationCharts() {
         <TokyoCPIChart />
       </div>
 
-      {/* 企業向けサービス価格指数（SPPI） */}
-      <div id="sppi">
-        <JapanSPPIChart />
-      </div>
-
       {/* 企業物価指数（CGPI） */}
       <div id="cgpi">
         <JapanCGPIChart />
@@ -79,6 +74,11 @@ export default function JapanInflationCharts() {
       {/* 価格DIスプレッド（日銀短観） */}
       <div id="price-di-spread">
         <JapanPriceDISpreadChart />
+      </div>
+
+      {/* 企業向けサービス価格指数（SPPI） */}
+      <div id="sppi">
+        <JapanSPPIChart />
       </div>
 
       {/* POS-UVPI（消費者購買単価指数） */}

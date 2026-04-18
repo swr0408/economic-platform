@@ -2343,19 +2343,23 @@
     {
       "date": "2026-04-07",
       "value": 7.6
+    },
+    {
+      "date": "2026-04-14",
+      "value": 7.0
     }
   ],
   "latest": {
-    "date": "2026-04-07",
-    "value": 7.6
+    "date": "2026-04-14",
+    "value": 7.0
   },
   "next_release": {
-    "date": "2026-04-14",
-    "datetime_utc": "2026-04-14T12:55:00+00:00",
-    "datetime_jst": "2026-04-14T21:55:00+09:00",
+    "date": "2026-04-21",
+    "datetime_utc": "2026-04-21T12:55:00+00:00",
+    "datetime_jst": "2026-04-21T21:55:00+09:00",
     "time_jst": "21:55",
-    "label": "Redbook YoY (Apr/11)",
+    "label": "Redbook YoY (Apr/18)",
     "estimate": null
   },
-  "last_updated": "2026-04-11T00:11:16.607464+09:00"
+  "last_updated": "2026-04-18T17:04:05.006894+09:00"
 }

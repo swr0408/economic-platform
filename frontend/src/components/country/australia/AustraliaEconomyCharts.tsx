@@ -71,6 +71,13 @@ export default function AustraliaEconomyCharts() {
         />
       </div>
 
+      {/* AU Terms of Trade */}
+      <div id="terms-of-trade">
+        <AuTermsOfTradeChart
+          data={dashboardData?.au_terms_of_trade ?? null}
+        />
+      </div>
+
       {/* AU Current Account */}
       <div id="current-account">
         <AuCurrentAccountChart
@@ -89,13 +96,6 @@ export default function AustraliaEconomyCharts() {
       <div id="pmi">
         <AuPmiChart
           data={dashboardData?.au_pmi ?? null}
-        />
-      </div>
-
-      {/* AU Terms of Trade */}
-      <div id="terms-of-trade">
-        <AuTermsOfTradeChart
-          data={dashboardData?.au_terms_of_trade ?? null}
         />
       </div>
     </div>

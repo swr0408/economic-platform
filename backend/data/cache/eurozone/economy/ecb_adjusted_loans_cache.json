@@ -1638,8 +1638,8 @@
     "time_jst": "17:00",
     "datetime_cet": "2026-04-29T10:00:00+02:00",
     "time_cet": "10:00",
-    "label": "M3 Money Supply (Mar)",
-    "estimate": null
+    "label": "M3 Money Supply YoY (Mar)",
+    "estimate": 2.9
   },
-  "last_updated": "2026-04-10T18:00:56.148770+09:00"
+  "last_updated": "2026-04-18T11:30:37.929898+09:00"
 }

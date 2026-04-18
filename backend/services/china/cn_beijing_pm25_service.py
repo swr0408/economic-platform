@@ -133,7 +133,6 @@ class CnBeijingPm25Service:
 
     def __init__(self):
         self._redis = None
-        self._last_csv_mtime: Optional[float] = None
 
     def _get_redis(self):
         if self._redis is None:
@@ -151,14 +150,20 @@ class CnBeijingPm25Service:
             return os.path.getmtime(CSV_PATH)
         return None
 
-    def _csv_changed(self) -> bool:
-        """CSVファイルが前回読み込みから更新されたか"""
+    def _csv_changed(self, cached_payload: Optional[Dict[str, Any]]) -> bool:
+        """キャッシュに記録された mtime と現在の CSV mtime を比較"""
         current_mtime = self._csv_mtime()
         if current_mtime is None:
             return False
-        if self._last_csv_mtime is None:
+        if not cached_payload:
             return True
-        return current_mtime > self._last_csv_mtime
+        cached_mtime = (cached_payload.get("metadata") or {}).get("csv_mtime")
+        if cached_mtime is None:
+            return True
+        try:
+            return abs(current_mtime - float(cached_mtime)) > 0.01
+        except (TypeError, ValueError):
+            return True
 
     def _from_redis(self) -> Optional[Dict[str, Any]]:
         r = self._get_redis()
@@ -206,7 +211,7 @@ class CnBeijingPm25Service:
         latest_daily = daily[-1] if daily else None
         latest_monthly = monthly[-1] if monthly else None
 
-        self._last_csv_mtime = self._csv_mtime()
+        csv_mtime = self._csv_mtime()
 
         return {
             "daily": daily,
@@ -220,25 +225,24 @@ class CnBeijingPm25Service:
                 "total_daily": len(daily),
                 "total_monthly": len(monthly),
                 "total_ma30": len(ma30),
+                "csv_mtime": csv_mtime,
                 "csv_last_modified": datetime.fromtimestamp(
-                    self._last_csv_mtime, tz=JST
-                ).isoformat() if self._last_csv_mtime else None,
+                    csv_mtime, tz=JST
+                ).isoformat() if csv_mtime else None,
                 "last_fetched": datetime.now(JST).isoformat(),
             },
         }
 
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """データ取得（キャッシュ優先、CSVファイル更新時は自動再読み込み）"""
-        csv_changed = self._csv_changed()
-
-        if not force_refresh and not csv_changed:
-            cached = self._from_redis()
-            if cached:
-                return cached
+        cached = self._from_redis()
+        if cached is None:
             cached = self._from_file()
-            if cached:
+            if cached is not None:
                 self._to_redis(cached)
-                return cached
+
+        if not force_refresh and cached and not self._csv_changed(cached):
+            return cached
 
         payload = self._build_payload()
         self._to_redis(payload)
@@ -254,7 +258,6 @@ class CnBeijingPm25Service:
                 pass
         if os.path.exists(FILE_CACHE_PATH):
             os.remove(FILE_CACHE_PATH)
-        self._last_csv_mtime = None
         return {"success": True, "message": "Beijing PM2.5 cache invalidated"}
 
     def get_cache_status(self) -> Dict[str, Any]:

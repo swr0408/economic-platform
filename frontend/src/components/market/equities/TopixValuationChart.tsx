@@ -17,7 +17,7 @@ import {
 } from 'recharts'
 import ChartContainer from '../../common/ChartContainer'
 import PeriodSelector, { type PeriodValue } from '../../common/PeriodSelector'
-import { formatDayLabel } from '../../../utils/dateFormatters'
+import { formatMonthLabel } from '../../../utils/dateFormatters'
 import { ViewModeButtonGroup } from '../../country/usa/common/ChartComponents'
 import { MonthlyTable } from '../../country/usa/common/MonthlyTable'
 import { useHiddenSeries } from '../../country/usa/common/useChartData'
@@ -112,7 +112,7 @@ function ChartTooltip({ active, payload, label, viewMode }: {
   viewMode: ViewMode
 }) {
   if (!active || !payload || payload.length === 0) return null
-  const formattedLabel = formatDayLabel(String(label))
+  const formattedLabel = formatMonthLabel(String(label))
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dp = payload[0]?.payload as any
   if (!dp) return null
@@ -266,8 +266,7 @@ export default function TopixValuationChart() {
   return (
     <ChartContainer
       title="TOPIX Valuation"
-      dataSource="MacroMicro / Stooq"
-      sourceUrl="https://en.macromicro.me/charts/95007/japan-nikkei225"
+      dataSource="J-Quants"
       handbookId="eps-per-earnings-yield"
       showPeriodSelector={false}
     >

@@ -22,6 +22,10 @@ const COUNTRY_OVERVIEW_HANDBOOKS: Record<string, CountryHandbookEntry[]> = {
   switzerland: [{ id: 'ch-overview', tooltip: 'スイス経済とスイスフランの見方 - データハンドブック' }],
   japan: [{ id: 'japan-fundamentals-yen', tooltip: '日本のファンダメンタルズと円相場 - データハンドブック' }],
   uk: [{ id: 'uk-boe-overview', tooltip: 'イギリスとBOEの見方 - データハンドブック' }],
+  canada: [{ id: 'canada-overview', tooltip: 'カナダ経済の特徴 - データハンドブック' }],
+  china: [{ id: 'cn-overview', tooltip: '中国の政策運営と景気の見方 - データハンドブック' }],
+  australia: [{ id: 'au-rba-overview', tooltip: 'オーストラリア経済とRBAの見方 - データハンドブック' }],
+  newzealand: [{ id: 'nz-rbnz-overview', tooltip: 'ニュージーランド中銀制度の見方 - データハンドブック' }],
   eurozone: [
     { id: 'germany-eurozone-relationship', tooltip: 'ドイツ経済とユーロ圏の関係 - データハンドブック' },
     { id: 'ig-metall-germany-wages', tooltip: 'IGメタルとドイツ賃金動向 - データハンドブック' },

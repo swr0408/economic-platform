@@ -1073,12 +1073,14 @@
       "floor_sold_yoy": "新築商業用ビル売却床面積 累積YoY"
     },
     "total_records": 176,
-    "last_fetched": "2026-03-06T10:01:31.996665+09:00"
+    "last_fetched": "2026-04-18T02:23:00.049822+09:00"
   },
   "next_release": {
-    "date": "2026-03-16",
-    "datetime_jst": "2026-03-16T11:00:00+09:00",
-    "time_jst": "11:00",
-    "label": "Real Estate Development (Mar)"
+    "date": "2026-05-18",
+    "datetime_utc": "2026-05-18T01:30:00+00:00",
+    "datetime_jst": "2026-05-18T10:30:00+09:00",
+    "time_jst": "10:30",
+    "label": "House Price Index YoY (Apr)",
+    "estimate": null
   }
 }

@@ -502,7 +502,7 @@
     },
     {
       "date": "2025-Q1",
-      "value": 0.3,
+      "value": 0.4,
       "source": "destatis"
     },
     {
@@ -513,6 +513,11 @@
     {
       "date": "2025-Q3",
       "value": 0.0,
+      "source": "destatis"
+    },
+    {
+      "date": "2025-Q4",
+      "value": 0.3,
       "source": "destatis"
     }
   ],
@@ -1019,17 +1024,22 @@
     },
     {
       "date": "2025-Q1",
-      "value": 0.0,
+      "value": 0.1,
       "source": "destatis"
     },
     {
       "date": "2025-Q2",
-      "value": -0.1,
+      "value": 0.0,
       "source": "destatis"
     },
     {
       "date": "2025-Q3",
       "value": 0.3,
+      "source": "destatis"
+    },
+    {
+      "date": "2025-Q4",
+      "value": 0.6,
       "source": "destatis"
     }
   ],
@@ -1043,14 +1053,14 @@
     "yoy_adjustment": "price adjusted (preisbereinigt)"
   },
   "next_release": {
-    "date": "2026-01-30",
-    "datetime_utc": "2026-01-30T09:00:00+00:00",
-    "datetime_jst": "2026-01-30T18:00:00+09:00",
-    "time_jst": "18:00",
-    "datetime_cet": "2026-01-30T10:00:00+01:00",
+    "date": "2026-04-30",
+    "datetime_utc": "2026-04-30T08:00:00+00:00",
+    "datetime_jst": "2026-04-30T17:00:00+09:00",
+    "time_jst": "17:00",
+    "datetime_cet": "2026-04-30T10:00:00+02:00",
     "time_cet": "10:00",
-    "label": "GDP Growth Rate QoQ (Q4)",
-    "estimate": 0.2
+    "label": "GDP Growth Rate YoY (Q1)",
+    "estimate": 0.5
   },
-  "last_updated": "2026-01-30T02:32:37.891745+09:00"
+  "last_updated": "2026-04-18T11:30:43.937740+09:00"
 }

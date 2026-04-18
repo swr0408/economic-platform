@@ -7,19 +7,15 @@
 - mom: 前月比(%)（rawから自動計算）
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース Excel 蓄積）
   indicator: cn_ic_raw        → 当期生産量（億個）
   indicator: cn_ic_yoy        → 前年比成長率(%)
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  工业主要产品产量 → 集成电路
+- 最新値: www.stats.gov.cn/sj/zxfb/ のプレスリリース添付 Excel から取得 → DB UPSERT
+  「规模以上工业增加值」記事の Excel 内「集成电路」行
 - FMPマッピングなし
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
-CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
+DB蓄積で永続化。CSVは初期インポート済み。
 ※ 1-2月は合算発表のため、1月・2月にデータがない月がある
-※ NBS APIはアンチボット保護により接続不可の場合があるため、
-   DB蓄積データを主データソースとし、APIは補助的に使用する。
-   新しいデータはCSVを更新して再インポートするか、APIが利用可能な時に自動取得。
 """
 import os
 import json
@@ -28,8 +24,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -47,125 +41,67 @@ REDIS_TTL = 86400  # 24h
 DB_INDICATOR_RAW = "cn_ic_raw"
 DB_INDICATOR_YOY = "cn_ic_yoy"
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
 
-# NBS API指標コード (hgyd DB = 月次)
-# 工业主要产品产量 → 集成电路
-# NBS_INDICATOR_RAW_CODE: 集成电路 当期产量
-# NBS_INDICATOR_YOY_CODE: 集成电路 前年同期比
-# ※ コードはNBS英語サイトのCSVと照合して特定
-# ※ NBS APIがアンチボット保護で応答しない場合はスキップ
-NBS_INDICATOR_RAW_CODE = "A020M01"  # 集成电路 当期（推定コード）
-NBS_INDICATOR_YOY_CODE = "A020M06"  # 集成电路 同比（推定コード）
+def _extract_ic_from_excel(excel_data: bytes, period) -> Dict[str, Dict[str, float]]:
+    """工業生産プレスリリース Excel から集積回路データを抽出
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
-
-
-def _fetch_nbs_api(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIからデータを取得
-
-    ※ NBS APIはアンチボット保護によりサーバーから接続不可の場合がある。
-       失敗時は空dictを返し、DB蓄積データにフォールバック。
-
-    Returns:
-        {date_str: value, ...}
+    Excel 構造（「规模以上工业增加值」記事添付）:
+      R61: 集成电路（亿块） | 当期絶対量 | 当期YoY% | 累計絶対量 | 累計YoY%
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            return {}
+    rows = parse_excel(excel_data)
 
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
+    raw_data = {}
+    yoy_data = {}
 
-            value = node_data.get("data")
-            if value is None:
-                continue
+    for row in rows:
+        # col0は空、col1がラベル、col2=当期絶対量、col3=当期YoY%
+        label = str(row[1]).strip() if len(row) > 1 and row[1] else ""
+        if "集成电路" not in label:
+            continue
 
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
+        raw_val = _safe_float(row[2]) if len(row) > 2 else None
+        yoy_val = _safe_float(row[3]) if len(row) > 3 else None
 
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
+        if period and raw_val is not None:
+            year, month = period
             date_str = f"{year}-{month:02d}-01"
-            result[date_str] = round(value, 2)
+            raw_data[date_str] = round(raw_val, 2)
+            if yoy_val is not None:
+                yoy_data[date_str] = round(yoy_val, 1)
+            logger.info(f"[NBS-IC] Excel: {date_str} raw={raw_val}, yoy={yoy_val}")
+        break
 
-        return result
+    return {
+        DB_INDICATOR_RAW: raw_data,
+        DB_INDICATOR_YOY: yoy_data,
+    }
 
-    except Exception:
-        # NBS APIが応答しない場合はサイレントにスキップ
-        return {}
 
+def _fetch_and_upsert_from_press_release() -> None:
+    """NBS プレスリリース Excel から最新データを取得し、DB に UPSERT"""
+    from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
-
-    # 当期値
-    raw_data = _fetch_nbs_api(NBS_INDICATOR_RAW_CODE, periods=24)
-    if raw_data:
-        count = upsert_nbs_data(DB_INDICATOR_RAW, raw_data, source="api")
-        logger.info(f"[NBS-IC] Raw API: {len(raw_data)} records, DB upserted {count}")
-
-    # YoY成長率
-    yoy_data = _fetch_nbs_api(NBS_INDICATOR_YOY_CODE, periods=24)
-    if yoy_data:
-        # NBS YoY は base=100 形式の可能性: 112.9 → 12.9%
-        converted = {}
-        for date_str, val in yoy_data.items():
-            if val > 50:  # base=100 形式の場合
-                converted[date_str] = round(val - 100, 1)
-            else:
-                converted[date_str] = round(val, 1)
-        count = upsert_nbs_data(DB_INDICATOR_YOY, converted, source="api")
-        logger.info(f"[NBS-IC] YoY API: {len(converted)} records, DB upserted {count}")
+    results = fetch_and_upsert_from_press_release(
+        category="industrial_production",
+        extractor_fn=_extract_ic_from_excel,
+    )
+    if results:
+        logger.info(f"[NBS-IC] Press release upsert: {results}")
+    else:
+        logger.warning("[NBS-IC] Press release: no data extracted")
 
 
 def _build_data() -> List[Dict[str, Any]]:
     """DBからデータを読み込み + NBS APIで最新取得→DB蓄積"""
     from services.china.nbs_db_utils import load_nbs_multi
 
-    # --- NBS API → DB蓄積（ベストエフォート） ---
+    # --- プレスリリース Excel → DB蓄積（ベストエフォート） ---
     try:
-        _fetch_and_upsert_nbs()
+        _fetch_and_upsert_from_press_release()
     except Exception as e:
-        logger.warning(f"[IC] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[IC] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     all_data = load_nbs_multi([DB_INDICATOR_RAW, DB_INDICATOR_YOY])

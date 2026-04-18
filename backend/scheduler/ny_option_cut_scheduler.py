@@ -4,11 +4,9 @@ NYオプションカット 日次スケジューラー
 investinglive.com のFXオプション期日記事を自動取得
 
 スケジュール:
-  - 毎営業日 15:30 JST: 記事チェック（初回）
-  - 毎営業日 16:00 JST: 記事チェック（2回目）
-  - 毎営業日 16:30 JST: 記事チェック（3回目）
-  - 毎営業日 17:00 JST: 記事チェック（最終）
-  ※ 記事が見つかったら以降のチェックはスキップ
+  - 毎営業日 15:30〜17:00 JST の間 15 分おきに記事チェック
+    (15:30, 15:45, 16:00, 16:15, 16:30, 16:45, 17:00 の 7 回)
+  ※ 記事が見つかったら以降のチェックはスキップ (_last_found_date)
 """
 import logging
 from datetime import datetime
@@ -37,12 +35,24 @@ class NyOptionCutScheduler:
         """当日の記事が公開されているかチェック"""
         today = datetime.now(JST).date()
 
+        # in-memory の早期スキップ
         if self._last_found_date == today:
             logger.info("[NYOptionCut] Already found today's article, skipping.")
             return
 
         try:
             service = self._import_service()
+
+            # ファイルキャッシュに当日分があればネットワーク取得をスキップ
+            # (コンテナ再起動で in-memory の _last_found_date が失われるケースに対応)
+            cached = service._load_from_file()
+            if cached and service._is_today(cached):
+                self._last_found_date = today
+                logger.info(
+                    f"[NYOptionCut] Cache already has today's article ({today}), skipping."
+                )
+                return
+
             result = service.get_data(force_refresh=True)
 
             if result.get("status") == "published":
@@ -55,7 +65,12 @@ class NyOptionCutScheduler:
 
     def start(self):
         """スケジューラー開始"""
-        schedule_times = [(15, 30), (16, 0), (16, 30), (17, 0)]
+        # 15:30〜17:00 JST の間 15 分おき (記事公開が 15:30 を超えるケースに対応)
+        schedule_times = [
+            (15, 30), (15, 45),
+            (16, 0), (16, 15), (16, 30), (16, 45),
+            (17, 0),
+        ]
 
         for hour, minute in schedule_times:
             self.scheduler.add_job(
@@ -73,7 +88,8 @@ class NyOptionCutScheduler:
 
         self.scheduler.start()
         logger.info(
-            "[NYOptionCut] Scheduler started (15:30, 16:00, 16:30, 17:00 JST)"
+            "[NYOptionCut] Scheduler started "
+            "(15:30, 15:45, 16:00, 16:15, 16:30, 16:45, 17:00 JST)"
         )
 
     def shutdown(self):

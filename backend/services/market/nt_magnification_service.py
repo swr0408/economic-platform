@@ -21,6 +21,7 @@ import pandas as pd
 import yfinance as yf
 
 from core.redis_client import redis_client
+from services.market._stooq_utils import fetch_stooq_daily
 
 logger = logging.getLogger(__name__)
 
@@ -105,24 +106,15 @@ class NtMagnificationService:
 
     def _fetch_topix(self, start_str: str, end_str: str) -> Dict[str, float]:
         """StooqからTOPIXインデックスを取得（正規のインデックス値）"""
-        try:
-            d1 = start_str.replace("-", "")
-            d2 = end_str.replace("-", "")
-            stooq_url = f"https://stooq.com/q/d/l/?s=^tpx&d1={d1}&d2={d2}&i=d"
-            df = pd.read_csv(stooq_url)
-            if df.empty:
-                logger.error("Stooq TOPIX: データなし")
-                return {}
-            result: Dict[str, float] = {}
-            for _, row in df.iterrows():
-                date_str = str(row["Date"])
-                close_val = float(row["Close"])
-                result[date_str] = round(close_val, 4)
-            logger.info(f"  topix (Stooq ^tpx): {len(result)}件")
-            return result
-        except Exception as e:
-            logger.error(f"Stooq TOPIX ダウンロードエラー: {e}")
+        df = fetch_stooq_daily("^tpx", start_str, end_str)
+        if df is None or df.empty:
             return {}
+        result: Dict[str, float] = {}
+        for _, row in df.iterrows():
+            date_str = row["Date"].strftime("%Y-%m-%d")
+            result[date_str] = round(float(row["Close"]), 4)
+        logger.info(f"  topix (Stooq ^tpx): {len(result)}件")
+        return result
 
     def _fetch_data(self) -> Dict[str, Any]:
         end_date = datetime.now()

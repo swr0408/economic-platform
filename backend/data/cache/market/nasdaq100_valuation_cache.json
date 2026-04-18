@@ -4217,30 +4217,44 @@
     {
       "date": "2026-02-02",
       "close": 25738.61,
-      "forward_pe": 24.22,
-      "forward_eps": 1062.7,
-      "earnings_yield": 0.041288,
+      "forward_pe": 24.23,
+      "forward_eps": 1062.26,
+      "earnings_yield": 0.041271,
       "yield_10y": 0.04275,
-      "yield_spread": -0.001462,
+      "yield_spread": -0.001479,
       "real_yield_10y": 0.0194,
-      "real_yield_spread": 0.021888,
-      "forward_pe_yoy": -5.56,
-      "forward_eps_yoy": 27.97,
-      "earnings_yield_yoy": 5.89
+      "real_yield_spread": 0.021871,
+      "forward_pe_yoy": -5.52,
+      "forward_eps_yoy": 27.91,
+      "earnings_yield_yoy": 5.84
     },
     {
       "date": "2026-03-02",
       "close": 24992.6,
-      "forward_pe": 21.95,
-      "forward_eps": 1138.62,
-      "earnings_yield": 0.045558,
+      "forward_pe": 21.16,
+      "forward_eps": 1181.12,
+      "earnings_yield": 0.047259,
       "yield_10y": 0.04048,
-      "yield_spread": 0.005078,
+      "yield_spread": 0.006779,
       "real_yield_10y": 0.0176,
-      "real_yield_spread": 0.027958,
-      "forward_pe_yoy": -5.96,
-      "forward_eps_yoy": 30.11,
-      "earnings_yield_yoy": 6.33
+      "real_yield_spread": 0.029659,
+      "forward_pe_yoy": -9.34,
+      "forward_eps_yoy": 34.97,
+      "earnings_yield_yoy": 10.3
+    },
+    {
+      "date": "2026-04-01",
+      "close": 24019.99,
+      "forward_pe": 22.24,
+      "forward_eps": 1080.04,
+      "earnings_yield": 0.044964,
+      "yield_10y": 0.04319,
+      "yield_spread": 0.001774,
+      "real_yield_10y": 0.0202,
+      "real_yield_spread": 0.024764,
+      "forward_pe_yoy": -6.72,
+      "forward_eps_yoy": 32.49,
+      "earnings_yield_yoy": 7.21
     }
   ],
   "monthly_table": [
@@ -7858,42 +7872,54 @@
     },
     {
       "date": "2026-02",
-      "forward_pe": 24.22,
-      "forward_eps": 1062.7,
+      "forward_pe": 24.23,
+      "forward_eps": 1062.26,
       "earnings_yield": 4.13,
       "close": 25738.61,
       "yield_10y": 4.28,
-      "forward_pe_mom": -2.26,
-      "forward_eps_mom": 4.47,
-      "earnings_yield_mom": 2.31,
+      "forward_pe_mom": -2.22,
+      "forward_eps_mom": 4.43,
+      "earnings_yield_mom": 2.27,
       "real_yield_10y": 1.94
     },
     {
       "date": "2026-03",
-      "forward_pe": 21.95,
-      "forward_eps": 1138.62,
-      "earnings_yield": 4.56,
+      "forward_pe": 21.16,
+      "forward_eps": 1181.12,
+      "earnings_yield": 4.73,
       "close": 24992.6,
       "yield_10y": 4.05,
-      "forward_pe_mom": -9.37,
-      "forward_eps_mom": 7.14,
-      "earnings_yield_mom": 10.34,
+      "forward_pe_mom": -12.67,
+      "forward_eps_mom": 11.19,
+      "earnings_yield_mom": 14.51,
       "real_yield_10y": 1.76
+    },
+    {
+      "date": "2026-04",
+      "forward_pe": 22.24,
+      "forward_eps": 1080.04,
+      "earnings_yield": 4.5,
+      "close": 24019.99,
+      "yield_10y": 4.32,
+      "forward_pe_mom": 5.1,
+      "forward_eps_mom": -8.56,
+      "earnings_yield_mom": -4.86,
+      "real_yield_10y": 2.02
     }
   ],
   "latest": {
-    "date": "2026-03-02",
-    "close": 24992.6,
-    "forward_pe": 21.95,
-    "forward_eps": 1138.62,
-    "earnings_yield": 0.045558,
-    "yield_10y": 0.04048,
-    "yield_spread": 0.005078,
-    "real_yield_10y": 0.0176,
-    "real_yield_spread": 0.027958,
-    "forward_pe_yoy": -5.96,
-    "forward_eps_yoy": 30.11,
-    "earnings_yield_yoy": 6.33
+    "date": "2026-04-01",
+    "close": 24019.99,
+    "forward_pe": 22.24,
+    "forward_eps": 1080.04,
+    "earnings_yield": 0.044964,
+    "yield_10y": 0.04319,
+    "yield_spread": 0.001774,
+    "real_yield_10y": 0.0202,
+    "real_yield_spread": 0.024764,
+    "forward_pe_yoy": -6.72,
+    "forward_eps_yoy": 32.49,
+    "earnings_yield_yoy": 7.21
   },
   "metadata": {
     "source": "Nasdaq 100 Valuation",
@@ -7901,11 +7927,11 @@
     "pe_source_url": "https://en.macromicro.me/series/23955/nasdaq-100-pe",
     "pe_source": "MacroMicro",
     "file_name": "nasdaq100_pe.csv",
-    "file_mtime": 1774146668.5795891,
-    "data_count": 303,
+    "file_mtime": 1775910638.298172,
+    "data_count": 304,
     "date_range": {
       "start": "2001-01-02",
-      "end": "2026-03-02"
+      "end": "2026-04-01"
     },
     "series": [
       "forward_pe (予想PER)",
@@ -7919,5 +7945,5 @@
   },
   "cached": false,
   "source": "csv+yfinance",
-  "last_updated": "2026-04-10T20:44:15.260222+09:00"
+  "last_updated": "2026-04-18T15:07:43.134766+09:00"
 }

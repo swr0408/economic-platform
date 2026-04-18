@@ -55,6 +55,34 @@ class SwitzerlandPolicyLoader(BaseDashboardLoader):
         """期待されるデータキーのリストを返す"""
         return self.EXPECTED_KEYS
 
+    def get_release_datetimes(self) -> List[Optional[datetime]]:
+        """
+        スイス指標の発表日時リスト（FMP DB + SNBカレンダーICS）
+
+        FMP DB が空でも SNBカレンダー（ICS）の Monetary policy assessment 日時を
+        含めることで、SNB会合後のキャッシュ自動再取得を保証する。
+        """
+        release_dts: List[Optional[datetime]] = list(super().get_release_datetimes())
+
+        try:
+            from services.switzerland.snb_calendar_service import snb_calendar_service
+            from zoneinfo import ZoneInfo
+            ZURICH = ZoneInfo("Europe/Zurich")
+
+            schedule = snb_calendar_service._get_schedule() or {}
+            for event in schedule.get("monetary_policy_decision", []):
+                dt_str = event.get("datetime")
+                if not dt_str:
+                    continue
+                try:
+                    event_dt = datetime.strptime(dt_str, "%Y-%m-%d %H:%M")
+                    release_dts.append(event_dt.replace(tzinfo=ZURICH).astimezone(JST))
+                except ValueError:
+                    continue
+        except Exception as e:
+            print(f"[SwitzerlandPolicy] Error loading SNB calendar dates: {e}")
+
+        return release_dts
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """

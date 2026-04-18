@@ -32,6 +32,10 @@ from services.japan.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
 )
+from services.japan.estat_monthly_release import (
+    get_monthly_release_supplement,
+    merge_supplement,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +91,18 @@ class RealWageService:
         # e-Stat Excelからデータを取得（2系列）
         all_data = self._load_from_estat(self.ESTAT_ALL_EXCEL_URL, "全事業所版", 80)
         common_data = self._load_from_estat(self.ESTAT_COMMON_EXCEL_URL, "共通事業所版", 40)
+
+        # 月次リリースファイルから最新月データを補完
+        supplement = get_monthly_release_supplement(force_refresh=force_refresh)
+        if supplement:
+            if all_data:
+                sup_all = supplement.get("real_wage_all", [])
+                if sup_all:
+                    all_data = merge_supplement(all_data, sup_all)
+            if common_data:
+                sup_common = supplement.get("real_wage_common", [])
+                if sup_common:
+                    common_data = merge_supplement(common_data, sup_common)
 
         if all_data or common_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)

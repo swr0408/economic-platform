@@ -92,8 +92,7 @@ class RightmoveHousePriceService:
         new_pdfs = self._check_new_pdfs()
         for pdf_path in new_pdfs:
             pdf_data = self._extract_data_from_pdf(pdf_path)
-            if pdf_data:
-                self._save_pdf_data_to_db(pdf_data)
+            if pdf_data and self._save_pdf_data_to_db(pdf_data):
                 self._mark_pdf_as_imported(pdf_path)
                 # メモリ上でもマージ（最新月）
                 mom_data = self._merge_pdf_data(mom_data, pdf_data.get("mom"))
@@ -606,20 +605,20 @@ class RightmoveHousePriceService:
         """
         PDFデータをDBに保存（UPSERT方式）
 
-        同じ日付のデータがあれば更新、なければ挿入
+        対象月の MoM/YoY に加え、PDF内テーブルに含まれる前月データ
+        （previous_months）も修正値として保存する。
         """
         if not pdf_data:
             return False
 
         try:
             from core.database import SessionLocal
-            from sqlalchemy import text
 
             mom_data = pdf_data.get("mom")
             yoy_data = pdf_data.get("yoy")
+            previous_months = pdf_data.get("previous_months") or []
 
             with SessionLocal() as session:
-                # MoMデータをUPSERT
                 if mom_data:
                     self._upsert_event(
                         session,
@@ -628,7 +627,6 @@ class RightmoveHousePriceService:
                         value=mom_data["value"]
                     )
 
-                # YoYデータをUPSERT
                 if yoy_data:
                     self._upsert_event(
                         session,
@@ -637,8 +635,22 @@ class RightmoveHousePriceService:
                         value=yoy_data["value"]
                     )
 
+                for prev in previous_months:
+                    self._upsert_event(
+                        session,
+                        event_name="Rightmove House Price Index MoM",
+                        date_str=prev["date"],
+                        value=prev["mom"],
+                    )
+                    self._upsert_event(
+                        session,
+                        event_name="Rightmove House Price Index YoY",
+                        date_str=prev["date"],
+                        value=prev["yoy"],
+                    )
+
                 session.commit()
-                logger.info(f"[Rightmove] Saved PDF data to DB: MoM={mom_data}, YoY={yoy_data}")
+                logger.info(f"[Rightmove] Saved PDF data to DB: MoM={mom_data}, YoY={yoy_data}, prev={len(previous_months)}")
                 return True
 
         except Exception as e:
@@ -648,19 +660,21 @@ class RightmoveHousePriceService:
     def _upsert_event(self, session, event_name: str, date_str: str, value: float) -> None:
         """
         イベントをUPSERT（既存なら更新、なければ挿入）
+
+        PDFはデータ対象月ベースで保存するため CSV_IMPORT と同じ形式で格納する。
         """
         from sqlalchemy import text
         from datetime import datetime
 
-        # 日付をdatetime_utcに変換（08:01 UK時間）
         date_obj = datetime.strptime(date_str, "%Y-%m-%d")
         datetime_utc = date_obj.replace(hour=8, minute=1, second=0)
+        event_key = f"UK_{event_name}_{date_obj.strftime('%Y%m%d')}"
 
-        # 既存レコードを検索
         check_query = text("""
             SELECT id, actual FROM economic_calendar_events
             WHERE country = 'UK'
               AND event ILIKE :event_pattern
+              AND provider IN ('CSV_IMPORT', 'PDF_IMPORT')
               AND datetime_utc::date = :target_date
             ORDER BY datetime_utc DESC
             LIMIT 1
@@ -671,9 +685,8 @@ class RightmoveHousePriceService:
         ).fetchone()
 
         if existing:
-            # 既存レコードがあり、値が異なる場合のみ更新
             existing_id, existing_value = existing
-            if existing_value != value:
+            if existing_value is None or float(existing_value) != value:
                 update_query = text("""
                     UPDATE economic_calendar_events
                     SET actual = :value, updated_at = NOW()
@@ -682,16 +695,22 @@ class RightmoveHousePriceService:
                 session.execute(update_query, {"value": value, "id": existing_id})
                 logger.info(f"[Rightmove] Updated {event_name}: {date_str} {existing_value} -> {value}")
         else:
-            # 新規挿入
             insert_query = text("""
                 INSERT INTO economic_calendar_events
-                (country, event, datetime_utc, actual, estimate, previous, impact, source, created_at, updated_at)
-                VALUES ('UK', :event, :datetime_utc, :actual, NULL, NULL, 'Low', 'PDF Import', NOW(), NOW())
+                (provider, event_key, country, currency, event,
+                 datetime_utc, datetime_raw, has_time, impact, actual,
+                 raw_json, ingested_at, updated_at)
+                VALUES ('PDF_IMPORT', :event_key, 'UK', 'GBP', :event,
+                        :datetime_utc, :datetime_raw, TRUE, 'Low', :actual,
+                        :raw_json, NOW(), NOW())
             """)
             session.execute(insert_query, {
+                "event_key": event_key,
                 "event": event_name,
                 "datetime_utc": datetime_utc,
-                "actual": value
+                "datetime_raw": datetime_utc.strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+                "actual": value,
+                "raw_json": json.dumps({"source": "PDF", "data_month": date_str}),
             })
             logger.info(f"[Rightmove] Inserted {event_name}: {date_str} = {value}")
 

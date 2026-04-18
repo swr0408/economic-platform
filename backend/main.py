@@ -2,6 +2,8 @@
 Economic Platform API - メインエントリーポイント
 """
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -27,6 +29,7 @@ try:
     from backend.routers.dashboard import router as dashboard_router
     from backend.routers.dashboard_home import router as dashboard_home_router
     from backend.routers.market import router as market_router
+    from backend.routers.market_comex_warehouse_screenshot import router as market_comex_warehouse_screenshot_router
     from backend.routers.earnings import router as earnings_router
     from backend.routers.calendar import router as calendar_router
     from backend.routers.market_impact import router as market_impact_router
@@ -112,6 +115,9 @@ try:
     from backend.routers.uk.uk_qt import router as uk_qt_router
     from backend.routers.uk.uk_trade_balance import router as uk_trade_balance_router
     from backend.routers.uk.uk_current_account import router as uk_current_account_router
+    from backend.routers.usa.fed_rate_cuts_screenshot import router as usa_fed_rate_cuts_screenshot_router
+    from backend.routers.uk.boe_rate_cuts_screenshot import router as uk_boe_rate_cuts_screenshot_router
+    from backend.routers.japan.boj_rate_cuts_screenshot import router as japan_boj_rate_cuts_screenshot_router
     from backend.routers.switzerland.snb import router as switzerland_snb_router
     from backend.routers.switzerland.fso import router as switzerland_fso_router
     from backend.routers.switzerland.kof import router as switzerland_kof_router
@@ -137,6 +143,12 @@ try:
     from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
     from backend.scheduler.market_data_scheduler import market_data_scheduler
+    from backend.scheduler.eurex_ois_scheduler import eurex_ois_scheduler
+    from backend.scheduler.ecb_rate_cuts_screenshot_scheduler import ecb_rate_cuts_screenshot_scheduler
+    from backend.scheduler.boc_rate_cuts_screenshot_scheduler import boc_rate_cuts_screenshot_scheduler
+    from backend.scheduler.comex_warehouse_screenshot_scheduler import comex_warehouse_screenshot_scheduler
+    from backend.scheduler.rate_cuts_screenshot_scheduler import rate_cuts_screenshot_scheduler
+    from backend.scheduler.rba_expectations_screenshot_scheduler import rba_expectations_screenshot_scheduler
     from backend.routers.headlines import router as headlines_router
     from backend.routers.auth import router as auth_router
     from backend.routers.visibility import router as visibility_router
@@ -166,6 +178,7 @@ except ImportError as _ie:
     from routers.dashboard import router as dashboard_router
     from routers.dashboard_home import router as dashboard_home_router
     from routers.market import router as market_router
+    from routers.market_comex_warehouse_screenshot import router as market_comex_warehouse_screenshot_router
     from routers.earnings import router as earnings_router
     from routers.market_tsmc import router as market_tsmc_router
     from routers.calendar import router as calendar_router
@@ -265,6 +278,9 @@ except ImportError as _ie:
     from routers.uk.uk_qt import router as uk_qt_router
     from routers.uk.uk_trade_balance import router as uk_trade_balance_router
     from routers.uk.uk_current_account import router as uk_current_account_router
+    from routers.usa.fed_rate_cuts_screenshot import router as usa_fed_rate_cuts_screenshot_router
+    from routers.uk.boe_rate_cuts_screenshot import router as uk_boe_rate_cuts_screenshot_router
+    from routers.japan.boj_rate_cuts_screenshot import router as japan_boj_rate_cuts_screenshot_router
     from routers.uk.uk_government_debt_to_gdp_ratio import router as uk_government_debt_to_gdp_ratio_router
     from routers.switzerland.snb import router as switzerland_snb_router
     from routers.switzerland.fso import router as switzerland_fso_router
@@ -340,6 +356,12 @@ except ImportError as _ie:
     from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from scheduler.comex_stock_scheduler import comex_stock_scheduler
     from scheduler.market_data_scheduler import market_data_scheduler
+    from scheduler.eurex_ois_scheduler import eurex_ois_scheduler
+    from scheduler.ecb_rate_cuts_screenshot_scheduler import ecb_rate_cuts_screenshot_scheduler
+    from scheduler.boc_rate_cuts_screenshot_scheduler import boc_rate_cuts_screenshot_scheduler
+    from scheduler.comex_warehouse_screenshot_scheduler import comex_warehouse_screenshot_scheduler
+    from scheduler.rate_cuts_screenshot_scheduler import rate_cuts_screenshot_scheduler
+    from scheduler.rba_expectations_screenshot_scheduler import rba_expectations_screenshot_scheduler
     from routers.headlines import router as headlines_router
     from routers.auth import router as auth_router
     from routers.visibility import router as visibility_router
@@ -409,6 +431,15 @@ app.mount(
     name="screenshots",
 )
 
+# 静的ファイル配信（手動更新データ）
+_MANUAL_UPDATE_DIR = Path(__file__).parent / "data" / "manual_update" / "daily"
+if _MANUAL_UPDATE_DIR.exists():
+    app.mount(
+        "/static/manual_update/daily",
+        StaticFiles(directory=str(_MANUAL_UPDATE_DIR)),
+        name="manual_update_daily",
+    )
+
 # ルーター登録
 app.include_router(seasonality_router)
 app.include_router(fed_h15_router)
@@ -426,6 +457,7 @@ app.include_router(truflation_screenshot_router)
 app.include_router(dashboard_router)
 app.include_router(dashboard_home_router)
 app.include_router(market_router)
+app.include_router(market_comex_warehouse_screenshot_router)
 app.include_router(earnings_router)
 app.include_router(market_tsmc_router)
 app.include_router(calendar_router)
@@ -528,6 +560,9 @@ app.include_router(uk_qt_router)
 app.include_router(uk_trade_balance_router)
 app.include_router(uk_current_account_router)
 app.include_router(uk_government_debt_to_gdp_ratio_router)
+app.include_router(usa_fed_rate_cuts_screenshot_router)
+app.include_router(uk_boe_rate_cuts_screenshot_router)
+app.include_router(japan_boj_rate_cuts_screenshot_router)
 
 # Switzerland
 app.include_router(switzerland_snb_router)
@@ -815,6 +850,48 @@ async def startup_event():
         print("Market Data Scheduler started successfully")
     except Exception as e:
         print(f"Warning: Could not start Market Data Scheduler: {e}")
+
+    # Eurex OIS 日次スケジューラーを開始
+    try:
+        eurex_ois_scheduler.start()
+        print("Eurex OIS Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Eurex OIS Scheduler: {e}")
+
+    # ECB Rate Cuts Screenshot 日次スケジューラーを開始
+    try:
+        ecb_rate_cuts_screenshot_scheduler.start()
+        print("ECB RateCuts Screenshot Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start ECB RateCuts Screenshot Scheduler: {e}")
+
+    # BOC Rate Cuts Screenshot 日次スケジューラーを開始
+    try:
+        boc_rate_cuts_screenshot_scheduler.start()
+        print("BOC RateCuts Screenshot Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start BOC RateCuts Screenshot Scheduler: {e}")
+
+    # COMEX Warehouse (Gold/Silver) Screenshot 日次スケジューラーを開始
+    try:
+        comex_warehouse_screenshot_scheduler.start()
+        print("COMEX Warehouse Screenshot Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start COMEX Warehouse Screenshot Scheduler: {e}")
+
+    # Fed/BOE/BOJ Rate Cuts Screenshot 日次スケジューラーを開始
+    try:
+        rate_cuts_screenshot_scheduler.start()
+        print("Rate Cuts Screenshot Scheduler (Fed/BOE/BOJ) started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Rate Cuts Screenshot Scheduler: {e}")
+
+    # RBA Expectations Screenshot 日次スケジューラーを開始
+    try:
+        rba_expectations_screenshot_scheduler.start()
+        print("RBA Expectations Screenshot Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start RBA Expectations Screenshot Scheduler: {e}")
 
     # カナダ決済残高キャッシュをバックグラウンドでウォームアップ
     try:

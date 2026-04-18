@@ -803,11 +803,15 @@
     {
       "date": "2026-02-01",
       "value": 59.2
+    },
+    {
+      "date": "2026-03-01",
+      "value": 32.5
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 59.2
+    "date": "2026-03-01",
+    "value": 32.5
   },
   "metadata": {
     "source": "ANZ",
@@ -816,5 +820,5 @@
     "unit": "index",
     "frequency": "monthly"
   },
-  "last_updated": "2026-02-27T21:05:46.190990+09:00"
+  "last_updated": "2026-04-18T04:09:43.701916+09:00"
 }

@@ -5,14 +5,13 @@
 - YoY%: 规上工业增加值_同比增長(%) → 直接%値
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース Excel 蓄積）
   indicator: cn_industrial_production_yoy
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  A020101: 规上工业增加值_同比增長
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  「规模以上工业增加值」記事の Excel R4 行
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
-CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
+DB蓄積で永続化。CSVは初期インポート済み。
 ※ 1-2月は合算発表のため、1月・2月にデータがない月がある
 """
 import os
@@ -22,8 +21,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -42,103 +39,58 @@ ECONALPHA_ID = "cn_industrial_production"
 # DB指標ID
 DB_INDICATOR = "cn_industrial_production_yoy"
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_INDICATOR_CODE = "A020101"  # 规上工业增加值_同比增長(%)
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
+def _extract_ip_from_excel(excel_data: bytes, period) -> Dict[str, Dict[str, float]]:
+    """工業生産プレスリリース Excel から鉱工業生産 YoY を抽出
 
-
-def _fetch_nbs_api(periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから鉱工業生産YoYデータを取得
-
-    Returns:
-        {date_str: percent_value, ...} 直接%値
+    Excel R4: 规模以上工业增加值 | … | 当期YoY% | … | 累計YoY%
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": NBS_INDICATOR_CODE},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-IP] API HTTP {resp.status_code}")
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-IP] API returncode: {data.get('returncode')}")
-            return {}
+    rows = parse_excel(excel_data)
+    result = {}
 
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
+    for row in rows:
+        # col0は空、col1がラベル、col3=当期YoY%
+        label = str(row[1]).strip() if len(row) > 1 and row[1] else ""
+        if "规模以上工业增加值" not in label:
+            continue
+        # 分三大门类 等のサブ行を除外
+        if "其中" in label or "采矿" in label or "制造" in label or "电力" in label:
+            continue
 
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
+        yoy_val = _safe_float(row[3]) if len(row) > 3 else None
+        if period and yoy_val is not None:
+            year, month = period
             date_str = f"{year}-{month:02d}-01"
-            # 直接%値（base=100変換不要）
-            result[date_str] = round(value, 1)
+            result[date_str] = round(yoy_val, 1)
+            logger.info(f"[NBS-IP] Excel: {date_str} yoy={yoy_val}")
+        break
 
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-IP] API fetch failed: {e}")
-        return {}
+    return {DB_INDICATOR: result}
 
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
+def _fetch_and_upsert_from_press_release() -> None:
+    """NBS プレスリリース Excel から最新データを取得し、DB に UPSERT"""
+    from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
 
-    data = _fetch_nbs_api(periods=24)
-    if data:
-        count = upsert_nbs_data(DB_INDICATOR, data, source="api")
-        logger.info(f"[NBS-IP] API: {len(data)} records, DB upserted {count}")
+    results = fetch_and_upsert_from_press_release(
+        category="industrial_production",
+        extractor_fn=_extract_ip_from_excel,
+    )
+    if results:
+        logger.info(f"[NBS-IP] Press release upsert: {results}")
 
 
 def _build_data() -> List[Dict[str, Any]]:
     """DBからデータを読み込み + NBS APIで最新取得→DB蓄積"""
     from services.china.nbs_db_utils import load_nbs_data
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        _fetch_and_upsert_from_press_release()
     except Exception as e:
-        logger.warning(f"[IP] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[IP] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     yoy_data = load_nbs_data(DB_INDICATOR)
@@ -241,19 +193,27 @@ class CnIndustrialProductionService:
         }
 
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
-        """データ取得（キャッシュ優先）"""
+        """データ取得（キャッシュ優先）
+
+        空キャッシュ（data=[]）は外部API/DB取得失敗時に保存された破損キャッシュの
+        可能性が高いため、採用せず再取得する。鉱工業生産は過去データが必ずDBにあるため。
+        """
         if not force_refresh:
             cached = self._from_redis()
-            if cached:
+            if cached and cached.get("data"):
                 return cached
             cached = self._from_file()
-            if cached:
+            if cached and cached.get("data"):
                 self._to_redis(cached)
                 return cached
 
         payload = self._build_payload()
-        self._to_redis(payload)
-        self._to_file(payload)
+        # 空ペイロードはキャッシュに保存しない（破損キャッシュ防止）
+        if payload.get("data"):
+            self._to_redis(payload)
+            self._to_file(payload)
+        else:
+            logger.warning("[IP] Empty payload; skipping cache write to prevent stale empty cache")
         return payload
 
     def invalidate_cache(self) -> Dict[str, Any]:

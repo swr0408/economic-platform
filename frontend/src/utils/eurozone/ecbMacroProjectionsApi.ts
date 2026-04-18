@@ -123,12 +123,13 @@ export const INDICATOR_CONFIGS: IndicatorConfig[] = [
  */
 export async function fetchECBMacroProjections(forceRefresh = false): Promise<ECBMacroProjectionsResponse> {
   try {
-    const url = new URL(`${API_BASE_URL}/api/eurozone/ecb-macro-projections`);
+    const params = new URLSearchParams();
     if (forceRefresh) {
-      url.searchParams.set('force_refresh', 'true');
+      params.set('force_refresh', 'true');
     }
+    const qs = params.toString() ? `?${params.toString()}` : '';
 
-    const response = await fetch(url.toString());
+    const response = await fetch(`${API_BASE_URL}/api/eurozone/ecb-macro-projections${qs}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

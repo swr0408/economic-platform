@@ -59,12 +59,13 @@ export const fetchBOJTankanComprehensiveTable = async (
   forceRefresh: boolean = false
 ): Promise<BOJTankanComprehensiveTableResponse> => {
   try {
-    const url = new URL(`${API_BASE_URL}/api/japan/boj-tankan/comprehensive/table/${dataType}`)
+    const params = new URLSearchParams()
     if (forceRefresh) {
-      url.searchParams.append('force_refresh', 'true')
+      params.append('force_refresh', 'true')
     }
+    const qs = params.toString() ? `?${params.toString()}` : ''
 
-    const response = await fetch(url.toString())
+    const response = await fetch(`${API_BASE_URL}/api/japan/boj-tankan/comprehensive/table/${dataType}${qs}`)
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)

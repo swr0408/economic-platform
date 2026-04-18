@@ -5,16 +5,13 @@
 - YoY%: 社会消费品零售总额 同比増長 (%)
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース Excel 蓄積）
   indicator: cn_retail_sales_yoy
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  https://data.stats.gov.cn/easyquery.htm
-  A070103: 社会消费品零售总额_同比增長 (%)
-  ※ APIは直接%値を返す（base-100変換不要）
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  「社会消费品零售」記事の Excel R5 行（当期YoY%）
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
-CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
+DB蓄積で永続化。CSVは初期インポート済み。
 """
 import os
 import json
@@ -23,8 +20,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -43,110 +38,63 @@ ECONALPHA_ID = "cn_retail_sales"
 # DB指標ID
 DB_INDICATOR = "cn_retail_sales_yoy"
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_API_CODE = "A070103"  # 社会消费品零售总额_同比增長 (%)
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
+def _extract_retail_from_excel(excel_data: bytes, period) -> Dict[str, Dict[str, float]]:
+    """小売売上プレスリリース Excel から YoY を抽出
 
-
-def _fetch_nbs_api(periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから小売売上高YoYを取得
-
-    Returns:
-        {date_str: percent_value, ...}
-        APIが直接%値を返すためそのまま格納
+    Excel「表」シート構造:
+    - R2-R4: ヘッダー（指標/当期/累計の区分）
+    - R5: 社会消费品零售总额 | 絶対量(億元) | 当期YoY% | 累計絶対量 | 累計YoY%
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": NBS_API_CODE},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-RetailSales] API HTTP {resp.status_code}")
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-RetailSales] API returncode: {data.get('returncode')}")
-            return {}
+    rows = parse_excel(excel_data)
+    result = {}
 
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
+    for row in rows:
+        label = str(row[0]).strip() if row[0] else ""
+        if "社会消费品零售总额" not in label:
+            continue
+        # タイトル行を除外
+        if "主要数据" in label or "月份" in label:
+            continue
+        # サブ行を除外（"其中" を含む行など）
+        if "其中" in label:
+            continue
 
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
+        # col2 = 当期YoY%
+        yoy_val = _safe_float(row[2]) if len(row) > 2 else None
+        if period and yoy_val is not None:
+            year, month = period
             date_str = f"{year}-{month:02d}-01"
-            # APIが直接%値を返す（0.9 = 0.9%）
-            result[date_str] = round(value, 1)
+            result[date_str] = round(yoy_val, 1)
+            logger.info(f"[NBS-RetailSales] Excel: {date_str} yoy={yoy_val}")
+            break
 
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-RetailSales] API fetch failed: {e}")
-        return {}
+    return {DB_INDICATOR: result}
 
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
+def _fetch_and_upsert_from_press_release() -> None:
+    """NBS プレスリリース Excel から最新データを取得し、DB に UPSERT"""
+    from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
 
-    data = _fetch_nbs_api(periods=24)
-    if data:
-        count = upsert_nbs_data(DB_INDICATOR, data, source="api")
-        logger.info(f"[NBS-RetailSales] API: {len(data)} records, DB upserted {count}")
+    results = fetch_and_upsert_from_press_release(
+        category="retail",
+        extractor_fn=_extract_retail_from_excel,
+    )
+    if results:
+        logger.info(f"[NBS-RetailSales] Press release upsert: {results}")
 
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積
-
-    手順:
-    1. NBS APIから最新データ取得 → DB UPSERT
-    2. DBから全データを読み込み
-    3. 時系列構築
-    """
+    """DBからデータを読み込み + プレスリリース Excel で最新取得→DB蓄積"""
     from services.china.nbs_db_utils import load_nbs_data
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        _fetch_and_upsert_from_press_release()
     except Exception as e:
-        logger.warning(f"[RetailSales] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[RetailSales] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     yoy_data = load_nbs_data(DB_INDICATOR)

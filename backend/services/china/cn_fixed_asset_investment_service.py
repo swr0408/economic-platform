@@ -5,14 +5,13 @@
 - YTD累計増長率(%): 固定资产投资额_累計増長(%)
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース Excel 蓄積）
   indicator: cn_fixed_asset_investment_ytd
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  A040102: 固定资产投资额_累計増長
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  「固定资产投资」記事の Excel R4 行（累計YoY%）
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
-CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
+DB蓄積で永続化。CSVは初期インポート済み。
 ※ 1月は発表なし（1-2月合算発表）
 """
 import os
@@ -22,8 +21,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -42,102 +39,63 @@ ECONALPHA_ID = "cn_fixed_asset_investment"
 # DB指標ID
 DB_INDICATOR = "cn_fixed_asset_investment_ytd"
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_INDICATOR_CODE = "A040102"  # 固定资产投资额_累計増長(%)
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
+def _extract_fai_from_excel(excel_data: bytes, period) -> Dict[str, Dict[str, float]]:
+    """固定資産投資プレスリリース Excel から累計YoY を抽出
 
-
-def _fetch_nbs_api(periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから固定資産投資YTD累計増長率を取得
-
-    Returns:
-        {date_str: percent_value, ...} 直接%値
+    Excel「表」シート構造:
+    - R2: 指標 | 同比増長(%)
+    - R4: 固定资产投资（不含农户） | YoY%(累計)
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": NBS_INDICATOR_CODE},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-FAI] API HTTP {resp.status_code}")
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-FAI] API returncode: {data.get('returncode')}")
-            return {}
+    rows = parse_excel(excel_data)
+    result = {}
 
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
+    for row in rows:
+        label = str(row[0]).strip() if row[0] else ""
+        if "固定资产投资" not in label:
+            continue
+        # タイトル行・ヘッダー行を除外（年月やデータ区分を含むもの）
+        if "主要数据" in label or "月份" in label:
+            continue
+        # "其中" を含むサブ行を除外
+        if "其中" in label:
+            continue
 
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
+        # col1 = YoY%(累計)
+        ytd_val = _safe_float(row[1]) if len(row) > 1 else None
+        if period and ytd_val is not None:
+            year, month = period
             date_str = f"{year}-{month:02d}-01"
-            result[date_str] = round(value, 1)
+            result[date_str] = round(ytd_val, 1)
+            logger.info(f"[NBS-FAI] Excel: {date_str} ytd={ytd_val}")
+            break
 
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-FAI] API fetch failed: {e}")
-        return {}
+    return {DB_INDICATOR: result}
 
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
+def _fetch_and_upsert_from_press_release() -> None:
+    """NBS プレスリリース Excel から最新データを取得し、DB に UPSERT"""
+    from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
 
-    data = _fetch_nbs_api(periods=24)
-    if data:
-        count = upsert_nbs_data(DB_INDICATOR, data, source="api")
-        logger.info(f"[NBS-FAI] API: {len(data)} records, DB upserted {count}")
+    results = fetch_and_upsert_from_press_release(
+        category="fixed_asset",
+        extractor_fn=_extract_fai_from_excel,
+    )
+    if results:
+        logger.info(f"[NBS-FAI] Press release upsert: {results}")
 
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積"""
+    """DBからデータを読み込み + プレスリリース Excel で最新取得→DB蓄積"""
     from services.china.nbs_db_utils import load_nbs_data
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        _fetch_and_upsert_from_press_release()
     except Exception as e:
-        logger.warning(f"[FAI] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[FAI] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     ytd_data = load_nbs_data(DB_INDICATOR)

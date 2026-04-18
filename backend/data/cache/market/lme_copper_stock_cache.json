@@ -27593,17 +27593,155 @@
       "cash_usd": 12758.0,
       "three_month_usd": 12849.0,
       "stock_tonnes": 311825
+    },
+    {
+      "date": "2026-03-16",
+      "cash_usd": 12759.5,
+      "three_month_usd": 12842.0,
+      "stock_tonnes": 311600
+    },
+    {
+      "date": "2026-03-17",
+      "cash_usd": 12677.0,
+      "three_month_usd": 12792.0,
+      "stock_tonnes": 330375
+    },
+    {
+      "date": "2026-03-18",
+      "cash_usd": 12503.0,
+      "three_month_usd": 12609.0,
+      "stock_tonnes": 334100
+    },
+    {
+      "date": "2026-03-19",
+      "cash_usd": 11826.0,
+      "three_month_usd": 11930.0,
+      "stock_tonnes": 335425
+    },
+    {
+      "date": "2026-03-20",
+      "cash_usd": 12021.5,
+      "three_month_usd": 12131.0,
+      "stock_tonnes": 342350
+    },
+    {
+      "date": "2026-03-23",
+      "cash_usd": 11891.0,
+      "three_month_usd": 11990.0,
+      "stock_tonnes": 347475
+    },
+    {
+      "date": "2026-03-24",
+      "cash_usd": 11878.5,
+      "three_month_usd": 11975.0,
+      "stock_tonnes": 359275
+    },
+    {
+      "date": "2026-03-25",
+      "cash_usd": 12135.0,
+      "three_month_usd": 12235.0,
+      "stock_tonnes": 360175
+    },
+    {
+      "date": "2026-03-26",
+      "cash_usd": 12108.0,
+      "three_month_usd": 12190.0,
+      "stock_tonnes": 359825
+    },
+    {
+      "date": "2026-03-27",
+      "cash_usd": 12046.0,
+      "three_month_usd": 12120.0,
+      "stock_tonnes": 360250
+    },
+    {
+      "date": "2026-03-30",
+      "cash_usd": 12137.0,
+      "three_month_usd": 12225.0,
+      "stock_tonnes": 362600
+    },
+    {
+      "date": "2026-03-31",
+      "cash_usd": 12160.0,
+      "three_month_usd": 12236.0,
+      "stock_tonnes": 362425
+    },
+    {
+      "date": "2026-04-01",
+      "cash_usd": 12270.0,
+      "three_month_usd": 12370.0,
+      "stock_tonnes": 361925
+    },
+    {
+      "date": "2026-04-02",
+      "cash_usd": 12147.0,
+      "three_month_usd": 12236.0,
+      "stock_tonnes": 364450
+    },
+    {
+      "date": "2026-04-07",
+      "cash_usd": 12252.0,
+      "three_month_usd": 12346.0,
+      "stock_tonnes": 378775
+    },
+    {
+      "date": "2026-04-08",
+      "cash_usd": 12552.0,
+      "three_month_usd": 12655.0,
+      "stock_tonnes": 385275
+    },
+    {
+      "date": "2026-04-09",
+      "cash_usd": 12455.0,
+      "three_month_usd": 12553.0,
+      "stock_tonnes": 383450
+    },
+    {
+      "date": "2026-04-10",
+      "cash_usd": 12660.5,
+      "three_month_usd": 12757.0,
+      "stock_tonnes": 392750
+    },
+    {
+      "date": "2026-04-13",
+      "cash_usd": 12820.5,
+      "three_month_usd": 12885.0,
+      "stock_tonnes": 399150
+    },
+    {
+      "date": "2026-04-14",
+      "cash_usd": 13095.0,
+      "three_month_usd": 13141.0,
+      "stock_tonnes": 400625
+    },
+    {
+      "date": "2026-04-15",
+      "cash_usd": 13155.0,
+      "three_month_usd": 13230.0,
+      "stock_tonnes": 402625
+    },
+    {
+      "date": "2026-04-16",
+      "cash_usd": 13180.0,
+      "three_month_usd": 13240.0,
+      "stock_tonnes": 401700
+    },
+    {
+      "date": "2026-04-17",
+      "cash_usd": 13149.0,
+      "three_month_usd": 13210.0,
+      "stock_tonnes": 400225
     }
   ],
   "latest": {
-    "date": "2026-03-13",
-    "cash_usd": 12758.0,
-    "three_month_usd": 12849.0,
-    "stock_tonnes": 311825
+    "date": "2026-04-17",
+    "cash_usd": 13149.0,
+    "three_month_usd": 13210.0,
+    "stock_tonnes": 400225
   },
   "latest_copper": {
-    "date": "2026-03-13",
-    "close": 5.757
+    "date": "2026-04-17",
+    "close": 6.1035
   },
   "metadata": {
     "source": "LME + yfinance (HG=F)",
@@ -27611,11 +27749,11 @@
     "unit_price": "USD/tonne",
     "unit_stock": "tonnes",
     "frequency": "daily",
-    "data_count": 4599,
+    "data_count": 4622,
     "start_date": "2008-01-02",
-    "end_date": "2026-03-13"
+    "end_date": "2026-04-17"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-14T22:51:11.717714+09:00"
+  "last_updated": "2026-04-18T15:48:11.508806+09:00"
 }

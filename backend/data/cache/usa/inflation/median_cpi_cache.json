@@ -3548,15 +3548,22 @@
       "trimmed_mean_16": 2.67,
       "cpi": 2.41,
       "core_cpi": 2.46
+    },
+    {
+      "date": "2026-03-01",
+      "median_cpi": 2.72,
+      "trimmed_mean_16": 2.64,
+      "cpi": 3.26,
+      "core_cpi": 2.6
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "median_cpi": 2.85,
-    "trimmed_mean_16": 2.67,
-    "cpi": 2.41,
-    "core_cpi": 2.46
+    "date": "2026-03-01",
+    "median_cpi": 2.72,
+    "trimmed_mean_16": 2.64,
+    "cpi": 3.26,
+    "core_cpi": 2.6
   },
-  "latest_data_date": "2026-02-01",
-  "last_updated": "2026-04-10T21:31:24.723539+09:00"
+  "latest_data_date": "2026-03-01",
+  "last_updated": "2026-04-18T00:28:33.581571+09:00"
 }

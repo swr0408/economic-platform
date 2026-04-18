@@ -5,14 +5,15 @@
 - YoY%: 电气机械和器材制造业存货_累計増減(%) → 直接%値
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート済み）
-  indicator: cn_electronics_stock_yoy
+- manual_update CSV: data/manual_update/monthly/電気機器在庫/Monthly.csv
+  NBS DGページからダウンロードしたCSVを配置する
+  ナビゲーション: Monthly Data > Industry > Main Economic Indicators of Industrial Enterprises
+  対象行: Inventories of Manufacture of Electrical Machinery and Equipment, Accumulated Growth Rate (%)
+- DB蓄積: nbs_monthly_data テーブル（過去データ、CSV未カバー分のフォールバック）
 - SOX指数: yfinance ^SOX 月足から前年比を算出し、8ヶ月先行させて重ねて表示
-
-NBS APIでの自動取得は当該指標コードが不明のため未対応。
-CSVファイルを手動更新してインポートスクリプトで蓄積する。
 """
 import os
+import re
 import json
 import logging
 from pathlib import Path
@@ -28,24 +29,125 @@ _BASE_DIR = Path(__file__).parent.parent.parent
 _FILE_CACHE_DIR = _BASE_DIR / "data" / "cache" / "china" / "economy"
 FILE_CACHE_PATH = str(_FILE_CACHE_DIR / "cn_electronics_stock_cache.json")
 
+# manual_update CSV パス（複数ファイル、新しいファイルが優先）
+_MANUAL_CSV_DIR = _BASE_DIR / "data" / "manual_update" / "monthly" / "電気機器在庫"
+MANUAL_CSV_FILES = [
+    _MANUAL_CSV_DIR / "Monthly2003~2011.csv",
+    _MANUAL_CSV_DIR / "Monthly2012~2017.csv",
+    _MANUAL_CSV_DIR / "Monthly2018~.csv",
+]
+
 REDIS_KEY = "china:cn_electronics_stock:data"
 REDIS_TTL = 86400  # 24h
 
 DB_INDICATOR = "cn_electronics_stock_yoy"
 
+# CSV月名→月番号
+MONTH_MAP = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4,
+    "may": 5, "jun": 6, "jul": 7, "aug": 8,
+    "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+TARGET_ROW_PREFIX = "Inventories of Manufacture of Electrical Machinery and Equipment, Accumulated Growth Rate"
+
+
+def _parse_single_csv(filepath: Path) -> Dict[str, float]:
+    """1つのmanual_update CSVから電気機器在庫YoYデータを読み込み"""
+    if not filepath.exists():
+        return {}
+
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+
+        if len(lines) < 4:
+            return {}
+
+        # 区切り文字: \t, (タブ+カンマ)
+        SEP = "\t,"
+
+        # Row 3 (index 2): ヘッダー行 - 月名をパース
+        header_parts = lines[2].split(SEP)
+        dates = []
+        for h in header_parts[1:]:
+            h = h.strip().rstrip(",").strip()
+            if not h:
+                dates.append(None)
+                continue
+            m = re.match(r"([A-Za-z]+)\.?\s+(\d{4})", h)
+            if m:
+                month_str = m.group(1).lower()
+                year = int(m.group(2))
+                month = MONTH_MAP.get(month_str)
+                if month:
+                    dates.append(f"{year}-{month:02d}-01")
+                    continue
+            dates.append(None)
+
+        # 対象行を検索
+        result = {}
+        for line in lines[3:]:
+            line = line.strip()
+            if not line:
+                continue
+            if TARGET_ROW_PREFIX not in line:
+                continue
+
+            parts = line.split(SEP)
+            for i, val_str in enumerate(parts[1:]):
+                if i >= len(dates) or dates[i] is None:
+                    continue
+                val_str = val_str.strip().rstrip(",").strip()
+                if not val_str:
+                    continue
+                try:
+                    result[dates[i]] = float(val_str)
+                except (ValueError, TypeError):
+                    continue
+            break
+
+        return result
+
+    except Exception as e:
+        logger.error(f"[ElecStock] CSV parse error ({filepath.name}): {e}")
+        return {}
+
+
+def _parse_manual_csvs() -> Dict[str, float]:
+    """全manual_update CSVを読み込みマージ（後のファイルが優先）"""
+    merged = {}
+    for filepath in MANUAL_CSV_FILES:
+        data = _parse_single_csv(filepath)
+        if data:
+            merged.update(data)
+            logger.info(f"[ElecStock] {filepath.name}: {len(data)} records")
+    logger.info(f"[ElecStock] Manual CSV total: {len(merged)} records")
+    return merged
+
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み"""
+    """manual_update CSV + DB（フォールバック）からデータを読み込み"""
     from services.china.nbs_db_utils import load_nbs_data
 
-    yoy_data = load_nbs_data(DB_INDICATOR)
-    logger.info(f"[ElecStock] DB YoY: {len(yoy_data)} records")
+    # 1. DBから過去データを読み込み（フォールバック）
+    db_data = load_nbs_data(DB_INDICATOR)
+
+    # 2. manual_update CSVからデータを読み込み（優先）
+    csv_data = _parse_manual_csvs()
+
+    # 3. マージ（CSVが優先）
+    merged = {}
+    merged.update(db_data)
+    merged.update(csv_data)
+
+    logger.info(f"[ElecStock] DB: {len(db_data)}, CSV: {len(csv_data)}, merged: {len(merged)} records")
 
     result = []
-    for date_str in sorted(yoy_data.keys()):
+    for date_str in sorted(merged.keys()):
         result.append({
             "date": date_str,
-            "yoy": yoy_data[date_str],
+            "yoy": merged[date_str],
         })
 
     return result

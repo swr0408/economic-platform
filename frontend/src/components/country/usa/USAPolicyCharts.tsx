@@ -15,6 +15,8 @@ import FederalBudgetChart from './monetary_policy/FederalBudgetChart'
 import CBOProjectionsChart from './monetary_policy/CBOProjectionsChart'
 import CRELoanDelinquencyChart from './monetary_policy/CRELoanDelinquencyChart'
 import QuarterlyRefundingChart from './monetary_policy/QuarterlyRefundingChart'
+import RestrictedSection from '../../common/RestrictedSection'
+import FedRateCutsExpectationChart from './monetary_policy/FedRateCutsExpectationChart'
 
 /**
  * 米国金融政策チャート群
@@ -59,6 +61,13 @@ export default function USAPolicyCharts() {
         />
       </div>
 
+      {/* Fed Rate Cuts Expectation Chart (special) */}
+      <RestrictedSection visibility="special">
+        <div id="fed-rate-cuts">
+          <FedRateCutsExpectationChart />
+        </div>
+      </RestrictedSection>
+
       {/* CME FedWatch Tool */}
       <div id="fed-watch">
         <CMEFedWatchChart
@@ -74,6 +83,11 @@ export default function USAPolicyCharts() {
           data={dashboardData?.term_premium ?? null}
           kwData={dashboardData?.kw_term_premium ?? null}
         />
+      </div>
+
+      {/* SOFR Volatility Chart */}
+      <div id="sofr-volatility">
+        <SOFRVolatilityChart data={dashboardData?.sofr_volatility ?? null} />
       </div>
 
       {/* FOMC Dot Plot */}
@@ -101,19 +115,14 @@ export default function USAPolicyCharts() {
         <TGAChart data={dashboardData?.tga ?? null} />
       </div>
 
-      {/* OAS Chart */}
-      <div id="oas">
-        <OASChart data={dashboardData?.oas ?? null} />
-      </div>
-
-      {/* SOFR Volatility Chart */}
-      <div id="sofr-volatility">
-        <SOFRVolatilityChart data={dashboardData?.sofr_volatility ?? null} />
-      </div>
-
       {/* ON RRP Chart */}
       <div id="on-rrp">
         <ONRRPChart data={dashboardData?.on_rrp ?? null} />
+      </div>
+
+      {/* OAS Chart */}
+      <div id="oas">
+        <OASChart data={dashboardData?.oas ?? null} />
       </div>
 
       {/* Federal Budget Balance Chart */}

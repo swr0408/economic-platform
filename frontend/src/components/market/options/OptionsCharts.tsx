@@ -24,11 +24,6 @@ export default function OptionsCharts() {
       <div id="ny-option-cut">
         <NyOptionCutChart />
       </div>
-
-      <div id="commodity-options" style={{ marginTop: 32 }}>
-        <Title level={4} style={{ color: '#f1f5f9', marginBottom: 16 }}>商品オプション</Title>
-        <div style={{ textAlign: 'center', padding: 40, color: '#94a3b8' }}>準備中</div>
-      </div>
     </div>
   )
 }

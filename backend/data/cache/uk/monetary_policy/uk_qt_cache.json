@@ -3567,10 +3567,14 @@
     {
       "date": "2026-04-08",
       "value": 527.9
+    },
+    {
+      "date": "2026-04-15",
+      "value": 527.9
     }
   ],
   "latest": {
-    "date": "2026-04-08",
+    "date": "2026-04-15",
     "value": 527.9
   },
   "metadata": {
@@ -3581,5 +3585,5 @@
     "frequency": "Weekly",
     "description": "Asset Purchase Facility gilt holdings (initial purchase proceeds)"
   },
-  "last_updated": "2026-04-10T20:50:05.065052+09:00"
+  "last_updated": "2026-04-18T01:37:14.839887+09:00"
 }

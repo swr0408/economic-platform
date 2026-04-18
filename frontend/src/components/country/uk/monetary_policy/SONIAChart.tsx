@@ -131,7 +131,7 @@ export default function SONIAChart() {
   // データなし
   if (!hasData) {
     return (
-      <ChartContainer title="SONIA" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="SONIA" showPeriodSelector={false} showDataSource={false} handbookId="sonia">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -144,6 +144,7 @@ export default function SONIAChart() {
         showPeriodSelector={false}
         dataSource="Bank of England"
         sourceUrl="https://www.bankofengland.co.uk/markets/sonia-benchmark"
+        handbookId="sonia"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

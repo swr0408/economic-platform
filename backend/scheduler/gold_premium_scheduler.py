@@ -7,7 +7,7 @@ GoldHub API から最新データを取得し、DB未登録分をUPSERT。
 リトライ: 火曜 JST 12:00
 """
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date, timedelta
 from typing import Optional
 from zoneinfo import ZoneInfo
 
@@ -178,6 +178,7 @@ class GoldPremiumScheduler:
         """スケジューラーを開始
         - 毎週火曜 08:00 JST（WGC更新後）
         - 毎週火曜 12:00 JST（リトライ）
+        - 起動時にDBが8日以上古ければ即時キャッチアップ
         """
         self.scheduler.add_job(
             self._run,
@@ -193,6 +194,28 @@ class GoldPremiumScheduler:
             replace_existing=True,
             misfire_grace_time=3600,
         )
+
+        # 起動時キャッチアップ
+        latest_db_str = _get_latest_date_in_db()
+        should_catchup = True
+        if latest_db_str:
+            try:
+                latest_dt = datetime.strptime(latest_db_str, "%Y-%m-%d").date()
+                age_days = (date.today() - latest_dt).days
+                should_catchup = age_days >= 8
+                logger.info(f"[GoldPremiumScheduler] DB latest: {latest_db_str} ({age_days}d old)")
+            except ValueError:
+                pass
+        if should_catchup:
+            self.scheduler.add_job(
+                self._run,
+                "date",
+                run_date=datetime.now(JST) + timedelta(seconds=30),
+                id="gold_premium_startup_catchup",
+                replace_existing=True,
+            )
+            logger.info("[GoldPremiumScheduler] Startup catch-up scheduled (in 30s)")
+
         self.scheduler.start()
         logger.info("[GoldPremiumScheduler] Started (Tue 08:00 + 12:00 JST)")
 

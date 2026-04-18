@@ -254,7 +254,7 @@ export default function AuInternationalTradeChart({ data }: AuInternationalTrade
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="国際貿易" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="国際貿易" showPeriodSelector={false} showDataSource={false} handbookId="au-trade">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -372,7 +372,7 @@ export default function AuInternationalTradeChart({ data }: AuInternationalTrade
         showPeriodSelector={false}
         dataSource="Australian Bureau of Statistics"
         sourceUrl="https://www.abs.gov.au/statistics/economy/international-trade/international-trade-goods-and-services-australia"
-        handbookId="trade-balance"
+        handbookId="au-trade"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -55,8 +55,9 @@ function ECBRateCutsExpectationChart({
 
   const handleRefresh = async () => {
     setRefreshing(true)
+    setError(null)
     try {
-      const response = await fetchWithTimeout(`${API_BASE_URL}/api/eurozone/ecb-rate-cuts-screenshot?force_refresh=true`, undefined, 90_000)
+      const response = await fetchWithTimeout(`${API_BASE_URL}/api/eurozone/ecb-rate-cuts-screenshot?force_refresh=true`, undefined, 120_000)
       if (!response.ok) {
         throw new Error('Failed to refresh screenshots')
       }

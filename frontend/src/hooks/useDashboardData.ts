@@ -666,10 +666,16 @@ export interface TSACheckpointLatest {
 
 // OpenTableレストラン予約件数データの型
 export interface OpenTableData {
-  image_url: string | null    // スクリーンショットURL
+  image_url: string | null    // スクリーンショットURL（後方互換）
+  images: OpenTableImage[] | null  // 複数画像（タブ切替用）
   latest: OpenTableLatest | null
   last_updated: string | null
   source: string | null
+}
+
+export interface OpenTableImage {
+  label: string       // タブ表示名
+  url: string         // 画像URL
 }
 
 export interface OpenTableLatest {
@@ -6393,6 +6399,7 @@ export interface CHRetailTradeData {
 export interface SwitzerlandConsumerData {
   kof_economic_barometer: KofBarometerData | null
   ch_consumer_sentiment: CHConsumerSentimentData | null
+  ch_households_and_npish: CHHouseholdsAndNpishData | null
   ch_retail_trade: CHRetailTradeData | null
 }
 
@@ -6601,7 +6608,6 @@ export interface CHCurrentAccountGdpRatioData {
 export interface SwitzerlandEconomyData {
   ch_growth_rate: CHGrowthRateData | null
   ch_industrial_production: CHIndustrialProductionData | null
-  ch_households_and_npish: CHHouseholdsAndNpishData | null
   ch_pmi: CHPmiData | null
   ch_balance_of_trade: CHBalanceOfTradeData | null
   ch_current_account: CHCurrentAccountData | null
@@ -7774,8 +7780,6 @@ export interface AustraliaPolicyData {
   au_rba_rate: AuRbaRateData | null
   au_asx_rate_tracker: AsxRateTrackerData | null
   au_monetary_policy: RbaSmpForecastData | null
-  au_housing_lending_rates: AuHousingLendingRatesData | null
-  au_housing_loan_arrears: AuHousingLoanArrearsData | null
 }
 
 /**
@@ -8495,6 +8499,8 @@ export interface AuNumberOfBuildingPermitsData {
 export interface AustraliaHousingData {
   au_cotality_home_prices: AuCotalityHomePricesData | null
   au_number_of_building_permits: AuNumberOfBuildingPermitsData | null
+  au_housing_lending_rates: AuHousingLendingRatesData | null
+  au_housing_loan_arrears: AuHousingLoanArrearsData | null
 }
 
 /**

@@ -7,6 +7,7 @@ export interface BOJMeetingExpectation {
   ois_rate: number | null;  // OIS rate in %
   difference: number | null;  // Difference from previous meeting in %
   probability: number | null;  // Probability of rate hike in %
+  frequency?: number | null;  // Cumulative rate hike frequency (利上げ織込み回数)
 }
 
 export interface BOJMeetingExpectationsData {

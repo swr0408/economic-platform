@@ -8,6 +8,8 @@ import BOEEconomicOutlookSection from './monetary_policy/BOEEconomicOutlookSecti
 import BOEDMPSurveySection from './monetary_policy/BOEDMPSurveySection'
 import UKPublicSectorNetBorrowingChart from './monetary_policy/UKPublicSectorNetBorrowingChart'
 import UkQtChart from './monetary_policy/UkQtChart'
+import RestrictedSection from '../../common/RestrictedSection'
+import BOERateCutsExpectationChart from './monetary_policy/BOERateCutsExpectationChart'
 
 /**
  * イギリス金融政策チャート群
@@ -49,6 +51,13 @@ export default function UKPolicyCharts() {
           data={dashboardData?.boe_bank_rate ?? null}
         />
       </div>
+
+      {/* BOE Rate Cuts Expectation Chart (special) */}
+      <RestrictedSection visibility="special">
+        <div id="boe-rate-cuts">
+          <BOERateCutsExpectationChart />
+        </div>
+      </RestrictedSection>
 
       {/* SONIA Chart */}
       <div id="sonia">

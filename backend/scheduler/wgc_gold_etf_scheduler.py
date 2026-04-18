@@ -10,6 +10,7 @@ DB未登録の新しいデータを追加する。
 毎週火曜 JST 08:00 実行。リトライ: JST 12:00。
 """
 import logging
+from datetime import datetime, date, timedelta
 from typing import Optional
 from zoneinfo import ZoneInfo
 
@@ -328,7 +329,7 @@ class WgcGoldEtfScheduler:
             traceback.print_exc()
 
     def start(self):
-        """毎週火曜 08:00 JST + リトライ 12:00 JST"""
+        """毎週火曜 08:00 JST + リトライ 12:00 JST + 起動時キャッチアップ (週次データ8日以上古ければ)"""
         self.scheduler.add_job(
             self._run,
             CronTrigger(day_of_week="tue", hour=8, minute=0, timezone=JST),
@@ -343,6 +344,28 @@ class WgcGoldEtfScheduler:
             replace_existing=True,
             misfire_grace_time=3600,
         )
+
+        # 起動時キャッチアップ (週次データなので8日以上古ければ即時実行)
+        latest_db_str = _get_latest_date_in_db("weekly")
+        should_catchup = True
+        if latest_db_str:
+            try:
+                latest_dt = datetime.strptime(latest_db_str, "%Y-%m-%d").date()
+                age_days = (date.today() - latest_dt).days
+                should_catchup = age_days >= 8
+                logger.info(f"[WgcGoldEtfScheduler] DB weekly latest: {latest_db_str} ({age_days}d old)")
+            except ValueError:
+                pass
+        if should_catchup:
+            self.scheduler.add_job(
+                self._run,
+                "date",
+                run_date=datetime.now(JST) + timedelta(seconds=30),
+                id="wgc_gold_etf_startup_catchup",
+                replace_existing=True,
+            )
+            logger.info("[WgcGoldEtfScheduler] Startup catch-up scheduled (in 30s)")
+
         self.scheduler.start()
         logger.info("[WgcGoldEtfScheduler] Started (Tue 08:00 + 12:00 JST)")
 

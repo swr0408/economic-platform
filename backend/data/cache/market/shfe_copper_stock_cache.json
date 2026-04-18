@@ -16939,22 +16939,82 @@
     {
       "date": "2026-03-13",
       "stock_tonnes": 315063.0
+    },
+    {
+      "date": "2026-03-16",
+      "stock_tonnes": 322998.0
+    },
+    {
+      "date": "2026-03-17",
+      "stock_tonnes": 324289.0
+    },
+    {
+      "date": "2026-03-18",
+      "stock_tonnes": 318624.0
+    },
+    {
+      "date": "2026-03-19",
+      "stock_tonnes": 306380.0
+    },
+    {
+      "date": "2026-03-20",
+      "stock_tonnes": 287852.0
+    },
+    {
+      "date": "2026-03-23",
+      "stock_tonnes": 274115.0
+    },
+    {
+      "date": "2026-03-24",
+      "stock_tonnes": 262710.0
+    },
+    {
+      "date": "2026-03-25",
+      "stock_tonnes": 252111.0
+    },
+    {
+      "date": "2026-03-26",
+      "stock_tonnes": 246441.0
+    },
+    {
+      "date": "2026-03-27",
+      "stock_tonnes": 237076.0
+    },
+    {
+      "date": "2026-03-30",
+      "stock_tonnes": 230971.0
+    },
+    {
+      "date": "2026-03-31",
+      "stock_tonnes": 221261.0
+    },
+    {
+      "date": "2026-04-01",
+      "stock_tonnes": 212893.0
+    },
+    {
+      "date": "2026-04-02",
+      "stock_tonnes": 205418.0
+    },
+    {
+      "date": "2026-04-03",
+      "stock_tonnes": 199305.0
     }
   ],
   "latest": {
-    "date": "2026-03-13",
-    "stock_tonnes": 315063.0
+    "date": "2026-04-03",
+    "stock_tonnes": 199305.0
   },
   "metadata": {
     "source": "SHFE (commoditieschart.net)",
     "indicator": "SHFE Copper Warehouse Stock",
     "unit": "tonnes",
     "frequency": "daily",
-    "data_count": 4235,
+    "data_count": 4250,
     "start_date": "2008-10-06",
-    "end_date": "2026-03-13"
+    "end_date": "2026-04-03"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-15T02:51:23.170643+09:00"
+  "last_updated": "2026-04-18T16:35:00.812814+09:00"
 }

@@ -2,6 +2,8 @@ import { Spin, Alert, Button } from 'antd'
 import { useAustraliaHousingDashboard } from '../../../hooks/useDashboardData'
 import AuCotalityHomePricesChart from './housing/AuCotalityHomePricesChart'
 import AuNumberOfBuildingPermitsChart from './housing/AuNumberOfBuildingPermitsChart'
+import AuHousingLendingRatesChart from './housing/AuHousingLendingRatesChart'
+import AuHousingLoanArrearsChart from './housing/AuHousingLoanArrearsChart'
 
 /**
  * オーストラリア住宅チャート群
@@ -48,6 +50,20 @@ export default function AustraliaHousingCharts() {
       <div id="building-permits">
         <AuNumberOfBuildingPermitsChart
           data={dashboardData?.au_number_of_building_permits ?? null}
+        />
+      </div>
+
+      {/* 住宅ローン金利 */}
+      <div id="housing-lending-rates">
+        <AuHousingLendingRatesChart
+          data={dashboardData?.au_housing_lending_rates ?? null}
+        />
+      </div>
+
+      {/* 住宅ローン延滞率 */}
+      <div id="housing-loan-arrears">
+        <AuHousingLoanArrearsChart
+          data={dashboardData?.au_housing_loan_arrears ?? null}
         />
       </div>
     </div>

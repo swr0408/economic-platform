@@ -97,6 +97,7 @@ services:
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
       # API キー類 (.env から渡す)
       FRED_API_KEY: ${FRED_API_KEY:-}
+      EIA_API_KEY: ${EIA_API_KEY:-}
       BEA_API_KEY: ${BEA_API_KEY:-}
       BLS_API_KEY: ${BLS_API_KEY:-}
       ALPHA_VANTAGE_API_KEY: ${ALPHA_VANTAGE_API_KEY:-}

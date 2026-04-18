@@ -2849,14 +2849,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-04-15",
-    "datetime_utc": "2026-04-15T12:30:00+00:00",
-    "datetime_jst": "2026-04-15T21:30:00+09:00",
+    "date": "2026-04-20",
+    "datetime_utc": "2026-04-20T12:30:00+00:00",
+    "datetime_jst": "2026-04-20T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-04-15T08:30:00-04:00",
+    "datetime_toronto": "2026-04-20T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "CPI (Mar)",
+    "label": "CPI MoM (Mar)",
     "estimate": null
   },
-  "last_updated": "2026-04-10T20:53:32.393101+09:00"
+  "last_updated": "2026-04-18T04:06:10.376179+09:00"
 }

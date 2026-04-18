@@ -6,15 +6,12 @@
 - PPI MoM%: 生産者物価指数（前月比）
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース蓄積）
   indicator: cn_ppi_yoy, cn_ppi_mom
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  https://data.stats.gov.cn/easyquery.htm
-  A01080101: 工业生产者出厂价格指数(上年同月=100) → YoY
-  A01080701: 工业生产者出厂价格指数(上月=100) → MoM
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  Excel「Sheet1」シート: R4=工业生产者出厂价格 MoM/YoY
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
 CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
 """
 import os
@@ -24,8 +21,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -47,128 +42,59 @@ DB_INDICATORS = {
     "mom": "cn_ppi_mom",
 }
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_INDICATORS = {
-    "yoy": "A01080101",  # 工业生产者出厂价格指数(上年同月=100)
-    "mom": "A01080701",  # 工业生产者出厂价格指数(上月=100)
-}
+def _extract_ppi_from_excel(
+    excel_data: bytes, period: Optional[tuple],
+) -> Dict[str, Dict[str, float]]:
+    """PPI プレスリリース添付 Excel からデータを抽出
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
-
-
-def _fetch_nbs_api(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから指標データを取得
-
-    Args:
-        indicator_code: A01080101 等の指標コード
-        periods: 取得期間数（月数）
+    Excel「Sheet1」シート構造:
+      R4: 一、工业生产者出厂价格 | MoM% (col1) | YoY% (col2) | 累計YoY% (col3)
 
     Returns:
-        {date_str: percent_value, ...} e.g. {"2026-01-01": -1.4, ...}
-        指数(base=100)から%に変換済み
+        {db_indicator: {date_str: value}, ...}
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-PPI] API HTTP {resp.status_code}")
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-PPI] API returncode: {data.get('returncode')}")
-            return {}
-
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
-
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
-            date_str = f"{year}-{month:02d}-01"
-            # 指数(base=100) → %変換: 98.6 → -1.4%, 100.4 → +0.4%
-            result[date_str] = round(value - 100, 1)
-
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-PPI] API fetch failed: {e}")
+    if not period:
+        logger.warning("[PPI] No period info from release title")
         return {}
 
+    year, month = period
+    date_str = f"{year}-{month:02d}-01"
 
-def _fetch_and_upsert_nbs() -> Dict[str, Dict[str, float]]:
-    """NBS APIから全指標の最新データを取得し、DBにUPSERT
+    rows = parse_excel(excel_data, sheet_name="Sheet1")
 
-    Returns:
-        {"yoy": {date_str: value, ...}, "mom": {date_str: value, ...}}
-    """
-    from services.china.nbs_db_utils import upsert_nbs_data
+    result: Dict[str, Dict[str, float]] = {}
 
-    result = {}
-    for key, code in NBS_INDICATORS.items():
-        data = _fetch_nbs_api(code, periods=24)
-        if data:
-            result[key] = data
-            # DB に蓄積
-            count = upsert_nbs_data(DB_INDICATORS[key], data, source="api")
-            logger.info(f"[NBS-PPI] API {key}: {len(data)} records, DB upserted {count}")
-        else:
-            result[key] = {}
+    # R4 (idx=3): 工业生产者出厂价格
+    if len(rows) > 3 and len(rows[3]) > 2:
+        mom = _safe_float(rows[3][1])
+        yoy = _safe_float(rows[3][2])
+        if mom is not None:
+            result[DB_INDICATORS["mom"]] = {date_str: mom}
+        if yoy is not None:
+            result[DB_INDICATORS["yoy"]] = {date_str: yoy}
+
+    logger.info(f"[PPI] Extracted {len(result)} indicators from Excel for {date_str}")
     return result
 
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積
+    """DBからデータを読み込み + プレスリリース Excel で最新取得→DB蓄積
 
     手順:
-    1. NBS APIから最新データ取得 → DB UPSERT
+    1. プレスリリース Excel から最新データ取得 → DB UPSERT
     2. DBから全データを読み込み
     3. 日付をキーにマージして時系列構築
     """
     from services.china.nbs_db_utils import load_nbs_multi
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
+        fetch_and_upsert_from_press_release("ppi", _extract_ppi_from_excel)
     except Exception as e:
-        logger.warning(f"[PPI] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[PPI] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     db_data = load_nbs_multi([DB_INDICATORS["yoy"], DB_INDICATORS["mom"]])

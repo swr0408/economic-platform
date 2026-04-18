@@ -1311,6 +1311,7 @@ class USAEconomyLoader(BaseDashboardLoader):
             response = service.get_opentable_data(force_refresh=force_refresh)
             return {
                 "image_url": response.get("image_url"),
+                "images": response.get("images"),
                 "latest": response.get("latest"),
                 "last_updated": response.get("last_updated"),
                 "source": response.get("source")

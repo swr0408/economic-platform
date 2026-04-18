@@ -212,6 +212,15 @@ def _build_data() -> List[Dict[str, Any]]:
     """DBからSCFI/CCFIデータを読み込み、マージして返す"""
     from services.china.nbs_db_utils import load_nbs_multi
 
+    # DBにデータが少ない場合はCSVインポートを実行
+    existing = load_nbs_multi([DB_INDICATOR_SCFI, DB_INDICATOR_CCFI])
+    if len(existing.get(DB_INDICATOR_SCFI, {})) < 50 or len(existing.get(DB_INDICATOR_CCFI, {})) < 50:
+        logger.info("[ContainerFreight] DB has few records, importing CSV...")
+        try:
+            import_csv_to_db()
+        except Exception as e:
+            logger.warning(f"[ContainerFreight] CSV import failed: {e}")
+
     # SSEから最新値を取得→DB蓄積（ベストエフォート）
     try:
         _fetch_and_upsert_latest()

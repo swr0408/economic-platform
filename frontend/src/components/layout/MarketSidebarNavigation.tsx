@@ -101,7 +101,7 @@ function MarketSidebarNavigation() {
     }, 250)
 
     return () => clearTimeout(timer)
-  }, [selectedKeys, openKeys])
+  }, [selectedKeys])
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     const key = e.key

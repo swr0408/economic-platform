@@ -12,7 +12,7 @@ https://www.jpx.co.jp/markets/statistics-equities/investor-type/index.html
 import io
 import re
 import logging
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from typing import Optional
 from zoneinfo import ZoneInfo
 
@@ -151,12 +151,11 @@ def fetch_latest_from_jpx() -> list[dict]:
 
     logger.info(f"[JpxScheduler] Found {len(xls_urls)} weekly XLS links on page")
 
-    # 新しいファイルから順に処理（最新3件のみダウンロード）
-    # ファイル名の日付部分でソート（降順）してから最新N件に絞る
+    # 新しいファイルから順に処理。スケジューラーが数週間動かなかった場合の
+    # 欠損ウィークも埋められるよう、ページ上の全 weekly XLS をダウンロードする。
+    # JPX index page は通常 5 件程度しか掲載しないため負荷は軽微。
     xls_urls.sort(reverse=True)
-    max_download = 3
-    xls_urls = xls_urls[:max_download]
-    logger.info(f"[JpxScheduler] Downloading latest {len(xls_urls)} XLS files")
+    logger.info(f"[JpxScheduler] Downloading {len(xls_urls)} XLS files")
 
     records = []
     for url in xls_urls:
@@ -174,12 +173,8 @@ def fetch_latest_from_jpx() -> list[dict]:
         except Exception as e:
             logger.warning(f"[JpxScheduler] Error: {url}: {e}")
 
-    # DB最新日付より新しいレコードのみ返す（ただし最新日付と同日のレコードも含めて更新を許可）
-    if latest_db_date and records:
-        new_records = [r for r in records if r["date"] >= latest_db_date]
-        logger.info(f"[JpxScheduler] {len(records)} parsed, {len(new_records)} are new/updated")
-        return new_records
-
+    # 全パース済みレコードを返す（UPSERTなので既存週は更新、欠損週は新規挿入される）
+    logger.info(f"[JpxScheduler] {len(records)} parsed records (all returned for UPSERT)")
     return records
 
 
@@ -267,6 +262,7 @@ class JpxInvestorTradingScheduler:
         """スケジューラーを開始
         - 毎週木曜 16:00 JST（JPX公開直後）
         - 毎週金曜 10:00 JST（リトライ）
+        - 起動時にDBが7日以上古ければ即時キャッチアップ実行
         """
         self.scheduler.add_job(
             self._run,
@@ -282,6 +278,29 @@ class JpxInvestorTradingScheduler:
             replace_existing=True,
             misfire_grace_time=3600,
         )
+
+        # 起動時キャッチアップ: バックエンド長期停止後でも自動で最新化
+        latest_db_str = _get_latest_date_in_db()
+        should_catchup = True
+        if latest_db_str:
+            try:
+                latest_dt = datetime.strptime(latest_db_str, "%Y-%m-%d").date()
+                age_days = (date.today() - latest_dt).days
+                should_catchup = age_days >= 7
+                logger.info(f"[JpxScheduler] DB latest: {latest_db_str} ({age_days}d old)")
+            except ValueError:
+                pass
+
+        if should_catchup:
+            self.scheduler.add_job(
+                self._run,
+                "date",
+                run_date=datetime.now(JST) + timedelta(seconds=30),
+                id="jpx_investor_trading_startup_catchup",
+                replace_existing=True,
+            )
+            logger.info("[JpxScheduler] Startup catch-up scheduled (in 30s)")
+
         self.scheduler.start()
         logger.info("[JpxScheduler] Started (Thu 16:00 + Fri 10:00 JST)")
 

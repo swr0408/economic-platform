@@ -18,7 +18,7 @@ import ChartContainer from '../../../common/ChartContainer'
 import { TEXT_COLORS } from '../../usa/common/chartConstants'
 
 // 財務省のURL
-const MOF_BEI_PAGE_URL = 'https://www.mof.go.jp/jgbs/topics/bond/10year_inflation-indexed/bei.htm'
+const MOF_BEI_PAGE_URL = 'https://www.mof.go.jp/jgbs/topics/bond/10year_inflation-indexed/index.htm'
 // ローカルPDF API URL（バックエンドがダウンロードしたPDF）
 const LOCAL_BEI_PDF_URL = '/api/japan/bei/pdf'
 

@@ -39,12 +39,13 @@ export interface JapanPMIResponse {
  * Fetch Japan S&P Global PMI data
  */
 export async function fetchJapanPMIData(forceRefresh = false): Promise<JapanPMIResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/pmi`)
+  const params = new URLSearchParams()
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true')
+    params.append('force_refresh', 'true')
   }
+  const qs = params.toString() ? `?${params.toString()}` : ''
 
-  const response = await fetch(url.toString())
+  const response = await fetch(`${API_BASE_URL}/api/japan/pmi${qs}`)
 
   if (!response.ok) {
     throw new Error(`Failed to fetch Japan PMI data: ${response.statusText}`)
@@ -57,9 +58,7 @@ export async function fetchJapanPMIData(forceRefresh = false): Promise<JapanPMIR
  * Force refresh Japan PMI data
  */
 export async function refreshJapanPMIData(): Promise<JapanPMIResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/pmi/refresh`)
-
-  const response = await fetch(url.toString(), {
+  const response = await fetch(`${API_BASE_URL}/api/japan/pmi/refresh`, {
     method: 'POST',
   })
 

@@ -425,13 +425,29 @@
       "value": 6.7
     },
     {
+      "date": "2026-02-17",
+      "value": 3.6
+    },
+    {
       "date": "2026-02-18",
       "value": 3.6
+    },
+    {
+      "date": "2026-03-04",
+      "value": 5.7
+    },
+    {
+      "date": "2026-03-18",
+      "value": 0.1
+    },
+    {
+      "date": "2026-04-08",
+      "value": -3.4
     }
   ],
   "latest": {
-    "date": "2026-02-18",
-    "value": 3.6
+    "date": "2026-04-08",
+    "value": -3.4
   },
   "metadata": {
     "source": "GlobalDairyTrade",
@@ -440,5 +456,5 @@
     "unit": "%",
     "frequency": "irregular"
   },
-  "last_updated": "2026-03-01T13:35:32.894441+09:00"
+  "last_updated": "2026-04-18T04:09:14.864432+09:00"
 }

@@ -210,7 +210,7 @@ function RecentUpdatesCard() {
             直近更新された指標
           </Text>
           <Text style={{ color: colors.textTertiary, fontSize: 11 }}>
-            (最終更新時刻のみ・値の表示は段階的に追加予定)
+            (最終更新時刻表示)
           </Text>
         </div>
       </div>

@@ -7109,11 +7109,11 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'ma3_yoy',
     unit: '%',
   },
-  // 住宅ローン金利（残高）
+  // 住宅ローン残高ベース実効金利
   {
     id: 'uk_boe_mortgage_rates_cfmz6k6',
-    name: 'UK 住宅ローン金利（残高）',
-    nameEn: 'UK BoE Mortgage Rate (Outstanding)',
+    name: 'UK 住宅ローン残高ベース実効金利',
+    nameEn: 'UK BoE Mortgage Effective Rate (Outstanding)',
     frequency: 'monthly',
     country: 'uk',
     category: 'housing',
@@ -7123,11 +7123,11 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'value',
     unit: '%',
   },
-  // 住宅ローン金利（新規）
+  // 新規固定住宅ローン実効金利
   {
     id: 'uk_boe_mortgage_rates_cfmz6jv',
-    name: 'UK 住宅ローン金利（新規）',
-    nameEn: 'UK BoE Mortgage Rate (New)',
+    name: 'UK 新規固定住宅ローン実効金利',
+    nameEn: 'UK BoE New Fixed Mortgage Effective Rate',
     frequency: 'monthly',
     country: 'uk',
     category: 'housing',
@@ -7137,11 +7137,11 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     valueField: 'value',
     unit: '%',
   },
-  // 住宅ローン金利（変動）
+  // 住宅ローン標準変動金利（SVR）
   {
     id: 'uk_boe_mortgage_rates_iumtlmv',
-    name: 'UK 住宅ローン金利（変動）',
-    nameEn: 'UK BoE Mortgage Rate (Variable)',
+    name: 'UK 住宅ローン標準変動金利（SVR）',
+    nameEn: 'UK BoE Standard Variable Rate (SVR)',
     frequency: 'monthly',
     country: 'uk',
     category: 'housing',
@@ -11811,8 +11811,8 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     nameEn: 'Housing Lending Rate OO Variable (Australia)',
     frequency: 'monthly',
     country: 'australia',
-    category: 'policy',
-    subCategory: 'policy',
+    category: 'housing',
+    subCategory: 'housing',
     apiEndpoint: '/api/australia/rba/housing-lending-rates',
     dataKey: 'data',
     valueField: 'outstanding_oo_variable',
@@ -11825,8 +11825,8 @@ export const OVERLAY_INDICATORS: OverlayIndicator[] = [
     nameEn: 'Housing Loan Arrears (Australia)',
     frequency: 'quarterly',
     country: 'australia',
-    category: 'policy',
-    subCategory: 'policy',
+    category: 'housing',
+    subCategory: 'housing',
     apiEndpoint: '/api/australia/apra/housing-loan-arrears',
     dataKey: 'data',
     valueField: 'total_arrears',

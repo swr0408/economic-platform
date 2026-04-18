@@ -17,6 +17,7 @@ import LazyChart from '../../common/LazyChart'
 export default function CrudeOilCharts() {
   return (
     <div className="country-chart-stack">
+      <LazyChart id="crack-spread"><CrackSpreadChart /></LazyChart>
       <LazyChart id="api-weekly-crude-oil-inventories"><ApiWeeklyCrudeOilInventoriesChart /></LazyChart>
       <LazyChart id="weekly-crude-oil-inventories"><WeeklyCrudeOilInventoriesChart /></LazyChart>
       <LazyChart id="cushing-inventory"><CushingInventoryChart /></LazyChart>
@@ -25,7 +26,6 @@ export default function CrudeOilCharts() {
       <LazyChart id="adjustments"><AdjustmentsChart /></LazyChart>
       <LazyChart id="shale-oil-production"><UsShaleOilProductionChart /></LazyChart>
       <LazyChart id="crude-oil-net-demand"><CrudeOilNetDemandChart /></LazyChart>
-      <LazyChart id="crack-spread"><CrackSpreadChart /></LazyChart>
       <LazyChart id="short-term-energy-outlook"><ShortTermEnergyOutlookChart /></LazyChart>
       <LazyChart id="opec-momr"><OpecMomrChart /></LazyChart>
       <LazyChart id="iea-oil-market-report"><IeaOilMarketReportChart /></LazyChart>

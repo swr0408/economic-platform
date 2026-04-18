@@ -49154,8 +49154,8 @@
     "total_tons": 588704.0
   },
   "latest_copper": {
-    "date": "2026-03-23",
-    "close": 5.309
+    "date": "2026-04-17",
+    "close": 6.1035
   },
   "metadata": {
     "source": "CME COMEX + yfinance (HG=F)",
@@ -49168,5 +49168,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-23T13:25:49.223780+09:00"
+  "last_updated": "2026-04-18T15:48:13.424569+09:00"
 }

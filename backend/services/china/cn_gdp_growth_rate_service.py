@@ -2,19 +2,18 @@
 中国 GDP成長率サービス
 
 2系列:
-- YoY%: 国内生产总值指数(上年同期=100) 当季値 → (value - 100) で%変換
-- QoQ%: 国内生产总值环比增长速度(%) → 直接%値
+- YoY%: 国内生产总值 前年同期比 (%)
+- QoQ%: 国内生产总值 前期比 (%)（Excelに含まれる場合のみ）
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース Excel 蓄積）
   indicator: cn_gdp_yoy, cn_gdp_qoq
   ※ 四半期データだが nbs_monthly_data テーブルを共用（date は四半期末月の1日）
-- 最新値: NBS統計データAPI（四半期DB: hgjd）から取得 → DB UPSERT
-  A010301: 国内生产总值指数(上年同期=100)_当季値 → YoY
-  A010401: 国内生产总值环比增长速度 → QoQ
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  「国内生产总值」記事の Excel 表1（GDP YoY）
 - FMP: 次回発表日の取得のみ
 
-四半期時間コード: 2025A=Q1, 2025B=Q2, 2025C=Q3, 2025D=Q4
+四半期末月: Q1→03, Q2→06, Q3→09, Q4→12
 DB日付: Q1→YYYY-03-01, Q2→YYYY-06-01, Q3→YYYY-09-01, Q4→YYYY-12-01
 """
 import os
@@ -24,8 +23,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -47,126 +44,93 @@ DB_INDICATORS = {
     "qoq": "cn_gdp_qoq",
 }
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定（四半期DB: hgjd）
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_INDICATORS = {
-    "yoy": "A010301",  # 国内生产总值指数(上年同期=100)_当季値 (base=100)
-    "qoq": "A010401",  # 国内生产总值环比增长速度 (%)
-}
-
 # 四半期コード → 日付変換
 QUARTER_TO_MONTH = {"A": "03", "B": "06", "C": "09", "D": "12"}
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
+# end_month → 四半期ラベル（ログ用）
+MONTH_TO_QUARTER = {3: "Q1", 6: "Q2", 9: "Q3", 12: "Q4"}
 
 
-def _fetch_nbs_quarterly(indicator_code: str, periods: int = 20, is_index: bool = False) -> Dict[str, float]:
-    """NBS四半期DBからデータを取得
+def _extract_gdp_from_excel(excel_data: bytes, period) -> Dict[str, Dict[str, float]]:
+    """GDPプレスリリース Excel からYoY（およびQoQがあれば）を抽出
 
-    Args:
-        indicator_code: A010301 等
-        periods: 取得四半期数
-        is_index: True=指数(base=100)→%変換、False=直接%値
+    Excel 表1（GDP初步核算）構造:
+    - R3: GDP | 絶対額 | YoY%
+    表1から「国内生产总值」行を探し、YoY% を取得。
+    QoQ は表1に含まれている場合のみ取得（列数で判定）。
 
-    Returns:
-        {date_str: percent_value, ...}
+    period は (year, end_month)。end_month を四半期末月として日付を構成。
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgjd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            return {}
-
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
-
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 5:
-                continue
-
-            year = time_code[:4]
-            quarter_letter = time_code[4]
-            month = QUARTER_TO_MONTH.get(quarter_letter)
-            if not month:
-                continue
-
-            date_str = f"{year}-{month}-01"
-
-            if is_index:
-                result[date_str] = round(value - 100, 1)
-            else:
-                result[date_str] = round(value, 1)
-
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-GDP] API fetch failed for {indicator_code}: {e}")
+    if not period:
+        logger.warning("[NBS-GDP] No period info from release title")
         return {}
 
+    year, end_month = period
+    date_str = f"{year}-{end_month:02d}-01"
+    q_label = MONTH_TO_QUARTER.get(end_month, f"M{end_month}")
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
+    # 表1 をパース（sheet_index=0）
+    rows = parse_excel(excel_data, sheet_index=0)
 
-    # YoY: 指数(base=100) → %変換
-    yoy_data = _fetch_nbs_quarterly(NBS_INDICATORS["yoy"], periods=20, is_index=True)
-    if yoy_data:
-        count = upsert_nbs_data(DB_INDICATORS["yoy"], yoy_data, source="api")
-        logger.info(f"[NBS-GDP] YoY: {len(yoy_data)} records, DB upserted {count}")
+    yoy_result = {}
+    qoq_result = {}
 
-    # QoQ: 直接%値
-    qoq_data = _fetch_nbs_quarterly(NBS_INDICATORS["qoq"], periods=20, is_index=False)
-    if qoq_data:
-        count = upsert_nbs_data(DB_INDICATORS["qoq"], qoq_data, source="api")
-        logger.info(f"[NBS-GDP] QoQ: {len(qoq_data)} records, DB upserted {count}")
+    for row in rows:
+        label = str(row[0]).strip() if row[0] else ""
+        # 「GDP」または「国内生产总值」行にマッチ
+        if label != "GDP" and "国内生产总值" not in label:
+            continue
+        # サブ行を除外
+        if "其中" in label or "第一产业" in label or "第二产业" in label or "第三产业" in label:
+            continue
+
+        # YoY%: col2（絶対額の次）
+        yoy_val = _safe_float(row[2]) if len(row) > 2 else None
+        if yoy_val is not None:
+            yoy_result[date_str] = round(yoy_val, 1)
+            logger.info(f"[NBS-GDP] Excel: {date_str} ({q_label}) yoy={yoy_val}")
+
+        # QoQ%: col3 があればそちらを試行
+        if len(row) > 3:
+            qoq_val = _safe_float(row[3])
+            if qoq_val is not None:
+                qoq_result[date_str] = round(qoq_val, 1)
+                logger.info(f"[NBS-GDP] Excel: {date_str} ({q_label}) qoq={qoq_val}")
+
+        break
+
+    result = {}
+    if yoy_result:
+        result[DB_INDICATORS["yoy"]] = yoy_result
+    if qoq_result:
+        result[DB_INDICATORS["qoq"]] = qoq_result
+
+    return result
+
+
+def _fetch_and_upsert_from_press_release() -> None:
+    """NBS プレスリリース Excel から最新データを取得し、DB に UPSERT"""
+    from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
+
+    results = fetch_and_upsert_from_press_release(
+        category="gdp",
+        extractor_fn=_extract_gdp_from_excel,
+    )
+    if results:
+        logger.info(f"[NBS-GDP] Press release upsert: {results}")
 
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積"""
+    """DBからデータを読み込み + プレスリリース Excel で最新取得→DB蓄積"""
     from services.china.nbs_db_utils import load_nbs_multi
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        _fetch_and_upsert_from_press_release()
     except Exception as e:
-        logger.warning(f"[GDP] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[GDP] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     db_data = load_nbs_multi([DB_INDICATORS["yoy"], DB_INDICATORS["qoq"]])
@@ -278,19 +242,27 @@ class CnGdpGrowthRateService:
         }
 
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
-        """データ取得（キャッシュ優先）"""
+        """データ取得（キャッシュ優先）
+
+        空キャッシュ（data=[]）は外部API/DB取得失敗時に保存された破損キャッシュの
+        可能性が高いため、採用せず再取得する。GDPは過去データが必ずDBにあるため。
+        """
         if not force_refresh:
             cached = self._from_redis()
-            if cached:
+            if cached and cached.get("data"):
                 return cached
             cached = self._from_file()
-            if cached:
+            if cached and cached.get("data"):
                 self._to_redis(cached)
                 return cached
 
         payload = self._build_payload()
-        self._to_redis(payload)
-        self._to_file(payload)
+        # 空ペイロードはキャッシュに保存しない（破損キャッシュ防止）
+        if payload.get("data"):
+            self._to_redis(payload)
+            self._to_file(payload)
+        else:
+            logger.warning("[GDP] Empty payload; skipping cache write to prevent stale empty cache")
         return payload
 
     def invalidate_cache(self) -> Dict[str, Any]:

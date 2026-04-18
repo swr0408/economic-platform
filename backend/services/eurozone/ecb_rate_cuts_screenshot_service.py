@@ -17,6 +17,7 @@ Target: main tab > class="mm-cc-bd" > class="container chart-theater is-stat"
 invalidate_cache) は完全互換。
 """
 import logging
+import time
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
@@ -65,12 +66,14 @@ class ECBRateCutsScreenshotService:
         pass
 
     def _build_request(self, url: str, output_path: Path) -> ScreenshotRequest:
+        # MacroMicro は Cloudflare チャレンジを挟むことがあるため
+        # wait_selector は使わず wait_after_load_ms でチャート描画を待つ。
+        # clip_selector はチャート部分の切り出しに使用。
         return ScreenshotRequest(
             url=url,
             output_path=str(output_path),
-            wait_selector=self.TARGET_SELECTOR,
-            wait_for_load_state="networkidle",
-            wait_after_load_ms=5_000,
+            wait_for_load_state="domcontentloaded",
+            wait_after_load_ms=10_000,
             clip_selector=self.TARGET_SELECTOR,
             scroll_into_view=True,
             viewport_override=(1920, 1400),
@@ -85,6 +88,10 @@ class ECBRateCutsScreenshotService:
                 "Chrome/120.0.0.0 Safari/537.36"
             ),
         )
+
+    def _capture_fresh(self) -> Dict[str, Any]:
+        """SWR バックグラウンド用: 常に Playwright で撮影する（SWR 再帰なし）"""
+        return self.capture_all_screenshots(force_refresh=True)
 
     def capture_all_screenshots(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
@@ -133,9 +140,11 @@ class ECBRateCutsScreenshotService:
             )
             return results
 
-        # SWR: all files exist (but stale) → return stale URLs, update in background
+        # SWR: all files exist (but stale) AND not force_refresh
+        # → return stale URLs immediately, update in background
+        # force_refresh=True の場合は SWR をスキップして直接キャプチャする
         all_files_exist = all(path.exists() for _, _, path, _ in to_capture)
-        if all_files_exist:
+        if all_files_exist and not force_refresh:
             for key, url, path, filename in to_capture:
                 results[key] = {
                     "success": True,
@@ -149,37 +158,46 @@ class ECBRateCutsScreenshotService:
             results["revalidating"] = True
             background_revalidate(
                 f"swr:{self.CACHE_KEY}",
-                lambda: self.capture_all_screenshots(force_refresh=True),
+                lambda: self._capture_fresh(),
             )
             return results
 
-        # 1 ブラウザで複数枚連続撮影
-        try:
-            with browser_semaphore:
-                with get_default_runner(config=self._build_config()) as runner:
-                    for key, url, path, filename in to_capture:
-                        try:
-                            logger.info(f"[ECBRateCuts] Capturing {key}...")
-                            result = runner.screenshot(self._build_request(url, path))
-                            logger.info(
-                                f"[ECBRateCuts] saved {key}: "
-                                f"{result.path} ({result.size_bytes} bytes)"
-                            )
-                            results[key] = {
-                                "success": True,
-                                "url": f"/cache/eurozone/monetary_policy/{filename}",
-                                "cached": False,
-                            }
-                        except BrowserRunnerError as e:
-                            logger.error(f"[ECBRateCuts] {key} capture failed: {e}")
-                            results[key] = {
-                                "success": False,
-                                "url": None,
-                                "cached": False,
-                            }
-        except BrowserRunnerError as e:
-            logger.error(f"[ECBRateCuts] runner setup failed: {e}")
-            for key, _url, _path, _filename in to_capture:
+        # Cloudflare 対策: URL ごとに別ブラウザインスタンスで撮影し、
+        # 間にディレイを入れる
+        for idx, (key, url, path, filename) in enumerate(to_capture):
+            if idx > 0:
+                time.sleep(10)  # Cloudflare rate-limit 回避
+            try:
+                with browser_semaphore:
+                    with get_default_runner(config=self._build_config()) as runner:
+                        logger.info(f"[ECBRateCuts] Capturing {key}...")
+                        cap_result = runner.screenshot(self._build_request(url, path))
+
+                # Cloudflare チャレンジページ検出（ファイルサイズが小さすぎる
+                # or 大きすぎる場合は正常なチャートではない可能性）
+                if path.exists() and path.stat().st_size < 30_000:
+                    logger.warning(
+                        f"[ECBRateCuts] {key}: file too small "
+                        f"({path.stat().st_size} bytes), likely Cloudflare page"
+                    )
+                    results[key] = {
+                        "success": False,
+                        "url": None,
+                        "cached": False,
+                    }
+                    continue
+
+                logger.info(
+                    f"[ECBRateCuts] saved {key}: "
+                    f"{cap_result.path} ({cap_result.size_bytes} bytes)"
+                )
+                results[key] = {
+                    "success": True,
+                    "url": f"/cache/eurozone/monetary_policy/{filename}",
+                    "cached": False,
+                }
+            except BrowserRunnerError as e:
+                logger.error(f"[ECBRateCuts] {key} capture failed: {e}")
                 results[key] = {
                     "success": False,
                     "url": None,

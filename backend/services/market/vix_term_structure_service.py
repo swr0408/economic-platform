@@ -116,6 +116,8 @@ class VixTermStructureService:
                     close_series = df["Close"]
                 result: Dict[str, float] = {}
                 for idx, val in close_series.items():
+                    if pd.isna(val):
+                        continue
                     date_str = idx.strftime("%Y-%m-%d")
                     result[date_str] = round(float(val), 4)
                 ticker_data[key] = result

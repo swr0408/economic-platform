@@ -20,11 +20,6 @@ export default function GlobalEconomyCharts() {
 
   return (
     <div>
-      {/* OECD CLI（景気先行指数） */}
-      <OecdCliChart
-        data={dashboardData?.oecd_cli ?? null}
-      />
-
       {/* J.P.Morgan グローバル製造業PMI */}
       <GlobalManufacturingPmiChart
         data={dashboardData?.jpmorgan_global_manufacturing_pmi ?? null}
@@ -39,6 +34,11 @@ export default function GlobalEconomyCharts() {
       {/* 経済政策不確実性指数（EPU） */}
       <EpuChart
         data={dashboardData?.global_epu ?? null}
+      />
+
+      {/* OECD CLI（景気先行指数） */}
+      <OecdCliChart
+        data={dashboardData?.oecd_cli ?? null}
       />
 
       {/* WSTS半導体売上高 */}

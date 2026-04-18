@@ -56,19 +56,17 @@ class CnLiKeqiangIndexScreenshotService:
     def _capture_screenshot(self, url: str, output_path: Path) -> bool:
         """Capture screenshot from MacroMicro chart page via PlaywrightRunner.
 
-        以前の Selenium 実装と同等の挙動:
-            - viewport 1920x1400
-            - .mm-cc-bd .container.chart-theater.is-stat 出現を待ち
-              追加で計 5 秒待機 (描画完了用)
-            - 対象要素に scrollIntoView してから要素クリップでスクショ
+        MacroMicro は Cloudflare チャレンジを挟むことがあるため
+        wait_selector は使わず wait_after_load_ms でチャート描画を待つ。
+        clip_selector はチャート部分の切り出しに使用。
+        (ECB rate cuts service と同じ方式)
         """
         target_selector = ".mm-cc-bd .container.chart-theater.is-stat"
         request = ScreenshotRequest(
             url=url,
             output_path=str(output_path),
-            wait_selector=target_selector,
-            wait_for_load_state="networkidle",
-            wait_after_load_ms=5_000,  # 旧実装の time.sleep(3) + α
+            wait_for_load_state="domcontentloaded",
+            wait_after_load_ms=10_000,
             clip_selector=target_selector,
             scroll_into_view=True,
             viewport_override=(1920, 1400),

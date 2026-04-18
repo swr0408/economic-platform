@@ -6,6 +6,13 @@
       "core_cpi": 0.21,
       "pce": 0.39,
       "core_pce": 0.26
+    },
+    {
+      "date": "March 2026",
+      "cpi": null,
+      "core_cpi": null,
+      "pce": 0.58,
+      "core_pce": 0.23
     }
   ],
   "monthly_yoy": [
@@ -15,7 +22,14 @@
       "core_cpi": 2.56,
       "pce": 3.61,
       "core_pce": 3.17
+    },
+    {
+      "date": "March 2026",
+      "cpi": null,
+      "core_cpi": null,
+      "pce": 3.39,
+      "core_pce": 3.1
     }
   ],
-  "last_updated": "2026-04-10T23:01:40.437346+09:00"
+  "last_updated": "2026-04-17T23:59:25.682903+09:00"
 }

@@ -8,18 +8,29 @@ import RecentUpdatesCard from '../components/home/RecentUpdatesCard'
 import { useIsMaster } from '../hooks/useIsMaster'
 
 const EXTERNAL_LINKS = [
+  { label: 'IG証券', url: 'https://www.ig.com/jp/login?next=/jp/myig/dashboard' },
+  { label: 'Mataf 通貨インデックス', url: 'https://www.mataf.net/en/forex/tools/currency-index' },
   { label: '世界の株価', url: 'https://sekai-kabuka.com/pc-index.html' },
   { label: 'ソニーファイナンシャルグループ', url: 'https://www.sonyfg.co.jp/ja/market_report/' },
   { label: '第一ライフ資産運用経済研究所', url: 'https://www.dlri.co.jp/report_index.html' },
   { label: 'ANZオーストラリア経済ウィークリー', url: 'https://www.anz.com/institutional/global/japan/jpn/market-report/' },
   { label: 'セントラル短資ＦＸ', url: 'https://www.central-tanshifx.com/market/marketview/?morecnt=0&itemtype=3#' },
   { label: 'フィリップ証券', url: 'https://my-sso.phillip-sec-online.jp/login' },
-  { label: '中東レート', url: 'https://www.xe.com/ja/currencycharts/' },
-  { label: 'Weekend trading', url: 'https://www.ig.com/uk/weekend-trading' },
-  { label: 'IG証券', url: 'https://www.ig.com/jp/login?next=/jp/myig/dashboard' },
-  { label: 'Mataf 通貨インデックス', url: 'https://www.mataf.net/en/forex/tools/currency-index' },
+  { label: 'Goldman Sachs Insights', url: 'https://www.goldmansachs.com/insights' },
+  { label: 'Goldman Sachs Markets Outlook 2026', url: 'https://www.goldmansachs.com/insights/goldman-sachs-research/markets-outlook-2026-some-like-it-hot' },
+  { label: 'UBS House View', url: 'https://www.ubs.com/global/en/wealthmanagement/insights/house-view.html' },
+  { label: 'UBS CIO House View', url: 'https://www.ubs.com/global/en/wealthmanagement/insights/chief-investment-office/house-view.html' },
+  { label: 'UBS CIO Daily', url: 'https://www.ubs.com/global/en/wealthmanagement/insights/chief-investment-office/house-view/daily.html' },
+  { label: 'Morgan Stanley Insights', url: 'https://www.morganstanley.com/insights' },
+  { label: 'Standard Chartered Global Research', url: 'https://www.sc.com/en/corporate-investment-banking/global-markets/global-research/' },
+  { label: 'Citi Global Markets & Economy', url: 'https://www.citigroup.com/global/insights/global-markets-and-economy' },
+  { label: 'Wells Fargo Economics', url: 'https://www.wellsfargo.com/cib/insights/economics' },
+  { label: 'J.P. Morgan Global Fixed Income Views', url: 'https://am.jpmorgan.com/jp/en/asset-management/institutional/insights/portfolio-insights/asset-class-views/' },
+  { label: 'J.P. Morgan Weekly Market Recap', url: 'https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/market-updates/weekly-market-recap' },
   { label: 'Investing.com 経済カレンダー', url: 'https://jp.investing.com/economic-calendar/' },
   { label: 'MINKABU FX 経済指標', url: 'https://fx.minkabu.jp/indicators' },
+  { label: '中東レート', url: 'https://www.xe.com/ja/currencycharts/' },
+  { label: 'Weekend trading', url: 'https://www.ig.com/uk/weekend-trading' },
 ]
 
 // 右サイドバー（経済カレンダー）のデフォルト幅と範囲

@@ -171,11 +171,15 @@
     {
       "date": "2025-Q3",
       "value": 2.1
+    },
+    {
+      "date": "2025-Q4",
+      "value": 2.2
     }
   ],
   "latest": {
-    "date": "2025-Q3",
-    "value": 2.1
+    "date": "2025-Q4",
+    "value": 2.2
   },
   "metadata": {
     "source": "Eurostat - Job Vacancy Statistics",
@@ -188,10 +192,10 @@
     "description": "Job vacancy rate"
   },
   "next_release": {
-    "date": "2026-03-18",
-    "datetime_jst": "2026-03-18 19:00",
+    "date": "2026-06-16",
+    "datetime_jst": "2026-06-16 19:00",
     "time_jst": "19:00",
-    "label": "Job Vacancy Rate (2026-03-18)"
+    "label": "Job Vacancy Rate (2026-06-16)"
   },
-  "last_updated": "2026-01-29T12:23:28.815130+09:00"
+  "last_updated": "2026-04-18T11:32:37.839206+09:00"
 }

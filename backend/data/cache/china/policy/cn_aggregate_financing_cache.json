@@ -716,7 +716,7 @@
     },
     {
       "date": "2025-01-31",
-      "flow": 70546.0,
+      "flow": 8178.0,
       "stock": 415.19,
       "yoy": 8.0
     },
@@ -764,7 +764,7 @@
     },
     {
       "date": "2025-09-30",
-      "flow": 35296.0,
+      "flow": 35299.0,
       "stock": 437.08,
       "yoy": 8.7
     },
@@ -776,28 +776,40 @@
     },
     {
       "date": "2025-11-30",
-      "flow": 24900.0,
+      "flow": 24926.0,
       "stock": 440.07,
       "yoy": 8.5
     },
     {
       "date": "2025-12-31",
-      "flow": 22100.0,
+      "flow": 22132.0,
       "stock": 442.12,
       "yoy": 8.3
     },
     {
       "date": "2026-01-31",
-      "flow": 72208.0,
+      "flow": 72185.0,
       "stock": 449.11,
       "yoy": 8.2
+    },
+    {
+      "date": "2026-02-28",
+      "flow": 23837.0,
+      "stock": 451.4,
+      "yoy": 8.2
+    },
+    {
+      "date": "2026-03-31",
+      "flow": 52271.0,
+      "stock": 456.46,
+      "yoy": 7.9
     }
   ],
   "latest": {
-    "date": "2026-01-31",
-    "flow": 72208.0,
-    "stock": 449.11,
-    "yoy": 8.2
+    "date": "2026-03-31",
+    "flow": 52271.0,
+    "stock": 456.46,
+    "yoy": 7.9
   },
   "metadata": {
     "unit_flow": "100億元",
@@ -805,15 +817,15 @@
     "unit_yoy": "%",
     "indicator": "Aggregate Financing to the Real Economy",
     "source": "PBOC",
-    "total_records": 132,
-    "last_fetched": "2026-03-03T22:24:08.638897+09:00"
+    "total_records": 134,
+    "last_fetched": "2026-04-18T01:43:57.433368+09:00"
   },
   "next_release": {
-    "date": "2026-03-14",
-    "datetime_utc": "2026-03-14T09:00:00+00:00",
-    "datetime_jst": "2026-03-14T18:00:00+09:00",
+    "date": "2026-05-14",
+    "datetime_utc": "2026-05-14T09:00:00+00:00",
+    "datetime_jst": "2026-05-14T18:00:00+09:00",
     "time_jst": "18:00",
-    "label": "Total Social Financing (Feb)",
+    "label": "Total Social Financing (Apr)",
     "estimate": null
   }
 }

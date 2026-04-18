@@ -5,8 +5,6 @@ import AsxRateTrackerChart from './monetary_policy/AsxRateTrackerChart'
 import RbaOisChart from './monetary_policy/RbaOisChart'
 import RbaExpectationsChart from './monetary_policy/RbaExpectationsChart'
 import RbaMonetaryPolicyChart from './monetary_policy/RbaMonetaryPolicyChart'
-import AuHousingLendingRatesChart from './monetary_policy/AuHousingLendingRatesChart'
-import AuHousingLoanArrearsChart from './monetary_policy/AuHousingLoanArrearsChart'
 
 /**
  * オーストラリア金融政策チャート群
@@ -71,20 +69,6 @@ export default function AustraliaPolicyCharts() {
       {/* RBA 利上げ・利下げ期待 */}
       <div id="rba-expectations">
         <RbaExpectationsChart />
-      </div>
-
-      {/* 住宅ローン金利 */}
-      <div id="housing-lending-rates">
-        <AuHousingLendingRatesChart
-          data={dashboardData?.au_housing_lending_rates ?? null}
-        />
-      </div>
-
-      {/* 住宅ローン延滞率 */}
-      <div id="housing-loan-arrears">
-        <AuHousingLoanArrearsChart
-          data={dashboardData?.au_housing_loan_arrears ?? null}
-        />
       </div>
     </div>
   )

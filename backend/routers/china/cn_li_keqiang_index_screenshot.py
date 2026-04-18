@@ -8,6 +8,7 @@
 - GET /api/china/li-keqiang-index-screenshot/cache/status - キャッシュ状態を取得
 - POST /api/china/li-keqiang-index-screenshot/cache/invalidate - キャッシュを無効化
 """
+import asyncio
 from fastapi import APIRouter, Query
 from fastapi.responses import FileResponse
 
@@ -36,25 +37,33 @@ async def get_screenshot_url(
     """
     李克強指数のスクリーンショットURL情報を取得
 
+    ECB rate cuts と同じパターン:
+    - capture_screenshot() に常に委譲（キャッシュ/SWR ロジック内蔵）
+    - asyncio.to_thread でイベントループをブロックしない
+    - キャプチャ失敗時はキャッシュファイルにフォールバック
+
     Args:
         force_refresh: スクリーンショットを強制更新するか
 
     Returns:
         スクリーンショットURL情報
     """
-    if force_refresh:
-        result = cn_li_keqiang_index_screenshot_service.capture_screenshot(force_refresh=True)
-        return {
-            "screenshot_url": result["url"],
-            "last_updated": result["last_updated"],
-            "refreshed": True,
-        }
+    result = await asyncio.to_thread(
+        cn_li_keqiang_index_screenshot_service.capture_screenshot,
+        force_refresh=force_refresh,
+    )
 
-    urls = cn_li_keqiang_index_screenshot_service.get_screenshot_url()
+    screenshot_url = result["url"]
+
+    # キャプチャ失敗時、ディスク上にキャッシュがあればフォールバック
+    if not screenshot_url and SCREENSHOT_PATH.exists():
+        fallback = cn_li_keqiang_index_screenshot_service.get_screenshot_url()
+        screenshot_url = fallback["screenshot_url"]
+
     return {
-        "screenshot_url": urls["screenshot_url"],
-        "last_updated": urls["last_updated"],
-        "refreshed": False,
+        "screenshot_url": screenshot_url,
+        "last_updated": result["last_updated"],
+        "refreshed": force_refresh,
     }
 
 
@@ -67,7 +76,9 @@ async def get_screenshot_image():
         PNG画像ファイル
     """
     if not SCREENSHOT_PATH.exists():
-        cn_li_keqiang_index_screenshot_service.capture_screenshot()
+        await asyncio.to_thread(
+            cn_li_keqiang_index_screenshot_service.capture_screenshot
+        )
 
     if SCREENSHOT_PATH.exists():
         return FileResponse(
@@ -87,7 +98,10 @@ async def refresh_screenshot():
     Returns:
         更新結果
     """
-    result = cn_li_keqiang_index_screenshot_service.capture_screenshot(force_refresh=True)
+    result = await asyncio.to_thread(
+        cn_li_keqiang_index_screenshot_service.capture_screenshot,
+        force_refresh=True,
+    )
     return {
         "success": result["success"],
         "url": result["url"],

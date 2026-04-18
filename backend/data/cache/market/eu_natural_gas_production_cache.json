@@ -559,12 +559,17 @@
       "date": "2026-01-01",
       "value": 2838.774,
       "yoy": -0.78
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2518.697,
+      "yoy": -4.18
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 2838.774,
-    "yoy": -0.78
+    "date": "2026-02-01",
+    "value": 2518.697,
+    "yoy": -4.18
   },
   "next_release": null,
   "metadata": {
@@ -573,11 +578,11 @@
     "frequency": "monthly",
     "unit": "MIO_M3",
     "series": "EU27 Natural Gas Indigenous Production",
-    "data_count": 112,
+    "data_count": 113,
     "start_date": "2014-01-01",
-    "end_date": "2026-01-01"
+    "end_date": "2026-02-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-10T20:45:12.853804+09:00"
+  "last_updated": "2026-04-18T16:48:15.166155+09:00"
 }

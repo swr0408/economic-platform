@@ -87,9 +87,11 @@ export default function CnFixedAssetInvestmentChart({ data }: Props) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="固定資産投資" showPeriodSelector={false} showDataSource={false}>
-        <NoDataMessage />
-      </ChartContainer>
+      <div id="fixed-asset-investment">
+        <ChartContainer title="固定資産投資" showPeriodSelector={false} showDataSource={false} handbookId="fixed-asset-investment">
+          <NoDataMessage />
+        </ChartContainer>
+      </div>
     )
   }
 
@@ -103,6 +105,7 @@ export default function CnFixedAssetInvestmentChart({ data }: Props) {
         showDataSource={true}
         dataSource="NBS"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/index.html"
+        handbookId="fixed-asset-investment"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

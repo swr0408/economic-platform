@@ -142,7 +142,7 @@ export default function CnElectronicsStockChart({ data }: Props) {
         title="電気機器在庫"
         showPeriodSelector={false}
         dataSource="NBS（国家統計局）"
-        sourceUrl="https://data.stats.gov.cn/english/easyquery.htm?cn=A01"
+        sourceUrl="https://data.stats.gov.cn/dg/website/page.html#/pc/national/en/monthData"
         handbookId="cn-electronics-stock"
       >
         {/* 最新値ボックス */}

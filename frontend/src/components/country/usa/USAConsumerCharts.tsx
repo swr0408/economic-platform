@@ -78,6 +78,10 @@ export default function USAConsumerCharts() {
             <MichiganConsumerSentimentChart data={dashboardData?.michigan_consumer_sentiment ?? null} />
           </ChartWrapper>
 
+          <ChartWrapper id="pce">
+            <PCEChart data={dashboardData?.pce ?? null} />
+          </ChartWrapper>
+
           <ChartWrapper id="personal-saving-rate">
             <PersonalSavingRateChart data={dashboardData?.personal_saving_rate ?? null} />
           </ChartWrapper>
@@ -88,10 +92,6 @@ export default function USAConsumerCharts() {
 
           <ChartWrapper id="disposable-income">
             <DisposableIncomeChart data={dashboardData?.disposable_income ?? null} />
-          </ChartWrapper>
-
-          <ChartWrapper id="pce">
-            <PCEChart data={dashboardData?.pce ?? null} />
           </ChartWrapper>
         </>
       )}

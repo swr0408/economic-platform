@@ -74,69 +74,69 @@
     },
     {
       "date": "2011-03-01",
-      "raw_value": 1102.0,
-      "yoy": 12.5,
-      "mom": 1646.4
+      "raw_value": 63.7,
+      "yoy": 19.1,
+      "mom": 1.0
     },
     {
       "date": "2011-04-01",
-      "raw_value": 1100.0,
-      "yoy": 11.6,
-      "mom": -0.2
+      "raw_value": 73.5,
+      "yoy": 33.9,
+      "mom": 15.4
     },
     {
       "date": "2011-05-01",
-      "raw_value": 1102.0,
-      "yoy": 10.9,
-      "mom": 0.2
+      "raw_value": 69.8,
+      "yoy": 24.6,
+      "mom": -5.0
     },
     {
       "date": "2011-06-01",
-      "raw_value": 1102.0,
-      "yoy": 13.0,
-      "mom": 0.0
+      "raw_value": 72.8,
+      "yoy": 4.5,
+      "mom": 4.3
     },
     {
       "date": "2011-07-01",
-      "raw_value": 1103.0,
-      "yoy": 10.9,
-      "mom": 0.1
+      "raw_value": 67.6,
+      "yoy": 8.3,
+      "mom": -7.1
     },
     {
       "date": "2011-08-01",
-      "raw_value": 1107.0,
-      "yoy": 11.1,
-      "mom": 0.4
+      "raw_value": 65.8,
+      "yoy": 5.3,
+      "mom": -2.7
     },
     {
       "date": "2011-09-01",
-      "raw_value": 1107.0,
-      "yoy": 11.5,
-      "mom": 0.0
+      "raw_value": 62.6,
+      "yoy": 1.5,
+      "mom": -4.9
     },
     {
       "date": "2011-10-01",
-      "raw_value": 1106.0,
-      "yoy": 11.7,
-      "mom": -0.1
+      "raw_value": 56.8,
+      "yoy": -8.4,
+      "mom": -9.3
     },
     {
       "date": "2011-11-01",
-      "raw_value": 1108.0,
-      "yoy": 11.3,
-      "mom": 0.2
+      "raw_value": 60.2,
+      "yoy": -2.4,
+      "mom": 6.0
     },
     {
       "date": "2011-12-01",
-      "raw_value": 1110.0,
-      "yoy": 10.7,
-      "mom": 0.2
+      "raw_value": 63.3,
+      "yoy": -10.6,
+      "mom": 5.1
     },
     {
       "date": "2012-02-01",
       "raw_value": 74.6,
       "yoy": -1.8,
-      "mom": -93.3
+      "mom": 17.9
     },
     {
       "date": "2012-03-01",
@@ -1001,7 +1001,7 @@
     },
     "unit": "億個 (100 million units)",
     "total_records": 164,
-    "last_fetched": "2026-03-08T19:42:05.513178+09:00"
+    "last_fetched": "2026-04-18T02:16:52.123021+09:00"
   },
   "next_release": null
 }

@@ -409,14 +409,14 @@ export default function CompareChart({
     <div
       style={{
         flex: 1,
-        padding: '16px 24px',
+        padding: '16px 24px 16px',
         backgroundColor: DARK_THEME.bgSecondary,
       }}
     >
       <ZoomableChart
         data={transformedData}
         dataKey={indicators[0]?.id || 'value'}
-        height={Math.max(500, window.innerHeight - 280)}
+        height={Math.max(500, window.innerHeight - 200)}
         color={getOverlayColor(0)}
         name={indicators[0]?.name || ''}
         domain={['auto', 'auto']}

@@ -98,7 +98,7 @@ export default function NzTradeBalanceChart({ data }: NzTradeBalanceChartProps) 
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="貿易収支" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="貿易収支" showPeriodSelector={false} showDataSource={false} handbookId="nz-trade">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -117,7 +117,7 @@ export default function NzTradeBalanceChart({ data }: NzTradeBalanceChartProps) 
         showDataSource={true}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/information-releases/?filters=Balance%20of%20payments&topicFiltersID=635"
-        handbookId="trade-balance"
+        handbookId="nz-trade"
       >
         {/* 最新値表示 */}
         <LatestValueBox

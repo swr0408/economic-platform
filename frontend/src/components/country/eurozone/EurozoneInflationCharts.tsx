@@ -87,6 +87,13 @@ export default function EurozoneInflationCharts() {
         />
       </div>
 
+      {/* EU Import Prices Chart */}
+      <div id="eu-import-prices">
+        <EUImportPricesChart
+          data={dashboardData?.eu_import_prices ?? null}
+        />
+      </div>
+
       {/* Germany CPI Chart */}
       <div id="germany-cpi">
         <GermanyCPIChart
@@ -105,13 +112,6 @@ export default function EurozoneInflationCharts() {
       <div id="spain-hicp-cpi">
         <SpainHICPCPIChart
           data={dashboardData?.spain_hicp_cpi ?? null}
-        />
-      </div>
-
-      {/* EU Import Prices Chart */}
-      <div id="eu-import-prices">
-        <EUImportPricesChart
-          data={dashboardData?.eu_import_prices ?? null}
         />
       </div>
     </div>

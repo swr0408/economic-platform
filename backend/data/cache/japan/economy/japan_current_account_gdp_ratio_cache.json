@@ -651,74 +651,74 @@
     {
       "date": "2023-Q1",
       "ratio": 0.42,
-      "current_account": 25432.0,
+      "current_account": 25585.0,
       "nominal_gdp": 6056664.0
     },
     {
       "date": "2023-Q2",
-      "ratio": 0.92,
-      "current_account": 57097.0,
+      "ratio": 0.93,
+      "current_account": 57700.0,
       "nominal_gdp": 6174435.0
     },
     {
       "date": "2023-Q3",
-      "ratio": 1.33,
-      "current_account": 82331.0,
+      "ratio": 1.34,
+      "current_account": 82968.0,
       "nominal_gdp": 6174527.0
     },
     {
       "date": "2023-Q4",
-      "ratio": 0.93,
-      "current_account": 57922.0,
+      "ratio": 0.94,
+      "current_account": 58501.0,
       "nominal_gdp": 6234441.0
     },
     {
       "date": "2024-Q1",
       "ratio": 1.05,
-      "current_account": 64705.0,
+      "current_account": 65042.0,
       "nominal_gdp": 6190282.0
     },
     {
       "date": "2024-Q2",
-      "ratio": 1.06,
-      "current_account": 66774.0,
+      "ratio": 1.1,
+      "current_account": 69292.0,
       "nominal_gdp": 6319298.0
     },
     {
       "date": "2024-Q3",
-      "ratio": 1.36,
-      "current_account": 86744.0,
+      "ratio": 1.43,
+      "current_account": 91233.0,
       "nominal_gdp": 6391029.0
     },
     {
       "date": "2024-Q4",
-      "ratio": 1.06,
-      "current_account": 68645.0,
+      "ratio": 1.04,
+      "current_account": 67206.0,
       "nominal_gdp": 6463563.0
     },
     {
       "date": "2025-Q1",
-      "ratio": 1.12,
-      "current_account": 73329.0,
+      "ratio": 1.11,
+      "current_account": 72584.0,
       "nominal_gdp": 6518760.0
     },
     {
       "date": "2025-Q2",
-      "ratio": 1.01,
-      "current_account": 67183.0,
+      "ratio": 1.05,
+      "current_account": 69723.0,
       "nominal_gdp": 6653464.0
     },
     {
       "date": "2025-Q3",
-      "ratio": 1.59,
-      "current_account": 105923.0,
+      "ratio": 1.6,
+      "current_account": 106591.0,
       "nominal_gdp": 6650097.0
     }
   ],
   "latest": {
     "date": "2025-Q3",
-    "ratio": 1.59,
-    "current_account": 105923.0,
+    "ratio": 1.6,
+    "current_account": 106591.0,
     "nominal_gdp": 6650097.0
   },
   "metadata": {
@@ -728,5 +728,5 @@
     "frequency": "Quarterly",
     "calculation": "Current Account (quarterly sum) / Nominal GDP × 100"
   },
-  "last_updated": "2026-02-11T23:18:01.849848+09:00"
+  "last_updated": "2026-04-18T09:31:19.240851+09:00"
 }

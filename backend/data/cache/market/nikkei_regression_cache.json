@@ -963,87 +963,87 @@
     {
       "date": "2025-01-01",
       "actual": 39572.49,
-      "model": 39405.0
+      "model": 34703.0
     },
     {
       "date": "2025-02-01",
       "actual": 37155.5,
-      "model": 39069.0
+      "model": 34367.0
     },
     {
       "date": "2025-03-01",
       "actual": 35617.56,
-      "model": 39785.0
+      "model": 35083.0
     },
     {
       "date": "2025-04-01",
       "actual": 36045.38,
-      "model": 39113.0
+      "model": 34411.0
     },
     {
       "date": "2025-05-01",
       "actual": 37965.1,
-      "model": 39664.0
+      "model": 34962.0
     },
     {
       "date": "2025-06-01",
       "actual": 40487.39,
-      "model": 40467.0
+      "model": 35765.0
     },
     {
       "date": "2025-07-01",
       "actual": 41069.82,
-      "model": 41766.0
+      "model": 37064.0
     },
     {
       "date": "2025-08-01",
       "actual": 42718.47,
-      "model": 40932.0
+      "model": 36230.0
     },
     {
       "date": "2025-09-01",
       "actual": 44932.63,
-      "model": 41100.0
+      "model": 36398.0
     },
     {
       "date": "2025-10-01",
       "actual": 52411.34,
-      "model": 41807.0
+      "model": 37105.0
     },
     {
       "date": "2025-11-01",
       "actual": 50253.91,
-      "model": 42419.0
+      "model": 37719.0
     },
     {
       "date": "2025-12-01",
       "actual": 50339.48,
-      "model": 41990.0
+      "model": 37293.0
     },
     {
       "date": "2026-01-01",
       "actual": 53322.85,
-      "model": 41751.0
+      "model": 41754.0
     },
     {
       "date": "2026-02-01",
       "actual": 58850.27,
-      "model": null
+      "model": 42112.0
     },
     {
       "date": "2026-03-01",
       "actual": 51063.72,
-      "model": null
+      "model": 42475.0
     },
     {
       "date": "2026-04-01",
-      "actual": 56924.11,
+      "actual": 58475.9,
       "model": null
     }
   ],
   "latest": {
     "date": "2026-04-01",
-    "actual": 56924.11,
+    "actual": 58475.9,
     "model": null
   },
   "model_info": {
@@ -1061,11 +1061,11 @@
     "data_count": 208,
     "start_date": "2009-01-01",
     "end_date": "2026-04-01",
-    "afre_latest": "2026-01-01",
+    "afre_latest": "2026-03-01",
     "usdjpy_latest": "2026-04-01",
     "nikkei_latest": "2026-04-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-10T20:44:38.268558+09:00"
+  "last_updated": "2026-04-18T15:10:01.228712+09:00"
 }

@@ -147,7 +147,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
 
   if (!hasData) {
     return (
-      <ChartContainer title="貿易収支" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="貿易収支" showPeriodSelector={false} showDataSource={false} handbookId="ca-trade-balance">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -192,7 +192,7 @@ export default function CanadaTradeBalanceChart({ data }: CanadaTradeBalanceChar
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www.statcan.gc.ca/en/subjects-start/international_trade"
-        handbookId="trade-balance"
+        handbookId="ca-trade-balance"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -1,50 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-03-17",
-      "ratio": 114.24,
-      "advances": 1267,
-      "declines": 339,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": null,
-      "topix": null
-    },
-    {
-      "date": "2024-03-18",
-      "ratio": 122.32,
-      "advances": 1250,
-      "declines": 366,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 39740.44,
-      "topix": null
-    },
-    {
-      "date": "2024-03-20",
-      "ratio": 120.6,
-      "advances": 1121,
-      "declines": 484,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": null,
-      "topix": null
-    },
-    {
-      "date": "2024-03-21",
-      "ratio": 130.47,
-      "advances": 1083,
-      "declines": 520,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 40815.66,
-      "topix": null
-    },
-    {
       "date": "2024-03-24",
       "ratio": 128.38,
       "advances": 348,
@@ -5554,28 +5510,83 @@
       "declines_25d": 0,
       "nikkei225": 55895.32,
       "topix": null
+    },
+    {
+      "date": "2026-04-12",
+      "ratio": 100.88,
+      "advances": 469,
+      "declines": 1058,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": null,
+      "topix": null
+    },
+    {
+      "date": "2026-04-13",
+      "ratio": 109.39,
+      "advances": 900,
+      "declines": 638,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 56502.77,
+      "topix": null
+    },
+    {
+      "date": "2026-04-14",
+      "ratio": 105.19,
+      "advances": 1020,
+      "declines": 518,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 57877.39,
+      "topix": null
+    },
+    {
+      "date": "2026-04-15",
+      "ratio": 103.97,
+      "advances": 902,
+      "declines": 608,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 58134.24,
+      "topix": null
+    },
+    {
+      "date": "2026-04-16",
+      "ratio": 108.54,
+      "advances": 486,
+      "declines": 1027,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 59518.34,
+      "topix": null
     }
   ],
   "latest": {
-    "date": "2026-04-09",
-    "ratio": 103.84,
-    "advances": 469,
-    "declines": 1050,
+    "date": "2026-04-16",
+    "ratio": 108.54,
+    "advances": 486,
+    "declines": 1027,
     "unchanged": 0,
     "advances_25d": 0,
     "declines_25d": 0,
-    "nikkei225": 55895.32,
+    "nikkei225": 59518.34,
     "topix": null
   },
   "metadata": {
     "source": "nikkei225jp.com",
     "frequency": "daily",
-    "data_count": 505,
-    "start_date": "2024-03-17",
-    "end_date": "2026-04-09",
+    "data_count": 506,
+    "start_date": "2024-03-24",
+    "end_date": "2026-04-16",
     "window": 25
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-04-10T11:44:38.024149"
+  "last_updated": "2026-04-18T06:09:49.752079"
 }

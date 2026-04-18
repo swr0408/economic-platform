@@ -28,6 +28,7 @@ from typing import Any, Dict, List, Optional
 import requests
 
 from core.redis_client import redis_client
+from services.market._stooq_utils import fetch_stooq_daily
 
 logger = logging.getLogger(__name__)
 
@@ -225,17 +226,11 @@ class AdvanceDeclineRatioService:
 
             # TOPIX: Stooq（正規インデックス値）
             topix_map: Dict[str, float] = {}
-            try:
-                d1 = start_date.replace("-", "")
-                d2 = end_date.replace("-", "")
-                stooq_url = f"https://stooq.com/q/d/l/?s=^tpx&d1={d1}&d2={d2}&i=d"
-                df_topix = pd.read_csv(stooq_url)
-                if not df_topix.empty:
-                    for _, row in df_topix.iterrows():
-                        topix_map[str(row["Date"])] = round(float(row["Close"]), 2)
-                    logger.info(f"[AdvanceDeclineRatio] TOPIX (Stooq): {len(topix_map)}件")
-            except Exception as e:
-                logger.error(f"[AdvanceDeclineRatio] Stooq TOPIX error: {e}")
+            df_topix = fetch_stooq_daily("^tpx", start_date, end_date)
+            if df_topix is not None and not df_topix.empty:
+                for _, row in df_topix.iterrows():
+                    topix_map[row["Date"].strftime("%Y-%m-%d")] = round(float(row["Close"]), 2)
+                logger.info(f"[AdvanceDeclineRatio] TOPIX (Stooq): {len(topix_map)}件")
 
             for item in data:
                 item["nikkei225"] = n225_map.get(item["date"])

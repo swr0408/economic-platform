@@ -1251,11 +1251,15 @@
     {
       "date": "2026-01-01",
       "value": 2.5
+    },
+    {
+      "date": "2026-02-01",
+      "value": 3.3
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 2.5
+    "date": "2026-02-01",
+    "value": 3.3
   },
   "next_release": {
     "date": "2026-05-08",
@@ -1265,5 +1269,5 @@
     "label": "Average Cash Earnings YoY (Mar)",
     "estimate": 2.1
   },
-  "last_updated": "2026-04-10T23:01:23.670262+09:00"
+  "last_updated": "2026-04-18T01:58:13.712649+09:00"
 }

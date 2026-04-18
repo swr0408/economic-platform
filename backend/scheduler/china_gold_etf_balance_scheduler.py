@@ -13,7 +13,7 @@ sqlId: COMMON_SSE_ZQPZ_ETFZL_ETFJBXX_JJGM_SEARCH_L（日付指定）
 import json
 import logging
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, date, timedelta
 from typing import Optional
 from zoneinfo import ZoneInfo
 
@@ -177,7 +177,7 @@ class ChinaGoldEtfBalanceScheduler:
             traceback.print_exc()
 
     def start(self):
-        """毎日 17:00 JST + リトライ 19:00 JST"""
+        """毎日 17:05 JST + リトライ 19:05 JST + 起動時キャッチアップ (DBが2日以上古ければ)"""
         self.scheduler.add_job(
             self._run,
             CronTrigger(hour=17, minute=5, timezone=JST),
@@ -192,6 +192,28 @@ class ChinaGoldEtfBalanceScheduler:
             replace_existing=True,
             misfire_grace_time=3600,
         )
+
+        # 起動時キャッチアップ
+        latest_db_str = _get_latest_date_in_db()
+        should_catchup = True
+        if latest_db_str:
+            try:
+                latest_dt = datetime.strptime(latest_db_str, "%Y-%m-%d").date()
+                age_days = (date.today() - latest_dt).days
+                should_catchup = age_days >= 2
+                logger.info(f"[ChinaGoldEtfBalanceScheduler] DB latest: {latest_db_str} ({age_days}d old)")
+            except ValueError:
+                pass
+        if should_catchup:
+            self.scheduler.add_job(
+                self._run,
+                "date",
+                run_date=datetime.now(JST) + timedelta(seconds=30),
+                id="china_gold_etf_balance_startup_catchup",
+                replace_existing=True,
+            )
+            logger.info("[ChinaGoldEtfBalanceScheduler] Startup catch-up scheduled (in 30s)")
+
         self.scheduler.start()
         logger.info("[ChinaGoldEtfBalanceScheduler] Started (Daily 17:05 + 19:05 JST)")
 

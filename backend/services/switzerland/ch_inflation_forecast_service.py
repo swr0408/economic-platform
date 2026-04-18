@@ -115,7 +115,8 @@ class ChInflationForecastService:
         }
 
     def _get_latest_release_date_from_db(self) -> Optional[str]:
-        """DBから直近のSNB Interest Rate Decision発表日を取得"""
+        """直近のSNB金融政策発表日を取得（DB優先、SNBカレンダーICSにフォールバック）"""
+        # 1. DB（economic_calendar_events）から取得
         try:
             from core.database import SessionLocal
             from sqlalchemy import text
@@ -133,13 +134,50 @@ class ChInflationForecastService:
                 row = session.execute(query).fetchone()
 
                 if row and row[0]:
-                    # YYYYMMDD形式で返す
                     return row[0].strftime("%Y%m%d")
-
-                return None
 
         except Exception as e:
             print(f"[ChInflationForecast] Error getting latest release date from DB: {e}")
+
+        # 2. SNBカレンダー（ICS）にフォールバック
+        return self._get_latest_release_date_from_calendar()
+
+    def _get_latest_release_date_from_calendar(self) -> Optional[str]:
+        """SNBカレンダー（ICS）から直近の金融政策発表日（過去）を取得"""
+        try:
+            from services.switzerland.snb_calendar_service import snb_calendar_service
+
+            schedule = snb_calendar_service._get_schedule()
+            events = schedule.get("monetary_policy_decision", []) if schedule else []
+            if not events:
+                print("[ChInflationForecast] SNB calendar has no monetary_policy_decision events")
+                return None
+
+            now = datetime.now(JST)
+            latest_dt: Optional[datetime] = None
+
+            for event in events:
+                dt_str = event.get("datetime")
+                if not dt_str:
+                    continue
+                try:
+                    event_dt = datetime.strptime(dt_str, "%Y-%m-%d %H:%M")
+                except ValueError:
+                    continue
+                # ZURICH時刻として解釈、JST比較
+                event_dt_zurich = event_dt.replace(tzinfo=ZoneInfo("Europe/Zurich"))
+                if event_dt_zurich > now:
+                    continue
+                if latest_dt is None or event_dt_zurich > latest_dt:
+                    latest_dt = event_dt_zurich
+
+            if latest_dt:
+                return latest_dt.strftime("%Y%m%d")
+
+            return None
+
+        except Exception as e:
+            print(f"[ChInflationForecast] Error getting latest release date from calendar: {e}")
             return None
 
     def _generate_image_urls(self, release_date: str) -> Dict[str, str]:

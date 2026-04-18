@@ -7,16 +7,12 @@
 - 新築商業用ビル売却床面積 (Floor space of newly built commercial buildings sold) YoY%
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース蓄積）
   indicator: cn_re_floor_started_yoy, cn_re_sales_yoy, cn_re_floor_sold_yoy
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  https://data.stats.gov.cn/easyquery.htm
-  A060504: 住宅房屋新开工面积_累计增长(%) — 新規着工床面積（住宅）累積YoY
-  A060902: 商品房销售额_累计增长(%) — 商業ビル販売額 累積YoY
-  A060802: 商品房销售面积_累计增长(%) — 商業ビル売却床面積 累積YoY
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  「房地产市场基本情况」記事添付 Excel「表1」シート
 - 発表スケジュール: FMPベース（cn_commercial_residential_sales）
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
 CSVは初期インポート済み（csv_import → nbs_monthly_data テーブル）。
 """
 import os
@@ -27,8 +23,8 @@ from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
 
-import requests
 from services.usa.fmp_next_release_utils import get_next_release_from_fmp
+from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release, parse_excel, parse_xls, _safe_float
 
 logger = logging.getLogger(__name__)
 
@@ -54,127 +50,88 @@ DB_INDICATORS = {
 }
 
 # ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
+# Excel ラベル → DB indicator マッピング
 # ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-NBS_INDICATORS = {
-    "floor_started_yoy": "A060504",  # 住宅房屋新开工面积_累计增长(%)
-    "sales_yoy": "A060902",          # 商品房销售额_累计增长(%)
-    "floor_sold_yoy": "A060802",     # 商品房销售面积_累计增长(%)
-}
-
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
+# 「房地产市场基本情况」記事添付 Excel「表1」シート
+# R2: 指標 | 绝对量 | 同比增长（%）
+RE_EXCEL_LABELS = {
+    "房屋新开工面积": "cn_re_floor_started_yoy",
+    "商品房销售额": "cn_re_sales_yoy",
+    "商品房销售面积": "cn_re_floor_sold_yoy",
 }
 
 
-def _fetch_nbs_api(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから指標データを取得
+def _extract_re_from_excel(
+    excel_data: bytes, period: Optional[tuple],
+) -> Dict[str, Dict[str, float]]:
+    """不動産プレスリリース添付 Excel からデータを抽出
 
-    Args:
-        indicator_code: A060504 等の指標コード
-        periods: 取得期間数（月数）
+    Excel「表1」シート構造:
+    - R2: 指標 | 绝对量 | 同比增长（%）
+    - R3以降: 各指標行
+
+    不動産データは累計データ（1-N月）。period は (year, end_month)。
 
     Returns:
-        {date_str: value, ...} e.g. {"2026-01-01": -12.6, ...}
-        値はそのまま%（累積前年比）
+        {db_indicator: {date_str: value}, ...}
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-RealEstate] API HTTP {resp.status_code}")
-            return {}
-
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-RealEstate] API returncode: {data.get('returncode')}")
-            return {}
-
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
-
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
-            date_str = f"{year}-{month:02d}-01"
-            # 値はそのまま（累積前年比%）
-            result[date_str] = round(value, 1)
-
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-RealEstate] API fetch failed: {e}")
+    if not period:
+        logger.warning("[NBS-RealEstate] No period info, cannot determine date")
         return {}
 
+    year, month = period
+    date_str = f"{year}-{month:02d}-01"
 
-def _fetch_and_upsert_nbs() -> Dict[str, Dict[str, float]]:
-    """NBS APIから全指標の最新データを取得し、DBにUPSERT
+    rows = parse_excel(excel_data, sheet_name="表1", sheet_index=0)
+    if len(rows) < 3:
+        logger.warning("[NBS-RealEstate] Excel has too few rows")
+        return {}
 
-    Returns:
-        {"floor_started_yoy": {date_str: value}, "sales_yoy": {...}, "floor_sold_yoy": {...}}
-    """
-    from services.china.nbs_db_utils import upsert_nbs_data
+    result: Dict[str, Dict[str, float]] = {}
 
-    result = {}
-    for key, code in NBS_INDICATORS.items():
-        data = _fetch_nbs_api(code, periods=24)
-        if data:
-            result[key] = data
-            count = upsert_nbs_data(DB_INDICATORS[key], data, source="api")
-            logger.info(f"[NBS-RealEstate] API {key}: {len(data)} records, DB upserted {count}")
-        else:
-            result[key] = {}
+    # ヘッダー行（index 1）から YoY% の列位置を特定
+    header = rows[1] if len(rows) > 1 else []
+    yoy_col = None
+    for col_idx, cell in enumerate(header):
+        if cell is not None and "同比" in str(cell):
+            yoy_col = col_idx
+            break
+
+    # デフォルト: col2 (index 2) が YoY%
+    if yoy_col is None:
+        yoy_col = 2
+
+    # データ行をスキャン
+    for row in rows[2:]:
+        if not row or row[0] is None:
+            continue
+        label = str(row[0]).strip()
+        for excel_label, db_indicator in RE_EXCEL_LABELS.items():
+            if excel_label in label:
+                if yoy_col < len(row):
+                    val = _safe_float(row[yoy_col])
+                    if val is not None:
+                        result[db_indicator] = {date_str: round(val, 1)}
+                break
+
     return result
 
 
 def _build_data() -> List[Dict[str, Any]]:
-    """DBからデータを読み込み + NBS APIで最新取得→DB蓄積
+    """DBからデータを読み込み + プレスリリースExcelで最新取得→DB蓄積
 
     手順:
-    1. NBS APIから最新データ取得 → DB UPSERT
+    1. プレスリリース Excel から最新データ取得 → DB UPSERT
     2. DBから全データを読み込み
     3. 日付をキーにマージして時系列構築
     """
     from services.china.nbs_db_utils import load_nbs_multi
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        fetch_and_upsert_from_press_release("real_estate", _extract_re_from_excel)
     except Exception as e:
-        logger.warning(f"[CommercialSales] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[CommercialSales] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     db_indicators = list(DB_INDICATORS.values())

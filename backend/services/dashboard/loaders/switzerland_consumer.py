@@ -23,6 +23,7 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
     取得データ:
     - kof_economic_barometer: KOF経済バロメーター（先行指標）
     - ch_consumer_sentiment: SECO消費者景況感
+    - ch_households_and_npish: 家計消費（QoQ, YoY）
 
     キャッシュ方式: FMP発表日時ベース判定
     """
@@ -34,6 +35,7 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
     EXPECTED_KEYS = [
         "kof_economic_barometer",
         "ch_consumer_sentiment",
+        "ch_households_and_npish",
         "ch_retail_trade",
     ]
 
@@ -96,19 +98,22 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
         # 遅延インポート（循環参照回避）
         from services.switzerland.kof_economic_barometer_service import kof_economic_barometer_service
         from services.switzerland.ch_consumer_sentiment_service import ch_consumer_sentiment_service
+        from services.switzerland.ch_households_and_npish_service import ch_households_and_npish_service
         from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
 
         result = {
             "kof_economic_barometer": None,
             "ch_consumer_sentiment": None,
+            "ch_households_and_npish": None,
             "ch_retail_trade": None,
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=3) as executor:
+        with ThreadPoolExecutor(max_workers=4) as executor:
             futures = {
                 executor.submit(self._get_kof_barometer, kof_economic_barometer_service): "kof_economic_barometer",
                 executor.submit(self._get_consumer_sentiment, ch_consumer_sentiment_service): "ch_consumer_sentiment",
+                executor.submit(self._get_households_and_npish, ch_households_and_npish_service): "ch_households_and_npish",
                 executor.submit(self._get_retail_trade, ch_retail_trade_service): "ch_retail_trade",
             }
 
@@ -150,6 +155,21 @@ class SwitzerlandConsumerLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"[SwitzerlandConsumer] Error getting SECO Consumer Sentiment: {e}")
+            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
+
+    def _get_households_and_npish(self, service) -> dict:
+        """家計消費データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("ch_households_and_npish")
+            response = service.get_ch_households_and_npish_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"[SwitzerlandConsumer] Error getting Households and NPISH: {e}")
             return {"data": [], "latest": None, "metadata": {}, "next_release": None}
 
     def _get_retail_trade(self, service) -> dict:

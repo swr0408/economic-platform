@@ -9,6 +9,7 @@ RBA OIS Screenshot APIルーター
 - POST /api/australia/rba-ois-screenshot/refresh - 強制更新
 - GET /api/australia/rba-ois-screenshot/cache/status - キャッシュ状態
 """
+import asyncio
 from fastapi import APIRouter, Query
 from fastapi.responses import FileResponse
 
@@ -34,8 +35,12 @@ async def get_screenshot_urls(
     Args:
         force_refresh: スクリーンショットを強制更新するか
     """
+    # capture_all_screenshots はブラウザ起動を含む重い同期処理のため
+    # asyncio.to_thread でイベントループをブロックしないようにする
     if force_refresh:
-        result = rba_ois_screenshot_service.capture_all_screenshots(force_refresh=True)
+        result = await asyncio.to_thread(
+            rba_ois_screenshot_service.capture_all_screenshots, force_refresh=True
+        )
         return {
             "screenshots": [
                 {
@@ -64,7 +69,7 @@ async def get_ois_1m_screenshot():
     """OIS 1Mスクリーンショット画像を取得"""
     path = SCREENSHOT_PATHS["ois_1m"]
     if not path.exists():
-        rba_ois_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(rba_ois_screenshot_service.capture_all_screenshots)
     if path.exists():
         return FileResponse(path, media_type="image/png", filename="au_ois_1m.png")
     return {"error": "Screenshot not available"}
@@ -75,7 +80,7 @@ async def get_ois_3m_screenshot():
     """OIS 3Mスクリーンショット画像を取得"""
     path = SCREENSHOT_PATHS["ois_3m"]
     if not path.exists():
-        rba_ois_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(rba_ois_screenshot_service.capture_all_screenshots)
     if path.exists():
         return FileResponse(path, media_type="image/png", filename="au_ois_3m.png")
     return {"error": "Screenshot not available"}
@@ -86,7 +91,7 @@ async def get_ois_6m_screenshot():
     """OIS 6Mスクリーンショット画像を取得"""
     path = SCREENSHOT_PATHS["ois_6m"]
     if not path.exists():
-        rba_ois_screenshot_service.capture_all_screenshots()
+        await asyncio.to_thread(rba_ois_screenshot_service.capture_all_screenshots)
     if path.exists():
         return FileResponse(path, media_type="image/png", filename="au_ois_6m.png")
     return {"error": "Screenshot not available"}
@@ -95,7 +100,9 @@ async def get_ois_6m_screenshot():
 @router.post("/refresh")
 async def refresh_screenshots():
     """スクリーンショットを強制更新"""
-    result = rba_ois_screenshot_service.capture_all_screenshots(force_refresh=True)
+    result = await asyncio.to_thread(
+        rba_ois_screenshot_service.capture_all_screenshots, force_refresh=True
+    )
     return {
         "success": all(result[k]["success"] for k in ["ois_1m", "ois_3m", "ois_6m"] if k in result),
         "results": {k: result[k] for k in ["ois_1m", "ois_3m", "ois_6m"] if k in result},

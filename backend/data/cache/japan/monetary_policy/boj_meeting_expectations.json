@@ -1,13 +1,1 @@
-{
-  "meetings": [
-    {
-      "meeting_date": "2026-07-01",
-      "ois_rate": 1.02,
-      "difference": 0.0663,
-      "probability": 0.0
-    }
-  ],
-  "last_updated": "2026-04-03T23:05:13.654579+09:00",
-  "source": "https://www.tokyotanshi.co.jp/archives/15647",
-  "data_source": "playwright"
-}
+{}

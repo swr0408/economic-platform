@@ -14997,10 +14997,10 @@
     {
       "date": "2014-09-05",
       "total": 1018400.0,
-      "ex_spr": 327428.0,
       "spr": 690972.0,
+      "ex_spr": null,
       "total_yoy": -0.83,
-      "ex_spr_yoy": -1.08,
+      "ex_spr_yoy": null,
       "spr_yoy": -0.72
     },
     {
@@ -15468,7 +15468,7 @@
       "ex_spr": 426062.0,
       "spr": 695130.0,
       "total_yoy": 10.09,
-      "ex_spr_yoy": 30.12,
+      "ex_spr_yoy": null,
       "spr_yoy": 0.6
     },
     {
@@ -20402,16 +20402,61 @@
       "total_yoy": 3.34,
       "ex_spr_yoy": 1.81,
       "spr_yoy": 5.02
+    },
+    {
+      "date": "2026-03-13",
+      "total": 864701.0,
+      "ex_spr": 449259.0,
+      "spr": 415442.0,
+      "total_yoy": 3.83,
+      "ex_spr_yoy": 2.81,
+      "spr_yoy": 4.95
+    },
+    {
+      "date": "2026-03-20",
+      "total": 871627.0,
+      "ex_spr": 456185.0,
+      "spr": 415442.0,
+      "total_yoy": 5.04,
+      "ex_spr_yoy": 5.2,
+      "spr_yoy": 4.87
+    },
+    {
+      "date": "2026-03-27",
+      "total": 876700.0,
+      "ex_spr": 461636.0,
+      "spr": 415064.0,
+      "total_yoy": 4.84,
+      "ex_spr_yoy": 4.97,
+      "spr_yoy": 4.7
+    },
+    {
+      "date": "2026-04-03",
+      "total": 878042.0,
+      "ex_spr": 464717.0,
+      "spr": 413325.0,
+      "total_yoy": 4.65,
+      "ex_spr_yoy": 5.06,
+      "spr_yoy": 4.19
+    },
+    {
+      "date": "2026-04-10",
+      "total": 872985.0,
+      "spr": 409181.0,
+      "ex_spr": 463804.0,
+      "total_yoy": 3.94,
+      "ex_spr_yoy": 4.73,
+      "spr_yoy": 3.07
     }
   ],
   "latest": {
-    "date": "2026-03-06",
-    "total": 858545.0,
-    "ex_spr": 443103.0,
-    "spr": 415442.0,
-    "total_yoy": 3.34,
-    "ex_spr_yoy": 1.81,
-    "spr_yoy": 5.02
+    "date": "2026-04-10",
+    "total": 872985.0,
+    "spr": 409181.0,
+    "ex_spr": 463804.0,
+    "total_yoy": 3.94,
+    "ex_spr_yoy": 4.73,
+    "spr_yoy": 3.07
   },
   "metadata": {
     "source": "EIA",
@@ -20422,11 +20467,11 @@
       "ex_spr": "U.S. Ending Stocks excluding SPR",
       "spr": "U.S. Ending Stocks in SPR"
     },
-    "data_count": 2267,
+    "data_count": 2272,
     "start_date": "1982-08-20",
-    "end_date": "2026-03-06"
+    "end_date": "2026-04-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-12T17:39:07.685745+09:00"
+  "last_updated": "2026-04-18T16:45:03.728072+09:00"
 }

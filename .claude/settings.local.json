@@ -472,7 +472,17 @@
       "Bash(docker exec economic-platform-backend bash -c 'cd /app && python -c \"\":*)",
       "Bash(grep -c '\"\"name_ja\"\"' backend/scheduler/fmp_release_scheduler.py)",
       "Bash(grep -c '\"\"name_ja\"\"' backend/scheduler/non_fmp_release_scheduler.py)",
-      "Bash(grep -c '\"\"fetch_method\"\"' backend/scheduler/fmp_release_scheduler.py)"
+      "Bash(grep -c '\"\"fetch_method\"\"' backend/scheduler/fmp_release_scheduler.py)",
+      "WebFetch(domain:stooq.com)",
+      "WebSearch",
+      "WebFetch(domain:www.tokyotanshi.co.jp)",
+      "WebFetch(domain:localhost)",
+      "Bash(PGPASSWORD=$\\(grep -oP 'POSTGRES_PASSWORD=\\\\K.*' c:/Users/owner/Desktop/economic-platform/.env 2>/dev/null\\) psql -h localhost -U postgres -d economic_platform -f c:/Users/owner/Desktop/economic-platform/backend/scripts/create_mof_bond_issuance_tables.sql)",
+      "Bash(PGPASSWORD=$\\(grep -oP 'POSTGRES_PASSWORD=\\\\K.*' c:/Users/owner/Desktop/economic-platform/.env 2>/dev/null\\) psql -h localhost -U postgres -d economic_platform -c \"SELECT COUNT\\(*\\) AS notices FROM mof_bond_notices; SELECT COUNT\\(*\\) AS results FROM mof_bond_results;\")",
+      "WebFetch(domain:api.db.nomics.world)",
+      "WebFetch(domain:chinadata.live)",
+      "Bash(git mv *)",
+      "Bash(break)"
     ],
     "additionalDirectories": [
       "c:\\Users\\owner\\Desktop\\economic-platform"

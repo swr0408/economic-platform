@@ -1091,16 +1091,20 @@
     {
       "date": "2026-03-23",
       "chg_uvpi_total": 2.9514
+    },
+    {
+      "date": "2026-03-30",
+      "chg_uvpi_total": 3.1945
     }
   ],
   "latest": {
-    "date": "2026-03-23",
-    "chg_uvpi_total": 2.9514
+    "date": "2026-03-30",
+    "chg_uvpi_total": 3.1945
   },
   "next_release": {
-    "date": "2026-04-15",
-    "datetime_jst": "2026-04-15T15:15:00+09:00",
-    "label": "POS-UVPI - 2026/04/15 15:15 JST（予定）"
+    "date": "2026-04-22",
+    "datetime_jst": "2026-04-22T15:15:00+09:00",
+    "label": "POS-UVPI - 2026/04/22 15:15 JST（予定）"
   },
-  "last_updated": "2026-04-08T15:16:00.598026+09:00"
+  "last_updated": "2026-04-18T01:00:24.222494+09:00"
 }

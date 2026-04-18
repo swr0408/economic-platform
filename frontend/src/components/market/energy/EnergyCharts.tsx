@@ -49,6 +49,7 @@ export default function EnergyCharts() {
       </div>
       <div id="wti"><MarketPriceChart title="WTI原油" symbolData={data?.crude_oil} color={COLORS.crude_oil} unit=" USD/bbl" /></div>
       <div id="brent"><MarketPriceChart title="ブレント原油" symbolData={data?.brent_oil} color={COLORS.brent_oil} unit=" USD/bbl" /></div>
+      <div id="crack-spread"><CrackSpreadChart /></div>
       <div id="api-weekly-crude-oil-inventories"><ApiWeeklyCrudeOilInventoriesChart /></div>
       <div id="weekly-crude-oil-inventories"><WeeklyCrudeOilInventoriesChart /></div>
       <div id="cushing-inventory"><CushingInventoryChart /></div>
@@ -57,7 +58,6 @@ export default function EnergyCharts() {
       <div id="adjustments"><AdjustmentsChart /></div>
       <div id="shale-oil-production"><UsShaleOilProductionChart /></div>
       <div id="crude-oil-net-demand"><CrudeOilNetDemandChart /></div>
-      <div id="crack-spread"><CrackSpreadChart /></div>
       <div id="short-term-energy-outlook"><ShortTermEnergyOutlookChart /></div>
       <div id="opec-momr"><OpecMomrChart /></div>
       <div id="iea-oil-market-report"><IeaOilMarketReportChart /></div>

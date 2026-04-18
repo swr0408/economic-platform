@@ -90,6 +90,8 @@ HARDCODED_URLS = [
     "https://www.safe.gov.cn/en/file/file/20260207/532af9a5edf040fb95117264b66a748c.xlsx?n=xlsx",
     # 2026 (interim, published Feb 2026 - Jan data)
     "https://www.safe.gov.cn/en/file/file/20260226/c737c4ea7b0b4519abc8beefe3a2894b.xlsx?n=xlsx",
+    # 2026 (updated Apr 2026 - Jan-Mar data)
+    "https://www.safe.gov.cn/en/file/file/20260407/ad48d41728cc40e9aa3f9080dee8113c.xlsx",
 ]
 
 
@@ -273,6 +275,10 @@ def _discover_new_urls() -> List[str]:
     SAFEの ForexReserves/index.html をスクレイプし、
     .xls/.xlsx リンクを取得する。
     ハードコード済みURLと重複しない新しいURLのみ返す。
+
+    SAFEサイト構造:
+      インデックスページ → "Official Reserve Assets (20XX)" リンク → 詳細ページ → Excelダウンロードリンク
+    インデックスページにはExcelリンクがないため、詳細ページまで辿る必要がある。
     """
     try:
         resp = requests.get(SAFE_INDEX_URL, headers=HEADERS, timeout=15)
@@ -286,31 +292,13 @@ def _discover_new_urls() -> List[str]:
         hardcoded_paths = set()
         for url in HARDCODED_URLS:
             path = url.split('?')[0]
-            # /en/file/file/... 以降を取得
             m = re.search(r'/file/file/(.+)', path)
             if m:
                 hardcoded_paths.add(m.group(1))
 
         new_urls = []
-        for a in soup.find_all("a", href=True):
-            href = a["href"]
-            text = a.get_text(strip=True).lower()
-            # Official reserve assets リンクを検出
-            if "official reserve" not in text and "reserve assets" not in text:
-                continue
-            # 対応するXLSX/XLSリンクを探す（同じli/tr/divの中）
-            parent = a.find_parent(["li", "tr", "div"])
-            if parent:
-                for link in parent.find_all("a", href=True):
-                    link_href = link["href"]
-                    if link_href.lower().split('?')[0].endswith(('.xls', '.xlsx')):
-                        full_url = link_href if link_href.startswith("http") else f"https://www.safe.gov.cn{link_href}"
-                        path = full_url.split('?')[0]
-                        m = re.search(r'/file/file/(.+)', path)
-                        if m and m.group(1) not in hardcoded_paths:
-                            new_urls.append(full_url)
 
-        # リンク直接検出: ページ内の全XLS/XLSXリンク
+        # Step 1: インデックスページの直接Excelリンクを検索
         for a in soup.find_all("a", href=True):
             href = a["href"]
             clean = href.split('?')[0].lower()
@@ -321,6 +309,38 @@ def _discover_new_urls() -> List[str]:
                 if m and m.group(1) not in hardcoded_paths:
                     if full_url not in new_urls:
                         new_urls.append(full_url)
+
+        # Step 2: "Official Reserve Assets" 詳細ページリンクを辿り、Excelを探す
+        detail_links = []
+        for a in soup.find_all("a", href=True):
+            text = a.get_text(strip=True).lower()
+            if "official reserve" in text or "reserve assets" in text:
+                href = a["href"]
+                if href.startswith("/en/") and href.endswith(".html"):
+                    full_url = f"https://www.safe.gov.cn{href}"
+                    if full_url not in detail_links:
+                        detail_links.append(full_url)
+
+        for detail_url in detail_links:
+            try:
+                detail_resp = requests.get(detail_url, headers=HEADERS, timeout=15)
+                if detail_resp.status_code != 200:
+                    continue
+                detail_resp.encoding = "utf-8"
+                detail_soup = BeautifulSoup(detail_resp.text, "html.parser")
+
+                for a in detail_soup.find_all("a", href=True):
+                    href = a["href"]
+                    clean = href.split('?')[0].lower()
+                    if clean.endswith(('.xls', '.xlsx')):
+                        full_url = href if href.startswith("http") else f"https://www.safe.gov.cn{href}"
+                        path = full_url.split('?')[0]
+                        m = re.search(r'/file/file/(.+)', path)
+                        if m and m.group(1) not in hardcoded_paths:
+                            if full_url not in new_urls:
+                                new_urls.append(full_url)
+            except Exception as e:
+                logger.warning(f"[FOREX] Failed to scrape detail page {detail_url}: {e}")
 
         if new_urls:
             logger.info(f"[FOREX] Discovered {len(new_urls)} new URLs from SAFE page")

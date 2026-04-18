@@ -106,9 +106,11 @@ export default function CnGdpGrowthRateChart({ data }: Props) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="GDP成長率" showPeriodSelector={false} showDataSource={false}>
-        <NoDataMessage />
-      </ChartContainer>
+      <div id="gdp">
+        <ChartContainer title="GDP成長率" showPeriodSelector={false} showDataSource={false} handbookId="cn-gdp">
+          <NoDataMessage />
+        </ChartContainer>
+      </div>
     )
   }
 
@@ -122,7 +124,7 @@ export default function CnGdpGrowthRateChart({ data }: Props) {
         showDataSource={true}
         dataSource="NBS"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/index.html"
-        handbookId="gdp"
+        handbookId="cn-gdp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -15,7 +15,7 @@ import {
 } from 'recharts'
 import ChartContainer from '../../common/ChartContainer'
 import PeriodSelector, { type PeriodValue } from '../../common/PeriodSelector'
-import { formatMonthLabel } from '../../../utils/dateFormatters'
+import { formatDayLabel, formatMonthLabel } from '../../../utils/dateFormatters'
 import { useHiddenSeries } from '../../country/usa/common/useChartData'
 import { useMarketBatchData } from '../../../hooks/useMarketData'
 import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS, CHART_MARGIN } from '../../country/usa/common/chartConstants'
@@ -65,7 +65,7 @@ function ChartTooltip({ active, payload, label, hiddenSeries }: {
   hiddenSeries: Set<string>
 }) {
   if (!active || !payload || payload.length === 0) return null
-  const formattedLabel = formatMonthLabel(String(label))
+  const formattedLabel = formatDayLabel(String(label))
   const dp = payload[0]?.payload as MergedItem | undefined
   if (!dp) return null
 

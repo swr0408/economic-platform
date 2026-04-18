@@ -51,15 +51,15 @@ export default function ChinaPolicyCharts() {
 
   return (
     <div className="country-chart-stack">
+      {/* 逆回購金利（7日物） */}
+      <ChReverseRepoRateChart
+        data={dashboardData?.ch_reverse_repo_rate ?? null}
+      />
+
       {/* ローンプライムレート (1Y + 5Y) */}
       <CnLprChart
         lpr1y={dashboardData?.cn_lpr_1y ?? null}
         lpr5y={dashboardData?.cn_lpr_5y ?? null}
-      />
-
-      {/* 逆回購金利（7日物） */}
-      <ChReverseRepoRateChart
-        data={dashboardData?.ch_reverse_repo_rate ?? null}
       />
 
       {/* 預金準備率（大型金融機関） */}
@@ -107,11 +107,6 @@ export default function ChinaPolicyCharts() {
       {/* 国債発行（Government Bond Issuance） */}
       <CnGovernmentBondIssuanceChart />
 
-      {/* 地方政府債券 */}
-      <CnLocalBondsChart
-        data={dashboardData?.cn_local_bonds ?? null}
-      />
-
       {/* 資本フロー */}
       <CnCapitalFlowsChart
         data={dashboardData?.cn_capital_flows ?? null}
@@ -120,6 +115,11 @@ export default function ChinaPolicyCharts() {
       {/* 海外投資家フロー */}
       <CnOverseasInvestorFlowChart
         data={dashboardData?.cn_overseas_investor_flow ?? null}
+      />
+
+      {/* 地方政府債券 */}
+      <CnLocalBondsChart
+        data={dashboardData?.cn_local_bonds ?? null}
       />
     </div>
   )

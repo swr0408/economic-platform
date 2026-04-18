@@ -91,6 +91,9 @@ _RESTRICTED_SEED: list[tuple[str, str, str]] = [
     ("screenshot:ca_boc_rate_cuts_expectation", "special", "CA BoC 利下げ期待 (スクリーンショット取得)"),
     ("screenshot:eu_ecb_rate_cuts_expectation", "special", "EU ECB 利下げ期待 (スクリーンショット取得)"),
     ("screenshot:usa_cme_fedwatch", "special", "USA CME FedWatch (スクリーンショット取得)"),
+    ("screenshot:usa_fed_rate_cuts_expectation", "special", "USA Fed 利下げ期待 (スクリーンショット取得)"),
+    ("screenshot:uk_boe_rate_cuts_expectation", "special", "UK BOE 利下げ期待 (スクリーンショット取得)"),
+    ("screenshot:jp_boj_rate_cuts_expectation", "special", "JP BOJ 利上げ・利下げ期待 (スクリーンショット取得)"),
     ("screenshot:global_komtrax", "special", "Komtrax (スクリーンショット取得)"),
 
     # ---- ヘッドライン (FinancialJuice 由来) ----

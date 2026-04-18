@@ -5719,23 +5719,48 @@
       "date": "2026-03-06",
       "value": 26580.0,
       "yoy": 8.63
+    },
+    {
+      "date": "2026-03-13",
+      "value": 27524.0,
+      "yoy": 17.32
+    },
+    {
+      "date": "2026-03-20",
+      "value": 30945.0,
+      "yoy": 36.29
+    },
+    {
+      "date": "2026-03-27",
+      "value": 31465.0,
+      "yoy": 25.47
+    },
+    {
+      "date": "2026-04-03",
+      "value": 31489.0,
+      "yoy": 22.24
+    },
+    {
+      "date": "2026-04-10",
+      "value": 29762.0,
+      "yoy": 18.55
     }
   ],
   "latest": {
-    "date": "2026-03-06",
-    "value": 26580.0,
-    "yoy": 8.63
+    "date": "2026-04-10",
+    "value": 29762.0,
+    "yoy": 18.55
   },
   "metadata": {
     "source": "EIA",
     "frequency": "weekly",
     "unit": "Thousand Barrels",
     "series": "Cushing, OK Ending Stocks excl SPR of Crude Oil",
-    "data_count": 1144,
+    "data_count": 1149,
     "start_date": "2004-04-09",
-    "end_date": "2026-03-06"
+    "end_date": "2026-04-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-12T17:39:05.049191+09:00"
+  "last_updated": "2026-04-18T16:45:03.740404+09:00"
 }

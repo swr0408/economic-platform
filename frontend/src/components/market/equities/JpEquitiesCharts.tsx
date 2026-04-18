@@ -15,18 +15,18 @@ import LazyChart from '../../common/LazyChart'
 export default function JpEquitiesCharts() {
   return (
     <div className="country-chart-stack">
+      <LazyChart id="jpx-pcr"><JpxPcrChart /></LazyChart>
+      <LazyChart id="advance-decline-ratio"><AdvanceDeclineRatioChart /></LazyChart>
       <LazyChart id="nikkei225-valuation"><Nikkei225ValuationChart /></LazyChart>
       <LazyChart id="topix-valuation"><TopixValuationChart /></LazyChart>
       <LazyChart id="nikkei-regression"><NikkeiRegressionChart /></LazyChart>
       <LazyChart id="electronic-components-balance"><ElectronicComponentsBalanceChart /></LazyChart>
-      <LazyChart id="jpx-pcr"><JpxPcrChart /></LazyChart>
+      <LazyChart id="jpx-investor-trading"><JpxInvestorTradingChart /></LazyChart>
       <LazyChart id="china-m2-nikkei-yoy"><ChinaM2NikkeiYoyChart /></LazyChart>
       <LazyChart id="nikkei-double-inverse"><NikkeiDoubleInverseChart /></LazyChart>
-      <LazyChart id="jpx-investor-trading"><JpxInvestorTradingChart /></LazyChart>
-      <LazyChart id="mof-securities-trading"><MofSecuritiesTradingChart /></LazyChart>
-      <LazyChart id="advance-decline-ratio"><AdvanceDeclineRatioChart /></LazyChart>
-      <LazyChart id="nt-magnification"><NtMagnificationChart /></LazyChart>
       <LazyChart id="cot-nikkei225"><CftcPositioningChart asset="nikkei225" assetLabel="日経225" reportType="tff" compareId="cftc_nikkei225" /></LazyChart>
+      <LazyChart id="mof-securities-trading"><MofSecuritiesTradingChart /></LazyChart>
+      <LazyChart id="nt-magnification"><NtMagnificationChart /></LazyChart>
     </div>
   )
 }

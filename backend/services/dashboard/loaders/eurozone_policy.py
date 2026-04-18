@@ -54,6 +54,7 @@ class EurozonePolicyLoader(BaseDashboardLoader):
 
         Returns:
             - ECB金利決定発表日時
+            - M3マネーサプライ発表日時
         """
         release_times = []
 
@@ -61,6 +62,11 @@ class EurozonePolicyLoader(BaseDashboardLoader):
         ecb_release = self._get_ecb_release_datetime()
         if ecb_release:
             release_times.append(ecb_release)
+
+        # M3マネーサプライ発表日時
+        m3_release = self._get_m3_release_datetime()
+        if m3_release:
+            release_times.append(m3_release)
 
         return release_times
 
@@ -86,6 +92,30 @@ class EurozonePolicyLoader(BaseDashboardLoader):
 
         except Exception as e:
             print(f"Error getting ECB release datetime: {e}")
+            return None
+
+    def _get_m3_release_datetime(self) -> Optional[datetime]:
+        """
+        次回M3マネーサプライ発表日時を取得
+
+        Returns:
+            M3発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            from services.eurozone.fmp_next_release_utils import get_next_release_from_fmp
+
+            next_release = get_next_release_from_fmp("monetary_aggregate_m3")
+            if not next_release:
+                return None
+
+            datetime_jst_str = next_release.get("datetime_jst")
+            if not datetime_jst_str:
+                return None
+
+            return datetime.fromisoformat(datetime_jst_str)
+
+        except Exception as e:
+            print(f"Error getting M3 release datetime: {e}")
             return None
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
@@ -119,6 +149,15 @@ class EurozonePolicyLoader(BaseDashboardLoader):
             if self._is_stale_by_release(last_updated_dt, now, ecb_release, ecb_last):
                 stale.add("ecb_rates")
                 print(f"[stale] ECB release detected")
+
+            # M3マネーサプライ発表
+            m3_release = self._get_m3_release_datetime()
+            m3_last = self._get_last_release_datetime_from_fmp(
+                "monetary_aggregate_m3", indicator_name="M3", country="eurozone"
+            )
+            if self._is_stale_by_release(last_updated_dt, now, m3_release, m3_last):
+                stale.add("ecb_m3")
+                print(f"[stale] M3 release detected")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
@@ -205,11 +244,13 @@ class EurozonePolicyLoader(BaseDashboardLoader):
             return {"data": [], "latest": None, "next_release": None}
 
     def _get_eurex_ois(self, service) -> dict:
-        """Eurex OISデータを取得"""
+        """Eurex OISデータを取得
+
+        スケジューラーが毎日キャッシュを更新するため、通常はキャッシュから取得。
+        キャッシュが空の場合のみスクレイピングを実行する。
+        """
         try:
-            force_refresh = self._should_force_refresh("eurex_ois")
-            # Seleniumスクレイピングは時間がかかるため、キャッシュがある場合は使用
-            # force_refreshでもまずキャッシュを試す（Redisに新しいデータがあれば使用）
+            # まずキャッシュから取得を試みる
             response = service.get_chart_data(force_refresh=False)
             if response and response.get('labels'):
                 return response

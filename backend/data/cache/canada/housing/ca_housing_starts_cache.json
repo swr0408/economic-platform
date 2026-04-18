@@ -2607,14 +2607,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-04-17",
-    "datetime_utc": "2026-04-17T12:15:00+00:00",
-    "datetime_jst": "2026-04-17T21:15:00+09:00",
+    "date": "2026-05-15",
+    "datetime_utc": "2026-05-15T12:15:00+00:00",
+    "datetime_jst": "2026-05-15T21:15:00+09:00",
     "time_jst": "21:15",
-    "datetime_toronto": "2026-04-17T08:15:00-04:00",
+    "datetime_toronto": "2026-05-15T08:15:00-04:00",
     "time_toronto": "08:15",
-    "label": "Housing Starts (Mar)",
+    "label": "Housing Starts (Apr)",
     "estimate": null
   },
-  "last_updated": "2026-04-10T20:53:33.270232+09:00"
+  "last_updated": "2026-04-18T04:06:11.911874+09:00"
 }

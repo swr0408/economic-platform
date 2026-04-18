@@ -60,12 +60,13 @@ export const fetchBOJTankanData = async (
   forceRefresh: boolean = false
 ): Promise<BOJTankanResponse> => {
   try {
-    const url = new URL(`${API_BASE_URL}/api/japan/boj-tankan`)
+    const params = new URLSearchParams()
     if (forceRefresh) {
-      url.searchParams.append('force_refresh', 'true')
+      params.append('force_refresh', 'true')
     }
+    const qs = params.toString() ? `?${params.toString()}` : ''
 
-    const response = await fetch(url.toString())
+    const response = await fetch(`${API_BASE_URL}/api/japan/boj-tankan${qs}`)
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
@@ -85,12 +86,13 @@ export const fetchBOJTankanChartData = async (
   forceRefresh: boolean = false
 ): Promise<BOJTankanChartResponse> => {
   try {
-    const url = new URL(`${API_BASE_URL}/api/japan/boj-tankan/chart`)
+    const params = new URLSearchParams()
     if (forceRefresh) {
-      url.searchParams.append('force_refresh', 'true')
+      params.append('force_refresh', 'true')
     }
+    const qs = params.toString() ? `?${params.toString()}` : ''
 
-    const response = await fetch(url.toString())
+    const response = await fetch(`${API_BASE_URL}/api/japan/boj-tankan/chart${qs}`)
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)

@@ -617,13 +617,25 @@
       "shch": 620.4,
       "ccdc": 2734.1,
       "total": 3354.5
+    },
+    {
+      "date": "2026-02-01",
+      "shch": 544.4,
+      "ccdc": 2779.8,
+      "total": 3324.2
+    },
+    {
+      "date": "2026-03-01",
+      "shch": 480.4,
+      "ccdc": 2709.6,
+      "total": 3190.0
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "shch": 620.4,
-    "ccdc": 2734.1,
-    "total": 3354.5
+    "date": "2026-03-01",
+    "shch": 480.4,
+    "ccdc": 2709.6,
+    "total": 3190.0
   },
   "metadata": {
     "source": "Bond Connect",
@@ -632,5 +644,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-04-10T20:57:29.021859+09:00"
+  "last_updated": "2026-04-18T01:46:39.079736+09:00"
 }

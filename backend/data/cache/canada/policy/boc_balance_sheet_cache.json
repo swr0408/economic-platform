@@ -2338,12 +2338,16 @@
     },
     {
       "date": "2026-04-01",
-      "value": 233606.0
+      "value": 233642.0
+    },
+    {
+      "date": "2026-04-08",
+      "value": 219671.0
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 233606.0
+    "date": "2026-04-08",
+    "value": 219671.0
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2353,5 +2357,5 @@
     "unit": "millions CAD",
     "frequency": "weekly"
   },
-  "last_updated": "2026-04-10T20:53:36.525275+09:00"
+  "last_updated": "2026-04-18T04:06:13.895590+09:00"
 }

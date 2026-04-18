@@ -50,14 +50,14 @@ export default function USAHousingCharts() {
               existingHomeSalesData={dashboardData?.existing_home_sales ?? null}
             />
           </ChartWrapper>
-          <ChartWrapper id="nahb-hmi">
-            <NAHBHMIChart
-              nahbHMIData={dashboardData?.nahb_hmi ?? null}
-            />
-          </ChartWrapper>
           <ChartWrapper id="housing-starts-permits">
             <HousingStartsPermitsChart
               housingStartsPermitsData={dashboardData?.housing_starts_permits ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="nahb-hmi">
+            <NAHBHMIChart
+              nahbHMIData={dashboardData?.nahb_hmi ?? null}
             />
           </ChartWrapper>
           <ChartWrapper id="rental-vacancy-rate">

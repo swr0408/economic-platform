@@ -114,7 +114,7 @@ export default function BRCShopPriceChart({ data }: BRCShopPriceChartProps) {
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="BRC店頭価格指数" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="BRC店頭価格指数" showPeriodSelector={false} showDataSource={false} handbookId="uk-brc-shop-price">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -145,6 +145,7 @@ export default function BRCShopPriceChart({ data }: BRCShopPriceChartProps) {
         showPeriodSelector={false}
         dataSource="BRC"
         sourceUrl="https://brc.org.uk/news-and-events/news/?contentType=2028&pageIndex=3"
+        handbookId="uk-brc-shop-price"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -2,7 +2,6 @@ import { Spin, Alert, Button } from 'antd'
 import { useSwitzerlandEconomyDashboard } from '../../../hooks/useDashboardData'
 import CHGrowthRateChart from './economy/CHGrowthRateChart'
 import CHIndustrialProductionChart from './economy/CHIndustrialProductionChart'
-import CHHouseholdsAndNpishChart from './economy/CHHouseholdsAndNpishChart'
 import ChPmiChart from './economy/ChPmiChart'
 import CHBalanceOfTradeChart from './economy/CHBalanceOfTradeChart'
 import ChCurrentAccountChart from './economy/ChCurrentAccountChart'
@@ -46,13 +45,6 @@ export default function SwitzerlandEconomyCharts() {
       <div id="ch-growth-rate">
         <CHGrowthRateChart
           data={dashboardData?.ch_growth_rate ?? null}
-        />
-      </div>
-
-      {/* Households and NPISH Chart */}
-      <div id="ch-households-and-npish">
-        <CHHouseholdsAndNpishChart
-          data={dashboardData?.ch_households_and_npish ?? null}
         />
       </div>
 

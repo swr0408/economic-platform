@@ -419,7 +419,7 @@ class NyOptionCutService:
 
     def _save_to_redis(self, data: Dict) -> None:
         try:
-            redis_client.set(REDIS_KEY, data, ex=REDIS_TTL)
+            redis_client.set(REDIS_KEY, data, expire=REDIS_TTL)
         except Exception as e:
             logger.warning(f"[NYOptionCut] Redis save failed: {e}")
 

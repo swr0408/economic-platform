@@ -165,9 +165,12 @@ class RoniService:
 
         table_html = table_match.group(1)
 
-        # 行を抽出
-        rows = re.findall(r'<tr[^>]*>(.*?)</tr>', table_html,
-                          re.DOTALL | re.IGNORECASE)
+        # 行を抽出 (NOAAのHTMLは最終行の</tr>が省略されることがあるため
+        # </tr> / </tbody> / </table> / 次の<tr で区切る)
+        rows = re.findall(
+            r'<tr[^>]*>(.*?)(?=</tr>|</tbody>|</table>|<tr[^>]*>)',
+            table_html, re.DOTALL | re.IGNORECASE,
+        )
 
         result_data: List[Dict[str, Any]] = []
 

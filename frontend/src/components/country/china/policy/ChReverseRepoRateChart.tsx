@@ -87,9 +87,11 @@ export default function ChReverseRepoRateChart({ data }: ChReverseRepoRateChartP
 
   if (!hasData) {
     return (
-      <ChartContainer title="リバースレポ金利（7日物）" showPeriodSelector={false} showDataSource={false}>
-        <NoDataMessage />
-      </ChartContainer>
+      <div id="reverse-repo-rate">
+        <ChartContainer title="リバースレポ金利（7日物）" showPeriodSelector={false} showDataSource={false} handbookId="reverse-repo-rate">
+          <NoDataMessage />
+        </ChartContainer>
+      </div>
     )
   }
 
@@ -102,6 +104,7 @@ export default function ChReverseRepoRateChart({ data }: ChReverseRepoRateChartP
         showPeriodSelector={false}
         showDataSource={true}
         dataSource="中国人民銀行"
+        handbookId="reverse-repo-rate"
         sourceUrl="https://www.pbc.gov.cn/zhengcehuobisi/125207/125213/125431/125475/17081-1.html"
       >
         {/* 最新値: 利率 + 投标量 + 中标量 を3列表示 */}

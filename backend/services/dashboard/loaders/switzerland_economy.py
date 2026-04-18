@@ -23,7 +23,6 @@ class SwitzerlandEconomyLoader(BaseDashboardLoader):
     取得データ:
     - ch_growth_rate: GDP成長率（QoQ, YoY, 年率）
     - ch_industrial_production: 鉱工業生産（月次MoM/YoY、四半期QoQ/YoY）
-    - ch_households_and_npish: 家計消費（QoQ, YoY）
 
     キャッシュ方式: FMP発表日時ベース判定
     """
@@ -35,7 +34,6 @@ class SwitzerlandEconomyLoader(BaseDashboardLoader):
     EXPECTED_KEYS = [
         "ch_growth_rate",
         "ch_industrial_production",
-        "ch_households_and_npish",
         "ch_pmi",
         "ch_balance_of_trade",
         "ch_current_account",
@@ -101,7 +99,6 @@ class SwitzerlandEconomyLoader(BaseDashboardLoader):
         # 遅延インポート（循環参照回避）
         from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
         from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
-        from services.switzerland.ch_households_and_npish_service import ch_households_and_npish_service
         from services.switzerland.ch_pmi_service import ch_pmi_service
         from services.switzerland.ch_balance_of_trade_service import ch_balance_of_trade_service
         from services.switzerland.ch_current_account_service import ch_current_account_service
@@ -110,7 +107,6 @@ class SwitzerlandEconomyLoader(BaseDashboardLoader):
         result = {
             "ch_growth_rate": None,
             "ch_industrial_production": None,
-            "ch_households_and_npish": None,
             "ch_pmi": None,
             "ch_balance_of_trade": None,
             "ch_current_account": None,
@@ -118,11 +114,10 @@ class SwitzerlandEconomyLoader(BaseDashboardLoader):
         }
 
         # 並列でデータを取得
-        with ThreadPoolExecutor(max_workers=7) as executor:
+        with ThreadPoolExecutor(max_workers=6) as executor:
             futures = {
                 executor.submit(self._get_growth_rate, ch_growth_rate_service): "ch_growth_rate",
                 executor.submit(self._get_industrial_production, ch_industrial_production_service): "ch_industrial_production",
-                executor.submit(self._get_households_and_npish, ch_households_and_npish_service): "ch_households_and_npish",
                 executor.submit(self._get_pmi, ch_pmi_service): "ch_pmi",
                 executor.submit(self._get_balance_of_trade, ch_balance_of_trade_service): "ch_balance_of_trade",
                 executor.submit(self._get_current_account, ch_current_account_service): "ch_current_account",
@@ -177,21 +172,6 @@ class SwitzerlandEconomyLoader(BaseDashboardLoader):
                 "metadata": {},
                 "next_release": None,
             }
-
-    def _get_households_and_npish(self, service) -> dict:
-        """家計消費データを取得"""
-        try:
-            force_refresh = self._should_force_refresh("ch_households_and_npish")
-            response = service.get_ch_households_and_npish_data(force_refresh=force_refresh)
-            return {
-                "data": response.get("data", []),
-                "latest": response.get("latest"),
-                "metadata": response.get("metadata", {}),
-                "next_release": response.get("next_release"),
-            }
-        except Exception as e:
-            print(f"[SwitzerlandEconomy] Error getting Households and NPISH: {e}")
-            return {"data": [], "latest": None, "metadata": {}, "next_release": None}
 
     def _get_pmi(self, service) -> dict:
         """PMIデータを取得"""

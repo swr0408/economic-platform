@@ -180,7 +180,7 @@ export default function CnIntegratedCircuitManufacturingChart({ data }: Props) {
         title="集積回路生産"
         showPeriodSelector={false}
         dataSource="NBS（国家統計局）"
-        sourceUrl="https://data.stats.gov.cn/english/easyquery.htm?cn=A01"
+        sourceUrl="https://gks.mof.gov.cn/tongjishuju/"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

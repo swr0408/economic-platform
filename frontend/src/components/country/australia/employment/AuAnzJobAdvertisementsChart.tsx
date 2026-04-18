@@ -149,7 +149,7 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="ANZ求人広告" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="ANZ求人広告" showPeriodSelector={false} showDataSource={false} handbookId="anz-job-advertisements">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -165,6 +165,7 @@ export default function AuAnzJobAdvertisementsChart({ data }: AuAnzJobAdvertisem
         showDataSource={true}
         dataSource="ANZ-Indeed"
         sourceUrl="https://www.anz.com.au/newsroom/media/release-dates/"
+        handbookId="anz-job-advertisements"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -272,12 +272,13 @@ class JapanEmploymentLoader(BaseDashboardLoader):
             return {
                 "scheduled_wage": response.get("scheduled_wage"),
                 "general": response.get("general"),
-                "part_time": response.get("part_time"),
+                "part_time_wage": response.get("part_time_wage"),
+                "part_time_hourly": response.get("part_time_hourly"),
                 "next_release": response.get("next_release"),
             }
         except Exception as e:
             print(f"Error getting scheduled wage (e-Stat): {e}")
-            return {"scheduled_wage": None, "general": None, "part_time": None, "next_release": None}
+            return {"scheduled_wage": None, "general": None, "part_time_wage": None, "part_time_hourly": None, "next_release": None}
 
     def _get_scheduled_wage_common(self, service) -> dict:
         """所定内給与データを取得（共通事業所版）"""

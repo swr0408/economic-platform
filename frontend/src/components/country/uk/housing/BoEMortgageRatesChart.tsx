@@ -2,9 +2,9 @@
  * 住宅ローン金利チャートコンポーネント
  *
  * データ:
- * - CFMZ6K6: 住宅ローン残高金利（Weighted average interest rate on all dwelling-secured loans）
- * - CFMZ6JV: 新規住宅ローン金利（Interest rate on new fixed-rate mortgage advances）
- * - IUMTLMV: 変動金利住宅ローン（Revert-to-rate mortgage to households）
+ * - CFMZ6K6: 住宅ローン残高ベース実効金利（Weighted average interest rate on all dwelling-secured loans）
+ * - CFMZ6JV: 新規固定住宅ローン実効金利（Interest rate on new fixed-rate mortgage advances）
+ * - IUMTLMV: 住宅ローン標準変動金利・SVR（Revert-to-rate mortgage to households）
  *
  * 表示モード:
  * - 3系列の折れ線グラフ
@@ -59,9 +59,9 @@ const COLORS = {
 
 // 系列名
 const SERIES_NAMES = {
-  cfmz6k6: '住宅ローン残高',
-  cfmz6jv: '新規住宅ローン',
-  iumtlmv: '変動金利',
+  cfmz6k6: '残高ベース実効金利',
+  cfmz6jv: '新規固定実効金利',
+  iumtlmv: '標準変動金利（SVR）',
 }
 
 export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartProps) {
@@ -135,7 +135,7 @@ export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartPro
   // データなし状態
   if (!hasData) {
     return (
-      <ChartContainer title="住宅ローン金利" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="住宅ローン金利" showPeriodSelector={false} showDataSource={false} handbookId="boe-mortgage-rates">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -147,7 +147,7 @@ export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartPro
 
     if (latestCfmz6k6?.value !== null && latestCfmz6k6?.value !== undefined) {
       items.push({
-        label: '残高金利',
+        label: '残高ベース実効',
         value: `${latestCfmz6k6.value.toFixed(2)}%`,
         color: COLORS.cfmz6k6,
       })
@@ -155,7 +155,7 @@ export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartPro
 
     if (latestCfmz6jv?.value !== null && latestCfmz6jv?.value !== undefined) {
       items.push({
-        label: '新規金利',
+        label: '新規固定実効',
         value: `${latestCfmz6jv.value.toFixed(2)}%`,
         color: COLORS.cfmz6jv,
       })
@@ -163,7 +163,7 @@ export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartPro
 
     if (latestIumtlmv?.value !== null && latestIumtlmv?.value !== undefined) {
       items.push({
-        label: '変動金利',
+        label: 'SVR',
         value: `${latestIumtlmv.value.toFixed(2)}%`,
         color: COLORS.iumtlmv,
       })
@@ -184,6 +184,7 @@ export default function BoEMortgageRatesChart({ data }: BoEMortgageRatesChartPro
         showPeriodSelector={false}
         dataSource="Bank of England"
         sourceUrl="https://www.bankofengland.co.uk/statistics"
+        handbookId="boe-mortgage-rates"
       >
         {/* 最新値表示 */}
         <LatestValueBox

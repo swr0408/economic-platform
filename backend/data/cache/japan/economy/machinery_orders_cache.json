@@ -1999,17 +1999,25 @@
       "mom_change": -5.5,
       "mom_3m_avg": 0.5,
       "yoy_change": 13.7
+    },
+    {
+      "date": "2026-02-01",
+      "value": 1115865.90544,
+      "unit": "百万円",
+      "mom_change": 13.6,
+      "mom_3m_avg": 8.1,
+      "yoy_change": 24.7
     }
   ],
-  "last_updated": "2026-03-26T01:50:59.639418+09:00",
+  "last_updated": "2026-04-18T09:31:21.251045+09:00",
   "source": "e-Stat (Cabinet Office)",
   "description": "民間需要（船舶・電力を除く）- 機械受注統計調査",
   "next_release": {
-    "date": "2026-04-15",
-    "datetime_utc": "2026-04-15T23:50:00+00:00",
-    "datetime_jst": "2026-04-16T08:50:00+09:00",
+    "date": "2026-05-21",
+    "datetime_utc": "2026-05-21T23:50:00+00:00",
+    "datetime_jst": "2026-05-22T08:50:00+09:00",
     "time_jst": "08:50",
-    "label": "Machinery Orders MoM (Feb)",
+    "label": "Machinery Orders MoM (Mar)",
     "estimate": null
   }
 }

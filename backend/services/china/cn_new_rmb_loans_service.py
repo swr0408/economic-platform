@@ -293,11 +293,50 @@ def _download_and_parse(url: str) -> List[Tuple[date, float]]:
 # FMP 補完
 # =============================================================================
 
+_MONTH_ABBR_TO_NUM = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def _parse_data_month(event_name: str, announcement_dt: datetime) -> Optional[date]:
+    """
+    FMPイベント名からデータ対象月を解析する。
+    例: "New Yuan Loans (Mar)" announced 2026-04-13 → date(2026, 3, 31)
+
+    イベント名に月略称がない場合は発表月の前月を使用。
+    """
+    m = re.search(r'\((\w{3})\)', event_name)
+    if m:
+        month_str = m.group(1).lower()
+        month_num = _MONTH_ABBR_TO_NUM.get(month_str)
+        if month_num:
+            # 年は発表日から推定（12月データは翌年1月に発表されるケースを考慮）
+            year = announcement_dt.year
+            if month_num > announcement_dt.month:
+                year -= 1
+            _, last_day = calendar.monthrange(year, month_num)
+            return date(year, month_num, last_day)
+
+    # フォールバック: 発表月の前月
+    prev_month = announcement_dt.month - 1
+    prev_year = announcement_dt.year
+    if prev_month < 1:
+        prev_month = 12
+        prev_year -= 1
+    _, last_day = calendar.monthrange(prev_year, prev_month)
+    return date(prev_year, prev_month, last_day)
+
+
 def _fetch_fmp_flow_actuals() -> Dict[str, float]:
     """
     FMPから新增人民元貸出のフローデータを取得
+    まずDBから検索し、結果が少なければFMP APIから直接取得してフォールバック。
     Returns: {date_str: flow_value_in_亿元}
     """
+    result = {}
+
+    # Step 1: DBから取得
     try:
         from core.database import SessionLocal
         from sqlalchemy import text
@@ -318,23 +357,56 @@ def _fetch_fmp_flow_actuals() -> Dict[str, float]:
             """)
             rows = session.execute(query).fetchall()
 
-            result = {}
             for row in rows:
-                dt_utc, event, actual = row
+                dt_utc, event_name, actual = row
                 if dt_utc and actual is not None:
-                    # 月末日に正規化
-                    _, last_day = calendar.monthrange(dt_utc.year, dt_utc.month)
-                    date_str = f"{dt_utc.year}-{dt_utc.month:02d}-{last_day:02d}"
-                    if date_str not in result:
-                        # FMP値は十億元 → 亿元に変換（× 10）
-                        result[date_str] = float(actual) * 10
-
-            logger.info(f"[NewRMBLoans] FMP flow data: {len(result)} months")
-            return result
+                    data_date = _parse_data_month(event_name, dt_utc)
+                    if data_date:
+                        date_str = data_date.strftime("%Y-%m-%d")
+                        if date_str not in result:
+                            result[date_str] = float(actual) * 10
 
     except Exception as e:
-        logger.warning(f"[NewRMBLoans] FMP fetch error: {e}")
-        return {}
+        logger.warning(f"[NewRMBLoans] FMP DB fetch error: {e}")
+
+    # Step 2: DBの結果が少ない場合、FMP APIから直接取得
+    if len(result) < 3:
+        try:
+            from services.calendar.fmp_service import fmp_service
+            from datetime import timedelta
+
+            today = date.today()
+            events = fmp_service.fetch_calendar(
+                today - timedelta(days=365),
+                today + timedelta(days=30),
+                country=FMP_COUNTRY,
+            )
+
+            for event in events:
+                if event.get("country") != FMP_COUNTRY:
+                    continue
+                if event.get("actual") is None:
+                    continue
+                event_name = event.get("event", "")
+                # "New Yuan Loans" のみ使用（"New Loans" は重複）
+                if "new yuan loans" not in event_name.lower():
+                    continue
+
+                dt_utc, _ = fmp_service.parse_datetime(event.get("date", ""))
+                if dt_utc:
+                    data_date = _parse_data_month(event_name, dt_utc)
+                    if data_date:
+                        date_str = data_date.strftime("%Y-%m-%d")
+                        if date_str not in result:
+                            # FMP値は十億元 → 亿元に変換（× 10）
+                            result[date_str] = float(event["actual"]) * 10
+
+            logger.info(f"[NewRMBLoans] FMP API fallback: {len(result)} months total")
+        except Exception as e:
+            logger.warning(f"[NewRMBLoans] FMP API fallback error: {e}")
+
+    logger.info(f"[NewRMBLoans] FMP flow data: {len(result)} months")
+    return result
 
 
 def _get_fmp_next_release() -> Optional[Dict[str, Any]]:

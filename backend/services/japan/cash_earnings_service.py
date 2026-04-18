@@ -30,6 +30,10 @@ from services.japan.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
 )
+from services.japan.estat_monthly_release import (
+    get_monthly_release_supplement,
+    merge_supplement,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -83,6 +87,14 @@ class CashEarningsService:
 
         # e-Stat Excelからデータを取得
         estat_data = self._load_from_estat()
+
+        # 月次リリースファイルから最新月データを補完
+        if estat_data:
+            supplement = get_monthly_release_supplement(force_refresh=force_refresh)
+            if supplement:
+                sup_data = supplement.get("cash_earnings", [])
+                if sup_data:
+                    estat_data = merge_supplement(estat_data, sup_data)
 
         if estat_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)

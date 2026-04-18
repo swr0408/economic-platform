@@ -133,9 +133,11 @@ class BocRateCutsScreenshotService:
             )
             return results
 
-        # SWR: all files exist (but stale) → return stale URLs, update in background
+        # SWR: all files exist (but stale) AND not force_refresh
+        # → return stale URLs immediately, update in background
+        # force_refresh=True の場合は SWR をスキップして直接キャプチャする
         all_files_exist = all(path.exists() for _, _, path, _ in to_capture)
-        if all_files_exist:
+        if all_files_exist and not force_refresh:
             for key, url, path, filename in to_capture:
                 results[key] = {
                     "success": True,

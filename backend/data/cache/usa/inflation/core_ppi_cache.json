@@ -1220,47 +1220,61 @@
     },
     {
       "date": "2025-10-01",
-      "value": 2.96,
-      "yoy": 2.96,
-      "mom": 0.29,
-      "index": 149.2
+      "value": 2.97,
+      "yoy": 2.97,
+      "mom": 0.3,
+      "index": 149.22
     },
     {
       "date": "2025-11-01",
-      "value": 3.05,
-      "yoy": 3.05,
-      "mom": 0.09,
-      "index": 149.33
+      "value": 3.23,
+      "yoy": 3.23,
+      "mom": 0.25,
+      "index": 149.59
     },
     {
       "date": "2025-12-01",
-      "value": 3.33,
-      "yoy": 3.33,
-      "mom": 0.59,
-      "index": 150.21
+      "value": 3.45,
+      "yoy": 3.45,
+      "mom": 0.53,
+      "index": 150.39
     },
     {
       "date": "2026-01-01",
-      "value": 3.58,
-      "yoy": 3.58,
-      "mom": 0.8,
-      "index": 151.41
+      "value": 3.72,
+      "yoy": 3.72,
+      "mom": 0.81,
+      "index": 151.61
+    },
+    {
+      "date": "2026-02-01",
+      "value": 3.84,
+      "yoy": 3.84,
+      "mom": 0.29,
+      "index": 152.05
+    },
+    {
+      "date": "2026-03-01",
+      "value": 3.75,
+      "yoy": 3.75,
+      "mom": 0.09,
+      "index": 152.19
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 3.58,
-    "yoy": 3.58,
-    "mom": 0.8,
-    "index": 151.41
+    "date": "2026-03-01",
+    "value": 3.75,
+    "yoy": 3.75,
+    "mom": 0.09,
+    "index": 152.19
   },
   "next_release": {
-    "date": "2026-04-14",
-    "datetime_utc": "2026-04-14T12:30:00+00:00",
-    "datetime_jst": "2026-04-14T21:30:00+09:00",
+    "date": "2026-05-13",
+    "datetime_utc": "2026-05-13T12:30:00+00:00",
+    "datetime_jst": "2026-05-13T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Producer Price Index MoM (Mar)",
-    "estimate": 0.5
+    "label": "Producer Price Index YoY (Apr)",
+    "estimate": null
   },
-  "last_updated": "2026-03-18T23:00:03.261454+09:00"
+  "last_updated": "2026-04-15T18:02:08.242262+09:00"
 }

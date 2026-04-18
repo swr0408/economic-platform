@@ -92,8 +92,7 @@ class RICSHousePriceService:
         new_pdfs = self._check_new_pdfs()
         for pdf_path in new_pdfs:
             pdf_data = self._extract_data_from_pdf(pdf_path)
-            if pdf_data:
-                self._save_pdf_data_to_db(pdf_data)
+            if pdf_data and self._save_pdf_data_to_db(pdf_data):
                 self._mark_pdf_as_imported(pdf_path)
                 # メモリ上でもマージ
                 db_result = self._merge_pdf_data(db_result, pdf_data)
@@ -400,7 +399,11 @@ class RICSHousePriceService:
         return merged
 
     def _save_pdf_data_to_db(self, pdf_data: Dict[str, Any]) -> bool:
-        """PDFデータをDBに保存（UPSERT方式）"""
+        """PDFデータをDBに保存（UPSERT方式）
+
+        PDF はデータ対象月で抽出されるため、CSV_IMPORT と同じ形式で保存する
+        （datetime_utc = データ対象月の1日 12:00 UTC）。
+        """
         if not pdf_data:
             return False
 
@@ -411,16 +414,17 @@ class RICSHousePriceService:
             date_str = pdf_data["date"]
             value = pdf_data["value"]
 
-            # 日付をdatetime_utcに変換
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-            datetime_utc = date_obj.replace(hour=0, minute=1, second=0)
+            datetime_utc = date_obj.replace(hour=12, minute=0, second=0)
+            event_key = f"UK_RICS House Price Balance_{date_obj.strftime('%Y%m%d')}"
 
             with SessionLocal() as session:
-                # 既存レコードを検索
+                # CSV_IMPORT/PDF_IMPORT の既存レコード（データ対象月ベース）を検索
                 check_query = text("""
                     SELECT id, actual FROM economic_calendar_events
                     WHERE country = 'UK'
                       AND event ILIKE '%RICS House Price Balance%'
+                      AND provider IN ('CSV_IMPORT', 'PDF_IMPORT')
                       AND datetime_utc::date = :target_date
                     ORDER BY datetime_utc DESC
                     LIMIT 1
@@ -432,7 +436,7 @@ class RICSHousePriceService:
 
                 if existing:
                     existing_id, existing_value = existing
-                    if existing_value != value:
+                    if existing_value is None or float(existing_value) != value:
                         update_query = text("""
                             UPDATE economic_calendar_events
                             SET actual = :value, updated_at = NOW()
@@ -440,15 +444,28 @@ class RICSHousePriceService:
                         """)
                         session.execute(update_query, {"value": value, "id": existing_id})
                         logger.info(f"[RICS] Updated: {date_str} {existing_value} -> {value}")
+                    else:
+                        logger.info(f"[RICS] Unchanged: {date_str} = {value}")
                 else:
                     insert_query = text("""
                         INSERT INTO economic_calendar_events
-                        (country, event, datetime_utc, actual, estimate, previous, impact, source, created_at, updated_at)
-                        VALUES ('UK', 'RICS House Price Balance', :datetime_utc, :actual, NULL, NULL, 'Medium', 'PDF Import', NOW(), NOW())
+                        (provider, event_key, country, currency, event,
+                         datetime_utc, datetime_raw, has_time, impact, actual,
+                         raw_json, ingested_at, updated_at)
+                        VALUES ('PDF_IMPORT', :event_key, 'UK', 'GBP', 'RICS House Price Balance',
+                                :datetime_utc, :datetime_raw, TRUE, 'Medium', :actual,
+                                :raw_json, NOW(), NOW())
                     """)
                     session.execute(insert_query, {
+                        "event_key": event_key,
                         "datetime_utc": datetime_utc,
-                        "actual": value
+                        "datetime_raw": datetime_utc.strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+                        "actual": value,
+                        "raw_json": json.dumps({
+                            "source": "PDF",
+                            "pdf_file": pdf_data.get("pdf_file"),
+                            "data_month": date_str,
+                        }),
                     })
                     logger.info(f"[RICS] Inserted: {date_str} = {value}")
 

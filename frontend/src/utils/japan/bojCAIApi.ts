@@ -25,12 +25,12 @@ export interface BOJCAIResponse {
  * Fetch BOJ CAI data
  */
 export async function fetchBOJCAIData(forceRefresh = false): Promise<BOJCAIResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/boj-cai`)
+  const params = new URLSearchParams()
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true')
+    params.append('force_refresh', 'true')
   }
-
-  const response = await fetch(url.toString())
+  const qs = params.toString() ? `?${params.toString()}` : ''
+  const response = await fetch(`${API_BASE_URL}/api/japan/boj-cai${qs}`)
 
   if (!response.ok) {
     throw new Error(`Failed to fetch BOJ CAI data: ${response.statusText}`)
@@ -43,12 +43,12 @@ export async function fetchBOJCAIData(forceRefresh = false): Promise<BOJCAIRespo
  * Fetch BOJ CAI chart data
  */
 export async function fetchBOJCAIChartData(forceRefresh = false): Promise<BOJCAIResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/boj-cai/chart`)
+  const params = new URLSearchParams()
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true')
+    params.append('force_refresh', 'true')
   }
-
-  const response = await fetch(url.toString())
+  const qs = params.toString() ? `?${params.toString()}` : ''
+  const response = await fetch(`${API_BASE_URL}/api/japan/boj-cai/chart${qs}`)
 
   if (!response.ok) {
     throw new Error(`Failed to fetch BOJ CAI chart data: ${response.statusText}`)
@@ -61,9 +61,7 @@ export async function fetchBOJCAIChartData(forceRefresh = false): Promise<BOJCAI
  * Force refresh BOJ CAI data
  */
 export async function refreshBOJCAIData(): Promise<BOJCAIResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/boj-cai/refresh`)
-
-  const response = await fetch(url.toString(), {
+  const response = await fetch(`${API_BASE_URL}/api/japan/boj-cai/refresh`, {
     method: 'POST',
   })
 

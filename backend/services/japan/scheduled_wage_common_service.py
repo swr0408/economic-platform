@@ -10,6 +10,8 @@
 データソース:
 - e-Stat: 毎月勤労統計調査 共通事業所
   https://www.e-stat.go.jp/stat-search/file-download?statInfId=000031771318&fileKind=1
+- MHLW: 厚労省 共通事業所Excel（e-Stat CSV未更新時の速報値補完用）
+  https://www.mhlw.go.jp/toukei/itiran/roudou/monthly/r{reiwa}/{yymm}p/xls/kyo{yymm}p.xlsx
 
 発表スケジュール:
 - 1日〜10日: 速報値(p) 8:30 JST
@@ -18,13 +20,14 @@
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
+import re
 import requests
 import pandas as pd
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
-from io import StringIO
+from io import StringIO, BytesIO
 import logging
 
 from core.redis_client import redis_client
@@ -52,6 +55,9 @@ class ScheduledWageCommonService:
 
     # e-Stat CSV download URL (共通事業所版)
     ESTAT_CSV_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000031771318&fileKind=1"
+
+    # MHLW Base URL for monthly labor statistics (共通事業所版)
+    MHLW_BASE_URL = "https://www.mhlw.go.jp/toukei/itiran/roudou/monthly"
 
     def __init__(self):
         pass
@@ -87,6 +93,22 @@ class ScheduledWageCommonService:
 
         # e-Stat CSVからデータを取得
         estat_data = self._load_from_estat()
+
+        # MHLW Excelから最新月データを補完
+        # （e-Stat CSVがまだ更新されていない場合に速報値を取得）
+        if estat_data:
+            mhlw_data = self._load_from_mhlw()
+            if mhlw_data:
+                from services.japan.estat_monthly_release import merge_supplement
+                for key in ["scheduled_wage", "general", "part_time"]:
+                    estat_series = estat_data.get(key)
+                    mhlw_series = mhlw_data.get(key)
+                    if estat_series and mhlw_series:
+                        base = estat_series.get("data", [])
+                        sup = mhlw_series.get("data", [])
+                        merged = merge_supplement(base, sup)
+                        estat_series["data"] = merged
+                        estat_series["latest"] = merged[-1] if merged else None
 
         if estat_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
@@ -252,6 +274,147 @@ class ScheduledWageCommonService:
             import traceback
             traceback.print_exc()
             return None
+
+    def _load_from_mhlw(self) -> Optional[Dict[str, Any]]:
+        """
+        MHLW（厚労省）から共通事業所Excelをダウンロードして所定内給与データを取得
+
+        e-Stat CSVが未更新の場合に速報値を補完するために使用。
+        Sheet 0 の第1セクション（Row 14〜セクション区切りまで）を解析。
+
+        カラムマッピング:
+          c9:  所定内給与 計 前年比 (%)
+          c10: 所定内給与 一般 前年比 (%)
+          c11: 所定内給与 パート 前年比 (%)
+        """
+        for url in self._get_mhlw_urls():
+            try:
+                logger.info(f"Downloading MHLW common establishment Excel: {url}")
+                response = requests.get(url, timeout=30)
+                if response.status_code != 200:
+                    logger.debug(f"MHLW URL not found: {url} (status={response.status_code})")
+                    continue
+
+                df = pd.read_excel(BytesIO(response.content), sheet_name=0, header=None)
+                return self._parse_mhlw_excel(df)
+
+            except Exception as e:
+                logger.warning(f"Error loading from MHLW: {e}")
+                continue
+
+        logger.info("No MHLW Excel available for common establishment data")
+        return None
+
+    def _get_mhlw_urls(self) -> list:
+        """MHLW Excelの候補URLリストを生成（速報 → 確報の順）"""
+        now = datetime.now(JST)
+        urls = []
+
+        # 速報: 当月に公表された前々月分
+        # 例: 4月発表 → 2月速報
+        for months_back in [2, 3]:
+            month = now.month - months_back
+            year = now.year
+            if month <= 0:
+                month += 12
+                year -= 1
+            reiwa = year - 2018
+            yymm = f"{year % 100:02d}{month:02d}"
+            urls.append(f"{self.MHLW_BASE_URL}/r{reiwa:02d}/{yymm}p/xls/kyo{yymm}p.xlsx")
+
+        # 確報
+        for months_back in [3, 4]:
+            month = now.month - months_back
+            year = now.year
+            if month <= 0:
+                month += 12
+                year -= 1
+            reiwa = year - 2018
+            yymm = f"{year % 100:02d}{month:02d}"
+            urls.append(f"{self.MHLW_BASE_URL}/r{reiwa:02d}/{yymm}r/xls/kyo{yymm}r.xlsx")
+
+        return urls
+
+    def _parse_mhlw_excel(self, df: pd.DataFrame) -> Optional[Dict[str, Any]]:
+        """
+        MHLW 共通事業所Excelの第1セクションを解析
+
+        Excel構造:
+          Row 14〜37頃: 第1セクション（所定内給与 前年比）
+          Row 38〜40: セクション区切り（ヘッダー行再出現）
+          Row 41〜64頃: 第2セクション（現金給与総額等、別指標）
+
+        セクション区切り検出: c9がヘッダー文字列（非数値）の行で停止
+        """
+        scheduled_wage_data = []
+        general_data = []
+        part_time_data = []
+
+        current_year = None
+        zenkaku_table = str.maketrans('０１２３４５６７８９', '0123456789')
+        found_data = False
+
+        for i in range(14, len(df)):
+            row = df.iloc[i]
+            period = str(row[1]).replace('\u3000', ' ').strip().translate(zenkaku_table) if pd.notna(row[1]) else ''
+
+            if not period:
+                if found_data:
+                    # データ行の後に空行 → セクション終了の可能性
+                    continue
+                continue
+
+            # セクション区切り検出: c9が文字列（ヘッダー再出現）
+            c9_val = row[9] if 9 < len(df.columns) else None
+            if found_data and pd.notna(c9_val) and isinstance(c9_val, str):
+                logger.info(f"MHLW section break at row {i}")
+                break
+
+            year_match = re.search(r'(\d{4})\s*年', period)
+            if year_match:
+                current_year = int(year_match.group(1))
+
+            month_match = re.search(r'(\d{1,2})\s*月', period)
+            if not month_match or not current_year:
+                continue
+
+            month = int(month_match.group(1))
+            if current_year < 2000:
+                continue
+
+            date_str = f"{current_year}-{month:02d}-01"
+            found_data = True
+
+            for col, data_list in [(9, scheduled_wage_data), (10, general_data), (11, part_time_data)]:
+                val = row[col] if col < len(df.columns) else None
+                if pd.notna(val) and val != '' and val != '-':
+                    try:
+                        data_list.append({"date": date_str, "value": round(float(val), 1)})
+                    except (ValueError, TypeError):
+                        pass
+
+        for lst in [scheduled_wage_data, general_data, part_time_data]:
+            lst.sort(key=lambda x: x["date"])
+
+        if not scheduled_wage_data:
+            return None
+
+        logger.info(f"MHLW common: {len(scheduled_wage_data)} points, latest={scheduled_wage_data[-1]}")
+
+        return {
+            "scheduled_wage": {
+                "data": scheduled_wage_data,
+                "latest": scheduled_wage_data[-1] if scheduled_wage_data else None,
+            },
+            "general": {
+                "data": general_data,
+                "latest": general_data[-1] if general_data else None,
+            },
+            "part_time": {
+                "data": part_time_data,
+                "latest": part_time_data[-1] if part_time_data else None,
+            },
+        }
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""

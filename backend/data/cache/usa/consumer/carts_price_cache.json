@@ -394,25 +394,25 @@
       "date": "2024-06-01",
       "bea": null,
       "cpi": 0.4,
-      "carts_nowcast": 0.34
+      "carts_nowcast": 0.35
     },
     {
       "date": "2024-07-01",
       "bea": null,
       "cpi": 0.46,
-      "carts_nowcast": 0.37
+      "carts_nowcast": 0.38
     },
     {
       "date": "2024-08-01",
       "bea": null,
       "cpi": -0.45,
-      "carts_nowcast": -0.6
+      "carts_nowcast": -0.59
     },
     {
       "date": "2024-09-01",
       "bea": null,
       "cpi": -0.9,
-      "carts_nowcast": -1.07
+      "carts_nowcast": -1.06
     },
     {
       "date": "2024-10-01",
@@ -454,80 +454,80 @@
       "date": "2025-04-01",
       "bea": null,
       "cpi": -0.31,
-      "carts_nowcast": -0.52
+      "carts_nowcast": -0.51
     },
     {
       "date": "2025-05-01",
       "bea": null,
       "cpi": -0.16,
-      "carts_nowcast": -0.19
+      "carts_nowcast": -0.16
     },
     {
       "date": "2025-06-01",
       "bea": null,
       "cpi": 0.44,
-      "carts_nowcast": 0.43
+      "carts_nowcast": 0.47
     },
     {
       "date": "2025-07-01",
       "bea": null,
       "cpi": 0.43,
-      "carts_nowcast": 0.53
+      "carts_nowcast": 0.56
     },
     {
       "date": "2025-08-01",
       "bea": null,
       "cpi": 0.9,
-      "carts_nowcast": 0.87
+      "carts_nowcast": 0.91
     },
     {
       "date": "2025-09-01",
       "bea": null,
       "cpi": 1.51,
-      "carts_nowcast": 1.42
+      "carts_nowcast": 1.47
     },
     {
       "date": "2025-10-01",
       "bea": null,
       "cpi": 1.33,
-      "carts_nowcast": 1.28
+      "carts_nowcast": 1.32
     },
     {
       "date": "2025-11-01",
       "bea": null,
       "cpi": 1.46,
-      "carts_nowcast": 1.53
+      "carts_nowcast": 1.57
     },
     {
       "date": "2025-12-01",
       "bea": null,
       "cpi": 1.39,
-      "carts_nowcast": 1.42
+      "carts_nowcast": 1.46
     },
     {
       "date": "2026-01-01",
       "bea": null,
       "cpi": 1.12,
-      "carts_nowcast": 1.11
+      "carts_nowcast": 1.15
     },
     {
       "date": "2026-02-01",
       "bea": null,
       "cpi": 1.42,
-      "carts_nowcast": 1.26
+      "carts_nowcast": 1.29
     },
     {
       "date": "2026-03-01",
       "bea": null,
-      "cpi": null,
-      "carts_nowcast": 3.68
+      "cpi": 3.64,
+      "carts_nowcast": 3.63
     }
   ],
   "latest": {
     "date": "2026-03-01",
     "bea": null,
-    "cpi": null,
-    "carts_nowcast": 3.68
+    "cpi": 3.64,
+    "carts_nowcast": 3.63
   },
-  "last_updated": "2026-04-11T00:35:47.176179+09:00"
+  "last_updated": "2026-04-18T17:13:08.128309+09:00"
 }

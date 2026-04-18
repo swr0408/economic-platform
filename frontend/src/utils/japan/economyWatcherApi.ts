@@ -51,12 +51,12 @@ export interface EconomyWatcherFullResponse {
  * Fetch Economy Watcher Survey full data (both current and outlook)
  */
 export async function fetchEconomyWatcherData(forceRefresh = false): Promise<EconomyWatcherFullResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/economy-watcher`)
+  const params = new URLSearchParams()
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true')
+    params.append('force_refresh', 'true')
   }
-
-  const response = await fetch(url.toString())
+  const qs = params.toString() ? `?${params.toString()}` : ''
+  const response = await fetch(`${API_BASE_URL}/api/japan/economy-watcher${qs}`)
 
   if (!response.ok) {
     throw new Error(`Failed to fetch Economy Watcher data: ${response.statusText}`)
@@ -69,12 +69,12 @@ export async function fetchEconomyWatcherData(forceRefresh = false): Promise<Eco
  * Fetch Economy Watcher Survey current conditions data (現状判断)
  */
 export async function fetchEconomyWatcherCurrentData(forceRefresh = false): Promise<EconomyWatcherResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/economy-watcher/current`)
+  const params = new URLSearchParams()
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true')
+    params.append('force_refresh', 'true')
   }
-
-  const response = await fetch(url.toString())
+  const qs = params.toString() ? `?${params.toString()}` : ''
+  const response = await fetch(`${API_BASE_URL}/api/japan/economy-watcher/current${qs}`)
 
   if (!response.ok) {
     throw new Error(`Failed to fetch Economy Watcher current data: ${response.statusText}`)
@@ -87,12 +87,12 @@ export async function fetchEconomyWatcherCurrentData(forceRefresh = false): Prom
  * Fetch Economy Watcher Survey outlook data (先行き判断)
  */
 export async function fetchEconomyWatcherOutlookData(forceRefresh = false): Promise<EconomyWatcherResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/economy-watcher/outlook`)
+  const params = new URLSearchParams()
   if (forceRefresh) {
-    url.searchParams.append('force_refresh', 'true')
+    params.append('force_refresh', 'true')
   }
-
-  const response = await fetch(url.toString())
+  const qs = params.toString() ? `?${params.toString()}` : ''
+  const response = await fetch(`${API_BASE_URL}/api/japan/economy-watcher/outlook${qs}`)
 
   if (!response.ok) {
     throw new Error(`Failed to fetch Economy Watcher outlook data: ${response.statusText}`)
@@ -105,9 +105,7 @@ export async function fetchEconomyWatcherOutlookData(forceRefresh = false): Prom
  * Force refresh Economy Watcher data
  */
 export async function refreshEconomyWatcherData(): Promise<EconomyWatcherFullResponse> {
-  const url = new URL(`${API_BASE_URL}/api/japan/economy-watcher/refresh`)
-
-  const response = await fetch(url.toString(), {
+  const response = await fetch(`${API_BASE_URL}/api/japan/economy-watcher/refresh`, {
     method: 'POST',
   })
 

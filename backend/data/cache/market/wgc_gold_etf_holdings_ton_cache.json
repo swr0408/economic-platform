@@ -4417,38 +4417,54 @@
       "total": 4029.66
     },
     {
-      "date": "2026-03-06",
-      "gold_price_usd": 5019.53,
-      "us": 2053.6,
-      "uk": 624.34,
-      "germany": 320.81,
-      "switzerland": 369.41,
-      "japan": 72.39,
-      "china": 300.24,
-      "india": 113.9,
-      "australia": 54.16,
-      "canada": 78.99,
-      "south_africa": 17.05,
-      "hong_kong": 4.95,
-      "total": 4009.84
+      "date": "2026-03-31",
+      "gold_price_usd": 4862.17,
+      "us": 2002.31,
+      "uk": 618.74,
+      "germany": 319.55,
+      "switzerland": 369.25,
+      "japan": 72.37,
+      "china": 298.29,
+      "india": 114.87,
+      "australia": 53.74,
+      "canada": 77.14,
+      "south_africa": 16.79,
+      "hong_kong": 4.89,
+      "total": 3947.94
+    },
+    {
+      "date": "2026-04-10",
+      "gold_price_usd": 4862.17,
+      "us": 2015.13,
+      "uk": 626.84,
+      "germany": 321.84,
+      "switzerland": 372.85,
+      "japan": 73.95,
+      "china": 301.91,
+      "india": 114.87,
+      "australia": 54.03,
+      "canada": 77.23,
+      "south_africa": 16.88,
+      "hong_kong": 4.91,
+      "total": 3980.44
     }
   ],
   "data_type": "holdings_ton",
   "latest": {
-    "date": "2026-03-06",
-    "gold_price_usd": 5019.53,
-    "us": 2053.6,
-    "uk": 624.34,
-    "germany": 320.81,
-    "switzerland": 369.41,
-    "japan": 72.39,
-    "china": 300.24,
-    "india": 113.9,
-    "australia": 54.16,
-    "canada": 78.99,
-    "south_africa": 17.05,
-    "hong_kong": 4.95,
-    "total": 4009.84
+    "date": "2026-04-10",
+    "gold_price_usd": 4862.17,
+    "us": 2015.13,
+    "uk": 626.84,
+    "germany": 321.84,
+    "switzerland": 372.85,
+    "japan": 73.95,
+    "china": 301.91,
+    "india": 114.87,
+    "australia": 54.03,
+    "canada": 77.23,
+    "south_africa": 16.88,
+    "hong_kong": 4.91,
+    "total": 3980.44
   },
   "metadata": {
     "source": "World Gold Council",
@@ -4466,11 +4482,11 @@
       "hong_kong"
     ],
     "frequency": "monthly",
-    "data_count": 277,
+    "data_count": 278,
     "start_date": "2003-03-31",
-    "end_date": "2026-03-06"
+    "end_date": "2026-04-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-03-11T01:16:26.651262+09:00"
+  "last_updated": "2026-04-18T15:43:13.875585+09:00"
 }

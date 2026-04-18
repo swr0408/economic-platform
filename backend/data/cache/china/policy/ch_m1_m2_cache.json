@@ -930,29 +930,43 @@
       "m1": 1179680.52,
       "m2_yoy": 9.0,
       "m1_yoy": 4.91
+    },
+    {
+      "date": "2026-02-28",
+      "m2": 3492159.91,
+      "m1": 1159258.82,
+      "m2_yoy": 8.95,
+      "m1_yoy": 5.93
+    },
+    {
+      "date": "2026-03-31",
+      "m2": 3538636.53,
+      "m1": 1193202.99,
+      "m2_yoy": 8.53,
+      "m1_yoy": 5.14
     }
   ],
   "latest": {
-    "date": "2026-01-31",
-    "m2": 3471860.39,
-    "m1": 1179680.52,
-    "m2_yoy": 9.0,
-    "m1_yoy": 4.91
+    "date": "2026-03-31",
+    "m2": 3538636.53,
+    "m1": 1193202.99,
+    "m2_yoy": 8.53,
+    "m1_yoy": 5.14
   },
   "metadata": {
     "unit": "億元",
     "unit_yoy": "%",
     "indicator": "M1/M2 Money Supply",
     "source": "PBOC",
-    "total_records": 133,
-    "last_fetched": "2026-03-03T18:51:51.775258+09:00"
+    "total_records": 135,
+    "last_fetched": "2026-04-18T01:46:54.972469+09:00"
   },
   "next_release": {
-    "date": "2026-03-14",
-    "datetime_utc": "2026-03-14T09:00:00+00:00",
-    "datetime_jst": "2026-03-14T18:00:00+09:00",
+    "date": "2026-05-14",
+    "datetime_utc": "2026-05-14T09:00:00+00:00",
+    "datetime_jst": "2026-05-14T18:00:00+09:00",
     "time_jst": "18:00",
-    "label": "M2 Money Supply YoY (Feb)",
+    "label": "M2 Money Supply YoY (Apr)",
     "estimate": null
   }
 }

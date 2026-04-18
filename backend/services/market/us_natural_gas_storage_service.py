@@ -24,6 +24,16 @@ import requests
 
 from core.redis_client import redis_client
 
+# .envファイルからEIA_API_KEYをフォールバック読み込み
+if not os.environ.get("EIA_API_KEY"):
+    try:
+        from dotenv import load_dotenv
+        _env_path = Path(__file__).parent.parent.parent.parent / ".env"
+        if _env_path.exists():
+            load_dotenv(_env_path, override=False)
+    except ImportError:
+        pass
+
 logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")

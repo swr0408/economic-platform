@@ -55,6 +55,7 @@ FMP_COUNTRY_TO_DASHBOARD = {
     "DE": "eurozone",  # ドイツはユーロ圏ダッシュボードに含まれる
     "JP": "japan",
     "GB": "uk",
+    "CN": "china",
 }
 
 FMP_INDICATOR_CONFIGS = [
@@ -165,7 +166,7 @@ FMP_INDICATOR_CONFIGS = [
             {
                 "service_module": "services.usa.median_cpi_service",
                 "service_instance": "median_cpi_service",
-                "fetch_method": "get_median_cpi_data",
+                "fetch_method": "get_data",
             },
         ],
     },
@@ -184,7 +185,7 @@ FMP_INDICATOR_CONFIGS = [
             {
                 "service_module": "services.usa.trimmed_mean_pce_service",
                 "service_instance": "trimmed_mean_pce_service",
-                "fetch_method": "get_trimmed_mean_pce_data",
+                "fetch_method": "get_data",
             },
         ],
     },
@@ -503,6 +504,27 @@ FMP_INDICATOR_CONFIGS = [
         "service_module": "services.uk.boe_mortgage_lending_service",
         "service_instance": "boe_mortgage_lending_service",
         "fetch_method": "get_boe_mortgage_lending_data",
+    },
+    # ========== China ==========
+    {
+        "name_ja": "新規人民元貸出",
+        "fmp_event": "New Yuan Loans",
+        "fmp_event_pattern": "New Yuan Loans",
+        "country": "CN",
+        "category": "policy",
+        "service_module": "services.china.cn_new_rmb_loans_service",
+        "service_instance": "cn_new_rmb_loans_service",
+        "fetch_method": "get_data",
+    },
+    {
+        "name_ja": "外貨準備",
+        "fmp_event": "Foreign Exchange Reserves",
+        "fmp_event_pattern": "Foreign Exchange Reserves",
+        "country": "CN",
+        "category": "policy",
+        "service_module": "services.china.cn_foreign_exchange_reserves_service",
+        "service_instance": "cn_foreign_exchange_reserves_service",
+        "fetch_method": "get_data",
     },
 ]
 

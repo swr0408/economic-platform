@@ -53,7 +53,7 @@ TFF_ASSETS = {
     "12460+": "dow",
     "20974+": "nasdaq100",
     "239742": "russell2000",
-    "240741": "nikkei225",
+    "240743": "nikkei225",
     "042601": "us02y",
     "043602": "us10y",
     "020601": "us30y",
@@ -61,6 +61,7 @@ TFF_ASSETS = {
     "399741": "eurjpy",
     "299741": "eurgbp",
 }
+# nikkei225 は 240741 (USD建) が散発的にしか更新されないため、240743 (円建) に切替済
 TFF_ASSETS_REVERSE = {v: k for k, v in TFF_ASSETS.items()}
 
 ALL_ASSETS = {**{v: "disagg" for v in DISAGG_ASSETS.values()},
@@ -420,7 +421,9 @@ class CftcPositioningService:
                 asset_code = row["CFTC_Contract_Market_Code"]
                 asset_name = DISAGG_ASSETS[asset_code]
 
-                date_val = row.get("Report_Date_as_MM_DD_YYYY")
+                # CFTC API は現在 Report_Date_as_YYYY_MM_DD を返す
+                # 旧 Report_Date_as_MM_DD_YYYY も fallback として残す
+                date_val = row.get("Report_Date_as_YYYY_MM_DD", row.get("Report_Date_as_MM_DD_YYYY"))
                 if pd.isna(date_val):
                     continue
                 date_parsed = pd.to_datetime(date_val)
@@ -432,27 +435,35 @@ class CftcPositioningService:
                 if existing_max and report_date <= existing_max:
                     continue
 
-                mm_long = self._sf(row.get("M_Money_Positions_Long_ALL"))
-                mm_short = self._sf(row.get("M_Money_Positions_Short_ALL"))
-                mm_spread = self._sf(row.get("M_Money_Positions_Spread_ALL"))
+                # CFTC API 列名は _All (title case) に変更済み。旧 _ALL も fallback 対応。
+                def _col(base: str, *fallbacks):
+                    for k in (base, *fallbacks):
+                        v = row.get(k)
+                        if not pd.isna(v):
+                            return v
+                    return None
+
+                mm_long = self._sf(_col("M_Money_Positions_Long_All", "M_Money_Positions_Long_ALL"))
+                mm_short = self._sf(_col("M_Money_Positions_Short_All", "M_Money_Positions_Short_ALL"))
+                mm_spread = self._sf(_col("M_Money_Positions_Spread_All", "M_Money_Positions_Spread_ALL"))
                 mm_net = (mm_long - mm_short) if mm_long is not None and mm_short is not None else None
 
-                pm_long = self._sf(row.get("Prod_Merc_Positions_Long_ALL"))
-                pm_short = self._sf(row.get("Prod_Merc_Positions_Short_ALL"))
+                pm_long = self._sf(_col("Prod_Merc_Positions_Long_All", "Prod_Merc_Positions_Long_ALL"))
+                pm_short = self._sf(_col("Prod_Merc_Positions_Short_All", "Prod_Merc_Positions_Short_ALL"))
                 pm_net = (pm_long - pm_short) if pm_long is not None and pm_short is not None else None
 
-                swap_long = self._sf(row.get("Swap_Positions_Long_All"))
-                swap_short = self._sf(row.get("Swap__Positions_Short_All", row.get("Swap_Positions_Short_All")))
-                swap_spread = self._sf(row.get("Swap__Positions_Spread_All", row.get("Swap_Positions_Spread_All")))
+                swap_long = self._sf(_col("Swap_Positions_Long_All"))
+                swap_short = self._sf(_col("Swap__Positions_Short_All", "Swap_Positions_Short_All"))
+                swap_spread = self._sf(_col("Swap__Positions_Spread_All", "Swap_Positions_Spread_All"))
                 swap_net = (swap_long - swap_short) if swap_long is not None and swap_short is not None else None
 
-                other_long = self._sf(row.get("Other_Rept_Positions_Long_ALL"))
-                other_short = self._sf(row.get("Other_Rept_Positions_Short_ALL"))
-                other_spread = self._sf(row.get("Other_Rept_Positions_Spread_ALL"))
+                other_long = self._sf(_col("Other_Rept_Positions_Long_All", "Other_Rept_Positions_Long_ALL"))
+                other_short = self._sf(_col("Other_Rept_Positions_Short_All", "Other_Rept_Positions_Short_ALL"))
+                other_spread = self._sf(_col("Other_Rept_Positions_Spread_All", "Other_Rept_Positions_Spread_ALL"))
                 other_net = (other_long - other_short) if other_long is not None and other_short is not None else None
 
-                nonrept_long = self._sf(row.get("NonRept_Positions_Long_All"))
-                nonrept_short = self._sf(row.get("NonRept_Positions_Short_All"))
+                nonrept_long = self._sf(_col("NonRept_Positions_Long_All"))
+                nonrept_short = self._sf(_col("NonRept_Positions_Short_All"))
                 nonrept_net = (nonrept_long - nonrept_short) if nonrept_long is not None and nonrept_short is not None else None
 
                 session.execute(text("""
@@ -717,10 +728,16 @@ class CftcPositioningService:
         tff_count = self.update_latest_tff()
         legacy_count = self.update_latest_legacy()
 
-        # Clear all caches so next request rebuilds
+        # Clear all caches (Redis + file) so next request rebuilds
         for asset in ALL_ASSETS:
             try:
                 redis_client.delete(self._cache_key(asset))
+            except Exception:
+                pass
+            try:
+                cache_file = self._cache_file(asset)
+                if cache_file.exists():
+                    cache_file.unlink()
             except Exception:
                 pass
 

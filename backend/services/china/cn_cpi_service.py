@@ -12,11 +12,9 @@
 - Core CPI MoM%: コアCPI（食品・エネルギー除く、前月比）
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  https://data.stats.gov.cn/easyquery.htm
-  NBS APIは時代別にコードが分かれている（2016-2020, 2021-2025, 2026+）
-  各時代の最新コードのみ24ヶ月分取得してDB蓄積
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース蓄積）
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
+  Excel「CPI」シート: R4=CPI総合, R7=食品, R8=非食品, R11=コア
 - FMP: 次回発表日の取得のみ
 
 DB指標ID:
@@ -32,8 +30,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
-
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -61,139 +57,74 @@ DB_INDICATORS = {
     "core_mom": "cn_cpi_core_mom",
 }
 
-# ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
-# NBS APIは時代別にコードが分かれている
-# 各系列の「最新時代のコード」のみ使用（LAST24で十分）
-# 過去データはCSV初期インポートでDB蓄積済み
-# ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
+def _extract_cpi_from_excel(
+    excel_data: bytes, period: Optional[tuple],
+) -> Dict[str, Dict[str, float]]:
+    """CPI プレスリリース添付 Excel からデータを抽出
 
-# 各系列の時代別APIコード（値は指数 base=100）
-# 最新の時代コードのみAPIで定期取得し、DB蓄積する
-NBS_API_CODES: Dict[str, List[str]] = {
-    # CPI Total YoY: 2016-2020 + 2021-2025 + 2026+
-    "cpi_yoy": ["A01010101", "A01010G01", "A01010J01"],
-    # CPI Total MoM: 2016-2020 + 2021-2025 + 2026+
-    "cpi_mom": ["A01030101", "A01030G01", "A01030J01"],
-    # Food CPI YoY: cross-period (single code covers all eras)
-    "food_yoy": ["A01010301"],
-    # Food CPI MoM: cross-period
-    "food_mom": ["A01030301"],
-    # Non-Food CPI YoY: 2016-2020 + 2021-2025 + 2026+
-    "nonfood_yoy": ["A01010109", "A01010G0A", "A01010J0A"],
-    # Non-Food CPI MoM: 2016-2020 + 2021-2025 + 2026+
-    "nonfood_mom": ["A01030109", "A01030G0A", "A01030J0A"],
-    # Core CPI (Excl Food & Energy) YoY: 2021-2025 + 2026+ (no 2016-2020 code)
-    "core_yoy": ["A01010G0D", "A01010J0D"],
-    # Core CPI (Excl Food & Energy) MoM: 2021-2025 + 2026+
-    "core_mom": ["A01030G0D", "A01030J0D"],
-}
-
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
-}
-
-
-def _fetch_nbs_api(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから指標データを取得
+    Excel「CPI」シート構造:
+      R4: 居民消费价格 | MoM% | YoY% | 累計YoY%
+      R7: 食品           | MoM  | YoY  | 累計YoY
+      R8: 非食品         | MoM  | YoY  | 累計YoY
+      R11: 不包括食品和能源 (Core) | MoM | YoY | 累計YoY
 
     Returns:
-        {date_str: percent_value, ...}
-        指数(base=100)から%に変換済み
+        {db_indicator: {date_str: value}, ...}
     """
-    try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            return {}
+    from services.china.nbs_press_release_utils import parse_excel, _safe_float
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            return {}
-
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
-            date_str = f"{year}-{month:02d}-01"
-            # 指数(base=100) → %変換
-            result[date_str] = round(value - 100, 2)
-
-        return result
-    except Exception as e:
-        logger.warning(f"[NBS-CPI] API fetch failed for {indicator_code}: {e}")
+    if not period:
+        logger.warning("[CPI] No period info from release title")
         return {}
 
+    year, month = period
+    date_str = f"{year}-{month:02d}-01"
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから全6系列の最新データを取得し、DBにUPSERT
+    rows = parse_excel(excel_data, sheet_name="CPI")
 
-    各系列の全時代コードからデータを取得しマージする。
-    同一日付は後のコード（より新しい時代）が優先。
-    """
-    from services.china.nbs_db_utils import upsert_nbs_data
+    # 行インデックス (0-based): R4→idx3, R7→idx6, R8→idx7, R11→idx10
+    # 列: col1=MoM%, col2=YoY%, col3=累計YoY%
+    result: Dict[str, Dict[str, float]] = {}
 
-    for series_key, api_codes in NBS_API_CODES.items():
-        merged: Dict[str, float] = {}
-        for code in api_codes:
-            data = _fetch_nbs_api(code, periods=24)
-            if data:
-                merged.update(data)  # 後の時代コードが優先
+    def _set(db_key: str, row_idx: int, col_idx: int):
+        if row_idx < len(rows) and col_idx < len(rows[row_idx]):
+            v = _safe_float(rows[row_idx][col_idx])
+            if v is not None:
+                result[db_key] = {date_str: v}
 
-        if merged:
-            db_key = DB_INDICATORS[series_key]
-            count = upsert_nbs_data(db_key, merged, source="api")
-            logger.info(f"[NBS-CPI] {series_key}: {len(merged)} records from API, DB upserted {count}")
+    # CPI総合: R4 (idx=3)
+    _set(DB_INDICATORS["cpi_mom"], 3, 1)    # MoM
+    _set(DB_INDICATORS["cpi_yoy"], 3, 2)    # YoY
+    # 食品: R7 (idx=6)
+    _set(DB_INDICATORS["food_mom"], 6, 1)
+    _set(DB_INDICATORS["food_yoy"], 6, 2)
+    # 非食品: R8 (idx=7)
+    _set(DB_INDICATORS["nonfood_mom"], 7, 1)
+    _set(DB_INDICATORS["nonfood_yoy"], 7, 2)
+    # コア: R11 (idx=10)
+    _set(DB_INDICATORS["core_mom"], 10, 1)
+    _set(DB_INDICATORS["core_yoy"], 10, 2)
+
+    logger.info(f"[CPI] Extracted {len(result)} indicators from Excel for {date_str}")
+    return result
 
 
 def _build_data() -> List[Dict[str, Any]]:
     """DBから全データを読み込み、時系列データを構築
 
     手順:
-    1. NBS APIから最新データ取得 → DB UPSERT
-    2. DBから全6系列を読み込み
+    1. プレスリリース Excel から最新データ取得 → DB UPSERT
+    2. DBから全8系列を読み込み
     3. 日付をキーにマージして出力
     """
     from services.china.nbs_db_utils import load_nbs_multi
 
-    # --- NBS API → DB蓄積 ---
+    # --- プレスリリース Excel → DB蓄積 ---
     try:
-        _fetch_and_upsert_nbs()
+        from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
+        fetch_and_upsert_from_press_release("cpi", _extract_cpi_from_excel)
     except Exception as e:
-        logger.warning(f"[CPI] NBS API fetch/upsert failed: {e}")
+        logger.warning(f"[CPI] Press release fetch/upsert failed: {e}")
 
     # --- DBから全データ読み込み ---
     db_keys = list(DB_INDICATORS.values())

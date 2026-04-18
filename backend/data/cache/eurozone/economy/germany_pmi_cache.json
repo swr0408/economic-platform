@@ -1162,7 +1162,7 @@
       {
         "date": "2026-01",
         "value": 48.7,
-        "forecast": 48.5,
+        "forecast": 47.8,
         "previous": 47.0
       },
       {
@@ -3207,5 +3207,5 @@
     "label": "S&P Global Composite PMI (Apr)",
     "estimate": 51.4
   },
-  "last_updated": "2026-04-10T16:01:24.684064+02:00"
+  "last_updated": "2026-04-18T04:30:35.100669+02:00"
 }

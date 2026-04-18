@@ -7,12 +7,10 @@
 3. 非製造業PMIサブインデックス: サービス業、建設業、新規受注、輸出新規受注、手持ち受注、販売価格、投入価格、サプライヤー納期、雇用
 
 データソース:
-- DB蓄積: nbs_monthly_data テーブル（CSVインポート + NBS API蓄積）
-- 最新値: NBS統計データAPIから取得 → DB UPSERT
-  https://data.stats.gov.cn/easyquery.htm
+- DB蓄積: nbs_monthly_data テーブル（CSVインポート + プレスリリース蓄積）
+- 最新値: www.stats.gov.cn/sj/zxfb/ プレスリリース添付 Excel → DB UPSERT
 - FMP: 次回発表日の取得のみ
 
-NBS APIは直近24ヶ月のみ返すため、DB蓄積で永続化する。
 CSVは初期インポート済み（import_nbs_pmi_csv.py → nbs_monthly_data テーブル）。
 """
 import os
@@ -23,7 +21,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional, List
 from zoneinfo import ZoneInfo
 
-import requests
+from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release, parse_excel, parse_xls, _safe_float
 
 logger = logging.getLogger(__name__)
 
@@ -75,123 +73,122 @@ DB_NMF_SUB = {
 }
 
 # ---------------------------------------------------------------------------
-# NBS 統計データ API 設定
+# Excel 列名 → DB indicator マッピング
 # ---------------------------------------------------------------------------
-NBS_API_URL = "https://data.stats.gov.cn/easyquery.htm"
-
-# NBS API 指標コード → DB指標ID のマッピング
-NBS_API_CODES = {
-    # ヘッドライン
-    "A0B0301": "cn_pmi_composite",
-    "A0B0101": "cn_pmi_manufacturing",
-    "A0B0201": "cn_pmi_non_manufacturing",
-    # 製造業サブ
-    "A0B0102": "cn_pmi_mfg_production",
-    "A0B0103": "cn_pmi_mfg_new_orders",
-    "A0B0104": "cn_pmi_mfg_new_export_orders",
-    "A0B0105": "cn_pmi_mfg_in_hand_orders",
-    "A0B010C": "cn_pmi_mfg_employment",
-    "A0B010A": "cn_pmi_mfg_raw_material_price",
-    "A0B0109": "cn_pmi_mfg_producer_prices",
-    "A0B010D": "cn_pmi_mfg_supplier_delivery",
-    # 非製造業サブ
-    "A0B020C": "cn_pmi_nmf_services",
-    "A0B020B": "cn_pmi_nmf_construction",
-    "A0B0202": "cn_pmi_nmf_new_orders",
-    "A0B0203": "cn_pmi_nmf_export_new_orders",
-    "A0B0204": "cn_pmi_nmf_in_hand_orders",
-    "A0B0207": "cn_pmi_nmf_sale_price",
-    "A0B0206": "cn_pmi_nmf_input_price",
-    "A0B0209": "cn_pmi_nmf_supplier_delivery",
-    "A0B0208": "cn_pmi_nmf_employment",
+# 製造業シート（シート1「制造业」）
+MFG_EXCEL_COLUMNS = {
+    "PMI": "cn_pmi_manufacturing",
+    "生产": "cn_pmi_mfg_production",
+    "新订单": "cn_pmi_mfg_new_orders",
+    "从业人员": "cn_pmi_mfg_employment",
+    "供应商配送时间": "cn_pmi_mfg_supplier_delivery",
+    "新出口订单": "cn_pmi_mfg_new_export_orders",
+    "在手订单": "cn_pmi_mfg_in_hand_orders",
+    "出厂价格": "cn_pmi_mfg_producer_prices",
+    "原材料购进价格": "cn_pmi_mfg_raw_material_price",
 }
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
-    ),
+# 非製造業シート（シート2「非制造业」）
+NMF_EXCEL_COLUMNS = {
+    "商务活动": "cn_pmi_non_manufacturing",
+    "新订单": "cn_pmi_nmf_new_orders",
+    "投入品价格": "cn_pmi_nmf_input_price",
+    "销售价格": "cn_pmi_nmf_sale_price",
+    "从业人员": "cn_pmi_nmf_employment",
+    "新出口订单": "cn_pmi_nmf_export_new_orders",
+    "在手订单": "cn_pmi_nmf_in_hand_orders",
+    "供应商配送时间": "cn_pmi_nmf_supplier_delivery",
 }
 
 
-def _fetch_nbs_api(indicator_code: str, periods: int = 24) -> Dict[str, float]:
-    """NBS統計データAPIから指標データを取得
-
-    PMIは指数値そのままなので変換不要（PPIと異なりbase=100変換しない）
-
-    Returns:
-        {date_str: value, ...} e.g. {"2026-01-01": 49.3}
-    """
+def _excel_serial_to_date(serial) -> Optional[str]:
+    """Excelシリアル値を 'YYYY-MM-01' 文字列に変換"""
+    from datetime import timedelta
     try:
-        params = {
-            "m": "QueryData",
-            "dbcode": "hgyd",
-            "rowcode": "zb",
-            "colcode": "sj",
-            "wds": "[]",
-            "dfwds": json.dumps([
-                {"wdcode": "zb", "valuecode": indicator_code},
-                {"wdcode": "sj", "valuecode": f"LAST{periods}"},
-            ]),
-            "k1": str(int(datetime.now().timestamp() * 1000)),
-            "h": "1",
-        }
-        resp = requests.get(NBS_API_URL, params=params, headers=HEADERS, timeout=20)
-        if resp.status_code != 200:
-            logger.warning(f"[NBS-PMI] API HTTP {resp.status_code} for {indicator_code}")
-            return {}
+        serial_int = int(float(serial))
+        dt = datetime(1899, 12, 30) + timedelta(days=serial_int)
+        return f"{dt.year}-{dt.month:02d}-01"
+    except (ValueError, TypeError, OverflowError):
+        return None
 
-        data = resp.json()
-        if data.get("returncode") != 200:
-            logger.warning(f"[NBS-PMI] API returncode: {data.get('returncode')} for {indicator_code}")
-            return {}
 
-        result = {}
-        for node in data.get("returndata", {}).get("datanodes", []):
-            node_data = node.get("data", {})
-            if not node_data.get("hasdata"):
-                continue
+def _parse_sheet(rows: List[List], column_map: Dict[str, str]) -> Dict[str, Dict[str, float]]:
+    """PMI Excelシートをパースして {db_indicator: {date_str: value}} を返す
 
-            value = node_data.get("data")
-            if value is None:
-                continue
-
-            wds = node.get("wds", [])
-            time_code = None
-            for wd in wds:
-                if wd.get("wdcode") == "sj":
-                    time_code = wd.get("valuecode")
-                    break
-
-            if not time_code or len(time_code) != 6:
-                continue
-
-            year = int(time_code[:4])
-            month = int(time_code[4:6])
-            date_str = f"{year}-{month:02d}-01"
-            # PMIはそのまま（50基準の拡散指数）
-            result[date_str] = round(value, 1)
-
-        return result
-
-    except Exception as e:
-        logger.warning(f"[NBS-PMI] API fetch failed for {indicator_code}: {e}")
+    R3 (index 2) がヘッダー行、R4以降がデータ行。
+    """
+    if len(rows) < 4:
         return {}
 
+    # ヘッダー行（index 2）からマッピングを構築
+    header_row = rows[2]
+    col_indices: Dict[str, int] = {}
+    for col_idx, cell in enumerate(header_row):
+        if cell is None:
+            continue
+        cell_str = str(cell).strip()
+        if cell_str in column_map:
+            col_indices[cell_str] = col_idx
 
-def _fetch_and_upsert_nbs() -> None:
-    """NBS APIから全PMI指標の最新データを取得し、DBにUPSERT"""
-    from services.china.nbs_db_utils import upsert_nbs_data
+    if not col_indices:
+        logger.warning(f"[NBS-PMI] No matching columns found in header: {header_row}")
+        return {}
 
-    for api_code, db_indicator in NBS_API_CODES.items():
-        try:
-            data = _fetch_nbs_api(api_code, periods=24)
-            if data:
-                count = upsert_nbs_data(db_indicator, data, source="api")
-                logger.info(f"[NBS-PMI] API {api_code} → {db_indicator}: {len(data)} records, DB upserted {count}")
-        except Exception as e:
-            logger.warning(f"[NBS-PMI] API {api_code} fetch/upsert failed: {e}")
+    # データ行をパース（index 3以降）
+    result: Dict[str, Dict[str, float]] = {db_id: {} for db_id in column_map.values()}
+
+    for row in rows[3:]:
+        if not row or row[0] is None:
+            continue
+
+        date_str = _excel_serial_to_date(row[0])
+        if not date_str:
+            continue
+
+        for col_name, col_idx in col_indices.items():
+            if col_idx >= len(row):
+                continue
+            val = _safe_float(row[col_idx])
+            if val is not None:
+                db_indicator = column_map[col_name]
+                result[db_indicator][date_str] = round(val, 1)
+
+    return result
+
+
+def _extract_pmi_from_excel(
+    excel_data: bytes, period: Optional[tuple],
+) -> Dict[str, Dict[str, float]]:
+    """PMI プレスリリース添付 Excel からデータを抽出
+
+    Excel構造:
+    - シート1「制造业」: 製造業PMI時系列
+    - シート2「非制造业」: 非製造業PMI時系列
+
+    Returns:
+        {db_indicator: {date_str: value}, ...}
+    """
+    result: Dict[str, Dict[str, float]] = {}
+
+    # 製造業シート
+    try:
+        mfg_rows = parse_excel(excel_data, sheet_name="制造业", sheet_index=0)
+        mfg_data = _parse_sheet(mfg_rows, MFG_EXCEL_COLUMNS)
+        result.update(mfg_data)
+        logger.info(f"[NBS-PMI] Manufacturing sheet: parsed {sum(len(v) for v in mfg_data.values())} values")
+    except Exception as e:
+        logger.warning(f"[NBS-PMI] Failed to parse manufacturing sheet: {e}")
+
+    # 非製造業シート
+    try:
+        nmf_rows = parse_excel(excel_data, sheet_name="非制造业", sheet_index=1)
+        nmf_data = _parse_sheet(nmf_rows, NMF_EXCEL_COLUMNS)
+        result.update(nmf_data)
+        logger.info(f"[NBS-PMI] Non-manufacturing sheet: parsed {sum(len(v) for v in nmf_data.values())} values")
+    except Exception as e:
+        logger.warning(f"[NBS-PMI] Failed to parse non-manufacturing sheet: {e}")
+
+    return result
 
 
 def _build_headline_data() -> List[Dict[str, Any]]:
@@ -341,11 +338,11 @@ class CnPmiService:
             logger.warning(f"[PMI] File cache write error: {e}")
 
     def _build_payload(self) -> Dict[str, Any]:
-        # NBS APIから最新取得→DB蓄積
+        # プレスリリース Excel → DB蓄積
         try:
-            _fetch_and_upsert_nbs()
+            fetch_and_upsert_from_press_release("pmi", _extract_pmi_from_excel)
         except Exception as e:
-            logger.warning(f"[PMI] NBS API fetch/upsert failed: {e}")
+            logger.warning(f"[PMI] Press release fetch/upsert failed: {e}")
 
         headline_data = _build_headline_data()
         mfg_sub_data = _build_mfg_sub_data()
