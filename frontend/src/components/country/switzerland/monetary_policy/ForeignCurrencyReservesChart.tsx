@@ -110,6 +110,7 @@ export default function ForeignCurrencyReservesChart({ data }: ForeignCurrencyRe
         showPeriodSelector={false}
         dataSource="Swiss National Bank"
         sourceUrl="https://data.snb.ch/en/topics/snb"
+        handbookId="ch-foreign-currency-reserves"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

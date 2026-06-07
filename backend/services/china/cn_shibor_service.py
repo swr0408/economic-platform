@@ -53,14 +53,18 @@ FILE_CACHE = CACHE_DIR / "cn_shibor_cache.json"
 EXCEL_DIR = Path(__file__).parent.parent.parent / "data" / "excel"
 
 # API設定
-API_URL = "https://www.shibor.org/ags/ms/cm-u-bk-shibor/ShiborHis"
+# 注: shibor.org は2026年4月頃にDNS解決不能（事実上廃止）。
+# 同データはCFETS公式の chinamoney.com.cn で同一パスで継続提供されているため、
+# ホスト名のみ移行。
+API_URL = "https://www.chinamoney.com.cn/ags/ms/cm-u-bk-shibor/ShiborHis"
 API_HEADERS = {
-    "Referer": "https://www.shibor.org/english/bmkshb/",
+    "Referer": "https://www.chinamoney.com.cn/english/bmkprhs/",
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     ),
     "Content-Type": "application/x-www-form-urlencoded",
+    "X-Requested-With": "XMLHttpRequest",
 }
 
 # 全系列（Excel列名 / API キー名）

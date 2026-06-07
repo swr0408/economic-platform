@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Consumer Sentiment"])
 
 
 @router.get("/consumer-sentiment")
-async def get_consumer_sentiment(
+def get_consumer_sentiment(
     force_refresh: bool = Query(False, description="Force refresh data from e-Stat")
 ):
     """
@@ -37,7 +37,7 @@ async def get_consumer_sentiment(
 
 
 @router.get("/consumer-sentiment/chart")
-async def get_consumer_sentiment_chart(
+def get_consumer_sentiment_chart(
     force_refresh: bool = Query(False, description="Force refresh data from e-Stat")
 ):
     """
@@ -49,7 +49,7 @@ async def get_consumer_sentiment_chart(
 
 
 @router.post("/consumer-sentiment/refresh")
-async def refresh_consumer_sentiment():
+def refresh_consumer_sentiment():
     """
     Force refresh Japan consumer sentiment data from e-Stat API
 
@@ -60,7 +60,7 @@ async def refresh_consumer_sentiment():
 
 
 @router.get("/consumer-sentiment/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for consumer sentiment data
     """
@@ -68,7 +68,7 @@ async def get_cache_status():
 
 
 @router.delete("/consumer-sentiment/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate consumer sentiment data cache
     """

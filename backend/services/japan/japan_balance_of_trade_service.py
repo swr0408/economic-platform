@@ -254,6 +254,11 @@ class JapanBalanceOfTradeService:
                     # 千円 → 億円に変換（1億円 = 100,000千円）
                     exports_oku = round(float(exports_str) / 100000, 0)
                     imports_oku = round(float(imports_str) / 100000, 0)
+
+                    # 税関CSVには将来月の空枠行（exports=imports=0）が含まれるためスキップ
+                    if exports_oku == 0 and imports_oku == 0:
+                        continue
+
                     trade_balance = exports_oku - imports_oku
 
                     result.append({

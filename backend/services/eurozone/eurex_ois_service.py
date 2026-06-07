@@ -176,11 +176,14 @@ class EurexOISService:
         """
         logger.info(f"[EurexOIS] Fetching Eurex data via PlaywrightRunner: {self.EUREX_URL}")
 
+        # Eurex のページは背景ポーリングが継続し "networkidle" がほぼ来ないため
+        # "domcontentloaded" に変更。動的テーブルレンダリングのために wait_selector と
+        # 追加待機を併用する。ナビゲーションタイムアウトは余裕を持って120秒。
         request = ExtractRequest(
             url=self.EUREX_URL,
             wait_selector="table.react-table",
-            wait_for_load_state="networkidle",
-            wait_after_load_ms=15_000,  # 動的レンダ完了用 (旧実装と同等)
+            wait_for_load_state="domcontentloaded",
+            wait_after_load_ms=20_000,
             evaluate_js=self._EXTRACT_ROWS_JS,
             viewport_override=(1920, 1080),
         )
@@ -191,7 +194,7 @@ class EurexOISService:
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
                 "Chrome/120.0.0.0 Safari/537.36"
             ),
-            default_navigation_timeout_ms=60_000,
+            default_navigation_timeout_ms=120_000,
         )
 
         try:

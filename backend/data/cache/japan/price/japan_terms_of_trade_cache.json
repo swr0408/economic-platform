@@ -506,32 +506,39 @@
     },
     {
       "date": "2026-01-01",
-      "value": 90.54,
-      "terms_of_trade": 90.54,
+      "value": 90.6,
+      "terms_of_trade": 90.6,
       "export_price_index": 151.3,
-      "import_price_index": 167.1
+      "import_price_index": 167.0
     },
     {
       "date": "2026-02-01",
-      "value": 91.69,
-      "terms_of_trade": 91.69,
-      "export_price_index": 153.3,
+      "value": 91.39,
+      "terms_of_trade": 91.39,
+      "export_price_index": 152.8,
       "import_price_index": 167.2
     },
     {
       "date": "2026-03-01",
-      "value": 90.68,
-      "terms_of_trade": 90.68,
-      "export_price_index": 156.7,
-      "import_price_index": 172.8
+      "value": 89.71,
+      "terms_of_trade": 89.71,
+      "export_price_index": 155.2,
+      "import_price_index": 173.0
+    },
+    {
+      "date": "2026-04-01",
+      "value": 88.34,
+      "terms_of_trade": 88.34,
+      "export_price_index": 161.4,
+      "import_price_index": 182.7
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 90.68,
-    "terms_of_trade": 90.68,
-    "export_price_index": 156.7,
-    "import_price_index": 172.8
+    "date": "2026-04-01",
+    "value": 88.34,
+    "terms_of_trade": 88.34,
+    "export_price_index": 161.4,
+    "import_price_index": 182.7
   },
   "metadata": {
     "source": "Bank of Japan (BOJ)",
@@ -541,12 +548,12 @@
     "frequency": "Monthly"
   },
   "next_release": {
-    "date": "2026-05-14",
-    "datetime_utc": "2026-05-14T23:50:00+00:00",
-    "datetime_jst": "2026-05-15T08:50:00+09:00",
+    "date": "2026-06-09",
+    "datetime_utc": "2026-06-09T23:50:00+00:00",
+    "datetime_jst": "2026-06-10T08:50:00+09:00",
     "time_jst": "08:50",
-    "label": "Producer Price Index MoM (Apr)",
+    "label": "Producer Price Index YoY (May)",
     "estimate": null
   },
-  "last_updated": "2026-04-10T18:00:50.928876+09:00"
+  "last_updated": "2026-05-16T00:31:57.037171+09:00"
 }

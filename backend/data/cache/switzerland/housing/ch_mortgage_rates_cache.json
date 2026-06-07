@@ -1364,14 +1364,28 @@
       "variable_1m_5m": 3.5,
       "fixed_500k_1m": 1.37,
       "fixed_1m_5m": 1.35
+    },
+    {
+      "date": "2026-01-01",
+      "variable_500k_1m": 3.0,
+      "variable_1m_5m": 3.0,
+      "fixed_500k_1m": 1.4,
+      "fixed_1m_5m": 1.4
+    },
+    {
+      "date": "2026-02-01",
+      "variable_500k_1m": 3.0,
+      "variable_1m_5m": 3.0,
+      "fixed_500k_1m": 1.43,
+      "fixed_1m_5m": 1.4
     }
   ],
   "latest": {
-    "date": "2025-12-01",
+    "date": "2026-02-01",
     "variable_500k_1m": 3.0,
-    "variable_1m_5m": 3.5,
-    "fixed_500k_1m": 1.37,
-    "fixed_1m_5m": 1.35
+    "variable_1m_5m": 3.0,
+    "fixed_500k_1m": 1.43,
+    "fixed_1m_5m": 1.4
   },
   "metadata": {
     "source": "Swiss National Bank",
@@ -1385,6 +1399,6 @@
       "fixed_1m_5m": "固定金利（100万〜500万CHF）"
     }
   },
-  "publishing_date": "2026-03-23 09:00",
-  "last_updated": "2026-04-18T04:08:49.235749+09:00"
+  "publishing_date": "2026-05-21 09:00",
+  "last_updated": "2026-06-06T09:46:41.824238+09:00"
 }

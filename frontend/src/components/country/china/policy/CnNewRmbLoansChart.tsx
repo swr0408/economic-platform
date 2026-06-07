@@ -153,6 +153,7 @@ export default function CnNewRmbLoansChart({ data }: CnNewRmbLoansChartProps) {
         showDataSource={true}
         dataSource="中国人民銀行（PBOC）"
         sourceUrl="https://www.pbc.gov.cn/en/3688247/3688975/index.html"
+        handbookId="new-rmb-loans"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

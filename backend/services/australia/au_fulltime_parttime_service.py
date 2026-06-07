@@ -214,16 +214,17 @@ class AuFulltimeParttimeService:
     def get_au_fulltime_parttime_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """フルタイム/パートタイム雇用者数データを取得（キャッシュ付き）"""
         # Redisキャッシュ
+        existing_cached_data = redis_client.get(self.DATA_CACHE_KEY)
+
         if not force_refresh:
-            cached_data = redis_client.get(self.DATA_CACHE_KEY)
-            if cached_data:
-                last_updated_str = cached_data.get("last_updated")
+            if existing_cached_data:
+                last_updated_str = existing_cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
-                        "data": cached_data.get("data", []),
-                        "latest": cached_data.get("latest"),
-                        "metadata": cached_data.get("metadata", {}),
-                        "next_release": cached_data.get("next_release"),
+                        "data": existing_cached_data.get("data", []),
+                        "latest": existing_cached_data.get("latest"),
+                        "metadata": existing_cached_data.get("metadata", {}),
+                        "next_release": existing_cached_data.get("next_release"),
                         "cached": True,
                         "source": "redis",
                     }
@@ -237,6 +238,28 @@ class AuFulltimeParttimeService:
 
                 if data_points:
                     latest = data_points[-1] if data_points else None
+
+                    # API遅延ガード: force_refresh時に最新日付が進んでいなければ
+                    # キャッシュを書き換えない（次のスケジューラ波でリトライ）
+                    if force_refresh and existing_cached_data:
+                        existing_latest = existing_cached_data.get("latest") or {}
+                        existing_date = existing_latest.get("date")
+                        new_date = latest.get("date") if latest else None
+                        if existing_date and new_date and new_date <= existing_date:
+                            logger.warning(
+                                f"[AuFulltimeParttime] force_refresh requested but API returned "
+                                f"same/older period ({new_date} <= cached {existing_date}). "
+                                f"Skipping cache write to allow retry on next scheduler tick."
+                            )
+                            return {
+                                "data": existing_cached_data.get("data", []),
+                                "latest": existing_cached_data.get("latest"),
+                                "metadata": existing_cached_data.get("metadata", {}),
+                                "next_release": existing_cached_data.get("next_release"),
+                                "cached": True,
+                                "source": "redis (api lag detected)",
+                            }
+
                     next_release = self._get_next_release()
 
                     result = {

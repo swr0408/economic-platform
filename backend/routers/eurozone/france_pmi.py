@@ -22,7 +22,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_france_pmi(
+def get_france_pmi(
     refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ):
     """
@@ -44,7 +44,7 @@ async def get_france_pmi(
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュの状態を取得
 
@@ -55,7 +55,7 @@ async def get_cache_status():
 
 
 @router.post("/refresh")
-async def refresh_data():
+def refresh_data():
     """
     キャッシュを無効化してデータを再取得
 
@@ -77,7 +77,7 @@ async def refresh_data():
 
 
 @router.delete("/cache")
-async def delete_cache():
+def delete_cache():
     """
     キャッシュを削除
 

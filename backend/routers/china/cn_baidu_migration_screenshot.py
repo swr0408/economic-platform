@@ -30,7 +30,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_screenshot_url(
+def get_screenshot_url(
     force_refresh: bool = Query(False, description="スクリーンショットを強制更新")
 ):
     """
@@ -59,7 +59,7 @@ async def get_screenshot_url(
 
 
 @router.get("/image")
-async def get_screenshot_image():
+def get_screenshot_image():
     """
     スクリーンショット画像を取得
 
@@ -80,7 +80,7 @@ async def get_screenshot_image():
 
 
 @router.post("/refresh")
-async def refresh_screenshot():
+def refresh_screenshot():
     """
     スクリーンショットを強制更新
 
@@ -96,13 +96,13 @@ async def refresh_screenshot():
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     """キャッシュの状態を取得"""
     return cn_baidu_migration_screenshot_service.get_cache_status()
 
 
 @router.post("/cache/invalidate")
-async def invalidate_cache():
+def invalidate_cache():
     """キャッシュを無効化"""
     success = cn_baidu_migration_screenshot_service.invalidate_cache()
     return {

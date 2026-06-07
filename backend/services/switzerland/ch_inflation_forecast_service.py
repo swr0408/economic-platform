@@ -115,7 +115,12 @@ class ChInflationForecastService:
         }
 
     def _get_latest_release_date_from_db(self) -> Optional[str]:
-        """直近のSNB金融政策発表日を取得（DB優先、SNBカレンダーICSにフォールバック）"""
+        """直近のSNB金融政策発表日を取得（DB優先、SNBカレンダーICSにフォールバック）
+
+        SNBインフレ見通しの画像は発表時刻に公開される。FMPのactual取り込みが
+        遅れても画像は既に存在するため、判定は datetime_utc <= NOW() で行う。
+        actual IS NOT NULL で絞ると、FMPバックフィル遅延中に旧イベントが返る不具合の原因になる。
+        """
         # 1. DB（economic_calendar_events）から取得
         try:
             from core.database import SessionLocal
@@ -127,7 +132,7 @@ class ChInflationForecastService:
                     FROM economic_calendar_events
                     WHERE country = 'CH'
                       AND event ILIKE '%SNB Interest Rate Decision%'
-                      AND actual IS NOT NULL
+                      AND datetime_utc <= NOW()
                     ORDER BY datetime_utc DESC
                     LIMIT 1
                 """)

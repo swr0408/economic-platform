@@ -34,7 +34,7 @@ router = APIRouter(
 # -------------------------------------------------------------------------
 
 @router.get("/current-account")
-async def get_current_account(
+def get_current_account(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """経常収支（四半期、億USD）データを返す"""
@@ -42,13 +42,13 @@ async def get_current_account(
 
 
 @router.get("/current-account/cache")
-async def get_current_account_cache_status() -> Dict[str, Any]:
+def get_current_account_cache_status() -> Dict[str, Any]:
     """経常収支のキャッシュ状態を返す"""
     return cn_current_account_service.get_cache_status()
 
 
 @router.delete("/current-account/cache")
-async def invalidate_current_account_cache() -> Dict[str, Any]:
+def invalidate_current_account_cache() -> Dict[str, Any]:
     """経常収支のキャッシュを無効化"""
     return cn_current_account_service.invalidate_cache()
 
@@ -58,7 +58,7 @@ async def invalidate_current_account_cache() -> Dict[str, Any]:
 # -------------------------------------------------------------------------
 
 @router.get("/current-account-gdp-ratio")
-async def get_current_account_gdp_ratio(
+def get_current_account_gdp_ratio(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """経常収支対GDP比（四半期、%）データを返す"""
@@ -66,13 +66,13 @@ async def get_current_account_gdp_ratio(
 
 
 @router.get("/current-account-gdp-ratio/cache")
-async def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
+def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
     """経常収支対GDP比のキャッシュ状態を返す"""
     return cn_current_account_gdp_ratio_service.get_cache_status()
 
 
 @router.delete("/current-account-gdp-ratio/cache")
-async def invalidate_current_account_gdp_ratio_cache() -> Dict[str, Any]:
+def invalidate_current_account_gdp_ratio_cache() -> Dict[str, Any]:
     """経常収支対GDP比のキャッシュを無効化"""
     return cn_current_account_gdp_ratio_service.invalidate_cache()
 
@@ -82,7 +82,7 @@ async def invalidate_current_account_gdp_ratio_cache() -> Dict[str, Any]:
 # -------------------------------------------------------------------------
 
 @router.get("/capital-flows")
-async def get_capital_flows(
+def get_capital_flows(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """資本フロー（月次、億USD）データを返す"""
@@ -90,13 +90,13 @@ async def get_capital_flows(
 
 
 @router.get("/capital-flows/cache")
-async def get_capital_flows_cache_status() -> Dict[str, Any]:
+def get_capital_flows_cache_status() -> Dict[str, Any]:
     """資本フローのキャッシュ状態を返す"""
     return cn_capital_flows_service.get_cache_status()
 
 
 @router.delete("/capital-flows/cache")
-async def invalidate_capital_flows_cache() -> Dict[str, Any]:
+def invalidate_capital_flows_cache() -> Dict[str, Any]:
     """資本フローのキャッシュを無効化"""
     return cn_capital_flows_service.invalidate_cache()
 

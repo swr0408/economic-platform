@@ -29,7 +29,7 @@ router = APIRouter(
 
 
 @router.get("/business-outlook-price")
-async def get_business_outlook_price(
+def get_business_outlook_price(
     force_refresh: bool = Query(False, description="PDFを強制再取得"),
 ) -> Dict[str, Any]:
     """ANZ企業景況感物価関連データ（Page 2スクリーンショット）のメタデータを取得"""
@@ -39,7 +39,7 @@ async def get_business_outlook_price(
 
 
 @router.get("/business-outlook-price/page2")
-async def get_page2_image():
+def get_page2_image():
     """ANZ Business Outlook Page 2 画像を取得"""
     path = nz_anz_business_outlook_price_service.get_screenshot_path()
     if path and path.exists():
@@ -53,7 +53,7 @@ async def get_page2_image():
 
 
 @router.post("/business-outlook-price/refresh")
-async def refresh_business_outlook_price():
+def refresh_business_outlook_price():
     """PDFを強制再取得してPage 2を更新"""
     nz_anz_business_outlook_price_service.invalidate_cache()
     data = nz_anz_business_outlook_price_service.get_screenshot_data(force_refresh=True)
@@ -61,13 +61,13 @@ async def refresh_business_outlook_price():
 
 
 @router.get("/business-outlook-price/cache")
-async def get_business_outlook_price_cache_status() -> Dict[str, Any]:
+def get_business_outlook_price_cache_status() -> Dict[str, Any]:
     """ANZ企業景況感物価関連のキャッシュ状態を取得"""
     return nz_anz_business_outlook_price_service.get_cache_status()
 
 
 @router.delete("/business-outlook-price/cache")
-async def invalidate_business_outlook_price_cache() -> Dict[str, Any]:
+def invalidate_business_outlook_price_cache() -> Dict[str, Any]:
     """ANZ企業景況感物価関連のキャッシュを無効化"""
     result = nz_anz_business_outlook_price_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}
@@ -78,7 +78,7 @@ async def invalidate_business_outlook_price_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/business-outlook-survey")
-async def get_business_outlook_survey(
+def get_business_outlook_survey(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """ANZ企業景況感指数データを取得"""
@@ -88,13 +88,13 @@ async def get_business_outlook_survey(
 
 
 @router.get("/business-outlook-survey/cache")
-async def get_business_outlook_survey_cache_status() -> Dict[str, Any]:
+def get_business_outlook_survey_cache_status() -> Dict[str, Any]:
     """ANZ企業景況感指数のキャッシュ状態を取得"""
     return nz_anz_business_outlook_survey_service.get_cache_status()
 
 
 @router.delete("/business-outlook-survey/cache")
-async def invalidate_business_outlook_survey_cache() -> Dict[str, Any]:
+def invalidate_business_outlook_survey_cache() -> Dict[str, Any]:
     """ANZ企業景況感指数のキャッシュを無効化"""
     result = nz_anz_business_outlook_survey_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

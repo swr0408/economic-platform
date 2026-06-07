@@ -17,18 +17,24 @@
       "value": 1.798,
       "fixed_rate_10y": 2.195,
       "inflation_indexed_10y": 0.397
+    },
+    {
+      "date": "2026-04-23",
+      "value": 1.879,
+      "fixed_rate_10y": 2.303,
+      "inflation_indexed_10y": 0.424
     }
   ],
   "latest": {
-    "date": "2026-03-23",
-    "value": 1.798,
-    "fixed_rate_10y": 2.195,
-    "inflation_indexed_10y": 0.397
+    "date": "2026-04-23",
+    "value": 1.879,
+    "fixed_rate_10y": 2.303,
+    "inflation_indexed_10y": 0.424
   },
   "next_release": {
-    "date": "2026-04-25",
+    "date": "2026-05-16",
     "time_jst": "07:00",
-    "datetime_jst": "2026-04-25T07:00:00+09:00"
+    "datetime_jst": "2026-05-16T07:00:00+09:00"
   },
-  "last_updated": "2026-04-18T13:40:51.783973+09:00"
+  "last_updated": "2026-05-12T14:07:57.943820+09:00"
 }

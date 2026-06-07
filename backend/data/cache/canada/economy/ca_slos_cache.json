@@ -641,13 +641,19 @@
       "business": 2.81,
       "mortgage": -5.58,
       "non_mortgage": -1.73
+    },
+    {
+      "date": "2026-01-01",
+      "business": 0.96,
+      "mortgage": 0.0,
+      "non_mortgage": 4.13
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "business": 2.81,
-    "mortgage": -5.58,
-    "non_mortgage": -1.73
+    "date": "2026-01-01",
+    "business": 0.96,
+    "mortgage": 0.0,
+    "non_mortgage": 4.13
   },
   "metadata": {
     "source": "Bank of Canada",
@@ -658,12 +664,12 @@
     "interpretation": "正(+)=厳格化, 負(-)=緩和"
   },
   "next_release": {
-    "date": "2026-05-22",
-    "datetime_jst": "2026-05-22T23:30:00+09:00",
+    "date": "2026-08-14",
+    "datetime_jst": "2026-08-14T23:30:00+09:00",
     "time_jst": "23:30",
-    "datetime_toronto": "2026-05-22T10:30:00-04:00",
+    "datetime_toronto": "2026-08-14T10:30:00-04:00",
     "time_toronto": "10:30",
     "label": "Senior Loan Officer Survey"
   },
-  "last_updated": "2026-04-18T04:03:14.597747+09:00"
+  "last_updated": "2026-06-06T09:46:40.102379+09:00"
 }

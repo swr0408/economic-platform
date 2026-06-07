@@ -7,34 +7,6 @@
   ],
   "items": [
     {
-      "symbol": "BABA",
-      "name": "Alibaba",
-      "tier": "S",
-      "country_code": "china-hongkong",
-      "date": "2026-05-21",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 0.988,
-      "eps_actual": null,
-      "revenue_estimate": 35784300000.0,
-      "revenue_actual": null,
-      "updated_from_date": ""
-    },
-    {
-      "symbol": "PDD",
-      "name": "PDD",
-      "tier": "A",
-      "country_code": "china-hongkong",
-      "date": "2026-05-26",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 2.4,
-      "eps_actual": null,
-      "revenue_estimate": 15913780000.0,
-      "revenue_actual": null,
-      "updated_from_date": ""
-    },
-    {
       "symbol": "0700.HK",
       "name": "Tencent",
       "tier": "S",
@@ -49,8 +21,36 @@
       "updated_from_date": null
     },
     {
+      "symbol": "BABA",
+      "name": "Alibaba",
+      "tier": "S",
+      "country_code": "china-hongkong",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
       "symbol": "1810.HK",
       "name": "Xiaomi",
+      "tier": "A",
+      "country_code": "china-hongkong",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "PDD",
+      "name": "PDD",
       "tier": "A",
       "country_code": "china-hongkong",
       "date": null,
@@ -149,7 +149,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-04-18T08:24:58.795909+00:00",
+  "last_updated": "2026-06-06T05:30:07.033591+00:00",
   "cached": false,
   "status": "ok"
 }

@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/ecb-inflation-expectations")
-async def get_inflation_expectations(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_inflation_expectations(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     ECB Consumer Expectations Survey - インフレ期待データを取得
 
@@ -24,7 +24,7 @@ async def get_inflation_expectations(force_refresh: bool = Query(False, descript
 
 
 @router.post("/ecb-inflation-expectations/refresh")
-async def refresh_inflation_expectations():
+def refresh_inflation_expectations():
     """
     インフレ期待データを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_inflation_expectations():
 
 
 @router.get("/ecb-inflation-expectations/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/ecb-inflation-expectations/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

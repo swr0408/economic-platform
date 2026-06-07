@@ -16,7 +16,6 @@ import {
   usePeriodFiltering,
   formatDateLabel,
   useHiddenSeries,
-  createNumberFormatter,
   type PeriodType,
 } from '../common/useChartData'
 import {
@@ -176,7 +175,7 @@ export default function OrderInventoryBalanceChart({ data }: OrderInventoryBalan
                     yAxisFormatter={(v) => v.toFixed(0)}
                     yDomain={['dataMin - 2', 'dataMax + 2']}
                     tooltipLabelFormatter={formatDateLabel}
-                    tooltipFormatter={createNumberFormatter(1)}
+                    tooltipValueFormatter={(v) => (v != null ? v.toFixed(1) : 'N/A')}
                     onLegendClick={handleLegendClick}
                     showZeroLine={true}
                   />

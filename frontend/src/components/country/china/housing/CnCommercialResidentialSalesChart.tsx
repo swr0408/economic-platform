@@ -95,7 +95,7 @@ export default function CnCommercialResidentialSalesChart({ data }: Props) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="商業住宅販売" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="商業住宅販売" showPeriodSelector={false} showDataSource={false} handbookId="cn-commercial-residential-sales">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -111,6 +111,7 @@ export default function CnCommercialResidentialSalesChart({ data }: Props) {
         showDataSource={true}
         dataSource="国家統計局（NBS）"
         sourceUrl="https://www.stats.gov.cn/english/PressRelease/index.html"
+        handbookId="cn-commercial-residential-sales"
       >
         {/* 最新値表示（3系列） */}
         <LatestValueBox

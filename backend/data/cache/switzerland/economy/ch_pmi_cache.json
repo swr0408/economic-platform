@@ -1310,16 +1310,30 @@
     {
       "date": "2026-02-01",
       "value": 47.4,
-      "forecast": 50.0,
+      "forecast": 49.8,
       "previous": 48.8,
       "period": "Feb"
     },
     {
       "date": "2026-03-01",
       "value": 53.3,
-      "forecast": 47.0,
+      "forecast": 47.2,
       "previous": 47.4,
       "period": "Mar"
+    },
+    {
+      "date": "2026-04-01",
+      "value": 54.5,
+      "forecast": 52.0,
+      "previous": 53.3,
+      "period": "Apr"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 57.3,
+      "forecast": 54.0,
+      "previous": 54.5,
+      "period": "May"
     }
   ],
   "services_data": [
@@ -2051,11 +2065,11 @@
     }
   ],
   "latest_manufacturing": {
-    "date": "2026-03-01",
-    "value": 53.3,
-    "forecast": 47.0,
-    "previous": 47.4,
-    "period": "Mar"
+    "date": "2026-05-01",
+    "value": 57.3,
+    "forecast": 54.0,
+    "previous": 54.5,
+    "period": "May"
   },
   "latest_services": {
     "date": "2026-03-01",
@@ -2071,5 +2085,5 @@
     "frequency": "monthly",
     "threshold": 50
   },
-  "last_updated": "2026-04-18T04:08:16.804379+09:00"
+  "last_updated": "2026-06-07T11:31:38.983335+09:00"
 }

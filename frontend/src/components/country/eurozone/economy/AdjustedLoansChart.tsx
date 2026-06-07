@@ -133,6 +133,7 @@ export default function AdjustedLoansChart({ data }: AdjustedLoansChartProps) {
         showPeriodSelector={false}
         dataSource="European Central Bank"
         sourceUrl="https://www.bis.org/statistics/rppb2510.htm?utm"
+        handbookId="ecb-adjusted-loans"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

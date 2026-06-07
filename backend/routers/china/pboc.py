@@ -67,7 +67,7 @@ router = APIRouter(
 
 
 @router.get("/lpr-1y")
-async def get_lpr_1y(
+def get_lpr_1y(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """中国ローンプライムレート（1年）データを取得"""
@@ -75,7 +75,7 @@ async def get_lpr_1y(
 
 
 @router.get("/lpr-5y")
-async def get_lpr_5y(
+def get_lpr_5y(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """中国ローンプライムレート（5年）データを取得"""
@@ -83,7 +83,7 @@ async def get_lpr_5y(
 
 
 @router.get("/lpr")
-async def get_lpr(
+def get_lpr(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """中国ローンプライムレート（1Y + 5Y）データをまとめて取得"""
@@ -91,13 +91,13 @@ async def get_lpr(
 
 
 @router.get("/lpr/cache")
-async def get_lpr_cache_status() -> Dict[str, Any]:
+def get_lpr_cache_status() -> Dict[str, Any]:
     """ローンプライムレートのキャッシュ状態を取得"""
     return cn_lpr_service.get_cache_status()
 
 
 @router.delete("/lpr/cache")
-async def invalidate_lpr_cache() -> Dict[str, Any]:
+def invalidate_lpr_cache() -> Dict[str, Any]:
     """ローンプライムレートのキャッシュを無効化"""
     return cn_lpr_service.invalidate_cache()
 
@@ -107,7 +107,7 @@ async def invalidate_lpr_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/reverse-repo-rate")
-async def get_reverse_repo_rate(
+def get_reverse_repo_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """中国逆回購金利（7日物）データを取得"""
@@ -115,19 +115,19 @@ async def get_reverse_repo_rate(
 
 
 @router.get("/reverse-repo-rate/cache")
-async def get_reverse_repo_cache_status() -> Dict[str, Any]:
+def get_reverse_repo_cache_status() -> Dict[str, Any]:
     """逆回購金利のキャッシュ状態を取得"""
     return ch_reverse_repo_rate_service.get_cache_status()
 
 
 @router.delete("/reverse-repo-rate/cache")
-async def invalidate_reverse_repo_cache() -> Dict[str, Any]:
+def invalidate_reverse_repo_cache() -> Dict[str, Any]:
     """逆回購金利のキャッシュを無効化"""
     return ch_reverse_repo_rate_service.invalidate_cache()
 
 
 @router.post("/reverse-repo-rate/fetch")
-async def fetch_reverse_repo_now() -> Dict[str, Any]:
+def fetch_reverse_repo_now() -> Dict[str, Any]:
     """PBOCウェブサイトから最新データを今すぐ取得してDBに追加"""
     try:
         count = fetch_and_store_latest()
@@ -141,7 +141,7 @@ async def fetch_reverse_repo_now() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/rrr")
-async def get_rrr(
+def get_rrr(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """中国預金準備率（Large Bank）データを取得"""
@@ -149,19 +149,19 @@ async def get_rrr(
 
 
 @router.get("/rrr/cache")
-async def get_rrr_cache_status() -> Dict[str, Any]:
+def get_rrr_cache_status() -> Dict[str, Any]:
     """預金準備率のキャッシュ状態を取得"""
     return ch_rrr_service.get_cache_status()
 
 
 @router.delete("/rrr/cache")
-async def invalidate_rrr_cache() -> Dict[str, Any]:
+def invalidate_rrr_cache() -> Dict[str, Any]:
     """預金準備率のキャッシュを無効化"""
     return ch_rrr_service.invalidate_cache()
 
 
 @router.post("/rrr/fetch")
-async def fetch_rrr_now() -> Dict[str, Any]:
+def fetch_rrr_now() -> Dict[str, Any]:
     """PBOCウェブサイトから最新のRRR発表を今すぐ取得してDBに追加"""
     try:
         count = rrr_fetch_and_store_latest()
@@ -177,7 +177,7 @@ async def fetch_rrr_now() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/balance-sheet")
-async def get_balance_sheet(
+def get_balance_sheet(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """中国人民銀行バランスシート（総資産）データを取得"""
@@ -185,19 +185,19 @@ async def get_balance_sheet(
 
 
 @router.get("/balance-sheet/cache")
-async def get_balance_sheet_cache_status() -> Dict[str, Any]:
+def get_balance_sheet_cache_status() -> Dict[str, Any]:
     """バランスシートのキャッシュ状態を取得"""
     return ch_central_bank_balance_sheet_service.get_cache_status()
 
 
 @router.delete("/balance-sheet/cache")
-async def invalidate_balance_sheet_cache() -> Dict[str, Any]:
+def invalidate_balance_sheet_cache() -> Dict[str, Any]:
     """バランスシートのキャッシュを無効化"""
     return ch_central_bank_balance_sheet_service.invalidate_cache()
 
 
 @router.post("/balance-sheet/fetch")
-async def fetch_balance_sheet_latest() -> Dict[str, Any]:
+def fetch_balance_sheet_latest() -> Dict[str, Any]:
     """当年・前年のデータを今すぐ取得してDBに追加（月次更新用）"""
     try:
         count = cbs_fetch_latest()
@@ -209,7 +209,7 @@ async def fetch_balance_sheet_latest() -> Dict[str, Any]:
 
 
 @router.post("/balance-sheet/fetch-all")
-async def fetch_balance_sheet_all() -> Dict[str, Any]:
+def fetch_balance_sheet_all() -> Dict[str, Any]:
     """全年データを取得してDBに追加（初回セットアップ用）"""
     try:
         count = cbs_fetch_all_years()
@@ -225,7 +225,7 @@ async def fetch_balance_sheet_all() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/fixing-repo-rate")
-async def get_fixing_repo_rate(
+def get_fixing_repo_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -237,19 +237,19 @@ async def get_fixing_repo_rate(
 
 
 @router.get("/fixing-repo-rate/cache")
-async def get_fixing_repo_rate_cache_status() -> Dict[str, Any]:
+def get_fixing_repo_rate_cache_status() -> Dict[str, Any]:
     """Fixing Repo Rate のキャッシュ状態を返す"""
     return cn_fixing_repo_rate_service.get_cache_status()
 
 
 @router.delete("/fixing-repo-rate/cache")
-async def invalidate_fixing_repo_rate_cache() -> Dict[str, Any]:
+def invalidate_fixing_repo_rate_cache() -> Dict[str, Any]:
     """Fixing Repo Rate のキャッシュを無効化"""
     return cn_fixing_repo_rate_service.invalidate_cache()
 
 
 @router.post("/fixing-repo-rate/fetch")
-async def fetch_fixing_repo_rate_latest() -> Dict[str, Any]:
+def fetch_fixing_repo_rate_latest() -> Dict[str, Any]:
     """当年データを API 取得して Excel 上書き → キャッシュ再構築（毎日14:00 CST以降に実行）"""
     try:
         result = cn_fixing_repo_rate_service.update_current_year()
@@ -268,7 +268,7 @@ async def fetch_fixing_repo_rate_latest() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/shibor")
-async def get_shibor(
+def get_shibor(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """SHIBOR (O/N, 1W, 2W, 1M, 3M, 6M, 9M, 1Y) 時系列データを返す"""
@@ -276,19 +276,19 @@ async def get_shibor(
 
 
 @router.get("/shibor/cache")
-async def get_shibor_cache_status() -> Dict[str, Any]:
+def get_shibor_cache_status() -> Dict[str, Any]:
     """SHIBOR のキャッシュ状態を返す"""
     return cn_shibor_service.get_cache_status()
 
 
 @router.delete("/shibor/cache")
-async def invalidate_shibor_cache() -> Dict[str, Any]:
+def invalidate_shibor_cache() -> Dict[str, Any]:
     """SHIBOR のキャッシュを無効化"""
     return cn_shibor_service.invalidate_cache()
 
 
 @router.post("/shibor/fetch")
-async def fetch_shibor_latest() -> Dict[str, Any]:
+def fetch_shibor_latest() -> Dict[str, Any]:
     """当年データを API 取得して Excel 上書き → キャッシュ再構築（毎日14:00 CST以降に実行）"""
     try:
         result = cn_shibor_service.update_current_year()
@@ -307,7 +307,7 @@ async def fetch_shibor_latest() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/m1-m2")
-async def get_m1_m2(
+def get_m1_m2(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """M1/M2 貨幣供応量 時系列データを返す（単位: 億元、前年比: %）"""
@@ -315,19 +315,19 @@ async def get_m1_m2(
 
 
 @router.get("/m1-m2/cache")
-async def get_m1_m2_cache_status() -> Dict[str, Any]:
+def get_m1_m2_cache_status() -> Dict[str, Any]:
     """M1/M2 のキャッシュ状態を返す"""
     return ch_m1_m2_service.get_cache_status()
 
 
 @router.delete("/m1-m2/cache")
-async def invalidate_m1_m2_cache() -> Dict[str, Any]:
+def invalidate_m1_m2_cache() -> Dict[str, Any]:
     """M1/M2 のキャッシュを無効化"""
     return ch_m1_m2_service.invalidate_cache()
 
 
 @router.post("/m1-m2/fetch")
-async def fetch_m1_m2_latest() -> Dict[str, Any]:
+def fetch_m1_m2_latest() -> Dict[str, Any]:
     """当年データを取得してキャッシュ再構築（月次スケジューラー用）"""
     try:
         result = ch_m1_m2_service.update_latest()
@@ -344,7 +344,7 @@ async def fetch_m1_m2_latest() -> Dict[str, Any]:
 
 
 @router.post("/m1-m2/fetch-all")
-async def fetch_m1_m2_all() -> Dict[str, Any]:
+def fetch_m1_m2_all() -> Dict[str, Any]:
     """全年データを取得してキャッシュ再構築（初回セットアップ用）"""
     try:
         result = ch_m1_m2_service.get_data(force_refresh=True)
@@ -363,7 +363,7 @@ async def fetch_m1_m2_all() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/aggregate-financing")
-async def get_aggregate_financing(
+def get_aggregate_financing(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """社会融資総量（Flow + Stock + YoY）データを返す"""
@@ -371,19 +371,19 @@ async def get_aggregate_financing(
 
 
 @router.get("/aggregate-financing/cache")
-async def get_aggregate_financing_cache_status() -> Dict[str, Any]:
+def get_aggregate_financing_cache_status() -> Dict[str, Any]:
     """社会融資総量のキャッシュ状態を返す"""
     return cn_aggregate_financing_service.get_cache_status()
 
 
 @router.delete("/aggregate-financing/cache")
-async def invalidate_aggregate_financing_cache() -> Dict[str, Any]:
+def invalidate_aggregate_financing_cache() -> Dict[str, Any]:
     """社会融資総量のキャッシュを無効化"""
     return cn_aggregate_financing_service.invalidate_cache()
 
 
 @router.post("/aggregate-financing/fetch")
-async def fetch_aggregate_financing_latest() -> Dict[str, Any]:
+def fetch_aggregate_financing_latest() -> Dict[str, Any]:
     """当年データを取得してキャッシュ再構築（月次スケジューラー用）"""
     try:
         result = cn_aggregate_financing_service.update_latest()
@@ -399,7 +399,7 @@ async def fetch_aggregate_financing_latest() -> Dict[str, Any]:
 
 
 @router.post("/aggregate-financing/fetch-all")
-async def fetch_aggregate_financing_all() -> Dict[str, Any]:
+def fetch_aggregate_financing_all() -> Dict[str, Any]:
     """全年データを取得してキャッシュ再構築（初回セットアップ用）"""
     try:
         result = cn_aggregate_financing_service.get_data(force_refresh=True)
@@ -418,7 +418,7 @@ async def fetch_aggregate_financing_all() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/new-rmb-loans")
-async def get_new_rmb_loans(
+def get_new_rmb_loans(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """新規人民元貸出（Stock + Flow + YoY）データを返す"""
@@ -426,13 +426,13 @@ async def get_new_rmb_loans(
 
 
 @router.get("/new-rmb-loans/cache")
-async def get_new_rmb_loans_cache_status() -> Dict[str, Any]:
+def get_new_rmb_loans_cache_status() -> Dict[str, Any]:
     """新規人民元貸出のキャッシュ状態を返す"""
     return cn_new_rmb_loans_service.get_cache_status()
 
 
 @router.delete("/new-rmb-loans/cache")
-async def invalidate_new_rmb_loans_cache() -> Dict[str, Any]:
+def invalidate_new_rmb_loans_cache() -> Dict[str, Any]:
     """新規人民元貸出のキャッシュを無効化"""
     return cn_new_rmb_loans_service.invalidate_cache()
 
@@ -442,7 +442,7 @@ async def invalidate_new_rmb_loans_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/forex-reserves")
-async def get_forex_reserves(
+def get_forex_reserves(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """外貨準備（Foreign Exchange Reserves）データを返す"""
@@ -450,13 +450,13 @@ async def get_forex_reserves(
 
 
 @router.get("/forex-reserves/cache")
-async def get_forex_reserves_cache_status() -> Dict[str, Any]:
+def get_forex_reserves_cache_status() -> Dict[str, Any]:
     """外貨準備のキャッシュ状態を返す"""
     return cn_foreign_exchange_reserves_service.get_cache_status()
 
 
 @router.delete("/forex-reserves/cache")
-async def invalidate_forex_reserves_cache() -> Dict[str, Any]:
+def invalidate_forex_reserves_cache() -> Dict[str, Any]:
     """外貨準備のキャッシュを無効化"""
     return cn_foreign_exchange_reserves_service.invalidate_cache()
 
@@ -466,7 +466,7 @@ async def invalidate_forex_reserves_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/central-parity")
-async def get_central_parity(
+def get_central_parity(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """Central Parity Rate（USD/CNY基準値）+ スポットレートを返す"""
@@ -478,7 +478,7 @@ async def get_central_parity(
 
 
 @router.get("/central-parity/cache")
-async def get_central_parity_cache_status() -> Dict[str, Any]:
+def get_central_parity_cache_status() -> Dict[str, Any]:
     """Central Parityのキャッシュ状態を返す"""
     try:
         from services.china.cn_central_parity_service import cn_central_parity_service
@@ -488,7 +488,7 @@ async def get_central_parity_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/central-parity/cache")
-async def invalidate_central_parity_cache() -> Dict[str, Any]:
+def invalidate_central_parity_cache() -> Dict[str, Any]:
     """Central Parityのキャッシュを無効化"""
     try:
         from services.china.cn_central_parity_service import cn_central_parity_service
@@ -498,7 +498,7 @@ async def invalidate_central_parity_cache() -> Dict[str, Any]:
 
 
 @router.post("/central-parity/fetch")
-async def fetch_central_parity() -> Dict[str, Any]:
+def fetch_central_parity() -> Dict[str, Any]:
     """Central Parityの当年データを手動で取得・更新"""
     try:
         from services.china.cn_central_parity_service import cn_central_parity_service

@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_boj_current_account_balance(
+def get_boj_current_account_balance(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """日銀当座預金残高データを取得"""
@@ -28,13 +28,13 @@ async def get_boj_current_account_balance(
 
 
 @router.get("/cache")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """キャッシュ状態を取得"""
     return boj_current_account_balance_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_cache() -> Dict[str, Any]:
+def invalidate_cache() -> Dict[str, Any]:
     """キャッシュを無効化"""
     result = boj_current_account_balance_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

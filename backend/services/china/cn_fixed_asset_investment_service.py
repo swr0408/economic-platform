@@ -82,6 +82,7 @@ def _fetch_and_upsert_from_press_release() -> None:
     results = fetch_and_upsert_from_press_release(
         category="fixed_asset",
         extractor_fn=_extract_fai_from_excel,
+        primary_indicator=DB_INDICATOR,
     )
     if results:
         logger.info(f"[NBS-FAI] Press release upsert: {results}")

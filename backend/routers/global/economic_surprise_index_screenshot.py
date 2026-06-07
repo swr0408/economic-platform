@@ -29,7 +29,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_screenshot_url(
+def get_screenshot_url(
     region: str = Query("global", description="地域 (global, japan, china)"),
 ):
     """画像URL情報を取得"""
@@ -43,7 +43,7 @@ async def get_screenshot_url(
 
 
 @router.get("/image")
-async def get_screenshot_image(
+def get_screenshot_image(
     region: str = Query("global", description="地域 (global, japan, china)"),
 ):
     """画像ファイルを取得。ファイルの更新日時をETagとして返す。"""
@@ -70,7 +70,7 @@ async def get_screenshot_image(
 
 
 @router.get("/cache/status")
-async def get_cache_status(
+def get_cache_status(
     region: str = Query("global", description="地域 (global, japan, china)"),
 ):
     """画像ステータスを取得"""

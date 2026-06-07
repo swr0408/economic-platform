@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_epu_data(
+def get_epu_data(
     series: str = Query("global", description="シリーズ (global, us_monthly, us_daily)"),
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
@@ -29,13 +29,13 @@ async def get_epu_data(
 
 
 @router.get("/cache")
-async def get_epu_cache_status() -> Dict[str, Any]:
+def get_epu_cache_status() -> Dict[str, Any]:
     """EPUキャッシュ状態を取得"""
     return global_epu_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_epu_cache() -> Dict[str, Any]:
+def invalidate_epu_cache() -> Dict[str, Any]:
     """EPUキャッシュを無効化"""
     result = global_epu_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

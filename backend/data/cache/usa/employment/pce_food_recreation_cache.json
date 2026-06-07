@@ -794,22 +794,34 @@
     },
     {
       "date": "2026-01-01",
-      "food_services_yoy": 3.02,
-      "recreation_yoy": 4.06,
+      "food_services_yoy": 3.03,
+      "recreation_yoy": 4.04,
       "avg_hourly_earnings_yoy": 3.66
     },
     {
       "date": "2026-02-01",
       "food_services_yoy": 3.01,
-      "recreation_yoy": 2.76,
-      "avg_hourly_earnings_yoy": 3.76
+      "recreation_yoy": 2.77,
+      "avg_hourly_earnings_yoy": 3.7
+    },
+    {
+      "date": "2026-03-01",
+      "food_services_yoy": 3.41,
+      "recreation_yoy": 2.66,
+      "avg_hourly_earnings_yoy": 3.43
+    },
+    {
+      "date": "2026-04-01",
+      "food_services_yoy": 3.6,
+      "recreation_yoy": 3.02,
+      "avg_hourly_earnings_yoy": 3.57
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "food_services_yoy": 3.01,
-    "recreation_yoy": 2.76,
-    "avg_hourly_earnings_yoy": 3.76
+    "date": "2026-04-01",
+    "food_services_yoy": 3.6,
+    "recreation_yoy": 3.02,
+    "avg_hourly_earnings_yoy": 3.57
   },
-  "last_updated": "2026-04-10T12:02:06.913520+09:00"
+  "last_updated": "2026-06-06T21:31:05.912302+09:00"
 }

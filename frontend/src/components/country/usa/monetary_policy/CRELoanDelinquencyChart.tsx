@@ -114,6 +114,7 @@ export default function CRELoanDelinquencyChart({ data }: CRELoanDelinquencyChar
         showPeriodSelector={false}
         dataSource="FRB (FRED)"
         sourceUrl="https://www.federalreserve.gov/releases/chargeoff/"
+        handbookId="cre-loan-delinquency"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

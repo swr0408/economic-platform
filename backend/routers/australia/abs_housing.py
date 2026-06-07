@@ -22,7 +22,7 @@ router = APIRouter(
 
 
 @router.get("/cotality-home-prices")
-async def get_cotality_home_prices(
+def get_cotality_home_prices(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -36,13 +36,13 @@ async def get_cotality_home_prices(
 
 
 @router.get("/cotality-home-prices/cache")
-async def get_cotality_home_prices_cache_status() -> Dict[str, Any]:
+def get_cotality_home_prices_cache_status() -> Dict[str, Any]:
     """Cotality住宅価格指数のキャッシュ状態を取得"""
     return au_cotality_home_prices_service.get_cache_status()
 
 
 @router.delete("/cotality-home-prices/cache")
-async def invalidate_cotality_home_prices_cache() -> Dict[str, bool]:
+def invalidate_cotality_home_prices_cache() -> Dict[str, bool]:
     """Cotality住宅価格指数のキャッシュを無効化"""
     success = au_cotality_home_prices_service.invalidate_cache()
     return {"success": success}
@@ -51,7 +51,7 @@ async def invalidate_cotality_home_prices_cache() -> Dict[str, bool]:
 # ===== 建築許可件数 =====
 
 @router.get("/building-permits")
-async def get_building_permits(
+def get_building_permits(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -65,13 +65,13 @@ async def get_building_permits(
 
 
 @router.get("/building-permits/cache")
-async def get_building_permits_cache_status() -> Dict[str, Any]:
+def get_building_permits_cache_status() -> Dict[str, Any]:
     """建築許可件数のキャッシュ状態を取得"""
     return au_number_of_building_permits_service.get_cache_status()
 
 
 @router.delete("/building-permits/cache")
-async def invalidate_building_permits_cache() -> Dict[str, bool]:
+def invalidate_building_permits_cache() -> Dict[str, bool]:
     """建築許可件数のキャッシュを無効化"""
     success = au_number_of_building_permits_service.invalidate_cache()
     return {"success": success}

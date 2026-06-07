@@ -20442,21 +20442,75 @@
     {
       "date": "2026-04-10",
       "total": 872985.0,
-      "spr": 409181.0,
       "ex_spr": 463804.0,
+      "spr": 409181.0,
       "total_yoy": 3.94,
       "ex_spr_yoy": 4.73,
       "spr_yoy": 3.07
+    },
+    {
+      "date": "2026-04-17",
+      "total": 870774.0,
+      "ex_spr": 465729.0,
+      "spr": 405045.0,
+      "total_yoy": 3.59,
+      "ex_spr_yoy": 5.11,
+      "spr_yoy": 1.9
+    },
+    {
+      "date": "2026-04-24",
+      "total": 857419.0,
+      "ex_spr": 459495.0,
+      "spr": 397924.0,
+      "total_yoy": 2.2,
+      "ex_spr_yoy": 4.33,
+      "spr_yoy": -0.16
+    },
+    {
+      "date": "2026-05-01",
+      "total": 849882.0,
+      "ex_spr": 457182.0,
+      "spr": 392700.0,
+      "total_yoy": 1.48,
+      "ex_spr_yoy": 4.29,
+      "spr_yoy": -1.61
+    },
+    {
+      "date": "2026-05-08",
+      "total": 836971.0,
+      "ex_spr": 452876.0,
+      "spr": 384095.0,
+      "total_yoy": -0.54,
+      "ex_spr_yoy": 2.5,
+      "spr_yoy": -3.89
+    },
+    {
+      "date": "2026-05-15",
+      "total": 819188.0,
+      "ex_spr": 445013.0,
+      "spr": 374175.0,
+      "total_yoy": -2.9,
+      "ex_spr_yoy": 0.42,
+      "spr_yoy": -6.57
+    },
+    {
+      "date": "2026-05-22",
+      "total": 806798.0,
+      "spr": 365112.0,
+      "ex_spr": 441686.0,
+      "total_yoy": -4.14,
+      "ex_spr_yoy": 0.3,
+      "spr_yoy": -9.02
     }
   ],
   "latest": {
-    "date": "2026-04-10",
-    "total": 872985.0,
-    "spr": 409181.0,
-    "ex_spr": 463804.0,
-    "total_yoy": 3.94,
-    "ex_spr_yoy": 4.73,
-    "spr_yoy": 3.07
+    "date": "2026-05-22",
+    "total": 806798.0,
+    "spr": 365112.0,
+    "ex_spr": 441686.0,
+    "total_yoy": -4.14,
+    "ex_spr_yoy": 0.3,
+    "spr_yoy": -9.02
   },
   "metadata": {
     "source": "EIA",
@@ -20467,11 +20521,11 @@
       "ex_spr": "U.S. Ending Stocks excluding SPR",
       "spr": "U.S. Ending Stocks in SPR"
     },
-    "data_count": 2272,
+    "data_count": 2278,
     "start_date": "1982-08-20",
-    "end_date": "2026-04-10"
+    "end_date": "2026-05-22"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T16:45:03.728072+09:00"
+  "last_updated": "2026-06-04T00:10:55.175283+09:00"
 }

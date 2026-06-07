@@ -2,6 +2,7 @@
 データベース接続設定
 PostgreSQL + TimescaleDB
 """
+import logging
 import os
 from contextlib import contextmanager
 from sqlalchemy import create_engine, text
@@ -11,11 +12,20 @@ from typing import Generator
 import psycopg2
 from psycopg2.extras import RealDictCursor
 
-# 環境変数からDB URLを取得
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql://economic:economic@localhost:5432/economic_db"
-)
+logger = logging.getLogger(__name__)
+
+# 環境変数からDB URLを取得。
+# 未設定時は docker-compose / .env と整合する canonical 値にフォールバックし、警告を出す。
+# (過去に "economic_db" を指す古いフォールバック値が使われ、container側 "economic_platform" と
+#  別DBに書き込んでしまった事象があったため、両者を統一)
+_DEFAULT_DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/economic_platform"
+DATABASE_URL = os.getenv("DATABASE_URL") or _DEFAULT_DATABASE_URL
+if not os.getenv("DATABASE_URL"):
+    logger.warning(
+        "DATABASE_URL is not set; falling back to %s. "
+        "Load .env or set DATABASE_URL explicitly to silence this warning.",
+        _DEFAULT_DATABASE_URL,
+    )
 
 # SQLAlchemy Engine（同期版 - シンプル）
 engine = create_engine(

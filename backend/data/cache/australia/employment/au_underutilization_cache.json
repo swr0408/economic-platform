@@ -3482,14 +3482,14 @@
     "unit": "%"
   },
   "next_release": {
-    "date": "2026-04-23",
-    "datetime_utc": "2026-04-23T01:30:00+00:00",
-    "datetime_jst": "2026-04-23T10:30:00+09:00",
+    "date": "2026-05-21",
+    "datetime_utc": "2026-05-21T01:30:00+00:00",
+    "datetime_jst": "2026-05-21T10:30:00+09:00",
     "time_jst": "10:30",
-    "datetime_sydney": "2026-04-23T11:30:00+10:00",
+    "datetime_sydney": "2026-05-21T11:30:00+10:00",
     "time_sydney": "11:30",
-    "label": "Unemployment Rate (Mar)",
-    "estimate": null
+    "label": "Unemployment Rate (Apr)",
+    "estimate": 4.3
   },
-  "last_updated": "2026-04-18T04:02:49.847375+09:00"
+  "last_updated": "2026-05-20T10:01:06.687320+09:00"
 }

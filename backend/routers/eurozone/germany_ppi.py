@@ -16,7 +16,7 @@ router = APIRouter(
 
 
 @router.get("/germany-ppi")
-async def get_germany_ppi(
+def get_germany_ppi(
     force_refresh: bool = Query(False, description="Force refresh from database")
 ) -> Dict[str, Any]:
     """
@@ -35,7 +35,7 @@ async def get_germany_ppi(
 
 
 @router.get("/germany-ppi/cache-status")
-async def get_germany_ppi_cache_status() -> Dict[str, Any]:
+def get_germany_ppi_cache_status() -> Dict[str, Any]:
     """
     ドイツPPIキャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_germany_ppi_cache_status() -> Dict[str, Any]:
 
 
 @router.post("/germany-ppi/invalidate-cache")
-async def invalidate_germany_ppi_cache() -> Dict[str, Any]:
+def invalidate_germany_ppi_cache() -> Dict[str, Any]:
     """
     ドイツPPIキャッシュを無効化
 

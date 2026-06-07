@@ -555,7 +555,13 @@ class CnNewRmbLoansService:
 
     def _build_payload(self) -> Dict[str, Any]:
         data = _build_data()
-        latest = data[-1] if data else None
+        # FMP補完で stock=None の月が末尾に追加されることがある。
+        # latest が stock=None だとダッシュボードの null 検出が
+        # 毎リクエスト再読込をトリガーするため、stock を持つ直近月を採用。
+        latest = next(
+            (r for r in reversed(data) if r.get("stock") is not None),
+            data[-1] if data else None,
+        )
 
         next_release = _get_fmp_next_release()
 

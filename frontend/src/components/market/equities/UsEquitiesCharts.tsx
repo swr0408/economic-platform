@@ -1,6 +1,4 @@
-import Sp500HeatmapChart from './Sp500HeatmapChart'
-import Nasdaq100HeatmapChart from './Nasdaq100HeatmapChart'
-import DowHeatmapChart from './DowHeatmapChart'
+import UsEquitiesHeatmapChart from './UsEquitiesHeatmapChart'
 import FearGreedChart from './FearGreedChart'
 import NaaimChart from './NaaimChart'
 import GexDixChart from './GexDixChart'
@@ -13,7 +11,7 @@ import FinancialStressIndexChart from './FinancialStressIndexChart'
 import CmdiChart from './CmdiChart'
 import UsInterestRateSpreadChart from './UsInterestRateSpreadChart'
 import Sp500StockPortionChart from './Sp500StockPortionChart'
-import VixTermStructureChart from './VixTermStructureChart'
+import VixFuturesCurveChart from './VixFuturesCurveChart'
 import HistoricalVolatilityChart from './HistoricalVolatilityChart'
 import VixCrossRatioChart from './VixCrossRatioChart'
 import SectorRatioChart from './SectorRatioChart'
@@ -30,10 +28,8 @@ export default function UsEquitiesCharts() {
       <LazyChart id="cboe-pcr"><CboePcrChart /></LazyChart>
       <LazyChart id="naaim"><NaaimChart /></LazyChart>
       <LazyChart id="sp500-stock-portion"><Sp500StockPortionChart /></LazyChart>
-      <LazyChart id="sp500-heatmap"><Sp500HeatmapChart /></LazyChart>
-      <LazyChart id="nasdaq100-heatmap"><Nasdaq100HeatmapChart /></LazyChart>
-      <LazyChart id="dow-heatmap"><DowHeatmapChart /></LazyChart>
-      <LazyChart id="vix-term-structure"><VixTermStructureChart /></LazyChart>
+      <LazyChart id="us-equities-heatmap"><UsEquitiesHeatmapChart /></LazyChart>
+      <LazyChart id="vix-futures-curve"><VixFuturesCurveChart /></LazyChart>
       <LazyChart id="historical-volatility"><HistoricalVolatilityChart /></LazyChart>
       <LazyChart id="sector-ratio"><SectorRatioChart /></LazyChart>
       <LazyChart id="vix-cross-ratio"><VixCrossRatioChart /></LazyChart>

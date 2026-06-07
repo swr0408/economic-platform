@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/japan/price-pass-through-rate", tags=["Japan - P
 
 
 @router.get("")
-async def get_price_pass_through_rate_data(
+def get_price_pass_through_rate_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """価格転嫁率データを取得"""
@@ -31,7 +31,7 @@ async def get_price_pass_through_rate_data(
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """キャッシュステータスを取得"""
     try:
         return price_pass_through_rate_service.get_cache_status()
@@ -40,7 +40,7 @@ async def get_cache_status():
 
 
 @router.post("/refresh")
-async def refresh_data():
+def refresh_data():
     """データを強制更新"""
     try:
         result = price_pass_through_rate_service.get_data(force_refresh=True)
@@ -55,7 +55,7 @@ async def refresh_data():
 
 
 @router.delete("/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """キャッシュを削除"""
     try:
         success = price_pass_through_rate_service.invalidate_cache()

@@ -27731,17 +27731,185 @@
       "cash_usd": 13149.0,
       "three_month_usd": 13210.0,
       "stock_tonnes": 400225
+    },
+    {
+      "date": "2026-04-20",
+      "cash_usd": 13163.0,
+      "three_month_usd": 13240.0,
+      "stock_tonnes": 398425
+    },
+    {
+      "date": "2026-04-21",
+      "cash_usd": 13200.5,
+      "three_month_usd": 13290.0,
+      "stock_tonnes": 398575
+    },
+    {
+      "date": "2026-04-22",
+      "cash_usd": 13198.0,
+      "three_month_usd": 13275.0,
+      "stock_tonnes": 395575
+    },
+    {
+      "date": "2026-04-23",
+      "cash_usd": 13190.0,
+      "three_month_usd": 13249.0,
+      "stock_tonnes": 396000
+    },
+    {
+      "date": "2026-04-24",
+      "cash_usd": 13230.0,
+      "three_month_usd": 13295.0,
+      "stock_tonnes": 392575
+    },
+    {
+      "date": "2026-04-27",
+      "cash_usd": 13212.0,
+      "three_month_usd": 13270.5,
+      "stock_tonnes": 391250
+    },
+    {
+      "date": "2026-04-28",
+      "cash_usd": 12890.5,
+      "three_month_usd": 12990.0,
+      "stock_tonnes": 396525
+    },
+    {
+      "date": "2026-04-29",
+      "cash_usd": 12992.0,
+      "three_month_usd": 13075.0,
+      "stock_tonnes": 396925
+    },
+    {
+      "date": "2026-04-30",
+      "cash_usd": 13015.5,
+      "three_month_usd": 13090.0,
+      "stock_tonnes": 399725
+    },
+    {
+      "date": "2026-05-01",
+      "cash_usd": 12895.0,
+      "three_month_usd": 12967.0,
+      "stock_tonnes": 398675
+    },
+    {
+      "date": "2026-05-05",
+      "cash_usd": 12970.0,
+      "three_month_usd": 13054.0,
+      "stock_tonnes": 398675
+    },
+    {
+      "date": "2026-05-06",
+      "cash_usd": 13351.5,
+      "three_month_usd": 13412.0,
+      "stock_tonnes": 397725
+    },
+    {
+      "date": "2026-05-07",
+      "cash_usd": 13326.0,
+      "three_month_usd": 13391.5,
+      "stock_tonnes": 398325
+    },
+    {
+      "date": "2026-05-08",
+      "cash_usd": 13445.0,
+      "three_month_usd": 13498.0,
+      "stock_tonnes": 399400
+    },
+    {
+      "date": "2026-05-11",
+      "cash_usd": 13673.0,
+      "three_month_usd": 13720.0,
+      "stock_tonnes": 401000
+    },
+    {
+      "date": "2026-05-12",
+      "cash_usd": 13872.0,
+      "three_month_usd": 13938.0,
+      "stock_tonnes": 400000
+    },
+    {
+      "date": "2026-05-13",
+      "cash_usd": 14097.0,
+      "three_month_usd": 14140.0,
+      "stock_tonnes": 398550
+    },
+    {
+      "date": "2026-05-14",
+      "cash_usd": 13986.0,
+      "three_month_usd": 14034.0,
+      "stock_tonnes": 397050
+    },
+    {
+      "date": "2026-05-15",
+      "cash_usd": 13553.5,
+      "three_month_usd": 13600.0,
+      "stock_tonnes": 395725
+    },
+    {
+      "date": "2026-05-18",
+      "cash_usd": 13428.0,
+      "three_month_usd": 13475.0,
+      "stock_tonnes": 393400
+    },
+    {
+      "date": "2026-05-19",
+      "cash_usd": 13410.0,
+      "three_month_usd": 13485.0,
+      "stock_tonnes": 394675
+    },
+    {
+      "date": "2026-05-20",
+      "cash_usd": 13418.0,
+      "three_month_usd": 13492.0,
+      "stock_tonnes": 393400
+    },
+    {
+      "date": "2026-05-21",
+      "cash_usd": 13427.0,
+      "three_month_usd": 13481.0,
+      "stock_tonnes": 393100
+    },
+    {
+      "date": "2026-05-22",
+      "cash_usd": 13545.0,
+      "three_month_usd": 13600.0,
+      "stock_tonnes": 391900
+    },
+    {
+      "date": "2026-05-26",
+      "cash_usd": 13570.0,
+      "three_month_usd": 13611.0,
+      "stock_tonnes": 389525
+    },
+    {
+      "date": "2026-05-27",
+      "cash_usd": 13540.5,
+      "three_month_usd": 13598.0,
+      "stock_tonnes": 387300
+    },
+    {
+      "date": "2026-05-28",
+      "cash_usd": 13513.0,
+      "three_month_usd": 13570.0,
+      "stock_tonnes": 385100
+    },
+    {
+      "date": "2026-05-29",
+      "cash_usd": 13615.0,
+      "three_month_usd": 13656.5,
+      "stock_tonnes": 389425
     }
   ],
   "latest": {
-    "date": "2026-04-17",
-    "cash_usd": 13149.0,
-    "three_month_usd": 13210.0,
-    "stock_tonnes": 400225
+    "date": "2026-05-29",
+    "cash_usd": 13615.0,
+    "three_month_usd": 13656.5,
+    "stock_tonnes": 389425
   },
   "latest_copper": {
-    "date": "2026-04-17",
-    "close": 6.1035
+    "date": "2026-06-01",
+    "close": 6.557
   },
   "metadata": {
     "source": "LME + yfinance (HG=F)",
@@ -27749,11 +27917,11 @@
     "unit_price": "USD/tonne",
     "unit_stock": "tonnes",
     "frequency": "daily",
-    "data_count": 4622,
+    "data_count": 4650,
     "start_date": "2008-01-02",
-    "end_date": "2026-04-17"
+    "end_date": "2026-05-29"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T15:48:11.508806+09:00"
+  "last_updated": "2026-06-01T21:39:42.039767+09:00"
 }

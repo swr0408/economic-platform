@@ -77,7 +77,7 @@
     },
     {
       "date": "2006-04",
-      "value": 97.9,
+      "value": 98.0,
       "source": "ifo_excel"
     },
     {
@@ -137,12 +137,12 @@
     },
     {
       "date": "2007-04",
-      "value": 101.0,
+      "value": 101.1,
       "source": "ifo_excel"
     },
     {
       "date": "2007-05",
-      "value": 101.1,
+      "value": 101.2,
       "source": "ifo_excel"
     },
     {
@@ -167,7 +167,7 @@
     },
     {
       "date": "2007-10",
-      "value": 99.9,
+      "value": 99.8,
       "source": "ifo_excel"
     },
     {
@@ -187,7 +187,7 @@
     },
     {
       "date": "2008-02",
-      "value": 98.2,
+      "value": 98.1,
       "source": "ifo_excel"
     },
     {
@@ -197,7 +197,7 @@
     },
     {
       "date": "2008-04",
-      "value": 97.0,
+      "value": 97.1,
       "source": "ifo_excel"
     },
     {
@@ -232,7 +232,7 @@
     },
     {
       "date": "2008-11",
-      "value": 84.4,
+      "value": 84.3,
       "source": "ifo_excel"
     },
     {
@@ -322,7 +322,7 @@
     },
     {
       "date": "2010-05",
-      "value": 95.5,
+      "value": 95.6,
       "source": "ifo_excel"
     },
     {
@@ -437,7 +437,7 @@
     },
     {
       "date": "2012-04",
-      "value": 100.0,
+      "value": 100.1,
       "source": "ifo_excel"
     },
     {
@@ -472,7 +472,7 @@
     },
     {
       "date": "2012-11",
-      "value": 94.1,
+      "value": 94.0,
       "source": "ifo_excel"
     },
     {
@@ -497,7 +497,7 @@
     },
     {
       "date": "2013-04",
-      "value": 95.9,
+      "value": 96.0,
       "source": "ifo_excel"
     },
     {
@@ -602,7 +602,7 @@
     },
     {
       "date": "2015-01",
-      "value": 98.9,
+      "value": 98.8,
       "source": "ifo_excel"
     },
     {
@@ -617,7 +617,7 @@
     },
     {
       "date": "2015-04",
-      "value": 100.1,
+      "value": 100.2,
       "source": "ifo_excel"
     },
     {
@@ -737,7 +737,7 @@
     },
     {
       "date": "2017-04",
-      "value": 103.6,
+      "value": 103.7,
       "source": "ifo_excel"
     },
     {
@@ -772,7 +772,7 @@
     },
     {
       "date": "2017-11",
-      "value": 105.0,
+      "value": 104.9,
       "source": "ifo_excel"
     },
     {
@@ -822,12 +822,12 @@
     },
     {
       "date": "2018-09",
-      "value": 103.8,
+      "value": 103.7,
       "source": "ifo_excel"
     },
     {
       "date": "2018-10",
-      "value": 102.9,
+      "value": 102.8,
       "source": "ifo_excel"
     },
     {
@@ -857,7 +857,7 @@
     },
     {
       "date": "2019-04",
-      "value": 100.6,
+      "value": 100.7,
       "source": "ifo_excel"
     },
     {
@@ -917,7 +917,7 @@
     },
     {
       "date": "2020-04",
-      "value": 75.0,
+      "value": 75.1,
       "source": "ifo_excel"
     },
     {
@@ -947,12 +947,12 @@
     },
     {
       "date": "2020-10",
-      "value": 93.0,
+      "value": 92.9,
       "source": "ifo_excel"
     },
     {
       "date": "2020-11",
-      "value": 91.7,
+      "value": 91.6,
       "source": "ifo_excel"
     },
     {
@@ -997,22 +997,22 @@
     },
     {
       "date": "2021-08",
-      "value": 100.0,
-      "source": "ifo_excel"
-    },
-    {
-      "date": "2021-09",
       "value": 100.1,
       "source": "ifo_excel"
     },
     {
+      "date": "2021-09",
+      "value": 100.0,
+      "source": "ifo_excel"
+    },
+    {
       "date": "2021-10",
-      "value": 98.8,
+      "value": 98.7,
       "source": "ifo_excel"
     },
     {
       "date": "2021-11",
-      "value": 97.3,
+      "value": 97.2,
       "source": "ifo_excel"
     },
     {
@@ -1037,7 +1037,7 @@
     },
     {
       "date": "2022-04",
-      "value": 91.2,
+      "value": 91.3,
       "source": "ifo_excel"
     },
     {
@@ -1047,7 +1047,7 @@
     },
     {
       "date": "2022-06",
-      "value": 91.9,
+      "value": 92.0,
       "source": "ifo_excel"
     },
     {
@@ -1057,7 +1057,7 @@
     },
     {
       "date": "2022-08",
-      "value": 89.1,
+      "value": 89.2,
       "source": "ifo_excel"
     },
     {
@@ -1067,12 +1067,12 @@
     },
     {
       "date": "2022-10",
-      "value": 85.4,
+      "value": 85.3,
       "source": "ifo_excel"
     },
     {
       "date": "2022-11",
-      "value": 86.9,
+      "value": 86.8,
       "source": "ifo_excel"
     },
     {
@@ -1082,12 +1082,12 @@
     },
     {
       "date": "2023-01",
-      "value": 90.5,
+      "value": 90.6,
       "source": "ifo_excel"
     },
     {
       "date": "2023-02",
-      "value": 91.0,
+      "value": 91.1,
       "source": "ifo_excel"
     },
     {
@@ -1107,12 +1107,12 @@
     },
     {
       "date": "2023-06",
-      "value": 88.1,
+      "value": 88.2,
       "source": "ifo_excel"
     },
     {
       "date": "2023-07",
-      "value": 87.3,
+      "value": 87.4,
       "source": "ifo_excel"
     },
     {
@@ -1122,17 +1122,17 @@
     },
     {
       "date": "2023-09",
-      "value": 86.2,
+      "value": 86.1,
       "source": "ifo_excel"
     },
     {
       "date": "2023-10",
-      "value": 87.0,
+      "value": 86.9,
       "source": "ifo_excel"
     },
     {
       "date": "2023-11",
-      "value": 87.3,
+      "value": 87.2,
       "source": "ifo_excel"
     },
     {
@@ -1157,12 +1157,12 @@
     },
     {
       "date": "2024-04",
-      "value": 89.0,
+      "value": 89.1,
       "source": "ifo_excel"
     },
     {
       "date": "2024-05",
-      "value": 88.9,
+      "value": 88.8,
       "source": "ifo_excel"
     },
     {
@@ -1172,7 +1172,7 @@
     },
     {
       "date": "2024-07",
-      "value": 86.9,
+      "value": 87.0,
       "source": "ifo_excel"
     },
     {
@@ -1187,12 +1187,12 @@
     },
     {
       "date": "2024-10",
-      "value": 86.5,
+      "value": 86.4,
       "source": "ifo_excel"
     },
     {
       "date": "2024-11",
-      "value": 85.7,
+      "value": 85.6,
       "source": "ifo_excel"
     },
     {
@@ -1207,7 +1207,7 @@
     },
     {
       "date": "2025-02",
-      "value": 85.2,
+      "value": 85.3,
       "source": "ifo_excel"
     },
     {
@@ -1217,7 +1217,7 @@
     },
     {
       "date": "2025-04",
-      "value": 86.8,
+      "value": 86.9,
       "source": "ifo_excel"
     },
     {
@@ -1247,32 +1247,42 @@
     },
     {
       "date": "2025-10",
-      "value": 88.4,
+      "value": 88.3,
       "source": "ifo_excel"
     },
     {
       "date": "2025-11",
-      "value": 88.0,
+      "value": 87.9,
       "source": "ifo_excel"
     },
     {
       "date": "2025-12",
-      "value": 87.6,
+      "value": 87.7,
       "source": "ifo_excel"
     },
     {
       "date": "2026-01",
-      "value": 87.6,
+      "value": 87.7,
       "source": "ifo_excel"
     },
     {
       "date": "2026-02",
-      "value": 88.4,
+      "value": 88.5,
       "source": "ifo_excel"
     },
     {
       "date": "2026-03",
-      "value": 86.4,
+      "value": 86.3,
+      "source": "ifo_excel"
+    },
+    {
+      "date": "2026-04",
+      "value": 84.5,
+      "source": "ifo_excel"
+    },
+    {
+      "date": "2026-05",
+      "value": 84.9,
       "source": "ifo_excel"
     }
   ],
@@ -1294,7 +1304,7 @@
     },
     {
       "date": "2005-04",
-      "value": 86.2,
+      "value": 86.3,
       "source": "ifo_excel"
     },
     {
@@ -1319,7 +1329,7 @@
     },
     {
       "date": "2005-09",
-      "value": 88.4,
+      "value": 88.3,
       "source": "ifo_excel"
     },
     {
@@ -1329,12 +1339,12 @@
     },
     {
       "date": "2005-11",
-      "value": 90.8,
+      "value": 90.7,
       "source": "ifo_excel"
     },
     {
       "date": "2005-12",
-      "value": 90.4,
+      "value": 90.3,
       "source": "ifo_excel"
     },
     {
@@ -1354,7 +1364,7 @@
     },
     {
       "date": "2006-04",
-      "value": 94.1,
+      "value": 94.2,
       "source": "ifo_excel"
     },
     {
@@ -1369,7 +1379,7 @@
     },
     {
       "date": "2006-07",
-      "value": 97.5,
+      "value": 97.4,
       "source": "ifo_excel"
     },
     {
@@ -1384,7 +1394,7 @@
     },
     {
       "date": "2006-10",
-      "value": 98.9,
+      "value": 98.8,
       "source": "ifo_excel"
     },
     {
@@ -1414,7 +1424,7 @@
     },
     {
       "date": "2007-04",
-      "value": 100.7,
+      "value": 100.8,
       "source": "ifo_excel"
     },
     {
@@ -1434,7 +1444,7 @@
     },
     {
       "date": "2007-08",
-      "value": 99.1,
+      "value": 99.0,
       "source": "ifo_excel"
     },
     {
@@ -1459,7 +1469,7 @@
     },
     {
       "date": "2008-01",
-      "value": 98.8,
+      "value": 98.7,
       "source": "ifo_excel"
     },
     {
@@ -1474,12 +1484,12 @@
     },
     {
       "date": "2008-04",
-      "value": 98.4,
+      "value": 98.5,
       "source": "ifo_excel"
     },
     {
       "date": "2008-05",
-      "value": 97.9,
+      "value": 98.0,
       "source": "ifo_excel"
     },
     {
@@ -1489,7 +1499,7 @@
     },
     {
       "date": "2008-07",
-      "value": 93.7,
+      "value": 93.6,
       "source": "ifo_excel"
     },
     {
@@ -1499,12 +1509,12 @@
     },
     {
       "date": "2008-09",
-      "value": 92.3,
+      "value": 92.2,
       "source": "ifo_excel"
     },
     {
       "date": "2008-10",
-      "value": 90.6,
+      "value": 90.5,
       "source": "ifo_excel"
     },
     {
@@ -1514,7 +1524,7 @@
     },
     {
       "date": "2008-12",
-      "value": 82.6,
+      "value": 82.5,
       "source": "ifo_excel"
     },
     {
@@ -1534,7 +1544,7 @@
     },
     {
       "date": "2009-04",
-      "value": 78.3,
+      "value": 78.4,
       "source": "ifo_excel"
     },
     {
@@ -1584,7 +1594,7 @@
     },
     {
       "date": "2010-02",
-      "value": 84.5,
+      "value": 84.4,
       "source": "ifo_excel"
     },
     {
@@ -1594,7 +1604,7 @@
     },
     {
       "date": "2010-04",
-      "value": 90.2,
+      "value": 90.3,
       "source": "ifo_excel"
     },
     {
@@ -1654,7 +1664,7 @@
     },
     {
       "date": "2011-04",
-      "value": 102.6,
+      "value": 102.8,
       "source": "ifo_excel"
     },
     {
@@ -1689,7 +1699,7 @@
     },
     {
       "date": "2011-11",
-      "value": 100.9,
+      "value": 100.8,
       "source": "ifo_excel"
     },
     {
@@ -1704,22 +1714,22 @@
     },
     {
       "date": "2012-02",
-      "value": 100.8,
+      "value": 100.7,
       "source": "ifo_excel"
     },
     {
       "date": "2012-03",
-      "value": 100.4,
+      "value": 100.3,
       "source": "ifo_excel"
     },
     {
       "date": "2012-04",
-      "value": 101.6,
+      "value": 101.7,
       "source": "ifo_excel"
     },
     {
       "date": "2012-05",
-      "value": 100.9,
+      "value": 101.0,
       "source": "ifo_excel"
     },
     {
@@ -1729,7 +1739,7 @@
     },
     {
       "date": "2012-07",
-      "value": 97.5,
+      "value": 97.4,
       "source": "ifo_excel"
     },
     {
@@ -1739,12 +1749,12 @@
     },
     {
       "date": "2012-09",
-      "value": 96.3,
+      "value": 96.2,
       "source": "ifo_excel"
     },
     {
       "date": "2012-10",
-      "value": 95.8,
+      "value": 95.7,
       "source": "ifo_excel"
     },
     {
@@ -1774,12 +1784,12 @@
     },
     {
       "date": "2013-04",
-      "value": 94.0,
+      "value": 94.2,
       "source": "ifo_excel"
     },
     {
       "date": "2013-05",
-      "value": 95.7,
+      "value": 95.8,
       "source": "ifo_excel"
     },
     {
@@ -1834,12 +1844,12 @@
     },
     {
       "date": "2014-04",
-      "value": 102.1,
+      "value": 102.2,
       "source": "ifo_excel"
     },
     {
       "date": "2014-05",
-      "value": 99.6,
+      "value": 99.7,
       "source": "ifo_excel"
     },
     {
@@ -1874,7 +1884,7 @@
     },
     {
       "date": "2014-12",
-      "value": 98.4,
+      "value": 98.3,
       "source": "ifo_excel"
     },
     {
@@ -1894,12 +1904,12 @@
     },
     {
       "date": "2015-04",
-      "value": 100.2,
+      "value": 100.4,
       "source": "ifo_excel"
     },
     {
       "date": "2015-05",
-      "value": 100.5,
+      "value": 100.6,
       "source": "ifo_excel"
     },
     {
@@ -1954,7 +1964,7 @@
     },
     {
       "date": "2016-04",
-      "value": 100.2,
+      "value": 100.3,
       "source": "ifo_excel"
     },
     {
@@ -1974,7 +1984,7 @@
     },
     {
       "date": "2016-08",
-      "value": 99.5,
+      "value": 99.4,
       "source": "ifo_excel"
     },
     {
@@ -1989,7 +1999,7 @@
     },
     {
       "date": "2016-11",
-      "value": 102.2,
+      "value": 102.1,
       "source": "ifo_excel"
     },
     {
@@ -2014,7 +2024,7 @@
     },
     {
       "date": "2017-04",
-      "value": 105.1,
+      "value": 105.2,
       "source": "ifo_excel"
     },
     {
@@ -2074,7 +2084,7 @@
     },
     {
       "date": "2018-04",
-      "value": 106.4,
+      "value": 106.5,
       "source": "ifo_excel"
     },
     {
@@ -2094,7 +2104,7 @@
     },
     {
       "date": "2018-08",
-      "value": 107.0,
+      "value": 106.9,
       "source": "ifo_excel"
     },
     {
@@ -2134,7 +2144,7 @@
     },
     {
       "date": "2019-04",
-      "value": 104.3,
+      "value": 104.4,
       "source": "ifo_excel"
     },
     {
@@ -2144,7 +2154,7 @@
     },
     {
       "date": "2019-06",
-      "value": 101.2,
+      "value": 101.1,
       "source": "ifo_excel"
     },
     {
@@ -2159,7 +2169,7 @@
     },
     {
       "date": "2019-09",
-      "value": 98.9,
+      "value": 98.8,
       "source": "ifo_excel"
     },
     {
@@ -2194,7 +2204,7 @@
     },
     {
       "date": "2020-04",
-      "value": 79.2,
+      "value": 79.3,
       "source": "ifo_excel"
     },
     {
@@ -2224,7 +2234,7 @@
     },
     {
       "date": "2020-10",
-      "value": 90.6,
+      "value": 90.5,
       "source": "ifo_excel"
     },
     {
@@ -2254,7 +2264,7 @@
     },
     {
       "date": "2021-04",
-      "value": 94.1,
+      "value": 94.2,
       "source": "ifo_excel"
     },
     {
@@ -2314,7 +2324,7 @@
     },
     {
       "date": "2022-04",
-      "value": 97.3,
+      "value": 97.4,
       "source": "ifo_excel"
     },
     {
@@ -2374,7 +2384,7 @@
     },
     {
       "date": "2023-04",
-      "value": 95.0,
+      "value": 95.1,
       "source": "ifo_excel"
     },
     {
@@ -2409,7 +2419,7 @@
     },
     {
       "date": "2023-11",
-      "value": 89.5,
+      "value": 89.4,
       "source": "ifo_excel"
     },
     {
@@ -2434,7 +2444,7 @@
     },
     {
       "date": "2024-04",
-      "value": 88.8,
+      "value": 88.9,
       "source": "ifo_excel"
     },
     {
@@ -2454,7 +2464,7 @@
     },
     {
       "date": "2024-08",
-      "value": 86.4,
+      "value": 86.3,
       "source": "ifo_excel"
     },
     {
@@ -2474,17 +2484,17 @@
     },
     {
       "date": "2024-12",
-      "value": 85.1,
+      "value": 85.0,
       "source": "ifo_excel"
     },
     {
       "date": "2025-01",
-      "value": 86.1,
+      "value": 86.0,
       "source": "ifo_excel"
     },
     {
       "date": "2025-02",
-      "value": 85.0,
+      "value": 84.9,
       "source": "ifo_excel"
     },
     {
@@ -2494,12 +2504,12 @@
     },
     {
       "date": "2025-04",
-      "value": 86.3,
+      "value": 86.4,
       "source": "ifo_excel"
     },
     {
       "date": "2025-05",
-      "value": 86.0,
+      "value": 86.1,
       "source": "ifo_excel"
     },
     {
@@ -2509,17 +2519,17 @@
     },
     {
       "date": "2025-07",
-      "value": 86.5,
-      "source": "ifo_excel"
-    },
-    {
-      "date": "2025-08",
       "value": 86.4,
       "source": "ifo_excel"
     },
     {
+      "date": "2025-08",
+      "value": 86.3,
+      "source": "ifo_excel"
+    },
+    {
       "date": "2025-09",
-      "value": 85.7,
+      "value": 85.6,
       "source": "ifo_excel"
     },
     {
@@ -2529,7 +2539,7 @@
     },
     {
       "date": "2025-11",
-      "value": 85.6,
+      "value": 85.5,
       "source": "ifo_excel"
     },
     {
@@ -2539,7 +2549,7 @@
     },
     {
       "date": "2026-01",
-      "value": 85.7,
+      "value": 85.6,
       "source": "ifo_excel"
     },
     {
@@ -2550,6 +2560,16 @@
     {
       "date": "2026-03",
       "value": 86.7,
+      "source": "ifo_excel"
+    },
+    {
+      "date": "2026-04",
+      "value": 85.4,
+      "source": "ifo_excel"
+    },
+    {
+      "date": "2026-05",
+      "value": 86.1,
       "source": "ifo_excel"
     }
   ],
@@ -2701,7 +2721,7 @@
     },
     {
       "date": "2007-06",
-      "value": 100.9,
+      "value": 101.0,
       "source": "ifo_excel"
     },
     {
@@ -3106,7 +3126,7 @@
     },
     {
       "date": "2014-03",
-      "value": 101.9,
+      "value": 101.8,
       "source": "ifo_excel"
     },
     {
@@ -3326,7 +3346,7 @@
     },
     {
       "date": "2017-11",
-      "value": 103.4,
+      "value": 103.3,
       "source": "ifo_excel"
     },
     {
@@ -3381,12 +3401,12 @@
     },
     {
       "date": "2018-10",
-      "value": 99.6,
+      "value": 99.5,
       "source": "ifo_excel"
     },
     {
       "date": "2018-11",
-      "value": 98.6,
+      "value": 98.5,
       "source": "ifo_excel"
     },
     {
@@ -3426,22 +3446,22 @@
     },
     {
       "date": "2019-07",
-      "value": 91.1,
+      "value": 91.2,
       "source": "ifo_excel"
     },
     {
       "date": "2019-08",
-      "value": 90.9,
+      "value": 91.0,
       "source": "ifo_excel"
     },
     {
       "date": "2019-09",
-      "value": 90.9,
+      "value": 90.8,
       "source": "ifo_excel"
     },
     {
       "date": "2019-10",
-      "value": 92.0,
+      "value": 91.9,
       "source": "ifo_excel"
     },
     {
@@ -3461,12 +3481,12 @@
     },
     {
       "date": "2020-02",
-      "value": 93.0,
+      "value": 93.1,
       "source": "ifo_excel"
     },
     {
       "date": "2020-03",
-      "value": 80.2,
+      "value": 80.1,
       "source": "ifo_excel"
     },
     {
@@ -3476,7 +3496,7 @@
     },
     {
       "date": "2020-05",
-      "value": 80.4,
+      "value": 80.5,
       "source": "ifo_excel"
     },
     {
@@ -3501,12 +3521,12 @@
     },
     {
       "date": "2020-10",
-      "value": 95.4,
+      "value": 95.3,
       "source": "ifo_excel"
     },
     {
       "date": "2020-11",
-      "value": 93.0,
+      "value": 92.9,
       "source": "ifo_excel"
     },
     {
@@ -3516,12 +3536,12 @@
     },
     {
       "date": "2021-01",
-      "value": 91.8,
+      "value": 91.9,
       "source": "ifo_excel"
     },
     {
       "date": "2021-02",
-      "value": 94.4,
+      "value": 94.5,
       "source": "ifo_excel"
     },
     {
@@ -3531,7 +3551,7 @@
     },
     {
       "date": "2021-04",
-      "value": 97.8,
+      "value": 97.9,
       "source": "ifo_excel"
     },
     {
@@ -3551,7 +3571,7 @@
     },
     {
       "date": "2021-08",
-      "value": 98.4,
+      "value": 98.5,
       "source": "ifo_excel"
     },
     {
@@ -3561,12 +3581,12 @@
     },
     {
       "date": "2021-10",
-      "value": 97.0,
+      "value": 96.9,
       "source": "ifo_excel"
     },
     {
       "date": "2021-11",
-      "value": 95.1,
+      "value": 94.9,
       "source": "ifo_excel"
     },
     {
@@ -3576,17 +3596,17 @@
     },
     {
       "date": "2022-01",
-      "value": 95.7,
+      "value": 95.8,
       "source": "ifo_excel"
     },
     {
       "date": "2022-02",
-      "value": 98.1,
+      "value": 98.2,
       "source": "ifo_excel"
     },
     {
       "date": "2022-03",
-      "value": 83.4,
+      "value": 83.3,
       "source": "ifo_excel"
     },
     {
@@ -3606,12 +3626,12 @@
     },
     {
       "date": "2022-07",
-      "value": 80.3,
+      "value": 80.4,
       "source": "ifo_excel"
     },
     {
       "date": "2022-08",
-      "value": 81.3,
+      "value": 81.4,
       "source": "ifo_excel"
     },
     {
@@ -3621,12 +3641,12 @@
     },
     {
       "date": "2022-10",
-      "value": 77.1,
+      "value": 76.9,
       "source": "ifo_excel"
     },
     {
       "date": "2022-11",
-      "value": 80.9,
+      "value": 80.7,
       "source": "ifo_excel"
     },
     {
@@ -3636,17 +3656,17 @@
     },
     {
       "date": "2023-01",
-      "value": 86.7,
+      "value": 86.8,
       "source": "ifo_excel"
     },
     {
       "date": "2023-02",
-      "value": 88.0,
+      "value": 88.1,
       "source": "ifo_excel"
     },
     {
       "date": "2023-03",
-      "value": 90.0,
+      "value": 89.9,
       "source": "ifo_excel"
     },
     {
@@ -3656,7 +3676,7 @@
     },
     {
       "date": "2023-05",
-      "value": 87.2,
+      "value": 87.1,
       "source": "ifo_excel"
     },
     {
@@ -3666,12 +3686,12 @@
     },
     {
       "date": "2023-07",
-      "value": 83.5,
+      "value": 83.6,
       "source": "ifo_excel"
     },
     {
       "date": "2023-08",
-      "value": 82.7,
+      "value": 82.8,
       "source": "ifo_excel"
     },
     {
@@ -3681,27 +3701,27 @@
     },
     {
       "date": "2023-10",
-      "value": 84.8,
+      "value": 84.7,
       "source": "ifo_excel"
     },
     {
       "date": "2023-11",
-      "value": 85.2,
-      "source": "ifo_excel"
-    },
-    {
-      "date": "2023-12",
       "value": 85.1,
       "source": "ifo_excel"
     },
     {
+      "date": "2023-12",
+      "value": 85.2,
+      "source": "ifo_excel"
+    },
+    {
       "date": "2024-01",
-      "value": 84.4,
+      "value": 84.5,
       "source": "ifo_excel"
     },
     {
       "date": "2024-02",
-      "value": 84.6,
+      "value": 84.7,
       "source": "ifo_excel"
     },
     {
@@ -3711,12 +3731,12 @@
     },
     {
       "date": "2024-04",
-      "value": 89.3,
+      "value": 89.4,
       "source": "ifo_excel"
     },
     {
       "date": "2024-05",
-      "value": 89.5,
+      "value": 89.4,
       "source": "ifo_excel"
     },
     {
@@ -3726,12 +3746,12 @@
     },
     {
       "date": "2024-07",
-      "value": 86.8,
+      "value": 86.9,
       "source": "ifo_excel"
     },
     {
       "date": "2024-08",
-      "value": 86.6,
+      "value": 86.7,
       "source": "ifo_excel"
     },
     {
@@ -3741,72 +3761,72 @@
     },
     {
       "date": "2024-10",
-      "value": 87.3,
+      "value": 87.1,
       "source": "ifo_excel"
     },
     {
       "date": "2024-11",
-      "value": 87.2,
+      "value": 87.0,
       "source": "ifo_excel"
     },
     {
       "date": "2024-12",
-      "value": 84.8,
-      "source": "ifo_excel"
-    },
-    {
-      "date": "2025-01",
       "value": 84.9,
       "source": "ifo_excel"
     },
     {
+      "date": "2025-01",
+      "value": 85.0,
+      "source": "ifo_excel"
+    },
+    {
       "date": "2025-02",
-      "value": 85.5,
+      "value": 85.6,
       "source": "ifo_excel"
     },
     {
       "date": "2025-03",
-      "value": 88.0,
+      "value": 87.9,
       "source": "ifo_excel"
     },
     {
       "date": "2025-04",
-      "value": 87.3,
+      "value": 87.4,
       "source": "ifo_excel"
     },
     {
       "date": "2025-05",
-      "value": 88.9,
+      "value": 88.7,
       "source": "ifo_excel"
     },
     {
       "date": "2025-06",
-      "value": 90.3,
+      "value": 90.4,
       "source": "ifo_excel"
     },
     {
       "date": "2025-07",
-      "value": 90.6,
+      "value": 90.7,
       "source": "ifo_excel"
     },
     {
       "date": "2025-08",
-      "value": 91.3,
+      "value": 91.4,
       "source": "ifo_excel"
     },
     {
       "date": "2025-09",
-      "value": 89.6,
+      "value": 89.5,
       "source": "ifo_excel"
     },
     {
       "date": "2025-10",
-      "value": 91.7,
+      "value": 91.5,
       "source": "ifo_excel"
     },
     {
       "date": "2025-11",
-      "value": 90.6,
+      "value": 90.4,
       "source": "ifo_excel"
     },
     {
@@ -3816,44 +3836,54 @@
     },
     {
       "date": "2026-01",
-      "value": 89.6,
+      "value": 89.8,
       "source": "ifo_excel"
     },
     {
       "date": "2026-02",
-      "value": 90.2,
+      "value": 90.3,
       "source": "ifo_excel"
     },
     {
       "date": "2026-03",
-      "value": 86.0,
+      "value": 85.9,
+      "source": "ifo_excel"
+    },
+    {
+      "date": "2026-04",
+      "value": 83.5,
+      "source": "ifo_excel"
+    },
+    {
+      "date": "2026-05",
+      "value": 83.8,
       "source": "ifo_excel"
     }
   ],
   "latest_climate": {
-    "date": "2026-03",
-    "value": 86.4,
+    "date": "2026-05",
+    "value": 84.9,
     "source": "ifo_excel"
   },
   "latest_current": {
-    "date": "2026-03",
-    "value": 86.7,
+    "date": "2026-05",
+    "value": 86.1,
     "source": "ifo_excel"
   },
   "latest_expectations": {
-    "date": "2026-03",
-    "value": 86.0,
+    "date": "2026-05",
+    "value": 83.8,
     "source": "ifo_excel"
   },
   "next_release": {
-    "date": "2026-04-24",
-    "datetime_utc": "2026-04-24T08:00:00+00:00",
-    "datetime_jst": "2026-04-24T17:00:00+09:00",
+    "date": "2026-06-24",
+    "datetime_utc": "2026-06-24T08:00:00+00:00",
+    "datetime_jst": "2026-06-24T17:00:00+09:00",
     "time_jst": "17:00",
-    "datetime_cet": "2026-04-24T10:00:00+02:00",
+    "datetime_cet": "2026-06-24T10:00:00+02:00",
     "time_cet": "10:00",
-    "label": "Ifo Business Climate (Apr)",
-    "estimate": 85.4
+    "label": "Ifo Business Climate (Jun)",
+    "estimate": 84.2
   },
-  "last_updated": "2026-04-18T11:30:40.443540+09:00"
+  "last_updated": "2026-06-05T17:30:29.218345+09:00"
 }

@@ -26,7 +26,7 @@ router = APIRouter(
 # -------------------------------------------------------------------------
 
 @router.get("/land-sales-income")
-async def get_land_sales_income(
+def get_land_sales_income(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """土地売却収入（累計、亿元）データを返す"""
@@ -34,13 +34,13 @@ async def get_land_sales_income(
 
 
 @router.get("/land-sales-income/cache")
-async def get_land_sales_income_cache_status() -> Dict[str, Any]:
+def get_land_sales_income_cache_status() -> Dict[str, Any]:
     """土地売却収入のキャッシュ状態を返す"""
     return cn_land_sales_income_service.get_cache_status()
 
 
 @router.delete("/land-sales-income/cache")
-async def invalidate_land_sales_income_cache() -> Dict[str, Any]:
+def invalidate_land_sales_income_cache() -> Dict[str, Any]:
     """土地売却収入のキャッシュを無効化"""
     return cn_land_sales_income_service.invalidate_cache()
 
@@ -50,7 +50,7 @@ async def invalidate_land_sales_income_cache() -> Dict[str, Any]:
 # -------------------------------------------------------------------------
 
 @router.get("/local-bonds")
-async def get_local_bonds(
+def get_local_bonds(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """地方政府債券データ（新規比率・専項比率・枠余地・コスト）を返す"""
@@ -58,13 +58,13 @@ async def get_local_bonds(
 
 
 @router.get("/local-bonds/cache")
-async def get_local_bonds_cache_status() -> Dict[str, Any]:
+def get_local_bonds_cache_status() -> Dict[str, Any]:
     """地方政府債券のキャッシュ状態を返す"""
     return cn_local_bonds_service.get_cache_status()
 
 
 @router.delete("/local-bonds/cache")
-async def invalidate_local_bonds_cache() -> Dict[str, Any]:
+def invalidate_local_bonds_cache() -> Dict[str, Any]:
     """地方政府債券のキャッシュを無効化"""
     return cn_local_bonds_service.invalidate_cache()
 
@@ -74,7 +74,7 @@ async def invalidate_local_bonds_cache() -> Dict[str, Any]:
 # -------------------------------------------------------------------------
 
 @router.get("/bond-issuance")
-async def get_bond_issuance(
+def get_bond_issuance(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """国債発行データ（入札予定・結果・月次供給量）を返す"""
@@ -83,28 +83,28 @@ async def get_bond_issuance(
 
 
 @router.get("/bond-issuance/cache")
-async def get_bond_issuance_cache_status() -> Dict[str, Any]:
+def get_bond_issuance_cache_status() -> Dict[str, Any]:
     """国債発行のキャッシュ状態を返す"""
     from services.china.cn_government_bond_issuance_service import cn_government_bond_issuance_service
     return cn_government_bond_issuance_service.get_cache_status()
 
 
 @router.delete("/bond-issuance/cache")
-async def invalidate_bond_issuance_cache() -> Dict[str, Any]:
+def invalidate_bond_issuance_cache() -> Dict[str, Any]:
     """国債発行のキャッシュを無効化"""
     from services.china.cn_government_bond_issuance_service import cn_government_bond_issuance_service
     return cn_government_bond_issuance_service.invalidate_cache()
 
 
 @router.post("/bond-issuance/fetch")
-async def fetch_bond_issuance() -> Dict[str, Any]:
+def fetch_bond_issuance() -> Dict[str, Any]:
     """国債発行の新規データを手動で取得・更新"""
     from services.china.cn_government_bond_issuance_service import cn_government_bond_issuance_service
     return cn_government_bond_issuance_service.update_latest()
 
 
 @router.post("/bond-issuance/initial-scrape")
-async def initial_scrape_bond_issuance(
+def initial_scrape_bond_issuance(
     max_pages: int = Query(15, description="スクレイピングするページ数")
 ) -> Dict[str, Any]:
     """国債発行の初回全ページスクレイピング"""

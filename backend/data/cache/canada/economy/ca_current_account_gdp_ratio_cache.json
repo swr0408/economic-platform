@@ -1058,34 +1058,40 @@
     },
     {
       "date": "2025-01-01",
-      "value": -0.44,
-      "current_account": -3394.0,
-      "gdp": 770785.0
+      "value": -0.38,
+      "current_account": -2915.0,
+      "gdp": 770148.0
     },
     {
       "date": "2025-04-01",
-      "value": -2.67,
-      "current_account": -21034.0,
-      "gdp": 789143.0
+      "value": -2.76,
+      "current_account": -21800.0,
+      "gdp": 789753.0
     },
     {
       "date": "2025-07-01",
-      "value": -0.62,
-      "current_account": -5272.0,
-      "gdp": 847465.0
+      "value": -0.6,
+      "current_account": -5062.0,
+      "gdp": 848364.0
     },
     {
       "date": "2025-10-01",
-      "value": -0.08,
-      "current_account": -706.0,
-      "gdp": 836072.0
+      "value": -0.12,
+      "current_account": -1009.0,
+      "gdp": 836992.0
+    },
+    {
+      "date": "2026-01-01",
+      "value": -0.9,
+      "current_account": -7184.0,
+      "gdp": 793974.0
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "value": -0.08,
-    "current_account": -706.0,
-    "gdp": 836072.0
+    "date": "2026-01-01",
+    "value": -0.9,
+    "current_account": -7184.0,
+    "gdp": 793974.0
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1099,14 +1105,14 @@
     "frequency": "quarterly"
   },
   "next_release": {
-    "date": "2026-04-30",
-    "datetime_utc": "2026-04-30T12:30:00+00:00",
-    "datetime_jst": "2026-04-30T21:30:00+09:00",
+    "date": "2026-06-30",
+    "datetime_utc": "2026-06-30T12:30:00+00:00",
+    "datetime_jst": "2026-06-30T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-04-30T08:30:00-04:00",
+    "datetime_toronto": "2026-06-30T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Gross Domestic Product MoM (Mar)",
-    "estimate": -0.1
+    "label": "Gross Domestic Product MoM (May)",
+    "estimate": 0.1
   },
-  "last_updated": "2026-04-18T04:04:28.891030+09:00"
+  "last_updated": "2026-06-07T11:31:34.642099+09:00"
 }

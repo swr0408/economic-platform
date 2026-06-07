@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_ecb_hicp(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_ecb_hicp(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     ECB HICP データを取得
 
@@ -24,7 +24,7 @@ async def get_ecb_hicp(force_refresh: bool = Query(False, description="強制更
 
 
 @router.post("/refresh")
-async def refresh_ecb_hicp():
+def refresh_ecb_hicp():
     """
     ECB HICP データを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_ecb_hicp():
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

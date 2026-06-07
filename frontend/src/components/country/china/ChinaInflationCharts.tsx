@@ -2,6 +2,7 @@ import { Spin, Alert, Button } from 'antd'
 import { useChinaInflationDashboard } from '../../../hooks/useDashboardData'
 import CnCpiChart from './inflation/CnCpiChart'
 import CnPpiChart from './inflation/CnPpiChart'
+import CnExportPricesChart from './inflation/CnExportPricesChart'
 
 /**
  * 中国インフレーションチャート群
@@ -42,6 +43,10 @@ export default function ChinaInflationCharts() {
       {/* PPI */}
       <CnPpiChart
         data={dashboardData?.cn_ppi ?? null}
+      />
+      {/* 輸出物価指数 */}
+      <CnExportPricesChart
+        data={dashboardData?.cn_export_prices ?? null}
       />
     </div>
   )

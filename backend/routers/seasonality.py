@@ -9,9 +9,11 @@ from pathlib import Path
 try:
     from backend.config import SEASONALITY_DIR, SEASONALITY_STATS_DIR
     from backend.services.seasonality_service import build_index, build_manifest
+    from backend.services.seasonality_analysis_service import build_analysis
 except ImportError:
     from config import SEASONALITY_DIR, SEASONALITY_STATS_DIR
     from services.seasonality_service import build_index, build_manifest
+    from services.seasonality_analysis_service import build_analysis
 
 
 router = APIRouter()
@@ -65,3 +67,17 @@ def api_seasonality_intramonth_path(symbol: str):
 def api_seasonality_daily_stats(symbol: str):
     """日別統計（月×営業日インデックスの平均/n/下落率）を返す。"""
     return _load_stats_json(symbol, "daily_stats.json")
+
+
+@router.get("/api/seasonality/analysis")
+def api_seasonality_analysis():
+    """全銘柄を横断したシーズナリティ分析結果を返す。
+
+    各銘柄×月×期間×チャート種別で「傾向の強いシグナル」を抽出し、
+    events 配列として返す。
+    """
+    try:
+        return build_analysis()
+    except Exception as e:
+        print("api_seasonality_analysis error:", repr(e))
+        raise HTTPException(status_code=500, detail="failed to build analysis")

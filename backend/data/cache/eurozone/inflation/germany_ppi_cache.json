@@ -95,6 +95,22 @@
       "ppi_mom_change": -0.5,
       "source": "fmp",
       "is_preliminary": true
+    },
+    {
+      "date": "2026-03-01",
+      "ppi_index": null,
+      "ppi_yoy_change": -0.2,
+      "ppi_mom_change": 2.5,
+      "source": "fmp",
+      "is_preliminary": true
+    },
+    {
+      "date": "2026-04-01",
+      "ppi_index": null,
+      "ppi_yoy_change": 1.7,
+      "ppi_mom_change": 1.2,
+      "source": "fmp",
+      "is_preliminary": true
     }
   ],
   "metadata": {
@@ -105,14 +121,14 @@
     "description": "ドイツ生産者物価指数（PPI）"
   },
   "next_release": {
-    "date": "2026-04-20",
-    "datetime_utc": "2026-04-20T06:00:00+00:00",
-    "datetime_jst": "2026-04-20T15:00:00+09:00",
+    "date": "2026-06-19",
+    "datetime_utc": "2026-06-19T06:00:00+00:00",
+    "datetime_jst": "2026-06-19T15:00:00+09:00",
     "time_jst": "15:00",
-    "datetime_cet": "2026-04-20T08:00:00+02:00",
+    "datetime_cet": "2026-06-19T08:00:00+02:00",
     "time_cet": "08:00",
-    "label": "Producer Price Index YoY (Mar)",
-    "estimate": -1.8
+    "label": "Producer Price Index MoM (May)",
+    "estimate": null
   },
-  "last_updated": "2026-04-18T11:32:41.718911+09:00"
+  "last_updated": "2026-06-06T09:46:45.117107+09:00"
 }

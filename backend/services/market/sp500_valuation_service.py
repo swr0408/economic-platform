@@ -255,11 +255,11 @@ class Sp500ValuationService:
             mom = monthly_mom.get(ym, {})
             mt_item = {
                 "date": ym,
-                "forward_pe": round(float(row["forward_pe"]), 2),
-                "forward_eps": round(float(row["forward_eps"]), 2),
-                "earnings_yield": round(float(row["earnings_yield"]) * 100, 2),
-                "close": round(float(row["close"]), 2),
-                "yield_10y": round(float(row["yield_10y"]) * 100, 2),
+                "forward_pe": round(float(row["forward_pe"]), 2) if pd.notna(row.get("forward_pe")) else None,
+                "forward_eps": round(float(row["forward_eps"]), 2) if pd.notna(row.get("forward_eps")) else None,
+                "earnings_yield": round(float(row["earnings_yield"]) * 100, 2) if pd.notna(row.get("earnings_yield")) else None,
+                "close": round(float(row["close"]), 2) if pd.notna(row.get("close")) else None,
+                "yield_10y": round(float(row["yield_10y"]) * 100, 2) if pd.notna(row.get("yield_10y")) else None,
                 "forward_pe_mom": mom.get("forward_pe"),
                 "forward_eps_mom": mom.get("forward_eps"),
                 "earnings_yield_mom": mom.get("earnings_yield"),

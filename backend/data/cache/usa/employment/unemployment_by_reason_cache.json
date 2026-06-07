@@ -2511,15 +2511,31 @@
       "leavers": 898.0,
       "reentrants": 2254.0,
       "new_entrants": 714.0
+    },
+    {
+      "date": "2026-04-01",
+      "layoff": 917.0,
+      "other_losers": 2595.0,
+      "leavers": 844.0,
+      "reentrants": 2282.0,
+      "new_entrants": 805.0
+    },
+    {
+      "date": "2026-05-01",
+      "layoff": 778.0,
+      "other_losers": 2606.0,
+      "leavers": 916.0,
+      "reentrants": 2209.0,
+      "new_entrants": 818.0
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "layoff": 877.0,
-    "other_losers": 2526.0,
-    "leavers": 898.0,
-    "reentrants": 2254.0,
-    "new_entrants": 714.0
+    "date": "2026-05-01",
+    "layoff": 778.0,
+    "other_losers": 2606.0,
+    "leavers": 916.0,
+    "reentrants": 2209.0,
+    "new_entrants": 818.0
   },
-  "last_updated": "2026-04-14T21:31:45.738280+09:00"
+  "last_updated": "2026-06-06T21:31:06.764496+09:00"
 }

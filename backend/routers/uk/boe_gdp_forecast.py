@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/boe-gdp-forecast")
-async def get_boe_gdp_forecast() -> Dict:
+def get_boe_gdp_forecast() -> Dict:
     """
     BOE GDP成長率見通しデータを取得
 
@@ -32,7 +32,7 @@ async def get_boe_gdp_forecast() -> Dict:
 
 
 @router.post("/api/uk/boe-gdp-forecast/refresh")
-async def refresh_boe_gdp_forecast() -> Dict:
+def refresh_boe_gdp_forecast() -> Dict:
     """
     BOE GDP見通しデータを強制更新
 

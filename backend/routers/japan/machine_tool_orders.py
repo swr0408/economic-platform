@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/japan", tags=["japan-economy"])
 
 
 @router.get("/machine-tool-orders")
-async def get_machine_tool_orders(
+def get_machine_tool_orders(
     force_refresh: bool = Query(False, description="キャッシュを無視して強制的に最新データを取得")
 ) -> Dict[str, Any]:
     """
@@ -45,7 +45,7 @@ async def get_machine_tool_orders(
 
 
 @router.get("/machine-tool-orders/cache-status")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """Get machine tool orders cache status"""
     try:
         return machine_tool_orders_service.get_cache_status()
@@ -55,7 +55,7 @@ async def get_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/machine-tool-orders/cache")
-async def invalidate_cache() -> Dict[str, Any]:
+def invalidate_cache() -> Dict[str, Any]:
     """Invalidate machine tool orders cache"""
     try:
         deleted = machine_tool_orders_service.invalidate_cache()

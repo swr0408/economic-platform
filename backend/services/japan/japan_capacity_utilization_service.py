@@ -43,10 +43,11 @@ class JapanCapacityUtilizationService:
 
     def _download_excel_file(self) -> Optional[bytes]:
         """
-        Download the Excel file from METI with retry logic
+        Download the Excel file from METI with retry logic.
+        Fast-fail: 1 attempt, 20s timeout — caller must handle failure with cache fallback.
         """
-        max_retries = 3
-        timeout = 300  # 5 minutes timeout
+        max_retries = 1
+        timeout = 20
 
         for attempt in range(max_retries):
             try:
@@ -256,22 +257,50 @@ class JapanCapacityUtilizationService:
             return None
 
     def get_capacity_data(self, force_refresh: bool = False) -> Dict[str, Any]:
-        """Get Japan Capacity Utilization data with caching"""
-        # Check Redis cache
-        if not force_refresh:
-            cached_data = redis_client.get(self.DATA_CACHE_KEY)
-            if cached_data:
-                last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
-                    return {
-                        "data": cached_data.get("data", []),
-                        "latest": cached_data.get("data", [{}])[0] if cached_data.get("data") else None,
-                        "cached": True,
-                        "source": "redis",
-                        "last_updated": last_updated_str
-                    }
+        """Get Japan Capacity Utilization data with caching.
 
-        # Fetch fresh data
+        Strategy:
+        1. Fresh cache hit → return immediately.
+        2. Circuit breaker: if METI failed in the last 5 minutes, skip fetch and serve stale cache.
+        3. Otherwise try METI; on success update both caches and clear breaker.
+        4. On failure set breaker (5 min cooldown) and fall back to Redis → file cache → empty.
+        """
+        cached_data = redis_client.get(self.DATA_CACHE_KEY)
+        negative_key = self.DATA_CACHE_KEY + ":fetch_failed"
+
+        # 1) Fresh cache hit
+        if not force_refresh and cached_data:
+            last_updated_str = cached_data.get("last_updated")
+            if last_updated_str and not self._should_refresh(last_updated_str):
+                return {
+                    "data": cached_data.get("data", []),
+                    "latest": cached_data.get("data", [{}])[0] if cached_data.get("data") else None,
+                    "cached": True,
+                    "source": "redis",
+                    "last_updated": last_updated_str
+                }
+
+        # 2) Circuit breaker: recent METI failure → skip fetch, serve any cache
+        if not force_refresh and redis_client.exists(negative_key):
+            if cached_data:
+                return {
+                    "data": cached_data.get("data", []),
+                    "latest": cached_data.get("data", [{}])[0] if cached_data.get("data") else None,
+                    "cached": True,
+                    "source": "redis (stale, breaker)",
+                    "last_updated": cached_data.get("last_updated")
+                }
+            file_cache = self._load_file_cache()
+            if file_cache:
+                return {
+                    "data": file_cache.get("data", []),
+                    "latest": file_cache.get("data", [{}])[0] if file_cache.get("data") else None,
+                    "cached": True,
+                    "source": "file (stale, breaker)",
+                    "last_updated": file_cache.get("last_updated")
+                }
+
+        # 3) Try fresh fetch
         result = self._fetch_capacity_data()
         if result:
             cache_payload = {
@@ -281,6 +310,7 @@ class JapanCapacityUtilizationService:
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
+            redis_client.delete(negative_key)
 
             return {
                 "data": result["data"],
@@ -290,7 +320,17 @@ class JapanCapacityUtilizationService:
                 "last_updated": result["last_updated"]
             }
 
-        # File cache fallback
+        # 4) Fetch failed → set breaker and serve any cache
+        redis_client.set(negative_key, {"failed_at": datetime.now(JST).isoformat()}, expire=300)
+
+        if cached_data:
+            return {
+                "data": cached_data.get("data", []),
+                "latest": cached_data.get("data", [{}])[0] if cached_data.get("data") else None,
+                "cached": True,
+                "source": "redis (stale, fallback)",
+                "last_updated": cached_data.get("last_updated")
+            }
         file_cache = self._load_file_cache()
         if file_cache:
             return {
@@ -311,7 +351,11 @@ class JapanCapacityUtilizationService:
         }
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """Check if cache should be refreshed (24 hours)"""
+        """Check if cache should be refreshed.
+
+        月次指標 — 7-day freshness window aligns with release cadence and absorbs
+        occasional source-API downtime without forcing every request to hit it.
+        """
         try:
             last_updated = datetime.fromisoformat(last_updated_str)
             if last_updated.tzinfo is None:
@@ -320,7 +364,7 @@ class JapanCapacityUtilizationService:
             now = datetime.now(JST)
             cache_age_hours = (now - last_updated).total_seconds() / 3600
 
-            if cache_age_hours > 24:
+            if cache_age_hours > 24 * 7:
                 return True
 
             return False

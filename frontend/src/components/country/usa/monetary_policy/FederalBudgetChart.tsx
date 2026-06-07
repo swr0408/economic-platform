@@ -113,6 +113,7 @@ export default function FederalBudgetChart({ data }: FederalBudgetChartProps) {
         showPeriodSelector={false}
         dataSource="U.S. Treasury"
         sourceUrl="https://fiscaldata.treasury.gov/datasets/monthly-treasury-statement/"
+        handbookId="federal-budget"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

@@ -1,15 +1,15 @@
 {
   "symbol": "JPY_INDEX",
-  "generated_at": "2026-04-08T16:42:26.610904+00:00",
+  "generated_at": "2026-05-15T16:54:22.971552+00:00",
   "periods": {
     "full": {
       "start_year": 2004,
-      "end_year": 2024,
-      "label": "2004-2024"
+      "end_year": 2025,
+      "label": "2004-2025"
     },
     "recent": {
-      "start_year": 2015,
-      "end_year": 2024,
+      "start_year": 2016,
+      "end_year": 2025,
       "label": "直近10年"
     }
   },
@@ -19,143 +19,143 @@
       "full": [
         {
           "day": 1,
-          "n": 17,
-          "mean_pct": 0.0569,
-          "median_pct": 0.1155,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": 0.0401,
+          "median_pct": 0.0356,
+          "neg_rate": 0.5
         },
         {
           "day": 2,
-          "n": 17,
-          "mean_pct": -0.0953,
-          "median_pct": 0.0,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": -0.0948,
+          "median_pct": -0.0108,
+          "neg_rate": 0.5
         },
         {
           "day": 3,
-          "n": 17,
-          "mean_pct": -0.1389,
-          "median_pct": -0.1839,
-          "neg_rate": 0.7647
+          "n": 18,
+          "mean_pct": -0.1606,
+          "median_pct": -0.2163,
+          "neg_rate": 0.7778
         },
         {
           "day": 4,
-          "n": 17,
-          "mean_pct": 0.0374,
-          "median_pct": -0.0358,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": 0.0255,
+          "median_pct": -0.0429,
+          "neg_rate": 0.6111
         },
         {
           "day": 5,
-          "n": 17,
-          "mean_pct": 0.2537,
-          "median_pct": 0.1994,
-          "neg_rate": 0.2353
+          "n": 18,
+          "mean_pct": 0.2472,
+          "median_pct": 0.1848,
+          "neg_rate": 0.2222
         },
         {
           "day": 6,
-          "n": 17,
-          "mean_pct": 0.1306,
-          "median_pct": 0.0439,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.1337,
+          "median_pct": 0.111,
+          "neg_rate": 0.3889
         },
         {
           "day": 7,
-          "n": 17,
-          "mean_pct": 0.1772,
-          "median_pct": 0.1754,
-          "neg_rate": 0.2941
+          "n": 18,
+          "mean_pct": 0.1513,
+          "median_pct": 0.1751,
+          "neg_rate": 0.3333
         },
         {
           "day": 8,
-          "n": 17,
-          "mean_pct": 0.1718,
-          "median_pct": 0.1153,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.1565,
+          "median_pct": 0.0925,
+          "neg_rate": 0.4444
         },
         {
           "day": 9,
-          "n": 17,
-          "mean_pct": 0.0428,
-          "median_pct": 0.0889,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0618,
+          "median_pct": 0.104,
+          "neg_rate": 0.3889
         },
         {
           "day": 10,
-          "n": 17,
-          "mean_pct": 0.0316,
-          "median_pct": 0.0384,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0643,
+          "median_pct": 0.0948,
+          "neg_rate": 0.3889
         },
         {
           "day": 11,
-          "n": 17,
-          "mean_pct": -0.2037,
-          "median_pct": -0.1959,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.2126,
+          "median_pct": -0.1969,
+          "neg_rate": 0.5556
         },
         {
           "day": 12,
-          "n": 17,
-          "mean_pct": 0.0119,
-          "median_pct": -0.055,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0229,
+          "median_pct": 0.0038,
+          "neg_rate": 0.5
         },
         {
           "day": 13,
-          "n": 17,
-          "mean_pct": -0.0291,
-          "median_pct": -0.0517,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0496,
+          "median_pct": -0.0701,
+          "neg_rate": 0.5556
         },
         {
           "day": 14,
-          "n": 17,
-          "mean_pct": 0.0586,
-          "median_pct": 0.0547,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0675,
+          "median_pct": 0.0722,
+          "neg_rate": 0.3333
         },
         {
           "day": 15,
-          "n": 17,
-          "mean_pct": 0.0243,
-          "median_pct": 0.0578,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0418,
+          "median_pct": 0.0608,
+          "neg_rate": 0.3333
         },
         {
           "day": 16,
-          "n": 17,
-          "mean_pct": 0.0185,
-          "median_pct": 0.0799,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.001,
+          "median_pct": 0.0488,
+          "neg_rate": 0.3889
         },
         {
           "day": 17,
-          "n": 17,
-          "mean_pct": -0.0709,
-          "median_pct": -0.0726,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.0761,
+          "median_pct": -0.1118,
+          "neg_rate": 0.6667
         },
         {
           "day": 18,
-          "n": 17,
-          "mean_pct": -0.0084,
-          "median_pct": 0.0594,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": -0.0016,
+          "median_pct": 0.0612,
+          "neg_rate": 0.3889
         },
         {
           "day": 19,
-          "n": 17,
-          "mean_pct": 0.1185,
-          "median_pct": 0.0436,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.1088,
+          "median_pct": 0.0264,
+          "neg_rate": 0.4444
         },
         {
           "day": 20,
-          "n": 14,
-          "mean_pct": 0.078,
-          "median_pct": 0.1142,
-          "neg_rate": 0.4286
+          "n": 15,
+          "mean_pct": 0.0639,
+          "median_pct": 0.0986,
+          "neg_rate": 0.4667
         },
         {
           "day": 21,
@@ -169,142 +169,142 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.0236,
-          "median_pct": 0.0356,
-          "neg_rate": 0.5
+          "mean_pct": -0.0131,
+          "median_pct": -0.1006,
+          "neg_rate": 0.6
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": -0.0855,
-          "median_pct": -0.0108,
-          "neg_rate": 0.5
+          "mean_pct": -0.1398,
+          "median_pct": -0.0538,
+          "neg_rate": 0.6
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": -0.0467,
-          "median_pct": -0.1458,
-          "neg_rate": 0.8
+          "mean_pct": -0.1498,
+          "median_pct": -0.2191,
+          "neg_rate": 0.9
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.0999,
-          "median_pct": -0.0347,
+          "mean_pct": 0.0858,
+          "median_pct": -0.044,
           "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": 0.1979,
-          "median_pct": 0.1014,
+          "mean_pct": 0.2091,
+          "median_pct": 0.1533,
           "neg_rate": 0.3
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.1195,
+          "mean_pct": 0.0831,
           "median_pct": 0.0107,
           "neg_rate": 0.5
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": 0.208,
-          "median_pct": 0.1751,
-          "neg_rate": 0.2
+          "mean_pct": 0.1064,
+          "median_pct": 0.1699,
+          "neg_rate": 0.3
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.2415,
-          "median_pct": 0.2191,
-          "neg_rate": 0.4
+          "mean_pct": 0.1802,
+          "median_pct": 0.0271,
+          "neg_rate": 0.5
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.0823,
-          "median_pct": 0.072,
-          "neg_rate": 0.4
+          "mean_pct": 0.1548,
+          "median_pct": 0.1253,
+          "neg_rate": 0.3
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": 0.096,
+          "mean_pct": 0.1091,
           "median_pct": 0.1052,
           "neg_rate": 0.4
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.2475,
+          "mean_pct": -0.1942,
           "median_pct": -0.1969,
           "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.0548,
-          "median_pct": -0.075,
-          "neg_rate": 0.6
+          "mean_pct": -0.0244,
+          "median_pct": 0.0392,
+          "neg_rate": 0.5
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": -0.0304,
+          "mean_pct": -0.0373,
           "median_pct": -0.0054,
           "neg_rate": 0.5
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": -0.0769,
-          "median_pct": -0.0321,
-          "neg_rate": 0.5
+          "mean_pct": 0.0121,
+          "median_pct": 0.0285,
+          "neg_rate": 0.4
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.0281,
+          "mean_pct": 0.0206,
           "median_pct": 0.0593,
           "neg_rate": 0.3
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.084,
+          "mean_pct": 0.0625,
           "median_pct": 0.0954,
           "neg_rate": 0.3
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.1457,
+          "mean_pct": -0.1562,
           "median_pct": -0.1924,
           "neg_rate": 0.7
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": 0.0902,
+          "mean_pct": 0.0767,
           "median_pct": 0.07,
           "neg_rate": 0.3
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": 0.0968,
+          "mean_pct": 0.1065,
           "median_pct": 0.0097,
           "neg_rate": 0.5
         },
         {
           "day": 20,
           "n": 8,
-          "mean_pct": 0.1561,
-          "median_pct": 0.2749,
-          "neg_rate": 0.375
+          "mean_pct": 0.1055,
+          "median_pct": 0.0966,
+          "neg_rate": 0.5
         },
         {
           "day": 21,
@@ -320,136 +320,136 @@
       "full": [
         {
           "day": 1,
-          "n": 17,
-          "mean_pct": 0.0898,
-          "median_pct": 0.0793,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0786,
+          "median_pct": 0.0691,
+          "neg_rate": 0.3889
         },
         {
           "day": 2,
-          "n": 17,
-          "mean_pct": -0.1153,
-          "median_pct": -0.1551,
-          "neg_rate": 0.7059
+          "n": 18,
+          "mean_pct": -0.0756,
+          "median_pct": -0.1156,
+          "neg_rate": 0.6667
         },
         {
           "day": 3,
-          "n": 17,
-          "mean_pct": -0.1309,
-          "median_pct": -0.1097,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.1147,
+          "median_pct": -0.0724,
+          "neg_rate": 0.5556
         },
         {
           "day": 4,
-          "n": 17,
-          "mean_pct": -0.0418,
-          "median_pct": -0.1538,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.0054,
+          "median_pct": -0.1239,
+          "neg_rate": 0.5556
         },
         {
           "day": 5,
-          "n": 17,
-          "mean_pct": -0.163,
-          "median_pct": -0.092,
-          "neg_rate": 0.7647
+          "n": 18,
+          "mean_pct": -0.1326,
+          "median_pct": -0.0853,
+          "neg_rate": 0.7222
         },
         {
           "day": 6,
-          "n": 17,
-          "mean_pct": 0.0862,
-          "median_pct": 0.0237,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": 0.0858,
+          "median_pct": 0.0399,
+          "neg_rate": 0.4444
         },
         {
           "day": 7,
-          "n": 17,
-          "mean_pct": -0.2037,
-          "median_pct": -0.1323,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.1947,
+          "median_pct": -0.1092,
+          "neg_rate": 0.6667
         },
         {
           "day": 8,
-          "n": 17,
-          "mean_pct": 0.0217,
-          "median_pct": -0.1209,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.0084,
+          "median_pct": -0.1355,
+          "neg_rate": 0.6111
         },
         {
           "day": 9,
-          "n": 17,
-          "mean_pct": -0.0791,
-          "median_pct": -0.0768,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.038,
+          "median_pct": -0.0637,
+          "neg_rate": 0.6111
         },
         {
           "day": 10,
-          "n": 17,
-          "mean_pct": -0.0806,
-          "median_pct": 0.044,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": -0.0621,
+          "median_pct": 0.0492,
+          "neg_rate": 0.4444
         },
         {
           "day": 11,
-          "n": 17,
-          "mean_pct": -0.1222,
-          "median_pct": -0.1125,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.1264,
+          "median_pct": -0.153,
+          "neg_rate": 0.6667
         },
         {
           "day": 12,
-          "n": 17,
-          "mean_pct": -0.0633,
-          "median_pct": 0.0463,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": -0.0416,
+          "median_pct": 0.0497,
+          "neg_rate": 0.3889
         },
         {
           "day": 13,
-          "n": 17,
-          "mean_pct": -0.0341,
-          "median_pct": -0.0238,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0142,
+          "median_pct": -0.0063,
+          "neg_rate": 0.5
         },
         {
           "day": 14,
-          "n": 17,
-          "mean_pct": 0.1343,
-          "median_pct": 0.0308,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.1694,
+          "median_pct": 0.0719,
+          "neg_rate": 0.3333
         },
         {
           "day": 15,
-          "n": 17,
-          "mean_pct": 0.0871,
-          "median_pct": 0.1932,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0852,
+          "median_pct": 0.1233,
+          "neg_rate": 0.3889
         },
         {
           "day": 16,
-          "n": 17,
-          "mean_pct": 0.1675,
-          "median_pct": 0.1329,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.1824,
+          "median_pct": 0.1341,
+          "neg_rate": 0.3333
         },
         {
           "day": 17,
-          "n": 17,
-          "mean_pct": -0.1183,
-          "median_pct": 0.0,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": -0.0914,
+          "median_pct": 0.018,
+          "neg_rate": 0.4444
         },
         {
           "day": 18,
-          "n": 17,
-          "mean_pct": -0.1257,
-          "median_pct": -0.1827,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.123,
+          "median_pct": -0.1304,
+          "neg_rate": 0.6111
         },
         {
           "day": 19,
-          "n": 17,
-          "mean_pct": 0.0294,
-          "median_pct": 0.0917,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0277,
+          "median_pct": 0.0784,
+          "neg_rate": 0.3889
         },
         {
           "day": 20,
@@ -463,135 +463,135 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.0867,
-          "median_pct": 0.0691,
-          "neg_rate": 0.3
+          "mean_pct": 0.0696,
+          "median_pct": 0.0497,
+          "neg_rate": 0.4
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": -0.1988,
-          "median_pct": -0.201,
-          "neg_rate": 0.7
+          "mean_pct": -0.119,
+          "median_pct": -0.1788,
+          "neg_rate": 0.6
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.0135,
+          "mean_pct": 0.0143,
           "median_pct": 0.0298,
           "neg_rate": 0.4
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": -0.032,
+          "mean_pct": 0.0387,
           "median_pct": -0.1866,
-          "neg_rate": 0.7
+          "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.0801,
-          "median_pct": -0.0397,
-          "neg_rate": 0.6
+          "mean_pct": 0.1154,
+          "median_pct": 0.0123,
+          "neg_rate": 0.5
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.1195,
-          "median_pct": 0.0399,
+          "mean_pct": 0.125,
+          "median_pct": 0.0664,
           "neg_rate": 0.4
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.2041,
-          "median_pct": -0.1092,
+          "mean_pct": -0.1762,
+          "median_pct": -0.0642,
           "neg_rate": 0.6
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.0458,
+          "mean_pct": 0.0454,
           "median_pct": -0.077,
           "neg_rate": 0.6
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": -0.0624,
+          "mean_pct": -0.0539,
           "median_pct": -0.0637,
           "neg_rate": 0.7
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.0987,
+          "mean_pct": -0.09,
           "median_pct": 0.0492,
           "neg_rate": 0.4
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.0619,
+          "mean_pct": -0.0426,
           "median_pct": -0.0604,
           "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": 0.0622,
+          "mean_pct": 0.045,
           "median_pct": 0.1023,
           "neg_rate": 0.2
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": 0.0959,
-          "median_pct": 0.0135,
-          "neg_rate": 0.4
+          "mean_pct": 0.1306,
+          "median_pct": 0.0396,
+          "neg_rate": 0.3
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": -0.0206,
-          "median_pct": -0.0909,
-          "neg_rate": 0.5
+          "mean_pct": 0.0915,
+          "median_pct": 0.0055,
+          "neg_rate": 0.4
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.1385,
-          "median_pct": 0.2125,
+          "mean_pct": 0.1224,
+          "median_pct": 0.1321,
           "neg_rate": 0.3
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.0737,
+          "mean_pct": 0.0791,
           "median_pct": 0.074,
           "neg_rate": 0.4
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.1152,
+          "mean_pct": -0.0846,
           "median_pct": -0.0366,
           "neg_rate": 0.6
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.1766,
-          "median_pct": -0.2412,
+          "mean_pct": -0.1428,
+          "median_pct": -0.1304,
           "neg_rate": 0.7
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0856,
-          "median_pct": -0.1046,
-          "neg_rate": 0.5
+          "mean_pct": -0.0582,
+          "median_pct": 0.0326,
+          "neg_rate": 0.4
         },
         {
           "day": 20,
@@ -607,150 +607,150 @@
       "full": [
         {
           "day": 1,
-          "n": 17,
-          "mean_pct": -0.1373,
-          "median_pct": -0.0507,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.068,
+          "median_pct": -0.0436,
+          "neg_rate": 0.6111
         },
         {
           "day": 2,
-          "n": 17,
-          "mean_pct": 0.0431,
-          "median_pct": 0.0491,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": -0.0172,
+          "median_pct": 0.0365,
+          "neg_rate": 0.4444
         },
         {
           "day": 3,
-          "n": 17,
-          "mean_pct": 0.0042,
-          "median_pct": 0.056,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0287,
+          "median_pct": 0.0997,
+          "neg_rate": 0.3333
         },
         {
           "day": 4,
-          "n": 17,
-          "mean_pct": 0.0777,
-          "median_pct": 0.0559,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0629,
+          "median_pct": 0.0475,
+          "neg_rate": 0.3889
         },
         {
           "day": 5,
-          "n": 17,
-          "mean_pct": -0.2491,
-          "median_pct": -0.1998,
-          "neg_rate": 0.7647
+          "n": 18,
+          "mean_pct": -0.2448,
+          "median_pct": -0.1859,
+          "neg_rate": 0.7778
         },
         {
           "day": 6,
-          "n": 17,
-          "mean_pct": -0.0545,
-          "median_pct": -0.0722,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.057,
+          "median_pct": -0.0845,
+          "neg_rate": 0.6667
         },
         {
           "day": 7,
-          "n": 17,
-          "mean_pct": -0.158,
-          "median_pct": -0.0445,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.157,
+          "median_pct": -0.0677,
+          "neg_rate": 0.6111
         },
         {
           "day": 8,
-          "n": 17,
-          "mean_pct": 0.3011,
-          "median_pct": 0.1919,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.3032,
+          "median_pct": 0.2115,
+          "neg_rate": 0.3333
         },
         {
           "day": 9,
-          "n": 17,
-          "mean_pct": 0.008,
-          "median_pct": -0.0271,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": 0.0151,
+          "median_pct": -0.0217,
+          "neg_rate": 0.5556
         },
         {
           "day": 10,
-          "n": 17,
-          "mean_pct": -0.0058,
-          "median_pct": -0.0453,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.002,
+          "median_pct": -0.0396,
+          "neg_rate": 0.5556
         },
         {
           "day": 11,
-          "n": 17,
-          "mean_pct": 0.1493,
-          "median_pct": 0.0272,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.113,
+          "median_pct": 0.0268,
+          "neg_rate": 0.4444
         },
         {
           "day": 12,
-          "n": 17,
-          "mean_pct": 0.0303,
-          "median_pct": 0.034,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": 0.0461,
+          "median_pct": 0.0432,
+          "neg_rate": 0.4444
         },
         {
           "day": 13,
-          "n": 17,
-          "mean_pct": 0.1474,
-          "median_pct": 0.0667,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.1822,
+          "median_pct": 0.0809,
+          "neg_rate": 0.3889
         },
         {
           "day": 14,
-          "n": 17,
-          "mean_pct": -0.0743,
-          "median_pct": -0.1114,
-          "neg_rate": 0.7059
+          "n": 18,
+          "mean_pct": -0.0817,
+          "median_pct": -0.1144,
+          "neg_rate": 0.7222
         },
         {
           "day": 15,
-          "n": 17,
-          "mean_pct": -0.0968,
-          "median_pct": -0.1664,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.1077,
+          "median_pct": -0.1722,
+          "neg_rate": 0.6667
         },
         {
           "day": 16,
-          "n": 17,
-          "mean_pct": 0.1683,
-          "median_pct": 0.1224,
-          "neg_rate": 0.2941
+          "n": 18,
+          "mean_pct": 0.1251,
+          "median_pct": 0.122,
+          "neg_rate": 0.3333
         },
         {
           "day": 17,
-          "n": 17,
-          "mean_pct": 0.0884,
-          "median_pct": 0.0486,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0943,
+          "median_pct": 0.0743,
+          "neg_rate": 0.3889
         },
         {
           "day": 18,
-          "n": 17,
-          "mean_pct": -0.2311,
-          "median_pct": -0.1987,
-          "neg_rate": 0.7647
+          "n": 18,
+          "mean_pct": -0.2309,
+          "median_pct": -0.2136,
+          "neg_rate": 0.7778
         },
         {
           "day": 19,
-          "n": 17,
-          "mean_pct": -0.123,
-          "median_pct": -0.0703,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.1161,
+          "median_pct": -0.0573,
+          "neg_rate": 0.6111
         },
         {
           "day": 20,
-          "n": 17,
-          "mean_pct": 0.0332,
-          "median_pct": 0.077,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": 0.066,
+          "median_pct": 0.0922,
+          "neg_rate": 0.4444
         },
         {
           "day": 21,
-          "n": 14,
-          "mean_pct": -0.024,
-          "median_pct": -0.0281,
-          "neg_rate": 0.5
+          "n": 15,
+          "mean_pct": -0.0491,
+          "median_pct": -0.0562,
+          "neg_rate": 0.5333
         },
         {
           "day": 22,
@@ -771,156 +771,156 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": -0.1593,
-          "median_pct": -0.0563,
-          "neg_rate": 0.7
+          "mean_pct": -0.017,
+          "median_pct": -0.0238,
+          "neg_rate": 0.6
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.1132,
-          "median_pct": 0.0523,
-          "neg_rate": 0.4
+          "mean_pct": 0.0066,
+          "median_pct": 0.0231,
+          "neg_rate": 0.5
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.0583,
-          "median_pct": 0.1134,
-          "neg_rate": 0.3
+          "mean_pct": 0.1088,
+          "median_pct": 0.1922,
+          "neg_rate": 0.2
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.0998,
+          "mean_pct": 0.0785,
           "median_pct": 0.0475,
-          "neg_rate": 0.3
+          "neg_rate": 0.4
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.1845,
+          "mean_pct": -0.1286,
           "median_pct": -0.1237,
           "neg_rate": 0.7
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": -0.0269,
+          "mean_pct": -0.0271,
           "median_pct": -0.0368,
           "neg_rate": 0.6
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.1419,
-          "median_pct": -0.0266,
-          "neg_rate": 0.6
+          "mean_pct": -0.1826,
+          "median_pct": -0.0923,
+          "neg_rate": 0.7
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.3089,
-          "median_pct": 0.2616,
-          "neg_rate": 0.4
+          "mean_pct": 0.3487,
+          "median_pct": 0.3343,
+          "neg_rate": 0.3
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": -0.095,
-          "median_pct": -0.0396,
-          "neg_rate": 0.6
+          "mean_pct": -0.0573,
+          "median_pct": -0.0024,
+          "neg_rate": 0.5
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.1595,
+          "mean_pct": -0.1617,
           "median_pct": -0.0521,
           "neg_rate": 0.7
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": 0.0016,
-          "median_pct": -0.1126,
+          "mean_pct": -0.0462,
+          "median_pct": -0.219,
           "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.1484,
-          "median_pct": -0.0534,
-          "neg_rate": 0.6
+          "mean_pct": -0.1073,
+          "median_pct": 0.0012,
+          "neg_rate": 0.5
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": 0.0707,
+          "mean_pct": 0.056,
           "median_pct": 0.088,
           "neg_rate": 0.4
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": 0.014,
-          "median_pct": -0.065,
+          "mean_pct": 0.004,
+          "median_pct": -0.0664,
           "neg_rate": 0.6
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": -0.0505,
-          "median_pct": -0.205,
-          "neg_rate": 0.7
+          "mean_pct": -0.1646,
+          "median_pct": -0.2685,
+          "neg_rate": 0.8
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.0847,
-          "median_pct": 0.048,
-          "neg_rate": 0.4
+          "mean_pct": 0.0202,
+          "median_pct": 0.0214,
+          "neg_rate": 0.5
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": 0.0535,
-          "median_pct": 0.015,
-          "neg_rate": 0.5
+          "mean_pct": 0.1029,
+          "median_pct": 0.1381,
+          "neg_rate": 0.4
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.2407,
-          "median_pct": -0.1557,
-          "neg_rate": 0.8
+          "mean_pct": -0.2635,
+          "median_pct": -0.2136,
+          "neg_rate": 0.9
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0839,
-          "median_pct": -0.0573,
-          "neg_rate": 0.7
+          "mean_pct": -0.0433,
+          "median_pct": -0.0314,
+          "neg_rate": 0.6
         },
         {
           "day": 20,
           "n": 10,
-          "mean_pct": 0.0335,
+          "mean_pct": 0.0853,
           "median_pct": 0.0352,
           "neg_rate": 0.5
         },
         {
           "day": 21,
           "n": 9,
-          "mean_pct": -0.0339,
+          "mean_pct": -0.0557,
           "median_pct": -0.1329,
           "neg_rate": 0.6667
         },
         {
           "day": 22,
-          "n": 7,
-          "mean_pct": -0.0241,
-          "median_pct": -0.072,
-          "neg_rate": 0.7143
+          "n": 6,
+          "mean_pct": -0.0161,
+          "median_pct": -0.0894,
+          "neg_rate": 0.6667
         },
         {
           "day": 23,
@@ -936,150 +936,150 @@
       "full": [
         {
           "day": 1,
-          "n": 17,
-          "mean_pct": 0.0738,
-          "median_pct": 0.2173,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0549,
+          "median_pct": 0.1837,
+          "neg_rate": 0.4444
         },
         {
           "day": 2,
-          "n": 17,
-          "mean_pct": -0.1088,
-          "median_pct": -0.1213,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.0935,
+          "median_pct": -0.1204,
+          "neg_rate": 0.5556
         },
         {
           "day": 3,
-          "n": 17,
-          "mean_pct": -0.0318,
-          "median_pct": 0.0765,
-          "neg_rate": 0.2941
+          "n": 18,
+          "mean_pct": -0.0299,
+          "median_pct": 0.0708,
+          "neg_rate": 0.2778
         },
         {
           "day": 4,
-          "n": 17,
-          "mean_pct": -0.0275,
-          "median_pct": -0.0172,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0758,
+          "median_pct": -0.1033,
+          "neg_rate": 0.5556
         },
         {
           "day": 5,
-          "n": 17,
-          "mean_pct": -0.0307,
-          "median_pct": -0.01,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0855,
+          "median_pct": -0.0106,
+          "neg_rate": 0.5556
         },
         {
           "day": 6,
-          "n": 17,
-          "mean_pct": 0.0715,
-          "median_pct": 0.0583,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0928,
+          "median_pct": 0.1013,
+          "neg_rate": 0.3333
         },
         {
           "day": 7,
-          "n": 17,
-          "mean_pct": 0.1981,
-          "median_pct": 0.1893,
-          "neg_rate": 0.2941
+          "n": 18,
+          "mean_pct": 0.0675,
+          "median_pct": 0.1455,
+          "neg_rate": 0.3333
         },
         {
           "day": 8,
-          "n": 17,
-          "mean_pct": 0.0832,
-          "median_pct": 0.0971,
-          "neg_rate": 0.2941
+          "n": 18,
+          "mean_pct": 0.1163,
+          "median_pct": 0.0994,
+          "neg_rate": 0.2778
         },
         {
           "day": 9,
-          "n": 17,
-          "mean_pct": -0.0171,
-          "median_pct": 0.028,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": -0.0511,
+          "median_pct": 0.0174,
+          "neg_rate": 0.4444
         },
         {
           "day": 10,
-          "n": 17,
-          "mean_pct": 0.0155,
-          "median_pct": -0.0448,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0226,
+          "median_pct": -0.0224,
+          "neg_rate": 0.5
         },
         {
           "day": 11,
-          "n": 17,
-          "mean_pct": 0.0678,
-          "median_pct": -0.0204,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0505,
+          "median_pct": -0.0309,
+          "neg_rate": 0.5556
         },
         {
           "day": 12,
-          "n": 17,
-          "mean_pct": -0.0656,
-          "median_pct": -0.0378,
-          "neg_rate": 0.7059
+          "n": 18,
+          "mean_pct": -0.0268,
+          "median_pct": -0.0377,
+          "neg_rate": 0.6667
         },
         {
           "day": 13,
-          "n": 17,
-          "mean_pct": -0.0455,
-          "median_pct": -0.0105,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0362,
+          "median_pct": 0.0001,
+          "neg_rate": 0.5
         },
         {
           "day": 14,
-          "n": 17,
-          "mean_pct": -0.1249,
-          "median_pct": -0.0519,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.1234,
+          "median_pct": -0.0595,
+          "neg_rate": 0.6111
         },
         {
           "day": 15,
-          "n": 17,
-          "mean_pct": 0.0364,
-          "median_pct": -0.0112,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0148,
+          "median_pct": -0.013,
+          "neg_rate": 0.5556
         },
         {
           "day": 16,
-          "n": 17,
-          "mean_pct": -0.1,
-          "median_pct": -0.0753,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.1617,
+          "median_pct": -0.0798,
+          "neg_rate": 0.6111
         },
         {
           "day": 17,
-          "n": 17,
-          "mean_pct": 0.0581,
-          "median_pct": 0.036,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0547,
+          "median_pct": 0.018,
+          "neg_rate": 0.4444
         },
         {
           "day": 18,
-          "n": 17,
-          "mean_pct": -0.0667,
-          "median_pct": -0.1606,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.0746,
+          "median_pct": -0.1622,
+          "neg_rate": 0.6667
         },
         {
           "day": 19,
-          "n": 17,
-          "mean_pct": 0.0464,
-          "median_pct": -0.0366,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0962,
+          "median_pct": 0.0044,
+          "neg_rate": 0.5
         },
         {
           "day": 20,
-          "n": 15,
-          "mean_pct": 0.0663,
-          "median_pct": 0.0924,
-          "neg_rate": 0.2
+          "n": 16,
+          "mean_pct": 0.0828,
+          "median_pct": 0.1297,
+          "neg_rate": 0.1875
         },
         {
           "day": 21,
-          "n": 12,
-          "mean_pct": -0.0285,
-          "median_pct": 0.023,
-          "neg_rate": 0.5
+          "n": 13,
+          "mean_pct": -0.0264,
+          "median_pct": -0.0017,
+          "neg_rate": 0.5385
         },
         {
           "day": 22,
@@ -1093,148 +1093,148 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.1929,
-          "median_pct": 0.358,
-          "neg_rate": 0.3
+          "mean_pct": 0.1291,
+          "median_pct": 0.2468,
+          "neg_rate": 0.4
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.0305,
-          "median_pct": 0.0138,
-          "neg_rate": 0.4
+          "mean_pct": 0.0591,
+          "median_pct": 0.0487,
+          "neg_rate": 0.3
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": -0.0102,
+          "mean_pct": 0.0245,
           "median_pct": 0.0708,
-          "neg_rate": 0.3
+          "neg_rate": 0.2
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": -0.0219,
+          "mean_pct": -0.0901,
           "median_pct": -0.1033,
           "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.0433,
+          "mean_pct": -0.12,
           "median_pct": -0.0217,
           "neg_rate": 0.7
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.027,
-          "median_pct": 0.0423,
-          "neg_rate": 0.4
+          "mean_pct": 0.1301,
+          "median_pct": 0.0509,
+          "neg_rate": 0.3
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": 0.2543,
-          "median_pct": 0.2306,
-          "neg_rate": 0.2
+          "mean_pct": 0.0173,
+          "median_pct": 0.2168,
+          "neg_rate": 0.3
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.1208,
+          "mean_pct": 0.1536,
           "median_pct": 0.1319,
           "neg_rate": 0.2
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": -0.0775,
-          "median_pct": 0.0198,
-          "neg_rate": 0.4
+          "mean_pct": -0.1788,
+          "median_pct": -0.0332,
+          "neg_rate": 0.5
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.0909,
+          "mean_pct": -0.11,
           "median_pct": -0.0546,
           "neg_rate": 0.6
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.0372,
-          "median_pct": -0.0487,
-          "neg_rate": 0.6
+          "mean_pct": -0.064,
+          "median_pct": -0.1065,
+          "neg_rate": 0.7
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.0944,
-          "median_pct": -0.0377,
-          "neg_rate": 0.7
+          "mean_pct": -0.0134,
+          "median_pct": -0.0263,
+          "neg_rate": 0.6
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": 0.075,
-          "median_pct": 0.0916,
-          "neg_rate": 0.4
+          "mean_pct": 0.1003,
+          "median_pct": 0.147,
+          "neg_rate": 0.3
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": -0.1651,
-          "median_pct": -0.1359,
+          "mean_pct": -0.1462,
+          "median_pct": -0.0999,
           "neg_rate": 0.8
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.0472,
+          "mean_pct": -0.0125,
           "median_pct": -0.013,
           "neg_rate": 0.6
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": -0.1398,
-          "median_pct": -0.0605,
-          "neg_rate": 0.6
+          "mean_pct": -0.2993,
+          "median_pct": -0.0798,
+          "neg_rate": 0.7
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": 0.0667,
-          "median_pct": 0.0157,
-          "neg_rate": 0.5
+          "mean_pct": 0.0127,
+          "median_pct": -0.0035,
+          "neg_rate": 0.6
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.1165,
-          "median_pct": -0.1779,
-          "neg_rate": 0.7
+          "mean_pct": -0.167,
+          "median_pct": -0.1997,
+          "neg_rate": 0.8
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0158,
+          "mean_pct": 0.0738,
           "median_pct": -0.0572,
           "neg_rate": 0.6
         },
         {
           "day": 20,
           "n": 8,
-          "mean_pct": -0.01,
+          "mean_pct": 0.0105,
           "median_pct": 0.0798,
           "neg_rate": 0.25
         },
         {
           "day": 21,
           "n": 7,
-          "mean_pct": -0.1059,
-          "median_pct": -0.1335,
+          "mean_pct": -0.0433,
+          "median_pct": -0.0164,
           "neg_rate": 0.7143
         },
         {
@@ -1251,150 +1251,150 @@
       "full": [
         {
           "day": 1,
-          "n": 17,
-          "mean_pct": -0.0302,
-          "median_pct": -0.1288,
-          "neg_rate": 0.7059
+          "n": 18,
+          "mean_pct": -0.0663,
+          "median_pct": -0.165,
+          "neg_rate": 0.7222
         },
         {
           "day": 2,
-          "n": 17,
-          "mean_pct": 0.039,
-          "median_pct": 0.011,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0232,
+          "median_pct": 0.0055,
+          "neg_rate": 0.4444
         },
         {
           "day": 3,
-          "n": 17,
-          "mean_pct": 0.1151,
-          "median_pct": 0.1218,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.1161,
+          "median_pct": 0.1272,
+          "neg_rate": 0.3333
         },
         {
           "day": 4,
-          "n": 17,
-          "mean_pct": 0.3512,
-          "median_pct": 0.1485,
-          "neg_rate": 0.2353
+          "n": 18,
+          "mean_pct": 0.3432,
+          "median_pct": 0.1518,
+          "neg_rate": 0.2222
         },
         {
           "day": 5,
-          "n": 17,
-          "mean_pct": -0.0927,
-          "median_pct": -0.1072,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.1009,
+          "median_pct": -0.1285,
+          "neg_rate": 0.6667
         },
         {
           "day": 6,
-          "n": 17,
-          "mean_pct": 0.0711,
-          "median_pct": 0.0198,
-          "neg_rate": 0.4118
+          "n": 18,
+          "mean_pct": 0.0205,
+          "median_pct": 0.0141,
+          "neg_rate": 0.4444
         },
         {
           "day": 7,
-          "n": 17,
-          "mean_pct": -0.1056,
-          "median_pct": -0.0655,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.1044,
+          "median_pct": -0.0669,
+          "neg_rate": 0.6111
         },
         {
           "day": 8,
-          "n": 17,
-          "mean_pct": -0.0629,
-          "median_pct": -0.1197,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.0789,
+          "median_pct": -0.1516,
+          "neg_rate": 0.6111
         },
         {
           "day": 9,
-          "n": 17,
-          "mean_pct": 0.0954,
-          "median_pct": 0.0512,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.1135,
+          "median_pct": 0.0762,
+          "neg_rate": 0.3333
         },
         {
           "day": 10,
-          "n": 17,
-          "mean_pct": -0.0855,
-          "median_pct": -0.0503,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.1006,
+          "median_pct": -0.0506,
+          "neg_rate": 0.5556
         },
         {
           "day": 11,
-          "n": 17,
-          "mean_pct": 0.0768,
-          "median_pct": 0.0234,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": 0.089,
+          "median_pct": 0.0322,
+          "neg_rate": 0.4444
         },
         {
           "day": 12,
-          "n": 17,
-          "mean_pct": -0.0174,
-          "median_pct": -0.0536,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.0162,
+          "median_pct": -0.0522,
+          "neg_rate": 0.6111
         },
         {
           "day": 13,
-          "n": 17,
-          "mean_pct": 0.0134,
-          "median_pct": -0.0996,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": 0.015,
+          "median_pct": -0.0665,
+          "neg_rate": 0.5556
         },
         {
           "day": 14,
-          "n": 17,
-          "mean_pct": 0.1052,
-          "median_pct": 0.0801,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.1007,
+          "median_pct": 0.0705,
+          "neg_rate": 0.3333
         },
         {
           "day": 15,
-          "n": 17,
-          "mean_pct": 0.0292,
-          "median_pct": 0.0481,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": 0.0337,
+          "median_pct": 0.051,
+          "neg_rate": 0.4444
         },
         {
           "day": 16,
-          "n": 17,
-          "mean_pct": -0.1529,
-          "median_pct": -0.129,
-          "neg_rate": 0.7647
+          "n": 18,
+          "mean_pct": -0.1706,
+          "median_pct": -0.1603,
+          "neg_rate": 0.7778
         },
         {
           "day": 17,
-          "n": 17,
-          "mean_pct": -0.0587,
-          "median_pct": -0.1075,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.0539,
+          "median_pct": -0.0843,
+          "neg_rate": 0.5556
         },
         {
           "day": 18,
-          "n": 17,
-          "mean_pct": -0.0171,
-          "median_pct": -0.022,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0265,
+          "median_pct": -0.062,
+          "neg_rate": 0.5556
         },
         {
           "day": 19,
-          "n": 17,
-          "mean_pct": -0.0982,
-          "median_pct": -0.067,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.1067,
+          "median_pct": -0.0813,
+          "neg_rate": 0.6667
         },
         {
           "day": 20,
-          "n": 17,
-          "mean_pct": -0.0942,
-          "median_pct": -0.1636,
-          "neg_rate": 0.5882
+          "n": 18,
+          "mean_pct": -0.0531,
+          "median_pct": -0.158,
+          "neg_rate": 0.5556
         },
         {
           "day": 21,
-          "n": 12,
-          "mean_pct": 0.0047,
-          "median_pct": 0.0383,
-          "neg_rate": 0.4167
+          "n": 13,
+          "mean_pct": -0.0061,
+          "median_pct": 0.0211,
+          "neg_rate": 0.4615
         },
         {
           "day": 22,
@@ -1408,149 +1408,149 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.0831,
+          "mean_pct": 0.0536,
           "median_pct": -0.1565,
           "neg_rate": 0.7
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.0755,
-          "median_pct": 0.0322,
-          "neg_rate": 0.3
+          "mean_pct": 0.0401,
+          "median_pct": 0.0055,
+          "neg_rate": 0.4
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.1568,
-          "median_pct": 0.1356,
+          "mean_pct": 0.117,
+          "median_pct": 0.1272,
           "neg_rate": 0.2
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.0988,
+          "mean_pct": 0.0908,
           "median_pct": 0.1103,
           "neg_rate": 0.3
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": 0.0104,
+          "mean_pct": 0.0257,
           "median_pct": -0.0691,
           "neg_rate": 0.6
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": -0.0163,
-          "median_pct": -0.0218,
-          "neg_rate": 0.6
+          "mean_pct": -0.1304,
+          "median_pct": -0.0388,
+          "neg_rate": 0.7
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0795,
+          "mean_pct": -0.0722,
           "median_pct": -0.0669,
           "neg_rate": 0.7
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.0262,
-          "median_pct": 0.1104,
-          "neg_rate": 0.4
+          "mean_pct": -0.0232,
+          "median_pct": 0.0249,
+          "neg_rate": 0.5
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.0748,
+          "mean_pct": 0.0678,
           "median_pct": 0.062,
           "neg_rate": 0.4
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.0466,
-          "median_pct": -0.0197,
-          "neg_rate": 0.5
+          "mean_pct": -0.0858,
+          "median_pct": -0.1034,
+          "neg_rate": 0.6
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": 0.0671,
+          "mean_pct": 0.0489,
           "median_pct": -0.0234,
           "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.0476,
-          "median_pct": -0.0929,
-          "neg_rate": 0.7
+          "mean_pct": -0.0208,
+          "median_pct": -0.0479,
+          "neg_rate": 0.6
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": 0.0052,
-          "median_pct": -0.0665,
-          "neg_rate": 0.6
+          "mean_pct": 0.0587,
+          "median_pct": 0.0043,
+          "neg_rate": 0.5
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": -0.1777,
-          "median_pct": -0.1154,
-          "neg_rate": 0.6
+          "mean_pct": -0.1379,
+          "median_pct": -0.0158,
+          "neg_rate": 0.5
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.073,
-          "median_pct": 0.0633,
+          "mean_pct": 0.0767,
+          "median_pct": 0.0719,
           "neg_rate": 0.3
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": -0.0651,
+          "mean_pct": -0.0627,
           "median_pct": -0.064,
           "neg_rate": 0.6
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.1023,
-          "median_pct": -0.1706,
-          "neg_rate": 0.7
+          "mean_pct": -0.0543,
+          "median_pct": -0.1124,
+          "neg_rate": 0.6
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.0218,
-          "median_pct": 0.0331,
-          "neg_rate": 0.4
+          "mean_pct": -0.0431,
+          "median_pct": 0.0097,
+          "neg_rate": 0.5
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0503,
-          "median_pct": -0.0494,
-          "neg_rate": 0.6
+          "mean_pct": -0.1065,
+          "median_pct": -0.0609,
+          "neg_rate": 0.7
         },
         {
           "day": 20,
           "n": 10,
-          "mean_pct": -0.2496,
-          "median_pct": -0.2208,
-          "neg_rate": 0.8
+          "mean_pct": -0.1628,
+          "median_pct": -0.2071,
+          "neg_rate": 0.7
         },
         {
           "day": 21,
-          "n": 7,
-          "mean_pct": 0.0103,
-          "median_pct": 0.0981,
-          "neg_rate": 0.4286
+          "n": 8,
+          "mean_pct": -0.0079,
+          "median_pct": 0.0324,
+          "neg_rate": 0.5
         },
         {
           "day": 22,
@@ -1566,143 +1566,143 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": 0.0333,
-          "median_pct": 0.0894,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0336,
+          "median_pct": 0.0637,
+          "neg_rate": 0.4211
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": -0.0401,
-          "median_pct": -0.0666,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0707,
+          "median_pct": -0.0899,
+          "neg_rate": 0.6316
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": 0.0594,
-          "median_pct": -0.0695,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.1131,
+          "median_pct": -0.0549,
+          "neg_rate": 0.5263
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": 0.0463,
-          "median_pct": -0.0766,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.0357,
+          "median_pct": -0.1354,
+          "neg_rate": 0.5789
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": -0.1711,
-          "median_pct": -0.2169,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.1884,
+          "median_pct": -0.27,
+          "neg_rate": 0.5789
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": 0.0835,
-          "median_pct": -0.0201,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0768,
+          "median_pct": -0.0451,
+          "neg_rate": 0.5263
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": 0.0426,
-          "median_pct": 0.0005,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0289,
+          "median_pct": -0.0093,
+          "neg_rate": 0.5263
         },
         {
           "day": 8,
-          "n": 17,
-          "mean_pct": 0.0114,
-          "median_pct": -0.0612,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0407,
+          "median_pct": -0.0251,
+          "neg_rate": 0.5
         },
         {
           "day": 9,
-          "n": 17,
-          "mean_pct": 0.0617,
-          "median_pct": 0.0502,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0605,
+          "median_pct": 0.0449,
+          "neg_rate": 0.3333
         },
         {
           "day": 10,
-          "n": 17,
-          "mean_pct": -0.0547,
-          "median_pct": -0.1854,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.0508,
+          "median_pct": -0.1192,
+          "neg_rate": 0.6111
         },
         {
           "day": 11,
-          "n": 17,
-          "mean_pct": 0.0628,
-          "median_pct": 0.0741,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0355,
+          "median_pct": 0.0661,
+          "neg_rate": 0.3889
         },
         {
           "day": 12,
-          "n": 17,
-          "mean_pct": 0.0231,
-          "median_pct": 0.0107,
-          "neg_rate": 0.4706
+          "n": 18,
+          "mean_pct": -0.0036,
+          "median_pct": 0.0008,
+          "neg_rate": 0.5
         },
         {
           "day": 13,
-          "n": 17,
-          "mean_pct": 0.0795,
-          "median_pct": 0.1819,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.0659,
+          "median_pct": 0.1483,
+          "neg_rate": 0.3889
         },
         {
           "day": 14,
-          "n": 17,
-          "mean_pct": -0.1372,
-          "median_pct": -0.1186,
-          "neg_rate": 0.7059
+          "n": 18,
+          "mean_pct": -0.1473,
+          "median_pct": -0.1419,
+          "neg_rate": 0.7222
         },
         {
           "day": 15,
-          "n": 17,
-          "mean_pct": -0.025,
-          "median_pct": -0.0204,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0312,
+          "median_pct": -0.0102,
+          "neg_rate": 0.5
         },
         {
           "day": 16,
-          "n": 17,
-          "mean_pct": 0.0112,
-          "median_pct": -0.0523,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": 0.0119,
+          "median_pct": -0.0142,
+          "neg_rate": 0.5
         },
         {
           "day": 17,
-          "n": 17,
-          "mean_pct": -0.0305,
-          "median_pct": -0.0782,
-          "neg_rate": 0.6471
+          "n": 18,
+          "mean_pct": -0.0087,
+          "median_pct": -0.0595,
+          "neg_rate": 0.6111
         },
         {
           "day": 18,
-          "n": 17,
-          "mean_pct": -0.083,
-          "median_pct": -0.0081,
-          "neg_rate": 0.5294
+          "n": 18,
+          "mean_pct": -0.0753,
+          "median_pct": -0.0041,
+          "neg_rate": 0.5
         },
         {
           "day": 19,
-          "n": 17,
-          "mean_pct": -0.0398,
-          "median_pct": -0.0618,
-          "neg_rate": 0.7059
+          "n": 18,
+          "mean_pct": -0.0438,
+          "median_pct": -0.0866,
+          "neg_rate": 0.7222
         },
         {
           "day": 20,
-          "n": 16,
-          "mean_pct": -0.0975,
-          "median_pct": -0.1717,
-          "neg_rate": 0.6875
+          "n": 17,
+          "mean_pct": -0.0804,
+          "median_pct": -0.1508,
+          "neg_rate": 0.6471
         },
         {
           "day": 21,
@@ -1723,156 +1723,156 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": -0.0171,
-          "median_pct": 0.0083,
-          "neg_rate": 0.5
+          "mean_pct": 0.0439,
+          "median_pct": 0.077,
+          "neg_rate": 0.4
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": -0.0126,
-          "median_pct": -0.027,
-          "neg_rate": 0.6
+          "mean_pct": -0.1195,
+          "median_pct": -0.0905,
+          "neg_rate": 0.7
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.1509,
+          "mean_pct": 0.2453,
           "median_pct": 0.0002,
           "neg_rate": 0.5
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": -0.1057,
-          "median_pct": -0.0901,
+          "mean_pct": -0.094,
+          "median_pct": -0.0867,
           "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.137,
+          "mean_pct": -0.1259,
           "median_pct": -0.1454,
           "neg_rate": 0.5
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.2066,
-          "median_pct": 0.1194,
-          "neg_rate": 0.4
+          "mean_pct": 0.1394,
+          "median_pct": -0.0118,
+          "neg_rate": 0.5
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0787,
+          "mean_pct": -0.0856,
           "median_pct": -0.04,
           "neg_rate": 0.7
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.0264,
+          "mean_pct": 0.058,
           "median_pct": -0.0331,
           "neg_rate": 0.5
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.0236,
-          "median_pct": 0.0413,
+          "mean_pct": 0.0041,
+          "median_pct": 0.0361,
           "neg_rate": 0.4
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.1699,
-          "median_pct": -0.2055,
-          "neg_rate": 0.8
+          "mean_pct": -0.1498,
+          "median_pct": -0.1393,
+          "neg_rate": 0.7
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": 0.1132,
-          "median_pct": 0.0884,
-          "neg_rate": 0.2
+          "mean_pct": 0.063,
+          "median_pct": 0.0804,
+          "neg_rate": 0.3
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.0268,
-          "median_pct": 0.0486,
-          "neg_rate": 0.4
+          "mean_pct": -0.0812,
+          "median_pct": -0.0388,
+          "neg_rate": 0.5
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": 0.0452,
-          "median_pct": 0.0351,
-          "neg_rate": 0.5
+          "mean_pct": -0.0086,
+          "median_pct": -0.1053,
+          "neg_rate": 0.6
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": -0.0363,
+          "mean_pct": -0.0438,
           "median_pct": -0.0987,
           "neg_rate": 0.6
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": -0.0085,
+          "mean_pct": 0.0531,
           "median_pct": -0.0386,
           "neg_rate": 0.5
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.0045,
-          "median_pct": -0.0101,
-          "neg_rate": 0.5
+          "mean_pct": 0.0142,
+          "median_pct": 0.0279,
+          "neg_rate": 0.4
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.1693,
-          "median_pct": -0.0969,
-          "neg_rate": 0.8
+          "mean_pct": -0.1244,
+          "median_pct": -0.0964,
+          "neg_rate": 0.7
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.1379,
+          "mean_pct": -0.1336,
           "median_pct": -0.0807,
           "neg_rate": 0.7
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.1044,
-          "median_pct": -0.058,
+          "mean_pct": -0.1094,
+          "median_pct": -0.0832,
           "neg_rate": 0.8
         },
         {
           "day": 20,
           "n": 9,
-          "mean_pct": -0.16,
-          "median_pct": -0.1926,
-          "neg_rate": 0.8889
+          "mean_pct": -0.1152,
+          "median_pct": -0.1508,
+          "neg_rate": 0.7778
         },
         {
           "day": 21,
-          "n": 8,
-          "mean_pct": 0.101,
-          "median_pct": 0.1897,
-          "neg_rate": 0.375
+          "n": 7,
+          "mean_pct": 0.0715,
+          "median_pct": 0.0842,
+          "neg_rate": 0.4286
         },
         {
           "day": 22,
-          "n": 5,
-          "mean_pct": -0.3056,
-          "median_pct": -0.3248,
-          "neg_rate": 0.8
+          "n": 4,
+          "mean_pct": -0.3881,
+          "median_pct": -0.4192,
+          "neg_rate": 1.0
         }
       ]
     },
@@ -1881,313 +1881,313 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": -0.0309,
-          "median_pct": -0.0401,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0541,
+          "median_pct": -0.06,
+          "neg_rate": 0.6316
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": 0.05,
-          "median_pct": 0.0552,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0638,
+          "median_pct": 0.1104,
+          "neg_rate": 0.4211
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": -0.0768,
-          "median_pct": -0.0055,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.1146,
+          "median_pct": -0.0111,
+          "neg_rate": 0.5263
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": -0.0243,
-          "median_pct": 0.0323,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0428,
+          "median_pct": 0.0247,
+          "neg_rate": 0.4737
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": 0.1583,
-          "median_pct": 0.1031,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.1505,
+          "median_pct": 0.1027,
+          "neg_rate": 0.3684
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": 0.0784,
-          "median_pct": 0.031,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0897,
+          "median_pct": 0.0407,
+          "neg_rate": 0.4211
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": 0.0239,
-          "median_pct": -0.0631,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": 0.0237,
+          "median_pct": -0.062,
+          "neg_rate": 0.5789
         },
         {
           "day": 8,
-          "n": 18,
-          "mean_pct": 0.0494,
-          "median_pct": -0.0614,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": 0.0326,
+          "median_pct": -0.0617,
+          "neg_rate": 0.6842
         },
         {
           "day": 9,
-          "n": 18,
-          "mean_pct": 0.1095,
-          "median_pct": 0.1201,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0928,
+          "median_pct": 0.1181,
+          "neg_rate": 0.4211
         },
         {
           "day": 10,
-          "n": 18,
-          "mean_pct": 0.0518,
-          "median_pct": 0.0213,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0147,
+          "median_pct": -0.0079,
+          "neg_rate": 0.5263
         },
         {
           "day": 11,
-          "n": 18,
-          "mean_pct": -0.0436,
-          "median_pct": -0.0425,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0072,
+          "median_pct": -0.0106,
+          "neg_rate": 0.5263
         },
         {
           "day": 12,
-          "n": 18,
-          "mean_pct": -0.0293,
-          "median_pct": 0.073,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": -0.0213,
+          "median_pct": 0.0849,
+          "neg_rate": 0.3684
         },
         {
           "day": 13,
-          "n": 18,
-          "mean_pct": -0.1147,
-          "median_pct": -0.0555,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.1116,
+          "median_pct": -0.056,
+          "neg_rate": 0.6316
         },
         {
           "day": 14,
-          "n": 18,
-          "mean_pct": 0.2988,
-          "median_pct": 0.365,
-          "neg_rate": 0.3333
+          "n": 19,
+          "mean_pct": 0.2936,
+          "median_pct": 0.357,
+          "neg_rate": 0.3158
         },
         {
           "day": 15,
-          "n": 18,
-          "mean_pct": 0.0018,
-          "median_pct": 0.0219,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0224,
+          "median_pct": 0.0756,
+          "neg_rate": 0.4737
         },
         {
           "day": 16,
-          "n": 18,
-          "mean_pct": -0.0274,
-          "median_pct": -0.0309,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0364,
+          "median_pct": -0.041,
+          "neg_rate": 0.5789
         },
         {
           "day": 17,
-          "n": 18,
-          "mean_pct": 0.0894,
-          "median_pct": 0.0459,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0666,
+          "median_pct": 0.0444,
+          "neg_rate": 0.4211
         },
         {
           "day": 18,
-          "n": 18,
-          "mean_pct": -0.0103,
-          "median_pct": -0.0481,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.009,
+          "median_pct": -0.0469,
+          "neg_rate": 0.5263
         },
         {
           "day": 19,
-          "n": 18,
-          "mean_pct": 0.149,
-          "median_pct": 0.216,
-          "neg_rate": 0.2222
+          "n": 19,
+          "mean_pct": 0.1286,
+          "median_pct": 0.2138,
+          "neg_rate": 0.2632
         },
         {
           "day": 20,
-          "n": 18,
-          "mean_pct": 0.1256,
-          "median_pct": 0.0902,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.1278,
+          "median_pct": 0.1471,
+          "neg_rate": 0.4211
         },
         {
           "day": 21,
-          "n": 13,
-          "mean_pct": 0.0938,
-          "median_pct": -0.0246,
-          "neg_rate": 0.5385
+          "n": 14,
+          "mean_pct": 0.0317,
+          "median_pct": -0.0285,
+          "neg_rate": 0.5714
         },
         {
           "day": 22,
-          "n": 8,
-          "mean_pct": 0.104,
-          "median_pct": 0.1717,
-          "neg_rate": 0.25
+          "n": 9,
+          "mean_pct": 0.0295,
+          "median_pct": 0.167,
+          "neg_rate": 0.3333
         }
       ],
       "recent": [
         {
           "day": 1,
           "n": 10,
-          "mean_pct": -0.0854,
+          "mean_pct": -0.1155,
           "median_pct": -0.0798,
           "neg_rate": 0.7
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.157,
+          "mean_pct": 0.1498,
           "median_pct": 0.1674,
           "neg_rate": 0.2
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": -0.1089,
-          "median_pct": 0.008,
-          "neg_rate": 0.5
+          "mean_pct": -0.2033,
+          "median_pct": -0.097,
+          "neg_rate": 0.6
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.0627,
+          "mean_pct": 0.0351,
           "median_pct": 0.043,
           "neg_rate": 0.4
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": 0.0755,
-          "median_pct": 0.0523,
+          "mean_pct": 0.0183,
+          "median_pct": 0.006,
           "neg_rate": 0.4
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.0167,
+          "mean_pct": 0.0325,
           "median_pct": -0.0057,
           "neg_rate": 0.5
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0624,
-          "median_pct": -0.0787,
-          "neg_rate": 0.7
+          "mean_pct": -0.0248,
+          "median_pct": -0.0565,
+          "neg_rate": 0.6
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.0817,
-          "median_pct": -0.0818,
+          "mean_pct": 0.0608,
+          "median_pct": -0.1419,
           "neg_rate": 0.7
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.261,
+          "mean_pct": 0.2452,
           "median_pct": 0.303,
           "neg_rate": 0.3
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": 0.0502,
+          "mean_pct": 0.0046,
           "median_pct": 0.0523,
           "neg_rate": 0.4
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.1319,
-          "median_pct": -0.139,
-          "neg_rate": 0.7
+          "mean_pct": -0.0596,
+          "median_pct": -0.107,
+          "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": 0.0677,
-          "median_pct": 0.1049,
-          "neg_rate": 0.2
+          "mean_pct": 0.0823,
+          "median_pct": 0.1147,
+          "neg_rate": 0.1
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": -0.0847,
+          "mean_pct": -0.0866,
           "median_pct": -0.1119,
           "neg_rate": 0.7
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": 0.3054,
-          "median_pct": 0.365,
+          "mean_pct": 0.2881,
+          "median_pct": 0.2787,
           "neg_rate": 0.4
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": -0.0503,
-          "median_pct": -0.0814,
-          "neg_rate": 0.7
+          "mean_pct": -0.001,
+          "median_pct": -0.0478,
+          "neg_rate": 0.6
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.0554,
+          "mean_pct": 0.0431,
           "median_pct": -0.0309,
           "neg_rate": 0.6
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": 0.0649,
-          "median_pct": 0.0789,
-          "neg_rate": 0.4
+          "mean_pct": 0.0058,
+          "median_pct": -0.0156,
+          "neg_rate": 0.5
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.0339,
-          "median_pct": 0.0366,
-          "neg_rate": 0.5
+          "mean_pct": -0.0274,
+          "median_pct": 0.069,
+          "neg_rate": 0.4
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": 0.1118,
+          "mean_pct": 0.0742,
           "median_pct": 0.1661,
-          "neg_rate": 0.2
+          "neg_rate": 0.3
         },
         {
           "day": 20,
           "n": 10,
-          "mean_pct": 0.1744,
-          "median_pct": 0.0902,
-          "neg_rate": 0.4
+          "mean_pct": 0.2109,
+          "median_pct": 0.157,
+          "neg_rate": 0.3
         },
         {
           "day": 21,
           "n": 6,
-          "mean_pct": 0.2605,
-          "median_pct": 0.0748,
-          "neg_rate": 0.5
+          "mean_pct": 0.1022,
+          "median_pct": -0.0611,
+          "neg_rate": 0.6667
         },
         {
           "day": 22,
           "n": 4,
-          "mean_pct": -0.1349,
-          "median_pct": -0.0033,
-          "neg_rate": 0.5
+          "mean_pct": -0.3636,
+          "median_pct": -0.3701,
+          "neg_rate": 0.75
         }
       ]
     },
@@ -2196,150 +2196,150 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": 0.0683,
-          "median_pct": 0.1258,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.159,
+          "median_pct": 0.1547,
+          "neg_rate": 0.4211
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": 0.0765,
-          "median_pct": 0.0817,
-          "neg_rate": 0.3333
+          "n": 19,
+          "mean_pct": 0.0819,
+          "median_pct": 0.1018,
+          "neg_rate": 0.3158
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": -0.0157,
-          "median_pct": 0.068,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0121,
+          "median_pct": 0.0539,
+          "neg_rate": 0.4211
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": 0.0266,
-          "median_pct": 0.0865,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0297,
+          "median_pct": 0.0854,
+          "neg_rate": 0.3684
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": -0.1407,
-          "median_pct": -0.0783,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.1257,
+          "median_pct": 0.0238,
+          "neg_rate": 0.4737
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": -0.0969,
-          "median_pct": -0.0714,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0877,
+          "median_pct": -0.0307,
+          "neg_rate": 0.5263
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": 0.1143,
-          "median_pct": 0.0498,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0984,
+          "median_pct": 0.0445,
+          "neg_rate": 0.4737
         },
         {
           "day": 8,
-          "n": 18,
-          "mean_pct": 0.1135,
-          "median_pct": 0.0475,
-          "neg_rate": 0.3333
+          "n": 19,
+          "mean_pct": 0.1313,
+          "median_pct": 0.0506,
+          "neg_rate": 0.3158
         },
         {
           "day": 9,
-          "n": 18,
-          "mean_pct": -0.1512,
-          "median_pct": -0.0508,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.1469,
+          "median_pct": -0.0546,
+          "neg_rate": 0.6316
         },
         {
           "day": 10,
-          "n": 18,
-          "mean_pct": 0.0325,
-          "median_pct": 0.0038,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0171,
+          "median_pct": 0.0,
+          "neg_rate": 0.4737
         },
         {
           "day": 11,
-          "n": 18,
-          "mean_pct": 0.0013,
-          "median_pct": 0.0441,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0002,
+          "median_pct": 0.0,
+          "neg_rate": 0.4737
         },
         {
           "day": 12,
-          "n": 18,
-          "mean_pct": -0.0282,
-          "median_pct": -0.0745,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0346,
+          "median_pct": -0.0746,
+          "neg_rate": 0.6316
         },
         {
           "day": 13,
-          "n": 18,
-          "mean_pct": 0.014,
-          "median_pct": 0.0423,
-          "neg_rate": 0.3333
+          "n": 19,
+          "mean_pct": 0.0164,
+          "median_pct": 0.0552,
+          "neg_rate": 0.3158
         },
         {
           "day": 14,
-          "n": 18,
-          "mean_pct": 0.0282,
-          "median_pct": 0.0538,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.034,
+          "median_pct": 0.0847,
+          "neg_rate": 0.4211
         },
         {
           "day": 15,
-          "n": 18,
-          "mean_pct": 0.0444,
-          "median_pct": 0.0177,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0282,
+          "median_pct": 0.0153,
+          "neg_rate": 0.4211
         },
         {
           "day": 16,
-          "n": 18,
-          "mean_pct": 0.0151,
-          "median_pct": -0.1653,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": 0.0761,
+          "median_pct": -0.1556,
+          "neg_rate": 0.6316
         },
         {
           "day": 17,
-          "n": 18,
-          "mean_pct": 0.2708,
-          "median_pct": 0.148,
-          "neg_rate": 0.2222
+          "n": 19,
+          "mean_pct": 0.2401,
+          "median_pct": 0.131,
+          "neg_rate": 0.2632
         },
         {
           "day": 18,
-          "n": 18,
-          "mean_pct": -0.1608,
-          "median_pct": -0.1773,
-          "neg_rate": 0.8333
+          "n": 19,
+          "mean_pct": -0.1496,
+          "median_pct": -0.164,
+          "neg_rate": 0.7895
         },
         {
           "day": 19,
-          "n": 18,
-          "mean_pct": 0.0103,
-          "median_pct": 0.0262,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0336,
+          "median_pct": 0.0312,
+          "neg_rate": 0.4211
         },
         {
           "day": 20,
-          "n": 18,
-          "mean_pct": -0.1577,
-          "median_pct": -0.068,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.1481,
+          "median_pct": -0.0518,
+          "neg_rate": 0.5789
         },
         {
           "day": 21,
-          "n": 18,
-          "mean_pct": -0.1114,
-          "median_pct": -0.1035,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0985,
+          "median_pct": -0.0926,
+          "neg_rate": 0.5789
         },
         {
           "day": 22,
@@ -2360,147 +2360,147 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.333,
+          "mean_pct": 0.4923,
           "median_pct": 0.1644,
           "neg_rate": 0.2
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.0714,
-          "median_pct": 0.062,
-          "neg_rate": 0.4
+          "mean_pct": 0.1204,
+          "median_pct": 0.141,
+          "neg_rate": 0.3
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": -0.1426,
-          "median_pct": -0.002,
-          "neg_rate": 0.5
+          "mean_pct": -0.0902,
+          "median_pct": 0.0897,
+          "neg_rate": 0.4
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.1266,
-          "median_pct": 0.0865,
+          "mean_pct": 0.1214,
+          "median_pct": 0.0706,
           "neg_rate": 0.3
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.276,
+          "mean_pct": -0.3002,
           "median_pct": -0.2487,
           "neg_rate": 0.7
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": -0.0709,
+          "mean_pct": -0.0668,
           "median_pct": -0.0154,
           "neg_rate": 0.5
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0272,
+          "mean_pct": -0.0235,
           "median_pct": -0.0499,
           "neg_rate": 0.6
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.1869,
-          "median_pct": 0.0681,
-          "neg_rate": 0.3
+          "mean_pct": 0.2359,
+          "median_pct": 0.1609,
+          "neg_rate": 0.2
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": -0.2525,
-          "median_pct": -0.077,
+          "mean_pct": -0.257,
+          "median_pct": -0.0847,
           "neg_rate": 0.7
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": 0.0671,
+          "mean_pct": -0.0089,
           "median_pct": 0.011,
           "neg_rate": 0.4
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.1382,
-          "median_pct": -0.0168,
-          "neg_rate": 0.5
+          "mean_pct": -0.1538,
+          "median_pct": -0.0263,
+          "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.0223,
+          "mean_pct": -0.0298,
           "median_pct": -0.0538,
           "neg_rate": 0.6
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": 0.0284,
+          "mean_pct": -0.0079,
           "median_pct": 0.0309,
           "neg_rate": 0.3
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": 0.121,
+          "mean_pct": 0.0866,
           "median_pct": 0.0902,
           "neg_rate": 0.4
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.0995,
-          "median_pct": 0.0376,
-          "neg_rate": 0.4
+          "mean_pct": 0.0179,
+          "median_pct": -0.0111,
+          "neg_rate": 0.5
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.0644,
+          "mean_pct": 0.0716,
           "median_pct": -0.114,
           "neg_rate": 0.6
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": 0.384,
-          "median_pct": 0.281,
-          "neg_rate": 0.2
+          "mean_pct": 0.2554,
+          "median_pct": 0.0899,
+          "neg_rate": 0.3
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.134,
-          "median_pct": -0.1773,
-          "neg_rate": 0.8
+          "mean_pct": -0.0954,
+          "median_pct": -0.1468,
+          "neg_rate": 0.7
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0893,
-          "median_pct": -0.0529,
-          "neg_rate": 0.6
+          "mean_pct": 0.0245,
+          "median_pct": -0.0145,
+          "neg_rate": 0.5
         },
         {
           "day": 20,
           "n": 10,
-          "mean_pct": -0.2736,
-          "median_pct": -0.135,
-          "neg_rate": 0.6
+          "mean_pct": -0.1962,
+          "median_pct": -0.0611,
+          "neg_rate": 0.5
         },
         {
           "day": 21,
           "n": 10,
-          "mean_pct": -0.0679,
+          "mean_pct": -0.0581,
           "median_pct": -0.0713,
           "neg_rate": 0.6
         },
@@ -2525,298 +2525,298 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": -0.086,
-          "median_pct": -0.0801,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0711,
+          "median_pct": -0.0721,
+          "neg_rate": 0.5789
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": 0.1262,
-          "median_pct": 0.1038,
-          "neg_rate": 0.3333
+          "n": 19,
+          "mean_pct": 0.1397,
+          "median_pct": 0.1183,
+          "neg_rate": 0.3158
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": -0.0023,
-          "median_pct": -0.1508,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0085,
+          "median_pct": -0.1499,
+          "neg_rate": 0.6316
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": 0.1369,
-          "median_pct": 0.0801,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.1581,
+          "median_pct": 0.1007,
+          "neg_rate": 0.4211
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": -0.192,
-          "median_pct": -0.1419,
-          "neg_rate": 0.7222
+          "n": 19,
+          "mean_pct": -0.1726,
+          "median_pct": -0.0796,
+          "neg_rate": 0.6842
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": 0.0559,
-          "median_pct": 0.0172,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0298,
+          "median_pct": 0.0084,
+          "neg_rate": 0.4737
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": -0.0254,
-          "median_pct": -0.0645,
-          "neg_rate": 0.7222
+          "n": 19,
+          "mean_pct": -0.02,
+          "median_pct": -0.0536,
+          "neg_rate": 0.6842
         },
         {
           "day": 8,
-          "n": 18,
-          "mean_pct": -0.0595,
-          "median_pct": 0.0037,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.0291,
+          "median_pct": 0.0088,
+          "neg_rate": 0.4737
         },
         {
           "day": 9,
-          "n": 18,
-          "mean_pct": 0.0449,
-          "median_pct": 0.104,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0494,
+          "median_pct": 0.1307,
+          "neg_rate": 0.4211
         },
         {
           "day": 10,
-          "n": 18,
-          "mean_pct": -0.0275,
-          "median_pct": -0.0203,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.024,
+          "median_pct": 0.0132,
+          "neg_rate": 0.4737
         },
         {
           "day": 11,
-          "n": 18,
-          "mean_pct": -0.231,
-          "median_pct": -0.0819,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.2008,
+          "median_pct": -0.0535,
+          "neg_rate": 0.5789
         },
         {
           "day": 12,
-          "n": 18,
-          "mean_pct": 0.1013,
-          "median_pct": -0.0124,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0738,
+          "median_pct": -0.0364,
+          "neg_rate": 0.5263
         },
         {
           "day": 13,
-          "n": 18,
-          "mean_pct": -0.1001,
-          "median_pct": -0.0512,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.115,
+          "median_pct": -0.0699,
+          "neg_rate": 0.5789
         },
         {
           "day": 14,
-          "n": 18,
-          "mean_pct": 0.0375,
-          "median_pct": 0.0722,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0435,
+          "median_pct": 0.1017,
+          "neg_rate": 0.4211
         },
         {
           "day": 15,
-          "n": 18,
-          "mean_pct": 0.0635,
-          "median_pct": 0.0292,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0629,
+          "median_pct": 0.0359,
+          "neg_rate": 0.4211
         },
         {
           "day": 16,
-          "n": 18,
-          "mean_pct": -0.0467,
-          "median_pct": -0.1159,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": -0.0403,
+          "median_pct": -0.1128,
+          "neg_rate": 0.6316
         },
         {
           "day": 17,
-          "n": 18,
-          "mean_pct": -0.1335,
-          "median_pct": -0.1383,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.139,
+          "median_pct": -0.1806,
+          "neg_rate": 0.6316
         },
         {
           "day": 18,
-          "n": 18,
-          "mean_pct": -0.0497,
-          "median_pct": -0.0907,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0813,
+          "median_pct": -0.1003,
+          "neg_rate": 0.6316
         },
         {
           "day": 19,
-          "n": 18,
-          "mean_pct": 0.099,
-          "median_pct": 0.0802,
-          "neg_rate": 0.3333
+          "n": 19,
+          "mean_pct": 0.1012,
+          "median_pct": 0.1073,
+          "neg_rate": 0.3158
         },
         {
           "day": 20,
-          "n": 15,
-          "mean_pct": -0.0362,
-          "median_pct": -0.09,
-          "neg_rate": 0.6
+          "n": 16,
+          "mean_pct": -0.0347,
+          "median_pct": -0.0625,
+          "neg_rate": 0.625
         },
         {
           "day": 21,
-          "n": 10,
-          "mean_pct": 0.0116,
-          "median_pct": 0.0958,
-          "neg_rate": 0.4
+          "n": 11,
+          "mean_pct": 0.0171,
+          "median_pct": 0.0721,
+          "neg_rate": 0.3636
         }
       ],
       "recent": [
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.0301,
+          "mean_pct": -0.0185,
           "median_pct": 0.0435,
           "neg_rate": 0.5
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.106,
-          "median_pct": 0.0658,
-          "neg_rate": 0.4
+          "mean_pct": 0.1609,
+          "median_pct": 0.1038,
+          "neg_rate": 0.3
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.106,
-          "median_pct": 0.0528,
-          "neg_rate": 0.4
+          "mean_pct": 0.0843,
+          "median_pct": -0.0555,
+          "neg_rate": 0.5
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.0817,
+          "mean_pct": 0.1298,
           "median_pct": -0.0268,
           "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.1479,
+          "mean_pct": -0.1387,
           "median_pct": -0.1261,
           "neg_rate": 0.6
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.0105,
-          "median_pct": 0.0387,
-          "neg_rate": 0.4
+          "mean_pct": -0.0697,
+          "median_pct": 0.0128,
+          "neg_rate": 0.5
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0697,
+          "mean_pct": -0.0946,
           "median_pct": -0.0784,
           "neg_rate": 0.8
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": -0.2336,
+          "mean_pct": -0.1902,
           "median_pct": -0.1439,
           "neg_rate": 0.6
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.153,
-          "median_pct": 0.1728,
+          "mean_pct": 0.148,
+          "median_pct": 0.1478,
           "neg_rate": 0.3
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.0828,
-          "median_pct": 0.0161,
-          "neg_rate": 0.4
+          "mean_pct": -0.0109,
+          "median_pct": 0.0286,
+          "neg_rate": 0.3
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.2074,
+          "mean_pct": -0.1731,
           "median_pct": -0.0891,
           "neg_rate": 0.5
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": 0.0167,
-          "median_pct": -0.063,
-          "neg_rate": 0.6
+          "mean_pct": -0.0968,
+          "median_pct": -0.0928,
+          "neg_rate": 0.7
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": -0.1351,
+          "mean_pct": -0.1521,
           "median_pct": -0.1306,
           "neg_rate": 0.7
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": 0.1118,
-          "median_pct": 0.131,
-          "neg_rate": 0.3
+          "mean_pct": 0.1365,
+          "median_pct": 0.15,
+          "neg_rate": 0.2
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": -0.1761,
-          "median_pct": -0.109,
-          "neg_rate": 0.8
+          "mean_pct": -0.1577,
+          "median_pct": -0.0581,
+          "neg_rate": 0.7
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": 0.0198,
+          "mean_pct": 0.0368,
           "median_pct": -0.1159,
-          "neg_rate": 0.7
+          "neg_rate": 0.6
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.1683,
-          "median_pct": -0.2246,
+          "mean_pct": -0.1394,
+          "median_pct": -0.2092,
           "neg_rate": 0.7
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.1327,
-          "median_pct": -0.1255,
-          "neg_rate": 0.7
+          "mean_pct": -0.2304,
+          "median_pct": -0.1989,
+          "neg_rate": 0.8
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": 0.1268,
-          "median_pct": 0.0903,
+          "mean_pct": 0.124,
+          "median_pct": 0.0795,
           "neg_rate": 0.4
         },
         {
           "day": 20,
           "n": 9,
-          "mean_pct": -0.0955,
+          "mean_pct": -0.1034,
           "median_pct": -0.0351,
-          "neg_rate": 0.5556
+          "neg_rate": 0.6667
         },
         {
           "day": 21,
           "n": 5,
-          "mean_pct": 0.2147,
-          "median_pct": 0.2456,
+          "mean_pct": 0.169,
+          "median_pct": 0.0721,
           "neg_rate": 0.4
         }
       ]
@@ -2826,326 +2826,326 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": 0.1446,
-          "median_pct": 0.0755,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.1346,
+          "median_pct": 0.0645,
+          "neg_rate": 0.4737
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": 0.0463,
-          "median_pct": 0.1343,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0279,
+          "median_pct": 0.1243,
+          "neg_rate": 0.4737
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": -0.1447,
-          "median_pct": -0.1222,
-          "neg_rate": 0.7222
+          "n": 19,
+          "mean_pct": -0.1419,
+          "median_pct": -0.105,
+          "neg_rate": 0.7368
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": 0.0251,
-          "median_pct": 0.0557,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0265,
+          "median_pct": 0.0519,
+          "neg_rate": 0.3684
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": 0.0361,
-          "median_pct": 0.0668,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": -0.0011,
+          "median_pct": 0.06,
+          "neg_rate": 0.4211
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": 0.0753,
-          "median_pct": 0.0171,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0716,
+          "median_pct": 0.0113,
+          "neg_rate": 0.4211
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": -0.0834,
-          "median_pct": -0.0445,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.088,
+          "median_pct": -0.0644,
+          "neg_rate": 0.5789
         },
         {
           "day": 8,
-          "n": 18,
-          "mean_pct": -0.1039,
-          "median_pct": -0.1075,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0487,
+          "median_pct": -0.0352,
+          "neg_rate": 0.5263
         },
         {
           "day": 9,
-          "n": 18,
-          "mean_pct": -0.0681,
-          "median_pct": 0.0071,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0692,
+          "median_pct": 0.0,
+          "neg_rate": 0.4737
         },
         {
           "day": 10,
-          "n": 18,
-          "mean_pct": -0.0364,
-          "median_pct": -0.0266,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.0229,
+          "median_pct": 0.0374,
+          "neg_rate": 0.4737
         },
         {
           "day": 11,
-          "n": 18,
-          "mean_pct": 0.0822,
-          "median_pct": 0.0062,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0921,
+          "median_pct": 0.0326,
+          "neg_rate": 0.4737
         },
         {
           "day": 12,
-          "n": 18,
-          "mean_pct": -0.2138,
-          "median_pct": -0.1308,
-          "neg_rate": 0.7222
+          "n": 19,
+          "mean_pct": -0.1732,
+          "median_pct": -0.126,
+          "neg_rate": 0.6842
         },
         {
           "day": 13,
-          "n": 18,
-          "mean_pct": -0.1037,
-          "median_pct": -0.0935,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": -0.1115,
+          "median_pct": -0.0955,
+          "neg_rate": 0.6842
         },
         {
           "day": 14,
-          "n": 18,
-          "mean_pct": -0.0043,
-          "median_pct": 0.0098,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0039,
+          "median_pct": 0.0042,
+          "neg_rate": 0.4211
         },
         {
           "day": 15,
-          "n": 18,
-          "mean_pct": 0.1862,
-          "median_pct": -0.0306,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.1781,
+          "median_pct": -0.0294,
+          "neg_rate": 0.5263
         },
         {
           "day": 16,
-          "n": 18,
-          "mean_pct": 0.0688,
-          "median_pct": 0.0172,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.06,
+          "median_pct": 0.0,
+          "neg_rate": 0.4737
         },
         {
           "day": 17,
-          "n": 18,
-          "mean_pct": -0.0281,
-          "median_pct": -0.0026,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.024,
+          "median_pct": 0.0,
+          "neg_rate": 0.4737
         },
         {
           "day": 18,
-          "n": 18,
-          "mean_pct": 0.0541,
-          "median_pct": 0.0406,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0545,
+          "median_pct": 0.0487,
+          "neg_rate": 0.4211
         },
         {
           "day": 19,
-          "n": 18,
-          "mean_pct": 0.0163,
-          "median_pct": -0.0386,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.0067,
+          "median_pct": -0.0674,
+          "neg_rate": 0.5789
         },
         {
           "day": 20,
-          "n": 18,
-          "mean_pct": -0.0714,
-          "median_pct": 0.0197,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": -0.0696,
+          "median_pct": 0.0167,
+          "neg_rate": 0.4211
         },
         {
           "day": 21,
-          "n": 18,
-          "mean_pct": -0.0403,
-          "median_pct": -0.0251,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0532,
+          "median_pct": -0.0342,
+          "neg_rate": 0.5789
         },
         {
           "day": 22,
-          "n": 12,
-          "mean_pct": -0.1654,
-          "median_pct": -0.1968,
-          "neg_rate": 0.75
+          "n": 13,
+          "mean_pct": -0.1516,
+          "median_pct": -0.1853,
+          "neg_rate": 0.6923
         },
         {
           "day": 23,
-          "n": 7,
-          "mean_pct": -0.0661,
-          "median_pct": 0.0493,
-          "neg_rate": 0.4286
+          "n": 8,
+          "mean_pct": -0.0489,
+          "median_pct": 0.0605,
+          "neg_rate": 0.375
         }
       ],
       "recent": [
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.0577,
+          "mean_pct": 0.0675,
           "median_pct": 0.0266,
           "neg_rate": 0.5
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.0683,
-          "median_pct": 0.1575,
-          "neg_rate": 0.3
+          "mean_pct": 0.0089,
+          "median_pct": 0.1343,
+          "neg_rate": 0.4
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": -0.2103,
-          "median_pct": -0.1538,
+          "mean_pct": -0.2024,
+          "median_pct": -0.1222,
           "neg_rate": 0.9
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": -0.2028,
+          "mean_pct": -0.2049,
           "median_pct": -0.1207,
           "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.0032,
-          "median_pct": 0.0574,
-          "neg_rate": 0.4
+          "mean_pct": -0.0762,
+          "median_pct": -0.0311,
+          "neg_rate": 0.5
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": -0.0637,
-          "median_pct": -0.0832,
-          "neg_rate": 0.7
+          "mean_pct": -0.0609,
+          "median_pct": -0.0831,
+          "neg_rate": 0.6
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0048,
-          "median_pct": 0.0039,
-          "neg_rate": 0.5
+          "mean_pct": -0.0289,
+          "median_pct": -0.0772,
+          "neg_rate": 0.6
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": -0.022,
+          "mean_pct": 0.0641,
           "median_pct": -0.1828,
           "neg_rate": 0.6
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": -0.0138,
+          "mean_pct": -0.0202,
           "median_pct": 0.024,
           "neg_rate": 0.4
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": 0.0209,
+          "mean_pct": -0.0156,
           "median_pct": 0.0448,
           "neg_rate": 0.4
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.1473,
-          "median_pct": -0.0801,
-          "neg_rate": 0.7
+          "mean_pct": -0.0575,
+          "median_pct": -0.0319,
+          "neg_rate": 0.6
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": -0.1102,
-          "median_pct": -0.1072,
-          "neg_rate": 0.7
+          "mean_pct": -0.0212,
+          "median_pct": -0.0506,
+          "neg_rate": 0.6
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": -0.1393,
-          "median_pct": -0.1111,
+          "mean_pct": -0.155,
+          "median_pct": -0.1273,
           "neg_rate": 0.8
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": 0.026,
+          "mean_pct": 0.0468,
           "median_pct": 0.0753,
-          "neg_rate": 0.4
+          "neg_rate": 0.3
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.2086,
-          "median_pct": 0.0029,
+          "mean_pct": 0.2035,
+          "median_pct": -0.0109,
           "neg_rate": 0.5
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": -0.0102,
+          "mean_pct": 0.0567,
           "median_pct": 0.0597,
           "neg_rate": 0.4
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": 0.0121,
-          "median_pct": -0.014,
-          "neg_rate": 0.6
+          "mean_pct": 0.0799,
+          "median_pct": 0.006,
+          "neg_rate": 0.5
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": 0.0969,
-          "median_pct": 0.0416,
-          "neg_rate": 0.4
+          "mean_pct": 0.1055,
+          "median_pct": 0.0565,
+          "neg_rate": 0.3
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0912,
-          "median_pct": -0.0855,
+          "mean_pct": -0.0993,
+          "median_pct": -0.1155,
           "neg_rate": 0.7
         },
         {
           "day": 20,
           "n": 10,
-          "mean_pct": 0.0389,
+          "mean_pct": 0.087,
           "median_pct": 0.025,
           "neg_rate": 0.4
         },
         {
           "day": 21,
           "n": 10,
-          "mean_pct": 0.0691,
+          "mean_pct": 0.0561,
           "median_pct": 0.0163,
           "neg_rate": 0.4
         },
         {
           "day": 22,
           "n": 7,
-          "mean_pct": -0.2292,
+          "mean_pct": -0.21,
           "median_pct": -0.2083,
-          "neg_rate": 0.8571
+          "neg_rate": 0.7143
         },
         {
           "day": 23,
-          "n": 3,
-          "mean_pct": 0.2376,
-          "median_pct": 0.1357,
+          "n": 4,
+          "mean_pct": 0.1961,
+          "median_pct": 0.1328,
           "neg_rate": 0.0
         }
       ]
@@ -3155,136 +3155,136 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": -0.0729,
-          "median_pct": -0.17,
-          "neg_rate": 0.7222
+          "n": 19,
+          "mean_pct": -0.0712,
+          "median_pct": -0.1688,
+          "neg_rate": 0.7368
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": -0.1285,
-          "median_pct": -0.1274,
-          "neg_rate": 0.7778
+          "n": 19,
+          "mean_pct": -0.1261,
+          "median_pct": -0.1247,
+          "neg_rate": 0.7895
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": 0.0843,
-          "median_pct": 0.004,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0659,
+          "median_pct": -0.0148,
+          "neg_rate": 0.5263
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": 0.0213,
-          "median_pct": -0.0436,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.0388,
+          "median_pct": -0.0182,
+          "neg_rate": 0.5263
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": 0.0741,
-          "median_pct": 0.0909,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0572,
+          "median_pct": 0.0468,
+          "neg_rate": 0.4211
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": -0.0061,
-          "median_pct": 0.0338,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0047,
+          "median_pct": 0.0208,
+          "neg_rate": 0.4211
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": -0.1291,
-          "median_pct": -0.0161,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.1203,
+          "median_pct": -0.0024,
+          "neg_rate": 0.5263
         },
         {
           "day": 8,
-          "n": 18,
-          "mean_pct": 0.294,
-          "median_pct": 0.0387,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.279,
+          "median_pct": 0.0318,
+          "neg_rate": 0.4211
         },
         {
           "day": 9,
-          "n": 18,
-          "mean_pct": -0.2027,
-          "median_pct": -0.0273,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": -0.1908,
+          "median_pct": 0.024,
+          "neg_rate": 0.4737
         },
         {
           "day": 10,
-          "n": 18,
-          "mean_pct": 0.1163,
-          "median_pct": 0.1067,
-          "neg_rate": 0.2778
+          "n": 19,
+          "mean_pct": 0.0855,
+          "median_pct": 0.1022,
+          "neg_rate": 0.3158
         },
         {
           "day": 11,
-          "n": 18,
-          "mean_pct": 0.0129,
-          "median_pct": -0.0779,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0008,
+          "median_pct": -0.1108,
+          "neg_rate": 0.6316
         },
         {
           "day": 12,
-          "n": 18,
-          "mean_pct": -0.0275,
-          "median_pct": -0.0492,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0357,
+          "median_pct": -0.0831,
+          "neg_rate": 0.5789
         },
         {
           "day": 13,
-          "n": 18,
-          "mean_pct": 0.0738,
-          "median_pct": 0.0754,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0413,
+          "median_pct": 0.0738,
+          "neg_rate": 0.4211
         },
         {
           "day": 14,
-          "n": 18,
-          "mean_pct": 0.0191,
-          "median_pct": -0.0662,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": 0.0258,
+          "median_pct": -0.0651,
+          "neg_rate": 0.6316
         },
         {
           "day": 15,
-          "n": 18,
-          "mean_pct": -0.1128,
-          "median_pct": -0.0651,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0951,
+          "median_pct": -0.065,
+          "neg_rate": 0.5789
         },
         {
           "day": 16,
-          "n": 18,
-          "mean_pct": -0.1415,
-          "median_pct": -0.0575,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": -0.1354,
+          "median_pct": -0.0543,
+          "neg_rate": 0.6842
         },
         {
           "day": 17,
-          "n": 18,
-          "mean_pct": 0.0962,
-          "median_pct": 0.0268,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.1018,
+          "median_pct": 0.0595,
+          "neg_rate": 0.4737
         },
         {
           "day": 18,
-          "n": 18,
-          "mean_pct": -0.0911,
-          "median_pct": -0.0464,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0855,
+          "median_pct": -0.0436,
+          "neg_rate": 0.5789
         },
         {
           "day": 19,
-          "n": 18,
-          "mean_pct": 0.0088,
-          "median_pct": -0.1058,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.0079,
+          "median_pct": -0.0669,
+          "neg_rate": 0.5789
         },
         {
           "day": 20,
@@ -3305,142 +3305,142 @@
         {
           "day": 1,
           "n": 10,
-          "mean_pct": -0.0181,
-          "median_pct": -0.0891,
+          "mean_pct": -0.0052,
+          "median_pct": -0.0545,
           "neg_rate": 0.6
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": -0.1397,
-          "median_pct": -0.1557,
+          "mean_pct": -0.1298,
+          "median_pct": -0.1065,
           "neg_rate": 0.8
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.0424,
+          "mean_pct": 0.0486,
           "median_pct": 0.004,
           "neg_rate": 0.5
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": 0.0949,
+          "mean_pct": 0.1181,
           "median_pct": 0.0587,
           "neg_rate": 0.4
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": -0.047,
+          "mean_pct": 0.0295,
           "median_pct": -0.0156,
           "neg_rate": 0.5
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": 0.0046,
+          "mean_pct": -0.0192,
           "median_pct": -0.0007,
           "neg_rate": 0.5
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.2361,
+          "mean_pct": -0.2373,
           "median_pct": -0.0502,
           "neg_rate": 0.6
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.2977,
-          "median_pct": 0.0068,
+          "mean_pct": 0.2777,
+          "median_pct": -0.0114,
           "neg_rate": 0.5
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.0274,
-          "median_pct": 0.0552,
+          "mean_pct": 0.0015,
+          "median_pct": 0.0337,
           "neg_rate": 0.4
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": 0.1361,
+          "mean_pct": 0.0844,
           "median_pct": 0.1512,
-          "neg_rate": 0.2
+          "neg_rate": 0.3
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.1112,
-          "median_pct": -0.1152,
+          "mean_pct": -0.1249,
+          "median_pct": -0.1278,
           "neg_rate": 0.8
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": 0.1606,
+          "mean_pct": 0.157,
           "median_pct": 0.2202,
           "neg_rate": 0.3
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": -0.0056,
+          "mean_pct": -0.0415,
           "median_pct": 0.1005,
           "neg_rate": 0.4
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": -0.1185,
+          "mean_pct": -0.1261,
           "median_pct": -0.0662,
           "neg_rate": 0.7
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": -0.0973,
+          "mean_pct": -0.0823,
           "median_pct": -0.0651,
           "neg_rate": 0.7
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": -0.1277,
+          "mean_pct": -0.155,
           "median_pct": -0.0993,
-          "neg_rate": 0.7
+          "neg_rate": 0.8
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.0552,
+          "mean_pct": -0.0312,
           "median_pct": -0.0667,
-          "neg_rate": 0.8
+          "neg_rate": 0.7
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": -0.0166,
-          "median_pct": -0.0341,
-          "neg_rate": 0.6
+          "mean_pct": -0.0126,
+          "median_pct": -0.0138,
+          "neg_rate": 0.5
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": 0.1422,
+          "mean_pct": 0.1597,
           "median_pct": 0.1295,
           "neg_rate": 0.4
         },
         {
           "day": 20,
-          "n": 10,
-          "mean_pct": 0.0352,
-          "median_pct": 0.0471,
-          "neg_rate": 0.4
+          "n": 9,
+          "mean_pct": 0.035,
+          "median_pct": 0.0573,
+          "neg_rate": 0.4444
         },
         {
           "day": 21,
@@ -3456,311 +3456,311 @@
       "full": [
         {
           "day": 1,
-          "n": 18,
-          "mean_pct": 0.2453,
-          "median_pct": 0.1876,
-          "neg_rate": 0.2778
+          "n": 19,
+          "mean_pct": 0.2094,
+          "median_pct": 0.173,
+          "neg_rate": 0.3158
         },
         {
           "day": 2,
-          "n": 18,
-          "mean_pct": 0.029,
-          "median_pct": 0.0397,
-          "neg_rate": 0.3889
+          "n": 19,
+          "mean_pct": 0.0321,
+          "median_pct": 0.0466,
+          "neg_rate": 0.3684
         },
         {
           "day": 3,
-          "n": 18,
-          "mean_pct": 0.0048,
-          "median_pct": 0.0072,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0122,
+          "median_pct": 0.0451,
+          "neg_rate": 0.4737
         },
         {
           "day": 4,
-          "n": 18,
-          "mean_pct": -0.1266,
-          "median_pct": 0.034,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.1331,
+          "median_pct": 0.0248,
+          "neg_rate": 0.4737
         },
         {
           "day": 5,
-          "n": 18,
-          "mean_pct": -0.0854,
-          "median_pct": -0.0434,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0861,
+          "median_pct": -0.0652,
+          "neg_rate": 0.5789
         },
         {
           "day": 6,
-          "n": 18,
-          "mean_pct": -0.0358,
-          "median_pct": -0.0122,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0449,
+          "median_pct": -0.015,
+          "neg_rate": 0.6316
         },
         {
           "day": 7,
-          "n": 18,
-          "mean_pct": 0.1,
-          "median_pct": 0.0371,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.0789,
+          "median_pct": 0.012,
+          "neg_rate": 0.4737
         },
         {
           "day": 8,
-          "n": 18,
-          "mean_pct": -0.027,
-          "median_pct": -0.1353,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.0014,
+          "median_pct": -0.1248,
+          "neg_rate": 0.5789
         },
         {
           "day": 9,
-          "n": 18,
-          "mean_pct": 0.1802,
-          "median_pct": 0.0617,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": 0.1718,
+          "median_pct": 0.0277,
+          "neg_rate": 0.4211
         },
         {
           "day": 10,
-          "n": 18,
-          "mean_pct": -0.1441,
-          "median_pct": -0.172,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.1308,
+          "median_pct": -0.1587,
+          "neg_rate": 0.5789
         },
         {
           "day": 11,
-          "n": 18,
-          "mean_pct": -0.1094,
-          "median_pct": -0.129,
-          "neg_rate": 0.6667
+          "n": 19,
+          "mean_pct": -0.1087,
+          "median_pct": -0.1204,
+          "neg_rate": 0.6842
         },
         {
           "day": 12,
-          "n": 18,
-          "mean_pct": 0.0902,
-          "median_pct": 0.0339,
-          "neg_rate": 0.5
+          "n": 19,
+          "mean_pct": 0.0804,
+          "median_pct": -0.009,
+          "neg_rate": 0.5263
         },
         {
           "day": 13,
-          "n": 18,
-          "mean_pct": -0.1416,
-          "median_pct": -0.0824,
-          "neg_rate": 0.6111
+          "n": 19,
+          "mean_pct": -0.1395,
+          "median_pct": -0.1028,
+          "neg_rate": 0.6316
         },
         {
           "day": 14,
-          "n": 18,
-          "mean_pct": -0.0242,
-          "median_pct": 0.0442,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0124,
+          "median_pct": 0.0468,
+          "neg_rate": 0.4211
         },
         {
           "day": 15,
-          "n": 18,
-          "mean_pct": 0.0013,
-          "median_pct": 0.0462,
-          "neg_rate": 0.4444
+          "n": 19,
+          "mean_pct": -0.0133,
+          "median_pct": 0.0335,
+          "neg_rate": 0.4737
         },
         {
           "day": 16,
-          "n": 18,
-          "mean_pct": -0.1897,
-          "median_pct": -0.1231,
-          "neg_rate": 0.7222
+          "n": 19,
+          "mean_pct": -0.1668,
+          "median_pct": -0.1143,
+          "neg_rate": 0.6842
         },
         {
           "day": 17,
-          "n": 18,
-          "mean_pct": -0.0668,
-          "median_pct": -0.0312,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.069,
+          "median_pct": -0.035,
+          "neg_rate": 0.5789
         },
         {
           "day": 18,
-          "n": 18,
-          "mean_pct": 0.0448,
-          "median_pct": -0.0076,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": 0.0449,
+          "median_pct": -0.0038,
+          "neg_rate": 0.5263
         },
         {
           "day": 19,
-          "n": 18,
-          "mean_pct": 0.0003,
-          "median_pct": -0.0286,
-          "neg_rate": 0.5556
+          "n": 19,
+          "mean_pct": -0.0051,
+          "median_pct": -0.0451,
+          "neg_rate": 0.5789
         },
         {
           "day": 20,
-          "n": 17,
-          "mean_pct": 0.1049,
-          "median_pct": 0.0999,
-          "neg_rate": 0.3529
+          "n": 18,
+          "mean_pct": 0.1081,
+          "median_pct": 0.1259,
+          "neg_rate": 0.3333
         },
         {
           "day": 21,
-          "n": 13,
-          "mean_pct": 0.0347,
-          "median_pct": -0.012,
-          "neg_rate": 0.5385
+          "n": 14,
+          "mean_pct": 0.0128,
+          "median_pct": -0.0221,
+          "neg_rate": 0.5714
         },
         {
           "day": 22,
-          "n": 7,
-          "mean_pct": -0.0893,
-          "median_pct": -0.1449,
-          "neg_rate": 0.5714
+          "n": 8,
+          "mean_pct": -0.0779,
+          "median_pct": -0.0718,
+          "neg_rate": 0.5
         }
       ],
       "recent": [
         {
           "day": 1,
           "n": 10,
-          "mean_pct": 0.3821,
+          "mean_pct": 0.3127,
           "median_pct": 0.3346,
-          "neg_rate": 0.1
+          "neg_rate": 0.2
         },
         {
           "day": 2,
           "n": 10,
-          "mean_pct": 0.0371,
-          "median_pct": 0.0398,
-          "neg_rate": 0.4
+          "mean_pct": 0.0533,
+          "median_pct": 0.0783,
+          "neg_rate": 0.3
         },
         {
           "day": 3,
           "n": 10,
-          "mean_pct": 0.067,
-          "median_pct": 0.1437,
+          "mean_pct": 0.0271,
+          "median_pct": 0.1114,
           "neg_rate": 0.3
         },
         {
           "day": 4,
           "n": 10,
-          "mean_pct": -0.1016,
-          "median_pct": -0.1063,
+          "mean_pct": -0.1144,
+          "median_pct": -0.1132,
           "neg_rate": 0.6
         },
         {
           "day": 5,
           "n": 10,
-          "mean_pct": 0.0983,
-          "median_pct": 0.0692,
-          "neg_rate": 0.4
+          "mean_pct": 0.0848,
+          "median_pct": 0.0398,
+          "neg_rate": 0.5
         },
         {
           "day": 6,
           "n": 10,
-          "mean_pct": -0.0812,
-          "median_pct": -0.0205,
-          "neg_rate": 0.6
+          "mean_pct": -0.1045,
+          "median_pct": -0.078,
+          "neg_rate": 0.7
         },
         {
           "day": 7,
           "n": 10,
-          "mean_pct": -0.0154,
-          "median_pct": -0.0869,
-          "neg_rate": 0.7
+          "mean_pct": -0.1239,
+          "median_pct": -0.1001,
+          "neg_rate": 0.8
         },
         {
           "day": 8,
           "n": 10,
-          "mean_pct": 0.0546,
-          "median_pct": 0.0396,
-          "neg_rate": 0.5
+          "mean_pct": 0.1151,
+          "median_pct": 0.1531,
+          "neg_rate": 0.4
         },
         {
           "day": 9,
           "n": 10,
-          "mean_pct": 0.3655,
-          "median_pct": 0.1373,
+          "mean_pct": 0.3286,
+          "median_pct": 0.116,
           "neg_rate": 0.2
         },
         {
           "day": 10,
           "n": 10,
-          "mean_pct": -0.2353,
-          "median_pct": -0.192,
-          "neg_rate": 0.7
+          "mean_pct": -0.2016,
+          "median_pct": -0.172,
+          "neg_rate": 0.6
         },
         {
           "day": 11,
           "n": 10,
-          "mean_pct": -0.2205,
-          "median_pct": -0.129,
+          "mean_pct": -0.1816,
+          "median_pct": -0.1078,
           "neg_rate": 0.8
         },
         {
           "day": 12,
           "n": 10,
-          "mean_pct": 0.0733,
+          "mean_pct": 0.099,
           "median_pct": 0.0339,
           "neg_rate": 0.5
         },
         {
           "day": 13,
           "n": 10,
-          "mean_pct": -0.0811,
-          "median_pct": -0.0663,
+          "mean_pct": -0.0889,
+          "median_pct": -0.1055,
           "neg_rate": 0.6
         },
         {
           "day": 14,
           "n": 10,
-          "mean_pct": 0.1082,
+          "mean_pct": 0.1087,
           "median_pct": 0.0961,
           "neg_rate": 0.4
         },
         {
           "day": 15,
           "n": 10,
-          "mean_pct": 0.0875,
-          "median_pct": 0.1819,
-          "neg_rate": 0.4
+          "mean_pct": 0.0417,
+          "median_pct": 0.0744,
+          "neg_rate": 0.5
         },
         {
           "day": 16,
           "n": 10,
-          "mean_pct": -0.1052,
-          "median_pct": -0.0529,
-          "neg_rate": 0.6
+          "mean_pct": -0.0709,
+          "median_pct": 0.0119,
+          "neg_rate": 0.5
         },
         {
           "day": 17,
           "n": 10,
-          "mean_pct": -0.0271,
-          "median_pct": -0.0312,
-          "neg_rate": 0.6
+          "mean_pct": -0.0379,
+          "median_pct": -0.0507,
+          "neg_rate": 0.7
         },
         {
           "day": 18,
           "n": 10,
-          "mean_pct": 0.0267,
+          "mean_pct": 0.0171,
           "median_pct": -0.0233,
           "neg_rate": 0.7
         },
         {
           "day": 19,
           "n": 10,
-          "mean_pct": -0.0417,
-          "median_pct": -0.0105,
-          "neg_rate": 0.5
+          "mean_pct": -0.0544,
+          "median_pct": -0.0568,
+          "neg_rate": 0.6
         },
         {
           "day": 20,
           "n": 9,
-          "mean_pct": 0.1709,
-          "median_pct": 0.1518,
-          "neg_rate": 0.3333
+          "mean_pct": 0.1942,
+          "median_pct": 0.1612,
+          "neg_rate": 0.2222
         },
         {
           "day": 21,
           "n": 7,
-          "mean_pct": 0.0069,
-          "median_pct": -0.0321,
+          "mean_pct": -0.0303,
+          "median_pct": -0.0983,
           "neg_rate": 0.7143
         },
         {
           "day": 22,
           "n": 3,
-          "mean_pct": -0.0188,
+          "mean_pct": -0.0505,
           "median_pct": 0.0013,
           "neg_rate": 0.3333
         }

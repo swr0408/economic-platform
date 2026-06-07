@@ -250,6 +250,7 @@ export default function HistoricalVolatilityChart() {
       dataSource="cboe"
       sourceUrl="https://www.cboe.com/"
       showPeriodSelector={false}
+      handbookId="implied-vol-premium"
     >
       {/* 最新値 */}
       {latest && (

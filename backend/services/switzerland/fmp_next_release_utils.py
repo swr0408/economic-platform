@@ -28,6 +28,13 @@ NEXT_RELEASE_CACHE_TTL = 86400
 # SNB金利決定は08:30 チューリッヒ時間に発表
 UPDATE_WINDOW_MINUTES = 10
 
+# FMPイベントパターン → SNB ICSカレンダーのカテゴリ対応表
+# SNB ICSには金融政策関連のイベントしか含まれないため、ここに載るのは限定的。
+# CPI/雇用/PPI等の経済指標は SNB ICS に存在しないので追加してはいけない。
+_SNB_ICS_PATTERN_TO_CATEGORY = {
+    "SNB Interest Rate Decision": "monetary_policy_decision",
+}
+
 
 def get_next_release_by_pattern(
     event_pattern: str,
@@ -181,6 +188,51 @@ def _get_next_release_from_db(
         return None
 
 
+def _get_latest_past_release_from_snb_ics(
+    event_pattern: str,
+    now: datetime,
+) -> Optional[datetime]:
+    """
+    SNB ICSカレンダーから event_pattern に対応する直近の過去発表日時を取得。
+
+    FMP DB が空・古い場合の2次フォールバック。SNB ICSは年初に通年の予定が公開されるため、
+    FMP backfill 停止中でも金融政策決定の最新発表を検出できる。
+
+    Returns:
+        JSTタイムゾーン付きdatetime、または None（パターンが未マッピング/ICSに該当イベントなし）
+    """
+    category = _SNB_ICS_PATTERN_TO_CATEGORY.get(event_pattern)
+    if category is None:
+        return None
+
+    try:
+        from services.switzerland.snb_calendar_service import snb_calendar_service
+
+        schedule = snb_calendar_service._get_schedule() or {}
+        events = schedule.get(category, [])
+
+        latest_jst: Optional[datetime] = None
+        for event in events:
+            dt_str = event.get("datetime")
+            if not dt_str:
+                continue
+            try:
+                event_dt_zurich = datetime.strptime(dt_str, "%Y-%m-%d %H:%M").replace(tzinfo=ZURICH)
+            except ValueError:
+                continue
+            event_dt_jst = event_dt_zurich.astimezone(JST)
+            if event_dt_jst > now:
+                continue
+            if latest_jst is None or event_dt_jst > latest_jst:
+                latest_jst = event_dt_jst
+
+        return latest_jst
+
+    except Exception as e:
+        print(f"[CH FMP Utils] Error reading SNB ICS for pattern '{event_pattern}': {e}")
+        return None
+
+
 def should_refresh_by_pattern(
     event_pattern: str,
     last_updated_str: str,
@@ -253,7 +305,14 @@ def should_refresh_by_pattern(
                 if now >= pending_release and last_updated < pending_release:
                     return True
 
-            return False
+        # 3. SNB ICSカレンダーにフォールバック
+        # FMPバックフィルが遅延/停止していてもSNB発表（金融政策決定）に対応するため。
+        # 対象は SNB ICS に存在するパターンのみ（金融政策発表系）。
+        ics_release_dt = _get_latest_past_release_from_snb_ics(event_pattern, now)
+        if ics_release_dt and last_updated < ics_release_dt <= now:
+            return True
+
+        return False
 
     except Exception as e:
         print(f"[CH FMP Utils] Error checking refresh by pattern '{event_pattern}' for country '{country}': {e}")

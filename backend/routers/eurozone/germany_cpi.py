@@ -16,7 +16,7 @@ router = APIRouter(
 
 
 @router.get("/germany-cpi")
-async def get_germany_cpi(
+def get_germany_cpi(
     force_refresh: bool = Query(False, description="Force refresh from database")
 ) -> Dict[str, Any]:
     """
@@ -38,7 +38,7 @@ async def get_germany_cpi(
 
 
 @router.get("/germany-cpi/cache-status")
-async def get_germany_cpi_cache_status() -> Dict[str, Any]:
+def get_germany_cpi_cache_status() -> Dict[str, Any]:
     """
     ドイツCPIキャッシュ状態を取得
 
@@ -49,7 +49,7 @@ async def get_germany_cpi_cache_status() -> Dict[str, Any]:
 
 
 @router.post("/germany-cpi/invalidate-cache")
-async def invalidate_germany_cpi_cache() -> Dict[str, Any]:
+def invalidate_germany_cpi_cache() -> Dict[str, Any]:
     """
     ドイツCPIキャッシュを無効化
 

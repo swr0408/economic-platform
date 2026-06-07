@@ -48,17 +48,21 @@ class ConsumerSentimentService:
     # e-Stat Excel File Download URL
     ESTAT_EXCEL_URL = "https://www.e-stat.go.jp/stat-search/file-download"
 
-    # Table name filter for finding correct table
-    # We want: 長期時系列表（消費者態度指数）1-1 季節調整値
-    TABLE_NAME_FILTER = "長期時系列表（消費者態度指数）"
+    # Table name filter for finding correct table.
+    # e-Stat reorganized 消費動向調査 in 2026: the "長期時系列表（消費者態度指数）"
+    # naming is gone; the long-term time-series for 一般世帯 now appears under
+    # "二人以上の世帯（消費者態度指数）". Each release returns 8 sequential
+    # statInfIds (sub-tables 1-1 … 1-8); the lowest one is the seasonally-adjusted
+    # consumer confidence index (1-1) — same Excel structure as the previous file.
+    TABLE_NAME_FILTER = "二人以上の世帯（消費者態度指数）"
 
-    # Fallback list of statInfIds (used if API discovery fails)
-    # Most recent first - 長期時系列表（消費者態度指数）1-1 季節調整値
+    # Fallback list of statInfIds (used if API discovery fails).
+    # First entry of each monthly release set (= sub-table 1-1, 季節調整値).
     FALLBACK_STAT_INF_IDS = [
-        "000040396250",  # December 2025 (published 2026-01-08)
-        "000040383608",  # November 2025
-        "000040371171",  # October 2025
-        "000040356629",  # September 2025
+        "000040450603",  # April 2026 release (released 2026-04-30)
+        "000040443726",  # April 2026 release (released 2026-04-09)
+        "000040420574",  # March 2026 release (released 2026-03-04)
+        "000040396250",  # December 2025 (published 2026-01-08) — legacy fallback
     ]
 
     def __init__(self):
@@ -157,7 +161,7 @@ class ConsumerSentimentService:
 
                 try:
                     logger.info(f"Attempting direct download: {url_info.get('table_name', 'unknown')} ({url_info.get('release_date', 'unknown')})")
-                    response = requests.get(url, timeout=60)
+                    response = requests.get(url, timeout=20)
 
                     if response.status_code == 200 and len(response.content) > 1000:
                         logger.info(f"Successfully downloaded Excel file directly ({len(response.content)} bytes)")
@@ -193,7 +197,7 @@ class ConsumerSentimentService:
                 response = requests.get(
                     self.ESTAT_EXCEL_URL,
                     params=params,
-                    timeout=60
+                    timeout=20
                 )
 
                 if response.status_code == 200 and len(response.content) > 1000:

@@ -18,7 +18,7 @@ router = APIRouter(
 
 
 @router.get("/inflation-expectations")
-async def get_inflation_expectations(
+def get_inflation_expectations(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -33,13 +33,13 @@ async def get_inflation_expectations(
 
 
 @router.get("/inflation-expectations/cache")
-async def get_inflation_expectations_cache_status() -> Dict[str, Any]:
+def get_inflation_expectations_cache_status() -> Dict[str, Any]:
     """インフレ期待のキャッシュ状態を取得"""
     return au_inflation_expectations_service.get_cache_status()
 
 
 @router.delete("/inflation-expectations/cache")
-async def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
+def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
     """インフレ期待のキャッシュを無効化"""
     success = au_inflation_expectations_service.invalidate_cache()
     return {"success": success}

@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/japan/current-account", tags=["Japan - Current A
 
 
 @router.get("")
-async def get_current_account_data(
+def get_current_account_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -42,7 +42,7 @@ async def get_current_account_data(
 
 
 @router.get("/gdp-ratio")
-async def get_current_account_gdp_ratio(
+def get_current_account_gdp_ratio(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -62,7 +62,7 @@ async def get_current_account_gdp_ratio(
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュステータスを取得
 
@@ -76,7 +76,7 @@ async def get_cache_status():
 
 
 @router.post("/refresh")
-async def refresh_data():
+def refresh_data():
     """
     データを強制更新
 
@@ -96,7 +96,7 @@ async def refresh_data():
 
 
 @router.delete("/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを削除
 

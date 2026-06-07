@@ -94,6 +94,7 @@ export default function ChRrrChart({ data }: ChRrrChartProps) {
         showDataSource={true}
         dataSource="中国人民銀行"
         sourceUrl="https://wuhan.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html"
+        handbookId="rrr"
       >
         {/* 最新値 */}
         <SimpleLatestValueBox

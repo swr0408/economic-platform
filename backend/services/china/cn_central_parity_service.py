@@ -59,8 +59,10 @@ API_HEADERS = {
     "Referer": "https://www.chinamoney.com.cn/english/bmkcpr/",
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     ),
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-Requested-With": "XMLHttpRequest",
 }
 
 # Excelファイル開始年
@@ -146,20 +148,18 @@ def _fetch_year_from_api(year: int) -> List[Dict[str, Any]]:
     all_records: List[Dict[str, Any]] = []
 
     # APIは1回で最大数百件返す。ページネーション対応
+    # 注: 2026-04頃からGETは403を返すようになったためPOSTで送信する
     page = 1
     while True:
-        ts = int(time.time() * 1000)
-        params = {
+        payload = {
             "lang": "EN",
             "startDate": _date_to_api_fmt(start),
             "endDate": _date_to_api_fmt(end),
             "pageNum": page,
             "pageSize": 300,
-            "t": ts,
-            "_": ts - 1000,
         }
         try:
-            resp = requests.get(API_URL, params=params, headers=API_HEADERS, timeout=30)
+            resp = requests.post(API_URL, data=payload, headers=API_HEADERS, timeout=30)
             resp.raise_for_status()
             api_data = resp.json()
         except Exception as e:

@@ -17,7 +17,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/ons-gdp")
-async def get_ons_gdp(response: Response) -> Dict[str, Any]:
+def get_ons_gdp(response: Response) -> Dict[str, Any]:
     """
     ONS GDPデータを取得
 
@@ -47,7 +47,7 @@ async def get_ons_gdp(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gdp/chart")
-async def get_ons_gdp_chart(response: Response) -> Dict[str, Any]:
+def get_ons_gdp_chart(response: Response) -> Dict[str, Any]:
     """
     ONS GDPチャート表示用データを取得（YoY変化率）
 
@@ -94,7 +94,7 @@ async def get_ons_gdp_chart(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gdp/table")
-async def get_ons_gdp_table(response: Response) -> Dict[str, Any]:
+def get_ons_gdp_table(response: Response) -> Dict[str, Any]:
     """
     ONS GDPテーブル表示用データを取得（QoQ変化率）
 
@@ -136,7 +136,7 @@ async def get_ons_gdp_table(response: Response) -> Dict[str, Any]:
 
 
 @router.post("/api/uk/ons-gdp/refresh")
-async def refresh_ons_gdp() -> Dict[str, Any]:
+def refresh_ons_gdp() -> Dict[str, Any]:
     """
     ONS GDPデータを強制更新
 
@@ -166,7 +166,7 @@ async def refresh_ons_gdp() -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gdp/cache-status")
-async def get_ons_gdp_cache_status() -> Dict[str, Any]:
+def get_ons_gdp_cache_status() -> Dict[str, Any]:
     """
     ONS GDPキャッシュ状態を取得
 

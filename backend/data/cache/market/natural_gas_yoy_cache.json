@@ -617,25 +617,35 @@
     },
     {
       "date": "2026-04-01",
-      "natural_gas_yoy": -12.25,
-      "natural_gas_close": 2.67
+      "natural_gas_yoy": -9.1,
+      "natural_gas_close": 2.77
+    },
+    {
+      "date": "2026-05-01",
+      "natural_gas_yoy": -14.19,
+      "natural_gas_close": 3.29
+    },
+    {
+      "date": "2026-06-01",
+      "natural_gas_yoy": -21.63,
+      "natural_gas_close": 3.23
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "natural_gas_yoy": -12.25,
-    "natural_gas_close": 2.67
+    "date": "2026-06-01",
+    "natural_gas_yoy": -21.63,
+    "natural_gas_close": 3.23
   },
   "metadata": {
     "source": "yfinance (NG=F)",
     "indicator": "Natural Gas (Henry Hub) YoY (Monthly)",
     "unit": "%",
     "frequency": "monthly",
-    "data_count": 124,
+    "data_count": 126,
     "start_date": "2014-03-01",
-    "end_date": "2026-04-01"
+    "end_date": "2026-06-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-10T20:44:24.517351+09:00"
+  "last_updated": "2026-06-01T21:39:44.230202+09:00"
 }

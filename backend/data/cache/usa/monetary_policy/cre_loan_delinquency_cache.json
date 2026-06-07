@@ -628,7 +628,7 @@
       "date": "2017-01-01",
       "all_banks": 0.78,
       "top_100": 0.65,
-      "other_banks": 0.99
+      "other_banks": 1.0
     },
     {
       "date": "2017-04-01",
@@ -777,7 +777,7 @@
     {
       "date": "2023-04-01",
       "all_banks": 0.85,
-      "top_100": 1.04,
+      "top_100": 1.05,
       "other_banks": 0.56
     },
     {
@@ -801,7 +801,7 @@
     {
       "date": "2024-04-01",
       "all_banks": 1.42,
-      "top_100": 1.77,
+      "top_100": 1.78,
       "other_banks": 0.91
     },
     {
@@ -813,7 +813,7 @@
     {
       "date": "2024-10-01",
       "all_banks": 1.56,
-      "top_100": 1.97,
+      "top_100": 1.96,
       "other_banks": 0.99
     },
     {
@@ -830,7 +830,7 @@
     },
     {
       "date": "2025-07-01",
-      "all_banks": 1.56,
+      "all_banks": 1.57,
       "top_100": 1.86,
       "other_banks": 1.14
     },
@@ -839,13 +839,19 @@
       "all_banks": 1.58,
       "top_100": 1.83,
       "other_banks": 1.2
+    },
+    {
+      "date": "2026-01-01",
+      "all_banks": 1.56,
+      "top_100": 1.78,
+      "other_banks": 1.25
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "all_banks": 1.58,
-    "top_100": 1.83,
-    "other_banks": 1.2
+    "date": "2026-01-01",
+    "all_banks": 1.56,
+    "top_100": 1.78,
+    "other_banks": 1.25
   },
   "metadata": {
     "source": "Federal Reserve Board",
@@ -858,5 +864,5 @@
       "other_banks": "DRCRELEXFOBS - Banks Not Among Top 100"
     }
   },
-  "last_updated": "2026-02-27T23:50:28.191884+09:00"
+  "last_updated": "2026-05-30T17:30:01.876877+09:00"
 }

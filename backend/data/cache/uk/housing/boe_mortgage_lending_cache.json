@@ -26,15 +26,15 @@
     },
     {
       "date": "2015-04-01",
-      "value": 69042.0,
+      "value": 69043.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64422.3,
+      "ma3": 64422.7,
       "ma3_yoy": null
     },
     {
       "date": "2015-05-01",
-      "value": 65412.0,
+      "value": 65411.0,
       "forecast": null,
       "previous": null,
       "ma3": 65735.7,
@@ -50,31 +50,31 @@
     },
     {
       "date": "2015-07-01",
-      "value": 70769.0,
+      "value": 70766.0,
       "forecast": null,
       "previous": null,
-      "ma3": 68080.3,
+      "ma3": 68079.0,
       "ma3_yoy": null
     },
     {
       "date": "2015-08-01",
-      "value": 72267.0,
+      "value": 72266.0,
       "forecast": null,
       "previous": null,
-      "ma3": 70365.3,
+      "ma3": 70364.0,
       "ma3_yoy": null
     },
     {
       "date": "2015-09-01",
-      "value": 71176.0,
+      "value": 71178.0,
       "forecast": null,
       "previous": null,
-      "ma3": 71404.0,
+      "ma3": 71403.3,
       "ma3_yoy": null
     },
     {
       "date": "2015-10-01",
-      "value": 70077.0,
+      "value": 70076.0,
       "forecast": null,
       "previous": null,
       "ma3": 71173.3,
@@ -82,18 +82,18 @@
     },
     {
       "date": "2015-11-01",
-      "value": 70486.0,
+      "value": 70484.0,
       "forecast": null,
       "previous": null,
-      "ma3": 70579.7,
+      "ma3": 70579.3,
       "ma3_yoy": null
     },
     {
       "date": "2015-12-01",
-      "value": 71270.0,
+      "value": 71272.0,
       "forecast": null,
       "previous": null,
-      "ma3": 70611.0,
+      "ma3": 70610.7,
       "ma3_yoy": null
     },
     {
@@ -109,15 +109,15 @@
       "value": 71872.0,
       "forecast": null,
       "previous": null,
-      "ma3": 71874.3,
+      "ma3": 71875.0,
       "ma3_yoy": null
     },
     {
       "date": "2016-03-01",
-      "value": 70732.0,
+      "value": 70735.0,
       "forecast": null,
       "previous": null,
-      "ma3": 71695.0,
+      "ma3": 71696.0,
       "ma3_yoy": 17.41
     },
     {
@@ -125,87 +125,87 @@
       "value": 68702.0,
       "forecast": null,
       "previous": null,
-      "ma3": 70435.3,
+      "ma3": 70436.3,
       "ma3_yoy": 9.33
     },
     {
       "date": "2016-05-01",
-      "value": 67876.0,
+      "value": 67875.0,
       "forecast": null,
       "previous": null,
-      "ma3": 69103.3,
+      "ma3": 69104.0,
       "ma3_yoy": 5.12
     },
     {
       "date": "2016-06-01",
-      "value": 65587.0,
+      "value": 65586.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67388.3,
+      "ma3": 67387.7,
       "ma3_yoy": -0.17
     },
     {
       "date": "2016-07-01",
-      "value": 62619.0,
+      "value": 62616.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65360.7,
-      "ma3_yoy": -3.99
+      "ma3": 65359.0,
+      "ma3_yoy": -4.0
     },
     {
       "date": "2016-08-01",
-      "value": 61425.0,
+      "value": 61426.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63210.3,
+      "ma3": 63209.3,
       "ma3_yoy": -10.17
     },
     {
       "date": "2016-09-01",
-      "value": 64240.0,
+      "value": 64239.0,
       "forecast": null,
       "previous": null,
-      "ma3": 62761.3,
+      "ma3": 62760.3,
       "ma3_yoy": -12.1
     },
     {
       "date": "2016-10-01",
-      "value": 67918.0,
+      "value": 67916.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64527.7,
+      "ma3": 64527.0,
       "ma3_yoy": -9.34
     },
     {
       "date": "2016-11-01",
-      "value": 68387.0,
+      "value": 68389.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66848.3,
+      "ma3": 66848.0,
       "ma3_yoy": -5.29
     },
     {
       "date": "2016-12-01",
-      "value": 68366.0,
+      "value": 68367.0,
       "forecast": null,
       "previous": null,
-      "ma3": 68223.7,
+      "ma3": 68224.0,
       "ma3_yoy": -3.38
     },
     {
       "date": "2017-01-01",
-      "value": 67991.0,
+      "value": 67993.0,
       "forecast": null,
       "previous": null,
-      "ma3": 68248.0,
+      "ma3": 68249.7,
       "ma3_yoy": -4.43
     },
     {
       "date": "2017-02-01",
-      "value": 68137.0,
+      "value": 68138.0,
       "forecast": null,
       "previous": null,
-      "ma3": 68164.7,
+      "ma3": 68166.0,
       "ma3_yoy": -5.16
     },
     {
@@ -213,39 +213,39 @@
       "value": 68031.0,
       "forecast": null,
       "previous": null,
-      "ma3": 68053.0,
+      "ma3": 68054.0,
       "ma3_yoy": -5.08
     },
     {
       "date": "2017-04-01",
-      "value": 67126.0,
+      "value": 67128.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67764.7,
+      "ma3": 67765.7,
       "ma3_yoy": -3.79
     },
     {
       "date": "2017-05-01",
-      "value": 66033.0,
+      "value": 66034.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67063.3,
+      "ma3": 67064.3,
       "ma3_yoy": -2.95
     },
     {
       "date": "2017-06-01",
-      "value": 65372.0,
+      "value": 65370.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66177.0,
+      "ma3": 66177.3,
       "ma3_yoy": -1.8
     },
     {
       "date": "2017-07-01",
-      "value": 68528.0,
+      "value": 68523.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66644.3,
+      "ma3": 66642.3,
       "ma3_yoy": 1.96
     },
     {
@@ -253,15 +253,15 @@
       "value": 66883.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66927.7,
+      "ma3": 66925.3,
       "ma3_yoy": 5.88
     },
     {
       "date": "2017-09-01",
-      "value": 66322.0,
+      "value": 66321.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67244.3,
+      "ma3": 67242.3,
       "ma3_yoy": 7.14
     },
     {
@@ -269,12 +269,12 @@
       "value": 65194.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66133.0,
+      "ma3": 66132.7,
       "ma3_yoy": 2.49
     },
     {
       "date": "2017-11-01",
-      "value": 65692.0,
+      "value": 65693.0,
       "forecast": null,
       "previous": null,
       "ma3": 65736.0,
@@ -282,383 +282,383 @@
     },
     {
       "date": "2017-12-01",
-      "value": 62305.0,
+      "value": 62308.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64397.0,
+      "ma3": 64398.3,
       "ma3_yoy": -5.61
     },
     {
       "date": "2018-01-01",
-      "value": 65854.0,
+      "value": 65858.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64617.0,
+      "ma3": 64619.7,
       "ma3_yoy": -5.32
     },
     {
       "date": "2018-02-01",
-      "value": 62998.0,
+      "value": 63000.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63719.0,
+      "ma3": 63722.0,
       "ma3_yoy": -6.52
     },
     {
       "date": "2018-03-01",
-      "value": 63104.0,
+      "value": 63106.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63985.3,
-      "ma3_yoy": -5.98
+      "ma3": 63988.0,
+      "ma3_yoy": -5.97
     },
     {
       "date": "2018-04-01",
-      "value": 63312.0,
+      "value": 63311.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63138.0,
+      "ma3": 63139.0,
       "ma3_yoy": -6.83
     },
     {
       "date": "2018-05-01",
-      "value": 65107.0,
+      "value": 65108.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63841.0,
-      "ma3_yoy": -4.8
+      "ma3": 63841.7,
+      "ma3_yoy": -4.81
     },
     {
       "date": "2018-06-01",
-      "value": 65903.0,
+      "value": 65901.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64774.0,
+      "ma3": 64773.3,
       "ma3_yoy": -2.12
     },
     {
       "date": "2018-07-01",
-      "value": 64728.0,
+      "value": 64722.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65246.0,
+      "ma3": 65243.7,
       "ma3_yoy": -2.1
     },
     {
       "date": "2018-08-01",
-      "value": 66778.0,
+      "value": 66775.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65803.0,
+      "ma3": 65799.3,
       "ma3_yoy": -1.68
     },
     {
       "date": "2018-09-01",
-      "value": 65996.0,
+      "value": 65995.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65834.0,
+      "ma3": 65830.7,
       "ma3_yoy": -2.1
     },
     {
       "date": "2018-10-01",
-      "value": 68262.0,
+      "value": 68260.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67012.0,
+      "ma3": 67010.0,
       "ma3_yoy": 1.33
     },
     {
       "date": "2018-11-01",
-      "value": 64948.0,
+      "value": 64949.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66402.0,
+      "ma3": 66401.3,
       "ma3_yoy": 1.01
     },
     {
       "date": "2018-12-01",
-      "value": 64430.0,
+      "value": 64438.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65880.0,
+      "ma3": 65882.3,
       "ma3_yoy": 2.3
     },
     {
       "date": "2019-01-01",
-      "value": 65113.0,
+      "value": 65118.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64830.3,
+      "ma3": 64835.0,
       "ma3_yoy": 0.33
     },
     {
       "date": "2019-02-01",
-      "value": 64149.0,
+      "value": 64152.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64564.0,
+      "ma3": 64569.3,
       "ma3_yoy": 1.33
     },
     {
       "date": "2019-03-01",
-      "value": 62181.0,
+      "value": 62182.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63814.3,
+      "ma3": 63817.3,
       "ma3_yoy": -0.27
     },
     {
       "date": "2019-04-01",
-      "value": 65914.0,
+      "value": 65919.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64081.3,
-      "ma3_yoy": 1.49
+      "ma3": 64084.3,
+      "ma3_yoy": 1.5
     },
     {
       "date": "2019-05-01",
-      "value": 65556.0,
+      "value": 65559.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64550.3,
+      "ma3": 64553.3,
       "ma3_yoy": 1.11
     },
     {
       "date": "2019-06-01",
-      "value": 66587.0,
+      "value": 66575.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66019.0,
+      "ma3": 66017.7,
       "ma3_yoy": 1.92
     },
     {
       "date": "2019-07-01",
-      "value": 67219.0,
+      "value": 67214.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66454.0,
+      "ma3": 66449.3,
       "ma3_yoy": 1.85
     },
     {
       "date": "2019-08-01",
-      "value": 66017.0,
+      "value": 66014.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66607.7,
+      "ma3": 66601.0,
       "ma3_yoy": 1.22
     },
     {
       "date": "2019-09-01",
-      "value": 66213.0,
+      "value": 66210.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66483.0,
+      "ma3": 66479.3,
       "ma3_yoy": 0.99
     },
     {
       "date": "2019-10-01",
-      "value": 66359.0,
+      "value": 66356.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66196.3,
+      "ma3": 66193.3,
       "ma3_yoy": -1.22
     },
     {
       "date": "2019-11-01",
-      "value": 66625.0,
+      "value": 66629.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66399.0,
+      "ma3": 66398.3,
       "ma3_yoy": -0.0
     },
     {
       "date": "2019-12-01",
-      "value": 67572.0,
+      "value": 67588.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66852.0,
+      "ma3": 66857.7,
       "ma3_yoy": 1.48
     },
     {
       "date": "2020-01-01",
-      "value": 69506.0,
+      "value": 69511.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67901.0,
+      "ma3": 67909.3,
       "ma3_yoy": 4.74
     },
     {
       "date": "2020-02-01",
-      "value": 71605.0,
+      "value": 71609.0,
       "forecast": null,
       "previous": null,
-      "ma3": 69561.0,
+      "ma3": 69569.3,
       "ma3_yoy": 7.74
     },
     {
       "date": "2020-03-01",
-      "value": 56196.0,
+      "value": 56198.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65769.0,
+      "ma3": 65772.7,
       "ma3_yoy": 3.06
     },
     {
       "date": "2020-04-01",
-      "value": 15950.0,
+      "value": 15952.0,
       "forecast": null,
       "previous": null,
-      "ma3": 47917.0,
+      "ma3": 47919.7,
       "ma3_yoy": -25.22
     },
     {
       "date": "2020-05-01",
-      "value": 9369.0,
+      "value": 9370.0,
       "forecast": null,
       "previous": null,
-      "ma3": 27171.7,
+      "ma3": 27173.3,
       "ma3_yoy": -57.91
     },
     {
       "date": "2020-06-01",
-      "value": 40303.0,
+      "value": 40292.0,
       "forecast": null,
       "previous": null,
-      "ma3": 21874.0,
+      "ma3": 21871.3,
       "ma3_yoy": -66.87
     },
     {
       "date": "2020-07-01",
-      "value": 66570.0,
+      "value": 66563.0,
       "forecast": null,
       "previous": null,
-      "ma3": 38747.3,
-      "ma3_yoy": -41.69
+      "ma3": 38741.7,
+      "ma3_yoy": -41.7
     },
     {
       "date": "2020-08-01",
-      "value": 85182.0,
+      "value": 85174.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64018.3,
+      "ma3": 64009.7,
       "ma3_yoy": -3.89
     },
     {
       "date": "2020-09-01",
-      "value": 92542.0,
+      "value": 92540.0,
       "forecast": null,
       "previous": null,
-      "ma3": 81431.3,
+      "ma3": 81425.7,
       "ma3_yoy": 22.48
     },
     {
       "date": "2020-10-01",
-      "value": 100904.0,
+      "value": 100895.0,
       "forecast": null,
       "previous": null,
-      "ma3": 92876.0,
+      "ma3": 92869.7,
       "ma3_yoy": 40.3
     },
     {
       "date": "2020-11-01",
-      "value": 107769.0,
+      "value": 107778.0,
       "forecast": null,
       "previous": null,
-      "ma3": 100405.0,
-      "ma3_yoy": 51.21
+      "ma3": 100404.3,
+      "ma3_yoy": 51.22
     },
     {
       "date": "2020-12-01",
-      "value": 103345.0,
+      "value": 103382.0,
       "forecast": null,
       "previous": null,
-      "ma3": 104006.0,
+      "ma3": 104018.3,
       "ma3_yoy": 55.58
     },
     {
       "date": "2021-01-01",
-      "value": 97142.0,
+      "value": 97150.0,
       "forecast": null,
       "previous": null,
-      "ma3": 102752.0,
+      "ma3": 102770.0,
       "ma3_yoy": 51.33
     },
     {
       "date": "2021-02-01",
-      "value": 84473.0,
+      "value": 84478.0,
       "forecast": null,
       "previous": null,
-      "ma3": 94986.7,
-      "ma3_yoy": 36.55
+      "ma3": 95003.3,
+      "ma3_yoy": 36.56
     },
     {
       "date": "2021-03-01",
-      "value": 81016.0,
+      "value": 81021.0,
       "forecast": null,
       "previous": null,
-      "ma3": 87543.7,
+      "ma3": 87549.7,
       "ma3_yoy": 33.11
     },
     {
       "date": "2021-04-01",
-      "value": 85447.0,
+      "value": 85462.0,
       "forecast": null,
       "previous": null,
-      "ma3": 83645.3,
-      "ma3_yoy": 74.56
+      "ma3": 83653.7,
+      "ma3_yoy": 74.57
     },
     {
       "date": "2021-05-01",
-      "value": 86175.0,
+      "value": 86180.0,
       "forecast": null,
       "previous": null,
-      "ma3": 84212.7,
-      "ma3_yoy": 209.93
+      "ma3": 84221.0,
+      "ma3_yoy": 209.94
     },
     {
       "date": "2021-06-01",
-      "value": 79185.0,
+      "value": 79157.0,
       "forecast": null,
       "previous": null,
-      "ma3": 83602.3,
-      "ma3_yoy": 282.2
+      "ma3": 83599.7,
+      "ma3_yoy": 282.23
     },
     {
       "date": "2021-07-01",
-      "value": 72370.0,
+      "value": 72362.0,
       "forecast": null,
       "previous": null,
-      "ma3": 79243.3,
-      "ma3_yoy": 104.51
+      "ma3": 79233.0,
+      "ma3_yoy": 104.52
     },
     {
       "date": "2021-08-01",
-      "value": 70903.0,
+      "value": 70893.0,
       "forecast": null,
       "previous": null,
-      "ma3": 74152.7,
-      "ma3_yoy": 15.83
+      "ma3": 74137.3,
+      "ma3_yoy": 15.82
     },
     {
       "date": "2021-09-01",
-      "value": 70504.0,
+      "value": 70493.0,
       "forecast": null,
       "previous": null,
-      "ma3": 71259.0,
-      "ma3_yoy": -12.49
+      "ma3": 71249.3,
+      "ma3_yoy": -12.5
     },
     {
       "date": "2021-10-01",
       "value": 68337.0,
       "forecast": null,
       "previous": null,
-      "ma3": 69914.7,
+      "ma3": 69907.7,
       "ma3_yoy": -24.72
     },
     {
       "date": "2021-11-01",
-      "value": 69352.0,
+      "value": 69363.0,
       "forecast": null,
       "previous": null,
       "ma3": 69397.7,
@@ -666,191 +666,191 @@
     },
     {
       "date": "2021-12-01",
-      "value": 72766.0,
+      "value": 72794.0,
       "forecast": null,
       "previous": null,
-      "ma3": 70151.7,
+      "ma3": 70164.7,
       "ma3_yoy": -32.55
     },
     {
       "date": "2022-01-01",
-      "value": 73982.0,
+      "value": 73987.0,
       "forecast": null,
       "previous": null,
-      "ma3": 72033.3,
-      "ma3_yoy": -29.9
+      "ma3": 72048.0,
+      "ma3_yoy": -29.89
     },
     {
       "date": "2022-02-01",
-      "value": 68270.0,
+      "value": 68274.0,
       "forecast": null,
       "previous": null,
-      "ma3": 71672.7,
+      "ma3": 71685.0,
       "ma3_yoy": -24.54
     },
     {
       "date": "2022-03-01",
-      "value": 68833.0,
+      "value": 68838.0,
       "forecast": null,
       "previous": null,
-      "ma3": 70361.7,
+      "ma3": 70366.3,
       "ma3_yoy": -19.63
     },
     {
       "date": "2022-04-01",
-      "value": 66129.0,
+      "value": 66145.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67744.0,
+      "ma3": 67752.3,
       "ma3_yoy": -19.01
     },
     {
       "date": "2022-05-01",
-      "value": 66458.0,
+      "value": 66464.0,
       "forecast": null,
       "previous": null,
-      "ma3": 67140.0,
+      "ma3": 67149.0,
       "ma3_yoy": -20.27
     },
     {
       "date": "2022-06-01",
-      "value": 62857.0,
+      "value": 62834.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65148.0,
+      "ma3": 65147.7,
       "ma3_yoy": -22.07
     },
     {
       "date": "2022-07-01",
-      "value": 62567.0,
+      "value": 62556.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63960.7,
+      "ma3": 63951.3,
       "ma3_yoy": -19.29
     },
     {
       "date": "2022-08-01",
-      "value": 71980.0,
+      "value": 71962.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65801.3,
-      "ma3_yoy": -11.26
+      "ma3": 65784.0,
+      "ma3_yoy": -11.27
     },
     {
       "date": "2022-09-01",
-      "value": 64703.0,
+      "value": 64684.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66416.7,
-      "ma3_yoy": -6.8
+      "ma3": 66400.7,
+      "ma3_yoy": -6.81
     },
     {
       "date": "2022-10-01",
-      "value": 57814.0,
+      "value": 57819.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64832.3,
-      "ma3_yoy": -7.27
+      "ma3": 64821.7,
+      "ma3_yoy": -7.28
     },
     {
       "date": "2022-11-01",
-      "value": 46638.0,
+      "value": 46649.0,
       "forecast": null,
       "previous": null,
-      "ma3": 56385.0,
+      "ma3": 56384.0,
       "ma3_yoy": -18.75
     },
     {
       "date": "2022-12-01",
-      "value": 41470.0,
+      "value": 41489.0,
       "forecast": null,
       "previous": null,
-      "ma3": 48640.7,
+      "ma3": 48652.3,
       "ma3_yoy": -30.66
     },
     {
       "date": "2023-01-01",
-      "value": 39806.0,
+      "value": 39810.0,
       "forecast": null,
       "previous": null,
-      "ma3": 42638.0,
-      "ma3_yoy": -40.81
+      "ma3": 42649.3,
+      "ma3_yoy": -40.8
     },
     {
       "date": "2023-02-01",
-      "value": 42943.0,
+      "value": 42944.0,
       "forecast": null,
       "previous": null,
-      "ma3": 41406.3,
+      "ma3": 41414.3,
       "ma3_yoy": -42.23
     },
     {
       "date": "2023-03-01",
-      "value": 51142.0,
+      "value": 51145.0,
       "forecast": null,
       "previous": null,
-      "ma3": 44630.3,
+      "ma3": 44633.0,
       "ma3_yoy": -36.57
     },
     {
       "date": "2023-04-01",
-      "value": 49096.0,
+      "value": 49113.0,
       "forecast": null,
       "previous": null,
-      "ma3": 47727.0,
+      "ma3": 47734.0,
       "ma3_yoy": -29.55
     },
     {
       "date": "2023-05-01",
-      "value": 51083.0,
+      "value": 51093.0,
       "forecast": null,
       "previous": null,
-      "ma3": 50440.3,
+      "ma3": 50450.3,
       "ma3_yoy": -24.87
     },
     {
       "date": "2023-06-01",
-      "value": 54469.0,
+      "value": 54451.0,
       "forecast": null,
       "previous": null,
-      "ma3": 51549.3,
+      "ma3": 51552.3,
       "ma3_yoy": -20.87
     },
     {
       "date": "2023-07-01",
-      "value": 49066.0,
+      "value": 49054.0,
       "forecast": null,
       "previous": null,
-      "ma3": 51539.3,
+      "ma3": 51532.7,
       "ma3_yoy": -19.42
     },
     {
       "date": "2023-08-01",
-      "value": 45103.0,
+      "value": 45085.0,
       "forecast": null,
       "previous": null,
-      "ma3": 49546.0,
-      "ma3_yoy": -24.7
+      "ma3": 49530.0,
+      "ma3_yoy": -24.71
     },
     {
       "date": "2023-09-01",
-      "value": 43831.0,
+      "value": 43810.0,
       "forecast": null,
       "previous": null,
-      "ma3": 46000.0,
-      "ma3_yoy": -30.74
+      "ma3": 45983.0,
+      "ma3_yoy": -30.75
     },
     {
       "date": "2023-10-01",
-      "value": 48019.0,
+      "value": 48028.0,
       "forecast": null,
       "previous": null,
-      "ma3": 45651.0,
+      "ma3": 45641.0,
       "ma3_yoy": -29.59
     },
     {
       "date": "2023-11-01",
-      "value": 50226.0,
+      "value": 50238.0,
       "forecast": null,
       "previous": null,
       "ma3": 47358.7,
@@ -858,229 +858,237 @@
     },
     {
       "date": "2023-12-01",
-      "value": 52499.0,
+      "value": 52523.0,
       "forecast": null,
       "previous": null,
-      "ma3": 50248.0,
-      "ma3_yoy": 3.3
+      "ma3": 50263.0,
+      "ma3_yoy": 3.31
     },
     {
       "date": "2024-01-01",
-      "value": 56113.0,
+      "value": 56120.0,
       "forecast": null,
       "previous": null,
-      "ma3": 52946.0,
+      "ma3": 52960.3,
       "ma3_yoy": 24.18
     },
     {
       "date": "2024-02-01",
-      "value": 59962.0,
+      "value": 59961.0,
       "forecast": null,
       "previous": null,
-      "ma3": 56191.3,
+      "ma3": 56201.3,
       "ma3_yoy": 35.71
     },
     {
       "date": "2024-03-01",
-      "value": 61594.0,
+      "value": 61603.0,
       "forecast": null,
       "previous": null,
-      "ma3": 59223.0,
+      "ma3": 59228.0,
       "ma3_yoy": 32.7
     },
     {
       "date": "2024-04-01",
-      "value": 61898.0,
+      "value": 61925.0,
       "forecast": null,
       "previous": null,
-      "ma3": 61151.3,
+      "ma3": 61163.0,
       "ma3_yoy": 28.13
     },
     {
       "date": "2024-05-01",
-      "value": 61162.0,
+      "value": 61181.0,
       "forecast": null,
       "previous": null,
-      "ma3": 61551.3,
-      "ma3_yoy": 22.03
+      "ma3": 61569.7,
+      "ma3_yoy": 22.04
     },
     {
       "date": "2024-06-01",
-      "value": 60897.0,
+      "value": 60891.0,
       "forecast": null,
       "previous": null,
-      "ma3": 61319.0,
-      "ma3_yoy": 18.95
+      "ma3": 61332.3,
+      "ma3_yoy": 18.97
     },
     {
       "date": "2024-07-01",
-      "value": 62227.0,
+      "value": 62210.0,
       "forecast": null,
       "previous": null,
-      "ma3": 61428.7,
-      "ma3_yoy": 19.19
+      "ma3": 61427.3,
+      "ma3_yoy": 19.2
     },
     {
       "date": "2024-08-01",
-      "value": 64867.0,
+      "value": 64824.0,
       "forecast": null,
       "previous": null,
-      "ma3": 62663.7,
-      "ma3_yoy": 26.48
+      "ma3": 62641.7,
+      "ma3_yoy": 26.47
     },
     {
       "date": "2024-09-01",
-      "value": 65267.0,
+      "value": 65218.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64120.3,
-      "ma3_yoy": 39.39
+      "ma3": 64084.0,
+      "ma3_yoy": 39.36
     },
     {
       "date": "2024-10-01",
-      "value": 67902.0,
+      "value": 67763.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66012.0,
-      "ma3_yoy": 44.6
+      "ma3": 65935.0,
+      "ma3_yoy": 44.46
     },
     {
       "date": "2024-11-01",
-      "value": 65899.0,
+      "value": 65759.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66356.0,
-      "ma3_yoy": 40.11
+      "ma3": 66246.7,
+      "ma3_yoy": 39.88
     },
     {
       "date": "2024-12-01",
-      "value": 67102.0,
+      "value": 66957.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66967.7,
-      "ma3_yoy": 33.27
+      "ma3": 66826.3,
+      "ma3_yoy": 32.95
     },
     {
       "date": "2025-01-01",
-      "value": 66610.0,
+      "value": 66474.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66537.0,
-      "ma3_yoy": 25.67
+      "ma3": 66396.7,
+      "ma3_yoy": 25.37
     },
     {
       "date": "2025-02-01",
-      "value": 65114.0,
+      "value": 64987.0,
       "forecast": null,
       "previous": null,
-      "ma3": 66275.3,
-      "ma3_yoy": 17.95
+      "ma3": 66139.3,
+      "ma3_yoy": 17.68
     },
     {
       "date": "2025-03-01",
-      "value": 64193.0,
+      "value": 64046.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65305.7,
-      "ma3_yoy": 10.27
+      "ma3": 65169.0,
+      "ma3_yoy": 10.03
     },
     {
       "date": "2025-04-01",
-      "value": 60896.0,
+      "value": 60744.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63401.0,
-      "ma3_yoy": 3.68
+      "ma3": 63259.0,
+      "ma3_yoy": 3.43
     },
     {
       "date": "2025-05-01",
-      "value": 63258.0,
+      "value": 63145.0,
       "forecast": null,
       "previous": null,
-      "ma3": 62782.3,
-      "ma3_yoy": 2.0
+      "ma3": 62645.0,
+      "ma3_yoy": 1.75
     },
     {
       "date": "2025-06-01",
-      "value": 64289.0,
+      "value": 64206.0,
       "forecast": null,
       "previous": null,
-      "ma3": 62814.3,
-      "ma3_yoy": 2.44
+      "ma3": 62698.3,
+      "ma3_yoy": 2.23
     },
     {
       "date": "2025-07-01",
-      "value": 65057.0,
+      "value": 64991.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64201.3,
-      "ma3_yoy": 4.51
+      "ma3": 64114.0,
+      "ma3_yoy": 4.37
     },
     {
       "date": "2025-08-01",
-      "value": 64623.0,
+      "value": 64565.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64656.3,
-      "ma3_yoy": 3.18
+      "ma3": 64587.3,
+      "ma3_yoy": 3.11
     },
     {
       "date": "2025-09-01",
-      "value": 65590.0,
+      "value": 65526.0,
       "forecast": null,
       "previous": null,
-      "ma3": 65090.0,
-      "ma3_yoy": 1.51
+      "ma3": 65027.3,
+      "ma3_yoy": 1.47
     },
     {
       "date": "2025-10-01",
-      "value": 64661.0,
+      "value": 64663.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64958.0,
-      "ma3_yoy": -1.6
+      "ma3": 64918.0,
+      "ma3_yoy": -1.54
     },
     {
       "date": "2025-11-01",
-      "value": 64501.0,
+      "value": 64520.0,
       "forecast": null,
       "previous": null,
-      "ma3": 64917.3,
-      "ma3_yoy": -2.17
+      "ma3": 64903.0,
+      "ma3_yoy": -2.03
     },
     {
       "date": "2025-12-01",
-      "value": 61448.0,
+      "value": 61487.0,
       "forecast": null,
       "previous": null,
-      "ma3": 63536.7,
-      "ma3_yoy": -5.12
+      "ma3": 63556.7,
+      "ma3_yoy": -4.89
     },
     {
       "date": "2026-01-01",
-      "value": 60246.0,
+      "value": 60354.0,
       "forecast": null,
       "previous": null,
-      "ma3": 62065.0,
-      "ma3_yoy": -6.72
+      "ma3": 62120.3,
+      "ma3_yoy": -6.44
     },
     {
       "date": "2026-02-01",
-      "value": 62584.0,
+      "value": 62708.0,
       "forecast": null,
       "previous": null,
-      "ma3": 61426.0,
-      "ma3_yoy": -7.32
+      "ma3": 61516.3,
+      "ma3_yoy": -6.99
+    },
+    {
+      "date": "2026-03-01",
+      "value": 63531.0,
+      "forecast": null,
+      "previous": null,
+      "ma3": 62197.7,
+      "ma3_yoy": -4.56
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 62584.0,
+    "date": "2026-03-01",
+    "value": 63531.0,
     "forecast": null,
     "previous": null,
-    "ma3": 61426.0,
-    "ma3_yoy": -7.32
+    "ma3": 62197.7,
+    "ma3_yoy": -4.56
   },
   "next_release": null,
-  "last_updated": "2026-04-18T04:02:09.889816+09:00"
+  "last_updated": "2026-05-10T20:49:01.834444+09:00"
 }

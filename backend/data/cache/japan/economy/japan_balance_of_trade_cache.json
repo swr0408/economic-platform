@@ -3392,76 +3392,28 @@
     },
     {
       "date": "2026-02-01",
-      "trade_balance": 443.0,
+      "trade_balance": 366.0,
       "exports": 95596.0,
-      "imports": 95153.0
+      "imports": 95230.0
     },
     {
       "date": "2026-03-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
+      "trade_balance": 6313.0,
+      "exports": 109814.0,
+      "imports": 103501.0
     },
     {
       "date": "2026-04-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-05-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-06-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-07-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-08-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-09-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-10-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-11-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
-    },
-    {
-      "date": "2026-12-01",
-      "trade_balance": 0.0,
-      "exports": 0.0,
-      "imports": 0.0
+      "trade_balance": 2992.0,
+      "exports": 105064.0,
+      "imports": 102072.0
     }
   ],
   "latest": {
-    "date": "2026-12-01",
-    "trade_balance": 0.0,
-    "exports": 0.0,
-    "imports": 0.0
+    "date": "2026-04-01",
+    "trade_balance": 2992.0,
+    "exports": 105064.0,
+    "imports": 102072.0
   },
   "metadata": {
     "source": "財務省貿易統計（税関）",
@@ -3471,5 +3423,5 @@
     "frequency": "Monthly",
     "basis": "Customs (通関ベース)"
   },
-  "last_updated": "2026-04-18T09:31:18.840121+09:00"
+  "last_updated": "2026-06-06T09:46:37.763413+09:00"
 }

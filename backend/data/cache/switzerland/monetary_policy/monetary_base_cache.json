@@ -3655,11 +3655,19 @@
     {
       "date": "2026-02-01",
       "value": 508866.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": 502514.0
+    },
+    {
+      "date": "2026-04-01",
+      "value": 504533.0
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 508866.0
+    "date": "2026-04-01",
+    "value": 504533.0
   },
   "metadata": {
     "source": "Swiss National Bank",
@@ -3667,6 +3675,6 @@
     "description": "マネタリーベース",
     "unit": "CHF (millions)"
   },
-  "publishing_date": "2026-03-23 09:00",
-  "last_updated": "2026-04-18T04:08:52.068128+09:00"
+  "publishing_date": "2026-05-21 09:00",
+  "last_updated": "2026-06-06T09:46:45.081342+09:00"
 }

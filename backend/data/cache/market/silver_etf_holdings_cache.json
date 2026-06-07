@@ -25149,12 +25149,157 @@
       "date": "2026-04-17",
       "silver_tons": 16402.15,
       "shares_outstanding": 543650000
+    },
+    {
+      "date": "2026-04-20",
+      "silver_tons": 16368.96,
+      "shares_outstanding": 542550000
+    },
+    {
+      "date": "2026-04-21",
+      "silver_tons": 16368.96,
+      "shares_outstanding": 542550000
+    },
+    {
+      "date": "2026-04-22",
+      "silver_tons": 16285.99,
+      "shares_outstanding": 539800000
+    },
+    {
+      "date": "2026-04-23",
+      "silver_tons": 16216.6,
+      "shares_outstanding": 537500000
+    },
+    {
+      "date": "2026-04-24",
+      "silver_tons": 16234.7,
+      "shares_outstanding": 538100000
+    },
+    {
+      "date": "2026-04-27",
+      "silver_tons": 16234.7,
+      "shares_outstanding": 538100000
+    },
+    {
+      "date": "2026-04-28",
+      "silver_tons": 16234.7,
+      "shares_outstanding": 538100000
+    },
+    {
+      "date": "2026-04-29",
+      "silver_tons": 16168.33,
+      "shares_outstanding": 535900000
+    },
+    {
+      "date": "2026-04-30",
+      "silver_tons": 16138.16,
+      "shares_outstanding": 534900000
+    },
+    {
+      "date": "2026-05-01",
+      "silver_tons": 16114.02,
+      "shares_outstanding": 534100000
+    },
+    {
+      "date": "2026-05-04",
+      "silver_tons": 16114.02,
+      "shares_outstanding": 534100000
+    },
+    {
+      "date": "2026-05-05",
+      "silver_tons": 16138.16,
+      "shares_outstanding": 534900000
+    },
+    {
+      "date": "2026-05-06",
+      "silver_tons": 16138.16,
+      "shares_outstanding": 534900000
+    },
+    {
+      "date": "2026-05-07",
+      "silver_tons": 16160.78,
+      "shares_outstanding": 535650000
+    },
+    {
+      "date": "2026-05-08",
+      "silver_tons": 16127.6,
+      "shares_outstanding": 534550000
+    },
+    {
+      "date": "2026-05-11",
+      "silver_tons": 16166.82,
+      "shares_outstanding": 535850000
+    },
+    {
+      "date": "2026-05-12",
+      "silver_tons": 16203.02,
+      "shares_outstanding": 537050000
+    },
+    {
+      "date": "2026-05-13",
+      "silver_tons": 16251.29,
+      "shares_outstanding": 538650000
+    },
+    {
+      "date": "2026-05-14",
+      "silver_tons": 16314.65,
+      "shares_outstanding": 540750000
+    },
+    {
+      "date": "2026-05-15",
+      "silver_tons": 16314.65,
+      "shares_outstanding": 540750000
+    },
+    {
+      "date": "2026-05-18",
+      "silver_tons": 16278.45,
+      "shares_outstanding": 539550000
+    },
+    {
+      "date": "2026-05-19",
+      "silver_tons": 16278.45,
+      "shares_outstanding": 539550000
+    },
+    {
+      "date": "2026-05-20",
+      "silver_tons": 16278.45,
+      "shares_outstanding": 539550000
+    },
+    {
+      "date": "2026-05-21",
+      "silver_tons": 16267.89,
+      "shares_outstanding": 539200000
+    },
+    {
+      "date": "2026-05-22",
+      "silver_tons": 16305.6,
+      "shares_outstanding": 540450000
+    },
+    {
+      "date": "2026-05-26",
+      "silver_tons": 16266.38,
+      "shares_outstanding": 539150000
+    },
+    {
+      "date": "2026-05-27",
+      "silver_tons": 16266.38,
+      "shares_outstanding": 539150000
+    },
+    {
+      "date": "2026-05-28",
+      "silver_tons": 16266.38,
+      "shares_outstanding": 539150000
+    },
+    {
+      "date": "2026-05-29",
+      "silver_tons": 16203.02,
+      "shares_outstanding": 537050000
     }
   ],
   "latest": {
-    "date": "2026-04-17",
-    "silver_tons": 16402.15,
-    "shares_outstanding": 543650000
+    "date": "2026-05-29",
+    "silver_tons": 16203.02,
+    "shares_outstanding": 537050000
   },
   "metadata": {
     "source": "iShares Silver Trust (BlackRock)",
@@ -25162,11 +25307,11 @@
     "unit": "トン",
     "silver_per_share_oz": 0.97,
     "frequency": "daily",
-    "data_count": 5030,
+    "data_count": 5059,
     "start_date": "2006-04-21",
-    "end_date": "2026-04-17"
+    "end_date": "2026-05-29"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T15:18:42.052994+09:00"
+  "last_updated": "2026-06-01T21:39:43.986502+09:00"
 }

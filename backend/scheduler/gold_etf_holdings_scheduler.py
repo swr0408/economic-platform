@@ -285,6 +285,7 @@ class GoldEtfHoldingsScheduler:
                 run_date=datetime.now(JST) + timedelta(seconds=30),
                 id="gold_etf_holdings_startup_catchup",
                 replace_existing=True,
+                misfire_grace_time=300,
             )
             logger.info("[GoldEtfScheduler] Startup catch-up scheduled (in 30s)")
 

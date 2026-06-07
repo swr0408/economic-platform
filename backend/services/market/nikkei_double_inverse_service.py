@@ -2,15 +2,20 @@
 日経ダブルインバース (1357/13570) 信用残サービス
 
 データソース:
-  - CSV: backend/data/csv_import/日経ダブルインバース.csv (週次 2014/7 ~ )
+  - CSV: backend/data/csv_import/日経ダブルインバース.csv (週次 2014/7 ~ 2026/2 ヒストリカルベースライン)
+  - kabutan: https://kabutan.jp/stock/kabuka?code=1357&ashi=shin (週次 直近約6ヶ月、ベースライン以降を上書き)
   - 日経平均日足: yfinance (^N225)
 
-更新スケジュール: 日次（JST 15:45）
-更新: 6時間TTL (Redis + ファイル)
+JPXは1357(ETF)を「銘柄別信用取引週末残高」に掲載しないためkabutanで補完する。
+kabutanの週次表は毎週火曜にJPX確定値が反映される。
+
+更新スケジュール: 日次（market_data_scheduler.JP_CLOSE_SERVICES 経由）
+キャッシュ: 6時間TTL (Redis + ファイル)
 """
 import csv
 import json
 import logging
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -31,6 +36,12 @@ DATA_CACHE_FILE = CACHE_DIR / "nikkei_double_inverse_cache.json"
 # Redis
 DATA_CACHE_KEY = "market:nikkei_double_inverse:data"
 
+# kabutan
+KABUTAN_URL = "https://kabutan.jp/stock/kabuka?code=1357&ashi=shin"
+HTTP_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+}
+
 
 def _parse_int(s: str) -> Optional[int]:
     """カンマ付き数値文字列をintに変換。例: '3,519,086' → 3519086"""
@@ -46,6 +57,89 @@ def _parse_float(s: str) -> Optional[float]:
         return float(s.replace(",", "").strip().strip('"'))
     except (ValueError, AttributeError):
         return None
+
+
+def _parse_kabutan_cell(s: str) -> Optional[float]:
+    """kabutanセルをパース。'－' / '-' / 空文字 → None。カンマ付き数値 → float。"""
+    if s is None:
+        return None
+    s = s.strip().replace(",", "").replace("，", "")
+    if not s or s in ("－", "-", "−", "–"):
+        return None
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def _fetch_kabutan_weekly_margin() -> List[Dict[str, Any]]:
+    """kabutanの週次信用残テーブルから1357のレコードを取得。
+
+    返り値: [{date, sell_balance, buy_balance, margin_ratio}, ...]
+    確定値の無い直近行（'－'のみの行）はスキップする。
+    """
+    import requests
+    from bs4 import BeautifulSoup
+
+    try:
+        resp = requests.get(KABUTAN_URL, headers=HTTP_HEADERS, timeout=20)
+    except Exception as e:
+        logger.warning(f"[NikkeiDI] kabutan fetch error: {e}")
+        return []
+    if resp.status_code != 200:
+        logger.warning(f"[NikkeiDI] kabutan HTTP {resp.status_code}")
+        return []
+
+    soup = BeautifulSoup(resp.content, "html.parser")
+    date_pat = re.compile(r"^\d{2}/\d{2}/\d{2}$")
+    target = None
+    for t in soup.find_all("table"):
+        rows = t.find_all("tr")
+        if len(rows) < 2:
+            continue
+        hdr_cells = rows[0].find_all(["th", "td"])
+        hdr_text = "".join(c.get_text(strip=True) for c in hdr_cells)
+        if "信用倍率" not in hdr_text:
+            continue
+        # 2行目以降の最初のセルが YY/MM/DD パターンならこの表
+        first_cells = rows[1].find_all(["th", "td"])
+        if first_cells and date_pat.match(first_cells[0].get_text(strip=True)):
+            target = t
+            break
+
+    if target is None:
+        logger.warning("[NikkeiDI] kabutan margin table not found")
+        return []
+
+    out: List[Dict[str, Any]] = []
+    rows = target.find_all("tr")
+    for r in rows[1:]:
+        cells = [c.get_text(strip=True) for c in r.find_all(["th", "td"])]
+        if len(cells) < 8:
+            continue
+        m = re.match(r"^(\d{2})/(\d{2})/(\d{2})$", cells[0])
+        if not m:
+            continue
+        yy, mm, dd = m.groups()
+        date_str = f"20{yy}-{mm}-{dd}"
+
+        sell = _parse_kabutan_cell(cells[5])
+        buy = _parse_kabutan_cell(cells[6])
+        ratio = _parse_kabutan_cell(cells[7])
+
+        # 残データがすべて None の行 (未確定週) はスキップ
+        if sell is None and buy is None and ratio is None:
+            continue
+
+        out.append({
+            "date": date_str,
+            "sell_balance": int(sell) if sell is not None else None,
+            "buy_balance": int(buy) if buy is not None else None,
+            "margin_ratio": ratio,
+        })
+
+    logger.info(f"[NikkeiDI] kabutan: parsed {len(out)} confirmed weekly rows")
+    return out
 
 
 class NikkeiDoubleInverseService:
@@ -147,6 +241,50 @@ class NikkeiDoubleInverseService:
             return None
 
         margin_data.sort(key=lambda x: x["date"])
+
+        # 1b. kabutan週次信用残を取得しCSVベースラインに上書きマージ
+        by_date: Dict[str, Dict[str, Any]] = {r["date"]: r for r in margin_data}
+        try:
+            kabutan_rows = _fetch_kabutan_weekly_margin()
+        except Exception as e:
+            logger.warning(f"[NikkeiDI] kabutan fetch failed: {e}")
+            kabutan_rows = []
+
+        new_or_updated = 0
+        for k in kabutan_rows:
+            d = k["date"]
+            prev = by_date.get(d)
+            if prev is None:
+                # 新規日付 → 追記（sell_change/buy_changeは後で計算）
+                by_date[d] = {
+                    "date": d,
+                    "sell_balance": k["sell_balance"],
+                    "buy_balance": k["buy_balance"],
+                    "sell_change": None,
+                    "buy_change": None,
+                    "margin_ratio": k["margin_ratio"],
+                }
+                new_or_updated += 1
+            else:
+                # 既存日付: 残データのみ kabutan で上書き (None は CSV を尊重)
+                for fld in ("sell_balance", "buy_balance", "margin_ratio"):
+                    if k.get(fld) is not None:
+                        prev[fld] = k[fld]
+                # sell_change/buy_change は kabutan が持たないので維持
+                new_or_updated += 1
+
+        if new_or_updated:
+            logger.info(f"[NikkeiDI] kabutan merge: {new_or_updated} rows touched")
+
+        # 並び替え＋週次差分(sell_change/buy_change)を時系列で再計算
+        margin_data = sorted(by_date.values(), key=lambda x: x["date"])
+        for i in range(1, len(margin_data)):
+            cur = margin_data[i]
+            prev = margin_data[i - 1]
+            if cur.get("sell_change") is None and cur.get("sell_balance") is not None and prev.get("sell_balance") is not None:
+                cur["sell_change"] = cur["sell_balance"] - prev["sell_balance"]
+            if cur.get("buy_change") is None and cur.get("buy_balance") is not None and prev.get("buy_balance") is not None:
+                cur["buy_change"] = cur["buy_balance"] - prev["buy_balance"]
 
         # 2. 日経平均日足を取得（CSV期間 + 余裕）
         first_date = margin_data[0]["date"]

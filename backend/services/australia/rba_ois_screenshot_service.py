@@ -74,12 +74,14 @@ class RbaOisScreenshotService:
         pass
 
     def _build_request(self, url: str, output_path: Path) -> ScreenshotRequest:
+        # MacroMicro 3M/6M ページは "visible" 判定が timeout することがあるため、
+        # wait_selector を省略し wait_after_load_ms (15s) でチャート描画を待機。
+        # clip_selector は不変（撮影対象は同じ）。
         return ScreenshotRequest(
             url=url,
             output_path=str(output_path),
-            wait_selector=self.TARGET_SELECTOR,
-            wait_for_load_state="networkidle",
-            wait_after_load_ms=5_000,
+            wait_for_load_state="domcontentloaded",
+            wait_after_load_ms=25_000,
             clip_selector=self.TARGET_SELECTOR,
             scroll_into_view=True,
             viewport_override=(1920, 1400),
@@ -91,8 +93,10 @@ class RbaOisScreenshotService:
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
+                "Chrome/131.0.0.0 Safari/537.36"
             ),
+            default_navigation_timeout_ms=120_000,  # 60s → 120s（MacroMicro 重ページ対応）
+            default_action_timeout_ms=60_000,
         )
 
     def capture_all_screenshots(self, force_refresh: bool = False) -> Dict[str, Any]:

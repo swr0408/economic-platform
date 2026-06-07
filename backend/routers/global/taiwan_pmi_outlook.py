@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_taiwan_pmi_outlook(
+def get_taiwan_pmi_outlook(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """台湾PMI先行き（電子工学業）データを取得"""
@@ -28,13 +28,13 @@ async def get_taiwan_pmi_outlook(
 
 
 @router.get("/cache")
-async def get_taiwan_pmi_outlook_cache_status() -> Dict[str, Any]:
+def get_taiwan_pmi_outlook_cache_status() -> Dict[str, Any]:
     """台湾PMI先行きのキャッシュ状態を取得"""
     return taiwan_pmi_outlook_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_taiwan_pmi_outlook_cache() -> Dict[str, Any]:
+def invalidate_taiwan_pmi_outlook_cache() -> Dict[str, Any]:
     """台湾PMI先行きのキャッシュを無効化"""
     result = taiwan_pmi_outlook_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

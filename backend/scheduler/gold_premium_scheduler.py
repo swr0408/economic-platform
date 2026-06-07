@@ -213,6 +213,7 @@ class GoldPremiumScheduler:
                 run_date=datetime.now(JST) + timedelta(seconds=30),
                 id="gold_premium_startup_catchup",
                 replace_existing=True,
+                misfire_grace_time=300,
             )
             logger.info("[GoldPremiumScheduler] Startup catch-up scheduled (in 30s)")
 

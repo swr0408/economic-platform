@@ -80,9 +80,10 @@
   "metadata": {
     "latest_forecast": "November 2025",
     "previous_forecast": "August 2025",
-    "last_updated": "2026-04-17T16:37:38.353522",
+    "last_updated": "2026-06-05T08:30:49.618997",
     "source": "Bank of England",
+    "note": "Using previous MPR data",
     "data_source": "Projections Databank"
   },
-  "last_updated": "2026-04-18T01:37:38.353531+09:00"
+  "last_updated": "2026-06-05T17:30:49.619006+09:00"
 }

@@ -473,6 +473,35 @@ def parse_date_to_yyyy_mm(date_val: Any) -> Optional[str]:
     return None
 
 
+def resolve_sheet_by_suffix(wb: openpyxl.Workbook, suffix: str) -> Optional[str]:
+    """シート名末尾一致でシート名を解決（MPR間で番号がドリフトしても追従）
+
+    BOE Projections Databankのシート名は番号プレフィックスが付くが、
+    番号はMPR発表ごとに変動する（例: "32. Bank Rate" → "38. Bank Rate"）。
+    本ヘルパーは番号を除いた本体名で照合する。
+
+    Args:
+        wb: openpyxl ワークブック
+        suffix: 照合するシート名本体（大文字小文字無視）
+                例: "Bank Rate", "Average weekly earnings"
+
+    Returns:
+        マッチしたシート名、なければ None
+    """
+    import re
+    target = suffix.strip().lower()
+    # 番号プレフィックス除去後の完全一致を最優先
+    for sn in wb.sheetnames:
+        cleaned = re.sub(r'^\s*\d+\.\s*', '', sn).strip().lower()
+        if cleaned == target:
+            return sn
+    # フォールバック: 末尾一致
+    for sn in wb.sheetnames:
+        if sn.strip().lower().endswith(target):
+            return sn
+    return None
+
+
 def detect_multi_row_header(ws) -> bool:
     """ワークシートがマルチ行ヘッダー構造かどうかを検出
 

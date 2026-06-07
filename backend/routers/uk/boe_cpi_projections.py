@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/boe-cpi-projections")
-async def get_boe_cpi_projections() -> Dict:
+def get_boe_cpi_projections() -> Dict:
     """
     BOE CPI見通しデータを取得
 
@@ -31,7 +31,7 @@ async def get_boe_cpi_projections() -> Dict:
 
 
 @router.post("/api/uk/boe-cpi-projections/refresh")
-async def refresh_boe_cpi_projections() -> Dict:
+def refresh_boe_cpi_projections() -> Dict:
     """
     BOE CPI見通しデータを強制更新
 

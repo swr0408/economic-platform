@@ -19,7 +19,7 @@ import Sp500StockPortionChart from './Sp500StockPortionChart'
 import Nikkei225ValuationChart from './Nikkei225ValuationChart'
 import TopixValuationChart from './TopixValuationChart'
 import AdvanceDeclineRatioChart from './AdvanceDeclineRatioChart'
-import VixTermStructureChart from './VixTermStructureChart'
+import VixFuturesCurveChart from './VixFuturesCurveChart'
 import HistoricalVolatilityChart from './HistoricalVolatilityChart'
 import VixCrossRatioChart from './VixCrossRatioChart'
 import SectorRatioChart from './SectorRatioChart'
@@ -74,7 +74,7 @@ export default function EquitiesCharts() {
       <div id="dow"><MarketPriceChart title="ダウ平均" symbolData={data?.dow} color={COLORS.dow} decimals={0} /></div>
       <div id="russell2000"><MarketPriceChart title="ラッセル2000" symbolData={data?.russell2000} color={COLORS.russell2000} decimals={0} /></div>
       <div id="vix"><MarketPriceChart title="VIX（恐怖指数）" symbolData={data?.vix} color={COLORS.vix} /></div>
-      <div id="vix-term-structure"><VixTermStructureChart /></div>
+      <div id="vix-futures-curve"><VixFuturesCurveChart /></div>
       <div id="historical-volatility"><HistoricalVolatilityChart /></div>
       <div id="vix-cross-ratio"><VixCrossRatioChart /></div>
       <div id="sector-ratio"><SectorRatioChart /></div>

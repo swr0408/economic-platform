@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_taiwan_export_orders(
+def get_taiwan_export_orders(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """台湾輸出受注（前年比）データを取得"""
@@ -28,13 +28,13 @@ async def get_taiwan_export_orders(
 
 
 @router.get("/cache")
-async def get_taiwan_export_orders_cache_status() -> Dict[str, Any]:
+def get_taiwan_export_orders_cache_status() -> Dict[str, Any]:
     """台湾輸出受注のキャッシュ状態を取得"""
     return taiwan_export_orders_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_taiwan_export_orders_cache() -> Dict[str, Any]:
+def invalidate_taiwan_export_orders_cache() -> Dict[str, Any]:
     """台湾輸出受注のキャッシュを無効化"""
     result = taiwan_export_orders_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

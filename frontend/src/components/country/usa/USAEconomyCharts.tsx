@@ -3,6 +3,7 @@ import { useUSAEconomyDashboardProgressive } from '../../../hooks/useDashboardDa
 import GDPGrowthChart from './economy/GDPGrowthChart'
 import GDPContributionsChart from './economy/GDPContributionsChart'
 import GDPComponentsGrowthChart from './economy/GDPComponentsGrowthChart'
+import DomesticPrivateFinalDemandChart from './economy/DomesticPrivateFinalDemandChart'
 import PotentialGDPChart from './economy/PotentialGDPChart'
 import BankLendingChart from './economy/BankLendingChart'
 import FCIChart from './economy/FCIChart'
@@ -84,6 +85,13 @@ export default function USAEconomyCharts() {
       <div id="gdp-contributions">
         <GDPContributionsChart
           data={dashboardData?.gdp_contributions ?? null}
+        />
+      </div>
+
+      {/* 国内民間最終需要（除くSW・PC投資）チャート */}
+      <div id="domestic-private-final-demand">
+        <DomesticPrivateFinalDemandChart
+          data={dashboardData?.domestic_private_final_demand ?? null}
         />
       </div>
 

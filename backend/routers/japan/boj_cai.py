@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_boj_cai(force_refresh: bool = Query(False, description="Force refresh from source")):
+def get_boj_cai(force_refresh: bool = Query(False, description="Force refresh from source")):
     """
     Get BOJ Consumption Activity Index data
 
@@ -26,7 +26,7 @@ async def get_boj_cai(force_refresh: bool = Query(False, description="Force refr
 
 
 @router.get("/chart")
-async def get_boj_cai_chart(force_refresh: bool = Query(False, description="Force refresh from source")):
+def get_boj_cai_chart(force_refresh: bool = Query(False, description="Force refresh from source")):
     """
     Get BOJ CAI data formatted for chart display
 
@@ -37,7 +37,7 @@ async def get_boj_cai_chart(force_refresh: bool = Query(False, description="Forc
 
 
 @router.post("/refresh")
-async def refresh_boj_cai():
+def refresh_boj_cai():
     """
     Force refresh BOJ CAI data from source
 
@@ -48,7 +48,7 @@ async def refresh_boj_cai():
 
 
 @router.get("/cache-status")
-async def get_boj_cai_cache_status():
+def get_boj_cai_cache_status():
     """
     Get BOJ CAI cache status
 
@@ -59,7 +59,7 @@ async def get_boj_cai_cache_status():
 
 
 @router.delete("/cache")
-async def invalidate_boj_cai_cache():
+def invalidate_boj_cai_cache():
     """
     Invalidate BOJ CAI cache
 

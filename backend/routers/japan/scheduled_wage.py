@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Employment"])
 
 
 @router.get("/scheduled-wage")
-async def get_scheduled_wage(
+def get_scheduled_wage(
     force_refresh: bool = Query(False, description="Force refresh data")
 ):
     """
@@ -32,7 +32,7 @@ async def get_scheduled_wage(
 
 
 @router.post("/scheduled-wage/refresh")
-async def refresh_scheduled_wage():
+def refresh_scheduled_wage():
     """
     Force refresh Japan scheduled wage data
 
@@ -43,7 +43,7 @@ async def refresh_scheduled_wage():
 
 
 @router.get("/scheduled-wage/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for scheduled wage data
     """
@@ -51,7 +51,7 @@ async def get_cache_status():
 
 
 @router.delete("/scheduled-wage/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate scheduled wage data cache
     """

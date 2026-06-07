@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/uk-qt")
-async def get_uk_qt(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_uk_qt(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     UK QT（APFギルト保有残高）データを取得
 
@@ -24,7 +24,7 @@ async def get_uk_qt(force_refresh: bool = Query(False, description="強制更新
 
 
 @router.post("/uk-qt/refresh")
-async def refresh_uk_qt():
+def refresh_uk_qt():
     """
     UK QTデータを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_uk_qt():
 
 
 @router.get("/uk-qt/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/uk-qt/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

@@ -339,6 +339,7 @@ function CnGovernmentBondIssuanceChart() {
         showDataSource={true}
         dataSource="中国財政部 (MOF)"
         sourceUrl="https://zwgls.mof.gov.cn/ywgg/"
+        handbookId="bond-issuance"
       >
         {/* サマリー */}
         {summary && (

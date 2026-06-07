@@ -37,7 +37,7 @@ router = APIRouter(prefix="/api/calendar", tags=["Calendar"])
 
 
 @router.get("/events")
-async def get_events(
+def get_events(
     country: str = Query(..., description="国コード（US, JP, EU等）"),
     from_date: Optional[date] = Query(None, description="開始日（YYYY-MM-DD）"),
     to_date: Optional[date] = Query(None, description="終了日（YYYY-MM-DD）"),
@@ -82,7 +82,7 @@ async def get_events(
 
 
 @router.get("/events/{econalpha_id}")
-async def get_events_by_indicator(
+def get_events_by_indicator(
     econalpha_id: str,
     from_date: Optional[date] = Query(None, description="開始日（YYYY-MM-DD）"),
     to_date: Optional[date] = Query(None, description="終了日（YYYY-MM-DD）"),
@@ -136,7 +136,7 @@ async def get_events_by_indicator(
 
 
 @router.get("/releases/{econalpha_id}")
-async def get_indicator_releases(
+def get_indicator_releases(
     econalpha_id: str,
     from_date: Optional[date] = Query(None, description="開始日（YYYY-MM-DD）"),
     to_date: Optional[date] = Query(None, description="終了日（YYYY-MM-DD）"),
@@ -184,7 +184,7 @@ async def get_indicator_releases(
 
 
 @router.get("/candidates")
-async def get_indicator_candidates(
+def get_indicator_candidates(
     country: Optional[str] = Query(None, description="国コード（US, JP, EU等）"),
     min_occurrences: int = Query(1, ge=1, description="最小出現回数"),
 ):
@@ -225,7 +225,7 @@ async def get_indicator_candidates(
 
 
 @router.get("/mappings")
-async def get_mappings(
+def get_mappings(
     country: Optional[str] = Query(None, description="国コード（US, JP, EU等）"),
 ):
     """
@@ -248,7 +248,7 @@ async def get_mappings(
 
 
 @router.get("/sync/status")
-async def get_sync_status():
+def get_sync_status():
     """
     同期状態を取得
 
@@ -283,7 +283,7 @@ async def get_sync_status():
 
 
 @router.post("/sync/run")
-async def run_sync(
+def run_sync(
     background_tasks: BackgroundTasks,
     days: int = Query(14, ge=1, le=365, description="同期日数（過去）"),
     future_days: int = Query(7, ge=0, le=90, description="同期日数（将来）"),
@@ -318,7 +318,7 @@ async def run_sync(
 
 
 @router.post("/sync/future")
-async def run_future_sync(
+def run_future_sync(
     background_tasks: BackgroundTasks,
     days: int = Query(90, ge=1, le=180, description="将来の取得日数"),
     _master = Depends(_require_master),
@@ -350,7 +350,7 @@ async def run_future_sync(
 
 
 @router.post("/backfill")
-async def run_backfill(
+def run_backfill(
     background_tasks: BackgroundTasks,
     days: int = Query(365, ge=1, le=365, description="バックフィル日数"),
     _master = Depends(_require_master),
@@ -380,7 +380,7 @@ async def run_backfill(
 
 
 @router.post("/releases/sync/{econalpha_id}")
-async def sync_indicator_releases(
+def sync_indicator_releases(
     econalpha_id: str,
     _master = Depends(_require_master),
 ):
@@ -404,7 +404,7 @@ async def sync_indicator_releases(
 
 
 @router.post("/sync/event")
-async def sync_specific_event(
+def sync_specific_event(
     background_tasks: BackgroundTasks,
     country: str = Query(..., description="国コード（US, EU, DE, JP, GB等）"),
     event: str = Query(..., description="イベント名パターン（例: HCOB Manufacturing PMI）"),
@@ -455,7 +455,7 @@ async def sync_specific_event(
 
 
 @router.get("/fmp/indicators")
-async def get_fmp_indicators():
+def get_fmp_indicators():
     """
     FMPスケジューラーに登録されている指標一覧を取得
     """
@@ -490,7 +490,7 @@ async def get_fmp_indicators():
 
 
 @router.post("/fmp/sync/{indicator_name}")
-async def sync_fmp_indicator(
+def sync_fmp_indicator(
     indicator_name: str,
     background_tasks: BackgroundTasks,
     days: int = Query(7, ge=1, le=30, description="取得日数（過去）"),
@@ -542,7 +542,7 @@ async def sync_fmp_indicator(
 
 
 @router.post("/fmp/sync-all")
-async def sync_all_fmp_indicators(
+def sync_all_fmp_indicators(
     background_tasks: BackgroundTasks,
     country: Optional[str] = Query(None, description="国コード（US, EU, DE, JP, GB等）でフィルタ"),
     _master = Depends(_require_master),

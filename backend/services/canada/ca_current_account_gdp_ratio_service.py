@@ -31,6 +31,7 @@ from services.canada.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
 )
+from services.canada.statcan_utils import fetch_statcan_csv
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -181,14 +182,7 @@ class CaCurrentAccountGdpRatioService:
 
     def _fetch_current_account(self) -> Dict[str, float]:
         """経常収支データを取得"""
-        resp = requests.get(STATCAN_CURRENT_ACCOUNT_URL, timeout=120)
-        resp.raise_for_status()
-
-        z = zipfile.ZipFile(io.BytesIO(resp.content))
-        csv_name = [n for n in z.namelist() if n.endswith('.csv') and not n.startswith('_')][0]
-
-        with z.open(csv_name) as f:
-            df = pd.read_csv(f, low_memory=False)
+        df = fetch_statcan_csv(STATCAN_CURRENT_ACCOUNT_URL)
 
         # 経常収支（Total current account）のバランス（季節調整済み）を取得
         filtered_df = df[
@@ -210,14 +204,7 @@ class CaCurrentAccountGdpRatioService:
 
     def _fetch_gdp(self) -> Dict[str, float]:
         """名目GDPデータを取得"""
-        resp = requests.get(STATCAN_GDP_URL, timeout=120)
-        resp.raise_for_status()
-
-        z = zipfile.ZipFile(io.BytesIO(resp.content))
-        csv_name = [n for n in z.namelist() if n.endswith('.csv') and not n.startswith('_')][0]
-
-        with z.open(csv_name) as f:
-            df = pd.read_csv(f, low_memory=False)
+        df = fetch_statcan_csv(STATCAN_GDP_URL)
 
         # 名目GDP（Current prices）を取得
         # Estimates: 'Gross domestic product at market prices'

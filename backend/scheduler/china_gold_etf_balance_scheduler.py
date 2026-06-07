@@ -211,6 +211,7 @@ class ChinaGoldEtfBalanceScheduler:
                 run_date=datetime.now(JST) + timedelta(seconds=30),
                 id="china_gold_etf_balance_startup_catchup",
                 replace_existing=True,
+                misfire_grace_time=300,
             )
             logger.info("[ChinaGoldEtfBalanceScheduler] Startup catch-up scheduled (in 30s)")
 

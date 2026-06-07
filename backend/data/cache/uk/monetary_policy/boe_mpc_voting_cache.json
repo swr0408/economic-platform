@@ -1918,6 +1918,21 @@
         "Dave Ramsden": 0.0375,
         "Alan Taylor": 0.0375
       }
+    },
+    {
+      "date": "2026-04-30",
+      "bank_rate": 0.0375,
+      "member_votes": {
+        "Andrew Bailey": 0.0375,
+        "Sarah Breeden": 0.0375,
+        "Swati Dhingra": 0.0375,
+        "Megan Greene": 0.0375,
+        "Clare Lombardelli": 0.0375,
+        "Catherine L Mann": 0.0375,
+        "Huw Pill": 0.04,
+        "Dave Ramsden": 0.0375,
+        "Alan Taylor": 0.0375
+      }
     }
   ],
   "members": [
@@ -1932,9 +1947,9 @@
     "Alan Taylor"
   ],
   "latest": {
-    "date": "2026-03-19",
+    "date": "2026-04-30",
     "bank_rate": 0.0375
   },
   "next_release": null,
-  "last_updated": "2026-04-18T01:36:44.796406+09:00"
+  "last_updated": "2026-06-07T22:12:38.598497+09:00"
 }

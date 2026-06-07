@@ -97,6 +97,7 @@ export default function ReserveBalancesChart({ data }: ReserveBalancesChartProps
         showPeriodSelector={false}
         dataSource="FRB"
         sourceUrl="https://www.federalreserve.gov/releases/h41/"
+        handbookId="reserve-balances"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

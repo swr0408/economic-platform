@@ -243,6 +243,7 @@ export default function NoaaHddCddChart() {
       dataSource="NOAA CPC"
       sourceUrl="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/cdus/degree_days/"
       showPeriodSelector={false}
+      handbookId="noaa-hdd-cdd"
     >
       {/* Latest value box */}
       <div style={LATEST_VALUE_BOX_STYLE}>

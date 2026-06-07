@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/sonia")
-async def get_sonia(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_sonia(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     SONIAデータを取得
 
@@ -24,7 +24,7 @@ async def get_sonia(force_refresh: bool = Query(False, description="強制更新
 
 
 @router.post("/sonia/refresh")
-async def refresh_sonia():
+def refresh_sonia():
     """
     SONIAデータを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_sonia():
 
 
 @router.get("/sonia/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/sonia/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

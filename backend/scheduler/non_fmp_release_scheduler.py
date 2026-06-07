@@ -446,6 +446,23 @@ NON_FMP_INDICATOR_CONFIGS = [
             "minute": 0,
         },
     },
+    {
+        # 発表: 毎UK営業日にYield Curve ZIPが更新（~17:00 UK = ~02:00 JST翌日 冬時間）
+        # 出典: Bank of England Yield Curves ZIP
+        # ※ FMP未登録のため非FMPスケジューラーで管理
+        # JST営業日 04:00 に取得（BOE発行ラグ吸収）
+        "name_ja": "BOE OISフォワードカーブ",
+        "country": "GB",
+        "category": "policy",
+        "service_module": "services.uk.boe_ois_curve_service",
+        "service_instance": "boe_ois_curve_service",
+        "fetch_method": "get_ois_curve_data",
+        "schedule_type": "business_day",
+        "schedule_config": {
+            "hour": 4,
+            "minute": 0,
+        },
+    },
 ]
 
 

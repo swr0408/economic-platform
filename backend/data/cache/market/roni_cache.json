@@ -4569,24 +4569,29 @@
       "date": "2026-02-01",
       "value": -0.7,
       "season": "JFM"
+    },
+    {
+      "date": "2026-03-01",
+      "value": -0.5,
+      "season": "FMA"
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": -0.7,
-    "season": "JFM"
+    "date": "2026-03-01",
+    "value": -0.5,
+    "season": "FMA"
   },
   "metadata": {
     "source": "NOAA CPC",
-    "dataset": "RONI (Revised Oceanic Niño Index)",
+    "dataset": "RONI (Relative Oceanic Niño Index)",
     "frequency": "monthly",
     "unit": "°C",
     "base_period": "1991-2020",
-    "data_count": 914,
+    "data_count": 915,
     "start_date": "1950-01-01",
-    "end_date": "2026-02-01"
+    "end_date": "2026-03-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T16:50:01.680880+09:00"
+  "last_updated": "2026-06-01T21:53:08.049042+09:00"
 }

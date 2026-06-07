@@ -3842,19 +3842,27 @@
     },
     {
       "date": "2026-01-01",
-      "worldwide": 80.3845,
-      "americas": 24.5075,
-      "europe": 5.4931,
-      "japan": 3.6411,
-      "asia_pacific": 46.7428
+      "worldwide": 80.7808,
+      "americas": 24.6251,
+      "europe": 5.5064,
+      "japan": 3.6506,
+      "asia_pacific": 46.9988
     },
     {
       "date": "2026-02-01",
-      "worldwide": 100.6205,
-      "americas": 35.9003,
-      "europe": 6.521,
-      "japan": 4.0138,
-      "asia_pacific": 54.1854
+      "worldwide": 101.5552,
+      "americas": 36.1998,
+      "europe": 6.5605,
+      "japan": 4.0321,
+      "asia_pacific": 54.7628
+    },
+    {
+      "date": "2026-03-01",
+      "worldwide": 116.2096,
+      "americas": 40.5959,
+      "europe": 6.531,
+      "japan": 4.4673,
+      "asia_pacific": 64.6155
     }
   ],
   "yoy_data": [
@@ -7604,19 +7612,27 @@
     },
     {
       "date": "2026-01-01",
-      "worldwide": 58.34,
-      "americas": 47.21,
-      "europe": 37.8,
-      "japan": -0.5,
-      "asia_pacific": 76.56
+      "worldwide": 59.12,
+      "americas": 47.91,
+      "europe": 38.13,
+      "japan": -0.24,
+      "asia_pacific": 77.53
     },
     {
       "date": "2026-02-01",
-      "worldwide": 86.08,
-      "americas": 99.13,
-      "europe": 65.61,
-      "japan": 12.64,
-      "asia_pacific": 89.83
+      "worldwide": 87.81,
+      "americas": 100.79,
+      "europe": 66.62,
+      "japan": 13.15,
+      "asia_pacific": 91.85
+    },
+    {
+      "date": "2026-03-01",
+      "worldwide": 88.13,
+      "americas": 95.99,
+      "europe": 36.89,
+      "japan": 9.23,
+      "asia_pacific": 100.68
     }
   ],
   "mma_data": [
@@ -11462,27 +11478,27 @@
     },
     {
       "date": "2026-01-01",
-      "worldwide": 82.5386,
-      "americas": 26.3795,
-      "europe": 5.1766,
-      "japan": 3.663,
-      "asia_pacific": 47.3196
+      "worldwide": 82.6707,
+      "americas": 26.4186,
+      "europe": 5.181,
+      "japan": 3.6662,
+      "asia_pacific": 47.4049
     },
     {
       "date": "2026-02-01",
-      "worldwide": 88.7844,
-      "americas": 29.7006,
-      "europe": 5.703,
-      "japan": 3.7715,
-      "asia_pacific": 49.6093
+      "worldwide": 89.2281,
+      "americas": 29.8396,
+      "europe": 5.7206,
+      "japan": 3.7808,
+      "asia_pacific": 49.8871
     },
     {
       "date": "2026-03-01",
-      "worldwide": 0.0,
-      "americas": 0.0,
-      "europe": 0.0,
-      "japan": 0.0,
-      "asia_pacific": 0.0
+      "worldwide": 99.5152,
+      "americas": 33.8069,
+      "europe": 6.1993,
+      "japan": 4.05,
+      "asia_pacific": 55.459
     },
     {
       "date": "2026-04-01",
@@ -15304,27 +15320,27 @@
     },
     {
       "date": "2026-01-01",
-      "worldwide": 46.06,
-      "americas": 34.94,
-      "europe": 26.14,
-      "japan": -6.16,
-      "asia_pacific": 63.43
+      "worldwide": 46.29,
+      "americas": 35.14,
+      "europe": 26.25,
+      "japan": -6.08,
+      "asia_pacific": 63.72
     },
     {
       "date": "2026-02-01",
-      "worldwide": 61.76,
-      "americas": 59.21,
-      "europe": 42.31,
-      "japan": -0.33,
-      "asia_pacific": 74.44
+      "worldwide": 62.57,
+      "americas": 59.96,
+      "europe": 42.75,
+      "japan": -0.08,
+      "asia_pacific": 75.42
     },
     {
       "date": "2026-03-01",
-      "worldwide": -100.0,
-      "americas": -100.0,
-      "europe": -100.0,
-      "japan": -100.0,
-      "asia_pacific": -100.0
+      "worldwide": 79.18,
+      "americas": 83.1,
+      "europe": 46.5,
+      "japan": 7.4,
+      "asia_pacific": 90.76
     },
     {
       "date": "2026-04-01",
@@ -15400,12 +15416,12 @@
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "worldwide": 100.6205,
-    "americas": 35.9003,
-    "europe": 6.521,
-    "japan": 4.0138,
-    "asia_pacific": 54.1854
+    "date": "2026-03-01",
+    "worldwide": 116.2096,
+    "americas": 40.5959,
+    "europe": 6.531,
+    "japan": 4.4673,
+    "asia_pacific": 64.6155
   },
   "metadata": {
     "source": "WSTS (World Semiconductor Trade Statistics)",
@@ -15414,5 +15430,5 @@
     "frequency": "Monthly",
     "description": "Monthly semiconductor billings by region"
   },
-  "last_updated": "2026-04-18T09:31:30.827012+09:00"
+  "last_updated": "2026-06-07T22:12:54.161027+09:00"
 }

@@ -309,6 +309,32 @@ class BEAScheduleService:
         upcoming = self.get_upcoming_gdp_releases(count=1)
         return upcoming[0] if upcoming else None
 
+    def get_last_gdp_release(self) -> Optional[Dict[str, str]]:
+        """
+        直近の過去GDP発表を取得（today より前で最も新しい発表）
+
+        next_release は発表直後に未来日へ切り替わるため、
+        stale 検出窓を見逃さないよう last_release もチェックする用途。
+
+        Returns:
+            直近の過去発表情報、またはNone
+        """
+        schedule = self.get_schedule()
+        today = date.today()
+
+        last_release = None
+        for release in schedule:
+            try:
+                release_date = datetime.strptime(release["date"], "%Y-%m-%d").date()
+            except (ValueError, KeyError):
+                continue
+            if release_date < today:
+                last_release = release
+            else:
+                break
+
+        return last_release
+
     def get_release_datetime_jst(self, release_date_str: str) -> datetime:
         """
         発表日時を日本時間で取得

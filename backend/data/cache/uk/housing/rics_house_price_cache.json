@@ -1169,14 +1169,20 @@
       "value": -23.0,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-04-01",
+      "value": -34.0,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": -23.0,
+    "date": "2026-04-01",
+    "value": -34.0,
     "forecast": null,
     "previous": null
   },
   "next_release": null,
-  "last_updated": "2026-04-18T04:02:09.211118+09:00"
+  "last_updated": "2026-06-01T22:01:21.550056+09:00"
 }

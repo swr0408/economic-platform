@@ -382,14 +382,14 @@
       "date": "2024-01-01",
       "new_ratio": 45.6,
       "special_ratio": 32.4,
-      "headroom": 57915.3,
+      "headroom": null,
       "cost": 2.6,
       "monthly_total": 3845.0,
       "monthly_new_total": 1754.0,
       "monthly_new_special": 568.0,
       "monthly_avg_rate": 2.6,
       "ytd_avg_rate": 2.6,
-      "debt_limit_total": 467874.3,
+      "debt_limit_total": null,
       "debt_balance_total": 409959.0
     },
     {
@@ -681,5 +681,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-04-18T01:46:37.902337+09:00"
+  "last_updated": "2026-06-04T22:02:51.652253+09:00"
 }

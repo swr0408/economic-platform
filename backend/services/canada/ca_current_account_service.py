@@ -33,6 +33,7 @@ from services.canada.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
 )
+from services.canada.statcan_utils import fetch_statcan_csv
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -141,14 +142,7 @@ class CaCurrentAccountService:
         try:
             print(f"[CaCurrentAccount] Fetching data from: {STATCAN_CURRENT_ACCOUNT_URL}")
 
-            resp = requests.get(STATCAN_CURRENT_ACCOUNT_URL, timeout=120)
-            resp.raise_for_status()
-
-            z = zipfile.ZipFile(io.BytesIO(resp.content))
-            csv_name = [n for n in z.namelist() if n.endswith('.csv') and not n.startswith('_')][0]
-
-            with z.open(csv_name) as f:
-                df = pd.read_csv(f, low_memory=False)
+            df = fetch_statcan_csv(STATCAN_CURRENT_ACCOUNT_URL)
 
             print(f"[CaCurrentAccount] Columns: {df.columns.tolist()}")
             print(f"[CaCurrentAccount] Total rows: {len(df)}")

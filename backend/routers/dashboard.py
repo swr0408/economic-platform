@@ -153,7 +153,7 @@ async def get_dashboard(
 
 
 @router.get("/dashboards/available")
-async def get_available_dashboard_list():
+def get_available_dashboard_list():
     """
     利用可能なダッシュボードの一覧を取得
 
@@ -372,7 +372,7 @@ async def get_dashboard_heavy(
 
 
 @router.get("/{country}/{category}/dashboard/status")
-async def get_dashboard_status(
+def get_dashboard_status(
     country: str = Path(..., description="国コード"),
     category: str = Path(..., description="カテゴリコード"),
 ):
@@ -452,7 +452,7 @@ async def refresh_dashboard_cache(
 
 
 @router.delete("/{country}/{category}/dashboard/cache")
-async def invalidate_dashboard_cache(
+def invalidate_dashboard_cache(
     country: str = Path(..., description="国コード"),
     category: str = Path(..., description="カテゴリコード"),
     _master = Depends(_require_master),

@@ -617,25 +617,35 @@
     },
     {
       "date": "2026-04-01",
-      "crude_oil_yoy": 35.08,
-      "crude_oil_close": 97.97
+      "crude_oil_yoy": 44.86,
+      "crude_oil_close": 105.07
+    },
+    {
+      "date": "2026-05-01",
+      "crude_oil_yoy": 25.23,
+      "crude_oil_close": 87.36
+    },
+    {
+      "date": "2026-06-01",
+      "crude_oil_yoy": 25.85,
+      "crude_oil_close": 89.96
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "crude_oil_yoy": 35.08,
-    "crude_oil_close": 97.97
+    "date": "2026-06-01",
+    "crude_oil_yoy": 25.85,
+    "crude_oil_close": 89.96
   },
   "metadata": {
     "source": "yfinance (CL=F)",
     "indicator": "Crude Oil (WTI) YoY (Monthly)",
     "unit": "%",
     "frequency": "monthly",
-    "data_count": 124,
+    "data_count": 126,
     "start_date": "2014-03-01",
-    "end_date": "2026-04-01"
+    "end_date": "2026-06-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-10T20:44:24.321104+09:00"
+  "last_updated": "2026-06-01T21:39:44.124606+09:00"
 }

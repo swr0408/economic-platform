@@ -77,15 +77,19 @@ class BaseDashboardLoader(ABC):
         """
         return self._get_release_datetimes_from_fmp_calendar()
 
+    # キャッシュの最大年齢（時間）— これを超えたら発表日時に関係なく再取得
+    # FMP カレンダーDB が一時的に空でも、最低限の鮮度を保証するセーフティネット
+    MAX_CACHE_AGE_HOURS: int = 24
+
     def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
         """
-        キャッシュが古いかどうかを判定（発表日時ベース方式）
+        キャッシュが古いかどうかを判定（発表日時ベース + 最大年齢フォールバック）
 
         Args:
             last_updated: キャッシュの最終更新日時（ISO形式）
 
         Returns:
-            True: 再取得が必要（発表日時を跨いだ場合）
+            True: 再取得が必要（発表日時を跨いだ場合 or 最大年齢超過）
             False: キャッシュを使用可能
         """
         if last_updated is None:
@@ -98,6 +102,16 @@ class BaseDashboardLoader(ABC):
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
 
             now = datetime.now(JST)
+
+            # フォールバック: 最大年齢超過チェック
+            # 発表日時情報が無い/失われた場合のセーフティネット
+            age_hours = (now - last_updated_dt).total_seconds() / 3600
+            if age_hours > self.MAX_CACHE_AGE_HOURS:
+                print(
+                    f"Cache exceeded max age for {self.COUNTRY_CODE}:{self.CATEGORY_CODE} "
+                    f"({age_hours:.1f}h > {self.MAX_CACHE_AGE_HOURS}h)"
+                )
+                return True
 
             # 各指標の発表日時をチェック
             release_datetimes = self.get_release_datetimes()
@@ -210,12 +224,28 @@ class BaseDashboardLoader(ABC):
 
         return False
 
+    # `latest` 内でNoneが許容されるフィールド（予想値・改定値・将来発表日など）
+    # qoq / mom / composite は主指標（yoy / value / stock）と並ぶ二次/合成指標で、
+    # 発表ラグや元データの構造によりNoneとなることがあるため許容する
+    _LATEST_NULLABLE_FIELDS = frozenset({
+        "date", "release_date", "forecast", "revised", "estimate",
+        "expected", "previous", "actual",
+        "qoq", "mom", "composite",
+    })
+    _LATEST_NULLABLE_PREFIXES = ("next_",)
+    _LATEST_NULLABLE_SUFFIXES = (
+        "_forecast", "_revised", "_estimate", "_expected", "_previous",
+        "_qoq", "_mom",
+    )
+
     def _has_null_values(self, cached_data: Dict[str, Any]) -> bool:
         """
         キャッシュにNone値が含まれているかチェック
 
-        一部の指標がNoneの場合、外部API取得失敗時のキャッシュと判断し、
-        再取得を促す。全キーを対象にチェックする。
+        2段階で検査する:
+        1. トップレベルの指標自体がNone（取得失敗）
+        2. 各指標の`latest`内の主要フィールドがNone（部分的取得失敗）
+           - 例: retail_salesのRSAFSだけ取得失敗 → latest.value=None
 
         Args:
             cached_data: キャッシュされたデータ
@@ -235,6 +265,58 @@ class BaseDashboardLoader(ABC):
             if value is None:
                 print(f"Cache has null value for '{key}' in {self.COUNTRY_CODE}:{self.CATEGORY_CODE}")
                 return True
+            # 指標がdictの場合、内部の`latest`フィールドも検査
+            if isinstance(value, dict) and self._has_broken_latest(value, key):
+                return True
+
+        return False
+
+    def _has_broken_latest(self, indicator: Dict[str, Any], parent_key: str) -> bool:
+        """
+        指標dict内の`latest`フィールドに、許容されない None があるかチェック
+
+        ネストされたdict（例: personal_income.nominal.latest）も再帰的に検査する。
+
+        Args:
+            indicator: 指標データのdict
+            parent_key: ログ用の親キー名
+
+        Returns:
+            True: 主要フィールドにNoneがある（取得失敗の可能性）
+            False: 問題なし
+        """
+        latest = indicator.get("latest")
+        if isinstance(latest, dict):
+            # 「取得失敗」と判定するのは、必須フィールド（=許容されないフィールド）が
+            # **すべて** None の場合のみ。一部の二次指標が発表ラグでNoneになっても
+            # 主指標に値があれば「取得失敗」とは見なさず再フェッチをトリガーしない。
+            required_total = 0
+            required_null = 0
+            for k, v in latest.items():
+                if k in self._LATEST_NULLABLE_FIELDS:
+                    continue
+                if any(k.startswith(p) for p in self._LATEST_NULLABLE_PREFIXES):
+                    continue
+                if any(k.endswith(s) for s in self._LATEST_NULLABLE_SUFFIXES):
+                    continue
+                required_total += 1
+                if v is None:
+                    required_null += 1
+
+            if required_total > 0 and required_null == required_total:
+                print(
+                    f"Cache has all-null required fields in {parent_key}.latest "
+                    f"for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}"
+                )
+                return True
+
+        # ネストされたdict（nominal/realなど）も検査
+        for k, v in indicator.items():
+            if k == "latest":
+                continue
+            if isinstance(v, dict):
+                if self._has_broken_latest(v, f"{parent_key}.{k}"):
+                    return True
 
         return False
 
@@ -242,37 +324,47 @@ class BaseDashboardLoader(ABC):
         """
         データを取得（キャッシュ優先、last_updated判定）
 
+        フロー:
+        - キャッシュ無し                              → ブロッキング再取得
+        - キャッシュ欠損キー / latest全null           → ブロッキング再取得
+          （データ品質問題のためユーザに stale を返したくない）
+        - キャッシュ stale だがデータ健全           → SWR: stale 即返し + 裏で更新
+          （30秒タイムアウト対策。外部API遅延がユーザに見えない）
+        - キャッシュ fresh                             → そのまま返却
+
         Returns:
             {
                 "data": {...},
                 "cached": bool,
-                "last_updated": str
+                "last_updated": str,
+                "revalidating": bool  # SWR で裏更新が走っている場合のみ True
             }
         """
-        # 1. キャッシュをチェック
         cached = self.get_cached()
         last_updated = None
+
         if cached:
             last_updated = cached.get("last_updated")
 
-            # キャッシュに必要なキーが欠けている場合は再取得
+            # データ品質問題 → ブロッキング再取得
             if self._is_cache_incomplete(cached):
-                print(f"Cache incomplete for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
-            # キャッシュにNull値がある場合は再取得（外部API取得失敗の可能性）
+                print(f"Cache incomplete for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing (blocking)...")
             elif self._has_null_values(cached):
-                print(f"Cache has null values for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
-            # スケジュール時刻でキャッシュの鮮度をチェック
+                print(f"Cache has null values for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing (blocking)...")
+            # 鮮度切れだがデータは健全 → SWR
             elif self._is_cache_stale(last_updated):
-                print(f"Cache is stale for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, refreshing...")
+                print(f"Cache is stale for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}, returning stale + background refresh...")
+                self._trigger_background_refresh(last_updated)
+                return {
+                    **cached,
+                    "revalidating": True,
+                }
             else:
                 return cached
 
-        # 2. キャッシュMISS or キャッシュが古い → データを取得
-        # サブクラスに古くなった指標を通知（オーバーライド可能）
+        # キャッシュMISS or データ品質問題 → ブロッキング再取得
         self._prepare_for_refresh(last_updated)
         data = self.load_all()
-
-        # 3. キャッシュに保存
         self.save_to_cache(data)
 
         return {
@@ -280,6 +372,28 @@ class BaseDashboardLoader(ABC):
             "cached": False,
             "last_updated": datetime.now(JST).isoformat(),
         }
+
+    def _trigger_background_refresh(self, last_updated: Optional[str]) -> None:
+        """SWR バックグラウンド再取得を起動。
+
+        同一 cache_key の再取得が既に走っている場合はスキップ（thundering herd 防止）。
+        サブクラスで `_stale_indicators` を共有する場合に備え、
+        バックグラウンドでは新規ローダーインスタンスを使う。
+        """
+        try:
+            from services.browser.stale_while_revalidate import background_revalidate
+        except ImportError:
+            from backend.services.browser.stale_while_revalidate import background_revalidate
+
+        cls = type(self)
+
+        def _refresh() -> None:
+            worker = cls()
+            worker._prepare_for_refresh(last_updated)
+            data = worker.load_all()
+            worker.save_to_cache(data)
+
+        background_revalidate(f"swr:{self.cache_key}", _refresh)
 
     def _prepare_for_refresh(self, last_updated: Optional[str]) -> None:
         """

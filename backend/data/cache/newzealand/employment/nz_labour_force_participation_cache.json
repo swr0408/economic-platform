@@ -101,10 +101,6 @@
       "value": 71.7
     },
     {
-      "date": "2023-12-01",
-      "value": 71.8
-    },
-    {
       "date": "2024-03-01",
       "value": 71.5
     },
@@ -135,11 +131,15 @@
     {
       "date": "2025-12-01",
       "value": 70.5
+    },
+    {
+      "date": "2026-03-01",
+      "value": 70.4
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 70.5
+    "date": "2026-03-01",
+    "value": 70.4
   },
   "metadata": {
     "source": "Stats NZ",
@@ -150,8 +150,8 @@
     "series": "HLFQ.S1E3S"
   },
   "next_release": {
-    "date": "2026-05-06",
-    "label": "Labour market statistics: March 2026 quarter will be published 6 May 2026."
+    "date": "2026-08-05",
+    "label": "Labour market statistics: June 2026 quarter will be published 5 August 2026."
   },
-  "last_updated": "2026-04-18T04:09:55.140540+09:00"
+  "last_updated": "2026-06-07T11:31:43.123246+09:00"
 }

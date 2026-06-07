@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Price"])
 
 
 @router.get("/sppi")
-async def get_sppi(
+def get_sppi(
     force_refresh: bool = Query(False, description="Force refresh data")
 ):
     """
@@ -31,7 +31,7 @@ async def get_sppi(
 
 
 @router.post("/sppi/refresh")
-async def refresh_sppi():
+def refresh_sppi():
     """
     Force refresh Japan SPPI data
 
@@ -42,7 +42,7 @@ async def refresh_sppi():
 
 
 @router.get("/sppi/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for SPPI data
     """
@@ -50,7 +50,7 @@ async def get_cache_status():
 
 
 @router.delete("/sppi/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate SPPI data cache
     """

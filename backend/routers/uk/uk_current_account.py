@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/uk-current-account")
-async def get_uk_current_account(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_uk_current_account(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     UK経常収支データを取得
 
@@ -24,7 +24,7 @@ async def get_uk_current_account(force_refresh: bool = Query(False, description=
 
 
 @router.post("/uk-current-account/refresh")
-async def refresh_uk_current_account():
+def refresh_uk_current_account():
     """
     UK経常収支データを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_uk_current_account():
 
 
 @router.get("/uk-current-account/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/uk-current-account/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

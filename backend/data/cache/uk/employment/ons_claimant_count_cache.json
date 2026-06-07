@@ -4370,286 +4370,300 @@
     },
     {
       "date": "2023-01-01",
-      "value": 1520.8,
+      "value": 1517.5,
       "period": "2023 JAN",
-      "mom": -15.8,
-      "yoy": -15.38
+      "mom": -19.1,
+      "yoy": -15.57
     },
     {
       "date": "2023-02-01",
-      "value": 1503.9,
+      "value": 1494.8,
       "period": "2023 FEB",
-      "mom": -16.9,
-      "yoy": -13.74
+      "mom": -22.7,
+      "yoy": -14.26
     },
     {
       "date": "2023-03-01",
-      "value": 1524.8,
+      "value": 1523.9,
       "period": "2023 MAR",
-      "mom": 20.9,
-      "yoy": -8.91
+      "mom": 29.1,
+      "yoy": -8.97
     },
     {
       "date": "2023-04-01",
-      "value": 1556.5,
+      "value": 1567.3,
       "period": "2023 APR",
-      "mom": 31.7,
-      "yoy": -2.52
+      "mom": 43.4,
+      "yoy": -1.84
     },
     {
       "date": "2023-05-01",
-      "value": 1527.7,
+      "value": 1532.5,
       "period": "2023 MAY",
-      "mom": -28.8,
-      "yoy": -3.11
+      "mom": -34.8,
+      "yoy": -2.81
     },
     {
       "date": "2023-06-01",
-      "value": 1542.1,
+      "value": 1536.8,
       "period": "2023 JUN",
-      "mom": 14.4,
-      "yoy": -0.77
+      "mom": 4.3,
+      "yoy": -1.11
     },
     {
       "date": "2023-07-01",
-      "value": 1541.5,
+      "value": 1545.6,
       "period": "2023 JUL",
-      "mom": -0.6,
-      "yoy": 1.08
+      "mom": 8.8,
+      "yoy": 1.35
     },
     {
       "date": "2023-08-01",
-      "value": 1527.5,
+      "value": 1530.9,
       "period": "2023 AUG",
-      "mom": -14.0,
-      "yoy": 0.41
+      "mom": -14.7,
+      "yoy": 0.64
     },
     {
       "date": "2023-09-01",
-      "value": 1529.1,
+      "value": 1531.7,
       "period": "2023 SEP",
-      "mom": 1.6,
-      "yoy": 0.54
+      "mom": 0.8,
+      "yoy": 0.71
     },
     {
       "date": "2023-10-01",
-      "value": 1539.1,
+      "value": 1539.0,
       "period": "2023 OCT",
-      "mom": 10.0,
+      "mom": 7.3,
       "yoy": 1.93
     },
     {
       "date": "2023-11-01",
-      "value": 1551.9,
+      "value": 1551.1,
       "period": "2023 NOV",
-      "mom": 12.8,
-      "yoy": 1.94
+      "mom": 12.1,
+      "yoy": 1.89
     },
     {
       "date": "2023-12-01",
-      "value": 1565.3,
+      "value": 1563.2,
       "period": "2023 DEC",
-      "mom": 13.4,
-      "yoy": 1.87
+      "mom": 12.1,
+      "yoy": 1.73
     },
     {
       "date": "2024-01-01",
-      "value": 1569.2,
+      "value": 1566.4,
       "period": "2024 JAN",
-      "mom": 3.9,
-      "yoy": 3.18
+      "mom": 3.2,
+      "yoy": 3.22
     },
     {
       "date": "2024-02-01",
-      "value": 1572.3,
+      "value": 1562.9,
       "period": "2024 FEB",
-      "mom": 3.1,
-      "yoy": 4.55
+      "mom": -3.5,
+      "yoy": 4.56
     },
     {
       "date": "2024-03-01",
-      "value": 1584.8,
+      "value": 1578.4,
       "period": "2024 MAR",
-      "mom": 12.5,
-      "yoy": 3.93
+      "mom": 15.5,
+      "yoy": 3.58
     },
     {
       "date": "2024-04-01",
-      "value": 1583.0,
+      "value": 1584.2,
       "period": "2024 APR",
-      "mom": -1.8,
-      "yoy": 1.7
+      "mom": 5.8,
+      "yoy": 1.08
     },
     {
       "date": "2024-05-01",
-      "value": 1615.7,
+      "value": 1612.6,
       "period": "2024 MAY",
-      "mom": 32.7,
-      "yoy": 5.76
+      "mom": 28.4,
+      "yoy": 5.23
     },
     {
       "date": "2024-06-01",
-      "value": 1645.1,
+      "value": 1638.6,
       "period": "2024 JUN",
-      "mom": 29.4,
-      "yoy": 6.68
+      "mom": 26.0,
+      "yoy": 6.62
     },
     {
       "date": "2024-07-01",
-      "value": 1766.8,
+      "value": 1776.3,
       "period": "2024 JUL",
-      "mom": 121.7,
-      "yoy": 14.62
+      "mom": 137.7,
+      "yoy": 14.93
     },
     {
       "date": "2024-08-01",
-      "value": 1762.7,
+      "value": 1771.3,
       "period": "2024 AUG",
-      "mom": -4.1,
-      "yoy": 15.4
+      "mom": -5.0,
+      "yoy": 15.7
     },
     {
       "date": "2024-09-01",
-      "value": 1765.3,
+      "value": 1772.5,
       "period": "2024 SEP",
-      "mom": 2.6,
-      "yoy": 15.45
+      "mom": 1.2,
+      "yoy": 15.72
     },
     {
       "date": "2024-10-01",
-      "value": 1760.4,
+      "value": 1764.0,
       "period": "2024 OCT",
-      "mom": -4.9,
-      "yoy": 14.38
+      "mom": -8.5,
+      "yoy": 14.62
     },
     {
       "date": "2024-11-01",
-      "value": 1738.6,
+      "value": 1742.8,
       "period": "2024 NOV",
-      "mom": -21.8,
-      "yoy": 12.03
+      "mom": -21.2,
+      "yoy": 12.36
     },
     {
       "date": "2024-12-01",
-      "value": 1720.6,
+      "value": 1724.3,
       "period": "2024 DEC",
-      "mom": -18.0,
-      "yoy": 9.92
+      "mom": -18.5,
+      "yoy": 10.31
     },
     {
       "date": "2025-01-01",
-      "value": 1720.6,
+      "value": 1714.6,
       "period": "2025 JAN",
-      "mom": 0.0,
-      "yoy": 9.65
+      "mom": -9.7,
+      "yoy": 9.46
     },
     {
       "date": "2025-02-01",
-      "value": 1729.3,
+      "value": 1714.9,
       "period": "2025 FEB",
-      "mom": 8.7,
-      "yoy": 9.99
+      "mom": 0.3,
+      "yoy": 9.73
     },
     {
       "date": "2025-03-01",
-      "value": 1723.9,
+      "value": 1713.6,
       "period": "2025 MAR",
-      "mom": -5.4,
-      "yoy": 8.78
+      "mom": -1.3,
+      "yoy": 8.57
     },
     {
       "date": "2025-04-01",
-      "value": 1701.8,
+      "value": 1702.1,
       "period": "2025 APR",
-      "mom": -22.1,
-      "yoy": 7.5
+      "mom": -11.5,
+      "yoy": 7.44
     },
     {
       "date": "2025-05-01",
-      "value": 1717.1,
+      "value": 1699.4,
       "period": "2025 MAY",
-      "mom": 15.3,
-      "yoy": 6.28
+      "mom": -2.7,
+      "yoy": 5.38
     },
     {
       "date": "2025-06-01",
-      "value": 1701.6,
+      "value": 1694.4,
       "period": "2025 JUN",
-      "mom": -15.5,
-      "yoy": 3.43
+      "mom": -5.0,
+      "yoy": 3.41
     },
     {
       "date": "2025-07-01",
-      "value": 1668.3,
+      "value": 1667.9,
       "period": "2025 JUL",
-      "mom": -33.3,
-      "yoy": -5.58
+      "mom": -26.5,
+      "yoy": -6.1
     },
     {
       "date": "2025-08-01",
-      "value": 1666.3,
+      "value": 1662.4,
       "period": "2025 AUG",
-      "mom": -2.0,
-      "yoy": -5.47
+      "mom": -5.5,
+      "yoy": -6.15
     },
     {
       "date": "2025-09-01",
-      "value": 1666.7,
+      "value": 1658.7,
       "period": "2025 SEP",
-      "mom": 0.4,
-      "yoy": -5.59
+      "mom": -3.7,
+      "yoy": -6.42
     },
     {
       "date": "2025-10-01",
-      "value": 1662.8,
+      "value": 1657.0,
       "period": "2025 OCT",
-      "mom": -3.9,
-      "yoy": -5.54
+      "mom": -1.7,
+      "yoy": -6.07
     },
     {
       "date": "2025-11-01",
-      "value": 1659.5,
+      "value": 1652.9,
       "period": "2025 NOV",
-      "mom": -3.3,
-      "yoy": -4.55
+      "mom": -4.1,
+      "yoy": -5.16
     },
     {
       "date": "2025-12-01",
-      "value": 1662.2,
+      "value": 1650.4,
       "period": "2025 DEC",
-      "mom": 2.7,
-      "yoy": -3.39
+      "mom": -2.5,
+      "yoy": -4.29
     },
     {
       "date": "2026-01-01",
-      "value": 1666.9,
+      "value": 1650.3,
       "period": "2026 JAN",
-      "mom": 4.7,
-      "yoy": -3.12
+      "mom": -0.1,
+      "yoy": -3.75
     },
     {
       "date": "2026-02-01",
-      "value": 1691.6,
+      "value": 1667.4,
       "period": "2026 FEB",
-      "mom": 24.7,
-      "yoy": -2.18
+      "mom": 17.1,
+      "yoy": -2.77
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1672.4,
+      "period": "2026 MAR",
+      "mom": 5.0,
+      "yoy": -2.4
+    },
+    {
+      "date": "2026-04-01",
+      "value": 1698.9,
+      "period": "2026 APR",
+      "mom": 26.5,
+      "yoy": -0.19
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 1691.6,
-    "period": "2026 FEB",
-    "mom": 24.7,
-    "yoy": -2.18
+    "date": "2026-04-01",
+    "value": 1698.9,
+    "period": "2026 APR",
+    "mom": 26.5,
+    "yoy": -0.19
   },
   "metadata": {
     "title": "Claimant Count : K02000001 UK : People : SA : Thousands",
     "cdid": "BCJD",
     "unit": "",
-    "release_date": "19-03-2026",
-    "next_release_ons": "21 April  2026",
+    "release_date": "19-05-2026",
+    "next_release_ons": "18 June 2026",
     "source": "Office for National Statistics",
     "description": "イギリス失業給付申請件数（季節調整済み、千人）"
   },
-  "last_updated": "2026-04-18T04:02:06.580210+09:00"
+  "last_updated": "2026-06-05T17:30:22.421526+09:00"
 }

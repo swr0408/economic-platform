@@ -91,12 +91,6 @@
       "yoy": 4.3
     },
     {
-      "date": "2024-12-01",
-      "value": 1415.0,
-      "qoq": 0.6,
-      "yoy": 3.3
-    },
-    {
       "date": "2025-03-01",
       "value": 1422.0,
       "qoq": 0.5,
@@ -119,12 +113,18 @@
       "value": 1443.0,
       "qoq": 0.4,
       "yoy": 2.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1450.0,
+      "qoq": 0.5,
+      "yoy": 2.0
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 1443.0,
-    "qoq": 0.4,
+    "date": "2026-03-01",
+    "value": 1450.0,
+    "qoq": 0.5,
     "yoy": 2.0
   },
   "metadata": {
@@ -136,8 +136,8 @@
     "series": "LCIQ.SG53Z9"
   },
   "next_release": {
-    "date": "2026-05-06",
-    "label": "Labour market statistics: March 2026 quarter will be published on 6 May 2026."
+    "date": "2026-08-05",
+    "label": "Labour market statistics: June 2026 quarter will be published on 5 August 2026"
   },
-  "last_updated": "2026-04-18T04:09:56.166036+09:00"
+  "last_updated": "2026-06-07T11:31:44.005528+09:00"
 }

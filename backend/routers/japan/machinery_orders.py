@@ -26,7 +26,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Machinery Orders"])
 
 
 @router.get("/machinery-orders")
-async def get_machinery_orders_data(
+def get_machinery_orders_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -51,7 +51,7 @@ async def get_machinery_orders_data(
 
 
 @router.get("/machinery-orders/chart")
-async def get_machinery_orders_chart():
+def get_machinery_orders_chart():
     """
     チャート用データを取得（YoY）
 
@@ -67,7 +67,7 @@ async def get_machinery_orders_chart():
 
 
 @router.get("/machinery-orders/table")
-async def get_machinery_orders_table():
+def get_machinery_orders_table():
     """
     テーブル用データを取得（MoM、新しい順）
 
@@ -83,7 +83,7 @@ async def get_machinery_orders_table():
 
 
 @router.get("/machinery-orders/cache-status")
-async def get_machinery_orders_cache_status():
+def get_machinery_orders_cache_status():
     """
     キャッシュステータスを取得
     """
@@ -94,7 +94,7 @@ async def get_machinery_orders_cache_status():
 
 
 @router.post("/machinery-orders/refresh")
-async def refresh_machinery_orders_data():
+def refresh_machinery_orders_data():
     """
     機械受注データを強制更新
     """
@@ -107,7 +107,7 @@ async def refresh_machinery_orders_data():
 
 
 @router.delete("/machinery-orders/cache")
-async def invalidate_machinery_orders_cache():
+def invalidate_machinery_orders_cache():
     """
     キャッシュを削除
     """

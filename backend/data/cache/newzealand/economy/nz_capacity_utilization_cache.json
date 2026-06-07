@@ -183,11 +183,15 @@
     {
       "date": "2025-10-01",
       "value": 89.8
+    },
+    {
+      "date": "2026-01-01",
+      "value": 91.2
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "value": 89.8
+    "date": "2026-01-01",
+    "value": 91.2
   },
   "metadata": {
     "source": "NZIER",
@@ -196,5 +200,5 @@
     "unit": "%",
     "frequency": "quarterly"
   },
-  "last_updated": "2026-04-18T04:09:09.560796+09:00"
+  "last_updated": "2026-06-06T09:47:00.670791+09:00"
 }

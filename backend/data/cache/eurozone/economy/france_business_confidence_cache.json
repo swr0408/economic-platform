@@ -2405,14 +2405,14 @@
     "description": "Business Confidence Indicator (企業信頼感指数)"
   },
   "next_release": {
-    "date": "2026-04-23",
-    "datetime_utc": "2026-04-23T06:45:00+00:00",
-    "datetime_jst": "2026-04-23T15:45:00+09:00",
+    "date": "2026-06-23",
+    "datetime_utc": "2026-06-23T06:45:00+00:00",
+    "datetime_jst": "2026-06-23T15:45:00+09:00",
     "time_jst": "15:45",
-    "datetime_cet": "2026-04-23T08:45:00+02:00",
+    "datetime_cet": "2026-06-23T08:45:00+02:00",
     "time_cet": "08:45",
-    "label": "Business Confidence (Apr)",
-    "estimate": 98
+    "label": "Business Confidence (Jun)",
+    "estimate": 97
   },
-  "last_updated": "2026-04-18T11:30:54.602804+09:00"
+  "last_updated": "2026-06-06T09:47:07.568609+09:00"
 }

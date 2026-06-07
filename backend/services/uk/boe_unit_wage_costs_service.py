@@ -18,7 +18,7 @@ from typing import Dict, Optional, Any
 from pathlib import Path
 
 from .boe_base import BOEServiceBase
-from .boe_mpr_utils import get_mpr_info, get_projections_databank
+from .boe_mpr_utils import get_mpr_info, get_projections_databank, resolve_sheet_by_suffix
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +32,8 @@ class BOEUnitWageCostsService(BOEServiceBase):
     DATA_CACHE_KEY = "uk:boe_unit_wage_costs:data"
     CACHE_FILE_PATH = CACHE_DIR / "boe_unit_wage_costs_cache.json"
     DATA_KEY = "unit_wage_costs"
-    SHEET_NAME = "31. Unit wage costs"
+    # MPRごとに番号がドリフトするためsuffix一致で解決
+    SHEET_SUFFIX = "Unit wage costs"
 
     def _fetch_data_from_source(self) -> Optional[Dict[str, Any]]:
         """MPRからUnit Wage Costsデータを取得"""
@@ -51,11 +52,12 @@ class BOEUnitWageCostsService(BOEServiceBase):
 
             if result:
                 wb, _ = result
-                if self.SHEET_NAME in wb.sheetnames:
-                    ws = wb[self.SHEET_NAME]
+                sheet_name = resolve_sheet_by_suffix(wb, self.SHEET_SUFFIX)
+                if sheet_name:
+                    ws = wb[sheet_name]
                     latest_data = self._extract_data_from_sheet(ws)
                 else:
-                    logger.warning(f"Sheet '{self.SHEET_NAME}' not found in Databank")
+                    logger.warning(f"Sheet matching '{self.SHEET_SUFFIX}' not found in Databank")
 
             # Try previous MPR if latest failed
             if latest_data is None or latest_data.get('latest') is None:
@@ -65,8 +67,9 @@ class BOEUnitWageCostsService(BOEServiceBase):
 
                 if result:
                     wb, _ = result
-                    if self.SHEET_NAME in wb.sheetnames:
-                        ws = wb[self.SHEET_NAME]
+                    sheet_name = resolve_sheet_by_suffix(wb, self.SHEET_SUFFIX)
+                    if sheet_name:
+                        ws = wb[sheet_name]
                         latest_data = self._extract_data_from_sheet(ws)
 
             if latest_data and latest_data.get('latest'):

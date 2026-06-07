@@ -109,6 +109,7 @@ export default function CaGovernmentDepositsChart({ data }: CaGovernmentDeposits
         showPeriodSelector={false}
         dataSource="Bank of Canada"
         sourceUrl="https://www.bankofcanada.ca/rates/indicators/market-operations-indicators/"
+        handbookId="ca-government-deposits"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -491,10 +491,16 @@
       "value": 0.0,
       "forecast": 0.0,
       "previous": 0.0
+    },
+    {
+      "date": "2026-03-19",
+      "value": 0.0,
+      "forecast": 0.0,
+      "previous": 0.0
     }
   ],
   "latest": {
-    "date": "2025-12-11",
+    "date": "2026-03-19",
     "value": 0.0,
     "forecast": 0.0,
     "previous": 0.0
@@ -504,5 +510,5 @@
     "indicator": "SNB Policy Rate",
     "description": "スイス国立銀行政策金利"
   },
-  "last_updated": "2026-04-18T04:08:51.604988+09:00"
+  "last_updated": "2026-06-06T09:46:40.001300+09:00"
 }

@@ -25,7 +25,7 @@ router = APIRouter(prefix="/api/japan", tags=["japan-bei"])
 
 
 @router.get("/bei")
-async def fetch_bei(force_refresh: bool = False) -> Dict[str, Any]:
+def fetch_bei(force_refresh: bool = False) -> Dict[str, Any]:
     """
     Fetch 10-Year Inflation-Indexed JGB BEI data
 
@@ -58,7 +58,7 @@ async def fetch_bei(force_refresh: bool = False) -> Dict[str, Any]:
 
 
 @router.get("/bei/cache-status")
-async def get_bei_cache_status() -> Dict[str, Any]:
+def get_bei_cache_status() -> Dict[str, Any]:
     """
     Get BEI cache status
 
@@ -73,7 +73,7 @@ async def get_bei_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/bei/cache")
-async def invalidate_bei_cache() -> Dict[str, Any]:
+def invalidate_bei_cache() -> Dict[str, Any]:
     """
     Invalidate BEI cache
 
@@ -89,7 +89,7 @@ async def invalidate_bei_cache() -> Dict[str, Any]:
 
 
 @router.get("/bei/pdf")
-async def get_bei_pdf():
+def get_bei_pdf():
     """
     Get BEI PDF file
 

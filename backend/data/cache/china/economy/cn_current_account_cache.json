@@ -447,6 +447,10 @@
     {
       "date": "2025-12-01",
       "value": 2438.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1841.0
     }
   ],
   "qoq_diff": [
@@ -893,6 +897,10 @@
     {
       "date": "2025-12-01",
       "value": 451.2
+    },
+    {
+      "date": "2026-03-01",
+      "value": -597.0
     }
   ],
   "yoy_diff": [
@@ -1327,11 +1335,15 @@
     {
       "date": "2025-12-01",
       "value": 800.2
+    },
+    {
+      "date": "2026-03-01",
+      "value": 186.5
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": 2438.0
+    "date": "2026-03-01",
+    "value": 1841.0
   },
   "metadata": {
     "source": "SAFE (State Administration of Foreign Exchange)",
@@ -1340,14 +1352,14 @@
     "unit": "100 million USD"
   },
   "next_release": {
-    "date": "2026-05-15",
-    "datetime_utc": "2026-05-15T09:00:00+00:00",
-    "datetime_jst": "2026-05-15T18:00:00+09:00",
+    "date": "2026-08-14",
+    "datetime_utc": "2026-08-14T09:00:00+00:00",
+    "datetime_jst": "2026-08-14T18:00:00+09:00",
     "time_jst": "18:00",
-    "datetime_cst": "2026-05-15T17:00:00+08:00",
+    "datetime_cst": "2026-08-14T17:00:00+08:00",
     "time_cst": "17:00",
-    "label": "Current Account (Q1)",
-    "estimate": 105
+    "label": "Current Account (Q2)",
+    "estimate": 96
   },
-  "last_updated": "2026-04-18T02:15:04.793470+09:00"
+  "last_updated": "2026-06-07T22:14:09.340904+09:00"
 }

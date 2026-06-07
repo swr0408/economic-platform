@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/boe-market-expectations")
-async def get_boe_market_expectations() -> Dict:
+def get_boe_market_expectations() -> Dict:
     """
     BOE市場金利期待データを取得
 
@@ -31,7 +31,7 @@ async def get_boe_market_expectations() -> Dict:
 
 
 @router.post("/api/uk/boe-market-expectations/refresh")
-async def refresh_boe_market_expectations() -> Dict:
+def refresh_boe_market_expectations() -> Dict:
     """
     BOE市場金利期待データを強制更新
 

@@ -1095,16 +1095,44 @@
     {
       "date": "2026-03-30",
       "chg_uvpi_total": 3.1945
+    },
+    {
+      "date": "2026-04-06",
+      "chg_uvpi_total": 3.1884
+    },
+    {
+      "date": "2026-04-13",
+      "chg_uvpi_total": 3.2628
+    },
+    {
+      "date": "2026-04-20",
+      "chg_uvpi_total": 3.3885
+    },
+    {
+      "date": "2026-04-27",
+      "chg_uvpi_total": 3.3818
+    },
+    {
+      "date": "2026-05-04",
+      "chg_uvpi_total": 3.4623
+    },
+    {
+      "date": "2026-05-11",
+      "chg_uvpi_total": 3.1022
+    },
+    {
+      "date": "2026-05-18",
+      "chg_uvpi_total": 3.3171
     }
   ],
   "latest": {
-    "date": "2026-03-30",
-    "chg_uvpi_total": 3.1945
+    "date": "2026-05-18",
+    "chg_uvpi_total": 3.3171
   },
   "next_release": {
-    "date": "2026-04-22",
-    "datetime_jst": "2026-04-22T15:15:00+09:00",
-    "label": "POS-UVPI - 2026/04/22 15:15 JST（予定）"
+    "date": "2026-06-03",
+    "datetime_jst": "2026-06-03T15:15:00+09:00",
+    "label": "POS-UVPI - 2026/06/03 15:15 JST（予定）"
   },
-  "last_updated": "2026-04-18T01:00:24.222494+09:00"
+  "last_updated": "2026-06-01T21:53:16.193837+09:00"
 }

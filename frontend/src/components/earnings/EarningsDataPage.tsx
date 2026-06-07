@@ -5,16 +5,23 @@
  *   - 選択企業の財務詳細: IS/CF/BS merged 8四半期 + IRリンク (右パネル)
  */
 import { useEffect, useState } from 'react'
-import { Typography, Alert, Spin, Tag, Select } from 'antd'
+import { Typography, Alert, Spin, Tag, Select, Modal, Tabs } from 'antd'
 import {
   BarChartOutlined,
   LinkOutlined,
   BankOutlined,
   ExperimentOutlined,
   ThunderboltOutlined,
+  QuestionCircleOutlined,
 } from '@ant-design/icons'
 import { getEarningsCountry } from '../../constants/earningsData'
 import type { EarningsCompany } from '../../constants/earningsData'
+import {
+  COMMON_FRAMEWORK,
+  getEarningsNote,
+  getSectorNoteByTicker,
+  hasEarningsNote,
+} from '../../constants/earningsNotes'
 
 const { Title, Text } = Typography
 
@@ -180,10 +187,20 @@ function HeaderCell({ children, right }: { children: React.ReactNode; right?: bo
 
 // -----------------------------------------------------------------------
 // Period label
+//   会計年度 (Fiscal Year) を明示し、実際の期末年月を併記
+//     例: NVIDIA の FY26 Q4 (会計2026年度・期末 26/01)
+//   FYxx は会計年度の下2桁 (FY26 = 会計年度2026)
 // -----------------------------------------------------------------------
-function periodLabel(p: FinancialPeriod): string {
-  if (!p.period) return p.date.slice(0, 7)
-  return `${p.fiscal_year || p.date.slice(0, 4)} ${p.period}`
+function periodLabel(p: FinancialPeriod): { fy: string; end: string } {
+  const fyRaw = p.fiscal_year || p.date.slice(0, 4)
+  const fyShort = String(fyRaw).slice(-2)
+  const period = p.period || ''
+  const fy = period ? `FY${fyShort} ${period}` : p.date.slice(0, 7)
+  const end =
+    p.date && p.date.length >= 7
+      ? `${p.date.slice(2, 4)}/${p.date.slice(5, 7)}`
+      : ''
+  return { fy, end }
 }
 
 // -----------------------------------------------------------------------
@@ -316,11 +333,22 @@ function FinancialTable({ periods, sector, currency }: {
         <thead>
           <tr>
             <HeaderCell>指標</HeaderCell>
-            {periods.map((p) => (
-              <HeaderCell key={p.date} right>
-                {periodLabel(p)}
-              </HeaderCell>
-            ))}
+            {periods.map((p) => {
+              const lbl = periodLabel(p)
+              return (
+                <HeaderCell key={p.date} right>
+                  <div style={{ lineHeight: 1.1 }}>{lbl.fy}</div>
+                  <div style={{
+                    fontSize: 9,
+                    fontWeight: 400,
+                    color: colors.textSecondary,
+                    marginTop: 1,
+                  }}>
+                    {lbl.end}
+                  </div>
+                </HeaderCell>
+              )
+            })}
           </tr>
         </thead>
         <tbody>
@@ -404,6 +432,190 @@ function IRLinks({ data }: { data: FinancialsResponse }) {
 }
 
 // -----------------------------------------------------------------------
+// Help modal (決算の見方ヘルプ)
+// -----------------------------------------------------------------------
+function HelpKpiTag({ text }: { text: string }) {
+  return (
+    <span style={{
+      display: 'inline-block',
+      padding: '2px 8px',
+      margin: '2px 4px 2px 0',
+      borderRadius: 4,
+      background: '#0f172a',
+      border: `1px solid ${colors.border}`,
+      color: colors.textPrimary,
+      fontSize: 11,
+      fontWeight: 500,
+    }}>
+      {text}
+    </span>
+  )
+}
+
+function HelpSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <Text style={{
+        color: colors.accent,
+        fontSize: 12,
+        fontWeight: 700,
+        letterSpacing: '0.04em',
+        display: 'block',
+        marginBottom: 6,
+      }}>
+        {title}
+      </Text>
+      {children}
+    </div>
+  )
+}
+
+function EarningsHelpModal({
+  open,
+  onClose,
+  ticker,
+  companyName,
+}: {
+  open: boolean
+  onClose: () => void
+  ticker: string
+  companyName: string
+}) {
+  const note = getEarningsNote(ticker)
+  const sectorNote = getSectorNoteByTicker(ticker)
+
+  const tabItems = [
+    {
+      key: 'ticker',
+      label: '銘柄の注目点',
+      children: note ? (
+        <div style={{ color: colors.textPrimary, fontSize: 13, lineHeight: 1.7 }}>
+          <HelpSection title="本丸">
+            <Text style={{ color: colors.textPrimary, fontSize: 14, fontWeight: 600 }}>
+              {note.thesis}
+            </Text>
+          </HelpSection>
+          <HelpSection title="注目ポイント">
+            <ul style={{ margin: 0, paddingLeft: 18, color: colors.textPrimary, fontSize: 13 }}>
+              {note.watchPoints.map((p) => <li key={p} style={{ marginBottom: 3 }}>{p}</li>)}
+            </ul>
+          </HelpSection>
+          <HelpSection title="優先KPI">
+            <div>{note.priorityKpis.map((k) => <HelpKpiTag key={k} text={k} />)}</div>
+          </HelpSection>
+          {note.recentFact && (
+            <HelpSection title="参考スナップショット (2026Q1時点)">
+              <Text style={{ color: '#fde047', fontSize: 12 }}>{note.recentFact}</Text>
+            </HelpSection>
+          )}
+        </div>
+      ) : (
+        <Alert type="info" message="この銘柄の個別ノートは未登録です" showIcon />
+      ),
+    },
+    {
+      key: 'sector',
+      label: 'セクター共通の見方',
+      children: sectorNote ? (
+        <div style={{ color: colors.textPrimary, fontSize: 13, lineHeight: 1.7 }}>
+          <HelpSection title={sectorNote.title}>
+            <Text style={{ color: colors.textPrimary, fontSize: 14, fontWeight: 600 }}>
+              {sectorNote.thesis}
+            </Text>
+          </HelpSection>
+          <HelpSection title="主要KPI">
+            <ul style={{ margin: 0, paddingLeft: 18, color: colors.textPrimary, fontSize: 13 }}>
+              {sectorNote.keyMetrics.map((m) => <li key={m} style={{ marginBottom: 3 }}>{m}</li>)}
+            </ul>
+          </HelpSection>
+          <HelpSection title="解説">
+            <Text style={{ color: colors.textSecondary, fontSize: 12 }}>
+              {sectorNote.description}
+            </Text>
+          </HelpSection>
+        </div>
+      ) : (
+        <Alert type="info" message="セクター情報なし" showIcon />
+      ),
+    },
+    {
+      key: 'framework',
+      label: '共通フレーム',
+      children: (
+        <div style={{ color: colors.textPrimary, fontSize: 13, lineHeight: 1.7 }}>
+          <HelpSection title="基本姿勢">
+            <Text style={{ color: colors.textPrimary, fontSize: 13 }}>
+              {COMMON_FRAMEWORK.intro}
+            </Text>
+          </HelpSection>
+          <HelpSection title="4本柱で読む">
+            {COMMON_FRAMEWORK.pillars.map((p) => (
+              <div key={p.title} style={{ marginBottom: 10 }}>
+                <Text style={{ color: '#7dd3fc', fontSize: 12, fontWeight: 700, display: 'block' }}>
+                  {p.title}
+                </Text>
+                <Text style={{ color: colors.textSecondary, fontSize: 12 }}>{p.body}</Text>
+              </div>
+            ))}
+          </HelpSection>
+          <HelpSection title="地域別の読み方">
+            <div style={{ marginBottom: 6 }}>
+              <Text style={{ color: '#7dd3fc', fontSize: 12, fontWeight: 700 }}>米国 — </Text>
+              <Text style={{ color: colors.textSecondary, fontSize: 12 }}>{COMMON_FRAMEWORK.regions.us}</Text>
+            </div>
+            <div style={{ marginBottom: 6 }}>
+              <Text style={{ color: '#7dd3fc', fontSize: 12, fontWeight: 700 }}>日本 — </Text>
+              <Text style={{ color: colors.textSecondary, fontSize: 12 }}>{COMMON_FRAMEWORK.regions.japan}</Text>
+            </div>
+            <div style={{ marginBottom: 6 }}>
+              <Text style={{ color: '#7dd3fc', fontSize: 12, fontWeight: 700 }}>欧州 — </Text>
+              <Text style={{ color: colors.textSecondary, fontSize: 12 }}>{COMMON_FRAMEWORK.regions.europe}</Text>
+            </div>
+            <div style={{ marginBottom: 6 }}>
+              <Text style={{ color: '#7dd3fc', fontSize: 12, fontWeight: 700 }}>アジア — </Text>
+              <Text style={{ color: colors.textSecondary, fontSize: 12 }}>{COMMON_FRAMEWORK.regions.asia}</Text>
+            </div>
+          </HelpSection>
+          <HelpSection title="マクロ波及">
+            <Text style={{ color: colors.textSecondary, fontSize: 12 }}>
+              {COMMON_FRAMEWORK.macroImpact}
+            </Text>
+          </HelpSection>
+          <HelpSection title="決算発表日のチェックリスト">
+            <ol style={{ margin: 0, paddingLeft: 18, color: colors.textPrimary, fontSize: 12 }}>
+              {COMMON_FRAMEWORK.checklist.map((c) => <li key={c} style={{ marginBottom: 3 }}>{c}</li>)}
+            </ol>
+          </HelpSection>
+        </div>
+      ),
+    },
+  ]
+
+  return (
+    <Modal
+      open={open}
+      onCancel={onClose}
+      footer={null}
+      width={720}
+      title={
+        <span style={{ color: colors.textPrimary }}>
+          📊 {companyName} <Text style={{ color: colors.textSecondary, fontSize: 12 }}>({ticker})</Text>
+          <Text style={{ color: colors.textSecondary, fontSize: 12, marginLeft: 10 }}>
+            — 決算の見方
+          </Text>
+        </span>
+      }
+      styles={{
+        header: { background: colors.bgSecondary, borderBottom: `1px solid ${colors.border}` },
+        body: { background: colors.bgSecondary, maxHeight: '70vh', overflowY: 'auto' },
+      }}
+    >
+      <Tabs items={tabItems} defaultActiveKey="ticker" />
+    </Modal>
+  )
+}
+
+// -----------------------------------------------------------------------
 // Company list (left panel)
 // -----------------------------------------------------------------------
 function CompanyList({
@@ -477,6 +689,7 @@ function DetailPanel({ countryCode, ticker }: { countryCode: string; ticker: str
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [periodCount, setPeriodCount] = useState<number>(8)
+  const [helpOpen, setHelpOpen] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -518,6 +731,18 @@ function DetailPanel({ countryCode, ticker }: { countryCode: string; ticker: str
           {data.name}
         </Title>
         <Text style={{ color: colors.textSecondary, fontSize: 12 }}>({data.ticker})</Text>
+        {hasEarningsNote(data.ticker) && (
+          <QuestionCircleOutlined
+            onClick={() => setHelpOpen(true)}
+            style={{
+              color: colors.accent,
+              fontSize: 16,
+              cursor: 'pointer',
+              marginLeft: -4,
+            }}
+            title="決算の見方ヘルプ"
+          />
+        )}
         <Tag color="default" style={{ fontSize: 10, display: 'flex', alignItems: 'center', gap: 4 }}>
           {sectorInfo.icon} {sectorInfo.label}
         </Tag>
@@ -563,6 +788,13 @@ function DetailPanel({ countryCode, ticker }: { countryCode: string; ticker: str
           更新: {new Date(data.last_updated).toLocaleString('ja-JP')}
         </Text>
       )}
+
+      <EarningsHelpModal
+        open={helpOpen}
+        onClose={() => setHelpOpen(false)}
+        ticker={data.ticker}
+        companyName={data.name}
+      />
     </div>
   )
 }
@@ -576,7 +808,8 @@ interface Props {
 
 export default function EarningsDataPage({ countryCode }: Props) {
   const country = getEarningsCountry(countryCode)
-  const companies: EarningsCompany[] = country?.companies ?? []
+  // 財務データ非対応企業 (ADR/OTC 非発行) は非表示
+  const companies: EarningsCompany[] = (country?.companies ?? []).filter((c) => !c.noFinancials)
 
   const [selectedTicker, setSelectedTicker] = useState<string | null>(
     companies.length > 0 ? companies[0].ticker : null

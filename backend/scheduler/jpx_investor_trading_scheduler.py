@@ -298,6 +298,7 @@ class JpxInvestorTradingScheduler:
                 run_date=datetime.now(JST) + timedelta(seconds=30),
                 id="jpx_investor_trading_startup_catchup",
                 replace_existing=True,
+                misfire_grace_time=300,
             )
             logger.info("[JpxScheduler] Startup catch-up scheduled (in 30s)")
 

@@ -340,7 +340,10 @@ class CnPmiService:
     def _build_payload(self) -> Dict[str, Any]:
         # プレスリリース Excel → DB蓄積
         try:
-            fetch_and_upsert_from_press_release("pmi", _extract_pmi_from_excel)
+            fetch_and_upsert_from_press_release(
+                "pmi", _extract_pmi_from_excel,
+                primary_indicator="cn_pmi_manufacturing",
+            )
         except Exception as e:
             logger.warning(f"[PMI] Press release fetch/upsert failed: {e}")
 

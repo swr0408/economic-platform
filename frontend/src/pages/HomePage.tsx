@@ -31,6 +31,7 @@ const EXTERNAL_LINKS = [
   { label: 'MINKABU FX 経済指標', url: 'https://fx.minkabu.jp/indicators' },
   { label: '中東レート', url: 'https://www.xe.com/ja/currencycharts/' },
   { label: 'Weekend trading', url: 'https://www.ig.com/uk/weekend-trading' },
+  { label: 'ペンタゴン・ピザ・インデックス', url: 'https://www.pizzint.watch/' },
 ]
 
 // 右サイドバー（経済カレンダー）のデフォルト幅と範囲

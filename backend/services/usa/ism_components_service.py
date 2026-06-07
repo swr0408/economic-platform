@@ -382,7 +382,7 @@ class ISMComponentsService:
 
                     csv_data[date_formatted] = {}
                     for field in ["new_orders", "production", "employment",
-                                  "supplier_deliveries", "prices", "inventories"]:
+                                  "supplier_deliveries", "inventories", "prices"]:
                         val_str = row.get(field, "").strip()
                         if val_str:
                             try:
@@ -517,8 +517,10 @@ class ISMComponentsService:
             if not new_month_data:
                 return
 
+            # ISM公式レポートの記載順（inventories は prices の前）に合わせる。
+            # CSV列順がレポートと一致することで手入力時の転記ミスを防ぐ。
             CSV_FIELDS = ["new_orders", "production", "employment",
-                          "supplier_deliveries", "prices", "inventories"]
+                          "supplier_deliveries", "inventories", "prices"]
 
             # 既存CSVを読み込み
             existing = {}  # {csv_date: {field: value_str}}

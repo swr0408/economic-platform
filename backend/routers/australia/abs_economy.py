@@ -40,7 +40,7 @@ router = APIRouter(
 
 
 @router.get("/gdp-growth-rate")
-async def get_gdp_growth_rate(
+def get_gdp_growth_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -54,20 +54,20 @@ async def get_gdp_growth_rate(
 
 
 @router.get("/gdp-growth-rate/cache")
-async def get_gdp_growth_rate_cache_status() -> Dict[str, Any]:
+def get_gdp_growth_rate_cache_status() -> Dict[str, Any]:
     """GDP成長率のキャッシュ状態を取得"""
     return au_gdp_growth_rate_service.get_cache_status()
 
 
 @router.delete("/gdp-growth-rate/cache")
-async def invalidate_gdp_growth_rate_cache() -> Dict[str, bool]:
+def invalidate_gdp_growth_rate_cache() -> Dict[str, bool]:
     """GDP成長率のキャッシュを無効化"""
     success = au_gdp_growth_rate_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/gdp-price-related")
-async def get_gdp_price_related(
+def get_gdp_price_related(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -90,20 +90,20 @@ async def get_gdp_price_related(
 
 
 @router.get("/gdp-price-related/cache")
-async def get_gdp_price_related_cache_status() -> Dict[str, Any]:
+def get_gdp_price_related_cache_status() -> Dict[str, Any]:
     """GDP価格関連のキャッシュ状態を取得"""
     return au_gdp_price_related_service.get_cache_status()
 
 
 @router.delete("/gdp-price-related/cache")
-async def invalidate_gdp_price_related_cache() -> Dict[str, bool]:
+def invalidate_gdp_price_related_cache() -> Dict[str, bool]:
     """GDP価格関連のキャッシュを無効化"""
     success = au_gdp_price_related_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/private-capex")
-async def get_private_capex(
+def get_private_capex(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -118,13 +118,13 @@ async def get_private_capex(
 
 
 @router.get("/private-capex/cache")
-async def get_private_capex_cache_status() -> Dict[str, Any]:
+def get_private_capex_cache_status() -> Dict[str, Any]:
     """民間新規設備投資のキャッシュ状態を取得"""
     return au_private_new_capital_expenditure_service.get_cache_status()
 
 
 @router.delete("/private-capex/cache")
-async def invalidate_private_capex_cache() -> Dict[str, bool]:
+def invalidate_private_capex_cache() -> Dict[str, bool]:
     """民間新規設備投資のキャッシュを無効化"""
     success = au_private_new_capital_expenditure_service.invalidate_cache()
     return {"success": success}
@@ -133,7 +133,7 @@ async def invalidate_private_capex_cache() -> Dict[str, bool]:
 # ===== 国際貿易 =====
 
 @router.get("/international-trade")
-async def get_international_trade(
+def get_international_trade(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -149,13 +149,13 @@ async def get_international_trade(
 
 
 @router.get("/international-trade/cache")
-async def get_international_trade_cache_status() -> Dict[str, Any]:
+def get_international_trade_cache_status() -> Dict[str, Any]:
     """国際貿易のキャッシュ状態を取得"""
     return au_international_trade_service.get_cache_status()
 
 
 @router.delete("/international-trade/cache")
-async def invalidate_international_trade_cache() -> Dict[str, bool]:
+def invalidate_international_trade_cache() -> Dict[str, bool]:
     """国際貿易のキャッシュを無効化"""
     success = au_international_trade_service.invalidate_cache()
     return {"success": success}
@@ -164,7 +164,7 @@ async def invalidate_international_trade_cache() -> Dict[str, bool]:
 # ===== 経常収支 =====
 
 @router.get("/current-account")
-async def get_current_account(
+def get_current_account(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -178,13 +178,13 @@ async def get_current_account(
 
 
 @router.get("/current-account/cache")
-async def get_current_account_cache_status() -> Dict[str, Any]:
+def get_current_account_cache_status() -> Dict[str, Any]:
     """経常収支のキャッシュ状態を取得"""
     return au_current_account_service.get_cache_status()
 
 
 @router.delete("/current-account/cache")
-async def invalidate_current_account_cache() -> Dict[str, bool]:
+def invalidate_current_account_cache() -> Dict[str, bool]:
     """経常収支のキャッシュを無効化"""
     success = au_current_account_service.invalidate_cache()
     return {"success": success}
@@ -193,7 +193,7 @@ async def invalidate_current_account_cache() -> Dict[str, bool]:
 # ===== 経常収支対GDP比 =====
 
 @router.get("/current-account-gdp-ratio")
-async def get_current_account_gdp_ratio(
+def get_current_account_gdp_ratio(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -206,13 +206,13 @@ async def get_current_account_gdp_ratio(
 
 
 @router.get("/current-account-gdp-ratio/cache")
-async def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
+def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
     """経常収支対GDP比のキャッシュ状態を取得"""
     return au_current_account_gdp_ratio_service.get_cache_status()
 
 
 @router.delete("/current-account-gdp-ratio/cache")
-async def invalidate_current_account_gdp_ratio_cache() -> Dict[str, bool]:
+def invalidate_current_account_gdp_ratio_cache() -> Dict[str, bool]:
     """経常収支対GDP比のキャッシュを無効化"""
     success = au_current_account_gdp_ratio_service.invalidate_cache()
     return {"success": success}
@@ -221,7 +221,7 @@ async def invalidate_current_account_gdp_ratio_cache() -> Dict[str, bool]:
 # ===== S&P Global PMI =====
 
 @router.get("/pmi")
-async def get_pmi(
+def get_pmi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -236,13 +236,13 @@ async def get_pmi(
 
 
 @router.get("/pmi/cache")
-async def get_pmi_cache_status() -> Dict[str, Any]:
+def get_pmi_cache_status() -> Dict[str, Any]:
     """PMIのキャッシュ状態を取得"""
     return au_pmi_service.get_cache_status()
 
 
 @router.delete("/pmi/cache")
-async def invalidate_pmi_cache() -> Dict[str, bool]:
+def invalidate_pmi_cache() -> Dict[str, bool]:
     """PMIのキャッシュを無効化"""
     success = au_pmi_service.invalidate_cache()
     return {"success": success}
@@ -251,7 +251,7 @@ async def invalidate_pmi_cache() -> Dict[str, bool]:
 # ===== 交易条件 =====
 
 @router.get("/terms-of-trade")
-async def get_terms_of_trade(
+def get_terms_of_trade(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -266,13 +266,13 @@ async def get_terms_of_trade(
 
 
 @router.get("/terms-of-trade/cache")
-async def get_terms_of_trade_cache_status() -> Dict[str, Any]:
+def get_terms_of_trade_cache_status() -> Dict[str, Any]:
     """交易条件のキャッシュ状態を取得"""
     return au_terms_of_trade_service.get_cache_status()
 
 
 @router.delete("/terms-of-trade/cache")
-async def invalidate_terms_of_trade_cache() -> Dict[str, bool]:
+def invalidate_terms_of_trade_cache() -> Dict[str, bool]:
     """交易条件のキャッシュを無効化"""
     success = au_terms_of_trade_service.invalidate_cache()
     return {"success": success}

@@ -1053,13 +1053,31 @@
       "floor_started_yoy": -19.8,
       "sales_yoy": -12.6,
       "floor_sold_yoy": -8.7
+    },
+    {
+      "date": "2026-02-01",
+      "floor_started_yoy": -23.1,
+      "sales_yoy": -20.2,
+      "floor_sold_yoy": -13.5
+    },
+    {
+      "date": "2026-03-01",
+      "floor_started_yoy": -20.3,
+      "sales_yoy": -16.7,
+      "floor_sold_yoy": -10.4
+    },
+    {
+      "date": "2026-04-01",
+      "floor_started_yoy": -22.0,
+      "sales_yoy": -14.6,
+      "floor_sold_yoy": -10.2
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "floor_started_yoy": -19.8,
-    "sales_yoy": -12.6,
-    "floor_sold_yoy": -8.7
+    "date": "2026-04-01",
+    "floor_started_yoy": -22.0,
+    "sales_yoy": -14.6,
+    "floor_sold_yoy": -10.2
   },
   "metadata": {
     "indicator": "Commercial Residential Sales",
@@ -1072,15 +1090,15 @@
       "sales_yoy": "新築商業ビル販売額 累積YoY",
       "floor_sold_yoy": "新築商業用ビル売却床面積 累積YoY"
     },
-    "total_records": 176,
-    "last_fetched": "2026-04-18T02:23:00.049822+09:00"
+    "total_records": 179,
+    "last_fetched": "2026-06-07T22:12:49.039094+09:00"
   },
   "next_release": {
-    "date": "2026-05-18",
-    "datetime_utc": "2026-05-18T01:30:00+00:00",
-    "datetime_jst": "2026-05-18T10:30:00+09:00",
+    "date": "2026-06-16",
+    "datetime_utc": "2026-06-16T01:30:00+00:00",
+    "datetime_jst": "2026-06-16T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "House Price Index YoY (Apr)",
-    "estimate": null
+    "label": "House Price Index YoY (May)",
+    "estimate": -3.4
   }
 }

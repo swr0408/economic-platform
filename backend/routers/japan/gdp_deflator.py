@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan GDP Deflator"])
 
 
 @router.get("/gdp-deflator")
-async def get_gdp_deflator_data(
+def get_gdp_deflator_data(
     force_refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ) -> Dict[str, Any]:
     """
@@ -30,7 +30,7 @@ async def get_gdp_deflator_data(
 
 
 @router.get("/gdp-deflator/cache-status")
-async def get_gdp_deflator_cache_status() -> Dict[str, Any]:
+def get_gdp_deflator_cache_status() -> Dict[str, Any]:
     """
     GDPデフレーターのキャッシュ状態を取得
 

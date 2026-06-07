@@ -6866,10 +6866,10 @@
     },
     {
       "date": "2025-01-01",
-      "export_lng": 414.95,
-      "export_re_export": 0.0,
-      "export_pipeline": 279.35,
       "export_total": 694.3,
+      "export_re_export": 0.0,
+      "export_lng": 414.95,
+      "export_pipeline": 279.35,
       "import_total": 335.69,
       "import_lng": 1.8,
       "import_pipeline": 333.85,
@@ -6921,14 +6921,14 @@
     },
     {
       "date": "2025-06-01",
-      "export_total": 691.73,
+      "export_total": 691.79,
       "export_re_export": 0.0,
-      "export_lng": 405.98,
+      "export_lng": 406.04,
       "export_pipeline": 285.75,
       "import_total": 246.44,
       "import_lng": 0.2,
       "import_pipeline": 246.23,
-      "net_export": 445.29
+      "net_export": 445.35
     },
     {
       "date": "2025-07-01",
@@ -6958,10 +6958,10 @@
       "export_re_export": 0.0,
       "export_lng": 451.75,
       "export_pipeline": 277.17,
-      "import_total": 225.76,
+      "import_total": 225.59,
       "import_lng": 3.1,
-      "import_pipeline": 222.65,
-      "net_export": 503.16
+      "import_pipeline": 222.48,
+      "net_export": 503.33
     },
     {
       "date": "2025-10-01",
@@ -6969,10 +6969,10 @@
       "export_re_export": 0.0,
       "export_lng": 503.52,
       "export_pipeline": 280.02,
-      "import_total": 232.73,
+      "import_total": 232.57,
       "import_lng": 0.19,
-      "import_pipeline": 232.52,
-      "net_export": 550.81
+      "import_pipeline": 232.36,
+      "net_export": 550.97
     },
     {
       "date": "2025-11-01",
@@ -6991,44 +6991,66 @@
       "export_re_export": 0.0,
       "export_lng": 569.27,
       "export_pipeline": 311.46,
-      "import_total": 328.21,
+      "import_total": 327.98,
       "import_lng": 6.9,
-      "import_pipeline": 321.28,
-      "net_export": 552.51
+      "import_pipeline": 321.05,
+      "net_export": 552.74
     },
     {
       "date": "2026-01-01",
       "export_total": 833.49,
-      "export_pipeline": 294.29,
-      "export_lng": 539.2,
       "export_re_export": 0.0,
+      "export_lng": 539.2,
+      "export_pipeline": 294.29,
       "import_total": 339.81,
-      "import_pipeline": 328.65,
       "import_lng": 11.12,
+      "import_pipeline": 328.65,
       "net_export": 493.68
+    },
+    {
+      "date": "2026-02-01",
+      "export_total": 783.7,
+      "export_re_export": 0.0,
+      "export_lng": 493.62,
+      "export_pipeline": 290.08,
+      "import_total": 276.3,
+      "import_lng": 2.67,
+      "import_pipeline": 273.6,
+      "net_export": 507.4
+    },
+    {
+      "date": "2026-03-01",
+      "export_total": 890.66,
+      "export_pipeline": 317.18,
+      "export_lng": 573.48,
+      "export_re_export": 0.0,
+      "import_total": 238.83,
+      "import_pipeline": 238.53,
+      "import_lng": 0.27,
+      "net_export": 651.83
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "export_total": 833.49,
-    "export_pipeline": 294.29,
-    "export_lng": 539.2,
+    "date": "2026-03-01",
+    "export_total": 890.66,
+    "export_pipeline": 317.18,
+    "export_lng": 573.48,
     "export_re_export": 0.0,
-    "import_total": 339.81,
-    "import_pipeline": 328.65,
-    "import_lng": 11.12,
-    "net_export": 493.68
+    "import_total": 238.83,
+    "import_pipeline": 238.53,
+    "import_lng": 0.27,
+    "net_export": 651.83
   },
   "metadata": {
     "source": "EIA",
     "frequency": "monthly",
     "unit": "BCF",
     "series": "U.S. Natural Gas Imports and Exports by Category",
-    "data_count": 637,
+    "data_count": 639,
     "start_date": "1973-01-01",
-    "end_date": "2026-01-01"
+    "end_date": "2026-03-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T16:47:32.754512+09:00"
+  "last_updated": "2026-06-01T21:53:58.740133+09:00"
 }

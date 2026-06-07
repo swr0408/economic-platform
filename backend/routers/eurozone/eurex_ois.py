@@ -17,7 +17,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_eurex_ois(
+def get_eurex_ois(
     refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ):
     """
@@ -30,7 +30,7 @@ async def get_eurex_ois(
 
 
 @router.get("/chart")
-async def get_eurex_ois_chart(
+def get_eurex_ois_chart(
     refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ):
     """
@@ -43,7 +43,7 @@ async def get_eurex_ois_chart(
 
 
 @router.post("/refresh")
-async def refresh_eurex_ois():
+def refresh_eurex_ois():
     """
     Eurex OISデータを強制更新
 
@@ -54,7 +54,7 @@ async def refresh_eurex_ois():
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -65,7 +65,7 @@ async def get_cache_status():
 
 
 @router.post("/cache/invalidate")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

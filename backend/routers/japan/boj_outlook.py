@@ -20,7 +20,7 @@ router = APIRouter(prefix="/api/japan", tags=["japan-boj"])
 
 
 @router.get("/boj-outlook")
-async def fetch_boj_outlook(
+def fetch_boj_outlook(
     force_refresh: bool = Query(False, description="キャッシュを無視して強制的に最新データを取得")
 ) -> Dict[str, Any]:
     """
@@ -53,7 +53,7 @@ async def fetch_boj_outlook(
 
 
 @router.get("/boj-outlook/image/{image_type}")
-async def get_outlook_image(image_type: str):
+def get_outlook_image(image_type: str):
     """
     Get BOJ Outlook Report image
 
@@ -101,7 +101,7 @@ async def get_outlook_image(image_type: str):
 
 
 @router.get("/boj-outlook/cache-status")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """Get BOJ Outlook cache status"""
     try:
         service = get_boj_outlook_service()

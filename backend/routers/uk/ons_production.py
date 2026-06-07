@@ -19,7 +19,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/ons-production")
-async def get_ons_production(response: Response) -> Dict[str, Any]:
+def get_ons_production(response: Response) -> Dict[str, Any]:
     """
     ONS Production Industries（鉱工業生産）データを取得
 
@@ -47,7 +47,7 @@ async def get_ons_production(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-production/ed2t")
-async def get_ons_production_ed2t(response: Response) -> Dict[str, Any]:
+def get_ons_production_ed2t(response: Response) -> Dict[str, Any]:
     """
     ONS Production ED2Tデータを取得（データ比較機能用、YoY成長率）
 
@@ -89,7 +89,7 @@ async def get_ons_production_ed2t(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-production/ed2t-chart")
-async def get_ons_production_ed2t_chart(response: Response) -> Dict[str, Any]:
+def get_ons_production_ed2t_chart(response: Response) -> Dict[str, Any]:
     """
     ONS Production ED2Tチャート表示用データを取得（YoY変化率）
 
@@ -137,7 +137,7 @@ async def get_ons_production_ed2t_chart(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-production/ecyz")
-async def get_ons_production_ecyz(response: Response) -> Dict[str, Any]:
+def get_ons_production_ecyz(response: Response) -> Dict[str, Any]:
     """
     ONS Production ECYZデータを取得（データ比較機能用、MoM成長率）
 
@@ -179,7 +179,7 @@ async def get_ons_production_ecyz(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-production/ecyz-table")
-async def get_ons_production_ecyz_table(response: Response) -> Dict[str, Any]:
+def get_ons_production_ecyz_table(response: Response) -> Dict[str, Any]:
     """
     ONS Production ECYZテーブル表示用データを取得（MoM変化率）
 
@@ -221,7 +221,7 @@ async def get_ons_production_ecyz_table(response: Response) -> Dict[str, Any]:
 
 
 @router.post("/api/uk/ons-production/refresh")
-async def refresh_ons_production() -> Dict[str, Any]:
+def refresh_ons_production() -> Dict[str, Any]:
     """
     ONS Production Industriesデータを強制更新
 
@@ -251,7 +251,7 @@ async def refresh_ons_production() -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-production/cache-status")
-async def get_ons_production_cache_status() -> Dict[str, Any]:
+def get_ons_production_cache_status() -> Dict[str, Any]:
     """
     ONS Productionキャッシュ状態を取得
 

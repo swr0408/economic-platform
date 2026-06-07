@@ -66,7 +66,7 @@ class FetchRequest(BaseModel):
 
 
 @router.get("/symbols")
-async def get_supported_symbols(
+def get_supported_symbols(
     category: Optional[str] = Query(None, description="カテゴリでフィルタ（forex, index, commodity, bond）"),
     search: Optional[str] = Query(None, description="検索クエリ"),
 ):
@@ -103,7 +103,7 @@ async def get_supported_symbols(
 
 
 @router.get("/sync-status")
-async def get_sync_status(
+def get_sync_status(
     symbol_id: Optional[str] = Query(None, description="銘柄ID（省略時は全銘柄）"),
     interval: Optional[str] = Query(None, description="足種（1m, 5m）"),
 ):
@@ -126,7 +126,7 @@ async def get_sync_status(
 
 
 @router.post("/sync/{symbol_id}")
-async def sync_symbol_data(
+def sync_symbol_data(
     symbol_id: str,
     intervals: Optional[str] = Query("1m,5m", description="同期する足種（カンマ区切り）"),
     _master = Depends(_require_master),
@@ -153,7 +153,7 @@ async def sync_symbol_data(
 
 
 @router.get("/releases/{econalpha_id}")
-async def get_indicator_releases(
+def get_indicator_releases(
     econalpha_id: str,
     limit: int = Query(12, ge=1, le=24, description="取得件数（デフォルト12=1年分）"),
 ):
@@ -240,7 +240,7 @@ async def get_indicator_releases(
 
 
 @router.get("/chart")
-async def get_impact_chart(
+def get_impact_chart(
     release_datetime: str = Query(..., description="発表日時（ISO8601形式）"),
     symbol_id: str = Query("usdjpy", description="銘柄ID"),
     interval: str = Query("1m", description="足種（1m=1分足, 5m=5分足）"),
@@ -368,7 +368,7 @@ async def get_impact_chart(
 
 
 @router.get("/compare")
-async def get_compare_data(
+def get_compare_data(
     release_datetimes: str = Query(..., description="発表日時のカンマ区切りリスト"),
     symbol_id: str = Query("usdjpy", description="銘柄ID"),
     interval: str = Query("1m", description="足種（1m=1分足, 5m=5分足）"),
@@ -573,7 +573,7 @@ def _normalize_compare_data(data: List[Dict], release_dt: datetime) -> List[Dict
 
 
 @router.post("/fetch")
-async def fetch_dukascopy_data(
+def fetch_dukascopy_data(
     request: FetchRequest,
     _master = Depends(_require_master),
 ):
@@ -632,7 +632,7 @@ async def fetch_dukascopy_data(
 
 
 @router.delete("/cleanup")
-async def cleanup_old_data(
+def cleanup_old_data(
     days: int = Query(365, ge=30, le=730),
     _master = Depends(_require_master),
 ):

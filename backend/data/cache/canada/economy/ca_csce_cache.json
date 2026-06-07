@@ -584,20 +584,33 @@
       "prob_find_job": 49.45,
       "income_growth": 2.15,
       "spending_growth": 3.82
+    },
+    {
+      "date": "2026-01-01",
+      "inflation_1y": 3.98,
+      "inflation_2y": 3.57,
+      "inflation_5y": 3.02,
+      "wage_next_12m": 2.68,
+      "wage_past_12m": 2.27,
+      "prob_lose_job": 19.33,
+      "prob_leave_job": 19.03,
+      "prob_find_job": 49.63,
+      "income_growth": 2.12,
+      "spending_growth": 3.5
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "inflation_1y": 4.1,
-    "inflation_2y": 3.98,
-    "inflation_5y": 3.09,
-    "wage_next_12m": 2.9,
-    "wage_past_12m": 2.44,
-    "prob_lose_job": 18.59,
+    "date": "2026-01-01",
+    "inflation_1y": 3.98,
+    "inflation_2y": 3.57,
+    "inflation_5y": 3.02,
+    "wage_next_12m": 2.68,
+    "wage_past_12m": 2.27,
+    "prob_lose_job": 19.33,
     "prob_leave_job": 19.03,
-    "prob_find_job": 49.45,
-    "income_growth": 2.15,
-    "spending_growth": 3.82
+    "prob_find_job": 49.63,
+    "income_growth": 2.12,
+    "spending_growth": 3.5
   },
   "metadata": {
     "source": "Bank of Canada",
@@ -607,12 +620,12 @@
     "frequency": "quarterly"
   },
   "next_release": {
-    "date": "2026-04-20",
-    "datetime_jst": "2026-04-20T23:30:00+09:00",
+    "date": "2026-07-06",
+    "datetime_jst": "2026-07-06T23:30:00+09:00",
     "time_jst": "23:30",
-    "datetime_toronto": "2026-04-20T10:30:00-04:00",
+    "datetime_toronto": "2026-07-06T10:30:00-04:00",
     "time_toronto": "10:30",
     "label": "Canadian Survey of Consumer Expectations"
   },
-  "last_updated": "2026-04-18T04:03:14.682280+09:00"
+  "last_updated": "2026-06-06T09:46:40.340683+09:00"
 }

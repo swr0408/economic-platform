@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Typography, Button, Tag, Space, Spin } from 'antd'
+import { Typography, Button, Tag, Space, Spin, Image } from 'antd'
 import { CloseOutlined, BookOutlined, LinkOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown, { type Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import {
   HANDBOOK_MAP,
@@ -30,6 +30,45 @@ interface HandbookDrawerProps {
   indicatorId: string | null
   /** 閉じるコールバック */
   onClose: () => void
+}
+
+// Markdownの<img>をAnt DesignのImageに置き換えてクリック拡大・ズーム・回転を有効化
+// 外部リンク（http/https）は別タブで開く
+const markdownComponents: Components = {
+  img: ({ src, alt }) => {
+    if (!src) return null
+    return (
+      <Image
+        src={src}
+        alt={alt || ''}
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+          display: 'block',
+          margin: '12px 0',
+          borderRadius: 6,
+          border: `1px solid ${colors.border}`,
+          background: colors.bgPrimary,
+          cursor: 'zoom-in',
+        }}
+        preview={{
+          mask: <span style={{ fontSize: 13 }}>クリックで拡大</span>,
+        }}
+      />
+    )
+  },
+  a: ({ href, children, ...props }) => {
+    const isExternal = typeof href === 'string' && /^https?:\/\//.test(href)
+    return (
+      <a
+        href={href}
+        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        {...props}
+      >
+        {children}
+      </a>
+    )
+  },
 }
 
 export default function HandbookDrawer({ indicatorId, onClose }: HandbookDrawerProps) {
@@ -152,7 +191,7 @@ export default function HandbookDrawer({ indicatorId, onClose }: HandbookDrawerP
             </div>
           ) : (
             <div className="handbook-markdown">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{content}</ReactMarkdown>
             </div>
           )}
         </div>
@@ -313,6 +352,15 @@ export default function HandbookDrawer({ indicatorId, onClose }: HandbookDrawerP
         }
         .handbook-markdown a:hover {
           text-decoration: underline;
+        }
+        .handbook-markdown img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 12px 0;
+          border: 1px solid ${colors.border};
+          border-radius: 6px;
+          background: ${colors.bgPrimary};
         }
       `}</style>
     </>

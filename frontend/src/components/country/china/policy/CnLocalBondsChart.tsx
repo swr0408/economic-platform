@@ -139,6 +139,7 @@ export default function CnLocalBondsChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="中国財政部"
         sourceUrl="https://yss.mof.gov.cn/zhuantilanmu/dfzgl/sjtj/"
+        handbookId="cn-local-bonds"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

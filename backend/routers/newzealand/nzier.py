@@ -26,7 +26,7 @@ router = APIRouter(
 
 
 @router.get("/business-conditions")
-async def get_business_conditions(
+def get_business_conditions(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """NZIER企業景況指数データを取得"""
@@ -36,20 +36,20 @@ async def get_business_conditions(
 
 
 @router.get("/business-conditions/cache")
-async def get_business_conditions_cache_status() -> Dict[str, Any]:
+def get_business_conditions_cache_status() -> Dict[str, Any]:
     """NZIER企業景況指数のキャッシュ状態を取得"""
     return nz_nzier_business_conditions_index_service.get_cache_status()
 
 
 @router.delete("/business-conditions/cache")
-async def invalidate_business_conditions_cache() -> Dict[str, Any]:
+def invalidate_business_conditions_cache() -> Dict[str, Any]:
     """NZIER企業景況指数のキャッシュを無効化"""
     result = nz_nzier_business_conditions_index_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}
 
 
 @router.get("/capacity-utilization")
-async def get_capacity_utilization(
+def get_capacity_utilization(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """設備稼働率データを取得"""
@@ -59,13 +59,13 @@ async def get_capacity_utilization(
 
 
 @router.get("/capacity-utilization/cache")
-async def get_capacity_utilization_cache_status() -> Dict[str, Any]:
+def get_capacity_utilization_cache_status() -> Dict[str, Any]:
     """設備稼働率のキャッシュ状態を取得"""
     return nz_capacity_utilization_service.get_cache_status()
 
 
 @router.delete("/capacity-utilization/cache")
-async def invalidate_capacity_utilization_cache() -> Dict[str, Any]:
+def invalidate_capacity_utilization_cache() -> Dict[str, Any]:
     """設備稼働率のキャッシュを無効化"""
     result = nz_capacity_utilization_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

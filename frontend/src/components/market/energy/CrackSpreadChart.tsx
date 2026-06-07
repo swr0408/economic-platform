@@ -212,6 +212,7 @@ export default function CrackSpreadChart() {
       dataSource="CME (CL=F, BZ=F, RB=F, HO=F)"
       sourceUrl="https://www.cmegroup.com/markets/energy/crude-oil/light-sweet-crude.html"
       showPeriodSelector={false}
+      handbookId="crack-spread"
     >
       {/* 最新値 */}
       {latest && (

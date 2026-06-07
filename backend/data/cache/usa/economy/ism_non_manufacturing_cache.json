@@ -1059,7 +1059,7 @@
     {
       "date": "2025-11-01",
       "value": 52.6,
-      "forecast": 52.0,
+      "forecast": 52.1,
       "previous": 52.4
     },
     {
@@ -1083,23 +1083,29 @@
     {
       "date": "2026-03-01",
       "value": 54.0,
-      "forecast": 54.8,
+      "forecast": 55.0,
       "previous": 56.1
+    },
+    {
+      "date": "2026-04-01",
+      "value": 53.6,
+      "forecast": 53.7,
+      "previous": 54.0
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 54.0,
-    "forecast": 54.8,
-    "previous": 56.1
+    "date": "2026-04-01",
+    "value": 53.6,
+    "forecast": 53.7,
+    "previous": 54.0
   },
   "next_release": {
-    "date": "2026-05-05",
-    "datetime_utc": "2026-05-05T14:00:00+00:00",
-    "datetime_jst": "2026-05-05T23:00:00+09:00",
+    "date": "2026-07-06",
+    "datetime_utc": "2026-07-06T14:00:00+00:00",
+    "datetime_jst": "2026-07-06T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Non-Manufacturing Business Activity (Apr)",
-    "estimate": null
+    "label": "ISM Services PMI (Jun)",
+    "estimate": 51.5
   },
-  "last_updated": "2026-04-18T17:22:53.155547+09:00"
+  "last_updated": "2026-06-04T00:45:52.063653+09:00"
 }

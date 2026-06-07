@@ -95,22 +95,32 @@ def _parse_release_period(title: str) -> Optional[Tuple[int, int]]:
     return None
 
 
-def find_latest_release(category: str, max_pages: int = 2) -> Optional[Dict[str, Any]]:
-    """プレスリリース一覧から指定カテゴリの最新記事を検索
+def find_recent_releases(
+    category: str,
+    max_pages: int = 2,
+    limit: int = 6,
+) -> List[Dict[str, Any]]:
+    """プレスリリース一覧から指定カテゴリの直近 N 件を新→旧順で返す
 
     Args:
         category: RELEASE_KEYWORDS のキー (例: "cpi", "ppi")
         max_pages: 検索するページ数
+        limit: 取得する記事数の上限
 
     Returns:
-        {"title": str, "url": str, "period": (year, month)} or None
+        [{"title": str, "url": str, "period": (year, month)}, ...] 新しい順
     """
     keyword = RELEASE_KEYWORDS.get(category)
     if not keyword:
         logger.warning(f"[NBS-PR] Unknown category: {category}")
-        return None
+        return []
+
+    seen_urls = set()
+    results: List[Dict[str, Any]] = []
 
     for page in range(max_pages):
+        if len(results) >= limit:
+            break
         try:
             if page == 0:
                 page_url = BASE_URL
@@ -135,16 +145,28 @@ def find_latest_release(category: str, max_pages: int = 2) -> Optional[Dict[str,
                 else:
                     full_url = BASE_URL + href
 
+                if full_url in seen_urls:
+                    continue
+                seen_urls.add(full_url)
+
                 period = _parse_release_period(title)
-                return {
+                results.append({
                     "title": title,
                     "url": full_url,
                     "period": period,
-                }
+                })
+                if len(results) >= limit:
+                    break
         except Exception as e:
             logger.warning(f"[NBS-PR] Failed to fetch release list page {page}: {e}")
 
-    return None
+    return results
+
+
+def find_latest_release(category: str, max_pages: int = 2) -> Optional[Dict[str, Any]]:
+    """直近1件を取得（後方互換）"""
+    results = find_recent_releases(category, max_pages=max_pages, limit=1)
+    return results[0] if results else None
 
 
 def download_excel_from_release(release_url: str) -> Optional[bytes]:
@@ -239,53 +261,100 @@ def _safe_float(val: Any) -> Optional[float]:
     return None
 
 
+def _data_exists_in_db(indicator: str, date_str: str) -> bool:
+    """nbs_monthly_data に (indicator, date) の行があるか確認"""
+    try:
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        with SessionLocal() as session:
+            row = session.execute(text("""
+                SELECT 1 FROM nbs_monthly_data
+                WHERE indicator = :ind AND date = :dt
+                LIMIT 1
+            """), {"ind": indicator, "dt": date_str}).fetchone()
+        return row is not None
+    except Exception as e:
+        logger.debug(f"[NBS-PR] DB existence check failed for {indicator} {date_str}: {e}")
+        return False
+
+
 def fetch_and_upsert_from_press_release(
     category: str,
     extractor_fn,
     max_pages: int = 2,
+    lookback_count: int = 6,
+    primary_indicator: Optional[str] = None,
 ) -> Dict[str, int]:
     """プレスリリースからデータを取得し、DB に UPSERT
+
+    取りこぼし耐性のため、直近 `lookback_count` 件の発表を新→旧順で巡回し、
+    `primary_indicator` 指定時はDB に既に当該月のデータがあれば Excel DL をスキップする。
+    `primary_indicator` 未指定時は従来通り最新1件のみ処理（後方互換）。
 
     Args:
         category: RELEASE_KEYWORDS のキー
         extractor_fn: Excel データ (bytes) と period (year, month) を受け取り、
                       {db_indicator: {date_str: value}} を返す関数
         max_pages: 検索ページ数
+        lookback_count: primary_indicator 指定時に遡る発表数（既定: 6 = 半年分）
+        primary_indicator: DB存在チェック用の主指標ID。未指定なら最新1件のみ取得
 
     Returns:
-        {db_indicator: upsert_count, ...}
+        {db_indicator: upsert_count, ...} 全リリースのUPSERT合算
     """
     from services.china.nbs_db_utils import upsert_nbs_data
 
-    release = find_latest_release(category, max_pages=max_pages)
-    if not release:
+    if primary_indicator is None:
+        releases = find_recent_releases(category, max_pages=max_pages, limit=1)
+    else:
+        releases = find_recent_releases(category, max_pages=max_pages, limit=lookback_count)
+
+    if not releases:
         logger.warning(f"[NBS-PR] No release found for category: {category}")
         return {}
 
-    title = release["title"]
-    period = release["period"]
-    logger.info(f"[NBS-PR] Found release: {title} (period={period})")
+    aggregated: Dict[str, int] = {}
+    processed = 0
 
-    excel_data = download_excel_from_release(release["url"])
-    if not excel_data:
-        return {}
+    for release in releases:
+        title = release["title"]
+        period = release["period"]
 
-    try:
-        extracted = extractor_fn(excel_data, period)
-    except Exception as e:
-        logger.error(f"[NBS-PR] Extraction failed for {category}: {e}")
-        import traceback
-        traceback.print_exc()
-        return {}
+        # DB存在チェックで早期スキップ
+        if primary_indicator and period:
+            target_date = f"{period[0]:04d}-{period[1]:02d}-01"
+            if _data_exists_in_db(primary_indicator, target_date):
+                logger.debug(f"[NBS-PR] Skip (already in DB): {title} ({primary_indicator} @ {target_date})")
+                continue
 
-    results = {}
-    for db_indicator, data in extracted.items():
-        if data:
+        logger.info(f"[NBS-PR] Fetching release: {title} (period={period})")
+
+        excel_data = download_excel_from_release(release["url"])
+        if not excel_data:
+            continue
+
+        try:
+            extracted = extractor_fn(excel_data, period)
+        except Exception as e:
+            logger.error(f"[NBS-PR] Extraction failed for {category} ({title}): {e}")
+            import traceback
+            traceback.print_exc()
+            continue
+
+        for db_indicator, data in extracted.items():
+            if not data:
+                continue
             count = upsert_nbs_data(db_indicator, data, source="api")
-            results[db_indicator] = count
-            logger.info(f"[NBS-PR] {db_indicator}: upserted {count} records")
+            aggregated[db_indicator] = aggregated.get(db_indicator, 0) + count
+            logger.info(f"[NBS-PR] {db_indicator}: upserted {count} records from {title}")
 
-    return results
+        processed += 1
+
+    if processed > 1:
+        logger.info(f"[NBS-PR] {category}: backfilled {processed} releases, {aggregated}")
+
+    return aggregated
 
 
 def scrape_unemployment_from_html(release_url: str) -> Dict[str, float]:

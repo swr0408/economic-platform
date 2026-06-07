@@ -91,6 +91,7 @@ export default function CaCorraChart({ data }: CaCorraChartProps) {
         showPeriodSelector={false}
         dataSource="Bank of Canada"
         sourceUrl="https://www.bankofcanada.ca/rates/interest-rates/corra/"
+        handbookId="ca-corra"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

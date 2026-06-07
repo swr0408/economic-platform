@@ -8,9 +8,11 @@ import { CalendarOutlined, BarChartOutlined } from '@ant-design/icons'
 export type EarningsTier = 'S' | 'A' | 'B'
 
 export type EarningsCompany = {
-  ticker: string       // FMP ticker (e.g. "NVDA")
+  ticker: string       // 表示ティッカー (e.g. "6857.T", "BHP.AX")
   name: string         // 表示名
   tier: EarningsTier
+  /** true: FMP free tier に ADR/OTC 相当銘柄が存在しないため財務データ非対応 */
+  noFinancials?: boolean
 }
 
 export type EarningsCountryItem = {
@@ -159,18 +161,18 @@ const FRANCE_COMPANIES: EarningsCompany[] = [
 const TAIWAN_COMPANIES: EarningsCompany[] = [
   { ticker: 'TSM',     name: 'TSMC',              tier: 'S' },
   { ticker: '2317.TW', name: 'Hon Hai',           tier: 'A' },
-  { ticker: '2454.TW', name: 'MediaTek',          tier: 'A' },
+  { ticker: '2454.TW', name: 'MediaTek',          tier: 'A', noFinancials: true },
 ]
 
 const SOUTHKOREA_COMPANIES: EarningsCompany[] = [
   { ticker: '005930.KS', name: 'Samsung Electronics', tier: 'S' },
-  { ticker: '000660.KS', name: 'SK hynix',             tier: 'S' },
+  { ticker: '000660.KS', name: 'SK hynix',             tier: 'S', noFinancials: true },
   { ticker: '005380.KS', name: 'Hyundai Motor',        tier: 'A' },
   { ticker: '105560.KS', name: 'KB Financial',         tier: 'A' },
-  { ticker: '000270.KS', name: 'Kia',                  tier: 'A' },
+  { ticker: '000270.KS', name: 'Kia',                  tier: 'A', noFinancials: true },
   { ticker: '055550.KS', name: 'Shinhan Financial',    tier: 'A' },
-  { ticker: '012450.KS', name: 'Hanwha Aerospace',     tier: 'A' },
-  { ticker: '034020.KS', name: 'Doosan Enerbility',    tier: 'A' },
+  { ticker: '012450.KS', name: 'Hanwha Aerospace',     tier: 'A', noFinancials: true },
+  { ticker: '034020.KS', name: 'Doosan Enerbility',    tier: 'A', noFinancials: true },
 ]
 
 const CHINA_HK_COMPANIES: EarningsCompany[] = [
@@ -188,15 +190,15 @@ const CHINA_HK_COMPANIES: EarningsCompany[] = [
 
 const INDIA_COMPANIES: EarningsCompany[] = [
   { ticker: 'HDFCBANK.NS', name: 'HDFC Bank',              tier: 'S' },
-  { ticker: 'RELIANCE.NS', name: 'Reliance Industries',    tier: 'S' },
+  { ticker: 'RELIANCE.NS', name: 'Reliance Industries',    tier: 'S', noFinancials: true },
   { ticker: 'ICICIBANK.NS',name: 'ICICI Bank',             tier: 'S' },
-  { ticker: 'BHARTIARTL.NS',name:'Bharti Airtel',          tier: 'A' },
+  { ticker: 'BHARTIARTL.NS',name:'Bharti Airtel',          tier: 'A', noFinancials: true },
   { ticker: 'INFY.NS',     name: 'Infosys',               tier: 'A' },
-  { ticker: 'AXISBANK.NS', name: 'Axis Bank',             tier: 'A' },
+  { ticker: 'AXISBANK.NS', name: 'Axis Bank',             tier: 'A', noFinancials: true },
   { ticker: 'LT.NS',       name: 'Larsen & Toubro',       tier: 'A' },
   { ticker: 'M&M.NS',      name: 'Mahindra & Mahindra',   tier: 'A' },
-  { ticker: 'TCS.NS',      name: 'Tata Consultancy',      tier: 'A' },
-  { ticker: 'BAJFINANCE.NS',name:'Bajaj Finance',          tier: 'A' },
+  { ticker: 'TCS.NS',      name: 'Tata Consultancy',      tier: 'A', noFinancials: true },
+  { ticker: 'BAJFINANCE.NS',name:'Bajaj Finance',          tier: 'A', noFinancials: true },
 ]
 
 const CANADA_COMPANIES: EarningsCompany[] = [

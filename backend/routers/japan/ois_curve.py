@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/japan", tags=["japan-ois"])
 
 
 @router.get("/ois-curve")
-async def fetch_ois_curve(force_refresh: bool = False) -> Dict[str, Any]:
+def fetch_ois_curve(force_refresh: bool = False) -> Dict[str, Any]:
     """
     Fetch JSCC OIS Curve data
 

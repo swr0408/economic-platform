@@ -120,6 +120,7 @@ export default function SOFRVolatilityChart({ data }: SOFRVolatilityChartProps) 
         showPeriodSelector={false}
         dataSource="NY Fed"
         sourceUrl="https://www.newyorkfed.org/markets/reference-rates/sofr"
+        handbookId="sofr-volatility"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

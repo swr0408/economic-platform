@@ -107,6 +107,7 @@ export default function NzGlobalDairyTradeChart({ data }: NzGlobalDairyTradeChar
         showDataSource={true}
         dataSource="GlobalDairyTrade"
         sourceUrl="https://www.globaldairytrade.info/en/product-results/"
+        handbookId="nz-global-dairy-trade"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

@@ -199,6 +199,7 @@ export interface USAEconomyData {
   gdp_growth_rate: GDPGrowthItem[] | null
   gdp_contributions: GDPContributionsData | null
   gdp_components_growth: GDPComponentsGrowthItem[] | null
+  domestic_private_final_demand: DomesticPrivateFinalDemandItem[] | null
   potential_gdp: PotentialGDPData | null
   bank_lending: BankLendingData | null
   fci: FCIData | null
@@ -269,6 +270,14 @@ export interface GDPComponentsGrowthItem {
   imports: number | null
   government: number | null
   gdp: number | null
+}
+
+// 国内民間最終需要（除くSW・PC投資 / 標準）データの型
+export interface DomesticPrivateFinalDemandItem {
+  date: string
+  quarter: string
+  ex_sw_pc: number | null  // 除くソフトウェア・コンピューター設備投資（独自推計、QoQ年率%）
+  standard: number | null  // 国内民間最終需要（標準、QoQ年率%）
 }
 
 // 潜在成長率データの型
@@ -1403,6 +1412,36 @@ export interface FullPartTimeEmploymentNextRelease {
   label: string
 }
 
+// 出生地別労働者数データの型（FRED LNU01073395 / LNU01073413 / LNU02073395 / LNU02073413）
+// 毎月第1金曜日 8:30 ET発表（BLS Employment Situation / NFPと同タイミング）
+export interface NumberOfWorkersByPlaceOfBirthData {
+  data: NumberOfWorkersByPlaceOfBirthItem[]
+  latest: NumberOfWorkersByPlaceOfBirthItem | null
+  series_config: Record<string, NumberOfWorkersByPlaceOfBirthSeriesConfig>
+  next_release: NumberOfWorkersByPlaceOfBirthNextRelease | null
+  last_updated: string | null
+}
+
+export interface NumberOfWorkersByPlaceOfBirthItem {
+  date: string                          // YYYY-MM-DD形式
+  labor_force_native: number | null     // 労働力人口（国内生まれ、千人）
+  labor_force_foreign: number | null    // 労働力人口（海外生まれ、千人）
+  employment_native: number | null      // 雇用者数（国内生まれ、千人）
+  employment_foreign: number | null     // 雇用者数（海外生まれ、千人）
+}
+
+export interface NumberOfWorkersByPlaceOfBirthSeriesConfig {
+  series_id: string
+  name: string
+  name_en: string
+  color: string
+}
+
+export interface NumberOfWorkersByPlaceOfBirthNextRelease {
+  date: string
+  label: string
+}
+
 // 複数の仕事を持つ人 / 経済的理由によるパートタイムデータの型（FRED LNS12026619 / LNS12032194）
 // 毎月第1金曜日 8:30 ET発表（BLS Employment Situation）
 export interface MultipleJobsPartTimeData {
@@ -1891,10 +1930,85 @@ export interface TemporaryHelpServicesNextRelease {
   label: string
 }
 
+// シカゴ連銀失業率予測データの型
+export interface ChicagoFedUnemploymentRateForecastItem {
+  date: string
+  // Rates（Sheet 1）
+  layoffs_other_seps?: number | null
+  hiring_rate_uw?: number | null
+  fcr?: number | null
+  s_cps?: number | null
+  f_cps?: number | null
+  // Forecast（Sheet 2）
+  forecast16a?: number | null
+  forecast25a?: number | null
+  forecast50a?: number | null
+  forecast75a?: number | null
+  forecast84a?: number | null
+  forecast16f?: number | null
+  forecast25f?: number | null
+  forecast50f?: number | null
+  forecast75f?: number | null
+  forecast84f?: number | null
+  forecast16r?: number | null
+  forecast25r?: number | null
+  forecast50r?: number | null
+  forecast75r?: number | null
+  forecast84r?: number | null
+  official_u3?: number | null
+}
+
+export interface ChicagoFedUnemploymentRateForecastNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  type?: string
+}
+
+export interface ChicagoFedUnemploymentRateForecastProbabilityBuckets {
+  bucket_neg_03_or_lower: number | null
+  bucket_neg_02: number | null
+  bucket_neg_01: number | null
+  bucket_no_change: number | null
+  bucket_pos_01: number | null
+  bucket_pos_02: number | null
+  bucket_pos_03_or_higher: number | null
+}
+
+export interface ChicagoFedUnemploymentRateForecastRelativeOdds {
+  increase: number | null
+  decrease: number | null
+  net: number | null
+}
+
+export interface ChicagoFedUnemploymentRateForecastProbabilityItem {
+  date: string
+  release: string
+  buckets: ChicagoFedUnemploymentRateForecastProbabilityBuckets
+  relative_odds: ChicagoFedUnemploymentRateForecastRelativeOdds
+  baseline_ur?: number | null
+  bucket_ur_levels?: Partial<Record<keyof ChicagoFedUnemploymentRateForecastProbabilityBuckets, number | null>>
+}
+
+export interface ChicagoFedUnemploymentRateForecastData {
+  data: ChicagoFedUnemploymentRateForecastItem[]
+  rates_data: ChicagoFedUnemploymentRateForecastItem[]
+  forecast_data: ChicagoFedUnemploymentRateForecastItem[]
+  probability_data: ChicagoFedUnemploymentRateForecastProbabilityItem[]
+  latest: ChicagoFedUnemploymentRateForecastItem | null
+  latest_rates: ChicagoFedUnemploymentRateForecastItem | null
+  latest_probability: ChicagoFedUnemploymentRateForecastProbabilityItem | null
+  metadata: Record<string, unknown>
+  next_release: ChicagoFedUnemploymentRateForecastNextRelease | null
+  last_updated: string | null
+}
+
 // 米国雇用ダッシュボードデータの型
 export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
   unemployment_by_reason: UnemploymentByReasonData | null
+  chicago_fed_unemployment_rate_forecast: ChicagoFedUnemploymentRateForecastData | null
   cb_jobs_labor: CBJobsLaborData | null
   nonfarm_payrolls: NonfarmPayrollsData | null
   fullpart_time_employment: FullPartTimeEmploymentData | null
@@ -1921,6 +2035,7 @@ export interface USAEmploymentData {
   us_average_weekly_working_hours: UsAverageWeeklyWorkingHoursData | null
   sahm_rule: SahmRuleData | null
   temporary_help_services: TemporaryHelpServicesData | null
+  number_of_workers_by_place_of_birth: NumberOfWorkersByPlaceOfBirthData | null
 }
 
 /**
@@ -2343,6 +2458,57 @@ export interface MedianCPINextRelease {
   label: string   // 例: "CPI (Feb 11)"
 }
 
+// Supply- and Demand-Driven PCE Inflation データの型（SF Fed）
+// PCE発表後数日内に更新（コアPCE YoY を需要起因/供給起因/判別不能 に分解）
+export interface SupplyAndDemandDrivenPceInflationData {
+  data: SupplyAndDemandDrivenPceInflationItem[]
+  latest: SupplyAndDemandDrivenPceInflationItem | null
+  next_release: SupplyAndDemandDrivenPceInflationNextRelease | null
+  last_updated: string | null
+}
+
+export interface SupplyAndDemandDrivenPceInflationItem {
+  date: string              // YYYY-MM-DD形式（月初）
+  demand_driven: number     // 需要起因 (% pts, YoY)
+  ambiguous: number         // 判別不能 (% pts, YoY)
+  supply_driven: number     // 供給起因 (% pts, YoY)
+  total: number             // 合計（コアPCE YoY, %）
+}
+
+export interface SupplyAndDemandDrivenPceInflationNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label: string
+  estimate?: number | null
+}
+
+// 中古車価格データの型（FRED CPI Used Cars + Manheim UVVI）
+// FRED: CPIと同タイミングで発表（毎月10-15日頃）
+// Manheim: 毎月5日以降に Cox Automotive で発表
+export interface UsedCarPricesData {
+  data: UsedCarPricesItem[]
+  latest: UsedCarPricesItem | null
+  next_release: UsedCarPricesNextRelease | null
+  last_updated: string | null
+}
+
+export interface UsedCarPricesItem {
+  date: string                   // YYYY-MM-DD形式（月初）
+  fred_yoy: number | null        // FRED CPI Used Cars YoY (%)
+  manheim_yoy: number | null     // Manheim UVVI YoY (%)
+}
+
+export interface UsedCarPricesNextRelease {
+  date: string
+  datetime_utc?: string
+  datetime_jst?: string
+  time_jst?: string
+  label: string
+  estimate?: number | null
+}
+
 // 米国物価ダッシュボードデータの型
 export interface USAInflationData {
   cpi: CPIData | null
@@ -2364,6 +2530,23 @@ export interface USAInflationData {
   michigan_inflation_expectations: MichiganInflationExpectationsData | null
   trimmed_mean_pce: TrimmedMeanPCEData | null
   median_cpi: MedianCPIData | null
+  supply_and_demand_driven_pce_inflation: SupplyAndDemandDrivenPceInflationData | null
+  used_car_prices: UsedCarPricesData | null
+  nfib_price_plans: NFIBPricePlansData | null
+}
+
+// NFIB中小企業価格引き上げ計画データの型
+export interface NFIBPricePlansData {
+  data: NFIBPricePlansItem[]
+  latest: NFIBPricePlansItem | null
+  next_release: NFIBNextRelease | null
+  last_updated: string | null
+}
+
+export interface NFIBPricePlansItem {
+  date: string
+  value: number
+  [key: string]: string | number | null | undefined
 }
 
 /**
@@ -9364,9 +9547,24 @@ export interface CnCpiData {
   next_release?: CnCpiNextRelease | null
 }
 
+export interface CnExportPricesItem {
+  date: string
+  index: number | null
+  yoy: number | null
+  mom: number | null
+}
+
+export interface CnExportPricesData {
+  data: CnExportPricesItem[]
+  latest: CnExportPricesItem | null
+  metadata?: Record<string, unknown>
+  next_release?: null
+}
+
 export interface ChinaInflationData {
   cn_cpi: CnCpiData | null
   cn_ppi: CnPpiData | null
+  cn_export_prices: CnExportPricesData | null
 }
 
 /**

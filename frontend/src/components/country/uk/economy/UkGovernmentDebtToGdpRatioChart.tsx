@@ -142,6 +142,7 @@ export default function UkGovernmentDebtToGdpRatioChart({ data }: UkGovernmentDe
         showPeriodSelector={false}
         dataSource="ONS"
         sourceUrl="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/timeseries/hf6x/pusf"
+        handbookId="uk-government-debt-to-gdp-ratio"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

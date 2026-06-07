@@ -1502,14 +1502,14 @@
     },
     {
       "date": "2022-Q1",
-      "value": 11.2,
-      "qoq": -1.6,
-      "yoy": -2.7
+      "value": 11.3,
+      "qoq": -1.5,
+      "yoy": -2.6
     },
     {
       "date": "2022-Q2",
       "value": 8.4,
-      "qoq": -2.8,
+      "qoq": -2.9,
       "yoy": -3.0
     },
     {
@@ -1528,7 +1528,7 @@
       "date": "2023-Q1",
       "value": 2.4,
       "qoq": -1.6,
-      "yoy": -8.8
+      "yoy": -8.9
     },
     {
       "date": "2023-Q2",
@@ -1562,14 +1562,14 @@
     },
     {
       "date": "2024-Q3",
-      "value": 4.8,
-      "qoq": 1.7,
-      "yoy": 2.9
+      "value": 4.9,
+      "qoq": 1.8,
+      "yoy": 3.0
     },
     {
       "date": "2024-Q4",
       "value": 5.5,
-      "qoq": 0.7,
+      "qoq": 0.6,
       "yoy": 2.2
     },
     {
@@ -1580,28 +1580,34 @@
     },
     {
       "date": "2025-Q2",
-      "value": 5.8,
-      "qoq": -1.0,
-      "yoy": 2.7
+      "value": 5.9,
+      "qoq": -0.9,
+      "yoy": 2.8
     },
     {
       "date": "2025-Q3",
       "value": 6.1,
-      "qoq": 0.3,
-      "yoy": 1.3
+      "qoq": 0.2,
+      "yoy": 1.2
     },
     {
       "date": "2025-Q4",
-      "value": 6.9,
-      "qoq": 0.8,
-      "yoy": 1.4
+      "value": 7,
+      "qoq": 0.9,
+      "yoy": 1.5
+    },
+    {
+      "date": "2026-Q1",
+      "value": 6.2,
+      "qoq": -0.8,
+      "yoy": -0.6
     }
   ],
   "latest": {
-    "date": "2025-Q4",
-    "value": 6.9,
-    "qoq": 0.8,
-    "yoy": 1.4
+    "date": "2026-Q1",
+    "value": 6.2,
+    "qoq": -0.8,
+    "yoy": -0.6
   },
   "metadata": {
     "source": "Australian Bureau of Statistics",
@@ -1609,15 +1615,6 @@
     "frequency": "quarterly",
     "unit": "%"
   },
-  "next_release": {
-    "date": "2026-06-03",
-    "datetime_utc": "2026-06-03T01:30:00+00:00",
-    "datetime_jst": "2026-06-03T10:30:00+09:00",
-    "time_jst": "10:30",
-    "datetime_sydney": "2026-06-03T11:30:00+10:00",
-    "time_sydney": "11:30",
-    "label": "家計貯蓄率 (Q1)",
-    "estimate": 0.6
-  },
-  "last_updated": "2026-04-18T04:02:30.103855+09:00"
+  "next_release": null,
+  "last_updated": "2026-06-06T09:46:48.693431+09:00"
 }

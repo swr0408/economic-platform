@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/japan/iip-forecast", tags=["Japan IIP Forecast"]
 
 
 @router.get("")
-async def get_iip_forecast_data(
+def get_iip_forecast_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -38,19 +38,19 @@ async def get_iip_forecast_data(
 
 
 @router.post("/refresh")
-async def refresh_iip_forecast_data() -> Dict[str, Any]:
+def refresh_iip_forecast_data() -> Dict[str, Any]:
     """Force refresh IIP Forecast data from METI"""
     return japan_iip_forecast_service.get_iip_forecast_data(force_refresh=True)
 
 
 @router.delete("/cache")
-async def invalidate_iip_forecast_cache() -> Dict[str, Any]:
+def invalidate_iip_forecast_cache() -> Dict[str, Any]:
     """Invalidate IIP Forecast cache"""
     success = japan_iip_forecast_service.invalidate_cache()
     return {"success": success, "message": "Cache invalidated" if success else "Cache invalidation failed"}
 
 
 @router.get("/cache-status")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """Get cache status for IIP Forecast data"""
     return japan_iip_forecast_service.get_cache_status()

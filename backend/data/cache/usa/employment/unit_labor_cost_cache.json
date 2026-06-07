@@ -468,12 +468,12 @@
     {
       "date": "2023-04-01",
       "ulc_pch": 2.4,
-      "productivity_pch": 4.0
+      "productivity_pch": 4.1
     },
     {
       "date": "2023-07-01",
       "ulc_pch": 1.2,
-      "productivity_pch": 5.0
+      "productivity_pch": 5.1
     },
     {
       "date": "2023-10-01",
@@ -517,14 +517,19 @@
     },
     {
       "date": "2025-10-01",
-      "ulc_pch": 4.4,
-      "productivity_pch": 1.8
+      "ulc_pch": 2.1,
+      "productivity_pch": 1.6
+    },
+    {
+      "date": "2026-01-01",
+      "ulc_pch": 1.8,
+      "productivity_pch": 0.3
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "ulc_pch": 4.4,
-    "productivity_pch": 1.8
+    "date": "2026-01-01",
+    "ulc_pch": 1.8,
+    "productivity_pch": 0.3
   },
-  "last_updated": "2026-04-14T21:31:58.777164+09:00"
+  "last_updated": "2026-05-07T22:01:15.126456+09:00"
 }

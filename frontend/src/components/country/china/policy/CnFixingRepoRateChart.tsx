@@ -184,6 +184,7 @@ function CnFixingRepoRateChart() {
         showDataSource={true}
         dataSource="中国外汇交易中心 (CFETS)"
         sourceUrl="https://www.chinamoney.com.cn/english/bmkfrr/"
+        handbookId="fixing-repo-rate"
       >
         {/* 最新値表示 */}
         <LatestValueBox

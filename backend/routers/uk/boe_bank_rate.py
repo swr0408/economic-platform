@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/boe-bank-rate")
-async def get_boe_bank_rate(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_boe_bank_rate(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     BOE Bank Rate（政策金利）データを取得
 
@@ -24,7 +24,7 @@ async def get_boe_bank_rate(force_refresh: bool = Query(False, description="強�
 
 
 @router.post("/boe-bank-rate/refresh")
-async def refresh_boe_bank_rate():
+def refresh_boe_bank_rate():
     """
     BOE Bank Rateデータを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_boe_bank_rate():
 
 
 @router.get("/boe-bank-rate/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/boe-bank-rate/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

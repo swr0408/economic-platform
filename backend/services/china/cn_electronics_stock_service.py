@@ -42,6 +42,22 @@ REDIS_TTL = 86400  # 24h
 
 DB_INDICATOR = "cn_electronics_stock_yoy"
 
+
+def _get_manual_csv_mtime() -> Optional[float]:
+    """全manual_update CSVの最新更新時刻（最大mtime）を返す。
+
+    CSV手動更新の自動検知に使用。いずれかのCSVが更新されると値が変わり、
+    キャッシュの csv_mtime と不一致になるため再ビルドが走る。
+    """
+    mtimes = []
+    for fp in MANUAL_CSV_FILES:
+        try:
+            if fp.exists():
+                mtimes.append(os.path.getmtime(fp))
+        except OSError:
+            pass
+    return max(mtimes) if mtimes else None
+
 # CSV月名→月番号
 MONTH_MAP = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4,
@@ -269,15 +285,19 @@ class CnElectronicsStockService:
                 "last_fetched": datetime.now(JST).isoformat(),
             },
             "next_release": None,
+            # CSV更新の自動検知用。読み込み時に現在のmtimeと比較する。
+            "csv_mtime": _get_manual_csv_mtime(),
         }
 
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         if not force_refresh:
+            current_mtime = _get_manual_csv_mtime()
             cached = self._from_redis()
-            if cached:
+            # CSVが更新されている（mtime不一致）場合はキャッシュを使わず再ビルド
+            if cached and cached.get("csv_mtime") == current_mtime:
                 return cached
             cached = self._from_file()
-            if cached:
+            if cached and cached.get("csv_mtime") == current_mtime:
                 self._to_redis(cached)
                 return cached
 

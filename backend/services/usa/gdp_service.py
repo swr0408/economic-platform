@@ -26,9 +26,25 @@ class GDPService:
 
     BASE_URL = "https://api.stlouisfed.org/fred"
     CACHE_KEY = "fred:series:gdp_growth_rate"
+    # フォールバックTTL: BEA発表直後のFRED反映ラグでstaleキャッシュを掴んだ場合の救済策。
+    # 発表ベースのstale判定を取りこぼしてもこの期間で必ず再取得される。
+    MAX_CACHE_AGE_DAYS = 7
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+
+    def _is_cache_expired(self, cached_data: Dict[str, Any]) -> bool:
+        last_updated = cached_data.get("last_updated")
+        if not last_updated:
+            return True
+        try:
+            last_dt = datetime.fromisoformat(last_updated)
+            if last_dt.tzinfo is None:
+                last_dt = last_dt.replace(tzinfo=JST)
+            age = datetime.now(JST) - last_dt
+            return age.total_seconds() > self.MAX_CACHE_AGE_DAYS * 86400
+        except Exception:
+            return True
 
     def fetch_gdp_growth_rate(
         self,
@@ -57,16 +73,15 @@ class GDPService:
                 "last_updated": str
             }
         """
-        # キャッシュチェック
-        if not force_refresh:
-            cached_data = redis_client.get(self.CACHE_KEY)
-            if cached_data:
-                return {
-                    "data": cached_data.get("data", []),
-                    "cached": True,
-                    "source": "redis",
-                    "last_updated": cached_data.get("last_updated")
-                }
+        # キャッシュチェック（7日経過したらフォールバックで再取得）
+        cached_data = redis_client.get(self.CACHE_KEY)
+        if not force_refresh and cached_data and not self._is_cache_expired(cached_data):
+            return {
+                "data": cached_data.get("data", []),
+                "cached": True,
+                "source": "redis",
+                "last_updated": cached_data.get("last_updated")
+            }
 
         # 外部APIから取得
         api_data = self._fetch_from_api(start_date, end_date)
@@ -84,6 +99,15 @@ class GDPService:
                 "cached": False,
                 "source": "api",
                 "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # API失敗時: 期限切れでも既存キャッシュを返す（データ欠落防止）
+        if cached_data:
+            return {
+                "data": cached_data.get("data", []),
+                "cached": True,
+                "source": "redis_stale",
+                "last_updated": cached_data.get("last_updated")
             }
 
         return {

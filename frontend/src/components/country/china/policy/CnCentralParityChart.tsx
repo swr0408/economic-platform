@@ -167,6 +167,7 @@ function CnCentralParityChart() {
         showDataSource={true}
         dataSource="中国外汇交易中心 (CFETS) / Yahoo Finance"
         sourceUrl="https://www.chinamoney.com.cn/english/bmkcpr/"
+        handbookId="central-parity"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -28,7 +28,7 @@ router = APIRouter(
 # =============================================================================
 
 @router.get("/pmi")
-async def get_pmi(
+def get_pmi(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """製造業PMIデータを取得"""
@@ -36,13 +36,13 @@ async def get_pmi(
 
 
 @router.get("/pmi/cache")
-async def get_pmi_cache_status() -> Dict[str, Any]:
+def get_pmi_cache_status() -> Dict[str, Any]:
     """製造業PMIのキャッシュ状態を取得"""
     return nz_pmi_service.get_pmi_cache_status()
 
 
 @router.delete("/pmi/cache")
-async def invalidate_pmi_cache() -> Dict[str, Any]:
+def invalidate_pmi_cache() -> Dict[str, Any]:
     """製造業PMIのキャッシュを無効化"""
     result = nz_pmi_service.invalidate_pmi_cache()
     return {"success": result, "message": "PMI cache invalidated"}
@@ -53,7 +53,7 @@ async def invalidate_pmi_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/psi")
-async def get_psi(
+def get_psi(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """サービス業PSIデータを取得"""
@@ -61,13 +61,13 @@ async def get_psi(
 
 
 @router.get("/psi/cache")
-async def get_psi_cache_status() -> Dict[str, Any]:
+def get_psi_cache_status() -> Dict[str, Any]:
     """サービス業PSIのキャッシュ状態を取得"""
     return nz_pmi_service.get_psi_cache_status()
 
 
 @router.delete("/psi/cache")
-async def invalidate_psi_cache() -> Dict[str, Any]:
+def invalidate_psi_cache() -> Dict[str, Any]:
     """サービス業PSIのキャッシュを無効化"""
     result = nz_pmi_service.invalidate_psi_cache()
     return {"success": result, "message": "PSI cache invalidated"}
@@ -78,7 +78,7 @@ async def invalidate_psi_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/pci")
-async def get_pci(
+def get_pci(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """総合PCIデータを取得"""
@@ -86,13 +86,13 @@ async def get_pci(
 
 
 @router.get("/pci/cache")
-async def get_pci_cache_status() -> Dict[str, Any]:
+def get_pci_cache_status() -> Dict[str, Any]:
     """総合PCIのキャッシュ状態を取得"""
     return nz_pmi_service.get_pci_cache_status()
 
 
 @router.delete("/pci/cache")
-async def invalidate_pci_cache() -> Dict[str, Any]:
+def invalidate_pci_cache() -> Dict[str, Any]:
     """総合PCIのキャッシュを無効化"""
     result = nz_pmi_service.invalidate_pci_cache()
     return {"success": result, "message": "PCI cache invalidated"}

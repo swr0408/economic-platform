@@ -113,6 +113,7 @@ services:
       DESTATIS_PASSWORD: ${DESTATIS_PASSWORD:-}
       DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN:-}
       DISCORD_FJ_CHANNEL_ID: ${DISCORD_FJ_CHANNEL_ID:-}
+      STOOQ_API_KEY: ${STOOQ_API_KEY:-}
     # Caddy 経由でアクセスするためホストには公開しない
     expose:
       - "8000"

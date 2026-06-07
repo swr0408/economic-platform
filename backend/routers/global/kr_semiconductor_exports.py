@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_kr_semiconductor_exports(
+def get_kr_semiconductor_exports(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """韓国半導体輸出データを取得"""
@@ -28,13 +28,13 @@ async def get_kr_semiconductor_exports(
 
 
 @router.get("/cache")
-async def get_kr_semiconductor_exports_cache_status() -> Dict[str, Any]:
+def get_kr_semiconductor_exports_cache_status() -> Dict[str, Any]:
     """キャッシュ状態を取得"""
     return kr_semiconductor_exports_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_kr_semiconductor_exports_cache() -> Dict[str, Any]:
+def invalidate_kr_semiconductor_exports_cache() -> Dict[str, Any]:
     """キャッシュを無効化"""
     result = kr_semiconductor_exports_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

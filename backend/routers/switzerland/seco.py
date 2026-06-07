@@ -16,7 +16,7 @@ router = APIRouter(
 
 
 @router.get("/")
-async def seco_root():
+def seco_root():
     """SECO APIルート"""
     return {
         "message": "SECO (State Secretariat for Economic Affairs) API",
@@ -32,7 +32,7 @@ async def seco_root():
 
 
 @router.get("/consumer-sentiment")
-async def get_consumer_sentiment(
+def get_consumer_sentiment(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -52,7 +52,7 @@ async def get_consumer_sentiment(
 
 
 @router.get("/consumer-sentiment/latest")
-async def get_consumer_sentiment_latest():
+def get_consumer_sentiment_latest():
     """
     SECO消費者景況感 最新データを取得
 
@@ -69,7 +69,7 @@ async def get_consumer_sentiment_latest():
 
 
 @router.get("/consumer-sentiment/cache/status")
-async def get_consumer_sentiment_cache_status():
+def get_consumer_sentiment_cache_status():
     """SECO消費者景況感 キャッシュ状態を取得"""
     from services.switzerland.ch_consumer_sentiment_service import ch_consumer_sentiment_service
 
@@ -77,7 +77,7 @@ async def get_consumer_sentiment_cache_status():
 
 
 @router.delete("/consumer-sentiment/cache")
-async def invalidate_consumer_sentiment_cache():
+def invalidate_consumer_sentiment_cache():
     """SECO消費者景況感 キャッシュを無効化"""
     from services.switzerland.ch_consumer_sentiment_service import ch_consumer_sentiment_service
 
@@ -93,7 +93,7 @@ async def invalidate_consumer_sentiment_cache():
 # =============================================================================
 
 @router.get("/growth-rate")
-async def get_growth_rate(
+def get_growth_rate(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -113,7 +113,7 @@ async def get_growth_rate(
 
 
 @router.get("/growth-rate/latest")
-async def get_growth_rate_latest():
+def get_growth_rate_latest():
     """
     スイスGDP成長率 最新データを取得
 
@@ -130,7 +130,7 @@ async def get_growth_rate_latest():
 
 
 @router.get("/growth-rate/cache/status")
-async def get_growth_rate_cache_status():
+def get_growth_rate_cache_status():
     """スイスGDP成長率 キャッシュ状態を取得"""
     from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
 
@@ -138,7 +138,7 @@ async def get_growth_rate_cache_status():
 
 
 @router.delete("/growth-rate/cache")
-async def invalidate_growth_rate_cache():
+def invalidate_growth_rate_cache():
     """スイスGDP成長率 キャッシュを無効化"""
     from services.switzerland.ch_growth_rate_service import ch_growth_rate_service
 
@@ -154,7 +154,7 @@ async def invalidate_growth_rate_cache():
 # =============================================================================
 
 @router.get("/job-vacancies")
-async def get_job_vacancies(
+def get_job_vacancies(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -174,7 +174,7 @@ async def get_job_vacancies(
 
 
 @router.get("/job-vacancies/latest")
-async def get_job_vacancies_latest():
+def get_job_vacancies_latest():
     """
     スイス求人情報 最新データを取得
 
@@ -191,7 +191,7 @@ async def get_job_vacancies_latest():
 
 
 @router.get("/job-vacancies/cache/status")
-async def get_job_vacancies_cache_status():
+def get_job_vacancies_cache_status():
     """スイス求人情報 キャッシュ状態を取得"""
     from services.switzerland.ch_job_vacancies_service import ch_job_vacancies_service
 
@@ -199,7 +199,7 @@ async def get_job_vacancies_cache_status():
 
 
 @router.delete("/job-vacancies/cache")
-async def invalidate_job_vacancies_cache():
+def invalidate_job_vacancies_cache():
     """スイス求人情報 キャッシュを無効化"""
     from services.switzerland.ch_job_vacancies_service import ch_job_vacancies_service
 
@@ -215,7 +215,7 @@ async def invalidate_job_vacancies_cache():
 # =============================================================================
 
 @router.get("/households-and-npish")
-async def get_households_and_npish(
+def get_households_and_npish(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -235,7 +235,7 @@ async def get_households_and_npish(
 
 
 @router.get("/households-and-npish/latest")
-async def get_households_and_npish_latest():
+def get_households_and_npish_latest():
     """
     スイス家計消費 最新データを取得
 
@@ -252,7 +252,7 @@ async def get_households_and_npish_latest():
 
 
 @router.get("/households-and-npish/cache/status")
-async def get_households_and_npish_cache_status():
+def get_households_and_npish_cache_status():
     """スイス家計消費 キャッシュ状態を取得"""
     from services.switzerland.ch_households_and_npish_service import ch_households_and_npish_service
 
@@ -260,7 +260,7 @@ async def get_households_and_npish_cache_status():
 
 
 @router.delete("/households-and-npish/cache")
-async def invalidate_households_and_npish_cache():
+def invalidate_households_and_npish_cache():
     """スイス家計消費 キャッシュを無効化"""
     from services.switzerland.ch_households_and_npish_service import ch_households_and_npish_service
 
@@ -276,7 +276,7 @@ async def invalidate_households_and_npish_cache():
 # =============================================================================
 
 @router.get("/pmi")
-async def get_pmi(
+def get_pmi(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -298,7 +298,7 @@ async def get_pmi(
 
 
 @router.get("/pmi/latest")
-async def get_pmi_latest():
+def get_pmi_latest():
     """
     スイスPMI 最新データを取得
 
@@ -316,7 +316,7 @@ async def get_pmi_latest():
 
 
 @router.get("/pmi/cache/status")
-async def get_pmi_cache_status():
+def get_pmi_cache_status():
     """スイスPMI キャッシュ状態を取得"""
     from services.switzerland.ch_pmi_service import ch_pmi_service
 
@@ -324,7 +324,7 @@ async def get_pmi_cache_status():
 
 
 @router.delete("/pmi/cache")
-async def invalidate_pmi_cache():
+def invalidate_pmi_cache():
     """スイスPMI キャッシュを無効化"""
     from services.switzerland.ch_pmi_service import ch_pmi_service
 

@@ -584,22 +584,27 @@
       "date": "2026-03",
       "gold_thousands_oz": 300260.0,
       "silver_thousands_oz": 883743.0
+    },
+    {
+      "date": "2026-04",
+      "gold_thousands_oz": 301320.0,
+      "silver_thousands_oz": 882655.0
     }
   ],
   "latest": {
-    "date": "2026-03",
-    "gold_thousands_oz": 300260.0,
-    "silver_thousands_oz": 883743.0
+    "date": "2026-04",
+    "gold_thousands_oz": 301320.0,
+    "silver_thousands_oz": 882655.0
   },
   "metadata": {
     "source": "LBMA",
     "frequency": "monthly",
     "unit": "Troy Ounces ('000s)",
-    "data_count": 117,
+    "data_count": 118,
     "start_date": "2016-07",
-    "end_date": "2026-03"
+    "end_date": "2026-04"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T15:18:30.730433+09:00"
+  "last_updated": "2026-05-14T12:21:26.379504+09:00"
 }

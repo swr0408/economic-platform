@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/japan", tags=["japan-boj"])
 
 
 @router.get("/boj-meeting-expectations")
-async def get_boj_meeting_expectations(force_refresh: bool = False) -> Dict[str, Any]:
+def get_boj_meeting_expectations(force_refresh: bool = False) -> Dict[str, Any]:
     """
     Get BOJ meeting expectations data from Tokyo Tanshi
 

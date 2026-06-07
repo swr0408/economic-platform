@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/boe-services-inflation")
-async def get_boe_services_inflation() -> Dict:
+def get_boe_services_inflation() -> Dict:
     """
     BOEサービスインフレデータを取得 (Chart 1.5)
 
@@ -31,7 +31,7 @@ async def get_boe_services_inflation() -> Dict:
 
 
 @router.post("/api/uk/boe-services-inflation/refresh")
-async def refresh_boe_services_inflation() -> Dict:
+def refresh_boe_services_inflation() -> Dict:
     """
     BOEサービスインフレデータを強制更新
 

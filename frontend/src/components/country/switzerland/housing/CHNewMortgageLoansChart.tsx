@@ -204,6 +204,7 @@ export default function CHNewMortgageLoansChart({ data }: CHNewMortgageLoansChar
         showPeriodSelector={false}
         dataSource="Swiss National Bank"
         sourceUrl="https://data.snb.ch/en/topics/banken/cube/bahypoakredq"
+        handbookId="ch-new-mortgage-loans"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

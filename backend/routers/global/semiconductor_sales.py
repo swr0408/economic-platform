@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_semiconductor_sales_data(
+def get_semiconductor_sales_data(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """WSTS半導体売上高データを取得"""
@@ -28,13 +28,13 @@ async def get_semiconductor_sales_data(
 
 
 @router.get("/cache")
-async def get_semiconductor_sales_cache_status() -> Dict[str, Any]:
+def get_semiconductor_sales_cache_status() -> Dict[str, Any]:
     """キャッシュ状態を取得"""
     return semiconductor_sales_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_semiconductor_sales_cache() -> Dict[str, Any]:
+def invalidate_semiconductor_sales_cache() -> Dict[str, Any]:
     """キャッシュを無効化"""
     result = semiconductor_sales_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

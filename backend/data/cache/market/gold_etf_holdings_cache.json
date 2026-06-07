@@ -23464,16 +23464,106 @@
       "date": "2026-04-17",
       "holdings_ton": 1060.62,
       "gold_price_usd": 4857.6
+    },
+    {
+      "date": "2026-04-20",
+      "holdings_ton": 1059.76,
+      "gold_price_usd": 4806.6
+    },
+    {
+      "date": "2026-04-21",
+      "holdings_ton": 1055.48,
+      "gold_price_usd": 4698.4
+    },
+    {
+      "date": "2026-04-22",
+      "holdings_ton": 1050.91,
+      "gold_price_usd": 4732.5
+    },
+    {
+      "date": "2026-04-23",
+      "holdings_ton": 1049.19,
+      "gold_price_usd": 4705.1
+    },
+    {
+      "date": "2026-04-24",
+      "holdings_ton": 1046.62,
+      "gold_price_usd": 4722.3
+    },
+    {
+      "date": "2026-04-27",
+      "holdings_ton": 1044.34,
+      "gold_price_usd": 4675.4
+    },
+    {
+      "date": "2026-04-28",
+      "holdings_ton": 1040.91,
+      "gold_price_usd": 4591.5
+    },
+    {
+      "date": "2026-04-29",
+      "holdings_ton": null,
+      "gold_price_usd": 4545.2
+    },
+    {
+      "date": "2026-04-30",
+      "holdings_ton": 1035.77,
+      "gold_price_usd": 4614.7
+    },
+    {
+      "date": "2026-05-01",
+      "holdings_ton": 1035.77,
+      "gold_price_usd": 4629.9
+    },
+    {
+      "date": "2026-05-04",
+      "holdings_ton": null,
+      "gold_price_usd": 4519.5
+    },
+    {
+      "date": "2026-05-05",
+      "holdings_ton": null,
+      "gold_price_usd": 4555.8
+    },
+    {
+      "date": "2026-05-06",
+      "holdings_ton": null,
+      "gold_price_usd": 4681.9
+    },
+    {
+      "date": "2026-05-07",
+      "holdings_ton": 1033.48,
+      "gold_price_usd": 4699.8
+    },
+    {
+      "date": "2026-05-08",
+      "holdings_ton": 1034.0,
+      "gold_price_usd": 4720.4
+    },
+    {
+      "date": "2026-05-11",
+      "holdings_ton": 1036.28,
+      "gold_price_usd": 4718.7
+    },
+    {
+      "date": "2026-05-12",
+      "holdings_ton": 1038.28,
+      "gold_price_usd": 4677.6
+    },
+    {
+      "date": "2026-05-13",
+      "holdings_ton": 1039.99,
+      "gold_price_usd": 4697.7
     }
   ],
   "latest": {
-    "date": "2026-04-17",
-    "holdings_ton": 1060.62,
-    "gold_price_usd": 4857.6
+    "date": "2026-05-13",
+    "holdings_ton": 1039.99,
+    "gold_price_usd": 4697.7
   },
   "latest_gold": {
-    "date": "2026-04-17",
-    "close": 4857.6
+    "date": "2026-05-14",
+    "close": 4685.4
   },
   "metadata": {
     "source": "SPDR Gold Shares + yfinance (GC=F)",
@@ -23481,11 +23571,11 @@
     "unit_holdings": "ton",
     "unit_price": "USD/oz",
     "frequency": "daily",
-    "data_count": 4693,
+    "data_count": 4711,
     "start_date": "2008-06-30",
-    "end_date": "2026-04-17"
+    "end_date": "2026-05-13"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T15:43:13.783511+09:00"
+  "last_updated": "2026-05-14T13:18:56.105159+09:00"
 }

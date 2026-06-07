@@ -1802,16 +1802,28 @@
     },
     {
       "date": "2026-01-01",
-      "value": 1320.46,
-      "yoy": 2.02,
-      "mom": 0.3
+      "value": 1319.29,
+      "yoy": 1.93,
+      "mom": 0.21
+    },
+    {
+      "date": "2026-02-01",
+      "value": 1331.61,
+      "yoy": 2.85,
+      "mom": 0.93
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1333.23,
+      "yoy": 3.5,
+      "mom": 0.12
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 1320.46,
-    "yoy": 2.02,
-    "mom": 0.3
+    "date": "2026-03-01",
+    "value": 1333.23,
+    "yoy": 3.5,
+    "mom": 0.12
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1822,14 +1834,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-04-24",
-    "datetime_utc": "2026-04-24T12:30:00+00:00",
-    "datetime_jst": "2026-04-24T21:30:00+09:00",
+    "date": "2026-06-25",
+    "datetime_utc": "2026-06-25T12:30:00+00:00",
+    "datetime_jst": "2026-06-25T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-04-24T08:30:00-04:00",
+    "datetime_toronto": "2026-06-25T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Average Weekly Earnings (Feb)",
+    "label": "Average Weekly Earnings (Apr)",
     "estimate": null
   },
-  "last_updated": "2026-04-18T04:04:56.799528+09:00"
+  "last_updated": "2026-06-07T11:31:32.808818+09:00"
 }

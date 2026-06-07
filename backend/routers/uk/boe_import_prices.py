@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/boe-import-prices")
-async def get_boe_import_prices() -> Dict:
+def get_boe_import_prices() -> Dict:
     """
     BOE輸入物価・エネルギー価格データを取得 (Databank 28/29 + Chart 1.2)
 
@@ -33,7 +33,7 @@ async def get_boe_import_prices() -> Dict:
 
 
 @router.post("/api/uk/boe-import-prices/refresh")
-async def refresh_boe_import_prices() -> Dict:
+def refresh_boe_import_prices() -> Dict:
     """
     BOE輸入物価・エネルギー価格データを強制更新
 

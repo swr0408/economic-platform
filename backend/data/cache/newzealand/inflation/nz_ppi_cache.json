@@ -1736,16 +1736,25 @@
       "input_index": 1472.0,
       "input_qoq": -0.5,
       "input_yoy": 3.2
+    },
+    {
+      "date": "2026-03-01",
+      "output_index": 1506.0,
+      "output_qoq": 0.8,
+      "output_yoy": 2.2,
+      "input_index": 1493.0,
+      "input_qoq": 1.4,
+      "input_yoy": 1.8
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "output_index": 1494.0,
-    "output_qoq": 0.1,
-    "output_yoy": 3.5,
-    "input_index": 1472.0,
-    "input_qoq": -0.5,
-    "input_yoy": 3.2
+    "date": "2026-03-01",
+    "output_index": 1506.0,
+    "output_qoq": 0.8,
+    "output_yoy": 2.2,
+    "input_index": 1493.0,
+    "input_qoq": 1.4,
+    "input_yoy": 1.8
   },
   "metadata": {
     "source": "Stats NZ",
@@ -1757,14 +1766,14 @@
     "series_input": "PPIQ.SQN900000"
   },
   "next_release": {
-    "date": "2026-05-18",
-    "datetime_utc": "2026-05-18T22:45:00+00:00",
-    "datetime_jst": "2026-05-19T07:45:00+09:00",
+    "date": "2026-08-18",
+    "datetime_utc": "2026-08-18T22:45:00+00:00",
+    "datetime_jst": "2026-08-19T07:45:00+09:00",
     "time_jst": "07:45",
-    "datetime_auckland": "2026-05-19T10:45:00+12:00",
+    "datetime_auckland": "2026-08-19T10:45:00+12:00",
     "time_auckland": "10:45",
-    "label": "Producer Price Index QoQ (Q1)",
+    "label": "Producer Price Index QoQ (Q2)",
     "estimate": null
   },
-  "last_updated": "2026-04-18T04:10:05.780553+09:00"
+  "last_updated": "2026-06-07T11:31:42.821672+09:00"
 }

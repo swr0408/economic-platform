@@ -8,7 +8,8 @@
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "type-check": "tsc --noEmit"
+        "type-check": "tsc --noEmit",
+        "import:smc": "node ../scripts/import-smc.mjs"
     },
     "dependencies": {
         "@ant-design/icons": "^6.1.0",

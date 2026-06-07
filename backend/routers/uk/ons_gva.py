@@ -18,7 +18,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/ons-gva")
-async def get_ons_gva(response: Response) -> Dict[str, Any]:
+def get_ons_gva(response: Response) -> Dict[str, Any]:
     """
     ONS GVA（月間GDP）データを取得
 
@@ -46,7 +46,7 @@ async def get_ons_gva(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/ed3h")
-async def get_ons_gva_ed3h(response: Response) -> Dict[str, Any]:
+def get_ons_gva_ed3h(response: Response) -> Dict[str, Any]:
     """
     ONS GVA ED3Hデータを取得（データ比較機能用、3m on 3m成長率）
 
@@ -88,7 +88,7 @@ async def get_ons_gva_ed3h(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/ed3h-table")
-async def get_ons_gva_ed3h_table(response: Response) -> Dict[str, Any]:
+def get_ons_gva_ed3h_table(response: Response) -> Dict[str, Any]:
     """
     ONS GVA ED3Hテーブル表示用データを取得（3m on 3m成長率）
 
@@ -130,7 +130,7 @@ async def get_ons_gva_ed3h_table(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/ecy2-3m-yoy")
-async def get_ons_gva_ecy2_3m_yoy(response: Response) -> Dict[str, Any]:
+def get_ons_gva_ecy2_3m_yoy(response: Response) -> Dict[str, Any]:
     """
     ONS GVA 3か月前年比データを取得（ECY2インデックスの3か月移動平均YoY）
 
@@ -172,7 +172,7 @@ async def get_ons_gva_ecy2_3m_yoy(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/ecy2-chart")
-async def get_ons_gva_ecy2_chart(response: Response) -> Dict[str, Any]:
+def get_ons_gva_ecy2_chart(response: Response) -> Dict[str, Any]:
     """
     ONS GVA ECY2チャート表示用データを取得（YoY変化率）
 
@@ -219,7 +219,7 @@ async def get_ons_gva_ecy2_chart(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/ecy2-yoy")
-async def get_ons_gva_ecy2_yoy(response: Response) -> Dict[str, Any]:
+def get_ons_gva_ecy2_yoy(response: Response) -> Dict[str, Any]:
     """
     ONS GVA ECY2 YoYデータを取得（データ比較機能用）
 
@@ -261,7 +261,7 @@ async def get_ons_gva_ecy2_yoy(response: Response) -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/ecy2-table")
-async def get_ons_gva_ecy2_table(response: Response) -> Dict[str, Any]:
+def get_ons_gva_ecy2_table(response: Response) -> Dict[str, Any]:
     """
     ONS GVA ECY2テーブル表示用データを取得（MoM変化率）
 
@@ -303,7 +303,7 @@ async def get_ons_gva_ecy2_table(response: Response) -> Dict[str, Any]:
 
 
 @router.post("/api/uk/ons-gva/refresh")
-async def refresh_ons_gva() -> Dict[str, Any]:
+def refresh_ons_gva() -> Dict[str, Any]:
     """
     ONS GVAデータを強制更新
 
@@ -333,7 +333,7 @@ async def refresh_ons_gva() -> Dict[str, Any]:
 
 
 @router.get("/api/uk/ons-gva/cache-status")
-async def get_ons_gva_cache_status() -> Dict[str, Any]:
+def get_ons_gva_cache_status() -> Dict[str, Any]:
     """
     ONS GVAキャッシュ状態を取得
 

@@ -8,8 +8,9 @@
  */
 
 import { useState, useEffect } from 'react'
-import { Card, Button, Spin, Typography, Image } from 'antd'
-import { ReloadOutlined } from '@ant-design/icons'
+import { Card, Button, Spin, Typography, Image, Tooltip } from 'antd'
+import { ReloadOutlined, QuestionCircleOutlined } from '@ant-design/icons'
+import { useHandbook } from '../../../../contexts/HandbookContext'
 import { useIsMaster } from '../../../../hooks/useIsMaster'
 import { withVisibility } from '../../../common/withVisibility'
 
@@ -26,6 +27,7 @@ interface ScreenshotData {
 }
 
 function CnCreditImpulseChart() {
+  const { openHandbook } = useHandbook()
   const isMaster = useIsMaster()
   const [imageKey, setImageKey] = useState(0)
   const [refreshing, setRefreshing] = useState(false)
@@ -90,11 +92,19 @@ function CnCreditImpulseChart() {
         title={
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>クレジットインパルス</span>
-            {isMaster && (
-              <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-                再取得
-              </Button>
-            )}
+            <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Tooltip title="データハンドブック">
+                <QuestionCircleOutlined
+                  onClick={() => openHandbook('cn-credit-impulse')}
+                  style={{ cursor: 'pointer', fontSize: 15, color: 'rgba(255,255,255,0.45)' }}
+                />
+              </Tooltip>
+              {isMaster && (
+                <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+                  再取得
+                </Button>
+              )}
+            </div>
           </div>
         }
       >
@@ -111,11 +121,19 @@ function CnCreditImpulseChart() {
         title={
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
             <span>クレジットインパルス</span>
-            {isMaster && (
-              <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing} style={{ position: 'absolute', right: 0 }}>
-                更新
-              </Button>
-            )}
+            <div style={{ position: 'absolute', right: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Tooltip title="データハンドブック">
+                <QuestionCircleOutlined
+                  onClick={() => openHandbook('cn-credit-impulse')}
+                  style={{ cursor: 'pointer', fontSize: 15, color: 'rgba(255,255,255,0.45)' }}
+                />
+              </Tooltip>
+              {isMaster && (
+                <Button size="small" icon={<ReloadOutlined />} onClick={handleRefresh} loading={refreshing}>
+                  更新
+                </Button>
+              )}
+            </div>
           </div>
         }
       >

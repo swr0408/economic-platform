@@ -92,7 +92,10 @@ def _build_data() -> List[Dict[str, Any]]:
     # --- プレスリリース Excel → DB蓄積 ---
     try:
         from services.china.nbs_press_release_utils import fetch_and_upsert_from_press_release
-        fetch_and_upsert_from_press_release("ppi", _extract_ppi_from_excel)
+        fetch_and_upsert_from_press_release(
+            "ppi", _extract_ppi_from_excel,
+            primary_indicator=DB_INDICATORS["yoy"],
+        )
     except Exception as e:
         logger.warning(f"[PPI] Press release fetch/upsert failed: {e}")
 

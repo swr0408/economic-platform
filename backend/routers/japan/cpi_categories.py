@@ -15,7 +15,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Price"])
 
 
 @router.get("/cpi-categories")
-async def get_cpi_categories(
+def get_cpi_categories(
     force_refresh: bool = Query(False, description="Force refresh data")
 ):
     """
@@ -45,7 +45,7 @@ async def get_cpi_categories(
 
 
 @router.post("/cpi-categories/refresh")
-async def refresh_cpi_categories():
+def refresh_cpi_categories():
     """
     Force refresh Japan CPI 10 major categories data
 
@@ -56,7 +56,7 @@ async def refresh_cpi_categories():
 
 
 @router.get("/cpi-categories/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for CPI categories data
     """
@@ -64,7 +64,7 @@ async def get_cache_status():
 
 
 @router.delete("/cpi-categories/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate CPI categories data cache
     """

@@ -21,7 +21,7 @@ router = APIRouter(prefix="/api/japan", tags=["japan-economy"])
 
 
 @router.get("/quarterly-gdp")
-async def get_quarterly_gdp_qoq(
+def get_quarterly_gdp_qoq(
     force_refresh: bool = Query(False, description="キャッシュを無視して強制的に最新データを取得")
 ) -> Dict[str, Any]:
     """
@@ -48,7 +48,7 @@ async def get_quarterly_gdp_qoq(
 
 
 @router.get("/quarterly-gdp/annualized")
-async def get_quarterly_gdp_qoq_annualized(
+def get_quarterly_gdp_qoq_annualized(
     force_refresh: bool = Query(False, description="キャッシュを無視して強制的に最新データを取得")
 ) -> Dict[str, Any]:
     """
@@ -75,7 +75,7 @@ async def get_quarterly_gdp_qoq_annualized(
 
 
 @router.get("/quarterly-gdp/yoy")
-async def get_quarterly_gdp_yoy(
+def get_quarterly_gdp_yoy(
     force_refresh: bool = Query(False, description="キャッシュを無視して強制的に最新データを取得")
 ) -> Dict[str, Any]:
     """
@@ -102,7 +102,7 @@ async def get_quarterly_gdp_yoy(
 
 
 @router.get("/quarterly-gdp/cache-status")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """Get GDP cache status"""
     try:
         service = get_quarterly_gdp_service()
@@ -113,7 +113,7 @@ async def get_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/quarterly-gdp/cache")
-async def invalidate_cache() -> Dict[str, Any]:
+def invalidate_cache() -> Dict[str, Any]:
     """Invalidate GDP cache"""
     try:
         service = get_quarterly_gdp_service()

@@ -1497,7 +1497,7 @@
     },
     {
       "date": "2026-01-01",
-      "import_yoy": 0.28,
+      "import_yoy": 0.21,
       "export_yoy": 2.51
     },
     {
@@ -1507,15 +1507,20 @@
     },
     {
       "date": "2026-03-01",
-      "import_yoy": 2.12,
-      "export_yoy": 5.57
+      "import_yoy": 2.26,
+      "export_yoy": 5.44
+    },
+    {
+      "date": "2026-04-01",
+      "import_yoy": 4.16,
+      "export_yoy": 8.85
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "import_yoy": 2.12,
-    "export_yoy": 5.57
+    "date": "2026-04-01",
+    "import_yoy": 4.16,
+    "export_yoy": 8.85
   },
   "next_release": null,
-  "last_updated": "2026-04-18T00:39:44.936151+09:00"
+  "last_updated": "2026-06-07T01:01:04.746614+09:00"
 }

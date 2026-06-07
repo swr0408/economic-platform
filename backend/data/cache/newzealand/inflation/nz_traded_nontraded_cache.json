@@ -514,11 +514,16 @@
       "date": "2025-12-01",
       "tradable_yoy": 2.6,
       "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2026-03-01",
+      "tradable_yoy": 2.5,
+      "non_tradable_yoy": 3.5
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "tradable_yoy": 2.6,
+    "date": "2026-03-01",
+    "tradable_yoy": 2.5,
     "non_tradable_yoy": 3.5
   },
   "metadata": {
@@ -530,15 +535,6 @@
     "series_tradable": "CPIQ.SE9NS6000",
     "series_non_tradable": "CPIQ.SE9NS6500"
   },
-  "next_release": {
-    "date": "2026-04-20",
-    "datetime_utc": "2026-04-20T22:45:00+00:00",
-    "datetime_jst": "2026-04-21T07:45:00+09:00",
-    "time_jst": "07:45",
-    "datetime_auckland": "2026-04-21T10:45:00+12:00",
-    "time_auckland": "10:45",
-    "label": "Consumer Price Index (Q1)",
-    "estimate": null
-  },
-  "last_updated": "2026-04-18T04:10:04.048077+09:00"
+  "next_release": null,
+  "last_updated": "2026-06-07T11:31:41.065675+09:00"
 }

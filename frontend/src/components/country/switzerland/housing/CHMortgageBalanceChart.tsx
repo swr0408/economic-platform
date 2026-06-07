@@ -196,6 +196,7 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
         showPeriodSelector={false}
         dataSource="Swiss National Bank"
         sourceUrl="https://data.snb.ch/en/warehouse/BSTA/cube/BSTA@SNB.MONA_B.BIL.PAS.FFV.STP?utm_source=chatgpt.com&fromDate=2015-11&toDate=2025-12&dimSel=INLANDAUSLAND(I),WAEHRUNG(CHF)"
+        handbookId="ch-mortgage-balance"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

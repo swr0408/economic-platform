@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/eu-government-debt-to-gdp-ratio")
-async def get_eu_government_debt_to_gdp_ratio(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_eu_government_debt_to_gdp_ratio(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     EU政府債務残高対GDP比データを取得
 
@@ -24,7 +24,7 @@ async def get_eu_government_debt_to_gdp_ratio(force_refresh: bool = Query(False,
 
 
 @router.post("/eu-government-debt-to-gdp-ratio/refresh")
-async def refresh_eu_government_debt_to_gdp_ratio():
+def refresh_eu_government_debt_to_gdp_ratio():
     """
     EU政府債務残高対GDP比データを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_eu_government_debt_to_gdp_ratio():
 
 
 @router.get("/eu-government-debt-to-gdp-ratio/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/eu-government-debt-to-gdp-ratio/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

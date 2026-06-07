@@ -99,6 +99,7 @@ export default function UkQtChart({ data }: UkQtChartProps) {
         showPeriodSelector={false}
         dataSource="Bank of England"
         sourceUrl="https://www.bankofengland.co.uk/boeapps/database/"
+        handbookId="uk-qt"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

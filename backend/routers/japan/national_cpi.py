@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Price"])
 
 
 @router.get("/national-cpi")
-async def get_national_cpi(
+def get_national_cpi(
     force_refresh: bool = Query(False, description="Force refresh data")
 ):
     """
@@ -36,7 +36,7 @@ async def get_national_cpi(
 
 
 @router.post("/national-cpi/refresh")
-async def refresh_national_cpi():
+def refresh_national_cpi():
     """
     Force refresh Japan National CPI data
 
@@ -47,7 +47,7 @@ async def refresh_national_cpi():
 
 
 @router.get("/national-cpi/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for National CPI data
     """
@@ -55,7 +55,7 @@ async def get_cache_status():
 
 
 @router.delete("/national-cpi/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate National CPI data cache
     """

@@ -29,7 +29,7 @@ SCREENSHOT_KEYS = [
 
 
 @router.get("")
-async def get_screenshot_metadata():
+def get_screenshot_metadata():
     """Truflationスクリーンショットのメタデータを取得"""
     screenshots = []
     for item in SCREENSHOT_KEYS:
@@ -44,7 +44,7 @@ async def get_screenshot_metadata():
 
 
 @router.get("/truflation_1y")
-async def get_truflation_1y():
+def get_truflation_1y():
     """Truflation 1Y画像を取得"""
     path = IMAGE_DIR / "truflation_1y.png"
     if path.exists():
@@ -53,7 +53,7 @@ async def get_truflation_1y():
 
 
 @router.get("/truflation_3y")
-async def get_truflation_3y():
+def get_truflation_3y():
     """Truflation 3Y画像を取得"""
     path = IMAGE_DIR / "truflation_3y.png"
     if path.exists():
@@ -62,7 +62,7 @@ async def get_truflation_3y():
 
 
 @router.get("/truflation_max")
-async def get_truflation_max():
+def get_truflation_max():
     """Truflation Max画像を取得"""
     path = IMAGE_DIR / "truflation_max.png"
     if path.exists():

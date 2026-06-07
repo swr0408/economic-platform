@@ -442,10 +442,7 @@ export default function FullPartTimeChart({ data }: FullPartTimeChartProps) {
                             tickFormatter={(v) => `${v.toFixed(1)}%`}
                             domain={['dataMin - 0.5', 'dataMax + 0.5']}
                           />
-                          <Tooltip
-                            labelFormatter={formatDateLabel}
-                            formatter={(value: unknown) => [`${(value as number).toFixed(2)}%`, 'パートタイム比率']}
-                          />
+                          <Tooltip content={<ValueTooltip unit="%" decimals={2} />} />
                           <Legend
                             onClick={(e) => handleLegendClick(e.dataKey as string)}
                             wrapperStyle={{ cursor: 'pointer' }}

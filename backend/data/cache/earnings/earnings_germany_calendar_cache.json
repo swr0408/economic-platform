@@ -6,6 +6,48 @@
   ],
   "items": [
     {
+      "symbol": "SAP",
+      "name": "SAP",
+      "tier": "S",
+      "country_code": "germany",
+      "date": "2026-07-23",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.06,
+      "eps_actual": null,
+      "revenue_estimate": 11514870000.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "ENR",
+      "name": "Siemens Energy",
+      "tier": "A",
+      "country_code": "germany",
+      "date": "2026-08-03",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.85,
+      "eps_actual": null,
+      "revenue_estimate": 734555200.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
+      "symbol": "DTE",
+      "name": "Deutsche Telekom",
+      "tier": "A",
+      "country_code": "germany",
+      "date": "2026-08-04",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.52,
+      "eps_actual": null,
+      "revenue_estimate": 3606630000.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
       "symbol": "SIE",
       "name": "Siemens",
       "tier": "S",
@@ -20,50 +62,8 @@
       "updated_from_date": null
     },
     {
-      "symbol": "SAP",
-      "name": "SAP",
-      "tier": "S",
-      "country_code": "germany",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
       "symbol": "ALV",
       "name": "Allianz",
-      "tier": "A",
-      "country_code": "germany",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "ENR",
-      "name": "Siemens Energy",
-      "tier": "A",
-      "country_code": "germany",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "DTE",
-      "name": "Deutsche Telekom",
       "tier": "A",
       "country_code": "germany",
       "date": null,
@@ -134,7 +134,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-04-18T08:24:57.499843+00:00",
+  "last_updated": "2026-06-06T05:30:04.931637+00:00",
   "cached": false,
   "status": "ok"
 }

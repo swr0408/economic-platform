@@ -506,28 +506,40 @@
     },
     {
       "date": "2025-12-01",
-      "exports": 7.506,
-      "imports": 7.479,
+      "exports": 7.505,
+      "imports": 7.478,
       "balance": 0.027
     },
     {
       "date": "2026-01-01",
-      "exports": 6.099,
-      "imports": 6.726,
-      "balance": -0.627
+      "exports": 6.09,
+      "imports": 6.725,
+      "balance": -0.635
     },
     {
       "date": "2026-02-01",
-      "exports": 6.633,
-      "imports": 6.891,
-      "balance": -0.257
+      "exports": 6.503,
+      "imports": 6.882,
+      "balance": -0.379
+    },
+    {
+      "date": "2026-03-01",
+      "exports": 7.664,
+      "imports": 7.234,
+      "balance": 0.43
+    },
+    {
+      "date": "2026-04-01",
+      "exports": 8.62,
+      "imports": 6.7,
+      "balance": 1.92
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "exports": 6.633,
-    "imports": 6.891,
-    "balance": -0.257
+    "date": "2026-04-01",
+    "exports": 8.62,
+    "imports": 6.7,
+    "balance": 1.92
   },
   "metadata": {
     "source": "Stats NZ",
@@ -538,14 +550,14 @@
     "table": "Table 1.01 - Actual values"
   },
   "next_release": {
-    "date": "2026-04-19",
-    "datetime_utc": "2026-04-19T22:45:00+00:00",
-    "datetime_jst": "2026-04-20T07:45:00+09:00",
+    "date": "2026-06-18",
+    "datetime_utc": "2026-06-18T22:45:00+00:00",
+    "datetime_jst": "2026-06-19T07:45:00+09:00",
     "time_jst": "07:45",
-    "datetime_auckland": "2026-04-20T10:45:00+12:00",
+    "datetime_auckland": "2026-06-19T10:45:00+12:00",
     "time_auckland": "10:45",
-    "label": "Balance of Trade (Mar)",
-    "estimate": 0.27
+    "label": "Balance of Trade MoM (May)",
+    "estimate": null
   },
-  "last_updated": "2026-04-18T04:09:21.309521+09:00"
+  "last_updated": "2026-06-07T11:31:44.022339+09:00"
 }

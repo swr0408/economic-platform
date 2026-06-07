@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("/dairy-trade")
-async def get_dairy_trade(
+def get_dairy_trade(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """GDT乳製品価格指数データを取得"""
@@ -28,13 +28,13 @@ async def get_dairy_trade(
 
 
 @router.get("/dairy-trade/cache")
-async def get_dairy_trade_cache_status() -> Dict[str, Any]:
+def get_dairy_trade_cache_status() -> Dict[str, Any]:
     """GDT乳製品価格指数のキャッシュ状態を取得"""
     return nz_global_dairy_trade_service.get_cache_status()
 
 
 @router.delete("/dairy-trade/cache")
-async def invalidate_dairy_trade_cache() -> Dict[str, Any]:
+def invalidate_dairy_trade_cache() -> Dict[str, Any]:
     """GDT乳製品価格指数のキャッシュを無効化"""
     result = nz_global_dairy_trade_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

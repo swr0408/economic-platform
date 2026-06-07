@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Tertiary Industry"])
 
 
 @router.get("/tertiary-industry-index")
-async def get_tertiary_industry_index_data(
+def get_tertiary_industry_index_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -39,7 +39,7 @@ async def get_tertiary_industry_index_data(
 
 
 @router.get("/tertiary-industry-index/cache-status")
-async def get_tertiary_industry_index_cache_status():
+def get_tertiary_industry_index_cache_status():
     """
     キャッシュステータスを取得
     """
@@ -50,7 +50,7 @@ async def get_tertiary_industry_index_cache_status():
 
 
 @router.post("/tertiary-industry-index/refresh")
-async def refresh_tertiary_industry_index_data():
+def refresh_tertiary_industry_index_data():
     """
     第三次産業活動指数データを強制更新
     """
@@ -67,7 +67,7 @@ async def refresh_tertiary_industry_index_data():
 
 
 @router.delete("/tertiary-industry-index/cache")
-async def invalidate_tertiary_industry_index_cache():
+def invalidate_tertiary_industry_index_cache():
     """
     キャッシュを削除
     """

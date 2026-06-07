@@ -969,20 +969,30 @@
       "date": "2026-02-01",
       "mom": 0.4,
       "forecast": 0.2
+    },
+    {
+      "date": "2026-03-01",
+      "mom": 0.6,
+      "forecast": 0.8
+    },
+    {
+      "date": "2026-04-01",
+      "mom": 0.5,
+      "forecast": 0.1
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "mom": 0.4,
-    "forecast": 0.2
+    "date": "2026-04-01",
+    "mom": 0.5,
+    "forecast": 0.1
   },
   "next_release": {
-    "date": "2026-04-21",
-    "datetime_utc": "2026-04-21T12:30:00+00:00",
-    "datetime_jst": "2026-04-21T21:30:00+09:00",
+    "date": "2026-06-17",
+    "datetime_utc": "2026-06-17T12:30:00+00:00",
+    "datetime_jst": "2026-06-17T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Retail Sales Ex Gas/Autos MoM (Mar)",
-    "estimate": 0.6
+    "label": "Retail Sales Ex Gas/Autos MoM (May)",
+    "estimate": 0.5
   },
-  "last_updated": "2026-04-18T17:04:04.350973+09:00"
+  "last_updated": "2026-06-01T22:47:04.966795+09:00"
 }

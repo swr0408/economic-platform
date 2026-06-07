@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/uk-trade-balance")
-async def get_uk_trade_balance(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_uk_trade_balance(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     UK貿易収支データを取得
 
@@ -24,7 +24,7 @@ async def get_uk_trade_balance(force_refresh: bool = Query(False, description="�
 
 
 @router.post("/uk-trade-balance/refresh")
-async def refresh_uk_trade_balance():
+def refresh_uk_trade_balance():
     """
     UK貿易収支データを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_uk_trade_balance():
 
 
 @router.get("/uk-trade-balance/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_cache_status():
 
 
 @router.delete("/uk-trade-balance/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

@@ -110,13 +110,13 @@ async def refresh_screenshot():
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     """キャッシュの状態を取得"""
     return cn_credit_impulse_screenshot_service.get_cache_status()
 
 
 @router.post("/cache/invalidate")
-async def invalidate_cache():
+def invalidate_cache():
     """キャッシュを無効化"""
     success = cn_credit_impulse_screenshot_service.invalidate_cache()
     return {

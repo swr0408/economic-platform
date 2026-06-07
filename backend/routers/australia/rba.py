@@ -30,7 +30,7 @@ router = APIRouter(
 
 
 @router.get("/rate")
-async def get_rba_rate(
+def get_rba_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -54,7 +54,7 @@ async def get_rba_rate(
 
 
 @router.get("/rate/cache")
-async def get_rba_rate_cache_status() -> Dict[str, Any]:
+def get_rba_rate_cache_status() -> Dict[str, Any]:
     """
     RBA政策金利のキャッシュ状態を取得
     """
@@ -62,7 +62,7 @@ async def get_rba_rate_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/rate/cache")
-async def invalidate_rba_rate_cache() -> Dict[str, bool]:
+def invalidate_rba_rate_cache() -> Dict[str, bool]:
     """
     RBA政策金利のキャッシュを無効化
     """
@@ -73,7 +73,7 @@ async def invalidate_rba_rate_cache() -> Dict[str, bool]:
 # ===== ASX RBA Rate Tracker =====
 
 @router.get("/rate-tracker")
-async def get_asx_rate_tracker(
+def get_asx_rate_tracker(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -86,7 +86,7 @@ async def get_asx_rate_tracker(
 
 
 @router.get("/rate-tracker/cache")
-async def get_asx_rate_tracker_cache_status() -> Dict[str, Any]:
+def get_asx_rate_tracker_cache_status() -> Dict[str, Any]:
     """
     ASX Rate Trackerのキャッシュ状態を取得
     """
@@ -94,7 +94,7 @@ async def get_asx_rate_tracker_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/rate-tracker/cache")
-async def invalidate_asx_rate_tracker_cache() -> Dict[str, bool]:
+def invalidate_asx_rate_tracker_cache() -> Dict[str, bool]:
     """
     ASX Rate Trackerのキャッシュを無効化
     """
@@ -105,7 +105,7 @@ async def invalidate_asx_rate_tracker_cache() -> Dict[str, bool]:
 # ===== RBA SMP Forecast =====
 
 @router.get("/smp-forecast")
-async def get_smp_forecast(
+def get_smp_forecast(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -118,13 +118,13 @@ async def get_smp_forecast(
 
 
 @router.get("/smp-forecast/cache")
-async def get_smp_forecast_cache_status() -> Dict[str, Any]:
+def get_smp_forecast_cache_status() -> Dict[str, Any]:
     """SMP予測のキャッシュ状態を取得"""
     return rba_smp_forecast_service.get_cache_status()
 
 
 @router.delete("/smp-forecast/cache")
-async def invalidate_smp_forecast_cache() -> Dict[str, bool]:
+def invalidate_smp_forecast_cache() -> Dict[str, bool]:
     """SMP予測のキャッシュを無効化"""
     success = rba_smp_forecast_service.invalidate_cache()
     return {"success": success}
@@ -133,7 +133,7 @@ async def invalidate_smp_forecast_cache() -> Dict[str, bool]:
 # ===== Housing Lending Rates (F6) =====
 
 @router.get("/housing-lending-rates")
-async def get_housing_lending_rates(
+def get_housing_lending_rates(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -145,13 +145,13 @@ async def get_housing_lending_rates(
 
 
 @router.get("/housing-lending-rates/cache")
-async def get_housing_lending_rates_cache_status() -> Dict[str, Any]:
+def get_housing_lending_rates_cache_status() -> Dict[str, Any]:
     """住宅ローン金利のキャッシュ状態を取得"""
     return au_housing_lending_rates_service.get_cache_status()
 
 
 @router.delete("/housing-lending-rates/cache")
-async def invalidate_housing_lending_rates_cache() -> Dict[str, bool]:
+def invalidate_housing_lending_rates_cache() -> Dict[str, bool]:
     """住宅ローン金利のキャッシュを無効化"""
     success = au_housing_lending_rates_service.invalidate_cache()
     return {"success": success}

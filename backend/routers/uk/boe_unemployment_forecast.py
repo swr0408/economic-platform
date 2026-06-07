@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/boe-unemployment-forecast")
-async def get_boe_unemployment_forecast() -> Dict:
+def get_boe_unemployment_forecast() -> Dict:
     """
     BOE失業率見通しデータを取得
 
@@ -32,7 +32,7 @@ async def get_boe_unemployment_forecast() -> Dict:
 
 
 @router.post("/api/uk/boe-unemployment-forecast/refresh")
-async def refresh_boe_unemployment_forecast() -> Dict:
+def refresh_boe_unemployment_forecast() -> Dict:
     """
     BOE失業率見通しデータを強制更新
 

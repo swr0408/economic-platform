@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_usd_fundamental_index_data(
+def get_usd_fundamental_index_data(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """USD Fundamental Indexデータを取得"""
@@ -28,13 +28,13 @@ async def get_usd_fundamental_index_data(
 
 
 @router.get("/cache")
-async def get_usd_fundamental_index_cache_status() -> Dict[str, Any]:
+def get_usd_fundamental_index_cache_status() -> Dict[str, Any]:
     """キャッシュ状態を取得"""
     return usd_fundamental_index_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_usd_fundamental_index_cache() -> Dict[str, Any]:
+def invalidate_usd_fundamental_index_cache() -> Dict[str, Any]:
     """キャッシュを無効化"""
     result = usd_fundamental_index_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/boe-dmp-survey")
-async def get_boe_dmp_survey(force_refresh: bool = Query(False, description="強制更新フラグ")):
+def get_boe_dmp_survey(force_refresh: bool = Query(False, description="強制更新フラグ")):
     """
     BOE DMP Survey（意思決定者パネル調査）データを取得
 
@@ -24,7 +24,7 @@ async def get_boe_dmp_survey(force_refresh: bool = Query(False, description="強
 
 
 @router.post("/boe-dmp-survey/refresh")
-async def refresh_boe_dmp_survey():
+def refresh_boe_dmp_survey():
     """
     BOE DMP Surveyデータを強制更新
 
@@ -35,7 +35,7 @@ async def refresh_boe_dmp_survey():
 
 
 @router.delete("/boe-dmp-survey/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

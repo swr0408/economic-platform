@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_container_freight_index(
+def get_container_freight_index(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """中国・上海コンテナ運賃指数（SCFI/CCFI）データを取得"""
@@ -28,13 +28,13 @@ async def get_container_freight_index(
 
 
 @router.get("/cache")
-async def get_container_freight_index_cache_status() -> Dict[str, Any]:
+def get_container_freight_index_cache_status() -> Dict[str, Any]:
     """コンテナ運賃指数のキャッシュ状態を取得"""
     return china_shanghai_container_freight_index_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_container_freight_index_cache() -> Dict[str, Any]:
+def invalidate_container_freight_index_cache() -> Dict[str, Any]:
     """コンテナ運賃指数のキャッシュを無効化"""
     result = china_shanghai_container_freight_index_service.invalidate_cache()
     return {"success": result, "message": "Container Freight Index cache invalidated"}

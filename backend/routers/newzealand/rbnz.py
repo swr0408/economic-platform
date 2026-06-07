@@ -31,7 +31,7 @@ router = APIRouter(
 
 
 @router.get("/rate")
-async def get_rbnz_rate(
+def get_rbnz_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -55,13 +55,13 @@ async def get_rbnz_rate(
 
 
 @router.get("/rate/cache")
-async def get_rbnz_rate_cache_status() -> Dict[str, Any]:
+def get_rbnz_rate_cache_status() -> Dict[str, Any]:
     """RBNZ政策金利のキャッシュ状態を取得"""
     return rbnz_policy_rate_service.get_cache_status()
 
 
 @router.delete("/rate/cache")
-async def invalidate_rbnz_rate_cache() -> Dict[str, bool]:
+def invalidate_rbnz_rate_cache() -> Dict[str, bool]:
     """RBNZ政策金利のキャッシュを無効化"""
     success = rbnz_policy_rate_service.invalidate_cache()
     return {"success": success}
@@ -70,7 +70,7 @@ async def invalidate_rbnz_rate_cache() -> Dict[str, bool]:
 # ===== MPS経済見通し =====
 
 @router.get("/mps-forecast")
-async def get_mps_forecast(
+def get_mps_forecast(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -91,13 +91,13 @@ async def get_mps_forecast(
 
 
 @router.get("/mps-forecast/cache")
-async def get_mps_forecast_cache_status() -> Dict[str, Any]:
+def get_mps_forecast_cache_status() -> Dict[str, Any]:
     """MPS経済見通しのキャッシュ状態を取得"""
     return rbnz_mps_forecast_service.get_cache_status()
 
 
 @router.delete("/mps-forecast/cache")
-async def invalidate_mps_forecast_cache() -> Dict[str, bool]:
+def invalidate_mps_forecast_cache() -> Dict[str, bool]:
     """MPS経済見通しのキャッシュを無効化"""
     success = rbnz_mps_forecast_service.invalidate_cache()
     return {"success": success}
@@ -106,7 +106,7 @@ async def invalidate_mps_forecast_cache() -> Dict[str, bool]:
 # ===== 中央銀行バランスシート =====
 
 @router.get("/balance-sheet")
-async def get_balance_sheet(
+def get_balance_sheet(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -132,13 +132,13 @@ async def get_balance_sheet(
 
 
 @router.get("/balance-sheet/cache")
-async def get_balance_sheet_cache_status() -> Dict[str, Any]:
+def get_balance_sheet_cache_status() -> Dict[str, Any]:
     """中央銀行バランスシートのキャッシュ状態を取得"""
     return nz_central_bank_balance_sheet_service.get_cache_status()
 
 
 @router.delete("/balance-sheet/cache")
-async def invalidate_balance_sheet_cache() -> Dict[str, bool]:
+def invalidate_balance_sheet_cache() -> Dict[str, bool]:
     """中央銀行バランスシートのキャッシュを無効化"""
     success = nz_central_bank_balance_sheet_service.invalidate_cache()
     return {"success": success}
@@ -147,7 +147,7 @@ async def invalidate_balance_sheet_cache() -> Dict[str, bool]:
 # ===== 銀行バランスシート（S10） =====
 
 @router.get("/bank-balance-sheet")
-async def get_bank_balance_sheet(
+def get_bank_balance_sheet(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -173,13 +173,13 @@ async def get_bank_balance_sheet(
 
 
 @router.get("/bank-balance-sheet/cache")
-async def get_bank_balance_sheet_cache_status() -> Dict[str, Any]:
+def get_bank_balance_sheet_cache_status() -> Dict[str, Any]:
     """銀行バランスシートのキャッシュ状態を取得"""
     return nz_bank_balance_sheet_service.get_cache_status()
 
 
 @router.delete("/bank-balance-sheet/cache")
-async def invalidate_bank_balance_sheet_cache() -> Dict[str, bool]:
+def invalidate_bank_balance_sheet_cache() -> Dict[str, bool]:
     """銀行バランスシートのキャッシュを無効化"""
     success = nz_bank_balance_sheet_service.invalidate_cache()
     return {"success": success}
@@ -188,7 +188,7 @@ async def invalidate_bank_balance_sheet_cache() -> Dict[str, bool]:
 # ===== インフレ期待 =====
 
 @router.get("/inflation-expectations")
-async def get_inflation_expectations(
+def get_inflation_expectations(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """NZインフレ期待（Survey of Expectations）データを取得"""
@@ -196,13 +196,13 @@ async def get_inflation_expectations(
 
 
 @router.get("/inflation-expectations/cache")
-async def get_inflation_expectations_cache_status() -> Dict[str, Any]:
+def get_inflation_expectations_cache_status() -> Dict[str, Any]:
     """インフレ期待のキャッシュ状態を取得"""
     return nz_inflation_expectations_service.get_cache_status()
 
 
 @router.delete("/inflation-expectations/cache")
-async def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
+def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
     """インフレ期待のキャッシュを無効化"""
     success = nz_inflation_expectations_service.invalidate_cache()
     return {"success": success}

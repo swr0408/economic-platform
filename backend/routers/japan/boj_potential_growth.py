@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan BOJ Potential Growth"])
 
 
 @router.get("/boj-potential-growth")
-async def get_boj_potential_growth_data(
+def get_boj_potential_growth_data(
     force_refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ) -> Dict[str, Any]:
     """
@@ -30,7 +30,7 @@ async def get_boj_potential_growth_data(
 
 
 @router.get("/boj-potential-growth/cache-status")
-async def get_boj_potential_growth_cache_status() -> Dict[str, Any]:
+def get_boj_potential_growth_cache_status() -> Dict[str, Any]:
     """
     日銀潜在成長率のキャッシュ状態を取得
 

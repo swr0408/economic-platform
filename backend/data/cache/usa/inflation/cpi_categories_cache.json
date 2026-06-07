@@ -2415,23 +2415,31 @@
       "core_goods": 1.18,
       "core_services": 3.05,
       "shelter": 3.02
+    },
+    {
+      "date": "2026-04-01",
+      "food": 3.18,
+      "energy": 17.87,
+      "core_goods": 1.13,
+      "core_services": 3.27,
+      "shelter": 3.3
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "food": 2.68,
-    "energy": 12.53,
-    "core_goods": 1.18,
-    "core_services": 3.05,
-    "shelter": 3.02
+    "date": "2026-04-01",
+    "food": 3.18,
+    "energy": 17.87,
+    "core_goods": 1.13,
+    "core_services": 3.27,
+    "shelter": 3.3
   },
   "next_release": {
-    "date": "2026-05-12",
-    "datetime_utc": "2026-05-12T12:30:00+00:00",
-    "datetime_jst": "2026-05-12T21:30:00+09:00",
+    "date": "2026-06-10",
+    "datetime_utc": "2026-06-10T12:30:00+00:00",
+    "datetime_jst": "2026-06-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Inflation Rate YoY (Apr)",
+    "label": "CPI MoM (May)",
     "estimate": null
   },
-  "last_updated": "2026-04-18T00:39:45.654195+09:00"
+  "last_updated": "2026-06-04T23:45:33.619944+09:00"
 }

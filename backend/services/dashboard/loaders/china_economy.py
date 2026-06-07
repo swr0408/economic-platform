@@ -17,6 +17,12 @@ _BEIJING_PM25_CSV = (
     / "data" / "manual_update" / "daily" / "beijing_pm25" / "beijing-air-quality.csv"
 )
 
+# 電気機器在庫の手動更新CSVディレクトリ（複数ファイル）
+_ELECTRONICS_STOCK_CSV_DIR = (
+    Path(__file__).parent.parent.parent.parent
+    / "data" / "manual_update" / "monthly" / "電気機器在庫"
+)
+
 
 JST = ZoneInfo("Asia/Tokyo")
 CST = ZoneInfo("Asia/Shanghai")
@@ -68,6 +74,19 @@ class ChinaEconomyLoader(BaseDashboardLoader):
         except Exception:
             return False
 
+    def _is_electronics_stock_csv_newer_than(self, last_updated_dt: datetime) -> bool:
+        """電気機器在庫の手動更新CSV（いずれか）がキャッシュより新しければ True"""
+        try:
+            if not _ELECTRONICS_STOCK_CSV_DIR.exists():
+                return False
+            for csv_path in _ELECTRONICS_STOCK_CSV_DIR.glob("*.csv"):
+                csv_mtime = datetime.fromtimestamp(os.path.getmtime(csv_path), tz=JST)
+                if csv_mtime > last_updated_dt:
+                    return True
+            return False
+        except Exception:
+            return False
+
     def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
         if super()._is_cache_stale(last_updated):
             return True
@@ -79,7 +98,10 @@ class ChinaEconomyLoader(BaseDashboardLoader):
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
         except Exception:
             return True
-        return self._is_beijing_pm25_csv_newer_than(last_updated_dt)
+        return (
+            self._is_beijing_pm25_csv_newer_than(last_updated_dt)
+            or self._is_electronics_stock_csv_newer_than(last_updated_dt)
+        )
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
@@ -97,6 +119,9 @@ class ChinaEconomyLoader(BaseDashboardLoader):
 
             if self._is_beijing_pm25_csv_newer_than(last_updated_dt):
                 stale.add("cn_beijing_pm25")
+
+            if self._is_electronics_stock_csv_newer_than(last_updated_dt):
+                stale.add("cn_electronics_stock")
 
             now = datetime.now(JST)
             release_datetimes = self.get_release_datetimes()

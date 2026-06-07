@@ -69,6 +69,8 @@ _DB_INDICATOR_TO_SERVICE_MAP: Dict[str, Tuple[str, str]] = {
     "cn_cpi_core_mom": ("services.china.cn_cpi_service:cn_cpi_service", "inflation"),
     "cn_ppi_yoy": ("services.china.cn_ppi_service:cn_ppi_service", "inflation"),
     "cn_ppi_mom": ("services.china.cn_ppi_service:cn_ppi_service", "inflation"),
+    "cn_export_prices_index": ("services.china.cn_export_prices_service:cn_export_prices_service", "inflation"),
+    "cn_export_prices_yoy": ("services.china.cn_export_prices_service:cn_export_prices_service", "inflation"),
     # --- 雇用（employment）---
     "cn_unemployment_total": ("services.china.cn_unemployment_rate_service:cn_unemployment_rate_service", "employment"),
     "cn_unemployment_youth": ("services.china.cn_unemployment_rate_service:cn_unemployment_rate_service", "employment"),

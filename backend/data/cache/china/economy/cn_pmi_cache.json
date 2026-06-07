@@ -1164,13 +1164,31 @@
         "manufacturing": 49.0,
         "non_manufacturing": 49.5,
         "composite": 49.5
+      },
+      {
+        "date": "2026-03-01",
+        "manufacturing": 50.4,
+        "non_manufacturing": 50.1,
+        "composite": null
+      },
+      {
+        "date": "2026-04-01",
+        "manufacturing": 50.3,
+        "non_manufacturing": 49.4,
+        "composite": null
+      },
+      {
+        "date": "2026-05-01",
+        "manufacturing": 50.0,
+        "non_manufacturing": 50.1,
+        "composite": null
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "manufacturing": 49.0,
-      "non_manufacturing": 49.5,
-      "composite": 49.5
+      "date": "2026-05-01",
+      "manufacturing": 50.0,
+      "non_manufacturing": 50.1,
+      "composite": null
     }
   },
   "manufacturing_sub": {
@@ -3308,18 +3326,51 @@
         "raw_material_price": 54.8,
         "producer_prices": 50.6,
         "supplier_delivery": 49.1
+      },
+      {
+        "date": "2026-03-01",
+        "production": 51.4,
+        "new_orders": 51.6,
+        "new_export_orders": 49.1,
+        "in_hand_orders": 47.1,
+        "employment": 48.6,
+        "raw_material_price": null,
+        "producer_prices": 55.4,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2026-04-01",
+        "production": 51.5,
+        "new_orders": 50.6,
+        "new_export_orders": 50.3,
+        "in_hand_orders": 46.2,
+        "employment": 48.8,
+        "raw_material_price": null,
+        "producer_prices": 55.1,
+        "supplier_delivery": 49.5
+      },
+      {
+        "date": "2026-05-01",
+        "production": 51.2,
+        "new_orders": 49.9,
+        "new_export_orders": 48.6,
+        "in_hand_orders": 46.8,
+        "employment": 48.6,
+        "raw_material_price": null,
+        "producer_prices": 51.9,
+        "supplier_delivery": 49.2
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "production": 49.6,
-      "new_orders": 48.6,
-      "new_export_orders": 45.0,
-      "in_hand_orders": 44.0,
-      "employment": 48.0,
-      "raw_material_price": 54.8,
-      "producer_prices": 50.6,
-      "supplier_delivery": 49.1
+      "date": "2026-05-01",
+      "production": 51.2,
+      "new_orders": 49.9,
+      "new_export_orders": 48.6,
+      "in_hand_orders": 46.8,
+      "employment": 48.6,
+      "raw_material_price": null,
+      "producer_prices": 51.9,
+      "supplier_delivery": 49.2
     }
   },
   "non_manufacturing_sub": {
@@ -5651,35 +5702,71 @@
         "input_price": 50.9,
         "supplier_delivery": 50.5,
         "employment": 46.0
+      },
+      {
+        "date": "2026-03-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 45.0,
+        "export_new_orders": 48.8,
+        "in_hand_orders": 43.2,
+        "sale_price": 49.9,
+        "input_price": 52.3,
+        "supplier_delivery": 51.5,
+        "employment": 45.2
+      },
+      {
+        "date": "2026-04-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 44.3,
+        "export_new_orders": 47.3,
+        "in_hand_orders": 42.4,
+        "sale_price": 48.1,
+        "input_price": 51.7,
+        "supplier_delivery": 50.9,
+        "employment": 45.5
+      },
+      {
+        "date": "2026-05-01",
+        "services": null,
+        "construction": null,
+        "new_orders": 45.0,
+        "export_new_orders": 48.1,
+        "in_hand_orders": 43.8,
+        "sale_price": 48.8,
+        "input_price": 52.2,
+        "supplier_delivery": 51.2,
+        "employment": 45.6
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "services": 49.7,
-      "construction": 48.2,
-      "new_orders": 45.2,
-      "export_new_orders": 44.7,
-      "in_hand_orders": 42.3,
+      "date": "2026-05-01",
+      "services": null,
+      "construction": null,
+      "new_orders": 45.0,
+      "export_new_orders": 48.1,
+      "in_hand_orders": 43.8,
       "sale_price": 48.8,
-      "input_price": 50.9,
-      "supplier_delivery": 50.5,
-      "employment": 46.0
+      "input_price": 52.2,
+      "supplier_delivery": 51.2,
+      "employment": 45.6
     }
   },
   "metadata": {
     "indicator": "NBS Purchasing Managers Index",
     "source": "National Bureau of Statistics (NBS)",
-    "headline_records": 194,
-    "mfg_sub_records": 194,
-    "nmf_sub_records": 194,
-    "last_fetched": "2026-04-18T02:14:45.774647+09:00"
+    "headline_records": 197,
+    "mfg_sub_records": 197,
+    "nmf_sub_records": 197,
+    "last_fetched": "2026-06-07T22:13:49.241635+09:00"
   },
   "next_release": {
-    "date": "2026-04-30",
-    "datetime_utc": "2026-04-30T01:30:00+00:00",
-    "datetime_jst": "2026-04-30T10:30:00+09:00",
+    "date": "2026-06-30",
+    "datetime_utc": "2026-06-30T01:30:00+00:00",
+    "datetime_jst": "2026-06-30T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "NBS General PMI (Apr)",
-    "estimate": 50.7
+    "label": "NBS General PMI (Jun)",
+    "estimate": 51.1
   }
 }

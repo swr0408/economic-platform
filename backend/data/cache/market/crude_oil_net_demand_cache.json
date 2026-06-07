@@ -16631,16 +16631,70 @@
       "ma4": 6955.5,
       "yoy": 26.64,
       "ma4_yoy": 16.67
+    },
+    {
+      "date": "2026-04-17",
+      "products_supplied": 19698.0,
+      "field_production": 13585.0,
+      "net_demand": 6113.0,
+      "ma4": 6897.0,
+      "yoy": -17.56,
+      "ma4_yoy": 9.26
+    },
+    {
+      "date": "2026-04-24",
+      "products_supplied": 21131.0,
+      "field_production": 13586.0,
+      "net_demand": 7545.0,
+      "ma4": 6967.2,
+      "yoy": 32.62,
+      "ma4_yoy": 14.66
+    },
+    {
+      "date": "2026-05-01",
+      "products_supplied": 19484.0,
+      "field_production": 13573.0,
+      "net_demand": 5911.0,
+      "ma4": 6684.5,
+      "yoy": -9.13,
+      "ma4_yoy": 8.14
+    },
+    {
+      "date": "2026-05-08",
+      "products_supplied": 19891.0,
+      "field_production": 13710.0,
+      "net_demand": 6181.0,
+      "ma4": 6437.5,
+      "yoy": 2.1,
+      "ma4_yoy": 2.01
+    },
+    {
+      "date": "2026-05-15",
+      "products_supplied": 20449.0,
+      "field_production": 13702.0,
+      "net_demand": 6747.0,
+      "ma4": 6596.0,
+      "yoy": 1.63,
+      "ma4_yoy": 6.8
+    },
+    {
+      "date": "2026-05-22",
+      "products_supplied": 20943.0,
+      "field_production": 13715.0,
+      "net_demand": 7228.0,
+      "ma4": 6516.8,
+      "yoy": 5.66,
+      "ma4_yoy": 0.06
     }
   ],
   "latest": {
-    "date": "2026-04-10",
-    "products_supplied": 20765.0,
-    "field_production": 13596.0,
-    "net_demand": 7169.0,
-    "ma4": 6955.5,
-    "yoy": 26.64,
-    "ma4_yoy": 16.67
+    "date": "2026-05-22",
+    "products_supplied": 20943.0,
+    "field_production": 13715.0,
+    "net_demand": 7228.0,
+    "ma4": 6516.8,
+    "yoy": 5.66,
+    "ma4_yoy": 0.06
   },
   "metadata": {
     "source": "EIA",
@@ -16654,11 +16708,11 @@
       "yoy": "Net Demand Raw Year-over-Year %",
       "ma4_yoy": "4-Week MA of Raw YoY %"
     },
-    "data_count": 1848,
+    "data_count": 1854,
     "start_date": "1990-11-09",
-    "end_date": "2026-04-10"
+    "end_date": "2026-05-22"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T16:45:22.594477+09:00"
+  "last_updated": "2026-06-04T00:10:58.042634+09:00"
 }

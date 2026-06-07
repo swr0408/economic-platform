@@ -147,6 +147,7 @@ const BOJLendingChart: React.FC = () => {
         showPeriodSelector={false}
         dataSource="日本銀行"
         sourceUrl="https://www.stat-search.boj.or.jp/"
+        handbookId="boj-lending"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

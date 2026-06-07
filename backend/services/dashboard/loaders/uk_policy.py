@@ -225,7 +225,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         """BOE OISカーブデータを取得"""
         try:
             force_refresh = self._should_force_refresh("boe_ois_curve")
-            response = service.get_chart_data()
+            response = service.get_chart_data(force_refresh=force_refresh)
             return {
                 "current": response.get("current"),
                 "previous": response.get("previous"),

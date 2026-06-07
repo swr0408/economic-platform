@@ -40,7 +40,7 @@ router = APIRouter(
 
 
 @router.get("/rate")
-async def get_boc_rate(
+def get_boc_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -64,7 +64,7 @@ async def get_boc_rate(
 
 
 @router.get("/rate/cache")
-async def get_boc_rate_cache_status() -> Dict[str, Any]:
+def get_boc_rate_cache_status() -> Dict[str, Any]:
     """
     BOC政策金利のキャッシュ状態を取得
     """
@@ -72,7 +72,7 @@ async def get_boc_rate_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/rate/cache")
-async def invalidate_boc_rate_cache() -> Dict[str, bool]:
+def invalidate_boc_rate_cache() -> Dict[str, bool]:
     """
     BOC政策金利のキャッシュを無効化
     """
@@ -83,7 +83,7 @@ async def invalidate_boc_rate_cache() -> Dict[str, bool]:
 # ===== BOC Monetary Policy Report (MPR) =====
 
 @router.get("/mpr")
-async def get_boc_mpr(
+def get_boc_mpr(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -109,7 +109,7 @@ async def get_boc_mpr(
 
 
 @router.get("/mpr/cache")
-async def get_boc_mpr_cache_status() -> Dict[str, Any]:
+def get_boc_mpr_cache_status() -> Dict[str, Any]:
     """
     BOC MPRのキャッシュ状態を取得
     """
@@ -117,7 +117,7 @@ async def get_boc_mpr_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/mpr/cache")
-async def invalidate_boc_mpr_cache() -> Dict[str, bool]:
+def invalidate_boc_mpr_cache() -> Dict[str, bool]:
     """
     BOC MPRのキャッシュを無効化
     """
@@ -128,7 +128,7 @@ async def invalidate_boc_mpr_cache() -> Dict[str, bool]:
 # ===== BOC Balance Sheet =====
 
 @router.get("/balance-sheet")
-async def get_boc_balance_sheet(
+def get_boc_balance_sheet(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -151,7 +151,7 @@ async def get_boc_balance_sheet(
 
 
 @router.get("/balance-sheet/cache")
-async def get_boc_balance_sheet_cache_status() -> Dict[str, Any]:
+def get_boc_balance_sheet_cache_status() -> Dict[str, Any]:
     """
     BOCバランスシートのキャッシュ状態を取得
     """
@@ -159,7 +159,7 @@ async def get_boc_balance_sheet_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/balance-sheet/cache")
-async def invalidate_boc_balance_sheet_cache() -> Dict[str, bool]:
+def invalidate_boc_balance_sheet_cache() -> Dict[str, bool]:
     """
     BOCバランスシートのキャッシュを無効化
     """
@@ -170,7 +170,7 @@ async def invalidate_boc_balance_sheet_cache() -> Dict[str, bool]:
 # ===== Canada Banks Balance Sheet (Chartered Banks) =====
 
 @router.get("/banks-balance-sheet")
-async def get_canada_banks_balance_sheet(
+def get_canada_banks_balance_sheet(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -195,7 +195,7 @@ async def get_canada_banks_balance_sheet(
 
 
 @router.get("/banks-balance-sheet/cache")
-async def get_canada_banks_balance_sheet_cache_status() -> Dict[str, Any]:
+def get_canada_banks_balance_sheet_cache_status() -> Dict[str, Any]:
     """
     カナダ銀行バランスシートのキャッシュ状態を取得
     """
@@ -203,7 +203,7 @@ async def get_canada_banks_balance_sheet_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/banks-balance-sheet/cache")
-async def invalidate_canada_banks_balance_sheet_cache() -> Dict[str, bool]:
+def invalidate_canada_banks_balance_sheet_cache() -> Dict[str, bool]:
     """
     カナダ銀行バランスシートのキャッシュを無効化
     """
@@ -214,7 +214,7 @@ async def invalidate_canada_banks_balance_sheet_cache() -> Dict[str, bool]:
 # ===== Inflation Expectations (Consumer Survey) =====
 
 @router.get("/inflation-expectations")
-async def get_inflation_expectations(
+def get_inflation_expectations(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -242,7 +242,7 @@ async def get_inflation_expectations(
 
 
 @router.get("/inflation-expectations/cache")
-async def get_inflation_expectations_cache_status() -> Dict[str, Any]:
+def get_inflation_expectations_cache_status() -> Dict[str, Any]:
     """
     インフレ期待のキャッシュ状態を取得
     """
@@ -250,7 +250,7 @@ async def get_inflation_expectations_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/inflation-expectations/cache")
-async def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
+def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
     """
     インフレ期待のキャッシュを無効化
     """
@@ -261,7 +261,7 @@ async def invalidate_inflation_expectations_cache() -> Dict[str, bool]:
 # ===== CORRA (Canadian Overnight Repo Rate Average) =====
 
 @router.get("/corra")
-async def get_corra(
+def get_corra(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -286,7 +286,7 @@ async def get_corra(
 
 
 @router.get("/corra/cache")
-async def get_corra_cache_status() -> Dict[str, Any]:
+def get_corra_cache_status() -> Dict[str, Any]:
     """
     CORRAのキャッシュ状態を取得
     """
@@ -294,7 +294,7 @@ async def get_corra_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/corra/cache")
-async def invalidate_corra_cache() -> Dict[str, bool]:
+def invalidate_corra_cache() -> Dict[str, bool]:
     """
     CORRAのキャッシュを無効化
     """
@@ -305,7 +305,7 @@ async def invalidate_corra_cache() -> Dict[str, bool]:
 # ===== Settlement Balances (Lynx) =====
 
 @router.get("/settlement-balances")
-async def get_settlement_balances(
+def get_settlement_balances(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -332,7 +332,7 @@ async def get_settlement_balances(
 
 
 @router.get("/settlement-balances/cache")
-async def get_settlement_balances_cache_status() -> Dict[str, Any]:
+def get_settlement_balances_cache_status() -> Dict[str, Any]:
     """
     決済残高のキャッシュ状態を取得
     """
@@ -340,7 +340,7 @@ async def get_settlement_balances_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/settlement-balances/cache")
-async def invalidate_settlement_balances_cache() -> Dict[str, bool]:
+def invalidate_settlement_balances_cache() -> Dict[str, bool]:
     """
     決済残高のキャッシュを無効化
     """
@@ -351,7 +351,7 @@ async def invalidate_settlement_balances_cache() -> Dict[str, bool]:
 # ===== Government Deposits (TGA相当) =====
 
 @router.get("/government-deposits")
-async def get_government_deposits(
+def get_government_deposits(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -381,7 +381,7 @@ async def get_government_deposits(
 
 
 @router.get("/government-deposits/cache")
-async def get_government_deposits_cache_status() -> Dict[str, Any]:
+def get_government_deposits_cache_status() -> Dict[str, Any]:
     """
     政府預金のキャッシュ状態を取得
     """
@@ -389,7 +389,7 @@ async def get_government_deposits_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/government-deposits/cache")
-async def invalidate_government_deposits_cache() -> Dict[str, bool]:
+def invalidate_government_deposits_cache() -> Dict[str, bool]:
     """
     政府預金のキャッシュを無効化
     """
@@ -400,7 +400,7 @@ async def invalidate_government_deposits_cache() -> Dict[str, bool]:
 # ===== Business Outlook Survey (BOS) =====
 
 @router.get("/bos")
-async def get_bos(
+def get_bos(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -429,7 +429,7 @@ async def get_bos(
 
 
 @router.get("/bos/cache")
-async def get_bos_cache_status() -> Dict[str, Any]:
+def get_bos_cache_status() -> Dict[str, Any]:
     """
     BOSのキャッシュ状態を取得
     """
@@ -437,7 +437,7 @@ async def get_bos_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/bos/cache")
-async def invalidate_bos_cache() -> Dict[str, bool]:
+def invalidate_bos_cache() -> Dict[str, bool]:
     """
     BOSのキャッシュを無効化
     """
@@ -448,7 +448,7 @@ async def invalidate_bos_cache() -> Dict[str, bool]:
 # ===== Canadian Survey of Consumer Expectations (CSCE) =====
 
 @router.get("/csce")
-async def get_csce(
+def get_csce(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -477,7 +477,7 @@ async def get_csce(
 
 
 @router.get("/csce/cache")
-async def get_csce_cache_status() -> Dict[str, Any]:
+def get_csce_cache_status() -> Dict[str, Any]:
     """
     CSCEのキャッシュ状態を取得
     """
@@ -485,7 +485,7 @@ async def get_csce_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/csce/cache")
-async def invalidate_csce_cache() -> Dict[str, bool]:
+def invalidate_csce_cache() -> Dict[str, bool]:
     """
     CSCEのキャッシュを無効化
     """
@@ -496,7 +496,7 @@ async def invalidate_csce_cache() -> Dict[str, bool]:
 # ===== Senior Loan Officer Survey (SLOS) =====
 
 @router.get("/slos")
-async def get_slos(
+def get_slos(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -526,7 +526,7 @@ async def get_slos(
 
 
 @router.get("/slos/cache")
-async def get_slos_cache_status() -> Dict[str, Any]:
+def get_slos_cache_status() -> Dict[str, Any]:
     """
     SLOSのキャッシュ状態を取得
     """
@@ -534,7 +534,7 @@ async def get_slos_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/slos/cache")
-async def invalidate_slos_cache() -> Dict[str, bool]:
+def invalidate_slos_cache() -> Dict[str, bool]:
     """
     SLOSのキャッシュを無効化
     """

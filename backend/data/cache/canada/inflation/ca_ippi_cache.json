@@ -1130,46 +1130,58 @@
     },
     {
       "date": "2025-09-01",
-      "yoy": 4.86,
-      "mom": 0.84,
-      "index": 131.7
+      "yoy": 4.78,
+      "mom": 0.77,
+      "index": 131.6
     },
     {
       "date": "2025-10-01",
-      "yoy": 5.11,
+      "yoy": 5.04,
       "mom": 1.44,
-      "index": 133.6
+      "index": 133.5
     },
     {
       "date": "2025-11-01",
-      "yoy": 5.48,
-      "mom": 0.9,
-      "index": 134.8
+      "yoy": 5.32,
+      "mom": 0.82,
+      "index": 134.6
     },
     {
       "date": "2025-12-01",
-      "yoy": 4.29,
+      "yoy": 4.13,
       "mom": -0.74,
-      "index": 133.8
+      "index": 133.6
     },
     {
       "date": "2026-01-01",
       "yoy": 5.6,
-      "mom": 2.84,
+      "mom": 2.99,
       "index": 137.6
     },
     {
       "date": "2026-02-01",
-      "yoy": 5.42,
-      "mom": 0.44,
-      "index": 138.2
+      "yoy": 5.64,
+      "mom": 0.65,
+      "index": 138.5
+    },
+    {
+      "date": "2026-03-01",
+      "yoy": 8.37,
+      "mom": 2.82,
+      "index": 142.4
+    },
+    {
+      "date": "2026-04-01",
+      "yoy": 11.43,
+      "mom": 2.04,
+      "index": 145.3
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "yoy": 5.42,
-    "mom": 0.44,
-    "index": 138.2
+    "date": "2026-04-01",
+    "yoy": 11.43,
+    "mom": 2.04,
+    "index": 145.3
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1181,14 +1193,14 @@
     "base_year": "2020=100"
   },
   "next_release": {
-    "date": "2026-04-22",
-    "datetime_utc": "2026-04-22T12:30:00+00:00",
-    "datetime_jst": "2026-04-22T21:30:00+09:00",
+    "date": "2026-06-18",
+    "datetime_utc": "2026-06-18T12:30:00+00:00",
+    "datetime_jst": "2026-06-18T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-04-22T08:30:00-04:00",
+    "datetime_toronto": "2026-06-18T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Producer Price Index MoM (Mar)",
+    "label": "Producer Price Index YoY (May)",
     "estimate": null
   },
-  "last_updated": "2026-04-18T04:05:56.772521+09:00"
+  "last_updated": "2026-06-07T11:31:31.684473+09:00"
 }

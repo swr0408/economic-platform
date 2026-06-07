@@ -1,8 +1,32 @@
 {
   "data": [
     {
-      "week_ending": "2026-03-28",
+      "week_ending": "2026-05-09",
+      "change": 35750.0
+    },
+    {
+      "week_ending": "2026-05-02",
+      "change": 40750.0
+    },
+    {
+      "week_ending": "2026-04-25",
+      "change": 33000.0
+    },
+    {
+      "week_ending": "2026-04-18",
+      "change": 30250.0
+    },
+    {
+      "week_ending": "2026-04-11",
       "change": 39250.0
+    },
+    {
+      "week_ending": "2026-04-04",
+      "change": 40250.0
+    },
+    {
+      "week_ending": "2026-03-28",
+      "change": 40250.0
     },
     {
       "week_ending": "2026-03-21",
@@ -23,35 +47,11 @@
     {
       "week_ending": "2026-02-21",
       "change": 14750.0
-    },
-    {
-      "week_ending": "2026-02-14",
-      "change": 15500.0
-    },
-    {
-      "week_ending": "2026-02-07",
-      "change": 12000.0
-    },
-    {
-      "week_ending": "2026-01-31",
-      "change": 11500.0
-    },
-    {
-      "week_ending": "2026-01-24",
-      "change": 7250.0
-    },
-    {
-      "week_ending": "2026-01-17",
-      "change": 5500.0
-    },
-    {
-      "week_ending": "2026-01-10",
-      "change": 4250.0
     }
   ],
   "latest": {
-    "week_ending": "2026-03-28",
-    "change": 39250.0
+    "week_ending": "2026-05-09",
+    "change": 35750.0
   },
-  "last_updated": "2026-04-18T00:00:28.924237+09:00"
+  "last_updated": "2026-06-07T01:00:55.418629+09:00"
 }

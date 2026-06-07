@@ -121,6 +121,7 @@ export default function CaSettlementBalancesChart({ data }: CaSettlementBalances
         showPeriodSelector={false}
         dataSource="Bank of Canada"
         sourceUrl="https://www.bankofcanada.ca/rates/indicators/market-operations-indicators/"
+        handbookId="ca-settlement-balances"
       >
         {/* ViewMode切り替え */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>

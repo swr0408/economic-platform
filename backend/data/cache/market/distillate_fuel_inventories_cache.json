@@ -11359,23 +11359,53 @@
       "date": "2026-04-10",
       "value": 111559.0,
       "yoy": 2.13
+    },
+    {
+      "date": "2026-04-17",
+      "value": 108132.0,
+      "yoy": 1.17
+    },
+    {
+      "date": "2026-04-24",
+      "value": 103638.0,
+      "yoy": -3.87
+    },
+    {
+      "date": "2026-05-01",
+      "value": 102344.0,
+      "yoy": -4.09
+    },
+    {
+      "date": "2026-05-08",
+      "value": 102534.0,
+      "yoy": -0.98
+    },
+    {
+      "date": "2026-05-15",
+      "value": 102906.0,
+      "yoy": -1.18
+    },
+    {
+      "date": "2026-05-22",
+      "value": 100799.0,
+      "yoy": -2.52
     }
   ],
   "latest": {
-    "date": "2026-04-10",
-    "value": 111559.0,
-    "yoy": 2.13
+    "date": "2026-05-22",
+    "value": 100799.0,
+    "yoy": -2.52
   },
   "metadata": {
     "source": "EIA",
     "frequency": "weekly",
     "unit": "Thousand Barrels",
     "series": "Weekly U.S. Ending Stocks of Distillate Fuel Oil",
-    "data_count": 2272,
+    "data_count": 2278,
     "start_date": "1982-08-20",
-    "end_date": "2026-04-10"
+    "end_date": "2026-05-22"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T16:45:04.907383+09:00"
+  "last_updated": "2026-06-04T00:11:03.496038+09:00"
 }

@@ -22,8 +22,11 @@ import RetailFoodServicesPriceChart from './inflation/RetailFoodServicesPriceCha
 import NYInflationExpectationsChart from './inflation/NYInflationExpectationsChart'
 import MichiganInflationExpectationsChart from './inflation/MichiganInflationExpectationsChart'
 import TrimmedMeanPCEChart from './inflation/TrimmedMeanPCEChart'
+import SupplyAndDemandDrivenPceInflationChart from './inflation/SupplyAndDemandDrivenPceInflationChart'
+import UsedCarPricesChart from './inflation/UsedCarPricesChart'
 import MedianCPIChart from './inflation/MedianCPIChart'
 import TruflationUsCpiChart from './inflation/TruflationUsCpiChart'
+import NFIBPricePlansChart from './inflation/NFIBPricePlansChart'
 
 export default function USAInflationCharts() {
   const queryResult = useUSAInflationDashboard()
@@ -43,6 +46,11 @@ export default function USAInflationCharts() {
               categoriesData={dashboardData?.cpi_categories ?? null}
             />
           </ChartWrapper>
+          <ChartWrapper id="used-car-prices">
+            <UsedCarPricesChart
+              data={dashboardData?.used_car_prices ?? null}
+            />
+          </ChartWrapper>
           <ChartWrapper id="median-cpi">
             <MedianCPIChart
               data={dashboardData?.median_cpi ?? null}
@@ -54,9 +62,19 @@ export default function USAInflationCharts() {
               corePceData={dashboardData?.core_pce_deflator ?? null}
             />
           </ChartWrapper>
+          <ChartWrapper id="supply-and-demand-driven-pce-inflation">
+            <SupplyAndDemandDrivenPceInflationChart
+              data={dashboardData?.supply_and_demand_driven_pce_inflation ?? null}
+            />
+          </ChartWrapper>
           <ChartWrapper id="trimmed-mean-pce">
             <TrimmedMeanPCEChart
               data={dashboardData?.trimmed_mean_pce ?? null}
+            />
+          </ChartWrapper>
+          <ChartWrapper id="nfib-price-plans">
+            <NFIBPricePlansChart
+              data={dashboardData?.nfib_price_plans ?? null}
             />
           </ChartWrapper>
           <ChartWrapper id="housing-indicators">

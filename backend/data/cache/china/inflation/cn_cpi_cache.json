@@ -1330,18 +1330,40 @@
       "nonfood_mom": 0.2,
       "core_yoy": 0.8,
       "core_mom": 0.3
+    },
+    {
+      "date": "2026-03-01",
+      "yoy": 1.0,
+      "mom": -0.7,
+      "food_yoy": 0.3,
+      "food_mom": -2.7,
+      "nonfood_yoy": 1.2,
+      "nonfood_mom": -0.2,
+      "core_yoy": 1.1,
+      "core_mom": -0.7
+    },
+    {
+      "date": "2026-04-01",
+      "yoy": 1.2,
+      "mom": 0.3,
+      "food_yoy": -1.6,
+      "food_mom": -1.6,
+      "nonfood_yoy": 1.8,
+      "nonfood_mom": 0.7,
+      "core_yoy": 1.2,
+      "core_mom": 0.2
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "yoy": 0.2,
-    "mom": 0.2,
-    "food_yoy": -0.7,
-    "food_mom": 0.0,
-    "nonfood_yoy": 0.4,
-    "nonfood_mom": 0.2,
-    "core_yoy": 0.8,
-    "core_mom": 0.3
+    "date": "2026-04-01",
+    "yoy": 1.2,
+    "mom": 0.3,
+    "food_yoy": -1.6,
+    "food_mom": -1.6,
+    "nonfood_yoy": 1.8,
+    "nonfood_mom": 0.7,
+    "core_yoy": 1.2,
+    "core_mom": 0.2
   },
   "metadata": {
     "indicator": "Consumer Price Index",
@@ -1356,15 +1378,15 @@
       "core_yoy": "コアCPI（食品・エネルギー除く）前年比 (%)",
       "core_mom": "コアCPI（食品・エネルギー除く）前月比 (%)"
     },
-    "total_records": 121,
-    "last_fetched": "2026-04-18T02:23:10.405103+09:00"
+    "total_records": 123,
+    "last_fetched": "2026-06-07T22:12:52.107301+09:00"
   },
   "next_release": {
-    "date": "2026-05-11",
-    "datetime_utc": "2026-05-11T01:30:00+00:00",
-    "datetime_jst": "2026-05-11T10:30:00+09:00",
+    "date": "2026-06-10",
+    "datetime_utc": "2026-06-10T01:30:00+00:00",
+    "datetime_jst": "2026-06-10T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "Inflation Rate MoM (Apr)",
+    "label": "CPI MoM (May)",
     "estimate": null
   }
 }

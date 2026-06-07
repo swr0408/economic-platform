@@ -4116,87 +4116,108 @@
         "intraday_close": 56881.315,
         "intraday_regular_open": null,
         "intraday_regular_close": null
+      },
+      {
+        "date": "2026-05-08",
+        "type": "SQ",
+        "year": 2026,
+        "month": 5,
+        "sq_close": 62713.6484375,
+        "d_minus2_to_minus1": 5.5798,
+        "d_minus1_to_sq": -0.1913,
+        "d_minus2_to_sq": 5.3779,
+        "sq_day_oc": 0.0952,
+        "sq_to_next": -0.4716,
+        "intraday_return": 0.4336,
+        "intraday_regular_return": null,
+        "d_minus2_date": "2026-05-01",
+        "d_minus1_date": "2026-05-07",
+        "next_date": "2026-05-11",
+        "intraday_open": 62354.999,
+        "intraday_close": 62625.366,
+        "intraday_regular_open": null,
+        "intraday_regular_close": null
       }
     ],
     "summary": {
       "all": {
         "label": "全体",
-        "count": 196,
+        "count": 197,
         "d_minus2_to_minus1": {
-          "mean": 0.0954,
-          "median": 0.024,
-          "win_rate": 52.0,
-          "count": 196
+          "mean": 0.1232,
+          "median": 0.0324,
+          "win_rate": 52.3,
+          "count": 197
         },
         "d_minus1_to_sq": {
-          "mean": 0.0742,
-          "median": 0.1768,
-          "win_rate": 55.7,
-          "count": 192
+          "mean": 0.0728,
+          "median": 0.1751,
+          "win_rate": 55.4,
+          "count": 193
         },
         "d_minus2_to_sq": {
-          "mean": 0.1654,
-          "median": 0.201,
-          "win_rate": 55.7,
-          "count": 192
+          "mean": 0.1924,
+          "median": 0.2138,
+          "win_rate": 56.0,
+          "count": 193
         },
         "sq_day_oc": {
-          "mean": -0.0124,
-          "median": -0.0436,
-          "win_rate": 47.9,
-          "count": 192
+          "mean": -0.0118,
+          "median": -0.0384,
+          "win_rate": 48.2,
+          "count": 193
         },
         "sq_to_next": {
-          "mean": 0.0117,
-          "median": 0.0691,
-          "win_rate": 53.1,
-          "count": 192
+          "mean": 0.0092,
+          "median": 0.0634,
+          "win_rate": 52.8,
+          "count": 193
         },
         "intraday_return": {
-          "mean": 0.0558,
-          "median": 0.1214,
-          "win_rate": 54.5,
-          "count": 156
+          "mean": 0.0582,
+          "median": 0.1374,
+          "win_rate": 54.8,
+          "count": 157
         }
       },
       "sq": {
         "label": "SQ",
-        "count": 131,
+        "count": 132,
         "d_minus2_to_minus1": {
-          "mean": 0.125,
-          "median": 0.0071,
-          "win_rate": 51.1,
-          "count": 131
+          "mean": 0.1663,
+          "median": 0.0107,
+          "win_rate": 51.5,
+          "count": 132
         },
         "d_minus1_to_sq": {
-          "mean": 0.0866,
-          "median": 0.1608,
-          "win_rate": 54.3,
-          "count": 127
+          "mean": 0.0844,
+          "median": 0.1307,
+          "win_rate": 53.9,
+          "count": 128
         },
         "d_minus2_to_sq": {
-          "mean": 0.2042,
-          "median": 0.1431,
-          "win_rate": 56.7,
-          "count": 127
+          "mean": 0.2446,
+          "median": 0.1784,
+          "win_rate": 57.0,
+          "count": 128
         },
         "sq_day_oc": {
-          "mean": -0.0575,
-          "median": -0.104,
-          "win_rate": 44.1,
-          "count": 127
+          "mean": -0.0563,
+          "median": -0.0912,
+          "win_rate": 44.5,
+          "count": 128
         },
         "sq_to_next": {
-          "mean": 0.1187,
-          "median": 0.0834,
-          "win_rate": 53.5,
-          "count": 127
+          "mean": 0.1141,
+          "median": 0.0791,
+          "win_rate": 53.1,
+          "count": 128
         },
         "intraday_return": {
-          "mean": 0.0212,
-          "median": 0.0902,
-          "win_rate": 52.9,
-          "count": 104
+          "mean": 0.0251,
+          "median": 0.1037,
+          "win_rate": 53.3,
+          "count": 105
         }
       },
       "msq": {
@@ -4402,42 +4423,42 @@
         },
         "5": {
           "label": "5月",
-          "count": 16,
+          "count": 17,
           "d_minus2_to_minus1": {
-            "mean": -0.2736,
-            "median": -0.1603,
-            "win_rate": 50.0,
-            "count": 16
+            "mean": 0.0708,
+            "median": 0.0156,
+            "win_rate": 52.9,
+            "count": 17
           },
           "d_minus1_to_sq": {
-            "mean": 0.644,
-            "median": 0.4297,
-            "win_rate": 62.5,
-            "count": 16
+            "mean": 0.5949,
+            "median": 0.4074,
+            "win_rate": 58.8,
+            "count": 17
           },
           "d_minus2_to_sq": {
-            "mean": 0.3621,
-            "median": 0.3644,
-            "win_rate": 56.2,
-            "count": 16
+            "mean": 0.6571,
+            "median": 0.6588,
+            "win_rate": 58.8,
+            "count": 17
           },
           "sq_day_oc": {
-            "mean": 0.2042,
-            "median": 0.3932,
-            "win_rate": 62.5,
-            "count": 16
+            "mean": 0.1978,
+            "median": 0.3291,
+            "win_rate": 64.7,
+            "count": 17
           },
           "sq_to_next": {
-            "mean": 0.0536,
-            "median": 0.2797,
-            "win_rate": 56.2,
-            "count": 16
+            "mean": 0.0227,
+            "median": 0.2293,
+            "win_rate": 52.9,
+            "count": 17
           },
           "intraday_return": {
-            "mean": 0.6416,
-            "median": 0.7429,
-            "win_rate": 66.7,
-            "count": 12
+            "mean": 0.6256,
+            "median": 0.7333,
+            "win_rate": 69.2,
+            "count": 13
           }
         },
         "6": {
@@ -6338,5 +6359,5 @@
   },
   "cached": false,
   "source": "yfinance + dukascopy",
-  "last_updated": "2026-04-15T20:32:56.902741+09:00"
+  "last_updated": "2026-06-03T21:02:49.450779+09:00"
 }

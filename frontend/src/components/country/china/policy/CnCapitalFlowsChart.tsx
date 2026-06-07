@@ -188,6 +188,7 @@ export default function CnCapitalFlowsChart({ data }: Props) {
         showDataSource={true}
         dataSource="SAFE (国家外汇管理局)"
         sourceUrl="https://www.safe.gov.cn/safe/2018/0419/8806.html"
+        handbookId="capital-flows"
       >
         {/* 最新値表示（クリックで系列トグル） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

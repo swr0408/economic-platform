@@ -101,8 +101,8 @@ class FMPEarningsProvider:
         period: str = "quarter",
         limit: int = 8,
     ) -> List[Dict[str, Any]]:
-        """GET /stable/cashflow-statement  period=quarter|annual  limit=N."""
-        return self._fetch_statement("cashflow-statement", symbol, period, limit)
+        """GET /stable/cash-flow-statement  period=quarter|annual  limit=N."""
+        return self._fetch_statement("cash-flow-statement", symbol, period, limit)
 
     def fetch_balance_sheet_statement(
         self,
@@ -135,10 +135,33 @@ class FMPEarningsProvider:
         except httpx.HTTPStatusError as exc:
             logger.warning("FMP %s HTTP error for %s: %s", endpoint, symbol, exc)
             return []
-        data = resp.json()
-        if isinstance(data, dict) and "error" in data:
-            logger.warning("FMP %s error for %s: %s", endpoint, symbol, data["error"])
+
+        # FMP returns a JSON string ("Premium Query Parameter: ...") on tier
+        # restriction. resp.json() decodes it to a Python str — handle that.
+        try:
+            data = resp.json()
+        except ValueError:
+            logger.warning("FMP %s non-JSON response for %s: %s",
+                           endpoint, symbol, resp.text[:200])
             return []
+
+        if isinstance(data, str):
+            if "Premium" in data or "subscription" in data.lower():
+                logger.warning(
+                    "FMP %s requires premium subscription for %s: %s",
+                    endpoint, symbol, data[:200],
+                )
+            else:
+                logger.warning("FMP %s string response for %s: %s",
+                               endpoint, symbol, data[:200])
+            return []
+
+        if isinstance(data, dict):
+            msg = data.get("Error Message") or data.get("error") or data.get("message")
+            if msg:
+                logger.warning("FMP %s error for %s: %s", endpoint, symbol, msg)
+                return []
+
         return data if isinstance(data, list) else []
 
     @staticmethod

@@ -129,7 +129,10 @@ def _build_data() -> List[Dict[str, Any]]:
 
     # --- プレスリリース Excel → DB蓄積 ---
     try:
-        fetch_and_upsert_from_press_release("real_estate", _extract_re_from_excel)
+        fetch_and_upsert_from_press_release(
+            "real_estate", _extract_re_from_excel,
+            primary_indicator=DB_INDICATORS["sales_yoy"],
+        )
     except Exception as e:
         logger.warning(f"[CommercialSales] Press release fetch/upsert failed: {e}")
 

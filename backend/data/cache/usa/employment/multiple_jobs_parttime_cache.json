@@ -1569,12 +1569,22 @@
       "date": "2026-03-01",
       "multiple_jobs": 8357.0,
       "parttime_econ": 4497.0
+    },
+    {
+      "date": "2026-04-01",
+      "multiple_jobs": 8434.0,
+      "parttime_econ": 4942.0
+    },
+    {
+      "date": "2026-05-01",
+      "multiple_jobs": 8428.0,
+      "parttime_econ": 4805.0
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "multiple_jobs": 8357.0,
-    "parttime_econ": 4497.0
+    "date": "2026-05-01",
+    "multiple_jobs": 8428.0,
+    "parttime_econ": 4805.0
   },
-  "last_updated": "2026-04-14T21:31:54.088900+09:00"
+  "last_updated": "2026-06-06T21:31:05.723847+09:00"
 }

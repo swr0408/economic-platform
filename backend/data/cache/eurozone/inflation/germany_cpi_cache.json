@@ -1443,20 +1443,20 @@
     },
     {
       "date": "2025-12-01",
-      "cpi_index": 122.7,
+      "cpi_index": null,
       "cpi_yoy_change": 1.8,
       "cpi_mom_change": 0.0,
       "hicp_index": null,
-      "hicp_yoy_change": null,
-      "hicp_mom_change": null,
-      "source": "destatis",
-      "is_preliminary": false
+      "hicp_yoy_change": 2.0,
+      "hicp_mom_change": 0.2,
+      "source": "fmp",
+      "is_preliminary": true
     },
     {
       "date": "2026-01-01",
-      "cpi_index": 122.8,
-      "cpi_yoy_change": 2.1,
-      "cpi_mom_change": 0.1,
+      "cpi_index": null,
+      "cpi_yoy_change": null,
+      "cpi_mom_change": null,
       "hicp_index": 100.6,
       "hicp_yoy_change": 2.1,
       "hicp_mom_change": -0.1,
@@ -1465,9 +1465,9 @@
     },
     {
       "date": "2026-02-01",
-      "cpi_index": 123.1,
-      "cpi_yoy_change": 1.9,
-      "cpi_mom_change": 0.2,
+      "cpi_index": null,
+      "cpi_yoy_change": null,
+      "cpi_mom_change": null,
       "hicp_index": 100.9,
       "hicp_yoy_change": 2.0,
       "hicp_mom_change": 0.4,
@@ -1476,14 +1476,36 @@
     },
     {
       "date": "2026-03-01",
-      "cpi_index": 124.5,
-      "cpi_yoy_change": 2.7,
-      "cpi_mom_change": 1.1,
+      "cpi_index": null,
+      "cpi_yoy_change": null,
+      "cpi_mom_change": null,
       "hicp_index": 102.1,
       "hicp_yoy_change": 2.8,
       "hicp_mom_change": 1.2,
       "source": "destatis",
       "is_preliminary": false
+    },
+    {
+      "date": "2026-04-01",
+      "cpi_index": null,
+      "cpi_yoy_change": null,
+      "cpi_mom_change": null,
+      "hicp_index": 102.7,
+      "hicp_yoy_change": 2.9,
+      "hicp_mom_change": 0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2026-05-01",
+      "cpi_index": null,
+      "cpi_yoy_change": 2.6,
+      "cpi_mom_change": -0.2,
+      "hicp_index": null,
+      "hicp_yoy_change": 2.7,
+      "hicp_mom_change": -0.1,
+      "source": "fmp",
+      "is_preliminary": true
     }
   ],
   "metadata": {
@@ -1496,14 +1518,14 @@
     "description": "ドイツ消費者物価指数 / 調和消費者物価指数"
   },
   "next_release": {
-    "date": "2026-04-29",
-    "datetime_utc": "2026-04-29T12:00:00+00:00",
-    "datetime_jst": "2026-04-29T21:00:00+09:00",
+    "date": "2026-06-30",
+    "datetime_utc": "2026-06-30T12:00:00+00:00",
+    "datetime_jst": "2026-06-30T21:00:00+09:00",
     "time_jst": "21:00",
-    "datetime_cet": "2026-04-29T14:00:00+02:00",
+    "datetime_cet": "2026-06-30T14:00:00+02:00",
     "time_cet": "14:00",
-    "label": "Harmonised Inflation Rate YoY (Apr)",
-    "estimate": 3.3
+    "label": "Harmonised Inflation Rate YoY (Jun)",
+    "estimate": 3
   },
-  "last_updated": "2026-04-18T11:32:47.899473+09:00"
+  "last_updated": "2026-06-06T09:46:51.428430+09:00"
 }

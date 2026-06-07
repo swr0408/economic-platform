@@ -619,6 +619,14 @@
     {
       "date": "2026-02-01",
       "yoy": 13.2
+    },
+    {
+      "date": "2026-03-01",
+      "yoy": 14.3
+    },
+    {
+      "date": "2026-04-01",
+      "yoy": 15.6
     }
   ],
   "sox_data": [
@@ -2108,12 +2116,20 @@
     },
     {
       "date": "2026-12-01",
-      "sox_yoy": 125.9
+      "sox_yoy": 148.31
+    },
+    {
+      "date": "2027-01-01",
+      "sox_yoy": 169.63
+    },
+    {
+      "date": "2027-02-01",
+      "sox_yoy": 120.33
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "yoy": 13.2
+    "date": "2026-04-01",
+    "yoy": 15.6
   },
   "metadata": {
     "indicator": "Electrical Machinery Inventory",
@@ -2122,9 +2138,10 @@
       "yoy": "电气机械和器材制造业 存货増減 (%)"
     },
     "sox_note": "SOX YoY (8-month lead)",
-    "total_records": 155,
-    "sox_records": 372,
-    "last_fetched": "2026-04-18T11:34:21.467239+09:00"
+    "total_records": 157,
+    "sox_records": 374,
+    "last_fetched": "2026-06-07T22:17:54.188466+09:00"
   },
-  "next_release": null
+  "next_release": null,
+  "csv_mtime": 1780320243.4814808
 }

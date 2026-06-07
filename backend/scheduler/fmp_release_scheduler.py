@@ -1067,6 +1067,41 @@ class FMPReleaseScheduler:
         # 過去30日分の発表データをバックフィル（スケジューラー停止中の漏れを補完）
         await self._backfill_recent_releases()
 
+    # ダッシュボードの staleness 検出に必要な国（FMP API側コード）
+    # base.py の _DASHBOARD_TO_FMP_COUNTRY と一致させる
+    _BULK_FETCH_COUNTRIES = ["US", "JP", "EU", "DE", "FR", "ES", "GB", "CN", "AU", "CA", "NZ", "CH"]
+
+    async def _populate_all_country_events(self, lookback_days: int = 30, future_days: int = 30):
+        """
+        全対象国のカレンダーイベントを一括取得して DB に投入
+
+        指標フィルタなしで国別の全イベントを取得するため、`_is_cache_stale` の
+        発表日時チェックが機能する。スケジューラー起動時 + 日次で実行。
+        """
+        from datetime import date, timedelta
+        print("[FMPScheduler] Bulk populating economic_calendar_events for all countries...")
+
+        today = date.today()
+        from_date = today - timedelta(days=lookback_days)
+        to_date = today + timedelta(days=future_days)
+
+        total = 0
+        per_country: Dict[str, int] = {}
+        for country in self._BULK_FETCH_COUNTRIES:
+            try:
+                events = fmp_service.fetch_calendar(from_date, to_date, country=country)
+                if not events:
+                    continue
+                processed = [fmp_service.process_event(e) for e in events]
+                count = calendar_repository.upsert_events(processed)
+                per_country[country] = count
+                total += count
+            except Exception as e:
+                print(f"[FMPScheduler] Bulk fetch error for {country}: {e}")
+
+        print(f"[FMPScheduler] Bulk populate complete: total={total}, per_country={per_country}")
+        return per_country
+
     async def _backfill_recent_releases(self):
         """
         過去30日間の発表データをFMPから再取得してDBに補完する
@@ -1114,6 +1149,16 @@ class FMPReleaseScheduler:
         else:
             print("[FMPScheduler] Backfill complete: no missing data found")
 
+    def _schedule_bulk_populate(self):
+        """全国カレンダーイベントを毎日 JST 1:00 に一括取得（ダッシュボード stale 判定用）"""
+        self.scheduler.add_job(
+            self._populate_all_country_events,
+            CronTrigger(hour=1, minute=0, timezone=JST),
+            id="fmp_bulk_populate_daily",
+            replace_existing=True,
+            misfire_grace_time=3600,
+        )
+
     def start(self):
         """スケジューラーを開始"""
         print("[FMPScheduler] ========================================")
@@ -1122,10 +1167,15 @@ class FMPReleaseScheduler:
 
         self.schedule_release_jobs()
         self.schedule_weekly_refresh()
+        self._schedule_bulk_populate()
         self.scheduler.start()
 
-        # 起動時にバックフィルを実行（スケジューラー停止中の漏れを補完）
-        asyncio.ensure_future(self._backfill_recent_releases())
+        # 起動時に全国カレンダーを一括投入（stale 検出用）
+        # その後、指標ごとのバックフィル
+        async def _startup_sequence():
+            await self._populate_all_country_events()
+            await self._backfill_recent_releases()
+        asyncio.ensure_future(_startup_sequence())
 
         print("[FMPScheduler] Scheduler started successfully")
         self._print_status()

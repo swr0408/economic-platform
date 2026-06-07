@@ -29,6 +29,8 @@ from .boe_mpr_utils import (
     get_projections_databank,
     download_mpr_zip,
     extract_workbook_from_zip,
+    resolve_sheet_by_suffix,
+    parse_date_to_yyyy_mm,
     OLD_FILES,
     DEFAULT_MPR_MONTHS
 )
@@ -47,7 +49,8 @@ class BOEMarketExpectationsService:
     """BOE Market Expectations (Bank Rate見通し) サービス"""
 
     DATA_CACHE_KEY = "uk:boe_market_expectations:data"
-    SHEET_NAME = "32. Bank Rate"
+    # MPRごとに番号がドリフトするためsuffix一致で解決
+    SHEET_SUFFIX = "Bank Rate"
 
     def __init__(self):
         pass
@@ -107,11 +110,12 @@ class BOEMarketExpectationsService:
         - Data starts from row 13
         """
         try:
-            if self.SHEET_NAME not in wb.sheetnames:
-                logger.error(f"Sheet {self.SHEET_NAME} not found")
+            sheet_name = resolve_sheet_by_suffix(wb, self.SHEET_SUFFIX)
+            if not sheet_name:
+                logger.error(f"Sheet matching '{self.SHEET_SUFFIX}' not found")
                 return None
 
-            ws = wb[self.SHEET_NAME]
+            ws = wb[sheet_name]
 
             # Get column headers (quarters) from row 12
             quarters = []
@@ -124,49 +128,24 @@ class BOEMarketExpectationsService:
                 logger.error("No quarters found in Bank Rate sheet")
                 return None
 
-            # Find latest and previous data rows
-            latest_row = None
-            previous_row = None
+            # Find data rows in publication order (last 2 = most recent + previous)
+            data_rows = []
+            for row in range(13, ws.max_row + 1):
+                if ws.cell(row=row, column=1).value:
+                    data_rows.append(row)
 
-            for row in range(ws.max_row, 12, -1):
-                date_val = ws.cell(row=row, column=1).value
-                if date_val:
-                    date_str = str(date_val).strip()
-                    if 'November 2025' in date_str:
-                        latest_row = row
-                    elif 'August 2025' in date_str:
-                        previous_row = row
-
-                    if latest_row and previous_row:
-                        break
-
-            # Fallback to last two rows with data
-            if latest_row is None:
-                data_rows = []
-                for row in range(13, ws.max_row + 1):
-                    if ws.cell(row=row, column=1).value:
-                        data_rows.append(row)
-                if len(data_rows) >= 2:
-                    latest_row = data_rows[-1]
-                    previous_row = data_rows[-2]
-                elif len(data_rows) == 1:
-                    latest_row = data_rows[0]
+            latest_row = data_rows[-1] if data_rows else None
+            previous_row = data_rows[-2] if len(data_rows) >= 2 else None
 
             def extract_row_data(row_num: int) -> Dict:
                 """Extract forecast data from a row"""
                 date_val = ws.cell(row=row_num, column=1).value
                 date_str = str(date_val).strip() if date_val else ""
 
-                # Parse date to get month-year format
-                mpr_date = date_str
-                if 'November' in date_str:
-                    mpr_date = "2025-11"
-                elif 'August' in date_str:
-                    mpr_date = "2025-08"
-                elif 'May' in date_str:
-                    mpr_date = "2025-05"
-                elif 'February' in date_str:
-                    mpr_date = "2025-02"
+                # "(e)" / "(p)" 等の注記を除去してYYYY-MMにパース
+                import re
+                cleaned = re.sub(r'\s*\([a-zA-Z]\)\s*$', '', date_str).strip()
+                mpr_date = parse_date_to_yyyy_mm(cleaned) or date_str
 
                 data = []
                 for col, quarter in quarters:

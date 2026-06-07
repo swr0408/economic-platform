@@ -116,6 +116,7 @@ export default function BankInterestRatesChart({ data }: BankInterestRatesChartP
         showPeriodSelector={false}
         dataSource="European Central Bank"
         sourceUrl="https://www.ecb.europa.eu/press/stats/mfi/html/index.en.html"
+        handbookId="ecb-bank-interest-rates"
       >
         {/* 最新値表示 */}
         <LatestValueBox

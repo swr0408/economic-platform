@@ -99,6 +99,7 @@ class ComexWarehouseScreenshotScheduler:
                     run_date=datetime.now(JST) + timedelta(seconds=60),
                     id="comex_warehouse_screenshot_startup_catchup",
                     replace_existing=True,
+                    misfire_grace_time=300,
                 )
                 logger.info(
                     "[Scheduler] COMEX Warehouse Screenshot startup catch-up "

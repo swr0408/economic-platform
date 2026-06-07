@@ -1784,39 +1784,46 @@
     },
     {
       "date": "2025-01-01",
-      "value": 2497104.0,
-      "qoq_simple": 0.5,
-      "qoq": 2.02,
-      "yoy": 2.88
+      "value": 2502038.0,
+      "qoq_simple": 0.7,
+      "qoq": 2.83,
+      "yoy": 3.09
     },
     {
       "date": "2025-04-01",
-      "value": 2491233.0,
+      "value": 2495975.0,
       "qoq_simple": -0.2,
       "qoq": -0.8,
-      "yoy": 1.81
+      "yoy": 2.01
     },
     {
       "date": "2025-07-01",
-      "value": 2505960.0,
-      "qoq_simple": 0.6,
-      "qoq": 2.42,
-      "yoy": 1.58
+      "value": 2507754.0,
+      "qoq_simple": 0.5,
+      "qoq": 2.02,
+      "yoy": 1.65
     },
     {
       "date": "2025-10-01",
-      "value": 2502165.0,
+      "value": 2501573.0,
       "qoq_simple": -0.2,
       "qoq": -0.8,
-      "yoy": 0.72
+      "yoy": 0.7
+    },
+    {
+      "date": "2026-01-01",
+      "value": 2500680.0,
+      "qoq_simple": 0.0,
+      "qoq": 0.0,
+      "yoy": -0.05
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "value": 2502165.0,
-    "qoq_simple": -0.2,
-    "qoq": -0.8,
-    "yoy": 0.72
+    "date": "2026-01-01",
+    "value": 2500680.0,
+    "qoq_simple": 0.0,
+    "qoq": 0.0,
+    "yoy": -0.05
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1827,14 +1834,14 @@
     "frequency": "quarterly"
   },
   "next_release": {
-    "date": "2026-04-30",
-    "datetime_utc": "2026-04-30T12:30:00+00:00",
-    "datetime_jst": "2026-04-30T21:30:00+09:00",
+    "date": "2026-06-30",
+    "datetime_utc": "2026-06-30T12:30:00+00:00",
+    "datetime_jst": "2026-06-30T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-04-30T08:30:00-04:00",
+    "datetime_toronto": "2026-06-30T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Gross Domestic Product MoM (Mar)",
-    "estimate": -0.1
+    "label": "Gross Domestic Product MoM (May)",
+    "estimate": 0.1
   },
-  "last_updated": "2026-04-15T22:13:04.960664+09:00"
+  "last_updated": "2026-06-07T11:31:34.622853+09:00"
 }

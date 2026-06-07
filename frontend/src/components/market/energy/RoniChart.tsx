@@ -120,7 +120,7 @@ export default function RoniChart() {
 
   if (isLoading) {
     return (
-      <ChartContainer title="RONI (Revised Oceanic Niño Index)" loading showPeriodSelector={false}>
+      <ChartContainer title="RONI (Relative Oceanic Niño Index)" loading showPeriodSelector={false}>
         <div />
       </ChartContainer>
     )
@@ -128,7 +128,7 @@ export default function RoniChart() {
 
   if (!response || !response.data?.length) {
     return (
-      <ChartContainer title="RONI (Revised Oceanic Niño Index)" showPeriodSelector={false}>
+      <ChartContainer title="RONI (Relative Oceanic Niño Index)" showPeriodSelector={false}>
         <div style={{ textAlign: 'center', padding: 40, color: DARK_THEME.textSecondary }}>
           データがありません
         </div>
@@ -146,10 +146,11 @@ export default function RoniChart() {
 
   return (
     <ChartContainer
-      title="RONI (Revised Oceanic Niño Index)"
+      title="RONI (Relative Oceanic Niño Index)"
       dataSource="NOAA CPC"
       sourceUrl="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/"
       showPeriodSelector={false}
+      handbookId="roni"
     >
       {/* 最新値表示 */}
       <div style={LATEST_VALUE_BOX_STYLE}>

@@ -12,10 +12,10 @@ except ImportError:
     from config import SEASONALITY_DIR, SEASONALITY_STATS_DIR, ASSET_CATEGORIES, IMG_EXTS
 
 
-# インデックスキャッシュ（起動時に1回だけ構築）
+# インデックスキャッシュ（元データは手動更新のみのため24時間TTL）
 _index_cache: Optional[Dict] = None
 _cache_timestamp: float = 0
-_CACHE_TTL: float = 300  # 5分間キャッシュを保持
+_CACHE_TTL: float = 86400  # 24時間
 
 
 def get_symbol_category(symbol: str) -> Dict[str, Optional[str]]:

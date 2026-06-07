@@ -532,6 +532,7 @@ export default function QuarterlyRefundingChart() {
       dataSource="U.S. Department of the Treasury"
       sourceUrl="https://home.treasury.gov/policy-issues/financing-the-government/quarterly-refunding/most-recent-quarterly-refunding-documents"
       showPeriodSelector={false}
+      handbookId="quarterly-refunding"
     >
       {/* ヘッダー: quarter_label + next_release */}
       <div style={LATEST_VALUE_BOX_STYLE}>

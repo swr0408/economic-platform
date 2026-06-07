@@ -147,6 +147,7 @@ export default function CnLandSalesIncomeChart({ data }: Props) {
         showPeriodSelector={false}
         dataSource="中国財政部"
         sourceUrl="https://gks.mof.gov.cn/tongjishuju/"
+        handbookId="cn-land-sales-income"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

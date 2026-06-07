@@ -24,7 +24,7 @@ router = APIRouter(
 
 
 @router.get("/cost-price")
-async def get_nab_cost_price(
+def get_nab_cost_price(
     force_refresh: bool = Query(False, description="PDFから画像を強制再抽出"),
 ) -> Dict[str, Any]:
     """
@@ -42,7 +42,7 @@ async def get_nab_cost_price(
 
 
 @router.get("/cost-price/cost_growth")
-async def get_cost_growth_image():
+def get_cost_growth_image():
     """Chart 18: Cost Growth 画像を取得"""
     path = nab_business_survey_cost_price_service.get_screenshot_path("cost_growth")
     if path and path.exists():
@@ -56,7 +56,7 @@ async def get_cost_growth_image():
 
 
 @router.get("/cost-price/output_price_growth")
-async def get_output_price_growth_image():
+def get_output_price_growth_image():
     """Chart 20: Output Price Growth 画像を取得"""
     path = nab_business_survey_cost_price_service.get_screenshot_path("output_price_growth")
     if path and path.exists():
@@ -70,7 +70,7 @@ async def get_output_price_growth_image():
 
 
 @router.post("/cost-price/refresh")
-async def refresh_nab_charts():
+def refresh_nab_charts():
     """PDFから画像を強制再抽出"""
     nab_business_survey_cost_price_service.invalidate_cache()
     success = nab_business_survey_cost_price_service.check_and_extract()
@@ -81,13 +81,13 @@ async def refresh_nab_charts():
 
 
 @router.get("/cost-price/cache")
-async def get_nab_cost_price_cache_status() -> Dict[str, Any]:
+def get_nab_cost_price_cache_status() -> Dict[str, Any]:
     """NABコスト・価格チャートのキャッシュ状態を取得"""
     return nab_business_survey_cost_price_service.get_cache_status()
 
 
 @router.delete("/cost-price/cache")
-async def invalidate_nab_cost_price_cache() -> Dict[str, Any]:
+def invalidate_nab_cost_price_cache() -> Dict[str, Any]:
     """NABコスト・価格チャートのキャッシュを無効化"""
     result = nab_business_survey_cost_price_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

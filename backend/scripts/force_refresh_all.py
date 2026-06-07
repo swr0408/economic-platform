@@ -77,7 +77,7 @@ def main():
         ("services.market.fear_greed_service", "fear_greed_service", "get_fear_greed_data"),
         ("services.market.gex_dix_service", "gex_dix_service", "get_gex_dix_data"),
         ("services.market.cboe_pcr_service", "cboe_pcr_service", "get_data"),
-        ("services.market.vix_term_structure_service", "vix_term_structure_service", "get_data"),
+        ("services.market.vix_futures_curve_service", "vix_futures_curve_service", "get_data"),
         ("services.market.vix_cross_ratio_service", "vix_cross_ratio_service", "get_data"),
         ("services.market.historical_volatility_service", "historical_volatility_service", "get_data"),
         ("services.market.sector_ratio_service", "sector_ratio_service", "get_data"),

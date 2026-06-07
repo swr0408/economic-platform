@@ -155,6 +155,7 @@ export default function CnOverseasInvestorFlowChart({ data }: Props) {
         showDataSource={true}
         dataSource="Bond Connect"
         sourceUrl="https://www.chinabondconnect.com/en/Resource/Market-Data.html"
+        handbookId="overseas-investor-flow"
       >
         {/* 最新値表示（クリックで系列トグル） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

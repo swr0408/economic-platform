@@ -1254,20 +1254,28 @@
     },
     {
       "date": "2026-02-01",
-      "value": 3.3
+      "value": 3.4
+    },
+    {
+      "date": "2026-03-01",
+      "value": 3.1
+    },
+    {
+      "date": "2026-04-01",
+      "value": 3.5
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 3.3
+    "date": "2026-04-01",
+    "value": 3.5
   },
   "next_release": {
-    "date": "2026-05-08",
-    "datetime_utc": "2026-05-08T23:30:00+00:00",
-    "datetime_jst": "2026-05-09T08:30:00+09:00",
+    "date": "2026-07-06",
+    "datetime_utc": "2026-07-06T23:30:00+00:00",
+    "datetime_jst": "2026-07-07T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "Average Cash Earnings YoY (Mar)",
-    "estimate": 2.1
+    "label": "Average Cash Earnings YoY (May)",
+    "estimate": null
   },
-  "last_updated": "2026-04-18T01:58:13.712649+09:00"
+  "last_updated": "2026-06-05T17:30:41.934380+09:00"
 }

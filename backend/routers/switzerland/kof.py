@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 @router.get("/")
-async def kof_root():
+def kof_root():
     """KOF APIルート"""
     return {
         "message": "KOF Swiss Economic Institute API",
@@ -25,7 +25,7 @@ async def kof_root():
 
 
 @router.get("/barometer")
-async def get_kof_barometer(
+def get_kof_barometer(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -45,7 +45,7 @@ async def get_kof_barometer(
 
 
 @router.get("/barometer/latest")
-async def get_kof_barometer_latest():
+def get_kof_barometer_latest():
     """
     KOF経済バロメーター最新データを取得
 
@@ -62,7 +62,7 @@ async def get_kof_barometer_latest():
 
 
 @router.get("/barometer/cache/status")
-async def get_kof_barometer_cache_status():
+def get_kof_barometer_cache_status():
     """KOF経済バロメーター キャッシュ状態を取得"""
     from services.switzerland.kof_economic_barometer_service import kof_economic_barometer_service
 
@@ -70,7 +70,7 @@ async def get_kof_barometer_cache_status():
 
 
 @router.delete("/barometer/cache")
-async def invalidate_kof_barometer_cache():
+def invalidate_kof_barometer_cache():
     """KOF経済バロメーター キャッシュを無効化"""
     from services.switzerland.kof_economic_barometer_service import kof_economic_barometer_service
 

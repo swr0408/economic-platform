@@ -983,13 +983,31 @@
       "raw_value": 480.7,
       "yoy": 12.9,
       "mom": 9.4
+    },
+    {
+      "date": "2026-02-01",
+      "raw_value": 815.0,
+      "yoy": 12.4,
+      "mom": 69.5
+    },
+    {
+      "date": "2026-03-01",
+      "raw_value": 475.0,
+      "yoy": 20.6,
+      "mom": -41.7
+    },
+    {
+      "date": "2026-04-01",
+      "raw_value": 481.0,
+      "yoy": 22.1,
+      "mom": 1.3
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "raw_value": 480.7,
-    "yoy": 12.9,
-    "mom": 9.4
+    "date": "2026-04-01",
+    "raw_value": 481.0,
+    "yoy": 22.1,
+    "mom": 1.3
   },
   "metadata": {
     "indicator": "Integrated Circuit Manufacturing",
@@ -1000,8 +1018,8 @@
       "mom": "前月比 (%)"
     },
     "unit": "億個 (100 million units)",
-    "total_records": 164,
-    "last_fetched": "2026-04-18T02:16:52.123021+09:00"
+    "total_records": 167,
+    "last_fetched": "2026-06-07T22:17:47.756413+09:00"
   },
   "next_release": null
 }

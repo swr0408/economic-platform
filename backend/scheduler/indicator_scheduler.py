@@ -150,8 +150,12 @@ class IndicatorScheduler:
 
             print(f"[Scheduler] Fetching {config.name} (iteration {iteration}/{UPDATE_ITERATIONS})...")
 
-            # force_refresh=True でデータ取得
-            result = fetch_method(force_refresh=True)
+            # force_refresh=True でデータ取得。
+            # fetch_method は requests 等のブロッキング I/O を行う同期関数のため、
+            # 直接 await せずワーカースレッドへ退避する。これをしないと catchup や
+            # 3分更新サイクルの一括取得がイベントループを占有し、ログイン等の
+            # 全 HTTP リクエストがタイムアウトする（FRED 429 リトライ時に顕著）。
+            result = await asyncio.to_thread(fetch_method, force_refresh=True)
 
             if result and not result.get("error"):
                 latest = result.get("latest", {})

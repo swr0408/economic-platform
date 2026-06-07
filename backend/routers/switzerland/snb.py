@@ -58,7 +58,7 @@ router = APIRouter(
 
 
 @router.get("/rate")
-async def get_snb_rate(
+def get_snb_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -82,7 +82,7 @@ async def get_snb_rate(
 
 
 @router.get("/rate/cache")
-async def get_snb_rate_cache_status() -> Dict[str, Any]:
+def get_snb_rate_cache_status() -> Dict[str, Any]:
     """
     SNB政策金利のキャッシュ状態を取得
     """
@@ -90,7 +90,7 @@ async def get_snb_rate_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/rate/cache")
-async def invalidate_snb_rate_cache() -> Dict[str, bool]:
+def invalidate_snb_rate_cache() -> Dict[str, bool]:
     """
     SNB政策金利のキャッシュを無効化
     """
@@ -103,7 +103,7 @@ async def invalidate_snb_rate_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/inflation-forecast")
-async def get_inflation_forecast(
+def get_inflation_forecast(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -127,7 +127,7 @@ async def get_inflation_forecast(
 
 
 @router.get("/inflation-forecast/image/{filename}")
-async def get_inflation_forecast_image(filename: str):
+def get_inflation_forecast_image(filename: str):
     """
     SNBインフレ見通し画像を取得
 
@@ -144,7 +144,7 @@ async def get_inflation_forecast_image(filename: str):
 
 
 @router.get("/inflation-forecast/cache")
-async def get_inflation_forecast_cache_status() -> Dict[str, Any]:
+def get_inflation_forecast_cache_status() -> Dict[str, Any]:
     """
     SNBインフレ見通しのキャッシュ状態を取得
     """
@@ -152,7 +152,7 @@ async def get_inflation_forecast_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/inflation-forecast/cache")
-async def invalidate_inflation_forecast_cache() -> Dict[str, bool]:
+def invalidate_inflation_forecast_cache() -> Dict[str, bool]:
     """
     SNBインフレ見通しのキャッシュを無効化
     """
@@ -165,7 +165,7 @@ async def invalidate_inflation_forecast_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/balance-sheet")
-async def get_balance_sheet(
+def get_balance_sheet(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -189,7 +189,7 @@ async def get_balance_sheet(
 
 
 @router.get("/balance-sheet/cache")
-async def get_balance_sheet_cache_status() -> Dict[str, Any]:
+def get_balance_sheet_cache_status() -> Dict[str, Any]:
     """
     SNBバランスシートのキャッシュ状態を取得
     """
@@ -197,7 +197,7 @@ async def get_balance_sheet_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/balance-sheet/cache")
-async def invalidate_balance_sheet_cache() -> Dict[str, bool]:
+def invalidate_balance_sheet_cache() -> Dict[str, bool]:
     """
     SNBバランスシートのキャッシュを無効化
     """
@@ -210,7 +210,7 @@ async def invalidate_balance_sheet_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/sight-deposits")
-async def get_sight_deposits(
+def get_sight_deposits(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -234,7 +234,7 @@ async def get_sight_deposits(
 
 
 @router.get("/sight-deposits/cache")
-async def get_sight_deposits_cache_status() -> Dict[str, Any]:
+def get_sight_deposits_cache_status() -> Dict[str, Any]:
     """
     SNB当座預金のキャッシュ状態を取得
     """
@@ -242,7 +242,7 @@ async def get_sight_deposits_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/sight-deposits/cache")
-async def invalidate_sight_deposits_cache() -> Dict[str, bool]:
+def invalidate_sight_deposits_cache() -> Dict[str, bool]:
     """
     SNB当座預金のキャッシュを無効化
     """
@@ -255,7 +255,7 @@ async def invalidate_sight_deposits_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/foreign-currency-reserves")
-async def get_foreign_currency_reserves(
+def get_foreign_currency_reserves(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -279,7 +279,7 @@ async def get_foreign_currency_reserves(
 
 
 @router.get("/foreign-currency-reserves/cache")
-async def get_foreign_currency_reserves_cache_status() -> Dict[str, Any]:
+def get_foreign_currency_reserves_cache_status() -> Dict[str, Any]:
     """
     外貨準備のキャッシュ状態を取得
     """
@@ -287,7 +287,7 @@ async def get_foreign_currency_reserves_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/foreign-currency-reserves/cache")
-async def invalidate_foreign_currency_reserves_cache() -> Dict[str, bool]:
+def invalidate_foreign_currency_reserves_cache() -> Dict[str, bool]:
     """
     外貨準備のキャッシュを無効化
     """
@@ -300,7 +300,7 @@ async def invalidate_foreign_currency_reserves_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/monetary-base")
-async def get_monetary_base(
+def get_monetary_base(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -325,7 +325,7 @@ async def get_monetary_base(
 
 
 @router.get("/monetary-base/cache")
-async def get_monetary_base_cache_status() -> Dict[str, Any]:
+def get_monetary_base_cache_status() -> Dict[str, Any]:
     """
     マネタリーベースのキャッシュ状態を取得
     """
@@ -333,7 +333,7 @@ async def get_monetary_base_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/monetary-base/cache")
-async def invalidate_monetary_base_cache() -> Dict[str, bool]:
+def invalidate_monetary_base_cache() -> Dict[str, bool]:
     """
     マネタリーベースのキャッシュを無効化
     """
@@ -346,7 +346,7 @@ async def invalidate_monetary_base_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/monetary-aggregate-m2")
-async def get_monetary_aggregate_m2(
+def get_monetary_aggregate_m2(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -371,7 +371,7 @@ async def get_monetary_aggregate_m2(
 
 
 @router.get("/monetary-aggregate-m2/cache")
-async def get_monetary_aggregate_m2_cache_status() -> Dict[str, Any]:
+def get_monetary_aggregate_m2_cache_status() -> Dict[str, Any]:
     """
     貨幣総量M2のキャッシュ状態を取得
     """
@@ -379,7 +379,7 @@ async def get_monetary_aggregate_m2_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/monetary-aggregate-m2/cache")
-async def invalidate_monetary_aggregate_m2_cache() -> Dict[str, bool]:
+def invalidate_monetary_aggregate_m2_cache() -> Dict[str, bool]:
     """
     貨幣総量M2のキャッシュを無効化
     """
@@ -392,7 +392,7 @@ async def invalidate_monetary_aggregate_m2_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/mortgage-rates")
-async def get_mortgage_rates(
+def get_mortgage_rates(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -417,7 +417,7 @@ async def get_mortgage_rates(
 
 
 @router.get("/mortgage-rates/cache")
-async def get_mortgage_rates_cache_status() -> Dict[str, Any]:
+def get_mortgage_rates_cache_status() -> Dict[str, Any]:
     """
     住宅ローン金利のキャッシュ状態を取得
     """
@@ -425,7 +425,7 @@ async def get_mortgage_rates_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/mortgage-rates/cache")
-async def invalidate_mortgage_rates_cache() -> Dict[str, bool]:
+def invalidate_mortgage_rates_cache() -> Dict[str, bool]:
     """
     住宅ローン金利のキャッシュを無効化
     """
@@ -438,7 +438,7 @@ async def invalidate_mortgage_rates_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/mortgage-balance")
-async def get_mortgage_balance(
+def get_mortgage_balance(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -463,7 +463,7 @@ async def get_mortgage_balance(
 
 
 @router.get("/mortgage-balance/cache")
-async def get_mortgage_balance_cache_status() -> Dict[str, Any]:
+def get_mortgage_balance_cache_status() -> Dict[str, Any]:
     """
     住宅ローン残高のキャッシュ状態を取得
     """
@@ -471,7 +471,7 @@ async def get_mortgage_balance_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/mortgage-balance/cache")
-async def invalidate_mortgage_balance_cache() -> Dict[str, bool]:
+def invalidate_mortgage_balance_cache() -> Dict[str, bool]:
     """
     住宅ローン残高のキャッシュを無効化
     """
@@ -484,7 +484,7 @@ async def invalidate_mortgage_balance_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/new-mortgage-loans")
-async def get_new_mortgage_loans(
+def get_new_mortgage_loans(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -509,7 +509,7 @@ async def get_new_mortgage_loans(
 
 
 @router.get("/new-mortgage-loans/cache")
-async def get_new_mortgage_loans_cache_status() -> Dict[str, Any]:
+def get_new_mortgage_loans_cache_status() -> Dict[str, Any]:
     """
     新規住宅ローン融資額のキャッシュ状態を取得
     """
@@ -517,7 +517,7 @@ async def get_new_mortgage_loans_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/new-mortgage-loans/cache")
-async def invalidate_new_mortgage_loans_cache() -> Dict[str, bool]:
+def invalidate_new_mortgage_loans_cache() -> Dict[str, bool]:
     """
     新規住宅ローン融資額のキャッシュを無効化
     """
@@ -530,7 +530,7 @@ async def invalidate_new_mortgage_loans_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/balance-of-trade")
-async def get_balance_of_trade(
+def get_balance_of_trade(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -543,7 +543,7 @@ async def get_balance_of_trade(
 
 
 @router.get("/balance-of-trade/cache")
-async def get_balance_of_trade_cache_status() -> Dict[str, Any]:
+def get_balance_of_trade_cache_status() -> Dict[str, Any]:
     """
     貿易収支のキャッシュ状態を取得
     """
@@ -551,7 +551,7 @@ async def get_balance_of_trade_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/balance-of-trade/cache")
-async def invalidate_balance_of_trade_cache() -> Dict[str, bool]:
+def invalidate_balance_of_trade_cache() -> Dict[str, bool]:
     """
     貿易収支のキャッシュを無効化
     """
@@ -564,7 +564,7 @@ async def invalidate_balance_of_trade_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/current-account")
-async def get_current_account(
+def get_current_account(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -577,7 +577,7 @@ async def get_current_account(
 
 
 @router.get("/current-account/cache")
-async def get_current_account_cache_status() -> Dict[str, Any]:
+def get_current_account_cache_status() -> Dict[str, Any]:
     """
     経常収支のキャッシュ状態を取得
     """
@@ -585,7 +585,7 @@ async def get_current_account_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/current-account/cache")
-async def invalidate_current_account_cache() -> Dict[str, bool]:
+def invalidate_current_account_cache() -> Dict[str, bool]:
     """
     経常収支のキャッシュを無効化
     """
@@ -598,7 +598,7 @@ async def invalidate_current_account_cache() -> Dict[str, bool]:
 # =============================================================================
 
 @router.get("/current-account-gdp-ratio")
-async def get_current_account_gdp_ratio(
+def get_current_account_gdp_ratio(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -611,7 +611,7 @@ async def get_current_account_gdp_ratio(
 
 
 @router.get("/current-account-gdp-ratio/cache")
-async def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
+def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
     """
     経常収支対GDP比のキャッシュ状態を取得
     """
@@ -619,7 +619,7 @@ async def get_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/current-account-gdp-ratio/cache")
-async def invalidate_current_account_gdp_ratio_cache() -> Dict[str, bool]:
+def invalidate_current_account_gdp_ratio_cache() -> Dict[str, bool]:
     """
     経常収支対GDP比のキャッシュを無効化
     """

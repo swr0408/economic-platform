@@ -5423,16 +5423,34 @@
       "employment_change": 14.1,
       "fulltime_change": -1.1,
       "parttime_change": 15.2
+    },
+    {
+      "date": "2026-04-01",
+      "employment": 21033.7,
+      "fulltime": 17168.4,
+      "parttime": 3865.3,
+      "employment_change": -17.7,
+      "fulltime_change": -46.7,
+      "parttime_change": 29.0
+    },
+    {
+      "date": "2026-05-01",
+      "employment": 21121.5,
+      "fulltime": 17322.4,
+      "parttime": 3799.1,
+      "employment_change": 87.8,
+      "fulltime_change": 154.0,
+      "parttime_change": -66.2
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "employment": 21051.4,
-    "fulltime": 17215.1,
-    "parttime": 3836.3,
-    "employment_change": 14.1,
-    "fulltime_change": -1.1,
-    "parttime_change": 15.2
+    "date": "2026-05-01",
+    "employment": 21121.5,
+    "fulltime": 17322.4,
+    "parttime": 3799.1,
+    "employment_change": 87.8,
+    "fulltime_change": 154.0,
+    "parttime_change": -66.2
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -5443,14 +5461,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-05-08",
-    "datetime_utc": "2026-05-08T12:30:00+00:00",
-    "datetime_jst": "2026-05-08T21:30:00+09:00",
+    "date": "2026-07-10",
+    "datetime_utc": "2026-07-10T12:30:00+00:00",
+    "datetime_jst": "2026-07-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-05-08T08:30:00-04:00",
+    "datetime_toronto": "2026-07-10T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Employment Change (Apr)",
-    "estimate": null
+    "label": "Employment Change (Jun)",
+    "estimate": 10
   },
-  "last_updated": "2026-04-18T04:05:55.350203+09:00"
+  "last_updated": "2026-06-07T11:32:37.637386+09:00"
 }

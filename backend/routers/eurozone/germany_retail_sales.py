@@ -16,7 +16,7 @@ router = APIRouter(
 
 
 @router.get("/germany-retail-sales")
-async def get_germany_retail_sales(
+def get_germany_retail_sales(
     force_refresh: bool = Query(False, description="Force refresh from database")
 ) -> Dict[str, Any]:
     """
@@ -36,7 +36,7 @@ async def get_germany_retail_sales(
 
 
 @router.get("/germany-retail-sales/cache-status")
-async def get_germany_retail_sales_cache_status() -> Dict[str, Any]:
+def get_germany_retail_sales_cache_status() -> Dict[str, Any]:
     """
     ドイツ小売売上高キャッシュ状態を取得
 
@@ -47,7 +47,7 @@ async def get_germany_retail_sales_cache_status() -> Dict[str, Any]:
 
 
 @router.post("/germany-retail-sales/invalidate-cache")
-async def invalidate_germany_retail_sales_cache() -> Dict[str, Any]:
+def invalidate_germany_retail_sales_cache() -> Dict[str, Any]:
     """
     ドイツ小売売上高キャッシュを無効化
 

@@ -6093,28 +6093,193 @@
       "volume_kg": 30756.0,
       "amount_cny": 32368171300.0,
       "open_interest": 213258
+    },
+    {
+      "date": "2026-04-20",
+      "open": 1054.0,
+      "high": 1070.8,
+      "low": 1045.0,
+      "close": 1053.02,
+      "settlement": 1055.92,
+      "volume_kg": 65724.0,
+      "amount_cny": 69399598520.0,
+      "open_interest": 221022
+    },
+    {
+      "date": "2026-04-21",
+      "open": 1054.56,
+      "high": 1057.84,
+      "low": 1048.22,
+      "close": 1050.38,
+      "settlement": 1052.67,
+      "volume_kg": 53454.0,
+      "amount_cny": 56269464140.0,
+      "open_interest": 232728
+    },
+    {
+      "date": "2026-04-22",
+      "open": 1052.98,
+      "high": 1052.98,
+      "low": 1036.0,
+      "close": 1048.54,
+      "settlement": 1045.79,
+      "volume_kg": 75672.0,
+      "amount_cny": 79137252540.0,
+      "open_interest": 242402
+    },
+    {
+      "date": "2026-04-23",
+      "open": 1047.0,
+      "high": 1048.18,
+      "low": 1033.89,
+      "close": 1036.88,
+      "settlement": 1039.68,
+      "volume_kg": 71406.0,
+      "amount_cny": 74239952980.0,
+      "open_interest": 249536
+    },
+    {
+      "date": "2026-04-24",
+      "open": 1039.5,
+      "high": 1044.34,
+      "low": 1027.0,
+      "close": 1033.06,
+      "settlement": 1034.13,
+      "volume_kg": 59404.0,
+      "amount_cny": 61431646280.0,
+      "open_interest": 252288
+    },
+    {
+      "date": "2026-04-27",
+      "open": 1037.3,
+      "high": 1043.3,
+      "low": 1033.51,
+      "close": 1037.51,
+      "settlement": 1037.33,
+      "volume_kg": 36904.0,
+      "amount_cny": 38281732680.0,
+      "open_interest": 250680
+    },
+    {
+      "date": "2026-04-28",
+      "open": 1035.0,
+      "high": 1036.9,
+      "low": 1018.76,
+      "close": 1021.18,
+      "settlement": 1026.89,
+      "volume_kg": 60694.0,
+      "amount_cny": 62326551920.0,
+      "open_interest": 250724
+    },
+    {
+      "date": "2026-04-29",
+      "open": 1007.0,
+      "high": 1015.5,
+      "low": 1005.0,
+      "close": 1008.76,
+      "settlement": 1011.23,
+      "volume_kg": 60870.0,
+      "amount_cny": 61553963600.0,
+      "open_interest": 237222
+    },
+    {
+      "date": "2026-04-30",
+      "open": 1007.5,
+      "high": 1014.4,
+      "low": 995.2,
+      "close": 1013.97,
+      "settlement": 1007.13,
+      "volume_kg": 46212.0,
+      "amount_cny": 46541577060.0,
+      "open_interest": 234744
+    },
+    {
+      "date": "2026-05-06",
+      "open": 1017.87,
+      "high": 1026.74,
+      "low": 1014.42,
+      "close": 1026.46,
+      "settlement": 1021.94,
+      "volume_kg": 35900.0,
+      "amount_cny": 36687690880.0,
+      "open_interest": 244348
+    },
+    {
+      "date": "2026-05-07",
+      "open": 1030.0,
+      "high": 1041.78,
+      "low": 1022.06,
+      "close": 1038.57,
+      "settlement": 1034.25,
+      "volume_kg": 42720.0,
+      "amount_cny": 44183417620.0,
+      "open_interest": 246850
+    },
+    {
+      "date": "2026-05-08",
+      "open": 1038.51,
+      "high": 1044.0,
+      "low": 1030.0,
+      "close": 1033.76,
+      "settlement": 1036.33,
+      "volume_kg": 30634.0,
+      "amount_cny": 31746948340.0,
+      "open_interest": 247222
+    },
+    {
+      "date": "2026-05-11",
+      "open": 1034.4,
+      "high": 1040.5,
+      "low": 1018.94,
+      "close": 1025.0,
+      "settlement": 1026.14,
+      "volume_kg": 44116.0,
+      "amount_cny": 45269272400.0,
+      "open_interest": 246220
+    },
+    {
+      "date": "2026-05-12",
+      "open": 1024.0,
+      "high": 1040.8,
+      "low": 1023.0,
+      "close": 1028.36,
+      "settlement": 1033.45,
+      "volume_kg": 49802.0,
+      "amount_cny": 51468313880.0,
+      "open_interest": 240646
+    },
+    {
+      "date": "2026-05-13",
+      "open": 1029.8,
+      "high": 1032.67,
+      "low": 1017.3,
+      "close": 1029.63,
+      "settlement": 1028.25,
+      "volume_kg": 34600.0,
+      "amount_cny": 35577662960.0,
+      "open_interest": 237458
     }
   ],
   "latest": {
-    "date": "2026-04-17",
-    "open": 1058.84,
-    "high": 1058.89,
-    "low": 1047.52,
-    "close": 1052.94,
-    "settlement": 1052.41,
-    "volume_kg": 30756.0,
-    "amount_cny": 32368171300.0,
-    "open_interest": 213258
+    "date": "2026-05-13",
+    "open": 1029.8,
+    "high": 1032.67,
+    "low": 1017.3,
+    "close": 1029.63,
+    "settlement": 1028.25,
+    "volume_kg": 34600.0,
+    "amount_cny": 35577662960.0,
+    "open_interest": 237458
   },
   "metadata": {
     "source": "Shanghai Gold Exchange",
     "contract": "Au(T+D)",
     "frequency": "daily",
-    "data_count": 554,
+    "data_count": 569,
     "start_date": "2024-01-02",
-    "end_date": "2026-04-17"
+    "end_date": "2026-05-13"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T15:55:53.467067+09:00"
+  "last_updated": "2026-05-14T13:18:56.257434+09:00"
 }

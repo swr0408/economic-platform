@@ -116,6 +116,7 @@ export default function CBOProjectionsChart({ data }: CBOProjectionsChartProps) 
         showPeriodSelector={false}
         dataSource="CBO"
         sourceUrl="https://github.com/US-CBO/eval-projections"
+        handbookId="cbo-projections"
       >
         {/* ベースライン日付表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>

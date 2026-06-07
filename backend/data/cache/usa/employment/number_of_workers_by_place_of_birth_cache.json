@@ -1,0 +1,1629 @@
+{
+  "data": [
+    {
+      "date": "2007-01-01",
+      "labor_force_native": 23494.0,
+      "labor_force_foreign": 128430.0,
+      "employment_native": 22356.0,
+      "employment_foreign": 121919.0
+    },
+    {
+      "date": "2007-02-01",
+      "labor_force_native": 23720.0,
+      "labor_force_foreign": 128159.0,
+      "employment_native": 22579.0,
+      "employment_foreign": 121900.0
+    },
+    {
+      "date": "2007-03-01",
+      "labor_force_native": 23751.0,
+      "labor_force_foreign": 128484.0,
+      "employment_native": 22785.0,
+      "employment_foreign": 122538.0
+    },
+    {
+      "date": "2007-04-01",
+      "labor_force_native": 23772.0,
+      "labor_force_foreign": 128058.0,
+      "employment_native": 22793.0,
+      "employment_foreign": 122504.0
+    },
+    {
+      "date": "2007-05-01",
+      "labor_force_native": 23949.0,
+      "labor_force_foreign": 128400.0,
+      "employment_native": 22973.0,
+      "employment_foreign": 122891.0
+    },
+    {
+      "date": "2007-06-01",
+      "labor_force_native": 23982.0,
+      "labor_force_foreign": 130270.0,
+      "employment_native": 23051.0,
+      "employment_foreign": 123906.0
+    },
+    {
+      "date": "2007-07-01",
+      "labor_force_native": 24303.0,
+      "labor_force_foreign": 130568.0,
+      "employment_native": 23312.0,
+      "employment_foreign": 124003.0
+    },
+    {
+      "date": "2007-08-01",
+      "labor_force_native": 24272.0,
+      "labor_force_foreign": 129222.0,
+      "employment_native": 23308.0,
+      "employment_foreign": 123098.0
+    },
+    {
+      "date": "2007-09-01",
+      "labor_force_native": 24301.0,
+      "labor_force_foreign": 129099.0,
+      "employment_native": 23280.0,
+      "employment_foreign": 123168.0
+    },
+    {
+      "date": "2007-10-01",
+      "labor_force_native": 24265.0,
+      "labor_force_foreign": 129251.0,
+      "employment_native": 23258.0,
+      "employment_foreign": 123485.0
+    },
+    {
+      "date": "2007-11-01",
+      "labor_force_native": 24184.0,
+      "labor_force_foreign": 129851.0,
+      "employment_native": 23104.0,
+      "employment_foreign": 124014.0
+    },
+    {
+      "date": "2007-12-01",
+      "labor_force_native": 23936.0,
+      "labor_force_foreign": 129769.0,
+      "employment_native": 22810.0,
+      "employment_foreign": 123524.0
+    },
+    {
+      "date": "2008-01-01",
+      "labor_force_native": 23881.0,
+      "labor_force_foreign": 128947.0,
+      "employment_native": 22564.0,
+      "employment_foreign": 122042.0
+    },
+    {
+      "date": "2008-02-01",
+      "labor_force_native": 23836.0,
+      "labor_force_foreign": 128667.0,
+      "employment_native": 22502.0,
+      "employment_foreign": 122047.0
+    },
+    {
+      "date": "2008-03-01",
+      "labor_force_native": 23725.0,
+      "labor_force_foreign": 129410.0,
+      "employment_native": 22258.0,
+      "employment_foreign": 122850.0
+    },
+    {
+      "date": "2008-04-01",
+      "labor_force_native": 23899.0,
+      "labor_force_foreign": 129309.0,
+      "employment_native": 22762.0,
+      "employment_foreign": 123159.0
+    },
+    {
+      "date": "2008-05-01",
+      "labor_force_native": 23763.0,
+      "labor_force_foreign": 130240.0,
+      "employment_native": 22515.0,
+      "employment_foreign": 123412.0
+    },
+    {
+      "date": "2008-06-01",
+      "labor_force_native": 24377.0,
+      "labor_force_foreign": 131205.0,
+      "employment_native": 23020.0,
+      "employment_foreign": 123630.0
+    },
+    {
+      "date": "2008-07-01",
+      "labor_force_native": 24615.0,
+      "labor_force_foreign": 131686.0,
+      "employment_native": 23262.0,
+      "employment_foreign": 123605.0
+    },
+    {
+      "date": "2008-08-01",
+      "labor_force_native": 24362.0,
+      "labor_force_foreign": 131026.0,
+      "employment_native": 22890.0,
+      "employment_foreign": 123018.0
+    },
+    {
+      "date": "2008-09-01",
+      "labor_force_native": 24399.0,
+      "labor_force_foreign": 130110.0,
+      "employment_native": 23048.0,
+      "employment_foreign": 122263.0
+    },
+    {
+      "date": "2008-10-01",
+      "labor_force_native": 24096.0,
+      "labor_force_foreign": 130916.0,
+      "employment_native": 22675.0,
+      "employment_foreign": 122868.0
+    },
+    {
+      "date": "2008-11-01",
+      "labor_force_native": 23844.0,
+      "labor_force_foreign": 130780.0,
+      "employment_native": 22283.0,
+      "employment_foreign": 122326.0
+    },
+    {
+      "date": "2008-12-01",
+      "labor_force_native": 23957.0,
+      "labor_force_foreign": 130392.0,
+      "employment_native": 22138.0,
+      "employment_foreign": 121211.0
+    },
+    {
+      "date": "2009-01-01",
+      "labor_force_native": 23541.0,
+      "labor_force_foreign": 129904.0,
+      "employment_native": 21375.0,
+      "employment_foreign": 119061.0
+    },
+    {
+      "date": "2009-02-01",
+      "labor_force_native": 23390.0,
+      "labor_force_foreign": 130414.0,
+      "employment_native": 20976.0,
+      "employment_foreign": 119129.0
+    },
+    {
+      "date": "2009-03-01",
+      "labor_force_native": 23529.0,
+      "labor_force_foreign": 130198.0,
+      "employment_native": 21274.0,
+      "employment_foreign": 118559.0
+    },
+    {
+      "date": "2009-04-01",
+      "labor_force_native": 23782.0,
+      "labor_force_foreign": 130052.0,
+      "employment_native": 21750.0,
+      "employment_foreign": 118835.0
+    },
+    {
+      "date": "2009-05-01",
+      "labor_force_native": 23638.0,
+      "labor_force_foreign": 130699.0,
+      "employment_native": 21488.0,
+      "employment_foreign": 118875.0
+    },
+    {
+      "date": "2009-06-01",
+      "labor_force_native": 24135.0,
+      "labor_force_foreign": 131786.0,
+      "employment_native": 21787.0,
+      "employment_foreign": 119039.0
+    },
+    {
+      "date": "2009-07-01",
+      "labor_force_native": 24289.0,
+      "labor_force_foreign": 131966.0,
+      "employment_native": 21856.0,
+      "employment_foreign": 119199.0
+    },
+    {
+      "date": "2009-08-01",
+      "labor_force_native": 24142.0,
+      "labor_force_foreign": 130755.0,
+      "employment_native": 21695.0,
+      "employment_foreign": 118379.0
+    },
+    {
+      "date": "2009-09-01",
+      "labor_force_native": 24189.0,
+      "labor_force_foreign": 129428.0,
+      "employment_native": 21864.0,
+      "employment_foreign": 117215.0
+    },
+    {
+      "date": "2009-10-01",
+      "labor_force_native": 24200.0,
+      "labor_force_foreign": 129435.0,
+      "employment_native": 21856.0,
+      "employment_foreign": 117233.0
+    },
+    {
+      "date": "2009-11-01",
+      "labor_force_native": 24350.0,
+      "labor_force_foreign": 129189.0,
+      "employment_native": 22091.0,
+      "employment_foreign": 117041.0
+    },
+    {
+      "date": "2009-12-01",
+      "labor_force_native": 23920.0,
+      "labor_force_foreign": 128773.0,
+      "employment_native": 21290.0,
+      "employment_foreign": 116663.0
+    },
+    {
+      "date": "2010-01-01",
+      "labor_force_native": 23924.0,
+      "labor_force_foreign": 129032.0,
+      "employment_native": 21090.0,
+      "employment_foreign": 115719.0
+    },
+    {
+      "date": "2010-02-01",
+      "labor_force_native": 23854.0,
+      "labor_force_foreign": 129341.0,
+      "employment_native": 21102.0,
+      "employment_foreign": 116102.0
+    },
+    {
+      "date": "2010-03-01",
+      "labor_force_native": 23855.0,
+      "labor_force_foreign": 129805.0,
+      "employment_native": 21239.0,
+      "employment_foreign": 116743.0
+    },
+    {
+      "date": "2010-04-01",
+      "labor_force_native": 23916.0,
+      "labor_force_foreign": 129995.0,
+      "employment_native": 21816.0,
+      "employment_foreign": 117486.0
+    },
+    {
+      "date": "2010-05-01",
+      "labor_force_native": 24210.0,
+      "labor_force_foreign": 129656.0,
+      "employment_native": 22125.0,
+      "employment_foreign": 117372.0
+    },
+    {
+      "date": "2010-06-01",
+      "labor_force_native": 24688.0,
+      "labor_force_foreign": 130079.0,
+      "employment_native": 22541.0,
+      "employment_foreign": 117342.0
+    },
+    {
+      "date": "2010-07-01",
+      "labor_force_native": 24586.0,
+      "labor_force_foreign": 130684.0,
+      "employment_native": 22249.0,
+      "employment_foreign": 117884.0
+    },
+    {
+      "date": "2010-08-01",
+      "labor_force_native": 24644.0,
+      "labor_force_foreign": 130034.0,
+      "employment_native": 22415.0,
+      "employment_foreign": 117504.0
+    },
+    {
+      "date": "2010-09-01",
+      "labor_force_native": 24488.0,
+      "labor_force_foreign": 129366.0,
+      "employment_native": 22226.0,
+      "employment_foreign": 117488.0
+    },
+    {
+      "date": "2010-10-01",
+      "labor_force_native": 24530.0,
+      "labor_force_foreign": 129122.0,
+      "employment_native": 22281.0,
+      "employment_foreign": 117468.0
+    },
+    {
+      "date": "2010-11-01",
+      "labor_force_native": 24788.0,
+      "labor_force_foreign": 128909.0,
+      "employment_native": 22387.0,
+      "employment_foreign": 117029.0
+    },
+    {
+      "date": "2010-12-01",
+      "labor_force_native": 24783.0,
+      "labor_force_foreign": 128373.0,
+      "employment_native": 22153.0,
+      "employment_foreign": 117006.0
+    },
+    {
+      "date": "2011-01-01",
+      "labor_force_native": 24517.0,
+      "labor_force_foreign": 128019.0,
+      "employment_native": 21928.0,
+      "employment_foreign": 115671.0
+    },
+    {
+      "date": "2011-02-01",
+      "labor_force_native": 23958.0,
+      "labor_force_foreign": 128676.0,
+      "employment_native": 21614.0,
+      "employment_foreign": 116478.0
+    },
+    {
+      "date": "2011-03-01",
+      "labor_force_native": 24034.0,
+      "labor_force_foreign": 128988.0,
+      "employment_native": 21728.0,
+      "employment_foreign": 117234.0
+    },
+    {
+      "date": "2011-04-01",
+      "labor_force_native": 23915.0,
+      "labor_force_foreign": 128984.0,
+      "employment_native": 21741.0,
+      "employment_foreign": 117920.0
+    },
+    {
+      "date": "2011-05-01",
+      "labor_force_native": 24253.0,
+      "labor_force_foreign": 129196.0,
+      "employment_native": 22216.0,
+      "employment_foreign": 117812.0
+    },
+    {
+      "date": "2011-06-01",
+      "labor_force_native": 24294.0,
+      "labor_force_foreign": 130244.0,
+      "employment_native": 22260.0,
+      "employment_foreign": 117869.0
+    },
+    {
+      "date": "2011-07-01",
+      "labor_force_native": 24516.0,
+      "labor_force_foreign": 130296.0,
+      "employment_native": 22264.0,
+      "employment_foreign": 118120.0
+    },
+    {
+      "date": "2011-08-01",
+      "labor_force_native": 24377.0,
+      "labor_force_foreign": 129966.0,
+      "employment_native": 22292.0,
+      "employment_foreign": 118043.0
+    },
+    {
+      "date": "2011-09-01",
+      "labor_force_native": 24447.0,
+      "labor_force_foreign": 129575.0,
+      "employment_native": 22224.0,
+      "employment_foreign": 118277.0
+    },
+    {
+      "date": "2011-10-01",
+      "labor_force_native": 24849.0,
+      "labor_force_foreign": 129239.0,
+      "employment_native": 22648.0,
+      "employment_foreign": 118338.0
+    },
+    {
+      "date": "2011-11-01",
+      "labor_force_native": 24696.0,
+      "labor_force_foreign": 128987.0,
+      "employment_native": 22631.0,
+      "employment_foreign": 118439.0
+    },
+    {
+      "date": "2011-12-01",
+      "labor_force_native": 24836.0,
+      "labor_force_foreign": 128536.0,
+      "employment_native": 22647.0,
+      "employment_foreign": 118033.0
+    },
+    {
+      "date": "2012-01-01",
+      "labor_force_native": 25156.0,
+      "labor_force_foreign": 128329.0,
+      "employment_native": 22803.0,
+      "employment_foreign": 117141.0
+    },
+    {
+      "date": "2012-02-01",
+      "labor_force_native": 24826.0,
+      "labor_force_foreign": 129288.0,
+      "employment_native": 22470.0,
+      "employment_foreign": 118214.0
+    },
+    {
+      "date": "2012-03-01",
+      "labor_force_native": 24958.0,
+      "labor_force_foreign": 129358.0,
+      "employment_native": 22785.0,
+      "employment_foreign": 118628.0
+    },
+    {
+      "date": "2012-04-01",
+      "labor_force_native": 24460.0,
+      "labor_force_foreign": 129444.0,
+      "employment_native": 22619.0,
+      "employment_foreign": 119376.0
+    },
+    {
+      "date": "2012-05-01",
+      "labor_force_native": 24878.0,
+      "labor_force_foreign": 130120.0,
+      "employment_native": 23038.0,
+      "employment_foreign": 119689.0
+    },
+    {
+      "date": "2012-06-01",
+      "labor_force_native": 25009.0,
+      "labor_force_foreign": 131377.0,
+      "employment_native": 22985.0,
+      "employment_foreign": 120217.0
+    },
+    {
+      "date": "2012-07-01",
+      "labor_force_native": 25180.0,
+      "labor_force_foreign": 131346.0,
+      "employment_native": 23211.0,
+      "employment_foreign": 119916.0
+    },
+    {
+      "date": "2012-08-01",
+      "labor_force_native": 24998.0,
+      "labor_force_foreign": 130257.0,
+      "employment_native": 23080.0,
+      "employment_foreign": 119479.0
+    },
+    {
+      "date": "2012-09-01",
+      "labor_force_native": 25116.0,
+      "labor_force_foreign": 129958.0,
+      "employment_native": 23201.0,
+      "employment_foreign": 120132.0
+    },
+    {
+      "date": "2012-10-01",
+      "labor_force_native": 25268.0,
+      "labor_force_foreign": 130511.0,
+      "employment_native": 23388.0,
+      "employment_foreign": 120651.0
+    },
+    {
+      "date": "2012-11-01",
+      "labor_force_native": 25217.0,
+      "labor_force_foreign": 129737.0,
+      "employment_native": 23272.0,
+      "employment_foreign": 120277.0
+    },
+    {
+      "date": "2012-12-01",
+      "labor_force_native": 25248.0,
+      "labor_force_foreign": 129656.0,
+      "employment_native": 23216.0,
+      "employment_foreign": 119844.0
+    },
+    {
+      "date": "2013-01-01",
+      "labor_force_native": 25240.0,
+      "labor_force_foreign": 129555.0,
+      "employment_native": 23089.0,
+      "employment_foreign": 118524.0
+    },
+    {
+      "date": "2013-02-01",
+      "labor_force_native": 25242.0,
+      "labor_force_foreign": 129486.0,
+      "employment_native": 23163.0,
+      "employment_foreign": 119065.0
+    },
+    {
+      "date": "2013-03-01",
+      "labor_force_native": 25061.0,
+      "labor_force_foreign": 129451.0,
+      "employment_native": 23197.0,
+      "employment_foreign": 119501.0
+    },
+    {
+      "date": "2013-04-01",
+      "labor_force_native": 24982.0,
+      "labor_force_foreign": 129757.0,
+      "employment_native": 23292.0,
+      "employment_foreign": 120432.0
+    },
+    {
+      "date": "2013-05-01",
+      "labor_force_native": 24958.0,
+      "labor_force_foreign": 130776.0,
+      "employment_native": 23384.0,
+      "employment_foreign": 121048.0
+    },
+    {
+      "date": "2013-06-01",
+      "labor_force_native": 25305.0,
+      "labor_force_foreign": 131785.0,
+      "employment_native": 23670.0,
+      "employment_foreign": 121172.0
+    },
+    {
+      "date": "2013-07-01",
+      "labor_force_native": 25382.0,
+      "labor_force_foreign": 131814.0,
+      "employment_native": 23689.0,
+      "employment_foreign": 121424.0
+    },
+    {
+      "date": "2013-08-01",
+      "labor_force_native": 25540.0,
+      "labor_force_foreign": 130431.0,
+      "employment_native": 23833.0,
+      "employment_foreign": 120676.0
+    },
+    {
+      "date": "2013-09-01",
+      "labor_force_native": 25713.0,
+      "labor_force_foreign": 129823.0,
+      "employment_native": 24041.0,
+      "employment_foreign": 120610.0
+    },
+    {
+      "date": "2013-10-01",
+      "labor_force_native": 25507.0,
+      "labor_force_foreign": 129410.0,
+      "employment_native": 23874.0,
+      "employment_foreign": 120270.0
+    },
+    {
+      "date": "2013-11-01",
+      "labor_force_native": 25579.0,
+      "labor_force_foreign": 129467.0,
+      "employment_native": 23961.0,
+      "employment_foreign": 120814.0
+    },
+    {
+      "date": "2013-12-01",
+      "labor_force_native": 25429.0,
+      "labor_force_foreign": 128979.0,
+      "employment_native": 23787.0,
+      "employment_foreign": 120636.0
+    },
+    {
+      "date": "2014-01-01",
+      "labor_force_native": 25139.0,
+      "labor_force_foreign": 129241.0,
+      "employment_native": 23467.0,
+      "employment_foreign": 120059.0
+    },
+    {
+      "date": "2014-02-01",
+      "labor_force_native": 25421.0,
+      "labor_force_foreign": 129606.0,
+      "employment_native": 23658.0,
+      "employment_foreign": 120476.0
+    },
+    {
+      "date": "2014-03-01",
+      "labor_force_native": 25474.0,
+      "labor_force_foreign": 130154.0,
+      "employment_native": 23811.0,
+      "employment_foreign": 121279.0
+    },
+    {
+      "date": "2014-04-01",
+      "labor_force_native": 25127.0,
+      "labor_force_foreign": 129718.0,
+      "employment_native": 23713.0,
+      "employment_foreign": 122054.0
+    },
+    {
+      "date": "2014-05-01",
+      "labor_force_native": 25392.0,
+      "labor_force_foreign": 130448.0,
+      "employment_native": 23977.0,
+      "employment_foreign": 122421.0
+    },
+    {
+      "date": "2014-06-01",
+      "labor_force_native": 25389.0,
+      "labor_force_foreign": 131608.0,
+      "employment_native": 24039.0,
+      "employment_foreign": 123065.0
+    },
+    {
+      "date": "2014-07-01",
+      "labor_force_native": 25411.0,
+      "labor_force_foreign": 132162.0,
+      "employment_native": 24082.0,
+      "employment_foreign": 123183.0
+    },
+    {
+      "date": "2014-08-01",
+      "labor_force_native": 26046.0,
+      "labor_force_foreign": 130388.0,
+      "employment_native": 24639.0,
+      "employment_foreign": 122008.0
+    },
+    {
+      "date": "2014-09-01",
+      "labor_force_native": 26238.0,
+      "labor_force_foreign": 129666.0,
+      "employment_native": 25019.0,
+      "employment_foreign": 121922.0
+    },
+    {
+      "date": "2014-10-01",
+      "labor_force_native": 26364.0,
+      "labor_force_foreign": 130252.0,
+      "employment_native": 24984.0,
+      "employment_foreign": 122952.0
+    },
+    {
+      "date": "2014-11-01",
+      "labor_force_native": 26536.0,
+      "labor_force_foreign": 129760.0,
+      "employment_native": 25108.0,
+      "employment_foreign": 122558.0
+    },
+    {
+      "date": "2014-12-01",
+      "labor_force_native": 26286.0,
+      "labor_force_foreign": 129235.0,
+      "employment_native": 24890.0,
+      "employment_foreign": 122300.0
+    },
+    {
+      "date": "2015-01-01",
+      "labor_force_native": 26073.0,
+      "labor_force_foreign": 129977.0,
+      "employment_native": 24553.0,
+      "employment_foreign": 121999.0
+    },
+    {
+      "date": "2015-02-01",
+      "labor_force_native": 26276.0,
+      "labor_force_foreign": 129937.0,
+      "employment_native": 24741.0,
+      "employment_foreign": 122378.0
+    },
+    {
+      "date": "2015-03-01",
+      "labor_force_native": 26328.0,
+      "labor_force_foreign": 129990.0,
+      "employment_native": 24937.0,
+      "employment_foreign": 122698.0
+    },
+    {
+      "date": "2015-04-01",
+      "labor_force_native": 26103.0,
+      "labor_force_foreign": 130451.0,
+      "employment_native": 24819.0,
+      "employment_foreign": 123769.0
+    },
+    {
+      "date": "2015-05-01",
+      "labor_force_native": 26331.0,
+      "labor_force_foreign": 131388.0,
+      "employment_native": 25098.0,
+      "employment_foreign": 124251.0
+    },
+    {
+      "date": "2015-06-01",
+      "labor_force_native": 26100.0,
+      "labor_force_foreign": 132183.0,
+      "employment_native": 24816.0,
+      "employment_foreign": 124830.0
+    },
+    {
+      "date": "2015-07-01",
+      "labor_force_native": 26079.0,
+      "labor_force_foreign": 132448.0,
+      "employment_native": 24710.0,
+      "employment_foreign": 125012.0
+    },
+    {
+      "date": "2015-08-01",
+      "labor_force_native": 26056.0,
+      "labor_force_foreign": 131334.0,
+      "employment_native": 24914.0,
+      "employment_foreign": 124314.0
+    },
+    {
+      "date": "2015-09-01",
+      "labor_force_native": 26132.0,
+      "labor_force_foreign": 130475.0,
+      "employment_native": 24928.0,
+      "employment_foreign": 124052.0
+    },
+    {
+      "date": "2015-10-01",
+      "labor_force_native": 26267.0,
+      "labor_force_foreign": 131047.0,
+      "employment_native": 25120.0,
+      "employment_foreign": 124597.0
+    },
+    {
+      "date": "2015-11-01",
+      "labor_force_native": 26665.0,
+      "labor_force_foreign": 130675.0,
+      "employment_native": 25495.0,
+      "employment_foreign": 124271.0
+    },
+    {
+      "date": "2015-12-01",
+      "labor_force_native": 26681.0,
+      "labor_force_foreign": 130564.0,
+      "employment_native": 25426.0,
+      "employment_foreign": 124277.0
+    },
+    {
+      "date": "2016-01-01",
+      "labor_force_native": 26681.0,
+      "labor_force_foreign": 130665.0,
+      "employment_native": 25328.0,
+      "employment_foreign": 123710.0
+    },
+    {
+      "date": "2016-02-01",
+      "labor_force_native": 26602.0,
+      "labor_force_foreign": 131677.0,
+      "employment_native": 25391.0,
+      "employment_foreign": 124670.0
+    },
+    {
+      "date": "2016-03-01",
+      "labor_force_native": 27029.0,
+      "labor_force_foreign": 131825.0,
+      "employment_native": 25741.0,
+      "employment_foreign": 124997.0
+    },
+    {
+      "date": "2016-04-01",
+      "labor_force_native": 26596.0,
+      "labor_force_foreign": 131891.0,
+      "employment_native": 25460.0,
+      "employment_foreign": 125615.0
+    },
+    {
+      "date": "2016-05-01",
+      "labor_force_native": 26243.0,
+      "labor_force_foreign": 132557.0,
+      "employment_native": 25274.0,
+      "employment_foreign": 126319.0
+    },
+    {
+      "date": "2016-06-01",
+      "labor_force_native": 26936.0,
+      "labor_force_foreign": 133198.0,
+      "employment_native": 25851.0,
+      "employment_foreign": 126140.0
+    },
+    {
+      "date": "2016-07-01",
+      "labor_force_native": 27132.0,
+      "labor_force_foreign": 133572.0,
+      "employment_native": 25984.0,
+      "employment_foreign": 126453.0
+    },
+    {
+      "date": "2016-08-01",
+      "labor_force_native": 27336.0,
+      "labor_force_foreign": 132464.0,
+      "employment_native": 26134.0,
+      "employment_foreign": 125670.0
+    },
+    {
+      "date": "2016-09-01",
+      "labor_force_native": 27345.0,
+      "labor_force_foreign": 132291.0,
+      "employment_native": 26146.0,
+      "employment_foreign": 125832.0
+    },
+    {
+      "date": "2016-10-01",
+      "labor_force_native": 27060.0,
+      "labor_force_foreign": 132722.0,
+      "employment_native": 25965.0,
+      "employment_foreign": 126370.0
+    },
+    {
+      "date": "2016-11-01",
+      "labor_force_native": 27384.0,
+      "labor_force_foreign": 132068.0,
+      "employment_native": 26196.0,
+      "employment_foreign": 126190.0
+    },
+    {
+      "date": "2016-12-01",
+      "labor_force_native": 27062.0,
+      "labor_force_foreign": 131906.0,
+      "employment_native": 25881.0,
+      "employment_foreign": 125917.0
+    },
+    {
+      "date": "2017-01-01",
+      "labor_force_native": 27144.0,
+      "labor_force_foreign": 131532.0,
+      "employment_native": 25721.0,
+      "employment_foreign": 124806.0
+    },
+    {
+      "date": "2017-02-01",
+      "labor_force_native": 27049.0,
+      "labor_force_foreign": 132432.0,
+      "employment_native": 25701.0,
+      "employment_foreign": 125893.0
+    },
+    {
+      "date": "2017-03-01",
+      "labor_force_native": 27062.0,
+      "labor_force_foreign": 132850.0,
+      "employment_native": 25857.0,
+      "employment_foreign": 126771.0
+    },
+    {
+      "date": "2017-04-01",
+      "labor_force_native": 27402.0,
+      "labor_force_foreign": 132415.0,
+      "employment_native": 26354.0,
+      "employment_foreign": 126908.0
+    },
+    {
+      "date": "2017-05-01",
+      "labor_force_native": 27315.0,
+      "labor_force_foreign": 132664.0,
+      "employment_native": 26290.0,
+      "employment_foreign": 127117.0
+    },
+    {
+      "date": "2017-06-01",
+      "labor_force_native": 27540.0,
+      "labor_force_foreign": 133796.0,
+      "employment_native": 26528.0,
+      "employment_foreign": 127558.0
+    },
+    {
+      "date": "2017-07-01",
+      "labor_force_native": 27536.0,
+      "labor_force_foreign": 134375.0,
+      "employment_native": 26438.0,
+      "employment_foreign": 128033.0
+    },
+    {
+      "date": "2017-08-01",
+      "labor_force_native": 27673.0,
+      "labor_force_foreign": 133190.0,
+      "employment_native": 26520.0,
+      "employment_foreign": 127056.0
+    },
+    {
+      "date": "2017-09-01",
+      "labor_force_native": 27846.0,
+      "labor_force_foreign": 133203.0,
+      "employment_native": 26754.0,
+      "employment_foreign": 127739.0
+    },
+    {
+      "date": "2017-10-01",
+      "labor_force_native": 27374.0,
+      "labor_force_foreign": 133091.0,
+      "employment_native": 26343.0,
+      "employment_foreign": 127880.0
+    },
+    {
+      "date": "2017-11-01",
+      "labor_force_native": 27395.0,
+      "labor_force_foreign": 133071.0,
+      "employment_native": 26453.0,
+      "employment_foreign": 127727.0
+    },
+    {
+      "date": "2017-12-01",
+      "labor_force_native": 27143.0,
+      "labor_force_foreign": 132736.0,
+      "employment_native": 26091.0,
+      "employment_foreign": 127510.0
+    },
+    {
+      "date": "2018-01-01",
+      "labor_force_native": 27754.0,
+      "labor_force_foreign": 132283.0,
+      "employment_native": 26453.0,
+      "employment_foreign": 126395.0
+    },
+    {
+      "date": "2018-02-01",
+      "labor_force_native": 28218.0,
+      "labor_force_foreign": 133276.0,
+      "employment_native": 27094.0,
+      "employment_foreign": 127310.0
+    },
+    {
+      "date": "2018-03-01",
+      "labor_force_native": 28441.0,
+      "labor_force_foreign": 133107.0,
+      "employment_native": 27280.0,
+      "employment_foreign": 127597.0
+    },
+    {
+      "date": "2018-04-01",
+      "labor_force_native": 28266.0,
+      "labor_force_foreign": 133014.0,
+      "employment_native": 27300.0,
+      "employment_foreign": 128049.0
+    },
+    {
+      "date": "2018-05-01",
+      "labor_force_native": 27923.0,
+      "labor_force_foreign": 133842.0,
+      "employment_native": 27086.0,
+      "employment_foreign": 128924.0
+    },
+    {
+      "date": "2018-06-01",
+      "labor_force_native": 28115.0,
+      "labor_force_foreign": 135162.0,
+      "employment_native": 27134.0,
+      "employment_foreign": 129331.0
+    },
+    {
+      "date": "2018-07-01",
+      "labor_force_native": 27858.0,
+      "labor_force_foreign": 135876.0,
+      "employment_native": 26942.0,
+      "employment_foreign": 130062.0
+    },
+    {
+      "date": "2018-08-01",
+      "labor_force_native": 28053.0,
+      "labor_force_foreign": 133856.0,
+      "employment_native": 27110.0,
+      "employment_foreign": 128429.0
+    },
+    {
+      "date": "2018-09-01",
+      "labor_force_native": 28315.0,
+      "labor_force_foreign": 133642.0,
+      "employment_native": 27471.0,
+      "employment_foreign": 128720.0
+    },
+    {
+      "date": "2018-10-01",
+      "labor_force_native": 28410.0,
+      "labor_force_foreign": 134313.0,
+      "employment_native": 27533.0,
+      "employment_foreign": 129419.0
+    },
+    {
+      "date": "2018-11-01",
+      "labor_force_native": 28717.0,
+      "labor_force_foreign": 133948.0,
+      "employment_native": 27805.0,
+      "employment_foreign": 129210.0
+    },
+    {
+      "date": "2018-12-01",
+      "labor_force_native": 28359.0,
+      "labor_force_foreign": 134151.0,
+      "employment_native": 27393.0,
+      "employment_foreign": 129088.0
+    },
+    {
+      "date": "2019-01-01",
+      "labor_force_native": 28686.0,
+      "labor_force_foreign": 133419.0,
+      "employment_native": 27381.0,
+      "employment_foreign": 127583.0
+    },
+    {
+      "date": "2019-02-01",
+      "labor_force_native": 28892.0,
+      "labor_force_foreign": 133901.0,
+      "employment_native": 27817.0,
+      "employment_foreign": 128351.0
+    },
+    {
+      "date": "2019-03-01",
+      "labor_force_native": 28893.0,
+      "labor_force_foreign": 133930.0,
+      "employment_native": 27775.0,
+      "employment_foreign": 128666.0
+    },
+    {
+      "date": "2019-04-01",
+      "labor_force_native": 28439.0,
+      "labor_force_foreign": 133657.0,
+      "employment_native": 27660.0,
+      "employment_foreign": 129049.0
+    },
+    {
+      "date": "2019-05-01",
+      "labor_force_native": 28473.0,
+      "labor_force_foreign": 134182.0,
+      "employment_native": 27678.0,
+      "employment_foreign": 129474.0
+    },
+    {
+      "date": "2019-06-01",
+      "labor_force_native": 28421.0,
+      "labor_force_foreign": 135699.0,
+      "employment_native": 27643.0,
+      "employment_foreign": 130185.0
+    },
+    {
+      "date": "2019-07-01",
+      "labor_force_native": 27982.0,
+      "labor_force_foreign": 136959.0,
+      "employment_native": 27140.0,
+      "employment_foreign": 131245.0
+    },
+    {
+      "date": "2019-08-01",
+      "labor_force_native": 28153.0,
+      "labor_force_foreign": 135866.0,
+      "employment_native": 27272.0,
+      "employment_foreign": 130545.0
+    },
+    {
+      "date": "2019-09-01",
+      "labor_force_native": 28121.0,
+      "labor_force_foreign": 135822.0,
+      "employment_native": 27392.0,
+      "employment_foreign": 131086.0
+    },
+    {
+      "date": "2019-10-01",
+      "labor_force_native": 28067.0,
+      "labor_force_foreign": 136509.0,
+      "employment_native": 27346.0,
+      "employment_foreign": 131721.0
+    },
+    {
+      "date": "2019-11-01",
+      "labor_force_native": 28468.0,
+      "labor_force_foreign": 135918.0,
+      "employment_native": 27693.0,
+      "employment_foreign": 131252.0
+    },
+    {
+      "date": "2019-12-01",
+      "labor_force_native": 28086.0,
+      "labor_force_foreign": 135921.0,
+      "employment_native": 27223.0,
+      "employment_foreign": 131281.0
+    },
+    {
+      "date": "2020-01-01",
+      "labor_force_native": 28189.0,
+      "labor_force_foreign": 135308.0,
+      "employment_native": 27066.0,
+      "employment_foreign": 129928.0
+    },
+    {
+      "date": "2020-02-01",
+      "labor_force_native": 28719.0,
+      "labor_force_foreign": 135516.0,
+      "employment_native": 27697.0,
+      "employment_foreign": 130320.0
+    },
+    {
+      "date": "2020-03-01",
+      "labor_force_native": 27819.0,
+      "labor_force_foreign": 134718.0,
+      "employment_native": 26478.0,
+      "employment_foreign": 128689.0
+    },
+    {
+      "date": "2020-04-01",
+      "labor_force_native": 26285.0,
+      "labor_force_foreign": 129545.0,
+      "employment_native": 21961.0,
+      "employment_foreign": 111365.0
+    },
+    {
+      "date": "2020-05-01",
+      "labor_force_native": 26622.0,
+      "labor_force_foreign": 131353.0,
+      "employment_native": 22434.0,
+      "employment_foreign": 115027.0
+    },
+    {
+      "date": "2020-06-01",
+      "labor_force_native": 26823.0,
+      "labor_force_foreign": 134060.0,
+      "employment_native": 23130.0,
+      "employment_foreign": 119681.0
+    },
+    {
+      "date": "2020-07-01",
+      "labor_force_native": 27349.0,
+      "labor_force_foreign": 134025.0,
+      "employment_native": 23946.0,
+      "employment_foreign": 120546.0
+    },
+    {
+      "date": "2020-08-01",
+      "labor_force_native": 27325.0,
+      "labor_force_foreign": 133641.0,
+      "employment_native": 24551.0,
+      "employment_foreign": 122673.0
+    },
+    {
+      "date": "2020-09-01",
+      "labor_force_native": 26712.0,
+      "labor_force_foreign": 133361.0,
+      "employment_native": 24419.0,
+      "employment_foreign": 123377.0
+    },
+    {
+      "date": "2020-10-01",
+      "labor_force_native": 26919.0,
+      "labor_force_foreign": 134134.0,
+      "employment_native": 24865.0,
+      "employment_foreign": 125569.0
+    },
+    {
+      "date": "2020-11-01",
+      "labor_force_native": 27494.0,
+      "labor_force_foreign": 132973.0,
+      "employment_native": 25644.0,
+      "employment_foreign": 124559.0
+    },
+    {
+      "date": "2020-12-01",
+      "labor_force_native": 27529.0,
+      "labor_force_foreign": 132487.0,
+      "employment_native": 25512.0,
+      "employment_foreign": 124101.0
+    },
+    {
+      "date": "2021-01-01",
+      "labor_force_native": 27549.0,
+      "labor_force_foreign": 131685.0,
+      "employment_native": 25318.0,
+      "employment_foreign": 123065.0
+    },
+    {
+      "date": "2021-02-01",
+      "labor_force_native": 27946.0,
+      "labor_force_foreign": 132062.0,
+      "employment_native": 25862.0,
+      "employment_foreign": 123660.0
+    },
+    {
+      "date": "2021-03-01",
+      "labor_force_native": 27775.0,
+      "labor_force_foreign": 132623.0,
+      "employment_native": 25886.0,
+      "employment_foreign": 124607.0
+    },
+    {
+      "date": "2021-04-01",
+      "labor_force_native": 27644.0,
+      "labor_force_foreign": 132735.0,
+      "employment_native": 25886.0,
+      "employment_foreign": 125274.0
+    },
+    {
+      "date": "2021-05-01",
+      "labor_force_native": 27327.0,
+      "labor_force_foreign": 133280.0,
+      "employment_native": 25789.0,
+      "employment_foreign": 125989.0
+    },
+    {
+      "date": "2021-06-01",
+      "labor_force_native": 27653.0,
+      "labor_force_foreign": 134514.0,
+      "employment_native": 26059.0,
+      "employment_foreign": 126224.0
+    },
+    {
+      "date": "2021-07-01",
+      "labor_force_native": 27712.0,
+      "labor_force_foreign": 135105.0,
+      "employment_native": 26216.0,
+      "employment_foreign": 127380.0
+    },
+    {
+      "date": "2021-08-01",
+      "labor_force_native": 27916.0,
+      "labor_force_foreign": 133872.0,
+      "employment_native": 26453.0,
+      "employment_foreign": 126779.0
+    },
+    {
+      "date": "2021-09-01",
+      "labor_force_native": 28100.0,
+      "labor_force_foreign": 133293.0,
+      "employment_native": 26816.0,
+      "employment_foreign": 127210.0
+    },
+    {
+      "date": "2021-10-01",
+      "labor_force_native": 28564.0,
+      "labor_force_foreign": 133298.0,
+      "employment_native": 27341.0,
+      "employment_foreign": 127626.0
+    },
+    {
+      "date": "2021-11-01",
+      "labor_force_native": 28895.0,
+      "labor_force_foreign": 133204.0,
+      "employment_native": 27853.0,
+      "employment_foreign": 127944.0
+    },
+    {
+      "date": "2021-12-01",
+      "labor_force_native": 28760.0,
+      "labor_force_foreign": 132935.0,
+      "employment_native": 27691.0,
+      "employment_foreign": 128041.0
+    },
+    {
+      "date": "2022-01-01",
+      "labor_force_native": 29255.0,
+      "labor_force_foreign": 133569.0,
+      "employment_native": 27978.0,
+      "employment_foreign": 127640.0
+    },
+    {
+      "date": "2022-02-01",
+      "labor_force_native": 29229.0,
+      "labor_force_foreign": 134495.0,
+      "employment_native": 28138.0,
+      "employment_foreign": 128805.0
+    },
+    {
+      "date": "2022-03-01",
+      "labor_force_native": 29159.0,
+      "labor_force_foreign": 135115.0,
+      "employment_native": 28172.0,
+      "employment_foreign": 129933.0
+    },
+    {
+      "date": "2022-04-01",
+      "labor_force_native": 29458.0,
+      "labor_force_foreign": 133992.0,
+      "employment_native": 28488.0,
+      "employment_foreign": 129503.0
+    },
+    {
+      "date": "2022-05-01",
+      "labor_force_native": 29648.0,
+      "labor_force_foreign": 134509.0,
+      "employment_native": 28690.0,
+      "employment_foreign": 129919.0
+    },
+    {
+      "date": "2022-06-01",
+      "labor_force_native": 29553.0,
+      "labor_force_foreign": 135459.0,
+      "employment_native": 28498.0,
+      "employment_foreign": 130180.0
+    },
+    {
+      "date": "2022-07-01",
+      "labor_force_native": 29644.0,
+      "labor_force_foreign": 135677.0,
+      "employment_native": 28683.0,
+      "employment_foreign": 130384.0
+    },
+    {
+      "date": "2022-08-01",
+      "labor_force_native": 29817.0,
+      "labor_force_foreign": 135153.0,
+      "employment_native": 28654.0,
+      "employment_foreign": 130060.0
+    },
+    {
+      "date": "2022-09-01",
+      "labor_force_native": 30213.0,
+      "labor_force_foreign": 134250.0,
+      "employment_native": 29349.0,
+      "employment_foreign": 129654.0
+    },
+    {
+      "date": "2022-10-01",
+      "labor_force_native": 30459.0,
+      "labor_force_foreign": 134294.0,
+      "employment_native": 29451.0,
+      "employment_foreign": 129693.0
+    },
+    {
+      "date": "2022-11-01",
+      "labor_force_native": 30542.0,
+      "labor_force_foreign": 133730.0,
+      "employment_native": 29618.0,
+      "employment_foreign": 129131.0
+    },
+    {
+      "date": "2022-12-01",
+      "labor_force_native": 30077.0,
+      "labor_force_foreign": 134147.0,
+      "employment_native": 29130.0,
+      "employment_foreign": 129742.0
+    },
+    {
+      "date": "2023-01-01",
+      "labor_force_native": 29945.0,
+      "labor_force_foreign": 135125.0,
+      "employment_native": 28692.0,
+      "employment_foreign": 130000.0
+    },
+    {
+      "date": "2023-02-01",
+      "labor_force_native": 30827.0,
+      "labor_force_foreign": 135351.0,
+      "employment_native": 29518.0,
+      "employment_foreign": 130194.0
+    },
+    {
+      "date": "2023-03-01",
+      "labor_force_native": 30845.0,
+      "labor_force_foreign": 135938.0,
+      "employment_native": 29848.0,
+      "employment_foreign": 130893.0
+    },
+    {
+      "date": "2023-04-01",
+      "labor_force_native": 30912.0,
+      "labor_force_foreign": 135309.0,
+      "employment_native": 29962.0,
+      "employment_foreign": 131113.0
+    },
+    {
+      "date": "2023-05-01",
+      "labor_force_native": 31249.0,
+      "labor_force_foreign": 135453.0,
+      "employment_native": 30259.0,
+      "employment_foreign": 130744.0
+    },
+    {
+      "date": "2023-06-01",
+      "labor_force_native": 30730.0,
+      "labor_force_foreign": 137180.0,
+      "employment_native": 29710.0,
+      "employment_foreign": 131849.0
+    },
+    {
+      "date": "2023-07-01",
+      "labor_force_native": 30870.0,
+      "labor_force_foreign": 137484.0,
+      "employment_native": 29728.0,
+      "employment_foreign": 132254.0
+    },
+    {
+      "date": "2023-08-01",
+      "labor_force_native": 31567.0,
+      "labor_force_foreign": 136482.0,
+      "employment_native": 30396.0,
+      "employment_foreign": 131031.0
+    },
+    {
+      "date": "2023-09-01",
+      "labor_force_native": 31336.0,
+      "labor_force_foreign": 136382.0,
+      "employment_native": 30213.0,
+      "employment_foreign": 131457.0
+    },
+    {
+      "date": "2023-10-01",
+      "labor_force_native": 31237.0,
+      "labor_force_foreign": 136537.0,
+      "employment_native": 30056.0,
+      "employment_foreign": 131621.0
+    },
+    {
+      "date": "2023-11-01",
+      "labor_force_native": 31507.0,
+      "labor_force_foreign": 136470.0,
+      "employment_native": 30422.0,
+      "employment_foreign": 131727.0
+    },
+    {
+      "date": "2023-12-01",
+      "labor_force_native": 31591.0,
+      "labor_force_foreign": 135069.0,
+      "employment_native": 30387.0,
+      "employment_foreign": 130367.0
+    },
+    {
+      "date": "2024-01-01",
+      "labor_force_native": 31244.0,
+      "labor_force_foreign": 135184.0,
+      "employment_native": 29842.0,
+      "employment_foreign": 129807.0
+    },
+    {
+      "date": "2024-02-01",
+      "labor_force_native": 32521.0,
+      "labor_force_foreign": 134764.0,
+      "employment_native": 31002.0,
+      "employment_foreign": 129313.0
+    },
+    {
+      "date": "2024-03-01",
+      "labor_force_native": 32292.0,
+      "labor_force_foreign": 135668.0,
+      "employment_native": 31114.0,
+      "employment_foreign": 130242.0
+    },
+    {
+      "date": "2024-04-01",
+      "labor_force_native": 31726.0,
+      "labor_force_foreign": 135758.0,
+      "employment_native": 30482.0,
+      "employment_foreign": 131108.0
+    },
+    {
+      "date": "2024-05-01",
+      "labor_force_native": 31989.0,
+      "labor_force_foreign": 135587.0,
+      "employment_native": 30896.0,
+      "employment_foreign": 130445.0
+    },
+    {
+      "date": "2024-06-01",
+      "labor_force_native": 32224.0,
+      "labor_force_foreign": 136783.0,
+      "employment_native": 30867.0,
+      "employment_foreign": 130906.0
+    },
+    {
+      "date": "2024-07-01",
+      "labor_force_native": 32518.0,
+      "labor_force_foreign": 137205.0,
+      "employment_native": 31001.0,
+      "employment_foreign": 131037.0
+    },
+    {
+      "date": "2024-08-01",
+      "labor_force_native": 33049.0,
+      "labor_force_foreign": 135714.0,
+      "employment_native": 31636.0,
+      "employment_foreign": 129712.0
+    },
+    {
+      "date": "2024-09-01",
+      "labor_force_native": 32781.0,
+      "labor_force_foreign": 135788.0,
+      "employment_native": 31414.0,
+      "employment_foreign": 130632.0
+    },
+    {
+      "date": "2024-10-01",
+      "labor_force_native": 32435.0,
+      "labor_force_foreign": 136135.0,
+      "employment_native": 31090.0,
+      "employment_foreign": 130848.0
+    },
+    {
+      "date": "2024-11-01",
+      "labor_force_native": 32272.0,
+      "labor_force_foreign": 135892.0,
+      "employment_native": 30823.0,
+      "employment_foreign": 130633.0
+    },
+    {
+      "date": "2024-12-01",
+      "labor_force_native": 32101.0,
+      "labor_force_foreign": 135645.0,
+      "employment_native": 30729.0,
+      "employment_foreign": 130565.0
+    },
+    {
+      "date": "2025-01-01",
+      "labor_force_native": 33307.0,
+      "labor_force_foreign": 136507.0,
+      "employment_native": 31774.0,
+      "employment_foreign": 130573.0
+    },
+    {
+      "date": "2025-02-01",
+      "labor_force_native": 33241.0,
+      "labor_force_foreign": 136874.0,
+      "employment_native": 31687.0,
+      "employment_foreign": 130857.0
+    },
+    {
+      "date": "2025-03-01",
+      "labor_force_native": 33719.0,
+      "labor_force_foreign": 136935.0,
+      "employment_native": 32225.0,
+      "employment_foreign": 131186.0
+    },
+    {
+      "date": "2025-04-01",
+      "labor_force_native": 33004.0,
+      "labor_force_foreign": 137646.0,
+      "employment_native": 31803.0,
+      "employment_foreign": 132266.0
+    },
+    {
+      "date": "2025-05-01",
+      "labor_force_native": 32706.0,
+      "labor_force_foreign": 137510.0,
+      "employment_native": 31579.0,
+      "employment_foreign": 131822.0
+    },
+    {
+      "date": "2025-06-01",
+      "labor_force_native": 32572.0,
+      "labor_force_foreign": 138771.0,
+      "employment_native": 31231.0,
+      "employment_foreign": 132652.0
+    },
+    {
+      "date": "2025-07-01",
+      "labor_force_native": 32066.0,
+      "labor_force_foreign": 139580.0,
+      "employment_native": 30764.0,
+      "employment_foreign": 133035.0
+    },
+    {
+      "date": "2025-08-01",
+      "labor_force_native": 32239.0,
+      "labor_force_foreign": 138796.0,
+      "employment_native": 30814.0,
+      "employment_foreign": 132474.0
+    },
+    {
+      "date": "2025-09-01",
+      "labor_force_native": 32073.0,
+      "labor_force_foreign": 139144.0,
+      "employment_native": 30744.0,
+      "employment_foreign": 133150.0
+    },
+    {
+      "date": "2025-11-01",
+      "labor_force_native": 32205.0,
+      "labor_force_foreign": 139262.0,
+      "employment_native": 30802.0,
+      "employment_foreign": 133264.0
+    },
+    {
+      "date": "2025-12-01",
+      "labor_force_native": 32426.0,
+      "labor_force_foreign": 138297.0,
+      "employment_native": 31112.0,
+      "employment_foreign": 132608.0
+    },
+    {
+      "date": "2026-01-01",
+      "labor_force_native": 33058.0,
+      "labor_force_foreign": 136554.0,
+      "employment_native": 31562.0,
+      "employment_foreign": 130108.0
+    },
+    {
+      "date": "2026-02-01",
+      "labor_force_native": 32711.0,
+      "labor_force_foreign": 137495.0,
+      "employment_native": 31168.0,
+      "employment_foreign": 130985.0
+    },
+    {
+      "date": "2026-03-01",
+      "labor_force_native": 33401.0,
+      "labor_force_foreign": 136700.0,
+      "employment_native": 31974.0,
+      "employment_foreign": 130791.0
+    },
+    {
+      "date": "2026-04-01",
+      "labor_force_native": 32851.0,
+      "labor_force_foreign": 136697.0,
+      "employment_native": 31648.0,
+      "employment_foreign": 131132.0
+    }
+  ],
+  "latest": {
+    "date": "2026-04-01",
+    "labor_force_native": 32851.0,
+    "labor_force_foreign": 136697.0,
+    "employment_native": 31648.0,
+    "employment_foreign": 131132.0
+  },
+  "last_updated": "2026-06-05T22:16:03.497469+09:00"
+}

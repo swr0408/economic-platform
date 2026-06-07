@@ -117,12 +117,12 @@ async def refresh_screenshots():
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     return comex_warehouse_screenshot_service.get_cache_status()
 
 
 @router.post("/cache/invalidate")
-async def invalidate_cache():
+def invalidate_cache():
     success = comex_warehouse_screenshot_service.invalidate_cache()
     return {
         "success": success,

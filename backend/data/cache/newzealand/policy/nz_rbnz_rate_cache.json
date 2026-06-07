@@ -31,10 +31,14 @@
     {
       "date": "2026-04-08",
       "value": 2.25
+    },
+    {
+      "date": "2026-05-27",
+      "value": 2.25
     }
   ],
   "latest": {
-    "date": "2026-04-08",
+    "date": "2026-05-27",
     "value": 2.25
   },
   "metadata": {
@@ -45,5 +49,5 @@
     "frequency": "daily",
     "table": "B2 - Wholesale Interest Rates (Daily Close)"
   },
-  "last_updated": "2026-04-18T04:10:06.215212+09:00"
+  "last_updated": "2026-06-07T11:31:26.108319+09:00"
 }

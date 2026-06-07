@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Price"])
 
 
 @router.get("/cgpi")
-async def get_cgpi(
+def get_cgpi(
     force_refresh: bool = Query(False, description="Force refresh data")
 ):
     """
@@ -32,7 +32,7 @@ async def get_cgpi(
 
 
 @router.post("/cgpi/refresh")
-async def refresh_cgpi():
+def refresh_cgpi():
     """
     Force refresh Japan CGPI data
 
@@ -43,7 +43,7 @@ async def refresh_cgpi():
 
 
 @router.get("/cgpi/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for CGPI data
     """
@@ -51,7 +51,7 @@ async def get_cache_status():
 
 
 @router.delete("/cgpi/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate CGPI data cache
     """

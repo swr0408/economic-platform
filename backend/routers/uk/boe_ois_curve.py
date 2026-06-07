@@ -18,7 +18,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_ois_curve(
+def get_ois_curve(
     force_refresh: bool = Query(False, description="強制更新")
 ):
     """
@@ -40,7 +40,7 @@ async def get_ois_curve(
 
 
 @router.get("/chart")
-async def get_ois_curve_chart():
+def get_ois_curve_chart():
     """
     チャート表示用のOISカーブデータを取得
 
@@ -55,13 +55,13 @@ async def get_ois_curve_chart():
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """キャッシュ状態を取得"""
     return boe_ois_curve_service.get_cache_status()
 
 
 @router.post("/invalidate-cache")
-async def invalidate_cache():
+def invalidate_cache():
     """キャッシュを無効化"""
     success = boe_ois_curve_service.invalidate_cache()
     return {"success": success}

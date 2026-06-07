@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get("/")
-async def bfs_root():
+def bfs_root():
     """BFS APIルート"""
     return {
         "message": "BFS (Federal Statistical Office) API",
@@ -31,7 +31,7 @@ async def bfs_root():
 
 
 @router.get("/unemployment-rate")
-async def get_unemployment_rate(
+def get_unemployment_rate(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -51,7 +51,7 @@ async def get_unemployment_rate(
 
 
 @router.get("/unemployment-rate/latest")
-async def get_unemployment_rate_latest():
+def get_unemployment_rate_latest():
     """
     スイス失業率 最新データを取得
 
@@ -68,7 +68,7 @@ async def get_unemployment_rate_latest():
 
 
 @router.get("/unemployment-rate/cache/status")
-async def get_unemployment_rate_cache_status():
+def get_unemployment_rate_cache_status():
     """スイス失業率 キャッシュ状態を取得"""
     from services.switzerland.ch_unemployment_rate_service import ch_unemployment_rate_service
 
@@ -76,7 +76,7 @@ async def get_unemployment_rate_cache_status():
 
 
 @router.delete("/unemployment-rate/cache")
-async def invalidate_unemployment_rate_cache():
+def invalidate_unemployment_rate_cache():
     """スイス失業率 キャッシュを無効化"""
     from services.switzerland.ch_unemployment_rate_service import ch_unemployment_rate_service
 
@@ -92,7 +92,7 @@ async def invalidate_unemployment_rate_cache():
 # =============================================================================
 
 @router.get("/retail-trade")
-async def get_retail_trade(
+def get_retail_trade(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -112,7 +112,7 @@ async def get_retail_trade(
 
 
 @router.get("/retail-trade/latest")
-async def get_retail_trade_latest():
+def get_retail_trade_latest():
     """
     スイス小売売上高 最新データを取得
 
@@ -129,7 +129,7 @@ async def get_retail_trade_latest():
 
 
 @router.get("/retail-trade/cache/status")
-async def get_retail_trade_cache_status():
+def get_retail_trade_cache_status():
     """スイス小売売上高 キャッシュ状態を取得"""
     from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
 
@@ -137,7 +137,7 @@ async def get_retail_trade_cache_status():
 
 
 @router.delete("/retail-trade/cache")
-async def invalidate_retail_trade_cache():
+def invalidate_retail_trade_cache():
     """スイス小売売上高 キャッシュを無効化"""
     from services.switzerland.ch_retail_trade_service import ch_retail_trade_service
 
@@ -153,7 +153,7 @@ async def invalidate_retail_trade_cache():
 # =============================================================================
 
 @router.get("/industrial-production")
-async def get_industrial_production(
+def get_industrial_production(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -175,7 +175,7 @@ async def get_industrial_production(
 
 
 @router.get("/industrial-production/latest")
-async def get_industrial_production_latest():
+def get_industrial_production_latest():
     """
     スイス鉱工業生産 最新データを取得
 
@@ -193,7 +193,7 @@ async def get_industrial_production_latest():
 
 
 @router.get("/industrial-production/cache/status")
-async def get_industrial_production_cache_status():
+def get_industrial_production_cache_status():
     """スイス鉱工業生産 キャッシュ状態を取得"""
     from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
 
@@ -201,7 +201,7 @@ async def get_industrial_production_cache_status():
 
 
 @router.delete("/industrial-production/cache")
-async def invalidate_industrial_production_cache():
+def invalidate_industrial_production_cache():
     """スイス鉱工業生産 キャッシュを無効化"""
     from services.switzerland.ch_industrial_production_service import ch_industrial_production_service
 
@@ -217,7 +217,7 @@ async def invalidate_industrial_production_cache():
 # =============================================================================
 
 @router.get("/nominal-wage-growth")
-async def get_nominal_wage_growth(
+def get_nominal_wage_growth(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -237,7 +237,7 @@ async def get_nominal_wage_growth(
 
 
 @router.get("/nominal-wage-growth/latest")
-async def get_nominal_wage_growth_latest():
+def get_nominal_wage_growth_latest():
     """
     スイス名目賃金上昇率 最新データを取得
 
@@ -254,7 +254,7 @@ async def get_nominal_wage_growth_latest():
 
 
 @router.get("/nominal-wage-growth/cache/status")
-async def get_nominal_wage_growth_cache_status():
+def get_nominal_wage_growth_cache_status():
     """スイス名目賃金上昇率 キャッシュ状態を取得"""
     from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
 
@@ -262,7 +262,7 @@ async def get_nominal_wage_growth_cache_status():
 
 
 @router.delete("/nominal-wage-growth/cache")
-async def invalidate_nominal_wage_growth_cache():
+def invalidate_nominal_wage_growth_cache():
     """スイス名目賃金上昇率 キャッシュを無効化"""
     from services.switzerland.ch_nominal_wage_growth_service import ch_nominal_wage_growth_service
 
@@ -278,7 +278,7 @@ async def invalidate_nominal_wage_growth_cache():
 # =============================================================================
 
 @router.get("/housing-prices")
-async def get_housing_prices(
+def get_housing_prices(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -298,7 +298,7 @@ async def get_housing_prices(
 
 
 @router.get("/housing-prices/latest")
-async def get_housing_prices_latest():
+def get_housing_prices_latest():
     """
     スイス住宅価格指数 最新データを取得
 
@@ -315,7 +315,7 @@ async def get_housing_prices_latest():
 
 
 @router.get("/housing-prices/cache/status")
-async def get_housing_prices_cache_status():
+def get_housing_prices_cache_status():
     """スイス住宅価格指数 キャッシュ状態を取得"""
     from services.switzerland.ch_housing_prices_service import ch_housing_prices_service
 
@@ -323,7 +323,7 @@ async def get_housing_prices_cache_status():
 
 
 @router.delete("/housing-prices/cache")
-async def invalidate_housing_prices_cache():
+def invalidate_housing_prices_cache():
     """スイス住宅価格指数 キャッシュを無効化"""
     from services.switzerland.ch_housing_prices_service import ch_housing_prices_service
 

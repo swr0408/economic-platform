@@ -1,0 +1,75 @@
+{
+  "schedule": [
+    {
+      "date": "2026-05-28",
+      "report": "May 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-06-04",
+      "report": "May 2026 Final",
+      "type": "final"
+    },
+    {
+      "date": "2026-06-25",
+      "report": "June 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-07-01",
+      "report": "June 2026 Final",
+      "type": "final"
+    },
+    {
+      "date": "2026-07-30",
+      "report": "July 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-08-06",
+      "report": "July 2026 Final",
+      "type": "final"
+    },
+    {
+      "date": "2026-08-27",
+      "report": "August 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-09-03",
+      "report": "August 2026 Final",
+      "type": "final"
+    },
+    {
+      "date": "2026-09-24",
+      "report": "September 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-10-01",
+      "report": "September 2026 Final",
+      "type": "final"
+    },
+    {
+      "date": "2026-10-29",
+      "report": "October 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-11-05",
+      "report": "October 2026 Final",
+      "type": "final"
+    },
+    {
+      "date": "2026-11-24",
+      "report": "November 2026 Advance",
+      "type": "advance"
+    },
+    {
+      "date": "2026-12-03",
+      "report": "November 2026 Final",
+      "type": "final"
+    }
+  ],
+  "last_updated": "2026-05-18T16:24:10.071167+09:00"
+}

@@ -94,7 +94,7 @@ try:
     from backend.services.market.advance_decline_ratio_service import advance_decline_ratio_service
     from backend.services.market.cftc_positioning_service import cftc_positioning_service
     from backend.services.market.crack_spread_service import crack_spread_service
-    from backend.services.market.vix_term_structure_service import vix_term_structure_service
+    from backend.services.market.vix_futures_curve_service import vix_futures_curve_service
     from backend.services.market.historical_volatility_service import historical_volatility_service
     from backend.services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from backend.services.market.sector_ratio_service import sector_ratio_service
@@ -159,7 +159,7 @@ except ImportError:
     from services.market.advance_decline_ratio_service import advance_decline_ratio_service
     from services.market.cftc_positioning_service import cftc_positioning_service
     from services.market.crack_spread_service import crack_spread_service
-    from services.market.vix_term_structure_service import vix_term_structure_service
+    from services.market.vix_futures_curve_service import vix_futures_curve_service
     from services.market.historical_volatility_service import historical_volatility_service
     from services.market.vix_cross_ratio_service import vix_cross_ratio_service
     from services.market.sector_ratio_service import sector_ratio_service
@@ -180,7 +180,7 @@ router = APIRouter(prefix="/api/market", tags=["Market"])
 
 
 @router.get("/symbols")
-async def get_symbols(
+def get_symbols(
     category: Optional[str] = Query(None, description="カテゴリでフィルタ（forex, index, commodity, bond）"),
     search: Optional[str] = Query(None, description="検索クエリ"),
 ):
@@ -740,7 +740,7 @@ def get_noaa_hdd_cdd(force_refresh: bool = Query(False)):
 
 @router.get("/roni")
 def get_roni(force_refresh: bool = Query(False)):
-    """RONI (Revised Oceanic Niño Index) データを取得"""
+    """RONI (Relative Oceanic Niño Index) データを取得"""
     start_time = time.time()
     result = roni_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
@@ -1068,11 +1068,11 @@ def get_crack_spread(force_refresh: bool = Query(False)):
     )
 
 
-@router.get("/vix-term-structure")
-def get_vix_term_structure(force_refresh: bool = Query(False)):
-    """VIX期間構造（VIX9D / VIX / VIX3M）データを取得"""
+@router.get("/vix-futures-curve")
+def get_vix_futures_curve(force_refresh: bool = Query(False)):
+    """VIX先物カーブ（M1/M2/M3 Settle、フロントスプレッド・ダブルスプレッド・M1-M3スロープ・DTE）を取得"""
     start_time = time.time()
-    result = vix_term_structure_service.get_data(force_refresh)
+    result = vix_futures_curve_service.get_data(force_refresh)
     response_time_ms = (time.time() - start_time) * 1000
     return JSONResponse(
         content={**result, "response_time_ms": round(response_time_ms, 2)},

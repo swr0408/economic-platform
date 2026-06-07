@@ -104,6 +104,7 @@ export default function SNBSightDepositsChart({ data }: SNBSightDepositsChartPro
         showPeriodSelector={false}
         dataSource="Swiss National Bank"
         sourceUrl="https://data.snb.ch/en/topics/snb"
+        handbookId="ch-sight-deposits"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

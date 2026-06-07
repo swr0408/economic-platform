@@ -175,11 +175,15 @@
     {
       "date": "2025-Q4",
       "value": 3.0
+    },
+    {
+      "date": "2026-Q1",
+      "value": 3.4
     }
   ],
   "latest": {
-    "date": "2025-Q4",
-    "value": 3.0
+    "date": "2026-Q1",
+    "value": 3.4
   },
   "metadata": {
     "source": "Eurostat - Labour Cost Index",
@@ -192,5 +196,5 @@
     "description": "Wages and salaries (total)"
   },
   "next_release": null,
-  "last_updated": "2026-04-18T11:32:31.378493+09:00"
+  "last_updated": "2026-06-06T09:46:41.552383+09:00"
 }

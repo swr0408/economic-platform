@@ -10,11 +10,13 @@ import { DashboardContainer, ChartWrapper } from './common/DashboardContainer'
 // チャートコンポーネント
 import UnemploymentRateChart from './employment/UnemploymentRateChart'
 import UnemploymentByReasonChart from './employment/UnemploymentByReasonChart'
+import ChicagoFedUnemploymentRateForecastChart from './employment/ChicagoFedUnemploymentRateForecastChart'
 import NonfarmPayrollsChart from './employment/NonfarmPayrollsChart'
 import ADPEmploymentChart from './employment/ADPEmploymentChart'
 import FullPartTimeChart from './employment/FullPartTimeChart'
 import CBJobsLaborChart from './employment/CBJobsLaborChart'
 import MultipleJobsPartTimeChart from './employment/MultipleJobsPartTimeChart'
+import NumberOfWorkersByPlaceOfBirthChart from './employment/NumberOfWorkersByPlaceOfBirthChart'
 import JoltsIndeedChart from './employment/JoltsIndeedChart'
 import HiresLayoffsChart from './employment/HiresLayoffsChart'
 import JobOpeningsPerUnemployedChart from './employment/JobOpeningsPerUnemployedChart'
@@ -52,6 +54,12 @@ export default function USAEmploymentCharts() {
             <UnemploymentByReasonChart data={dashboardData?.unemployment_by_reason ?? null} />
           </ChartWrapper>
 
+          <ChartWrapper id="chicago-fed-ur-forecast">
+            <ChicagoFedUnemploymentRateForecastChart
+              data={dashboardData?.chicago_fed_unemployment_rate_forecast ?? null}
+            />
+          </ChartWrapper>
+
           <ChartWrapper id="sahm-rule">
             <SahmRuleChart data={dashboardData?.sahm_rule?.data ?? null} />
           </ChartWrapper>
@@ -77,6 +85,10 @@ export default function USAEmploymentCharts() {
 
           <ChartWrapper id="multiple-jobs-parttime">
             <MultipleJobsPartTimeChart data={dashboardData?.multiple_jobs_parttime ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="workers-by-place-of-birth">
+            <NumberOfWorkersByPlaceOfBirthChart data={dashboardData?.number_of_workers_by_place_of_birth ?? null} />
           </ChartWrapper>
 
           <ChartWrapper id="adp-employment">

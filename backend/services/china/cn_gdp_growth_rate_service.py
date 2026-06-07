@@ -117,6 +117,7 @@ def _fetch_and_upsert_from_press_release() -> None:
     results = fetch_and_upsert_from_press_release(
         category="gdp",
         extractor_fn=_extract_gdp_from_excel,
+        primary_indicator=DB_INDICATORS["yoy"],
     )
     if results:
         logger.info(f"[NBS-GDP] Press release upsert: {results}")

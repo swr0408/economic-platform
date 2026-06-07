@@ -66,6 +66,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
     - overtime_hours: 平均残業時間 - FRED AWOTMAN（毎月第1金曜日 8:30 ET）
     - us_average_weekly_working_hours: 平均週労働時間 - FRED CES0500000002/CES3000000002（毎月第1金曜日 8:30 ET）
     - temporary_help_services: 臨時就業者数 - FRED TEMPHELPS（毎月第1金曜日 8:30 ET）
+    - number_of_workers_by_place_of_birth: 出生地別労働者数 - FRED LNU01073395/LNU01073413/LNU02073395/LNU02073413（毎月第1金曜日 8:30 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - Employment Situation発表: 毎月第1金曜日 8:30 ET
@@ -85,10 +86,48 @@ class USAEmploymentLoader(BaseDashboardLoader):
     COUNTRY_CODE = "usa"
     CATEGORY_CODE = "employment"
 
+    # 期待されるデータキー（不足時はキャッシュを無視して再取得）
+    EXPECTED_KEYS = [
+        "unemployment_rate",
+        "unemployment_by_reason",
+        "chicago_fed_unemployment_rate_forecast",
+        "cb_jobs_labor",
+        "nonfarm_payrolls",
+        "fullpart_time_employment",
+        "multiple_jobs_parttime",
+        "jolts_indeed",
+        "jolts_hires_layoffs",
+        "job_openings_per_unemployed",
+        "adp_employment",
+        "ner_pulse",
+        "initial_claims",
+        "continued_claims",
+        "challenger_job_cuts",
+        "average_hourly_earnings",
+        "labor_force_participation",
+        "adp_wage_growth",
+        "atlanta_fed_wage",
+        "indeed_wage_tracker",
+        "pce_food_recreation",
+        "employment_cost_index",
+        "unit_labor_cost",
+        "nfib_compensation",
+        "nfib_compensation_unemployment",
+        "overtime_hours",
+        "us_average_weekly_working_hours",
+        "sahm_rule",
+        "temporary_help_services",
+        "number_of_workers_by_place_of_birth",
+    ]
+
     def __init__(self):
         super().__init__()
         # 発表日時を過ぎた指標のセット（load_all実行時に判定）
         self._stale_indicators: set = set()
+
+    def get_expected_keys(self) -> List[str]:
+        """期待されるデータキーのリストを返す（不足時にダッシュボードを再構築）"""
+        return self.EXPECTED_KEYS
 
     # 発表時刻設定（ET）
     EMPSIT_RELEASE_HOUR_ET = 8
@@ -175,7 +214,57 @@ class USAEmploymentLoader(BaseDashboardLoader):
         if nfib_release:
             release_times.append(nfib_release)
 
+        # Chicago Fed Labor Market（失業率予測）発表日時
+        cfm_release = self._get_chicago_fed_labor_market_release_datetime()
+        if cfm_release:
+            release_times.append(cfm_release)
+
         return release_times
+
+    def _get_chicago_fed_labor_market_release_datetime(self) -> Optional[datetime]:
+        """
+        Chicago Fed Labor Market Indicators の次回発表日時を取得（JST）
+
+        Returns:
+            発表日時（JST）、取得できない場合はNone
+        """
+        try:
+            from services.usa.chicago_fed_labor_market_schedule_utils import get_next_release
+
+            next_release = get_next_release()
+            if not next_release:
+                return None
+            datetime_jst_str = next_release.get("datetime_jst")
+            if not datetime_jst_str:
+                return None
+            release_jst = datetime.fromisoformat(datetime_jst_str)
+            if release_jst.tzinfo is None:
+                release_jst = release_jst.replace(tzinfo=JST)
+            return release_jst
+        except Exception as e:
+            print(f"Error getting Chicago Fed Labor Market release datetime: {e}")
+            return None
+
+    def _get_chicago_fed_labor_market_last_release_datetime(self) -> Optional[datetime]:
+        """
+        Chicago Fed Labor Market Indicators の直近過去発表日時を取得（JST）
+        """
+        try:
+            from services.usa.chicago_fed_labor_market_schedule_utils import get_last_release
+
+            last_release = get_last_release()
+            if not last_release:
+                return None
+            datetime_jst_str = last_release.get("datetime_jst")
+            if not datetime_jst_str:
+                return None
+            release_jst = datetime.fromisoformat(datetime_jst_str)
+            if release_jst.tzinfo is None:
+                release_jst = release_jst.replace(tzinfo=JST)
+            return release_jst
+        except Exception as e:
+            print(f"Error getting Chicago Fed Labor Market last release datetime: {e}")
+            return None
 
     def _get_cb_jobs_labor_release_datetime(self) -> Optional[datetime]:
         """
@@ -672,6 +761,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("overtime_hours")  # 平均残業時間
                 stale.add("us_average_weekly_working_hours")  # 平均週労働時間
                 stale.add("temporary_help_services")  # 臨時就業者数
+                stale.add("number_of_workers_by_place_of_birth")  # 出生地別労働者数
                 release_info = empsit_release or empsit_last_release
                 print(f"[stale] Employment Situation release detected: {release_info.isoformat()}")
 
@@ -766,6 +856,14 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 stale.add("nfib_compensation_unemployment")  # NFIB労働報酬・失業率も同時に更新
                 print(f"[stale] NFIB Compensation release detected")
 
+            # Chicago Fed Labor Market Indicators（月2回発表: Advance / Final）
+            # 公式 release-schedule をスクレイピングして次回・直近発表日を取得
+            cfm_next_release = self._get_chicago_fed_labor_market_release_datetime()
+            cfm_last_release = self._get_chicago_fed_labor_market_last_release_datetime()
+            if self._is_stale_by_release(last_updated_dt, now, cfm_next_release, cfm_last_release):
+                stale.add("chicago_fed_unemployment_rate_forecast")
+                print(f"[stale] Chicago Fed Labor Market release detected")
+
             return stale
 
         except Exception as e:
@@ -829,10 +927,13 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.us_average_weekly_working_hours_service import us_average_weekly_working_hours_service
         from services.usa.sahm_rule_service import sahm_rule_service
         from services.usa.temporary_help_services_service import temporary_help_services_service
+        from services.usa.chicago_fed_unemployment_rate_forecast_service import chicago_fed_unemployment_rate_forecast_service
+        from services.usa.number_of_workers_by_place_of_birth_service import number_of_workers_by_place_of_birth_service
 
         result = {
             "unemployment_rate": None,
             "unemployment_by_reason": None,
+            "chicago_fed_unemployment_rate_forecast": None,
             "cb_jobs_labor": None,
             "nonfarm_payrolls": None,
             "fullpart_time_employment": None,
@@ -859,6 +960,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
             "us_average_weekly_working_hours": None,
             "sahm_rule": None,
             "temporary_help_services": None,
+            "number_of_workers_by_place_of_birth": None,
         }
 
         # 並列でデータを取得（25ワーカー）
@@ -892,6 +994,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_us_average_weekly_working_hours, us_average_weekly_working_hours_service): "us_average_weekly_working_hours",
                 executor.submit(self._get_sahm_rule, sahm_rule_service): "sahm_rule",
                 executor.submit(self._get_temporary_help_services, temporary_help_services_service): "temporary_help_services",
+                executor.submit(self._get_chicago_fed_unemployment_rate_forecast, chicago_fed_unemployment_rate_forecast_service): "chicago_fed_unemployment_rate_forecast",
+                executor.submit(self._get_number_of_workers_by_place_of_birth, number_of_workers_by_place_of_birth_service): "number_of_workers_by_place_of_birth",
             }
 
             for future in as_completed(futures):
@@ -1458,6 +1562,49 @@ class USAEmploymentLoader(BaseDashboardLoader):
             print(f"Error getting Temporary Help Services data: {e}")
             return None
 
+    def _get_chicago_fed_unemployment_rate_forecast(self, service) -> Optional[dict]:
+        """シカゴ連銀失業率予測データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("chicago_fed_unemployment_rate_forecast")
+            response = service.get_chicago_fed_unemployment_rate_forecast_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "rates_data": response.get("rates_data", []),
+                "forecast_data": response.get("forecast_data", []),
+                "probability_data": response.get("probability_data", []),
+                "latest": response.get("latest"),
+                "latest_rates": response.get("latest_rates"),
+                "latest_probability": response.get("latest_probability"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated"),
+            }
+        except Exception as e:
+            print(f"Error getting Chicago Fed Unemployment Rate Forecast data: {e}")
+            return None
+
+    def _get_number_of_workers_by_place_of_birth(self, service) -> Optional[dict]:
+        """出生地別労働者数データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("number_of_workers_by_place_of_birth")
+            response = service.get_number_of_workers_by_place_of_birth_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "series_config": response.get("series_config"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Number of Workers by Place of Birth data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -1489,6 +1636,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.us_average_weekly_working_hours_service import us_average_weekly_working_hours_service
         from services.usa.sahm_rule_service import sahm_rule_service
         from services.usa.temporary_help_services_service import temporary_help_services_service
+        from services.usa.chicago_fed_unemployment_rate_forecast_service import chicago_fed_unemployment_rate_forecast_service
+        from services.usa.number_of_workers_by_place_of_birth_service import number_of_workers_by_place_of_birth_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -1519,6 +1668,8 @@ class USAEmploymentLoader(BaseDashboardLoader):
             (us_average_weekly_working_hours_service, "Average Weekly Working Hours"),
             (sahm_rule_service, "Sahm Rule"),
             (temporary_help_services_service, "Temporary Help Services"),
+            (chicago_fed_unemployment_rate_forecast_service, "Chicago Fed Unemployment Rate Forecast"),
+            (number_of_workers_by_place_of_birth_service, "Number of Workers by Place of Birth"),
         ]
         self._invalidate_service_caches(services)
 

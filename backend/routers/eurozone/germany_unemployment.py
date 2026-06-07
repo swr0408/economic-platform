@@ -16,7 +16,7 @@ router = APIRouter(
 
 
 @router.get("/germany-unemployment")
-async def get_germany_unemployment(
+def get_germany_unemployment(
     force_refresh: bool = Query(False, description="Force refresh from API")
 ) -> Dict[str, Any]:
     """
@@ -35,7 +35,7 @@ async def get_germany_unemployment(
 
 
 @router.get("/germany-unemployment/cache-status")
-async def get_germany_unemployment_cache_status() -> Dict[str, Any]:
+def get_germany_unemployment_cache_status() -> Dict[str, Any]:
     """
     ドイツ失業率キャッシュ状態を取得
 
@@ -46,7 +46,7 @@ async def get_germany_unemployment_cache_status() -> Dict[str, Any]:
 
 
 @router.post("/germany-unemployment/invalidate-cache")
-async def invalidate_germany_unemployment_cache() -> Dict[str, Any]:
+def invalidate_germany_unemployment_cache() -> Dict[str, Any]:
     """
     ドイツ失業率キャッシュを無効化
 

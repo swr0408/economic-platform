@@ -25,7 +25,7 @@ schedule_service = FOMCScheduleService()
 
 
 @router.get("/sep-dates")
-async def get_sep_dates(count: int = 4):
+def get_sep_dates(count: int = 4):
     """
     過去のFOMC SEP発表日を取得（FRB公式スケジュールから）
 
@@ -46,7 +46,7 @@ async def get_sep_dates(count: int = 4):
 
 
 @router.get("/upcoming-sep-dates")
-async def get_upcoming_sep_dates(count: int = 4):
+def get_upcoming_sep_dates(count: int = 4):
     """
     今後のFOMC SEP発表日を取得
 
@@ -67,7 +67,7 @@ async def get_upcoming_sep_dates(count: int = 4):
 
 
 @router.get("/schedule")
-async def get_fomc_schedule():
+def get_fomc_schedule():
     """
     全てのFOMCスケジュールを取得
 
@@ -85,7 +85,7 @@ async def get_fomc_schedule():
 
 
 @router.post("/schedule/update")
-async def update_fomc_schedule():
+def update_fomc_schedule():
     """
     FOMCスケジュールキャッシュを強制的に更新
 
@@ -103,7 +103,7 @@ async def update_fomc_schedule():
 
 
 @router.get("/figure2/{date}")
-async def get_fomc_projections_figure2(date: str):
+def get_fomc_projections_figure2(date: str):
     """
     指定された日付のFOMC Projections Figure 2を取得
 
@@ -150,7 +150,7 @@ async def get_fomc_projections_figure2(date: str):
 
 
 @router.post("/update/{date}")
-async def update_fomc_projections(date: str):
+def update_fomc_projections(date: str):
     """
     指定された日付のFOMC Projections Figure 2を強制的に更新
 
@@ -176,7 +176,7 @@ async def update_fomc_projections(date: str):
 
 
 @router.get("/latest")
-async def get_latest_fomc_projections():
+def get_latest_fomc_projections():
     """
     最新のFOMC Projections Figure 2を取得
 
@@ -227,7 +227,7 @@ async def get_latest_fomc_projections():
 
 
 @router.get("/table1/latest")
-async def get_latest_fomc_table1():
+def get_latest_fomc_table1():
     """
     最新のFOMC Economic Projections Table 1を取得
 
@@ -269,7 +269,7 @@ async def get_latest_fomc_table1():
 
 
 @router.get("/table1/{date}")
-async def get_fomc_table1(date: str):
+def get_fomc_table1(date: str):
     """
     指定された日付のFOMC Economic Projections Table 1を取得
 

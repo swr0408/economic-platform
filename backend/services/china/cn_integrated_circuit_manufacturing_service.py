@@ -86,6 +86,7 @@ def _fetch_and_upsert_from_press_release() -> None:
     results = fetch_and_upsert_from_press_release(
         category="industrial_production",
         extractor_fn=_extract_ic_from_excel,
+        primary_indicator=DB_INDICATOR_YOY,
     )
     if results:
         logger.info(f"[NBS-IC] Press release upsert: {results}")

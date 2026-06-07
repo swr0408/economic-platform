@@ -5186,8 +5186,8 @@
     },
     {
       "date": "2025-11-21",
-      "sell_balance": 495561,
-      "buy_balance": 3148236,
+      "sell_balance": 495560,
+      "buy_balance": 3148235,
       "sell_change": 142506,
       "buy_change": -567144,
       "margin_ratio": 6.35,
@@ -5196,7 +5196,7 @@
     {
       "date": "2025-11-28",
       "sell_balance": 475343,
-      "buy_balance": 3557290,
+      "buy_balance": 3557289,
       "sell_change": -20218,
       "buy_change": 409054,
       "margin_ratio": 7.48,
@@ -5204,8 +5204,8 @@
     },
     {
       "date": "2025-12-05",
-      "sell_balance": 462290,
-      "buy_balance": 3519086,
+      "sell_balance": 462289,
+      "buy_balance": 3519085,
       "sell_change": -13053,
       "buy_change": -38204,
       "margin_ratio": 7.61,
@@ -5213,8 +5213,8 @@
     },
     {
       "date": "2025-12-12",
-      "sell_balance": 451142,
-      "buy_balance": 3776715,
+      "sell_balance": 451141,
+      "buy_balance": 3776714,
       "sell_change": -11148,
       "buy_change": 257629,
       "margin_ratio": 8.37,
@@ -5241,7 +5241,7 @@
     {
       "date": "2026-01-09",
       "sell_balance": 489189,
-      "buy_balance": 3599658,
+      "buy_balance": 3599657,
       "sell_change": 4943,
       "buy_change": 296901,
       "margin_ratio": 7.36,
@@ -5250,7 +5250,7 @@
     {
       "date": "2026-01-16",
       "sell_balance": 512870,
-      "buy_balance": 3990458,
+      "buy_balance": 3990457,
       "sell_change": 23681,
       "buy_change": 390800,
       "margin_ratio": 7.78,
@@ -5258,7 +5258,7 @@
     },
     {
       "date": "2026-01-23",
-      "sell_balance": 673990,
+      "sell_balance": 673989,
       "buy_balance": 4244630,
       "sell_change": 161120,
       "buy_change": 254172,
@@ -5267,7 +5267,7 @@
     },
     {
       "date": "2026-01-30",
-      "sell_balance": 810986,
+      "sell_balance": 810985,
       "buy_balance": 2959690,
       "sell_change": 136996,
       "buy_change": -1284940,
@@ -5277,7 +5277,7 @@
     {
       "date": "2026-02-06",
       "sell_balance": 881623,
-      "buy_balance": 3102635,
+      "buy_balance": 3102634,
       "sell_change": 70637,
       "buy_change": 142945,
       "margin_ratio": 3.52,
@@ -5286,7 +5286,7 @@
     {
       "date": "2026-02-13",
       "sell_balance": 742121,
-      "buy_balance": 3917756,
+      "buy_balance": 3917755,
       "sell_change": -139502,
       "buy_change": 815121,
       "margin_ratio": 5.28,
@@ -5294,8 +5294,8 @@
     },
     {
       "date": "2026-02-20",
-      "sell_balance": 818269,
-      "buy_balance": 3466033,
+      "sell_balance": 818268,
+      "buy_balance": 3466032,
       "sell_change": 76148,
       "buy_change": -451723,
       "margin_ratio": 4.24,
@@ -5303,32 +5303,140 @@
     },
     {
       "date": "2026-02-27",
-      "sell_balance": 707488,
-      "buy_balance": 4056252,
+      "sell_balance": 707487,
+      "buy_balance": 4056251,
       "sell_change": -110781,
       "buy_change": 590219,
       "margin_ratio": 5.73,
       "nikkei_close": 58850.27
+    },
+    {
+      "date": "2026-03-06",
+      "sell_balance": 930436,
+      "buy_balance": 3320037,
+      "sell_change": 222949,
+      "buy_change": -736214,
+      "margin_ratio": 3.57,
+      "nikkei_close": 55620.84
+    },
+    {
+      "date": "2026-03-13",
+      "sell_balance": 1005263,
+      "buy_balance": 2521851,
+      "sell_change": 74827,
+      "buy_change": -798186,
+      "margin_ratio": 2.51,
+      "nikkei_close": 53819.61
+    },
+    {
+      "date": "2026-03-19",
+      "sell_balance": 1070182,
+      "buy_balance": 2406316,
+      "sell_change": 64919,
+      "buy_change": -115535,
+      "margin_ratio": 2.25,
+      "nikkei_close": 53372.53
+    },
+    {
+      "date": "2026-03-27",
+      "sell_balance": 1001090,
+      "buy_balance": 3185947,
+      "sell_change": -69092,
+      "buy_change": 779631,
+      "margin_ratio": 3.18,
+      "nikkei_close": 53373.07
+    },
+    {
+      "date": "2026-04-03",
+      "sell_balance": 989119,
+      "buy_balance": 3512167,
+      "sell_change": -11971,
+      "buy_change": 326220,
+      "margin_ratio": 3.55,
+      "nikkei_close": 53123.49
+    },
+    {
+      "date": "2026-04-10",
+      "sell_balance": 872673,
+      "buy_balance": 4280933,
+      "sell_change": -116446,
+      "buy_change": 768766,
+      "margin_ratio": 4.91,
+      "nikkei_close": 56924.11
+    },
+    {
+      "date": "2026-04-17",
+      "sell_balance": 955498,
+      "buy_balance": 4234346,
+      "sell_change": 82825,
+      "buy_change": -46587,
+      "margin_ratio": 4.43,
+      "nikkei_close": 58475.9
+    },
+    {
+      "date": "2026-04-24",
+      "sell_balance": 956583,
+      "buy_balance": 4363964,
+      "sell_change": 1085,
+      "buy_change": 129618,
+      "margin_ratio": 4.56,
+      "nikkei_close": 59716.18
+    },
+    {
+      "date": "2026-05-01",
+      "sell_balance": 949288,
+      "buy_balance": 4040373,
+      "sell_change": -7295,
+      "buy_change": -323591,
+      "margin_ratio": 4.26,
+      "nikkei_close": 59513.12
+    },
+    {
+      "date": "2026-05-15",
+      "sell_balance": 972176,
+      "buy_balance": 4344471,
+      "sell_change": 22888,
+      "buy_change": 304098,
+      "margin_ratio": 4.47,
+      "nikkei_close": 61409.29
+    },
+    {
+      "date": "2026-05-22",
+      "sell_balance": 968066,
+      "buy_balance": 4520900,
+      "sell_change": -4110,
+      "buy_change": 176429,
+      "margin_ratio": 4.67,
+      "nikkei_close": 63339.07
+    },
+    {
+      "date": "2026-05-29",
+      "sell_balance": 904338,
+      "buy_balance": 4821612,
+      "sell_change": -63728,
+      "buy_change": 300712,
+      "margin_ratio": 5.33,
+      "nikkei_close": 66329.5
     }
   ],
   "latest": {
-    "date": "2026-02-27",
-    "sell_balance": 707488,
-    "buy_balance": 4056252,
-    "sell_change": -110781,
-    "buy_change": 590219,
-    "margin_ratio": 5.73,
-    "nikkei_close": 58850.27
+    "date": "2026-05-29",
+    "sell_balance": 904338,
+    "buy_balance": 4821612,
+    "sell_change": -63728,
+    "buy_change": 300712,
+    "margin_ratio": 5.33,
+    "nikkei_close": 66329.5
   },
   "metadata": {
     "source": "CSV + yfinance (^N225)",
     "indicator": "Nikkei Double Inverse (1357) Margin Balance",
     "frequency": "weekly",
-    "data_count": 590,
+    "data_count": 602,
     "start_date": "2014-07-18",
-    "end_date": "2026-02-27"
+    "end_date": "2026-05-29"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T15:09:51.001728+09:00"
+  "last_updated": "2026-06-07T22:09:55.654937+09:00"
 }

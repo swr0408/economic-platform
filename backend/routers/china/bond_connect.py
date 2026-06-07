@@ -22,7 +22,7 @@ router = APIRouter(
 # -------------------------------------------------------------------------
 
 @router.get("/overseas-investor-flow")
-async def get_overseas_investor_flow(
+def get_overseas_investor_flow(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """海外投資家の中国債券保有残高（SHCH + CCDC）データを返す"""
@@ -30,12 +30,12 @@ async def get_overseas_investor_flow(
 
 
 @router.get("/overseas-investor-flow/cache")
-async def get_overseas_investor_flow_cache_status() -> Dict[str, Any]:
+def get_overseas_investor_flow_cache_status() -> Dict[str, Any]:
     """海外投資家フローのキャッシュ状態を返す"""
     return cn_overseas_investor_flow_service.get_cache_status()
 
 
 @router.delete("/overseas-investor-flow/cache")
-async def invalidate_overseas_investor_flow_cache() -> Dict[str, Any]:
+def invalidate_overseas_investor_flow_cache() -> Dict[str, Any]:
     """海外投資家フローのキャッシュを無効化"""
     return cn_overseas_investor_flow_service.invalidate_cache()

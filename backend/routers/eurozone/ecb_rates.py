@@ -21,7 +21,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_ecb_rates(
+def get_ecb_rates(
     refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ):
     """
@@ -52,7 +52,7 @@ async def get_ecb_rates(
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュの状態を取得
 
@@ -63,7 +63,7 @@ async def get_cache_status():
 
 
 @router.post("/cache/invalidate")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

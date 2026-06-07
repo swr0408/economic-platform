@@ -167,6 +167,7 @@ export default function UKPublicSectorNetBorrowingChart({ data }: UKPublicSector
         showPeriodSelector={false}
         dataSource="Office for National Statistics"
         sourceUrl="https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance?utm_source=chatgpt.com"
+        handbookId="uk-public-sector-net-borrowing"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

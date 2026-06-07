@@ -111,14 +111,14 @@ class BOEOISCurveService:
             "error": "No data available"
         }
 
-    def get_chart_data(self) -> Dict[str, Any]:
+    def get_chart_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """
         チャート表示用のデータを取得
 
         Returns:
             チャート用データ (current, previous)
         """
-        data = self.get_ois_curve_data()
+        data = self.get_ois_curve_data(force_refresh=force_refresh)
 
         if not data or not data.get("data"):
             return {

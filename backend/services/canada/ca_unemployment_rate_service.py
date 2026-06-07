@@ -28,6 +28,7 @@ from services.canada.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
 )
+from services.canada.statcan_utils import fetch_statcan_csv
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -174,14 +175,7 @@ class CaUnemploymentRateService:
         try:
             print(f"[CaUnemploymentRate] Fetching data from: {STATCAN_UNEMPLOYMENT_URL}")
 
-            resp = requests.get(STATCAN_UNEMPLOYMENT_URL, timeout=120)
-            resp.raise_for_status()
-
-            z = zipfile.ZipFile(io.BytesIO(resp.content))
-            csv_name = [n for n in z.namelist() if n.endswith('.csv') and not n.startswith('_')][0]
-
-            with z.open(csv_name) as f:
-                df = pd.read_csv(f, low_memory=False)
+            df = fetch_statcan_csv(STATCAN_UNEMPLOYMENT_URL)
 
             print(f"[CaUnemploymentRate] Loaded CSV with {len(df)} rows")
 

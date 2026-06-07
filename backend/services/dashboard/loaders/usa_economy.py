@@ -31,6 +31,7 @@ class USAEconomyLoader(BaseDashboardLoader):
     - gdp_growth_rate: GDP成長率（前期比年率）- FRED A191RL1Q225SBEA
     - gdp_contributions: GDP寄与度（5項目）- FRED各シリーズ
     - gdp_components_growth: GDP項目別成長率 - BEA NIPA T10101
+    - domestic_private_final_demand: 国内民間最終需要（除くSW・PC投資 / 標準）- BEA NIPA T20305/T20303/T50305/T50303 Fisher再集計
     - potential_gdp: 潜在成長率（名目/実質）- FRED GDPPOT, NGDPPOT
     - bank_lending: 銀行貸し出し態度（SLOOS）- FRED DRTSCILM
     - fci: FCI-G（金融情勢指数）- Federal Reserve CSV
@@ -160,6 +161,7 @@ class USAEconomyLoader(BaseDashboardLoader):
                 futures = {
                     # next_release
                     executor.submit(self._get_gdp_release_datetimes): "gdp",
+                    executor.submit(self._get_gdp_last_release_datetime): "gdp_last",
                     executor.submit(self._get_ism_manufacturing_release_datetime): "ism_manufacturing",
                     executor.submit(self._get_ism_non_manufacturing_release_datetime): "ism_non_manufacturing",
                     executor.submit(self._get_empire_state_release_datetime): "empire_state",
@@ -192,12 +194,18 @@ class USAEconomyLoader(BaseDashboardLoader):
             def is_stale(release_dt):
                 return release_dt and last_updated_dt < release_dt <= now
 
-            # GDP関連（BEAスケジュールベース、last_releaseなし）
+            # GDP関連（BEAスケジュールベース、next_release + last_release）
             gdp_releases = check_results.get("gdp") or []
+            gdp_last = check_results.get("gdp_last")
+            gdp_stale = False
             for release_dt in (gdp_releases if isinstance(gdp_releases, list) else [gdp_releases]):
                 if is_stale(release_dt):
-                    stale.add("gdp")
+                    gdp_stale = True
                     break
+            if not gdp_stale and gdp_last and last_updated_dt < gdp_last <= now:
+                gdp_stale = True
+            if gdp_stale:
+                stale.add("gdp")
 
             # ISM製造業
             if self._is_stale_by_release(last_updated_dt, now, check_results.get("ism_manufacturing"), check_results.get("ism_manufacturing_last")):
@@ -409,7 +417,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         return release_dt.astimezone(JST)
 
     def _get_gdp_release_datetimes(self) -> List[Optional[datetime]]:
-        """GDP発表日時を取得"""
+        """GDP発表日時を取得（次回）"""
         try:
             from services.usa.bea_schedule_service import bea_schedule_service
 
@@ -424,6 +432,27 @@ class USAEconomyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting GDP release datetime: {e}")
             return []
+
+    def _get_gdp_last_release_datetime(self) -> Optional[datetime]:
+        """
+        直近の過去GDP発表日時を取得
+
+        next_releaseは発表直後に未来日へ切り替わるため、
+        last_releaseもチェックしてstale検出窓の見逃しを防ぐ。
+        """
+        try:
+            from services.usa.bea_schedule_service import bea_schedule_service
+
+            last_release = bea_schedule_service.get_last_gdp_release()
+            if not last_release:
+                return None
+
+            date_str = last_release.get("date")
+            return self._make_release_datetime(date_str, "gdp")
+
+        except Exception as e:
+            print(f"Error getting GDP last release datetime: {e}")
+            return None
 
     def _get_ism_release_datetimes(self) -> List[Optional[datetime]]:
         """ISM製造業・非製造業の発表日時を取得"""
@@ -668,6 +697,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.gdp_service import gdp_service
         from services.usa.gdp_contributions_service import gdp_contributions_service
         from services.usa.bea_gdp_components_service import bea_gdp_components_service
+        from services.usa.domestic_private_final_demand_service import domestic_private_final_demand_service
         from services.usa.potential_gdp_service import potential_gdp_service
         from services.usa.bank_lending_service import bank_lending_service
         from services.usa.fci_service import fci_service
@@ -693,6 +723,7 @@ class USAEconomyLoader(BaseDashboardLoader):
             "gdp_growth_rate": None,
             "gdp_contributions": None,
             "gdp_components_growth": None,
+            "domestic_private_final_demand": None,
             "potential_gdp": None,
             "bank_lending": None,
             "fci": None,
@@ -723,6 +754,7 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_gdp_growth_rate, gdp_service): "gdp_growth_rate",
                 executor.submit(self._get_gdp_contributions, gdp_contributions_service): "gdp_contributions",
                 executor.submit(self._get_gdp_components_growth, bea_gdp_components_service): "gdp_components_growth",
+                executor.submit(self._get_domestic_private_final_demand, domestic_private_final_demand_service): "domestic_private_final_demand",
                 executor.submit(self._get_potential_gdp, potential_gdp_service): "potential_gdp",
                 executor.submit(self._get_bank_lending, bank_lending_service): "bank_lending",
                 executor.submit(self._get_fci, fci_service): "fci",
@@ -778,6 +810,7 @@ class USAEconomyLoader(BaseDashboardLoader):
         from services.usa.gdp_service import gdp_service
         from services.usa.gdp_contributions_service import gdp_contributions_service
         from services.usa.bea_gdp_components_service import bea_gdp_components_service
+        from services.usa.domestic_private_final_demand_service import domestic_private_final_demand_service
         from services.usa.potential_gdp_service import potential_gdp_service
         from services.usa.bank_lending_service import bank_lending_service
         from services.usa.fci_service import fci_service
@@ -799,6 +832,7 @@ class USAEconomyLoader(BaseDashboardLoader):
             "gdp_growth_rate": None,
             "gdp_contributions": None,
             "gdp_components_growth": None,
+            "domestic_private_final_demand": None,
             "potential_gdp": None,
             "bank_lending": None,
             "fci": None,
@@ -824,6 +858,7 @@ class USAEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_gdp_growth_rate, gdp_service): "gdp_growth_rate",
                 executor.submit(self._get_gdp_contributions, gdp_contributions_service): "gdp_contributions",
                 executor.submit(self._get_gdp_components_growth, bea_gdp_components_service): "gdp_components_growth",
+                executor.submit(self._get_domestic_private_final_demand, domestic_private_final_demand_service): "domestic_private_final_demand",
                 executor.submit(self._get_potential_gdp, potential_gdp_service): "potential_gdp",
                 executor.submit(self._get_bank_lending, bank_lending_service): "bank_lending",
                 executor.submit(self._get_fci, fci_service): "fci",
@@ -930,6 +965,17 @@ class USAEconomyLoader(BaseDashboardLoader):
             return data if data else None
         except Exception as e:
             print(f"Error getting GDP components growth: {e}")
+            return None
+
+    def _get_domestic_private_final_demand(self, service) -> Optional[list]:
+        """国内民間最終需要（除くSW・PC投資 / 標準）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("gdp")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            return data if data else None
+        except Exception as e:
+            print(f"Error getting domestic private final demand: {e}")
             return None
 
     def _get_potential_gdp(self, service) -> Optional[dict]:

@@ -2,9 +2,10 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Tabs, Typography, Spin, Alert, Badge, Tooltip } from "antd";
 import type { TabsProps } from "antd";
-import { QuestionCircleOutlined, BarChartOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined, BarChartOutlined, FireOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useHandbook } from "../contexts/HandbookContext";
+import AnalysisListView from "../components/seasonality/AnalysisListView";
 
 const { Title, Text } = Typography;
 
@@ -99,7 +100,7 @@ export default function SeasonalityPage() {
 
   const categories = data.categories;
 
-  const tabItems: TabsProps["items"] = Object.entries(categories)
+  const categoryTabs: NonNullable<TabsProps["items"]> = Object.entries(categories)
     .map(([catId, cat]) => {
       const totalItems =
         cat.items.length +
@@ -168,6 +169,32 @@ export default function SeasonalityPage() {
     })
     .filter((item): item is NonNullable<typeof item> => item !== null);
 
+  // 通貨インデックス（currency_index）の右隣に「分析リスト」タブを追加
+  const analysisTab = {
+    key: "analysis",
+    label: (
+      <span style={{ padding: "0 4px" }}>
+        <FireOutlined style={{ marginRight: 6, color: activeCategory === "analysis" ? colors.accent : undefined }} />
+        分析リスト
+      </span>
+    ),
+    children: (
+      <div style={{ paddingTop: 8 }}>
+        <AnalysisListView />
+      </div>
+    ),
+  };
+
+  const currencyIdx = categoryTabs.findIndex((t) => t.key === "currency_index");
+  const tabItems: TabsProps["items"] =
+    currencyIdx >= 0
+      ? [
+          ...categoryTabs.slice(0, currencyIdx + 1),
+          analysisTab,
+          ...categoryTabs.slice(currencyIdx + 1),
+        ]
+      : [...categoryTabs, analysisTab];
+
   return (
     <div style={{ maxWidth: 1400, margin: "0 auto", padding: "4px 8px" }}>
       <div style={{ marginBottom: 20 }}>
@@ -194,6 +221,30 @@ export default function SeasonalityPage() {
           <Tooltip title="フロー（資金フロー・市場のクセ） - データハンドブック">
             <QuestionCircleOutlined
               onClick={() => openHandbook('flow-knowledge')}
+              style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+            />
+          </Tooltip>
+          <Tooltip title="夏相場における価格反応とヘッドライン解釈 - データハンドブック">
+            <QuestionCircleOutlined
+              onClick={() => openHandbook('summer-market-reaction')}
+              style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+            />
+          </Tooltip>
+          <Tooltip title="秋の政治リスクと相場の見方 - データハンドブック">
+            <QuestionCircleOutlined
+              onClick={() => openHandbook('autumn-political-risk')}
+              style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}
+            />
+          </Tooltip>
+          <Tooltip title="年末の主要中銀イベントと来年テーマの先取り - データハンドブック">
+            <QuestionCircleOutlined
+              onClick={() => openHandbook('year-end-central-banks')}
               style={{ fontSize: 18, color: colors.textSecondary, cursor: 'pointer', transition: 'color 0.2s' }}
               onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#10b981' }}
               onMouseLeave={(e) => { (e.target as HTMLElement).style.color = colors.textSecondary }}

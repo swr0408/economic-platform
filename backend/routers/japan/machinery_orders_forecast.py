@@ -23,7 +23,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Machinery Orders Forecast
 
 
 @router.get("/machinery-orders-forecast")
-async def get_machinery_orders_forecast() -> Dict:
+def get_machinery_orders_forecast() -> Dict:
     """
     機械受注見通しデータを取得（四半期）
 
@@ -45,7 +45,7 @@ async def get_machinery_orders_forecast() -> Dict:
 
 
 @router.post("/machinery-orders-forecast/refresh")
-async def refresh_machinery_orders_forecast() -> Dict:
+def refresh_machinery_orders_forecast() -> Dict:
     """
     機械受注見通しデータを強制更新
     """

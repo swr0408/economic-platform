@@ -1269,12 +1269,22 @@
       "date": "2026-02-01",
       "value": 4611313.0,
       "value_trillion": 461.13
+    },
+    {
+      "date": "2026-03-01",
+      "value": 4597753.0,
+      "value_trillion": 459.78
+    },
+    {
+      "date": "2026-04-01",
+      "value": 4694622.0,
+      "value_trillion": 469.46
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 4611313.0,
-    "value_trillion": 461.13
+    "date": "2026-04-01",
+    "value": 4694622.0,
+    "value_trillion": 469.46
   },
   "metadata": {
     "source": "日本銀行 時系列統計データ検索サイト",
@@ -1284,5 +1294,5 @@
     "frequency": "Monthly",
     "series_code": "MACAB2201"
   },
-  "last_updated": "2026-04-10T18:00:52.298885+09:00"
+  "last_updated": "2026-06-07T22:12:40.454760+09:00"
 }

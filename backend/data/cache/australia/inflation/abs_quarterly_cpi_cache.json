@@ -3076,7 +3076,7 @@
       "cpi_yoy": 3.2,
       "cpi_sa_yoy": 3.5,
       "trimmed_mean_yoy": 2.8,
-      "weighted_median_yoy": 3.4,
+      "weighted_median_yoy": 3.5,
       "trimmed_mean_qoq": null,
       "weighted_median_qoq": null
     },
@@ -3086,16 +3086,26 @@
       "cpi_yoy": 3.6,
       "cpi_sa_yoy": 3.7,
       "trimmed_mean_yoy": 3.3,
+      "weighted_median_yoy": 3.6,
+      "trimmed_mean_qoq": null,
+      "weighted_median_qoq": null
+    },
+    {
+      "date": "2026-03-01",
+      "cpi_qoq": 1.4,
+      "cpi_yoy": 4.1,
+      "cpi_sa_yoy": 4.5,
+      "trimmed_mean_yoy": 3.3,
       "weighted_median_yoy": 3.5,
       "trimmed_mean_qoq": null,
       "weighted_median_qoq": null
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "cpi_qoq": 0.6,
-    "cpi_yoy": 3.6,
-    "cpi_sa_yoy": 3.7,
+    "date": "2026-03-01",
+    "cpi_qoq": 1.4,
+    "cpi_yoy": 4.1,
+    "cpi_sa_yoy": 4.5,
     "trimmed_mean_yoy": 3.3,
     "weighted_median_yoy": 3.5,
     "trimmed_mean_qoq": null,
@@ -3108,5 +3118,5 @@
     "unit": "%"
   },
   "next_release": null,
-  "last_updated": "2026-04-18T04:03:05.139372+09:00"
+  "last_updated": "2026-06-06T09:46:53.670893+09:00"
 }

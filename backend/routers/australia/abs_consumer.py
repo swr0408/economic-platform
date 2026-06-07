@@ -38,7 +38,7 @@ router = APIRouter(
 
 
 @router.get("/household-spending")
-async def get_household_spending(
+def get_household_spending(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -52,20 +52,20 @@ async def get_household_spending(
 
 
 @router.get("/household-spending/cache")
-async def get_household_spending_cache_status() -> Dict[str, Any]:
+def get_household_spending_cache_status() -> Dict[str, Any]:
     """家計支出のキャッシュ状態を取得"""
     return au_household_spending_service.get_cache_status()
 
 
 @router.delete("/household-spending/cache")
-async def invalidate_household_spending_cache() -> Dict[str, bool]:
+def invalidate_household_spending_cache() -> Dict[str, bool]:
     """家計支出のキャッシュを無効化"""
     success = au_household_spending_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/westpac-consumer-confidence")
-async def get_westpac_consumer_confidence(
+def get_westpac_consumer_confidence(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -79,20 +79,20 @@ async def get_westpac_consumer_confidence(
 
 
 @router.get("/westpac-consumer-confidence/cache")
-async def get_westpac_consumer_confidence_cache_status() -> Dict[str, Any]:
+def get_westpac_consumer_confidence_cache_status() -> Dict[str, Any]:
     """Westpac消費者信頼感指数のキャッシュ状態を取得"""
     return au_westpac_consumer_confidence_service.get_cache_status()
 
 
 @router.delete("/westpac-consumer-confidence/cache")
-async def invalidate_westpac_consumer_confidence_cache() -> Dict[str, bool]:
+def invalidate_westpac_consumer_confidence_cache() -> Dict[str, bool]:
     """Westpac消費者信頼感指数のキャッシュを無効化"""
     success = au_westpac_consumer_confidence_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/nab-business-confidence")
-async def get_nab_business_confidence(
+def get_nab_business_confidence(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -106,20 +106,20 @@ async def get_nab_business_confidence(
 
 
 @router.get("/nab-business-confidence/cache")
-async def get_nab_business_confidence_cache_status() -> Dict[str, Any]:
+def get_nab_business_confidence_cache_status() -> Dict[str, Any]:
     """NAB企業信頼感指数のキャッシュ状態を取得"""
     return au_nab_business_confidence_service.get_cache_status()
 
 
 @router.delete("/nab-business-confidence/cache")
-async def invalidate_nab_business_confidence_cache() -> Dict[str, bool]:
+def invalidate_nab_business_confidence_cache() -> Dict[str, bool]:
     """NAB企業信頼感指数のキャッシュを無効化"""
     success = au_nab_business_confidence_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/consumer-spending")
-async def get_consumer_spending(
+def get_consumer_spending(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -133,20 +133,20 @@ async def get_consumer_spending(
 
 
 @router.get("/consumer-spending/cache")
-async def get_consumer_spending_cache_status() -> Dict[str, Any]:
+def get_consumer_spending_cache_status() -> Dict[str, Any]:
     """個人消費のキャッシュ状態を取得"""
     return au_consumer_spending_service.get_cache_status()
 
 
 @router.delete("/consumer-spending/cache")
-async def invalidate_consumer_spending_cache() -> Dict[str, bool]:
+def invalidate_consumer_spending_cache() -> Dict[str, bool]:
     """個人消費のキャッシュを無効化"""
     success = au_consumer_spending_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/household-saving-ratio")
-async def get_household_saving_ratio(
+def get_household_saving_ratio(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -161,20 +161,20 @@ async def get_household_saving_ratio(
 
 
 @router.get("/household-saving-ratio/cache")
-async def get_household_saving_ratio_cache_status() -> Dict[str, Any]:
+def get_household_saving_ratio_cache_status() -> Dict[str, Any]:
     """家計貯蓄率のキャッシュ状態を取得"""
     return au_household_saving_ratio_service.get_cache_status()
 
 
 @router.delete("/household-saving-ratio/cache")
-async def invalidate_household_saving_ratio_cache() -> Dict[str, bool]:
+def invalidate_household_saving_ratio_cache() -> Dict[str, bool]:
     """家計貯蓄率のキャッシュを無効化"""
     success = au_household_saving_ratio_service.invalidate_cache()
     return {"success": success}
 
 
 @router.get("/disposable-personal-income")
-async def get_disposable_personal_income(
+def get_disposable_personal_income(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -188,13 +188,13 @@ async def get_disposable_personal_income(
 
 
 @router.get("/disposable-personal-income/cache")
-async def get_disposable_personal_income_cache_status() -> Dict[str, Any]:
+def get_disposable_personal_income_cache_status() -> Dict[str, Any]:
     """可処分所得のキャッシュ状態を取得"""
     return au_disposable_personal_income_service.get_cache_status()
 
 
 @router.delete("/disposable-personal-income/cache")
-async def invalidate_disposable_personal_income_cache() -> Dict[str, bool]:
+def invalidate_disposable_personal_income_cache() -> Dict[str, bool]:
     """可処分所得のキャッシュを無効化"""
     success = au_disposable_personal_income_service.invalidate_cache()
     return {"success": success}

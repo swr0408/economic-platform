@@ -43,7 +43,7 @@ router = APIRouter(
 
 
 @router.get("/unemployment-rate")
-async def get_unemployment_rate(
+def get_unemployment_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -56,13 +56,13 @@ async def get_unemployment_rate(
 
 
 @router.get("/unemployment-rate/cache")
-async def get_unemployment_rate_cache_status() -> Dict[str, Any]:
+def get_unemployment_rate_cache_status() -> Dict[str, Any]:
     """失業率のキャッシュ状態を取得"""
     return au_unemployment_rate_service.get_cache_status()
 
 
 @router.delete("/unemployment-rate/cache")
-async def invalidate_unemployment_rate_cache() -> Dict[str, bool]:
+def invalidate_unemployment_rate_cache() -> Dict[str, bool]:
     """失業率のキャッシュを無効化"""
     success = au_unemployment_rate_service.invalidate_cache()
     return {"success": success}
@@ -74,7 +74,7 @@ async def invalidate_unemployment_rate_cache() -> Dict[str, bool]:
 
 
 @router.get("/employed-persons")
-async def get_employed_persons(
+def get_employed_persons(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -89,13 +89,13 @@ async def get_employed_persons(
 
 
 @router.get("/employed-persons/cache")
-async def get_employed_persons_cache_status() -> Dict[str, Any]:
+def get_employed_persons_cache_status() -> Dict[str, Any]:
     """雇用者数のキャッシュ状態を取得"""
     return au_employed_persons_service.get_cache_status()
 
 
 @router.delete("/employed-persons/cache")
-async def invalidate_employed_persons_cache() -> Dict[str, bool]:
+def invalidate_employed_persons_cache() -> Dict[str, bool]:
     """雇用者数のキャッシュを無効化"""
     success = au_employed_persons_service.invalidate_cache()
     return {"success": success}
@@ -107,7 +107,7 @@ async def invalidate_employed_persons_cache() -> Dict[str, bool]:
 
 
 @router.get("/fulltime-parttime")
-async def get_fulltime_parttime(
+def get_fulltime_parttime(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -122,13 +122,13 @@ async def get_fulltime_parttime(
 
 
 @router.get("/fulltime-parttime/cache")
-async def get_fulltime_parttime_cache_status() -> Dict[str, Any]:
+def get_fulltime_parttime_cache_status() -> Dict[str, Any]:
     """フルタイム/パートタイムのキャッシュ状態を取得"""
     return au_fulltime_parttime_service.get_cache_status()
 
 
 @router.delete("/fulltime-parttime/cache")
-async def invalidate_fulltime_parttime_cache() -> Dict[str, bool]:
+def invalidate_fulltime_parttime_cache() -> Dict[str, bool]:
     """フルタイム/パートタイムのキャッシュを無効化"""
     success = au_fulltime_parttime_service.invalidate_cache()
     return {"success": success}
@@ -140,7 +140,7 @@ async def invalidate_fulltime_parttime_cache() -> Dict[str, bool]:
 
 
 @router.get("/participation-rate")
-async def get_participation_rate(
+def get_participation_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -153,13 +153,13 @@ async def get_participation_rate(
 
 
 @router.get("/participation-rate/cache")
-async def get_participation_rate_cache_status() -> Dict[str, Any]:
+def get_participation_rate_cache_status() -> Dict[str, Any]:
     """労働参加率のキャッシュ状態を取得"""
     return au_participation_rate_service.get_cache_status()
 
 
 @router.delete("/participation-rate/cache")
-async def invalidate_participation_rate_cache() -> Dict[str, bool]:
+def invalidate_participation_rate_cache() -> Dict[str, bool]:
     """労働参加率のキャッシュを無効化"""
     success = au_participation_rate_service.invalidate_cache()
     return {"success": success}
@@ -171,7 +171,7 @@ async def invalidate_participation_rate_cache() -> Dict[str, bool]:
 
 
 @router.get("/wage-price-index")
-async def get_wage_price_index(
+def get_wage_price_index(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -185,13 +185,13 @@ async def get_wage_price_index(
 
 
 @router.get("/wage-price-index/cache")
-async def get_wage_price_index_cache_status() -> Dict[str, Any]:
+def get_wage_price_index_cache_status() -> Dict[str, Any]:
     """賃金物価指数のキャッシュ状態を取得"""
     return au_wage_price_index_service.get_cache_status()
 
 
 @router.delete("/wage-price-index/cache")
-async def invalidate_wage_price_index_cache() -> Dict[str, bool]:
+def invalidate_wage_price_index_cache() -> Dict[str, bool]:
     """賃金物価指数のキャッシュを無効化"""
     success = au_wage_price_index_service.invalidate_cache()
     return {"success": success}
@@ -203,7 +203,7 @@ async def invalidate_wage_price_index_cache() -> Dict[str, bool]:
 
 
 @router.get("/job-vacancies")
-async def get_job_vacancies(
+def get_job_vacancies(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -216,13 +216,13 @@ async def get_job_vacancies(
 
 
 @router.get("/job-vacancies/cache")
-async def get_job_vacancies_cache_status() -> Dict[str, Any]:
+def get_job_vacancies_cache_status() -> Dict[str, Any]:
     """求人件数のキャッシュ状態を取得"""
     return au_job_vacancies_service.get_cache_status()
 
 
 @router.delete("/job-vacancies/cache")
-async def invalidate_job_vacancies_cache() -> Dict[str, bool]:
+def invalidate_job_vacancies_cache() -> Dict[str, bool]:
     """求人件数のキャッシュを無効化"""
     success = au_job_vacancies_service.invalidate_cache()
     return {"success": success}
@@ -234,7 +234,7 @@ async def invalidate_job_vacancies_cache() -> Dict[str, bool]:
 
 
 @router.get("/anz-job-advertisements")
-async def get_anz_job_advertisements(
+def get_anz_job_advertisements(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -247,13 +247,13 @@ async def get_anz_job_advertisements(
 
 
 @router.get("/anz-job-advertisements/cache")
-async def get_anz_job_advertisements_cache_status() -> Dict[str, Any]:
+def get_anz_job_advertisements_cache_status() -> Dict[str, Any]:
     """ANZ求人広告のキャッシュ状態を取得"""
     return au_anz_job_advertisements_service.get_cache_status()
 
 
 @router.delete("/anz-job-advertisements/cache")
-async def invalidate_anz_job_advertisements_cache() -> Dict[str, bool]:
+def invalidate_anz_job_advertisements_cache() -> Dict[str, bool]:
     """ANZ求人広告のキャッシュを無効化"""
     success = au_anz_job_advertisements_service.invalidate_cache()
     return {"success": success}
@@ -265,7 +265,7 @@ async def invalidate_anz_job_advertisements_cache() -> Dict[str, bool]:
 
 
 @router.get("/underutilization")
-async def get_underutilization(
+def get_underutilization(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -280,13 +280,13 @@ async def get_underutilization(
 
 
 @router.get("/underutilization/cache")
-async def get_underutilization_cache_status() -> Dict[str, Any]:
+def get_underutilization_cache_status() -> Dict[str, Any]:
     """アンダー・ユーティライゼーションのキャッシュ状態を取得"""
     return au_underutilization_service.get_cache_status()
 
 
 @router.delete("/underutilization/cache")
-async def invalidate_underutilization_cache() -> Dict[str, bool]:
+def invalidate_underutilization_cache() -> Dict[str, bool]:
     """アンダー・ユーティライゼーションのキャッシュを無効化"""
     success = au_underutilization_service.invalidate_cache()
     return {"success": success}

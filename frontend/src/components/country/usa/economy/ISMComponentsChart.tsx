@@ -6,7 +6,7 @@ import PeriodSelector from '../../../common/PeriodSelector'
 import type { ISMComponentsData } from '../../../../hooks/useDashboardData'
 
 // 共通モジュールのインポート
-import { usePeriodFiltering, formatDateLabel, useHiddenSeries, createNumberFormatter, type PeriodType } from '../common/useChartData'
+import { usePeriodFiltering, formatDateLabel, useHiddenSeries, type PeriodType } from '../common/useChartData'
 import { NoDataMessage, LatestValueBox, StandardLineChart } from '../common/ChartComponents'
 
 // マーケットインパクト関連
@@ -125,7 +125,7 @@ export default function ISMComponentsChart({ data }: ISMComponentsChartProps) {
                     yAxisFormatter={(v) => v.toFixed(0)}
                     yDomain={['dataMin - 5', 'dataMax + 5']}
                     tooltipLabelFormatter={formatDateLabel}
-                    tooltipFormatter={createNumberFormatter(1)}
+                    tooltipValueFormatter={(v) => (v != null ? v.toFixed(1) : 'N/A')}
                     onLegendClick={handleLegendClick}
                     showFiftyLine={true}
                   />

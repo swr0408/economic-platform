@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Economy Watcher"])
 
 
 @router.get("/economy-watcher")
-async def get_economy_watcher(
+def get_economy_watcher(
     force_refresh: bool = Query(False, description="Force refresh data from Cabinet Office")
 ):
     """
@@ -37,7 +37,7 @@ async def get_economy_watcher(
 
 
 @router.get("/economy-watcher/current")
-async def get_economy_watcher_current(
+def get_economy_watcher_current(
     force_refresh: bool = Query(False, description="Force refresh data from Cabinet Office")
 ):
     """
@@ -59,7 +59,7 @@ async def get_economy_watcher_current(
 
 
 @router.get("/economy-watcher/outlook")
-async def get_economy_watcher_outlook(
+def get_economy_watcher_outlook(
     force_refresh: bool = Query(False, description="Force refresh data from Cabinet Office")
 ):
     """
@@ -81,7 +81,7 @@ async def get_economy_watcher_outlook(
 
 
 @router.post("/economy-watcher/refresh")
-async def refresh_economy_watcher():
+def refresh_economy_watcher():
     """
     Force refresh Japan Economy Watcher Survey data from Cabinet Office
 
@@ -92,7 +92,7 @@ async def refresh_economy_watcher():
 
 
 @router.get("/economy-watcher/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for Economy Watcher data
     """
@@ -100,7 +100,7 @@ async def get_cache_status():
 
 
 @router.delete("/economy-watcher/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate Economy Watcher data cache
     """

@@ -43,41 +43,50 @@ DB_INDICATORS = {
 }
 
 def _fetch_and_upsert_from_press_release() -> None:
-    """「国民経済」プレスリリースの HTML から失業率をスクレイピングし、DB に UPSERT"""
+    """「国民経済」プレスリリースの HTML から失業率をスクレイピングし、DB に UPSERT
+
+    取りこぼし耐性: 直近6件の発表を新→旧順に巡回し、DBに既に当該月の
+    失業率が入っていればHTML取得をスキップ。
+    """
     from services.china.nbs_press_release_utils import (
-        find_latest_release,
+        find_recent_releases,
         scrape_unemployment_from_html,
+        _data_exists_in_db,
     )
     from services.china.nbs_db_utils import upsert_nbs_data
 
-    release = find_latest_release("unemployment", max_pages=2)
-    if not release:
+    releases = find_recent_releases("unemployment", max_pages=2, limit=6)
+    if not releases:
         logger.warning("[Unemployment] No press release found")
         return
 
-    title = release["title"]
-    period = release["period"]
-    logger.info(f"[Unemployment] Found release: {title} (period={period})")
+    for release in releases:
+        title = release["title"]
+        period = release["period"]
 
-    if not period:
-        logger.warning("[Unemployment] Could not parse period from title")
-        return
+        if not period:
+            continue
 
-    year, month = period
-    date_str = f"{year}-{month:02d}-01"
+        year, month = period
+        date_str = f"{year}-{month:02d}-01"
 
-    scraped = scrape_unemployment_from_html(release["url"])
-    if not scraped:
-        logger.warning("[Unemployment] No data scraped from HTML")
-        return
+        # DB 既存チェック（早期スキップ）
+        if _data_exists_in_db(DB_INDICATORS["total"], date_str):
+            continue
 
-    for key in ("total", "youth"):
-        val = scraped.get(key)
-        if val is not None:
-            count = upsert_nbs_data(
-                DB_INDICATORS[key], {date_str: val}, source="api",
-            )
-            logger.info(f"[Unemployment] {key}={val} for {date_str}, DB upserted {count}")
+        logger.info(f"[Unemployment] Fetching: {title} ({date_str})")
+        scraped = scrape_unemployment_from_html(release["url"])
+        if not scraped:
+            logger.warning(f"[Unemployment] No data scraped from {title}")
+            continue
+
+        for key in ("total", "youth"):
+            val = scraped.get(key)
+            if val is not None:
+                count = upsert_nbs_data(
+                    DB_INDICATORS[key], {date_str: val}, source="api",
+                )
+                logger.info(f"[Unemployment] {key}={val} for {date_str}, DB upserted {count}")
 
 
 def _build_data() -> List[Dict[str, Any]]:

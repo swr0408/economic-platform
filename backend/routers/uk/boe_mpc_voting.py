@@ -18,7 +18,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_mpc_voting(
+def get_mpc_voting(
     force_refresh: bool = Query(False, description="強制更新")
 ):
     """
@@ -39,7 +39,7 @@ async def get_mpc_voting(
 
 
 @router.get("/table")
-async def get_mpc_voting_table(
+def get_mpc_voting_table(
     force_refresh: bool = Query(False, description="強制更新"),
     limit: int = Query(20, ge=1, le=100, description="取得件数")
 ):
@@ -62,13 +62,13 @@ async def get_mpc_voting_table(
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """キャッシュ状態を取得"""
     return boe_mpc_voting_service.get_cache_status()
 
 
 @router.post("/invalidate-cache")
-async def invalidate_cache():
+def invalidate_cache():
     """キャッシュを無効化"""
     success = boe_mpc_voting_service.invalidate_cache()
     return {"success": success}

@@ -478,7 +478,7 @@
     },
     {
       "date": "2025-09-01",
-      "value": 2.7
+      "value": 2.8
     },
     {
       "date": "2025-10-01",
@@ -495,10 +495,18 @@
     {
       "date": "2026-01-01",
       "value": 2.8
+    },
+    {
+      "date": "2026-02-01",
+      "value": 2.8
+    },
+    {
+      "date": "2026-03-01",
+      "value": 2.8
     }
   ],
   "latest": {
-    "date": "2026-01-01",
+    "date": "2026-03-01",
     "value": 2.8
   },
   "metadata": {
@@ -511,5 +519,5 @@
     "seasonal_adjustment": "seasonally adjusted"
   },
   "next_release": null,
-  "last_updated": "2026-04-18T04:04:56.096648+09:00"
+  "last_updated": "2026-06-07T11:31:26.682765+09:00"
 }

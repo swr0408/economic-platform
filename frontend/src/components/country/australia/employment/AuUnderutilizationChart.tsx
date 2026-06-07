@@ -88,6 +88,7 @@ export default function AuUnderutilizationChart({ data }: AuUnderutilizationChar
         showPeriodSelector={false}
         dataSource="ABS"
         sourceUrl="https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release"
+        handbookId="underutilization"
       >
         {/* 最新値表示（3系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>

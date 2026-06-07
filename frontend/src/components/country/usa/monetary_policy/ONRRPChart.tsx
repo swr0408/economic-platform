@@ -88,6 +88,7 @@ export default function ONRRPChart({ data }: ONRRPChartProps) {
         showPeriodSelector={false}
         dataSource="NY Fed"
         sourceUrl="https://www.newyorkfed.org/markets/desk-operations/reverse-repo"
+        handbookId="on-rrp"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

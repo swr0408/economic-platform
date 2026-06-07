@@ -127,7 +127,7 @@ async def refresh_screenshots():
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュの状態を取得
 
@@ -138,7 +138,7 @@ async def get_cache_status():
 
 
 @router.post("/cache/invalidate")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを無効化
 

@@ -989,16 +989,25 @@
       "input_prices": 12.0,
       "output_prices": 6.0,
       "credit": 9.0
+    },
+    {
+      "date": "2026-01-01",
+      "future_sales": 25.0,
+      "investment": 29.0,
+      "employment": 38.0,
+      "input_prices": 2.0,
+      "output_prices": -8.0,
+      "credit": -2.0
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "future_sales": 13.0,
-    "investment": 14.0,
-    "employment": 16.0,
-    "input_prices": 12.0,
-    "output_prices": 6.0,
-    "credit": 9.0
+    "date": "2026-01-01",
+    "future_sales": 25.0,
+    "investment": 29.0,
+    "employment": 38.0,
+    "input_prices": 2.0,
+    "output_prices": -8.0,
+    "credit": -2.0
   },
   "metadata": {
     "source": "Bank of Canada",
@@ -1008,12 +1017,12 @@
     "frequency": "quarterly"
   },
   "next_release": {
-    "date": "2026-04-20",
-    "datetime_jst": "2026-04-20T23:30:00+09:00",
+    "date": "2026-07-06",
+    "datetime_jst": "2026-07-06T23:30:00+09:00",
     "time_jst": "23:30",
-    "datetime_toronto": "2026-04-20T10:30:00-04:00",
+    "datetime_toronto": "2026-07-06T10:30:00-04:00",
     "time_toronto": "10:30",
     "label": "Business Outlook Survey"
   },
-  "last_updated": "2026-04-18T04:03:14.502822+09:00"
+  "last_updated": "2026-06-06T09:46:40.228219+09:00"
 }

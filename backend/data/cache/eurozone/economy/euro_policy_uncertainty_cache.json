@@ -1254,16 +1254,24 @@
     },
     {
       "date": "2026-02-01",
-      "value": 389.38
+      "value": 389.37
     },
     {
       "date": "2026-03-01",
-      "value": 513.84
+      "value": 535.55
+    },
+    {
+      "date": "2026-04-01",
+      "value": 474.55
+    },
+    {
+      "date": "2026-05-01",
+      "value": 433.03
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 513.84
+    "date": "2026-05-01",
+    "value": 433.03
   },
   "metadata": {
     "source": "FRED (Federal Reserve Economic Data)",
@@ -1273,5 +1281,5 @@
     "frequency": "Monthly",
     "description": "News-based index of economic policy uncertainty for Europe"
   },
-  "last_updated": "2026-04-18T11:30:35.385592+09:00"
+  "last_updated": "2026-06-07T11:31:25.051889+09:00"
 }

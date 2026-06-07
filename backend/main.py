@@ -4,6 +4,11 @@ Economic Platform API - メインエントリーポイント
 
 from pathlib import Path
 
+# プロジェクトルートの .env を最優先で読み込む
+# （他モジュールが import 時に環境変数を参照するため、最初に実行する必要がある）
+from dotenv import load_dotenv
+load_dotenv(Path(__file__).parent.parent / ".env")
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -49,6 +54,7 @@ try:
     from backend.routers.japan.japan_iip_forecast import router as japan_iip_forecast_router
     from backend.routers.japan.boj_tankan import router as japan_boj_tankan_router
     from backend.routers.japan.bsi import router as japan_bsi_router
+    from backend.routers.japan.reuters_tankan import router as japan_reuters_tankan_router
     from backend.routers.japan.consumer_sentiment import router as japan_consumer_sentiment_router
     from backend.routers.japan.boj_cai import router as japan_boj_cai_router
     from backend.routers.japan.economy_watcher import router as japan_economy_watcher_router
@@ -128,9 +134,12 @@ try:
     from backend.services.calendar.calendar_scheduler import calendar_scheduler
     from backend.scheduler import indicator_scheduler
     from backend.scheduler.fmp_release_scheduler import fmp_release_scheduler
+    from backend.scheduler.earnings_refresh_scheduler import earnings_refresh_scheduler
     from backend.scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
     from backend.scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
     from backend.scheduler.boj_lending_scheduler import boj_lending_scheduler
+    from backend.scheduler.supply_and_demand_pce_scheduler import supply_and_demand_pce_scheduler
+    from backend.scheduler.manheim_used_vehicle_scheduler import manheim_used_vehicle_scheduler
     from backend.scheduler.pbc_reverse_repo_scheduler import pbc_reverse_repo_scheduler
     from backend.scheduler.pbc_rrr_scheduler import pbc_rrr_scheduler
     from backend.scheduler.jpx_investor_trading_scheduler import jpx_investor_trading_scheduler
@@ -199,6 +208,7 @@ except ImportError as _ie:
     from routers.japan.japan_iip_forecast import router as japan_iip_forecast_router
     from routers.japan.boj_tankan import router as japan_boj_tankan_router
     from routers.japan.bsi import router as japan_bsi_router
+    from routers.japan.reuters_tankan import router as japan_reuters_tankan_router
     from routers.japan.consumer_sentiment import router as japan_consumer_sentiment_router
     from routers.japan.boj_cai import router as japan_boj_cai_router
     from routers.japan.economy_watcher import router as japan_economy_watcher_router
@@ -335,15 +345,19 @@ except ImportError as _ie:
     from services.calendar.calendar_scheduler import calendar_scheduler
     from scheduler import indicator_scheduler
     from scheduler.fmp_release_scheduler import fmp_release_scheduler
+    from scheduler.earnings_refresh_scheduler import earnings_refresh_scheduler
     from scheduler.dashboard_cache_scheduler import dashboard_cache_scheduler
     from scheduler.japan_potential_growth_scheduler import japan_potential_growth_scheduler
     from scheduler.boj_lending_scheduler import boj_lending_scheduler
+    from scheduler.supply_and_demand_pce_scheduler import supply_and_demand_pce_scheduler
+    from scheduler.manheim_used_vehicle_scheduler import manheim_used_vehicle_scheduler
     from scheduler.non_fmp_release_scheduler import non_fmp_release_scheduler
     from scheduler.pbc_reverse_repo_scheduler import pbc_reverse_repo_scheduler
     from scheduler.pbc_rrr_scheduler import pbc_rrr_scheduler
     from scheduler.cn_fixing_repo_rate_scheduler import cn_fixing_repo_rate_scheduler
     from scheduler.cn_shibor_scheduler import cn_shibor_scheduler
     from scheduler.cn_central_parity_scheduler import cn_central_parity_scheduler
+    from scheduler.cn_nbs_press_release_scheduler import cn_nbs_press_release_scheduler
     from scheduler.cn_government_bond_issuance_scheduler import cn_government_bond_issuance_scheduler
     from scheduler.cn_baidu_migration_scheduler import cn_baidu_migration_scheduler
     from scheduler.jpx_investor_trading_scheduler import jpx_investor_trading_scheduler
@@ -478,6 +492,7 @@ app.include_router(japan_capacity_utilization_router)
 app.include_router(japan_iip_forecast_router)
 app.include_router(japan_boj_tankan_router)
 app.include_router(japan_bsi_router)
+app.include_router(japan_reuters_tankan_router)
 app.include_router(japan_consumer_sentiment_router)
 app.include_router(japan_boj_cai_router)
 app.include_router(japan_economy_watcher_router)
@@ -725,12 +740,33 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start BOJ Lending Scheduler: {e}")
 
+    # PCE需給分解（SF Fed）スケジューラーを開始
+    try:
+        supply_and_demand_pce_scheduler.start()
+        print("Supply/Demand PCE Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Supply/Demand PCE Scheduler: {e}")
+
+    # 中古車価格（Manheim UVVI）スケジューラーを開始
+    try:
+        manheim_used_vehicle_scheduler.start()
+        print("Manheim UVVI Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Manheim UVVI Scheduler: {e}")
+
     # 非FMP指標スケジューラーを開始
     try:
         non_fmp_release_scheduler.start()
         print("Non-FMP Release Scheduler started successfully")
     except Exception as e:
         print(f"Warning: Could not start Non-FMP Release Scheduler: {e}")
+
+    # 決算財務諸表 自動更新スケジューラーを開始 (B案: カレンダー連動)
+    try:
+        earnings_refresh_scheduler.start()
+        print("Earnings Refresh Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Earnings Refresh Scheduler: {e}")
 
     # PBC逆回購金利 日次スケジューラーを開始
     try:
@@ -766,6 +802,13 @@ async def startup_event():
         print("CN Central Parity Scheduler started successfully")
     except Exception as e:
         print(f"Warning: Could not start CN Central Parity Scheduler: {e}")
+
+    # NBS プレスリリース 日次取込スケジューラーを開始
+    try:
+        cn_nbs_press_release_scheduler.start()
+        print("CN NBS Press Release Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start CN NBS Press Release Scheduler: {e}")
 
     # 国債発行 日次スケジューラーを開始
     try:
@@ -955,6 +998,11 @@ async def shutdown_event():
         print(f"Warning: Error shutting down FMP Release Scheduler: {e}")
 
     try:
+        earnings_refresh_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Earnings Refresh Scheduler: {e}")
+
+    try:
         dashboard_cache_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Dashboard Cache Scheduler: {e}")
@@ -968,6 +1016,16 @@ async def shutdown_event():
         boj_lending_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down BOJ Lending Scheduler: {e}")
+
+    try:
+        supply_and_demand_pce_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Supply/Demand PCE Scheduler: {e}")
+
+    try:
+        manheim_used_vehicle_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Manheim UVVI Scheduler: {e}")
 
     try:
         pbc_reverse_repo_scheduler.shutdown()
@@ -993,6 +1051,11 @@ async def shutdown_event():
         cn_central_parity_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down CN Central Parity Scheduler: {e}")
+
+    try:
+        cn_nbs_press_release_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down CN NBS Press Release Scheduler: {e}")
 
     try:
         cn_government_bond_issuance_scheduler.shutdown()

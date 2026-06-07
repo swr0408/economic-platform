@@ -1,1158 +1,8 @@
 {
   "data": [
     {
-      "date": "2000-12-01",
-      "jolts": 5088.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-01-01",
-      "jolts": 5234.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-02-01",
-      "jolts": 5097.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-03-01",
-      "jolts": 4762.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-04-01",
-      "jolts": 4615.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-05-01",
-      "jolts": 4425.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-06-01",
-      "jolts": 4361.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-07-01",
-      "jolts": 4447.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-08-01",
-      "jolts": 4024.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-09-01",
-      "jolts": 4071.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-10-01",
-      "jolts": 3707.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-11-01",
-      "jolts": 3775.0,
-      "indeed": null
-    },
-    {
-      "date": "2001-12-01",
-      "jolts": 3677.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-01-01",
-      "jolts": 3699.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-02-01",
-      "jolts": 3436.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-03-01",
-      "jolts": 3612.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-04-01",
-      "jolts": 3471.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-05-01",
-      "jolts": 3457.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-06-01",
-      "jolts": 3412.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-07-01",
-      "jolts": 3367.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-08-01",
-      "jolts": 3517.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-09-01",
-      "jolts": 3301.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-10-01",
-      "jolts": 3479.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-11-01",
-      "jolts": 3514.0,
-      "indeed": null
-    },
-    {
-      "date": "2002-12-01",
-      "jolts": 3169.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-01-01",
-      "jolts": 3441.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-02-01",
-      "jolts": 3229.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-03-01",
-      "jolts": 3099.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-04-01",
-      "jolts": 3108.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-05-01",
-      "jolts": 3289.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-06-01",
-      "jolts": 3390.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-07-01",
-      "jolts": 2981.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-08-01",
-      "jolts": 3190.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-09-01",
-      "jolts": 3091.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-10-01",
-      "jolts": 3305.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-11-01",
-      "jolts": 3324.0,
-      "indeed": null
-    },
-    {
-      "date": "2003-12-01",
-      "jolts": 3414.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-01-01",
-      "jolts": 3424.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-02-01",
-      "jolts": 3532.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-03-01",
-      "jolts": 3525.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-04-01",
-      "jolts": 3511.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-05-01",
-      "jolts": 3710.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-06-01",
-      "jolts": 3337.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-07-01",
-      "jolts": 3814.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-08-01",
-      "jolts": 3541.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-09-01",
-      "jolts": 3821.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-10-01",
-      "jolts": 3943.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-11-01",
-      "jolts": 3472.0,
-      "indeed": null
-    },
-    {
-      "date": "2004-12-01",
-      "jolts": 4074.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-01-01",
-      "jolts": 3804.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-02-01",
-      "jolts": 3965.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-03-01",
-      "jolts": 4044.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-04-01",
-      "jolts": 4159.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-05-01",
-      "jolts": 3797.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-06-01",
-      "jolts": 4062.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-07-01",
-      "jolts": 4256.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-08-01",
-      "jolts": 4142.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-09-01",
-      "jolts": 4352.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-10-01",
-      "jolts": 4184.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-11-01",
-      "jolts": 4248.0,
-      "indeed": null
-    },
-    {
-      "date": "2005-12-01",
-      "jolts": 4282.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-01-01",
-      "jolts": 4397.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-02-01",
-      "jolts": 4325.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-03-01",
-      "jolts": 4732.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-04-01",
-      "jolts": 4790.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-05-01",
-      "jolts": 4463.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-06-01",
-      "jolts": 4614.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-07-01",
-      "jolts": 4394.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-08-01",
-      "jolts": 4710.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-09-01",
-      "jolts": 4737.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-10-01",
-      "jolts": 4591.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-11-01",
-      "jolts": 4645.0,
-      "indeed": null
-    },
-    {
-      "date": "2006-12-01",
-      "jolts": 4620.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-01-01",
-      "jolts": 4763.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-02-01",
-      "jolts": 4699.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-03-01",
-      "jolts": 4962.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-04-01",
-      "jolts": 4689.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-05-01",
-      "jolts": 4657.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-06-01",
-      "jolts": 4859.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-07-01",
-      "jolts": 4598.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-08-01",
-      "jolts": 4546.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-09-01",
-      "jolts": 4652.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-10-01",
-      "jolts": 4636.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-11-01",
-      "jolts": 4646.0,
-      "indeed": null
-    },
-    {
-      "date": "2007-12-01",
-      "jolts": 4545.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-01-01",
-      "jolts": 4624.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-02-01",
-      "jolts": 4279.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-03-01",
-      "jolts": 4225.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-04-01",
-      "jolts": 4035.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-05-01",
-      "jolts": 4194.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-06-01",
-      "jolts": 3830.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-07-01",
-      "jolts": 3749.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-08-01",
-      "jolts": 3674.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-09-01",
-      "jolts": 3222.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-10-01",
-      "jolts": 3377.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-11-01",
-      "jolts": 3231.0,
-      "indeed": null
-    },
-    {
-      "date": "2008-12-01",
-      "jolts": 3146.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-01-01",
-      "jolts": 2738.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-02-01",
-      "jolts": 2864.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-03-01",
-      "jolts": 2534.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-04-01",
-      "jolts": 2295.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-05-01",
-      "jolts": 2549.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-06-01",
-      "jolts": 2503.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-07-01",
-      "jolts": 2232.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-08-01",
-      "jolts": 2338.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-09-01",
-      "jolts": 2487.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-10-01",
-      "jolts": 2406.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-11-01",
-      "jolts": 2503.0,
-      "indeed": null
-    },
-    {
-      "date": "2009-12-01",
-      "jolts": 2568.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-01-01",
-      "jolts": 2837.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-02-01",
-      "jolts": 2666.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-03-01",
-      "jolts": 2679.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-04-01",
-      "jolts": 3153.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-05-01",
-      "jolts": 2988.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-06-01",
-      "jolts": 2801.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-07-01",
-      "jolts": 3082.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-08-01",
-      "jolts": 2999.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-09-01",
-      "jolts": 2918.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-10-01",
-      "jolts": 3235.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-11-01",
-      "jolts": 3211.0,
-      "indeed": null
-    },
-    {
-      "date": "2010-12-01",
-      "jolts": 3058.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-01-01",
-      "jolts": 3104.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-02-01",
-      "jolts": 3226.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-03-01",
-      "jolts": 3261.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-04-01",
-      "jolts": 3259.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-05-01",
-      "jolts": 3179.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-06-01",
-      "jolts": 3455.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-07-01",
-      "jolts": 3623.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-08-01",
-      "jolts": 3329.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-09-01",
-      "jolts": 3774.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-10-01",
-      "jolts": 3619.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-11-01",
-      "jolts": 3565.0,
-      "indeed": null
-    },
-    {
-      "date": "2011-12-01",
-      "jolts": 3768.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-01-01",
-      "jolts": 3909.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-02-01",
-      "jolts": 3616.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-03-01",
-      "jolts": 3979.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-04-01",
-      "jolts": 3793.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-05-01",
-      "jolts": 3835.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-06-01",
-      "jolts": 3911.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-07-01",
-      "jolts": 3735.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-08-01",
-      "jolts": 3809.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-09-01",
-      "jolts": 3882.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-10-01",
-      "jolts": 3775.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-11-01",
-      "jolts": 3878.0,
-      "indeed": null
-    },
-    {
-      "date": "2012-12-01",
-      "jolts": 3970.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-01-01",
-      "jolts": 3923.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-02-01",
-      "jolts": 4004.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-03-01",
-      "jolts": 4076.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-04-01",
-      "jolts": 3988.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-05-01",
-      "jolts": 4145.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-06-01",
-      "jolts": 4150.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-07-01",
-      "jolts": 3885.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-08-01",
-      "jolts": 4085.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-09-01",
-      "jolts": 4128.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-10-01",
-      "jolts": 4222.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-11-01",
-      "jolts": 4119.0,
-      "indeed": null
-    },
-    {
-      "date": "2013-12-01",
-      "jolts": 4121.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-01-01",
-      "jolts": 4127.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-02-01",
-      "jolts": 4373.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-03-01",
-      "jolts": 4388.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-04-01",
-      "jolts": 4566.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-05-01",
-      "jolts": 4747.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-06-01",
-      "jolts": 4982.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-07-01",
-      "jolts": 4846.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-08-01",
-      "jolts": 5349.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-09-01",
-      "jolts": 4914.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-10-01",
-      "jolts": 5012.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-11-01",
-      "jolts": 4843.0,
-      "indeed": null
-    },
-    {
-      "date": "2014-12-01",
-      "jolts": 5130.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-01-01",
-      "jolts": 5344.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-02-01",
-      "jolts": 5466.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-03-01",
-      "jolts": 5210.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-04-01",
-      "jolts": 5598.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-05-01",
-      "jolts": 5563.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-06-01",
-      "jolts": 5248.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-07-01",
-      "jolts": 6056.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-08-01",
-      "jolts": 5467.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-09-01",
-      "jolts": 5488.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-10-01",
-      "jolts": 5773.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-11-01",
-      "jolts": 5708.0,
-      "indeed": null
-    },
-    {
-      "date": "2015-12-01",
-      "jolts": 5845.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-01-01",
-      "jolts": 6012.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-02-01",
-      "jolts": 5770.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-03-01",
-      "jolts": 6129.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-04-01",
-      "jolts": 5803.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-05-01",
-      "jolts": 5777.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-06-01",
-      "jolts": 5742.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-07-01",
-      "jolts": 5962.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-08-01",
-      "jolts": 5677.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-09-01",
-      "jolts": 5868.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-10-01",
-      "jolts": 5591.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-11-01",
-      "jolts": 5971.0,
-      "indeed": null
-    },
-    {
-      "date": "2016-12-01",
-      "jolts": 5964.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-01-01",
-      "jolts": 5617.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-02-01",
-      "jolts": 5923.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-03-01",
-      "jolts": 5811.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-04-01",
-      "jolts": 6091.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-05-01",
-      "jolts": 5826.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-06-01",
-      "jolts": 6305.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-07-01",
-      "jolts": 6238.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-08-01",
-      "jolts": 6276.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-09-01",
-      "jolts": 6320.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-10-01",
-      "jolts": 6408.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-11-01",
-      "jolts": 6271.0,
-      "indeed": null
-    },
-    {
-      "date": "2017-12-01",
-      "jolts": 6336.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-01-01",
-      "jolts": 6621.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-02-01",
-      "jolts": 6552.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-03-01",
-      "jolts": 6818.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-04-01",
-      "jolts": 6877.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-05-01",
-      "jolts": 7016.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-06-01",
-      "jolts": 7230.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-07-01",
-      "jolts": 7190.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-08-01",
-      "jolts": 7208.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-09-01",
-      "jolts": 7411.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-10-01",
-      "jolts": 7304.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-11-01",
-      "jolts": 7594.0,
-      "indeed": null
-    },
-    {
-      "date": "2018-12-01",
-      "jolts": 7489.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-01-01",
-      "jolts": 7502.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-02-01",
-      "jolts": 7066.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-03-01",
-      "jolts": 7317.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-04-01",
-      "jolts": 7272.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-05-01",
-      "jolts": 7275.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-06-01",
-      "jolts": 7194.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-07-01",
-      "jolts": 7042.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-08-01",
-      "jolts": 7178.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-09-01",
-      "jolts": 7124.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-10-01",
-      "jolts": 7289.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-11-01",
-      "jolts": 6888.0,
-      "indeed": null
-    },
-    {
-      "date": "2019-12-01",
-      "jolts": 6699.0,
-      "indeed": null
-    },
-    {
-      "date": "2020-01-01",
-      "jolts": 7124.0,
-      "indeed": null
-    },
-    {
       "date": "2020-02-01",
-      "jolts": 6966.0,
+      "jolts": null,
       "indeed": 100.0
     },
     {
@@ -1297,7 +147,7 @@
     },
     {
       "date": "2020-03-01",
-      "jolts": 5894.0,
+      "jolts": null,
       "indeed": 100.0
     },
     {
@@ -1452,7 +302,7 @@
     },
     {
       "date": "2020-04-01",
-      "jolts": 4606.0,
+      "jolts": null,
       "indeed": 78.9
     },
     {
@@ -1602,7 +452,7 @@
     },
     {
       "date": "2020-05-01",
-      "jolts": 5612.0,
+      "jolts": null,
       "indeed": 62.3
     },
     {
@@ -1757,7 +607,7 @@
     },
     {
       "date": "2020-06-01",
-      "jolts": 6129.0,
+      "jolts": null,
       "indeed": 65.4
     },
     {
@@ -1907,7 +757,7 @@
     },
     {
       "date": "2020-07-01",
-      "jolts": 6530.0,
+      "jolts": null,
       "indeed": 74.4
     },
     {
@@ -2062,7 +912,7 @@
     },
     {
       "date": "2020-08-01",
-      "jolts": 6429.0,
+      "jolts": null,
       "indeed": 82.3
     },
     {
@@ -2217,7 +1067,7 @@
     },
     {
       "date": "2020-09-01",
-      "jolts": 6511.0,
+      "jolts": null,
       "indeed": 84.1
     },
     {
@@ -2367,7 +1217,7 @@
     },
     {
       "date": "2020-10-01",
-      "jolts": 6798.0,
+      "jolts": null,
       "indeed": 88.7
     },
     {
@@ -2522,7 +1372,7 @@
     },
     {
       "date": "2020-11-01",
-      "jolts": 6820.0,
+      "jolts": null,
       "indeed": 91.9
     },
     {
@@ -2672,7 +1522,7 @@
     },
     {
       "date": "2020-12-01",
-      "jolts": 6773.0,
+      "jolts": null,
       "indeed": 94.2
     },
     {
@@ -2827,7 +1677,7 @@
     },
     {
       "date": "2021-01-01",
-      "jolts": 7162.0,
+      "jolts": null,
       "indeed": 95.3
     },
     {
@@ -2982,7 +1832,7 @@
     },
     {
       "date": "2021-02-01",
-      "jolts": 7827.0,
+      "jolts": null,
       "indeed": 100.3
     },
     {
@@ -3122,7 +1972,7 @@
     },
     {
       "date": "2021-03-01",
-      "jolts": 8499.0,
+      "jolts": null,
       "indeed": 105.9
     },
     {
@@ -3277,7 +2127,7 @@
     },
     {
       "date": "2021-04-01",
-      "jolts": 9346.0,
+      "jolts": null,
       "indeed": 117.1
     },
     {
@@ -3427,7 +2277,7 @@
     },
     {
       "date": "2021-05-01",
-      "jolts": 9954.0,
+      "jolts": null,
       "indeed": 126.3
     },
     {
@@ -3582,7 +2432,7 @@
     },
     {
       "date": "2021-06-01",
-      "jolts": 10319.0,
+      "jolts": null,
       "indeed": 131.4
     },
     {
@@ -3732,7 +2582,7 @@
     },
     {
       "date": "2021-07-01",
-      "jolts": 10983.0,
+      "jolts": null,
       "indeed": 136.6
     },
     {
@@ -3887,7 +2737,7 @@
     },
     {
       "date": "2021-08-01",
-      "jolts": 10872.0,
+      "jolts": null,
       "indeed": 136.7
     },
     {
@@ -4042,7 +2892,7 @@
     },
     {
       "date": "2021-09-01",
-      "jolts": 10834.0,
+      "jolts": null,
       "indeed": 141.6
     },
     {
@@ -4192,7 +3042,7 @@
     },
     {
       "date": "2021-10-01",
-      "jolts": 11238.0,
+      "jolts": null,
       "indeed": 144.8
     },
     {
@@ -4347,7 +3197,7 @@
     },
     {
       "date": "2021-11-01",
-      "jolts": 11199.0,
+      "jolts": null,
       "indeed": 149.4
     },
     {
@@ -4497,7 +3347,7 @@
     },
     {
       "date": "2021-12-01",
-      "jolts": 11520.0,
+      "jolts": null,
       "indeed": 154.8
     },
     {
@@ -4652,7 +3502,7 @@
     },
     {
       "date": "2022-01-01",
-      "jolts": 11210.0,
+      "jolts": null,
       "indeed": 157.3
     },
     {
@@ -4807,7 +3657,7 @@
     },
     {
       "date": "2022-02-01",
-      "jolts": 11698.0,
+      "jolts": null,
       "indeed": 157.5
     },
     {
@@ -4947,7 +3797,7 @@
     },
     {
       "date": "2022-03-01",
-      "jolts": 12301.0,
+      "jolts": null,
       "indeed": 160.4
     },
     {
@@ -5102,7 +3952,7 @@
     },
     {
       "date": "2022-04-01",
-      "jolts": 11861.0,
+      "jolts": null,
       "indeed": 161.1
     },
     {
@@ -5252,7 +4102,7 @@
     },
     {
       "date": "2022-05-01",
-      "jolts": 11535.0,
+      "jolts": null,
       "indeed": 160.3
     },
     {
@@ -5407,7 +4257,7 @@
     },
     {
       "date": "2022-06-01",
-      "jolts": 11283.0,
+      "jolts": null,
       "indeed": 160.1
     },
     {
@@ -5557,7 +4407,7 @@
     },
     {
       "date": "2022-07-01",
-      "jolts": 11576.0,
+      "jolts": null,
       "indeed": 157.3
     },
     {
@@ -5712,7 +4562,7 @@
     },
     {
       "date": "2022-08-01",
-      "jolts": 10092.0,
+      "jolts": null,
       "indeed": 154.7
     },
     {
@@ -5867,7 +4717,7 @@
     },
     {
       "date": "2022-09-01",
-      "jolts": 10800.0,
+      "jolts": null,
       "indeed": 152.0
     },
     {
@@ -6017,7 +4867,7 @@
     },
     {
       "date": "2022-10-01",
-      "jolts": 10447.0,
+      "jolts": null,
       "indeed": 149.4
     },
     {
@@ -6172,7 +5022,7 @@
     },
     {
       "date": "2022-11-01",
-      "jolts": 10632.0,
+      "jolts": null,
       "indeed": 147.7
     },
     {
@@ -6322,7 +5172,7 @@
     },
     {
       "date": "2022-12-01",
-      "jolts": 10902.0,
+      "jolts": null,
       "indeed": 146.5
     },
     {
@@ -6477,7 +5327,7 @@
     },
     {
       "date": "2023-01-01",
-      "jolts": 10318.0,
+      "jolts": null,
       "indeed": 142.6
     },
     {
@@ -6632,7 +5482,7 @@
     },
     {
       "date": "2023-02-01",
-      "jolts": 9857.0,
+      "jolts": null,
       "indeed": 139.2
     },
     {
@@ -6772,7 +5622,7 @@
     },
     {
       "date": "2023-03-01",
-      "jolts": 9655.0,
+      "jolts": null,
       "indeed": 134.2
     },
     {
@@ -6927,7 +5777,7 @@
     },
     {
       "date": "2023-04-01",
-      "jolts": 9966.0,
+      "jolts": null,
       "indeed": 135.6
     },
     {
@@ -7077,7 +5927,7 @@
     },
     {
       "date": "2023-05-01",
-      "jolts": 9368.0,
+      "jolts": null,
       "indeed": 136.2
     },
     {
@@ -7232,7 +6082,7 @@
     },
     {
       "date": "2023-06-01",
-      "jolts": 9180.0,
+      "jolts": null,
       "indeed": 133.7
     },
     {
@@ -7382,7 +6232,7 @@
     },
     {
       "date": "2023-07-01",
-      "jolts": 8657.0,
+      "jolts": null,
       "indeed": 130.2
     },
     {
@@ -7537,7 +6387,7 @@
     },
     {
       "date": "2023-08-01",
-      "jolts": 9254.0,
+      "jolts": null,
       "indeed": 129.4
     },
     {
@@ -7692,7 +6542,7 @@
     },
     {
       "date": "2023-09-01",
-      "jolts": 9259.0,
+      "jolts": null,
       "indeed": 127.7
     },
     {
@@ -7842,7 +6692,7 @@
     },
     {
       "date": "2023-10-01",
-      "jolts": 8580.0,
+      "jolts": null,
       "indeed": 125.6
     },
     {
@@ -7997,7 +6847,7 @@
     },
     {
       "date": "2023-11-01",
-      "jolts": 8602.0,
+      "jolts": null,
       "indeed": 124.3
     },
     {
@@ -8147,7 +6997,7 @@
     },
     {
       "date": "2023-12-01",
-      "jolts": 8520.0,
+      "jolts": null,
       "indeed": 121.9
     },
     {
@@ -8302,7 +7152,7 @@
     },
     {
       "date": "2024-01-01",
-      "jolts": 8378.0,
+      "jolts": null,
       "indeed": 120.4
     },
     {
@@ -8457,7 +7307,7 @@
     },
     {
       "date": "2024-02-01",
-      "jolts": 8440.0,
+      "jolts": null,
       "indeed": 118.2
     },
     {
@@ -8602,7 +7452,7 @@
     },
     {
       "date": "2024-03-01",
-      "jolts": 8206.0,
+      "jolts": null,
       "indeed": 118.0
     },
     {
@@ -8757,7 +7607,7 @@
     },
     {
       "date": "2024-04-01",
-      "jolts": 7529.0,
+      "jolts": null,
       "indeed": 119.0
     },
     {
@@ -8907,7 +7757,7 @@
     },
     {
       "date": "2024-05-01",
-      "jolts": 7782.0,
+      "jolts": null,
       "indeed": 117.3
     },
     {
@@ -9062,7 +7912,7 @@
     },
     {
       "date": "2024-06-01",
-      "jolts": 7416.0,
+      "jolts": null,
       "indeed": 114.8
     },
     {
@@ -9212,7 +8062,7 @@
     },
     {
       "date": "2024-07-01",
-      "jolts": 7426.0,
+      "jolts": null,
       "indeed": 113.4
     },
     {
@@ -9367,7 +8217,7 @@
     },
     {
       "date": "2024-08-01",
-      "jolts": 7520.0,
+      "jolts": null,
       "indeed": 114.3
     },
     {
@@ -9522,7 +8372,7 @@
     },
     {
       "date": "2024-09-01",
-      "jolts": 6943.0,
+      "jolts": null,
       "indeed": 112.3
     },
     {
@@ -9672,7 +8522,7 @@
     },
     {
       "date": "2024-10-01",
-      "jolts": 7379.0,
+      "jolts": null,
       "indeed": 112.3
     },
     {
@@ -9827,7 +8677,7 @@
     },
     {
       "date": "2024-11-01",
-      "jolts": 7566.0,
+      "jolts": null,
       "indeed": 108.5
     },
     {
@@ -9977,7 +8827,7 @@
     },
     {
       "date": "2024-12-01",
-      "jolts": 7295.0,
+      "jolts": null,
       "indeed": 110.3
     },
     {
@@ -10132,7 +8982,7 @@
     },
     {
       "date": "2025-01-01",
-      "jolts": 7431.0,
+      "jolts": null,
       "indeed": 110.7
     },
     {
@@ -10287,7 +9137,7 @@
     },
     {
       "date": "2025-02-01",
-      "jolts": 7242.0,
+      "jolts": null,
       "indeed": 109.5
     },
     {
@@ -10427,7 +9277,7 @@
     },
     {
       "date": "2025-03-01",
-      "jolts": 6952.0,
+      "jolts": null,
       "indeed": 108.8
     },
     {
@@ -10582,7 +9432,7 @@
     },
     {
       "date": "2025-04-01",
-      "jolts": 7098.0,
+      "jolts": null,
       "indeed": 106.8
     },
     {
@@ -10732,7 +9582,7 @@
     },
     {
       "date": "2025-05-01",
-      "jolts": 7310.0,
+      "jolts": null,
       "indeed": 105.8
     },
     {
@@ -10887,7 +9737,7 @@
     },
     {
       "date": "2025-06-01",
-      "jolts": 7204.0,
+      "jolts": null,
       "indeed": 105.5
     },
     {
@@ -11037,7 +9887,7 @@
     },
     {
       "date": "2025-07-01",
-      "jolts": 7089.0,
+      "jolts": null,
       "indeed": 104.8
     },
     {
@@ -11192,7 +10042,7 @@
     },
     {
       "date": "2025-08-01",
-      "jolts": 6919.0,
+      "jolts": null,
       "indeed": 104.8
     },
     {
@@ -11347,7 +10197,7 @@
     },
     {
       "date": "2025-09-01",
-      "jolts": 7169.0,
+      "jolts": null,
       "indeed": 103.9
     },
     {
@@ -11497,7 +10347,7 @@
     },
     {
       "date": "2025-10-01",
-      "jolts": 7170.0,
+      "jolts": null,
       "indeed": 101.3
     },
     {
@@ -11652,7 +10502,7 @@
     },
     {
       "date": "2025-11-01",
-      "jolts": 6846.0,
+      "jolts": null,
       "indeed": 100.4
     },
     {
@@ -11802,7 +10652,7 @@
     },
     {
       "date": "2025-12-01",
-      "jolts": 6550.0,
+      "jolts": null,
       "indeed": 102.2
     },
     {
@@ -11957,7 +10807,7 @@
     },
     {
       "date": "2026-01-01",
-      "jolts": 6946.0,
+      "jolts": null,
       "indeed": 103.1
     },
     {
@@ -12008,7 +10858,7 @@
     {
       "date": "2026-01-11",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 102.7
     },
     {
       "date": "2026-01-12",
@@ -12028,335 +10878,650 @@
     {
       "date": "2026-01-15",
       "jolts": null,
-      "indeed": 102.9
+      "indeed": 103.0
     },
     {
       "date": "2026-01-16",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 103.1
     },
     {
       "date": "2026-01-17",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 103.3
     },
     {
       "date": "2026-01-18",
       "jolts": null,
-      "indeed": 103.1
+      "indeed": 103.4
     },
     {
       "date": "2026-01-19",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 103.6
     },
     {
       "date": "2026-01-20",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 103.7
     },
     {
       "date": "2026-01-21",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 103.8
     },
     {
       "date": "2026-01-22",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 103.9
     },
     {
       "date": "2026-01-23",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 104.1
     },
     {
       "date": "2026-01-24",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 104.1
     },
     {
       "date": "2026-01-25",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 104.2
     },
     {
       "date": "2026-01-26",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 104.1
     },
     {
       "date": "2026-01-27",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 104.1
     },
     {
       "date": "2026-01-28",
       "jolts": null,
-      "indeed": 103.1
+      "indeed": 104.0
     },
     {
       "date": "2026-01-29",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 104.0
     },
     {
       "date": "2026-01-30",
       "jolts": null,
-      "indeed": 102.8
+      "indeed": 103.8
     },
     {
       "date": "2026-01-31",
       "jolts": null,
-      "indeed": 102.7
+      "indeed": 103.7
     },
     {
       "date": "2026-02-01",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 103.6
     },
     {
       "date": "2026-02-02",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 103.7
     },
     {
       "date": "2026-02-03",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 103.6
     },
     {
       "date": "2026-02-04",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 103.6
     },
     {
       "date": "2026-02-05",
       "jolts": null,
-      "indeed": 102.4
+      "indeed": 103.5
     },
     {
       "date": "2026-02-06",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 103.6
     },
     {
       "date": "2026-02-07",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 103.7
     },
     {
       "date": "2026-02-08",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 103.8
     },
     {
       "date": "2026-02-09",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 103.9
     },
     {
       "date": "2026-02-10",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 104.0
     },
     {
       "date": "2026-02-11",
       "jolts": null,
-      "indeed": 102.6
+      "indeed": 104.1
     },
     {
       "date": "2026-02-12",
       "jolts": null,
-      "indeed": 102.8
+      "indeed": 104.5
     },
     {
       "date": "2026-02-13",
       "jolts": null,
-      "indeed": 102.9
+      "indeed": 104.5
     },
     {
       "date": "2026-02-14",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 104.7
     },
     {
       "date": "2026-02-15",
       "jolts": null,
-      "indeed": 103.1
+      "indeed": 104.9
     },
     {
       "date": "2026-02-16",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 105.1
     },
     {
       "date": "2026-02-17",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 105.1
     },
     {
       "date": "2026-02-18",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 105.2
     },
     {
       "date": "2026-02-19",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 105.2
     },
     {
       "date": "2026-02-20",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 105.3
     },
     {
       "date": "2026-02-21",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 105.3
     },
     {
       "date": "2026-02-22",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 105.3
     },
     {
       "date": "2026-02-23",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 105.2
     },
     {
       "date": "2026-02-24",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 105.2
     },
     {
       "date": "2026-02-25",
       "jolts": null,
-      "indeed": 103.3
+      "indeed": 105.2
     },
     {
       "date": "2026-02-26",
       "jolts": null,
-      "indeed": 103.4
+      "indeed": 105.4
     },
     {
       "date": "2026-02-27",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 105.5
     },
     {
       "date": "2026-02-28",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 105.5
     },
     {
       "date": "2026-03-01",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 105.4
     },
     {
       "date": "2026-03-02",
       "jolts": null,
-      "indeed": 103.6
+      "indeed": 105.5
     },
     {
       "date": "2026-03-03",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 105.4
     },
     {
       "date": "2026-03-04",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 105.4
     },
     {
       "date": "2026-03-05",
       "jolts": null,
-      "indeed": 103.5
+      "indeed": 105.4
     },
     {
       "date": "2026-03-06",
       "jolts": null,
-      "indeed": 103.4
+      "indeed": 105.3
     },
     {
       "date": "2026-03-07",
       "jolts": null,
-      "indeed": 103.2
+      "indeed": 105.2
     },
     {
       "date": "2026-03-08",
       "jolts": null,
-      "indeed": 103.1
+      "indeed": 105.1
     },
     {
       "date": "2026-03-09",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 105.0
     },
     {
       "date": "2026-03-10",
       "jolts": null,
-      "indeed": 103.1
+      "indeed": 105.1
     },
     {
       "date": "2026-03-11",
       "jolts": null,
-      "indeed": 103.0
+      "indeed": 104.9
     },
     {
       "date": "2026-03-12",
       "jolts": null,
-      "indeed": 102.7
+      "indeed": 104.6
     },
     {
       "date": "2026-03-13",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 104.4
     },
     {
       "date": "2026-03-14",
       "jolts": null,
-      "indeed": 102.5
+      "indeed": 104.3
     },
     {
       "date": "2026-03-15",
       "jolts": null,
-      "indeed": 102.3
+      "indeed": 104.1
     },
     {
       "date": "2026-03-16",
       "jolts": null,
-      "indeed": 102.4
+      "indeed": 104.1
     },
     {
       "date": "2026-03-17",
       "jolts": null,
-      "indeed": 102.0
+      "indeed": 103.6
     },
     {
       "date": "2026-03-18",
       "jolts": null,
-      "indeed": 101.9
+      "indeed": 103.4
     },
     {
       "date": "2026-03-19",
       "jolts": null,
-      "indeed": 101.8
+      "indeed": 103.3
     },
     {
       "date": "2026-03-20",
       "jolts": null,
+      "indeed": 103.2
+    },
+    {
+      "date": "2026-03-21",
+      "jolts": null,
+      "indeed": 103.0
+    },
+    {
+      "date": "2026-03-22",
+      "jolts": null,
+      "indeed": 102.9
+    },
+    {
+      "date": "2026-03-23",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-03-24",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-03-25",
+      "jolts": null,
+      "indeed": 102.5
+    },
+    {
+      "date": "2026-03-26",
+      "jolts": null,
+      "indeed": 102.5
+    },
+    {
+      "date": "2026-03-27",
+      "jolts": null,
+      "indeed": 102.3
+    },
+    {
+      "date": "2026-03-28",
+      "jolts": null,
+      "indeed": 102.2
+    },
+    {
+      "date": "2026-03-29",
+      "jolts": null,
+      "indeed": 102.1
+    },
+    {
+      "date": "2026-03-30",
+      "jolts": null,
+      "indeed": 102.1
+    },
+    {
+      "date": "2026-03-31",
+      "jolts": null,
+      "indeed": 102.2
+    },
+    {
+      "date": "2026-04-01",
+      "jolts": null,
+      "indeed": 102.2
+    },
+    {
+      "date": "2026-04-02",
+      "jolts": null,
+      "indeed": 102.1
+    },
+    {
+      "date": "2026-04-03",
+      "jolts": null,
+      "indeed": 102.2
+    },
+    {
+      "date": "2026-04-04",
+      "jolts": null,
+      "indeed": 102.3
+    },
+    {
+      "date": "2026-04-05",
+      "jolts": null,
+      "indeed": 102.4
+    },
+    {
+      "date": "2026-04-06",
+      "jolts": null,
+      "indeed": 102.4
+    },
+    {
+      "date": "2026-04-07",
+      "jolts": null,
+      "indeed": 102.5
+    },
+    {
+      "date": "2026-04-08",
+      "jolts": null,
+      "indeed": 102.5
+    },
+    {
+      "date": "2026-04-09",
+      "jolts": null,
+      "indeed": 102.9
+    },
+    {
+      "date": "2026-04-10",
+      "jolts": null,
+      "indeed": 103.0
+    },
+    {
+      "date": "2026-04-11",
+      "jolts": null,
+      "indeed": 103.0
+    },
+    {
+      "date": "2026-04-12",
+      "jolts": null,
+      "indeed": 103.0
+    },
+    {
+      "date": "2026-04-13",
+      "jolts": null,
+      "indeed": 102.9
+    },
+    {
+      "date": "2026-04-14",
+      "jolts": null,
+      "indeed": 102.9
+    },
+    {
+      "date": "2026-04-15",
+      "jolts": null,
+      "indeed": 103.0
+    },
+    {
+      "date": "2026-04-16",
+      "jolts": null,
+      "indeed": 102.8
+    },
+    {
+      "date": "2026-04-17",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-04-18",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-04-19",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-04-20",
+      "jolts": null,
+      "indeed": 102.8
+    },
+    {
+      "date": "2026-04-21",
+      "jolts": null,
+      "indeed": 102.8
+    },
+    {
+      "date": "2026-04-22",
+      "jolts": null,
+      "indeed": 103.0
+    },
+    {
+      "date": "2026-04-23",
+      "jolts": null,
+      "indeed": 102.9
+    },
+    {
+      "date": "2026-04-24",
+      "jolts": null,
+      "indeed": 102.9
+    },
+    {
+      "date": "2026-04-25",
+      "jolts": null,
+      "indeed": 102.8
+    },
+    {
+      "date": "2026-04-26",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-04-27",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-04-28",
+      "jolts": null,
+      "indeed": 102.5
+    },
+    {
+      "date": "2026-04-29",
+      "jolts": null,
+      "indeed": 102.4
+    },
+    {
+      "date": "2026-04-30",
+      "jolts": null,
+      "indeed": 102.4
+    },
+    {
+      "date": "2026-05-01",
+      "jolts": null,
+      "indeed": 102.5
+    },
+    {
+      "date": "2026-05-02",
+      "jolts": null,
+      "indeed": 102.6
+    },
+    {
+      "date": "2026-05-03",
+      "jolts": null,
+      "indeed": 102.6
+    },
+    {
+      "date": "2026-05-04",
+      "jolts": null,
+      "indeed": 102.6
+    },
+    {
+      "date": "2026-05-05",
+      "jolts": null,
+      "indeed": 102.8
+    },
+    {
+      "date": "2026-05-06",
+      "jolts": null,
+      "indeed": 102.7
+    },
+    {
+      "date": "2026-05-07",
+      "jolts": null,
+      "indeed": 102.6
+    },
+    {
+      "date": "2026-05-08",
+      "jolts": null,
+      "indeed": 102.4
+    },
+    {
+      "date": "2026-05-09",
+      "jolts": null,
+      "indeed": 102.3
+    },
+    {
+      "date": "2026-05-10",
+      "jolts": null,
+      "indeed": 102.2
+    },
+    {
+      "date": "2026-05-11",
+      "jolts": null,
+      "indeed": 102.1
+    },
+    {
+      "date": "2026-05-12",
+      "jolts": null,
+      "indeed": 102.0
+    },
+    {
+      "date": "2026-05-13",
+      "jolts": null,
       "indeed": 101.8
+    },
+    {
+      "date": "2026-05-14",
+      "jolts": null,
+      "indeed": 101.7
+    },
+    {
+      "date": "2026-05-15",
+      "jolts": null,
+      "indeed": 101.6
+    },
+    {
+      "date": "2026-05-16",
+      "jolts": null,
+      "indeed": 101.5
+    },
+    {
+      "date": "2026-05-17",
+      "jolts": null,
+      "indeed": 101.7
+    },
+    {
+      "date": "2026-05-18",
+      "jolts": null,
+      "indeed": 101.7
+    },
+    {
+      "date": "2026-05-19",
+      "jolts": null,
+      "indeed": 101.8
+    },
+    {
+      "date": "2026-05-20",
+      "jolts": null,
+      "indeed": 102.0
+    },
+    {
+      "date": "2026-05-21",
+      "jolts": null,
+      "indeed": 102.0
+    },
+    {
+      "date": "2026-05-22",
+      "jolts": null,
+      "indeed": 102.1
     }
   ],
   "latest": {
-    "date": "2026-03-20",
-    "jolts": 6946.0,
-    "jolts_date": "2026-01-01",
-    "indeed": 101.8,
-    "indeed_date": "2026-03-20"
+    "date": "2026-05-22",
+    "jolts": null,
+    "jolts_date": null,
+    "indeed": 102.1,
+    "indeed_date": "2026-05-22"
   },
-  "last_updated": "2026-03-31T23:03:00.739223+09:00"
+  "last_updated": "2026-06-03T11:30:39.621613+09:00"
 }

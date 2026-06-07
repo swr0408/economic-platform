@@ -883,6 +883,18 @@ class BaseMultiSeriesService:
         if not series_data:
             return []
 
+        # PRIMARY_SERIESが設定されているのに取得失敗した場合、
+        # 破損データ（valueフィールドが全てNone）を生成しないよう中断
+        # Why: _merge_series_dataが代替シリーズをprimaryに使うと、PRIMARY_SERIESに
+        # 対応するフィールドが全てNoneになり、ダッシュボードキャッシュに永続的に
+        # 残ってしまうため
+        if self.PRIMARY_SERIES and self.PRIMARY_SERIES not in series_data:
+            print(
+                f"  {self.INDICATOR_NAME}: PRIMARY_SERIES '{self.PRIMARY_SERIES}' "
+                f"not fetched — aborting to preserve previous cache"
+            )
+            return []
+
         # シリーズをマージ
         merged = self._merge_series_data(series_data)
 

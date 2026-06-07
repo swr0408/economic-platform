@@ -30,7 +30,7 @@ router = APIRouter(
 
 
 @router.get("/monthly-cpi")
-async def get_monthly_cpi(
+def get_monthly_cpi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -45,13 +45,13 @@ async def get_monthly_cpi(
 
 
 @router.get("/monthly-cpi/cache")
-async def get_monthly_cpi_cache_status() -> Dict[str, Any]:
+def get_monthly_cpi_cache_status() -> Dict[str, Any]:
     """月次CPIのキャッシュ状態を取得"""
     return abs_monthly_cpi_service.get_cache_status()
 
 
 @router.delete("/monthly-cpi/cache")
-async def invalidate_monthly_cpi_cache() -> Dict[str, bool]:
+def invalidate_monthly_cpi_cache() -> Dict[str, bool]:
     """月次CPIのキャッシュを無効化"""
     success = abs_monthly_cpi_service.invalidate_cache()
     return {"success": success}
@@ -63,7 +63,7 @@ async def invalidate_monthly_cpi_cache() -> Dict[str, bool]:
 
 
 @router.get("/cpi-categories")
-async def get_cpi_categories(
+def get_cpi_categories(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -81,13 +81,13 @@ async def get_cpi_categories(
 
 
 @router.get("/cpi-categories/cache")
-async def get_cpi_categories_cache_status() -> Dict[str, Any]:
+def get_cpi_categories_cache_status() -> Dict[str, Any]:
     """CPIカテゴリ別のキャッシュ状態を取得"""
     return abs_cpi_categories_service.get_cache_status()
 
 
 @router.delete("/cpi-categories/cache")
-async def invalidate_cpi_categories_cache() -> Dict[str, bool]:
+def invalidate_cpi_categories_cache() -> Dict[str, bool]:
     """CPIカテゴリ別のキャッシュを無効化"""
     success = abs_cpi_categories_service.invalidate_cache()
     return {"success": success}
@@ -99,7 +99,7 @@ async def invalidate_cpi_categories_cache() -> Dict[str, bool]:
 
 
 @router.get("/quarterly-cpi")
-async def get_quarterly_cpi(
+def get_quarterly_cpi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -116,13 +116,13 @@ async def get_quarterly_cpi(
 
 
 @router.get("/quarterly-cpi/cache")
-async def get_quarterly_cpi_cache_status() -> Dict[str, Any]:
+def get_quarterly_cpi_cache_status() -> Dict[str, Any]:
     """四半期CPIのキャッシュ状態を取得"""
     return abs_quarterly_cpi_service.get_cache_status()
 
 
 @router.delete("/quarterly-cpi/cache")
-async def invalidate_quarterly_cpi_cache() -> Dict[str, bool]:
+def invalidate_quarterly_cpi_cache() -> Dict[str, bool]:
     """四半期CPIのキャッシュを無効化"""
     success = abs_quarterly_cpi_service.invalidate_cache()
     return {"success": success}
@@ -134,7 +134,7 @@ async def invalidate_quarterly_cpi_cache() -> Dict[str, bool]:
 
 
 @router.get("/quarterly-ppi")
-async def get_quarterly_ppi(
+def get_quarterly_ppi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -148,13 +148,13 @@ async def get_quarterly_ppi(
 
 
 @router.get("/quarterly-ppi/cache")
-async def get_quarterly_ppi_cache_status() -> Dict[str, Any]:
+def get_quarterly_ppi_cache_status() -> Dict[str, Any]:
     """四半期PPIのキャッシュ状態を取得"""
     return abs_quarterly_ppi_service.get_cache_status()
 
 
 @router.delete("/quarterly-ppi/cache")
-async def invalidate_quarterly_ppi_cache() -> Dict[str, bool]:
+def invalidate_quarterly_ppi_cache() -> Dict[str, bool]:
     """四半期PPIのキャッシュを無効化"""
     success = abs_quarterly_ppi_service.invalidate_cache()
     return {"success": success}

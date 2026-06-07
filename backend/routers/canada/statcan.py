@@ -66,7 +66,7 @@ router = APIRouter(
 # ===== CPI =====
 
 @router.get("/cpi")
-async def get_ca_cpi(
+def get_ca_cpi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -92,7 +92,7 @@ async def get_ca_cpi(
 
 
 @router.get("/cpi/cache")
-async def get_ca_cpi_cache_status() -> Dict[str, Any]:
+def get_ca_cpi_cache_status() -> Dict[str, Any]:
     """
     カナダCPIのキャッシュ状態を取得
     """
@@ -100,7 +100,7 @@ async def get_ca_cpi_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/cpi/cache")
-async def invalidate_ca_cpi_cache() -> Dict[str, bool]:
+def invalidate_ca_cpi_cache() -> Dict[str, bool]:
     """
     カナダCPIのキャッシュを無効化
     """
@@ -111,7 +111,7 @@ async def invalidate_ca_cpi_cache() -> Dict[str, bool]:
 # ===== IPPI (Industrial Product Price Index) =====
 
 @router.get("/ippi")
-async def get_ca_ippi(
+def get_ca_ippi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -137,7 +137,7 @@ async def get_ca_ippi(
 
 
 @router.get("/ippi/cache")
-async def get_ca_ippi_cache_status() -> Dict[str, Any]:
+def get_ca_ippi_cache_status() -> Dict[str, Any]:
     """
     カナダIPPIのキャッシュ状態を取得
     """
@@ -145,7 +145,7 @@ async def get_ca_ippi_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/ippi/cache")
-async def invalidate_ca_ippi_cache() -> Dict[str, bool]:
+def invalidate_ca_ippi_cache() -> Dict[str, bool]:
     """
     カナダIPPIのキャッシュを無効化
     """
@@ -156,7 +156,7 @@ async def invalidate_ca_ippi_cache() -> Dict[str, bool]:
 # ===== GDP Growth (GDP成長率) =====
 
 @router.get("/gdp-growth")
-async def get_ca_gdp_growth(
+def get_ca_gdp_growth(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -182,7 +182,7 @@ async def get_ca_gdp_growth(
 
 
 @router.get("/gdp-growth/cache")
-async def get_ca_gdp_growth_cache_status() -> Dict[str, Any]:
+def get_ca_gdp_growth_cache_status() -> Dict[str, Any]:
     """
     カナダGDP成長率のキャッシュ状態を取得
     """
@@ -190,7 +190,7 @@ async def get_ca_gdp_growth_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/gdp-growth/cache")
-async def invalidate_ca_gdp_growth_cache() -> Dict[str, bool]:
+def invalidate_ca_gdp_growth_cache() -> Dict[str, bool]:
     """
     カナダGDP成長率のキャッシュを無効化
     """
@@ -201,7 +201,7 @@ async def invalidate_ca_gdp_growth_cache() -> Dict[str, bool]:
 # ===== Monthly GDP (月次GDP) =====
 
 @router.get("/gdp-monthly")
-async def get_ca_gdp_monthly(
+def get_ca_gdp_monthly(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -227,7 +227,7 @@ async def get_ca_gdp_monthly(
 
 
 @router.get("/gdp-monthly/cache")
-async def get_ca_gdp_monthly_cache_status() -> Dict[str, Any]:
+def get_ca_gdp_monthly_cache_status() -> Dict[str, Any]:
     """
     カナダ月次GDPのキャッシュ状態を取得
     """
@@ -235,7 +235,7 @@ async def get_ca_gdp_monthly_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/gdp-monthly/cache")
-async def invalidate_ca_gdp_monthly_cache() -> Dict[str, bool]:
+def invalidate_ca_gdp_monthly_cache() -> Dict[str, bool]:
     """
     カナダ月次GDPのキャッシュを無効化
     """
@@ -246,7 +246,7 @@ async def invalidate_ca_gdp_monthly_cache() -> Dict[str, bool]:
 # ===== Employment (雇用者数) =====
 
 @router.get("/employment")
-async def get_ca_employment(
+def get_ca_employment(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -272,7 +272,7 @@ async def get_ca_employment(
 
 
 @router.get("/employment/cache")
-async def get_ca_employment_cache_status() -> Dict[str, Any]:
+def get_ca_employment_cache_status() -> Dict[str, Any]:
     """
     カナダ雇用者数のキャッシュ状態を取得
     """
@@ -280,7 +280,7 @@ async def get_ca_employment_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/employment/cache")
-async def invalidate_ca_employment_cache() -> Dict[str, bool]:
+def invalidate_ca_employment_cache() -> Dict[str, bool]:
     """
     カナダ雇用者数のキャッシュを無効化
     """
@@ -291,7 +291,7 @@ async def invalidate_ca_employment_cache() -> Dict[str, bool]:
 # ===== Unemployment Rate (失業率) =====
 
 @router.get("/unemployment-rate")
-async def get_ca_unemployment_rate(
+def get_ca_unemployment_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -317,7 +317,7 @@ async def get_ca_unemployment_rate(
 
 
 @router.get("/unemployment-rate/cache")
-async def get_ca_unemployment_rate_cache_status() -> Dict[str, Any]:
+def get_ca_unemployment_rate_cache_status() -> Dict[str, Any]:
     """
     カナダ失業率のキャッシュ状態を取得
     """
@@ -325,7 +325,7 @@ async def get_ca_unemployment_rate_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/unemployment-rate/cache")
-async def invalidate_ca_unemployment_rate_cache() -> Dict[str, bool]:
+def invalidate_ca_unemployment_rate_cache() -> Dict[str, bool]:
     """
     カナダ失業率のキャッシュを無効化
     """
@@ -336,7 +336,7 @@ async def invalidate_ca_unemployment_rate_cache() -> Dict[str, bool]:
 # ===== Labor Force Participation Rate (労働参加率) =====
 
 @router.get("/labor-force-participation-rate")
-async def get_ca_labor_force_participation_rate(
+def get_ca_labor_force_participation_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -362,7 +362,7 @@ async def get_ca_labor_force_participation_rate(
 
 
 @router.get("/labor-force-participation-rate/cache")
-async def get_ca_labor_force_participation_rate_cache_status() -> Dict[str, Any]:
+def get_ca_labor_force_participation_rate_cache_status() -> Dict[str, Any]:
     """
     カナダ労働参加率のキャッシュ状態を取得
     """
@@ -370,7 +370,7 @@ async def get_ca_labor_force_participation_rate_cache_status() -> Dict[str, Any]
 
 
 @router.delete("/labor-force-participation-rate/cache")
-async def invalidate_ca_labor_force_participation_rate_cache() -> Dict[str, bool]:
+def invalidate_ca_labor_force_participation_rate_cache() -> Dict[str, bool]:
     """
     カナダ労働参加率のキャッシュを無効化
     """
@@ -381,7 +381,7 @@ async def invalidate_ca_labor_force_participation_rate_cache() -> Dict[str, bool
 # ===== Average Hourly Wage (平均時給) =====
 
 @router.get("/average-hourly-wage")
-async def get_ca_average_hourly_wage(
+def get_ca_average_hourly_wage(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -407,7 +407,7 @@ async def get_ca_average_hourly_wage(
 
 
 @router.get("/average-hourly-wage/cache")
-async def get_ca_average_hourly_wage_cache_status() -> Dict[str, Any]:
+def get_ca_average_hourly_wage_cache_status() -> Dict[str, Any]:
     """
     カナダ平均時給のキャッシュ状態を取得
     """
@@ -415,7 +415,7 @@ async def get_ca_average_hourly_wage_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/average-hourly-wage/cache")
-async def invalidate_ca_average_hourly_wage_cache() -> Dict[str, bool]:
+def invalidate_ca_average_hourly_wage_cache() -> Dict[str, bool]:
     """
     カナダ平均時給のキャッシュを無効化
     """
@@ -426,7 +426,7 @@ async def invalidate_ca_average_hourly_wage_cache() -> Dict[str, bool]:
 # ===== Weekly Average Salary (週間平均給与) =====
 
 @router.get("/weekly-average-salary")
-async def get_ca_weekly_average_salary(
+def get_ca_weekly_average_salary(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -452,7 +452,7 @@ async def get_ca_weekly_average_salary(
 
 
 @router.get("/weekly-average-salary/cache")
-async def get_ca_weekly_average_salary_cache_status() -> Dict[str, Any]:
+def get_ca_weekly_average_salary_cache_status() -> Dict[str, Any]:
     """
     カナダ週間平均給与のキャッシュ状態を取得
     """
@@ -460,7 +460,7 @@ async def get_ca_weekly_average_salary_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/weekly-average-salary/cache")
-async def invalidate_ca_weekly_average_salary_cache() -> Dict[str, bool]:
+def invalidate_ca_weekly_average_salary_cache() -> Dict[str, bool]:
     """
     カナダ週間平均給与のキャッシュを無効化
     """
@@ -471,7 +471,7 @@ async def invalidate_ca_weekly_average_salary_cache() -> Dict[str, bool]:
 # ===== Retail Sales (小売売上高) =====
 
 @router.get("/retail-sales")
-async def get_ca_retail_sales(
+def get_ca_retail_sales(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -507,7 +507,7 @@ async def get_ca_retail_sales(
 
 
 @router.get("/retail-sales/cache")
-async def get_ca_retail_sales_cache_status() -> Dict[str, Any]:
+def get_ca_retail_sales_cache_status() -> Dict[str, Any]:
     """
     カナダ小売売上高のキャッシュ状態を取得
     """
@@ -515,7 +515,7 @@ async def get_ca_retail_sales_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/retail-sales/cache")
-async def invalidate_ca_retail_sales_cache() -> Dict[str, bool]:
+def invalidate_ca_retail_sales_cache() -> Dict[str, bool]:
     """
     カナダ小売売上高のキャッシュを無効化
     """
@@ -526,7 +526,7 @@ async def invalidate_ca_retail_sales_cache() -> Dict[str, bool]:
 # ===== Industrial Production (鉱工業生産) =====
 
 @router.get("/industrial-production")
-async def get_ca_industrial_production(
+def get_ca_industrial_production(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -553,7 +553,7 @@ async def get_ca_industrial_production(
 
 
 @router.get("/industrial-production/cache")
-async def get_ca_industrial_production_cache_status() -> Dict[str, Any]:
+def get_ca_industrial_production_cache_status() -> Dict[str, Any]:
     """
     カナダ鉱工業生産のキャッシュ状態を取得
     """
@@ -561,7 +561,7 @@ async def get_ca_industrial_production_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/industrial-production/cache")
-async def invalidate_ca_industrial_production_cache() -> Dict[str, bool]:
+def invalidate_ca_industrial_production_cache() -> Dict[str, bool]:
     """
     カナダ鉱工業生産のキャッシュを無効化
     """
@@ -572,7 +572,7 @@ async def invalidate_ca_industrial_production_cache() -> Dict[str, bool]:
 # ===== Trade Balance (貿易収支) =====
 
 @router.get("/trade-balance")
-async def get_ca_trade_balance(
+def get_ca_trade_balance(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -608,7 +608,7 @@ async def get_ca_trade_balance(
 
 
 @router.get("/trade-balance/cache")
-async def get_ca_trade_balance_cache_status() -> Dict[str, Any]:
+def get_ca_trade_balance_cache_status() -> Dict[str, Any]:
     """
     カナダ貿易収支のキャッシュ状態を取得
     """
@@ -616,7 +616,7 @@ async def get_ca_trade_balance_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/trade-balance/cache")
-async def invalidate_ca_trade_balance_cache() -> Dict[str, bool]:
+def invalidate_ca_trade_balance_cache() -> Dict[str, bool]:
     """
     カナダ貿易収支のキャッシュを無効化
     """
@@ -627,7 +627,7 @@ async def invalidate_ca_trade_balance_cache() -> Dict[str, bool]:
 # ===== Current Account (経常収支) =====
 
 @router.get("/current-account")
-async def get_ca_current_account(
+def get_ca_current_account(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -658,7 +658,7 @@ async def get_ca_current_account(
 
 
 @router.get("/current-account/cache")
-async def get_ca_current_account_cache_status() -> Dict[str, Any]:
+def get_ca_current_account_cache_status() -> Dict[str, Any]:
     """
     カナダ経常収支のキャッシュ状態を取得
     """
@@ -666,7 +666,7 @@ async def get_ca_current_account_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/current-account/cache")
-async def invalidate_ca_current_account_cache() -> Dict[str, bool]:
+def invalidate_ca_current_account_cache() -> Dict[str, bool]:
     """
     カナダ経常収支のキャッシュを無効化
     """
@@ -677,7 +677,7 @@ async def invalidate_ca_current_account_cache() -> Dict[str, bool]:
 # ===== Current Account to GDP Ratio (経常収支対GDP比) =====
 
 @router.get("/current-account-gdp-ratio")
-async def get_ca_current_account_gdp_ratio(
+def get_ca_current_account_gdp_ratio(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -710,7 +710,7 @@ async def get_ca_current_account_gdp_ratio(
 
 
 @router.get("/current-account-gdp-ratio/cache")
-async def get_ca_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
+def get_ca_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
     """
     カナダ経常収支対GDP比のキャッシュ状態を取得
     """
@@ -718,7 +718,7 @@ async def get_ca_current_account_gdp_ratio_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/current-account-gdp-ratio/cache")
-async def invalidate_ca_current_account_gdp_ratio_cache() -> Dict[str, bool]:
+def invalidate_ca_current_account_gdp_ratio_cache() -> Dict[str, bool]:
     """
     カナダ経常収支対GDP比のキャッシュを無効化
     """
@@ -729,7 +729,7 @@ async def invalidate_ca_current_account_gdp_ratio_cache() -> Dict[str, bool]:
 # ===== US Export Dependence (対米輸出依存度) =====
 
 @router.get("/us-export-dependence")
-async def get_ca_us_export_dependence(
+def get_ca_us_export_dependence(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -764,7 +764,7 @@ async def get_ca_us_export_dependence(
 
 
 @router.get("/us-export-dependence/cache")
-async def get_ca_us_export_dependence_cache_status() -> Dict[str, Any]:
+def get_ca_us_export_dependence_cache_status() -> Dict[str, Any]:
     """
     カナダ対米輸出依存度のキャッシュ状態を取得
     """
@@ -772,7 +772,7 @@ async def get_ca_us_export_dependence_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/us-export-dependence/cache")
-async def invalidate_ca_us_export_dependence_cache() -> Dict[str, bool]:
+def invalidate_ca_us_export_dependence_cache() -> Dict[str, bool]:
     """
     カナダ対米輸出依存度のキャッシュを無効化
     """
@@ -783,7 +783,7 @@ async def invalidate_ca_us_export_dependence_cache() -> Dict[str, bool]:
 # ===== Housing Starts (住宅着工件数) =====
 
 @router.get("/housing-starts")
-async def get_ca_housing_starts(
+def get_ca_housing_starts(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -815,7 +815,7 @@ async def get_ca_housing_starts(
 
 
 @router.get("/housing-starts/cache")
-async def get_ca_housing_starts_cache_status() -> Dict[str, Any]:
+def get_ca_housing_starts_cache_status() -> Dict[str, Any]:
     """
     カナダ住宅着工件数のキャッシュ状態を取得
     """
@@ -823,7 +823,7 @@ async def get_ca_housing_starts_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/housing-starts/cache")
-async def invalidate_ca_housing_starts_cache() -> Dict[str, bool]:
+def invalidate_ca_housing_starts_cache() -> Dict[str, bool]:
     """
     カナダ住宅着工件数のキャッシュを無効化
     """
@@ -834,7 +834,7 @@ async def invalidate_ca_housing_starts_cache() -> Dict[str, bool]:
 # ===== Building Permits (建築許可) =====
 
 @router.get("/building-permits")
-async def get_ca_building_permits(
+def get_ca_building_permits(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -865,7 +865,7 @@ async def get_ca_building_permits(
 
 
 @router.get("/building-permits/cache")
-async def get_ca_building_permits_cache_status() -> Dict[str, Any]:
+def get_ca_building_permits_cache_status() -> Dict[str, Any]:
     """
     カナダ建築許可のキャッシュ状態を取得
     """
@@ -873,7 +873,7 @@ async def get_ca_building_permits_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/building-permits/cache")
-async def invalidate_ca_building_permits_cache() -> Dict[str, bool]:
+def invalidate_ca_building_permits_cache() -> Dict[str, bool]:
     """
     カナダ建築許可のキャッシュを無効化
     """
@@ -884,7 +884,7 @@ async def invalidate_ca_building_permits_cache() -> Dict[str, bool]:
 # ===== New Housing Price Index (新築住宅価格指数) =====
 
 @router.get("/new-housing-price-index")
-async def get_ca_new_housing_price_index(
+def get_ca_new_housing_price_index(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -910,7 +910,7 @@ async def get_ca_new_housing_price_index(
 
 
 @router.get("/new-housing-price-index/cache")
-async def get_ca_new_housing_price_index_cache_status() -> Dict[str, Any]:
+def get_ca_new_housing_price_index_cache_status() -> Dict[str, Any]:
     """
     カナダ新築住宅価格指数のキャッシュ状態を取得
     """
@@ -918,7 +918,7 @@ async def get_ca_new_housing_price_index_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/new-housing-price-index/cache")
-async def invalidate_ca_new_housing_price_index_cache() -> Dict[str, bool]:
+def invalidate_ca_new_housing_price_index_cache() -> Dict[str, bool]:
     """
     カナダ新築住宅価格指数のキャッシュを無効化
     """
@@ -929,7 +929,7 @@ async def invalidate_ca_new_housing_price_index_cache() -> Dict[str, bool]:
 # ===== Debt Service Ratio (家計債務返済比率) =====
 
 @router.get("/debt-service-ratio")
-async def get_ca_debt_service_ratio(
+def get_ca_debt_service_ratio(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -955,7 +955,7 @@ async def get_ca_debt_service_ratio(
 
 
 @router.get("/debt-service-ratio/cache")
-async def get_ca_debt_service_ratio_cache_status() -> Dict[str, Any]:
+def get_ca_debt_service_ratio_cache_status() -> Dict[str, Any]:
     """
     カナダ家計DSRのキャッシュ状態を取得
     """
@@ -963,7 +963,7 @@ async def get_ca_debt_service_ratio_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/debt-service-ratio/cache")
-async def invalidate_ca_debt_service_ratio_cache() -> Dict[str, bool]:
+def invalidate_ca_debt_service_ratio_cache() -> Dict[str, bool]:
     """
     カナダ家計DSRのキャッシュを無効化
     """
@@ -974,7 +974,7 @@ async def invalidate_ca_debt_service_ratio_cache() -> Dict[str, bool]:
 # ===== CPI Service / Rent (CPI サービス/家賃) =====
 
 @router.get("/cpi-service-rent")
-async def get_ca_cpi_service_rent(
+def get_ca_cpi_service_rent(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -1007,7 +1007,7 @@ async def get_ca_cpi_service_rent(
 
 
 @router.get("/cpi-service-rent/cache")
-async def get_ca_cpi_service_rent_cache_status() -> Dict[str, Any]:
+def get_ca_cpi_service_rent_cache_status() -> Dict[str, Any]:
     """
     カナダCPI サービス/家賃のキャッシュ状態を取得
     """
@@ -1015,7 +1015,7 @@ async def get_ca_cpi_service_rent_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/cpi-service-rent/cache")
-async def invalidate_ca_cpi_service_rent_cache() -> Dict[str, bool]:
+def invalidate_ca_cpi_service_rent_cache() -> Dict[str, bool]:
     """
     カナダCPI サービス/家賃のキャッシュを無効化
     """
@@ -1026,7 +1026,7 @@ async def invalidate_ca_cpi_service_rent_cache() -> Dict[str, bool]:
 # ===== Job Vacancy Rate (求人率) =====
 
 @router.get("/job-vacancy-rate")
-async def get_ca_job_vacancy_rate(
+def get_ca_job_vacancy_rate(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -1052,7 +1052,7 @@ async def get_ca_job_vacancy_rate(
 
 
 @router.get("/job-vacancy-rate/cache")
-async def get_ca_job_vacancy_rate_cache_status() -> Dict[str, Any]:
+def get_ca_job_vacancy_rate_cache_status() -> Dict[str, Any]:
     """
     カナダ求人率のキャッシュ状態を取得
     """
@@ -1060,7 +1060,7 @@ async def get_ca_job_vacancy_rate_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/job-vacancy-rate/cache")
-async def invalidate_ca_job_vacancy_rate_cache() -> Dict[str, bool]:
+def invalidate_ca_job_vacancy_rate_cache() -> Dict[str, bool]:
     """
     カナダ求人率のキャッシュを無効化
     """
@@ -1071,7 +1071,7 @@ async def invalidate_ca_job_vacancy_rate_cache() -> Dict[str, bool]:
 # ===== Ivey PMI =====
 
 @router.get("/ivey-pmi")
-async def get_ca_ivey_pmi(
+def get_ca_ivey_pmi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -1097,7 +1097,7 @@ async def get_ca_ivey_pmi(
 
 
 @router.get("/ivey-pmi/cache")
-async def get_ca_ivey_pmi_cache_status() -> Dict[str, Any]:
+def get_ca_ivey_pmi_cache_status() -> Dict[str, Any]:
     """
     カナダ Ivey PMI のキャッシュ状態を取得
     """
@@ -1105,7 +1105,7 @@ async def get_ca_ivey_pmi_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/ivey-pmi/cache")
-async def invalidate_ca_ivey_pmi_cache() -> Dict[str, bool]:
+def invalidate_ca_ivey_pmi_cache() -> Dict[str, bool]:
     """
     カナダ Ivey PMI のキャッシュを無効化
     """
@@ -1116,7 +1116,7 @@ async def invalidate_ca_ivey_pmi_cache() -> Dict[str, bool]:
 # ===== S&P Global PMI =====
 
 @router.get("/sp-pmi")
-async def get_ca_sp_pmi(
+def get_ca_sp_pmi(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -1128,7 +1128,7 @@ async def get_ca_sp_pmi(
 
 
 @router.get("/sp-pmi/cache")
-async def get_ca_sp_pmi_cache_status() -> Dict[str, Any]:
+def get_ca_sp_pmi_cache_status() -> Dict[str, Any]:
     """
     カナダ S&P Global PMI のキャッシュ状態を取得
     """
@@ -1136,7 +1136,7 @@ async def get_ca_sp_pmi_cache_status() -> Dict[str, Any]:
 
 
 @router.delete("/sp-pmi/cache")
-async def invalidate_ca_sp_pmi_cache() -> Dict[str, bool]:
+def invalidate_ca_sp_pmi_cache() -> Dict[str, bool]:
     """
     カナダ S&P Global PMI のキャッシュを無効化
     """

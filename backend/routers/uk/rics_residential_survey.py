@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.get("/api/uk/rics-residential-survey")
-async def get_rics_residential_survey() -> Dict:
+def get_rics_residential_survey() -> Dict:
     """
     RICS住宅市場調査データを取得
 
@@ -35,7 +35,7 @@ async def get_rics_residential_survey() -> Dict:
 
 
 @router.post("/api/uk/rics-residential-survey/refresh")
-async def refresh_rics_residential_survey() -> Dict:
+def refresh_rics_residential_survey() -> Dict:
     """
     RICS住宅市場調査データを強制更新
 
@@ -53,7 +53,7 @@ async def refresh_rics_residential_survey() -> Dict:
 
 
 @router.get("/api/uk/rics-residential-survey/image/{image_name}")
-async def get_rics_survey_image(image_name: str):
+def get_rics_survey_image(image_name: str):
     """
     RICS調査の画像を取得
 
@@ -87,7 +87,7 @@ async def get_rics_survey_image(image_name: str):
 
 
 @router.get("/api/uk/rics-residential-survey/status")
-async def get_rics_survey_status() -> Dict:
+def get_rics_survey_status() -> Dict:
     """
     RICS調査キャッシュ状態を取得
 

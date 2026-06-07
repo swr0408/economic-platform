@@ -136,6 +136,7 @@ export default function CanadaDebtServiceRatioChart({ data }: CanadaDebtServiceR
         showPeriodSelector={false}
         dataSource="Statistics Canada"
         sourceUrl="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1110006501"
+        handbookId="ca-debt-service-ratio"
       >
         {/* 最新値表示 */}
         <LatestValueBox

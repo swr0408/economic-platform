@@ -18,7 +18,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan GDP Components"])
 
 
 @router.get("/gdp-components")
-async def get_gdp_components_data(
+def get_gdp_components_data(
     force_refresh: bool = Query(False, description="キャッシュを無視して強制取得")
 ) -> Dict[str, Any]:
     """
@@ -49,7 +49,7 @@ async def get_gdp_components_data(
 
 
 @router.get("/gdp-components/table")
-async def get_gdp_components_table_data() -> Dict[str, Any]:
+def get_gdp_components_table_data() -> Dict[str, Any]:
     """
     テーブル表示用のGDP構成要素データを取得
 
@@ -71,6 +71,6 @@ async def get_gdp_components_table_data() -> Dict[str, Any]:
 
 
 @router.get("/gdp-components/cache-status")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """キャッシュ状態を取得"""
     return gdp_components_service.get_cache_status()

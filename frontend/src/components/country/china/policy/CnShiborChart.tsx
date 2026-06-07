@@ -189,6 +189,7 @@ function CnShiborChart() {
         showDataSource={true}
         dataSource="中国外汇交易中心 (CFETS)"
         sourceUrl="https://www.shibor.org/english/bmkshb/"
+        handbookId="shibor"
       >
         {/* 最新値表示 */}
         <LatestValueBox

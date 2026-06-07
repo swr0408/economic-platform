@@ -57,6 +57,9 @@ class USAInflationLoader(BaseDashboardLoader):
     - ny_inflation_expectations: NY連銀インフレ期待 - NY Fed SCE Excel（毎月第2月曜日 11:00 ET頃）
     - michigan_inflation_expectations: ミシガン大学インフレ期待 - University of Michigan CSV（毎月2回発表）
     - trimmed_mean_pce: Trimmed Mean PCE Inflation Rate - Dallas Fed Excel（毎月末頃）
+    - supply_and_demand_driven_pce_inflation: Supply- and Demand-Driven PCE Inflation - SF Fed CSV（PCE発表後数日内）
+    - used_car_prices: 中古車価格（FRED CPI Used Cars + Manheim Used Vehicle Value Index）
+    - nfib_price_plans: NFIB中小企業価格引き上げ計画 - NFIB PDF（毎月第2火曜日 6:00 ET）
 
     キャッシュ方式: 発表日時ベース判定
     - CPI発表: 毎月10-15日頃 8:30 ET（CPIとコアCPIは同時発表）
@@ -221,6 +224,11 @@ class USAInflationLoader(BaseDashboardLoader):
         from services.usa.michigan_inflation_expectations_service import michigan_inflation_expectations_service
         from services.usa.trimmed_mean_pce_service import trimmed_mean_pce_service
         from services.usa.median_cpi_service import median_cpi_service
+        from services.usa.supply_and_demand_driven_pce_inflation_service import (
+            supply_and_demand_driven_pce_inflation_service,
+        )
+        from services.usa.used_car_prices_service import used_car_prices_service
+        from services.usa.nfib_service import nfib_service
 
         result = {
             "cpi": None,
@@ -242,6 +250,9 @@ class USAInflationLoader(BaseDashboardLoader):
             "michigan_inflation_expectations": None,
             "trimmed_mean_pce": None,
             "median_cpi": None,
+            "supply_and_demand_driven_pce_inflation": None,
+            "used_car_prices": None,
+            "nfib_price_plans": None,
         }
 
         # 並列でデータを取得
@@ -266,6 +277,16 @@ class USAInflationLoader(BaseDashboardLoader):
                 executor.submit(self._get_michigan_inflation_expectations, michigan_inflation_expectations_service): "michigan_inflation_expectations",
                 executor.submit(self._get_trimmed_mean_pce, trimmed_mean_pce_service): "trimmed_mean_pce",
                 executor.submit(self._get_median_cpi, median_cpi_service): "median_cpi",
+                executor.submit(
+                    self._get_supply_and_demand_driven_pce_inflation,
+                    supply_and_demand_driven_pce_inflation_service,
+                ): "supply_and_demand_driven_pce_inflation",
+                executor.submit(
+                    self._get_used_car_prices, used_car_prices_service
+                ): "used_car_prices",
+                executor.submit(
+                    self._get_nfib_price_plans, nfib_service
+                ): "nfib_price_plans",
             }
 
             for future in as_completed(futures):
@@ -610,4 +631,58 @@ class USAInflationLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Median CPI data: {e}")
+            return None
+
+    def _get_supply_and_demand_driven_pce_inflation(self, service) -> Optional[dict]:
+        """Supply- and Demand-Driven PCE Inflation データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("supply_and_demand_driven_pce_inflation")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Supply/Demand-Driven PCE Inflation data: {e}")
+            return None
+
+    def _get_used_car_prices(self, service) -> Optional[dict]:
+        """中古車価格（FRED + Manheim）データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("used_car_prices")
+            response = service.get_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting Used Car Prices data: {e}")
+            return None
+
+    def _get_nfib_price_plans(self, service) -> Optional[dict]:
+        """NFIB中小企業価格引き上げ計画データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("nfib_price_plans")
+            response = service.get_price_plans_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NFIB Price Plans data: {e}")
             return None

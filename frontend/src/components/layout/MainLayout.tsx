@@ -11,6 +11,7 @@ import {
   MenuUnfoldOutlined,
   CalendarOutlined,
   BookOutlined,
+  ThunderboltOutlined,
   SoundOutlined,
   UserOutlined,
   LogoutOutlined,
@@ -23,6 +24,7 @@ import SidebarNavigation from './SidebarNavigation'
 import MarketSidebarNavigation from './MarketSidebarNavigation'
 import EarningsSidebarNavigation from './EarningsSidebarNavigation'
 import HandbookSidebarNavigation from './HandbookSidebarNavigation'
+import SmcSidebarNavigation from './SmcSidebarNavigation'
 import HandbookDrawer from '../common/HandbookDrawer'
 import { useHandbook } from '../../contexts/HandbookContext'
 import { useAuth, type UserRole } from '../../contexts/AuthContext'
@@ -176,6 +178,11 @@ function MainLayout() {
         icon: <BookOutlined />,
         label: <Link to="/handbook" style={linkStyle}>データハンドブック</Link>,
       },
+      {
+        key: '/smc',
+        icon: <ThunderboltOutlined />,
+        label: <Link to="/smc" style={linkStyle}>SMC</Link>,
+      },
     )
 
     return items
@@ -193,10 +200,11 @@ function MainLayout() {
     if (path.startsWith('/earnings')) return '/earnings'
     if (path.startsWith('/compare')) return '/compare'
     if (path.startsWith('/handbook')) return '/handbook'
+    if (path.startsWith('/smc')) return '/smc'
     return path
   }, [location.pathname])
 
-  const showSidebar = location.pathname.startsWith('/country') || location.pathname.startsWith('/markets') || location.pathname.startsWith('/earnings') || location.pathname.startsWith('/handbook')
+  const showSidebar = location.pathname.startsWith('/country') || location.pathname.startsWith('/markets') || location.pathname.startsWith('/earnings') || location.pathname.startsWith('/handbook') || location.pathname.startsWith('/smc')
 
   // リサイズハンドラー
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -375,7 +383,7 @@ function MainLayout() {
               >
                 {!collapsed && (
                   <span style={{ fontWeight: 600, color: colors.accent, fontSize: '13px' }}>
-                    {location.pathname.startsWith('/markets') ? 'マーケットデータ' : location.pathname.startsWith('/earnings') ? '決算' : location.pathname.startsWith('/handbook') ? 'データハンドブック' : 'マクロデータ'}
+                    {location.pathname.startsWith('/markets') ? 'マーケットデータ' : location.pathname.startsWith('/earnings') ? '決算' : location.pathname.startsWith('/handbook') ? 'データハンドブック' : location.pathname.startsWith('/smc') ? 'SMC' : 'マクロデータ'}
                   </span>
                 )}
                 <span
@@ -385,7 +393,7 @@ function MainLayout() {
                   {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                 </span>
               </div>
-              {location.pathname.startsWith('/markets') ? <MarketSidebarNavigation /> : location.pathname.startsWith('/earnings') ? <EarningsSidebarNavigation /> : location.pathname.startsWith('/handbook') ? <HandbookSidebarNavigation /> : <SidebarNavigation />}
+              {location.pathname.startsWith('/markets') ? <MarketSidebarNavigation /> : location.pathname.startsWith('/earnings') ? <EarningsSidebarNavigation /> : location.pathname.startsWith('/handbook') ? <HandbookSidebarNavigation /> : location.pathname.startsWith('/smc') ? <SmcSidebarNavigation /> : <SidebarNavigation />}
             </Sider>
             {/* リサイズハンドル */}
             {!collapsed && (

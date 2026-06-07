@@ -1056,6 +1056,7 @@ export default function Nikkei225OptionsChart() {
       dataSource="JPX / OSE"
       sourceUrl="https://www.jpx.co.jp/markets/derivatives/settlement-price/index.html"
       showPeriodSelector={false}
+      handbookId="nikkei225-options"
     >
       {/* Enhanced summary card */}
       <div style={BOX_STYLE}>

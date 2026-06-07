@@ -303,6 +303,11 @@ class UKHousePriceService:
                 if s['data']:
                     logger.info(f"[UK House Price] Extracted {len(s['data'])} {key} MoM data points")
 
+            # 全シリーズが空なら失敗扱い（空キャッシュ保存を防ぐ）
+            if not any(s['data'] for s in series.values()) and not any(s['data'] for s in series_mom.values()):
+                logger.error("[UK House Price] CSV parsed but all series are empty — treating as fetch failure")
+                return None
+
             return {"series": series, "series_mom": series_mom}
 
         except Exception as e:

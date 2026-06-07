@@ -67,9 +67,13 @@ const SUBCATEGORY_HANDBOOK_MAP: Record<string, SubCategoryHandbookEntry[]> = {
   'equities/us-equities': [
     { id: 'sector-cycle', tooltip: '米株サイクル - データハンドブック' },
     { id: 'sector-ratio', tooltip: '米株セクター別の見方 - データハンドブック' },
+    { id: 'cboe-realized-vol-gamma', tooltip: 'Cboe Realized Volatility Index（GAMMA） - データハンドブック' },
+    { id: 'cboe-implied-correlation-cor3m', tooltip: 'Cboe 3-Month Implied Correlation Index（COR3M） - データハンドブック' },
+    { id: 'advance-decline-mcclellan', tooltip: 'A/Dライン・マクレランオシレーター - データハンドブック' },
   ],
   'options/equity-options': [
     { id: 'options-tradingview', tooltip: 'オプションの見方（TradingView） - データハンドブック' },
+    { id: 'options-optioncharts', tooltip: 'OptionChartsの見方 - データハンドブック' },
   ],
   'energy/crude-oil': [
     { id: 'cot-crude-oil', tooltip: '原油 - データハンドブック' },

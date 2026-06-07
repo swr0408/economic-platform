@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/japan/capacity-utilization", tags=["Japan Capaci
 
 
 @router.get("")
-async def get_capacity_utilization_data(
+def get_capacity_utilization_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -34,19 +34,19 @@ async def get_capacity_utilization_data(
 
 
 @router.post("/refresh")
-async def refresh_capacity_utilization_data() -> Dict[str, Any]:
+def refresh_capacity_utilization_data() -> Dict[str, Any]:
     """Force refresh capacity utilization data from METI"""
     return japan_capacity_utilization_service.get_capacity_data(force_refresh=True)
 
 
 @router.delete("/cache")
-async def invalidate_capacity_utilization_cache() -> Dict[str, Any]:
+def invalidate_capacity_utilization_cache() -> Dict[str, Any]:
     """Invalidate capacity utilization cache"""
     success = japan_capacity_utilization_service.invalidate_cache()
     return {"success": success, "message": "Cache invalidated" if success else "Cache invalidation failed"}
 
 
 @router.get("/cache-status")
-async def get_cache_status() -> Dict[str, Any]:
+def get_cache_status() -> Dict[str, Any]:
     """Get cache status for capacity utilization data"""
     return japan_capacity_utilization_service.get_cache_status()

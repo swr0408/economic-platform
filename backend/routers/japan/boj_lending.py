@@ -21,7 +21,7 @@ router = APIRouter(prefix="/api/japan/boj-lending", tags=["Japan - BOJ Lending"]
 
 
 @router.get("")
-async def get_boj_lending_data(
+def get_boj_lending_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -41,7 +41,7 @@ async def get_boj_lending_data(
 
 
 @router.get("/yoy")
-async def get_boj_lending_yoy_data(
+def get_boj_lending_yoy_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -61,7 +61,7 @@ async def get_boj_lending_yoy_data(
 
 
 @router.get("/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     キャッシュステータスを取得
 
@@ -75,7 +75,7 @@ async def get_cache_status():
 
 
 @router.post("/refresh")
-async def refresh_data():
+def refresh_data():
     """
     データを強制更新
 
@@ -95,7 +95,7 @@ async def refresh_data():
 
 
 @router.delete("/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     キャッシュを削除
 

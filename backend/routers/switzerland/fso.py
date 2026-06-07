@@ -15,7 +15,7 @@ router = APIRouter(
 
 
 @router.get("/")
-async def fso_root():
+def fso_root():
     """FSO APIルート"""
     return {
         "message": "Swiss Federal Statistical Office (FSO/BFS) API",
@@ -28,7 +28,7 @@ async def fso_root():
 
 
 @router.get("/cpi")
-async def get_ch_cpi(
+def get_ch_cpi(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -48,7 +48,7 @@ async def get_ch_cpi(
 
 
 @router.get("/cpi/latest")
-async def get_ch_cpi_latest():
+def get_ch_cpi_latest():
     """
     スイスCPI最新データを取得
 
@@ -65,7 +65,7 @@ async def get_ch_cpi_latest():
 
 
 @router.get("/cpi/cache/status")
-async def get_ch_cpi_cache_status():
+def get_ch_cpi_cache_status():
     """CPI キャッシュ状態を取得"""
     from services.switzerland.ch_cpi_service import ch_cpi_service
 
@@ -73,7 +73,7 @@ async def get_ch_cpi_cache_status():
 
 
 @router.delete("/cpi/cache")
-async def invalidate_ch_cpi_cache():
+def invalidate_ch_cpi_cache():
     """CPI キャッシュを無効化"""
     from services.switzerland.ch_cpi_service import ch_cpi_service
 
@@ -89,7 +89,7 @@ async def invalidate_ch_cpi_cache():
 # =========================================================================
 
 @router.get("/ppi")
-async def get_ch_ppi(
+def get_ch_ppi(
     force_refresh: bool = Query(False, description="強制的にキャッシュを更新")
 ):
     """
@@ -109,7 +109,7 @@ async def get_ch_ppi(
 
 
 @router.get("/ppi/latest")
-async def get_ch_ppi_latest():
+def get_ch_ppi_latest():
     """
     スイスPPI最新データを取得
 
@@ -126,7 +126,7 @@ async def get_ch_ppi_latest():
 
 
 @router.get("/ppi/cache/status")
-async def get_ch_ppi_cache_status():
+def get_ch_ppi_cache_status():
     """PPI キャッシュ状態を取得"""
     from services.switzerland.ch_ppi_service import ch_ppi_service
 
@@ -134,7 +134,7 @@ async def get_ch_ppi_cache_status():
 
 
 @router.delete("/ppi/cache")
-async def invalidate_ch_ppi_cache():
+def invalidate_ch_ppi_cache():
     """PPI キャッシュを無効化"""
     from services.switzerland.ch_ppi_service import ch_ppi_service
 

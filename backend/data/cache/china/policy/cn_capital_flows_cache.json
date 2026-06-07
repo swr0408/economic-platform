@@ -1949,17 +1949,27 @@
       "net_capital": -625.9,
       "net_securities": -532.2,
       "net_other": 11.1
+    },
+    {
+      "date": "2026-04-01",
+      "net_total": 619.4,
+      "net_current": 515.1,
+      "net_goods": 743.7,
+      "net_services": -47.7,
+      "net_capital": 95.8,
+      "net_securities": 136.0,
+      "net_other": 7.9
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "net_total": -320.7,
-    "net_current": 303.4,
-    "net_goods": 506.6,
-    "net_services": -94.8,
-    "net_capital": -625.9,
-    "net_securities": -532.2,
-    "net_other": 11.1
+    "date": "2026-04-01",
+    "net_total": 619.4,
+    "net_current": 515.1,
+    "net_goods": 743.7,
+    "net_services": -47.7,
+    "net_capital": 95.8,
+    "net_securities": 136.0,
+    "net_other": 7.9
   },
   "metadata": {
     "source": "SAFE (State Administration of Foreign Exchange)",
@@ -1977,8 +1987,8 @@
     ]
   },
   "next_release": {
-    "date": "2026-05-18",
+    "date": "2026-06-15",
     "label": "银行代客涉外收付款数据"
   },
-  "last_updated": "2026-04-18T01:46:41.347216+09:00"
+  "last_updated": "2026-06-03T10:49:11.969048+09:00"
 }

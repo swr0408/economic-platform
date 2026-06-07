@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Consumer"])
 
 
 @router.get("/retail-sales")
-async def get_retail_sales(
+def get_retail_sales(
     force_refresh: bool = Query(False, description="Force refresh data")
 ):
     """
@@ -36,7 +36,7 @@ async def get_retail_sales(
 
 
 @router.post("/retail-sales/refresh")
-async def refresh_retail_sales():
+def refresh_retail_sales():
     """
     Force refresh Japan retail sales data
 
@@ -47,7 +47,7 @@ async def refresh_retail_sales():
 
 
 @router.get("/retail-sales/cache-status")
-async def get_cache_status():
+def get_cache_status():
     """
     Get cache status for retail sales data
     """
@@ -55,7 +55,7 @@ async def get_cache_status():
 
 
 @router.delete("/retail-sales/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """
     Invalidate retail sales data cache
     """

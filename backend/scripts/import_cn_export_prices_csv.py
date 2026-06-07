@@ -81,7 +81,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Don't actually insert data")
     args = parser.parse_args()
 
-    csv_dir = Path(__file__).parent.parent / "data" / "csv_import"
+    csv_dir = Path(__file__).parent.parent / "data" / "manual_update" / "monthly" / "china"
     file_path = csv_dir / "中国輸出物価.csv"
 
     if not file_path.exists():

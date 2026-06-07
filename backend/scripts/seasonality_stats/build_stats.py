@@ -13,7 +13,7 @@ JSONを生成する。年に1回ほどの手動更新を想定。
 
 使用方法:
   python build_stats.py --symbol SP500
-  python build_stats.py --symbol SP500 --start-year 2004 --end-year 2024 --recent-years 10
+  python build_stats.py --symbol SP500 --start-year 2004 --end-year 2025 --recent-years 10
 """
 from __future__ import annotations
 
@@ -362,7 +362,7 @@ def main():
         help="日足CSVのパス (省略時は input/{SYMBOL}/{SYMBOL}_1D.csv)",
     )
     parser.add_argument("--start-year", type=int, default=2004, help="分析開始年")
-    parser.add_argument("--end-year", type=int, default=2024, help="分析終了年（含む）")
+    parser.add_argument("--end-year", type=int, default=2025, help="分析終了年（含む）")
     parser.add_argument("--recent-years", type=int, default=10, help="直近期間の年数")
     args = parser.parse_args()
 

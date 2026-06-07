@@ -51,6 +51,7 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_FILE = CACHE_DIR / "nfib_optimism_cache.json"
 CACHE_FILE_CAPEX = CACHE_DIR / "nfib_capex_cache.json"
 CACHE_FILE_COMPENSATION = CACHE_DIR / "nfib_compensation_cache.json"
+CACHE_FILE_PRICE_PLANS = CACHE_DIR / "nfib_price_plans_cache.json"
 
 
 class NFIBService:
@@ -59,6 +60,7 @@ class NFIBService:
     CACHE_KEY = "nfib:optimism"
     CACHE_KEY_CAPEX = "nfib:capex"
     CACHE_KEY_COMPENSATION = "nfib:compensation"
+    CACHE_KEY_PRICE_PLANS = "nfib:price_plans"
     ECONALPHA_ID = "nfib"  # FMPマッピング用ID
 
     def __init__(self):
@@ -1217,6 +1219,211 @@ class NFIBService:
     def invalidate_actual_compensation_cache(self) -> bool:
         """実際の人件費変更のキャッシュを無効化"""
         return redis_client.delete(self.CACHE_KEY_ACTUAL_COMPENSATION)
+
+    # ============================================================
+    # 価格引き上げ計画 (Price Plans)
+    # ============================================================
+
+    def get_price_plans_data(
+        self,
+        force_refresh: bool = False
+    ) -> Dict[str, Any]:
+        """
+        NFIB中小企業価格引き上げ計画データを取得
+
+        Args:
+            force_refresh: キャッシュを無視して再取得
+
+        Returns:
+            {
+                "data": [{"date": "YYYY-MM-DD", "value": float}, ...],
+                "latest": {"date": "YYYY-MM-DD", "value": float},
+                "next_release": {"date": "YYYY-MM-DD", "label": str} | null,
+                "cached": bool,
+                "source": str,
+                "last_updated": str
+            }
+        """
+        # Redisキャッシュチェック
+        if not force_refresh:
+            cached_data = redis_client.get(self.CACHE_KEY_PRICE_PLANS)
+            if cached_data:
+                last_updated_str = cached_data.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    data = cached_data.get("data", [])
+                    return {
+                        "data": data,
+                        "latest": data[-1] if data else None,
+                        "next_release": get_next_release_from_fmp('nfib'),
+                        "cached": True,
+                        "source": "redis",
+                        "last_updated": last_updated_str
+                    }
+
+        # ファイルキャッシュチェック
+        if not force_refresh:
+            file_cache = self._load_price_plans_file_cache()
+            if file_cache:
+                last_updated_str = file_cache.get("last_updated")
+                if last_updated_str and not self._should_refresh(last_updated_str):
+                    data = file_cache.get("data", [])
+
+                    redis_client.set(self.CACHE_KEY_PRICE_PLANS, {
+                        "data": data,
+                        "last_updated": last_updated_str
+                    }, expire=0)
+
+                    return {
+                        "data": data,
+                        "latest": data[-1] if data else None,
+                        "next_release": get_next_release_from_fmp('nfib'),
+                        "cached": True,
+                        "source": "file",
+                        "last_updated": last_updated_str
+                    }
+
+        # PDFからデータ取得
+        if not HAS_PDFPLUMBER:
+            file_cache = self._load_price_plans_file_cache()
+            if file_cache:
+                data = file_cache.get("data", [])
+                return {
+                    "data": data,
+                    "latest": data[-1] if data else None,
+                    "next_release": get_next_release_from_fmp('nfib'),
+                    "cached": True,
+                    "source": "file (pdfplumber not available)",
+                    "last_updated": file_cache.get("last_updated")
+                }
+            return {
+                "data": [],
+                "latest": None,
+                "next_release": get_next_release_from_fmp('nfib'),
+                "cached": False,
+                "source": "none",
+                "last_updated": None,
+                "error": "pdfplumber not installed"
+            }
+
+        fetched_result = self._fetch_price_plans_from_pdf()
+
+        if fetched_result and fetched_result.get("data"):
+            fetched_data = fetched_result["data"]
+            fetched_data.sort(key=lambda x: x["date"])
+            latest = fetched_data[-1] if fetched_data else None
+
+            cache_payload = {
+                "data": fetched_data,
+                "last_updated": datetime.now(JST).isoformat()
+            }
+            redis_client.set(self.CACHE_KEY_PRICE_PLANS, cache_payload, expire=0)
+            self._save_price_plans_file_cache(cache_payload)
+
+            return {
+                "data": fetched_data,
+                "latest": latest,
+                "next_release": get_next_release_from_fmp('nfib'),
+                "cached": False,
+                "source": "pdf",
+                "last_updated": datetime.now(JST).isoformat()
+            }
+
+        # 取得失敗時はファイルキャッシュから返す
+        file_cache = self._load_price_plans_file_cache()
+        if file_cache:
+            data = file_cache.get("data", [])
+            return {
+                "data": data,
+                "latest": data[-1] if data else None,
+                "next_release": get_next_release_from_fmp('nfib'),
+                "cached": True,
+                "source": "file (fallback)",
+                "last_updated": file_cache.get("last_updated")
+            }
+
+        return {
+            "data": [],
+            "latest": None,
+            "next_release": get_next_release_from_fmp('nfib'),
+            "cached": False,
+            "source": "none",
+            "last_updated": None,
+            "error": "No data available"
+        }
+
+    def _fetch_price_plans_from_pdf(self) -> Optional[Dict[str, Any]]:
+        """NFIBのPDFレポートから価格引き上げ計画データを抽出"""
+        try:
+            print("Fetching NFIB Price Plans from PDF...")
+
+            pdf_url = self._extract_pdf_url_from_page()
+            if not pdf_url:
+                print("Could not find PDF URL")
+                return None
+
+            pdf_content = self._download_pdf(pdf_url)
+            if not pdf_content:
+                print("Could not download PDF")
+                return None
+
+            table_data = self._extract_price_plans_from_pdf(pdf_content)
+            if not table_data:
+                print("Could not extract Price Plans data from PDF")
+                return None
+
+            timeseries = self._convert_to_timeseries(table_data)
+
+            print(f"Fetched {len(timeseries)} NFIB Price Plans records")
+
+            if timeseries:
+                return {"data": timeseries}
+
+            return None
+
+        except Exception as e:
+            print(f"Error fetching NFIB Price Plans from PDF: {e}")
+            import traceback
+            traceback.print_exc()
+            return None
+
+    def _extract_price_plans_from_pdf(self, pdf_content: bytes) -> List[Dict[str, Any]]:
+        """
+        PDFからPRICE PLANSテーブルを抽出
+        マーカー: "PRICE PLANS"
+        テーブルインデックス: 1（ページ内2番目のテーブル、Compensation/CapExと同じ構造）
+        値の範囲: -50〜100（純割合: 引き上げ予定 - 引き下げ予定）
+        """
+        return self._extract_table_by_marker(
+            pdf_content,
+            marker="PRICE PLANS",
+            table_index=1,
+            value_range=(-50, 100)
+        )
+
+    def _load_price_plans_file_cache(self) -> Optional[Dict[str, Any]]:
+        """価格引き上げ計画のファイルキャッシュを読み込み"""
+        try:
+            if not CACHE_FILE_PRICE_PLANS.exists():
+                return None
+
+            with open(CACHE_FILE_PRICE_PLANS, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Failed to load Price Plans file cache: {e}")
+            return None
+
+    def _save_price_plans_file_cache(self, data: Dict[str, Any]) -> None:
+        """価格引き上げ計画のファイルキャッシュを保存"""
+        try:
+            with open(CACHE_FILE_PRICE_PLANS, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            print(f"Price Plans cache saved to {CACHE_FILE_PRICE_PLANS}")
+        except Exception as e:
+            print(f"Failed to save Price Plans file cache: {e}")
+
+    def invalidate_price_plans_cache(self) -> bool:
+        """価格引き上げ計画のキャッシュを無効化"""
+        return redis_client.delete(self.CACHE_KEY_PRICE_PLANS)
 
 
 # シングルトンインスタンス

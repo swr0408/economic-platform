@@ -1,15 +1,7 @@
 {
   "data": [
     {
-      "date": "2001-03-01"
-    },
-    {
-      "date": "2001-04-01",
-      "mom": 0.34
-    },
-    {
-      "date": "2001-05-01",
-      "mom": 0.17
+      "date": "2001-05-01"
     },
     {
       "date": "2001-06-01",
@@ -49,13 +41,11 @@
     },
     {
       "date": "2002-03-01",
-      "mom": 0.33,
-      "yoy": 3.39
+      "mom": 0.33
     },
     {
       "date": "2002-04-01",
-      "mom": 0.66,
-      "yoy": 3.72
+      "mom": 0.66
     },
     {
       "date": "2002-05-01",
@@ -1486,12 +1476,22 @@
       "date": "2026-02-01",
       "mom": 0.33,
       "yoy": -2.09
+    },
+    {
+      "date": "2026-03-01",
+      "mom": -0.25,
+      "yoy": -2.33
+    },
+    {
+      "date": "2026-04-01",
+      "mom": -0.41,
+      "yoy": -2.34
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "mom": 0.33,
-    "yoy": -2.09
+    "date": "2026-04-01",
+    "mom": -0.41,
+    "yoy": -2.34
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1503,14 +1503,14 @@
     "base_period": "December 2016 = 100"
   },
   "next_release": {
-    "date": "2026-04-23",
-    "datetime_utc": "2026-04-23T12:30:00+00:00",
-    "datetime_jst": "2026-04-23T21:30:00+09:00",
+    "date": "2026-06-19",
+    "datetime_utc": "2026-06-19T12:30:00+00:00",
+    "datetime_jst": "2026-06-19T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-04-23T08:30:00-04:00",
+    "datetime_toronto": "2026-06-19T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "New Housing Price Index MoM (Mar)",
-    "estimate": null
+    "label": "New Housing Price Index MoM (May)",
+    "estimate": -0.3
   },
-  "last_updated": "2026-04-18T04:06:11.545726+09:00"
+  "last_updated": "2026-06-07T11:31:26.849981+09:00"
 }

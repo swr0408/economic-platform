@@ -81,6 +81,7 @@ def _fetch_and_upsert_from_press_release() -> None:
     results = fetch_and_upsert_from_press_release(
         category="retail",
         extractor_fn=_extract_retail_from_excel,
+        primary_indicator=DB_INDICATOR,
     )
     if results:
         logger.info(f"[NBS-RetailSales] Press release upsert: {results}")

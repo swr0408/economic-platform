@@ -25,19 +25,21 @@ export interface HandbookEntry {
 }
 
 // --- マークダウンファイルの動的インポートヘルパー ---
-// Vite の import.meta.glob を使い、ビルド時にすべてのmdファイルを列挙
+// Vite の import.meta.glob を eager 指定で、全 md をビルド時にバンドルへ同梱。
+// クリック時に追加のフェッチが発生せず、ヘルプパネルが即時表示される。
 const mdModules = import.meta.glob<string>('./indicators/**/*.md', {
   query: '?raw',
   import: 'default',
+  eager: true,
 })
 
 function loadMd(path: string): () => Promise<string> {
   const key = `./indicators/${path}`
-  const loader = mdModules[key]
-  if (!loader) {
+  const content = mdModules[key]
+  if (content === undefined) {
     return () => Promise.resolve(`> コンテンツ準備中: ${path}`)
   }
-  return loader as () => Promise<string>
+  return () => Promise.resolve(content)
 }
 
 // ====================================================================
@@ -97,6 +99,96 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('usa/term-premium.md'),
     relatedIndicators: ['us-interest-rate-spread', 'us-treasury-yields', 'policy-rate', 'unemployment', 'initial-claims'],
     tags: ['タームプレミアム', 'NY Fed', '長期金利', '実質金利', 'QT', '国債', '需給', '財政', '失業率', '失業保険'],
+  },
+  {
+    indicatorId: 'sofr-volatility',
+    title: 'SOFR / ボラティリティ',
+    country: 'usa',
+    category: 'policy',
+    summary: 'NY Fed公表の米国債担保付翌日物レポ金利と、その日次変化に基づく20日ローリング標準偏差。米ドル短期資金市場の調達コストと変動の荒さを把握する指標。',
+    loadContent: loadMd('usa/sofr-volatility.md'),
+    relatedIndicators: ['policy-rate', 'on-rrp', 'reserve-balances', 'fed-watch'],
+    tags: ['SOFR', 'NY Fed', 'レポ', '翌日物', '短期金利', 'ボラティリティ', '20日標準偏差', 'LIBOR代替', 'ARRC', 'SOFR Index', '担保付調達金利'],
+  },
+  {
+    indicatorId: 'frb-total-assets',
+    title: 'FRB総資産',
+    country: 'usa',
+    category: 'policy',
+    summary: 'FRB週次統計H.4.1の連結総資産（WALCL）。QE/QT・流動性供給・金融ストレス対応を映すバランスシート指標。準備預金・TGA・ON RRPと併せて読む。',
+    loadContent: loadMd('usa/frb-total-assets.md'),
+    relatedIndicators: ['reserve-balances', 'tga', 'on-rrp', 'policy-rate', 'sofr-volatility'],
+    tags: ['FRB', 'バランスシート', 'WALCL', 'H.4.1', 'QE', 'QT', '量的緩和', '量的引き締め', '準備預金', 'TGA', 'ON RRP', '米国債', 'MBS', '中央銀行'],
+  },
+  {
+    indicatorId: 'reserve-balances',
+    title: '準備預金残高',
+    country: 'usa',
+    category: 'policy',
+    summary: '銀行がFRBに保有する口座残高。米ドル流動性とample reserves枠組みの中核。FRB総資産・TGA・ON RRPと組み合わせて短期金利の安定性を読む。',
+    loadContent: loadMd('usa/reserve-balances.md'),
+    relatedIndicators: ['frb-total-assets', 'tga', 'on-rrp', 'sofr-volatility', 'policy-rate'],
+    tags: ['準備預金', 'Reserve Balances', 'WRESBAL', 'H.4.1', 'IORB', 'ample reserves', '米ドル流動性', '銀行間決済', 'TGA', 'ON RRP', 'SOFR', 'FF金利'],
+  },
+  {
+    indicatorId: 'tga',
+    title: 'TGA（財務省一般勘定）',
+    country: 'usa',
+    category: 'policy',
+    summary: '米財務省がFRBに保有する運転資金口座。税収・国債発行・政府支出で増減し、準備預金との入れ替わりでドル流動性に直接影響する。',
+    loadContent: loadMd('usa/tga.md'),
+    relatedIndicators: ['reserve-balances', 'frb-total-assets', 'on-rrp', 'sofr-volatility', 'policy-rate'],
+    tags: ['TGA', 'Treasury General Account', '財務省一般勘定', '米財務省', 'H.4.1', 'Daily Treasury Statement', '準備預金', 'ON RRP', '債務上限', '国債発行', '税収', 'SOFR', 'レポ金利'],
+  },
+  {
+    indicatorId: 'on-rrp',
+    title: 'ON RRP（Overnight Reverse Repo）',
+    country: 'usa',
+    category: 'policy',
+    summary: 'NY Fed Open Market Deskが日次で実施する翌日物リバースレポ。MMFなど非銀行が利用し、ON RRP金利は短期金利の下限として機能する。残高は資金吸収量を示す。',
+    loadContent: loadMd('usa/on-rrp.md'),
+    relatedIndicators: ['tga', 'reserve-balances', 'frb-total-assets', 'sofr-volatility', 'policy-rate'],
+    tags: ['ON RRP', 'Reverse Repo', '翌日物リバースレポ', 'NY Fed', 'MMF', 'マネー・マーケット・ファンド', '短期金利', 'フロア', 'IORB', 'SOMA', 'SOFR', 'T-bill', '余剰流動性'],
+  },
+  {
+    indicatorId: 'federal-budget',
+    title: '連邦財政収支',
+    country: 'usa',
+    category: 'policy',
+    summary: '米財務省MTS公表の月次連邦財政収支（歳入−歳出）。FY累計と前年同月比で確認し、国債発行・TGA・米債需給と組み合わせて読む。',
+    loadContent: loadMd('usa/federal-budget.md'),
+    relatedIndicators: ['tga', 'cbo-projections', 'us-treasury-yields', 'frb-total-assets'],
+    tags: ['連邦財政収支', 'Federal Budget Balance', 'MTS', 'Monthly Treasury Statement', '米財務省', 'Bureau of the Fiscal Service', '歳入', '歳出', '財政赤字', '財政黒字', '会計年度', 'FYTD', 'CBO', '個人所得税', '法人税', '関税', '社会保障', 'メディケア', '利払い費'],
+  },
+  {
+    indicatorId: 'cbo-projections',
+    title: 'CBO財政見通し',
+    country: 'usa',
+    category: 'policy',
+    summary: '議会予算局による現行法ベースの中期財政見通し。歳入・歳出・赤字・債務残高の10年見通しを、GDP比と純利払い費の動向を中心に確認する。',
+    loadContent: loadMd('usa/cbo-projections.md'),
+    relatedIndicators: ['federal-budget', 'tga', 'term-premium', 'us-treasury-yields'],
+    tags: ['CBO', 'Congressional Budget Office', '議会予算局', '財政見通し', 'Budget Projections', 'ベースライン', '会計年度', '財政赤字', '債務残高', '公衆保有債務', 'GDP比', '純利払い費', 'プライマリーバランス', '社会保障', 'メディケア', 'タームプレミアム'],
+  },
+  {
+    indicatorId: 'cre-loan-delinquency',
+    title: 'CREローン延滞率',
+    country: 'usa',
+    category: 'policy',
+    summary: '米商業銀行の商業用不動産ローン延滞率（全行・上位100行・その他）。CRE信用ストレスの遅行指標で、チャージオフ率・銀行貸出態度と組み合わせて読む。',
+    loadContent: loadMd('usa/cre-loan-delinquency.md'),
+    relatedIndicators: ['bank-lending', 'oas', 'nfci', 'mortgage-rates'],
+    tags: ['CRE', '商業用不動産', 'Commercial Real Estate', 'ローン延滞率', 'Delinquency', '銀行貸出', 'チャージオフ', '信用ストレス', '上位100行', '地域銀行', 'FRB', 'FRED', 'CMBS', 'オフィス不動産'],
+  },
+  {
+    indicatorId: 'quarterly-refunding',
+    title: 'Quarterly Refunding（米財務省）',
+    country: 'usa',
+    category: 'policy',
+    summary: '米財務省が四半期ごとに公表する米国債発行・借換計画。借入見込み・年限構成・TGA想定残高・TBAC提言から、長期金利・タームプレミアム・流動性を読む。',
+    loadContent: loadMd('usa/quarterly-refunding.md'),
+    relatedIndicators: ['federal-budget', 'cbo-projections', 'tga', 'term-premium', 'us-treasury-yields'],
+    tags: ['Quarterly Refunding', '四半期定例入札', '米財務省', 'U.S. Treasury', '国債発行', '借換', 'TBAC', 'Primary Dealer', 'T-Bill', 'クーポン債', 'TIPS', 'FRN', 'Buyback', 'TGA', 'タームプレミアム', 'デュレーション', '入札サイズ', 'Financing Estimates'],
   },
 
   // --- USA / 期待政策金利 ---
@@ -267,6 +359,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['失業率', 'U-6', '失業内訳', '一時解雇', '恒久的失職', '自発的離職', '再参入者', '採用率', '離職率', 'レイオフ', 'BLS', 'CPS', 'JOLTS'],
   },
   {
+    indicatorId: 'unemployment-by-reason',
+    title: '失業率内訳（理由別）',
+    country: 'usa',
+    category: 'employment',
+    summary: 'BLS Table A-11の失業理由別構成（失職者・自発的離職・再参入・新規参入）。失業率上昇が失職者主導か供給増加主導かを切り分ける。',
+    loadContent: loadMd('usa/unemployment-by-reason.md'),
+    relatedIndicators: ['unemployment', 'sahm-rule', 'nonfarm-payrolls', 'initial-claims', 'labor-force-participation'],
+    tags: ['失業率内訳', 'Reason for Unemployment', 'Table A-11', 'BLS', 'CPS', '失職者', '一時レイオフ', 'Job losers', 'Job leavers', '自発的離職', 'Reentrants', '再参入者', 'New entrants', '新規参入者', '景気後退'],
+  },
+  {
     indicatorId: 'sahm-rule',
     title: 'サームルール',
     country: 'usa',
@@ -305,6 +407,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('usa/multiple-jobs-parttime.md'),
     relatedIndicators: ['fullpart-time', 'average-hourly-earnings', 'average-weekly-working-hours', 'nonfarm-payrolls'],
     tags: ['Multiple Jobholders', '複数就業', '副業', 'ギグワーク', '兼業', 'BLS', 'CPS', '雇用の質'],
+  },
+  {
+    indicatorId: 'workers-by-place-of-birth',
+    title: '出生地別の労働力人口・雇用者数（Native / Foreign Born）',
+    country: 'usa',
+    category: 'employment',
+    summary: 'CPS（家計調査）の Table A-7 に基づく米国生まれ／外国生まれ別の労働力人口と雇用者数。移民政策、労働供給制約、賃金圧力が市場テーマになる局面で補助指標として有効。',
+    loadContent: loadMd('usa/workers-by-place-of-birth.md'),
+    relatedIndicators: ['nonfarm-payrolls', 'unemployment', 'labor-force-participation', 'average-hourly-earnings', 'fullpart-time'],
+    tags: ['出生地別', 'Native Born', 'Foreign Born', '米国生まれ', '外国生まれ', '労働力人口', '雇用者数', '移民', '労働供給', 'BLS', 'CPS', 'Table A-7'],
   },
   {
     indicatorId: 'average-hourly-earnings',
@@ -409,6 +521,17 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('usa/cpi-categories.md'),
     relatedIndicators: ['cpi', 'pce-deflator', 'ppi', 'median-cpi'],
     tags: ['CPI', '食品', 'ガソリン', 'エネルギー', '家計負担', 'ヘッドライン', 'コアPCE', '期待インフレ', '低所得層', 'BLS'],
+  },
+
+  {
+    indicatorId: 'used-car-prices',
+    title: '中古車価格（CPI 中古車 / Manheim 中古車）',
+    country: 'usa',
+    category: 'inflation',
+    summary: 'BLS公表のCPI中古車（CUSR0000SETA02）と、Cox Automotive / Manheimの卸売中古車価格指数（UVVI）を比較。Manheimは卸売段階の先行指標としてCPI中古車の方向感を読む。',
+    loadContent: loadMd('usa/used-car-prices.md'),
+    relatedIndicators: ['cpi', 'cpi-categories', 'pce-deflator'],
+    tags: ['中古車', 'Used Cars', 'CPI', 'Manheim', 'Cox Automotive', 'UVVI', '卸売', '小売', 'BLS', 'コア財', 'コアCPI', '先行指標', 'リース戻り', '新車供給', 'CUSR0000SETA02', 'FRED'],
   },
 
   {
@@ -602,6 +725,17 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['POS-UVPI', '購買単価', 'POSデータ', '一橋大学', '食料品', '日用品', '実質値上げ', '週次'],
   },
 
+  {
+    indicatorId: 'terms-of-trade',
+    title: '交易条件',
+    country: 'japan',
+    category: 'inflation',
+    summary: '輸出物価÷輸入物価で測る価格交換比率。資源価格・円相場・輸出価格の主因を分解し、企業収益・実質所得・貿易収支への波及を読む。',
+    loadContent: loadMd('japan/terms-of-trade.md'),
+    relatedIndicators: ['import-export-price', 'cgpi', 'national-cpi', 'japan-fundamentals-yen'],
+    tags: ['交易条件', 'Terms of Trade', '輸出物価', '輸入物価', 'FOB', 'CIF', '日本銀行', '資源価格', '原油', 'LNG', '円安', '為替', '実質所得', '価格転嫁', '貿易収支'],
+  },
+
   // --- Japan / 物価（GDPギャップ） ---
   {
     indicatorId: 'gdp-gap',
@@ -684,6 +818,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('japan/machine-tool-orders.md'),
     relatedIndicators: ['machinery-orders', 'boj-tankan', 'global-manufacturing-pmi', 'topix_valuation_eps'],
     tags: ['工作機械受注', '設備投資', '製造業', 'PMI', 'EPS', '日本工作機械工業会', '先行指標'],
+  },
+
+  // --- Japan / 経済（貸出動向） ---
+  {
+    indicatorId: 'boj-lending',
+    title: '日本貸出動向（前年比）',
+    country: 'japan',
+    category: 'economy',
+    summary: '日銀「貸出・預金動向」の月次平残ベース貸出残高前年比。信用循環を捉える指標で、前向き投資需要か防衛的資金需要かを設備投資・短観・倒産と併せて判断する。',
+    loadContent: loadMd('japan/boj-lending.md'),
+    relatedIndicators: ['boj-tankan', 'machinery-orders', 'boj-policy-rate-chart', 'quarterly-gdp'],
+    tags: ['貸出', '貸出動向', '貸出・預金動向', '日本銀行', '平残', '銀行貸出', '都市銀行', '地方銀行', '信用金庫', '信用循環', '資金繰り', '設備投資', '銀行株', '正常化観測'],
   },
 
   // --- Japan / 消費者（景気ウォッチャー調査） ---
@@ -1087,6 +1233,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     relatedIndicators: ['weekly-crude-oil-inventories', 'shale-oil-rig-count', 'ism-manufacturing', 'global-manufacturing-pmi', 'cftc-positioning'],
     tags: ['原油', 'WTI', 'Brent', 'OPEC', '地政学', 'ホルムズ', 'バックワーデーション', 'コンタンゴ'],
   },
+  {
+    indicatorId: 'crack-spread',
+    title: 'クラックスプレッド（WTIベース）',
+    country: 'market',
+    category: 'energy',
+    summary: 'RBOBガソリン・ULSDとWTI原油の差。製油所の粗マージン指標。3:2:1クラックを総合採算、RBOB主導／ULSD主導の内訳で需給を切り分け。Brentベースとの違いと精製業の方向感を読む。',
+    loadContent: loadMd('market/crack-spread.md'),
+    relatedIndicators: ['cot-crude-oil', 'weekly-crude-oil-inventories'],
+    tags: ['クラックスプレッド', 'Crack Spread', 'RBOB', 'ULSD', '3:2:1', '製油所', '精製マージン', 'WTI', 'Brent', 'ガソリン', 'ディーゼル', '暖房油', '中間留分', 'CME', 'EIA', '製品需給', 'エネルギー'],
+  },
 
   // --- マーケット / 週間原油在庫 ---
   {
@@ -1122,6 +1278,26 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('market/natural-gas.md'),
     relatedIndicators: ['cot-crude-oil', 'shale-oil-rig-count'],
     tags: ['天然ガス', 'Natural Gas', 'LNG', 'Henry Hub', 'TTF', 'JKM', '在庫', '暖房', 'EIA', 'メタン'],
+  },
+  {
+    indicatorId: 'noaa-hdd-cdd',
+    title: 'HDD/CDD & 気温見通し',
+    country: 'market',
+    category: 'energy',
+    summary: 'NOAA CPC公表のHDD（暖房度日）/CDD（冷房度日）と6–10日・8–14日気温見通し。基準65°Fで計算される気温由来エネルギー需要指標。天然ガス需要・冬の寒気・夏の熱波・地域別需要構造を読む。',
+    loadContent: loadMd('market/noaa-hdd-cdd.md'),
+    relatedIndicators: ['cot-natural-gas', 'roni'],
+    tags: ['HDD', 'CDD', '暖房度日', '冷房度日', 'Heating Degree Days', 'Cooling Degree Days', 'NOAA', 'CPC', 'Climate Prediction Center', '気温見通し', '6-10日', '8-14日', 'NDFD', '天然ガス', 'Natural Gas', '暖房需要', '冷房需要', '寒波', '熱波', 'East North Central', 'Northeast', 'Mid-Atlantic', 'CONUS'],
+  },
+  {
+    indicatorId: 'roni',
+    title: 'RONI（Relative Oceanic Niño Index）',
+    country: 'market',
+    category: 'energy',
+    summary: 'NOAA CPCが2026年2月から公式採用するENSO監視指数。Niño 3.4の海面水温偏差から熱帯平均（20°N〜20°S）の偏差を差し引いた相対指数の3か月移動平均。±0.5℃でエルニーニョ／ラニーニャ水準を判定。',
+    loadContent: loadMd('market/roni.md'),
+    relatedIndicators: ['noaa-hdd-cdd', 'cot-natural-gas'],
+    tags: ['RONI', 'Relative Oceanic Niño Index', 'ONI', 'ENSO', 'エルニーニョ', 'ラニーニャ', 'NOAA', 'CPC', 'NCEP', 'Niño 3.4', '海面水温', 'SST', '熱帯太平洋', '気候レジーム', 'ハリケーン', '農産物', '天然ガス', 'storm track', 'ジェット気流'],
   },
 
   // --- マーケット / S&P GSCI ---
@@ -1192,8 +1368,38 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     category: 'anomaly',
     summary: '月末月初効果、Sell in May、FOMC日効果、ゴトー日、エネルギー季節性など、実務で使えるアノマリーをランク別に整理。',
     loadContent: loadMd('market/anomaly-guide.md'),
-    relatedIndicators: ['flow-knowledge', 'rebalance', 'cftc-positioning'],
+    relatedIndicators: ['flow-knowledge', 'rebalance', 'cftc-positioning', 'summer-market-reaction'],
     tags: ['アノマリー', 'シーズナリティ', '季節性', '月末月初', 'Sell in May', 'FOMC', 'ゴトー日', 'サンタクロースラリー'],
+  },
+  {
+    indicatorId: 'summer-market-reaction',
+    title: '夏相場における価格反応とヘッドライン解釈',
+    country: 'market',
+    category: 'anomaly',
+    summary: '7〜8月は参加者減で流動性が薄く、材料に対して価格が素直に反応しないことがある。ヘッドライン内容より「価格が重要水準を抜けるか／守るか／全戻しするか」と上位足のトレンドを優先する実務指針。',
+    loadContent: loadMd('market/summer-market-reaction.md'),
+    relatedIndicators: ['anomaly-guide', 'rebalance', 'flow-knowledge', 'autumn-political-risk'],
+    tags: ['夏相場', 'サマーラリー', '7月', '8月', 'Sell in May', '低流動性', '薄商い', 'ヘッドライン', 'ヘッドライン解釈', '価格反応', '初動', '全戻し', '重要水平線', '上位足トレンド', 'EMA', '逆張り', '押し目', '戻り売り', 'ストップ狩り', 'リスク管理'],
+  },
+  {
+    indicatorId: 'autumn-political-risk',
+    title: '秋の政治リスクと相場の見方',
+    country: 'market',
+    category: 'anomaly',
+    summary: '「秋＝政治不安」ではなく「秋＝議会休会明けで政治日程が密集し、政策・予算・選挙・外交イベントが表面化しやすい時期」と捉える。米予算・債務上限、欧州財政、日本国会、中国政策会議、地政学、OPECなど波及経路を持つ材料を選別する実務指針。',
+    loadContent: loadMd('market/autumn-political-risk.md'),
+    relatedIndicators: ['anomaly-guide', 'summer-market-reaction', 'year-end-central-banks', 'rebalance', 'flow-knowledge'],
+    tags: ['秋相場', '9月', '10月', '11月', '政治リスク', '政治日程', '議会再開', '予算審議', '政府閉鎖', 'CR', 'オムニバス', '債務上限', '選挙', '内閣改造', '党大会', 'FOMC', 'ECB', '国連総会', '中国政策会議', '中央経済工作会議', 'OPEC', '地政学', '波及経路', 'リスク管理'],
+  },
+  {
+    indicatorId: 'year-end-central-banks',
+    title: '年末の主要中銀イベントと来年テーマの先取り',
+    country: 'market',
+    category: 'anomaly',
+    summary: '12月はFOMC・ECB・BOE・日銀の年内最終会合が集中し、市場の関心が「今回の決定」から「来年の政策パス・景気・資金フロー」へ移る時期。中銀間の方向性比較と、価格がどのテーマ（利下げ期待／日銀正常化／円キャリー巻き戻し／リバランスなど）に最も強く反応しているかを確認する実務指針。',
+    loadContent: loadMd('market/year-end-central-banks.md'),
+    relatedIndicators: ['anomaly-guide', 'summer-market-reaction', 'autumn-political-risk', 'rebalance', 'flow-knowledge'],
+    tags: ['年末相場', '12月', 'FOMC', 'ECB', 'BOE', '日銀', '年内最終会合', '中央銀行', '中銀イベント', '来年テーマ', '政策パス', '利下げ期待', '利上げ', 'ソフトランディング', '日銀正常化', '円キャリー', 'リバランス', '年末ポジション調整', '流動性低下', '薄商い', 'ドル高', 'ドル安', 'ゴールド'],
   },
 
   // --- マーケット / オプション ---
@@ -1228,6 +1434,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['IV', 'ボラティリティ', '為替', 'FX', 'スキュー', 'スマイル'],
   },
   {
+    indicatorId: 'nikkei225-options',
+    title: '日経225オプション',
+    country: 'market',
+    category: 'options',
+    summary: 'JPX/OSEの日経225指数オプション（SQ・差金決済、250円刻み・125円刻み行使価格）。ATM IV、IVスマイル、25D RR/Fly、建玉・出来高P/C比、ターム構造で市場参加者のリスク織り込みと需給を読む。',
+    loadContent: loadMd('market/nikkei225-options.md'),
+    relatedIndicators: ['options-guide', 'vix-futures-curve', 'implied-vol-premium'],
+    tags: ['日経225オプション', 'Nikkei 225 Options', 'JPX', 'OSE', 'SQ', 'ATM IV', 'IVスマイル', '25D RR', '25D Fly', '建玉', 'OI', 'Open Interest', '出来高', 'P/C比', 'ターム構造', 'Greeks', 'デルタ', 'ガンマ', 'DTE', '権利行使価格', '清算価格', '理論価格', 'JSCC'],
+  },
+  {
     indicatorId: 'options-tradingview',
     title: 'オプションの見方（TradingView）',
     country: 'market',
@@ -1236,6 +1452,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('market/options-tradingview.md'),
     relatedIndicators: ['options-guide', 'forex-iv'],
     tags: ['TradingView', 'オプション', 'チェーン', 'ギリシャ指標', 'ボラティリティカーブ'],
+  },
+  {
+    indicatorId: 'options-optioncharts',
+    title: 'OptionChartsの見方',
+    country: 'market',
+    category: 'options',
+    summary: 'OptionCharts.ioの読み方。OI/Volume/GEX/DEX/Skew/Max Pain/Unusual Activityをチャート節目と組み合わせる実務手順。',
+    loadContent: loadMd('market/options-optioncharts.md'),
+    relatedIndicators: ['options-guide', 'options-tradingview', 'gex-dix'],
+    tags: ['OptionCharts', 'OI', 'Open Interest', 'Volume', 'GEX', 'DEX', 'Gamma Exposure', 'Delta Exposure', 'Volatility Skew', 'Max Pain', 'Unusual Option Activity', 'Option Chain', 'Put-Call Ratio', '0DTE', 'SPY', 'QQQ', 'Call Wall', 'Put Wall', 'Gamma Flip'],
   },
   {
     indicatorId: 'nt-magnification',
@@ -1288,14 +1514,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['セクターローテーション', '景気循環', 'サイクル', 'ディフェンシブ', '景気敏感', 'Fidelity', 'State Street', 'GICS'],
   },
   {
-    indicatorId: 'vix-term-structure',
-    title: 'ボラティリティ指数の見方',
+    indicatorId: 'vix-futures-curve',
+    title: 'VIX先物カーブ（M1-M3）の見方',
     country: 'market',
     category: 'equities',
-    summary: 'VIXの意味、期間構造（コンタンゴ/バックワーデーション）、実務での読み方。方向予測ではなく変動幅の指標として使う考え方。',
-    loadContent: loadMd('market/vix-term-structure.md'),
-    relatedIndicators: ['gex-dix', 'options-guide', 'fear-greed'],
-    tags: ['VIX', 'ボラティリティ', 'コンタンゴ', 'バックワーデーション', 'Cboe', '期間構造', 'VIX9D', 'VIX3M'],
+    summary: 'Cboe Futures Exchange（CFE）の月次VIX先物 VX1/VX2/VX3 のSettlementから、フロントスプレッド（VX1−VX2）、曲率（VX1−2×VX2+VX3）、M1-M3スロープ（VX1−VX3）を確認。コンタンゴ／バックワーデーション、VXX/UVXY等ロング系とSVXYインバース系のロール環境、M1 DTEの効きをDTE別パーセンタイルで読む。',
+    loadContent: loadMd('market/vix-futures-curve.md'),
+    relatedIndicators: ['gex-dix', 'options-guide', 'fear-greed', 'implied-vol-premium', 'cboe-realized-vol-gamma'],
+    tags: ['VIX先物', 'VX1', 'VX2', 'VX3', 'フロントスプレッド', '曲率', 'M1-M3スロープ', 'カーブ', 'タームストラクチャー', 'コンタンゴ', 'バックワーデーション', 'Cboe', 'CFE', 'VXX', 'VIXY', 'UVXY', 'SVXY', 'インバースVIX', 'ロール', 'DTE', '月次限月', '週次限月', 'Settlement', 'VIX3M'],
+  },
+  {
+    indicatorId: 'implied-vol-premium',
+    title: 'インプライドボラプレミアム（VIX − HV）',
+    country: 'market',
+    category: 'equities',
+    summary: 'VIX（30日先期待変動率）と S&P 500のヒストリカル・ボラティリティ（HV20/HV30）を比較。VIX−HVとVIX/HVでオプション市場のリスクプレミアム、ヘッジ需要、HV20とHV30の関係で実現ボラの加速・減速を読む。',
+    loadContent: loadMd('market/implied-vol-premium.md'),
+    relatedIndicators: ['vix-futures-curve', 'gex-dix', 'options-guide', 'fear-greed'],
+    tags: ['インプライドボラ', 'インプライドボラティリティ', 'IV', 'ヒストリカルボラティリティ', 'HV', 'HV20', 'HV30', 'VIX', 'ボラプレミアム', 'リスクプレミアム', 'ヘッジ', 'Cboe', 'S&P 500', 'SPX', 'オプション', '実現ボラ'],
+  },
+  {
+    indicatorId: 'cboe-realized-vol-gamma',
+    title: 'Cboe Realized Volatility Index（GAMMA）',
+    country: 'market',
+    category: 'equities',
+    summary: 'SPXW週次オプションの最短期ATMストラドル5本をデルタヘッジしたポートフォリオのトータルリターン指数。短期SPXオプションのロング・ガンマ／ロング・ボラ戦略がどの程度有利かを測る。GEX（ディーラーのガンマエクスポージャー）とは別物。',
+    loadContent: loadMd('market/cboe-realized-vol-gamma.md'),
+    relatedIndicators: ['vix-futures-curve', 'implied-vol-premium', 'gex-dix', 'options-guide'],
+    tags: ['GAMMA', 'Cboe Realized Volatility Index', '実現ボラティリティ', 'SPXW', '週次オプション', 'ATMストラドル', 'デルタヘッジ', 'ロング・ガンマ', 'ガンマ・スキャルピング', '短期ボラ', '0DTE', 'Cboe', 'SPX', 'GEX', 'ディーラー'],
+  },
+  {
+    indicatorId: 'cboe-implied-correlation-cor3m',
+    title: 'Cboe 3-Month Implied Correlation Index（COR3M）',
+    country: 'market',
+    category: 'equities',
+    summary: 'SPX指数オプションと上位50構成銘柄の個別株オプションのインプライド・ボラティリティから算出するCboeのインプライド相関指数。S&P500構成銘柄が今後3カ月で同方向に動きやすいか（システマティックリスク／分散効果）を測る。',
+    loadContent: loadMd('market/cboe-implied-correlation-cor3m.md'),
+    relatedIndicators: ['cboe-realized-vol-gamma', 'vix-futures-curve', 'implied-vol-premium', 'sector-ratio', 'correlation-guide'],
+    tags: ['COR3M', 'Cboe Implied Correlation', 'インプライド相関', '相関指数', 'システマティックリスク', '分散効果', 'ディスパージョン', '上位50銘柄', 'SPX', 'S&P 500', 'ペアワイズ相関', 'インプライドボラ', 'IV', '3カ月', 'Cboe', 'リスクオフ'],
+  },
+  {
+    indicatorId: 'advance-decline-mcclellan',
+    title: 'A/Dライン・マクレランオシレーター',
+    country: 'market',
+    category: 'equities',
+    summary: '米国株式市場のマーケット・ブレッドス指標。A/Dラインは上昇銘柄数−下落銘柄数の累積で市場参加度の中長期トレンドを、マクレランオシレーターはそのMACD型派生で短期モメンタムを測る。指数とのダイバージェンス、ブレッドス・スラストが代表的な見方。',
+    loadContent: loadMd('market/advance-decline-mcclellan.md'),
+    relatedIndicators: ['sp500-stock-portion', 'advance-decline-ratio', 'sector-ratio', 'fear-greed', 'naaim'],
+    tags: ['A/Dライン', 'Advance/Decline Line', 'AD Line', 'マクレランオシレーター', 'McClellan Oscillator', 'ブレッドス', 'マーケットブレッドス', 'Net Advances', 'NYSE', 'Nasdaq', 'NYMO', 'NAMO', 'ratio-adjusted', 'ブレッドス・スラスト', 'ダイバージェンス', '市場内部', '時価総額加重', 'StockCharts'],
   },
   {
     indicatorId: 'advance-decline-ratio',
@@ -1902,6 +2168,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['英国', 'SONIA', 'BoE', 'Bank Rate', 'OIS', 'RFR', '翌日物', '短期金利', 'LIBOR', 'ポンド', 'GBP'],
   },
 
+  // --- 英国 / 公的部門純借入（PSNB） ---
+  {
+    indicatorId: 'uk-public-sector-net-borrowing',
+    title: '公的部門純借入（PSNB）',
+    country: 'uk',
+    category: 'policy',
+    summary: 'ONS公表の英国財政赤字指標。経常赤字＋純投資で構成され、純借入（フロー）と純債務（ストック）を区別。GDP比・季節性・改定リスクを踏まえて読む。',
+    loadContent: loadMd('uk/uk-public-sector-net-borrowing.md'),
+    relatedIndicators: ['uk-boe-overview', 'sonia', 'uk-economic-activity'],
+    tags: ['PSNB', '公的部門純借入', 'Public Sector Net Borrowing', 'ONS', '英国', '財政赤字', '純債務', 'PSNFL', '自己申告所得税', 'VAT', 'PAYE', '会計年度', 'GDP比', '財政ルール'],
+  },
+
+  // --- 英国 / APFギルト保有残高（QT） ---
+  {
+    indicatorId: 'uk-qt',
+    title: 'APFギルト保有残高（QT）',
+    country: 'uk',
+    category: 'policy',
+    summary: 'BoE Asset Purchase Facilityの保有ギルト残高（initial purchase proceedsベース）。満期償還停止と能動売却によるQT進捗を読む。市場価格と混同しない。',
+    loadContent: loadMd('uk/uk-qt.md'),
+    relatedIndicators: ['uk-boe-overview', 'sonia', 'uk-public-sector-net-borrowing'],
+    tags: ['APF', 'Asset Purchase Facility', 'BEAPFF', 'ギルト', 'gilts', 'QT', '量的引き締め', 'QE', '量的緩和', 'BoE', 'イングランド銀行', 'MPC', 'initial purchase proceeds', 'HMT', '財務省補償', 'Bank Rate'],
+  },
+
   // --- 英国 / 小売売上高 ---
   {
     indicatorId: 'uk-retail-sales',
@@ -2058,6 +2348,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['英国', '経済活動率', 'ONS', 'LFS', '労働参加', '非活動', '長期疾病', '労働供給', '賃金圧力', 'BOE', 'ポンド', 'GBP'],
   },
 
+  // --- 英国 / 政府債務残高対GDP比 ---
+  {
+    indicatorId: 'uk-government-debt-to-gdp-ratio',
+    title: '政府債務残高対GDP比（英国）',
+    country: 'uk',
+    category: 'economy',
+    summary: 'ONS HF6X（PSND ex GDP比）。狭義の純債務／GDPで財政余力を見る。財政ルールで使われるPSNFLとは別物。利払い費・OBR見通し・国債利回りと併読。',
+    loadContent: loadMd('uk/uk-government-debt-to-gdp-ratio.md'),
+    relatedIndicators: ['uk-public-sector-net-borrowing', 'uk-qt', 'uk-boe-overview'],
+    tags: ['英国', '政府債務残高', 'PSND', 'PSNFL', 'GDP比', 'HF6X', 'ONS', '財政健全性', '財政ルール', 'OBR', '利払い費', '国債発行', '純債務'],
+  },
+
   // --- カナダ / 経済概要 ---
   {
     indicatorId: 'canada-overview',
@@ -2128,6 +2430,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['PMI', 'S&P Global', 'カナダ', '製造業', '景気', '投入価格', '産出価格'],
   },
 
+  // --- カナダ / CORRA ---
+  {
+    indicatorId: 'ca-corra',
+    title: 'CORRA（翌日物レポ平均金利）',
+    country: 'canada',
+    category: 'policy',
+    summary: 'Bank of Canada公表のカナダドル翌日物担保付レポ平均金利。CDORの代替リスクフリー金利で、政策金利との乖離・パーセンタイル・分布からレポ需給を読む。',
+    loadContent: loadMd('canada/ca-corra.md'),
+    relatedIndicators: ['canada-overview', 'ivey-pmi'],
+    tags: ['カナダ', 'CORRA', 'Canadian Overnight Repo Rate Average', 'Bank of Canada', 'BoC', '翌日物', 'レポ', '担保付き', 'リスクフリー金利', 'CDOR', 'Term CORRA', 'CARR', 'CORRA Compounded Index', 'T+1', '政策金利', '短期金利', 'CAD'],
+  },
+
+  // --- カナダ / 決済残高 ---
+  {
+    indicatorId: 'ca-settlement-balances',
+    title: '決済残高（Settlement Balances）',
+    country: 'canada',
+    category: 'policy',
+    summary: 'Lynx参加金融機関がBank of Canadaに保有する決済用預金。フロア・システムの中核で、CORRAの安定性とQE/QTの進捗を読む流動性指標。',
+    loadContent: loadMd('canada/ca-settlement-balances.md'),
+    relatedIndicators: ['ca-corra', 'canada-overview'],
+    tags: ['カナダ', '決済残高', 'Settlement Balances', 'Lynx', 'LVTS', 'Bank of Canada', 'BoC', 'Payments Canada', 'フロア・システム', '中央銀行準備', '預金金利', 'オペレーティング・バンド', 'QE', 'QT', 'CORRA', '流動性', 'CAD'],
+  },
+
+  // --- カナダ / 政府預金 ---
+  {
+    indicatorId: 'ca-government-deposits',
+    title: '政府預金（Government Deposits）',
+    country: 'canada',
+    category: 'policy',
+    summary: 'カナダ政府のカナダドル現金残高（BoC保有分＋オークション参加者保有分）。決済残高・CORRAと組み合わせて短期金融市場の流動性吸収・放出を読む。',
+    loadContent: loadMd('canada/ca-government-deposits.md'),
+    relatedIndicators: ['ca-settlement-balances', 'ca-corra', 'canada-overview'],
+    tags: ['カナダ', '政府預金', 'Government Deposits', 'Receiver General', 'Bank of Canada', 'BoC', '財務代理人', 'Lynx', 'オークション', '現金管理', '流動性', '国債発行', '償還', '税収', 'CORRA', 'CAD'],
+  },
+
+  // --- カナダ / 家計債務返済比率（DSR） ---
+  {
+    indicatorId: 'ca-debt-service-ratio',
+    title: '家計債務返済比率（DSR）',
+    country: 'canada',
+    category: 'housing',
+    summary: 'Statistics Canada公表の家計DSR。義務的な元本返済＋利払いを可処分所得比で測る。住宅ローン／非住宅ローンに分解可能で、家計のキャッシュフロー負担と金利感応度を測る中核指標。',
+    loadContent: loadMd('canada/ca-debt-service-ratio.md'),
+    relatedIndicators: ['ca-corra', 'canada-overview'],
+    tags: ['カナダ', '家計債務返済比率', 'DSR', 'Debt Service Ratio', 'Statistics Canada', '11-10-0065-01', '可処分所得', '住宅ローン', '非住宅ローン', 'HELOC', '消費者信用', '家計債務', '金利感応度', '住宅市場', '信用リスク', 'CAD'],
+  },
+
   // --- 中国 / 7日物リバースレポ金利 ---
   {
     indicatorId: 'reverse-repo-rate',
@@ -2138,6 +2488,114 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('china/cn-reverse-repo-rate.md'),
     relatedIndicators: ['cn-overview', 'cn-gdp'],
     tags: ['中国', 'リバースレポ', '7日物', '逆回购', 'PBoC', '人民銀行', '政策金利', 'LPR', 'MLF', 'DR007', '短期金利', 'CNY'],
+  },
+
+  // --- 中国 / 預金準備率（RRR） ---
+  {
+    indicatorId: 'rrr',
+    title: '預金準備率（大型金融機関）',
+    country: 'china',
+    category: 'policy',
+    summary: 'PBoCの大型金融機関向け預金準備率。「三档两优」枠組みの区分別準備率で、加重平均RRR・MLF・LPR・社会融資総量と併読し、流動性供給姿勢を読む。',
+    loadContent: loadMd('china/cn-rrr.md'),
+    relatedIndicators: ['reverse-repo-rate', 'cn-overview', 'm1-m2', 'cn-credit-impulse'],
+    tags: ['中国', '預金準備率', 'RRR', '法定準備率', '降準', 'PBoC', '人民銀行', '大型金融機関', '三档两优', '加重平均準備率', '流動性供給', '社会融資総量', 'MLF', 'LPR', 'CNY'],
+  },
+
+  // --- 中国 / Fixing Repo Rate ---
+  {
+    indicatorId: 'fixing-repo-rate',
+    title: 'Fixing Repo Rate (FR / FDR)',
+    country: 'china',
+    category: 'policy',
+    summary: 'CFETS公表の銀行間レポ固定金利（FR）と預金取扱金融機関レポ固定金利（FDR）。FR007/FDR007を中心に短期流動性と政策金利波及を確認する。',
+    loadContent: loadMd('china/cn-fixing-repo-rate.md'),
+    relatedIndicators: ['reverse-repo-rate', 'rrr', 'cn-overview'],
+    tags: ['中国', 'Fixing Repo Rate', 'FR001', 'FR007', 'FR014', 'FDR001', 'FDR007', 'FDR014', 'CFETS', 'ChinaMoney', 'DR007', 'SHIBOR', 'レポ', '銀行間市場', '短期金利', '流動性'],
+  },
+
+  // --- 中国 / Central Parity Rate ---
+  {
+    indicatorId: 'central-parity',
+    title: 'Central Parity Rate（USD/CNY基準値）',
+    country: 'china',
+    category: 'policy',
+    summary: 'CFETS公表の人民元対米ドル公式基準値（Fixing）。管理変動相場の中心レートで、上下2%の許容幅、スポット・CNHとの乖離から当局の為替政策スタンスを読む。',
+    loadContent: loadMd('china/cn-central-parity.md'),
+    relatedIndicators: ['fixing-repo-rate', 'reverse-repo-rate', 'rrr', 'cn-overview'],
+    tags: ['中国', 'Central Parity Rate', 'USD/CNY', '基準値', 'Fixing', 'PBoC', 'CFETS', '人民元', 'CNY', 'CNH', '管理変動相場', 'バンド', '上下2%', '通貨バスケット', '資本流出'],
+  },
+
+  // --- 中国 / SHIBOR ---
+  {
+    indicatorId: 'shibor',
+    title: 'SHIBOR（上海銀行間取引金利）',
+    country: 'china',
+    category: 'policy',
+    summary: '上海銀行間同業拆放利率（O/N〜1Y）。18行報価の上下4行除外平均で算出される無担保銀行間金利。短期は流動性、長期は中期資金コストを示す。',
+    loadContent: loadMd('china/cn-shibor.md'),
+    relatedIndicators: ['fixing-repo-rate', 'reverse-repo-rate', 'rrr', 'central-parity'],
+    tags: ['中国', 'SHIBOR', '上海銀行間取引金利', '银行间', '無担保', '報価銀行', '全国銀行間同業拆借中心', 'O/N', '1W', '1M', '3M', '1Y', '短期金利', '銀行間流動性', '金利カーブ'],
+  },
+
+  // --- 中国 / 新規人民元貸出 ---
+  {
+    indicatorId: 'new-rmb-loans',
+    title: '新規人民元貸出',
+    country: 'china',
+    category: 'policy',
+    summary: 'PBOC公表の人民元貸出ネット増加額。家計・企業・短期/中長期/手形の内訳と社会融資総量（AFRE）と組み合わせて、銀行信用循環を読む。1月・四半期末の季節性に注意。',
+    loadContent: loadMd('china/cn-new-rmb-loans.md'),
+    relatedIndicators: ['m1-m2', 'cn-credit-impulse', 'rrr', 'reverse-repo-rate'],
+    tags: ['中国', '新規人民元貸出', '新增人民币贷款', 'New RMB Loans', 'PBoC', '人民銀行', '銀行貸出', '家計向け', '企業向け', '中長期貸出', '短期貸出', '手形融資', '社会融資総量', 'AFRE', 'TSF', '住宅ローン', '信用供給'],
+  },
+
+  // --- 中国 / 国債発行 ---
+  {
+    indicatorId: 'bond-issuance',
+    title: '国債発行（Government Bond Issuance）',
+    country: 'china',
+    category: 'policy',
+    summary: '中国財政部公表の国債入札予定・結果・月次供給量。記帳式/貼現/貯蓄国債を区別し、年限構成・落札利回り・特別国債の有無から債券需給と財政動向を読む。',
+    loadContent: loadMd('china/cn-bond-issuance.md'),
+    relatedIndicators: ['new-rmb-loans', 'reverse-repo-rate', 'rrr', 'cn-overview'],
+    tags: ['中国', '国債発行', 'Government Bond Issuance', '中国財政部', 'MOF', '入札', '記帳式国債', '附息国債', '貼現国債', '貯蓄国債', '特別国債', '落札利回り', '票面利率', '修正的多重価格', '年限構成', '債券需給', '長期金利'],
+  },
+
+  // --- 中国 / 資本フロー（SAFE） ---
+  {
+    indicatorId: 'capital-flows',
+    title: '資本フロー（SAFE：銀行代客涉外收付款）',
+    country: 'china',
+    category: 'policy',
+    summary: 'SAFE公表の銀行代客涉外收付款。国内非銀行部門と非居住者の資金受払を経常/資本・金融/証券投資別に把握し、人民元・中国株・コモディティへの波及を読む。',
+    loadContent: loadMd('china/cn-capital-flows.md'),
+    relatedIndicators: ['central-parity', 'bond-issuance', 'new-rmb-loans', 'cn-overview'],
+    tags: ['中国', '資本フロー', 'Capital Flows', 'SAFE', '国家外貨管理局', '銀行代客涉外收付款', '銀行結售匯', '経常勘定', '資本金融勘定', '証券投資', '貨物貿易', 'サービス', '人民元', '資本流出', 'クロスボーダー決済', '国際収支'],
+  },
+
+  // --- 中国 / 海外投資家フロー（中国債券） ---
+  {
+    indicatorId: 'overseas-investor-flow',
+    title: '海外投資家フロー（中国債券）',
+    country: 'china',
+    category: 'policy',
+    summary: 'Bond Connect公表のCCDC・SHCH月末海外投資家債券保有残高。中国債券への海外資金需要を月次フローの代理指標として読む。為替ヘッジコストとあわせて確認。',
+    loadContent: loadMd('china/cn-overseas-investor-flow.md'),
+    relatedIndicators: ['capital-flows', 'bond-issuance', 'central-parity', 'cn-overview'],
+    tags: ['中国', '海外投資家フロー', 'Foreign Holdings', 'Bond Connect', 'CCDC', 'SHCH', '中国債券', '中国国債', '政策性金融債', '銀行間市場', 'Bloomberg Barclays', '指数組入', '為替ヘッジ', '資本流入', '人民元'],
+  },
+
+  // --- 中国 / 地方債 ---
+  {
+    indicatorId: 'cn-local-bonds',
+    title: '地方債（中国地方政府債券）',
+    country: 'china',
+    category: 'policy',
+    summary: '中国財政部公表の地方政府債券発行・残高。新規/再融資・一般/専項の内訳と枠余地から、財政出動・インフラ投資・地方債務管理を読み分ける。',
+    loadContent: loadMd('china/cn-local-bonds.md'),
+    relatedIndicators: ['bond-issuance', 'new-rmb-loans', 'cn-overview', 'cn-fixed-asset-investment'],
+    tags: ['中国', '地方債', '地方政府債券', '中国財政部', 'MOF', '一般債券', '専項債券', '新規債', '再融資債', '化債', '隠性債務', '債務限度額', '枠余地', '平均発行利率', 'インフラ投資', '財政出動'],
   },
 
   // --- 中国 / 政策運営と景気の見方 ---
@@ -2176,6 +2634,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['中国', '固定資産投資', 'FAI', 'NBS', 'インフラ投資', '製造業投資', '不動産開発投資', '民間投資', '資本形成', '月次指標', 'CNY'],
   },
 
+  // --- 中国 / 土地売却収入 ---
+  {
+    indicatorId: 'cn-land-sales-income',
+    title: '土地売却収入（中国）',
+    country: 'china',
+    category: 'economy',
+    summary: '中国財政部公表の国有土地使用権出譲収入。地方政府の政府性基金予算の主要財源で、不動産デベロッパーの土地取得意欲と地方財政余力を読む土地財政の中核指標。',
+    loadContent: loadMd('china/cn-land-sales-income.md'),
+    relatedIndicators: ['cn-commercial-residential-sales', 'cn-fixed-asset-investment', 'cn-local-bonds', 'cn-overview'],
+    tags: ['中国', '土地売却収入', '国有土地使用権出譲収入', '土地出譲', '土地財政', '中国財政部', '政府性基金予算', '地方政府', '不動産', 'デベロッパー', 'インフラ投資', '都市開発', '専項債', 'CNY'],
+  },
+
   // --- 中国 / PPI ---
   {
     indicatorId: 'cn-ppi',
@@ -2186,6 +2656,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('china/cn-ppi.md'),
     relatedIndicators: ['ecb-ppi', 'ppi', 'cgpi', 'uk-ppi'],
     tags: ['PPI', '中国', 'NBS', '生産者物価', 'インフレ', '工業'],
+  },
+
+  // --- 中国 / 輸出価格 ---
+  {
+    indicatorId: 'cn-export-prices',
+    title: '中国の輸出価格と世界の財インフレ',
+    country: 'china',
+    category: 'inflation',
+    summary: '中国は世界の工場として完成品・中間財・部品を大量に輸出するため、輸出価格は各国の輸入物価を通じて財インフレに波及。為替・関税・物流・在庫・国内需要で最終的なCPI反映は変化し、サービスインフレへの影響は限定的。',
+    loadContent: loadMd('china/cn-export-prices.md'),
+    relatedIndicators: ['cn-ppi', 'cn-overview', 'cn-gdp', 'ppi', 'ecb-ppi'],
+    tags: ['中国', '輸出価格', '輸出物価', '財インフレ', 'グローバルインフレ', '輸入物価', '中間財', '人民元', 'CNY', 'PPI', 'コモディティ', '海上運賃', '関税', 'ディスインフレ'],
   },
 
   // --- 中国 / PMI ---
@@ -2222,6 +2704,42 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('china/cn-electronics-stock.md'),
     relatedIndicators: ['taiwan-export-orders', 'ism-manufacturing', 'semiconductor-sales', 'cn-pmi'],
     tags: ['中国', '在庫', '電気機器', 'NBS', 'SOX', '半導体', 'エレクトロニクス循環', '遅行指標'],
+  },
+
+  // --- 中国 / 李克強指数 ---
+  {
+    indicatorId: 'cn-li-keqiang-index',
+    title: '李克強指数（中国）',
+    country: 'china',
+    category: 'economy',
+    summary: '電力消費・鉄道貨物・銀行融資の3指標から中国の実体経済を捉える非公式指標（一般ウェイト例: 融資40%・電力40%・鉄道貨物20%）。工業・建設・素材需要・信用循環の方向感を見る補助指標で、サービス業・個人消費・デジタル経済は反映されにくい。',
+    loadContent: loadMd('china/cn-li-keqiang-index.md'),
+    relatedIndicators: ['cn-gdp', 'cn-overview', 'cn-pmi', 'cn-credit-impulse', 'm1-m2', 'fixed-asset-investment'],
+    tags: ['李克強指数', 'Li Keqiang Index', '中国', '電力消費', '鉄道貨物', '銀行融資', 'GDP', '実体経済', '工業', '重工業', '建設', '信用', 'MacroMicro'],
+  },
+
+  // --- 中国 / Baidu人流・人口移動 ---
+  {
+    indicatorId: 'cn-baidu-migration',
+    title: 'Baidu人流・人口移動データと非製造業の関係（中国）',
+    country: 'china',
+    category: 'economy',
+    summary: '百度地図慧眼の位置情報データで都市間・地域間の人口移動を高頻度に把握。非製造業PMIのサービス業（交通・旅行・宿泊・外食・小売）を中心とした補助指標で、建設業は説明しにくい。春節・国慶節などの季節性に注意。',
+    loadContent: loadMd('china/cn-baidu-migration.md'),
+    relatedIndicators: ['cn-pmi', 'caixin-pmi', 'cn-overview', 'cn-gdp', 'cn-li-keqiang-index'],
+    tags: ['Baidu', '百度', '百度遷徙', '百度地図慧眼', '人流', '人口移動', '中国', 'サービス業', '非製造業PMI', '都市活動', '春節', '国慶節', '高頻度データ', 'オルタナティブデータ'],
+  },
+
+  // --- 中国 / 商業住宅販売 ---
+  {
+    indicatorId: 'cn-commercial-residential-sales',
+    title: '不動産販売面積と住宅価格の関係（中国）',
+    country: 'china',
+    category: 'housing',
+    summary: '販売面積YoYは住宅価格YoYに対して3〜6か月（局面によっては6〜9か月）先行しやすい。需要悪化はまず取引量に出て、在庫増・値引き販売を経て価格に反映される。販売回復後も在庫処理が進むまで価格の戻りは遅れる。',
+    loadContent: loadMd('china/cn-commercial-residential-sales.md'),
+    relatedIndicators: ['fixed-asset-investment', 'cn-gdp', 'cn-overview', 'm1-m2', 'cn-credit-impulse'],
+    tags: ['中国', '不動産', '住宅', '販売面積', '新規着工', '販売額', '住宅価格', 'NBS', 'デベロッパー', '先行指標', '在庫', 'CNY'],
   },
 
   // --- スイス / 概要 ---
@@ -2272,6 +2790,54 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['KOF', 'KOF Barometer', '先行指標', '景気', 'スイス', 'ETH Zurich', 'GDP', '景気循環', 'モメンタム', '製造業', '輸出'],
   },
 
+  // --- スイス / SNB当座預金 ---
+  {
+    indicatorId: 'ch-sight-deposits',
+    title: 'SNB当座預金（Sight Deposits with the SNB）',
+    country: 'switzerland',
+    category: 'policy',
+    summary: 'SNB Data Portal公表の当座預金残高。スイスフラン市場の流動性、レポ取引、外貨購入・売却、SNB Billsの結果として動く。SARON誘導と為替介入の可能性を読むうえで重要な補助指標。',
+    loadContent: loadMd('switzerland/ch-sight-deposits.md'),
+    relatedIndicators: ['ch-overview'],
+    tags: ['スイス', 'SNB当座預金', 'Sight Deposits', 'SNB', 'Swiss National Bank', 'SARON', '政策金利', 'SNB Bills', 'レポ取引', '流動性', '為替介入', 'CHF', '外貨準備', '最低準備', '付利', '銀行券', 'バランスシート'],
+  },
+
+  // --- スイス / 外貨準備 ---
+  {
+    indicatorId: 'ch-foreign-currency-reserves',
+    title: '外貨準備（Foreign Currency Reserves）',
+    country: 'switzerland',
+    category: 'policy',
+    summary: 'SNB保有の外貨建て運用資産（債券・株式・預金）。EUR 39%/USD 37%中心、政府債61%・株式28%。CHF高抑制のための外貨購入、為替介入、評価効果、CHF建て／USD建ての違いを読み解く中核指標。',
+    loadContent: loadMd('switzerland/ch-foreign-currency-reserves.md'),
+    relatedIndicators: ['ch-sight-deposits', 'ch-overview'],
+    tags: ['スイス', '外貨準備', 'Foreign Currency Reserves', 'SNB', 'Swiss National Bank', '通貨準備', 'Currency Reserves', '外貨建て投資', 'EUR', 'USD', 'JPY', '政府債', '株式', '為替介入', 'CHF', '評価効果', 'バランスシート', 'IMF', 'SDR', '金', '安全資産'],
+  },
+
+  // --- スイス / 住宅ローン残高 ---
+  {
+    indicatorId: 'ch-mortgage-balance',
+    title: '住宅ローン残高（Mortgage Loans）',
+    country: 'switzerland',
+    category: 'housing',
+    summary: 'SNB銀行統計（Mortgage loans）公表のスイス銀行部門住宅ローン残高。銀行資産の最大項目（総資産の38.2%、国内融資の86.7%）。前年比・前月比で信用拡大ペースと住宅市場の過熱感を読む。',
+    loadContent: loadMd('switzerland/ch-mortgage-balance.md'),
+    relatedIndicators: ['ch-overview'],
+    tags: ['スイス', '住宅ローン', '住宅ローン残高', 'Mortgage loans', 'SNB', 'Swiss National Bank', '銀行統計', '住宅市場', '不動産', '家計信用', '銀行貸出', '信用拡大', '金融安定', '不動産価格', 'CHF', 'Swiss Banking'],
+  },
+
+  // --- スイス / 新規住宅ローン融資限度額 ---
+  {
+    indicatorId: 'ch-new-mortgage-loans',
+    title: '新規住宅ローンの融資限度額の合計金額',
+    country: 'switzerland',
+    category: 'housing',
+    summary: 'SNB新規住宅ローン調査公表のフロー指標。スイス国内不動産向けに新規承認された住宅ローンの与信枠総額。購入・借換・建設資金を対象とし、住宅ローン需要・金融環境・金融安定リスクを読む。',
+    loadContent: loadMd('switzerland/ch-new-mortgage-loans.md'),
+    relatedIndicators: ['ch-mortgage-balance', 'ch-overview'],
+    tags: ['スイス', '新規住宅ローン', '融資限度額', '与信枠', 'New mortgage loans', 'SNB', 'Swiss National Bank', '住宅市場', '不動産', '借換', '建設資金', '住宅ローン金利', 'LTV', '金融安定', '家計債務', '住宅信用'],
+  },
+
   // --- ニュージーランド / 中銀制度概要 ---
   {
     indicatorId: 'nz-rbnz-overview',
@@ -2294,6 +2860,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('newzealand/nz-trade.md'),
     relatedIndicators: ['nz-rbnz-overview', 'nz-pmi', 'trade-balance'],
     tags: ['ニュージーランド', '貿易', '中国', '乳製品', '木材', '食肉', '観光', '教育', 'MFAT', 'Stats NZ', 'NZD'],
+  },
+
+  // --- ニュージーランド / 乳製品価格（GDT） ---
+  {
+    indicatorId: 'nz-global-dairy-trade',
+    title: '乳製品価格（GDT）',
+    country: 'newzealand',
+    category: 'economy',
+    summary: 'Global Dairy Trade Eventsの数量加重価格指数。NZ輸出収入とNZDに直結。商品別変化率・平均価格・販売数量・連続性を分けて読み、ヘッドラインだけで判断しない。',
+    loadContent: loadMd('newzealand/nz-global-dairy-trade.md'),
+    relatedIndicators: ['nz-trade', 'nz-rbnz-overview', 'nz-traded-nontraded'],
+    tags: ['ニュージーランド', 'GDT', 'Global Dairy Trade', '乳製品', '全粉乳', '脱脂粉乳', 'バター', 'チーズ', 'WMP', 'SMP', 'Fonterra', 'NZD', '交易条件', '輸出収入', '中国需要', 'オークション'],
   },
 
   // --- ニュージーランド / 貿易財・非貿易財インフレ ---
@@ -2380,6 +2958,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['オーストラリア', 'ANZ', '求人広告', '失業率', '就業者数', 'フルタイム', 'ABS', 'Job Vacancies', '労働市場', '先行指標', 'AUD'],
   },
 
+  // --- オーストラリア / アンダー・ユーティライゼーション率 ---
+  {
+    indicatorId: 'underutilization',
+    title: 'アンダー・ユーティライゼーション率（オーストラリア）',
+    country: 'australia',
+    category: 'employment',
+    summary: '失業率＋不完全就業率で測る労働力余剰指標。失業率だけでは見えない労働市場の緩み・引き締まりを把握。RBAの完全雇用評価・賃金圧力判断の補助指標。',
+    loadContent: loadMd('australia/au-underutilization.md'),
+    relatedIndicators: ['anz-job-advertisements', 'au-rba-overview'],
+    tags: ['オーストラリア', 'アンダー・ユーティライゼーション', 'Underutilisation', '失業率', '不完全就業率', 'Underemployment', 'ABS', 'RBA', '完全雇用', '労働市場', '賃金圧力', 'volume underutilisation', 'u-series', 'AUD'],
+  },
+
   // --- オーストラリア / PMI ---
   {
     indicatorId: 'au-pmi',
@@ -2460,6 +3050,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('eurozone/ecb-rates.md'),
     relatedIndicators: ['ecb-m3', 'ecb-spf', 'ez-pmi'],
     tags: ['ECB', '預金ファシリティ', 'リファイナンスオペ', '限界貸付', 'ラガルド', '記者会見', '関係者報道', '利下げ', '金融政策', 'ユーロ圏'],
+  },
+
+  // --- ユーロ圏 / 銀行金利（MIR） ---
+  {
+    indicatorId: 'ecb-bank-interest-rates',
+    title: '銀行金利（MIR）',
+    country: 'eurozone',
+    category: 'policy',
+    summary: 'ECBのMFI金利統計（MIR）。企業向け貸出金利・住宅ローン金利を新規取引/残高ベースで把握し、政策金利の銀行貸出への波及を確認する。',
+    loadContent: loadMd('eurozone/ecb-bank-interest-rates.md'),
+    relatedIndicators: ['ecb-rates', 'ecb-bls', 'ecb-m3', 'ecb-policy-framework'],
+    tags: ['MIR', 'MFI金利統計', '銀行金利', 'ECB', '企業向け貸出金利', '住宅ローン金利', 'Composite Cost of Borrowing', '新規取引', '残高ベース', '金融政策', '波及', 'ユーロ圏'],
   },
 
   // --- ユーロ圏 / ECB M3 ---
@@ -2558,6 +3160,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['BLS', 'ECB', '銀行貸出調査', '資金需要', '貸出基準', '信用環境', 'ユーロ圏', '四半期'],
   },
 
+  // --- ユーロ圏 / 貸出動向（BSI） ---
+  {
+    indicatorId: 'ecb-adjusted-loans',
+    title: '貸出動向（ユーロ圏・BSI）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ECB BSI（金融機関BS統計）の調整済貸出。非金融法人・家計・住宅購入向けの前年比から信用循環を読む。BLS（定性調査）と対をなす実残高ベースの指標。',
+    loadContent: loadMd('eurozone/ecb-adjusted-loans.md'),
+    relatedIndicators: ['ecb-bls', 'ecb-m3', 'ecb-bank-interest-rates', 'ecb-rates'],
+    tags: ['BSI', 'Balance Sheet Items', '調整済貸出', 'Adjusted Loans', 'MFI', '非金融法人', '家計', '住宅購入', '信用供給', '信用循環', 'ECB', 'ユーロ圏', '銀行貸出'],
+  },
+
   // --- ユーロ圏 / 鉱工業生産 ---
   {
     indicatorId: 'ecb-production',
@@ -2652,6 +3266,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('china/m1-m2.md'),
     relatedIndicators: ['money-stock', 'monetary-base', 'central-bank-balance-sheet'],
     tags: ['M1', 'M2', '中国', '貨幣供応量', 'PBOC', '人民銀行', '信用', '流動性', '統計改訂'],
+  },
+
+  // --- 中国 / クレジットインパルス ---
+  {
+    indicatorId: 'cn-credit-impulse',
+    title: 'クレジットインパルスの見方（中国）',
+    country: 'china',
+    category: 'policy',
+    summary: '社会融資総量ベースで信用供給の加速・減速をGDP比で測る指標。中国景気の先行指標であり、グローバル製造業PMI・米10年債利回り・日本の景気敏感株に半年〜1年先行しやすい。PMI50割れ局面では政策対応の確認材料。',
+    loadContent: loadMd('china/cn-credit-impulse.md'),
+    relatedIndicators: ['m1-m2', 'cn-pmi', 'caixin-pmi', 'cn-ppi', 'cn-overview', 'global-manufacturing-pmi'],
+    tags: ['クレジットインパルス', 'credit impulse', '中国', '社会融資総量', 'TSF', '信用', 'PBOC', 'PMI', '製造業サイクル', '米10年債', '日経平均', '景気敏感株', '先行指標'],
   },
 ]
 

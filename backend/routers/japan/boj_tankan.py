@@ -20,7 +20,7 @@ router = APIRouter(prefix="/api/japan/boj-tankan", tags=["Japan BOJ Tankan"])
 # =============================================================================
 
 @router.get("")
-async def get_tankan_data(
+def get_tankan_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -39,7 +39,7 @@ async def get_tankan_data(
 
 
 @router.get("/chart")
-async def get_tankan_chart_data(
+def get_tankan_chart_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -51,20 +51,20 @@ async def get_tankan_chart_data(
 
 
 @router.post("/refresh")
-async def refresh_tankan_data() -> Dict[str, Any]:
+def refresh_tankan_data() -> Dict[str, Any]:
     """Force refresh BOJ Tankan DI data from BOJ"""
     return boj_tankan_service.get_tankan_data(force_refresh=True)
 
 
 @router.delete("/cache")
-async def invalidate_tankan_cache() -> Dict[str, Any]:
+def invalidate_tankan_cache() -> Dict[str, Any]:
     """Invalidate BOJ Tankan DI cache"""
     success = boj_tankan_service.invalidate_cache()
     return {"success": success, "message": "Cache invalidated" if success else "Cache invalidation failed"}
 
 
 @router.get("/cache-status")
-async def get_tankan_cache_status() -> Dict[str, Any]:
+def get_tankan_cache_status() -> Dict[str, Any]:
     """Get cache status for BOJ Tankan DI data"""
     return boj_tankan_service.get_cache_status()
 
@@ -74,7 +74,7 @@ async def get_tankan_cache_status() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/comprehensive/types")
-async def get_comprehensive_data_types() -> Dict[str, Any]:
+def get_comprehensive_data_types() -> Dict[str, Any]:
     """
     Get list of available comprehensive data types
 
@@ -91,7 +91,7 @@ async def get_comprehensive_data_types() -> Dict[str, Any]:
 # NOTE: table endpoint must come BEFORE the generic {data_type} endpoint
 # to avoid "table" being matched as a data_type
 @router.get("/comprehensive/table/{data_type}")
-async def get_comprehensive_table_data(
+def get_comprehensive_table_data(
     data_type: str,
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
@@ -113,7 +113,7 @@ async def get_comprehensive_table_data(
 
 
 @router.get("/comprehensive/{data_type}")
-async def get_comprehensive_data(
+def get_comprehensive_data(
     data_type: str,
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
@@ -138,7 +138,7 @@ async def get_comprehensive_data(
 
 
 @router.post("/comprehensive/{data_type}/refresh")
-async def refresh_comprehensive_data(data_type: str) -> Dict[str, Any]:
+def refresh_comprehensive_data(data_type: str) -> Dict[str, Any]:
     """Force refresh specific comprehensive data type"""
     return boj_tankan_comprehensive_service.get_comprehensive_data(
         data_type=data_type,
@@ -147,7 +147,7 @@ async def refresh_comprehensive_data(data_type: str) -> Dict[str, Any]:
 
 
 @router.delete("/comprehensive/cache")
-async def invalidate_comprehensive_cache(
+def invalidate_comprehensive_cache(
     data_type: Optional[str] = Query(None, description="Specific data type to clear, or all if not specified")
 ) -> Dict[str, Any]:
     """Invalidate comprehensive data cache"""
@@ -156,7 +156,7 @@ async def invalidate_comprehensive_cache(
 
 
 @router.get("/comprehensive/cache-status")
-async def get_comprehensive_cache_status(
+def get_comprehensive_cache_status(
     data_type: Optional[str] = Query(None, description="Specific data type to check")
 ) -> Dict[str, Any]:
     """Get cache status for comprehensive data"""

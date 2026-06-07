@@ -22,7 +22,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan - Industrial Production"])
 
 
 @router.get("/iip")
-async def get_iip_data(
+def get_iip_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -42,7 +42,7 @@ async def get_iip_data(
 
 
 @router.get("/iip-yoy")
-async def get_iip_yoy_data(
+def get_iip_yoy_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -62,7 +62,7 @@ async def get_iip_yoy_data(
 
 
 @router.get("/iip/cache-status")
-async def get_iip_cache_status():
+def get_iip_cache_status():
     """
     キャッシュステータスを取得（MoM）
     """
@@ -73,7 +73,7 @@ async def get_iip_cache_status():
 
 
 @router.get("/iip-yoy/cache-status")
-async def get_iip_yoy_cache_status():
+def get_iip_yoy_cache_status():
     """
     キャッシュステータスを取得（YoY）
     """
@@ -84,7 +84,7 @@ async def get_iip_yoy_cache_status():
 
 
 @router.post("/iip/refresh")
-async def refresh_iip_data():
+def refresh_iip_data():
     """
     IIPデータを強制更新（MoM）
     """
@@ -101,7 +101,7 @@ async def refresh_iip_data():
 
 
 @router.post("/iip-yoy/refresh")
-async def refresh_iip_yoy_data():
+def refresh_iip_yoy_data():
     """
     IIPデータを強制更新（YoY）
     """
@@ -118,7 +118,7 @@ async def refresh_iip_yoy_data():
 
 
 @router.delete("/iip/cache")
-async def invalidate_iip_cache():
+def invalidate_iip_cache():
     """
     キャッシュを削除（MoM）
     """
@@ -133,7 +133,7 @@ async def invalidate_iip_cache():
 
 
 @router.delete("/iip-yoy/cache")
-async def invalidate_iip_yoy_cache():
+def invalidate_iip_yoy_cache():
     """
     キャッシュを削除（YoY）
     """

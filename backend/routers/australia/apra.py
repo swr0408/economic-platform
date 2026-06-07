@@ -18,7 +18,7 @@ router = APIRouter(
 
 
 @router.get("/housing-loan-arrears")
-async def get_housing_loan_arrears(
+def get_housing_loan_arrears(
     force_refresh: bool = Query(False, description="強制的にデータを再取得")
 ) -> Dict[str, Any]:
     """
@@ -30,13 +30,13 @@ async def get_housing_loan_arrears(
 
 
 @router.get("/housing-loan-arrears/cache")
-async def get_housing_loan_arrears_cache_status() -> Dict[str, Any]:
+def get_housing_loan_arrears_cache_status() -> Dict[str, Any]:
     """住宅ローン延滞率のキャッシュ状態を取得"""
     return au_housing_loan_arrears_service.get_cache_status()
 
 
 @router.delete("/housing-loan-arrears/cache")
-async def invalidate_housing_loan_arrears_cache() -> Dict[str, bool]:
+def invalidate_housing_loan_arrears_cache() -> Dict[str, bool]:
     """住宅ローン延滞率のキャッシュを無効化"""
     success = au_housing_loan_arrears_service.invalidate_cache()
     return {"success": success}

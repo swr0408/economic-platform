@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/japan/pos-uvpi", tags=["Japan Price"])
 
 
 @router.get("")
-async def get_pos_uvpi_data(
+def get_pos_uvpi_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ):
     """
@@ -25,13 +25,13 @@ async def get_pos_uvpi_data(
 
 
 @router.get("/cache/status")
-async def get_cache_status():
+def get_cache_status():
     """キャッシュステータスを取得"""
     return japan_pos_uvpi_service.get_cache_status()
 
 
 @router.post("/cache/refresh")
-async def refresh_cache():
+def refresh_cache():
     """キャッシュを強制更新"""
     result = japan_pos_uvpi_service.get_data(force_refresh=True)
     return {
@@ -43,7 +43,7 @@ async def refresh_cache():
 
 
 @router.delete("/cache")
-async def invalidate_cache():
+def invalidate_cache():
     """キャッシュを無効化"""
     success = japan_pos_uvpi_service.invalidate_cache()
     return {"success": success, "message": "Cache invalidated" if success else "Failed to invalidate cache"}

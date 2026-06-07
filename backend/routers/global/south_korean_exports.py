@@ -20,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("")
-async def get_south_korean_exports(
+def get_south_korean_exports(
     force_refresh: bool = Query(False, description="データを強制再取得"),
 ) -> Dict[str, Any]:
     """韓国輸出（前年比）データを取得"""
@@ -28,13 +28,13 @@ async def get_south_korean_exports(
 
 
 @router.get("/cache")
-async def get_south_korean_exports_cache_status() -> Dict[str, Any]:
+def get_south_korean_exports_cache_status() -> Dict[str, Any]:
     """韓国輸出のキャッシュ状態を取得"""
     return south_korean_exports_service.get_cache_status()
 
 
 @router.delete("/cache")
-async def invalidate_south_korean_exports_cache() -> Dict[str, Any]:
+def invalidate_south_korean_exports_cache() -> Dict[str, Any]:
     """韓国輸出のキャッシュを無効化"""
     result = south_korean_exports_service.invalidate_cache()
     return {"success": result, "message": "Cache invalidated"}

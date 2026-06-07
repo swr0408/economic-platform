@@ -168,6 +168,7 @@ export default function JapanTermsOfTradeChart() {
         showPeriodSelector={false}
         dataSource="日本銀行（BOJ）"
         sourceUrl="https://www.stat-search.boj.or.jp/ssi/docs/info/cgpi_m_jp.zip"
+        handbookId="terms-of-trade"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

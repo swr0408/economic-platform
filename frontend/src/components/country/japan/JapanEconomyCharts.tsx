@@ -15,6 +15,7 @@ import MachineryOrdersForecastTable from './economy/MachineryOrdersForecastTable
 import MachineToolOrdersChart from './economy/MachineToolOrdersChart'
 import BOJTankanUnifiedTable from './economy/BOJTankanUnifiedTable'
 import BSIUnifiedChart from './economy/BSIUnifiedChart'
+import ReutersTankanChart from './economy/ReutersTankanChart'
 import JapanPMIChart from './economy/JapanPMIChart'
 import JapanCurrentAccountChart from './economy/JapanCurrentAccountChart'
 import JapanCurrentAccountGdpRatioChart from './economy/JapanCurrentAccountGdpRatioChart'
@@ -111,6 +112,11 @@ export default function JapanEconomyCharts() {
       {/* BSI 法人企業景気予測調査 */}
       <div id="bsi">
         <BSIUnifiedChart />
+      </div>
+
+      {/* ロイター短観 */}
+      <div id="reuters-tankan">
+        <ReutersTankanChart />
       </div>
 
       {/* S&P Global PMI（日本） */}

@@ -1,5 +1,5 @@
 """
-RONI (Revised Oceanic Niño Index) サービス
+RONI (Relative Oceanic Niño Index) サービス
 
 データソース:
   - NOAA CPC HTML: https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso/roni/
@@ -135,7 +135,7 @@ class RoniService:
             "latest": latest,
             "metadata": {
                 "source": "NOAA CPC",
-                "dataset": "RONI (Revised Oceanic Niño Index)",
+                "dataset": "RONI (Relative Oceanic Niño Index)",
                 "frequency": "monthly",
                 "unit": "°C",
                 "base_period": "1991-2020",

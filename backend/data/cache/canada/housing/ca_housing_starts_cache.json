@@ -2563,40 +2563,52 @@
     },
     {
       "date": "2025-10-01",
-      "value": 230.7,
-      "mom": -17.82,
-      "yoy": -5.37
+      "value": 231.2,
+      "mom": -17.61,
+      "yoy": -5.13
     },
     {
       "date": "2025-11-01",
-      "value": 252.4,
-      "mom": 9.45,
-      "yoy": -3.99
+      "value": 253.2,
+      "mom": 9.49,
+      "yoy": -3.7
     },
     {
       "date": "2025-12-01",
-      "value": 280.4,
-      "mom": 11.06,
-      "yoy": 20.52
+      "value": 282.0,
+      "mom": 11.39,
+      "yoy": 21.23
     },
     {
       "date": "2026-01-01",
-      "value": 240.1,
-      "mom": -14.34,
-      "yoy": 2.7
+      "value": 236.4,
+      "mom": -16.16,
+      "yoy": 1.11
     },
     {
       "date": "2026-02-01",
-      "value": 250.9,
-      "mom": 4.48,
-      "yoy": 12.79
+      "value": 249.9,
+      "mom": 5.71,
+      "yoy": 12.36
+    },
+    {
+      "date": "2026-03-01",
+      "value": 239.7,
+      "mom": -4.08,
+      "yoy": 11.77
+    },
+    {
+      "date": "2026-04-01",
+      "value": 279.3,
+      "mom": 16.5,
+      "yoy": -0.89
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 250.9,
-    "mom": 4.48,
-    "yoy": 12.79
+    "date": "2026-04-01",
+    "value": 279.3,
+    "mom": 16.5,
+    "yoy": -0.89
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2607,14 +2619,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-05-15",
-    "datetime_utc": "2026-05-15T12:15:00+00:00",
-    "datetime_jst": "2026-05-15T21:15:00+09:00",
+    "date": "2026-06-15",
+    "datetime_utc": "2026-06-15T12:15:00+00:00",
+    "datetime_jst": "2026-06-15T21:15:00+09:00",
     "time_jst": "21:15",
-    "datetime_toronto": "2026-05-15T08:15:00-04:00",
+    "datetime_toronto": "2026-06-15T08:15:00-04:00",
     "time_toronto": "08:15",
-    "label": "Housing Starts (Apr)",
+    "label": "Housing Starts (May)",
     "estimate": null
   },
-  "last_updated": "2026-04-18T04:06:11.911874+09:00"
+  "last_updated": "2026-06-07T11:31:27.172296+09:00"
 }

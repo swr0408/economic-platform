@@ -19,7 +19,7 @@ router = APIRouter(prefix="/api/japan/bsi", tags=["Japan BSI"])
 # =============================================================================
 
 @router.get("")
-async def get_bsi_data(
+def get_bsi_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -37,7 +37,7 @@ async def get_bsi_data(
 
 
 @router.get("/chart")
-async def get_bsi_chart_data(
+def get_bsi_chart_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -49,7 +49,7 @@ async def get_bsi_chart_data(
 
 
 @router.get("/table")
-async def get_bsi_table_data(
+def get_bsi_table_data(
     force_refresh: bool = Query(False, description="Force refresh from source")
 ) -> Dict[str, Any]:
     """
@@ -61,13 +61,13 @@ async def get_bsi_table_data(
 
 
 @router.post("/refresh")
-async def refresh_bsi_data() -> Dict[str, Any]:
+def refresh_bsi_data() -> Dict[str, Any]:
     """Force refresh BSI data from e-Stat"""
     return bsi_service.get_bsi_data(force_refresh=True)
 
 
 @router.delete("/cache")
-async def invalidate_bsi_cache() -> Dict[str, Any]:
+def invalidate_bsi_cache() -> Dict[str, Any]:
     """Invalidate BSI cache"""
     success = bsi_service.invalidate_cache()
     return {"success": success, "message": "Cache invalidated" if success else "Cache invalidation failed"}
@@ -78,7 +78,7 @@ async def invalidate_bsi_cache() -> Dict[str, Any]:
 # =============================================================================
 
 @router.get("/sheets")
-async def get_sheet_info() -> Dict[str, Any]:
+def get_sheet_info() -> Dict[str, Any]:
     """
     Get available sheet and period type information
 
@@ -90,7 +90,7 @@ async def get_sheet_info() -> Dict[str, Any]:
 
 
 @router.get("/{sheet_name}/{period_type}")
-async def get_comprehensive_data(
+def get_comprehensive_data(
     sheet_name: str,
     period_type: str,
     force_refresh: bool = Query(False, description="Force refresh from source")
@@ -129,7 +129,7 @@ async def get_comprehensive_data(
 
 
 @router.get("/{sheet_name}/{period_type}/chart")
-async def get_comprehensive_chart_data(
+def get_comprehensive_chart_data(
     sheet_name: str,
     period_type: str,
     force_refresh: bool = Query(False, description="Force refresh from source")
@@ -168,7 +168,7 @@ async def get_comprehensive_chart_data(
 
 
 @router.post("/{sheet_name}/{period_type}/refresh")
-async def refresh_comprehensive_data(
+def refresh_comprehensive_data(
     sheet_name: str,
     period_type: str
 ) -> Dict[str, Any]:
@@ -181,7 +181,7 @@ async def refresh_comprehensive_data(
 
 
 @router.delete("/comprehensive/cache")
-async def invalidate_comprehensive_cache(
+def invalidate_comprehensive_cache(
     sheet_name: Optional[str] = Query(None, description="Specific sheet to clear"),
     period_type: Optional[str] = Query(None, description="Specific period type to clear")
 ) -> Dict[str, Any]:

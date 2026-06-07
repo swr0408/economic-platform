@@ -14,7 +14,7 @@ router = APIRouter(prefix="/api/japan", tags=["Japan Potential Growth"])
 
 
 @router.get("/potential-growth")
-async def get_potential_growth_data(
+def get_potential_growth_data(
     force_refresh: bool = Query(False, description="キャッシュを無視して再取得")
 ) -> Dict[str, Any]:
     """
@@ -30,7 +30,7 @@ async def get_potential_growth_data(
 
 
 @router.get("/potential-growth/cache-status")
-async def get_potential_growth_cache_status() -> Dict[str, Any]:
+def get_potential_growth_cache_status() -> Dict[str, Any]:
     """
     潜在成長率のキャッシュ状態を取得
 

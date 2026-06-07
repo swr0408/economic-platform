@@ -186,9 +186,11 @@ class RightmoveHousePriceService:
 
                         result.append({
                             "date": date_str,
-                            "value": float(actual) if actual else None,
-                            "forecast": float(estimate) if estimate else None,
-                            "previous": float(previous) if previous else None,
+                            # 0.0 を falsy 判定で None 化しないよう is not None で判定する。
+                            # （前月比0%の月がグラフ/Tooltipから消える不具合の原因だった）
+                            "value": float(actual) if actual is not None else None,
+                            "forecast": float(estimate) if estimate is not None else None,
+                            "previous": float(previous) if previous is not None else None,
                         })
 
                 logger.info(f"[Rightmove House Price] Loaded {len(result)} MoM records from DB")
@@ -228,9 +230,11 @@ class RightmoveHousePriceService:
 
                         result.append({
                             "date": date_str,
-                            "value": float(actual) if actual else None,
-                            "forecast": float(estimate) if estimate else None,
-                            "previous": float(previous) if previous else None,
+                            # 0.0 を falsy 判定で None 化しないよう is not None で判定する。
+                            # （前月比0%の月がグラフ/Tooltipから消える不具合の原因だった）
+                            "value": float(actual) if actual is not None else None,
+                            "forecast": float(estimate) if estimate is not None else None,
+                            "previous": float(previous) if previous is not None else None,
                         })
 
                 logger.info(f"[Rightmove House Price] Loaded {len(result)} YoY records from DB")

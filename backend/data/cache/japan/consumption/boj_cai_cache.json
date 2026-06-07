@@ -2,1386 +2,1406 @@
   "data": [
     {
       "date": "2003-01-01",
-      "nominal_cai": 90.66,
-      "real_cai": 93.13
+      "nominal_cai": 100.53,
+      "real_cai": 99.53
     },
     {
       "date": "2003-02-01",
-      "nominal_cai": 91.47,
-      "real_cai": 93.65
+      "nominal_cai": 101.51,
+      "real_cai": 100.11
     },
     {
       "date": "2003-03-01",
-      "nominal_cai": 91.73,
-      "real_cai": 93.86
+      "nominal_cai": 101.75,
+      "real_cai": 100.3
     },
     {
       "date": "2003-04-01",
-      "nominal_cai": 91.18,
-      "real_cai": 93.23
+      "nominal_cai": 100.94,
+      "real_cai": 99.36
     },
     {
       "date": "2003-05-01",
-      "nominal_cai": 91.46,
-      "real_cai": 93.8
+      "nominal_cai": 101.33,
+      "real_cai": 100.13
     },
     {
       "date": "2003-06-01",
-      "nominal_cai": 92.42,
-      "real_cai": 95.58
+      "nominal_cai": 102.14,
+      "real_cai": 101.81
     },
     {
       "date": "2003-07-01",
-      "nominal_cai": 91.01,
-      "real_cai": 93.03
-    },
-    {
-      "date": "2003-08-01",
-      "nominal_cai": 91.83,
-      "real_cai": 93.92
-    },
-    {
-      "date": "2003-09-01",
-      "nominal_cai": 92.35,
-      "real_cai": 94.65
-    },
-    {
-      "date": "2003-10-01",
-      "nominal_cai": 92.37,
-      "real_cai": 94.97
-    },
-    {
-      "date": "2003-11-01",
-      "nominal_cai": 91.86,
-      "real_cai": 94.39
-    },
-    {
-      "date": "2003-12-01",
-      "nominal_cai": 92.75,
-      "real_cai": 95.33
-    },
-    {
-      "date": "2004-01-01",
-      "nominal_cai": 91.81,
-      "real_cai": 94.2
-    },
-    {
-      "date": "2004-02-01",
-      "nominal_cai": 92.75,
-      "real_cai": 94.79
-    },
-    {
-      "date": "2004-03-01",
-      "nominal_cai": 92.5,
-      "real_cai": 94.56
-    },
-    {
-      "date": "2004-04-01",
-      "nominal_cai": 92.42,
-      "real_cai": 94.65
-    },
-    {
-      "date": "2004-05-01",
-      "nominal_cai": 92.18,
-      "real_cai": 94.61
-    },
-    {
-      "date": "2004-06-01",
-      "nominal_cai": 92.9,
-      "real_cai": 94.77
-    },
-    {
-      "date": "2004-07-01",
-      "nominal_cai": 93.77,
-      "real_cai": 95.73
-    },
-    {
-      "date": "2004-08-01",
-      "nominal_cai": 92.71,
-      "real_cai": 95.13
-    },
-    {
-      "date": "2004-09-01",
-      "nominal_cai": 93.45,
-      "real_cai": 95.73
-    },
-    {
-      "date": "2004-10-01",
-      "nominal_cai": 93.57,
-      "real_cai": 95.38
-    },
-    {
-      "date": "2004-11-01",
-      "nominal_cai": 93.59,
-      "real_cai": 95.16
-    },
-    {
-      "date": "2004-12-01",
-      "nominal_cai": 94.05,
-      "real_cai": 95.99
-    },
-    {
-      "date": "2005-01-01",
-      "nominal_cai": 93.83,
-      "real_cai": 95.96
-    },
-    {
-      "date": "2005-02-01",
-      "nominal_cai": 93.48,
-      "real_cai": 95.58
-    },
-    {
-      "date": "2005-03-01",
-      "nominal_cai": 94.11,
-      "real_cai": 95.98
-    },
-    {
-      "date": "2005-04-01",
-      "nominal_cai": 94.48,
-      "real_cai": 96.73
-    },
-    {
-      "date": "2005-05-01",
-      "nominal_cai": 93.98,
-      "real_cai": 96.24
-    },
-    {
-      "date": "2005-06-01",
-      "nominal_cai": 94.19,
-      "real_cai": 96.72
-    },
-    {
-      "date": "2005-07-01",
-      "nominal_cai": 94.04,
-      "real_cai": 96.41
-    },
-    {
-      "date": "2005-08-01",
-      "nominal_cai": 93.9,
-      "real_cai": 96.49
-    },
-    {
-      "date": "2005-09-01",
-      "nominal_cai": 94.13,
-      "real_cai": 96.55
-    },
-    {
-      "date": "2005-10-01",
-      "nominal_cai": 94.23,
-      "real_cai": 96.59
-    },
-    {
-      "date": "2005-11-01",
-      "nominal_cai": 94.9,
-      "real_cai": 97.33
-    },
-    {
-      "date": "2005-12-01",
-      "nominal_cai": 95.38,
-      "real_cai": 97.65
-    },
-    {
-      "date": "2006-01-01",
-      "nominal_cai": 95.26,
-      "real_cai": 97.42
-    },
-    {
-      "date": "2006-02-01",
-      "nominal_cai": 94.87,
-      "real_cai": 97.08
-    },
-    {
-      "date": "2006-03-01",
-      "nominal_cai": 95.45,
-      "real_cai": 97.47
-    },
-    {
-      "date": "2006-04-01",
-      "nominal_cai": 95.11,
-      "real_cai": 97.46
-    },
-    {
-      "date": "2006-05-01",
-      "nominal_cai": 95.55,
-      "real_cai": 97.7
-    },
-    {
-      "date": "2006-06-01",
-      "nominal_cai": 95.93,
-      "real_cai": 98.62
-    },
-    {
-      "date": "2006-07-01",
-      "nominal_cai": 94.24,
-      "real_cai": 95.98
-    },
-    {
-      "date": "2006-08-01",
-      "nominal_cai": 95.13,
-      "real_cai": 96.84
-    },
-    {
-      "date": "2006-09-01",
-      "nominal_cai": 94.96,
-      "real_cai": 96.71
-    },
-    {
-      "date": "2006-10-01",
-      "nominal_cai": 95.35,
-      "real_cai": 97.44
-    },
-    {
-      "date": "2006-11-01",
-      "nominal_cai": 95.49,
-      "real_cai": 97.59
-    },
-    {
-      "date": "2006-12-01",
-      "nominal_cai": 95.9,
-      "real_cai": 97.77
-    },
-    {
-      "date": "2007-01-01",
-      "nominal_cai": 95.77,
-      "real_cai": 97.79
-    },
-    {
-      "date": "2007-02-01",
-      "nominal_cai": 96.24,
-      "real_cai": 98.42
-    },
-    {
-      "date": "2007-03-01",
-      "nominal_cai": 95.75,
-      "real_cai": 97.94
-    },
-    {
-      "date": "2007-04-01",
-      "nominal_cai": 95.87,
-      "real_cai": 98.11
-    },
-    {
-      "date": "2007-05-01",
-      "nominal_cai": 96.25,
-      "real_cai": 98.27
-    },
-    {
-      "date": "2007-06-01",
-      "nominal_cai": 96.0,
-      "real_cai": 98.16
-    },
-    {
-      "date": "2007-07-01",
-      "nominal_cai": 94.21,
-      "real_cai": 96.35
-    },
-    {
-      "date": "2007-08-01",
-      "nominal_cai": 95.87,
-      "real_cai": 97.93
-    },
-    {
-      "date": "2007-09-01",
-      "nominal_cai": 95.85,
-      "real_cai": 97.99
-    },
-    {
-      "date": "2007-10-01",
-      "nominal_cai": 95.63,
-      "real_cai": 97.39
-    },
-    {
-      "date": "2007-11-01",
-      "nominal_cai": 96.14,
-      "real_cai": 97.75
-    },
-    {
-      "date": "2007-12-01",
-      "nominal_cai": 95.79,
-      "real_cai": 96.98
-    },
-    {
-      "date": "2008-01-01",
-      "nominal_cai": 95.87,
-      "real_cai": 97.04
-    },
-    {
-      "date": "2008-02-01",
-      "nominal_cai": 95.82,
-      "real_cai": 97.17
-    },
-    {
-      "date": "2008-03-01",
-      "nominal_cai": 95.9,
-      "real_cai": 97.03
-    },
-    {
-      "date": "2008-04-01",
-      "nominal_cai": 95.76,
-      "real_cai": 97.17
-    },
-    {
-      "date": "2008-05-01",
-      "nominal_cai": 95.17,
-      "real_cai": 95.92
-    },
-    {
-      "date": "2008-06-01",
-      "nominal_cai": 95.31,
-      "real_cai": 95.68
-    },
-    {
-      "date": "2008-07-01",
-      "nominal_cai": 95.54,
-      "real_cai": 95.36
-    },
-    {
-      "date": "2008-08-01",
-      "nominal_cai": 94.59,
-      "real_cai": 94.64
-    },
-    {
-      "date": "2008-09-01",
-      "nominal_cai": 94.57,
-      "real_cai": 94.71
-    },
-    {
-      "date": "2008-10-01",
-      "nominal_cai": 94.38,
-      "real_cai": 94.44
-    },
-    {
-      "date": "2008-11-01",
-      "nominal_cai": 94.69,
-      "real_cai": 95.18
-    },
-    {
-      "date": "2008-12-01",
-      "nominal_cai": 93.56,
-      "real_cai": 94.41
-    },
-    {
-      "date": "2009-01-01",
-      "nominal_cai": 92.87,
-      "real_cai": 94.22
-    },
-    {
-      "date": "2009-02-01",
-      "nominal_cai": 92.26,
-      "real_cai": 93.74
-    },
-    {
-      "date": "2009-03-01",
-      "nominal_cai": 92.54,
-      "real_cai": 94.03
-    },
-    {
-      "date": "2009-04-01",
-      "nominal_cai": 92.34,
-      "real_cai": 94.16
-    },
-    {
-      "date": "2009-05-01",
-      "nominal_cai": 92.52,
-      "real_cai": 94.56
-    },
-    {
-      "date": "2009-06-01",
-      "nominal_cai": 92.38,
-      "real_cai": 94.7
-    },
-    {
-      "date": "2009-07-01",
-      "nominal_cai": 92.71,
-      "real_cai": 95.13
-    },
-    {
-      "date": "2009-08-01",
-      "nominal_cai": 92.22,
-      "real_cai": 94.97
-    },
-    {
-      "date": "2009-09-01",
-      "nominal_cai": 93.57,
-      "real_cai": 96.1
-    },
-    {
-      "date": "2009-10-01",
-      "nominal_cai": 92.87,
-      "real_cai": 95.53
-    },
-    {
-      "date": "2009-11-01",
-      "nominal_cai": 93.08,
-      "real_cai": 95.96
-    },
-    {
-      "date": "2009-12-01",
-      "nominal_cai": 93.74,
-      "real_cai": 96.56
-    },
-    {
-      "date": "2010-01-01",
-      "nominal_cai": 93.61,
-      "real_cai": 96.52
-    },
-    {
-      "date": "2010-02-01",
-      "nominal_cai": 93.54,
-      "real_cai": 96.34
-    },
-    {
-      "date": "2010-03-01",
-      "nominal_cai": 94.56,
-      "real_cai": 97.36
-    },
-    {
-      "date": "2010-04-01",
-      "nominal_cai": 94.32,
-      "real_cai": 97.24
-    },
-    {
-      "date": "2010-05-01",
-      "nominal_cai": 93.5,
-      "real_cai": 96.75
-    },
-    {
-      "date": "2010-06-01",
-      "nominal_cai": 93.56,
-      "real_cai": 96.75
-    },
-    {
-      "date": "2010-07-01",
-      "nominal_cai": 94.03,
-      "real_cai": 97.71
-    },
-    {
-      "date": "2010-08-01",
-      "nominal_cai": 95.8,
-      "real_cai": 99.8
-    },
-    {
-      "date": "2010-09-01",
-      "nominal_cai": 95.53,
-      "real_cai": 99.84
-    },
-    {
-      "date": "2010-10-01",
-      "nominal_cai": 93.36,
-      "real_cai": 95.82
-    },
-    {
-      "date": "2010-11-01",
-      "nominal_cai": 95.65,
-      "real_cai": 98.05
-    },
-    {
-      "date": "2010-12-01",
-      "nominal_cai": 92.33,
-      "real_cai": 95.11
-    },
-    {
-      "date": "2011-01-01",
-      "nominal_cai": 92.95,
-      "real_cai": 96.05
-    },
-    {
-      "date": "2011-02-01",
-      "nominal_cai": 94.02,
-      "real_cai": 97.03
-    },
-    {
-      "date": "2011-03-01",
-      "nominal_cai": 87.66,
-      "real_cai": 90.54
-    },
-    {
-      "date": "2011-04-01",
-      "nominal_cai": 89.68,
-      "real_cai": 92.8
-    },
-    {
-      "date": "2011-05-01",
-      "nominal_cai": 92.46,
-      "real_cai": 95.91
-    },
-    {
-      "date": "2011-06-01",
-      "nominal_cai": 94.32,
-      "real_cai": 97.92
-    },
-    {
-      "date": "2011-07-01",
-      "nominal_cai": 95.06,
-      "real_cai": 98.47
-    },
-    {
-      "date": "2011-08-01",
-      "nominal_cai": 93.31,
-      "real_cai": 97.12
-    },
-    {
-      "date": "2011-09-01",
-      "nominal_cai": 92.99,
-      "real_cai": 96.61
-    },
-    {
-      "date": "2011-10-01",
-      "nominal_cai": 94.24,
-      "real_cai": 97.68
-    },
-    {
-      "date": "2011-11-01",
-      "nominal_cai": 93.16,
-      "real_cai": 96.86
-    },
-    {
-      "date": "2011-12-01",
-      "nominal_cai": 93.91,
-      "real_cai": 97.59
-    },
-    {
-      "date": "2012-01-01",
-      "nominal_cai": 95.25,
-      "real_cai": 99.04
-    },
-    {
-      "date": "2012-02-01",
-      "nominal_cai": 94.9,
-      "real_cai": 98.03
-    },
-    {
-      "date": "2012-03-01",
-      "nominal_cai": 95.01,
-      "real_cai": 98.01
-    },
-    {
-      "date": "2012-04-01",
-      "nominal_cai": 95.34,
-      "real_cai": 98.61
-    },
-    {
-      "date": "2012-05-01",
-      "nominal_cai": 95.37,
-      "real_cai": 99.05
-    },
-    {
-      "date": "2012-06-01",
-      "nominal_cai": 95.15,
-      "real_cai": 99.11
-    },
-    {
-      "date": "2012-07-01",
-      "nominal_cai": 95.55,
-      "real_cai": 99.88
-    },
-    {
-      "date": "2012-08-01",
-      "nominal_cai": 95.4,
-      "real_cai": 99.87
-    },
-    {
-      "date": "2012-09-01",
-      "nominal_cai": 95.0,
-      "real_cai": 99.23
-    },
-    {
-      "date": "2012-10-01",
-      "nominal_cai": 95.05,
-      "real_cai": 99.19
-    },
-    {
-      "date": "2012-11-01",
-      "nominal_cai": 94.89,
-      "real_cai": 99.22
-    },
-    {
-      "date": "2012-12-01",
-      "nominal_cai": 95.35,
-      "real_cai": 99.64
-    },
-    {
-      "date": "2013-01-01",
-      "nominal_cai": 95.94,
-      "real_cai": 100.47
-    },
-    {
-      "date": "2013-02-01",
-      "nominal_cai": 96.28,
-      "real_cai": 100.75
-    },
-    {
-      "date": "2013-03-01",
-      "nominal_cai": 96.59,
-      "real_cai": 100.99
-    },
-    {
-      "date": "2013-04-01",
-      "nominal_cai": 96.42,
-      "real_cai": 100.85
-    },
-    {
-      "date": "2013-05-01",
-      "nominal_cai": 96.92,
-      "real_cai": 101.36
-    },
-    {
-      "date": "2013-06-01",
-      "nominal_cai": 97.1,
-      "real_cai": 101.33
-    },
-    {
-      "date": "2013-07-01",
-      "nominal_cai": 96.86,
-      "real_cai": 100.82
-    },
-    {
-      "date": "2013-08-01",
-      "nominal_cai": 97.18,
-      "real_cai": 101.1
-    },
-    {
-      "date": "2013-09-01",
-      "nominal_cai": 97.48,
-      "real_cai": 101.16
-    },
-    {
-      "date": "2013-10-01",
-      "nominal_cai": 97.81,
-      "real_cai": 101.44
-    },
-    {
-      "date": "2013-11-01",
-      "nominal_cai": 98.57,
-      "real_cai": 101.84
-    },
-    {
-      "date": "2013-12-01",
-      "nominal_cai": 99.06,
-      "real_cai": 102.21
-    },
-    {
-      "date": "2014-01-01",
-      "nominal_cai": 99.68,
-      "real_cai": 103.18
-    },
-    {
-      "date": "2014-02-01",
-      "nominal_cai": 98.71,
-      "real_cai": 101.85
-    },
-    {
-      "date": "2014-03-01",
-      "nominal_cai": 104.28,
-      "real_cai": 107.82
-    },
-    {
-      "date": "2014-04-01",
-      "nominal_cai": 95.92,
-      "real_cai": 96.44
-    },
-    {
-      "date": "2014-05-01",
-      "nominal_cai": 97.61,
-      "real_cai": 98.12
-    },
-    {
-      "date": "2014-06-01",
-      "nominal_cai": 98.14,
-      "real_cai": 98.55
-    },
-    {
-      "date": "2014-07-01",
-      "nominal_cai": 98.18,
-      "real_cai": 98.39
-    },
-    {
-      "date": "2014-08-01",
-      "nominal_cai": 98.51,
-      "real_cai": 98.76
-    },
-    {
-      "date": "2014-09-01",
-      "nominal_cai": 100.1,
-      "real_cai": 100.22
-    },
-    {
-      "date": "2014-10-01",
-      "nominal_cai": 99.13,
-      "real_cai": 99.55
-    },
-    {
-      "date": "2014-11-01",
-      "nominal_cai": 100.04,
-      "real_cai": 100.69
-    },
-    {
-      "date": "2014-12-01",
-      "nominal_cai": 99.88,
-      "real_cai": 100.36
-    },
-    {
-      "date": "2015-01-01",
-      "nominal_cai": 98.99,
-      "real_cai": 99.44
-    },
-    {
-      "date": "2015-02-01",
-      "nominal_cai": 99.6,
-      "real_cai": 100.17
-    },
-    {
-      "date": "2015-03-01",
-      "nominal_cai": 99.72,
-      "real_cai": 99.99
-    },
-    {
-      "date": "2015-04-01",
-      "nominal_cai": 99.25,
-      "real_cai": 99.16
-    },
-    {
-      "date": "2015-05-01",
-      "nominal_cai": 99.96,
-      "real_cai": 99.77
-    },
-    {
-      "date": "2015-06-01",
-      "nominal_cai": 99.54,
+      "nominal_cai": 100.77,
       "real_cai": 99.31
     },
     {
-      "date": "2015-07-01",
-      "nominal_cai": 100.36,
-      "real_cai": 100.17
-    },
-    {
-      "date": "2015-08-01",
-      "nominal_cai": 100.77,
-      "real_cai": 100.53
-    },
-    {
-      "date": "2015-09-01",
-      "nominal_cai": 101.53,
-      "real_cai": 101.12
-    },
-    {
-      "date": "2015-10-01",
-      "nominal_cai": 101.08,
-      "real_cai": 100.95
-    },
-    {
-      "date": "2015-11-01",
-      "nominal_cai": 99.36,
-      "real_cai": 99.52
-    },
-    {
-      "date": "2015-12-01",
-      "nominal_cai": 99.85,
-      "real_cai": 99.87
-    },
-    {
-      "date": "2016-01-01",
-      "nominal_cai": 99.92,
-      "real_cai": 100.06
-    },
-    {
-      "date": "2016-02-01",
-      "nominal_cai": 99.4,
-      "real_cai": 99.59
-    },
-    {
-      "date": "2016-03-01",
-      "nominal_cai": 100.17,
-      "real_cai": 100.19
-    },
-    {
-      "date": "2016-04-01",
-      "nominal_cai": 99.14,
-      "real_cai": 98.96
-    },
-    {
-      "date": "2016-05-01",
-      "nominal_cai": 99.85,
-      "real_cai": 99.89
-    },
-    {
-      "date": "2016-06-01",
-      "nominal_cai": 99.79,
-      "real_cai": 99.73
-    },
-    {
-      "date": "2016-07-01",
-      "nominal_cai": 100.56,
-      "real_cai": 100.52
-    },
-    {
-      "date": "2016-08-01",
-      "nominal_cai": 100.01,
-      "real_cai": 100.25
-    },
-    {
-      "date": "2016-09-01",
-      "nominal_cai": 100.03,
-      "real_cai": 100.26
-    },
-    {
-      "date": "2016-10-01",
-      "nominal_cai": 100.73,
-      "real_cai": 100.63
-    },
-    {
-      "date": "2016-11-01",
-      "nominal_cai": 100.75,
-      "real_cai": 100.44
-    },
-    {
-      "date": "2016-12-01",
-      "nominal_cai": 100.5,
-      "real_cai": 100.31
-    },
-    {
-      "date": "2017-01-01",
-      "nominal_cai": 100.94,
-      "real_cai": 100.86
-    },
-    {
-      "date": "2017-02-01",
-      "nominal_cai": 100.98,
-      "real_cai": 100.94
-    },
-    {
-      "date": "2017-03-01",
-      "nominal_cai": 101.45,
-      "real_cai": 101.62
-    },
-    {
-      "date": "2017-04-01",
-      "nominal_cai": 101.83,
-      "real_cai": 101.31
-    },
-    {
-      "date": "2017-05-01",
-      "nominal_cai": 101.89,
-      "real_cai": 101.52
-    },
-    {
-      "date": "2017-06-01",
-      "nominal_cai": 101.71,
-      "real_cai": 101.29
-    },
-    {
-      "date": "2017-07-01",
-      "nominal_cai": 101.66,
-      "real_cai": 101.34
-    },
-    {
-      "date": "2017-08-01",
-      "nominal_cai": 101.45,
-      "real_cai": 101.19
-    },
-    {
-      "date": "2017-09-01",
-      "nominal_cai": 101.49,
-      "real_cai": 101.0
-    },
-    {
-      "date": "2017-10-01",
-      "nominal_cai": 100.82,
-      "real_cai": 100.57
-    },
-    {
-      "date": "2017-11-01",
-      "nominal_cai": 102.48,
-      "real_cai": 101.79
-    },
-    {
-      "date": "2017-12-01",
-      "nominal_cai": 102.88,
-      "real_cai": 101.73
-    },
-    {
-      "date": "2018-01-01",
-      "nominal_cai": 102.54,
-      "real_cai": 101.22
-    },
-    {
-      "date": "2018-02-01",
-      "nominal_cai": 102.86,
-      "real_cai": 101.43
-    },
-    {
-      "date": "2018-03-01",
-      "nominal_cai": 102.85,
-      "real_cai": 101.67
-    },
-    {
-      "date": "2018-04-01",
-      "nominal_cai": 102.79,
-      "real_cai": 101.8
-    },
-    {
-      "date": "2018-05-01",
-      "nominal_cai": 102.55,
-      "real_cai": 101.59
-    },
-    {
-      "date": "2018-06-01",
-      "nominal_cai": 102.96,
-      "real_cai": 101.98
-    },
-    {
-      "date": "2018-07-01",
-      "nominal_cai": 103.48,
-      "real_cai": 102.44
-    },
-    {
-      "date": "2018-08-01",
-      "nominal_cai": 103.74,
-      "real_cai": 102.23
-    },
-    {
-      "date": "2018-09-01",
-      "nominal_cai": 103.28,
-      "real_cai": 101.78
-    },
-    {
-      "date": "2018-10-01",
-      "nominal_cai": 103.38,
-      "real_cai": 101.91
-    },
-    {
-      "date": "2018-11-01",
-      "nominal_cai": 103.48,
-      "real_cai": 101.99
-    },
-    {
-      "date": "2018-12-01",
-      "nominal_cai": 103.45,
-      "real_cai": 102.23
-    },
-    {
-      "date": "2019-01-01",
-      "nominal_cai": 103.69,
-      "real_cai": 102.28
-    },
-    {
-      "date": "2019-02-01",
-      "nominal_cai": 103.92,
-      "real_cai": 102.35
-    },
-    {
-      "date": "2019-03-01",
-      "nominal_cai": 103.96,
-      "real_cai": 102.27
-    },
-    {
-      "date": "2019-04-01",
-      "nominal_cai": 104.75,
-      "real_cai": 102.86
-    },
-    {
-      "date": "2019-05-01",
-      "nominal_cai": 104.62,
-      "real_cai": 102.84
-    },
-    {
-      "date": "2019-06-01",
-      "nominal_cai": 103.87,
-      "real_cai": 102.13
-    },
-    {
-      "date": "2019-07-01",
-      "nominal_cai": 103.01,
-      "real_cai": 101.47
-    },
-    {
-      "date": "2019-08-01",
-      "nominal_cai": 104.77,
-      "real_cai": 103.03
-    },
-    {
-      "date": "2019-09-01",
-      "nominal_cai": 108.12,
-      "real_cai": 106.6
-    },
-    {
-      "date": "2019-10-01",
-      "nominal_cai": 98.87,
-      "real_cai": 96.62
-    },
-    {
-      "date": "2019-11-01",
-      "nominal_cai": 101.9,
-      "real_cai": 99.25
-    },
-    {
-      "date": "2019-12-01",
-      "nominal_cai": 102.31,
-      "real_cai": 99.61
-    },
-    {
-      "date": "2020-01-01",
-      "nominal_cai": 102.02,
-      "real_cai": 99.17
-    },
-    {
-      "date": "2020-02-01",
-      "nominal_cai": 101.15,
-      "real_cai": 98.42
-    },
-    {
-      "date": "2020-03-01",
-      "nominal_cai": 93.45,
-      "real_cai": 90.94
-    },
-    {
-      "date": "2020-04-01",
-      "nominal_cai": 81.74,
-      "real_cai": 79.67
-    },
-    {
-      "date": "2020-05-01",
-      "nominal_cai": 81.56,
-      "real_cai": 79.54
-    },
-    {
-      "date": "2020-06-01",
-      "nominal_cai": 93.0,
-      "real_cai": 90.72
-    },
-    {
-      "date": "2020-07-01",
-      "nominal_cai": 92.98,
-      "real_cai": 90.61
-    },
-    {
-      "date": "2020-08-01",
-      "nominal_cai": 94.23,
-      "real_cai": 91.7
-    },
-    {
-      "date": "2020-09-01",
-      "nominal_cai": 96.23,
-      "real_cai": 93.9
-    },
-    {
-      "date": "2020-10-01",
-      "nominal_cai": 95.37,
-      "real_cai": 93.32
-    },
-    {
-      "date": "2020-11-01",
-      "nominal_cai": 95.87,
-      "real_cai": 94.16
-    },
-    {
-      "date": "2020-12-01",
-      "nominal_cai": 95.36,
-      "real_cai": 93.57
-    },
-    {
-      "date": "2021-01-01",
-      "nominal_cai": 92.02,
-      "real_cai": 89.84
-    },
-    {
-      "date": "2021-02-01",
-      "nominal_cai": 93.15,
-      "real_cai": 90.94
-    },
-    {
-      "date": "2021-03-01",
-      "nominal_cai": 94.61,
-      "real_cai": 92.25
-    },
-    {
-      "date": "2021-04-01",
-      "nominal_cai": 93.32,
-      "real_cai": 93.06
-    },
-    {
-      "date": "2021-05-01",
-      "nominal_cai": 91.01,
-      "real_cai": 90.42
-    },
-    {
-      "date": "2021-06-01",
-      "nominal_cai": 93.27,
-      "real_cai": 92.28
-    },
-    {
-      "date": "2021-07-01",
-      "nominal_cai": 94.11,
-      "real_cai": 93.15
-    },
-    {
-      "date": "2021-08-01",
-      "nominal_cai": 91.85,
-      "real_cai": 91.32
-    },
-    {
-      "date": "2021-09-01",
-      "nominal_cai": 92.24,
-      "real_cai": 91.43
-    },
-    {
-      "date": "2021-10-01",
-      "nominal_cai": 94.64,
-      "real_cai": 94.68
-    },
-    {
-      "date": "2021-11-01",
-      "nominal_cai": 97.21,
-      "real_cai": 96.79
-    },
-    {
-      "date": "2021-12-01",
-      "nominal_cai": 98.08,
-      "real_cai": 97.44
-    },
-    {
-      "date": "2022-01-01",
-      "nominal_cai": 95.19,
-      "real_cai": 94.01
-    },
-    {
-      "date": "2022-02-01",
-      "nominal_cai": 93.5,
-      "real_cai": 91.86
-    },
-    {
-      "date": "2022-03-01",
-      "nominal_cai": 96.9,
-      "real_cai": 94.78
-    },
-    {
-      "date": "2022-04-01",
-      "nominal_cai": 98.13,
-      "real_cai": 95.67
-    },
-    {
-      "date": "2022-05-01",
-      "nominal_cai": 99.06,
-      "real_cai": 96.1
-    },
-    {
-      "date": "2022-06-01",
-      "nominal_cai": 99.6,
-      "real_cai": 96.54
-    },
-    {
-      "date": "2022-07-01",
-      "nominal_cai": 99.38,
-      "real_cai": 95.75
-    },
-    {
-      "date": "2022-08-01",
-      "nominal_cai": 98.6,
-      "real_cai": 94.76
-    },
-    {
-      "date": "2022-09-01",
-      "nominal_cai": 101.04,
-      "real_cai": 96.9
-    },
-    {
-      "date": "2022-10-01",
-      "nominal_cai": 101.91,
-      "real_cai": 97.24
-    },
-    {
-      "date": "2022-11-01",
-      "nominal_cai": 101.82,
-      "real_cai": 96.71
-    },
-    {
-      "date": "2022-12-01",
-      "nominal_cai": 102.19,
-      "real_cai": 96.69
-    },
-    {
-      "date": "2023-01-01",
-      "nominal_cai": 103.73,
-      "real_cai": 97.13
-    },
-    {
-      "date": "2023-02-01",
-      "nominal_cai": 104.31,
-      "real_cai": 97.8
-    },
-    {
-      "date": "2023-03-01",
-      "nominal_cai": 104.29,
-      "real_cai": 97.6
-    },
-    {
-      "date": "2023-04-01",
-      "nominal_cai": 105.03,
-      "real_cai": 97.89
-    },
-    {
-      "date": "2023-05-01",
-      "nominal_cai": 105.55,
-      "real_cai": 97.97
-    },
-    {
-      "date": "2023-06-01",
-      "nominal_cai": 105.65,
-      "real_cai": 97.98
-    },
-    {
-      "date": "2023-07-01",
-      "nominal_cai": 106.42,
-      "real_cai": 98.19
-    },
-    {
-      "date": "2023-08-01",
-      "nominal_cai": 107.1,
-      "real_cai": 98.62
-    },
-    {
-      "date": "2023-09-01",
-      "nominal_cai": 107.33,
-      "real_cai": 98.69
-    },
-    {
-      "date": "2023-10-01",
-      "nominal_cai": 107.44,
-      "real_cai": 98.27
-    },
-    {
-      "date": "2023-11-01",
-      "nominal_cai": 107.15,
-      "real_cai": 98.26
-    },
-    {
-      "date": "2023-12-01",
-      "nominal_cai": 107.06,
-      "real_cai": 97.92
-    },
-    {
-      "date": "2024-01-01",
-      "nominal_cai": 107.4,
-      "real_cai": 97.58
-    },
-    {
-      "date": "2024-02-01",
-      "nominal_cai": 108.34,
-      "real_cai": 98.36
-    },
-    {
-      "date": "2024-03-01",
-      "nominal_cai": 108.31,
-      "real_cai": 98.2
-    },
-    {
-      "date": "2024-04-01",
-      "nominal_cai": 108.91,
-      "real_cai": 98.72
-    },
-    {
-      "date": "2024-05-01",
-      "nominal_cai": 108.86,
-      "real_cai": 98.18
-    },
-    {
-      "date": "2024-06-01",
-      "nominal_cai": 109.89,
-      "real_cai": 98.83
-    },
-    {
-      "date": "2024-07-01",
-      "nominal_cai": 110.61,
-      "real_cai": 99.38
-    },
-    {
-      "date": "2024-08-01",
-      "nominal_cai": 110.95,
-      "real_cai": 99.35
-    },
-    {
-      "date": "2024-09-01",
-      "nominal_cai": 110.67,
-      "real_cai": 99.4
-    },
-    {
-      "date": "2024-10-01",
-      "nominal_cai": 110.69,
-      "real_cai": 99.17
-    },
-    {
-      "date": "2024-11-01",
-      "nominal_cai": 111.01,
-      "real_cai": 99.09
-    },
-    {
-      "date": "2024-12-01",
-      "nominal_cai": 111.75,
-      "real_cai": 99.18
-    },
-    {
-      "date": "2025-01-01",
-      "nominal_cai": 113.86,
-      "real_cai": 99.65
-    },
-    {
-      "date": "2025-02-01",
-      "nominal_cai": 114.72,
-      "real_cai": 100.6
-    },
-    {
-      "date": "2025-03-01",
-      "nominal_cai": 113.68,
-      "real_cai": 99.86
-    },
-    {
-      "date": "2025-04-01",
-      "nominal_cai": 114.73,
+      "date": "2003-08-01",
+      "nominal_cai": 101.5,
       "real_cai": 100.27
     },
     {
-      "date": "2025-05-01",
-      "nominal_cai": 114.32,
-      "real_cai": 99.69
+      "date": "2003-09-01",
+      "nominal_cai": 101.99,
+      "real_cai": 100.93
     },
     {
-      "date": "2025-06-01",
-      "nominal_cai": 114.96,
+      "date": "2003-10-01",
+      "nominal_cai": 101.58,
+      "real_cai": 100.93
+    },
+    {
+      "date": "2003-11-01",
+      "nominal_cai": 101.17,
+      "real_cai": 100.58
+    },
+    {
+      "date": "2003-12-01",
+      "nominal_cai": 101.93,
+      "real_cai": 101.36
+    },
+    {
+      "date": "2004-01-01",
+      "nominal_cai": 100.95,
+      "real_cai": 100.49
+    },
+    {
+      "date": "2004-02-01",
+      "nominal_cai": 101.6,
+      "real_cai": 100.72
+    },
+    {
+      "date": "2004-03-01",
+      "nominal_cai": 101.46,
+      "real_cai": 100.75
+    },
+    {
+      "date": "2004-04-01",
+      "nominal_cai": 101.27,
+      "real_cai": 100.84
+    },
+    {
+      "date": "2004-05-01",
+      "nominal_cai": 101.03,
+      "real_cai": 100.92
+    },
+    {
+      "date": "2004-06-01",
+      "nominal_cai": 101.81,
+      "real_cai": 101.12
+    },
+    {
+      "date": "2004-07-01",
+      "nominal_cai": 102.62,
+      "real_cai": 102.18
+    },
+    {
+      "date": "2004-08-01",
+      "nominal_cai": 101.26,
+      "real_cai": 101.48
+    },
+    {
+      "date": "2004-09-01",
+      "nominal_cai": 102.09,
+      "real_cai": 102.21
+    },
+    {
+      "date": "2004-10-01",
+      "nominal_cai": 102.07,
+      "real_cai": 101.76
+    },
+    {
+      "date": "2004-11-01",
+      "nominal_cai": 102.29,
+      "real_cai": 101.84
+    },
+    {
+      "date": "2004-12-01",
+      "nominal_cai": 102.23,
+      "real_cai": 102.25
+    },
+    {
+      "date": "2005-01-01",
+      "nominal_cai": 102.04,
+      "real_cai": 102.46
+    },
+    {
+      "date": "2005-02-01",
+      "nominal_cai": 101.89,
+      "real_cai": 102.37
+    },
+    {
+      "date": "2005-03-01",
+      "nominal_cai": 102.27,
+      "real_cai": 102.53
+    },
+    {
+      "date": "2005-04-01",
+      "nominal_cai": 102.77,
+      "real_cai": 103.49
+    },
+    {
+      "date": "2005-05-01",
+      "nominal_cai": 102.1,
+      "real_cai": 102.93
+    },
+    {
+      "date": "2005-06-01",
+      "nominal_cai": 102.29,
+      "real_cai": 103.49
+    },
+    {
+      "date": "2005-07-01",
+      "nominal_cai": 102.01,
+      "real_cai": 103.11
+    },
+    {
+      "date": "2005-08-01",
+      "nominal_cai": 101.98,
+      "real_cai": 103.4
+    },
+    {
+      "date": "2005-09-01",
+      "nominal_cai": 102.12,
+      "real_cai": 103.39
+    },
+    {
+      "date": "2005-10-01",
+      "nominal_cai": 102.25,
+      "real_cai": 103.5
+    },
+    {
+      "date": "2005-11-01",
+      "nominal_cai": 102.98,
+      "real_cai": 104.31
+    },
+    {
+      "date": "2005-12-01",
+      "nominal_cai": 103.47,
+      "real_cai": 104.67
+    },
+    {
+      "date": "2006-01-01",
+      "nominal_cai": 103.44,
+      "real_cai": 104.58
+    },
+    {
+      "date": "2006-02-01",
+      "nominal_cai": 102.85,
+      "real_cai": 104.08
+    },
+    {
+      "date": "2006-03-01",
+      "nominal_cai": 103.66,
+      "real_cai": 104.69
+    },
+    {
+      "date": "2006-04-01",
+      "nominal_cai": 103.55,
+      "real_cai": 104.93
+    },
+    {
+      "date": "2006-05-01",
+      "nominal_cai": 103.54,
+      "real_cai": 104.79
+    },
+    {
+      "date": "2006-06-01",
+      "nominal_cai": 104.06,
+      "real_cai": 105.9
+    },
+    {
+      "date": "2006-07-01",
+      "nominal_cai": 102.07,
+      "real_cai": 102.93
+    },
+    {
+      "date": "2006-08-01",
+      "nominal_cai": 103.11,
+      "real_cai": 103.99
+    },
+    {
+      "date": "2006-09-01",
+      "nominal_cai": 102.99,
+      "real_cai": 103.97
+    },
+    {
+      "date": "2006-10-01",
+      "nominal_cai": 103.44,
+      "real_cai": 104.81
+    },
+    {
+      "date": "2006-11-01",
+      "nominal_cai": 103.44,
+      "real_cai": 104.97
+    },
+    {
+      "date": "2006-12-01",
+      "nominal_cai": 104.0,
+      "real_cai": 105.27
+    },
+    {
+      "date": "2007-01-01",
+      "nominal_cai": 103.38,
+      "real_cai": 104.93
+    },
+    {
+      "date": "2007-02-01",
+      "nominal_cai": 104.87,
+      "real_cai": 106.76
+    },
+    {
+      "date": "2007-03-01",
+      "nominal_cai": 102.96,
+      "real_cai": 104.83
+    },
+    {
+      "date": "2007-04-01",
+      "nominal_cai": 103.65,
+      "real_cai": 105.61
+    },
+    {
+      "date": "2007-05-01",
+      "nominal_cai": 104.07,
+      "real_cai": 105.88
+    },
+    {
+      "date": "2007-06-01",
+      "nominal_cai": 103.77,
+      "real_cai": 105.74
+    },
+    {
+      "date": "2007-07-01",
+      "nominal_cai": 102.18,
+      "real_cai": 104.16
+    },
+    {
+      "date": "2007-08-01",
+      "nominal_cai": 103.6,
+      "real_cai": 105.63
+    },
+    {
+      "date": "2007-09-01",
+      "nominal_cai": 103.62,
+      "real_cai": 105.73
+    },
+    {
+      "date": "2007-10-01",
+      "nominal_cai": 103.36,
+      "real_cai": 105.09
+    },
+    {
+      "date": "2007-11-01",
+      "nominal_cai": 103.87,
+      "real_cai": 105.53
+    },
+    {
+      "date": "2007-12-01",
+      "nominal_cai": 103.73,
+      "real_cai": 104.91
+    },
+    {
+      "date": "2008-01-01",
+      "nominal_cai": 103.48,
+      "real_cai": 104.75
+    },
+    {
+      "date": "2008-02-01",
+      "nominal_cai": 103.69,
+      "real_cai": 105.19
+    },
+    {
+      "date": "2008-03-01",
+      "nominal_cai": 103.74,
+      "real_cai": 105.02
+    },
+    {
+      "date": "2008-04-01",
+      "nominal_cai": 103.6,
+      "real_cai": 105.23
+    },
+    {
+      "date": "2008-05-01",
+      "nominal_cai": 103.08,
+      "real_cai": 104.16
+    },
+    {
+      "date": "2008-06-01",
+      "nominal_cai": 103.33,
+      "real_cai": 103.99
+    },
+    {
+      "date": "2008-07-01",
+      "nominal_cai": 103.45,
+      "real_cai": 103.51
+    },
+    {
+      "date": "2008-08-01",
+      "nominal_cai": 102.39,
+      "real_cai": 102.83
+    },
+    {
+      "date": "2008-09-01",
+      "nominal_cai": 102.37,
+      "real_cai": 102.93
+    },
+    {
+      "date": "2008-10-01",
+      "nominal_cai": 102.06,
+      "real_cai": 102.67
+    },
+    {
+      "date": "2008-11-01",
+      "nominal_cai": 102.01,
+      "real_cai": 103.19
+    },
+    {
+      "date": "2008-12-01",
+      "nominal_cai": 100.56,
+      "real_cai": 102.12
+    },
+    {
+      "date": "2009-01-01",
+      "nominal_cai": 99.93,
+      "real_cai": 102.28
+    },
+    {
+      "date": "2009-02-01",
+      "nominal_cai": 98.31,
+      "real_cai": 100.85
+    },
+    {
+      "date": "2009-03-01",
+      "nominal_cai": 99.11,
+      "real_cai": 101.63
+    },
+    {
+      "date": "2009-04-01",
+      "nominal_cai": 98.5,
+      "real_cai": 101.46
+    },
+    {
+      "date": "2009-05-01",
+      "nominal_cai": 98.44,
+      "real_cai": 101.71
+    },
+    {
+      "date": "2009-06-01",
+      "nominal_cai": 98.28,
+      "real_cai": 101.87
+    },
+    {
+      "date": "2009-07-01",
+      "nominal_cai": 98.46,
+      "real_cai": 102.21
+    },
+    {
+      "date": "2009-08-01",
+      "nominal_cai": 97.81,
+      "real_cai": 102.01
+    },
+    {
+      "date": "2009-09-01",
+      "nominal_cai": 99.11,
+      "real_cai": 103.1
+    },
+    {
+      "date": "2009-10-01",
+      "nominal_cai": 98.51,
+      "real_cai": 102.79
+    },
+    {
+      "date": "2009-11-01",
+      "nominal_cai": 98.68,
+      "real_cai": 103.29
+    },
+    {
+      "date": "2009-12-01",
+      "nominal_cai": 99.11,
+      "real_cai": 103.63
+    },
+    {
+      "date": "2010-01-01",
+      "nominal_cai": 99.04,
+      "real_cai": 103.77
+    },
+    {
+      "date": "2010-02-01",
+      "nominal_cai": 99.3,
+      "real_cai": 104.08
+    },
+    {
+      "date": "2010-03-01",
+      "nominal_cai": 99.65,
+      "real_cai": 104.33
+    },
+    {
+      "date": "2010-04-01",
+      "nominal_cai": 100.01,
+      "real_cai": 104.98
+    },
+    {
+      "date": "2010-05-01",
+      "nominal_cai": 99.08,
+      "real_cai": 104.47
+    },
+    {
+      "date": "2010-06-01",
+      "nominal_cai": 99.01,
+      "real_cai": 104.33
+    },
+    {
+      "date": "2010-07-01",
+      "nominal_cai": 99.34,
+      "real_cai": 105.23
+    },
+    {
+      "date": "2010-08-01",
+      "nominal_cai": 101.35,
+      "real_cai": 107.71
+    },
+    {
+      "date": "2010-09-01",
+      "nominal_cai": 100.98,
+      "real_cai": 107.69
+    },
+    {
+      "date": "2010-10-01",
+      "nominal_cai": 98.75,
+      "real_cai": 103.44
+    },
+    {
+      "date": "2010-11-01",
+      "nominal_cai": 101.36,
+      "real_cai": 106.02
+    },
+    {
+      "date": "2010-12-01",
+      "nominal_cai": 97.78,
+      "real_cai": 102.69
+    },
+    {
+      "date": "2011-01-01",
+      "nominal_cai": 98.55,
+      "real_cai": 103.97
+    },
+    {
+      "date": "2011-02-01",
+      "nominal_cai": 99.28,
+      "real_cai": 104.58
+    },
+    {
+      "date": "2011-03-01",
+      "nominal_cai": 93.13,
+      "real_cai": 98.07
+    },
+    {
+      "date": "2011-04-01",
+      "nominal_cai": 94.96,
       "real_cai": 100.16
     },
     {
+      "date": "2011-05-01",
+      "nominal_cai": 97.82,
+      "real_cai": 103.44
+    },
+    {
+      "date": "2011-06-01",
+      "nominal_cai": 99.61,
+      "real_cai": 105.48
+    },
+    {
+      "date": "2011-07-01",
+      "nominal_cai": 100.4,
+      "real_cai": 105.99
+    },
+    {
+      "date": "2011-08-01",
+      "nominal_cai": 98.53,
+      "real_cai": 104.56
+    },
+    {
+      "date": "2011-09-01",
+      "nominal_cai": 98.01,
+      "real_cai": 103.84
+    },
+    {
+      "date": "2011-10-01",
+      "nominal_cai": 99.19,
+      "real_cai": 104.85
+    },
+    {
+      "date": "2011-11-01",
+      "nominal_cai": 97.97,
+      "real_cai": 103.82
+    },
+    {
+      "date": "2011-12-01",
+      "nominal_cai": 98.59,
+      "real_cai": 104.34
+    },
+    {
+      "date": "2012-01-01",
+      "nominal_cai": 100.1,
+      "real_cai": 106.11
+    },
+    {
+      "date": "2012-02-01",
+      "nominal_cai": 98.92,
+      "real_cai": 104.26
+    },
+    {
+      "date": "2012-03-01",
+      "nominal_cai": 99.73,
+      "real_cai": 105.07
+    },
+    {
+      "date": "2012-04-01",
+      "nominal_cai": 99.77,
+      "real_cai": 105.35
+    },
+    {
+      "date": "2012-05-01",
+      "nominal_cai": 99.93,
+      "real_cai": 105.95
+    },
+    {
+      "date": "2012-06-01",
+      "nominal_cai": 99.66,
+      "real_cai": 105.99
+    },
+    {
+      "date": "2012-07-01",
+      "nominal_cai": 99.91,
+      "real_cai": 106.61
+    },
+    {
+      "date": "2012-08-01",
+      "nominal_cai": 99.75,
+      "real_cai": 106.71
+    },
+    {
+      "date": "2012-09-01",
+      "nominal_cai": 99.74,
+      "real_cai": 106.4
+    },
+    {
+      "date": "2012-10-01",
+      "nominal_cai": 99.44,
+      "real_cai": 105.97
+    },
+    {
+      "date": "2012-11-01",
+      "nominal_cai": 99.31,
+      "real_cai": 106.05
+    },
+    {
+      "date": "2012-12-01",
+      "nominal_cai": 100.24,
+      "real_cai": 106.81
+    },
+    {
+      "date": "2013-01-01",
+      "nominal_cai": 100.6,
+      "real_cai": 107.56
+    },
+    {
+      "date": "2013-02-01",
+      "nominal_cai": 101.48,
+      "real_cai": 108.47
+    },
+    {
+      "date": "2013-03-01",
+      "nominal_cai": 102.16,
+      "real_cai": 109.19
+    },
+    {
+      "date": "2013-04-01",
+      "nominal_cai": 102.05,
+      "real_cai": 109.0
+    },
+    {
+      "date": "2013-05-01",
+      "nominal_cai": 102.66,
+      "real_cai": 109.72
+    },
+    {
+      "date": "2013-06-01",
+      "nominal_cai": 102.82,
+      "real_cai": 109.6
+    },
+    {
+      "date": "2013-07-01",
+      "nominal_cai": 102.93,
+      "real_cai": 109.4
+    },
+    {
+      "date": "2013-08-01",
+      "nominal_cai": 103.32,
+      "real_cai": 109.86
+    },
+    {
+      "date": "2013-09-01",
+      "nominal_cai": 103.71,
+      "real_cai": 109.98
+    },
+    {
+      "date": "2013-10-01",
+      "nominal_cai": 104.18,
+      "real_cai": 110.42
+    },
+    {
+      "date": "2013-11-01",
+      "nominal_cai": 104.87,
+      "real_cai": 110.76
+    },
+    {
+      "date": "2013-12-01",
+      "nominal_cai": 105.28,
+      "real_cai": 110.91
+    },
+    {
+      "date": "2014-01-01",
+      "nominal_cai": 105.65,
+      "real_cai": 111.97
+    },
+    {
+      "date": "2014-02-01",
+      "nominal_cai": 104.26,
+      "real_cai": 110.16
+    },
+    {
+      "date": "2014-03-01",
+      "nominal_cai": 110.58,
+      "real_cai": 117.23
+    },
+    {
+      "date": "2014-04-01",
+      "nominal_cai": 101.3,
+      "real_cai": 104.32
+    },
+    {
+      "date": "2014-05-01",
+      "nominal_cai": 103.26,
+      "real_cai": 106.43
+    },
+    {
+      "date": "2014-06-01",
+      "nominal_cai": 103.95,
+      "real_cai": 107.0
+    },
+    {
+      "date": "2014-07-01",
+      "nominal_cai": 104.05,
+      "real_cai": 106.9
+    },
+    {
+      "date": "2014-08-01",
+      "nominal_cai": 104.16,
+      "real_cai": 107.12
+    },
+    {
+      "date": "2014-09-01",
+      "nominal_cai": 105.99,
+      "real_cai": 108.86
+    },
+    {
+      "date": "2014-10-01",
+      "nominal_cai": 105.27,
+      "real_cai": 108.53
+    },
+    {
+      "date": "2014-11-01",
+      "nominal_cai": 106.06,
+      "real_cai": 109.48
+    },
+    {
+      "date": "2014-12-01",
+      "nominal_cai": 106.13,
+      "real_cai": 109.28
+    },
+    {
+      "date": "2015-01-01",
+      "nominal_cai": 105.11,
+      "real_cai": 108.49
+    },
+    {
+      "date": "2015-02-01",
+      "nominal_cai": 106.53,
+      "real_cai": 110.21
+    },
+    {
+      "date": "2015-03-01",
+      "nominal_cai": 105.54,
+      "real_cai": 108.95
+    },
+    {
+      "date": "2015-04-01",
+      "nominal_cai": 105.37,
+      "real_cai": 108.3
+    },
+    {
+      "date": "2015-05-01",
+      "nominal_cai": 105.9,
+      "real_cai": 108.76
+    },
+    {
+      "date": "2015-06-01",
+      "nominal_cai": 105.71,
+      "real_cai": 108.47
+    },
+    {
+      "date": "2015-07-01",
+      "nominal_cai": 106.52,
+      "real_cai": 109.42
+    },
+    {
+      "date": "2015-08-01",
+      "nominal_cai": 107.14,
+      "real_cai": 110.05
+    },
+    {
+      "date": "2015-09-01",
+      "nominal_cai": 107.57,
+      "real_cai": 110.3
+    },
+    {
+      "date": "2015-10-01",
+      "nominal_cai": 107.05,
+      "real_cai": 110.15
+    },
+    {
+      "date": "2015-11-01",
+      "nominal_cai": 105.47,
+      "real_cai": 108.73
+    },
+    {
+      "date": "2015-12-01",
+      "nominal_cai": 105.73,
+      "real_cai": 108.75
+    },
+    {
+      "date": "2016-01-01",
+      "nominal_cai": 105.61,
+      "real_cai": 109.02
+    },
+    {
+      "date": "2016-02-01",
+      "nominal_cai": 105.03,
+      "real_cai": 108.49
+    },
+    {
+      "date": "2016-03-01",
+      "nominal_cai": 105.44,
+      "real_cai": 108.94
+    },
+    {
+      "date": "2016-04-01",
+      "nominal_cai": 104.14,
+      "real_cai": 107.17
+    },
+    {
+      "date": "2016-05-01",
+      "nominal_cai": 104.81,
+      "real_cai": 108.08
+    },
+    {
+      "date": "2016-06-01",
+      "nominal_cai": 104.7,
+      "real_cai": 107.81
+    },
+    {
+      "date": "2016-07-01",
+      "nominal_cai": 105.27,
+      "real_cai": 108.37
+    },
+    {
+      "date": "2016-08-01",
+      "nominal_cai": 104.68,
+      "real_cai": 108.12
+    },
+    {
+      "date": "2016-09-01",
+      "nominal_cai": 104.75,
+      "real_cai": 108.22
+    },
+    {
+      "date": "2016-10-01",
+      "nominal_cai": 105.08,
+      "real_cai": 108.11
+    },
+    {
+      "date": "2016-11-01",
+      "nominal_cai": 105.55,
+      "real_cai": 108.1
+    },
+    {
+      "date": "2016-12-01",
+      "nominal_cai": 105.75,
+      "real_cai": 108.42
+    },
+    {
+      "date": "2017-01-01",
+      "nominal_cai": 106.53,
+      "real_cai": 109.45
+    },
+    {
+      "date": "2017-02-01",
+      "nominal_cai": 105.84,
+      "real_cai": 108.87
+    },
+    {
+      "date": "2017-03-01",
+      "nominal_cai": 106.84,
+      "real_cai": 110.31
+    },
+    {
+      "date": "2017-04-01",
+      "nominal_cai": 107.1,
+      "real_cai": 109.54
+    },
+    {
+      "date": "2017-05-01",
+      "nominal_cai": 107.02,
+      "real_cai": 109.56
+    },
+    {
+      "date": "2017-06-01",
+      "nominal_cai": 106.84,
+      "real_cai": 109.3
+    },
+    {
+      "date": "2017-07-01",
+      "nominal_cai": 106.7,
+      "real_cai": 109.15
+    },
+    {
+      "date": "2017-08-01",
+      "nominal_cai": 106.66,
+      "real_cai": 109.27
+    },
+    {
+      "date": "2017-09-01",
+      "nominal_cai": 106.52,
+      "real_cai": 108.95
+    },
+    {
+      "date": "2017-10-01",
+      "nominal_cai": 105.89,
+      "real_cai": 108.44
+    },
+    {
+      "date": "2017-11-01",
+      "nominal_cai": 107.8,
+      "real_cai": 109.78
+    },
+    {
+      "date": "2017-12-01",
+      "nominal_cai": 108.46,
+      "real_cai": 109.92
+    },
+    {
+      "date": "2018-01-01",
+      "nominal_cai": 107.75,
+      "real_cai": 109.2
+    },
+    {
+      "date": "2018-02-01",
+      "nominal_cai": 108.94,
+      "real_cai": 110.46
+    },
+    {
+      "date": "2018-03-01",
+      "nominal_cai": 107.56,
+      "real_cai": 109.68
+    },
+    {
+      "date": "2018-04-01",
+      "nominal_cai": 107.64,
+      "real_cai": 109.67
+    },
+    {
+      "date": "2018-05-01",
+      "nominal_cai": 108.06,
+      "real_cai": 110.05
+    },
+    {
+      "date": "2018-06-01",
+      "nominal_cai": 108.37,
+      "real_cai": 110.24
+    },
+    {
+      "date": "2018-07-01",
+      "nominal_cai": 108.58,
+      "real_cai": 110.25
+    },
+    {
+      "date": "2018-08-01",
+      "nominal_cai": 108.6,
+      "real_cai": 110.0
+    },
+    {
+      "date": "2018-09-01",
+      "nominal_cai": 108.11,
+      "real_cai": 109.43
+    },
+    {
+      "date": "2018-10-01",
+      "nominal_cai": 108.52,
+      "real_cai": 109.66
+    },
+    {
+      "date": "2018-11-01",
+      "nominal_cai": 108.27,
+      "real_cai": 109.22
+    },
+    {
+      "date": "2018-12-01",
+      "nominal_cai": 108.05,
+      "real_cai": 109.24
+    },
+    {
+      "date": "2019-01-01",
+      "nominal_cai": 108.2,
+      "real_cai": 109.22
+    },
+    {
+      "date": "2019-02-01",
+      "nominal_cai": 108.02,
+      "real_cai": 109.03
+    },
+    {
+      "date": "2019-03-01",
+      "nominal_cai": 108.09,
+      "real_cai": 109.3
+    },
+    {
+      "date": "2019-04-01",
+      "nominal_cai": 108.57,
+      "real_cai": 109.21
+    },
+    {
+      "date": "2019-05-01",
+      "nominal_cai": 108.42,
+      "real_cai": 109.28
+    },
+    {
+      "date": "2019-06-01",
+      "nominal_cai": 107.44,
+      "real_cai": 108.19
+    },
+    {
+      "date": "2019-07-01",
+      "nominal_cai": 106.95,
+      "real_cai": 107.75
+    },
+    {
+      "date": "2019-08-01",
+      "nominal_cai": 108.35,
+      "real_cai": 109.3
+    },
+    {
+      "date": "2019-09-01",
+      "nominal_cai": 111.53,
+      "real_cai": 112.88
+    },
+    {
+      "date": "2019-10-01",
+      "nominal_cai": 102.77,
+      "real_cai": 102.85
+    },
+    {
+      "date": "2019-11-01",
+      "nominal_cai": 105.84,
+      "real_cai": 105.51
+    },
+    {
+      "date": "2019-12-01",
+      "nominal_cai": 106.81,
+      "real_cai": 106.53
+    },
+    {
+      "date": "2020-01-01",
+      "nominal_cai": 106.74,
+      "real_cai": 106.52
+    },
+    {
+      "date": "2020-02-01",
+      "nominal_cai": 104.93,
+      "real_cai": 104.98
+    },
+    {
+      "date": "2020-03-01",
+      "nominal_cai": 99.57,
+      "real_cai": 100.04
+    },
+    {
+      "date": "2020-04-01",
+      "nominal_cai": 89.2,
+      "real_cai": 89.2
+    },
+    {
+      "date": "2020-05-01",
+      "nominal_cai": 88.45,
+      "real_cai": 88.57
+    },
+    {
+      "date": "2020-06-01",
+      "nominal_cai": 98.74,
+      "real_cai": 98.92
+    },
+    {
+      "date": "2020-07-01",
+      "nominal_cai": 99.57,
+      "real_cai": 99.49
+    },
+    {
+      "date": "2020-08-01",
+      "nominal_cai": 100.79,
+      "real_cai": 100.61
+    },
+    {
+      "date": "2020-09-01",
+      "nominal_cai": 103.26,
+      "real_cai": 103.34
+    },
+    {
+      "date": "2020-10-01",
+      "nominal_cai": 102.37,
+      "real_cai": 102.31
+    },
+    {
+      "date": "2020-11-01",
+      "nominal_cai": 103.31,
+      "real_cai": 103.25
+    },
+    {
+      "date": "2020-12-01",
+      "nominal_cai": 103.07,
+      "real_cai": 102.77
+    },
+    {
+      "date": "2021-01-01",
+      "nominal_cai": 100.15,
+      "real_cai": 99.1
+    },
+    {
+      "date": "2021-02-01",
+      "nominal_cai": 101.91,
+      "real_cai": 100.89
+    },
+    {
+      "date": "2021-03-01",
+      "nominal_cai": 102.82,
+      "real_cai": 101.84
+    },
+    {
+      "date": "2021-04-01",
+      "nominal_cai": 102.56,
+      "real_cai": 102.98
+    },
+    {
+      "date": "2021-05-01",
+      "nominal_cai": 100.41,
+      "real_cai": 100.42
+    },
+    {
+      "date": "2021-06-01",
+      "nominal_cai": 102.44,
+      "real_cai": 101.82
+    },
+    {
+      "date": "2021-07-01",
+      "nominal_cai": 103.31,
+      "real_cai": 102.42
+    },
+    {
+      "date": "2021-08-01",
+      "nominal_cai": 101.63,
+      "real_cai": 101.08
+    },
+    {
+      "date": "2021-09-01",
+      "nominal_cai": 101.49,
+      "real_cai": 100.67
+    },
+    {
+      "date": "2021-10-01",
+      "nominal_cai": 104.07,
+      "real_cai": 103.69
+    },
+    {
+      "date": "2021-11-01",
+      "nominal_cai": 106.86,
+      "real_cai": 105.78
+    },
+    {
+      "date": "2021-12-01",
+      "nominal_cai": 107.7,
+      "real_cai": 106.31
+    },
+    {
+      "date": "2022-01-01",
+      "nominal_cai": 105.6,
+      "real_cai": 103.38
+    },
+    {
+      "date": "2022-02-01",
+      "nominal_cai": 103.71,
+      "real_cai": 101.08
+    },
+    {
+      "date": "2022-03-01",
+      "nominal_cai": 107.23,
+      "real_cai": 104.6
+    },
+    {
+      "date": "2022-04-01",
+      "nominal_cai": 108.66,
+      "real_cai": 104.96
+    },
+    {
+      "date": "2022-05-01",
+      "nominal_cai": 110.29,
+      "real_cai": 106.2
+    },
+    {
+      "date": "2022-06-01",
+      "nominal_cai": 110.51,
+      "real_cai": 106.32
+    },
+    {
+      "date": "2022-07-01",
+      "nominal_cai": 110.37,
+      "real_cai": 105.34
+    },
+    {
+      "date": "2022-08-01",
+      "nominal_cai": 109.89,
+      "real_cai": 104.74
+    },
+    {
+      "date": "2022-09-01",
+      "nominal_cai": 111.86,
+      "real_cai": 106.53
+    },
+    {
+      "date": "2022-10-01",
+      "nominal_cai": 112.71,
+      "real_cai": 106.73
+    },
+    {
+      "date": "2022-11-01",
+      "nominal_cai": 112.48,
+      "real_cai": 105.98
+    },
+    {
+      "date": "2022-12-01",
+      "nominal_cai": 112.27,
+      "real_cai": 105.58
+    },
+    {
+      "date": "2023-01-01",
+      "nominal_cai": 113.9,
+      "real_cai": 106.04
+    },
+    {
+      "date": "2023-02-01",
+      "nominal_cai": 113.54,
+      "real_cai": 106.08
+    },
+    {
+      "date": "2023-03-01",
+      "nominal_cai": 114.15,
+      "real_cai": 107.04
+    },
+    {
+      "date": "2023-04-01",
+      "nominal_cai": 114.13,
+      "real_cai": 106.05
+    },
+    {
+      "date": "2023-05-01",
+      "nominal_cai": 114.36,
+      "real_cai": 106.08
+    },
+    {
+      "date": "2023-06-01",
+      "nominal_cai": 114.71,
+      "real_cai": 106.3
+    },
+    {
+      "date": "2023-07-01",
+      "nominal_cai": 115.11,
+      "real_cai": 106.03
+    },
+    {
+      "date": "2023-08-01",
+      "nominal_cai": 115.86,
+      "real_cai": 106.6
+    },
+    {
+      "date": "2023-09-01",
+      "nominal_cai": 116.31,
+      "real_cai": 106.94
+    },
+    {
+      "date": "2023-10-01",
+      "nominal_cai": 116.01,
+      "real_cai": 106.08
+    },
+    {
+      "date": "2023-11-01",
+      "nominal_cai": 115.77,
+      "real_cai": 106.1
+    },
+    {
+      "date": "2023-12-01",
+      "nominal_cai": 115.95,
+      "real_cai": 106.03
+    },
+    {
+      "date": "2024-01-01",
+      "nominal_cai": 115.13,
+      "real_cai": 105.14
+    },
+    {
+      "date": "2024-02-01",
+      "nominal_cai": 116.54,
+      "real_cai": 106.21
+    },
+    {
+      "date": "2024-03-01",
+      "nominal_cai": 116.42,
+      "real_cai": 105.67
+    },
+    {
+      "date": "2024-04-01",
+      "nominal_cai": 116.79,
+      "real_cai": 106.15
+    },
+    {
+      "date": "2024-05-01",
+      "nominal_cai": 117.15,
+      "real_cai": 106.07
+    },
+    {
+      "date": "2024-06-01",
+      "nominal_cai": 118.02,
+      "real_cai": 106.51
+    },
+    {
+      "date": "2024-07-01",
+      "nominal_cai": 119.3,
+      "real_cai": 107.4
+    },
+    {
+      "date": "2024-08-01",
+      "nominal_cai": 119.46,
+      "real_cai": 107.09
+    },
+    {
+      "date": "2024-09-01",
+      "nominal_cai": 118.53,
+      "real_cai": 106.34
+    },
+    {
+      "date": "2024-10-01",
+      "nominal_cai": 118.83,
+      "real_cai": 106.47
+    },
+    {
+      "date": "2024-11-01",
+      "nominal_cai": 119.17,
+      "real_cai": 106.38
+    },
+    {
+      "date": "2024-12-01",
+      "nominal_cai": 119.93,
+      "real_cai": 106.22
+    },
+    {
+      "date": "2025-01-01",
+      "nominal_cai": 121.78,
+      "real_cai": 107.1
+    },
+    {
+      "date": "2025-02-01",
+      "nominal_cai": 121.83,
+      "real_cai": 107.11
+    },
+    {
+      "date": "2025-03-01",
+      "nominal_cai": 121.53,
+      "real_cai": 106.66
+    },
+    {
+      "date": "2025-04-01",
+      "nominal_cai": 122.7,
+      "real_cai": 107.56
+    },
+    {
+      "date": "2025-05-01",
+      "nominal_cai": 122.33,
+      "real_cai": 107.03
+    },
+    {
+      "date": "2025-06-01",
+      "nominal_cai": 122.87,
+      "real_cai": 107.28
+    },
+    {
       "date": "2025-07-01",
-      "nominal_cai": 114.68,
-      "real_cai": 99.75
+      "nominal_cai": 122.99,
+      "real_cai": 107.19
     },
     {
       "date": "2025-08-01",
-      "nominal_cai": 114.59,
-      "real_cai": 99.62
+      "nominal_cai": 123.03,
+      "real_cai": 107.21
     },
     {
       "date": "2025-09-01",
-      "nominal_cai": 115.2,
-      "real_cai": 100.38
+      "nominal_cai": 123.61,
+      "real_cai": 107.48
     },
     {
       "date": "2025-10-01",
-      "nominal_cai": 115.18,
-      "real_cai": 99.92
+      "nominal_cai": 124.09,
+      "real_cai": 107.72
     },
     {
       "date": "2025-11-01",
-      "nominal_cai": 115.84,
-      "real_cai": 100.15
+      "nominal_cai": 124.8,
+      "real_cai": 108.0
+    },
+    {
+      "date": "2025-12-01",
+      "nominal_cai": 124.41,
+      "real_cai": 107.64
+    },
+    {
+      "date": "2026-01-01",
+      "nominal_cai": 125.85,
+      "real_cai": 108.48
+    },
+    {
+      "date": "2026-02-01",
+      "nominal_cai": 125.64,
+      "real_cai": 108.44
+    },
+    {
+      "date": "2026-03-01",
+      "nominal_cai": 125.25,
+      "real_cai": 107.68
     }
   ],
   "latest": {
-    "date": "2025-11-01",
-    "nominal_cai": 115.84,
-    "real_cai": 100.15
+    "date": "2026-03-01",
+    "nominal_cai": 125.25,
+    "real_cai": 107.68
   },
-  "last_updated": "2026-01-12T21:16:46.864270+09:00",
+  "last_updated": "2026-05-12T21:56:20.819947+09:00",
   "source": "Bank of Japan",
   "indicator": "Consumption Activity Index (CAI)",
   "cached": false

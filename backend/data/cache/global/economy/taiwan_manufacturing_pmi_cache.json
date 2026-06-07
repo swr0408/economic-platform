@@ -261,12 +261,12 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-04-23",
-    "datetime_utc": "2026-04-23T13:45:00+00:00",
-    "datetime_jst": "2026-04-23T22:45:00+09:00",
+    "date": "2026-06-23",
+    "datetime_utc": "2026-06-23T13:45:00+00:00",
+    "datetime_jst": "2026-06-23T22:45:00+09:00",
     "time_jst": "22:45",
-    "label": "S&P Global Manufacturing PMI (Apr)",
-    "estimate": 52
+    "label": "S&P Global Manufacturing PMI (Jun)",
+    "estimate": 54.5
   },
-  "last_updated": "2026-04-18T09:31:33.959490+09:00"
+  "last_updated": "2026-06-07T22:12:54.585363+09:00"
 }

@@ -12,6 +12,7 @@ import EarningsIndex from './pages/EarningsIndex'
 import EarningsCategory from './pages/EarningsCategory'
 import ComparePage from './pages/ComparePage'
 import DataHandbookPage from './pages/DataHandbookPage'
+import SmcHandbookPage from './pages/SmcHandbookPage'
 import HeadlinesInboxPage from './pages/HeadlinesInboxPage'
 import HeadlinesSavedPage from './pages/HeadlinesSavedPage'
 import HeadlinesAdminPage from './pages/HeadlinesAdminPage'
@@ -65,6 +66,7 @@ function App() {
               <Route path="earnings/:categoryCode/:countryCode" element={<EarningsCategory />} />
               <Route path="compare" element={<ComparePage />} />
               <Route path="handbook" element={<DataHandbookPage />} />
+              <Route path="smc" element={<SmcHandbookPage />} />
 
               {/* special/master 限定: ヘッドライン inbox */}
               <Route

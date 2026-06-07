@@ -262,6 +262,7 @@ class SgeGoldScheduler:
                 run_date=datetime.now(JST) + timedelta(seconds=30),
                 id="sge_gold_startup_catchup",
                 replace_existing=True,
+                misfire_grace_time=300,
             )
             logger.info("[SgeGoldScheduler] Startup catch-up scheduled (in 30s)")
 

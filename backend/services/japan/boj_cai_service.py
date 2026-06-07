@@ -108,10 +108,14 @@ class BOJCAIService:
 
     def _should_refresh(self, last_updated_str: Optional[str] = None) -> bool:
         """
-        Check if cache should be refreshed based on publication schedule.
+        Check if cache should be refreshed.
 
-        Publication: 5th business day of each month, 14:00 JST
-        Check window: 5th-10th business day, 14:00-14:30 JST
+        BOJ CAI is published on the 5th business day of each month at 14:00 JST.
+        Refresh strategy:
+        - If cache age >= 7 days: refresh (covers normal monthly cadence + publication delays).
+        - If today is on/after the 5th business day of this month AND cache hasn't been
+          updated since that day: refresh (catches the regular monthly release without
+          requiring requests to land in a 30-minute window).
 
         Args:
             last_updated_str: ISO format string of last update time
@@ -119,41 +123,31 @@ class BOJCAIService:
         Returns:
             True if should refresh, False otherwise
         """
+        if not last_updated_str:
+            return True
+
+        try:
+            last_updated = datetime.fromisoformat(last_updated_str.replace('Z', '+00:00'))
+            if last_updated.tzinfo is None:
+                last_updated = last_updated.replace(tzinfo=JST)
+        except Exception as e:
+            logger.warning(f"Error parsing last_updated: {e}")
+            return True
+
         now = datetime.now(JST)
+        cache_age_days = (now - last_updated).total_seconds() / 86400
 
-        # Get 5th and 10th business days of current month
+        # 7-day TTL regardless of publication schedule
+        if cache_age_days >= 7:
+            return True
+
+        # Refresh once after the monthly publication (5th business day, 14:00 JST)
         fifth_bd = self._get_nth_business_day(now.year, now.month, 5)
-        tenth_bd = self._get_nth_business_day(now.year, now.month, 10)
+        fifth_bd_release = fifth_bd.replace(hour=14, minute=0, tzinfo=JST)
+        if now >= fifth_bd_release and last_updated < fifth_bd_release:
+            return True
 
-        # Check if today is between 5th and 10th business day (inclusive)
-        if not (fifth_bd.date() <= now.date() <= tenth_bd.date()):
-            return False
-
-        # Check if current time is between 14:00 and 14:30
-        current_time = now.time()
-        start_time = datetime.strptime("14:00", "%H:%M").time()
-        end_time = datetime.strptime("14:30", "%H:%M").time()
-
-        if not (start_time <= current_time <= end_time):
-            return False
-
-        # If we have last_updated, check if it was updated this month already
-        if last_updated_str:
-            try:
-                last_updated = datetime.fromisoformat(last_updated_str.replace('Z', '+00:00'))
-                if last_updated.tzinfo is None:
-                    last_updated = last_updated.replace(tzinfo=JST)
-
-                # If updated after 5th business day of current month, don't refresh
-                fifth_bd_with_time = datetime.combine(fifth_bd.date(), datetime.strptime("14:00", "%H:%M").time())
-                fifth_bd_with_time = fifth_bd_with_time.replace(tzinfo=JST)
-
-                if last_updated >= fifth_bd_with_time:
-                    return False
-            except Exception as e:
-                logger.warning(f"Error parsing last_updated: {e}")
-
-        return True
+        return False
 
     def _download_excel_file(self) -> Optional[bytes]:
         """
@@ -167,7 +161,7 @@ class BOJCAIService:
 
             response = requests.get(
                 self.BOJ_CAI_URL,
-                timeout=60,
+                timeout=20,
                 headers={
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
                 }

@@ -363,6 +363,7 @@ class WgcGoldEtfScheduler:
                 run_date=datetime.now(JST) + timedelta(seconds=30),
                 id="wgc_gold_etf_startup_catchup",
                 replace_existing=True,
+                misfire_grace_time=300,
             )
             logger.info("[WgcGoldEtfScheduler] Startup catch-up scheduled (in 30s)")
 

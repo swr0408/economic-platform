@@ -26,7 +26,7 @@ python build_stats.py --symbol SP500
 - `--symbol, -s`  銘柄シンボル（必須）
 - `--input, -i`   CSVパス（省略時は input/{SYMBOL}/{SYMBOL}_1D.csv）
 - `--start-year`  分析開始年（デフォルト: 2004）
-- `--end-year`    分析終了年（デフォルト: 2024、含む）
+- `--end-year`    分析終了年（デフォルト: 2025、含む）
 - `--recent-years` 直近期間の年数（デフォルト: 10）
 
 ## CSV形式
@@ -46,8 +46,8 @@ TradingView エクスポート想定。必要カラム:
   "symbol": "SP500",
   "generated_at": "ISO8601",
   "periods": {
-    "full":   { "start_year": 2004, "end_year": 2024, "label": "2004-2024" },
-    "recent": { "start_year": 2015, "end_year": 2024, "label": "直近10年" }
+    "full":   { "start_year": 2004, "end_year": 2025, "label": "2004-2025" },
+    "recent": { "start_year": 2016, "end_year": 2025, "label": "直近10年" }
   },
   "months": [
     {
