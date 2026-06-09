@@ -63,3 +63,6 @@ explore_*.py
 diagnose_*.py
 *_scraper.py
 *_scrape_log.txt
+
+# vendored tool binaries (pandoc etc.) — do not commit
+.vendor/
