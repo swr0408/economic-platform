@@ -2017,7 +2017,7 @@
       "yoy_change": 5.9
     }
   ],
-  "last_updated": "2026-06-06T09:46:41.502451+09:00",
+  "last_updated": "2026-06-08T20:01:06.172876+09:00",
   "source": "e-Stat (Cabinet Office)",
   "description": "民間需要（船舶・電力を除く）- 機械受注統計調査",
   "next_release": {
@@ -2025,7 +2025,7 @@
     "datetime_utc": "2026-06-16T23:50:00+00:00",
     "datetime_jst": "2026-06-17T08:50:00+09:00",
     "time_jst": "08:50",
-    "label": "Machinery Orders MoM (Apr)",
-    "estimate": 7
+    "label": "Machinery Orders YoY (Apr)",
+    "estimate": null
   }
 }

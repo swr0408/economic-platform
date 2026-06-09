@@ -75,7 +75,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 23916.58,
-      "topix_idx": 1773.12
+      "topix_idx": 1773.13
     },
     {
       "date": "2020-01-16",
@@ -108,7 +108,7 @@
       "topix_vol_pcr": 0.0,
       "topix_oi_pcr": 4.4504,
       "nikkei225": 24083.51,
-      "topix_idx": 1783.99
+      "topix_idx": 1783.98
     },
     {
       "date": "2020-01-21",
@@ -4915,7 +4915,7 @@
       "topix_vol_pcr": 1.0265,
       "topix_oi_pcr": 3.3154,
       "nikkei225": 29647.08,
-      "topix_idx": 2107.13
+      "topix_idx": 2107.12
     },
     {
       "date": "2021-11-02",
@@ -5058,7 +5058,7 @@
       "topix_vol_pcr": 0.0,
       "topix_oi_pcr": 3.9856,
       "nikkei225": 29745.87,
-      "topix_idx": 2107.13
+      "topix_idx": 2107.12
     },
     {
       "date": "2021-11-22",
@@ -5069,7 +5069,7 @@
       "topix_vol_pcr": 1.0,
       "topix_oi_pcr": 3.9856,
       "nikkei225": 29774.11,
-      "topix_idx": 2107.13
+      "topix_idx": 2107.12
     },
     {
       "date": "2021-11-24",
@@ -7819,7 +7819,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 28226.08,
-      "topix_idx": 2058.02
+      "topix_idx": 2058.01
     },
     {
       "date": "2022-12-02",
@@ -8754,7 +8754,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 27472.63,
-      "topix_idx": 2058.02
+      "topix_idx": 2058.01
     },
     {
       "date": "2023-04-07",
@@ -11515,7 +11515,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 39232.8,
-      "topix_idx": 2892.04
+      "topix_idx": 2892.05
     },
     {
       "date": "2024-04-16",
@@ -11889,7 +11889,7 @@
       "topix_vol_pcr": 0.4955,
       "topix_oi_pcr": 1.6259,
       "nikkei225": 38490.17,
-      "topix_idx": 2892.04
+      "topix_idx": 2892.05
     },
     {
       "date": "2024-06-06",
@@ -11944,7 +11944,7 @@
       "topix_vol_pcr": 0.9887,
       "topix_oi_pcr": 1.6153,
       "nikkei225": 38876.71,
-      "topix_idx": 2899.01
+      "topix_idx": 2899.02
     },
     {
       "date": "2024-06-13",
@@ -17260,5 +17260,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-07T22:10:08.679961+09:00"
+  "last_updated": "2026-06-07T22:37:44.287430+09:00"
 }

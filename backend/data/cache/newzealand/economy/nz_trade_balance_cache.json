@@ -556,8 +556,8 @@
     "time_jst": "07:45",
     "datetime_auckland": "2026-06-19T10:45:00+12:00",
     "time_auckland": "10:45",
-    "label": "Balance of Trade MoM (May)",
-    "estimate": null
+    "label": "Balance of Trade (May)",
+    "estimate": 1.3
   },
-  "last_updated": "2026-06-07T11:31:44.022339+09:00"
+  "last_updated": "2026-06-08T20:01:31.179556+09:00"
 }

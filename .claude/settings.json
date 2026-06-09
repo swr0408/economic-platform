@@ -44,7 +44,8 @@
       "PowerShell(docker exec economic-platform-backend grep -nE \"if [a-z_]+ else None|if not [a-z_]+|float\\\\\\([a-z_]+\\\\\\) if|== 0|!= 0|if [a-z_]+:\" /app/backend/services/uk/halifax_house_price_service.py)",
       "Bash(wsl -e bash -lc \"cd /mnt/c/Users/owner/Desktop/economic-platform/backend && ./venv/bin/python -c 'import yfinance,pandas,numpy,sys; print\\(\\\\\"yf\\\\\",yfinance.__version__,\\\\\"pandas\\\\\",pandas.__version__,\\\\\"numpy\\\\\",numpy.__version__\\)'\")",
       "Bash(wsl -e bash -lc \"ls /mnt/c/Users/owner/Desktop/economic-platform/backend/venv/lib/python3.12/site-packages/ | grep -iE 'yfinance|pandas|numpy' ; echo '--- pip show via venv ---'; /mnt/c/Users/owner/Desktop/economic-platform/backend/venv/bin/python -m pip show yfinance pandas numpy 2>/dev/null | grep -iE '^Name|^Version'\")",
-      "Bash(wsl -e bash -lc ' *)"
+      "Bash(wsl -e bash -lc ' *)",
+      "Bash(git config *)"
     ],
     "additionalDirectories": [
       "\\tmp",

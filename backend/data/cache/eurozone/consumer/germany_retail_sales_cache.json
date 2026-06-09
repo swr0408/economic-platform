@@ -2,54 +2,6 @@
   "retail_sales_yoy": [],
   "retail_sales_mom": [
     {
-      "date": "2016-02-01",
-      "value": -0.3
-    },
-    {
-      "date": "2016-03-01",
-      "value": -0.7
-    },
-    {
-      "date": "2016-04-01",
-      "value": 0.0
-    },
-    {
-      "date": "2016-05-01",
-      "value": 0.5
-    },
-    {
-      "date": "2016-06-01",
-      "value": -0.4
-    },
-    {
-      "date": "2016-07-01",
-      "value": 1.3
-    },
-    {
-      "date": "2016-08-01",
-      "value": 0.2
-    },
-    {
-      "date": "2016-09-01",
-      "value": -0.8
-    },
-    {
-      "date": "2016-10-01",
-      "value": 3.1
-    },
-    {
-      "date": "2016-11-01",
-      "value": -2.2
-    },
-    {
-      "date": "2016-12-01",
-      "value": 3.2
-    },
-    {
-      "date": "2017-01-01",
-      "value": -2.5
-    },
-    {
       "date": "2017-02-01",
       "value": 0.5
     },
@@ -510,8 +462,8 @@
     "time_jst": "15:00",
     "datetime_cet": "2026-06-30T08:00:00+02:00",
     "time_cet": "08:00",
-    "label": "Retail Sales YoY (May)",
-    "estimate": -0.4
+    "label": "Retail Sales MoM (May)",
+    "estimate": 0.1
   },
-  "last_updated": "2026-06-06T09:48:57.342985+09:00"
+  "last_updated": "2026-06-08T22:02:28.743355+09:00"
 }

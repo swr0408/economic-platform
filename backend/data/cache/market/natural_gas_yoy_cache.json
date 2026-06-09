@@ -627,13 +627,13 @@
     },
     {
       "date": "2026-06-01",
-      "natural_gas_yoy": -21.63,
+      "natural_gas_yoy": -21.61,
       "natural_gas_close": 3.23
     }
   ],
   "latest": {
     "date": "2026-06-01",
-    "natural_gas_yoy": -21.63,
+    "natural_gas_yoy": -21.61,
     "natural_gas_close": 3.23
   },
   "metadata": {
@@ -647,5 +647,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-01T21:39:44.230202+09:00"
+  "last_updated": "2026-06-07T22:37:29.278696+09:00"
 }

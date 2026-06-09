@@ -7138,6 +7138,15 @@
       "hicp_yoy": "IPCA1885"
     }
   },
-  "next_release": null,
-  "last_updated": "2026-06-06T09:46:52.507039+09:00"
+  "next_release": {
+    "date": "2026-06-29",
+    "datetime_utc": "2026-06-29T07:00:00+00:00",
+    "datetime_jst": "2026-06-29T16:00:00+09:00",
+    "time_jst": "16:00",
+    "datetime_cet": "2026-06-29T09:00:00+02:00",
+    "time_cet": "09:00",
+    "label": "HICP YoY (Jun)",
+    "estimate": null
+  },
+  "last_updated": "2026-06-08T22:00:20.802306+09:00"
 }

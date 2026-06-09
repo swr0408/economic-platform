@@ -669,15 +669,15 @@
       },
       {
         "date": "2026-05-01",
-        "value": 55.3,
-        "forecast": 53.8,
+        "value": 55.1,
+        "forecast": 55.3,
         "previous": 54.5
       }
     ],
     "latest": {
       "date": "2026-05-01",
-      "value": 55.3,
-      "forecast": 53.8,
+      "value": 55.1,
+      "forecast": 55.3,
       "previous": 54.5
     }
   },
@@ -1585,15 +1585,15 @@
       },
       {
         "date": "2026-05-01",
-        "value": 50.9,
-        "forecast": 51.1,
+        "value": 50.7,
+        "forecast": 50.9,
         "previous": 51.0
       }
     ],
     "latest": {
       "date": "2026-05-01",
-      "value": 50.9,
-      "forecast": 51.1,
+      "value": 50.7,
+      "forecast": 50.9,
       "previous": 51.0
     }
   },
@@ -2429,15 +2429,15 @@
       },
       {
         "date": "2026-05-01",
-        "value": 51.7,
-        "forecast": 51.5,
+        "value": 51.5,
+        "forecast": 51.7,
         "previous": 51.7
       }
     ],
     "latest": {
       "date": "2026-05-01",
-      "value": 51.7,
-      "forecast": 51.5,
+      "value": 51.5,
+      "forecast": 51.7,
       "previous": 51.7
     }
   },
@@ -2449,5 +2449,5 @@
     "label": "S&P Global Manufacturing PMI (Jun)",
     "estimate": 54.5
   },
-  "last_updated": "2026-06-01T23:00:03.917282+09:00"
+  "last_updated": "2026-06-08T00:30:11.469097+09:00"
 }

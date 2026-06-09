@@ -1091,21 +1091,27 @@
       "value": 52.7,
       "forecast": 53.0,
       "previous": 52.7
+    },
+    {
+      "date": "2026-05-01",
+      "value": 54.0,
+      "forecast": 53.0,
+      "previous": 52.7
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 52.7,
+    "date": "2026-05-01",
+    "value": 54.0,
     "forecast": 53.0,
     "previous": 52.7
   },
   "next_release": {
-    "date": "2026-06-01",
-    "datetime_utc": "2026-06-01T14:00:00+00:00",
-    "datetime_jst": "2026-06-01T23:00:00+09:00",
+    "date": "2026-07-01",
+    "datetime_utc": "2026-07-01T14:00:00+00:00",
+    "datetime_jst": "2026-07-01T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Manufacturing Employment (May)",
-    "estimate": 46.6
+    "label": "ISM Manufacturing Prices (Jun)",
+    "estimate": null
   },
-  "last_updated": "2026-06-01T23:15:00.058402+09:00"
+  "last_updated": "2026-06-07T22:44:54.080223+09:00"
 }

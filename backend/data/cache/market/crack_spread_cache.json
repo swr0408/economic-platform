@@ -1,61 +1,6 @@
 {
   "data": [
     {
-      "date": "2011-06-06",
-      "wti": 99.01,
-      "rbob_crack_wti": 24.89,
-      "ulsd_crack_wti": 27.72,
-      "crack_321_wti": 25.83,
-      "brent": 114.48,
-      "rbob_crack_brent": 9.42,
-      "ulsd_crack_brent": 12.25,
-      "crack_321_brent": 10.36
-    },
-    {
-      "date": "2011-06-07",
-      "wti": 99.09,
-      "rbob_crack_wti": 26.57,
-      "ulsd_crack_wti": 30.14,
-      "crack_321_wti": 27.76,
-      "brent": 116.78,
-      "rbob_crack_brent": 8.88,
-      "ulsd_crack_brent": 12.45,
-      "crack_321_brent": 10.07
-    },
-    {
-      "date": "2011-06-08",
-      "wti": 100.74,
-      "rbob_crack_wti": 24.37,
-      "ulsd_crack_wti": 29.2,
-      "crack_321_wti": 25.98,
-      "brent": 117.85,
-      "rbob_crack_brent": 7.26,
-      "ulsd_crack_brent": 12.09,
-      "crack_321_brent": 8.87
-    },
-    {
-      "date": "2011-06-09",
-      "wti": 101.93,
-      "rbob_crack_wti": 25.74,
-      "ulsd_crack_wti": 29.86,
-      "crack_321_wti": 27.11,
-      "brent": 119.57,
-      "rbob_crack_brent": 8.1,
-      "ulsd_crack_brent": 12.22,
-      "crack_321_brent": 9.47
-    },
-    {
-      "date": "2011-06-10",
-      "wti": 99.29,
-      "rbob_crack_wti": 27.45,
-      "ulsd_crack_wti": 31.12,
-      "crack_321_wti": 28.68,
-      "brent": 118.78,
-      "rbob_crack_brent": 7.96,
-      "ulsd_crack_brent": 11.63,
-      "crack_321_brent": 9.19
-    },
-    {
       "date": "2011-06-13",
       "wti": 97.3,
       "rbob_crack_wti": 28.57,
@@ -41436,18 +41381,73 @@
       "rbob_crack_brent": 39.27,
       "ulsd_crack_brent": 56.52,
       "crack_321_brent": 45.02
+    },
+    {
+      "date": "2026-06-01",
+      "wti": 92.16,
+      "rbob_crack_wti": 37.4,
+      "ulsd_crack_wti": 60.69,
+      "crack_321_wti": 45.16,
+      "brent": 94.98,
+      "rbob_crack_brent": 34.58,
+      "ulsd_crack_brent": 57.87,
+      "crack_321_brent": 42.34
+    },
+    {
+      "date": "2026-06-02",
+      "wti": 93.76,
+      "rbob_crack_wti": 38.3,
+      "ulsd_crack_wti": 61.59,
+      "crack_321_wti": 46.06,
+      "brent": 96.0,
+      "rbob_crack_brent": 36.06,
+      "ulsd_crack_brent": 59.35,
+      "crack_321_brent": 43.82
+    },
+    {
+      "date": "2026-06-03",
+      "wti": 96.02,
+      "rbob_crack_wti": 35.51,
+      "ulsd_crack_wti": 65.6,
+      "crack_321_wti": 45.54,
+      "brent": 97.81,
+      "rbob_crack_brent": 33.72,
+      "ulsd_crack_brent": 63.81,
+      "crack_321_brent": 43.75
+    },
+    {
+      "date": "2026-06-04",
+      "wti": 93.04,
+      "rbob_crack_wti": 34.57,
+      "ulsd_crack_wti": 61.26,
+      "crack_321_wti": 43.47,
+      "brent": 95.03,
+      "rbob_crack_brent": 32.58,
+      "ulsd_crack_brent": 59.27,
+      "crack_321_brent": 41.48
+    },
+    {
+      "date": "2026-06-05",
+      "wti": 90.54,
+      "rbob_crack_wti": 34.91,
+      "ulsd_crack_wti": 60.13,
+      "crack_321_wti": 43.31,
+      "brent": 93.09,
+      "rbob_crack_brent": 32.36,
+      "ulsd_crack_brent": 57.58,
+      "crack_321_brent": 40.76
     }
   ],
   "latest": {
-    "date": "2026-05-29",
-    "wti": 87.36,
-    "rbob_crack_wti": 43.96,
-    "ulsd_crack_wti": 61.21,
-    "crack_321_wti": 49.71,
-    "brent": 92.05,
-    "rbob_crack_brent": 39.27,
-    "ulsd_crack_brent": 56.52,
-    "crack_321_brent": 45.02
+    "date": "2026-06-05",
+    "wti": 90.54,
+    "rbob_crack_wti": 34.91,
+    "ulsd_crack_wti": 60.13,
+    "crack_321_wti": 43.31,
+    "brent": 93.09,
+    "rbob_crack_brent": 32.36,
+    "ulsd_crack_brent": 57.58,
+    "crack_321_brent": 40.76
   },
   "metadata": {
     "source": "yfinance",
@@ -41468,10 +41468,10 @@
       "crack_321_brent": "(2×RBOB×42 + ULSD×42 - 3×Brent) / 3"
     },
     "data_count": 3767,
-    "start_date": "2011-06-06",
-    "end_date": "2026-05-29"
+    "start_date": "2011-06-13",
+    "end_date": "2026-06-05"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-01T21:39:44.661266+09:00"
+  "last_updated": "2026-06-07T22:37:29.811661+09:00"
 }

@@ -28,6 +28,7 @@ import pandas as pd
 import yfinance as yf
 
 from core.redis_client import redis_client
+from services.market.valuation_utils import assert_expected_ticker, assert_value_range
 from services.usa.fred_utils import fetch_fred_series
 
 logger = logging.getLogger(__name__)
@@ -135,30 +136,36 @@ class Sp500ValuationService:
         logger.info(f"[SP500-VAL] Fetching ^GSPC from {start_date} to {end_date}")
         try:
             sp500 = yf.download("^GSPC", start=start_date, end=end_date, progress=False)
-            if sp500.empty:
-                logger.error("[SP500-VAL] No S&P500 price data from yfinance")
-                return None
-            sp500 = sp500[["Close"]].reset_index()
-            sp500.columns = ["date", "close"]
-            sp500["date"] = pd.to_datetime(sp500["date"]).dt.tz_localize(None)
         except Exception as e:
             logger.error(f"[SP500-VAL] yfinance ^GSPC error: {e}")
             return None
+        if sp500.empty:
+            logger.error("[SP500-VAL] No S&P500 price data from yfinance")
+            return None
+        assert_expected_ticker(sp500, "^GSPC")
+        sp500 = sp500[["Close"]].reset_index()
+        sp500.columns = ["date", "close"]
+        sp500["date"] = pd.to_datetime(sp500["date"]).dt.tz_localize(None)
+        # 健全性チェック: 指数値が異常に小さい場合は誤ティッカー(例:^VIX)/破損とみなし中断
+        assert_value_range(sp500["close"], "^GSPC close", 100.0, 100000.0)
 
         # 3. yfinanceから10年債利回りを取得
         logger.info(f"[SP500-VAL] Fetching ^TNX from {start_date} to {end_date}")
         try:
             tnx = yf.download("^TNX", start=start_date, end=end_date, progress=False)
-            if tnx.empty:
-                logger.error("[SP500-VAL] No TNX data from yfinance")
-                return None
-            tnx = tnx[["Close"]].reset_index()
-            tnx.columns = ["date", "yield_10y"]
-            tnx["date"] = pd.to_datetime(tnx["date"]).dt.tz_localize(None)
-            tnx["yield_10y"] = tnx["yield_10y"] / 100  # % → decimal
         except Exception as e:
             logger.error(f"[SP500-VAL] yfinance ^TNX error: {e}")
             return None
+        if tnx.empty:
+            logger.error("[SP500-VAL] No TNX data from yfinance")
+            return None
+        assert_expected_ticker(tnx, "^TNX")
+        tnx = tnx[["Close"]].reset_index()
+        tnx.columns = ["date", "yield_10y"]
+        tnx["date"] = pd.to_datetime(tnx["date"]).dt.tz_localize(None)
+        tnx["yield_10y"] = tnx["yield_10y"] / 100  # % → decimal
+        # 健全性チェック: 10年債利回り(小数)が0〜30%の範囲外なら破損とみなし中断
+        assert_value_range(tnx["yield_10y"], "^TNX yield(decimal)", 0.0, 0.30)
 
         # 4. FRED DFII10（実質10年債利回り）を取得
         logger.info("[SP500-VAL] Fetching DFII10 from FRED")

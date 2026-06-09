@@ -28,6 +28,7 @@ import pandas as pd
 import yfinance as yf
 
 from core.redis_client import redis_client
+from services.market.valuation_utils import assert_expected_ticker, assert_value_range
 from services.usa.fred_utils import fetch_fred_series
 
 logger = logging.getLogger(__name__)
@@ -135,30 +136,36 @@ class Nasdaq100ValuationService:
         logger.info(f"[NDX-VAL] Fetching ^NDX from {start_date} to {end_date}")
         try:
             ndx = yf.download("^NDX", start=start_date, end=end_date, progress=False)
-            if ndx.empty:
-                logger.error("[NDX-VAL] No NDX price data from yfinance")
-                return None
-            ndx = ndx[["Close"]].reset_index()
-            ndx.columns = ["date", "close"]
-            ndx["date"] = pd.to_datetime(ndx["date"]).dt.tz_localize(None)
         except Exception as e:
             logger.error(f"[NDX-VAL] yfinance ^NDX error: {e}")
             return None
+        if ndx.empty:
+            logger.error("[NDX-VAL] No NDX price data from yfinance")
+            return None
+        assert_expected_ticker(ndx, "^NDX")
+        ndx = ndx[["Close"]].reset_index()
+        ndx.columns = ["date", "close"]
+        ndx["date"] = pd.to_datetime(ndx["date"]).dt.tz_localize(None)
+        # 健全性チェック: 指数値が異常に小さい場合は誤ティッカー(例:^VIX)/破損とみなし中断
+        assert_value_range(ndx["close"], "^NDX close", 1000.0, 1000000.0)
 
         # 3. yfinanceから10年債利回りを取得（日次）
         logger.info(f"[NDX-VAL] Fetching ^TNX from {start_date} to {end_date}")
         try:
             tnx = yf.download("^TNX", start=start_date, end=end_date, progress=False)
-            if tnx.empty:
-                logger.error("[NDX-VAL] No TNX data from yfinance")
-                return None
-            tnx = tnx[["Close"]].reset_index()
-            tnx.columns = ["date", "yield_10y"]
-            tnx["date"] = pd.to_datetime(tnx["date"]).dt.tz_localize(None)
-            tnx["yield_10y"] = tnx["yield_10y"] / 100  # % → decimal
         except Exception as e:
             logger.error(f"[NDX-VAL] yfinance ^TNX error: {e}")
             return None
+        if tnx.empty:
+            logger.error("[NDX-VAL] No TNX data from yfinance")
+            return None
+        assert_expected_ticker(tnx, "^TNX")
+        tnx = tnx[["Close"]].reset_index()
+        tnx.columns = ["date", "yield_10y"]
+        tnx["date"] = pd.to_datetime(tnx["date"]).dt.tz_localize(None)
+        tnx["yield_10y"] = tnx["yield_10y"] / 100  # % → decimal
+        # 健全性チェック: 10年債利回り(小数)が0〜30%の範囲外なら破損とみなし中断
+        assert_value_range(tnx["yield_10y"], "^TNX yield(decimal)", 0.0, 0.30)
 
         # 4. FRED DFII10（実質10年債利回り）を取得
         logger.info("[NDX-VAL] Fetching DFII10 from FRED")

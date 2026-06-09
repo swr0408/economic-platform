@@ -15607,10 +15607,14 @@
     {
       "date": "2026-06-04",
       "value": 4.35
+    },
+    {
+      "date": "2026-06-05",
+      "value": 4.35
     }
   ],
   "latest": {
-    "date": "2026-06-04",
+    "date": "2026-06-05",
     "value": 4.35
   },
   "metadata": {
@@ -15621,5 +15625,5 @@
     "series_id": "FIRMMCRTD",
     "table": "F1 - Money Market Rates"
   },
-  "last_updated": "2026-06-06T09:46:41.133471+09:00"
+  "last_updated": "2026-06-09T10:46:00.526180+09:00"
 }
